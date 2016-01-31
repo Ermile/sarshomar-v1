@@ -1,0 +1,4 @@
+*.DS_Store
+/public_html/files
+/public_html/sitemap
+/public_html/sitemap.xml
