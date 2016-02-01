@@ -1,5 +1,4 @@
 <?php
-$keyb = array('ReplyKeyboardMarkup' => array('keyboard' => array(array("A", "B"))));
-$content = array('chat_id' => "###", 'reply_markup' => $keyb, 'text' => "Test");
-echo http_build_query($content);
+$message = json_decode(file_get_contents('php://input'), true);
+file_put_contents('telegram.json', $message, FILE_APPEND);
 ?>
