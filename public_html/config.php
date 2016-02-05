@@ -7,7 +7,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
  /** The name of the database */
- define("db_name", 'saloos');
+ define("db_name", 'ermile');
 
  /** MySQL database username */
  define("db_user", 'ermile');
@@ -69,7 +69,7 @@ define('SaveAsCookie', false);
  *
  * if table exist add to it, else create a table and add a visitor details to it
  */
-define('LogVisitors', true);
+define('LogVisitors', false);
 
 /**
  * ControlPanel
@@ -77,7 +77,7 @@ define('LogVisitors', true);
  *
  * add saloos control panel to this project
  */
-define('ControlPanel', true);
+define('ControlPanel', false);
 
 /**
  * Account
@@ -85,7 +85,7 @@ define('ControlPanel', true);
  *
  * add saloos Account manager to this project
  */
-define('Account', true);
+define('Account', false);
 
 /**
  * LangList
