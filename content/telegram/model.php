@@ -24,7 +24,7 @@ class model extends \lib\model
 		
 
 		$text = $telegram_hooks_get->message->text;
-		$chat_id = $telegram_hooks_get->chat->id;
+		$chat_id = $telegram_hooks_get->message->chat->id;
 		$x = $bot->sendMessage($chat_id, "question : $text", 'Markdown', false, null, $keyboard);
 
 		return json_decode(json_encode($x));
