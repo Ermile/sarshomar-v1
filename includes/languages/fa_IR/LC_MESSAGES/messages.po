@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
-"POT-Creation-Date: 2016-04-17 16:55+0430\n"
-"PO-Revision-Date: 2016-04-17 16:56+0430\n"
+"POT-Creation-Date: 2016-04-18 14:17+0430\n"
+"PO-Revision-Date: 2016-04-18 14:18+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -17,344 +17,344 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/cls/database/saloos/translation.php:6
-#: includes/cls/database/saloos/translation.php:112
+#: includes/cls/database/sarshomar/translation.php:6
+#: includes/cls/database/sarshomar/translation.php:112
 msgid "comments"
 msgstr "دیدگاه ها"
 
-#: includes/cls/database/saloos/translation.php:7
-#: includes/cls/database/saloos/translation.php:86
+#: includes/cls/database/sarshomar/translation.php:7
+#: includes/cls/database/sarshomar/translation.php:86
 msgid "comment"
 msgstr "دیدگاه"
 
-#: includes/cls/database/saloos/translation.php:8
+#: includes/cls/database/sarshomar/translation.php:8
 msgid "approved"
 msgstr "تایید شده"
 
-#: includes/cls/database/saloos/translation.php:9
+#: includes/cls/database/sarshomar/translation.php:9
 msgid "unapproved"
 msgstr "تایید نشده"
 
-#: includes/cls/database/saloos/translation.php:10
+#: includes/cls/database/sarshomar/translation.php:10
 msgid "spam"
 msgstr "هرزنامه"
 
-#: includes/cls/database/saloos/translation.php:11
+#: includes/cls/database/sarshomar/translation.php:11
 msgid "deleted"
 msgstr "حذف شده"
 
-#: includes/cls/database/saloos/translation.php:12
+#: includes/cls/database/sarshomar/translation.php:12
 msgid "id"
 msgstr "کد"
 
-#: includes/cls/database/saloos/translation.php:13
-#: includes/cls/database/saloos/translation.php:73
+#: includes/cls/database/sarshomar/translation.php:13
+#: includes/cls/database/sarshomar/translation.php:73
 #: includes/languages/trans_addons.php:322
 msgid "post"
 msgstr "نوشته"
 
-#: includes/cls/database/saloos/translation.php:14
+#: includes/cls/database/sarshomar/translation.php:14
 msgid "author"
 msgstr "کاربر"
 
-#: includes/cls/database/saloos/translation.php:15
-#: includes/cls/database/saloos/translation.php:127
+#: includes/cls/database/sarshomar/translation.php:15
+#: includes/cls/database/sarshomar/translation.php:127
 msgid "email"
 msgstr "رایانامه"
 
-#: includes/cls/database/saloos/translation.php:16
-#: includes/cls/database/saloos/translation.php:59
-#: includes/cls/database/saloos/translation.php:82
-#: includes/cls/database/saloos/translation.php:100
+#: includes/cls/database/sarshomar/translation.php:16
+#: includes/cls/database/sarshomar/translation.php:59
+#: includes/cls/database/sarshomar/translation.php:82
+#: includes/cls/database/sarshomar/translation.php:100
 msgid "url"
 msgstr "نشانی اینترنتی"
 
-#: includes/cls/database/saloos/translation.php:17
-#: includes/cls/database/saloos/translation.php:57
-#: includes/cls/database/saloos/translation.php:83
+#: includes/cls/database/sarshomar/translation.php:17
+#: includes/cls/database/sarshomar/translation.php:57
+#: includes/cls/database/sarshomar/translation.php:83
 msgid "content"
 msgstr "محتوا"
 
-#: includes/cls/database/saloos/translation.php:18
-#: includes/cls/database/saloos/translation.php:34
-#: includes/cls/database/saloos/translation.php:46
-#: includes/cls/database/saloos/translation.php:58
-#: includes/cls/database/saloos/translation.php:68
-#: includes/cls/database/saloos/translation.php:84
-#: includes/cls/database/saloos/translation.php:102
-#: includes/cls/database/saloos/translation.php:130
+#: includes/cls/database/sarshomar/translation.php:18
+#: includes/cls/database/sarshomar/translation.php:34
+#: includes/cls/database/sarshomar/translation.php:46
+#: includes/cls/database/sarshomar/translation.php:58
+#: includes/cls/database/sarshomar/translation.php:68
+#: includes/cls/database/sarshomar/translation.php:84
+#: includes/cls/database/sarshomar/translation.php:102
+#: includes/cls/database/sarshomar/translation.php:130
 msgid "meta"
 msgstr "متا"
 
-#: includes/cls/database/saloos/translation.php:19
-#: includes/cls/database/saloos/translation.php:47
-#: includes/cls/database/saloos/translation.php:60
-#: includes/cls/database/saloos/translation.php:69
-#: includes/cls/database/saloos/translation.php:89
-#: includes/cls/database/saloos/translation.php:131
+#: includes/cls/database/sarshomar/translation.php:19
+#: includes/cls/database/sarshomar/translation.php:47
+#: includes/cls/database/sarshomar/translation.php:60
+#: includes/cls/database/sarshomar/translation.php:69
+#: includes/cls/database/sarshomar/translation.php:89
+#: includes/cls/database/sarshomar/translation.php:131
 msgid "status"
 msgstr "وضعیت"
 
-#: includes/cls/database/saloos/translation.php:20
-#: includes/cls/database/saloos/translation.php:90
-#: includes/cls/database/saloos/translation.php:103
+#: includes/cls/database/sarshomar/translation.php:20
+#: includes/cls/database/sarshomar/translation.php:90
+#: includes/cls/database/sarshomar/translation.php:103
 msgid "parent"
 msgstr "والد"
 
-#: includes/cls/database/saloos/translation.php:21
-#: includes/cls/database/saloos/translation.php:120
+#: includes/cls/database/sarshomar/translation.php:21
+#: includes/cls/database/sarshomar/translation.php:120
 msgid "user"
 msgstr "کاربر"
 
-#: includes/cls/database/saloos/translation.php:22
+#: includes/cls/database/sarshomar/translation.php:22
 #: includes/languages/trans_addons.php:334
 msgid "visitor"
 msgstr "بازدیدکننده"
 
-#: includes/cls/database/saloos/translation.php:23
+#: includes/cls/database/sarshomar/translation.php:23
 msgid "modified"
 msgstr "آخرین زمان ویرایش"
 
-#: includes/cls/database/saloos/translation.php:26
+#: includes/cls/database/sarshomar/translation.php:26
 msgid "logitems"
 msgstr "مواردلاگ‌ها"
 
-#: includes/cls/database/saloos/translation.php:27
-#: includes/cls/database/saloos/translation.php:44
+#: includes/cls/database/sarshomar/translation.php:27
+#: includes/cls/database/sarshomar/translation.php:44
 msgid "logitem"
 msgstr "موارد لاگ"
 
-#: includes/cls/database/saloos/translation.php:28
+#: includes/cls/database/sarshomar/translation.php:28
 msgid "critical"
 msgstr "بحرانی"
 
-#: includes/cls/database/saloos/translation.php:29
+#: includes/cls/database/sarshomar/translation.php:29
 msgid "high"
 msgstr "بالا"
 
-#: includes/cls/database/saloos/translation.php:30
+#: includes/cls/database/sarshomar/translation.php:30
 msgid "medium"
 msgstr "متوسط"
 
-#: includes/cls/database/saloos/translation.php:31
+#: includes/cls/database/sarshomar/translation.php:31
 msgid "low"
 msgstr "کم"
 
-#: includes/cls/database/saloos/translation.php:32
-#: includes/cls/database/saloos/translation.php:56
-#: includes/cls/database/saloos/translation.php:80
-#: includes/cls/database/saloos/translation.php:98
+#: includes/cls/database/sarshomar/translation.php:32
+#: includes/cls/database/sarshomar/translation.php:56
+#: includes/cls/database/sarshomar/translation.php:80
+#: includes/cls/database/sarshomar/translation.php:98
 #: includes/languages/trans_addons.php:393
 msgid "title"
 msgstr "عنوان"
 
-#: includes/cls/database/saloos/translation.php:33
-#: includes/cls/database/saloos/translation.php:101
+#: includes/cls/database/sarshomar/translation.php:33
+#: includes/cls/database/sarshomar/translation.php:101
 msgid "desc"
 msgstr "توضیح"
 
-#: includes/cls/database/saloos/translation.php:35
+#: includes/cls/database/sarshomar/translation.php:35
 msgid "priority"
 msgstr "اولویت"
 
-#: includes/cls/database/saloos/translation.php:38
+#: includes/cls/database/sarshomar/translation.php:38
 msgid "logs"
 msgstr "لاگ‌ها"
 
-#: includes/cls/database/saloos/translation.php:39
+#: includes/cls/database/sarshomar/translation.php:39
 msgid "log"
 msgstr "لاگ"
 
-#: includes/cls/database/saloos/translation.php:40
+#: includes/cls/database/sarshomar/translation.php:40
 msgid "enable"
 msgstr "فعال"
 
-#: includes/cls/database/saloos/translation.php:41
+#: includes/cls/database/sarshomar/translation.php:41
 msgid "disable"
 msgstr "غیرفعال"
 
-#: includes/cls/database/saloos/translation.php:42
+#: includes/cls/database/sarshomar/translation.php:42
 msgid "expire"
 msgstr "منقضی شده"
 
-#: includes/cls/database/saloos/translation.php:43
+#: includes/cls/database/sarshomar/translation.php:43
 msgid "deliver"
 msgstr "تحویل‌داده‌شده"
 
-#: includes/cls/database/saloos/translation.php:45
+#: includes/cls/database/sarshomar/translation.php:45
 msgid "data"
 msgstr "داده"
 
-#: includes/cls/database/saloos/translation.php:48
-#: includes/cls/database/saloos/translation.php:133
+#: includes/cls/database/sarshomar/translation.php:48
+#: includes/cls/database/sarshomar/translation.php:133
 msgid "createdate"
 msgstr "تاریخ ایجاد"
 
-#: includes/cls/database/saloos/translation.php:51
+#: includes/cls/database/sarshomar/translation.php:51
 msgid "notifications"
 msgstr "آگاه سازی ها"
 
-#: includes/cls/database/saloos/translation.php:52
+#: includes/cls/database/sarshomar/translation.php:52
 msgid "notification"
 msgstr "آگاه سازی"
 
-#: includes/cls/database/saloos/translation.php:53
+#: includes/cls/database/sarshomar/translation.php:53
 msgid "read"
 msgstr "خوانده شده"
 
-#: includes/cls/database/saloos/translation.php:54
+#: includes/cls/database/sarshomar/translation.php:54
 msgid "unread"
 msgstr "خوانده نشده"
 
-#: includes/cls/database/saloos/translation.php:55
+#: includes/cls/database/sarshomar/translation.php:55
 msgid "user sender"
 msgstr "کاربر فرستنده"
 
-#: includes/cls/database/saloos/translation.php:63
+#: includes/cls/database/sarshomar/translation.php:63
 msgid "options"
 msgstr "تنظیمات"
 
-#: includes/cls/database/saloos/translation.php:64
+#: includes/cls/database/sarshomar/translation.php:64
 #: includes/languages/trans_addons.php:330
 msgid "option"
 msgstr "تنظیمات"
 
-#: includes/cls/database/saloos/translation.php:65
+#: includes/cls/database/sarshomar/translation.php:65
 msgid "cat"
 msgstr "دسته"
 
-#: includes/cls/database/saloos/translation.php:66
+#: includes/cls/database/sarshomar/translation.php:66
 msgid "key"
 msgstr "کلید"
 
-#: includes/cls/database/saloos/translation.php:67
+#: includes/cls/database/sarshomar/translation.php:67
 msgid "value"
 msgstr "مقدار"
 
-#: includes/cls/database/saloos/translation.php:72
-#: includes/cls/database/saloos/translation.php:108
+#: includes/cls/database/sarshomar/translation.php:72
+#: includes/cls/database/sarshomar/translation.php:108
 msgid "posts"
 msgstr "نوشته‌ها"
 
-#: includes/cls/database/saloos/translation.php:74
+#: includes/cls/database/sarshomar/translation.php:74
 msgid "open"
 msgstr "باز"
 
-#: includes/cls/database/saloos/translation.php:75
+#: includes/cls/database/sarshomar/translation.php:75
 msgid "closed"
 msgstr "بسته"
 
-#: includes/cls/database/saloos/translation.php:76
+#: includes/cls/database/sarshomar/translation.php:76
 msgid "publish"
 msgstr "منتشر شده"
 
-#: includes/cls/database/saloos/translation.php:77
+#: includes/cls/database/sarshomar/translation.php:77
 msgid "draft"
 msgstr "پیش نویس"
 
-#: includes/cls/database/saloos/translation.php:78
+#: includes/cls/database/sarshomar/translation.php:78
 msgid "schedule"
 msgstr "زمان بندی شده"
 
-#: includes/cls/database/saloos/translation.php:79
-#: includes/cls/database/saloos/translation.php:96
+#: includes/cls/database/sarshomar/translation.php:79
+#: includes/cls/database/sarshomar/translation.php:96
 msgid "language"
 msgstr "زبان"
 
-#: includes/cls/database/saloos/translation.php:81
-#: includes/cls/database/saloos/translation.php:99
+#: includes/cls/database/sarshomar/translation.php:81
+#: includes/cls/database/sarshomar/translation.php:99
 msgid "slug"
 msgstr "نامک"
 
-#: includes/cls/database/saloos/translation.php:85
-#: includes/cls/database/saloos/translation.php:97
+#: includes/cls/database/sarshomar/translation.php:85
+#: includes/cls/database/sarshomar/translation.php:97
 msgid "type"
 msgstr "نوع"
 
-#: includes/cls/database/saloos/translation.php:87
+#: includes/cls/database/sarshomar/translation.php:87
 msgid "count"
 msgstr "تعداد"
 
-#: includes/cls/database/saloos/translation.php:88
-#: includes/cls/database/saloos/translation.php:116
+#: includes/cls/database/sarshomar/translation.php:88
+#: includes/cls/database/sarshomar/translation.php:116
 msgid "order"
 msgstr "ترتیب"
 
-#: includes/cls/database/saloos/translation.php:91
+#: includes/cls/database/sarshomar/translation.php:91
 msgid "publishdate"
 msgstr "زمان انتشار"
 
-#: includes/cls/database/saloos/translation.php:94
+#: includes/cls/database/sarshomar/translation.php:94
 msgid "terms"
 msgstr "عبارت ها"
 
-#: includes/cls/database/saloos/translation.php:95
-#: includes/cls/database/saloos/translation.php:113
+#: includes/cls/database/sarshomar/translation.php:95
+#: includes/cls/database/sarshomar/translation.php:113
 msgid "term"
 msgstr "عبارت"
 
-#: includes/cls/database/saloos/translation.php:106
+#: includes/cls/database/sarshomar/translation.php:106
 msgid "termusages"
 msgstr "موارد استفاده عبارت"
 
-#: includes/cls/database/saloos/translation.php:107
-#: includes/cls/database/saloos/translation.php:114
+#: includes/cls/database/sarshomar/translation.php:107
+#: includes/cls/database/sarshomar/translation.php:114
 msgid "termusage"
 msgstr "محل استفاده عبارت"
 
-#: includes/cls/database/saloos/translation.php:109
+#: includes/cls/database/sarshomar/translation.php:109
 msgid "products"
 msgstr "کالاها"
 
-#: includes/cls/database/saloos/translation.php:110
+#: includes/cls/database/sarshomar/translation.php:110
 msgid "attachments"
 msgstr "ضمیمه‌ها"
 
-#: includes/cls/database/saloos/translation.php:111
+#: includes/cls/database/sarshomar/translation.php:111
 msgid "files"
 msgstr "فایل ها"
 
-#: includes/cls/database/saloos/translation.php:115
+#: includes/cls/database/sarshomar/translation.php:115
 msgid "foreign"
 msgstr "کلیدخارجی"
 
-#: includes/cls/database/saloos/translation.php:119
+#: includes/cls/database/sarshomar/translation.php:119
 msgid "users"
 msgstr "کاربران"
 
-#: includes/cls/database/saloos/translation.php:121
+#: includes/cls/database/sarshomar/translation.php:121
 msgid "active"
 msgstr "فعال"
 
-#: includes/cls/database/saloos/translation.php:122
+#: includes/cls/database/sarshomar/translation.php:122
 msgid "awaiting"
 msgstr "در حال انتظار"
 
-#: includes/cls/database/saloos/translation.php:123
+#: includes/cls/database/sarshomar/translation.php:123
 msgid "deactive"
 msgstr "غیرفعال"
 
-#: includes/cls/database/saloos/translation.php:124
+#: includes/cls/database/sarshomar/translation.php:124
 msgid "removed"
 msgstr "حذف شده"
 
-#: includes/cls/database/saloos/translation.php:125
+#: includes/cls/database/sarshomar/translation.php:125
 msgid "filter"
 msgstr "فیلتر"
 
-#: includes/cls/database/saloos/translation.php:126
+#: includes/cls/database/sarshomar/translation.php:126
 msgid "mobile"
 msgstr "موبایل"
 
-#: includes/cls/database/saloos/translation.php:128
+#: includes/cls/database/sarshomar/translation.php:128
 msgid "pass"
 msgstr "کلمه عبور"
 
-#: includes/cls/database/saloos/translation.php:129
+#: includes/cls/database/sarshomar/translation.php:129
 msgid "displayname"
 msgstr "نام برای نمایش عمومی"
 
-#: includes/cls/database/saloos/translation.php:132
+#: includes/cls/database/sarshomar/translation.php:132
 msgid "permission"
 msgstr "سطح دسترسی"
 
@@ -584,7 +584,7 @@ msgstr "برخی از حقوق محفوظ است!"
 msgid "Powered by"
 msgstr "قدرت گرفته از"
 
-#: includes/languages/trans_addons.php:78 includes/languages/trans_twig.php:10
+#: includes/languages/trans_addons.php:78 includes/languages/trans_twig.php:6
 msgid "Saloos"
 msgstr "سالوس"
 
@@ -1149,7 +1149,7 @@ msgstr "دیتابیس پروژه"
 msgid "saloos"
 msgstr "سالوس"
 
-#: includes/languages/trans_addons.php:234 includes/languages/trans_twig.php:7
+#: includes/languages/trans_addons.php:234
 msgid "Powered by Saloos"
 msgstr "قدرت گرفته از سالوس"
 
@@ -1301,7 +1301,7 @@ msgstr "تمام رکوردهای الزامی باید پر شوند"
 msgid "some fields must be change for update!"
 msgstr "برای بروزرسانی باید حداقل یک فیلد را تغییر دهید!"
 
-#: includes/languages/trans_addons.php:272 includes/mvc/view.php:10
+#: includes/languages/trans_addons.php:272
 msgid "Ermile"
 msgstr "ارمایل"
 
@@ -1413,7 +1413,7 @@ msgstr "قدرت گرفته از سالوس."
 msgid "All right reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: includes/languages/trans_addons.php:300 includes/languages/trans_twig.php:6
+#: includes/languages/trans_addons.php:300
 msgid "Comming Soon"
 msgstr "بزودی"
 
@@ -2172,7 +2172,7 @@ msgstr "در حال حاضر ما فقط به شماره های ایران سر�
 msgid "Thanks for using our service"
 msgstr "متشکریم که از سرویس ما استفاده می‌کنید"
 
-#: includes/languages/trans_addons.php:492 includes/languages/trans_twig.php:11
+#: includes/languages/trans_addons.php:492
 msgid " "
 msgstr " "
 
@@ -2180,17 +2180,30 @@ msgstr " "
 msgid "Select"
 msgstr "انتخاب"
 
-#: includes/mvc/view.php:11
-msgid "Ermile is new"
-msgstr "ارمایل جدید است!"
+#: includes/languages/trans_twig.php:7 includes/mvc/view.php:10
+msgid "Sarshomar"
+msgstr "سرشمار"
 
-#: includes/mvc/view.php:12
-msgid "Ermile is our company"
-msgstr "ارمایل شرکت ماست"
+#: includes/languages/trans_twig.php:8 includes/mvc/view.php:11
+msgid "Sarshomar start jumping"
+msgstr "سرشمار در حال پریدن است"
 
-#: includes/mvc/view.php:14
-msgid "Ermile is Inteligent."
-msgstr "ارمایل باهوش است!"
+#: includes/languages/trans_twig.php:9 includes/mvc/view.php:12
+msgid "Call Sarshomar"
+msgstr "سرشمار رو صدا کن"
+
+#: includes/languages/trans_twig.php:10 includes/mvc/view.php:14
+msgid "Sarshomar is inteligent"
+msgstr "سرشمار باهوش است"
+
+#~ msgid "Ermile is new"
+#~ msgstr "ارمایل جدید است!"
+
+#~ msgid "Ermile is our company"
+#~ msgstr "ارمایل شرکت ماست"
+
+#~ msgid "Ermile is Inteligent."
+#~ msgstr "ارمایل باهوش است!"
 
 #~ msgid "Redirect to main address"
 #~ msgstr "انتقال کاربران به دامنه اصلی"

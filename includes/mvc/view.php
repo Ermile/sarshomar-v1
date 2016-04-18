@@ -7,11 +7,11 @@ class view extends \lib\mvc\view
 	{
 		// define default value for global
 
-		$this->data->site['title']   = T_("Ermile");
-		$this->data->site['desc']    = T_("Ermile is new");
-		$this->data->site['slogan']  = T_("Ermile is our company");
+		$this->data->site['title']   = T_("Sarshomar");
+		$this->data->site['desc']    = T_("Sarshomar start jumping");
+		$this->data->site['slogan']  = T_("Call Sarshomar");
 
-		$this->data->page['desc']    = T_("Ermile is Inteligent.");
+		$this->data->page['desc']    = T_("Sarshomar is inteligent");
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
