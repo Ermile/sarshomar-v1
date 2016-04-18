@@ -1,5 +1,5 @@
 <?php
-function transtext()
+private function transtext()
 {
 
 	// ------------------------------------------------------------ Table comments
@@ -131,18 +131,6 @@ function transtext()
 	echo T_("status");              // user_status
 	echo T_("permission");          // user_permission
 	echo T_("createdate");          // user_createdate
-
-	// ------------------------------------------------------------ Table visitors
-	echo T_("visitors");            // Table visitors
-	echo T_("visitor");             // visitor
-	echo T_("yes");                 // Enum yes
-	echo T_("no");                  // Enum no
-	echo T_("ip");                  // visitor_ip
-	echo T_("url");                 // visitor_url
-	echo T_("agent");               // visitor_agent
-	echo T_("referer");             // visitor_referer
-	echo T_("robot");               // visitor_robot
-	echo T_("createdate");          // visitor_createdate
 
 }
 ?>

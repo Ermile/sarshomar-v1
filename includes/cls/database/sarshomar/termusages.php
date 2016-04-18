@@ -1,6 +1,6 @@
 <?php
-namespace database\saloos;
-class termusages 
+namespace database\sarshomar;
+class termusages
 {
 	public $term_id           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'term'            ,'type'=>'int@10'                          ,'foreign'=>'terms@id!term_title'];
 	public $termusage_id      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'termusage'       ,'type'=>'bigint@20'];

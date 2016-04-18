@@ -1,6 +1,6 @@
 <?php
-namespace database\saloos;
-class posts 
+namespace database\sarshomar;
+class posts
 {
 	public $id               = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
 	public $post_language    = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'language'        ,'type'=>'char@2'];

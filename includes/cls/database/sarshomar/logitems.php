@@ -1,6 +1,6 @@
 <?php
-namespace database\saloos;
-class logitems 
+namespace database\sarshomar;
+class logitems
 {
 	public $id               = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'smallint@5'];
 	public $logitem_title    = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'title'           ,'type'=>'varchar@100'];

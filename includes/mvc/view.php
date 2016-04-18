@@ -13,19 +13,21 @@ class view extends \lib\mvc\view
 
 		$this->data->page['desc']    = T_("Ermile is Inteligent.");
 
-		if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
-			$this->url->MainStatic       = false;
+		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
+		// 	$this->url->MainStatic       = false;
 
+		/*
 		// add language list for use in display
-		// $this->global->langlist		= array(
-		// 										'fa_IR' => 'فارسی',
-		// 										'en_US' => 'English',
-		// 										'de_DE' => 'Deutsch'
-		// 										);
+		$this->global->langlist		= array(
+												'fa_IR' => 'فارسی',
+												'en_US' => 'English',
+												'de_DE' => 'Deutsch'
+												);
 
 
 		// if you need to set a class for body element in html add in this value
-		// $this->data->bodyclass      = null;
+		$this->data->bodyclass      = null;
+		*/
 
 		if(method_exists($this, 'options')){
 			$this->options();
