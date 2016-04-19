@@ -8,6 +8,10 @@ private function transtext()
 	echo T_("Sarshomar start jumping");                                               // Line 9 Seperate
 	echo T_("Call Sarshomar");                                                        // Line 10 Seperate
 	echo T_("Sarshomar is inteligent");                                               // Line 11 Seperate
+	echo T_("poll");                                                                  // Line 12 Seperate
+	echo T_("Poll");                                                                  // Line 13 Seperate
+	echo T_("polls");                                                                 // Line 14 Seperate
+	echo T_("Polls");                                                                 // Line 15 Seperate
 
 }
 ?>

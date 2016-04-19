@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
-"POT-Creation-Date: 2016-04-18 14:17+0430\n"
-"PO-Revision-Date: 2016-04-18 14:18+0430\n"
+"POT-Creation-Date: 2016-04-18 17:03+0430\n"
+"PO-Revision-Date: 2016-04-18 17:03+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -2195,6 +2195,22 @@ msgstr "سرشمار رو صدا کن"
 #: includes/languages/trans_twig.php:10 includes/mvc/view.php:14
 msgid "Sarshomar is inteligent"
 msgstr "سرشمار باهوش است"
+
+#: includes/languages/trans_twig.php:11
+msgid "poll"
+msgstr "نظرسنجی"
+
+#: includes/languages/trans_twig.php:12
+msgid "Poll"
+msgstr "نظرسنجی"
+
+#: includes/languages/trans_twig.php:13
+msgid "polls"
+msgstr "نظرسنجی‌ها"
+
+#: includes/languages/trans_twig.php:14
+msgid "Polls"
+msgstr "نظرسنجی‌ها"
 
 #~ msgid "Ermile is new"
 #~ msgstr "ارمایل جدید است!"
