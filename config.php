@@ -16,7 +16,7 @@ if(!defined('db_user'))
 
  /** MySQL database password */
 if(!defined('db_pass'))
- define("db_pass", 'ermile@#$567');
+ define("db_pass", 'Ermile@#$1233');
 
 
 ?>
