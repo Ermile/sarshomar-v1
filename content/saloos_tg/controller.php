@@ -8,11 +8,42 @@ class controller extends \lib\mvc\controller
 		$myhook = 'saloos_tg/'.\lib\utility\option::get('telegram', 'meta', 'hook');
 		if($this->url('path') == $myhook)
 		{
-			echo('telegram');
-			$result = \lib\utility\social\tg::hook();
-
+			self::tg_handle();
 			$this->_processor(['force_stop' => true, 'force_json' => false]);
 		}
 	}
+
+
+	static function tg_handle()
+	{
+		$hook    = \lib\utility\social\tg::hook();
+		$chat_id = self::tg_chat($hook);
+		$data = ['chat_id' => $chat_id, 'text' => 'test 1'];
+		var_dump($data);
+
+		$result = \lib\utility\social\tg::sendMessage($data);
+		var_dump($result);
+	}
+
+
+	static function tg_from($_hook, $_needle = 'id')
+	{
+		if(isset($_hook['message']['from'][$_needle]))
+		{
+			return $_hook['message']['from'][$_needle];
+		}
+		return null;
+	}
+
+
+	static function tg_chat($_hook, $_needle = 'id')
+	{
+		if(isset($_hook['message']['chat'][$_needle]))
+		{
+			return $_hook['message']['chat'][$_needle];
+		}
+		return null;
+	}
+
 }
 ?>
