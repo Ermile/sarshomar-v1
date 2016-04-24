@@ -60,6 +60,12 @@ class controller extends \lib\mvc\controller
 				$text = 'testing ' . Domain;
 				break;
 
+			case 'khar':
+				$text = 'خر خودتی'."\r\n";
+				$text .= 'باباته'."\r\n";
+				$text .= 'بی تربیت'."\r\n";
+				break;
+
 
 			case 'testkeyboard':
 				// create keyboard
@@ -120,7 +126,12 @@ class controller extends \lib\mvc\controller
 		{
 			if(isset($_hook['message']['text']))
 			{
-				return $_hook['message']['text'];
+				$commad = $_hook['message']['text'];
+				if(strpos('خر', $commad) !== false)
+				{
+					$command = 'khar';
+				}
+				return $commad;
 			}
 		}
 		return null;
