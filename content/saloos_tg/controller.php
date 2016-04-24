@@ -16,7 +16,7 @@ class controller extends \lib\mvc\controller
 
 	static function tg_handle()
 	{
-		$hook    = \lib\utility\social\tg::hook();
+		$hook    = \lib\utility\social\tg::hook(true);
 		$chat_id = self::tg_chat($hook);
 		$data = ['chat_id' => $chat_id, 'text' => 'test 1'];
 		var_dump($data);
