@@ -177,6 +177,8 @@ class controller extends \lib\mvc\controller
 
 			if($command === 'cb_go_right' || $command === 'cb_go_left')
 			{
+				unset($data['chat_id']);
+				$data['message_id'] = $hook['callback_query']['message']['id'];
 				$result = \lib\utility\social\tg::editMessageText($data);
 			}
 			else
