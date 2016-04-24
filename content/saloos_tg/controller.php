@@ -9,7 +9,7 @@ class controller extends \lib\mvc\controller
 		if($this->url('path') == $myhook)
 		{
 			$result = self::tg_handle();
-			if(DEBUG)
+			if(DEBUG && false)
 			{
 				echo($result);
 			}
