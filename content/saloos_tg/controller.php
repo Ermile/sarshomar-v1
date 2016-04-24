@@ -174,7 +174,15 @@ class controller extends \lib\mvc\controller
 			{
 				$data['reply_to_message_id'] = $reply;
 			}
-			$result = \lib\utility\social\tg::sendMessage($data);
+
+			if($command === 'cb_go_right' || $command === 'cb_go_left')
+			{
+				$result = \lib\utility\social\tg::editMessageText($data);
+			}
+			else
+			{
+				$result = \lib\utility\social\tg::sendMessage($data);
+			}
 			return $result;
 		}
 
