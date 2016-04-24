@@ -14,7 +14,7 @@ class controller extends \lib\mvc\controller
 			$result = self::tg_handle();
 			if(DEBUG)
 			{
-				echo($result);
+				var_dump($result);
 			}
 			exit();
 		}
@@ -206,10 +206,10 @@ class controller extends \lib\mvc\controller
 					$cmd = 'khar';
 				}
 			}
-			elseif(isset($_hook['callback_query']['data']))
-			{
-				$cmd = 'cb_'.$_hook['callback_query']['data'];
-			}
+		}
+		elseif(isset($_hook['callback_query']['data']))
+		{
+			$cmd = 'cb_'.$_hook['callback_query']['data'];
 		}
 		return $cmd;
 	}
@@ -220,6 +220,10 @@ class controller extends \lib\mvc\controller
 		if(isset($_hook['message']['chat'][$_needle]))
 		{
 			return $_hook['message']['chat'][$_needle];
+		}
+		elseif(isset($_hook['callback_query']['message']['chat'][$_needle]))
+		{
+			return $_hook['callback_query']['message']['chat'][$_needle];
 		}
 		return null;
 	}
