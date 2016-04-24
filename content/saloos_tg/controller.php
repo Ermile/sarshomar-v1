@@ -140,7 +140,7 @@ class controller extends \lib\mvc\controller
 							[
 								'text' => '>',
 								'callback_data' => 'go_right'
-							]
+							],
 							[
 								'text' => 'open google.com',
 								'url' => 'google.com'
