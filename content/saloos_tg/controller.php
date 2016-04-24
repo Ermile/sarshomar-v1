@@ -12,7 +12,7 @@ class controller extends \lib\mvc\controller
 		if($this->url('path') == $myhook)
 		{
 			$result = self::tg_handle();
-			if(DEBUG && false)
+			if(DEBUG)
 			{
 				echo($result);
 			}
@@ -77,17 +77,38 @@ class controller extends \lib\mvc\controller
 				break;
 
 
+			case 'loc':
+				$text = 'موثعیت تست'."\r\n";
+				$replyMarkup =
+				[
+					'keyboard' =>
+					[
+						[
+							[
+								'text' => 'تقاضای شماره تلفن',
+								'request_contact' => true
+							],
+							[
+								'text' => 'تقاضای آدرس',
+								'request_location' => true
+							]
+						]
+					]
+				];
+				break;
+
+
 			case 'menu':
 				$text = 'منو'."\r\n";
 				$replyMarkup =
 				[
 					'keyboard' =>
 					[
-						['text' => "شرکت در نظر سنجی 123"],
-						['text' => "نظرسنجی های من"],
-						['text' => "مقالات"],
-						['text' => "پروفایل"],
-					]
+							["شرکت در نظر سنجی"],
+							["نظرسنجی های من"],
+							["مقالات"],
+							["پروفایل"],
+					],
 				];
 				break;
 
@@ -96,14 +117,32 @@ class controller extends \lib\mvc\controller
 				// create keyboard
 				$replyMarkup =
 				[
-				    'inline_keyboard' => array(
-				        array("A", "B")
-				    )
+					'inline_keyboard' =>
+					[
+						[
+							[
+								'text' => '<',
+								'callback_data' => 'go_left'
+							],
+							[
+								'text' => '^',
+								'callback_data' => 'go_up'
+							],
+							[
+								'text' => '>',
+								'callback_data' => 'go_right'
+							]
+						]
+
+
+							// ["مقالات"],
+							// ["پروفایل"],
+					],
 				];
 				break;
 
 			default:
-				$text = 'صلوات';
+				$text = 'تعریف نشده';
 				break;
 		}
 
@@ -120,6 +159,7 @@ class controller extends \lib\mvc\controller
 			if($replyMarkup)
 			{
 				$data['reply_markup'] = json_encode($replyMarkup);
+				$data['force_reply'] = true;
 			}
 			if($reply)
 			{
