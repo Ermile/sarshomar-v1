@@ -22,7 +22,7 @@ class controller extends \lib\mvc\controller
 	static function tg_handle()
 	{
 		// run hook and get it
-		$hook    = \lib\utility\social\tg::hook(true);
+		$hook    = \lib\utility\social\tg::hook();
 		// extract chat_id if not exist return false
 		$chat_id = self::tg_chat($hook);
 		if(!$chat_id)
@@ -52,7 +52,8 @@ class controller extends \lib\mvc\controller
 		$data =
 		[
 			'chat_id'      => $chat_id,
-			'text'         => 'test message send from sarshomar!',
+			'text'         => '*'.T_('Sarshomar').'*'.'test message send from sarshomar!',
+			'parse_mode'   => 'Markdown'
 			'reply_markup' => $keyboard
 		];
 
