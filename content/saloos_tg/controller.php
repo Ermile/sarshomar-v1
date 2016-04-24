@@ -31,7 +31,10 @@ class controller extends \lib\mvc\controller
 			{
 				$chat_id = \lib\utility::get('id');
 			}
-			return 'chat id is not exist!';
+			else
+			{
+				return 'chat id is not exist!';
+			}
 		}
 
 		// create keyboard
