@@ -11,7 +11,7 @@ class controller extends \lib\mvc\controller
 			$result = self::tg_handle();
 			if(DEBUG)
 			{
-				var_dump($result);
+				echo($result);
 			}
 
 			$this->_processor(['force_stop' => true, 'force_json' => false]);
@@ -25,6 +25,9 @@ class controller extends \lib\mvc\controller
 		$hook    = \lib\utility\social\tg::hook();
 		// extract chat_id if not exist return false
 		$chat_id = self::tg_chat($hook);
+		// define variables
+		$text    = null;
+		$chat_id = null;
 		if(!$chat_id)
 		{
 			if(DEBUG)
@@ -36,29 +39,65 @@ class controller extends \lib\mvc\controller
 				return 'chat id is not exist!';
 			}
 		}
+		switch (self::tg_text($hook))
+		{
+			case '/start':
+				$text = 'Welcome to ' . Domain;
+				break;
 
-		// create keyboard
-		$keyboard =
-		[
-			'ReplyKeyboardMarkup' =>
-			[
-				'keyboard' =>
+			case 'about':
+				$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
+				$text .= T_("Sarshomar start jumping")."\r\n";
+				$text .= 'Created and developed by Saloos';
+				break;
+
+			case 'test':
+				$text = 'testing ' . Domain;
+				break;
+
+
+			case 'testkeyboard':
+				// create keyboard
+				$keyboard =
 				[
-					["A", "B"]
-				]
-			]
-		];
-		// generate data
-		$data =
-		[
-			'chat_id'      => $chat_id,
-			'text'         => '*'.T_('Sarshomar').'*'.'test message send from sarshomar!',
-			'parse_mode'   => 'Markdown',
-			'reply_markup' => $keyboard,
-		];
+					'ReplyKeyboardMarkup' =>
+					[
+						'keyboard' =>
+						[
+							["A", "B"]
+						]
+					]
+				];
+				$keyboard = array('ReplyKeyboardMarkup' => array('keyboard' => array(array("A", "B"))));
 
-		$result = \lib\utility\social\tg::sendMessage($data);
-		return $result;
+				break;
+
+			default:
+				# code...
+				break;
+		}
+
+
+
+		if($chat_id && $text)
+		{
+			// generate data
+			$data =
+			[
+				'chat_id'      => $chat_id,
+				'text'         => $text,
+				'parse_mode'   => 'markdown',
+			];
+			if($keyboard)
+			{
+				$data['reply_markup'] = $keyboard;
+			}
+			$result = \lib\utility\social\tg::sendMessage($data);
+			return $result;
+		}
+
+		// $result = \lib\utility\social\tg::getMe();
+		return null;
 	}
 
 
@@ -67,6 +106,18 @@ class controller extends \lib\mvc\controller
 		if(isset($_hook['message']['from'][$_needle]))
 		{
 			return $_hook['message']['from'][$_needle];
+		}
+		return null;
+	}
+
+	static function tg_text($_hook)
+	{
+		if(isset($_hook['message']['from']))
+		{
+			if(isset($_hook['message']['text']))
+			{
+				return $_hook['message']['text'];
+			}
 		}
 		return null;
 	}
