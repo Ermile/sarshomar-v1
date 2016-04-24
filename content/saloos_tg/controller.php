@@ -53,8 +53,8 @@ class controller extends \lib\mvc\controller
 		[
 			'chat_id'      => $chat_id,
 			'text'         => '*'.T_('Sarshomar').'*'.'test message send from sarshomar!',
-			'parse_mode'   => 'Markdown'
-			'reply_markup' => $keyboard
+			'parse_mode'   => 'Markdown',
+			'reply_markup' => $keyboard,
 		];
 
 		$result = \lib\utility\social\tg::sendMessage($data);
