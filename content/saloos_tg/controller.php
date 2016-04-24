@@ -22,24 +22,29 @@ class controller extends \lib\mvc\controller
 	static function tg_handle()
 	{
 		// run hook and get it
-		$hook    = \lib\utility\social\tg::hook();
+		$hook     = \lib\utility\social\tg::hook();
 		// extract chat_id if not exist return false
-		$chat_id = self::tg_chat($hook);
+		$chat_id  = self::tg_chat($hook);
 		// define variables
-		$text    = null;
-		$chat_id = null;
+		$command  = self::tg_text($hook);
+		$text     = null;
+		$keyboard = null;
 		if(!$chat_id)
 		{
 			if(DEBUG)
 			{
 				$chat_id = \lib\utility::get('id');
+				if(!$command)
+				{
+					$command = \lib\utility::get('cmd');
+				}
 			}
 			else
 			{
 				return 'chat id is not exist!';
 			}
 		}
-		switch (self::tg_text($hook))
+		switch ($command)
 		{
 			case '/start':
 				$text = 'Welcome to ' . Domain;
@@ -73,10 +78,9 @@ class controller extends \lib\mvc\controller
 				break;
 
 			default:
-				# code...
+				$text = 'صلوات';
 				break;
 		}
-
 
 
 		if($chat_id && $text)
