@@ -77,6 +77,15 @@ class controller extends \lib\mvc\controller
 				break;
 
 
+			case 'cb_go_right':
+				$text = 'رفتم راست'."\r\n";
+				break;
+
+			case 'cb_go_left':
+				$text = 'رفتم چپ'."\r\n";
+				break;
+
+
 			case 'loc':
 				$text = 'موثعیت تست'."\r\n";
 				$replyMarkup =
@@ -186,19 +195,23 @@ class controller extends \lib\mvc\controller
 
 	static function tg_text($_hook)
 	{
+		$cmd = null;
 		if(isset($_hook['message']['from']))
 		{
 			if(isset($_hook['message']['text']))
 			{
-				$commad = $_hook['message']['text'];
+				$cmd = $_hook['message']['text'];
 				if(strpos($commad, 'خر') !== false)
 				{
-					$command = 'khar';
+					$cmd = 'khar';
 				}
-				return $commad;
+			}
+			elseif(isset($_hook['callback_query']['data']))
+			{
+				$cmd = 'cb_'.$_hook['callback_query']['data'];
 			}
 		}
-		return null;
+		return $cmd;
 	}
 
 
