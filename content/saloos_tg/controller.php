@@ -2,7 +2,10 @@
 namespace content\saloos_tg;
 class controller extends \lib\mvc\controller
 {
-
+	/**
+	 * [_route description]
+	 * @return [type] [description]
+	 */
 	function _route()
 	{
 		$myhook = 'saloos_tg/'.\lib\utility\option::get('telegram', 'meta', 'hook');
@@ -18,6 +21,10 @@ class controller extends \lib\mvc\controller
 	}
 
 
+	/**
+	 * handle tg requests
+	 * @return [type] [description]
+	 */
 	static function tg_handle()
 	{
 		// run hook and get it
@@ -26,6 +33,7 @@ class controller extends \lib\mvc\controller
 		$chat_id  = self::tg_chat($hook);
 		// define variables
 		$command  = self::tg_text($hook);
+		$reply    = self::tg_reply($hook);
 		$text     = null;
 		$keyboard = null;
 		if(!$chat_id)
@@ -101,6 +109,10 @@ class controller extends \lib\mvc\controller
 			{
 				$data['reply_markup'] = $keyboard;
 			}
+			if($reply)
+			{
+				$data['reply_to_message_id'] = $reply;
+			}
 			$result = \lib\utility\social\tg::sendMessage($data);
 			return $result;
 		}
@@ -118,6 +130,7 @@ class controller extends \lib\mvc\controller
 		}
 		return null;
 	}
+
 
 	static function tg_text($_hook)
 	{
@@ -146,5 +159,14 @@ class controller extends \lib\mvc\controller
 		return null;
 	}
 
+
+	static function tg_reply($_hook)
+	{
+		if(isset($_hook['message']['message_id']))
+		{
+			return $_hook['message']['message_id'];
+		}
+		return null;
+	}
 }
 ?>
