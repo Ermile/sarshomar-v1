@@ -83,7 +83,7 @@ class controller extends \lib\mvc\controller
 				[
 					'keyboard' =>
 					[
-						['text' => "شرکت در نظر سنجی"],
+						['text' => "شرکت در نظر سنجی 123"],
 						['text' => "نظرسنجی های من"],
 						['text' => "مقالات"],
 						['text' => "پروفایل"],
@@ -151,7 +151,7 @@ class controller extends \lib\mvc\controller
 			if(isset($_hook['message']['text']))
 			{
 				$commad = $_hook['message']['text'];
-				if(strpos('خر', $commad) !== false)
+				if(strpos($commad, 'خر') !== false)
 				{
 					$command = 'khar';
 				}
