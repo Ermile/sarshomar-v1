@@ -28,14 +28,14 @@ class controller extends \lib\mvc\controller
 	static function tg_handle()
 	{
 		// run hook and get it
-		$hook     = \lib\utility\social\tg::hook();
+		$hook        = \lib\utility\social\tg::hook();
 		// extract chat_id if not exist return false
-		$chat_id  = self::tg_chat($hook);
+		$chat_id     = self::tg_chat($hook);
 		// define variables
-		$command  = self::tg_text($hook);
-		$reply    = self::tg_reply($hook);
-		$text     = null;
-		$keyboard = null;
+		$command     = self::tg_text($hook);
+		$reply       = self::tg_reply($hook);
+		$text        = null;
+		$replyMarkup = null;
 		if(!$chat_id)
 		{
 			if(DEBUG)
@@ -77,21 +77,29 @@ class controller extends \lib\mvc\controller
 				break;
 
 
-			case 'testkeyboard':
-				$text = 'کیبورد آزمایشی'."\r\n";
-				// create keyboard
-				$keyboard =
+			case 'menu':
+				$text = 'منو'."\r\n";
+				$replyMarkup =
 				[
-					'ReplyKeyboardMarkup' =>
+					'keyboard' =>
 					[
-						'keyboard' =>
-						[
-							["A", "B"]
-						]
+						["شرکت در نظر سنجی"],
+						["نظرسنجی های من"],
+						["مقالات"],
+						["پروفایل"],
 					]
 				];
-				$keyboard = array('ReplyKeyboardMarkup' => array('keyboard' => array(array("A", "B"))));
+				break;
 
+			case 'inline':
+				$text = 'کیبورد آزمایشی'."\r\n";
+				// create keyboard
+				$replyMarkup =
+				[
+				    'inline_keyboard' => array(
+				        array("A", "B")
+				    )
+				];
 				break;
 
 			default:
@@ -109,9 +117,9 @@ class controller extends \lib\mvc\controller
 				'text'         => $text,
 				'parse_mode'   => 'markdown',
 			];
-			if($keyboard)
+			if($replyMarkup)
 			{
-				$data['reply_markup'] = $keyboard;
+				$data['reply_markup'] = json_encode($replyMarkup);
 			}
 			if($reply)
 			{
