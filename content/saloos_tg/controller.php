@@ -8,7 +8,12 @@ class controller extends \lib\mvc\controller
 		$myhook = 'saloos_tg/'.\lib\utility\option::get('telegram', 'meta', 'hook');
 		if($this->url('path') == $myhook)
 		{
-			self::tg_handle();
+			$result = self::tg_handle();
+			if(DEBUG)
+			{
+				var_dump($result);
+			}
+
 			$this->_processor(['force_stop' => true, 'force_json' => false]);
 		}
 	}
@@ -45,7 +50,7 @@ class controller extends \lib\mvc\controller
 		];
 
 		$result = \lib\utility\social\tg::sendMessage($data);
-		var_dump($result);
+		return $result;
 	}
 
 
