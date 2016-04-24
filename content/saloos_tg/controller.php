@@ -13,8 +13,7 @@ class controller extends \lib\mvc\controller
 			{
 				echo($result);
 			}
-
-			$this->_processor(['force_stop' => true, 'force_json' => false]);
+			exit();
 		}
 	}
 
