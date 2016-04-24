@@ -63,6 +63,9 @@ class controller extends \lib\mvc\controller
 				$text .= 'Created and developed by Saloos';
 				break;
 
+			case 'photo':
+				break;
+
 			case 'test':
 				$text = 'testing ' . Domain;
 				break;
@@ -75,6 +78,7 @@ class controller extends \lib\mvc\controller
 
 
 			case 'testkeyboard':
+				$text = 'کیبورد آزمایشی'."\r\n";
 				// create keyboard
 				$keyboard =
 				[
