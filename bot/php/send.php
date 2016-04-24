@@ -18,7 +18,7 @@ $server_output = curl_exec($ch);
 curl_close ($ch);
 file_put_contents("telegram.json", $server_output);
 ?>
-<!-- 
+<!--
 ttps://api.telegram.org/bot142711391:AAFH0ULw7BzwdmmiZHv2thKQj7ibb49DJ44/sendMessage?
 chat_id=46898544
 reply_markup={"keyboard%22:[[%22a%22],[%22b%22]]}

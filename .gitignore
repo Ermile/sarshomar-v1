@@ -1,6 +1,7 @@
 *.DS_Store
 *sitemap.xml
 *Thumbs.db
+*tg.json
 *.me.*
 /public_html/files
 /public_html/sitemap
