@@ -54,7 +54,7 @@ class controller extends \lib\mvc\controller
 		switch ($command)
 		{
 			case '/start':
-				$text = 'Welcome to ' . 'saloos';
+				$text = 'Welcome to ' . 'kermile';
 				break;
 
 			case 'about':
@@ -66,7 +66,7 @@ class controller extends \lib\mvc\controller
 				break;
 
 			case 'test':
-				$text = 'testing ' . 'saloos';
+				$text = 'testing ' . 'kermile';
 				break;
 
 			case 'khar':
