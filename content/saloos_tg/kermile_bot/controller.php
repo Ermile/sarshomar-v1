@@ -1,5 +1,5 @@
 <?php
-namespace content\saloos_tg\saloos_bot;
+namespace content\saloos_tg\kermile_bot;
 class controller extends \lib\mvc\controller
 {
 	/**
@@ -8,7 +8,7 @@ class controller extends \lib\mvc\controller
 	 */
 	function _route()
 	{
-		$myhook = 'saloos_tg/saloos_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
+		$myhook = 'saloos_tg/kermile_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
 		if($this->url('path') == $myhook)
 		{
 			$result = self::tg_handle();
@@ -171,7 +171,7 @@ class controller extends \lib\mvc\controller
 			// generate data
 			$data =
 			[
-				'api_key'      => '164997863:AAFC3nUcujDzpGq-9ZgzAbZKbCJpnd0FWFY',
+				'api_key'      => '209285392:AAE3FdlRpJ2hB6k9tfs5j9RlwTQqnJar8ws',
 				'chat_id'      => $chat_id,
 				'text'         => $text,
 				'parse_mode'   => 'markdown',
