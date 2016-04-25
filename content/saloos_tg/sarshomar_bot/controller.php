@@ -1,5 +1,5 @@
 <?php
-namespace content\saloos_tg;
+namespace content\saloos_tg\sarshomar_bot;
 class controller extends \lib\mvc\controller
 {
 	/**
@@ -8,11 +8,11 @@ class controller extends \lib\mvc\controller
 	 */
 	function _route()
 	{
-		$myhook = 'saloos_tg/'.\lib\utility\option::get('telegram', 'meta', 'hook');
+		$myhook = 'saloos_tg/sarshomar_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
 		if($this->url('path') == $myhook)
 		{
 			$result = self::tg_handle();
-			if(DEBUG)
+			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);
 			}
