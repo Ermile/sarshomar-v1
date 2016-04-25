@@ -65,6 +65,10 @@ class controller extends \lib\mvc\controller
 			case 'photo':
 				break;
 
+			case 'userid':
+				$text = 'your userid: '. self::tg_from($hook);
+				break;
+
 			case 'test':
 				$text = 'testing ' . 'kermile';
 				break;
