@@ -62,6 +62,10 @@ class controller extends \lib\mvc\controller
 				$text .= 'Created and developed by [Ermile](http://ermile.ir)';
 				break;
 
+			case 'userid':
+				$text = 'your userid: '. self::tg_from($hook);
+				break;
+
 			case 'photo':
 				break;
 
