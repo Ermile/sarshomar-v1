@@ -1,9 +1,13 @@
 <?php
 namespace content\saloos_tg\sarshomar_bot;
+// use tg class
+use \lib\utility\social\tg as bot;
+
 class controller extends \lib\mvc\controller
 {
 	/**
-	 * [_route description]
+	 * allow telegram to access to this location
+	 * to send response to our server
 	 * @return [type] [description]
 	 */
 	function _route()
@@ -20,6 +24,11 @@ class controller extends \lib\mvc\controller
 		}
 	}
 
+	static function about()
+	{
+
+	}
+
 
 	/**
 	 * handle tg requests
@@ -28,12 +37,15 @@ class controller extends \lib\mvc\controller
 	static function tg_handle()
 	{
 		// run hook and get it
-		$hook        = \lib\utility\social\tg::hook();
+		$hook        = bot::hook();
 		// extract chat_id if not exist return false
-		$chat_id     = self::tg_chat($hook);
+		$chat_id     = bot::response('chat');
 		// define variables
-		$command     = self::tg_text($hook);
-		$reply       = self::tg_reply($hook);
+		$command     = bot::response('text');
+
+		// commands\whoami::exec();
+
+		$reply       = bot::response('message_id');
 		$text        = null;
 		$replyMarkup = null;
 		if(!$chat_id)
@@ -67,7 +79,7 @@ class controller extends \lib\mvc\controller
 				break;
 
 			case 'userid':
-				$text = 'your userid: '. self::tg_from($hook);
+				$text = 'your userid: '. bot::response('from');
 				break;
 
 			case 'test':
@@ -193,72 +205,16 @@ class controller extends \lib\mvc\controller
 			{
 				unset($data['chat_id']);
 				$data['inline_message_id'] = $hook['callback_query']['id'];
-				$result = \lib\utility\social\tg::editMessageText($data);
+				$result = bot::editMessageText($data);
 			}
 			else
 			{
-				$result = \lib\utility\social\tg::sendMessage($data);
+				$result = bot::sendMessage($data);
 			}
 			return $result;
 		}
 
 		// $result = \lib\utility\social\tg::getMe();
-		return null;
-	}
-
-
-	static function tg_from($_hook, $_needle = 'id')
-	{
-		if(isset($_hook['message']['from'][$_needle]))
-		{
-			return $_hook['message']['from'][$_needle];
-		}
-		return null;
-	}
-
-
-	static function tg_text($_hook)
-	{
-		$cmd = null;
-		if(isset($_hook['message']['from']))
-		{
-			if(isset($_hook['message']['text']))
-			{
-				$cmd = $_hook['message']['text'];
-				if(strpos($commad, 'خر') !== false)
-				{
-					$cmd = 'khar';
-				}
-			}
-		}
-		elseif(isset($_hook['callback_query']['data']))
-		{
-			$cmd = 'cb_'.$_hook['callback_query']['data'];
-		}
-		return $cmd;
-	}
-
-
-	static function tg_chat($_hook, $_needle = 'id')
-	{
-		if(isset($_hook['message']['chat'][$_needle]))
-		{
-			return $_hook['message']['chat'][$_needle];
-		}
-		elseif(isset($_hook['callback_query']['message']['chat'][$_needle]))
-		{
-			return $_hook['callback_query']['message']['chat'][$_needle];
-		}
-		return null;
-	}
-
-
-	static function tg_reply($_hook)
-	{
-		if(isset($_hook['message']['message_id']))
-		{
-			return $_hook['message']['message_id'];
-		}
 		return null;
 	}
 }
