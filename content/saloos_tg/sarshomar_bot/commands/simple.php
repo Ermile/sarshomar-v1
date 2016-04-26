@@ -3,7 +3,7 @@ namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\utility\social\tg as bot;
 
-class simple extends \content\saloos_tg\sarshomar_bot\controller
+class simple
 {
 	public static function exec($_cmd)
 	{
