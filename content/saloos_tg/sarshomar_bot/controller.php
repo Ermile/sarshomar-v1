@@ -47,9 +47,7 @@ class controller extends \lib\mvc\controller
 		// run hook and get it
 		$hook        = bot::hook();
 		// define variables
-		// $command     = bot::response('text');
 		$cmd         = bot::cmd();
-		$command     = $cmd['command'];
 		// extract chat_id if not exist return false
 		$chat_id     = bot::response('chat');
 		// reply to message id
@@ -58,12 +56,12 @@ class controller extends \lib\mvc\controller
 
 		if(!$chat_id)
 		{
-			if(DEBUG)
+			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				$chat_id = \lib\utility::get('id');
-				if(!$command)
+				if(!$cmd['text'])
 				{
-					$command = \lib\utility::get('cmd');
+					$cmd = bot::cmd(\lib\utility::get('text'));
 				}
 			}
 			else
@@ -71,7 +69,7 @@ class controller extends \lib\mvc\controller
 				return 'chat id is not exist!';
 			}
 		}
-		switch ($command)
+		switch ($cmd['command'])
 		{
 			case '/start':
 				self::$text = 'Welcome to ' . Domain;
@@ -85,21 +83,6 @@ class controller extends \lib\mvc\controller
 
 			case 'photo':
 				break;
-
-			// case 'userid':
-			// 	commands\simple::userid();
-			// 	break;
-
-			// case 'test':
-			// 	commands\simple::test();
-			// 	break;
-
-			// case 'say':
-			// case 'بگو':
-			// 	commands\simple::say($cmd);
-			// 	break;
-
-
 
 			case 'cb_go_right':
 				self::$text = 'رفتم راست'."\r\n";
@@ -129,7 +112,6 @@ class controller extends \lib\mvc\controller
 					]
 				];
 				break;
-
 
 			case 'menu':
 				self::$text = 'منو'."\r\n";
@@ -181,20 +163,7 @@ class controller extends \lib\mvc\controller
 				break;
 
 			default:
-				// sun simple command if exist
-				commands\simple::exec($cmd);
-
-				// handle conversation
-				$conversation = commands\conversation::fa($cmd);
-				if($conversation)
-				{
-					self::$text = $conversation;
-				}
-				// else return default text
-				else
-				{
-					self::$text = 'تعریف نشده';
-				}
+				self::default($cmd);
 				break;
 		}
 
@@ -222,7 +191,7 @@ class controller extends \lib\mvc\controller
 				$data['reply_to_message_id'] = $reply;
 			}
 
-			if($command === 'cb_go_right' || $command === 'cb_go_left')
+			if($cmd['command'] === 'cb_go_right' || $cmd['command'] === 'cb_go_left')
 			{
 				unset($data['chat_id']);
 				$data['inline_message_id'] = $hook['callback_query']['id'];
@@ -237,6 +206,38 @@ class controller extends \lib\mvc\controller
 
 		// $result = \lib\utility\social\tg::getMe();
 		return null;
+	}
+
+	private static function default($_cmd)
+	{
+		$response = null;
+		// first run simple command if exist
+		$response = commands\simple::exec($_cmd);
+		if(!$response)
+		{
+			// then if not exist handel converstaion
+			$response = commands\conversation::fa($_cmd);
+		}
+		if(!$response)
+		{
+			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
+			{
+				// then if not exist set default text
+				$response = ['text' => 'تعریف نشده'];
+			}
+		}
+
+		// set text if exist
+		if(isset($response['text']))
+		{
+			self::$text = $response['text'];
+		}
+		// set replyMarkup if exist
+		if(isset($response['replyMarkup']))
+		{
+			self::$replyMarkup = $response['replyMarkup'];
+		}
+		var_dump(self::$text);
 	}
 }
 ?>

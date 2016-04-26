@@ -29,16 +29,7 @@ class simple extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 		}
 
-		// set text if exist
-		if(isset($response['text']))
-		{
-			self::$text = $response['text'];
-		}
-		// set replyMarkup if exist
-		if(isset($response['replyMarkup']))
-		{
-			self::$replyMarkup = $response['replyMarkup'];
-		}
+		return $response;
 	}
 
 

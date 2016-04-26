@@ -12,92 +12,98 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 	 */
 	public static function fa($_cmd)
 	{
-		$responde = null;
+		$text = null;
 		switch ($_cmd['text'])
 		{
 			case 'سلام':
-				$responde = 'سلام عزیزم';
+				$text = 'سلام عزیزم';
 				break;
 
 			case 'خوبی':
-				$responde = 'ممنون، خوبم';
+				$text = 'ممنون، خوبم';
 				break;
 
 			case 'چه خبرا':
-				$responde = 'سلامتی';
+				$text = 'سلامتی';
 				break;
 
 			case 'حالت خوبه':
-				$responde = 'عالی';
+				$text = 'عالی';
 				break;
 
 			case 'چاقی':
-				$responde = 'نه!';
+				$text = 'نه!';
 				break;
 
 			case 'سلامتی':
-				$responde = 'خدا رو شکر';
+				$text = 'خدا رو شکر';
 				break;
 
 			case 'بمیر':
-				$responde = 'مردن دست خداست';
+				$text = 'مردن دست خداست';
 				break;
 
 			case 'بد':
-				$responde = 'من بد نیستم';
+				$text = 'من بد نیستم';
 				break;
 
 			case 'خوب':
-				$responde = 'ممنون';
+				$text = 'ممنون';
 				break;
 
 			case 'زشت':
-				$responde = 'من خوشگلم';
+				$text = 'من خوشگلم';
 				break;
 
 			case 'هوا گرمه':
-				$responde = 'شاید!';
+				$text = 'شاید!';
 				break;
 
 			case 'سردمه':
-				$responde = 'بخاری رو روشن کن';
+				$text = 'بخاری رو روشن کن';
 				break;
 
 			case 'بد':
-				$responde = 'من بد نیستم';
+				$text = 'من بد نیستم';
 				break;
 
 			case 'خر':
-				$responde = 'خر خودتی'."\r\n";
-				$responde .= 'باباته'."\r\n";
-				$responde .= 'بی تربیت'."\r\n";
+				$text = 'خر خودتی'."\r\n";
+				$text .= 'باباته'."\r\n";
+				$text .= 'بی تربیت'."\r\n";
 				break;
 
 			case 'نفهم':
-				$responde = 'من خیلی هم میفهمم';
+				$text = 'من خیلی هم میفهمم';
 				break;
 
 			case 'خوابی':
-				$responde = 'من همیشه بیدارم';
+				$text = 'من همیشه بیدارم';
 				break;
 
 			case 'هی':
-				$responde = 'بفرمایید';
+				$text = 'بفرمایید';
 				break;
 
 			case 'الو':
-				$responde = 'بله';
+				$text = 'بله';
 				break;
 
 			case 'بلا':
-				$responde = 'با ادب باش';
+				$text = 'با ادب باش';
 				break;
 
 			default:
-				$responde = false;
+				$text = false;
 				break;
 		}
-		return $responde;
+		// create response format
+		$response =
+		[
+			'text' => $text
+		];
+		// return response as result
+		return $response;
 	}
 }
 ?>
