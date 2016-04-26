@@ -191,7 +191,16 @@ class controller extends \lib\mvc\controller
 				break;
 
 			default:
-				self::$text = 'تعریف نشده';
+
+				$conversation = commands\conversation::fa($cmd);
+				if($conversation)
+				{
+					self::$text = $conversation;
+				}
+				else
+				{
+					self::$text = 'تعریف نشده';
+				}
 				break;
 		}
 
