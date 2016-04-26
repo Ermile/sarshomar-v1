@@ -5,6 +5,8 @@ use \lib\utility\social\tg as bot;
 
 class menu extends \content\saloos_tg\sarshomar_bot\controller
 {
+	public static $return = true;
+
 	public static function exec($_cmd)
 	{
 		$response = null;
@@ -26,6 +28,7 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 				$response = self::menu_inline();
 				break;
 
+			case 'main':
 			case 'mainmenu':
 			case 'menu0':
 			case 'منو۰':
@@ -39,6 +42,16 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 
 			default:
 				break;
+		}
+
+		// automatically add return to end of keyboard
+		if(self::$return)
+		{
+			// if has keyboard
+			if(isset($response['replyMarkup']['keyboard']))
+			{
+				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
+			}
 		}
 
 		return $response;
@@ -91,7 +104,9 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 	 */
 	public static function menu_main()
 	{
-		$result['text'] = 'منوی اصلی'."\r\n";
+		// disable return from main menu
+		self::$return          = false;
+		$result['text']        = 'منوی اصلی'."\r\n";
 		$result['replyMarkup'] =
 		[
 			'keyboard' =>
@@ -112,18 +127,18 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 	 */
 	public static function menu_loc()
 	{
-		$result['text'] = 'منوی موقعیت'."\r\n";
+		$result['text']        = 'منوی موقعیت'."\r\n";
 		$result['replyMarkup'] =
 		[
 			'keyboard' =>
 			[
 				[
 					[
-						'text' => 'تقاضای شماره تلفن',
+						'text'            => 'تقاضای شماره تلفن',
 						'request_contact' => true
 					],
 					[
-						'text' => 'تقاضای آدرس',
+						'text'             => 'تقاضای آدرس',
 						'request_location' => true
 					]
 				]
@@ -139,32 +154,32 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 	 */
 	public static function menu_inline()
 	{
-		$result['text'] = 'منوی اینلاین آزمایشی'."\r\n";
+		$result['text']        = 'منوی اینلاین آزمایشی'."\r\n";
 		$result['replyMarkup'] =
 		[
 			'inline_keyboard' =>
 			[
 				[
 					[
-						'text' => '<',
+						'text'          => '<',
 						'callback_data' => 'go_left'
 					],
 					[
-						'text' => '^',
+						'text'          => '^',
 						'callback_data' => 'go_up'
 					],
 					[
-						'text' => '>',
+						'text'          => '>',
 						'callback_data' => 'go_right'
 					],
 				],
 				[
 					[
 						'text' => 'open google.com',
-						'url' => 'google.com'
+						'url'  => 'google.com'
 					],
 					[
-						'text' => 'search \'test\' inline',
+						'text'                => 'search \'test\' inline',
 						'switch_inline_query' => 'test'
 					],
 				]
