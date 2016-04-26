@@ -12,9 +12,6 @@ class callback
 	 */
 	public static function exec($_cmd)
 	{
-		bot::$text = 'callback';
-		bot::sendResponse();
-
 		$response = null;
 		switch ($_cmd['command'])
 		{
@@ -33,10 +30,6 @@ class callback
 		{
 			self::$callback = true;
 		}
-
-		bot::$text = 'callback okay'. $_cmd['text'];
-		bot::sendResponse();
-
 		return $response;
 	}
 

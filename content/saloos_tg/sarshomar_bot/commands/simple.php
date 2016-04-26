@@ -7,16 +7,7 @@ class simple
 {
 	public static function exec($_cmd)
 	{
-		bot::$text = $_cmd['text'];
-		bot::sendResponse();
-
-		bot::$text = $_cmd['command'];
-		bot::sendResponse();
-
-		var_dump($_cmd);
-
 		$response = null;
-		var_dump($response);
 
 		switch ($_cmd['command'])
 		{
