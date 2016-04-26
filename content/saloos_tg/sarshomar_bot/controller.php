@@ -9,6 +9,7 @@ class controller extends \lib\mvc\controller
 	public static $text;
 	public static $replyMarkup;
 	public static $action = 'sendMessage';
+	public static $callback = false;
 	public static $hook;
 	public static $cmd;
 	public static $chat_id;
@@ -58,31 +59,7 @@ class controller extends \lib\mvc\controller
 		self::debug_handler();
 		// generate response from defined commands
 		self::generateResponse();
-
-		// switch user commands
-		switch (self::$cmd['command'])
-		{
-			case 'cb_go_right':
-				self::$text = 'رفتم راست'."\r\n";
-				break;
-
-			case 'cb_go_left':
-				self::$text = 'رفتم چپ'."\r\n";
-				break;
-
-			default:
-				break;
-		}
-
-
-
-		if(self::$cmd['command'] === 'cb_go_right' || self::$cmd['command'] === 'cb_go_left')
-		{
-			unset($data['chat_id']);
-			$data['inline_message_id'] = $hook['callback_query']['id'];
-			$result = bot::editMessageText($data);
-		}
-
+		// send response and return result of it
 		return self::sendResponse();
 	}
 
@@ -116,6 +93,14 @@ class controller extends \lib\mvc\controller
 		}
 		// add reply message id
 		$data['reply_to_message_id'] = bot::response('message_id');
+		// for callbacks dont use reply message and only do work
+		if(self::$callback)
+		{
+			unset($data['reply_to_message_id']);
+			// $data['inline_message_id'] = $hook['callback_query']['id'];
+			// $result = bot::editMessageText($data);
+			// fix it to work on the fly
+		}
 		// call bot send message func
 		$result = bot::sendMessage($data);
 		// return result of sending
