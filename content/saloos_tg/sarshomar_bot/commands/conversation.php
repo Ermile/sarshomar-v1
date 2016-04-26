@@ -20,7 +20,7 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 
 			case 'خوبی':
-				$responde = 'ممنو،خوبم';
+				$responde = 'ممنون، خوبم';
 				break;
 
 			case 'چه خبرا':
@@ -76,6 +76,15 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 			case 'نفهم':
 				$responde = 'من خیلی هم میفهمم';
 				break;
+
+			case 'خوابی':
+				$responde = 'من همیشه بیدارم';
+				break;
+
+			case 'هی':
+				$responde = 'بفرمایید';
+				break;
+
 
 			default:
 				$responde = false;
