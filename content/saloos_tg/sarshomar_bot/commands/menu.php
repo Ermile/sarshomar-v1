@@ -37,7 +37,7 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 
 			case 'return':
 			case 'بازگشت':
-				$response = self::return();
+				$response = self::returnBtn();
 				break;
 
 			default:
@@ -62,7 +62,7 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 	 * return menu
 	 * @return [type] [description]
 	 */
-	public static function return()
+	public static function returnBtn()
 	{
 		$result['text'] = 'بازگشت به منوی قبلی'."\r\n";
 		$result['text'] .= 'مثلا برگشتیم'."\r\n";
