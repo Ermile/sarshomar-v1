@@ -48,7 +48,7 @@ class controller extends \lib\mvc\controller
 		$hook        = bot::hook();
 		// define variables
 		// $command     = bot::response('text');
-		$cmd         = bot::cmd('say hello');
+		$cmd         = bot::cmd();
 		$command     = $cmd['command'];
 		// extract chat_id if not exist return false
 		$chat_id     = bot::response('chat');
