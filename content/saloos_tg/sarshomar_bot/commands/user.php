@@ -3,8 +3,13 @@ namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\utility\social\tg as bot;
 
-class user extends \content\saloos_tg\sarshomar_bot\controller
+class user
 {
+	/**
+	 * execute user request and return best result
+	 * @param  [type] $_cmd [description]
+	 * @return [type]       [description]
+	 */
 	public static function exec($_cmd)
 	{
 		$response = null;

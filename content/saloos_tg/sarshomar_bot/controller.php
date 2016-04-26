@@ -13,6 +13,14 @@ class controller extends \lib\mvc\controller
 	public static $cmd;
 	public static $chat_id;
 	public static $message_id;
+	public static $priority =
+	[
+		'callback',
+		'menu',
+		'user',
+		'simple',
+		'conversation',
+	];
 
 	/**
 	 * allow telegram to access to this location
@@ -24,7 +32,7 @@ class controller extends \lib\mvc\controller
 		$myhook = 'saloos_tg/sarshomar_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
 		if($this->url('path') == $myhook)
 		{
-			$result = self::tg_handle();
+			$result = self::handle();
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);
@@ -33,20 +41,19 @@ class controller extends \lib\mvc\controller
 		}
 	}
 
+
 	/**
 	 * handle tg requests
 	 * @return [type] [description]
 	 */
-	static function tg_handle()
+	static function handle()
 	{
 		// run hook and get it
-		$hook        = bot::hook();
-		// define variables
-		self::$cmd         = bot::cmd();
+		$hook          = bot::hook();
 		// extract chat_id if not exist return false
-		self::$chat_id     = bot::response('chat');
-		// reply to message id
-		self::$message_id       = bot::response('message_id');
+		self::$chat_id = bot::response('chat');
+		// define variables
+		self::$cmd     = bot::cmd();
 		// call debug handler function
 		self::debug_handler();
 
@@ -54,19 +61,6 @@ class controller extends \lib\mvc\controller
 		// switch user commands
 		switch (self::$cmd['command'])
 		{
-			// case '/start':
-			// 	self::$text = 'Welcome to ' . Domain;
-			// 	break;
-
-			// case 'about':
-			// 	self::$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
-			// 	self::$text .= T_("Sarshomar start jumping")."\r\n";
-			// 	self::$text .= 'Created and developed by Saloos';
-			// 	break;
-
-			// case 'photo':
-			// 	break;
-
 			case 'cb_go_right':
 				self::$text = 'رفتم راست'."\r\n";
 				break;
@@ -211,13 +205,22 @@ class controller extends \lib\mvc\controller
 	private static function default()
 	{
 		$response = null;
-		// first run simple command if exist
-		$response = commands\simple::exec(self::$cmd);
-		if(!$response)
+		foreach (self::$priority as $class)
 		{
-			// then if not exist handel converstaion
-			$response = commands\conversation::fa(self::$cmd);
+			// generate func name
+			$funcName = __NAMESPACE__ .'\commands\\'.$class.'::exec';
+			if(is_callable($funcName))
+			{
+				// get response
+				$response = call_user_func($funcName, self::$cmd);
+				// if has response break loop
+				if($response)
+				{
+					break;
+				}
+			}
 		}
+
 		if(!$response)
 		{
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))

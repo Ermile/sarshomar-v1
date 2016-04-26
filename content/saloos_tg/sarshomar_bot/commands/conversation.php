@@ -3,8 +3,28 @@ namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\utility\social\tg as bot;
 
-class conversation extends \content\saloos_tg\sarshomar_bot\controller
+class conversation
 {
+	/**
+	 * execute user request and return best result
+	 * @param  [type] $_cmd [description]
+	 * @return [type]       [description]
+	 */
+	public static function exec($_cmd)
+	{
+		$response = null;
+		// first call fa
+		$response = self::fa($_cmd);
+		// if has no result call en
+		if(!$response)
+		{
+			$response = self::en($_cmd);
+		}
+
+
+		return $response;
+	}
+
 	/**
 	 * give input message and create best response for it
 	 * @param  [type] $_cmd [description]
@@ -18,10 +38,13 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 		switch ($_cmd['text'])
 		{
 			case 'سلام':
+			case 'salam':
 				$text = 'سلام عزیزم';
 				break;
 
 			case 'خوبی':
+			case 'khobi?':
+			case 'khobi':
 				$text = 'ممنون، خوبم';
 				break;
 
@@ -38,6 +61,8 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 
 			case 'سلامتی':
+			case 'salamati':
+			case 'salamati?':
 				$text = 'خدا رو شکر';
 				break;
 
@@ -70,6 +95,7 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 
 			case 'خر':
+			case 'khar':
 				$text = 'خر خودتی'."\r\n";
 				$text .= 'باباته'."\r\n";
 				$text .= 'بی تربیت'."\r\n";
@@ -88,11 +114,58 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 
 			case 'الو':
+			case 'alo':
 				$text = 'بله';
 				break;
 
 			case 'بلا':
 				$text = 'با ادب باش';
+				break;
+
+			default:
+				$text = false;
+				break;
+		}
+		// create response format
+		if($text)
+		{
+			$response =
+			[
+				'text' => $text
+			];
+		}
+		// return response as result
+		return $response;
+	}
+
+
+	/**
+	 * give input message and create best response for it
+	 * @param  [type] $_cmd [description]
+	 * @return [type]       [description]
+	 */
+	public static function en($_cmd)
+	{
+		$response = null;
+		$text     = null;
+
+		switch ($_cmd['text'])
+		{
+			case 'hello':
+				$text = 'hello!';
+				break;
+
+			case 'good':
+				$text = ':)';
+				break;
+
+			case 'bad':
+				$text = ':(';
+				break;
+
+			case 'how are you':
+			case 'how are you?':
+				$text = "I'm fine, thanks";
 				break;
 
 			default:
