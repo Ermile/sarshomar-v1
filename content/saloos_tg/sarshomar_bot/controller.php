@@ -86,25 +86,19 @@ class controller extends \lib\mvc\controller
 			case 'photo':
 				break;
 
-			case 'userid':
-				commands\simple::userid();
-				break;
+			// case 'userid':
+			// 	commands\simple::userid();
+			// 	break;
 
-			case 'test':
-				commands\simple::test();
-				break;
+			// case 'test':
+			// 	commands\simple::test();
+			// 	break;
 
-			case 'say':
-			case 'بگو':
-				commands\simple::say($cmd);
-				break;
+			// case 'say':
+			// case 'بگو':
+			// 	commands\simple::say($cmd);
+			// 	break;
 
-
-			case 'khar':
-				self::$text = 'خر خودتی'."\r\n";
-				self::$text .= 'باباته'."\r\n";
-				self::$text .= 'بی تربیت'."\r\n";
-				break;
 
 
 			case 'cb_go_right':
@@ -182,21 +176,21 @@ class controller extends \lib\mvc\controller
 								'switch_inline_query' => 'test'
 							],
 						]
-
-
-							// ["مقالات"],
-							// ["پروفایل"],
 					],
 				];
 				break;
 
 			default:
+				// sun simple command if exist
+				commands\simple::exec($cmd);
 
+				// handle conversation
 				$conversation = commands\conversation::fa($cmd);
 				if($conversation)
 				{
 					self::$text = $conversation;
 				}
+				// else return default text
 				else
 				{
 					self::$text = 'تعریف نشده';
