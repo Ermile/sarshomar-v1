@@ -21,6 +21,7 @@ class simple extends \content\saloos_tg\sarshomar_bot\controller
 				$response = self::test();
 				break;
 
+			case 'بگو':
 			case 'say':
 				$response = self::say($_cmd);
 				break;
@@ -66,7 +67,11 @@ class simple extends \content\saloos_tg\sarshomar_bot\controller
 		$result['text'] = $_text;
 		if(isset($_text['text']))
 		{
-			$result['text'] = $_text['text'];
+			if(isset($_text['command']))
+			{
+				$len = strlen($_text['command']);
+				$result['text'] = substr($_text['text'], $len +1);
+			}
 		}
 		return $result;
 	}
