@@ -7,6 +7,9 @@ class simple
 {
 	public static function exec($_cmd)
 	{
+		bot::$text = 'simpe exec';
+		bot::sendResponse();
+
 		$response = null;
 		switch ($_cmd['command'])
 		{
