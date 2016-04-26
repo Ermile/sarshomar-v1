@@ -18,6 +18,8 @@ class controller extends \lib\mvc\controller
 			bot::$api_key   = '186535040:AAGKVOlmlpA4wU0Vjv0-s93w_o2aB3n0xKE';
 			bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			$result         = bot::handle();
+		bot::$text = 'controller';
+		bot::sendResponse();
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);
