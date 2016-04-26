@@ -7,10 +7,10 @@ class simple
 {
 	public static function exec($_cmd)
 	{
-		bot::$text = 'simpe exec';
-		bot::sendResponse();
 
 		$response = null;
+		bot::$text = $_cmd['command'];
+		bot::sendResponse();
 		switch ($_cmd['command'])
 		{
 			case 'userid':
@@ -21,6 +21,8 @@ class simple
 
 			case 'تست':
 			case 'test':
+				bot::$text = 'رفت تو تست';
+				bot::sendResponse();
 				$response = self::test();
 				break;
 
