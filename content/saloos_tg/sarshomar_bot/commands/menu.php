@@ -10,19 +10,26 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 		$response = null;
 		switch ($_cmd['command'])
 		{
-			case 'userid':
-			case 'user_id':
-			case 'myid':
-				$response = self::userid();
+			case 'menu':
+			case 'منو':
+				$response = self::menu0();
 				break;
 
-			case 'تست':
-			case 'test':
-				$response = self::test();
+			case 'loc':
+			case 'موقعیت':
+				$response = self::menu_loc();
 				break;
 
-			case 'say':
-				$response = self::say($_cmd);
+
+			case 'inline':
+			case 'اینلاین':
+				$response = self::menu_inline();
+				break;
+
+			case 'mainmenu':
+			case 'menu0':
+			case 'منو۰':
+				$response = self::menu_main();
 				break;
 
 			default:
@@ -34,40 +41,110 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 
 
 	/**
-	 * return userid
+	 * return menu
 	 * @return [type] [description]
 	 */
-	public static function userid()
+	public static function menu0()
 	{
-		$result['text'] = 'Your userid: '. bot::response('from');
+		$result['text'] = 'منوی آزمایشی'."\r\n";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+					["سلام"],
+					["خوبی"],
+					["خوب", "بد"],
+			],
+		];
 		return $result;
 	}
 
 
 	/**
-	 * return sample test message
+	 * return menu
 	 * @return [type] [description]
 	 */
-	public static function test()
+	public static function menu_main()
 	{
-		$result['text'] = 'Test *'.ucfirst(core_name).'* bot on '. Domain;
+		$result['text'] = 'منوی اصلی'."\r\n";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+					["منوی آزمایش"],
+					["نظرسنجی های من"],
+					["مقالات"],
+					["پروفایل"],
+			],
+		];
 		return $result;
 	}
 
 
 	/**
-	 * repeat given word!
-	 * @param  [type]  $_text [description]
-	 * @param  boolean $_full [description]
-	 * @return [type]         [description]
+	 * return menu
+	 * @return [type] [description]
 	 */
-	public static function say($_text, $_full = true)
+	public static function menu_loc()
 	{
-		$result['text'] = $_text;
-		if(isset($_text['text']))
-		{
-			$result['text'] = $_text['text'];
-		}
+		$result['text'] = 'منوی موقعیت'."\r\n";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+				[
+					[
+						'text' => 'تقاضای شماره تلفن',
+						'request_contact' => true
+					],
+					[
+						'text' => 'تقاضای آدرس',
+						'request_location' => true
+					]
+				]
+			]
+		];
+		return $result;
+	}
+
+
+	/**
+	 * return menu
+	 * @return [type] [description]
+	 */
+	public static function menu_inline()
+	{
+		$result['text'] = 'منوی اینلاین آزمایشی'."\r\n";
+		$result['replyMarkup'] =
+		[
+			'inline_keyboard' =>
+			[
+				[
+					[
+						'text' => '<',
+						'callback_data' => 'go_left'
+					],
+					[
+						'text' => '^',
+						'callback_data' => 'go_up'
+					],
+					[
+						'text' => '>',
+						'callback_data' => 'go_right'
+					],
+				],
+				[
+					[
+						'text' => 'open google.com',
+						'url' => 'google.com'
+					],
+					[
+						'text' => 'search \'test\' inline',
+						'switch_inline_query' => 'test'
+					],
+				]
+			],
+		];
 		return $result;
 	}
 }

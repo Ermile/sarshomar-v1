@@ -56,7 +56,8 @@ class controller extends \lib\mvc\controller
 		self::$cmd     = bot::cmd();
 		// call debug handler function
 		self::debug_handler();
-
+		// generate response from defined commands
+		self::generateResponse();
 
 		// switch user commands
 		switch (self::$cmd['command'])
@@ -69,78 +70,7 @@ class controller extends \lib\mvc\controller
 				self::$text = 'رفتم چپ'."\r\n";
 				break;
 
-
-			case 'loc':
-				self::$text = 'موثعیت تست'."\r\n";
-				self::$replyMarkup =
-				[
-					'keyboard' =>
-					[
-						[
-							[
-								'text' => 'تقاضای شماره تلفن',
-								'request_contact' => true
-							],
-							[
-								'text' => 'تقاضای آدرس',
-								'request_location' => true
-							]
-						]
-					]
-				];
-				break;
-
-			case 'menu':
-				self::$text = 'منو'."\r\n";
-				self::$replyMarkup =
-				[
-					'keyboard' =>
-					[
-							["شرکت در نظر سنجی"],
-							["نظرسنجی های من"],
-							["مقالات"],
-							["پروفایل"],
-					],
-				];
-				break;
-
-			case 'inline':
-				self::$text = 'کیبورد آزمایشی'."\r\n";
-				// create keyboard
-				self::$replyMarkup =
-				[
-					'inline_keyboard' =>
-					[
-						[
-							[
-								'text' => '<',
-								'callback_data' => 'go_left'
-							],
-							[
-								'text' => '^',
-								'callback_data' => 'go_up'
-							],
-							[
-								'text' => '>',
-								'callback_data' => 'go_right'
-							],
-						],
-						[
-							[
-								'text' => 'open google.com',
-								'url' => 'google.com'
-							],
-							[
-								'text' => 'search \'test\' inline',
-								'switch_inline_query' => 'test'
-							],
-						]
-					],
-				];
-				break;
-
 			default:
-				self::default();
 				break;
 		}
 
@@ -154,10 +84,6 @@ class controller extends \lib\mvc\controller
 		}
 
 		return self::sendResponse();
-
-
-		// $result = \lib\utility\social\tg::getMe();
-		return null;
 	}
 
 
@@ -202,7 +128,7 @@ class controller extends \lib\mvc\controller
 	 * @param  [type] self::$cmd [description]
 	 * @return [type]       [description]
 	 */
-	private static function default()
+	private static function generateResponse()
 	{
 		$response = null;
 		foreach (self::$priority as $class)
@@ -220,7 +146,7 @@ class controller extends \lib\mvc\controller
 				}
 			}
 		}
-
+		// if does not have response return default text
 		if(!$response)
 		{
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
