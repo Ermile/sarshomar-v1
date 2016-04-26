@@ -34,7 +34,7 @@ class callback
 			self::$callback = true;
 		}
 
-		bot::$text = 'callback okay'. $_cmd['command'];
+		bot::$text = 'callback okay'. $_cmd['text'];
 		bot::sendResponse();
 
 		return $response;
