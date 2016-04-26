@@ -32,11 +32,36 @@ class menu extends \content\saloos_tg\sarshomar_bot\controller
 				$response = self::menu_main();
 				break;
 
+			case 'return':
+			case 'بازگشت':
+				$response = self::return();
+				break;
+
 			default:
 				break;
 		}
 
 		return $response;
+	}
+
+
+	/**
+	 * return menu
+	 * @return [type] [description]
+	 */
+	public static function return()
+	{
+		$result['text'] = 'بازگشت به منوی قبلی'."\r\n";
+		$result['text'] .= 'مثلا برگشتیم'."\r\n";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+					["خوب"],
+					["بد"],
+			],
+		];
+		return $result;
 	}
 
 
