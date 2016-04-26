@@ -12,7 +12,9 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 	 */
 	public static function fa($_cmd)
 	{
-		$text = null;
+		$response = null;
+		$text     = null;
+
 		switch ($_cmd['text'])
 		{
 			case 'سلام':
@@ -98,10 +100,13 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				break;
 		}
 		// create response format
-		$response =
-		[
-			'text' => $text
-		];
+		if($text)
+		{
+			$response =
+			[
+				'text' => $text
+			];
+		}
 		// return response as result
 		return $response;
 	}

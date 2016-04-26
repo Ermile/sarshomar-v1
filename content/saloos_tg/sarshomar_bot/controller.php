@@ -8,6 +8,11 @@ class controller extends \lib\mvc\controller
 	// use commands\simple;
 	public static $text;
 	public static $replyMarkup;
+	public static $action = 'sendMessage';
+	public static $hook;
+	public static $cmd;
+	public static $chat_id;
+	public static $message_id;
 
 	/**
 	 * allow telegram to access to this location
@@ -28,16 +33,6 @@ class controller extends \lib\mvc\controller
 		}
 	}
 
-	static function about()
-	{
-		self::$text = null;
-		$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
-		$text .= T_("Sarshomar start jumping")."\r\n";
-		$text .= 'Created and developed by Saloos';
-		self::$text = $text;
-	}
-
-
 	/**
 	 * handle tg requests
 	 * @return [type] [description]
@@ -47,42 +42,30 @@ class controller extends \lib\mvc\controller
 		// run hook and get it
 		$hook        = bot::hook();
 		// define variables
-		$cmd         = bot::cmd();
+		self::$cmd         = bot::cmd();
 		// extract chat_id if not exist return false
-		$chat_id     = bot::response('chat');
+		self::$chat_id     = bot::response('chat');
 		// reply to message id
-		$reply       = bot::response('message_id');
+		self::$message_id       = bot::response('message_id');
+		// call debug handler function
+		self::debug_handler();
 
 
-		if(!$chat_id)
+		// switch user commands
+		switch (self::$cmd['command'])
 		{
-			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
-			{
-				$chat_id = \lib\utility::get('id');
-				if(!$cmd['text'])
-				{
-					$cmd = bot::cmd(\lib\utility::get('text'));
-				}
-			}
-			else
-			{
-				return 'chat id is not exist!';
-			}
-		}
-		switch ($cmd['command'])
-		{
-			case '/start':
-				self::$text = 'Welcome to ' . Domain;
-				break;
+			// case '/start':
+			// 	self::$text = 'Welcome to ' . Domain;
+			// 	break;
 
-			case 'about':
-				self::$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
-				self::$text .= T_("Sarshomar start jumping")."\r\n";
-				self::$text .= 'Created and developed by Saloos';
-				break;
+			// case 'about':
+			// 	self::$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
+			// 	self::$text .= T_("Sarshomar start jumping")."\r\n";
+			// 	self::$text .= 'Created and developed by Saloos';
+			// 	break;
 
-			case 'photo':
-				break;
+			// case 'photo':
+			// 	break;
 
 			case 'cb_go_right':
 				self::$text = 'رفتم راست'."\r\n";
@@ -163,17 +146,19 @@ class controller extends \lib\mvc\controller
 				break;
 
 			default:
-				self::default($cmd);
+				self::default();
 				break;
 		}
 
 
-		if($chat_id && self::$text)
+
+
+		if(self::$chat_id && self::$text)
 		{
 			// generate data
 			$data =
 			[
-				'chat_id'      => $chat_id,
+				'chat_id'      => self::$chat_id,
 				'text'         => self::$text,
 				'parse_mode'   => 'markdown',
 			];
@@ -186,12 +171,10 @@ class controller extends \lib\mvc\controller
 			{
 				$data['reply_markup'] = null;
 			}
-			if($reply)
-			{
-				$data['reply_to_message_id'] = $reply;
-			}
+			// save reply
+			$data['reply_to_message_id'] = bot::response('message_id');
 
-			if($cmd['command'] === 'cb_go_right' || $cmd['command'] === 'cb_go_left')
+			if(self::$cmd['command'] === 'cb_go_right' || self::$cmd['command'] === 'cb_go_left')
 			{
 				unset($data['chat_id']);
 				$data['inline_message_id'] = $hook['callback_query']['id'];
@@ -208,15 +191,21 @@ class controller extends \lib\mvc\controller
 		return null;
 	}
 
-	private static function default($_cmd)
+
+	/**
+	 * default action to handle message texts
+	 * @param  [type] self::$cmd [description]
+	 * @return [type]       [description]
+	 */
+	private static function default()
 	{
 		$response = null;
 		// first run simple command if exist
-		$response = commands\simple::exec($_cmd);
+		$response = commands\simple::exec(self::$cmd);
 		if(!$response)
 		{
 			// then if not exist handel converstaion
-			$response = commands\conversation::fa($_cmd);
+			$response = commands\conversation::fa(self::$cmd);
 		}
 		if(!$response)
 		{
@@ -237,7 +226,26 @@ class controller extends \lib\mvc\controller
 		{
 			self::$replyMarkup = $response['replyMarkup'];
 		}
-		var_dump(self::$text);
+	}
+
+
+	/**
+	 * debug mode give data from user
+	 * @return [type] [description]
+	 */
+	public static function debug_handler()
+	{
+		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
+		{
+			if(!self::$chat_id)
+			{
+				self::$chat_id = \lib\utility::get('id');
+				if(!self::$cmd['text'])
+				{
+					self::$cmd = bot::cmd(\lib\utility::get('text'));
+				}
+			}
+		}
 	}
 }
 ?>
