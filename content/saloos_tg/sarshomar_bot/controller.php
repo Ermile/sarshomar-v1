@@ -152,43 +152,54 @@ class controller extends \lib\mvc\controller
 
 
 
-
-		if(self::$chat_id && self::$text)
+		if(self::$cmd['command'] === 'cb_go_right' || self::$cmd['command'] === 'cb_go_left')
 		{
-			// generate data
-			$data =
-			[
-				'chat_id'      => self::$chat_id,
-				'text'         => self::$text,
-				'parse_mode'   => 'markdown',
-			];
-			if(self::$replyMarkup)
-			{
-				$data['reply_markup'] = json_encode(self::$replyMarkup);
-				$data['force_reply'] = true;
-			}
-			else
-			{
-				$data['reply_markup'] = null;
-			}
-			// save reply
-			$data['reply_to_message_id'] = bot::response('message_id');
-
-			if(self::$cmd['command'] === 'cb_go_right' || self::$cmd['command'] === 'cb_go_left')
-			{
-				unset($data['chat_id']);
-				$data['inline_message_id'] = $hook['callback_query']['id'];
-				$result = bot::editMessageText($data);
-			}
-			else
-			{
-				$result = bot::sendMessage($data);
-			}
-			return $result;
+			unset($data['chat_id']);
+			$data['inline_message_id'] = $hook['callback_query']['id'];
+			$result = bot::editMessageText($data);
 		}
+
+		return self::sendResponse();
+
 
 		// $result = \lib\utility\social\tg::getMe();
 		return null;
+	}
+
+
+	/**
+	 * generate response and sending message
+	 * @return [type] result of sending
+	 */
+	public static function sendResponse()
+	{
+		if(!self::$chat_id || !self::$text)
+		{
+			return false;
+		}
+		// generate data for response
+		$data =
+		[
+			'chat_id'      => self::$chat_id,
+			'text'         => self::$text,
+			'parse_mode'   => 'markdown',
+		];
+		// create markup if exist
+		if(self::$replyMarkup)
+		{
+			$data['reply_markup'] = json_encode(self::$replyMarkup);
+			$data['force_reply'] = true;
+		}
+		else
+		{
+			$data['reply_markup'] = null;
+		}
+		// add reply message id
+		$data['reply_to_message_id'] = bot::response('message_id');
+		// call bot send message func
+		$result = bot::sendMessage($data);
+		// return result of sending
+		return $result;
 	}
 
 
