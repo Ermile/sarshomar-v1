@@ -1,10 +1,14 @@
 <?php
 namespace content\saloos_tg\sarshomar_bot;
-// use tg class
+// use telegram class as bot
 use \lib\utility\social\tg as bot;
 
 class controller extends \lib\mvc\controller
 {
+	// use commands\simple;
+	public static $text;
+	public static $replyMarkup;
+
 	/**
 	 * allow telegram to access to this location
 	 * to send response to our server
@@ -26,7 +30,11 @@ class controller extends \lib\mvc\controller
 
 	static function about()
 	{
-
+		self::$text = null;
+		$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
+		$text .= T_("Sarshomar start jumping")."\r\n";
+		$text .= 'Created and developed by Saloos';
+		self::$text = $text;
 	}
 
 
@@ -38,16 +46,16 @@ class controller extends \lib\mvc\controller
 	{
 		// run hook and get it
 		$hook        = bot::hook();
+		// define variables
+		// $command     = bot::response('text');
+		$cmd         = bot::cmd('say hello');
+		$command     = $cmd['command'];
 		// extract chat_id if not exist return false
 		$chat_id     = bot::response('chat');
-		// define variables
-		$command     = bot::response('text');
-
-		// commands\whoami::exec();
-
+		// reply to message id
 		$reply       = bot::response('message_id');
-		$text        = null;
-		$replyMarkup = null;
+
+
 		if(!$chat_id)
 		{
 			if(DEBUG)
@@ -66,45 +74,51 @@ class controller extends \lib\mvc\controller
 		switch ($command)
 		{
 			case '/start':
-				$text = 'Welcome to ' . Domain;
+				self::$text = 'Welcome to ' . Domain;
 				break;
 
 			case 'about':
-				$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
-				$text .= T_("Sarshomar start jumping")."\r\n";
-				$text .= 'Created and developed by Saloos';
+				self::$text = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
+				self::$text .= T_("Sarshomar start jumping")."\r\n";
+				self::$text .= 'Created and developed by Saloos';
 				break;
 
 			case 'photo':
 				break;
 
 			case 'userid':
-				$text = 'your userid: '. bot::response('from');
+				commands\simple::userid();
 				break;
 
 			case 'test':
-				$text = 'testing ' . Domain;
+				commands\simple::test();
 				break;
 
+			case 'say':
+			case 'بگو':
+				commands\simple::say($cmd['optional']);
+				break;
+
+
 			case 'khar':
-				$text = 'خر خودتی'."\r\n";
-				$text .= 'باباته'."\r\n";
-				$text .= 'بی تربیت'."\r\n";
+				self::$text = 'خر خودتی'."\r\n";
+				self::$text .= 'باباته'."\r\n";
+				self::$text .= 'بی تربیت'."\r\n";
 				break;
 
 
 			case 'cb_go_right':
-				$text = 'رفتم راست'."\r\n";
+				self::$text = 'رفتم راست'."\r\n";
 				break;
 
 			case 'cb_go_left':
-				$text = 'رفتم چپ'."\r\n";
+				self::$text = 'رفتم چپ'."\r\n";
 				break;
 
 
 			case 'loc':
-				$text = 'موثعیت تست'."\r\n";
-				$replyMarkup =
+				self::$text = 'موثعیت تست'."\r\n";
+				self::$replyMarkup =
 				[
 					'keyboard' =>
 					[
@@ -124,8 +138,8 @@ class controller extends \lib\mvc\controller
 
 
 			case 'menu':
-				$text = 'منو'."\r\n";
-				$replyMarkup =
+				self::$text = 'منو'."\r\n";
+				self::$replyMarkup =
 				[
 					'keyboard' =>
 					[
@@ -138,9 +152,9 @@ class controller extends \lib\mvc\controller
 				break;
 
 			case 'inline':
-				$text = 'کیبورد آزمایشی'."\r\n";
+				self::$text = 'کیبورد آزمایشی'."\r\n";
 				// create keyboard
-				$replyMarkup =
+				self::$replyMarkup =
 				[
 					'inline_keyboard' =>
 					[
@@ -177,24 +191,28 @@ class controller extends \lib\mvc\controller
 				break;
 
 			default:
-				$text = 'تعریف نشده';
+				self::$text = 'تعریف نشده';
 				break;
 		}
 
 
-		if($chat_id && $text)
+		if($chat_id && self::$text)
 		{
 			// generate data
 			$data =
 			[
 				'chat_id'      => $chat_id,
-				'text'         => $text,
+				'text'         => self::$text,
 				'parse_mode'   => 'markdown',
 			];
-			if($replyMarkup)
+			if(self::$replyMarkup)
 			{
-				$data['reply_markup'] = json_encode($replyMarkup);
+				$data['reply_markup'] = json_encode(self::$replyMarkup);
 				$data['force_reply'] = true;
+			}
+			else
+			{
+				$data['reply_markup'] = null;
 			}
 			if($reply)
 			{
