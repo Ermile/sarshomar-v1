@@ -77,6 +77,7 @@ class controller extends \lib\mvc\controller
 		// generate data for response
 		$data =
 		[
+			'api_key'      => '186535040:AAGKVOlmlpA4wU0Vjv0-s93w_o2aB3n0xKE',
 			'chat_id'      => self::$chat_id,
 			'text'         => self::$text,
 			'parse_mode'   => 'markdown',
