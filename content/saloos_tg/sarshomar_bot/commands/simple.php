@@ -7,6 +7,8 @@ class simple
 {
 	public static function exec($_cmd)
 	{
+		bot::$text = 'ssss';
+		bot::sendResponse()
 
 		$response = null;
 		bot::$text = $_cmd['command'];
