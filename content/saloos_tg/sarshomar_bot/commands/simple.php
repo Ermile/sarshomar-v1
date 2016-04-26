@@ -15,9 +15,17 @@ class simple extends \content\saloos_tg\sarshomar_bot\controller
 		self::$text = 'Test *Saloos* bot on '. Domain;
 	}
 
-	public static function say($_text)
+	public static function say($_text, $_full = true)
 	{
 		self::$text = $_text;
+		if(isset($_text['optional']))
+		{
+			self::$text = $_text['optional'];
+			if($_full && isset($_text['argument']))
+			{
+				self::$text .= ' '. $_text['argument'];
+			}
+		}
 	}
 }
 ?>

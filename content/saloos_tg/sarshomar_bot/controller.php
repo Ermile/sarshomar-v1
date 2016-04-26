@@ -96,7 +96,7 @@ class controller extends \lib\mvc\controller
 
 			case 'say':
 			case 'بگو':
-				commands\simple::say($cmd['optional']);
+				commands\simple::say($cmd);
 				break;
 
 
