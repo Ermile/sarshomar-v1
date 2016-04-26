@@ -34,6 +34,9 @@ class callback
 			self::$callback = true;
 		}
 
+		bot::$text = 'callback okay';
+		bot::sendResponse();
+
 		return $response;
 	}
 
