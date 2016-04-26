@@ -85,6 +85,13 @@ class conversation extends \content\saloos_tg\sarshomar_bot\controller
 				$responde = 'بفرمایید';
 				break;
 
+			case 'الو':
+				$responde = 'بله';
+				break;
+
+			case 'بلا':
+				$responde = 'با ادب باش';
+				break;
 
 			default:
 				$responde = false;
