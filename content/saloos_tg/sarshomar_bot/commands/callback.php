@@ -34,7 +34,8 @@ class callback
 			// 	$response['show_alert'] = true;
 			// }
 
-			$response['method'] = 'editMessageText';
+			$response['method']   = 'editMessageText';
+			$response['callback'] = ['text' => 'updated', 'show_alert' => true];
 		}
 		return $response;
 	}
@@ -46,7 +47,7 @@ class callback
 	 */
 	public static function go_right()
 	{
-		$result['text'] = 'رفتم راست';
+		$result['text'] = 'رفتم راست داخلی';
 		return $result;
 	}
 
@@ -57,7 +58,7 @@ class callback
 	 */
 	public static function go_left()
 	{
-		$result['text'] = 'رفتم چپ';
+		$result['text'] = 'رفتم چپ داخلی';
 		return $result;
 	}
 }
