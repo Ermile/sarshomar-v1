@@ -28,12 +28,13 @@ class callback
 		}
 		if($response)
 		{
-			$response['method']     = 'answerCallbackQuery';
-			if(!isset($result['show_alert']))
-			{
-				$response['show_alert'] = true;
-			}
+			// $response['method']      = 'answerCallbackQuery';
+			// if(!isset($result['show_alert']))
+			// {
+			// 	$response['show_alert'] = true;
+			// }
 
+			$response['method'] = 'editMessageText';
 		}
 		return $response;
 	}
