@@ -40,7 +40,7 @@ class controller extends \lib\mvc\controller
 				'name'     => 'ارمایل',
 				'fullName' => 'هتل بین المللی آرامیس تهران',
 				'about'    => $txt_about,
-				'contact'  => $txt_about,
+				'contact'  => $txt_contact,
 				'type'     => 'هتل',
 			];
 			$result         = bot::run();
