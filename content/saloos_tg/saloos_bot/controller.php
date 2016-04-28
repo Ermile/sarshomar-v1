@@ -16,8 +16,8 @@ class controller extends \lib\mvc\controller
 		if($this->url('path') == $myhook)
 		{
 			bot::$api_key   = '164997863:AAFC3nUcujDzpGq-9ZgzAbZKbCJpnd0FWFY';
-			bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
-			bot::$useSample = true;
+			// bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
+			// bot::$useSample = true;
 			$result         = bot::handle();
 
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
