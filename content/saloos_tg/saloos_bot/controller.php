@@ -29,9 +29,7 @@ class controller extends \lib\mvc\controller
 			// add contact text
 			$txt_contact    = "تلفن : 88933402-021\r\n";
 			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
-			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
-			$txt_contact    .= "نشانی\r\n";
-			$txt_contact    .= "تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
+			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
 
 
 
