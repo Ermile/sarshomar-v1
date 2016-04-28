@@ -31,7 +31,20 @@ class controller extends \lib\mvc\controller
 			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
 			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
 
+			$txt_global     = "مشخصات عمومی _type_\r\n\n";
+			$txt_global     .= "وضعیت دید هتل : جنگل-خیابان-کوچه\r\n";
+			$txt_global     .= "تعداد اتاق ها :۸۴ اتاق\r\n";
+			$txt_global     .= "تعداد طبقات : ۶ طبقه\r\n";
+			$txt_global     .= "تعداد تخت ها : ۱۷۶ تخت\r\n";
+			$txt_global     .= "ظرفیت لابی با ظرفیت ۱۵ نفر\r\n";
+			$txt_global     .= "وضعیت ترافیک محدوده طرح ترافیک\r\n";
 
+			$txt_features  =  "امکانات _type_\r\n\n";
+			$txt_features  .= "- آسانسور\n";
+			$txt_features  .= "- لابی\n";
+			$txt_features  .= "- اینترنت در لابی\n";
+			$txt_features  .= "- پذیرش ۲۴ ساعته\n";
+			$txt_features  .= "- صندوق امانات\n";
 
 			bot::$fill      =
 			[
@@ -39,6 +52,10 @@ class controller extends \lib\mvc\controller
 				'fullName' => 'هتل بین المللی آرامیس تهران',
 				'about'    => $txt_about,
 				'contact'  => $txt_contact,
+				'globals'  => $txt_global,
+				'features' => $txt_features,
+				'intro'    => "معرفی",
+				'list'     => "لیست اتاق‌ها به شرح زیر است",
 				'type'     => 'هتل',
 			];
 			$result         = bot::run();
