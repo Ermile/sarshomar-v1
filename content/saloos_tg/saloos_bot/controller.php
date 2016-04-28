@@ -18,18 +18,32 @@ class controller extends \lib\mvc\controller
 			bot::$api_key   = '164997863:AAFC3nUcujDzpGq-9ZgzAbZKbCJpnd0FWFY';
 			// bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			// bot::$useSample = true;
-			$txt_about      = "آرامش و آسایش به همراه لذیذترین غذاهای محلی گیلان در رستوران مجلل چاچوق تجربه کنید.\r\n\n";
-			$txt_about      .= "هتل بوتیک تجاری آرامیس با ۸۴ واحد اقامتی شامل اتاق و سوئیت مجلل و مدرن پذیرای مهمانان عزیز می باشد.\r\n";
+			bot::$defaultText = 'تعریف نشده';
+
+
+			// add about text
+			$txt_about      = "هتل بوتیک تجاری آرامیس با ۸۴ واحد اقامتی شامل اتاق و سوئیت مجلل و مدرن پذیرای مهمانان عزیز می باشد.\r\n";
+			$txt_about      .= "آرامش و آسایش به همراه لذیذترین غذاهای محلی گیلان در رستوران مجلل چاچوق تجربه کنید.\r\n\n";
 			$txt_about      .= "این رستوران در یک طبقه مجزا و به ظرفیت ۴۵۰ نفر طراحی شده است.";
+
+			// add contact text
+			$txt_contact    = "تلفن : 88933402-021\r\n";
+			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
+			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
+			$txt_contact    .= "نشانی\r\n";
+			$txt_contact    .= "تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
+
+
 
 			bot::$fill      =
 			[
 				'name'     => 'ارمایل',
 				'fullName' => 'هتل بین المللی آرامیس تهران',
 				'about'    => $txt_about,
+				'contact'  => $txt_about,
 				'type'     => 'هتل',
 			];
-			$result         = bot::handle();
+			$result         = bot::run();
 
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
