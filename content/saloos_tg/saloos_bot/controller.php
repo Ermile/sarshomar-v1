@@ -32,7 +32,7 @@ class controller extends \lib\mvc\controller
 			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
 
 			$txt_global     = "مشخصات عمومی _type_\r\n";
-			$txt_global     .= "---------------\r\n";
+			$txt_global     .= "--------------------------------------\r\n";
 			$txt_global     .= "وضعیت دید هتل : جنگل-خیابان-کوچه\r\n";
 			$txt_global     .= "تعداد اتاق ها :۸۴ اتاق\r\n";
 			$txt_global     .= "تعداد طبقات : ۶ طبقه\r\n";
@@ -41,7 +41,7 @@ class controller extends \lib\mvc\controller
 			$txt_global     .= "وضعیت ترافیک محدوده طرح ترافیک\r\n-";
 
 			$txt_features  =  "امکانات _type_\r\n";
-			$txt_features  .= "---------------\r\n";
+			$txt_features  .= "--------------------------------------\r\n";
 			$txt_features  .= "- آسانسور\n";
 			$txt_features  .= "- لابی\n";
 			$txt_features  .= "- اینترنت در لابی\n";
