@@ -24,7 +24,7 @@ class controller extends \lib\mvc\controller
 
 			// add about text
 			$txt_about      = "هتل بوتیک تجاری آرامیس با ۸۴ واحد اقامتی شامل اتاق و سوئیت مجلل و مدرن پذیرای مهمانان عزیز می باشد.\r\n";
-			$txt_about      .= "آرامش و آسایش به همراه لذیذترین غذاهای محلی گیلان در رستوران مجلل چاچوق تجربه کنید.\r\n\n";
+			$txt_about      .= "آرامش و آسایش به همراه لذیذترین غذاهای محلی گیلان را در رستوران مجلل چاچوق تجربه کنید.\r\n\n";
 			// $txt_about      .= "این رستوران در یک طبقه مجزا و به ظرفیت ۴۵۰ نفر طراحی شده است.";
 
 			// add contact text
@@ -57,7 +57,7 @@ class controller extends \lib\mvc\controller
 				'global'   => $txt_global,
 				'feature'  => $txt_feature,
 				'intro'    => "معرفی",
-				'list'     => "لیست اتاق‌ها به شرح زیر است",
+				'list'     => "$fullName\nلیست سوییت‌ها به شرح زیر است",
 				'type'     => 'هتل',
 			];
 			$result         = bot::run();
