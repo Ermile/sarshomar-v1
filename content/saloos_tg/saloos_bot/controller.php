@@ -17,6 +17,7 @@ class controller extends \lib\mvc\controller
 		{
 			bot::$api_key   = '164997863:AAFC3nUcujDzpGq-9ZgzAbZKbCJpnd0FWFY';
 			bot::$name      = 'saloos_bot';
+			bot::$botan     = 'Tlnch-gJYsB7kyLoIPlQG0S9LpJdviKu';
 			// bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			// bot::$useSample = true;
 			bot::$defaultText = 'تعریف نشده';
