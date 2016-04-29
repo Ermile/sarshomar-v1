@@ -20,6 +20,7 @@ class controller extends \lib\mvc\controller
 			// bot::$useSample = true;
 			bot::$defaultText = 'تعریف نشده';
 
+			$fullName = 'هتل بین المللی آرامیس تهران';
 
 			// add about text
 			$txt_about      = "هتل بوتیک تجاری آرامیس با ۸۴ واحد اقامتی شامل اتاق و سوئیت مجلل و مدرن پذیرای مهمانان عزیز می باشد.\r\n";
@@ -29,33 +30,32 @@ class controller extends \lib\mvc\controller
 			// add contact text
 			$txt_contact    = "تلفن : 88933402-021\r\n";
 			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
-			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n";
+			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n".$fullName;
 
-			$txt_global     = "مشخصات عمومی _type_\r\n";
-			$txt_global     .= "--------------------------------------\r\n";
-			$txt_global     .= "وضعیت دید هتل : جنگل-خیابان-کوچه\r\n";
-			$txt_global     .= "تعداد اتاق ها :۸۴ اتاق\r\n";
-			$txt_global     .= "تعداد طبقات : ۶ طبقه\r\n";
-			$txt_global     .= "تعداد تخت ها : ۱۷۶ تخت\r\n";
-			$txt_global     .= "ظرفیت لابی با ظرفیت ۱۵ نفر\r\n";
-			$txt_global     .= "وضعیت ترافیک محدوده طرح ترافیک\r\n-";
+			$txt_global     = "مشخصات عمومی $fullName\r\n";
+			$txt_global     .= "- تعداد اتاق ها: ۸۴ اتاق\r\n";
+			$txt_global     .= "- تعداد طبقات: ۶ طبقه\r\n";
+			$txt_global     .= "- تعداد تخت ها: ۱۷۶ تخت\r\n";
+			$txt_global     .= "- ظرفیت لابی با ظرفیت ۱۵ نفر\r\n";
+			$txt_global     .= "- وضعیت ترافیک محدوده طرح ترافیک\r\n-";
 
-			$txt_features  =  "امکانات _type_\r\n";
-			$txt_features  .= "--------------------------------------\r\n";
-			$txt_features  .= "- آسانسور\n";
-			$txt_features  .= "- لابی\n";
-			$txt_features  .= "- اینترنت در لابی\n";
-			$txt_features  .= "- پذیرش ۲۴ ساعته\n";
-			$txt_features  .= "- صندوق امانات\n-";
+			$txt_feature  =  "امکانات $fullName\r\n";
+			$txt_feature  .= "- آسانسور\n";
+			$txt_feature  .= "- صبحانه\n";
+			$txt_feature  .= "- قفل درب کارتی\n";
+			$txt_feature  .= "- لابی\n";
+			$txt_feature  .= "- اینترنت در لابی\n";
+			$txt_feature  .= "- پذیرش ۲۴ ساعته\n";
+			$txt_feature  .= "- صندوق امانات\n-";
 
-			bot::$fill      =
+			bot::$fill    =
 			[
 				'name'     => 'ارمایل',
-				'fullName' => 'هتل بین المللی آرامیس تهران',
+				'fullName' => $fullName,
 				'about'    => $txt_about,
 				'contact'  => $txt_contact,
-				'globals'  => $txt_global,
-				'features' => $txt_features,
+				'global'   => $txt_global,
+				'feature'  => $txt_feature,
 				'intro'    => "معرفی",
 				'list'     => "لیست اتاق‌ها به شرح زیر است",
 				'type'     => 'هتل',
