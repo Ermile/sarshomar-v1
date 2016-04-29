@@ -16,6 +16,7 @@ class controller extends \lib\mvc\controller
 		if($this->url('path') == $myhook)
 		{
 			bot::$api_key   = '164997863:AAFC3nUcujDzpGq-9ZgzAbZKbCJpnd0FWFY';
+			bot::$name      = 'saloos_bot';
 			// bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			// bot::$useSample = true;
 			bot::$defaultText = 'تعریف نشده';
