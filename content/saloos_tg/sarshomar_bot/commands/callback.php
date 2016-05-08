@@ -28,14 +28,12 @@ class callback
 		}
 		if($response)
 		{
-			// $response['method']      = 'answerCallbackQuery';
-			// if(!isset($result['show_alert']))
-			// {
-			// 	$response['show_alert'] = true;
-			// }
+			$response['method']     = 'answerCallbackQuery';
+			if(!isset($result['show_alert']))
+			{
+				$response['show_alert'] = true;
+			}
 
-			$response['method']   = 'editMessageText';
-			$response['callback'] = ['text' => 'updated', 'show_alert' => true];
 		}
 		return $response;
 	}
@@ -47,7 +45,7 @@ class callback
 	 */
 	public static function go_right()
 	{
-		$result['text'] = 'رفتم راست داخلی';
+		$result['text'] = 'رفتم راست';
 		return $result;
 	}
 
@@ -58,7 +56,7 @@ class callback
 	 */
 	public static function go_left()
 	{
-		$result['text'] = 'رفتم چپ داخلی';
+		$result['text'] = 'رفتم چپ';
 		return $result;
 	}
 }
