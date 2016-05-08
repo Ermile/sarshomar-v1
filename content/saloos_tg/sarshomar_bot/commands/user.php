@@ -24,6 +24,8 @@ class user
 			case '/about':
 			case 'about':
 			case 'درباره':
+			case 'درباره ی':
+			case 'درباره‌ی':
 				$response = self::about();
 				break;
 
@@ -52,10 +54,10 @@ class user
 	 */
 	public static function start()
 	{
-		$txt_start = "به *سرشمار* خوش آمدید!\n\n";
-		$txt_start .= "کار با سرشمار بسیار آسان است.\n";
+		$txt_start = "به *_name_* خوش آمدید!\n\n";
+		$txt_start .= "کار با _name_ بسیار آسان است.\n";
 		$txt_start .= "*نظر دهید*، *نظرسنجی بسازید* و *به اشتراک بگذارید*!\n";
-		$txt_start .= "\n\nاین داستان ادامه دارد...";
+		$txt_start .= "\n\nالبته این داستان ادامه دارد...";
 		$result =
 		[
 			[
@@ -73,10 +75,37 @@ class user
 	 */
 	public static function about()
 	{
-		$result['method']  = "sendPhoto";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/about.jpg"));
-		$result['photo']   = 'AgADBAADtqcxG-eq1QnHfgOD-d-edTTxQhkABMMyWG58No_62ncAAgI';
-		$result['caption'] = "_about_";
+
+		$txt_caption = "_name_\n";
+		$txt_caption .= "محصولی از ارمایل";
+
+		$txt_text = "_fullName_ محصولی از [ارمایل](http://ermile.ir)\n\n\n";
+		$txt_text .= "امکانات _name_\n";
+		$txt_text .= "- شرکت در نظرسنجی‌های موجود\n";
+		$txt_text .= "- تعریف نظرسنجی جدید\n";
+		$txt_text .= "- تعیین محدودیت بر روی مخاطبان نظرسنجی\n";
+		$txt_text .= "- به اشتراک گذاری نظرسنجی‌ها\n";
+		$txt_text .= "- مشاهده نتایج به تفکیک\n";
+		$txt_text .= "- تعریف نظرسنجی جدید\n";
+
+
+		$result =
+		[
+			// [
+			// 	'caption'   => $txt_caption,
+			// 	'method' => 'sendPhoto',
+			// 	// 'photo'  => new \CURLFile(realpath("static/images/telegram/sarshomar/about.jpg")),
+			// 	'photo'  => 'AgADBAADrKcxG4BMHgvNuFPD7qige8o9QxkABFrJ1mj0gHo4oVIAAgI',
+			// ],
+			[
+				'text'         => $txt_text,
+			],
+		];
+
+
+		// $result['method']  = "sendPhoto";
+		// full size
+		// AgADBAADrKcxG4BMHgvNuFPD7qige8o9QxkABCtWcZS2VF5BoFIAAgI
 
 
 		return $result;

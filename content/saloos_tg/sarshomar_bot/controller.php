@@ -19,7 +19,12 @@ class controller extends \lib\mvc\controller
 			bot::$name        = 'sarshomar_bot';
 			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = 'تعریف نشده';
-
+			bot::$fill    =
+			[
+				'name'     => 'سرشمار',
+				'fullName' => 'سرویس سرشمار',
+				// 'about'    => $txt_about,
+			];
 			$result           = bot::run(true);
 
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
