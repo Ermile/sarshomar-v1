@@ -32,6 +32,9 @@ class user
 			case '/contact':
 			case 'contact':
 			case 'تماس':
+			case 'آدرس':
+			case 'ادرس':
+			case 'نشانی':
 				$response = self::contact();
 				break;
 
@@ -87,6 +90,8 @@ class user
 		$txt_text .= "- به اشتراک گذاری نظرسنجی‌ها\n";
 		$txt_text .= "- مشاهده نتایج به تفکیک\n";
 		$txt_text .= "- تعریف نظرسنجی جدید\n";
+		$txt_text .= "- شرکت در تست‌های روانشناسی\n";
+		$txt_text .= "- ایجاد خروجی از نتایج\n";
 
 
 		$result =
@@ -101,12 +106,6 @@ class user
 				'text'         => $txt_text,
 			],
 		];
-
-
-		// $result['method']  = "sendPhoto";
-		// full size
-		// AgADBAADrKcxG4BMHgvNuFPD7qige8o9QxkABCtWcZS2VF5BoFIAAgI
-
 
 		return $result;
 	}
@@ -127,13 +126,14 @@ class user
 				'longitude' => '50.87914999999998',
 				'title'     => 'Ermile | ارمایل',
 				'address'   => '#83, Moallem 10, Moallem, Qom, Iran',
+				'address'   => 'ایران، قم، خیابان معلم۱۰، پلاک۸۳',
 			],
 		];
 
-		$result[] =
-		[
-			'text' => "_contact_",
-		];
+		// $result[] =
+		// [
+		// 	'text' => "_contact_",
+		// ];
 
 		return $result;
 	}
