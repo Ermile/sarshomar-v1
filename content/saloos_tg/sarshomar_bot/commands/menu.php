@@ -151,7 +151,7 @@ class menu
 		[
 			[
 				'method'       => 'editMessageReplyMarkup',
-				'text'         => "بازگشت به منوی اصلی",
+				// 'text'         => "بازگشت به منوی اصلی",
 				'reply_markup' => $menu,
 			],
 		];
