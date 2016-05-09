@@ -42,7 +42,7 @@ class user
 	public static function start()
 	{
 		// disable return from main menu
-		$txt_text = "سلام، من ربات فست فود ` حاج عباس ` هستم.\n چه کاری می خواهید انجام دهید؟";
+		$txt_text = "سلام، من ربات فست فود ` آزمایشی کرمایل ` هستم.\n چه کاری می خواهید انجام دهید؟";
 
 		$menu =
 		[
