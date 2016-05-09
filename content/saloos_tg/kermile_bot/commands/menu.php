@@ -75,6 +75,9 @@ class menu
 					default:
 						$response = user::start();
 						break;
+					case 'بازگشت به ثبت سفارش':
+						$response = user::order();
+						break;
 				}
 				// $response = self::returnBtn();
 				break;
@@ -193,6 +196,7 @@ class menu
 			[
 					["چیزبرگر", "همبرگر"],
 					["چیپس و پنیر", "هات داگ"],
+					["بازگشت به ثبت سفارش"]
 			],
 		];
 		return $result;
