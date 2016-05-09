@@ -86,28 +86,10 @@ class menu
 				$response = self::civility();
 				break;
 
-			case '/standard':
-			case 'standard':
-			case 'استاندارد':
-				$response = self::room_standard();
-				break;
-
-			case '/modern':
-			case 'modern':
-			case 'مدرن':
-				$response = self::room_modern();
-				break;
-
-			case '/family':
-			case 'family':
-			case 'خانواده':
-				$response = self::room_family();
-				break;
-
-			case '/lux':
-			case 'lux':
-			case 'مجلل':
-				$response = self::room_lux();
+			case '/profile':
+			case 'profile':
+			case 'پروفایل':
+				$response = self::profile();
 				break;
 
 
@@ -448,6 +430,52 @@ class menu
 
 		$txt_text = "مرحله ۱\n\n";
 		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
+		return $result;
+	}
+
+
+	/**
+	 * create profile menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function profile($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["تکمیل پروفایل"],
+				[
+					[
+						'text'            => 'ثبت شماره موبایل',
+						'request_contact' => true
+					],
+				],
+				["بازگشت به منوی اصلی"],
+			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "*پروفایل*\r\n\n";
+		$txt_text .= "با تکمیل پروفایل خود";
+		$txt_text .= "به ما در افزایش اعتبار نتایج نظرسنجی‌ها کمک کنید.\n";
+		$txt_text .= "ما نیز در حد توان خود از این اقدام شما سپاسگذاری خواهیم کرد.";
 		$result   =
 		[
 			[
