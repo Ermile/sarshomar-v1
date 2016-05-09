@@ -458,7 +458,11 @@ class menu
 				["تکمیل پروفایل"],
 				[
 					[
-						'text'            => 'ثبت شماره موبایل',
+						'text'             => 'ثبت آدرس',
+						'request_location' => true
+					],
+					[
+						'text'            => 'ثبت موبایل',
 						'request_contact' => true
 					],
 				],

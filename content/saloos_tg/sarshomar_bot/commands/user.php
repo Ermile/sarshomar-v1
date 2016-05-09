@@ -38,6 +38,14 @@ class user
 				$response = self::contact();
 				break;
 
+			case 'type_phone_number':
+				$response = self::register('شماره موبایل');
+				break;
+
+			case 'type_location':
+				$response = self::register('آدرس');
+				break;
+
 			case '/help':
 			case 'help':
 			case '؟':
@@ -131,6 +139,25 @@ class user
 		// [
 		// 	'text' => "_contact_",
 		// ];
+
+		return $result;
+	}
+
+
+	/**
+	 * get phone number from user contact
+	 * @return [type] [description]
+	 */
+	public static function register($_type = null)
+	{
+		if(!$_type)
+			return false;
+		$result =
+		[
+			[
+				'text'  => $_type. ' شما با موفقیت ثبت شد.',
+			],
+		];
 
 		return $result;
 	}
