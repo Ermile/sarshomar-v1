@@ -145,7 +145,10 @@ class user
 		$text = "*_fullName_*\r\n\n";
 		$text .= "دستورات زیر برای کار با ربات سرشمار در دسترس شماست:\r\n\n";
 		// $text .= "/menu show main menu\n";
-		$text .= "/polls مشاهده لیست نظرسنجی‌ها\n";
+		$text .= "/civility نظرسنجی‌های مردمی\n";
+		$text .= "/psychology تست‌های روانشناسی\n";
+		$text .= "/sarshomar شروع نظرسنجی‌های سرشمار\n";
+		// $text .= "/polls مشاهده لیست نظرسنجی‌ها\n";
 		$text .= "/contact تماس با ما\n";
 		$text .= "/about درباره _name_\n";
 		$text .= "/start شروع مجدد\n";

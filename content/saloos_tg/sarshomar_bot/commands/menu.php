@@ -31,26 +31,23 @@ class menu
 				$response = self::polls();
 				break;
 
-
-			case '/feature':
-			case 'feature':
-			case 'امکانات':
-			case 'امکانات هتل':
-				$response = self::feature();
+			case '/sarshomar':
+			case 'sarshomar':
+			case 'نظرسنجی‌های':
+			case 'نظرسنجی‌های سرشمار':
+				$response = self::sarshomar();
 				break;
 
-			case '/global':
-			case 'global':
-			case 'مشخصات':
-			case 'مشخصات عمومی':
-				$response = self::global();
+			case '/psychology':
+			case 'psychology':
+			case 'روانشناسی':
+				$response = self::psychology();
 				break;
 
-			case '/list':
-			case 'list':
-			case 'لیست':
-			case 'لیست اتاق‌ها':
-				$response = self::list();
+			case '/civility':
+			case 'civility':
+			case 'مردمی':
+				$response = self::civility();
 				break;
 
 			case '/standard':
@@ -97,8 +94,8 @@ class menu
 						$response = self::main();
 						break;
 
-					case 'بازگشت به منوی معرفی':
-						$response = self::intro();
+					case 'بازگشت به منوی نظرسنجی‌ها':
+						$response = self::polls();
 						break;
 
 					default:
@@ -175,11 +172,11 @@ class menu
 			'keyboard' =>
 			[
 				["نظرسنجی‌های سرشمار"],
-				["تست‌های روانشناسی"],
-				["نظرسنجی‌های مردمی - تصادفی"],
+				["مردمی", "روانشناسی"],
+				["بازگشت به منوی اصلی"],
 			],
 			// "one_time_keyboard" => true,
-			// "force_reply"       => true
+			"force_reply"       => true
 		];
 		if($_onlyMenu)
 		{
@@ -196,6 +193,44 @@ class menu
 			],
 		];
 
+		// return menu
+		return $result;
+	}
+
+
+	/**
+	 * create sarshomar menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function sarshomar($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["نظرسنجی‌های سرشمار"],
+				["مردمی", "روانشناسی"],
+				["بازگشت به منوی اصلی"],
+			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "بزودی...";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				// 'reply_markup' => $menu,
+			],
+		];
 
 		// return menu
 		return $result;
@@ -203,16 +238,79 @@ class menu
 
 
 	/**
-	 * show features message
-	 * @return [type] [description]
+	 * create psychology menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
 	 */
-	public static function feature()
+	public static function psychology($_onlyMenu = false)
 	{
-		$result['caption'] = "_feature_";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/features.jpg"));
-		$result['photo']   = 'AgADBAADt6cxG-eq1QmndQ_2kwo3PXstQxkABG-c3dnLJoA0QncAAgI';
-		$result['method']  = "sendPhoto";
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["نظرسنجی‌های سرشمار"],
+				["مردمی", "روانشناسی"],
+				["بازگشت به منوی اصلی"],
+			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
 
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "بخش تست‌های روانشناسی به زودی راه‌اندازی خواهد شد.";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				// 'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
+		return $result;
+	}
+
+
+	/**
+	 * create civility menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function civility($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				[""],
+				["مردمی", "روانشناسی"],
+				["بازگشت به منوی اصلی"],
+			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "بخش نظرسنجی‌های مردمی به زودی راه‌اندازی خواهد شد";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				// 'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
 		return $result;
 	}
 
@@ -227,51 +325,6 @@ class menu
 		$result['caption'] = "_global_";
 		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/global.jpg"));
 		$result['photo']   = 'AgADBAADuqcxG-eq1Ql_FJNHU8eJL6xEKRkABM3ZsAhFwe5jk3YBAAEC';
-		$result['method']  = "sendPhoto";
-
-		return $result;
-	}
-
-
-	public static function room_standard()
-	{
-
-		$result['caption'] = "سوییت استاندارد";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/room-standard.jpg"));
-		$result['photo']   = 'AgADBAADu6cxG-eq1Qk6Y0Vf_YPNoMKBJBkABGYn-91Fgx5g3HcBAAEC';
-		$result['method']  = "sendPhoto";
-
-		return $result;
-	}
-
-	public static function room_modern()
-	{
-
-		$result['caption'] = "سوییت مدرن";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/room-modern.jpg"));
-		$result['photo']   = 'AgADBAADvKcxG-eq1QmH92pAF08T_xfCQRkABOErQh4z46YSY3YAAgI';
-		$result['method']  = "sendPhoto";
-
-		return $result;
-	}
-
-	public static function room_family()
-	{
-
-		$result['caption'] = "سوییت خانواده";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/room-family.jpg"));
-		$result['photo']   = 'AgADBAADvacxG-eq1Ql4XJOmaYcUE8xJQxkABBGnNrqILNvyInYAAgI';
-		$result['method']  = "sendPhoto";
-
-		return $result;
-	}
-
-	public static function room_lux()
-	{
-
-		$result['caption'] = "سوییت مجلل";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/room-lux.jpg"));
-		$result['photo']   = 'AgADBAADvqcxG-eq1Qm3eUf_PGzhYCDmKBkABMfq8W8TqeP1MnoBAAEC';
 		$result['method']  = "sendPhoto";
 
 		return $result;
