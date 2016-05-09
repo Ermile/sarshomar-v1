@@ -72,6 +72,10 @@ class menu
 				$response = self::returnBtn();
 				break;
 
+			case 'مشاهده':
+				$response = self::showMenu();
+				break;
+
 			default:
 				break;
 		}
@@ -107,6 +111,46 @@ class menu
 
 		$result['text'] = "لطفا یکی از دسته بندی ها را انتخاب کنید";
 		$result['reply_markup'] = $menu;
+
+		// $result   =
+		// [
+		// 	[
+		// 		'text'         => "لطفا یکی از دسته بندی ها را انتخاب کنید",
+		// 		'reply_markup' => $menu,
+		// 	],
+		// ];
+
+
+		return $result;
+	}
+
+
+	/**
+	 * showMenu
+	 * @return [type] [description]
+	 */
+	public static function showMenu()
+	{
+		// $menu =
+		// [
+		// 	'keyboard' =>
+		// 	[
+		// 		["ساندویچ", "پیتزا"],
+		// 		["مخلفات", "نوشیدنی"],
+		// 	],
+		// ];
+
+		$txt_caption = "محصولات فست فود کرمایل.\nشما می توانید منوی ما را در گوشی یا رایانه خود ذخیره کنید.";
+		$result =
+		[
+			[
+				'caption'   => $txt_caption,
+				'method' => 'sendPhoto',
+				// 'photo'  => new \CURLFile(realpath("static/images/telegram/kermile/menu.jpg")),
+				'photo'  => 'AgADBAADracxGxBxeQyJeNqkhwcFJxP1KBkABEaZHHvrygd_hOcBAAEC',
+			],
+		];
+		// $result['reply_markup'] = $menu;
 
 		// $result   =
 		// [
