@@ -82,18 +82,11 @@ class user
 		$txt_caption = "_name_\n";
 		$txt_caption .= "محصولی از ارمایل";
 
-		$txt_text = "_fullName_ محصولی از [ارمایل](http://ermile.ir)\n\n\n";
-		$txt_text .= "امکانات _name_\n";
-		$txt_text .= "- شرکت در نظرسنجی‌های موجود\n";
-		$txt_text .= "- تعریف نظرسنجی جدید\n";
-		$txt_text .= "- تعیین محدودیت بر روی مخاطبان نظرسنجی\n";
-		$txt_text .= "- به اشتراک گذاری نظرسنجی‌ها\n";
-		$txt_text .= "- مشاهده نتایج به تفکیک\n";
-		$txt_text .= "- تعریف نظرسنجی جدید\n";
-		$txt_text .= "- شرکت در تست‌های روانشناسی\n";
-		$txt_text .= "- ایجاد خروجی از نتایج\n";
+		$txt_text = "_name_ برای انجام آسان و سریع نظرسنجی‌های دقیق و به‌دور از شبهه در مقیاس وسیع و با هزینه مناسب طراحی شده است.\n";
+		$txt_text .= "انجام عمل نظرسنجی که ما آن را _name_ نامیده‌ایم اولین و آخرین طرح برای این کار نبوده و نخواهد بود ولی ما تلاش داریم تا امکاناتی که تاکنون وجود نداشته و یا سخت قابل دستیابی بوده را به راحتی در اختیار شما قرار دهیم.\n\n";
+		$txt_text .= "امیدواریم در این راه طولانی بتوانیم انتظارات شما را برآورده نماییم.\n";
 
-
+		$txt_text .= "\n\n\n_fullName_ محصولی از [ارمایل](https://ermile.com/fa/)\n\n\n";
 		$result =
 		[
 			// [
@@ -125,8 +118,8 @@ class user
 				'latitude'  => '34.6349668',
 				'longitude' => '50.87914999999998',
 				'title'     => 'Ermile | ارمایل',
-				'address'   => '#83, Moallem 10, Moallem, Qom, Iran',
 				'address'   => 'ایران، قم، خیابان معلم۱۰، پلاک۸۳',
+				'address'   => '#83, Moallem 10, Moallem, Qom, Iran +9837735183',
 			],
 		];
 
@@ -146,20 +139,12 @@ class user
 	public static function help()
 	{
 		$text = "*_fullName_*\r\n\n";
-		$text .= "You can control me by sending these commands:\r\n\n";
-		$text .= "/start start conversation\n";
-		$text .= "/about about\n";
-		$text .= "/contact contact us\n";
-		$text .= "/menu show main menu\n";
-		$text .= "/intro show intro menu\n";
-		$text .= "/feature know more about favorite feature\n";
-		$text .= "/global read about out global features\n";
-		$text .= "/list show list of rooms menu\n";
-		$text .= "/standard readmore about standard room\n";
-		$text .= "/modern readmore about modern room\n";
-		$text .= "/family readmore about family room\n";
-		$text .= "/lux readmore about lux room\n";
-		// $text .= "/contact contact us\n";
+		$text .= "دستورات زیر برای کار با ربات سرشمار در دسترس شماست:\r\n\n";
+		// $text .= "/menu show main menu\n";
+		// $text .= "/intro show intro menu\n";
+		$text .= "/contact تماس با ما\n";
+		$text .= "/about درباره _name_\n";
+		$text .= "/start شروع مجدد\n";
 		$result =
 		[
 			[
