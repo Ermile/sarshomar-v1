@@ -5,7 +5,7 @@ use \lib\utility\social\tg as bot;
 
 class menu
 {
-	public static $return = true;
+	public static $return = false;
 
 	public static function exec($_cmd)
 	{
@@ -69,7 +69,14 @@ class menu
 
 			case 'return':
 			case 'بازگشت':
-				$response = self::returnBtn();
+				switch ($_cmd['text'])
+				{
+					case 'بازگشت به منوی اصلی':
+					default:
+						$response = user::start();
+						break;
+				}
+				// $response = self::returnBtn();
 				break;
 
 			case 'مشاهده':
@@ -114,6 +121,7 @@ class menu
 			[
 				["ساندویچ", "پیتزا"],
 				["مخلفات", "نوشیدنی"],
+				["بازگشت به منوی اصلی"]
 			],
 		];
 
