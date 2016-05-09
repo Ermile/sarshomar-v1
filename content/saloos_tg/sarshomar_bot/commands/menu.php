@@ -33,9 +33,45 @@ class menu
 
 			case '/sarshomar':
 			case 'sarshomar':
-			case 'نظرسنجی‌های':
 			case 'نظرسنجی‌های سرشمار':
 				$response = self::sarshomar();
+				break;
+
+			case '/my':
+			case 'my':
+			case 'من':
+				$response = self::my();
+				break;
+
+			case '/mypolls':
+			case 'mypolls':
+				$response = self::mypolls();
+				break;
+
+			case '/define':
+			case 'define':
+			case 'تعریف':
+				$response = self::define();
+				break;
+
+			case 'نظرسنجی‌های':
+				switch ($_cmd['text'])
+				{
+					case 'نظرسنجی‌های من':
+						$response = self::my();
+						break;
+
+					case 'نظرسنجی‌های سرشمار':
+						$response = self::sarshomar();
+						break;
+
+					case 'نظرسنجی‌های موجود':
+						$response = self::mypolls();
+						break;
+
+					default:
+						break;
+				}
 				break;
 
 			case '/psychology':
@@ -316,48 +352,35 @@ class menu
 
 
 	/**
-	 * show global message
-	 * @return [type] [description]
-	 */
-	public static function global()
-	{
-
-		$result['caption'] = "_global_";
-		// $result['photo']   = new \CURLFile(realpath("static/images/telegram/global.jpg"));
-		$result['photo']   = 'AgADBAADuqcxG-eq1Ql_FJNHU8eJL6xEKRkABM3ZsAhFwe5jk3YBAAEC';
-		$result['method']  = "sendPhoto";
-
-		return $result;
-	}
-
-
-	/**
-	 * create mainmenu
+	 * create my menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function list($_onlyMenu = false)
+	public static function my($_onlyMenu = false)
 	{
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
-				["مدرن", "استاندارد"],
-				["مجلل", "خانواده"],
-				["بازگشت به منوی معرفی"],
+				["تعریف نظرسنجی جدید"],
+				["نظرسنجی‌های موجود"],
+				["بازگشت به منوی اصلی"],
 			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
 		];
-
 		if($_onlyMenu)
 		{
 			return $menu;
 		}
 
-		$result =
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "بخش نظرسنجی‌های مردمی به زودی راه‌اندازی خواهد شد";
+		$result   =
 		[
 			[
-				'text'         => "_list_",
+				'text'         => $txt_text,
 				'reply_markup' => $menu,
 			],
 		];
@@ -367,8 +390,75 @@ class menu
 	}
 
 
+	/**
+	 * create my menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function mypolls($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["تعریف نظرسنجی جدید"],
+				["نظرسنجی‌های موجود"],
+				["بازگشت به منوی اصلی"],
+			],
+			// "one_time_keyboard" => true,
+			"force_reply"       => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "بزودی تکمیل خواهد شد...";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				// 'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
+		return $result;
+	}
 
 
+	/**
+	 * create define menu that allow user to select
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function define($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			"hide_keyboard" => true
+		];
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "مرحله ۱\n\n";
+		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
+		return $result;
+	}
 
 
 	/**
