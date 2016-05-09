@@ -76,6 +76,14 @@ class menu
 				$response = self::showMenu();
 				break;
 
+			case 'نوشیدنی':
+				$response = self::drink();
+				break;
+
+			case 'مخلفات':
+				$response = self::other();
+				break;
+
 			default:
 				break;
 		}
@@ -310,6 +318,42 @@ class menu
 					["نظرسنجی های من"],
 					["مقالات"],
 					["پروفایل"],
+			],
+		];
+		return $result;
+	}
+
+	/**
+	 * drink
+	 * @return [type] [description]
+	 */
+	public static function drink()
+	{
+		$result['text'] = "لطفا نوشیدنی مورد نظر خود را انتخاب کنید";
+		$result['reply_markup'] =
+		[
+			'keyboard' =>
+			[
+					["آب", "نوشابه"],
+					["دلستر", "آبمیوه"],
+			],
+		];
+		return $result;
+	}
+
+	/**
+	 * other
+	 * @return [type] [description]
+	 */
+	public static function other()
+	{
+		$result['text'] = "لطفا مخلفات مورد نظر خود را انتخاب کنید";
+		$result['reply_markup'] =
+		[
+			'keyboard' =>
+			[
+					["سالاد فصل", "سالاد اندونزی"],
+					["قارچ سوخاری", "سیب زمینی"],
 			],
 		];
 		return $result;
