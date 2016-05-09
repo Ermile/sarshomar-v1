@@ -22,12 +22,13 @@ class menu
 				$response = self::main();
 				break;
 
-			case '/intro':
-			case 'intro':
-			case '/tour':
-			case 'tour':
-			case 'معرفی':
-				$response = self::intro();
+			case '/poll':
+			case 'poll':
+			case '/polls':
+			case 'polls':
+			case 'شرکت':
+			case 'شرکت در نظرسنجی':
+				$response = self::polls();
 				break;
 
 
@@ -162,35 +163,39 @@ class menu
 
 
 	/**
-	 * create mainmenu
+	 * create polls menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function intro($_onlyMenu = false)
+	public static function polls($_onlyMenu = false)
 	{
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
-				["لیست اتاق‌ها"],
-				["مشخصات عمومی", "امکانات هتل"],
-				["بازگشت به منوی اصلی"],
+				["نظرسنجی‌های سرشمار"],
+				["تست‌های روانشناسی"],
+				["نظرسنجی‌های مردمی - تصادفی"],
 			],
+			"one_time_keyboard" => true,
+			"force_reply"       => true
 		];
-
 		if($_onlyMenu)
 		{
 			return $menu;
 		}
 
-		$result =
+		$txt_text = "*_fullName_*\r\n\n";
+		$txt_text .= "لطفا از منوی زیر یکی از انواع نظرسنجی‌ها را انتخاب نمایید";
+		$result   =
 		[
 			[
-				'text'         => "*_fullName_*\r\n\n_intro_",
+				'text'         => $txt_text,
 				'reply_markup' => $menu,
 			],
 		];
+
 
 		// return menu
 		return $result;
