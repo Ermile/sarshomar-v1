@@ -40,7 +40,11 @@ class user
 
 			case '/help':
 			case 'help':
+			case '؟':
+			case '?':
 			case 'کمک':
+			case 'راهنمایی':
+			case '/?':
 				$response = self::help();
 				break;
 
