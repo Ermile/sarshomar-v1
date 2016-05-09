@@ -72,9 +72,35 @@ class user
 	 */
 	public static function about()
 	{
-		$result['text'] = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
-		$result['text'] .= T_("Sarshomar start jumping")."\r\n";
-		$result['text'] .= 'Created and developed by '.ucfirst(core_name);
+		// get location address from http://www.gps-coordinates.net/
+		$txt_caption = "_name_ \n". "رستوران بزرگ کرمایل با بهترین خدمات و کادر مجرب در خدمت شماست.";
+		$result =
+		[
+			[
+				'method'    => "sendVenue",
+				'latitude'  => '34.6349668',
+				'longitude' => '50.87914999999998',
+				'title'     => 'Ermile | ارمایل',
+				'address'   => 'ایران، قم، خیابان معلم۱۰، پلاک۸۳',
+				'address'   => '#83, Moallem 10, Moallem, Qom, Iran +9837735183',
+			],
+			[
+				'caption'   => $txt_caption,
+				'method' => 'sendPhoto',
+				// 'photo'  => new \CURLFile(realpath("static/images/telegram/kermile/about.jpg")),
+				'photo'  => 'AgADBAADq6cxGxBxeQwAAVDut79r__Zb5EIZAARi8HlJzJsMYmVdAAIC',
+			],
+		];
+
+		// $result[] =
+		// [
+		// 	'text' => "درباره فلان",
+		// ];
+
+
+		// $result['text'] = '['.T_('Sarshomar').'](http://sarshomar.ir)'."\r\n";
+		// $result['text'] .= T_("Sarshomar start jumping")."\r\n";
+		// $result['text'] .= 'Created and developed by '.ucfirst(core_name);
 		return $result;
 	}
 }

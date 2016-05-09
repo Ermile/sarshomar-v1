@@ -19,6 +19,12 @@ class controller extends \lib\mvc\controller
 			bot::$name      = 'kermile_bot';
 			bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = 'تعریف نشده';
+			bot::$fill    =
+			[
+				'name'     => 'کرمایل',
+				'fullName' => 'فست فود بزرگ کرمایل',
+				// 'about'    => $txt_about,
+			];
 
 			$result         = bot::run();
 
