@@ -148,8 +148,8 @@ class menu
 		$result =
 		[
 			[
-				'method'       => 'editMessageReplyMarkup',
-				// 'text'         => "بازگشت به منوی اصلی",
+				// 'method'       => 'editMessageReplyMarkup',
+				'text'         => "بازگشت به منوی اصلی",
 				'reply_markup' => $menu,
 			],
 		];
