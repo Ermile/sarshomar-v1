@@ -266,7 +266,21 @@ class menu
 	 */
 	public static function pizza_01()
 	{
-		$result['text'] = "";
+		$result['text'] = "شما پیتزا پپرونی را انتخاب کرده اید.\n";
+		$result['text'] .= "لطفا از منوی زیر تعداد را انتخاب نمایید یا درصورت تمایل به سفارش تعداد بیشتر مقدار آن را با کیبورد وارد نمایید.";
+		$result['reply_markup'] =
+		[
+			'keyboard' =>
+			[
+				["1", "2", "3", "4", "5"],
+				["6", "7", "8", "9", "10"],
+				["انصراف"],
+			],
+			"ForceReply" =>
+			[
+				"force_reply"=> true
+			]
+		];
 		return $result;
 	}
 

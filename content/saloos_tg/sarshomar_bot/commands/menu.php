@@ -28,11 +28,13 @@ class menu
 			return $menu;
 		}
 
+		$txt_text = "منوی اصلی\n\n";
+
 		$result =
 		[
 			[
 				// 'method'       => 'editMessageReplyMarkup',
-				'text'         => "بازگشت به منوی اصلی",
+				'text'         => $txt_text,
 				'reply_markup' => $menu,
 			],
 		];
