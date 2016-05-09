@@ -1,7 +1,7 @@
 <?php
-namespace content\saloos_tg\kermile_bot\commands;
+namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
-use \lib\utility\telegram\tg as bot;
+use \lib\utility\social\tg as bot;
 
 class menu
 {
@@ -12,6 +12,38 @@ class menu
 		$response = null;
 		switch ($_cmd['command'])
 		{
+			case 'ثبت':
+				$response = self::order();
+				break;
+
+			case 'ساندویچ':
+				$response = self::sandwich();
+				break;
+
+			case 'همبرگر':
+				$response = self::sandwich_hamburger();
+				break;
+
+			case 'چیزبرگر':
+				$response = self::sandwich_cheeseburger();
+				break;
+
+			case 'هات':
+				$response = self::sandwich_hotdog();
+				break;
+
+			case 'چیپس':
+				$response = self::sandwich_chips();
+				break;
+
+			case 'پیتزا':
+				$response = self::pizza();
+				break;
+
+			case 'پپرونی':
+				$response = self::pizza_01();
+				break;
+
 			case 'menu':
 			case 'منو':
 				$response = self::menu0();
@@ -56,6 +88,113 @@ class menu
 
 		return $response;
 	}
+
+
+	/**
+	 * order
+	 * @return [type] [description]
+	 */
+	public static function order()
+	{
+		$result['text'] = "لطفا یکی از دسته بندی ها را انتخاب کنید";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+				["ساندویچ", "پیتزا"],
+				["مخلفات", "نوشیدنی"],
+			],
+		];
+		return $result;
+	}
+
+	/**
+	 * sandwich
+	 * @return [type] [description]
+	 */
+	public static function sandwich()
+	{
+		$result['text'] = "چه ساندویچی دوست دارید؟";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+					["چیزبرگر", "همبرگر"],
+					["چیپس و پنیر", "هات داگ"],
+			],
+		];
+		return $result;
+	}
+
+	/**
+	 * sandwich_hamburger
+	 * @return [type] [description]
+	 */
+	public static function sandwich_hamburger()
+	{
+		$result['text'] = "لطفا تعداد همبرگرها را وارد کنید";
+		return $result;
+	}
+
+	/**
+	 * sandwich_cheeseburger
+	 * @return [type] [description]
+	 */
+	public static function sandwich_cheeseburger()
+	{
+		$result['text'] = "لطفا تعداد چیزبرگرها را وارد کنید";
+		return $result;
+	}
+
+	/**
+	 * sandwich_hotdog
+	 * @return [type] [description]
+	 */
+	public static function sandwich_hotdog()
+	{
+		$result['text'] = "لطفا تعداد هات داگ ها را وارد کنید";
+		return $result;
+	}
+
+	/**
+	 * sandwich_chips
+	 * @return [type] [description]
+	 */
+	public static function sandwich_chips()
+	{
+		$result['text'] = "لطفا تعداد چیپس و پنیر ها را وارد کنید";
+		return $result;
+	}
+
+	/**
+	 * sandwich_chips
+	 * @return [type] [description]
+	 */
+	public static function pizza()
+	{
+		$result['text'] = "چه پیتزایی دوست دارید؟";
+		$result['replyMarkup'] =
+		[
+			'keyboard' =>
+			[
+					["یونانی", "پپرونی"],
+					["سرآشپز", "سبزیجات"],
+			],
+		];
+		return $result;
+	}
+
+	/**
+	 * pizza_01
+	 * @return [type] [description]
+	 */
+	public static function pizza_01()
+	{
+		$result['text'] = "";
+		return $result;
+	}
+
+
 
 
 	/**

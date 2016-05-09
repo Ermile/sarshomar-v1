@@ -36,14 +36,34 @@ class user
 
 
 	/**
-	 * start conversation
+	 * start
 	 * @return [type] [description]
 	 */
 	public static function start()
 	{
-		$result['text'] = 'Welcome to *Sarshomar*';
+		// disable return from main menu
+		$txt_text = "سلام، من ربات فست فود ` حاج عباس ` هستم.\n چه کاری می خواهید انجام دهید؟";
+
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["ثبت سفارش"],
+				["درباره ما", "مشاهده منو"],
+			],
+		];
+
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				'reply_markup' => $menu,
+			],
+		];
+
 		return $result;
 	}
+
 
 
 	/**

@@ -17,10 +17,10 @@ class controller extends \lib\mvc\controller
 		{
 			bot::$api_key   = '209285392:AAE3FdlRpJ2hB6k9tfs5j9RlwTQqnJar8ws';
 			bot::$name      = 'kermile_bot';
-			// bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
+			bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = 'تعریف نشده';
 
-			$result         = bot::run(true);
+			$result         = bot::run();
 
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
