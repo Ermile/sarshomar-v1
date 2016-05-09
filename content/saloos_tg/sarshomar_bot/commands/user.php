@@ -53,7 +53,8 @@ class user
 			case 'کمک':
 			case 'راهنمایی':
 			case '/?':
-				$response = self::help();
+			case '/؟':
+				$response = help::help();
 				break;
 
 			default:
@@ -161,33 +162,5 @@ class user
 
 		return $result;
 	}
-
-
-	/**
-	 * show help message
-	 * @return [type] [description]
-	 */
-	public static function help()
-	{
-		$text = "*_fullName_*\r\n\n";
-		$text .= "دستورات زیر برای کار با ربات سرشمار در دسترس شماست:\r\n\n";
-		// $text .= "/menu show main menu\n";
-		$text .= "/civility نظرسنجی‌های مردمی\n";
-		$text .= "/psychology تست‌های روانشناسی\n";
-		$text .= "/sarshomar شروع نظرسنجی‌های سرشمار\n";
-		// $text .= "/polls مشاهده لیست نظرسنجی‌ها\n";
-		$text .= "/contact تماس با ما\n";
-		$text .= "/about درباره _name_\n";
-		$text .= "/start شروع مجدد\n";
-		$result =
-		[
-			[
-				'text'         => $text,
-			],
-		];
-
-		return $result;
-	}
-
 }
 ?>
