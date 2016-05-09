@@ -34,12 +34,12 @@ class controller extends \lib\mvc\controller
 			$txt_contact    .= "ایمیل :‌ info@aramis-hotel.com\r\n";
 			$txt_contact    .= "نشانی: تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، حد فاصل سینما استقلال و آفریقا، پلاک 1752\r\n".$fullName;
 
-			$txt_global     = "مشخصات عمومی $fullName\r\n";
-			$txt_global     .= "- تعداد اتاق ها: ۸۴ اتاق\r\n";
-			$txt_global     .= "- تعداد طبقات: ۶ طبقه\r\n";
-			$txt_global     .= "- تعداد تخت ها: ۱۷۶ تخت\r\n";
-			$txt_global     .= "- ظرفیت لابی با ظرفیت ۱۵ نفر\r\n";
-			$txt_global     .= "- وضعیت ترافیک محدوده طرح ترافیک\r\n-";
+			$txt_general     = "مشخصات عمومی $fullName\r\n";
+			$txt_general     .= "- تعداد اتاق ها: ۸۴ اتاق\r\n";
+			$txt_general     .= "- تعداد طبقات: ۶ طبقه\r\n";
+			$txt_general     .= "- تعداد تخت ها: ۱۷۶ تخت\r\n";
+			$txt_general     .= "- ظرفیت لابی با ظرفیت ۱۵ نفر\r\n";
+			$txt_general     .= "- وضعیت ترافیک محدوده طرح ترافیک\r\n-";
 
 			$txt_feature  =  "امکانات $fullName\r\n";
 			$txt_feature  .= "- آسانسور\n";
@@ -56,7 +56,7 @@ class controller extends \lib\mvc\controller
 				'fullName' => $fullName,
 				'about'    => $txt_about,
 				'contact'  => $txt_contact,
-				'global'   => $txt_global,
+				'global'   => $txt_general,
 				'feature'  => $txt_feature,
 				'intro'    => "معرفی",
 				'list'     => "$fullName\nلیست سوییت‌ها به شرح زیر است",
