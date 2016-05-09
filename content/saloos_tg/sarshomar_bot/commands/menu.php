@@ -178,8 +178,8 @@ class menu
 				["تست‌های روانشناسی"],
 				["نظرسنجی‌های مردمی - تصادفی"],
 			],
-			"one_time_keyboard" => true,
-			"force_reply"       => true
+			// "one_time_keyboard" => true,
+			// "force_reply"       => true
 		];
 		if($_onlyMenu)
 		{
