@@ -80,9 +80,9 @@ class menu
 		if(self::$return)
 		{
 			// if has keyboard
-			if(isset($response['replyMarkup']['keyboard']))
+			if(isset($response['reply_markup']['keyboard']))
 			{
-				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
+				$response['reply_markup']['keyboard'][] = ['بازگشت'];
 			}
 		}
 
@@ -96,8 +96,7 @@ class menu
 	 */
 	public static function order()
 	{
-		$result['text'] = "لطفا یکی از دسته بندی ها را انتخاب کنید";
-		$result['replyMarkup'] =
+		$menu =
 		[
 			'keyboard' =>
 			[
@@ -105,6 +104,19 @@ class menu
 				["مخلفات", "نوشیدنی"],
 			],
 		];
+
+		$result['text'] = "لطفا یکی از دسته بندی ها را انتخاب کنید";
+		$result['reply_markup'] = $menu;
+
+		// $result   =
+		// [
+		// 	[
+		// 		'text'         => "لطفا یکی از دسته بندی ها را انتخاب کنید",
+		// 		'reply_markup' => $menu,
+		// 	],
+		// ];
+
+
 		return $result;
 	}
 
@@ -115,7 +127,7 @@ class menu
 	public static function sandwich()
 	{
 		$result['text'] = "چه ساندویچی دوست دارید؟";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -173,7 +185,7 @@ class menu
 	public static function pizza()
 	{
 		$result['text'] = "چه پیتزایی دوست دارید؟";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -205,7 +217,7 @@ class menu
 	{
 		$result['text'] = 'بازگشت به منوی قبلی'."\r\n";
 		$result['text'] .= 'مثلا برگشتیم'."\r\n";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -224,7 +236,7 @@ class menu
 	public static function menu0()
 	{
 		$result['text'] = 'منوی آزمایشی'."\r\n";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -246,7 +258,7 @@ class menu
 		// disable return from main menu
 		self::$return          = false;
 		$result['text']        = 'منوی اصلی'."\r\n";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -267,7 +279,7 @@ class menu
 	public static function menu_loc()
 	{
 		$result['text']        = 'منوی موقعیت'."\r\n";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'keyboard' =>
 			[
@@ -294,7 +306,7 @@ class menu
 	public static function menu_inline()
 	{
 		$result['text']        = 'منوی اینلاین آزمایشی'."\r\n";
-		$result['replyMarkup'] =
+		$result['reply_markup'] =
 		[
 			'inline_keyboard' =>
 			[
