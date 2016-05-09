@@ -76,7 +76,7 @@ class menu
 						$response = user::start();
 						break;
 					case 'بازگشت به ثبت سفارش':
-						$response = user::order();
+						$response = self::order();
 						break;
 				}
 				// $response = self::returnBtn();
