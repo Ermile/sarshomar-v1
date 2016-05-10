@@ -81,38 +81,5 @@ class menu_my
 		// return menu
 		return $result;
 	}
-
-
-	/**
-	 * create define menu that allow user to select
-	 * @param  boolean $_onlyMenu [description]
-	 * @return [type]             [description]
-	 */
-	public static function define($_onlyMenu = false)
-	{
-		// define
-		$menu =
-		[
-			"hide_keyboard" => true,
-			"force_reply"   => true
-		];
-		if($_onlyMenu)
-		{
-			return $menu;
-		}
-
-		$txt_text = "مرحله ۱\n\n";
-		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
-		$result   =
-		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
-		];
-
-		// return menu
-		return $result;
-	}
 }
 ?>

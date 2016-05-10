@@ -10,6 +10,13 @@ class handle
 	public static function exec($_cmd)
 	{
 		$response = null;
+		// check if we are in steps then go to next step
+		$response = steps::check($_cmd['text']);
+		if($response)
+		{
+			return $response;
+		}
+
 		switch ($_cmd['command'])
 		{
 			case '/menu':
@@ -51,7 +58,7 @@ class handle
 			case '/define':
 			case 'define':
 			case 'تعریف':
-				$response = menu_my::define();
+				$response = steps_define::start();
 				break;
 
 			case 'نظرسنجی‌های':
