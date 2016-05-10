@@ -270,16 +270,15 @@ class menu
 		$result['text'] .= "لطفا از منوی زیر تعداد را انتخاب نمایید یا درصورت تمایل به سفارش تعداد بیشتر مقدار آن را با کیبورد وارد نمایید.";
 		$result['reply_markup'] =
 		[
-			'keyboard' =>
-			[
-				["1", "2", "3", "4", "5"],
-				["6", "7", "8", "9", "10"],
-				["انصراف"],
-			],
-			"ForceReply" =>
-			[
-				"force_reply"=> true
-			]
+			// 'keyboard' =>
+			// [
+			// 	["1", "2", "3", "4", "5"],
+			// 	["6", "7", "8", "9", "10"],
+			// 	["انصراف"],
+			// ],
+			// "one_time_keyboard" => true,
+			"force_reply_keyboard" => true,
+			'selective' => true,
 		];
 		return $result;
 	}
