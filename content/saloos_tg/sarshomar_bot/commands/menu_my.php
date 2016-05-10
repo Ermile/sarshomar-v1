@@ -93,7 +93,7 @@ class menu_my
 		// define
 		$menu =
 		[
-			"hide_keyboard" => true
+			"hide_keyboard" => true,
 			"force_reply"   => true
 		];
 		if($_onlyMenu)
