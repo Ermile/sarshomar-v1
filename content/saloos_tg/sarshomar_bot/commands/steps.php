@@ -51,7 +51,11 @@ class steps
 	public static function check($_text)
 	{
 		// for debug
-		bot::sendResponse(['text' => 'session: '.json_encode($_SESSION)]);
+		$tmp =
+		[
+			'text' => session_id()."\nsession: ".json_encode($_SESSION)
+		];
+		bot::sendResponse($tmp);
 
 		$user_id = bot::response('from');
 		if(isset($_SESSION['tg'][$user_id]['action']))
