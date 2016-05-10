@@ -5,6 +5,7 @@ use \lib\utility\telegram\tg as bot;
 
 class steps_define
 {
+	private static $menu = ["hide_keyboard" => true];
 	/**
 	 * create define menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
@@ -35,22 +36,63 @@ class steps_define
 	}
 
 
-	public static function step1($_text)
+	/**
+	 * [step1 description]
+	 * @param  [type] $_question [description]
+	 * @return [type]            [description]
+	 */
+	public static function step1($_question)
 	{
+		steps::increase();
+		//
+		$_text = "سوال شما با موفقیت ثبت شد.\n*";
+		$_text .= $_question;
+		$_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
+
 		// get name of question
 		$result   =
 		[
 			[
 				'text'         => $_text,
-				// 'reply_markup' => $menu,
+				'reply_markup' => self::$menu,
 			],
 		];
-
 		// return menu
 		return $result;
 	}
 
 
+	/**
+	 * [step2 description]
+	 * @param  [type] $_item [description]
+	 * @return [type]        [description]
+	 */
+	public static function step2($_item)
+	{
+		steps::increase();
+		//
+		$_text = "گزینه ثبت شد.\n*";
+		$_text .= $_item;
+		$_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
+		$_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
+
+		// get name of question
+		$result   =
+		[
+			[
+				'text'         => $_text,
+				'reply_markup' => self::$menu,
+			],
+		];
+		// return menu
+		return $result;
+	}
+
+
+	/**
+	 * end define new question
+	 * @return [type] [description]
+	 */
 	public static function end()
 	{
 		steps::stop();

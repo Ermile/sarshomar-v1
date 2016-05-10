@@ -53,17 +53,20 @@ class steps
 		$user_id = bot::response('from');
 		if(isset($_SESSION['tg'][$user_id]['action']))
 		{
-			$call        = 'steps_'. $_SESSION['tg'][$user_id]['action'];
 			$currentStep = 'step'. $_SESSION['tg'][$user_id]['step'];
+			if($_text === '/done' || $_text === '/end')
+			{
+				$currentStep = 'end';
+			}
+			$call        = '\\' . __NAMESPACE__ . '\\';
+			$call        .= 'steps_'. $_SESSION['tg'][$user_id]['action'];
 			$funcName    = $call. '::'. $currentStep;
 
 			// generate func name
 			if(is_callable($funcName))
 			{
-				var_dump('callable');
-				// get response
-				$answer = call_user_func($funcName, $_text, $user_id);
-				return $answer;
+				// get and return response
+				return call_user_func($funcName, $_text, $user_id);
 			}
 		}
 	}
