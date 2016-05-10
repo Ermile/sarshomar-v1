@@ -69,7 +69,7 @@ class steps_define
 	 */
 	public static function step2($_item)
 	{
-		steps::increase();
+		// steps::increase();
 		//
 		$_text = "گزینه ثبت شد.\n*";
 		$_text .= $_item;
@@ -96,6 +96,18 @@ class steps_define
 	public static function end()
 	{
 		steps::stop();
+		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
+
+		// get name of question
+		$result   =
+		[
+			[
+				'text'         => $_text,
+				'reply_markup' => self::$menu,
+			],
+		];
+		// return menu
+		return $result;
 	}
 }
 ?>
