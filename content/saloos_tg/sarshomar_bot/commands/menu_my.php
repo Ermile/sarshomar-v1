@@ -94,6 +94,7 @@ class menu_my
 		$menu =
 		[
 			"hide_keyboard" => true
+			"force_reply"   => true
 		];
 		if($_onlyMenu)
 		{

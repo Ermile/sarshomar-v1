@@ -17,7 +17,8 @@ class menu_profile
 		[
 			'keyboard' =>
 			[
-				["تکمیل پروفایل"],
+				// get other detail as soon as posible
+				// ["تکمیل پروفایل"],
 				[
 					[
 						'text'             => 'ثبت آدرس',
