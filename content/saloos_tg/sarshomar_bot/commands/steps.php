@@ -53,7 +53,7 @@ class steps
 		// for debug
 		$tmp =
 		[
-			'text' => json_encode(bot::$user_id). "\nid: ". session_id()."\nname: ". session_name()."\nsession: ".json_encode($_SESSION)
+			'text' => bot::$user_id. "\nid: ". session_id()."\nname: ". session_name()."\nsession: ".json_encode($_SESSION)
 		];
 		bot::sendResponse($tmp);
 
