@@ -50,9 +50,12 @@ class steps
 
 	public static function check($_text)
 	{
+		$spost    = isset($_POST['PHPSESSID'])? $_POST['PHPSESSID']: 'hich!';
 		$tmp_text =
-		"user_id_: ". bot::$user_id.
+		"user_id_: ".   bot::$user_id.
 		"\n id: ".      session_id().
+		"\n id-post: ". $spost.
+
 		"\n name: ".    session_name().
 		"\n session: ". json_encode($_SESSION);
 
