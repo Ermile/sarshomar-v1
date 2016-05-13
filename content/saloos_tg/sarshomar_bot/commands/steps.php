@@ -64,7 +64,7 @@ class steps
 		[
 			'text' => $tmp_text
 		];
-		$a = bot::sendResponse($tmp);
+		// $a = bot::sendResponse($tmp);
 
 
 		$user_id = bot::response('from');
