@@ -29,6 +29,16 @@ class user
 				$response = self::about();
 				break;
 
+			case '/me':
+			case 'me':
+			case 'من کیم':
+			case 'من کیم؟':
+			case 'بگیر':
+			case 'پروفایل':
+			case 'من':
+				$response = self::me();
+				break;
+
 			case '/contact':
 			case 'contact':
 			case 'تماس':
@@ -157,6 +167,23 @@ class user
 		[
 			[
 				'text'  => $_type. ' شما با موفقیت ثبت شد.',
+			],
+		];
+
+		return $result;
+	}
+
+
+	/**
+	 * show user details!
+	 * @return [type] [description]
+	 */
+	public static function me()
+	{
+		$result =
+		[
+			[
+				'method'      => 'getUserProfilePhotos',
 			],
 		];
 
