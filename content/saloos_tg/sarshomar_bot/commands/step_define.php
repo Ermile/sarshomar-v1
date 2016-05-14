@@ -2,8 +2,9 @@
 namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\utility\telegram\tg as bot;
+use \lib\utility\telegram\step;
 
-class steps_define
+class step_define
 {
 	private static $menu = ["hide_keyboard" => true];
 	/**
@@ -13,7 +14,7 @@ class steps_define
 	 */
 	public static function start()
 	{
-		steps::start('define');
+		step::start('define');
 		// define
 		$txt_text = "مرحله ۱\n\n";
 		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
@@ -38,7 +39,7 @@ class steps_define
 	 */
 	public static function step1($_question)
 	{
-		steps::plus();
+		step::plus();
 
 		$_text = "سوال شما با موفقیت ثبت شد.\n*";
 		$_text .= $_question;
@@ -64,9 +65,9 @@ class steps_define
 	 */
 	public static function step2($_item)
 	{
-		steps::plus('num');
-		// steps::plus();
-		$_text = "گزینه ". steps::get('num') ." ثبت شد.\n*";
+		step::plus('num');
+		// step::plus();
+		$_text = "گزینه ". step::get('num') ." ثبت شد.\n*";
 		$_text .= $_item;
 		$_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
 		$_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
@@ -90,7 +91,7 @@ class steps_define
 	 */
 	public static function stop()
 	{
-		steps::stop();
+		step::stop();
 		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
 
 		// get name of question

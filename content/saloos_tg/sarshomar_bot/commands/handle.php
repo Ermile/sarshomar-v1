@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\utility\telegram\tg as bot;
+use \lib\utility\telegram\step;
 
 class handle
 {
@@ -10,8 +11,8 @@ class handle
 	public static function exec($_cmd)
 	{
 		$response = null;
-		// check if we are in steps then go to next step
-		$response = steps::check($_cmd['text']);
+		// check if we are in step then go to next step
+		$response = step::check($_cmd['text']);
 		if($response)
 		{
 			return $response;
@@ -58,7 +59,7 @@ class handle
 			case '/define':
 			case 'define':
 			case 'تعریف':
-				$response = steps_define::start();
+				$response = step_define::start();
 				break;
 
 			case 'نظرسنجی‌های':
