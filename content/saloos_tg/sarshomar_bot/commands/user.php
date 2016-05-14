@@ -51,7 +51,7 @@ class user
 				break;
 
 			case 'type_phone_number':
-				$response = self::register('شماره موبایل');
+				$response = self::register('اطلاعات مخاطب');
 				break;
 
 			case 'type_location':
