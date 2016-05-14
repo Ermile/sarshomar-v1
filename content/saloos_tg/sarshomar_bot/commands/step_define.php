@@ -14,19 +14,21 @@ class step_define
 	 */
 	public static function start()
 	{
-		$txt_text = "مرحله ۱\n\n";
-		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
-		$menu = self::$menu;
+		step::start('define');
 
-		if(!bot::$user_id)
+		if(bot::$user_id)
+		{
+			$txt_text = "مرحله ۱\n\n";
+			$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
+			$menu = self::$menu;
+			step::plus('pointer', 1);
+		}
+		else
 		{
 			$menu = menu_profile::getContact(true);
 			$txt_text = "برای تعریف نظرسنجی جدید و ثبت آن، ما نیاز به ثبت‌نام در سیستم دارید.\n";
 			$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما در سیستم انجام شود.";
 		}
-		// var_dump(bot::$user_id);
-		// exit();
-		step::start('define');
 
 		$result   =
 		[
@@ -51,6 +53,13 @@ class step_define
 				$txt_text = "ثبت مخاطب شما با موفقیت به انجام رسید.\n";
 				$txt_text .= "به راحتی نظرسنجی خود را ثبت کنید:)";
 				$menu     = null;
+				$result   = self::step2();
+				$result_contact =
+					[
+						'text'         => $txt_text,
+						'reply_markup' => $menu,
+					];
+				array_unshift($result, $result_contact);
 				break;
 
 			case 'بازگشت':
@@ -64,19 +73,19 @@ class step_define
 				$txt_text .= "ما برای ثبت نظرسنجی به اطلاعات مخاطب شما نیاز داریم.";
 
 				$menu = menu_profile::getContact(true);
+				$result   =
+				[
+					[
+						'text'         => $txt_text,
+						'reply_markup' => $menu,
+					],
+				];
 				break;
 		}
 		if($cmd['command'] === 'type_phone_number')
 		{
 		}
 
-		$result   =
-		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
-		];
 		return $result;
 	}
 
