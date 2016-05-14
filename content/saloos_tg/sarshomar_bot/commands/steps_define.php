@@ -43,7 +43,7 @@ class steps_define
 	 */
 	public static function step1($_question)
 	{
-		steps::increase();
+		steps::next();
 		//
 		$_text = "سوال شما با موفقیت ثبت شد.\n*";
 		$_text .= $_question;
@@ -69,9 +69,8 @@ class steps_define
 	 */
 	public static function step2($_item)
 	{
-		// steps::increase();
-		//
-		$_text = "گزینه ثبت شد.\n*";
+		// steps::next();
+		$_text = "گزینه ". steps::counter() ." ثبت شد.\n*";
 		$_text .= $_item;
 		$_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
 		$_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
@@ -93,7 +92,7 @@ class steps_define
 	 * end define new question
 	 * @return [type] [description]
 	 */
-	public static function end()
+	public static function stop()
 	{
 		steps::stop();
 		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";

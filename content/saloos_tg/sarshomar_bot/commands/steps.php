@@ -7,30 +7,48 @@ class steps
 {
 	public static function start($_name)
 	{
-		$user_id = bot::response('from');
-		$_SESSION['tg'][$user_id]['action'] = $_name;
-		$_SESSION['tg'][$user_id]['step']   = 1;
-
-		return $user_id;
+		$_SESSION['tg']['action']  = $_name;
+		$_SESSION['tg']['step']    = 1;
 	}
 
 
 	public static function stop()
 	{
-		$user_id = bot::response('from');
-		unset($_SESSION['tg'][$user_id]['action']);
-		unset($_SESSION['tg'][$user_id]['step']);
+		unset($_SESSION['tg']['action']);
+		unset($_SESSION['tg']['step']);
+		unset($_SESSION['tg']['counter']);
+	}
 
-		return $user_id;
+	public static function counterPlus($_num = 1)
+	{
+		if(isset($_SESSION['tg']['counter']))
+		{
+			$_SESSION['tg']['counter'] += $_num;
+		}
+		else
+		{
+			$_SESSION['tg']['counter'] = $_num;
+		}
+	}
+
+	public static function counter($_increase = true)
+	{
+		if($_increase)
+		{
+			self::counterPlus();
+		}
+		if(isset($_SESSION['tg']['counter']))
+		{
+			return $_SESSION['tg']['counter'];
+		}
+		return null;
 	}
 
 
-	public static function increase()
+	public static function next($_num = 1)
 	{
-		$user_id = bot::response('from');
-		// if want to increase steps dont pass parameter
-		$_step = $_SESSION['tg'][$user_id]['step']+1;
-		return self::goto($_step);
+		// if want to go to next steps dont pass parameter
+		return self::goto($_SESSION['tg']['step'] + $_num);
 	}
 
 
@@ -41,49 +59,44 @@ class steps
 			return false;
 		}
 
-		$user_id = bot::response('from');
-		$_SESSION['tg'][$user_id]['step'] = $_step;
-
-		return $user_id;
+		$_SESSION['tg']['step'] = $_step;
 	}
 
 
 	public static function check($_text)
 	{
-		$spost    = isset($_POST['PHPSESSID'])? $_POST['PHPSESSID']: 'hich!';
-		$tmp_text =
-		"user_id_: ".   bot::$user_id.
-		"\n id: ".      session_id().
-		"\n id-post: ". $spost.
+		// $spost    = isset($_POST['PHPSESSID'])? $_POST['PHPSESSID']: 'hich!';
+		// $tmp_text =
+		// "user_id_: ".   bot::$user_id.
+		// "\n id: ".      session_id().
+		// "\n id-post: ". $spost.
 
-		"\n name: ".    session_name().
-		"\n session: ". json_encode($_SESSION);
+		// "\n name: ".    session_name().
+		// "\n session: ". json_encode($_SESSION);
 
-		// for debug
-		$tmp =
-		[
-			'text' => $tmp_text
-		];
-		// $a = bot::sendResponse($tmp);
+		// // for debug
+		// $tmp =
+		// [
+		// 	'text' => $tmp_text
+		// ];
+		// // $a = bot::sendResponse($tmp);
 
 
-		$user_id = bot::response('from');
-		if(isset($_SESSION['tg'][$user_id]['action']))
+		if(isset($_SESSION['tg']['action']))
 		{
-			$currentStep = 'step'. $_SESSION['tg'][$user_id]['step'];
-			if($_text === '/done' || $_text === '/end')
+			$currentStep = 'step'. $_SESSION['tg']['step'];
+			if($_text === '/done' || $_text === '/end'  || $_text === '/stop')
 			{
-				$currentStep = 'end';
+				$currentStep = 'stop';
 			}
-			$call        = '\\' . __NAMESPACE__ . '\\';
-			$call        .= 'steps_'. $_SESSION['tg'][$user_id]['action'];
+			$call        = bot::$cmdFolder. 'steps_'. $_SESSION['tg']['action'];
 			$funcName    = $call. '::'. $currentStep;
 
 			// generate func name
 			if(is_callable($funcName))
 			{
 				// get and return response
-				return call_user_func($funcName, $_text, $user_id);
+				return call_user_func($funcName, $_text);
 			}
 		}
 	}
