@@ -5,71 +5,130 @@ use \lib\utility\telegram\tg as bot;
 
 class steps
 {
+
+
+	/**
+	 * define variables
+	 * @param  [type] $_name name of current step for call specefic file
+	 * @return [type]        [description]
+	 */
 	public static function start($_name)
 	{
-		$_SESSION['tg']['action']  = $_name;
-		$_SESSION['tg']['step']    = 1;
+		// name of steps for call specefic file
+		self::set('name', $_name);
+		// counter of steps number, increase automatically
+		self::set('counter', 1);
+		// pointer of current step, can change by user commands
+		self::set('pointer', 1);
+		// extra counter for some other use,
+		self::set('num', 0);
+		// save text of each steps
+		self::set('text', []);
+		// save last entered text
+		self::set('last', null);
 	}
 
 
+	/**
+	 * delete session steps value
+	 * @return [type] [description]
+	 */
 	public static function stop()
 	{
-		unset($_SESSION['tg']['action']);
-		unset($_SESSION['tg']['step']);
-		unset($_SESSION['tg']['counter']);
+		unset($_SESSION['tg']['steps']);
 	}
 
-	public static function counterPlus($_num = 1)
+
+	/**
+	 * set specefic key of steps
+	 * @param  string $_key   name of key
+	 * @param  string $_value value of this key
+	 * @return [type]         [description]
+	 */
+	public static function set($_key, $_value)
 	{
-		if(isset($_SESSION['tg']['counter']))
+		// some condition for specefic keys
+		switch ($_key)
 		{
-			$_SESSION['tg']['counter'] += $_num;
+			case 'text':
+				$_SESSION['tg']['steps'][$_key][]   = $_value;
+				$_SESSION['tg']['steps']['last']    = $_value;
+				// $_SESSION['tg']['steps']['counter'] += $_value;
+				self::plus('counter');
+				break;
+
+			case 'pointer':
+				self::plus('counter');
+			default:
+				$_SESSION['tg']['steps'][$_key] = $_value;
+				// return that value was set!
+				break;
 		}
-		else
-		{
-			$_SESSION['tg']['counter'] = $_num;
-		}
+		// return true because it's okay!
+		return true;
 	}
 
-	public static function counter($_increase = true)
+
+	/**
+	 * get specefic key of steps
+	 * @param  string $_key [description]
+	 * @return [type]       [description]
+	 */
+	public static function get($_key = null)
 	{
-		if($_increase)
+		if($_key === null)
 		{
-			self::counterPlus();
+			if(isset($_SESSION['tg']['steps']))
+			{
+				return $_SESSION['tg']['steps'];
+			}
 		}
-		if(isset($_SESSION['tg']['counter']))
+		elseif($_key === false)
 		{
-			return $_SESSION['tg']['counter'];
+			if(isset($_SESSION['tg']['steps']))
+			{
+				return true;
+			}
 		}
-		return null;
+		elseif(isset($_SESSION['tg']['steps'][$_key]))
+		{
+			return $_SESSION['tg']['steps'][$_key];
+		}
+		elseif(isset($_SESSION['tg']['steps']))
+		{
+			return null;
+		}
+
+		return false;
 	}
 
 
-	public static function next($_num = 1)
+	/**
+	 * go to next step
+	 * @param  integer  $_num number of jumping
+	 * @return function       result of jump
+	 */
+	public static function plus($_key = 'pointer', $_num = 1, $_relative = true)
 	{
-		// if want to go to next steps dont pass parameter
-		return self::goto($_SESSION['tg']['step'] + $_num);
-	}
-
-
-	public static function goto($_step)
-	{
-		if(!is_int($_step))
+		if($_relative)
 		{
-			return false;
+			$_num = self::get($_key) + $_num;
 		}
 
-		$_SESSION['tg']['step'] = $_step;
+		return self::set($_key, $_num);
 	}
 
 
+	/**
+	 * [check description]
+	 * @param  [type] $_text [description]
+	 * @return [type]        [description]
+	 */
 	public static function check($_text)
 	{
-		// $spost    = isset($_POST['PHPSESSID'])? $_POST['PHPSESSID']: 'hich!';
 		// $tmp_text =
 		// "user_id_: ".   bot::$user_id.
 		// "\n id: ".      session_id().
-		// "\n id-post: ". $spost.
 
 		// "\n name: ".    session_name().
 		// "\n session: ". json_encode($_SESSION);
@@ -79,17 +138,32 @@ class steps
 		// [
 		// 	'text' => $tmp_text
 		// ];
-		// // $a = bot::sendResponse($tmp);
+		// $a = bot::sendResponse($tmp);
 
 
-		if(isset($_SESSION['tg']['action']))
+		// if before this message steps started
+		if(self::get(false))
 		{
-			$currentStep = 'step'. $_SESSION['tg']['step'];
-			if($_text === '/done' || $_text === '/end'  || $_text === '/stop')
+			// save text
+			self::set('text', $_text);
+			// calc current step
+			switch ($_text)
 			{
-				$currentStep = 'stop';
+				case '/done':
+				case '/end':
+				case '/stop':
+				case '/cancel':
+					// if user want to stop current steps
+					$currentStep = 'stop';
+					break;
+
+				default:
+					$currentStep = 'step'. self::get('pointer');
+					break;
 			}
-			$call        = bot::$cmdFolder. 'steps_'. $_SESSION['tg']['action'];
+			// create namespace and class name
+			$call        = bot::$cmdFolder. 'steps_'. self::get('name');
+			// create function full name
 			$funcName    = $call. '::'. $currentStep;
 
 			// generate func name

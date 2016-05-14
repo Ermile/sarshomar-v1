@@ -17,17 +17,12 @@ class steps_define
 		// define
 		$txt_text = "مرحله ۱\n\n";
 		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
-		$menu     =
-		[
-			"hide_keyboard" => true,
-			"force_reply"   => true
-		];
 
 		$result   =
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => $menu,
+				'reply_markup' => self::$menu,
 			],
 		];
 
@@ -43,8 +38,8 @@ class steps_define
 	 */
 	public static function step1($_question)
 	{
-		steps::next();
-		//
+		steps::plus();
+
 		$_text = "سوال شما با موفقیت ثبت شد.\n*";
 		$_text .= $_question;
 		$_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
@@ -69,8 +64,9 @@ class steps_define
 	 */
 	public static function step2($_item)
 	{
-		// steps::next();
-		$_text = "گزینه ". steps::counter() ." ثبت شد.\n*";
+		steps::plus('num');
+		// steps::plus();
+		$_text = "گزینه ". steps::get('num') ." ثبت شد.\n*";
 		$_text .= $_item;
 		$_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
 		$_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
