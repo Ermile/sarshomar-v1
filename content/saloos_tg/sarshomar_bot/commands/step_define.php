@@ -150,7 +150,7 @@ class step_define
 	public static function stop($_cancel = false)
 	{
 		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
-		if($_cancel)
+		if($_cancel === true)
 		{
 			$_text = "انصراف از ثبت نظرسنجی\n";
 		}
