@@ -20,8 +20,6 @@ class steps
 		self::set('counter', 1);
 		// pointer of current step, can change by user commands
 		self::set('pointer', 1);
-		// extra counter for some other use,
-		self::set('num', 0);
 		// save text of each steps
 		self::set('text', []);
 		// save last entered text
