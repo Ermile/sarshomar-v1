@@ -14,16 +14,25 @@ class step_define
 	 */
 	public static function start()
 	{
-		step::start('define');
-		// define
 		$txt_text = "مرحله ۱\n\n";
 		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
+		$menu = self::$menu;
+
+		if(!bot::$user_id)
+		{
+			$menu = menu_profile::getContact(true);
+			$txt_text = "برای تعریف نظرسنجی جدید و ثبت آن، ما نیاز به ثبت‌نام در سیستم دارید.\n";
+			$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما در سیستم انجام شود.";
+		}
+		// var_dump(bot::$user_id);
+		// exit();
+		step::start('define');
 
 		$result   =
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => self::$menu,
+				'reply_markup' => $menu,
 			],
 		];
 
@@ -31,13 +40,53 @@ class step_define
 		return $result;
 	}
 
+	public static function step1($_question)
+	{
+		$cmd = bot::$cmd;
+		// if user send his/her profile contact detail
+		switch ($cmd['command'])
+		{
+			case 'type_phone_number':
+				step::plus();
+				$txt_text = "ثبت مخاطب شما با موفقیت به انجام رسید.\n";
+				$txt_text .= "به راحتی نظرسنجی خود را ثبت کنید:)";
+				$menu     = null;
+				break;
+
+			case 'بازگشت':
+				return step::stop(true);
+				break;
+
+
+			default:
+				// else send messge to attention to user to only send contact detail
+				$txt_text = "لطفا تنها از طریق منوی زیر اقدام نمایید.\n";
+				$txt_text .= "ما برای ثبت نظرسنجی به اطلاعات مخاطب شما نیاز داریم.";
+
+				$menu = menu_profile::getContact(true);
+				break;
+		}
+		if($cmd['command'] === 'type_phone_number')
+		{
+		}
+
+		$result   =
+		[
+			[
+				'text'         => $txt_text,
+				'reply_markup' => $menu,
+			],
+		];
+		return $result;
+	}
+
 
 	/**
-	 * [step1 description]
+	 * [step2 description]
 	 * @param  [type] $_question [description]
 	 * @return [type]            [description]
 	 */
-	public static function step1($_question)
+	public static function step2($_question)
 	{
 		step::plus();
 
@@ -59,11 +108,11 @@ class step_define
 
 
 	/**
-	 * [step2 description]
+	 * [step3 description]
 	 * @param  [type] $_item [description]
 	 * @return [type]        [description]
 	 */
-	public static function step2($_item)
+	public static function step3($_item)
 	{
 		step::plus('num');
 		// step::plus();
@@ -89,10 +138,14 @@ class step_define
 	 * end define new question
 	 * @return [type] [description]
 	 */
-	public static function stop()
+	public static function stop($_cancel = false)
 	{
-		step::stop();
 		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
+		if($_cancel)
+		{
+			$_text = "انصراف از ثبت نظرسنجی\n";
+		}
+		step::stop();
 
 		// get name of question
 		$result   =
