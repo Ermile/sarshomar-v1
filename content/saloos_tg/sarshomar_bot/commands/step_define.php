@@ -106,7 +106,13 @@ class step_define
 
 	public static function step3()
 	{
+		// go to next step
+		step::plus(1);
+		// set title for
+		step::set('textTitle', 'question');
+		// increase custom number
 		step::plus(1, 'i');
+		// create output text
 		$txt_text = "مرحله ". step::get('i')."\n\n";
 		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
 		$menu     = self::$menu;
@@ -118,7 +124,6 @@ class step_define
 			],
 		];
 
-		step::plus(1);
 
 		// return menu
 		return $result;
@@ -133,17 +138,22 @@ class step_define
 	 */
 	public static function step4($_question)
 	{
+		// go to next step
 		step::plus();
 
-		$_text = "سوال شما با موفقیت ثبت شد.\n*";
-		$_text .= $_question;
-		$_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
+		// increase custom number
+		step::plus(1, 'i');
+		// create output text
+		$txt_text = "مرحله ". step::get('i')."\n\n";
+		$txt_text .= "سوال شما با موفقیت ثبت شد.\n*";
+		$txt_text .= $_question;
+		$txt_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
 
 		// get name of question
 		$result   =
 		[
 			[
-				'text'         => $_text,
+				'text'         => $txt_text,
 				'reply_markup' => self::$menu,
 			],
 		];
@@ -159,18 +169,20 @@ class step_define
 	 */
 	public static function step5($_item)
 	{
-		step::plus('num');
-		// step::plus();
-		$_text = "گزینه ". step::get('num') ." ثبت شد.\n*";
-		$_text .= $_item;
-		$_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
-		$_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
+		// increase custom number
+		step::plus(1, 'num');
+		// create output text
+		$txt_text = "مرحله ". step::get('i')."\n\n";
+		$txt_text .= "گزینه ". step::get('num') ." ثبت شد.\n*";
+		$txt_text .= $_item;
+		$txt_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
+		$txt_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
 
 		// get name of question
 		$result   =
 		[
 			[
-				'text'         => $_text,
+				'text'         => $txt_text,
 				'reply_markup' => self::$menu,
 			],
 		];
@@ -185,10 +197,20 @@ class step_define
 	 */
 	public static function stop($_cancel = false)
 	{
-		$_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
+		$save_status = self::savePoll();
+
 		if($_cancel === true)
 		{
-			$_text = "انصراف از ثبت نظرسنجی\n";
+			$final_text = "انصراف از ثبت نظرسنجی\n";
+		}
+		elseif($save_status)
+		{
+			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
+		}
+		else
+		{
+			$final_text = "مشکلی در داده‌های ورودی یافت شد!\n";
+			$final_text .= "لطفا دوباره تلاش کنید";
 		}
 		step::stop();
 
@@ -196,12 +218,33 @@ class step_define
 		$result   =
 		[
 			[
-				'text'         => $_text,
+				'text'         => $final_text,
 				'reply_markup' => self::$menu,
 			],
 		];
 		// return menu
 		return $result;
+	}
+
+
+
+	private static function savePoll()
+	{
+		// var_dump(step::get(null));
+		$userInput = step::get('text');
+		// return false if count of input value less than 3
+		// 1 question
+		// 2 answer or more
+		if(count($userInput) < 3)
+		{
+			return false;
+		}
+
+		var_dump($userInput);
+		//$qry = "INSERT INTO posts ( $qry_fields ) VALUES ( $qry_values );";
+		// var_dump($qry);
+
+		return true;
 	}
 }
 ?>
