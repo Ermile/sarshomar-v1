@@ -18,6 +18,17 @@ class user
 			case '/start':
 			case 'start':
 			case 'شروع':
+				if(substr($_cmd['optional'], 0, 4) === 'poll')
+				{
+					$opt = substr($_cmd['optional'], 5);
+					// show related poll id
+				}
+				if(substr($_cmd['optional'], 0, 3) === 'ref')
+				{
+					$opt = substr($_cmd['optional'], 4);
+					// save this reference
+				}
+
 				$response = self::start();
 				break;
 
