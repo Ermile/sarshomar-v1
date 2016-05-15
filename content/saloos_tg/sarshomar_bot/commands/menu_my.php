@@ -68,8 +68,16 @@ class menu_my
 			return $menu;
 		}
 
+		$pollList = self::getPollList();
+		$txt_list = "شما دارای *". count($pollList). "* نظرسنجی ثبت شده در _fullName_ هستید.\n";
+		$txt_list .= "لیست سوالات شما به شرح زیر است.\n";
+		foreach ($pollList as $key => $value)
+		{
+			$txt_list .= ($key+1). ". [". $value. "](https://sarshomar.com/fa/)\n";
+		}
+
 		$txt_text = "*_fullName_*\r\n\n";
-		$txt_text .= "بزودی تکمیل خواهد شد...";
+		$txt_text .= $txt_list;
 		$result   =
 		[
 			[
@@ -79,6 +87,15 @@ class menu_my
 		];
 
 		// return menu
+		return $result;
+	}
+
+	private static function getPollList()
+	{
+		$qry    = "SELECT * FROM posts WHERE user_id = ". bot::$user_id;
+		// run query
+		$result = \lib\db::get($qry, 'post_title');
+		// return last insert id
 		return $result;
 	}
 }
