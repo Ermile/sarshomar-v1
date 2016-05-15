@@ -92,7 +92,7 @@ class menu_my
 
 	private static function getPollList()
 	{
-		$qry    = "SELECT * FROM posts WHERE user_id = ". bot::$user_id;
+		$qry    = "SELECT * FROM posts WHERE post_type = 'poll' AND user_id = ". bot::$user_id;
 		// run query
 		$result = \lib\db::get($qry, 'post_title');
 		// return last insert id
