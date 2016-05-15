@@ -69,8 +69,8 @@ class menu_my
 		}
 
 		$pollList = self::getPollList();
-		$txt_list = "شما دارای *". count($pollList). "* نظرسنجی ثبت شده در _fullName_ هستید.\n";
-		$txt_list .= "لیست سوالات شما به شرح زیر است.\n";
+		$txt_list = "شما دارای *". count($pollList). "* نظرسنجی ثبت شده در _name_ هستید.\n";
+		$txt_list .= "عناوین نظرسنجی‌های شما به شرح زیر است.\n";
 		foreach ($pollList as $key => $value)
 		{
 			$txt_list .= ($key+1). ". [". $value. "](https://sarshomar.com/fa/)\n";
