@@ -197,6 +197,9 @@ class step_define
 	 */
 	public static function stop($_cancel = false)
 	{
+		// set
+		step::set('textTitle', 'stop');
+
 		$save_status = self::savePoll();
 
 		if($_cancel === true)
@@ -212,7 +215,6 @@ class step_define
 			$final_text = "مشکلی در داده‌های ورودی یافت شد!\n";
 			$final_text .= "لطفا دوباره تلاش کنید";
 		}
-		step::stop();
 
 		// get name of question
 		$result   =
@@ -227,24 +229,105 @@ class step_define
 	}
 
 
-
+	/**
+	 * save poll into database
+	 * @return [type] [description]
+	 */
 	private static function savePoll()
 	{
-		// var_dump(step::get(null));
 		$userInput = step::get('text');
 		// return false if count of input value less than 3
 		// 1 question
 		// 2 answer or more
-		if(count($userInput) < 3)
+		if(count($userInput) < 3 || count($userInput) > 10 || !isset($userInput['question']))
 		{
 			return false;
 		}
-
-		var_dump($userInput);
-		//$qry = "INSERT INTO posts ( $qry_fields ) VALUES ( $qry_values );";
-		// var_dump($qry);
-
-		return true;
+		// extract question
+		$question = $userInput['question'];
+		unset($userInput['question']);
+		// save question into post table
+		$saveQusStatus = self::saveQuestion($question, $userInput);
+		// save answers into options table
+		$saveAnsStatus = self::saveAns($userInput, $saveQusStatus);
+		// return final result
+		return $saveAnsStatus;
 	}
+
+
+	/**
+	 * save question into post table
+	 * @param  [type] $_question    [description]
+	 * @param  [type] $_answersList [description]
+	 * @return [type]               [description]
+	 */
+	public static function saveQuestion($_question, $_answersList)
+	{
+		$slug         = \lib\utility\filter::slug($_question);
+		$user         = bot::$user_id;
+		$url          = 'civility/'.$user.'/'.$slug;
+		$_answersList = json_encode($_answersList, JSON_UNESCAPED_UNICODE);
+		$pubDate      = date('Y-m-d H:i:s');
+		// create query string
+		$qry = "INSERT INTO posts
+		(
+			`post_language`,
+			`post_title`,
+			`post_slug`,
+			`post_url`,
+			`post_meta`,
+			`post_type`,
+			`post_status`,
+			`post_publishdate`,
+			`user_id`
+		)
+		VALUES
+		(
+			'fa',
+			'$_question',
+			'$slug',
+			'$url',
+			'$_answersList',
+			'poll',
+			'draft',
+			'$pubDate',
+			$user
+		)";
+		// run query
+		$result  = \lib\db::query($qry);
+		// return last insert id
+		return \lib\db::insert_id();
+	}
+
+
+	/**
+	 * save answers into options table
+	 * @param  [type] $_answersList raw answer list
+	 * @return [type]               [description]
+	 */
+	public static function saveAns($_answersList, $_post_id)
+	{
+		$answers = [];
+		$max_ans = 10;
+		// foreach answers exist fill the array
+		foreach ($_answersList as $key => $value)
+		{
+			$answers[$key]['txt'] = $value;
+		}
+		// decode for saving into db
+		$answers     = json_encode($answers, JSON_UNESCAPED_UNICODE);
+		$option_data =
+		[
+			'post'   => $_post_id,
+			'cat'    => 'meta_polls',
+			'key'    => 'answers_'.$_post_id,
+			'value'  => "",
+			'meta'   => $answers,
+			'status' => 'enable',
+		];
+		// save in options table and if successful return session_id
+		return \lib\utility\option::set($option_data, true);
+	}
+
 }
 ?>
