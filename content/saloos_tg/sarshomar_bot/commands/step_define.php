@@ -221,7 +221,7 @@ class step_define
 		[
 			[
 				'text'         => $final_text,
-				'reply_markup' => self::$menu,
+				'reply_markup' => menu_my::my(true),
 			],
 		];
 		// return menu
