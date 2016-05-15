@@ -12,13 +12,18 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
+		$txt_my = "نظرسنجی‌های من";
+		if(!menu_my::getPollList(true))
+		{
+			$txt_my = "تعریف نظرسنجی جدید";
+		}
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
 				["شرکت در نظرسنجی"],
-				["نظرسنجی‌های من"],
+				[$txt_my],
 				["پروفایل"],
 			],
 		];

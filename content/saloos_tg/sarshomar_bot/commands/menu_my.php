@@ -90,11 +90,15 @@ class menu_my
 		return $result;
 	}
 
-	private static function getPollList()
+	public static function getPollList($_count = false)
 	{
 		$qry    = "SELECT * FROM posts WHERE post_type = 'poll' AND user_id = ". bot::$user_id;
 		// run query
 		$result = \lib\db::get($qry, 'post_title');
+		if($_count)
+		{
+			return count($_count);
+		}
 		// return last insert id
 		return $result;
 	}
