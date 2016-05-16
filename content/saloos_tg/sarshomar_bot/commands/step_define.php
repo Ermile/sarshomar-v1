@@ -71,7 +71,7 @@ class step_define
 			$txt_failedContact .= "در صورت عدم تمایل به ثبت شماره موبایل ما قادر به سرویس‌دهی به شما نیستیم.\n";
 			// call stop function
 			step::stop();
-			return self::stop($txt_failedContact);
+			return self::stop(true, $txt_failedContact);
 		}
 
 		$cmd = bot::$cmd;
@@ -212,7 +212,7 @@ class step_define
 	 * end define new question
 	 * @return [type] [description]
 	 */
-	public static function stop($_cancel = false)
+	public static function stop($_cancel = false, $_text = null)
 	{
 		// set
 		step::set('textTitle', 'stop');
@@ -220,11 +220,14 @@ class step_define
 
 		if($_cancel === true)
 		{
-			$final_text = "انصراف از ثبت نظرسنجی\n";
-		}
-		elseif(is_string($_cancel))
-		{
-			$final_text = '::'.$_cancel;
+			if($_text)
+			{
+				$final_text = '::'.$_text;
+			}
+			else
+			{
+				$final_text = "انصراف از ثبت نظرسنجی\n";
+			}
 		}
 		elseif(self::savePoll())
 		{
