@@ -78,7 +78,8 @@ class step_define
 		switch ($cmd['command'])
 		{
 			case 'type_phone_number':
-				// step::plus();
+				// go to next step
+				step::plus();
 				// show step3 for define question
 				$result   = self::step3();
 				// define text of give contact
