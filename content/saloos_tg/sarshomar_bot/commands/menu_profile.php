@@ -32,7 +32,7 @@ class menu_profile
 				["بازگشت به منوی اصلی"],
 			],
 			// "one_time_keyboard" => true,
-			"force_reply"       => true
+			// "force_reply"       => true
 		];
 		if($_onlyMenu)
 		{
@@ -77,7 +77,7 @@ class menu_profile
 				["بازگشت به منوی اصلی"],
 			],
 			// "one_time_keyboard" => true,
-			"force_reply"       => true
+			// "force_reply"       => true
 		];
 		if($_onlyMenu)
 		{

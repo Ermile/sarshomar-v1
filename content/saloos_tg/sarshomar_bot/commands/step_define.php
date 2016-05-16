@@ -79,7 +79,7 @@ class step_define
 		switch ($cmd['command'])
 		{
 			case 'type_phone_number':
-				step::plus();
+				// step::plus();
 				// show step3 for define question
 				$result   = self::step3();
 				// define text of give contact
@@ -257,6 +257,7 @@ class step_define
 	private static function savePoll()
 	{
 		$userInput = step::get('text');
+		var_dump($userInput);
 		// return false if count of input value less than 3
 		// 1 question
 		// 2 answer or more
