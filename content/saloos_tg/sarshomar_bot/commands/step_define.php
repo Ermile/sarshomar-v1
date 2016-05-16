@@ -36,6 +36,8 @@ class step_define
 	{
 		// after this go to next step
 		step::plus();
+		// do not save input text in this step
+		step::set('saveText', false);
 		// show give contact menu
 		$menu     = menu_profile::getContact(true);
 		$txt_text = "برای تعریف نظرسنجی جدید و ثبت آن، ما نیاز به ثبت‌نام در سیستم دارید.\n";
@@ -57,6 +59,21 @@ class step_define
 
 	public static function step2()
 	{
+		// do not save input text in this step
+		step::set('saveText', false);
+		// increase limit valu
+		step::plus(1, 'limit');
+		// if user more than 3 times do not send contact go to main menu
+		if(step::get('limit') >3)
+		{
+			$txt_failedContact = "دوست عزیز\n";
+			$txt_failedContact .= "ما برای سرویس دهی به شما نیاز به ثبت نام شما با شماره موبایل داریم.\n";
+			$txt_failedContact .= "در صورت عدم تمایل به ثبت شماره موبایل ما قادر به سرویس‌دهی به شما نیستیم.\n";
+			// call stop function
+			step::stop();
+			return self::stop($txt_failedContact);
+		}
+
 		$cmd = bot::$cmd;
 		// if user send his/her profile contact detail
 		switch ($cmd['command'])
@@ -205,6 +222,10 @@ class step_define
 		if($_cancel === true)
 		{
 			$final_text = "انصراف از ثبت نظرسنجی\n";
+		}
+		elseif(is_string($_cancel))
+		{
+			$final_text = $_cancel;
 		}
 		elseif($save_status)
 		{
