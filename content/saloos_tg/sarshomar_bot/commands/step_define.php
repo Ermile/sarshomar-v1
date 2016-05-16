@@ -217,7 +217,6 @@ class step_define
 		// set
 		step::set('textTitle', 'stop');
 
-		$save_status = self::savePoll();
 
 		if($_cancel === true)
 		{
@@ -225,9 +224,9 @@ class step_define
 		}
 		elseif(is_string($_cancel))
 		{
-			$final_text = $_cancel;
+			$final_text = '::'.$_cancel;
 		}
-		elseif($save_status)
+		elseif(self::savePoll())
 		{
 			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
 		}
