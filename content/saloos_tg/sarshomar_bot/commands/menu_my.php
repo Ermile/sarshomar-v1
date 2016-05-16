@@ -97,7 +97,7 @@ class menu_my
 		$result = \lib\db::get($qry, 'post_title');
 		if($_count)
 		{
-			return count($_count);
+			return count($result);
 		}
 		// return last insert id
 		return $result;
