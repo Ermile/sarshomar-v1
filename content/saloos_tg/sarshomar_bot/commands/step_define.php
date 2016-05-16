@@ -60,7 +60,6 @@ class step_define
 	public static function step2()
 	{
 		// do not save input text in this step
-		step::set('saveText', false);
 		// increase limit valu
 		step::plus(1, 'limit');
 		// if user more than 3 times do not send contact go to main menu
@@ -101,6 +100,8 @@ class step_define
 
 
 			default:
+				step::set('saveText', false);
+
 				// else send messge to attention to user to only send contact detail
 				$txt_text = "لطفا تنها از طریق منوی زیر اقدام نمایید.\n";
 				$txt_text .= "ما برای ثبت نظرسنجی به اطلاعات مخاطب شما نیاز داریم.";
