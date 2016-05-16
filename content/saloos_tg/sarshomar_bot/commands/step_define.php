@@ -75,6 +75,9 @@ class step_define
 
 		$cmd = bot::$cmd;
 		// if user send his/her profile contact detail
+
+		$a = tg::sendResponse(['text' => $cmd['command']]);
+
 		switch ($cmd['command'])
 		{
 			case 'type_phone_number':
