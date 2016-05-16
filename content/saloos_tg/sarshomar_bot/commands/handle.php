@@ -12,7 +12,7 @@ class handle
 	{
 		$response = null;
 		// check if we are in step then go to next step
-		$response = step::check($_cmd['text']);
+		$response = step::check($_cmd['text'], $_cmd['command']);
 		if($response)
 		{
 			return $response;

@@ -59,6 +59,8 @@ class step_define
 
 	public static function step2()
 	{
+		$a = bot::sendResponse(['text' => 123]);
+
 		// do not save input text in this step
 		// increase limit valu
 		step::plus(1, 'limit');
@@ -76,7 +78,7 @@ class step_define
 		$cmd = bot::$cmd;
 		// if user send his/her profile contact detail
 
-		$a = tg::sendResponse(['text' => $cmd['command']]);
+		$a = bot::sendResponse(['text' => $cmd['command']]);
 
 		switch ($cmd['command'])
 		{
