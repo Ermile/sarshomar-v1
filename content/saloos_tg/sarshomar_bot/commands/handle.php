@@ -42,7 +42,7 @@ class handle
 			case '/sarshomar':
 			case 'sarshomar':
 			case 'نظرسنجی‌های سرشمار':
-				$response = menu_sarshomar::sarshomar();
+				$response = step_sarshomar::start();
 				break;
 
 			case '/my':
@@ -74,7 +74,7 @@ class handle
 						break;
 
 					case 'نظرسنجی‌های سرشمار':
-						$response = menu_sarshomar::sarshomar();
+						$response = step_sarshomar::start();
 						break;
 
 					default:

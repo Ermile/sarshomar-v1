@@ -13,7 +13,7 @@ class menu
 	public static function main($_onlyMenu = false)
 	{
 		$txt_my = "نظرسنجی‌های من";
-		if(!menu_my::getPollList(true))
+		if(!\lib\db\polls::get(bot::$user_id, 'count'))
 		{
 			$txt_my = "تعریف نظرسنجی جدید";
 		}

@@ -4,7 +4,7 @@ namespace content\saloos_tg\sarshomar_bot\commands;
 use \lib\utility\telegram\tg as bot;
 use \lib\utility\telegram\step;
 
-class step_define
+class step_sarshomar
 {
 	private static $menu = ["hide_keyboard" => true];
 	/**
@@ -14,7 +14,7 @@ class step_define
 	 */
 	public static function start()
 	{
-		step::start('define');
+		step::start('sarshomar');
 
 		if(bot::$user_id)
 		{
@@ -40,8 +40,8 @@ class step_define
 		step::set('saveText', false);
 		// show give contact menu
 		$menu     = menu_profile::getContact(true);
-		$txt_text = "برای تعریف نظرسنجی جدید و ثبت آن، ما نیاز به ثبت‌نام در سیستم دارید.\n";
-		$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما در سیستم انجام شود.";
+		$txt_text .= "به دلیل نیاز برای منحصر بفرد بودن هر شخص و کار با نسخه وب‌سایت، ما نیاز به اطلاعات مخاطب شما داریم.\n\n";
+		$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما انجام شود.\n\n";
 
 		$result   =
 		[
@@ -56,7 +56,10 @@ class step_define
 	}
 
 
-
+	/**
+	 * wait to get contact detail
+	 * @return [type] [description]
+	 */
 	public static function step2()
 	{
 		// do not save input text in this step
@@ -84,7 +87,7 @@ class step_define
 				$result   = self::step3();
 				// define text of give contact
 				$txt_text = "ثبت مخاطب شما با موفقیت به انجام رسید.\n";
-				$txt_text .= "به راحتی نظرسنجی خود را ثبت کنید:)";
+				$txt_text .= "حال می‌توانید از سرشمار به راحتی اسفتاده نمایید:)";
 				// create contact msg
 				$result_contact =
 				[
@@ -105,7 +108,7 @@ class step_define
 
 				// else send messge to attention to user to only send contact detail
 				$txt_text = "لطفا تنها از طریق منوی زیر اقدام نمایید.\n";
-				$txt_text .= "ما برای ثبت نظرسنجی به اطلاعات مخاطب شما نیاز داریم.";
+				$txt_text .= "ما برای ثبت‌نام، به اطلاعات مخاطب شما نیاز داریم.";
 
 				$menu     = menu_profile::getContact(true);
 				$result   =
@@ -122,19 +125,31 @@ class step_define
 	}
 
 
-
+	/**
+	 * get list of questions and ask a question
+	 * @return [type] [description]
+	 */
 	public static function step3()
 	{
 		// go to next step
-		step::plus(1);
+		step::plus();
 		// set title for
 		step::set('textTitle', 'question');
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = "مرحله ". step::get('i')."\n\n";
-		$txt_text .= "برای تعریف نظرسنجی جدید در ابتدا سوال خود را وارد کنید.";
-		$menu     = self::$menu;
+		$txt_text = "سوال ". step::get('i')."\n\n";
+		$txt_text .= "متن سوال ---";
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["بله"],
+				["خیر"],
+				["بازگشت به منوی اصلی"],
+			],
+			"one_time_keyboard" => true,
+		];
 		$result   =
 		[
 			[
@@ -142,7 +157,6 @@ class step_define
 				'reply_markup' => $menu,
 			],
 		];
-
 
 		// return menu
 		return $result;
@@ -161,19 +175,23 @@ class step_define
 		step::plus();
 
 		// increase custom number
-		step::plus(1, 'i');
 		// create output text
-		$txt_text = "مرحله ". step::get('i')."\n\n";
-		$txt_text .= "سوال شما با موفقیت ثبت شد.\n*";
-		$txt_text .= $_question;
-		$txt_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
-
+		$txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["سوال بعدی"],
+				["مشاهده نتایج"],
+				["بازگشت به منوی اصلی"],
+			],
+		];
 		// get name of question
 		$result   =
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => self::$menu,
+				'reply_markup' => $menu,
 			],
 		];
 		// return menu
@@ -188,21 +206,37 @@ class step_define
 	 */
 	public static function step5($_item)
 	{
-		// increase custom number
-		step::plus(1, 'num');
 		// create output text
-		$txt_text = "مرحله ". step::get('i')."\n\n";
-		$txt_text .= "گزینه ". step::get('num') ." ثبت شد.\n*";
-		$txt_text .= $_item;
-		$txt_text .= "*\n\nلطفا گزینه بعدی را وارد نمایید.";
-		$txt_text .= "\nدر صورت به اتمام رسیدن گزینه ها، کافی است عبارت /done را ارسال نمایید.";
+		$txt_text = "سوال ". step::get('i')."\n\n";
+		switch ($_item)
+		{
+			case 'سوال بعدی':
+				step::goto(3);
+				return self::step3();
+				break;
+
+			case 'مشاهده نتایج':
+				$txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
+				break;
+
+			case 'بازگشت به منوی اصلی':
+				step::stop(3);
+				return self::stop();
+				break;
+
+			default:
+				$txt_text = 'لطفا یکی از گزینه‌های زیر را انتخاب نمایید';
+				break;
+		}
+
+		var_dump($_item);
+		var_dump(bot::$cmd);
 
 		// get name of question
 		$result   =
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => self::$menu,
 			],
 		];
 		// return menu
@@ -228,10 +262,10 @@ class step_define
 			}
 			else
 			{
-				$final_text = "انصراف از ثبت نظرسنجی\n";
+				$final_text = "انصراف از ادامه پاسخ‌دهی به نظرسنجی‌ها\n";
 			}
 		}
-		elseif(\lib\db\polls::save(step::get('text'), bot::$user_id))
+		elseif(false)
 		{
 			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
 		}
@@ -239,6 +273,7 @@ class step_define
 		{
 			$final_text = "مشکلی در داده‌های ورودی یافت شد!\n";
 			$final_text .= "لطفا دوباره تلاش کنید";
+			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید. ۲\n";
 		}
 
 		// get name of question
@@ -252,6 +287,5 @@ class step_define
 		// return menu
 		return $result;
 	}
-
 }
 ?>

@@ -68,7 +68,7 @@ class menu_my
 			return $menu;
 		}
 
-		$pollList = self::getPollList();
+		$pollList = \lib\polls::get(bot::$user_id, 'post_title');
 		$txt_list = "شما دارای *". count($pollList). "* نظرسنجی ثبت شده در _name_ هستید.\n";
 		$txt_list .= "عناوین نظرسنجی‌های شما به شرح زیر است.\n";
 		foreach ($pollList as $key => $value)
@@ -87,19 +87,6 @@ class menu_my
 		];
 
 		// return menu
-		return $result;
-	}
-
-	public static function getPollList($_count = false)
-	{
-		$qry    = "SELECT * FROM posts WHERE post_type = 'poll' AND user_id = ". bot::$user_id;
-		// run query
-		$result = \lib\db::get($qry, 'post_title');
-		if($_count)
-		{
-			return count($result);
-		}
-		// return last insert id
 		return $result;
 	}
 }
