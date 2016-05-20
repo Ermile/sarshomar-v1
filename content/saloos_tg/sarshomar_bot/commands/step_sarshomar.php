@@ -139,22 +139,13 @@ class step_sarshomar
 		step::plus(1, 'i');
 		// create output text
 		$txt_text = "سوال ". step::get('i')."\n\n";
-		$txt_text .= "متن سوال ---";
-		$menu =
-		[
-			'keyboard' =>
-			[
-				["بله"],
-				["خیر"],
-				["بازگشت به منوی اصلی"],
-			],
-			"one_time_keyboard" => true,
-		];
+		$txt_text .= "-- متن سوال --";
+
 		$result   =
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => $menu,
+				'reply_markup' => self::answersKeyboard(),
 			],
 		];
 
@@ -171,29 +162,48 @@ class step_sarshomar
 	 */
 	public static function step4($_question)
 	{
-		// go to next step
-		step::plus();
+		var_dump($_question);
+		var_dump(self::answersKeyboard(true));
+		if(in_array($_question, self::answersKeyboard(true)))
+		{
+			// go to next step
+			step::plus();
 
-		// increase custom number
-		// create output text
-		$txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
-		$menu =
-		[
-			'keyboard' =>
+			// increase custom number
+			// create output text
+			$txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
+			$menu =
 			[
-				["سوال بعدی"],
-				["مشاهده نتایج"],
-				["بازگشت به منوی اصلی"],
-			],
-		];
-		// get name of question
-		$result   =
-		[
+				'keyboard' =>
+				[
+					["سوال بعدی"],
+					["مشاهده نتایج"],
+					["بازگشت به منوی اصلی"],
+				],
+			];
+			// get name of question
+			$result   =
 			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
-		];
+				[
+					'text'         => $txt_text,
+					'reply_markup' => $menu,
+				],
+			];
+		}
+		else
+		{
+			var_dump('expression');
+			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
+			$result   =
+			[
+				[
+					'text'         => $txt_text,
+					'reply_markup' => self::answersKeyboard(),
+				],
+			];
+		}
+
+
 		// return menu
 		return $result;
 	}
@@ -286,6 +296,28 @@ class step_sarshomar
 		];
 		// return menu
 		return $result;
+	}
+
+	public static function answersKeyboard($_onlyArray = false)
+	{
+		$answersList = ['بله', 'خیر'];
+		if($_onlyArray)
+		{
+			return $answersList;
+		}
+
+		$menu =
+		[
+			'keyboard' => [],
+			"one_time_keyboard" => true,
+		];
+		foreach ($answersList as $key => $value)
+		{
+			$menu['keyboard'][] = [$value];
+		}
+		$menu['keyboard'][] = ['گزینه سوم'];
+
+		return $menu;
 	}
 }
 ?>
