@@ -162,8 +162,6 @@ class step_sarshomar
 	 */
 	public static function step4($_question)
 	{
-		var_dump($_question);
-		var_dump(self::answersKeyboard(true));
 		if(in_array($_question, self::answersKeyboard(true)))
 		{
 			// go to next step
@@ -192,7 +190,6 @@ class step_sarshomar
 		}
 		else
 		{
-			var_dump('expression');
 			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
 			$result   =
 			[
@@ -239,8 +236,6 @@ class step_sarshomar
 				break;
 		}
 
-		var_dump($_item);
-		var_dump(bot::$cmd);
 
 		// get name of question
 		$result   =
