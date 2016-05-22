@@ -331,7 +331,7 @@ class step_sarshomar
 		[
 			[
 				'text'         => $final_text,
-				'reply_markup' => menu_my::my(true),
+				'reply_markup' => menu::main(true),
 			],
 		];
 		// return menu
