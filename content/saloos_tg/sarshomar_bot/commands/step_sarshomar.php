@@ -439,5 +439,17 @@ class step_sarshomar
 		}
 		return true;
 	}
+
+	public static function removeUserAnswers()
+	{
+		$result = \lib\db\polls::removeUserAnswers(bot::$user_id);
+		$result   =
+		[
+			[
+				'text'         => 'آرشیو نظرات شما پاک شد!',
+				'reply_markup' => menu::main(true),
+			],
+		];
+	}
 }
 ?>
