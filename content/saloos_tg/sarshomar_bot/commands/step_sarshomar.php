@@ -6,7 +6,10 @@ use \lib\utility\telegram\step;
 
 class step_sarshomar
 {
-	private static $menu = ["hide_keyboard" => true];
+	private static $menu         = ["hide_keyboard" => true];
+	private static $lastQuestion = null;
+	private static $lastAnswers  = null;
+
 	/**
 	 * create define menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
@@ -72,7 +75,6 @@ class step_sarshomar
 			$txt_failedContact .= "ما برای سرویس دهی به شما نیاز به ثبت نام شما با شماره موبایل داریم.\n";
 			$txt_failedContact .= "در صورت عدم تمایل به ثبت شماره موبایل ما قادر به سرویس‌دهی به شما نیستیم.\n";
 			// call stop function
-			step::stop();
 			return self::stop(true, $txt_failedContact);
 		}
 
@@ -99,7 +101,7 @@ class step_sarshomar
 				break;
 
 			case 'بازگشت':
-				return step::stop(true);
+				return self::stop(true);
 				break;
 
 
@@ -131,6 +133,12 @@ class step_sarshomar
 	 */
 	public static function step3()
 	{
+		// get and set last question
+		$questionExist = self::getLastQuestion();
+		if(!$questionExist)
+		{
+			return self::stop(false);
+		}
 		// go to next step
 		step::plus();
 		// set title for
@@ -139,7 +147,11 @@ class step_sarshomar
 		step::plus(1, 'i');
 		// create output text
 		$txt_text = "سوال ". step::get('i')."\n\n";
-		$txt_text .= "-- متن سوال --";
+		$txt_text .= step::get('question');
+		$txt_text .= self::answersKeyboard(false);
+		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
+		$txt_text .= "/result نمایش نتایج\n";
+		$txt_text .= "/cancel عدم تمایل به ادامه پاسخ‌دهی\n";
 
 		$result   =
 		[
@@ -148,7 +160,6 @@ class step_sarshomar
 				'reply_markup' => self::answersKeyboard(),
 			],
 		];
-
 		// return menu
 		return $result;
 	}
@@ -157,19 +168,41 @@ class step_sarshomar
 
 	/**
 	 * [step2 description]
-	 * @param  [type] $_question [description]
+	 * @param  [type] $_answer_txt [description]
 	 * @return [type]            [description]
 	 */
-	public static function step4($_question)
+	public static function step4($_answer_txt)
 	{
-		if(in_array($_question, self::answersKeyboard(true)))
+		$answersList = self::answersKeyboard(true);
+		if(!$answersList)
+		{
+			return false;
+		}
+		// if user add answer in command format
+		if(substr($_answer_txt, 0, 1) === '/')
+		{
+			$useCommand = true;
+			$cmdInput   = substr($_answer_txt, 1);
+
+			if(isset($answersList[$cmdInput]))
+			{
+				$_answer_txt = $answersList[$cmdInput];
+			}
+
+		}
+		if($answer_id = array_search($_answer_txt, $answersList))
 		{
 			// go to next step
 			step::plus();
+			// get question id
+			$question_id = step::get('question_id');
+			// save answer
+			\lib\db\polls::saveAnswer(bot::$user_id, $question_id, $answer_id, $_answer_txt);
 
-			// increase custom number
 			// create output text
 			$txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
+			$txt_text .= 'سوال: '.step::get('question')."\n";
+			$txt_text .= 'پاسخ شما: '.$_answer_txt;
 			$menu =
 			[
 				'keyboard' =>
@@ -218,15 +251,25 @@ class step_sarshomar
 		switch ($_item)
 		{
 			case 'سوال بعدی':
+			case '/next':
+			case 'next':
 				step::goto(3);
 				return self::step3();
 				break;
 
 			case 'مشاهده نتایج':
+			case 'result':
+			case '/result':
 				$txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
 			case 'بازگشت به منوی اصلی':
+			case '/cancel':
+			case 'cancel':
+			case '/stop':
+			case 'stop':
+			case '/return':
+			case 'return':
 				step::stop(3);
 				return self::stop();
 				break;
@@ -253,7 +296,7 @@ class step_sarshomar
 	 * end define new question
 	 * @return [type] [description]
 	 */
-	public static function stop($_cancel = false, $_text = null)
+	public static function stop($_cancel = null, $_text = null)
 	{
 		// set
 		step::set('textTitle', 'stop');
@@ -269,16 +312,18 @@ class step_sarshomar
 			{
 				$final_text = "انصراف از ادامه پاسخ‌دهی به نظرسنجی‌ها\n";
 			}
+			step::stop();
 		}
-		elseif(false)
+		elseif($_cancel === false)
 		{
-			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
+			$final_text = "شما به همه سوالات پاسخ دادید!\n";
+			$final_text .= "آیا مایلیاد تا پس از اضافه شدن نظرسنجی جدید به شما اطلاع دهیم؟\n";
+			// complete soon
+			step::stop();
 		}
 		else
 		{
-			$final_text = "مشکلی در داده‌های ورودی یافت شد!\n";
-			$final_text .= "لطفا دوباره تلاش کنید";
-			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید. ۲\n";
+			$final_text = "ممنون از اینکه زمان ارزشمند خود را در اختیار ما قرار دادید.\n";
 		}
 
 		// get name of question
@@ -293,26 +338,106 @@ class step_sarshomar
 		return $result;
 	}
 
-	public static function answersKeyboard($_onlyArray = false)
+
+	/**
+	 * return answer keyborad array or keyboard
+	 * @param  boolean $_onlyArray [description]
+	 * @return [type]              [description]
+	 */
+	public static function answersKeyboard($_onlyArray = null)
 	{
-		$answersList = ['بله', 'خیر'];
-		if($_onlyArray)
+		$answersList = step::get('answers');
+		if($_onlyArray === true)
 		{
 			return $answersList;
 		}
-
+		elseif($_onlyArray === false)
+		{
+			$txt_answers = "\n";
+			foreach ($answersList as $key => $value)
+			{
+				$txt_answers .= '/'. $key. '. '. $value."\n";
+			}
+			$txt_answers .= "\n";
+			return $txt_answers;
+		}
 		$menu =
 		[
 			'keyboard' => [],
 			"one_time_keyboard" => true,
 		];
+
+		// calculate number of item in each row
+		// max row can used is 3
+		$inEachRow  = 1;
+		$itemsCount = count($answersList);
+		$rowUsed    = $itemsCount;
+		$rowMax     = 3;
+		// if count of items is divided by 2
+		if(($itemsCount % 2) === 0)
+		{
+			$inEachRow = 2;
+			$rowUsed   = $itemsCount / 2;
+			if($rowUsed > $rowMax)
+			{
+				if(($itemsCount % 3) === 0)
+				{
+					$inEachRow = 3;
+					$rowUsed   = $itemsCount / 3;
+				}
+			}
+		}
+		// if count of items is divided by 3
+		if($itemsCount > 6 && ($itemsCount % 3) === 0)
+		{
+			$inEachRow = 3;
+			$rowUsed   = $itemsCount / 3;
+		}
+
+		$i = 0;
 		foreach ($answersList as $key => $value)
 		{
-			$menu['keyboard'][] = [$value];
+			// calc row number
+			$row = floor($i/ $inEachRow);
+			// add to specefic row
+			$menu['keyboard'][$row][] = $value;
+			// increment counter
+			$i++;
 		}
-		$menu['keyboard'][] = ['گزینه سوم'];
+		// $menu['keyboard'][] = ['گزینه سوم'];
 
 		return $menu;
+	}
+
+
+
+	private static function drawKeyboard()
+	{
+
+	}
+
+
+	/**
+	 * get last question from database and return it
+	 * @return [type] [description]
+	 */
+	public static function getLastQuestion($_user_id = null)
+	{
+		if(!$_user_id)
+		{
+			$_user_id = bot::$user_id;
+		}
+
+		$question = \lib\db\polls::getLast($_user_id);
+		step::set('question_id', $question['id']);
+		step::set('question', $question['question']);
+		step::set('answers', $question['answers']);
+
+		if(!is_array($question['answers']))
+		{
+			return false;
+		}
+		return true;
 	}
 }
 ?>
