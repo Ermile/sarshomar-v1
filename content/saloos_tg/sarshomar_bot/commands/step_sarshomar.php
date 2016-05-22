@@ -317,7 +317,7 @@ class step_sarshomar
 		elseif($_cancel === false)
 		{
 			$final_text = "شما به همه سوالات پاسخ دادید!\n";
-			$final_text .= "آیا مایلیاد تا پس از اضافه شدن نظرسنجی جدید به شما اطلاع دهیم؟\n";
+			$final_text .= "آیا مایلید پس از اضافه شدن نظرسنجی‌های جدید به شما اطلاع دهیم؟\n";
 			// complete soon
 			step::stop();
 		}
