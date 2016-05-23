@@ -137,7 +137,7 @@ class step_sarshomar
 		$questionExist = self::getLastQuestion();
 		if(!$questionExist)
 		{
-			return self::stop(false);
+			return step_subscribe::start();
 		}
 		// go to next step
 		step::plus();
