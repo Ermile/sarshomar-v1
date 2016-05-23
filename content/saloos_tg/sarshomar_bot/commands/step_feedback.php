@@ -55,7 +55,6 @@ class step_feedback
 
 	public static function step2($_feedback)
 	{
-		$menu     = self::$menu;
 		$txt_text = "نظر ارزشمند شما در ثبت شد.\n";
 		$txt_text .= "ممنون از همراهیتان.";
 		if(strlen($_feedback) < 10)
@@ -71,7 +70,7 @@ class step_feedback
 		[
 			[
 				'text'         => $txt_text,
-				'reply_markup' => $menu,
+				'reply_markup' => menu::main(true),
 			],
 		];
 
