@@ -105,6 +105,13 @@ class handle
 				$response = menu_profile::profile();
 				break;
 
+			case '/feedback':
+			case 'feedback':
+			case 'ثبت':
+			case 'ثبت بازخورد':
+				$response = step_feedback::start();
+				break;
+
 			case 'return':
 			case 'بازگشت':
 				switch ($_cmd['text'])
