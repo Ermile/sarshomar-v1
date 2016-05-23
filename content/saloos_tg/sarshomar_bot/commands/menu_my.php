@@ -73,6 +73,7 @@ class menu_my
 		$txt_list .= "عناوین نظرسنجی‌های شما به شرح زیر است.\n";
 		foreach ($pollList as $key => $value)
 		{
+			$value = html_entity_decode($value);
 			$txt_list .= ($key+1). ". [". $value. "](https://sarshomar.com/fa/)\n";
 		}
 
