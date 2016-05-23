@@ -149,6 +149,7 @@ class step_sarshomar
 		$txt_text = "سوال ". step::get('i')."\n\n";
 		$txt_text .= step::get('question');
 		$txt_text .= self::answersKeyboard(false);
+		$txt_text .= "\nکلیدواژه‌ها: ".step::get('tags')."\n";
 		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
 		$txt_text .= "/result نمایش نتایج\n";
 		$txt_text .= "/cancel عدم تمایل به ادامه پاسخ‌دهی\n";
@@ -358,7 +359,6 @@ class step_sarshomar
 			{
 				$txt_answers .= '/'. $key. '. '. html_entity_decode($value)."\n";
 			}
-			$txt_answers .= "\n";
 			return $txt_answers;
 		}
 		$menu =
@@ -433,6 +433,7 @@ class step_sarshomar
 		step::set('question_id', $question['id']);
 		step::set('question', $question['question']);
 		step::set('answers', $question['answers']);
+		step::set('tags', $question['tags']);
 
 		if(!is_array($question['answers']))
 		{
