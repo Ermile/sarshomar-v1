@@ -429,6 +429,7 @@ class step_sarshomar
 		}
 
 		$question = \lib\db\polls::getLast($_user_id);
+		$question['question'] = html_entity_decode($question['question']);
 		step::set('question_id', $question['id']);
 		step::set('question', $question['question']);
 		step::set('answers', $question['answers']);
