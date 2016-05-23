@@ -356,7 +356,7 @@ class step_sarshomar
 			$txt_answers = "\n";
 			foreach ($answersList as $key => $value)
 			{
-				$txt_answers .= '/'. $key. '. '. $value."\n";
+				$txt_answers .= '/'. $key. '. '. html_entity_decode($value)."\n";
 			}
 			$txt_answers .= "\n";
 			return $txt_answers;
