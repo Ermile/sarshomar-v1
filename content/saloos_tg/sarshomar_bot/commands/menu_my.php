@@ -68,7 +68,7 @@ class menu_my
 			return $menu;
 		}
 
-		$pollList = \lib\polls::get(bot::$user_id, 'post_title');
+		$pollList = \lib\db\polls::get(bot::$user_id, 'post_title');
 		$txt_list = "شما دارای *". count($pollList). "* نظرسنجی ثبت شده در _name_ هستید.\n";
 		$txt_list .= "عناوین نظرسنجی‌های شما به شرح زیر است.\n";
 		foreach ($pollList as $key => $value)
