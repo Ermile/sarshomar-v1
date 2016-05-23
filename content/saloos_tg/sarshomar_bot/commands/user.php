@@ -172,7 +172,7 @@ class user
 	 * get phone number from user contact
 	 * @return [type] [description]
 	 */
-	public static function register($_type = null, $_cmd)
+	public static function register($_type = null, $_cmd = null)
 	{
 		// output text
 		$text = $_type. ' شما با موفقیت ثبت شد.';
