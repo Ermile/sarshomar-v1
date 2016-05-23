@@ -45,6 +45,7 @@ class handle
 				$response = step_sarshomar::start();
 				break;
 
+			case '/removeUserAnswers':
 			case 'removeUserAnswers':
 				$response = step_sarshomar::removeUserAnswers();
 				break;

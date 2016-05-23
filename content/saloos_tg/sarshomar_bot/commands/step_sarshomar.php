@@ -450,6 +450,7 @@ class step_sarshomar
 				'reply_markup' => menu::main(true),
 			],
 		];
+		return $result;
 	}
 }
 ?>
