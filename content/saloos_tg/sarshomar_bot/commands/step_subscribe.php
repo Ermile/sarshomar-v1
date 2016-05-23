@@ -6,17 +6,26 @@ use \lib\utility\telegram\step;
 
 class step_subscribe
 {
-	private static $menu = ["hide_keyboard" => true];
 	/**
 	 * create define menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start()
+	public static function start($_text = null)
 	{
 		step::start('subscribe');
+		// if is not set yet!
+		$currentStatus = self::getSubscribe(true);
+		var_dump($currentStatus);
+		if($currentStatus === null)
+		{
+			return self::step1($_text);
+		}
+		else
+		{
+			return self::step2($currentStatus, $_text);
+		}
 
-		return self::step1();
 	}
 
 
@@ -24,7 +33,7 @@ class step_subscribe
 	 * show thanks message
 	 * @return [type] [description]
 	 */
-	public static function step1()
+	public static function step1($_text = null)
 	{
 		// go to next step
 		step::plus();
@@ -33,7 +42,7 @@ class step_subscribe
 			// all is users!
 		}
 		// generate subscribe text
-		$final_text = "شما به همه سوالات پاسخ دادید!\n";
+		$final_text = $_text;
 		$final_text .= "آیا مایلید مشترک ما شده و پس از اضافه شدن نظرسنجی‌های جدید مطلع شوید؟\n";
 		$menu =
 		[
@@ -61,24 +70,31 @@ class step_subscribe
 	 * @param  [type] $_feedback [description]
 	 * @return [type]            [description]
 	 */
-	public static function step2($_feedback)
+	public static function step2($_feedback, $_prefixText = null)
 	{
-		switch ($_feedback)
+		var_dump($_feedback);
+		var_dump($_prefixText);
+		$txt_text = $_prefixText;
+		if(!is_bool($_feedback))
 		{
-			case 'بلع':
-			case 'بله،':
-			case 'y':
-			case 'yes':
-				$txt_text = "پس از افزودن شدن نظرسنجی‌های جدید شما به صورت خودکار مطلع خواهید شد:)\n";
-				self::saveSubscribe(true);
+			switch ($_feedback)
+			{
+				case 'بلع':
+				case 'بله،':
+				case 'بله، علاقمندم مشترک شوم':
+				case '/yes':
+				case 'yes':
+				case '/y':
+				case 'y':
+					$txt_text = "پس از افزودن شدن نظرسنجی‌های جدید، شما به صورت خودکار مطلع خواهید شد:)\n";
+					self::saveSubscribe(true);
+					break;
 
-
-				break;
-
-			default:
-				self::saveSubscribe(false);
-				$txt_text = "به منوی اصلی بازگشتیم.\n";
-				break;
+				default:
+					$txt_text .= "به منوی اصلی بازگشتیم.\n";
+					self::saveSubscribe(false);
+					break;
+			}
 		}
 		step::stop();
 
@@ -90,6 +106,45 @@ class step_subscribe
 			],
 		];
 
+		return $result;
+	}
+
+
+	private static function getSubscribe($_boolResult = true)
+	{
+		$user_id = bot::$user_id;
+		$qry =
+		"SELECT * FROM options
+			WHERE
+				user_id = $user_id AND
+				option_cat = 'subscribe_$user_id' AND
+				option_key = 'telegram'
+			LIMIT 1
+			";
+
+		$result = \lib\db::get($qry, 'option_status', true);
+		if($_boolResult && is_string($result))
+		{
+			switch ($result)
+			{
+				case 'enable':
+					$result = true;
+					break;
+
+				case 'disable':
+					$result = false;
+					break;
+
+				case 'expire':
+				default:
+					$result = null;
+					break;
+			}
+		}
+		else
+		{
+			$result = null;
+		}
 		return $result;
 	}
 
