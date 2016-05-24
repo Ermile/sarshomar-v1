@@ -146,12 +146,9 @@ class step_sarshomar
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = "سوال ". step::get('i')."\n\n";
 		$txt_text .= step::get('question');
 		$txt_text .= self::answersKeyboard(false);
-		$txt_text .= "\nکلیدواژه‌ها: ".step::get('tags')."\n";
 		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
-		$txt_text .= "/result نمایش نتایج\n";
 		$txt_text .= "/cancel عدم تمایل به ادامه پاسخ‌دهی\n";
 
 		$result   =
