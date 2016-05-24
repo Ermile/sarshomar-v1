@@ -189,7 +189,7 @@ class step_sarshomar
 		if($answer_id = array_search($_answer_txt, $answersList))
 		{
 			// go to next step
-			// step::plus();
+			step::plus();
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
@@ -200,15 +200,15 @@ class step_sarshomar
 			// $txt_text .= 'سوال: '.step::get('question')."\n";
 			// $txt_text .= 'پاسخ شما: '.$_answer_txt;
 			$txt_text = self::showResult(true);
-			// $menu =
-			// [
-			// 	'keyboard' =>
-			// 	[
-			// 		["سوال بعدی"],
-			// 		["مشاهده نتایج"],
-			// 		["بازگشت به منوی اصلی"],
-			// 	],
-			// ];
+			$menu =
+			[
+				'keyboard' =>
+				[
+					["سوال بعدی"],
+					["مشاهده نتایج"],
+					["بازگشت به منوی اصلی"],
+				],
+			];
 			// get name of question
 			$result   =
 			[
@@ -219,9 +219,9 @@ class step_sarshomar
 			];
 
 			// got to step3
-			step::goto(3);
+			// step::goto(3);
 			// show new question, get from step3
-			$result[] = self::step3();
+			// $result[] = self::step3();
 		}
 		else
 		{
