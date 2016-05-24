@@ -214,7 +214,8 @@ class step_sarshomar
 			[
 				[
 					'text'         => $txt_text,
-					'reply_markup' => null,
+					// 'reply_markup' => null,
+					'reply_markup' => $menu,
 				],
 			];
 
