@@ -139,24 +139,22 @@ class step_sarshomar
 		{
 			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
 		}
-		// go to next step
-		step::plus();
+		// go to next step, step4
+		step::goto(4);
 		// set title for
 		step::set('textTitle', 'question');
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text .= step::get('question');
+		$txt_text = step::get('question');
 		$txt_text .= self::answersKeyboard(false);
 		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
 		$txt_text .= "/cancel عدم تمایل به ادامه پاسخ‌دهی\n";
 
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => self::answersKeyboard(),
-			],
+			'text'         => $txt_text,
+			'reply_markup' => self::answersKeyboard(),
 		];
 		// return menu
 		return $result;
@@ -191,7 +189,7 @@ class step_sarshomar
 		if($answer_id = array_search($_answer_txt, $answersList))
 		{
 			// go to next step
-			step::plus();
+			// step::plus();
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
@@ -219,6 +217,11 @@ class step_sarshomar
 					'reply_markup' => $menu,
 				],
 			];
+
+			// got to step3
+			step::goto(3);
+			// show new question, get from step3
+			$result[] = self::step3();
 		}
 		else
 		{
@@ -231,7 +234,6 @@ class step_sarshomar
 				],
 			];
 		}
-
 
 		// return menu
 		return $result;
