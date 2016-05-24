@@ -135,9 +135,16 @@ class step_sarshomar
 	{
 		// get and set last question
 		$questionExist = self::getLastQuestion();
+		$currentItem   = step::get('i');
+		var_dump($currentItem);
+
 		if(!$questionExist)
 		{
 			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
+		}
+		if($currentItem > 5)
+		{
+			return step_subscribe::start("محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n");
 		}
 		// go to next step, step4
 		step::goto(4);
