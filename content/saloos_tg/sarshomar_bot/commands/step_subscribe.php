@@ -55,10 +55,8 @@ class step_subscribe
 		// get name of question
 		$result   =
 		[
-			[
-				'text'         => $final_text,
-				'reply_markup' => $menu,
-			],
+			'text'         => $final_text,
+			'reply_markup' => $menu,
 		];
 		// return menu
 		return $result;
@@ -72,8 +70,6 @@ class step_subscribe
 	 */
 	public static function step2($_feedback, $_prefixText = null)
 	{
-		var_dump($_feedback);
-		var_dump($_prefixText);
 		$txt_text = $_prefixText;
 		if(!is_bool($_feedback))
 		{
@@ -100,10 +96,8 @@ class step_subscribe
 
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => menu::main(true),
-			],
+			'text'         => $txt_text,
+			'reply_markup' => menu::main(true),
 		];
 
 		return $result;
