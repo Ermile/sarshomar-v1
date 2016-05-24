@@ -200,21 +200,21 @@ class step_sarshomar
 			// $txt_text .= 'سوال: '.step::get('question')."\n";
 			// $txt_text .= 'پاسخ شما: '.$_answer_txt;
 			$txt_text = self::showResult(true);
-			$menu =
-			[
-				'keyboard' =>
-				[
-					["سوال بعدی"],
-					["مشاهده نتایج"],
-					["بازگشت به منوی اصلی"],
-				],
-			];
+			// $menu =
+			// [
+			// 	'keyboard' =>
+			// 	[
+			// 		["سوال بعدی"],
+			// 		["مشاهده نتایج"],
+			// 		["بازگشت به منوی اصلی"],
+			// 	],
+			// ];
 			// get name of question
 			$result   =
 			[
 				[
 					'text'         => $txt_text,
-					'reply_markup' => $menu,
+					'reply_markup' => null,
 				],
 			];
 
