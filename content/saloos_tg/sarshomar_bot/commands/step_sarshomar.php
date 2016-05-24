@@ -258,7 +258,14 @@ class step_sarshomar
 			case 'مشاهده نتایج':
 			case 'result':
 			case '/result':
-				$txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
+				$txt_text = self::showResult(true);
+				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
+				break;
+
+			case 'resultRaw':
+			case '/resultRaw':
+				$txt_text = self::showResult(false);
+				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
 			case 'بازگشت به منوی اصلی':
@@ -437,6 +444,46 @@ class step_sarshomar
 			return false;
 		}
 		return true;
+	}
+
+	private static function showResult($_percentage = false, $_question_id = null, $_question =null)
+	{
+		if(!$_question_id)
+		{
+			$_question_id = step::get('question_id');
+		}
+		if(!$_question)
+		{
+			$_question = step::get('question');
+		}
+		$result       = \lib\db\polls::getResult($_question_id, 'count', 'txt');
+		arsort($result);
+		$result_count = array_sum($result);
+		$output       = $_question." ";
+		$output       .= "(". $result_count. " نفر)\n";
+
+
+		foreach ($result as $key => $value)
+		{
+			$percent      = ($value * 100) / $result_count;
+			$percent      = (int)round($percent);
+			if($_percentage)
+			{
+				$result[$key] = $percent;
+			}
+			// add key into output
+			$maxCharOnLine = 40;
+			$itemLenght    = mb_strlen($key);
+			$resultLine    = $key;
+			$resultLine .= "\n";
+			$resultLine .= str_repeat('👍', ceil($percent/10));
+			$resultLine .= "`$percent%`\n";
+
+			$output .= $resultLine . "\n";
+		}
+		// $output .= "[لینک مستقیم این نظرسنجی](telegram.me/sarshomar_bot?start=poll_$_question_id)";
+
+		return $output;
 	}
 
 	public static function removeUserAnswers()
