@@ -18,18 +18,19 @@ class user
 			case '/start':
 			case 'start':
 			case 'شروع':
-				if(substr($_cmd['optional'], 0, 4) === 'poll')
+				// generate respnse
+				$response = self::start();
+				if(substr($_cmd['optional'], 0, 5) === 'poll_')
 				{
 					$opt = substr($_cmd['optional'], 5);
 					// show related poll id
 				}
-				if(substr($_cmd['optional'], 0, 3) === 'ref')
+				if(substr($_cmd['optional'], 0, 4) === 'ref_')
 				{
 					$opt = substr($_cmd['optional'], 4);
 					// save this reference
+					self::saveRef($opt);
 				}
-
-				$response = self::start();
 				break;
 
 			case '/about':
@@ -252,6 +253,59 @@ class user
 		];
 
 		return $result;
+	}
+
+	/**
+	 * save reference at start using bot
+	 * @param  boolean $_status [description]
+	 * @return [type]           [description]
+	 */
+	public static function saveRef($_ref)
+	{
+		$ref  = \lib\utility\shortURL::decode($_ref);
+		$meta =
+		[
+			'time' => date('Y-m-d H:i:s'),
+			'ref'  => $ref,
+			'me'   => bot::$user_id,
+		];
+		// check if this is first time for this user
+		$userDetail =
+		[
+			'user'   => $ref,
+			'cat'    => 'ref_'.$ref,
+			'key'    => 'telegram',
+			'value'  => bot::$user_id,
+			'meta'   => $meta,
+			'stauts' => 'enable',
+		];
+		if(!bot::$user_id)
+		{
+			$userDetail['status'] = 'disable';
+		}
+
+		// save in options table
+		$result = \lib\utility\option::set($userDetail, true);
+		var_dump($result);
+		// reference is correct, save point for sender
+		if($result)
+		{
+
+		}
+
+
+		/**
+
+		 * send message to sender to say thanks
+		 */
+		// $text   = "اولین کاربری که معرفی کردید در سیستم ثبت نام کرد:)\n";
+		// $text   .= "به پاس قدردانی از حسن اعتمادتان حساب کاربری شما *100* امتیاز شارژ شد.";
+		// $result =
+		// [
+		// 	'text'  => $text,
+		// 	'chat' => '',
+		// ];
+		// bot::sendResponse($result);
 	}
 }
 ?>

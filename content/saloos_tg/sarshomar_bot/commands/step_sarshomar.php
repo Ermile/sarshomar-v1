@@ -387,7 +387,7 @@ class step_sarshomar
 		$inEachRow  = 1;
 		$itemsCount = count($answersList);
 		$rowUsed    = $itemsCount;
-		$rowMax     = 3;
+		$rowMax     = 4;
 		// if count of items is divided by 2
 		if(($itemsCount % 2) === 0)
 		{
