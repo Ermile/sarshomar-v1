@@ -478,7 +478,7 @@ class step_sarshomar
 			$resultLine    = $key;
 			$resultLine .= "\n";
 			$resultLine .= str_repeat('👍', ceil($percent/10));
-			$resultLine .= "`$percent%`\n";
+			$resultLine .= "`$percent%`";
 
 			$output .= $resultLine . "\n";
 		}
