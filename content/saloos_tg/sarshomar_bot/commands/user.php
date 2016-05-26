@@ -286,7 +286,6 @@ class user
 
 		// save in options table
 		$result = \lib\utility\option::set($userDetail, true);
-		var_dump($result);
 		// reference is correct, save point for sender
 		if($result)
 		{

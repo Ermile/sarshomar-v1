@@ -44,15 +44,18 @@ class step_sarshomar
 	{
 		// get and set last question
 		$questionExist = self::getLastQuestion();
-		$currentItem   = step::get('i');
-
+		// fix limit of number of answered in a period of time
+		// $answeredLimit   = step::get('i');
+		$answeredLimit   = \lib\db\stat_polls::answeredInPeriod(bot::$user_id, 6);
 		if(!$questionExist)
 		{
 			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
 		}
-		if($currentItem > 5)
+		if($answeredLimit > 6)
 		{
-			return step_subscribe::start("محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n");
+			$txt = "محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n";
+			$txt .= "در حال حاضر هر ۶ ساعت امکان پاسخ‌دهی به ۶ سوال وجود دارد.";
+			return step_subscribe::start($txt);
 		}
 		// go to next step, step4
 		step::plus();

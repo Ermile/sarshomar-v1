@@ -16,7 +16,6 @@ class step_subscribe
 		step::start('subscribe');
 		// if is not set yet!
 		$currentStatus = self::getSubscribe(true);
-		var_dump($currentStatus);
 		if($currentStatus === null)
 		{
 			return self::step1($_text);
