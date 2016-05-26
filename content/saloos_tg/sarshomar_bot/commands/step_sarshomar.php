@@ -51,7 +51,7 @@ class step_sarshomar
 		{
 			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
 		}
-		if($answeredLimit > 6)
+		if($answeredLimit >= 6)
 		{
 			$txt = "محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n";
 			$txt .= "در حال حاضر هر ۶ ساعت امکان پاسخ‌دهی به ۶ سوال وجود دارد.";
