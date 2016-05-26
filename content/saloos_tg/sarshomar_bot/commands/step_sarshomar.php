@@ -117,12 +117,25 @@ class step_sarshomar
 			$txt_text = self::showResult(true);
 			$menu =
 			[
-				'keyboard' =>
+				'inline_keyboard' =>
 				[
-					["سوال بعدی"],
-					// ["مشاهده نتایج"],
-					["بازگشت به منوی اصلی"],
+					[
+						[
+							'text' => 'بررسی نتایج',
+							'url'  => 'sarshomar.com/fa/polls/'.$question_id
+						],
+						// [
+						// 	'text'                => 'search \'test\' inline',
+						// 	'switch_inline_query' => 'test'
+						// ],
+					]
 				],
+				// 'keyboard' =>
+				// [
+				// 	["سوال بعدی"],
+				// 	// ["مشاهده نتایج"],
+				// 	["بازگشت به منوی اصلی"],
+				// ],
 			];
 			// get name of question
 			$result   =
@@ -134,10 +147,10 @@ class step_sarshomar
 				],
 			];
 
-			// got to step3
-			// step::goto(1);
+			// got to step1
+			step::goto(1);
 			// show new question, get from step3
-			// $result[] = self::step1();
+			$result[] = self::step1();
 		}
 		else
 		{
