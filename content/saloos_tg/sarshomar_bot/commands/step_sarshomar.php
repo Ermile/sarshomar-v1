@@ -378,7 +378,7 @@ class step_sarshomar
 		$result       = \lib\db\polls::getResult($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result);
-		$output       = $_question." ";
+		$output       = "پاسخ سوال "$_question." ";
 		$output       .= "(". $result_count. " نفر)\n";
 
 
