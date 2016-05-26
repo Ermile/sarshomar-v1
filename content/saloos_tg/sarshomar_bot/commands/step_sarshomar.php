@@ -15,115 +15,24 @@ class step_sarshomar
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start()
+	public static function start($_text = null, $_skip = null)
 	{
-		step::start('sarshomar');
-
-		if(bot::$user_id)
+		$result = null;
+		if($_skip !== true)
 		{
-			step::goto(3);
-			return self::step3();
+			$result = step_register::start(__CLASS__, __FUNCTION__);
+		}
+		// if we have result or want to skip, then call step1
+		if($result === true || $_skip === true)
+		{
+			step::start('sarshomar');
+			return self::step1();
 		}
 		else
 		{
-			return self::step1();
+			// do nothing, wait for registration
+			return $result;
 		}
-	}
-
-
-	/**
-	 * show please send contact message
-	 * @return [type] [description]
-	 */
-	public static function step1()
-	{
-		// after this go to next step
-		step::plus();
-		// do not save input text in this step
-		step::set('saveText', false);
-		// show give contact menu
-		$menu     = menu_profile::getContact(true);
-		$txt_text .= "به دلیل نیاز برای منحصر بفرد بودن هر شخص و کار با نسخه وب‌سایت، ما نیاز به اطلاعات مخاطب شما داریم.\n\n";
-		$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما انجام شود.\n\n";
-
-		$result   =
-		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
-		];
-
-		// return menu
-		return $result;
-	}
-
-
-	/**
-	 * wait to get contact detail
-	 * @return [type] [description]
-	 */
-	public static function step2()
-	{
-		// do not save input text in this step
-		// increase limit valu
-		step::plus(1, 'limit');
-		// if user more than 3 times do not send contact go to main menu
-		if(step::get('limit') >3)
-		{
-			$txt_failedContact = "دوست عزیز\n";
-			$txt_failedContact .= "ما برای سرویس دهی به شما نیاز به ثبت نام شما با شماره موبایل داریم.\n";
-			$txt_failedContact .= "در صورت عدم تمایل به ثبت شماره موبایل ما قادر به سرویس‌دهی به شما نیستیم.\n";
-			// call stop function
-			return self::stop(true, $txt_failedContact);
-		}
-
-		$cmd = bot::$cmd;
-		// if user send his/her profile contact detail
-		switch ($cmd['command'])
-		{
-			case 'type_phone_number':
-				// go to next step
-				step::plus();
-				// show step3 for define question
-				$result   = self::step3();
-				// define text of give contact
-				$txt_text = "ثبت مخاطب شما با موفقیت به انجام رسید.\n";
-				$txt_text .= "حال می‌توانید از سرشمار به راحتی اسفتاده نمایید:)";
-				// create contact msg
-				$result_contact =
-				[
-					'text'         => $txt_text,
-					'reply_markup' => self::$menu,
-				];
-				// first show contact given msg then questions
-				array_unshift($result, $result_contact);
-				break;
-
-			case 'بازگشت':
-				return self::stop(true);
-				break;
-
-
-			default:
-				step::set('saveText', false);
-
-				// else send messge to attention to user to only send contact detail
-				$txt_text = "لطفا تنها از طریق منوی زیر اقدام نمایید.\n";
-				$txt_text .= "ما برای ثبت‌نام، به اطلاعات مخاطب شما نیاز داریم.";
-
-				$menu     = menu_profile::getContact(true);
-				$result   =
-				[
-					[
-						'text'         => $txt_text,
-						'reply_markup' => $menu,
-					],
-				];
-				break;
-		}
-
-		return $result;
 	}
 
 
@@ -131,12 +40,11 @@ class step_sarshomar
 	 * get list of questions and ask a question
 	 * @return [type] [description]
 	 */
-	public static function step3()
+	public static function step1()
 	{
 		// get and set last question
 		$questionExist = self::getLastQuestion();
 		$currentItem   = step::get('i');
-		var_dump($currentItem);
 
 		if(!$questionExist)
 		{
@@ -147,7 +55,7 @@ class step_sarshomar
 			return step_subscribe::start("محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n");
 		}
 		// go to next step, step4
-		step::goto(4);
+		step::plus();
 		// set title for
 		step::set('textTitle', 'question');
 		// increase custom number
@@ -174,7 +82,7 @@ class step_sarshomar
 	 * @param  [type] $_answer_txt [description]
 	 * @return [type]            [description]
 	 */
-	public static function step4($_answer_txt)
+	public static function step2($_answer_txt)
 	{
 		$answersList = self::answersKeyboard(true);
 		if(!$answersList)
@@ -227,9 +135,9 @@ class step_sarshomar
 			];
 
 			// got to step3
-			// step::goto(3);
+			// step::goto(1);
 			// show new question, get from step3
-			// $result[] = self::step3();
+			// $result[] = self::step1();
 		}
 		else
 		{
@@ -253,7 +161,7 @@ class step_sarshomar
 	 * @param  [type] $_item [description]
 	 * @return [type]        [description]
 	 */
-	public static function step5($_item)
+	public static function step3($_item)
 	{
 		// create output text
 		$txt_text = "سوال ". step::get('i')."\n\n";
@@ -262,8 +170,8 @@ class step_sarshomar
 			case 'سوال بعدی':
 			case '/next':
 			case 'next':
-				step::goto(3);
-				return self::step3();
+				step::goto(1);
+				return self::step1();
 				break;
 
 			case 'مشاهده نتایج':

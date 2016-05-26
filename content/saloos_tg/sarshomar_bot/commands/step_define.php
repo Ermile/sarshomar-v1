@@ -12,123 +12,33 @@ class step_define
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start()
+	public static function start($_text = null, $_skip = null)
 	{
-		step::start('define');
-
-		if(bot::$user_id)
+		$result = null;
+		if($_skip !== true)
 		{
-			step::goto(3);
-			return self::step3();
+			$result = step_register::start(__CLASS__, __FUNCTION__);
+		}
+		// if we have result or want to skip, then call step1
+		if($result === true || $_skip === true)
+		{
+			step::start('define');
+			return self::step1();
 		}
 		else
 		{
-			return self::step1();
+			// do nothing, wait for registration
+			return $result;
 		}
 	}
 
 
-	/**
-	 * show please send contact message
-	 * @return [type] [description]
-	 */
 	public static function step1()
 	{
-		// after this go to next step
-		step::plus();
-		// do not save input text in this step
+		// do not need to save text of contact if called!
 		step::set('saveText', false);
-		// show give contact menu
-		$menu     = menu_profile::getContact(true);
-		$txt_text = "برای تعریف نظرسنجی جدید و ثبت آن، ما نیاز به ثبت‌نام در سیستم دارید.\n";
-		$txt_text .= "بدین منظور کافی است از طریق منوی زیر اطلاعات مخاطب خود را برای ما ارسال نمایید تا ثبت نام شما در سیستم انجام شود.";
-
-		$result   =
-		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => $menu,
-			],
-		];
-
-		// return menu
-		return $result;
-	}
-
-
-
-	public static function step2()
-	{
-		// do not save input text in this step
-		// increase limit valu
-		step::plus(1, 'limit');
-		// if user more than 3 times do not send contact go to main menu
-		if(step::get('limit') >3)
-		{
-			$txt_failedContact = "دوست عزیز\n";
-			$txt_failedContact .= "ما برای سرویس دهی به شما نیاز به ثبت نام شما با شماره موبایل داریم.\n";
-			$txt_failedContact .= "در صورت عدم تمایل به ثبت شماره موبایل ما قادر به سرویس‌دهی به شما نیستیم.\n";
-			// call stop function
-			step::stop();
-			return self::stop(true, $txt_failedContact);
-		}
-
-		$cmd = bot::$cmd;
-		// if user send his/her profile contact detail
-		switch ($cmd['command'])
-		{
-			case 'type_phone_number':
-				// go to next step
-				step::plus();
-				// show step3 for define question
-				$result   = self::step3();
-				// define text of give contact
-				$txt_text = "ثبت مخاطب شما با موفقیت به انجام رسید.\n";
-				$txt_text .= "به راحتی نظرسنجی خود را ثبت کنید:)";
-				// create contact msg
-				$result_contact =
-				[
-					'text'         => $txt_text,
-					'reply_markup' => self::$menu,
-				];
-				// first show contact given msg then questions
-				array_unshift($result, $result_contact);
-				break;
-
-			case 'بازگشت':
-				return step::stop(true);
-				break;
-
-
-			default:
-				step::set('saveText', false);
-
-				// else send messge to attention to user to only send contact detail
-				$txt_text = "لطفا تنها از طریق منوی زیر اقدام نمایید.\n";
-				$txt_text .= "ما برای ثبت نظرسنجی به اطلاعات مخاطب شما نیاز داریم.";
-
-				$menu     = menu_profile::getContact(true);
-				$result   =
-				[
-					[
-						'text'         => $txt_text,
-						'reply_markup' => $menu,
-					],
-				];
-				break;
-		}
-
-		return $result;
-	}
-
-
-
-	public static function step3()
-	{
 		// go to next step
 		step::plus(1);
-		// set title for
-		step::set('textTitle', 'question');
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
@@ -155,11 +65,12 @@ class step_define
 	 * @param  [type] $_question [description]
 	 * @return [type]            [description]
 	 */
-	public static function step4($_question)
+	public static function step2($_question)
 	{
 		// go to next step
 		step::plus();
-
+		// set title for question
+		step::set('textTitle', 'question');
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
@@ -186,7 +97,7 @@ class step_define
 	 * @param  [type] $_item [description]
 	 * @return [type]        [description]
 	 */
-	public static function step5($_item)
+	public static function step3($_item)
 	{
 		// increase custom number
 		step::plus(1, 'num');
@@ -218,8 +129,6 @@ class step_define
 	{
 		// set
 		step::set('textTitle', 'stop');
-
-
 		if($_cancel === true)
 		{
 			if($_text)
