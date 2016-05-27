@@ -66,7 +66,7 @@ class step_sarshomar
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = "سوال:\n". step::get('question');
+		$txt_text = step::get('question');
 		$txt_text .= self::answersKeyboard(false);
 		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
 		$txt_text .= "/skip پرش، مایل به پاسخ نیستم\n";
