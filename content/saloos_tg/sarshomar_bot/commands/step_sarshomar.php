@@ -109,7 +109,11 @@ class step_sarshomar
 		}
 		// get answer id from answers list
 		$answer_id = array_search($_answer_txt, $answersList);
-		if($answer_id || $_answer_txt === '/skip')
+		if($_answer_txt === '/skip')
+		{
+			$answer_id = -1;
+		}
+		if($answer_id)
 		{
 			// go to next step
 			step::plus();
