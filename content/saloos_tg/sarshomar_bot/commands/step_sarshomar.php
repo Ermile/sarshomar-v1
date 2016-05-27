@@ -107,7 +107,9 @@ class step_sarshomar
 			}
 
 		}
-		if($answer_id = array_search($_answer_txt, $answersList) || $_answer_txt === '/skip')
+		// get answer id from answers list
+		$answer_id = array_search($_answer_txt, $answersList);
+		if($answer_id || $_answer_txt === '/skip')
 		{
 			// go to next step
 			step::plus();
@@ -400,7 +402,6 @@ class step_sarshomar
 		{
 			$_userAnswer = step::get('lastAnswer');
 		}
-		var_dump($_userAnswer);
 		$result       = \lib\db\polls::getResult($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result);
