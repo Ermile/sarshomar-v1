@@ -427,6 +427,7 @@ class step_sarshomar
 			// add key into output
 			$maxCharOnLine = 40;
 			$itemLenght    = mb_strlen($key);
+			$percent_10    = ceil($percent/10);
 			$resultLine    = $key;
 			if($_userAnswer === $key)
 			{
@@ -434,8 +435,10 @@ class step_sarshomar
 
 			}
 			$resultLine    .= "\n";
-			$resultLine    .= str_repeat('👍', ceil($percent/10));
-			$resultLine    .= "`$percent%`";
+			// $resultLine    .= str_repeat('👍', $percent_10);
+			$resultLine    .= str_repeat('⬛️', $percent_10);
+			$resultLine    .= str_repeat('⬜️', 10 - $percent_10);
+			$resultLine    .= " `$percent%`";
 
 			$output .= $resultLine . "\n";
 		}
