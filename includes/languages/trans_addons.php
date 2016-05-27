@@ -33,9 +33,9 @@ private function transtext()
 	//--------------------------------------saloos-addons\content_cp\home\display.html
 	echo T_("Hello!");                                                                // Line 7
 	echo T_("Welcome to Saloos control panel.");                                      // Line 7
-	echo T_("Daily Visit Chart");                                                     // Line 63
+	echo T_("Daily Visit Chart");                                                     // Line 81
 	echo T_("Summarized data of site");                                               // Line 19
-	echo T_("No. of");                                                                // Line 192
+	echo T_("No. of");                                                                // Line 255
 	echo T_("Posts");                                                                 // Line 91 Seperate
 	echo T_("Pages");                                                                 // Line 92 Seperate
 	echo T_("Attachments");                                                           // Line 94 Seperate
@@ -43,9 +43,9 @@ private function transtext()
 	echo T_("Categories");                                                            // Line 99
 	echo T_("Users");                                                                 // Line 96 Seperate
 	echo T_("Top Visited Page");                                                      // Line 121
-	echo T_("Visit");                                                                 // Line 144
+	echo T_("Visit");                                                                 // Line 162
 	echo T_("Page Views");                                                            // Line 193 Seperate
-	echo T_("Bots");                                                                  // Line 169
+	echo T_("Bots");                                                                  // Line 187
 
 	//-----------------------------------saloos-addons\content_cp\home\layout-xhr.html
 	echo T_("Add New Record");                                                        // Line 84 Seperate
@@ -198,21 +198,22 @@ private function transtext()
 	echo T_("Edit your profile data");                                                // Line 22
 
 	//-------------------------saloos-addons\content_cp\templates\module_visitors.html
-	echo T_("Change period of signup");                                               // Line 14
+	echo T_("Change type of chart to");                                               // Line 71
+	echo T_("bar");                                                                   // Line 72
+	echo T_("area");                                                                  // Line 73
+	echo T_("areaspline");                                                            // Line 74
+	echo T_("column");                                                                // Line 75
+	echo T_("View signup statistics for your website");                               // Line 48
+	echo T_("Change period of chart");                                                // Line 50
 	echo T_("day");                                                                   // Line 32 Seperate
 	echo T_("week");                                                                  // Line 31 Seperate
 	echo T_("month");                                                                 // Line 30 Seperate
 	echo T_("year");                                                                  // Line 29 Seperate
-	echo T_("Change type of chart to");                                               // Line 53
-	echo T_("bar");                                                                   // Line 54
-	echo T_("area");                                                                  // Line 55
-	echo T_("areaspline");                                                            // Line 56
-	echo T_("column");                                                                // Line 57
-	echo T_("View signup statistics for your website");                               // Line 36
-	echo T_("View visitor statistics for your website");                              // Line 70
-	echo T_("Pageviews");                                                             // Line 86
-	echo T_("visitors");                                                              // Line 136
+	echo T_("View visitor statistics for your website");                              // Line 88
+	echo T_("Pageviews");                                                             // Line 104
+	echo T_("visitors");                                                              // Line 154
 	echo T_("signup");                                                                // Line 67 Seperate
+	echo T_("answered");                                                              // Line 282
 
 	//---------------------------------saloos-addons\content_cp\templates\sidebar.html
 	echo T_("What’s the difference between posts and pages?");                      // Line 56
