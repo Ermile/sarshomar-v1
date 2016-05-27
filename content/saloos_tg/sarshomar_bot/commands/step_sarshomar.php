@@ -61,13 +61,16 @@ class step_sarshomar
 		step::plus();
 		// set title for
 		step::set('textTitle', 'question');
+		// reset last answer
+		step::set('lastAnswer', null);
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
 		$txt_text = "سوال:\n". step::get('question');
 		$txt_text .= self::answersKeyboard(false);
 		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
-		$txt_text .= "/cancel عدم تمایل به ادامه پاسخ‌دهی\n";
+		$txt_text .= "/skip پرش، مایل به پاسخ نیستم\n";
+		$txt_text .= "/cancel انصراف از ادامه پاسخ‌دهی\n";
 
 		$result   =
 		[
@@ -104,10 +107,12 @@ class step_sarshomar
 			}
 
 		}
-		if($answer_id = array_search($_answer_txt, $answersList))
+		if($answer_id = array_search($_answer_txt, $answersList) || $_answer_txt === '/skip')
 		{
 			// go to next step
 			step::plus();
+			// save last answer
+			step::set('lastAnswer', $_answer_txt);
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
@@ -381,7 +386,7 @@ class step_sarshomar
 		return true;
 	}
 
-	private static function showResult($_percentage = false, $_question_id = null, $_question =null)
+	private static function showResult($_percentage = false, $_question_id = null, $_question = null, $_userAnswer = null)
 	{
 		if(!$_question_id)
 		{
@@ -391,12 +396,20 @@ class step_sarshomar
 		{
 			$_question = step::get('question');
 		}
+		if(!$_userAnswer)
+		{
+			$_userAnswer = step::get('lastAnswer');
+		}
+		var_dump($_userAnswer);
 		$result       = \lib\db\polls::getResult($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result);
-		$output       = "📢 ".$_question." ";
+		if(!$result_count)
+		{
+			$result_count = 1;
+		}
+		$output       = "📊 ".$_question." ";
 		$output       .= "(". $result_count. " نفر)\n";
-
 
 		foreach ($result as $key => $value)
 		{
@@ -410,9 +423,14 @@ class step_sarshomar
 			$maxCharOnLine = 40;
 			$itemLenght    = mb_strlen($key);
 			$resultLine    = $key;
-			$resultLine .= "\n";
-			$resultLine .= str_repeat('👍', ceil($percent/10));
-			$resultLine .= "`$percent%`";
+			if($_userAnswer === $key)
+			{
+				$resultLine .= "🚩";
+
+			}
+			$resultLine    .= "\n";
+			$resultLine    .= str_repeat('👍', ceil($percent/10));
+			$resultLine    .= "`$percent%`";
 
 			$output .= $resultLine . "\n";
 		}
