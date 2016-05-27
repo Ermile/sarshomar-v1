@@ -135,7 +135,7 @@ class step_sarshomar
 				[
 					[
 						[
-							'text' => 'بررسی نتایج',
+							'text' => 'مشاهده نمودار و بررسی نتایج 🌐',
 							'url'  => 'sarshomar.com/fa/polls/'.$question_id
 						],
 						// [
