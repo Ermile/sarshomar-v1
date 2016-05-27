@@ -128,6 +128,9 @@ class step_sarshomar
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
 			// $txt_text .= 'سوال: '.step::get('question')."\n";
 			// $txt_text .= 'پاسخ شما: '.$_answer_txt;
+			$link = 'https://sarshomar.com/sp_';
+			$link .= \lib\utility\shortURL::encode($question_id);
+
 			$txt_text = self::showResult(true);
 			$menu =
 			[
@@ -136,7 +139,7 @@ class step_sarshomar
 					[
 						[
 							'text' => 'مشاهده نمودار و بررسی نتایج 🌐',
-							'url'  => 'sarshomar.com/fa/polls/'.$question_id
+							'url'  => $link,
 						],
 						// [
 						// 	'text'                => 'search \'test\' inline',
