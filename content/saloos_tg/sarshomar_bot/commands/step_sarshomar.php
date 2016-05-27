@@ -427,7 +427,7 @@ class step_sarshomar
 			// add key into output
 			$maxCharOnLine = 40;
 			$itemLenght    = mb_strlen($key);
-			$percent_10    = ceil($percent/10);
+			$percent_10    = round($percent/10);
 			$resultLine    = $key;
 			if($_userAnswer === $key)
 			{
