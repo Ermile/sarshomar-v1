@@ -1,0 +1,19 @@
+{%extends display.mvc%}
+
+
+{%block content%}
+ <div class="container">
+  <header>
+   <h1><a href="{{url.base}}" class="hint--right hint--info" data-hint="{{site.desc}}">{{site.title}}</a></h1>
+  </header>
+
+  <section>
+   <h2>{{post.title}}</h2>
+   <div class="content">{{post.content |raw}}</div>
+  </section>
+
+  <footer>
+    {%trans "Some right reserved!"%}
+  </footer>
+ </div>
+{%endblock%}

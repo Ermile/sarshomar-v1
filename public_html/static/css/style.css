@@ -15,3 +15,37 @@ body{
 .rtl #site-start h1{
 	font-weight: 700;
 }
+
+
+
+header h1{
+	font-size: 4em;
+	font-weight: 700;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+}
+section{
+	margin-bottom: 100px;
+}
+h2{
+	font-weight: 700;
+	background-color: #eee;
+	padding: 5px 1em;
+	border-color: #39a;
+	border-style: solid;
+    border-width: 0;
+	border-left-width: 10px;
+}
+.rtl h2{
+    border-width: 0;
+	border-right-width: 10px;
+}
+.content{
+	padding: 0 2%;
+}
+footer{
+	margin-top: 5em;
+	padding: 2em 0;
+	border-top: 1px solid #eee;
+	text-align: center;
+}
