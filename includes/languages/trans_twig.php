@@ -2,6 +2,12 @@
 private function transtext()
 {
 
+	//----------------------------------------------------content\home\layout-xhr.html
+	echo T_("View your current location and navigate to parent of it");               // Line 9
+
+	//---------------------------------------------------content\template\dafault.html
+	echo T_("Some right reserved!");                                                  // Line 28
+
 	//--------------------------------------------includes\languages\trans_static.html
 	echo T_("Saloos");                                                                // Line 7 Seperate
 	echo T_("Sarshomar");                                                             // Line 8 Seperate

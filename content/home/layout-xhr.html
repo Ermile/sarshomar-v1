@@ -1,4 +1,18 @@
-{%block content_def%}
-
-
+   <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
+{%block breadcrumb%}
+   {{breadcrumb() | raw}}
 {%endblock%}
+   </nav>
+
+
+
+  <section data-xhr="page-content">
+{%block page_content%}
+   <h2>{{post.title}}</h2>
+   <div class="content">{{post.content |raw}}</div>
+   <nav id="page-nav">
+    <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+    <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+   </nav>
+{%endblock%}
+  </section>

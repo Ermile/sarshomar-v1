@@ -1,4 +1,4 @@
-body{
+body#home{
 	background-color:#eee;
 }
 #site-start{
@@ -17,7 +17,6 @@ body{
 }
 
 
-
 header h1{
 	font-size: 4em;
 	font-weight: 700;
@@ -26,8 +25,13 @@ header h1{
 }
 section{
 	margin-bottom: 100px;
+	overflow: hidden;
 }
-h2{
+section ul{list-style:square inside none;padding: 0 1em;}
+section ul li{padding:0.3em 0;font-size:1.3em;}
+section ul ul{list-style-type: circle}
+section ul ul ul{list-style-type: disc}
+section h2{
 	font-weight: 700;
 	background-color: #eee;
 	padding: 5px 1em;
@@ -49,3 +53,16 @@ footer{
 	border-top: 1px solid #eee;
 	text-align: center;
 }
+
+nav.breadcrumb {width: 100%;background: #f9f9f9;padding: 6px 15px;display:inline-block;}
+nav.breadcrumb a{font-size: 1em;line-height:12px;color: #99a0aa;float:left;font-weight:700}
+.rtl nav.breadcrumb a{float:right;}
+nav.breadcrumb a:hover {color: #656d78;}
+nav.breadcrumb a:last-child {color: #656d78;}
+nav.breadcrumb > a + a:before {content: ">";color: #99a0aa;padding: 0px 8px;float:left;}
+.rtl nav.breadcrumb > a + a:before {float:right;}
+nav#page-nav{display: block;position: relative;width:100%;float:left;padding:10px 5%;transition:0.3s;font-size: 1.3em}
+nav#page-nav:hover{background-color:rgba(238, 238, 238, 0.4);}
+nav#page-nav a:hover{color:#000;}
+.rtl nav#page-nav #nav-next{float:left;display: block }
+.rtl nav#page-nav #nav-prev{float:right;display: block }
