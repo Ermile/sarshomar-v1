@@ -12,8 +12,15 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = false;
 		}
-		$this->data->chart      = \lib\utility\visitor::chart();
-		$this->data->chart_type = 'column';
+		// $this->data->chart      = \lib\db\polls::getResult(3, 'count', 'txt');
+		$post = $this->model()->get_posts();
+		if(isset($post['id']))
+		{
+			$post_id = $post['id'];
+			$this->data->chart      = \lib\db\polls::getResult($post_id);
+			$this->data->chart_type = 'column';
+
+		}
 	}
 
 

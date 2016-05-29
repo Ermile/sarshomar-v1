@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
-"POT-Creation-Date: 2016-05-29 15:58+0430\n"
-"PO-Revision-Date: 2016-05-29 15:58+0430\n"
+"POT-Creation-Date: 2016-05-29 21:09+0430\n"
+"PO-Revision-Date: 2016-05-29 21:10+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -439,7 +439,7 @@ msgstr "نمودار بازدید روزانه"
 msgid "Summarized data of site"
 msgstr "خلاصه داده‌های سایت"
 
-#: includes/languages/trans_addons.php:38
+#: includes/languages/trans_addons.php:38 includes/languages/trans_twig.php:12
 msgid "No. of"
 msgstr "تعداد"
 
@@ -479,7 +479,7 @@ msgstr "بازدید"
 msgid "Page Views"
 msgstr "بازدید صفحات"
 
-#: includes/languages/trans_addons.php:48
+#: includes/languages/trans_addons.php:48 includes/languages/trans_twig.php:16
 msgid "Bots"
 msgstr "ربات‌ها"
 
@@ -499,7 +499,7 @@ msgstr "با کمک این منو می‌توانید به تمامی بخش‌�
 msgid "Dashboard"
 msgstr "داشبورد"
 
-#: includes/languages/trans_addons.php:57 includes/languages/trans_twig.php:20
+#: includes/languages/trans_addons.php:57 includes/languages/trans_twig.php:27
 msgid "Polls"
 msgstr "نظرسنجی‌ها"
 
@@ -588,7 +588,7 @@ msgstr "برخی از حقوق محفوظ است!"
 msgid "Powered by"
 msgstr "قدرت گرفته از"
 
-#: includes/languages/trans_addons.php:79 includes/languages/trans_twig.php:12
+#: includes/languages/trans_addons.php:79 includes/languages/trans_twig.php:19
 msgid "Saloos"
 msgstr "سالوس"
 
@@ -2216,31 +2216,43 @@ msgstr "انتخاب"
 msgid "Some right reserved!"
 msgstr "برخی از حقوق محفوظ است!"
 
-#: includes/languages/trans_twig.php:13 includes/mvc/view.php:10
+#: includes/languages/trans_twig.php:13
+msgid "User Votes"
+msgstr "آرای کاربران"
+
+#: includes/languages/trans_twig.php:14
+msgid "vote"
+msgstr "رای"
+
+#: includes/languages/trans_twig.php:15
+msgid "Total"
+msgstr "مجموع"
+
+#: includes/languages/trans_twig.php:20 includes/mvc/view.php:10
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: includes/languages/trans_twig.php:14 includes/mvc/view.php:11
+#: includes/languages/trans_twig.php:21 includes/mvc/view.php:11
 msgid "Sarshomar start jumping"
 msgstr "سرشمار در حال پریدن است"
 
-#: includes/languages/trans_twig.php:15 includes/mvc/view.php:12
+#: includes/languages/trans_twig.php:22 includes/mvc/view.php:12
 msgid "Call Sarshomar"
 msgstr "سرشمار رو صدا کن"
 
-#: includes/languages/trans_twig.php:16 includes/mvc/view.php:14
+#: includes/languages/trans_twig.php:23 includes/mvc/view.php:14
 msgid "Sarshomar is inteligent"
 msgstr "سرشمار باهوش است"
 
-#: includes/languages/trans_twig.php:17
+#: includes/languages/trans_twig.php:24
 msgid "poll"
 msgstr "نظرسنجی"
 
-#: includes/languages/trans_twig.php:18
+#: includes/languages/trans_twig.php:25
 msgid "Poll"
 msgstr "نظرسنجی"
 
-#: includes/languages/trans_twig.php:19
+#: includes/languages/trans_twig.php:26
 msgid "polls"
 msgstr "نظرسنجی‌ها"
 
@@ -2505,9 +2517,6 @@ msgstr "نظرسنجی‌ها"
 
 #~ msgid "Quick Access"
 #~ msgstr "دسترسی سریع"
-
-#~ msgid "Total"
-#~ msgstr "مجموع"
 
 #~ msgid "Humans"
 #~ msgstr "انسان‌ها"
