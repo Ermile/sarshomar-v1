@@ -149,7 +149,7 @@ class step_order
 		if(!array_search($_txtProduct, $productList))
 		{
 			// product not exist
-			$txt_text = 'لطفا یکی از کالاهای موجود را انتخاب نمایید!';
+			$txt_text = 'لطفا یکی از کالاهای موجود در دسته $category را انتخاب نمایید!';
 			$result   =
 			[
 				'text'         => $txt_text,
