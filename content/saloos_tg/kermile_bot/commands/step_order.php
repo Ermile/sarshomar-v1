@@ -210,10 +210,9 @@ class step_order
 			step::plus();
 			// save product quantity
 			step::set('order_quantity', $_txtNumber);
-			// start saving order
-			//
-			//
-			//
+			// add to catd
+			self::addToCard($category, $product, $_txtNumber);
+
 
 			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید شما اضافه شد\n";
 			$menu     =
@@ -259,18 +258,19 @@ class step_order
 				break;
 
 			case 'مشاهده سبد خرید':
-			case '/cart':
-			case 'cart':
-				$txt_text = self::showResult(true);
+			case '/card':
+			case 'card':
+			case 'showcard':
+				var_dump(step::get('order'));
+				$txt_text = self::showCard();
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
 			case 'اتمام سفارش':
 			case '/paycart':
 			case 'paycart':
-				$txt_text = self::showResult(false);
+				$txt_text = self::showCard();
 				step::plus();
-
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
@@ -295,10 +295,22 @@ class step_order
 		$result   =
 		[
 			[
-				'text'         => $txt_text,
+				'text' => $txt_text,
 			],
 		];
 		// return menu
+		return $result;
+	}
+
+
+	public static function step6($_item)
+	{
+		$result   =
+		[
+			'text'         => "هدایت برای پرداخت...",
+			// 'reply_markup' => null,
+			// 'reply_markup' => $menu
+		];
 		return $result;
 	}
 
@@ -432,66 +444,38 @@ class step_order
 	}
 
 
-
-	private static function showResult($_percentage = false, $_question_id = null, $_question = null, $_userAnswer = null)
+	/**
+	 * save new product to card
+	 * @param [type] $_category [description]
+	 * @param [type] $_product  [description]
+	 * @param [type] $_quantity [description]
+	 */
+	private static function addToCard($_category, $_product, $_quantity)
 	{
-		if(!$_question_id)
-		{
-			$_question_id = step::get('question_id');
-		}
-		if(!$_question)
-		{
-			$_question = step::get('question');
-		}
-		if(!$_userAnswer)
-		{
-			$_userAnswer = step::get('lastAnswer');
-		}
-		$result       = \lib\db\polls::getResult($_question_id, 'count', 'txt');
-		arsort($result);
-		$result_count = array_sum($result);
-		if(!$result_count)
-		{
-			$result_count = 1;
-		}
-		$output       = "📊 ".$_question."\n";
-
-		foreach ($result as $key => $value)
-		{
-			$percent      = ($value * 100) / $result_count;
-			$percent      = (int)round($percent);
-			if($_percentage)
-			{
-				$result[$key] = $percent;
-			}
-			// add key into output
-			$maxCharOnLine = 40;
-			$itemLenght    = mb_strlen($key);
-			$percent_10    = round($percent/10);
-			$resultLine    = $key;
-			if($_userAnswer === $key)
-			{
-				$resultLine .= "🚩";
-
-			}
-			$resultLine    .= "\n";
-			// $resultLine    .= str_repeat('👍', $percent_10);
-			$resultLine    .= str_repeat('⬛️', $percent_10);
-			$resultLine    .= str_repeat('⬜️', 10 - $percent_10);
-			$resultLine    .= " `$percent%`";
-
-			$output .= $resultLine . "\n";
-		}
-		if($result_count > 10)
-		{
-			// $output       .= "*". $result_count. "* نفر به این سوال پاسخ داده‌اند\n";
-			$output       .= "👥 *". $result_count. "* نفر \n";
-		}
-
-		// $output .= "[لینک مستقیم این نظرسنجی](telegram.me/sarshomar_bot?start=poll_$_question_id)";
-
-		return $output;
+		// get current order
+		$myorder = step::get('order');
+		// add this product to order
+		$myorder[$_category][$_product] = $_quantity;
+		// save new order
+		step::set('order', $myorder);
 	}
 
+
+
+	private static function showCard()
+	{
+		$myorder  = step::get('order');
+		$txt_card = "📃 سبد خرید شما\n\n";
+		foreach ($myorder as $category => $productList)
+		{
+
+			foreach ($productList as $product => $quantity)
+			{
+				$txt_card .= " 🔖". $category ." - ". $product ." ". $quantity. "عدد\n";
+			}
+		}
+		$txt_card .= "\n\n /cancel انصراف از خرید";
+		return $txt_card;
+	}
 }
 ?>
