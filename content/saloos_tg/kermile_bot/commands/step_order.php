@@ -15,6 +15,15 @@ class step_order
 		"نوشیدنی" => ["آب", "نوشابه", "دلستر", "آبمیوه"],
 	];
 
+	private static $keyboard_number =
+	[
+		'keyboard' =>
+		[
+			["1", "2", "3", "4"],
+			["5", "6", "7", "8"],
+			["9", "10", "11", "12"],
+		],
+	];
 
 	/**
 	 * create define menu that allow user to select
@@ -91,8 +100,8 @@ class step_order
 		{
 			// go to next step
 			step::plus();
-			// save last answer
-			step::set('lastCategory', $_txtCategory);
+			// save category
+			step::set('order_category', $_txtCategory);
 			// get question id
 
 			$txt_text = "لطفا کالای مورد نظر را انتخاب کنید";
@@ -115,14 +124,11 @@ class step_order
 					break;
 			}
 
-			// get name of question
 			$result   =
 			[
-				[
-					'text'         => $txt_text,
-					// 'reply_markup' => null,
-					'reply_markup' => self::drawKeyboard($_txtCategory),
-				],
+				'text'         => $txt_text,
+				// 'reply_markup' => null,
+				'reply_markup' => self::drawKeyboard($_txtCategory),
 			];
 		}
 
@@ -136,14 +142,14 @@ class step_order
 	 * @param  [type] $_answer_txt [description]
 	 * @return [type]            [description]
 	 */
-	public static function step($_txtCategory)
+	public static function step3($_txtProduct)
 	{
-		// get answer id from answers list
-		$productList = self::drawKeyboard($_txtCategory);
-		// if category name is not exist or other problem show message
-		if(!$productList || !is_array($productList))
+		$category    = step::get('order_category');
+		$productList = self::drawKeyboard($category, true);
+		if(!array_search($_txtProduct, $productList))
 		{
-			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
+			// product not exist
+			$txt_text = 'لطفا یکی از کالاهای موجود را انتخاب نمایید!';
 			$result   =
 			[
 				'text'         => $txt_text,
@@ -152,41 +158,22 @@ class step_order
 		}
 		else
 		{
+			// product exist, go to next step
 			// go to next step
 			step::plus();
-			// save last answer
-			step::set('lastCategory', $_txtCategory);
-			// get question id
+			// save product name
+			step::set('order_product', $_txtProduct);
 
-			$txt_text = "لطفا کالای مورد نظر را انتخاب کنید";
-			switch ($_txtCategory)
-			{
-				case 'پیتزا':
-					$txt_text = "چه نوع پیتزایی دوست دارید؟";
-					break;
+			$txt_text = "لطفا تعداد $_txtProduct مورد نیاز را انتخاب کنید";
+			// $txt_text = "لطفا از منوی زیر تعداد را انتخاب نمایید یا درصورت تمایل به سفارش تعداد بیشتر مقدار آن را با کیبورد وارد نمایید.";
 
-				case 'ساندویچ':
-					$txt_text = "چه ساندویجی نیاز دارید؟";
-					break;
-
-				case 'نوشیدنی':
-					$txt_text = "لطفا نوع نوشیدنی را انتخاب کنید";
-					break;
-
-				case 'مخلفات':
-					$txt_text = "لطفا نوع کالا را انتخاب کنید";
-					break;
-			}
-
-			// get name of question
 			$result   =
 			[
-				[
-					'text'         => $txt_text,
-					// 'reply_markup' => null,
-					'reply_markup' => self::drawKeyboard($_txtCategory),
-				],
+				'text'         => $txt_text,
+				// 'reply_markup' => null,
+				'reply_markup' => self::$keyboard_number,
 			];
+
 		}
 
 		// return menu
@@ -194,35 +181,95 @@ class step_order
 	}
 
 
+	/**
+	 * show continue menu
+	 * @param  [type] $_answer_txt [description]
+	 * @return [type]            [description]
+	 */
+	public static function step4($_txtNumber)
+	{
+		$category = step::get('order_category');
+		$product  = step::get('order_product');
+
+		// if user pass anything except number show menu again
+		if(!is_numeric($_txtNumber))
+		{
+			// product not exist
+			$txt_text = 'لطفا تعداد مورد نیاز خود را وارد کنید!';
+			$result   =
+			[
+				'text'         => $txt_text,
+				'reply_markup' => self::$keyboard_number,
+			];
+		}
+		else
+		{
+			// product exist, go to next step
+			// go to next step
+			step::plus();
+			// save product quantity
+			step::set('order_quantity', $_txtNumber);
+			// start saving order
+			//
+			//
+			//
+
+			$txt_text = "تعداد $_txtNumber عدد $product به سبد خرید شما اضافه شد\n";
+			$menu     =
+			[
+				'keyboard' =>
+				[
+					["ادامه خرید"],
+					["مشاهده سبد خرید"],
+					["اتمام سفارش"],
+					["بازگشت به منوی اصلی"],
+				],
+			];
+			$result   =
+			[
+				'text'         => $txt_text,
+				// 'reply_markup' => null,
+				'reply_markup' => $menu
+			];
+
+		}
+
+		// return menu
+		return $result;
+	}
+
 
 	/**
-	 * [step3 description]
+	 * show last menu
 	 * @param  [type] $_item [description]
 	 * @return [type]        [description]
 	 */
-	public static function step4($_item)
+	public static function step5($_item)
 	{
 		// create output text
 		$txt_text = "سوال ". step::get('i')."\n\n";
 		switch ($_item)
 		{
-			case 'سوال بعدی':
+			case 'ادانه خرید':
 			case '/next':
 			case 'next':
 				step::goto(1);
 				return self::step1();
 				break;
 
-			case 'مشاهده نتایج':
-			case 'result':
-			case '/result':
+			case 'مشاهده سبد خرید':
+			case '/cart':
+			case 'cart':
 				$txt_text = self::showResult(true);
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
-			case 'resultRaw':
-			case '/resultRaw':
+			case 'اتمام سفارش':
+			case '/paycart':
+			case 'paycart':
 				$txt_text = self::showResult(false);
+				step::plus();
+
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
