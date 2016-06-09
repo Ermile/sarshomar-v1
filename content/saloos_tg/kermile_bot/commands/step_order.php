@@ -15,7 +15,7 @@ class step_order
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start($_text = null, $_skip = null)
+	public static function start($_skip = null)
 	{
 		$result = null;
 		if($_skip !== true)
@@ -25,7 +25,7 @@ class step_order
 		// if we have result or want to skip, then call step1
 		if($result === true || $_skip === true)
 		{
-			step::start('sarshomar');
+			step::start('order');
 			return self::step1();
 		}
 		else

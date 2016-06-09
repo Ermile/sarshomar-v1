@@ -36,7 +36,7 @@ class handle
 			case 'سفارش':
 			case 'ثبت سفارش':
 			case 'ثبت':
-				$response = step_order::start();
+				$response = step_order::start(true);
 				break;
 
 			case 'ثبت':

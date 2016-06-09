@@ -13,7 +13,10 @@ class step_register
 	 */
 	public static function start($_caller, $_lastStep = 'start')
 	{
-		step::start('order');
+		step::start('register');
+		// set caller name and step
+		step::set('call_from', $_caller);
+		step::set('call_from_step', $_lastStep);
 
 		if(bot::$user_id)
 		{
