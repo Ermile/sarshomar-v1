@@ -153,7 +153,7 @@ class step_order
 			$result   =
 			[
 				'text'         => $txt_text,
-				'reply_markup' => self::drawKeyboard(),
+				'reply_markup' => self::drawKeyboard($category),
 			];
 		}
 		else
