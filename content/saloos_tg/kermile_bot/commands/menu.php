@@ -44,25 +44,13 @@ class menu
 				$response = self::pizza_01();
 				break;
 
-			case 'menu':
-			case 'منو':
-				$response = self::menu0();
-				break;
 
-			case 'loc':
-			case 'موقعیت':
-				$response = self::menu_loc();
-				break;
-
-
-			case 'inline':
-			case 'اینلاین':
-				$response = self::menu_inline();
-				break;
 
 			case 'main':
+			case '/main':
 			case 'mainmenu':
-			case 'menu0':
+			case 'menu':
+			case '/menu':
 			case 'منو۰':
 				$response = self::main();
 				break;
@@ -341,7 +329,6 @@ class menu
 			[
 					["سفارش غذا"],
 					["مشاهده منو"],
-					["تماس"],
 					["درباره", "ثبت بازخورد"],
 			],
 		];
