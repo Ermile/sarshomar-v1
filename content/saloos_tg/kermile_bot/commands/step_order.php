@@ -42,43 +42,15 @@ class step_order
 	 */
 	public static function step1()
 	{
-		// get and set last question
-		$questionExist = self::getLastQuestion();
-		// fix limit of number of answered in a period of time
-		// $answeredLimit   = step::get('i');
-		$answeredLimit   = \lib\db\stat_polls::answeredInPeriod(bot::$user_id, 6);
-		if(!$questionExist)
-		{
-			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
-		}
-		if($answeredLimit >= 6)
-		{
-			$txt = "محدودیت پاسخ‌دهی در هر بار به اتمام رسید!\n";
-			$txt .= "در حال حاضر هر ۶ ساعت امکان پاسخ‌دهی به ۶ سوال وجود دارد.";
-			return step_subscribe::start($txt);
-		}
 		// go to next step, step4
 		step::plus();
 		// set title for
-		step::set('textTitle', 'question');
-		// reset last answer
-		step::set('lastAnswer', null);
+		step::set('textTitle', 'foodType');
 		// increase custom number
 		step::plus(1, 'i');
-		// create output text
-		$txt_text = step::get('questionRaw');
-		$txt_text .= self::answersKeyboard(false);
-		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomar_bot?start=poll_123)";
-		$txt_text .= "/skip پرش، مایل به پاسخ نیستم\n";
-		$txt_text .= "/cancel انصراف از ادامه پاسخ‌دهی\n";
+		// create output message
 
-		$result   =
-		[
-			'text'         => $txt_text,
-			'reply_markup' => self::answersKeyboard(),
-		];
-		// return menu
-		return $result;
+		return menu_food::main();
 	}
 
 
@@ -90,25 +62,9 @@ class step_order
 	 */
 	public static function step2($_answer_txt)
 	{
-		$answersList = self::answersKeyboard(true);
-		if(!$answersList)
-		{
-			return false;
-		}
-		// if user add answer in command format
-		if(substr($_answer_txt, 0, 1) === '/')
-		{
-			$useCommand = true;
-			$cmdInput   = substr($_answer_txt, 1);
-
-			if(isset($answersList[$cmdInput]))
-			{
-				$_answer_txt = $answersList[$cmdInput];
-			}
-
-		}
 		// get answer id from answers list
-		$answer_id = array_search($_answer_txt, $answersList);
+		$answersList = self::answersKeyboard(true);
+		$answer_id   = array_search($_answer_txt, $answersList);
 		if($_answer_txt === '/skip')
 		{
 			$answer_id = -1;
@@ -176,7 +132,7 @@ class step_order
 			[
 				[
 					'text'         => $txt_text,
-					'reply_markup' => self::answersKeyboard(),
+					'reply_markup' => self::drawKeyboard(),
 				],
 			];
 		}
@@ -298,7 +254,7 @@ class step_order
 	 * @param  boolean $_onlyArray [description]
 	 * @return [type]              [description]
 	 */
-	public static function answersKeyboard($_onlyArray = null)
+	public static function drawKeyboard($_onlyArray = null)
 	{
 		$answersList = step::get('answers');
 		if($_onlyArray === true)
@@ -364,38 +320,6 @@ class step_order
 
 
 
-	private static function drawKeyboard()
-	{
-
-	}
-
-
-	/**
-	 * get last question from database and return it
-	 * @return [type] [description]
-	 */
-	public static function getLastQuestion($_user_id = null)
-	{
-		if(!$_user_id)
-		{
-			$_user_id = bot::$user_id;
-		}
-
-		$question = \lib\db\polls::getLast($_user_id);
-		$question['question'] = html_entity_decode($question['question']);
-		step::set('question_id', $question['id']);
-		step::set('questionRaw', $question['questionRaw']);
-		step::set('question', $question['question']);
-		step::set('answers', $question['answers']);
-		step::set('tags', $question['tags']);
-
-		if(!is_array($question['answers']))
-		{
-			return false;
-		}
-		return true;
-	}
-
 	private static function showResult($_percentage = false, $_question_id = null, $_question = null, $_userAnswer = null)
 	{
 		if(!$_question_id)
@@ -456,17 +380,5 @@ class step_order
 		return $output;
 	}
 
-	public static function removeUserAnswers()
-	{
-		$result = \lib\db\polls::removeUserAnswers(bot::$user_id);
-		$result   =
-		[
-			[
-				'text'         => 'آرشیو نظرات شما پاک شد!',
-				'reply_markup' => menu::main(true),
-			],
-		];
-		return $result;
-	}
 }
 ?>
