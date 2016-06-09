@@ -146,7 +146,8 @@ class step_order
 	{
 		$category    = step::get('order_category');
 		$productList = self::drawKeyboard($category, true);
-		if(!array_search($_txtProduct, $productList))
+
+		if(!in_array($_txtProduct, $productList))
 		{
 			// product not exist
 			$txt_text = "لطفا یکی از کالاهای موجود در دسته $category را انتخاب نمایید!";
@@ -214,7 +215,7 @@ class step_order
 			//
 			//
 
-			$txt_text = "تعداد $_txtNumber عدد $product به سبد خرید شما اضافه شد\n";
+			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید شما اضافه شد\n";
 			$menu     =
 			[
 				'keyboard' =>
@@ -250,7 +251,7 @@ class step_order
 		$txt_text = "سوال ". step::get('i')."\n\n";
 		switch ($_item)
 		{
-			case 'ادانه خرید':
+			case 'ادامه خرید':
 			case '/next':
 			case 'next':
 				step::goto(1);
