@@ -15,17 +15,17 @@ class controller extends \lib\mvc\controller
 		$myhook = 'saloos_tg/kermile_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
 		if($this->url('path') == $myhook)
 		{
-			bot::$api_key   = '209285392:AAE3FdlRpJ2hB6k9tfs5j9RlwTQqnJar8ws';
-			bot::$name      = 'kermile_bot';
-			bot::$cmdFolder = '\\'. __NAMESPACE__ .'\commands\\';
+			bot::$api_key     = '209285392:AAE3FdlRpJ2hB6k9tfs5j9RlwTQqnJar8ws';
+			bot::$name        = 'kermile_bot';
+			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = 'تعریف نشده';
-			bot::$fill    =
+			bot::$defaultMenu = commands\menu::main(true);
+			bot::$fill        =
 			[
 				'name'     => 'کرمایل',
 				'fullName' => 'فست فود بزرگ کرمایل',
 				// 'about'    => $txt_about,
 			];
-
 			$result         = bot::run();
 
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))

@@ -64,7 +64,7 @@ class menu
 			case 'mainmenu':
 			case 'menu0':
 			case 'منو۰':
-				$response = self::menu_main();
+				$response = self: main();
 				break;
 
 			case 'return':
@@ -330,7 +330,7 @@ class menu
 	 * return menu
 	 * @return [type] [description]
 	 */
-	public static function menu_main()
+	public static function main()
 	{
 		// disable return from main menu
 		self::$return          = false;
@@ -339,10 +339,10 @@ class menu
 		[
 			'keyboard' =>
 			[
-					["منوی آزمایش"],
-					["نظرسنجی های من"],
-					["مقالات"],
-					["پروفایل"],
+					["سفارش غذا"],
+					["مشاهده منو"],
+					["تماس"],
+					["درباره", "ثبت بازخورد"],
 			],
 		];
 		return $result;
