@@ -6,9 +6,15 @@ use \lib\utility\telegram\step;
 
 class step_order
 {
-	private static $menu         = ["hide_keyboard" => true];
-	private static $lastQuestion = null;
-	private static $lastAnswers  = null;
+	private static $menu      = ["hide_keyboard" => true];
+	private static $menuItems =
+	[
+		"ساندویچ"  => ["چیزبرگر", "همبرگر", "چیپس و پنیر", "هات‌داگ"],
+		"پیتزا"   => ["یونانی", "پپرونی", "سرآشپز", "سبزیجات"],
+		"مخلفات"  => ["سالاد فصل", "سالاد اندونزی", "قارچ سوخاری", "سیب زمینی"],
+		"نوشیدنی" => ["آب", "نوشابه", "دلستر", "آبمیوه"],
+	];
+
 
 	/**
 	 * create define menu that allow user to select
@@ -37,7 +43,7 @@ class step_order
 
 
 	/**
-	 * get list of questions and ask a question
+	 * get list of food type and show it to user for select
 	 * @return [type] [description]
 	 */
 	public static function step1()
@@ -49,90 +55,73 @@ class step_order
 		// increase custom number
 		step::plus(1, 'i');
 		// create output message
+		$txt_text = "لطفا یکی از دسته‌بندی‌های زیر را انتخاب کنید\n\n";
+		$txt_text .= "/cancel انصراف از ثبت سفارش ";
+		$result   =
+		[
+			'text'         => $txt_text,
+			'reply_markup' => self::drawKeyboard(),
+		];
 
-		return menu_food::main();
+		return $result;
 	}
 
 
 
 	/**
-	 * [step2 description]
+	 * select food product name
 	 * @param  [type] $_answer_txt [description]
 	 * @return [type]            [description]
 	 */
-	public static function step2($_answer_txt)
+	public static function step2($_txtCategory)
 	{
 		// get answer id from answers list
-		$answersList = self::answersKeyboard(true);
-		$answer_id   = array_search($_answer_txt, $answersList);
-		if($_answer_txt === '/skip')
+		$productList = self::drawKeyboard($_txtCategory);
+		// if category name is not exist or other problem show message
+		if(!$productList || !is_array($productList))
 		{
-			$answer_id = -1;
+			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
+			$result   =
+			[
+				'text'         => $txt_text,
+				'reply_markup' => self::drawKeyboard(),
+			];
 		}
-		if($answer_id)
+		else
 		{
 			// go to next step
 			step::plus();
 			// save last answer
-			step::set('lastAnswer', $_answer_txt);
+			step::set('lastCategory', $_txtCategory);
 			// get question id
-			$question_id = step::get('question_id');
-			// save answer
-			\lib\db\polls::saveAnswer(bot::$user_id, $question_id, $answer_id, $_answer_txt);
 
-			// create output text
-			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
-			// $txt_text .= 'سوال: '.step::get('question')."\n";
-			// $txt_text .= 'پاسخ شما: '.$_answer_txt;
-			$link = 'https://sarshomar.com/sp_';
-			$link .= \lib\utility\shortURL::encode($question_id);
+			$txt_text = "لطفا کالای مورد نظر را انتخاب کنید";
+			switch ($_txtCategory)
+			{
+				case 'پیتزا':
+					$txt_text = "چه نوع پیتزایی دوست دارید؟";
+					break;
 
-			$txt_text = self::showResult(true);
-			$menu =
-			[
-				'inline_keyboard' =>
-				[
-					[
-						[
-							'text' => 'مشاهده نمودار و بررسی نتایج 🌐',
-							'url'  => $link,
-						],
-						// [
-						// 	'text'                => 'search \'test\' inline',
-						// 	'switch_inline_query' => 'test'
-						// ],
-					]
-				],
-				// 'keyboard' =>
-				// [
-				// 	["سوال بعدی"],
-				// 	// ["مشاهده نتایج"],
-				// 	["بازگشت به منوی اصلی"],
-				// ],
-			];
+				case 'ساندویچ':
+					$txt_text = "چه ساندویجی نیاز دارید؟";
+					break;
+
+				case 'نوشیدنی':
+					$txt_text = "لطفا نوع نوشیدنی را انتخاب کنید";
+					break;
+
+				case 'مخلفات':
+					$txt_text = "لطفا نوع کالا را انتخاب کنید";
+					break;
+			}
+
 			// get name of question
 			$result   =
 			[
 				[
 					'text'         => $txt_text,
 					// 'reply_markup' => null,
-					'reply_markup' => $menu,
-				],
-			];
-
-			// got to step1
-			step::goto(1);
-			// show new question, get from step3
-			$result[] = self::step1();
-		}
-		else
-		{
-			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
-			$result   =
-			[
-				[
-					'text'         => $txt_text,
-					'reply_markup' => self::drawKeyboard(),
+					'reply_markup' => self::drawKeyboard($_txtCategory),
 				],
 			];
 		}
@@ -143,11 +132,75 @@ class step_order
 
 
 	/**
+	 * select food count needed
+	 * @param  [type] $_answer_txt [description]
+	 * @return [type]            [description]
+	 */
+	public static function step($_txtCategory)
+	{
+		// get answer id from answers list
+		$productList = self::drawKeyboard($_txtCategory);
+		// if category name is not exist or other problem show message
+		if(!$productList || !is_array($productList))
+		{
+			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
+			$result   =
+			[
+				'text'         => $txt_text,
+				'reply_markup' => self::drawKeyboard(),
+			];
+		}
+		else
+		{
+			// go to next step
+			step::plus();
+			// save last answer
+			step::set('lastCategory', $_txtCategory);
+			// get question id
+
+			$txt_text = "لطفا کالای مورد نظر را انتخاب کنید";
+			switch ($_txtCategory)
+			{
+				case 'پیتزا':
+					$txt_text = "چه نوع پیتزایی دوست دارید؟";
+					break;
+
+				case 'ساندویچ':
+					$txt_text = "چه ساندویجی نیاز دارید؟";
+					break;
+
+				case 'نوشیدنی':
+					$txt_text = "لطفا نوع نوشیدنی را انتخاب کنید";
+					break;
+
+				case 'مخلفات':
+					$txt_text = "لطفا نوع کالا را انتخاب کنید";
+					break;
+			}
+
+			// get name of question
+			$result   =
+			[
+				[
+					'text'         => $txt_text,
+					// 'reply_markup' => null,
+					'reply_markup' => self::drawKeyboard($_txtCategory),
+				],
+			];
+		}
+
+		// return menu
+		return $result;
+	}
+
+
+
+	/**
 	 * [step3 description]
 	 * @param  [type] $_item [description]
 	 * @return [type]        [description]
 	 */
-	public static function step3($_item)
+	public static function step4($_item)
 	{
 		// create output text
 		$txt_text = "سوال ". step::get('i')."\n\n";
@@ -254,9 +307,22 @@ class step_order
 	 * @param  boolean $_onlyArray [description]
 	 * @return [type]              [description]
 	 */
-	public static function drawKeyboard($_onlyArray = null)
+	public static function drawKeyboard($parent = null, $_onlyArray = null)
 	{
-		$answersList = step::get('answers');
+		$answersList = self::$menuItems;
+		if(!$parent)
+		{
+			$answersList = array_keys($answersList);
+		}
+		elseif($parent && isset($answersList[$parent]))
+		{
+			$answersList = $answersList[$parent];
+		}
+		else
+		{
+			return false;
+		}
+
 		if($_onlyArray === true)
 		{
 			return $answersList;
@@ -314,7 +380,6 @@ class step_order
 			$i++;
 		}
 		// $menu['keyboard'][] = ['گزینه سوم'];
-
 		return $menu;
 	}
 

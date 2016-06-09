@@ -61,26 +61,6 @@ class menu_food
 	}
 
 	/**
-	 * sandwich_cheeseburger
-	 * @return [type] [description]
-	 */
-	public static function sandwich_cheeseburger()
-	{
-		$result['text'] = "لطفا تعداد چیزبرگرها را وارد کنید";
-		return $result;
-	}
-
-	/**
-	 * sandwich_hotdog
-	 * @return [type] [description]
-	 */
-	public static function sandwich_hotdog()
-	{
-		$result['text'] = "لطفا تعداد هات داگ ها را وارد کنید";
-		return $result;
-	}
-
-	/**
 	 * sandwich_chips
 	 * @return [type] [description]
 	 */
