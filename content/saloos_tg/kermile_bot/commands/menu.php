@@ -64,7 +64,7 @@ class menu
 			case 'mainmenu':
 			case 'menu0':
 			case 'منو۰':
-				$response = self: main();
+				$response = self::main();
 				break;
 
 			case 'return':
