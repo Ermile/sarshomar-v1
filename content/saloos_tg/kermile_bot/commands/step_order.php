@@ -209,7 +209,7 @@ class step_order
 		$product  = step::get('order_product');
 
 		// if user pass anything except number show menu again
-		if(!is_numeric($_txtNumber) && $_txtNumber !== 0)
+		if(!is_numeric($_txtNumber))
 		{
 			// product not exist
 			$txt_text = 'لطفا تنها تعداد مورد نیاز خود را به صورت عددی وارد کنید!';
@@ -233,14 +233,14 @@ class step_order
 		{
 			// product exist, go to next step
 			// go to next step
-			step::plus();
+			// step::plus();
 			// save product quantity
 			step::set('order_quantity', $_txtNumber);
 			// add to catd
 			self::addToCard($category, $product, $_txtNumber);
 
 			$txt_text = "*$_txtNumber عدد $product *به سبد خرید اضافه شد.\n";
-			if($_txtNumber === 0)
+			if($_txtNumber == 0)
 			{
 				$txt_text = "*$product *از سبد خرید حذف شد.\n";
 			}
@@ -459,7 +459,18 @@ class step_order
 		// get current order
 		$myorder = step::get('order');
 		// add this product to order
-		$myorder[$_category][$_product] = $_quantity;
+		if($_quantity == 0)
+		{
+			unset($myorder[$_category][$_product]);
+			if(count($myorder[$_category]) === 0)
+			{
+				unset($myorder[$_category]);
+			}
+		}
+		else
+		{
+			$myorder[$_category][$_product] = $_quantity;
+		}
 		// save new order
 		step::set('order', $myorder);
 	}
@@ -471,18 +482,25 @@ class step_order
 		$myorder    = step::get('order');
 		$txt_card   = "سبد خرید\n";
 		$totalPrice = 0;
-		foreach ($myorder as $category => $productList)
+		if(count($myorder) === 0 )
 		{
-			$txt_card .= "`$category`\n";
-			foreach ($productList as $product => $quantity)
-			{
-				$productDetail = product::detail($product);
-				$price = $productDetail['price'];
-				$totalPrice += $price;
-				$txt_card .= "  ▫️ $product *". $quantity. "* ✕ `". $price. "`\n";
-			}
+			$txt_card   = "سبد خرید خالی است!\n";
 		}
-		$txt_card .= "\nجمع کل:* $totalPrice تومان* 💰";
+		else
+		{
+			foreach ($myorder as $category => $productList)
+			{
+				$txt_card .= "`$category`\n";
+				foreach ($productList as $product => $quantity)
+				{
+					$productDetail = product::detail($product);
+					$price = $productDetail['price'];
+					$totalPrice += $price;
+					$txt_card .= "▫️ $product *". $quantity. "* ✕ `". $price. "`\n";
+				}
+			}
+			$txt_card .= "\nجمع کل:* $totalPrice تومان* 💰";
+		}
 		return $txt_card;
 	}
 }
