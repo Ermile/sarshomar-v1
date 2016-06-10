@@ -480,7 +480,7 @@ class step_order
 				$productDetail = product::detail($product);
 				$price = $productDetail['price'];
 				$totalPrice += $price;
-				$txt_card .= "  ▫️ $product *". $quantity. " ✕ `". $price. "تومان`*\n";
+				$txt_card .= "  ▫️ $product *". $quantity. "* ✕ `". $price. "`\n";
 			}
 		}
 		$txt_card .= "\nجمع کل:* $totalPrice تومان* 💰";
