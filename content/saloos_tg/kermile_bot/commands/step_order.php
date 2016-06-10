@@ -6,22 +6,14 @@ use \lib\utility\telegram\step;
 
 class step_order
 {
-	private static $menu      = ["hide_keyboard" => true];
-	private static $menuItems =
-	[
-		"ساندویچ"  => ["چیزبرگر", "همبرگر", "چیپس و پنیر", "هات‌داگ"],
-		"پیتزا"   => ["یونانی", "پپرونی", "سرآشپز", "سبزیجات"],
-		"مخلفات"  => ["سالاد فصل", "سالاد اندونزی", "قارچ سوخاری", "سیب زمینی"],
-		"نوشیدنی" => ["آب", "نوشابه", "دلستر", "آبمیوه"],
-	];
-
+	private static $menu            = ["hide_keyboard" => true];
 	private static $keyboard_number =
 	[
 		'keyboard' =>
 		[
-			["1", "2", "3", "4"],
-			["5", "6", "7", "8"],
-			["9", "10", "11", "12"],
+			['1', '2'],
+			['3', '4', '5', '6'],
+			['7', '8', '9', '10', '0'],
 		],
 	];
 
@@ -69,7 +61,7 @@ class step_order
 		$result   =
 		[
 			'text'         => $txt_text,
-			'reply_markup' => self::drawKeyboard(),
+			'reply_markup' => self::drawKeyboard('catList'),
 		];
 
 		return $result;
@@ -84,8 +76,8 @@ class step_order
 	 */
 	public static function step2($_txtCategory)
 	{
-		// get answer id from answers list
-		$productList = self::drawKeyboard($_txtCategory);
+		// get list of product in this category
+		$productList = product::get($_txtCategory, true);
 		// if category name is not exist or other problem show message
 		if(!$productList || !is_array($productList))
 		{
@@ -93,7 +85,7 @@ class step_order
 			$result   =
 			[
 				'text'         => $txt_text,
-				'reply_markup' => self::drawKeyboard(),
+				'reply_markup' => self::drawKeyboard('catList'),
 			];
 		}
 		else
@@ -123,12 +115,22 @@ class step_order
 					$txt_text = "لطفا نوع کالا را انتخاب کنید";
 					break;
 			}
+			$txt_text .= "\n\n";
 
+			foreach ($productList as $key => $productDetail)
+			{
+				$name  = $productDetail['name'];
+				$price = $productDetail['price'];
+				$desc  = $productDetail['desc'];
+				$txt_text .= "$name `$price تومان`\n$desc \n\n";
+			}
+
+			$productList = array_column($productList, 'name');
 			$result   =
 			[
 				'text'         => $txt_text,
 				// 'reply_markup' => null,
-				'reply_markup' => self::drawKeyboard($_txtCategory),
+				'reply_markup' => self::drawKeyboard($productList),
 			];
 		}
 
@@ -145,9 +147,9 @@ class step_order
 	public static function step3($_txtProduct)
 	{
 		$category    = step::get('order_category');
-		$productList = self::drawKeyboard($category, true);
 
-		if(!in_array($_txtProduct, $productList))
+		// check product exist or not
+		if(product::detail($_txtProduct, true))
 		{
 			// product not exist
 			$txt_text = "لطفا یکی از کالاهای موجود در دسته $category را انتخاب نمایید!";
@@ -165,7 +167,8 @@ class step_order
 			// save product name
 			step::set('order_product', $_txtProduct);
 
-			$txt_text = "لطفا تعداد $_txtProduct مورد نیاز را انتخاب کنید";
+			$txt_text = "لطفا تعداد $_txtProduct مورد نیاز را انتخاب کنید.";
+			$txt_text .= "\nدر صورتی که تعداد مورد نیاز بیش از لیست است، مقدار آن را با کیبورد وارد کنید";
 			// $txt_text = "لطفا از منوی زیر تعداد را انتخاب نمایید یا درصورت تمایل به سفارش تعداد بیشتر مقدار آن را با کیبورد وارد نمایید.";
 
 			$result   =
@@ -196,7 +199,23 @@ class step_order
 		if(!is_numeric($_txtNumber))
 		{
 			// product not exist
-			$txt_text = 'لطفا تعداد مورد نیاز خود را وارد کنید!';
+			$txt_text = 'لطفا تنها تعداد مورد نیاز خود را به صورت عددی وارد کنید!';
+			$result   =
+			[
+				'text'         => $txt_text,
+				'reply_markup' => self::$keyboard_number,
+			];
+		}
+		elseif($_txtNumber === 0)
+		{
+			// got to main menu
+			step::goto(1);
+			return self::step1();
+		}
+		elseif($_txtNumber > 100)
+		{
+			// product not exist
+			$txt_text = 'این تعداد ساپورت نمی‌شود‍!';
 			$result   =
 			[
 				'text'         => $txt_text,
@@ -213,8 +232,8 @@ class step_order
 			// add to catd
 			self::addToCard($category, $product, $_txtNumber);
 
-
-			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید شما اضافه شد\n";
+			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید شما اضافه شد.\n";
+			$txt_text .= self::showCard();
 			$menu     =
 			[
 				'keyboard' =>
@@ -261,7 +280,6 @@ class step_order
 			case '/card':
 			case 'card':
 			case 'showcard':
-				var_dump(step::get('order'));
 				$txt_text = self::showCard();
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
@@ -324,7 +342,6 @@ class step_order
 		// set
 		step::set('textTitle', 'stop');
 
-
 		if($_cancel === true)
 		{
 			if($_text)
@@ -333,20 +350,19 @@ class step_order
 			}
 			else
 			{
-				$final_text = "انصراف از ادامه پاسخ‌دهی به نظرسنجی‌ها\n";
+				$final_text = "انصراف از ثبت سفارش\n";
 			}
 			step::stop();
 		}
 		elseif($_cancel === false)
 		{
-			$final_text = "شما به همه سوالات پاسخ دادید!\n";
-			$final_text .= "آیا مایلید پس از اضافه شدن نظرسنجی‌های جدید به شما اطلاع دهیم؟\n";
+			$final_text = "انصراف\n";
 			// complete soon
 			step::stop();
 		}
 		else
 		{
-			$final_text = "ممنون از اینکه زمان ارزشمند خود را در اختیار ما قرار دادید.\n";
+			$final_text = "بازگشت به منوی اصلی...\n";
 		}
 
 		// get name of question
@@ -367,35 +383,21 @@ class step_order
 	 * @param  boolean $_onlyArray [description]
 	 * @return [type]              [description]
 	 */
-	public static function drawKeyboard($parent = null, $_onlyArray = null)
+	public static function drawKeyboard($_list = null, $_onlyArray = null)
 	{
-		$answersList = self::$menuItems;
-		if(!$parent)
+		if(is_string($_list))
 		{
-			$answersList = array_keys($answersList);
+			$_list = product::get($_list);
 		}
-		elseif($parent && isset($answersList[$parent]))
-		{
-			$answersList = $answersList[$parent];
-		}
-		else
-		{
-			return false;
-		}
+		var_dump($_list);
 
 		if($_onlyArray === true)
 		{
-			return $answersList;
+			// return array contain only list
+			$_list = array_keys($_list);
+			return $_list;
 		}
-		elseif($_onlyArray === false)
-		{
-			$txt_answers = "\n";
-			foreach ($answersList as $key => $value)
-			{
-				$txt_answers .= '/'. $key. '. '. html_entity_decode($value)."\n";
-			}
-			return $txt_answers;
-		}
+
 		$menu =
 		[
 			'keyboard' => [],
@@ -405,7 +407,7 @@ class step_order
 		// calculate number of item in each row
 		// max row can used is 3
 		$inEachRow  = 1;
-		$itemsCount = count($answersList);
+		$itemsCount = count($_list);
 		$rowUsed    = $itemsCount;
 		$rowMax     = 4;
 		// if count of items is divided by 2
@@ -430,7 +432,7 @@ class step_order
 		}
 
 		$i = 0;
-		foreach ($answersList as $key => $value)
+		foreach ($_list as $key => $value)
 		{
 			// calc row number
 			$row = floor($i/ $inEachRow);
@@ -465,16 +467,15 @@ class step_order
 	private static function showCard()
 	{
 		$myorder  = step::get('order');
-		$txt_card = "📃 سبد خرید شما\n\n";
+		$txt_card = "سبد خرید شما\n";
 		foreach ($myorder as $category => $productList)
 		{
-
 			foreach ($productList as $product => $quantity)
 			{
-				$txt_card .= " 🔖". $category ." - ". $product ." ". $quantity. "عدد\n";
+				$txt_card .= "🔖 ". $product ."`[$category]` *". $quantity. " عدد*\n";
 			}
 		}
-		$txt_card .= "\n\n /cancel انصراف از خرید";
+		$txt_card .= "\n\n _fullName_";
 		return $txt_card;
 	}
 }
