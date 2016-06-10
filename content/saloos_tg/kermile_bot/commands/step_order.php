@@ -209,7 +209,7 @@ class step_order
 		$product  = step::get('order_product');
 
 		// if user pass anything except number show menu again
-		if(!is_numeric($_txtNumber) || $_txtNumber !== 0)
+		if(!is_numeric($_txtNumber) && $_txtNumber !== 0)
 		{
 			// product not exist
 			$txt_text = 'لطفا تنها تعداد مورد نیاز خود را به صورت عددی وارد کنید!';
