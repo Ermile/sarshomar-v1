@@ -245,7 +245,7 @@ class step_order
 			// add to catd
 			self::addToCard($category, $product, $_txtNumber);
 
-			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید اضافه شد.\n";
+			$txt_text = "*$_txtNumber عدد $product *به سبد خرید اضافه شد.\n";
 			$txt_text .= self::showCard();
 			$result   =
 			[
@@ -470,20 +470,20 @@ class step_order
 	private static function showCard()
 	{
 		$myorder    = step::get('order');
-		$txt_card   = "سبد خرید شما\n";
+		$txt_card   = "سبد خرید\n";
 		$totalPrice = 0;
 		foreach ($myorder as $category => $productList)
 		{
-			$txt_card .= "`[$category]`\n";
+			$txt_card .= "` $category`\n";
 			foreach ($productList as $product => $quantity)
 			{
 				$productDetail = product::detail($product);
 				$price = $productDetail['price'];
 				$totalPrice += $price;
-				$txt_card .= " 🔖 $product *". $quantity. " ✕ ". $price. "تومان*\n";
+				$txt_card .= "  ▫️ $product *". $quantity. " ✕ `". $price. "تومان`*\n";
 			}
 		}
-		$txt_card .= "\nجمع کل:* $totalPrice تومان*";
+		$txt_card .= "\nجمع کل:* $totalPrice تومان* 💰";
 		return $txt_card;
 	}
 }
