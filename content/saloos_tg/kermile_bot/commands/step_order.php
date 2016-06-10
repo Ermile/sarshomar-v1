@@ -161,9 +161,8 @@ class step_order
 	public static function step3($_txtProduct)
 	{
 		$category    = step::get('order_category');
-
 		// check product exist or not
-		if(product::detail($_txtProduct, true))
+		if(!product::detail($_txtProduct, true))
 		{
 			// product not exist
 			$txt_text = "لطفا یکی از کالاهای موجود در دسته $category را انتخاب نمایید!";
@@ -394,7 +393,6 @@ class step_order
 		{
 			$_list = product::get($_list);
 		}
-		var_dump($_list);
 
 		if($_onlyArray === true)
 		{
