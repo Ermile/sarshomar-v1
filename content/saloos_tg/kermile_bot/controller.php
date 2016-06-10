@@ -19,7 +19,7 @@ class controller extends \lib\mvc\controller
 			bot::$name        = 'kermile_bot';
 			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = 'تعریف نشده';
-			bot::$defaultMenu = commands\menu::main(true);
+			bot::$defaultMenu = commands\menu::main();
 			bot::$fill        =
 			[
 				'name'     => 'کرمایل',

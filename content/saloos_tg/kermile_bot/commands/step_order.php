@@ -16,6 +16,16 @@ class step_order
 			['7', '8', '9', '10', '0'],
 		],
 	];
+	private static $keyborad_final =
+	[
+		'keyboard' =>
+		[
+			// ["ادامه خرید", "مشاهده سبد خرید"],
+			["ادامه خرید"],
+			["اتمام سفارش"],
+			["انصراف"],
+		],
+	];
 
 	/**
 	 * create define menu that allow user to select
@@ -122,7 +132,11 @@ class step_order
 				$name  = $productDetail['name'];
 				$price = $productDetail['price'];
 				$desc  = $productDetail['desc'];
-				$txt_text .= "$name `$price تومان`\n$desc \n\n";
+				$txt_text .= "$name `$price تومان`\n";
+				if($desc)
+				{
+					$txt_text .= "$desc \n\n";
+				}
 			}
 
 			$productList = array_column($productList, 'name');
@@ -232,23 +246,13 @@ class step_order
 			// add to catd
 			self::addToCard($category, $product, $_txtNumber);
 
-			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید شما اضافه شد.\n";
+			$txt_text = "تعداد* $_txtNumber عدد $product *به سبد خرید اضافه شد.\n";
 			$txt_text .= self::showCard();
-			$menu     =
-			[
-				'keyboard' =>
-				[
-					["ادامه خرید"],
-					["مشاهده سبد خرید"],
-					["اتمام سفارش"],
-					["بازگشت به منوی اصلی"],
-				],
-			];
 			$result   =
 			[
 				'text'         => $txt_text,
 				// 'reply_markup' => null,
-				'reply_markup' => $menu
+				'reply_markup' => self::$keyborad_final
 			];
 
 		}
@@ -277,6 +281,7 @@ class step_order
 				break;
 
 			case 'مشاهده سبد خرید':
+			case 'مشاهده سفارش':
 			case '/card':
 			case 'card':
 			case 'showcard':
@@ -289,10 +294,12 @@ class step_order
 			case 'paycart':
 				$txt_text = self::showCard();
 				step::plus();
+				return self::step6();
 				// $txt_text = 'بزودی نتایح تهیه و نمایش داده می‌شوند:)';
 				break;
 
 			case 'بازگشت به منوی اصلی':
+			case 'انصراف':
 			case '/cancel':
 			case 'cancel':
 			case '/stop':
@@ -312,9 +319,7 @@ class step_order
 		// get name of question
 		$result   =
 		[
-			[
-				'text' => $txt_text,
-			],
+			'text' => $txt_text,
 		];
 		// return menu
 		return $result;
@@ -362,7 +367,7 @@ class step_order
 		}
 		else
 		{
-			$final_text = "بازگشت به منوی اصلی...\n";
+			$final_text = "انصراف از خرید...\n";
 		}
 
 		// get name of question
@@ -370,7 +375,7 @@ class step_order
 		[
 			[
 				'text'         => $final_text,
-				'reply_markup' => menu::main(true),
+				'reply_markup' => menu::main(),
 			],
 		];
 		// return menu
@@ -466,16 +471,21 @@ class step_order
 
 	private static function showCard()
 	{
-		$myorder  = step::get('order');
-		$txt_card = "سبد خرید شما\n";
+		$myorder    = step::get('order');
+		$txt_card   = "سبد خرید شما\n";
+		$totalPrice = 0;
 		foreach ($myorder as $category => $productList)
 		{
+			$txt_card .= "`[$category]`\n";
 			foreach ($productList as $product => $quantity)
 			{
-				$txt_card .= "🔖 ". $product ."`[$category]` *". $quantity. " عدد*\n";
+				$productDetail = product::detail($product);
+				$price = $productDetail['price'];
+				$totalPrice += $price;
+				$txt_card .= " 🔖 $product *". $quantity. " ✕ ". $price. "تومان*\n";
 			}
 		}
-		$txt_card .= "\n\n _fullName_";
+		$txt_card .= "\nجمع کل:* $totalPrice تومان*";
 		return $txt_card;
 	}
 }

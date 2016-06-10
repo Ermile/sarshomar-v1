@@ -207,7 +207,7 @@ class product
 			}
 		}
 
-		return $products;
+		return $product;
 	}
 }
 ?>
