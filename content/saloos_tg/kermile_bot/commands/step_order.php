@@ -233,7 +233,7 @@ class step_order
 		{
 			// product exist, go to next step
 			// go to next step
-			// step::plus();
+			step::plus();
 			// save product quantity
 			step::set('order_quantity', $_txtNumber);
 			// add to catd
