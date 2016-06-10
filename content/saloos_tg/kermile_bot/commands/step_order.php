@@ -209,7 +209,7 @@ class step_order
 		$product  = step::get('order_product');
 
 		// if user pass anything except number show menu again
-		if(!is_numeric($_txtNumber))
+		if(!is_numeric($_txtNumber) || $_txtNumber !== 0)
 		{
 			// product not exist
 			$txt_text = 'لطفا تنها تعداد مورد نیاز خود را به صورت عددی وارد کنید!';
@@ -218,12 +218,6 @@ class step_order
 				'text'         => $txt_text,
 				'reply_markup' => self::$keyboard_number,
 			];
-		}
-		elseif($_txtNumber === 0)
-		{
-			// got to main menu
-			step::goto(1);
-			return self::step1();
 		}
 		elseif($_txtNumber > 100)
 		{
@@ -246,6 +240,11 @@ class step_order
 			self::addToCard($category, $product, $_txtNumber);
 
 			$txt_text = "*$_txtNumber عدد $product *به سبد خرید اضافه شد.\n";
+			if($_txtNumber === 0)
+			{
+				$txt_text = "*$product *از سبد خرید حذف شد.\n";
+			}
+
 			$txt_text .= self::showCard();
 			$result   =
 			[
@@ -474,7 +473,7 @@ class step_order
 		$totalPrice = 0;
 		foreach ($myorder as $category => $productList)
 		{
-			$txt_card .= "` $category`\n";
+			$txt_card .= "`$category`\n";
 			foreach ($productList as $product => $quantity)
 			{
 				$productDetail = product::detail($product);
