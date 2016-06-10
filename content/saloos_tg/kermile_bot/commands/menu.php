@@ -95,10 +95,49 @@ class menu
 
 
 	/**
+	 * create mainmenu
+	 * @param  boolean $_onlyMenu [description]
+	 * @return [type]             [description]
+	 */
+	public static function main($_onlyMenu = false)
+	{
+		// define
+		$menu =
+		[
+			'keyboard' =>
+			[
+				["ثبت سفارش"],
+				["مشاهده منو"],
+				["درباره", "ثبت بازخورد"],
+			],
+		];
+
+		if($_onlyMenu)
+		{
+			return $menu;
+		}
+
+		$txt_text = "منوی اصلی\n\n";
+
+		$result =
+		[
+			[
+				// 'method'       => 'editMessageReplyMarkup',
+				'text'         => $txt_text,
+				'reply_markup' => $menu,
+			],
+		];
+
+		// return menu
+		return $result;
+	}
+
+
+	/**
 	 * return menu
 	 * @return [type] [description]
 	 */
-	public static function main()
+	public static function main_old()
 	{
 		// disable return from main menu
 		self::$return          = false;
