@@ -500,7 +500,7 @@ class step_order
 				{
 					$productDetail = product::detail($product);
 					$price = $productDetail['price'];
-					$totalPrice += $price;
+					$totalPrice += $quantity * $price;
 					$txt_card .= "▫️ $product *". $quantity. "* ✕ `". $price. "`\n";
 				}
 			}
