@@ -31,6 +31,11 @@ class handle
 				$response = menu::main();
 				break;
 
+			case 'مشاهده':
+			case 'مشاهده منو':
+				$respons = menu::showMenu();
+				break;
+
 			case '/order':
 			case 'order':
 			case 'سفارش':
