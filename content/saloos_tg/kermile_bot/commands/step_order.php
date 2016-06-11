@@ -526,14 +526,17 @@ class step_order
 	// send order to admin
 	private static function sendOrder($_desc = null)
 	{
-		$text   = "📨 سفارش جدید\n$_desc\n";
+		$text   = "🚩 📨 سفارش جدید\n$_desc\n";
 		$text   .= self::showCard();
 		$result =
 		[
 			'text'  => $text,
 			'chat' => '46898544',
 		];
-		return bot::sendResponse($result);
+		var_dump($result);
+		$result = bot::sendResponse($result);
+		var_dump($result);
+		return $result;
 	}
 }
 ?>
