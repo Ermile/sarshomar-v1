@@ -92,7 +92,7 @@ class step_order
 		if(!$productList || !is_array($productList))
 		{
 			$txt_text = 'لطفا یکی از گزینه‌های موجود را انتخاب نمایید!';
-			$result   =
+			$result =
 			[
 				'text'         => $txt_text,
 				'reply_markup' => self::drawKeyboard('catList'),
@@ -127,6 +127,7 @@ class step_order
 			}
 			$txt_text .= "\n\n";
 
+			// set product list with price and desc
 			foreach ($productList as $key => $productDetail)
 			{
 				$name  = $productDetail['name'];
@@ -135,19 +136,21 @@ class step_order
 				$txt_text .= "$name `$price تومان`\n";
 				if($desc)
 				{
-					$txt_text .= "$desc \n\n";
+					// $txt_text .= "$desc \n\n";
 				}
 			}
 
 			$productList = array_column($productList, 'name');
-			$result   =
+
+			// send photo of this category
+			$result   = product::sendPhoto($_txtCategory);
+			$result[] =
 			[
 				'text'         => $txt_text,
 				// 'reply_markup' => null,
 				'reply_markup' => self::drawKeyboard($productList),
 			];
 		}
-
 		// return menu
 		return $result;
 	}
@@ -304,7 +307,7 @@ class step_order
 			case 'stop':
 			case '/return':
 			case 'return':
-				step::stop(3);
+				step::stop(true);
 				return self::stop();
 				break;
 
@@ -332,6 +335,10 @@ class step_order
 			// 'reply_markup' => null,
 			// 'reply_markup' => $menu
 		];
+
+		step::stop();
+		return self::stop();
+
 		return $result;
 	}
 
@@ -359,13 +366,14 @@ class step_order
 		}
 		elseif($_cancel === false)
 		{
-			$final_text = "انصراف\n";
+			$final_text = "سفارش شما تکمیل شد.\n";
+			$final_text .= "تا دقایقی دیگر سفارش شما ارسال خواهد شد.\n";
 			// complete soon
 			step::stop();
 		}
 		else
 		{
-			$final_text = "انصراف از خرید...\n";
+			$final_text = "انصراف\n";
 		}
 
 		// get name of question
@@ -459,17 +467,14 @@ class step_order
 		// get current order
 		$myorder = step::get('order');
 		// add this product to order
-		if($_quantity == 0)
+		$myorder[$_category][$_product] = $_quantity;
+		if($_quantity == 0 && isset($myorder[$_category][$_product]))
 		{
 			unset($myorder[$_category][$_product]);
-			if(count($myorder[$_category]) === 0)
+			if(isset($myorder[$_category]) && count($myorder[$_category]) === 0)
 			{
 				unset($myorder[$_category]);
 			}
-		}
-		else
-		{
-			$myorder[$_category][$_product] = $_quantity;
 		}
 		// save new order
 		step::set('order', $myorder);
@@ -503,5 +508,12 @@ class step_order
 		}
 		return $txt_card;
 	}
+
+	private static function saveCard()
+	{
+			\lib\db\posts::insertOrder(bot::$user_id, $question_id, $answer_id, $_answer_txt);
+
+	}
+
 }
 ?>

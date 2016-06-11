@@ -209,5 +209,75 @@ class product
 
 		return $product;
 	}
+
+	public static function sendPhoto($_category, $_onlyPhoto = false)
+	{
+		$pictures =
+		[
+			'پیتزا' =>
+			[
+				'name'    => 'pizza',
+				'url'     => 'static/images/telegram/kermile/pizza.jpg',
+				'id_800'  => 'AgADBAADsKcxGxBxeQxdAZESrpJnQiciazAABLG8mVeKsOwqz0EAAgI',
+				'id_320'  => 'AgADBAADsKcxGxBxeQxdAZESrpJnQiciazAABBW9DOiZt-nRzkEAAgI',
+				'desc'    => "بهترین پیتزاها را از _fullName_ بخواهید",
+			],
+			'ساندویچ' =>
+			[
+				'name'    => 'sandwich',
+				'url'     => 'static/images/telegram/kermile/sandwich.jpg',
+				'id_800'  => 'AgADBAADsacxGxBxeQwdaOqCkY_SDT92jDAABBO3s40_SyH0xhQCAAEC',
+				'id_320'  => 'AgADBAADsacxGxBxeQwdaOqCkY_SDT92jDAABDF-fpyR4pXvxRQCAAEC',
+				'desc'    => "_fullName_ لذیذترین ساندویچ‌ها را برای شما آماده دارد",
+			],
+			'نوشیدنی' =>
+			[
+				'name'    => 'drink',
+				'url'     => 'static/images/telegram/kermile/drink.jpg',
+				'id_800'  => 'AgADBAADsqcxGxBxeQxh03_capXORqpKYzAABJfenQFTS4fj6kMAAgI',
+				'id_320'  => 'AgADBAADsqcxGxBxeQxh03_capXORqpKYzAABFI-1ytw6Z9e6UMAAgI',
+				'desc'    => "برترین نوشیدنی‌ها را از _fullName_ بخواهید",
+			],
+			'پیش‌غذا' =>
+			[
+				'name'    => 'appetizer',
+				'url'     => 'static/images/telegram/kermile/appetizer.jpg',
+				'id_800'  => 'AgADBAADs6cxGxBxeQwKzDGBL8TgxyeXjDAABNDcan2utYRwEz8AAgI',
+				'id_320'  => 'AgADBAADs6cxGxBxeQwKzDGBL8TgxyeXjDAABLajyL8x7fuXEj8AAgI',
+				'desc'    => "پیش‌غذاهایی لذیذ برای شما",
+			],
+		];
+
+		$photo = null;
+		if(isset($pictures[$_category]))
+		{
+			if($pictures[$_category]['id_320'])
+			{
+				$photo = $pictures[$_category]['id_320'];
+			}
+			else
+			{
+				$photo = new \CURLFile(realpath($pictures[$_category]['url']));
+			}
+		}
+
+		if($_onlyPhoto === true)
+		{
+			return $photo;
+		}
+
+		$txt_caption = $pictures[$_category]['desc'];
+		$result =
+		[
+			[
+				'method'  => 'sendPhoto',
+				'caption' => $txt_caption,
+				'photo'   => $photo,
+				// 'photo'   => new \CURLFile(realpath("static/images/telegram/kermile/pizza.jpg")),
+				// 'photo'  => 'AgADBAADq6cxGxBxeQwAAVDut79r__Zb5EIZAARi8HlJzJsMYmVdAAIC',
+			],
+		];
+		return $result;
+	}
 }
 ?>
