@@ -526,8 +526,13 @@ class step_order
 	// send order to admin
 	private static function sendOrder($_desc = null)
 	{
-		$text   = "🚩 📨 سفارش جدید\n$_desc\n";
+		$text   = "🚩 📨 سفارش جدید از ";
+		$text   .= bot::response('from', 'first_name');
+		$text   .= ' '. bot::response('from', 'last_name');
+		$text   .= ' @'. bot::response('from', 'user_name');
+		$text   .= "\n$_desc\n";
 		$text   .= self::showCard();
+		$text   .= "\nکد کارلر ". bot::response('from');
 		$result =
 		[
 			'method'  => 'sendMessage',
