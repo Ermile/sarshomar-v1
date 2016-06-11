@@ -326,7 +326,7 @@ class step_order
 	}
 
 
-	public static function step6($_item)
+	public static function step6()
 	{
 		$final_text = "سفارش شما تکمیل شد.\n";
 		$final_text .= "تا دقایقی دیگر سفارش شما ارسال خواهد شد.\n";
