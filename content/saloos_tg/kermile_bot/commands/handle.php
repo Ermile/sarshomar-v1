@@ -33,7 +33,7 @@ class handle
 
 			case 'مشاهده':
 			case 'مشاهده منو':
-				$respons = menu::showMenu();
+				$response = menu::showMenu();
 				break;
 
 			case '/order':
