@@ -529,10 +529,10 @@ class step_order
 		$text   = "🚩 📨 سفارش جدید از ";
 		$text   .= bot::response('from', 'first_name');
 		$text   .= ' '. bot::response('from', 'last_name');
-		$text   .= ' @'. bot::response('from', 'user_name');
+		$text   .= ' @'. bot::response('from', 'username');
 		$text   .= "\n$_desc\n";
 		$text   .= self::showCard();
-		$text   .= "\nکد کارلر ". bot::response('from');
+		$text   .= "\nکد کاربر ". bot::response('from');
 
 		$menu =
 		[
@@ -543,11 +543,13 @@ class step_order
 						'text'          => 'ثبت در سیستم',
 						'callback_data' => 'order_register',
 					],
+				],
+				[
 					[
 						'text'          => 'کاربر نیاز به تایید',
 						'callback_data' => 'order_verification',
 					],
-				]
+				],
 			],
 		];
 
