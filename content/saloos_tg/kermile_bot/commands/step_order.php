@@ -533,11 +533,31 @@ class step_order
 		$text   .= "\n$_desc\n";
 		$text   .= self::showCard();
 		$text   .= "\nکد کارلر ". bot::response('from');
+
+		$menu =
+		[
+			'inline_keyboard' =>
+			[
+				[
+					[
+						'text'          => 'ثبت در سیستم',
+						'callback_data' => 'order_register',
+					],
+					[
+						'text'          => 'کاربر نیاز به تایید',
+						'callback_data' => 'order_verification',
+					],
+				]
+			],
+		];
+
 		$result =
 		[
-			'method'  => 'sendMessage',
-			'text'    => $text,
-			'chat_id' => '46898544',
+			'method'       => 'sendMessage',
+			'text'         => $text,
+			'chat_id'      => '46898544',
+			'reply_markup' => $menu,
+
 		];
 		var_dump($result);
 		$result = bot::sendResponse($result);
