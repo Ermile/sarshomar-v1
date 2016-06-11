@@ -334,6 +334,7 @@ class step_order
 		$result   =
 		[
 			'text'         => $final_text,
+			'reply_markup' => menu::main(true),
 			// 'reply_markup' => null,
 			// 'reply_markup' => $menu
 		];
