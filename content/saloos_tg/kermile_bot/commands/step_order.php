@@ -530,8 +530,9 @@ class step_order
 		$text   .= self::showCard();
 		$result =
 		[
-			'text'  => $text,
-			'chat' => '46898544',
+			'method'  => 'sendMessage',
+			'text'    => $text,
+			'chat_id' => '46898544',
 		];
 		var_dump($result);
 		$result = bot::sendResponse($result);
