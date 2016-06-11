@@ -307,7 +307,6 @@ class step_order
 			case 'stop':
 			case '/return':
 			case 'return':
-				step::stop(true);
 				return self::stop();
 				break;
 
@@ -329,16 +328,19 @@ class step_order
 
 	public static function step6($_item)
 	{
+		$final_text = "سفارش شما تکمیل شد.\n";
+		$final_text .= "تا دقایقی دیگر سفارش شما ارسال خواهد شد.\n";
+
 		$result   =
 		[
-			'text'         => "هدایت برای پرداخت...",
+			'text'         => $final_text,
 			// 'reply_markup' => null,
 			// 'reply_markup' => $menu
 		];
-
+		// send order to admin of bot
+		self::sendOrder();
+		// stop order
 		step::stop();
-		return self::stop();
-
 		return $result;
 	}
 
@@ -374,6 +376,7 @@ class step_order
 		else
 		{
 			$final_text = "انصراف\n";
+			step::stop(true);
 		}
 
 		// get name of question
@@ -481,7 +484,10 @@ class step_order
 	}
 
 
-
+	/**
+	 * show user card
+	 * @return [type] [description]
+	 */
 	private static function showCard()
 	{
 		$myorder    = step::get('order');
@@ -509,11 +515,25 @@ class step_order
 		return $txt_card;
 	}
 
+
 	private static function saveCard()
 	{
 			\lib\db\posts::insertOrder(bot::$user_id, $question_id, $answer_id, $_answer_txt);
 
 	}
 
+
+	// send order to admin
+	private static function sendOrder($_desc = null)
+	{
+		$text   = "📨 سفارش جدید\n$_desc\n";
+		$text   .= self::showCard();
+		$result =
+		[
+			'text'  => $text,
+			'chat' => '46898544',
+		];
+		return bot::sendResponse($result);
+	}
 }
 ?>
