@@ -130,7 +130,7 @@ class user
 				'caption'   => $txt_caption,
 				'method' => 'sendPhoto',
 				// 'photo'  => new \CURLFile(realpath("static/images/telegram/germile/about.jpg")),
-				'photo'  => 'AgADBAADq6cxGxBxeQwAAVDut79r__Zb5EIZAARi8HlJzJsMYmVdAAIC',
+				'photo'  => 'AgADBAADrKcxG0lI6Aya2-pZtMoVCihvWBkABM8a9KIiiEpApgUAAgI',
 			],
 		];
 

@@ -76,7 +76,9 @@ class menu
 				'caption'   => $txt_caption,
 				'method' => 'sendPhoto',
 				// 'photo'  => new \CURLFile(realpath("static/images/telegram/germile/menu.jpg")),
-				'photo'  => 'AgADBAADracxGxBxeQyJeNqkhwcFJxP1KBkABEaZHHvrygd_hOcBAAEC',
+				// 'photo'  => 'AgADBAADracxG0lI6AwPh7ImUJln84h_aTAABMkTUZCw5Z5YNz4CAAEC', // 1920
+				'photo'  => 'AgADBAADracxG0lI6AwPh7ImUJln84h_aTAABDp6iOmMIhHhOD4CAAEC', // 1280
+				// 'photo'  => 'AgADBAADracxG0lI6AwPh7ImUJln84h_aTAABCUgYxIXz9KBOz4CAAEC', // 800
 			],
 		];
 		// $result['reply_markup'] = $menu;

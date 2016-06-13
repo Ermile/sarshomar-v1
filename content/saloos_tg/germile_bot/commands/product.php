@@ -218,32 +218,32 @@ class product
 			[
 				'name'    => 'pizza',
 				'url'     => 'static/images/telegram/germile/pizza.jpg',
-				'id_800'  => 'AgADBAADsKcxGxBxeQxdAZESrpJnQiciazAABLG8mVeKsOwqz0EAAgI',
-				'id_320'  => 'AgADBAADsKcxGxBxeQxdAZESrpJnQiciazAABBW9DOiZt-nRzkEAAgI',
+				'id_800'  => 'AgADBAADrqcxG0lI6AygqFk_NcFpQRu3QhkABB2nwTNrh_EucfUBAAEC',
+				'id_320'  => 'AgADBAADrqcxG0lI6AygqFk_NcFpQRu3QhkABNgAAUqBcruXm3D1AQABAg',
 				'desc'    => "بهترین پیتزاها را از _fullName_ بخواهید",
 			],
 			'ساندویچ' =>
 			[
 				'name'    => 'sandwich',
 				'url'     => 'static/images/telegram/germile/sandwich.jpg',
-				'id_800'  => 'AgADBAADsacxGxBxeQwdaOqCkY_SDT92jDAABBO3s40_SyH0xhQCAAEC',
-				'id_320'  => 'AgADBAADsacxGxBxeQwdaOqCkY_SDT92jDAABDF-fpyR4pXvxRQCAAEC',
+				'id_800'  => 'AgADBAADr6cxG0lI6AyM2XTx4aI1F425QhkABDSAoDwOESVoIvQBAAEC',
+				'id_320'  => 'AgADBAADr6cxG0lI6AyM2XTx4aI1F425QhkABOq5V-zcDyITIfQBAAEC',
 				'desc'    => "_fullName_ لذیذترین ساندویچ‌ها را برای شما آماده دارد",
 			],
 			'نوشیدنی' =>
 			[
 				'name'    => 'drink',
 				'url'     => 'static/images/telegram/germile/drink.jpg',
-				'id_800'  => 'AgADBAADsqcxGxBxeQxh03_capXORqpKYzAABJfenQFTS4fj6kMAAgI',
-				'id_320'  => 'AgADBAADsqcxGxBxeQxh03_capXORqpKYzAABFI-1ytw6Z9e6UMAAgI',
+				'id_800'  => 'AgADBAADsKcxG0lI6AzJ3kjqWp9gSDE-izAABFZqLYhuV8PG3oIBAAEC',
+				'id_320'  => 'AgADBAADsKcxG0lI6AzJ3kjqWp9gSDE-izAABKYB1GorEpkd3YIBAAEC',
 				'desc'    => "برترین نوشیدنی‌ها را از _fullName_ بخواهید",
 			],
 			'پیش‌غذا' =>
 			[
 				'name'    => 'appetizer',
 				'url'     => 'static/images/telegram/germile/appetizer.jpg',
-				'id_800'  => 'AgADBAADs6cxGxBxeQwKzDGBL8TgxyeXjDAABNDcan2utYRwEz8AAgI',
-				'id_320'  => 'AgADBAADs6cxGxBxeQwKzDGBL8TgxyeXjDAABLajyL8x7fuXEj8AAgI',
+				'id_800'  => 'AgADBAADsKcxG0lI6AzJ3kjqWp9gSDE-izAABFZqLYhuV8PG3oIBAAEC',
+				'id_320'  => 'AgADBAADsKcxG0lI6AzJ3kjqWp9gSDE-izAABKYB1GorEpkd3YIBAAEC',
 				'desc'    => "پیش‌غذاهایی لذیذ برای شما",
 			],
 		];
@@ -251,7 +251,7 @@ class product
 		$photo = null;
 		if(isset($pictures[$_category]))
 		{
-			if($pictures[$_category]['id_320'])
+			if(isset($pictures[$_category]['id_320']) && $pictures[$_category]['id_320'])
 			{
 				$photo = $pictures[$_category]['id_320'];
 			}
