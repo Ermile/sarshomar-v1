@@ -40,23 +40,18 @@ class handle
 			case 'order':
 			case 'سفارش':
 			case 'ثبت سفارش':
-			case 'ثبت':
 				$response = step_order::start(true);
 				break;
 
 			case 'ثبت':
 				switch ($_cmd['text'])
 				{
-					case 'نظرسنجی‌های من':
-						$response = menu_my::my();
+					case 'ثبت سفارش':
+						$response = step_order::start(true);
 						break;
 
-					case 'نظرسنجی‌های موجود':
-						$response = menu_my::mypolls();
-						break;
-
-					case 'نظرسنجی‌های سرشمار':
-						$response = step_sarshomar::start();
+					case 'ثبت بازخورد':
+						$response = step_feedback::start();
 						break;
 
 					default:
@@ -66,7 +61,6 @@ class handle
 
 			case '/feedback':
 			case 'feedback':
-			case 'ثبت':
 			case 'ثبت بازخورد':
 				$response = step_feedback::start();
 				break;
