@@ -165,7 +165,7 @@ class step_sarshomar
 			];
 
 			// got to step1
-			step::goto(1);
+			step::goingto(1);
 			// show new question, get from step3
 			$result[] = self::step1();
 		}
@@ -200,7 +200,7 @@ class step_sarshomar
 			case 'سوال بعدی':
 			case '/next':
 			case 'next':
-				step::goto(1);
+				step::goingto(1);
 				return self::step1();
 				break;
 

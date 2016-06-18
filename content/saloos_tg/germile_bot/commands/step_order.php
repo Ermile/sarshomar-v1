@@ -277,7 +277,7 @@ class step_order
 			case 'ادامه خرید':
 			case '/next':
 			case 'next':
-				step::goto(1);
+				step::goingto(1);
 				return self::step1();
 				break;
 
