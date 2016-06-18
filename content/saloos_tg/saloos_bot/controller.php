@@ -1,7 +1,7 @@
 <?php
 namespace content\saloos_tg\saloos_bot;
 // use telegram class as bot
-use \lib\utility\telegram\tg as bot;
+use \lib\telegram\tg as bot;
 
 class controller extends \lib\mvc\controller
 {
