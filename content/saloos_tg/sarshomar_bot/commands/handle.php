@@ -109,7 +109,8 @@ class handle
 			case 'feedback':
 			case 'ثبت':
 			case 'ثبت بازخورد':
-				$response = step_feedback::start();
+				step::set('menu', menu::main(true));
+				$response = \lib\telegram\commands\step_feedback::start();
 				break;
 
 			case 'return':

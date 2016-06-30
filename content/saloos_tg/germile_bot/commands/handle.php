@@ -51,7 +51,8 @@ class handle
 						break;
 
 					case 'ثبت بازخورد':
-						$response = step_feedback::start();
+						step::set('menu', menu::main(true));
+						$response = \lib\telegram\commands\step_feedback::start();
 						break;
 
 					default:
@@ -62,7 +63,8 @@ class handle
 			case '/feedback':
 			case 'feedback':
 			case 'ثبت بازخورد':
-				$response = step_feedback::start();
+				step::set('menu', menu::main(true));
+				$response = \lib\telegram\commands\step_feedback::start();
 				break;
 
 			case 'return':
