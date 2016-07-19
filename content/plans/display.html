@@ -1,0 +1,147 @@
+{%extends display.mvc%}
+
+
+{%block head_css%}
+
+ <link rel="stylesheet" href="{{url.root}}static/plans/css/style.css"> <!-- Resource style -->
+ <script src="{{url.root}}static/plans/js/modernizr.js"></script> <!-- Modernizr -->
+{%endblock%}
+
+{%block foot_js%}
+
+ <script src="{{url.root}}static/plans/js/jquery-2.1.1.js"></script>
+ <script src="{{url.root}}static/plans/js/main.js"></script> <!-- Resource jQuery -->
+{%endblock%}
+
+
+{%block body%}
+	<header class="cd-header">
+		<h1>پلن‌های مالی</h1>
+	</header>
+
+
+	<div class="cd-pricing-container cd-has-margins">
+		<div class="cd-pricing-switcher hide">
+			<p class="fieldset">
+				<input type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
+				<label for="monthly-2">ماهانه</label>
+				<input type="radio" name="duration-2" value="yearly" id="yearly-2">
+				<label for="yearly-2">سالانه</label>
+				<span class="cd-switch"></span>
+			</p>
+		</div> <!-- .cd-pricing-switcher -->
+
+		<ul class="cd-pricing-list cd-bounce-invert">
+			<li>
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<h2>رایگان</h2>
+						<header class="cd-pricing-header">
+							<div class="cd-price">
+								<span class="cd-currency">*</span>
+								<span class="cd-value">1</span>
+								<!-- <span class="cd-duration">mo</span> -->
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li>تا <em>۱۰۰</em> پاسخ‌دهنده</li>
+								<li>جزئیات نموداری</li>
+								<li>Test</li>
+								<li class="disable">دریافت خروجی</li>
+								<li class="disable">اعمال محدودیت روی سوالات</li>
+								<li class="disable">سوالات تشریحی</li>
+								<li class="disable">خصوصی‌سازی نتایج</li>
+								<li class="disable">سوال چندرسانه‌ای</li>
+								<li class="disable">درختواره سوالات</li>
+								<li class="disable">برندینگ سوالات</li>
+								<li class="disable">تعریف الگوریتم امتیازدهی</li>
+								<li class="disable">انتخاب جامعه هدف</li>
+								<li class="disable">تحلیل تشریحی</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="#">انتخاب</a>
+						</footer>  <!-- .cd-pricing-footer -->
+					</li>
+				</ul> <!-- .cd-pricing-wrapper -->
+			</li>
+
+			<li class="cd-popular">
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<h2>پرطرفدار</h2>
+						<header class="cd-pricing-header">
+							<div class="cd-price">
+								<span class="cd-currency">*</span>
+								<span class="cd-value">2</span>
+								<!-- <span class="cd-duration">mo</span> -->
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li>تا <em>۱۰.۰۰۰</em> پاسخ‌دهنده</li>
+								<li>جزئیات نموداری</li>
+								<li>Test</li>
+								<li>دریافت خروجی</li>
+								<li>اعمال محدودیت روی سوالات</li>
+								<li>سوالات تشریحی</li>
+								<li>خصوصی‌سازی نتایج</li>
+								<li>سوال چندرسانه‌ای</li>
+								<li class="disable">درختواره سوالات</li>
+								<li class="disable">برندینگ سوالات</li>
+								<li class="disable">تعریف الگوریتم امتیازدهی</li>
+								<li class="disable">انتخاب جامعه هدف</li>
+								<li class="disable">تحلیل تشریحی</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="#">انتخاب</a>
+						</footer>  <!-- .cd-pricing-footer -->
+					</li>
+				</ul> <!-- .cd-pricing-wrapper -->
+			</li>
+
+			<li>
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<h2>حرفه‌ای</h2>
+						<header class="cd-pricing-header">
+							<div class="cd-price">
+								<span class="cd-currency">*</span>
+								<span class="cd-value">4</span>
+								<!-- <span class="cd-duration">mo</span> -->
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>نامحدود</em> پاسخ‌دهنده</li>
+								<li>جزئیات نموداری</li>
+								<li>Test</li>
+								<li>دریافت خروجی</li>
+								<li>اعمال محدودیت روی سوالات</li>
+								<li>سوالات تشریحی</li>
+								<li>خصوصی‌سازی نتایج</li>
+								<li>سوال چندرسانه‌ای</li>
+								<li>درختواره سوالات</li>
+								<li>برندینگ سوالات</li>
+								<li انتخاب جامعه >تعریف الگوریتم امتیازدهی</li>
+								<li>انتخاب جامعه هدف</li>
+								<li انتخاب جامعه >تحلیل تشریحی</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="#">انتخاب</a>
+						</footer>  <!-- .cd-pricing-footer -->
+					</li>
+				</ul> <!-- .cd-pricing-wrapper -->
+			</li>
+		</ul> <!-- .cd-pricing-list -->
+	</div> <!-- .cd-pricing-container -->
+{%endblock%}
