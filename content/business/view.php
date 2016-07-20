@@ -1,5 +1,5 @@
 <?php
-namespace content\plans;
+namespace content\business;
 
 class view extends \mvc\view
 {
