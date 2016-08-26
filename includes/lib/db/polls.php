@@ -9,6 +9,82 @@ class polls
 	 * v3.1
 	 */
 
+	/**
+	 * get list of posts wthi post_type = polls_(|.*)
+	 *
+	 * @param      array  $_args  user_id, post_type, start(limit), end(limit) ,
+	 *
+	 * @return     array  mysql result
+	 */
+	public static function xget($_args){
+
+		// check post_type . if post_type is null return all type of posts
+		if(isset($_args['post_type'])){
+			$post_type = "AND post_type = 'poll_". $_args['post_type'] . "'";
+		}else{
+			$post_type = "AND post_type LIKE 'poll\_%'";
+		}
+
+		// check post_status
+		if(isset($_args['post_status'])){
+			$post_status = $_args['post_status'];
+		}else{
+			$post_status = "publish";
+		}
+
+		// check users id , retrun post of one person or all person
+		if(isset($_args['user_id'])){
+			$user_id = "AND user_id = " . $_args['user_id'];
+		}else{
+			$user_id = null;
+		}
+
+		// set page of limit query , default return LIMIT 0, 10 of record
+		if(isset($_args['page'])) {
+			$page = $_args['page'];
+		}else{
+			$page = 1;
+		}
+
+		// set lenght of limit query , default return LIMIT 0, 10 of record
+		if(isset($_args['lenght'])) {
+			$lenght = $_args['lenght'];
+		}else{
+			$lenght = 10;
+		}
+
+		$start = ($page - 1) * $lenght;
+		$end   = $start + $lenght;
+
+		// creat query string
+		// fields we not show: id, date_modified , post_meta, user_id
+		$query = "
+				SELECT
+					id,
+					post_language 		as 'language',
+					post_title 			as 'title',
+					post_slug 			as 'slug',
+					post_url 			as 'url',
+					post_content 		as 'content',
+					post_type 			as 'type',
+					post_comment 		as 'comment',
+					post_count 			as 'count',
+					post_order 			as 'order',
+					post_status 		as 'status',
+					post_parent 		as 'parent',
+					post_publishdate 	as 'publishdate'
+				FROM posts
+				WHERE
+					post_status =  '$post_status'
+					$post_type
+					$user_id
+				ORDER BY posts.id DESC
+				LIMIT $start, $end
+					";
+
+		return \lib\db\posts::select($query, "get");
+	}
+
 
 	/**
 	 * get list of polls

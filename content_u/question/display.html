@@ -1,0 +1,7 @@
+{%extends display.mvc%}
+{%block content%}
+{%for key , value in datatable%}
+	<a href="{{value.id}}">{{value.title}}</a>
+<hr>
+{%endfor%}
+{%endblock%}
