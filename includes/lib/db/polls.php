@@ -57,7 +57,7 @@ class polls
 		$end   = $start + $lenght;
 
 		// creat query string
-		// fields we not show: id, date_modified , post_meta, user_id
+		// fields we not show: date_modified , post_meta, user_id
 		$query = "
 				SELECT
 					id,
@@ -75,7 +75,7 @@ class polls
 					post_publishdate 	as 'publishdate'
 				FROM posts
 				WHERE
-					post_status =  '$post_status'
+					post_status = '$post_status'
 					$post_type
 					$user_id
 				ORDER BY posts.id DESC
@@ -86,6 +86,26 @@ class polls
 	}
 
 
+	public static function insert($_args){
+		$post_value = [
+					'post_language'    => $_args['language'],
+					'post_title'       => $_args['title'],
+					'post_slug'        => \lib\utility\slugify::slugify($_args['title']),
+					'post_content'     => $_args['content'],
+					'post_type'        => 'poll_sarshomar',
+					'post_status'      => 'draft',
+					'post_parent'      => $_args['parent'],
+					'post_publishdate' => $_args['']
+					];
+
+		$post_id = \lib\db\posts::insert($post_value);
+		$post_id = $post_id::insert_id();
+
+
+		$answers = $_args['answers'];
+
+
+	}
 	/**
 	 * get list of polls
 	 * @param  [type] $_user_id set userid

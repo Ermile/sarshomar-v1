@@ -8,7 +8,7 @@ class view extends \mvc\view
 	}
 
 	function view_question_add() {
-
+		$this->data->form_add = true;
 	}
 
 	function view_question_edit() {

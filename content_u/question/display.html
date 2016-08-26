@@ -4,4 +4,23 @@
 	<a href="{{value.id}}">{{value.title}}</a>
 <hr>
 {%endfor%}
+
+
+{%if form_add%}
+<form action="question/add" method="post">
+	title:<input type="text" name="title"><br>
+	language:<input type="text" name="language"><br>
+	content:<input type="text" name="content"><br>
+	publish_date:<input type="text" name="publish_date"><br>
+	answer1:<input type="text" name="answers[]"><br>
+	answer2:<input type="text" name="answers[]"><br>
+	answer3:<input type="text" name="answers[]"><br>
+	answer4:<input type="text" name="answers[]"><br>
+	answer5:<input type="text" name="answers[]"><br>
+	answer6:<input type="text" name="answers[]"><br>
+	answer7:<input type="text" name="answers[]"><br>
+	answer8:<input type="text" name="answers[]"><br>
+		  <input type="submit" value="ثبت سوال"><br>
+</form>
+{%endif%}
 {%endblock%}

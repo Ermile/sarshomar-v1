@@ -10,11 +10,18 @@ class controller extends \content_u\home\controller
 			$this->redirector()->set_domain()->set_url('login')->redirect();
 		}
 
-
+		// list of query
 		$this->get("question", "question")->ALL("question");
-		$this->get("question_add", "question_add")->ALL("question/add");
+
+		// add new question
+		$this->get(false, "question_add")->ALL("question/add");
+		$this->post("question_add")->ALL("question/add");
+
+		// edit question
 		$this->get("question_edit", "question_edit")->ALL("/^question\/edit\/(\d+)$/");
-		$this->get("question_delete", null)->ALL("/^question\/delete\/(\d+)$/");
+
+		// delete question
+		$this->get("question_delete", false)->ALL("/^question\/delete\/(\d+)$/");
 
 	}
 }
