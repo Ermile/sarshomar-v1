@@ -2,7 +2,7 @@
 namespace lib\db;
 
 /** work with polls **/
-class chart_polls
+class polls
 {
 	/**
 	 * this library work with acoount
