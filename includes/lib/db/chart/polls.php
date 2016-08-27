@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\db\chart;
 
 /** work with polls **/
 class polls
