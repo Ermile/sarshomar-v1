@@ -66,3 +66,15 @@ nav#page-nav:hover{background-color:rgba(238, 238, 238, 0.4);}
 nav#page-nav a:hover{color:#000;}
 .rtl nav#page-nav #nav-next{float:left;display: block }
 .rtl nav#page-nav #nav-prev{float:right;display: block }
+
+nav.nav ul li {
+	display: inline-block;
+}
+
+nav.nav ul li:not(:last-child) {
+	margin-right: 1em;
+}
+
+.rtl nav.nav ul li:not(:last-child) {
+	margin-left: 1em;
+}

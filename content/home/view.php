@@ -6,11 +6,11 @@ class view extends \mvc\view
 	function config()
 	{
 		// $this->include->css_ermile   = false;
-		$this->include->js    = false;
-		$this->include->chart = true;
+		$this->include->js    = true;
+		// $this->include->chart = true;
 		if($this->module() === 'home')
 		{
-			$this->include->js_main      = false;
+			$this->include->js_main      = true;
 		}
 		// $this->data->chart      = \lib\db\polls::getResult(3, 'count', 'txt');
 		$post = $this->model()->get_posts();
