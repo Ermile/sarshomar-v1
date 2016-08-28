@@ -86,26 +86,72 @@ class polls
 	}
 
 
+	/**
+	 * insert polls as post record
+	 *
+	 * @param      <type>  $_args  list of polls meta and answers
+	 *
+	 * @return     <type>  mysql result
+	 */
 	public static function insert($_args){
+
 		$post_value = [
+					'user_id'          => $_args['user_id'],
 					'post_language'    => $_args['language'],
 					'post_title'       => $_args['title'],
-					'post_slug'        => \lib\utility\slugify::slugify($_args['title']),
+					'post_slug'        => "SLUG", //  NOT WORK !!! >>  \lib\utility\slugify::create($_args['title']),
+					'post_url'         => $_args['title'],
 					'post_content'     => $_args['content'],
-					'post_type'        => 'poll_sarshomar',
+					'post_type'        => $_args['type'],
 					'post_status'      => 'draft',
-					'post_parent'      => $_args['parent'],
-					'post_publishdate' => $_args['']
+					// 'post_parent'   => $_args['parent'],
+					'post_publishdate' => $_args['publish_date']
 					];
 
-		$post_id = \lib\db\posts::insert($post_value);
-		$post_id = $post_id::insert_id();
+		$result = \lib\db\posts::insert($post_value);
 
+		// new id of poll, posts.id
+		$insert_id 	= \lib\db::insert_id();
 
-		$answers = $_args['answers'];
+		// if poll inserted , insert the answers to options table
+		if($insert_id && $_args['answers']){
 
+			return self::insert_answers([
+											'post_id' => $insert_id,
+											'user_id' => $_args['user_id'],
+											'answers' => $_args['answers']
+										]);
+		}else{
+			return $result;
+		}
 
 	}
+
+
+	/**
+	 * insert answers to options table
+	 *
+	 * @param      array  $_args  list of answers and post id
+	 *
+	 * @return     <type>  mysql result
+	 */
+	public static function insert_answers($_args){
+
+		$answers = [];
+		foreach ($_args['answers'] as $key => $value) {
+			$answers[] = [
+						'user_id'      =>  $_args['user_id'],
+						'post_id'      =>  $_args['post_id'],
+						'option_cat'   => 'polls_' . $_args['post_id'],
+						'option_key'   => 'answer_' . $key,
+						'option_value' => $value
+						];
+		}
+
+		return \lib\db\options::insert_multi($answers);
+	}
+
+
 	/**
 	 * get list of polls
 	 * @param  [type] $_user_id set userid

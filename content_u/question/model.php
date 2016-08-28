@@ -21,12 +21,21 @@ class model extends \mvc\model
 	}
 
 	function post_question_add() {
-		$title = utility::post("title");
-		$answers = utility::post("answers");
+
+		$args = [
+				'user_id'     => $this->login('id'),
+				'title'        => utility::post("title"),
+				'type'         => utility::post("type"),
+				'language'     => utility::post("language"),
+				'content'      => utility::post("content"),
+				'publish_date' => utility::post("publish_date"),
+				'answers' 	   => utility::post("answers")
+				];
 
 
+		$result  = \lib\db\polls::insert($args);
 
-		var_dump($answers);
+		var_dump($result);
 		exit();
 	}
 
