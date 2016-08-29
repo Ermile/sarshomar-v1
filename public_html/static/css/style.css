@@ -202,6 +202,24 @@ nav.nav ul li:not(:last-child) {
     line-height: 30px;
 }
 
+/* In the Name of God */
+.top-chart {
+    min-width: 310px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.top-chart * {
+    font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.top-chart .highcharts-title {
+    font-weight: bold;
+}
+
+.top-chart .highcharts-subtitle {
+}
+
 @media (max-width: 768px) {
     #demo-wrapper {
         width: auto;
