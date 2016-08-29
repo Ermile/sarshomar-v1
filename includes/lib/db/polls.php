@@ -20,16 +20,16 @@ class polls
 
 		// check post_type . if post_type is null return all type of posts
 		if(isset($_args['post_type'])){
-			$post_type = "AND post_type = 'poll_". $_args['post_type'] . "'";
+			$post_type = " post_type = 'poll_". $_args['post_type'] . "'";
 		}else{
-			$post_type = "AND post_type LIKE 'poll\_%'";
+			$post_type = " post_type LIKE 'poll\_%'";
 		}
 
 		// check post_status
 		if(isset($_args['post_status'])){
-			$post_status = $_args['post_status'];
+			$post_status = " AND post_status = '" .$_args['post_status'] . "'";
 		}else{
-			$post_status = "publish";
+			$post_status = null;
 		}
 
 		// check users id , retrun post of one person or all person
@@ -75,13 +75,12 @@ class polls
 					post_publishdate 	as 'publishdate'
 				FROM posts
 				WHERE
-					post_status = '$post_status'
 					$post_type
+					$post_status
 					$user_id
 				ORDER BY posts.id DESC
 				LIMIT $start, $end
 					";
-
 		return \lib\db\posts::select($query, "get");
 	}
 
@@ -95,15 +94,19 @@ class polls
 	 */
 	public static function insert($_args){
 
+		// get slug string
+		$slug =  \lib\utility\filter::slug($_args['title']);
+
 		$post_value = [
 					'user_id'          => $_args['user_id'],
 					'post_language'    => $_args['language'],
 					'post_title'       => $_args['title'],
-					'post_slug'        => "SLUG", //  NOT WORK !!! >>  \lib\utility\slugify::create($_args['title']),
-					'post_url'         => $_args['title'],
+					'post_slug'        => $slug,
+					'post_url'         => null, // insert post id ofter insert record
 					'post_content'     => $_args['content'],
-					'post_type'        => $_args['type'],
-					'post_status'      => 'draft',
+					'post_type'        => 'poll_' . $_args['type'],
+					'post_status'      => $_args['status'],
+					'post_meta'        => json_encode($_args, JSON_UNESCAPED_UNICODE),
 					// 'post_parent'   => $_args['parent'],
 					'post_publishdate' => $_args['publish_date']
 					];
@@ -112,6 +115,9 @@ class polls
 
 		// new id of poll, posts.id
 		$insert_id 	= \lib\db::insert_id();
+
+		// UPDATE posts SET post_url = [id] WHERE posts.id = [id]
+		$set_url = \lib\db\posts::update(['post_url' => \lib\utility\shortURL::encode($insert_id)], $insert_id);
 
 		// if poll inserted , insert the answers to options table
 		if($insert_id && $_args['answers']){
@@ -137,18 +143,26 @@ class polls
 	 */
 	public static function insert_answers($_args){
 
+		// $myAnswersList = json_encode($_answersList, JSON_UNESCAPED_UNICODE);
+
 		$answers = [];
 		foreach ($_args['answers'] as $key => $value) {
-			$answers[] = [
-						'user_id'      =>  $_args['user_id'],
-						'post_id'      =>  $_args['post_id'],
-						'option_cat'   => 'polls_' . $_args['post_id'],
-						'option_key'   => 'answer_' . $key,
-						'option_value' => $value
-						];
+			if($value) {
+				$answers[] = [
+							'user_id'      => $_args['user_id'],
+							'post_id'      => $_args['post_id'],
+							'option_cat'   => 'poll_' . $_args['user_id'],
+							'option_key'   => 'answer_' . $_args['post_id'],
+							'option_value' => $value,
+							'option_meta'  => json_encode($value, JSON_UNESCAPED_UNICODE)
+							];
+
+			}
 		}
 
-		return \lib\db\options::insert_multi($answers);
+		$return = \lib\db\options::insert_multi($answers);
+		return $return;
+
 	}
 
 

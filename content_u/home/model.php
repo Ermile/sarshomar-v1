@@ -4,7 +4,7 @@ namespace content_u\home;
 class model extends \mvc\model
 {
 	function get_profile() {
-		return "fuck";
+		return 1;
 	}
 }
 ?>
