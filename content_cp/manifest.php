@@ -1,6 +1,6 @@
 <?php
-$this->inject__route(function(){
-	$this->_route();
-	$this::edit_modules('polls', ['disable' => false]);
-});
+$modules = array();
+//update new delete, update is default
+$modules['polls'] = ['disable' => false, '_mod'=> 'update'];
+return ["modules" => $modules];
 ?>
