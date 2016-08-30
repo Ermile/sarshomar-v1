@@ -10,11 +10,18 @@ class model extends \mvc\model
 	}
 
 	public function post_random_result() {
-		$a = [1,2,4,9,15,159,952];
-		$random_key = array_rand($a);
-
-		var_dump(\lib\db\polls::getResult());
-		var_dump(1);exit();
+		$query = "
+				SELECT
+					id
+				FROM
+					posts
+				WHERE
+					post_type LIKE 'poll%' AND
+					post_status = 'publish'
+					";
+		$get_id = array_column(\lib\db\posts::select($query, "get"), "id");
+		$random_key = array_rand($get_id);
+		var_dump(\lib\db\polls::get_result($random_key));
 	}
 
 	public function put_test($object)

@@ -229,7 +229,37 @@ class polls
 
 
 
+	public static function get_result($_poll_id){
+		$query = "
+				SELECT
+					post_title
+				FROM
+					posts
+				WHERE
+					id = $_poll_id
+				LIMIT 1
+				";
+		$title = \lib\db\posts::select($query, "get");
+		$title = $title[0];
 
+		$query = "
+				SELECT
+					id,
+					count(id) as 'count',
+					option_value
+				FROM
+					options
+				WHERE
+					user_id IS NOT NULL AND
+					option_cat = 'poll_{$_poll_id}' AND
+					option_key LIKE 'answer%'
+				GROUP BY
+					options.option_value
+				";
+		$answers = \lib\db\options::select($query, "get");
+		var_dump($answers);exit();
+
+	}
 
 	/**
 	 * return last question for this user
