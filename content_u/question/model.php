@@ -48,7 +48,34 @@ class model extends \mvc\model
 
 	}
 
-	function get_question_edit() {
+	function get_question_edit($o) {
+		$poll_id = $o->match->url[0][1];
+		return \lib\db\polls::get_one($poll_id);
+	}
+
+	function post_question_edit($o){
+
+		$poll_id = $o->match->url[0][1];
+
+			$args = [
+				'post_title'       => utility::post("title"),
+				'post_language'    => utility::post("language"),
+				'post_content'     => utility::post("content"),
+				'post_publishdate' => utility::post("publish_date"),
+				];
+
+		$result = \lib\db\polls::update($args, $poll_id);
+
+		foreach (utility::post('answers') as $key => $value) {
+			\lib\db\answers::update(['option_value' => $value], $key);
+		}
+
+		if($result) {
+			\lib\debug::true(T_("Edit Question Success"));
+		}else{
+			\lib\debug::error(T_("Error in Edit question"));
+		}
+
 
 	}
 

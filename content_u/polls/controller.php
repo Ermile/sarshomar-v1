@@ -11,6 +11,10 @@ class controller extends \content_u\home\controller
 		}
 
 		// show polls
+		$this->get("show", "show")->ALL("polls");
+		$this->post("save_answer")->ALL("polls");
+
+
 		$this->get("polls", "polls")->ALL("/^polls\/\d+$/");
 		$this->post("polls")->ALL("/^polls\/\d+$/");
 

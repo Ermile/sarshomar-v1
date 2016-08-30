@@ -11,8 +11,10 @@ class view extends \mvc\view
 		$this->data->form_add = true;
 	}
 
-	function view_question_edit() {
-
+	function view_question_edit($o) {
+		$this->data->form_edit = true;
+		$this->data->post_id = $o->match->url[0][1];
+		$this->data->form_data = $o->api_callback;
 	}
 }
 ?>

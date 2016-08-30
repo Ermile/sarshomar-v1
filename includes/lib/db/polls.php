@@ -122,9 +122,8 @@ class polls
 		// if poll inserted , insert the answers to options table
 		if($insert_id && $_args['answers']){
 
-			return self::insert_answers([
+			return \lib\db\answers::insert([
 											'post_id' => $insert_id,
-											'user_id' => $_args['user_id'],
 											'answers' => $_args['answers']
 										]);
 		}else{
@@ -134,35 +133,8 @@ class polls
 	}
 
 
-	/**
-	 * insert answers to options table
-	 *
-	 * @param      array  $_args  list of answers and post id
-	 *
-	 * @return     <type>  mysql result
-	 */
-	public static function insert_answers($_args){
-
-		// $myAnswersList = json_encode($_answersList, JSON_UNESCAPED_UNICODE);
-
-		$answers = [];
-		foreach ($_args['answers'] as $key => $value) {
-			if($value) {
-				$answers[] = [
-							'user_id'      => $_args['user_id'],
-							'post_id'      => $_args['post_id'],
-							'option_cat'   => 'poll_' . $_args['user_id'],
-							'option_key'   => 'answer_' . $_args['post_id'],
-							'option_value' => $value,
-							'option_meta'  => json_encode($value, JSON_UNESCAPED_UNICODE)
-							];
-
-			}
-		}
-
-		$return = \lib\db\options::insert_multi($answers);
-		return $return;
-
+	public static function update($_args, $_id) {
+		return \lib\db\posts::update($_args, $_id);
 	}
 
 
@@ -214,6 +186,51 @@ class polls
 	}
 
 
+
+	/**
+	 * return one querstion whit answers
+	 * @param  [type] $_post_id 	[description]
+	 * @param  string $_users_id    [description]
+	 * @return [type]           	[description]
+	 */
+	public static function get_one($_post_id, $_user_id = null){
+
+		//check users id
+		if($_user_id !== null) {
+			$_user_id = " AND user_id = $_user_id ";
+		}
+
+		$query = "
+				SELECT
+					id,
+					post_language 		as 'language',
+					post_title 			as 'title',
+					post_slug 			as 'slug',
+					post_url 			as 'url',
+					post_content 		as 'content',
+					post_type 			as 'type',
+					post_comment 		as 'comment',
+					post_count 			as 'count',
+					post_order 			as 'order',
+					post_status 		as 'status',
+					post_parent 		as 'parent',
+					post_publishdate 	as 'publishdate'
+				FROM posts
+				WHERE
+					posts.id = $_post_id
+					$_user_id
+				LIMIT 1 ";
+		$poll =  \lib\db\posts::select($query, "get");
+
+		$answers = \lib\db\answers::get($_post_id);
+
+		return ['poll' => $poll[0] , 'answers' => $answers];
+	}
+
+
+
+
+
 	/**
 	 * return last question for this user
 	 * @param  [type] $_user_id [description]
@@ -245,7 +262,7 @@ class polls
 				(
 					SELECT post_id FROM options
 						WHERE
-						`options`.option_cat LIKE 'polls\_%' AND
+						`options`.option_cat LIKE 'poll\_%' AND
 						`options`.option_key LIKE 'answer\_%'AND
 						`options`.user_id = $_user_id
 				)
@@ -381,7 +398,7 @@ class polls
 			WHERE
 				$_type AND
 				user_id = $_user_id AND
-				option_cat = 'polls_$_user_id' AND
+				option_cat = 'poll_$_user_id' AND
 				option_key LIKE 'answer\_%' AND
 				option_status = 'enable'
 		";
@@ -515,17 +532,16 @@ class polls
 		];
 		$option_data =
 		[
-			'user'   => $_user_id,
-			'post'   => $_post_id,
-			'cat'    => 'polls_'. $_user_id,
-			'key'    => 'answer_'.$_post_id,
-			'value'  => $_answer,
-			'meta'   => $meta,
-			'status' => $status,
-			'modify' => 'now',
+			'user_id'       => $_user_id,
+			'post_id'       => $_post_id,
+			'option_cat'    => 'poll_' . $_post_id,
+			'option_key'    => 'answer_' . $_user_id,
+			'option_value'  => $_answer,
+			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
+			'option_status' => $status
 		];
 		// save in options table and if successful return session_id
-		return \lib\utility\option::set($option_data, true);
+		return \lib\db\options::insert($option_data);
 	}
 
 
@@ -539,7 +555,7 @@ class polls
 		$qry = "DELETE FROM options
 			WHERE
 				user_id = $_user_id AND
-				option_cat = 'polls_$_user_id' AND
+				option_cat = 'poll_$_user_id' AND
 				option_key LIKE 'answer\_%'
 			";
 		$result = \lib\db::query($qry);

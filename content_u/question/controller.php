@@ -18,7 +18,8 @@ class controller extends \content_u\home\controller
 		$this->post("question_add")->ALL("question/add");
 
 		// edit question
-		$this->get("question_edit", "question_edit")->ALL("/^question\/edit\/(\d+)$/");
+		$this->get("question_edit", "question_edit")->ALL("/^question\/edit\=(\d+)$/");
+		$this->post("question_edit")->ALL("/^question\/edit\=(\d+)$/");
 
 		// delete question
 		$this->get("question_delete", false)->ALL("/^question\/delete\/(\d+)$/");
