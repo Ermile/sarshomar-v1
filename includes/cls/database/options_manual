@@ -1,0 +1,5 @@
+post_id 	user_id		cat					key					value			title
+1			0			poll_(post_id)		opt_[1,2,3...]		[opt text]		opt questions
+1			0			poll_(post_id)		opt_0_true			[opt text]		true opt questions
+1			1			poll_(post_id)		answer_(user_id)	[option_id]		heumen answers
+

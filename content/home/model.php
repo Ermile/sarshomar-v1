@@ -10,8 +10,11 @@ class model extends \mvc\model
 	}
 
 	public function post_random_result() {
+		$a = [1,2,4,9,15,159,952];
+		$random_key = array_rand($a);
 
-		var_dump("fank");exit();
+		var_dump(\lib\db\polls::getResult());
+		var_dump(1);exit();
 	}
 
 	public function put_test($object)
