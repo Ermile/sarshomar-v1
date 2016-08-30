@@ -217,7 +217,8 @@ nav.nav ul li:not(:last-child) {
     font-weight: bold;
 }
 
-.top-chart .highcharts-subtitle {
+.world-map object {
+    width: 100%;
 }
 
 @media (max-width: 768px) {
