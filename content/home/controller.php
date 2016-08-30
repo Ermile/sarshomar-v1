@@ -12,7 +12,7 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
-
+		$this->post("random_result")->ALL("");
 	}
 }
 ?>

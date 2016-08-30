@@ -5,6 +5,7 @@ class view extends \mvc\view
 {
 	function config()
 	{
+
 		// $this->include->css_ermile   = false;
 		$this->include->js    = true;
 		// $this->include->chart = true;

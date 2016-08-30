@@ -9,9 +9,9 @@ class model extends \mvc\model
 		return 1;
 	}
 
-	public function post_test($object)
-	{
-		return 2;
+	public function post_random_result() {
+
+		var_dump("fank");exit();
 	}
 
 	public function put_test($object)

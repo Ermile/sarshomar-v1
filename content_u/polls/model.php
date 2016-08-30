@@ -14,7 +14,7 @@ class model extends \mvc\model
 		$poll_id     = utility::post('poll_id');
 		$answer_text = utility::post('answer_text');
 
-		\lib\db\polls::saveAnswer($this->login('id'), $poll_id, $answer_id, $answer_text);
+		\lib\db\answers::save($this->login('id'), $poll_id, $answer_id, $answer_text);
 
 	}
 

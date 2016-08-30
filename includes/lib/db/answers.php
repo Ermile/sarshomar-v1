@@ -62,6 +62,68 @@ class answers
 				";
 		return \lib\db\options::select($query, "get");
 	}
+
+
+	/**
+	 * save user answer into options table
+	 * @param  [type] $_user_id [description]
+	 * @param  [type] $_post_id [description]
+	 * @param  [type] $_answer  [description]
+	 * @return [type]           [description]
+	 */
+	public static function save($_user_id, $_post_id, $_answer, $_answer_txt = null)
+	{
+		// set status of skip answers to disable
+		$status = 'enable';
+		if($_answer < 0)
+		{
+			$status = 'disable';
+		}
+		$meta =
+		[
+			'question'   => $_post_id,
+			'answer'     => $_answer,
+			'answer_txt' => $_answer_txt,
+			'date'       => date('Y-m-d H:i:s'),
+		];
+		$option_data =
+		[
+			'user_id'       => $_user_id,
+			'post_id'       => $_post_id,
+			'option_cat'    => 'poll_' . $_post_id,
+			'option_key'    => 'answer_' . $_user_id,
+			'option_value'  => $_answer,
+			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
+			'option_status' => $status
+		];
+		// save in options table and if successful return session_id
+		$result = \lib\db\options::insert($option_data);
+
+		// save answered count
+		self::set_count_answered($_post_id);
+
+		return $result;
+	}
+
+
+	public static function set_count_answered($_poll_id){
+		$query = "
+				SELECT
+					count(id) as 'count'
+				FROM
+					options
+				WHERE
+					user_id IS NOT NULL AND
+					option_cat = 'poll_{$_poll_id}' AND
+					option_key LIKE 'answer%'
+				";
+		$count = \lib\db\posts::select($query, 'get');
+		$count = $count[0]['count'];
+
+		\lib\db\polls::update(['post_count' => $count], $_poll_id);
+	}
+
+
 }
 
 ?>

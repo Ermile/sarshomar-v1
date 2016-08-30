@@ -509,43 +509,6 @@ class polls
 
 
 	/**
-	 * save user answer into options table
-	 * @param  [type] $_user_id [description]
-	 * @param  [type] $_post_id [description]
-	 * @param  [type] $_answer  [description]
-	 * @return [type]           [description]
-	 */
-	public static function saveAnswer($_user_id, $_post_id, $_answer, $_answer_txt = null)
-	{
-		// set status of skip answers to disable
-		$status = 'enable';
-		if($_answer < 0)
-		{
-			$status = 'disable';
-		}
-		$meta =
-		[
-			'question'   => $_post_id,
-			'answer'     => $_answer,
-			'answer_txt' => $_answer_txt,
-			'date'       => date('Y-m-d H:i:s'),
-		];
-		$option_data =
-		[
-			'user_id'       => $_user_id,
-			'post_id'       => $_post_id,
-			'option_cat'    => 'poll_' . $_post_id,
-			'option_key'    => 'answer_' . $_user_id,
-			'option_value'  => $_answer,
-			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
-			'option_status' => $status
-		];
-		// save in options table and if successful return session_id
-		return \lib\db\options::insert($option_data);
-	}
-
-
-	/**
 	 * delete answers of specefic user
 	 * @param  [type] $_user_id [description]
 	 * @return [type]           [description]
