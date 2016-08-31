@@ -217,7 +217,7 @@ nav.nav ul li:not(:last-child) {
     font-weight: bold;
 }
 
-.world-map object {
+.map-wrapper object {
     width: 100%;
 }
 
