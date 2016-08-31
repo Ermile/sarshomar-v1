@@ -5,12 +5,18 @@
 
 {%block content%}
 <div class="row">
+    {% if site.currentlang == "en" %}
     <div class="span3"></div>
     <div class="span6 map-wrapper">
-        {% if site.currentlang == "en" %}
-        <object type="image/svg+xml" data="static/images/world.svg">
+        <object type="image/svg+xml" data="/static/images/world.svg">
         </object>
-        {% endif %}
+    </div>
+    {% else %}
+    <div class="span4"></div>
+    <div class="span4 map-wrapper">
+        <object type="image/svg+xml" data="/static/images/ir-all.svg">
+        </object>
+    {% endif %}
     </div>
 </div>
 
