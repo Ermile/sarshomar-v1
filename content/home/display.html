@@ -6,10 +6,11 @@
 {%block content%}
 <div class="row">
     <div class="span3"></div>
-    <div class="span6 world-map">
+    <div class="span6 map-wrapper">
+        {% if site.currentlang == "en" %}
         <object type="image/svg+xml" data="static/images/world.svg">
-        	Your browser does not support SVG
         </object>
+        {% endif %}
     </div>
 </div>
 
