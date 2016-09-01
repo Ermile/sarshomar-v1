@@ -203,6 +203,7 @@ nav.nav ul li:not(:last-child) {
 }
 
 /* In the Name of God */
+/* Start */
 .top-chart {
     min-width: 310px;
     height: 400px;
@@ -220,6 +221,23 @@ nav.nav ul li:not(:last-child) {
 .map-wrapper object {
     width: 100%;
 }
+
+footer ul li {
+    display: inline-block;
+}
+
+footer ul li:not(:last-child) {
+    margin-right: 1em;
+}
+
+.rtl footer ul li:not(:last-child) {
+    margin-left: 1em;
+}
+
+.chart {
+    direction: ltr;
+}
+/* End */
 
 @media (max-width: 768px) {
     #demo-wrapper {
