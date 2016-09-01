@@ -15,12 +15,17 @@ class answers
 		// $myAnswersList = json_encode($_answersList, JSON_UNESCAPED_UNICODE);
 
 		$answers = [];
+		// set key of opt like this -> opt_0, opt_1, opt_2, opt_3_true
+		$i = 0;
+
 		foreach ($_args['answers'] as $key => $value) {
 			if($value) {
+				// set key of opt like this -> opt_0, opt_1, opt_2, opt_3_true
+				$i++;
 				$answers[] = [
 							'post_id'      => $_args['post_id'],
-							'option_cat'   => 'poll',
-							'option_key'   => 'opt',
+							'option_cat'   => 'poll_' . $_args['post_id'],
+							'option_key'   => 'opt_' .  $i,
 							'option_value' => $value,
 							'option_meta'  => json_encode($value, JSON_UNESCAPED_UNICODE)
 							];
@@ -52,12 +57,13 @@ class answers
 		$query = "
 				SELECT
 					id,
-					option_value as 'value'
+					option_value as 'txt',
+					option_key   as 'key'
 				FROM options
 				WHERE
 					post_id = $_post_id AND
-					option_cat = 'poll' AND
-					option_key = 'opt'  AND
+					option_cat LIKE 'poll_{$_post_id}' AND
+					option_key LIKE 'opt%'  AND
 					user_id IS NULL
 				";
 		return \lib\db\options::select($query, "get");

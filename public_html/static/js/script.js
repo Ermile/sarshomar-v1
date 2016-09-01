@@ -61,49 +61,50 @@ $(function() {
         }]
     });
 
-    // $.ajax({
-    //     type : 'post',
-    //     url : '/',
-    //     data :{'random' : 'random'},
-    //     success : function (data) {
-    //         console.log(data);
-    //         $('.random-chart').highcharts({
-    //             chart: {
-    //                 type: 'column'
-    //             },
-    //             title: {
-    //                 text: data.title
-    //             },
-    //             subtitle: {
-    //                 text: 'منبع: sarshomar.com'
-    //             },
-    //             xAxis: {
-    //                 categories: [
-    //                     data.title
-    //                 ]
-    //             },
-    //             yAxis: {
-    //                 min: 0,
-    //                 max: 100,
-    //                 title: {
-    //                     text: 'درصد'
-    //                 }
-    //             },
-    //             tooltip: {
-    //                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-    //                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-    //                 footerFormat: '</table>',
-    //                 shared: false,
-    //                 useHTML: true
-    //             },
-    //             plotOptions: {
-    //                 column: {
-    //                     pointPadding: 0.2,
-    //                     borderWidth: 0
-    //                 }
-    //             },
-    //             series: data.result
-    //         });
-    //     }
-    // });
+    $.ajax({
+        type : 'post',
+        url : '/',
+        data :{'random' : 'random'},
+        success : function (data) {
+            data = data.msg;
+            console.log(data);
+            $('.random-chart').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: data.title.title
+                },
+                subtitle: {
+                    text: 'منبع: sarshomar.com'
+                },
+                xAxis: {
+                    categories: [
+                        data.title.title
+                    ]
+                },
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: 'درصد'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: false,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: data.result
+            });
+        }
+    });
 });
