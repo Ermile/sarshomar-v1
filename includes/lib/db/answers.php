@@ -20,7 +20,7 @@ class answers
 
 		foreach ($_args['answers'] as $key => $value) {
 			if($value) {
-				// set key of opt like this -> opt_0, opt_1, opt_2, opt_3_true
+				// set key of opt like this ->  opt_1, opt_2, opt_3_true
 				$i++;
 				$answers[] = [
 							'post_id'      => $_args['post_id'],
@@ -49,11 +49,11 @@ class answers
 	/**
 	 * get post id and return opt of this post
 	 *
-	 * @param      <type>  $_post_id  The post identifier
+	 * @param      <type>  $_poll_id  The post identifier
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get($_post_id) {
+	public static function get($_poll_id) {
 		$query = "
 				SELECT
 					id,
@@ -61,8 +61,8 @@ class answers
 					option_key   as 'key'
 				FROM options
 				WHERE
-					post_id = $_post_id AND
-					option_cat LIKE 'poll_{$_post_id}' AND
+					post_id = $_poll_id AND
+					option_cat LIKE 'poll_{$_poll_id}' AND
 					option_key LIKE 'opt%'  AND
 					user_id IS NULL
 				";
@@ -73,11 +73,11 @@ class answers
 	/**
 	 * save user answer into options table
 	 * @param  [type] $_user_id [description]
-	 * @param  [type] $_post_id [description]
+	 * @param  [type] $_poll_id [description]
 	 * @param  [type] $_answer  [description]
 	 * @return [type]           [description]
 	 */
-	public static function save($_user_id, $_post_id, $_answer, $_answer_txt = null)
+	public static function save($_user_id, $_poll_id, $_answer, $_answer_txt = null)
 	{
 		// set status of skip answers to disable
 		$status = 'enable';
@@ -87,7 +87,7 @@ class answers
 		}
 		$meta =
 		[
-			'question'   => $_post_id,
+			'question'   => $_poll_id,
 			'answer'     => $_answer,
 			'answer_txt' => $_answer_txt,
 			'date'       => date('Y-m-d H:i:s'),
@@ -95,8 +95,8 @@ class answers
 		$option_data =
 		[
 			'user_id'       => $_user_id,
-			'post_id'       => $_post_id,
-			'option_cat'    => 'poll_' . $_post_id,
+			'post_id'       => $_poll_id,
+			'option_cat'    => 'poll_' . $_poll_id,
 			'option_key'    => 'answer_' . $_user_id,
 			'option_value'  => $_answer,
 			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
@@ -106,30 +106,9 @@ class answers
 		$result = \lib\db\options::insert($option_data);
 
 		// save answered count
-		self::set_count_answered($_post_id);
+		\lib\db\polls::set_result($_poll_id);
 
 		return $result;
 	}
-
-
-	public static function set_count_answered($_poll_id){
-		$query = "
-				SELECT
-					count(id) as 'count'
-				FROM
-					options
-				WHERE
-					user_id IS NOT NULL AND
-					option_cat = 'poll_{$_poll_id}' AND
-					option_key LIKE 'answer%'
-				";
-		$count = \lib\db\posts::select($query, 'get');
-		$count = $count[0]['count'];
-
-		\lib\db\polls::update(['post_count' => $count], $_poll_id);
-	}
-
-
 }
-
 ?>

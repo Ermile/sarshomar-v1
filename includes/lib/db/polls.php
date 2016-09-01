@@ -126,14 +126,25 @@ class polls
 			$_args['answers'] = array_filter($_args['answers']);
 
 			foreach ($_args['answers'] as $key => $value) {
-				$_args['answers'][$key] = ['id' => $key + 1 , 'txt' => $value];
+				if(is_array($value)){
+					foreach ($value as $k => $v) {
+						$_args['answers'][$key][] = [$k => $v];
+					}
+				}else{
+					$_args['answers'][$key] = ['id' => $key + 1 , 'txt' => $value];
+				}
 			}
 		}
 
-		$answers = json_encode($_args, JSON_UNESCAPED_UNICODE);
+		$meta = [
+			'opt'     => $_args['answers'],
+			'answers' => ''
+			];
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
 		// UPDATE posts SET post_url = [id] WHERE posts.id = [id]
-		$set_url = \lib\db\posts::update(['post_url' => \lib\utility\shortURL::encode($insert_id), 'post_meta' => $answers], $insert_id);
+		$set_url = \lib\db\posts::update(['post_url' => \lib\utility\shortURL::encode($insert_id), 'post_meta' => $meta], $insert_id);
 
 		return $result;
 
@@ -235,11 +246,32 @@ class polls
 	}
 
 
+	/**
+	 * get title of polls
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll title.
+	 */
 	public static function get_poll_title($_poll_id) {
+		$result = self::get_poll($_poll_id);
+		return $result['title'];
+	}
+
+
+	/**
+	 * get title and meta of poll
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll.
+	 */
+	public static function get_poll($_poll_id) {
 		$query = "
 				SELECT
 					id,
-					post_title as title
+					post_title 	as 'title',
+					post_meta 	as 'meta'
 				FROM
 					posts
 				WHERE
@@ -247,35 +279,55 @@ class polls
 				LIMIT 1
 				";
 		$title = \lib\db\posts::select($query, "get");
-		return $title;
 
+		if(isset($title[0])){
+			return $title[0];
+		}else{
+			return $title;
+		}
 	}
 
-	public static function get_result($_poll_id){
 
+	/**
+	 * set answered count to post meta
+	 *
+	 * @param      <type>  $_poll_id
+	 */
+	public static function set_result($_poll_id){
+		// get count of answered users for this poll
 		$query = "
 				SELECT
-                    count(answer.id) as 'count',
-                    answer.option_meta,
-                    answer.option_value as 'opt'
+					count(id) as 'count',
+                    post_id,
+                    option_value,
+                    option_key as 'opt'
                 FROM
-                    options as answer
-                LEFT JOIN options as opt ON  AND
+                    options
                 WHERE
-                    answer.user_id IS NOT NULL AND
-                    answer.post_id = $_poll_id AND
-                    answer.option_key LIKE 'answer%'
-                GROUP BY
-                    answer.option_value
-                ORDER BY
-                	answer.option_value ASC
+                    user_id IS NOT NULL AND
+                    post_id = $_poll_id AND
+                    option_key LIKE 'answer%'
+               	GROUP BY
+               		option_value
 				";
 
-		$answers = \lib\db\options::select($query, "get");
-		$title = self::get_poll_title($_poll_id);
+		$count = \lib\db\options::select($query, 'get');
+		// update post meta and save cont of answered
+		if($count){
 
-		return ['title' => $title[0]['title'], 'answers' => $answers];
-
+			$count_answered = array_sum(array_column($count, 'count'));
+			$count = json_encode($count, JSON_UNESCAPED_UNICODE);
+				$update = "
+						UPDATE
+							posts
+						SET
+							posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count'),
+							posts.post_count = $count_answered
+						WHERE
+							posts.id = $_poll_id
+							";
+			\lib\db::query($update);
+		}
 	}
 
 
@@ -285,7 +337,7 @@ class polls
 	 * @param  string $_type    [description]
 	 * @return [type]           [description]
 	 */
-	public static function getLast($_user_id, $_type = null)
+	public static function get_last($_user_id, $_type = null)
 	{
 		// calc type if needed
 		if($_type === null)
@@ -301,12 +353,12 @@ class polls
 			SELECT
 				posts.id as id,
 				posts.post_title as question,
-				posts.post_meta as answers
+				posts.post_meta as opt
 			FROM posts
 			LEFT JOIN `options` ON `options`.post_id = posts.id
 			WHERE
 				$_type AND
-				-- post_status = 'publish' AND
+				post_status = 'publish' AND
 				posts.id NOT IN
 				(
 					SELECT post_id FROM options
@@ -320,12 +372,13 @@ class polls
 		";
 
 		$result      = \lib\db::get($qry, null, true);
+
 		$returnValue =
 		[
 			'id'          => null,
 			'questionRaw' => null,
 			'question'    => null,
-			'answers'     => null,
+			'opt'	      => null,
 			'tags'        => null,
 		];
 		if(isset($result['question']))
@@ -342,10 +395,10 @@ class polls
 				$returnValue['question'] = str_replace($value.' ', $newValue.' ', $returnValue['question']);
 			}
 		}
-		if(isset($result['answers']))
+		if(isset($result['opt']))
 		{
-			$returnValue['answers'] = json_decode($result['answers'], true);
-			$returnValue['answers'] = array_column($returnValue['answers']['answers'], 'txt', 'id');
+			$returnValue['opt'] = json_decode($result['opt'], true);
+			$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'id');
 		}
 		return $returnValue;
 	}

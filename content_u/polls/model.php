@@ -5,7 +5,7 @@ use \lib\utility;
 class model extends \mvc\model
 {
 	function get_show(){
-		return \lib\db\polls::getLast($this->login("id"));
+		return \lib\db\polls::get_last($this->login("id"));
 	}
 
 	function post_save_answer() {
