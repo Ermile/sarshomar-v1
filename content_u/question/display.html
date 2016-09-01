@@ -5,25 +5,68 @@
 <hr>
 {%endfor%}
 
-
 {%if form_add%}
-<form action="question/add" method="post">
-	title:<input type="text" name="title"><br>
-	language:<input type="text" name="language"><br>
-	content:<input type="text" name="content"><br>
-	publish_date:<input type="text" name="publish_date"><br>
-	answer1:<input type="text" name="answers[]"><br>
-	answer2:<input type="text" name="answers[]"><br>
-	answer3:<input type="text" name="answers[]"><br>
-	answer4:<input type="text" name="answers[]"><br>
-	answer5:<input type="text" name="answers[]"><br>
-	answer6:<input type="text" name="answers[]"><br>
-	answer7:<input type="text" name="answers[]"><br>
-	answer8:<input type="text" name="answers[]"><br>
-	<input type="submit" value="ثبت سوال"><br>
-</form>
-{%endif%}
+<div class="row auto">
+    <div class="span4"></div>
+    <div class="span4">
+        <form action="question/add" method="post" class="form inline">
+            <div class="field">
+                <label>title</label>
+                <input type="text" name="title">
+            </div>
+            <div class="field">
+                <label>language</label>
+                <input type="text" name="language" value="fa" disabled>
+            </div>
+            <div class="field">
+                <label>content</label>
+                <input type="text" name="content">
+            </div>
+            <div class="field">
+                <label>publish_date</label>
+                <input type="text" name="publish_date" value="2016-01-01" disabled>
+            </div>
+            <div class="field">
+                <label>answer1</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer2</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer3</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer4</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer5</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer6</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer7</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer8</label>
+                <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label></label>
+                <input type="submit" value="ثبت سوال">
+            </div>
+        </form>
+    </div>
+</div>
 
+{%endif%}
 
 {%if form_edit%}
 <form action="question/edit={{post_id}}" method="post">
