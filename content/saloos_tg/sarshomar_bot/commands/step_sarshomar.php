@@ -122,7 +122,7 @@ class step_sarshomar
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
-			\lib\db\polls::saveAnswer(bot::$user_id, $question_id, $answer_id, $_answer_txt);
+			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, $_answer_txt);
 
 			// create output text
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
@@ -381,15 +381,15 @@ class step_sarshomar
 			$_user_id = bot::$user_id;
 		}
 
-		$question = \lib\db\polls::getLast($_user_id);
+		$question = \lib\db\polls::get_last($_user_id);
 		$question['question'] = html_entity_decode($question['question']);
 		step::set('question_id', $question['id']);
 		step::set('questionRaw', $question['questionRaw']);
 		step::set('question', $question['question']);
-		step::set('answers', $question['answers']);
+		step::set('answers', $question['opt']);
 		step::set('tags', $question['tags']);
 
-		if(!is_array($question['answers']))
+		if(!is_array($question['opt']))
 		{
 			return false;
 		}
