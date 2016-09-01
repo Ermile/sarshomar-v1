@@ -247,19 +247,6 @@ class polls
 
 
 	/**
-	 * get title of polls
-	 *
-	 * @param      <type>  $_poll_id  The poll identifier
-	 *
-	 * @return     <type>  The poll title.
-	 */
-	public static function get_poll_title($_poll_id) {
-		$result = self::get_poll($_poll_id);
-		return $result['title'];
-	}
-
-
-	/**
 	 * get title and meta of poll
 	 *
 	 * @param      <type>  $_poll_id  The poll identifier
@@ -279,12 +266,37 @@ class polls
 				LIMIT 1
 				";
 		$title = \lib\db\posts::select($query, "get");
-
 		if(isset($title[0])){
 			return $title[0];
 		}else{
 			return $title;
 		}
+	}
+
+
+	/**
+	 * get title of polls
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll title.
+	 */
+	public static function get_poll_title($_poll_id) {
+		$result = self::get_poll($_poll_id);
+		return $result['title'];
+	}
+
+
+	/**
+	 * get meta of polls
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll title.
+	 */
+	public static function get_poll_meta($_poll_id) {
+		$result = self::get_poll($_poll_id);
+		return $result['meta'];
 	}
 
 
@@ -411,65 +423,25 @@ class polls
 	 * @param  [type] $_key     [description]
 	 * @return [type]           [description]
 	 */
-	public static function getResult($_poll_id, $_value = null, $_key = null)
+	public static function get_result($_poll_id, $_value = null, $_key = null)
 	{
-		// get answers grouped by items
-		$qry = "SELECT
-				option_value as `item`,
-				count(id) as `count`
-			FROM options
-			WHERE
-				option_cat LIKE 'polls\_%' AND
-				option_key = 'answer_$_poll_id' AND
-				option_status = 'enable'
+		// get answers form post meta
+		$meta = self::get_poll_meta($_poll_id);
+		$meta = json_decode($meta, true);
+		$opt = $meta['opt'];
+		$answers = $meta['answers'];
+		$answers = json_decode($answers, true);
 
-			GROUP BY item
-		";
-		// get result of this question
-		$result = \lib\db::get($qry, ['item', 'count']);
-		// var_dump($result);
+		$final_result = [];
+		foreach ($opt as $key => $value) {
+			$count = 0;
+			foreach ($answers as $k => $result) {
+				if($result['option_value'] == $value['id']){
+					$count = $result['count'];
+				}
+			}
+			$final_result[$value['txt']] = $count;
 
-		// get list of answers of this question
-		$qry = "SELECT option_meta as `meta`
-			FROM options
-			WHERE
-				option_cat = 'meta_polls' AND
-				option_key = 'answers_$_poll_id' AND
-				option_status = 'enable'
-
-			LIMIT 1
-		";
-		$answers      = \lib\db::get($qry, 'meta', true);
-		if(is_string($answers))
-		{
-			$answers      = json_decode($answers, true);
-		}
-		$final_result = $answers;
-		// fill result into answers list
-		foreach ($final_result as $key => $value)
-		{
-			// if has count set this number
-			if(isset($result[$key]))
-			{
-				$final_result[$key]['count'] = (int) $result[$key];
-			}
-			// else set zero
-			else
-			{
-				$final_result[$key]['count'] = 0;
-			}
-		}
-		// filter output value
-		if(is_string($_value))
-		{
-			if(is_string($_key))
-			{
-				$final_result = array_column($final_result, $_value, $_key);
-			}
-			else
-			{
-				$final_result = array_column($final_result, $_value);
-			}
 		}
 		return $final_result;
 	}
