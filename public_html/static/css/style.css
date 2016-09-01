@@ -204,14 +204,22 @@ nav.nav ul li:not(:last-child) {
 
 /* In the Name of God */
 /* Start */
+.chart {
+    direction: ltr;
+}
+
+.chart * {
+    font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.chart .highcharts-title {
+    font-size: 1em !important;
+}
+
 .top-chart {
     min-width: 310px;
     height: 400px;
     margin: 0 auto;
-}
-
-.top-chart * {
-    font-family: IRANSans, Tahoma, sans-serif;
 }
 
 .top-chart .highcharts-title {
@@ -232,10 +240,6 @@ footer ul li:not(:last-child) {
 
 .rtl footer ul li:not(:last-child) {
     margin-left: 1em;
-}
-
-.chart {
-    direction: ltr;
 }
 /* End */
 
