@@ -7,61 +7,281 @@
 <div class="row">
     <div class="span2"></div>
     <div class="span8">
-        <div class="top-chart chart"></div>
+        <nav class="navigation">
+            <ul>
+                <!-- <li>
+                    <a href="#">{% trans "Register" %}</a>
+                </li>
+                <li>
+                    <a href="#">{% trans "Links" %}</a>
+                </li>
+                <li>
+                    <a href="#">{% trans "About Us" %}</a>
+                </li> -->
+                <li>
+                    <a href="#">ثبت نام</a>
+                </li>
+
+                <li>
+                    <a href="#">لینک ها</a>
+                </li>
+
+                <li>
+                    <a href="#">درباره ما</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 
 <div class="row">
-    {% if site.currentlang == "en" %}
-    <div class="span3"></div>
-    <div class="span6 map-wrapper">
-        <object type="image/svg+xml" data="/static/images/world.svg">
-        </object>
+    <div class="span1"></div>
+    <div class="span6">
+        <div class="top-chart chart"></div>
     </div>
-    {% else %}
-    <div class="span2"></div>
-    <div class="span4 map-wrapper">
-        <object type="image/svg+xml" data="/static/images/ir-all.svg">
-        </object>
-    </div>
-    <div class="span4">
-        <div class="random-chart chart"></div>
-    </div>
-    {% endif %}
+    <div class="span4">سرشمار<br>اولین سرویس اینترنتی ایران</div>
 </div>
 
-<footer>
-    <div class="row auto">
-        <div class="container">
-            <ul>
-                <li>
-                    <a href="/">خانه</a>
-                </li>
-                <li>
-                    <a href="about">درباره</a>
-                </li>
-                <li>
-                    <a href="contact">تماس</a>
-                </li>
-                <li>
-                    <a href="privacy">حریم خصوصی</a>
-                </li>
-                <li>
-                    <a href="faq">سوالات متداول</a>
-                </li>
-                <li>
-                    <a href="features">ویژگی ها</a>
-                </li>
-                <li>
-                    <a href="terms">شرایط و قوانین</a>
-                </li>
-                <li>
-                    <a href="eco">صرفه جویی در مصرف کاغذ</a>
-                </li>
-            </ul>
+<div class="row">
+    <div class="span1"></div>
+    <div class="span10">
+        <div>
+            <div class="row">
+                <div class="span5">
+                    {% if site.currentlang == "en" %}
+                    <div class="span3"></div>
+                    <div class="span6 map-wrapper">
+                        <object type="image/svg+xml" data="/static/images/world.svg">
+                        </object>
+                    </div>
+                    {% else %}
+                    <div class="span2"></div>
+                    <div class="span4 map-wrapper">
+                        <object type="image/svg+xml" data="/static/images/ir-all.svg">
+                        </object>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="span7">
+                    <div class="random-chart chart"></div>
+                </div>
+            </div>
         </div>
     </div>
-</footer>
+</div>
+
+<div class="container">
+    <div class="row row-info row-one">
+        <div class="span1"></div>
+        <div class="span8">
+            <h2>شرکت های تجاری</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+        <div class="span2">
+            <img src="{{url.static}}images/commercial.svg">
+        </div>
+    </div>
+    <div class="row row-info row-two">
+        <div class="span1"></div>
+        <div class="span2">
+            <img src="{{url.static}}images/research.svg">
+        </div>
+        <div class="span8">
+            <h2>موسسات تحقیقاتی و آموزشی</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+    </div>
+    <div class="row row-info row-three">
+        <div class="span1"></div>
+        <div class="span8">
+            <h2>سازمان ها و نهاد ها</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+        <div class="span2">
+            <img src="{{url.static}}images/organizations.svg">
+        </div>
+    </div>
+    <div class="row row-info row-four">
+        <div class="span1"></div>
+        <div class="span2">
+            <img src="{{url.static}}images/developers.svg">
+        </div>
+        <div class="span8">
+            <h2>توسعه دهنده ها و صاحبان سایت</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+    </div>
+    <div class="row row-info row-five">
+        <div class="span1"></div>
+        <div class="span8">
+            <h2>کانون های تبلیغاتی</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+        <div class="span2">
+            <img src="{{url.static}}images/advertising.svg">
+        </div>
+    </div>
+    <div class="row row-info row-six">
+        <div class="span1"></div>
+        <div class="span2">
+            <img src="{{url.static}}images/people.svg">
+        </div>
+        <div class="span8">
+            <h2>عموم مردم</h2>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+            <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+        </div>
+    </div>
+
+
+    <!-- Eslimi Background -->
+    <div class="row">
+        <div class="span12">
+            <div class="art-bg">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tick -->
+    <div class="row">
+        <div class="span12">
+            <div class="tick">
+                <img src="{{url.static}}images/tick.svg">
+                <p class="text">پاسخنامه های ما اینجا کاملا صحت دارد و میتوانیم صحت پاسخ ها را بسنجیم</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question -->
+    <div class="row">
+        <div class="span12">
+            <div class="question">
+                <a href="#">آیا مایل به ثبت نام هستید؟</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">خانه</a>
+                    </li>
+                    <li>
+                        <a href="#">ثبت نام</a>
+                    </li>
+                    <li>
+                        <a href="#">مقالات</a>
+                    </li>
+                    <li>
+                        <a href="#">درباره ما</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="row auto">
+                <div class="span6">
+                    <div class="row">
+                        <div class="span4">
+                            <ul class="list-footer">
+                                <li>
+                                    <a href="#">لینک ها</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">مقالات</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">آخرین اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">سیاست های ما</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="span4">
+                            <ul class="list-footer">
+                                <li>
+                                    <a href="#">لینک ها</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">مقالات</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">آخرین اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">سیاست های ما</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="span4">
+                            <ul class="list-footer">
+                                <li>
+                                    <a href="#">لینک ها</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">مقالات</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">آخرین اخبار</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">سیاست های ما</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <ul class="news list-footer">
+                        <li>
+                            <a href="#">اولین سرویس اینترنتی راه اندازی شد</a>
+                            <p>سرشمار اولین سرویس سرشماری در ایران است. این سرویس راه اندازی شده و مشغول به کار است.</p>
+                        </li>
+
+                        <li>
+                            <a href="#">فردا کار من تمام است</a>
+                        </li>
+
+                        <li>
+                            <a href="#">امروز من سخت کار کردم</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {%endblock%}
 
