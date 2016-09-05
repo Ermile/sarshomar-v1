@@ -256,7 +256,6 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .footer .list-footer a:hover { color: #fff }
 .footer .list-footer p { font-size: 1em; color: #888; margin-bottom: 0; max-width: 60% }
 .footer .list-footer.news a { font-weight: 700 }
-.logo { display:block; width: 50% }
 /* End */
 
 /* Media Queries */

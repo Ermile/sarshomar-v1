@@ -6,12 +6,11 @@
 {%block content%}
 
 <div class="container">
-    <div class="row">
-        <div class="span2"></div>
-        <div class="span8">
+    <div class="row auto">
+        <div class="span10">
             <nav class="navigation">
                 <ul>
-                    <!-- <li>
+                    <li>
                         <a href="#">{% trans "Register" %}</a>
                     </li>
                     <li>
@@ -19,29 +18,29 @@
                     </li>
                     <li>
                         <a href="#">{% trans "About Us" %}</a>
-                    </li> -->
-                    <li>
-                        <a href="#">ثبت نام</a>
-                    </li>
-
-                    <li>
-                        <a href="#">لینک ها</a>
-                    </li>
-
-                    <li>
-                        <a href="#">درباره ما</a>
                     </li>
                 </ul>
             </nav>
         </div>
+        <div class="span2"></div>
     </div>
 
-    <div class="row">
+    <div class="row auto">
+        <!-- Here is Logo and Title of the site -->
+        <div class="span6">
+            <div class="row auto">
+                <div class="span6">
+                    <img src="{{url.static}}images/logo.svg" class="logo">
+                </div>
+                <div class="span6">
+                    <p>سرشمار<br>اولین سرویس اینترنتی ایران</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Here is top chart -->
         <div class="span6">
             <div class="top-chart chart"></div>
-        </div>
-        <div class="span6">
-            <img src="{{url.static}}images/logo.svg" class="logo">
         </div>
     </div>
 
@@ -153,7 +152,7 @@
         <div class="span12">
             <div class="tick">
                 <img src="{{url.static}}images/tick.svg">
-                <p class="text">پاسخنامه های ما اینجا کاملا صحت دارد و میتوانیم صحت پاسخ ها را بسنجیم</p>
+                <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
             </div>
         </div>
     </div>
@@ -162,7 +161,7 @@
     <div class="row">
         <div class="span12">
             <div class="question">
-                <a href="#">آیا مایل به ثبت نام هستید؟</a>
+                <a href="#">{% trans "Do you want to register an account?" %}</a>
             </div>
         </div>
     </div>
@@ -174,16 +173,16 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="#">خانه</a>
+                        <a href="#">{% trans "Home" %}</a>
                     </li>
                     <li>
-                        <a href="#">ثبت نام</a>
+                        <a href="#">{% trans "Register" %}</a>
                     </li>
                     <li>
-                        <a href="#">مقالات</a>
+                        <a href="#">{% trans "Articles" %}</a>
                     </li>
                     <li>
-                        <a href="#">درباره ما</a>
+                        <a href="#">{% trans "About Us" %}</a>
                     </li>
                 </ul>
             </nav>
@@ -194,69 +193,69 @@
                         <div class="span4">
                             <ul class="list-footer">
                                 <li>
-                                    <a href="#">لینک ها</a>
+                                    <a href="#">{% trans "Links" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">مقالات</a>
+                                    <a href="#">{% trans "Articles" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">اخبار</a>
+                                    <a href="#">{% trans "News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">آخرین اخبار</a>
+                                    <a href="#">{% trans "Latest News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">سیاست های ما</a>
+                                    <a href="#">{% trans "Policy" %}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="span4">
                             <ul class="list-footer">
                                 <li>
-                                    <a href="#">لینک ها</a>
+                                    <a href="#">{% trans "Links" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">مقالات</a>
+                                    <a href="#">{% trans "Articles" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">اخبار</a>
+                                    <a href="#">{% trans "News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">آخرین اخبار</a>
+                                    <a href="#">{% trans "Latest News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">سیاست های ما</a>
+                                    <a href="#">{% trans "Policy" %}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="span4">
                             <ul class="list-footer">
                                 <li>
-                                    <a href="#">لینک ها</a>
+                                    <a href="#">{% trans "Links" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">مقالات</a>
+                                    <a href="#">{% trans "Articles" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">اخبار</a>
+                                    <a href="#">{% trans "News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">آخرین اخبار</a>
+                                    <a href="#">{% trans "Latest News" %}</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">سیاست های ما</a>
+                                    <a href="#">{% trans "Policy" %}</a>
                                 </li>
                             </ul>
                         </div>
@@ -282,7 +281,7 @@
         </div>
     </div>
 </div>
-{{dump(result)}}
+<!-- {{dump(result)}} -->
 {%endblock%}
 
 {%block foot_js%}
@@ -292,6 +291,7 @@
     var topChartOptions = {
     chart: {
         type: 'column',
+        backgroundColor: 'rgba(255, 255, 255, 0)'
         // events: {
         //     load: function() {
         //         var check = $('.top-chart').highcharts();
@@ -347,7 +347,7 @@
 var randomChartOptions = {
     chart: {
         type: 'column',
-        backgroundColor: '#FFFFFF'
+        backgroundColor: 'rgba(255, 255, 255, 0)'
     },
     credits: {
         enabled: false

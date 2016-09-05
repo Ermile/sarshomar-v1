@@ -2,6 +2,18 @@
 private function transtext()
 {
 
+	//-------------------------------------------------------content\home\display.html
+	echo T_("Register");                                                              // Line 169
+	echo T_("Links");                                                                 // Line 232
+	echo T_("About Us");                                                              // Line 175
+	echo T_("Our answer sheets are absolutely correct, and we can measure the accuracy of answers");// Line 145
+	echo T_("Do you want to register an account?");                                   // Line 154
+	echo T_("Home");                                                                  // Line 166
+	echo T_("Articles");                                                              // Line 236
+	echo T_("News");                                                                  // Line 240
+	echo T_("Latest News");                                                           // Line 244
+	echo T_("Policy");                                                                // Line 248
+
 	//----------------------------------------------------content\home\layout-xhr.html
 	echo T_("View your current location and navigate to parent of it");               // Line 9
 
