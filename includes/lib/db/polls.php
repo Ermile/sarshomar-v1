@@ -436,6 +436,10 @@ class polls
 		$answers = $meta['answers'];
 		$answers = json_decode($answers, true);
 
+		if(!is_array($opt)){
+			return ;
+		}
+
 		$final_result = [];
 		foreach ($opt as $key => $value) {
 			$count = 0;

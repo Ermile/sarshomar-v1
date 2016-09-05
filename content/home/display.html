@@ -282,9 +282,127 @@
         </div>
     </div>
 </div>
-
+{{dump(result)}}
 {%endblock%}
 
 {%block foot_js%}
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<script type="text/javascript">
+    var topChartOptions = {
+    chart: {
+        type: 'column',
+        // events: {
+        //     load: function() {
+        //         var check = $('.top-chart').highcharts();
+        //         check.yAxis[0].setExtremes(null, check.axes[1].dataMax);
+        //     }
+        // }
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        enabled: false
+    },
+    title: {
+        text:  {{result['random_result']['title']|raw}}
+    },
+    xAxis: {
+        labels: {
+            enabled: false
+        },
+        categories: [
+            'روش های رسیدن به وزن ایده آل'
+        ]
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'درصد',
+            enabled: false
+        },
+        labels: {
+            enabled: false
+        },
+        gridLineWidth: 0,
+        minorGridLineWidth: 0,
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+        footerFormat: '</table>',
+        shared: false,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: {{result['random_result']['data']|raw}}
+};
+
+var randomChartOptions = {
+    chart: {
+        type: 'column',
+        backgroundColor: '#FFFFFF'
+    },
+    credits: {
+        enabled: false
+    },
+    title: {
+        text: {{result['malefemale']['title']|raw}}
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            enabled: true
+        }
+    },
+    yAxis: {
+        title: {
+            enabled: false
+        },
+        labels: {
+            enabled: false
+        },
+        gridLineWidth: 0,
+        minorGridLineWidth: 0
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        // headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        headerFormat: '',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [{
+        name: 'جنسیت',
+        colorByPoint: true,
+        data: {{result['malefemale']['data']|raw}}
+    }],
+    drilldown: {
+        series: {{result['malefemale']['series']|raw}}
+    }
+};
+
+$(function() {
+    $('.top-chart').highcharts(topChartOptions);
+    $('.random-chart').highcharts(randomChartOptions);
+});
+</script>
 {% endblock %}
