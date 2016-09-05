@@ -5,73 +5,73 @@
 
 {%block content%}
 
-<div class="row">
-    <div class="span2"></div>
-    <div class="span8">
-        <nav class="navigation">
-            <ul>
-                <!-- <li>
-                    <a href="#">{% trans "Register" %}</a>
-                </li>
-                <li>
-                    <a href="#">{% trans "Links" %}</a>
-                </li>
-                <li>
-                    <a href="#">{% trans "About Us" %}</a>
-                </li> -->
-                <li>
-                    <a href="#">ثبت نام</a>
-                </li>
+<div class="container">
+    <div class="row">
+        <div class="span2"></div>
+        <div class="span8">
+            <nav class="navigation">
+                <ul>
+                    <!-- <li>
+                        <a href="#">{% trans "Register" %}</a>
+                    </li>
+                    <li>
+                        <a href="#">{% trans "Links" %}</a>
+                    </li>
+                    <li>
+                        <a href="#">{% trans "About Us" %}</a>
+                    </li> -->
+                    <li>
+                        <a href="#">ثبت نام</a>
+                    </li>
 
-                <li>
-                    <a href="#">لینک ها</a>
-                </li>
+                    <li>
+                        <a href="#">لینک ها</a>
+                    </li>
 
-                <li>
-                    <a href="#">درباره ما</a>
-                </li>
-            </ul>
-        </nav>
+                    <li>
+                        <a href="#">درباره ما</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="span1"></div>
-    <div class="span6">
-        <div class="top-chart chart"></div>
+    <div class="row">
+        <div class="span6">
+            <div class="top-chart chart"></div>
+        </div>
+        <div class="span6">
+            <img src="{{url.static}}images/logo.svg" class="logo">
+        </div>
     </div>
-    <div class="span4">سرشمار<br>اولین سرویس اینترنتی ایران</div>
-</div>
 
-<div class="row">
-    <div class="span1"></div>
-    <div class="span10">
-        <div>
-            <div class="row">
-                <div class="span5">
-                    {% if site.currentlang == "en" %}
-                    <div class="span3"></div>
-                    <div class="span6 map-wrapper">
-                        <object type="image/svg+xml" data="/static/images/world.svg">
-                        </object>
+    <div class="row">
+        <div class="span12">
+            <div>
+                <div class="row">
+                    <div class="span5">
+                        {% if site.currentlang == "en" %}
+                        <div class="span3"></div>
+                        <div class="span6 map-wrapper">
+                            <object type="image/svg+xml" data="/static/images/world.svg">
+                            </object>
+                        </div>
+                        {% else %}
+                        <div class="span2"></div>
+                        <div class="span4 map-wrapper">
+                            <object type="image/svg+xml" data="/static/images/ir-all.svg">
+                            </object>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% else %}
-                    <div class="span2"></div>
-                    <div class="span4 map-wrapper">
-                        <object type="image/svg+xml" data="/static/images/ir-all.svg">
-                        </object>
+                    <div class="span7">
+                        <div class="random-chart chart"></div>
                     </div>
-                    {% endif %}
-                </div>
-                <div class="span7">
-                    <div class="random-chart chart"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
     <div class="row row-info row-one">
         <div class="span1"></div>
         <div class="span8">
@@ -138,7 +138,6 @@
             <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
         </div>
     </div>
-
 
     <!-- Eslimi Background -->
     <div class="row">

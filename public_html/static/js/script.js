@@ -1,6 +1,7 @@
 var topChartOptions = {
     chart: {
         type: 'column',
+        backgroundColor:'rgba(255, 255, 255, 0)',
         // events: {
         //     load: function() {
         //         var check = $('.top-chart').highcharts();
@@ -68,7 +69,7 @@ var topChartOptions = {
 var randomChartOptions = {
     chart: {
         type: 'column',
-        backgroundColor: '#FFFFFF'
+        backgroundColor:'rgba(255, 255, 255, 0)',
     },
     credits: {
         enabled: false
