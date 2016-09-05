@@ -426,8 +426,12 @@ class polls
 	public static function get_result($_poll_id, $_value = null, $_key = null)
 	{
 		// get answers form post meta
-		$meta = self::get_poll_meta($_poll_id);
-		$meta = json_decode($meta, true);
+		$poll = self::get_poll($_poll_id);
+
+		$meta = json_decode($poll['meta'], true);
+
+		unset($poll['meta']);
+
 		$opt = $meta['opt'];
 		$answers = $meta['answers'];
 		$answers = json_decode($answers, true);
@@ -440,10 +444,12 @@ class polls
 					$count = $result['count'];
 				}
 			}
-			$final_result[$value['txt']] = $count;
+			$final_result[$key] = ['name' => $value['txt'], 'date' => $count];
+
 
 		}
-		return $final_result;
+		$poll['result'] = $final_result;
+		return $poll;
 	}
 
 

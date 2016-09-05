@@ -18,10 +18,12 @@ class view extends \mvc\view
 		if(isset($post['id']))
 		{
 			$post_id = $post['id'];
-			$this->data->chart      = \lib\db\polls::getResult($post_id);
-			$this->data->chart_type = 'column';
+			// $this->data->chart      = \lib\db\polls::getResult($post_id);
+			// $this->data->chart_type = 'column';
 
 		}
+		$this->data->result = $this->model()->random_result();
+
 	}
 
 
