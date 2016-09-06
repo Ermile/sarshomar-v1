@@ -263,10 +263,15 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .footer .list-footer a:hover { color: #fff }
 .footer .list-footer p { font-size: 1em; color: #888; margin-bottom: 0; max-width: 60% }
 .footer .list-footer.news a { font-weight: 700 }
+
 .footer .eco-wrapper { position: relative }
-.footer .eco-wrapper span { color: #aaaaaa; font-weight: bold; font-size: 1.2em }
+
+.footer .eco-wrapper span { float: right; color: #aaaaaa; font-weight: bold; font-size: 1.2em; margin-right: 4em }
 body.rtl .footer .eco-wrapper span { float: left; margin-left: 4em }
-.footer .eco-wrapper img { width: 5em; position: absolute; left: 0; bottom: 0 }
+
+.footer .eco-wrapper img { width: 5em; position: absolute; right: 0; bottom: 0 }
+body.rtl .footer .eco-wrapper img { left: 0; right: unset }
+
 .footer .extra { padding-top: 1.5em; padding-bottom: 1.5em; border-top: 1px solid #777; margin-top: 1em }
 .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
 .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
