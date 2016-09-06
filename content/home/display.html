@@ -45,30 +45,18 @@
     </div>
 
     <div class="row">
-        <div class="span12">
-            <div>
-                <div class="row">
-                    <div class="span5">
-                        {% if site.currentlang == "en" %}
-                        <div class="span3"></div>
-                        <div class="span6 map-wrapper">
-                            <object type="image/svg+xml" data="/static/images/world.svg">
-                            </object>
-                        </div>
-                        {% else %}
-                        <div class="span2"></div>
-                        <div class="span4 map-wrapper">
-                            <object type="image/svg+xml" data="/static/images/ir-all.svg">
-                            </object>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="span7">
-                        <div class="random-chart chart"></div>
-                    </div>
-                </div>
-            </div>
+    {% if site.currentlang == "en" %}
+        <div class="map-wrapper">
+            <object type="image/svg+xml" data="/static/images/world.svg"></object>
         </div>
+    {% else %}
+        <div class="span5 map-wrapper">
+            <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
+        </div>
+        <div class="span7">
+            <div class="random-chart chart"></div>
+        </div>
+    {% endif %}
     </div>
 
     <div class="row row-info row-one">
@@ -279,7 +267,6 @@
         </div>
     </div>
 </div>
-<!-- {{dump(result)}} -->
 {%endblock%}
 
 {%block foot_js%}

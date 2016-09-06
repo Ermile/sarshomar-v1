@@ -265,28 +265,26 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 }
 
 /* Large Desktop */
-@media screen and (min-width: 1400px) and (max-width : 1823px) {
+@media screen and (max-width : 1823px) {
     .question { font-size: 4em }
 }
 
 /* Normal Desktop */
-@media only screen and (min-width:1200px) and (max-width:1399px) {
+@media only screen and (max-width:1399px) {
     .question { font-size: 3em }
 }
 
 /* Small Desktop */
-@media only screen and (min-width:960px) and (max-width:1199px) {
-    .question { font-size: 3em }
+@media only screen and (max-width:1199px) {
 }
 
 /* Tablet (Portrait) */
-@media only screen and (min-width:768px) and (max-width:959px) {
+@media only screen and (max-width:959px) {
     .question { font-size: 2.5em }
 }
 
 /* Mobile (Landscape) */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    .question { font-size: 2.5em }
+@media only screen and (max-width: 767px) {
 }
 
 /* Mobile */
