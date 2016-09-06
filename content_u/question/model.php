@@ -25,6 +25,8 @@ class model extends \mvc\model
 
 	function post_question_add() {
 
+		var_dump(utility::post());exit();
+
 		$args = [
 				'user_id'     => $this->login('id'),
 				'title'        => utility::post("title"),

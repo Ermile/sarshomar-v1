@@ -16,7 +16,7 @@
             </div>
             <div class="field">
                 <label>language</label>
-                <input type="text" name="language" value="fa" disabled>
+                <input type="text" name="language" value="{{site.currentlang}}" >
             </div>
             <div class="field">
                 <label>content</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="field">
                 <label>publish_date</label>
-                <input type="text" name="publish_date" value="2016-01-01" disabled>
+                <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
             </div>
             <div class="field">
                 <label>answer1</label>
@@ -34,30 +34,24 @@
                 <label>answer2</label>
                 <input type="text" name="answers[]">
             </div>
+
             <div class="field">
-                <label>answer3</label>
-                <input type="text" name="answers[]">
+                <label for="idd">کلدی واژه ها</label>
+                <input type="text" name="tags">
             </div>
+                <label for="idd">از کی بپرسم</label>
             <div class="field">
-                <label>answer4</label>
-                <input type="text" name="answers[]">
+                {%for key, value in cats%}
+                    <input type="checkbox" name="cat_{{value.value}}"  >{{value.txt}}<br>
+                {%endfor%}
             </div>
+
             <div class="field">
-                <label>answer5</label>
-                <input type="text" name="answers[]">
+                <label for="idd">از چند نفر بپرسم</label>
+                <input type="number" name="count" min="{{min_member}}" max="{{max_member}}">
             </div>
-            <div class="field">
-                <label>answer6</label>
-                <input type="text" name="answers[]">
-            </div>
-            <div class="field">
-                <label>answer7</label>
-                <input type="text" name="answers[]">
-            </div>
-            <div class="field">
-                <label>answer8</label>
-                <input type="text" name="answers[]">
-            </div>
+
+
             <div class="field">
                 <label></label>
                 <input type="submit" value="ثبت سوال">
