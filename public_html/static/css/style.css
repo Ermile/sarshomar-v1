@@ -244,8 +244,8 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .tick img { width: 10em; margin-bottom: 2em }
 .tick .text { font-size: 4em; width: 60%; margin: 0 auto; color: #20a286; line-height: 1.6em; position: relative }
 .tick .text:before { width: 100%; height: 0.3em; background-color: #20a286; position: absolute; bottom: -0.5em; content: ""; border-radius: 1em }
-.question { padding-top: 5em; padding-bottom: 5em; text-align: center; background-color: #52bfc7 }
-.question a { color: #fff; font-size: 4em }
+.question { padding-top: 2em; padding-bottom: 2em; text-align: center; background-color: #52bfc7 }
+.question a { color: #fff; }
 .footer { background-color: #404040; padding-bottom: 5em }
 .footer nav { border-bottom: 1px solid #777; margin-bottom: 2em }
 .footer nav ul li { display: inline-block; padding: 1.5em }
@@ -259,6 +259,41 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 /* End */
 
 /* Media Queries */
+/* Large Screens */
+@media only screen and (min-width : 1824px) {
+    .question { font-size: 5em }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1400px) and (max-width : 1823px) {
+    .question { font-size: 4em }
+}
+
+/* Normal Desktop */
+@media only screen and (min-width:1200px) and (max-width:1399px) {
+    .question { font-size: 3em }
+}
+
+/* Small Desktop */
+@media only screen and (min-width:960px) and (max-width:1199px) {
+    .question { font-size: 3em }
+}
+
+/* Tablet (Portrait) */
+@media only screen and (min-width:768px) and (max-width:959px) {
+    .question { font-size: 2.5em }
+}
+
+/* Mobile (Landscape) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .question { font-size: 2.5em }
+}
+
+/* Mobile */
+@media only screen and (max-width: 479px) {
+    .question { font-size: 2em }
+}
+
 @media (max-width: 768px) {
     #demo-wrapper {
         width: auto;
