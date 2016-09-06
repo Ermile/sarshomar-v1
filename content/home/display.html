@@ -44,19 +44,17 @@
         </div>
     </div>
 
-    <div class="row">
-    {% if site.currentlang == "en" %}
-        <div class="map-wrapper">
+    <div class="row map-wrapper">
+        {% if site.currentlang == "en" %}
             <object type="image/svg+xml" data="/static/images/world.svg"></object>
-        </div>
-    {% else %}
-        <div class="span5 map-wrapper">
+        {% else %}
+        <div class="span5">
             <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
         </div>
         <div class="span7">
             <div class="random-chart chart"></div>
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 
     <div class="row row-info row-one">
@@ -263,6 +261,16 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="row eco-wrapper">
+                <img src="{{url.static}}images/eco.svg">
+                <span>سرشمار حامی محیط زیست</span>
+            </div>
+
+            <div class="row extra">
+                <span class="made-in-iran">با افتخار ساخت ایران</span>
+                <span class="counter">تا کنون 2762531 سوال پاسخ داده شده است</span>
             </div>
         </div>
     </div>
