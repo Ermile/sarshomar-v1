@@ -4,13 +4,22 @@ use \lib\utility;
 
 class model extends \mvc\model
 {
-	function get_question() {
-		// in one page can be display 10 record of posts
+
+	/**
+	 * get users question
+	 *
+	 * @return     <type>  The question.
+	 */
+	function get_question()
+	{
+
+		// in one page can be display 10 record of polls
 		$page   = 1;
 		$lenght = 10;
 
 		$user_id = 1;
 		$user_id = $this->login('id');
+
 		// set args to load query
 		$_args =[
 				'user_id'   => $user_id,
@@ -23,7 +32,12 @@ class model extends \mvc\model
 		return \lib\db\polls::xget($_args);
 	}
 
-	function post_question_add() {
+
+	/**
+	 * get data to add new question
+	 */
+	function post_question_add()
+	{
 
 		var_dump(utility::post());exit();
 
@@ -42,23 +56,41 @@ class model extends \mvc\model
 		$result  = \lib\db\polls::insert($args);
 
 
-		if($result) {
+		if($result)
+		{
 			\lib\debug::true(T_("Add Question Success"));
-		}else{
+		}
+		else
+		{
 			\lib\debug::error(T_("Error in add question"));
 		}
 
 	}
 
-	function get_question_edit($o) {
+
+	/**
+	 * get one question id and return data of this question
+	 * ready for edit form
+	 *
+	 * @param      <type>  $o      { parameter_description }
+	 *
+	 * @return     <type>  The question edit.
+	 */
+	function get_question_edit($o)
+	{
 		$poll_id = $o->match->url[0][1];
 		return \lib\db\polls::get_one($poll_id);
 	}
 
+
+	/**
+	 * post edited value of question and update question
+	 *
+	 * @param      <type>  $o      { parameter_description }
+	 */
 	function post_question_edit($o){
 
 		$poll_id = $o->match->url[0][1];
-
 			$args = [
 				'post_title'       => utility::post("title"),
 				'post_language'    => utility::post("language"),
@@ -68,20 +100,27 @@ class model extends \mvc\model
 
 		$result = \lib\db\polls::update($args, $poll_id);
 
-		foreach (utility::post('answers') as $key => $value) {
+		foreach (utility::post('answers') as $key => $value)
+		{
 			\lib\db\answers::update(['option_value' => $value], $key);
 		}
 
-		if($result) {
+		if($result)
+		{
 			\lib\debug::true(T_("Edit Question Success"));
-		}else{
+		}
+		else
+		{
 			\lib\debug::error(T_("Error in Edit question"));
 		}
-
-
 	}
 
-	function get_question_delete() {
+
+	/**
+	 * delete question
+	 */
+	function get_question_delete()
+	{
 
 	}
 }
