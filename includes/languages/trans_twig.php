@@ -3,16 +3,17 @@ private function transtext()
 {
 
 	//-------------------------------------------------------content\home\display.html
-	echo T_("Register");                                                              // Line 169
-	echo T_("Links");                                                                 // Line 232
-	echo T_("About Us");                                                              // Line 175
-	echo T_("Our answer sheets are absolutely correct, and we can measure the accuracy of answers");// Line 145
-	echo T_("Do you want to register an account?");                                   // Line 154
-	echo T_("Home");                                                                  // Line 166
-	echo T_("Articles");                                                              // Line 236
-	echo T_("News");                                                                  // Line 240
-	echo T_("Latest News");                                                           // Line 244
-	echo T_("Policy");                                                                // Line 248
+	echo T_("Register");                                                              // Line 164
+	echo T_("Links");                                                                 // Line 227
+	echo T_("About Us");                                                              // Line 170
+	echo T_("Our answer sheets are absolutely correct, and we can measure the accuracy of answers");// Line 142
+	echo T_("Do you want to register an account?");                                   // Line 149
+	echo T_("Home");                                                                  // Line 161
+	echo T_("Articles");                                                              // Line 231
+	echo T_("News");                                                                  // Line 235
+	echo T_("Latest News");                                                           // Line 239
+	echo T_("Policy");                                                                // Line 243
+	echo T_("Proudly Made in IRAN");                                                  // Line 273
 
 	//----------------------------------------------------content\home\layout-xhr.html
 	echo T_("View your current location and navigate to parent of it");               // Line 9

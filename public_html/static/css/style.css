@@ -230,29 +230,56 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .row.logo-chart .logo-wrapper img { width: 50% }
 .row.logo-chart .logo-wrapper span { color: #3e96ae; font-weight: bold; display: inline-block }
 
-.row-info { margin-bottom: 5em }
+.row-info { background-color: #f1f0f0; padding-top: 3em }
+.row-info .row { padding-bottom: 3em }
+.row-info .row .span2 { text-align: center }
 .row-info h2 { margin-bottom: unset }
 .row-info p { text-align: center; font-size: 1.4em; color: #adadad; margin-bottom: unset }
 .row-info img { width: 80% }
-.row-info.row-one h2 { color: #e67e27; }
-.row-info.row-two h2 { color: #20a286 }
-.row-info.row-three h2 { color: #f37977 }
-.row-info.row-four h2 { color: #20a286 }
-.row-info.row-five h2 { color: #e67e27 }
-.row-info.row-six h2 { color: #20a286 }
-.row-info:nth-child(even) h2 { text-align: left; }
-.row-info:nth-child(odd) img { float: right; }
-.row-info:nth-child(even) img { float: left; }
+.row-info .row-one h2 { color: #e67e27; }
+.row-info .row-two h2 { color: #20a286 }
+.row-info .row-three h2 { color: #f37977 }
+.row-info .row-four h2 { color: #20a286 }
+.row-info .row-five h2 { color: #e67e27 }
+.row-info .row-six h2 { color: #20a286 }
+.row-info .row:nth-child(even) h2 { text-align: left; }
 
 .art-bg { height: 70em; background-color: #ffffff; background-image: url(/static/images/art.svg); background-repeat: no-repeat; background-position: center center; background-size: 130% 130%; }
 .art-bg .circle { width: 60%; height: 60%; background-image: url(/static/images/circle.svg); background-repeat: no-repeat; background-position: center center; background-size: 100% 100%; margin: 0 auto; position: relative; top: 20% }
-.tick { background-color: #f1f0f0; padding-top: 5em; padding-bottom: 7em; text-align: center }
-.tick img { width: 10em; margin-bottom: 2em }
-.tick .text { font-size: 4em; width: 60%; margin: 0 auto; color: #20a286; line-height: 1.6em; position: relative }
-.tick .text:before { width: 100%; height: 0.3em; background-color: #20a286; position: absolute; bottom: -0.5em; content: ""; border-radius: 1em }
+
+.tick {
+    background-color: #f1f0f0;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    text-align: center;
+}
+
+.tick > img { width: 14%; margin-bottom: 1em }
+
+.tick .text {
+    width: 70%;
+    margin: 0 auto;
+    color: #20a286;
+    position: relative;
+}
+
+.tick .text:before {
+    width: 100%;
+    height: 0.2em;
+    background-color: #20a286;
+    position: absolute;
+    bottom: -0.5em;
+    content: "";
+    border-radius: 1em;
+    right: 0;
+}
+
 .question { padding-top: 2em; padding-bottom: 2em; text-align: center; background-color: #52bfc7 }
-.question a { color: #fff; }
+.question p { color: #fff; margin-bottom: 1em }
+.question .button { max-width: 10em; padding-top: 0.5em; padding-bottom: 0.5em; background-color: transparent !important; border: 1px solid #fff }
+
 .footer { background-color: #404040 }
+.footer > .container { padding-right: 5em; padding-left: 5em }
 .footer nav { border-bottom: 1px solid #777; margin-bottom: 2em }
 .footer nav ul li { display: inline-block; padding-top: 1.5em; padding-bottom: 1.5em }
 .footer nav ul li:not(:last-child) { margin-left: 4em }
@@ -263,31 +290,32 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .footer .list-footer a:hover { color: #fff }
 .footer .list-footer p { font-size: 1em; color: #888; margin-bottom: 0; max-width: 60% }
 .footer .list-footer.news a { font-weight: 700 }
-
 .footer .eco-wrapper { position: relative }
-
 .footer .eco-wrapper span { float: right; color: #aaaaaa; font-weight: bold; font-size: 1.2em; margin-right: 4em }
 body.rtl .footer .eco-wrapper span { float: left; margin-left: 4em }
-
 .footer .eco-wrapper img { width: 5em; position: absolute; right: 0; bottom: 0 }
 body.rtl .footer .eco-wrapper img { left: 0; right: unset }
 
 .footer .extra { padding-top: 1.5em; padding-bottom: 1.5em; border-top: 1px solid #777; margin-top: 1em }
 .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
 .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
-body.rtl .footer .extra .made-in-iran { float: right; font-size: 1.2em; color: #aaaaaa }
-body.rtl .footer .extra .counter { float: left; font-size: 1.2em; color: #aaaaaa }
+body.rtl .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
+body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
 /* End */
 
 /* Media Queries */
 /* Large Screens */
 @media only screen and (min-width : 1824px) {
-    .question { font-size: 5em }
+    .row-info .row-one img { margin-top: 6em }
+    .tick { font-size: 3em }
+    .question { font-size: 3em }
 }
 
 /* Large Desktop */
 @media screen and (max-width : 1823px) {
-    .question { font-size: 4em }
+    .row-info .row-one img { margin-top: 5em }
+    .tick { font-size: 3em }
+    .question { font-size: 3em }
 }
 
 /* Normal Desktop */
@@ -297,39 +325,26 @@ body.rtl .footer .extra .counter { float: left; font-size: 1.2em; color: #aaaaaa
 
 /* Small Desktop */
 @media only screen and (max-width:1199px) {
+    .tick { font-size: 2em }
+    .question { font-size: 2em }
 }
 
 /* Tablet (Portrait) */
 @media only screen and (max-width:959px) {
-    .question { font-size: 2.5em }
+    .row-info .row-one img { margin-top: 2em }
 }
 
 /* Mobile (Landscape) */
 @media only screen and (max-width: 767px) {
+    .row-info .row-one img { margin-top: 0 }
+    .row-info img { width: 30% }
 }
 
 /* Mobile */
 @media only screen and (max-width: 479px) {
-    .question { font-size: 2em }
-}
-
-@media (max-width: 768px) {
-    #demo-wrapper {
-        width: auto;
-        height: auto;
-    }
-    #mapBox {
-        width: auto;
-        float: none;
-    }
-    #container {
-        height: 310px;
-    }
-    #sideBox {
-        float: none;
-        width: auto;
-        margin-top: 0;
-        border-left: none;
-        border-top: 1px solid silver;
-    }
+    .row-info img { width: 40% }
+    .tick { font-size: 1.3em }
+    .question { font-size: 1.3em }
+    .footer .extra, body.rtl .footer .extra { text-align: center }
+    .footer .extra .made-in-iran, .footer .extra .counter, body.rtl .footer .extra .made-in-iran, body.rtl .footer .extra .counter { float: none }
 }
