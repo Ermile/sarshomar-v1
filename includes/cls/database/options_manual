@@ -1,5 +1,107 @@
-post_id 	user_id		cat					key					value			title
-1			0			poll_(post_id)		opt_[1,2,3...]		[opt text]		opt questions
-1			0			poll_(post_id)		opt_0_true			[opt text]		true opt questions
-1			1			poll_(post_id)		answer_(user_id)	[option_id]		heumen answers
+========================================================================================================= Posts
+id		type 									meta						title
+--------------------------------------------------------------------------------------------------------- Poll
+1		poll_private							{desc:"soal khobist"}
+2		poll_public
+3		poll_sarshomar
+
+1		poll_[private]_select
+1		poll_[private]_notify
+1		poll_[private]_text						[range, other:true|false]
+1		poll_[private]_upload					[upload data]
+1		poll_[private]_star						[range]
+1		poll_[private]_number					[range]
+1		poll_[private]_media_image				{opt: image}
+1		poll_[private]_media_video
+1		poll_[private]_media_audio
+1		poll_[private]_order
+
+--------------------------------------------------------------------------------------------------------- Survey
+4		surver_private
+4		surver_public
+4		surver_sarshomar
+
+
+
+
+
+========================================================================================================= Options
+post_id 	user_id		cat					key					value			meta				mode
+
+--------------------------------------------------------------------------------------------------------- Questions
+1			0			poll_(post_id)		opt_[1,2,3...]		[a1]			{desc:"salam", point:3}			select
+1			0			poll_(post_id)		opt_[1,2,3...]		[a2]			{desc:"khobi", point:1}			select
+																												notify
+																												text
+																												upload
+																												star
+1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'image'}	media_image
+1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'video'}	media_video
+1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'audio'}	media_audio
+																												order
+
+
+post_id 	user_id		cat					key					value				meta															point		mode
+--------------------------------------------------------------------------------------------------------- Answers
+1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select
+1			1			poll_(post_id)		answer_(user_id)	[opt_key2]			{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select - multiselect
+1			1			poll_(post_id)		answer_(user_id)	other				{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select - other text
+																																								notify
+1			1			poll_(post_id)		answer_(user_id)	[text]				{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					text
+1			1			poll_(post_id)		answer_(user_id)	[attachment_id]		{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					upload
+1			1			poll_(post_id)		answer_(user_id)	[text{number}]		{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					star
+1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_image
+1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_video
+1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_audio
+1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }		answer		order
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------- User Details
+0			1			user_detail			gender_(user_id)				[male|female]					*
+--------------------------------------------
+0			1			user_detail			marritalStatus_(user_id)		[single|married]				*
+--------------------------------------------
+0			1			user_detail			parentalStatus_(user_id)		[single|married]
+--------------------------------------------
+0			1			user_detail			exerciseHabits_(user_id)		[football|taekwando]
+--------------------------------------------
+0			1			user_detail			employmentStatus_(user_id)		[employee|unemployee]
+--------------------------------------------
+0			1			user_detail			businessOwner_(user_id)			[computer|burse]
+--------------------------------------------
+0			1			user_detail			industry_(user_id)				[computer|burse]
+--------------------------------------------
+0			1			user_detail			devicesOwned_(user_id)			[iphone6|surface|ubuntu]
+--------------------------------------------
+0			1			user_detail			internetUsage_(user_id)			[low|medium|high]
+--------------------------------------------
+0			1			user_detail			birthdate_(user_id)				[1990/12/20]
+0			1			user_detail			age_(user_id)					23								(create by age with cronjob)
+0			1			user_detail			range_(user_id)					[child|adult|old|...]			(create by age with cronjob)
+--------------------------------------------
+0			1			user_detail			graduation_(user_id)			[graduate|undergraduate|...]	*
+--------------------------------------------
+0			1			user_detail			course_(user_id)				[Diploma|B.S|M.S|...]			*
+--------------------------------------------
+0			1			user_detail			birthcountry_(user_id)			[IRAN|USA|...]
+0			1			user_detail			country_(user_id)				[IRAN|USA|...]
+0			1			user_detail			birthprovince_(user_id)			[Qom|CA|...]
+0			1			user_detail			province_(user_id)				[Qom|CA|...]
+0			1			user_detail			birthcity_(user_id)				[Noshahr|NewYork...]
+0			1			user_detail			city_(user_id)					[Noshahr|NewYork...]
+--------------------------------------------
+0			1			user_detail			favorites_(user_id)				[term_id]
+0			1			user_detail			favorites_(user_id)				[term_id]
+0			1			user_detail			favorites_(user_id)				[term_id]
+
+
+
+--------------------------------------------------------------------------------------------------------- Question Filters
+1			0			poll_(post_id)		Filter_[gender]		[a1]			{desc:"salam", point:3}			select
+
+
+
 
