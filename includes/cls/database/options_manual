@@ -40,6 +40,12 @@ post_id 	user_id		cat					key					value			meta				mode
 1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'audio'}	media_audio
 																												order
 
+--------------------------------------------
+
+1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'audio',time:20(s)}		answerTime to this question
+
+
+
 
 post_id 	user_id		cat					key					value				meta															point		mode
 --------------------------------------------------------------------------------------------------------- Answers
@@ -58,49 +64,61 @@ post_id 	user_id		cat					key					value				meta															point		mode
 
 
 
-
+post_id 	user_id		cat					key							value
 --------------------------------------------------------------------------------------------------------- User Details
-0			1			user_detail			gender_(user_id)				[male|female]					*
+0			1			user_(user_id)		gender						[male|female]					*
 --------------------------------------------
-0			1			user_detail			marritalStatus_(user_id)		[single|married]				*
+0			1			user_(user_id)		marrital_status				[single|married]				*
 --------------------------------------------
-0			1			user_detail			parentalStatus_(user_id)		[single|married]
+0			1			user_(user_id)		parental_status				[single|married]
 --------------------------------------------
-0			1			user_detail			exerciseHabits_(user_id)		[football|taekwando]
+0			1			user_(user_id)		exercise_habits				[football|taekwando]
 --------------------------------------------
-0			1			user_detail			employmentStatus_(user_id)		[employee|unemployee]
+0			1			user_(user_id)		employment_status			[employee|unemployee]
 --------------------------------------------
-0			1			user_detail			businessOwner_(user_id)			[computer|burse]
+0			1			user_(user_id)		business_owner				[computer|burse]
 --------------------------------------------
-0			1			user_detail			industry_(user_id)				[computer|burse]
+0			1			user_(user_id)		industry					[computer|burse]
 --------------------------------------------
-0			1			user_detail			devicesOwned_(user_id)			[iphone6|surface|ubuntu]
+0			1			user_(user_id)		devices_owned				[iphone6|surface|ubuntu]
 --------------------------------------------
-0			1			user_detail			internetUsage_(user_id)			[low|medium|high]
+0			1			user_(user_id)		internet_usage				[low|medium|high]
 --------------------------------------------
-0			1			user_detail			birthdate_(user_id)				[1990/12/20]
-0			1			user_detail			age_(user_id)					23								(create by age with cronjob)
-0			1			user_detail			range_(user_id)					[child|adult|old|...]			(create by age with cronjob)
+0			1			user_(user_id)		birthdate					[1990/12/20]
+0			1			user_(user_id)		age							23								(create by age with cronjob)
+0			1			user_(user_id)		range						[child|adult|old|...]			(create by age with cronjob)
 --------------------------------------------
-0			1			user_detail			graduation_(user_id)			[graduate|undergraduate|...]	*
+0			1			user_(user_id)		graduation					[graduate|undergraduate|...]	*
 --------------------------------------------
-0			1			user_detail			course_(user_id)				[Diploma|B.S|M.S|...]			*
+0			1			user_(user_id)		course						[Diploma|B.S|M.S|...]			*
 --------------------------------------------
-0			1			user_detail			birthcountry_(user_id)			[IRAN|USA|...]
-0			1			user_detail			country_(user_id)				[IRAN|USA|...]
-0			1			user_detail			birthprovince_(user_id)			[Qom|CA|...]
-0			1			user_detail			province_(user_id)				[Qom|CA|...]
-0			1			user_detail			birthcity_(user_id)				[Noshahr|NewYork...]
-0			1			user_detail			city_(user_id)					[Noshahr|NewYork...]
+0			1			user_(user_id)		country_birth				[IRAN|USA|...]
+0			1			user_(user_id)		country						[IRAN|USA|...]
+0			1			user_(user_id)		province_birth				[Qom|CA|...]
+0			1			user_(user_id)		province					[Qom|CA|...]
+0			1			user_(user_id)		birthcity					[Noshahr|NewYork...]
+0			1			user_(user_id)		city						[Noshahr|NewYork...]
 --------------------------------------------
-0			1			user_detail			favorites_(user_id)				[term_id]
-0			1			user_detail			favorites_(user_id)				[term_id]
-0			1			user_detail			favorites_(user_id)				[term_id]
+0			1			user_(user_id)		favorites					[term_id]
+0			1			user_(user_id)		favorites					[term_id]
+0			1			user_(user_id)		favorites					[term_id]
+--------------------------------------------
+0			1			user_(user_id)		language					[fa|en|ar]
 
 
 
 --------------------------------------------------------------------------------------------------------- Question Filters
-1			0			poll_(post_id)		Filter_[gender]		[a1]			{desc:"salam", point:3}			select
+1			0			poll_(post_id)		[gender|...]				[male|female]
+1			0			poll_(post_id)		age_min						20
+1			0			poll_(post_id)		age_max						30
+1			0			poll_(post_id)		members_min					1
+1			0			poll_(post_id)		members_max					10000(person)
+1			0			poll_(post_id)		public_answer				10000(person)
+1			0			poll_(post_id)		date_start					2016/09/14
+1			0			poll_(post_id)		date_end					2016/10/25
+1			0			poll_(post_id)		time_start					8:00
+1			0			poll_(post_id)		time_end					14:00
+1			0			poll_(post_id)		count_true					500(person)
 
 
 
