@@ -234,7 +234,7 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .row-info .row { padding-bottom: 3em }
 .row-info .row .span2 { text-align: center }
 .row-info h2 { margin-bottom: unset }
-.row-info p { text-align: center; font-size: 1.4em; color: #adadad; margin-bottom: unset }
+.row-info p { text-align: center; color: #adadad; margin-bottom: unset }
 .row-info img { width: 80% }
 .row-info .row-one h2 { color: #e67e27; }
 .row-info .row-two h2 { color: #20a286 }
@@ -277,6 +277,7 @@ nav.navigation ul li a { color: #434348; font-size: 1.6em; font-weight: 700 }
 .question { padding-top: 2em; padding-bottom: 2em; text-align: center; background-color: #52bfc7 }
 .question p { color: #fff; margin-bottom: 1em }
 .question .button { max-width: 10em; padding-top: 0.5em; padding-bottom: 0.5em; background-color: transparent !important; border: 1px solid #fff }
+.question .button:hover { background-color: #fff !important; color: #52bfc7 }
 
 .footer { background-color: #404040 }
 .footer > .container { padding-right: 5em; padding-left: 5em }
@@ -302,6 +303,35 @@ body.rtl .footer .eco-wrapper img { left: 0; right: unset }
 body.rtl .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
 body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
 /* End */
+
+/* Poll Page */
+.navbar { margin-top: 1em; background-color: red }
+.navbar > ul { float: left; direction: rtl }
+.navbar > ul > li { display: inline-block; padding: 2em 1em }
+.navbar > ul > li > a { font-size: 1.2em; color: #797979 }
+.navbar .logo { display: inline-block; float: right }
+.navbar .logo img { width: 5em; vertical-align: text-bottom }
+.navbar .logo span { color: #3e96ae; font-size: 1.6em }
+
+.question-box { margin-top: 6em; padding: 1em }
+.question-title { font-weight: bold; font-size: 2.2em; margin-bottom: 0.5em }
+.share-box { float: left; margin-left: 1em }
+.share-box > li { display: inline-block;  background-color: #b7b7b7; transition: all 0.15s ease-in-out }
+.share-box > li > a { display: block; width: 20px; height: 20px; line-height: 20px; color: #fff; text-align: center }
+.share-box > li > a > .fa { font-size: 1.4em; vertical-align: sub }
+.share-box .telegram:hover { background-color: #2798ba }
+
+.description { clear: both; margin-top: 5em; width: 60%; padding-right: 3em }
+.description > p { color: #767676; font-size: 1.4em; margin-bottom: 0 }
+
+.read-more { margin-top: 3em; padding-right: 3em; }
+.read-more > span { color: #454545; font-weight: 700; font-size: 1.4em }
+.read-more > a { color: #767676; font-size: 1.4em }
+
+.similar-questions .title { font-size: 1.8em; font-weight: 700; color: #454545; margin-bottom: 1em; margin-top: 0.8em }
+.similar-questions > ul > li:not(:last-child) { margin-bottom: 1em }
+.similar-questions > ul > li > a { color: #767676; font-size: 1.2em }
+.filters-nav {}
 
 /* Media Queries */
 /* Large Screens */
