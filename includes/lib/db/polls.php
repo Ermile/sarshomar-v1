@@ -16,40 +16,54 @@ class polls
 	 *
 	 * @return     array  mysql result
 	 */
-	public static function xget($_args){
+	public static function xget($_args)
+	{
 
 		// check post_type . if post_type is null return all type of posts
-		if(isset($_args['post_type'])){
+		if(isset($_args['post_type']))
+		{
 			$post_type = " post_type = 'poll_". $_args['post_type'] . "'";
-		}else{
+		}
+		else
+		{
 			$post_type = " post_type LIKE 'poll\_%'";
 		}
 
 		// check post_status
-		if(isset($_args['post_status'])){
+		if(isset($_args['post_status']))
+		{
 			$post_status = " AND post_status = '" .$_args['post_status'] . "'";
-		}else{
+		}
+		else
+		{
 			$post_status = null;
 		}
 
 		// check users id , retrun post of one person or all person
-		if(isset($_args['user_id'])){
+		if(isset($_args['user_id']))
+		{
 			$user_id = "AND user_id = " . $_args['user_id'];
-		}else{
+		}
+		else
+		{
 			$user_id = null;
 		}
 
 		// set page of limit query , default return LIMIT 0, 10 of record
 		if(isset($_args['page'])) {
 			$page = $_args['page'];
-		}else{
+		}
+		else
+		{
 			$page = 1;
 		}
 
 		// set lenght of limit query , default return LIMIT 0, 10 of record
 		if(isset($_args['lenght'])) {
 			$lenght = $_args['lenght'];
-		}else{
+		}
+		else
+		{
 			$lenght = 10;
 		}
 
@@ -87,70 +101,57 @@ class polls
 
 	/**
 	 * insert polls as post record
+	 * and then insert answers of this poll into answers (options table)
 	 *
 	 * @param      <type>  $_args  list of polls meta and answers
 	 *
 	 * @return     <type>  mysql result
 	 */
-	public static function insert($_args){
+	public static function insert($_args)
+	{
 
 		// get slug string
 		$slug =  \lib\utility\filter::slug($_args['title']);
 
-		$post_value = [
-					'user_id'          => $_args['user_id'],
-					'post_language'    => $_args['language'],
-					'post_title'       => $_args['title'],
-					'post_slug'        => $slug,
-					'post_url'         => null, // insert post id ofter insert record
-					'post_content'     => $_args['content'],
-					'post_type'        => 'poll_' . $_args['type'],
-					'post_status'      => $_args['status'],
-					'post_meta'        => null, // update meta after insert answers
-					// 'post_parent'   => $_args['parent'],
-					'post_publishdate' => $_args['publish_date']
-					];
+		$post_value =
+		[
+			'user_id'          => $_args['user_id'],
+			'post_language'    => $_args['language'],
+			'post_title'       => $_args['title'],
+			'post_slug'        => $slug,
+			'post_url'         => $slug . $_args['user_id'], // insert post id ofter insert record
+			'post_content'     => $_args['content'],
+			'post_type'        => 'poll_' . $_args['type'],
+			'post_status'      => $_args['status'],
+			'post_meta'        => null, // update meta after insert answers
+			// 'post_parent'   => $_args['parent'],
+			'post_publishdate' => $_args['publish_date']
+		];
 
 		$result = \lib\db\posts::insert($post_value);
 
 		// new id of poll, posts.id
 		$insert_id 	= \lib\db::insert_id();
 
-		if($insert_id && $_args['answers']){
-
-		// if poll inserted , insert the answers to options table
-		\lib\db\answers::insert([
-								'post_id' => $insert_id,
-								'answers' => $_args['answers']
-								]);
-			$_args['answers'] = array_filter($_args['answers']);
-
-			foreach ($_args['answers'] as $key => $value) {
-				if(is_array($value)){
-					foreach ($value as $k => $v) {
-						$_args['answers'][$key][] = [$k => $v];
-					}
-				}else{
-					$_args['answers'][$key] = ['id' => $key + 1 , 'txt' => $value];
-				}
-			}
+		if($insert_id)
+		{
+			return $insert_id;
 		}
-
-		$meta = [
-			'opt'     => $_args['answers'],
-			'answers' => ''
-			];
-
-		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-
-		// UPDATE posts SET post_url = [id] WHERE posts.id = [id]
-		$set_url = \lib\db\posts::update(['post_url' => \lib\utility\shortURL::encode($insert_id), 'post_meta' => $meta], $insert_id);
-
-		return $result;
-
+		else
+		{
+			return false;
+		}
 	}
 
 
+	/**
+	 * update polls as post record
+	 *
+	 * @param      <type>  $_args  The arguments
+	 * @param      <type>  $_id    The identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function update($_args, $_id) {
 		return \lib\db\posts::update($_args, $_id);
 	}
@@ -207,14 +208,16 @@ class polls
 
 	/**
 	 * return one querstion whit answers
+	 * to fill edit form
 	 * @param  [type] $_post_id 	[description]
 	 * @param  string $_users_id    [description]
 	 * @return [type]           	[description]
 	 */
-	public static function get_one($_post_id, $_user_id = null){
+	public static function get_one($_post_id, $_user_id = null)
+	{
 
 		//check users id
-		if($_user_id !== null) {
+		if($_user_id != null) {
 			$_user_id = " AND user_id = $_user_id ";
 		}
 
@@ -266,9 +269,12 @@ class polls
 				LIMIT 1
 				";
 		$title = \lib\db\posts::select($query, "get");
-		if(isset($title[0])){
+		if(isset($title[0]))
+		{
 			return $title[0];
-		}else{
+		}
+		else
+		{
 			return $title;
 		}
 	}
@@ -305,7 +311,8 @@ class polls
 	 *
 	 * @param      <type>  $_poll_id
 	 */
-	public static function set_result($_poll_id){
+	public static function set_result($_poll_id)
+	{
 		// get count of answered users for this poll
 		$query = "
 				SELECT
@@ -325,7 +332,8 @@ class polls
 
 		$count = \lib\db\options::select($query, 'get');
 		// update post meta and save cont of answered
-		if($count){
+		if($count)
+		{
 
 			$count_answered = array_sum(array_column($count, 'count'));
 			$count = json_encode($count, JSON_UNESCAPED_UNICODE);
@@ -410,7 +418,7 @@ class polls
 		if(isset($result['opt']))
 		{
 			$returnValue['opt'] = json_decode($result['opt'], true);
-			$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'id');
+			$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'key');
 		}
 		return $returnValue;
 	}
@@ -436,7 +444,8 @@ class polls
 		$answers = $meta['answers'];
 		$answers = json_decode($answers, true);
 
-		if(!is_array($opt)){
+		if(!is_array($opt))
+		{
 			return ;
 		}
 
@@ -444,7 +453,8 @@ class polls
 		foreach ($opt as $key => $value) {
 			$count = 0;
 			foreach ($answers as $k => $result) {
-				if($result['option_value'] == $value['id']){
+				if($result['option_value'] == $value['id'])
+				{
 					$count = $result['count'];
 				}
 			}

@@ -8,7 +8,7 @@
 			url : 'polls',
 			data : {
 				'poll_id' : _poll_id,
-				'answer_id' : _answer_id,
+				'answer_key' : _answer_id,
 				'answer_text' : _text
 			},
 			success :function (data) {
@@ -21,7 +21,7 @@
 {%for key, value in datatable%}
 {%if value is iterable %}
 	{%for k, v in value%}
-		<a onclick="answer({{datatable['id']}},{{k}},'{{v}}')" style="cursor:pointer;">{{v}}</a>
+		<a onclick="answer({{datatable['id']}},'{{k}}','{{v}}')" style="cursor:pointer;">{{v}}</a>
 		<br>
 	{%endfor%}
 {%else%}

@@ -11,24 +11,49 @@
     <div class="span4">
         <form action="question/add" method="post" class="form inline">
             <div class="field">
-                <label>title</label>
-                <input type="text" name="title">
+                <label>poll type</label>
+                <select name="poll_type">
+                    <option>select</option>
+                    <option>notify</option>
+                    <option>text</option>
+                    <option>upload</option>
+                    <option>star</option>
+                    <option>number</option>
+                    <option>media_image</option>
+                    <option>media_video</option>
+                    <option>media_audio</option>
+                    <option>order</option>
+                </select>
             </div>
             <div class="field">
-                <label>language</label>
-                <input type="text" name="language" value="{{site.currentlang}}" >
+                <label>title</label>
+                <input type="text" name="title">
             </div>
             <div class="field">
                 <label>content</label>
                 <input type="text" name="content">
             </div>
             <div class="field">
-                <label>publish_date</label>
-                <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
+                <label>answer type</label>
+                <select name="answer_type[]">
+                    <option>select</option>
+                    <option>media_image</option>
+                    <option>media_video</option>
+                    <option>media_audio</option>
+                </select>
             </div>
             <div class="field">
                 <label>answer1</label>
                 <input type="text" name="answers[]">
+            </div>
+            <div class="field">
+                <label>answer type</label>
+                <select name="answer_type[]">
+                     <option>select</option>
+                    <option>media_image</option>
+                    <option>media_video</option>
+                    <option>media_audio</option>
+                </select>
             </div>
             <div class="field">
                 <label>answer2</label>
@@ -39,7 +64,15 @@
                 <label for="idd">کلدی واژه ها</label>
                 <input type="text" name="tags">
             </div>
-                <label for="idd">از کی بپرسم</label>
+            <div class="field">
+                <label>language</label>
+                <input type="text" name="language" value="{{site.currentlang}}" >
+            </div>
+            <div class="field">
+                <label>publish_date</label>
+                <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
+            </div>
+           <!--      <label for="idd">از کی بپرسم</label>
             <div class="field">
                 {%for key, value in cats%}
                     <input type="checkbox" name="cat_{{value.value}}"  >{{value.txt}}<br>
@@ -49,7 +82,7 @@
             <div class="field">
                 <label for="idd">از چند نفر بپرسم</label>
                 <input type="number" name="count" min="{{min_member}}" max="{{max_member}}">
-            </div>
+            </div> -->
 
 
             <div class="field">

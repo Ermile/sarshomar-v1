@@ -12,28 +12,69 @@ class answers
 	 */
 	public static function insert($_args){
 
-		// $myAnswersList = json_encode($_answersList, JSON_UNESCAPED_UNICODE);
+		// remove empty answers
+		$_args['answers'] = array_filter($_args['answers']);
 
-		$answers = [];
-		// set key of opt like this -> opt_0, opt_1, opt_2, opt_3_true
+		// set key of option table to sort answer
+		// @example the poll have 3 answer
+		// who we save this answers to table ?
+		// [options table] : 	cat 				kye 		value  		 (the fields)
+		// 						poll_(post_id)		opt_1		[answer 1]
+		// 						poll_(post_id)		opt_1		[answer 1]
+		// 						poll_(post_id)		opt_3		[answer 3]
+		$answers   = [];
+		$opt_meta = [];
+		// answers key : opt_1, opt_2, opt_[$i], ...
 		$i = 0;
-
 		foreach ($_args['answers'] as $key => $value) {
 			if($value) {
-				// set key of opt like this ->  opt_1, opt_2, opt_3_true
-				$i++;
-				$answers[] = [
-							'post_id'      => $_args['post_id'],
-							'option_cat'   => 'poll_' . $_args['post_id'],
-							'option_key'   => 'opt_' .  $i,
-							'option_value' => $value,
-							'option_meta'  => json_encode($value, JSON_UNESCAPED_UNICODE)
-							];
 
+				$meta = [
+						'desc' => '',
+						'point' => 1
+						];
+
+				// answers key : opt_1, opt_2, opt_[$i], ...
+				$i++;
+				$answers[] =
+				[
+					'post_id'      => $_args['poll_id'],
+					'option_cat'   => 'poll_' . $_args['poll_id'],
+					'option_key'   => 'opt_' .  $i,
+					'option_value' => $value,
+					'option_meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE)
+				];
+
+				$opt_meta[] =
+				[
+					'key' => 'opt_' .  $i,
+					'txt' => $value
+				];
 			}
 		}
 
 		$return = \lib\db\options::insert_multi($answers);
+
+		// creat meta of options table for one answers record
+		// every question have more than 2 json param. opt : answers of this poll
+		// answers : count of people answered to this poll
+		$meta =
+		[
+			'opt'     	=> $opt_meta,
+			'desc' 		=> '',
+			'answers' 	=> ''
+		];
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+
+		// UPDATE posts SET post_url = [id], post_meta = [answers,...] WHERE posts.id = [id]
+		$set_url = \lib\db\polls::update(
+											[
+												'post_url' => \lib\utility\shortURL::encode($_args['poll_id']),
+												'post_meta' => $meta
+											]
+										, $_args['poll_id']);
+
 		return $return;
 	}
 
