@@ -120,6 +120,12 @@ post_id 	user_id		cat					key							value
 1			0			poll_(post_id)		time_end					14:00
 1			0			poll_(post_id)		count_true					500(person)
 
+--------------------------------------------------------------------------------------------------------- Question Detail
+1			0			poll_(post_id)		stat 						total					20000
+1			0			poll_(post_id)		stat 						gender					{male:200, female:400}
+1			0			poll_(post_id)		stat 						province				{qom:200, tehran:400}
+
+
 
 
 
