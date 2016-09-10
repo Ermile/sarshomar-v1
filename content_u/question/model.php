@@ -139,7 +139,7 @@ class model extends \mvc\model
 		$answers_arg =
 		[
 			'poll_id' => $poll_id,
-			'answers' => $answers
+			'answers' => array_combine($answer_type, $answers)
 		];
 
 		$answers    = \lib\db\answers::insert($answers_arg);

@@ -30,7 +30,8 @@ class answers
 			if($value) {
 
 				$meta = [
-						'desc' => '',
+						'desc'  => '',
+						'type'  => $key,
 						'point' => 1
 						];
 
