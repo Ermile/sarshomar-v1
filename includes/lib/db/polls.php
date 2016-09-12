@@ -364,6 +364,7 @@ class polls
 					post_order 			as 'order',
 					post_status 		as 'status',
 					post_parent 		as 'parent',
+					post_meta	     	as 'meta',
 					post_publishdate 	as 'publishdate'
 				FROM posts
 				WHERE
@@ -389,8 +390,19 @@ class polls
 		$query = "
 				SELECT
 					id,
-					post_title 	as 'title',
-					post_meta 	as 'meta'
+					post_language 		as 'language',
+					post_title 			as 'title',
+					post_slug 			as 'slug',
+					post_url 			as 'url',
+					post_content 		as 'content',
+					post_type 			as 'type',
+					post_comment 		as 'comment',
+					post_count 			as 'count',
+					post_order 			as 'order',
+					post_status 		as 'status',
+					post_parent 		as 'parent',
+					post_meta	     	as 'meta',
+					post_publishdate 	as 'publishdate'
 				FROM
 					posts
 				WHERE
@@ -442,6 +454,43 @@ class polls
 	 */
 	public static function set_result($_poll_id)
 	{
+
+		// get count of answered users for this poll
+		$query = "
+				SELECT
+					count(id) as 'count',
+                    post_id,
+                    option_value,
+                    option_key as 'opt'
+                FROM
+                    options
+                WHERE
+                    user_id IS NOT NULL AND
+                    post_id = $_poll_id AND
+                    option_key LIKE 'answer%'
+               	GROUP BY
+               		option_value
+				";
+
+		$count = \lib\db\options::select($query, 'get');
+		// update post meta and save cont of answered
+		if($count)
+		{
+
+			$count_answered = array_sum(array_column($count, 'count'));
+			$count = json_encode($count, JSON_UNESCAPED_UNICODE);
+				$update = "
+						UPDATE
+							posts
+						SET
+							posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count'),
+							posts.post_count = $count_answered
+						WHERE
+							posts.id = $_poll_id
+							";
+
+			\lib\db::query($update);
+		}
 
 		// set count of answered poll
 		$stat_query =
@@ -621,10 +670,7 @@ class polls
 	{
 		// get answers form post meta
 		$poll = self::get_poll($_poll_id);
-
 		$meta = json_decode($poll['meta'], true);
-
-		unset($poll['meta']);
 
 		$opt = $meta['opt'];
 		$answers = $meta['answers'];
@@ -639,17 +685,19 @@ class polls
 		foreach ($opt as $key => $value) {
 			$count = 0;
 			foreach ($answers as $k => $result) {
-				if($result['option_value'] == $value['id'])
+				if($result['option_value'] == $value['key'])
 				{
 					$count = $result['count'];
 				}
 			}
-			$final_result[$key] = ['name' => $value['txt'], 'date' => $count];
-
-
+			$final_result[$value['txt']] =  $count;
 		}
-		$poll['result'] = $final_result;
-		return $poll;
+
+		$result           = [];
+		$result['title']  = $poll['title'];
+		$result['url']    = 'sp_' .  $poll['url'];
+		$result['result'] = $final_result;
+		return $result;
 	}
 
 

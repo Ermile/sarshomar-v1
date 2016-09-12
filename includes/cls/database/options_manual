@@ -64,63 +64,63 @@ post_id 	user_id		cat					key					value				meta															point		mode
 
 
 
-post_id 	user_id		cat					key							value
+post_id 	user_id		cat							key							value
 --------------------------------------------------------------------------------------------------------- User Details
-0			1			user_(user_id)		gender						[male|female]					*
+0			1			user_detail_(user_id)		gender						[male|female]					*
 --------------------------------------------
-0			1			user_(user_id)		marrital_status				[single|married]				*
+0			1			user_detail_(user_id)		marrital_status				[single|married]				*
 --------------------------------------------
-0			1			user_(user_id)		parental_status				[single|married]
+0			1			user_detail_(user_id)		parental_status				[single|married]
 --------------------------------------------
-0			1			user_(user_id)		exercise_habits				[football|taekwando]
+0			1			user_detail_(user_id)		exercise_habits				[football|taekwando]
 --------------------------------------------
-0			1			user_(user_id)		employment_status			[employee|unemployee]
+0			1			user_detail_(user_id)		employment_status			[employee|unemployee]
 --------------------------------------------
-0			1			user_(user_id)		business_owner				[computer|burse]
+0			1			user_detail_(user_id)		business_owner				[computer|burse]
 --------------------------------------------
-0			1			user_(user_id)		industry					[computer|burse]
+0			1			user_detail_(user_id)		industry					[computer|burse]
 --------------------------------------------
-0			1			user_(user_id)		devices_owned				[iphone6|surface|ubuntu]
+0			1			user_detail_(user_id)		devices_owned				[iphone6|surface|ubuntu]
 --------------------------------------------
-0			1			user_(user_id)		internet_usage				[low|medium|high]
+0			1			user_detail_(user_id)		internet_usage				[low|medium|high]
 --------------------------------------------
-0			1			user_(user_id)		birthdate					[1990/12/20]
-0			1			user_(user_id)		age							23								(create by age with cronjob)
-0			1			user_(user_id)		range						[child|adult|old|...]			(create by age with cronjob)
+0			1			user_detail_(user_id)		birthdate					[1990/12/20]
+0			1			user_detail_(user_id)		age							23								(create by age with cronjob)
+0			1			user_detail_(user_id)		range						[child|adult|old|...]			(create by age with cronjob)
 --------------------------------------------
-0			1			user_(user_id)		graduation					[graduate|undergraduate|...]	*
+0			1			user_detail_(user_id)		graduation					[graduate|undergraduate|...]	*
 --------------------------------------------
-0			1			user_(user_id)		course						[Diploma|B.S|M.S|...]			*
+0			1			user_detail_(user_id)		course						[Diploma|B.S|M.S|...]			*
 --------------------------------------------
-0			1			user_(user_id)		country_birth				[IRAN|USA|...]
-0			1			user_(user_id)		country						[IRAN|USA|...]
-0			1			user_(user_id)		province_birth				[Qom|CA|...]
-0			1			user_(user_id)		province					[Qom|CA|...]
-0			1			user_(user_id)		birthcity					[Noshahr|NewYork...]
-0			1			user_(user_id)		city						[Noshahr|NewYork...]
+0			1			user_detail_(user_id)		country_birth				[IRAN|USA|...]
+0			1			user_detail_(user_id)		country						[IRAN|USA|...]
+0			1			user_detail_(user_id)		province_birth				[Qom|CA|...]
+0			1			user_detail_(user_id)		province					[Qom|CA|...]
+0			1			user_detail_(user_id)		birthcity					[Noshahr|NewYork...]
+0			1			user_detail_(user_id)		city						[Noshahr|NewYork...]
 --------------------------------------------
-0			1			user_(user_id)		favorites					[term_id]
-0			1			user_(user_id)		favorites					[term_id]
-0			1			user_(user_id)		favorites					[term_id]
+0			1			user_detail_(user_id)		favorites					[term_id]
+0			1			user_detail_(user_id)		favorites					[term_id]
+0			1			user_detail_(user_id)		favorites					[term_id]
 --------------------------------------------
-0			1			user_(user_id)		language					[fa|en|ar]
+0			1			user_detail_(user_id)		language					[fa|en|ar]
 
 
 
 --------------------------------------------------------------------------------------------------------- Question Filters
-1			0			poll_(post_id)		[gender|...]				[male|female]
-1			0			poll_(post_id)		age_min						20
-1			0			poll_(post_id)		age_max						30
-1			0			poll_(post_id)		members_min					1
-1			0			poll_(post_id)		members_max					10000(person)
-1			0			poll_(post_id)		public_answer				[true|false]
-1			0			poll_(post_id)		date_start					2016/09/14
-1			0			poll_(post_id)		date_end					2016/10/25
-1			0			poll_(post_id)		time_start					8:00
-1			0			poll_(post_id)		time_end					14:00
-1			0			poll_(post_id)		count_true					500(person)
+1			0			poll_(post_id)		 		[gender|...]				[male|female]
+1			0			poll_(post_id)		 		age_min						20
+1			0			poll_(post_id)		 		age_max						30
+1			0			poll_(post_id)		 		members_min					1
+1			0			poll_(post_id)		 		members_max					10000(person)
+1			0			poll_(post_id)		 		public_answer				[true|false]
+1			0			poll_(post_id)		 		date_start					2016/09/14
+1			0			poll_(post_id)		 		date_end					2016/10/25
+1			0			poll_(post_id)		 		time_start					8:00
+1			0			poll_(post_id)		 		time_end					14:00
+1			0			poll_(post_id)		 		count_true					500(person)
 
 --------------------------------------------------------------------------------------------------------- Question Detail
-1			0			poll_(post_id)		stat 						total					20000									OK
-1			0			poll_(post_id)		stat 						gender					{male:200, female:400}					OK
-1			0			poll_(post_id)		stat 						province				{qom:200, tehran:400}					OK
+1			0			poll_(post_id)				stat 						total					20000									OK
+1			0			poll_(post_id)				stat 						gender					{male:200, female:400}					OK
+1			0			poll_(post_id)				stat 						province				{qom:200, tehran:400}					OK
