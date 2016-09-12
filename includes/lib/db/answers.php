@@ -146,6 +146,11 @@ class answers
 		// save in options table and if successful return session_id
 		$result = \lib\db\options::insert($option_data);
 
+		// if error in insert we need to update record
+		if(!$result)
+		{
+			\lib\db\options::update_on_error($option_data);
+		}
 		// save answered count
 		\lib\db\polls::set_result($_poll_id);
 
