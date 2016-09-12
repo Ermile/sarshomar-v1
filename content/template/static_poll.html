@@ -1,0 +1,228 @@
+{%extends display.mvc%}
+
+{%block head_css%}
+<style type="text/css">
+body {
+    background-color: #f4f4f4
+}
+
+header.row {
+    margin-top: 2em
+}
+
+header > nav {
+    float: left
+}
+
+header > nav > a {
+    float: right;
+    padding: 2em 1em;
+    font-size: 1.2em;
+    color: #797979
+}
+
+header > .logo {
+    float: right;
+    direction: rtl
+}
+
+header > .logo > img {
+    width: 5em
+}
+
+header > .logo > h1 {
+    display: inline;
+    border-bottom: none;
+    font-size: 1.6em;
+    vertical-align: super;
+    color: #3e96ae
+}
+
+.question-box h2 {
+    border: none;
+    background-color: unset;
+    margin-bottom: unset;
+    color: #454545;
+}
+
+.question-box .description {
+    clear: both;
+    width: 70%;
+    padding: 2em 3em 5px;
+}
+
+.question-box .description p {
+    font-size: 1.2em;
+    margin-bottom: unset
+}
+
+
+/* Social Media Buttons */
+.social {
+    float: right
+}
+
+.social > a {
+    display: inline-block;
+    color: #fff;
+}
+
+.social > a > i {
+    width: 2.2em;
+    height: 2.2em;
+    line-height: 2.2em;
+    text-align: center;
+    background-color: #B7B7B7
+}
+
+.social .fa-paper-plane:hover {
+    background-color: #2798BA
+}
+
+.rtl .social {
+    float: left
+}
+
+.read-more {
+	margin-top: 3em;
+	margin-right: 1em;
+	font-size: 1.4em;
+	color: #454545;
+}
+
+.read-more a {
+	color: #454545;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+.related-questions {}
+
+.related-questions > h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #454545;
+    margin-top: 2em;
+}
+
+.related-questions > a {
+    display: block;
+    color: #767676;
+    font-size: 1.2em;
+}
+
+.results {
+	padding-bottom: 1em;
+	text-align: center;
+}
+.tabs {
+    background-color: #EFF0F9;
+    display: inline-block;
+    position: relative;
+}
+.tabs a {
+	display: inline-block;
+    font-size: 1.4em;
+    color: #767676;
+    padding: 0.5em 1em;
+    border-top: 2px solid #E0E0E0;
+    border-bottom: 2px solid #E0E0E0;
+    border-left: 2px solid transparent;
+	border-right: 2px solid transparent;
+    float: right;
+}
+.tabs a:hover {
+	background-color: #f4f4f4;
+	border-bottom: 2px solid #f4f4f4;
+	border-left: 2px solid #E0E0E0;
+	border-right: 2px solid #E0E0E0;
+	color: #2798BA;
+}
+.tabs:before {
+	content: "";
+    position: absolute;
+    height: 100%;
+    right: -1em;
+    top: 0em;
+    background-image: url(/static/images/edge2.svg);
+    background-repeat: no-repeat;
+    display: inline;
+    width: 2em;
+    background-size: 100% 100%;
+}
+.tabs:after {
+	content: "";
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-image: url(/static/images/edge.svg);
+	background-repeat: no-repeat;
+	display: inline;
+	width: 2em;
+}
+</style>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <header class="row">
+        <nav>
+            <a href="#">{%trans "Register"%}</a>
+            <a href="#">{%trans "Links"%}</a>
+            <a href="#">{%trans "About Us"%}</a>
+        </nav>
+        <a href="#" class="logo">
+            <img src="{{url.static}}images/logo.svg">
+            <h1>{%trans "Sarshomar"%}</h1>
+        </a>
+    </header>
+    <article class="row auto question-box">
+        <section class="span8">
+            <!-- <h2>با کدام روش ورزشی سنگین را برای رسیدن وزنی ایده آل برای تناسب مناسبتر می دانید؟</h2> -->
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam?</h2>
+            <nav class="social">
+                <a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-wordpress" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+            </nav>
+            <div class="description">
+                <p>ورزش یه نوعی تحرک ارادی است که باید آن را انجام داد بنابراین من همیشه باید ورزش کنم وگرنه مریض می شوم و می میرم</p>
+                <p>پس از همه شما دوستان عزیز دعوت به ورزش می کنم تا فلج نشوید و بیوفتید و بمیرید</p>
+                <p>والسلام ختم کلام</p>
+            </div>
+            <div class="read-more"><span>در همین رابطه بخوانید</span><a href="#">تناسب اندام چیست؟</a></div>
+        </section>
+        <nav class="span4 related-questions">
+            <h3>سوالات مشابه</h3>
+            <a href="#">آیا ورزش را دوست دارید؟</a>
+            <a href="#">من رفتم سر کوچمون آب اوردم این یه ورزشه؟</a>
+            <a href="#">بیا بریم با هم ورزش کنیم از نوع بیل زدن؟</a>
+            <a href="#">سرم درد می کنه و خستم آیا این ورزشه؟</a>
+            <a href="#">بیا بریم با هم ورزش کنیم از نوع بیل زدن؟</a>
+            <a href="#">سرم درد می کنه و خستم آیا این ورزشه؟</a>
+        </nav>
+    </article>
+	<section class="results">
+	    <nav class="tabs">
+	        <a href="#">نظرات کلی</a>
+	        <a href="#">جنسیت</a>
+	        <a href="#">سن</a>
+	        <a href="#">وضعیت تاهل</a>
+	        <a href="#">تحصیلات</a>
+	        <a href="#">محل سکونت</a>
+	        <a href="#">زمینه فعالیت</a>
+	        <a href="#">علاقه مندی ها</a>
+	        <a href="#">وضعیت تحصیلی</a>
+	    </nav>
+	</section>
+</div>
+{%endblock%}
+
+{%block foot_js%}
+{%endblock%}

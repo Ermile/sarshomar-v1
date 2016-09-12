@@ -24,6 +24,8 @@ class view extends \mvc\view
 		}
 		$this->data->result = $this->model()->random_result();
 		$this->data->stat = T_(":number Questions answered", ["number"=>12]);
+
+		$this->include->fontawesome = true;
 	}
 
 

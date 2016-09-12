@@ -305,7 +305,7 @@ body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaa
 /* End */
 
 /* Poll Page */
-.navbar { margin-top: 1em; background-color: red }
+/*.navbar { margin-top: 1em; background-color: red }
 .navbar > ul { float: left; direction: rtl }
 .navbar > ul > li { display: inline-block; padding: 2em 1em }
 .navbar > ul > li > a { font-size: 1.2em; color: #797979 }
@@ -331,7 +331,7 @@ body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaa
 .similar-questions .title { font-size: 1.8em; font-weight: 700; color: #454545; margin-bottom: 1em; margin-top: 0.8em }
 .similar-questions > ul > li:not(:last-child) { margin-bottom: 1em }
 .similar-questions > ul > li > a { color: #767676; font-size: 1.2em }
-.filters-nav {}
+.filters-nav {}*/
 
 /* Media Queries */
 /* Large Screens */
