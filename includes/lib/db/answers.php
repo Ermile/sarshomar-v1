@@ -12,9 +12,6 @@ class answers
 	 */
 	public static function insert($_args){
 
-		// remove empty answers
-		$_args['answers'] = array_filter($_args['answers']);
-
 		// set key of option table to sort answer
 		// @example the poll have 3 answer
 		// who we save this answers to table ?
@@ -27,38 +24,40 @@ class answers
 		// answers key : opt_1, opt_2, opt_[$i], ...
 		$i = 0;
 		foreach ($_args['answers'] as $key => $value) {
-			if($value) {
 
-				$meta = [
-						'desc'  => '',
-						'type'  => $key,
-						'point' => 1
-						];
+			$meta = [
+					'desc'  => '',
+					'type'  => $value['type'],
+					'point' => 1
+					];
 
-				// answers key : opt_1, opt_2, opt_[$i], ...
-				$i++;
-				$answers[] =
-				[
-					'post_id'      => $_args['poll_id'],
-					'option_cat'   => 'poll_' . $_args['poll_id'],
-					'option_key'   => 'opt_' .  $i,
-					'option_value' => $value,
-					'option_meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE)
-				];
+			// answers key : opt_1, opt_2, opt_[$i], ...
+			$i++;
+			$answers[] =
+			[
+				'post_id'      => $_args['poll_id'],
+				'option_cat'   => 'poll_' . $_args['poll_id'],
+				'option_key'   => 'opt_' .  $i,
+				'option_value' => $value['txt'],
+				'option_meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE)
+			];
 
-				$opt_meta[] =
-				[
-					'key' => 'opt_' .  $i,
-					'txt' => $value
-				];
-			}
+			$opt_meta[] =
+			[
+				'key'  => 'opt_' .  $i,
+				'txt'  => $value['txt'],
+				'type' => $value['type']
+			];
+
 		}
 
 		$return = \lib\db\options::insert_multi($answers);
 
 		// creat meta of options table for one answers record
-		// every question have more than 2 json param. opt : answers of this poll
+		// every question have more than two json param.
+		// opt : answers of this poll
 		// answers : count of people answered to this poll
+		// desc : description of answers
 		$meta =
 		[
 			'opt'     	=> $opt_meta,

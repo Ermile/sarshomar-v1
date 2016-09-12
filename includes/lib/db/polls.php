@@ -112,20 +112,89 @@ class polls
 
 		// get slug string
 		$slug =  \lib\utility\filter::slug($_args['title']);
+		//  check 		// check user_id
+		if(!isset($_args['user_id']))
+		{
+			\lib\debug::error(T_("user id not found"));
+		}
+		else
+		{
+			$user_id = $_args['user_id'];
+		}
+		// check language
+		if(!isset($_args['language']))
+		{
+			$language = substr(\lib\router::get_storage('language'), 0, 2);
+		}
+		else
+		{
+			$language = $_args['language'];
+		}
+		// check title
+		if(!isset($_args['title']))
+		{
+			\lib\debug::fatal(T_("poll title can not be null"));
+		}
+		else
+		{
+			$title = $_args['title'];
+		}
+		// check content
+		if(!isset($_args['content']))
+		{
+			$content = '';
+		}
+		else
+		{
+			$content = $_args['content'];
+		}
+		// check type
+		if(!isset($_args['type']))
+		{
+			$type = "private_select";
+		}
+		else
+		{
+			$type = $_args['type'];
+		}
+		// check status
+		if(!isset($_args['status']))
+		{
+			$status = "draft";
+		}
+		else
+		{
+			$status = $_args['status'];
+		}
+		// check publish_date
+		if(!isset($_args['publish_date']))
+		{
+			if($language == 'fa')
+			{
+				$publish_date = \lib\utility\jdate::date("Y-m-d");
+			}
+			else
+			{
+				$publish_date = date("Y-m-d");
+			}
+		}
+		else
+		{
+			$publish_date = $_args['publish_date'];
+		}
 
 		$post_value =
 		[
-			'user_id'          => $_args['user_id'],
-			'post_language'    => $_args['language'],
-			'post_title'       => $_args['title'],
+			'user_id'          => $user_id,
+			'post_language'    => $language,
+			'post_title'       => $title,
 			'post_slug'        => $slug,
-			'post_url'         => $slug . $_args['user_id'], // insert post id ofter insert record
-			'post_content'     => $_args['content'],
-			'post_type'        => 'poll_' . $_args['type'],
-			'post_status'      => $_args['status'],
+			'post_url'         => $slug . $user_id, // insert post id ofter insert record
+			'post_content'     => $content,
+			'post_type'        => 'poll_' . $type,
+			'post_status'      => $status,
 			'post_meta'        => null, // update meta after insert answers
-			// 'post_parent'   => $_args['parent'],
-			'post_publishdate' => $_args['publish_date']
+			'post_publishdate' => $publish_date
 		];
 
 		$result = \lib\db\posts::insert($post_value);
@@ -141,6 +210,66 @@ class polls
 		{
 			return false;
 		}
+	}
+
+
+	/**
+	 * insert quick poll
+	 * get title and answers txt then insert
+	 * for telegram mode
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function insert_quick($_args)
+	{
+		if(!isset($_args['user_id']))
+		{
+			\lib\debug::error(T_("user id can not be null"));
+		}
+		else
+		{
+			$user_id = $_args['user_id'];
+		}
+
+		if(!isset($_args['title']))
+		{
+			\lib\debug::fatal(T_("poll title can not be null"));
+		}
+		else
+		{
+			$title = $_args['title'];
+		}
+
+		$post_value =
+		[
+			'user_id'     => $_args['user_id'],
+			'title'       => $_args['title']
+		];
+
+		$insert_id = self::insert($post_value);
+
+		if(isset($_args['answers']))
+		{
+			$answers = array_filter($_args['answers']);
+		}
+		else
+		{
+			$answers = null;
+		}
+		// check insert id and answers exist
+		// for example the notify poll has no answerd
+		if($insert_id && $answers){
+			$answers_value = [];
+			foreach ($_args['answers'] as $key => $value) {
+				$answers_value[] =
+				[
+					'type' => 'select',
+					'txt' => $value
+				];
+			}
+			return \lib\db\answers::insert(['poll_id' => $insert_id , 'answers' => $answers_value]);
+		}
+		return $insert_id;
 	}
 
 

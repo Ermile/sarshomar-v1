@@ -69,9 +69,9 @@ class model extends \mvc\model
 		// get publish date
 		$publish_date = utility::post("publish_date");
 		// get answers type
-		$answer_type  = utility::post("answer_type");
+		$answer_type  = array_filter(utility::post("answer_type"));
 		// get answers
-		$answers      = utility::post("answers");
+		$answers      = array_filter(utility::post("answers"));
 		// get tags
 		$tags         = utility::post("tags");
 		// get count people to quese this poll
@@ -136,10 +136,19 @@ class model extends \mvc\model
 		// inset poll and answers
 		$poll_id = \lib\db\polls::insert($args);
 
+		// combine answer type and answer text
+		$combine = [];
+		foreach ($answers as $key => $value) {
+			$combine[] = [
+							'type' => $answer_type[$key],
+							'txt'  => $value
+						 ];
+		}
+
 		$answers_arg =
 		[
 			'poll_id' => $poll_id,
-			'answers' => array_combine($answer_type, $answers)
+			'answers' => $combine
 		];
 
 		$answers    = \lib\db\answers::insert($answers_arg);
