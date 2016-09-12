@@ -21,6 +21,8 @@ class view extends \mvc\view
 	 */
 	function view_question_add()
 	{
+		$this->include->fontawesome = true;
+
 		$this->data->form_add = true;
 		$this->data->max_member = 100000;
 		$this->data->min_member = 1;

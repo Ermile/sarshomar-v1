@@ -61,10 +61,6 @@
             </div>
 
             <div class="field">
-                <label for="idd">کلدی واژه ها</label>
-                <input type="text" name="tags">
-            </div>
-            <div class="field">
                 <label>language</label>
                 <input type="text" name="language" value="{{site.currentlang}}" >
             </div>
@@ -89,6 +85,7 @@
                 <label></label>
                 <input type="submit" value="ثبت سوال">
             </div>
+            {{ block('sp_tag') }}
         </form>
     </div>
 </div>
@@ -109,4 +106,22 @@
 	<input type="submit" value="اصلاح"><br>
 </form>
 {%endif%}
+{%endblock%}
+
+
+
+
+
+{%block sp_tag%}
+  <div class="panel panel-default unselectable" data-step='7' data-intro='{%trans "Write your tag and press enter to add new keyword to content"%}' data-position='top'>
+   <div class="panel-heading">{%trans "Tags"%}</div>
+   <div class="panel-body">
+    <div class="row">
+     <textarea name="tags" id="sp-tags" class="sp-tags input" placeholder='{%trans "Enter Tags here"%}'>{{tagList}}</textarea>
+     <input type="text" id="tag-add" autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
+     <input type="button" id="tag-add-btn" class='button' value='{%trans "Add"%}' tabindex="-1" />
+    </div>
+    <div id="tag-list" class="row"></div>
+   </div>
+  </div>
 {%endblock%}

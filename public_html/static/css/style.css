@@ -378,3 +378,27 @@ body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaa
     .footer .extra, body.rtl .footer .extra { text-align: center }
     .footer .extra .made-in-iran, .footer .extra .counter, body.rtl .footer .extra .made-in-iran, body.rtl .footer .extra .counter { float: none }
 }
+
+
+
+
+
+
+
+.sp-tags{width:100%;border:1px solid #ddd;max-width:100%;max-height:200px;}
+#sp-tags{display:none;}
+#tag-add{width:85%;border:1px solid #ddd;padding:0 8px;height:30px;border-radius:3px 0 0 3px;}
+.rtl #tag-add{border-radius:0 3px 3px 0}
+#tag-add-btn{width:15%;float:right;font-size:1em;padding: 5px 0;margin: 0;height:30px;border-radius:0 3px 3px 0;}
+.rtl #tag-add-btn{float:left;padding: 9px 0;border-radius:3px 0 0 3px;}
+#tag-list{font-size:1em;margin-top:10px;line-height:2em;}
+#tag-list span{display: inline-block;max-width: 100%;overflow: hidden;background: #F3F3F3;color: #999;padding: 0 5px;border-radius: 3px;border: 1px solid #DDD;margin:0 5px 0 0;cursor:default;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
+#rtl #tag-list span{float: right;}
+#tag-list span:hover{color: #666;}
+#tag-list span i{color:#bbb;margin-right:5px;cursor:pointer;vertical-align: middle;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
+.rtl #tag-list span i{margin-left:5px;}
+#tag-list span i:hover{color:#DF2D2D;}
+.tags-list{font-size:1.3em}
+.tags-list span{position:relative;background-color:#F4F4F4; margin:0 5px;padding:10px 0;border-radius:1px;overflow:hidden;}
+.tags-list a{padding:5px 10px;display:inline-block;margin-bottom:10px;transition:.3s;}
+.tags-list a:hover{background-color: #ECECEC}
