@@ -195,7 +195,7 @@ nav.nav ul li:not(:last-child) {
 
 /* In the Name of God */
 /* Start */
-.chart {
+/*.chart {
     direction: ltr;
 }
 
@@ -301,8 +301,53 @@ body.rtl .footer .eco-wrapper img { left: 0; right: unset }
 .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
 .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
 body.rtl .footer .extra .made-in-iran { float: left; font-size: 1.2em; color: #aaaaaa }
-body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }
+body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaaa }*/
 /* End */
+
+/* Poll */
+#poll .comments { background-color: #E7E7E7; padding: 5em 0 }
+#poll .comments h4 { color: #767676 }
+#poll .comments .average-score { color: #767676; font-size: 6em; margin-bottom: -.3em }
+#poll .comments .fa-star { color: #E2B31E }
+#poll .comments .stars-number { padding: 0 .5em; font-size: 1.4em; vertical-align: middle }
+#poll .comments .bars { margin-top: 2em; margin-bottom: 5em }
+#poll .comments .bars > div { height: 1em; border-radius: .3em }
+#poll .comments .bars > div:not(:last-child) { margin-bottom: 1em }
+#poll .comments .bar-one { width: 15em; background-color: #62B138 }
+#poll .comments .bar-two { width: 4em; background-color: #859E1F }
+#poll .comments .bar-three { width: 11em; background-color: #BC982C }
+#poll .comments .bar-four { width: 3em; background-color: #C15D31 }
+#poll .comments .bar-five { width: 2em; background-color: #B13838 }
+#poll .comments .comment .title { font-size: 1.2em; color: #767676; margin-bottom: .5em }
+#poll .comments .comment .user { color: #767676; margin-top: .5em }
+#poll .comments .comment .content p { color: #767676; font-size: 1.2em; margin-bottom: 1em; text-align: justify }
+#poll .comments .comment .content p:last-child { margin-bottom: 0 }
+.rtl .comments .comment .continue { text-align: left; padding: 0 2% }
+#poll .details { padding: 5em 0 }
+
+#poll .register-box { background-color: #E7E7E7 }
+#poll .register-box .container { background-color: #52BFC7; padding: 5em 0; text-align: center }
+#poll .register-box p { color: #fff; margin-bottom: 1em; font-size: 3em; margin-bottom: 0 }
+#poll .register-box .button { max-width: 10em; padding: 1em 0; font-size: 1.4em; color: #959597 }
+
+/* Footer */
+footer { background-color: #404040 }
+footer .container { padding: 0 3em }
+footer nav.horizontal { border-bottom: 1px solid #777777; margin-bottom: 2em }
+footer nav.horizontal > a { color: #aaa; padding-top: 1em; padding-bottom: 1em; display: inline-block; font-size: 1.4em; font-weight: bold }
+.ltr footer nav.horizontal > a:not(:last-child) { margin-right: 3em }
+.rtl footer nav.horizontal > a:not(:last-child) { margin-left: 3em }
+footer nav.span2 > a { display: block; color: #888; font-size: 1.2em; margin-bottom: .2em }
+footer nav.news > a { display: block; font-size: 1.2em; color: #A5A5A5; font-weight: bold; margin-bottom: .2em }
+footer nav.news > p { margin-bottom: 0; font-size: 1em; color: #A5A5A5; margin-bottom: .5em }
+footer .footnote { padding: 2em 1em; font-size: 1em; border-top: 1px solid #777777; margin-top: 1em; color: #aaa }
+footer .counter { float: right; font-weight: bold }
+footer .made-in-ir { float: left }
+footer .eco { position: relative }
+footer .eco div { position: absolute; right: 1em; bottom: 0 }
+.rtl footer .eco div { left: 1em; right: auto }
+footer .eco span { color: #aaa; font-size: 1.2em }
+footer .eco img { width: 3em; margin-bottom: -.5em }
 
 /* Poll Page */
 /*.navbar { margin-top: 1em; background-color: red }
