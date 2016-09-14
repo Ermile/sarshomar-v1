@@ -4,283 +4,143 @@
 {%endblock%}
 
 {%block content%}
+{% include 'content/template/static_header.html' %}
 
-<div class="container">
-    <div class="row auto">
-        <div class="span10">
-            <nav class="navigation">
-                <ul>
-                    <li>
-                        <a href="#">{% trans "Register" %}</a>
-                    </li>
-                    <li>
-                        <a href="#">{% trans "Links" %}</a>
-                    </li>
-                    <li>
-                        <a href="#">{% trans "About Us" %}</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="span2"></div>
-    </div>
-
-    <div class="row auto">
-        <!-- Here is Logo and Title of the site -->
-        <div class="span6">
-            <div class="row auto">
-                <div class="span6">
-                    <img src="{{url.static}}images/logo.svg" class="logo">
-                </div>
-                <div class="span6">
-                    <p>سرشمار<br>اولین سرویس اینترنتی ایران</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Here is top chart -->
-        <div class="span6">
-            <div class="top-chart chart"></div>
-        </div>
-    </div>
-
-    <div class="row map-wrapper">
-        {% if site.currentlang == "en" %}
-            <object type="image/svg+xml" data="/static/images/world.svg"></object>
-        {% else %}
-        <div class="span5">
-            <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
-        </div>
-        <div class="span7">
-            <div class="random-chart chart"></div>
-        </div>
-        {% endif %}
-    </div>
-
-    <div class="row-info">
-        <div class="row row-one">
-            <div class="span1"></div>
-            <div class="span8">
-                <h2>شرکت های تجاری</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-            </div>
-            <div class="span2">
-                <img src="{{url.static}}images/commercial.svg">
-            </div>
-        </div>
-        <div class="row row-two">
-            <div class="span1"></div>
-            <div class="span2">
-                <img src="{{url.static}}images/research.svg">
+<div class="row">
+    <div class="container">
+        <div class="row auto">
+            <div class="span4 logotype">
+                <img src="{{url.static}}images/logo.svg" class="logo">
+                <h1>{%trans "Sarshomar"%}</h1>
+                <h2>نگرشی نو به نظرسنجی</h2>
             </div>
             <div class="span8">
-                <h2>موسسات تحقیقاتی و آموزشی</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+                <div class="top-chart chart"></div>
             </div>
-        </div>
-        <div class="row row-three">
-            <div class="span1"></div>
-            <div class="span8">
-                <h2>سازمان ها و نهاد ها</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-            </div>
-            <div class="span2">
-                <img src="{{url.static}}images/organizations.svg">
-            </div>
-        </div>
-        <div class="row row-four">
-            <div class="span1"></div>
-            <div class="span2">
-                <img src="{{url.static}}images/developers.svg">
-            </div>
-            <div class="span8">
-                <h2>توسعه دهنده ها و صاحبان سایت</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-            </div>
-        </div>
-        <div class="row row-five">
-            <div class="span1"></div>
-            <div class="span8">
-                <h2>کانون های تبلیغاتی</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-            </div>
-            <div class="span2">
-                <img src="{{url.static}}images/advertising.svg">
-            </div>
-        </div>
-        <div class="row row-six">
-            <div class="span1"></div>
-            <div class="span2">
-                <img src="{{url.static}}images/people.svg">
-            </div>
-            <div class="span8">
-                <h2>عموم مردم</h2>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-                <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودار ها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Eslimi Background -->
-    <div class="row">
-        <div class="span12">
-            <div class="art-bg">
-                <div class="circle"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tick -->
-    <div class="row">
-        <div class="tick">
-            <img src="{{url.static}}images/tick.svg">
-            <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
-        </div>
-    </div>
-
-    <!-- Question -->
-    <div class="row">
-        <div class="question">
-            <p>{% trans "Do you want to register an account?" %}</p>
-            <a href="#" class="button positive">{% trans "Register" %}</a>
         </div>
     </div>
 </div>
 
-<div class="footer">
+<div class="row map-box">
     <div class="container">
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">{% trans "Home" %}</a>
-                </li>
-                <li>
-                    <a href="#">{% trans "Register" %}</a>
-                </li>
-                <li>
-                    <a href="#">{% trans "Articles" %}</a>
-                </li>
-                <li>
-                    <a href="#">{% trans "About Us" %}</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="row">
+            {% if site.currentlang == "en" %}
+            <object type="image/svg+xml" data="/static/images/world.svg"></object>
+            {% else %}
+            <div class="span5">
+                <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
+            </div>
+            <div class="span7">
+                <div class="random-chart chart"></div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row customers-box">
+    <div class="container">
+        <div class="row auto">
+            <div class="span5">
+                <img src="{{url.static}}images/customers/1.jpg">
+            </div>
+            <div class="span7 content">
+                <h3>شرکت های تجاری</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            </div>
+        </div>
 
         <div class="row auto">
-            <div class="span6">
-                <div class="row">
-                    <div class="span4">
-                        <ul class="list-footer">
-                            <li>
-                                <a href="#">{% trans "Links" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Articles" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Latest News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Policy" %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span4">
-                        <ul class="list-footer">
-                            <li>
-                                <a href="#">{% trans "Links" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Articles" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Latest News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Policy" %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span4">
-                        <ul class="list-footer">
-                            <li>
-                                <a href="#">{% trans "Links" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Articles" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Latest News" %}</a>
-                            </li>
-
-                            <li>
-                                <a href="#">{% trans "Policy" %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="span4 content">
+                <h3>موسسات تحقیقاتی آموزشی</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
-            <div class="span6">
-                <ul class="news list-footer">
-                    <li>
-                        <a href="#">اولین سرویس اینترنتی راه اندازی شد</a>
-                        <p>سرشمار اولین سرویس سرشماری در ایران است. این سرویس راه اندازی شده و مشغول به کار است.</p>
-                    </li>
-
-                    <li>
-                        <a href="#">فردا کار من تمام است</a>
-                    </li>
-
-                    <li>
-                        <a href="#">امروز من سخت کار کردم</a>
-                    </li>
-                </ul>
+            <div class="span8">
+                <img src="{{url.static}}images/customers/2.jpg">
             </div>
         </div>
 
-        <div class="row eco-wrapper">
-            <img src="{{url.static}}images/eco.svg">
-            <span>سرشمار حامی محیط زیست</span>
+        <div class="row auto">
+            <div class="span5">
+                <img src="{{url.static}}images/customers/3.jpg">
+            </div>
+            <div class="span7 content">
+                <h3>شرکت های تجاری</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            </div>
         </div>
 
-        <div class="row extra">
-            <div class="made-in-iran">{% trans "Proudly Made in IRAN" %}</div>
-            <div class="counter">{{stat}}</div>
+        <div class="row auto">
+            <div class="span8 content">
+                <h3>کانون های تبلیغاتی</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            </div>
+            <div class="span4">
+                <img src="{{url.static}}images/customers/4.jpg">
+            </div>
+        </div>
+
+        <div class="row auto">
+            <div class="span7">
+                <img src="{{url.static}}images/customers/5.jpg">
+            </div>
+            <div class="span5 content">
+                <h3>توسعه دهنده ها و صاحبان وب سایت</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            </div>
+        </div>
+
+        <div class="row auto">
+            <div class="span6 content">
+                <h3>عموم مردم</h3>
+                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            </div>
+            <div class="span6">
+                <img src="{{url.static}}images/customers/6.jpg">
+            </div>
         </div>
     </div>
 </div>
+
+<div class="features-box">
+    <div class="row container">
+        <div class="span2"></div>
+        <div class="span8">
+            <div class="circle" style="float: right">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </div>
+            <div class="circle">
+                <i class="fa fa-shield" aria-hidden="true"></i>
+            </div>
+            <div class="circle" style="float: left">
+                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            </div>
+            <div class="bar"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row assurance-box">
+    <div class="container">
+        <img src="{{url.static}}images/tick.svg">
+        <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
+    </div>
+</div>
+
+{% include 'content/template/static_register.html' %}
+{% include 'content/template/static_footer.html' %}
 {%endblock%}
 
 {%block foot_js%}
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-
 <script type="text/javascript">
-    var topChartOptions = {
+var topChartOptions = {
     chart: {
         type: 'column',
         backgroundColor: 'rgba(255, 255, 255, 0)'
