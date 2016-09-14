@@ -324,6 +324,14 @@ body.rtl .footer .extra .counter { float: right; font-size: 1.2em; color: #aaaaa
 #poll .comments .comment .content p:last-child { margin-bottom: 0 }
 .rtl .comments .comment .continue { text-align: left; padding: 0 2% }
 #poll .details { padding: 5em 0 }
+#poll .details .span6.border { border-right: 1px solid #A9A9A9 }
+#poll .details h5 { font-size: 1.7em; color: #767676 }
+#poll .details .title { color: #545458; font-size: 1.2em; font-weight: 700;  padding: 0 2em; margin-bottom: .5em }
+#poll .details .detail { font-size: 1.2em; padding: 0 2.5em; margin-bottom: 1em; color: #767676 }
+#poll .details .detail .green { color: #326F3C }
+#poll .details .detail .red { color: #A41F1F }
+#poll .details .detail.tags a { display: inline-block; background-color: #E7E7E7; color: #767676; padding: .2em .5em; border: 1px solid #B7B7B7 }
+#poll .details .detail .fa { vertical-align: middle; margin: 0 .2em; min-width: 1em; text-align: center }
 
 #poll .register-box { background-color: #E7E7E7 }
 #poll .register-box .container { background-color: #52BFC7; padding: 5em 0; text-align: center }
