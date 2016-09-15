@@ -112,16 +112,31 @@
     <div class="row container">
         <div class="span2"></div>
         <div class="span8">
-            <div class="circle" style="float: right">
-                <i class="fa fa-lock" aria-hidden="true"></i>
+            <div class="tab current" data-tab="1">
+                <div class="circle">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </div>
+                <div class="title">تضمین امنیت</div>
             </div>
-            <div class="circle">
-                <i class="fa fa-shield" aria-hidden="true"></i>
+            <div class="tab" data-tab="2">
+                <div class="circle">
+                    <i class="fa fa-shield" aria-hidden="true"></i>
+                </div>
+                <div class="title">حسابرسی دقیق</div>
             </div>
-            <div class="circle" style="float: left">
-                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            <div class="tab" data-tab="3">
+                <div class="circle">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </div>
+                <div class="title">انواع نمودارها</div>
             </div>
-            <div class="bar"></div>
+            <div class="content">
+                <p class="current">ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+
+                <p>ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+
+                <p>ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -255,6 +270,16 @@ var randomChartOptions = {
 $(function() {
     $('.top-chart').highcharts(topChartOptions);
     $('.random-chart').highcharts(randomChartOptions);
+
+    $('.features-box .tab').click(function() {
+        var tab_id = $(this).attr('data-tab');
+
+        $('.features-box .tab').removeClass('current');
+        $('.features-box .content p').removeClass('current');
+
+        $(this).addClass('current');
+        $('.features-box .content p').eq(tab_id - 1).addClass('current');
+    });
 });
 </script>
 {% endblock %}
