@@ -1,32 +1,54 @@
 {%extends display.mvc%}
+
+{%block head_css%}
+<style type="text/css">
+#polls .panel { margin-top: 10vh }
+#polls .panel .panel-heading { font-size: 1.4em }
+#polls .panel a { font-size: 2em }
+</style>
+{%endblock%}
+
 {%block content%}
+<div class="container">
+	<div class="row auto">
+		<div class="span2"></div>
+		<div class="span8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					{{datatable.question}}
+				</div>
+				<div class="panel-body">
+					<p>{{datatable.question}}</p>
+					<ul>
+						{%for value in datatable.opt%}
+							<li>
+								<a onclick="answer({{datatable['id']}},'{{k}}','{{v}}')" style="cursor:pointer">{{value}}</a>
+							</li>
+						{%endfor%}
+					</ul>
+				</div>
+				<div class="panel-footer">
+					{{datatable.tags}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script type="text/javascript">
-	function answer(_poll_id, _answer_id, _text){
-		$.ajax({
-			type : 'post',
-			url : 'polls',
-			data : {
-				'poll_id' : _poll_id,
-				'answer_key' : _answer_id,
-				'answer_text' : _text
-			},
-			success :function (data) {
-				console.log(document.write(data));
-			}
-		});
-
-	}
+function answer(_poll_id, _answer_id, _text) {
+    $.ajax({
+        type: 'post',
+        url: 'polls',
+        data: {
+            'poll_id': _poll_id,
+            'answer_key': _answer_id,
+            'answer_text': _text
+        },
+        success: function(data) {
+            console.log(document.write(data));
+        }
+    });
+}
 </script>
-{%for key, value in datatable%}
-{%if value is iterable %}
-	{%for k, v in value%}
-		<a onclick="answer({{datatable['id']}},'{{k}}','{{v}}')" style="cursor:pointer;">{{v}}</a>
-		<br>
-	{%endfor%}
-{%else%}
-	{{value}}
-{%endif%}
-<hr>
-{%endfor%}
 {%endblock%}

@@ -13,5 +13,10 @@ class view extends \mvc\view
 	{
 		$this->data->datatable = $o->api_callback;
 	}
+
+	function config()
+	{
+		$this->include->fontawesome = true;
+	}
 }
 ?>
