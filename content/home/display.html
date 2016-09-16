@@ -6,7 +6,7 @@
 {%block content%}
 {% include 'content/template/static_header.html' %}
 
-<div class="row">
+<div class="row chart-box">
     <div class="container">
         <div class="row auto">
             <div class="span4 logotype">
@@ -40,7 +40,7 @@
 
 <div class="row customers-box">
     <div class="container">
-        <div class="row auto">
+        <div class="row auto right">
             <div class="span5">
                 <img src="{{url.static}}images/customers/1.jpg">
             </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="row auto">
+        <div class="row auto left">
             <div class="span4 content">
                 <h3>موسسات تحقیقاتی آموزشی</h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="row auto">
+        <div class="row auto right">
             <div class="span5">
                 <img src="{{url.static}}images/customers/3.jpg">
             </div>
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <div class="row auto">
+        <div class="row auto left">
             <div class="span8 content">
                 <h3>کانون های تبلیغاتی</h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="row auto">
+        <div class="row auto right">
             <div class="span7">
                 <img src="{{url.static}}images/customers/5.jpg">
             </div>
@@ -95,7 +95,7 @@
             </div>
         </div>
 
-        <div class="row auto">
+        <div class="row auto left">
             <div class="span6 content">
                 <h3>عموم مردم</h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
@@ -131,11 +131,11 @@
                 <div class="title">انواع نمودارها</div>
             </div>
             <div class="content">
-                <p class="current">ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+                <p class="current">تضمین امنیت</p>
 
-                <p>ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+                <p>حسابرسی دقیق</p>
 
-                <p>ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد و ما به شما امنیتی خواهیم داد که هیچ کس تا به امروز ندیده است و نمی تواند به شما بدهد.</p>
+                <p>انواع نمودارها</p>
             </div>
         </div>
     </div>
@@ -158,7 +158,9 @@
 var topChartOptions = {
     chart: {
         type: 'column',
-        backgroundColor: 'rgba(255, 255, 255, 0)'
+        backgroundColor: 'rgba(255, 255, 255, 0)',
+        // width: null,
+        verticalAlign: 'center',
         // events: {
         //     load: function() {
         //         var check = $('.top-chart').highcharts();
@@ -195,6 +197,9 @@ var topChartOptions = {
         gridLineWidth: 0,
         minorGridLineWidth: 0,
     },
+    legend: {
+        enabled: false
+    },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
@@ -206,7 +211,12 @@ var topChartOptions = {
         column: {
             pointPadding: 0.2,
             borderWidth: 0
-        }
+        },
+        // series: {
+        //     dataLabels: {
+        //         enabled: true
+        //     }
+        // }
     },
     series: {{result['random_result']['data']|raw}}
 };
