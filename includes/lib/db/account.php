@@ -24,20 +24,20 @@ class account
 		$query =
 		"
 			SELECT
-				options.option_key,
-				options.option_value,
+				options.option_key 		AS 'key',
+				options.option_value 	AS 'value',
 				terms.term_title,
 				terms.term_url
 			FROM
 				options
-			INNER JOIN terms ON
+			LEFT JOIN terms ON
 					terms.id = options.option_value AND
 					options.option_cat = 'favorites'
 			WHERE
 				options.option_cat = 'user_detail_$user_id'
 		";
 
-		$result = \lib\db::get($query);
+		$result = \lib\db::get($query, ['key', 'value']);
 
 		return $result;
 	}

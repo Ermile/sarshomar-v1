@@ -12,8 +12,7 @@ class model extends \mvc\model
 	{
 		$user_id = $this->login("id");
 		$account = \lib\db\account::get_account_data(['user_id' => $user_id]);
-		// var_dump($account);
-		// exit();
+		return $account;
 	}
 
 
