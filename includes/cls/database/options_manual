@@ -124,3 +124,5 @@ post_id 	user_id		cat							key							value
 1			0			poll_(post_id)				stat 						total					20000									OK
 1			0			poll_(post_id)				stat 						gender					{male:200, female:400}					OK
 1			0			poll_(post_id)				stat 						province				{qom:200, tehran:400}					OK
+
+1			0			poll_(post_id)				stat 						opt_count				{opt_1:200, opt_2:400}

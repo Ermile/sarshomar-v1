@@ -152,7 +152,7 @@ class answers
 			\lib\db\options::update_on_error($option_data);
 		}
 		// save answered count
-		\lib\db\polls::set_result($_poll_id);
+		\lib\db\polls::set_result(['poll_id' => $_poll_id, 'user_id' => $_user_id]);
 
 		return $result;
 	}

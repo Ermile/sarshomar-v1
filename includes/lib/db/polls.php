@@ -452,21 +452,38 @@ class polls
 	 *
 	 * @param      <type>  $_poll_id
 	 */
-	public static function set_result($_poll_id)
+	public static function set_result($_args)
 	{
+
+		if(isset($_args['poll_id']))
+		{
+			$poll_id = $_args['poll_id'];
+		}
+		else
+		{
+			\lib\debug::error(T_("poll id not found"));
+		}
+
+
+		if(isset($_args['user_id']))
+		{
+			$user_id = $_args['user_id'];
+		}
+		else
+		{
+			\lib\debug::error(T_("user id not found"));
+		}
 
 		// get count of answered users for this poll
 		$query = "
 				SELECT
-					count(id) as 'count',
-                    post_id,
-                    option_value,
-                    option_key as 'opt'
+					COUNT(options.id) as 'count',
+                    option_value
                 FROM
                     options
                 WHERE
                     user_id IS NOT NULL AND
-                    post_id = $_poll_id AND
+                    post_id = $poll_id AND
                     option_key LIKE 'answer%'
                	GROUP BY
                		option_value
@@ -479,15 +496,15 @@ class polls
 
 			$count_answered = array_sum(array_column($count, 'count'));
 			$count = json_encode($count, JSON_UNESCAPED_UNICODE);
-				$update = "
-						UPDATE
-							posts
-						SET
-							posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count'),
-							posts.post_count = $count_answered
-						WHERE
-							posts.id = $_poll_id
-							";
+				$update =
+				"
+					UPDATE
+						posts
+					SET
+						posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count'),
+					WHERE
+						posts.id = $poll_id
+				";
 
 			\lib\db::query($update);
 		}
@@ -501,8 +518,8 @@ class polls
 				options.option_meta  = option_meta + 1
 			WHERE
 				options.user_id IS NULL AND
-				options.post_id      = $_poll_id AND
-				options.option_cat   = 'poll_{$_poll_id}' AND
+				options.post_id      = $poll_id AND
+				options.option_cat   = 'poll_{$poll_id}' AND
 				options.option_key   = 'stat' AND
 				options.option_value = 'total'
 		";
@@ -516,16 +533,14 @@ class polls
 				INSERT INTO
 					options
 				SET
-					options.post_id      = $_poll_id,
-					options.option_cat   = 'poll_{$_poll_id}',
+					options.post_id      = $poll_id,
+					options.option_cat   = 'poll_{$poll_id}',
 					options.option_key   = 'stat',
 					options.option_value = 'total',
 					options.option_meta  = 1
 			";
 			$insert = \lib\db::query($insert_query);
 		}
-
-		$user_id = $_SESSION['user']['id'];
 
 		$query =
 			"
@@ -560,10 +575,10 @@ class polls
                 							)
                 						)
                 WHERE
-					options.option_cat   = 'poll_{$_poll_id}' AND
+					options.option_cat   = 'poll_{$poll_id}' AND
 					options.option_key   = 'stat' AND
 					options.option_value = '$key' AND
-                	options.post_id 	 = $_poll_id
+                	options.post_id 	 = $poll_id
 			";
 			$update = \lib\db::query($query);
 			$update_rows = mysqli_affected_rows(\lib\db::$link);
@@ -574,11 +589,11 @@ class polls
 					INSERT INTO
 	                	options
 	                SET
-						options.option_cat   = 'poll_{$_poll_id}',
+						options.option_cat   = 'poll_{$poll_id}',
 						options.option_key   = 'stat',
 						options.option_value = '$key',
 	                	options.option_meta  = '{\"$value\": 1}',
-	                	options.post_id 	 = $_poll_id
+	                	options.post_id 	 = $poll_id
 				";
 			$update = \lib\db::query($query);
 			}
