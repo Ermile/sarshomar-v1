@@ -1,9 +1,15 @@
 <header class="container">
     <nav>
-        <a href="#" class="register">{%trans "Register"%}</a>
-        <a href="#">{%trans "Links"%}</a>
+        <a href="#" class="register">
+            <span data-hover='{%trans "Register"%}'>{%trans "Register"%}</span>
+        </a>
+        <a href="#" class="regular">
+            <span data-hover='{%trans "Links"%}'>{%trans "Links"%}</span>
+        </a>
         <!-- <a href="#">{%trans "About Us"%}</a> -->
-        <a href="#">راهنمایی</a>
+        <a href="#" class="regular">
+            <span data-hover="راهنمایی">راهنمایی</span>
+        </a>
     </nav>
     {%if global.id != 'home'%}
     <a href="/" class="logo">

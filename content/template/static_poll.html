@@ -56,7 +56,7 @@
             <a href="#">وضعیت تحصیلی</a>
         </nav>
     </section>
-    <div class="poll-chart chart"></div>
+    <div class="container poll-chart chart"></div>
 </div>
 
 <div class="comments">
@@ -84,8 +84,14 @@
                 </div>
                 <div class="comment">
                     <div class="score">
-                        <div class="plus">2</div>
-                        <div class="minus">3</div>
+                        <div class="plus">
+                            <img src="{{url.static}}images/score-g.svg">
+                            <span>12</span>
+                        </div>
+                        <div class="minus">
+                            <img src="{{url.static}}images/score-r.svg">
+                            <span>132</span>
+                        </div>
                     </div>
                     <div class="title">بهتر شود</div>
                     <div>
@@ -241,14 +247,14 @@ var pollChartOptions = {
         enabled: false
     },
     title: {
-        text:  {{result['random_result']['title']|raw}}
+        text: ""
     },
     xAxis: {
         labels: {
             enabled: false
         },
         categories: [
-            'روش های رسیدن به وزن ایده آل'
+            ''
         ]
     },
     yAxis: {
@@ -262,6 +268,9 @@ var pollChartOptions = {
         },
         gridLineWidth: 0,
         minorGridLineWidth: 0,
+    },
+    legend: {
+        enabled: false
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',

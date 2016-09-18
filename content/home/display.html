@@ -15,6 +15,7 @@
                 <h2>نگرشی نو به نظرسنجی</h2>
             </div>
             <div class="span8">
+                <h3>{{result['random_result']['title']|raw}}</h3>
                 <div class="top-chart chart"></div>
             </div>
         </div>
@@ -31,6 +32,7 @@
                 <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
             </div>
             <div class="span7">
+                <h4>{{result['malefemale']['title']|raw}}</h4>
                 <div class="random-chart chart"></div>
             </div>
             {% endif %}
@@ -45,7 +47,9 @@
                 <img src="{{url.static}}images/customers/1.jpg">
             </div>
             <div class="span7 content">
-                <h3>شرکت های تجاری</h3>
+                <h3>
+                    <a href="#">شرکت های تجاری</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -53,7 +57,9 @@
 
         <div class="row auto left">
             <div class="span4 content">
-                <h3>موسسات تحقیقاتی آموزشی</h3>
+                <h3>
+                    <a href="#">موسسات تحقیقاتی آموزشی</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -67,7 +73,9 @@
                 <img src="{{url.static}}images/customers/3.jpg">
             </div>
             <div class="span7 content">
-                <h3>شرکت های تجاری</h3>
+                <h3>
+                    <a href="#">شرکت های تجاری</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -75,7 +83,9 @@
 
         <div class="row auto left">
             <div class="span8 content">
-                <h3>کانون های تبلیغاتی</h3>
+                <h3>
+                    <a href="#">کانون های تبلیغاتی</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -89,7 +99,9 @@
                 <img src="{{url.static}}images/customers/5.jpg">
             </div>
             <div class="span5 content">
-                <h3>توسعه دهنده ها و صاحبان وب سایت</h3>
+                <h3>
+                    <a href="#">توسعه دهنده ها و صاحبان وب سایت</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -97,7 +109,9 @@
 
         <div class="row auto left">
             <div class="span6 content">
-                <h3>عموم مردم</h3>
+                <h3>
+                    <a href="#">عموم مردم</a>
+                </h3>
                 <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
                 <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
             </div>
@@ -113,21 +127,15 @@
         <div class="span2"></div>
         <div class="span8">
             <div class="tab current" data-tab="1">
-                <div class="circle">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                </div>
+                <div class="circle security"></div>
                 <div class="title">تضمین امنیت</div>
             </div>
             <div class="tab" data-tab="2">
-                <div class="circle">
-                    <i class="fa fa-shield" aria-hidden="true"></i>
-                </div>
+                <div class="circle precision"></div>
                 <div class="title">حسابرسی دقیق</div>
             </div>
             <div class="tab" data-tab="3">
-                <div class="circle">
-                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
-                </div>
+                <div class="circle variety"></div>
                 <div class="title">انواع نمودارها</div>
             </div>
             <div class="content">
@@ -175,15 +183,23 @@ var topChartOptions = {
         enabled: false
     },
     title: {
-        text:  {{result['random_result']['title']|raw}}
+        text: ""
     },
     xAxis: {
         labels: {
             enabled: false
         },
         categories: [
-            'روش های رسیدن به وزن ایده آل'
-        ]
+            ''
+        ],
+        // lineWidth: 0,
+        // minorGridLineWidth: 0,
+        // lineColor: 'transparent',
+        // labels: {
+        //     enabled: false
+        // },
+        // minorTickLength: 0,
+        // tickLength: 0
     },
     yAxis: {
         min: 0,
@@ -230,7 +246,7 @@ var randomChartOptions = {
         enabled: false
     },
     title: {
-        text: {{result['malefemale']['title']|raw}}
+        text: ""
     },
     xAxis: {
         type: 'category',
@@ -281,7 +297,7 @@ $(function() {
     $('.top-chart').highcharts(topChartOptions);
     $('.random-chart').highcharts(randomChartOptions);
 
-    $('.features-box .tab').click(function() {
+    var hoverOrClick = function() {
         var tab_id = $(this).attr('data-tab');
 
         $('.features-box .tab').removeClass('current');
@@ -289,7 +305,9 @@ $(function() {
 
         $(this).addClass('current');
         $('.features-box .content p').eq(tab_id - 1).addClass('current');
-    });
+    };
+
+    $('.features-box .tab').click(hoverOrClick).hover(hoverOrClick);
 });
 </script>
 {% endblock %}

@@ -1,6 +1,10 @@
 <div class="row register-box">
     <div class="container">
         <p>{% trans "Do you want to register an account?" %}</p>
-        <a class="button" href="#">{%trans "Register"%}</a>
+        <a href="#">
+        	<span data-hover='{%trans "Register"%}'>{%trans "Register"%}</span>
+        </a>
+        <img src="{{url.static}}images/svg/register-edge.svg" class="left-edge">
+        <img src="{{url.static}}images/svg/register-edge.svg" class="right-edge">
     </div>
 </div>
