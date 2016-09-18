@@ -20,9 +20,9 @@
 				<div class="panel-body">
 					<p>{{datatable.question}}</p>
 					<ul>
-						{%for value in datatable.opt%}
+						{%for key, value in datatable.opt%}
 							<li>
-								<a onclick="answer({{datatable['id']}},'{{k}}','{{v}}')" style="cursor:pointer">{{value}}</a>
+								<a onclick="answer({{datatable['id']}},'{{key}}','{{value}}')" style="cursor:pointer">{{value}}</a>
 							</li>
 						{%endfor%}
 					</ul>

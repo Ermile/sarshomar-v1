@@ -74,6 +74,50 @@ class account
 		$age               = $_args['age'];
 		$range             = $_args['range'];
 
+		$old_account_data = self::get_account_data(['user_id' => $user_id]);
+		$_args = array_filter($_args);
+		$update_query = [];
+		$run_all_query = true;
+		foreach ($_args as $field => $value)
+		{
+			if(isset($old_account_data[$field]))
+			{
+				if($_args[$field] != $value)
+				{
+					$where = "user_id = '$user_id' AND option_cat = 'user_detail_$user_id' AND option_key = '$field' ";
+					$update_query = "UPDATE options SET options.option_value = '" . $_args[$field] . "' WHERE $where";
+					$run_query = \lib\db::query($update_query);
+					if($run_all_query)
+					{
+						$run_all_query = $run_query;
+					}
+				}
+			}
+			else
+			{
+				$value = $_args[$field];
+				$insert =
+				"
+					INSERT INTO
+							options
+				(post_id, user_id, 	   option_cat, 				option_key,   option_value )
+				VALUES
+				(NULL, 	  '$user_id',  'user_detail_$user_id', 	'$field',	  '$value'	   )
+				";
+				$run_query = \lib\db::query($insert);
+				if($run_all_query)
+				{
+					$run_all_query = $run_query;
+				}
+
+			}
+		}
+
+		return $run_all_query;
+
+		var_dump($update);
+		var_dump(self::get_account_data(['user_id' => $user_id]));
+		exit();
 		$query =
 		"
 			INSERT INTO

@@ -34,7 +34,6 @@ class model extends \mvc\model
 		$devices_owned     = utility::post("devices_owned");
 		$internet_usage    = utility::post("internet_usage");
 		$birthdate         = utility::post("birthdate");
-		$age               = utility::post("age");
 		$range             = utility::post("range");
 		$graduation        = utility::post("graduation");
 		$course            = utility::post("course");
@@ -46,6 +45,8 @@ class model extends \mvc\model
 		$city              = utility::post("city");
 		$favorites         = utility::post("favorites");
 		$language          = utility::post("language");
+
+		$age               = self::get_age($birthdate);
 
 		$args =
 		[
@@ -85,7 +86,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::fatal(T_("error in update account data"));
+			\lib\debug::error(T_("error in update account data"));
 		}
 
 	}

@@ -488,8 +488,8 @@ class polls
                	GROUP BY
                		option_value
 				";
-
 		$count = \lib\db\options::select($query, 'get');
+
 		// update post meta and save cont of answered
 		if($count)
 		{
@@ -501,12 +501,26 @@ class polls
 					UPDATE
 						posts
 					SET
-						posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count'),
+						posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count')
 					WHERE
 						posts.id = $poll_id
 				";
 
 			\lib\db::query($update);
+
+			//save opt count in op tions table
+			$opt_count =
+			"
+				INSERT INTO
+					options
+				(post_id, 	user_id,	 option_cat,		option_key, 	 option_value,  option_meta	)
+				VALUES
+				($poll_id, 	NULL,		'poll_$poll_id',	'stat',			 'opt_count',	'$count'	)
+				ON DUPLICATE KEY UPDATE
+					option_meta = '$count'
+			";
+
+			\lib\db::query($opt_count);
 		}
 
 		// set count of answered poll
