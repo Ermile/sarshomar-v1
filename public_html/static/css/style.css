@@ -370,6 +370,10 @@ footer nav.horizontal > a {
     margin-left: 3em
 }
 
+footer nav.horizontal > a:hover {
+    color: #fff;
+}
+
 footer nav.span2 > a {
     display: block;
     color: #888;
@@ -465,7 +469,7 @@ footer .eco img {
 #poll .comments .stars-number {
     padding: 0 .5em;
     font-size: 1.4em;
-    vertical-align: middle
+    vertical-align: top;
 }
 
 #poll .comments .bars {
@@ -657,8 +661,27 @@ footer .eco img {
     display: inline-block;
     background-color: #E7E7E7;
     color: #767676;
-    padding: .2em .5em;
-    border: 1px solid #B7B7B7
+    /* padding: .2em .5em; */
+    position: relative;
+    margin-left: 1.5em;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    padding: 0 5px;
+}
+
+#poll .details .detail.tags a:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    /* background-color: red; */
+    top: 0;
+    right: 100%;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #E7E7E7;
+    /* border-left: 15px solid transparent; */
 }
 
 #poll .details .detail .fa {
@@ -672,6 +695,11 @@ footer .eco img {
     padding: 2em 0
 }
 
+.question-box article section {
+    border-left: 1px solid #D1D1D1;
+    padding: 0 2.5em;
+}
+
 .question-box article h2 {
     border: none;
     background-color: unset;
@@ -683,7 +711,7 @@ footer .eco img {
 .question-box article .description {
     clear: both;
     width: 70%;
-    padding: 2em 3em 5px
+    padding: 2em;
 }
 
 .question-box article .description p {
@@ -698,19 +726,47 @@ footer .eco img {
 
 .social > a {
     display: inline-block;
-    color: #fff
+    color: #fff;
+    overflow: hidden;
+    border-radius: .1em;
 }
 
 .social > a > i {
-    width: 2.2em;
-    height: 2.2em;
-    line-height: 2.2em;
+    font-size: 1.6em;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.4em;
     text-align: center;
-    background-color: #B7B7B7
+    background-color: #B7B7B7;
+    transition: background-color .3s ease-out;
 }
 
 .social .fa-paper-plane:hover {
-    background-color: #2798BA
+    background-color: #0088cc;
+}
+
+.social .fa-facebook:hover {
+    background-color: #3b5998;
+}
+
+.social .fa-twitter:hover {
+    background-color: #1da1f2;
+}
+
+.social .fa-instagram:hover {
+    background-color: #e1306c;
+}
+
+.social .fa-linkedin:hover {
+    background-color: #0077b5;
+}
+
+.social .fa-wordpress:hover {
+    background-color: #21759b;
+}
+
+.social .fa-rss:hover {
+    background-color: #f26522;
 }
 
 .rtl .social {
@@ -719,20 +775,52 @@ footer .eco img {
 
 /* read more */
 .read-more {
-    margin-top: 3em;
-    margin-right: 1em;
+    margin-top: 1em;
     font-size: 1.4em;
     color: #454545
 }
 
-.read-more span {
+.read-more label {
     font-weight: bold
 }
 
 .read-more a {
     color: #454545;
     padding-right: .5em;
-    padding-left: .5em
+    padding-left: .5em;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.read-more a > span {
+    position: relative;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.read-more a > span:before {
+    position: absolute;
+    top: 100%;
+    content: attr(data-hover);
+    font-weight: 700;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.read-more a:hover {
+    outline: none;
+    color: #404040;
+}
+
+.read-more a:hover > span {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 .related-questions {}
@@ -741,13 +829,21 @@ footer .eco img {
     font-size: 1.2em;
     font-weight: 700;
     color: #454545;
-    margin-top: 2em
+    margin-top: 1em
 }
 
 .related-questions > a {
     display: block;
     color: #767676;
-    font-size: 1.2em
+    font-size: 1.2em;
+    transition: all .3s ease-out;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    padding-right: 1em;
+}
+
+.related-questions > a:hover {
+    padding-right: 2em;
 }
 
 .results-box {
@@ -769,12 +865,12 @@ footer .eco img {
 
 .tabs a {
     display: inline-block;
-    font-size: 1.4em;
+    font-size: 14px;
     color: #767676;
-    padding: 0.5em 1em;
+    padding: 7px 14px;
     border-left: 2px solid transparent;
     border-right: 2px solid transparent;
-    float: right
+    float: right;
 }
 
 .tabs a.active {
@@ -795,7 +891,7 @@ footer .eco img {
     content: "";
     position: absolute;
     height: 100%;
-    right: -1em;
+    right: -12px;
     top: 0em;
     background-image: url(/static/images/edge2.svg);
     background-repeat: no-repeat;
@@ -809,7 +905,7 @@ footer .eco img {
     content: "";
     position: absolute;
     height: 100%;
-    left: -1em;
+    left: -12px;
     top: 0em;
     background-image: url(/static/images/edge2.svg);
     background-repeat: no-repeat;
@@ -1076,10 +1172,33 @@ footer .eco img {
 }
 
 /* Tablet (Portrait) */
-@media only screen and (max-width:959px) {}
+@media only screen and (max-width:959px) {
+    .tabs {
+        height: 36px;
+    }
+
+    .tabs a {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width:849px) {
+    .tabs {
+        height: 28px;
+    }
+
+    .tabs a {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
 
 /* Mobile (Landscape) */
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+    .tabs {
+        display: none;
+    }
+}
 
 /* Mobile */
 @media only screen and (max-width: 479px) {

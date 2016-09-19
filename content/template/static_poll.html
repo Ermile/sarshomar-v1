@@ -11,8 +11,7 @@
         <article class="row auto">
             <section class="span8">
                 <h2>با کدام روش ورزشی سنگین را برای رسیدن وزنی ایده آل برای تناسب مناسبتر می دانید؟</h2>
-                <!-- <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam?</h2> -->
+
                 <nav class="social">
                     <a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -22,12 +21,19 @@
                     <a href="#"><i class="fa fa-wordpress" aria-hidden="true"></i></a>
                     <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
                 </nav>
+
                 <div class="description">
                     <p>ورزش یه نوعی تحرک ارادی است که باید آن را انجام داد بنابراین من همیشه باید ورزش کنم وگرنه مریض می شوم و می میرم</p>
                     <p>پس از همه شما دوستان عزیز دعوت به ورزش می کنم تا فلج نشوید و بیوفتید و بمیرید</p>
                     <p>والسلام ختم کلام</p>
                 </div>
-                <div class="read-more"><span>در همین رابطه بخوانید</span><a href="#">تناسب اندام چیست؟</a></div>
+
+                <div class="read-more">
+                    <label>در همین رابطه بخوانید</label>
+                    <a href="#">
+                        <span data-hover="تناسب اندام چیست؟">تناسب اندام چیست؟</span>
+                    </a>
+                </div>
             </section>
             <nav class="span4 related-questions">
                 <h3>سوالات مشابه</h3>
@@ -65,14 +71,26 @@
             <h4>نظرات و امتیازات</h4>
             <div class="span4">
                 <div class="summary">
-                    <div class="average-score">4.6</div>
+                    <div class="average-score">
+                        {% if site.currentlang == "fa" %}
+                            {{ 4.6|persian }}
+                        {% else %}
+                            4.6
+                        {% endif %}
+                    </div>
                     <div>
                         <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
                         <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
                         <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
                         <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
                         <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span class="stars-number">108</span>
+                        <span class="stars-number">
+                            {% if site.currentlang == "fa" %}
+                                {{ 108|persian }}
+                            {% else %}
+                                108
+                            {% endif %}
+                        </span>
                     </div>
                     <div class="bars">
                         <div class="bar-one"></div>
@@ -182,6 +200,14 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
 <div class="row details">
     <div class="container">
         <div class="row auto">
@@ -222,6 +248,14 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 {% include 'content/template/static_register.html' %}
 {% include 'content/template/static_footer.html' %}

@@ -15,7 +15,7 @@
                 <h2>نگرشی نو به نظرسنجی</h2>
             </div>
             <div class="span8">
-                <h3>{{result['random_result']['title']|raw}}</h3>
+                <h3>{{result['random_result']['title']|trim('\"')}}</h3>
                 <div class="top-chart chart"></div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
             </div>
             <div class="span7">
-                <h4>{{result['malefemale']['title']|raw}}</h4>
+                <h4>{{result['malefemale']['title']|trim('\"')}}</h4>
                 <div class="random-chart chart"></div>
             </div>
             {% endif %}
