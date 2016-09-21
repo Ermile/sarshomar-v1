@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div class="results-box">
+<div class="row results-box">
     <section class="row results">
         <nav class="tabs">
             <a href="#">نظرات کلی</a>
@@ -65,50 +65,105 @@
     <div class="container poll-chart chart"></div>
 </div>
 
-<div class="comments">
+<div class="row comments">
     <div class="container">
+        <h4>نظرات و امتیازات</h4>
         <div class="row auto">
-            <h4>نظرات و امتیازات</h4>
-            <div class="span4">
-                <div class="summary">
-                    <div class="average-score">
+            <div class="span4 summary">
+                <div class="average-score">
+                    {% if site.currentlang == "fa" %}
+                        {{ 4.6|persian }}
+                    {% else %}
+                        4.6
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+                    <span class="stars-number">
                         {% if site.currentlang == "fa" %}
-                            {{ 4.6|persian }}
+                            {{ 108|persian }}
                         {% else %}
-                            4.6
+                            108
                         {% endif %}
+                    </span>
+                </div>
+                <div class="bars">
+                    <div class="bar-one"></div>
+                    <div class="bar-two"></div>
+                    <div class="bar-three"></div>
+                    <div class="bar-four"></div>
+                    <div class="bar-five"></div>
+                </div>
+            </div>
+
+            <div class="span4 comment">
+                <div class="score">
+                    <div class="plus" data-value="23">
+                        <object data="/static/images/score-g.svg">
+                            <span>hello</span>
+                        </object>
                     </div>
-                    <div>
-                        <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-                        <span class="stars-number">
-                            {% if site.currentlang == "fa" %}
-                                {{ 108|persian }}
-                            {% else %}
-                                108
-                            {% endif %}
-                        </span>
-                    </div>
-                    <div class="bars">
-                        <div class="bar-one"></div>
-                        <div class="bar-two"></div>
-                        <div class="bar-three"></div>
-                        <div class="bar-four"></div>
-                        <div class="bar-five"></div>
+                    <div class="minus">
+                        <object data="/static/images/score-r.svg" data-value="12"></object>
                     </div>
                 </div>
-                <div class="comment">
+                <div class="title">بهتر شود</div>
+                <div>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                </div>
+                <div class="user">هشمت</div>
+                <div class="content">
+                    <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
+                </div>
+                <span class="continue">ادامه</span>
+            </div>
+
+            <div class="span4 comment">
+                <div class="score">
+                    <div class="plus" data-value="23">
+                        <object data="/static/images/score-g.svg">
+                            <span>hello</span>
+                        </object>
+                    </div>
+                    <div class="minus">
+                        <object data="/static/images/score-r.svg" data-value="12"></object>
+                    </div>
+                </div>
+                <div class="title">بهتر شود</div>
+                <div>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                </div>
+                <div class="user">هشمت</div>
+                <div class="content">
+                    <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
+                </div>
+                <span class="continue">ادامه</span>
+            </div>
+        </div>
+
+        <div class="row auto">
+            {% for i in 0..2 %}
+                <div class="span4 comment">
                     <div class="score">
-                        <div class="plus">
-                            <img src="{{url.static}}images/score-g.svg">
-                            <span>12</span>
+                        <div class="plus" data-value="23">
+                            <object data="/static/images/score-g.svg">
+                                <span>hello</span>
+                            </object>
                         </div>
                         <div class="minus">
-                            <img src="{{url.static}}images/score-r.svg">
-                            <span>132</span>
+                            <object data="/static/images/score-r.svg" data-value="12"></object>
                         </div>
                     </div>
                     <div class="title">بهتر شود</div>
@@ -123,90 +178,12 @@
                     <div class="content">
                         <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
                     </div>
-                    <div class="continue">ادامه</div>
+                    <span class="continue">ادامه</span>
                 </div>
-            </div>
-            <div class="span4">
-
-                <div class="comment">
-                    <div class="title">بهتر شود</div>
-                    <div>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                    </div>
-                    <div class="user">هشمت</div>
-                    <div class="content">
-                        <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-                    </div>
-                    <div class="continue">ادامه</div>
-                </div>
-
-                <div class="comment">
-                    <div class="title">بهتر شود</div>
-                    <div>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                    </div>
-                    <div class="user">هشمت</div>
-                    <div class="content">
-                        <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-                    </div>
-                    <div class="continue">ادامه</div>
-                </div>
-
-            </div>
-            <div class="span4">
-
-                <div class="comment">
-                    <div class="title">بهتر شود</div>
-                    <div>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                    </div>
-                    <div class="user">هشمت</div>
-                    <div class="content">
-                        <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-                    </div>
-                    <div class="continue">ادامه</div>
-                </div>
-
-                <div class="comment">
-                    <div class="title">بهتر شود</div>
-                    <div>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                    </div>
-                    <div class="user">هشمت</div>
-                    <div class="content">
-                        <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-                    </div>
-                    <div class="continue">ادامه</div>
-                </div>
-
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 <div class="row details">
     <div class="container">
@@ -248,14 +225,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 {% include 'content/template/static_register.html' %}
 {% include 'content/template/static_footer.html' %}
@@ -324,6 +293,12 @@ var pollChartOptions = {
 
 $(function() {
     $('.poll-chart').highcharts(pollChartOptions);
+
+    $("#poll .comments .comment .continue").click(function() {
+        var pop = $('<div class="xxx"><p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p></div>');
+        $(this).parents(".comment").children(".content").hide().append(pop).show();
+        $("body").addClass("pop");
+    });
 });
 </script>
 {%endblock%}

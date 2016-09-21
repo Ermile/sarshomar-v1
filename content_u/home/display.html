@@ -1,9 +1,37 @@
 {%extends display.mvc%}
 
 {%block head_css%}
+<style type="text/css">
+.user-box {
+	background-color: #FFFFFF;
+	box-shadow: 0 0 1px #888888;
+	margin-top: 1em;
+	border-radius: 2px;
+}
+.username {
+	margin-bottom: 0;
+	margin-top: 1em
+}
+</style>
 {%endblock%}
 
 {%block content%}
+<div class="container">
+	<div class="row">
+		<div class="span2"></div>
+		<div class="span8">
+			<div class="row auto user-box">
+				<div class="span2">
+					<img src="/static/images/svg/avatar.svg">
+				</div>
+				<div class="span10">
+					<h1 class="username">{% trans "Username" %}</h1>
+					<h2 class="description">{% trans "Description" %}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {%endblock%}
 
 {%block foot_js%}

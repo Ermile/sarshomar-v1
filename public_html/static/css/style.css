@@ -381,12 +381,20 @@ footer nav.span2 > a {
     margin-bottom: .2em
 }
 
+footer nav.span2 > a:hover {
+    color: #DDD;
+}
+
 footer nav.news > a {
     display: block;
     font-size: 1.2em;
     color: #A5A5A5;
     font-weight: bold;
     margin-bottom: .2em
+}
+
+footer nav.news > a:hover {
+    color: #C5C5C5;
 }
 
 footer nav.news > p {
@@ -446,10 +454,8 @@ footer .eco img {
 
 #poll .comments .summary,
 #poll .comments .comment {
-    height: 21em;
     margin-bottom: 3em;
-    overflow: hidden;
-    padding: 0 2em
+    padding: 0 2em;
 }
 
 #poll .comments h4 {
@@ -511,14 +517,14 @@ footer .eco img {
 }
 
 #poll .comments .comment {
-    position: relative
+    position: relative;
 }
 
 #poll .comments .comment .score {
     width: 22px;
     height: 60px;
     position: absolute;
-    top: 0;
+    top: 2em;
     left: 2em;
     background-image: url(/static/images/score-bg.svg);
     background-repeat: no-repeat;
@@ -531,17 +537,30 @@ footer .eco img {
     text-align: center;
 }
 
-#poll .comments .comment .score img {
-    width: 70%;
+#poll .comments .comment .score .plus:before {
+    /*content: attr(data-value);
+    position: absolute;
+    font-size: 1.2em;
+    color: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;*/
+    /*z-index: 1;*/
+    /*background-color: red;*/
+}
+
+#poll .comments .comment .score object {
+    width: 72%;
     position: relative;
 }
 
-#poll .comments .comment .score .plus img {
-    top: 5px;
+#poll .comments .comment .score .plus object {
+    top: 4px;
 }
 
-#poll .comments .comment .score .minus img {
-    bottom: 0;
+#poll .comments .comment .score .minus object {
+    bottom: 1px;
 }
 
 #poll .comments .comment .score span {
@@ -558,61 +577,74 @@ footer .eco img {
     top: 14px;
 }
 
-#poll .comments .comment .score .minus span {
-    top: 2px;
-}
-
-/*#poll .comments .comment .score .plus {
-    width: 22px;
-    height: 24px;
-    margin: 0 auto;
-    background-image: url(/static/images/score-g.svg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    margin-top: 5px;
-    text-align: center;
-    line-height: 28px;
-    font-size: .8em
-}
-
-#poll .comments .comment .score .minus {
-    width: 22px;
-    height: 24px;
-    margin: 0 auto;
-    background-image: url(/static/images/score-r.svg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    margin-top: 2px;
-    text-align: center;
-    line-height: 22px;
-    font-size: .8em
-}*/
-
 #poll .comments .comment .title {
     font-size: 1.2em;
     color: #767676;
-    margin-bottom: .5em
+    margin-bottom: .5em;
+    margin-top: 1.6em;
 }
 
 #poll .comments .comment .user {
     color: #767676;
-    margin-top: .5em
+    margin-top: .5em;
+    margin-bottom: 2em;
 }
 
-#poll .comments .comment .content p {
-    color: #767676;
+#poll .comments .comment .content {
+    position: relative;
+}
+
+#poll .comments .comment .content > p {
+    position: relative;
+    overflow: hidden;
     font-size: 1.2em;
+    line-height: 2em;
+    max-height: 6em;
+    text-align: justify;
+    color: #767676;
     margin-bottom: 1em;
-    text-align: justify
 }
 
-#poll .comments .comment .content p:last-child {
-    margin-bottom: 0
+#poll .comments .comment .content > p:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #e7e7e7;
+}
+
+#poll.rtl .comments .comment .content > p:before {
+    right: auto;
+    left: 0;
+}
+
+#poll .comments .comment .content > p:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: #e7e7e7;
+}
+
+#poll.rtl .comments .comment .content > p:after {
+    right: auto;
+    left: 0;
+}
+
+#poll .comments .comment .continue {
+    transition: all .3s ease;
 }
 
 .rtl .comments .comment .continue {
-    text-align: left;
-    padding: 0 2%
+    color: #767676;
+    cursor: pointer;
+    float: left;
+}
+
+#poll .comments .comment .continue:hover {
+    color: #000000;
 }
 
 /* poll details */
@@ -667,7 +699,7 @@ footer .eco img {
     height: 30px;
     line-height: 30px;
     font-size: 12px;
-    padding: 0 5px;
+    padding: 0 5px 0 0;
 }
 
 #poll .details .detail.tags a:after {
@@ -1141,6 +1173,69 @@ footer .eco img {
     fill: #7CB5EC;
 }
 
+.xxx {
+    position: absolute;
+    width: 110%;
+    height: auto;
+    top: 0;
+    right: -5%;
+    background-color: #e7e7e7;
+    z-index: 1;
+    padding: 0 5%;
+    text-align: justify;
+    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+}
+
+.xxx p {
+    color: #767676;
+    font-size: 1.2em;
+    line-height: 2em;
+    text-align: justify;
+    margin-bottom: 0;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: block;
+  z-index: 111;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
 /* Media Queries */
 /* Extra Large Screens */
 @media only screen and (min-width: 1824px) {
@@ -1205,5 +1300,5 @@ footer .eco img {
     .assurance-box {
         font-size: 1.3em
     }
-    /*.register-box { font-size: 1.3em }*/
+    .register-box { font-size: .5em }
 }
