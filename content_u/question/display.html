@@ -123,6 +123,26 @@
 	<input type="submit" value="اصلاح"><br>
 </form>
 {%endif%}
+
+{% if filter_form %}
+<form action="question/filter/poll={{poll_id}}" method="post">
+    {%for key, value in question_filters %}
+        {{value}}:<input type="text" name="{{value}}"><br>
+    {%endfor%}
+
+    {%for key, value in user_detail_filter %}
+       {{key}}: <select name="{{key}}">
+            {%for k, v in value%}
+                <option value="{{v}}">{{v}}</option>
+            {%endfor%}
+                <option value="">سایر</option>
+        </select>
+        <br>
+    {%endfor%}
+
+{%endif%}
+<input type="submit" value="ثبت فیلتر های سوال">
+</form>
 {%endblock%}
 
 
@@ -142,3 +162,4 @@
    </div>
   </div>
 {%endblock%}
+

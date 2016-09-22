@@ -49,5 +49,15 @@ class view extends \mvc\view
 		$this->data->post_id = $o->match->url[0][1];
 		$this->data->form_data = $o->api_callback;
 	}
+
+
+
+	function view_question_filter($_args)
+	{
+		$this->data->poll_id = $_args->match->url[0][1];
+		$this->data->filter_form = true;
+		$this->data->question_filters = $_args->api_callback['question_filters'];
+		$this->data->user_detail_filter = $_args->api_callback['user_detail_filter'];
+	}
 }
 ?>

@@ -24,6 +24,11 @@ class controller extends \content_u\home\controller
 		// delete question
 		$this->get("question_delete", false)->ALL("/^question\/delete\/(\d+)$/");
 
+
+		// add new question
+		$this->get("question_filter", "question_filter")->ALL("/^question\/filter\/poll\=(\d+)$/");
+		$this->post("question_filter")->ALL("/^question\/filter\/poll\=(\d+)$/");
+
 	}
 }
 ?>

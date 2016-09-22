@@ -235,5 +235,75 @@ class model extends \mvc\model
 	{
 
 	}
+
+
+	/**
+	*	get question filter
+	*/
+	function get_question_filter()
+	{
+		// list of questions filter
+		// get value from cash or user profile status
+		$question_filters =
+		[
+			'age_min',
+			'age_max',
+			'members_min',
+			'members_max',
+			'public_answer',
+			'date_start',
+			'date_end',
+			'time_start',
+			'time_end',
+			'count_true'
+		];
+
+		// get user detail filter
+		// example gender, age, city , ...
+		$user_detail_filter = \lib\db\filters::get();
+
+		$filters = [];
+		foreach ($user_detail_filter as $key => $value)
+		{
+			if(!isset($filters[$value['key']]))
+			{
+				$filters[$value['key']] = [$value['value']];
+			}
+			else
+			{
+				array_push($filters[$value['key']], $value['value']);
+			}
+		}
+
+		$result['user_detail_filter'] = $filters;
+		$result['question_filters'] = $question_filters;
+
+		return $result;
+	}
+
+
+	public function post_question_filter($_args)
+	{
+
+		$args = [];
+
+		$poll_id = $_args->match->url[0][1];
+		$args['poll_id'] = $poll_id;
+
+		$filters = utility::post();
+		foreach ($filters as $key => $value) {
+			$args[$key] = $value;
+		}
+
+		$result = \lib\db\filters::insert($args);
+		if($result)
+		{
+			\lib\debug::true(T_("add filter of Question Success"));
+		}
+		else
+		{
+			\lib\debug::error(T_("Error in insert filter of question"));
+		}
+	}
 }
 ?>
