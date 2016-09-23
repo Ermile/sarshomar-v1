@@ -936,5 +936,28 @@ class polls
 
 		return \lib\db\options::insert($args);
 	}
+
+
+	/**
+	 * delete polls
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public static function delete($_args)
+	{
+		if(isset($_args['poll_id']))
+		{
+			$poll_id = $_args['poll_id'];
+		}
+		else
+		{
+			return false;
+		}
+
+		$args = ['post_id' => $poll_id];
+		return \lib\db\posts::delete($args);
+	}
 }
 ?>
