@@ -1,0 +1,8 @@
+{%extends display.mvc%}
+
+{%block content%}
+{%for key, value in poll_list%}
+{{value.id}}<h6>{{value.title}}</h6>
+<hr>
+{%endfor%}
+{%endblock%}

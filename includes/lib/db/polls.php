@@ -16,7 +16,7 @@ class polls
 	 *
 	 * @return     array  mysql result
 	 */
-	public static function xget($_args)
+	public static function xget($_args = [])
 	{
 
 		// check post_type . if post_type is null return all type of posts
