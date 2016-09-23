@@ -22,17 +22,17 @@ class polls
 		// check post_type . if post_type is null return all type of posts
 		if(isset($_args['post_type']))
 		{
-			$post_type = " post_type = 'poll_". $_args['post_type'] . "'";
+			$post_type = " posts.post_type = 'poll_". $_args['post_type'] . "'";
 		}
 		else
 		{
-			$post_type = " post_type LIKE 'poll\_%'";
+			$post_type = " posts.post_type LIKE 'poll\_%'";
 		}
 
 		// check post_status
 		if(isset($_args['post_status']))
 		{
-			$post_status = " AND post_status = '" .$_args['post_status'] . "'";
+			$post_status = " AND posts.post_status = '" .$_args['post_status'] . "'";
 		}
 		else
 		{
@@ -42,58 +42,76 @@ class polls
 		// check users id , retrun post of one person or all person
 		if(isset($_args['user_id']))
 		{
-			$user_id = "AND user_id = " . $_args['user_id'];
+			$user_id = "AND posts.user_id = " . $_args['user_id'];
 		}
 		else
 		{
 			$user_id = null;
 		}
 
-		// set page of limit query , default return LIMIT 0, 10 of record
-		if(isset($_args['page'])) {
-			$page = $_args['page'];
+		if(isset($_args['filter']) && isset($_args['value']))
+		{
+			$filter = $_args['filter'];
+			$value  = $_args['value'];
+			$join =
+			"
+				INNER JOIN
+					options
+				ON  options.post_id = posts.id AND
+					options.user_id IS NULL AND
+					options.option_cat = 'poll_' & posts.id AND
+					options.option_key = '$filter' AND
+					options.option_value = '$value'
+			";
 		}
 		else
 		{
-			$page = 1;
+			$join = "";
 		}
 
-		// set lenght of limit query , default return LIMIT 0, 10 of record
-		if(isset($_args['lenght'])) {
-			$lenght = $_args['lenght'];
-		}
-		else
-		{
-			$lenght = 10;
-		}
+		// pagnation
+		$count_record =
+		"
+			SELECT
+				posts.id
+			FROM
+				posts
+				$join
+			WHERE
+				$post_type
+				$post_status
+				$user_id
+		";
 
-		$start = ($page - 1) * $lenght;
-		$end   = $start + $lenght;
+		list($limit_start, $length) = \lib\db::pagnation($count_record, 10);
+		$limit = " LIMIT $limit_start, $length ";
 
 		// creat query string
 		// fields we not show: date_modified , post_meta, user_id
 		$query = "
 				SELECT
-					id,
-					post_language 		as 'language',
-					post_title 			as 'title',
-					post_slug 			as 'slug',
-					post_url 			as 'url',
-					post_content 		as 'content',
-					post_type 			as 'type',
-					post_comment 		as 'comment',
-					post_count 			as 'count',
-					post_order 			as 'order',
-					post_status 		as 'status',
-					post_parent 		as 'parent',
-					post_publishdate 	as 'publishdate'
-				FROM posts
+					posts.id,
+					posts.post_language 		as 'language',
+					posts.post_title 			as 'title',
+					posts.post_slug 			as 'slug',
+					posts.post_url 				as 'url',
+					posts.post_content 			as 'content',
+					posts.post_type 			as 'type',
+					posts.post_comment 			as 'comment',
+					posts.post_count 			as 'count',
+					posts.post_order 			as 'order',
+					posts.post_status 			as 'status',
+					posts.post_parent 			as 'parent',
+					posts.post_publishdate 		as 'publishdate'
+				FROM
+					posts
+					$join
 				WHERE
 					$post_type
 					$post_status
 					$user_id
 				ORDER BY posts.id DESC
-				LIMIT $start, $end
+				$limit
 					";
 		return \lib\db\posts::select($query, "get");
 	}

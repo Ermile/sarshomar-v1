@@ -7,7 +7,21 @@ class controller extends  \content_u\home\controller
 	{
 		parent::check_login();
 
-		$this->get("list", "list")->ALL();
+		// $this->post("last")->ALL();
+		$this->get("list", "list")->ALL(
+		[
+			'property' =>
+			[
+				"user"   => ["/^\d+$/", true, 'user'],
+				"page"   => ["/^\d+$/", true, 'page'],
+				"type"   => ["/^(.*)$/", true, 'type'],
+				"status" => ["/^(.*)$/", true, 'status'],
+				"filter" => ["/^(.*)$/", true, 'filter'],
+				"value" => ["/^(.*)$/", true, 'value'],
+				"q"      => ["/^(.*)$/", true, 'search']
+			]
+		]);
+
 		$this->post("list")->ALL();
 	}
 }
