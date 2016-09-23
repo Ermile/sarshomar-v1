@@ -22,12 +22,31 @@ class model extends \mvc\model
 	 */
 	function post_save_answer()
 	{
+		if(utility::post("type") == "bookmark" && utility::post("poll_id"))
+		{
+			$args =
+			[
+				'poll_id' => utility::post("poll_id"),
+				'user_id' => $this->login("id")
+			];
+			$result = \lib\db\polls::set_bookmark($args);
+			if($result)
+			{
+				\lib\debug::true(T_("bookmark saved"));
+			}
+			else
+			{
+				\lib\debug::fatal(T_("error in save bookmark"));
+			}
+		}
+		else
+		{
+			$answer_key   = utility::post('answer_key');
+			$poll_id     = utility::post('poll_id');
+			$answer_text = utility::post('answer_text');
 
-		$answer_key   = utility::post('answer_key');
-		$poll_id     = utility::post('poll_id');
-		$answer_text = utility::post('answer_text');
-
-		\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+			\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+		}
 	}
 
 

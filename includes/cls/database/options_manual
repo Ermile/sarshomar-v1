@@ -105,6 +105,8 @@ post_id 	user_id		cat							key							value
 --------------------------------------------
 0			1			user_detail_(user_id)		language					[fa|en|ar]
 
+--------------------------------------------------------------------------------------------------------- Bookmark Question
+1			1			user_detail_(post_id)		bookmark 					[like|unlike|block]				[point for order]
 
 
 --------------------------------------------------------------------------------------------------------- Question Filters
@@ -126,3 +128,4 @@ post_id 	user_id		cat							key							value
 1			0			poll_(post_id)				stat 						province				{qom:200, tehran:400}					OK
 
 1			0			poll_(post_id)				stat 						opt_count				{opt_1:200, opt_2:400}
+

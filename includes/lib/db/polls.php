@@ -898,5 +898,43 @@ class polls
 		$result = \lib\db::query($qry);
 		return $result;
 	}
+
+
+	/**
+	 * Set bookmark of polls
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function set_bookmark($_args)
+	{
+		if(isset($_args['user_id']))
+		{
+			$user_id = $_args['user_id'];
+		}
+		else
+		{
+			return false;
+		}
+
+		if(isset($_args['poll_id']))
+		{
+			$poll_id = $_args['poll_id'];
+		}
+		else
+		{
+			return false;
+		}
+
+		$args =
+		[
+			'user_id'      => $user_id,
+			'post_id'      => $poll_id,
+			'option_cat'   => 'user_detail_' . $poll_id,
+			'option_key'   => 'bookmark',
+			'option_value' => 'like'
+		];
+
+		return \lib\db\options::insert($args);
+	}
 }
 ?>
