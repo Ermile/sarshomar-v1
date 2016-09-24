@@ -12,6 +12,8 @@ class model extends \mvc\model
 	{
 		$user_id = $this->login("id");
 		$account = \lib\db\account::get_account_data(['user_id' => $user_id]);
+		$displayname = \lib\db\users::get_displayname($user_id);
+		$account['displayname'] = $displayname;
 		return $account;
 	}
 
