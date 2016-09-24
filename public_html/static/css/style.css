@@ -591,7 +591,9 @@ footer .eco img {
 }
 
 #poll .comments .comment .content {
-    position: relative;
+    /*position: relative;*/
+    height: 7em;
+    /*overflow: hidden;*/
 }
 
 #poll .comments .comment .content > p {
@@ -605,12 +607,22 @@ footer .eco img {
     margin-bottom: 1em;
 }
 
+#poll .comments .comment .absolute-content > p {
+    max-height: none;
+    /*overflow: none;*/
+    background-color: #E7E7E7;
+}
+
 #poll .comments .comment .content > p:before {
     content: '...';
     position: absolute;
     right: 0;
     bottom: 0;
     background-color: #e7e7e7;
+}
+
+#poll .comments .comment .absolute-content > p:before {
+    display: none;
 }
 
 #poll.rtl .comments .comment .content > p:before {
@@ -1173,67 +1185,21 @@ footer .eco img {
     fill: #7CB5EC;
 }
 
-.xxx {
+#faq .faq-box {
+    background-color: #FFF;
+}
+
+#faq h3 {
+    position: relative;
+}
+
+#faq .anchor {
+    display: block;
     position: absolute;
-    width: 110%;
-    height: auto;
     top: 0;
-    right: -5%;
-    background-color: #e7e7e7;
-    z-index: 1;
-    padding: 0 5%;
-    text-align: justify;
-    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
-}
-
-.xxx p {
-    color: #767676;
-    font-size: 1.2em;
-    line-height: 2em;
-    text-align: justify;
-    margin-bottom: 0;
-}
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  display: block;
-  z-index: 111;
-}
-
-@-webkit-keyframes fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
+    left: 0;
+    bottom: 0;
+    margin-left: -22px;
 }
 
 /* Media Queries */

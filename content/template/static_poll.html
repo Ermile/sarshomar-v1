@@ -293,11 +293,17 @@ var pollChartOptions = {
 
 $(function() {
     $('.poll-chart').highcharts(pollChartOptions);
-
     $("#poll .comments .comment .continue").click(function() {
-        var pop = $('<div class="xxx"><p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p></div>');
-        $(this).parents(".comment").children(".content").hide().append(pop).show();
-        $("body").addClass("pop");
+        $(this).parents('.comment').children('.content').addClass('absolute-content');
+        event.preventDefault();
+            event.stopPropagation();
+        $(".absolute-content").click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+        });
+    });
+    $('body').click(function(event) {
+        $(".content.absolute-content").removeClass("absolute-content");
     });
 });
 </script>
