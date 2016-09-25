@@ -17,7 +17,7 @@ class controller extends  \content_u\home\controller
 				"type"   => ["/^(.*)$/", true, 'type'],
 				"status" => ["/^(.*)$/", true, 'status'],
 				"filter" => ["/^(.*)$/", true, 'filter'],
-				"value" => ["/^(.*)$/", true, 'value'],
+				"value"  => ["/^(.*)$/", true, 'value'],
 				"q"      => ["/^(.*)$/", true, 'search']
 			]
 		]);
