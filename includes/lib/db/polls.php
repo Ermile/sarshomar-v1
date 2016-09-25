@@ -945,19 +945,16 @@ class polls
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function delete($_args)
+	public static function delete($_post_id)
 	{
-		if(isset($_args['poll_id']))
+		if(\lib\db\answers::delete($_post_id))
 		{
-			$poll_id = $_args['poll_id'];
+			return \lib\db\posts::delete($_poll_id);
 		}
 		else
 		{
 			return false;
 		}
-
-		$args = ['post_id' => $poll_id];
-		return \lib\db\posts::delete($args);
 	}
 }
 ?>

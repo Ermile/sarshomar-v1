@@ -156,5 +156,22 @@ class answers
 
 		return $result;
 	}
+
+
+	public static function delete($_poll_id)
+	{
+		$query =
+		"
+			UPDATE
+				options
+			SET
+				options.option_status = 'disable'
+			WHERE
+				options.post_id = $_poll_id AND
+				options.option_key LIKE 'opt%' AND
+				options.user_id IS NULL AND
+		";
+		return \lib\db::query($query);
+	}
 }
 ?>

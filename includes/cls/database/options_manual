@@ -138,11 +138,10 @@ post_id 	user_id		cat							key							value
 id		type 									meta						title
 1		[type]									{"tree": null}
 2		[type]									{"tree": true}
-3		[type]									{"tree": true}
-4		[type]									{"tree": true}
-5		[type]									{"tree": true}
+
 
 --------------------------------------------------------------------------------------------------------- Options in post tree
 post_id 	user_id		cat							key							value
 1			0			poll_tree_(post_id)			(post_id) #parent			opt_1
 1			0			poll_tree_(post_id)			(post_id) #parent			opt_2
+
