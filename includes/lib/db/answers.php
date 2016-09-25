@@ -70,7 +70,7 @@ class answers
 		// UPDATE posts SET post_url = [id], post_meta = [answers,...] WHERE posts.id = [id]
 		$set_url = \lib\db\polls::update(
 											[
-												'post_url' => \lib\utility\shortURL::encode($_args['poll_id']),
+												'post_url' => 'sp_'. \lib\utility\shortURL::encode($_args['poll_id']),
 												'post_meta' => $meta
 											]
 										, $_args['poll_id']);
