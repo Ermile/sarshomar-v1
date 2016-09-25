@@ -4,7 +4,7 @@
 {%endblock%}
 
 {%block content%}
-{% include 'content/template/static_header.html' %}
+{% include template.header %}
 
 <div class="row chart-box">
     <div class="container">
@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             {% if site.currentlang == "en" %}
-            <object type="image/svg+xml" data="/static/images/world.svg"></object>
+            <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
             {% else %}
             <div class="span5">
                 <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
@@ -157,7 +157,7 @@
 </div>
 
 {% include 'content/template/static_register.html' %}
-{% include 'content/template/static_footer.html' %}
+{% include template.footer %}
 {%endblock%}
 
 {%block foot_js%}
