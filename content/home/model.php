@@ -23,7 +23,7 @@ class model extends \mvc\model
 		// if(!empty($get_id)){
 
 		// 	$random_key = array_rand($get_id);
-		// 	$result = json_encode(\lib\db\polls::get_result($get_id[$random_key]), JSON_UNESCAPED_UNICODE);
+		// 	$result = json_encode(\lib\db\stat_polls::get_result($get_id[$random_key]), JSON_UNESCAPED_UNICODE);
 
 		// }else{
 		// }
