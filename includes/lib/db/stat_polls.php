@@ -207,7 +207,7 @@ class stat_polls
 	 * @param  [type] $_key     [description]
 	 * @return [type]           [description]
 	 */
-	public static function get_result($_poll_id, $_value = null, $_key = null)
+	public static function get_telegram_result($_poll_id, $_value = null, $_key = null)
 	{
 		// get answers form post meta
 		$poll = self::get_poll($_poll_id);
@@ -236,9 +236,17 @@ class stat_polls
 
 		$result           = [];
 		$result['title']  = $poll['title'];
-		$result['url']    = 'sp_' .  $poll['url'];
+		$result['url']    = $poll['url'];
 		$result['result'] = $final_result;
 		return $result;
 	}
+
+
+
+	public static function get_result($_poll_id)
+	{
+
+	}
+
 }
 ?>

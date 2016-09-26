@@ -410,7 +410,7 @@ class step_sarshomar
 		{
 			$_userAnswer = step::get('lastAnswer');
 		}
-		$result       = \lib\db\stat_polls::get_result($_question_id, 'count', 'txt');
+		$result       = \lib\db\stat_polls::get_telegram_result($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result);
 		if(!$result_count)
