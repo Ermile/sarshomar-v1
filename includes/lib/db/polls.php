@@ -391,9 +391,16 @@ class polls
 				LIMIT 1 ";
 		$poll =  \lib\db\posts::select($query, "get");
 
-		$answers = \lib\db\answers::get($_post_id);
+		if(!empty($poll))
+		{
+			$answers = \lib\db\answers::get($_post_id);
+			return ['poll' => $poll[0] , 'answers' => $answers];
+		}
+		else
+		{
+			return false;
+		}
 
-		return ['poll' => $poll[0] , 'answers' => $answers];
 	}
 
 
@@ -651,29 +658,85 @@ class polls
 			$_type = "post_type = 'poll_". $_type. "'";
 		}
 
+
 		$qry ="
 			SELECT
-				posts.id as id,
-				posts.post_title as question,
-				posts.post_meta as opt
-			FROM posts
-			LEFT JOIN `options` ON `options`.post_id = posts.id
+				main_posts.id as id,
+				main_posts.post_parent as parent,
+				main_posts.post_title as question,
+				main_posts.post_meta as opt,
+				options.option_key as 'key'
+			FROM
+				posts as main_posts
+			LEFT JOIN options ON options.post_id = main_posts.id
+
 			WHERE
 				$_type AND
 				post_status = 'publish' AND
-				posts.id NOT IN
+				main_posts.id NOT IN
 				(
-					SELECT post_id FROM options
+					SELECT options.post_id FROM options
 						WHERE
-						`options`.option_cat LIKE 'poll\_%' AND
-						`options`.option_key LIKE 'answer\_%'AND
-						`options`.user_id = $_user_id
+						options.option_cat LIKE 'poll\_%' AND
+						options.option_key LIKE 'answer\_%'AND
+						options.user_id = $_user_id
 				)
-			ORDER BY posts.id ASC
+			AND
+				CASE
+					WHEN main_posts.post_parent IS NULL THEN TRUE
+				ELSE
+					(
+						SELECT
+							options.post_id
+						FROM
+							options
+						WHERE
+							options.option_cat = 'poll_' & main_posts.post_parent AND
+							options.option_key = 'answer_$_user_id' AND
+							options.user_id = $_user_id	 AND
+							options.post_id = main_posts.post_parent AND
+							options.option_value IN
+								(
+									SELECT
+										options.option_value
+									FROM
+										options
+									WHERE
+										options.post_id = main_posts.id AND
+										options.option_cat = 'poll_' & main_posts.id AND
+										options.option_key = 'tree_' & main_posts.post_parent AND
+										options.user_id IS NULL
+								)
+					)
+				END
+			ORDER BY main_posts.id ASC
 			LIMIT 1
-		";
 
+		";
 		$result      = \lib\db::get($qry, null, true);
+
+		// $qry ="
+		// 	SELECT
+		// 		posts.id as id,
+		// 		posts.post_title as question,
+		// 		posts.post_meta as opt
+		// 	FROM posts
+		// 	LEFT JOIN `options` ON `options`.post_id = posts.id
+		// 	WHERE
+		// 		$_type AND
+		// 		post_status = 'publish' AND
+		// 		posts.id NOT IN
+		// 		(
+		// 			SELECT post_id FROM options
+		// 				WHERE
+		// 				`options`.option_cat LIKE 'poll\_%' AND
+		// 				`options`.option_key LIKE 'answer\_%'AND
+		// 				`options`.user_id = $_user_id
+		// 		)
+		// 	ORDER BY posts.id ASC
+		// 	LIMIT 1
+		// ";
+
 
 		$returnValue =
 		[
@@ -1003,7 +1066,7 @@ class polls
 
 		$option_insert =
 		[
-			'post_id'      => $child
+			'post_id'      => $child,
 			'option_cat'   => 'poll_'. $child,
 			'option_key'   => 'tree_'. $parent,
 			'option_value' => $opt

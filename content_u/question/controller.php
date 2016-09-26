@@ -26,7 +26,7 @@ class controller extends \content_u\home\controller
 
 
 		// add new question
-		$this->get("question_filter", "question_filter")->ALL("/^question\/filter\/poll\=(\d+)$/");
+		$this->get("question_filter", "question_filter")->ALL("/^question\/filter\=(\d+)$/");
 		$this->post("question_filter")->ALL("/^question\/filter\/poll\=(\d+)$/");
 
 	}
