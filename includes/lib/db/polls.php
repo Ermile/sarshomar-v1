@@ -661,19 +661,24 @@ class polls
 
 		$qry ="
 			SELECT
-				main_posts.id as id,
-				main_posts.post_parent as parent,
-				main_posts.post_title as question,
-				main_posts.post_meta as opt,
+			-- Fields
+				posts.id as id,
+				posts.post_parent as parent,
+				posts.post_title as question,
+				posts.post_meta as opt,
 				options.option_key as 'key'
 			FROM
-				posts as main_posts
-			LEFT JOIN options ON options.post_id = main_posts.id
+				posts
+			-- To get options of this poll
+			LEFT JOIN options ON options.post_id = posts.id
 
 			WHERE
+				-- Get post_type and publish status
 				$_type AND
 				post_status = 'publish' AND
-				main_posts.id NOT IN
+
+				-- check users not answered to this poll
+				posts.id NOT IN
 				(
 					SELECT options.post_id FROM options
 						WHERE
@@ -681,20 +686,25 @@ class polls
 						options.option_key LIKE 'answer\_%'AND
 						options.user_id = $_user_id
 				)
+			-- Check poll tree
 			AND
 				CASE
-					WHEN main_posts.post_parent IS NULL THEN TRUE
+					-- If this poll not in tree  return true
+					WHEN posts.post_parent IS NULL THEN TRUE
 				ELSE
+					-- Check this users answered to parent of this poll and her answer is important in tree
+					posts.post_parent IN
 					(
 						SELECT
 							options.post_id
 						FROM
 							options
 						WHERE
-							options.option_cat = 'poll_' & main_posts.post_parent AND
+							options.option_cat = 'poll_' & posts.post_parent AND
 							options.option_key = 'answer_$_user_id' AND
 							options.user_id = $_user_id	 AND
-							options.post_id = main_posts.post_parent AND
+							options.post_id = posts.post_parent AND
+							-- Get opt has lock on tree
 							options.option_value IN
 								(
 									SELECT
@@ -702,18 +712,18 @@ class polls
 									FROM
 										options
 									WHERE
-										options.post_id = main_posts.id AND
-										options.option_cat = 'poll_' & main_posts.id AND
-										options.option_key = 'tree_' & main_posts.post_parent AND
+										options.post_id = posts.id AND
+										options.option_cat = 'poll_' & posts.id AND
+										options.option_key = 'tree_' & posts.post_parent AND
 										options.user_id IS NULL
 								)
 					)
 				END
-			ORDER BY main_posts.id ASC
+			ORDER BY posts.id ASC
 			LIMIT 1
 
 		";
-		$result      = \lib\db::get($qry, null, true);
+		$result  = \lib\db::get($qry, null, true);
 
 		// $qry ="
 		// 	SELECT
