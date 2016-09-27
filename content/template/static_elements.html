@@ -1,0 +1,162 @@
+{% extends display.mvc %}
+
+{% block head_css %}
+<style type="text/css">
+body {
+  background-color: #fff;
+}
+.elements {
+  height: 100vh;
+}
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  background-color: #E7E7E7;
+}
+.rtl .input-group {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.ltr .input-group {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.form-group .input-group {
+  display: inline-table;
+  vertical-align: middle;
+  width: 100%;
+}
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: table-cell;
+}
+.input-group .input-group-addon {
+  width: auto;
+}
+.rtl .input-group-addon:first-child {
+  border-left: 0;
+}
+.ltr .input-group-addon:first-child {
+  border-right: 0;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #777;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.input-group .form-control {
+  display: table-cell;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.rtl .input-group .form-control {
+  float: right;
+}
+.ltr .input-group .form-control {
+  float: left;
+}
+.input-group-title {
+  position: relative;
+  background-color: #2699CD;
+}
+.rtl .input-group-title {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.ltr .input-group-title {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+/*.input-group-title::before {
+  content: "";
+  position: absolute;
+  width: 2em;
+  height: 60%;
+  top: 20%;
+  background-image: url(/static/images/svg/input-before.svg);
+  background-repeat: no-repeat;
+}
+.rtl .input-group-title::before {
+  left: 100%;
+}
+.ltr .input-group-title::before {
+  right: 100%;
+}*/
+.input-group-title label {
+  color: #ACCBDD;
+}
+.input-group-title img {
+  position: absolute;
+  left: 100%;
+  height: 60%;
+  top: 20%;
+}
+.input-group-icon {
+  background-color: transparent;
+}
+.rtl .input-group-icon {
+  text-align: left;
+}
+.ltr .input-group-icon {
+  text-align: right;
+}
+.input-group-icon .fa {
+  font-size: 1.5em;
+  color: #2699CD;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% include template.header %}
+<div class="elements">
+  <div class="container">
+    <div class="row auto">
+      <div class="span4">
+        <form>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon input-group-title">
+                <label for="">عنوان سوال</label>
+                <img src="/static/images/svg/input-before.svg" />
+              </div>
+              <input class="form-control">
+              <div class="input-group-addon input-group-icon">
+                <span><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="span8"></div>
+    </div>
+  </div>
+</div>
+{% include template.footer %}
+{% endblock %}
+
+{% block foot_js %}
+{% endblock %}
