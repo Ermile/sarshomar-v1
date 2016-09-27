@@ -3,6 +3,11 @@ namespace lib\db;
 
 class filters
 {
+	/**
+	 * get all user detail and make page of set filter
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function get()
 	{
 		$query =
@@ -25,6 +30,24 @@ class filters
 	}
 
 
+	/**
+	 * Gets the poll filter.
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function get_poll_filter($_poll_id)
+	{
+
+	}
+
+
+	/**
+	 * add net filter of poll
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public static function insert($_args)
 	{
 		if(isset($_args['poll_id']))
@@ -34,9 +57,9 @@ class filters
 		}
 		else
 		{
-			\lib\debug::error(T_("poll id can not be null"));
 			return false;
 		}
+
 		$field_value = [];
 		foreach ($_args as $key => $value) {
 			$field_value[] =
