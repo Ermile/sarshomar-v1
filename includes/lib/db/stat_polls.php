@@ -210,7 +210,7 @@ class stat_polls
 	public static function get_telegram_result($_poll_id, $_value = null, $_key = null)
 	{
 		// get answers form post meta
-		$poll = self::get_poll($_poll_id);
+		$poll = \lib\db\polls::get_poll($_poll_id);
 		$meta = json_decode($poll['meta'], true);
 
 		$opt = $meta['opt'];
@@ -245,8 +245,23 @@ class stat_polls
 
 	public static function get_result($_poll_id)
 	{
-
+		$query =
+		"
+			SELECT
+				options.option_value AS 'value',
+				options.option_meta AS 'meta'
+			FROM
+				options
+			WHERE
+				options.post_id = $_poll_id AND
+				options.user_id IS NULL AND
+				options.option_cat = 'poll_$_poll_id' AND
+				options.option_key = 'stat'
+		";
+		$result = \lib\db::get($query, ['value', 'meta']);
+		return $result;
+		var_dump($result, $_poll_id);
+		exit();
 	}
-
 }
 ?>

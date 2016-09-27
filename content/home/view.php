@@ -5,7 +5,6 @@ class view extends \mvc\view
 {
 	function config()
 	{
-
 		// $this->include->css_ermile   = false;
 		$this->include->js    = true;
 		$this->include->chart = true;
@@ -18,8 +17,8 @@ class view extends \mvc\view
 		if(isset($post['id']))
 		{
 			$post_id = $post['id'];
-			// $this->data->chart      = \lib\db\polls::getResult($post_id);
-			// $this->data->chart_type = 'column';
+			$this->data->chart      = \lib\db\stat_polls::get_result($post_id);
+			$this->data->chart_type = 'column';
 
 		}
 		$this->data->result = $this->model()->random_result();

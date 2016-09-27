@@ -110,24 +110,24 @@ post_id 	user_id		cat							key							value
 
 
 --------------------------------------------------------------------------------------------------------- Question Filters
-1			0			poll_filter_(post_id)		[gender|...]				[male|female]
-1			0			poll_filter_(post_id)		age_min						20
-1			0			poll_filter_(post_id)		age_max						30
-1			0			poll_filter_(post_id)		members_min					1
-1			0			poll_filter_(post_id)		members_max					10000(person)
-1			0			poll_filter_(post_id)		public_answer				[true|false]
-1			0			poll_filter_(post_id)		date_start					2016/09/14
-1			0			poll_filter_(post_id)		date_end					2016/10/25
-1			0			poll_filter_(post_id)		time_start					8:00
-1			0			poll_filter_(post_id)		time_end					14:00
-1			0			poll_filter_(post_id)		count_true					500(person)
+1			0			poll_(post_id)				[gender|...]				[male|female]
+1			0			poll_(post_id)				age_min						20
+1			0			poll_(post_id)				age_max						30
+1			0			poll_(post_id)				members_min					1
+1			0			poll_(post_id)				members_max					10000(person)
+1			0			poll_(post_id)				public_answer				[true|false]
+1			0			poll_(post_id)				date_start					2016/09/14
+1			0			poll_(post_id)				date_end					2016/10/25
+1			0			poll_(post_id)				time_start					8:00
+1			0			poll_(post_id)				time_end					14:00
+1			0			poll_(post_id)				count_true					500(person)
 
 --------------------------------------------------------------------------------------------------------- Question Detail
-1			0			poll_stat_(post_id)			stat 						total					20000									OK
-1			0			poll_stat_(post_id)			stat 						gender					{male:200, female:400}					OK
-1			0			poll_stat_(post_id)			stat 						province				{qom:200, tehran:400}					OK
+1			0			poll_(post_id)				stat 						total					20000									OK
+1			0			poll_(post_id)				stat 						gender					{male:200, female:400}					OK
+1			0			poll_(post_id)				stat 						province				{qom:200, tehran:400}					OK
 
-1			0			poll_stat_(post_id)			stat 						opt_count				{opt_1:200, opt_2:400}
+1			0			poll_(post_id)				stat 						opt_count				{opt_1:200, opt_2:400}
 
 
 
