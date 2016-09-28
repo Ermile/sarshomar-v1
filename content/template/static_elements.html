@@ -1,131 +1,71 @@
 {% extends display.mvc %}
 
 {% block head_css %}
-<style type="text/css">
+<style media="screen">
 body {
-  background-color: #fff;
+  background-color: #FFF;
 }
-.elements {
-  height: 100vh;
+.form-group {
+  margin-bottom: 5em;
 }
-.input-group {
-  position: relative;
-  display: table;
-  border-collapse: separate;
-  background-color: #E7E7E7;
-}
-.rtl .input-group {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-}
-.ltr .input-group {
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
-}
-.form-group .input-group {
-  display: inline-table;
-  vertical-align: middle;
-  width: 100%;
-}
-.input-group-addon {
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  background-color: #eee;
-  white-space: nowrap;
-  vertical-align: middle;
-  display: table-cell;
-}
-.input-group .input-group-addon {
-  width: auto;
-}
-.rtl .input-group-addon:first-child {
-  border-left: 0;
-}
-.ltr .input-group-addon:first-child {
-  border-right: 0;
-}
-.form-control {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #777;
-  background-color: transparent;
-  background-image: none;
-  border: none;
-  border-radius: 0;
-}
-.input-group .form-control:not(:first-child):not(:last-child) {
-  border-radius: 0;
-}
-.input-group .form-control {
-  display: table-cell;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0;
-  vertical-align: middle;
-}
-.rtl .input-group .form-control {
-  float: right;
-}
-.ltr .input-group .form-control {
-  float: left;
-}
-.input-group-title {
-  position: relative;
+/*inline styles*/
+.form-group .input-group.focus .form-control {
   background-color: #2699CD;
-}
-.rtl .input-group-title {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-}
-.ltr .input-group-title {
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
-}
-/*.input-group-title::before {
-  content: "";
-  position: absolute;
-  width: 2em;
-  height: 60%;
-  top: 20%;
-  background-image: url(/static/images/svg/input-before.svg);
-  background-repeat: no-repeat;
-}
-.rtl .input-group-title::before {
-  left: 100%;
-}
-.ltr .input-group-title::before {
-  right: 100%;
-}*/
-.input-group-title label {
   color: #ACCBDD;
 }
-.input-group-title img {
-  position: absolute;
+.form-group .input-group.focus .form-control + .input-group-icon {
+  background-color: #2699CD;
+  color: #ACCBDD;
+}
+
+.form-group .input-group.disabled .input-group-title {
+  background-color: #D8D8D8;
+  color: #BEBEBE;
+}
+.form-group .input-group.disabled .input-group-addon.input-group-title:before {
+  background-image: url(/static/images/svg/input-before2.svg);
+}
+.form-group .input-group.disabled .form-control {
+  background-color: #D8D8D8;
+}
+.form-group .input-group.disabled .form-control + .input-group-icon {
+  background-color: #D8D8D8;
+  color: #BEBEBE;
+}
+
+.form-group .input-group.reverse {
+  direction: rtl;
+}
+.form-group .input-group.reverse .input-group-title {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #D8D8D8;
+  color: #BCBCBC;
+}
+.form-group .input-group.reverse .input-group-title:before {
+  background-image: url(/static/images/svg/input-before2.svg);
+  right: auto;
   left: 100%;
-  height: 60%;
-  top: 20%;
+  -webkit-transform: none;
+     -moz-transform: none;
+      -ms-transform: none;
+       -o-transform: none;
+          transform: none;
 }
-.input-group-icon {
-  background-color: transparent;
+.form-group .input-group.reverse .form-control {
+  background-color: #D8D8D8;
+  color: #BCBCBC;
+  direction: ltr;
 }
-.rtl .input-group-icon {
-  text-align: left;
+.form-group .input-group.reverse .form-control:focus + .input-group-icon {
+  background-color: #D8D8D8;
+  color: #BCBCBC;
 }
-.ltr .input-group-icon {
-  text-align: right;
-}
-.input-group-icon .fa {
-  font-size: 1.5em;
-  color: #2699CD;
+.form-group .input-group.reverse .input-group-icon {
+  background-color: #D8D8D8;
+  color: #BCBCBC;
 }
 </style>
 {% endblock %}
@@ -134,24 +74,128 @@ body {
 {% include template.header %}
 <div class="elements">
   <div class="container">
-    <div class="row auto">
-      <div class="span4">
-        <form>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon input-group-title">
-                <label for="">عنوان سوال</label>
-                <img src="/static/images/svg/input-before.svg" />
-              </div>
-              <input class="form-control">
-              <div class="input-group-addon input-group-icon">
-                <span><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-              </div>
+    <div class="row">
+      <div class="span6">
+        <h1>{% trans "Elements" %}</h1>
+        <h2>{% trans "Input" %}</h2>
+
+        <h3>{% trans "Simple" %}</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" type="text" id="input_01">
+          </div>
+        </div>
+
+        <h3>{% trans "Simple with text" %}</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" type="text" id="input_01" placeholder='{% trans "Please enter text" %}'>
+          </div>
+        </div>
+
+        <h3>{% trans "Simple with text and image" %}</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" type="text" id="input_01" placeholder='{% trans "Please enter text" %}'>
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
           </div>
-        </form>
+        </div>
+
+        <h3>{% trans "Standard" %}</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon input-group-title">
+              <label for="input_01">Question Title</label>
+            </div>
+            <input class="form-control" type="text" id="input_01">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Focus" %}</h3>
+        <div class="form-group">
+          <div class="input-group focus">
+            <div class="input-group-addon input-group-title">
+              <label for="input_02">Question Title</label>
+            </div>
+            <input class="form-control" type="text" id="input_02">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Success" %}</h3>
+        <div class="form-group">
+          <div class="input-group option success">
+            <div class="input-group-addon input-group-title">
+              <label for="input_01">Option 1</label>
+            </div>
+            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Warn" %}</h3>
+        <div class="form-group">
+          <div class="input-group option warn">
+            <div class="input-group-addon input-group-title">
+              <label for="input_01">Option 1</label>
+            </div>
+            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Fail" %}</h3>
+        <div class="form-group">
+          <div class="input-group option fail">
+            <div class="input-group-addon input-group-title">
+              <label for="input_01">Option 1</label>
+            </div>
+            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Disabled" %}</h3>
+        <div class="form-group">
+          <div class="input-group disabled">
+            <div class="input-group-addon input-group-title">
+              <label for="input_03">Question Title</label>
+            </div>
+            <input class="form-control" type="text" id="input_03" disabled="">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Reverse" %}</h3>
+        <div class="form-group">
+          <div class="input-group reverse">
+            <div class="input-group-addon input-group-title">
+              <label for="input_04">Short Link</label>
+            </div>
+            <input class="form-control" type="text" id="input_04">
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-link" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="span8"></div>
+      <div class="span6"></div>
     </div>
   </div>
 </div>

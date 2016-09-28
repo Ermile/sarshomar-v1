@@ -1,6 +1,7 @@
 {%extends display.mvc%}
 
 {%block content%}
+{{dump(post)}}
 {% include template.header %}
 <div class="row question-box">
     <div class="container">
@@ -196,11 +197,9 @@
                 <div class="detail"><span class="green">در حال انجام است</span></div>
                 <div class="title">کلیدواژه ها</div>
                 <div class="detail tags">
-                    <a href="#">وزن</a>
-                    <a href="#">ورزش</a>
-                    <a href="#">ایده آل</a>
-                    <a href="#">مناسب</a>
-                    <a href="#">دماوند</a>
+                  {% for tag in post.tags %}
+                    <a href="#">tag</a>
+                  {% endfor %}
                 </div>
             </div>
 
