@@ -156,7 +156,6 @@ class answers
 												[
 													'poll_id' => $_poll_id,
 													'opt_key' => $_answer,
-													'opt_txt' => $_answer_txt,
 													'user_id' => $_user_id
 												]
 											);

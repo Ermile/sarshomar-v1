@@ -91,12 +91,12 @@ class stat_polls
             SET
             	posts.post_meta =
 			       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-			       		'{\"answeres\":{\"$opt_key\":1,\"txt\":\"$opt_txt\"}}',
+			       		'{\"answeres\":{\"$opt_key\":1}}',
 						IF(
 						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key'),
 						   JSON_REPLACE(posts.post_meta, '$.answeres.$opt_key',
 						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key') + 1 ),
-						   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1,\"txt\", \"$opt_txt\"))
+						   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1))
 					      )
 					)
             WHERE
@@ -116,12 +116,12 @@ class stat_polls
 			SET
 				options.option_meta =
 					IF(options.option_meta IS NULL OR options.option_meta = '',
-				       		'{\"$opt_key\":{\"count\":1,\"txt\":\"$opt_txt\"}}',
+				       		'{\"$opt_key\":1}',
 						IF(
-						   JSON_EXTRACT(options.option_meta, '$json_opt.count'),
-						   JSON_REPLACE(options.option_meta, '$json_opt.count',
-						   JSON_EXTRACT(options.option_meta, '$json_opt.count') + 1 ),
-						   JSON_INSERT(options.option_meta, '$json_opt', JSON_OBJECT(\"count\",1, \"txt\", \"$opt_txt\"))
+						   JSON_EXTRACT(options.option_meta, '$json_opt'),
+						   JSON_REPLACE(options.option_meta, '$json_opt',
+						   JSON_EXTRACT(options.option_meta, '$json_opt') + 1 ),
+						   JSON_INSERT(options.option_meta, '$json_opt', 1)
 						)
 					)
 			WHERE
@@ -143,7 +143,7 @@ class stat_polls
 					options
 				SET
 					options.user_id  	 = NULL,
-					options.option_meta  = '{\"$opt_key\":{\"count\":1,\"txt\":\"$opt_txt\"}}',
+					options.option_meta  = '{\"$opt_key\":1}',
 					options.post_id      = $poll_id,
 					options.option_cat   = 'poll_$poll_id',
 					options.option_key   = 'stat',
@@ -294,6 +294,13 @@ class stat_polls
 
 	public static function get_result($_poll_id)
 	{
+
+		// get poll meta to get all opt of this poll
+		$poll = \lib\db\polls::get_poll($_poll_id);
+
+		$poll_meta = json_decode($poll['meta'], JSON_UNESCAPED_UNICODE);
+		$poll_opt = $poll_meta['opt'];
+
 		$query =
 		"
 			SELECT
@@ -305,13 +312,39 @@ class stat_polls
 				options.post_id = $_poll_id AND
 				options.user_id IS NULL AND
 				options.option_cat = 'poll_$_poll_id' AND
-				options.option_key = 'stat'
+				options.option_key = 'stat' AND
+				options.option_value = 'opt_count'
 		";
 		$result = \lib\db::get($query, ['value', 'meta']);
-		return $result;
-		var_dump($result, $_poll_id);
-		exit();
+		if($result)
+		{
+			$opt_count = json_decode($result['opt_count'], JSON_UNESCAPED_UNICODE);
+			$result = [];
+			// $result['id'] = $poll['id'];
+			$result['title'] = $poll['title'];
+			// $result['url'] = $poll['url'];
+			foreach ($poll_opt as $key => $value) {
+				if(isset($opt_count[$value['key']]))
+				{
+					$name = $value['txt'];
+					$data = [$opt_count[$value['key']]];
+				}
+				else
+				{
+					$name = $value['txt'];
+					$data = [0];
+				}
+				$result['data'][] = ['name' => $name,'data' => $data];
+			}
+			return $result;
+		}
+		else
+		{
+			return null;
+		}
+		return false;
 	}
+
 
 	/**
 	 * Sets the sarshomar total answered.
@@ -350,6 +383,27 @@ class stat_polls
 			";
 			$insert = \lib\db::query($insert_query);
 		}
+	}
+
+
+	public static function get_sarshomar_total_answered()
+	{
+		$stat_query =
+		"
+			SELECT
+				options.option_value AS 'count'
+			FROM
+				options
+			WHERE
+				options.user_id IS NULL AND
+				options.post_id IS NULL AND
+				options.option_cat   = 'sarshomar_total_answered' AND
+				options.option_key   = 'total_answered'
+			LIMIT 1
+		";
+
+		$total = \lib\db::get($stat_query, 'count', true);
+		return $total;
 	}
 }
 ?>

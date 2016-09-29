@@ -4,61 +4,20 @@ use \lib\debug;
 
 class model extends \mvc\model
 {
+
 	public function get_test($object)
 	{
 		return 1;
 	}
 
+
 	public function random_result()
 	{
-		$query = "
-				SELECT
-					id
-				FROM
-					posts
-				WHERE
-					post_type LIKE 'poll%' AND
-					post_status = 'publish'
-					";
-		$get_id = array_column(\lib\db\posts::select($query, "get"), "id");
-		if(!empty($get_id))
-		{
-			$random_key = array_rand($get_id);
-			$result = json_encode(\lib\db\stat_polls::get_result($get_id[$random_key]), JSON_UNESCAPED_UNICODE);
-
-		}
-		else
-		{
-
-		}
-
-		$data = [
-			'title' => $this->random_title(),
-			'data' => [
-					['name' => 'جواب اول',
-					'data' => [$this->rnd()]
-					],
-					['name' => 'جواب دوم',
-					'data' => [$this->rnd()]
-					],
-					['name' => 'جواب سوم',
-					'data' => [$this->rnd()]
-					],
-					['name' => 'جواب چهارم',
-					'data' => [$this->rnd()]
-					]
-					]
-			];
-		$result = [];
-		foreach ($data as $key => $value)
-		{
-			$result[$key] = json_encode($value, JSON_UNESCAPED_UNICODE);
-		}
-
-		$malefemale = $this->random();
-		// var_dump($result);exit();
-		return ['random_result' => $result, 'malefemale' => $malefemale];
+		$random_result = \lib\db\result::get_random_poll_result();
+		$random_result['data'] = json_encode($random_result['data'], JSON_UNESCAPED_UNICODE);
+		return ['random_result' => $random_result, 'malefemale' => $this->random()];
 	}
+
 
 	public function random_title()
 	{
@@ -75,9 +34,11 @@ class model extends \mvc\model
 		$random_key = array_rand($id);
 		return $title[$random_key];
 	}
+
+
 	public function random()
 	{
-	$random = [
+		$random = [
 			'title' => $this->random_title(),
 
 			'data' => [
@@ -140,16 +101,5 @@ class model extends \mvc\model
 	{
 		return rand(0,75);
 	}
-
-	public function put_test($object)
-	{
-		return 3;
-	}
-
-	public function delete_test($object)
-	{
-		return 4;
-	}
-
 }
 ?>
