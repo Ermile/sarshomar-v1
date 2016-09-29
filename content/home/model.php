@@ -9,24 +9,28 @@ class model extends \mvc\model
 		return 1;
 	}
 
-	public function random_result() {
-		// $query = "
-		// 		SELECT
-		// 			id
-		// 		FROM
-		// 			posts
-		// 		WHERE
-		// 			post_type LIKE 'poll%' AND
-		// 			post_status = 'publish'
-		// 			";
-		// $get_id = array_column(\lib\db\posts::select($query, "get"), "id");
-		// if(!empty($get_id)){
+	public function random_result()
+	{
+		$query = "
+				SELECT
+					id
+				FROM
+					posts
+				WHERE
+					post_type LIKE 'poll%' AND
+					post_status = 'publish'
+					";
+		$get_id = array_column(\lib\db\posts::select($query, "get"), "id");
+		if(!empty($get_id))
+		{
+			$random_key = array_rand($get_id);
+			$result = json_encode(\lib\db\stat_polls::get_result($get_id[$random_key]), JSON_UNESCAPED_UNICODE);
 
-		// 	$random_key = array_rand($get_id);
-		// 	$result = json_encode(\lib\db\stat_polls::get_result($get_id[$random_key]), JSON_UNESCAPED_UNICODE);
+		}
+		else
+		{
 
-		// }else{
-		// }
+		}
 
 		$data = [
 			'title' => $this->random_title(),
@@ -46,16 +50,18 @@ class model extends \mvc\model
 					]
 			];
 		$result = [];
-		foreach ($data as $key => $value) {
+		foreach ($data as $key => $value)
+		{
 			$result[$key] = json_encode($value, JSON_UNESCAPED_UNICODE);
 		}
 
 		$malefemale = $this->random();
-		var_dump($result);exit();
+		// var_dump($result);exit();
 		return ['random_result' => $result, 'malefemale' => $malefemale];
 	}
 
-	public function random_title(){
+	public function random_title()
+	{
 		$title = [
 			'تفاوت زن و مرد',
 			'برابری حقوق زن و مرد',
@@ -69,7 +75,8 @@ class model extends \mvc\model
 		$random_key = array_rand($id);
 		return $title[$random_key];
 	}
-	public function random(){
+	public function random()
+	{
 	$random = [
 			'title' => $this->random_title(),
 
@@ -122,13 +129,15 @@ class model extends \mvc\model
 				]
         ];
         $result = [];
-        foreach ($random as $key => $value) {
+        foreach ($random as $key => $value)
+        {
         	$result[$key] = json_encode($value, JSON_UNESCAPED_UNICODE);
         }
         return $result;
 	}
 
-	public function rnd(){
+	public function rnd()
+	{
 		return rand(0,75);
 	}
 
