@@ -8,65 +8,6 @@ body {
 .form-group {
   margin-bottom: 5em;
 }
-/*inline styles*/
-.form-group .input-group.focus .form-control {
-  background-color: #2699CD;
-  color: #ACCBDD;
-}
-.form-group .input-group.focus .form-control + .input-group-icon {
-  background-color: #2699CD;
-  color: #ACCBDD;
-}
-
-.form-group .input-group.disabled .input-group-title {
-  background-color: #D8D8D8;
-  color: #BEBEBE;
-}
-.form-group .input-group.disabled .input-group-addon.input-group-title:before {
-  background-image: url(/static/images/svg/input-before2.svg);
-}
-.form-group .input-group.disabled .form-control {
-  background-color: #D8D8D8;
-}
-.form-group .input-group.disabled .form-control + .input-group-icon {
-  background-color: #D8D8D8;
-  color: #BEBEBE;
-}
-
-.form-group .input-group.reverse {
-  direction: rtl;
-}
-.form-group .input-group.reverse .input-group-title {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: #D8D8D8;
-  color: #BCBCBC;
-}
-.form-group .input-group.reverse .input-group-title:before {
-  background-image: url(/static/images/svg/input-before2.svg);
-  right: auto;
-  left: 100%;
-  -webkit-transform: none;
-     -moz-transform: none;
-      -ms-transform: none;
-       -o-transform: none;
-          transform: none;
-}
-.form-group .input-group.reverse .form-control {
-  background-color: #D8D8D8;
-  color: #BCBCBC;
-  direction: ltr;
-}
-.form-group .input-group.reverse .form-control:focus + .input-group-icon {
-  background-color: #D8D8D8;
-  color: #BCBCBC;
-}
-.form-group .input-group.reverse .input-group-icon {
-  background-color: #D8D8D8;
-  color: #BCBCBC;
-}
 </style>
 {% endblock %}
 
@@ -76,39 +17,48 @@ body {
   <div class="container">
     <div class="row">
       <div class="span6">
+
         <h1>{% trans "Elements" %}</h1>
         <h2>{% trans "Input" %}</h2>
 
-        <h3>{% trans "Simple" %}</h3>
+        <h3>{% trans "Basic" %}</h3>
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" type="text" id="input_01">
+            <input class="form-control" type="text">
           </div>
         </div>
 
-        <h3>{% trans "Simple with text" %}</h3>
+        <h3>{% trans "Basic with placeholder" %}</h3>
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" type="text" id="input_01" placeholder='{% trans "Please enter text" %}'>
+            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
           </div>
         </div>
 
-        <h3>{% trans "Simple with text and image" %}</h3>
+        <h3>{% trans "Basic with placeholder and icon" %}</h3>
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" type="text" id="input_01" placeholder='{% trans "Please enter text" %}'>
+            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
           </div>
         </div>
 
-        <h3>{% trans "Standard" %}</h3>
+        <h3>{% trans "Basic with placeholder and icon hover" %}</h3>
+        <div class="form-group">
+          <div class="input-group icon-hover">
+            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Primary with icon" %}</h3>
         <div class="form-group">
           <div class="input-group">
-            <div class="input-group-addon input-group-title">
-              <label for="input_01">Question Title</label>
-            </div>
+            <label class="input-group-addon input-group-title" for="input_01">Question Title</label>
             <input class="form-control" type="text" id="input_01">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -116,13 +66,22 @@ body {
           </div>
         </div>
 
-        <h3>{% trans "Focus" %}</h3>
+        <h3>{% trans "Primary with icon and placeholder" %}</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <label class="input-group-addon input-group-title" for="input_02">Question Title</label>
+            <input class="form-control" type="text" id="input_02" placeholder='{% trans "Please enter text" %}'>
+            <div class="input-group-addon input-group-icon">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3>{% trans "Primary focus state" %}</h3>
         <div class="form-group">
           <div class="input-group focus">
-            <div class="input-group-addon input-group-title">
-              <label for="input_02">Question Title</label>
-            </div>
-            <input class="form-control" type="text" id="input_02">
+            <label class="input-group-addon input-group-title" for="input_03">Question Title</label>
+            <input class="form-control" type="text" id="input_03">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
@@ -132,10 +91,8 @@ body {
         <h3>{% trans "Success" %}</h3>
         <div class="form-group">
           <div class="input-group option success">
-            <div class="input-group-addon input-group-title">
-              <label for="input_01">Option 1</label>
-            </div>
-            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <label class="input-group-addon input-group-title" for="input_04">Option 1</label>
+            <input class="form-control" type="text" id="input_04" value="Why men marry women?">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
@@ -145,10 +102,8 @@ body {
         <h3>{% trans "Warn" %}</h3>
         <div class="form-group">
           <div class="input-group option warn">
-            <div class="input-group-addon input-group-title">
-              <label for="input_01">Option 1</label>
-            </div>
-            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <label class="input-group-addon input-group-title" for="input_05">Option 1</label>
+            <input class="form-control" type="text" id="input_05" value="Why men marry women?">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
@@ -158,10 +113,8 @@ body {
         <h3>{% trans "Fail" %}</h3>
         <div class="form-group">
           <div class="input-group option fail">
-            <div class="input-group-addon input-group-title">
-              <label for="input_01">Option 1</label>
-            </div>
-            <input class="form-control" type="text" id="input_01" value="Why men marry women?">
+            <label class="input-group-addon input-group-title" for="input_06">Option 1</label>
+            <input class="form-control" type="text" id="input_06" value="Why men marry women?">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
@@ -170,27 +123,58 @@ body {
 
         <h3>{% trans "Disabled" %}</h3>
         <div class="form-group">
-          <div class="input-group disabled">
-            <div class="input-group-addon input-group-title">
-              <label for="input_03">Question Title</label>
-            </div>
-            <input class="form-control" type="text" id="input_03" disabled="">
+          <div class="input-group option disabled">
+            <label class="input-group-addon input-group-title" for="input_07">Option 1</label>
+            <input class="form-control" type="text" id="input_07" value="Why men marry women?" disabled="">
             <div class="input-group-addon input-group-icon">
               <i class="fa fa-picture-o" aria-hidden="true"></i>
             </div>
           </div>
         </div>
 
-        <h3>{% trans "Reverse" %}</h3>
-        <div class="form-group">
-          <div class="input-group reverse">
-            <div class="input-group-addon input-group-title">
-              <label for="input_04">Short Link</label>
+        <div class="row auto">
+          <div class="span6"></div>
+          <div class="span6">
+
+            <div class="form-group">
+              <div class="input-group">
+                <label class="input-group-addon input-group-title" for="input_08">Question</label>
+                <input class="form-control" type="text" id="input_08" value="Why men marry women?">
+                <div class="input-group-addon input-group-floating">
+                  <button type="button" name="button">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <input class="form-control" type="text" id="input_04">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-link" aria-hidden="true"></i>
+
+            <div class="form-group">
+              <div class="input-group">
+                <label class="input-group-addon input-group-title" for="input_09">{% trans "Tags" %}</label>
+                <input class="form-control" type="text" id="input_09">
+                <div class="input-group-addon input-group-btn">
+                  <button type="button" name="button">{% trans "Add" %}</button>
+                </div>
+              </div>
             </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <label class="input-group-addon input-group-title" for="input_10">{% trans "Tags" %}</label>
+                <input class="form-control" type="text" id="input_10">
+                <div class="input-group-addon input-group-btn">
+                  <button type="button" name="button">{% trans "Add" %}</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <label class="input-group-addon input-group-title" for="input_11">{% trans "Slug" %}</label>
+                <input class="form-control" type="text" id="input_11" value="http://link.com/short">
+              </div>
+            </div>
+
           </div>
         </div>
 
