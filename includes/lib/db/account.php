@@ -42,15 +42,16 @@ class account
 	}
 
 
+	/**
+	 * Sets the account data.
+	 *
+	 * @param      <type>   $_user_id  The user identifier
+	 * @param      <type>   $_args     The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public static function set_account_data($_user_id, $_args)
 	{
-		$displayname       = $_args['displayname'];
-		$mobile            = $_args['mobile'];
-
-		// process age and range
-		$age               = $_args['age'];
-		$range             = $_args['range'];
-
 		$old_account_data = self::get_account_data(['user_id' => $_user_id]);
 
 		$_args = array_filter($_args);
@@ -79,9 +80,12 @@ class account
 				"
 					INSERT INTO
 						options
-						(post_id, user_id, 	   option_cat, 				option_key,   option_value )
-					VALUES
-						(NULL, 	  '$_user_id',  'user_detail_$_user_id', 	'$field',	  '$value'	   )
+					SET
+						post_id      = NULL,
+						user_id      = '$_user_id',
+						option_cat   = 'user_detail_$_user_id',
+						option_key   = '$field',
+						option_value = '$value'
 				";
 				$run_query = \lib\db::query($insert);
 				if($run_all_query)
