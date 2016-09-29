@@ -401,16 +401,8 @@ class stat_polls
 				options.option_key   = 'total_answered'
 			LIMIT 1
 		";
-
 		$total = \lib\db::get($stat_query, 'count', true);
-		if(intval($total))
-		{
-			return $total;
-		}
-		else
-		{
-			return 0;
-		}
+		return intval($total);
 	}
 }
 ?>

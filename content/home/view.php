@@ -17,13 +17,15 @@ class view extends \mvc\view
 		if(isset($post['id']))
 		{
 			$post_id = $post['id'];
-			// $this->data->chart      = \lib\db\stat_polls::get_result($post_id);
-			// $this->data->chart_type = 'column';
-
+			$this->data->chart      = \lib\db\stat_polls::get_result($post_id);
+			$this->data->chart_type = 'column';
 		}
-		$this->data->result = $this->model()->random_result();
-		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\db\stat_polls::get_sarshomar_total_answered()]);
+		else
+		{
+			$this->data->result = $this->model()->random_result();
+		}
 
+		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\db\stat_polls::get_sarshomar_total_answered()]);
 		$this->include->fontawesome = true;
 	}
 

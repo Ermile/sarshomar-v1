@@ -15,6 +15,10 @@ class model extends \mvc\model
 	{
 		$random_result = \lib\db\result::get_random_poll_result();
 		$random_result['data'] = json_encode($random_result['data'], JSON_UNESCAPED_UNICODE);
+
+		// $malefemale = \lib\db\result::get_random_male_female_result();
+		// var_dump($malefemale);
+		// var_dump($this->random());exit();
 		return ['random_result' => $random_result, 'malefemale' => $this->random()];
 	}
 
