@@ -67,6 +67,15 @@ class stat_polls
 			return false;
 		}
 
+		if(isset($_args['opt_txt']))
+		{
+			$opt_txt = $_args['opt_txt'];
+		}
+		else
+		{
+			$opt_txt = null;
+		}
+
 		/**
 		 * set count total answere + 1
 		 * to get sarshomar total answered
@@ -81,15 +90,15 @@ class stat_polls
             	posts
             SET
             	posts.post_meta =
-     						       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-     						       		'{\"answeres\":{\"$opt_key\":1}}',
-            							IF(
-            							   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key'),
-										   JSON_REPLACE(posts.post_meta, '$.answeres.$opt_key',
-										   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key') + 1 ),
-										   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1))
-            							)
-            						)
+			       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
+			       		'{\"answeres\":{\"$opt_key\":1,\"txt\":\"$opt_txt\"}}',
+						IF(
+						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key'),
+						   JSON_REPLACE(posts.post_meta, '$.answeres.$opt_key',
+						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key') + 1 ),
+						   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1,\"txt\", \"$opt_txt\"))
+					      )
+					)
             WHERE
             	posts.id 	 = $poll_id
 		";
@@ -107,12 +116,12 @@ class stat_polls
 			SET
 				options.option_meta =
 					IF(options.option_meta IS NULL OR options.option_meta = '',
-				       		'{\"$opt_key\":1}',
+				       		'{\"$opt_key\":{\"count\":1,\"txt\":\"$opt_txt\"}}',
 						IF(
-						   JSON_EXTRACT(options.option_meta, '$json_opt'),
-						   JSON_REPLACE(options.option_meta, '$json_opt',
-						   JSON_EXTRACT(options.option_meta, '$json_opt') + 1 ),
-						   JSON_INSERT(options.option_meta, '$json_opt', 1)
+						   JSON_EXTRACT(options.option_meta, '$json_opt.count'),
+						   JSON_REPLACE(options.option_meta, '$json_opt.count',
+						   JSON_EXTRACT(options.option_meta, '$json_opt.count') + 1 ),
+						   JSON_INSERT(options.option_meta, '$json_opt', JSON_OBJECT(\"count\",1, \"txt\", \"$opt_txt\"))
 						)
 					)
 			WHERE
@@ -134,7 +143,7 @@ class stat_polls
 					options
 				SET
 					options.user_id  	 = NULL,
-					options.option_meta  = '{\"$opt_key\":1}',
+					options.option_meta  = '{\"$opt_key\":{\"count\":1,\"txt\":\"$opt_txt\"}}',
 					options.post_id      = $poll_id,
 					options.option_cat   = 'poll_$poll_id',
 					options.option_key   = 'stat',
@@ -325,7 +334,8 @@ class stat_polls
 
 		$update = \lib\db::query($stat_query);
 		// if can not update record insert new record
-		if(!$update)
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+		if(!$update_rows)
 		{
 			$insert_query =
 			"

@@ -51,7 +51,7 @@ class model extends \mvc\model
 		}
 
 		$malefemale = $this->random();
-
+		var_dump($result);exit();
 		return ['random_result' => $result, 'malefemale' => $malefemale];
 	}
 
