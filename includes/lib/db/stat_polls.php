@@ -403,7 +403,14 @@ class stat_polls
 		";
 
 		$total = \lib\db::get($stat_query, 'count', true);
-		return $total;
+		if(intval($total))
+		{
+			return $total;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
 ?>
