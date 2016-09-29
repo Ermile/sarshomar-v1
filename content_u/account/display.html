@@ -1,48 +1,48 @@
 {%extends display.mvc%}
 
 {%block content%}
-<div not-class="row auto">
-    <div not-class="span4"></div>
-    <div not-class="span4">
-        <form action="account" method="post" not-class="form inline">
+<div class="row auto">
+    <div class="span4"></div>
+    <div class="span4">
+        <form action="account" method="post" class="form inline">
 
-            <div not-class="field">
+            <div class="field">
                 <label>displayname</label>
                 <input type="text" name="displayname" value="{{account.displayname}}" disabled="disabled">
             </div>
 
-            <div not-class="field">
+            <div class="field">
                 <label>gender</label>
 
                 male:<input type="radio" name="gender" value="male">
                 female:<input type="radio" name="gender" value="female">
             </div>
-            <div not-class="field">
+            <div class="field">
                 <label>marrital_status</label>
                 single<input type="radio" name="marrital_status" value="single">
                 marrital<input type="radio" name="marrital_status" value="marrital">
             </div>
 
-            <div not-class="field">
+            <div class="field">
                 <label>birthdate</label>
                 <input type="text" name="birthdate" value="{{account.birthdate}}">
             </div>
-            <div not-class="field">
+            <div class="field">
                 <label>graduation</label>
                 <input type="text" name="graduation" value="{{account.graduation}}">
             </div>
 
-            <div not-class="field">
+            <div class="field">
                 <label>city</label>
                 <input type="text" name="city" value="{{account.city}}">
             </div>
 
-            <div not-class="field">
+            <div class="field">
                 <label>language            </label>
                 <input type="text" name="language" value="{{account.language}}">
             </div>
 
-            <div not-class="field">
+            <div class="field">
                 <label></label>
                 <input type="submit" value="به روز رسانی اطلاعات">
             </div>
