@@ -2,7 +2,24 @@
 
 {%block content%}
 {%for key, value in poll_list%}
-{{value.id}}<h6>{{value.title}}</h6>
+<a onclick="f({{value.id}})" style="cursor: pointer;">publish {{value.id}} </a> <h6>{{value.title}}</h6>
+{{value.status}}
 <hr>
 {%endfor%}
+<script type="text/javascript">
+	function f(_poll_id)
+	{
+		$.ajax({
+	        type: 'post',
+	        url: 'lists',
+	        data: {
+	            'poll_id': _poll_id,
+	            'type': 'publish'
+	        },
+	        success: function(data) {
+	            console.log(data);
+	        }
+    	});
+	}
+</script>
 {%endblock%}

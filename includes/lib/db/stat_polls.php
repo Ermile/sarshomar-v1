@@ -46,9 +46,8 @@ class stat_polls
 		}
 		else
 		{
-			\lib\debug::error(T_("poll id not found"));
+			return false;
 		}
-
 
 		if(isset($_args['user_id']))
 		{
@@ -56,55 +55,91 @@ class stat_polls
 		}
 		else
 		{
-			\lib\debug::error(T_("user id not found"));
+			return false;
 		}
 
-		// get count of answered users for this poll
-		$query = "
-				SELECT
-					COUNT(options.id) as 'count',
-                    option_value
-                FROM
-                    options
-                WHERE
-                    user_id IS NOT NULL AND
-                    post_id = $poll_id AND
-                    option_key LIKE 'answer%'
-               	GROUP BY
-               		option_value
-				";
-		$count = \lib\db\options::select($query, 'get');
-
-		// update post meta and save cont of answered
-		if($count)
+		if(isset($_args['opt_key']))
 		{
+			$opt_key = $_args['opt_key'];
+		}
+		else
+		{
+			return false;
+		}
 
-			$count_answered = array_sum(array_column($count, 'count'));
-			$count = json_encode($count, JSON_UNESCAPED_UNICODE);
-				$update =
-				"
-					UPDATE
-						posts
-					SET
-						posts.post_meta = JSON_REPLACE(posts.post_meta, '$.answers' , '$count')
-					WHERE
-						posts.id = $poll_id
-				";
+		/**
+		 * set count total answere + 1
+		 * to get sarshomar total answered
+		 */
+		self::set_sarshomar_total_answered();
 
-			\lib\db::query($update);
 
-			//save opt count in op tions table
+		// update post meta and save count answered in to meta
+		$update_posts_meta =
+		"
+			UPDATE
+            	posts
+            SET
+            	posts.post_meta =
+     						       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
+     						       		'{\"answeres\":{\"$opt_key\":1}}',
+            							IF(
+            							   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key'),
+										   JSON_REPLACE(posts.post_meta, '$.answeres.$opt_key',
+										   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key') + 1 ),
+										   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1))
+            							)
+            						)
+            WHERE
+            	posts.id 	 = $poll_id
+		";
+		$update_posts_meta = \lib\db::query($update_posts_meta);
+
+		//count answered to this poll in option table
+
+		// example $.opt_1
+		$json_opt = '$.'. $opt_key;
+
+		$opt_count =
+		"
+			UPDATE
+				options
+			SET
+				options.option_meta =
+					IF(options.option_meta IS NULL OR options.option_meta = '',
+				       		'{\"$opt_key\":1}',
+						IF(
+						   JSON_EXTRACT(options.option_meta, '$json_opt'),
+						   JSON_REPLACE(options.option_meta, '$json_opt',
+						   JSON_EXTRACT(options.option_meta, '$json_opt') + 1 ),
+						   JSON_INSERT(options.option_meta, '$json_opt', 1)
+						)
+					)
+			WHERE
+				options.user_id IS NULL AND
+				options.post_id      = $poll_id AND
+				options.option_cat   = 'poll_$poll_id' AND
+				options.option_key   = 'stat' AND
+				options.option_value = 'opt_count'
+		";
+
+		$update = \lib\db::query($opt_count);
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+
+		if(!$update_rows)
+		{
 			$opt_count =
 			"
 				INSERT INTO
 					options
-				(post_id, 	user_id,	 option_cat,		option_key, 	 option_value,  option_meta	)
-				VALUES
-				($poll_id, 	NULL,		'poll_$poll_id',	'stat',			 'opt_count',	'$count'	)
-				ON DUPLICATE KEY UPDATE
-					option_meta = '$count'
+				SET
+					options.user_id  	 = NULL,
+					options.option_meta  = '{\"$opt_key\":1}',
+					options.post_id      = $poll_id,
+					options.option_cat   = 'poll_$poll_id',
+					options.option_key   = 'stat',
+					options.option_value = 'opt_count'
 			";
-
 			\lib\db::query($opt_count);
 		}
 
@@ -118,14 +153,15 @@ class stat_polls
 			WHERE
 				options.user_id IS NULL AND
 				options.post_id      = $poll_id AND
-				options.option_cat   = 'poll_{$poll_id}' AND
+				options.option_cat   = 'poll_$poll_id' AND
 				options.option_key   = 'stat' AND
 				options.option_value = 'total'
 		";
 
 		$update = \lib\db::query($stat_query);
 		// if can not update record insert new record
-		if(!$update)
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+		if(!$update_rows)
 		{
 			$insert_query =
 			"
@@ -141,24 +177,27 @@ class stat_polls
 			$insert = \lib\db::query($insert_query);
 		}
 
+		// get users detail and save to option meta
 		$query =
 			"
 			SELECT
-                  options.option_key AS 'key',
-                  options.option_value AS 'value'
+                  options.option_key 	AS 'key',
+                  options.option_value 	AS 'value'
             FROM
                   options
             WHERE
             	  options.post_id IS NULL AND
                   options.user_id = $user_id AND
-                  options.option_cat = 'user_detail_{$user_id}'
+                  options.option_cat = 'user_detail_$user_id'
 			";
 
 		$users_detail_list = \lib\db::get($query,['key', 'value']);
+
 		// list of user details
 		foreach ($users_detail_list as $key => $value)
 		{
-			$v = '$.' . $value;
+			$v = '$.' . $opt_key. '."'. $value. '"';
+
 			$query =
 			"
 				UPDATE
@@ -166,20 +205,21 @@ class stat_polls
                 SET
                 	options.option_meta =
          						       	IF(options.option_meta IS NULL OR options.option_meta = '',
-         						       		'{\"$value\": 1}',
+         						       		'{\"$opt_key\":{\"$value\":1}}',
                 							IF(
                 							   JSON_EXTRACT(options.option_meta, '$v'),
 											   JSON_REPLACE(options.option_meta, '$v', JSON_EXTRACT(options.option_meta, '$v') + 1 ),
-											   JSON_SET(options.option_meta, '$v', 1)
+											   JSON_INSERT(options.option_meta, '$.$opt_key',JSON_OBJECT(\"$value\",1))
                 							)
                 						)
                 WHERE
-					options.option_cat   = 'poll_{$poll_id}' AND
+					options.option_cat   = 'poll_$poll_id' AND
 					options.option_key   = 'stat' AND
 					options.option_value = '$key' AND
                 	options.post_id 	 = $poll_id
 			";
 			$update = \lib\db::query($query);
+
 			$update_rows = mysqli_affected_rows(\lib\db::$link);
 			if(!$update_rows)
 			{
@@ -191,10 +231,10 @@ class stat_polls
 						options.option_cat   = 'poll_{$poll_id}',
 						options.option_key   = 'stat',
 						options.option_value = '$key',
-	                	options.option_meta  = '{\"$value\": 1}',
+	                	options.option_meta  = '{\"$opt_key\":{\"$value\":1}}',
 	                	options.post_id 	 = $poll_id
 				";
-			$update = \lib\db::query($query);
+				$insert = \lib\db::query($query);
 			}
 		}
 	}
@@ -262,6 +302,44 @@ class stat_polls
 		return $result;
 		var_dump($result, $_poll_id);
 		exit();
+	}
+
+	/**
+	 * Sets the sarshomar total answered.
+	 */
+	public static function set_sarshomar_total_answered()
+	{
+		// set count of answered poll
+		$stat_query =
+		"
+			UPDATE
+				options
+			SET
+				options.option_value  = option_value + 1
+			WHERE
+				options.user_id IS NULL AND
+				options.post_id IS NULL AND
+				options.option_cat   = 'sarshomar_total_answered' AND
+				options.option_key   = 'total_answered'
+		";
+
+		$update = \lib\db::query($stat_query);
+		// if can not update record insert new record
+		if(!$update)
+		{
+			$insert_query =
+			"
+				INSERT INTO
+					options
+				SET
+					options.post_id      = NULL,
+					options.user_id      = NULL,
+					options.option_cat   = 'sarshomar_total_answered',
+					options.option_key   = 'total_answered',
+					options.option_value = 1
+			";
+			$insert = \lib\db::query($insert_query);
+		}
 	}
 }
 ?>

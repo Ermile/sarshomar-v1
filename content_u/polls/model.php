@@ -13,7 +13,18 @@ class model extends \mvc\model
 	 */
 	function get_show()
 	{
-		return \lib\db\polls::get_last($this->login("id"));
+		$poll = \lib\db\polls::get_last($this->login("id"));
+		if($poll['id'])
+		{
+			// save poll id into session to get in answer
+			$_SESSION['last_poll_id']  = $poll['id'];
+			$_SESSION['last_poll_opt'] = $poll['opt'];
+			return $poll;
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 
@@ -22,14 +33,34 @@ class model extends \mvc\model
 	 */
 	function post_save_answer()
 	{
-		if(utility::post("type") == "bookmark" && utility::post("poll_id"))
+		if(utility::post("poll_id"))
+		{
+			if(utility::post("poll_id") == $_SESSION['last_poll_id'])
+			{
+				$poll_id = $_SESSION['last_poll_id'];
+			}
+			else
+			{
+				\lib\debug::error(T_("poll id not match whit your last question"));
+				return false;
+			}
+		}
+		else
+		{
+			\lib\debug::error(T("poll id not found"));
+			return false;
+		}
+
+		if(utility::post("type") == "bookmark")
 		{
 			$args =
 			[
-				'poll_id' => utility::post("poll_id"),
+				'poll_id' => $poll_id,
 				'user_id' => $this->login("id")
 			];
+
 			$result = \lib\db\polls::set_bookmark($args);
+
 			if($result)
 			{
 				\lib\debug::true(T_("bookmark saved"));
@@ -41,21 +72,20 @@ class model extends \mvc\model
 		}
 		else
 		{
-			$answer_key   = utility::post('answer_key');
-			$poll_id     = utility::post('poll_id');
-			$answer_text = utility::post('answer_text');
 
-			\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+			$answer_key  = utility::post("answer_key");
+			$answer_text = utility::post("answer_text");
+
+			if(isset($_SESSION['last_poll_opt'][$answer_key]))
+			{
+				\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+			}
+			else
+			{
+				\lib\debug::error(T_("answer key not found"));
+				return false;
+			}
 		}
 	}
-
-
-	function get_polls($o)
-	{
-
-		$poll_id = \lib\router::get_url(1);
-		var_dump($poll_id);
-	}
-
 }
 ?>

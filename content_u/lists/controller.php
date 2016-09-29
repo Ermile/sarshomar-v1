@@ -22,7 +22,7 @@ class controller extends  \content_u\home\controller
 			]
 		]);
 
-		$this->post("list")->ALL();
+		$this->post("lists")->ALL();
 	}
 }
 

@@ -52,8 +52,6 @@ class model extends \mvc\model
 
 		$args =
 		[
-			'user_id'			=> $this->login("id"),
-
 			'displayname'       => $displayname,
 			'mobile'            => $mobile,
 			'gender'            => $gender,
@@ -80,7 +78,7 @@ class model extends \mvc\model
 			'language'          => $language
 		];
 
-		$account = \lib\db\account::set_account_data($args);
+		$account = \lib\db\account::set_account_data($this->login('id'), $args);
 
 		if($account)
 		{

@@ -17,8 +17,7 @@ class account
 		}
 		else
 		{
-			\lib\debug::error(T_("user not found"));
-			$user_id = 0;
+			return false;
 		}
 
 		$query =
@@ -43,10 +42,8 @@ class account
 	}
 
 
-	public static function set_account_data($_args)
+	public static function set_account_data($_user_id, $_args)
 	{
-
-		$user_id           = $_args['user_id'];
 		$displayname       = $_args['displayname'];
 		$mobile            = $_args['mobile'];
 
@@ -54,7 +51,7 @@ class account
 		$age               = $_args['age'];
 		$range             = $_args['range'];
 
-		$old_account_data = self::get_account_data(['user_id' => $user_id]);
+		$old_account_data = self::get_account_data(['user_id' => $_user_id]);
 
 		$_args = array_filter($_args);
 
@@ -66,7 +63,7 @@ class account
 			{
 				if($old_account_data[$field] != $value)
 				{
-					$where = "user_id = '$user_id' AND option_cat = 'user_detail_$user_id' AND option_key = '$field' ";
+					$where = "user_id = '$_user_id' AND option_cat = 'user_detail_$_user_id' AND option_key = '$field' ";
 					$update_query = "UPDATE options SET options.option_value = '" . $_args[$field] . "' WHERE $where";
 					$run_query = \lib\db::query($update_query);
 					if($run_all_query)
@@ -84,7 +81,7 @@ class account
 						options
 						(post_id, user_id, 	   option_cat, 				option_key,   option_value )
 					VALUES
-						(NULL, 	  '$user_id',  'user_detail_$user_id', 	'$field',	  '$value'	   )
+						(NULL, 	  '$_user_id',  'user_detail_$_user_id', 	'$field',	  '$value'	   )
 				";
 				$run_query = \lib\db::query($insert);
 				if($run_all_query)
