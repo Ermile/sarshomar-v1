@@ -1,5 +1,5 @@
 <?php
-namespace content_u\lists;
+namespace content_u\knowledge;
 
 class controller extends  \content_u\home\controller
 {
@@ -22,7 +22,7 @@ class controller extends  \content_u\home\controller
 			]
 		]);
 
-		$this->post("lists")->ALL();
+		$this->post("knowledge")->ALL();
 	}
 }
 

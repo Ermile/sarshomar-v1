@@ -73,19 +73,6 @@ class model extends \mvc\model
 		$answers      = array_filter(utility::post("answers"));
 		// get tags
 		$tags         = utility::post("tags");
-		// get count people to quese this poll
-		$count        = utility::post("count");
-		// gnerate cats from posts
-		// @example cat_programing, cat_student
-		// @return [programin => on, student => on]
-		$cats = [];
-		foreach (utility::post() as $key => $value)
-		{
-			if(preg_match("/cat\_(.*)/", $key, $cat))
-			{
-				$cats[$cat[1]] = $value;
-			}
-		}
 
 		// check title
 		if($title == null)

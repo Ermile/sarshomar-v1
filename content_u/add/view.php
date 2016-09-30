@@ -22,19 +22,7 @@ class view extends \mvc\view
 	function view_add()
 	{
 		$this->include->fontawesome = true;
-
 		$this->data->form_add = true;
-		$this->data->max_member = 100000;
-		$this->data->min_member = 1;
-		$this->data->cats = [
-								['txt' => 'برنامه نویسان',	'value' => 'programing'],
-								['txt' => 'دانشجویان',		'value' => 'student'],
-								['txt' => 'کارمندان',		'value' => 'men'],
-								['txt' => 'اموات و گذشتگان','value' => 'die'],
-								['txt' => 'مرحوم مغفور',	'value' => 'diee'],
-								['txt' => 'همه',			'value' => 'all']
-							];
-
 	}
 
 

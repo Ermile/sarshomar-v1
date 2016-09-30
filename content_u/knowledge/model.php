@@ -1,5 +1,5 @@
 <?php
-namespace content_u\lists;
+namespace content_u\knowledge;
 use \lib\utility;
 
 class model extends \mvc\model
@@ -65,7 +65,7 @@ class model extends \mvc\model
 	/**
 	 * post data and update or insert list data
 	 */
-	public function post_lists()
+	public function post_knowledge()
 	{
 		if(utility::post("poll_id"))
 		{

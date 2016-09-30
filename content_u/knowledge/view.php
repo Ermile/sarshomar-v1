@@ -1,5 +1,5 @@
 <?php
-namespace content_u\lists;
+namespace content_u\knowledge;
 
 class view extends \mvc\view
 {
