@@ -1,8 +1,14 @@
 {%extends display.mvc%}
 
 {%block content%}
+
 {%for key, value in poll_list%}
-<a onclick="f({{value.id}})" style="cursor: pointer;">publish {{value.id}} </a> <h6>{{value.title}}</h6>
+<a onclick="f({{value.id}})" style="cursor: pointer;">publish {{value.id}} </a>
+<h6>
+<a href="{{base.url}}/{{value.url}}">
+{{value.title}}
+</a>
+</h6>
 {{value.status}}
 <hr>
 {%endfor%}
