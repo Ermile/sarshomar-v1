@@ -1,27 +1,27 @@
 <?php
-namespace content_u\account;
+namespace content_u\profile;
 use \lib\utility;
 
 class model extends \mvc\model
 {
 
 	/**
-	 * get account data to show
+	 * get profile data to show
 	 */
-	public function get_account()
+	public function get_profile()
 	{
 		$user_id = $this->login("id");
-		$account = \lib\db\account::get_account_data(['user_id' => $user_id]);
+		$profile = \lib\db\profile::get_profile_data(['user_id' => $user_id]);
 		$displayname = \lib\db\users::get_displayname($user_id);
-		$account['displayname'] = $displayname;
-		return $account;
+		$profile['displayname'] = $displayname;
+		return $profile;
 	}
 
 
 	/**
-	 * post data and update or insert account data
+	 * post data and update or insert profile data
 	 */
-	public function post_account()
+	public function post_profile()
 	{
 		$gender            = utility::post("gender");
 		$marrital_status   = utility::post("marrital_status");
@@ -42,15 +42,15 @@ class model extends \mvc\model
 			'language'          => $language
 		];
 
-		$account = \lib\db\account::set_account_data($this->login('id'), $args);
+		$profile = \lib\db\profile::set_profile_data($this->login('id'), $args);
 
-		if($account)
+		if($profile)
 		{
-			\lib\debug::true(T_("account data updated"));
+			\lib\debug::true(T_("profile data updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("error in update account data"));
+			\lib\debug::error(T_("error in update profile data"));
 		}
 
 	}
