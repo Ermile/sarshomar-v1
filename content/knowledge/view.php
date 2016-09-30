@@ -27,6 +27,7 @@ class view extends \mvc\view
 		if(isset($post['id']))
 		{
 			$post_id = $post['id'];
+			$this->data->post = $post;
 			$this->data->chart      = \lib\db\stat_polls::get_result($post_id);
 			$this->data->chart_type = 'column';
 		}
