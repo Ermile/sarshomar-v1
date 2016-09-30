@@ -67,13 +67,8 @@ class answers
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
-		// UPDATE posts SET post_url = [id], post_meta = [answers,...] WHERE posts.id = [id]
-		$set_url = \lib\db\polls::update(
-											[
-												'post_url' => 'sp_'. \lib\utility\shortURL::encode($_args['poll_id']),
-												'post_meta' => $meta
-											]
-										, $_args['poll_id']);
+		// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
+		$set_meta = \lib\db\polls::update(['post_meta' => $meta ], $_args['poll_id']);
 
 		return $return;
 	}

@@ -13,6 +13,16 @@ class controller extends \mvc\controller
 	function _route()
 	{
 		$this->post("random_result")->ALL("");
+
+		$this->get("poll","poll")->ALL(
+		[
+		'property' =>
+		[
+			"knowledge" => ["/^(knowledge)$/", true, 'knowledge'],
+			"sp_"       => ["/^sp\_[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+$/", true, 'sp_'],
+			"title"     => ["/^(.*)$/", true, 'title']
+		]
+		]);
 	}
 }
 ?>

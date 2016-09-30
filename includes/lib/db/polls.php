@@ -133,7 +133,7 @@ class polls
 		//  check 		// check user_id
 		if(!isset($_args['user_id']))
 		{
-			\lib\debug::error(T_("user id not found"));
+			return false;
 		}
 		else
 		{
@@ -146,12 +146,19 @@ class polls
 		}
 		else
 		{
-			$language = $_args['language'];
+			if(strlen($_args['language']) > 2)
+			{
+				$language = substr(\lib\router::get_storage('language'), 0, 2);
+			}
+			else
+			{
+				$language = $_args['language'];
+			}
 		}
 		// check title
 		if(!isset($_args['title']))
 		{
-			\lib\debug::fatal(T_("poll title can not be null"));
+			return false;
 		}
 		else
 		{
@@ -207,7 +214,7 @@ class polls
 			'post_language'    => $language,
 			'post_title'       => $title,
 			'post_slug'        => $slug,
-			'post_url'         => $slug . $user_id, // insert post id ofter insert record
+			'post_url'         => time() . $user_id, // insert post id ofter insert record
 			'post_content'     => $content,
 			'post_type'        => 'poll_' . $type,
 			'post_status'      => $status,
@@ -222,6 +229,16 @@ class polls
 
 		if($insert_id)
 		{
+
+			// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
+			$short_url = \lib\utility\shortURL::encode($insert_id);
+
+			$title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
+			// $title = preg_replace("/[^\w|\d]/", "_", $title);
+			$url = 'knowledge/sp_' . $short_url . '/'. $title;
+
+			$set_url = \lib\db\polls::update(['post_url' => $url], $insert_id );
+
 			return $insert_id;
 		}
 		else
@@ -242,7 +259,7 @@ class polls
 	{
 		if(!isset($_args['user_id']))
 		{
-			\lib\debug::error(T_("user id can not be null"));
+			return false;
 		}
 		else
 		{
@@ -251,7 +268,7 @@ class polls
 
 		if(!isset($_args['title']))
 		{
-			\lib\debug::fatal(T_("poll title can not be null"));
+			return false;
 		}
 		else
 		{
