@@ -1,25 +1,25 @@
 <?php
-namespace content_u\question;
+namespace content_u\add;
 
 class view extends \mvc\view
 {
 
 
 	/**
-	 * view users question
+	 * view users add
 	 *
 	 * @param      <type>  $o      { parameter_description }
 	 */
-	function view_question($o)
+	function view_knowledge($o)
 	{
 		$this->data->datatable = $o->api_callback;
 	}
 
 
 	/**
-	 * add question form and options
+	 * add add form and options
 	 */
-	function view_question_add()
+	function view_add()
 	{
 		$this->include->fontawesome = true;
 
@@ -39,11 +39,11 @@ class view extends \mvc\view
 
 
 	/**
-	 * edit question
+	 * edit add
 	 *
 	 * @param      <type>  $o      { parameter_description }
 	 */
-	function view_question_edit($o)
+	function view_edit($o)
 	{
 		$this->data->form_edit = true;
 		$this->data->post_id = $o->match->url[0][1];
@@ -52,11 +52,11 @@ class view extends \mvc\view
 
 
 
-	function view_question_filter($_args)
+	function view_filter($_args)
 	{
 		$this->data->poll_id = $_args->match->url[0][1];
 		$this->data->filter_form = true;
-		$this->data->question_filters = $_args->api_callback['question_filters'];
+		$this->data->add_filters = $_args->api_callback['add_filters'];
 		$this->data->user_detail_filter = $_args->api_callback['user_detail_filter'];
 	}
 }

@@ -2,9 +2,9 @@
 
 {%block head_css%}
 <style type="text/css">
-#question .question { box-shadow: 0 0 1px #888888; margin-top: 1em; background-color: #FFFFFF; border-radius: 2px; font-size: 2em; transition: all .3s ease }
-#question .question:hover { box-shadow: 0 0 3px #888888 }
-#question .question a { font-size: 1em; color: #666666; display: block; padding: 1em .5em }
+#add .add { box-shadow: 0 0 1px #888888; margin-top: 1em; background-color: #FFFFFF; border-radius: 2px; font-size: 2em; transition: all .3s ease }
+#add .add:hover { box-shadow: 0 0 3px #888888 }
+#add .add a { font-size: 1em; color: #666666; display: block; padding: 1em .5em }
 </style>
 {%endblock%}
 
@@ -14,7 +14,7 @@
         <div class="row auto">
             <div class="span2"></div>
             <div class="span8">
-                <div class="question">
+                <div class="add">
                     <a href="{{value.id}}">{{value.title}}</a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
 <div class="row auto">
     <div class="span4"></div>
     <div class="span4">
-        <form action="question/add" method="post" class="form inline">
+        <form action="add" method="post" class="form inline">
             <div class="field">
                 <label>poll type</label>
                 <select name="poll_type">
@@ -110,7 +110,7 @@
 {%endif%}
 
 {%if form_edit%}
-<form action="question/edit={{post_id}}" method="post">
+<form action="edit={{post_id}}" method="post">
 	title:<input type="text" name="title" value="{{form_data['poll']['title']}}"><br>
 	language:<input type="text" name="language" value="{{form_data['poll']['language']}}"><br>
 	content:<input type="text" name="content" value="{{form_data['poll']['content']}}"><br>
@@ -125,8 +125,8 @@
 {%endif%}
 
 {% if filter_form %}
-<form action="question/filter/poll={{poll_id}}" method="post">
-    {%for key, value in question_filters %}
+<form action="filter={{poll_id}}" method="post">
+    {%for key, value in add_filters %}
         {{value}}:<input type="text" name="{{value}}"><br>
     {%endfor%}
 

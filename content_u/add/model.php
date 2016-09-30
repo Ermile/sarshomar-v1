@@ -1,5 +1,5 @@
 <?php
-namespace content_u\question;
+namespace content_u\add;
 use \lib\utility;
 use \lib\debug;
 
@@ -7,13 +7,12 @@ class model extends \mvc\model
 {
 
 	/**
-	 * get users question
+	 * get users add
 	 *
-	 * @return     <type>  The question.
+	 * @return     <type>  The add.
 	 */
-	function get_question()
+	function get_knowledge()
 	{
-
 		// in one page can be display 10 record of polls
 		$page   = 1;
 		$lenght = 10;
@@ -35,9 +34,9 @@ class model extends \mvc\model
 
 
 	/**
-	 * get data to add new question
+	 * get data to add new add
 	 */
-	function post_question_add()
+	function post_add()
 	{
 		$db_poll_type =
 		[
@@ -88,16 +87,10 @@ class model extends \mvc\model
 			}
 		}
 
-		//check login
-		if(!$this->login('id'))
-		{
-			$this->redirector()->set_domain()->set_url('login')->redirect();
-		}
-
 		// check title
 		if($title == null)
 		{
-			debug::error(T_("Question title can not null"));
+			debug::error(T_("add title can not null"));
 			return;
 		}
 
@@ -171,24 +164,24 @@ class model extends \mvc\model
 
 		if($answers)
 		{
-			\lib\debug::true(T_("Add Question Success"));
+			\lib\debug::true(T_("Add add Success"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in add question"));
+			\lib\debug::error(T_("Error in add add"));
 		}
 	}
 
 
 	/**
-	 * get one question id and return data of this question
+	 * get one add id and return data of this add
 	 * ready for edit form
 	 *
 	 * @param      <type>  $o      { parameter_description }
 	 *
-	 * @return     <type>  The question edit.
+	 * @return     <type>  The add edit.
 	 */
-	function get_question_edit($o)
+	function get_edit($o)
 	{
 		$poll_id = $o->match->url[0][1];
 		return \lib\db\polls::get_one($poll_id);
@@ -196,11 +189,11 @@ class model extends \mvc\model
 
 
 	/**
-	 * post edited value of question and update question
+	 * post edited value of add and update add
 	 *
 	 * @param      <type>  $o      { parameter_description }
 	 */
-	function post_question_edit($o){
+	function post_edit($o){
 
 		$poll_id = $o->match->url[0][1];
 			$args = [
@@ -219,32 +212,32 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\debug::true(T_("Edit Question Success"));
+			\lib\debug::true(T_("Edit add Success"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in Edit question"));
+			\lib\debug::error(T_("Error in Edit add"));
 		}
 	}
 
 
 	/**
-	 * delete question
+	 * delete add
 	 */
-	function get_question_delete()
+	function get_delete()
 	{
 
 	}
 
 
 	/**
-	*	get question filter
+	*	get add filter
 	*/
-	function get_question_filter()
+	function get_filter()
 	{
-		// list of questions filter
+		// list of adds filter
 		// get value from cash or user profile status
-		$question_filters =
+		$add_filters =
 		[
 			'age_min',
 			'age_max',
@@ -276,13 +269,13 @@ class model extends \mvc\model
 		}
 
 		$result['user_detail_filter'] = $filters;
-		$result['question_filters'] = $question_filters;
+		$result['add_filters'] = $add_filters;
 
 		return $result;
 	}
 
 
-	public function post_question_filter($_args)
+	public function post_filter($_args)
 	{
 
 		$args = [];
@@ -298,11 +291,11 @@ class model extends \mvc\model
 		$result = \lib\db\filters::insert($args);
 		if($result)
 		{
-			\lib\debug::true(T_("add filter of Question Success"));
+			\lib\debug::true(T_("add filter of add Success"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in insert filter of question"));
+			\lib\debug::error(T_("Error in insert filter of add"));
 		}
 	}
 }
