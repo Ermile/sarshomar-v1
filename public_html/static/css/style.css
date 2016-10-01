@@ -1,3 +1,44 @@
+@font-face {
+  font-family: "Ermile";
+  src:url("../fonts/ermile/Ermile.eot");
+  src:url("../fonts/ermile/Ermile.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/ermile/Ermile.woff") format("woff"),
+      url("../fonts/ermile/Ermile.ttf") format("truetype"),
+      url("../fonts/ermile/Ermile.svg#Ermile") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "Ermile" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "Ermile" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu-side:before {
+  content: "\63";
+}
+
 /*In the Name of God*/
 body {
     background-color: #F4F4F4
@@ -716,19 +757,17 @@ footer .eco img {
     display: inline-block;
     background-color: #E7E7E7;
     color: #767676;
-    /* padding: .2em .5em; */
     position: relative;
     height: 30px;
     line-height: 30px;
     font-size: 12px;
-}
-
-.ltr .details .detail.tags a {
     margin-right: 1.5em;
+    margin-bottom: 1em;
     padding: 0 0 0 5px;
 }
 
 .rtl .details .detail.tags a {
+    margin-right: auto;
     margin-left: 1.5em;
     padding: 0 5px 0 0;
 }

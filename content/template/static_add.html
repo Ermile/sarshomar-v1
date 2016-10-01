@@ -1,0 +1,115 @@
+{% extends display.mvc %}
+
+{% block head_css %}
+<style media="screen">
+  .add {
+    min-height: 80vh;
+  }
+  .type {
+    text-align: center;
+  }
+  .type nav {
+    display: inline-block;
+    background-color: #1CA6C0;
+  }
+  .type nav a {
+    position: relative;
+    display: inline-block;
+    color: #C4EAF1;
+    float: left;
+    padding: 0.7em;
+    transition: all 0.2s;
+  }
+  .type nav a:not(:first-child) {
+    margin-left: 1em;
+  }
+  .rtl .type nav a:not(:first-child) {
+    margin-left: auto;
+    margin-right: 1em;
+  }
+  .rtl .type nav a {
+    float: right;
+  }
+  .type nav a:hover {
+    background-color: #E5A428;
+    color: #454545;
+  }
+  .type nav a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: -0.75em;
+    height: 1.5em;
+    width: 0.75em;
+    border-radius: 2em 0 0 2em;
+    background-color: #1CA6C0;
+    transition: all 0.2s;
+  }
+  .type nav a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -0.75em;
+    height: 1.5em;
+    width: 0.75em;
+    border-radius: 0 2em 2em 0;
+    background-color: #1CA6C0;
+    transition: all 0.2s;
+  }
+  .type nav a:hover:before {
+    background-color: #E5A428;
+    z-index: 999;
+  }
+  .type nav a:hover:after {
+    background-color: #E5A428;
+    z-index: 999;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% include template.header %}
+<div class="row auto add">
+  <div class="type">
+    <nav>
+      <a href="#">
+        <i class="fa fa-check" aria-hidden="true"></i> {% trans "Gozinei" %}
+      </a>
+
+      <a href="#">
+        <i class="fa fa-pencil" aria-hidden="true"></i> {% trans "Tashrihi" %}
+      </a>
+
+      <a href="#">
+        <div data-icon="c" class="icon">
+        </div>
+        <i class="fa fa-bell" aria-hidden="true"></i> {% trans "Notification" %}
+      </a>
+
+      <a href="#">
+        <i class="fa fa-upload" aria-hidden="true"></i> {% trans "Upload" %}
+      </a>
+
+      <a href="#">
+        <i class="fa fa-star" aria-hidden="true"></i> {% trans "Starred" %}
+      </a>
+
+      <a href="#">
+        <i class="fa fa-sitemap" aria-hidden="true"></i> {% trans "Shomarei" %}
+      </a>
+
+      <a href="#">
+        <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> {% trans "Sort" %}
+      </a>
+    </nav>
+  </div>
+</div>
+{% include template.footer %}
+{% endblock %}
+
+{% block foot_js %}
+{% endblock %}
