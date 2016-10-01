@@ -619,10 +619,18 @@ class polls
 				$returnValue['question'] = str_replace($value.' ', $newValue.' ', $returnValue['question']);
 			}
 		}
+
 		if(isset($result['opt']))
 		{
 			$returnValue['opt'] = json_decode($result['opt'], true);
-			$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'key');
+			if(is_array($returnValue['opt']['opt']))
+			{
+				$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'key');
+			}
+			else
+			{
+				return null;
+			}
 		}
 		return $returnValue;
 	}
