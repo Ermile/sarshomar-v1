@@ -22,7 +22,7 @@ class controller extends  \content_u\home\controller
 			]
 		]);
 
-		$this->post("knowledge")->ALL('@/knowledge');
+		$this->post("knowledge")->ALL('knowledge');
 	}
 }
 

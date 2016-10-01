@@ -223,7 +223,6 @@
         </div>
     </div>
 </div>
-
 {% include 'content/template/static_register.html' %}
 {% include template.footer %}
 {%endblock%}
@@ -286,7 +285,7 @@ var pollChartOptions = {
             borderWidth: 0
         }
     },
-    series: {{result['random_result']['data']|raw}}
+    series: {{chart['data']| raw }}
 };
 
 $(function() {

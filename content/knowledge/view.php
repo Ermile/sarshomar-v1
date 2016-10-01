@@ -12,14 +12,6 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = true;
 		}
-		// $this->data->chart      = \lib\db\polls::getResult(3, 'count', 'txt');
-		$post = $this->model()->get_posts();
-		if(isset($post['id']))
-		{
-			$post_id = $post['id'];
-			$this->data->chart      = \lib\db\stat_polls::get_result($post_id);
-			$this->data->chart_type = 'column';
-		}
 
 
 		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\db\stat_polls::get_sarshomar_total_answered()]);
@@ -39,8 +31,9 @@ class view extends \mvc\view
 		if(isset($post['id']))
 		{
 			$post_id = $post['id'];
-			$this->data->post = $post;
-			$this->data->chart      = \lib\db\stat_polls::get_result($post_id);
+			$result  = \lib\db\stat_polls::get_result($post_id);
+			$result['data'] = json_encode($result['data'], JSON_UNESCAPED_UNICODE);
+			$this->data->chart = $result;
 			$this->data->chart_type = 'column';
 		}
 		else
