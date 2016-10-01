@@ -7,7 +7,7 @@ class main extends \lib\main{
 		{
 			$url = preg_replace("/^\/@/", '', $_SERVER['REQUEST_URI']);
 			new \lib\router("$url");
-			self::$myrep        = \lib\router::set_repository_name('content_u');
+			self::$myrep        = \lib\router::set_repository('content_u', true);
 		}
 		self::$url_property = \lib\router::get_url_property(-1);
 		self::$myrep        = \lib\router::get_repository_name();
