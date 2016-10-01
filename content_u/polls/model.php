@@ -33,9 +33,10 @@ class model extends \mvc\model
 	 */
 	function post_save_answer()
 	{
+
 		if(utility::post("poll_id"))
 		{
-			if(utility::post("poll_id") == $_SESSION['last_poll_id'])
+			if(isset($_SESSION['last_poll_id']) && utility::post("poll_id") == $_SESSION['last_poll_id'])
 			{
 				$poll_id = $_SESSION['last_poll_id'];
 			}

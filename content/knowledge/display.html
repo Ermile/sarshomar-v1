@@ -17,6 +17,11 @@
                     <a href="#"><i class="fa fa-wordpress" aria-hidden="true"></i></a>
                     <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
                 </nav>
+                    {%for key, value in post.post_meta.opt%}
+                        <li>
+                            <a onclick="answer({{post.id}},'{{value.key}}','{{value.txt}}')" style="cursor:pointer">{{value.txt}}</a>
+                        </li>
+                    {%endfor%}
 
                 <div class="description">
                 	{% if post.post_language == "en" %}
@@ -223,12 +228,44 @@
         </div>
     </div>
 </div>
+
+
 {% include 'content/template/static_register.html' %}
 {% include template.footer %}
 {%endblock%}
 
 {%block foot_js%}
 <script>
+
+function answer(_poll_id, _answer_id, _text) {
+    $.ajax({
+        type: 'post',
+        url: '@/polls',
+        data: {
+            'poll_id': _poll_id,
+            'answer_key': _answer_id,
+            'answer_text': _text
+        },
+        success: function(data) {
+            // console.log(document.write(data));
+        }
+    });
+}
+
+
+function bookmark(_poll_id) {
+    $.ajax({
+        type: 'post',
+        url: '@/polls',
+        data: {
+            'type' : 'bookmark',
+            'poll_id': _poll_id
+        },
+        success: function(data) {
+           // console.log(data);
+        }
+    });
+}
 var pollChartOptions = {
     chart: {
         type: 'column',
