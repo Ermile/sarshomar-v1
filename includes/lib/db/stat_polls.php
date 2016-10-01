@@ -299,7 +299,15 @@ class stat_polls
 		$poll = \lib\db\polls::get_poll($_poll_id);
 
 		$poll_meta = json_decode($poll['meta'], JSON_UNESCAPED_UNICODE);
-		$poll_opt = $poll_meta['opt'];
+
+		if(isset($poll_meta['opt']))
+		{
+			$poll_opt = $poll_meta['opt'];
+		}
+		else
+		{
+			return false;
+		}
 
 		$query =
 		"
