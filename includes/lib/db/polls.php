@@ -233,9 +233,9 @@ class polls
 			// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
 			$short_url = \lib\utility\shortURL::encode($insert_id);
 
-			$title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
-			// $title = preg_replace("/[^\w|\d]/", "_", $title);
-			$url = 'knowledge/sp_' . $short_url . '/'. $title;
+			// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
+			$title = str_replace(" ", "_", $title);
+			$url = '$/' . $short_url . '/'. $title;
 
 			$set_url = \lib\db\polls::update(['post_url' => $url], $insert_id );
 

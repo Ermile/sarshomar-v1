@@ -12,6 +12,12 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
+		if(\lib\router::get_url(0) == '$')
+		{
+			\lib\router::set_controller("\\content\\knowledge\\controller");
+			return ;
+		}
+
 		$this->post("random_result")->ALL("");
 
 		$this->get("poll","poll")->ALL(

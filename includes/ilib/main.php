@@ -1,6 +1,9 @@
 <?php
 namespace ilib;
-class main extends \lib\main{
+class main extends \lib\main
+{
+
+
 	function __construct()
 	{
 		if(\lib\router::get_class() == '@')
@@ -13,14 +16,21 @@ class main extends \lib\main{
 		self::$myrep        = \lib\router::get_repository_name();
 		$this->controller_finder();
 	}
-	function check_controller($_controller_name){
+
+
+	function check_controller($_controller_name)
+	{
 		$default_controller = parent::check_controller($_controller_name);
 		if(!$default_controller){
 			$controller_name = '\addons'. $_controller_name;
 			if(!class_exists($controller_name))
+			{
 				return NULL;
+			}
 			else
+			{
 				return $controller_name;
+			}
 		}
 		return $default_controller;
 	}

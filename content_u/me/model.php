@@ -1,27 +1,27 @@
 <?php
-namespace content_u\profile;
+namespace content_u\me;
 use \lib\utility;
 
 class model extends \mvc\model
 {
 
 	/**
-	 * get profile data to show
+	 * get me data to show
 	 */
-	public function get_profile()
+	public function get_me()
 	{
 		$user_id = $this->login("id");
-		$profile = \lib\db\profile::get_profile_data(['user_id' => $user_id]);
+		$me = \lib\db\me::get_me_data(['user_id' => $user_id]);
 		$displayname = \lib\db\users::get_displayname($user_id);
-		$profile['displayname'] = $displayname;
-		return $profile;
+		$me['displayname'] = $displayname;
+		return $me;
 	}
 
 
 	/**
-	 * post data and update or insert profile data
+	 * post data and update or insert me data
 	 */
-	public function post_profile()
+	public function post_me()
 	{
 		$displayname       = utility::post("displayname");
 		// $mobile            = utility::post("mobile");
@@ -77,15 +77,15 @@ class model extends \mvc\model
 			'language'          => $language
 		];
 
-		$profile = \lib\db\profile::set_profile_data($this->login('id'), $args);
+		$me = \lib\db\me::set_me_data($this->login('id'), $args);
 
-		if($profile)
+		if($me)
 		{
-			\lib\debug::true(T_("profile data updated"));
+			\lib\debug::true(T_("me data updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("error in update profile data"));
+			\lib\debug::error(T_("error in update me data"));
 		}
 
 	}

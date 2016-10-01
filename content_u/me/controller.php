@@ -1,5 +1,5 @@
 <?php
-namespace content_u\profile;
+namespace content_u\me;
 
 class controller extends  \content_u\home\controller
 {
@@ -7,8 +7,8 @@ class controller extends  \content_u\home\controller
 	{
 		parent::check_login();
 
-		$this->get("profile", "profile")->ALL();
-		$this->post("profile")->ALL();
+		$this->get("me", "me")->ALL();
+		$this->post("me")->ALL();
 	}
 }
 

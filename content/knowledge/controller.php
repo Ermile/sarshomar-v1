@@ -6,8 +6,8 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$this->get("all","all")->ALL();
-		$this->get("poll","poll")->ALL("/^knowledge\/(sp\_)([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)\/(.*)$/");
+		$this->get("all","all")->ALL("$");
+		$this->get("poll","poll")->ALL("/^\\$\/[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+\/(.*)$/");
 	}
 }
 ?>

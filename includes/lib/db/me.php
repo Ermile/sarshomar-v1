@@ -1,15 +1,15 @@
 <?php
 namespace lib\db;
 
-class profile
+class me
 {
 
 	/**
-	 * Gets the profile data.
+	 * Gets the me data.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function get_profile_data($_args)
+	public static function get_me_data($_args)
 	{
 		if(isset($_args['user_id']))
 		{
@@ -43,16 +43,16 @@ class profile
 
 
 	/**
-	 * Sets the profile data.
+	 * Sets the me data.
 	 *
 	 * @param      <type>   $_user_id  The user identifier
 	 * @param      <type>   $_args     The arguments
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function set_profile_data($_user_id, $_args)
+	public static function set_me_data($_user_id, $_args)
 	{
-		$old_profile_data = self::get_profile_data(['user_id' => $_user_id]);
+		$old_me_data = self::get_me_data(['user_id' => $_user_id]);
 
 		$_args = array_filter($_args);
 
@@ -60,9 +60,9 @@ class profile
 		$run_all_query = true;
 		foreach ($_args as $field => $value)
 		{
-			if(isset($old_profile_data[$field]))
+			if(isset($old_me_data[$field]))
 			{
-				if($old_profile_data[$field] != $value)
+				if($old_me_data[$field] != $value)
 				{
 					$where = "user_id = '$_user_id' AND option_cat = 'user_detail_$_user_id' AND option_key = '$field' ";
 					$update_query = "UPDATE options SET options.option_value = '" . $_args[$field] . "' WHERE $where";
