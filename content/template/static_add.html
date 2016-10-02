@@ -3,71 +3,60 @@
 {% block head_css %}
 <style media="screen">
   .add {
-    min-height: 80vh;
+    padding: 7em 0;
   }
-  .type {
-    text-align: center;
+  .check {
+    padding: 7em 0;
   }
-  .type nav {
-    display: inline-block;
-    background-color: #1CA6C0;
+  .check input[type="checkbox"], .check input[type="radio"] {
   }
-  .type nav a {
-    position: relative;
-    display: inline-block;
-    color: #C4EAF1;
-    float: left;
-    padding: 0.7em;
-    transition: all 0.2s;
-  }
-  .type nav a:not(:first-child) {
-    margin-left: 1em;
-  }
-  .rtl .type nav a:not(:first-child) {
-    margin-left: auto;
-    margin-right: 1em;
-  }
-  .rtl .type nav a {
-    float: right;
-  }
-  .type nav a:hover {
-    background-color: #E5A428;
-    color: #454545;
-  }
-  .type nav a:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    left: -0.75em;
-    height: 1.5em;
-    width: 0.75em;
-    border-radius: 2em 0 0 2em;
-    background-color: #1CA6C0;
-    transition: all 0.2s;
-  }
-  .type nav a:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: -0.75em;
-    height: 1.5em;
-    width: 0.75em;
-    border-radius: 0 2em 2em 0;
-    background-color: #1CA6C0;
-    transition: all 0.2s;
-  }
-  .type nav a:hover:before {
-    background-color: #E5A428;
-    z-index: 999;
-  }
-  .type nav a:hover:after {
-    background-color: #E5A428;
-    z-index: 999;
-  }
+
+  .ac-custom label {
+	display: inline-block;
+	position: relative;
+	font-size: 2em;
+	padding: 0 0 0 80px;
+	vertical-align: top;
+	color: rgba(0,0,0,0.2);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"],
+.ac-custom label::before {
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	left: 0;
+	margin-top: -25px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"] {
+	opacity: 0;
+	display: inline-block;
+	vertical-align: middle;
+	z-index: 100;
+}
+
+.ac-custom label::before {
+	content: '';
+	border: 4px solid #fff;
+	transition: opacity 0.3s;
+}
+
+.ac-custom input[type="checkbox"]:checked + label,
+.ac-custom input[type="radio"]:checked + label {
+	color: #fff;
+}
+
+.ac-custom input[type="checkbox"]:checked + label::before,
+.ac-custom input[type="radio"]:checked + label::before {
+	opacity: 0.8;
+}
 </style>
 {% endblock %}
 
@@ -76,7 +65,7 @@
 <div class="row auto add">
   <div class="type">
     <nav>
-      <a href="#">
+      <a href="#" class="active">
         <i class="fa fa-check" aria-hidden="true"></i> {% trans "Gozinei" %}
       </a>
 
@@ -85,8 +74,6 @@
       </a>
 
       <a href="#">
-        <div data-icon="c" class="icon">
-        </div>
         <i class="fa fa-bell" aria-hidden="true"></i> {% trans "Notification" %}
       </a>
 
@@ -106,6 +93,21 @@
         <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> {% trans "Sort" %}
       </a>
     </nav>
+  </div>
+</div>
+
+<div class="row auto check">
+  <div class="container">
+
+
+    <form class="ac-custom ac-checkbox ac-cross" action="index.html" method="post">
+      <div class="">
+        <input type="checkbox" name="checkbox" id="checkbox" value="">
+        <label for="checkbox">Label</label>
+      </div>
+    </form>
+
+
   </div>
 </div>
 {% include template.footer %}

@@ -1,16 +1,16 @@
 @font-face {
-  font-family: "Ermile";
-  src:url("../fonts/ermile/Ermile.eot");
-  src:url("../fonts/ermile/Ermile.eot?#iefix") format("embedded-opentype"),
-      url("../fonts/ermile/Ermile.woff") format("woff"),
-      url("../fonts/ermile/Ermile.ttf") format("truetype"),
-      url("../fonts/ermile/Ermile.svg#Ermile") format("svg");
+  font-family: "ermile";
+  src:url("../fonts/ermile/ermile.eot");
+  src:url("../fonts/ermile/ermile.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/ermile/ermile.woff") format("woff"),
+      url("../fonts/ermile/ermile.ttf") format("truetype"),
+      url("../fonts/ermile/ermile.svg#ermile") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 [data-icon]:before {
-  font-family: "Ermile" !important;
+  font-family: "ermile" !important;
   content: attr(data-icon);
   font-style: normal !important;
   font-weight: normal !important;
@@ -24,7 +24,7 @@
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "Ermile" !important;
+  font-family: "ermile" !important;
   font-style: normal !important;
   font-weight: normal !important;
   font-variant: normal !important;
@@ -1610,6 +1610,87 @@ footer .eco img {
 
 .form-group .input-group .input-group-floating .fa {
   vertical-align: middle;
+}
+
+/*******************************
+              Menu
+*******************************/
+
+.type {
+  text-align: center;
+}
+
+.type nav {
+  display: inline-block;
+  background-color: #1CA6C0;
+}
+
+.type nav a {
+  position: relative;
+  display: inline-block;
+  color: #C4EAF1;
+  float: left;
+  padding: 9px;
+  transition: all 0.2s;
+  background-color: #1CA6C0;
+  font-size: 12px;
+}
+
+.type nav a:not(:first-child) {
+  margin-left: 37px;
+}
+
+.rtl .type nav a:not(:first-child) {
+  margin-left: auto;
+  margin-right: 36px;
+}
+
+.rtl .type nav a {
+  float: right;
+}
+
+.type nav a:hover {
+  background-color: #0087a0;
+}
+
+.type nav a::before, .type nav a::after {
+  font-family: "Ermile";
+  content: "a";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 38px;
+  margin-top: -1px;
+  color: #1CA6C0;
+  transition: color 0.2s;
+}
+
+.type nav a::before {
+  left: -28px;
+}
+
+.type nav a::after {
+  right: -27px;
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -ms-filter: fliph; /*IE*/
+  filter: fliph; /*IE*/
+}
+
+.type nav a:hover::before, .type nav a:hover::after {
+  color: #0087a0;
+}
+
+.type nav a.active {
+  background-color: #E5A428;
+  color: #454545;
+}
+
+.type nav a.active::before, .type nav a.active::after {
+  color: #E5A428;
 }
 
 /*******************************
