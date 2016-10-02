@@ -1,5 +1,6 @@
 <?php
 namespace content\knowledge;
+use \lib\utility;
 
 class model extends \mvc\model
 {
@@ -49,6 +50,84 @@ class model extends \mvc\model
 		if($sp_ == "sp_")
 		{
 			$poll_id = \lib\utility\shortURL::decode($short_url);
+		}
+	}
+
+
+	/**
+	 * save poll answers
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function post_save_answer()
+	{
+		if(utility::post("poll_id"))
+		{
+			if(isset($_SESSION['last_poll_id']) && utility::post("poll_id") == $_SESSION['last_poll_id'])
+			{
+				$poll_id = $_SESSION['last_poll_id'];
+			}
+			else
+			{
+				\lib\debug::error(T_("poll id not match whit your last question"));
+				return false;
+			}
+		}
+		else
+		{
+			\lib\debug::error(T("poll id not found"));
+			return false;
+		}
+
+		if(utility::post("type") == "bookmark")
+		{
+			if(isset($_SESSION['last_poll_id']) && utility::post("poll_id") == $_SESSION['last_poll_id'])
+			{
+				$args =
+				[
+					'poll_id' => utility::post("poll_id"),
+					'user_id' => $this->login("id")
+				];
+
+				$result = \lib\db\polls::set_bookmark($args);
+
+				if($result)
+				{
+					\lib\debug::true(T_("bookmark saved"));
+				}
+				else
+				{
+					\lib\debug::fatal(T_("error in save bookmark"));
+				}
+			}
+		}
+		else
+		{
+
+			$answer_key  = utility::post("answer_key");
+			$answer_text = utility::post("answer_text");
+
+			$check = false;
+			foreach ($_SESSION['last_poll_opt'] as $key => $value)
+			{
+				if(isset($value['key']) && $value['key'] == $answer_key)
+				{
+					$check = true;
+				}
+			}
+
+			if($check)
+			{
+				\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+				\lib\debug::true(T_("your answer saved"));
+				return \lib\db\polls::get_next_url($this->login("id"));
+
+			}
+			else
+			{
+				\lib\debug::error(T_("answer key not found"));
+				return false;
+			}
 		}
 	}
 }

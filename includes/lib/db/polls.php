@@ -489,6 +489,25 @@ class polls
 	}
 
 
+
+	/**
+	 * Gets the last url.
+	 * check last question to answere user and return url of this poll
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function get_next_url($_user_id)
+	{
+		$result = self::get_last($_user_id);
+		if(isset($result['url']))
+		{
+			return $result['url'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	/**
 	 * return last question for this user
 	 * @param  [type] $_user_id [description]
@@ -507,11 +526,11 @@ class polls
 			$_type = "post_type = 'poll_". $_type. "'";
 		}
 
-
 		$qry ="
 			SELECT
 			-- Fields
 				posts.id as id,
+				posts.post_url as url,
 				posts.post_parent as parent,
 				posts.post_title as question,
 				posts.post_meta as opt,
@@ -603,12 +622,14 @@ class polls
 			'questionRaw' => null,
 			'question'    => null,
 			'opt'	      => null,
+			'url'	      => null,
 			'tags'        => null,
 		];
 		if(isset($result['question']))
 		{
 			$result['question']         = html_entity_decode($result['question']);
 			$returnValue['id']          = $result['id'];
+			$returnValue['url']         = $result['url'];
 			$returnValue['question']    = $result['question'];
 			$returnValue['questionRaw'] = $result['question'];
 			$tagList                    = \lib\db\tags::usage($returnValue['id']);

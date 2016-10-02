@@ -19,7 +19,7 @@
                 </nav>
                     {%for key, value in post.post_meta.opt%}
                         <li>
-                            <a onclick="answer({{post.id}},'{{value.key}}','{{value.txt}}')" style="cursor:pointer">{{value.txt}}</a>
+                            <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
                         </li>
                     {%endfor%}
 
@@ -236,27 +236,26 @@
 
 {%block foot_js%}
 <script>
-
-function answer(_poll_id, _answer_id, _text) {
-    $.ajax({
-        type: 'post',
-        url: '@/polls',
-        data: {
-            'poll_id': _poll_id,
-            'answer_key': _answer_id,
-            'answer_text': _text
-        },
-        success: function(data) {
-            // console.log(document.write(data));
+$(".answer-link").click(function(){
+    $(this).ajaxify({
+        ajax: {
+            data: {
+                'poll_id': $(this).attr("data-id"),
+                'answer_key': $(this).attr("data-key"),
+                'answer_text': $(this).attr("data-text")
+            },
+            method: 'post'
         }
     });
-}
+}).on("ajaxify:success", function(_xhr, _data){
+    console.log(_data);
+});
 
 
 function bookmark(_poll_id) {
     $.ajax({
-        type: 'post',
-        url: '@/polls',
+        type: 'get',
+        // url: '@/polls',
         data: {
             'type' : 'bookmark',
             'poll_id': _poll_id
