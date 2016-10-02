@@ -20,32 +20,51 @@ class view extends \mvc\view
 
 	public function view_all()
 	{
-
+		$list = \lib\db\polls::get();
+		$this->data->list = $list;
 	}
 
 
 	public function view_poll($_args)
 	{
+		// var_dump(\lib\db\polls::get_next_url($this->login("id")));exit();
 		// check login to load option or no
 		// check answeret to this poll or no
-
 		$post = $this->model()->get_posts();
 
 		if(isset($post['id']))
 		{
-			// save poll id into session to get in answer
-			$_SESSION['last_poll_id']  = $post['id'];
-
-			if(isset($post['post_meta']['opt']))
+			if($this->login())
 			{
-				$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+				// save poll id into session to get in answer
+				$_SESSION['last_poll_id']  = $post['id'];
+
+				$next_url = \lib\db\polls::get_next_url($this->login("id"));
+
+				if(isset($_args->get("url")[0][0]) && $_args->get("url")[0][0] == $next_url)
+				{
+					if(isset($post['post_meta']['opt']))
+					{
+						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+					}
+				}
+				else
+				{
+					// check this user answerd to this poll or no
+					if(\lib\db\answers::is_answered($this->login("id"), $post['id']))
+					{
+						// this user answered to this poll
+						$post['post_meta'] = ['opt' => null];
+						$this->data->next_url = $next_url;
+					}
+				}
+			}
+			else
+			{
+				// this user not logined  => remove answers button
+				$post['post_meta'] = ['opt' => null];
 			}
 
-			// $x = array_column($_SESSION['last_poll_opt'], 'key');
-			// $x[3] = '1';
-			// var_dump($x);
-			// var_dump(array_search('opt_1', $x));
-			// var_dump($_SESSION['last_poll_opt']);exit();
 			$this->data->post = $post;
 
 			$post_id = $post['id'];

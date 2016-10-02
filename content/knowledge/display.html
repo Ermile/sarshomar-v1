@@ -2,6 +2,12 @@
 
 {%block content%}
 {% include template.header %}
+
+{%for key, value in list%}
+        <a href="{{base.url}}/{{value.post_url}}" style="cursor:pointer" data-direct>{{value.post_title}}</a>
+<br>
+{%endfor%}
+
 <div class="row question-box">
     <div class="container">
         <article class="row auto">
@@ -17,11 +23,19 @@
                     <a href="#"><i class="fa fa-wordpress" aria-hidden="true"></i></a>
                     <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
                 </nav>
-                    {%for key, value in post.post_meta.opt%}
-                        <li>
-                            <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
-                        </li>
-                    {%endfor%}
+                    <div class="opt">
+                        {%for key, value in post.post_meta.opt%}
+                            <li>
+                                <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
+                            </li>
+                        {%endfor%}
+
+                    </div>
+                    <h5 class="next-url">
+                        {% if next_url %}
+                            <a href="{{base.url}}/{{next_url}}" data-direct>سوال بعدی</a>
+                        {% endif %}
+                    </h5>
 
                 <div class="description">
                 	{% if post.post_language == "en" %}
@@ -248,7 +262,15 @@ $(".answer-link").click(function(){
         }
     });
 }).on("ajaxify:success", function(_xhr, _data){
-    console.log(_data);
+    next_url = _data.msg.callback;
+    if(typeof next_url != 'undifined')
+    {
+
+        $("<a href='{{base.url}}/" + next_url + "' data-direct>سوال بعدی</a>").appendTo(".next-url");
+        $("div.opt").fadeOut();
+        console.log(_data.msg.callback);
+
+    }
 });
 
 

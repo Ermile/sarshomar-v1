@@ -504,7 +504,7 @@ class polls
 		}
 		else
 		{
-			return false;
+			return null;
 		}
 	}
 
@@ -589,8 +589,8 @@ class polls
 				END
 			ORDER BY posts.id ASC
 			LIMIT 1
-
 		";
+
 		$result  = \lib\db::get($qry, null, true);
 
 		// $qry ="

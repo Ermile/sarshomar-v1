@@ -117,7 +117,7 @@ class answers
 	{
 		// set status of skip answers to disable
 		$status = 'enable';
-		if($_answer < 0)
+		if($_answer < 0 )
 		{
 			$status = 'disable';
 		}
@@ -138,27 +138,51 @@ class answers
 			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
 			'option_status' => $status
 		];
+
 		// save in options table and if successful return session_id
 		$result = \lib\db\options::insert($option_data);
 
 		// if error in insert we need to update record
 		if(!$result)
 		{
-			\lib\db\options::update_on_error($option_data);
+			/**
+			 * check if this pull can update answer update else return false
+			 */
+			if("can update answer of this poll")
+			{
+				\lib\db\options::update_on_error($option_data);
+			}
+			else
+			{
+				\lib\debug::error(T_("you are answered to this poll"));
+			}
 		}
-		// save answered count
-		\lib\db\stat_polls::set_poll_result(
-												[
-													'poll_id' => $_poll_id,
-													'opt_key' => $_answer,
-													'user_id' => $_user_id
-												]
-											);
+
+		// the key to update stat of this poll
+		// when user update his answer we shud not update poll stat
+		if($result)
+		{
+			// save answered count
+			\lib\db\stat_polls::set_poll_result(
+													[
+														'poll_id' => $_poll_id,
+														'opt_key' => $_answer,
+														'user_id' => $_user_id
+													]
+												);
+		}
 
 		return $result;
 	}
 
 
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function delete($_poll_id)
 	{
 		$query =
@@ -173,6 +197,37 @@ class answers
 				options.user_id IS NULL AND
 		";
 		return \lib\db::query($query);
+	}
+
+
+	/**
+	 * check the user answered to this poll or no
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function is_answered($_user_id, $_poll_id)
+	{
+		$query =
+		"
+			SELECT
+				id
+			FROM
+				options
+			WHERE
+				user_id = $_user_id AND
+				post_id = $_poll_id AND
+				option_key = 'poll_$_poll_id' AND
+				option_value = 'user_$_user_id' AND
+				option_value IS NOT NULL
+			LIMIT 1
+		";
+		$result = \lib\db::get($query, 'id', true);
+		if($result)
+		{
+			return true;
+		}
+		return false;
 	}
 }
 ?>

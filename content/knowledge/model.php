@@ -6,7 +6,7 @@ class model extends \mvc\model
 {
 	public function get_all()
 	{
-		echo ("All Questions is here || random result is here or other");
+		// echo ("All Questions is here || random result is here or other");
 	}
 
 	public function get_poll($_args)
@@ -104,29 +104,44 @@ class model extends \mvc\model
 		else
 		{
 
+				// \lib\debug::true(T_("ysdfsdfsdfdsfdsfdsour answer saved"));
+				// return true;
 			$answer_key  = utility::post("answer_key");
 			$answer_text = utility::post("answer_text");
 
 			$check = false;
-			foreach ($_SESSION['last_poll_opt'] as $key => $value)
+			if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
 			{
-				if(isset($value['key']) && $value['key'] == $answer_key)
+				foreach ($_SESSION['last_poll_opt'] as $key => $value)
 				{
-					$check = true;
+					if(isset($value['key']) && $value['key'] == $answer_key)
+					{
+						$check = true;
+					}
 				}
 			}
 
 			if($check)
 			{
-				\lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
-				\lib\debug::true(T_("your answer saved"));
-				return \lib\db\polls::get_next_url($this->login("id"));
+				$result = \lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
+				if($result)
+				{
+					\lib\debug::true(T_("your answer saved"));
+					\lib\debug::msg(\lib\db\polls::get_next_url($this->login("id")));
+					return \lib\db\polls::get_next_url($this->login("id"));
+				}
+				else
+				{
+					\lib\debug::error(T_("error in save your answer"));
+					return false;
+				}
 
 			}
 			else
 			{
 				\lib\debug::error(T_("answer key not found"));
-				return false;
+				\lib\debug::msg(\lib\db\polls::get_next_url($this->login("id")));
+				// return false;
 			}
 		}
 	}

@@ -202,6 +202,12 @@ class stat_polls
 
 		$users_detail_list = \lib\db::get($query,['key', 'value']);
 
+		if(!is_array($users_detail_list))
+		{
+			// for error in foreach
+			$users_detail_list = [];
+		}
+
 		// list of user details
 		foreach ($users_detail_list as $key => $value)
 		{
