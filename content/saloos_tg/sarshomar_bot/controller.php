@@ -18,12 +18,12 @@ class controller extends \lib\mvc\controller
 			bot::$api_key     = '186535040:AAGKVOlmlpA4wU0Vjv0-s93w_o2aB3n0xKE';
 			bot::$name        = 'sarshomar_bot';
 			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
-			bot::$defaultText = 'تعریف نشده';
+			bot::$defaultText = T_('Undefined');
 			bot::$defaultMenu = commands\menu::main(true);
 			bot::$fill        =
 			[
-				'name'     => 'سرشمار',
-				'fullName' => 'سرویس سرشمار',
+				'name'     => T_('Sarshomar'),
+				'fullName' => T_('Sarshomar'),
 				// 'about'    => $txt_about,
 			];
 			$result           = bot::run(true);

@@ -12,21 +12,19 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
-		$txt_my = "نظرسنجی‌های من";
+		$txt_my = T_('My polls');
 		if(!\lib\db\polls::get(bot::$user_id, 'count'))
 		{
-			$txt_my = "تعریف نظرسنجی جدید";
+			$txt_my = T_('Create new pool');
 		}
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
-				["نظرسنجی‌های سرشمار"],
-				// ["مردمی", "روانشناسی"],
+				[T_('Ask from me')],
 				[$txt_my],
-				// ["درباره ما", "راهنمای استفاده"],
-				["درباره ما", "ثبت بازخورد"],
+				[T_('Sarshomar Panel')],
 			],
 		];
 
@@ -35,7 +33,7 @@ class menu
 			return $menu;
 		}
 
-		$txt_text = "منوی اصلی\n\n";
+		$txt_text = T_('Main menu')."\n\n";
 
 		$result =
 		[
@@ -65,7 +63,7 @@ class menu
 			[
 				["نظرسنجی‌های سرشمار"],
 				["مردمی", "روانشناسی"],
-				["بازگشت به منوی اصلی"],
+				[T_('🔙 Back')],
 			],
 			// "one_time_keyboard" => true,
 			// "force_reply"       => true

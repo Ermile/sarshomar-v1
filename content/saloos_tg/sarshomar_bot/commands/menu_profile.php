@@ -29,7 +29,7 @@ class menu_profile
 						'request_contact' => true
 					],
 				],
-				["بازگشت به منوی اصلی"],
+				[T_('🔙 Back')],
 			],
 			// "one_time_keyboard" => true,
 			// "force_reply"       => true
@@ -74,7 +74,7 @@ class menu_profile
 						'request_contact' => true
 					],
 				],
-				["بازگشت به منوی اصلی"],
+				[T_('🔙 Back')],
 			],
 			// "one_time_keyboard" => true,
 			// "force_reply"       => true

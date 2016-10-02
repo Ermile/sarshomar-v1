@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
-"POT-Creation-Date: 2016-09-07 18:23+0430\n"
-"PO-Revision-Date: 2016-09-07 18:24+0430\n"
+"POT-Creation-Date: 2016-10-02 19:19+0330\n"
+"PO-Revision-Date: 2016-10-02 19:44+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.3\n"
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -17,29 +17,144 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: content/home/view.php:26
+#: content/home/view.php:28 content/knowledge/view.php:16
 msgid ":number Questions answered"
+msgstr ":number سوال پاسخ داده شده است"
+
+#: content/knowledge/model.php:72 content_u/polls/model.php:45
+msgid "poll id not match whit your last question"
+msgstr ""
+
+#: content/knowledge/model.php:96 content_u/polls/model.php:67
+msgid "bookmark saved"
+msgstr ""
+
+#: content/knowledge/model.php:100 content_u/polls/model.php:71
+msgid "error in save bookmark"
+msgstr ""
+
+#: content/knowledge/model.php:129
+msgid "your answer saved"
+msgstr ""
+
+#: content/knowledge/model.php:135
+msgid "error in save your answer"
+msgstr ""
+
+#: content/knowledge/model.php:142 content_u/polls/model.php:86
+msgid "answer key not found"
+msgstr ""
+
+#: content/saloos_tg/sarshomar_bot/commands/handle.php:122
+#: content/saloos_tg/sarshomar_bot/commands/handle.php:130
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:66
+#: content/saloos_tg/sarshomar_bot/commands/menu_civility.php:22
+#: content/saloos_tg/sarshomar_bot/commands/menu_language.php:22
+#: content/saloos_tg/sarshomar_bot/commands/menu_my.php:22
+#: content/saloos_tg/sarshomar_bot/commands/menu_my.php:61
+#: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:32
+#: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:77
+#: content/saloos_tg/sarshomar_bot/commands/menu_psychology.php:22
+msgid "🔙 Back"
+msgstr "باز گشت 🔙"
+
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:15
+msgid "My polls"
+msgstr "نظرسنجی‌های من"
+
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:18
+msgid "Create new pool"
+msgstr "برام بپرس"
+
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:25
+msgid "Ask from me"
+msgstr "ازم بپرس"
+
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:27
+msgid "Sarshomar Panel"
+msgstr "پنل سرشمار"
+
+#: content/saloos_tg/sarshomar_bot/commands/menu.php:36
+msgid "Main menu"
+msgstr "منوی اصلی"
+
+#: content/saloos_tg/sarshomar_bot/commands/user.php:121
+msgid "*Ask Anyone Anywhere*."
+msgstr "*از هرکسی در هرجایی بپرسید*"
+
+#: content/saloos_tg/sarshomar_bot/commands/user.php:122
+msgid ""
+"[_name_](https://sarshomar.com) is a modern service to give your precious "
+"opinion and help you to ask from anyone of you want."
+msgstr ""
+
+#: content/saloos_tg/sarshomar_bot/commands/user.php:126
+msgid "At first choose your language. You can change it later on settings."
+msgstr ""
+"برای شروع زبان خود را انتخاب کنید. شما امکان تغییر آن را در آینده نیز خواهید "
+"داشت ."
+
+#: content/saloos_tg/sarshomar_bot/commands/user.php:154
+msgid "Created in Ermile"
+msgstr "ساخته شده در ارمایل"
+
+#: content/saloos_tg/sarshomar_bot/controller.php:21
+msgid "Undefined"
+msgstr "تعریف‌نشده"
+
+#: content/saloos_tg/sarshomar_bot/controller.php:25
+#: content/saloos_tg/sarshomar_bot/controller.php:26
+#: includes/languages/trans_twig.php:33 includes/mvc/view.php:10
+msgid "Sarshomar"
+msgstr "سرشمار"
+
+#: content_u/add/model.php:80
+msgid "add title can not null"
+msgstr ""
+
+#: content_u/add/model.php:154
+msgid "Add add Success"
+msgstr ""
+
+#: content_u/add/model.php:158
+msgid "Error in add add"
+msgstr ""
+
+#: content_u/add/model.php:202
+msgid "Edit add Success"
+msgstr ""
+
+#: content_u/add/model.php:206
+msgid "Error in Edit add"
+msgstr ""
+
+#: content_u/add/model.php:281
+msgid "add filter of add Success"
+msgstr ""
+
+#: content_u/add/model.php:285
+msgid "Error in insert filter of add"
+msgstr ""
+
+#: content_u/knowledge/model.php:76
+msgid "poll publish"
+msgstr ""
+
+#: content_u/knowledge/model.php:80
+msgid "can not publish poll"
 msgstr ""
 
 #: content_u/manifest.php:4 includes/languages/trans_addons.php:326
 msgid "Use posts to share your news in specefic category"
 msgstr "از نوشته ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
 
-#: content_u/question/model.php:46
-msgid "Add Question Success"
+#: content_u/me/model.php:84
+msgid "me data updated"
 msgstr ""
 
-#: content_u/question/model.php:48
-msgid "Error in add question"
-msgstr ""
-
-#: content_u/question/model.php:76
-msgid "Edit Question Success"
-msgstr ""
-
-#: content_u/question/model.php:78
-msgid "Error in Edit question"
-msgstr ""
+#: content_u/me/model.php:88
+msgid "error in update me data"
+msgstr "خطا در ویرایش اطلاعات خودتان"
 
 #: includes/cls/database/sarshomar/translation.php:6
 #: includes/cls/database/sarshomar/translation.php:112
@@ -2290,10 +2405,6 @@ msgstr "رای"
 msgid "Total"
 msgstr "مجموع"
 
-#: includes/languages/trans_twig.php:33 includes/mvc/view.php:10
-msgid "Sarshomar"
-msgstr "سرشمار"
-
 #: includes/languages/trans_twig.php:34 includes/mvc/view.php:11
 msgid "Sarshomar start jumping"
 msgstr "سرشمار در حال پریدن است"
@@ -2317,6 +2428,10 @@ msgstr "نظرسنجی"
 #: includes/languages/trans_twig.php:39
 msgid "polls"
 msgstr "نظرسنجی‌ها"
+
+#: includes/lib/db/answers.php:157
+msgid "you are answered to this poll"
+msgstr "شما به این سوال پاسخ داده‌اید"
 
 #~ msgid "links"
 #~ msgstr "لینک ها"

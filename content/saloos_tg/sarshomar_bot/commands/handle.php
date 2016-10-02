@@ -41,6 +41,8 @@ class handle
 
 			case '/sarshomar':
 			case 'sarshomar':
+			case 'ask':
+			case '/ask':
 			case 'نظرسنجی‌های سرشمار':
 				$response = step_sarshomar::start();
 				break;
@@ -63,6 +65,8 @@ class handle
 
 			case '/define':
 			case 'define':
+			case 'create':
+			case '/create':
 			case 'تعریف':
 				$response = step_define::start();
 				break;
@@ -114,6 +118,8 @@ class handle
 				break;
 
 			case 'return':
+			case 'back':
+			case T_('🔙 Back'):
 			case 'بازگشت':
 				switch ($_cmd['text'])
 				{
@@ -121,7 +127,7 @@ class handle
 						$response = menu::polls();
 						break;
 
-					case 'بازگشت به منوی اصلی':
+					case T_('🔙 Back'):
 						$response = menu::main();
 						break;
 

@@ -19,7 +19,7 @@ class user
 			case 'start':
 			case 'شروع':
 				// generate respnse
-				$response = self::start();
+				$_args = null;
 				if(substr($_cmd['optional'], 0, 5) === 'poll_')
 				{
 					$opt = substr($_cmd['optional'], 5);
@@ -31,6 +31,14 @@ class user
 					// save this reference
 					self::saveRef($opt);
 				}
+				if(substr($_cmd['optional'], 0, 5) === 'lang_')
+				{
+					$opt               = substr($_cmd['optional'], 5);
+					$_args['language'] = $opt;
+					// save this reference
+					// set lang and skip asking new language step
+				}
+				$response = self::start($_args);
 				break;
 
 			case '/about':
@@ -102,18 +110,31 @@ class user
 	 * start conversation
 	 * @return [type] [description]
 	 */
-	public static function start()
+	public static function start($_args = null)
 	{
-		$txt_start = "به *_name_* خوش آمدید!\n\n";
-		$txt_start .= "کار با _name_ بسیار آسان است.\n";
-		$txt_start .= "*نظر دهید*، *نظرسنجی بسازید* و *به اشتراک بگذارید*!\n";
-		$txt_start .= "\n\nالبته این داستان ادامه دارد...";
+		$site_url = 'https://sarshomar.com';
+		if(isset($_args['language']) && $_args['language'] == 'fa')
+		{
+			$site_url .= '/fa';
+		}
+		$txt_start = T_("Welcome to [_name_]($site_url)!");
+		$txt_start .= "\n". T_("*Ask Anyone Anywhere*."). "\n\n";
+		$txt_start .= T_("[_name_](https://sarshomar.com) is a modern service to give your precious opinion and help you to ask from anyone of you want."). "\n\n\n";
+		$menu      = menu::main(true);
+		// if language isset then do not show message for selecting language and show main menu
+		if(!isset($_args['language']))
+		{
+			$txt_start .= T_("At first choose your language. You can change it later on settings.");
+			$menu      = menu_language::set_one(true);
+		}
+		// $txt_start .= T_("To be continue...");
 		$result =
 		[
-			[
-				'text'         => $txt_start,
-				'reply_markup' => menu::main(true),
-			],
+			// [
+				'text'                     => $txt_start,
+				'reply_markup'             => $menu,
+				'disable_web_page_preview' => true,
+			// ],
 		];
 		return $result;
 	}
@@ -125,11 +146,16 @@ class user
 	 */
 	public static function about()
 	{
+		$site_url = 'https://sarshomar.com';
+		if(isset($_args['language']) && $_args['language'] == 'fa')
+		{
+			$site_url .= '/fa';
+		}
 
 		$txt_caption = "_name_\n";
-		$txt_caption .= "محصولی از ارمایل";
+		$txt_caption .= T_("Created in Ermile");
 
-		$txt_text = "[_name_](https://sarshomar.com/fa) برای انجام آسان و سریع نظرسنجی‌های دقیق و به‌دور از شبهه در مقیاس وسیع و با هزینه مناسب طراحی شده است.\n";
+		$txt_text = "[_name_]($site_url) برای انجام آسان و سریع نظرسنجی‌های دقیق و به‌دور از شبهه در مقیاس وسیع و با هزینه مناسب طراحی شده است.\n";
 		$txt_text .= "انجام عمل نظرسنجی که ما آن را _name_ نامیده‌ایم اولین و آخرین طرح برای این کار نبوده و نخواهد بود ولی ما تلاش داریم تا امکاناتی که تاکنون وجود نداشته و یا سخت قابل دستیابی بوده را به راحتی در اختیار شما قرار دهیم.\n\n";
 		$txt_text .= "امیدواریم در این راه طولانی بتوانیم انتظارات شما را برآورده نماییم.\n";
 
@@ -143,7 +169,8 @@ class user
 			// 	'photo'  => 'AgADBAADrKcxG4BMHgvNuFPD7qige8o9QxkABFrJ1mj0gHo4oVIAAgI',
 			// ],
 			[
-				'text'         => $txt_text,
+				'text'                     => $txt_text,
+				'disable_web_page_preview' => true,
 			],
 		];
 
@@ -164,9 +191,9 @@ class user
 				'method'    => "sendVenue",
 				'latitude'  => '34.6349668',
 				'longitude' => '50.87914999999998',
-				'title'     => 'Ermile | ارمایل',
-				'address'   => 'ایران، قم، خیابان معلم۱۰، پلاک۸۳',
-				'address'   => '#83, Moallem 10, Qom, Iran +982537735183',
+				'title'     => 'Ermile',
+				// 'address'   => 'ایران، قم، خیابان معلم۱۰، پلاک۸۳',
+				'address'   => '#614, Omranieh, Moallem, Qom, Iran +982537735183',
 			],
 		];
 
