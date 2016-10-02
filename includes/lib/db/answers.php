@@ -217,8 +217,8 @@ class answers
 			WHERE
 				user_id = $_user_id AND
 				post_id = $_poll_id AND
-				option_key = 'poll_$_poll_id' AND
-				option_value = 'user_$_user_id' AND
+				option_cat = 'poll_$_poll_id' AND
+				option_key = 'answer_$_user_id' AND
 				option_value IS NOT NULL
 			LIMIT 1
 		";

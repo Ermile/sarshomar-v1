@@ -4,7 +4,7 @@
 {% include template.header %}
 
 {%for key, value in list%}
-        <a href="{{base.url}}/{{value.post_url}}" style="cursor:pointer" data-direct>{{value.post_title}}</a>
+<a href="{{base.url}}/{{value.post_url}}" style="cursor:pointer" data-direct>{{value.post_title}}</a>
 <br>
 {%endfor%}
 
@@ -263,14 +263,11 @@ $(".answer-link").click(function(){
     });
 }).on("ajaxify:success", function(_xhr, _data){
     next_url = _data.msg.callback;
-    if(typeof next_url != 'undifined')
-    {
 
         $("<a href='{{base.url}}/" + next_url + "' data-direct>سوال بعدی</a>").appendTo(".next-url");
         $("div.opt").fadeOut();
         console.log(_data.msg.callback);
 
-    }
 });
 
 
