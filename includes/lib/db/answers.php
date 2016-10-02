@@ -27,8 +27,9 @@ class answers
 
 			$meta = [
 					'desc'  => '',
-					'type'  => $value['type'],
-					'point' => 1
+					'true'  => $value['true'],
+					'point' => $value['point'],
+					'type'  => $value['type']
 					];
 
 			// answers key : opt_1, opt_2, opt_[$i], ...

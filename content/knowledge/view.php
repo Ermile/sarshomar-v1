@@ -27,7 +27,6 @@ class view extends \mvc\view
 
 	public function view_poll($_args)
 	{
-		// var_dump(\lib\db\polls::get_next_url($this->login("id")));exit();
 		// check login to load option or no
 		// check answeret to this poll or no
 		$post = $this->model()->get_posts();
@@ -72,6 +71,8 @@ class view extends \mvc\view
 			$result['data'] = json_encode($result['data'], JSON_UNESCAPED_UNICODE);
 			$this->data->chart = $result;
 			$this->data->chart_type = 'column';
+
+			$this->data->filter = \lib\db\filters::get_poll_filter($post['id']);
 		}
 		else
 		{

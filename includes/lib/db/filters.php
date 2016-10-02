@@ -37,12 +37,30 @@ class filters
 	 */
 	public static function get_poll_filter($_poll_id)
 	{
+		$query =
+		"
+			SELECT
+				options.option_key 		AS 'key',
+				options.option_value 	AS 'value'
+			FROM
+				options
+			WHERE
+				options.post_id = $_poll_id AND
+				options.user_id IS NULL AND
+				options.option_cat LIKE 'poll_$_poll_id' AND
+				options.option_key NOT IN ('stat') AND
+				options.option_key NOT LIKE 'opt_%' AND
+				options.option_key NOT LIKE 'answer_%' AND
+				options.option_key NOT LIKE 'tree_%'
+		";
 
+		$result = \lib\db::get($query);
+		return $result;
 	}
 
 
 	/**
-	 * add net filter of poll
+	 * add filter to poll
 	 *
 	 * @param      <type>   $_args  The arguments
 	 *
@@ -64,11 +82,11 @@ class filters
 		foreach ($_args as $key => $value) {
 			$field_value[] =
 			[
-				'post_id' => $poll_id,
-				'option_cat' => "poll_$poll_id",
-				'option_key' => $key,
+				'post_id'      => $poll_id,
+				'option_cat'   => "poll_$poll_id",
+				'option_key'   => $key,
 				'option_value' => $value,
-				'option_meta' => null,
+				'option_meta'  => null,
 			];
 		}
 

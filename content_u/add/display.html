@@ -58,6 +58,8 @@
                     <option>media_video</option>
                     <option>media_audio</option>
                 </select>
+                <input class="field" type="checkbox" name="answer_true[]">
+                <input class="field" type="text" name="answer_point[]">
             </div>
             <div class="field">
                 <label>answer1</label>
@@ -71,6 +73,8 @@
                     <option>media_video</option>
                     <option>media_audio</option>
                 </select>
+                <input class="field" type="checkbox" name="answer_true[]">
+                <input class="field" type="text" name="answer_point[]">
             </div>
             <div class="field">
                 <label>answer2</label>
@@ -86,10 +90,19 @@
                 <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
             </div>
             <div class="field">
+                <label>sum addon</label>
+                can update<input class="field" type="checkbox" name="addon_canupdate"  >
+                <br>
+                can remove<input class="field" type="checkbox" name="addon_remove"  >
+                <br>
+                can stop<input class="field" type="checkbox" name="addon_stop"  >
+                <br>
+            </div>
+            <div class="field">
                 <label></label>
                 <input type="submit" value="ثبت سوال">
             </div>
-            {{ block('sp_tag') }}
+            {##{ block('sp_tag') }##}
         </form>
     </div>
 </div>

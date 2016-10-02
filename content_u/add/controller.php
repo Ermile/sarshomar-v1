@@ -17,18 +17,16 @@ class controller extends \content_u\home\controller
 		$this->get(false, "add")->ALL("add");
 		$this->post("add")->ALL("add");
 
+		// add new add
+		$this->get("filter", "filter")->ALL("/^(.*)\/filter$/");
+		$this->post("filter")->ALL("/^(.*)\/filter$/");
+
 		// edit add
 		$this->get("edit", "edit")->ALL("/^edit\=(\d+)$/");
 		$this->post("edit")->ALL("/^edit\=(\d+)$/");
 
 		// delete add
 		$this->get("delete", false)->ALL("/^delete\/(\d+)$/");
-
-
-		// add new add
-		$this->get("filter", "filter")->ALL("/^filter\=(\d+)$/");
-		$this->post("filter")->ALL("/^filter\=(\d+)$/");
-
 	}
 }
 ?>

@@ -68,9 +68,36 @@ class model extends \mvc\model
 		// get publish date
 		$publish_date = utility::post("publish_date");
 		// get answers type
-		$answer_type  = array_filter(utility::post("answer_type"));
+		$answer_type  = utility::post("answer_type");
+		if($answer_type)
+		{
+			$answer_type = array_filter($answer_type);
+		}
+
+		// get answers true
+		$answer_true  = utility::post("answer_true");
+		if($answer_true)
+		{
+			$answer_true = array_filter($answer_true);
+		}
+
+		// get answers point
+		$answer_point  = utility::post("answer_point");
+		if($answer_point)
+		{
+			$answer_point = array_filter($answer_point);
+		}
+
+		// get answers desc
+		$answer_desc  = utility::post("answer_desc");
+		if($answer_desc)
+		{
+			$answer_desc = array_filter($answer_desc);
+		}
+
 		// get answers
-		$answers      = array_filter(utility::post("answers"));
+		$answers      = utility::post("answers");
+
 		// get tags
 		$tags         = utility::post("tags");
 
@@ -116,12 +143,19 @@ class model extends \mvc\model
 		// inset poll and answers
 		$poll_id = \lib\db\polls::insert($args);
 
+		if(!is_array($answers))
+		{
+			$answers = [];
+		}
+
 		// combine answer type and answer text
 		$combine = [];
 		foreach ($answers as $key => $value) {
 			$combine[] = [
-							'type' => $answer_type[$key],
-							'txt'  => $value
+							'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
+							'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
+							'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
+							'txt'   => $value
 						 ];
 		}
 
@@ -137,20 +171,34 @@ class model extends \mvc\model
 		// @param string
 		// @example : tag1,tag2,tag3,...
 		// split by ',' and insert
-		$insert_tag = \lib\db\tags::insert_multi($tags);
+		// $insert_tag = \lib\db\tags::insert_multi($tags);
 
-		$tags_id    = \lib\db\tags::get_multi_id($tags);
+		// $tags_id    = \lib\db\tags::get_multi_id($tags);
 
 		// save tag to this poll
-		$useage_arg = [
-			'termusage_foreign' => 'posts',
-			'tags'              => $tags_id,
-			'termusage_id'      => $poll_id
-		];
-		$useage = \lib\db\termuseage::insert_multi($useage_arg);
+		// $useage_arg = [
+		// 	'termusage_foreign' => 'posts',
+		// 	'tags'              => $tags_id,
+		// 	'termusage_id'      => $poll_id
+		// ];
+
+		// $useage = \lib\db\termuseage::insert_multi($useage_arg);
+
+		// get the addons of this poll
+		$addons = [];
+		foreach (utility::post() as $key => $value) {
+			if(preg_match("/^addon\_(.*)$/", $key, $addon))
+			{
+				$addons[] = $addon[1];
+			}
+		}
+		// var_dump($addons);exit();
 
 		if($answers)
 		{
+
+			$short_url = \lib\utility\shortURL::encode($poll_id);
+			\lib\debug::msg($short_url);
 			\lib\debug::true(T_("Add add Success"));
 		}
 		else
@@ -218,10 +266,29 @@ class model extends \mvc\model
 
 
 	/**
+	 * check short url and return the poll id
+	 */
+	public function check_poll_url()
+	{
+		if(isset($_args->match->url[0][1]))
+		{
+			$url = $_args->match->url[0][1];
+			return \lib\utility\shortURL::decode($url);
+		}
+		else
+		{
+			\lib\debug::error(T_("poll id not found"));
+			return false;
+		}
+	}
+
+
+	/**
 	*	get add filter
 	*/
-	function get_filter()
+	function get_filter($_args)
 	{
+		$this->check_poll_url();
 		// list of adds filter
 		// get value from cash or user profile status
 		$add_filters =
@@ -241,6 +308,10 @@ class model extends \mvc\model
 		// get user detail filter
 		// example gender, age, city , ...
 		$user_detail_filter = \lib\db\filters::get();
+		if(!is_array($user_detail_filter))
+		{
+			$user_detail_filter = [];
+		}
 
 		$filters = [];
 		foreach ($user_detail_filter as $key => $value)
@@ -267,7 +338,7 @@ class model extends \mvc\model
 
 		$args = [];
 
-		$poll_id = $_args->match->url[0][1];
+		$poll_id = $this->check_poll_url();
 		$args['poll_id'] = $poll_id;
 
 		$filters = utility::post();

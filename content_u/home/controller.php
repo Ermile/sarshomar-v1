@@ -11,6 +11,13 @@ class controller extends \mvc\controller
 	{
 		$this->check_login();
 		$this->get("profile", "profile")->ALL();
+
+		if(preg_match("/^(.*)\/filter$/", \lib\router::get_url()))
+		{
+			\lib\router::set_controller("\\content_u\\add\\controller");
+			return ;
+		}
+
 	}
 
 
