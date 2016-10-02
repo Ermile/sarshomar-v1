@@ -57,6 +57,25 @@
 .ac-custom input[type="radio"]:checked + label::before {
 	opacity: 0.8;
 }
+.ac-custom svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  left: 5px;
+  pointer-events: none;
+}
+.ac-custom svg path {
+  stroke: #fdfcd3;
+    stroke-width: 13px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
 </style>
 {% endblock %}
 
@@ -114,4 +133,5 @@
 {% endblock %}
 
 {% block foot_js %}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {% endblock %}
