@@ -62,14 +62,13 @@ class answers
 		$meta =
 		[
 			'opt'     	=> $opt_meta,
-			'desc' 		=> '',
 			'answers' 	=> ''
 		];
 
 		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
-		// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
-		$set_meta = \lib\db\polls::update(['post_meta' => $meta ], $_args['poll_id']);
+		// merge old meta and new meta in post meta
+		$set_meta = \lib\db\polls::merge_meta(['post_meta' => $meta ], $_args['poll_id']);
 
 		return $return;
 	}

@@ -26,7 +26,7 @@
 <div class="row auto">
     <div class="span4"></div>
     <div class="span4">
-        <form action="@/add" method="post" class="form inline">
+        <form action="@/add" method="post" class="form inline" >
             <div class="field">
                 <label>poll type</label>
                 <select name="poll_type">
@@ -90,13 +90,18 @@
                 <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
             </div>
             <div class="field">
-                <label>sum addon</label>
-                can update<input class="field" type="checkbox" name="addon_canupdate"  >
+                <label>sum meta</label>
+                can update<input class="field" type="checkbox" name="meta_canupdate"  >
                 <br>
-                can remove<input class="field" type="checkbox" name="addon_remove"  >
+                can remove<input class="field" type="checkbox" name="meta_remove"  >
                 <br>
-                can stop<input class="field" type="checkbox" name="addon_stop"  >
+                can stop<input class="field" type="checkbox" name="meta_stop"  >
                 <br>
+
+            <div class="field">
+                <label>summary</label>
+                <input type="text" name="summary">
+            </div>
             </div>
             <div class="field">
                 <label></label>

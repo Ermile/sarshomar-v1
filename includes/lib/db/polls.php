@@ -164,6 +164,15 @@ class polls
 		{
 			$title = $_args['title'];
 		}
+		// check meta
+		if(!isset($_args['meta']))
+		{
+			$meta = '';
+		}
+		else
+		{
+			$meta = $_args['meta'];
+		}
 		// check content
 		if(!isset($_args['content']))
 		{
@@ -176,7 +185,7 @@ class polls
 		// check type
 		if(!isset($_args['type']))
 		{
-			$type = "private_select";
+			$type = "poll_private_select";
 		}
 		else
 		{
@@ -194,14 +203,7 @@ class polls
 		// check publish_date
 		if(!isset($_args['publish_date']))
 		{
-			if($language == 'fa')
-			{
-				$publish_date = \lib\utility\jdate::date("Y-m-d");
-			}
-			else
-			{
-				$publish_date = date("Y-m-d");
-			}
+			$publish_date = '';
 		}
 		else
 		{
@@ -214,11 +216,11 @@ class polls
 			'post_language'    => $language,
 			'post_title'       => $title,
 			'post_slug'        => $slug,
-			'post_url'         => time() . $user_id, // insert post id ofter insert record
+			'post_url'         => time(). '_'. $user_id, // insert post id ofter insert record
 			'post_content'     => $content,
 			'post_type'        => 'poll_' . $type,
 			'post_status'      => $status,
-			'post_meta'        => null, // update meta after insert answers
+			'post_meta'        => $meta,
 			'post_publishdate' => $publish_date
 		];
 
@@ -656,6 +658,38 @@ class polls
 		return $returnValue;
 	}
 
+
+	/**
+	 * Appends a meta.
+	 * meta of posts table is a json field
+	 * if this field is full we merge new value and old value of this field
+	 *
+	 * @param      <type>  $_field_meta  The field meta
+	 * @param      <type>  $_poll_id     The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function merge_meta($_field_meta, $_poll_id)
+	{
+		$field = array_keys($_field_meta);
+		$meta  = array_values($_field_meta);
+		$query = [];
+		foreach ($field as $key => $value) {
+			$query[] = " $value = JSON_MERGE(JSON_EXTRACT($value, '$'), '{$meta[$key]}')";
+		}
+		$query = join($query, ',');
+		$query =
+		"
+			UPDATE
+				posts
+			SET
+				$query
+			WHERE
+				posts.id = $_poll_id
+		";
+		$result = \lib\db::query($query);
+		return $result;
+	}
 
 	/**
 	 * get list of questions that this user answered

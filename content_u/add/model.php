@@ -56,7 +56,8 @@ class model extends \mvc\model
 		// check poll type. users can be set $db_poll_type
 		if(!in_array($poll_type, $db_poll_type))
 		{
-			$poll_type = "select";
+			debug::error(T_("poll type not found"));
+			return false;
 		}
 
 		// get title
@@ -69,43 +70,29 @@ class model extends \mvc\model
 		$publish_date = utility::post("publish_date");
 		// get answers type
 		$answer_type  = utility::post("answer_type");
-		if($answer_type)
-		{
-			$answer_type = array_filter($answer_type);
-		}
-
 		// get answers true
 		$answer_true  = utility::post("answer_true");
-		if($answer_true)
-		{
-			$answer_true = array_filter($answer_true);
-		}
-
 		// get answers point
 		$answer_point  = utility::post("answer_point");
-		if($answer_point)
-		{
-			$answer_point = array_filter($answer_point);
-		}
-
 		// get answers desc
 		$answer_desc  = utility::post("answer_desc");
-		if($answer_desc)
-		{
-			$answer_desc = array_filter($answer_desc);
-		}
-
 		// get answers
 		$answers      = utility::post("answers");
-
-		// get tags
-		$tags         = utility::post("tags");
+		// get summary of poll
+		$summary      = utility::post("summary");
 
 		// check title
 		if($title == null)
 		{
 			debug::error(T_("add title can not null"));
 			return;
+		}
+
+		// check length of sumamry text
+		if($summary && strlen($summary) > 150)
+		{
+			debug::error(T_("summary text must be less than 150 character"));
+			return false;
 		}
 
 		//check lang
@@ -137,15 +124,30 @@ class model extends \mvc\model
 			'language'     => $language,
 			'content'      => $content,
 			'publish_date' => $publish_date,
-			'status'       => 'draft'
+			'status'       => 'draft',
+			'meta'         => "{\"desc\":\"$summary\"}"
 		];
 
 		// inset poll and answers
 		$poll_id = \lib\db\polls::insert($args);
 
-		if(!is_array($answers))
+		// check answers
+		if($answers)
 		{
-			$answers = [];
+			// if answers is not array return false
+			if(!is_array($answers))
+			{
+				debug::error(T_("answer must be array"));
+				return false;
+			}
+			// remove empty index from answer array
+			$answers = array_filter($answers);
+			// check the count of answer array
+			if(count($answers) < 2)
+			{
+				debug::error(T_("you must set two answer"));
+				return false;
+			}
 		}
 
 		// combine answer type and answer text
@@ -184,15 +186,25 @@ class model extends \mvc\model
 
 		// $useage = \lib\db\termuseage::insert_multi($useage_arg);
 
-		// get the addons of this poll
-		$addons = [];
+		// get the metas of this poll
+		$metas = [];
 		foreach (utility::post() as $key => $value) {
-			if(preg_match("/^addon\_(.*)$/", $key, $addon))
+			if(preg_match("/^meta\_(.*)$/", $key, $meta))
 			{
-				$addons[] = $addon[1];
+				if(isset($meta[1]))
+				{
+					$metas[] =
+					[
+						'post_id'      => $poll_id,
+						'option_cat'   => "poll_$poll_id",
+						'option_key'   => 'meta',
+						'option_value' => $meta[1]
+					];
+				}
 			}
 		}
-		// var_dump($addons);exit();
+		$save_poll_metas = \lib\db\options::insert_multi($metas);
+		// var_dump($metas);exit();
 
 		if($answers)
 		{
