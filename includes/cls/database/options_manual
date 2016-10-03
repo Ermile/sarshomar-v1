@@ -21,6 +21,18 @@ id		type 									meta						title
 4		survey_public
 4		survey_sarshomar
 
+------------------------------------Parent of all below types is the id of poll of parent survey
+1		survey_poll_select
+1		survey_poll_notify
+1		survey_poll_text					[range, other:true|false]
+1		survey_poll_upload					[upload data]
+1		survey_poll_star					[range]
+1		survey_poll_number					[range]
+1		survey_poll_media_image				{opt: image}
+1		survey_poll_media_video
+1		survey_poll_media_audio
+1		survey_poll_order
+
 
 
 
