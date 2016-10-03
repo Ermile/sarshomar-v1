@@ -379,14 +379,12 @@ class polls
 	 * @param  string $_users_id    [description]
 	 * @return [type]           	[description]
 	 */
-	public static function get_one($_post_id, $_user_id = null)
+	public static function get_for_edit($_post_id, $_user_id = null)
 	{
-
 		//check users id
 		if($_user_id != null) {
 			$_user_id = " AND user_id = $_user_id ";
 		}
-
 		$query = "
 				SELECT
 					id,
@@ -408,18 +406,17 @@ class polls
 					posts.id = $_post_id
 					$_user_id
 				LIMIT 1 ";
-		$poll =  \lib\db\posts::select($query, "get");
-
-		if(!empty($poll))
+		$poll =  \lib\db::get($query, null);
+		$poll = \lib\utility\filter::meta_decode($poll);
+		if($poll &&  is_array($poll) && !empty($poll))
 		{
 			$answers = \lib\db\answers::get($_post_id);
-			return ['poll' => $poll[0] , 'answers' => $answers];
+			return ['poll' => $poll , 'answers' => $answers];
 		}
 		else
 		{
 			return false;
 		}
-
 	}
 
 

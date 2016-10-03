@@ -107,7 +107,6 @@
                 <label></label>
                 <input type="submit" value="ثبت سوال">
             </div>
-            {##{ block('sp_tag') }##}
         </form>
     </div>
 </div>
@@ -115,17 +114,18 @@
 {%endif%}
 
 {%if form_edit%}
-<form action="@/edit={{post_id}}" method="post">
-	title:<input type="text" name="title" value="{{form_data['poll']['title']}}"><br>
-	language:<input type="text" name="language" value="{{form_data['poll']['language']}}"><br>
-	content:<input type="text" name="content" value="{{form_data['poll']['content']}}"><br>
-	publish_date:<input type="text" name="publish_date" value="{{form_data['poll']['publishdate']}}"><br>
-	{%if form_data['answers'] is iterable %}
-		{%for key, data in form_data['answers']%}
-			answer{{key}}:<input type="text" name="answers[{{data['id']}}]" id="{{data['id']}}" value="{{data['value']}}"><br>
-		{%endfor%}
-	{%endif%}
-	<input type="submit" value="اصلاح"><br>
+
+<form action="@/edit" method="post">
+    title:<input type="text" name="title" value="{{form_data['poll'][0]['title']}}"><br>
+    language:<input type="text" name="language" value="{{form_data['poll'][0]['language']}}"><br>
+    content:<input type="text" name="content" value="{{form_data['poll'][0]['content']}}"><br>
+    publish_date:<input type="text" name="publish_date" value="{{form_data['poll'][0]['publishdate']}}"><br>
+    {%if form_data['answers'] is iterable %}
+        {%for key, data in form_data['answers']%}
+            answer{{key}}:<input type="text" name="answers[{{data['id']}}]" id="{{data['id']}}" value="{{data['option_value']}}"><br>
+        {%endfor%}
+    {%endif%}
+    <input type="submit" value="اصلاح"><br>
 </form>
 {%endif%}
 
@@ -147,6 +147,13 @@
 
 <input type="submit" value="ثبت فیلتر های سوال">
 </form>
+{%endif%}
+
+{% if publish_form %}
+    <form method="post" >
+        {{ block('sp_tag') }}
+        <input type="submit" >
+    </form>
 {%endif%}
 {%endblock%}
 

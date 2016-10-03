@@ -8,13 +8,17 @@ class view extends \mvc\view
 	/**
 	 * view users add
 	 *
-	 * @param      <type>  $o      { parameter_description }
+	 * @param      <type>  $_args      { parameter_description }
 	 */
-	function view_knowledge($o)
+	function view_knowledge($_args)
 	{
-		$this->data->datatable = $o->api_callback;
+		$this->data->datatable = $_args->api_callback;
 	}
 
+	function view_publish($_args)
+	{
+		$this->data->publish_form = true;
+	}
 
 	/**
 	 * add add form and options
@@ -29,13 +33,13 @@ class view extends \mvc\view
 	/**
 	 * edit add
 	 *
-	 * @param      <type>  $o      { parameter_description }
+	 * @param      <type>  $_args      { parameter_description }
 	 */
-	function view_edit($o)
+	function view_edit($_args)
 	{
 		$this->data->form_edit = true;
-		$this->data->post_id = $o->match->url[0][1];
-		$this->data->form_data = $o->api_callback;
+		$this->data->post_id = $_args->match->url[0][1];
+		$this->data->form_data = $_args->api_callback;
 	}
 
 

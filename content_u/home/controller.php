@@ -9,15 +9,16 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
-		$this->check_login();
-		$this->get("profile", "profile")->ALL();
-
-		if(preg_match("/^(.*)\/filter$/", \lib\router::get_url()))
+		/**
+		 * route url like 4dgF/add to add folder
+		 */
+		if(preg_match("/^(.*)\/(add|filter|publish)$/", \lib\router::get_url()))
 		{
 			\lib\router::set_controller("\\content_u\\add\\controller");
 			return ;
 		}
-
+		$this->check_login();
+		$this->get("profile", "profile")->ALL();
 	}
 
 

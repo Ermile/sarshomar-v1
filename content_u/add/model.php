@@ -5,7 +5,6 @@ use \lib\debug;
 
 class model extends \mvc\model
 {
-
 	/**
 	 * get users add
 	 *
@@ -32,6 +31,43 @@ class model extends \mvc\model
 		return \lib\db\polls::xget($_args);
 	}
 
+
+	/**
+	 * ready to publish
+	 * if one poll set and type is survey change type and return
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	function get_publish($_args)
+	{
+
+	}
+
+
+	function post_publish()
+	{
+		var_dump(utility::post());
+		exit();
+
+	}
+
+
+	/**
+	 * set survey.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function get_set_survey($_args)
+	{
+		$poll_id = $_args->match->url[0][1];
+		if($poll_id)
+		{
+			$poll_id = \lib\utility\shortURL::decode($poll_id);
+		}
+		$result = \lib\db\survey::set($poll_id);
+
+		exit();
+	}
 
 	/**
 	 * get data to add new add
@@ -224,25 +260,27 @@ class model extends \mvc\model
 	 * get one add id and return data of this add
 	 * ready for edit form
 	 *
-	 * @param      <type>  $o      { parameter_description }
+	 * @param      <type>  $_args      { parameter_description }
 	 *
 	 * @return     <type>  The add edit.
 	 */
-	function get_edit($o)
+	function get_edit($_args)
 	{
-		$poll_id = $o->match->url[0][1];
-		return \lib\db\polls::get_one($poll_id);
+		$poll_id = $_args->match->url[0][1];
+		$poll_id = \lib\utility\shortURL::decode($poll_id);
+		$result = \lib\db\polls::get_for_edit($poll_id);
+		return $result;
 	}
 
 
 	/**
 	 * post edited value of add and update add
 	 *
-	 * @param      <type>  $o      { parameter_description }
+	 * @param      <type>  $_args      { parameter_description }
 	 */
-	function post_edit($o){
+	function post_edit($_args){
 
-		$poll_id = $o->match->url[0][1];
+		$poll_id = $_args->match->url[0][1];
 			$args = [
 				'post_title'       => utility::post("title"),
 				'post_language'    => utility::post("language"),

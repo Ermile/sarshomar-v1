@@ -10,22 +10,26 @@ class controller extends \content_u\home\controller
 			$this->redirector()->set_domain()->set_url('login')->redirect();
 		}
 
-		// list of query
+		// list of poll
 		$this->get("knowledge", "knowledge")->ALL("knowledge");
-
-		// add new add
+		// add new
 		$this->get(false, "add")->ALL("add");
 		$this->post("add")->ALL("add");
 
-		// add new add
+		// for add survey
+		$this->get("set_survey", "add")->ALL("/^(.*)\/add$/");
+
+
+		// add filter
 		$this->get("filter", "filter")->ALL("/^(.*)\/filter$/");
 		$this->post("filter")->ALL("/^(.*)\/filter$/");
 
-		// edit add
-		$this->get("edit", "edit")->ALL("/^edit\=(\d+)$/");
-		$this->post("edit")->ALL("/^edit\=(\d+)$/");
+		// publish
+		$this->get("publish", "publish")->ALL("/^(.*)\/publish$/");
+		$this->post("publish")->ALL("/^(.*)\/publish$/");
 
-		// delete add
+
+		// delete poll
 		$this->get("delete", false)->ALL("/^delete\/(\d+)$/");
 	}
 }

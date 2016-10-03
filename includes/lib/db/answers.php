@@ -92,17 +92,17 @@ class answers
 	public static function get($_poll_id) {
 		$query = "
 				SELECT
-					id,
-					option_value as 'txt',
-					option_key   as 'key'
-				FROM options
+					*
+				FROM
+					options
 				WHERE
 					post_id = $_poll_id AND
 					option_cat LIKE 'poll_{$_poll_id}' AND
 					option_key LIKE 'opt%'  AND
 					user_id IS NULL
 				";
-		return \lib\db\options::select($query, "get");
+		$result = \lib\db\options::select($query, "get");
+		return \lib\utility\filter::meta_decode($result);
 	}
 
 
