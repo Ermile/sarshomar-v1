@@ -6,9 +6,9 @@ use \lib\debug;
 class model extends \mvc\model
 {
 	/**
-	 * get users add
+	 * get users question
 	 *
-	 * @return     <type>  The add.
+	 * @return     <type>  The question.
 	 */
 	function get_knowledge()
 	{
@@ -74,6 +74,20 @@ class model extends \mvc\model
 	 */
 	function post_add()
 	{
+		if(utility::post("filter"))
+		{
+			$poll_survey = "poll";
+		}
+		elseif(utility::post("survey"))
+		{
+			$poll_survey = "survey";
+		}
+		else
+		{
+			debug::error(T_("command not found"));
+			return false;
+		}
+
 		$db_poll_type =
 		[
 			'select',
@@ -120,7 +134,7 @@ class model extends \mvc\model
 		// check title
 		if($title == null)
 		{
-			debug::error(T_("add title can not null"));
+			debug::error(T_("poll title can not null"));
 			return;
 		}
 
@@ -240,29 +254,36 @@ class model extends \mvc\model
 			}
 		}
 		$save_poll_metas = \lib\db\options::insert_multi($metas);
-		// var_dump($metas);exit();
 
 		if($answers)
 		{
-
 			$short_url = \lib\utility\shortURL::encode($poll_id);
-			\lib\debug::msg($short_url);
-			\lib\debug::true(T_("Add add Success"));
+			\lib\debug::true(T_("Add poll Success @/$short_url/filter"));
+			if($poll_survey == "poll")
+			{
+				// must be redirect to filter page
+				$this->redirector()->set_url("@/$short_url/filter");
+				return;
+			}
+			else
+			{
+				debug::msg($short_url);
+			}
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in add add"));
+			\lib\debug::error(T_("Error in add poll"));
 		}
 	}
 
 
 	/**
-	 * get one add id and return data of this add
+	 * get one poll id and return data of this poll
 	 * ready for edit form
 	 *
 	 * @param      <type>  $_args      { parameter_description }
 	 *
-	 * @return     <type>  The add edit.
+	 * @return     <type>  The poll edit.
 	 */
 	function get_edit($_args)
 	{
@@ -297,17 +318,17 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\debug::true(T_("Edit add Success"));
+			\lib\debug::true(T_("Edit poll Success"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in Edit add"));
+			\lib\debug::error(T_("Error in Edit poll"));
 		}
 	}
 
 
 	/**
-	 * delete add
+	 * delete poll
 	 */
 	function get_delete()
 	{
@@ -318,8 +339,9 @@ class model extends \mvc\model
 	/**
 	 * check short url and return the poll id
 	 */
-	public function check_poll_url()
+	public function check_poll_url($_args)
 	{
+
 		if(isset($_args->match->url[0][1]))
 		{
 			$url = $_args->match->url[0][1];
@@ -338,7 +360,7 @@ class model extends \mvc\model
 	*/
 	function get_filter($_args)
 	{
-		$this->check_poll_url();
+		$this->check_poll_url($_args);
 		// list of adds filter
 		// get value from cash or user profile status
 		$add_filters =
@@ -388,7 +410,7 @@ class model extends \mvc\model
 
 		$args = [];
 
-		$poll_id = $this->check_poll_url();
+		$poll_id = $this->check_poll_url($_args);
 		$args['poll_id'] = $poll_id;
 
 		$filters = utility::post();
@@ -399,11 +421,12 @@ class model extends \mvc\model
 		$result = \lib\db\filters::insert($args);
 		if($result)
 		{
-			\lib\debug::true(T_("add filter of add Success"));
+			$short_url = $_args->match->url[0][1];
+			\lib\debug::true(T_("add filter of poll Success @/$short_url/publish"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in insert filter of add"));
+			\lib\debug::error(T_("Error in insert filter of poll"));
 		}
 	}
 }
