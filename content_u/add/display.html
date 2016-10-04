@@ -22,11 +22,17 @@
     </div>
 {%endfor%}
 
-{%if form_add%}
+{%if form_add or survey_mod %}
+ {%if poll_list %}
+    <h5>poll list</h5>
+        {%for key, value in poll_list%}
+            <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+        {%endfor%}
+    {%endif%}
 <div class="row auto">
     <div class="span4"></div>
     <div class="span4">
-        <form action="@/add" method="post" class="form inline">
+        <form  method="post" class="form inline">
             <div class="field">
                 <label>poll type</label>
                 <select name="poll_type">
@@ -122,7 +128,11 @@
             </div>
              <div class="field">
                 <label></label>
-                <input type="submit" name="survey" value="تبدیل به پرسشنامه">
+                {%if survey_mod%}
+                    <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
+                {%else%}
+                    <input type="submit" name="survey" value="تبدیل به پرسشنامه">
+                {%endif%}
             </div>
         </form>
     </div>

@@ -9,18 +9,25 @@ class survey
 	 *
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function set($_poll_id)
+	public static function insert($_args)
 	{
-		$update_post =
-		[
-			'post_type' => 'survey_private'
-		];
-		$update_post = \lib\db\posts::update($update_post, $_poll_id);
+		return \lib\db\polls::insert($_args);
+	}
 
-
-		var_dump($_poll_id);
-		exit();
-
+	public static function get_poll_list($_survey_id)
+	{
+		$query =
+		"
+			SELECT
+				posts.post_url AS 'url',
+				posts.post_title AS 'title'
+			FROM
+				posts
+			WHERE
+				posts.post_parent = '$_survey_id' AND
+				posts.post_type LIKE 'survey_poll_%'
+		";
+		return \lib\db::get($query);
 	}
 }
 ?>

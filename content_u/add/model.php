@@ -44,10 +44,51 @@ class model extends \mvc\model
 	}
 
 
-	function post_publish()
+	function post_publish($_args)
 	{
-		var_dump(utility::post());
-		exit();
+		$poll_survey_id = $this->check_poll_url($_args);
+		if(!$poll_survey_id)
+		{
+			debug::error(T_("id not found"));
+			return false;
+		}
+		// insert tags to tags table,
+		// @param string
+		// @example : tag1,tag2,tag3,...
+		// split by ',' and insert
+		$tags = utility::post("tags");
+
+		$insert_tag = \lib\db\tags::insert_multi($tags);
+
+		$tags_id    = \lib\db\tags::get_multi_id($tags);
+
+		// save tag to this poll
+		$useage_arg = [
+			'termusage_foreign' => 'posts',
+			'tags'              => $tags_id,
+			'termusage_id'      => $poll_survey_id
+		];
+
+		$useage = \lib\db\termuseage::insert_multi($useage_arg);
+
+		$update_posts =
+		[
+			'post_status' => 'publish'
+		];
+		$result = \lib\db\polls::update($update_posts, $poll_survey_id);
+
+		if($result)
+		{
+			debug::true(T_("poll published"));
+			$url = $this->check_poll_url($_args);
+			$url = \lib\db\polls::get_poll_url($url);
+			$this->redirector()->set_url("$url");
+
+		}
+		else
+		{
+			debug::error(T_("error in publish poll"));
+		}
 
 	}
 
@@ -57,37 +98,26 @@ class model extends \mvc\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function get_set_survey($_args)
+	public function get_survey($_args)
 	{
 		$poll_id = $_args->match->url[0][1];
 		if($poll_id)
 		{
 			$poll_id = \lib\utility\shortURL::decode($poll_id);
 		}
-		$result = \lib\db\survey::set($poll_id);
+		// $result = \lib\db\survey::set($poll_id);
 
-		exit();
+		// exit();
 	}
 
 	/**
 	 * get data to add new add
 	 */
-	function post_add()
+	function post_add($_args)
 	{
-		if(utility::post("filter"))
-		{
-			$poll_survey = "poll";
-		}
-		elseif(utility::post("survey"))
-		{
-			$poll_survey = "survey";
-		}
-		else
-		{
-			debug::error(T_("command not found"));
-			return false;
-		}
-
+		// default survey id is null
+		$survey_id = null;
+		// db poll type
 		$db_poll_type =
 		[
 			'select',
@@ -109,7 +139,6 @@ class model extends \mvc\model
 			debug::error(T_("poll type not found"));
 			return false;
 		}
-
 		// get title
 		$title        = utility::post("title");
 		// get language
@@ -131,26 +160,67 @@ class model extends \mvc\model
 		// get summary of poll
 		$summary      = utility::post("summary");
 
+		// users click on one of this buttom
+		if(utility::post("filter"))
+		{
+			$poll_survey = "poll";
+			if($this->check_poll_url($_args))
+			{
+				$survey_id   = $this->check_poll_url($_args);
+			}
+			// if users click on this buttom and nothing in page
+			// redirect to filter page
+			if($title == null || (!is_array($answers) || count($answers) < 2))
+			{
+				if($survey_id)
+				{
+					$survey_id   = $this->check_poll_url($_args);
+					// encode survey id
+					$short_url = \lib\utility\shortURL::encode($survey_id);
+					// must be redirect to filter page
+					$this->redirector()->set_url("@/$short_url/filter");
+					// return;
+				}
+				else
+				{
+					debug::error(T_("undefined error"));
+					return false;;
+				}
+			}
+
+		}
+		elseif(utility::post("survey"))
+		{
+			$poll_survey = "survey";
+		}
+		elseif(utility::post("add_poll"))
+		{
+			$poll_survey = "poll";
+			$survey_id   = $this->check_poll_url($_args);
+		}
+		else
+		{
+			debug::error(T_("command not found"));
+			return false;
+		}
+
 		// check title
 		if($title == null)
 		{
 			debug::error(T_("poll title can not null"));
 			return;
 		}
-
 		// check length of sumamry text
 		if($summary && strlen($summary) > 150)
 		{
 			debug::error(T_("summary text must be less than 150 character"));
 			return false;
 		}
-
 		//check lang
 		if($language == null)
 		{
 			$language = substr(\lib\router::get_storage('language'), 0, 2);
 		}
-
 		//check date
 		if($publish_date == null)
 		{
@@ -164,23 +234,48 @@ class model extends \mvc\model
 				$publish_date = date("Y-m-d");
 			}
 		}
-
-		// ready to insert poll
+		// ready to insert poll or survey
+		// save survey
+		if($poll_survey == "survey")
+		{
+			$args =
+			[
+				'user_id'      => $this->login('id'),
+				'title'        => 'untitled survey',
+				'type'         => 'survey_private',
+				'language'     => $language,
+				'status'       => 'draft',
+			];
+			$survey_id = \lib\db\survey::insert($args);
+			$poll_type = "survey_poll_". $poll_type;
+		}
+		else
+		{
+			// if users adding new poll to sorvey
+			// $poll_survey = 'poll' and $suervey_id is full
+			if($survey_id)
+			{
+				$poll_type = "survey_poll_". $poll_type;
+			}
+			else
+			{
+				$poll_type = "poll_private_". $poll_type;
+			}
+		}
 		$args =
 		[
 			'user_id'      => $this->login('id'),
 			'title'        => $title,
-			'type'         => 'private_' . $poll_type,
+			'type'         => $poll_type,
 			'language'     => $language,
 			'content'      => $content,
 			'publish_date' => $publish_date,
+			'parent'	   => $survey_id,
 			'status'       => 'draft',
 			'meta'         => "{\"desc\":\"$summary\"}"
 		];
-
 		// inset poll and answers
 		$poll_id = \lib\db\polls::insert($args);
-
 		// check answers
 		if($answers)
 		{
@@ -198,46 +293,31 @@ class model extends \mvc\model
 				debug::error(T_("you must set two answer"));
 				return false;
 			}
+			// combine answer type and answer text
+			$combine = [];
+			foreach ($answers as $key => $value) {
+				$combine[] = [
+								'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
+								'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
+								'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
+								'txt'   => $value
+							 ];
+			}
+			$answers_arg =
+			[
+				'poll_id' => $poll_id,
+				'answers' => $combine
+			];
+			$answers = \lib\db\answers::insert($answers_arg);
 		}
-
-		// combine answer type and answer text
-		$combine = [];
-		foreach ($answers as $key => $value) {
-			$combine[] = [
-							'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
-							'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
-							'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
-							'txt'   => $value
-						 ];
+		else
+		{
+			debug::error(T_("answers not found"));
+			return false;
 		}
-
-		$answers_arg =
-		[
-			'poll_id' => $poll_id,
-			'answers' => $combine
-		];
-
-		$answers    = \lib\db\answers::insert($answers_arg);
-
-		// insert tags to tags table,
-		// @param string
-		// @example : tag1,tag2,tag3,...
-		// split by ',' and insert
-		// $insert_tag = \lib\db\tags::insert_multi($tags);
-
-		// $tags_id    = \lib\db\tags::get_multi_id($tags);
-
-		// save tag to this poll
-		// $useage_arg = [
-		// 	'termusage_foreign' => 'posts',
-		// 	'tags'              => $tags_id,
-		// 	'termusage_id'      => $poll_id
-		// ];
-
-		// $useage = \lib\db\termuseage::insert_multi($useage_arg);
-
 		// get the metas of this poll
 		$metas = [];
+		$insert_meta = false;
 		foreach (utility::post() as $key => $value) {
 			if(preg_match("/^meta\_(.*)$/", $key, $meta))
 			{
@@ -250,29 +330,44 @@ class model extends \mvc\model
 						'option_key'   => 'meta',
 						'option_value' => $meta[1]
 					];
+					$insert_meta = true;
 				}
 			}
 		}
-		$save_poll_metas = \lib\db\options::insert_multi($metas);
-
+		if($insert_meta)
+		{
+			$save_poll_metas = \lib\db\options::insert_multi($metas);
+		}
 		if($answers)
 		{
-			$short_url = \lib\utility\shortURL::encode($poll_id);
-			\lib\debug::true(T_("Add poll Success @/$short_url/filter"));
-			if($poll_survey == "poll")
+			\lib\debug::true(T_("Add $poll_survey Success"));
+			if(($poll_survey == "poll" && !$survey_id) || utility::post("filter"))
 			{
+				if($this->check_poll_url($_args))
+				{
+					$survey_id   = $this->check_poll_url($_args);
+					// encode survey id
+					$short_url = \lib\utility\shortURL::encode($survey_id);
+				}
+				else
+				{
+					// encode poll id
+					$short_url = \lib\utility\shortURL::encode($poll_id);
+				}
 				// must be redirect to filter page
 				$this->redirector()->set_url("@/$short_url/filter");
 				return;
 			}
 			else
 			{
+				$short_url = \lib\utility\shortURL::encode($survey_id);
 				debug::msg($short_url);
+				$this->redirector()->set_url("@/$short_url/add");
 			}
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in add poll"));
+			\lib\debug::error(T_("Error in add $poll_survey"));
 		}
 	}
 
@@ -289,7 +384,7 @@ class model extends \mvc\model
 	{
 		$poll_id = $_args->match->url[0][1];
 		$poll_id = \lib\utility\shortURL::decode($poll_id);
-		$result = \lib\db\polls::get_for_edit($poll_id);
+		$result  = \lib\db\polls::get_for_edit($poll_id);
 		return $result;
 	}
 
@@ -339,17 +434,24 @@ class model extends \mvc\model
 	/**
 	 * check short url and return the poll id
 	 */
-	public function check_poll_url($_args)
+	public function check_poll_url($_args, $_type = "decode")
 	{
 
 		if(isset($_args->match->url[0][1]))
 		{
 			$url = $_args->match->url[0][1];
-			return \lib\utility\shortURL::decode($url);
+			if($_type == "decode")
+			{
+				return \lib\utility\shortURL::decode($url);
+			}
+			else
+			{
+				return $url;
+			}
 		}
 		else
 		{
-			\lib\debug::error(T_("poll id not found"));
+			// \lib\debug::error(T_("poll id not found"));
 			return false;
 		}
 	}
@@ -360,7 +462,7 @@ class model extends \mvc\model
 	*/
 	function get_filter($_args)
 	{
-		$this->check_poll_url($_args);
+		$poll_survey_id = $this->check_poll_url($_args);
 		// list of adds filter
 		// get value from cash or user profile status
 		$add_filters =
@@ -419,10 +521,16 @@ class model extends \mvc\model
 		}
 
 		$result = \lib\db\filters::insert($args);
+		if(!$result)
+		{
+			$result = \lib\db\options::update_on_error($args);
+		}
 		if($result)
 		{
-			$short_url = $_args->match->url[0][1];
-			\lib\debug::true(T_("add filter of poll Success @/$short_url/publish"));
+			$short_url = $this->check_poll_url($_args, "encode");
+			\lib\debug::true(T_("add filter of poll Success"));
+			$this->redirector()->set_url("@/$short_url/publish");
+
 		}
 		else
 		{

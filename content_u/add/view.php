@@ -31,6 +31,17 @@ class view extends \mvc\view
 
 
 	/**
+	 * ready to load survey
+	 */
+	function view_survey($_args)
+	{
+		// enable survey mod to load buttom and something else
+		$this->data->survey_mod = true;
+		$poll_list = \lib\db\survey::get_poll_list($this->model()->check_poll_url($_args));
+		$this->data->poll_list = $poll_list;
+	}
+
+	/**
 	 * edit add
 	 *
 	 * @param      <type>  $_args      { parameter_description }
@@ -38,7 +49,7 @@ class view extends \mvc\view
 	function view_edit($_args)
 	{
 		$this->data->form_edit = true;
-		$this->data->post_id = $_args->match->url[0][1];
+		$this->data->post_id = $this->model()->check_poll_url($_args);
 		$this->data->form_data = $_args->api_callback;
 	}
 
@@ -46,9 +57,10 @@ class view extends \mvc\view
 
 	function view_filter($_args)
 	{
-		if(isset($_args->match->url[0][1]))
+		$poll_survey_id = $this->model()->check_poll_url($_args);
+		if($poll_survey_id)
 		{
-			$this->data->poll_id = $_args->match->url[0][1];
+			$this->data->poll_id = $poll_survey_id;
 
 			$this->data->filter_form = true;
 			$this->data->add_filters = $_args->api_callback['add_filters'];

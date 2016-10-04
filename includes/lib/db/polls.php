@@ -164,10 +164,19 @@ class polls
 		{
 			$title = $_args['title'];
 		}
+		// check parent
+		if(!isset($_args['parent']))
+		{
+			$parent = null;
+		}
+		else
+		{
+			$parent = $_args['parent'];
+		}
 		// check meta
 		if(!isset($_args['meta']))
 		{
-			$meta = '';
+			$meta = null;
 		}
 		else
 		{
@@ -176,7 +185,7 @@ class polls
 		// check content
 		if(!isset($_args['content']))
 		{
-			$content = '';
+			$content = null;
 		}
 		else
 		{
@@ -185,7 +194,7 @@ class polls
 		// check type
 		if(!isset($_args['type']))
 		{
-			$type = "poll_private_select";
+			return false;
 		}
 		else
 		{
@@ -203,7 +212,7 @@ class polls
 		// check publish_date
 		if(!isset($_args['publish_date']))
 		{
-			$publish_date = '';
+			$publish_date = null;
 		}
 		else
 		{
@@ -218,8 +227,9 @@ class polls
 			'post_slug'        => $slug,
 			'post_url'         => time(). '_'. $user_id, // insert post id ofter insert record
 			'post_content'     => $content,
-			'post_type'        => 'poll_' . $type,
+			'post_type'        => $type,
 			'post_status'      => $status,
+			'post_parent'      => $parent,
 			'post_meta'        => $meta,
 			'post_publishdate' => $publish_date
 		];
@@ -459,6 +469,20 @@ class polls
 		{
 			return $title;
 		}
+	}
+
+
+	/**
+	 * Gets the poll url.
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll url.
+	 */
+	public static function get_poll_url($_poll_id)
+	{
+		$result = self::get_poll($_poll_id);
+		return $result['url'];
 	}
 
 
