@@ -26,7 +26,7 @@
  {%if poll_list %}
     <h5>poll list</h5>
         {%for key, value in poll_list%}
-            <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+            <li><a href="{{base.url}}/{{value.url}}?preview=yes">{{value.title}}</a></li>
         {%endfor%}
     {%endif%}
 <div class="row auto">
