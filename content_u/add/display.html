@@ -21,8 +21,8 @@
         </div>
     </div>
 {%endfor%}
-
 {%if form_add or survey_mod %}
+<!-- list of poll saved in this survey -->
  {%if poll_list %}
     <h5>poll list</h5>
         {%for key, value in poll_list%}
@@ -157,22 +157,21 @@
 {%endif%}
 
 {% if filter_form %}
-<form  method="post">
-    {%for key, value in add_filters %}
-        {{value}}:<input type="text" name="{{value}}"><br>
+<form  method="post"  class="form inline">
+    {%for key, value in filter_list %}
+        <h3>{{key}}</h3>
+        {%for k, v in value %}
+            <div class="field">
+                <label>{{v}}</label>
+                <input type="text" name="{{v}}"><br>
+            </div>
+        {%endfor%}
     {%endfor%}
+<div class="field">
+    <label></label>
+    <input type="submit" value="انتشار">
+</div>
 
-    {%for key, value in user_detail_filter %}
-       {{key}}: <select name="{{key}}">
-            {%for k, v in value%}
-                <option value="{{v}}">{{v}}</option>
-            {%endfor%}
-                <option value="">سایر</option>
-        </select>
-        <br>
-    {%endfor%}
-
-<input type="submit" value="انتشار">
 </form>
 {%endif%}
 

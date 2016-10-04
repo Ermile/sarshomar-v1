@@ -61,10 +61,8 @@ class view extends \mvc\view
 		if($poll_survey_id)
 		{
 			$this->data->poll_id = $poll_survey_id;
-
 			$this->data->filter_form = true;
-			$this->data->add_filters = $_args->api_callback['add_filters'];
-			$this->data->user_detail_filter = $_args->api_callback['user_detail_filter'];
+			$this->data->filter_list = $_args->api_callback;
 		}
 	}
 }

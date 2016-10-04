@@ -461,48 +461,9 @@ class model extends \mvc\model
 	*/
 	function get_filter($_args)
 	{
-		$poll_survey_id = $this->check_poll_url($_args);
 		// list of adds filter
-		// get value from cash or user profile status
-		$add_filters =
-		[
-			'age_min',
-			'age_max',
-			'members_min',
-			'members_max',
-			'public_answer',
-			'date_start',
-			'date_end',
-			'time_start',
-			'time_end',
-			'count_true'
-		];
-
-		// get user detail filter
-		// example gender, age, city , ...
-		$user_detail_filter = \lib\db\filters::get();
-		if(!is_array($user_detail_filter))
-		{
-			$user_detail_filter = [];
-		}
-
-		$filters = [];
-		foreach ($user_detail_filter as $key => $value)
-		{
-			if(!isset($filters[$value['key']]))
-			{
-				$filters[$value['key']] = [$value['value']];
-			}
-			else
-			{
-				array_push($filters[$value['key']], $value['value']);
-			}
-		}
-
-		$result['user_detail_filter'] = $filters;
-		$result['add_filters'] = $add_filters;
-
-		return $result;
+		$filter_list = \lib\db\filters::get();
+		return $filter_list;
 	}
 
 

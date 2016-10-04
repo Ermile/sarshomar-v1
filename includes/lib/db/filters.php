@@ -10,23 +10,29 @@ class filters
 	 */
 	public static function get()
 	{
-		$query =
-		"
-			SELECT
-				options.option_key 		AS 'key',
-				options.option_value 	AS 'value'
-			FROM
-				options
-			WHERE
-				options.post_id IS NULL AND
-				options.user_id IS NOT NULL AND
-				options.option_cat LIKE 'user_detail_%'
-			GROUP BY
-				options.option_key,
-				options.option_value
-		";
 
-		return \lib\db::get($query);
+		$filters =
+		[
+			"public" =>
+			[
+				"min_member",
+				"max_member",
+				"age_range",
+				"gender"
+			],
+			"education" =>
+			[
+				"illiterate",
+				"illetrate",
+				"With literacy"
+			],
+			"family" =>
+			[
+				"single",
+				"marriade"
+			]
+		];
+		return $filters;
 	}
 
 
