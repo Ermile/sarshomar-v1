@@ -436,8 +436,7 @@ class model extends \mvc\model
 	 */
 	public function check_poll_url($_args, $_type = "decode")
 	{
-
-		if(isset($_args->match->url[0][1]))
+		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
 		{
 			$url = $_args->match->url[0][1];
 			if($_type == "decode")
