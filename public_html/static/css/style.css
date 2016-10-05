@@ -35,18 +35,9 @@
     content: "\63";
 }
 
-
 /*In the Name of God*/
-
 body {
-    background-color: #F4F4F4
-}
-
-
-/* header */
-
-header.container {
-    margin-top: 2em;
+  background-color: #0E6678;
 }
 
 header>nav {
@@ -162,8 +153,16 @@ header>nav>.register:hover>span {
 }
 
 header>.logo {
-    float: right;
-    direction: rtl
+  float: right;
+  direction: rtl;
+  background-color: #0e6678;
+  /* background-color: #F4F4F4; */
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  padding: 15px;
+  -webkit-border-image: url(/static/images/border.png) 8 stretch;
+  -o-border-image: url(/static/images/border.png) 8 stretch;
+  border-image: url(/static/images/border.png) 8 stretch;
 }
 
 header>.logo>img {
@@ -395,9 +394,12 @@ header>.logo>h1 {
 
 
 /* footer */
-
 footer {
-    background-color: #404040
+    background-color: #123B43;
+    border-top: 8px solid transparent;
+    -webkit-border-image: url(/static/images/border.png) 8 stretch;
+    -o-border-image: url(/static/images/border.png) 8 stretch;
+    border-image: url(/static/images/border.png) 8 stretch;
 }
 
 footer .container {
@@ -993,6 +995,11 @@ footer .eco img {
     padding: 3em 0 2em
 }
 
+/*Temporary*/
+.results-box .results {
+  margin-top: 1em;
+}
+
 .tabs {
     background-color: #EFF0F9;
     display: inline-block;
@@ -1314,9 +1321,11 @@ footer .eco img {
         Inputs
 ---------------------*/
 
+.form-group {
+  margin-bottom: 2em;
+}
 
 /*input-group*/
-
 .form-group .input-group {
     position: relative;
     display: inline-table;
@@ -1327,7 +1336,6 @@ footer .eco img {
 
 
 /*input-group-addon*/
-
 .form-group .input-group .input-group-addon {
     display: table-cell;
     font-size: 14px;
@@ -1351,7 +1359,6 @@ footer .eco img {
 
 
 /*form-control*/
-
 .form-group .input-group .form-control {
     position: relative;
     display: table-cell;
@@ -1396,24 +1403,24 @@ footer .eco img {
 }
 
 .form-group .input-group .form-control:focus {
-    background-color: #27A4BD;
-    color: #8ECBD7;
+    background-color: #00667A;
+    color: #d8dad0;
 }
 
 .form-group .input-group .form-control:focus::-webkit-input-placeholder {
-    color: #8ECBD7;
+    color: #d8dad0;
 }
 
 .form-group .input-group .form-control:focus:-moz-placeholder {
-    color: #8ECBD7;
+    color: #d8dad0;
 }
 
 .form-group .input-group .form-control:focus::-moz-placeholder {
-    color: #8ECBD7;
+    color: #d8dad0;
 }
 
 .form-group .input-group .form-control:focus:-ms-input-placeholder {
-    color: #8ECBD7;
+    color: #d8dad0;
 }
 
 .form-group .input-group .input-group-icon {
@@ -1430,21 +1437,19 @@ footer .eco img {
 
 
 /*temporary*/
-
 .form-group .input-group .input-group-icon * {
     vertical-align: middle;
 }
 
 
 /*temporary*/
-
 .form-group .input-group.icon-hover .input-group-icon {
     color: #27A4BD;
 }
 
 .form-group .input-group .form-control:focus+.input-group-icon {
-    background-color: #27A4BD;
-    color: #8ECBD7;
+    background-color: #00667a;
+    color: #d8dad0;
 }
 
 .form-group .input-group .input-group-icon:hover {
@@ -1452,11 +1457,12 @@ footer .eco img {
 }
 
 .form-group .input-group .input-group-title {
-    background-color: #27A4BD;
-    color: #8ECBD7;
+    background-color: #00667a;
+    color: #d8dad0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    max-width: 60px;
+    /*temporary*/
+    width: 100px;
 }
 
 .rtl .form-group .input-group .input-group-title {
@@ -1501,12 +1507,12 @@ footer .eco img {
 /*temporary*/
 
 .form-group .input-group.focus .form-control {
-    background-color: #27A4BD;
+    background-color: #00667a;
 }
 
 .form-group .input-group.focus .form-control+.input-group-icon {
-    background-color: #27A4BD;
-    color: #8ECBD7;
+    background-color: #00667a;
+    color: #d8dad0;
 }
 
 
@@ -1757,7 +1763,7 @@ footer .eco img {
 }
 
 .ac-custom {
-	padding: 0 3em;
+	/*padding: 0 3em;*/
 	max-width: 900px;
 	margin: 0 auto;
 }
@@ -1779,17 +1785,17 @@ footer .eco img {
 
 .ac-custom li {
 	margin: 0 auto;
-	padding: 2em 0;
+	/*padding: 2em 0;*/
 	position: relative;
 }
 
 .ac-custom label {
 	display: inline-block;
 	position: relative;
-	font-size: 2em;
-	padding: 0 0 0 80px;
+	font-size: 1.2em;
+	padding: 0 0 0 35px;
 	vertical-align: top;
-	color: rgba(0,0,0,0.2);
+	color: #767676;
 	cursor: pointer;
 	-webkit-transition: color 0.3s;
 	transition: color 0.3s;
@@ -1816,11 +1822,21 @@ footer .eco img {
 	z-index: 100;
 }
 
+.ac-custom input[type="checkbox"]:hover + label::before,
+.ac-custom input[type="radio"]:hover + label::before {
+  background-color: #0A5260;
+}
+
+.ac-custom input[type="checkbox"]:focus + label::before,
+.ac-custom input[type="radio"]:focus + label::before {
+  background-color: #E5A428;
+}
+
 .ac-custom label::before {
 	content: '';
-	border: 4px solid #fff;
 	-webkit-transition: opacity 0.3s;
-	transition: opacity 0.3s;
+	transition: opacity, background-color 0.3s;
+  background-color: #E6E6E6;
 }
 
 .ac-radio label::before {
@@ -1829,12 +1845,13 @@ footer .eco img {
 
 .ac-custom input[type="checkbox"]:checked + label,
 .ac-custom input[type="radio"]:checked + label {
-	color: #fff;
+	color: #767676;
 }
 
 .ac-custom input[type="checkbox"]:checked + label::before,
 .ac-custom input[type="radio"]:checked + label::before {
 	opacity: 0.8;
+  background-color: #E5A428;
 }
 
 /* General SVG and path styles */
@@ -1844,13 +1861,13 @@ footer .eco img {
 	width: 20px;
 	height: 20px;
 	top: 50%;
-	margin-top: -10px;
+	margin-top: -9px;
 	left: 0px;
 	pointer-events: none;
 }
 
 .ac-custom svg path {
-	stroke: #fdfcd3;
+	stroke: #00667A;
 	stroke-width: 13px;
 	stroke-linecap: round;
 	stroke-linejoin: round;
@@ -1866,24 +1883,24 @@ footer .eco img {
 	width: 20px;
 	height: 20px;
 	margin-top: -10px;
-	left: 10px;
+	left: 0px;
 	position: absolute;
 }
 
 .ac-circle label::before {
-	background-color: #fff;
+	background-color: #E6E6E6;
 	border: none;
 }
 
 .ac-circle svg {
-	width: 50px;
+	width: 35px;
 	height: 50px;
 	margin-top: -25px;
-	left: -5px;
+	left: -8px;
 }
 
 .ac-circle svg path {
-	stroke-width: 5px;
+	stroke-width: 8px;
 }
 
 /* Box Fill */
@@ -1931,10 +1948,18 @@ footer .eco img {
 }
 
 .ac-checkbox.ac-checkmark svg {
-  width: 30px;
+  width: 25px;
   height: 30px;
   margin-top: -20px;
   left: 0px;
+}
+
+.ac-checkbox.ac-cross svg path {
+  stroke-width: 15px;
+}
+
+.ac-checkbox.ac-checkmark svg path, .ac-checkbox.ac-diagonal svg path {
+  stroke-width: 16px;
 }
 
 /* Media Queries */

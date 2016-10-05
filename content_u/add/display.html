@@ -2,6 +2,13 @@
 
 {%block head_css%}
 <style type="text/css">
+body {
+  background-color: #00667A;
+}
+body > .container {
+  background-color: #F4F4F4;
+  padding: 7em 0;
+}
 #add .add { box-shadow: 0 0 1px #888888; margin-top: 1em; background-color: #FFFFFF; border-radius: 2px; font-size: 2em; transition: all .3s ease }
 #add .add:hover { box-shadow: 0 0 3px #888888 }
 #add .add a { font-size: 1em; color: #666666; display: block; padding: 1em .5em }
@@ -9,6 +16,176 @@
 {%endblock%}
 
 {%block content%}
+<div class="container">
+  <div class="row">
+    <!-- <div class="span2"></div>
+    <div class="span4">
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="poll_type">Poll Type</label>
+          <select class="form-control" name="poll_type" id="poll_type">
+            <option>{% trans "Select" %}</option>
+            <option>{% trans "Notify" %}</option>
+            <option>{% trans "Text" %}</option>
+            <option>{% trans "Upload" %}</option>
+            <option>{% trans "Star" %}</option>
+            <option>{% trans "Number" %}</option>
+            <option>{% trans "Media_image" %}</option>
+            <option>{% trans "Media_video" %}</option>
+            <option>{% trans "Media_audio" %}</option>
+            <option>{% trans "Order" %}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="title">Title</label>
+          <input class="form-control" type="text" name="title" id="title" placeholder='{% trans "Please enter title here" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="content">Content</label>
+          <input class="form-control" type="text" name="content" id="content" placeholder='{% trans "Please enter content here" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answer_type">Answer Type</label>
+          <select class="form-control" name="answer_type[]" id="answer_type">
+            <option>Select</option>
+            <option>Media_image</option>
+            <option>Media_video</option>
+            <option>Media_audio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <section>
+        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+        		<ul>
+        			<li><input id="cb6" name="cb6" type="checkbox"><label for="cb6">True Answer</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+        		</ul>
+        	</form>
+        </section>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answer_point">Point</label>
+          <input class="form-control" type="text" name="answer_point[]" id="answer_point" placeholder='{% trans "Please enter answer point" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answers">Answer 1</label>
+          <input class="form-control" type="text" name="answers[]" id="answers" placeholder='{% trans "Please enter answer 1" %}'>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answer_type2">Answer Type</label>
+          <select class="form-control" name="answer_type[]" id="answer_type2">
+            <option>Select</option>
+            <option>Media_image</option>
+            <option>Media_video</option>
+            <option>Media_audio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <section>
+        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+        		<ul>
+        			<li><input id="cb7" name="cb7" type="checkbox"><label for="cb7">True Answer</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+        		</ul>
+        	</form>
+        </section>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answer_point2">Point</label>
+          <input class="form-control" type="text" name="answer_point[]" id="answer_point2" placeholder='{% trans "Please enter answer point" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="answers2">Answer 2</label>
+          <input class="form-control" type="text" name="answers[]" id="answers2" placeholder='{% trans "Please enter answer 1" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="language">Language</label>
+          <input class="form-control" type="text" name="language" id="language" placeholder='{% trans "Please enter language" %}'>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="publish_date">Language</label>
+          <input class="form-control" type="text" name="publish_date" id="publish_date" value="2016-10-04">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <section>
+        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+        		<ul>
+        			<li><input id="cb8" name="cb8" type="checkbox"><label for="cb8">Can Update</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+        		</ul>
+        	</form>
+        </section>
+      </div>
+
+      <div class="form-group">
+        <section>
+        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+        		<ul>
+        			<li><input id="cb9" name="cb9" type="checkbox"><label for="cb9">Can Remove</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+        		</ul>
+        	</form>
+        </section>
+      </div>
+
+      <div class="form-group">
+        <section>
+        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+        		<ul>
+        			<li><input id="cb10" name="cb10" type="checkbox"><label for="cb10">Can Stop</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+        		</ul>
+        	</form>
+        </section>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-addon input-group-title" for="summary">Summary</label>
+          <input class="form-control" type="text" name="summary" id="summary" placeholder='{% trans "Please enter summary" %}'>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br> -->
 {%for key , value in datatable%}
     <div class="container">
         <div class="row auto">
@@ -48,6 +225,7 @@
                     <option>order</option>
                 </select>
             </div>
+            <!-- here -->
             <div class="field">
                 <label>title</label>
                 <input type="text" name="title">
@@ -184,7 +362,9 @@
 {%endblock%}
 
 
-
+{% block foot_js %}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+{%endblock%}
 
 
 {%block sp_tag%}
