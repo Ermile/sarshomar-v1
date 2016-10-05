@@ -1,190 +1,109 @@
-{% extends display.mvc %}
+{%extends display.main%}
 
-{% block head_css %}
-<style media="screen">
-body {
-  background-color: #FFF;
-}
-.form-group {
-  margin-bottom: 5em;
-}
-</style>
-{% endblock %}
+{%block head_css%}{% endblock %}
+{% block foot_js %}{% endblock %}
 
 {% block content %}
-{% include template.header %}
-<div class="elements">
-  <div class="container">
-    <div class="row">
-      <div class="span6">
+<div class="container">
+  <div class="row auto">
+    <div class="span6">
+      <h1>{%trans "Elements"%}</h1>
+      <h2>{%trans "Input"%}</h2>
+      <h3>{%trans "Basic"%}</h3>
 
-        <h1>{% trans "Elements" %}</h1>
-        <h2>{% trans "Input" %}</h2>
-
-        <h3>{% trans "Basic" %}</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" type="text">
-          </div>
-        </div>
-
-        <h3>{% trans "Basic with placeholder" %}</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
-          </div>
-        </div>
-
-        <h3>{% trans "Basic with placeholder and icon" %}</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Basic with placeholder and icon hover" %}</h3>
-        <div class="form-group">
-          <div class="input-group icon-hover">
-            <input class="form-control" type="text" placeholder='{% trans "Please enter text" %}'>
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Primary with icon" %}</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <label class="input-group-addon input-group-title" for="input_01">Question Title</label>
-            <input class="form-control" type="text" id="input_01">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Primary with icon and placeholder" %}</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <label class="input-group-addon input-group-title" for="input_02">Question Title</label>
-            <input class="form-control" type="text" id="input_02" placeholder='{% trans "Please enter text" %}'>
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Primary focus state" %}</h3>
-        <div class="form-group">
-          <div class="input-group focus">
-            <label class="input-group-addon input-group-title" for="input_03">Question Title</label>
-            <input class="form-control" type="text" id="input_03">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Success" %}</h3>
-        <div class="form-group">
-          <div class="input-group option success">
-            <label class="input-group-addon input-group-title" for="input_04">Option 1</label>
-            <input class="form-control" type="text" id="input_04" value="Why men marry women?">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Warn" %}</h3>
-        <div class="form-group">
-          <div class="input-group option warn">
-            <label class="input-group-addon input-group-title" for="input_05">Option 1</label>
-            <input class="form-control" type="text" id="input_05" value="Why men marry women?">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Fail" %}</h3>
-        <div class="form-group">
-          <div class="input-group option fail">
-            <label class="input-group-addon input-group-title" for="input_06">Option 1</label>
-            <input class="form-control" type="text" id="input_06" value="Why men marry women?">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <h3>{% trans "Disabled" %}</h3>
-        <div class="form-group">
-          <div class="input-group option disabled">
-            <label class="input-group-addon input-group-title" for="input_07">Option 1</label>
-            <input class="form-control" type="text" id="input_07" value="Why men marry women?" disabled="">
-            <div class="input-group-addon input-group-icon">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="row auto">
-          <div class="span6"></div>
-          <div class="span6">
-
-            <div class="form-group">
-              <div class="input-group">
-                <label class="input-group-addon input-group-title" for="input_08">Question</label>
-                <input class="form-control" type="text" id="input_08" value="Why men marry women?">
-                <div class="input-group-addon input-group-floating">
-                  <button type="button" name="button">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group">
-                <label class="input-group-addon input-group-title" for="input_09">{% trans "Tags" %}</label>
-                <input class="form-control" type="text" id="input_09">
-                <div class="input-group-addon input-group-btn">
-                  <button type="button" name="button">{% trans "Add" %}</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group">
-                <label class="input-group-addon input-group-title" for="input_10">{% trans "Tags" %}</label>
-                <input class="form-control" type="text" id="input_10">
-                <div class="input-group-addon input-group-btn">
-                  <button type="button" name="button">{% trans "Add" %}</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group">
-                <label class="input-group-addon input-group-title" for="input_11">{% trans "Slug" %}</label>
-                <input class="form-control" type="text" id="input_11" value="http://link.com/short">
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+      <div class="input">
+        <input type="text">
       </div>
-      <div class="span6"></div>
+
+      <h3>{%trans "Basic with placeholder"%}</h3>
+      <div class="input">
+        <input type="text" placeholder='{%trans "Please enter text"%}'>
+      </div>
+
+      <h3>{%trans "Basic with placeholder and icon"%}</h3>
+      <div class="input">
+        <input type="text" placeholder='{%trans "Please enter text"%}'>
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Primary with icon"%}</h3>
+      <div class="input">
+        <label class="addon" for="input_01">Question Title</label>
+        <input type="text" id="input_01">
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Primary with icon and placeholder"%}</h3>
+      <div class="input">
+        <label class="addon" for="input_02">Question Title</label>
+        <input type="text" id="input_02" placeholder='{%trans "Please enter text"%}'>
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Success"%}</h3>
+      <div class="input option success">
+        <label class="addon" for="input_04">Option 1</label>
+        <input type="text" id="input_04" value='{%trans "Why men marry women?"%}'>
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Warn"%}</h3>
+      <div class="input option warn">
+        <label class="addon" for="input_05">Option 1</label>
+        <input type="text" id="input_05" value='{%trans "Why men marry women?"%}'>
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Fail"%}</h3>
+      <div class="input option fail">
+        <label class="addon" for="input_06">Option 1</label>
+        <input type="text" id="input_06" value='{%trans "Why men marry women?"%}'>
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <h3>{%trans "Disabled"%}</h3>
+      <div class="input option disabled">
+        <label class="addon" for="input_07">Option 1</label>
+        <input type="text" id="input_07" value='{%trans "Why men marry women?"%}' disabled="">
+        <span class="addon icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+      </div>
+
+      <div class="row auto">
+        <div class="span6"></div>
+        <div class="span6">
+
+          <div class="input">
+            <label class="addon" for="input_08">Question</label>
+            <input type="text" id="input_08" value='{%trans "Why men marry women?"%}'>
+            <span class="addon floating">
+              <span><i class="fa fa-check" aria-hidden="true"></i></span>
+            </span>
+          </div>
+
+          <div class="input">
+            <label class="addon" for="input_09">{%trans "Tags"%}</label>
+            <input type="text" id="input_09">
+            <span class="addon btn">
+              <button type="button" name="button">{%trans "Add"%}</button>
+            </span>
+          </div>
+
+          <div class="input">
+            <label class="addon" for="input_10">{%trans "Tags"%}</label>
+            <input type="text" id="input_10">
+            <div class="addon btn">
+              <button type="button" name="button">{%trans "Add"%}</button>
+            </div>
+          </div>
+
+          <div class="input">
+            <label class="addon" for="input_11">{%trans "Slug"%}</label>
+            <input class="text-left" type="text" id="input_11" value="http://link.com/short">
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
-{% include template.footer %}
-{% endblock %}
-
-{% block foot_js %}
 {% endblock %}

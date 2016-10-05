@@ -38,6 +38,18 @@
   content: "\63";
 }
 
+/* Standard border image for whole site */
+.border-image {
+  -webkit-border-image: url(/static/images/border.png) 8 stretch;
+       -o-border-image: url(/static/images/border.png) 8 stretch;
+          border-image: url(/static/images/border.png) 8 stretch;
+}
+
+/* Make text left aligned */
+.text-left {
+  text-align: left;
+}
+
 body {
   background-color: #00667A;
 }
@@ -46,18 +58,12 @@ body {
   background-color: #F4F4F4;
   border-right: 8px solid transparent;
   border-left: 8px solid transparent;
-  -webkit-border-image: url(/static/images/border.png) 8 stretch; /* Safari 3.1-5 */
-       -o-border-image: url(/static/images/border.png) 8 stretch; /* Opera 11-12.1 */
-          border-image: url(/static/images/border.png) 8 stretch;
   margin-bottom: -4px;
 }
 
 header {
   background-color: #F4F4F4;
   border-left: 8px solid transparent;
-  -webkit-border-image: url(/static/images/border.png) 8 stretch; /* Safari 3.1-5 */
-       -o-border-image: url(/static/images/border.png) 8 stretch; /* Opera 11-12.1 */
-          border-image: url(/static/images/border.png) 8 stretch;
 }
 
 header>nav {
@@ -175,13 +181,12 @@ header>.logo {
   float: right;
   direction: rtl;
   background-color: #0e6678;
-  /* background-color: #F4F4F4; */
   border-left: 8px solid transparent;
   border-bottom: 8px solid transparent;
   padding: 15px;
-  -webkit-border-image: url(/static/images/border.png) 8 stretch;
-  -o-border-image: url(/static/images/border.png) 8 stretch;
-  border-image: url(/static/images/border.png) 8 stretch;
+  -webkit-border-image: url(/static/images/border-header.png) 8 stretch;
+       -o-border-image: url(/static/images/border-header.png) 8 stretch;
+          border-image: url(/static/images/border-header.png) 8 stretch;
 }
 
 header>.logo>img {
@@ -194,7 +199,8 @@ header>.logo>h1 {
   font-size: 2em;
   vertical-align: super;
   color: #3e96ae;
-  margin-bottom: 0
+  margin-bottom: 0;
+  line-height: 1;
 }
 
 #home header.container {
@@ -212,7 +218,6 @@ header>.logo>h1 {
 
 
 /* logotype */
-
 .logotype {
   text-align: center
 }
@@ -417,9 +422,6 @@ header>.logo>h1 {
 footer {
   background-color: #123B43;
   border-top: 8px solid transparent;
-  -webkit-border-image: url(/static/images/border.png) 8 stretch;
-  -o-border-image: url(/static/images/border.png) 8 stretch;
-  border-image: url(/static/images/border.png) 8 stretch;
 }
 
 footer .container {
@@ -1346,59 +1348,24 @@ footer .eco img {
         Inputs
 ---------------------*/
 
-.form-group {
-  margin-bottom: 2em;
-}
-
-
-/*input-group*/
-
-.form-group .input-group {
+.input {
   position: relative;
   display: inline-table;
   border-collapse: separate;
   vertical-align: middle;
   width: 100%;
+  margin-bottom: 5em;
 }
 
-
-/*input-group-addon*/
-
-.form-group .input-group .input-group-addon {
-  display: table-cell;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  background-color: #EEE;
-  white-space: nowrap;
-  vertical-align: middle;
-  border-right: 0;
-}
-
-.form-group .input-group .input-group-addon:first-child {
-  border-right: 0;
-}
-
-.rtl .form-group .input-group .input-group-addon:first-child {
-  border-left: 0;
-}
-
-
-/*form-control*/
-
-.form-group .input-group .form-control {
+.input input {
   position: relative;
   display: table-cell;
   width: 100%;
   height: 35px;
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.42857143;
   color: #777;
   background-color: #E7E7E7;
-  background-image: none;
   border: none;
   border-radius: 0;
   margin-bottom: 0;
@@ -1407,11 +1374,7 @@ footer .eco img {
   transition: all 0.2s;
 }
 
-.form-group .input-group .form-control:not(:first-child):not(:last-child) {
-  border-radius: 0;
-}
-
-.rtl .form-group .input-group .form-control {
+.rtl .input input {
   float: right;
 }
 
@@ -1431,79 +1394,74 @@ footer .eco img {
   color: #CFCFCF;
 }
 
-.form-group .input-group .form-control:focus {
+.input input:focus {
   background-color: #00667A;
   color: #d8dad0;
 }
 
-.form-group .input-group .form-control:focus::-webkit-input-placeholder {
+.input .addon {
+  display: table-cell;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #E7E7E7;
+}
+
+.input input:focus::-webkit-input-placeholder {
   color: #d8dad0;
 }
 
-.form-group .input-group .form-control:focus:-moz-placeholder {
+.input input:focus:-moz-placeholder {
   color: #d8dad0;
 }
 
-.form-group .input-group .form-control:focus::-moz-placeholder {
+.input input:focus::-moz-placeholder {
   color: #d8dad0;
 }
 
-.form-group .input-group .form-control:focus:-ms-input-placeholder {
+.input input:focus:-ms-input-placeholder {
   color: #d8dad0;
 }
 
-.form-group .input-group .input-group-icon {
+.input .icon {
   background-color: #E7E7E7;
   color: #CFCFCF;
   font-size: 25px;
   width: 25px;
   transition: all 0.2s;
-  padding: 0 7px;
-  vertical-align: middle;
-  /*temporary*/
-  padding-top: 1px;
+  padding: 1px 7px 0;
 }
 
-
-/*temporary*/
-
-.form-group .input-group .input-group-icon * {
+.input .icon .fa {
   vertical-align: middle;
 }
 
-
-/*temporary*/
-
-.form-group .input-group.icon-hover .input-group-icon {
-  color: #27A4BD;
-}
-
-.form-group .input-group .form-control:focus+.input-group-icon {
+.input input:focus + .icon {
   background-color: #00667a;
   color: #d8dad0;
 }
 
-.form-group .input-group .input-group-icon:hover {
+.input .icon:hover {
   color: #27A4BD;
 }
 
-.form-group .input-group .input-group-title {
-  background-color: #00667a;
+.input label {
+  background-color: #00667a !important;
   color: #d8dad0;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  /*temporary*/
   width: 100px;
 }
 
-.rtl .form-group .input-group .input-group-title {
+.rtl .input label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.form-group .input-group .input-group-title:before {
+.input label:before {
   content: "";
   width: 13px;
   height: 25px;
@@ -1520,7 +1478,7 @@ footer .eco img {
   transform: rotate(180deg);
 }
 
-.rtl .form-group .input-group .input-group-title:before {
+.rtl .input label:before {
   right: auto;
   left: 100%;
   -webkit-transform: none;
@@ -1530,134 +1488,110 @@ footer .eco img {
   transform: none;
 }
 
-.form-group .input-group.option .input-group-title {
+.input.option label {
   max-width: 45px;
 }
 
-
-/*temporary*/
-
-.form-group .input-group.focus .form-control {
-  background-color: #00667a;
-}
-
-.form-group .input-group.focus .form-control+.input-group-icon {
-  background-color: #00667a;
-  color: #d8dad0;
-}
-
-
-/*success state*/
-
-.form-group .input-group.success .form-control {
+.input.success input {
   background-color: #D9F1DA;
   border: 1px solid #6FD36B;
   border-right: none;
 }
 
-.rtl .form-group .input-group.success .form-control {
+.rtl .input.success input {
   border-right: 1px solid #6FD36B;
   border-left: none;
 }
 
-.form-group .input-group.success .form-control+.input-group-icon {
+.input.success input + .icon {
   background-color: #D9F1DA;
   color: #6FD36B;
   border: 1px solid #6FD36B;
   border-left: none;
 }
 
-.rtl .form-group .input-group.success .form-control+.input-group-icon {
+.rtl .input.success input + .icon {
   border-left: 1px solid #6FD36B;
   border-right: none;
 }
 
-.form-group .input-group.success .form-control:focus {
+.input.success input:focus {
   color: #777;
 }
 
-
-/*warn state*/
-
-.form-group .input-group.warn .form-control {
+.input.warn input {
   background-color: #F1EAD9;
   border: 1px solid #D5A669;
   border-right: none;
 }
 
-.rtl .form-group .input-group.warn .form-control {
+.rtl .input.warn input {
   border-right: 1px solid #D5A669;
   border-left: none;
 }
 
-.form-group .input-group.warn .form-control+.input-group-icon {
+.input.warn input + .icon {
   background-color: #F1EAD9;
   color: #D5A669;
   border: 1px solid #D5A669;
   border-left: none;
 }
 
-.rtl .form-group .input-group.warn .form-control+.input-group-icon {
+.rtl .input.warn input + .icon {
   border-left: 1px solid #D5A669;
   border-right: none;
 }
 
-.form-group .input-group.warn .form-control:focus {
+.input.warn input:focus {
   color: #777;
 }
 
-
-/*fail state*/
-
-.form-group .input-group.fail .form-control {
+.input.fail input {
   background-color: #F0D8D8;
   border: 1px solid #E17C7C;
   border-right: none;
 }
 
-.rtl .form-group .input-group.fail .form-control {
+.rtl .input.fail input {
   border-right: 1px solid #E17C7C;
   border-left: none;
 }
 
-.form-group .input-group.fail .form-control+.input-group-icon {
+.input.fail input + .icon {
   background-color: #F0D8D8;
   color: #E17C7C;
   border: 1px solid #E17C7C;
   border-left: none;
 }
 
-.rtl .form-group .input-group.fail .form-control+.input-group-icon {
+.rtl .input.fail input + .icon {
   border-left: 1px solid #E17C7C;
   border-right: none;
 }
 
-.form-group .input-group.fail .form-control:focus {
+.input.fail input:focus {
   color: #777;
 }
 
-
-/*disabled state*/
-
-.form-group .input-group.disabled .input-group-title {
-  background-color: #D7D7D7;
-  color: #BEBEBE;
+.input.disabled label {
+  background-color: #D7D7D7 !important;
+  color: #BEBEBE !important;
 }
 
-.form-group .input-group.disabled .input-group-addon.input-group-title:before {
+.input.disabled label:before {
   background-image: url(/static/images/svg/input-before2.svg);
 }
 
-.form-group .input-group.disabled .form-control,
-.form-group .input-group.disabled .form-control+.input-group-icon {
+.input.disabled input,
+.input.disabled input + .icon {
   background-color: #D7D7D7;
   color: #BBBBBB;
 }
 
-.form-group .input-group .input-group-btn button {
+.input .btn button {
   display: block;
   background-color: #D7D7D7;
-  color: #878787;
+  color: #777;
   width: 100%;
   height: 35px;
   border: none;
@@ -1666,37 +1600,27 @@ footer .eco img {
   cursor: pointer;
 }
 
-.form-group .input-group .input-group-btn button:hover {
-  background-color: #27A4BD;
-  color: #97D2DD;
+.input .btn button:hover {
+  background-color: #00667a;
+  color: #d8dad0;
 }
 
-.form-group .input-group .input-group-floating button {
+.input .floating span {
   position: absolute;
   right: -15px;
-  top: 0;
   width: 25px;
   height: 25px;
+  line-height: 25px;
   top: 5px;
   border: none;
   background-color: #BBBBBB;
   color: #fff;
-  cursor: pointer;
   transition: all 0.2s;
 }
 
-.rtl .form-group .input-group .input-group-floating button {
+.rtl .input .floating span {
   right: auto;
   left: -15px;
-}
-
-.form-group .input-group .input-group-floating button:hover {
-  background-color: #27A4BD;
-  color: #97D2DD;
-}
-
-.form-group .input-group .input-group-floating .fa {
-  vertical-align: middle;
 }
 
 
