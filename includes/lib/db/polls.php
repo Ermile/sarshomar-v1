@@ -18,35 +18,34 @@ class polls
 	 */
 	public static function xget($_args = [])
 	{
+		$where = [];
 
 		// check post_type . if post_type is null return all type of posts
 		if(isset($_args['post_type']))
 		{
-			$post_type = " posts.post_type = '". $_args['post_type'] . "'";
+			$where[] = "posts.post_type = '". $_args['post_type'] . "'";
 		}
 		else
 		{
-			$post_type = " posts.post_type LIKE 'poll\_%'";
+			$where[] = "posts.post_type LIKE 'poll\_%'";
+		}
+
+		// check post_id
+		if(isset($_args['id']))
+		{
+			$where[] = "posts.id = ". $_args['id'];
 		}
 
 		// check post_status
 		if(isset($_args['post_status']))
 		{
-			$post_status = " AND posts.post_status = '" .$_args['post_status'] . "'";
-		}
-		else
-		{
-			$post_status = null;
+			$where[] = "posts.post_status = '" .$_args['post_status'] . "'";
 		}
 
 		// check users id , retrun post of one person or all person
 		if(isset($_args['user_id']))
 		{
-			$user_id = "AND posts.user_id = " . $_args['user_id'];
-		}
-		else
-		{
-			$user_id = null;
+			$where[] = "posts.user_id = " . $_args['user_id'];
 		}
 
 		if(isset($_args['filter']) && isset($_args['value']))
@@ -69,6 +68,7 @@ class polls
 			$join = "";
 		}
 
+		$where = join($where, " AND ");
 		// pagnation
 		$count_record =
 		"
@@ -78,9 +78,7 @@ class polls
 				posts
 				$join
 			WHERE
-				$post_type
-				$post_status
-				$user_id
+				$where
 		";
 
 		list($limit_start, $length) = \lib\db::pagnation($count_record, 10);
@@ -107,9 +105,7 @@ class polls
 					posts
 					$join
 				WHERE
-					$post_type
-					$post_status
-					$user_id
+					$where
 				ORDER BY posts.id DESC
 				$limit
 					";

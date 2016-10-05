@@ -536,6 +536,18 @@ class model extends \mvc\model
 			$publish_date = \lib\db\options::insert($publish_date[0]);
 		}
 
+		if(utility::post("article"))
+		{
+			$article =
+			[
+				'post_id' => $poll_survey_id,
+				'option_cat' => "poll_$poll_survey_id",
+				'option_key' => "article",
+				'option_value' => utility::post("article")
+			];
+			$article = \lib\db\options::insert($article);
+		}
+
 		$update_posts =
 		[
 			'post_status' => 'publish'

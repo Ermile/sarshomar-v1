@@ -46,13 +46,14 @@
                     	<p>والسلام ختم کلام</p>
                 	{% endif %}
                 </div>
-
-                <div class="read-more">
-                    <label>در همین رابطه بخوانید</label>
-                    <a href="#">
-                        <span data-hover="تناسب اندام چیست؟">تناسب اندام چیست؟</span>
-                    </a>
-                </div>
+                {%if article%}
+                    <div class="read-more">
+                        <label>در همین رابطه بخوانید</label>
+                        <a href="{{article[0].url}}">
+                            <span data-hover="{{article[0].title}}">{{article[0].title}}</span>
+                        </a>
+                    </div>
+                {%endif%}
             </section>
             <nav class="span4 related-questions">
                 <h3>سوالات مشابه</h3>

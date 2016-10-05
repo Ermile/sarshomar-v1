@@ -73,6 +73,20 @@ class view extends \mvc\view
 			$this->data->chart_type = 'column';
 
 			$this->data->filter = \lib\db\filters::get_poll_filter($post['id']);
+
+			// get article of this poll
+			$article =
+			[
+				'post_id' => $post['id'],
+				'option_cat' => "poll_". $post['id'],
+				'option_key' => "article",
+				'limit' => 1
+			];
+			$option_record = \lib\db\options::get($article);
+			if(isset($option_record[0]['id']))
+			{
+				$this->data->article = \lib\db\polls::xget(['id' => $option_record[0]['value'], 'post_type' => 'article']);
+			}
 		}
 		else
 		{
