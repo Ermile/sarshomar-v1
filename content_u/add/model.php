@@ -461,26 +461,43 @@ class model extends \mvc\model
 	*/
 	function get_filter($_args)
 	{
+
+		// $filters =
+		// [
+		// 	"gender" =>
+		// 	[
+		// 		"male"
+		// 	]
+		// ];
+
+		// $num = \lib\db\filters::count_filtered_member($filters);
 		// list of adds filter
-		$filter_list = \lib\db\filters::get();
+		$filter_list = \lib\db\filters::get_exist_filter();
 		return $filter_list;
 	}
 
 
 	public function post_filter($_args)
 	{
+		// get filter
+		$filter = array_filter(utility::post());
 
-		$args = [];
+		// get count member by tihs filter
+		$count_filtered_member = \lib\db\filters::count_filtered_member($filter);
+
+		if($count_filtered_member < 1)
+		{
+			debug::error(T_("max = $count_filtered_member and this is less than 100, remove some filter"));
+			return false;
+		}
 
 		$poll_id = $this->check_poll_url($_args);
-		$args['poll_id'] = $poll_id;
 
-		$filters = utility::post();
-		foreach ($filters as $key => $value) {
+		foreach ($filter as $key => $value) {
 			$args[$key] = $value;
 		}
 
-		$result = \lib\db\filters::insert($args);
+		$result = \lib\db\filters::insert($poll_id, $args);
 		if(!$result)
 		{
 			$result = \lib\db\options::update_on_error($args);
