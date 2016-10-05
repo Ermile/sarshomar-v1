@@ -59,6 +59,7 @@ body {
   border-right: 8px solid transparent;
   border-left: 8px solid transparent;
   margin-bottom: -4px;
+  min-height: 60vh;
 }
 
 header {
@@ -67,114 +68,26 @@ header {
 }
 
 header>nav {
-  float: left;
+  display: inline-block;
+  margin-top: 1.5em;
 }
 
 header>nav>a {
   position: relative;
-  display: inline-block;
-  margin: 1em auto;
+  display: block;
   outline: none;
   text-decoration: none;
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #808080;
-  text-align: center;
-  float: right;
+  font-size: 1.3em;
+  color: #035261;
+  padding: 0em 1.5em;
 }
 
 header>nav>a:not(:first-child) {
-  margin-right: 2em;
-  /* in LTR should be "margin-left" */
+  padding-top: 0.4em;
 }
 
-header>nav>.regular {
-  overflow: hidden;
-}
-
-header>nav>.regular>span {
-  position: relative;
-  display: inline-block;
-  -webkit-transition: -webkit-transform 0.3s;
-  -moz-transition: -moz-transform 0.3s;
-  transition: transform 0.3s;
-  padding: .2em 0;
-}
-
-header>nav>.regular>span::before {
-  position: absolute;
-  top: 100%;
-  content: attr(data-hover);
-  font-weight: 700;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-header>nav>.regular:hover {
-  outline: none;
-  color: #404040;
-}
-
-header>nav>.regular:hover>span {
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-
-header>nav>.register {
-  color: #FFF;
-  -webkit-perspective: 1000px;
-  -moz-perspective: 1000px;
-  perspective: 1000px;
-}
-
-header>nav>.register:hover {
-  color: #F4F4F4;
-}
-
-header>nav>.register>span {
-  position: relative;
-  display: inline-block;
-  padding: .2em 1.4em;
-  background-color: #c33137;
-  -webkit-transition: -webkit-transform 0.3s;
-  -moz-transition: -moz-transform 0.3s;
-  transition: transform 0.3s;
-  -webkit-transform-origin: 50% 0;
-  -moz-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  border-radius: .2em;
-}
-
-header>nav>.register>span::before {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ff323b;
-  content: attr(data-hover);
-  -webkit-transition: background-color 0.3s;
-  -moz-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-  -webkit-transform: rotateX(-90deg);
-  -moz-transform: rotateX(-90deg);
-  transform: rotateX(-90deg);
-  -webkit-transform-origin: 50% 0;
-  -moz-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-  border-radius: .2em;
-  padding-top: .2em;
-}
-
-header>nav>.register:hover>span {
-  -webkit-transform: rotateX(90deg) translateY(-22px);
-  -moz-transform: rotateX(90deg) translateY(-22px);
-  transform: rotateX(90deg) translateY(-22px);
+header>nav>a:hover {
+  color: #777;
 }
 
 header>.logo {
