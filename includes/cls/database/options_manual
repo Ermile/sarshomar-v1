@@ -133,6 +133,7 @@ post_id 	user_id		cat							key							value
 1			0			poll_(post_id)				time_start					8:00
 1			0			poll_(post_id)				time_end					14:00
 1			0			poll_(post_id)				count_true					500(person)
+1			0			poll_(post_id)				article						[post_id]
 
 --------------------------------------------------------------------------------------------------------- Question Detail
 1			0			poll_(post_id)				stat 						total					20000									OK

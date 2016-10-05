@@ -22,7 +22,7 @@ class polls
 		// check post_type . if post_type is null return all type of posts
 		if(isset($_args['post_type']))
 		{
-			$post_type = " posts.post_type = 'poll_". $_args['post_type'] . "'";
+			$post_type = " posts.post_type = '". $_args['post_type'] . "'";
 		}
 		else
 		{

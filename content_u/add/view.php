@@ -18,6 +18,12 @@ class view extends \mvc\view
 	function view_publish($_args)
 	{
 		$this->data->publish_form = true;
+		$this->data->short_url = $_args->api_callback;
+		$this->data->cat = \lib\db\cats::get("cat_poll");
+		// get article
+		$args =	['post_type' => 'article'];
+
+		$this->data->article = \lib\db\polls::xget($args);
 	}
 
 	/**

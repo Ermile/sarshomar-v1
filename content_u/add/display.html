@@ -361,7 +361,40 @@ body > .container {
 {%endif%}
 
 {% if publish_form %}
-    <form method="post" >
+    <form method="post" class="form inline" >
+        <div class="field">
+            <label>cat</label>
+            <select name="cat">
+                    <option value="">لطفا یکی را انتخاب کنید</option>
+                {%for key, value in cat%}
+                    <option value="{{value.id}}">{{value.title|raw}}</option>
+                {%endfor%}
+            </select>
+        </div>
+
+        <div class="field">
+            <label>article</label>
+            <select name="article">
+                    <option value="">لطفا یکی را انتخاب کنید</option>
+                {%for key, value in article%}
+                    <option value="{{value.id}}">{{value.title|raw}}</option>
+                {%endfor%}
+            </select>
+        </div>
+
+        <div class="field">
+            <label>date_start</label>
+            <input type="text" name="date_start">
+        </div>
+
+        <div class="field">
+            <label>date_end</label>
+            <input type="text" name="date_end">
+        </div>
+        <div class="field">
+            <label>short_url</label>
+            <input type="text" value="{{short_url}}">
+        </div>
         {{ block('sp_tag') }}
         <input type="submit" >
     </form>

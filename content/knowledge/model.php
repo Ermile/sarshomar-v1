@@ -75,7 +75,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::error(T("poll id not found"));
+			\lib\debug::error(T_("poll id not found"));
 			return false;
 		}
 
