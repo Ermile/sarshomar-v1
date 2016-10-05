@@ -1,20 +1,16 @@
-<header class="container">
-    <nav>
-        <a href="#" class="register">
-            <span data-hover='{%trans "Register"%}'>{%trans "Register"%}</span>
-        </a>
-        <a href="#" class="regular">
-            <span data-hover='{%trans "Links"%}'>{%trans "Links"%}</span>
-        </a>
-        <!-- <a href="#">{%trans "About Us"%}</a> -->
-        <a href="#" class="regular">
-            <span data-hover="راهنمایی">راهنمایی</span>
-        </a>
-    </nav>
-    {%if global.id != 'home'%}
-    <a href="/" class="logo">
-        <img src="{{url.static}}images/logo.svg">
-        <h1>{%trans "Sarshomar"%}</h1>
-    </a>
-    {%endif%}
-</header>
+ <header class="container">
+  <nav>
+   <a href="#" class="register"><span data-hover='{%trans "Register"%}'>{%trans "Register"%}</span></a>
+   <a href="#" class="regular"><span data-hover='{%trans "Links"%}'>{%trans "Links"%}</span></a>
+   <a href="#" class="regular"><span data-hover="راهنمایی">راهنمایی</span></a>
+  </nav>
+
+{%if global.id != 'home'%}
+  <a href="/" class="logo">
+   <img src="{{url.static}}images/logo.svg">
+   <h1>{%trans "Sarshomar"%}</h1>
+  </a>
+{%endif%}
+
+
+ </header>
