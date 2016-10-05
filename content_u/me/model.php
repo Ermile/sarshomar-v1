@@ -23,8 +23,10 @@ class model extends \mvc\model
 	 */
 	public function post_me()
 	{
+		$user_id = $this->login('id');
+
 		$displayname       = utility::post("displayname");
-		// $mobile            = utility::post("mobile");
+
 		$gender            = utility::post("gender");
 		$marrital_status   = utility::post("marrital_status");
 		$parental_status   = utility::post("parental_status");
@@ -51,8 +53,6 @@ class model extends \mvc\model
 
 		$args =
 		[
-			'displayname'       => $displayname,
-			// 'mobile'            => $mobile,
 			'gender'            => $gender,
 			'marrital_status'   => $marrital_status,
 			'parental_status'   => $parental_status,
@@ -77,17 +77,16 @@ class model extends \mvc\model
 			'language'          => $language
 		];
 
-		$me = \lib\db\me::set_me_data($this->login('id'), $args);
-
+		$displayname = \lib\db\users::set_displayname($user_id, $displayname);
+		$me = \lib\db\me::set_me_data($user_id, $args);
 		if($me)
 		{
-			\lib\debug::true(T_("me data updated"));
+			\lib\debug::true(T_("profile data updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("error in update me data"));
+			\lib\debug::error(T_("error in update profile data"));
 		}
-
 	}
 }
 ?>
