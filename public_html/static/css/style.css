@@ -1278,7 +1278,7 @@ footer .eco img {
   border-collapse: separate;
   vertical-align: middle;
   width: 100%;
-  margin-bottom: 5em;
+  margin-bottom: 2em;
 }
 
 .element .input {
@@ -1547,6 +1547,10 @@ footer .eco img {
   left: -15px;
 }
 
+.element-checkbox {
+  margin-bottom: 2em;
+}
+
 
 /*******************************
               Menu
@@ -1665,7 +1669,8 @@ footer .eco img {
 .ac-custom ol {
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
+  margin: 0;
   max-width: 800px;
 }
 
