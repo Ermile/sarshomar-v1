@@ -1,4 +1,4 @@
-{% extends display.mvc %}
+{% extends display.main %}
 {% block head_css %}
 <style media="screen">
     .add,
@@ -6,30 +6,11 @@
     .test {
         padding: 7em 0;
     }
-    header {
-      background-color: #F4F4F4;
-      border-left: 8px solid transparent;
-      padding: 15px;
-      -webkit-border-image: url(/static/images/border.png) 8 stretch; /* Safari 3.1-5 */
-           -o-border-image: url(/static/images/border.png) 8 stretch; /* Opera 11-12.1 */
-              border-image: url(/static/images/border.png) 8 stretch;
-    }
-    .body {
-      background-color: #F4F4F4;
-      border-right: 8px solid transparent;
-      border-left: 8px solid transparent;
-      padding: 15px;
-      -webkit-border-image: url(/static/images/border.png) 8 stretch; /* Safari 3.1-5 */
-           -o-border-image: url(/static/images/border.png) 8 stretch; /* Opera 11-12.1 */
-              border-image: url(/static/images/border.png) 8 stretch;
-      margin-bottom: -4px;
-    }
 </style>
 {% endblock %}
 {% block content %}
-{% include template.header %}
 
-<div class="body container">
+<div class="container">
   <div class="row auto add">
       <div class="type">
           <nav>
@@ -159,6 +140,7 @@
   </div>
 </div>
 
-{% include template.footer %} {% endblock %} {% block foot_js %}
+{% endblock %}
+{% block foot_js %}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {% endblock %}

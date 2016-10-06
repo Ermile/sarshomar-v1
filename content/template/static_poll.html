@@ -1,11 +1,6 @@
-{%extends display.mvc%}
-
-{%block head_css%}
-{%endblock%}
+{%extends display.main%}
 
 {%block content%}
-{% include template.header %}
-
 <div class="row question-box">
     <div class="container">
         <article class="row auto">
@@ -227,7 +222,6 @@
 </div>
 
 {% include 'content/template/static_register.html' %}
-{% include template.footer %}
 {%endblock%}
 
 {%block foot_js%}

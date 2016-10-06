@@ -1,53 +1,41 @@
-{% extends display.mvc %}
-
-{% block head_css %}
-{% endblock %}
+{% extends display.main %}
 
 {% block content %}
-{% include 'content/template/static_header.html' %}
+<div class="container">
+	<h2>{% trans "Sarshomar FAQ" %}</h2>
+	<p>
+		<a href="{{url.full}}#general-questions" data-direct>General</a>
+	</p>
+	<ul>
+		<li>
+			<a href="#">What is Sarshomar?</a>
+		</li>
 
-<div class="faq-box">
-	<div class="container">
-		<h1>{% trans "Sarshomar FAQ" %}</h1>
-		<p>
-			<a href="{{url.full}}#general-questions" data-direct>General</a>
-		</p>
-		<ul>
-			<li>
-				<a href="#">What is Sarshomar?</a>
-			</li>
+		<li>
+			<a href="#">Who is it for?</a>
+		</li>
 
-			<li>
-				<a href="#">Who is it for?</a>
-			</li>
+		<li>
+			<a href="#">How is it different from other survey systems?</a>
+		</li>
 
-			<li>
-				<a href="#">How is it different from other survey systems?</a>
-			</li>
+		<li>
+			<a href="#">How old is Sarshomar?</a>
+		</li>
 
-			<li>
-				<a href="#">How old is Sarshomar?</a>
-			</li>
+		<li>
+			<a href="#">Is it available on my device?</a>
+		</li>
 
-			<li>
-				<a href="#">Is it available on my device?</a>
-			</li>
-
-			<li>
-				<a href="#">Who are the people behind Sarshomar?</a>
-			</li>
-		</ul>
-		<h3>
-			<a class="anchor" name="general-questions" href="{{url.full}}#general-questions">
-				<i class="fa fa-link" aria-hidden="true"></i>
-			</a>
-			General
-		</h3>
-	</div>
+		<li>
+			<a href="#">Who are the people behind Sarshomar?</a>
+		</li>
+	</ul>
+	<h3>
+		<a class="anchor" name="general-questions" href="{{url.full}}#general-questions">
+			<i class="fa fa-link" aria-hidden="true"></i>
+		</a>
+		General
+	</h3>
 </div>
-
-{% include 'content/template/static_footer.html' %}
-{% endblock %}
-
-{% block foot_js %}
 {% endblock %}
