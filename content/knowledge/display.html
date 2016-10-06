@@ -36,6 +36,11 @@
                             <a href="{{base.url}}/{{next_url}}" data-direct>سوال بعدی</a>
                         {% endif %}
                     </h5>
+                     <h5 class="next-url">
+                        {% if previous_url %}
+                            <a href="{{base.url}}/{{previous_url}}" data-direct>قبلی بعدی</a>
+                        {% endif %}
+                    </h5>
 
                 <div class="description">
                 	{% if post.post_language == "en" %}
@@ -70,7 +75,7 @@
 <div class="row results-box">
     <section class="row results">
         <nav class="tabs">
-            <a href="#">نظرات کلی</a>
+            <a href="#" >نظرات کلی</a>
             <a href="#">جنسیت</a>
             <a href="#">سن</a>
             <a href="#">وضعیت تاهل</a>

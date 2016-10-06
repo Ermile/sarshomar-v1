@@ -303,9 +303,12 @@ class stat_polls
 
 		// get poll meta to get all opt of this poll
 		$poll = \lib\db\polls::get_poll($_poll_id);
+		if(!isset($poll['meta']) || empty($poll))
+		{
+			return false;
+		}
 
 		$poll_meta = json_decode($poll['meta'], JSON_UNESCAPED_UNICODE);
-
 		if(isset($poll_meta['opt']))
 		{
 			$poll_opt = $poll_meta['opt'];
@@ -323,10 +326,10 @@ class stat_polls
 			FROM
 				options
 			WHERE
-				options.post_id = $_poll_id AND
 				options.user_id IS NULL AND
-				options.option_cat = 'poll_$_poll_id' AND
-				options.option_key = 'stat' AND
+				options.post_id      = $_poll_id AND
+				options.option_cat   = 'poll_$_poll_id' AND
+				options.option_key   = 'stat' AND
 				options.option_value = 'opt_count'
 		";
 		$result = \lib\db::get($query, ['value', 'meta']);

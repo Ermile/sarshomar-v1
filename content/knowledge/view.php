@@ -35,9 +35,9 @@ class view extends \mvc\view
 		{
 			if($this->login())
 			{
+				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"));
 				// save poll id into session to get in answer
 				$_SESSION['last_poll_id']  = $post['id'];
-
 				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 
 				if(isset($_args->get("url")[0][0]) && $_args->get("url")[0][0] == $next_url)
@@ -55,6 +55,10 @@ class view extends \mvc\view
 						// this user answered to this poll
 						$post['post_meta'] = ['opt' => null];
 						$this->data->next_url = $next_url;
+					}
+					else
+					{
+						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 					}
 				}
 			}

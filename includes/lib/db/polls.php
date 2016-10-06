@@ -456,15 +456,8 @@ class polls
 					id = $_poll_id
 				LIMIT 1
 				";
-		$title = \lib\db\posts::select($query, "get");
-		if(isset($title[0]))
-		{
-			return $title[0];
-		}
-		else
-		{
-			return $title;
-		}
+		$result = \lib\db::get($query, null, true);
+		return $result;
 	}
 
 
@@ -478,7 +471,7 @@ class polls
 	public static function get_poll_url($_poll_id)
 	{
 		$result = self::get_poll($_poll_id);
-		return $result['url'];
+		return isset($result['url']) ? $result['url'] : null;
 	}
 
 
@@ -491,7 +484,7 @@ class polls
 	 */
 	public static function get_poll_title($_poll_id) {
 		$result = self::get_poll($_poll_id);
-		return $result['title'];
+		return isset($result['title']) ? $result['title'] : null;
 	}
 
 
@@ -504,7 +497,7 @@ class polls
 	 */
 	public static function get_poll_meta($_poll_id) {
 		$result = self::get_poll($_poll_id);
-		return $result['meta'];
+		return isset($result['meta']) ? $result['meta'] : null;
 	}
 
 
@@ -525,6 +518,32 @@ class polls
 		{
 			return null;
 		}
+	}
+
+	/**
+	 * get previous poll the users answer it
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function get_previous_url($_user_id)
+	{
+		$query =
+		"
+			SELECT
+				posts.post_url AS 'url'
+			FROM
+				options
+			INNER JOIN posts ON posts.id = options.post_id
+			WHERE
+				options.user_id = $_user_id AND
+				options.option_cat LIKE 'poll%' AND
+				options.option_key = 'answer_$_user_id'
+			ORDER BY
+				options.id DESC
+			LIMIT 1
+		";
+		$result= \lib\db::get($query, 'url', true);
+		return $result;
 	}
 
 	/**
