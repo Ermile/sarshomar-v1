@@ -1272,7 +1272,7 @@ footer .eco img {
         Inputs
 ---------------------*/
 
-.input {
+.element {
   position: relative;
   display: inline-table;
   border-collapse: separate;
@@ -1281,7 +1281,7 @@ footer .eco img {
   margin-bottom: 5em;
 }
 
-.input input {
+.element .input {
   position: relative;
   display: table-cell;
   width: 100%;
@@ -1298,7 +1298,7 @@ footer .eco img {
   transition: all 0.2s;
 }
 
-.rtl .input input {
+.rtl .element .input {
   float: right;
 }
 
@@ -1318,12 +1318,12 @@ footer .eco img {
   color: #CFCFCF;
 }
 
-.input input:focus {
+.element .input:focus {
   background-color: #00667A;
   color: #d8dad0;
 }
 
-.input .addon {
+.element .addon {
   display: table-cell;
   line-height: 1;
   text-align: center;
@@ -1332,23 +1332,23 @@ footer .eco img {
   background-color: #E7E7E7;
 }
 
-.input input:focus::-webkit-input-placeholder {
+.element .input:focus::-webkit-input-placeholder {
   color: #d8dad0;
 }
 
-.input input:focus:-moz-placeholder {
+.element .input:focus:-moz-placeholder {
   color: #d8dad0;
 }
 
-.input input:focus::-moz-placeholder {
+.element .input:focus::-moz-placeholder {
   color: #d8dad0;
 }
 
-.input input:focus:-ms-input-placeholder {
+.element .input:focus:-ms-input-placeholder {
   color: #d8dad0;
 }
 
-.input .icon {
+.element .icon {
   background-color: #E7E7E7;
   color: #CFCFCF;
   font-size: 25px;
@@ -1357,20 +1357,20 @@ footer .eco img {
   padding: 1px 7px 0;
 }
 
-.input .icon .fa {
+.element .icon .fa {
   vertical-align: middle;
 }
 
-.input input:focus + .icon {
+.element .input:focus + .icon {
   background-color: #00667a;
   color: #d8dad0;
 }
 
-.input .icon:hover {
+.element .icon:hover {
   color: #27A4BD;
 }
 
-.input label {
+.element label {
   background-color: #00667a !important;
   color: #d8dad0;
   border-top-left-radius: 5px;
@@ -1378,14 +1378,14 @@ footer .eco img {
   width: 100px;
 }
 
-.rtl .input label {
+.rtl .element label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.input label:before {
+.element label:before {
   content: "";
   width: 13px;
   height: 25px;
@@ -1402,7 +1402,7 @@ footer .eco img {
   transform: rotate(180deg);
 }
 
-.rtl .input label:before {
+.rtl .element label:before {
   right: auto;
   left: 100%;
   -webkit-transform: none;
@@ -1412,107 +1412,107 @@ footer .eco img {
   transform: none;
 }
 
-.input.option label {
+.element.option label {
   max-width: 45px;
 }
 
-.input.success input {
+.element.success .input {
   background-color: #D9F1DA;
   border: 1px solid #6FD36B;
   border-right: none;
 }
 
-.rtl .input.success input {
+.rtl .element.success .input {
   border-right: 1px solid #6FD36B;
   border-left: none;
 }
 
-.input.success input + .icon {
+.element.success .input + .icon {
   background-color: #D9F1DA;
   color: #6FD36B;
   border: 1px solid #6FD36B;
   border-left: none;
 }
 
-.rtl .input.success input + .icon {
+.rtl .element.success .input + .icon {
   border-left: 1px solid #6FD36B;
   border-right: none;
 }
 
-.input.success input:focus {
+.element.success .input:focus {
   color: #777;
 }
 
-.input.warn input {
+.element.warn .input {
   background-color: #F1EAD9;
   border: 1px solid #D5A669;
   border-right: none;
 }
 
-.rtl .input.warn input {
+.rtl .element.warn .input {
   border-right: 1px solid #D5A669;
   border-left: none;
 }
 
-.input.warn input + .icon {
+.element.warn .input + .icon {
   background-color: #F1EAD9;
   color: #D5A669;
   border: 1px solid #D5A669;
   border-left: none;
 }
 
-.rtl .input.warn input + .icon {
+.rtl .element.warn .input + .icon {
   border-left: 1px solid #D5A669;
   border-right: none;
 }
 
-.input.warn input:focus {
+.element.warn .input:focus {
   color: #777;
 }
 
-.input.fail input {
+.element.fail .input {
   background-color: #F0D8D8;
   border: 1px solid #E17C7C;
   border-right: none;
 }
 
-.rtl .input.fail input {
+.rtl .element.fail .input {
   border-right: 1px solid #E17C7C;
   border-left: none;
 }
 
-.input.fail input + .icon {
+.element.fail .input + .icon {
   background-color: #F0D8D8;
   color: #E17C7C;
   border: 1px solid #E17C7C;
   border-left: none;
 }
 
-.rtl .input.fail input + .icon {
+.rtl .element.fail .input + .icon {
   border-left: 1px solid #E17C7C;
   border-right: none;
 }
 
-.input.fail input:focus {
+.element.fail .input:focus {
   color: #777;
 }
 
-.input.disabled label {
+.element.disabled label {
   background-color: #D7D7D7 !important;
   color: #BEBEBE !important;
 }
 
-.input.disabled label:before {
+.element.disabled label:before {
   background-image: url(/static/images/svg/input-before2.svg);
 }
 
-.input.disabled input,
-.input.disabled input + .icon {
+.element.disabled .input,
+.element.disabled .input + .icon {
   background-color: #D7D7D7;
   color: #BBBBBB;
 }
 
-.input .btn button {
+.element .btn button {
   display: block;
   background-color: #D7D7D7;
   color: #777;
@@ -1524,12 +1524,12 @@ footer .eco img {
   cursor: pointer;
 }
 
-.input .btn button:hover {
+.element .btn button:hover {
   background-color: #00667a;
   color: #d8dad0;
 }
 
-.input .floating span {
+.element .floating span {
   position: absolute;
   right: -15px;
   width: 25px;
@@ -1542,7 +1542,7 @@ footer .eco img {
   transition: all 0.2s;
 }
 
-.rtl .input .floating span {
+.rtl .element .floating span {
   right: auto;
   left: -15px;
 }

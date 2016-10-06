@@ -1,14 +1,7 @@
-{%extends display.mvc%}
+{%extends display.main%}
 
 {%block head_css%}
 <style type="text/css">
-body {
-  background-color: #00667A;
-}
-body > .container {
-  background-color: #F4F4F4;
-  padding: 7em 0;
-}
 #add .add { box-shadow: 0 0 1px #888888; margin-top: 1em; background-color: #FFFFFF; border-radius: 2px; font-size: 2em; transition: all .3s ease }
 #add .add:hover { box-shadow: 0 0 3px #888888 }
 #add .add a { font-size: 1em; color: #666666; display: block; padding: 1em .5em }
@@ -16,307 +9,134 @@ body > .container {
 {%endblock%}
 
 {%block content%}
-<div class="container">
-  <div class="row">
-    <!-- <div class="span2"></div>
-    <div class="span4">
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="poll_type">Poll Type</label>
-          <select class="form-control" name="poll_type" id="poll_type">
-            <option>{% trans "Select" %}</option>
-            <option>{% trans "Notify" %}</option>
-            <option>{% trans "Text" %}</option>
-            <option>{% trans "Upload" %}</option>
-            <option>{% trans "Star" %}</option>
-            <option>{% trans "Number" %}</option>
-            <option>{% trans "Media_image" %}</option>
-            <option>{% trans "Media_video" %}</option>
-            <option>{% trans "Media_audio" %}</option>
-            <option>{% trans "Order" %}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="title">Title</label>
-          <input class="form-control" type="text" name="title" id="title" placeholder='{% trans "Please enter title here" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="content">Content</label>
-          <input class="form-control" type="text" name="content" id="content" placeholder='{% trans "Please enter content here" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answer_type">Answer Type</label>
-          <select class="form-control" name="answer_type[]" id="answer_type">
-            <option>Select</option>
-            <option>Media_image</option>
-            <option>Media_video</option>
-            <option>Media_audio</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <section>
-        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-        		<ul>
-        			<li><input id="cb6" name="cb6" type="checkbox"><label for="cb6">True Answer</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-        		</ul>
-        	</form>
-        </section>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answer_point">Point</label>
-          <input class="form-control" type="text" name="answer_point[]" id="answer_point" placeholder='{% trans "Please enter answer point" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answers">Answer 1</label>
-          <input class="form-control" type="text" name="answers[]" id="answers" placeholder='{% trans "Please enter answer 1" %}'>
-        </div>
-      </div>
 
 
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answer_type2">Answer Type</label>
-          <select class="form-control" name="answer_type[]" id="answer_type2">
-            <option>Select</option>
-            <option>Media_image</option>
-            <option>Media_video</option>
-            <option>Media_audio</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <section>
-        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-        		<ul>
-        			<li><input id="cb7" name="cb7" type="checkbox"><label for="cb7">True Answer</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-        		</ul>
-        	</form>
-        </section>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answer_point2">Point</label>
-          <input class="form-control" type="text" name="answer_point[]" id="answer_point2" placeholder='{% trans "Please enter answer point" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="answers2">Answer 2</label>
-          <input class="form-control" type="text" name="answers[]" id="answers2" placeholder='{% trans "Please enter answer 1" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="language">Language</label>
-          <input class="form-control" type="text" name="language" id="language" placeholder='{% trans "Please enter language" %}'>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="publish_date">Language</label>
-          <input class="form-control" type="text" name="publish_date" id="publish_date" value="2016-10-04">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <section>
-        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-        		<ul>
-        			<li><input id="cb8" name="cb8" type="checkbox"><label for="cb8">Can Update</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-        		</ul>
-        	</form>
-        </section>
-      </div>
-
-      <div class="form-group">
-        <section>
-        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-        		<ul>
-        			<li><input id="cb9" name="cb9" type="checkbox"><label for="cb9">Can Remove</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-        		</ul>
-        	</form>
-        </section>
-      </div>
-
-      <div class="form-group">
-        <section>
-        	<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-        		<ul>
-        			<li><input id="cb10" name="cb10" type="checkbox"><label for="cb10">Can Stop</label><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-        		</ul>
-        	</form>
-        </section>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <label class="input-group-addon input-group-title" for="summary">Summary</label>
-          <input class="form-control" type="text" name="summary" id="summary" placeholder='{% trans "Please enter summary" %}'>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br> -->
-{%for key , value in datatable%}
-    <div class="container">
-        <div class="row auto">
-            <div class="span2"></div>
-            <div class="span8">
-                <div class="add">
-                    <a href="{{value.id}}">{{value.title}}</a>
-                </div>
-            </div>
-        </div>
-    </div>
-{%endfor%}
 {%if form_add or survey_mod %}
-<!-- list of poll saved in this survey -->
- {%if poll_list %}
+
+  <!-- list of polls in this survey -->
+  {%if poll_list %}
     <h5>poll list</h5>
-        {%for key, value in poll_list%}
-            <li><a href="{{base.url}}/{{value.url}}?preview=yes">{{value.title}}</a></li>
-        {%endfor%}
-    {%endif%}
-<div class="row auto">
-    <div class="span4"></div>
-    <div class="span4">
-        <form  method="post" class="form inline">
-            <div class="field">
-                <label>poll type</label>
-                <select name="poll_type">
-                    <option>select</option>
-                    <option>notify</option>
-                    <option>text</option>
-                    <option>upload</option>
-                    <option>star</option>
-                    <option>number</option>
-                    <option>media_image</option>
-                    <option>media_video</option>
-                    <option>media_audio</option>
-                    <option>order</option>
-                </select>
-            </div>
-            <!-- here -->
-            <div class="field">
-                <label>title</label>
-                <input type="text" name="title">
-            </div>
-            <div class="field">
-                <label>content</label>
-                <input type="text" name="content">
-            </div>
-            <div class="field">
-                <label>answer type</label>
-                <select name="answer_type[]">
-                    <option>select</option>
-                    <option>media_image</option>
-                    <option>media_video</option>
-                    <option>media_audio</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>true answer</label>
-                <input type="checkbox" name="answer_true[]">
-            </div>
-            <div class="field">
-                <label>point</label>
-                <input type="text" name="answer_point[]">
-            </div>
-            <div class="field">
-                <label>answer1</label>
-                <input type="text" name="answers[]">
-            </div>
-            <div class="field">
-                <label>answer type</label>
-                <select name="answer_type[]">
-                     <option>select</option>
-                    <option>media_image</option>
-                    <option>media_video</option>
-                    <option>media_audio</option>
-                </select>
-            </div>
+    {%for key, value in poll_list%}
+      <li><a href="{{base.url}}/{{value.url}}?preview=yes">{{value.title}}</a></li>
+    {%endfor%}
+  {%endif%}
 
-            <div class="field">
-                <label>true answer</label>
-                <input type="checkbox" name="answer_true[]">
-            </div>
-            <div class="field">
-                <label>point</label>
-                <input type="text" name="answer_point[]">
-            </div>
-            <div class="field">
-                <label>answer2</label>
-                <input type="text" name="answers[]">
-            </div>
+  <div class="row auto">
+      <div class="span4"></div>
+      <div class="span4">
+          <form  method="post" class="form inline">
+              <div class="field">
+                  <label>poll type</label>
+                  <select name="poll_type">
+                      <option>select</option>
+                      <option>notify</option>
+                      <option>text</option>
+                      <option>upload</option>
+                      <option>star</option>
+                      <option>number</option>
+                      <option>media_image</option>
+                      <option>media_video</option>
+                      <option>media_audio</option>
+                      <option>order</option>
+                  </select>
+              </div>
+              <!-- here -->
+              <div class="field">
+                  <label>title</label>
+                  <input type="text" name="title">
+              </div>
+              <div class="field">
+                  <label>content</label>
+                  <input type="text" name="content">
+              </div>
+              <div class="field">
+                  <label>answer type</label>
+                  <select name="answer_type[]">
+                      <option>select</option>
+                      <option>media_image</option>
+                      <option>media_video</option>
+                      <option>media_audio</option>
+                  </select>
+              </div>
+              <div class="field">
+                  <label>true answer</label>
+                  <input type="checkbox" name="answer_true[]">
+              </div>
+              <div class="field">
+                  <label>point</label>
+                  <input type="text" name="answer_point[]">
+              </div>
+              <div class="field">
+                  <label>answer1</label>
+                  <input type="text" name="answers[]">
+              </div>
+              <div class="field">
+                  <label>answer type</label>
+                  <select name="answer_type[]">
+                       <option>select</option>
+                      <option>media_image</option>
+                      <option>media_video</option>
+                      <option>media_audio</option>
+                  </select>
+              </div>
 
-            <div class="field">
-                <label>language</label>
-                <input type="text" name="language" value="{{site.currentlang}}" >
-            </div>
-            <div class="field">
-                <label>publish_date</label>
-                <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
-            </div>
-            <div class="field">
-                <label>sum meta</label>
-                can update<input type="checkbox" name="meta_canupdate"  >
-                <br>
-                can remove<input type="checkbox" name="meta_remove"  >
-                <br>
-                can stop<input type="checkbox" name="meta_stop"  >
-                <br>
+              <div class="field">
+                  <label>true answer</label>
+                  <input type="checkbox" name="answer_true[]">
+              </div>
+              <div class="field">
+                  <label>point</label>
+                  <input type="text" name="answer_point[]">
+              </div>
+              <div class="field">
+                  <label>answer2</label>
+                  <input type="text" name="answers[]">
+              </div>
 
-            <div class="field">
-                <label>summary</label>
-                <input type="text" name="summary">
-            </div>
-            </div>
-            <div class="field">
-                <label></label>
-                <input type="submit" name="filter" value="اعمال فیلتر">
-            </div>
-             <div class="field">
-                <label></label>
-                {%if survey_mod%}
-                    <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
-                {%else%}
-                    <input type="submit" name="survey" value="تبدیل به پرسشنامه">
-                {%endif%}
-            </div>
-        </form>
-    </div>
-</div>
+              <div class="field">
+                  <label>language</label>
+                  <input type="text" name="language" value="{{site.currentlang}}" >
+              </div>
+              <div class="field">
+                  <label>publish_date</label>
+                  <input type="text" name="publish_date" value="{{"now"|date("Y-m-d")}}" >
+              </div>
+              <div class="field">
+                  <label>sum meta</label>
+                  can update<input type="checkbox" name="meta_canupdate"  >
+                  <br>
+                  can remove<input type="checkbox" name="meta_remove"  >
+                  <br>
+                  can stop<input type="checkbox" name="meta_stop"  >
+                  <br>
 
+              <div class="field">
+                  <label>summary</label>
+                  <input type="text" name="summary">
+              </div>
+              </div>
+              <div class="field">
+                  <label></label>
+                  <input type="submit" name="filter" value="اعمال فیلتر">
+              </div>
+               <div class="field">
+                  <label></label>
+                  {%if survey_mod%}
+                      <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
+                  {%else%}
+                      <input type="submit" name="survey" value="تبدیل به پرسشنامه">
+                  {%endif%}
+              </div>
+          </form>
+      </div>
+  </div>
 {%endif%}
+
+
+
+
+
+
 
 {%if form_edit%}
 
@@ -333,6 +153,9 @@ body > .container {
     <input type="submit" value="اصلاح"><br>
 </form>
 {%endif%}
+
+
+
 
 {% if filter_form %}
 <form  method="post"  class="form inline">
@@ -359,6 +182,11 @@ body > .container {
 
 </form>
 {%endif%}
+
+
+
+
+
 
 {% if publish_form %}
     <form method="post" class="form inline" >
@@ -402,9 +230,19 @@ body > .container {
 {%endblock%}
 
 
+
+
+
+
+
+
 {% block foot_js %}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {%endblock%}
+
+
+
+
 
 
 {%block sp_tag%}
