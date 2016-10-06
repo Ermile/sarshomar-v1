@@ -55,15 +55,14 @@
                     </div>
                 {%endif%}
             </section>
+            {%if similar%}
             <nav class="span4 related-questions">
                 <h3>سوالات مشابه</h3>
-                <a href="#">آیا ورزش را دوست دارید؟</a>
-                <a href="#">من رفتم سر کوچمون آب اوردم این یه ورزشه؟</a>
-                <a href="#">بیا بریم با هم ورزش کنیم از نوع بیل زدن؟</a>
-                <a href="#">سرم درد می کنه و خستم آیا این ورزشه؟</a>
-                <a href="#">بیا بریم با هم ورزش کنیم از نوع بیل زدن؟</a>
-                <a href="#">سرم درد می کنه و خستم آیا این ورزشه؟</a>
+                {%for key, value in similar%}
+                    <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
+                {%endfor%}
             </nav>
+            {%endif%}
         </article>
     </div>
 </div>

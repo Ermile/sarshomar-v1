@@ -77,16 +77,21 @@ class view extends \mvc\view
 			// get article of this poll
 			$article =
 			[
-				'post_id' => $post['id'],
+				'post_id'    => $post['id'],
 				'option_cat' => "poll_". $post['id'],
 				'option_key' => "article",
-				'limit' => 1
+				'limit'      => 1
 			];
 			$option_record = \lib\db\options::get($article);
 			if(isset($option_record[0]['id']))
 			{
 				$this->data->article = \lib\db\polls::xget(['id' => $option_record[0]['value'], 'post_type' => 'article']);
 			}
+
+			$similar = \lib\db\tags::get_post_similar(['tags' => $post['tags']]);
+
+			$this->data->similar = $similar;
+
 		}
 		else
 		{
