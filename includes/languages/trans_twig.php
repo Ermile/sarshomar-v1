@@ -8,16 +8,31 @@ private function transtext()
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 3
-	echo T_("Register");                                                              // Line 5
-	echo T_("Articles");                                                              // Line 29
-	echo T_("About Us");                                                              // Line 7
-	echo T_("Links");                                                                 // Line 4
-	echo T_("News");                                                                  // Line 30
-	echo T_("Latest News");                                                           // Line 31
-	echo T_("Policy");                                                                // Line 32
-	echo T_("Proudly Made in IRAN");                                                  // Line 52
+	echo T_("About");                                                                 // Line 5
+	echo T_("Press");                                                                 // Line 6
+	echo T_("Careers");                                                               // Line 7
+	echo T_("Social Responsibility");                                                 // Line 8
+	echo T_("FAQ");                                                                   // Line 9
+	echo T_("Eco Friendly");                                                          // Line 10
+	echo T_("Service");                                                               // Line 15
+	echo T_("Knowledge");                                                             // Line 16
+	echo T_("Random Poll");                                                           // Line 17
+	echo T_("Features");                                                              // Line 5
+	echo T_("Referral Program");                                                      // Line 19
+	echo T_("Support");                                                               // Line 30
+	echo T_("Terms of Service");                                                      // Line 24
+	echo T_("Privacy Policy");                                                        // Line 25
+	echo T_("Help Center");                                                           // Line 31
+	echo T_("Contact");                                                               // Line 5
+	echo T_("Mission");                                                               // Line 37
+	echo T_("Vision");                                                                // Line 38
+	echo T_("Changelog");                                                             // Line 39
+	echo T_("In the News");                                                           // Line 40
+	echo T_("Statistics");                                                            // Line 41
+	echo T_("Proudly Made in IRAN");                                                  // Line 50
 
 	//----------------------------------------------------content\template\header.html
+	echo T_("Links");                                                                 // Line 4
 	echo T_("Guide");                                                                 // Line 5
 
 	//--------------------------------------------------content\template\poll.old.html
@@ -30,19 +45,17 @@ private function transtext()
 	echo T_("Bots");                                                                  // Line 77
 
 	//----------------------------------------------content\template\static_about.html
-	echo T_("About");                                                                 // Line 5
 
 	//------------------------------------------------content\template\static_add.html
-	echo T_("Gozinei");                                                               // Line 17
-	echo T_("descriptive");                                                           // Line 18
+	echo T_("Gozinei");                                                               // Line 9
+	echo T_("descriptive");                                                           // Line 10
 	echo T_("Notification");                                                          // Line 22
 	echo T_("Upload");                                                                // Line 23
 	echo T_("Starred");                                                               // Line 24
-	echo T_("Shomarei");                                                              // Line 22
+	echo T_("Shomarei");                                                              // Line 14
 	echo T_("Sort");                                                                  // Line 26
 
 	//--------------------------------------------content\template\static_contact.html
-	echo T_("Contact");                                                               // Line 5
 
 	//------------------------------------------------content\template\static_eco.html
 	echo T_("Eco");                                                                   // Line 5
@@ -69,13 +82,13 @@ private function transtext()
 	echo T_("Sarshomar FAQ");                                                         // Line 5
 
 	//-------------------------------------------content\template\static_features.html
-	echo T_("Features");                                                              // Line 5
 
 	//--------------------------------------------content\template\static_privacy.html
 	echo T_("Privacy");                                                               // Line 5
 
 	//-------------------------------------------content\template\static_register.html
 	echo T_("Do you want to register an account?");                                   // Line 3
+	echo T_("Register");                                                              // Line 5
 
 	//----------------------------------------------content\template\static_terms.html
 	echo T_("Terms");                                                                 // Line 5
