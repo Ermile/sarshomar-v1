@@ -1,49 +1,22 @@
 {% extends display.main %}
-{% block head_css %}
-<style media="screen">
-    .add,
-    .check,
-    .test {
-        padding: 7em 0;
-    }
-</style>
-{% endblock %}
+
 {% block content %}
 
 <div class="container">
   <div class="row auto add">
-      <div class="type">
-          <nav>
-              <a href="#" class="active">
-                  <i class="fa fa-check" aria-hidden="true"></i> {% trans "Gozinei" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-pencil" aria-hidden="true"></i> {% trans "Tashrihi" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-bell" aria-hidden="true"></i> {% trans "Notification" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-upload" aria-hidden="true"></i> {% trans "Upload" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-star" aria-hidden="true"></i> {% trans "Starred" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-sitemap" aria-hidden="true"></i> {% trans "Shomarei" %}
-              </a>
-
-              <a href="#">
-                  <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> {% trans "Sort" %}
-              </a>
-          </nav>
-      </div>
+    <div class="type">
+      <nav>
+        <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> {%trans "Gozinei"%}</a>
+        <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> {%trans "descriptive"%}</a>
+        <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> {%trans "Notification"%}</a>
+        <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> {%trans "Upload"%}</a>
+        <a href="#"><i class="fa fa-star" aria-hidden="true"></i> {%trans "Starred"%}</a>
+        <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> {%trans "Shomarei"%}</a>
+        <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> {% trans "Sort"%}</a>
+      </nav>
+    </div>
   </div>
+
 
   <div class="row auto check">
       <div class="container">

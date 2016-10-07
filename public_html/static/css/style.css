@@ -124,7 +124,12 @@ header>.logo {
 }
 
 header>.logo>img {
-  width: 5em
+  width: 5em;
+  transition: all 0.2s;
+}
+
+#home header>.logo>img {
+  width: 7em
 }
 
 header>.logo>h1 {
@@ -1571,22 +1576,24 @@ footer .eco img {
 
 .type {
   text-align: center;
+  margin: 5em auto 2em;
 }
 
 .type nav {
   display: inline-block;
-  background-color: #1CA6C0;
+  background-color: #00667A;
 }
 
 .type nav a {
   position: relative;
   display: inline-block;
-  color: #C4EAF1;
+  color: #D8DAD0;
   float: left;
-  padding: 9px;
+  padding: 9px 3px;
   transition: all 0.2s;
-  background-color: #1CA6C0;
+  background-color: #00667A;
   font-size: 12px;
+  font-weight: bold;
 }
 
 .type nav a:not(:first-child) {
@@ -1616,8 +1623,9 @@ footer .eco img {
   margin: auto;
   font-size: 38px;
   margin-top: -1px;
-  color: #1CA6C0;
+  color: #00667A;
   transition: color 0.2s;
+  font-weight: normal;
 }
 
 .type nav a::before {
