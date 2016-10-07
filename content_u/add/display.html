@@ -12,145 +12,147 @@
     {%endfor%}
   {%endif%}
 
-  <div class="span3"></div>
-  <div class="span6">
-    <form method="post">
-      <div class="element">
-        <label class="addon" for="poll_type">{%trans "Poll type"%}</label>
-        <select class="input" name="poll_type" id="poll_type">
-          <option>select</option>
-          <option>notify</option>
-          <option>text</option>
-          <option>upload</option>
-          <option>star</option>
-          <option>number</option>
-          <option>media_image</option>
-          <option>media_video</option>
-          <option>media_audio</option>
-          <option>order</option>
-        </select>
-      </div>
-
-      <div class="element">
-        <label class="addon" for="title">{%trans "Title"%}</label>
-        <input class="input" type="text" name="title" id="title">
-      </div>
-
-      <div class="element">
-        <label class="addon" for="content">{%trans "Content"%}</label>
-        <input class="input" type="text" name="content" id="content"></input>
-      </div>
-
-      <div class="element">
-        <label class="addon" for="answer_type">{%trans "Answer type"%}</label>
-        <select class="input" name="answer_type[]" id="answer_type">
-          <option>select</option>
-          <option>media_image</option>
-          <option>media_video</option>
-          <option>media_audio</option>
-        </select>
-      </div>
-
-      <section class="element-checkbox">
-        <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-          <ul>
-            <li>
-              <input type="checkbox" name="answer_true[]" id="answer_true">
-              <label for="answer_true">{%trans "True answer"%}</label>
-            </li>
-          </ul>
+  <div class="row">
+    <div class="span3"></div>
+    <div class="span6">
+      <form method="post">
+        <div class="element">
+          <label class="addon" for="poll_type">{%trans "Poll type"%}</label>
+          <select class="input" name="poll_type" id="poll_type">
+            <option>select</option>
+            <option>notify</option>
+            <option>text</option>
+            <option>upload</option>
+            <option>star</option>
+            <option>number</option>
+            <option>media_image</option>
+            <option>media_video</option>
+            <option>media_audio</option>
+            <option>order</option>
+          </select>
         </div>
-      </section>
 
-      <div class="element">
-        <label class="addon" for="answer_point">{%trans "Point"%}</label>
-        <input class="input" type="text" name="answer_point[]" id="answer_point"></input>
-      </div>
-
-      <div class="element">
-        <label class="addon" for="answer1">{%trans "Answer one"%}</label>
-        <input class="input" type="text" name="answers[]" id="answer1">
-      </div>
-
-      <div class="element">
-        <label class="addon" for="answer_type2">{%trans "Answer type"%}</label>
-        <select class="input" name="answer_type[]" id="answer_type2">
-          <option>select</option>
-          <option>media_image</option>
-          <option>media_video</option>
-          <option>media_audio</option>
-        </select>
-      </div>
-
-      <section class="element-checkbox">
-        <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-          <ul>
-            <li>
-              <input type="checkbox" name="answer_true[]" id="answer_true2">
-              <label for="answer_true2">{%trans "True answer"%}</label>
-            </li>
-          </ul>
+        <div class="element">
+          <label class="addon" for="title">{%trans "Title"%}</label>
+          <input class="input" type="text" name="title" id="title">
         </div>
-      </section>
 
-      <div class="element">
-        <label class="addon" for="answer_point2">{%trans "Point"%}</label>
-        <input class="input" type="text" name="answer_point[]" id="answer_point2">
-      </div>
-
-      <div class="element">
-        <label class="addon" for="answer2">{%trans "Answer Two"%}</label>
-        <input class="input" type="text" name="answers[]" id="answer2">
-      </div>
-
-      <div class="element">
-        <label class="addon" for="language">{%trans "Language"%}</label>
-        <input class="input" type="text" name="language" id="language" value="{{site.currentlang}}" >
-      </div>
-
-      <div class="element">
-        <label class="addon">{%trans "Publish date"%}</label>
-        <input class="input" type="text" name="publish_date" id="publish_date" value="{{"now"|date("Y-m-d")}}">
-      </div>
-
-      <section class="element-checkbox">
-        <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-          <ul>
-            <li>
-              <input type="checkbox" name="meta_canupdate" id="meta_canupdate">
-              <label for="meta_canupdate">{%trans "Can update"%}</label>
-            </li>
-
-            <li>
-              <input type="checkbox" name="meta_remove" id="meta_remove">
-              <label for="meta_remove">{%trans "Can remove"%}</label>
-            </li>
-
-            <li>
-              <input type="checkbox" name="meta_stop" id="meta_stop">
-              <label for="meta_stop">{%trans "Can stop"%}</label>
-            </li>
-          </ul>
+        <div class="element">
+          <label class="addon" for="content">{%trans "Content"%}</label>
+          <input class="input" type="text" name="content" id="content"></input>
         </div>
-      </section>
 
-      <div class="element">
-        <label class="addon" for="summary">{%trans "Summary"%}</label>
-        <input class="input" type="text" name="summary" id="summary">
-      </div>
+        <div class="element">
+          <label class="addon" for="answer_type">{%trans "Answer type"%}</label>
+          <select class="input" name="answer_type[]" id="answer_type">
+            <option>select</option>
+            <option>media_image</option>
+            <option>media_video</option>
+            <option>media_audio</option>
+          </select>
+        </div>
 
-      <div>
-        <input type="submit" name="filter" value="اعمال فیلتر">
-      </div>
+        <section class="element-checkbox">
+          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
+            <ul>
+              <li>
+                <input type="checkbox" name="answer_true[]" id="answer_true">
+                <label for="answer_true">{%trans "True answer"%}</label>
+              </li>
+            </ul>
+          </div>
+        </section>
 
-      <div>
-        {%if survey_mod%}
-          <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
-        {%else%}
-          <input type="submit" name="survey" value="تبدیل به پرسشنامه">
-        {%endif%}
-      </div>
-    </form>
+        <div class="element">
+          <label class="addon" for="answer_point">{%trans "Point"%}</label>
+          <input class="input" type="text" name="answer_point[]" id="answer_point"></input>
+        </div>
+
+        <div class="element">
+          <label class="addon" for="answer1">{%trans "Answer one"%}</label>
+          <input class="input" type="text" name="answers[]" id="answer1">
+        </div>
+
+        <div class="element">
+          <label class="addon" for="answer_type2">{%trans "Answer type"%}</label>
+          <select class="input" name="answer_type[]" id="answer_type2">
+            <option>select</option>
+            <option>media_image</option>
+            <option>media_video</option>
+            <option>media_audio</option>
+          </select>
+        </div>
+
+        <section class="element-checkbox">
+          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
+            <ul>
+              <li>
+                <input type="checkbox" name="answer_true[]" id="answer_true2">
+                <label for="answer_true2">{%trans "True answer"%}</label>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="element">
+          <label class="addon" for="answer_point2">{%trans "Point"%}</label>
+          <input class="input" type="text" name="answer_point[]" id="answer_point2">
+        </div>
+
+        <div class="element">
+          <label class="addon" for="answer2">{%trans "Answer Two"%}</label>
+          <input class="input" type="text" name="answers[]" id="answer2">
+        </div>
+
+        <div class="element">
+          <label class="addon" for="language">{%trans "Language"%}</label>
+          <input class="input" type="text" name="language" id="language" value="{{site.currentlang}}" >
+        </div>
+
+        <div class="element">
+          <label class="addon">{%trans "Publish date"%}</label>
+          <input class="input" type="text" name="publish_date" id="publish_date" value="{{"now"|date("Y-m-d")}}">
+        </div>
+
+        <section class="element-checkbox">
+          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
+            <ul>
+              <li>
+                <input type="checkbox" name="meta_canupdate" id="meta_canupdate">
+                <label for="meta_canupdate">{%trans "Can update"%}</label>
+              </li>
+
+              <li>
+                <input type="checkbox" name="meta_remove" id="meta_remove">
+                <label for="meta_remove">{%trans "Can remove"%}</label>
+              </li>
+
+              <li>
+                <input type="checkbox" name="meta_stop" id="meta_stop">
+                <label for="meta_stop">{%trans "Can stop"%}</label>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="element">
+          <label class="addon" for="summary">{%trans "Summary"%}</label>
+          <input class="input" type="text" name="summary" id="summary">
+        </div>
+
+        <div>
+          <input type="submit" name="filter" value="اعمال فیلتر">
+        </div>
+
+        <div>
+          {%if survey_mod%}
+            <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
+          {%else%}
+            <input type="submit" name="survey" value="تبدیل به پرسشنامه">
+          {%endif%}
+        </div>
+      </form>
+    </div>
   </div>
 {%endif%}
 

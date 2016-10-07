@@ -65,6 +65,10 @@ body {
           border-image: url(/static/images/border.png) 8 stretch;
 }
 
+.wrapper>.row {
+  clear: both;
+}
+
 header {
   background-color: #F4F4F4;
   border-right: 8px solid transparent;
