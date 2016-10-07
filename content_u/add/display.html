@@ -14,22 +14,83 @@
 
   <div class="row">
 
-    <div class="span12">
-      <div class="type">
-        <nav>
-          <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> {%trans "Multiple Choice"%}</a>
-          <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> {%trans "Descriptive"%}</a>
-          <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> {%trans "Notification"%}</a>
-          <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> {%trans "Upload"%}</a>
-          <a href="#"><i class="fa fa-star" aria-hidden="true"></i> {%trans "Starred"%}</a>
-          <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> {%trans "Numerical"%}</a>
-          <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> {% trans "Sort"%}</a>
-        </nav>
-      </div>
+    <div class="type">
+      <nav>
+        <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></a>
+        <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></a>
+        <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></a>
+        <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></a>
+        <a href="#"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></a>
+        <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></a>
+        <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></a>
+      </nav>
     </div>
 
     <div class="span3"></div>
+    <div class="span6">
+      <form method="post">
 
+        <div class="element">
+          <label class="addon" for="title">{%trans "Question Title"%}</label>
+          <input class="input" type="text" name="title" id="title">
+        </div>
+
+        <div class="options">
+          <div class="element option">
+            <label class="addon" for="option1">{%trans "Option 1"%}</label>
+            <input class="input" type="text" name="option1" id="option1">
+          </div>
+
+          <div class="element option">
+            <label class="addon" for="option2">{%trans "Option 2"%}</label>
+            <input class="input" type="text" name="option2" id="option2">
+          </div>
+
+          <div class="element option">
+            <label class="addon" for="option3">{%trans "Option 3"%}</label>
+            <input class="input" type="text" name="option3" id="option3">
+          </div>
+        </div>
+
+        <div class="zzz">
+          <section class="element-checkbox">
+            <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+              <ul>
+                <li>
+                  <input type="checkbox" name="descriptive" id="descriptive">
+                  <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                </li>
+
+                <li>
+                  <input type="checkbox" name="score" id="score">
+                  <label for="score">{%trans "Score"%}</label>
+                </li>
+
+                <li>
+                  <input type="checkbox" name="multiple_choice" id="multiple_choice">
+                  <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="question_summary">
+            <div class="title">
+              <i class="fa fa-minus" aria-hidden="true"></i> <span>{%trans "Summary"%}</span>
+            </div>
+            <textarea rows="2" cols="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="container"><br><br><hr><br><br><br></div>
+
+  <div class="row">
+
+    <div class="span3"></div>
     <div class="span6">
       <form method="post">
         <div class="element">

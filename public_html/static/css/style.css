@@ -1347,7 +1347,6 @@ footer .eco img {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  background-color: #E7E7E7;
 }
 
 .element .input:focus::-webkit-input-placeholder {
@@ -1394,6 +1393,7 @@ footer .eco img {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   width: 100px;
+  position: relative;
 }
 
 .rtl .element label {
@@ -1431,7 +1431,7 @@ footer .eco img {
 }
 
 .element.option label {
-  max-width: 45px;
+  width: 60px;
 }
 
 .element.success .input {
@@ -1569,6 +1569,9 @@ footer .eco img {
   margin-bottom: 2em;
 }
 
+.element .addon.indent {
+  width: 40px;
+}
 
 /*******************************
               Menu
@@ -1610,7 +1613,7 @@ footer .eco img {
 }
 
 .type nav a:hover {
-  background-color: #0087a0;
+  background-color: #15535F;
 }
 
 .type nav a::before,
@@ -1644,7 +1647,7 @@ footer .eco img {
 
 .type nav a:hover::before,
 .type nav a:hover::after {
-  color: #0087a0;
+  color: #15535F;
 }
 
 
@@ -1658,6 +1661,35 @@ footer .eco img {
 .type nav a.active::before,
 .type nav a.active::after {
   color: #E5A428;
+}
+
+.options, .zzz {
+  padding-left: 40px;
+}
+.question_summary {
+}
+.question_summary > .title > .fa {
+  color: #E5A428;
+  font-weight: bold;
+}
+.question_summary > .title > span {
+  font-size: 1.2em;
+  color: #62919E;
+  margin-left: 0.2em;
+}
+.question_summary textarea {
+  display: block;
+  resize: none;
+  overflow: auto;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #E7E7E7;
+  color: #00667A;
+  font-size: 1.2em;
+  overflow-y: hidden;
+  padding: 0.5em;
+  line-height: 2em;
 }
 
 
@@ -1697,7 +1729,7 @@ footer .eco img {
 
 .ac-custom li {
   margin: 0 auto;
-  /*padding: 2em 0;*/
+  padding: 1em 0;
   position: relative;
 }
 
@@ -1886,22 +1918,12 @@ footer .eco img {
 }
 
 
-/* Media Queries */
-
-@media screen and (max-width: 50em) {
-  section {
-    font-size: 80%;
-  }
-}
-
-
 /*******************************
          Media Queries
 *******************************/
 
 
 /* Extra Large Screens */
-
 @media only screen and (min-width: 1824px) {
   .assurance-box {
     font-size: 3em
@@ -1911,7 +1933,6 @@ footer .eco img {
 
 
 /* Large Desktop */
-
 @media screen and (max-width: 1823px) {
   .assurance-box {
     font-size: 3em
@@ -1921,14 +1942,12 @@ footer .eco img {
 
 
 /* Normal Desktop */
-
 @media only screen and (max-width:1399px) {
   /*.register-box { font-size: 3em }*/
 }
 
 
 /* Small Desktop */
-
 @media only screen and (max-width:1199px) {
   .assurance-box {
     font-size: 2em
@@ -1938,13 +1957,24 @@ footer .eco img {
 
 
 /* Tablet (Portrait) */
-
 @media only screen and (max-width:959px) {
   .tabs {
     height: 36px;
   }
   .tabs a {
     font-size: 12px;
+  }
+  .type nav a {
+    font-size: 10px;
+  }
+  .type nav a::before, .type nav a::after {
+    font-size: 34px;
+  }
+  .type nav a::before {
+    left: -24px;
+  }
+  .type nav a::after {
+    right: -24px;
   }
 }
 
@@ -1956,11 +1986,13 @@ footer .eco img {
     font-size: 10px;
     padding: 5px 10px;
   }
+  .type nav a > span {
+    display: none;
+  }
 }
 
 
 /* Mobile (Landscape) */
-
 @media only screen and (max-width: 767px) {
   .tabs {
     display: none;
@@ -1969,7 +2001,6 @@ footer .eco img {
 
 
 /* Mobile */
-
 @media only screen and (max-width: 479px) {
   .assurance-box {
     font-size: 1.3em
