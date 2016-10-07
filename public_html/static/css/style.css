@@ -60,11 +60,17 @@ body {
   border-left: 8px solid transparent;
   margin-bottom: -4px;
   min-height: 60vh;
+  -webkit-border-image: url(/static/images/border.png) 8 stretch;
+       -o-border-image: url(/static/images/border.png) 8 stretch;
+          border-image: url(/static/images/border.png) 8 stretch;
 }
 
 header {
   background-color: #F4F4F4;
   border-right: 8px solid transparent;
+  -webkit-border-image: url(/static/images/border.png) 8 stretch;
+       -o-border-image: url(/static/images/border.png) 8 stretch;
+          border-image: url(/static/images/border.png) 8 stretch;
 }
 
 .rtl header {
@@ -346,6 +352,9 @@ header>.logo>h1 {
 footer {
   background-color: #123B43;
   border-top: 8px solid transparent;
+  -webkit-border-image: url(/static/images/border.png) 8 stretch;
+       -o-border-image: url(/static/images/border.png) 8 stretch;
+          border-image: url(/static/images/border.png) 8 stretch;
 }
 
 footer .container {
