@@ -55,9 +55,9 @@ function pauseEvent(e){
 	return false;
 }
 
-//$(function(){
+$(function(){
 	$('.input-slider').each(function(id, el){
-		$(el).append($('<div style="width: 10px;height: 25px;background: #666;position: absolute;top: 5px;left: 52px;cursor:pointer"></div>'));
+		$(el).append($('<div style="width: 10px;height: 25px;background: #666;position: absolute;top: 5px;left: 100px;cursor:pointer"></div>'));
 
 		var offset = $(el.children[0]).outerWidth(),
 			inpEl = $(el.children[1]),
@@ -101,8 +101,16 @@ function pauseEvent(e){
 		$(document).on('mouseup', function(){
 			dragStart = false;
 		});
+
+		updateSlider();
+
+		function updateSlider() {
+			var val = parseFloat(inpEl.val());
+			var newLeft = offset + ((val - minVal) / (maxVal - minVal)) * maxim;
+			sl.css('left', newLeft);
+		}
 	});
-//});
+});
 
 
 
