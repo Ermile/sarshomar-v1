@@ -460,7 +460,12 @@ class polls
 				LIMIT 1
 				-- polls::get_poll()
 				";
-		$result = \lib\db::get($query, null, true);
+		$result = \lib\db::get($query, null);
+		$result = \lib\utility\filter::meta_decode($result);
+		if(isset($result[0]))
+		{
+			return $result[0];
+		}
 		return $result;
 	}
 
@@ -571,12 +576,21 @@ class polls
 		$qry ="
 			SELECT
 			-- Fields
-				posts.id as id,
-				posts.post_url as url,
-				posts.post_parent as parent,
-				posts.post_title as question,
-				posts.post_meta as opt,
-				options.option_key as 'key'
+				posts.id,
+				posts.post_language 		as 'language',
+				posts.post_title 			as 'title',
+				posts.post_slug 			as 'slug',
+				posts.post_url 			as 'url',
+				posts.post_content 		as 'content',
+				posts.post_type 			as 'type',
+				posts.post_comment 		as 'comment',
+				posts.post_count 			as 'count',
+				posts.post_order 			as 'order',
+				posts.post_status 		as 'status',
+				posts.post_parent 		as 'parent',
+				posts.post_meta	     	as 'meta',
+				posts.post_publishdate 	as 'publishdate'
+
 			FROM
 				posts
 			-- To get options of this poll
@@ -637,31 +651,27 @@ class polls
 			-- get next poll to answer user
 		";
 
-		$result  = \lib\db::get($qry, null, true);
+		$result  = \lib\db::get($qry, null);
 
-		// $qry ="
-		// 	SELECT
-		// 		posts.id as id,
-		// 		posts.post_title as question,
-		// 		posts.post_meta as opt
-		// 	FROM posts
-		// 	LEFT JOIN `options` ON `options`.post_id = posts.id
-		// 	WHERE
-		// 		$_type AND
-		// 		post_status = 'publish' AND
-		// 		posts.id NOT IN
-		// 		(
-		// 			SELECT post_id FROM options
-		// 				WHERE
-		// 				`options`.option_cat LIKE 'poll\_%' AND
-		// 				`options`.option_key LIKE 'answer\_%'AND
-		// 				`options`.user_id = $_user_id
-		// 		)
-		// 	ORDER BY posts.id ASC
-		// 	LIMIT 1
-		// ";
+		$result = \lib\utility\filter::meta_decode($result);
+
+		if(isset($result[0]))
+		{
+			return $result[0];
+		}
+		return false;
+	}
 
 
+	/**
+	 * change return format
+	 *
+	 * @param      <type>  $_result  The result
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public static function poll_format($_result)
+	{
 		$returnValue =
 		[
 			'id'          => null,
@@ -671,13 +681,13 @@ class polls
 			'url'	      => null,
 			'tags'        => null,
 		];
-		if(isset($result['question']))
+		if(isset($_result['title']))
 		{
-			$result['question']         = html_entity_decode($result['question']);
-			$returnValue['id']          = $result['id'];
-			$returnValue['url']         = $result['url'];
-			$returnValue['question']    = $result['question'];
-			$returnValue['questionRaw'] = $result['question'];
+			$_result['title']         = html_entity_decode($_result['title']);
+			$returnValue['id']          = $_result['id'];
+			$returnValue['url']         = $_result['url'];
+			$returnValue['question']    = $_result['title'];
+			$returnValue['questionRaw'] = $_result['title'];
 			$tagList                    = \lib\db\tags::usage($returnValue['id']);
 			foreach ($tagList as $key => $value)
 			{
@@ -687,9 +697,9 @@ class polls
 			}
 		}
 
-		if(isset($result['opt']))
+		if(isset($_result['meta']))
 		{
-			$returnValue['opt'] = json_decode($result['opt'], true);
+			$returnValue['opt'] = $_result['meta'];
 			if(is_array($returnValue['opt']['opt']))
 			{
 				$returnValue['opt'] = array_column($returnValue['opt']['opt'], 'txt', 'key');
@@ -701,7 +711,6 @@ class polls
 		}
 		return $returnValue;
 	}
-
 
 	/**
 	 * Appends a meta.

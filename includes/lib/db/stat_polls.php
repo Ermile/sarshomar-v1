@@ -218,7 +218,7 @@ class stat_polls
 			return false;
 		}
 
-		$poll_meta = json_decode($poll['meta'], JSON_UNESCAPED_UNICODE);
+		$poll_meta = $poll['meta'];
 		if(isset($poll_meta['opt']))
 		{
 			$poll_opt = $poll_meta['opt'];
