@@ -108,6 +108,7 @@ class polls
 					$where
 				ORDER BY posts.id DESC
 				$limit
+				-- Get post polls::xget()
 					";
 		return \lib\db\posts::select($query, "get");
 	}
@@ -411,7 +412,9 @@ class polls
 				WHERE
 					posts.id = $_post_id
 					$_user_id
-				LIMIT 1 ";
+				LIMIT 1
+				--  polls::get_for_edit()
+				";
 		$poll =  \lib\db::get($query, null);
 		$poll = \lib\utility\filter::meta_decode($poll);
 		if($poll &&  is_array($poll) && !empty($poll))
@@ -455,6 +458,7 @@ class polls
 				WHERE
 					id = $_poll_id
 				LIMIT 1
+				-- polls::get_poll()
 				";
 		$result = \lib\db::get($query, null, true);
 		return $result;
@@ -532,15 +536,15 @@ class polls
 			SELECT
 				posts.post_url AS 'url'
 			FROM
-				options
-			INNER JOIN posts ON posts.id = options.post_id
+				polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
 			WHERE
-				options.user_id = $_user_id AND
-				options.option_cat LIKE 'poll%' AND
-				options.option_key = 'answer_$_user_id'
+				polldetails.user_id = $_user_id
 			ORDER BY
-				options.id DESC
+				polldetails.id DESC
 			LIMIT 1
+			-- polls::get_previous_url()
+			-- to get previous of answered this user
 		";
 		$result= \lib\db::get($query, 'url', true);
 		return $result;
@@ -586,11 +590,13 @@ class polls
 				-- check users not answered to this poll
 				posts.id NOT IN
 				(
-					SELECT options.post_id FROM options
-						WHERE
-						options.option_cat LIKE 'poll\_%' AND
-						options.option_key LIKE 'answer\_%'AND
-						options.user_id = $_user_id
+					SELECT
+						polldetails.post_id
+					FROM
+						polldetails
+					WHERE
+						polldetails.user_id = $_user_id AND
+						polldetails.post_id = posts.id
 				)
 			-- Check poll tree
 			AND
@@ -627,6 +633,8 @@ class polls
 				END
 			ORDER BY posts.id ASC
 			LIMIT 1
+			-- polls::get_last()
+			-- get next poll to answer user
 		";
 
 		$result  = \lib\db::get($qry, null, true);
@@ -722,6 +730,8 @@ class polls
 				$query
 			WHERE
 				posts.id = $_poll_id
+			-- polls::merge_meta()
+			-- add new json to existing meta of post_meta
 		";
 		$result = \lib\db::query($query);
 		return $result;

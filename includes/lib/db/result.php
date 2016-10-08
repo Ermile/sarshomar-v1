@@ -14,6 +14,7 @@ class result
 			WHERE
 				post_type LIKE 'poll%' AND
 				post_status = 'publish'
+			-- get list of poll id to make random poll result
 		";
 
 		$result = \lib\db\posts::select($query, "get");

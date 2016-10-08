@@ -31,6 +31,7 @@ class profiles
 					options.option_cat = 'favorites'
 			WHERE
 				options.option_cat = 'user_detail_$user_id'
+			-- profiles::get_profile_data()
 		";
 
 		$result = \lib\db::get($query, ['key', 'value']);
@@ -65,7 +66,15 @@ class profiles
 				if($old_profiles_data[$field] != $value)
 				{
 					$where = "user_id = '$_user_id' AND option_cat = 'user_detail_$_user_id' AND option_key = '$field' ";
-					$update_query = "UPDATE options SET options.option_value = '" . $_args[$field] . "' WHERE $where";
+					$update_query =
+					"
+						UPDATE
+							options
+						SET options.option_value = '" . $_args[$field] . "'
+						WHERE
+							$where
+						-- profiles::set_profile_data()
+						";
 					$update_profile = \lib\db::query($update_query);
 					if($update_profile)
 					{
@@ -94,6 +103,7 @@ class profiles
 						option_cat   = 'user_detail_$_user_id',
 						option_key   = '$field',
 						option_value = '$value'
+					-- profiles::set_profile_data()
 				";
 				$insert_profile = \lib\db::query($insert);
 

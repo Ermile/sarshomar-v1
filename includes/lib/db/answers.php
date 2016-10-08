@@ -100,6 +100,7 @@ class answers
 					option_cat LIKE 'poll_{$_poll_id}' AND
 					option_key LIKE 'opt%'  AND
 					user_id IS NULL
+				-- answers::get()
 				";
 		$result = \lib\db\options::select($query, "get");
 		return \lib\utility\filter::meta_decode($result);
@@ -115,48 +116,77 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_answer_txt = null)
 	{
+
+		$num_of_opt_kye = preg_split("/\_/", $_answer);
+		$num_of_opt_kye = isset($num_of_opt_kye[1]) ? $num_of_opt_kye[1]: 0;
+		// insert data to polldetails table
+		$insert_polldetails =
+		"
+			INSERT INTO
+				polldetails
+			SET
+				user_id = $_user_id,
+				post_id = $_poll_id,
+				opt     = '$num_of_opt_kye',
+				type    = NULL,
+				txt     = '$_answer_txt',
+				profile =
+				(
+					SELECT
+					CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}') AS JSON
+					FROM
+						options
+					WHERE
+						user_id    = $_user_id AND
+						option_cat = 'user_detail_$_user_id'
+				),
+				visitor_id = NULL
+				-- answers::save()
+		";
+		$result = \lib\db::query($insert_polldetails);
+
 		// set status of skip answers to disable
-		$status = 'enable';
-		if($_answer < 0 )
-		{
-			$status = 'disable';
-		}
-		$meta =
-		[
-			'question'   => $_poll_id,
-			'answer'     => $_answer,
-			'answer_txt' => $_answer_txt,
-			'date'       => date('Y-m-d H:i:s'),
-		];
-		$option_data =
-		[
-			'user_id'       => $_user_id,
-			'post_id'       => $_poll_id,
-			'option_cat'    => 'poll_' . $_poll_id,
-			'option_key'    => 'answer_' . $_user_id,
-			'option_value'  => $_answer,
-			'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
-			'option_status' => $status
-		];
+		// $status = 'enable';
+		// if($_answer < 0 )
+		// {
+		// 	$status = 'disable';
+		// }
+		// $meta =
+		// [
+		// 	'question'   => $_poll_id,
+		// 	'answer'     => $_answer,
+		// 	'answer_txt' => $_answer_txt,
+		// 	'date'       => date('Y-m-d H:i:s'),
+		// ];
+		// $option_data =
+		// [
+		// 	'user_id'       => $_user_id,
+		// 	'post_id'       => $_poll_id,
+		// 	'option_cat'    => 'poll_' . $_poll_id,
+		// 	'option_key'    => 'answer_' . $_user_id,
+		// 	'option_value'  => $_answer,
+		// 	'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
+		// 	'option_status' => $status
+		// ];
 
-		// save in options table and if successful return session_id
-		$result = \lib\db\options::insert($option_data);
+		// // save in options table and if successful return session_id
+		// $result = \lib\db\options::insert($option_data);
 
-		// if error in insert we need to update record
-		if(!$result)
-		{
-			/**
-			 * check if this pull can update answer update else return false
-			 */
-			if("can update answer of this poll")
-			{
-				\lib\db\options::update_on_error($option_data);
-			}
-			else
-			{
-				\lib\debug::error(T_("you are answered to this poll"));
-			}
-		}
+		// // if error in insert we need to update record
+		// if(!$result)
+		// {
+		// 	/**
+		// 	 * check if this pull can update answer update else return false
+		// 	 */
+		// 	if("can update answer of this poll")
+		// 	{
+		// 		\lib\db\options::update_on_error($option_data);
+		// 	}
+		// 	else
+		// 	{
+		// 		\lib\debug::error(T_("you are answered to this poll"));
+		// 	}
+		// }
 
 		// the key to update stat of this poll
 		// when user update his answer we shud not update poll stat
@@ -194,7 +224,8 @@ class answers
 			WHERE
 				options.post_id = $_poll_id AND
 				options.option_key LIKE 'opt%' AND
-				options.user_id IS NULL AND
+				options.user_id IS NULL
+			-- answers::delete()
 		";
 		return \lib\db::query($query);
 	}
@@ -213,14 +244,13 @@ class answers
 			SELECT
 				id
 			FROM
-				options
+				polldetails
 			WHERE
 				user_id = $_user_id AND
-				post_id = $_poll_id AND
-				option_cat = 'poll_$_poll_id' AND
-				option_key = 'answer_$_user_id' AND
-				option_value IS NOT NULL
+				post_id = $_poll_id
 			LIMIT 1
+			-- answers::is_answered()
+			-- check user is answered to this poll or no
 		";
 		$result = \lib\db::get($query, 'id', true);
 		if($result)

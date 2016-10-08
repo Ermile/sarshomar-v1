@@ -82,36 +82,7 @@ class stat_polls
 		 */
 		self::set_sarshomar_total_answered();
 
-		$num_of_opt_kye = preg_split("/\_/", $opt_key);
-		$num_of_opt_kye = isset($num_of_opt_kye[1]) ? $num_of_opt_kye[1]: 0;
-		// insert data to polldetails table
-		$insert_polldetails =
-		"
-			INSERT INTO
-				polldetails
-			SET
-				user_id = $user_id,
-				post_id = $poll_id,
-				opt     = '$num_of_opt_kye',
-				type    = NULL,
-				txt     = '$opt_txt',
-				profile =
-				(
-					SELECT
-					CONCAT('[', GROUP_CONCAT(JSON_OBJECT(option_key, option_value)), ']') AS JSON
-					FROM
-						options
-					WHERE
-						user_id    = $user_id AND
-						option_cat = 'user_detail_$user_id'
-				),
-				visitor_id = NULL
-		";
-		$insert_polldetails = \lib\db::query($insert_polldetails);
-
-
 		$user_profile_data = \lib\db\profiles::get_profile_data($user_id);
-
 
 		$set = [];
 		$set_for_insert = [];
@@ -134,32 +105,35 @@ class stat_polls
 	        	$set_for_insert[] = " pollstats.$key = '{\"$opt_key\":{\"$value\":1}}' ";
 			}
 		}
-
+		$set[] = " pollstats.total = pollstats.total + 1 ";
 		$set = join($set, " , ");
 		$pollstats_update_query =
 		"
 			UPDATE
 				pollstats
 			SET
-				pollstats.total = pollstats.total + 1,
 				$set
 			WHERE
 				pollstats.post_id = $poll_id
+			-- update poll stat result
+			-- stat_polls::set_poll_result()
 		";
 
 		$pollstats_update = \lib\db::query($pollstats_update_query);
-
-		if(!$pollstats_update)
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+		if(!$update_rows)
 		{
+			$set_for_insert[] = " pollstats.post_id = $poll_id ";
+			$set_for_insert[] = " pollstats.total = 1 ";
 			$set_for_insert = join($set_for_insert, " , ");
 			$pollstats_insert_query =
 			"
 				INSERT INTO
 					pollstats
 				SET
-					pollstats.post_id = $poll_id,
-					pollstats.total = 1,
 					$set_for_insert
+				-- stat_polls::set_poll_result()
+				-- insert poll stat result
 			";
 			$pollstats_insert = \lib\db::query($pollstats_insert_query);
 		}
@@ -183,6 +157,9 @@ class stat_polls
 					)
             WHERE
             	posts.id 	 = $poll_id
+   			-- stat_polls::set_poll_result()
+            -- update post_meta and save answered count to post_meta
+
 		";
 		$update_posts_meta = \lib\db::query($update_posts_meta);
 	}
@@ -264,6 +241,8 @@ class stat_polls
 				options.option_cat   = 'poll_$_poll_id' AND
 				options.option_key   = 'stat' AND
 				options.option_value = 'opt_count'
+			-- stat_polls::get_result()
+			--
 		";
 		$result = \lib\db::get($query, ['value', 'meta']);
 		if($result)
@@ -313,6 +292,7 @@ class stat_polls
 				options.post_id IS NULL AND
 				options.option_cat   = 'sarshomar_total_answered' AND
 				options.option_key   = 'total_answered'
+			-- stat_poll::set_sarshomar_total_answered()
 		";
 
 		$update = \lib\db::query($stat_query);
@@ -330,6 +310,8 @@ class stat_polls
 					options.option_cat   = 'sarshomar_total_answered',
 					options.option_key   = 'total_answered',
 					options.option_value = 1
+				-- stat_poll::set_sarshomar_total_answered()
+
 			";
 			$insert = \lib\db::query($insert_query);
 		}
@@ -350,6 +332,8 @@ class stat_polls
 				options.option_cat   = 'sarshomar_total_answered' AND
 				options.option_key   = 'total_answered'
 			LIMIT 1
+			-- stat_poll::get_sarshomar_total_answered()
+
 		";
 		$total = \lib\db::get($stat_query, 'count', true);
 		return intval($total);

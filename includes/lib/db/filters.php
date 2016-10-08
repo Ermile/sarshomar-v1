@@ -106,6 +106,7 @@ class filters
 			GROUP BY
 				options.option_key,
 				options.option_value
+			-- filters::get_exist_filter()
 		";
 		$result = \lib\db::get($query);
 
@@ -153,6 +154,7 @@ class filters
 				options.option_key NOT LIKE 'opt_%' AND
 				options.option_key NOT LIKE 'answer_%' AND
 				options.option_key NOT LIKE 'tree_%'
+				-- filters::get_poll_filter()
 		";
 		$result = \lib\db::get($query);
 		return $result;
@@ -232,6 +234,7 @@ class filters
 				$where
 			GROUP BY
 				main.user_id
+			-- filters::count_filtered_member()
 		";
 		$result = \lib\db::query($query);
 		$num  = \lib\db::num();
