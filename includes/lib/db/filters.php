@@ -5,6 +5,58 @@ class filters
 {
 
 	/**
+	 * get supoort filters
+	 * this array exist in to pollstat table
+	 * when inserting new value to this table check field
+	 * all field of that table is here
+	 *
+	 * @return     array  ( description_of_the_return_value )
+	 */
+	public static function support_filter($_check = null)
+	{
+
+		$support_filter =
+		[
+			'gender',
+			'marrital_status',
+			'parental_status',
+			'exercise_habits',
+			'employment_status',
+			'business_owner',
+			'industry',
+			'devices_owned',
+			'internet_usage',
+			'birthdate',
+			'age',
+			'range',
+			'graduation',
+			'course',
+			'country_birth',
+			'country',
+			'province_birth',
+			'province',
+			'birthcity',
+			'city',
+			'language',
+			'meta'
+		];
+
+		if($_check)
+		{
+			if(in_array($_check, $support_filter))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return $support_filter;
+	}
+
+
+	/**
 	 * return category of filter
 	 *
 	 * @param      <type>  $_cat   The cat

@@ -82,6 +82,86 @@ class stat_polls
 		 */
 		self::set_sarshomar_total_answered();
 
+		// insert data to polldetails table
+		$insert_polldetails =
+		"
+			INSERT INTO
+				polldetails
+			SET
+				user_id = $user_id,
+				post_id = $poll_id,
+				opt     = '$opt_key',
+				type    = NULL,
+				txt     = '$opt_txt',
+				user_profile =
+				(
+					SELECT
+					CONCAT('[', GROUP_CONCAT(JSON_OBJECT(option_key, option_value)), ']') AS JSON
+					FROM
+						options
+					WHERE
+						user_id    = $user_id AND
+						option_cat = 'user_detail_$user_id'
+				),
+				visitor_id = 1
+		";
+		$insert_polldetails = \lib\db::query($insert_polldetails);
+
+
+		$user_profile_data = \lib\db\profiles::get_profile_data($user_id);
+
+
+		$set = [];
+		$set_for_insert = [];
+		foreach ($user_profile_data as $key => $value) {
+			if(\lib\db\filters::support_filter($key))
+			{
+				$v = '$.' . $opt_key. '."'. $value. '"';
+				$set[] =
+				"
+					pollstats.$key =
+				       	IF(pollstats.$key IS NULL OR pollstats.$key = '',
+					       		'{\"$opt_key\":{\"$value\":1}}',
+							IF(
+							   JSON_EXTRACT(pollstats.$key, '$v'),
+							   JSON_REPLACE(pollstats.$key, '$v', JSON_EXTRACT(pollstats.$key, '$v') + 1 ),
+							   JSON_INSERT(pollstats.$key, '$.$opt_key',JSON_OBJECT(\"$value\",1))
+							)
+						)
+	        	";
+	        	$set_for_insert[] = " pollstats.$key = '{\"$opt_key\":{\"$value\":1}}' ";
+			}
+		}
+
+		$set = join($set, " , ");
+		$pollstats_update_query =
+		"
+			UPDATE
+				pollstats
+			SET
+				pollstats.total = pollstats.total + 1,
+				$set
+			WHERE
+				pollstats.post_id = $poll_id
+		";
+
+		$pollstats_update = \lib\db::query($pollstats_update_query);
+
+		if(!$pollstats_update)
+		{
+			$set_for_insert = join($set_for_insert, " , ");
+			$pollstats_insert_query =
+			"
+				INSERT INTO
+					pollstats
+				SET
+					pollstats.post_id = $poll_id,
+					pollstats.total = 1,
+					$set_for_insert
+			";
+			$pollstats_insert = \lib\db::query($pollstats_insert_query);
+		}
+
 
 		// update post meta and save count answered in to meta
 		$update_posts_meta =
@@ -91,167 +171,18 @@ class stat_polls
             SET
             	posts.post_meta =
 			       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-			       		'{\"answeres\":{\"$opt_key\":1}}',
+			       		'{\"answers\":{\"$opt_key\":1}}',
 						IF(
-						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key'),
-						   JSON_REPLACE(posts.post_meta, '$.answeres.$opt_key',
-						   JSON_EXTRACT(posts.post_meta, '$.answeres.$opt_key') + 1 ),
-						   JSON_SET(posts.post_meta, '$.answeres', JSON_OBJECT(\"$opt_key\",1))
+						   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
+						   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
+						   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
+						   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
 					      )
 					)
             WHERE
             	posts.id 	 = $poll_id
 		";
 		$update_posts_meta = \lib\db::query($update_posts_meta);
-
-		//count answered to this poll in option table
-
-		// example $.opt_1
-		$json_opt = '$.'. $opt_key;
-
-		$opt_count =
-		"
-			UPDATE
-				options
-			SET
-				options.option_meta =
-					IF(options.option_meta IS NULL OR options.option_meta = '',
-				       		'{\"$opt_key\":1}',
-						IF(
-						   JSON_EXTRACT(options.option_meta, '$json_opt'),
-						   JSON_REPLACE(options.option_meta, '$json_opt',
-						   JSON_EXTRACT(options.option_meta, '$json_opt') + 1 ),
-						   JSON_INSERT(options.option_meta, '$json_opt', 1)
-						)
-					)
-			WHERE
-				options.user_id IS NULL AND
-				options.post_id      = $poll_id AND
-				options.option_cat   = 'poll_$poll_id' AND
-				options.option_key   = 'stat' AND
-				options.option_value = 'opt_count'
-		";
-
-		$update = \lib\db::query($opt_count);
-		$update_rows = mysqli_affected_rows(\lib\db::$link);
-
-		if(!$update_rows)
-		{
-			$opt_count =
-			"
-				INSERT INTO
-					options
-				SET
-					options.user_id  	 = NULL,
-					options.option_meta  = '{\"$opt_key\":1}',
-					options.post_id      = $poll_id,
-					options.option_cat   = 'poll_$poll_id',
-					options.option_key   = 'stat',
-					options.option_value = 'opt_count'
-			";
-			\lib\db::query($opt_count);
-		}
-
-		// set count of answered poll
-		$stat_query =
-		"
-			UPDATE
-				options
-			SET
-				options.option_meta  = option_meta + 1
-			WHERE
-				options.user_id IS NULL AND
-				options.post_id      = $poll_id AND
-				options.option_cat   = 'poll_$poll_id' AND
-				options.option_key   = 'stat' AND
-				options.option_value = 'total'
-		";
-
-		$update = \lib\db::query($stat_query);
-		// if can not update record insert new record
-		$update_rows = mysqli_affected_rows(\lib\db::$link);
-		if(!$update_rows)
-		{
-			$insert_query =
-			"
-				INSERT INTO
-					options
-				SET
-					options.post_id      = $poll_id,
-					options.option_cat   = 'poll_{$poll_id}',
-					options.option_key   = 'stat',
-					options.option_value = 'total',
-					options.option_meta  = 1
-			";
-			$insert = \lib\db::query($insert_query);
-		}
-
-		// get users detail and save to option meta
-		$query =
-			"
-			SELECT
-                  options.option_key 	AS 'key',
-                  options.option_value 	AS 'value'
-            FROM
-                  options
-            WHERE
-            	  options.post_id IS NULL AND
-                  options.user_id = $user_id AND
-                  options.option_cat = 'user_detail_$user_id'
-			";
-
-		$users_detail_list = \lib\db::get($query,['key', 'value']);
-
-		if(!is_array($users_detail_list))
-		{
-			// for error in foreach
-			$users_detail_list = [];
-		}
-
-		// list of user details
-		foreach ($users_detail_list as $key => $value)
-		{
-			$v = '$.' . $opt_key. '."'. $value. '"';
-
-			$query =
-			"
-				UPDATE
-                	options
-                SET
-                	options.option_meta =
-         						       	IF(options.option_meta IS NULL OR options.option_meta = '',
-         						       		'{\"$opt_key\":{\"$value\":1}}',
-                							IF(
-                							   JSON_EXTRACT(options.option_meta, '$v'),
-											   JSON_REPLACE(options.option_meta, '$v', JSON_EXTRACT(options.option_meta, '$v') + 1 ),
-											   JSON_INSERT(options.option_meta, '$.$opt_key',JSON_OBJECT(\"$value\",1))
-                							)
-                						)
-                WHERE
-					options.option_cat   = 'poll_$poll_id' AND
-					options.option_key   = 'stat' AND
-					options.option_value = '$key' AND
-                	options.post_id 	 = $poll_id
-			";
-			$update = \lib\db::query($query);
-
-			$update_rows = mysqli_affected_rows(\lib\db::$link);
-			if(!$update_rows)
-			{
-				$query =
-				"
-					INSERT INTO
-	                	options
-	                SET
-						options.option_cat   = 'poll_{$poll_id}',
-						options.option_key   = 'stat',
-						options.option_value = '$key',
-	                	options.option_meta  = '{\"$opt_key\":{\"$value\":1}}',
-	                	options.post_id 	 = $poll_id
-				";
-				$insert = \lib\db::query($query);
-			}
-		}
 	}
 
 

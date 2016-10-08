@@ -206,9 +206,7 @@ class model extends \mvc\model
 			'user_id'      => $this->login('id'),
 			'title'        => $title,
 			'type'         => $poll_type,
-			'language'     => $language,
 			'content'      => $content,
-			'publish_date' => $publish_date,
 			'parent'	   => $survey_id,
 			'status'       => 'draft',
 			'meta'         => "{\"desc\":\"$summary\"}"
@@ -550,7 +548,9 @@ class model extends \mvc\model
 
 		$update_posts =
 		[
-			'post_status' => 'publish'
+			'post_status' => 'publish',
+			'language'     => $language,
+			'publish_date' => $publish_date,
 		];
 
 		$result = \lib\db\polls::update($update_posts, $poll_survey_id);

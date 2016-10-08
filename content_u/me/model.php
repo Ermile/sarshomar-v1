@@ -11,7 +11,7 @@ class model extends \mvc\model
 	public function get_me()
 	{
 		$user_id = $this->login("id");
-		$me = \lib\db\me::get_me_data(['user_id' => $user_id]);
+		$me = \lib\db\profiles::get_profile_data($user_id);
 		$displayname = \lib\db\users::get_displayname($user_id);
 		$me['displayname'] = $displayname;
 		return $me;
@@ -78,8 +78,8 @@ class model extends \mvc\model
 		];
 
 		$displayname = \lib\db\users::set_displayname($user_id, $displayname);
-		$me = \lib\db\me::set_me_data($user_id, $args);
-		if($me)
+		$profiles = \lib\db\profiles::set_profile_data($user_id, $args);
+		if($profiles)
 		{
 			\lib\debug::true(T_("profile data updated"));
 		}
