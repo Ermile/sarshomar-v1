@@ -135,7 +135,7 @@ header>nav>a {
 }
 
 header>nav>a:not(:first-child) {
-  padding-top: 0.2em;
+  padding-top: 0.1em;
 }
 
 header>nav>a:hover {
@@ -1636,11 +1636,10 @@ footer .eco img {
   font-size: 12px;
   font-weight: bold;
   border-radius: 5px;
-  min-width: 70px;
 }
 
 .type nav a:not(:first-child) {
-  margin-left: 25px;
+  margin-left: 23px;
 }
 
 .rtl .type nav a:not(:first-child) {
@@ -1676,7 +1675,7 @@ footer .eco img {
 }
 
 .type nav a::after {
-  right: -18px;
+  right: -17px;
   content: "b";
 }
 
@@ -1963,7 +1962,6 @@ footer .eco img {
   .assurance-box {
     font-size: 3em
   }
-  /*.register-box { font-size: 3em }*/
 }
 
 
@@ -1972,13 +1970,11 @@ footer .eco img {
   .assurance-box {
     font-size: 3em
   }
-  /*.register-box { font-size: 3em }*/
 }
 
 
 /* Normal Desktop */
 @media only screen and (max-width:1399px) {
-  /*.register-box { font-size: 3em }*/
 }
 
 
@@ -1987,7 +1983,6 @@ footer .eco img {
   .assurance-box {
     font-size: 2em
   }
-  /*.register-box { font-size: 2em }*/
 }
 
 
@@ -1996,30 +1991,11 @@ footer .eco img {
   .tabs {
     height: 36px;
   }
-  .tabs a {
-    font-size: 12px;
-  }
-  .type nav a {
-    font-size: 10px;
-  }
-  .type nav a::before, .type nav a::after {
-    font-size: 34px;
-  }
-  .type nav a::before {
-    left: -24px;
-  }
-  .type nav a::after {
-    right: -24px;
-  }
 }
 
 @media only screen and (max-width:849px) {
   .tabs {
     height: 28px;
-  }
-  .tabs a {
-    font-size: 10px;
-    padding: 5px 10px;
   }
   .type nav a > span {
     display: none;
