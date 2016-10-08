@@ -1,15 +1,16 @@
 /*In the Name of God*/
 
+@charset "UTF-8";
 @font-face {
-  font-family: "ermile";
-  src: url("../fonts/ermile/ermile.eot");
-  src: url("../fonts/ermile/ermile.eot?#iefix") format("embedded-opentype"), url("../fonts/ermile/ermile.woff") format("woff"), url("../fonts/ermile/ermile.ttf") format("truetype"), url("../fonts/ermile/ermile.svg#ermile") format("svg");
+  font-family: "sarshomar";
+  src: url("/static/fonts/sarshomar/sarshomar.eot");
+  src: url("/static/fonts/sarshomar/sarshomar.eot?#iefix") format("embedded-opentype"), url("/static/fonts/sarshomar/sarshomar.woff") format("woff"), url("/static/fonts/sarshomar/sarshomar.ttf") format("truetype"), url("/static/fonts/sarshomar/sarshomar.svg#sarshomar") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 [data-icon]:before {
-  font-family: "ermile" !important;
+  font-family: "sarshomar" !important;
   content: attr(data-icon);
   font-style: normal !important;
   font-weight: normal !important;
@@ -23,7 +24,7 @@
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "ermile" !important;
+  font-family: "sarshomar" !important;
   font-style: normal !important;
   font-weight: normal !important;
   font-variant: normal !important;
@@ -34,15 +35,52 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-menu-side:before {
+.icon-drag:before {
+  content: "\61";
+}
+
+.icon-input-after:before {
+  content: "\62";
+}
+
+.icon-input-before:before {
   content: "\63";
 }
 
-/* Standard border image for whole site */
-.border-image {
-  -webkit-border-image: url(/static/images/border.png) 8 stretch;
-       -o-border-image: url(/static/images/border.png) 8 stretch;
-          border-image: url(/static/images/border.png) 8 stretch;
+.icon-input-picture:before {
+  content: "\64";
+}
+
+.icon-range-down:before {
+  content: "\65";
+}
+
+.icon-range-left:before {
+  content: "\66";
+}
+
+.icon-range-right:before {
+  content: "\67";
+}
+
+.icon-range-up:before {
+  content: "\68";
+}
+
+.icon-score-down:before {
+  content: "\69";
+}
+
+.icon-score-up:before {
+  content: "\6a";
+}
+
+.icon-submit-after:before {
+  content: "\6b";
+}
+
+.icon-submit-before:before {
+  content: "\6c";
 }
 
 /* Make text left aligned */
@@ -84,7 +122,6 @@ header {
 
 header>nav {
   display: inline-block;
-  margin-top: 1.5em;
 }
 
 header>nav>a {
@@ -98,7 +135,7 @@ header>nav>a {
 }
 
 header>nav>a:not(:first-child) {
-  padding-top: 0.4em;
+  padding-top: 0.2em;
 }
 
 header>nav>a:hover {
@@ -1585,6 +1622,7 @@ footer .eco img {
 .type nav {
   display: inline-block;
   background-color: #00667A;
+  border-radius: 7px;
 }
 
 .type nav a {
@@ -1597,15 +1635,17 @@ footer .eco img {
   background-color: #00667A;
   font-size: 12px;
   font-weight: bold;
+  border-radius: 5px;
+  min-width: 70px;
 }
 
 .type nav a:not(:first-child) {
-  margin-left: 37px;
+  margin-left: 25px;
 }
 
 .rtl .type nav a:not(:first-child) {
   margin-left: auto;
-  margin-right: 36px;
+  margin-right: 25px;
 }
 
 .rtl .type nav a {
@@ -1618,31 +1658,26 @@ footer .eco img {
 
 .type nav a::before,
 .type nav a::after {
-  font-family: "Ermile";
-  content: "a";
+  font-family: "sarshomar";
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto;
-  font-size: 38px;
-  margin-top: -1px;
+  font-size: 25px;
+  margin-top: 5px;
   color: #00667A;
   transition: color 0.2s;
   font-weight: normal;
 }
 
 .type nav a::before {
-  left: -28px;
+  content: "c";
+  left: -18px;
 }
 
 .type nav a::after {
-  right: -27px;
-  -moz-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  transform: scaleX(-1);
-  -ms-filter: fliph;
-  filter: fliph;
+  right: -18px;
+  content: "b";
 }
 
 .type nav a:hover::before,
