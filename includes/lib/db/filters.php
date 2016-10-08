@@ -18,27 +18,27 @@ class filters
 		$support_filter =
 		[
 			'gender',
-			'marrital_status',
-			'parental_status',
-			'exercise_habits',
-			'employment_status',
-			'business_owner',
+			'marrital',
+			'parental',
+			'exercise',
+			'employment',
+			'business',
 			'industry',
-			'devices_owned',
-			'internet_usage',
+			'devices',
+			'internetusage',
 			'birthdate',
 			'age',
 			'range',
 			'graduation',
 			'course',
-			'country_birth',
+			'countrybirth',
 			'country',
-			'province_birth',
+			'provincebirth',
 			'province',
 			'birthcity',
 			'city',
-			'language',
-			'meta'
+			'citybirth',
+			'language'
 		];
 
 		if($_check)

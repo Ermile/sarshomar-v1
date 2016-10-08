@@ -82,6 +82,8 @@ class stat_polls
 		 */
 		self::set_sarshomar_total_answered();
 
+		$num_of_opt_kye = preg_split("/\_/", $opt_key);
+		$num_of_opt_kye = isset($num_of_opt_kye[1]) ? $num_of_opt_kye[1]: 0;
 		// insert data to polldetails table
 		$insert_polldetails =
 		"
@@ -90,10 +92,10 @@ class stat_polls
 			SET
 				user_id = $user_id,
 				post_id = $poll_id,
-				opt     = '$opt_key',
+				opt     = '$num_of_opt_kye',
 				type    = NULL,
 				txt     = '$opt_txt',
-				user_profile =
+				profile =
 				(
 					SELECT
 					CONCAT('[', GROUP_CONCAT(JSON_OBJECT(option_key, option_value)), ']') AS JSON
@@ -103,7 +105,7 @@ class stat_polls
 						user_id    = $user_id AND
 						option_cat = 'user_detail_$user_id'
 				),
-				visitor_id = 1
+				visitor_id = NULL
 		";
 		$insert_polldetails = \lib\db::query($insert_polldetails);
 

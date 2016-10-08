@@ -38,7 +38,7 @@ CREATE TABLE `pollstats` (
   `business` text,
   `industry` text,
   `devices` text,
-  `internet_usage` text,
+  `internetusage` text,
   `birthdate` text,
   `age` text,
   `range` text,
