@@ -1697,21 +1697,22 @@ footer .eco img {
   color: #E5A428;
 }
 
-.options, .zzz {
+.options, .indent {
   padding-left: 40px;
 }
-.question_summary {
+.textarea {
+  margin-bottom: 2em;
 }
-.question_summary > .title > .fa {
+.textarea > .title > .fa {
   color: #E5A428;
   font-weight: bold;
 }
-.question_summary > .title > span {
+.textarea > .title > span {
   font-size: 1.2em;
   color: #62919E;
   margin-left: 0.2em;
 }
-.question_summary textarea {
+.textarea textarea {
   display: block;
   resize: none;
   overflow: auto;
@@ -1724,6 +1725,79 @@ footer .eco img {
   overflow-y: hidden;
   padding: 0.5em;
   line-height: 2em;
+}
+
+.buttons {
+  position: relative;
+  text-align: center;
+  clear: both;
+}
+
+.buttons::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: #E5A428;
+  left: 0;
+  margin-top: 17px;
+  z-index: 0;
+}
+
+
+.buttons nav {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  padding: 0;
+  background-color: #F4F4F4;
+  z-index: 1;
+}
+
+
+.buttons button {
+  position: relative;
+  background-color: #E7A429;
+  color: #454545;
+  border: none;
+  outline: none;
+  padding: 7px 10px;
+  min-width: 80px;
+  cursor: pointer;
+}
+
+.buttons button:not(:last-child) {
+  margin-right: 30px;
+}
+
+.buttons button::before,
+.buttons button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 36px;
+  font-family: "sarshomar" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #E7A429;
+}
+
+.buttons button::before {
+  content: "\6c";
+  left: -22px;
+}
+
+.buttons button::after {
+  content: "\6b";
+  right: -22px;
 }
 
 
