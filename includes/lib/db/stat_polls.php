@@ -191,7 +191,8 @@ class stat_polls
 	{
 		// get answers form post meta
 		$poll = \lib\db\polls::get_poll($_poll_id);
-		$meta = json_decode($poll['meta'], true);
+		$meta = $poll['meta'];
+		// $meta = json_decode($poll['meta'], true);
 
 		$opt = $meta['opt'];
 		$answers = $meta['answers'];
