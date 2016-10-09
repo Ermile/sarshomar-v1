@@ -16,7 +16,7 @@ Date: 2016-10-08 14:52:05
 -- ----------------------------
 -- Table structure for pollstats
 -- ----------------------------
-CREATE TABLE `pollstats` (
+CREATE TABLE IF NOT EXISTS `pollstats` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(10) unsigned NOT NULL,
   `total` text,
