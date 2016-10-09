@@ -561,7 +561,7 @@ class polls
 	 * @param  string $_type    [description]
 	 * @return [type]           [description]
 	 */
-	public static function get_last($_user_id, $_type = null)
+	public static function get_last($_user_id, $_type = null, $_poll_id = null)
 	{
 		// calc type if needed
 		if($_type === null)
@@ -599,8 +599,12 @@ class polls
 			WHERE
 				-- Get post_type and publish status
 				$_type AND
-				post_status = 'publish' AND
-
+				post_status = 'publish' AND ";
+				if(!is_null($_poll_id))
+				{
+					$qry .=" posts.id = $_poll_id AND ";
+				}
+				$qry .="
 				-- check users not answered to this poll
 				posts.id NOT IN
 				(

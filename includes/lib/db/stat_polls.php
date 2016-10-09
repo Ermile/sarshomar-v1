@@ -180,26 +180,29 @@ class stat_polls
 
 		$opt = $meta['opt'];
 		$answers = $meta['answers'];
-		$answers = json_decode($answers, true);
-
+		if(!is_array($answers))
+		{
+			$answers = [$answers];
+		}
 		if(!is_array($opt))
 		{
 			return ;
 		}
 
 		$final_result = [];
+		$count = 0;
 		foreach ($opt as $key => $value) {
-			$count = 0;
-			foreach ($answers as $k => $result) {
-				if($result['option_value'] == $value['key'])
-				{
-					$count = $result['count'];
-				}
+			$opt_key = $value['key'];
+			$final_result[$value['txt']] =  0;
+			if(!array_key_exists($opt_key, $answers))
+			{
+				continue;
 			}
-			$final_result[$value['txt']] =  $count;
+			$count += $answers[$opt_key];
+			$final_result[$value['txt']] =  $answers[$opt_key];
 		}
-
 		$result           = [];
+		$result['count']  = $count;
 		$result['title']  = $poll['title'];
 		$result['url']    = $poll['url'];
 		$result['result'] = $final_result;
