@@ -573,6 +573,15 @@ class polls
 			$_type = "post_type = 'poll_". $_type. "'";
 		}
 
+		if(!is_null($_poll_id))
+		{
+			$post_id = " posts.id = $_poll_id AND ";
+		}
+		else
+		{
+			$post_id = null;
+		}
+
 		$qry ="
 			SELECT
 			-- Fields
@@ -599,12 +608,9 @@ class polls
 			WHERE
 				-- Get post_type and publish status
 				$_type AND
-				post_status = 'publish' AND ";
-				if(!is_null($_poll_id))
-				{
-					$qry .=" posts.id = $_poll_id AND ";
-				}
-				$qry .="
+				post_status = 'publish' AND
+				-- Check if poll id set get the poll id
+				$post_id
 				-- check users not answered to this poll
 				posts.id NOT IN
 				(

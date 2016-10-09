@@ -228,7 +228,6 @@ class stat_polls
 
 	public static function get_result($_poll_id, $_type = "result")
 	{
-
 		// get poll meta to get all opt of this poll
 		$poll = \lib\db\polls::get_poll($_poll_id);
 		if(!isset($poll['meta']) || empty($poll))
@@ -246,54 +245,55 @@ class stat_polls
 			return false;
 		}
 
-		/// ******************************************************
-		/// SET NET SYNTAX
 		$query =
 		"
-
 			SELECT
-				options.option_value AS 'value',
-				options.option_meta AS 'meta'
+				*
 			FROM
-				options
+				pollstats
 			WHERE
-				options.user_id IS NULL AND
-				options.post_id      = $_poll_id AND
-				options.option_cat   = 'poll_$_poll_id' AND
-				options.option_key   = 'stat' AND
-				options.option_value = 'opt_count'
+				post_id = $_poll_id
+			LIMIT 1
 			-- stat_polls::get_result()
-			--
 		";
-		$result = \lib\db::get($query, ['value', 'meta']);
+
+		$result = \lib\db::get($query, null);
+
+		$result = \lib\utility\filter::meta_decode($result, "/.*/");
+
+		if(isset($result[0]))
+		{
+			$result = $result[0];
+		}
+		else
+		{
+			return null;
+		}
+
 		if($result)
 		{
-			$opt_count = json_decode($result['opt_count'], JSON_UNESCAPED_UNICODE);
-			$result = [];
-			// $result['id'] = $poll['id'];
-			$result['title'] = $poll['title'];
-			// $result['url'] = $poll['url'];
+			$stat_result = [];
+			$stat_result['title'] = $poll['title'];
+
 			foreach ($poll_opt as $key => $value) {
-				if(isset($opt_count[$value['key']]))
+				if(isset($result[$_type][$value['key']]))
 				{
 					$name = $value['txt'];
-					$data = [$opt_count[$value['key']]];
+					$data = [$result[$_type][$value['key']]];
 				}
 				else
 				{
 					$name = $value['txt'];
 					$data = [0];
 				}
-				$result['data'][] = ['name' => $name,'data' => $data];
+				$stat_result['data'][] = ['name' => $name,'data' => $data];
 			}
-
-			return $result;
+			return $stat_result;
 		}
 		else
 		{
 			return null;
 		}
-		return false;
 	}
 
 
