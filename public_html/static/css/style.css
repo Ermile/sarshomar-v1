@@ -412,21 +412,25 @@ footer nav.horizontal {
   margin-bottom: 2em
 }
 
-footer nav.horizontal>a {
+footer nav.horizontal > a:not(.eco) {
   color: #aaa;
-  padding-top: 1em;
-  padding-bottom: 1em;
   display: inline-block;
   font-size: 1.4em;
-  font-weight: bold
+  font-weight: bold;
+  padding: 1em;
+  float: left;
 }
 
-.ltr footer nav.horizontal>a:not(:last-child) {
-  margin-right: 3em
+.rtl footer nav.horizontal > a:not(.eco) {
+  float: right;
 }
 
-.rtl footer nav.horizontal>a:not(:last-child) {
-  margin-left: 3em
+footer nav.horizontal > a:first-child {
+  padding-left: 0;
+}
+
+.rtl footer nav.horizontal > a:first-child {
+  padding-right: 0;
 }
 
 footer nav.horizontal>a:hover {
@@ -481,7 +485,7 @@ footer .made-in-ir {
 }
 
 footer .eco {
-  position: relative
+  position: relative;
 }
 
 footer .eco div {
@@ -1317,10 +1321,15 @@ footer .eco img {
   margin-left: -22px;
 }
 
-
 /*******************************
-           Elements
+         Form Elements
 *******************************/
+
+
+
+
+
+
 
 
 /*--------------------
@@ -1610,6 +1619,16 @@ footer .eco img {
   width: 40px;
 }
 
+/*--------------------
+      panel-text
+---------------------*/
+
+.panel-text {}
+.panel-text .title {padding: 0.5em}
+.panel-text .title > span {color: #227284;vertical-align: middle; cursor: pointer}
+.panel-text .title > span .fa {color: #E5A428}
+.panel-text > textarea {border: none;background-color: #E7E7E7;display: block;width: 100%;resize: none;padding: 0.5em; margin-bottom: 2em}
+
 /*******************************
               Menu
 *******************************/
@@ -1684,9 +1703,7 @@ footer .eco img {
   color: #15535F;
 }
 
-
 /*active state*/
-
 .type nav a.active {
   background-color: #E5A428;
   color: #454545;
@@ -1700,32 +1717,11 @@ footer .eco img {
 .options, .indent {
   padding-left: 40px;
 }
-.textarea {
-  margin-bottom: 2em;
-}
-.textarea > .title > .fa {
-  color: #E5A428;
-  font-weight: bold;
-}
-.textarea > .title > span {
-  font-size: 1.2em;
-  color: #62919E;
-  margin-left: 0.2em;
-}
-.textarea textarea {
-  display: block;
-  resize: none;
-  overflow: auto;
-  width: 100%;
-  border: none;
-  outline: none;
-  background-color: #E7E7E7;
-  color: #00667A;
-  font-size: 1.2em;
-  overflow-y: hidden;
-  padding: 0.5em;
-  line-height: 2em;
-}
+
+
+/*--------------------
+       Buttons
+---------------------*/
 
 .buttons {
   position: relative;
@@ -1805,16 +1801,7 @@ footer .eco img {
         Custom Checkbox
 *******************************/
 
-*,
-*:after,
-*::before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .ac-custom {
-  /*padding: 0 3em;*/
   max-width: 900px;
   margin: 0 auto;
 }
@@ -1906,9 +1893,7 @@ footer .eco img {
   background-color: #E5A428;
 }
 
-
 /* General SVG and path styles */
-
 .ac-custom svg {
   position: absolute;
   width: 20px;
@@ -1927,12 +1912,7 @@ footer .eco img {
   fill: none;
 }
 
-
-/* Specific input, SVG and path styles */
-
-
 /* Circle */
-
 .ac-circle input[type="checkbox"],
 .ac-circle input[type="radio"],
 .ac-circle label::before {
@@ -1959,23 +1939,19 @@ footer .eco img {
   stroke-width: 8px;
 }
 
-
 /* Box Fill */
-
 .ac-boxfill svg path {
   stroke-width: 8px;
 }
 
 
 /* Swirl */
-
 .ac-swirl svg path {
   stroke-width: 8px;
 }
 
 
 /* List */
-
 .ac-list ol {
   list-style: decimal;
   list-style-position: inside;
@@ -2030,14 +2006,12 @@ footer .eco img {
          Media Queries
 *******************************/
 
-
 /* Extra Large Screens */
 @media only screen and (min-width: 1824px) {
   .assurance-box {
     font-size: 3em
   }
 }
-
 
 /* Large Desktop */
 @media screen and (max-width: 1823px) {
@@ -2046,11 +2020,9 @@ footer .eco img {
   }
 }
 
-
 /* Normal Desktop */
 @media only screen and (max-width:1399px) {
 }
-
 
 /* Small Desktop */
 @media only screen and (max-width:1199px) {
@@ -2058,7 +2030,6 @@ footer .eco img {
     font-size: 2em
   }
 }
-
 
 /* Tablet (Portrait) */
 @media only screen and (max-width:959px) {
@@ -2076,14 +2047,12 @@ footer .eco img {
   }
 }
 
-
 /* Mobile (Landscape) */
 @media only screen and (max-width: 767px) {
   .tabs {
     display: none;
   }
 }
-
 
 /* Mobile */
 @media only screen and (max-width: 479px) {

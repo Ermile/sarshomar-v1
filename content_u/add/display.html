@@ -74,21 +74,21 @@
             </div>
           </section>
 
-          <div class="textarea">
+          <div class="panel-text">
             <div class="title">
-              <i class="fa fa-minus" aria-hidden="true"></i> <span>{%trans "Summary"%}</span>
+              <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Summary"%}</span>
             </div>
-            <textarea rows="2" cols="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+            <textarea name="summary"></textarea>
           </div>
 
-          <div class="textarea">
+          <div class="panel-text">
             <div class="title">
-              <i class="fa fa-minus" aria-hidden="true"></i> <span>{%trans "Description"%}</span>
+              <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Description"%}</span>
             </div>
-            <textarea rows="2" cols="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+            <textarea name="description"></textarea>
           </div>
+
         </div>
-
 
       </form>
     </div>
@@ -362,6 +362,12 @@
 
 {% block foot_js %}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+<script type="text/javascript">
+  $('.panel-text>.title>span').click(function(){
+    $(this).parents('.panel-text').children('textarea').stop().slideToggle('fast');
+    $(this).children('.fa').toggleClass('fa-minus fa-plus');
+  });
+</script>
 {%endblock%}
 
 {%block sp_tag%}
