@@ -227,7 +227,7 @@ class stat_polls
 
 
 
-	public static function get_result($_poll_id, $_type = "result")
+	public static function get_result($_poll_id, $_type = null)
 	{
 		// get poll meta to get all opt of this poll
 		$poll = \lib\db\polls::get_poll($_poll_id);
@@ -270,26 +270,80 @@ class stat_polls
 		{
 			return null;
 		}
-
 		if($result)
 		{
-			$stat_result = [];
-			$stat_result['title'] = $poll['title'];
+			if($_type)
+			{
+				// other chart
+				$stat_result = [];
+				$stat_result['title'] = $poll['title'];
+				// get max result
+				$max =[];
+				foreach ($result[$_type] as $key => $value) {
+					if(is_array($value))
+					{
+						$max = array_merge($max, $value);
+					}
+				}
 
-			foreach ($poll_opt as $key => $value) {
-				if(isset($result[$_type][$value['key']]))
+				foreach ($poll_opt as $key => $value)
 				{
-					$name = $value['txt'];
-					$data = [$result[$_type][$value['key']]];
+					$stat_result[$value['key']]['name'] = $value['txt'];
+					foreach ($max as $city => $count)
+					{
+						if(isset($result[$_type][$value['key']][$city]))
+						{
+							if(isset($stat_result[$value['key']]['data'][$city]))
+							{
+								array_push($stat_result[$value['key']]['data'][$city], $result[$_type][$value['key']][$city]);
+							}
+							else
+							{
+								if(isset($stat_result[$value['key']]))
+								{
+									$stat_result[$value['key']]['data'][$city] = $result[$_type][$value['key']][$city];
+								}
+								else
+								{
+									$stat_result[$value['key']]['data'] = [$city => $result[$_type][$value['key']][$city]];
+								}
+							}
+						}
+						else
+						{
+							if(isset($stat_result[$value['key']]))
+							{
+								$stat_result[$value['key']]['data'][$city] = 0;
+							}
+							else
+							{
+								$stat_result[$value['key']]['data'] = [$city => 0];
+							}
+						}
+					}
 				}
-				else
-				{
-					$name = $value['txt'];
-					$data = [0];
-				}
-				$stat_result['data'][] = ['name' => $name,'data' => $data];
+				return $stat_result;
 			}
-			return $stat_result;
+			else
+			{
+				$stat_result = [];
+				$stat_result['title'] = $poll['title'];
+
+				foreach ($poll_opt as $key => $value) {
+					if(isset($result['result'][$value['key']]))
+					{
+						$name = $value['txt'];
+						$data = [$result['result'][$value['key']]];
+					}
+					else
+					{
+						$name = $value['txt'];
+						$data = [0];
+					}
+					$stat_result['data'][] = ['name' => $name,'data' => $data];
+				}
+				return $stat_result;
+			}
 		}
 		else
 		{
@@ -297,7 +351,41 @@ class stat_polls
 		}
 	}
 
-
+	/**
+	 * change stat poll result to highcharts mode
+	 * http://www.highcharts.com/
+	 *
+	 * @param      <type>         $_result  The result
+	 *
+	 * @return     array|boolean  ( description_of_the_return_value )
+	 */
+	public static function high_charts_mod($_result)
+	{
+		if(!is_array($_result))
+		{
+			return false;
+		}
+		$title = null;
+		$categories = null;
+		$result = [];
+		foreach ($_result as $key => $value) {
+			if($key == 'title')
+			{
+				$title = $value;
+				continue;
+			}
+			if(is_array($value))
+			{
+				$categories = array_keys($value['data']);
+				$result[] = ['name' => $value['name'], 'data' => array_values($value['data'])];
+			}
+		}
+		$return = [];
+		$return['title'] = $title;
+		$return['categories'] = $categories;
+		$return['series'] = $result;
+		return $return;
+	}
 	/**
 	 * Sets the sarshomar total answered.
 	 */
