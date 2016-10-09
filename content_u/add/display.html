@@ -26,71 +26,73 @@
       </nav>
     </div>
 
-    <div class="span3"></div>
-    <div class="span6">
-      <form method="post">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span6">
+        <form method="post">
 
-        <div class="element">
-          <label class="addon" for="title">{%trans "Question Title"%}</label>
-          <input class="input" type="text" name="title" id="title">
-        </div>
-
-        <div class="options">
-          <div class="element option">
-            <label class="addon" for="option1">{%trans "Option 1"%}</label>
-            <input class="input" type="text" name="option1" id="option1">
+          <div class="element">
+            <label class="addon" for="title">{%trans "Question Title"%}</label>
+            <input class="input" type="text" name="title" id="title">
           </div>
 
-          <div class="element option">
-            <label class="addon" for="option2">{%trans "Option 2"%}</label>
-            <input class="input" type="text" name="option2" id="option2">
-          </div>
-
-          <div class="element option">
-            <label class="addon" for="option3">{%trans "Option 3"%}</label>
-            <input class="input" type="text" name="option3" id="option3">
-          </div>
-        </div>
-
-        <div class="indent">
-          <section class="element-checkbox">
-            <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-              <ul>
-                <li>
-                  <input type="checkbox" name="descriptive" id="descriptive">
-                  <label for="descriptive">{%trans "Descriptive Answer"%}</label>
-                </li>
-
-                <li>
-                  <input type="checkbox" name="score" id="score">
-                  <label for="score">{%trans "Score"%}</label>
-                </li>
-
-                <li>
-                  <input type="checkbox" name="multiple_choice" id="multiple_choice">
-                  <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
-                </li>
-              </ul>
+          <div class="options">
+            <div class="element option">
+              <label class="addon" for="option1">{%trans "Option 1"%}</label>
+              <input class="input" type="text" name="option1" id="option1">
             </div>
-          </section>
 
-          <div class="panel-text">
-            <div class="title">
-              <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Summary"%}</span>
+            <div class="element option">
+              <label class="addon" for="option2">{%trans "Option 2"%}</label>
+              <input class="input" type="text" name="option2" id="option2">
             </div>
-            <textarea name="summary"></textarea>
+
+            <div class="element option">
+              <label class="addon" for="option3">{%trans "Option 3"%}</label>
+              <input class="input" type="text" name="option3" id="option3">
+            </div>
           </div>
 
-          <div class="panel-text">
-            <div class="title">
-              <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Description"%}</span>
+          <div class="indent">
+            <section class="element-checkbox">
+              <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                <ul>
+                  <li>
+                    <input type="checkbox" name="descriptive" id="descriptive">
+                    <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" name="score" id="score">
+                    <label for="score">{%trans "Score"%}</label>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" name="multiple_choice" id="multiple_choice">
+                    <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <div class="panel-text">
+              <div class="title">
+                <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Summary"%}</span>
+              </div>
+              <textarea name="summary"></textarea>
             </div>
-            <textarea name="description"></textarea>
+
+            <div class="panel-text">
+              <div class="title">
+                <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Description"%}</span>
+              </div>
+              <textarea name="description"></textarea>
+            </div>
+
           </div>
 
-        </div>
-
-      </form>
+        </form>
+      </div>
     </div>
 
     <div class="buttons">
