@@ -86,6 +86,21 @@ class stat_polls
 
 		$set = [];
 		$set_for_insert = [];
+		// save pollstats.result field
+		$set[] =
+		"
+			pollstats.result =
+		       	IF(pollstats.result IS NULL OR pollstats.result = '',
+			       		'{\"$opt_key\":1}',
+					IF(
+					   JSON_EXTRACT(pollstats.result, '$.$opt_key'),
+					   JSON_REPLACE(pollstats.result, '$.$opt_key', JSON_EXTRACT(pollstats.result, '$.$opt_key') + 1 ),
+					   JSON_SET(pollstats.result, '$.$opt_key', 1)
+					)
+				)
+    	";
+    	$set_for_insert[] = " pollstats.result = '{\"$opt_key\":1}' ";
+    	// set profile result
 		foreach ($user_profile_data as $key => $value) {
 			if(\lib\db\filters::support_filter($key))
 			{
@@ -211,7 +226,7 @@ class stat_polls
 
 
 
-	public static function get_result($_poll_id)
+	public static function get_result($_poll_id, $_type = "result")
 	{
 
 		// get poll meta to get all opt of this poll
@@ -231,8 +246,11 @@ class stat_polls
 			return false;
 		}
 
+		/// ******************************************************
+		/// SET NET SYNTAX
 		$query =
 		"
+
 			SELECT
 				options.option_value AS 'value',
 				options.option_meta AS 'meta'
@@ -268,6 +286,7 @@ class stat_polls
 				}
 				$result['data'][] = ['name' => $name,'data' => $data];
 			}
+
 			return $result;
 		}
 		else

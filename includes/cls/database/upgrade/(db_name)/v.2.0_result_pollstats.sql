@@ -20,6 +20,7 @@ CREATE TABLE `pollstats` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(10) unsigned NOT NULL,
   `total` text,
+  `result` text,
   `gender` text,
   `marrital` text,
   `parental` text,

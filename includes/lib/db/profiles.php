@@ -12,7 +12,7 @@ class profiles
 	public static function get_profile_data($_user_id)
 	{
 		// if SESSION set return the SESSION
-		if(isset($_SESSION['user']['profile']))
+		if(isset($_SESSION['user']['profile']) && !empty($_SESSION['user']['profile']))
 		{
 			return $_SESSION['user']['profile'];
 		}
@@ -30,7 +30,7 @@ class profiles
 					terms.id = options.option_value AND
 					options.option_cat = 'favorites'
 			WHERE
-				options.option_cat = 'user_detail_$user_id'
+				options.option_cat = 'user_detail_$_user_id'
 			-- profiles::get_profile_data()
 		";
 
