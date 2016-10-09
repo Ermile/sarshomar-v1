@@ -2,10 +2,16 @@
 namespace ilib;
 class main extends \lib\main
 {
-
-
 	function __construct()
 	{
+		// redirect /u url to /@
+		if(\lib\router::get_repository_name() == 'content_u')
+		{
+			$redirect = new \lib\redirector();
+			$redirect->url = '/@/' . $redirect->get_url();
+			$redirect->redirect();
+		}
+
 		if(\lib\router::get_class() == '@')
 		{
 			$url = preg_replace("/^\/@/", '', $_SERVER['REQUEST_URI']);

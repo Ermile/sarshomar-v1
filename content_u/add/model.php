@@ -45,8 +45,6 @@ class model extends \mvc\model
 			$poll_id = \lib\utility\shortURL::decode($poll_id);
 		}
 		// $result = \lib\db\survey::set($poll_id);
-
-		// exit();
 	}
 
 	/**

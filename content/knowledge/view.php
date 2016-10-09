@@ -24,11 +24,30 @@ class view extends \mvc\view
 		$this->data->list = $list;
 	}
 
+	public function check_url($_args)
+	{
+		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
+		{
+			if(isset($_args->match->url[0][2]))
+			{
+				if(!isset($_args->match->url[0][3]) || !isset($_args->match->url[0][4]))
+				{
+					$url = $_args->match->url[0][2];
+					$url = \lib\utility\shortURL::decode($url);
+					$url = \lib\db\polls::get_poll_url($url);
+					$this->redirector()->set_url($url)->redirect();
+				}
+			}
+		}
+	}
 
 	public function view_poll($_args)
 	{
 		// check login to load option or no
 		// check answeret to this poll or no
+
+		$this->check_url($_args);
+
 		$post = $this->model()->get_posts();
 
 		if(isset($post['id']))
