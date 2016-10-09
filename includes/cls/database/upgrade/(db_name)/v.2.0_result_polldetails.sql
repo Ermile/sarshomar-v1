@@ -16,7 +16,7 @@ Date: 2016-10-08 14:52:26
 -- ----------------------------
 -- Table structure for polldetails
 -- ----------------------------
-CREATE TABLE `polldetails` (
+CREATE TABLE IF NOT EXISTS `polldetails` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
