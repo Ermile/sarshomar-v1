@@ -246,7 +246,6 @@
     </div>
 </div>
 
-
 {% include 'content/template/static_register.html' %}
 {%endblock%}
 
@@ -303,9 +302,7 @@ var pollChartOptions = {
     credits: {
         enabled: false
     },
-    title: {
-        text: ""
-    },
+    title : "",
     xAxis: {
         labels: {
             enabled: false
@@ -345,8 +342,61 @@ var pollChartOptions = {
     series: {{chart['data']| raw }}
 };
 
+
+
+    var x = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '{{stacked_column.title}}'
+        },
+        xAxis: {
+            categories: {{stacked_column.categories |raw}}
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'مجموع رای دهنگان'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            }
+        },
+        series: {{stacked_column.series|raw}}
+    };
+
 $(function() {
-    $('.poll-chart').highcharts(pollChartOptions);
+    // $('.poll-chart').highcharts(pollChartOptions);
+    $('.poll-chart').highcharts(x);
     $(".comments .comment .continue").click(function() {
         $(this).parents('.comment').children('.content').addClass('absolute-content');
         event.preventDefault();

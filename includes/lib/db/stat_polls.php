@@ -382,8 +382,8 @@ class stat_polls
 		}
 		$return = [];
 		$return['title'] = $title;
-		$return['categories'] = $categories;
-		$return['series'] = $result;
+		$return['categories'] = json_encode($categories, JSON_UNESCAPED_UNICODE);
+		$return['series'] = json_encode($result, JSON_UNESCAPED_UNICODE);
 		return $return;
 	}
 	/**

@@ -95,6 +95,8 @@ class view extends \mvc\view
 			$this->data->chart = $result;
 			$this->data->chart_type = 'column';
 
+			$chart = \lib\db\stat_polls::get_result($post['id'], "city");
+			$this->data->stacked_column = \lib\db\stat_polls::high_charts_mod($chart);
 			$this->data->filter = \lib\db\filters::get_poll_filter($post['id']);
 
 			// get article of this poll
