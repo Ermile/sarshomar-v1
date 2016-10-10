@@ -227,7 +227,7 @@ class stat_polls
 
 
 
-	public static function get_result($_poll_id, $_type = null)
+	public static function get_result($_poll_id, $_type = null, $_mode = "highcharts")
 	{
 		// get poll meta to get all opt of this poll
 		$poll = \lib\db\polls::get_poll($_poll_id);
@@ -274,55 +274,75 @@ class stat_polls
 		{
 			if($_type)
 			{
-				// other chart
-				$stat_result = [];
-				$stat_result['title'] = $poll['title'];
-				// get max result
-				$max =[];
-				foreach ($result[$_type] as $key => $value) {
-					if(is_array($value))
-					{
-						$max = array_merge($max, $value);
-					}
-				}
-
-				foreach ($poll_opt as $key => $value)
+				if(is_array($_type))
 				{
-					$stat_result[$value['key']]['name'] = $value['txt'];
-					foreach ($max as $city => $count)
+					$array_result = [];
+					foreach ($_type as $key => $value) {
+						$array_result[$value] =  self::process_result($poll, $poll_opt, $result, $value);
+					}
+					if($_mode == "highcharts")
 					{
-						if(isset($result[$_type][$value['key']][$city]))
-						{
-							if(isset($stat_result[$value['key']]['data'][$city]))
-							{
-								array_push($stat_result[$value['key']]['data'][$city], $result[$_type][$value['key']][$city]);
-							}
-							else
-							{
-								if(isset($stat_result[$value['key']]))
+						$array_result = self::high_charts_mod($array_result);
+					}
+					return $array_result;
+				}
+				elseif($_type == "*")
+				{
+					$array_result = [];
+					foreach ($result as $key => $value) {
+						switch ($key) {
+							case 'id':
+							case 'post_id':
+							case 'total':
+							case 'meta':
+								continue;
+								break;
+
+							case 'result':
+
+								$stat_result = [];
+								$stat_result['title'] = $poll['title'];
+
+								foreach ($poll_opt as $k => $v) {
+									if(isset($result['result'][$v['key']]))
+									{
+										$name = $v['txt'];
+										$data = [$result['result'][$v['key']]];
+									}
+									else
+									{
+										$name = $v['txt'];
+										$data = [0];
+									}
+									$stat_result['data'][] = ['name' => $name,'data' => $data];
+								}
+								if($_mode == "highcharts")
 								{
-									$stat_result[$value['key']]['data'][$city] = $result[$_type][$value['key']][$city];
+									if(isset($stat_result['data']))
+									{
+										$stat_result['data'] = json_encode($stat_result['data'], JSON_UNESCAPED_UNICODE);
+									}
+								}
+								$array_result[$key] = $stat_result;
+								break;
+							default:
+								if($_mode == "highcharts")
+								{
+									$array_result[$key] =  self::high_charts_mod(self::process_result($poll, $poll_opt, $result, $key));
 								}
 								else
 								{
-									$stat_result[$value['key']]['data'] = [$city => $result[$_type][$value['key']][$city]];
+									$array_result[$key] =  self::process_result($poll, $poll_opt, $result, $key);
 								}
-							}
-						}
-						else
-						{
-							if(isset($stat_result[$value['key']]))
-							{
-								$stat_result[$value['key']]['data'][$city] = 0;
-							}
-							else
-							{
-								$stat_result[$value['key']]['data'] = [$city => 0];
-							}
+								break;
 						}
 					}
+					return $array_result;
 				}
-				return $stat_result;
+				elseif(is_string($_type))
+				{
+					return self::process_result($poll, $poll_opt, $result, $_type);
+				}
 			}
 			else
 			{
@@ -342,6 +362,14 @@ class stat_polls
 					}
 					$stat_result['data'][] = ['name' => $name,'data' => $data];
 				}
+				if($_mode == "highcharts")
+				{
+					if(isset($stat_result['data']))
+					{
+						$stat_result['data'] = json_encode($stat_result['data'], JSON_UNESCAPED_UNICODE);
+					}
+					return $stat_result;
+				}
 				return $stat_result;
 			}
 		}
@@ -349,6 +377,78 @@ class stat_polls
 		{
 			return null;
 		}
+	}
+
+	/**
+	 * prosses the result
+	 *
+	 * @param      <type>  $_poll      The poll
+	 * @param      <type>  $_poll_opt  The poll option
+	 * @param      <type>  $_result    The result
+	 * @param      <type>  $_type      The type
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public static function process_result($_poll, $_poll_opt, $_result, $_type)
+	{
+		$poll     = $_poll;
+		$poll_opt = $_poll_opt;
+		$result   = $_result;
+
+		// other chart
+		$stat_result = [];
+		$stat_result['title'] = $poll['title'];
+		// get max result
+		$max =[];
+		if(!is_array($result[$_type]))
+		{
+			$result[$_type] = [];
+		}
+
+		foreach ($result[$_type] as $key => $value) {
+			if(is_array($value))
+			{
+				$max = array_merge($max, $value);
+			}
+		}
+
+		foreach ($poll_opt as $key => $value)
+		{
+			$stat_result[$value['key']]['name'] = $value['txt'];
+			foreach ($max as $city => $count)
+			{
+				if(isset($result[$_type][$value['key']][$city]))
+				{
+					if(isset($stat_result[$value['key']]['data'][$city]))
+					{
+						array_push($stat_result[$value['key']]['data'][$city], $result[$_type][$value['key']][$city]);
+					}
+					else
+					{
+						if(isset($stat_result[$value['key']]))
+						{
+							$stat_result[$value['key']]['data'][$city] = $result[$_type][$value['key']][$city];
+						}
+						else
+						{
+							$stat_result[$value['key']]['data'] = [$city => $result[$_type][$value['key']][$city]];
+						}
+					}
+				}
+				else
+				{
+					if(isset($stat_result[$value['key']]))
+					{
+						$stat_result[$value['key']]['data'][$city] = 0;
+					}
+					else
+					{
+						$stat_result[$value['key']]['data'] = [$city => 0];
+					}
+				}
+			}
+		}
+		return $stat_result;
 	}
 
 	/**
@@ -376,8 +476,11 @@ class stat_polls
 			}
 			if(is_array($value))
 			{
-				$categories = array_keys($value['data']);
-				$result[] = ['name' => $value['name'], 'data' => array_values($value['data'])];
+				if(isset($value['data']))
+				{
+					$categories = array_keys($value['data']);
+					$result[] = ['name' => $value['name'], 'data' => array_values($value['data'])];
+				}
 			}
 		}
 		$return = [];

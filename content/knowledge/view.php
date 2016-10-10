@@ -90,13 +90,14 @@ class view extends \mvc\view
 			$this->data->post = $post;
 
 			$post_id = $post['id'];
-			$result  = \lib\db\stat_polls::get_result($post_id);
-			$result['data'] = json_encode($result['data'], JSON_UNESCAPED_UNICODE);
-			$this->data->chart = $result;
-			$this->data->chart_type = 'column';
 
-			$chart = \lib\db\stat_polls::get_result($post['id'], "city");
-			$this->data->stacked_column = \lib\db\stat_polls::high_charts_mod($chart);
+			/*
+			 * get all chart result
+			*/
+			$chart = \lib\db\stat_polls::get_result($post_id, "*");
+
+			$this->data->chart = $chart;
+
 			$this->data->filter = \lib\db\filters::get_poll_filter($post['id']);
 
 			// get article of this poll
