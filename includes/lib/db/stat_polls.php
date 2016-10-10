@@ -101,23 +101,42 @@ class stat_polls
     	";
     	$set_for_insert[] = " pollstats.result = '{\"$opt_key\":1}' ";
     	// set profile result
-		foreach ($user_profile_data as $key => $value) {
-			if(\lib\db\filters::support_filter($key))
+    	$support_filter = \lib\db\filters::support_filter();
+		foreach ($support_filter as $key => $value) {
+			if(isset($user_profile_data[$value]))
 			{
-				$v = '$.' . $opt_key. '."'. $value. '"';
+				$v = '$.' . $opt_key. '."'. $user_profile_data[$value]. '"';
 				$set[] =
 				"
-					pollstats.$key =
-				       	IF(pollstats.$key IS NULL OR pollstats.$key = '',
+					pollstats.$value =
+				       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
 					       		'{\"$opt_key\":{\"$value\":1}}',
 							IF(
-							   JSON_EXTRACT(pollstats.$key, '$v'),
-							   JSON_REPLACE(pollstats.$key, '$v', JSON_EXTRACT(pollstats.$key, '$v') + 1 ),
-							   JSON_INSERT(pollstats.$key, '$.$opt_key',JSON_OBJECT(\"$value\",1))
+							   JSON_EXTRACT(pollstats.$value, '$v'),
+							   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
+							   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"{$user_profile_data[$value]}\",1))
 							)
 						)
 	        	";
-	        	$set_for_insert[] = " pollstats.$key = '{\"$opt_key\":{\"$value\":1}}' ";
+	        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"{$user_profile_data[$value]}\":1}}' ";
+			}
+			else
+			{
+				// undifined
+				$v = '$.' . $opt_key. '.undefined';
+				$set[] =
+				"
+					pollstats.$value =
+				       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
+					       		'{\"$opt_key\":{\"undefined\":1}}',
+							IF(
+							   JSON_EXTRACT(pollstats.$value, '$v'),
+							   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
+							   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"undefined\",1))
+							)
+						)
+	        	";
+	        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\":1}}' ";
 			}
 		}
 		$set[] = " pollstats.total = pollstats.total + 1 ";
