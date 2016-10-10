@@ -140,7 +140,10 @@ class handle
 			default:
 				break;
 		}
-
+		if(array_key_exists('inline_query', bot::$hook))
+		{
+			$response = step_inline_query::start(bot::$hook['inline_query']['query'], bot::$hook['inline_query']['offset']);
+		}
 		// automatically add return to end of keyboard
 		if(self::$return)
 		{
