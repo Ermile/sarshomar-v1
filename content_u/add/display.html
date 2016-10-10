@@ -287,34 +287,137 @@
 </form>
 {%endif%}
 
-{% if filter_form %}
-<form  method="post">
-  {%for key, value in filter_list %}
-    <h1>{{key}}</h1>
-    <div class="element">
+{%if filter_form%}
+<div class="row">
+  <div class="span6">
+    <form method="post">
+      <div class="type">
+        <nav>
+          <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></a>
+          <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></a>
+          <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></a>
+          <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></a>
+          <a href="#"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></a>
+          <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></a>
+          <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></a>
+        </nav>
+      </div>
 
-      {%for i, group in value %}
-        <label class="addon" for="{{i}}">{{i}}</label>
+      <div class="contain">
+        <div class="element">
+          <label class="addon" for="gender">{%trans "Gender"%}</label>
+          <input class="input" type="text" name="gender" id="gender"></input>
+        </div>
 
-        {%for k, v in group %}
-          {% if k == 0%}
-            <select class="input" name="{{i}}" id="{{i}}">
-              <option value="">لطفا یکی را انتخاب کنید</option>
-          {%endif%}
-              <option value="{{v}}">{{v}}</option>
-        {%endfor%}
-            </select>
-      {%endfor%}
-    </div>
-  {%endfor%}
+        <div class="element">
+          <label class="addon" for="marriage">{%trans "Marriage"%}</label>
+          <input class="input" type="text" name="marriage" id="marriage"></input>
+        </div>
 
-  <div>
-    <input type="submit" value="انتشار">
+        <div class="element">
+          <label class="addon" for="education">{%trans "Education"%}</label>
+          <input class="input" type="text" name="education" id="education"></input>
+        </div>
+
+        <div class="element">
+          <label class="addon" for="job">{%trans "Job"%}</label>
+          <input class="input" type="text" name="job" id="job"></input>
+        </div>
+
+        <div class="element">
+          <label class="addon" for="language">{%trans "Language"%}</label>
+          <input class="input" type="text" name="language" id="language"></input>
+        </div>
+
+        <div class="element">
+          <label class="addon" for="age">{%trans "Age"%}</label>
+          <input class="input" type="text" name="age" id="age"></input>
+        </div>
+
+        <span class="title-line">
+          <span>{%trans "Selected Filters"%}</span>
+        </span>
+
+        <br><br><br>
+
+        <div class="tags">
+          <a href="#">a</a>
+          <a href="#">b</a>
+          <a href="#">c</a>
+          <a href="#">d</a>
+          <a href="#">e</a>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+  <div class="span6"></div>
+</div>
 {%endif%}
 
+
+
 {% if publish_form %}
+<div class="row">
+  <div class="span4"></div>
+  <div class="span4">
+    <form method="post">
+
+      <div class="element">
+        <label class="addon" for="cat">{%trans "Category"%}</label>
+        <input class="input" type="text" name="cat" id="cat">
+      </div>
+
+      <div class="element">
+        <label class="addon" for="article">{%trans "Article"%}</label>
+        <input class="input" type="text" name="article" id="article">
+        <span class="addon btn">
+          <button>{%trans "Add"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon" for="tags">{%trans "Tags"%}</label>
+        <input class="input" type="text" name="tags" id="tags">
+        <span class="addon btn">
+          <button>{%trans "Add"%}</button>
+        </span>
+      </div>
+
+      <div class="tags">
+        <a href="#">lorem</a>
+        <a href="#">ipsum</a>
+        <a href="#">dolor</a>
+        <a href="#">emit</a>
+      </div>
+
+      <div class="element">
+        <label class="addon">{%trans "Start Time"%}</label>
+        <input class="input" type="text" name="start_time">
+        <span class="addon btn">
+          <button>{%trans "Start"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon">{%trans "End Time"%}</label>
+        <input class="input" type="text" name="end_time">
+        <span class="addon btn">
+          <button>{%trans "End"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon" for="short_url">{%trans "Short URL"%}</label>
+        <input class="input text-left" type="text" name="short_url" id="short_url" placeholder="http://www.example.com/">
+      </div>
+    </form>
+  </div>
+
+  <div class="buttons">
+    <button>{%trans "Submit"%}</button>
+  </div>
+
+</div>
 
   <form method="post">
 

@@ -25,7 +25,12 @@
 *******************************/
 
 .text-left {text-align: left}
+.contain {width: 95%;margin: 0 auto}
 
+
+/*******************************
+           Sarshomar
+*******************************/
 
 body {background-color: #00667A}
 
@@ -35,6 +40,8 @@ body {background-color: #00667A}
   border-left: 8px solid transparent;
   margin-bottom: -4px;
   min-height: 60vh;
+  width: 100%;
+  overflow:
   -webkit-border-image: url(/static/images/border.png) 8 stretch;
        -o-border-image: url(/static/images/border.png) 8 stretch;
           border-image: url(/static/images/border.png) 8 stretch;
@@ -42,9 +49,7 @@ body {background-color: #00667A}
 
 .wrapper::before, .wrapper::after {display:table;content:""}
 
-.wrapper>.row {
-  clear: both;
-}
+.wrapper>.row {clear: both}
 
 header {
   background-color: #F4F4F4;
@@ -719,10 +724,10 @@ footer .eco img {
   color: #A41F1F
 }
 
-.details .detail.tags a {
+.tags a {
   display: inline-block;
   background-color: #E7E7E7;
-  color: #767676;
+  color: #035261;
   position: relative;
   height: 30px;
   line-height: 30px;
@@ -730,15 +735,17 @@ footer .eco img {
   margin-right: 1.5em;
   margin-bottom: 1em;
   padding: 0 0 0 5px;
+  min-width: 50px;
+  text-align: center;
 }
 
-.rtl .details .detail.tags a {
+.rtl .tags a {
   margin-right: auto;
   margin-left: 1.5em;
   padding: 0 5px 0 0;
 }
 
-.details .detail.tags a:after {
+.tags a::after {
   content: "";
   position: absolute;
   width: 30px;
@@ -746,14 +753,13 @@ footer .eco img {
   top: 0;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-}
-
-.ltr .details .detail.tags a:after {
   left: 100%;
   border-left: 15px solid #E7E7E7;
 }
 
-.rtl .details .detail.tags a:after {
+.rtl .tags a::after {
+  left: auto;
+  border-left: 0;
   right: 100%;
   border-right: 15px solid #E7E7E7;
 }
@@ -1939,6 +1945,38 @@ footer .eco img {
   stroke-width: 16px;
 }
 
+
+/*******************************
+           Title Line
+*******************************/
+
+.title-line {
+  position: absolute;
+  left: 8px;
+  overflow: hidden;
+  padding-left: 100px;
+}
+
+.title-line > span {
+  position: relative;
+  padding: 0.5em;
+  vertical-align: middle;
+  color: #00667A;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.title-line > span::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -1px;
+  bottom: 0;
+  right: 100%;
+  width: 200%;
+  height: 2px;
+  background-color: #00667A;
+}
 
 /*******************************
          Media Queries
