@@ -37,6 +37,10 @@ class view extends \mvc\view
 					$url = \lib\db\polls::get_poll_url($url);
 					$this->redirector()->set_url($url)->redirect();
 				}
+				else
+				{
+					return $_args->match->url[0][0];
+				}
 			}
 		}
 	}
@@ -46,7 +50,7 @@ class view extends \mvc\view
 		// check login to load option or no
 		// check answeret to this poll or no
 
-		$this->check_url($_args);
+		$corrent_url =  $this->check_url($_args);
 
 		$post = $this->model()->get_posts();
 
@@ -54,10 +58,10 @@ class view extends \mvc\view
 		{
 			if($this->login())
 			{
-				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"));
+				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $corrent_url);
+				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 				// save poll id into session to get in answer
 				$_SESSION['last_poll_id']  = $post['id'];
-				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 
 				if(isset($_args->get("url")[0][0]) && $_args->get("url")[0][0] == $next_url)
 				{

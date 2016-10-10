@@ -534,7 +534,7 @@ class polls
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get_previous_url($_user_id)
+	public static function get_previous_url($_user_id, $_corrent_url)
 	{
 		$query =
 		"
@@ -544,7 +544,8 @@ class polls
 				polldetails
 			INNER JOIN posts ON posts.id = polldetails.post_id
 			WHERE
-				polldetails.user_id = $_user_id
+				polldetails.user_id = $_user_id AND
+				posts.post_url != '$_corrent_url'
 			ORDER BY
 				polldetails.id DESC
 			LIMIT 1
