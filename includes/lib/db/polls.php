@@ -1007,6 +1007,7 @@ class polls
 				posts
 			WHERE
 				$where
+			LIMIT 0,10
 		";
 		return \lib\db::get($query);
 	}
