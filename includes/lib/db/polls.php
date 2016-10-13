@@ -965,5 +965,50 @@ class polls
 			return false;
 		}
 	}
+
+
+	public static function search($_string, $_fields = null)
+	{
+		$where = [];
+		if($_fields && is_array($_fields))
+		{
+			foreach ($_fields as $key => $value) {
+				$where[] = " $value LIKE '%$_string%' ";
+			}
+		}
+		else
+		{
+			$where[] = " post_title LIKE '%$_string%' ";
+			$where[] = " post_content LIKE '%$_string%' ";
+			$where[] = " post_slug LIKE '%$_string%' ";
+			$where[] = " post_url LIKE '%$_string%' ";
+			$where[] = " post_meta LIKE '%$_string%' ";
+		}
+
+		$where = join($where, " OR ");
+		$query =
+		"
+			SELECT
+				posts.id,
+				posts.post_language 		as 'language',
+				posts.post_title 			as 'title',
+				posts.post_slug 			as 'slug',
+				posts.post_url 			as 'url',
+				posts.post_content 		as 'content',
+				posts.post_type 			as 'type',
+				posts.post_comment 		as 'comment',
+				posts.post_count 			as 'count',
+				posts.post_order 			as 'order',
+				posts.post_status 		as 'status',
+				posts.post_parent 		as 'parent',
+				posts.post_meta	     	as 'meta',
+				posts.post_publishdate 	as 'publishdate'
+			FROM
+				posts
+			WHERE
+				$where
+		";
+		return \lib\db::get($query);
+	}
 }
 ?>
