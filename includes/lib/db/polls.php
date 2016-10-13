@@ -967,12 +967,20 @@ class polls
 	}
 
 
-	public static function search($_string, $_fields = null)
+	public static function search($_string, $_options = [])
 	{
+		$default_options =
+		[
+			"limit" => 10,
+			"fields" => null
+		];
+
+		$_options = array_merge($default_options, $_options);
+
 		$where = [];
-		if($_fields && is_array($_fields))
+		if($_options['fields'] && is_array($_options['fields']))
 		{
-			foreach ($_fields as $key => $value) {
+			foreach ($_options['fields'] as $key => $value) {
 				$where[] = " $value LIKE '%$_string%' ";
 			}
 		}
@@ -1007,9 +1015,12 @@ class polls
 				posts
 			WHERE
 				$where
-			LIMIT 0,10
+			LIMIT 0, $_options[limit]
 		";
-		return \lib\db::get($query);
+
+		$result = \lib\db::get($query);
+		$result = \lib\utility\filter::meta_decode($result);
+		return $result;
 	}
 }
 ?>
