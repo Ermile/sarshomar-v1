@@ -84,118 +84,236 @@ class stat_polls
 
 		$user_profile_data = \lib\db\profiles::get_profile_data($user_id);
 
-		$set = [];
-		$set_for_insert = [];
-		// save pollstats.result field
-		$set[] =
-		"
-			pollstats.result =
-		       	IF(pollstats.result IS NULL OR pollstats.result = '',
-			       		'{\"$opt_key\":1}',
-					IF(
-					   JSON_EXTRACT(pollstats.result, '$.$opt_key'),
-					   JSON_REPLACE(pollstats.result, '$.$opt_key', JSON_EXTRACT(pollstats.result, '$.$opt_key') + 1 ),
-					   JSON_SET(pollstats.result, '$.$opt_key', 1)
-					)
-				)
-    	";
-    	$set_for_insert[] = " pollstats.result = '{\"$opt_key\":1}' ";
-    	// set profile result
-    	$support_filter = \lib\db\filters::support_filter();
-		foreach ($support_filter as $key => $value) {
-			if(isset($user_profile_data[$value]))
-			{
-				$v = '$.' . $opt_key. '."'. $user_profile_data[$value]. '"';
-				$set[] =
-				"
-					pollstats.$value =
-				       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
-					       		'{\"$opt_key\":{\"$value\":1}}',
-							IF(
-							   JSON_EXTRACT(pollstats.$value, '$v'),
-							   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
-							   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"{$user_profile_data[$value]}\",1))
-							)
+	    $support_filter = \lib\db\filters::support_filter();
+
+		if(defined("mysql_json"))
+		{
+			$set = [];
+			$set_for_insert = [];
+			// save pollstats.result field
+			$set[] =
+			"
+				pollstats.result =
+			       	IF(pollstats.result IS NULL OR pollstats.result = '',
+				       		'{\"$opt_key\":1}',
+						IF(
+						   JSON_EXTRACT(pollstats.result, '$.$opt_key'),
+						   JSON_REPLACE(pollstats.result, '$.$opt_key', JSON_EXTRACT(pollstats.result, '$.$opt_key') + 1 ),
+						   JSON_SET(pollstats.result, '$.$opt_key', 1)
 						)
-	        	";
-	        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"{$user_profile_data[$value]}\":1}}' ";
+					)
+	    	";
+	    	$set_for_insert[] = " pollstats.result = '{\"$opt_key\":1}' ";
+	    	// set profile result
+			foreach ($support_filter as $key => $value) {
+				if(isset($user_profile_data[$value]))
+				{
+					$v = '$.' . $opt_key. '."'. $user_profile_data[$value]. '"';
+					$set[] =
+					"
+						pollstats.$value =
+					       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
+						       		'{\"$opt_key\":{\"$value\":1}}',
+								IF(
+								   JSON_EXTRACT(pollstats.$value, '$v'),
+								   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
+								   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"{$user_profile_data[$value]}\",1))
+								)
+							)
+		        	";
+		        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"{$user_profile_data[$value]}\":1}}' ";
+				}
+				else
+				{
+					// undifined
+					$v = '$.' . $opt_key. '.undefined';
+					$set[] =
+					"
+						pollstats.$value =
+					       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
+						       		'{\"$opt_key\":{\"undefined\":1}}',
+								IF(
+								   JSON_EXTRACT(pollstats.$value, '$v'),
+								   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
+								   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"undefined\",1))
+								)
+							)
+		        	";
+		        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\":1}}' ";
+				}
+			}
+			$set[] = " pollstats.total = pollstats.total + 1 ";
+			$set = join($set, " , ");
+			$pollstats_update_query =
+			"
+				UPDATE
+					pollstats
+				SET
+					$set
+				WHERE
+					pollstats.post_id = $poll_id
+				-- update poll stat result
+				-- stat_polls::set_poll_result()
+			";
+
+			$pollstats_update = \lib\db::query($pollstats_update_query);
+			$update_rows = mysqli_affected_rows(\lib\db::$link);
+			if(!$update_rows)
+			{
+				$set_for_insert[] = " pollstats.post_id = $poll_id ";
+				$set_for_insert[] = " pollstats.total = 1 ";
+				$set_for_insert = join($set_for_insert, " , ");
+				$pollstats_insert_query =
+				"
+					INSERT INTO
+						pollstats
+					SET
+						$set_for_insert
+					-- stat_polls::set_poll_result()
+					-- insert poll stat result
+				";
+				$pollstats_insert = \lib\db::query($pollstats_insert_query);
+			}
+
+
+			// update post meta and save count answered in to meta
+			$update_posts_meta =
+			"
+				UPDATE
+	            	posts
+	            SET
+	            	posts.post_meta =
+				       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
+				       		'{\"answers\":{\"$opt_key\":1}}',
+							IF(
+							   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
+							   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
+							   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
+							   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
+						      )
+						)
+	            WHERE
+	            	posts.id 	 = $poll_id
+	   			-- stat_polls::set_poll_result()
+	            -- update post_meta and save answered count to post_meta
+
+			";
+			$update_posts_meta = \lib\db::query($update_posts_meta);
+
+		}
+		// mysql not support json
+		else
+		{
+			$pollstats = \lib\db\pollstats::get($poll_id);
+			if($pollstats)
+			{
+				// update record
+				$set = [];
+				if(isset($pollstats['total']) && $pollstats['total'])
+				{
+					$pollstats['total']++;
+				}
+				else
+				{
+					$pollstats['total'] = 1;
+				}
+				$set[] = " pollstats.total = ". $pollstats['total'];
+
+				if(isset($pollstats['result'][$opt_key]))
+				{
+					$pollstats['result'][$opt_key]++;
+				}
+				else
+				{
+					$pollstats['result'][$opt_key] = 1;
+				}
+				$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
+
+				foreach ($support_filter as $key => $value) {
+					if(isset($user_profile_data[$value]))
+					{
+						// var_dump($pollstats[$value]);
+
+						if(isset($pollstats[$value][$opt_key]))
+						{
+							if(isset($pollstats[$value][$opt_key][$user_profile_data[$value]]))
+							{
+								$pollstats[$value][$opt_key][$user_profile_data[$value]]++;
+							}
+							else
+							{
+								$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+							}
+						}
+						else
+						{
+							$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+						}
+					}
+					else
+					{
+						if(isset($pollstats[$value][$opt_key]))
+						{
+							if(isset($pollstats[$value][$opt_key]['undefined']))
+							{
+								$pollstats[$value][$opt_key]['undefined']++;
+							}
+							else
+							{
+								$pollstats[$value][$opt_key]['undefined'] = 1;
+							}
+						}
+						else
+						{
+							$pollstats[$value][$opt_key]['undefined'] = 1;
+						}
+					}
+					$set[] = " pollstats.$value = '". json_encode($pollstats[$value], JSON_UNESCAPED_UNICODE). "'";
+				}
+				$set = join($set, " , ");
+				$pollstats_update_query =
+				"
+					UPDATE
+						pollstats
+					SET
+						$set
+					WHERE
+						pollstats.post_id = $poll_id
+					-- update poll stat result
+					-- stat_polls::set_poll_result()
+				";
+				$pollstats_update = \lib\db::query($pollstats_update_query);
 			}
 			else
 			{
-				// undifined
-				$v = '$.' . $opt_key. '.undefined';
-				$set[] =
+				// insert record
+				$set = [];
+
+				$set[] =  " port = 'site' ";
+				$set[] =  " subport = NULL ";
+				$set[] =  " post_id = $poll_id ";
+
+				foreach ($support_filter as $key => $value) {
+					if(isset($user_profile_data[$value]))
+					{
+						$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }' ";
+					}
+					else
+					{
+						$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }' ";
+					}
+				}
+				$set = join($set, ",");
+				$query =
 				"
-					pollstats.$value =
-				       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
-					       		'{\"$opt_key\":{\"undefined\":1}}',
-							IF(
-							   JSON_EXTRACT(pollstats.$value, '$v'),
-							   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
-							   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"undefined\",1))
-							)
-						)
-	        	";
-	        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\":1}}' ";
+					INSERT INTO
+						pollstats
+					SET
+						$set
+				";
+				$set_result = \lib\db::query($query);
 			}
 		}
-		$set[] = " pollstats.total = pollstats.total + 1 ";
-		$set = join($set, " , ");
-		$pollstats_update_query =
-		"
-			UPDATE
-				pollstats
-			SET
-				$set
-			WHERE
-				pollstats.post_id = $poll_id
-			-- update poll stat result
-			-- stat_polls::set_poll_result()
-		";
-
-		$pollstats_update = \lib\db::query($pollstats_update_query);
-		$update_rows = mysqli_affected_rows(\lib\db::$link);
-		if(!$update_rows)
-		{
-			$set_for_insert[] = " pollstats.post_id = $poll_id ";
-			$set_for_insert[] = " pollstats.total = 1 ";
-			$set_for_insert = join($set_for_insert, " , ");
-			$pollstats_insert_query =
-			"
-				INSERT INTO
-					pollstats
-				SET
-					$set_for_insert
-				-- stat_polls::set_poll_result()
-				-- insert poll stat result
-			";
-			$pollstats_insert = \lib\db::query($pollstats_insert_query);
-		}
-
-
-		// update post meta and save count answered in to meta
-		$update_posts_meta =
-		"
-			UPDATE
-            	posts
-            SET
-            	posts.post_meta =
-			       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-			       		'{\"answers\":{\"$opt_key\":1}}',
-						IF(
-						   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
-						   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
-						   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
-						   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
-					      )
-					)
-            WHERE
-            	posts.id 	 = $poll_id
-   			-- stat_polls::set_poll_result()
-            -- update post_meta and save answered count to post_meta
-
-		";
-		$update_posts_meta = \lib\db::query($update_posts_meta);
 	}
 
 
@@ -277,31 +395,8 @@ class stat_polls
 			return false;
 		}
 
-		// get result from pollstate table
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				pollstats
-			WHERE
-				post_id = $_poll_id AND
-				port    = 'site'
-			LIMIT 1
-			-- stat_polls::get_result()
-		";
-		// get result and json decode all field of this record
-		$result = \lib\db::get($query, null);
-		$result = \lib\utility\filter::meta_decode($result, "/.*/");
+		$result = \lib\db\pollstats::get($_poll_id);
 
-		if(isset($result[0]))
-		{
-			$result = $result[0];
-		}
-		else
-		{
-			return null;
-		}
 		// process result
 		if($result)
 		{

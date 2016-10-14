@@ -65,10 +65,8 @@ class answers
 			'answers' 	=> ''
 		];
 
-		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-
 		// merge old meta and new meta in post meta
-		$set_meta = \lib\db\polls::merge_meta(['post_meta' => $meta ], $_args['poll_id']);
+		$set_meta = \lib\db\polls::merge_meta($meta, $_args['poll_id']);
 
 		return $return;
 	}

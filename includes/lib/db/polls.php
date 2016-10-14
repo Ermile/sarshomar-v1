@@ -437,7 +437,7 @@ class polls
 	 * @return     <type>  The poll.
 	 */
 	public static function get_poll($_poll_id) {
-		if(!is_int($_poll_id))
+		if(!is_int($_poll_id) && !is_string($_poll_id))
 		{
 			return false;
 		}
@@ -759,19 +759,26 @@ class polls
 	 */
 	public static function merge_meta($_field_meta, $_poll_id)
 	{
-		$field = array_keys($_field_meta);
-		$meta  = array_values($_field_meta);
-		$query = [];
-		foreach ($field as $key => $value) {
-			$query[] = " $value = JSON_MERGE(JSON_EXTRACT($value, '$'), '{$meta[$key]}')";
+
+		if(defined("mysql_json"))
+		{
+			$meta = json_encode($_field_meta, JSON_UNESCAPED_UNICODE);
+			$query = " JSON_MERGE(JSON_EXTRACT(posts.post_meta, '$'), '$meta')";
 		}
-		$query = join($query, ',');
+		else
+		{
+			$meta = self::get_poll_meta($_poll_id);
+			$meta = array_merge($meta, $_field_meta);
+			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+			$query = " '$meta' ";
+		}
+
 		$query =
 		"
 			UPDATE
 				posts
 			SET
-				$query
+				post_meta  = $query
 			WHERE
 				posts.id = $_poll_id
 			-- polls::merge_meta()
