@@ -50,7 +50,6 @@ class view extends \mvc\view
 		// check login to load option or no
 		// check answeret to this poll or no
 
-		$corrent_url =  $this->check_url($_args);
 
 		$post = $this->model()->get_posts();
 
@@ -58,7 +57,7 @@ class view extends \mvc\view
 		{
 			if($this->login())
 			{
-				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $corrent_url);
+				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $post['id']);
 				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 				// save poll id into session to get in answer
 				$_SESSION['last_poll_id']  = $post['id'];
@@ -98,7 +97,15 @@ class view extends \mvc\view
 			/*
 			 * get all chart result
 			*/
-			$chart = \lib\db\stat_polls::get_result($post_id, "*");
+			$chart_mode =
+			[
+				'result',
+				'gender',
+				'city',
+				'country'
+			];
+
+			$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
 
 			$this->data->chart = $chart;
 

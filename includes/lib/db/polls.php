@@ -437,6 +437,11 @@ class polls
 	 * @return     <type>  The poll.
 	 */
 	public static function get_poll($_poll_id) {
+		if(!is_int($_poll_id))
+		{
+			return false;
+		}
+
 		$query = "
 				SELECT
 					id,
@@ -534,7 +539,7 @@ class polls
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get_previous_url($_user_id, $_corrent_url)
+	public static function get_previous_url($_user_id, $_corrent_post_id)
 	{
 		$query =
 		"
@@ -544,16 +549,34 @@ class polls
 				polldetails
 			INNER JOIN posts ON posts.id = polldetails.post_id
 			WHERE
-				polldetails.user_id = $_user_id AND
-				posts.post_url != '$_corrent_url'
-			ORDER BY
-				polldetails.id DESC
+				polldetails.id =
+				(
+					SELECT
+						MAX(polldetails.id)
+					FROM
+						polldetails
+					WHERE
+						polldetails.id <
+							(
+								SELECT
+									MAX(polldetails.id)
+								FROM
+									polldetails
+								WHERE
+									polldetails.user_id = $_user_id AND
+									polldetails.post_id = $_corrent_post_id
+							)
+
+
+				)
 			LIMIT 1
 			-- polls::get_previous_url()
 			-- to get previous of answered this user
 		";
 		$result= \lib\db::get($query, 'url', true);
 		return $result;
+		return self::get_poll_url($result);
+
 	}
 
 	/**

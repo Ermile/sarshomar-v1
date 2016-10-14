@@ -245,17 +245,29 @@ class stat_polls
 	}
 
 
-
+	/**
+	 * get result of specefic item
+	 * @param  [type] $_poll_id  the poll id
+	 * @param  [string|array|'*'] $_type the type of result
+	 * 			leav blank to get public result
+	 * 			set string of poll result for example 'gender' to get result of gender
+	 * 			set array to get list of result
+	 * 			set '*' to get all result
+	 * @param  [type] $_mode     [description]
+	 * @return [type]           [description]
+	 */
 	public static function get_result($_poll_id, $_type = null, $_mode = "highcharts")
 	{
 		// get poll meta to get all opt of this poll
 		$poll = \lib\db\polls::get_poll($_poll_id);
+		// we can not found meta of this poll
 		if(!isset($poll['meta']) || empty($poll))
 		{
 			return false;
 		}
 
 		$poll_meta = $poll['meta'];
+		// the opt key in the poll meta
 		if(isset($poll_meta['opt']))
 		{
 			$poll_opt = $poll_meta['opt'];
@@ -265,6 +277,7 @@ class stat_polls
 			return false;
 		}
 
+		// get result from pollstate table
 		$query =
 		"
 			SELECT
@@ -272,13 +285,13 @@ class stat_polls
 			FROM
 				pollstats
 			WHERE
-				post_id = $_poll_id
+				post_id = $_poll_id AND
+				port    = 'site'
 			LIMIT 1
 			-- stat_polls::get_result()
 		";
-
+		// get result and json decode all field of this record
 		$result = \lib\db::get($query, null);
-
 		$result = \lib\utility\filter::meta_decode($result, "/.*/");
 
 		if(isset($result[0]))
@@ -289,62 +302,55 @@ class stat_polls
 		{
 			return null;
 		}
+		// process result
 		if($result)
 		{
 			if($_type)
 			{
+				// $_type is array . return list of result of this array
 				if(is_array($_type))
 				{
 					$array_result = [];
 					foreach ($_type as $key => $value) {
-						$array_result[$value] =  self::process_result($poll, $poll_opt, $result, $value);
-					}
-					if($_mode == "highcharts")
-					{
-						$array_result = self::high_charts_mod($array_result);
+						// public result is different
+						if($key == 'result')
+						{
+							$result_temp =  self::process_public_result($poll, $poll_opt, $result, 'result', $_mode);
+						}
+						else
+						{
+							$result_temp =  self::process_result($poll, $poll_opt, $result, $value);
+							if($_mode == "highcharts")
+							{
+								$result_temp = self::high_charts_mod($result_temp);
+							}
+						}
+						$array_result[$value] = $result_temp;
 					}
 					return $array_result;
 				}
+				// get all result
 				elseif($_type == "*")
 				{
 					$array_result = [];
 					foreach ($result as $key => $value) {
+						// check key. some key is not result
 						switch ($key) {
 							case 'id':
 							case 'post_id':
+							case 'port':
+							case 'subport':
 							case 'total':
 							case 'meta':
 								continue;
 								break;
-
+							// public result is different
 							case 'result':
-
-								$stat_result = [];
-								$stat_result['title'] = $poll['title'];
-
-								foreach ($poll_opt as $k => $v) {
-									if(isset($result['result'][$v['key']]))
-									{
-										$name = $v['txt'];
-										$data = [$result['result'][$v['key']]];
-									}
-									else
-									{
-										$name = $v['txt'];
-										$data = [0];
-									}
-									$stat_result['data'][] = ['name' => $name,'data' => $data];
-								}
-								if($_mode == "highcharts")
-								{
-									if(isset($stat_result['data']))
-									{
-										$stat_result['data'] = json_encode($stat_result['data'], JSON_UNESCAPED_UNICODE);
-									}
-								}
-								$array_result[$key] = $stat_result;
+								$array_result[$key] = self::process_public_result($poll, $poll_opt, $result, $key, $_mode);
 								break;
+
 							default:
+								// chekc $_mode
 								if($_mode == "highcharts")
 								{
 									$array_result[$key] =  self::high_charts_mod(self::process_result($poll, $poll_opt, $result, $key));
@@ -358,6 +364,7 @@ class stat_polls
 					}
 					return $array_result;
 				}
+				// return one of result
 				elseif(is_string($_type))
 				{
 					return self::process_result($poll, $poll_opt, $result, $_type);
@@ -365,38 +372,62 @@ class stat_polls
 			}
 			else
 			{
-				$stat_result = [];
-				$stat_result['title'] = $poll['title'];
-
-				foreach ($poll_opt as $key => $value) {
-					if(isset($result['result'][$value['key']]))
-					{
-						$name = $value['txt'];
-						$data = [$result['result'][$value['key']]];
-					}
-					else
-					{
-						$name = $value['txt'];
-						$data = [0];
-					}
-					$stat_result['data'][] = ['name' => $name,'data' => $data];
-				}
-				if($_mode == "highcharts")
-				{
-					if(isset($stat_result['data']))
-					{
-						$stat_result['data'] = json_encode($stat_result['data'], JSON_UNESCAPED_UNICODE);
-					}
-					return $stat_result;
-				}
-				return $stat_result;
+				// return public result
+				return self::process_public_result($poll, $poll_opt, $result, 'result', $_mode);
 			}
 		}
 		else
 		{
+			// no result set to this poll
 			return null;
 		}
 	}
+
+
+	/**
+	 * progress public result
+	 *
+	 * @param      <type>  $_poll      The poll
+	 * @param      <type>  $_poll_opt  The poll option
+	 * @param      <type>  $_result    The result
+	 * @param      <type>  $_type      The type
+	 * @param      string  $_mode      The mode
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public static function process_public_result($_poll, $_poll_opt, $_result, $_type, $_mode)
+	{
+		$poll     = $_poll;
+		$poll_opt = $_poll_opt;
+		$result   = $_result;
+
+		$stat_result = [];
+		$stat_result['title'] = $poll['title'];
+
+		foreach ($poll_opt as $key => $value) {
+			if(isset($result['result'][$value['key']]))
+			{
+				$name = $value['txt'];
+				$data = [$result['result'][$value['key']]];
+			}
+			else
+			{
+				$name = $value['txt'];
+				$data = [0];
+			}
+			$stat_result['data'][] = ['name' => $name,'data' => $data];
+		}
+		if($_mode == "highcharts")
+		{
+			if(isset($stat_result['data']))
+			{
+				$stat_result['data'] = json_encode($stat_result['data'], JSON_UNESCAPED_UNICODE);
+			}
+			return $stat_result;
+		}
+		return $stat_result;
+	}
+
 
 	/**
 	 * prosses the result
@@ -508,6 +539,8 @@ class stat_polls
 		$return['series'] = json_encode($result, JSON_UNESCAPED_UNICODE);
 		return $return;
 	}
+
+
 	/**
 	 * Sets the sarshomar total answered.
 	 */
@@ -544,13 +577,17 @@ class stat_polls
 					options.option_key   = 'total_answered',
 					options.option_value = 1
 				-- stat_poll::set_sarshomar_total_answered()
-
 			";
 			$insert = \lib\db::query($insert_query);
 		}
 	}
 
 
+	/**
+	 * Gets the sarshomar total answered.
+	 *
+	 * @return     <type>  The sarshomar total answered.
+	 */
 	public static function get_sarshomar_total_answered()
 	{
 		$stat_query =
@@ -566,7 +603,6 @@ class stat_polls
 				options.option_key   = 'total_answered'
 			LIMIT 1
 			-- stat_poll::get_sarshomar_total_answered()
-
 		";
 		$total = \lib\db::get($stat_query, 'count', true);
 		return intval($total);
