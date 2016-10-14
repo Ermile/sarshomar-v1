@@ -966,12 +966,19 @@ class polls
 		}
 	}
 
-
+	/**
+	 * search in posts
+	 *
+	 * @param      <type>  $_string   The string
+	 * @param      array   $_options  The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function search($_string, $_options = [])
 	{
 		$default_options =
 		[
-			"limit" => 10,
+			"limit"  => 10,
 			"fields" => null
 		];
 
@@ -986,11 +993,11 @@ class polls
 		}
 		else
 		{
-			$where[] = " post_title LIKE '%$_string%' ";
-			$where[] = " post_content LIKE '%$_string%' ";
-			$where[] = " post_slug LIKE '%$_string%' ";
-			$where[] = " post_url LIKE '%$_string%' ";
-			$where[] = " post_meta LIKE '%$_string%' ";
+			$where[] = " post_title 	LIKE '%$_string%' ";
+			$where[] = " post_content 	LIKE '%$_string%' ";
+			$where[] = " post_slug 		LIKE '%$_string%' ";
+			$where[] = " post_url 		LIKE '%$_string%' ";
+			$where[] = " post_meta 		LIKE '%$_string%' ";
 		}
 
 		$where = join($where, " OR ");
@@ -998,15 +1005,15 @@ class polls
 		"
 			SELECT
 				posts.id,
-				posts.post_language 		as 'language',
-				posts.post_title 			as 'title',
-				posts.post_slug 			as 'slug',
+				posts.post_language 	as 'language',
+				posts.post_title 		as 'title',
+				posts.post_slug 		as 'slug',
 				posts.post_url 			as 'url',
 				posts.post_content 		as 'content',
-				posts.post_type 			as 'type',
+				posts.post_type 		as 'type',
 				posts.post_comment 		as 'comment',
-				posts.post_count 			as 'count',
-				posts.post_order 			as 'order',
+				posts.post_count 		as 'count',
+				posts.post_order 		as 'order',
 				posts.post_status 		as 'status',
 				posts.post_parent 		as 'parent',
 				posts.post_meta	     	as 'meta',
