@@ -610,6 +610,7 @@ class polls
 				-- Get post_type and publish status
 				$_type AND
 				post_status = 'publish' AND
+				post_url LIKE '$%' AND
 				-- Check if poll id set get the poll id
 				$post_id
 				-- check users not answered to this poll
