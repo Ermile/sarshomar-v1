@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS `polldetails` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
+  `port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
+  `subport` INT UNSIGNED NULL,
   `opt` int(11) unsigned DEFAULT NULL,
   `type` enum('select','notify','text','upload','star','number','media_image','media_video','media_audio','order') DEFAULT NULL,
   `txt` text,
