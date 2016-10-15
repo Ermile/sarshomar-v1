@@ -46,14 +46,14 @@
    </section>
    </div>
 
-   <div class="row" id='footer-note'>
-    <span class="love">{%trans "Proudly Made in IRAN"%}</span>
-    <span class="counter">{{stat}}</span>
-    <div class="langlist">
+   <div class="row auto" id='footer-note'>
+    <div class="span4 langlist">
 {%for key, lang in site.langlist if site.langlist|length >1 and site.currentlang != key|slice(0, 2)%}
-     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}{{key|slice(0, 2)}}/{%endif%}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
+     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}{{key|slice(0, 2)}}{%endif%}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
 {%endfor%}
     </div>
+    <div class="span4 counter">{{stat}}</div>
+    <div class="span4 love">{%trans "Proudly Made in IRAN"%}</div>
    </div>
   </div>
  </footer>

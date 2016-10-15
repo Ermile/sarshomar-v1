@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.1.0
+ * Version: 2.2.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -49,7 +49,7 @@ footer #footer-nav a:hover{color:#fff;}
 footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%;}
 footer #footer-nav .eco img{height:100%;padding-top:5px;}
 /* footer-links */
-footer #footer-links{font-size: 1.4em;margin-bottom:1em;border-bottom:1px solid #e5a428;}
+footer #footer-links{font-size: 1.4em;margin-bottom:1em;border-bottom:1px solid #e5a428;padding-bottom:1em;}
 footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:0.3em;font-size:1.1em}
 footer #footer-links a{display:block;margin-bottom:0.2em;color:#888;}
 footer #footer-links a:hover{color:#aaa;}
@@ -57,15 +57,17 @@ footer #footer-links #footer-news article{margin-bottom:0.5em;border:1px solid t
 footer #footer-links #footer-news article:hover{border-right-color:#e5a428;}
 footer #footer-links #footer-news p{font-size:0.8em;margin-bottom:0;color:#777;}
 /* footer-note*/
-footer #footer-note{font-size:1.2em;padding:2em 1em;color:#aaa;}
-footer #footer-note .langlist{display: inline-block;}
-footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);}
-footer #footer-note .love{float:left;}
-footer #footer-note .counter{font-weight:700;float:right;}
+footer #footer-note{font-size:1.2em;padding:2em 1em 3em;color:#aaa;}
+footer #footer-note .langlist{display:inline-block;}
+footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:0.5em 1em;}
+footer #footer-note .langlist a:hover{background-color:rgba(0,0,0,0.2)}
+footer #footer-note .love{text-align:right;text-transform:uppercase}
+footer #footer-note .counter{font-weight:700;text-align:center;text-transform:uppercase;}
 /* rtl design */
 .rtl footer #footer-nav a{padding-right:0;padding-left:2em}
 .rtl footer #footer-nav .eco{right:auto;left:1em;}
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent;}
+.rtl footer #footer-note .love{text-align:left}
 
 /************************************************************** Next... */
 
