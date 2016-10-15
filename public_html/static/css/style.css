@@ -36,7 +36,9 @@ header > .logo{float:left;padding:15px;border-right:8px solid transparent;border
 header > .logo > img{width:5em;transition:all 0.2s;}
 #home header > .logo > img{width:7em;}
 header > .logo > h1{font-size:2em;line-height:1;display:inline-block;margin-bottom:0;vertical-align:super;color:#3e96ae;border-bottom:none;}
-header > .page-title{position: absolute;right: 0;left: 0;margin: 0 auto;width: 10%;min-width: 100px;max-width: 120px;background-color: #14677B;text-align: center;color: #F4F4F4;padding: 1.2em 0em;font-size: 1.3em;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: default;}
+header > .page-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
+header > .page-title::before{content:"";position:absolute;background-image:url(/static/images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
+header > .page-title::after{content:"";position:absolute;background-image:url(/static/images/svg/up1.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;left:100%;}
 
 
 /************************************************************** footer */
