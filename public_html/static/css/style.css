@@ -23,7 +23,9 @@ body{background-color:#00667a;}
 .contain{width:95%;margin:0 auto;}
 
 /************************************************************** header */
-header{border-right:8px solid transparent;-webkit-border-image:url(/static/images/border.png) 8 stretch;-o-border-image:url(/static/images/border.png) 8 stretch;border-image:url(/static/images/border.png) 8 stretch;background-color:#f4f4f4;}
+header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(/static/images/border.png) 8 stretch;-o-border-image:url(/static/images/border.png) 8 stretch;border-image:url(/static/images/border.png) 8 stretch;background-color:#f4f4f4;}
+header::before, header::after{display: table;content: "";}
+header::after{clear: both;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
 header > nav{display:inline-block;}
 header > nav > a{font-size:1.3em;position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
@@ -34,7 +36,7 @@ header > .logo{float:left;padding:15px;border-right:8px solid transparent;border
 header > .logo > img{width:5em;transition:all 0.2s;}
 #home header > .logo > img{width:7em;}
 header > .logo > h1{font-size:2em;line-height:1;display:inline-block;margin-bottom:0;vertical-align:super;color:#3e96ae;border-bottom:none;}
-#home header.container{margin-bottom:3em;}
+header > .page-title{position: absolute;right: 0;left: 0;margin: 0 auto;width: 10%;min-width: 100px;max-width: 120px;background-color: #14677B;text-align: center;color: #F4F4F4;padding: 1.2em 0em;font-size: 1.3em;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: default;}
 
 
 /************************************************************** footer */
