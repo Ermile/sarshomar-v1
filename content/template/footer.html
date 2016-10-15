@@ -1,29 +1,28 @@
  <footer>
   <div class="container">
-   <nav class="row horizontal">
+   <nav class="row" id='footer-nav'>
     <a href="{{url.base}}" class="link_home">{%trans "Home"%}</a>
     <a href="{{url.base}}about">{%trans "About"%}</a>
     <a href="{{url.base}}press">{%trans "Press"%}</a>
     <a href="{{url.base}}careers">{%trans "Careers"%}</a>
     <a href="{{url.base}}csr">{%trans "Social Responsibility"%}</a>
     <a href="{{url.base}}faq">{%trans "FAQ"%}</a>
-    <a href='{{url.base}}eco' class="eco">{%trans "Eco Friendly"%}<img src="{{url.static}}images/eco.svg"></a>
+    <a href='{{url.base}}eco' class="eco hint--left hint--success" data-hint='{%trans "Eco Friendly"%}'><img src="{{url.static}}images/eco.svg"></a>
    </nav>
 
-   <div class="row auto">
+   <div class="row auto" id='footer-links'>
     <nav class="span2">
      <h4>{%trans "Service"%}</h4>
+     <a href="{{url.base}}features">{%trans "Features"%}</a>
      <a href="{{url.base}}$">{%trans "Knowledge"%}</a>
      <a href="{{url.base}}$/random">{%trans "Random Poll"%}</a>
-     <a href="{{url.base}}features">{%trans "Features"%}</a>
      <a href="{{url.base}}referral">{%trans "Referral Program"%}</a>
     </nav>
 
     <nav class="span2">
-     <h4>{%trans "Support"%}</h4>
+     <h4>{%trans "Learn More"%}</h4>
      <a href="{{url.base}}terms">{%trans "Terms of Service"%}</a>
      <a href="{{url.base}}privacy">{%trans "Privacy Policy"%}</a>
-     <a href="{{url.base}}help">{%trans "Help Center"%}</a>
     </nav>
 
     <nav class="span2">
@@ -41,20 +40,20 @@
      <a href="{{url.base}}statistics">{%trans "Statistics"%}</a>
     </nav>
 
-    <section class="span4 news">
+    <section class="span4" id='footer-news'>
+     <h4>{%trans "Latest News"%}</h4>
 {{ posts(3, {"cat":['news'], 'desc':1, 'html':true} ) }}
    </section>
    </div>
 
-   <div class="row footnote">
+   <div class="row" id='footer-note'>
     <span class="love">{%trans "Proudly Made in IRAN"%}</span>
+    <span class="counter">{{stat}}</span>
     <div class="langlist">
 {%for key, lang in site.langlist if site.langlist|length >1 and site.currentlang != key|slice(0, 2)%}
      <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}{{key|slice(0, 2)}}/{%endif%}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
 {%endfor%}
-    <span class="counter">{{stat}}</span>
-   </div>
-
+    </div>
    </div>
   </div>
  </footer>
