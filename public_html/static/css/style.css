@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.3.3
+ * Version: 2.4.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -10,17 +10,7 @@
 
 /* General */
 body{background-color:#00667a;}
-.wrapper {
-  width: 100%;
-  min-height: 60vh;
-  margin-bottom: -8px;
-  border-right: 8px solid transparent;
-  border-left: 8px solid transparent;
-  -webkit-border-image: url(../images/svg/border1.svg) 8 stretch;
-  -o-border-image: url(../images/svg/border1.svg) 8 stretch;
-  border-image: url(../images/svg/border1.svg) 8 stretch;
-  background-color: #f4f4f4;
-}
+.wrapper {width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/svg/border1.svg) 8 stretch;-o-border-image:url(../images/svg/border1.svg) 8 stretch;border-image:url(../images/svg/border1.svg) 8 stretch;background-color:#f4f4f4;}
 .wrapper::before, .wrapper::after{display:table;content:'';}
 .wrapper > .row{clear:both;}
 .chart-box{padding-top:4em;padding-bottom:4em;}
@@ -34,10 +24,10 @@ body{background-color:#00667a;}
 
 /************************************************************** header */
 header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
-header::before, header::after{display: table;content: "";}
-header::after{clear: both;}
-header::before{content:"";position:absolute;width:154px;height:154px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-14px;margin-left:-6px;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
+header::before{display: table;content: "";position:absolute;width:154px;height:154px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-14px;margin-left:-6px;}
+.rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;}
+header::after{display: table;content: "";clear: both;}
 header > nav{display:inline-block;}
 header > nav > a{font-size:1.3em;position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
 header > nav > a:not(:first-child){padding-top:0.1em;}
@@ -83,7 +73,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl footer #footer-note .love{text-align:left}
 
 /************************************************************** inestimable */
-#inestimable{position:relative;background-color:#582C2C;height:200px;padding:20px 100px;color:#fff;}
+#inestimable{position:relative;background-color:#582C2C;height:200px;padding:25px 100px;color:#fff;margin:0 8px -8px;width:auto;}
 #inestimable::before{content:"";background:url(../images/svg/inside2.svg) no-repeat;background-size:cover;position:absolute;top:0;width:108px;height:100%;left:-8px;}
 #inestimable::after{content:"";background:url(../images/svg/inside1.svg) no-repeat;background-size:cover;position:absolute;top:0;width:108px;height:100%;right:-8px;}
 #inestimable img{height:150px;}
