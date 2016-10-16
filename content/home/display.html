@@ -150,7 +150,6 @@
         <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
     </div>
 </div>
-
 {%endblock%}
 
 {%block foot_js%}
@@ -182,9 +181,7 @@ var topChartOptions = {
         labels: {
             enabled: false
         },
-        categories: [
-            ''
-        ],
+        categories: {{result['random_result']['categories']|raw}},
         // lineWidth: 0,
         // minorGridLineWidth: 0,
         // lineColor: 'transparent',

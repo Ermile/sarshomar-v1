@@ -109,16 +109,12 @@ class model extends \mvc\model
 		{
 			$random = [
 				'title' => $this->random_title(),
-
+				'categories' => json_encode(['بلی', 'خیر'],JSON_UNESCAPED_UNICODE),
 				'data' => json_encode([
 					[
-						'name' => 'بلی',
-						'data' => [$this->rnd()]
-					],
-					[
-						'name' => 'خیر',
-						'data' => [$this->rnd()]
-			        ]
+						'name' => 'پاسخ',
+						'data' => [$this->rnd(), $this->rnd()]
+					]
 			        ], JSON_UNESCAPED_UNICODE)
 				];
 		}
