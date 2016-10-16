@@ -47,7 +47,6 @@ class step_sarshomar
 				$poll_code = $poll_code[2];
 			}
 		}
-		var_dump($poll_code);
 		if(!is_null($poll_code))
 		{
 			$poll_id = \lib\utility\shortURL::decode($poll_code);
@@ -82,7 +81,7 @@ class step_sarshomar
 			return step_subscribe::start($txt);
 		}
 		// go to next step, step4
-		step::plus();
+		// step::plus();
 		// set title for
 		step::set('textTitle', 'question');
 		// reset last answer
@@ -90,17 +89,15 @@ class step_sarshomar
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = step::get('questionRaw');
-		$txt_text .= self::answersKeyboard(false);
-		// $txt_text .= "[لینک دسترسی مستقیم به این نظرسنجی](telegram.me/sarshomarbot?start=poll_123)";
-		$txt_text .= "/skip پرش، مایل به پاسخ نیستم\n";
-		$txt_text .= "/cancel انصراف از ادامه پاسخ‌دهی\n";
 
 		$result   =
 		[
-			'text'         => $txt_text,
-			'reply_markup' => self::answersKeyboard(),
+			'text'         => poll_result::get_message(step::get('poll_message')),
+			'reply_markup' => ["inline_keyboard" => step::get("poll_inline_keyboard")],
+			'parse_mode' => 'Markdown',
+			'disable_web_page_preview' => true
 		];
+		step::stop();
 		// return menu
 		return $result;
 	}
@@ -424,21 +421,26 @@ class step_sarshomar
 		if(is_null($_poll_id))
 		{
 			$question = \lib\db\polls::get_last($_user_id);
+			$poll_result = poll_result::make($question, ['callback_data' => 'last']);
 		}
 		else
 		{
 			$question = \lib\db\polls::get_last($_user_id, null, $_poll_id);
+			$poll_result = poll_result::make($question);
 		}
 
 		if(empty($question))
 		{
 			return false;
 		}
-		var_dump($question);
+
 		$question['question'] = html_entity_decode($question['content']);
 		step::set('question_id', $question['id']);
 		step::set('questionRaw', $question['content']);
 		step::set('question', $question['question']);
+		step::set("poll_message", $poll_result['message']);
+		step::set("poll_inline_keyboard", $poll_result['inline_keyboard']);
+
 		$answers = [];
 		foreach ($question['meta']['opt'] as $key => $value) {
 			$answers[$key] = $value['txt'];

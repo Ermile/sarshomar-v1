@@ -10,6 +10,18 @@ class handle
 
 	public static function exec($_cmd)
 	{
+		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
+		{
+
+			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/log.json");
+			$json = json_decode($file, true);
+			if(!is_array($json))
+			{
+				$json = [];
+			}
+			array_unshift($json, bot::$hook);
+			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
+		}
 		$response = null;
 		// check if we are in step then go to next step
 		$response = step::check($_cmd['text'], $_cmd['command']);
@@ -17,7 +29,11 @@ class handle
 		{
 			return $response;
 		}
-
+		if(substr($_cmd['command'], 0, 2) == "")
+		{
+			return [];
+		}
+		// var_dump(90);
 		switch ($_cmd['command'])
 		{
 			case '/menu':
@@ -142,8 +158,17 @@ class handle
 		}
 		if(array_key_exists('inline_query', bot::$hook))
 		{
-			$response = step_inline_query::start(bot::$hook['inline_query']['query'], bot::$hook['inline_query']['offset']);
+			$response = inline_query::start(bot::$hook['inline_query']);
 		}
+		elseif(array_key_exists('callback_query', bot::$hook))
+		{
+			$response = callback_query::start(bot::$hook['callback_query']);
+		}
+		elseif(array_key_exists('chosen_inline_result', bot::$hook))
+		{
+			$response = chosen_inline_result::start(bot::$hook['chosen_inline_result']);
+		}
+
 		// automatically add return to end of keyboard
 		if(self::$return)
 		{
@@ -152,6 +177,17 @@ class handle
 			{
 				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
 			}
+		}
+		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
+		{
+			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/log.json");
+			$json = json_decode($file, true);
+			if(!is_array($json))
+			{
+				$json = [];
+			}
+			array_unshift($json, $response);
+			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
 		return $response;
 	}
