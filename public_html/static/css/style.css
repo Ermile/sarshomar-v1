@@ -23,7 +23,7 @@ body{background-color:#00667a;}
 .contain{width:95%;margin:0 auto;}
 
 /************************************************************** header */
-header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
+header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(../images/svg/border1.svg) 8 stretch;-o-border-image:url(../images/svg/border1.svg) 8 stretch;border-image:url(../images/svg/border1.svg) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
 header::before{display: table;content: "";position:absolute;width:154px;height:154px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-14px;margin-left:-6px;}
 .rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-6px;}
@@ -32,18 +32,18 @@ header > nav{display:inline-block;}
 header > nav > a{font-size:1.3em;position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
 header > nav > a:not(:first-child){padding-top:0.1em;}
 header > nav > a:hover{color:#777;}
-header > .logo{position:relative;float:left;padding:15px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;}
+header > .logo{position:relative;float:left;padding:15px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/svg/border2.svg) 8 stretch;-o-border-image:url(../images/svg/border2.svg) 8 stretch;border-image:url(../images/svg/border2.svg) 8 stretch;background-color:#0e6678;}
 .rtl header > .logo{float:right;border-right:none;border-left:8px solid transparent;}
 header > .logo > img{width:5em;transition:all 0.2s;}
 #home header > .logo > img{width:7em;}
-header > .logo > h1{font-size:2em;line-height:1;display:inline-block;margin-bottom:0;vertical-align:super;color:#3e96ae;border-bottom:none;}
+header > .logo > h1{font-size:2em;line-height:1;display:inline-block;margin-bottom:0;vertical-align:super;color:#f4f4f4;border-bottom:none;}
 header > .page-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
 header > .page-title::before{content:"";position:absolute;background-image:url(../images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
 header > .page-title::after{content:"";position:absolute;background-image:url(../images/svg/up1.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;left:100%;}
 
 
 /************************************************************** footer */
-footer{border-top:8px solid transparent;background-color:#083942;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;}
+footer{border-top:8px solid transparent;background-color:#083942;-webkit-border-image:url(../images/svg/border1.svg) 8 stretch;-o-border-image:url(../images/svg/border1.svg) 8 stretch;border-image:url(../images/svg/border1.svg) 8 stretch;}
 footer .container{padding:0 2%;}
 /* footer-nav */
 footer #footer-nav{margin-bottom:2em;border-bottom:1px solid #e5a428;font-size:1.6em;font-weight:900;position:relative;}
