@@ -1,11 +1,12 @@
 {%extends display.mvc%}
 
 {%block body%}
-<div class="container">
+ <div class="container">
 {% include template.header %}
-<div class="wrapper" data-xhr='wrapper'>
+  <div class="wrapper" data-xhr='wrapper'>
 	{%block content%}{%endblock%}
-</div>
-</div>
+{% include template.register %}
+  </div>
+ </div>
 {% include template.footer %}
 {%endblock%}

@@ -11,7 +11,9 @@ class view extends \lib\mvc\view
 		$this->data->site['desc']    = T_("Sarshomar start jumping");
 		$this->data->site['slogan']  = T_("Call Sarshomar");
 
-		$this->data->page['desc']    = T_("Sarshomar is inteligent");
+		$this->data->page['desc']    = T_("Sarshomar is intelligent");
+
+		$this->data->template['register']    = 'content/template/register.html';
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;

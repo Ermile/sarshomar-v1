@@ -1,7 +1,7 @@
 <header>
 	<nav>
         <a href="{{url.base}}">{%trans "Home"%}</a>
-        <a href="{{url.base}}help" data-direct>{%trans "Help"%}</a>
+        <a href="{{url.base}}help">{%trans "Help"%}</a>
         <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
         <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
     </nav>
@@ -9,5 +9,5 @@
         <img src="{{url.static}}images/logo.svg">
         <h1>{%trans "Sarshomar"%}</h1>
     </a>
-    <span class="page-title">{{module}}</span>
+    <span class="page-title">{{page.title}}</span>
 </header>

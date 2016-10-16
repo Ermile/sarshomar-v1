@@ -12,6 +12,10 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = true;
 		}
+		else
+		{
+			$this->data->page['title'] = T_($this->data->module);
+		}
 		// $this->data->chart      = \lib\db\polls::getResult(3, 'count', 'txt');
 		$post = $this->model()->get_posts();
 		if(isset($post['id']))
