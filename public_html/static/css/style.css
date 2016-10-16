@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.3.1
+ * Version: 2.3.2
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -389,7 +389,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .title-line > span::before{position:absolute;top:-1px;right:100%;bottom:0;width:200%;height:2px;margin:auto;content:'';background-color:#00667a;}
 
 /* Sarshomar Font */
-@font-face{font-family:'sarshomar';font-weight:400;font-style:normal;src:url(/static/fonts/sarshomar/sarshomar.eot);src:url(/static/fonts/sarshomar/sarshomar.eot?#iefix) format('embedded-opentype'),url(/static/fonts/sarshomar/sarshomar.woff) format('woff'),url(/static/fonts/sarshomar/sarshomar.ttf) format('truetype'),url(/static/fonts/sarshomar/sarshomar.svg#sarshomar) format('svg');}[data-icon]:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;content:attr(data-icon);text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}[class^='icon-']:before, [class*=' icon-']:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+@font-face{font-family:'sarshomar';font-weight:400;font-style:normal;src:url(../fonts/sarshomar/sarshomar.eot);src:url(../fonts/sarshomar/sarshomar.eot?#iefix) format('embedded-opentype'),url(../fonts/sarshomar/sarshomar.woff) format('woff'),url(../fonts/sarshomar/sarshomar.ttf) format('truetype'),url(../fonts/sarshomar/sarshomar.svg#sarshomar) format('svg');}[data-icon]:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;content:attr(data-icon);text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}[class^='icon-']:before, [class*=' icon-']:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .icon-drag:before{content:'\61';}
 .icon-input-after:before{content:'\62';}
 .icon-input-before:before{content:'\63';}
