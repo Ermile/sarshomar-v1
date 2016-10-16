@@ -25,8 +25,8 @@ body{background-color:#00667a;}
 /************************************************************** header */
 header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(../images/svg/border1.svg) 8 stretch;-o-border-image:url(../images/svg/border1.svg) 8 stretch;border-image:url(../images/svg/border1.svg) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
-header::before{display: table;content: "";position:absolute;width:154px;height:154px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-14px;margin-left:-6px;}
-.rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-6px;}
+header::before{display: table;content: "";position:absolute;width:150px;height:150px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-19px;margin-left:-11px;}
+.rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-11px;}
 header::after{display: table;content: "";clear: both;}
 header > nav{display:inline-block;}
 header > nav > a{font-size:1.3em;position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
