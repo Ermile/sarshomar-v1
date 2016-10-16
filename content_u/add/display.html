@@ -112,6 +112,13 @@
     <div class="span3"></div>
     <div class="span6">
       <form method="post">
+       {%if survey_mod%}
+         <div class="element">
+            <label class="addon" for="survey_title">{%trans "Survey Title"%}</label>
+            <input class="input" type="text" name="survey_title" id="survey_title">
+          </div>
+        {%endif%}
+
         <div class="element">
           <label class="addon" for="poll_type">{%trans "Poll type"%}</label>
           <select class="input" name="poll_type" id="poll_type">
@@ -198,16 +205,6 @@
         <div class="element">
           <label class="addon" for="answer2">{%trans "Answer Two"%}</label>
           <input class="input" type="text" name="answers[]" id="answer2">
-        </div>
-
-        <div class="element">
-          <label class="addon" for="language">{%trans "Language"%}</label>
-          <input class="input" type="text" name="language" id="language" value="{{site.currentlang}}" >
-        </div>
-
-        <div class="element">
-          <label class="addon">{%trans "Publish date"%}</label>
-          <input class="input" type="text" name="publish_date" id="publish_date" value="{{"now"|date("Y-m-d")}}">
         </div>
 
         <section class="element-checkbox">
@@ -439,6 +436,11 @@
           <option value="{{value.id}}">{{value.title|raw}}</option>
         {%endfor%}
       </select>
+    </div>
+
+     <div class="element">
+      <label class="addon" for="language">language</label>
+      <input class="input" type="text" name="language" id="language">
     </div>
 
     <div class="element">

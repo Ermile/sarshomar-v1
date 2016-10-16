@@ -20,32 +20,10 @@ class model extends \mvc\model
 		$user_id = $this->login('id');
 
 		// set args to load query
-		$_args =[
-				'user_id'   => $user_id,
-				// 'post_type' =>  $user_id,
-				// 'post_status' => "draft",
-				'page'      => $page,
-				'lenght'    => $lenght
-				];
-
+		$_args =['user_id'   => $user_id];
 		return \lib\db\polls::xget($_args);
 	}
 
-
-	/**
-	 * set survey.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function get_survey($_args)
-	{
-		$poll_id = $_args->match->url[0][1];
-		if($poll_id)
-		{
-			$poll_id = \lib\utility\shortURL::decode($poll_id);
-		}
-		// $result = \lib\db\survey::set($poll_id);
-	}
 
 	/**
 	 * get data to add new add
@@ -54,20 +32,122 @@ class model extends \mvc\model
 	{
 		// default survey id is null
 		$survey_id = null;
+		// users click on one of 'add filter' buttom
+		if(utility::post("filter"))
+		{
+			$insert_poll = null;
+			// if title is null and answer is null
+			// we check the url
+			// if in the survey we abrot save poll and redirect to filter page
+			// user discard the poll
+			if(utility::post("title") == '' && empty(array_filter(utility::post("answers"))))
+			{
+				// if we not in survey we have error for title and answers
+				if(!$this->check_poll_url($_args))
+				{
+					debug::error(T_("title or answers must be full"));
+				}
+			}
+			else
+			{
+				// insert the poll
+				$insert_poll = $this->insert_poll();
+			}
+
+			// check the url
+			if($this->check_poll_url($_args))
+			{
+				// url like this >> @/(.*)/add
+				$url       = $this->check_poll_url($_args, "encode");
+				$survey_id = $this->check_poll_url($_args);
+				//save survey name
+				if(utility::post("survey_title"))
+				{
+					$args =
+					[
+						'post_title' => utility::post("survey_title"),
+						'post_url'   => \lib\db\polls::update_url($survey_id, utility::post("survey_title"), false)
+					];
+					\lib\db\survey::update($args, $survey_id);
+				}
+			}
+			else
+			{
+				// the url is @/add
+				$url = \lib\utility\shortURL::encode($insert_poll);
+			}
+			// must be redirect to filter page
+			$this->redirector()->set_url("@/$url/filter");
+			return;
+		}
+		elseif(utility::post("survey"))
+		{
+			// the user click on this buttom
+			// we save the survey
+			$args =
+			[
+				'user_id'      => $this->login('id'),
+				'title'        => 'untitled survey',
+				'type'         => 'survey_private',
+				'status'       => 'draft',
+			];
+			$survey_id = \lib\db\survey::insert($args);
+			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
+			$poll_type = "survey_poll_";
+			// insert the poll
+			$this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+			// redirect to @/$url/add to add another poll
+			$url = \lib\utility\shortURL::encode($survey_id);
+			$this->redirector()->set_url("@/$url/add");
+			return;
+
+		}
+		elseif(utility::post("add_poll"))
+		{
+			//users click on this buttom
+			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
+			$poll_type = "survey_poll_";
+			// get the survey id and survey url
+			$survey_id = $this->check_poll_url($_args, "decode");
+			$survey_url = $this->check_poll_url($_args, "encode");
+			// insert the poll
+			$this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+			//save survey name
+			if(utility::post("survey_title"))
+			{
+				// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
+				$args =
+				[
+					'post_title' => utility::post("survey_title"),
+					'post_url'   => \lib\db\polls::update_url($survey_id, utility::post("survey_title"), false)
+				];
+				\lib\db\survey::update($args, $survey_id);
+			}
+			// redirect to '@/survey id /add' to add another poll
+			$this->redirector()->set_url("@/$survey_url/add");
+		}
+		else
+		{
+			// the user click on buttom was not support us !!
+			debug::error(T_("command not found"));
+			return false;
+		}
+	}
+
+
+	/**
+	 * insert poll
+	 * get data from utility::post()
+	 *
+	 * @param      array    $_options  The options
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function insert_poll($_options = [])
+	{
 		// db poll type
-		$db_poll_type =
-		[
-			'select',
-			'notify',
-			'text',
-			'upload',
-			'star',
-			'number',
-			'media_image',
-			'media_video',
-			'media_audio',
-			'order'
-		];
+		// we just support this poll type
+		$db_poll_type = ['select','notify','text','upload','star','number','media_image','media_video','media_audio','order'];
 		// get poll_type
 		$poll_type    = utility::post("poll_type");
 		// check poll type. users can be set $db_poll_type
@@ -76,76 +156,46 @@ class model extends \mvc\model
 			debug::error(T_("poll type not found"));
 			return false;
 		}
+		// get poll type from function args
+		if(isset($_options['poll_type']))
+		{
+			$poll_type = $_options['poll_type']. $poll_type;
+		}
+		else
+		{
+			$poll_type = 'poll_private_'. $poll_type;
+		}
+		// check the suevey id to set in post_parent
+		if(isset($_options['survey_id']))
+		{
+			$survey_id = $_options['survey_id'];
+		}
+		else
+		{
+			$survey_id = null;
+		}
 		// get title
 		$title        = utility::post("title");
-		// get language
-		$language     = utility::post("language");
 		// get content
 		$content      = utility::post("content");
-		// get publish date
-		$publish_date = utility::post("publish_date");
+		// get summary of poll
+		$summary      = utility::post("summary");
+		// get answers
+		$answers      = utility::post("answers");
 		// get answers type
 		$answer_type  = utility::post("answer_type");
 		// get answers true
 		$answer_true  = utility::post("answer_true");
 		// get answers point
-		$answer_point  = utility::post("answer_point");
+		$answer_point = utility::post("answer_point");
 		// get answers desc
 		$answer_desc  = utility::post("answer_desc");
-		// get answers
-		$answers      = utility::post("answers");
-		// get summary of poll
-		$summary      = utility::post("summary");
-
-		// users click on one of this buttom
-		if(utility::post("filter"))
-		{
-			$poll_survey = "poll";
-			if($this->check_poll_url($_args))
-			{
-				$survey_id   = $this->check_poll_url($_args);
-			}
-			// if users click on this buttom and nothing in page
-			// redirect to filter page
-			if($title == null || (!is_array($answers) || count($answers) < 2))
-			{
-				if($survey_id)
-				{
-					$survey_id   = $this->check_poll_url($_args);
-					// encode survey id
-					$short_url = \lib\utility\shortURL::encode($survey_id);
-					// must be redirect to filter page
-					$this->redirector()->set_url("@/$short_url/filter");
-					// return;
-				}
-				else
-				{
-					debug::error(T_("undefined error"));
-					return false;;
-				}
-			}
-
-		}
-		elseif(utility::post("survey"))
-		{
-			$poll_survey = "survey";
-		}
-		elseif(utility::post("add_poll"))
-		{
-			$poll_survey = "poll";
-			$survey_id   = $this->check_poll_url($_args);
-		}
-		else
-		{
-			debug::error(T_("command not found"));
-			return false;
-		}
 
 		// check title
 		if($title == null)
 		{
 			debug::error(T_("poll title can not null"));
-			return;
+			return false;
 		}
 		// check length of sumamry text
 		if($summary && strlen($summary) > 150)
@@ -153,52 +203,7 @@ class model extends \mvc\model
 			debug::error(T_("summary text must be less than 150 character"));
 			return false;
 		}
-		//check lang
-		if($language == null)
-		{
-			$language = substr(\lib\router::get_storage('language'), 0, 2);
-		}
-		//check date
-		if($publish_date == null)
-		{
-			if($language == 'fa')
-			{
-				// get persion date
-				$publish_date = utility\jdate::date("Y-m-d");
-			}
-			else
-			{
-				$publish_date = date("Y-m-d");
-			}
-		}
-		// ready to insert poll or survey
-		// save survey
-		if($poll_survey == "survey")
-		{
-			$args =
-			[
-				'user_id'      => $this->login('id'),
-				'title'        => 'untitled survey',
-				'type'         => 'survey_private',
-				'language'     => $language,
-				'status'       => 'draft',
-			];
-			$survey_id = \lib\db\survey::insert($args);
-			$poll_type = "survey_poll_". $poll_type;
-		}
-		else
-		{
-			// if users adding new poll to sorvey
-			// $poll_survey = 'poll' and $suervey_id is full
-			if($survey_id)
-			{
-				$poll_type = "survey_poll_". $poll_type;
-			}
-			else
-			{
-				$poll_type = "poll_private_". $poll_type;
-			}
-		}
+		// ready to inset poll
 		$args =
 		[
 			'user_id'      => $this->login('id'),
@@ -209,7 +214,7 @@ class model extends \mvc\model
 			'status'       => 'draft',
 			'meta'         => "{\"desc\":\"$summary\"}"
 		];
-		// inset poll and answers
+		// inset poll
 		$poll_id = \lib\db\polls::insert($args);
 		// check answers
 		if($answers)
@@ -228,15 +233,16 @@ class model extends \mvc\model
 				debug::error(T_("you must set two answer"));
 				return false;
 			}
-			// combine answer type and answer text
+			// combine answer type and answer text and answer point
 			$combine = [];
 			foreach ($answers as $key => $value) {
-				$combine[] = [
-								'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
-								'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
-								'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
-								'txt'   => $value
-							 ];
+				$combine[] =
+				[
+					'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
+					'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
+					'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
+					'txt'   => $value
+	     		];
 			}
 			$answers_arg =
 			[
@@ -275,34 +281,13 @@ class model extends \mvc\model
 		}
 		if($answers)
 		{
-			\lib\debug::true(T_("Add $poll_survey Success"));
-			if(($poll_survey == "poll" && !$survey_id) || utility::post("filter"))
-			{
-				if($this->check_poll_url($_args))
-				{
-					$survey_id   = $this->check_poll_url($_args);
-					// encode survey id
-					$short_url = \lib\utility\shortURL::encode($survey_id);
-				}
-				else
-				{
-					// encode poll id
-					$short_url = \lib\utility\shortURL::encode($poll_id);
-				}
-				// must be redirect to filter page
-				$this->redirector()->set_url("@/$short_url/filter");
-				return;
-			}
-			else
-			{
-				$short_url = \lib\utility\shortURL::encode($survey_id);
-				debug::msg($short_url);
-				$this->redirector()->set_url("@/$short_url/add");
-			}
+			\lib\debug::true(T_("add poll Success"));
+			return $poll_id;
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in add $poll_survey"));
+			\lib\debug::error(T_("Error in add poll"));
+			return false;
 		}
 	}
 
@@ -321,6 +306,22 @@ class model extends \mvc\model
 		$poll_id = \lib\utility\shortURL::decode($poll_id);
 		$result  = \lib\db\polls::get_for_edit($poll_id);
 		return $result;
+	}
+
+
+	/**
+	 * set survey.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function get_survey($_args)
+	{
+		$poll_id = $_args->match->url[0][1];
+		if($poll_id)
+		{
+			$poll_id = \lib\utility\shortURL::decode($poll_id);
+		}
+		// $result = \lib\db\survey::set($poll_id);
 	}
 
 
@@ -396,22 +397,19 @@ class model extends \mvc\model
 	*/
 	function get_filter($_args)
 	{
-
-		// $filters =
-		// [
-		// 	"gender" =>
-		// 	[
-		// 		"male"
-		// 	]
-		// ];
-
-		// $num = \lib\db\filters::count_filtered_member($filters);
 		// list of adds filter
 		$filter_list = \lib\db\filters::get_exist_filter();
 		return $filter_list;
 	}
 
 
+	/**
+	 * save filter
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function post_filter($_args)
 	{
 		// get filter
@@ -466,6 +464,13 @@ class model extends \mvc\model
 	}
 
 
+	/**
+	 * save publish data
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	function post_publish($_args)
 	{
 		$poll_survey_id = $this->check_poll_url($_args);
@@ -543,12 +548,12 @@ class model extends \mvc\model
 			];
 			$article = \lib\db\options::insert($article);
 		}
+		$language = utility::post("language");
 
 		$update_posts =
 		[
-			'post_status' => 'publish',
-			'language'     => $language,
-			'publish_date' => $publish_date,
+			'post_status'   => 'publish',
+			'post_language' => $language
 		];
 
 		$result = \lib\db\polls::update($update_posts, $poll_survey_id);
@@ -564,8 +569,6 @@ class model extends \mvc\model
 		{
 			debug::error(T_("error in publish poll"));
 		}
-
 	}
-
 }
 ?>

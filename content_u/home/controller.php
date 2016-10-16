@@ -31,7 +31,7 @@ class controller extends \mvc\controller
 		// check logined
 		if(!$this->login())
 		{
-			$this->redirector()->set_domain()->set_url('login')->redirect();
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
 		}
 
 	}

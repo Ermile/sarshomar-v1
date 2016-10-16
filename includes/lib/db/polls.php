@@ -238,22 +238,45 @@ class polls
 
 		if($insert_id)
 		{
-
-			// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
-			$short_url = \lib\utility\shortURL::encode($insert_id);
-
-			// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
-			$title = str_replace(" ", "_", $title);
-			$url = '$/' . $short_url . '/'. $title;
-
-			$set_url = \lib\db\polls::update(['post_url' => $url], $insert_id );
-
+			// update post url
+			self::update_url($insert_id, $title);
 			return $insert_id;
 		}
 		else
 		{
 			return false;
 		}
+	}
+
+
+	/**
+	 * update the poll url
+	 * get the poll id and poll title
+	 * set url = $/[encode of poll id]/[title whit replace \s to _ ]
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 * @param      <type>  $_title    The title
+	 */
+	public static function update_url($_poll_id, $_title, $_update = true)
+	{
+		// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
+		$short_url = \lib\utility\shortURL::encode($_poll_id);
+		// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
+		$_title = str_replace(" ", "_", $_title);
+		$url = '$/' . $short_url . '/'. $_title;
+		// default the update is true
+		// we update the poll url
+		if($_update)
+		{
+			return \lib\db\polls::update(['post_url' => $url], $_poll_id);
+		}
+		else
+		{
+			// update is false then we return the url
+			// for update another place
+			return $url;
+		}
+
 	}
 
 
@@ -768,7 +791,10 @@ class polls
 		else
 		{
 			$meta = self::get_poll_meta($_poll_id);
-			$meta = array_merge($meta, $_field_meta);
+			if(is_array($meta) && is_array($_field_meta))
+			{
+				$meta = array_merge($meta, $_field_meta);
+			}
 			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 			$query = " '$meta' ";
 		}
