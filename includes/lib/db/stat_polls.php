@@ -702,5 +702,36 @@ class stat_polls
 		$total = \lib\db::get($stat_query, 'count', true);
 		return intval($total);
 	}
+
+
+	/**
+	 * Gets the random poll id by tags #homepage
+	 *
+	 * @return     boolean  The random poll identifier.
+	 */
+	public static function get_random_poll_result()
+	{
+		$get_id = [];
+
+		$query =
+		"
+			SELECT
+				termusage_id AS 'id'
+			FROM
+				termusages
+			INNER JOIN terms ON
+				terms.id = termusages.term_id AND
+				terms.term_type = 'tag' AND
+				terms.term_slug = 'homepage'
+			WHERE
+				termusages.termusage_foreign = 'posts'
+			ORDER BY RAND()
+			LIMIT 1
+			-- get random poll id by tag homepage to show in homepage
+		";
+		$random_poll_id = \lib\db::get($query, "id", true);
+		$poll_result = self::get_result($random_poll_id);
+		return $poll_result;
+	}
 }
 ?>
