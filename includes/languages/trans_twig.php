@@ -38,7 +38,7 @@ private function transtext()
 	//----------------------------------------------------content\template\header.html
 	echo T_("Help");                                                                  // Line 5
 	echo T_("Login");                                                                 // Line 5
-	echo T_("Register");                                                              // Line 4
+	echo T_("Register");                                                              // Line 6
 
 	//--------------------------------------------------content\template\poll.old.html
 	echo T_("View your current location and navigate to parent of it");               // Line 9
@@ -50,18 +50,21 @@ private function transtext()
 	echo T_("Bots");                                                                  // Line 77
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("Do you want to register an account?");                                   // Line 3
+	echo T_("We are inestimable");                                                    // Line 3
+	echo T_("Inspection, Ask, Answer");                                               // Line 6
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 7
+	echo T_("Try Sarshomar");                                                         // Line 8
 
 	//----------------------------------------------content\template\static_about.html
 
 	//------------------------------------------------content\template\static_add.html
 	echo T_("Gozinei");                                                               // Line 9
 	echo T_("descriptive");                                                           // Line 10
-	echo T_("Notification");                                                          // Line 298
-	echo T_("Upload");                                                                // Line 299
-	echo T_("Starred");                                                               // Line 300
+	echo T_("Notification");                                                          // Line 295
+	echo T_("Upload");                                                                // Line 296
+	echo T_("Starred");                                                               // Line 297
 	echo T_("Shomarei");                                                              // Line 14
-	echo T_("Sort");                                                                  // Line 302
+	echo T_("Sort");                                                                  // Line 299
 
 	//------------------------------------------content\template\static_changelog.html
 
@@ -84,8 +87,8 @@ private function transtext()
 	echo T_("Warn");                                                                  // Line 50
 	echo T_("Fail");                                                                  // Line 57
 	echo T_("Disabled");                                                              // Line 64
-	echo T_("Tags");                                                                  // Line 480
-	echo T_("Add");                                                                   // Line 485
+	echo T_("Tags");                                                                  // Line 482
+	echo T_("Add");                                                                   // Line 487
 	echo T_("Slug");                                                                  // Line 100
 
 	//------------------------------------------------content\template\static_faq.html
@@ -114,50 +117,51 @@ private function transtext()
 	echo T_("Visitors");                                                              // Line 5
 
 	//------------------------------------------------------content_u\add\display.html
-	echo T_("Multiple Choice");                                                       // Line 296
-	echo T_("Descriptive");                                                           // Line 297
-	echo T_("Numerical");                                                             // Line 301
+	echo T_("Multiple Choice");                                                       // Line 293
+	echo T_("Descriptive");                                                           // Line 294
+	echo T_("Numerical");                                                             // Line 298
 	echo T_("Question Title");                                                        // Line 35
 	echo T_("Option 1");                                                              // Line 41
 	echo T_("Option 2");                                                              // Line 46
 	echo T_("Option 3");                                                              // Line 51
 	echo T_("Descriptive Answer");                                                    // Line 62
 	echo T_("Score");                                                                 // Line 67
-	echo T_("Summary");                                                               // Line 235
+	echo T_("Summary");                                                               // Line 232
 	echo T_("Description");                                                           // Line 29
 	echo T_("Add New");                                                               // Line 100
 	echo T_("Filter");                                                                // Line 101
-	echo T_("Submit");                                                                // Line 417
-	echo T_("Poll type");                                                             // Line 116
-	echo T_("Title");                                                                 // Line 258
-	echo T_("Content");                                                               // Line 268
-	echo T_("Answer type");                                                           // Line 173
-	echo T_("True answer");                                                           // Line 187
-	echo T_("Point");                                                                 // Line 194
-	echo T_("Answer one");                                                            // Line 168
-	echo T_("Answer Two");                                                            // Line 199
-	echo T_("Language");                                                              // Line 328
-	echo T_("Publish date");                                                          // Line 273
-	echo T_("Can update");                                                            // Line 218
-	echo T_("Can remove");                                                            // Line 223
-	echo T_("Can stop");                                                              // Line 228
-	echo T_("Edit");                                                                  // Line 285
-	echo T_("Gender");                                                                // Line 308
-	echo T_("Marriage");                                                              // Line 313
-	echo T_("Education");                                                             // Line 318
-	echo T_("Job");                                                                   // Line 323
-	echo T_("Age");                                                                   // Line 333
-	echo T_("Selected Filters");                                                      // Line 338
-	echo T_("Category");                                                              // Line 366
-	echo T_("Article");                                                               // Line 371
-	echo T_("Start Time");                                                            // Line 394
-	echo T_("Start");                                                                 // Line 397
-	echo T_("End Time");                                                              // Line 402
-	echo T_("End");                                                                   // Line 405
-	echo T_("Short URL");                                                             // Line 410
-	echo T_("Write your tag and press enter to add new keyword to content");          // Line 479
-	echo T_("Enter Tags here");                                                       // Line 483
-	echo T_("Enter Tags");                                                            // Line 484
+	echo T_("Submit");                                                                // Line 414
+	echo T_("Survey Title");                                                          // Line 117
+	echo T_("Poll type");                                                             // Line 123
+	echo T_("Title");                                                                 // Line 255
+	echo T_("Content");                                                               // Line 265
+	echo T_("Answer type");                                                           // Line 180
+	echo T_("True answer");                                                           // Line 194
+	echo T_("Point");                                                                 // Line 201
+	echo T_("Answer one");                                                            // Line 175
+	echo T_("Answer Two");                                                            // Line 206
+	echo T_("Can update");                                                            // Line 215
+	echo T_("Can remove");                                                            // Line 220
+	echo T_("Can stop");                                                              // Line 225
+	echo T_("Language");                                                              // Line 325
+	echo T_("Publish date");                                                          // Line 270
+	echo T_("Edit");                                                                  // Line 282
+	echo T_("Gender");                                                                // Line 305
+	echo T_("Marriage");                                                              // Line 310
+	echo T_("Education");                                                             // Line 315
+	echo T_("Job");                                                                   // Line 320
+	echo T_("Age");                                                                   // Line 330
+	echo T_("Selected Filters");                                                      // Line 335
+	echo T_("Category");                                                              // Line 363
+	echo T_("Article");                                                               // Line 368
+	echo T_("Start Time");                                                            // Line 391
+	echo T_("Start");                                                                 // Line 394
+	echo T_("End Time");                                                              // Line 399
+	echo T_("End");                                                                   // Line 402
+	echo T_("Short URL");                                                             // Line 407
+	echo T_("Write your tag and press enter to add new keyword to content");          // Line 481
+	echo T_("Enter Tags here");                                                       // Line 485
+	echo T_("Enter Tags");                                                            // Line 486
 
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Username");                                                              // Line 28

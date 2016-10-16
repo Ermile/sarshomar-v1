@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.3.2
+ * Version: 2.3.3
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -72,31 +72,13 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent;}
 .rtl footer #footer-note .love{text-align:left}
 
-/************************************************************** Next... */
-
-
-
-/* map wrapper */
-.map-box{padding-top:6em;padding-bottom:1em;background-color:#e7e7e7;}
-.map-box h4{font-size:2em;}
-
-
-/* assurance */
-.assurance-box{padding-top:5em;padding-bottom:5em;text-align:center;}
-.assurance-box img{width:10%;margin-bottom:1em;}
-.assurance-box p{font-size:1.2em;line-height:normal;position:relative;width:50%;margin:0 auto;text-align:center;color:#20a286;}
-.assurance-box p:before{position:absolute;right:0;bottom:-0.5em;width:100%;height:0.2em;content:'';border-radius:1em;background-color:#20a286;}
-
-
-/* register box */
+/************************************************************** inestimable */
 #inestimable{position:relative;background-color:#582C2C;height:200px;padding:20px 100px;color:#fff;}
 #inestimable::before{content:"";background:url(../images/svg/inside2.svg) no-repeat;position:absolute;top:0;width:108px;height:208px;left:-8px;}
 #inestimable::after{content:"";background:url(../images/svg/inside1.svg) no-repeat;position:absolute;top:0;width:108px;height:208px;right:-8px;}
 #inestimable img{height:150px;}
-#inestimable h3{margin-bottom:0}
+#inestimable h3{margin-bottom:0;font-weight:700;}
 #inestimable h4{margin-bottom:0.5em}
-
-#inestimable p{color:#fff;}
 #inestimable a{position:relative;background-color:#00667A;color:#F4F4F4;font-size:20px;padding:10px 15px;display:inline-block;}
 #inestimable a::before,#inestimable a::after{position:absolute;font-family:'sarshomar' !important;font-size:53px;top:0;bottom:0;margin:auto;line-height:1;color:#00667a;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 #inestimable a::before{content:'k';right:0;margin-right:-31px;}
@@ -104,6 +86,17 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #inestimable a:hover{background-color:#15535f;}
 #inestimable a:hover::before,#inestimable a:hover::after{color:#15535f;}
 
+/************************************************************** trust */
+#trust{padding:3em 0 5em;text-align:center;}
+#trust img{width:10%;margin-bottom:1em;}
+#trust p{font-size:1.2em;line-height:normal;position:relative;margin:0 auto;text-align:center;color:#20a286;}
+#trust p:before{position:absolute;right:0;bottom:-0.5em;width:100%;height:0.2em;content:'';border-radius:1em;background-color:#20a286;}
+
+/************************************************************** Next... */
+
+/* map wrapper */
+.map-box{padding-top:6em;padding-bottom:1em;background-color:#e7e7e7;}
+.map-box h4{font-size:2em;}
 
 /* poll comments */
 .comments{padding:5em 0;background-color:#e7e7e7;}
@@ -408,17 +401,17 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 /* Extra Large Screens */
 @media only screen and (min-width: 1824px){
-  .assurance-box{font-size:3em;}
+  #trust{font-size:3em;}
 }
 
 /* Large Desktop */
 @media screen and (max-width: 1823px){
-  .assurance-box{font-size:3em;}
+  #trust{font-size:3em;}
 }
 
 /* Small Desktop */
 @media only screen and (max-width:1199px){
-  .assurance-box{font-size:2em;}
+  #trust{font-size:2em;}
 }
 
 /* Tablet (Portrait) */
@@ -438,6 +431,6 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 /* Mobile */
 @media only screen and (max-width: 479px){
-  .assurance-box{font-size:1.3em;}
+  #trust{font-size:1.3em;}
   #inestimable{font-size:0.5em;}
 }

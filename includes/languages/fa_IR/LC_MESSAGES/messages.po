@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
-"POT-Creation-Date: 2016-10-16 08:15+0330\n"
-"PO-Revision-Date: 2016-10-16 08:17+0330\n"
+"POT-Creation-Date: 2016-10-16 15:43+0330\n"
+"PO-Revision-Date: 2016-10-16 15:45+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: content/home/view.php:28 content/knowledge/view.php:16
+#: content/home/view.php:32 content/knowledge/view.php:16
 msgid ":number Questions answered"
 msgstr ":number سوال پاسخ داده شده است"
 
@@ -138,63 +138,71 @@ msgstr "سرشمار"
 msgid "Please select your language"
 msgstr ""
 
-#: content_u/add/model.php:76
-msgid "poll type not found"
+#: content_u/add/model.php:48
+msgid "title or answers must be full"
 msgstr ""
 
-#: content_u/add/model.php:123
-msgid "undefined error"
-msgstr ""
-
-#: content_u/add/model.php:140
+#: content_u/add/model.php:132
 msgid "command not found"
 msgstr ""
 
-#: content_u/add/model.php:147
+#: content_u/add/model.php:156
+msgid "poll type not found"
+msgstr ""
+
+#: content_u/add/model.php:197
 msgid "poll title can not null"
 msgstr ""
 
-#: content_u/add/model.php:153
+#: content_u/add/model.php:203
 msgid "summary text must be less than 150 character"
 msgstr ""
 
-#: content_u/add/model.php:220
+#: content_u/add/model.php:225
 msgid "answer must be array"
 msgstr ""
 
-#: content_u/add/model.php:228
+#: content_u/add/model.php:233
 msgid "you must set two answer"
 msgstr ""
 
-#: content_u/add/model.php:250
+#: content_u/add/model.php:256
 msgid "answers not found"
 msgstr ""
 
-#: content_u/add/model.php:351
+#: content_u/add/model.php:284
+msgid "add poll Success"
+msgstr ""
+
+#: content_u/add/model.php:289
+msgid "Error in add poll"
+msgstr ""
+
+#: content_u/add/model.php:352
 msgid "Edit poll Success"
 msgstr ""
 
-#: content_u/add/model.php:355
+#: content_u/add/model.php:356
 msgid "Error in Edit poll"
 msgstr ""
 
-#: content_u/add/model.php:444
+#: content_u/add/model.php:442
 msgid "add filter of poll Success"
 msgstr ""
 
-#: content_u/add/model.php:450
+#: content_u/add/model.php:448
 msgid "Error in insert filter of poll"
 msgstr ""
 
-#: content_u/add/model.php:474
+#: content_u/add/model.php:479
 msgid "id not found"
 msgstr "آی‌دی یافت نشد"
 
-#: content_u/add/model.php:558
+#: content_u/add/model.php:563
 msgid "poll published"
 msgstr ""
 
-#: content_u/add/model.php:565
+#: content_u/add/model.php:570
 msgid "error in publish poll"
 msgstr ""
 
@@ -560,7 +568,7 @@ msgstr "نام برای نمایش عمومی"
 msgid "permission"
 msgstr "سطح دسترسی"
 
-#: includes/languages/trans_addons.php:6 includes/languages/trans_twig.php:158
+#: includes/languages/trans_addons.php:6 includes/languages/trans_twig.php:162
 msgid "Write your tag and press enter to add new keyword to content"
 msgstr ""
 "کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
@@ -666,7 +674,7 @@ msgstr "برگه‌ها"
 msgid "Attachments"
 msgstr "فایل‌ها"
 
-#: includes/languages/trans_addons.php:47 includes/languages/trans_twig.php:87
+#: includes/languages/trans_addons.php:47 includes/languages/trans_twig.php:90
 msgid "Tags"
 msgstr "کلیدواژه‌ها"
 
@@ -771,7 +779,7 @@ msgstr "برخی از حقوق محفوظ است!"
 msgid "Powered by"
 msgstr "قدرت گرفته از"
 
-#: includes/languages/trans_addons.php:77 includes/languages/trans_twig.php:166
+#: includes/languages/trans_addons.php:77 includes/languages/trans_twig.php:170
 msgid "Saloos"
 msgstr "سالوس"
 
@@ -930,7 +938,7 @@ msgstr "نمایش"
 msgid "Allow or disallow user to use and insert in all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده تمام بخش‌های سرویس"
 
-#: includes/languages/trans_addons.php:124 includes/languages/trans_twig.php:88
+#: includes/languages/trans_addons.php:124 includes/languages/trans_twig.php:91
 msgid "Add"
 msgstr "افزودن"
 
@@ -938,7 +946,7 @@ msgstr "افزودن"
 msgid "Allow or disallow user to edit all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای ویرایش تمام بخش‌های سرویس"
 
-#: includes/languages/trans_addons.php:126 includes/languages/trans_twig.php:144
+#: includes/languages/trans_addons.php:126 includes/languages/trans_twig.php:148
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -1002,11 +1010,11 @@ msgid "Summaries of your content that can be used as page description."
 msgstr ""
 "خلاصه ای از نوشته شما که برای نمایش به عنوان توضیح نوشته استفاده می شود."
 
-#: includes/languages/trans_addons.php:143 includes/languages/trans_twig.php:159
+#: includes/languages/trans_addons.php:143 includes/languages/trans_twig.php:163
 msgid "Enter Tags here"
 msgstr "تگ ها را اینجا وارد کنید"
 
-#: includes/languages/trans_addons.php:144 includes/languages/trans_twig.php:160
+#: includes/languages/trans_addons.php:144 includes/languages/trans_twig.php:164
 msgid "Enter Tags"
 msgstr "تگ را وارد کنید"
 
@@ -1024,7 +1032,7 @@ msgstr ""
 msgid "View list of tags"
 msgstr "مشاهده لیست کلیدواژه‌ها"
 
-#: includes/languages/trans_addons.php:147 includes/languages/trans_twig.php:89
+#: includes/languages/trans_addons.php:147 includes/languages/trans_twig.php:92
 msgid "Slug"
 msgstr "نامک"
 
@@ -1056,7 +1064,7 @@ msgstr "آدرس کوتاه را در اینجا وارد کنید"
 msgid "Use this shortcode on your posts"
 msgstr "از این کدکوتاه شده در مطالب خود استفاده کنید"
 
-#: includes/languages/trans_addons.php:154 includes/languages/trans_twig.php:139
+#: includes/languages/trans_addons.php:154 includes/languages/trans_twig.php:146
 msgid "Language"
 msgstr "زبان"
 
@@ -1635,7 +1643,7 @@ msgstr "اکانت"
 msgid "SiteContent"
 msgstr "محتوای سایت"
 
-#: includes/languages/trans_addons.php:312 includes/languages/trans_twig.php:109
+#: includes/languages/trans_addons.php:312 includes/languages/trans_twig.php:112
 msgid "Terms"
 msgstr "عبارات"
 
@@ -1927,11 +1935,11 @@ msgstr "شبکه‌های اجتماعی"
 msgid "socialnetwork"
 msgstr "شبکه‌اجتماعی"
 
-#: includes/languages/trans_addons.php:388 includes/languages/trans_twig.php:127
+#: includes/languages/trans_addons.php:388 includes/languages/trans_twig.php:130
 msgid "Description"
 msgstr "توضیح"
 
-#: includes/languages/trans_addons.php:389 includes/languages/trans_twig.php:132
+#: includes/languages/trans_addons.php:389 includes/languages/trans_twig.php:136
 msgid "Title"
 msgstr "عنوان"
 
@@ -2627,288 +2635,311 @@ msgid "Total"
 msgstr "مجموع"
 
 #: includes/languages/trans_twig.php:53
-msgid "Do you want to register an account?"
-msgstr "آیا مایل به ثبت نام هستید؟"
+msgid "We are inestimable"
+msgstr "ما تخمین‌ناپذیریم"
 
-#: includes/languages/trans_twig.php:58
+#: includes/languages/trans_twig.php:54
+msgid "Inspection, Ask, Answer"
+msgstr "بررسی کنید، بپرسید، پاسخ‌دهید"
+
+#: includes/languages/trans_twig.php:55
+msgid "Then if we were inestimable, Signup!"
+msgstr "سپس اگر ما را برترین یافتید، ثبت‌نام کنید!"
+
+#: includes/languages/trans_twig.php:56
+msgid "Try Sarshomar"
+msgstr "سرشمار را بیازمایید"
+
+#: includes/languages/trans_twig.php:61
 msgid "Gozinei"
 msgstr ""
 
-#: includes/languages/trans_twig.php:59
+#: includes/languages/trans_twig.php:62
 msgid "descriptive"
 msgstr ""
 
-#: includes/languages/trans_twig.php:60
+#: includes/languages/trans_twig.php:63
 msgid "Notification"
 msgstr "اطلاع رسانی"
 
-#: includes/languages/trans_twig.php:61
+#: includes/languages/trans_twig.php:64
 msgid "Upload"
 msgstr "بارگذاری"
 
-#: includes/languages/trans_twig.php:62
+#: includes/languages/trans_twig.php:65
 msgid "Starred"
 msgstr "ستاره ای"
 
-#: includes/languages/trans_twig.php:63
+#: includes/languages/trans_twig.php:66
 msgid "Shomarei"
 msgstr ""
 
-#: includes/languages/trans_twig.php:64
+#: includes/languages/trans_twig.php:67
 msgid "Sort"
 msgstr "مرتب سازی"
 
-#: includes/languages/trans_twig.php:71
+#: includes/languages/trans_twig.php:74
 msgid "Eco"
 msgstr "حامی محیط‌زیست"
 
-#: includes/languages/trans_twig.php:74
+#: includes/languages/trans_twig.php:77
 msgid "Elements"
 msgstr "المان‌ها"
 
-#: includes/languages/trans_twig.php:75
+#: includes/languages/trans_twig.php:78
 msgid "Input"
 msgstr "ورودی"
 
-#: includes/languages/trans_twig.php:76
+#: includes/languages/trans_twig.php:79
 msgid "Basic"
 msgstr ""
 
-#: includes/languages/trans_twig.php:77
+#: includes/languages/trans_twig.php:80
 msgid "Basic with placeholder"
 msgstr ""
 
-#: includes/languages/trans_twig.php:78
+#: includes/languages/trans_twig.php:81
 msgid "Please enter text"
 msgstr ""
 
-#: includes/languages/trans_twig.php:79
+#: includes/languages/trans_twig.php:82
 msgid "Basic with placeholder and icon"
 msgstr ""
 
-#: includes/languages/trans_twig.php:80
+#: includes/languages/trans_twig.php:83
 msgid "Primary with icon"
 msgstr ""
 
-#: includes/languages/trans_twig.php:81
+#: includes/languages/trans_twig.php:84
 msgid "Primary with icon and placeholder"
 msgstr ""
 
-#: includes/languages/trans_twig.php:82
+#: includes/languages/trans_twig.php:85
 msgid "Success"
 msgstr "موفقیت‌آمیز"
 
-#: includes/languages/trans_twig.php:83
+#: includes/languages/trans_twig.php:86
 msgid "Why men marry women?"
 msgstr ""
 
-#: includes/languages/trans_twig.php:84
+#: includes/languages/trans_twig.php:87
 msgid "Warn"
 msgstr "اخطار"
 
-#: includes/languages/trans_twig.php:85
+#: includes/languages/trans_twig.php:88
 msgid "Fail"
 msgstr "ناموفق"
 
-#: includes/languages/trans_twig.php:86
+#: includes/languages/trans_twig.php:89
 msgid "Disabled"
 msgstr "غیرفعال"
 
-#: includes/languages/trans_twig.php:92
+#: includes/languages/trans_twig.php:95
 msgid "Sarshomar FAQ"
 msgstr "سوالات پرتکرار سرشمار"
 
-#: includes/languages/trans_twig.php:101
+#: includes/languages/trans_twig.php:104
 msgid "Privacy"
 msgstr "حریم خصوصی"
 
-#: includes/languages/trans_twig.php:104
+#: includes/languages/trans_twig.php:107
 msgid "Referral"
 msgstr "ارجاع‌دهی"
 
-#: includes/languages/trans_twig.php:114
+#: includes/languages/trans_twig.php:117
 msgid "Visitors"
 msgstr "بازدیدکنندگان"
 
-#: includes/languages/trans_twig.php:117
+#: includes/languages/trans_twig.php:120
 msgid "Multiple Choice"
 msgstr "چند گزینه­ای"
 
-#: includes/languages/trans_twig.php:118
+#: includes/languages/trans_twig.php:121
 msgid "Descriptive"
 msgstr "تشریحی"
 
-#: includes/languages/trans_twig.php:119
+#: includes/languages/trans_twig.php:122
 msgid "Numerical"
 msgstr "شماره ای"
 
-#: includes/languages/trans_twig.php:120
+#: includes/languages/trans_twig.php:123
 msgid "Question Title"
 msgstr ""
 
-#: includes/languages/trans_twig.php:121
+#: includes/languages/trans_twig.php:124
 msgid "Option 1"
 msgstr "گزینه ۱"
 
-#: includes/languages/trans_twig.php:122
+#: includes/languages/trans_twig.php:125
 msgid "Option 2"
 msgstr "گزینه ۲"
 
-#: includes/languages/trans_twig.php:123
+#: includes/languages/trans_twig.php:126
 msgid "Option 3"
 msgstr "گزینه ۳"
 
-#: includes/languages/trans_twig.php:124
+#: includes/languages/trans_twig.php:127
 msgid "Descriptive Answer"
 msgstr ""
 
-#: includes/languages/trans_twig.php:125
+#: includes/languages/trans_twig.php:128
 msgid "Score"
 msgstr "امتیاز"
 
-#: includes/languages/trans_twig.php:126
+#: includes/languages/trans_twig.php:129
 msgid "Summary"
 msgstr "خلاصه"
 
-#: includes/languages/trans_twig.php:128
+#: includes/languages/trans_twig.php:131
 msgid "Add New"
 msgstr "افزودن"
 
-#: includes/languages/trans_twig.php:129
+#: includes/languages/trans_twig.php:132
 msgid "Filter"
 msgstr ""
 
-#: includes/languages/trans_twig.php:130
+#: includes/languages/trans_twig.php:133
 msgid "Submit"
 msgstr "تایید"
 
-#: includes/languages/trans_twig.php:131
+#: includes/languages/trans_twig.php:134
+msgid "Survey Title"
+msgstr ""
+
+#: includes/languages/trans_twig.php:135
 msgid "Poll type"
 msgstr "نوع نظرسنجی"
 
-#: includes/languages/trans_twig.php:133
+#: includes/languages/trans_twig.php:137
 msgid "Content"
 msgstr "محتوا"
 
-#: includes/languages/trans_twig.php:134
+#: includes/languages/trans_twig.php:138
 msgid "Answer type"
 msgstr "نوع پاسخ"
 
-#: includes/languages/trans_twig.php:135
+#: includes/languages/trans_twig.php:139
 msgid "True answer"
 msgstr "گزینه صحیح "
 
-#: includes/languages/trans_twig.php:136
+#: includes/languages/trans_twig.php:140
 msgid "Point"
 msgstr "امتیاز"
 
-#: includes/languages/trans_twig.php:137
+#: includes/languages/trans_twig.php:141
 msgid "Answer one"
 msgstr "پاسخ یک"
 
-#: includes/languages/trans_twig.php:138
+#: includes/languages/trans_twig.php:142
 msgid "Answer Two"
 msgstr "پاسخ دو"
 
-#: includes/languages/trans_twig.php:140
-msgid "Publish date"
-msgstr "تاریخ انتشار"
-
-#: includes/languages/trans_twig.php:141
+#: includes/languages/trans_twig.php:143
 msgid "Can update"
 msgstr "اجازه ویرایش"
 
-#: includes/languages/trans_twig.php:142
+#: includes/languages/trans_twig.php:144
 msgid "Can remove"
 msgstr "اجاره حذف"
 
-#: includes/languages/trans_twig.php:143
+#: includes/languages/trans_twig.php:145
 msgid "Can stop"
 msgstr "اجازه توقف"
 
-#: includes/languages/trans_twig.php:145
+#: includes/languages/trans_twig.php:147
+msgid "Publish date"
+msgstr "تاریخ انتشار"
+
+#: includes/languages/trans_twig.php:149
 msgid "Gender"
 msgstr "جنسیت"
 
-#: includes/languages/trans_twig.php:146
+#: includes/languages/trans_twig.php:150
 msgid "Marriage"
 msgstr ""
 
-#: includes/languages/trans_twig.php:147
+#: includes/languages/trans_twig.php:151
 msgid "Education"
 msgstr ""
 
-#: includes/languages/trans_twig.php:148
+#: includes/languages/trans_twig.php:152
 msgid "Job"
 msgstr "شغل"
 
-#: includes/languages/trans_twig.php:149
+#: includes/languages/trans_twig.php:153
 msgid "Age"
 msgstr "سن"
 
-#: includes/languages/trans_twig.php:150
+#: includes/languages/trans_twig.php:154
 msgid "Selected Filters"
 msgstr "فیلتر‌های انتخابی"
 
-#: includes/languages/trans_twig.php:151
+#: includes/languages/trans_twig.php:155
 msgid "Category"
 msgstr "دسته‌بندی"
 
-#: includes/languages/trans_twig.php:152
+#: includes/languages/trans_twig.php:156
 msgid "Article"
 msgstr "مقاله"
 
-#: includes/languages/trans_twig.php:153
+#: includes/languages/trans_twig.php:157
 msgid "Start Time"
 msgstr ""
 
-#: includes/languages/trans_twig.php:154
+#: includes/languages/trans_twig.php:158
 msgid "Start"
 msgstr "شروع"
 
-#: includes/languages/trans_twig.php:155
+#: includes/languages/trans_twig.php:159
 msgid "End Time"
 msgstr ""
 
-#: includes/languages/trans_twig.php:156
+#: includes/languages/trans_twig.php:160
 msgid "End"
 msgstr "پایان"
 
-#: includes/languages/trans_twig.php:157
+#: includes/languages/trans_twig.php:161
 msgid "Short URL"
 msgstr "آدرس کوتاه"
 
-#: includes/languages/trans_twig.php:163
+#: includes/languages/trans_twig.php:167
 msgid "Username"
 msgstr "نام کاربری"
 
-#: includes/languages/trans_twig.php:167 includes/mvc/view.php:11
+#: includes/languages/trans_twig.php:171 includes/mvc/view.php:11
 msgid "Sarshomar start jumping"
 msgstr "سرشمار در حال پریدن است"
 
-#: includes/languages/trans_twig.php:168 includes/mvc/view.php:12
+#: includes/languages/trans_twig.php:172 includes/mvc/view.php:12
 msgid "Call Sarshomar"
 msgstr "سرشمار رو صدا کن"
 
-#: includes/languages/trans_twig.php:169 includes/mvc/view.php:14
+#: includes/languages/trans_twig.php:173
 msgid "Sarshomar is inteligent"
 msgstr "سرشمار باهوش است"
 
-#: includes/languages/trans_twig.php:170
+#: includes/languages/trans_twig.php:174
 msgid "poll"
 msgstr "نظرسنجی"
 
-#: includes/languages/trans_twig.php:171
+#: includes/languages/trans_twig.php:175
 msgid "Poll"
 msgstr "نظرسنجی"
 
-#: includes/languages/trans_twig.php:172
+#: includes/languages/trans_twig.php:176
 msgid "polls"
 msgstr "نظرسنجی‌ها"
 
-#: includes/languages/trans_twig.php:173
+#: includes/languages/trans_twig.php:177
 msgid "Polls"
 msgstr "نظرسنجی‌ها"
+
+#: includes/mvc/view.php:14
+msgid "Sarshomar is intelligent"
+msgstr "سرشمار باهوش است"
+
+#~ msgid "Do you want to register an account?"
+#~ msgstr "آیا مایل به ثبت نام هستید؟"
 
 #~ msgid "Books"
 #~ msgstr "کتاب‌ها"
