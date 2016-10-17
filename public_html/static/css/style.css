@@ -298,8 +298,8 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .element.disabled label{color:#bebebe!important;background-color:#d7d7d7!important;}
 .element.disabled label:before{background-image:url(../images/svg/input-before2.svg);}
 .element.disabled .input, .element.disabled .input + .icon{color:#bbb;background-color:#d7d7d7;}
-.element.has-floating{padding-right:10px;}
-.rtl .element.has-floating{padding-right:0;padding-left:10px;}
+.element.has-floating{padding-right:12px;}
+.rtl .element.has-floating{padding-right:0;padding-left:12px;}
 .element .btn button{display:block;width:100%;min-width:60px;height:35px;cursor:pointer;transition:all 0.2s;color:#777;border:none;background-color:#d7d7d7;}
 .element .btn button:hover{color:#d8dad0;background-color:#00667a;}
 .element .floating span{line-height:24px;position:absolute;top:6px;right:0px;width:24px;height:24px;transition:all 0.2s;color:#fff;border:none;background-color:#bbb;}
@@ -333,7 +333,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl .options, .rtl .indent{padding-left:0;padding-right:40px;}
 
 /* Buttons */
-.buttons{position:relative;clear:both;text-align:right;margin-bottom:4em;}
+.buttons{position:relative;clear:both;text-align:right;margin-bottom:7em;}
 .rtl .buttons{text-align:left}
 .buttons::before{position:absolute;z-index:0;left:-20px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
 .rtl .buttons::before{left:auto;right:-20px;}
