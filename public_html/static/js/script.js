@@ -110,6 +110,11 @@ $(function(){
 			sl.css('left', newLeft);
 		}
 	});
+
+	$('.panel-text>.title>span').click(function(){
+    	$(this).parents('.panel-text').children('textarea').stop().slideToggle('fast');
+    	$(this).children('.fa').toggleClass('fa-minus fa-plus');
+  	});
 });
 
 
