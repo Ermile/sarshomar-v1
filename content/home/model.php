@@ -17,52 +17,42 @@ class model extends \mvc\model
 	 */
 	public function random_result()
 	{
-		$random_result = \lib\db\stat_polls::get_random_poll_result();
-		if(!$random_result)
-		{
+		// $random_result = \lib\db\stat_polls::get_random_poll_result();
+		// if(!$random_result)
+		// {
 			$random_result = $this->random("main");
-		}
+		// }
 		return ['random_result' => $random_result, 'malefemale' => $this->random()];
 	}
 
-
-	public function random_title()
-	{
-		$title =
-		[
-			'شما به عنوان یک ایرانی مایل به روابط با ایالات متحده امریکا هستید؟',
-			'آیا با تنبیه دانش‌آموزان در مدارس موافق هستید؟',
-			'آیا موافق اینکه تک فرزندی وضعیت عمومی جامعه ما را تهدید می‌کند، هستید؟',
-			'آیا با جراحی‌های زیبایی، مخصوصا بینی موافق هستید؟',
-			'آیا با رایگان‌شدن بلیط بازی تیم محبوب‌تان موافق هستید؟',
-			'آیا تاکنون در زندگی خود اشتباه بزرگ انجام داده‌اید؟',
-			'آیا شما در زندگی خود فرصت‌ طلایی‌ای از دست داده‌ایدکه باعث پیشمانی شده باشد؟',
-			'آیا موافق فیلترشدن شبکه‌های اجتماعی هستید؟',
-			'به‌نظر شما سیستم ایمنی بدن، رفتارهای ما را کنترل می‌کند؟',
-			'آیا روز اول مهر را دوست داشتید؟'
-		];
-		$id = array_keys($title);
-		$random_key = array_rand($id);
-		return $title[$random_key];
-	}
-
-
 	public function random($_type = "drilldown")
 	{
+		$lang = substr(\lib\router::get_storage('language'), 0, 2);
+
 		if($_type == "drilldown")
 		{
-
+			if($lang == "fa")
+			{
+				$title  = 'آیا با جراحی‌های زیبایی، مخصوصا بینی موافق هستید؟';
+				$male   = "مرد";
+				$female = "زن";
+			}
+			else
+			{
+				$title  = 'Which team are you a fan of?';
+				$male   = "male";
+				$female = "female";
+			}
 			$random = [
-				'title' => $this->random_title(),
-
+				'title' => $title,
 				'data' => [
 					[
-						'name'       => 'مرد',
+						'name'       => $male,
 						'y'          => $this->rnd(),
-						'drilldown' => 'Male'
+						'drilldown'  => 'Male'
 					],
 					[
-						'name'       => 'زن',
+						'name'       => $female,
 						'y'          => $this->rnd(),
 						'drilldown'  => 'Female'
 			        ]
@@ -73,32 +63,23 @@ class model extends \mvc\model
 						'name' => 'Male',
 						'id'   => 'Male',
 						'data' => [
-								['v11.0', $this->rnd() ],
-								['v8.0', $this->rnd() ],
-								['v9.0', $this->rnd() ],
-								['v10.0', $this->rnd() ],
-								['v6.0', $this->rnd() ],
-								['v7.0', $this->rnd() ]
+								['v1.0', $this->rnd()],
+								['v8.0', $this->rnd()],
+								['v9.0', $this->rnd()],
+								['v6.0', $this->rnd()],
+								['v7.0', $this->rnd()]
 							]
 						],
 						[
 						'name' => 'Female',
 						'id'   => 'Female',
 						'data' => [
-								['v40.0', $this->rnd() ],
-								['v41.0', $this->rnd() ],
-								['v42.0', $this->rnd() ],
-								['v39.0', $this->rnd() ],
-								['v36.0', $this->rnd() ],
-								['v43.0', $this->rnd() ],
-								['v31.0', $this->rnd() ],
-								['v35.0', $this->rnd() ],
-								['v38.0', $this->rnd() ],
-								['v32.0', $this->rnd() ],
-								['v37.0', $this->rnd() ],
-								['v33.0', $this->rnd() ],
-								['v34.0', $this->rnd() ],
-								['v30.0', $this->rnd() ]
+								['v40.0', $this->rnd()],
+								['v41.0', $this->rnd()],
+								['v42.0', $this->rnd()],
+								['v39.0', $this->rnd()],
+								['v36.0', $this->rnd()],
+								['v30.0', $this->rnd()]
 							]
 						]
 					]
@@ -112,13 +93,47 @@ class model extends \mvc\model
 		}
 		else
 		{
+			if($lang == "fa")
+			{
+				$title  = "طرفدار کدام تیم هستید؟";
+				$categories = [
+						'استقلال',
+						'پرسپلیس',
+						'تراکتور سازی',
+						'نفت تهران',
+						'سپاهان'
+					];
+				$name   = "تیم ها";
+
+			}
+			else
+			{
+				$title  = "Which team are you a fan of?";
+				$categories = [
+						'Manchester',
+						'Bayern Munich',
+						'Liverpool',
+						'Real Madrid',
+						'Barcelona'
+					];
+				$name   = "teams";
+
+			}
 			$random = [
-				'title' => $this->random_title(),
-				'categories' => json_encode(['بلی', 'خیر'],JSON_UNESCAPED_UNICODE),
+				'title' => $title,
+				'categories' => json_encode($categories,JSON_UNESCAPED_UNICODE),
 				'data' => json_encode([
 					[
-						'name' => 'پاسخ',
-						'data' => [$this->rnd(), $this->rnd()]
+						'name' => $name,
+						'data' =>
+							[
+								$this->rnd(),
+								$this->rnd(),
+								$this->rnd(),
+								$this->rnd(),
+
+								$this->rnd()
+								]
 					]
 			        ], JSON_UNESCAPED_UNICODE)
 				];
