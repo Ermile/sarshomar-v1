@@ -17,6 +17,12 @@ class controller extends \mvc\controller
 			\lib\router::set_controller("\\content_u\\add\\controller");
 			return ;
 		}
+
+		if(\lib\utility::get("inspection") == "inestimable" && !$this->login())
+		{
+			\lib\db\users::signup_inspection();
+		}
+
 		$this->check_login();
 		$this->get("profile", "profile")->ALL();
 	}

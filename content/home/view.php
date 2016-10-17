@@ -38,5 +38,11 @@ class view extends \mvc\view
 			$this->data->display['mvc']     = "content/home/layout-xhr.html";
 		}
 	}
+
+
+	function view_tags()
+	{
+
+	}
 }
 ?>

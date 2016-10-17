@@ -20,15 +20,7 @@ class controller extends \mvc\controller
 
 		$this->post("random_result")->ALL("");
 
-		$this->get("poll","poll")->ALL(
-		[
-		'property' =>
-		[
-			"knowledge" => ["/^(knowledge)$/", true, 'knowledge'],
-			"sp_"       => ["/^sp\_[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+$/", true, 'sp_'],
-			"title"     => ["/^(.*)$/", true, 'title']
-		]
-		]);
+		// $this->get("tags","tags")->ALL("/(.*)/");
 	}
 }
 ?>

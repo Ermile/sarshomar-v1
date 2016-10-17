@@ -5,6 +5,11 @@ use \lib\debug;
 class model extends \mvc\model
 {
 
+	public function get_tags()
+	{
+
+	}
+
 	/**
 	 * get random result from post has tag #homepage
 	 *
