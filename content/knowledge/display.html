@@ -27,7 +27,11 @@
                                 <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
                             </li>
                         {%endfor%}
-
+                        {% if post.post_meta.opt %}
+                            <li>
+                                <a class="answer-link" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
+                            </li>
+                        {%endif%}
                     </div>
                     <h5 class="next-url">
                         {% if next_url %}

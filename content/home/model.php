@@ -131,9 +131,8 @@ class model extends \mvc\model
 								$this->rnd(),
 								$this->rnd(),
 								$this->rnd(),
-
 								$this->rnd()
-								]
+							]
 					]
 			        ], JSON_UNESCAPED_UNICODE)
 				];

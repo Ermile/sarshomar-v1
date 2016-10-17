@@ -82,6 +82,12 @@ class stat_polls
 		 */
 		self::set_sarshomar_total_answered();
 
+		// user skip the poll
+		if($opt_key == "opt_0")
+		{
+			return;
+		}
+
 		$user_profile_data = \lib\db\profiles::get_profile_data($user_id);
 
 	    $support_filter = \lib\db\filters::support_filter();

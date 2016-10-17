@@ -131,7 +131,7 @@ class answers
 				profile =
 				(
 					SELECT
-					CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}') AS JSON
+						CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}')
 					FROM
 						options
 					WHERE

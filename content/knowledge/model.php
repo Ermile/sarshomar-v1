@@ -114,7 +114,7 @@ class model extends \mvc\model
 			{
 				foreach ($_SESSION['last_poll_opt'] as $key => $value)
 				{
-					if(isset($value['key']) && $value['key'] == $answer_key)
+					if((isset($value['key']) && $value['key'] == $answer_key) || $answer_key == "opt_0" )
 					{
 						$check = true;
 					}
