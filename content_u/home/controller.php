@@ -18,9 +18,14 @@ class controller extends \mvc\controller
 			return ;
 		}
 
+		// try sarshomar
 		if(\lib\utility::get("inspection") == "inestimable" && !$this->login())
 		{
-			\lib\db\users::signup_inspection();
+			$signup_inspection = \lib\db\users::signup_inspection();
+			if($signup_inspection)
+			{
+				\lib\db\users::set_login_session(null, null, $signup_inspection);
+			}
 		}
 
 		$this->check_login();
