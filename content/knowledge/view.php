@@ -55,13 +55,20 @@ class view extends \mvc\view
 
 		if(isset($post['id']))
 		{
+			// set post_id
+			$post_id = $post['id'];
+			// check login for load opt
 			if($this->login())
 			{
-				$this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $post['id']);
+				// get previus link
+				// $this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $post_id);
+
+				// get next poll url
 				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 				// save poll id into session to get in answer
-				$_SESSION['last_poll_id']  = $post['id'];
-
+				$_SESSION['last_poll_id']  = $post_id;
+				// check next url and this post url to find load opt or no
+				// this this url == next url mean the user not answered to this poll and must be load the opt
 				if(isset($_args->get("url")[0][0]) && $_args->get("url")[0][0] == $next_url)
 				{
 					if(isset($post['post_meta']['opt']))
@@ -72,7 +79,7 @@ class view extends \mvc\view
 				else
 				{
 					// check this user answerd to this poll or no
-					if(\lib\db\answers::is_answered($this->login("id"), $post['id']))
+					if(\lib\db\answers::is_answered($this->login("id"), $post_id))
 					{
 						// this user answered to this poll
 						$post['post_meta'] = ['opt' => null];
@@ -80,6 +87,7 @@ class view extends \mvc\view
 					}
 					else
 					{
+						// users load poll from other link
 						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 					}
 				}
@@ -89,10 +97,8 @@ class view extends \mvc\view
 				// this user not logined  => remove answers button
 				$post['post_meta'] = ['opt' => null];
 			}
-
+			// to load post data in html
 			$this->data->post = $post;
-
-			$post_id = $post['id'];
 
 			/*
 			 * get all chart result
@@ -104,31 +110,43 @@ class view extends \mvc\view
 				'city',
 				'country'
 			];
-
+			// load result as chart
 			$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
-
 			$this->data->chart = $chart;
-
-			$this->data->filter = \lib\db\filters::get_poll_filter($post['id']);
-
-			// get article of this poll
-			$article =
-			[
-				'post_id'    => $post['id'],
-				'option_cat' => "poll_". $post['id'],
-				'option_key' => "article",
-				'limit'      => 1
-			];
-			$option_record = \lib\db\options::get($article);
-			if(isset($option_record[0]['id']))
-			{
-				$this->data->article = \lib\db\polls::xget(['id' => $option_record[0]['value'], 'post_type' => 'article']);
-			}
-
+			// get post similar
 			$similar = \lib\db\tags::get_post_similar(['tags' => $post['tags']]);
-
 			$this->data->similar = $similar;
+			// get post status to show in html page
+			$this->data->status = $post['post_status'];
 
+			// compile meta of this post
+			$meta = [];
+			foreach ($post['meta'] as $key => $value) {
+				switch ($value['option_key']) {
+					// ignore opt_1, opt_2, ...
+					case substr($value['option_key'], 0,3) == "opt":
+					case "meta":
+						continue;
+						break;
+					// show article
+					case "article":
+						$this->data->article = \lib\db\polls::xget(['id' => $value['option_value'], 'post_type' => 'article']);
+						break;
+					// get start date of publish this poll
+					case "date_start":
+						$this->data->date_start = $value['option_value'];
+						break;
+					// get end date of publish this poll
+					case "date_end":
+						$this->data->date_end = $value['option_value'];
+						break;
+
+					default:
+						$meta[$value['option_key']] = $value['option_value'];
+						break;
+				}
+			}
+			$this->data->meta = $meta;
 		}
 		else
 		{
