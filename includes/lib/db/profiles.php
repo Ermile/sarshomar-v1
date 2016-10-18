@@ -140,5 +140,32 @@ class profiles
 	{
 
 	}
+
+
+	/**
+	 * get count of person by group by account data
+	 *
+	 * @param      <type>  $_what  The what
+	 *
+	 * @return     <type>  The count.
+	 */
+	public static function get_count($_what)
+	{
+		$query =
+		"
+			SELECT
+				COUNT(options.id)     AS 'sum',
+				options.option_value  AS 'name'
+			FROM
+				options
+			WHERE
+				option_cat LIKE 'user_detail_%' AND
+				option_key = '$_what'
+			GROUP BY
+				options.option_value
+		";
+		$result = \lib\db::get($query, ['name','sum']);
+		return $result;
+	}
 }
 ?>
