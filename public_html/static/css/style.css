@@ -99,6 +99,8 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .chart * {font-family: IRANSans, Tahoma, sans-serif}
 .highcharts-title {fill: #434348;font-weight: bold;}
 
+.highcharts-series rect{opacity:0.8;transition:0.3s;}
+.highcharts-series rect:hover{opacity:1}
 .highcharts-series rect:nth-child(1){fill:#00c28b;}
 .highcharts-series rect:nth-child(2){fill:#00b6a1;}
 .highcharts-series rect:nth-child(3){fill:#00b2aa;}
@@ -108,8 +110,10 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .highcharts-series rect:nth-child(7){fill:#009ece;}
 .highcharts-series rect:nth-child(8){fill:#0694c9;}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif;}
-
 .top-chart{min-width:300px;height:400px;margin:0 auto}
+.highcharts-data-labels text{text-shadow:none!important;opacity:0.3;}
+.top-chart .highcharts-data-labels text{text-shadow:none!important;font-size:2em!important;opacity:0.3;}
+
 
 
 

@@ -141,13 +141,6 @@ class model extends \mvc\model
 							$this->rnd(),
 							$this->rnd()
 						],
-						'dataLabels' =>
-						[
-							'enabled'   => 'true',
-							'format'    => '{point.y:f}',
-							'y'         => 30,
-							'className' => 'datalabel'
-						]
 					]
 				], JSON_UNESCAPED_UNICODE)
 			];

@@ -157,21 +157,14 @@
 var topChartOptions =
 {
     chart:{type:'column',backgroundColor:'rgba(255, 255, 255, 0)',verticalAlign:'center'},
-    title:{text:"{{result['random_result']['title']|trim('\"')}}"},
+    title:{text:"<a href='123'>{{result['random_result']['title']|trim('\"')}}</a>"},
     xAxis:{categories:{{result['random_result']['categories']|raw}}},
     yAxis:{min:0,title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
-    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},},
+    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},series:{dataLabels:{enabled: true,format:'{point.y:f}%'}},inside:true},
     legend:{enabled:false},
     exporting:{enabled:false},
     credits:{enabled:false},
-
-    tooltip:{
-        headerFormat:'<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat:'<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-        footerFormat:'</table>',
-        shared:false,
-        useHTML:true
-    },
+    tooltip:{enabled:false},
     series:{{result['random_result']['data']|raw}}
 };
 
