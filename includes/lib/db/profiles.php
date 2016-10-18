@@ -163,8 +163,18 @@ class profiles
 				option_key = '$_what'
 			GROUP BY
 				options.option_value
+			UNION SELECT
+				COUNT(users.id) AS 'sum',
+				'undefined' 	AS 'name'
+			FROM
+				users
 		";
 		$result = \lib\db::get($query, ['name','sum']);
+		// save undefined
+		$undefined = $result['undefined'];
+		unset($result['undefined']);
+		$sum = array_sum($result);
+		$result['undefined'] = $undefined - $sum;
 		return $result;
 	}
 }
