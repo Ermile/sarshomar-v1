@@ -5,14 +5,33 @@ use \lib\telegram\tg as bot;
 
 class callback_query
 {
-
+	use callback_query\set_language;
+	public static $message_result = [];
 	public static function start($_query = null)
 	{
-		$callback = $_query;
-		$inline_message_id = $_query['inline_message_id'];
-		preg_match("/^((last|cancel)\/)?\\$\/([^\/]+)\/(\d+)$/", $_query['data'], $data);
+
+		$data_url = preg_split("[\/]", $_query['data']);
+
 		$result = ['method' => 'answerCallbackQuery'];
-		$result['callback_query_id'] = $callback['id'];
+		$result['callback_query_id'] = $_query['id'];
+
+		if(array_key_exists('inline_message_id', $_query))
+		{
+			self::$message_result['inline_message_id'] = $_query['inline_message_id'];
+		}
+		else{
+			self::$message_result['chat_instance'] = $_query['chat_instance'];
+		}
+		$callback_result = [];
+		if(method_exists('\content\saloos_tg\sarshomarbot\commands\callback_query', $data_url[0]))
+		{
+			$callback_result = self::{$data_url[0]}($_query, $data_url);
+		}
+		return array_merge($result, $callback_result);
+
+
+		preg_match("/^((last|cancel)\/)?\\$\/([^\/]+)\/(\d+)$/", $_query['data'], $data);
+
 		if(empty($data))
 		{
 			// is fatal error and hack error
@@ -44,6 +63,17 @@ class callback_query
 			"reply_markup" 			=> ["inline_keyboard" => $inline_keyboard]
 			]);
 		return $result;
+	}
+
+	public static function edit_message($_result)
+	{
+		$response = [
+			"method" 				=> "editMessageText",
+			'parse_mode' => 'Markdown',
+			'disable_web_page_preview' => true,
+			];
+		$response = array_merge($response, self::$message_result);
+		bot::sendResponse(array_merge($response, $_result));
 	}
 }
 ?>

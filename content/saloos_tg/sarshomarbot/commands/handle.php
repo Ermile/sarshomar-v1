@@ -25,13 +25,9 @@ class handle
 		$response = null;
 		// check if we are in step then go to next step
 		$response = step::check($_cmd['text'], $_cmd['command']);
-		if($response)
+		if($response && !bot::is_aerial())
 		{
 			return $response;
-		}
-		if(substr($_cmd['command'], 0, 2) == "")
-		{
-			return [];
 		}
 		// var_dump(90);
 		switch ($_cmd['command'])

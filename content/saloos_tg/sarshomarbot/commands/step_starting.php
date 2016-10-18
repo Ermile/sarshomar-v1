@@ -104,11 +104,18 @@ class step_starting
 		{
 			step::plus(1, 'i');
 		}
+		$inline_keyboard = array();
+		$inline_keyboard[0][0] = [
+			'text' => "فارسی",
+			'callback_data' => "set_language/fa"
+			];
+		$inline_keyboard[0][1] = [
+		'text' => "English",
+		'callback_data' => "set_language/en"
+		];
 		return [
-			"text" => T_("Please select your language"),
-			"reply_markup" => [
-			"keyboard" => [['فارسی'], ['English']]
-			]
+			"text" => T_("Please select your language") . " " . step::get("i"),
+			"reply_markup" => ["inline_keyboard" => $inline_keyboard]
 		];
 	}
 
