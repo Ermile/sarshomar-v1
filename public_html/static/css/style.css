@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.4.1
+ * Version: 2.4.2
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -93,6 +93,25 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #trust img{width:10%;margin-bottom:1em;}
 #trust p{font-size:1.2em;line-height:normal;position:relative;margin:0 auto;text-align:center;color:#20a286;}
 #trust p:before{position:absolute;right:0;bottom:-0.5em;width:100%;height:0.2em;content:'';border-radius:1em;background-color:#20a286;}
+
+/************************************************************** Chart... */
+.chart {direction: ltr}
+.chart * {font-family: IRANSans, Tahoma, sans-serif}
+.highcharts-title {fill: #434348;font-weight: bold;}
+
+.highcharts-series rect:nth-child(1){fill:#00c28b;}
+.highcharts-series rect:nth-child(2){fill:#00b6a1;}
+.highcharts-series rect:nth-child(3){fill:#00b2aa;}
+.highcharts-series rect:nth-child(4){fill:#00acb3;}
+.highcharts-series rect:nth-child(5){fill:#00a7bd;}
+.highcharts-series rect:nth-child(6){fill:#00a3c6;}
+.highcharts-series rect:nth-child(7){fill:#009ece;}
+.highcharts-series rect:nth-child(8){fill:#0694c9;}
+.highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif;}
+
+.top-chart{min-width:300px;height:400px;margin:0 auto}
+
+
 
 /************************************************************** Next... */
 
@@ -246,16 +265,6 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .tags-list span{position:relative;overflow:hidden;margin:0 5px;padding:10px 0;border-radius:1px;background-color:#f4f4f4;}
 .tags-list a{display:inline-block;margin-bottom:10px;padding:5px 10px;transition:0.3s;}
 .tags-list a:hover{background-color:#ececec;}
-.highcharts-series rect:nth-child(1){fill:#00c28b;}
-.highcharts-series rect:nth-child(2){fill:#00b6a1;}
-.highcharts-series rect:nth-child(3){fill:#00b2aa;}
-.highcharts-series rect:nth-child(4){fill:#00acb3;}
-.highcharts-series rect:nth-child(5){fill:#00a7bd;}
-.highcharts-series rect:nth-child(6){fill:#00a3c6;}
-.highcharts-series rect:nth-child(7){fill:#009ece;}
-.highcharts-series rect:nth-child(8){fill:#0694c9;}
-.highcharts-series rect::before{content:"";background:url(../images/shadow.png) red;}
-.highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif;}
 
 #faq .faq-box{background-color:#fff;}
 #faq h3{position:relative;}

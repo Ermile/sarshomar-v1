@@ -10,7 +10,6 @@
                 <h2>نگرشی نو به نظرسنجی</h2>
             </div>
             <div class="span8">
-                <h3>{{result['random_result']['title']|trim('\"')}}</h3>
                 <div class="top-chart chart"></div>
             </div>
         </div>
@@ -155,131 +154,83 @@
 {%block foot_js%}
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script type="text/javascript">
-var topChartOptions = {
-    chart: {
-        type: 'column',
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-        // width: null,
-        verticalAlign: 'center',
-        // events: {
-        //     load: function() {
-        //         var check = $('.top-chart').highcharts();
-        //         check.yAxis[0].setExtremes(null, check.axes[1].dataMax);
-        //     }
-        // }
+var topChartOptions =
+{
+    chart:{type:'column',backgroundColor:'rgba(255, 255, 255, 0)',verticalAlign:'center'},
+    title:{text:"{{result['random_result']['title']|trim('\"')}}"},
+    xAxis:{categories:{{result['random_result']['categories']|raw}}},
+    yAxis:{min:0,title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
+    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},},
+    legend:{enabled:false},
+    exporting:{enabled:false},
+    credits:{enabled:false},
+
+    tooltip:{
+        headerFormat:'<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:'<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+        footerFormat:'</table>',
+        shared:false,
+        useHTML:true
     },
-    exporting: {
-        enabled: false
-    },
-    credits: {
-        enabled: false
-    },
-    title: {
-        text: ""
-    },
-    xAxis: {
-        labels: {
-            enabled: false
-        },
-        categories: {{result['random_result']['categories']|raw}},
-        // lineWidth: 0,
-        // minorGridLineWidth: 0,
-        // lineColor: 'transparent',
-        // labels: {
-        //     enabled: false
-        // },
-        // minorTickLength: 0,
-        // tickLength: 0
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'درصد',
-            enabled: false
-        },
-        labels: {
-            enabled: false
-        },
-        gridLineWidth: 0,
-        minorGridLineWidth: 0,
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-        footerFormat: '</table>',
-        shared: false,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        },
-        // series: {
-        //     dataLabels: {
-        //         enabled: true
-        //     }
-        // }
-    },
-    series: {{result['random_result']['data']|raw}}
+    series:{{result['random_result']['data']|raw}}
 };
 
+
+
+
 var randomChartOptions = {
-    chart: {
-        type: 'column',
-        backgroundColor: 'rgba(255, 255, 255, 0)'
+    chart:{
+        type:'column',
+        backgroundColor:'rgba(255, 255, 255, 0)'
     },
-    credits: {
-        enabled: false
+    credits:{
+        enabled:false
     },
-    title: {
-        text: ""
+    title:{
+        text:""
     },
-    xAxis: {
-        type: 'category',
-        labels: {
-            enabled: true
+    xAxis:{
+        type:'category',
+        labels:{
+            enabled:true
         }
     },
-    yAxis: {
-        title: {
-            enabled: false
+    yAxis:{
+        title:{
+            enabled:false
         },
-        labels: {
-            enabled: false
+        labels:{
+            enabled:false
         },
-        gridLineWidth: 0,
-        minorGridLineWidth: 0
+        gridLineWidth:0,
+        minorGridLineWidth:0
     },
-    legend: {
-        enabled: false
+    legend:{
+        enabled:false
     },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}%'
+    plotOptions:{
+        series:{
+            borderWidth:0,
+            dataLabels:{
+                enabled:true,
+                format:'{point.y:.1f}%'
             }
         }
     },
 
-    tooltip: {
-        // headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        headerFormat: '',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    tooltip:{
+        // headerFormat:'<span style="font-size:11px">{series.name}</span><br>',
+        headerFormat:'',
+        pointFormat:'<span style="color:{point.color}">{point.name}</span>:<b>{point.y:.2f}%</b> of total<br/>'
     },
 
-    series: [{
-        name: 'جنسیت',
-        colorByPoint: true,
-        data: {{result['malefemale']['data']|raw}}
+    series:[{
+        name:'جنسیت',
+        colorByPoint:true,
+        data:{{result['malefemale']['data']|raw}}
     }],
-    drilldown: {
-        series: {{result['malefemale']['series']|raw}}
+    drilldown:{
+        series:{{result['malefemale']['series']|raw}}
     }
 };
 

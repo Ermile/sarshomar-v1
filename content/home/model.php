@@ -45,7 +45,8 @@ class model extends \mvc\model
 			}
 			$random = [
 				'title' => $title,
-				'data' => [
+				'data' =>
+				[
 					[
 						'name'       => $male,
 						'y'          => $this->rnd(),
@@ -58,11 +59,13 @@ class model extends \mvc\model
 			        ]
 			    ],
 
-				'series' => [
+				'series' =>
+				[
 						[
 						'name' => 'Male',
 						'id'   => 'Male',
-						'data' => [
+						'data' =>
+						[
 								['v1.0', $this->rnd()],
 								['v8.0', $this->rnd()],
 								['v9.0', $this->rnd()],
@@ -73,16 +76,17 @@ class model extends \mvc\model
 						[
 						'name' => 'Female',
 						'id'   => 'Female',
-						'data' => [
+						'data' =>
+						[
 								['v40.0', $this->rnd()],
 								['v41.0', $this->rnd()],
 								['v42.0', $this->rnd()],
 								['v39.0', $this->rnd()],
 								['v36.0', $this->rnd()],
 								['v30.0', $this->rnd()]
-							]
 						]
 					]
+				]
 	        ];
 	        $result = [];
 	        foreach ($random as $key => $value)
@@ -96,53 +100,64 @@ class model extends \mvc\model
 			if($lang == "fa")
 			{
 				$title  = "طرفدار کدام تیم هستید؟";
-				$categories = [
-						'استقلال',
-						'پرسپلیس',
-						'تراکتور سازی',
-						'نفت تهران',
-						'سپاهان'
-					];
+				$categories =
+				[
+					'استقلال',
+					'پرسپولیس',
+					'تراکتورسازی',
+					'نفت تهران',
+					'سپاهان'
+				];
 				$name   = "تیم ها";
 
 			}
 			else
 			{
 				$title  = "Which team are you a fan of?";
-				$categories = [
-						'Manchester',
-						'Bayern Munich',
-						'Liverpool',
-						'Real Madrid',
-						'Barcelona'
-					];
+				$categories =
+				[
+					'Manchester',
+					'Bayern Munich',
+					'Liverpool',
+					'Real Madrid',
+					'Barcelona'
+				];
 				$name   = "teams";
 
 			}
-			$random = [
+			$random =
+			[
 				'title' => $title,
 				'categories' => json_encode($categories,JSON_UNESCAPED_UNICODE),
-				'data' => json_encode([
+				'data' => json_encode(
+				[
 					[
 						'name' => $name,
 						'data' =>
-							[
-								$this->rnd(),
-								$this->rnd(),
-								$this->rnd(),
-								$this->rnd(),
-								$this->rnd()
-							]
+						[
+							$this->rnd(),
+							$this->rnd(),
+							$this->rnd(),
+							$this->rnd(),
+							$this->rnd()
+						],
+						'dataLabels' =>
+						[
+							'enabled'   => 'true',
+							'format'    => '{point.y:f}',
+							'y'         => 30,
+							'className' => 'datalabel'
+						]
 					]
-			        ], JSON_UNESCAPED_UNICODE)
-				];
+				], JSON_UNESCAPED_UNICODE)
+			];
 		}
 		return $random;
 	}
 
 	public function rnd()
 	{
-		return rand(13,70);
+		return rand(20,70);
 	}
 }
 ?>
