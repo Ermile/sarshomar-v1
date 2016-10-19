@@ -425,6 +425,12 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl .total{text-align:left;}
 .total > span{background-color: #E7E7E7;padding:2px 10px;font-weight:bold;}
 
+/* Knowledge */
+.opt > div{display:table;margin-bottom:1em;font-size:2em;font-weight:bold;}
+.opt > div > a, .opt > div > span{display:table-cell;padding:10px 5px;}
+.opt > div > span{min-width:60px;background-color:#00667A;text-align:center;border-top-left-radius:5px;border-bottom-left-radius:5px;color:#f4f4f4;}
+.opt > div > a{color:#00667A;width:100%;padding-left:20px;background-color:#E7E7E7;}
+
 /* Sarshomar Font */
 @font-face{font-family:'sarshomar';font-weight:400;font-style:normal;src:url(../fonts/sarshomar/sarshomar.eot);src:url(../fonts/sarshomar/sarshomar.eot?#iefix) format('embedded-opentype'),url(../fonts/sarshomar/sarshomar.woff) format('woff'),url(../fonts/sarshomar/sarshomar.ttf) format('truetype'),url(../fonts/sarshomar/sarshomar.svg#sarshomar) format('svg');}[data-icon]:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;content:attr(data-icon);text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}[class^='icon-']:before, [class*=' icon-']:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .icon-drag:before{content:'\61';}
