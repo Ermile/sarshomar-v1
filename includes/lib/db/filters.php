@@ -66,17 +66,56 @@ class filters
 		$cat = null;
 
 		switch ($_cat) {
+			// public
 			case 'gender':
+			case 'marrital_status':
+			case 'language':
+			case 'employment_status':
 				$cat = "public";
 				break;
 
-			case 'city':
-			case 'privince':
-			case 'country':
-			case 'country_birth':
-				$cat = "city";
+			// education
+			case 'graduation':
+			case 'course':
+				$cat = "education";
 				break;
 
+			// family
+			case 'parental_status':
+			case 'birthdate':
+			case 'age':
+			case 'range':
+				$cat = "family";
+				break;
+
+			// job
+			case 'business_owner':
+			case 'industry':
+				$cat = "job";
+				break;
+
+			// location
+			case 'province':
+			case 'city':
+			case 'country':
+			case 'birthcity':
+			case 'province_birth':
+			case 'country_birth':
+				$cat = "location";
+				break;
+
+			// favorites
+			case 'favorites':
+			case 'exercise_habits':
+				$cat = "favorites";
+				break;
+
+			// other
+			case 'devices_owned':
+			case 'internet_usage':
+				$cat = "other";
+
+			// other
 			default:
 				$cat = "other";
 				break;

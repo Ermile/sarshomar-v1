@@ -85,9 +85,6 @@ class view extends \mvc\view
 		$this->data->poll_id = $poll_survey_id;
 		// get existing filter list to load in html and user can select this
 		$this->data->filter_list = $_args->api_callback;
-		// var_dump($_args);
-		// exit();
-
 	}
 
 
