@@ -71,8 +71,11 @@ class model extends \mvc\model
 				// the url is @/add
 				$url = \lib\utility\shortURL::encode($insert_poll);
 			}
-			// must be redirect to filter page
-			$this->redirector()->set_url("@/$url/filter");
+			if(debug::$status)
+			{
+				// must be redirect to filter page
+				$this->redirector()->set_url("@/$url/filter");
+			}
 		}
 		elseif(utility::post("survey"))
 		{
@@ -115,6 +118,48 @@ class model extends \mvc\model
 			if($insert_poll)
 			{
 				$this->redirector()->set_url("@/$survey_url/add");
+			}
+		}
+		// users click on this buttom
+		elseif(utility::post("publish"))
+		{
+			$insert_poll = null;
+			// if title is null and answer is null
+			// we check the url
+			// if in the survey we abrot save poll and redirect to filter page
+			// user discard the poll
+			if(utility::post("title") == '' && empty(array_filter(utility::post("answers"))))
+			{
+				// if we not in survey we have error for title and answers
+				if(!$this->check_poll_url($_args))
+				{
+					debug::error(T_("title or answers must be full"));
+				}
+			}
+			else
+			{
+				// insert the poll
+				$insert_poll = $this->insert_poll();
+			}
+
+			// check the url
+			if($this->check_poll_url($_args))
+			{
+				// url like this >> @/(.*)/add
+				$url       = $this->check_poll_url($_args, "encode");
+				$survey_id = $this->check_poll_url($_args);
+				// save survey title
+				$this->set_suervey_title($survey_id);
+			}
+			else
+			{
+				// the url is @/add
+				$url = \lib\utility\shortURL::encode($insert_poll);
+			}
+			if(debug::$status)
+			{
+				// must be redirect to publish page
+				$this->redirector()->set_url("@/$url/publish");
 			}
 		}
 		else
