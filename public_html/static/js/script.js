@@ -66,24 +66,20 @@ $(document).ready(function () {
       if($(this).children('li.active').length == 1)
       {
         $(this).children('li.active').trigger("click");
-        $('input[name="poll_type"]').val( $(this).children('li.active').data('tab') );
+        $('input[name="poll_type"], input[name="filter_type"]').val( $(this).children('li.active').data('tab') );
       }
       // else select first child
       else
       {
         $(this).children('li:first-child').trigger("click");
-        $('input[name="poll_type"]').val($(this).children('li:first-child').data('tab'));
+        $('input[name="poll_type"], input[name="filter_type"]').val($(this).children('li:first-child').data('tab'));
       }
     });
 
     // change poll_type on tabs click
     $('.tabs li').click(function(){
-      $('input[name="poll_type"]').val( $(this).data('tab') );
+      $('input[name="poll_type"], input[name="filter_type"]').val( $(this).data('tab') );
     });
-
-    // $('input[name="title"]').on('input', function(){
-    //     $('input[name="secondary-title"]').val($(this).val());
-    // });
 });
 
 function addTag() {

@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.4.2
+ * Version: 2.4.3
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -368,6 +368,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .buttons button::before, .buttons button::after, .buttons input[type="submit"]::before, .buttons input[type="submit"]::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;color:#e7a429;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .buttons button::before, .buttons input[type="submit"]::before{left:-22px;content:'\6c';}
 .buttons button::after, .buttons input[type="submit"]::after{right:-22px;content:'\6b';}
+.buttons.center{text-align:center;}
 
 /* Checkbox */
 .ac-custom{max-width:900px;margin:0 auto;}
@@ -416,6 +417,13 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .title-line > span{font-size:1.2em;font-weight:700;position:relative;padding:0;vertical-align:middle;color:#00667a;}
 .title-line::before{position:absolute;top:-1px;bottom:0;right:-22px;width:150px;height:2px;margin:auto;content:"";background-color:#00667a;}
 .rtl .title-line::before{right:auto;left:-22px;}
+.title-line.reverse{text-align:left;padding-right:0;padding-left:135px;}
+.title-line.reverse::before{right:auto;left:-22px;}
+
+/* Total */
+.total{text-align:right;}
+.rtl .total{text-align:left;}
+.total > span{background-color: #E7E7E7;padding:2px 10px;font-weight:bold;}
 
 /* Sarshomar Font */
 @font-face{font-family:'sarshomar';font-weight:400;font-style:normal;src:url(../fonts/sarshomar/sarshomar.eot);src:url(../fonts/sarshomar/sarshomar.eot?#iefix) format('embedded-opentype'),url(../fonts/sarshomar/sarshomar.woff) format('woff'),url(../fonts/sarshomar/sarshomar.ttf) format('truetype'),url(../fonts/sarshomar/sarshomar.svg#sarshomar) format('svg');}[data-icon]:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;content:attr(data-icon);text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}[class^='icon-']:before, [class*=' icon-']:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}

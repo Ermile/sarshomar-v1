@@ -2,7 +2,7 @@
 
 {%block content%}
 <div class="main">
-  {%if form_add or survey_mod %}
+{%if form_add or survey_mod %}
   <form method="post">
     <input type="hidden" name="poll_type" value="">
 
@@ -22,7 +22,7 @@
           </div><!-- /.type -->
 
           <ul class="tab">
-            <li id="tab-multiple_choice" class="active">
+            <li id="tab-multiple_choice">
               <div class="element">
                 <label class="addon" for="title">Title</label>
                 <input class="input" type="text" name="title" id="title">
@@ -104,7 +104,7 @@
               <div class="buttons">
                 <nav>
                   <button name="filter" value="filter">{%trans "Filter"%}</button>
-                  <button name="submit" value="publish">{%trans "Publish"%}</button>
+                  <button name="publish" value="publish">{%trans "Publish"%}</button>
                 {%if survey_mod%}
                   <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
                 {%else%}
@@ -125,6 +125,7 @@
 
       <div class="span4">
         <div class="row">
+          {%if poll_list %}
           <div class="group">
             <div class="title-line"><span>Survey</span></div>
             <div class="element option">
@@ -133,7 +134,6 @@
             </div>
           </div>
 
-          {%if poll_list %}
           <div class="group">
             <div class="title-line"><span>Questions List</span></div>
             {%for key, value in poll_list%}
@@ -153,8 +153,156 @@
       </div><!-- /.span4 -->
     </div><!-- /.row.auto -->
   </form>
-  {%endif%}
-</div>
+{%endif%}
+
+{%if filter_form%}
+  <form method="post">
+    <input type="hidden" name="filter_type" value="">
+    <div class="row auto">
+      <div class="span8">
+        <div class="row">
+          <div class="type">
+            <ul class="tabs">
+              <li data-tab="public"><span>{%trans "Public"%}</span></li>
+              <li data-tab="education"><span>{%trans "Education"%}</span></li>
+              <li data-tab="family"><span>{%trans "Family"%}</span></li>
+              <li data-tab="job"><span>{%trans "Job"%}</span></li>
+              <li data-tab="location"><span>{%trans "Location"%}</span></li>
+              <li data-tab="time"><span>{%trans "Time"%}</span></li>
+              <li data-tab="favorite"><span>{% trans "Favorite"%}</span></li>
+              <li data-tab="other"><span>{% trans "Other"%}</span></li>
+            </ul>
+          </div><!-- /.type -->
+
+          <ul class="tab">
+            <li id="tab-public">
+              <div class="row">
+                <div class="span6">
+                  <div class="element">
+                    <label class="addon" for="gender">{%trans "Gender"%}</label>
+                    <input class="input" type="text" name="gender" id="gender">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="marrital_status">{%trans "Marrital Status"%}</label>
+                    <input class="input" type="text" name="marrital_status" id="marrital_status">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="graduation">{%trans "Graduation"%}</label>
+                    <input class="input" type="text" name="graduation" id="graduation">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="employment_status">{%trans "Employment Status"%}</label>
+                    <input class="input" type="text" name="employment_status" id="employment_status">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="language">{%trans "Language"%}</label>
+                    <input class="input" type="text" name="language" id="language">
+                  </div>
+
+                  <div class="group">
+                    <div class="title-line reverse"><span>Survey</span></div>
+                    <div class="tags">
+                      <a href="#">Male</a>
+                      <a href="#">Single</a>
+                      <a href="#">College</a>
+                      <a href="#">Jobless</a>
+                      <a href="#">Persian</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <nav>
+                    <button name="submit" value="publish">{%trans "Publish"%}</button>
+                  </nav>
+                </div><!-- /.buttons -->
+              </div>
+            </li>
+            <li id="tab-education"><span>{%trans "Education"%}</span></li>
+            <li id="tab-family"><span>{%trans "Family"%}</span></li>
+            <li id="tab-job"><span>{%trans "Job"%}</span></li>
+            <li id="tab-location"><span>{%trans "Location"%}</span></li>
+            <li id="tab-time"><span>{%trans "Time"%}</span></li>
+            <li id="tab-favorite"><span>{%trans "Favorite"%}</span></li>
+            <li id="tab-other"><span>{%trans "Other"%}</span></li>
+          </ul><!-- /.tab -->
+        </div><!-- /.row -->
+      </div>
+      <div class="span4">
+        <div class="total">
+          <span>Your total is 154,000$</span>
+        </div>
+      </div>
+    </div><!-- /.row.auto -->
+  </form>
+{%endif%}
+
+{% if publish_form %}
+<form method="post">
+  <div class="row">
+    <div class="span4"></div>
+    <div class="span4">
+      <div class="element">
+        <label class="addon" for="cat">{%trans "Category"%}</label>
+        <input class="input" type="text" name="cat" id="cat">
+      </div>
+
+      <div class="element">
+        <label class="addon" for="article">{%trans "Article"%}</label>
+        <input class="input" type="text" name="article" id="article">
+        <span class="addon btn">
+          <button>{%trans "Add"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon" for="tags">{%trans "Tags"%}</label>
+        <input class="input" type="text" name="tags" id="tags">
+        <span class="addon btn">
+          <button>{%trans "Add"%}</button>
+        </span>
+      </div>
+
+      <div class="tags">
+        <a href="#">lorem</a>
+        <a href="#">ipsum</a>
+        <a href="#">dolor</a>
+        <a href="#">emit</a>
+      </div>
+
+      <div class="element">
+        <label class="addon">{%trans "Start Time"%}</label>
+        <input class="input" type="text" name="start_time">
+        <span class="addon btn">
+          <button>{%trans "Start"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon">{%trans "End Time"%}</label>
+        <input class="input" type="text" name="end_time">
+        <span class="addon btn">
+          <button>{%trans "End"%}</button>
+        </span>
+      </div>
+
+      <div class="element">
+        <label class="addon" for="short_url">{%trans "Short URL"%}</label>
+        <input class="input text-left" type="text" name="short_url" id="short_url" placeholder="http://www.example.com/">
+      </div>
+    </div>
+
+    <div class="buttons center">
+      <button>{%trans "Submit"%}</button>
+    </div>
+  </div>
+</form>
+{%endif%}
+
+</div><!-- /.main -->
 {%endblock%}
 
 {%block foot_js%}
