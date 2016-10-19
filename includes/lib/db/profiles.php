@@ -53,7 +53,7 @@ class profiles
 	 */
 	public static function set_profile_data($_user_id, $_args)
 	{
-		$old_profiles_data = self::get_profile_data(['user_id' => $_user_id]);
+		$old_profiles_data = self::get_profile_data($_user_id);
 
 		$_args = array_filter($_args);
 
@@ -149,28 +149,42 @@ class profiles
 	 *
 	 * @return     <type>  The count.
 	 */
-	public static function get_count($_what)
+	public static function get_count($_what, $_merge)
 	{
 		$query =
 		"
+
 			SELECT
-				COUNT(options.id)     AS 'sum',
-				options.option_value  AS 'name'
+				count(s.id)
 			FROM
-				options
+				options as s
 			WHERE
-				option_cat LIKE 'user_detail_%' AND
-				option_key = '$_what'
-			GROUP BY
-				options.option_value
-			UNION SELECT
-				COUNT(users.id) AS 'sum',
-				'undefined' 	AS 'name'
-			FROM
-				users
+				s.id IN (
+					SELECT
+						m.id
+					FROM
+						options as m
+					WHERE
+						m.option_cat LIKE 'user_detail_%' AND
+	            		m.option_key = '$_merge'
+	            		)
+	            	 AND
+	            	s.option_cat LIKE 'user_detail_%' AND
+	            	s.option_key = '$_what'
+
+
+
 		";
-		$result = \lib\db::get($query, ['name','sum']);
+
+			// UNION SELECT
+			// 	COUNT(users.id) AS 'sum',
+			// 	'undefined' 	AS 'name'
+			// FROM
+			// 	users
+		$result = \lib\db::get($query);
 		// save undefined
+		var_dump($result);
+		exit();
 		$undefined = $result['undefined'];
 		unset($result['undefined']);
 		$sum = array_sum($result);

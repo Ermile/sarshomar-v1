@@ -150,11 +150,36 @@ class model extends \mvc\model
 		$db_poll_type = ['select','notify','text','upload','star','number','media_image','media_video','media_audio','order'];
 		// get poll_type
 		$poll_type    = utility::post("poll_type");
-		// check poll type. users can be set $db_poll_type
-		if(!in_array($poll_type, $db_poll_type))
-		{
-			debug::error(T_("poll type not found"));
-			return false;
+		switch ($poll_type) {
+			case 'multiple_choice':
+				$poll_type = 'select';
+				break;
+			case 'descriptive':
+				$poll_type = 'text';
+				break;
+			case 'notification':
+				$poll_type = 'notify';
+				break;
+			case 'upload':
+				$poll_type = 'upload';
+			case 'starred':
+				$poll_type = 'star';
+				break;
+			case 'numerical':
+				$poll_type = 'number';
+				break;
+			case 'sort':
+				$poll_type = 'order';
+				break;
+
+			// $poll_type = 'media_image';
+			// $poll_type = 'media_video';
+			// $poll_type = 'media_audio';
+
+			default:
+				debug::error(T_("poll type not found"));
+				return false;
+				break;
 		}
 		// get poll type from function args
 		if(isset($_options['poll_type']))

@@ -105,7 +105,11 @@
                 <nav>
                   <button name="filter" value="filter">{%trans "Filter"%}</button>
                   <button name="submit" value="publish">{%trans "Publish"%}</button>
+                {%if survey_mod%}
+                  <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+                {%else%}
                   <button name="survey" value="survey">{%trans "Survey"%}</button>
+                {%endif%}
                 </nav>
               </div><!-- /.buttons -->
             </li><!-- /#tab-multiple_choice -->
@@ -133,13 +137,15 @@
           <div class="group">
             <div class="title-line"><span>Questions List</span></div>
             {%for key, value in poll_list%}
-            <div class="element option has-floating">
-              <label class="addon" for="question1">Question 1</label>
-              <input class="input" type="text" name="question1" id="question1">
-              <span class="addon floating">
-                <span><i class="fa fa-check" aria-hidden="true"></i></span>
-              </span>
-            </div>
+            <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
+              <div class="element option has-floating">
+                <label class="addon" for="question{{key + 1}}">Question {{key + 1}}</label>
+                <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
+                <span class="addon floating">
+                  <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                </span>
+              </div>
+            <!-- </a> -->
             {%endfor%}
           </div>
           {%endif%}

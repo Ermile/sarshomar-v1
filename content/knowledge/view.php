@@ -114,7 +114,7 @@ class view extends \mvc\view
 			$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
 			$this->data->chart = $chart;
 			// get post similar
-			$similar = \lib\db\tags::get_post_similar(['tags' => $post['tags']]);
+			$similar = \lib\db\tags::get_post_similar(null, ['tags' => $post['tags']]);
 			$this->data->similar = $similar;
 			// get post status to show in html page
 			$this->data->status = $post['post_status'];
