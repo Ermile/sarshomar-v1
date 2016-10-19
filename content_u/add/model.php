@@ -30,6 +30,9 @@ class model extends \mvc\model
 	 */
 	function post_add($_args)
 	{
+		// start transaction
+		\lib\db::transaction();
+
 		// default survey id is null
 		$survey_id = null;
 		// users click on one of 'add filter' buttom
@@ -78,7 +81,6 @@ class model extends \mvc\model
 			}
 			// must be redirect to filter page
 			$this->redirector()->set_url("@/$url/filter");
-			return;
 		}
 		elseif(utility::post("survey"))
 		{
@@ -95,11 +97,14 @@ class model extends \mvc\model
 			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
 			$poll_type = "survey_poll_";
 			// insert the poll
-			$this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+			$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
 			// redirect to @/$url/add to add another poll
 			$url = \lib\utility\shortURL::encode($survey_id);
-			$this->redirector()->set_url("@/$url/add");
-			return;
+			if($insert_poll)
+			{
+				$this->redirector()->set_url("@/$url/add");
+
+			}
 
 		}
 		elseif(utility::post("add_poll"))
@@ -111,7 +116,7 @@ class model extends \mvc\model
 			$survey_id = $this->check_poll_url($_args, "decode");
 			$survey_url = $this->check_poll_url($_args, "encode");
 			// insert the poll
-			$this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+			$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
 			//save survey name
 			if(utility::post("survey_title"))
 			{
@@ -124,13 +129,24 @@ class model extends \mvc\model
 				\lib\db\survey::update($args, $survey_id);
 			}
 			// redirect to '@/survey id /add' to add another poll
-			$this->redirector()->set_url("@/$survey_url/add");
+			if($insert_poll)
+			{
+				$this->redirector()->set_url("@/$survey_url/add");
+			}
 		}
 		else
 		{
 			// the user click on buttom was not support us !!
 			debug::error(T_("command not found"));
-			return false;
+		}
+
+		if(debug::$status)
+		{
+			\lib\db::commit();
+		}
+		else
+		{
+			\lib\db::rollback();
 		}
 	}
 
