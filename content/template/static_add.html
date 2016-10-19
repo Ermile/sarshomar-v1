@@ -1,141 +1,128 @@
-{%extends display.main%}
-
-{% block content %}
+{%extends display.main%} {% block content %}
 <div class="main">
-	<div class="row auto">
-	  <div class="span8">
-	    <div class="row">
-	    	<div class="type">
-	    	  <nav>
-	    	    <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></a>
-	    	    <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></a>
-	    	    <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></a>
-	    	    <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></a>
-	    	    <a href="#"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></a>
-	    	    <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></a>
-	    	    <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></a>
-	    	  </nav>
-	    	</div>
-
-	  		<div class="element">
-	  			<label class="addon" for="title">Title</label>
-	  			<input class="input" type="text" name="title" id="title">
-	  		</div>
-
-	  		<div class="indent">
-	  			<div class="element option">
-	  				<label class="addon" for="op1">Option 1</label>
-	  				<input class="input" type="text" name="op1" id="op1">
-	  			</div>
-
-	  			<div class="element option">
-	  				<label class="addon" for="op2">Option 2</label>
-	  				<input class="input" type="text" name="op2" id="op2">
-	  			</div>
-
-	  			<div class="element option">
-	  				<label class="addon" for="op3">Option 3</label>
-	  				<input class="input" type="text" name="op3" id="op3">
-	  			</div>
-
-	  			<div class="element option">
-	  				<label class="addon" for="op4">Option 4</label>
-	  				<input class="input" type="text" name="op4" id="op4">
-	  			</div>
-
-	  			<section class="element-checkbox">
+  <div class="row auto">
+    <div class="span8">
+      <div class="row">
+        <div class="type">
+          <ul class="tabs">
+            <li data-tab="multiple_choice"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
+            <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
+            <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
+            <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
+            <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
+            <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
+            <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
+          </ul>
+        </div>
+        <!-- /.type -->
+        <div class="element">
+          <label class="addon" for="title">Title</label>
+          <input class="input" type="text" name="title" id="title">
+        </div>
+        <div class="indent">
+          <div class="element option">
+            <label class="addon" for="op1">Option 1</label>
+            <input class="input" type="text" name="op1" id="op1">
+          </div>
+          <div class="element option">
+            <label class="addon" for="op2">Option 2</label>
+            <input class="input" type="text" name="op2" id="op2">
+          </div>
+          <div class="element option">
+            <label class="addon" for="op3">Option 3</label>
+            <input class="input" type="text" name="op3" id="op3">
+          </div>
+          <div class="element option">
+            <label class="addon" for="op4">Option 4</label>
+            <input class="input" type="text" name="op4" id="op4">
+          </div>
+          <section class="element-checkbox">
             <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
               <ul>
                 <li>
                   <input type="checkbox" name="descriptive" id="descriptive">
                   <label for="descriptive">Descriptive Answer</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                </li>
                 <li>
                   <input type="checkbox" name="score" id="score">
                   <label for="score">Score</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
-
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                </li>
                 <li>
                   <input type="checkbox" name="multiple_choice" id="multiple_choice">
                   <label for="multiple_choice">Multiple Choice</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></li>
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                </li>
               </ul>
             </div>
           </section>
-
-  				<div class="panel-text">
-  			    <div class="title">
-  			      <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
-  			    </div>
-  			    <textarea name="summary"></textarea>
-  			  </div>
-
-  			  <div class="panel-text">
-  			    <div class="title">
-  			      <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
-  			    </div>
-  			    <textarea name="description"></textarea>
-  			  </div>
-    		</div>
-
-    		<div class="buttons">
-		      <nav>
-		        <button>Add New</button>
-		        <button>Filter</button>
-		        <button>Submit</button>
-		      </nav>
-		    </div>
-	    </div>
-	  </div>
-
-	  <div class="span4">
-	    <div class="row">
-	      <div class="group">
-	      	<div class="title-line"><span>Survey</span></div>
-	      	<div class="element option">
-	      	  <label class="addon" for="secondary-title">Title</label>
-	      	  <input class="input" type="text" name="secondary-title" id="secondary-title">
-	      	</div>
-	    	</div>
-	    	<div class="group">
-		      <div class="title-line"><span>Questions List</span></div>
-		    	<div class="element option has-floating">
-		    	  <label class="addon" for="question1">Question 1</label>
-		    	  <input class="input" type="text" name="question1" id="question1">
-		    	  <span class="addon floating">
+          <div class="panel-text">
+            <div class="title">
+              <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
+            </div>
+            <textarea name="summary"></textarea>
+          </div>
+          <div class="panel-text">
+            <div class="title">
+              <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
+            </div>
+            <textarea name="description"></textarea>
+          </div>
+        </div>
+        <div class="buttons">
+          <nav>
+            <button>Add New</button>
+            <button>Filter</button>
+            <button>Submit</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="row">
+        <div class="group">
+          <div class="title-line"><span>Survey</span></div>
+          <div class="element option">
+            <label class="addon" for="secondary-title">Title</label>
+            <input class="input" type="text" name="secondary-title" id="secondary-title">
+          </div>
+        </div>
+        <div class="group">
+          <div class="title-line"><span>Questions List</span></div>
+          <div class="element option has-floating">
+            <label class="addon" for="question1">Question 1</label>
+            <input class="input" type="text" name="question1" id="question1">
+            <span class="addon floating">
 		    	  	<span><i class="fa fa-check" aria-hidden="true"></i></span>
-		    	  </span>
-		    	</div>
-		    	<div class="element option has-floating">
-		    	  <label class="addon" for="question2">Question 2</label>
-		    	  <input class="input" type="text" name="question2" id="question2">
-		    	  <span class="addon floating">
+            </span>
+          </div>
+          <div class="element option has-floating">
+            <label class="addon" for="question2">Question 2</label>
+            <input class="input" type="text" name="question2" id="question2">
+            <span class="addon floating">
 		    	  	<span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-		    	  </span>
-		    	</div>
-		    	<div class="element option has-floating">
-		    	  <label class="addon" for="question3">Question 3</label>
-		    	  <input class="input" type="text" name="question3" id="question3">
-		    	  <span class="addon floating">
+            </span>
+          </div>
+          <div class="element option has-floating">
+            <label class="addon" for="question3">Question 3</label>
+            <input class="input" type="text" name="question3" id="question3">
+            <span class="addon floating">
 		    	  	<span><i class="fa fa-bell" aria-hidden="true"></i></span>
-		    	  </span>
-		    	</div>
-		    	<div class="element option has-floating">
-		    	  <label class="addon" for="question4">Question 4</label>
-		    	  <input class="input" type="text" name="question4" id="question4">
-		    	  <span class="addon floating">
+            </span>
+          </div>
+          <div class="element option has-floating">
+            <label class="addon" for="question4">Question 4</label>
+            <input class="input" type="text" name="question4" id="question4">
+            <span class="addon floating">
 		    	  	<span><i class="fa fa-bell" aria-hidden="true"></i></span>
-		    	  </span>
-		    	</div>
-
-	    	</div>
-	    </div>
-	  </div>
-	</div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.span4 -->
+  </div>
 </div>
-{% endblock %}
-
-{% block foot_js %}
+{% endblock %} {% block foot_js %}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {% endblock %}

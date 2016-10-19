@@ -1,492 +1,155 @@
 {%extends display.main%}
 
 {%block content%}
-
-{%if form_add or survey_mod %}
-
-  <!-- list of polls in this survey -->
-  {%if poll_list %}
-    <h5>poll list</h5>
-    {%for key, value in poll_list%}
-      <li><a href="{{base.url}}/{{value.url}}?preview=yes">{{value.title}}</a></li>
-    {%endfor%}
-  {%endif%}
-
-  <div class="row">
-
-    <div class="type">
-      <nav>
-        <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></a>
-        <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></a>
-        <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></a>
-        <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></a>
-        <a href="#"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></a>
-        <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></a>
-        <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></a>
-      </nav>
-    </div>
-
-    <div class="row">
-      <div class="span3"></div>
-      <div class="span6">
-        <form method="post">
-
-          <div class="element">
-            <label class="addon" for="title">{%trans "Question Title"%}</label>
-            <input class="input" type="text" name="title" id="title">
-          </div>
-
-          <div class="options">
-            <div class="element option">
-              <label class="addon" for="option1">{%trans "Option 1"%}</label>
-              <input class="input" type="text" name="option1" id="option1">
-            </div>
-
-            <div class="element option">
-              <label class="addon" for="option2">{%trans "Option 2"%}</label>
-              <input class="input" type="text" name="option2" id="option2">
-            </div>
-
-            <div class="element option">
-              <label class="addon" for="option3">{%trans "Option 3"%}</label>
-              <input class="input" type="text" name="option3" id="option3">
-            </div>
-          </div>
-
-          <div class="indent">
-            <section class="element-checkbox">
-              <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-                <ul>
-                  <li>
-                    <input type="checkbox" name="descriptive" id="descriptive">
-                    <label for="descriptive">{%trans "Descriptive Answer"%}</label>
-                  </li>
-
-                  <li>
-                    <input type="checkbox" name="score" id="score">
-                    <label for="score">{%trans "Score"%}</label>
-                  </li>
-
-                  <li>
-                    <input type="checkbox" name="multiple_choice" id="multiple_choice">
-                    <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
-                  </li>
-                </ul>
-              </div>
-            </section>
-
-            <div class="panel-text">
-              <div class="title">
-                <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Summary"%}</span>
-              </div>
-              <textarea name="summary"></textarea>
-            </div>
-
-            <div class="panel-text">
-              <div class="title">
-                <span><i class="fa fa-minus" aria-hidden="true"></i> {%trans "Description"%}</span>
-              </div>
-              <textarea name="description"></textarea>
-            </div>
-
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-    <div class="buttons">
-      <nav>
-        <button>{%trans "Add New"%}</button>
-        <button>{%trans "Filter"%}</button>
-        <button>{%trans "Submit"%}</button>
-      </nav>
-    </div>
-
-  </div>
-
-  <div class="container"><br><br><hr><br><br><br></div>
-
-  <div class="row">
-
-    <div class="span3"></div>
-    <div class="span6">
-      <form method="post">
-       {%if survey_mod%}
-         <div class="element">
-            <label class="addon" for="survey_title">{%trans "Survey Title"%}</label>
-            <input class="input" type="text" name="survey_title" id="survey_title">
-          </div>
-        {%endif%}
-
-        <div class="element">
-          <label class="addon" for="poll_type">{%trans "Poll type"%}</label>
-          <select class="input" name="poll_type" id="poll_type">
-            <option>select</option>
-            <option>notify</option>
-            <option>text</option>
-            <option>upload</option>
-            <option>star</option>
-            <option>number</option>
-            <option>media_image</option>
-            <option>media_video</option>
-            <option>media_audio</option>
-            <option>order</option>
-          </select>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="title">{%trans "Title"%}</label>
-          <input class="input" type="text" name="title" id="title">
-        </div>
-
-        <div class="element">
-          <label class="addon" for="content">{%trans "Content"%}</label>
-          <input class="input" type="text" name="content" id="content"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="answer_type">{%trans "Answer type"%}</label>
-          <select class="input" name="answer_type[]" id="answer_type">
-            <option>select</option>
-            <option>media_image</option>
-            <option>media_video</option>
-            <option>media_audio</option>
-          </select>
-        </div>
-
-        <section class="element-checkbox">
-          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-            <ul>
-              <li>
-                <input type="checkbox" name="answer_true[]" id="answer_true">
-                <label for="answer_true">{%trans "True answer"%}</label>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <div class="element">
-          <label class="addon" for="answer_point">{%trans "Point"%}</label>
-          <input class="input" type="text" name="answer_point[]" id="answer_point"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="answer1">{%trans "Answer one"%}</label>
-          <input class="input" type="text" name="answers[]" id="answer1">
-        </div>
-
-        <div class="element">
-          <label class="addon" for="answer_type2">{%trans "Answer type"%}</label>
-          <select class="input" name="answer_type[]" id="answer_type2">
-            <option>select</option>
-            <option>media_image</option>
-            <option>media_video</option>
-            <option>media_audio</option>
-          </select>
-        </div>
-
-        <section class="element-checkbox">
-          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-            <ul>
-              <li>
-                <input type="checkbox" name="answer_true[]" id="answer_true2">
-                <label for="answer_true2">{%trans "True answer"%}</label>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <div class="element">
-          <label class="addon" for="answer_point2">{%trans "Point"%}</label>
-          <input class="input" type="text" name="answer_point[]" id="answer_point2">
-        </div>
-
-        <div class="element">
-          <label class="addon" for="answer2">{%trans "Answer Two"%}</label>
-          <input class="input" type="text" name="answers[]" id="answer2">
-        </div>
-
-        <section class="element-checkbox">
-          <div class="ac-custom ac-checkbox ac-cross" autocomplete="off">
-            <ul>
-              <li>
-                <input type="checkbox" name="meta_canupdate" id="meta_canupdate">
-                <label for="meta_canupdate">{%trans "Can update"%}</label>
-              </li>
-
-              <li>
-                <input type="checkbox" name="meta_remove" id="meta_remove">
-                <label for="meta_remove">{%trans "Can remove"%}</label>
-              </li>
-
-              <li>
-                <input type="checkbox" name="meta_stop" id="meta_stop">
-                <label for="meta_stop">{%trans "Can stop"%}</label>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <div class="element">
-          <label class="addon" for="summary">{%trans "Summary"%}</label>
-          <input class="input" type="text" name="summary" id="summary">
-        </div>
-
-        <div>
-          <input type="submit" name="filter" value="اعمال فیلتر">
-        </div>
-
-        <div>
-          {%if survey_mod%}
-            <input type="submit" name="add_poll" value="افزودن سوالی دیگر">
-          {%else%}
-            <input type="submit" name="survey" value="تبدیل به پرسشنامه">
-          {%endif%}
-        </div>
-      </form>
-    </div>
-  </div>
-{%endif%}
-
-{%if form_edit%}
-<form method="post">
-  <div class="element">
-    <label class="addon">{%trans "Title"%}</label>
-    <input class="input" type="text" name="title" id="title" value="{{form_data['poll'][0]['title']}}">
-  </div>
-
-  <div class="element">
-    <label class="addon">{%trans "Language"%}</label>
-    <input class="input" type="text" name="language" id="language" value="{{form_data['poll'][0]['language']}}">
-  </div>
-
-  <div class="element">
-    <label class="addon">{%trans "Content"%}</label>
-    <input type="text" name="content" id="content" value="{{form_data['poll'][0]['content']}}">
-  </div>
-
-  <div class="element">
-    <label class="addon">{%trans "Publish date"%}</label>
-    <input type="text" name="publish_date" value="{{form_data['poll'][0]['publishdate']}}"><br>
-  </div>
-
-  {%if form_data['answers'] is iterable %}
-    {%for key, data in form_data['answers']%}
-      <label class="addon" for="{{data['id']}}">answer{{key}}</label>
-      <input type="text" name="answers[{{data['id']}}]" id="{{data['id']}}" value="{{data['option_value']}}">
-    {%endfor%}
-  {%endif%}
-
-  <div>
-    <input type="submit" value='{%trans "Edit"%}'>
-  </div>
-</form>
-{%endif%}
-
-{%if filter_form%}
-<div class="row">
-  <div class="span6">
-    <form method="post">
-      <div class="type">
-        <nav>
-          <a href="#" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></a>
-          <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></a>
-          <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></a>
-          <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></a>
-          <a href="#"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></a>
-          <a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></a>
-          <a href="#"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></a>
-        </nav>
-      </div>
-
-      <div class="contain">
-        <div class="element">
-          <label class="addon" for="gender">{%trans "Gender"%}</label>
-          <input class="input" type="text" name="gender" id="gender"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="marriage">{%trans "Marriage"%}</label>
-          <input class="input" type="text" name="marriage" id="marriage"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="education">{%trans "Education"%}</label>
-          <input class="input" type="text" name="education" id="education"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="job">{%trans "Job"%}</label>
-          <input class="input" type="text" name="job" id="job"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="language">{%trans "Language"%}</label>
-          <input class="input" type="text" name="language" id="language"></input>
-        </div>
-
-        <div class="element">
-          <label class="addon" for="age">{%trans "Age"%}</label>
-          <input class="input" type="text" name="age" id="age"></input>
-        </div>
-
-        <span class="title-line">
-          <span>{%trans "Selected Filters"%}</span>
-        </span>
-
-        <br><br><br>
-
-        <div class="tags">
-          <a href="#">a</a>
-          <a href="#">b</a>
-          <a href="#">c</a>
-          <a href="#">d</a>
-          <a href="#">e</a>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="span6"></div>
-</div>
-{%endif%}
-
-
-
-{% if publish_form %}
-<div class="row">
-  <div class="span4"></div>
-  <div class="span4">
-    <form method="post">
-
-      <div class="element">
-        <label class="addon" for="cat">{%trans "Category"%}</label>
-        <input class="input" type="text" name="cat" id="cat">
-      </div>
-
-      <div class="element">
-        <label class="addon" for="article">{%trans "Article"%}</label>
-        <input class="input" type="text" name="article" id="article">
-        <span class="addon btn">
-          <button>{%trans "Add"%}</button>
-        </span>
-      </div>
-
-      <div class="element">
-        <label class="addon" for="tags">{%trans "Tags"%}</label>
-        <input class="input" type="text" name="tags" id="tags">
-        <span class="addon btn">
-          <button>{%trans "Add"%}</button>
-        </span>
-      </div>
-
-      <div class="tags">
-        <a href="#">lorem</a>
-        <a href="#">ipsum</a>
-        <a href="#">dolor</a>
-        <a href="#">emit</a>
-      </div>
-
-      <div class="element">
-        <label class="addon">{%trans "Start Time"%}</label>
-        <input class="input" type="text" name="start_time">
-        <span class="addon btn">
-          <button>{%trans "Start"%}</button>
-        </span>
-      </div>
-
-      <div class="element">
-        <label class="addon">{%trans "End Time"%}</label>
-        <input class="input" type="text" name="end_time">
-        <span class="addon btn">
-          <button>{%trans "End"%}</button>
-        </span>
-      </div>
-
-      <div class="element">
-        <label class="addon" for="short_url">{%trans "Short URL"%}</label>
-        <input class="input text-left" type="text" name="short_url" id="short_url" placeholder="http://www.example.com/">
-      </div>
-    </form>
-  </div>
-
-  <div class="buttons">
-    <button>{%trans "Submit"%}</button>
-  </div>
-
-</div>
-
+<div class="main">
+  {%if form_add or survey_mod %}
   <form method="post">
+    <input type="hidden" name="poll_type" value="">
 
-    <div class="element">
-      <label class="addon" for="cat">Cat</label>
-      <select name="cat" id="cat">
-        <option value="">لطفا یکی را انتخاب کنید</option>
-        {%for key, value in cat%}
-          <option value="{{value.id}}">{{value.title|raw}}</option>
-        {%endfor%}
-      </select>
-    </div>
+    <div class="row auto">
+      <div class="span8">
+        <div class="row">
+          <div class="type">
+            <ul class="tabs">
+              <li data-tab="multiple_choice"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
+              <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
+              <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
+              <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
+              <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
+              <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
+              <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
+            </ul>
+          </div><!-- /.type -->
 
-    <div class="element">
-      <label class="addon" for="article">Article</label>
-      <select name="article" id="article">
-        <option value="">لطفا یکی را انتخاب کنید</option>
-        {%for key, value in article%}
-          <option value="{{value.id}}">{{value.title|raw}}</option>
-        {%endfor%}
-      </select>
-    </div>
+          <ul class="tab">
+            <li id="tab-multiple_choice" class="active">
+              <div class="element">
+                <label class="addon" for="title">Title</label>
+                <input class="input" type="text" name="title" id="title">
+              </div>
 
-     <div class="element">
-      <label class="addon" for="language">language</label>
-      <input class="input" type="text" name="language" id="language">
-    </div>
+              <div class="indent">
+                <div class="element option">
+                  <label class="addon" for="answer1">Answer 1</label>
+                  <input class="input" type="text" name="answers[]" id="answer1">
+                  <input type="hidden" name="answer_true[]" value="true">
+                  <input type="hidden" name="answer_type[]" value="text">
+                </div>
 
-    <div class="element">
-      <label class="addon" for="date_start">Date start</label>
-      <input class="input" type="text" name="date_start" id="date_start">
-    </div>
+                <div class="element option">
+                  <label class="addon" for="answer2">Answer 2</label>
+                  <input class="input" type="text" name="answers[]" id="answer2">
+                  <input type="hidden" name="answer_true[]" value="true">
+                  <input type="hidden" name="answer_type[]" value="text">
+                </div>
 
-    <div class="element">
-      <label class="addon" for="">date_end</label>
-      <input class="input" type="text" name="date_end" id="date_end">
-    </div>
+                <div class="row auto element-checkbox">
+                  <div class="span6">
+                    <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                      <ul>
+                        <li>
+                          <input type="checkbox" name="meta_descriptive" id="descriptive">
+                          <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
 
-    <div class="element">
-      <label class="addon" for="">short_url</label>
-      <input class="input" type="text" name="short_url" id="short_url" value="{{short_url}}">
-    </div>
+                        <li>
+                          <input type="checkbox" name="meta_score" id="score">
+                          <label for="score">{%trans "Score"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
 
-    {{block('sp_tag')}}
+                        <li>
+                          <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
+                          <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="span6">
+                    <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                      <ul>
+                        <li>
+                          <input type="checkbox" name="meta_random_sort" id="random_sort">
+                          <label for="random_sort">{%trans "Random Sort"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
 
-    <div>
-      <input type="submit" >
-    </div>
+                        <li>
+                          <input type="checkbox" name="meta_true_answer" id="true_answer">
+                          <label for="true_answer">{%trans "True Answer"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
+                  </div>
+                  <textarea name="summary"></textarea>
+                </div>
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
+                  </div>
+                  <textarea name="description"></textarea>
+                </div>
+              </div><!-- /.indent -->
+
+              <div class="buttons">
+                <nav>
+                  <button type="submit" name="survey" value="survey">{%trans "Survey"%}</button>
+                  <button type="submit" name="filter" value="filter">{%trans "Filter"%}</button>
+                </nav>
+              </div><!-- /.buttons -->
+            </li><!-- /#tab-multiple_choice -->
+            <li id="tab-descriptive">descriptive</li>
+            <li id="tab-notification">notification</li>
+            <li id="tab-upload">upload</li>
+            <li id="tab-starred">starred</li>
+            <li id="tab-numerical">numerical</li>
+            <li id="tab-sort">sort</li>
+          </ul><!-- /.tab -->
+        </div><!-- /.row -->
+      </div><!-- /.span8 -->
+
+      <div class="span4">
+        <div class="row">
+          <div class="group">
+            <div class="title-line"><span>Survey</span></div>
+            <div class="element option">
+              <label class="addon" for="secondary-title">Title</label>
+              <input class="input" type="text" name="secondary-title" id="secondary-title">
+            </div>
+          </div>
+
+          {%if poll_list %}
+          <div class="group">
+            <div class="title-line"><span>Questions List</span></div>
+            {%for key, value in poll_list%}
+            <div class="element option has-floating">
+              <label class="addon" for="question1">Question 1</label>
+              <input class="input" type="text" name="question1" id="question1">
+              <span class="addon floating">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+              </span>
+            </div>
+            {%endfor%}
+          </div>
+          {%endif%}
+        </div><!-- /.row -->
+      </div><!-- /.span4 -->
+    </div><!-- /.row.auto -->
   </form>
-{%endif%}
+  {%endif%}
+</div>
 {%endblock%}
 
-{% block foot_js %}
+{%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-<script type="text/javascript">
-  $('.panel-text>.title>span').click(function(){
-    $(this).parents('.panel-text').children('textarea').stop().slideToggle('fast');
-    $(this).children('.fa').toggleClass('fa-minus fa-plus');
-  });
-</script>
-{%endblock%}
-
-{%block sp_tag%}
-  <div class="panel panel-default unselectable" data-step='7' data-intro='{%trans "Write your tag and press enter to add new keyword to content"%}' data-position='top'>
-    <div class="panel-heading">{%trans "Tags"%}</div>
-    <div class="panel-body">
-      <div class="row">
-        <textarea name="tags" id="sp-tags" class="sp-tags input" placeholder='{%trans "Enter Tags here"%}'>{{tagList}}</textarea>
-        <input type="text" id="tag-add" autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
-        <input type="button" id="tag-add-btn" class='button' value='{%trans "Add"%}' tabindex="-1" />
-      </div>
-      <div id="tag-list" class="row"></div>
-    </div>
-  </div>
 {%endblock%}

@@ -21,6 +21,69 @@ $(document).ready(function () {
                 $('#tag-list').append("<span><i class='fa fa-times'></i>" + item + "</span>");
         });
     }
+
+    // add tab support to cp
+    $('.tabs li').click(function()
+    {
+      var _this     = $(this);
+      var tabNum    = _this.attr('data-tab');
+      var tabsItems = _this.parent().children('li');
+      var tabGroup  = _this.parent().attr('data-group');
+      var tabSelected;
+      var tabItems
+      // if use group find it else use default tab value
+      if(tabGroup)
+      {
+        tabItems  = $('.tab[data-group="'+ tabGroup +'"]');
+      }
+      else
+      {
+        tabItems  = $('.tab');
+      }
+
+      // remove active class from all items and select clicked item
+      tabsItems.removeClass('active');
+      _this.addClass('active');
+
+      if(tabNum)
+      {
+        tabSelected = tabItems.children("#tab-"+tabNum);
+        // $('[id^=tab-]').not(tabSelected).css('display', "none");
+        tabItems.children('[id^=tab-]').not(tabSelected).css('display', "none");
+      }
+      else
+      {
+        tabNum = _this.index()+1;
+        tabSelected = tabItems.children("li:nth-child("+tabNum+")");
+        tabItems.children('li').not(tabSelected).css('display', "none");
+      }
+      $(tabSelected).fadeIn(300);
+    })
+    // run click for first time and show content of active tab
+    $(".tabs").each(function()
+    {
+      // if select one element as active select content of it
+      if($(this).children('li.active').length == 1)
+      {
+        $(this).children('li.active').trigger("click");
+        $('input[name="poll_type"]').val( $(this).children('li.active').data('tab') );
+      }
+      // else select first child
+      else
+      {
+        $(this).children('li:first-child').trigger("click");
+        $('input[name="poll_type"]').val($(this).children('li:first-child').data('tab'));
+      }
+    });
+
+    // change poll_type on tabs click
+    $('.tabs li').click(function(){
+      $('input[name="poll_type"]').val( $(this).data('tab') );
+    });
+
+    // $('input[name="title"]').on('input', function(){
+    //     $('input[name="secondary-title"]').val($(this).val());
+    // });
 });
 
 function addTag() {

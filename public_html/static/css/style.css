@@ -218,12 +218,17 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 /*Temporary*/
 .results-box .results{margin-top:1em;}
-.tabs{position:relative;display:inline-block;height:40px;padding-right:1em;padding-left:1em;border-top:2px solid #e0e0e0;border-bottom:2px solid #e0e0e0;background-color:#eff0f9;}
-.tabs a{font-size:14px;display:inline-block;float:right;padding:7px 14px;color:#767676;border-right:2px solid transparent;border-left:2px solid transparent;}
-.tabs a.active{color:#2f96b6;border-right:2px solid #dfdfdf;border-left:2px solid #dfdfdf;background-color:#f4f4f4;}
-.tabs a:hover{color:#2f96b6;border-right:2px solid #dfdfdf;border-left:2px solid #dfdfdf;background-color:#f4f4f4;}
-.tabs:before{position:absolute;top:0;right:-12px;display:inline;width:2em;min-width:25px;height:100%;content:'';background-image:url(../images/edge2.svg);background-repeat:no-repeat;background-size:100% 100%;}
-.tabs:after{position:absolute;top:0;left:-12px;display:inline;width:2em;min-width:25px;height:100%;content:'';transform:rotate(180deg);background-image:url(../images/edge2.svg);background-repeat:no-repeat;background-size:100% 100%;}
+.tabs{}
+.tabs>li{transition:0.3s;}
+.tabs>li:hover{}
+.tabs>li.active{}
+.tabs.vertical>li.active{}
+.ltr .tabs.vertical>li{}
+.ltr .tabs.vertical>li.active{}
+.rtl .tabs.vertical>li{}
+.rtl .tabs.vertical>li.active{}
+.tab>li{display:none;}
+.tab>li.active{display:inherit;}
 
 
 /* customers box */
@@ -325,7 +330,6 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .element .floating span{line-height:24px;position:absolute;top:6px;right:0px;width:24px;height:24px;transition:all 0.2s;color:#fff;border:none;background-color:#bbb;}
 .rtl .element .floating span{right:auto;left:0px;}
 .element-checkbox{margin-bottom:2em;}
-.element .addon.indent{width:40px;}
 
 
 /* panel-text */
@@ -337,18 +341,18 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 /* Menu */
 .type{margin:0em auto 2em;text-align:center;}
-.type nav{display:inline-block;border-radius:7px;background-color:#00667a;}
-.type nav a{font-size:12px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;}
-.type nav a:not(:first-child){margin-left:23px;}
-.rtl .type nav a:not(:first-child){margin-right:25px;margin-left:auto;}
-.rtl .type nav a{float:right;}
-.type nav a:hover{background-color:#15535f;}
-.type nav a::before, .type nav a::after{font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
-.type nav a::before{left:-18px;content:'c';}
-.type nav a::after{right:-17px;content:'b';}
-.type nav a:hover::before, .type nav a:hover::after{color:#15535f;}
-.type nav a.active{color:#454545;background-color:#e5a428;}
-.type nav a.active::before, .type nav a.active::after{color:#e5a428;}
+.type ul{display:inline-block;border-radius:7px;background-color:#00667a;}
+.type ul li{font-size:12px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer}
+.type ul li:not(:first-child){margin-left:23px;}
+.rtl .type ul li:not(:first-child){margin-right:25px;margin-left:auto;}
+.rtl .type ul li{float:right;}
+.type ul li:hover{background-color:#15535f;}
+.type ul li::before, .type ul li::after{font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
+.type ul li::before{left:-18px;content:'c';}
+.type ul li::after{right:-17px;content:'b';}
+.type ul li:hover::before, .type ul li:hover::after{color:#15535f;}
+.type ul li.active{color:#454545;background-color:#e5a428;}
+.type ul li.active::before, .type ul li.active::after{color:#e5a428;}
 .options, .indent{padding-left:40px;}
 .rtl .options, .rtl .indent{padding-left:0;padding-right:40px;}
 
@@ -358,12 +362,12 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .buttons::before{position:absolute;z-index:0;left:-20px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
 .rtl .buttons::before{left:auto;right:-20px;}
 .buttons nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
-.buttons button{position:relative;min-width:80px;padding:7px 10px;cursor:pointer;color:#454545;border:none;outline:none;background-color:#e7a429;}
-.buttons button:not(:last-child){margin-right:30px;}
-.rtl .buttons button:not(:last-child){margin-right:auto;margin-left:30px;}
-.buttons button::before, .buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;color:#e7a429;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.buttons button::before{left:-22px;content:'\6c';}
-.buttons button::after{right:-22px;content:'\6b';}
+.buttons button, .buttons input[type="submit"]{position:relative;min-width:80px;padding:7px 10px;cursor:pointer;color:#454545;border:none;outline:none;background-color:#e7a429;}
+.buttons button:not(:last-child), .buttons input[type="submit"]:not(:last-child){margin-right:30px;}
+.rtl .buttons button:not(:last-child), .rtl .buttons input[type="submit"]:not(:last-child){margin-right:auto;margin-left:30px;}
+.buttons button::before, .buttons button::after, .buttons input[type="submit"]::before, .buttons input[type="submit"]::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;color:#e7a429;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.buttons button::before, .buttons input[type="submit"]::before{left:-22px;content:'\6c';}
+.buttons button::after, .buttons input[type="submit"]::after{right:-22px;content:'\6b';}
 
 /* Checkbox */
 .ac-custom{max-width:900px;margin:0 auto;}
@@ -453,7 +457,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 @media only screen and (max-width:849px){
   .tabs{height:28px;}
-  .type nav a > span{display:none;}
+  .type ul li > span{display:none;}
 }
 
 /* Mobile (Landscape) */
