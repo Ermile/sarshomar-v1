@@ -238,8 +238,6 @@ class stat_polls
 				foreach ($support_filter as $key => $value) {
 					if(isset($user_profile_data[$value]))
 					{
-						// var_dump($pollstats[$value]);
-
 						if(isset($pollstats[$value][$opt_key]))
 						{
 							if(isset($pollstats[$value][$opt_key][$user_profile_data[$value]]))
@@ -298,15 +296,15 @@ class stat_polls
 				$set[] =  " port = 'site' ";
 				$set[] =  " subport = NULL ";
 				$set[] =  " post_id = $poll_id ";
-
+				$set[] =  " pollstats.result = '{\"$opt_key\": 1 }' ";
 				foreach ($support_filter as $key => $value) {
 					if(isset($user_profile_data[$value]))
 					{
-						$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }' ";
+						$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }}' ";
 					}
 					else
 					{
-						$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }' ";
+						$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }}' ";
 					}
 				}
 				$set = join($set, ",");
