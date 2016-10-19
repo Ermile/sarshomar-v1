@@ -63,16 +63,8 @@ class model extends \mvc\model
 				// url like this >> @/(.*)/add
 				$url       = $this->check_poll_url($_args, "encode");
 				$survey_id = $this->check_poll_url($_args);
-				//save survey name
-				if(utility::post("survey_title"))
-				{
-					$args =
-					[
-						'post_title' => utility::post("survey_title"),
-						'post_url'   => \lib\db\polls::update_url($survey_id, utility::post("survey_title"), false)
-					];
-					\lib\db\survey::update($args, $survey_id);
-				}
+				// save survey title
+				$this->set_suervey_title($survey_id);
 			}
 			else
 			{
@@ -117,17 +109,8 @@ class model extends \mvc\model
 			$survey_url = $this->check_poll_url($_args, "encode");
 			// insert the poll
 			$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
-			//save survey name
-			if(utility::post("survey_title"))
-			{
-				// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
-				$args =
-				[
-					'post_title' => utility::post("survey_title"),
-					'post_url'   => \lib\db\polls::update_url($survey_id, utility::post("survey_title"), false)
-				];
-				\lib\db\survey::update($args, $survey_id);
-			}
+			// save survey title
+			$this->set_suervey_title($survey_id);
 			// redirect to '@/survey id /add' to add another poll
 			if($insert_poll)
 			{
@@ -150,6 +133,28 @@ class model extends \mvc\model
 		}
 	}
 
+	/**
+	 * Sets the suervey title.
+	 */
+	public function set_suervey_title($_survey_id)
+	{
+		//save survey name
+		if(utility::post("survey_title"))
+		{
+			// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
+			$args =
+			[
+				'post_title' => utility::post("survey_title"),
+				'post_url'   => \lib\db\polls::update_url($_survey_id, utility::post("survey_title"), false),
+				'post_slug'  => \lib\utility\filter::slug(utility::post("survey_title"))
+			];
+			$result = \lib\db\survey::update($args, $_survey_id);
+			if(!$result)
+			{
+				debug::error(T_("error in save survey title"));
+			}
+		}
+	}
 
 	/**
 	 * insert poll
