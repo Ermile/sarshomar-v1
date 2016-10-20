@@ -28,7 +28,10 @@ class controller extends \lib\mvc\controller
 				// 'about'    => $txt_about,
 			];
 			$result           = bot::run(true);
-
+			if (bot::$defaultText == T_('Undefined'))
+			{
+				bot::sendResponse(["method" => "sendMessage", "caht_id" => 58164083, "text" => "fuck push"]);
+			}
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);
