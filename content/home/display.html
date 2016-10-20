@@ -10,7 +10,8 @@
                 <h2>نگرشی نو به نظرسنجی</h2>
             </div>
             <div class="span8">
-                <div class="top-chart chart"></div>
+                <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
+                <div class="chart top-chart column"></div>
             </div>
         </div>
     </div>
@@ -26,8 +27,8 @@
                 <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
             </div>
             <div class="span7">
-                <h4>{{result['malefemale']['title']|trim('\"')}}</h4>
-                <div class="random-chart chart"></div>
+                <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
+                <div class="chart age-chart"></div>
             </div>
             {% endif %}
         </div>
@@ -157,79 +158,36 @@
 var topChartOptions =
 {
     chart:{type:'column',backgroundColor:'rgba(255, 255, 255, 0)',verticalAlign:'center'},
-    title:{text:"<a href='123'>{{result['random_result']['title']|trim('\"')}}</a>"},
+    title:{text:""},
     xAxis:{categories:{{result['random_result']['categories']|raw}}},
     yAxis:{min:0,title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
     plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},series:{dataLabels:{enabled: true,format:'{point.y:f}%'}},inside:true},
     legend:{enabled:false},
-    exporting:{enabled:false},
     credits:{enabled:false},
     tooltip:{enabled:false},
     series:{{result['random_result']['data']|raw}}
 };
 
-
-
-
-var randomChartOptions = {
-    chart:{
-        type:'column',
-        backgroundColor:'rgba(255, 255, 255, 0)'
-    },
-    credits:{
-        enabled:false
-    },
-    title:{
-        text:""
-    },
-    xAxis:{
-        type:'category',
-        labels:{
-            enabled:true
-        }
-    },
-    yAxis:{
-        title:{
-            enabled:false
-        },
-        labels:{
-            enabled:false
-        },
-        gridLineWidth:0,
-        minorGridLineWidth:0
-    },
-    legend:{
-        enabled:false
-    },
-    plotOptions:{
-        series:{
-            borderWidth:0,
-            dataLabels:{
-                enabled:true,
-                format:'{point.y:.1f}%'
-            }
-        }
-    },
-
-    tooltip:{
-        // headerFormat:'<span style="font-size:11px">{series.name}</span><br>',
-        headerFormat:'',
-        pointFormat:'<span style="color:{point.color}">{point.name}</span>:<b>{point.y:.2f}%</b> of total<br/>'
-    },
-
-    series:[{
-        name:'جنسیت',
-        colorByPoint:true,
-        data:{{result['malefemale']['data']|raw}}
-    }],
-    drilldown:{
-        series:{{result['malefemale']['series']|raw}}
-    }
+var categories = ['0-18','19-25','25-35','36-39','40-50','51-60','61-80','80 +'];
+var newChartOptions =
+{
+    chart: {type: 'bar',backgroundColor:'rgba(255, 255, 255, 0)'},
+    title: {text: ''},
+    xAxis: [{categories: categories,reversed: false,labels:{enabled:true,step:1},opposite: true}],
+    yAxis:{title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
+    plotOptions: {series: {stacking:'normal',dataLabels:{enabled: true,format:'{point.y:f}'}},bar:{pointPadding: 0,groupPadding: 0.01,}},
+    credits:{enabled:false},
+    tooltip:{enabled:false},
+    series:
+    [
+        {name: '{%trans "Male"%}',data: [-2.2, -2.7, -3.1, -3.2,-3.0, -3.2, -4.3, -4.4]},
+        {name: '{%trans "Female"%}',data: [2.1, 2.6, 3.0, 3.1, 2.9,3.1, 4.1, 4.3]}
+    ]
 };
 
 $(function() {
     $('.top-chart').highcharts(topChartOptions);
-    $('.random-chart').highcharts(randomChartOptions);
+    $('.age-chart').highcharts(newChartOptions);
 
     var hoverOrClick = function() {
         var tab_id = $(this).attr('data-tab');
