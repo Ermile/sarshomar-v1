@@ -4,16 +4,20 @@
     <h1>{{site.title}}</h1>
     <h2>{{site.slogan}}</h2>
    </a>
-   <nav>
-    <a href="{{url.base}}">{%trans "Home"%}</a>
-    <a href="{{url.base}}help">{%trans "Help"%}</a>
-    <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
-    <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
-   </nav>
-   <span class="page-title">{{page.title}}</span>
+   <div id='header-box'>
+    <div id='header-top'>
+     <nav id='header-quick'>
+      <a href="{{url.base}}">{%trans "Home"%}</a>
+      <a href="{{url.base}}help">{%trans "Help"%}</a>
+      <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
+      <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
+     </nav>
+     <span class="header-title">{{page.title}}</span>
+    </div>
 
-   <div class="chart-random">
-    <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
-    <div class="chart top-chart column"></div>
+    <div class="chart">
+     <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
+     <div class="top-chart column palette{{random(7)}}"></div>
+    </div>
    </div>
   </header>
