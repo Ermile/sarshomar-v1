@@ -1,103 +1,236 @@
 {%extends display.main%}
 
+{%block head_css%}
+<style type="text/css">
+.vertical-tabs, .vertical-tabs-content{display:table-cell;}
+.vertical-tabs .tabs li{width:170px;height:50px;background-color:#00667A;margin-bottom:20px;color:#D8DAD0;line-height:50px;text-align:center;cursor:pointer;transition:all 0.5s;position:relative;margin-right:30px;}
+.vertical-tabs .tabs li.active{background-color:#E7A429;color:#00667A;font-weight:bold;margin-right:0;width:200px;}
+.vertical-tabs-content{border-left:1px solid #E7A429;width:100%;}
+.vertical-tabs-content .tab li{}
+.vertical-tabs-content .tab li > .row{padding:0 50px;}
+#tab-personal img{width:150px;height:150px;}
+.margin-bottom{margin-bottom:2em;}
+#me .title-line::before{width:180px;}
+#me .title-line.reverse::before{left:-50px;}
+</style>
+{%endblock%}
+
 {%block content%}
-<div class="row auto">
-    <div class="span4"></div>
-    <div class="span4">
-        <form action="@/me" method="post" class="form inline">
+<div class="main">
+  <form method="post">
+    <div class="row">
+      <div class="span1"></div>
 
-            <div class="field">
-                <label>displayname</label>
-                <input type="text" name="displayname" value="{{me.displayname}}">
-            </div>
+      <div class="span10 margin-bottom">
+        <div class="vertical-tabs">
+          <ul class="tabs">
+            <li data-tab="profile">{%trans "Profile"%}</li>
+            <li data-tab="personal">{%trans "Personal"%}</li>
+            <li data-tab="education">{%trans "Education"%}</li>
+            <li data-tab="job">{%trans "Job"%}</li>
+            <li data-tab="location">{%trans "Location"%}</li>
+            <li data-tab="user">{%trans "User"%}</li>
+            <li data-tab="family">{%trans "Family"%}</li>
+            <li data-tab="favorites">{%trans "Favorites"%}</li>
+          </ul>
+        </div>
+        <div class="vertical-tabs-content">
+          <ul class="tab">
+            <li id="tab-profile">
+              <div class="row">Profile</div>
+            </li>
 
-            <div class="field">
-                <label>gender</label>
-                <input type="text" name="gender" value="{{me.gender}}">
-            </div>
-            <div class="field">
-                <label>marrital_status</label>
-                <input type="text" name="marrital" value="{{me.marrital_status}}">
-            </div>
-            <div class="field">
-                <label>parental_status</label>
-                <input type="text" name="parental" value="{{me.parental_status}}">
-            </div>
-            <div class="field">
-                <label>exercise_habits</label>
-                <input type="text" name="exercise" value="{{me.exercise_habits}}">
-            </div>
-            <div class="field">
-                <label>employment_status</label>
-                <input type="text" name="employment" value="{{me.employment_status}}">
-            </div>
-            <div class="field">
-                <label>business_owner</label>
-                <input type="text" name="business" value="{{me.business_owner}}">
-            </div>
-            <div class="field">
-                <label>industry</label>
-                <input type="text" name="industry" value="{{me.industry}}">
-            </div>
-            <div class="field">
-                <label>devices_owned</label>
-                <input type="text" name="devices" value="{{me.devices_owned}}">
-            </div>
-            <div class="field">
-                <label>internet_usage</label>
-                <input type="text" name="internetusage" value="{{me.internet_usage}}">
-            </div>
-            <div class="field">
-                <label>birthdate</label>
-                <input type="text" name="birthdate" value="{{me.birthdate}}">
-            </div>
-            <div class="field">
-                <label>graduation</label>
-                <input type="text" name="graduation" value="{{me.graduation}}">
-            </div>
-            <div class="field">
-                <label>course</label>
-                <input type="text" name="course" value="{{me.course}}">
-            </div>
-            <div class="field">
-                <label>country_birth</label>
-                <input type="text" name="countrybirth" value="{{me.country_birth}}">
-            </div>
-            <div class="field">
-                <label>country</label>
-                <input type="text" name="country" value="{{me.country}}">
-            </div>
-            <div class="field">
-                <label>province_birth</label>
-                <input type="text" name="provincebirth" value="{{me.province_birth}}">
-            </div>
-            <div class="field">
-                <label>province</label>
-                <input type="text" name="province" value="{{me.province}}">
-            </div>
-            <div class="field">
-                <label>birthcity</label>
-                <input type="text" name="birthcity" value="{{me.birthcity}}">
-            </div>
-            <div class="field">
-                <label>city</label>
-                <input type="text" name="city" value="{{me.city}}">
-            </div>
-            <div class="field">
-                <label>favorites</label>
-                <input type="text" name="favorites" value="{{me.favorites}}">
-            </div>
+            <li id="tab-personal">
+              <div class="row">
+                <div class="margin-bottom"><img src="/static/images/temporary/profile.jpg"></div>
 
-            <div class="field">
-                <label>language            </label>
-                <input type="text" name="language" value="{{me.language}}">
-            </div>
+                <div class="element">
+                  <label class="addon" for="name">{%trans "Name"%}</label>
+                  <input class="input" type="text" name="name" id="name" value="{{me.name}}">
+                </div>
 
-            <div class="field">
-                <label></label>
-                <input type="submit" value="به روز رسانی اطلاعات">
-            </div>
-        </form>
+                <div class="element">
+                  <label class="addon" for="lastname">{%trans "Last Name"%}</label>
+                  <input class="input" type="text" name="lastname" id="lastname" value="{{me.lastname}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="displayname">{%trans "Display Name"%}</label>
+                  <input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="gender">{%trans "Gender"%}</label>
+                  <input class="input" type="text" name="gender" id="gender" value="{{me.gender}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="marrital_status">{%trans "Marrital Status"%}</label>
+                  <input class="input" type="text" name="marrital_status" id="marrital_status" value="{{me.marrital_status}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="mobile">{%trans "Mobile"%}</label>
+                  <input class="input" type="text" name="mobile" id="mobile" value="{{me.mobile}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="email">{%trans "Email"%}</label>
+                  <input class="input" type="text" name="email" id="email" value="{{me.email}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="birthdate">{%trans "Birth Date"%}</label>
+                  <input class="input" type="text" name="birthdate" id="birthdate" value="{{me.birthdate}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="language">{%trans "Language"%}</label>
+                  <input class="input" type="text" name="language" id="language" value="{{me.language}}">
+                </div>
+              </div>
+            </li>
+
+            <li id="tab-education">
+              <div class="row">
+                <div class="element">
+                  <label class="addon" for="graduation">{%trans "Graduation"%}</label>
+                  <input class="input" type="text" name="graduation" id="graduation" value="{{me.graduation}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="education_type">{%trans "Type"%}</label>
+                  <input class="input" type="text" name="education_type" id="education_type" value="">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="course">{%trans "Course"%}</label>
+                  <input class="input" type="text" name="course" id="course" value="{{me.course}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="grade">{%trans "Grade"%}</label>
+                  <input class="input" type="text" name="grade" id="grade" value="{{me.grade}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="degree">{%trans "Degree"%}</label>
+                  <input class="input" type="text" name="degree" id="degree" value="{{me.degree}}">
+                </div>
+              </div>
+            </li>
+
+            <li id="tab-job">
+              <div class="row">
+                <div class="group">
+                  <div class="title-line reverse">
+                    <span>{%trans "Current Job"%}</span>
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="employment">{%trans "Employment"%}</label>
+                    <input class="input" type="text" name="employment" id="employment" value="{{me.employment_status}}">
+                  </div>
+
+                  <div class="element">
+                      <label class="addon" for="business">{%trans "Business"%}</label>
+                      <input class="input" type="text" name="business" id="business" value="{{me.business_owner}}">
+                  </div>
+
+                  <div class="element">
+                      <label class="addon" for="industry">{%trans "Industry"%}</label>
+                      <input class="input" type="text" name="industry" id="industry" value="{{me.industry}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li id="tab-location">
+              <div class="row">
+                <div class="group">
+                  <div class="title-line reverse">
+                    <span>{%trans "Birth"%}</span>
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="countrybirth">Country Bitrh</label>
+                    <input class="input" type="text" name="countrybirth" id="countrybirth" value="{{me.country_birth}}">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="country">{%trans "Country"%}</label>
+                    <input class="input" type="text" name="country" id="country" value="{{me.country}}">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="provincebirth">{%trans "Province Birth"%}</label>
+                    <input class="input" type="text" name="provincebirth" id="provincebirth" value="{{me.province_birth}}">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="province">{%trans "Province"%}</label>
+                    <input class="input" type="text" name="province" id="province" value="{{me.province}}">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="birthcity">{%trans "Birthcity"%}</label>
+                    <input class="input" type="text" name="birthcity" id="birthcity" value="{{me.birthcity}}">
+                  </div>
+
+                  <div class="element">
+                    <label class="addon" for="city">{%trans "City"%}</label>
+                    <input class="input" type="text" name="city" id="city" value="{{me.city}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li id="tab-user">
+              <div class="row">User</div>
+            </li>
+
+            <li id="tab-family">
+              <div class="row">
+                <div class="element">
+                  <label class="addon" for="">{%trans "Parental Status"%}</label>
+                  <input class="input" type="text" name="parental" id="parental" value="{{me.parental_status}}">
+                </div>
+              </div>
+            </li>
+
+            <li id="tab-favorites">
+              <div class="row">
+                <div class="element">
+                  <label class="addon" for="exercise">{%trans "Exercise Habits"%}</label>
+                  <input class="input" type="text" name="exercise" id="exercise" value="{{me.exercise_habits}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="devices">{%trans "Devices Owned"%}</label>
+                  <input class="input" type="text" name="devices" id="devices" value="{{me.devices_owned}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="internetusage">{%trans "Internet Usage"%}</label>
+                  <input class="input" type="text" name="internetusage" id="internetusage" value="{{me.internet_usage}}">
+                </div>
+
+                <div class="element">
+                  <label class="addon" for="favorites">{%trans "Favorites"%}</label>
+                  <input class="input" type="text" name="favorites" id="favorites" value="{{me.favorites}}">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <div>
+      <button name="save">Save</button>
+    </div>
+  </form>
 </div>
+{%endblock%}
+
+{%block foot_js%}
 {%endblock%}
