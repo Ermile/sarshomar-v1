@@ -50,6 +50,9 @@ class view extends \mvc\view
 		// check login to load option or no
 		// check answeret to this poll or no
 
+		// check the url and redirect to poll url
+		// for example redirect $/ewR3  to $/ewR3/poll_title
+		$this->check_url($_args);
 
 		$post = $this->model()->get_posts();
 
