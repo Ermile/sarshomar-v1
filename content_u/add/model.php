@@ -273,7 +273,7 @@ class model extends \mvc\model
 		// get title
 		$title        = utility::post("title");
 		// get content
-		$content      = utility::post("content");
+		$content      = utility::post("description");
 		// get summary of poll
 		$summary      = utility::post("summary");
 		// get answers
