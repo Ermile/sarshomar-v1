@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.5.1
+ * Version: 2.6.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -34,10 +34,10 @@ header::after{display:table;content:"";clear:both;}
 header nav{display:inline-block;}
 header nav a{position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
 /* header logo*/
-header .logo{position:relative;float:left;padding:1em 2em 1em 1em;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;text-align:center;height:120px}
-header .logo img{width:5em;transition:all 0.2s;}
-header .logo h1{line-height:1.5em;font-size:1.8em;margin-bottom:0;vertical-align:super;color:#f4f4f4;border-bottom:none;display:inline-block;}
-header .logo h2{line-height:1;font-size:1.2em;color:#f4f4f4;display:none}
+header .logo{position:relative;float:left;padding:10px 20px 10px 10px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;text-align:center;height:120px;width:300px;}
+header .logo img{width:80px;transition:all 0.2s;}
+header .logo h1{line-height:1.5em;font-size:1.8em;margin-bottom:0;vertical-align:bottom;color:#f4f4f4;border-bottom:none;display:inline-block;font-weight:700;}
+header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 /* header page title*/
 header .header-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
 header .header-title::before{content:"";position:absolute;background-image:url(../images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
@@ -53,13 +53,13 @@ header .chart{display:none}
 #home header nav a{display:inline-block;padding:1em 1.5em;}
 #home header .logo{height:100%;width:300px}
 #home header .logo img{width:240px;display:block;margin:0 auto;}
-#home header .logo h1{display:block;line-height:2.2em;font-size:2.2em;font-weight:700;}
+#home header .logo h1{display:block;line-height:1.7em;font-size:2.2em;}
 #home header .logo h2{display:block}
 #home header .header-title{display:none}
 /* rtl design */
 .rtl header{border-right:none;border-left:8px solid transparent;}
 .rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-10px;}
-.rtl header .logo{float:right;border-right:none;border-left:8px solid transparent;padding:1em 1em 1em 2em;}
+.rtl header .logo{float:right;border-right:none;border-left:8px solid transparent;padding:10px 10px 10px 20px;}
 
 /************************************************************** footer */
 footer{border-top:8px solid transparent;background-color:#083942;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;}
@@ -87,7 +87,7 @@ footer #footer-note .love{text-align:right;text-transform:uppercase}
 footer #footer-note .counter{font-weight:700;text-align:center;text-transform:uppercase;}
 /* rtl design */
 .rtl footer #footer-nav a{padding-right:0;padding-left:2em}
-.rtl footer #footer-nav .eco{right:auto;left:1em;}
+.rtl footer #footer-nav .eco{right:auto;left:0;}
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent;}
 .rtl footer #footer-note .love{text-align:left}
 
@@ -549,11 +549,16 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 /* Mobile (Landscape) */
 @media only screen and (max-width: 767px){
   .tabs{display:none;}
-  footer #footer-nav a{padding:1.2em 2em 1.2em 0;}
+  footer #footer-nav a{padding:1em 1em 1em 0;}
+  #inestimable img{display:none}
+  #inestimable .span6{text-align: center}
 }
 
 /* Mobile */
-@media only screen and (max-width: 479px){
+@media only screen and (max-width: 530px){
+  .container{width:95%;}
   #trust{font-size:1.3em;}
-  #inestimable{font-size:0.5em;}
+  #inestimable{font-size:0.9em;padding:25px 100px 0 10px;border-right: 8px solid transparent;border-left: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;-o-border-image: url(../images/border.png) 8 stretch;border-image: url(../images/border.png) 8 stretch;margin-left:0;margin-right:0}
+  #inestimable::before{display:none}
+  footer #footer-nav .eco{height:50px;}
 }
