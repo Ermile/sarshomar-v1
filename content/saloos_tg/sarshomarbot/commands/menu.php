@@ -12,10 +12,10 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
-		$txt_my = T_('My polls');
+		$txt_my = [T_('My polls'), T_('Create new pool')];
 		if(!\lib\db\polls::get(bot::$user_id, 'count'))
 		{
-			$txt_my = T_('Create new pool');
+			$txt_my = [T_('Create new pool')];
 		}
 		// define
 		$menu =
@@ -23,7 +23,7 @@ class menu
 			'keyboard' =>
 			[
 				[T_('Ask from me')],
-				[$txt_my],
+				$txt_my,
 				[T_('Sarshomar Panel')],
 			],
 		];

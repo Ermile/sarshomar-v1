@@ -2,14 +2,13 @@
 namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 
 class callback_query
 {
-	use callback_query\set_language;
 	public static $message_result = [];
 	public static function start($_query = null)
 	{
-
 		$data_url = preg_split("[\/]", $_query['data']);
 
 		$result = ['method' => 'answerCallbackQuery'];
@@ -19,13 +18,15 @@ class callback_query
 		{
 			self::$message_result['inline_message_id'] = $_query['inline_message_id'];
 		}
-		else{
+		elseif(array_key_exists('chat_instance', $_query))
+		{
 			self::$message_result['chat_instance'] = $_query['chat_instance'];
 		}
 		$callback_result = [];
-		if(method_exists('\content\saloos_tg\sarshomarbot\commands\callback_query', $data_url[0]))
+		$class_name = '\content\saloos_tg\sarshomarbot\commands\callback_query\\' . $data_url[0];
+		if(class_exists($class_name) && method_exists($class_name, 'start'))
 		{
-			$callback_result = self::{$data_url[0]}($_query, $data_url);
+			$callback_result = $class_name::start($_query, $data_url);
 		}
 		return array_merge($result, $callback_result);
 
@@ -65,7 +66,7 @@ class callback_query
 		return $result;
 	}
 
-	public static function edit_message($_result)
+	public static function edit_message($_result, $_return = false)
 	{
 		$response = [
 			"method" 				=> "editMessageText",
@@ -73,7 +74,13 @@ class callback_query
 			'disable_web_page_preview' => true,
 			];
 		$response = array_merge($response, self::$message_result);
-		bot::sendResponse(array_merge($response, $_result));
+		$response = array_merge($response, $_result);
+		handle::send_log($response);
+		if($_return)
+		{
+			return $response;
+		}
+		bot::sendResponse($response);
 	}
 }
 ?>

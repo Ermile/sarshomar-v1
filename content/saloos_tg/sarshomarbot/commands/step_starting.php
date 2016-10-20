@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use content\saloos_tg\sarshomarbot\commands\handle;
 
 class step_starting
 {
@@ -54,69 +55,22 @@ class step_starting
 				$commands[$url_command[0]] = $url_command[1];
 			}
 		}
-		$lang = self::cmd_lang($commands);
-		if(is_array($lang))
+		if(array_key_exists('poll', $commands))
 		{
-			return $lang;
+			return self::cmd_poll($commands['poll']);
 		}
-		$poll = self::cmd_poll($commands);
-		if(is_array($poll))
+		if(!callback_query\language::check())
 		{
-			return $poll;
+			return callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
 		}
 	}
 
-	public static function cmd_lang($_value){
-		$get = \lib\db\users::get_language(bot::$user_id);
-		if(array_key_exists('lang', $_value) && empty($get))
-		{
-			step::goingto(2);
-			return self::step2($_value['lang'], ['update_on_duplicate' => false]);
-		}
-		elseif(empty($get))
-		{
-			step::goingto(2);
-			return self::step2();
-		}
-		return false;
-	}
-
-	public static function cmd_poll($_value)
+	public static function cmd_poll($_poll_short_code)
 	{
-		if(array_key_exists('poll', $_value))
+		if(!is_null($_poll_short_code))
 		{
-			return step_sarshomar::start("/sarshomar " . $_value['poll'], true);
+			return step_sarshomar::start("/sarshomar " . $_poll_short_code, true);
 		}
-	}
-
-	public static function step2($_lang = null, $_options = [])
-	{
-		foreach (self::$valid_lang as $key => $value) {
-			$_lang = strtolower($_lang);
-			if(array_search($_lang, $value) !== false)
-			{
-				$_options['user_id'] = bot::$user_id;
-				$set = \lib\db\users::set_language($key, $_options);
-				return true;
-			}
-		}
-		if(!is_null($_lang))
-		{
-			step::plus(1, 'i');
-		}
-		$inline_keyboard = array();
-		$inline_keyboard[0][0] = [
-			'text' => "فارسی",
-			'callback_data' => "set_language/fa"
-			];
-		$inline_keyboard[0][1] = [
-		'text' => "English",
-		'callback_data' => "set_language/en"
-		];
-		return [
-			"text" => T_("Please select your language") . " " . step::get("i"),
-			"reply_markup" => ["inline_keyboard" => $inline_keyboard]
-		];
 	}
 
 	/**
@@ -126,7 +80,7 @@ class step_starting
 	 */
 	public static function step3($_feedback, $_prefixText = null)
 	{
-		var_dump("step2");
+
 		exit();
 
 

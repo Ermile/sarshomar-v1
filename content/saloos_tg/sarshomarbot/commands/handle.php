@@ -10,6 +10,17 @@ class handle
 
 	public static function exec($_cmd)
 	{
+		// bot::$defaultText = T_('Not Found');
+		register_shutdown_function(function()
+		{
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
+		});
+		if($_cmd['command'] == 'exit')
+		{
+			session_destroy();
+			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
+			exit();
+		}
 		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
 		{
 
@@ -24,135 +35,138 @@ class handle
 		}
 		$response = null;
 		// check if we are in step then go to next step
-		$response = step::check($_cmd['text'], $_cmd['command']);
-		if($response && !bot::is_aerial())
+		if(!bot::is_aerial())
 		{
-			return $response;
-		}
-		// var_dump(90);
-		switch ($_cmd['command'])
-		{
-			case '/menu':
-			case '/cancel':
-			case '/stop':
-			case 'menu':
-			case 'main':
-			case 'mainmenu':
-			case 'منو':
+			$response = step::check($_cmd['text'], $_cmd['command']);
+			self::send_log(['Hasan' => $response]);
+			if($response)
+			{
+					return $response;
+			}
+			switch ($_cmd['command'])
+			{
+				case '/menu':
+				case '/cancel':
+				case '/stop':
+				case 'menu':
+				case 'main':
+				case 'mainmenu':
+				case 'منو':
 				$response = menu::main();
 				break;
 
-			case '/poll':
-			case 'poll':
-			case '/polls':
-			case 'polls':
-			case 'شرکت':
-			case 'شرکت در نظرسنجی':
+				case '/poll':
+				case 'poll':
+				case '/polls':
+				case 'polls':
+				case 'شرکت':
+				case 'شرکت در نظرسنجی':
 				$response = menu::polls();
 				break;
 
-			case '/sarshomar':
-			case 'sarshomar':
-			case 'ask':
-			case '/ask':
-			case 'نظرسنجی‌های سرشمار':
+				case '/sarshomar':
+				case 'sarshomar':
+				case 'ask':
+				case '/ask':
+				case 'نظرسنجی‌های سرشمار':
 				$response = step_sarshomar::start();
 				break;
 
-			case '/removeUserAnswers':
-			case 'removeUserAnswers':
+				case '/removeUserAnswers':
+				case 'removeUserAnswers':
 				$response = step_sarshomar::removeUserAnswers();
 				break;
 
-			case '/my':
-			case 'my':
-			case 'من':
+				case '/my':
+				case 'my':
+				case 'من':
 				$response = menu_my::my();
 				break;
 
-			case '/mypolls':
-			case 'mypolls':
+				case '/mypolls':
+				case 'mypolls':
 				$response = menu_my::mypolls();
 				break;
 
-			case '/define':
-			case 'define':
-			case 'create':
-			case '/create':
-			case 'تعریف':
+				case '/define':
+				case 'define':
+				case 'create':
+				case '/create':
+				case 'تعریف':
 				$response = step_define::start();
 				break;
 
-			case 'نظرسنجی‌های':
+				case 'نظرسنجی‌های':
 				switch ($_cmd['text'])
 				{
 					case 'نظرسنجی‌های من':
-						$response = menu_my::my();
-						break;
+					$response = menu_my::my();
+					break;
 
 					case 'نظرسنجی‌های موجود':
-						$response = menu_my::mypolls();
-						break;
+					$response = menu_my::mypolls();
+					break;
 
 					case 'نظرسنجی‌های سرشمار':
-						$response = step_sarshomar::start();
-						break;
+					$response = step_sarshomar::start();
+					break;
 
 					default:
-						break;
+					break;
 				}
 				break;
 
-			case '/psychology':
-			case 'psychology':
-			case 'روانشناسی':
+				case '/psychology':
+				case 'psychology':
+				case 'روانشناسی':
 				$response = menu_psychology::psychology();
 				break;
 
-			case '/civility':
-			case 'civility':
-			case 'مردمی':
+				case '/civility':
+				case 'civility':
+				case 'مردمی':
 				$response = menu_civility::civility();
 				break;
 
-			case '/profile':
-			case 'profile':
-			case 'پروفایل':
+				case '/profile':
+				case 'profile':
+				case 'پروفایل':
 				$response = menu_profile::profile();
 				break;
 
-			case '/feedback':
-			case 'feedback':
-			case 'ثبت':
-			case 'ثبت بازخورد':
+				case '/feedback':
+				case 'feedback':
+				case 'ثبت':
+				case 'ثبت بازخورد':
 				step::set('menu', menu::main(true));
 				$response = \lib\telegram\commands\step_feedback::start();
 				break;
 
-			case 'return':
-			case 'back':
-			case T_('🔙 Back'):
-			case 'بازگشت':
+				case 'return':
+				case 'back':
+				case T_('🔙 Back'):
+				case 'بازگشت':
 				switch ($_cmd['text'])
 				{
 					case 'بازگشت به منوی نظرسنجی‌ها':
-						$response = menu::polls();
-						break;
+					$response = menu::polls();
+					break;
 
 					case T_('🔙 Back'):
-						$response = menu::main();
-						break;
+					$response = menu::main();
+					break;
 
 					default:
-						$response = menu::main();
-						break;
+					$response = menu::main();
+					break;
 				}
 				break;
 
-			default:
+				default:
 				break;
+			}
 		}
-		if(array_key_exists('inline_query', bot::$hook))
+		elseif(array_key_exists('inline_query', bot::$hook))
 		{
 			$response = inline_query::start(bot::$hook['inline_query']);
 		}
@@ -174,18 +188,24 @@ class handle
 				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
 			}
 		}
-		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
+		self::send_log($response);
+		return $response;
+	}
+
+	public static function send_log($_log)
+	{
+		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/send.json"))
 		{
-			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/log.json");
+
+			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/send.json");
 			$json = json_decode($file, true);
 			if(!is_array($json))
 			{
 				$json = [];
 			}
-			array_unshift($json, $response);
-			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
+			array_unshift($json, $_log);
+			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
-		return $response;
 	}
 }
 ?>
