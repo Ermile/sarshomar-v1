@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.6.1
+ * Version: 2.6.2
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -32,8 +32,8 @@ header #header-quick{}
 header #header-quick a{position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
 /* header logo*/
 header .logo{position:relative;float:left;padding:10px 20px 10px 10px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;text-align:center;height:120px;width:300px;}
-header .logo img{width:80px;transition:all 0.2s;}
-header .logo h1{line-height:1.5em;font-size:1.8em;margin-bottom:0;vertical-align:bottom;color:#f4f4f4;border-bottom:none;display:inline-block;font-weight:700;}
+header .logo img{width:70px;transition:all 0.2s;}
+header .logo h1{line-height:1.5em;font-size:1.6em;margin-bottom:0;vertical-align:bottom;color:#f4f4f4;border-bottom:none;display:inline-block;font-weight:700;}
 header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo:hover img{opacity:0.9}
 header .logo h1:hover{color:#fff;}
@@ -115,6 +115,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 /************************************************************** Chart... */
 .chart {direction:ltr}
 .chart * {font-family: IRANSans, Tahoma, sans-serif}
+header .chart h3 a{color:#777}
 .rtl .chart{text-align:right;}
 .highcharts-title {fill: #434348;font-weight: bold;}
 

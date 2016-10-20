@@ -106,7 +106,8 @@ class model extends \mvc\model
 					'پرسپولیس',
 					'تراکتورسازی',
 					'نفت تهران',
-					'سپاهان'
+					'سپاهان',
+					'ملوان',
 				];
 				$name   = "تیم ها";
 
@@ -120,7 +121,8 @@ class model extends \mvc\model
 					'Bayern Munich',
 					'Liverpool',
 					'Real Madrid',
-					'Barcelona'
+					'Barcelona',
+					'Juventus',
 				];
 				$name   = "teams";
 
@@ -139,7 +141,8 @@ class model extends \mvc\model
 							$this->rnd(),
 							$this->rnd(),
 							$this->rnd(),
-							$this->rnd()
+							$this->rnd(),
+							$this->rnd(),
 						],
 					]
 				], JSON_UNESCAPED_UNICODE)
