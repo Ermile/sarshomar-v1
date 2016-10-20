@@ -1,0 +1,75 @@
+{%extends display.main%}
+
+{%block content%}
+<div class="main">
+<form method="post">
+  <div class="row">
+    <div class="span4"></div>
+    <div class="span4">
+      <div class="element">
+        <label class="addon" for="short_url">{%trans "Short URL"%}</label>
+        <input class="input text-left" type="text" id="short_url" value="{{short_url}}" readonly="readonly">
+        <span class="addon btn">
+          <a href="{{short_url}}" target="_blank" data-direct>
+            <button>{%trans "Preview"%}</button>
+          </a>
+        </span>
+      </div>
+      <div class="element">
+        <label class="addon" for="cat">{%trans "Category"%}</label>
+         <select class="input" name="cat" id="cat">
+            {%for key, value in cat%}
+              {%if key == 0%}
+                <option value="">{%trans "Please Select One Item"%}</option>
+              {%endif%}
+              <option value="{{value.id}}">{{value.term_title|raw}}</option>
+            {%endfor%}
+          </select>
+      </div>
+
+      <div class="element">
+        <label class="addon" for="article">{%trans "Article"%}</label>
+        <select class="input" name="article" id="article">
+          {%for key, value in article%}
+            {%if key == 0%}
+              <option value="">{%trans "Please Select One Item"%}</option>
+            {%endif%}
+            <option value="{{value.id}}">{{value.title|raw}}</option>
+          {%endfor%}
+        </select>
+      </div>
+
+
+      <div class="element">
+        <label class="addon">{%trans "Start Time"%}</label>
+        <input class="input" type="text" name="start_time">
+      </div>
+
+      <div class="element">
+        <label class="addon">{%trans "End Time"%}</label>
+        <input class="input" type="text" name="end_time">
+      </div>
+
+      <div class="element">
+        <label class="addon" for="tags">{%trans "Tags"%}</label>
+        <input class="input" type="text" name="tags" id="tags">
+        <span class="addon btn tag-add-btn">
+          <button>{%trans "Add"%}</button>
+        </span>
+      </div>
+
+      <div class="tags">
+      </div>
+    </div>
+
+    <div class="buttons center">
+      <button>{%trans "Publish"%}</button>
+    </div>
+  </div>
+</form>
+</div><!-- /.main -->
+{%endblock%}
+
+{%block foot_js%}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+{%endblock%}

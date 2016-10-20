@@ -17,9 +17,9 @@ class controller extends \mvc\controller
 		/**
 		 * route url like 4dgF/add to add folder
 		 */
-		if(preg_match("/^(.*)\/(add|filter|publish)$/", \lib\router::get_url()))
+		if(preg_match("/^(.*)\/(add|filter|publish)$/", \lib\router::get_url(), $controller_name))
 		{
-			\lib\router::set_controller("\\content_u\\add\\controller");
+			\lib\router::set_controller("\\content_u\\$controller_name[2]\\controller");
 			return ;
 		}
 
