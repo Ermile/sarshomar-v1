@@ -3,6 +3,9 @@
 {%block head_css%}
 <style type="text/css">
 .poll-chart svg > rect {fill:transparent;}
+.a-active {
+  background-color: #e5a428 !important;
+}
 </style>
 {%endblock%}
 
@@ -23,27 +26,23 @@
           <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
         </nav><!-- /.social -->
 
-        <h5 class="next-url">
-        {% if next_url %}
-          <a href="{{base.url}}/{{next_url}}" data-direct>سوال بعدی</a>
-        {% endif %}
-        </h5>
-
-        <h5 class="previous-url">
-        {% if previous_url %}
-          <a href="{{base.url}}/{{previous_url}}" data-direct>سوال قبلی</a>
-        {% endif %}
-        </h5>
-
         <div class="description"><p>{{post.post_content}}</p></div>
 
         <div class="opt">
         {%for key, value in post.post_meta.opt%}
-          <div><span>{{key + 1}}</span><a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a></div>
+          <div>
+            <span>{{key + 1}}</span>
+            <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
+          </div>
         {%endfor%}
         </div>
         {% if post.post_meta.opt %}
-        <div><a class="answer-link" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a></div>
+        <div class="btn-answers">
+          <a class="save-anwser" style="color: black; cursor: pointer; border-radius: 5px; background: #e5a428; padding: 20px;">ثبت رای</a>
+          <br>
+          <br>
+        <a class="answer-link" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
+        </div>
         {%endif%}
 
         {%if article%}
@@ -267,7 +266,19 @@
 
 {%block foot_js%}
 <script>
+
 $(".answer-link").click(function(){
+    $(".save-anwser").attr("data-id", $(this).attr("data-id"));
+    $(".save-anwser").attr("data-key", $(this).attr("data-key"));
+    $(".save-anwser").attr("data-text", $(this).attr("data-text"));
+    $(".answer-link").each(function(){
+      $(this).parent("div").children("span").removeClass("a-active")
+    });
+
+    $(this).parent("div").children("span").addClass("a-active");
+});
+
+$(".save-anwser").click(function(){
     $(this).ajaxify({
         ajax: {
             data: {
@@ -280,10 +291,9 @@ $(".answer-link").click(function(){
     });
 }).on("ajaxify:success", function(_xhr, _data){
     next_url = _data.msg.callback;
-
-        $("<a href='{{base.url}}/" + next_url + "' data-direct>سوال بعدی</a>").appendTo(".next-url");
+        $(".btn-answers").children().remove();
+        $("<a href='{{base.url}}/" + next_url + "' data-direct style='color: black; cursor: pointer; border-radius: 5px; background: #e5a428; padding: 20px;'>سوال بعدی</a>").appendTo(".btn-answers");
         $("div.opt").fadeOut();
-        console.log(_data.msg.callback);
 
 });
 
