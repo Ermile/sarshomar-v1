@@ -3,29 +3,16 @@
 {%block content%}
 
 {%for key, value in poll_list%}
-<a onclick="f({{value.id}})" style="cursor: pointer;">publish {{value.id}} </a>
-<h6>
-<a href="{{base.url}}/{{value.url}}">
-{{value.title}}
-</a>
-</h6>
-{{value.status}}
-<hr>
+<br>
+<br>
+<div class="main">
+	<h6>
+	<a href="{{base.url}}/{{value.url}}">
+		{{value.title}}
+	</a>
+	</h6>
+		{{value.status}}
+	<hr>
+</div>
 {%endfor%}
-<script type="text/javascript">
-	function f(_poll_id)
-	{
-		$.ajax({
-	        type: 'post',
-	        url: '@/knowledge',
-	        data: {
-	            'poll_id': _poll_id,
-	            'type': 'publish'
-	        },
-	        success: function(data) {
-	            console.log(data);
-	        }
-    	});
-	}
-</script>
 {%endblock%}

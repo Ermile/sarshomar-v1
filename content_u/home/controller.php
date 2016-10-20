@@ -9,6 +9,11 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
+		if(substr(\lib\router::get_url(),0,1) == '$')
+		{
+			\lib\router::set_controller("\\content_u\\knowledge\\controller");
+			return ;
+		}
 		/**
 		 * route url like 4dgF/add to add folder
 		 */

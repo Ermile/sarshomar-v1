@@ -17,12 +17,7 @@ class model extends \mvc\model
 			$page = $page[0];
 		}
 
-		$user = $_args->get("user");
-		if($user)
-		{
-			$user = $user[0];
-		}
-
+		$user = $this->login("id");
 
 		$type = $_args->get("type");
 		if($type)
