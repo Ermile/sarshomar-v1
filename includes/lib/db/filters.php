@@ -149,6 +149,7 @@ class filters
 		";
 		$result = \lib\db::get($query);
 
+
 		$filters = [];
 		foreach ($result as $key => $value)
 		{
@@ -167,7 +168,27 @@ class filters
 				array_push($filters[$cat][$value['key']], $value['value']);
 			}
 		}
-		return $filters;
+
+		// for sort categories
+		$sort =
+		[
+			"public",
+			"education",
+			"family",
+			"job",
+			"location",
+			"favorites",
+			"other"
+		];
+		$sorted_filter = [];
+		// sort filter by sort array
+		foreach ($sort as $key => $value) {
+			if(isset($filters[$value]))
+			{
+				$sorted_filter[$value] = $filters[$value];
+			}
+		}
+		return $sorted_filter;
 	}
 
 
@@ -240,6 +261,11 @@ class filters
 	 */
 	public static function count_filtered_member($_args)
 	{
+		// we support 5 filter
+		if(count($_args) > 5)
+		{
+			return false;
+		}
 		// we muse for every filter join to get num of all
 		$join     = [];
 		$where    = [];

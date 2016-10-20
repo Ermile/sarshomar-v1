@@ -211,29 +211,34 @@ class model extends \mvc\model
 	 */
 	public function insert_poll($_options = [])
 	{
-		// db poll type
-		// we just support this poll type
-		$db_poll_type = ['select','notify','text','upload','star','number','media_image','media_video','media_audio','order'];
 		// get poll_type
 		$poll_type    = utility::post("poll_type");
+		// swich html name and db name of poll type
 		switch ($poll_type) {
 			case 'multiple_choice':
 				$poll_type = 'select';
 				break;
+
 			case 'descriptive':
 				$poll_type = 'text';
 				break;
+
 			case 'notification':
 				$poll_type = 'notify';
 				break;
+
 			case 'upload':
 				$poll_type = 'upload';
+				break;
+
 			case 'starred':
 				$poll_type = 'star';
 				break;
+
 			case 'numerical':
 				$poll_type = 'number';
 				break;
+
 			case 'sort':
 				$poll_type = 'order';
 				break;
@@ -504,29 +509,58 @@ class model extends \mvc\model
 	public function post_filter($_args)
 	{
 		// get filter
-		$filter = array_filter(utility::post());
-
+		// remove empty filters in post
+		$post = array_filter(utility::post());
+		$filter = [];
+		// get the post started by 'filter_' string
+		foreach ($post as $key => $value) {
+			if(preg_match("/^filter\_(.*)$/", $key, $name))
+			{
+				$filter[$name[1]] = $value;
+			}
+		}
+		// very filter seleced
+		if(count($filter) > 5)
+		{
+			debug::error(T_("oops, too many filters. remove some filter"));
+			return false;
+		}
 		// get count member by tihs filter
 		$count_filtered_member = \lib\db\filters::count_filtered_member($filter);
 
+		debug::warn(T_(":max members founded",["max" => $count_filtered_member]));
+
 		if($count_filtered_member < 1)
 		{
-			debug::error(T_("max = $count_filtered_member and this is less than 100, remove some filter"));
+			debug::error(T_("max = :max and this is less than 100, remove some filter",["max" => $count_filtered_member]));
 			return false;
 		}
-
+		// get the poll or survey id
 		$poll_id = $this->check_poll_url($_args);
 
+		if(!$poll_id)
+		{
+			debug::error(T_("poll id not found"));
+			return false;
+		}
+		// ready to insert filters in options table
 		$args = [];
 		foreach ($filter as $key => $value) {
-			$args[$key] = $value;
+			$args[] =
+			[
+				'post_id'      => $poll_id,
+				'option_cat'   => "poll_$poll_id",
+				'option_key'   => $key,
+				'option_value' => $value,
+				'option_meta'  => null
+			];
 		}
-
-		$result = \lib\db\filters::insert($poll_id, $args);
+		$result = \lib\db\options::insert_multi($args);
 		if(!$result)
 		{
 			$result = \lib\db\options::update_on_error($args);
 		}
+
 		if($result)
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
@@ -549,6 +583,7 @@ class model extends \mvc\model
 	 */
 	function get_publish($_args)
 	{
+		// get poll url to show in publish form
 		$short_url = \lib\db\polls::get_poll_url($this->check_poll_url($_args));
 		return $short_url;
 		// check users to load cat and article
@@ -567,7 +602,7 @@ class model extends \mvc\model
 		$poll_survey_id = $this->check_poll_url($_args);
 		if(!$poll_survey_id)
 		{
-			debug::error(T_("id not found"));
+			debug::error(T_("poll id not found"));
 			return false;
 		}
 

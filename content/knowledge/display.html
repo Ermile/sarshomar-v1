@@ -1,5 +1,11 @@
 {%extends display.main%}
 
+{%block head_css%}
+<style type="text/css">
+.poll-chart svg > rect {fill:transparent;}
+</style>
+{%endblock%}
+
 {%block content%}
 <div class="row question-box">
   <div class="container">
@@ -297,12 +303,8 @@ function bookmark(_poll_id) {
 }
 $('.poll-chart').highcharts(load_chart('result'));
 
-$(".results-box a").click(function(){
+$(".tabs li").click(function(){
     type = $(this).attr("chart-type");
-    $(".results-box a").each(function(){
-        $(this).removeClass("active");
-    });
-    $(this).addClass("active");
     $('.poll-chart').highcharts(load_chart(type));
 });
 
