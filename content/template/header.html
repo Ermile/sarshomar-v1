@@ -1,13 +1,19 @@
-<header>
-	<nav>
-        <a href="{{url.base}}">{%trans "Home"%}</a>
-        <a href="{{url.base}}help">{%trans "Help"%}</a>
-        <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
-        <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
-    </nav>
-    <a href="{{url.base}}" class="logo">
-        <img src="{{url.static}}images/logo.svg">
-        <h1>{%trans "Sarshomar"%}</h1>
-    </a>
-    <span class="page-title">{{page.title}}</span>
-</header>
+  <header>
+   <a href="{{url.base}}" class="logo">
+    <img src="{{url.static}}images/logo.svg" alt='{{site.title}} | {{site.desc}}'>
+    <h1>{{site.title}}</h1>
+    <h2>{{site.slogan}}</h2>
+   </a>
+   <nav>
+    <a href="{{url.base}}">{%trans "Home"%}</a>
+    <a href="{{url.base}}help">{%trans "Help"%}</a>
+    <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
+    <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
+   </nav>
+   <span class="page-title">{{page.title}}</span>
+
+   <div class="chart-random">
+    <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
+    <div class="chart top-chart column"></div>
+   </div>
+  </header>

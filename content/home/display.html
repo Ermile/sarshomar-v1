@@ -1,22 +1,6 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="row chart-box">
-    <div class="container">
-        <div class="row auto">
-            <div class="span4 logotype">
-                <img src="{{url.static}}images/logo.svg" class="logo">
-                <h1>{%trans "Sarshomar"%}</h1>
-                <h2>نگرشی نو به نظرسنجی</h2>
-            </div>
-            <div class="span8">
-                <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
-                <div class="chart top-chart column"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="row map-box">
     <div class="container">
         <div class="row">

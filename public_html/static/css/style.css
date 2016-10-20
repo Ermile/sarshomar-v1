@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.4.4
+ * Version: 2.5.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -14,9 +14,9 @@ body{background-color:#00667a;}
 .wrapper::before, .wrapper::after{display:table;content:"";}
 /*.wrapper > .row{clear:both;}*/
 .wrapper > .main{padding-top:5em;}
-.chart-box{padding-top:4em;padding-bottom:4em;}
+.chart-random{width:auto;overflow:hidden;}
+.chart-random h3{margin-bottom:-0.5em;}
 .logotype{text-align:center;}
-.chart-box h3{margin-bottom:-0.5em;}
 .logotype img{width:60%;}
 .logotype h1{font-size:3em;font-weight:700;line-height:2em;margin-bottom:0;color:#3e96ae;}
 .logotype h2{font-size:2.5em;font-weight:700;color:#434348;}
@@ -24,24 +24,38 @@ body{background-color:#00667a;}
 .main{margin:0 20px;}
 
 /************************************************************** header */
-header{position: relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
-.rtl header{border-right:none;border-left:8px solid transparent;}
-header::before{display: table;content: "";position:absolute;width:126px;height:126px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-18px;margin-left:-10px;}
-.rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-10px;}
-header::after{display: table;content: "";clear: both;}
-header > nav{display:inline-block;}
-header > nav > a{font-size:1.3em;position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
-header > nav > a:not(:first-child){padding-top:0.1em;}
-header > nav > a:hover{color:#777;}
-header > .logo{position:relative;float:left;padding:15px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;}
-.rtl header > .logo{float:right;border-right:none;border-left:8px solid transparent;}
-header > .logo > img{width:5em;transition:all 0.2s;}
-#home header > .logo > img{width:7em;}
-header > .logo > h1{font-size:2em;line-height:1;display:inline-block;margin-bottom:0;vertical-align:super;color:#f4f4f4;border-bottom:none;}
-header > .page-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
-header > .page-title::before{content:"";position:absolute;background-image:url(../images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
-header > .page-title::after{content:"";position:absolute;background-image:url(../images/svg/up1.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;left:100%;}
+header{position:relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;font-size:1.4em;}
+header::before{display:table;content:"";position:absolute;width:126px;height:126px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-18px;margin-left:-10px;}
+header::after{display:table;content:"";clear:both;}
+/* header nav */
+header nav{display:inline-block;}
+header nav a{position:relative;display:block;padding:0 1.5em;text-decoration:none;color:#035261;outline:none;}
+header nav a:not(:first-child){padding-top:0.1em;}
+header nav a:hover{color:#777;}
+/* header logo*/
+header .logo{position:relative;float:left;padding:1em 2em 1em 1em;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;text-align:center;height:120px}
+header .logo img{width:5em;transition:all 0.2s;}
+header .logo h1{line-height:1.5em;font-size:1.8em;margin-bottom:0;vertical-align:super;color:#f4f4f4;border-bottom:none;display:inline-block;}
+header .logo h2{line-height:1;font-size:1.2em;color:#f4f4f4;display:none}
+/* header page title*/
+header .page-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
+header .page-title::before{content:"";position:absolute;background-image:url(../images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
+header .page-title::after{content:"";position:absolute;background-image:url(../images/svg/up1.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;left:100%;}
 
+/* header chart*/
+.chart-random{display:none}
+/* header in homepage*/
+#home .chart-random{display:block}
+#home header nav a{display:inline-block;padding:1em 1.5em;}
+#home header .logo{height:400px;width:300px}
+#home header .logo img{width:240px;display:block;margin:0 auto;}
+#home header .logo h1{display:block;line-height:2.2em;font-size:2.2em;font-weight:700;}
+#home header .logo h2{display:block}
+#home header .page-title{display:none}
+/* rtl design */
+.rtl header{border-right:none;border-left:8px solid transparent;}
+.rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-10px;}
+.rtl header .logo{float:right;border-right:none;border-left:8px solid transparent;padding:1em 1em 1em 2em;}
 
 /************************************************************** footer */
 footer{border-top:8px solid transparent;background-color:#083942;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;}
@@ -53,7 +67,7 @@ footer #footer-nav a:hover{color:#fff;}
 footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%;}
 footer #footer-nav .eco img{height:100%;padding-top:5px;}
 /* footer-links */
-footer #footer-links{font-size: 1.4em;margin-bottom:1em;border-bottom:1px solid #e5a428;padding-bottom:1em;}
+footer #footer-links{font-size:1.4em;margin-bottom:1em;border-bottom:1px solid #e5a428;padding-bottom:1em;}
 footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:0.3em;font-size:1.1em}
 footer #footer-links a{display:block;margin-bottom:0.2em;color:#888;}
 footer #footer-links a:hover{color:#aaa;}
@@ -95,7 +109,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #trust p:before{position:absolute;right:0;bottom:-0.5em;width:100%;height:0.2em;content:'';border-radius:1em;background-color:#20a286;}
 
 /************************************************************** Chart... */
-.chart {direction: ltr}
+.chart {direction:ltr}
 .chart * {font-family: IRANSans, Tahoma, sans-serif}
 .highcharts-title {fill: #434348;font-weight: bold;}
 
@@ -110,7 +124,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .column .highcharts-series rect:nth-child(7){fill:#009ece;}
 .column .highcharts-series rect:nth-child(8){fill:#0694c9;}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif;}
-.top-chart{min-width:300px;height:400px;margin:0 auto}
+.top-chart{min-width:300px;height:300px;margin:0 auto}
 .highcharts-data-labels text{text-shadow:none!important;opacity:0.3;}
 .top-chart .highcharts-data-labels text{text-shadow:none!important;font-size:2em!important;opacity:0.3;}
 
@@ -120,7 +134,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 /************************************************************** Next... */
 
 /* map wrapper */
-.map-box{padding-top:6em;padding-bottom:1em;background-color:#e7e7e7;}
+.map-box{padding-top:6em;padding-bottom:1em;background-color:#f4f4f4;}
 .map-box h4{font-size:2em;}
 
 /* poll comments */
