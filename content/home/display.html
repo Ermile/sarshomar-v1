@@ -10,9 +10,9 @@
             <div class="span5">
                 <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
             </div>
-            <div class="span7">
+            <div class="span7 chart">
                 <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
-                <div class="chart age-chart"></div>
+                <div class="age-chart"></div>
             </div>
             {% endif %}
         </div>
@@ -145,7 +145,7 @@ var topChartOptions =
     title:{text:""},
     xAxis:{categories:{{result['random_result']['categories']|raw}}},
     yAxis:{min:0,title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
-    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},series:{dataLabels:{enabled: true,format:'{point.y:f}%'}},inside:true},
+    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},series:{dataLabels:{enabled:false,format:'{point.y:f}%'}},inside:true},
     legend:{enabled:false},
     credits:{enabled:false},
     tooltip:{enabled:false},
@@ -170,8 +170,8 @@ var newChartOptions =
 };
 
 $(function() {
-    $('.top-chart').highcharts(topChartOptions);
-    $('.age-chart').highcharts(newChartOptions);
+    $('header .chart > div').highcharts(topChartOptions);
+    $('.map-box .chart > div').highcharts(newChartOptions);
 
     var hoverOrClick = function() {
         var tab_id = $(this).attr('data-tab');
