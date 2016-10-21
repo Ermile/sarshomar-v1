@@ -1,9 +1,9 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 700 345">
     <style>
         #world-map-g path {
-            fill: #EDEDED;
-            stroke: #6E6E6E;
-            stroke-width: 0.2;
+            fill: #a3b7bb;
+            stroke: #ffffff;
+            stroke-width: 0.1;
             transition: all 0.3s ease;
         }
         #world-map-g path:hover {

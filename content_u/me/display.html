@@ -12,6 +12,8 @@
 .margin-bottom{margin-bottom:2em;}
 #me .title-line::before{width:180px;}
 #me .title-line.reverse::before{left:-50px;}
+.addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
+.addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
 </style>
 {%endblock%}
 
@@ -47,6 +49,12 @@
                 <div class="element">
                   <label class="addon" for="name">{%trans "Name"%}</label>
                   <input class="input" type="text" name="name" id="name" value="{{me.name}}">
+                  <span class="addon btn save">
+                    <button>{%trans "Save"%}</button>
+                  </span>
+                  <span class="addon btn">
+                    <button>{%trans "Cancel"%}</button>
+                  </span>
                 </div>
 
                 <div class="element">
@@ -57,6 +65,12 @@
                 <div class="element">
                   <label class="addon" for="displayname">{%trans "Display Name"%}</label>
                   <input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}">
+                  <span class="addon btn save">
+                    <button>{%trans "Save"%}</button>
+                  </span>
+                  <span class="addon btn cancel">
+                    <button>{%trans "Cancel"%}</button>
+                  </span>
                 </div>
 
                 <div class="element">
@@ -233,4 +247,10 @@
 {%endblock%}
 
 {%block foot_js%}
+<script type="text/javascript">
+$('.addon.btn.cancel button').click(function(){
+  window.location.reload();
+  return false;
+});
+</script>
 {%endblock%}
