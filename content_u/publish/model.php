@@ -59,8 +59,8 @@ class model extends \content_u\home\model
 			$useage = \lib\db\termuseage::insert_multi($useage_arg);
 		}
 
-		$date_start = utility::post("date_start");
-		$date_end   = utility::post("date_end");
+		$date_start = utility::post("start_time");
+		$date_end   = utility::post("end_time");
 
 		// set publish date
 		$publish_date = [];
