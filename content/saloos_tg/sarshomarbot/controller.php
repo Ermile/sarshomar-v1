@@ -19,7 +19,9 @@ class controller extends \lib\mvc\controller
 			bot::$name        = 'sarshomarbot';
 			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
 			bot::$defaultText = T_('Undefined');
-			bot::$defaultMenu = commands\menu::main(true);
+			bot::$defaultMenu = function(){
+				return commands\menu::main(true);
+			};
 			bot::$once_log	  = false;
 			bot::$fill        =
 			[
