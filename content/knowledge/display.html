@@ -27,22 +27,63 @@
         </nav><!-- /.social -->
 
         <div class="description"><p>{{post.post_content}}</p></div>
-
         <div class="opt">
-        {%for key, value in post.post_meta.opt%}
-          <div>
-            <span>{{key + 1}}</span>
-            <a class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}" style="cursor:pointer">{{value.txt}}</a>
-          </div>
-        {%endfor%}
-        </div>
         {% if post.post_meta.opt %}
-        <div class="btn-answers">
-          <a class="save-anwser" style="color: black; cursor: pointer; border-radius: 5px; background: #e5a428; padding: 20px;">ثبت رای</a>
-          <br>
-          <br>
-        <a class="save-anwser" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
-        </div>
+          {% if multiple_choice %}
+          <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+            <ul>
+             {%for key, value in post.post_meta.opt%}
+              <li>
+                <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}">
+                <label for="check_{{value.key}}">{{value.txt}}</label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endfor%}
+
+            {% if descriptive %}
+              <li>
+                <input type="checkbox" id="check_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
+                <label for="check_other"><input type="text" ></label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endif%}
+            </ul>
+          </div>
+          {%else%}
+          <div class="ac-custom ac-radio ac-fill" autocomplete="off">
+            <ul>
+            {%for key, value in post.post_meta.opt%}
+              <li>
+                <input type="radio" name="r1" id="radio_{{value.key}}" class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}">
+                <label for="radio_{{value.key}}">{{value.txt}}</label>
+                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endfor%}
+            {% if descriptive %}
+            <li>
+                <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
+                <label for="radio_other">{{value.txt}}</label>
+                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endif%}
+            </ul>
+          </div>
+          {%endif%}
+          <div class="buttons">
+            <nav class="btn-answers">
+              <button class="save-anwser">ثبت رای</button>
+            </nav>
+          </div>
+          <a class="save-anwser" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
+          </div>
+        {%else%}
+          {%if next_url%}
+            <div class="buttons">
+              <nav class="btn-answers">
+                <button class="save-anwser"><a href="{{base.url}}/{{next_url}}" style="color:black;">سوال بعدی</a></button>
+              </nav>
+            </div>
+          {%endif%}
         {%endif%}
 
         {%if article%}
@@ -271,11 +312,6 @@ $(".answer-link").click(function(){
     $(".save-anwser").attr("data-id", $(this).attr("data-id"));
     $(".save-anwser").attr("data-key", $(this).attr("data-key"));
     $(".save-anwser").attr("data-text", $(this).attr("data-text"));
-    $(".answer-link").each(function(){
-      $(this).parent("div").children("span").removeClass("a-active")
-    });
-
-    $(this).parent("div").children("span").addClass("a-active");
 });
 
 $(".save-anwser").click(function(){
@@ -292,8 +328,8 @@ $(".save-anwser").click(function(){
 }).on("ajaxify:success", function(_xhr, _data){
     next_url = _data.msg.callback;
         $(".btn-answers").children().remove();
-        $("<a href='{{base.url}}/" + next_url + "' data-direct style='color: black; cursor: pointer; border-radius: 5px; background: #e5a428; padding: 20px;'>سوال بعدی</a>").appendTo(".btn-answers");
-        $("div.opt").fadeOut();
+        $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
+        // $("div.opt").fadeOut();
 
 });
 
@@ -400,5 +436,7 @@ $(function() {
         $(".content.absolute-content").removeClass("absolute-content");
     });
 });
+
 </script>
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {%endblock%}

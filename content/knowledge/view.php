@@ -121,29 +121,45 @@ class view extends \mvc\view
 			$this->data->similar = $similar;
 			// get post status to show in html page
 			$this->data->status = $post['post_status'];
-
 			// compile meta of this post
 			$meta = [];
 			foreach ($post['meta'] as $key => $value) {
 				switch ($value['option_key']) {
 					// ignore opt_1, opt_2, ...
 					case substr($value['option_key'], 0,3) == "opt":
-					case "meta":
 						continue;
 						break;
+
 					// show article
 					case "article":
 						$this->data->article = \lib\db\polls::xget(['id' => $value['option_value'], 'post_type' => 'article']);
 						break;
+
 					// get start date of publish this poll
 					case "date_start":
 						$this->data->date_start = $value['option_value'];
 						break;
+
 					// get end date of publish this poll
 					case "date_end":
 						$this->data->date_end = $value['option_value'];
 						break;
+					case "meta":
+						switch ($value['option_value']) {
+							case "multiple_choice":
+								$this->data->multiple_choice = true;
+								break;
 
+							case "descriptive":
+								$this->data->descriptive = true;
+								break;
+
+							case "random_sort":
+								$this->data->random_sort = true;
+								break;
+						}
+						break;
+					// case "true_answer":
 					default:
 						$meta[$value['option_key']] = $value['option_value'];
 						break;
