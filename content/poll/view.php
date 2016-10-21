@@ -47,6 +47,10 @@ class view extends \mvc\view
 
 	public function view_poll($_args)
 	{
+		// get the descriptive from meta of poll
+		// for evry poll
+		unset($_SESSION['descriptive']);
+
 		// check login to load option or no
 		// check answeret to this poll or no
 
@@ -152,10 +156,23 @@ class view extends \mvc\view
 
 							case "descriptive":
 								$this->data->descriptive = true;
+								$_SESSION['descriptive'] = true;
 								break;
 
 							case "random_sort":
-								$this->data->random_sort = true;
+								if(isset($post['post_meta']['opt']))
+								{
+									$keys = array_keys($post['post_meta']['opt']);
+
+							        shuffle($keys);
+
+							        foreach($keys as $key)
+							        {
+							        	$new[$key] = $post['post_meta']['opt'][$key];
+							        }
+
+							        $post['post_meta']['opt'] = $new;
+								}
 								break;
 						}
 						break;

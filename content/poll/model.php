@@ -69,7 +69,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				\lib\debug::error(T_("poll id not match whit your last question"));
+				\lib\debug::error(T_("poll id not match with your last question"));
 				return false;
 			}
 		}
@@ -114,7 +114,7 @@ class model extends \mvc\model
 			{
 				foreach ($_SESSION['last_poll_opt'] as $key => $value)
 				{
-					if((isset($value['key']) && $value['key'] == $answer_key) || $answer_key == "opt_0" )
+					if((isset($value['key']) && $value['key'] == $answer_key) || $answer_key == "opt_0"  )
 					{
 						$check = true;
 					}
