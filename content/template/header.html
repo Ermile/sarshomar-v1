@@ -1,23 +1,26 @@
   <header>
-   <a href="{{url.base}}" class="logo">
-    <img src="{{url.static}}images/logo.svg" alt='{{site.title}} | {{site.desc}}'>
+   <a href='{{url.base}}' class='logo'>
+    <img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'>
     <h1>{{site.title}}</h1>
     <h2>{{site.slogan}}</h2>
    </a>
    <div id='header-box'>
     <div id='header-top'>
-     <nav id='header-quick'>
-      <a href="{{url.base}}">{%trans "Home"%}</a>
-      <a href="{{url.base}}help">{%trans "Help"%}</a>
-      <a href="{{url.base}}login" data-direct>{%trans "Login"%}</a>
-      <a href="{{url.base}}signup" data-direct>{%trans "Register"%}</a>
+     <nav id='header-quick' role='navigation'>
+      <a href='{{url.base}}features'>{%trans "Features"%}</a>
+      <a href='{{url.base}}$'>{%trans "Knowledge"%}</a>
+      <a href='{{url.base}}help'>{%trans "Help"%}</a>
      </nav>
-     <span class="header-title">{{page.title}}</span>
+     <nav id='header-profile'>
+      <a href='{{url.base}}login' data-direct class='login'>{%trans "Login"%}</a>
+      <a href='{{url.base}}signup' data-direct class='register'>{%trans "Register"%}</a>
+     </nav>
+     <span class='header-title' data-xhr='header-title'>{{page.title}}</span>
     </div>
 
-    <div class="chart">
-     <h3><a href="{{result['random_result']['url']}}">{{result['random_result']['title']|trim('\"')}}</a></h3>
-     <div class="column palette{{(random(6)) + 1}}"></div>
+    <div class='chart'>
+     <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
+     <div class='column palette{{(random(6)) + 1}}'></div>
     </div>
    </div>
   </header>
