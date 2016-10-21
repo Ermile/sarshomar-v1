@@ -540,10 +540,10 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .features .span4 p{padding:10px 30px;color:#666;text-align:right}
 .features h2{text-align:center;margin-top:25px;margin-bottom:28px;color:#666;font-weight:600;font-size:3em}
 .features h2 strong,.our-opportunity h2 strong{color:#10A1A6;font-weight:900;border-bottom:5px solid #10A1A6}
-.features li img{width:100%;padding:63px;padding-top:50px;}
-.features li {-webkit-perspective: 400px; perspective: 400px;}
 .features ul{padding:0;margin:0 0 50px}
 .features ul:after{content:"";display:table;clear:both}
+.features li img{width:100%;padding:63px;padding-top:50px;}
+.features li {-webkit-perspective: 400px; perspective: 400px;}
 .features li{position:relative;width:250px;height:250px;margin:5px;padding:0;list-style:none;display: inline-block; overflow:hidden;}
 .features li a{display:inline-block;vertical-align:top;text-decoration:none;border-radius:4px}
 .features li h3{font-weight: 500;margin: 0;font-size: 16px;color: rgba(255,255,255,0.9);position: absolute;bottom: 10px; right:0; left:0; font-size: .27em; font-weight:700; }
