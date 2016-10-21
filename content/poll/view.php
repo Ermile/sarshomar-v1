@@ -161,7 +161,12 @@ class view extends \mvc\view
 						break;
 					// case "true_answer":
 					default:
-						$meta[$value['option_key']] = $value['option_value'];
+						$meta[$value['option_key']] =
+							[
+								'filter' => $value['option_value'],
+								'icon'   => self::find_icon($value['option_key'])
+							];
+
 						break;
 				}
 			}
@@ -173,6 +178,69 @@ class view extends \mvc\view
 			// post url not found
 			\lib\error::bad("Not found");
 		}
+	}
+
+
+	/**
+	 * find fontawesome icon
+	 *
+	 * @param      <type>  $_filter  The filter
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function find_icon($_filter)
+	{
+		switch ($_filter) {
+
+			case 'gender':
+			      $class = "venus-mars";
+			      break;
+
+			case 'marrital':
+			case 'parental':
+			      $class = "users";
+			      break;
+
+			case 'exercise':
+			case 'devices':
+			case 'internetusage':
+			      $class = "star";
+			      break;
+
+			case 'employment':
+			case 'business':
+			case 'industry':
+			      $class = "rocket";
+			      break;
+
+			case 'birthdate':
+			case 'range':
+			case 'age':
+			      $class = "circle-o-notch";
+			      break;
+
+			case 'graduation':
+			case 'course':
+			      $class = "certificate";
+			      break;
+
+			case 'countrybirth':
+			case 'country':
+			case 'provincebirth':
+			case 'province':
+			case 'birthcity':
+			case 'city':
+			case 'citybirth':
+			case 'language':
+			      $class = "map-marker";
+			      break;
+
+			default:
+				 $class = "star";
+				break;
+		}
+
+		return $class;
 	}
 
 }

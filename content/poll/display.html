@@ -264,41 +264,45 @@
 </div><!-- /.comments -->
 
 <div class="row details">
-  <div class="container">
-    <div class="row auto">
-      <h5>توضیحات</h5>
-      <div class="span6">
-        <div class="title">بازه سوال</div>
-        <div class="detail">
-          <span class="green">{{date_start}}</span>
-          <span>-</span>
-          <span class="red">{{date_end}}</span>
-        </div>
-        <div class="title">وضعیت نظرسنجی</div>
-        <div class="detail"><span class="green">{{status}}</span></div>
-        <div class="title">کلیدواژه ها</div>
-        <div class="detail tags">
-          {% for tag in post.tags %}
-          <a href="#">{{tag}}</a>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="span6 border">
-        {%if me1ta %}
-        <div class="title">جامعه آماری هدف:</div>
+    <div class="container">
         <div class="row auto">
-          <div class="span4">
-        {%endif%}
-            {%for key, value in meta%}
-            <div class="detail"><span><i class="fa fa-2x fa-venus-mars" aria-hidden="true">{{key}}</i></span> {{value}}</div>
-            {%endfor%}
-        {%if meta %}
-          </div>
+            <h5>توضیحات</h5>
+            <div class="span6">
+                <div class="title">بازه سوال</div>
+                <div class="detail">
+                    <span class="green">{{date_start}}</span>
+                    <span>-</span>
+                    <span class="red">{{date_end}}</span>
+                </div>
+                <div class="title">وضعیت نظرسنجی</div>
+                <div class="detail"><span class="green">{{status}}</span></div>
+                <div class="title">کلیدواژه ها</div>
+                <div class="detail tags">
+                    {% for tag in post.tags %}
+                      <a href="#">{{tag}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="span6 border">
+                {%if meta %}
+                <div class="title">جامعه آماری هدف:</div>
+                <div class="row auto">
+                    <div class="span4">
+                        {%for key, value in meta%}
+                        {%set filter = value.filter%}
+                        <div class="detail">
+                          <span>
+                            <i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true">
+                            </i>
+                          </span> {%trans filter%}
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+                {%endif%}
+            </div>
         </div>
-        {%endif%}
-      </div>
     </div>
-  </div>
 </div>
 
 {%endblock%}
