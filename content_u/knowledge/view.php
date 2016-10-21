@@ -23,7 +23,7 @@ class view extends \mvc\view
 			$new_poll_list[$key]['title']         = $value['title'];
 			$new_poll_list[$key]['total']         = $value['total'];
 			$new_poll_list[$key]['status']        = $value['status'];
-			$new_poll_list[$key]['type']          = $this->find_icon($value['type']);
+			$new_poll_list[$key]['type']          = self::find_icon($value['type']);
 			$new_poll_list[$key]['date_modified'] = date("Y-m-d", strtotime($value['date_modified']));
 		}
 		$this->data->poll_list = $new_poll_list;
@@ -37,7 +37,7 @@ class view extends \mvc\view
 	 *
 	 * @return     string  ( description_of_the_return_value )
 	 */
-	public function find_icon($_type = null)
+	public static function find_icon($_type = null)
 	{
 		$explode = explode('_', $_type);
 		$type = end($explode);

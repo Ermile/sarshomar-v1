@@ -144,8 +144,86 @@ class polldetails
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_type     The type
 	 */
-	public static function user_total($_user_id, $_type = null)
+	public static function user_total($_user_id, $_type = null, $_port = null, $_subport = null)
 	{
+		$port    = "";
+		$subport = "";
+
+		switch ($_type) {
+			case 'answered':
+				$opt = " AND polldetails.opt != '0' ";
+				break;
+			case 'skipped':
+				$opt = " AND polldetails.opt = '0' ";
+				break;
+			default:
+				$opt = "";
+				break;
+		}
+		if($_port)
+		{
+			$port = " AND polldetails.port = '$_port' ";
+		}
+		if($_subport)
+		{
+			$subport = " AND polldetails.subport = '$_subport' ";
+		}
+
+		$query =
+		"
+			SELECT
+				COUNT(polldetails.id) AS 'count'
+			FROM
+				polldetails
+			WHERE
+				user_id = $_user_id
+				$opt
+				$port
+				$subport
+		";
+		$result = \lib\db::get($query, 'count', true);
+		return $result;
+	}
+
+
+	/**
+	 * get count of poll the user answer to that
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function user_total_answered($_user_id, $_port = null, $_subport = null)
+	{
+		return self::user_total($_user_id, "answered", $_port, $_subport);
+	}
+
+
+	/**
+	 * get count of poll the users skipped that
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function user_total_skipped($_user_id, $_port = null, $_subport = null)
+	{
+		return self::user_total($_user_id, "skipped", $_port, $_subport);
+	}
+
+
+	/**
+	 * get count people has answered or skipped of list of poll
+	 *
+	 * @param      <type>  $_poll_ids  The poll identifiers
+	 * @param      <type>  $_type      The type
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function people($_poll_ids, $_type = null, $_port = null, $_subport = null)
+	{
+		$port    = "";
+		$subport = "";
 		switch ($_type) {
 			case 'answered':
 				$opt = " AND polldetails.opt != '0' ";
@@ -158,43 +236,13 @@ class polldetails
 				break;
 		}
 
-		$query =
-		"
-			SELECT
-				COUNT(polldetails.id) AS 'count'
-			FROM
-				polldetails
-			WHERE
-				user_id = $_user_id
-				$opt
-		";
-		$result = \lib\db::get($query, 'count', true);
-		return $result;
-	}
-
-	public static function user_total_answered($_user_id)
-	{
-		return self::user_total($_user_id, "answered");
-	}
-
-	public static function user_total_skipped($_user_id)
-	{
-		return self::user_total($_user_id, "skipped");
-	}
-
-
-	public static function people($_poll_ids, $_type = null)
-	{
-		switch ($_type) {
-			case 'answered':
-				$opt = " AND polldetails.opt != '0' ";
-				break;
-			case 'skipped':
-				$opt = " AND polldetails.opt = '0' ";
-				break;
-			default:
-				$opt = "";
-				break;
+		if($_port)
+		{
+			$port = " AND polldetails.port = '$_port' ";
+		}
+		if($_subport)
+		{
+			$subport = " AND polldetails.subport = '$_subport' ";
 		}
 
 		$poll_ids = join($_poll_ids, ",");
@@ -207,19 +255,37 @@ class polldetails
 			WHERE
 				polldetails.post_id IN ($poll_ids)
 				$opt
+				$port
+				$subport
 		";
 		$result = \lib\db::get($query, 'count', true);
 		return $result;
 	}
 
-	public static function people_answered($_poll_ids)
+
+	/**
+	 * get count of people was answered to list of poll
+	 *
+	 * @param      <type>  $_poll_ids  The poll identifiers
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function people_answered($_poll_ids, $_port = null, $_subport = null)
 	{
-		return self::people($_poll_ids, "answered");
+		return self::people($_poll_ids, "answered", $_port, $_subport);
 	}
 
-	public static function people_skipped($_poll_ids)
+
+	/**
+	 * get count of people was skipped to list of polls
+	 *
+	 * @param      <type>  $_poll_ids  The poll identifiers
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function people_skipped($_poll_ids, $_port = null, $_subport = null)
 	{
-		return self::people($_poll_ids, "skipped");
+		return self::people($_poll_ids, "skipped", $_port, $_subport);
 	}
 }
 ?>
