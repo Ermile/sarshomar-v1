@@ -287,17 +287,17 @@
                 {%if meta %}
                 <div class="title">جامعه آماری هدف:</div>
                 <div class="row auto">
-                    <div class="span4">
-                        {%for key, value in meta%}
-                        {%set filter = value.filter%}
-                        <div class="detail">
-                          <span>
-                            <i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true">
-                            </i>
-                          </span> {%trans filter%}
-                        </div>
-                        {%endfor%}
+                  {%for key, value in meta%}
+                  {%set filter = value.filter%}
+                  <div class="span6">
+                    <div class="detail">
+                      <span>
+                        <i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true">
+                        </i>
+                      </span> {%trans filter%}
                     </div>
+                    {%endfor%}
+                  </div>
                 </div>
                 {%endif%}
             </div>
