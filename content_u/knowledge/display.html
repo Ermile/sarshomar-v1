@@ -17,6 +17,7 @@
   <div class="row">
     <div class="span2"></div>
     <div class="span8">
+      {%if poll_list%}
       <div class="polls-head">
         <div>{%trans "Type"%}</div>
         <div>{%trans "Title"%}</div>
@@ -39,6 +40,10 @@
         </ul>
       {%endfor%}
       </div>
+      {%else%}
+      <div class="msg error">There is no question in database!</div>
+      <div><a href="{{base.url}}/@/add">Add now!</a></div>
+      {%endif%}
     </div>
   </div>
 </div>
