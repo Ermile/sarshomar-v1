@@ -3,7 +3,7 @@
         #ir-map-g path {
             fill: #EDEDED;
             stroke: #878787;
-            strke-width: 0.1;
+            stroke-width: 0.5;
             transition: all 0.3s ease;
         }
         #ir-map-g path:hover {

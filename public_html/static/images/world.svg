@@ -3,7 +3,7 @@
         #world-map-g path {
             fill: #a3b7bb;
             stroke: #ffffff;
-            stroke-width: 0.1;
+            stroke-width: 0.2;
             transition: all 0.3s ease;
         }
         #world-map-g path:hover {
