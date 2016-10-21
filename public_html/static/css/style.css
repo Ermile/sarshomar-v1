@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.7.2
+ * Version: 2.7.3
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -32,7 +32,7 @@ header #header-top a:hover{color:#37aaa7;}
 header #header-quick{display:inline-block;padding:10px 0 0 1em;}
 header #header-quick a{position:relative;display:block;padding:0 1.5em;}
 header #header-profile{display:inline-block;float:right;padding:10px 1em 0 0;}
-header #header-profile a{padding:1em;}
+header #header-profile a{padding:0.5em 1em;}
 header #header-profile .login{}
 header #header-profile .register{background-color:#37aaa7;border-radius:3px;color:#eee;font-weight:900;transition:0.3s;}
 header #header-profile .register:hover{background-color:#129491;color:#eee;}
