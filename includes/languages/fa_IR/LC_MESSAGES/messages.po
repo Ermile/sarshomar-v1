@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Amon - Persian\n"
 "POT-Creation-Date: 2016-10-20 13:15+0330\n"
-"PO-Revision-Date: 2016-10-20 13:18+0330\n"
+"PO-Revision-Date: 2016-10-21 17:50+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.3\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,19 +19,19 @@ msgstr ""
 
 #: content/contact/model.php:42
 msgid "email or name is empty"
-msgstr ""
+msgstr "رایانامه یا نام وارد نشده"
 
 #: content/contact/model.php:51
 msgid "content is empty"
-msgstr ""
+msgstr "لطفا "
 
 #: content/contact/model.php:66
 msgid "contact saved"
-msgstr ""
+msgstr "مخاطب ذخیره شد "
 
 #: content/contact/model.php:70
 msgid "error in save contact"
-msgstr ""
+msgstr "خطا در ذخیره‌ ی اطلاعات "
 
 #: content/home/view.php:25 content/knowledge/view.php:16
 msgid ":number Questions answered"
@@ -39,31 +39,31 @@ msgstr ":number سوال پاسخ داده شده است"
 
 #: content/knowledge/model.php:72
 msgid "poll id not match whit your last question"
-msgstr ""
+msgstr "شناسه ی نظرسنجی با سوال قبلی شما یکسان نیست "
 
 #: content/knowledge/model.php:78
 msgid "poll id not found"
-msgstr ""
+msgstr "شناسه ی نظرسنجی یافت نشد "
 
 #: content/knowledge/model.php:96
 msgid "bookmark saved"
-msgstr ""
+msgstr "نشانه ذخیره شد"
 
 #: content/knowledge/model.php:100
 msgid "error in save bookmark"
-msgstr ""
+msgstr "خطا در ذخیره ی نشانه "
 
 #: content/knowledge/model.php:129
 msgid "your answer saved"
-msgstr ""
+msgstr "پاسخ شما ذخیره شد "
 
 #: content/knowledge/model.php:135
 msgid "error in save your answer"
-msgstr ""
+msgstr "خطا در ذخیره ی پاسخ "
 
 #: content/knowledge/model.php:142
 msgid "answer key not found"
-msgstr ""
+msgstr "کلید جواد یافت نشد "
 
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:122
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:130
@@ -122,8 +122,8 @@ msgid ""
 "[_name_](https://sarshomar.com) is a modern service to give your precious "
 "opinion and help you to ask from anyone of you want."
 msgstr ""
-"[_name_](https://sarshomar.com/fa) یک سرویس مدرن برای دریافت نظرات ارزشمند "
-"شما و کمک به شما برای پرسش از هرکسی در هر جایی که مایل باشید است."
+"[_name_](https://sarshomar.com/fa) یک سرویس مدرن برای دریافت نظرات ارزشمند شما و "
+"کمک به شما برای پرسش از هرکسی در هر جایی که مایل باشید است."
 
 #: content/saloos_tg/sarshomar_bot/commands/user.php:127
 #: content/saloos_tg/sarshomarbot/commands/step_starting.php:182
@@ -156,63 +156,63 @@ msgstr "لطفا زبان را انتخاب کنید"
 
 #: content_u/add/model.php:51 content_u/add/model.php:136
 msgid "title or answers must be full"
-msgstr ""
+msgstr "عنوان یا پاسخ باید تکمیل شوند "
 
 #: content_u/add/model.php:168
 msgid "command not found"
-msgstr ""
+msgstr "پیامی یافت نشد "
 
 #: content_u/add/model.php:199
 msgid "error in save survey title"
-msgstr ""
+msgstr "خطا در ذخیره ی عنوان "
 
 #: content_u/add/model.php:246
 msgid "poll type not found"
-msgstr ""
+msgstr "نوع نظرسنجی مشخص نشده "
 
 #: content_u/add/model.php:288
 msgid "poll title can not null"
-msgstr ""
+msgstr "عنوان نظرسنجی باید تکمیل شود "
 
 #: content_u/add/model.php:294
 msgid "summary text must be less than 150 character"
-msgstr ""
+msgstr "خلاصه ی متن باید کمتر از ۱۵۰ حرف باشد "
 
 #: content_u/add/model.php:316
 msgid "answer must be array"
-msgstr ""
+msgstr "پاسخ باید آرایه باشد "
 
 #: content_u/add/model.php:324
 msgid "you must set two answer"
-msgstr ""
+msgstr "شما باید ۲ پاسخ را تنظیم کنید "
 
 #: content_u/add/model.php:347
 msgid "answers not found"
-msgstr ""
+msgstr "پاسخی یافت نشد "
 
 #: content_u/add/model.php:375
 msgid "add poll Success"
-msgstr ""
+msgstr "نظر سنجی با موفقیت اضافه شد "
 
 #: content_u/add/model.php:380
 msgid "Error in add poll"
-msgstr ""
+msgstr "خطا در اضافه کردن نظر سنجی "
 
 #: content_u/add/model.php:443
 msgid "Edit poll Success"
-msgstr ""
+msgstr "ویرایش نظرسنحی با موفقیت انجام شد"
 
 #: content_u/add/model.php:447
 msgid "Error in Edit poll"
-msgstr ""
+msgstr "خطا رد ویرایش نظرسنجی "
 
 #: content_u/add/model.php:533
 msgid "add filter of poll Success"
-msgstr ""
+msgstr "اضافه کردن فیلتر در نظر سنجی با موفقیت انجام شد "
 
 #: content_u/add/model.php:539
 msgid "Error in insert filter of poll"
-msgstr ""
+msgstr "خطا در تنظیم فیلتر نظرسنجی "
 
 #: content_u/add/model.php:570
 msgid "id not found"
@@ -224,7 +224,7 @@ msgstr "نظرسنجی منتشر شد"
 
 #: content_u/add/model.php:661
 msgid "error in publish poll"
-msgstr ""
+msgstr "خطا در انتشار نظرسنجی "
 
 #: content_u/knowledge/model.php:76
 msgid "poll publish"
@@ -232,7 +232,7 @@ msgstr "انتشار نظرسنجی"
 
 #: content_u/knowledge/model.php:80
 msgid "can not publish poll"
-msgstr ""
+msgstr "امکان انتشار نظر سنجی "
 
 #: content_u/manifest.php:4 includes/languages/trans_addons.php:332
 msgid "Use posts to share your news in specefic category"
@@ -240,11 +240,11 @@ msgstr "از نوشته ها برای انتشار اخبار در موضوعا�
 
 #: content_u/me/model.php:53
 msgid "profile data updated"
-msgstr ""
+msgstr "پروفایل اطلاعات بروزرسانی شد "
 
 #: content_u/me/model.php:57
 msgid "error in update profile data"
-msgstr ""
+msgstr "خطا در بروزرسانی اطلاعات پروفایل "
 
 #: includes/cls/database/sarshomar/translation.php:6
 #: includes/cls/database/sarshomar/translation.php:112
@@ -592,8 +592,7 @@ msgstr "سطح دسترسی"
 
 #: includes/languages/trans_addons.php:6
 msgid "Write your tag and press enter to add new keyword to content"
-msgstr ""
-"کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
+msgstr "کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
 
 #: includes/languages/trans_addons.php:8
 msgid "Search"
@@ -790,8 +789,7 @@ msgstr "خروج از سیستم"
 
 #: includes/languages/trans_addons.php:74
 msgid "We glad to working for you and hope you enjoy using our system"
-msgstr ""
-"ما از کار برای شما خوشحال بوده و امیدواریم شما نیز از سیستم ما لذت ببرید"
+msgstr "ما از کار برای شما خوشحال بوده و امیدواریم شما نیز از سیستم ما لذت ببرید"
 
 #: includes/languages/trans_addons.php:75
 msgid "Some right reserved"
@@ -908,8 +906,8 @@ msgstr "برگشت به"
 #: includes/languages/trans_addons.php:109
 msgid "list of current permissions is listed here, for edit click on it"
 msgstr ""
-"لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن "
-"را ویرایش کنید"
+"لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن را "
+"ویرایش کنید"
 
 #: includes/languages/trans_addons.php:110
 msgid "delete permission"
@@ -940,8 +938,7 @@ msgid "Edit permission of"
 msgstr "ویرایش دسترسی به"
 
 #: includes/languages/trans_addons.php:119
-msgid ""
-"Allow or disallow user to access all part of service with full permission!"
+msgid "Allow or disallow user to access all part of service with full permission!"
 msgstr "اجازه یا عدم اجازه به کاربر برای دسترسی کامل به تمام بخش‌های سرویس!"
 
 #: includes/languages/trans_addons.php:120
@@ -1003,8 +1000,7 @@ msgstr "عنوان مطلب خود را در اینجا وارد کنید"
 #: includes/languages/trans_addons.php:136
 msgid "Url of your content appear here, click on it to view"
 msgstr ""
-"آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده "
-"کنید"
+"آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده کنید"
 
 #: includes/languages/trans_addons.php:137
 msgid "Check result"
@@ -1024,13 +1020,11 @@ msgstr "چکیده"
 
 #: includes/languages/trans_addons.php:141
 msgid "If excerpt is empty we get it automatically from content"
-msgstr ""
-"اگر چکیده را خالی بگذارید ما آن را به صورت خودکار از روی نوشته پر میکنیم"
+msgstr "اگر چکیده را خالی بگذارید ما آن را به صورت خودکار از روی نوشته پر میکنیم"
 
 #: includes/languages/trans_addons.php:142
 msgid "Summaries of your content that can be used as page description."
-msgstr ""
-"خلاصه ای از نوشته شما که برای نمایش به عنوان توضیح نوشته استفاده می شود."
+msgstr "خلاصه ای از نوشته شما که برای نمایش به عنوان توضیح نوشته استفاده می شود."
 
 #: includes/languages/trans_addons.php:143
 msgid "Enter Tags here"
@@ -1042,13 +1036,13 @@ msgstr "تگ را وارد کنید"
 
 #: includes/languages/trans_addons.php:145
 msgid ""
-"Normally, tags are ad-hoc keywords that identify important information in "
-"your post (names, subjects, etc) that may or may not recur in other posts, "
-"while categories are pre-determined sections."
+"Normally, tags are ad-hoc keywords that identify important information in your "
+"post (names, subjects, etc) that may or may not recur in other posts, while "
+"categories are pre-determined sections."
 msgstr ""
-"به طول معمول، کلیدواژه ها عبارات تک کاربره ای برای شناسایی اطلاعات مهم در "
-"نوشته شما مانند نام، موضوع یا .. هستند که امکان تکرار آن ها در سایر نوشته ها "
-"مشخص نیست، این در حالی است که دسته ها از قبل مشخص شده هستند."
+"به طول معمول، کلیدواژه ها عبارات تک کاربره ای برای شناسایی اطلاعات مهم در نوشته "
+"شما مانند نام، موضوع یا .. هستند که امکان تکرار آن ها در سایر نوشته ها مشخص "
+"نیست، این در حالی است که دسته ها از قبل مشخص شده هستند."
 
 #: includes/languages/trans_addons.php:146
 msgid "View list of tags"
@@ -1105,8 +1099,8 @@ msgstr "وضعیت"
 
 #: includes/languages/trans_addons.php:158
 msgid ""
-"All of content set as draft in default, for showing it to visitors you must "
-"set it to publish"
+"All of content set as draft in default, for showing it to visitors you must set "
+"it to publish"
 msgstr ""
 "تمام مطالب به صورت پیش فرض در حالت پیش نویس قرار می‌گیرند که شما برای انتشار و "
 "نمایش آن به بازدیدکنندگان باید وضعیت آن را به منتشرشده تغییر دهید"
@@ -1180,11 +1174,10 @@ msgid "Set featured image"
 msgstr "تنظیم تصویر شاخص"
 
 #: includes/languages/trans_addons.php:175
-msgid ""
-"You can see type of your file and click on image to direct access to file"
+msgid "You can see type of your file and click on image to direct access to file"
 msgstr ""
-"شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی "
-"داشته باشید"
+"شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی داشته "
+"باشید"
 
 #: includes/languages/trans_addons.php:176
 msgid "Click to view"
@@ -1231,8 +1224,7 @@ msgid ""
 "You can nest category under other category by making one the “Parent” of the "
 "other."
 msgstr ""
-"شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت "
-"کنید."
+"شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت کنید."
 
 #: includes/languages/trans_addons.php:194
 msgid "Actions"
@@ -1332,13 +1324,13 @@ msgstr "تفاوت بین نوشته و برگه در چیست؟"
 
 #: includes/languages/trans_addons.php:224
 msgid ""
-"Pages are similar to Posts in that they have a title, body text, and "
-"associated metadata, but they are different in that they are not part of the "
-"chronological blog stream, kind of like permanent posts."
+"Pages are similar to Posts in that they have a title, body text, and associated "
+"metadata, but they are different in that they are not part of the chronological "
+"blog stream, kind of like permanent posts."
 msgstr ""
-"برگه ها در عنوان، متن و سایر ویژگی ها شبیه به نوشته ها هستند، اما تفاوت اصلی "
-"آن ها در این است که به مانند نوشته ها دارای جریان زمانی دنباله دار نیستند، در "
-"حقیقت شبیه به یک پست دائمی هستند."
+"برگه ها در عنوان، متن و سایر ویژگی ها شبیه به نوشته ها هستند، اما تفاوت اصلی آن "
+"ها در این است که به مانند نوشته ها دارای جریان زمانی دنباله دار نیستند، در حقیقت "
+"شبیه به یک پست دائمی هستند."
 
 #: includes/languages/trans_addons.php:225
 msgid "Pages are not categorized or tagged, but can have a hierarchy."
@@ -1744,8 +1736,7 @@ msgstr "از دسته ها برای تعریف بخش های سایت و دست�
 
 #: includes/languages/trans_addons.php:331
 msgid "Use categories to define sections of your site and group related files"
-msgstr ""
-"از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی کردن فایل‌ها استفاده کنید"
+msgstr "از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی کردن فایل‌ها استفاده کنید"
 
 #: includes/languages/trans_addons.php:333
 msgid "Use pages to share your static content"
@@ -1762,8 +1753,8 @@ msgstr "صفحه"
 #: includes/languages/trans_addons.php:336
 msgid "If you want to change password enter it, else leave it blank"
 msgstr ""
-"در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را "
-"خالی بگذارید"
+"در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را خالی "
+"بگذارید"
 
 #: includes/languages/trans_addons.php:337
 msgid "Enter password within 5 to 40 character"
@@ -2048,8 +2039,8 @@ msgstr "سایت"
 #: includes/languages/trans_addons.php:411
 msgid "For multilanguage sites enter title in English and translate it"
 msgstr ""
-"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم "
-"آن را به سایر زبان‌ها ترجمه کنید"
+"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن "
+"را به سایر زبان‌ها ترجمه کنید"
 
 #: includes/languages/trans_addons.php:412
 msgid "main URL"
@@ -2404,8 +2395,7 @@ msgid "You can edit this permission"
 msgstr "شما می‌توانید این سطح‌دسترسی را ویرایش کنید"
 
 #: includes/languages/trans_addons.php:500
-msgid ""
-"Define or edit user permissions to allow or block access to special pages"
+msgid "Define or edit user permissions to allow or block access to special pages"
 msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه یا ممنوع کردن دسترسی به صفحات خاص"
 
 #: includes/languages/trans_addons.php:501
@@ -2461,8 +2451,7 @@ msgid "We need your phone number to verifying your account."
 msgstr "ما برای اعتبارسنجی اکانت، نیاز به شماره موبایل شما داریم."
 
 #: includes/languages/trans_addons.php:514
-msgid ""
-"If you dont want share your number, we cant presenting our services to you!"
+msgid "If you dont want share your number, we cant presenting our services to you!"
 msgstr ""
 "اگر شما مایل به ارائه شماره خود نباشید، ما امکان سرویس‌دهی به شما را نداریم!"
 
@@ -2738,23 +2727,23 @@ msgstr "ساده"
 
 #: includes/languages/trans_twig.php:90
 msgid "Basic with placeholder"
-msgstr ""
+msgstr "حالت عادی با متن پلیس هلدر"
 
 #: includes/languages/trans_twig.php:91
 msgid "Please enter text"
-msgstr ""
+msgstr "لطفا متن را وارد کنید "
 
 #: includes/languages/trans_twig.php:92
 msgid "Basic with placeholder and icon"
-msgstr ""
+msgstr "حالت عادی با متن پلیس هلدر با و آیکن"
 
 #: includes/languages/trans_twig.php:93
 msgid "Primary with icon"
-msgstr ""
+msgstr "حالت اصلی با آیکن"
 
 #: includes/languages/trans_twig.php:94
 msgid "Primary with icon and placeholder"
-msgstr ""
+msgstr "حالت اصلی با آیکن و پلیس هلدر"
 
 #: includes/languages/trans_twig.php:95
 msgid "Success"
@@ -2762,7 +2751,7 @@ msgstr "موفقیت‌آمیز"
 
 #: includes/languages/trans_twig.php:96
 msgid "Why men marry women?"
-msgstr ""
+msgstr "چرا  مردان و زنان ازدواج میکنند ؟"
 
 #: includes/languages/trans_twig.php:97
 msgid "Warn"
@@ -2794,7 +2783,7 @@ msgstr "بازدیدکنندگان"
 
 #: includes/languages/trans_twig.php:130
 msgid "Descriptive Answer"
-msgstr ""
+msgstr "پاسخ تشریحی "
 
 #: includes/languages/trans_twig.php:131
 msgid "Score"
@@ -2826,11 +2815,11 @@ msgstr "عمومی"
 
 #: includes/languages/trans_twig.php:139
 msgid "Education"
-msgstr ""
+msgstr "تحصیلات "
 
 #: includes/languages/trans_twig.php:140
 msgid "Family"
-msgstr ""
+msgstr "خانواده "
 
 #: includes/languages/trans_twig.php:141
 msgid "Job"
@@ -2862,7 +2851,7 @@ msgstr "وضعیت تاهل"
 
 #: includes/languages/trans_twig.php:148
 msgid "Graduation"
-msgstr ""
+msgstr "فارغ التحصیل "
 
 #: includes/languages/trans_twig.php:149
 msgid "Employment Status"
@@ -3152,8 +3141,7 @@ msgstr "سرشمار باهوش است"
 #~ msgstr "ابزارها"
 
 #~ msgid "Go to your profile or logout from conrtol panel"
-#~ msgstr ""
-#~ "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
+#~ msgstr "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
 
 #~ msgid "All right reserved"
 #~ msgstr "تمام حقوق محفوظ است"
@@ -3286,8 +3274,7 @@ msgstr "سرشمار باهوش است"
 #~ msgstr "وب سایت رسمی آیت‌الله العظمی منتظری"
 
 #~ msgid ""
-#~ "He was a Marja, prominent Iranian scholar and Shia Islamic democracy "
-#~ "advocate"
+#~ "He was a Marja, prominent Iranian scholar and Shia Islamic democracy advocate"
 #~ msgstr "فقیه، حکیم و مجاهد نستوه عالم اسلام و تشیع"
 
 #~ msgid "Grand Ayatollah Montazeri Official Website"
@@ -3416,8 +3403,8 @@ msgstr "سرشمار باهوش است"
 #~ msgstr "کلمه عبور"
 
 #~ msgid ""
-#~ "He was a Muslim cleric, prominent Iranian scholar and Shia Islamic "
-#~ "democracy advocate"
+#~ "He was a Muslim cleric, prominent Iranian scholar and Shia Islamic democracy "
+#~ "advocate"
 #~ msgstr "او روحانی مسلمان، مرجع تقلید ایرانیان و "
 
 #~ msgid "this"
@@ -3445,11 +3432,10 @@ msgstr "سرشمار باهوش است"
 #~ msgstr "شما می توانید کلمات کلیدی را به نوشته های خود ارتباط دهید"
 
 #~ msgid ""
-#~ "You can use categories to define sections of your site and group related "
-#~ "posts"
+#~ "You can use categories to define sections of your site and group related posts"
 #~ msgstr ""
-#~ "شما می توانید از دسته ها برای تعریف بخش های سایت و دسته بندی نوشته ها "
-#~ "استفاده کنید"
+#~ "شما می توانید از دسته ها برای تعریف بخش های سایت و دسته بندی نوشته ها استفاده "
+#~ "کنید"
 
 #~ msgid "You can use posts to share your news in specefic category"
 #~ msgstr ""
