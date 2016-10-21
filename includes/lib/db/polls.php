@@ -99,6 +99,46 @@ class polls
 	}
 
 
+	public static function get_count($_args = [])
+	{
+		$where = [];
+
+		// check post_type . if post_type is null return all type of posts
+		if(isset($_args['post_type']))
+		{
+			$where[] = "posts.post_type = '". $_args['post_type'] . "'";
+		}
+
+		// check post_status
+		if(isset($_args['post_status']))
+		{
+			$where[] = "posts.post_status = '" .$_args['post_status'] . "'";
+		}
+
+		// check users id , retrun post of one person or all person
+		if(isset($_args['user_id']))
+		{
+			$where[] = "posts.user_id = " . $_args['user_id'];
+		}
+
+		$where = join($where, " AND ");
+
+		// creat query string
+		// fields we not show: date_modified , post_meta, user_id
+		$query =
+		"
+			SELECT
+				COUNT(posts.id) as 'count'
+			FROM
+				posts
+			WHERE
+				$where
+			-- Get post polls::get_count()
+		";
+
+		return \lib\db::get($query, "count", true);
+	}
+
 	/**
 	 * insert polls as post record
 	 * and then insert answers of this poll into answers (options table)

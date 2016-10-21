@@ -136,5 +136,90 @@ class polldetails
 	{
 		return \lib\db::$_type($_query);
 	}
+
+
+	/**
+	 * Gets the user count of answered or skipped
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_type     The type
+	 */
+	public static function user_total($_user_id, $_type = null)
+	{
+		switch ($_type) {
+			case 'answered':
+				$opt = " AND polldetails.opt != '0' ";
+				break;
+			case 'skipped':
+				$opt = " AND polldetails.opt = '0' ";
+				break;
+			default:
+				$opt = "";
+				break;
+		}
+
+		$query =
+		"
+			SELECT
+				COUNT(polldetails.id) AS 'count'
+			FROM
+				polldetails
+			WHERE
+				user_id = $_user_id
+				$opt
+		";
+		$result = \lib\db::get($query, 'count', true);
+		return $result;
+	}
+
+	public static function user_total_answered($_user_id)
+	{
+		return self::user_total($_user_id, "answered");
+	}
+
+	public static function user_total_skipped($_user_id)
+	{
+		return self::user_total($_user_id, "skipped");
+	}
+
+
+	public static function people($_poll_ids, $_type = null)
+	{
+		switch ($_type) {
+			case 'answered':
+				$opt = " AND polldetails.opt != '0' ";
+				break;
+			case 'skipped':
+				$opt = " AND polldetails.opt = '0' ";
+				break;
+			default:
+				$opt = "";
+				break;
+		}
+
+		$poll_ids = join($_poll_ids, ",");
+		$query =
+		"
+			SELECT
+				COUNT(polldetails.id) AS 'count'
+			FROM
+				polldetails
+			WHERE
+				polldetails.post_id IN ($poll_ids)
+				$opt
+		";
+		$result = \lib\db::get($query, 'count', true);
+		return $result;
+	}
+
+	public static function people_answered($_poll_ids)
+	{
+		return self::people($_poll_ids, "answered");
+	}
+
+	public static function people_skipped($_poll_ids)
+	{
+		return self::people($_poll_ids, "skipped");
+	}
 }
 ?>
