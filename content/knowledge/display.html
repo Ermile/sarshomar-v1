@@ -2,10 +2,10 @@
 
 {%block head_css%}
 <style type="text/css">
+.question-box{overflow:hidden;}
 .poll-chart svg > rect {fill:transparent;}
-.a-active {
-  background-color: #e5a428 !important;
-}
+.buttons{margin-bottom:1em;margin-top:1em;}
+.buttons::before{width:calc(100% + 30px);left:-101px;}
 </style>
 {%endblock%}
 
@@ -27,7 +27,6 @@
         </nav><!-- /.social -->
 
         <div class="description"><p>{{post.post_content}}</p></div>
-        <div class="opt">
         {% if post.post_meta.opt %}
           {% if multiple_choice %}
           <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
@@ -43,7 +42,7 @@
             {% if descriptive %}
               <li>
                 <input type="checkbox" id="check_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-                <label for="check_other"><input type="text" ></label>
+                <label for="check_other"><input type="text"></label>
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endif%}
@@ -56,15 +55,15 @@
               <li>
                 <input type="radio" name="r1" id="radio_{{value.key}}" class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}">
                 <label for="radio_{{value.key}}">{{value.txt}}</label>
-                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endfor%}
             {% if descriptive %}
             <li>
-                <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-                <label for="radio_other">{{value.txt}}</label>
-                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-              </li>
+              <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
+              <label for="radio_other"><input type="text"></label>
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+            </li>
             {%endif%}
             </ul>
           </div>
@@ -75,7 +74,6 @@
             </nav>
           </div>
           <a class="save-anwser" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
-          </div>
         {%else%}
           {%if next_url%}
             <div class="buttons">
@@ -263,7 +261,7 @@
       {% endfor %}
     </div>
   </div>
-</div>
+</div><!-- /.comments -->
 
 <div class="row details">
   <div class="container">
