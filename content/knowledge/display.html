@@ -2,439 +2,54 @@
 
 {%block head_css%}
 <style type="text/css">
-.question-box{overflow:hidden;}
-.poll-chart svg > rect {fill:transparent;}
-.buttons{margin-bottom:1em;margin-top:1em;}
-.buttons::before{width:calc(100% + 30px);left:-101px;}
+.polls-head{border-bottom:1px solid #E0E0E0;}
+.polls-head > div{color:#00667A;font-weight:bold;}
+.polls-body{margin-bottom:2em;}
+.polls-head > div, .polls-row > div{display:table-cell;padding:10px 5px;}
+.polls-head > div:nth-child(2), .polls-row > div:nth-child(2){width:100%;}
+.polls-row > div:nth-child(2) a{color:#00667A;font-weight:bold;}
+.polls-head > div:not(:nth-child(2)), .polls-row > div:not(:nth-child(2)){min-width:60px;}
+.polls-head > div:last-child, .polls-row > div:last-child{min-width:150px}
+.polls-row > div > span{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;}
+.polls-row > div > span .fa{color:#F4F4F4;vertical-align:middle;}
 </style>
 {%endblock%}
 
 {%block content%}
-<div class="row question-box">
-  <div class="container">
-    <article class="row auto">
-      <section class="span8">
-        <h2>{{ post.post_title }}</h2>
-
-        <nav class="social">
-          <a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-wordpress" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-        </nav><!-- /.social -->
-
-        <div class="description"><p>{{post.post_content}}</p></div>
-        {% if post.post_meta.opt %}
-          {% if multiple_choice %}
-          <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-            <ul>
-             {%for key, value in post.post_meta.opt%}
-              <li>
-                <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}">
-                <label for="check_{{value.key}}">{{value.txt}}</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-              </li>
-            {%endfor%}
-
-            {% if descriptive %}
-              <li>
-                <input type="checkbox" id="check_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-                <label for="check_other"><input type="text"></label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-              </li>
-            {%endif%}
-            </ul>
-          </div>
-          {%else%}
-          <div class="ac-custom ac-radio ac-fill" autocomplete="off">
-            <ul>
-            {%for key, value in post.post_meta.opt%}
-              <li>
-                <input type="radio" name="r1" id="radio_{{value.key}}" class="answer-link" data-id="{{post.id}}" data-key="{{value.key}}" data-text="{{value.txt}}">
-                <label for="radio_{{value.key}}">{{value.txt}}</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-              </li>
-            {%endfor%}
-            {% if descriptive %}
-            <li>
-              <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-              <label for="radio_other"><input type="text"></label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-            </li>
-            {%endif%}
-            </ul>
-          </div>
-          {%endif%}
-          <div class="buttons">
-            <nav class="btn-answers">
-              <button class="save-anwser">ثبت رای</button>
-            </nav>
-          </div>
-          <a class="save-anwser" data-id="{{post.id}}" data-key="opt_0" data-text="skip" style="cursor:pointer">skip</a>
-        {%else%}
-          {%if next_url%}
-            <div class="buttons">
-              <nav class="btn-answers">
-                <button class="save-anwser"><a href="{{base.url}}/{{next_url}}" style="color:black;">سوال بعدی</a></button>
-              </nav>
+<div class="main">
+  <div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+      {%if poll_list%}
+      <div class="polls-head">
+        <div>{%trans "Type"%}</div>
+        <div>{%trans "Title"%}</div>
+        <div>{%trans "Status"%}</div>
+        <div>{%trans "Number"%}</div>
+        <div>{%trans "Date"%}</div>
+      </div>
+      <div class="polls-body">
+      {%for key, value in poll_list%}
+        <ul>
+          <li class="polls-row">
+            <div>
+              <span><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
             </div>
-          {%endif%}
-        {%endif%}
-
-        {%if article%}
-          <div class="read-more">
-            <label>در همین رابطه بخوانید</label>
-            <a href="{{article[0].url}}">
-              <span data-hover="{{article[0].title}}">{{article[0].title}}</span>
-            </a>
-          </div>
-        {%endif%}
-      </section>
-
-      <nav class="span4 related-questions">
-        <h3>{%trans "Similar Questions"%}</h3>
-      {%if similar%}
-        {%for key, value in similar%}
-          <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
-        {%endfor%}
+            <div>
+              <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
+            </div>
+            <div>{{value.status}}</div>
+            <div>{{value.total}}</div>
+            <div>{{value.date_modified}}</div>
+          </li>
+        </ul>
+      {%endfor%}
+      </div>
       {%else%}
-        <span>{%trans "There is no similar questions"%}</span>
+      <div class="msg error">There is no question in database!</div>
+      <div><a href="{{base.url}}/@/add">Add now!</a></div>
       {%endif%}
-      </nav>
-    </article>
-  </div>
-</div>
-
-
-{%if chart%}
-<div class="row results-box">
-  <section class="row results">
-    <div class="type">
-      <ul class="tabs">
-        {%for key, value in chart%}
-          {%if value.categories != 'null'%}
-            <li chart-type="{{key}}" class="chart-{{key}} {% if key == 'result' %}active{%endif%}">{{key|trans}}</li>
-          {%endif%}
-        {%endfor%}
-      </ul>
-    </div>
-  </section>
-  <div class="container poll-chart chart"></div>
-</div>
-{%endif%}
-
-
-<div class="row comments">
-  <div class="container">
-    <h4>نظرات و امتیازات</h4>
-    <div class="row auto">
-      <div class="span4 summary">
-        <div class="average-score">
-        {%if site.currentlang == "fa"%}
-          {{4.6|persian}}
-        {%else%}
-          4.6
-        {%endif%}
-        </div><!-- /.average-score -->
-
-        <div class="row">
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span class="stars-number">
-            {%if site.currentlang == "fa"%}
-                {{108|persian}}
-            {%else%}
-                108
-            {%endif%}
-          </span>
-        </div><!-- /.row -->
-
-        <div class="bars">
-          <div class="bar-one"></div>
-          <div class="bar-two"></div>
-          <div class="bar-three"></div>
-          <div class="bar-four"></div>
-          <div class="bar-five"></div>
-        </div><!-- /.bars -->
-      </div><!-- /.summary -->
-
-      <div class="span4 comment">
-        <div class="score">
-          <div class="plus" data-value="23">
-            <object data="/static/images/score-g.svg">
-              <span>hello</span>
-            </object>
-          </div>
-          <div class="minus">
-            <object data="/static/images/score-r.svg" data-value="12"></object>
-          </div>
-        </div>
-
-        <div class="title">بهتر شود</div>
-
-        <div>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-        </div>
-
-        <div class="user">هشمت</div>
-
-        <div class="content">
-          <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-        </div>
-
-        <span class="continue">ادامه</span>
-      </div>
-
-      <div class="span4 comment">
-        <div class="score">
-          <div class="plus" data-value="23">
-            <object data="/static/images/score-g.svg">
-              <span>hello</span>
-            </object>
-          </div>
-          <div class="minus">
-            <object data="/static/images/score-r.svg" data-value="12"></object>
-          </div>
-        </div>
-
-        <div class="title">بهتر شود</div>
-
-        <div>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-star" aria-hidden="true"></i></span>
-        </div>
-
-        <div class="user">هشمت</div>
-
-        <div class="content">
-          <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-        </div>
-
-        <span class="continue">ادامه</span>
-      </div>
-    </div>
-    <div class="row auto">
-      {% for i in 0..2 %}
-        <div class="span4 comment">
-          <div class="score">
-            <div class="plus" data-value="23">
-              <object data="/static/images/score-g.svg">
-                <span>hello</span>
-              </object>
-            </div>
-            <div class="minus">
-              <object data="/static/images/score-r.svg" data-value="12"></object>
-            </div>
-          </div>
-
-          <div class="title">بهتر شود</div>
-
-          <div>
-            <span><i class="fa fa-star" aria-hidden="true"></i></span>
-            <span><i class="fa fa-star" aria-hidden="true"></i></span>
-            <span><i class="fa fa-star" aria-hidden="true"></i></span>
-            <span><i class="fa fa-star" aria-hidden="true"></i></span>
-            <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          </div>
-
-          <div class="user">هشمت</div>
-
-          <div class="content">
-            <p>در مورد شدت بیماری خانم کلینتون دقیقا چیزی نمی‌دانیم اما به نظر می‌رسد که او در خانه‌اش تحت درمان قرار دارد نه در بیمارستان، بنابراین در بهترین حالت می‌توان گفت سریع‌ترین زمان ممکن برای بهبود سه روز و تا بازیابی کامل قوا حدود یک هفته خواهد بود. اما سوالی که مطرح است این است که اگر خانم کلینتون نتواند به دلیل بیماری، رقابت‌های انتخاباتی را ادامه دهد چه خواهد شد؟</p>
-          </div>
-
-          <span class="continue">ادامه</span>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</div><!-- /.comments -->
-
-<div class="row details">
-  <div class="container">
-    <div class="row auto">
-      <h5>توضیحات</h5>
-      <div class="span6">
-        <div class="title">بازه سوال</div>
-        <div class="detail">
-          <span class="green">{{date_start}}</span>
-          <span>-</span>
-          <span class="red">{{date_end}}</span>
-        </div>
-        <div class="title">وضعیت نظرسنجی</div>
-        <div class="detail"><span class="green">{{status}}</span></div>
-        <div class="title">کلیدواژه ها</div>
-        <div class="detail tags">
-          {% for tag in post.tags %}
-          <a href="#">{{tag}}</a>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="span6 border">
-        {%if me1ta %}
-        <div class="title">جامعه آماری هدف:</div>
-        <div class="row auto">
-          <div class="span4">
-        {%endif%}
-            {%for key, value in meta%}
-            <div class="detail"><span><i class="fa fa-2x fa-venus-mars" aria-hidden="true">{{key}}</i></span> {{value}}</div>
-            {%endfor%}
-        {%if meta %}
-          </div>
-        </div>
-        {%endif%}
-      </div>
     </div>
   </div>
 </div>
-
-{%endblock%}
-
-{%block foot_js%}
-<script>
-
-$(".answer-link").click(function(){
-    $(".save-anwser").attr("data-id", $(this).attr("data-id"));
-    $(".save-anwser").attr("data-key", $(this).attr("data-key"));
-    $(".save-anwser").attr("data-text", $(this).attr("data-text"));
-});
-
-$(".save-anwser").click(function(){
-    $(this).ajaxify({
-        ajax: {
-            data: {
-                'poll_id': $(this).attr("data-id"),
-                'answer_key': $(this).attr("data-key"),
-                'answer_text': $(this).attr("data-text")
-            },
-            method: 'post'
-        }
-    });
-}).on("ajaxify:success", function(_xhr, _data){
-    next_url = _data.msg.callback;
-        $(".btn-answers").children().remove();
-        $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
-        // $("div.opt").fadeOut();
-
-});
-
-
-function bookmark(_poll_id) {
-    $.ajax({
-        type: 'get',
-        // url: '@/polls',
-        data: {
-            'type' : 'bookmark',
-            'poll_id': _poll_id
-        },
-        success: function(data) {
-           // console.log(data);
-        }
-    });
-}
-$('.poll-chart').highcharts(load_chart('result'));
-
-$(".tabs li").click(function(){
-    type = $(this).attr("chart-type");
-    $('.poll-chart').highcharts(load_chart(type));
-});
-
-function load_chart(_type)
-{
-    if(_type == 'result')
-    {
-        var result = {
-            chart: {type: 'column', backgroundColor: 'rgba(255, 255, 255, 0)'
-                // events: {
-                //     load: function() {
-                //         var check = $('.top-chart').highcharts();
-                //         check.yAxis[0].setExtremes(null, check.axes[1].dataMax);
-                //     }
-                // }
-            },
-            exporting: {enabled: false},
-            credits: {enabled: false},
-            title : "",xAxis: { labels: { enabled: false }, categories: ['']},
-            yAxis: {min: 0,title: {text: 'درصد',enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0,},
-            legend: {enabled: false },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-                footerFormat: '</table>',
-                shared: false,
-                useHTML: true
-            }, plotOptions: {column: {pointPadding: 0.2, borderWidth: 0}},
-            series: eval({{chart.result.data| raw }})
-        };
-        return result;
-    }
-    data_chart =  {{chart|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
-
-     data = {chart: {type: 'column'},
-        title: {text: data_chart[_type].title},
-        xAxis: {categories: eval(data_chart[_type].categories) },
-        yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
-            stackLabels: {enabled: true,style: {fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                }
-            }
-        },
-        legend: {align: 'right',x: -30,verticalAlign: 'top',y: 25, floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
-        },
-        tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            }
-        },
-        series: eval(data_chart[_type].series)
-    };
-
-    return data;
-
-}
-
-$(function() {
-
-    // $('.poll-chart').highcharts(x);
-    $(".comments .comment .continue").click(function() {
-        $(this).parents('.comment').children('.content').addClass('absolute-content');
-        event.preventDefault();
-            event.stopPropagation();
-        $(".absolute-content").click(function(event){
-            event.preventDefault();
-            event.stopPropagation();
-        });
-    });
-    $('body').click(function(event) {
-        $(".content.absolute-content").removeClass("absolute-content");
-    });
-});
-
-</script>
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {%endblock%}

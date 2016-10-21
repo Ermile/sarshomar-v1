@@ -6,10 +6,7 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$this->get("all","all")->ALL("$");
-		$this->get("poll","poll")->ALL("/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/");
-		// exit();
-		$this->post("save_answer")->ALL("/^\\$\/[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+\/(.*)$/");
+		$this->get(false,"all")->ALL("$");
 	}
 }
 ?>
