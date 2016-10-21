@@ -9,6 +9,7 @@
 .polls-head > div:nth-child(2), .polls-row > div:nth-child(2){width:100%;}
 .polls-row > div:nth-child(2) a{color:#00667A;font-weight:bold;}
 .polls-head > div:not(:nth-child(2)), .polls-row > div:not(:nth-child(2)){min-width:60px;}
+.polls-head > div:last-child, .polls-row > div:last-child{min-width:150px}
 </style>
 {%endblock%}
 
@@ -29,13 +30,15 @@
       {%for key, value in poll_list%}
         <ul>
           <li class="polls-row">
-            <div>{%trans "Type"%}</div>
+            <div>
+            	<i class="fa fa-{{value.type}}" aria-hidden="true"></i>
+            </div>
             <div>
               <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
             </div>
             <div>{{value.status}}</div>
-            <div>{%trans "Number"%}</div>
-            <div>{%trans "Date"%}</div>
+            <div>{{value.total}}</div>
+            <div>{{value.date_modified}}</div>
           </li>
         </ul>
       {%endfor%}

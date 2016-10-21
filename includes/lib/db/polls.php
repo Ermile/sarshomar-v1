@@ -48,26 +48,6 @@ class polls
 			$where[] = "posts.user_id = " . $_args['user_id'];
 		}
 
-		if(isset($_args['filter']) && isset($_args['value']))
-		{
-			$filter = $_args['filter'];
-			$value  = $_args['value'];
-			$join =
-			"
-				INNER JOIN
-					options
-				ON  options.post_id = posts.id AND
-					options.user_id IS NULL AND
-					options.option_cat = 'poll_' & posts.id AND
-					options.option_key = '$filter' AND
-					options.option_value = '$value'
-			";
-		}
-		else
-		{
-			$join = "";
-		}
-
 		$where = join($where, " AND ");
 		// pagnation
 		$count_record =
@@ -76,7 +56,7 @@ class polls
 				posts.id
 			FROM
 				posts
-				$join
+			LEFT JOIN pollstats ON pollstats.post_id = posts.id
 			WHERE
 				$where
 		";
@@ -86,30 +66,35 @@ class polls
 
 		// creat query string
 		// fields we not show: date_modified , post_meta, user_id
-		$query = "
-				SELECT
-					posts.id,
-					posts.post_language 		as 'language',
-					posts.post_title 			as 'title',
-					posts.post_slug 			as 'slug',
-					posts.post_url 				as 'url',
-					posts.post_content 			as 'content',
-					posts.post_type 			as 'type',
-					posts.post_comment 			as 'comment',
-					posts.post_count 			as 'count',
-					posts.post_order 			as 'order',
-					posts.post_status 			as 'status',
-					posts.post_parent 			as 'parent',
-					posts.post_publishdate 		as 'publishdate'
-				FROM
-					posts
-					$join
-				WHERE
-					$where
-				ORDER BY posts.id DESC
-				$limit
-				-- Get post polls::xget()
-					";
+		$query =
+		"
+			SELECT
+				posts.id					as 'id',
+				posts.post_language 		as 'language',
+				posts.post_title 			as 'title',
+				posts.post_slug 			as 'slug',
+				posts.post_url 				as 'url',
+				posts.post_content 			as 'content',
+				posts.post_type 			as 'type',
+				posts.post_comment 			as 'comment',
+				posts.post_count 			as 'count',
+				posts.post_order 			as 'order',
+				posts.post_status 			as 'status',
+				posts.post_parent 			as 'parent',
+				posts.post_publishdate 		as 'publishdate',
+				posts.date_modified  	    as 'date_modified',
+				pollstats.id 		     	as 'pollstatsid',
+				pollstats.total 			as 'total'
+			FROM
+				posts
+			LEFT JOIN pollstats ON pollstats.post_id = posts.id
+			WHERE
+				$where
+			ORDER BY posts.id DESC
+			$limit
+			-- Get post polls::xget()
+		";
+
 		return \lib\db\posts::select($query, "get");
 	}
 
