@@ -48,11 +48,9 @@ class view extends \mvc\view
 	public function view_poll($_args)
 	{
 		// get the descriptive from meta of poll
-		// for evry poll
+		// for evry poll unset this session
+		// to set form database
 		unset($_SESSION['descriptive']);
-
-		// check login to load option or no
-		// check answeret to this poll or no
 
 		// check the url and redirect to poll url
 		// for example redirect $/ewR3  to $/ewR3/poll_title
@@ -149,28 +147,29 @@ class view extends \mvc\view
 						$this->data->date_end = $value['option_value'];
 						break;
 					case "meta":
+						// check the meta of this poll
 						switch ($value['option_value']) {
 							case "multiple_choice":
+								// the people can select multiple choice
 								$this->data->multiple_choice = true;
 								break;
 
 							case "descriptive":
+								// load a input to type people the opthr opt
 								$this->data->descriptive = true;
 								$_SESSION['descriptive'] = true;
 								break;
 
 							case "random_sort":
+								// suffle the opt if random sort is enable
 								if(isset($post['post_meta']['opt']))
 								{
 									$keys = array_keys($post['post_meta']['opt']);
-
 							        shuffle($keys);
-
 							        foreach($keys as $key)
 							        {
 							        	$new[$key] = $post['post_meta']['opt'][$key];
 							        }
-
 							        $post['post_meta']['opt'] = $new;
 								}
 								break;
