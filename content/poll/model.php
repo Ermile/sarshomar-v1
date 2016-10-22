@@ -119,8 +119,13 @@ class model extends \mvc\model
 						$check = true;
 					}
 				}
+				// for descriptive mod
+				if(isset($_SESSION['descriptive']) && $answer_key == "opt_". (count($_SESSION['last_poll_opt']) + 1) )
+				{
+					$check = true;
+					$answer_text = utility::post("other_opt");
+				}
 			}
-
 			if($check)
 			{
 				$result = \lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);

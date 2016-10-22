@@ -41,8 +41,8 @@
 
             {% if descriptive %}
               <li>
-                <input type="checkbox" id="check_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-                <label for="check_other"><input type="text"></label>
+                <input type="checkbox" id="check_other" class="answer-link" data-id="{{post.id}}" data-key="opt_{{post.post_meta.opt|length + 1}}" data-text="other">
+                <label for="check_other"><input type="text" name="other_opt"></label>
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endif%}
@@ -60,8 +60,8 @@
             {%endfor%}
             {% if descriptive %}
             <li>
-              <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="other" data-text="other">
-              <label for="radio_other"><input type="text"></label>
+              <input type="radio" name="r1" id="radio_other" class="answer-link" data-id="{{post.id}}" data-key="opt_{{post.post_meta.opt|length + 1}}" data-text="other">
+              <label for="radio_other"><input type="text" name="other_opt"></label>
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
             </li>
             {%endif%}
@@ -321,7 +321,8 @@ $(".save-anwser").click(function(){
             data: {
                 'poll_id': $(this).attr("data-id"),
                 'answer_key': $(this).attr("data-key"),
-                'answer_text': $(this).attr("data-text")
+                'answer_text': $(this).attr("data-text"),
+                'other_opt' : $("input[name=other_opt]", $(document)).val()
             },
             method: 'post'
         }
