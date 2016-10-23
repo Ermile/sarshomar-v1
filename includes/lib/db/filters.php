@@ -66,9 +66,9 @@ class filters
 		switch ($_cat) {
 			// public
 			case 'gender':
-			case 'marrital_status':
+			case 'marrital':
 			case 'language':
-			case 'employment_status':
+			case 'employment':
 				$cat = "public";
 				break;
 
@@ -79,7 +79,7 @@ class filters
 				break;
 
 			// family
-			case 'parental_status':
+			case 'parental':
 			case 'birthdate':
 			case 'age':
 			case 'range':
@@ -87,7 +87,7 @@ class filters
 				break;
 
 			// job
-			case 'business_owner':
+			case 'business':
 			case 'industry':
 				$cat = "job";
 				break;
@@ -96,21 +96,21 @@ class filters
 			case 'province':
 			case 'city':
 			case 'country':
-			case 'birthcity':
-			case 'province_birth':
-			case 'country_birth':
+			case 'citybirth':
+			case 'provincebirth':
+			case 'countrybirth':
 				$cat = "location";
 				break;
 
 			// favorites
 			case 'favorites':
-			case 'exercise_habits':
+			case 'exercise':
 				$cat = "favorites";
 				break;
 
 			// other
-			case 'devices_owned':
-			case 'internet_usage':
+			case 'devices':
+			case 'internet':
 				$cat = "other";
 
 			// other
