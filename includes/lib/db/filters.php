@@ -19,26 +19,24 @@ class filters
 		[
 			'gender',
 			'marrital',
-			'parental',
-			'exercise',
+			'birthday',
+			'age',
+			'language',
+			'graduation',
+			'course',
 			'employment',
 			'business',
 			'industry',
-			'devices',
-			'internetusage',
-			'birthdate',
-			'age',
-			'range',
-			'graduation',
-			'course',
 			'countrybirth',
-			'country',
 			'provincebirth',
-			'province',
-			'birthcity',
-			'city',
 			'citybirth',
-			'language'
+			'country',
+			'province',
+			'city',
+			'parental',
+			'exercise',
+			'devices',
+			'internetusage'
 		];
 
 		if($_check)
