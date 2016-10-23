@@ -1,20 +1,6 @@
 {%extends display.main%}
 
 {%block head_css%}
-<style type="text/css">
-.vertical-tabs, .vertical-tabs-content{display:table-cell;}
-.vertical-tabs .tabs li{width:170px;height:50px;background-color:#00667A;margin-bottom:20px;color:#D8DAD0;line-height:50px;text-align:center;cursor:pointer;transition:all 0.5s;position:relative;margin-right:30px;}
-.vertical-tabs .tabs li.active{background-color:#E7A429;color:#00667A;font-weight:bold;margin-right:0;width:200px;}
-.vertical-tabs-content{border-left:1px solid #E7A429;width:100%;}
-.vertical-tabs-content .tab li{}
-.vertical-tabs-content .tab li > .row{padding:0 50px;}
-#tab-personal img{width:150px;height:150px;}
-.margin-bottom{margin-bottom:2em;}
-#me .title-line::before{width:180px;}
-#me .title-line.reverse::before{left:-50px;}
-.addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
-.addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
-</style>
 {%endblock%}
 
 {%block content%}
@@ -235,8 +221,11 @@
         </div>
       </div>
     </div>
-    <div>
-      <button name="save">Save</button>
+
+    <div class="buttons center">
+      <nav>
+        <button name="save">{%trans "Save"%}</button>
+      </nav>
     </div>
   </form>
 </div>
