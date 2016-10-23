@@ -14,6 +14,18 @@ class callback_query
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
 
+		if(!array_key_exists('callback_query_id', $_SESSION['tg']))
+		{
+			$_SESSION['tg']['callback_query_id'] = [];
+		}
+		if(array_search($_query['chat_instance'], $_SESSION['tg']['callback_query_id']) === false)
+		{
+			array_push($_SESSION['tg']['callback_query_id'], $_query['chat_instance']);
+		}
+		else
+		{
+			return $result;
+		}
 		if(array_key_exists('inline_message_id', $_query))
 		{
 			self::$message_result['inline_message_id'] = $_query['inline_message_id'];

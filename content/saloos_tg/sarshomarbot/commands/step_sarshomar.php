@@ -17,6 +17,31 @@ class step_sarshomar
 	 */
 	public static function start($_text = null, $_skip = null)
 	{
+		$return = [
+			"text" => "Choice poll type.",
+			"reply_markup" => [
+				'inline_keyboard' => [
+					[
+						[
+							"text" 			=> T_("Sarshomar"),
+							"callback_data" => "ask/sarshomar"
+						],
+						[
+							"text" 			=> T_("Premium"),
+							"callback_data" => "ask/premium"
+						]
+					]
+				]
+			],
+			"response_callback" => function($_response)
+			{
+				if($_response['ok'])
+				{
+					$_SESSION['tg']['ask_result_response'] = $_response;
+				}
+			}
+		];
+		return $return;
 		step::start('sarshomar');
 		return self::step1($_text);
 	}

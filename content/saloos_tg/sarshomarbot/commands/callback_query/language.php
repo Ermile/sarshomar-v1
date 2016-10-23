@@ -27,7 +27,18 @@ class language
 			$lang_name = $get;
 			$lang = preg_replace("[_]", "\\\\_", $get);
 		}
-		callback_query::edit_message(['text' => 'Language set '. $lang, "reply_markup" => menu::main(true)]);
+		callback_query::edit_message([
+			'text' => 'Language set '. $lang
+			]);
+		bot::sendResponse([
+			"method" => "sendMessage",
+			"text" => T_("Welcome"),
+			"reply_markup" => menu::main(true),
+			"response_callback" => function($r)
+			{
+				handle::send_log(["edit_10" => $r]);
+			}
+			]);
 		return ['text' => '🗣 Your language set : ' . $lang_name];
 	}
 
@@ -35,9 +46,9 @@ class language
 	{
 		$return = false;
 		$edit_return = false;
-		if(step::get("language_result_resonse"))
+		if(step::get("language_result_response"))
 		{
-			$response = step::get("language_result_resonse");
+			$response = step::get("language_result_response");
 			$text = '_'.$response['result']['text'].' (expired)_';
 			$edit_return = [
 				"text" 						=> $text,
@@ -68,7 +79,7 @@ class language
 			{
 				if($_response['ok'])
 				{
-					step::set("language_result_resonse", $_response);
+					step::set("language_result_response", $_response);
 				}
 			}
 			];

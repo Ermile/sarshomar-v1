@@ -17,6 +17,9 @@ class handle
 		});
 		if($_cmd['command'] == 'exit')
 		{
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
 			session_destroy();
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
 			exit();
@@ -38,12 +41,19 @@ class handle
 		if(!bot::is_aerial())
 		{
 			$response = step::check($_cmd['text'], $_cmd['command']);
-			self::send_log(['Hasan' => $response]);
 			if($response)
 			{
 					return $response;
 			}
-			switch ($_cmd['command'])
+			if(substr($_cmd['command'], 0, 1) == '/')
+			{
+				$command_text = strtolower($_cmd['command']);
+			}
+			else
+			{
+				$command_text = strtolower($_cmd['text']);
+			}
+			switch ($command_text)
 			{
 				case '/menu':
 				case '/cancel':
@@ -64,11 +74,8 @@ class handle
 				$response = menu::polls();
 				break;
 
-				case '/sarshomar':
-				case 'sarshomar':
-				case 'ask':
 				case '/ask':
-				case 'نظرسنجی‌های سرشمار':
+				case T_('ask from me'):
 				$response = step_sarshomar::start();
 				break;
 
@@ -88,12 +95,9 @@ class handle
 				$response = menu_my::mypolls();
 				break;
 
-				case '/define':
-				case 'define':
-				case 'create':
+				case T_('create new pool'):
 				case '/create':
-				case 'تعریف':
-				$response = step_define::start();
+				$response = step_create::start();
 				break;
 
 				case 'نظرسنجی‌های':

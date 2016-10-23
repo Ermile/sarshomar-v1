@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 
 class menu
 {
@@ -12,7 +13,7 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
-		$txt_my = [T_('My polls'), T_('Create new pool')];
+		$txt_my = [T_('My polls'), T_('Create')];
 		if(!\lib\db\polls::get(bot::$user_id, 'count'))
 		{
 			$txt_my = [T_('Create new pool')];
@@ -24,7 +25,7 @@ class menu
 			[
 				[T_('Ask from me')],
 				$txt_my,
-				[T_('Sarshomar Panel')],
+				[T_('Dashboard'), T_("Help")],
 			],
 		];
 
