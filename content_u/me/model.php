@@ -37,34 +37,30 @@ class model extends \mvc\model
 		$range = self::get_range($age);
 		$arg =
 		[
-			'name'            => utility::post("name"),
-			'lastname'        => utility::post("lastname"),
-			'gender'          => utility::post("gender"),
-			'marrital_status' => utility::post("marrital_status"),
-			'mobile'          => utility::post("mobile"),
-			'birthdate'       => utility::post("birthdate"),
-			'language'        => utility::post("language"),
-			'graduation'      => utility::post("graduation"),
-			'education_type'  => utility::post("education_type"),
-			'course'          => utility::post("course"),
-			'grade'           => utility::post("grade"),
-			'degree'          => utility::post("degree"),
-			'employment'      => utility::post("employment"),
-			'business'        => utility::post("business"),
-			'industry'        => utility::post("industry"),
-			'countrybirth'    => utility::post("countrybirth"),
-			'country'         => utility::post("country"),
-			'provincebirth'   => utility::post("provincebirth"),
-			'province'        => utility::post("province"),
-			'birthcity'       => utility::post("birthcity"),
-			'city'            => utility::post("city"),
-			'parental'        => utility::post("parental"),
-			'exercise'        => utility::post("exercise"),
-			'devices'         => utility::post("devices"),
-			'internetusage'   => utility::post("internetusage"),
-			'favorites'       => utility::post("favorites"),
-			'age'             => $age,
-			'range'			  => $range
+
+			'gender'        => utility::post("gender"),
+			'marrital'      => utility::post("marrital_status"),
+			'birthday'      => utility::post("birthdate"),
+			'language'      => utility::post("language"),
+			'graduation'    => utility::post("graduation"),
+			'education'     => utility::post("education_type"),
+			'course'        => utility::post("course"),
+			'grade'         => utility::post("grade"),
+			'employment'    => utility::post("employment"),
+			'business'      => utility::post("business"),
+			'industry'      => utility::post("industry"),
+			'countrybirth'  => utility::post("countrybirth"),
+			'country'       => utility::post("country"),
+			'provincebirth' => utility::post("provincebirth"),
+			'province'      => utility::post("province"),
+			'citybirth'     => utility::post("birthcity"),
+			'city'          => utility::post("city"),
+			'parental'      => utility::post("parental"),
+			'exercise'      => utility::post("exercise"),
+			'devices'       => utility::post("devices"),
+			'internetusage' => utility::post("internetusage"),
+			'age'           => $age
+
 		];
 		// remove empty
 		$arg = array_filter($arg);
