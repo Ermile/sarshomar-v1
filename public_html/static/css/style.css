@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version: 2.8.0
+ * Version: 2.9.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -270,6 +270,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .question-box article h2{font-weight:700;margin-bottom:unset;color:#454545;border:none;background-color:unset;}
 .question-box article .description{clear:both;width:70%;padding:2em;}
 .question-box article .description p{font-size:1.2em;margin-bottom:unset;}
+.poll-chart svg > rect {fill:transparent;}
+.question-box .buttons{margin-bottom:1em;margin-top:1em;}
+.question-box .buttons::before{left:-50px;}
 
 
 /* social */
@@ -314,6 +317,8 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .tab>li{display:none;}
 .tab>li.active{display:inherit;}
 
+
+/* vertical tabs */
 .vertical-tabs, .vertical-tabs-content{display:table-cell;}
 .vertical-tabs .tabs li{width:170px;height:50px;background-color:#00667A;margin-bottom:20px;color:#D8DAD0;line-height:50px;text-align:center;cursor:pointer;position:relative;margin-right:30px;border-top-left-radius:10px;border-bottom-left-radius:10px;transition:color 0.5s;}
 .vertical-tabs .tabs li:hover{background-color:#15535f;}
@@ -321,10 +326,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .vertical-tabs-content{border-left:1px solid #E7A429;width:100%;}
 .vertical-tabs-content .tab li{}
 .vertical-tabs-content .tab li > .row{padding:0 50px;}
-#tab-personal img{width:150px;height:150px;}
-.margin-bottom{margin-bottom:2em;}
-#me .title-line::before{width:180px;}
-#me .title-line.reverse::before{left:-50px;}
 .addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
 .addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
 .vertical-tabs .tabs li::before{left:-18px;content:'c';font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:34px;left:-25px;}
@@ -332,11 +333,25 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .vertical-tabs .tabs li.active:hover::before{color:#e7a429;}
 .vertical-tabs .tabs li:hover::before{color:#15535f;}
 
-.poll-chart svg > rect {fill:transparent;}
-.question-box .buttons{margin-bottom:1em;margin-top:1em;}
-.question-box .buttons::before{left:-50px;}
 
+#tab-personal img{width:150px;height:150px;}
+.margin-bottom{margin-bottom:2em;}
+#me .title-line::before{width:180px;}
+#me .title-line.reverse::before{left:-50px;}
 #me .buttons::before{width:calc(100% + 40px);left:-20px;}
+
+
+/*polls*/
+.polls-head{border-bottom:1px solid #E0E0E0;}
+.polls-head > div{color:#00667A;font-weight:bold;}
+.polls-body{margin-bottom:2em;}
+.polls-head > div, .polls-row > div{display:table-cell;padding:10px 5px;}
+.polls-head > div:nth-child(2), .polls-row > div:nth-child(2){width:100%;}
+.polls-row > div:nth-child(2) a{color:#00667A;font-weight:bold;}
+.polls-head > div:not(:nth-child(2)), .polls-row > div:not(:nth-child(2)){min-width:60px;}
+.polls-head > div:last-child, .polls-row > div:last-child{min-width:150px}
+.polls-row > div > span{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;}
+.polls-row > div > span .fa{color:#F4F4F4;vertical-align:middle;}
 
 
 /* customers box */
