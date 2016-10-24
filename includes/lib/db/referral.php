@@ -13,7 +13,11 @@ class referral
 	 */
 	public static function set($_child_id, $_parent_id)
 	{
-		return \lib\db\users::set_user_data($_child_id, "user_parent", $_parent_id);
+		$arg =
+		[
+			'user_parent' => $_parent_id
+		];
+		return \lib\db\users::update($arg, $_child_id);
 	}
 
 

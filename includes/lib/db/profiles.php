@@ -17,38 +17,9 @@ class profiles
 			return $_SESSION['user']['profile'];
 		}
 
-		$query =
-		"
-			SELECT
-				users.gender,
-				users.marrital,
-				users.birthday,
-				users.age,
-				users.language,
-				users.graduation,
-				users.course,
-				users.employment,
-				users.business,
-				users.industry,
-				users.countrybirth,
-				users.provincebirth,
-				users.citybirth,
-				users.country,
-				users.province,
-				users.city,
-				users.parental,
-				users.exercise,
-				users.devices,
-				users.internetusage
-			FROM
-				users
-			WHERE
-				users.id = $_user_id
-			LIMIT 1
-			-- profiles::get_profile_data()
-		";
+		// get all field of users record
+		$result = \lib\db\users::get($_user_id);
 
-		$result = \lib\db::get($query, null, true);
 		// save prifile data in SESSION
 		$_SESSION['user']['profile'] = $result;
 
@@ -78,26 +49,14 @@ class profiles
 			{
 				if($_args[$field] != $old_profiles_data[$field])
 				{
-					$set[] = " `$field` = '". $_args[$field]. "'";
+					$set[$field] = $_args[$field];
 					$_SESSION['user']['profile'][$field] = $_args[$field];
 				}
 			}
 		}
-		if(empty($set))
-		{
-			return true;
-		}
-		$set = join($set, " , ");
-		$query =
-		"
-			UPDATE
-				users
-			SET
-				$set
-			WHERE
-				users.id = $_user_id
-		";
-		$result = \lib\db::query($query);
+
+
+		$result = \lib\db\users::update($set, $_user_id);
 		return $result;
 	}
 
