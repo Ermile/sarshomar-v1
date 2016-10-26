@@ -54,9 +54,7 @@ class tg_session
 		{
 			return $object = $_value;
 		}
-		elseif (count($keys) === 2) {
-			return $object->$_keys = $_value;
-		}
+
 		$prefix_keys = array_splice($keys, 0, count($keys) -1);
 		$arg_key = end($keys);
 		foreach ($prefix_keys as $key => $value) {
