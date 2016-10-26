@@ -50,6 +50,10 @@ class tg_session
 		$arg_value = end($args);
 		$keys = array_splice($args, 0 , count($args) -1);
 		$object = self::$data;
+		if(count($keys) === 1)
+		{
+			return $object = $_value;
+		}
 		$prefix_keys = array_splice($keys, 0, count($keys) -1);
 		$arg_key = end($keys);
 		foreach ($prefix_keys as $key => $value) {
@@ -59,7 +63,7 @@ class tg_session
 			}
 			$object = $object->$value;
 		}
-		$object->$arg_key = $arg_value;
+		return $object->$arg_key = $arg_value;
 	}
 
 	public static function get(...$_keys)
