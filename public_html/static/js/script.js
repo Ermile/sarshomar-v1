@@ -80,7 +80,42 @@ $(document).ready(function () {
     $('.tabs li').click(function(){
       $('input[name="poll_type"], input[name="filter_type"]').val( $(this).data('tab') );
     });
+
+
 });
+
+route('@/add', function(doc){
+  $('.option .input[type="text"]', doc).on('input', function(event) {
+    $(this).formFunc();
+  });
+});
+
+(function($) {
+    var element = $('<div class="element option"><label class="addon" for="answer2">Answer 2</label><input class="input" type="text" name="answers[]" id="answer2"><input type="hidden" name="answer_true[]" value="true"><input type="hidden" name="answer_type[]" value="text"></div>');
+
+    $.fn.formFunc = function()
+    {
+      var is_null = 0;
+
+      $.each($('.option .input[type="text"]'), function(key, value)
+      {
+        if ( !$(this).val() && is_null === 0 )
+        {
+          is_null++;
+        }
+      });
+
+      if (is_null === 0)
+      {
+        console.log('hala add kon!');
+      }
+      else
+      {
+        console.log('add nakon!');
+      }
+    }
+}(jQuery));
+
 
 function addTag() {
     var tag = $('#tag-add');
