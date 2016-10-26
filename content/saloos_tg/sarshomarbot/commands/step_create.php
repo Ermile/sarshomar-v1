@@ -30,30 +30,29 @@ class step_create
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = "راهنمای ثبت نظرسنجی\n";
+		$txt_text = "نظرسنجی خود را تعریف نمایید\n";
+		$txt_text .= "راهنمای ثبت نظرسنجی\n";
 		$txt_text .= "۱. سوال نظرسنجی خود را در خط اول وارد نمایید.\n";
-		$txt_text .= "۲. هر باسخ را در یک خط مجزا وارد کنید.\n";
-		$txt_text .= "۳. اگر نظرسنجی دارای پاسخ یا پاسخ‌های درست می‌باشد قبل پاسخ درست علامت + را وارد کنید\n";
-		$txt_text .= "۴. اگر نظرسنجی شما از نوع مرتب‌سازی می‌باشد اولین کاراکتر نظرسنجی علامت : را وارد نمایید\n";
-		$txt_text .= "برای این‌که دیگر پیغام راهنما را مشاهده ننمایید /help\_create\_poll\_off را کلیک کنید\n";
-		$txt_text .= "برای بازگشت راهنمای نظرسنجی به عالت فعال /help\_create\_poll\_on را کلیک کنید\n";
-		$menu     = self::$menu;
+		$txt_text .= "۲. هر پاسخ را در یک خط مجزا وارد کنید.\n";
+		$txt_text .= "می‌توانید از علائم زیر استفاده نمایید:\n";
+		$txt_text .= ": برای تعریف نظرسنجی مرتب‌سازی استفاده می‌شود که در ابتدای سوال نظرسنجی می‌آید\n";
+		$txt_text .= "+ اگر نظرسنجی شما دارای گزینه صحیح است ابتدای هر گزینه صحیح می‌باشد";
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => [
-					"inline_keyboard" => [
+			'text'         => $txt_text,
+			'reply_markup' => [
+				"inline_keyboard" => [
+					[
 						[
-							[
-								"text" => "انصراف از ثبت سوال"
-							],
-							[
-								"text" => "حذف راهنما"
-							]
+							"text" => "انصراف",
+							"callback_data" => 'create/cancel'
+						],
+						[
+							"text" => "حذف راهنما",
+							"callback_data" => 'create/helep/cancel'
 						]
 					]
-				],
+				]
 			],
 		];
 
@@ -72,25 +71,21 @@ class step_create
 	public static function step2($_question)
 	{
 		// go to next step
-		step::plus();
+		// step::plus();
 		// set title for question
 		step::set('textTitle', 'question');
 		// increase custom number
 		step::plus(1, 'i');
 		// create output text
-		$txt_text = "مرحله ". step::get('i')."\n\n";
-		$txt_text .= "سوال شما با موفقیت ثبت شد.\n*";
-		$txt_text .= $_question;
-		$txt_text .= "*\n\nلطفا گزینه اول را وارد نمایید.";
+		$txt_text = "نظرسنجی شما ثبت شد \n";
+		$txt_text .= "کد نظرسنجی شما\n/o\_3pf";
 
 		// get name of question
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => self::$menu,
-			],
+		'text'         => $txt_text
 		];
+		step::stop();
 		// return menu
 		return $result;
 	}
@@ -115,10 +110,10 @@ class step_create
 		// get name of question
 		$result   =
 		[
-			[
-				'text'         => $txt_text,
-				'reply_markup' => self::$menu,
-			],
+		[
+		'text'         => $txt_text,
+		'reply_markup' => self::$menu,
+		],
 		];
 		// return menu
 		return $result;
@@ -158,10 +153,10 @@ class step_create
 		// get name of question
 		$result   =
 		[
-			[
-				'text'         => $final_text,
-				'reply_markup' => menu_my::my(true),
-			],
+		[
+		'text'         => $final_text,
+		'reply_markup' => menu_my::my(true),
+		],
 		];
 		// return menu
 		return $result;

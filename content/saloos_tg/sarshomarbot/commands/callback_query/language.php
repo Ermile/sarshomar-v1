@@ -4,6 +4,7 @@ use \content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 use \content\saloos_tg\sarshomarbot\commands\menu;
 use \lib\telegram\tg as bot;
+use \lib\db\tg_session as session;
 use \lib\telegram\step;
 
 class language
@@ -33,11 +34,7 @@ class language
 		bot::sendResponse([
 			"method" => "sendMessage",
 			"text" => T_("Welcome"),
-			"reply_markup" => menu::main(true),
-			"response_callback" => function($r)
-			{
-				handle::send_log(["edit_10" => $r]);
-			}
+			"reply_markup" => menu::main(true)
 			]);
 		return ['text' => '🗣 Your language set : ' . $lang_name];
 	}
@@ -46,9 +43,20 @@ class language
 	{
 		$return = false;
 		$edit_return = false;
-		if(step::get("language_result_response"))
+		$get_back_response = session::get('tmp', 'language_inline');
+		$get_sesstion = "SELECT * FROM options
+		WHERE options.option_cat = 'telegram' AND
+		options.user_id = 99 AND
+		options.option_key = 'session' AND
+		options.option_value = '99'
+		LIMIT 1";
+		$result = \lib\db::get($get_sesstion);
+		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true])[0];
+		handle::send_log(["tmp0" => $result['option_cat']]);
+		handle::send_log(["tmp1" => $result]);
+		if($get_back_response)
 		{
-			$response = step::get("language_result_response");
+			$response = $get_back_response;
 			$text = '_'.$response['result']['text'].' (expired)_';
 			$edit_return = [
 				"text" 						=> $text,
@@ -79,7 +87,8 @@ class language
 			{
 				if($_response['ok'])
 				{
-					step::set("language_result_response", $_response);
+					session::set('tmp', 'language_inline', $_response);
+					session::set('tmp', 'expire', $_response);
 				}
 			}
 			];

@@ -3,7 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \content\saloos_tg\sarshomarbot\commands\handle;
-
+use \lib\db\tg_session as session;
 class callback_query
 {
 	public static $message_result = [];
@@ -14,18 +14,31 @@ class callback_query
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
 
-		if(!array_key_exists('callback_query_id', $_SESSION['tg']))
+		/**
+		 * check if unique request
+		 */
+		$callback_session = session::get('tmp', 'callback_query');
+		if(!$callback_session)
 		{
-			$_SESSION['tg']['callback_query_id'] = [];
+			$callback_session = [];
 		}
-		if(array_search($_query['chat_instance'], $_SESSION['tg']['callback_query_id']) === false)
+		elseif(!is_array($callback_session))
 		{
-			array_push($_SESSION['tg']['callback_query_id'], $_query['chat_instance']);
+			$callback_session = [$callback_session];
+		}
+		if(array_search($_query['chat_instance'], $callback_session) === false)
+		{
+			array_push($callback_session, $_query['chat_instance']);
+			session::set('tmp', 'callback_query', $callback_session);
 		}
 		else
 		{
 			return $result;
 		}
+
+		/**
+		 * check type
+		 */
 		if(array_key_exists('inline_message_id', $_query))
 		{
 			self::$message_result['inline_message_id'] = $_query['inline_message_id'];

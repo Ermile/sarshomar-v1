@@ -11,15 +11,15 @@ class handle
 	public static function exec($_cmd)
 	{
 		// bot::$defaultText = T_('Not Found');
-		register_shutdown_function(function()
-		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
-		});
 		if($_cmd['command'] == 'exit')
 		{
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
+			\lib\db::query("DELETE FROM options
+				WHERE user_id = 99 AND
+				(option_cat = 'user_detail_99' or option_cat = 'telegram')
+				");
 			session_destroy();
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
 			exit();
@@ -43,7 +43,8 @@ class handle
 			$response = step::check($_cmd['text'], $_cmd['command']);
 			if($response)
 			{
-					return $response;
+				self::send_log(['call' => $response]);
+				return $response;
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{
