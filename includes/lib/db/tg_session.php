@@ -24,7 +24,11 @@ class tg_session
 		{
 			self::$start = true;
 		}
-		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true])[0];
+		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true]);
+		if(array_key_exists(0, $result))
+		{
+			$result = $result[0];
+		}
 		if(array_key_exists('option_meta', $result))
 		{
 			self::$data = $result;
