@@ -24,7 +24,7 @@ class tg_session
 		{
 			self::$start = true;
 		}
-		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true]);
+		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true])[0];
 		if(array_key_exists('option_meta', $result))
 		{
 			self::$data = $result;
@@ -69,6 +69,26 @@ class tg_session
 			$object = $object->$value;
 		}
 		return $object;
+	}
+
+	public static function push($_keys, $_value)
+	{
+		$args = func_get_args();
+		$arg_value = end($args);
+		$keys = array_splice($args, 0 , count($args) -1);
+		$is_exists = self::get(...$keys);
+		$x = $keys;
+		if(!$is_exists)
+		{
+			array_push($keys, [$_value]);
+			self::set(...$keys);
+		}
+		else
+		{
+			array_push($is_exists, $_value);
+			array_push($keys, $is_exists);
+			self::set(...$keys);
+		}
 	}
 
 	public static function save($_user_id = null)
