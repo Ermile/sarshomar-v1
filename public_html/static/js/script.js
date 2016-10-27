@@ -84,8 +84,8 @@ $(document).ready(function () {
 
 });
 
-route('@/add', function(doc){
-  $('.option .input[type="text"]', doc).on('input', function(event) {
+route('@/add', function(doc) {
+  $(document).on('input', '.option .input[type="text"]', function(event) {
     $(this).formFunc();
   });
 });
@@ -107,15 +107,23 @@ route('@/add', function(doc){
 
       if (is_null === 0)
       {
-        console.log('hala add kon!');
+        var len = $('.option .input[type="text"]').length;
+        var _element = $('.option .input[type="text"]').eq(len - 1);
+        _element = _element.parents('.element.option');
+        var num = _element.data('number') + 1;
+        _element = _element.clone();
+        _element.children('label').text('answer' + num).attr('for', 'answer' + num);
+        _element.children('.input').attr('id', 'answer' + num).val();
+        _element.children('.input').val('');
+        $('.input-group').append(_element);
+        _element.addClass('animated fadeInDown');
       }
       else
       {
-        console.log('add nakon!');
+        console.log(0);
       }
     }
 }(jQuery));
-
 
 function addTag() {
     var tag = $('#tag-add');
