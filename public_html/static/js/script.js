@@ -84,46 +84,71 @@ $(document).ready(function () {
 
 });
 
-route('@/add', function(doc) {
-  $(document).on('input', '.option .input[type="text"]', function(event) {
-    $(this).formFunc();
+route('@/add', function() {
+  $(this).on('input', '.option .input[type="text"]', function(event) {
+    var number_of_empty_inputs = 0;
+
+    // check if current element has not value and we have no empty inputs
+    $.each($('.option .input[type="text"]'), function(key, value)
+    {
+      if ( !$(this).val() && number_of_empty_inputs === 0 )
+      {
+        number_of_empty_inputs++;
+      }
+    });
+
+    // if we had no empty inputs and we needed one do this
+    if (number_of_empty_inputs === 0)
+    {
+      var template = $('.option .input[type="text"]').eq(0).parents('.element.option').clone();
+      var num = $('.option .input[type="text"]').length + 1;
+      template.children('label').text('answer ' + num).attr('for', 'answer' + num);
+      template.children('.input').attr('id', 'answer' + num);
+      template.children('.input').val('');
+      $('.input-group').append(template);
+      template.addClass('animated fadeInDown');
+    }
+
+    // if we had empty inputs do this
+    else
+    {}
   });
 });
 
-(function($) {
-    var element = $('<div class="element option"><label class="addon" for="answer2">Answer 2</label><input class="input" type="text" name="answers[]" id="answer2"><input type="hidden" name="answer_true[]" value="true"><input type="hidden" name="answer_type[]" value="text"></div>');
+// (function($) {
+//     var element = $('<div class="element option"><label class="addon" for="answer2">Answer 2</label><input class="input" type="text" name="answers[]" id="answer2"><input type="hidden" name="answer_true[]" value="true"><input type="hidden" name="answer_type[]" value="text"></div>');
 
-    $.fn.formFunc = function()
-    {
-      var is_null = 0;
+//     $.fn.formFunc = function()
+//     {
+//       var is_null = 0;
 
-      $.each($('.option .input[type="text"]'), function(key, value)
-      {
-        if ( !$(this).val() && is_null === 0 )
-        {
-          is_null++;
-        }
-      });
+//       $.each($('.option .input[type="text"]'), function(key, value)
+//       {
+//         if ( !$(this).val() && is_null === 0 )
+//         {
+//           is_null++;
+//         }
+//       });
 
-      if (is_null === 0)
-      {
-        var len = $('.option .input[type="text"]').length;
-        var _element = $('.option .input[type="text"]').eq(len - 1);
-        _element = _element.parents('.element.option');
-        var num = _element.data('number') + 1;
-        _element = _element.clone();
-        _element.children('label').text('answer' + num).attr('for', 'answer' + num);
-        _element.children('.input').attr('id', 'answer' + num).val();
-        _element.children('.input').val('');
-        $('.input-group').append(_element);
-        _element.addClass('animated fadeInDown');
-      }
-      else
-      {
-        console.log(0);
-      }
-    }
-}(jQuery));
+//       if (is_null === 0)
+//       {
+//         var len = $('.option .input[type="text"]').length;
+//         var _element = $('.option .input[type="text"]').eq(len - 1);
+//         _element = _element.parents('.element.option');
+//         var num = _element.data('number') + 1;
+//         _element = _element.clone();
+//         _element.children('label').text('answer' + num).attr('for', 'answer' + num);
+//         _element.children('.input').attr('id', 'answer' + num).val();
+//         _element.children('.input').val('');
+//         $('.input-group').append(_element);
+//         _element.addClass('animated fadeInDown');
+//       }
+//       else
+//       {
+//         console.log(0);
+//       }
+//     }
+// }(jQuery));
 
 function addTag() {
     var tag = $('#tag-add');
