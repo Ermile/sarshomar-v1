@@ -18,3 +18,14 @@ ALTER TABLE `users` ADD `parental` 		VARCHAR(64) 					NULL;
 ALTER TABLE `users` ADD `exercise` 		VARCHAR(64) 					NULL;
 ALTER TABLE `users` ADD `devices` 		VARCHAR(64) 					NULL;
 ALTER TABLE `users` ADD `internetusage` ENUM('low', 'medium', 'a lot') 	NULL;
+
+
+ALTER TABLE `users` ADD `pollanswer`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `pollskipped`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `point` 			INT(10) 			NULL;
+ALTER TABLE `users` ADD `surveycount`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `pollcount`			INT(10) 			NULL;
+ALTER TABLE `users` ADD `peopleanswer`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `peopleskipped`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `userreferred`		INT(10) 			NULL;
+ALTER TABLE `users` ADD `userverified`		INT(10) 			NULL;
