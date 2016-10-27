@@ -115,41 +115,8 @@ route('@/add', function() {
   });
 });
 
-// (function($) {
-//     var element = $('<div class="element option"><label class="addon" for="answer2">Answer 2</label><input class="input" type="text" name="answers[]" id="answer2"><input type="hidden" name="answer_true[]" value="true"><input type="hidden" name="answer_type[]" value="text"></div>');
 
-//     $.fn.formFunc = function()
-//     {
-//       var is_null = 0;
-
-//       $.each($('.option .input[type="text"]'), function(key, value)
-//       {
-//         if ( !$(this).val() && is_null === 0 )
-//         {
-//           is_null++;
-//         }
-//       });
-
-//       if (is_null === 0)
-//       {
-//         var len = $('.option .input[type="text"]').length;
-//         var _element = $('.option .input[type="text"]').eq(len - 1);
-//         _element = _element.parents('.element.option');
-//         var num = _element.data('number') + 1;
-//         _element = _element.clone();
-//         _element.children('label').text('answer' + num).attr('for', 'answer' + num);
-//         _element.children('.input').attr('id', 'answer' + num).val();
-//         _element.children('.input').val('');
-//         $('.input-group').append(_element);
-//         _element.addClass('animated fadeInDown');
-//       }
-//       else
-//       {
-//         console.log(0);
-//       }
-//     }
-// }(jQuery));
-
+// -------------------------------------------------- Add Tag
 function addTag() {
     var tag = $('#tag-add');
     var newTag = tag.val().trim();
