@@ -11,19 +11,15 @@ class profiles
 	 */
 	public static function get_profile_data($_user_id)
 	{
-		// if SESSION set return the SESSION
-		if(isset($_SESSION['user']['profile']) && !empty($_SESSION['user']['profile']))
-		{
-			return $_SESSION['user']['profile'];
-		}
 
-		// get all field of users record
-		$result = \lib\db\users::get($_user_id);
+		$filter_id = \lib\db\users::get($_user_id, 'filter_id');
 
-		// save prifile data in SESSION
-		$_SESSION['user']['profile'] = $result;
+		// save filter id
+		$_SESSION['user']['filter_id'] = $filter_id;
 
-		return $result;
+		$profile_data = \lib\db\filters::get($filter_id);
+
+		return $profile_data;
 	}
 
 
@@ -37,26 +33,75 @@ class profiles
 	 */
 	public static function set_profile_data($_user_id, $_args)
 	{
-		$old_profiles_data = self::get_profile_data($_user_id);
-
 		$_args = array_filter($_args);
 
-		$set = [];
+		$filters = [];
 
 		foreach ($_args as $field => $value)
 		{
 			if(\lib\db\filters::support_filter($field))
 			{
-				if($_args[$field] != $old_profiles_data[$field])
-				{
-					$set[$field] = $_args[$field];
-					$_SESSION['user']['profile'][$field] = $_args[$field];
-				}
+				$filters[$field] = $_args[$field];
 			}
 		}
 
+		if(empty($filters))
+		{
+			return true;
+		}
 
-		$result = \lib\db\users::update($set, $_user_id);
+		$filter_id = \lib\db\filters::get_id($filters);
+
+		if(!$filter_id)
+		{
+			$filter_id = \lib\db\filters::insert($filters);
+			// bug !!!
+			if(!$filter_id)
+			{
+				return false;
+			}
+		}
+
+		// user not change profile
+		if($_SESSION['user']['filter_id'] == $filter_id)
+		{
+			return true;
+		}
+		else
+		{
+			$_SESSION['user']['filter_id'] = $filter_id;
+		}
+
+		$arg = ['filter_id' => $filter_id];
+		$result = \lib\db\users::update($arg, $_user_id);
+		return $result;
+	}
+
+
+	/**
+	 * Gets the dashboard data.
+	 * some field in users table
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  The dashboard data.
+	 */
+	public static function get_dashboard_data($_user_id)
+	{
+		// need field
+		$field =
+		[
+			'pollanswer',
+			'pollskipped',
+			'point',
+			'surveycount',
+			'pollcount',
+			'peopleanswer',
+			'peopleskipped',
+			'userreferred',
+			'userverified'
+		];
+		// get all field of users record
+		$result = \lib\db\users::get($_user_id, $field);
 		return $result;
 	}
 

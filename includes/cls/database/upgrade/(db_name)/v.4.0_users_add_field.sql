@@ -1,24 +1,8 @@
-ALTER TABLE `users` ADD `gender` 		ENUM('male','female') 			NULL;
-ALTER TABLE `users` ADD `marrital` 		ENUM('single', 'marriade') 		NULL;
-ALTER TABLE `users` ADD `birthday`  	DATE 							NULL;
-ALTER TABLE `users` ADD `age` 			SMALLINT(3) 					NULL;
-ALTER TABLE `users` ADD `language` 		VARCHAR(2)						NULL;
-ALTER TABLE `users` ADD `graduation` 	VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `course` 		VARCHAR(150) 					NULL;
-ALTER TABLE `users` ADD `employment` 	VARCHAR(64)						NULL;
-ALTER TABLE `users` ADD `business` 		VARCHAR(150) 					NULL;
-ALTER TABLE `users` ADD `industry` 		VARCHAR(150) 					NULL;
-ALTER TABLE `users` ADD `countrybirth` 	VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `provincebirth` VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `citybirth` 	VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `country` 		VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `province` 		VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `city` 			VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `parental` 		VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `exercise` 		VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `devices` 		VARCHAR(64) 					NULL;
-ALTER TABLE `users` ADD `internetusage` ENUM('low', 'medium', 'a lot') 	NULL;
-
+ALTER TABLE `users` ADD `filter_id` INT(10) UNSIGNED NULL;
+-- ALTER TABLE `users` ADD CONSTRAINT `users_filters_ibfk_1` FOREIGN KEY (`filter_id`) REFERENCES `filters` (`id`);
+ALTER TABLE `posts` ADD `filter_id` INT(10) UNSIGNED NULL;
+-- ALTER TABLE `posts` ADD CONSTRAINT `posts_filters_ibfk_1` FOREIGN KEY (`filter_id`) REFERENCES `filters` (`id`);
+ALTER TABLE `posts` ADD `survey` tinyint(1) NULL;
 
 ALTER TABLE `users` ADD `pollanswer`		INT(10) 			NULL;
 ALTER TABLE `users` ADD `pollskipped`		INT(10) 			NULL;
