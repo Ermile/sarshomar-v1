@@ -135,6 +135,19 @@ class model extends \content_u\home\model
 			debug::error(T_("command not found"));
 		}
 
+
+		// save poll tree
+		if(utility::post("parent_tree_id") && utility::post("parent_tree_opt"))
+		{
+			$arg =
+			[
+				'parent' => utility::post("parent_tree_id"),
+				'opt'    => utility::post("parent_tree_opt"),
+				'child'  => $insert_poll
+			];
+			$result = \lib\db\poll_tree::set($arg);
+		}
+
 		if(debug::$status)
 		{
 			\lib\db::commit();
