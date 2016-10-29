@@ -4,6 +4,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
 use \lib\db\tg_session as session;
+use \content\saloos_tg\sarshomarbot\commands\utility;
 
 class step_sarshomar
 {

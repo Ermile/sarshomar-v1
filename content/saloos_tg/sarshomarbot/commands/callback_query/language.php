@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\handle;
+use \content\saloos_tg\sarshomarbot\commands\utility;
 use \content\saloos_tg\sarshomarbot\commands\menu;
 use \lib\telegram\tg as bot;
 use \lib\db\tg_session as session;
