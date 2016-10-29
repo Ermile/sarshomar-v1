@@ -64,13 +64,7 @@ class language
 			$return = [
 			"text" => T_("Please select your language"),
 			"reply_markup" => ["inline_keyboard" => $inline_keyboard],
-			"response_callback" => function($_response)
-			{
-				if($_response->ok)
-				{
-					session::set('expire', 'inline_cache', 'language', $_response);
-				}
-			}
+			"response_callback" => utility::response_expire('language')
 			];
 			if($edit_return)
 			{

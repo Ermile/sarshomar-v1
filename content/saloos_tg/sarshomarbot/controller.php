@@ -52,7 +52,7 @@ class controller extends \lib\mvc\controller
 			if($get_back_response)
 			{
 				foreach ($get_back_response as $key => $value) {
-					$text = $value->result->text;
+					$text = isset($value->result->original_text) ? $value->result->original_text : $value->result->text;
 					$edit_return = [
 					"method" 					=> "editMessageText",
 					'parse_mode' 				=> 'Markdown',

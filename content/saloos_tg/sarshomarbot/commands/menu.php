@@ -27,7 +27,8 @@ class menu
 				$txt_my,
 				[T_('Dashboard'), T_("Help")],
 			],
-		];
+			"resize_keyboard" => true
+			];
 
 		if($_onlyMenu)
 		{

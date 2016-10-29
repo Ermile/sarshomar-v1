@@ -34,13 +34,7 @@ class step_sarshomar
 					]
 				]
 			],
-			"response_callback" => function($_response)
-			{
-				if($_response->ok)
-				{
-					session::set('expire', 'inline_cache', 'sarshomar', $_response);
-				}
-			}
+			"response_callback" => utility::response_expire('sarshomar')
 		];
 		return $return;
 		step::start('sarshomar');
@@ -121,9 +115,10 @@ class step_sarshomar
 			'text'         => poll_result::get_message(step::get('poll_message')),
 			'reply_markup' => ["inline_keyboard" => step::get("poll_inline_keyboard")],
 			'parse_mode' => 'Markdown',
-			'disable_web_page_preview' => true
+			'disable_web_page_preview' => true,
+			"response_callback" => utility::response_expire('ask')
 		];
-		step::stop();
+		// step::stop();
 		// return menu
 		return $result;
 	}

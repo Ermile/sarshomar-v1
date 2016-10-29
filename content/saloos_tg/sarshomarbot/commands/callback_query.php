@@ -26,13 +26,15 @@ class callback_query
 		{
 			$callback_session = [$callback_session];
 		}
-		if(array_search($_query['chat_instance'], $callback_session) === false)
+		if(array_search($_query['chat_instance'] . $_query['message']['message_id'] . $_query['data'], $callback_session) === false)
 		{
-			array_push($callback_session, $_query['chat_instance']);
-			session::set('tmp', 'callback_query', $callback_session);
+			array_push($callback_session, $_query['chat_instance'] . $_query['message']['message_id'] . $_query['data']);
+			// session::set('tmp', 'callback_query', $callback_session);
 		}
 		else
 		{
+			session::remove_back('expire', 'inline_cache');
+			$result['text'] = "repeated";
 			return $result;
 		}
 
@@ -100,7 +102,6 @@ class callback_query
 			];
 		$response = array_merge($response, self::$message_result);
 		$response = array_merge($response, $_result);
-		handle::send_log($response);
 		if($_return)
 		{
 			return $response;

@@ -42,13 +42,7 @@ class step_create
 		$result   =
 		[
 		'text'         => $txt_text,
-		"response_callback" => function($_response)
-		{
-			if($_response->ok)
-			{
-				session::set('expire', 'inline_cache', 'create', $_response);
-			}
-		},
+		"response_callback" => utility::response_expire('create'),
 		'reply_markup' => [
 			"inline_keyboard" => [
 				[

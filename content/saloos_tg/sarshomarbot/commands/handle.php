@@ -67,85 +67,44 @@ class handle
 				$response = menu::main();
 				break;
 
-				case '/poll':
-				case 'poll':
-				case '/polls':
-				case 'polls':
-				case 'شرکت':
-				case 'شرکت در نظرسنجی':
-				$response = menu::polls();
-				break;
-
 				case '/ask':
 				case T_('ask from me'):
 				$response = step_sarshomar::start();
 				break;
 
-				case '/removeUserAnswers':
-				case 'removeUserAnswers':
-				$response = step_sarshomar::removeUserAnswers();
+				case '/dashboard':
+				case T_('dashboard'):
+				$response = step_dashboard::start();
 				break;
 
-				case '/my':
-				case 'my':
-				case 'من':
-				$response = menu_my::my();
+				case '/help':
+				case T_('help'):
+				$response = step_help::start();
 				break;
 
-				case '/mypolls':
-				case 'mypolls':
-				$response = menu_my::mypolls();
+				case '/faq':
+				$response = step_help::exec($command_text);
+				break;
+
+				case '/commands':
+				$response = step_help::exec($command_text);
+				break;
+
+				case '/feedback':
+				$response = step_help::exec($command_text);
+				break;
+
+				case '/privacy':
+				$response = step_help::exec($command_text);
+				break;
+
+				case '/about':
+				$response = step_help::exec($command_text);
 				break;
 
 				case T_('create new pool'):
 				case '/create':
 				$response = step_create::start();
-				break;
-
-				case 'نظرسنجی‌های':
-				switch ($_cmd['text'])
-				{
-					case 'نظرسنجی‌های من':
-					$response = menu_my::my();
-					break;
-
-					case 'نظرسنجی‌های موجود':
-					$response = menu_my::mypolls();
-					break;
-
-					case 'نظرسنجی‌های سرشمار':
-					$response = step_sarshomar::start();
-					break;
-
-					default:
-					break;
-				}
-				break;
-
-				case '/psychology':
-				case 'psychology':
-				case 'روانشناسی':
-				$response = menu_psychology::psychology();
-				break;
-
-				case '/civility':
-				case 'civility':
-				case 'مردمی':
-				$response = menu_civility::civility();
-				break;
-
-				case '/profile':
-				case 'profile':
-				case 'پروفایل':
-				$response = menu_profile::profile();
-				break;
-
-				case '/feedback':
-				case 'feedback':
-				case 'ثبت':
-				case 'ثبت بازخورد':
-				step::set('menu', menu::main(true));
-				$response = \lib\telegram\commands\step_feedback::start();
 				break;
 
 				case 'return':
@@ -194,7 +153,6 @@ class handle
 				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
 			}
 		}
-		// self::send_log($response);
 		return $response;
 	}
 
