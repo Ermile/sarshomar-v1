@@ -1,0 +1,40 @@
+{%extends display.main%}
+
+{%block content%}
+<div class="main">
+  <div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+      {%if poll_list%}
+      <div class="polls-head">
+        <div>{%trans "Type"%}</div>
+        <div>{%trans "Title"%}</div>
+        <div>{%trans "Status"%}</div>
+        <div>{%trans "Number"%}</div>
+        <div>{%trans "Date"%}</div>
+      </div>
+      <div class="polls-body">
+      {%for key, value in poll_list%}
+        <ul>
+          <li class="polls-row">
+            <div>
+              <span><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
+            </div>
+            <div>{{value.status}}</div>
+            <div>{{value.total}}</div>
+            <div>{{value.date_modified}}</div>
+          </li>
+        </ul>
+      {%endfor%}
+      </div>
+      {%else%}
+      <div class="msg error">There is no question in database!</div>
+      <div><a href="{{base.url}}/@/add">Add now!</a></div>
+      {%endif%}
+    </div>
+  </div>
+</div>
+{%endblock%}

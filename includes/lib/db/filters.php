@@ -55,76 +55,6 @@ class filters
 
 
 	/**
-	 * return category of filter
-	 *
-	 * @param      <type>  $_cat   The cat
-	 */
-	public static function filter_cat($_cat)
-	{
-		$cat = null;
-
-		switch ($_cat) {
-			// public
-			case 'gender':
-			case 'marrital':
-			case 'language':
-			case 'employment':
-				$cat = "public";
-				break;
-
-			// education
-			case 'graduation':
-			case 'course':
-				$cat = "education";
-				break;
-
-			// family
-			case 'parental':
-			case 'birthdate':
-			case 'age':
-			case 'range':
-				$cat = "family";
-				break;
-
-			// job
-			case 'business':
-			case 'industry':
-				$cat = "job";
-				break;
-
-			// location
-			case 'province':
-			case 'city':
-			case 'country':
-			case 'citybirth':
-			case 'provincebirth':
-			case 'countrybirth':
-				$cat = "location";
-				break;
-
-			// favorites
-			case 'favorites':
-			case 'exercise':
-				$cat = "favorites";
-				break;
-
-			// other
-			case 'devices':
-			case 'internet':
-				$cat = "other";
-
-			// other
-			default:
-				$cat = "other";
-				break;
-		}
-
-		return $cat;
-	}
-
-
-
-	/**
 	 * insert new tag in filters table
 	 * @param array $_args fields data
 	 * @return mysql result
@@ -282,6 +212,76 @@ class filters
 	}
 
 
+
+	/**
+	 * return category of filter
+	 *
+	 * @param      <type>  $_cat   The cat
+	 */
+	public static function filter_cat($_cat)
+	{
+		$cat = null;
+
+		switch ($_cat) {
+			// public
+			case 'gender':
+			case 'marrital':
+			case 'language':
+			case 'employment':
+				$cat = "public";
+				break;
+
+			// education
+			case 'graduation':
+			case 'course':
+				$cat = "education";
+				break;
+
+			// family
+			case 'parental':
+			case 'birthdate':
+			case 'age':
+			case 'range':
+				$cat = "family";
+				break;
+
+			// job
+			case 'business':
+			case 'industry':
+				$cat = "job";
+				break;
+
+			// location
+			case 'province':
+			case 'city':
+			case 'country':
+			case 'citybirth':
+			case 'provincebirth':
+			case 'countrybirth':
+				$cat = "location";
+				break;
+
+			// favorites
+			case 'favorites':
+			case 'exercise':
+				$cat = "favorites";
+				break;
+
+			// other
+			case 'devices':
+			case 'internet':
+				$cat = "other";
+
+			// other
+			default:
+				$cat = "other";
+				break;
+		}
+
+		return $cat;
+	}
+
+
 	/**
 	 * get all user detail and make page of set filter
 	 *
@@ -290,6 +290,7 @@ class filters
 	public static function get_exist_filter()
 	{
 		// muse be edit by new syntax of filters
+
 		return false;
 
 		// $query =

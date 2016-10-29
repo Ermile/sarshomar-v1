@@ -25,15 +25,24 @@ class polls
 		{
 			$where[] = "posts.post_type = '". $_args['post_type'] . "'";
 		}
-		else
-		{
-			$where[] = "posts.post_type LIKE 'poll\_%'";
-		}
 
 		// check post_id
 		if(isset($_args['id']))
 		{
 			$where[] = "posts.id = ". $_args['id'];
+		}
+
+		// search in post_title
+		if(isset($_args['post_title']))
+		{
+			$where[] = "posts.post_title LIKE '%". $_args['post_title']. "%' ";
+		}
+
+
+		// search in post_conter
+		if(isset($_args['post_conter']))
+		{
+			$where[] = "posts.post_conter LIKE '%". $_args['post_conter']. "%' ";
 		}
 
 		// check post_status

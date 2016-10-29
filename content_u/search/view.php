@@ -1,16 +1,13 @@
 <?php
-namespace content_u\knowledge;
+namespace content_u\search;
 
 class view extends \mvc\view
 {
 
 	/**
-	 * view list of poll
-	 * for the user
-	 *
-	 * @param      <type>  $_args  The arguments
+	 * ready to load add poll
 	 */
-	public function view_list($_args)
+	function view_search($_args)
 	{
 		$this->include->fontawesome = true;
 
@@ -28,6 +25,5 @@ class view extends \mvc\view
 		}
 		$this->data->poll_list = $new_poll_list;
 	}
-
 }
 ?>
