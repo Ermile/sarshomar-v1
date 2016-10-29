@@ -101,7 +101,12 @@
                   <textarea name="description"></textarea>
                 </div>
               </div><!-- /.indent -->
-
+                {%if survey_mod%}
+                  <div class="element">
+                    <label class="addon" for="survey_title">Survey Title</label>
+                    <input class="input" type="text" name="survey_title" id="survey_title">
+                  </div>
+                {%endif%}
               <div class="buttons">
                 <nav>
                   <button name="filter" value="filter">{%trans "Filter"%}</button>

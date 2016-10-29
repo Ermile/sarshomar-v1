@@ -17,7 +17,7 @@ class model extends \content_u\home\model
 		// default survey id is null
 		$survey_id = null;
 		// users click on one of 'add filter' buttom
-		if(utility::post("filter"))
+		if(utility::post("filter") || utility::post("publish"))
 		{
 			$insert_poll = null;
 			// if title is null and answer is null
@@ -34,18 +34,33 @@ class model extends \content_u\home\model
 			}
 			else
 			{
-				// insert the poll
-				$insert_poll = $this->insert_poll();
+				// we not in survey mode
+				if(!$this->check_poll_url($_args))
+				{
+					// insert the poll
+					$insert_poll = $this->insert_poll();
+				}
+				else
+				{
+					// users click on this buttom and the page has a data for insert
+					// we check the poll or survey mod
+					// if in survey mode we need to save last poll in user page as a survey record
+					// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
+					$poll_type = "survey_poll_";
+					// get the survey id and survey url
+					$survey_id = $this->check_poll_url($_args, "decode");
+					$survey_url = $this->check_poll_url($_args, "encode");
+					// insert the poll
+					$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+					// save survey title
+					$this->set_suervey_title($survey_id);
+				}
 			}
-
 			// check the url
 			if($this->check_poll_url($_args))
 			{
 				// url like this >> @/(.*)/add
 				$url       = $this->check_poll_url($_args, "encode");
-				$survey_id = $this->check_poll_url($_args);
-				// save survey title
-				$this->set_suervey_title($survey_id);
 			}
 			else
 			{
@@ -55,7 +70,19 @@ class model extends \content_u\home\model
 			if(debug::$status)
 			{
 				// must be redirect to filter page
-				$this->redirector()->set_url("@/$url/filter");
+				if(utility::post("filter"))
+				{
+					$this->redirector()->set_url("@/$url/filter");
+				}
+				// must be redirect to publish page
+				elseif(utility::post("publish"))
+				{
+					$this->redirector()->set_url("@/$url/publish");
+				}
+				else
+				{
+					debug::error(T_("can not found redirect page"));
+				}
 			}
 		}
 		elseif(utility::post("survey"))
@@ -100,48 +127,6 @@ class model extends \content_u\home\model
 			if($insert_poll)
 			{
 				$this->redirector()->set_url("@/$survey_url/add");
-			}
-		}
-		// users click on this buttom
-		elseif(utility::post("publish"))
-		{
-			$insert_poll = null;
-			// if title is null and answer is null
-			// we check the url
-			// if in the survey we abrot save poll and redirect to filter page
-			// user discard the poll
-			if(utility::post("title") == '' && empty(array_filter(utility::post("answers"))))
-			{
-				// if we not in survey we have error for title and answers
-				if(!$this->check_poll_url($_args))
-				{
-					debug::error(T_("title or answers must be full"));
-				}
-			}
-			else
-			{
-				// insert the poll
-				$insert_poll = $this->insert_poll();
-			}
-
-			// check the url
-			if($this->check_poll_url($_args))
-			{
-				// url like this >> @/(.*)/add
-				$url       = $this->check_poll_url($_args, "encode");
-				$survey_id = $this->check_poll_url($_args);
-				// save survey title
-				$this->set_suervey_title($survey_id);
-			}
-			else
-			{
-				// the url is @/add
-				$url = \lib\utility\shortURL::encode($insert_poll);
-			}
-			if(debug::$status)
-			{
-				// must be redirect to publish page
-				$this->redirector()->set_url("@/$url/publish");
 			}
 		}
 		else
