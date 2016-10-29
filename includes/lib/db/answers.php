@@ -143,6 +143,19 @@ class answers
 		";
 		$result = \lib\db::query($insert_polldetails);
 
+
+		// save the poll lucked by profile
+		if(isset($_SESSION['profile']))
+		{
+			// update users profile
+			$update_profile = \lib\db\profiles::set_profile_by_poll(
+													[
+														'poll_id' => $_poll_id,
+														'opt_key' => $_answer,
+														'user_id' => $_user_id
+													]
+												);
+		}
 		// set status of skip answers to disable
 		// $status = 'enable';
 		// if($_answer < 0 )

@@ -66,7 +66,9 @@
                           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
                         </li>
                       </ul>
+
                     </div>
+
                   </div>
                   <div class="span6">
                     <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
@@ -109,6 +111,34 @@
                   </div>
                   <textarea name="description"></textarea>
                 </div>
+                {%if sarshomar_mod%}
+                   <div class="element">
+                    <label for="profile">{%trans "Poll To Complete Profile"%}</label>
+                    <select class="input" name="meta_profile" id="profile" >
+                          <option value="">{%trans "Please Select One Item"%}</option>
+                          <option value="gender" >{%trans "gender"%} </option>
+                          <option value="marrital" >{%trans "marrital"%} </option>
+                          <option value="birthday" >{%trans "birthday"%} </option>
+                          <option value="age" >{%trans "age"%} </option>
+                          <option value="language" >{%trans "language"%} </option>
+                          <option value="graduation" >{%trans "graduation"%} </option>
+                          <option value="course" >{%trans "course"%} </option>
+                          <option value="employment" >{%trans "employment"%} </option>
+                          <option value="business" >{%trans "business"%} </option>
+                          <option value="industry" >{%trans "industry"%} </option>
+                          <option value="countrybirth" >{%trans "countrybirth"%} </option>
+                          <option value="provincebirth" >{%trans "provincebirth"%} </option>
+                          <option value="citybirth" >{%trans "citybirth"%} </option>
+                          <option value="country" >{%trans "country"%} </option>
+                          <option value="province" >{%trans "province"%} </option>
+                          <option value="city" >{%trans "city"%} </option>
+                          <option value="parental" >{%trans "parental"%} </option>
+                          <option value="exercise" >{%trans "exercise"%} </option>
+                          <option value="devices" >{%trans "devices"%} </option>
+                          <option value="internetusage" >{%trans "internetusage"%} </option>
+                    </select>
+                  </div>
+                {%endif%}
               </div><!-- /.indent -->
                 {%if survey_mod%}
                   <div class="element">

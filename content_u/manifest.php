@@ -1,7 +1,7 @@
 <?php
 $modules = array();
-$modules['test'] = array(
-	'desc' 			=> T_('Use posts to share your news in specefic category'),
+$modules['sarshomar'] = array(
+	'desc' 			=> T_('can add, edit poll or survey of sarshomar'),
 	'icon'			=> 'file-text-o',
 	'permissions'	=> ['view', 'add', 'edit', 'delete', 'admin'],
 	);

@@ -24,6 +24,7 @@ class view extends \mvc\view
 		$this->data->list = $list;
 	}
 
+
 	public function check_url($_args)
 	{
 		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
@@ -45,12 +46,18 @@ class view extends \mvc\view
 		}
 	}
 
+	/**
+	 * show one poll to answer user
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function view_poll($_args)
 	{
 		// get the descriptive from meta of poll
 		// for evry poll unset this session
 		// to set form database
 		unset($_SESSION['descriptive']);
+		unset($_SESSION['profile']);
 
 		// check the url and redirect to poll url
 		// for example redirect $/ewR3  to $/ewR3/poll_title
@@ -170,6 +177,14 @@ class view extends \mvc\view
 							        }
 							        $post['post_meta']['opt'] = $new;
 								}
+								break;
+
+							case "profile":
+								// this poll has lucked by profiel field
+								// we must be save answer to user profile
+								$this->data->profile = true;
+								// to save user answer in profile
+								$_SESSION['profile'] = true;
 								break;
 						}
 						break;

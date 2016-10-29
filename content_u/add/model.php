@@ -353,12 +353,28 @@ class model extends \content_u\home\model
 			{
 				if(isset($meta[1]))
 				{
+					// save the lock of this poll and profile item
+					$profile_lock = null;
+					if($meta[1] == "profile")
+					{
+						if(utility::post("meta_profile"))
+						{
+							$profile_lock = utility::post("meta_profile");
+						}
+						else
+						{
+							debug::error(T_("in profile mod you shoud set the profile key"));
+							return false;
+						}
+					}
+
 					$metas[] =
 					[
 						'post_id'      => $poll_id,
 						'option_cat'   => "poll_$poll_id",
 						'option_key'   => 'meta',
-						'option_value' => $meta[1]
+						'option_value' => $meta[1],
+						'option_meta'  => $profile_lock
 					];
 					$insert_meta = true;
 				}

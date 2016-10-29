@@ -10,6 +10,12 @@ class view extends \mvc\view
 	function view_add()
 	{
 		$this->include->fontawesome = true;
+		// check permisson
+		$perm = $this->access('u', 'sarshomar', 'add');
+		if($perm)
+		{
+			$this->data->sarshomar_mod = true;
+		}
 	}
 
 

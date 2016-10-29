@@ -21,7 +21,9 @@
             <a href="#" class="fa fa-rss"></a>
           </nav><!-- /.social -->
         </div><!-- /.social-box -->
-
+        {%if profile%}
+        {%trans "This question will complete your profile"%}
+        {%endif%}
         <div class="description"><p>{{post.post_content}}</p></div>
         {% if post.post_meta.opt %}
           {% if multiple_choice %}

@@ -112,6 +112,64 @@ class profiles
 	}
 
 
+
+	public static function set_profile_by_poll($_args)
+	{
+		$profile_lock =
+		"
+			SELECT
+				option_meta AS 'lock'
+			FROM
+				options
+			WHERE
+				post_id      = $_args[poll_id] AND
+				option_cat   = 'poll_$_args[poll_id]' AND
+				option_key   = 'meta' AND
+				option_value = 'profile'
+			LIMIT 1
+		";
+		$profile_lock = \lib\db::get($profile_lock, 'lock', true);
+		if(!$profile_lock)
+		{
+			return false;
+		}
+
+		$profile_data = self::get_profile_data($_args['user_id']);
+
+		$answers      = \lib\db\answers::get($_args['poll_id']);
+		$opt_value    = array_column($answers, 'option_value', 'option_key');
+
+		if(!isset($opt_value[$_args['opt_key']]))
+		{
+			return false;
+		}
+
+		$user_answer  = $opt_value[$_args['opt_key']];
+
+		// check old profile data by new data get by poll
+		if(isset($profile_data[$profile_lock]))
+		{
+			if($profile_data[$profile_lock] == $user_answer)
+			{
+				return true;
+			}
+			elseif($profile_data[$profile_lock] == null)
+			{
+				// set profiel data
+				$profile_data[$profile_lock] = $user_answer;
+				return self::set_profile_data($_args['user_id'], $profile_data);
+			}
+			else
+			{
+				// this user is not reliable
+				// this user must be go to https://motamed.sarshomar.com to become activated
+				$profile_data[$profile_lock] = $user_answer;
+				return self::set_profile_data($_args['user_id'], $profile_data);
+			}
+		}
+	}
+
+
 	/**
 	 * check users profile and set all profile data to all polls answered by this users
 	 * update poll stat and save new profile data
