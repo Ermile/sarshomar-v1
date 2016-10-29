@@ -1,3 +1,78 @@
+// Route
+
+// Add
+route('@/add', function()
+{
+  $(this).on('input', '.option .input[type="text"]', function(event) {
+    var number_of_empty_inputs = 0;
+
+    // check if current element has not value and we have no empty inputs
+    $.each($('.option .input[type="text"]'), function(key, value)
+    {
+      if ( !$(this).val() && number_of_empty_inputs === 0 )
+      {
+        number_of_empty_inputs++;
+      }
+    });
+
+    // if we had no empty inputs and we needed one do this
+    if (number_of_empty_inputs === 0)
+    {
+      var template = $('.option .input[type="text"]').eq(0).parents('.element.option').clone();
+      var num = $('.option .input[type="text"]').length + 1;
+      template.children('label').text('answer ' + num).attr('for', 'answer' + num);
+      template.children('.input').attr('id', 'answer' + num);
+      template.children('.input').val('');
+      $('.input-group').append(template);
+      template.addClass('animated fadeInDown');
+    }
+
+    // if we had empty inputs do this
+    else
+    {}
+  });
+});
+
+
+// Me | Profile
+route('@/me', function()
+{
+  // btns is generated in display in order to true translation
+  // $(this).on('dblclick', '.element.raw', function(event){});\
+
+  $.each($('.element.raw'), function(key, value)
+  {
+    if($(this).children('.input').val())
+    {
+      $(this).dblclick(function()
+      {
+        if (!$('.main').hasClass('editing'))
+        {
+          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
+          $('.main').addClass('editing');
+        }
+      });
+    }
+    else
+    {
+      $(this).click(function()
+      {
+        if (!$('.main').hasClass('editing'))
+        {
+          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
+          $('.main').addClass('editing');
+        }
+      });
+    }
+  });
+});
+
+
+
+
+
+
+
 $('#tag-add').keypress(function (e) {
     // if Enter pressed disallow it and run add func
     if (e.which == 13) {
@@ -84,36 +159,7 @@ $(document).ready(function () {
 
 });
 
-route('@/add', function() {
-  $(this).on('input', '.option .input[type="text"]', function(event) {
-    var number_of_empty_inputs = 0;
 
-    // check if current element has not value and we have no empty inputs
-    $.each($('.option .input[type="text"]'), function(key, value)
-    {
-      if ( !$(this).val() && number_of_empty_inputs === 0 )
-      {
-        number_of_empty_inputs++;
-      }
-    });
-
-    // if we had no empty inputs and we needed one do this
-    if (number_of_empty_inputs === 0)
-    {
-      var template = $('.option .input[type="text"]').eq(0).parents('.element.option').clone();
-      var num = $('.option .input[type="text"]').length + 1;
-      template.children('label').text('answer ' + num).attr('for', 'answer' + num);
-      template.children('.input').attr('id', 'answer' + num);
-      template.children('.input').val('');
-      $('.input-group').append(template);
-      template.addClass('animated fadeInDown');
-    }
-
-    // if we had empty inputs do this
-    else
-    {}
-  });
-});
 
 
 // -------------------------------------------------- Add Tag

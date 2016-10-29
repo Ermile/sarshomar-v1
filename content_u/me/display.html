@@ -12,6 +12,7 @@
       <div class="span10 margin-bottom">
         <div class="vertical-tabs">
           <ul class="tabs">
+            <li data-tab="profile">{%trans "Profile"%}</li>
             <li data-tab="personal">{%trans "Personal"%}</li>
             <li data-tab="education">{%trans "Education"%}</li>
             <li data-tab="job">{%trans "Job"%}</li>
@@ -24,60 +25,62 @@
         <div class="vertical-tabs-content">
           <ul class="tab">
 
+            <li id="tab-profile">
+              <div class="row">
+                <div class="element raw">
+                  <label class="addon" for="displayname">{%trans "Display Name"%}</label>
+                  <input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}" disabled>
+                </div>
+              </div>
+            </li>
+
             <li id="tab-personal">
               <div class="row">
                 <div class="margin-bottom"><img src="/static/images/temporary/profile.jpg"></div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="displayname">{%trans "Display Name"%}</label>
-                  <input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}">
-                  <span class="addon btn save">
-                    <button>{%trans "Save"%}</button>
-                  </span>
-                  <span class="addon btn cancel">
-                    <button>{%trans "Cancel"%}</button>
-                  </span>
+                  <input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="gender">{%trans "Gender"%}</label>
-                  <input class="input" type="text" name="gender" id="gender" value="{{me.gender}}">
+                  <input class="input" type="text" name="gender" id="gender" value="{{me.gender}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="marrital_status">{%trans "Marrital Status"%}</label>
-                  <input class="input" type="text" name="marrital_status" id="marrital_status" value="{{me.marrital}}">
+                  <input class="input" type="text" name="marrital_status" id="marrital_status" value="{{me.marrital}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="email">{%trans "Email"%}</label>
-                  <input class="input" type="text" name="email" id="email" value="{{me.email}}">
+                  <input class="input" type="text" name="email" id="email" value="{{me.email}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="birthdate">{%trans "Birth Date"%}</label>
-                  <input class="input" type="text" name="birthdate" id="birthdate" value="{{me.birthday}}">
+                  <input class="input" type="text" name="birthdate" id="birthdate" value="{{me.birthday}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="language">{%trans "Language"%}</label>
-                  <input class="input" type="text" name="language" id="language" value="{{me.language}}">
+                  <input class="input" type="text" name="language" id="language" value="{{me.language}}" disabled>
                 </div>
               </div>
             </li>
 
             <li id="tab-education">
               <div class="row">
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="graduation">{%trans "Graduation"%}</label>
-                  <input class="input" type="text" name="graduation" id="graduation" value="{{me.graduation}}">
+                  <input class="input" type="text" name="graduation" id="graduation" value="{{me.graduation}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="course">{%trans "Course"%}</label>
-                  <input class="input" type="text" name="course" id="course" value="{{me.course}}">
+                  <input class="input" type="text" name="course" id="course" value="{{me.course}}" disabled>
                 </div>
-
               </div>
             </li>
 
@@ -88,19 +91,19 @@
                     <span>{%trans "Current Job"%}</span>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="employment">{%trans "Employment"%}</label>
-                    <input class="input" type="text" name="employment" id="employment" value="{{me.employment}}">
+                    <input class="input" type="text" name="employment" id="employment" value="{{me.employment}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                       <label class="addon" for="business">{%trans "Business"%}</label>
-                      <input class="input" type="text" name="business" id="business" value="{{me.business}}">
+                      <input class="input" type="text" name="business" id="business" value="{{me.business}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                       <label class="addon" for="industry">{%trans "Industry"%}</label>
-                      <input class="input" type="text" name="industry" id="industry" value="{{me.industry}}">
+                      <input class="input" type="text" name="industry" id="industry" value="{{me.industry}}" disabled>
                   </div>
                 </div>
               </div>
@@ -113,34 +116,34 @@
                     <span>{%trans "Birth"%}</span>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="countrybirth">Country Bitrh</label>
-                    <input class="input" type="text" name="countrybirth" id="countrybirth" value="{{me.countrybirth}}">
+                    <input class="input" type="text" name="countrybirth" id="countrybirth" value="{{me.countrybirth}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="country">{%trans "Country"%}</label>
-                    <input class="input" type="text" name="country" id="country" value="{{me.country}}">
+                    <input class="input" type="text" name="country" id="country" value="{{me.country}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="provincebirth">{%trans "Province Birth"%}</label>
-                    <input class="input" type="text" name="provincebirth" id="provincebirth" value="{{me.provincebirth}}">
+                    <input class="input" type="text" name="provincebirth" id="provincebirth" value="{{me.provincebirth}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="province">{%trans "Province"%}</label>
-                    <input class="input" type="text" name="province" id="province" value="{{me.province}}">
+                    <input class="input" type="text" name="province" id="province" value="{{me.province}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="birthcity">{%trans "Birthcity"%}</label>
-                    <input class="input" type="text" name="birthcity" id="birthcity" value="{{me.citybirth}}">
+                    <input class="input" type="text" name="birthcity" id="birthcity" value="{{me.citybirth}}" disabled>
                   </div>
 
-                  <div class="element">
+                  <div class="element raw">
                     <label class="addon" for="city">{%trans "City"%}</label>
-                    <input class="input" type="text" name="city" id="city" value="{{me.city}}">
+                    <input class="input" type="text" name="city" id="city" value="{{me.city}}" disabled>
                   </div>
                 </div>
               </div>
@@ -152,31 +155,31 @@
 
             <li id="tab-family">
               <div class="row">
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="">{%trans "Parental Status"%}</label>
-                  <input class="input" type="text" name="parental" id="parental" value="{{me.parental}}">
+                  <input class="input" type="text" name="parental" id="parental" value="{{me.parental}}" disabled>
                 </div>
               </div>
             </li>
 
             <li id="tab-favorites">
               <div class="row">
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="exercise">{%trans "Exercise Habits"%}</label>
-                  <input class="input" type="text" name="exercise" id="exercise" value="{{me.exercise}}">
+                  <input class="input" type="text" name="exercise" id="exercise" value="{{me.exercise}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="devices">{%trans "Devices Owned"%}</label>
-                  <input class="input" type="text" name="devices" id="devices" value="{{me.devices}}">
+                  <input class="input" type="text" name="devices" id="devices" value="{{me.devices}}" disabled>
                 </div>
 
-                <div class="element">
+                <div class="element raw">
                   <label class="addon" for="internetusage">{%trans "Internet Usage"%}</label>
-                  <input class="input" type="text" name="internetusage" id="internetusage" value="{{me.internetusage}}">
+                  <input class="input" type="text" name="internetusage" id="internetusage" value="{{me.internetusage}}" disabled>
                 </div>
 
-                <!-- <div class="element">
+                <!-- <div class="element raw">
                   <label class="addon" for="favorites">{%trans "Favorites"%}</label>
                   <input class="input" type="text" name="favorites" id="favorites" value="{{me.favorites}}">
                 </div> -->
@@ -198,6 +201,7 @@
 
 {%block foot_js%}
 <script type="text/javascript">
+var btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
 $('.addon.btn.cancel button').click(function(){
   window.location.reload();
   return false;

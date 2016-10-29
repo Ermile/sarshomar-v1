@@ -328,7 +328,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .vertical-tabs-content .tab li{}
 .vertical-tabs-content .tab li > .row{padding:0 50px;}
 .addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
+.addon.btn.save button:hover{background-color:#15535f;}
 .addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
+.addon.btn.cancel button:hover{background-color:#d15530;color:#D8DAD0;}
 .vertical-tabs .tabs li::before{left:-18px;content:'c';font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:34px;left:-25px;}
 .vertical-tabs .tabs li.active::before{color:#e7a429;}
 .vertical-tabs .tabs li.active:hover::before{color:#e7a429;}
@@ -408,7 +410,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /* inputs*/
 .element{position:relative;display:inline-table;width:100%;margin-bottom:2em;border-collapse:separate;vertical-align:middle;padding-left:13px;}
 .rtl .element{padding-left:0;padding-right:13px;}
-.element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 12px;transition:all 0.2s;vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#e7e7e7;}
+.element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 12px;/*transition:all 0.2s;*/vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#e7e7e7;}
 .rtl .element .input{float:right;}
 ::-webkit-input-placeholder{color:#cfcfcf;}
 :-moz-placeholder{color:#cfcfcf;}
@@ -424,7 +426,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .element .icon .fa{vertical-align:middle;}
 .element .input:focus + .icon{color:#d8dad0;background-color:#00667a;}
 .element .icon:hover{color:#27a4bd;}
-.element label{position:relative;width:100px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a!important;}
+.element label{position:relative;width:100px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;padding-top:1px;}
 .rtl .element label{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
 .element label:before{position:absolute;top:5px;right:100%;display:inline;width:13px;height:25px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
 .rtl .element label:before{right:auto;left:100%;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
@@ -454,6 +456,15 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .element .floating span{line-height:24px;position:absolute;top:6px;right:0px;width:24px;height:24px;transition:all 0.2s;color:#fff;border:none;background-color:#bbb;}
 .rtl .element .floating span{right:auto;left:0px;}
 .element-checkbox{margin-bottom:2em;}
+
+
+/* input reactions */
+.element.raw label{background-color:transparent;color:#A0A0A0;}
+.element.raw label::before{background-image:none;}
+.element.raw .input{background-color:transparent;color:#A0A0A0;cursor:default;}
+
+.element.raw:hover label{background-color:#D8D8D8;}
+.element.raw:hover .input{background-color:#D8D8D8;}
 
 
 /* panel-text */
