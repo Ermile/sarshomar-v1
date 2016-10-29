@@ -28,14 +28,16 @@ class language
 			$lang_name = $get;
 			$lang = preg_replace("[_]", "\\\\_", $get);
 		}
-		callback_query::edit_message([
-			'text' => 'Language set '. $lang
-			]);
 		bot::sendResponse([
 			"method" => "sendMessage",
 			"text" => T_("Welcome"),
 			"reply_markup" => menu::main(true)
 			]);
+		callback_query::edit_message([
+			'text' => 'Language set '. $lang
+			]);
+		session::remove_back('expire', 'inline_cache', 'language');
+		session::remove('expire', 'inline_cache', 'language');
 		return ['text' => '🗣 Your language set : ' . $lang_name];
 	}
 
@@ -43,27 +45,6 @@ class language
 	{
 		$return = false;
 		$edit_return = false;
-		$get_back_response = session::get('tmp', 'language_inline');
-		$get_sesstion = "SELECT * FROM options
-		WHERE options.option_cat = 'telegram' AND
-		options.user_id = 99 AND
-		options.option_key = 'session' AND
-		options.option_value = '99'
-		LIMIT 1";
-		$result = \lib\db::get($get_sesstion);
-		$result = \lib\utility\filter::meta_decode($result, null, ['return_object' => true])[0];
-		handle::send_log(["tmp0" => $result['option_cat']]);
-		handle::send_log(["tmp1" => $result]);
-		if($get_back_response)
-		{
-			$response = $get_back_response;
-			$text = '_'.$response['result']['text'].' (expired)_';
-			$edit_return = [
-				"text" 						=> $text,
-				"chat_id" 					=> $response['result']['chat']['id'],
-				"message_id" 				=> $response['result']['message_id']
-				];
-		}
 		$get = self::check();
 		if(!is_null($_value) && !$get)
 		{
@@ -85,10 +66,9 @@ class language
 			"reply_markup" => ["inline_keyboard" => $inline_keyboard],
 			"response_callback" => function($_response)
 			{
-				if($_response['ok'])
+				if($_response->ok)
 				{
-					session::set('tmp', 'language_inline', $_response);
-					session::set('tmp', 'expire', $_response);
+					session::set('expire', 'inline_cache', 'language', $_response);
 				}
 			}
 			];

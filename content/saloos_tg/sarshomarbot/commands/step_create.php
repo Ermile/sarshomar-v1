@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use \lib\db\tg_session as session;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 
 class step_create
@@ -28,7 +29,7 @@ class step_create
 		// go to next step
 		step::plus(1);
 		// increase custom number
-		step::plus(1, 'i');
+		// step::plus(1, 'i');
 		// create output text
 		$txt_text = "نظرسنجی خود را تعریف نمایید\n";
 		$txt_text .= "راهنمای ثبت نظرسنجی\n";
@@ -37,25 +38,32 @@ class step_create
 		$txt_text .= "می‌توانید از علائم زیر استفاده نمایید:\n";
 		$txt_text .= ": برای تعریف نظرسنجی مرتب‌سازی استفاده می‌شود که در ابتدای سوال نظرسنجی می‌آید\n";
 		$txt_text .= "+ اگر نظرسنجی شما دارای گزینه صحیح است ابتدای هر گزینه صحیح می‌باشد";
+		// $txt_text = 'hi';
 		$result   =
 		[
-			'text'         => $txt_text,
-			'reply_markup' => [
-				"inline_keyboard" => [
+		'text'         => $txt_text,
+		"response_callback" => function($_response)
+		{
+			if($_response->ok)
+			{
+				session::set('expire', 'inline_cache', 'create', $_response);
+			}
+		},
+		'reply_markup' => [
+			"inline_keyboard" => [
+				[
 					[
-						[
-							"text" => "انصراف",
-							"callback_data" => 'create/cancel'
-						],
-						[
-							"text" => "حذف راهنما",
-							"callback_data" => 'create/helep/cancel'
-						]
+						"text" => "انصراف",
+						"callback_data" => 'create/cancel'
+					],
+					[
+						"text" => "حذف راهنما",
+						"callback_data" => 'create/helep/cancel'
 					]
 				]
-			],
+			]
+		]
 		];
-
 
 		// return menu
 		return $result;

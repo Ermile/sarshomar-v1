@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use \lib\db\tg_session as session;
 
 class step_sarshomar
 {
@@ -35,9 +36,9 @@ class step_sarshomar
 			],
 			"response_callback" => function($_response)
 			{
-				if($_response['ok'])
+				if($_response->ok)
 				{
-					$_SESSION['tg']['ask_result_response'] = $_response;
+					session::set('expire', 'inline_cache', 'sarshomar', $_response);
 				}
 			}
 		];

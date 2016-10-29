@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use \lib\db\tg_session as session;
 
 class handle
 {
@@ -16,9 +17,10 @@ class handle
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
+			$id = Tld === 'dev' ? 5 : 99;
 			\lib\db::query("DELETE FROM options
-				WHERE user_id = 99 AND
-				(option_cat = 'user_detail_99' or option_cat = 'telegram')
+				WHERE user_id = $id AND
+				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
 				");
 			session_destroy();
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
@@ -43,7 +45,6 @@ class handle
 			$response = step::check($_cmd['text'], $_cmd['command']);
 			if($response)
 			{
-				self::send_log(['call' => $response]);
 				return $response;
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
@@ -193,7 +194,7 @@ class handle
 				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
 			}
 		}
-		self::send_log($response);
+		// self::send_log($response);
 		return $response;
 	}
 

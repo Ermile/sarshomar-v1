@@ -2,6 +2,8 @@
 namespace content\saloos_tg\sarshomarbot;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
+use \lib\db\tg_session as session;
+use content\saloos_tg\sarshomarbot\commands\handle;
 
 class controller extends \lib\mvc\controller
 {
@@ -29,8 +31,8 @@ class controller extends \lib\mvc\controller
 			bot::$once_log	  = false;
 			bot::$fill        =
 			[
-				'name'     => T_('Sarshomar'),
-				'fullName' => T_('Sarshomar'),
+			'name'     => T_('Sarshomar'),
+			'fullName' => T_('Sarshomar'),
 				// 'about'    => $txt_about,
 			];
 
@@ -39,17 +41,34 @@ class controller extends \lib\mvc\controller
 			 */
 			bot::hook();
 			\lib\db\tg_session::$user_id = bot::$user_id;
-			\lib\db\tg_session::start(bot::$user_id);
+			\lib\db\tg_session::start();
 
 			/**
 			 * run telegram handle
 			 */
 			$result           = bot::run(true);
 
+			$get_back_response = session::get_back('expire', 'inline_cache');
+			if($get_back_response)
+			{
+				foreach ($get_back_response as $key => $value) {
+					$text = $value->result->text;
+					$edit_return = [
+					"method" 					=> "editMessageText",
+					'parse_mode' 				=> 'Markdown',
+					'disable_web_page_preview' 	=> true,
+					"text" 						=> $text,
+					"chat_id" 					=> $value->result->chat->id,
+					"message_id" 				=> $value->result->message_id
+					];
+					bot::sendResponse($edit_return);
+				}
+			}
+
 			/**
 			 * save telegram sessions to db
 			 */
-			\lib\db\tg_session::save(bot::$user_id);
+			\lib\db\tg_session::save();
 
 
 			if (bot::$defaultText == T_('Undefined'))
