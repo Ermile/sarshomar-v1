@@ -57,6 +57,11 @@ class polls
 			$where[] = "posts.user_id = " . $_args['user_id'];
 		}
 
+		if(empty($where))
+		{
+			$where[] = 1;
+		}
+
 		$where = join($where, " AND ");
 		// pagnation
 		$count_record =

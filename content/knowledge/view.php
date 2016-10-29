@@ -21,12 +21,15 @@ class view extends \mvc\view
 	public function view_all()
 	{
 		$list = \lib\db\polls::xget();
-		// get fontawesome class
-		foreach ($list as $key => $value)
+		if($list)
 		{
-			$list[$key]['type'] = \content_u\knowledge\view::find_icon($value['type']);
+			// get fontawesome class
+			foreach ($list as $key => $value)
+			{
+				$list[$key]['type'] = \content_u\knowledge\view::find_icon($value['type']);
+			}
+			$this->data->poll_list = $list;
 		}
-		$this->data->poll_list = $list;
 	}
 }
 ?>
