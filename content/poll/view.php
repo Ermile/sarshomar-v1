@@ -5,7 +5,7 @@ class view extends \mvc\view
 {
 	function config()
 	{
-			// $this->include->css_ermile   = false;
+		// $this->include->css_ermile   = false;
 		$this->include->js    = true;
 		$this->include->chart = true;
 		if($this->module() === 'home')
@@ -203,6 +203,7 @@ class view extends \mvc\view
 
 			// to load post data in html
 			$this->data->post = $post;
+
 		}
 		else
 		{

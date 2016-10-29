@@ -92,6 +92,8 @@ class stat_polls
 
 	    $support_filter = \lib\db\filters::support_filter();
 
+	    $support_filter = array_keys($support_filter);
+
 		if(defined("mysql_json"))
 		{
 			$set = [];

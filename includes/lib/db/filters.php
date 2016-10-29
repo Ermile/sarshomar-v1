@@ -17,31 +17,31 @@ class filters
 
 		$support_filter =
 		[
-			'gender',
-			'marrital',
-			'birthday',
-			'age',
-			'language',
-			'graduation',
-			'course',
-			'employment',
-			'business',
-			'industry',
-			'countrybirth',
-			'provincebirth',
-			'citybirth',
-			'country',
-			'province',
-			'city',
-			'parental',
-			'exercise',
-			'devices',
-			'internetusage'
+			'gender'        => ['male', 'female'],
+			'marrital'      => ['single', 'marriade'],
+			'birthday'      => null,
+			'age'           => null,
+			'language'      => null,
+			'graduation'    => null,
+			'course'        => null,
+			'employment'    => null,
+			'business'      => null,
+			'industry'      => null,
+			'countrybirth'  => null,
+			'provincebirth' => null,
+			'citybirth'     => null,
+			'country'       => null,
+			'province'      => null,
+			'city'          => null,
+			'parental'      => null,
+			'exercise'      => null,
+			'devices'       => null,
+			'internetusage' => null
 		];
 
 		if($_check)
 		{
-			if(in_array($_check, $support_filter))
+			if(array_key_exists($_check, $support_filter))
 			{
 				return true;
 			}

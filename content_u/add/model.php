@@ -357,14 +357,9 @@ class model extends \content_u\home\model
 					$profile_lock = null;
 					if($meta[1] == "profile")
 					{
-						if(utility::post("meta_profile"))
+						if(utility::post("meta_profile") != '')
 						{
 							$profile_lock = utility::post("meta_profile");
-						}
-						else
-						{
-							debug::error(T_("in profile mod you shoud set the profile key"));
-							return false;
 						}
 					}
 
