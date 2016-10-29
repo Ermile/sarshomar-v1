@@ -657,8 +657,6 @@ class polls
 				CASE
 					-- If this poll not in tree  return true
 					WHEN posts.post_parent IS NULL THEN TRUE
-					-- if the poll in survey mod
-					WHEN posts.post_survey = 1     THEN TRUE
 				ELSE
 					-- Check this users answered to parent of this poll and her answer is important in tree
 					posts.post_parent IN
