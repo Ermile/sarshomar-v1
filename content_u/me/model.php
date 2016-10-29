@@ -34,7 +34,9 @@ class model extends \mvc\model
 		$email = \lib\db\users::set_email($user_id, $email);
 
 		$age = self::get_age(utility::post("birthdate"));
-		$range = self::get_range($age);
+
+		// $range = self::get_range($age);
+
 		$arg =
 		[
 

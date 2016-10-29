@@ -64,10 +64,11 @@ class model extends \content_u\home\model
 			// we save the survey
 			$args =
 			[
-				'user_id'      => $this->login('id'),
-				'title'        => 'untitled survey',
-				'type'         => 'survey_private',
-				'status'       => 'draft',
+				'user_id'     => $this->login('id'),
+				'post_title'  => 'untitled survey',
+				'post_type'   => 'survey_private',
+				'post_gender' => 'survey',
+				'post_status' => 'draft',
 			];
 			$survey_id = \lib\db\survey::insert($args);
 			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
@@ -170,9 +171,10 @@ class model extends \content_u\home\model
 			// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
 			$args =
 			[
-				'post_title' => utility::post("survey_title"),
-				'post_url'   => \lib\db\polls::update_url($_survey_id, utility::post("survey_title"), false),
-				'post_slug'  => \lib\utility\filter::slug(utility::post("survey_title"))
+				'post_title'  => utility::post("survey_title"),
+				'post_url'    => \lib\db\polls::update_url($_survey_id, utility::post("survey_title"), false),
+				'post_gender' => 'survey',
+				'post_slug'   => \lib\utility\filter::slug(utility::post("survey_title"))
 			];
 			$result = \lib\db\survey::update($args, $_survey_id);
 			if(!$result)
@@ -195,7 +197,8 @@ class model extends \content_u\home\model
 		// get poll_type
 		$poll_type    = utility::post("poll_type");
 		// swich html name and db name of poll type
-		switch ($poll_type) {
+		switch ($poll_type)
+		{
 			case 'multiple_choice':
 				$poll_type = 'select';
 				break;
@@ -233,10 +236,18 @@ class model extends \content_u\home\model
 				return false;
 				break;
 		}
+		// default gender of all post record in sarshomar is 'poll'
+		$gender = "poll";
+
 		// get poll type from function args
 		if(isset($_options['poll_type']))
 		{
 			$poll_type = $_options['poll_type']. $poll_type;
+			if(substr($poll_type, 0, 6) == "survey")
+			{
+				// if first 6 character of poll type is 'suervey' gender of poll is 'survey'
+				$gender = "survey";
+			}
 		}
 		else
 		{
@@ -284,12 +295,13 @@ class model extends \content_u\home\model
 		$args =
 		[
 			'user_id'      => $this->login('id'),
-			'title'        => $title,
-			'type'         => $poll_type,
-			'content'      => $content,
-			'parent'	   => $survey_id,
-			'status'       => 'draft',
-			'meta'         => "{\"desc\":\"$summary\"}"
+			'post_title'   => $title,
+			'post_type'    => $poll_type,
+			'post_content' => $content,
+			'post_survey'  => $survey_id,
+			'post_gender'  => $gender,
+			'post_status'  => 'draft',
+			'post_meta'    => "{\"desc\":\"$summary\"}"
 		];
 		// inset poll
 		$poll_id = \lib\db\polls::insert($args);
@@ -312,7 +324,8 @@ class model extends \content_u\home\model
 			}
 			// combine answer type and answer text and answer point
 			$combine = [];
-			foreach ($answers as $key => $value) {
+			foreach ($answers as $key => $value)
+			{
 				$combine[] =
 				[
 					'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
@@ -336,7 +349,8 @@ class model extends \content_u\home\model
 		// get the metas of this poll
 		$metas = [];
 		$insert_meta = false;
-		foreach (utility::post() as $key => $value) {
+		foreach (utility::post() as $key => $value)
+		{
 			if(preg_match("/^meta\_(.*)$/", $key, $meta))
 			{
 				if(isset($meta[1]))

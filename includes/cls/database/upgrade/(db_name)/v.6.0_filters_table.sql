@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `filters` (
 `exercise` VARCHAR(64) NULL,
 `devices` VARCHAR(64) NULL,
 `internetusage` ENUM('low', 'mid', 'high')NULL,
-`unique` VARCHAR(760) NULL,
+`unique` VARCHAR(1024) NULL,
 PRIMARY KEY (`id`),
 UNIQUE KEY `unique_filters` (`unique`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

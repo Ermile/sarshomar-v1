@@ -149,114 +149,73 @@ class polls
 	 */
 	public static function insert($_args)
 	{
+		$default_value =
+		[
+			'user_id'          => null,
+			'post_language'    => null,
+			'post_title'       => null,
+			'post_slug'        => null,
+			'post_url'         => time(). '_'. rand(1,20), // insert post id ofter insert record
+			'post_content'     => null,
+			'post_type'        => null,
+			'post_status'      => null,
+			'post_parent'      => null,
+			'post_meta'        => null,
+			'post_publishdate' => null,
+			'post_gender'      => null,
+			'post_survey'      => null
+		];
 
-		// get slug string
-		$slug =  \lib\utility\filter::slug($_args['title']);
-		//  check 		// check user_id
-		if(!isset($_args['user_id']))
+		$_args = array_merge($default_value, $_args);
+
+		// check user_id
+		if($_args['user_id'] == null)
 		{
 			return false;
 		}
-		else
-		{
-			$user_id = $_args['user_id'];
-		}
+
 		// check language
-		if(!isset($_args['language']))
+		if($_args['post_language'] == null)
 		{
 			$language = substr(\lib\router::get_storage('language'), 0, 2);
 		}
 		else
 		{
-			if(strlen($_args['language']) > 2)
+			if(strlen($_args['post_language']) > 2)
 			{
 				$language = substr(\lib\router::get_storage('language'), 0, 2);
 			}
 			else
 			{
-				$language = $_args['language'];
+				$language = $_args['post_language'];
 			}
 		}
+
 		// check title
-		if(!isset($_args['title']))
+		if($_args['post_title'] == null)
 		{
 			return false;
 		}
-		else
+
+		// get slug string
+		if($_args['post_slug'] == null)
 		{
-			$title = $_args['title'];
+			$_args['post_slug'] =  \lib\utility\filter::slug($_args['post_title']);
 		}
-		// check parent
-		if(!isset($_args['parent']))
-		{
-			$parent = null;
-		}
-		else
-		{
-			$parent = $_args['parent'];
-		}
-		// check meta
-		if(!isset($_args['meta']))
-		{
-			$meta = null;
-		}
-		else
-		{
-			$meta = $_args['meta'];
-		}
-		// check content
-		if(!isset($_args['content']))
-		{
-			$content = null;
-		}
-		else
-		{
-			$content = $_args['content'];
-		}
+
 		// check type
-		if(!isset($_args['type']))
+		if($_args['post_type'] == null)
 		{
 			return false;
 		}
-		else
-		{
-			$type = $_args['type'];
-		}
+
 		// check status
-		if(!isset($_args['status']))
+		if($_args['post_status'] == null)
 		{
-			$status = "draft";
-		}
-		else
-		{
-			$status = $_args['status'];
-		}
-		// check publish_date
-		if(!isset($_args['publish_date']))
-		{
-			$publish_date = null;
-		}
-		else
-		{
-			$publish_date = $_args['publish_date'];
+			$_args['post_status'] = "draft";
 		}
 
-		$post_value =
-		[
-			'user_id'          => $user_id,
-			'post_language'    => $language,
-			'post_title'       => $title,
-			'post_slug'        => $slug,
-			'post_url'         => time(). '_'. $user_id, // insert post id ofter insert record
-			'post_content'     => $content,
-			'post_type'        => $type,
-			'post_status'      => $status,
-			'post_parent'      => $parent,
-			'post_meta'        => $meta,
-			'post_publishdate' => $publish_date
-		];
-
-		$result = \lib\db\posts::insert($post_value);
+		$result = \lib\db\posts::insert($_args);
 
 		// new id of poll, posts.id
 		$insert_id 	= \lib\db::insert_id();
@@ -264,7 +223,7 @@ class polls
 		if($insert_id)
 		{
 			// update post url
-			self::update_url($insert_id, $title);
+			self::update_url($insert_id, $_args['post_title']);
 			return $insert_id;
 		}
 		else
@@ -284,7 +243,6 @@ class polls
 	 */
 	public static function update_url($_poll_id, $_title, $_update = true)
 	{
-		// UPDATE posts SET post_meta = [answers,...] WHERE posts.id = [id]
 		$short_url = \lib\utility\shortURL::encode($_poll_id);
 		// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
 		$_title = str_replace(" ", "_", $_title);
@@ -661,17 +619,16 @@ class polls
 				posts.post_language 		as 'language',
 				posts.post_title 			as 'title',
 				posts.post_slug 			as 'slug',
-				posts.post_url 			as 'url',
-				posts.post_content 		as 'content',
+				posts.post_url 			    as 'url',
+				posts.post_content 		    as 'content',
 				posts.post_type 			as 'type',
-				posts.post_comment 		as 'comment',
+				posts.post_comment 		    as 'comment',
 				posts.post_count 			as 'count',
 				posts.post_order 			as 'order',
-				posts.post_status 		as 'status',
-				posts.post_parent 		as 'parent',
-				posts.post_meta	     	as 'meta',
-				posts.post_publishdate 	as 'publishdate'
-
+				posts.post_status 		    as 'status',
+				posts.post_parent 		    as 'parent',
+				posts.post_meta	     	    as 'meta',
+				posts.post_publishdate     	as 'publishdate'
 			FROM
 				posts
 			-- To get options of this poll
@@ -700,6 +657,8 @@ class polls
 				CASE
 					-- If this poll not in tree  return true
 					WHEN posts.post_parent IS NULL THEN TRUE
+					-- if the poll in survey mod
+					WHEN posts.post_survey = 1     THEN TRUE
 				ELSE
 					-- Check this users answered to parent of this poll and her answer is important in tree
 					posts.post_parent IN

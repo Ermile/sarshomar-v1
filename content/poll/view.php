@@ -102,8 +102,6 @@ class view extends \mvc\view
 				// this user not logined  => remove answers button
 				$post['post_meta'] = ['opt' => null];
 			}
-			// to load post data in html
-			$this->data->post = $post;
 
 			/*
 			 * get all chart result
@@ -187,6 +185,9 @@ class view extends \mvc\view
 				}
 			}
 			$this->data->meta = $meta;
+
+			// to load post data in html
+			$this->data->post = $post;
 		}
 		else
 		{

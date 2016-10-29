@@ -45,17 +45,20 @@ class profiles
 			}
 		}
 
+		// no filter add
 		if(empty($filters))
 		{
 			return true;
 		}
 
+		// get the filter id if exist
 		$filter_id = \lib\db\filters::get_id($filters);
 
+		// if filter id not found insert the filter record and get the last_insert_id
 		if(!$filter_id)
 		{
 			$filter_id = \lib\db\filters::insert($filters);
-			// bug !!!
+			// bug !!! . filter can not be add
 			if(!$filter_id)
 			{
 				return false;
@@ -63,16 +66,19 @@ class profiles
 		}
 
 		// user not change profile
+		// we get the filter id and if the filter id == old filter id of this user
+		// we dont update users table
 		if($_SESSION['user']['filter_id'] == $filter_id)
 		{
 			return true;
 		}
 		else
 		{
+			// save filter id
 			$_SESSION['user']['filter_id'] = $filter_id;
 		}
-
-		$arg = ['filter_id' => $filter_id];
+		// update filter id of users
+		$arg    = ['filter_id' => $filter_id];
 		$result = \lib\db\users::update($arg, $_user_id);
 		return $result;
 	}
