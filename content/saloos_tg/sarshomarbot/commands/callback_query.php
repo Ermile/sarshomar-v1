@@ -10,10 +10,22 @@ class callback_query
 	public static function start($_query = null)
 	{
 		$data_url = preg_split("[\/]", $_query['data']);
-
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
-
+		handle::send_log($_query['data']);
+		if(count($data_url) < 1)
+		{
+			session::remove_back('expire', 'inline_cache');
+			return $result;
+		}
+		preg_match("/^(\d+\.\d+):(.*)$/", $data_url[0], $unique_id);
+		if(count($unique_id) < 2)
+		{
+			session::remove_back('expire', 'inline_cache');
+			return $result;
+		}
+		$data_url[0] = $unique_id[2];
+		$unique_id = $unique_id[1];
 		/**
 		 * check if unique request
 		 */
@@ -26,15 +38,16 @@ class callback_query
 		{
 			$callback_session = [$callback_session];
 		}
-		if(array_search($_query['chat_instance'] . $_query['message']['message_id'] . $_query['data'], $callback_session) === false)
+
+		if(array_search($unique_id, $callback_session) === false)
 		{
-			array_push($callback_session, $_query['chat_instance'] . $_query['message']['message_id'] . $_query['data']);
-			// session::set('tmp', 'callback_query', $callback_session);
+			array_push($callback_session, $unique_id);
+			session::set('tmp', 'callback_query', $callback_session);
 		}
 		else
 		{
 			session::remove_back('expire', 'inline_cache');
-			$result['text'] = "repeated";
+			// $result['text'] = "repeated";
 			return $result;
 		}
 

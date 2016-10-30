@@ -18,7 +18,7 @@ class help
 			callback_query::edit_message($method);
 		}
 		return [
-			"text" => $_data_url[0],
+			"text" => join($_data_url),
 		];
 	}
 

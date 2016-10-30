@@ -49,7 +49,7 @@ class language
 		$get = self::check();
 		if(!is_null($_value) && !$get)
 		{
-			return self::set($_value['lang'], ["ref" => "start_link"]);
+			return self::set($_value, ["ref" => "start_link"]);
 		}
 		elseif(!$get)
 		{

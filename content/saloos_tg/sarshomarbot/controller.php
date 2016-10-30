@@ -35,6 +35,22 @@ class controller extends \lib\mvc\controller
 			'fullName' => T_('Sarshomar'),
 				// 'about'    => $txt_about,
 			];
+			bot::$methods['before']["/.*/"] = function(&$_name, &$_args){
+				if(isset($_args['reply_markup']) && isset($_args['reply_markup']['inline_keyboard']))
+				{
+					$id = microtime(true);
+					for ($i=0; $i < count($_args['reply_markup']['inline_keyboard']); $i++)
+					{
+						for ($j=0; $j < count($_args['reply_markup']['inline_keyboard'][$i]); $j++)
+						{
+							if(isset($_args['reply_markup']['inline_keyboard'][$i][$j]['callback_data']))
+							{
+								$_args['reply_markup']['inline_keyboard'][$i][$j]['callback_data'] = $id . ':' . $_args['reply_markup']['inline_keyboard'][$i][$j]['callback_data'];
+							}
+						}
+					}
+				}
+			};
 
 			/**
 			 * start hooks and run telegram session from db
