@@ -57,72 +57,11 @@ post_id 	user_id		cat					key					value			meta				mode
 1			0			poll_(post_id)		opt_[1,2,3...]		[attachment_id]	{desc:"salam", type:'audio',time:20(s)}		answerTime to this question
 
 
-
-
-post_id 	user_id		cat					key					value				meta															point		mode
---------------------------------------------------------------------------------------------------------- Answers
-1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select
-1			1			poll_(post_id)		answer_(user_id)	[opt_key2]			{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select - multiselect
-1			1			poll_(post_id)		answer_(user_id)	other				{type:'--',datetime:--, txt:--,method:"telegram|web|app", }					select - other text
-																																								notify
-1			1			poll_(post_id)		answer_(user_id)	[text]				{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					text
-1			1			poll_(post_id)		answer_(user_id)	[attachment_id]		{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					upload
-1			1			poll_(post_id)		answer_(user_id)	[text{number}]		{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					star
-1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_image
-1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_video
-1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }					media_audio
-1			1			poll_(post_id)		answer_(user_id)	[opt_key]			{type:'--',datetime:--, txt:'',method:"telegram|web|app", }		answer		order
-
-
-
-
-post_id 	user_id		cat							key							value
---------------------------------------------------------------------------------------------------------- User Details
-0			1			user_detail_(user_id)		gender						[male|female]					*
---------------------------------------------
-0			1			user_detail_(user_id)		marrital_status				[single|married]				*
---------------------------------------------
-0			1			user_detail_(user_id)		parental_status				[single|married]
---------------------------------------------
-0			1			user_detail_(user_id)		exercise_habits				[football|taekwando]
---------------------------------------------
-0			1			user_detail_(user_id)		employment_status			[employee|unemployee]
---------------------------------------------
-0			1			user_detail_(user_id)		business_owner				[computer|burse]
---------------------------------------------
-0			1			user_detail_(user_id)		industry					[computer|burse]
---------------------------------------------
-0			1			user_detail_(user_id)		devices_owned				[iphone6|surface|ubuntu]
---------------------------------------------
-0			1			user_detail_(user_id)		internet_usage				[low|medium|high]
---------------------------------------------
-0			1			user_detail_(user_id)		birthdate					[1990/12/20]
-0			1			user_detail_(user_id)		age							23								(create by age with cronjob)
-0			1			user_detail_(user_id)		range						[child|adult|old|...]			(create by age with cronjob)
---------------------------------------------
-0			1			user_detail_(user_id)		graduation					[graduate|undergraduate|...]	*
---------------------------------------------
-0			1			user_detail_(user_id)		course						[Diploma|B.S|M.S|...]			*
---------------------------------------------
-0			1			user_detail_(user_id)		country_birth				[IRAN|USA|...]
-0			1			user_detail_(user_id)		country						[IRAN|USA|...]
-0			1			user_detail_(user_id)		province_birth				[Qom|CA|...]
-0			1			user_detail_(user_id)		province					[Qom|CA|...]
-0			1			user_detail_(user_id)		birthcity					[Noshahr|NewYork...]
-0			1			user_detail_(user_id)		city						[Noshahr|NewYork...]
---------------------------------------------
-0			1			user_detail_(user_id)		favorites					[term_id]
-0			1			user_detail_(user_id)		favorites					[term_id]
-0			1			user_detail_(user_id)		favorites					[term_id]
---------------------------------------------
-0			1			user_detail_(user_id)		language					[fa|en|ar]
-
 --------------------------------------------------------------------------------------------------------- Bookmark Question
 1			1			user_detail_(post_id)		bookmark 					[like|unlike|block]				[point for order]
 
 
 --------------------------------------------------------------------------------------------------------- Question Filters
-1			0			poll_(post_id)				[gender|...]				[male|female]
 1			0			poll_(post_id)				age_min						20
 1			0			poll_(post_id)				age_max						30
 1			0			poll_(post_id)				members_min					1
@@ -134,14 +73,6 @@ post_id 	user_id		cat							key							value
 1			0			poll_(post_id)				time_end					14:00
 1			0			poll_(post_id)				count_true					500(person)
 1			0			poll_(post_id)				article						[post_id]
-
---------------------------------------------------------------------------------------------------------- Question Detail
-1			0			poll_(post_id)				stat 						total					20000									OK
-1			0			poll_(post_id)				stat 						gender					{male:200, female:400}					OK
-1			0			poll_(post_id)				stat 						province				{qom:200, tehran:400}					OK
-
-1			0			poll_(post_id)				stat 						opt_count				{opt_1:200, opt_2:400}
-
 
 1			0			poll_(post_id)				meta 						[canupdate|force_two_answer]
 
@@ -163,60 +94,103 @@ post_id 	user_id		cat							key								value
 
 
 
+--------------------------------------------------------------------------------------------------------- Options in dashboard
+post_id 	user_id		cat							key								value
+0			1			user_dashboard_(user_id)	poll_answered					500
+0			1			user_dashboard_(user_id)	poll_skipped					30
+0			1			user_dashboard_(user_id)	survey_answered					40
+0			1			user_dashboard_(user_id)	survey_skipped					7
+0			1			user_dashboard_(user_id)	my_poll							5
+0			1			user_dashboard_(user_id)	my_survey						2
+0			1			user_dashboard_(user_id)	my_poll_answered				500
+0			1			user_dashboard_(user_id)	my_poll_skipped					30
+0			1			user_dashboard_(user_id)	my_survey_answered				40
+0			1			user_dashboard_(user_id)	my_survey_skipped				7
+0			1			user_dashboard_(user_id)	user_referred					160
+0			1			user_dashboard_(user_id)	user_verified					20
 
-/***************************************************
-filters:
+
+/*************************************************** filters Table
+	gender					[male|female]
+	marrital				[single|married]
+	graduation 				[illiterate|undergraduate|graduate]
+	degree					[under diploma|diploma|2 year college|bachelor|master|phd|other]
+	employmentstatus		[employee|unemployee|retired]
+	housestatus				[owner|tenant|homeless]
+	internetusage 			[low|mid|high]
+	range					[-13|14-17|18-24|25-30|31-44|45-69|60+]
+	age 					[18|20|21|22|...]
+	country 		cp		[IRAN|USA|...]
+	province 		cp		[Qom|CA|...]
+	city 			cp		[Noshahr|NewYork|...]
+	language 		cp		[fa|en|ar|...]
+	religion 		cp		[Islam|...]
+	course 			cp		[computer science|financial|...]
+	industry        cp      [computer|enviromental]
+
+
+
+/*************************************************** Terms Table
+// --------------- Basic info
+firstname
+lastname
 gender
 marrital
-religion
-educationalstatus
-educationaltype
-course
-educationcity
-lastdegree
-jobstatus
-employment
-country
-province
-city
-housestatus
-range
-language
-industry
-internetusage
-
-
-/***************************************************
-users:
-name
-lastname
-alias
-brithday
+birthdate
+birthyear
+birthmonth
+birthday
 age
-displaylanguage
-mobile
-email
-classiceducationsection
-howzaheducationsection
-jobtitle
-jobtype
-jobcompany
+range						[child|adult|old|...]
+uilanguage
+religion
+
+// --------------- Education info
+graduation
+educationtype 		-only for iran
+course
+degree
+howzeh
+howzehdegree
+howzehcourse
+educationcity
+
+// --------------- Job info
+employmentstatus
+industry
+company
 jobcity
+jobtitle
+
+// --------------- location info
+country 			cp		[IRAN|USA|...]
+province 			cp		[Qom|CA|...]
+city 				cp		[Noshahr|NewYork|...]
 village
-countybirth
-provincebirth
-citybirth
-villagebirth
-marritaltitle => die my love, i am single
-marritalday
-child
-girlchild
+housestatus					[owner|tenant|homeless]
+
+birthcountry 		cp		[IRAN|USA|...]
+birthprovince 		cp		[Qom|CA|...]
+birthcity 			cp		[Noshahr|NewYork|...]
+
+// --------------- family info
+marrital					[single|married]
 boychild
-parental
-fatherjob
-fathereducation
-matherjob
-mathereducation
-countnumberUinyourfamily
+girlchild
+
+// --------------- Favorites info
+skills
+languages
+books
+	writers
+films
+	actors
+	genre
+musics
+	artists
+sports
+	sportmans
+habbits
 devices
-exercise
+
+
