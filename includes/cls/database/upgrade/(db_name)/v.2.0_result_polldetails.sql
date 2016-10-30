@@ -17,20 +17,20 @@ Date: 2016-10-08 14:52:26
 -- Table structure for polldetails
 -- ----------------------------
 CREATE TABLE IF NOT EXISTS `polldetails` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `post_id` bigint(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
-  `subport` INT UNSIGNED NULL,
-  `opt` int(11) unsigned DEFAULT NULL,
-  `type` enum('select','notify','text','upload','star','number','media_image','media_video','media_audio','order') DEFAULT NULL,
-  `txt` text,
-  `profile` mediumtext,
-  `insertdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `visitor_id` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_opt` (`post_id`,`user_id`,`opt`) USING BTREE,
-  KEY `polldetails_ibfk_2` (`user_id`),
-  CONSTRAINT `polldetails_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `polldetails_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`post_id` bigint(10) unsigned NOT NULL,
+`user_id` int(10) unsigned NOT NULL,
+`port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
+`subport` varchar(500) NULL,
+`opt` tinyint(3) unsigned DEFAULT NULL,
+`type` enum('select','notify','text','upload','star','number','media_image','media_video','media_audio','order') DEFAULT NULL,
+`txt` text,
+`profile` mediumtext,
+`insertdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`visitor_id` int(10) unsigned DEFAULT NULL,
+PRIMARY KEY (`id`),
+UNIQUE KEY `unique_opt` (`post_id`,`user_id`,`opt`) USING BTREE,
+KEY `polldetails_ibfk_2` (`user_id`),
+CONSTRAINT `polldetails_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE,
+CONSTRAINT `polldetails_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

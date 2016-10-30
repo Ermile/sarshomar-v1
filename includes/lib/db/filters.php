@@ -12,36 +12,42 @@ class filters
 	 *
 	 * @return     array  ( description_of_the_return_value )
 	 */
-	public static function support_filter($_check = null)
+	public static function support_filter($_check = null, $_value = null)
 	{
-
 		$support_filter =
 		[
-			'gender'        => ['male', 'female'],
-			'marrital'      => ['single', 'marriade'],
-			'birthday'      => null,
-			'age'           => null,
-			'language'      => null,
-			'graduation'    => null,
-			'course'        => null,
-			'employment'    => null,
-			'business'      => null,
-			'industry'      => null,
-			'countrybirth'  => null,
-			'provincebirth' => null,
-			'citybirth'     => null,
-			'country'       => null,
-			'province'      => null,
-			'city'          => null,
-			'parental'      => null,
-			'exercise'      => null,
-			'devices'       => null,
-			'internetusage' => null
+			'gender'           => ['male', 'female'],
+			'marrital'         => ['single', 'marriade'],
+			'internetusage'    => ['low', 'mid', 'high'],
+			'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
+			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd', 'other'],
+			'course'           => null,
+			'age'              => null,
+			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-69', '60+'],
+			'country'          => null,
+			'province'         => null,
+			'city'             => null,
+			'employmentstatus' => ['employee', 'unemployee', 'retired'],
+			'housestatus'      => ['owner', 'tenant', 'homeless'],
+			'religion'         => null,
+			'language'         => null,
+			'industry'         => null
 		];
 
 		if($_check)
 		{
-			if(array_key_exists($_check, $support_filter))
+			if($_value)
+			{
+				if(isset($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			elseif(array_key_exists($_check, $support_filter))
 			{
 				return true;
 			}

@@ -14,6 +14,11 @@ class profiles
 
 		$filter_id = \lib\db\users::get($_user_id, 'filter_id');
 
+		if(!$filter_id)
+		{
+			return null;
+		}
+
 		// save filter id
 		$_SESSION['user']['filter_id'] = $filter_id;
 

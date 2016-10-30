@@ -29,13 +29,22 @@ class model extends \mvc\model
 
 		$displayname = utility::post("displayname");
 		$displayname = \lib\db\users::set_displayname($user_id, $displayname);
+		if(!$displayname)
+		{
+			\lib\debug::error(T_("error in update display name"));
+			return false;
+		}
 
 		$email = utility::post("email");
 		$email = \lib\db\users::set_email($user_id, $email);
+		if(!$email)
+		{
+			\lib\debug::error(T_("error in update email"));
+			return false;
+		}
 
 		$age = self::get_age(utility::post("birthdate"));
-
-		// $range = self::get_range($age);
+		$range = self::get_range($age);
 
 		$arg =
 		[
