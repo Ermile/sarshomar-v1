@@ -59,6 +59,9 @@ class view extends \mvc\view
 		unset($_SESSION['descriptive']);
 		unset($_SESSION['profile']);
 
+		// default show all result
+		$show_result = true;
+
 		// check the url and redirect to poll url
 		// for example redirect $/ewR3  to $/ewR3/poll_title
 		$this->check_url($_args);
@@ -110,19 +113,6 @@ class view extends \mvc\view
 				$post['post_meta'] = ['opt' => null];
 			}
 
-			/*
-			 * get all chart result
-			*/
-			$chart_mode =
-			[
-				'result',
-				'gender',
-				'city',
-				'country'
-			];
-			// load result as chart
-			$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
-			$this->data->chart = $chart;
 			// get post similar
 			$similar = \lib\db\tags::get_post_similar(null, ['tags' => $post['tags']]);
 			$this->data->similar = $similar;
@@ -186,6 +176,10 @@ class view extends \mvc\view
 								// to save user answer in profile
 								$_SESSION['profile'] = true;
 								break;
+
+							case "hidden_result":
+								$show_result = false;
+								break;
 						}
 						break;
 					// case "true_answer":
@@ -200,6 +194,23 @@ class view extends \mvc\view
 				}
 			}
 			$this->data->meta = $meta;
+
+			if($show_result)
+			{
+				/*
+				 * get all chart result
+				*/
+				$chart_mode =
+				[
+					'result',
+					'gender',
+					'city',
+					'country'
+				];
+				// load result as chart
+				$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
+				$this->data->chart = $chart;
+			}
 
 			// to load post data in html
 			$this->data->post = $post;
