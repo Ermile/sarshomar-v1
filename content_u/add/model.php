@@ -361,6 +361,10 @@ class model extends \content_u\home\model
 						{
 							$profile_lock = utility::post("meta_profile");
 						}
+						else
+						{
+							continue;
+						}
 					}
 
 					$metas[] =
