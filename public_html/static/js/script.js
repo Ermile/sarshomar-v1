@@ -65,6 +65,18 @@ route('@/me', function()
       });
     }
   });
+
+  $.each($('.element .input'), function(key, value)
+  {
+    $(this).blur(function(event)
+    {
+      var _element = $(this).parent();
+      _element.addClass('raw');
+      _element.children('.input').attr("disabled", 'disabled');
+      _element.children('.btn').remove();
+      $('.main').removeClass('editing');
+    });
+  });
 });
 
 

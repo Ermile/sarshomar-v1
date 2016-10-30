@@ -1,110 +1,78 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="row map-box">
-    <div class="container">
+<div class="row" id="map">
+    {%if site.currentlang == "en"%}
+    <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
+    {%else%}
+    <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
+    <div class="span7" id="chart">
+        <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
+        <div class="chart age-chart"></div>
+    </div>
+    {%endif%}
+</div>
+
+<div class="row" id="customers">
+    <div class="row auto right">
+        <div class="span5"><img src="{{url.static}}images/customers/1.jpg"></div>
+        <div class="span7 content">
+            <h3><a href="#">شرکت های تجاری</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+    </div>
+
+    <div class="row auto left">
+        <div class="span4 content">
+            <h3><a href="#">موسسات تحقیقاتی آموزشی</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+        <div class="span8"><img src="{{url.static}}images/customers/2.jpg"></div>
+    </div>
+
+    <div class="row auto right">
+        <div class="span5"><img src="{{url.static}}images/customers/3.jpg"></div>
+        <div class="span7 content">
+            <h3><a href="#">شرکت های تجاری</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+    </div>
+
+    <div class="row auto left">
+        <div class="span8 content">
+            <h3><a href="#">کانون های تبلیغاتی</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+        <div class="span4"><img src="{{url.static}}images/customers/4.jpg"></div>
+    </div>
+
+    <div class="row auto right">
+        <div class="span7"><img src="{{url.static}}images/customers/5.jpg"></div>
+        <div class="span5 content">
+            <h3><a href="#">توسعه دهنده ها و صاحبان وب سایت</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+    </div>
+
+    <div class="row auto left">
+        <div class="span6 content">
+            <h3><a href="#">عموم مردم</a></h3>
+            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
+        </div>
+        <div class="span6"><img src="{{url.static}}images/customers/6.jpg"></div>
+    </div>
+</div>
+
+<div class="row" id="features">
+    <div class="span2"></div>
+    <div class="span8">
         <div class="row">
-            {% if site.currentlang == "en" %}
-            <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
-            {% else %}
-            <div class="span5">
-                <object type="image/svg+xml" data="/static/images/ir-all.svg"></object>
-            </div>
-            <div class="span7 chart">
-                <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
-                <div class="age-chart"></div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
-
-<div class="row customers-box">
-    <div class="container">
-        <div class="row auto right">
-            <div class="span5">
-                <img src="{{url.static}}images/customers/1.jpg">
-            </div>
-            <div class="span7 content">
-                <h3>
-                    <a href="#">شرکت های تجاری</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-        </div>
-
-        <div class="row auto left">
-            <div class="span4 content">
-                <h3>
-                    <a href="#">موسسات تحقیقاتی آموزشی</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-            <div class="span8">
-                <img src="{{url.static}}images/customers/2.jpg">
-            </div>
-        </div>
-
-        <div class="row auto right">
-            <div class="span5">
-                <img src="{{url.static}}images/customers/3.jpg">
-            </div>
-            <div class="span7 content">
-                <h3>
-                    <a href="#">شرکت های تجاری</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-        </div>
-
-        <div class="row auto left">
-            <div class="span8 content">
-                <h3>
-                    <a href="#">کانون های تبلیغاتی</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-            <div class="span4">
-                <img src="{{url.static}}images/customers/4.jpg">
-            </div>
-        </div>
-
-        <div class="row auto right">
-            <div class="span7">
-                <img src="{{url.static}}images/customers/5.jpg">
-            </div>
-            <div class="span5 content">
-                <h3>
-                    <a href="#">توسعه دهنده ها و صاحبان وب سایت</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-        </div>
-
-        <div class="row auto left">
-            <div class="span6 content">
-                <h3>
-                    <a href="#">عموم مردم</a>
-                </h3>
-                <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-                <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            </div>
-            <div class="span6">
-                <img src="{{url.static}}images/customers/6.jpg">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="features-box">
-    <div class="row container">
-        <div class="span2"></div>
-        <div class="span8">
             <div class="tab current" data-tab="1">
                 <div class="circle security"></div>
                 <div class="title">تضمین امنیت</div>
@@ -117,13 +85,11 @@
                 <div class="circle variety"></div>
                 <div class="title">انواع نمودارها</div>
             </div>
-            <div class="content">
-                <p class="current">تضمین امنیت</p>
-
-                <p>حسابرسی دقیق</p>
-
-                <p>انواع نمودارها</p>
-            </div>
+        </div>
+        <div class="row content">
+            <p class="current">تضمین امنیت</p>
+            <p>حسابرسی دقیق</p>
+            <p>انواع نمودارها</p>
         </div>
     </div>
 </div>
@@ -171,19 +137,19 @@ var newChartOptions =
 
 $(function() {
     $('header .chart > div').highcharts(topChartOptions);
-    $('.map-box .chart > div').highcharts(newChartOptions);
+    $('#chart > .chart').highcharts(newChartOptions);
 
     var hoverOrClick = function() {
         var tab_id = $(this).attr('data-tab');
 
-        $('.features-box .tab').removeClass('current');
-        $('.features-box .content p').removeClass('current');
+        $('#features .tab').removeClass('current');
+        $('#features .content p').removeClass('current');
 
         $(this).addClass('current');
-        $('.features-box .content p').eq(tab_id - 1).addClass('current');
+        $('#features .content p').eq(tab_id - 1).addClass('current');
     };
 
-    $('.features-box .tab').click(hoverOrClick).hover(hoverOrClick);
+    $('#features .tab').click(hoverOrClick).hover(hoverOrClick);
 });
 </script>
 {% endblock %}
