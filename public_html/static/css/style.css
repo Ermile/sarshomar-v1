@@ -465,19 +465,95 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /* input select option */
-.element select.input{}
-.element select.input:hover{}
-.element select.input option{}
-.element select.input option:hover{}
+/*.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  width: 220px;
+  height: 40px;
+}
+
+.select-styled {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c0392b;
+  padding: 8px 15px;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.select-styled:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+.select-styled:hover {
+  background-color: #b83729;
+}
+.select-styled:active, .select-styled.active {
+  background-color: #ab3326;
+}
+.select-styled:active:after, .select-styled.active:after {
+  top: 9px;
+  border-color: transparent transparent #fff transparent;
+}
+
+.select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #ab3326;
+}
+.select-options li {
+  margin: 0;
+  padding: 12px 0;
+  text-indent: 15px;
+  border-top: 1px solid #962d22;
+  -moz-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+.select-options li:hover {
+  color: #c0392b;
+  background: #fff;
+}
+.select-options li[rel="hide"] {
+  display: none;
+}*/
+
 
 
 /* input reactions */
-.element.raw label{background-color:transparent;color:#A0A0A0;}
+/*.element.raw label{background-color:transparent;color:#A0A0A0;}
 .element.raw label::before{background-image:none;}
 .element.raw .input{background-color:transparent;color:#A0A0A0;cursor:default;}
 
 .element.raw:hover label{background-color:#D8D8D8;}
-.element.raw:hover .input{background-color:#D8D8D8;}
+.element.raw:hover .input{background-color:#D8D8D8;}*/
 
 
 /* panel-text */
@@ -507,7 +583,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /* Buttons */
 .buttons{position:relative;clear:both;text-align:right;margin-bottom:7em;}
 .rtl .buttons{text-align:left}
-.buttons::before{position:absolute;z-index:0;left:-20px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
+.buttons::before{position:absolute;z-index:0;left:0px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
 .rtl .buttons::before{left:auto;right:-20px;}
 .buttons nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
 .buttons button, .buttons input[type="submit"]{position:relative;min-width:80px;padding:7px 10px;cursor:pointer;color:#454545;border:none;outline:none;background-color:#e7a429;}

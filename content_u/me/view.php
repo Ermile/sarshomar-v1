@@ -8,17 +8,14 @@ class view extends \mvc\view
 		$this->data->me = $_args->api_callback;
 		// $profile_data =
 		// [
-		// 	'firstname'        => null,
+		// 	'firstname'        => null, yani harchi karbar zad
 		// 	'lastname'         => null,
-		// 	'gender'           => ['male', 'female'],
+		// 	'gender'           => ['male', 'female'], faghat ina
 		// 	'marrital'         => ['single', 'married'],
 		// 	'birthdate'        => null,
 		// 	'birthyear'        => null,
 		// 	'birthmonth'       => null,
 		// 	'birthday'         => null,
-		// 	'age'              => null,
-		// 	'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-59', '60+'],
-		// 	'rangetitle'       => ['baby', 'teenager', 'young', 'adult'],
 		// 	'uilanguage'       => null,
 		// 	'religion'         => null,
 		// 	'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
