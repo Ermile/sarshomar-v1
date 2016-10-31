@@ -69,7 +69,7 @@
     </div>
 </div>
 
-<div class="row" id="features">
+<div class="row" id="features-box">
     <div class="span2"></div>
     <div class="span8">
         <div class="row">
@@ -142,14 +142,14 @@ $(function() {
     var hoverOrClick = function() {
         var tab_id = $(this).attr('data-tab');
 
-        $('#features .tab').removeClass('current');
-        $('#features .content p').removeClass('current');
+        $('#features-box .tab').removeClass('current');
+        $('#features-box .content p').removeClass('current');
 
         $(this).addClass('current');
-        $('#features .content p').eq(tab_id - 1).addClass('current');
+        $('#features-box .content p').eq(tab_id - 1).addClass('current');
     };
 
-    $('#features .tab').click(hoverOrClick).hover(hoverOrClick);
+    $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
 });
 </script>
 {% endblock %}
