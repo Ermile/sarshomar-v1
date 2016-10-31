@@ -18,7 +18,7 @@ header .chart{width:auto;overflow:hidden;}
 header .chart h3{margin-bottom:0;font-size:1.4em;padding:0 1.4em;height:30px}
 .rtl header .chart h3{text-align:right;}
 .text-left{text-align:left;}
-.main {display:block;padding:0;margin:0 20px;width:100%;}
+.main {display:block;padding:0;margin:0;width:100%;}
 .main::before,.main::after{display:table;content:"";}
 .main::after{clear:both;}
 
@@ -332,7 +332,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .margin-bottom{margin-bottom:2em;}
 #me .title-line::before{width:180px;}
 #me .title-line.reverse::before{left:-50px;}
-#me .buttons::before{width:calc(100% + 40px);left:-20px;}
+#me .buttons::before{width:100%;left:0px;}
 
 
 /*polls*/
