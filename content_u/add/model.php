@@ -72,12 +72,12 @@ class model extends \content_u\home\model
 				// must be redirect to filter page
 				if(utility::post("filter"))
 				{
-					$this->redirector()->set_url("@/$url/filter");
+					$this->redirector()->set_url("@/add/$url/filter");
 				}
 				// must be redirect to publish page
 				elseif(utility::post("publish"))
 				{
-					$this->redirector()->set_url("@/$url/publish");
+					$this->redirector()->set_url("@/add/$url/publish");
 				}
 				else
 				{
@@ -106,7 +106,7 @@ class model extends \content_u\home\model
 			$url = \lib\utility\shortURL::encode($survey_id);
 			if($insert_poll)
 			{
-				$this->redirector()->set_url("@/$url/add");
+				$this->redirector()->set_url("@/add/$url");
 
 			}
 
@@ -126,7 +126,7 @@ class model extends \content_u\home\model
 			// redirect to '@/survey id /add' to add another poll
 			if($insert_poll)
 			{
-				$this->redirector()->set_url("@/$survey_url/add");
+				$this->redirector()->set_url("@/add/$survey_url");
 			}
 		}
 		else

@@ -22,6 +22,11 @@ class model extends \mvc\model
 	{
 		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
 		{
+			if(!isset($_args->match->url[0][1]))
+			{
+				return false;
+			}
+
 			$url = $_args->match->url[0][1];
 			if($_type == "decode")
 			{

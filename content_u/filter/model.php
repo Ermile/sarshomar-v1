@@ -27,6 +27,7 @@ class model extends \content_u\home\model
 	public function post_filter($_args)
 	{
 		// get filter
+
 		// remove empty filters in post
 		$post = array_filter(utility::post());
 		$filter = [];
@@ -46,13 +47,13 @@ class model extends \content_u\home\model
 		// get count member by tihs filter
 		$count_filtered_member = \lib\db\filters::count_filtered_member($filter);
 
-		debug::warn(T_(":max members founded",["max" => $count_filtered_member]));
+		// debug::warn(T_(":max members founded",["max" => $count_filtered_member]));
 
-		if($count_filtered_member < 1)
-		{
-			debug::error(T_("max = :max and this is less than 100, remove some filter",["max" => $count_filtered_member]));
-			return false;
-		}
+		// if($count_filtered_member < 1)
+		// {
+		// 	debug::error(T_("max = :max and this is less than 100, remove some filter",["max" => $count_filtered_member]));
+		// 	return false;
+		// }
 		// get the poll or survey id
 		$poll_id = $this->check_poll_url($_args);
 
@@ -83,7 +84,7 @@ class model extends \content_u\home\model
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
 			\lib\debug::true(T_("add filter of poll Success"));
-			$this->redirector()->set_url("@/$short_url/publish");
+			$this->redirector()->set_url("@/add/$short_url/publish");
 
 		}
 		else

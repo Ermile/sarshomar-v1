@@ -8,8 +8,8 @@ class controller extends \content_u\home\controller
 		parent::check_login();
 
 		// add filter for survey or poll
-		$this->get("filter", "filter")->ALL("/^(.*)\/filter$/");
-		$this->post("filter")->ALL("/^(.*)\/filter$/");
+		$this->get("filter", "filter")->ALL("/^add\/(.*)\/filter$/");
+		$this->post("filter")->ALL("/^add\/(.*)\/filter$/");
 	}
 }
 ?>
