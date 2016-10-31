@@ -50,12 +50,16 @@ class model extends \content_u\home\model
 			$tags_id    = \lib\db\tags::get_multi_id($tags);
 
 			// save tag to this poll
-			$useage_arg = [
-				'termusage_foreign' => 'posts',
-				'tags'              => $tags_id,
-				'termusage_id'      => $poll_survey_id
-			];
+			$useage_arg = [];
+			foreach ($tags_id as $key => $value) {
 
+				$useage_arg[] =
+				[
+					'termusage_foreign' => 'posts',
+					'term_id'           => $value,
+					'termusage_id'      => $poll_survey_id
+				];
+			}
 			$useage = \lib\db\termuseage::insert_multi($useage_arg);
 		}
 

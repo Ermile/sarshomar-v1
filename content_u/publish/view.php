@@ -15,7 +15,7 @@ class view extends \mvc\view
 		// set the short url to data
 		$this->data->short_url = $_args->api_callback;
 		// get all cat_poll from terms
-		$this->data->cat = \lib\db\cats::get("cat_poll");
+		$this->data->cat = \lib\db\cats::get_multi("cat_poll");
 		// get article
 		$args =	['post_type' => 'article'];
 		$this->data->article = \lib\db\polls::xget($args);

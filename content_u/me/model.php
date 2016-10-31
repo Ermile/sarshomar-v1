@@ -43,39 +43,8 @@ class model extends \mvc\model
 			return false;
 		}
 
-		$age = self::get_age(utility::post("birthdate"));
-		$range = self::get_range($age);
-
-		$arg =
-		[
-
-			'gender'        => utility::post("gender"),
-			'marrital'      => utility::post("marrital_status"),
-			'birthday'      => utility::post("birthdate"),
-			'language'      => utility::post("language"),
-			'graduation'    => utility::post("graduation"),
-			'education'     => utility::post("education_type"),
-			'course'        => utility::post("course"),
-			'grade'         => utility::post("grade"),
-			'employment'    => utility::post("employment"),
-			'business'      => utility::post("business"),
-			'industry'      => utility::post("industry"),
-			'countrybirth'  => utility::post("countrybirth"),
-			'country'       => utility::post("country"),
-			'provincebirth' => utility::post("provincebirth"),
-			'province'      => utility::post("province"),
-			'citybirth'     => utility::post("birthcity"),
-			'city'          => utility::post("city"),
-			'parental'      => utility::post("parental"),
-			'exercise'      => utility::post("exercise"),
-			'devices'       => utility::post("devices"),
-			'internetusage' => utility::post("internetusage"),
-			'age'           => $age
-
-		];
 		// remove empty
-		$arg = array_filter($arg);
-
+		$arg = array_filter(utility::post());
 		$profiles = \lib\db\profiles::set_profile_data($user_id, $arg);
 
 		if($profiles)

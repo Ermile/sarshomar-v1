@@ -23,7 +23,7 @@ class filters
 			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd', 'other'],
 			'course'           => null,
 			'age'              => null,
-			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-69', '60+'],
+			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-59', '60+'],
 			'country'          => null,
 			'province'         => null,
 			'city'             => null,
@@ -38,9 +38,20 @@ class filters
 		{
 			if($_value)
 			{
-				if(isset($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
+				if(array_key_exists($_check, $support_filter))
 				{
-					return true;
+					if(is_array($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
+					{
+						return true;
+					}
+					elseif($support_filter[$_check] === null)
+					{
+						return null;
+					}
+					else
+					{
+						return false;
+					}
 				}
 				else
 				{
