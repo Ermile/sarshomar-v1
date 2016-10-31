@@ -15,6 +15,7 @@ class view extends \mvc\view
 		if($perm)
 		{
 			$this->data->sarshomar_mod = true;
+			$this->data->profile_lock = array_keys(\lib\db\filters::support_filter());
 		}
 	}
 
