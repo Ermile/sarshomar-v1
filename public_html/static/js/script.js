@@ -1,8 +1,7 @@
-// Route
-
 // Add
 route('@/add', function()
 {
+  // run on input change
   $(this).on('input', '.option .input[type="text"]', function(event) {
     var number_of_empty_inputs = 0;
 
@@ -38,7 +37,7 @@ route('@/add', function()
 route('@/me', function()
 {
   // btns is generated in display in order to true translation
-  // $(this).on('dblclick', '.element.raw', function(event){});\
+  // $(this).on('dblclick', '.element.raw', function(event){});
 
   $.each($('.element.raw'), function(key, value)
   {
@@ -48,8 +47,8 @@ route('@/me', function()
       {
         if (!$('.main').hasClass('editing'))
         {
-          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
           $('.main').addClass('editing');
+          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
         }
       });
     }
@@ -59,23 +58,20 @@ route('@/me', function()
       {
         if (!$('.main').hasClass('editing'))
         {
-          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
           $('.main').addClass('editing');
+          $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
         }
       });
     }
   });
 
-  $.each($('.element .input'), function(key, value)
+  $(this).on('blur', '.element .input', function(event)
   {
-    $(this).blur(function(event)
-    {
-      var _element = $(this).parent();
-      _element.addClass('raw');
-      _element.children('.input').attr("disabled", 'disabled');
-      _element.children('.btn').remove();
-      $('.main').removeClass('editing');
-    });
+    $('.main').removeClass('editing');
+  });
+
+  $(this).on('click', 'button', function(event)
+  {
   });
 });
 
