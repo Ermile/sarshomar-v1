@@ -396,26 +396,115 @@ class profiles
 	 */
 	public static function get_dashboard_data($_user_id)
 	{
-		// need field
-		$field =
-		[
-			'pollanswer',
-			'pollskipped',
-			'point',
-			'surveycount',
-			'pollcount',
-			'peopleanswer',
-			'peopleskipped',
-			'userreferred',
-			'userverified'
-		];
-		// get all field of users record
-		$result = \lib\db\users::get($_user_id, $field);
-		return $result;
+		$query =
+		"
+			SELECT
+				option_key AS 'key',
+				option_value AS 'value'
+			FROM
+				options
+			WHERE
+				post_id IS NULL AND
+				user_id    = $_user_id AND
+				option_cat = 'user_dashboard_$_user_id'
+		";
+		$dashboard = \lib\db::get($query, ['key', 'value']);
+		return $dashboard;
 	}
 
 
+	/**
+	 * Sets the dashboard data.
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_title    The title
+	 */
+	public static function set_dashboard_data($_user_id, $_title)
+	{
+		$query =
+		"
+			UPDATE
+				options
+			SET
+				options.option_value =  options.option_value + 1
+			WHERE
+				options.post_id IS NULL AND
+				options.user_id    = $_user_id AND
+				options.option_cat = 'user_dashboard_$_user_id' AND
+				options.option_key = '$_title'
+			LIMIT 1
+		";
+		$result = \lib\db::query($query);
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+		if(!$update_rows)
+		{
+			$insert_options =
+			[
+				'post_id'      => null,
+				'option_value' =>  1,
+				'user_id'      => $_user_id,
+				'option_cat'   => "user_dashboard_$_user_id",
+				'option_key'   => "$_title"
+			];
+			\lib\db\options::insert($insert_options);
+		}
+	}
 
+
+	/**
+	 * save count of people see my poll
+	 * load this data in dashboard
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function people_see_my_poll($_user_id, $_poll_id, $_opt_key)
+	{
+		$title = "answered";
+		if($_opt_key == 'opt_0')
+		{
+			$title = "skipped";
+		}
+
+		$query =
+		"
+			UPDATE
+				options
+			SET
+				options.option_value =  options.option_value + 1
+			WHERE
+				options.post_id    IS NULL AND
+				options.user_id    = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1)	AND
+				options.option_cat = CONCAT('user_dashboard_', options.user_id) AND
+				options.option_key = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$title')
+		";
+		$result = \lib\db::query($query);
+		$update_rows = mysqli_affected_rows(\lib\db::$link);
+		if(!$update_rows)
+		{
+			$insert_options =
+			"
+				INSERT INTO
+					options
+				SET
+					options.post_id      = NULL,
+					options.user_id      = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+					options.option_cat   = CONCAT('user_dashboard_', options.user_id),
+					options.option_key   = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$title'),
+					options.option_value = 1
+			";
+			\lib\db::query($insert_options);
+		}
+	}
+
+
+	/**
+	 * to save profile value by answered the poll
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public static function set_profile_by_poll($_args)
 	{
 		$profile_lock =
@@ -431,6 +520,7 @@ class profiles
 				option_value = 'profile'
 			LIMIT 1
 		";
+
 		$profile_lock = \lib\db::get($profile_lock, 'lock', true);
 		if(!$profile_lock)
 		{

@@ -145,17 +145,40 @@ class answers
 
 
 		// save the poll lucked by profile
-		if(isset($_SESSION['profile']))
+		// update users profile
+		$set_profile_by_poll =
+		[
+			'poll_id' => $_poll_id,
+			'opt_key' => $_answer,
+			'user_id' => $_user_id
+		];
+		$update_profile = \lib\db\profiles::set_profile_by_poll($set_profile_by_poll);
+
+		// set dashboard data
+		if($_answer == 'opt_0')
 		{
-			// update users profile
-			$update_profile = \lib\db\profiles::set_profile_by_poll(
-													[
-														'poll_id' => $_poll_id,
-														'opt_key' => $_answer,
-														'user_id' => $_user_id
-													]
-												);
+			\lib\db\profiles::set_dashboard_data($_user_id, "poll_skipped");
 		}
+		else
+		{
+			\lib\db\profiles::set_dashboard_data($_user_id, "poll_answered");
+		}
+
+		\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, $_answer);
+
+
+		if($result)
+		{
+			// save answered count
+			$set_poll_result =
+			[
+				'poll_id' => $_poll_id,
+				'opt_key' => $_answer,
+				'user_id' => $_user_id
+			];
+			\lib\db\stat_polls::set_poll_result($set_poll_result);
+		}
+
 		// set status of skip answers to disable
 		// $status = 'enable';
 		// if($_answer < 0 )
@@ -201,17 +224,6 @@ class answers
 
 		// the key to update stat of this poll
 		// when user update his answer we shud not update poll stat
-		if($result)
-		{
-			// save answered count
-			\lib\db\stat_polls::set_poll_result(
-													[
-														'poll_id' => $_poll_id,
-														'opt_key' => $_answer,
-														'user_id' => $_user_id
-													]
-												);
-		}
 
 		return $result;
 	}

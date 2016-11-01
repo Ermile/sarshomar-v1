@@ -34,7 +34,7 @@ class controller extends \mvc\controller
 		}
 
 		$this->check_login();
-		$this->get("profile", "profile")->ALL();
+		$this->get(false, "profile")->ALL();
 	}
 
 
