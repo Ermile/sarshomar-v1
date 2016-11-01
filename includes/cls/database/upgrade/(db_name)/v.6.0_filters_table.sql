@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `filters` (
 `degree` ENUM('under diploma','diploma','2 year college','bachelor','master','phd','other') NULL,
 `course` VARCHAR(200)NULL,
 `age` SMALLINT(3) NULL,
-`range` ENUM('-13','14-17','18-24','25-30','31-44','45-69','60+') NULL,
+`range` ENUM('-13','14-17','18-24','25-30','31-44','45-59','60+') NULL,
 `country` VARCHAR(64) NULL,
 `province` VARCHAR(64) NULL,
 `city` VARCHAR(64) NULL,

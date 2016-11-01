@@ -359,7 +359,9 @@ class model extends \content_u\home\model
 					{
 						if(utility::post("meta_profile") != '')
 						{
+
 							$profile_lock = utility::post("meta_profile");
+
 						}
 						else
 						{

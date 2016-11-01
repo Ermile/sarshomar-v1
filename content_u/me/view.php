@@ -8,11 +8,11 @@ class view extends \mvc\view
 		$this->data->me = $_args->api_callback;
 		// $profile_data =
 		// [
+			// 	'email' 		   => null,
 			// 	'firstname'        => null,
 			// 	'lastname'         => null,
 			// 	'gender'           => ['male', 'female'],
 			// 	'marrital'         => ['single', 'married'],
-			// 	'birthdate'        => null,
 			// 	'birthyear'        => null,
 			// 	'birthmonth'       => null,
 			// 	'birthday'         => null,

@@ -194,7 +194,6 @@ class view extends \mvc\view
 				}
 			}
 			$this->data->meta = $meta;
-
 			if($show_result)
 			{
 				/*
@@ -204,8 +203,10 @@ class view extends \mvc\view
 				[
 					'result',
 					'gender',
-					'city',
-					'country'
+					'marrital',
+					'range',
+					'degree',
+					'city'
 				];
 				// load result as chart
 				$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);

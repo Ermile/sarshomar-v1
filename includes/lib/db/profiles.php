@@ -15,7 +15,6 @@ class profiles
 			'lastname'         => null,
 			'gender'           => ['male', 'female'],
 			'marrital'         => ['single', 'married'],
-			'birthdate'        => null,
 			'birthyear'        => null,
 			'birthmonth'       => null,
 			'birthday'         => null,
@@ -100,6 +99,13 @@ class profiles
 	}
 
 
+	/**
+	 * Gets the profile data.
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     array   The profile data.
+	 */
 	public static function get_profile_data($_user_id)
 	{
 		$result = \lib\db\termusages::usage($_user_id, 'users');
@@ -111,6 +117,7 @@ class profiles
 		return $new_result;
 	}
 
+
 	/**
 	 * Gets the user filter data.
 	 *
@@ -118,7 +125,6 @@ class profiles
 	 */
 	public static function get_user_filter($_user_id)
 	{
-
 		$filter_id = \lib\db\users::get($_user_id, 'filter_id');
 
 		if(!$filter_id)
@@ -145,6 +151,11 @@ class profiles
 	 */
 	public static function set_profile_data($_user_id, $_args)
 	{
+		if(!is_array($_args) || is_array($_user_id))
+		{
+			return false;
+		}
+
 		$birthyear  = null;
 		$birthmonth = null;
 		$birthday   = null;
@@ -158,6 +169,7 @@ class profiles
 			{
 				$check = self::profile_data($key, $value);
 				// true value
+				// users can set some value and the value is true
 				if($check === true)
 				{
 					if(\lib\db\filters::support_filter($key))
@@ -166,6 +178,7 @@ class profiles
 					}
 					$insert_profile[$key] = $value;
 				}
+				// users can set eny value in this field
 				elseif($check === null)
 				{
 					switch ($key) {
@@ -269,119 +282,102 @@ class profiles
 		$arg    = ['filter_id' => $filter_id];
 		$result = \lib\db\users::update($arg, $_user_id);
 
+		$insert_termusages = [];
 
-		$insert_terms = [];
 		foreach ($insert_profile as $key => $value) {
 			// chech exist this profie data or no
 			// if not exist insert new
 			// if exist and old value = new value continue
 			// if exist and old value != new value update terms and save old value in log
-			$new_term_id = \lib\db\terms::get_id($value);
+			$new_term_id = \lib\db\terms::get_id($value, "users_$key");
 			// insrt new terms
 			if(!$new_term_id || empty($new_term_id))
 			{
-				$insert_terms[] =
+				// new term find we need to save this to terms table
+				$insert_new_terms =
 				[
 					'term_type'   => 'users_'. $key,
 					'term_title'  => $value,
 					'term_slug'   => \lib\utility\filter::slug($value),
-					'term_url'    => $value,
+					'term_url'    => $key. '/'. $value,
 					'term_status' => 'awaiting'
 				];
-				continue;
-			}
 
-			$data_user_term =
-			[
-				'term_id'           => $new_term_id,
-				'termusage_foreign' => 'users',
-				'termusage_id'      => $_user_id
-			];
-			$user_term_exist = \lib\db\termusages::check($data_user_term);
-			if(!$user_term_exist)
+				$new_term_id = \lib\db\terms::insert($insert_new_terms);
+
+				$new_term_id = \lib\db::insert_id();
+				if(!$new_term_id)
+				{
+					$new_term_id = \lib\db\terms::get_id($value, "users_$key");
+					if(!$new_term_id)
+					{
+						continue;
+					}
+				}
+			}
+			// check this users has similar profile data to update this
+			$query =
+			"
+				SELECT
+					termusages.*,
+					terms.term_title
+				FROM
+					termusages
+				INNER JOIN terms ON terms.id = termusages.term_id
+				WHERE
+					termusages.termusage_foreign = 'users' AND
+					termusages.termusage_id = $_user_id AND
+					terms.term_type = 'users_$key'
+				LIMIT 1
+			";
+
+			$similar_terms = \lib\db::get($query, null, true);
+			if($similar_terms)
 			{
-				// inset new value in terms table
-				$insert_terms[] =
+				if($similar_terms['term_id'] == $new_term_id)
+				{
+					continue;
+				}
+
+				// update termusages teble
+				$old_termusave =
 				[
-					'term_type'   => 'users_'. $key,
-					'term_title'  => $value,
-					'term_slug'   => \lib\utility\filter::slug($value),
-					'term_url'    => $value,
-					'term_status' => 'awaiting'
+					'term_id'           => $similar_terms['term_id'],
+					'termusage_foreign' => 'users',
+					'termusage_id'      => $_user_id
 				];
+				$new_termusave =
+				[
+					'term_id'           => $new_term_id,
+					'termusage_foreign' => 'users',
+					'termusage_id'      => $_user_id
+				];
+				\lib\db\termusages::update($old_termusave, $new_termusave);
+				// save change log
+				$log =
+				[
+					'user_id'   => $_user_id,
+					'key'       => $key,
+					'old_value' => $similar_terms['term_title'],
+					'new_value' => $value
+				];
+				self::save_change_log($log);
 			}
 			else
 			{
-				// if($user_term_exist['term_id'] == $new_term_id)
-				// {
-				// 	var_dump($key, $value, $user_term_exist, $new_term_id);
-				// 	continue;
-				// }
-				// else
-				// {
-
-					// var_dump($data_user_term);
-					// update term id
-					\lib\db\termusages::update($data_user_term);
-					// save old value in log data
-					// ----------------------------------------
-					$log_item_title = "change_". $key;
-					$log_item_id = \lib\db\logitems::get_id($log_item_title);
-					if(!$log_item_id)
-					{
-						// list of priority in log item table
-						// 'critical','high','medium','low'
-						$log_item_priority = null;
-
-						switch ($key) {
-							case 'gender':
-								$log_item_priority = 'critical';
-								break;
-
-							default:
-								$log_item_priority = 'high';
-								break;
-						}
-
-						$insert_log_item =
-						[
-							'logitem_type'     => 'users',
-							'logitem_title'    => $log_item_title,
-							'logitem_desc'     => $log_item_title,
-							'logitem_meta'     => null,
-							'logitem_priority' => $log_item_priority,
-						];
-						$log_item_id = \lib\db\logitems::insert($insert_log_item);
-						$log_item_id = \lib\db::insert_id();
-					}
-					$old_value = \lib\db\terms::get($user_term_exist['term_id'], 'term_title');
-					$insert_log =
-					[
-						'logitem_id'     => $log_item_id,
-						'user_id'        => $_user_id,
-						'log_data'       => $key,
-						'log_meta'       => "{\"old\":\"$old_value\",\"new\":\"$value\"}",
-						'log_createdate' => date("Y-m-d H:i:s")
-					];
-					\lib\db\logs::insert($insert_log);
-				// }
-			}
-		}
-		if(!empty($insert_terms))
-		{
-			$insert = \lib\db\terms::insert_multi($insert_terms);
-			$multi_id = \lib\db\terms::get_multi_id(array_column($insert_terms, 'term_title'));
-			$useage_arg = [];
-			foreach ($multi_id as $key => $value) {
-
-				$useage_arg[] =
+				// insert new termusages record
+				$insert_termusages[] =
 				[
+					'term_id'           => $new_term_id,
 					'termusage_foreign' => 'users',
-					'term_id'           => $value,
 					'termusage_id'      => $_user_id
 				];
 			}
-			$useage = \lib\db\termusages::insert_multi($useage_arg);
+		}
+
+		if(!empty($insert_termusages))
+		{
+			$useage = \lib\db\termusages::insert_multi($insert_termusages);
 		}
 
 		return true;
@@ -471,6 +467,67 @@ class profiles
 				return self::set_profile_data($_args['user_id'], $profile_data);
 			}
 		}
+	}
+
+
+	/**
+	 * save users change profile in log table
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public static function save_change_log($_args)
+	{
+		if(
+			!isset($_args['user_id'])    ||
+			!isset($_args['key'])		 ||
+			!isset($_args['old_value'])  ||
+			!isset($_args['new_value'])
+			)
+		{
+			return false;
+		}
+
+		$log_item_title = "change_$_args[key]";
+		$log_item_id = \lib\db\logitems::get_id($log_item_title);
+		if(!$log_item_id)
+		{
+			// list of priority in log item table
+			// 'critical','high','medium','low'
+			$log_item_priority = null;
+
+			switch ($_args['key']) {
+				case 'gender':
+					$log_item_priority = 'critical';
+					break;
+
+				default:
+					$log_item_priority = 'high';
+					break;
+			}
+
+			$insert_log_item =
+			[
+				'logitem_type'     => 'users',
+				'logitem_title'    => $log_item_title,
+				'logitem_desc'     => $log_item_title,
+				'logitem_meta'     => null,
+				'logitem_priority' => $log_item_priority,
+			];
+			$log_item_id = \lib\db\logitems::insert($insert_log_item);
+			$log_item_id = \lib\db::insert_id();
+		}
+
+		$insert_log =
+		[
+			'logitem_id'     => $log_item_id,
+			'user_id'        => $_args['user_id'],
+			'log_data'       => $_args['key'],
+			'log_meta'       => "{\"old\":\"$_args[old_value]\",\"new\":\"$_args[new_value]\"}",
+			'log_createdate' => date("Y-m-d H:i:s")
+		];
+		\lib\db\logs::insert($insert_log);
 	}
 
 

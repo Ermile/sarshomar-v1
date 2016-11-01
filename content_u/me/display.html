@@ -22,7 +22,7 @@
 						<li data-tab="favorites">{%trans "Favorites"%}</li>
 					</ul>
 				</div>
-				
+
 				<div class="vertical-tabs-content">
 					<ul class="tab">
 
@@ -35,7 +35,7 @@
 						<li id="tab-personal">
 							<div class="row">
 								<div class=""><img src="/static/images/temporary/profile.jpg"></div>
-								
+
 								<div class="element">
 									<label for="firstname" class="addon">{%trans "First Name"%}</label>
 									<input type="text" name="firstname" id="firstname" value="{{me.firstname}}" class="input">
@@ -45,15 +45,15 @@
 									<label for="lastname" class="addon">{%trans "Last Name"%}</label>
 									<input type="text" name="lastname" id="lastname" value="{{me.lastname}}" class="input">
 								</div>
-								
+
 								<div class="element">
 									<label for="displayname" class="addon">{%trans "Display Name"%}</label>
 									<input type="text" name="displayname" id="displayname" value="{{me.displayname}}" class="input">
 								</div>
 
 								<div class="element">
-									<label for="birthdate" class="addon">{%trans "Birth Date"%}</label>
-									<input type="text" name="birthdate" id="birthdate" value="{{me.birthdate}}" class="input">
+									<label for="email" class="addon">{%trans "Email"%}</label>
+									<input type="text" name="email" id="email" value="{{me.email}}" class="input">
 								</div>
 
 								<div class="element">
@@ -70,6 +70,10 @@
 									<label for="birthday" class="addon">{%trans "Birthday"%}</label>
 									<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input">
 								</div>
+
+								{%if me.age%}<a  class="addon">{%trans "Age"%}: {{me.age}}</a>{%endif%}
+								{%if me.range%}<a  class="addon">{%trans "Range"%}: {{me.range}}</a>{%endif%}
+								{%if me.rangetitle%}<a  class="addon">{%trans "Range Title"%}: {{me.rangetitle}}</a>{%endif%}
 
 								<div class="element">
 									<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>

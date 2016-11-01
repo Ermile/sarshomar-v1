@@ -28,23 +28,30 @@ class model extends \mvc\model
 		$user_id = $this->login('id');
 
 		$displayname = utility::post("displayname");
-		$displayname = \lib\db\users::set_displayname($user_id, $displayname);
-		if(!$displayname)
+		if($displayname !== '')
 		{
-			\lib\debug::error(T_("error in update display name"));
-			return false;
+			$displayname = \lib\db\users::set_displayname($user_id, $displayname);
+			if(!$displayname)
+			{
+				\lib\debug::error(T_("error in update display name"));
+				return false;
+			}
 		}
 
 		$email = utility::post("email");
-		$email = \lib\db\users::set_email($user_id, $email);
-		if(!$email)
+		if($email !== '')
 		{
-			\lib\debug::error(T_("error in update email"));
-			return false;
+			$email = \lib\db\users::set_email($user_id, $email);
+			if(!$email)
+			{
+				\lib\debug::error(T_("error in update email"));
+				return false;
+			}
 		}
 
 		// remove empty
 		$arg = array_filter(utility::post());
+
 		$profiles = \lib\db\profiles::set_profile_data($user_id, $arg);
 
 		if($profiles)
