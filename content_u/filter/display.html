@@ -24,6 +24,9 @@
                   {%for name, list in value%}
                     <div class="element">
                       <label class="addon" for="{{name}}">{%trans name%}</label>
+                      {%if list == null%}
+                        <input type="text" name="filter_{{name}}" id="{{name}}" class="input">
+                      {%else%}
                       <select class="input" name="filter_{{name}}" id="{{name}}" >
                         {%for i, data in list %}
                           {%if i == 0%}
@@ -32,6 +35,7 @@
                           <option value="{{data}}">{%trans data%}</option>
                         {%endfor%}
                       </select>
+                      {%endif%}
                     </div>
                   {%endfor%}
                 </div>

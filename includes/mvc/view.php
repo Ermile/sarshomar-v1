@@ -96,5 +96,68 @@ class view extends \lib\mvc\view
 		}
 		return $return;
 	}
+
+
+	/**
+	 * find fontawesome icon
+	 *
+	 * @param      <type>  $_filter  The filter
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function filter_icon($_filter)
+	{
+		switch ($_filter) {
+
+			case 'gender':
+			      $class = "venus-mars";
+			      break;
+
+			case 'marrital':
+			case 'parental':
+			      $class = "users";
+			      break;
+
+			case 'exercise':
+			case 'devices':
+			case 'internetusage':
+			      $class = "star";
+			      break;
+
+			case 'employment':
+			case 'business':
+			case 'industry':
+			      $class = "rocket";
+			      break;
+
+			case 'birthdate':
+			case 'range':
+			case 'age':
+			      $class = "circle-o-notch";
+			      break;
+
+			case 'graduation':
+			case 'course':
+			      $class = "certificate";
+			      break;
+
+			case 'countrybirth':
+			case 'country':
+			case 'provincebirth':
+			case 'province':
+			case 'birthcity':
+			case 'city':
+			case 'citybirth':
+			case 'language':
+			      $class = "map-marker";
+			      break;
+
+			default:
+				 $class = "star";
+				break;
+		}
+
+		return $class;
+	}
 }
 ?>

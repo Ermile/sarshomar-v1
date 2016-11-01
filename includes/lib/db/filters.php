@@ -136,8 +136,18 @@ class filters
 
 		// make where
 		$where = [];
-		foreach ($_args as $key => $value) {
-			$where[] = " `$key` = '$value' ";
+		$support_filter = self::support_filter();
+		$support_filter = array_keys($support_filter);
+
+		foreach ($support_filter as $key => $value) {
+			if(isset($_args[$value]))
+			{
+				$where[] = " `$value` = '$_args[$value]' ";
+			}
+			else
+			{
+				$where[] = " `$value` IS NULL ";
+			}
 		}
 		$where = join($where, " AND ");
 
@@ -244,26 +254,24 @@ class filters
 			case 'gender':
 			case 'marrital':
 			case 'language':
-			case 'employment':
 				$cat = "public";
 				break;
 
 			// education
 			case 'graduation':
 			case 'course':
+			case 'degree':
 				$cat = "education";
 				break;
 
 			// family
-			case 'parental':
-			case 'birthdate':
 			case 'age':
 			case 'range':
 				$cat = "family";
 				break;
 
 			// job
-			case 'business':
+			case 'employmentstatus':
 			case 'industry':
 				$cat = "job";
 				break;
@@ -272,21 +280,13 @@ class filters
 			case 'province':
 			case 'city':
 			case 'country':
-			case 'citybirth':
-			case 'provincebirth':
-			case 'countrybirth':
+			case 'housestatus':
 				$cat = "location";
 				break;
 
-			// favorites
-			case 'favorites':
-			case 'exercise':
-				$cat = "favorites";
-				break;
-
 			// other
-			case 'devices':
-			case 'internet':
+			case 'internetusage':
+			case 'religion':
 				$cat = "other";
 
 			// other
@@ -306,68 +306,32 @@ class filters
 	 */
 	public static function get_exist_filter()
 	{
-		// muse be edit by new syntax of filters
+		$support_filter = self::support_filter();
+		$filters = [];
+		foreach ($support_filter as $key => $value) {
+			$filters[self::filter_cat($key)][$key] = $value;
+		}
 
-		return false;
+		$sort =
+		[
+			"public",
+			"education",
+			"family",
+			"job",
+			"location",
+			"favorites",
+			"other"
+		];
+		$sorted_filter = [];
+		// sort filter by sort array
+		foreach ($sort as $key => $value) {
+			if(isset($filters[$value]))
+			{
+				$sorted_filter[$value] = $filters[$value];
+			}
+		}
 
-		// $query =
-		// "
-		// 	SELECT
-		// 		options.option_key 		AS 'key',
-		// 		options.option_value 	AS 'value'
-		// 	FROM
-		// 		options
-		// 	WHERE
-		// 		options.post_id IS NULL AND
-		// 		options.user_id IS NOT NULL AND
-		// 		options.option_cat LIKE 'user_detail_%'
-		// 	GROUP BY
-		// 		options.option_key,
-		// 		options.option_value
-		// 	-- filters::get_exist_filter()
-		// ";
-		// $result = \lib\db::get($query);
-
-
-		// $filters = [];
-		// foreach ($result as $key => $value)
-		// {
-		// 	$cat = self::filter_cat($value['key']);
-		// 	if(!isset($filters[$cat]))
-		// 	{
-		// 		$filters[$cat] = [];
-		// 	}
-
-		// 	if(!isset($filters[$cat][$value['key']]))
-		// 	{
-		// 		$filters[$cat][$value['key']] = [$value['value']];
-		// 	}
-		// 	else
-		// 	{
-		// 		array_push($filters[$cat][$value['key']], $value['value']);
-		// 	}
-		// }
-
-		// // for sort categories
-		// $sort =
-		// [
-		// 	"public",
-		// 	"education",
-		// 	"family",
-		// 	"job",
-		// 	"location",
-		// 	"favorites",
-		// 	"other"
-		// ];
-		// $sorted_filter = [];
-		// // sort filter by sort array
-		// foreach ($sort as $key => $value) {
-		// 	if(isset($filters[$value]))
-		// 	{
-		// 		$sorted_filter[$value] = $filters[$value];
-		// 	}
-		// }
-		// return $sorted_filter;
+		return $sorted_filter;
 	}
 
 
@@ -410,51 +374,32 @@ class filters
 	 */
 	public static function count_filtered_member($_args)
 	{
-		// muse be edit by new syntax of filters
-		return false;
-
-		// // we support 5 filter
-		// if(count($_args) > 5)
-		// {
-		// 	return false;
-		// }
-		// // we muse for every filter join to get num of all
-		// $join     = [];
-		// $where    = [];
-		// $where [] = " main.user_id IS NOT NULL ";
-		// $where [] = " main.post_id IS NULL ";
-		// $where [] = " main.option_cat LIKE 'user_detail%' ";
-
-		// foreach ($_args as $key => $value) {
-		// 	$join[] = " INNER JOIN options as `$key` ON main.user_id = $key.user_id ";
-		// 	if(is_array($value))
-		// 	{
-		// 		foreach ($value as $index => $filter) {
-		// 			$where[] = " ($key.option_key = '$key' and $key.option_value = '$filter') ";
-		// 		}
-		// 	}
-		// 	else
-		// 	{
-		// 		$where[] = " ($key.option_key = '$key' and $key.option_value = '$value') ";
-		// 	}
-		// }
-		// $join = join($join, "\n");
-		// $where = join($where, " AND \n");
-		// $query =
-		// "
-		// 	SELECT
-		// 		main.user_id
-		// 	FROM
-		// 		options as `main`
-		// 		$join
-		// 	WHERE
-		// 		$where
-		// 	GROUP BY
-		// 		main.user_id
-		// 	-- filters::count_filtered_member()
-		// ";
-		// $result = \lib\db::query($query);
-		// $num  = \lib\db::num();
-		// return $num;
+		if(!is_array($_args))
+		{
+			return false;
+		}
+		$filter_id = self::check($_args, 'id');
+		if(empty($filter_id))
+		{
+			return 0;
+		}
+		else
+		{
+			if(!is_array($filter_id))
+			{
+				$query =
+				"
+					SELECT
+						COUNT(id) AS 'members'
+					FROM
+						users
+					WHERE
+						users.filter_id = $filter_id
+				";
+				$count = \lib\db::get($query, 'members', true);
+				return $count;
+			}
+		}
+		return 0;
 	}
 }

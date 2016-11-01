@@ -27,7 +27,6 @@ class model extends \content_u\home\model
 	public function post_filter($_args)
 	{
 		// get filter
-
 		// remove empty filters in post
 		$post = array_filter(utility::post());
 		$filter = [];
@@ -38,22 +37,16 @@ class model extends \content_u\home\model
 				$filter[$name[1]] = $value;
 			}
 		}
-		// very filter seleced
-		if(count($filter) > 5)
-		{
-			debug::error(T_("oops, too many filters. remove some filter"));
-			return false;
-		}
+
 		// get count member by tihs filter
 		$count_filtered_member = \lib\db\filters::count_filtered_member($filter);
 
-		// debug::warn(T_(":max members founded",["max" => $count_filtered_member]));
+		if($count_filtered_member < 1)
+		{
+			debug::error(T_(":max users found remove some filter",["max" => $count_filtered_member]));
+			return false;
+		}
 
-		// if($count_filtered_member < 1)
-		// {
-		// 	debug::error(T_("max = :max and this is less than 100, remove some filter",["max" => $count_filtered_member]));
-		// 	return false;
-		// }
 		// get the poll or survey id
 		$poll_id = $this->check_poll_url($_args);
 
@@ -63,29 +56,28 @@ class model extends \content_u\home\model
 			return false;
 		}
 		// ready to insert filters in options table
-		$args = [];
-		foreach ($filter as $key => $value) {
-			$args[] =
-			[
-				'post_id'      => $poll_id,
-				'option_cat'   => "poll_$poll_id",
-				'option_key'   => $key,
-				'option_value' => $value,
-				'option_meta'  => null
-			];
-		}
-		$result = \lib\db\options::insert_multi($args);
-		if(!$result)
+		// get the filter id if exist
+		$filter_id = \lib\db\filters::get_id($filter);
+
+		// if filter id not found insert the filter record and get the last_insert_id
+		if(!$filter_id)
 		{
-			$result = \lib\db\options::update_on_error($args);
+			$filter_id = \lib\db\filters::insert($filter);
+			// bug !!! . filter can not be add
+			if(!$filter_id)
+			{
+				return false;
+			}
 		}
+
+		$poll_update = ['filter_id' => $filter_id];
+		$result      = \lib\db\polls::update($poll_update, $poll_id);
 
 		if($result)
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
 			\lib\debug::true(T_("add filter of poll Success"));
 			$this->redirector()->set_url("@/add/$short_url/publish");
-
 		}
 		else
 		{

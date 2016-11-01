@@ -184,16 +184,33 @@ class view extends \mvc\view
 						break;
 					// case "true_answer":
 					default:
-						$meta[$value['option_key']] =
-							[
-								'filter' => $value['option_value'],
-								'icon'   => self::find_icon($value['option_key'])
-							];
-
+						// !
 						break;
 				}
 			}
 			$this->data->meta = $meta;
+
+			// load poll filters
+			if(isset($post['filter_id']) && $post['filter_id'])
+			{
+				$filters = \lib\db\filters::get($post['filter_id']);
+				$filters = array_filter($filters);
+				unset($filters['id']);
+				unset($filters['unique']);
+
+				$show_filters = [];
+				foreach ($filters as $key => $value)
+				{
+					$show_filters[] =
+					[
+						'filter' => $value,
+						'icon'   => self::filter_icon($key)
+					];
+				}
+				$this->data->filters = $show_filters;
+			}
+
+			// check show result
 			if($show_result)
 			{
 				/*
