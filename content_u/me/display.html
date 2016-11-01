@@ -12,7 +12,7 @@
 			<div class="vertical-tabs">
 				<ul class="tabs">
 					<li data-tab="profile">{%trans "Profile"%}</li>
-					<li data-tab="personal">{%trans "Personal"%}</li>
+					<li data-tab="personal" class="active">{%trans "Personal"%}</li>
 					<li data-tab="education">{%trans "Education"%}</li>
 					<li data-tab="job">{%trans "Job"%}</li>
 					<li data-tab="location">{%trans "Location"%}</li>
@@ -70,9 +70,26 @@
 								<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input" disabled>
 							</div>
 
-							{%if me.age%}<a  class="addon">{%trans "Age"%}: {{me.age}}</a>{%endif%}
-							{%if me.range%}<a  class="addon">{%trans "Range"%}: {{me.range}}</a>{%endif%}
-							{%if me.rangetitle%}<a  class="addon">{%trans "Range Title"%}: {{me.rangetitle}}</a>{%endif%}
+							{%if me.age%}
+							<div class="element raw">
+								<label for="age" class="addon">{%trans "Age"%}</label>
+								<input type="text" name="age" id="age" value="{{me.age}}" class="input" disabled>
+							</div>
+							{%endif%}
+
+							{%if me.range%}
+							<div class="element raw">
+								<label for="range" class="addon">{%trans "Range"%}</label>
+								<input type="text" name="range" id="range" value="{{me.range}}" class="input" disabled>
+							</div>
+							{%endif%}
+
+							{%if me.rangetitle%}
+							<div class="element raw">
+								<label for="rangetitle" class="addon">{%trans "Range Title"%}</label>
+								<input type="text" name="rangetitle" id="rangetitle" value="{{me.rangetitle}}" class="input" disabled>
+							</div>
+							{%endif%}
 
 							<div class="element raw">
 								<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
