@@ -258,12 +258,15 @@ class profiles
 		}
 
 		$old_user_filter = self::get_user_filter($_user_id);
-		$old_user_filter = array_filter($old_user_filter);
+		if($old_user_filter && !is_array($old_user_filter))
+		{
+			$old_user_filter = array_filter($old_user_filter);
 
-		unset($old_user_filter['id']);
-		unset($old_user_filter['unique']);
+			unset($old_user_filter['id']);
+			unset($old_user_filter['unique']);
 
-		$insert_filter = array_merge($old_user_filter, $insert_filter);
+			$insert_filter = array_merge($old_user_filter, $insert_filter);
+		}
 
 		// get the filter id if exist
 		$filter_id = \lib\db\filters::get_id($insert_filter);
