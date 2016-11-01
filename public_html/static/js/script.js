@@ -34,45 +34,32 @@ route('@/add', function()
 
 
 // Me | Profile
-route('@/me', function()
-{
-  // btns is generated in display in order to true translation
-  // $(this).on('dblclick', '.element.raw', function(event){});
+route('@/me', function () {
+    // btns is generated in display in order to true translation
+    $.each($('.element.raw'), function (key, value) {
+        if ($(this).children('.input').val()) {
+            $(this).dblclick(function () {
+                if (!$('.main').hasClass('editing')) {
+                    $('.main').addClass('editing');
+                    $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
+                }
+            });
+        }
+        else {
+            $(this).click(function () {
+                if (!$('.main').hasClass('editing')) {
+                    $('.main').addClass('editing');
+                    $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
+                }
+            });
+        }
+    });
 
-  // $.each($('.element.raw'), function(key, value)
-  // {
-  //   if($(this).children('.input').val())
-  //   {
-  //     $(this).dblclick(function()
-  //     {
-  //       if (!$('.main').hasClass('editing'))
-  //       {
-  //         $('.main').addClass('editing');
-  //         $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
-  //       }
-  //     });
-  //   }
-  //   else
-  //   {
-  //     $(this).click(function()
-  //     {
-  //       if (!$('.main').hasClass('editing'))
-  //       {
-  //         $('.main').addClass('editing');
-  //         $(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
-  //       }
-  //     });
-  //   }
-  // });
+    $(this).on('blur', '.element .input', function (event) {
+        $('.main').removeClass('editing');
+    });
 
-  // $(this).on('blur', '.element .input', function(event)
-  // {
-  //   $('.main').removeClass('editing');
-  // });
-
-  // $(this).on('click', 'button', function(event)
-  // {
-  // });
+    $(this).on('click', 'button', function (event) {});
 });
 
 

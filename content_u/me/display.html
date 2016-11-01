@@ -5,362 +5,360 @@
 
 {%block content%}
 <div class="main">
-	<form method="post">
-		<div class="row">
-			<div class="span1"></div>
+	<div class="row">
+		<div class="span1"></div>
 
-			<div class="span10">
-				<div class="vertical-tabs">
-					<ul class="tabs">
-						<li data-tab="profile">{%trans "Profile"%}</li>
-						<li data-tab="personal">{%trans "Personal"%}</li>
-						<li data-tab="education">{%trans "Education"%}</li>
-						<li data-tab="job">{%trans "Job"%}</li>
-						<li data-tab="location">{%trans "Location"%}</li>
-						<li data-tab="user">{%trans "User"%}</li>
-						<li data-tab="family">{%trans "Family"%}</li>
-						<li data-tab="favorites">{%trans "Favorites"%}</li>
-					</ul>
-				</div>
+		<div class="span10">
+			<div class="vertical-tabs">
+				<ul class="tabs">
+					<li data-tab="profile">{%trans "Profile"%}</li>
+					<li data-tab="personal">{%trans "Personal"%}</li>
+					<li data-tab="education">{%trans "Education"%}</li>
+					<li data-tab="job">{%trans "Job"%}</li>
+					<li data-tab="location">{%trans "Location"%}</li>
+					<li data-tab="user">{%trans "User"%}</li>
+					<li data-tab="family">{%trans "Family"%}</li>
+					<li data-tab="favorites">{%trans "Favorites"%}</li>
+				</ul>
+			</div>
 
-				<div class="vertical-tabs-content">
-					<ul class="tab">
+			<div class="vertical-tabs-content">
+				<ul class="tab">
 
-						<li id="tab-profile">
-							<div class="row">
-								<h2>Profile</h2>
+					<li id="tab-profile">
+						<div class="row">
+							<h2>Profile</h2>
+						</div>
+					</li>
+
+					<li id="tab-personal">
+						<div class="row">
+							<div class=""><img src="/static/images/temporary/profile.jpg"></div>
+
+							<div class="element raw">
+								<label for="firstname" class="addon">{%trans "First Name"%}</label>
+								<input type="text" name="firstname" id="firstname" value="{{me.firstname}}" class="input" disabled>
 							</div>
-						</li>
 
-						<li id="tab-personal">
-							<div class="row">
-								<div class=""><img src="/static/images/temporary/profile.jpg"></div>
-
-								<div class="element">
-									<label for="firstname" class="addon">{%trans "First Name"%}</label>
-									<input type="text" name="firstname" id="firstname" value="{{me.firstname}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="lastname" class="addon">{%trans "Last Name"%}</label>
-									<input type="text" name="lastname" id="lastname" value="{{me.lastname}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="displayname" class="addon">{%trans "Display Name"%}</label>
-									<input type="text" name="displayname" id="displayname" value="{{me.displayname}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="email" class="addon">{%trans "Email"%}</label>
-									<input type="text" name="email" id="email" value="{{me.email}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="birthyear" class="addon">{%trans "Birth Year"%}</label>
-									<input type="text" name="birthyear" id="birthyear" value="{{me.birthyear}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="birthmonth" class="addon">{%trans "Birth Month"%}</label>
-									<input type="text" name="birthmonth" id="birthmonth" value="{{me.birthmonth}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="birthday" class="addon">{%trans "Birthday"%}</label>
-									<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input">
-								</div>
-
-								{%if me.age%}<a  class="addon">{%trans "Age"%}: {{me.age}}</a>{%endif%}
-								{%if me.range%}<a  class="addon">{%trans "Range"%}: {{me.range}}</a>{%endif%}
-								{%if me.rangetitle%}<a  class="addon">{%trans "Range Title"%}: {{me.rangetitle}}</a>{%endif%}
-
-								<div class="element">
-									<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
-									<input type="text" name="uilanguage" id="uilanguage" value="{{me.uilanguage}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="religion" class="addon">{%trans "Religion"%}</label>
-									<input type="text" name="religion" id="religion" value="{{me.religion}}" class="input">
-								</div>
+							<div class="element raw">
+								<label for="lastname" class="addon">{%trans "Last Name"%}</label>
+								<input type="text" name="lastname" id="lastname" value="{{me.lastname}}" class="input" disabled>
 							</div>
-						</li>
 
-						<li id="tab-education">
-							<div class="row">
+							<div class="element raw">
+								<label for="displayname" class="addon">{%trans "Display Name"%}</label>
+								<input type="text" name="displayname" id="displayname" value="{{me.displayname}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="email" class="addon">{%trans "Email"%}</label>
+								<input type="text" name="email" id="email" value="{{me.email}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="birthyear" class="addon">{%trans "Birth Year"%}</label>
+								<input type="text" name="birthyear" id="birthyear" value="{{me.birthyear}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="birthmonth" class="addon">{%trans "Birth Month"%}</label>
+								<input type="text" name="birthmonth" id="birthmonth" value="{{me.birthmonth}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="birthday" class="addon">{%trans "Birthday"%}</label>
+								<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input" disabled>
+							</div>
+
+							{%if me.age%}<a  class="addon">{%trans "Age"%}: {{me.age}}</a>{%endif%}
+							{%if me.range%}<a  class="addon">{%trans "Range"%}: {{me.range}}</a>{%endif%}
+							{%if me.rangetitle%}<a  class="addon">{%trans "Range Title"%}: {{me.rangetitle}}</a>{%endif%}
+
+							<div class="element raw">
+								<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
+								<input type="text" name="uilanguage" id="uilanguage" value="{{me.uilanguage}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="religion" class="addon">{%trans "Religion"%}</label>
+								<input type="text" name="religion" id="religion" value="{{me.religion}}" class="input" disabled>
+							</div>
+						</div>
+					</li>
+
+					<li id="tab-education">
+						<div class="row">
+							<div class="element raw">
+								<label for="graduation" class="addon">{%trans "Graduation"%}</label>
+								<select class="input" name="graduation" id="graduation">
+									<option value="illiterate">{%trans "Illiterate"%}</option>
+									<option value="undergraduate">{%trans "Undergraduate"%}</option>
+									<option value="graduate">{%trans "Graduate"%}</option>
+								</select>
+							</div>
+
+							<div class="element raw">
+								<label for="educationtype" class="addon">{%trans "Education Type"%}</label>
+								<select name="educationtype" id="educationtype" class="input">
+									<option value="academic">{%trans "Academic"%}</option>
+									<option value="howzeh">{%trans "Howzeh"%}</option>
+								</select>
+							</div>
+
+							<div class="element raw">
+								<label class="addon" for="course">{%trans "Course"%}</label>
+								<input class="input" type="text" name="course" id="course" value="{{me.course}}" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="degree" class="addon">{%trans "Degree"%}</label>
+								<select name="degree" id="degree" class="input">
+									<option value="under diploma">{%trans "Under Diploma"%}</option>
+									<option value="diploma">{%trans "Diploma"%}</option>
+									<option value="2 year college">{%trans "2 Year College"%}</option>
+									<option value="bachelor">{%trans "Bachelor"%}</option>
+									<option value="master">{%trans "Master"%}</option>
+									<option value="phd">{%trans "PHD"%}</option>
+									<option value="other">{%trans "Other"%}</option>
+								</select>
+							</div>
+
+							<div class="element raw">
+								<label for="howzeh" class="addon">{%trans "Howzeh"%}</label>
+								<input type="text" name="howzeh" id="howzeh" value="{{me.howzeh}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="howzehdegree" class="addon">{%trans "Howzeh Degree"%}</label>
+								<input type="text" name="howzehdegree" id="howzehdegree" value="{{me.howzehdegree}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="howzehcourse" class="addon">{%trans "Howzeh Course"%}</label>
+								<input type="text" name="howzehcourse" id="howzehcourse" value="{{me.howzehcourse}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="educationcity" class="addon">{%trans "Education City"%}</label>
+								<input type="text" name="educationcity" id="educationcity" value="{{me.educationcity}}" class="input" disabled>
+							</div>
+						</div>
+					</li>
+
+					<li id="tab-job">
+						<div class="row">
+							<div class="element raw">
+								<label for="employmentstatus" class="addon">{%trans "Employment Status"%}</label>
+								<select name="employmentstatus" id="employmentstatus" class="input">
+									<option value="employee">{%trans "Employee"%}</option>
+									<option value="unemployee">{%trans "Unemployee"%}</option>
+									<option value="retired">{%trans "Retired"%}</option>
+								</select>
+							</div>
+
+							<div class="element raw">
+								<label for="industry" class="addon">{%trans "Industry"%}</label>
+								<input type="text" name="industry" id="industry" value="{{me.industry}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="company" class="addon">{%trans "Company"%}</label>
+								<input type="text" name="company" id="company" value="{{me.company}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="jobcity" class="addon">{%trans "Job City"%}</label>
+								<input type="text" name="jobcity" id="jobcity" value="{{me.jobcity}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="jobtitle" class="addon">{%trans "Job Title"%}</label>
+								<input type="text" name="" id="jobtitle" value="{{me.jobtitle}}" class="input" disabled>
+							</div>
+						</div>
+					</li>
+
+					<li id="tab-location">
+						<div class="row">
+							<div class="group">
+								<div class="title-line reverse">
+									<span>{%trans "Birth"%}</span>
+								</div>
+
 								<div class="element raw">
-									<label for="graduation" class="addon">{%trans "Graduation"%}</label>
-									<select class="input" name="graduation" id="graduation">
-                    <option value="illiterate">{%trans "Illiterate"%}</option>
-                    <option value="undergraduate">{%trans "Undergraduate"%}</option>
-                    <option value="graduate">{%trans "Graduate"%}</option>
-                  </select>
+									<label for="birthcountry" class="addon">{%trans "Birth Country"%}</label>
+									<input type="text" name="birthcountry" id="birthcountry" value="{{me.birthcountry}}" class="input" disabled>
 								</div>
 
 								<div class="element raw">
-									<label for="educationtype" class="addon">{%trans "Education Type"%}</label>
-									<select name="educationtype" id="educationtype" class="input">
-                    <option value="academic">{%trans "Academic"%}</option>
-                    <option value="howzeh">{%trans "Howzeh"%}</option>
-                  </select>
+									<label for="birthprovince" class="addon">{%trans "Birth Province"%}</label>
+									<input type="text" name="birthprovince" id="birthprovince" value="{{me.birthprovince}}" class="input" disabled>
 								</div>
 
 								<div class="element raw">
-									<label class="addon" for="course">{%trans "Course"%}</label>
-									<input class="input" type="text" name="course" id="course" value="{{me.course}}">
-								</div>
-
-								<div class="element">
-									<label for="degree" class="addon">{%trans "Degree"%}</label>
-									<select name="degree" id="degree" class="input">
-                    <option value="under diploma">{%trans "Under Diploma"%}</option>
-                    <option value="diploma">{%trans "Diploma"%}</option>
-                    <option value="2 year college">{%trans "2 Year College"%}</option>
-                    <option value="bachelor">{%trans "Bachelor"%}</option>
-                    <option value="master">{%trans "Master"%}</option>
-                    <option value="phd">{%trans "PHD"%}</option>
-                    <option value="other">{%trans "Other"%}</option>
-                  </select>
-								</div>
-
-								<div class="element">
-									<label for="howzeh" class="addon">{%trans "Howzeh"%}</label>
-									<input type="text" name="howzeh" id="howzeh" value="{{me.howzeh}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="howzehdegree" class="addon">{%trans "Howzeh Degree"%}</label>
-									<input type="text" name="howzehdegree" id="howzehdegree" value="{{me.howzehdegree}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="howzehcourse" class="addon">{%trans "Howzeh Course"%}</label>
-									<input type="text" name="howzehcourse" id="howzehcourse" value="{{me.howzehcourse}}" class="input">
-								</div>
-
-								<div class="element">
-									<label for="educationcity" class="addon">{%trans "Education City"%}</label>
-									<input type="text" name="educationcity" id="educationcity" value="{{me.educationcity}}" class="input">
+									<label for="birthcity" class="addon">{%trans "Birth City"%}</label>
+									<input type="text" name="birthcity" id="birthcity" value="{{me.birthcity}}" class="input" disabled>
 								</div>
 							</div>
-						</li>
 
-						<li id="tab-job">
-							<div class="row">
-								<div class="element">
-									<label for="employmentstatus" class="addon">{%trans "Employment Status"%}</label>
-									<select name="employmentstatus" id="employmentstatus" class="input">
-                    <option value="employee">{%trans "Employee"%}</option>
-                    <option value="unemployee">{%trans "Unemployee"%}</option>
-                    <option value="retired">{%trans "Retired"%}</option>
-                  </select>
+							<div class="group">
+								<div class="title-line reverse">
+									<span>{%trans "Current"%}</span>
 								</div>
 
-								<div class="element">
-									<label for="industry" class="addon">{%trans "Industry"%}</label>
-									<input type="text" name="industry" id="industry" value="{{me.industry}}" class="input">
+								<div class="element raw">
+									<label for="country" class="addon">{%trans "Country"%}</label>
+									<input type="text" name="country" id="country" value="{{me.country}}" class="input" disabled>
 								</div>
 
-								<div class="element">
-									<label for="company" class="addon">{%trans "Company"%}</label>
-									<input type="text" name="company" id="company" value="{{me.company}}" class="input">
+								<div class="element raw">
+									<label for="province" class="addon">{%trans "Province"%}</label>
+									<input type="text" name="province" id="province" value="{{me.province}}" class="input" disabled>
 								</div>
 
-								<div class="element">
-									<label for="jobcity" class="addon">{%trans "Job City"%}</label>
-									<input type="text" name="jobcity" id="jobcity" value="{{me.jobcity}}" class="input">
+								<div class="element raw">
+									<label for="city" class="addon">{%trans "City"%}</label>
+									<input type="text" name="city" id="city" value="{{me.city}}" class="input" disabled>
 								</div>
 
-								<div class="element">
-									<label for="jobtitle" class="addon">{%trans "Job Title"%}</label>
-									<input type="text" name="" id="jobtitle" value="{{me.jobtitle}}" class="input">
-								</div>
-							</div>
-						</li>
-
-						<li id="tab-location">
-							<div class="row">
-								<div class="group">
-									<div class="title-line reverse">
-										<span>{%trans "Birth"%}</span>
-									</div>
-
-									<div class="element">
-										<label for="birthcountry" class="addon">{%trans "Birth Country"%}</label>
-										<input type="text" name="birthcountry" id="birthcountry" value="{{me.birthcountry}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="birthprovince" class="addon">{%trans "Birth Province"%}</label>
-										<input type="text" name="birthprovince" id="birthprovince" value="{{me.birthprovince}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="birthcity" class="addon">{%trans "Birth City"%}</label>
-										<input type="text" name="birthcity" id="birthcity" value="{{me.birthcity}}" class="input">
-									</div>
+								<div class="element raw">
+									<label for="village" class="addon">{%trans "Village"%}</label>
+									<input type="text" name="village" id="village" value="{{me.village}}" class="input" disabled>
 								</div>
 
-								<div class="group">
-									<div class="title-line reverse">
-										<span>{%trans "Current"%}</span>
-									</div>
-
-									<div class="element">
-										<label for="country" class="addon">{%trans "Country"%}</label>
-										<input type="text" name="country" id="country" value="{{me.country}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="province" class="addon">{%trans "Province"%}</label>
-										<input type="text" name="province" id="province" value="{{me.province}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="city" class="addon">{%trans "City"%}</label>
-										<input type="text" name="city" id="city" value="{{me.city}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="village" class="addon">{%trans "Village"%}</label>
-										<input type="text" name="village" id="village" value="{{me.village}}" class="input">
-									</div>
-
-									<div class="element">
-										<label for="housestatus" class="addon">{%trans "House Status"%}</label>
-										<select name="housestatus" id="housestatus" class="input">
-                      <option value="owner">{%trans "Owner"%}</option>
-                      <option value="tenant">{%trans "Tenant"%}</option>
-                      <option value="homeless">{%trans "Homeless"%}</option>
-                    </select>
-									</div>
+								<div class="element raw">
+									<label for="housestatus" class="addon">{%trans "House Status"%}</label>
+									<select name="housestatus" id="housestatus" class="input">
+										<option value="owner">{%trans "Owner"%}</option>
+										<option value="tenant">{%trans "Tenant"%}</option>
+										<option value="homeless">{%trans "Homeless"%}</option>
+									</select>
 								</div>
 							</div>
-						</li>
+						</div>
+					</li>
 
-						<li id="tab-user">
-							<div class="row">
-								<h2>{%trans "User"%}</h2>
+					<li id="tab-user">
+						<div class="row">
+							<h2>{%trans "User"%}</h2>
+						</div>
+					</li>
+
+					<li id="tab-family">
+						<div class="row">
+							<div class="group">
+								<div class="title-line reverse">
+									<span>{%trans "Personal"%}</span>
+								</div>
+
+								<div class="element raw">
+									<label for="marrital" class="addon">{%trans "Marrital"%}</label>
+									<select name="marrital" id="marrital" class="input">
+										<option value="single">{%trans "Single"%}</option>
+										<option value="married">{%trans "Married"%}</option>
+									</select>
+								</div>
+
+								<div class="element raw">
+									<label for="girlchild" class="addon">{%trans "Girl Child"%}</label>
+									<input type="text" name="girlchild" id="girlchild" value="{{me.girlchild}}" class="input" disabled>
+								</div>
+
+								<div class="element raw">
+									<label for="boychild" class="addon">{%trans "Boy Child"%}</label>
+									<input type="text" name="boychild" id="boychild" value="{{me.boychild}}" class="input" disabled>
+								</div>
 							</div>
-						</li>
+						</div>
+					</li>
 
-						<li id="tab-family">
-							<div class="row">
-                <div class="group">
-                  <div class="title-line reverse">
-										<span>{%trans "Personal"%}</span>
-									</div>
-
-                  <div class="element">
-                    <label for="marrital" class="addon">{%trans "Marrital"%}</label>
-                    <select name="marrital" id="marrital" class="input">
-                      <option value="single">{%trans "Single"%}</option>
-                      <option value="married">{%trans "Married"%}</option>
-                    </select>
-                  </div>
-
-                  <div class="element">
-                    <label for="girlchild" class="addon">{%trans "Girl Child"%}</label>
-                    <input type="text" name="girlchild" id="girlchild" value="{{me.girlchild}}" class="input">
-                  </div>
-
-                  <div class="element">
-                    <label for="boychild" class="addon">{%trans "Boy Child"%}</label>
-                    <input type="text" name="boychild" id="boychild" value="{{me.boychild}}" class="input">
-                  </div>
-                </div>
+					<li id="tab-favorites">
+						<div class="row">
+							<div class="element raw">
+								<label for="internetusage" class="addon">{%trans "Internet Usage"%}</label>
+								<select name="internetusage" id="internetusage" class="input">
+									<option value="low">{%trans "Low"%}</option>
+									<option value="mid">{%trans "Mid"%}</option>
+									<option value="high">{%trans "High"%}</option>
+								</select>
 							</div>
-						</li>
 
-						<li id="tab-favorites">
-							<div class="row">
-                <div class="element">
-                  <label for="internetusage" class="addon">{%trans "Internet Usage"%}</label>
-                  <select name="internetusage" id="internetusage" class="input">
-                    <option value="low">{%trans "Low"%}</option>
-                    <option value="mid">{%trans "Mid"%}</option>
-                    <option value="high">{%trans "High"%}</option>
-                  </select>
-                </div>
-
-                <div class="element">
-                  <label for="skills" class="addon">{%trans "Skills"%}</label>
-                  <input type="text" name="skills" id="skills" value="{{me.skills}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="languages" class="addon">{%trans "Languages"%}</label>
-                  <input type="text" name="languages" id="languages" value="{{me.languages}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="books" class="addon">{%trans "Books"%}</label>
-                  <input type="text" name="books" id="books" value="{{me.books}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="writers" class="addon">{%trans "Writers"%}</label>
-                  <input type="text" name="writers" id="writers" value="{{me.writers}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="films" class="addon">{%trans "Films"%}</label>
-                  <input type="text" name="films" id="films" value="{{me.films}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="actors" class="addon">{%trans "Actors"%}</label>
-                  <input type="text" name="actors" id="actors" value="{{me.actors}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="genre" class="addon">{%trans "Genre"%}</label>
-                  <input type="text" name="genre" id="genre" value="{{me.genre}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="musics" class="addon">{%trans "Musics"%}</label>
-                  <input type="text" name="musics" id="musics" value="{{me.musics}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="artists" class="addon">{%trans "Artists"%}</label>
-                  <input type="text" name="artists" id="artists" value="{{me.artists}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="sports" class="addon">{%trans "Sports"%}</label>
-                  <input type="text" name="sports" id="sports" value="{{me.sports}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="sportmans" class="addon">{%trans "Sportmans"%}</label>
-                  <input type="text" name="sportmans" id="sportmans" value="{{me.sportmans}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="habbits" class="addon">{%trans "Habbits"%}</label>
-                  <input type="text" name="habbits" id="habbits" value="{{me.habbits}}" class="input">
-                </div>
-
-                <div class="element">
-                  <label for="devices" class="addon">{%trans "Devices"%}</label>
-                  <input type="text" name="devices" id="devices" value="{{me.devices}}" class="input">
-                </div>
+							<div class="element raw">
+								<label for="skills" class="addon">{%trans "Skills"%}</label>
+								<input type="text" name="skills" id="skills" value="{{me.skills}}" class="input" disabled>
 							</div>
-						</li>
-					</ul>
-				</div>
+
+							<div class="element raw">
+								<label for="languages" class="addon">{%trans "Languages"%}</label>
+								<input type="text" name="languages" id="languages" value="{{me.languages}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="books" class="addon">{%trans "Books"%}</label>
+								<input type="text" name="books" id="books" value="{{me.books}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="writers" class="addon">{%trans "Writers"%}</label>
+								<input type="text" name="writers" id="writers" value="{{me.writers}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="films" class="addon">{%trans "Films"%}</label>
+								<input type="text" name="films" id="films" value="{{me.films}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="actors" class="addon">{%trans "Actors"%}</label>
+								<input type="text" name="actors" id="actors" value="{{me.actors}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="genre" class="addon">{%trans "Genre"%}</label>
+								<input type="text" name="genre" id="genre" value="{{me.genre}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="musics" class="addon">{%trans "Musics"%}</label>
+								<input type="text" name="musics" id="musics" value="{{me.musics}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="artists" class="addon">{%trans "Artists"%}</label>
+								<input type="text" name="artists" id="artists" value="{{me.artists}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="sports" class="addon">{%trans "Sports"%}</label>
+								<input type="text" name="sports" id="sports" value="{{me.sports}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="sportmans" class="addon">{%trans "Sportmans"%}</label>
+								<input type="text" name="sportmans" id="sportmans" value="{{me.sportmans}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="habbits" class="addon">{%trans "Habbits"%}</label>
+								<input type="text" name="habbits" id="habbits" value="{{me.habbits}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
+								<label for="devices" class="addon">{%trans "Devices"%}</label>
+								<input type="text" name="devices" id="devices" value="{{me.devices}}" class="input" disabled>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
 
-		<div class="buttons center">
-			<nav>
-				<button name="save">{%trans "Save"%}</button>
-			</nav>
-		</div>
-	</form>
+	<div class="buttons center">
+		<nav>
+			<button name="save">{%trans "Save"%}</button>
+		</nav>
+	</div>
 </div>
 {%endblock%}
 

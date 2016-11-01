@@ -549,12 +549,12 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /* input reactions */
-/*.element.raw label{background-color:transparent;color:#A0A0A0;}
+.element.raw label{background-color:transparent;color:#A0A0A0;}
 .element.raw label::before{background-image:none;}
 .element.raw .input{background-color:transparent;color:#A0A0A0;cursor:default;}
 
 .element.raw:hover label{background-color:#D8D8D8;}
-.element.raw:hover .input{background-color:#D8D8D8;}*/
+.element.raw:hover .input{background-color:#D8D8D8;}
 
 
 /* panel-text */
