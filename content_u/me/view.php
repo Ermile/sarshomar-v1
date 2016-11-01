@@ -8,16 +8,16 @@ class view extends \mvc\view
 		$this->data->me = $_args->api_callback;
 		// $profile_data =
 		// [
-		// 	'firstname'        => null,
-		// 	'lastname'         => null,
-		// 	'gender'           => ['male', 'female'],
-		// 	'marrital'         => ['single', 'married'],
-		// 	'birthdate'        => null,
-		// 	'birthyear'        => null,
-		// 	'birthmonth'       => null,
-		// 	'birthday'         => null,
-		// 	'uilanguage'       => null,
-		// 	'religion'         => null,
+			// 	'firstname'        => null,
+			// 	'lastname'         => null,
+			// 	'gender'           => ['male', 'female'],
+			// 	'marrital'         => ['single', 'married'],
+			// 	'birthdate'        => null,
+			// 	'birthyear'        => null,
+			// 	'birthmonth'       => null,
+			// 	'birthday'         => null,
+			// 	'uilanguage'       => null,
+			// 	'religion'         => null,
 
 			// 	'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
 			// 	'educationtype'    => null, // only in iran [academic|howzeh]

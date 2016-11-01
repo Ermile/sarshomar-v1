@@ -22,6 +22,7 @@
 						<li data-tab="favorites">{%trans "Favorites"%}</li>
 					</ul>
 				</div>
+				
 				<div class="vertical-tabs-content">
 					<ul class="tab">
 
@@ -34,10 +35,50 @@
 						<li id="tab-personal">
 							<div class="row">
 								<div class=""><img src="/static/images/temporary/profile.jpg"></div>
+								
+								<div class="element">
+									<label for="firstname" class="addon">{%trans "First Name"%}</label>
+									<input type="text" name="firstname" id="firstname" value="{{me.firstname}}" class="input">
+								</div>
 
-								<div class="element raw">
-									<label class="addon" for="displayname">{%trans "Display Name"%}</label>
-									<input class="input" type="text" name="displayname" id="displayname" value="{{me.displayname}}">
+								<div class="element">
+									<label for="lastname" class="addon">{%trans "Last Name"%}</label>
+									<input type="text" name="lastname" id="lastname" value="{{me.lastname}}" class="input">
+								</div>
+								
+								<div class="element">
+									<label for="displayname" class="addon">{%trans "Display Name"%}</label>
+									<input type="text" name="displayname" id="displayname" value="{{me.displayname}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="birthdate" class="addon">{%trans "Birth Date"%}</label>
+									<input type="text" name="birthdate" id="birthdate" value="{{me.birthdate}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="birthyear" class="addon">{%trans "Birth Year"%}</label>
+									<input type="text" name="birthyear" id="birthyear" value="{{me.birthyear}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="birthmonth" class="addon">{%trans "Birth Month"%}</label>
+									<input type="text" name="birthmonth" id="birthmonth" value="{{me.birthmonth}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="birthday" class="addon">{%trans "Birthday"%}</label>
+									<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
+									<input type="text" name="uilanguage" id="uilanguage" value="{{me.uilanguage}}" class="input">
+								</div>
+
+								<div class="element">
+									<label for="religion" class="addon">{%trans "Religion"%}</label>
+									<input type="text" name="religion" id="religion" value="{{me.religion}}" class="input">
 								</div>
 							</div>
 						</li>
@@ -168,22 +209,22 @@
 									</div>
 
 									<div class="element">
-										<label for="province" class="addon">{%trans "province"%}</label>
+										<label for="province" class="addon">{%trans "Province"%}</label>
 										<input type="text" name="province" id="province" value="{{me.province}}" class="input">
 									</div>
 
 									<div class="element">
-										<label for="city" class="addon">{%trans "city"%}</label>
+										<label for="city" class="addon">{%trans "City"%}</label>
 										<input type="text" name="city" id="city" value="{{me.city}}" class="input">
 									</div>
 
 									<div class="element">
-										<label for="village" class="addon">{%trans "village"%}</label>
+										<label for="village" class="addon">{%trans "Village"%}</label>
 										<input type="text" name="village" id="village" value="{{me.village}}" class="input">
 									</div>
 
 									<div class="element">
-										<label for="housestatus" class="addon">{%trans "housestatus"%}</label>
+										<label for="housestatus" class="addon">{%trans "House Status"%}</label>
 										<select name="housestatus" id="housestatus" class="input">
                       <option value="owner">{%trans "Owner"%}</option>
                       <option value="tenant">{%trans "Tenant"%}</option>
@@ -195,7 +236,9 @@
 						</li>
 
 						<li id="tab-user">
-							<div class="row">User</div>
+							<div class="row">
+								<h2>{%trans "User"%}</h2>
+							</div>
 						</li>
 
 						<li id="tab-family">
