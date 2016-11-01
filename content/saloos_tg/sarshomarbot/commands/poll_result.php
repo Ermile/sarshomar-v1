@@ -16,10 +16,17 @@ class poll_result
 		$short_link_id = $url[1];
 		$inline_keyboard = array();
 		foreach ($poll_result['meta']['opt'] as $answer_key => $answer_value) {
-			$callback_data = '$/' . $short_link_id . '/' . $answer_key;
+			$callback_data = 'ask/poll/' . $short_link_id . '/' . $answer_key;
 			if(array_key_exists("callback_data", $_options))
 			{
-				$callback_data = $_options['callback_data'] . "/" . $callback_data;
+				if(is_object($_options['callback_data']))
+				{
+					$callback_data = $_options['callback_data']($callback_data);
+				}
+				else
+				{
+					$callback_data = $_options['callback_data'] . "/" . $callback_data;
+				}
 			}
 			$inline_keyboard[][0] = [
 			'text' => $step_shape[$answer_key+1] .' '. $answer_value['txt'],

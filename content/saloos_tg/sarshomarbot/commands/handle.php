@@ -22,6 +22,7 @@ class handle
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
 				");
+			\lib\db::query("DELETE from polldetails where 1");
 			session_destroy();
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
 			exit();

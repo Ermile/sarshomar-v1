@@ -12,6 +12,7 @@ class callback_query
 		$data_url = preg_split("[\/]", $_query['data']);
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
+		$result['text'] = $_query['data'];
 		handle::send_log($_query['data']);
 		if(count($data_url) < 1)
 		{

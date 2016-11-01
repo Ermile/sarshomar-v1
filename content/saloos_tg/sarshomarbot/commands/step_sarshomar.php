@@ -443,7 +443,9 @@ class step_sarshomar
 		if(is_null($_poll_id))
 		{
 			$question = \lib\db\polls::get_last($_user_id);
-			$poll_result = poll_result::make($question, ['callback_data' => 'last']);
+			$poll_result = poll_result::make($question, ['callback_data' => function($_callback_data){
+				return $_callback_data .'/last';
+			}]);
 		}
 		else
 		{

@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use \content\saloos_tg\sarshomarbot\commands\menu;
 use content\saloos_tg\sarshomarbot\commands\handle;
 
 class step_starting
@@ -47,6 +48,7 @@ class step_starting
 		$url_command_group = preg_split("[\-]", $_args, -1);
 
 		$commands = [];
+		$return = [];
 		if(!is_null($_args))
 		{
 			foreach ($url_command_group as $key => $value)
@@ -57,12 +59,17 @@ class step_starting
 		}
 		if(array_key_exists('poll', $commands))
 		{
-			return self::cmd_poll($commands['poll']);
-		}
-		if(!callback_query\language::check())
+			$return = self::cmd_poll($commands['poll']);
+		}elseif(!callback_query\language::check())
 		{
-			return callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
+			$return = callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
 		}
+		if(!$return || is_null($return))
+		{
+			step::stop();
+			$return = ["text" => "Welcome", "reply_markup" => menu::main(true)];
+		}
+		return $return;
 	}
 
 	public static function cmd_poll($_poll_short_code)
