@@ -12,10 +12,25 @@
       <a href='{{url.base}}help'>{%trans "Help"%}</a>
      </nav>
      <nav id='header-profile'>
+{%if login%}
+      <a href='{{url.base}}login' data-direct class='login'>{%trans "Add Question"%}</a>
+      <a href='{{url.base}}signup' data-direct class='register'>{%trans "Ask Me"%}</a>
+      <div class="profile">
+        <img src="{{url.static}}images/temporary/profile.jpg" alt="">
+        <div class="info">
+          <a href="#" class="name">نعیمه نظام دوست نظری</a>
+          <span class="role">کاربر مهمان</span>
+        </div>
+        <div class="profile-detail">
+          <a href="@" class="dashboard">{%trans "Dashboard"%}</a>
+          <a href="logout" class="exit">{%trans "Exit"%}</a>
+        </div>
+      </div>
+{%else%}
       <a href='{{url.base}}login' data-direct class='login'>{%trans "Login"%}</a>
       <a href='{{url.base}}signup' data-direct class='register'>{%trans "Register"%}</a>
+{%endif%}
      </nav>
-     <span class='header-title' data-xhr='header-title'>{{page.title}}</span>
     </div>
 
     <div class='chart'>

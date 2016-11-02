@@ -96,12 +96,15 @@
                           <label for="poll_tree">{%trans "Poll Tree"%}</label>
                           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
                         </li>
-                          <a href="#">Title of Parent poll in tree</a><br>
-                          <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
-                          <input type="text" name="parent_tree_opt" placeholder="opt of parent id">
                       </ul>
                     </div>
-                  </div>
+                  </div><!-- /.span6 -->
+                </div><!--/.row-->
+
+                <div>
+                  <a href="#">Title of Parent poll in tree</a><br>
+                  <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
+                  <input type="text" name="parent_tree_opt" placeholder="opt of parent id">
                 </div>
 
                 <div class="panel-text">
@@ -135,17 +138,6 @@
                     <input class="input" type="text" name="survey_title" id="survey_title">
                   </div>
                 {%endif%}
-              <div class="buttons">
-                <nav>
-                  <button name="filter" value="filter">{%trans "Filter"%}</button>
-                  <button name="publish" value="publish">{%trans "Publish"%}</button>
-                {%if survey_mod%}
-                  <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-                {%else%}
-                  <button name="survey" value="survey">{%trans "Survey"%}</button>
-                {%endif%}
-                </nav>
-              </div><!-- /.buttons -->
             </li><!-- /#tab-multiple_choice -->
             <li id="tab-descriptive">descriptive</li>
             <li id="tab-notification">notification</li>
@@ -156,6 +148,20 @@
           </ul><!-- /.tab -->
         </div><!-- /.row -->
       </div><!-- /.span8 -->
+
+      <div class="span8">
+        <div class="buttons">
+          <nav>
+            <button name="filter" value="filter">{%trans "Filter"%}</button>
+            <button name="publish" value="publish">{%trans "Publish"%}</button>
+          {%if survey_mod%}
+            <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+          {%else%}
+            <button name="survey" value="survey">{%trans "Survey"%}</button>
+          {%endif%}
+          </nav>
+        </div><!-- /.buttons -->
+      </div>
 
       <div class="span4">
         <div class="row">

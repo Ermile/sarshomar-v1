@@ -23,7 +23,7 @@ class view extends \mvc\view
 		// get total sarshomart answered
 		$total = \lib\db\stat_polls::get_sarshomar_total_answered();
 		$this->data->stat = T_(":number Questions answered", ["number"=> $total]);
-
+		$this->data->displayname = $this->login('displayname');
 		$this->include->fontawesome = true;
 	}
 

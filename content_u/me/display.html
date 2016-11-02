@@ -33,7 +33,7 @@
 
 					<li id="tab-personal">
 						<div class="row">
-							<div class=""><img src="/static/images/temporary/profile.jpg"></div>
+							<div><img src="/static/images/temporary/profile.jpg"></div>
 
 							<div class="element raw">
 								<label for="firstname" class="addon">{%trans "First Name"%}</label>
@@ -56,6 +56,11 @@
 							</div>
 
 							<div class="element raw">
+								<label for="mobile" class="addon">{%trans "Mobile"%}</label>
+								<input type="text" name="mobile" id="mobile" value="{{me.mobile}}" class="input" disabled>
+							</div>
+
+							<div class="element raw">
 								<label for="birthyear" class="addon">{%trans "Birth Year"%}</label>
 								<input type="text" name="birthyear" id="birthyear" value="{{me.birthyear}}" class="input" disabled>
 							</div>
@@ -69,27 +74,6 @@
 								<label for="birthday" class="addon">{%trans "Birthday"%}</label>
 								<input type="text" name="birthday" id="birthday" value="{{me.birthday}}" class="input" disabled>
 							</div>
-
-							{%if me.age%}
-							<div class="element raw">
-								<label for="age" class="addon">{%trans "Age"%}</label>
-								<input type="text" name="age" id="age" value="{{me.age}}" class="input" disabled>
-							</div>
-							{%endif%}
-
-							{%if me.range%}
-							<div class="element raw">
-								<label for="range" class="addon">{%trans "Range"%}</label>
-								<input type="text" name="range" id="range" value="{{me.range}}" class="input" disabled>
-							</div>
-							{%endif%}
-
-							{%if me.rangetitle%}
-							<div class="element raw">
-								<label for="rangetitle" class="addon">{%trans "Range Title"%}</label>
-								<input type="text" name="rangetitle" id="rangetitle" value="{{me.rangetitle}}" class="input" disabled>
-							</div>
-							{%endif%}
 
 							<div class="element raw">
 								<label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
@@ -372,9 +356,7 @@
 	</div>
 
 	<div class="buttons center">
-		<nav>
-			<button name="save">{%trans "Save"%}</button>
-		</nav>
+		<button name="save">{%trans "Save"%}</button>
 	</div>
 </div>
 {%endblock%}
@@ -382,9 +364,6 @@
 {%block foot_js%}
 <script type="text/javascript">
 var btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
-$('.addon.btn.cancel button').click(function(){
-  window.location.reload();
-  return false;
-});
+$('.addon.btn.cancel button').click(function(){ window.location.reload(); return false; });
 </script>
 {%endblock%}
