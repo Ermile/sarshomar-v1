@@ -8,35 +8,51 @@
   <div class="row">
     <div class="span2"></div>
     <div class="span8">
-      {%if poll_list%}
+      <div class="search">
+        <input type="text" name="search">
+        <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </div>
+
+{%if poll_list%}
       <div class="polls-head">
         <div>{%trans "Type"%}</div>
         <div>{%trans "Title"%}</div>
-        <div>{%trans "Status"%}</div>
-        <div>{%trans "Number"%}</div>
         <div>{%trans "Date"%}</div>
       </div>
-      <div class="polls-body">
-      {%for key, value in poll_list%}
-        <ul>
-          <li class="polls-row">
-            <div>
-              <span><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
-            </div>
-            <div>
-              <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
-            </div>
-            <div>{{value.status}}</div>
-            <div>{{value.total}}</div>
-            <div>{{value.date_modified}}</div>
-          </li>
-        </ul>
-      {%endfor%}
-      </div>
-      {%else%}
+      <ul class="polls-body">
+{%for key, value in poll_list%}
+        <li class="polls-row">
+          <div><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
+          <div><a href="{{base.url}}/{{value.url}}">{{value.title}}<span>{{value.status}}</span></a></div>
+          <div>{{value.date_modified}}</div>
+        </li>
+{%endfor%}
+      </ul>
+{%else%}
       <div class="msg error">There is no question in database!</div>
       <div><a href="{{base.url}}/@/add">Add now!</a></div>
-      {%endif%}
+{%endif%}
+
+      <div class="pagination-container">
+        <nav class="pagination">
+          <a href="#"><<</a>
+          <a href="#"><</a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">...</a>
+          <a href="#">8</a>
+          <a href="#">9</a>
+          <a href="#">10</a>
+          <a href="#">999</a>
+          <a href="#">9999</a>
+          <a href="#">></a>
+          <a href="#">>></a>
+        </nav>
+      </div>
     </div>
   </div>
 </div>
