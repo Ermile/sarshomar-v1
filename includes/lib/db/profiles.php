@@ -458,14 +458,8 @@ class profiles
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function people_see_my_poll($_user_id, $_poll_id, $_opt_key)
+	public static function people_see_my_poll($_user_id, $_poll_id, $_title)
 	{
-		$title = "answered";
-		if($_opt_key == 'opt_0')
-		{
-			$title = "skipped";
-		}
-
 		$query =
 		"
 			UPDATE
@@ -476,7 +470,7 @@ class profiles
 				options.post_id    IS NULL AND
 				options.user_id    = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1)	AND
 				options.option_cat = CONCAT('user_dashboard_', options.user_id) AND
-				options.option_key = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$title')
+				options.option_key = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title')
 		";
 		$result = \lib\db::query($query);
 		$update_rows = mysqli_affected_rows(\lib\db::$link);
@@ -490,7 +484,7 @@ class profiles
 					options.post_id      = NULL,
 					options.user_id      = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1),
 					options.option_cat   = CONCAT('user_dashboard_', options.user_id),
-					options.option_key   = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$title'),
+					options.option_key   = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title'),
 					options.option_value = 1
 			";
 			\lib\db::query($insert_options);

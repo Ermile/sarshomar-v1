@@ -61,17 +61,9 @@ class model extends \mvc\model
 	 */
 	public function post_save_answer()
 	{
-		if(utility::post("poll_id"))
+		if(utility::post("data-id") && utility::post("data-id") != '')
 		{
-			if(isset($_SESSION['last_poll_id']) && utility::post("poll_id") == $_SESSION['last_poll_id'])
-			{
-				$poll_id = $_SESSION['last_poll_id'];
-			}
-			else
-			{
-				\lib\debug::error(T_("poll id not match with your last question"));
-				return false;
-			}
+			$poll_id = utility::post("data-id");
 		}
 		else
 		{
@@ -79,76 +71,58 @@ class model extends \mvc\model
 			return false;
 		}
 
-		if(utility::post("type") == "bookmark")
+		if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
 		{
-			if(isset($_SESSION['last_poll_id']) && utility::post("poll_id") == $_SESSION['last_poll_id'])
+			\lib\debug::error(T_("poll id not match with your last question"));
+			return false;
+		}
+
+		$post = utility::post();
+		$opt  = [];
+
+		if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
+		{
+			$session_opt = array_column($_SESSION['last_poll_opt'],'key');
+		}
+
+		foreach ($post as $key => $value) {
+			if(substr($key, 0,4) == 'opt_')
 			{
-				$args =
-				[
-					'poll_id' => utility::post("poll_id"),
-					'user_id' => $this->login("id")
-				];
-
-				$result = \lib\db\polls::set_bookmark($args);
-
-				if($result)
+				if($key == 'opt_other' && $value == '')
 				{
-					\lib\debug::true(T_("bookmark saved"));
+					continue;
 				}
-				else
+				$opt[$key] = $value;
+			}
+			elseif ($key == 'radio')
+			{
+				if(in_array($value, $session_opt))
 				{
-					\lib\debug::fatal(T_("error in save bookmark"));
+					$opt_value   = array_column($_SESSION['last_poll_opt'],'txt', 'key');
+					$opt[$value] = $opt_value[$value];
 				}
 			}
+		}
+
+		$result = null;
+		if(!empty($opt))
+		{
+			$result = \lib\db\answers::save($this->login('id'), $poll_id, $opt, $opt);
+		}
+
+		if($result)
+		{
+			$next_url = \lib\db\polls::get_next_url($this->login("id"));
+			\lib\debug::true(T_("your answer saved"));
+			\lib\debug::msg($next_url);
+			return ;
 		}
 		else
 		{
-
-				// \lib\debug::true(T_("ysdfsdfsdfdsfdsfdsour answer saved"));
-				// return true;
-			$answer_key  = utility::post("answer_key");
-			$answer_text = utility::post("answer_text");
-
-			$check = false;
-			if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
-			{
-				foreach ($_SESSION['last_poll_opt'] as $key => $value)
-				{
-					if((isset($value['key']) && $value['key'] == $answer_key) || $answer_key == "opt_0"  )
-					{
-						$check = true;
-					}
-				}
-				// for descriptive mod
-				if(isset($_SESSION['descriptive']) && $answer_key == "opt_". (count($_SESSION['last_poll_opt']) + 1) )
-				{
-					$check = true;
-					$answer_text = utility::post("other_opt");
-				}
-			}
-			if($check)
-			{
-				$result = \lib\db\answers::save($this->login('id'), $poll_id, $answer_key, $answer_text);
-				if($result)
-				{
-					\lib\debug::true(T_("your answer saved"));
-					\lib\debug::msg(\lib\db\polls::get_next_url($this->login("id")));
-					return \lib\db\polls::get_next_url($this->login("id"));
-				}
-				else
-				{
-					\lib\debug::error(T_("error in save your answer"));
-					return false;
-				}
-
-			}
-			else
-			{
-				\lib\debug::error(T_("answer key not found"));
-				\lib\debug::msg(\lib\db\polls::get_next_url($this->login("id")));
-				// return false;
-			}
+			\lib\debug::error(T_("error in save your answer"));
+			return false;
 		}
+
 	}
 }
 ?>

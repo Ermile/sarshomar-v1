@@ -39,7 +39,6 @@ class stat_polls
 	 */
 	public static function set_poll_result($_args)
 	{
-
 		if(isset($_args['poll_id']))
 		{
 			$poll_id = $_args['poll_id'];

@@ -60,7 +60,7 @@ class model extends \content_u\home\model
 					'termusage_id'      => $poll_survey_id
 				];
 			}
-			$useage = \lib\db\termuseage::insert_multi($useage_arg);
+			$useage = \lib\db\termusages::insert_multi($useage_arg);
 		}
 
 		$date_start = utility::post("start_time");

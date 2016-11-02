@@ -56,8 +56,9 @@ class view extends \mvc\view
 		// get the descriptive from meta of poll
 		// for evry poll unset this session
 		// to set form database
-		unset($_SESSION['descriptive']);
 		unset($_SESSION['profile']);
+		unset($_SESSION['descriptive']);
+		unset($_SESSION['multiple_choice']);
 
 		// default show all result
 		$show_result = true;
@@ -147,6 +148,7 @@ class view extends \mvc\view
 							case "multiple_choice":
 								// the people can select multiple choice
 								$this->data->multiple_choice = true;
+								$_SESSION['multiple_choice'] = true;
 								break;
 
 							case "descriptive":

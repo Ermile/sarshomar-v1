@@ -114,118 +114,70 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_answer_txt = null)
 	{
-
-		$num_of_opt_kye = preg_split("/\_/", $_answer);
-		$num_of_opt_kye = isset($num_of_opt_kye[1]) ? $num_of_opt_kye[1]: 0;
-		// insert data to polldetails table
-		$insert_polldetails =
-		"
-			INSERT INTO
-				polldetails
-			SET
-				user_id = $_user_id,
-				post_id = $_poll_id,
-				opt     = '$num_of_opt_kye',
-				type    = NULL,
-				txt     = '$_answer_txt',
-				profile =
-				(
-					SELECT
-						CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}')
-					FROM
-						options
-					WHERE
-						user_id    = $_user_id AND
-						option_cat = 'user_detail_$_user_id'
-				),
-				visitor_id = NULL
-				-- answers::save()
-		";
-		$result = \lib\db::query($insert_polldetails);
-
-
-		// save the poll lucked by profile
-		// update users profile
-		$set_profile_by_poll =
-		[
-			'poll_id' => $_poll_id,
-			'opt_key' => $_answer,
-			'user_id' => $_user_id
-		];
-		$update_profile = \lib\db\profiles::set_profile_by_poll($set_profile_by_poll);
-
-		// set dashboard data
-		if($_answer == 'opt_0')
+		if(is_array($_answer))
 		{
-			\lib\db\profiles::set_dashboard_data($_user_id, "poll_skipped");
+			foreach ($_answer as $key => $value)
+			{
+				if(substr($key, 0, 4) != 'opt_')
+				{
+					$key = 'opt_'. $key;
+				}
+
+				$num_of_opt_kye = explode('_', $key);
+				$num_of_opt_kye = end($num_of_opt_kye);
+				if(!$num_of_opt_kye)
+				{
+					continue;
+				}
+				$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $value);
+				// save the poll lucked by profile
+				// update users profile
+				$answers_details =
+				[
+					'poll_id' => $_poll_id,
+					'opt_key' => $key,
+					'user_id' => $_user_id
+				];
+				// save answered count
+				\lib\db\stat_polls::set_poll_result($answers_details);
+			}
 		}
 		else
 		{
-			\lib\db\profiles::set_dashboard_data($_user_id, "poll_answered");
-		}
-
-		\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, $_answer);
-
-
-		if($result)
-		{
-			// save answered count
-			$set_poll_result =
+			if(substr($_answer, 0, 4) != 'opt_')
+			{
+				$_answer = 'opt_'. $_answer;
+			}
+			$num_of_opt_kye = explode('_', $_answer);
+			$num_of_opt_kye = end($num_of_opt_kye);
+			$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_answer_txt);
+			// save the poll lucked by profile
+			// update users profile
+			$answers_details =
 			[
 				'poll_id' => $_poll_id,
 				'opt_key' => $_answer,
 				'user_id' => $_user_id
 			];
-			\lib\db\stat_polls::set_poll_result($set_poll_result);
+			// save answered count
+			\lib\db\stat_polls::set_poll_result($answers_details);
 		}
 
-		// set status of skip answers to disable
-		// $status = 'enable';
-		// if($_answer < 0 )
-		// {
-		// 	$status = 'disable';
-		// }
-		// $meta =
-		// [
-		// 	'question'   => $_poll_id,
-		// 	'answer'     => $_answer,
-		// 	'answer_txt' => $_answer_txt,
-		// 	'date'       => date('Y-m-d H:i:s'),
-		// ];
-		// $option_data =
-		// [
-		// 	'user_id'       => $_user_id,
-		// 	'post_id'       => $_poll_id,
-		// 	'option_cat'    => 'poll_' . $_poll_id,
-		// 	'option_key'    => 'answer_' . $_user_id,
-		// 	'option_value'  => $_answer,
-		// 	'option_meta'   => json_encode($meta, JSON_UNESCAPED_UNICODE),
-		// 	'option_status' => $status
-		// ];
+		$update_profile = \lib\db\profiles::set_profile_by_poll($answers_details);
 
-		// // save in options table and if successful return session_id
-		// $result = \lib\db\options::insert($option_data);
+		// set dashboard data
+		if($_answer == 'opt_0')
+		{
+			\lib\db\profiles::set_dashboard_data($_user_id, "poll_skipped");
+			\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
+		}
+		else
+		{
+			\lib\db\profiles::set_dashboard_data($_user_id, "poll_answered");
+			\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
+		}
 
-		// // if error in insert we need to update record
-		// if(!$result)
-		// {
-		// 	/**
-		// 	 * check if this pull can update answer update else return false
-		// 	 */
-		// 	if("can update answer of this poll")
-		// 	{
-		// 		\lib\db\options::update_on_error($option_data);
-		// 	}
-		// 	else
-		// 	{
-		// 		\lib\debug::error(T_("you are answered to this poll"));
-		// 	}
-		// }
-
-		// the key to update stat of this poll
-		// when user update his answer we shud not update poll stat
-
-		return $result;
+		return \lib\debug::$status;
 	}
 
 
@@ -281,6 +233,46 @@ class answers
 			return true;
 		}
 		return false;
+	}
+
+
+	/**
+	 * Saves polldetails.
+	 *
+	 * @param      <type>  $_user_id        The user identifier
+	 * @param      <type>  $_poll_id        The poll identifier
+	 * @param      <type>  $num_of_opt_kye  The number of option kye
+	 * @param      <type>  $_answer_txt     The answer text
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_answer_txt = null)
+	{
+		$insert_polldetails =
+		"
+			INSERT INTO
+				polldetails
+			SET
+				user_id = $_user_id,
+				post_id = $_poll_id,
+				opt     = '$num_of_opt_kye',
+				type    = NULL,
+				txt     = '$_answer_txt',
+				profile =
+				(
+					SELECT
+						CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}')
+					FROM
+						options
+					WHERE
+						user_id    = $_user_id AND
+						option_cat = 'user_detail_$_user_id'
+				),
+				visitor_id = NULL
+				-- answers::save()
+		";
+		$result = \lib\db::query($insert_polldetails);
+		return $result;
 	}
 }
 ?>

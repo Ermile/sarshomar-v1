@@ -14,7 +14,19 @@ class view extends \lib\mvc\view
 		$this->data->page['desc']    = T_("Sarshomar is intelligent");
 
 		$this->data->template['register']    = 'content/template/register.html';
-
+		$displayname = $this->login("displayname");
+		if($displayname == '')
+		{
+			$this->data->displayname = T_("Undefined");
+		}
+		else
+		{
+			$this->data->displayname = $this->login("displayname");
+		}
+		if($this->login())
+		{
+			$this->data->next_url = \lib\db\polls::get_next_url($this->login("id"));
+		}
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
 

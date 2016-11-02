@@ -13,13 +13,13 @@
      </nav>
      <nav id='header-profile'>
 {%if login%}
-      <a href='{{url.base}}login' data-direct class='login'>{%trans "Add Question"%}</a>
-      <a href='{{url.base}}signup' data-direct class='register'>{%trans "Ask Me"%}</a>
+      <a href='@/add' data-direct class='login'>{%trans "Add Question"%}</a>
+      <a href='{{url.base}}{{next_url}}' data-direct class='register'>{%trans "Ask Me"%}</a>
       <div class="profile">
         <img src="{{url.static}}images/temporary/profile.jpg" alt="">
         <div class="info">
-          <a href="#" class="name">نعیمه نظام دوست نظری</a>
-          <span class="role">کاربر مهمان</span>
+          <a href="@/me" class="name">{{displayname}}</a>
+          <span class="role">{%trans "Welcome"%}</span>
         </div>
         <div class="profile-detail">
           <a href="@" class="dashboard">{%trans "Dashboard"%}</a>
