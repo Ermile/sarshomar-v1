@@ -9,18 +9,8 @@
     <article class="row auto">
       <section class="span8">
         <h2>{{post.post_title}}</h2>
+{%include template.social%}
 
-        <div class="social-box">
-          <nav class="social">
-            <a href="#" class="fa fa-paper-plane"></a>
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-twitter"></a>
-            <a href="#" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-linkedin"></a>
-            <a href="#" class="fa fa-wordpress"></a>
-            <a href="#" class="fa fa-rss"></a>
-          </nav><!-- /.social -->
-        </div><!-- /.social-box -->
         {%if profile%}
           {%trans "This question will complete your profile"%}
         {%endif%}

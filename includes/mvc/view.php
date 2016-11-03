@@ -14,6 +14,7 @@ class view extends \lib\mvc\view
 		$this->data->page['desc']    = T_("Sarshomar is intelligent");
 
 		$this->data->template['register']    = 'content/template/register.html';
+		$this->data->template['social']      = 'content/template/social.html';
 		$displayname = $this->login("displayname");
 		if($displayname == '')
 		{
