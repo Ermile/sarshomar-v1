@@ -8,52 +8,17 @@ class model extends \mvc\model
 	/**
 	 * get list data to show
 	 */
-	public function get_list($_args)
+	public function get_search($_args)
 	{
-
-		$page = $_args->get("page");
-		if($page)
+		$user_id = $this->login("id");
+		$search = $_args->get("search");
+		if($search)
 		{
-			$page = $page[0];
+			$search = $search[0];
 		}
+		$result = \lib\db\polls::me_search($user_id, $search);
+		return $result;
 
-		$user = $this->login("id");
-
-		$type = $_args->get("type");
-		if($type)
-		{
-			$type = $type[0];
-		}
-
-		$filter = $_args->get("filter");
-		if($filter)
-		{
-			$filter = $filter[0];
-		}
-
-		$value = $_args->get("value");
-		if($value)
-		{
-			$value = $value[0];
-		}
-
-		$status = $_args->get("status");
-		if($status)
-		{
-			$status = $status[0];
-		}
-
-		$args =
-		[
-			'page'        => $page,
-			'user_id'     => $user,
-			'post_status' => $status,
-			'post_type'   => $type,
-			'filter'      => $filter,
-			'value'       => $value
-		];
-
-		return \lib\db\polls::xget($args);
 	}
 
 

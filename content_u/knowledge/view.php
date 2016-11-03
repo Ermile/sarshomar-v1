@@ -10,7 +10,7 @@ class view extends \mvc\view
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function view_list($_args)
+	public function view_search($_args)
 	{
 		$this->include->fontawesome = true;
 

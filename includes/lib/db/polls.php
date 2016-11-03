@@ -153,6 +153,77 @@ class polls
 		return \lib\db::get($query, "count", true);
 	}
 
+
+
+	/**
+	 * search in poll of me
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_title    The title
+	 */
+	public static function me_search($_user_id, $_title)
+	{
+
+		// pagnation
+		$count_record =
+		"
+			SELECT
+				posts.id
+			FROM
+				posts
+			LEFT JOIN pollstats ON pollstats.post_id = posts.id
+			WHERE
+				posts.user_id = $_user_id AND
+				(
+					posts.post_title 	LIKE '%$_title%' OR
+					posts.post_content 	LIKE '%$_title%' OR
+					posts.post_meta 	LIKE '%$_title%'
+				)
+		";
+
+		list($limit_start, $length) = \lib\db::pagnation($count_record, 10);
+		$limit = " LIMIT $limit_start, $length ";
+
+		// creat query string
+		// fields we not show: date_modified , post_meta, user_id
+		$query =
+		"
+			SELECT
+				posts.id					as 'id',
+				posts.post_language 		as 'language',
+				posts.post_title 			as 'title',
+				posts.post_slug 			as 'slug',
+				posts.post_url 				as 'url',
+				posts.post_content 			as 'content',
+				posts.post_type 			as 'type',
+				posts.post_comment 			as 'comment',
+				posts.post_count 			as 'count',
+				posts.post_order 			as 'order',
+				posts.post_status 			as 'status',
+				posts.post_parent 			as 'parent',
+				posts.post_publishdate 		as 'publishdate',
+				posts.date_modified  	    as 'date_modified',
+				pollstats.id 		     	as 'pollstatsid',
+				pollstats.total 			as 'total'
+			FROM
+				posts
+			LEFT JOIN pollstats ON pollstats.post_id = posts.id
+			WHERE
+				posts.user_id = $_user_id AND
+				(
+					posts.post_title 	LIKE '%$_title%' OR
+					posts.post_content 	LIKE '%$_title%' OR
+					posts.post_meta 	LIKE '%$_title%'
+				)
+			ORDER BY posts.id DESC
+			$limit
+			-- Get post polls::xget()
+		";
+
+		return \lib\db\posts::select($query, "get");
+	}
+
+
 	/**
 	 * insert polls as post record
 	 * and then insert answers of this poll into answers (options table)
