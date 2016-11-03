@@ -12,15 +12,15 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
-		if(\lib\router::get_url() == '$')
-		{
-			\lib\router::set_controller("\\content\\knowledge\\controller");
-			return;
-		}
-
 		if(preg_match("/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/", \lib\router::get_url()))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
+			return;
+		}
+
+		if(substr(\lib\router::get_url(), 0, 1) == '$')
+		{
+			\lib\router::set_controller("\\content\\knowledge\\controller");
 			return;
 		}
 

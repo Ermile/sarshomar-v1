@@ -211,10 +211,11 @@ class view extends \mvc\view
 				}
 				$this->data->filters = $show_filters;
 			}
+			$show_result = true;
 
 			// check show result
-			if($show_result)
-			{
+			// if($show_result)
+			// {
 				/*
 				 * get all chart result
 				*/
@@ -230,7 +231,7 @@ class view extends \mvc\view
 				// load result as chart
 				$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
 				$this->data->chart = $chart;
-			}
+			// }
 
 			// to load post data in html
 			$this->data->post = $post;

@@ -9,6 +9,31 @@ class polls
 	 * v3.1
 	 */
 
+	private static $fields =
+	"
+			posts.id					as 'id',
+			posts.post_language 		as 'language',
+			posts.post_title 			as 'title',
+			posts.post_slug 			as 'slug',
+			posts.post_url 				as 'url',
+			posts.post_content 			as 'content',
+			posts.post_type 			as 'type',
+			posts.post_comment 			as 'comment',
+			posts.post_meta 			as 'meta',
+			posts.post_count 			as 'count',
+			posts.post_order 			as 'order',
+			posts.post_status 			as 'status',
+			posts.post_parent 			as 'parent',
+			posts.post_publishdate 		as 'publishdate',
+			posts.filter_id 			as 'filter_id',
+			posts.date_modified  	    as 'date_modified',
+			pollstats.id 		     	as 'pollstatsid',
+			pollstats.total 			as 'total'
+		FROM
+			posts
+		LEFT JOIN pollstats ON pollstats.post_id = posts.id
+	";
+
 	/**
 	 * get list of posts wthi post_type = polls_(|.*)
 	 *
@@ -18,209 +43,36 @@ class polls
 	 */
 	public static function xget($_args = [])
 	{
-		$where = [];
+		$search = null;
 
-		// check post_type . if post_type is null return all type of posts
-		if(isset($_args['post_type']))
-		{
-			$where[] = "posts.post_type = '". $_args['post_type'] . "'";
-		}
-
-		// check post_id
-		if(isset($_args['id']))
-		{
-			$where[] = "posts.id = ". $_args['id'];
-		}
-
-		// search in post_title
-		if(isset($_args['post_title']))
-		{
-			$where[] = "posts.post_title LIKE '%". $_args['post_title']. "%' ";
-		}
-
-
-		// search in post_conter
 		if(isset($_args['post_conter']))
 		{
-			$where[] = "posts.post_conter LIKE '%". $_args['post_conter']. "%' ";
+			$search = $_args['post_conter'];
+			unset($_args['post_conter']);
 		}
 
-		// check post_status
-		if(isset($_args['post_status']))
+		if(isset($_args['post_title']))
 		{
-			$where[] = "posts.post_status = '" .$_args['post_status'] . "'";
+			$search = $_args['post_title'];
+			unset($_args['post_title']);
 		}
 
-		// check users id , retrun post of one person or all person
-		if(isset($_args['user_id']))
-		{
-			$where[] = "posts.user_id = " . $_args['user_id'];
-		}
-
-		if(empty($where))
-		{
-			$where[] = 1;
-		}
-
-		$where = join($where, " AND ");
-		// pagnation
-		$count_record =
-		"
-			SELECT
-				posts.id
-			FROM
-				posts
-			LEFT JOIN pollstats ON pollstats.post_id = posts.id
-			WHERE
-				$where
-		";
-
-		list($limit_start, $length) = \lib\db::pagnation($count_record, 10);
-		$limit = " LIMIT $limit_start, $length ";
-
-		// creat query string
-		// fields we not show: date_modified , post_meta, user_id
-		$query =
-		"
-			SELECT
-				posts.id					as 'id',
-				posts.post_language 		as 'language',
-				posts.post_title 			as 'title',
-				posts.post_slug 			as 'slug',
-				posts.post_url 				as 'url',
-				posts.post_content 			as 'content',
-				posts.post_type 			as 'type',
-				posts.post_comment 			as 'comment',
-				posts.post_count 			as 'count',
-				posts.post_order 			as 'order',
-				posts.post_status 			as 'status',
-				posts.post_parent 			as 'parent',
-				posts.post_publishdate 		as 'publishdate',
-				posts.date_modified  	    as 'date_modified',
-				pollstats.id 		     	as 'pollstatsid',
-				pollstats.total 			as 'total'
-			FROM
-				posts
-			LEFT JOIN pollstats ON pollstats.post_id = posts.id
-			WHERE
-				$where
-			ORDER BY posts.id DESC
-			$limit
-			-- Get post polls::xget()
-		";
-
-		return \lib\db\posts::select($query, "get");
+		return self::search($search, $_args);
 	}
-
-
-	public static function get_count($_args = [])
-	{
-		$where = [];
-
-		// check post_type . if post_type is null return all type of posts
-		if(isset($_args['post_type']))
-		{
-			$where[] = "posts.post_type = '". $_args['post_type'] . "'";
-		}
-
-		// check post_status
-		if(isset($_args['post_status']))
-		{
-			$where[] = "posts.post_status = '" .$_args['post_status'] . "'";
-		}
-
-		// check users id , retrun post of one person or all person
-		if(isset($_args['user_id']))
-		{
-			$where[] = "posts.user_id = " . $_args['user_id'];
-		}
-
-		$where = join($where, " AND ");
-
-		// creat query string
-		// fields we not show: date_modified , post_meta, user_id
-		$query =
-		"
-			SELECT
-				COUNT(posts.id) as 'count'
-			FROM
-				posts
-			WHERE
-				$where
-			-- Get post polls::get_count()
-		";
-
-		return \lib\db::get($query, "count", true);
-	}
-
 
 
 	/**
-	 * search in poll of me
+	 * Gets the count of poll by search
 	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 * @param      <type>  $_title    The title
+	 * @param      array   $_args  The arguments
+	 *
+	 * @return     <type>  The count.
 	 */
-	public static function me_search($_user_id, $_title)
+	public static function get_count($_args = [])
 	{
-
-		// pagnation
-		$count_record =
-		"
-			SELECT
-				posts.id
-			FROM
-				posts
-			LEFT JOIN pollstats ON pollstats.post_id = posts.id
-			WHERE
-				posts.user_id = $_user_id AND
-				(
-					posts.post_title 	LIKE '%$_title%' OR
-					posts.post_content 	LIKE '%$_title%' OR
-					posts.post_meta 	LIKE '%$_title%'
-				)
-		";
-
-		list($limit_start, $length) = \lib\db::pagnation($count_record, 10);
-		$limit = " LIMIT $limit_start, $length ";
-
-		// creat query string
-		// fields we not show: date_modified , post_meta, user_id
-		$query =
-		"
-			SELECT
-				posts.id					as 'id',
-				posts.post_language 		as 'language',
-				posts.post_title 			as 'title',
-				posts.post_slug 			as 'slug',
-				posts.post_url 				as 'url',
-				posts.post_content 			as 'content',
-				posts.post_type 			as 'type',
-				posts.post_comment 			as 'comment',
-				posts.post_count 			as 'count',
-				posts.post_order 			as 'order',
-				posts.post_status 			as 'status',
-				posts.post_parent 			as 'parent',
-				posts.post_publishdate 		as 'publishdate',
-				posts.date_modified  	    as 'date_modified',
-				pollstats.id 		     	as 'pollstatsid',
-				pollstats.total 			as 'total'
-			FROM
-				posts
-			LEFT JOIN pollstats ON pollstats.post_id = posts.id
-			WHERE
-				posts.user_id = $_user_id AND
-				(
-					posts.post_title 	LIKE '%$_title%' OR
-					posts.post_content 	LIKE '%$_title%' OR
-					posts.post_meta 	LIKE '%$_title%'
-				)
-			ORDER BY posts.id DESC
-			$limit
-			-- Get post polls::xget()
-		";
-
-		return \lib\db\posts::select($query, "get");
+		$_args['pagenation'] = false;
+		$result = self::search(null, $_args);
+		return count($result);
 	}
 
 
@@ -433,16 +285,16 @@ class polls
 		// calc type if needed
 		if($_type === null)
 		{
-			$_type = "post_type LIKE 'poll\_%'";
+			$_type = "posts.post_type LIKE 'poll\_%'";
 		}
 		else
 		{
-			$_type = "post_type = 'poll_". $_type. "'";
+			$_type = "posts.post_type = 'poll_". $_type. "'";
 		}
 		// calc user id if exist
 		if($_user_id)
 		{
-			$_user_id = "AND user_id = $_user_id";
+			$_user_id = "AND posts.user_id = $_user_id";
 		}
 		else
 		{
@@ -469,57 +321,6 @@ class polls
 	}
 
 
-
-	/**
-	 * return one querstion whit answers
-	 * to fill edit form
-	 * @param  [type] $_post_id 	[description]
-	 * @param  string $_users_id    [description]
-	 * @return [type]           	[description]
-	 */
-	public static function get_for_edit($_post_id, $_user_id = null)
-	{
-		//check users id
-		if($_user_id != null) {
-			$_user_id = " AND user_id = $_user_id ";
-		}
-		$query = "
-				SELECT
-					id,
-					post_language 		as 'language',
-					post_title 			as 'title',
-					post_slug 			as 'slug',
-					post_url 			as 'url',
-					post_content 		as 'content',
-					post_type 			as 'type',
-					post_comment 		as 'comment',
-					post_count 			as 'count',
-					post_order 			as 'order',
-					post_status 		as 'status',
-					post_parent 		as 'parent',
-					post_meta	     	as 'meta',
-					post_publishdate 	as 'publishdate'
-				FROM posts
-				WHERE
-					posts.id = $_post_id
-					$_user_id
-				LIMIT 1
-				--  polls::get_for_edit()
-				";
-		$poll =  \lib\db::get($query, null);
-		$poll = \lib\utility\filter::meta_decode($poll);
-		if($poll &&  is_array($poll) && !empty($poll))
-		{
-			$answers = \lib\db\answers::get($_post_id);
-			return ['poll' => $poll , 'answers' => $answers];
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-
 	/**
 	 * get title and meta of poll
 	 *
@@ -533,29 +334,16 @@ class polls
 			return false;
 		}
 
-		$query = "
-				SELECT
-					id,
-					post_language 		as 'language',
-					post_title 			as 'title',
-					post_slug 			as 'slug',
-					post_url 			as 'url',
-					post_content 		as 'content',
-					post_type 			as 'type',
-					post_comment 		as 'comment',
-					post_count 			as 'count',
-					post_order 			as 'order',
-					post_status 		as 'status',
-					post_parent 		as 'parent',
-					post_meta	     	as 'meta',
-					post_publishdate 	as 'publishdate'
-				FROM
-					posts
-				WHERE
-					id = $_poll_id
-				LIMIT 1
-				-- polls::get_poll()
-				";
+		$public_fields = self::$fields;
+		$query =
+		"
+			SELECT
+				$public_fields
+			WHERE
+				posts.id = $_poll_id
+			LIMIT 1
+			-- polls::get_poll()
+		";
 		$result = \lib\db::get($query, null);
 		$result = \lib\utility\filter::meta_decode($result);
 		if(isset($result[0]))
@@ -676,18 +464,8 @@ class polls
 	 * @param  string $_type    [description]
 	 * @return [type]           [description]
 	 */
-	public static function get_last($_user_id, $_type = null, $_poll_id = null)
+	public static function get_last($_user_id, $_poll_id = null)
 	{
-		// calc type if needed
-		if($_type === null)
-		{
-			$_type = "post_type LIKE 'poll\_%'";
-		}
-		else
-		{
-			$_type = "post_type = 'poll_". $_type. "'";
-		}
-
 		if(!is_null($_poll_id))
 		{
 			$post_id = " posts.id = $_poll_id AND ";
@@ -697,33 +475,17 @@ class polls
 			$post_id = null;
 		}
 
+		$public_fields = self::$fields;
+
 		$qry ="
 			SELECT
-			-- Fields
-				posts.id,
-				posts.post_language 		as 'language',
-				posts.post_title 			as 'title',
-				posts.post_slug 			as 'slug',
-				posts.post_url 			    as 'url',
-				posts.post_content 		    as 'content',
-				posts.post_type 			as 'type',
-				posts.post_comment 		    as 'comment',
-				posts.post_count 			as 'count',
-				posts.post_order 			as 'order',
-				posts.post_status 		    as 'status',
-				posts.post_parent 		    as 'parent',
-				posts.post_meta	     	    as 'meta',
-				posts.post_publishdate     	as 'publishdate'
-			FROM
-				posts
+				$public_fields
 			-- To get options of this poll
 			LEFT JOIN options ON options.post_id = posts.id
 
 			WHERE
-				-- Get post_type and publish status
-				$_type AND
-				post_status = 'publish' AND
-				post_url LIKE '$%' AND
+				posts.post_status = 'publish' AND
+				posts.post_url LIKE '$%' AND
 				-- Check if poll id set get the poll id
 				$post_id
 				-- check users not answered to this poll
@@ -1090,6 +852,7 @@ class polls
 		}
 	}
 
+
 	/**
 	 * search in posts
 	 *
@@ -1098,55 +861,65 @@ class polls
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function search($_string, $_options = [])
+	public static function search($_string = null, $_options = [])
 	{
+		if(!$_string && empty($_options))
+		{
+			return null;
+		}
+
 		$default_options =
 		[
-			"limit"  => 10,
-			"fields" => null
+			"pagenation"  => true
 		];
 
 		$_options = array_merge($default_options, $_options);
 
-		$where = [];
-		if($_options['fields'] && is_array($_options['fields']))
+		if($_options['pagenation'])
 		{
-			foreach ($_options['fields'] as $key => $value) {
-				$where[] = " $value LIKE '%$_string%' ";
-			}
+			// page nation
+		}
+		unset($_options['pagenation']);
+
+		$where = [];
+		foreach ($_options as $key => $value) {
+			$where[] = " posts.`$key` = '$value' ";
+		}
+
+		if(empty($where))
+		{
+			$where = null;
 		}
 		else
 		{
-			$where[] = " post_title 	LIKE '%$_string%' ";
-			$where[] = " post_content 	LIKE '%$_string%' ";
-			$where[] = " post_slug 		LIKE '%$_string%' ";
-			$where[] = " post_url 		LIKE '%$_string%' ";
-			$where[] = " post_meta 		LIKE '%$_string%' ";
+			$where = join($where, " AND ");
 		}
 
-		$where = join($where, " OR ");
+		$search = null;
+		if($_string != null)
+		{
+			$search =
+			"(
+				posts.post_title 	LIKE '%$_string%' OR
+				posts.post_content 	LIKE '%$_string%' OR
+				posts.post_url 		LIKE '%$_string%' OR
+				posts.post_meta 	LIKE '%$_string%'
+			)";
+			if($where)
+			{
+				$search = " AND ". $search;
+			}
+		}
+
+		$public_fields = self::$fields;
 		$query =
 		"
 			SELECT
-				posts.id,
-				posts.post_language 	as 'language',
-				posts.post_title 		as 'title',
-				posts.post_slug 		as 'slug',
-				posts.post_url 			as 'url',
-				posts.post_content 		as 'content',
-				posts.post_type 		as 'type',
-				posts.post_comment 		as 'comment',
-				posts.post_count 		as 'count',
-				posts.post_order 		as 'order',
-				posts.post_status 		as 'status',
-				posts.post_parent 		as 'parent',
-				posts.post_meta	     	as 'meta',
-				posts.post_publishdate 	as 'publishdate'
-			FROM
-				posts
+				$public_fields
 			WHERE
 				$where
-			LIMIT 0, $_options[limit]
+				$search
+			LIMIT 0, 10
 		";
 
 		$result = \lib\db::get($query);

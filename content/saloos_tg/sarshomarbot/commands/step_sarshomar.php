@@ -449,7 +449,7 @@ class step_sarshomar
 		}
 		else
 		{
-			$question = \lib\db\polls::get_last($_user_id, null, $_poll_id);
+			$question = \lib\db\polls::get_last($_user_id, $_poll_id);
 			$poll_result = poll_result::make($question);
 		}
 

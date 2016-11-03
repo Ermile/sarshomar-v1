@@ -196,7 +196,12 @@ class filters
 	 */
 	public static function get_id($_args)
 	{
-		return self::check($_args, "id");
+		$result = self::check($_args, "id");
+		if(empty($result))
+		{
+			return 0;
+		}
+		return $result;
 	}
 
 
