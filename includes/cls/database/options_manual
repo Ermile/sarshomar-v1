@@ -61,6 +61,30 @@ post_id 	user_id		cat					key					value			meta				mode
 1			1			user_detail_(post_id)		bookmark 					[like|unlike|block]				[point for order]
 
 
+--------------------------------------------------------------------------------------------------------- Comment Question
+1			0			poll_(post_id)				comment 					rate
+option_meta =
+{
+	"total" :
+	{
+		"count": 200,
+		"sum" : 100,
+		"avg" : 20
+	},
+	"rate1" :
+	{
+		"count": 200,
+		"sum" : 100,
+		"avg" : 20
+	}
+	"rate2":
+	{
+		"count": 200,
+		"sum" : 100,
+		"avg" : 20
+	}
+}
+
 --------------------------------------------------------------------------------------------------------- Question Filters
 1			0			poll_(post_id)				age_min						20
 1			0			poll_(post_id)				age_max						30

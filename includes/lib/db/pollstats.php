@@ -15,18 +15,31 @@ class pollstats
 	 *
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function get($_poll_id, $_port = 'site')
+	public static function get($_poll_id, $_options = [])
 	{
+		$default_option =
+		[
+			'port'  => 'site',
+			'field' => '*'
+		];
+		$_options = array_merge($default_option, $_options);
+
+		$field     = $_options['field'];
+		if(is_array($field))
+		{
+			$field = '`'. join($field, '`, `'). '`';
+		}
+
 		// get result from pollstate table
 		$query =
 		"
 			SELECT
-				*
+				$field
 			FROM
 				pollstats
 			WHERE
 				post_id = $_poll_id AND
-				port    = '$_port'
+				port    = '$_options[port]'
 			LIMIT 1
 			-- stat_polls::get_result()
 		";
