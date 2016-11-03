@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version:3.7.0
+ * Version:3.8.0
  * Author:Ermile
  * Author URI:Ermile.com
  */
@@ -22,24 +22,26 @@ header .chart h3{margin-bottom:0;font-size:1.4em;padding:0 1.4em;height:30px}
 .box::after{clear:both;}
 
 /************************************************************** header */
-header{position:relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;font-size:1.4em;}
-header::before{display:table;content:"";position:absolute;width:126px;height:126px;background-image:url(../images/svg/wrapper-top.svg);background-repeat:no-repeat;top:100%;left:0;z-index:9;margin-top:-18px;margin-left:-10px;}
-header::after{display:table;content:"";clear:both;}
+header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;font-size:1.4em;}
+header::before, header::after{display:table;content:"";}
+header::after{clear:both;}
 header #header-box{height:100%;overflow:hidden;display:block;position:relative;}
 /* header top */
-header #header-top{max-height:120px;}
+header #header-top{height:89px;}
+header #header-top::before{content:"";position:absolute;width:100%;height:2px;background-color:#00667a;}
 header #header-top > a{color:#035261;display:inline-block;}
 header #header-top > a:hover{color:#37aaa7;}
-header #header-quick{display:inline-block;padding:10px 0 0 1em;float:left;height:120px;text-align:left}
-header #header-quick a{position:relative;display:block;padding:0;}
+header #header-quick{display:inline-block;float:left;text-align:left;}
+header #header-quick a{position:relative;display:block;padding:0;font-size:12px;}
 header #header-profile{display:inline-block;float:right;padding:10px 1em 0 0;}
-header #header-profile > a{padding:5px 1em;display:inline-block;vertical-align:top;line-height:30px;}
-header #header-profile .register{background-color:#37aaa7;border-radius:3px;color:#eee;font-weight:900;transition:0.3s;}
+header #header-profile > a{display:inline-block;vertical-align:top;color:#00667A;font-size:12px;height:40px;line-height:40px;padding:0 10px;}
+header #header-profile .register{background-color:#37aaa7;color:#F4F4F4;font-weight:900;transition:0.3s;font-size:15px;font-weight:bold;}
 header #header-profile .register:hover{background-color:#129491;color:#eee;}
 header #header-profile .register:active{background-color:#0e7d7a;}
 /* header logo*/
-header .logo{position:relative;float:left;padding:10px 20px 10px 10px;border-right:8px solid transparent;border-bottom:8px solid transparent;-webkit-border-image:url(../images/border-header.png) 8 stretch;-o-border-image:url(../images/border-header.png) 8 stretch;border-image:url(../images/border-header.png) 8 stretch;background-color:#0e6678;text-align:center;height:120px;width:300px;}
-header .logo img{width:70px;transition:all 0.2s;}
+header .logo{position:relative;float:left;text-align:left;height:89px;width:240px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding: 20px 0 0;}
+.rtl header .logo{text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
+header .logo img{width:50px;height:50px;transition:all 0.2s;}
 header .logo h1{line-height:1.5em;font-size:1.6em;margin-bottom:0;vertical-align:bottom;color:#f4f4f4;border-bottom:none;display:inline-block;font-weight:700;}
 header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo:hover img{opacity:0.9}
@@ -53,22 +55,14 @@ header .header-title::after{content:"";position:absolute;background-image:url(..
 /* header chart*/
 header .chart{display:none}
 /* header in homepage*/
-#home header #header-top{height:70px;}
-#home header{height:400px;}
-#home header #header-top{height:70px;}
 #home header .chart{display:block;margin:0;height:330px;}
-#home header #header-quick{height:70px;}
-#home header #header-quick a{display:inline-block;padding:0.5em 1em;}
-#home header .logo{height:100%;width:300px}
-#home header .logo img{width:240px;display:block;margin:0 auto;}
-#home header .logo h1{display:block;line-height:1.7em;font-size:2.2em;}
-#home header .logo h2{display:block}
+header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;}
 #home header .header-title{display:none}
 /* rtl design */
 .rtl header{border-right:none;border-left:8px solid transparent;}
 .rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-10px;}
-.rtl header .logo{float:right;border-right:none;border-left:8px solid transparent;padding:10px 10px 10px 20px;}
-.rtl header #header-quick{padding:10px 10px 0 0;float:right;text-align:right}
+.rtl header .logo{float:right;}
+.rtl header #header-quick{float:right;text-align:right}
 .rtl header #header-profile{float:left;padding:10px 0 0 1em;}
 
 /************************************************************** footer */
@@ -611,7 +605,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /* Menu */
 .type{margin:0em auto 2em;text-align:center;}
 .type ul{display:inline-block;border-radius:7px;background-color:#00667a;}
-.type ul li{font-size:12px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer}
+.type ul li{font-size:12px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer;}
 .type ul li:not(:first-child){margin-left:23px;}
 .rtl .type ul li:not(:first-child){margin-right:25px;margin-left:auto;}
 .rtl .type ul li{float:right;}
@@ -810,9 +804,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .profile img{width:40px;height:40px;float:right;}
 .rtl .profile img{float:left;}
 .profile .info{display:inline-block;background-color:#E8E6E6;height:40px;overflow:hidden;padding:7px;min-width:115px;}
-.profile .info .name, .profile .info .role{display:block;line-height:1;}
+.profile .info .name, .profile .info .role{display:block;line-height:1;font-size:9px;}
 .profile .info .name{font-size:12px;color:#035261;margin-bottom:5px;}
-.profile .info .role{font-size:10px;color:#A1A0A0;}
+.profile .info .role{font-size:10px;color:#A1A0A0;cursor:default;}
 .profile .profile-detail{position:absolute;top:100%;background-color:#DDDDDD;width:100%;opacity:0;transform:rotateX(-90deg);transition:all 0.5s cubic-bezier(.36,-0.64,.34,1.76);}
 .profile .profile-detail::before{content:"";position:absolute;width:1px;height:100%;background-color:#E76F6F;left:-1px;}
 .rtl .profile .profile-detail::before{right:-1px;}
