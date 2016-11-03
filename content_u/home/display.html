@@ -1,55 +1,36 @@
 {%extends display.main%}
 
-{%block head_css%}
-<style type="text/css">
-.vertical-tabs, .vertical-tabs-content{display:table-cell;}
-.vertical-tabs .tabs li{width:170px;height:50px;background-color:#00667A;margin-bottom:20px;color:#D8DAD0;line-height:50px;text-align:center;cursor:pointer;transition:all 0.5s;position:relative;margin-right:30px;}
-.vertical-tabs .tabs li.active{background-color:#E7A429;color:#00667A;font-weight:bold;margin-right:0;width:200px;}
-.vertical-tabs-content{border-left:1px solid #E7A429;width:100%;}
-.vertical-tabs-content .tab li{}
-.vertical-tabs-content .tab li > .row{padding:0 50px;}
-#tab-personal img{width:150px;height:150px;}
-.margin-bottom{margin-bottom:2em;}
-#me .title-line::before{width:180px;}
-#me .title-line.reverse::before{left:-50px;}
-.addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
-.addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
-</style>
-{%endblock%}
-
 {%block content%}
-<div class="main">
-  <form method="post">
-    <div class="row">
-      <div class="span1"></div>
+<form method="post">
+  <div class="row">
+    <div class="span1"></div>
 
-      <div class="span10 margin-bottom">
-        <div class="vertical-tabs">
-          <ul class="tabs">
-            <li data-tab="summary">{%trans "Summary"%}</li>
-          </ul>
-        </div>
-        <div class="vertical-tabs-content">
-          <ul class="tab">
-            <li id="tab-summary">
-              <div class="row">
-                <ul>
-                  {%for key, value in dashboard_data%}
-                  <li>
-                    {{key}}: {{value}}
-                  </li>
+    <div class="span10 margin-bottom">
+      <div class="vertical-tabs">
+        <ul class="tabs">
+          <li data-tab="summary">{%trans "Summary"%}</li>
+        </ul>
+      </div>
+      <div class="vertical-tabs-content">
+        <ul class="tab">
+          <li id="tab-summary">
+            <div class="row">
+              <ul>
+                {%for key, value in dashboard_data%}
+                <li>
+                  {{key}}: {{value}}
+                </li>
 
-                  {%endfor%}
-                  <li><a href="@/me">{%trans "View Profile"%}</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
+                {%endfor%}
+                <li><a href="@/me">{%trans "View Profile"%}</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</form>
 {%endblock%}
 
 {%block foot_js%}

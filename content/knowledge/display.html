@@ -1,37 +1,35 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main">
-  <div class="row">
-    <div class="span1"></div>
-    <div class="span8">
+<div class="row">
+  <div class="span1"></div>
+  <div class="span8">
 {%if poll_list%}
-      <div class="polls-head">
-        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-        <div class="type">{%trans "Type"%}</div>
-        <div class="title">{%trans "Title"%}</div>
-        <div class="comments-count">{%trans "Comments"%}</div>
-        <div class="votes-count">{%trans "Votes"%}</div>
-        <div class="date">{%trans "Date"%}</div>
-      </div>
-      <ul class="polls-body">
+    <div class="polls-head">
+      <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+      <div class="type">{%trans "Type"%}</div>
+      <div class="title">{%trans "Title"%}</div>
+      <div class="comments-count">{%trans "Comments"%}</div>
+      <div class="votes-count">{%trans "Votes"%}</div>
+      <div class="date">{%trans "Date"%}</div>
+    </div>
+    <ul class="polls-body">
 {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-          <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
-          <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
-          <div class="comments-count"></div>
-          <div class="votes-count"></div>
-          <div class="date">{{value.date_modified}}</div>
-        </li>
+      <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
+        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+        <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
+        <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
+        <div class="comments-count"></div>
+        <div class="votes-count"></div>
+        <div class="date">{{value.date_modified}}</div>
+      </li>
 {%endfor%}
-      </ul>
+    </ul>
 {%else%}
-      <div class="msg error">There is no question in database!</div>
-      <div><a href="{{base.url}}/@/add">Add now!</a></div>
+    <div class="msg error">There is no question in database!</div>
+    <div><a href="{{base.url}}/@/add">Add now!</a></div>
 {%endif%}
-    </div><!-- /.span8 -->
-    <div class="span3"><h1>Filter</h1></div>
-  </div>
+  </div><!-- /.span8 -->
+  <div class="span3"><h1>Filter</h1></div>
 </div>
 {%endblock%}

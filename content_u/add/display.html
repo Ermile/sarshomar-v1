@@ -1,199 +1,197 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main">
-  <form method="post">
-    <input type="hidden" name="poll_type" value="">
+<form method="post">
+  <input type="hidden" name="poll_type" value="">
 
-    <div class="row auto">
-      <div class="span8">
-        <div class="row">
-          <div class="type">
-            <ul class="tabs">
-              <li data-tab="multiple_choice"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
-              <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
-              <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
-              <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
-              <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
-              <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
-              <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
-            </ul>
-          </div><!-- /.type -->
+  <div class="row auto">
+    <div class="span8">
+      <div class="row">
+        <div class="type">
+          <ul class="tabs">
+            <li data-tab="multiple_choice"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
+            <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
+            <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
+            <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
+            <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
+            <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
+            <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
+          </ul>
+        </div><!-- /.type -->
 
-          <ul class="tab">
-            <li id="tab-multiple_choice">
-              <div class="element">
-                <label class="addon" for="title">Title</label>
-                <input class="input" type="text" name="title" id="title">
-              </div>
-
-              <div class="indent">
-                <div class="input-group">
-                  <div class="element option" data-number="1">
-                    <label class="addon" for="answer1">Answer 1</label>
-                    <input class="input" type="text" name="answers[]" id="answer1">
-                    <input type="hidden" name="answer_true[]" value="true">
-                    <input type="hidden" name="answer_type[]" value="text">
-                  </div>
-
-                  <div class="element option" data-number="2">
-                    <label class="addon" for="answer2">Answer 2</label>
-                    <input class="input" type="text" name="answers[]" id="answer2">
-                    <input type="hidden" name="answer_true[]" value="true">
-                    <input type="hidden" name="answer_type[]" value="text">
-                  </div>
-                </div>
-
-                <div class="row auto element-checkbox">
-                  <div class="span6">
-                    <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-                      <ul>
-                        <li>
-                          <input type="checkbox" name="meta_descriptive" id="descriptive">
-                          <label for="descriptive">{%trans "Descriptive Answer"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-
-                        <li>
-                          <input type="checkbox" name="meta_score" id="score">
-                          <label for="score">{%trans "Score"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-
-                        <li>
-                          <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
-                          <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-
-                        <li>
-                          <input type="checkbox" name="meta_hidden_result" id="hidden_result">
-                          <label for="hidden_result">{%trans "Hidden Result"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-                      </ul>
-
-                    </div>
-
-                  </div>
-                  <div class="span6">
-                    <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-                      <ul>
-                        <li>
-                          <input type="checkbox" name="meta_random_sort" id="random_sort">
-                          <label for="random_sort">{%trans "Random Sort"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-
-                        <li>
-                          <input type="checkbox" name="meta_true_answer" id="true_answer">
-                          <label for="true_answer">{%trans "True Answer"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-
-                        <li>
-                          <input type="checkbox" name="meta_tree" id="poll_tree">
-                          <label for="poll_tree">{%trans "Poll Tree"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-                      </ul>
-                    </div>
-                  </div><!-- /.span6 -->
-                </div><!--/.row-->
-
-                <div>
-                  <a href="#">Title of Parent poll in tree</a><br>
-                  <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
-                  <input type="text" name="parent_tree_opt" placeholder="opt of parent id">
-                </div>
-
-                <div class="panel-text">
-                  <div class="title">
-                    <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
-                  </div>
-                  <textarea name="summary"></textarea>
-                </div>
-
-                <div class="panel-text">
-                  <div class="title">
-                    <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
-                  </div>
-                  <textarea name="description"></textarea>
-                </div>
-                {%if sarshomar_mod%}
-                   <div class="element">
-                    <label class="addon" for="profile">{%trans "Poll To Complete Profile"%}</label>
-                    <select class="input" name="meta_profile" id="profile" >
-                      <option value="">{%trans "Please Select One Item"%}</option>
-                      {%for key, value in profile_lock%}
-                        <option value="{{value}}">{{value}}</option>
-                      {%endfor%}
-                    </select>
-                  </div>
-                {%endif%}
-              </div><!-- /.indent -->
-                {%if survey_mod%}
-                  <div class="element">
-                    <label class="addon" for="survey_title">Survey Title</label>
-                    <input class="input" type="text" name="survey_title" id="survey_title">
-                  </div>
-                {%endif%}
-            </li><!-- /#tab-multiple_choice -->
-            <li id="tab-descriptive">descriptive</li>
-            <li id="tab-notification">notification</li>
-            <li id="tab-upload">upload</li>
-            <li id="tab-starred">starred</li>
-            <li id="tab-numerical">numerical</li>
-            <li id="tab-sort">sort</li>
-          </ul><!-- /.tab -->
-        </div><!-- /.row -->
-      </div><!-- /.span8 -->
-
-      <div class="span8">
-        <div class="buttons">
-          <nav>
-            <button name="filter" value="filter">{%trans "Filter"%}</button>
-            <button name="publish" value="publish">{%trans "Publish"%}</button>
-          {%if survey_mod%}
-            <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-          {%else%}
-            <button name="survey" value="survey">{%trans "Survey"%}</button>
-          {%endif%}
-          </nav>
-        </div><!-- /.buttons -->
-      </div>
-
-      <div class="span4">
-        <div class="row">
-          {%if poll_list %}
-          <div class="group">
-            <div class="title-line"><span>Survey</span></div>
-            <div class="element option">
-              <label class="addon" for="secondary-title">Title</label>
-              <input class="input" type="text" name="secondary-title" id="secondary-title">
+        <ul class="tab">
+          <li id="tab-multiple_choice">
+            <div class="element">
+              <label class="addon" for="title">Title</label>
+              <input class="input" type="text" name="title" id="title">
             </div>
-          </div>
 
-          <div class="group">
-            <div class="title-line"><span>Questions List</span></div>
-            {%for key, value in poll_list%}
-            <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
-              <div class="element option has-floating">
-                <label class="addon" for="question{{key + 1}}">Question {{key + 1}}</label>
-                <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
-                <span class="addon floating">
-                  <span><i class="fa fa-check" aria-hidden="true"></i></span>
-                </span>
+            <div class="indent">
+              <div class="input-group">
+                <div class="element option" data-number="1">
+                  <label class="addon" for="answer1">Answer 1</label>
+                  <input class="input" type="text" name="answers[]" id="answer1">
+                  <input type="hidden" name="answer_true[]" value="true">
+                  <input type="hidden" name="answer_type[]" value="text">
+                </div>
+
+                <div class="element option" data-number="2">
+                  <label class="addon" for="answer2">Answer 2</label>
+                  <input class="input" type="text" name="answers[]" id="answer2">
+                  <input type="hidden" name="answer_true[]" value="true">
+                  <input type="hidden" name="answer_type[]" value="text">
+                </div>
               </div>
-            <!-- </a> -->
-            {%endfor%}
+
+              <div class="row auto element-checkbox">
+                <div class="span6">
+                  <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                    <ul>
+                      <li>
+                        <input type="checkbox" name="meta_descriptive" id="descriptive">
+                        <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+
+                      <li>
+                        <input type="checkbox" name="meta_score" id="score">
+                        <label for="score">{%trans "Score"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+
+                      <li>
+                        <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
+                        <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+
+                      <li>
+                        <input type="checkbox" name="meta_hidden_result" id="hidden_result">
+                        <label for="hidden_result">{%trans "Hidden Result"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                    </ul>
+
+                  </div>
+
+                </div>
+                <div class="span6">
+                  <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                    <ul>
+                      <li>
+                        <input type="checkbox" name="meta_random_sort" id="random_sort">
+                        <label for="random_sort">{%trans "Random Sort"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+
+                      <li>
+                        <input type="checkbox" name="meta_true_answer" id="true_answer">
+                        <label for="true_answer">{%trans "True Answer"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+
+                      <li>
+                        <input type="checkbox" name="meta_tree" id="poll_tree">
+                        <label for="poll_tree">{%trans "Poll Tree"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!-- /.span6 -->
+              </div><!--/.row-->
+
+              <div>
+                <a href="#">Title of Parent poll in tree</a><br>
+                <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
+                <input type="text" name="parent_tree_opt" placeholder="opt of parent id">
+              </div>
+
+              <div class="panel-text">
+                <div class="title">
+                  <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
+                </div>
+                <textarea name="summary"></textarea>
+              </div>
+
+              <div class="panel-text">
+                <div class="title">
+                  <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
+                </div>
+                <textarea name="description"></textarea>
+              </div>
+              {%if sarshomar_mod%}
+                 <div class="element">
+                  <label class="addon" for="profile">{%trans "Poll To Complete Profile"%}</label>
+                  <select class="input" name="meta_profile" id="profile" >
+                    <option value="">{%trans "Please Select One Item"%}</option>
+                    {%for key, value in profile_lock%}
+                      <option value="{{value}}">{{value}}</option>
+                    {%endfor%}
+                  </select>
+                </div>
+              {%endif%}
+            </div><!-- /.indent -->
+              {%if survey_mod%}
+                <div class="element">
+                  <label class="addon" for="survey_title">Survey Title</label>
+                  <input class="input" type="text" name="survey_title" id="survey_title">
+                </div>
+              {%endif%}
+          </li><!-- /#tab-multiple_choice -->
+          <li id="tab-descriptive">descriptive</li>
+          <li id="tab-notification">notification</li>
+          <li id="tab-upload">upload</li>
+          <li id="tab-starred">starred</li>
+          <li id="tab-numerical">numerical</li>
+          <li id="tab-sort">sort</li>
+        </ul><!-- /.tab -->
+      </div><!-- /.row -->
+    </div><!-- /.span8 -->
+
+    <div class="span8">
+      <div class="buttons">
+        <nav>
+          <button name="filter" value="filter">{%trans "Filter"%}</button>
+          <button name="publish" value="publish">{%trans "Publish"%}</button>
+        {%if survey_mod%}
+          <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+        {%else%}
+          <button name="survey" value="survey">{%trans "Survey"%}</button>
+        {%endif%}
+        </nav>
+      </div><!-- /.buttons -->
+    </div>
+
+    <div class="span4">
+      <div class="row">
+        {%if poll_list %}
+        <div class="group">
+          <div class="title-line"><span>Survey</span></div>
+          <div class="element option">
+            <label class="addon" for="secondary-title">Title</label>
+            <input class="input" type="text" name="secondary-title" id="secondary-title">
           </div>
-          {%endif%}
-        </div><!-- /.row -->
-      </div><!-- /.span4 -->
-    </div><!-- /.row.auto -->
-  </form>
-</div><!-- /.main -->
+        </div>
+
+        <div class="group">
+          <div class="title-line"><span>Questions List</span></div>
+          {%for key, value in poll_list%}
+          <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
+            <div class="element option has-floating">
+              <label class="addon" for="question{{key + 1}}">Question {{key + 1}}</label>
+              <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
+              <span class="addon floating">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+              </span>
+            </div>
+          <!-- </a> -->
+          {%endfor%}
+        </div>
+        {%endif%}
+      </div><!-- /.row -->
+    </div><!-- /.span4 -->
+  </div><!-- /.row.auto -->
+</form>
 {%endblock%}
 
 {%block foot_js%}

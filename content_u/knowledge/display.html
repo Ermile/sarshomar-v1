@@ -1,58 +1,53 @@
 {%extends display.main%}
 
-{%block head_css%}
-{%endblock%}
-
 {%block content%}
-<div class="main">
-  <div class="row">
-    <div class="span2"></div>
-    <div class="span8">
-      <div class="search">
-        <input type="text" name="search">
-        <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
-      </div>
+<div class="row">
+  <div class="span2"></div>
+  <div class="span8">
+    <div class="search">
+      <input type="text" name="search">
+      <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
 
 {%if poll_list%}
-      <div class="polls-head">
-        <div class="type">{%trans "Type"%}</div>
-        <div class="title">{%trans "Title"%}</div>
-        <div class="date">{%trans "Date"%}</div>
-      </div>
-      <ul class="polls-body">
+    <div class="polls-head">
+      <div class="type">{%trans "Type"%}</div>
+      <div class="title">{%trans "Title"%}</div>
+      <div class="date">{%trans "Date"%}</div>
+    </div>
+    <ul class="polls-body">
 {%for key, value in poll_list%}
-        <li class="polls-row">
-          <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
-          <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}<span>{%if value.status != 'publish'%}{{value.status}}{%endif%}</span></a></div>
-          <div class="date">{{value.date_modified}}</div>
-        </li>
+      <li class="polls-row">
+        <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
+        <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}<span>{%if value.status != 'publish'%}{{value.status}}{%endif%}</span></a></div>
+        <div class="date">{{value.date_modified}}</div>
+      </li>
 {%endfor%}
-      </ul>
+    </ul>
 {%else%}
-      <div class="msg error">There is no question in database!</div>
-      <div><a href="{{base.url}}/@/add">Add now!</a></div>
+    <div class="msg error">There is no question in database!</div>
+    <div><a href="{{base.url}}/@/add">Add now!</a></div>
 {%endif%}
 
-      <div class="pagination-container">
-        <nav class="pagination">
-          <a href="#"><<</a>
-          <a href="#"><</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">...</a>
-          <a href="#">8</a>
-          <a href="#">9</a>
-          <a href="#">10</a>
-          <a href="#">999</a>
-          <a href="#">9999</a>
-          <a href="#">></a>
-          <a href="#">>></a>
-        </nav>
-      </div>
+    <div class="pagination-container">
+      <nav class="pagination">
+        <a href="#"><<</a>
+        <a href="#"><</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">...</a>
+        <a href="#">8</a>
+        <a href="#">9</a>
+        <a href="#">10</a>
+        <a href="#">999</a>
+        <a href="#">9999</a>
+        <a href="#">></a>
+        <a href="#">>></a>
+      </nav>
     </div>
   </div>
 </div>
