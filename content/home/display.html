@@ -2,154 +2,205 @@
 
 {%block content%}
 <div class="row" id="map">
-    {%if site.currentlang == "en"%}
-    <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
-    {%else%}
-    <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
-    <div class="span7" id="chart">
-        <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
-        <div class="chart age-chart"></div>
-    </div>
-    {%endif%}
+{%if site.currentlang == "en"%}
+  <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
+{%else%}
+  <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
+  <div class="span7" id="chart">
+    <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
+    <div class="chart age-chart"></div>
+  </div>
+{%endif%}
 </div>
 
-<div class="row" id="customers">
-    <div class="row auto right">
-        <div class="span5"><img src="{{url.static}}images/customers/1.jpg"></div>
-        <div class="span7 content">
-            <h3><a href="#">شرکت های تجاری</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-    </div>
+<div class="row" id="customers-box">
+  <div class="customer">
+    <h3><a href="">شرکت های تجاری</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
 
-    <div class="row auto left">
-        <div class="span4 content">
-            <h3><a href="#">موسسات تحقیقاتی آموزشی</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-        <div class="span8"><img src="{{url.static}}images/customers/2.jpg"></div>
-    </div>
+  <div class="customer">
+    <h3><a href="">مراکز آموزشی پزشکی</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
 
-    <div class="row auto right">
-        <div class="span5"><img src="{{url.static}}images/customers/3.jpg"></div>
-        <div class="span7 content">
-            <h3><a href="#">شرکت های تجاری</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-    </div>
+  <div class="customer">
+    <h3><a href="">موسسات و سازمان ها</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
 
-    <div class="row auto left">
-        <div class="span8 content">
-            <h3><a href="#">کانون های تبلیغاتی</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-        <div class="span4"><img src="{{url.static}}images/customers/4.jpg"></div>
-    </div>
+  <div class="customer">
+    <h3><a href="">توسعه دهنده ها و صاحبان وبسایت</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
 
-    <div class="row auto right">
-        <div class="span7"><img src="{{url.static}}images/customers/5.jpg"></div>
-        <div class="span5 content">
-            <h3><a href="#">توسعه دهنده ها و صاحبان وب سایت</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-    </div>
+  <div class="customer">
+    <h3><a href="">آژانس های تبلیغاتی</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
 
-    <div class="row auto left">
-        <div class="span6 content">
-            <h3><a href="#">عموم مردم</a></h3>
-            <p>این متن صرفا برای تست این قسمت از سایت بوده و هیج ارزش دیگری ندارد. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-            <p>از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود. داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند.</p>
-        </div>
-        <div class="span6"><img src="{{url.static}}images/customers/6.jpg"></div>
-    </div>
-</div>
+  <div class="customer">
+    <h3><a href="">تک تک افراد جامعه</a></h3>
+    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+  </div>
+</div><!-- /#customers-box -->
 
 <div class="row" id="features-box">
-    <div class="span2"></div>
-    <div class="span8">
-        <div class="row">
-            <div class="tab" data-tab="3">
-                <div class="circle variety"></div>
-                <div class="title">پایگاه دانش</div>
-            </div>
-            <div class="tab current" data-tab="2">
-                <div class="circle precision"></div>
-                <div class="title">جامعه آماری معتبر</div>
-            </div>
-            <div class="tab " data-tab="1">
-                <div class="circle security"></div>
-                <div class="title">دسترسی آسان</div>
-            </div>
-        </div>
-        <div class="row content">
-            <p>تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید</p>
-            <p class="current">سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک همراه با نمودار بررسی کنید</p>
-            <p>از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره ببرید</p>
-        </div>
+  <div class="span2"></div>
+  <div class="span8">
+    <div class="row">
+      <div class="tab" data-tab="3">
+        <div class="circle variety"></div>
+        <div class="title">پایگاه دانش</div>
+      </div>
+      <div class="tab current" data-tab="2">
+        <div class="circle precision"></div>
+        <div class="title">جامعه آماری معتبر</div>
+      </div>
+      <div class="tab " data-tab="1">
+        <div class="circle security"></div>
+        <div class="title">دسترسی آسان</div>
+      </div>
     </div>
+    <div class="row content">
+      <p>تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید</p>
+      <p class="current">سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک همراه با نمودار بررسی کنید</p>
+      <p>از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره ببرید</p>
+    </div>
+  </div>
 </div>
 
 <div class="row" id='trust'>
-    <div class="container">
-        <img src="{{url.static}}images/tick.svg">
-        <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
-    </div>
+  <div class="container">
+    <img src="{{url.static}}images/tick.svg">
+    <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
+  </div>
 </div>
 {%endblock%}
 
 {%block foot_js%}
 <!-- <script src="https://code.highcharts.com/modules/drilldown.js"></script> -->
 <script type="text/javascript">
-var topChartOptions =
-{
-    chart:{type:'column',backgroundColor:'rgba(255, 255, 255, 0)',verticalAlign:'center'},
-    title:{text:""},
-    xAxis:{categories:{{result['random_result']['categories']|raw}}},
-    yAxis:{min:0,title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
-    plotOptions:{column:{pointPadding: 0,groupPadding: 0.15,},series:{dataLabels:{enabled:false,format:'{point.y:f}%'}},inside:true},
-    legend:{enabled:false},
-    credits:{enabled:false},
-    tooltip:{enabled:false},
-    series:{{result['random_result']['data']|raw}}
+var topChartOptions = {
+  chart: {
+    type: 'column',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    verticalAlign: 'center'
+  },
+  title: {
+    text: ""
+  },
+  xAxis:
+  {
+    categories:{series: {{result['random_result']['categories'] | raw}}}
+  },
+
+  yAxis: {
+    min: 0,
+    title: {
+      enabled: false
+    },
+    labels: {
+      enabled: false
+    },
+    gridLineWidth: 0,
+    minorGridLineWidth: 0
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0,
+      groupPadding: 0.15,
+    },
+    series: {
+      dataLabels: {
+        enabled: false,
+        format: '{point.y:f}%'
+      }
+    },
+    inside: true
+  },
+  legend: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+  tooltip: {
+    enabled: false
+  },
+  series: eval({{result['random_result']['data'] | raw}})
 };
 
-var categories = ['0-18','19-25','25-35','36-39','40-50','51-60','61-80','80 +'];
-var newChartOptions =
-{
-    chart: {type: 'bar',backgroundColor:'rgba(255, 255, 255, 0)'},
-    title: {text: ''},
-    xAxis: [{categories: categories,reversed: false,labels:{enabled:true,step:1},opposite: true}],
-    yAxis:{title:{enabled:false},labels:{enabled:false},gridLineWidth:0,minorGridLineWidth:0},
-    plotOptions: {series: {stacking:'normal',dataLabels:{enabled: true,format:'{point.y:f}'}},bar:{pointPadding: 0,groupPadding: 0.01,}},
-    credits:{enabled:false},
-    tooltip:{enabled:false},
-    series:
-    [
-        {name: '{%trans "Male"%}',data: [-2.2, -2.7, -3.1, -3.2,-3.0, -3.2, -4.3, -4.4]},
-        {name: '{%trans "Female"%}',data: [2.1, 2.6, 3.0, 3.1, 2.9,3.1, 4.1, 4.3]}
-    ]
+var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
+var newChartOptions = {
+  chart: {
+    type: 'bar',
+    backgroundColor: 'rgba(255, 255, 255, 0)'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: [{
+    categories: categories,
+    reversed: false,
+    labels: {
+      enabled: true,
+      step: 1
+    },
+    opposite: true
+  }],
+  yAxis: {
+    title: {
+      enabled: false
+    },
+    labels: {
+      enabled: false
+    },
+    gridLineWidth: 0,
+    minorGridLineWidth: 0
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:f}'
+      }
+    },
+    bar: {
+      pointPadding: 0,
+      groupPadding: 0.01,
+    }
+  },
+  credits: {
+    enabled: false
+  },
+  tooltip: {
+    enabled: false
+  },
+  series: [{
+    name: '{%trans "Male"%}',
+    data: [-2.2, -2.7, -3.1, -3.2, -3.0, -3.2, -4.3, -4.4]
+  }, {
+    name: '{%trans "Female"%}',
+    data: [2.1, 2.6, 3.0, 3.1, 2.9, 3.1, 4.1, 4.3]
+  }]
 };
 
 $(function() {
-    $('header .chart > div').highcharts(topChartOptions);
-    $('#chart > .chart').highcharts(newChartOptions);
+  $('header .chart > div').highcharts(topChartOptions);
+  $('#chart > .chart').highcharts(newChartOptions);
 
-    var hoverOrClick = function() {
-        var tab_id = $(this).attr('data-tab');
+  var hoverOrClick = function()
+  {
+    var tab_id = $(this).attr('data-tab');
+    $('#features-box .tab').removeClass('current');
+    $('#features-box .content p').removeClass('current');
+    $(this).addClass('current');
+    $('#features-box .content p').eq(tab_id - 1).addClass('current');
+  };
 
-        $('#features-box .tab').removeClass('current');
-        $('#features-box .content p').removeClass('current');
-
-        $(this).addClass('current');
-        $('#features-box .content p').eq(tab_id - 1).addClass('current');
-    };
-
-    $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
+  $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
 });
 </script>
 {% endblock %}

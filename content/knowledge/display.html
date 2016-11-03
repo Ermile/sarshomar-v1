@@ -1,55 +1,37 @@
 {%extends display.main%}
 
-{%block head_css%}
-<style type="text/css">
-.polls-head{border-bottom:1px solid #E0E0E0;}
-.polls-head > div{color:#00667A;font-weight:bold;}
-.polls-body{margin-bottom:2em;}
-.polls-head > div, .polls-row > div{display:table-cell;padding:10px 5px;}
-.polls-head > div:nth-child(2), .polls-row > div:nth-child(2){width:100%;}
-.polls-row > div:nth-child(2) a{color:#00667A;font-weight:bold;}
-.polls-head > div:not(:nth-child(2)), .polls-row > div:not(:nth-child(2)){min-width:60px;}
-.polls-head > div:last-child, .polls-row > div:last-child{min-width:150px}
-.polls-row > div > span{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;}
-.polls-row > div > span .fa{color:#F4F4F4;vertical-align:middle;}
-</style>
-{%endblock%}
-
 {%block content%}
 <div class="main">
   <div class="row">
-    <div class="span2"></div>
+    <div class="span1"></div>
     <div class="span8">
-      {%if poll_list%}
+{%if poll_list%}
       <div class="polls-head">
-        <div>{%trans "Type"%}</div>
-        <div>{%trans "Title"%}</div>
-        <div>{%trans "Status"%}</div>
-        <div>{%trans "Number"%}</div>
-        <div>{%trans "Date"%}</div>
+        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+        <div class="type">{%trans "Type"%}</div>
+        <div class="title">{%trans "Title"%}</div>
+        <div class="comments-count">{%trans "Comments"%}</div>
+        <div class="votes-count">{%trans "Votes"%}</div>
+        <div class="date">{%trans "Date"%}</div>
       </div>
-      <div class="polls-body">
-      {%for key, value in poll_list%}
-        <ul>
-          <li class="polls-row">
-            <div>
-              <span><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
-            </div>
-            <div>
-              <a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
-            </div>
-            <div>{{value.status}}</div>
-            <div>{{value.total}}</div>
-            <div>{{value.date_modified}}</div>
-          </li>
-        </ul>
-      {%endfor%}
-      </div>
-      {%else%}
+      <ul class="polls-body">
+{%for key, value in poll_list%}
+        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
+          <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+          <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
+          <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
+          <div class="comments-count"></div>
+          <div class="votes-count"></div>
+          <div class="date">{{value.date_modified}}</div>
+        </li>
+{%endfor%}
+      </ul>
+{%else%}
       <div class="msg error">There is no question in database!</div>
       <div><a href="{{base.url}}/@/add">Add now!</a></div>
-      {%endif%}
-    </div>
+{%endif%}
+    </div><!-- /.span8 -->
+    <div class="span3"><h1>Filter</h1></div>
   </div>
 </div>
 {%endblock%}

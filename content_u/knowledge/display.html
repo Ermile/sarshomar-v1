@@ -15,16 +15,16 @@
 
 {%if poll_list%}
       <div class="polls-head">
-        <div>{%trans "Type"%}</div>
-        <div>{%trans "Title"%}</div>
-        <div>{%trans "Date"%}</div>
+        <div class="type">{%trans "Type"%}</div>
+        <div class="title">{%trans "Title"%}</div>
+        <div class="date">{%trans "Date"%}</div>
       </div>
       <ul class="polls-body">
 {%for key, value in poll_list%}
         <li class="polls-row">
-          <div><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
-          <div><a href="{{base.url}}/{{value.url}}">{{value.title}}<span>{{value.status}}</span></a></div>
-          <div>{{value.date_modified}}</div>
+          <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
+          <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}<span>{%if value.status != 'publish'%}{{value.status}}{%endif%}</span></a></div>
+          <div class="date">{{value.date_modified}}</div>
         </li>
 {%endfor%}
       </ul>
