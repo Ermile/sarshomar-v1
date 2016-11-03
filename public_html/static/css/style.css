@@ -11,16 +11,15 @@
 
 /* General */
 body{background-color:#00667a;}
-.wrapper {width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
+.wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:30px 0;}
 .wrapper::before, .wrapper::after{display:table;content:"";}
-.wrapper > .main{padding-top:5em;padding-bottom:5em;}
 header .chart{width:auto;overflow:hidden;}
 header .chart h3{margin-bottom:0;font-size:1.4em;padding:0 1.4em;height:30px}
 .rtl header .chart h3{text-align:right;}
 .text-left{text-align:left;}
-.main {display:block;padding:0;margin:0;width:100%;}
-.main::before,.main::after{display:table;content:"";}
-.main::after{clear:both;}
+.box {display:block;padding:0 15px;margin:0;width:100%;}
+.box::before,.box::after{display:table;content:"";}
+.box::after{clear:both;}
 
 /************************************************************** header */
 header{position:relative;border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;font-size:1.4em;}
@@ -804,8 +803,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /************************************************************** Header Profile */
-.profile {display:inline-block;position:relative;max-height:40px;border-left:1px solid #E76F6F;perspective:100px;}
+.profile {display:inline-block;position:relative;max-height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;}
 .rtl .profile{border-left:none;border-right:1px solid #E76F6F;}
+.profile:hover{overflow-wrap:normal;overflow:visible;}
 .profile:hover .profile-detail{opacity:1;transform:none;transition:all 0.5s cubic-bezier(.36,-0.64,.34,1.76);}
 .profile img{width:40px;height:40px;float:right;}
 .rtl .profile img{float:left;}
@@ -998,4 +998,3 @@ footer #footer-links a{display:inline-block;color:#888;padding:0 2%;}
 	footer #footer-links a{padding:1% 5%;}
   #features-box .title{max-width:5em;}
 }
-
