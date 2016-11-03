@@ -30,14 +30,11 @@ class model extends \mvc\model
 			}
 		}
 
-		$filter_id = \lib\db\filters::get_id($filter);
-		if($filter_id)
+		$filter_id = [];
+		if(!empty($filter))
 		{
+			$filter_id = \lib\db\filters::get_id($filter);
 			$filter_id = ['filter_id' => $filter_id];
-		}
-		else
-		{
-			$filter_id = [];
 		}
 
 		$search = $_args->get("search")[0];
