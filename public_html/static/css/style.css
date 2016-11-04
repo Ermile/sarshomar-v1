@@ -221,7 +221,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /************************************************************** Next... */
 
 /* map */
-#map{padding-top:100px;}
+#map{padding:50px 0;}
 #map #chart > div{height:350px;}
 #map h4{font-size:2em;}
 
@@ -383,7 +383,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /* customers */
-#customers-box{padding:100px 0;}
+#customers-box{padding:100px 0;background-color:#FCFCFC;}
 #customers-box .customer{position:relative;}
 #customers-box .customer:not(:last-child){margin-bottom:10em;}
 #customers-box .customer h3{position:relative;display:inline-block;}
@@ -420,7 +420,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /* features */
-#features-box{padding:0em 5em 5em;text-align:center;/*background-color:#e6e6e6;*/}
+#features-box{padding:50px;text-align:center;/*background-color:#e6e6e6;*/}
 #features-box .tab{float:right;width:33.33%;margin-bottom:2em;cursor:pointer;border-bottom:2em solid #bfc7d0;}
 #features-box .tab.current{transition:all 0.3s ease;border-bottom:2em solid #0067a5;}
 #features-box .tab.current .title{color:#000;}
