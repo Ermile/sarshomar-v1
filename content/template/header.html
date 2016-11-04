@@ -1,8 +1,7 @@
   <header>
-   <span href='{{url.base}}' class='logo'>
-    <img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'>
-    <h1>{{site.title}}</h1>
-    <h2>{{site.slogan}}</h2>
+   <span class='logo'>
+    <a href="{{url.base}}"><img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'></a>
+    <a href="{{url.base}}"><h1>{{site.title}}</h1></a>
    </span>
    <div id='header-box'>
     <div id='header-top'>
@@ -31,11 +30,6 @@
       <a href='{{url.base}}signup' data-direct class='register'>{%trans "Register"%}</a>
 {%endif%}
      </nav>
-    </div>
-
-    <div class='chart'>
-     <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
-     <div class='column palette{{(random(6)) + 1}}'></div>
     </div>
    </div>
   </header>

@@ -1,53 +1,71 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="row" id="map">
-{%if site.currentlang == "en"%}
-  <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
-{%else%}
-  <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
-  <div class="span7" id="chart">
-    <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
-    <div class="chart age-chart"></div>
+<div class="box">
+  <div class="row auto" id="top-box">
+    <div class="span5">
+      <div class='chart'>
+        <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
+        <div class='column palette{{(random(6)) + 1}}'></div>
+      </div>
+    </div>
+    <div class="span7 intro">
+      <h2>{{site.slogan}}</h2>
+      <p>سرشمار خیلی عالیست برای شما هم خوب است اگه مریض باشید کمکتان می کند تا خوب شوید در ضمن منم ازش استفاده می کنم</p>
+      <a href="" class="try-for-free">
+        <h4>شما هم امتحان کنید</h4>
+        <div>رایگان است</div>
+      </a>
+    </div>
   </div>
-{%endif%}
+
+  <div class="row" id="map">
+  {%if site.currentlang == "en"%}
+    <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
+  {%else%}
+    <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
+    <div class="span7" id="chart">
+      <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
+      <div class="chart age-chart"></div>
+    </div>
+  {%endif%}
+  </div>
+
+  <div class="row" id="customers-box">
+    <div class="customer">
+      <h3><a href="">شرکت های تجاری</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+
+    <div class="customer">
+      <h3><a href="">مراکز آموزشی پزشکی</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+
+    <div class="customer">
+      <h3><a href="">موسسات و سازمان ها</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+
+    <div class="customer">
+      <h3><a href="">توسعه دهنده ها و صاحبان وبسایت</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+
+    <div class="customer">
+      <h3><a href="">آژانس های تبلیغاتی</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+
+    <div class="customer">
+      <h3><a href="">تک تک افراد جامعه</a></h3>
+      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+    </div>
+  </div><!-- /#customers-box -->
 </div>
 
-<div class="row" id="customers-box">
-  <div class="customer">
-    <h3><a href="">شرکت های تجاری</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-
-  <div class="customer">
-    <h3><a href="">مراکز آموزشی پزشکی</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-
-  <div class="customer">
-    <h3><a href="">موسسات و سازمان ها</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-
-  <div class="customer">
-    <h3><a href="">توسعه دهنده ها و صاحبان وبسایت</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-
-  <div class="customer">
-    <h3><a href="">آژانس های تبلیغاتی</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-
-  <div class="customer">
-    <h3><a href="">تک تک افراد جامعه</a></h3>
-    <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-  </div>
-</div><!-- /#customers-box -->
-
 <div class="row" id="features-box">
-  <div class="span2"></div>
-  <div class="span8">
+  <div class="box">
     <div class="row">
       <div class="tab" data-tab="3">
         <div class="circle variety"></div>
@@ -70,8 +88,8 @@
   </div>
 </div>
 
-<div class="row" id='trust'>
-  <div class="container">
+<div class="box">
+  <div class="row" id='trust'>
     <img src="{{url.static}}images/tick.svg">
     <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
   </div>
@@ -188,7 +206,7 @@ var newChartOptions = {
 };
 
 $(function() {
-  $('header .chart > div').highcharts(topChartOptions);
+  $('#top-box .chart > div').highcharts(topChartOptions);
   $('#chart > .chart').highcharts(newChartOptions);
 
   var hoverOrClick = function()
