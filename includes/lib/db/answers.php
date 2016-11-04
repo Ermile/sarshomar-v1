@@ -256,18 +256,9 @@ class answers
 				user_id = $_user_id,
 				post_id = $_poll_id,
 				opt     = '$num_of_opt_kye',
-				type    = NULL,
+				type    = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
 				txt     = '$_answer_txt',
-				profile =
-				(
-					SELECT
-						CONCAT('{', GROUP_CONCAT(CONCAT('\"', option_key, '\":\"',  option_value, '\"')), '}')
-					FROM
-						options
-					WHERE
-						user_id    = $_user_id AND
-						option_cat = 'user_detail_$_user_id'
-				),
+				profile = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
 				visitor_id = NULL
 				-- answers::save()
 		";

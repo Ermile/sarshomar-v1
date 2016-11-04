@@ -26,6 +26,7 @@ class model extends \content_u\home\model
 	 */
 	public function post_filter($_args)
 	{
+		$result = null;
 		// get filter
 		// remove empty filters in post
 		$post = array_filter(utility::post());

@@ -91,23 +91,23 @@ class model extends \content_u\home\model
 			// we save the survey
 			$args =
 			[
-				'user_id'     => $this->login('id'),
-				'post_title'  => 'untitled survey',
-				'post_type'   => 'survey_private',
-				'post_gender' => 'survey',
-				'post_status' => 'draft',
+				'user_id'      => $this->login('id'),
+				'post_title'   => 'untitled survey',
+				'post_privacy' => 'private',
+				'post_type'    => 'survey',
+				'post_survey'  => null,
+				'post_gender'  => 'survey',
+				'post_status'  => 'draft',
 			];
-			$survey_id = \lib\db\survey::insert($args);
-			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
-			$poll_type = "survey_poll_";
+			$survey_id = \lib\db\polls::insert($args);
+
 			// insert the poll
-			$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
+			$insert_poll = $this->insert_poll(['survey_id' => $survey_id]);
 			// redirect to @/$url/add to add another poll
 			$url = \lib\utility\shortURL::encode($survey_id);
 			if($insert_poll)
 			{
 				$this->redirector()->set_url("@/add/$url");
-
 			}
 
 		}
@@ -134,7 +134,6 @@ class model extends \content_u\home\model
 			// the user click on buttom was not support us !!
 			debug::error(T_("command not found"));
 		}
-
 
 		// save poll tree
 		if(utility::post("parent_tree_id") && utility::post("parent_tree_opt"))
@@ -240,19 +239,16 @@ class model extends \content_u\home\model
 		// get poll type from function args
 		if(isset($_options['poll_type']))
 		{
-			$poll_type = $_options['poll_type']. $poll_type;
+			$poll_type = $_options['poll_type'];
 			if(substr($poll_type, 0, 6) == "survey")
 			{
 				// if first 6 character of poll type is 'suervey' gender of poll is 'survey'
 				$gender = "survey";
 			}
 		}
-		else
-		{
-			$poll_type = 'poll_private_'. $poll_type;
-		}
+
 		// check the suevey id to set in post_parent
-		if(isset($_options['survey_id']))
+		if(isset($_options['survey_id']) && $_options['survey_id'])
 		{
 			$survey_id = $_options['survey_id'];
 		}
@@ -298,6 +294,7 @@ class model extends \content_u\home\model
 			'post_content' => $content,
 			'post_survey'  => $survey_id,
 			'post_gender'  => $gender,
+			'post_privacy' => 'private',
 			'post_status'  => 'draft',
 			'post_meta'    => "{\"desc\":\"$summary\"}"
 		];
