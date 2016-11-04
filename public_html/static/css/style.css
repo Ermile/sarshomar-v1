@@ -24,11 +24,11 @@ body{background-color:#00667a;}
 
 
 /************************************************************** header */
-header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;font-size:1.4em;}
-header #header-box{overflow:hidden;position:relative;height:89px;}
+header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
+header #header-box{position:relative;height:89px;overflow:hidden;}
 
 /* header top */
-header #header-top{background-color:red;}
+header #header-top{height:60px;}
 header #header-top::before{content:"";position:absolute;width:100%;height:2px;background-color:#00667a;}
 header #header-top > a{color:#035261;display:inline-block;}
 header #header-top > a:hover{color:#37aaa7;}
@@ -40,11 +40,25 @@ header #header-profile .register{background-color:#37aaa7;color:#F4F4F4;font-wei
 header #header-profile .register:hover{background-color:#129491;color:#eee;}
 header #header-profile .register:active{background-color:#0e7d7a;}
 
+header #header-bottom{height:29px;}
+header #current-url{position:relative;color:#656464;font-size:12px;padding-left:10px;}
+header #current-url::before{content:">";position:absolute;top:0;left:0;}
+header #previous-url{color:#9A9A9A;margin-left:10px;font-size:10px;}
+
+/* rtl */
+.rtl header #current-url{padding-left:0;padding-right:10px;}
+.rtl header #current-url::before{right:0;}
+.rtl header #previous-url{margin-left:0;margin-right:10px;}
+
+
 /* header logo*/
-header .logo{position:relative;float:left;text-align:left;height:89px;width:240px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding: 20px 0 0;}
+header .logo{position:relative;float:left;text-align:left;height:89px;width:240px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0;}
 .rtl header .logo{text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
-header .logo img{width:50px;height:50px;transition:all 0.2s;}
-header .logo h1{font-size:20px;margin-bottom:0;color:#f4f4f4;border-bottom:none;display:inline-block;font-weight:700;line-height:20px;vertical-align:middle;}
+header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;}
+header .logo h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
+header .logo h1 a{color:#f4f4f4;}
+
+.rtl header .logo h1{font-size:26px;}
 header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo:hover img{opacity:0.9}
 header .logo h1:hover{color:#fff;}
@@ -68,8 +82,8 @@ header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;
 #random-chart .column{height:300px;}
 
 /* intro box  */
-#intro-box h2{color:#00667A;}
-#intro-box p{color:#666666;text-align:justify;width:90%;}
+#intro-box h2{color:#00667A;margin-bottom:0;font-weight:bold;}
+#intro-box p{color:#666666;width:90%;margin-bottom:1em;font-size:1.3em;}
 #intro-box .try-for-free{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;font-size:2em;color:#F4F4F4;}
 #intro-box .try-for-free:hover{background-color:#129491;}
 
@@ -370,7 +384,8 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 /* customers */
 #customers-box{padding:100px 0;}
-#customers-box .customer{margin-bottom:10em;position:relative;}
+#customers-box .customer{position:relative;}
+#customers-box .customer:not(:last-child){margin-bottom:10em;}
 #customers-box .customer h3{position:relative;display:inline-block;}
 #customers-box .customer a{color:inherit;}
 #customers-box .customer p{color:#ADADAD;width:70%;text-align:justify;}
@@ -405,7 +420,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 
 /* features */
-#features-box{padding:15em 0;text-align:center;background-color:#e6e6e6;}
+#features-box{padding:0em 5em 5em;text-align:center;/*background-color:#e6e6e6;*/}
 #features-box .tab{float:right;width:33.33%;margin-bottom:2em;cursor:pointer;border-bottom:2em solid #bfc7d0;}
 #features-box .tab.current{transition:all 0.3s ease;border-bottom:2em solid #0067a5;}
 #features-box .tab.current .title{color:#000;}

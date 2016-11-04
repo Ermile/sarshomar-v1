@@ -5,8 +5,7 @@
   <div class="row auto">
     <div class="span7" id="intro-box">
       <h2>{{site.slogan}}</h2>
-      <p>روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است.</p>
-      <!-- <p>Concentrate on your question. Do not have any concerns about asking and analyzing questions. Sarshomar with integrated infrastructure, provides you the possibility to ask questions in every platform.</p> -->
+      <p>{%trans "Concentrate on your question. Do not have any concerns about asking and analyzing questions. Sarshomar with integrated infrastructure, provides you the possibility to ask questions in every platform."%}</p>
       <a href="" class="try-for-free">{%trans "Try free"%}</a>
     </div>
     <div class="span5" id='random-chart'>
@@ -18,36 +17,41 @@
   </div>
 
   <div class="row" id="map">
-  {%if site.currentlang == "en"%}
+    <!-- <div class="h2">{%trans ""%}</div> -->
+{%if site.currentlang == "en"%}
     <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
-  {%else%}
+{%else%}
     <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
     <div class="span7" id="chart">
       <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
       <div class="chart age-chart"></div>
     </div>
-  {%endif%}
+{%endif%}
   </div>
 
   <div class="row" id="customers-box">
     <div class="customer">
       <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+      <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua."%}</p>
     </div>
 
     <div class="customer">
       <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+      <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua."%}</p>
     </div>
 
     <div class="customer">
       <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+      <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua."%}</p>
     </div>
 
     <div class="customer">
       <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
+      <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua."%}</p>
     </div>
   </div><!-- /#customers-box -->
 </div>
@@ -57,28 +61,27 @@
     <div class="row">
       <div class="tab" data-tab="3">
         <div class="circle variety"></div>
-        <div class="title">پایگاه دانش</div>
+        <div class="title">{%trans "Knowledge Base"%}</div>
       </div>
       <div class="tab current" data-tab="2">
         <div class="circle precision"></div>
-        <div class="title">جامعه آماری معتبر</div>
+        <div class="title">{%trans "Valid Population"%}</div>
       </div>
       <div class="tab " data-tab="1">
         <div class="circle security"></div>
-        <div class="title">دسترسی آسان</div>
+        <div class="title">{%trans "Easy Access"%}</div>
       </div>
     </div>
     <div class="row content">
-      <p>تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید</p>
-      <p class="current">سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک همراه با نمودار بررسی کنید</p>
-      <p>از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره ببرید</p>
+      <p>{%trans "Just having the Internet without having to install software, take advantage of various services Census"%}</p>
+      <p class="current">{%trans "Ask your questions of the population census and the results will be valid along with the chart breakdown"%}</p>
+      <p>{%trans "The vast knowledge and valuable census, as a credible source to enjoy your goals"%}</p>
     </div>
   </div>
 </div>
 {%endblock%}
 
 {%block foot_js%}
-<!-- <script src="https://code.highcharts.com/modules/drilldown.js"></script> -->
 <script type="text/javascript">
 var topChartOptions = {
   chart: {

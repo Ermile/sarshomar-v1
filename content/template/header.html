@@ -1,7 +1,7 @@
   <header>
    <span class='logo'>
     <a href="{{url.base}}"><img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'></a>
-    <a href="{{url.base}}"><h1>{{site.title}}</h1></a>
+    <h1><a href="{{url.base}}">{{site.title}}</a></h1>
    </span>
    <div id='header-box'>
     <div id='header-top'>
@@ -30,6 +30,10 @@
       <a href='{{url.base}}signup' data-direct class='register'>{%trans "Register"%}</a>
 {%endif%}
      </nav>
+    </div>
+    <div id="header-bottom">
+      <a href="#" id="current-url">{{site.title}}</a>
+      <a href="#" id="previous-url">{%trans "Back to previous"%}</a>
     </div>
    </div>
   </header>
