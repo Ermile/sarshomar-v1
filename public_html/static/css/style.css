@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version:3.9.0
+ * Version:3.9.1
  * Author:Ermile
  * Author URI:Ermile.com
  */
@@ -14,6 +14,7 @@ body{background-color:#00667a;}
 
 .wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:30px 0;}
 .box {display:block;padding:0 15px;margin:0;width:100%;}
+#home .wrapper{padding-bottom:0;}
 #home .box{padding:0 50px;}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:"";}
 .wrapper::after,.box::after,header::after{clear:both;}
@@ -48,13 +49,10 @@ header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo:hover img{opacity:0.9}
 header .logo h1:hover{color:#fff;}
 header .logo h2:hover{color:#fff;}
-/* header page title*/
-header .header-title{position:absolute;right:0;left:0;margin:0 auto;width:10%;min-width:100px;max-width:120px;background-color:#14677B;text-align:center;color:#F4F4F4;font-size:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;height:53px;line-height:53px;}
-header .header-title::before{content:"";position:absolute;background-image:url(../images/svg/up2.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;right:100%;}
-header .header-title::after{content:"";position:absolute;background-image:url(../images/svg/up1.svg);background-repeat:no-repeat;background-size:100%;width:62px;height:100%;top:0;left:100%;}
 
 header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;line-height:30px;}
 #home header .header-title{display:none}
+
 /* rtl design */
 .rtl header{border-right:none;border-left:8px solid transparent;}
 .rtl header::before{background-image:url(../images/svg/wrapper-top-rtl.svg) !important;right:0;margin-left:auto;margin-right:-10px;}
@@ -63,16 +61,19 @@ header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;
 .rtl header #header-quick{float:right;text-align:right}
 .rtl header #header-profile{float:left;padding:10px 0 0 1em;}
 
-#top-box .column{height:300px;}
-#top-box .intro{text-align:center;}
-#top-box h2{color:#00667A;font-weight:bold;}
-#top-box p{color:#666666;font-weight:bold;padding:0 20px;}
-#top-box h3{padding-bottom:0;}
-#top-box h3 a{color:#444445;}
-#top-box .try-for-free{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;}
-#top-box .try-for-free:hover{background-color:#129491;}
-#top-box .try-for-free h4{margin-bottom:0;font-weight:700;color:#F4F4F4;}
-#top-box .try-for-free div{color:#D5D5D5;font-size:inherit;}
+/* random chart */
+#random-chart{background-color:#fff}
+#random-chart h3{padding:0 1em;font-size:1.3em;}
+#random-chart h3 a{color:#444445;font-weight:200;}
+#random-chart .column{height:300px;}
+
+/* intro box  */
+#intro-box h2{color:#00667A;}
+#intro-box p{color:#666666;text-align:justify;width:90%;}
+#intro-box .try-for-free{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;font-size:2em;color:#F4F4F4;}
+#intro-box .try-for-free:hover{background-color:#129491;}
+
+
 /************************************************************** footer */
 footer{border-top:8px solid transparent;background-color:#083942;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;}
 footer .container{padding:0 2%;}

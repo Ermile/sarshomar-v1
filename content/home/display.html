@@ -2,16 +2,14 @@
 
 {%block content%}
 <div class="box">
-  <div class="row auto" id="top-box">
-    <div class="span7 intro">
+  <div class="row auto">
+    <div class="span7" id="intro-box">
       <h2>{{site.slogan}}</h2>
-      <p>سرشمار خیلی عالیست برای شما هم خوب است اگه مریض باشید کمکتان می کند تا خوب شوید در ضمن منم ازش استفاده می کنم</p>
-      <a href="" class="try-for-free">
-        <h4>{%trans "Try Sarshomar"%}</h4>
-        <div>{%trans "It's free"%}</div>
-      </a>
+      <p>روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است.</p>
+      <!-- <p>Concentrate on your question. Do not have any concerns about asking and analyzing questions. Sarshomar with integrated infrastructure, provides you the possibility to ask questions in every platform.</p> -->
+      <a href="" class="try-for-free">{%trans "Try free"%}</a>
     </div>
-    <div class="span5">
+    <div class="span5" id='random-chart'>
       <div class='chart'>
         <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
         <div class='column palette{{(random(6)) + 1}}'></div>
@@ -33,32 +31,22 @@
 
   <div class="row" id="customers-box">
     <div class="customer">
-      <h3><a href="">شرکت های تجاری</a></h3>
+      <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
       <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
     </div>
 
     <div class="customer">
-      <h3><a href="">مراکز آموزشی پزشکی</a></h3>
+      <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
       <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
     </div>
 
     <div class="customer">
-      <h3><a href="">موسسات و سازمان ها</a></h3>
+      <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
       <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
     </div>
 
     <div class="customer">
-      <h3><a href="">توسعه دهنده ها و صاحبان وبسایت</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-    </div>
-
-    <div class="customer">
-      <h3><a href="">آژانس های تبلیغاتی</a></h3>
-      <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
-    </div>
-
-    <div class="customer">
-      <h3><a href="">تک تک افراد جامعه</a></h3>
+      <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
       <p>داده های آماری و غیره به گونه ای ساده و شکل یافته نمودار می گویند. از نمودارها برای ساده کردن و ملموس کردن موضوعات گوناگون استفاده می شود.</p>
     </div>
   </div><!-- /#customers-box -->
@@ -85,13 +73,6 @@
       <p class="current">سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک همراه با نمودار بررسی کنید</p>
       <p>از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره ببرید</p>
     </div>
-  </div>
-</div>
-
-<div class="box">
-  <div class="row" id='trust'>
-    <img src="{{url.static}}images/tick.svg">
-    <p class="text">{% trans "Our answer sheets are absolutely correct, and we can measure the accuracy of answers" %}</p>
   </div>
 </div>
 {%endblock%}
@@ -206,7 +187,7 @@ var newChartOptions = {
 };
 
 $(function() {
-  $('#top-box .chart > div').highcharts(topChartOptions);
+  $('#random-chart .chart > div').highcharts(topChartOptions);
   $('#chart > .chart').highcharts(newChartOptions);
 
   var hoverOrClick = function()
