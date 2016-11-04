@@ -108,13 +108,21 @@ class profiles
 	 */
 	public static function get_profile_data($_user_id)
 	{
+		$profie = [];
 		$result = \lib\db\termusages::usage($_user_id, 'users');
 		$result = array_column($result, 'term_title', 'term_type');
-		$new_result = [];
+
 		foreach ($result as $key => $value) {
-			$new_result[str_replace('users_', '', $key)] = $value;
+			$profile[str_replace('users_', '', $key)] = $value;
 		}
-		return $new_result;
+
+		$filter = self::get_user_filter($_user_id);
+		$filter = array_filter($filter);
+		unset($filter['id']);
+		unset($filter['unique']);
+		$return = array_merge($profile, $filter);
+
+		return $return;
 	}
 
 
@@ -131,9 +139,6 @@ class profiles
 		{
 			return null;
 		}
-
-		// save filter id
-		$_SESSION['user']['filter_id'] = $filter_id;
 
 		$user_filter = \lib\db\filters::get($filter_id);
 
@@ -251,6 +256,7 @@ class profiles
 			$insert_profile['rangetitle'] = \lib\utility\age::get_range_title($age);
 
 		}
+
 		// no data add
 		if(empty($insert_profile))
 		{
@@ -258,7 +264,8 @@ class profiles
 		}
 
 		$old_user_filter = self::get_user_filter($_user_id);
-		if($old_user_filter && !is_array($old_user_filter))
+
+		if($old_user_filter && is_array($old_user_filter))
 		{
 			$old_user_filter = array_filter($old_user_filter);
 
@@ -501,6 +508,15 @@ class profiles
 	 */
 	public static function set_profile_by_poll($_args)
 	{
+		if(
+			!isset($_args['poll_id']) ||
+			!isset($_args['opt_key']) ||
+			!isset($_args['user_id'])
+		  )
+		{
+			return false;
+		}
+
 		$profile_lock =
 		"
 			SELECT
@@ -514,46 +530,36 @@ class profiles
 				option_value = 'profile'
 			LIMIT 1
 		";
-
+		// check this poll has been locked to profile data ?
 		$profile_lock = \lib\db::get($profile_lock, 'lock', true);
 		if(!$profile_lock)
 		{
 			return false;
 		}
 
-		$profile_data = self::get_profile_data($_args['user_id']);
-
 		$answers      = \lib\db\answers::get($_args['poll_id']);
 		$opt_value    = array_column($answers, 'option_value', 'option_key');
 
+		// the user has send an answer we have not in database
 		if(!isset($opt_value[$_args['opt_key']]))
 		{
 			return false;
 		}
-
 		$user_answer  = $opt_value[$_args['opt_key']];
+
+		// get exist profile data of this users
+		$profile_data = self::get_profile_data($_args['user_id']);
 
 		// check old profile data by new data get by poll
 		if(isset($profile_data[$profile_lock]))
 		{
 			if($profile_data[$profile_lock] == $user_answer)
 			{
+				// this user is reliable
 				return true;
 			}
-			elseif($profile_data[$profile_lock] == null)
-			{
-				// set profile data
-				$profile_data[$profile_lock] = $user_answer;
-				return self::set_profile_data($_args['user_id'], $profile_data);
-			}
-			else
-			{
-				// this user is not reliable
-				// this user must be go to https://motamed.sarshomar.com to become activated
-				$profile_data[$profile_lock] = $user_answer;
-				return self::set_profile_data($_args['user_id'], $profile_data);
-			}
 		}
+		return self::set_profile_data($_args['user_id'], [$profile_lock => $user_answer]);
 	}
 
 

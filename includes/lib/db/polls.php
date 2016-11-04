@@ -509,16 +509,13 @@ class polls
 					posts.post_parent IN
 					(
 						SELECT
-							options.post_id
+							polldetails.post_id
 						FROM
-							options
+							polldetails
 						WHERE
-							options.option_cat = 'poll_' & posts.post_parent AND
-							options.option_key = 'answer_$_user_id' AND
-							options.user_id = $_user_id	 AND
-							options.post_id = posts.post_parent AND
-							-- Get opt has lock on tree
-							options.option_value IN
+							polldetails.user_id = $_user_id AND
+							polldetails.post_id = posts.post_parent AND
+							CONCAT('opt_', polldetails.opt) IN
 								(
 									SELECT
 										options.option_value

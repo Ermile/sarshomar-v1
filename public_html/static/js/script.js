@@ -59,7 +59,28 @@ route('@/me', function () {
         $('.main').removeClass('editing');
     });
 
-    $(this).on('click', 'button', function (event) {});
+    $(this).on('click', '.btn.save button', function (event) {
+        var val = $(this).parents('.element').children('.input').val();
+        var name = $(this).parents('.element').children('.input').attr("name");
+        $(this).ajaxify(
+          {
+            ajax:
+            {
+              data:
+              {
+                'name': name,
+                'value': val
+              },
+              // abort: true,
+              success: function(e, data, x)
+              {
+
+              },
+              url: '@/me',
+              method: 'post'
+            }
+          });
+    });
 });
 
 
