@@ -7,6 +7,7 @@ use content\saloos_tg\sarshomarbot\commands\handle;
 
 class controller extends \lib\mvc\controller
 {
+	public $custom_language = true;
 	/**
 	 * allow telegram to access to this location
 	 * to send response to our server
@@ -24,17 +25,10 @@ class controller extends \lib\mvc\controller
 			bot::$api_key     = '142711391:AAFH0ULw7BzwdmmiZHv2thKQj7ibb49DJ44';
 			bot::$name        = 'sarshomarbot';
 			bot::$cmdFolder   = '\\'. __NAMESPACE__ .'\commands\\';
-			bot::$defaultText = T_('Undefined');
 			bot::$defaultMenu = function(){
 				return commands\menu::main(true);
 			};
 			bot::$once_log	  = false;
-			bot::$fill        =
-			[
-			'name'     => T_('Sarshomar'),
-			'fullName' => T_('Sarshomar'),
-				// 'about'    => $txt_about,
-			];
 			bot::$methods['before']["/.*/"] = function(&$_name, &$_args){
 				if(isset($_args['reply_markup']) && isset($_args['reply_markup']['inline_keyboard']))
 				{
@@ -56,6 +50,24 @@ class controller extends \lib\mvc\controller
 			 * start hooks and run telegram session from db
 			 */
 			bot::hook();
+			$language = \lib\db\users::get_language(bot::$user_id);
+			handle::send_log($language);
+			if(empty($language) || !$language)
+			{
+				$this->set_language(\lib\router::get_storage('language'));
+			}
+			else
+			{
+				$this->set_language($language);
+			}
+			// exit();
+			bot::$fill        =
+			[
+			'name'     => T_('Sarshomar'),
+			'fullName' => T_('Sarshomar'),
+				// 'about'    => $txt_about,
+			];
+			bot::$defaultText = T_('Undefined');
 			\lib\db\tg_session::$user_id = bot::$user_id;
 			\lib\db\tg_session::start();
 

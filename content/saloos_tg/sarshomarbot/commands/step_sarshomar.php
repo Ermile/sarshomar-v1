@@ -5,6 +5,7 @@ use \lib\telegram\tg as bot;
 use \lib\telegram\step;
 use \lib\db\tg_session as session;
 use \content\saloos_tg\sarshomarbot\commands\utility;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 
 class step_sarshomar
 {
@@ -19,27 +20,32 @@ class step_sarshomar
 	 */
 	public static function start($_text = null, $_skip = null)
 	{
-		$return = [
-			"text" => "Choice poll type.",
-			"reply_markup" => [
-				'inline_keyboard' => [
-					[
+		if(is_null($_text))
+		{
+			$return = [
+				"text" => "Choice poll type.",
+				"reply_markup" => [
+					'inline_keyboard' => [
 						[
-							"text" 			=> T_("Sarshomar"),
-							"callback_data" => "ask/sarshomar"
-						],
-						[
-							"text" 			=> T_("Premium"),
-							"callback_data" => "ask/premium"
+							[
+								"text" 			=> T_("Sarshomar"),
+								"callback_data" => "ask/sarshomar"
+							],
+							[
+								"text" 			=> T_("Premium"),
+								"callback_data" => "ask/premium"
+							]
 						]
 					]
-				]
-			],
-			"response_callback" => utility::response_expire('sarshomar')
-		];
+				],
+				"response_callback" => utility::response_expire('sarshomar')
+			];
+		}
+		else
+		{
+			$return = self::step1($_text);
+		}
 		return $return;
-		step::start('sarshomar');
-		return self::step1($_text);
 	}
 
 
@@ -51,26 +57,11 @@ class step_sarshomar
 	{
 		$is_custom_poll = false;
 		$poll_url = $_poll_url;
-		if(is_null($poll_url))
-		{
-			$poll_url = bot::$cmd['text'];
-		}
-
+		handle::send_log($poll_url);
 		if(!is_null($poll_url))
 		{
-			preg_match("/^\/([^\s]+)\s(.+)$/", $poll_url, $poll_code);
-			if(empty($poll_code))
-			{
-				$poll_code = null;
-			}
-			else
-			{
-				$poll_code = $poll_code[2];
-			}
-		}
-		if(!is_null($poll_code))
-		{
-			$poll_id = \lib\utility\shortURL::decode($poll_code);
+			$poll_id = \lib\utility\shortURL::decode($poll_url);
+			handle::send_log($poll_id);
 			$is_answered = \lib\db\answers::is_answered(bot::$user_id, $poll_id);
 			$questionExist = self::get_question(null, $poll_id);
 			$is_custom_poll = true;

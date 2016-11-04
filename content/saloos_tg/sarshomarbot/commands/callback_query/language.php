@@ -98,6 +98,7 @@ class language
 				$meta = ["instert_text" => $_language];
 				$options['option_meta'] = json_encode(array_merge($meta, $_options));
 				self::$user_language = $key;
+				\lib\main::$controller->set_language($key);
 				return \lib\db\users::set_language($key, $options);
 			}
 		}

@@ -40,7 +40,7 @@ class ask
 			{
 				if($_response->ok)
 				{
-					bot::sendResponse(step_sarshomar::step1());
+					session::remove('expire', 'inline_cache', 'ask');
 				}
 			};
 		}
@@ -61,7 +61,6 @@ class ask
 				$poll_list .= $row[$count] . ' ' . $key . "\n";
 			}
 		}
-		handle::send_log($poll_result);
 		$for_edit = session::get_back('expire', 'inline_cache', 'ask');
 		$result = '📊' . $poll_result['title'];
 		$result .= "\n";

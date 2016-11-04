@@ -17,7 +17,7 @@ class create
 		$text .= "امیدواریم در آینده سوالات زیبا و کاربردی تهیه نمایید.";
 		$text .= "\n#create\_cancel";
 		$for_edit->result->original_text = $text;
-		// session::remove('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
 		step::stop();
 		return [];
 	}

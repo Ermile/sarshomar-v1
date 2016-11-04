@@ -67,7 +67,7 @@ class step_starting
 		if(!$return || is_null($return))
 		{
 			step::stop();
-			$return = ["text" => "Welcome", "reply_markup" => menu::main(true)];
+			$return = ["text" => T_("Welcome"), "reply_markup" => menu::main(true)];
 		}
 		return $return;
 	}
@@ -76,7 +76,7 @@ class step_starting
 	{
 		if(!is_null($_poll_short_code))
 		{
-			return step_sarshomar::start("/sarshomar " . $_poll_short_code, true);
+			return step_sarshomar::start($_poll_short_code, true);
 		}
 	}
 

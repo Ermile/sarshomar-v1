@@ -50,11 +50,18 @@ class handle
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{
-				$command_text = strtolower($_cmd['command']);
+				if(substr($_cmd['command'], 0, 4) == '/sp_')
+				{
+					$command_text = $_cmd['command'];
+				}
+				else
+				{
+					$command_text = strtolower($_cmd['command']);
+				}
 			}
 			else
 			{
-				$command_text = strtolower($_cmd['text']);
+				$command_text = $_cmd['text'];
 			}
 			switch ($command_text)
 			{
@@ -69,17 +76,20 @@ class handle
 				break;
 
 				case '/ask':
-				case T_('ask from me'):
-				$response = step_sarshomar::start();
+				case T_('Ask from me'):
+				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
+				$response = step_sarshomar::start(empty($sp) ? null : $sp[2]);
 				break;
 
+
+
 				case '/dashboard':
-				case T_('dashboard'):
+				case T_('Dashboard'):
 				$response = step_dashboard::start();
 				break;
 
 				case '/help':
-				case T_('help'):
+				case T_('Help'):
 				$response = step_help::start();
 				break;
 
@@ -103,7 +113,7 @@ class handle
 				$response = step_help::exec($command_text);
 				break;
 
-				case T_('create new pool'):
+				case T_('Create new pool'):
 				case '/create':
 				$response = step_create::start();
 				break;
