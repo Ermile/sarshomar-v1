@@ -6,19 +6,21 @@
     <div class="span3"></div>
     <div class="span6">
       <div class="element">
-        <label class="addon" for="name">{%trans "name"%}</label>
+        <label class="title" for="name">{%trans "name"%}</label>
         <input class="input" type="text" name="name" id="name">
       </div>
       <div class="element">
-        <label class="addon" for="email">{%trans "email"%}</label>
+        <label class="title" for="email">{%trans "email"%}</label>
         <input class="input" type="email" name="email" id="email">
       </div>
       <div class="element">
-        <label class="addon" for="content">{%trans "content"%}</label>
+        <label class="title" for="content">{%trans "content"%}</label>
         <textarea name="content" id="content" class="input"></textarea>
       </div>
-    </div><!-- /.span6 -->
-  </div><!-- /.row -->
+    </div>
+  </div>
 </div>
-<div class="buttons center"><button type="submit">{%trans "submit"%}</button></div>
+<div class="buttons center">
+  <button type="submit">{%trans "submit"%}</button>
+</div>
 {%endblock%}

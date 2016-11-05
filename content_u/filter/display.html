@@ -1,62 +1,68 @@
 {%extends display.main%}
 
 {%block content%}
-<form method="post">
-  <input type="hidden" name="type" value="">
-  <div class="row auto">
-    <div class="span8">
-      <div class="row">
+<div class="box">
+  <form method="post">
+    <input type="hidden" name="type" value="">
+    <div class="row auto">
+      <div class="span8">
+
         <div class="type">
           <ul class="tabs">
             {%for key, value in filter_list%}
-              <li data-tab="{{key}}"><span>{%trans key%}</span></li>
+            <li data-tab="{{key}}"><span>{%trans key%}</span></li>
             {%endfor%}
           </ul>
         </div><!-- /.type -->
 
         <ul class="tab">
           {%for key, value in filter_list%}
-            <li id="tab-{{key}}">
-              <div class="row">
-                <div class="span6">
+          <li id="tab-{{key}}">
+            <div class="row">
+              <div class="span8">
+                <div class="element filter">
+                  <label class="title" for="x" data-val="%20">asdasdadasd</label>
+                  <label class="checkbox">{%trans "Male"%}</label>
+                  <label class="checkbox">{%trans "Female"%}</label>
+                </div>
                 {%for name, list in value%}
-                  <div class="element">
-                    <label class="addon" for="{{name}}">{%trans name%}</label>
-                    {%if list == null%}
-                      <input type="text" name="filter_{{name}}" id="{{name}}" class="input">
-                    {%else%}
-                    <select class="input" name="filter_{{name}}" id="{{name}}" >
-                      {%for i, data in list %}
-                        {%if i == 0%}
-                          <option value="">{%trans "Please Select One Item"%}</option>
-                        {%endif%}
-                        <option value="{{data}}">{%trans data%}</option>
-                      {%endfor%}
-                    </select>
+                <div class="element">
+                  <label class="title" for="{{name}}">{%trans name%}</label>
+                  {%if list == null%}
+                  <input type="text" name="filter_{{name}}" id="{{name}}" class="input"> {%else%}
+                  <select class="input" name="filter_{{name}}" id="{{name}}">
+                    {%for i, data in list %}
+                    {%if i == 0%}
+                    <option value="">{%trans "Please Select One Item"%}</option>
                     {%endif%}
-                  </div>
+                    <option value="{{data}}">{%trans data%}</option>
+                    {%endfor%}
+                  </select>
+                  {%endif%}
+                </div>
                 {%endfor%}
               </div>
             </div>
           </li>
           {%endfor%}
-           <div class="buttons">
-              <nav>
-                <button name="submit" value="publish">{%trans "Publish"%}</button>
-              </nav>
-            </div><!-- /.buttons -->
-        </ul><!-- /.tab -->
-      </div><!-- /.row -->
-    </div>
-    <div class="span4">
-      <div class="total">
-        <span>Your total is 154,000$</span>
-      </div>
-    </div>
-  </div><!-- /.row.auto -->
-</form>
-{%endblock%}
 
+          <div class="buttons">
+            <button name="submit" value="publish">{%trans "Publish"%}</button>
+          </div><!-- /.buttons -->
+
+        </ul><!-- /.tab -->
+      </div>
+      <div class="span4">
+
+        <div class="total">
+          <span>Your total is 154,000$</span>
+        </div>
+
+      </div><!-- /.span4 -->
+    </div><!-- /.row.auto -->
+  </form>
+</div>
+{%endblock%}
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {%endblock%}

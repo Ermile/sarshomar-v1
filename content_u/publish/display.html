@@ -6,7 +6,7 @@
     <div class="span4"></div>
     <div class="span4">
       <div class="element">
-        <label class="addon" for="short_url">{%trans "Short URL"%}</label>
+        <label class="title" for="short_url">{%trans "Short URL"%}</label>
         <input class="input text-left" type="text" id="short_url" value="{{short_url}}" readonly="readonly">
         <span class="addon btn">
           <a href="{{short_url}}" target="_blank" data-direct>
@@ -15,7 +15,7 @@
         </span>
       </div>
       <div class="element">
-        <label class="addon" for="cat">{%trans "Category"%}</label>
+        <label class="title" for="cat">{%trans "Category"%}</label>
          <select class="input" name="cat" id="cat">
             {%for key, value in cat%}
               {%if key == 0%}
@@ -27,7 +27,7 @@
       </div>
 
       <div class="element">
-        <label class="addon" for="article">{%trans "Article"%}</label>
+        <label class="title" for="article">{%trans "Article"%}</label>
         <select class="input" name="article" id="article">
           {%for key, value in article%}
             {%if key == 0%}
@@ -40,17 +40,17 @@
 
 
       <div class="element">
-        <label class="addon">{%trans "Start Time"%}</label>
+        <label class="title">{%trans "Start Time"%}</label>
         <input class="input" type="text" name="start_time">
       </div>
 
       <div class="element">
-        <label class="addon">{%trans "End Time"%}</label>
+        <label class="title">{%trans "End Time"%}</label>
         <input class="input" type="text" name="end_time">
       </div>
 
       <div class="element">
-        <label class="addon" for="tags">{%trans "Tags"%}</label>
+        <label class="title" for="tags">{%trans "Tags"%}</label>
         <input class="input" type="text" name="tags" id="tags">
         <span class="addon btn tag-add-btn">
           <button>{%trans "Add"%}</button>

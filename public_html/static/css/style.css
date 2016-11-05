@@ -29,7 +29,7 @@ header #header-box{position:relative;height:89px;overflow:hidden;}
 
 /* header top */
 header #header-top{height:60px;}
-header #header-top::before{content:"";position:absolute;width:100%;height:2px;background-color:#00667a;}
+header #header-top::before{content:"";position:absolute;height:2px;background-color:#00667a;right:0;left:0;}
 header #header-top > a{color:#035261;display:inline-block;}
 header #header-top > a:hover{color:#37aaa7;}
 header #header-quick{display:inline-block;float:left;text-align:left;}
@@ -477,9 +477,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 /************************************************************** Forms */
 /* inputs*/
-.element{position:relative;display:inline-table;width:100%;margin-bottom:2em;border-collapse:separate;vertical-align:middle;padding-left:13px;}
+.element{position:relative;display:inline-table;width:100%;margin-bottom:2em;border-collapse:separate;vertical-align:middle;padding-left:12px;height:35px;}
 .rtl .element{padding-left:0;padding-right:13px;}
-.element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 12px;/*transition:all 0.2s;*/vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#e7e7e7;}
+.element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 20px;/*transition:all 0.2s;*/vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#e7e7e7;}
 .rtl .element .input{float:right;}
 ::-webkit-input-placeholder{color:#cfcfcf;}
 :-moz-placeholder{color:#cfcfcf;}
@@ -495,10 +495,25 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .element .icon .fa{vertical-align:middle;}
 .element .input:focus + .icon{color:#d8dad0;background-color:#00667a;}
 .element .icon:hover{color:#27a4bd;}
-.element label{position:relative;width:100px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;padding-top:1px;}
-.rtl .element label{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
-.element label:before{position:absolute;top:5px;right:100%;display:inline;width:13px;height:25px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
-.rtl .element label:before{right:auto;left:100%;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
+.element .title{position:relative;width:130px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;padding-top:1px;line-height:1;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;}
+.rtl .element .title{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
+
+.element .title:before{position:absolute;top:5px;left:-12px;display:inline;width:13px;height:25px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
+.rtl .element .title:before{right:auto;left:100%;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
+
+.element.filter .title::after{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
+.element.filter.active .title::after{background-color:#E96F4B;}
+
+.element .checkbox{
+    position: relative;
+    width: calc(100% - 130px);
+    color: #d8dad0;
+    background-color: #E7E7E7;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .element.option label{width:60px;}
 .element.success .input{border:1px solid #6fd36b;border-right:none;background-color:#d9f1da;}
 .rtl .element.success .input{border-right:1px solid #6fd36b;border-left:none;}
@@ -646,7 +661,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /* Buttons */
 .buttons{position:relative;clear:both;text-align:right;margin-bottom:7em;}
 .rtl .buttons{text-align:left}
-.buttons::before{position:absolute;z-index:0;left:0px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
+.buttons::before{position:absolute;z-index:0;left:-15px;width:100%;height:2px;margin-top:17px;content:'';background-color:#e5a428;}
 .rtl .buttons::before{left:auto;right:-20px;}
 .buttons nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
 .buttons button, .buttons input[type="submit"]{position:relative;min-width:80px;padding:7px 10px;cursor:pointer;color:#454545;border:none;outline:none;background-color:#e7a429;}
@@ -656,6 +671,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .buttons button::before, .buttons input[type="submit"]::before{left:-22px;content:'\6c';}
 .buttons button::after, .buttons input[type="submit"]::after{right:-22px;content:'\6b';}
 .buttons.center{text-align:center;}
+.buttons.center::before{left:0;}
 
 /* Checkbox */
 .ac-custom{max-width:900px;margin:0 auto;}

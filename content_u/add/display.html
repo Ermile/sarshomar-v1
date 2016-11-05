@@ -3,6 +3,7 @@
 {%block content%}
 <form method="post">
   <input type="hidden" name="poll_type" value="">
+  <input type="hidden" name="filter" value="filter">
 
   <div class="row auto">
     <div class="span8">
@@ -22,21 +23,21 @@
         <ul class="tab">
           <li id="tab-multiple_choice">
             <div class="element">
-              <label class="addon" for="title">Title</label>
+              <label class="title" for="title">Title</label>
               <input class="input" type="text" name="title" id="title">
             </div>
 
             <div class="indent">
               <div class="input-group">
                 <div class="element option" data-number="1">
-                  <label class="addon" for="answer1">Answer 1</label>
+                  <label class="title" for="answer1">Answer 1</label>
                   <input class="input" type="text" name="answers[]" id="answer1">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
                 </div>
 
                 <div class="element option" data-number="2">
-                  <label class="addon" for="answer2">Answer 2</label>
+                  <label class="title" for="answer2">Answer 2</label>
                   <input class="input" type="text" name="answers[]" id="answer2">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
@@ -121,7 +122,7 @@
               </div>
               {%if sarshomar_mod%}
                  <div class="element">
-                  <label class="addon" for="profile">{%trans "Poll To Complete Profile"%}</label>
+                  <label class="title" for="profile">{%trans "Poll To Complete Profile"%}</label>
                   <select class="input" name="meta_profile" id="profile" >
                     <option value="">{%trans "Please Select One Item"%}</option>
                     {%for key, value in profile_lock%}
@@ -133,7 +134,7 @@
             </div><!-- /.indent -->
               {%if survey_mod%}
                 <div class="element">
-                  <label class="addon" for="survey_title">Survey Title</label>
+                  <label class="title" for="survey_title">Survey Title</label>
                   <input class="input" type="text" name="survey_title" id="survey_title">
                 </div>
               {%endif%}
@@ -146,21 +147,19 @@
           <li id="tab-sort">sort</li>
         </ul><!-- /.tab -->
       </div><!-- /.row -->
-    </div><!-- /.span8 -->
 
-    <div class="span8">
       <div class="buttons">
         <nav>
-          <button name="filter" value="filter">{%trans "Filter"%}</button>
-          <button name="publish" value="publish">{%trans "Publish"%}</button>
+          <button name="filter" type="submit" value="filter">{%trans "Filter"%}</button>
+          <button name="publish" type="submit" value="publish">{%trans "Publish"%}</button>
         {%if survey_mod%}
-          <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+          <button name="add_poll" type="submit" value="add_poll">{%trans "Add Poll"%}</button>
         {%else%}
-          <button name="survey" value="survey">{%trans "Survey"%}</button>
+          <button name="survey" type="submit" value="survey">{%trans "Survey"%}</button>
         {%endif%}
         </nav>
       </div><!-- /.buttons -->
-    </div>
+    </div><!-- /.span8 -->
 
     <div class="span4">
       <div class="row">
@@ -168,7 +167,7 @@
         <div class="group">
           <div class="title-line"><span>Survey</span></div>
           <div class="element option">
-            <label class="addon" for="secondary-title">Title</label>
+            <label class="title" for="secondary-title">Title</label>
             <input class="input" type="text" name="secondary-title" id="secondary-title">
           </div>
         </div>
@@ -178,7 +177,7 @@
           {%for key, value in poll_list%}
           <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
             <div class="element option has-floating">
-              <label class="addon" for="question{{key + 1}}">Question {{key + 1}}</label>
+              <label class="title" for="question{{key + 1}}">Question {{key + 1}}</label>
               <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
               <span class="addon floating">
                 <span><i class="fa fa-check" aria-hidden="true"></i></span>
