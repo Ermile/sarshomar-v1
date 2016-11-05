@@ -57,11 +57,9 @@ class step_sarshomar
 	{
 		$is_custom_poll = false;
 		$poll_url = $_poll_url;
-		handle::send_log($poll_url);
 		if(!is_null($poll_url))
 		{
 			$poll_id = \lib\utility\shortURL::decode($poll_url);
-			handle::send_log($poll_id);
 			$is_answered = \lib\db\answers::is_answered(bot::$user_id, $poll_id);
 			$questionExist = self::get_question(null, $poll_id);
 			$is_custom_poll = true;
@@ -72,7 +70,6 @@ class step_sarshomar
 			$questionExist = self::get_question();
 		}
 		// fix limit of number of answered in a period of time
-		// $answeredLimit   = step::get('i');
 		$answeredLimit   = \lib\db\stat_polls::answeredInPeriod(bot::$user_id, 6);
 		if(!$questionExist)
 		{
@@ -93,7 +90,7 @@ class step_sarshomar
 			return step_subscribe::start($txt);
 		}
 		// go to next step, step4
-		// step::plus();
+
 		// set title for
 		step::set('textTitle', 'question');
 		// reset last answer

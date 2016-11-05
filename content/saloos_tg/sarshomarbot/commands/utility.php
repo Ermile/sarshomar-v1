@@ -18,4 +18,9 @@ class utility
 			}
 		}, $options];
 	}
+
+	public static function inline()
+	{
+		return utility\inline_keyboard::add(...func_get_args());
+	}
 }

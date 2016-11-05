@@ -110,16 +110,30 @@ class step_create
 		}
 		else
 		{
-			$save = \lib\db\polls::insert_quick([
+			$txt_text .= $question;
+			$result   = ['text' => $txt_text];
+			step::stop();
+			$poll_id = \lib\db\polls::insert_quick([
 				'user_id' => bot::$user_id,
 				'title'=> $question_export[0],
 				'answers' => array_slice($question_export, 1)
 				]);
-			$txt_text .= $question;
-			$txt_text = "باشه تو خووووووووب\n" . $txt_text;
-			step::stop();
+			if($poll_id)
+			{
+				$short_link = \lib\utility\shortURL::encode($poll_id);
+			}
+			$result['text'] .= "\n[$short_link](https://telegram.me/sarshomarBot?start=sp_$short_link)";
+			$result['reply_markup'] = [
+			"inline_keyboard" => [
+					[
+						[
+							"text" => T_("Publish"),
+							"callback_data" => 'poll/publish/'.$short_link
+						]
+					]
+				]
+			];
 			$markup = null;
-			$result   =['text' => $txt_text];
 		}
 		// get name of question
 		// return menu

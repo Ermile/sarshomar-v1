@@ -16,7 +16,7 @@ class poll_result
 		$short_link_id = $url[1];
 		$inline_keyboard = array();
 		foreach ($poll_result['meta']['opt'] as $answer_key => $answer_value) {
-			$callback_data = 'ask/poll/' . $short_link_id . '/' . $answer_key;
+			$callback_data = 'ask/poll/' . $short_link_id . '/' . ($answer_key +1);
 			if(array_key_exists("callback_data", $_options))
 			{
 				if(is_object($_options['callback_data']))
@@ -36,7 +36,7 @@ class poll_result
 		}
 		$inline_keyboard[][0] = [
 		'text' => "❌ مایل به پاسخگویی نیستم",
-		'callback_data' => 'cancel/$/' . $short_link_id. '/0'
+		'callback_data' => 'ask/poll/' . $short_link_id. '/0'
 		];
 		self::add_message($message, "#sarshomar");
 		$short_url = 'https://sarshomar.com/sp_' . $short_link_id;

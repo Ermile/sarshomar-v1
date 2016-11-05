@@ -7,6 +7,7 @@ use content\saloos_tg\sarshomarbot\commands\chart;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use \content\saloos_tg\sarshomarbot\commands\utility;
 
 class ask
 {
@@ -20,8 +21,19 @@ class ask
 		$type = $_data_url[1];
 		session::remove_back('expire', 'inline_cache', 'sarshomar');
 		session::remove('expire', 'inline_cache', 'sarshomar');
-		callback_query::edit_message(step_sarshomar::step1());
+		callback_query::edit_message(self::make($_query, $_data_url, true));
 		return ["text" => $type];
+	}
+
+	public static function make($_query, $_data_url, $_return = false)
+	{
+		$poll = step_sarshomar::step1();
+		if($_return)
+		{
+			return $poll;
+		}
+		bot::sendResponse($poll);
+		return [];
 	}
 
 	public static function poll($_query, $_data_url)
@@ -52,7 +64,7 @@ class ask
 		foreach ($poll_result['result'] as $key => $value) {
 			$count++;
 			$poll_answer[$count] = $value;
-			if($poll_answer_id = ($count-1))
+			if($poll_answer_id == $count)
 			{
 				$poll_list .= '✅ ' . $key . "\n";
 			}
@@ -74,8 +86,19 @@ class ask
 		$result .= "\n";
 		$result .= "#sarshomar";
 		$for_edit->result->original_text = $result;
-		// session::set_back('expire', 'inline_cache', 'ask', chart::calc_vertical($poll_answer));
+		$for_edit->before_edit = self::after_poll($poll_short_link);
+
 		return $return;
+	}
+
+	public static function after_poll($_poll_short_link)
+	{
+		return [function(&$_return, $_options){
+			$_return["reply_markup"]['inline_keyboard'] =  [[
+				utility::inline(T_("Next poll"), "ask/make/sarshomar"),
+				utility::inline(T_("Update result"), "ask/update/" .$_options[0])
+			]];
+		}, $_poll_short_link];
 	}
 }
 ?>

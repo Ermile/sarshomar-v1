@@ -114,6 +114,7 @@ class handle
 				break;
 
 				case T_('Create new pool'):
+				case T_('Create'):
 				case '/create':
 				$response = step_create::start();
 				break;

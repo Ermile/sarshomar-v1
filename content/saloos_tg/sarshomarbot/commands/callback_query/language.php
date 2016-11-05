@@ -93,6 +93,7 @@ class language
 			$language = strtolower($_language);
 			if(array_search($language, $value) !== false)
 			{
+				step::stop();
 				$options = ['update_on_duplicate' => false];
 				$options['user_id'] = bot::$user_id;
 				$meta = ["instert_text" => $_language];

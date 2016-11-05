@@ -51,7 +51,6 @@ class controller extends \lib\mvc\controller
 			 */
 			bot::hook();
 			$language = \lib\db\users::get_language(bot::$user_id);
-			handle::send_log($language);
 			if(empty($language) || !$language)
 			{
 				$this->set_language(\lib\router::get_storage('language'));
@@ -89,6 +88,16 @@ class controller extends \lib\mvc\controller
 					"chat_id" 					=> $value->result->chat->id,
 					"message_id" 				=> $value->result->message_id
 					];
+					if(isset($value->before_edit))
+					{
+						if(is_object($value->before_edit)){
+							$value->before_edit($edit_return);
+						}
+						elseif(is_array($value->before_edit))
+						{
+							$value->before_edit[0]($edit_return, array_slice($before_edit, 1));
+						}
+					}
 					bot::sendResponse($edit_return);
 				}
 			}
