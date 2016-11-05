@@ -255,7 +255,7 @@ class polls
 					'txt' => $value
 				];
 			}
-			return \lib\db\answers::insert(['poll_id' => $insert_id , 'answers' => $answers_value]);
+			\lib\db\answers::insert(['poll_id' => $insert_id , 'answers' => $answers_value]);
 		}
 		return $insert_id;
 	}
