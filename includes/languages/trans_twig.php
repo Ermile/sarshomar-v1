@@ -185,7 +185,26 @@ private function transtext()
 	//--------------------------------------------content\template\static\mission.html
 
 	//--------------------------------------------content\template\static\privacy.html
-	echo T_("Privacy");                                                               // Line 4
+	echo T_("What is Privacy?");                                                      // Line 5
+	echo T_("Privacy means that any individual is entitled to choose the information related to them, and selectively, share it with others.");// Line 6
+	echo T_("privacy is so important for mental peace as well as a peaceful personality that some experts have considered invasion of privacy disrespectful to human dignity.");// Line 6
+	echo T_("Controversies over the Invasion of Privacy");                            // Line 8
+	echo T_("Within e-commerce, privacy has always been from among the most controversial topics and continues to be.");// Line 9
+	echo T_("Accordingly, formulating privacy policies is regarded as one of the crucial concerns of technology companies.");// Line 9
+	echo T_("Meanwhile, widespread controversies have been provoked over invasion of privacy in e-commerce so that, occasionally, the regulations have to be revised to eliminate the existing weaknesses.");// Line 9
+	echo T_("Privacy from Our Point of View");                                        // Line 11
+	echo T_("Let us be straightforward! Cyberspace is not a safe location for personal information.");// Line 12
+	echo T_("For that reason, Sarshomar makes no request for important information of yours and the request for receiving general information including age, gender, education, interests, etc. is only for the sake of the documentation and validation of the results reached at by Sarshomar.");// Line 12
+	echo T_("It is worth mentioning that recording the aforementioned points is totally voluntary.");// Line 12
+	echo T_("However, taking the nature of cyberspace into account, we should remember that offering an absolute assurance might not be possible.");// Line 14
+	echo T_("Assuring privacy and security, with that ideal concept we bear in mind, does not exist; and if somebody gives you an assurance of securing your privacy, he has certainly abused your trust.");// Line 14
+	echo T_("Upon buying any digital or the so-called smart device, you have invaded your own privacy yourself.");// Line 16
+	echo T_("If you want your privacy not to be invaded, you should depart from technology and say goodbye to any digital and smart device.");// Line 16
+	echo T_("In fact, we have employed all updated technologies of the world to provide you with the maximum security.");// Line 16
+	echo T_("Due to the scientific nature of Sarshomar as well as the attempts made to enhance the trust in the found results of opinion polls, profile completion has been made possible in the system.");// Line 18
+	echo T_("In case you are willing to help us to improve the quality of Sarshomar and to promote the efficiency of your own contribution, provide us with your general information.");// Line 18
+	echo T_("Please remember that in case of your unwillingness, it is possible for you to refuse completing the profile questions.");// Line 18
+	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 20
 
 	//-------------------------------------------content\template\static\referral.html
 	echo T_("Referral");                                                              // Line 4
