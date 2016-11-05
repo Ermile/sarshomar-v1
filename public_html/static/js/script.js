@@ -83,6 +83,14 @@ route('@/me', function () {
     });
 });
 
+// pollsearch | Knowledge
+route('*', function () {
+  $('.pollsearch').keyup(function(e){
+     var val = $(this).val();
+    Navigate({ url: '$/search=' + val });
+  });
+  $('.pollsearch').focus().val($('.pollsearch').val());
+});
 
 // Me | Profile
 route('*', function () {

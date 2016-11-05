@@ -4,6 +4,10 @@
 <div class="row">
   <div class="span1"></div>
   <div class="span8">
+  <div class="search">
+    <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}">
+    <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+  </div>
 {%if poll_list%}
     <div class="polls-head">
       <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
@@ -26,10 +30,8 @@
 {%endfor%}
     </ul>
 {%else%}
-    <div class="msg error">There is no question in database!</div>
-    <div><a href="{{base.url}}/@/add">Add now!</a></div>
+    <div class="msg error">{%trans "No Result Found"%}</div>
 {%endif%}
   </div><!-- /.span8 -->
-  <div class="span3"><h1>Filter</h1></div>
 </div>
 {%endblock%}

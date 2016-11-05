@@ -4,6 +4,18 @@ use \lib\utility;
 
 class model extends \mvc\model
 {
+
+	/**
+	 * search in polls
+	 */
+	// public function post_search()
+	// {
+	// 	$search = utility::post("search");
+	// 	$result = \lib\db\polls::search($search);
+	// 	return $result;
+	// }
+
+
 	/**
 	 * Gets the search.
 	 *

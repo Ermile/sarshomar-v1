@@ -35,6 +35,7 @@ class view extends \mvc\view
 	 */
 	public function view_search($_args)
 	{
+		$this->data->search_value =  $_args->get("search")[0];
 		// get fontawesome class
 		$list = $_args->api_callback;
 		if($list && is_array($list))

@@ -7,6 +7,7 @@ class controller extends \mvc\controller
 	function _route()
 	{
 		$this->get(false,"knowledge")->ALL("$");
+		// $this->post("search")->ALL("$");
 
 		/**
 		 * check the support filter and make all filter array
