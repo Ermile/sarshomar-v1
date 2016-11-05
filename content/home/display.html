@@ -94,7 +94,7 @@ var topChartOptions = {
   },
   xAxis:
   {
-    categories:{series: {{result['random_result']['categories'] | raw}}}
+    categories:{{result['random_result']['categories'] | raw}}
   },
 
   yAxis: {
@@ -130,7 +130,7 @@ var topChartOptions = {
   tooltip: {
     enabled: false
   },
-  series: eval({{result['random_result']['data'] | raw}})
+  series: {{result['random_result']['data'] | raw}}
 };
 
 var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
