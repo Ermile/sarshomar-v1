@@ -28,9 +28,9 @@ class answers
 
 			$meta = [
 					'desc'  => '',
-					'true'  => $value['true'],
-					'point' => $value['point'],
-					'type'  => $value['type']
+					'true'  => isset($value['true'])  ? $value['true']  : '',
+					'point' => isset($value['point']) ? $value['point'] : '',
+					'type'  => isset($value['type'])  ? $value['type']  : ''
 					];
 
 			// answers key : opt_1, opt_2, opt_[$i], ...
@@ -47,8 +47,8 @@ class answers
 			$opt_meta[] =
 			[
 				'key'  => 'opt_' .  $i,
-				'txt'  => $value['txt'],
-				'type' => $value['type']
+				'txt'  => isset($value['txt'])  ? $value['txt']  : '',
+				'type' => isset($value['type']) ? $value['type'] : ''
 			];
 
 		}
@@ -62,13 +62,11 @@ class answers
 		// desc : description of answers
 		$meta =
 		[
-			'opt'     	=> $opt_meta,
-			'answers' 	=> ''
+			'opt'     	=> $opt_meta
 		];
 
 		// merge old meta and new meta in post meta
 		$set_meta = \lib\db\polls::merge_meta($meta, $_args['poll_id']);
-
 		return $return;
 	}
 

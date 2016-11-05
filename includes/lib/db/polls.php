@@ -229,8 +229,9 @@ class polls
 
 		$post_value =
 		[
-			'user_id'     => $_args['user_id'],
-			'title'       => $_args['title']
+			'user_id'    => $_args['user_id'],
+			'post_title' => $_args['title'],
+			'post_type'  => 'select'
 		];
 
 		$insert_id = self::insert($post_value);
