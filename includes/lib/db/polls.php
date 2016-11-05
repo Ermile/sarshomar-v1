@@ -609,21 +609,22 @@ class polls
 	 */
 	public static function merge_meta($_field_meta, $_poll_id)
 	{
-
 		if(defined("mysql_json"))
 		{
 			$meta = json_encode($_field_meta, JSON_UNESCAPED_UNICODE);
-			$query = " JSON_MERGE(JSON_EXTRACT(posts.post_meta, '$'), '$meta')";
+			$meta_query = " JSON_MERGE(JSON_EXTRACT(posts.post_meta, '$'), '$meta')";
 		}
 		else
 		{
 			$meta = self::get_poll_meta($_poll_id);
-			if(is_array($meta) && is_array($_field_meta))
+			if(!is_array($meta))
 			{
-				$meta = array_merge($meta, $_field_meta);
+				$meta = [];
 			}
+			$meta = array_merge($meta, $_field_meta);
+
 			$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
-			$query = " '$meta' ";
+			$meta_query = " '$meta' ";
 		}
 
 		$query =
@@ -631,7 +632,7 @@ class polls
 			UPDATE
 				posts
 			SET
-				post_meta  = $query
+				post_meta  = $meta_query
 			WHERE
 				posts.id = $_poll_id
 			-- polls::merge_meta()
