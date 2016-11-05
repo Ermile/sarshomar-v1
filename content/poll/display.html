@@ -160,35 +160,27 @@
       {% for key, value in post.comments %}
         <div class="span4 comment">
           <div class="score">
-            <div class="plus" data-value="23">
+            <div class="plus" data-value="{{value.comment_minus}}">
               <object data="/static/images/score-g.svg">
                 <span></span>
               </object>
             </div>
-            <div class="minus">
+            <div class="minus" data-value="{{value.comment_plus}}">
               <object data="/static/images/score-r.svg" data-value="12"></object>
             </div>
           </div>
-
           <div class="title">{{value.comment_meta}}</div>
-
+          {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
           <div>
-          {%set k = value.comment_rate%}
-          {%if k > 5 %}
-          {%set k = 5 %}
-          {%endif%}
           {%for i in 1..k%}
               <span><i class="fa fa-star" aria-hidden="true"></i></span>
           {%endfor%}
           </div>
-
           <div class="user">{{value.comment_author}}</div>
-
           <div class="content">
             <p>{{value.comment_content}}</p>
           </div>
-
-          <span class="continue">ادامه</span>
+          <span class="continue">{%trans "More"%}</span>
         </div>
       {% endfor %}
     </div>
