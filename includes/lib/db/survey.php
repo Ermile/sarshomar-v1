@@ -32,8 +32,7 @@ class survey
 			FROM
 				posts
 			WHERE
-				posts.post_parent = '$_survey_id' AND
-				posts.post_type LIKE 'survey_poll_%'
+				posts.post_survey = '$_survey_id'
 			-- survey::get_poll_list()
 		";
 		return \lib\db::get($query);
