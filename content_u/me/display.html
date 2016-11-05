@@ -63,11 +63,11 @@
             </div>
             <div class="element raw">
               <label for="uilanguage" class="addon">{%trans "UI Language"%}</label>
-              <input type="text" name="uilanguage" id="uilanguage" value="{{me.uilanguage}}" class="input" disabled>
+              <input type="text" name="uilanguage" id="uilanguage" value="{{me.uilanguage}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="religion" class="addon">{%trans "Religion"%}</label>
-              <input type="text" name="religion" id="religion" value="{{me.religion}}" class="input" disabled>
+              <input type="text" name="religion" id="religion" value="{{me.religion}}" class="input autocomplete" disabled>
             </div>
           </div>
         </li>
@@ -76,6 +76,7 @@
             <div class="element raw">
               <label for="graduation" class="addon">{%trans "Graduation"%}</label>
               <select class="input" name="graduation" id="graduation">
+                <option value="">{%trans "Please Select One Item"%}</option>
                 <option value="illiterate">{%trans "Illiterate"%}</option>
                 <option value="undergraduate">{%trans "Undergraduate"%}</option>
                 <option value="graduate">{%trans "Graduate"%}</option>
@@ -84,17 +85,19 @@
             <div class="element raw">
               <label for="educationtype" class="addon">{%trans "Education Type"%}</label>
               <select name="educationtype" id="educationtype" class="input">
+                <option value="">{%trans "Please Select One Item"%}</option>
                 <option value="academic">{%trans "Academic"%}</option>
                 <option value="howzeh">{%trans "Howzeh"%}</option>
               </select>
             </div>
             <div class="element raw">
               <label class="addon" for="course">{%trans "Course"%}</label>
-              <input class="input" type="text" name="course" id="course" value="{{me.course}}" disabled>
+              <input class="input autocomplete" type="text" name="course" id="course" value="{{me.course}}" disabled>
             </div>
             <div class="element raw">
               <label for="degree" class="addon">{%trans "Degree"%}</label>
               <select name="degree" id="degree" class="input">
+                <option value="">{%trans "Please Select One Item"%}</option>
                 <option value="under diploma">{%trans "Under Diploma"%}</option>
                 <option value="diploma">{%trans "Diploma"%}</option>
                 <option value="2 year college">{%trans "2 Year College"%}</option>
@@ -106,19 +109,19 @@
             </div>
             <div class="element raw">
               <label for="howzeh" class="addon">{%trans "Howzeh"%}</label>
-              <input type="text" name="howzeh" id="howzeh" value="{{me.howzeh}}" class="input" disabled>
+              <input type="text" name="howzeh" id="howzeh" value="{{me.howzeh}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="howzehdegree" class="addon">{%trans "Howzeh Degree"%}</label>
-              <input type="text" name="howzehdegree" id="howzehdegree" value="{{me.howzehdegree}}" class="input" disabled>
+              <input type="text" name="howzehdegree" id="howzehdegree" value="{{me.howzehdegree}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="howzehcourse" class="addon">{%trans "Howzeh Course"%}</label>
-              <input type="text" name="howzehcourse" id="howzehcourse" value="{{me.howzehcourse}}" class="input" disabled>
+              <input type="text" name="howzehcourse" id="howzehcourse" value="{{me.howzehcourse}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="educationcity" class="addon">{%trans "Education City"%}</label>
-              <input type="text" name="educationcity" id="educationcity" value="{{me.educationcity}}" class="input" disabled>
+              <input type="text" name="educationcity" id="educationcity" value="{{me.educationcity}}" class="input autocomplete" disabled>
             </div>
           </div>
         </li>
@@ -127,6 +130,7 @@
             <div class="element raw">
               <label for="employmentstatus" class="addon">{%trans "Employment Status"%}</label>
               <select name="employmentstatus" id="employmentstatus" class="input">
+                <option value="">{%trans "Please Select One Item"%}</option>
                 <option value="employee">{%trans "Employee"%}</option>
                 <option value="unemployee">{%trans "Unemployee"%}</option>
                 <option value="retired">{%trans "Retired"%}</option>
@@ -134,19 +138,19 @@
             </div>
             <div class="element raw">
               <label for="industry" class="addon">{%trans "Industry"%}</label>
-              <input type="text" name="industry" id="industry" value="{{me.industry}}" class="input" disabled>
+              <input type="text" name="industry" id="industry" value="{{me.industry}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="company" class="addon">{%trans "Company"%}</label>
-              <input type="text" name="company" id="company" value="{{me.company}}" class="input" disabled>
+              <input type="text" name="company" id="company" value="{{me.company}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="jobcity" class="addon">{%trans "Job City"%}</label>
-              <input type="text" name="jobcity" id="jobcity" value="{{me.jobcity}}" class="input" disabled>
+              <input type="text" name="jobcity" id="jobcity" value="{{me.jobcity}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="jobtitle" class="addon">{%trans "Job Title"%}</label>
-              <input type="text" name="" id="jobtitle" value="{{me.jobtitle}}" class="input" disabled>
+              <input type="text" name="" id="jobtitle" value="{{me.jobtitle}}" class="input autocomplete" disabled>
             </div>
           </div>
         </li>
@@ -158,15 +162,15 @@
               </div>
               <div class="element raw">
                 <label for="birthcountry" class="addon">{%trans "Birth Country"%}</label>
-                <input type="text" name="birthcountry" id="birthcountry" value="{{me.birthcountry}}" class="input" disabled>
+                <input type="text" name="birthcountry" id="birthcountry" value="{{me.birthcountry}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="birthprovince" class="addon">{%trans "Birth Province"%}</label>
-                <input type="text" name="birthprovince" id="birthprovince" value="{{me.birthprovince}}" class="input" disabled>
+                <input type="text" name="birthprovince" id="birthprovince" value="{{me.birthprovince}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="birthcity" class="addon">{%trans "Birth City"%}</label>
-                <input type="text" name="birthcity" id="birthcity" value="{{me.birthcity}}" class="input" disabled>
+                <input type="text" name="birthcity" id="birthcity" value="{{me.birthcity}}" class="input autocomplete" disabled>
               </div>
             </div>
             <div class="group">
@@ -175,23 +179,24 @@
               </div>
               <div class="element raw">
                 <label for="country" class="addon">{%trans "Country"%}</label>
-                <input type="text" name="country" id="country" value="{{me.country}}" class="input" disabled>
+                <input type="text" name="country" id="country" value="{{me.country}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="province" class="addon">{%trans "Province"%}</label>
-                <input type="text" name="province" id="province" value="{{me.province}}" class="input" disabled>
+                <input type="text" name="province" id="province" value="{{me.province}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="city" class="addon">{%trans "City"%}</label>
-                <input type="text" name="city" id="city" value="{{me.city}}" class="input" disabled>
+                <input type="text" name="city" id="city" value="{{me.city}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="village" class="addon">{%trans "Village"%}</label>
-                <input type="text" name="village" id="village" value="{{me.village}}" class="input" disabled>
+                <input type="text" name="village" id="village" value="{{me.village}}" class="input autocomplete" disabled>
               </div>
               <div class="element raw">
                 <label for="housestatus" class="addon">{%trans "House Status"%}</label>
                 <select name="housestatus" id="housestatus" class="input">
+                  <option value="">{%trans "Please Select One Item"%}</option>
                   <option value="owner">{%trans "Owner"%}</option>
                   <option value="tenant">{%trans "Tenant"%}</option>
                   <option value="homeless">{%trans "Homeless"%}</option>
@@ -214,6 +219,7 @@
               <div class="element raw">
                 <label for="marrital" class="addon">{%trans "Marrital"%}</label>
                 <select name="marrital" id="marrital" class="input">
+                  <option value="">{%trans "Please Select One Item"%}</option>
                   <option value="single">{%trans "Single"%}</option>
                   <option value="married">{%trans "Married"%}</option>
                 </select>
@@ -234,6 +240,7 @@
             <div class="element raw">
               <label for="internetusage" class="addon">{%trans "Internet Usage"%}</label>
               <select name="internetusage" id="internetusage" class="input">
+                <option value="">{%trans "Please Select One Item"%}</option>
                 <option value="low">{%trans "Low"%}</option>
                 <option value="mid">{%trans "Mid"%}</option>
                 <option value="high">{%trans "High"%}</option>
@@ -241,55 +248,55 @@
             </div>
             <div class="element raw">
               <label for="skills" class="addon">{%trans "Skills"%}</label>
-              <input type="text" name="skills" id="skills" value="{{me.skills}}" class="input" disabled>
+              <input type="text" name="skills" id="skills" value="{{me.skills}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="languages" class="addon">{%trans "Languages"%}</label>
-              <input type="text" name="languages" id="languages" value="{{me.languages}}" class="input" disabled>
+              <input type="text" name="languages" id="languages" value="{{me.languages}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="books" class="addon">{%trans "Books"%}</label>
-              <input type="text" name="books" id="books" value="{{me.books}}" class="input" disabled>
+              <input type="text" name="books" id="books" value="{{me.books}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="writers" class="addon">{%trans "Writers"%}</label>
-              <input type="text" name="writers" id="writers" value="{{me.writers}}" class="input" disabled>
+              <input type="text" name="writers" id="writers" value="{{me.writers}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="films" class="addon">{%trans "Films"%}</label>
-              <input type="text" name="films" id="films" value="{{me.films}}" class="input" disabled>
+              <input type="text" name="films" id="films" value="{{me.films}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="actors" class="addon">{%trans "Actors"%}</label>
-              <input type="text" name="actors" id="actors" value="{{me.actors}}" class="input" disabled>
+              <input type="text" name="actors" id="actors" value="{{me.actors}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="genre" class="addon">{%trans "Genre"%}</label>
-              <input type="text" name="genre" id="genre" value="{{me.genre}}" class="input" disabled>
+              <input type="text" name="genre" id="genre" value="{{me.genre}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="musics" class="addon">{%trans "Musics"%}</label>
-              <input type="text" name="musics" id="musics" value="{{me.musics}}" class="input" disabled>
+              <input type="text" name="musics" id="musics" value="{{me.musics}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="artists" class="addon">{%trans "Artists"%}</label>
-              <input type="text" name="artists" id="artists" value="{{me.artists}}" class="input" disabled>
+              <input type="text" name="artists" id="artists" value="{{me.artists}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="sports" class="addon">{%trans "Sports"%}</label>
-              <input type="text" name="sports" id="sports" value="{{me.sports}}" class="input" disabled>
+              <input type="text" name="sports" id="sports" value="{{me.sports}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="sportmans" class="addon">{%trans "Sportmans"%}</label>
-              <input type="text" name="sportmans" id="sportmans" value="{{me.sportmans}}" class="input" disabled>
+              <input type="text" name="sportmans" id="sportmans" value="{{me.sportmans}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="habbits" class="addon">{%trans "Habbits"%}</label>
-              <input type="text" name="habbits" id="habbits" value="{{me.habbits}}" class="input" disabled>
+              <input type="text" name="habbits" id="habbits" value="{{me.habbits}}" class="input autocomplete" disabled>
             </div>
             <div class="element raw">
               <label for="devices" class="addon">{%trans "Devices"%}</label>
-              <input type="text" name="devices" id="devices" value="{{me.devices}}" class="input" disabled>
+              <input type="text" name="devices" id="devices" value="{{me.devices}}" class="input autocomplete" disabled>
             </div>
           </div>
         </li>

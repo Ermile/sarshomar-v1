@@ -84,6 +84,39 @@ route('@/me', function () {
 });
 
 
+// Me | Profile
+route('*', function () {
+  $.each($('input.autocomplete'),function(){
+    $(this).keyup(function(e){
+      name = $(this).attr('name');
+      val = $(this).val();
+      $(this).ajaxify(
+      {
+        ajax:
+        {
+          method: 'post',
+          data:
+          {
+            'type'  : 'autocomplete',
+            'data'  : name,
+            'search': val
+          },
+          // abort: true,
+          success: function(e, data, x)
+          {
+            data = e.msg.callback;
+            for (a in data)
+            {
+              // console.log(data[a]['term_title']);
+              // console.log(data[a]['term_url']);
+              // console.log(data[a]['term_count']);
+            }
+          }
+        }
+      });
+    });
+  });
+});
 // Select
 // Reference: http://jsfiddle.net/BB3JK/47/
 // $('select').each(function () {

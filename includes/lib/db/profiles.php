@@ -122,6 +122,8 @@ class profiles
 		unset($filter['unique']);
 		$return = array_merge($profile, $filter);
 
+		$return['mobile'] = \lib\db\users::get_mobile($_user_id);
+
 		return $return;
 	}
 

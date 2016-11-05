@@ -23,7 +23,8 @@ class answers
 		$opt_meta = [];
 		// answers key : opt_1, opt_2, opt_[$i], ...
 		$i = 0;
-		foreach ($_args['answers'] as $key => $value) {
+		foreach ($_args['answers'] as $key => $value)
+		{
 
 			$meta = [
 					'desc'  => '',
@@ -71,11 +72,8 @@ class answers
 		return $return;
 	}
 
-	public static function update($_args, $_id) {
-		if(!isset($_args['meta'])){
-			$_args['option_meta'] = json_encode($_args, JSON_UNESCAPED_UNICODE);
-		}
-
+	public static function update($_args, $_id)
+	{
 		return \lib\db\options::update($_args, $_id);
 	}
 
@@ -87,7 +85,8 @@ class answers
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get($_poll_id) {
+	public static function get($_poll_id)
+	{
 		$query = "
 				SELECT
 					*
