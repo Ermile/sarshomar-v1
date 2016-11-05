@@ -13,16 +13,21 @@ class ask
 {
 	public static function start($_query, $_data_url)
 	{
-		if(count($_data_url) > 2)
+		if(count($_data_url) > 1)
 		{
 			$method = $_data_url[1];
 			return self::$method($_query, $_data_url);
 		}
-		$type = $_data_url[1];
+		return [];
+	}
+
+	public static function type($_query, $_data_url)
+	{
+		$type = $_data_url[2];
 		session::remove_back('expire', 'inline_cache', 'sarshomar');
 		session::remove('expire', 'inline_cache', 'sarshomar');
 		callback_query::edit_message(self::make($_query, $_data_url, true));
-		return ["text" => $type];
+		return [];
 	}
 
 	public static function make($_query, $_data_url, $_return = false)
@@ -46,16 +51,7 @@ class ask
 		\lib\db\answers::save(bot::$user_id, $poll_id, $poll_answer_id);
 		$return = [];
 		$return["text"] = "✅ save your poll";
-		if(count($_data_url) > 4 && $_data_url[4] == 'last')
-		{
-			$return["response_callback"] = function($_response)
-			{
-				if($_response->ok)
-				{
-					session::remove('expire', 'inline_cache', 'ask');
-				}
-			};
-		}
+
 		$poll_result = \lib\db\stat_polls::get_telegram_result($poll_id);
 		$poll_answer = array();
 		$poll_list = '';
@@ -94,11 +90,24 @@ class ask
 	public static function after_poll($_poll_short_link)
 	{
 		return [function(&$_return, $_options){
+			$update_result = utility::inline(T_("Update result"), "ask/update/" .$_options[0]);
 			$_return["reply_markup"]['inline_keyboard'] =  [[
-				utility::inline(T_("Next poll"), "ask/make/sarshomar"),
-				utility::inline(T_("Update result"), "ask/update/" .$_options[0])
+			utility::inline(T_("Next poll"), "ask/make"),
+			$update_result
 			]];
+			$_return["response_callback"] = utility::response_expire('ask', [
+				"after_ok" => [function($_response, $_data, $_options){
+					$_response->before_edit = self::after_next_poll($_options);
+				}, $update_result]
+				]);
 		}, $_poll_short_link];
+	}
+
+	public static function after_next_poll()
+	{
+		return [function(){
+			handle::send_log(func_get_args());
+		}, func_get_args()];
 	}
 }
 ?>

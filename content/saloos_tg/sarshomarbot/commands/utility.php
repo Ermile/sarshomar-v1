@@ -6,21 +6,36 @@ use \lib\db\tg_session as session;
 
 class utility
 {
-	public static function response_expire($_key)
+	public static function response_expire($_key, $_options = [])
 	{
-		$options = ["key" => $_key];
+		$options = $_options;
+		$options["key"] = $_key;
 		return [function($_response, $_data, $_options)
 		{
 			if($_response->ok)
 			{
 				$_response->result->original_text = $_data['text'];
+				if(isset($_options['after_ok']))
+				{
+					$after_ok = $_options['after_ok'];
+					if(is_object($after_ok)){
+						$after_ok($edit_return);
+					}
+					elseif(is_array($after_ok))
+					{
+						$after_ok[0]($_response, $_data, array_slice($after_ok, 1));
+					}
+				}
 				session::set('expire', 'inline_cache', $_options['key'], $_response);
 			}
 		}, $options];
 	}
 
-	public static function inline()
+	public static function inline($_text, $_callback)
 	{
-		return utility\inline_keyboard::add(...func_get_args());
+		return [
+		"text" => $_text,
+		"callback_data" => $_callback
+		];
 	}
 }

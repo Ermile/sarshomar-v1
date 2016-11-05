@@ -29,11 +29,11 @@ class step_sarshomar
 						[
 							[
 								"text" 			=> T_("Sarshomar"),
-								"callback_data" => "ask/sarshomar"
+								"callback_data" => "ask/type/sarshomar"
 							],
 							[
 								"text" 			=> T_("Premium"),
-								"callback_data" => "ask/premium"
+								"callback_data" => "ask/type/premium"
 							]
 						]
 					]
