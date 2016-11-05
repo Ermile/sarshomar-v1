@@ -71,7 +71,7 @@ route('@/me', function () {
                 'name': name,
                 'value': val
               },
-              // abort: true,
+              abort: true,
               success: function(e, data, x)
               {
 
@@ -109,7 +109,7 @@ route('*', function () {
             'data'  : name,
             'search': val
           },
-          // abort: true,
+          abort: true,
           success: function(e, data, x)
           {
             data = e.msg.callback;

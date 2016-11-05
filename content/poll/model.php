@@ -61,6 +61,52 @@ class model extends \mvc\model
 	 */
 	public function post_save_answer()
 	{
+		if(utility::post("comment"))
+		{
+			if(isset($_SESSION['last_poll_id']))
+			{
+				$poll_id = $_SESSION['last_poll_id'];
+			}
+			elseif(utility::post("data-id") && utility::post("data-id") != '')
+			{
+				$poll_id = utility::post("data-id");
+			}
+			else
+			{
+				\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
+				return false;
+			}
+			$rate = utility::post("rate");
+			if(intval($rate) > 5)
+			{
+				$rate = 5;
+			}
+
+			$args =
+			[
+				'comment_author'  => $this->login("displayname"),
+				'comment_email'   => $this->login("email"),
+				'comment_meta'    => utility::post("title"),
+				'comment_content' => utility::post("content"),
+				'comment_rate'    => $rate,
+				'user_id'         => $this->login("id"),
+				'post_id'         => $poll_id
+			];
+			// insert comments
+			$result = \lib\db\comments::insert($args);
+
+			if($result)
+			{
+				\lib\debug::true(T_("your comment saved, tank you"));
+				return ;
+			}
+			else
+			{
+				\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
+				return false;
+			}
+			return;
+		}
 		if(utility::post("data-id") && utility::post("data-id") != '')
 		{
 			$poll_id = utility::post("data-id");
