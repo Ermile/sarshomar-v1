@@ -500,7 +500,7 @@ nav#page-nav #nav-prev{float:left;}
 
 /************************************************************** Forms */
 /* inputs*/
-.element{position:relative;display:inline-table;width:100%;margin-bottom:2em;border-collapse:separate;vertical-align:middle;padding-left:12px;height:35px;line-height:35px;overflow:hidden;}
+.element{position:relative;display:inline-flex;width:100%;margin-bottom:2em;border-collapse:separate;vertical-align:middle;padding-left:12px;height:35px;line-height:35px;overflow:hidden;}
 .rtl .element{padding-left:0;padding-right:13px;}
 .element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 20px;/*transition:all 0.2s;*/vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#e7e7e7;}
 .rtl .element .input{float:right;}
@@ -518,7 +518,7 @@ nav#page-nav #nav-prev{float:left;}
 .element .icon .fa{vertical-align:middle;}
 .element .input:focus + .icon{color:#d8dad0;background-color:#00667a;}
 .element .icon:hover{color:#27a4bd;}
-.element .title{position:relative;width:130px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;height:35px;line-height:35px;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;font-size:14px;}
+.element .title{position:relative;min-width:130px;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;height:35px;line-height:35px;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;font-size:14px;}
 .rtl .element .title{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
 
 .element .title:before{position:absolute;top:5px;left:-12px;display:inline;width:13px;height:25px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
