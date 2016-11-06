@@ -881,6 +881,8 @@ class polls
 		unset($_options['pagenation']);
 
 		$where = [];
+		$where[] = " posts.post_type != 'post' ";
+
 		foreach ($_options as $key => $value) {
 			$where[] = " posts.`$key` = '$value' ";
 		}
