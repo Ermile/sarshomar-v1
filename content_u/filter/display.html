@@ -22,8 +22,10 @@
               <div class="span8">
                 <div class="element filter">
                   <label class="title" for="x" data-val="%20">asdasdadasd</label>
-                  <label class="checkbox">{%trans "Male"%}</label>
-                  <label class="checkbox">{%trans "Female"%}</label>
+                  <input type="checkbox" name="male" id="male">
+                  <label class="checkbox" for="male">{%trans "Male"%}</label>
+                  <input type="checkbox" name="female" id="female">
+                  <label class="checkbox" for="female">{%trans "Female"%}</label>
                 </div>
                 {%for name, list in value%}
                 <div class="element">
