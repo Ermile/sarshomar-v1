@@ -1,7 +1,7 @@
 /**
  * In the Name of God
  * Sarshomar Styles
- * Version:3.9.1
+ * Version:4.0.0
  * Author:Ermile
  * Author URI:Ermile.com
  */
@@ -706,24 +706,25 @@ li[data-tab="multiple_choice"]{min-width:130px;}
 .buttons.center::before{left:0;}
 
 /************************************************************** Custom checkbox */
-.ac-custom{max-width:900px;margin:0 auto;position:relative;}
-.ac-custom h2{font-size:3em;font-weight:300;margin:0 0 30px;padding:0 0 0.5em;}
-.ac-custom ul, .ac-custom ol{max-width:800px;margin:0;padding:0;list-style:none;}
-.ac-custom li{position:relative;margin:0 auto;padding:1em 0;}
-.ac-custom label{font-size:1.2em;position:relative;display:inline-block;padding:0 0 0 35px;cursor:pointer;-webkit-transition:color 0.3s;transition:color 0.3s;vertical-align:top;color:#767676;}
-.ac-custom input[type='checkbox'], .ac-custom input[type='radio'], .ac-custom label::before{position:absolute;top:50%;left:0;width:20px;height:20px;margin-top:-10px;cursor:pointer;}
-.ac-custom input[type='checkbox'], .ac-custom input[type='radio']{z-index:100;display:inline-block;vertical-align:middle;opacity:0;-webkit-appearance:none;}
-.ac-custom input[type='checkbox']:hover + label::before, .ac-custom input[type='radio']:hover + label::before{background-color:#0a5260;}
-.ac-custom input[type='checkbox']:focus + label::before, .ac-custom input[type='radio']:focus + label::before{background-color:#D6D6D6;}
-.ac-custom label::before{content:'';-webkit-transition:opacity 0.3s;transition:opacity,background-color 0.3s;background-color:#AAAAAA;}
+.ac-custom{position:relative;display:block;font-size: 1.2em;margin: 0 1em 1em 0px;}
+.ac-custom.inline{display:inline-block;}
+
+.ac-custom label{display:inline-block;line-height:30px;margin-left:30px;padding:0 2em;cursor:pointer;-webkit-transition:color 0.3s;transition:color 0.3s;vertical-align:top;color:#767676;background-color:#e7e7e7;transition:0.3s;}
+.ac-custom label::before{content:'';-webkit-transition:opacity 0.3s;transition:opacity,background-color 0.3s;background-color:#ddd;position:absolute;top:50%;left:0;width:30px;height:30px;margin-top:-15px;cursor:pointer;}
+.ac-custom input[type='checkbox'], .ac-custom input[type='radio']{position:absolute;width:30px;height:30px;z-index:1;/*opacity:0;-webkit-appearance:none;*/}
+.ac-custom input[type='checkbox']:hover + label, .ac-custom input[type='radio']:hover + label{background-color:#ccc}
+.ac-custom input[type='checkbox']:focus + label, .ac-custom input[type='radio']:focus + label{background-color:#ccc}
+
 .ac-radio label::before{border-radius:50%;}
-.ac-custom input[type='checkbox']:checked + label, .ac-custom input[type='radio']:checked + label{color:#00667A;}
-.ac-custom input[type='checkbox']:checked + label::before, .ac-custom input[type='radio']:checked + label::before{opacity:0.8;background-color:#D6D6D6;}
+
+/* rtl design*/
+.rtl .ac-custom label{margin:0 30px 0 0;}
+.rtl .ac-custom input[type='checkbox'], .rtl .ac-custom input[type='radio'], .rtl .ac-custom label::before{left:inherit;right:0}
 
 
 /* General SVG and path styles */
 .ac-custom svg{position:absolute;top:50%;left:0;width:20px;height:20px;margin-top:-9px;pointer-events:none;}
-.ac-custom svg path{stroke:#00667a;stroke-width:13px;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+.ac-custom svg path{stroke:#e7a429;stroke-width:13px;stroke-linecap:round;stroke-linejoin:round;fill:none;}
 
 /* Circle */
 .ac-circle input[type='checkbox'], .ac-circle input[type='radio'], .ac-circle label::before{position:absolute;left:0;width:20px;height:20px;margin-top:-10px;}
@@ -740,7 +741,11 @@ li[data-tab="multiple_choice"]{min-width:130px;}
 .ac-list label::before{display:none;}
 .ac-list svg{top:1.2em;left:0;width:100%;height:80px;margin-top:0;}
 .ac-list svg path{stroke-width:4px;}
-.ac-checkbox svg{left:0;width:25px;height:30px;margin-top:-20px;}
+
+/* checkbox */
+.ac-checkbox svg{left:2px;width:26px;height:22px;margin-top:-12px;}
+.rtl .ac-checkbox svg{left:inherit;right:2px;}
+
 .ac-checkbox.ac-cross svg path{stroke-width:15px;}
 .ac-checkbox svg path, .ac-checkbox.ac-diagonal svg path{stroke-width:16px;}
 .ac-checkbox>div, .ac-checkbox>span{position:relative;margin: 1em}
