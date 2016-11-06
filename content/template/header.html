@@ -15,15 +15,15 @@
       <a href='@/add' data-direct class='login'>{%trans "Add Question"%}</a>
       <a href='{{url.base}}{{next_url}}' data-direct class='register'>{%trans "Ask Me"%}</a>
       <div class="profile">
-        <img src="{{url.static}}images/temporary/profile.jpg" alt="">
-        <div class="info">
-          <a href="@/me" class="name">{{displayname}}</a>
-          <span class="role">{%trans "Welcome"%}</span>
-        </div>
-        <div class="profile-detail">
-          <a href="@" class="dashboard">{%trans "Dashboard"%}</a>
-          <a href="logout" class="exit">{%trans "Exit"%}</a>
-        </div>
+       <img src="{{url.static}}images/temporary/profile.jpg" alt="">
+       <div class="info">
+        <a href="@/me" class="name">{{displayname}}</a>
+        <span class="role">{%trans "Welcome"%}</span>
+       </div>
+       <div class="profile-detail">
+        <a href="@" class="dashboard">{%trans "Dashboard"%}</a>
+        <a href="logout" class="exit">{%trans "Exit"%}</a>
+       </div>
       </div>
 {%else%}
       <a href='{{url.base}}login' data-direct class='login'>{%trans "Login"%}</a>
@@ -32,8 +32,8 @@
      </nav>
     </div>
     <div id="header-bottom">
-      <a href="#" id="current-url">{{site.title}}</a>
-      <a href="#" id="previous-url">{%trans "Back to previous"%}</a>
+     <a href="#" id="current-url">{{site.title}}</a>
+     <a href="#" id="previous-url">{%trans "Back to previous"%}</a>
     </div>
    </div>
   </header>

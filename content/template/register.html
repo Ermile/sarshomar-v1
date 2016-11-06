@@ -5,6 +5,10 @@
    <div class="span6">
     <h3>{%trans "Inspection, Ask, Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+{%if login%}
+
+{%else%}
     <a href="{{url.base}}@?inspection=inestimable">{%trans "Try Sarshomar"%}</a>
+{%endif%}
    </div>
   </div>
