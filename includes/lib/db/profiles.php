@@ -11,6 +11,7 @@ class profiles
 	{
 		$profile_data =
 		[
+			'mobile'		   => null,
 			'firstname'        => null,
 			'lastname'         => null,
 			'gender'           => ['male', 'female'],
@@ -108,26 +109,15 @@ class profiles
 	 */
 	public static function get_profile_data($_user_id)
 	{
-		$profie = [];
-		$result = \lib\db\termusages::usage($_user_id, 'users');
-		$result = array_column($result, 'term_title', 'term_type');
+		$profile = [];
+		$result  = \lib\db\termusages::usage($_user_id, 'users');
+		$result  = array_column($result, 'term_title', 'term_type');
 
 		foreach ($result as $key => $value) {
 			$profile[str_replace('users_', '', $key)] = $value;
 		}
 
-		$filter = self::get_user_filter($_user_id);
-		if(is_array($filter))
-		{
-			$filter = array_filter($filter);
-			unset($filter['id']);
-			unset($filter['unique']);
-			$return = array_merge($profile, $filter);
-		}
-
-		$return['mobile'] = \lib\db\users::get_mobile($_user_id);
-
-		return $return;
+		return $profile;
 	}
 
 
@@ -288,14 +278,12 @@ class profiles
 		{
 			$filter_id = \lib\db\filters::insert($insert_filter);
 			// bug !!! . filter can not be add
-			if(!$filter_id)
-			{
-				return false;
-			}
 		}
-
-		$arg    = ['filter_id' => $filter_id];
-		$result = \lib\db\users::update($arg, $_user_id);
+		if($filter_id)
+		{
+			$arg    = ['filter_id' => $filter_id];
+			$result = \lib\db\users::update($arg, $_user_id);
+		}
 
 		$insert_termusages = [];
 
@@ -381,20 +369,15 @@ class profiles
 			else
 			{
 				// insert new termusages record
-				$insert_termusages[] =
+				$insert_termusages =
 				[
 					'term_id'           => $new_term_id,
 					'termusage_foreign' => 'users',
 					'termusage_id'      => $_user_id
 				];
+				$useage = \lib\db\termusages::insert($insert_termusages);
 			}
 		}
-
-		if(!empty($insert_termusages))
-		{
-			$useage = \lib\db\termusages::insert_multi($insert_termusages);
-		}
-
 		return true;
 	}
 
