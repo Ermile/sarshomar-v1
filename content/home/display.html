@@ -17,13 +17,13 @@
   </div>
 
   <div class="row" id="map">
+    <h2 class="special-heading">پراکندگی جنسیت و سن کاربران سرشمار</h2>
     <!-- <div class="h2">{%trans ""%}</div> -->
 {%if site.currentlang == "en"%}
     <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
 {%else%}
     <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
     <div class="span7" id="chart">
-      <h4>پراکندگی جنسیت و سن کاربران سرشمار</h4>
       <div class="chart age-chart"></div>
     </div>
 {%endif%}
