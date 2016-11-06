@@ -1,4 +1,6 @@
-if( document.createElement('svg').getAttributeNS ) {
+if( document.createElement('svg').getAttributeNS )
+{
+
 
 	var checkbxsCross = Array.prototype.slice.call( document.querySelectorAll( '.ac-cross input[type="checkbox"]' ) ),
 		radiobxsFill = Array.prototype.slice.call( document.querySelectorAll( '.ac-fill input[type="radio"]' ) ),
