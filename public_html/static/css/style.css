@@ -14,8 +14,8 @@ body{background-color:#00667a;}
 
 .wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:30px 0;}
 .box {display:block;padding:0 15px;margin:0;width:100%;}
-#home .wrapper{padding-bottom:0;}
-#home .box{padding:0 50px;}
+#homepage .wrapper{padding-bottom:0;}
+#homepage .box{padding:0 50px;}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:"";}
 .wrapper::after,.box::after,header::after{clear:both;}
 
@@ -74,7 +74,7 @@ header .logo h1:hover{color:#fff;}
 header .logo h2:hover{color:#fff;}
 
 header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;line-height:30px;}
-#home header .header-title{display:none}
+
 
 /* rtl design */
 .rtl header{border-right:none;border-left:8px solid transparent;}
@@ -980,14 +980,14 @@ nav#page-nav #nav-prev{float:left;}
 @media only screen and (max-width:849px){
 .tabs{height:28px;}
 .type ul li > span{display:none;}
-#home header .logo img{margin-top:20px;}
-#home header #header-quick{height:50px;}
+#homepage header .logo img{margin-top:20px;}
+#homepage header #header-quick{height:50px;}
 #header-quick{display:block;width:100%;text-align:center;}
 #header-quick a{width:32.3%;text-align:center;}
 header #header-profile{display:block;width:100%;text-align:center;padding:0;}
 header #header-profile .register{display:inline-block;width:49%;text-align:center;}
 header #header-profile .login{width:49%;background-color:#a57d56;border-radius:3px;color:#eee;font-weight:900;transition:0.3s;}
-#home header .chart{width:100%;}
+#homepage header .chart{width:100%;}
 #trust p:before{width:80%;left:10%;}
 #trust p{padding:0 1em;}
 header .chart h3{padding-top:20px;}
@@ -1006,17 +1006,17 @@ footer #footer-links a{display:inline-block;color:#888;padding:0 2%;}
 }
 /*  S_Tablet */
 @media only screen and (max-width:660px){
-	#home header{border:none;margin:0;}
+	#homepage header{border:none;margin:0;}
 	header{font-size:1.1em;}
-	#home header .logo{width:100%;display:block;border:none;height:auto;padding:2em 0;float:none;}
-	#home header .logo img{width:180px;display:block;margin:0 auto 0;}
+	#homepage header .logo{width:100%;display:block;border:none;height:auto;padding:2em 0;float:none;}
+	#homepage header .logo img{width:180px;display:block;margin:0 auto 0;}
 	header #header-box{overflow:visible;padding:0.5em 1em;}
-	#home header #header-quick{height:50px;max-width:60%;font-size:1.3em;}
+	#homepage header #header-quick{height:50px;max-width:60%;font-size:1.3em;}
 	header #header-profile{width:40%;text-align:center;display:block;padding:10px 0;font-size:1.4em;}
 	header::before{display:none;}
   #map{display:none;}
 	header .chart h3 a{font-size:1.8em;}
-	#home header .chart{float:left;}
+	#homepage header .chart{float:left;}
   #features-box{padding:5em 0;}
 	header #header-profile .login{background-color:transparent;color:#585454;}
 	header #header-box{border-image:url(../images/border.png) 8 stretch;border-right:8px solid transparent;
@@ -1025,7 +1025,7 @@ footer #footer-links a{display:inline-block;color:#888;padding:0 2%;}
 }
 /* Mobile */
 @media only screen and (max-width:530px){
-  #home header .logo img{width:150px;}
+  #homepage header .logo img{width:150px;}
   header .chart h3 a{font-size:1.5em;}
   .container{width:95%;}
   #trust{font-size:1.3em;}
@@ -1034,13 +1034,13 @@ footer #footer-links a{display:inline-block;color:#888;padding:0 2%;}
   footer #footer-nav .eco{height:50px;}
   footer{border-top:none;margin-top:8px;}
   header #header-profile .register{width:100%;}
-  #home header #header-quick{padding-left:0;}
+  #homepage header #header-quick{padding-left:0;}
   #features-box{padding:5em 1em;}
 }
 @media only screen and (max-width:381px){
-	#home header .logo img{width:130px;}
-	#home header #header-quick a{width:100%;text-align:left;}
-	#home header .logo img{font-size:1.2em;}
+	#homepage header .logo img{width:130px;}
+	#homepage header #header-quick a{width:100%;text-align:left;}
+	#homepage header .logo img{font-size:1.2em;}
 	footer #footer-links a{padding:1% 2%;}
 	header .chart h3 a{font-size:1.3em;}
 	footer #footer-nav{margin-bottom:0;}

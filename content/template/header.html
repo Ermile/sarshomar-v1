@@ -6,14 +6,14 @@
    <div id='header-box'>
     <div id='header-top'>
      <nav id='header-quick' role='navigation'>
-      <a href='{{url.base}}features'>{%trans "Features"%}</a>
-      <a href='{{url.base}}$'>{%trans "Knowledge"%}</a>
-      <a href='{{url.base}}help'>{%trans "Help"%}</a>
+      <a href='{{url.base}}/features'>{%trans "Features"%}</a>
+      <a href='{{url.base}}/$'>{%trans "Knowledge"%}</a>
+      <a href='{{url.base}}/help'>{%trans "Help"%}</a>
      </nav>
      <nav id='header-profile' data-xhr='header-profile'>
 {%if login%}
       <a href='@/add' data-direct class='login'>{%trans "Add Question"%}</a>
-      <a href='{{url.base}}{{next_url}}' data-direct class='register'>{%trans "Ask Me"%}</a>
+      <a href='{{url.base}}/{{next_url}}' data-direct class='register'>{%trans "Ask Me"%}</a>
       <div class="profile">
        <img src="{{url.static}}images/temporary/profile.jpg" alt="">
        <div class="info">
@@ -26,14 +26,14 @@
        </div>
       </div>
 {%else%}
-      <a href='{{url.base}}login' data-direct class='login'>{%trans "Login"%}</a>
-      <a href='{{url.base}}signup' data-direct class='register'>{%trans "Register"%}</a>
+      <a href='{{url.base}}/login' data-direct class='login'>{%trans "Login"%}</a>
+      <a href='{{url.base}}/signup' data-direct class='register'>{%trans "Register"%}</a>
 {%endif%}
      </nav>
     </div>
     <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
 {%block breadcrumb%}
-     {{breadcrumb(null, true) | raw}}
+     {{breadcrumb(null, true, false) | raw}}
 {%endblock%}
     </nav>
    </div>
