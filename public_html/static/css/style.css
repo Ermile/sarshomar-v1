@@ -12,7 +12,7 @@
 /* General */
 body{background-color:#00667a;}
 
-.wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:30px 0;}
+.wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:30px 0;position:relative;}
 .box {display:block;padding:0 15px;margin:0;width:100%;}
 #homepage .wrapper{padding-bottom:0;}
 #homepage .box{padding:0 50px;}
@@ -143,6 +143,9 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #inestimable a::after{content:'l';left:0;margin-left:-31px;}
 #inestimable a:hover{background-color:#15535f;}
 #inestimable a:hover::before,#inestimable a:hover::after{color:#15535f;}
+
+#inestimable.verify{background-color:#58522c;}
+#inestimable.complete{background-color:#2c584f;}
 
 /************************************************************** box */
 #trust{padding:3em 0 5em;text-align:center;}
@@ -883,11 +886,11 @@ nav#page-nav #nav-prev{float:left;}
 
 
 /************************************************************** Pagination */
-.search{position:relative;margin-bottom:2em;}
-.search input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:20px;padding-right:60px;font-size:1.6em;}
-.search .search-button{position:absolute;top:0;right:0;height:100%;width:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;line-height:100%;cursor:pointer;}
-.search .search-button:hover{background-color:#0A5260;}
-.search .search-button .fa-search{font-size:1.2em;}
+.search-box{position:relative;margin-bottom:2em;}
+.search-box input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:20px;padding-right:60px;font-size:1.6em;}
+.search-box .search-button{position:absolute;top:0;right:0;height:100%;width:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;line-height:100%;cursor:pointer;}
+.search-box .search-button:hover{background-color:#0A5260;}
+.search-box .search-button .fa-search{font-size:1.2em;}
 
 
 /* media */

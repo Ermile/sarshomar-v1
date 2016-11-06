@@ -95,19 +95,14 @@ route(/^\$(.*)$/, function (_doc)
 	{
 		var val = $(this).val();
 		change  += 1;
-		console.log('change'+ change);
 
 		setTimeout(function()
 		{
 			if(change <= 1)
 			{
 				Navigate({ url: '$/search=' + val });
-				change = 0;
 			}
-			else
-			{
 				change -= 1;
-			}
 		}, 500);
 	});
 	$('.pollsearch', _doc).focus().val($('.pollsearch').val());

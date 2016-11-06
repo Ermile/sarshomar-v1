@@ -1,4 +1,4 @@
-  <div class="row auto" id='inestimable'>
+  <div class="row auto {%if login%}{%if login.status == 'active'%}complete{%else%}verify{%endif%}{%endif%}" id='inestimable' {%if login%}verify{%endif%}>
    <div class="span3 offset2">
     <img class="inestimable" src="{{url.static}}images/svg/inestimable.svg" alt='{%trans "We are inestimable"%}'>
    </div>
@@ -6,7 +6,6 @@
     <h3>{%trans "Inspection, Ask, Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
 {%if login%}
-
 {%else%}
     <a href="{{url.base}}/@?inspection=inestimable">{%trans "Try Sarshomar"%}</a>
 {%endif%}
