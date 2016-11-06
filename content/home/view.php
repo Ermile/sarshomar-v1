@@ -38,7 +38,10 @@ class view extends \mvc\view
 	}
 
 
-	function view_tags()
+	/**
+	 * { function_description }
+	 */
+	function view_ask()
 	{
 
 	}

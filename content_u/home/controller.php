@@ -42,7 +42,7 @@ class controller extends \mvc\controller
 	 * check users login
 	 * if not login redirect to login page
 	 */
-	function check_login()
+	public function check_login()
 	{
 		// check logined
 		if(!$this->login())

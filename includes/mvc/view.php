@@ -24,10 +24,6 @@ class view extends \lib\mvc\view
 		{
 			$this->data->displayname = $this->login("displayname");
 		}
-		if($this->login())
-		{
-			$this->data->next_url = \lib\db\polls::get_next_url($this->login("id"));
-		}
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
 

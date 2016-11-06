@@ -5,9 +5,19 @@ use \lib\debug;
 class model extends \mvc\model
 {
 
-	public function get_tags()
+	public function get_ask()
 	{
+		// cehck login
+		if(!$this->login())
+		{
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
+			return;
+		}
 
+		$user_id  = $this->login("id");
+		$next_url = \lib\db\polls::get_next_url($user_id);
+		$this->redirector()->set_url($next_url)->redirect();
+		return;
 	}
 
 	/**

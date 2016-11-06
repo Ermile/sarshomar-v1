@@ -26,7 +26,7 @@ class controller extends \mvc\controller
 
 		$this->post("random_result")->ALL("");
 
-		// $this->get("tags","tags")->ALL("/(.*)/");
+		$this->get("ask","ask")->ALL("ask");
 	}
 }
 ?>

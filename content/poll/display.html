@@ -156,20 +156,23 @@
       </div><!-- /.summary -->
     </div>
     <div class="row auto">
-
       {% for key, value in post.comments %}
         <div class="span4 comment">
-          <div class="score">
-            <div class="plus" data-value="{{value.comment_minus}}">
-              <object data="/static/images/score-g.svg">
-                <span></span>
-              </object>
+        <h4>minus{{value.comment_minus}}</h4>
+        <h4>plus{{value.comment_plus}}</h4>
+            <a class="minus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">-</a>
+            <a class="plus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">+</a>
+
+        <!--   <div class="score">
+
+            <div class="plus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}">
+              <object data="/static/images/score-g.svg"></object>
             </div>
-            <div class="minus" data-value="{{value.comment_plus}}">
+            <div class="minus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}">
               <object data="/static/images/score-r.svg" data-value="12"></object>
             </div>
-          </div>
-          <div class="title">{{value.comment_meta}}</div>
+          </div> -->
+          <!-- <div class="title">{#{value.comment_meta}#}</div> -->
           {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
           <div>
           {%for i in 1..k%}
@@ -184,13 +187,11 @@
         </div>
       {% endfor %}
     </div>
+    <object data="/static/images/score-r.svg" data-value="12" height="100" id="add-heart" ></object>
     <form method="post">
         <input type="hidden" name="comment" value="comment">
-        <input type="hidden" name="data-id" value="{{post.id}}">
-        <input type="text" name="title" placeholder="title">
-        <input type="text" name="rate" placeholder="rate">
-        <input type="text" name="content" placeholder="content">
-        <input type="submit">
+        <textarea name="content" placeholder="content"></textarea>
+        <input type="submit" value="send">
       </form>
   </div>
 </div><!-- /.comments -->
@@ -240,25 +241,56 @@
 
 {%block foot_js%}
 <script>
+$(document).ready(function(){
+
+  $('.plus').on('click', function(){
+    add_score_comment('plus', $(this).attr('data-comment-id'));
+  });
+  $('.minus').on('click', function(){
+    add_score_comment('minus', $(this).attr('data-comment-id'));
+  });
+});
+function add_score_comment(_type, _data_id)
+{
+  $(this).ajaxify(
+      {
+        ajax:
+        {
+          method: 'post',
+          data:
+          {
+            'type'  : _type,
+            'data'  : _data_id
+          },
+          abort: true,
+          success: function(e, data, x)
+          {
+
+          }
+        }
+      });
+}
 
 $(".save-anwser").on("ajaxify:success", function(_xhr, _data){
-    next_url = _data.msg.callback;
-        $(".btn-answers").children().remove();
-        $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
-        // $("div.opt").fadeOut();
-
+    // next_url = _data.msg.callback;
+    // $(".btn-answers").children().remove();
+    // $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
+    // $("div.opt").fadeOut();
 });
 
 
 function bookmark(_poll_id) {
-    $.ajax({
+    $.ajax(
+    {
         type: 'get',
         // url: '@/polls',
-        data: {
-            'type' : 'bookmark',
-            'poll_id': _poll_id
+        data:
+        {
+          'type'    : 'bookmark',
+          'poll_id' : _poll_id
         },
-        success: function(data) {
+        success: function(data)
+        {
            // console.log(data);
         }
     });
