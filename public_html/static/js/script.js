@@ -1,6 +1,9 @@
 // Add
 route('@/add', function()
 {
+  $(this).on('click','button', function(){
+    $(this).attr('type') = 'submit';
+  });
   // run on input change
   $(this).on('input', '.option .input[type="text"]', function(event) {
     var number_of_empty_inputs = 0;

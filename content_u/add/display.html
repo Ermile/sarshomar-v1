@@ -3,8 +3,6 @@
 {%block content%}
 <form method="post">
   <input type="hidden" name="poll_type" value="">
-  <input type="hidden" name="filter" value="filter">
-
   <div class="row auto">
     <div class="span8">
       <div class="row">
@@ -150,12 +148,12 @@
 
       <div class="buttons">
         <nav>
-          <button name="filter" type="submit" value="filter">{%trans "Filter"%}</button>
-          <button name="publish" type="submit" value="publish">{%trans "Publish"%}</button>
+          <button name="filter" value="filter">{%trans "Filter"%}</button>
+          <button name="publish" value="publish">{%trans "Publish"%}</button>
         {%if survey_mod%}
-          <button name="add_poll" type="submit" value="add_poll">{%trans "Add Poll"%}</button>
+          <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
         {%else%}
-          <button name="survey" type="submit" value="survey">{%trans "Survey"%}</button>
+          <button name="survey" value="survey">{%trans "Survey"%}</button>
         {%endif%}
         </nav>
       </div><!-- /.buttons -->
