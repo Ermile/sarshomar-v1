@@ -58,24 +58,21 @@ class model extends \mvc\model
 	 */
 	public function save_comment()
 	{
-		if(isset($_SESSION['last_poll_id']))
-		{
-			$poll_id = $_SESSION['last_poll_id'];
-		}
-		else
-		{
-			\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
-			return false;
-		}
+		$user_id = $this->login("id");
+		$poll_id = $_SESSION['last_poll_id'];
+
+		$type    = 'comment';
+		$status  = 'unapproved';
+		$content = utility::post("content");
 
 		$args =
 		[
 			'comment_author'  => $this->login("displayname"),
 			'comment_email'   => $this->login("email"),
-			'comment_content' => utility::post("content"),
-			'comment_rate'    => null,
-			'comment_type'    => 'comment',
-			'user_id'         => $this->login("id"),
+			'comment_content' => $content,
+			'comment_type'    => $type,
+			'comment_status'  => $status,
+			'user_id'         => $user_id,
 			'post_id'         => $poll_id
 		];
 		// insert comments
@@ -83,7 +80,7 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\debug::true(T_("your comment saved, tank you"));
+			\lib\debug::true(T_("your comment saved, thank you"));
 			return ;
 		}
 		else
@@ -113,7 +110,6 @@ class model extends \mvc\model
 		}
 	}
 
-
 	/**
 	 * save poll answers
 	 *
@@ -121,6 +117,18 @@ class model extends \mvc\model
 	 */
 	public function post_save_answer()
 	{
+		//----------------------------------------------------------------------------
+		// check poll id
+		if(isset($_SESSION['last_poll_id']))
+		{
+			$poll_id = $_SESSION['last_poll_id'];
+		}
+		else
+		{
+			\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
+			return false;
+		}
+		//----------------------------------------------------------------------------
 		// save a comment
 		if(utility::post("comment"))
 		{
@@ -128,6 +136,24 @@ class model extends \mvc\model
 			return;
 		}
 
+		//----------------------------------------------------------------------------
+		// save heart
+		if(utility::post("type") == 'heart')
+		{
+			$rate   = utility::post("data");
+			$result = \lib\db\comments::rate($this->login('id'), $poll_id, $rate);
+			if($result)
+			{
+				\lib\debug::true(T_("Your Rate is Saved, Thank You"));
+			}
+			else
+			{
+				\lib\debug::error(T_("We can not save your rate, please reload the page and try again"));
+			}
+			return;
+		}
+
+		//----------------------------------------------------------------------------
 		// save score of comments
 		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
 		{
@@ -135,16 +161,9 @@ class model extends \mvc\model
 			return;
 		}
 
-		if(utility::post("data-id") && utility::post("data-id") != '')
-		{
-			$poll_id = utility::post("data-id");
-		}
-		else
-		{
-			\lib\debug::error(T_("poll id not found"));
-			return false;
-		}
 
+		//----------------------------------------------------------------------------
+		// save answers
 		if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
 		{
 			\lib\debug::error(T_("poll id not match with your last question"));

@@ -76,36 +76,20 @@ class view extends \mvc\view
 			// check login for load opt
 			if($this->login())
 			{
-				// get previus link
-				// $this->data->previous_url = \lib\db\polls::get_previous_url($this->login("id"), $post_id);
-
-				// get next poll url
-				$next_url = \lib\db\polls::get_next_url($this->login("id"));
 				// save poll id into session to get in answer
 				$_SESSION['last_poll_id']  = $post_id;
 				// check next url and this post url to find load opt or no
-				// this this url == next url mean the user not answered to this poll and must be load the opt
-				if(isset($_args->get("url")[0][0]) && $_args->get("url")[0][0] == $next_url)
+
+				// check this user answerd to this poll or no
+				if(\lib\db\answers::is_answered($this->login("id"), $post_id))
 				{
-					if(isset($post['post_meta']['opt']))
-					{
-						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
-					}
+					// this user answered to this poll
+					$post['post_meta'] = ['opt' => null];
 				}
 				else
 				{
-					// check this user answerd to this poll or no
-					if(\lib\db\answers::is_answered($this->login("id"), $post_id))
-					{
-						// this user answered to this poll
-						$post['post_meta'] = ['opt' => null];
-						$this->data->next_url = $next_url;
-					}
-					else
-					{
-						// users load poll from other link
-						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
-					}
+					// users load poll from other link
+					$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 				}
 			}
 			else
@@ -184,6 +168,14 @@ class view extends \mvc\view
 								break;
 						}
 						break;
+						// show rate of comments
+					case 'comment':
+						$rate = [];
+						foreach ($value['option_meta'] as $key => $value) {
+							$rate[$key] = $value['avg'];
+						}
+						$this->data->rate = $rate;
+						break;
 					// case "true_answer":
 					default:
 						// !
@@ -235,7 +227,6 @@ class view extends \mvc\view
 
 			// to load post data in html
 			$this->data->post = $post;
-
 		}
 		else
 		{

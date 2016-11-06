@@ -16,6 +16,10 @@ class model extends \mvc\model
 
 		$user_id  = $this->login("id");
 		$next_url = \lib\db\polls::get_next_url($user_id);
+		if($next_url == null)
+		{
+			$next_url = '$';
+		}
 		$this->redirector()->set_url($next_url)->redirect();
 		return;
 	}
