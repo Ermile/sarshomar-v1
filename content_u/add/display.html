@@ -147,13 +147,14 @@
       </div><!-- /.row -->
 
       <div class="buttons">
+        <input type="hidden" name="n" value="v" id="submit-form">
         <nav>
-          <button name="filter" value="filter">{%trans "Filter"%}</button>
-          <button name="publish" value="publish">{%trans "Publish"%}</button>
+          <button send-name="filter" value="filter">{%trans "Filter"%}</button>
+          <button send-name="publish" value="publish">{%trans "Publish"%}</button>
         {%if survey_mod%}
-          <button name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+          <button send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
         {%else%}
-          <button name="survey" value="survey">{%trans "Survey"%}</button>
+          <button send-name="survey" value="survey">{%trans "Survey"%}</button>
         {%endif%}
         </nav>
       </div><!-- /.buttons -->

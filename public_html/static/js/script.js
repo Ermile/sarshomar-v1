@@ -2,7 +2,8 @@
 route('@/add', function()
 {
   $(this).on('click','button', function(){
-    $(this).attr('type','submit');
+    $('#submit-form').attr("value", $(this).attr("send-name"));
+    $('#submit-form').attr("name", $(this).attr("send-name"));
   });
   // run on input change
   $(this).on('input', '.option .input[type="text"]', function(event) {
