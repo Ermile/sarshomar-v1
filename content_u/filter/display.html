@@ -5,7 +5,7 @@
   <form method="post">
     <input type="hidden" name="type" value="">
     <div class="row auto">
-      <div class="span8">
+      <div class="span6">
 
         <div class="type">
           <ul class="tabs">
@@ -18,33 +18,29 @@
         <ul class="tab">
           {%for key, value in filter_list%}
           <li id="tab-{{key}}">
-            <div class="row">
-              <div class="span8">
-                <div class="element filter">
-                  <label class="title" for="x" data-val="%20">asdasdadasd</label>
-                  <input type="checkbox" name="male" id="male">
-                  <label class="checkbox" for="male">{%trans "Male"%}</label>
-                  <input type="checkbox" name="female" id="female">
-                  <label class="checkbox" for="female">{%trans "Female"%}</label>
-                </div>
-                {%for name, list in value%}
-                <div class="element">
-                  <label class="title" for="{{name}}">{%trans name%}</label>
-                  {%if list == null%}
-                  <input type="text" name="filter_{{name}}" id="{{name}}" class="input"> {%else%}
-                  <select class="input" name="filter_{{name}}" id="{{name}}">
-                    {%for i, data in list %}
-                    {%if i == 0%}
-                    <option value="">{%trans "Please Select One Item"%}</option>
-                    {%endif%}
-                    <option value="{{data}}">{%trans data%}</option>
-                    {%endfor%}
-                  </select>
-                  {%endif%}
-                </div>
-                {%endfor%}
-              </div>
+            <div class="element filter">
+              <label class="title" for="x" data-val="%20">asdasdadasd</label>
+              <input type="checkbox" name="male" id="male">
+              <label class="checkbox" for="male">{%trans "Male"%}</label>
+              <input type="checkbox" name="female" id="female">
+              <label class="checkbox" for="female">{%trans "Female"%}</label>
             </div>
+            {%for name, list in value%}
+            <div class="element">
+              <label class="title" for="{{name}}">{%trans name%}</label>
+              {%if list == null%}
+              <input type="text" name="filter_{{name}}" id="{{name}}" class="input"> {%else%}
+              <select class="input" name="filter_{{name}}" id="{{name}}">
+                {%for i, data in list %}
+                {%if i == 0%}
+                <option value="">{%trans "Please Select One Item"%}</option>
+                {%endif%}
+                <option value="{{data}}">{%trans data%}</option>
+                {%endfor%}
+              </select>
+              {%endif%}
+            </div>
+            {%endfor%}
           </li>
           {%endfor%}
 
@@ -54,6 +50,9 @@
 
         </ul><!-- /.tab -->
       </div>
+
+      <div class="span2"></div>
+
       <div class="span4">
 
         <div class="total">
