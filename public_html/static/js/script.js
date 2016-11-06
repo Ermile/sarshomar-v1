@@ -88,12 +88,29 @@ route('@/me', function () {
 });
 
 // pollsearch | Knowledge
-route('*', function () {
-	$('.pollsearch').keyup(function(e){
-		 var val = $(this).val();
-		Navigate({ url: '$/search=' + val });
+route(/^\$(.*)$/, function (_doc)
+{
+	var change = 0;
+	$('.pollsearch', _doc).keyup(function(e)
+	{
+		var val = $(this).val();
+		change  += 1;
+		console.log('change'+ change);
+
+		setTimeout(function()
+		{
+			if(change <= 1)
+			{
+				Navigate({ url: '$/search=' + val });
+				change = 0;
+			}
+			else
+			{
+				change -= 1;
+			}
+		}, 500);
 	});
-	$('.pollsearch').focus().val($('.pollsearch').val());
+	$('.pollsearch', _doc).focus().val($('.pollsearch').val());
 });
 
 // Me | Profile
