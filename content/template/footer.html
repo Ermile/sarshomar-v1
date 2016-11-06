@@ -16,7 +16,7 @@
      <a href="{{url.base}}features">{%trans "Features"%}</a>
      <a href="{{url.base}}$">{%trans "Knowledge"%}</a>
      <a href="{{url.base}}$/random">{%trans "Random Poll"%}</a>
-     <a href="{{url.base}}referral">{%trans "Referral Program"%}</a>
+     <!-- <a href="{{url.base}}referral">{%trans "Referral Program"%}</a> -->
     </nav>
 
     <nav class="span2">
@@ -35,9 +35,9 @@
      <h4>{%trans "Sarshomar"%}</h4>
      <a href="{{url.base}}mission">{%trans "Mission"%}</a>
      <a href="{{url.base}}vision">{%trans "Vision"%}</a>
-     <a href="{{url.base}}changelog">{%trans "Changelog"%}</a>
-     <a href="{{url.base}}press/in-the-news">{%trans "In the News"%}</a>
-     <a href="{{url.base}}statistics">{%trans "Statistics"%}</a>
+     <!-- <a href="{{url.base}}changelog">{%trans "Changelog"%}</a> -->
+     <!-- <a href="{{url.base}}press/in-the-news">{%trans "In the News"%}</a> -->
+     <!-- <a href="{{url.base}}statistics">{%trans "Statistics"%}</a> -->
     </nav>
 
     <section class="span4" id='footer-news'>
@@ -49,7 +49,7 @@
    <div class="row auto" id='footer-note'>
     <div class="span4 langlist">
 {%for key, lang in site.langlist if site.langlist|length >1 and site.currentlang != key|slice(0, 2)%}
-     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}{{key|slice(0, 2)}}{%endif%}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
+     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}{{key|slice(0, 2)}}/{%endif%}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
 {%endfor%}
     </div>
     <div class="span4 counter">{{stat}}</div>
