@@ -88,7 +88,8 @@ route('@/me', function () {
 });
 
 // pollsearch | Knowledge
-route(/^\$(.*)$/, function (_doc)
+// route(/^\$(.*)$/, function (_doc)
+route('*', function (_doc)
 {
 	var change = 0;
 	$('.pollsearch', _doc).keyup(function(e)
@@ -100,7 +101,11 @@ route(/^\$(.*)$/, function (_doc)
 		{
 			if(change <= 1)
 			{
-				Navigate({ url: '$/search=' + val });
+				if(val)
+				{
+					val = '/search=' + val;
+				}
+				Navigate({ url: '$' + val });
 			}
 				change -= 1;
 		}, 500);
