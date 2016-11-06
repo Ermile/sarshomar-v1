@@ -39,6 +39,7 @@ header #header-profile > a{display:inline-block;vertical-align:top;color:#00667A
 header #header-profile .register{background-color:#37aaa7;color:#F4F4F4;font-weight:900;transition:0.3s;font-size:15px;font-weight:bold;}
 header #header-profile .register:hover{background-color:#129491;color:#eee;}
 header #header-profile .register:active{background-color:#0e7d7a;}
+header #header-profile img{background-color:#c3c3c3}
 
 header #header-bottom{height:29px;}
 header #current-url{position:relative;color:#656464;font-size:12px;padding-left:10px;}
@@ -324,7 +325,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .sharebox a.rss:before{background-color:#e68523}
 
 /* pagenav */
-section{margin-bottom: 100px;overflow: hidden;}
 section ul{list-style:square inside none;padding: 0 1em;}
 section ul li{padding:0.3em 0;font-size:1.3em;}
 section ul ul{list-style-type: circle}
