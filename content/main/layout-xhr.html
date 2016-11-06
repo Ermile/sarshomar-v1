@@ -1,3 +1,9 @@
+<nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
+{%block breadcrumb%}
+{{breadcrumb(null, true) | raw}}
+{%endblock%}
+</nav>
+
 <div class="wrapper" data-xhr='wrapper'>
   {%block content%}{%endblock%}
 </div>

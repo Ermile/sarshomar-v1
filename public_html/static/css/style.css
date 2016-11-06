@@ -45,6 +45,15 @@ header #current-url{position:relative;color:#656464;font-size:12px;padding-left:
 header #current-url::before{content:">";position:absolute;top:0;left:0;}
 header #previous-url{color:#9A9A9A;margin-left:10px;font-size:10px;}
 
+/* breadcrumb */
+nav.breadcrumb {width: 100%;padding: 6px 0px;display:inline-block;}
+nav.breadcrumb a{font-size: 1em;line-height:12px;color: #99a0aa;float:left;font-weight:700}
+.rtl nav.breadcrumb a{float:right;}
+nav.breadcrumb a:hover {color: #656d78;}
+nav.breadcrumb a:last-child {color: #656d78;}
+nav.breadcrumb > a + a:before {content:">";color: #99a0aa;padding: 0px 8px;float:left;}
+.rtl nav.breadcrumb > a + a:before {float:right;}
+
 /* rtl */
 .rtl header #current-url{padding-left:0;padding-right:10px;}
 .rtl header #current-url::before{right:0;}
@@ -111,6 +120,7 @@ footer #footer-note .langlist{display:inline-block;}
 footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:0.5em 1em;}
 footer #footer-note .langlist a:hover{background-color:rgba(0,0,0,0.2)}
 footer #footer-note .love{text-align:right;text-transform:uppercase}
+footer #footer-note .love a{color:#bbb;}
 footer #footer-note .counter{font-weight:700;text-align:center;text-transform:uppercase;}
 /* rtl design */
 .rtl footer #footer-nav a{padding-right:0;padding-left:2em}
@@ -313,6 +323,19 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .sharebox a.linkedin:before{background-color:#0077B5}
 .sharebox a.rss:before{background-color:#e68523}
 
+/* pagenav */
+section{margin-bottom: 100px;overflow: hidden;}
+section ul{list-style:square inside none;padding: 0 1em;}
+section ul li{padding:0.3em 0;font-size:1.3em;}
+section ul ul{list-style-type: circle}
+section ul ul ul{list-style-type: disc}
+nav#page-nav{display: block;position: relative;width:100%;float:left;padding:10px 0;transition:0.3s;font-size: 1.3em}
+nav#page-nav:hover{background-color:rgba(238, 238, 238, 0.4);}
+nav#page-nav a:hover{color:#000;}
+nav#page-nav #nav-next{float:right;}
+nav#page-nav #nav-prev{float:left;}
+.rtl nav#page-nav #nav-next{float:left;}
+.rtl nav#page-nav #nav-prev{float:right;}
 
 
 /* read more */
