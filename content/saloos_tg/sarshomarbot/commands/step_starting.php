@@ -59,6 +59,7 @@ class step_starting
 		}
 		if(array_key_exists('sp', $commands))
 		{
+			step::stop();
 			$return = self::cmd_poll($commands['sp']);
 		}elseif(!callback_query\language::check())
 		{
