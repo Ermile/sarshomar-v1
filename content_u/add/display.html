@@ -26,22 +26,23 @@
               <input class="input" type="text" name="title" id="title">
             </div>
 
-            <div class="indent">
               <div class="input-group">
-                <div class="element option" data-number="1">
+                <div class="element small" data-number="1">
                   <label class="title" for="answer1">Answer 1</label>
                   <input class="input" type="text" name="answers[]" id="answer1">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
+                  <span class="fa fa-times delete" aria-hidden="true"></span>
                 </div>
 
-                <div class="element option" data-number="2">
+                <div class="element small" data-number="2">
                   <label class="title" for="answer2">Answer 2</label>
                   <input class="input" type="text" name="answers[]" id="answer2">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
+                  <span class="fa fa-times delete" aria-hidden="true"></span>
                 </div>
-              </div>
+              </div><!-- /.input-group -->
 
               <div class="row auto element-checkbox">
                 <div class="span6">
@@ -98,6 +99,17 @@
                 </div><!-- /.span6 -->
               </div><!--/.row-->
 
+
+              <br>
+              <div class="tree">
+                <input class="" type="checkbox" name="tree" id="tree">
+                <label>{%trans "Tree"%}</label>
+                <input class="" type="text" name="text" id="text" value="Lorem ipsum dolor sit amet">
+                <span class="fa fa-search" aria-hidden="true"></span>
+                <button>Personal</button>
+              </div>
+              <br>
+
               <div>
                 <a href="#">Title of Parent poll in tree</a><br>
                 <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
@@ -128,7 +140,6 @@
                   </select>
                 </div>
               {%endif%}
-            </div><!-- /.indent -->
               {%if survey_mod%}
                 <div class="element">
                   <label class="title" for="survey_title">Survey Title</label>
@@ -164,7 +175,7 @@
         {%if poll_list %}
         <div class="group">
           <div class="title-line"><span>Survey</span></div>
-          <div class="element option">
+          <div class="element small">
             <label class="title" for="secondary-title">Title</label>
             <input class="input" type="text" name="secondary-title" id="secondary-title">
           </div>
@@ -174,7 +185,7 @@
           <div class="title-line"><span>Questions List</span></div>
           {%for key, value in poll_list%}
           <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
-            <div class="element option has-floating">
+            <div class="element small has-floating">
               <label class="title" for="question{{key + 1}}">Question {{key + 1}}</label>
               <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
               <span class="addon floating">

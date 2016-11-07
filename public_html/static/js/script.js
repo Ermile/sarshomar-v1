@@ -34,6 +34,29 @@ route('@/add', function()
 		else
 		{}
 	});
+
+	$(this).on('mouseenter', '.element', function()
+	{
+		$(this).children('.delete').stop().fadeIn(300);
+	}).on('mouseleave', '.element', function()
+	{
+		$(this).children('.delete').stop().fadeOut(300);
+	});
+
+	$(this).on('click', '.element .delete', function()
+	{
+		if ($('.element.small').length > 2)
+		{
+			$(this).parents('.element').fadeOut(300, function()
+			{
+				$(this).remove();
+			});
+		}
+		else
+		{
+			alert('چککککار می کنی؟ ۲ دانه المنت بیشتر نداریم!');
+		}
+	})
 });
 
 
