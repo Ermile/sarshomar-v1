@@ -1,12 +1,32 @@
 {%extends display.mvc%}
 
 {%block body%}
+
  <div class="container">
 {% include template.header %}
 
-  <div class="wrapper" data-xhr='wrapper'>
+  <div class="wrapper" data-xhr='wrapper' {%if notlogin %} data-modal='not-login' {%endif%}>
 	{%block content%}{%endblock%}
   </div>
+
+{%block modal%}
+ <div class='modal' id='not-login'>
+  <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
+   <h3 class='modal-title'>{%trans%}LOGIN OR TRY{%endtrans%}</h3>
+   <p class='modal-body'>
+    <input type="text" name="mobile" placeholder="mobile">
+    <br>
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" class='button' value='{%trans "Login"%}'>
+    <div class='or' data-text='{%trans "or"%}'></div>
+    <a href="{{base.url}}/@?inspection=inestimable">
+      <input type='submit' class='button positive' data-ok value='{%trans "Try Sarshomar"%}' />
+    </a>
+   </p>
+  </form>
+ </div>
+{%endblock%}
+
 {% include template.register %}
  </div>
 {% include template.footer %}

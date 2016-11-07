@@ -110,10 +110,12 @@ class profiles
 	{
 		$profile = [];
 		$result  = \lib\db\termusages::usage($_user_id, 'users');
-		$result  = array_column($result, 'term_title', 'term_type');
-
-		foreach ($result as $key => $value) {
-			$profile[str_replace('users_', '', $key)] = $value;
+		if(is_array($result))
+		{
+			$result  = array_column($result, 'term_title', 'term_type');
+			foreach ($result as $key => $value) {
+				$profile[str_replace('users_', '', $key)] = $value;
+			}
 		}
 		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
 		return $profile;
