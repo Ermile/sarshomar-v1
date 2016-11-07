@@ -54,6 +54,11 @@ route('@/add', function()
 			alert('You should have at least two answers.');
 		}
 	})
+
+	$(this).on('focus', '.element.small input[type="text"]', function()
+	{
+		// always show delete button on input focus
+	});
 });
 
 
