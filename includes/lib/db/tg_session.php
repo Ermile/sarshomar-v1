@@ -170,7 +170,8 @@ class tg_session
 		{
 			$user_id = self::$user_id;
 		}
-		$meta = json_encode(self::$data, JSON_UNESCAPED_UNICODE);
+		$meta = json_encode(self::$data);
+		$meta = addcslashes($meta, '\\');
 		$query = "INSERT INTO options SET
 		options.user_id = $user_id,
 		options.option_cat = 'telegram',
@@ -179,7 +180,8 @@ class tg_session
 		options.option_meta = '$meta'
 		ON DUPLICATE KEY UPDATE
 		options.option_meta = '$meta'";
-		return \lib\db::query($query);
+		\lib\db::query($query);
+		// var_dump(mysql_e);
 	}
 
 	public static function __callStatic($_name, $_args)
