@@ -1,5 +1,6 @@
 <?php
 namespace content\saloos_tg\sarshomarbot\commands;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
 use \lib\db\tg_session as session;
@@ -26,6 +27,7 @@ class utility
 						$after_ok[0]($_response, $_data, array_slice($after_ok, 1));
 					}
 				}
+				// handle::send_log($_response);
 				session::set('expire', 'inline_cache', $_options['key'], $_response);
 			}
 		}, $options];

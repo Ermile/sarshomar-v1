@@ -75,11 +75,24 @@ class controller extends \lib\mvc\controller
 			 */
 			$result           = bot::run(true);
 
+			// $after_run = \lib\storage::get_after_run();
+			// if($after_run){
+			// 	if(is_object($after_run))
+			// 	{
+			// 		call_user_func_array($after_run, []);
+			// 	}
+			// 	else
+			// 	{
+			// 		call_user_func_array($after_run[0], array_slice($after_run, 1));
+			// 	}
+			// }
+
+
 			$get_back_response = session::get_back('expire', 'inline_cache');
 			if($get_back_response)
 			{
 				foreach ($get_back_response as $key => $value) {
-					$text = isset($value->result->original_text) ? $value->result->original_text : $value->result->text;
+					$text = $value->result->text;
 					$edit_return = [
 					"method" 					=> "editMessageText",
 					'parse_mode' 				=> 'Markdown',
@@ -88,16 +101,13 @@ class controller extends \lib\mvc\controller
 					"chat_id" 					=> $value->result->chat->id,
 					"message_id" 				=> $value->result->message_id
 					];
-					if(isset($value->before_edit))
-					{
-						if(is_object($value->before_edit)){
-							$value->before_edit($edit_return);
-						}
-						elseif(is_array($value->before_edit))
-						{
-							$value->before_edit[0]($edit_return, array_slice($before_edit, 1));
-						}
-					}
+					$on_expire = session::get('on_expire', 'inline_cache', $key);
+					handle::send_log($on_expire);
+					// if(is_array($on_expire))
+					// {
+					// 	$edit_return = array_merge($edit_return, $on_expire);
+					// }
+
 					bot::sendResponse($edit_return);
 				}
 			}

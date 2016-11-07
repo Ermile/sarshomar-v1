@@ -43,7 +43,6 @@ class ask
 
 	public static function poll($_query, $_data_url)
 	{
-		//✅
 		$poll_short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
 
@@ -69,7 +68,6 @@ class ask
 				$poll_list .= $row[$count] . ' ' . $key . "\n";
 			}
 		}
-		$for_edit = session::get_back('expire', 'inline_cache', 'ask');
 		$result = '📊' . $poll_result['title'];
 		$result .= "\n";
 		$result .= chart::calc_vertical($poll_answer);
@@ -81,33 +79,36 @@ class ask
 		$result .= "[view result](https://sarshomar.com/$/".$url[1].")";
 		$result .= "\n";
 		$result .= "#sarshomar";
-		$for_edit->result->original_text = $result;
-		$for_edit->before_edit = self::after_poll($poll_short_link);
-
+		\lib\storage::set_after_run(self::after_poll($poll_short_link, $result));
 		return $return;
 	}
 
-	public static function after_poll($_poll_short_link)
+	public static function after_poll($_poll_short_link, $_result)
 	{
-		return [function(&$_return, $_options){
-			$update_result = utility::inline(T_("Update result"), "ask/update/" .$_options[0]);
-			$_return["reply_markup"]['inline_keyboard'] =  [[
-			utility::inline(T_("Next poll"), "ask/make"),
-			$update_result
-			]];
-			$_return["response_callback"] = utility::response_expire('ask', [
-				"after_ok" => [function($_response, $_data, $_options){
-					$_response->before_edit = self::after_next_poll($_options);
-				}, $update_result]
-				]);
-		}, $_poll_short_link];
-	}
+		return [
+			function($_poll_link, $_text){
+				$message = session::get_back('expire', 'inline_cache', 'ask');
+				// session::remove_back('expire', 'inline_cache', 'ask');
+				// session::remove('expire', 'inline_cache', 'ask');
+				$text = $_text;
 
-	public static function after_next_poll()
-	{
-		return [function(){
-			handle::send_log(func_get_args());
-		}, func_get_args()];
+				$edit_return = [
+					"method" 					=> "editMessageText",
+					'parse_mode' 				=> 'Markdown',
+					'disable_web_page_preview' 	=> true,
+					"text" 						=> $text,
+					"chat_id" 					=> $message->result->chat->id,
+					"message_id" 				=> $message->result->message_id,
+					"reply_markup"				=> ["inline_keyboard" => [[
+						utility::inline(T_("Next poll"), "ask/make"),
+						utility::inline(T_("Update result"), "ask/update/" .$_poll_link)
+					]]],
+					"response_callback" => utility::response_expire('ask')
+				];
+				session::set('on_expire', 'inline_cache', 'ask', [10, 12]);
+				bot::sendResponse($edit_return);
+			},
+			$_poll_short_link, $_result];
 	}
 }
 ?>
