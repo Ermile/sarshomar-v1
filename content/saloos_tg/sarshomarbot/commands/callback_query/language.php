@@ -18,7 +18,7 @@ class language
 	public static function start($_query, $_data_url)
 	{
 		$get = self::check();
-		if(empty($get))
+		if(empty($get) || isset($_data_url[2]))
 		{
 			self::set($_data_url[1], ["ref" => "callback_query"]);
 			$lang_name = $_data_url[1];
@@ -42,7 +42,7 @@ class language
 		return ['text' => '🗣 Your language set : ' . $lang_name];
 	}
 
-	public static function make_result($_value)
+	public static function make_result($_value, $_update_on = false)
 	{
 		$return = false;
 		$edit_return = false;
@@ -51,16 +51,17 @@ class language
 		{
 			return self::set($_value, ["ref" => "start_link"]);
 		}
-		elseif(!$get)
+		elseif(!$get || $_update_on)
 		{
+			$update_on = $_update_on ? '/update' : ''; 
 			$inline_keyboard = array();
 			$inline_keyboard[0][0] = [
 			'text' => "فارسی",
-			'callback_data' => "language/fa"
+			'callback_data' => "language/fa" . $update_on
 			];
 			$inline_keyboard[0][1] = [
 			'text' => "English",
-			'callback_data' => "language/en"
+			'callback_data' => "language/en" . $update_on
 			];
 			$return = [
 			"text" => T_("Please select your language"),
@@ -94,7 +95,7 @@ class language
 			if(array_search($language, $value) !== false)
 			{
 				step::stop();
-				$options = ['update_on_duplicate' => false];
+				$options = ['update_on_duplicate' => true];
 				$options['user_id'] = bot::$user_id;
 				$meta = ["instert_text" => $_language];
 				$options['option_meta'] = json_encode(array_merge($meta, $_options));

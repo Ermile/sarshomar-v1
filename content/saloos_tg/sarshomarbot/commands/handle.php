@@ -82,6 +82,10 @@ class handle
 				break;
 
 
+				case T_("Change language"):
+				$response = callback_query\language::make_result(null, true);
+				break;
+
 
 				case '/dashboard':
 				case T_('Dashboard'):
