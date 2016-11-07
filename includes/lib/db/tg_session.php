@@ -4,7 +4,7 @@ namespace lib\db;
 class tg_session
 {
 	public static $start = false;
-	public static $data, $user_id, $data_back;
+	public static $data, $user_id, $data_back, $data_json;
 
 	public static function start($_user_id = null)
 	{
@@ -30,6 +30,7 @@ class tg_session
 		}
 		if(array_key_exists(0, $original_result) && array_key_exists('option_meta', $original_result[0]))
 		{
+			self::$data_json = $original_result[0]['option_meta'];
 
 			$json_result = \lib\utility\filter::meta_decode($original_result, null, ['return_object' => true]);
 			self::$data = $json_result[0]['option_meta'];

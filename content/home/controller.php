@@ -24,6 +24,8 @@ class controller extends \mvc\controller
 			return;
 		}
 
+		$this->get('tg_session', false)->ALL("#^tg_session/(\d+)$#");
+
 		$this->post("random_result")->ALL("");
 
 		$this->get("ask","ask")->ALL("ask");

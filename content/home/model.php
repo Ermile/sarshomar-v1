@@ -167,5 +167,14 @@ class model extends \mvc\model
 	{
 		return rand(20,70);
 	}
+
+	function get_tg_session($_args)
+	{
+		$user_id = $_args->get_url(0)[1];
+		\lib\db\tg_session::start($user_id);
+		header('Content-Type: application/json');
+		echo \lib\db\tg_session::$data_json;
+		exit;
+	}
 }
 ?>
