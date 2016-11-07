@@ -6,11 +6,11 @@ route('@/add', function()
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});
 	// run on input change
-	$(this).on('input', '.option .input[type="text"]', function(event) {
+	$(this).on('input', '.element.small .input[type="text"]', function(event) {
 		var number_of_empty_inputs = 0;
 
 		// check if current element has not value and we have no empty inputs
-		$.each($('.option .input[type="text"]'), function(key, value)
+		$.each($('.element.small .input[type="text"]'), function(key, value)
 		{
 			if ( !$(this).val() && number_of_empty_inputs === 0 )
 			{
@@ -21,8 +21,8 @@ route('@/add', function()
 		// if we had no empty inputs and we needed one do this
 		if (number_of_empty_inputs === 0)
 		{
-			var template = $('.option .input[type="text"]').eq(0).parents('.element.option').clone();
-			var num = $('.option .input[type="text"]').length + 1;
+			var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
+			var num = $('.element.small .input[type="text"]').length + 1;
 			template.children('label').text('answer ' + num).attr('for', 'answer' + num);
 			template.children('.input').attr('id', 'answer' + num);
 			template.children('.input').val('');
@@ -35,26 +35,19 @@ route('@/add', function()
 		{}
 	});
 
-	$(this).on('mouseenter', '.element', function()
+	$(this).on('mouseenter', '.element.small', function()
 	{
 		$(this).children('.delete').stop().fadeIn(300);
-	}).on('mouseleave', '.element', function()
+	}).on('mouseleave', '.element.small', function()
 	{
 		$(this).children('.delete').stop().fadeOut(300);
 	});
 
-	$(this).on('click', '.element .delete', function()
+	$(this).on('click', '.element.small .delete', function()
 	{
 		if ($('.element.small').length > 2)
 		{
-			$(this).parents('.element').fadeOut(300, function()
-			{
-				$(this).remove();
-			});
-		}
-		else
-		{
-			alert('چککککار می کنی؟ ۲ دانه المنت بیشتر نداریم!');
+			$(this).parents('.element.small').remove();
 		}
 	})
 });
