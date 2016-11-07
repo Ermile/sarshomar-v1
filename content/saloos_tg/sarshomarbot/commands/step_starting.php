@@ -57,9 +57,9 @@ class step_starting
 				$commands[$url_command[0]] = $url_command[1];
 			}
 		}
-		if(array_key_exists('poll', $commands))
+		if(array_key_exists('sp', $commands))
 		{
-			$return = self::cmd_poll($commands['poll']);
+			$return = self::cmd_poll($commands['sp']);
 		}elseif(!callback_query\language::check())
 		{
 			$return = callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);

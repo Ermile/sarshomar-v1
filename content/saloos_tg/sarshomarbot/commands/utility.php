@@ -9,13 +9,23 @@ class utility
 {
 	public static function response_expire($_key, $_options = [])
 	{
-		$options = $_options;
+		$options = array();
+		$options["on_expire"] = $_options;
 		$options["key"] = $_key;
 		return [function($_response, $_data, $_options)
 		{
 			if($_response->ok)
 			{
-				$_response->result->original_text = $_data['text'];
+				$on_expire = [
+					"method" 					=> "editMessageText",
+					"text" 						=> $_data['text'],
+					"chat_id" 					=> $_response->result->chat->id,
+					"message_id" 				=> $_response->result->message_id,
+					'parse_mode' 				=> 'Markdown',
+					'disable_web_page_preview' 	=> true
+				];
+				$_response->save_unique_id = time() . rand(123456, 999999);
+				$_response->on_expire = array_merge($on_expire, $_options['on_expire']);
 				if(isset($_options['after_ok']))
 				{
 					$after_ok = $_options['after_ok'];
@@ -27,7 +37,6 @@ class utility
 						$after_ok[0]($_response, $_data, array_slice($after_ok, 1));
 					}
 				}
-				// handle::send_log($_response);
 				session::set('expire', 'inline_cache', $_options['key'], $_response);
 			}
 		}, $options];

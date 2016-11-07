@@ -88,8 +88,8 @@ class ask
 		return [
 			function($_poll_link, $_text){
 				$message = session::get_back('expire', 'inline_cache', 'ask');
-				// session::remove_back('expire', 'inline_cache', 'ask');
-				// session::remove('expire', 'inline_cache', 'ask');
+				session::remove_back('expire', 'inline_cache', 'ask');
+				session::remove('expire', 'inline_cache', 'ask');
 				$text = $_text;
 
 				$edit_return = [
@@ -103,9 +103,11 @@ class ask
 						utility::inline(T_("Next poll"), "ask/make"),
 						utility::inline(T_("Update result"), "ask/update/" .$_poll_link)
 					]]],
-					"response_callback" => utility::response_expire('ask')
+					"response_callback" => utility::response_expire('ask', [
+						"reply_markup"				=> ["inline_keyboard" => [[
+							utility::inline(T_("Update result"), "ask/update/" .$_poll_link)
+					]]]])
 				];
-				session::set('on_expire', 'inline_cache', 'ask', [10, 12]);
 				bot::sendResponse($edit_return);
 			},
 			$_poll_short_link, $_result];

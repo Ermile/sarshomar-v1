@@ -15,6 +15,13 @@ class controller extends \lib\mvc\controller
 	 */
 	function _route()
 	{
+		if(isset($_GET['log']))
+		{
+			\lib\db\tg_session::$user_id = 99;
+			\lib\db\tg_session::start();
+			print_r(get_object_vars(\lib\db\tg_session::get()));
+			exit();
+		}
 		register_shutdown_function(function()
 		{
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
@@ -75,38 +82,31 @@ class controller extends \lib\mvc\controller
 			 */
 			$result           = bot::run(true);
 
-			// $after_run = \lib\storage::get_after_run();
-			// if($after_run){
-			// 	if(is_object($after_run))
-			// 	{
-			// 		call_user_func_array($after_run, []);
-			// 	}
-			// 	else
-			// 	{
-			// 		call_user_func_array($after_run[0], array_slice($after_run, 1));
-			// 	}
-			// }
+			$after_run = \lib\storage::get_after_run();
+			if($after_run){
+				if(is_object($after_run))
+				{
+					call_user_func_array($after_run, []);
+				}
+				else
+				{
+					call_user_func_array($after_run[0], array_slice($after_run, 1));
+				}
+			}
 
 
 			$get_back_response = session::get_back('expire', 'inline_cache');
 			if($get_back_response)
 			{
 				foreach ($get_back_response as $key => $value) {
-					$text = $value->result->text;
-					$edit_return = [
-					"method" 					=> "editMessageText",
-					'parse_mode' 				=> 'Markdown',
-					'disable_web_page_preview' 	=> true,
-					"text" 						=> $text,
-					"chat_id" 					=> $value->result->chat->id,
-					"message_id" 				=> $value->result->message_id
-					];
-					$on_expire = session::get('on_expire', 'inline_cache', $key);
-					handle::send_log($on_expire);
-					// if(is_array($on_expire))
-					// {
-					// 	$edit_return = array_merge($edit_return, $on_expire);
-					// }
+
+					$edit_return = json_decode(json_encode($value->on_expire), true);
+					handle::send_log($edit_return);
+					$get_original = session::get('expire', 'inline_cache', $key);
+					if($value->save_unique_id == $get_original->save_unique_id)
+					{
+						session::remove('expire', 'inline_cache', $key);
+					}
 
 					bot::sendResponse($edit_return);
 				}
