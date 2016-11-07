@@ -83,16 +83,10 @@
     </section>
 
     <nav class="span4 related-questions">
-      <h3>{%trans "Similar Questions"%}</h3>
-    {%if similar%}
-      <ul>
-      {%for key, value in similar%}
-        <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+    <h3>{%trans "Similar Questions"%}</h3>
+      {% for key, value in similar_post()%}
+         <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
       {%endfor%}
-      </ul>
-    {%else%}
-      <span>{%trans "There is no similar questions"%}</span>
-    {%endif%}
     </nav>
   </article>
 </div>
@@ -143,24 +137,23 @@
         </div> --><!-- /.row -->
 
         <div class="bars">
-          <div class="bar-one"   style="width: {{rate.rate5}}%"></div>
-          <div class="bar-two"   style="width: {{rate.rate4}}%" ></div>
-          <div class="bar-three" style="width: {{rate.rate3}}%" ></div>
-          <div class="bar-four"  style="width: {{rate.rate2}}%" ></div>
-          <div class="bar-five"  style="width: {{rate.rate1}}%" ></div>
+          <div class="bar-one"   style="width: {{rate.rate5 * 20}}%"></div>
+          <div class="bar-two"   style="width: {{rate.rate4 * 20}}%" ></div>
+          <div class="bar-three" style="width: {{rate.rate3 * 20}}%" ></div>
+          <div class="bar-four"  style="width: {{rate.rate2 * 20}}%" ></div>
+          <div class="bar-five"  style="width: {{rate.rate1 * 20}}%" ></div>
         </div><!-- /.bars -->
       </div><!-- /.summary -->
     </div>
     <div class="row auto">
-      {% for key, value in post.comments %}
+      {% for key, value in comments() %}
         <div class="span4 comment">
         <h4>minus{{value.comment_minus}}</h4>
         <h4>plus{{value.comment_plus}}</h4>
-            <a class="minus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">-</a>
-            <a class="plus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">+</a>
+          <a class="minus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">-</a>
+          <a class="plus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">+</a>
 
-        <!--   <div class="score">
-
+          <!--   <div class="score">
             <div class="plus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}">
               <object data="/static/images/score-g.svg"></object>
             </div>
@@ -168,9 +161,8 @@
               <object data="/static/images/score-r.svg" data-value="12"></object>
             </div>
           </div> -->
-          <!-- <div class="title">{#{value.comment_meta}#}</div> -->
-          {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
           <div>
+          {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
           {%for i in 1..k%}
               <span><i class="fa fa-star" aria-hidden="true"></i></span>
           {%endfor%}
@@ -214,9 +206,7 @@
                 <div class="detail"><span class="green">{{status}}</span></div>
                 <div class="title">کلیدواژه ها</div>
                 <div class="detail tags">
-                    {% for tag in post.tags %}
-                      <a href="#">{{tag}}</a>
-                    {% endfor %}
+                    {{tags({"html":true})}}
                 </div>
             </div>
             <div class="span6 border">

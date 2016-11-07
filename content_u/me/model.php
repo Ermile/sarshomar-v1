@@ -60,10 +60,14 @@ class model extends \mvc\model
 		}
 		elseif($name == 'mobile')
 		{
-			$mobile = \lib\db\users::set_mobile($user_id, $value);
-			if(!$mobile)
+			$old_mobile = \lib\db\users::get_mobile($user_id);
+			if($old_mobile == null || substr($old_mobile, 0, 5) == 'temp_')
 			{
-				\lib\debug::error(T_("we can not update your mobile"));
+				$mobile = \lib\db\users::set_mobile($user_id, $value);
+				if(!$mobile)
+				{
+					\lib\debug::error(T_("we can not update your mobile"));
+				}
 			}
 		}
 		else

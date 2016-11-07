@@ -98,91 +98,101 @@ class view extends \mvc\view
 				$post['post_meta'] = ['opt' => null];
 			}
 
-			// get post similar
-			$similar = \lib\db\tags::get_post_similar(null, ['tags' => $post['tags']]);
-			$this->data->similar = $similar;
 			// get post status to show in html page
 			$this->data->status = $post['post_status'];
 			// compile meta of this post
+
+			if(isset($post['meta']))
+			{
 			$meta = [];
-			foreach ($post['meta'] as $key => $value) {
-				switch ($value['option_key']) {
-					// ignore opt_1, opt_2, ...
-					case substr($value['option_key'], 0,3) == "opt":
-						continue;
-						break;
+				foreach ($post['meta'] as $key => $value) {
+					switch ($value['option_key']) {
+						// ignore opt_1, opt_2, ...
+						case substr($value['option_key'], 0,3) == "opt":
+							continue;
+							break;
 
-					// show article
-					case "article":
-						$this->data->article = \lib\db\polls::xget(['id' => $value['option_value'], 'post_type' => 'article']);
-						break;
+						// show article
+						case "article":
+							$this->data->article = \lib\db\polls::xget(['id' => $value['option_value'], 'post_type' => 'article']);
+							break;
 
-					// get start date of publish this poll
-					case "date_start":
-						$this->data->date_start = $value['option_value'];
-						break;
+						// get start date of publish this poll
+						case "date_start":
+							$this->data->date_start = $value['option_value'];
+							break;
 
-					// get end date of publish this poll
-					case "date_end":
-						$this->data->date_end = $value['option_value'];
-						break;
-					case "meta":
-						// check the meta of this poll
-						switch ($value['option_value']) {
-							case "multiple_choice":
-								// the people can select multiple choice
-								$this->data->multiple_choice = true;
-								$_SESSION['multiple_choice'] = true;
-								break;
+						// get end date of publish this poll
+						case "date_end":
+							$this->data->date_end = $value['option_value'];
+							break;
+						case "meta":
+							// check the meta of this poll
+							switch ($value['option_value']) {
+								case "multiple_choice":
+									// the people can select multiple choice
+									$this->data->multiple_choice = true;
+									$_SESSION['multiple_choice'] = true;
+									break;
 
-							case "descriptive":
-								// load a input to type people the opthr opt
-								$this->data->descriptive = true;
-								$_SESSION['descriptive'] = true;
-								break;
+								case "descriptive":
+									// load a input to type people the opthr opt
+									$this->data->descriptive = true;
+									$_SESSION['descriptive'] = true;
+									break;
 
-							case "random_sort":
-								// suffle the opt if random sort is enable
-								if(isset($post['post_meta']['opt']))
+								case "random_sort":
+									// suffle the opt if random sort is enable
+									if(isset($post['post_meta']['opt']))
+									{
+										$keys = array_keys($post['post_meta']['opt']);
+								        shuffle($keys);
+								        foreach($keys as $key)
+								        {
+								        	$new[$key] = $post['post_meta']['opt'][$key];
+								        }
+								        $post['post_meta']['opt'] = $new;
+									}
+									break;
+
+								case "profile":
+									// this poll has lucked by profiel field
+									// we must be save answer to user profile
+									$this->data->profile = true;
+									// to save user answer in profile
+									$_SESSION['profile'] = true;
+									break;
+
+								case "hidden_result":
+									$show_result = false;
+									break;
+							}
+							break;
+							// show rate of comments
+						case 'comment':
+							$rate = [];
+							for ($i=1; $i <= 5; $i++) {
+								if(isset($value['option_meta']["rate$i"]))
 								{
-									$keys = array_keys($post['post_meta']['opt']);
-							        shuffle($keys);
-							        foreach($keys as $key)
-							        {
-							        	$new[$key] = $post['post_meta']['opt'][$key];
-							        }
-							        $post['post_meta']['opt'] = $new;
+									$rate["rate$i"] = $value['option_meta']["rate$i"]['avg'];
 								}
-								break;
+								else
+								{
+									$rate["rate$i"] = 0;
+								}
+							}
+							$rate['total'] = isset($value['option_meta']['total']['avg']) ? $value['option_meta']['total']['avg']: 0;
 
-							case "profile":
-								// this poll has lucked by profiel field
-								// we must be save answer to user profile
-								$this->data->profile = true;
-								// to save user answer in profile
-								$_SESSION['profile'] = true;
-								break;
-
-							case "hidden_result":
-								$show_result = false;
-								break;
-						}
-						break;
-						// show rate of comments
-					case 'comment':
-						$rate = [];
-						foreach ($value['option_meta'] as $key => $value) {
-							$rate[$key] = $value['avg'];
-						}
-						$this->data->rate = $rate;
-						break;
-					// case "true_answer":
-					default:
-						// !
-						break;
+							$this->data->rate = $rate;
+							break;
+						// case "true_answer":
+						default:
+							// !
+							break;
+					}
 				}
-			}
 			$this->data->meta = $meta;
+			}
 
 			// load poll filters
 			if(isset($post['filter_id']) && $post['filter_id'])
@@ -206,8 +216,8 @@ class view extends \mvc\view
 			$show_result = true;
 
 			// check show result
-			// if($show_result)
-			// {
+			if($show_result)
+			{
 				/*
 				 * get all chart result
 				*/
@@ -223,7 +233,13 @@ class view extends \mvc\view
 				// load result as chart
 				$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
 				$this->data->chart = $chart;
-			// }
+			}
+
+			// comment
+			if(isset($post['post_comment']) && $post['post_comment'] == 'closed')
+			{
+				$thid->data->comment = false;
+			}
 
 			// to load post data in html
 			$this->data->post = $post;

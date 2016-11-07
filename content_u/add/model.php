@@ -107,6 +107,8 @@ class model extends \content_u\home\model
 			$url = \lib\utility\shortURL::encode($survey_id);
 			if($insert_poll)
 			{
+				// set dashboard data
+				\lib\db\profiles::set_dashboard_data($this->login('id'), 'my_survey');
 				$this->redirector()->set_url("@/add/$url");
 			}
 
@@ -163,15 +165,15 @@ class model extends \content_u\home\model
 	public function set_suervey_title($_survey_id)
 	{
 		//save survey name
-		if(utility::post("survey_title"))
+		if(utility::post("secondary-title"))
 		{
 			// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
 			$args =
 			[
-				'post_title'  => utility::post("survey_title"),
-				'post_url'    => \lib\db\polls::update_url($_survey_id, utility::post("survey_title"), false),
+				'post_title'  => utility::post("secondary-title"),
+				'post_url'    => \lib\db\polls::update_url($_survey_id, utility::post("secondary-title"), false),
 				'post_gender' => 'survey',
-				'post_slug'   => \lib\utility\filter::slug(utility::post("survey_title"))
+				'post_slug'   => \lib\utility\filter::slug(utility::post("secondary-title"))
 			];
 			$result = \lib\db\survey::update($args, $_survey_id);
 			if(!$result)
@@ -295,6 +297,7 @@ class model extends \content_u\home\model
 			'post_survey'  => $survey_id,
 			'post_gender'  => $gender,
 			'post_privacy' => 'private',
+			'post_comment' => 'closed',
 			'post_status'  => 'draft',
 			'post_meta'    => "{\"desc\":\"$summary\"}"
 		];
@@ -375,6 +378,12 @@ class model extends \content_u\home\model
 						'option_meta'  => $profile_lock
 					];
 					$insert_meta = true;
+
+					// comment
+					if($meta[1] == 'comment')
+					{
+						\lib\db\polls::update(['post_comment' => 'open'], $poll_id);
+					}
 				}
 			}
 		}
@@ -384,6 +393,7 @@ class model extends \content_u\home\model
 		}
 		if($answers)
 		{
+			\lib\db\profiles::set_dashboard_data($this->login('id'), 'my_poll');
 			\lib\debug::true(T_("add poll Success"));
 			return $poll_id;
 		}

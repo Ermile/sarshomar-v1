@@ -11,7 +11,6 @@ class profiles
 	{
 		$profile_data =
 		[
-			'mobile'		   => null,
 			'firstname'        => null,
 			'lastname'         => null,
 			'gender'           => ['male', 'female'],
@@ -116,7 +115,7 @@ class profiles
 		foreach ($result as $key => $value) {
 			$profile[str_replace('users_', '', $key)] = $value;
 		}
-
+		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
 		return $profile;
 	}
 
