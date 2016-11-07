@@ -99,14 +99,28 @@
                 </div><!-- /.span6 -->
               </div><!--/.row-->
 
-
+              <style type="text/css">
+              .tree{display:flex;width:100%;height:30px;line-height:30px;}
+              .tree .ac-custom{margin:0;}
+              .tree .ac-custom label::before{top:0;margin-top:0;}
+              .tree input[type="text"]{background-color:#EFEFEF;color:#00667A;border:none;outline:none;width:100%;padding:0 10px;font-size:14px;}
+              .tree .tree-dropdown{background-color:#00667A;color:#E7E7E7;height:30px;line-height:30px;border:none;outline:none;padding:0 10px;}
+              .tree .search{color:#777777;background-color:#EFEFEF;height:30px;width:30px;line-height:30px;cursor:pointer;}
+              </style>
               <br>
               <div class="tree">
-                <input class="" type="checkbox" name="tree" id="tree">
-                <label>{%trans "Tree"%}</label>
+                <span class="ac-custom ac-checkbox ac-checkmark">
+                  <input class="" type="checkbox" name="tree" id="tree">
+                  <label for="tree">{%trans "Tree"%}</label>
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                </span>
                 <input class="" type="text" name="text" id="text" value="Lorem ipsum dolor sit amet">
-                <span class="fa fa-search" aria-hidden="true"></span>
-                <button>Personal</button>
+                <span class="fa fa-search search" aria-hidden="true"></span>
+                <select class="tree-dropdown">
+                  <option>Personal</option>
+                  <option>Horizontal</option>
+                  <option>Vertical</option>
+                </select>
               </div>
               <br>
 

@@ -49,6 +49,10 @@ route('@/add', function()
 		{
 			$(this).parents('.element.small').remove();
 		}
+		else
+		{
+			alert('You should have at least two answers.');
+		}
 	})
 });
 
