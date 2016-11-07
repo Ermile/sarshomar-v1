@@ -180,7 +180,7 @@ class model extends \mvc\model
 		}
 		else{
 			echo "<pre>";
-			var_dump(\lib\db\tg_session::get());
+			print_r(\lib\db\tg_session::get());
 		}
 		exit;
 	}
