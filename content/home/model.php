@@ -132,7 +132,6 @@ class model extends \mvc\model
 				$categories =
 				[
 					'Manchester',
-					'Bayern Munich',
 					'Liverpool',
 					'Real Madrid',
 					'Barcelona',
@@ -151,7 +150,6 @@ class model extends \mvc\model
 						'name' => $name,
 						'data' =>
 						[
-							$this->rnd(),
 							$this->rnd(),
 							$this->rnd(),
 							$this->rnd(),

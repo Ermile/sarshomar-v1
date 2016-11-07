@@ -22,14 +22,14 @@
         <ul class="tab">
           <li id="tab-multiple_choice" class="active">
             <div class="element">
-              <label class="title" for="title">Title</label>
+              <label class="title" for="title" autocomplete="off">Title</label>
               <input class="input" type="text" name="title" id="title">
             </div>
 
               <div class="input-group">
                 <div class="element small" data-number="1">
                   <label class="title" for="answer1">Answer 1</label>
-                  <input class="input" type="text" name="answers[]" id="answer1">
+                  <input class="input" type="text" name="answers[]" id="answer1" autocomplete="off">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
                   <span class="fa fa-times delete" aria-hidden="true"></span>
@@ -37,7 +37,7 @@
 
                 <div class="element small" data-number="2">
                   <label class="title" for="answer2">Answer 2</label>
-                  <input class="input" type="text" name="answers[]" id="answer2">
+                  <input class="input" type="text" name="answers[]" id="answer2" autocomplete="off">
                   <input type="hidden" name="answer_true[]" value="true">
                   <input type="hidden" name="answer_type[]" value="text">
                   <span class="fa fa-times delete" aria-hidden="true"></span>
@@ -70,7 +70,6 @@
                     </ul>
 
                   </div>
-
                 </div>
                 <div class="span6">
                   <div autocomplete="off">
@@ -99,7 +98,6 @@
                 </div><!-- /.span6 -->
               </div><!--/.row-->
 
-
               <div class="tree">
                 <span class="ac-custom ac-checkbox ac-checkmark">
                   <input class="" type="checkbox" name="tree" id="tree">
@@ -114,27 +112,51 @@
                   <option>Vertical</option>
                 </select>
               </div>
-
-
-              <div>
-                <a href="#">Title of Parent poll in tree</a><br>
-                <input type="text" name="parent_tree_id" placeholder="parent poll id in tree">
-                <input type="text" name="parent_tree_opt" placeholder="opt of parent id">
+              <div class="tree-list">
+                <ul class="questions">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    <ul class="answers">
+                      <li class="ac-custom ac-checkbox ac-checkmark">
+                        <input class="" type="checkbox" name="zzz" id="zzz">
+                        <label for="zzz">{%trans "Lorem ipsum dolor sit amet"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                      <li class="ac-custom ac-checkbox ac-checkmark">
+                        <input class="" type="checkbox" name="yyy" id="yyy">
+                        <label for="yyy">{%trans "Lorem ipsum dolor sit amet"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                      <li class="ac-custom ac-checkbox ac-checkmark">
+                        <input class="" type="checkbox" name="www" id="www">
+                        <label for="www">{%trans "Lorem ipsum dolor sit amet"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                      <li class="ac-custom ac-checkbox ac-checkmark">
+                        <input class="" type="checkbox" name="rrr" id="rrr">
+                        <label for="rrr">{%trans "Lorem ipsum dolor sit amet"%}</label>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
+                </ul>
               </div>
 
               <div class="panel-text">
                 <div class="title">
-                  <span><i class="fa fa-minus" aria-hidden="true"></i> Summary</span>
+                  <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
                 </div>
                 <textarea name="summary"></textarea>
               </div>
 
               <div class="panel-text">
                 <div class="title">
-                  <span><i class="fa fa-minus" aria-hidden="true"></i> Description</span>
+                  <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
                 </div>
                 <textarea name="description"></textarea>
               </div>
+
               {%if sarshomar_mod%}
                  <div class="element">
                   <label class="title" for="profile">{%trans "Poll To Complete Profile"%}</label>
