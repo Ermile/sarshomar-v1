@@ -179,6 +179,7 @@ class model extends \mvc\model
 			echo \lib\db\tg_session::$data_json;
 		}
 		else{
+			echo "<pre>";
 			var_dump(\lib\db\tg_session::get());
 		}
 		exit;
