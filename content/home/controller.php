@@ -24,7 +24,7 @@ class controller extends \mvc\controller
 			return;
 		}
 
-		$this->get('tg_session', false)->ALL("#^tg_session/(\d+)$#");
+		$this->get('tg_session', false)->ALL("#^tg_session/(json|object)/(\d+)$#");
 
 		$this->post("random_result")->ALL("");
 

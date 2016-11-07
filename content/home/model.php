@@ -170,10 +170,17 @@ class model extends \mvc\model
 
 	function get_tg_session($_args)
 	{
-		$user_id = $_args->get_url(0)[1];
+		$user_id = $_args->get_url(0)[2];
+		$type = $_args->get_url(0)[1];
 		\lib\db\tg_session::start($user_id);
-		header('Content-Type: application/json');
-		echo \lib\db\tg_session::$data_json;
+		if($type == 'json')
+		{
+			header('Content-Type: application/json');
+			echo \lib\db\tg_session::$data_json;
+		}
+		else{
+			var_dump(\lib\db\tg_session::get());
+		}
 		exit;
 	}
 }
