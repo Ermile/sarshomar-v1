@@ -4,6 +4,18 @@ use \lib\utility;
 
 class model extends \mvc\model
 {
+	public function get_comments($_args)
+	{
+		$poll_id = $_args->match->url[0][2];
+		$poll_id = utility\shortURL::decode($poll_id);
+		$comment_list = \lib\db\comments::get_post_comment($poll_id, 50, $this->login('id'));
+		if(!$comment_list)
+		{
+			return [];
+		}
+		return $comment_list;
+	}
+
 	public function get_all()
 	{
 		// echo ("All Questions is here || random result is here or other");
@@ -125,7 +137,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
+			\lib\debug::error(T_("we can not find some data, please reload the page and try again"));
 			return false;
 		}
 		//----------------------------------------------------------------------------

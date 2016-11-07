@@ -253,5 +253,15 @@ class view extends \mvc\view
 	}
 
 
+	/**
+	 * get all comments of this poll
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function view_comments($_args)
+	{
+		$this->data->show_all_comments = true;
+		$this->data->all_comments = $_args->api_callback;
+	}
 }
 ?>

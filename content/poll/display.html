@@ -4,6 +4,26 @@
 {%endblock%}
 
 {%block content%}
+
+{%if show_all_comments%}
+  {%for key, value in all_comments%}
+    <h6>minus{{value.comment_minus}}</h6>
+    <h6>plus{{value.comment_plus}}</h6>
+    {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
+    {%for i in 1..k%}
+        <span><i class="fa fa-star" aria-hidden="true"></i></span>
+    {%endfor%}
+    <div class="user">{{value.comment_author}}</div>
+    <div class="content">
+      <p>{{value.comment_content}}</p>
+    </div>
+    <span class="continue">{%trans "More"%}</span>
+  {%endfor%}
+
+{%else%}
+
+<!-- show poll -->
+
 <div class="row question-box">
   <article class="row auto">
     <section class="span8">
@@ -229,7 +249,8 @@
         </div>
     </div>
 </div>
-
+<!-- show comments only -->
+{%endif%}
 {%endblock%}
 
 {%block foot_js%}
