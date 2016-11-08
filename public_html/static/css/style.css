@@ -846,5 +846,10 @@ li[data-tab="multiple_choice"]{min-width:130px;}
 #checkbox .ac-custom input[type="radio"]+label::before{border-radius:50%; }
 
 #checkbox .span4{background-color:#eee; }
-#checkbox .search-options{padding: 2em; padding-bottom: 1em; }
+#checkbox .search-options{padding: 2em; padding-bottom: 1em;}
 #checkbox select {-webkit-appearance: none; -moz-appearance: none;appearance: none; min-width: 50px;padding: .2em;}
+
+#checkbox .full-line-title{position:relative;padding:10px 0;}
+#checkbox .full-line-title::before{content:'';width:100%;position:absolute;height:1px;background-color:#00667a;left:0;top:0;bottom:0;margin:auto;}
+#checkbox .full-line-title::after{content:attr(data-title);position:absolute;background-color:#eee;right:0;top:0;bottom:0;margin:auto;padding:0px 5px;}
+.rtl#checkbox .full-line-title::after{left:0;right:auto;}
