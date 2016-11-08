@@ -836,3 +836,12 @@ li[data-tab="multiple_choice"]{min-width:130px;}
 .search-box .search-button:hover{background-color:#0A5260;}
 .search-box .search-button .fa-search{font-size:1.2em;}
 
+/************************************************************** Pagination */
+#checkbox .ac-custom label {padding: 0 .7em;}
+#checkbox .ac-custom label {background-color:transparent; }
+
+#checkbox .ac-custom input[type="radio"]+label::before{border-radius:50%; }
+
+#checkbox .span4{background-color:#eee; }
+#checkbox .search-options{padding: 2em; padding-bottom: 1em; }
+#checkbox select {-webkit-appearance: none; -moz-appearance: none;appearance: none; min-width: 50px;padding: .2em;}

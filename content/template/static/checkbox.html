@@ -1,28 +1,161 @@
 {%extends display.main%}
 
 {%block content%}
-  <div class="box">
-   <h2>{%trans "Vision"%}</h2>
+ <div class="row">
+  <div class="span4">
+
+
+	 	<div class="search-options">
+	 		<div class="title-line reverse">
+	 			hi
+	 		</div>
+		  <span class="ac-custom inline ac-fill">
+				<input id="questions1" type="radio" name='questions'>
+				<label for="questions1">سرشمار</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="questions2" type="radio" name='questions'>
+				<label for="questions2">مردمی</label>
+			</span>
+			<span class="ac-custom inline ac-fill">
+				<input id="questions3" type="radio" name='questions'>
+				<label for="questions3">همه</label>
+			</span>
+		</div>
+		<div class="search-options">
+		  <span class="ac-custom inline ac-fill">
+				<input id="type1" type="radio" name='type'>
+				<label for="type1">نظرسنجی</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="type2" type="radio" name='type'>
+				<label for="type2">آزمون‌آنلاین</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="type3" type="radio" name='type'>
+				<label for="type3">همه</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="type4" type="radio" name='type'>
+				<label for="type4">پرسشنامه</label>
+			</span>
+		</div>
+		<div class="search-options">
+		  <span class="ac-custom inline ac-fill">
+				<input id="time1" type="radio" name='time'>
+				<label for="time1">در حال انجام</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="time2" type="radio" name='time'>
+				<label for="time2">منقضی شده</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="time3" type="radio" name='time'>
+				<label for="time3">همه</label>
+			</span>
+		</div>
+
+
+		<div class="search-options">
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord1" type="checkbox">
+				<label for="accord1">بارگذاری</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord2" type="checkbox">
+				<label for="accord2">اطلاع‌رسانی</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord3" type="checkbox">
+				<label for="accord3">تشریحی</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord4" type="checkbox">
+				<label for="accord4">مرتب‌سازی</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord5" type="checkbox">
+				<label for="accord5">شماره‌ای</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord6" type="checkbox">
+				<label for="accord6">ستاره‌ای</label>
+			</span>
+			<span class="ac-custom ac-checkbox inline ac-checkmark">
+				<input id="accord7" type="checkbox">
+				<label for="accord7">گزینه‌ای</label>
+			</span>
+		</div>
+
+		<div class="search-options">
+		  <span class="ac-custom inline ac-fill">
+				<input id="prize1" type="radio" name='prize'>
+				<label for="prize1">پاسخ‌دهی</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="prize2" type="radio" name='prize'>
+				<label for="prize2">قرعه‌کشی</label>
+			</span>
+		  <span class="ac-custom inline ac-fill">
+				<input id="prize3" type="radio" name='prize'>
+				<label for="prize3">همه</label>
+			</span>
+		</div>
+
+
+		<div class="search-options">
+			<select name="education">
+		    <option value="volvo">دکتری</option>
+		    <option value="saab">فوق لیسانس</option>
+		    <option value="fiat">لیساسنس</option>
+		    <option value="audi">فوق دیپلم</option>
+		    <option value="audi">دیپلم</option>
+		    <option value="audi">سیکل</option>
+		    <option value="audi">تحصیلات ابتدایی</option>
+		    <option value="audi">بیسواد</option>
+		  </select>
+
+			<select name="education">
+		    <option value="volvo">مجرد</option>
+		    <option value="saab">متأهل</option>
+		  </select>
+
+			<select name="education">
+		    <option value="volvo">ایران</option>
+		    <option value="saab">عراق</option>
+		    <option value="fiat">ترکیه</option>
+		  </select>
+
+			<select name="education">
+		    <option value="volvo">دولتی</option>
+		    <option value="saab">آزاد</option>
+		    <option value="fiat">بیکار</option>
+		  </select>
+
+			<select name="education">
+		    <option value="volvo">۲۰ سال</option>
+		    <option value="saab">بیش از ۲۰ سال</option>
+		    <option value="fiat">کمتر از ۲۰ سال</option>
+		  </select>
+
+			<select name="education">
+		    <option value="volvo">آقا</option>
+		    <option value="saab">خانم</option>
+		  </select>
+		</div>
 
 
 
-		<span class="ac-custom ac-checkbox ac-checkmark">
-			<input id="t1" type="checkbox">
-			<label for="t1">test</label>
-		</span>
 
 
-		<br /><br /><br />
-		<span class="ac-custom ac-checkbox ac-checkmark">
-			<input id="t2" type="checkbox">
-			<label for="t2">test2</label>
-		</span>
 
 
-		<span class="ac-custom ac-checkbox ac-checkmark">
-			<input id="t3" type="checkbox" >
-			<label for="t3">test3</label>
-		</span>
+  </div>
+ </div>
+
+
+
+
 
 
 
