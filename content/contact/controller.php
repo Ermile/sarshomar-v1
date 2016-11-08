@@ -6,7 +6,8 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$this->post("contact")->ALL();
+		$this->get(false, false)->ALL("/contact/");
+		$this->post("contact")->ALL("/contact/");
 	}
 }
 ?>
