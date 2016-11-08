@@ -185,7 +185,7 @@ class profiles
 					switch ($key) {
 						case 'country':
 						case 'birthcountry':
-							$check = \lib\utility\countres::check($value);
+							$check = \lib\utility\location\countres::check($value);
 							if($check)
 							{
 								if($key == 'country')
