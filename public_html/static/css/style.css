@@ -857,4 +857,6 @@ nav#page-nav #nav-prev{float:left;}
 #checkbox select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;background-color:#e7e7e7;margin: 0 0 20px 10px;}
 
 
-#checkbox .span8{ }
+#checkbox .span8 .my-navigation{text-align:center;}
+#checkbox .span8 .ali-navigation{text-align:center;display:inline-block;}
+#checkbox .span8 .ali-navigation a{display: inline-block;padding:1em;background-color:#e7e7e7;color:#00667A;float:right;}
