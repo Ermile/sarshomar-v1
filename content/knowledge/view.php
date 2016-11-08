@@ -23,8 +23,8 @@ class view extends \mvc\view
 	 */
 	public function view_knowledge()
 	{
-		$filter = \lib\db\filters::support_filter();
-		$this->data->filter  = $filter;
+		$result = \lib\db\polls::get_last_poll(['limit' => 10]);
+		$this->data->poll_list = $result;
 	}
 
 

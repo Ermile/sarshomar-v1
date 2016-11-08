@@ -927,5 +927,36 @@ class polls
 		$result = \lib\utility\filter::meta_decode($result);
 		return $result;
 	}
+
+
+	/**
+	 * get the last poll
+	 * in the knowlege page
+	 *
+	 * @param      array   $_args  The arguments
+	 *
+	 * @return     <type>  The last poll.
+	 */
+	public static function get_last_poll($_args = [])
+	{
+		$limit = 50;
+		if(isset($_args['limit']))
+		{
+			$limit = $_args['limit'];
+		}
+
+		$public_fields = self::$fields;
+
+		$query =
+		"
+			SELECT
+				$public_fields
+			ORDER BY posts.id DESC
+			LIMIT $limit
+
+		";
+		$result = \lib\db::get($query);
+		return \lib\utility\filter::meta_decode($result);
+	}
 }
 ?>
