@@ -138,6 +138,7 @@ route('*', function (_doc)
 	$('.pollsearch', _doc).focus().val($('.pollsearch').val());
 });
 
+
 // Me | Profile
 route('*', function () {
 	$.each($('input.autocomplete'),function(){
@@ -171,61 +172,23 @@ route('*', function () {
 		});
 	});
 });
-// Select
-// Reference: http://jsfiddle.net/BB3JK/47/
-// $('select').each(function () {
-//   var $this = $(this), numberOfOptions = $(this).children('option').length;
 
-//   $this.addClass('select-hidden');
-//   $this.wrap('<div class="select"></div>');
-//   $this.after('<div class="select-styled"></div>');
-
-//   var $styledSelect = $this.next('div.select-styled');
-//   $styledSelect.text($this.children('option').eq(0).text());
-
-//   var $list = $('<ul />', {
-//     'class': 'select-options'
-//   }).insertAfter($styledSelect);
-
-//   for (var i = 0; i < numberOfOptions; i++) {
-//     $('<li />', {
-//       text: $this.children('option').eq(i).text(),
-//       rel: $this.children('option').eq(i).val()
-//     }).appendTo($list);
-//   }
-
-//   var $listItems = $list.children('li');
-
-//   $styledSelect.click(function (e) {
-//     e.stopPropagation();
-//     $('div.select-styled.active').not(this).each(function () {
-//       $(this).removeClass('active').next('ul.select-options').hide();
-//     });
-//     $(this).toggleClass('active').next('ul.select-options').toggle();
-//   });
-
-//   $listItems.click(function (e) {
-//     e.stopPropagation();
-//     $styledSelect.text($(this).text()).removeClass('active');
-//     $this.val($(this).attr('rel'));
-//     $list.hide();
-//   });
-
-//   $(document).click(function () {
-//     $styledSelect.removeClass('active');
-//     $list.hide();
-//   });
-// });
 
 
 route('*', function () {
-	$('#tag-add').keypress(function (e) {
+	$('#tag-add').keypress(function (e)
+	{
 			// if Enter pressed disallow it and run add func
-			if (e.which == 13) {
+			if (e.which == 13)
+			{
 					addTag();
 					return false;
 			}
 	});
+
+	$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
+	$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});
+
 	$(document).on('click', '#tag-add-btn', function () { addTag(); });
 	$(document).on('click', '#tag-list span i', function () {
 			var span = $(this).parent();
@@ -440,5 +403,3 @@ var addClass = function ( ev, obj, state ) {
 };
 
 
-$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
-$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});

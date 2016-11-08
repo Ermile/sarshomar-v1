@@ -82,127 +82,53 @@
 {%endblock%}
 
 {%block foot_js%}
-<script type="text/javascript">
-var topChartOptions = {
-  chart: {
-    type: 'column',
-    backgroundColor: 'rgba(255, 255, 255, 0)',
-    verticalAlign: 'center'
-  },
-  title: {
-    text: ""
-  },
-  xAxis:
-  {
-    categories:{{result['random_result']['categories'] | raw}}
-  },
+  <script type="text/javascript">
+    var topChartOptions =
+    {
+      chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
+      title: {text: ""},
+      xAxis:{categories:{{result['random_result']['categories'] | raw}}},
+      yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
+      plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
+      legend: {enabled: false},
+      credits: {enabled: false},
+      tooltip: {enabled: false},
+      series: {{result['random_result']['data'] | raw}}
+    };
 
-  yAxis: {
-    min: 0,
-    title: {
-      enabled: false
-    },
-    labels: {
-      enabled: false
-    },
-    gridLineWidth: 0,
-    minorGridLineWidth: 0
-  },
-  plotOptions: {
-    column: {
-      pointPadding: 0,
-      groupPadding: 0.15,
-    },
-    series: {
-      dataLabels: {
-        enabled: false,
-        format: '{point.y:f}%'
-      }
-    },
-    inside: true
-  },
-  legend: {
-    enabled: false
-  },
-  credits: {
-    enabled: false
-  },
-  tooltip: {
-    enabled: false
-  },
-  series: {{result['random_result']['data'] | raw}}
-};
+    var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
+    var newChartOptions =
+    {
+      chart: {type: 'bar',backgroundColor: 'rgba(255, 255, 255, 0)'},
+      title: {text: ''},
+      xAxis: [{categories: categories,reversed: false,labels: {enabled: true,step: 1},opposite: true}],
+      yAxis: {title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
+      plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: true,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
+      credits: {enabled: false},
+      tooltip: {enabled: false},
+      series: [{
+        name: '{%trans "Male"%}',
+        data: [-2.2, -2.7, -3.1, -3.2, -3.0, -3.2, -4.3, -4.4]
+      }, {
+        name: '{%trans "Female"%}',
+        data: [2.1, 2.6, 3.0, 3.1, 2.9, 3.1, 4.1, 4.3]
+      }]
+    };
 
-var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
-var newChartOptions = {
-  chart: {
-    type: 'bar',
-    backgroundColor: 'rgba(255, 255, 255, 0)'
-  },
-  title: {
-    text: ''
-  },
-  xAxis: [{
-    categories: categories,
-    reversed: false,
-    labels: {
-      enabled: true,
-      step: 1
-    },
-    opposite: true
-  }],
-  yAxis: {
-    title: {
-      enabled: false
-    },
-    labels: {
-      enabled: false
-    },
-    gridLineWidth: 0,
-    minorGridLineWidth: 0
-  },
-  plotOptions: {
-    series: {
-      stacking: 'normal',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y:f}'
-      }
-    },
-    bar: {
-      pointPadding: 0,
-      groupPadding: 0.01,
-    }
-  },
-  credits: {
-    enabled: false
-  },
-  tooltip: {
-    enabled: false
-  },
-  series: [{
-    name: '{%trans "Male"%}',
-    data: [-2.2, -2.7, -3.1, -3.2, -3.0, -3.2, -4.3, -4.4]
-  }, {
-    name: '{%trans "Female"%}',
-    data: [2.1, 2.6, 3.0, 3.1, 2.9, 3.1, 4.1, 4.3]
-  }]
-};
+    $(function() {
+      $('#random-chart .chart > div').highcharts(topChartOptions);
+      $('#chart > .chart').highcharts(newChartOptions);
 
-$(function() {
-  $('#random-chart .chart > div').highcharts(topChartOptions);
-  $('#chart > .chart').highcharts(newChartOptions);
+      var hoverOrClick = function()
+      {
+        var tab_id = $(this).attr('data-tab');
+        $('#features-box .tab').removeClass('current');
+        $('#features-box .content p').removeClass('current');
+        $(this).addClass('current');
+        $('#features-box .content p').eq(tab_id - 1).addClass('current');
+      };
 
-  var hoverOrClick = function()
-  {
-    var tab_id = $(this).attr('data-tab');
-    $('#features-box .tab').removeClass('current');
-    $('#features-box .content p').removeClass('current');
-    $(this).addClass('current');
-    $('#features-box .content p').eq(tab_id - 1).addClass('current');
-  };
-
-  $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
-});
-</script>
+      $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
+    });
+  </script>
 {% endblock %}
