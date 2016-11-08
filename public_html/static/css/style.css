@@ -564,7 +564,7 @@ nav#page-nav #nav-prev{float:left;}
 .element{position:relative;display:inline-flex;width:100%;margin-bottom:20px;border-collapse:separate;vertical-align:middle;padding-left:12px;}
 .rtl .element{padding-left:0;padding-right:13px;}
 
-.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#777777;text-align:center;font-size:25px;right:-35px;display:none;cursor:pointer;opacity:0.9;}
+.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;display:none;cursor:pointer;opacity:0.9;}
 .rtl .element .delete{right:auto;left:-35px;}
 .element .delete:hover{background-color:#B03D3D;color:#E7E7E7;opacity:1;transition:0.3s;}
 
