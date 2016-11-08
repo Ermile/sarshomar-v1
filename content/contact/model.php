@@ -56,6 +56,7 @@ class model extends \mvc\model
 		[
 			'comment_author'  => $displayname,
 			'comment_email'   => $email,
+			'comment_type'    => 'comment',
 			'comment_content' => $content,
 			'user_id'         => $user_id
 		];
