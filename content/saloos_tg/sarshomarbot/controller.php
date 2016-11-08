@@ -96,12 +96,11 @@ class controller extends \lib\mvc\controller
 
 
 			$get_back_response = session::get_back('expire', 'inline_cache');
-			if($get_back_response)
+			if($get_back_response && !\lib\storage::get_disable_edit())
 			{
 				foreach ($get_back_response as $key => $value) {
 
-					$edit_return = json_decode(json_encode($value->on_expire), true);
-					handle::send_log($edit_return);
+					$edit_return = commands\utility::object_to_array($value->on_expire);
 					$get_original = session::get('expire', 'inline_cache', $key);
 					if($value->save_unique_id == $get_original->save_unique_id)
 					{

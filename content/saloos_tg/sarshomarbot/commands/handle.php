@@ -82,7 +82,7 @@ class handle
 				break;
 
 
-				case T_("Change language"):
+				case T_("Language"):
 				$response = callback_query\language::make_result(null, true);
 				break;
 

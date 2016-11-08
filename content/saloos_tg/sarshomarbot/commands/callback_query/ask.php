@@ -44,14 +44,41 @@ class ask
 	public static function poll($_query, $_data_url)
 	{
 		$poll_short_link = $_data_url[2];
+		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
+		\lib\db\answers::save(bot::$user_id, $poll_id, $answer_id);
 
-		$poll_answer_id = $_data_url[3];
-		\lib\db\answers::save(bot::$user_id, $poll_id, $poll_answer_id);
-		$return = [];
-		$return["text"] = "✅ save your poll";
+		$on_edit = session::get_back('expire', 'inline_cache', 'ask', 'on_expire');
 
-		$poll_result = \lib\db\stat_polls::get_telegram_result($poll_id);
+		$edit_message = self::get_poll_result($poll_short_link, $poll_id, $answer_id);
+
+		$on_edit->text 				= $edit_message['text'];
+		$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=>$edit_message['reply_markup']]);
+		array_unshift(
+			$edit_message['reply_markup']['inline_keyboard'][0],
+			utility::inline(T_("Next poll"), "ask/make")
+		);
+		$on_edit->reply_markup 		= $edit_message['reply_markup'];
+
+		return ["text" => "✅ save your poll"];
+	}
+
+	public static function update($_query, $_data_url)
+	{
+		\lib\storage::set_disable_edit(true);
+		$message = self::get_poll_result($_data_url[2]);
+		$message['text'] .= "\n Last update: " . date("H:i:s");
+ 		callback_query::edit_message($message);
+		return [];
+	}
+	public static function get_poll_result($_poll_short_link, $_poll_id = null, $_answer_id = null)
+	{
+		if(is_null($_poll_id))
+		{
+			$_poll_id = \lib\utility\shortURL::decode($_poll_short_link);
+		}
+		$poll_result = \lib\db\stat_polls::get_telegram_result($_poll_id);
+
 		$poll_answer = array();
 		$poll_list = '';
 		$count = 0;
@@ -59,7 +86,7 @@ class ask
 		foreach ($poll_result['result'] as $key => $value) {
 			$count++;
 			$poll_answer[$count] = $value;
-			if($poll_answer_id == $count)
+			if($_answer_id == $count)
 			{
 				$poll_list .= '✅ ' . $key . "\n";
 			}
@@ -68,49 +95,28 @@ class ask
 				$poll_list .= $row[$count] . ' ' . $key . "\n";
 			}
 		}
-		$result = '📊' . $poll_result['title'];
-		$result .= "\n";
-		$result .= chart::calc_vertical($poll_answer);
-		$result .= "\n";
-		$result .= $poll_list;
+		$text = '📊' . $poll_result['title'];
+		$text .= "\n";
+		$text .= chart::calc_vertical($poll_answer);
+		$text .= "\n";
+		$text .= $poll_list;
 		$url = preg_split("[\/]", $poll_result['url']);
-		$result .= "[".$poll_result['title']."](https://telegram.me/SarshomarBot/sp_".$url[1].")";
-		$result .= "\n";
-		$result .= "[view result](https://sarshomar.com/$/".$url[1].")";
-		$result .= "\n";
-		$result .= "#sarshomar";
-		\lib\storage::set_after_run(self::after_poll($poll_short_link, $result));
+		$text .= "[".$poll_result['title']."](https://telegram.me/SarshomarBot/sp_".$url[1].")";
+		$text .= "\n";
+		$text .= "[view result](https://sarshomar.com/$/".$url[1].")";
+		$text .= "\n";
+		$text .= "#sarshomar";
+
+		$return = [];
+		$return = [
+			'text' 						=> $text,
+			'parse_mode' 				=> 'Markdown',
+			'disable_web_page_preview' 	=> true,
+			'reply_markup' 		=> ["inline_keyboard" => [[
+				utility::inline(T_("Update result"), "ask/update/" .$_poll_short_link)
+			]]]
+			];
 		return $return;
-	}
-
-	public static function after_poll($_poll_short_link, $_result)
-	{
-		return [
-			function($_poll_link, $_text){
-				$message = session::get_back('expire', 'inline_cache', 'ask');
-				session::remove_back('expire', 'inline_cache', 'ask');
-				session::remove('expire', 'inline_cache', 'ask');
-				$text = $_text;
-
-				$edit_return = [
-					"method" 					=> "editMessageText",
-					'parse_mode' 				=> 'Markdown',
-					'disable_web_page_preview' 	=> true,
-					"text" 						=> $text,
-					"chat_id" 					=> $message->result->chat->id,
-					"message_id" 				=> $message->result->message_id,
-					"reply_markup"				=> ["inline_keyboard" => [[
-						utility::inline(T_("Next poll"), "ask/make"),
-						utility::inline(T_("Update result"), "ask/update/" .$_poll_link)
-					]]],
-					"response_callback" => utility::response_expire('ask', [
-						"reply_markup"				=> ["inline_keyboard" => [[
-							utility::inline(T_("Update result"), "ask/update/" .$_poll_link)
-					]]]])
-				];
-				bot::sendResponse($edit_return);
-			},
-			$_poll_short_link, $_result];
 	}
 }
 ?>

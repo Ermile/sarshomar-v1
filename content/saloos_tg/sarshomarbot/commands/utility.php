@@ -49,4 +49,20 @@ class utility
 		"callback_data" => $_callback
 		];
 	}
+
+	public static function object_to_array($_object)
+	{
+		$object = $_object;
+		if(is_object($_object))
+		{
+			$object = (array) $_object;
+		}
+		foreach ($object as $key => $value) {
+			if((is_object($value) || is_array($value)) && !is_callable($value))
+			{
+				$object[$key] = self::object_to_array($value);
+			}
+		}
+		return $object;
+	}
 }

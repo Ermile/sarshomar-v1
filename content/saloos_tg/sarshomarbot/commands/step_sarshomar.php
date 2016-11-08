@@ -61,6 +61,10 @@ class step_sarshomar
 		{
 			$poll_id = \lib\utility\shortURL::decode($poll_url);
 			$is_answered = \lib\db\answers::is_answered(bot::$user_id, $poll_id);
+			if($is_answered)
+			{
+				return callback_query\ask::get_poll_result($poll_url, $poll_id, 0);
+			}
 			$questionExist = self::get_question(null, $poll_id);
 			$is_custom_poll = true;
 			step::set('custom_link', true);
