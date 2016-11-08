@@ -1,3 +1,14 @@
+// contact form
+route('contact', function(){
+	$('form').on('ajaxify:success',function(data, debug){
+		if(debug.status)
+		{
+			$('input').val('');
+			$('textarea').val('');
+		}
+	});
+});
+
 // Add
 route('@/add', function()
 {

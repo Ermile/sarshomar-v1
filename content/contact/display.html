@@ -6,6 +6,8 @@
   <div class="row">
     <div class="span3"></div>
     <div class="span6">
+    {%if login%}
+    {%else%}
       <div class="element">
         <label class="title" for="name">{%trans "name"%}</label>
         <input class="input" type="text" name="name" id="name">
@@ -14,6 +16,7 @@
         <label class="title" for="email">{%trans "email"%}</label>
         <input class="input" type="email" name="email" id="email">
       </div>
+      {%endif%}
       <div class="element">
         <label class="title" for="content">{%trans "content"%}</label>
         <textarea name="content" id="content" class="input"></textarea>

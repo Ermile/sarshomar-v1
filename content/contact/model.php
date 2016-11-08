@@ -36,19 +36,13 @@ class model extends \mvc\model
 			$user_id     = null;
 			$displayname = utility::post("name");
 			$email       = utility::post("email");
-			// check email and display name
-			if($email == '' || $displayname == '')
-			{
-				debug::error(T_("email or name is empty"));
-				return false;
-			}
 		}
 		// get the content
 		$content = utility::post("content");
 		// check content
 		if($content == '')
 		{
-			debug::error(T_("content is empty"));
+			debug::error(T_("content is empty"), "content");
 			return false;
 		}
 		// ready to insert comments
