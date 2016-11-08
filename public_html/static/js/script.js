@@ -70,6 +70,11 @@ route('@/add', function()
 	{
 		// always show delete button on input focus
 	});
+
+	$(this).on('click', '.questions > li > div', function(event)
+	{
+		$(this).parent('li').children('.answers').slideToggle();
+	});
 });
 
 
