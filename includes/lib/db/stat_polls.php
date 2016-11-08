@@ -183,29 +183,29 @@ class stat_polls
 			}
 
 
-			// update post meta and save count answered in to meta
-			$update_posts_meta =
-			"
-				UPDATE
-	            	posts
-	            SET
-	            	posts.post_meta =
-				       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-				       		'{\"answers\":{\"$opt_key\":1}}',
-							IF(
-							   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
-							   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
-							   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
-							   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
-						      )
-						)
-	            WHERE
-	            	posts.id 	 = $poll_id
-	   			-- stat_polls::set_poll_result()
-	            -- update post_meta and save answered count to post_meta
+			// // update post meta and save count answered in to meta
+			// $update_posts_meta =
+			// "
+			// 	UPDATE
+	  //           	posts
+	  //           SET
+	  //           	posts.post_meta =
+			// 	       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
+			// 	       		'{\"answers\":{\"$opt_key\":1}}',
+			// 				IF(
+			// 				   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
+			// 				   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
+			// 				   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
+			// 				   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
+			// 			      )
+			// 			)
+	  //           WHERE
+	  //           	posts.id 	 = $poll_id
+	  //  			-- stat_polls::set_poll_result()
+	  //           -- update post_meta and save answered count to post_meta
 
-			";
-			$update_posts_meta = \lib\db::query($update_posts_meta);
+			// ";
+			// $update_posts_meta = \lib\db::query($update_posts_meta);
 
 		}
 		// mysql not support json

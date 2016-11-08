@@ -136,7 +136,10 @@ class answers
 					'user_id' => $_user_id
 				];
 				// save answered count
-				\lib\db\stat_polls::set_poll_result($answers_details);
+				if($key != 'opt_other')
+				{
+					\lib\db\stat_polls::set_poll_result($answers_details);
+				}
 			}
 		}
 		else
@@ -157,7 +160,10 @@ class answers
 				'user_id' => $_user_id
 			];
 			// save answered count
-			\lib\db\stat_polls::set_poll_result($answers_details);
+			if($_answer != 'opt_other')
+			{
+				\lib\db\stat_polls::set_poll_result($answers_details);
+			}
 		}
 
 		$update_profile = \lib\db\profiles::set_profile_by_poll($answers_details);

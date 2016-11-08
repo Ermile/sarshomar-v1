@@ -217,9 +217,7 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			$next_url = \lib\db\polls::get_next_url($this->login("id"));
 			\lib\debug::true(T_("your answer saved"));
-			\lib\debug::msg($next_url);
 			return ;
 		}
 		else
