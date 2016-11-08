@@ -1,0 +1,168 @@
+/**
+ * In the Name of God
+ * Sarshomar Responsive Styles
+ * Version:1.0.0
+ * Author:Ermile
+ * Author URI:Ermile.com
+ */
+@charset "utf-8";
+
+
+/* media */
+@media only screen and (max-width:1000px) {
+  .features li .normal span{ font-size:.27em; }
+  .features li h3{font-size:.22em;}
+  .features li p{font-size:13px;}
+  .features li img{padding:42px; padding-top:27px;}
+  .features li{width:200px;height:200px}
+  .features li .normal span{ padding-top:78px; }
+  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 104deg); transform:rotate3d(-1, 0, 0, 104deg);}}
+  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 104deg); transform:rotate3d(-1, 0, 0, 104deg);}}
+  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 104deg); transform:rotate3d(0, -1, 0, 104deg);}}
+  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 104deg); transform:rotate3d(0, -1, 0, 104deg);}}
+  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 104deg); transform:rotate3d(1, 0, 0, 104deg);}}
+  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 104deg); transform:rotate3d(1, 0, 0, 104deg);}}
+  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 104deg); transform:rotate3d(0, 1, 0, 104deg);}}
+  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 104deg); transform:rotate3d(0, 1, 0, 104deg);}}
+}
+
+@media only screen and (max-width:768px) {
+  .features li h3{font-size:.22em;}
+  .features li p{font-size:12px}
+  .features li .normal span{ font-size:.22em; }
+}
+
+@media only screen and (max-width:480px) {
+  .features li .normal span{ font-size:.25em; }
+  .features li .normal span {padding-top:26px;}
+  .features li img{padding:36px; padding-top:25px;}
+  .features li {width:144px; height:144px;}
+  .features li .normal span{ font-size:.2em; }
+  .features li h3{font-size:.2em;}
+  .features li p{font-size:10px}
+  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 100.2deg); transform:rotate3d(-1, 0, 0, 100.2deg);}}
+  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 100.2deg); transform:rotate3d(-1, 0, 0, 100.2deg);}}
+  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 100.2deg); transform:rotate3d(0, -1, 0, 100.2deg);}}
+  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 100.2deg); transform:rotate3d(0, -1, 0, 100.2deg);}}
+  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 100.2deg); transform:rotate3d(1, 0, 0, 100.2deg);}}
+  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 100.2deg); transform:rotate3d(1, 0, 0, 100.2deg);}}
+  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
+  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
+  .features .info{padding-top:8px; padding:12px; }
+}
+
+@media only screen and (max-width:350px) {
+  .features .info{padding:5px;padding-top:2px;}
+  .features li {width:130px; height:130px;}
+  .features li .normal span {padding-top:8px;}
+  .features .card.span4 { width:100%!important;margin-right:0%!important;}
+  .row:before, .row:after{ display:initial;}
+  .row>[class*=span]:nth-child(even), .row .row>[class*=span]:nth-child(even){ margin-right:0!important;}
+  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 99.22deg); transform:rotate3d(-1, 0, 0, 99.22deg);}}
+  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 99.22deg); transform:rotate3d(-1, 0, 0, 99.22deg);}}
+  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 99.22deg); transform:rotate3d(0, -1, 0, 99.22deg);}}
+  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 99.22deg); transform:rotate3d(0, -1, 0, 99.22deg);}}
+  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 99.22deg); transform:rotate3d(1, 0, 0, 99.22deg);}}
+  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 99.22deg); transform:rotate3d(1, 0, 0, 99.22deg);}}
+  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
+  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
+}
+/************************************************************** Media Queries */
+
+/* Extra Large Screens */
+@media only screen and (min-width:1824px){
+  #trust{font-size:3em;}
+}
+
+/* Large Desktop */
+@media screen and (max-width:1823px){
+  #trust{font-size:3em;}
+}
+
+/* Small Desktop */
+@media only screen and (max-width:1199px){
+  #trust{font-size:2em;}
+}
+
+/* Tablet (Portrait) */
+@media only screen and (max-width:959px){
+  .tabs{height:36px;}
+}
+/* Tablet */
+@media only screen and (max-width:849px){
+.tabs{height:28px;}
+.type ul li > span{display:none;}
+#homepage header #header-quick{height:50px;}
+#header-quick{display:block;width:100%;text-align:center;}
+#header-quick a{width:32.3%;text-align:center;}
+header #header-profile{display:block;width:100%;text-align:center;padding:0;}
+header #header-profile .register{display:inline-block;width:49%;text-align:center;}
+header #header-profile .login{width:49%;background-color:#a57d56;border-radius:3px;color:#eee;font-weight:900;transition:0.3s;}
+#homepage header .chart{width:100%;}
+#trust p:before{width:80%;left:10%;}
+#trust p{padding:0 1em;}
+header .chart h3{padding-top:20px;}
+.inestimable .span6{text-align:center;}
+footer .container{padding:0;}
+footer #footer-links h4{padding:10px 0 0 0;}
+footer #footer-links a{display:inline-block;color:#888;padding:0 2%;}
+}
+/* Mobile (Landscape) */
+@media only screen and (max-width:767px){
+  .tabs{display:none;}
+  footer #footer-nav a{padding:1em 1em 1em 0;}
+  #inestimable img{display:none}
+  #inestimable .span6{text-align:center;margin-left:0;}
+  .row > .offset2{margin-left:2.127659%; }
+}
+/*  S_Tablet */
+@media only screen and (max-width:660px){
+	#homepage header{border:none;margin:0;}
+	header{font-size:1.1em;}
+	#homepage header .logo{width:100%;display:block;border:none;height:auto;padding:2em 0;float:none;}
+	#homepage header .logo img{width:180px;display:block;margin:0 auto 0;}
+	header #header-box{overflow:visible;padding:0.5em 1em;}
+	#homepage header #header-quick{height:50px;max-width:60%;font-size:1.3em;}
+	header #header-profile{width:40%;text-align:center;display:block;padding:10px 0;font-size:1.4em;}
+	header::before{display:none;}
+  #map{display:none;}
+	header .chart h3 a{font-size:1.8em;}
+	#homepage header .chart{float:left;}
+  #features-box{padding:5em 0;}
+	header #header-profile .login{background-color:transparent;color:#585454;}
+	header #header-box{border-image:url(../images/border.png) 8 stretch;border-right:8px solid transparent;
+    border-left:8px solid transparent;border-top:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;
+	}
+}
+/* Mobile */
+@media only screen and (max-width:530px){
+  #homepage header .logo img{width:150px;}
+  header .chart h3 a{font-size:1.5em;}
+  .container{width:95%;}
+  #trust{font-size:1.3em;}
+  #inestimable{font-size:0.9em;padding:25px 100px 0 10px;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;margin-left:0;margin-right:0}
+  #inestimable::before{display:none}
+  footer #footer-nav .eco{height:50px;}
+  footer{border-top:none;margin-top:8px;}
+  header #header-profile .register{width:100%;}
+  #homepage header #header-quick{padding-left:0;}
+  #features-box{padding:5em 1em;}
+}
+@media only screen and (max-width:381px){
+	#homepage header .logo img{width:130px;}
+	#homepage header #header-quick a{width:100%;text-align:left;}
+	#homepage header .logo img{font-size:1.2em;}
+	footer #footer-links a{padding:1% 2%;}
+	header .chart h3 a{font-size:1.3em;}
+	footer #footer-nav{margin-bottom:0;}
+	footer #footer-links{border-bottom:none;}
+	footer #footer-links a{padding:1% 0;width:50%;display:inline-block;float:left;}
+}
+@media only screen and (max-width:344px){
+	header .chart h3 a{font-size:1.2em;}
+	#inestimable a::before{display:none;}
+	#inestimable a::after{display:none;}
+	#inestimable a{font-size:2em;border-radius:5px;}
+	footer #footer-links a{padding:1% 5%;}
+  #features-box .title{max-width:5em;}
+}
