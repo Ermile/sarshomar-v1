@@ -1,7 +1,7 @@
-  {%extends display.main%}
+{%extends display.main%}
 
-  {%block content%}
-  <div class="box">
+{%block content%}
+<div class="box">
   <form method="post">
     <input type="hidden" name="poll_type" value="">
     <div class="row auto">
@@ -130,20 +130,7 @@
                   </select>
                 </div>
                 <div class="tree-list">
-                  <ul class="questions">
-                    <li>
-                      <div>ssssit</div>
-                      <ul class="answers">
-                        <li class="ac-custom ac-checkbox ac-checkmark">
-                          <input class="" type="checkbox" name="zzz" id="zzz">
-                          <label for="zzz">{%trans "Lorem ipsum dolor sit amet"%}</label>
-                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
-                    <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
-                  </ul>
+                  <ul class="questions"></ul>
                 </div>
 
                 <div class="panel-text">
@@ -220,39 +207,53 @@
       </div><!-- /.span4 -->
     </div><!-- /.row.auto -->
   </form>
-  </div>
-  {%endblock%}
+</div>
+{%endblock%}
 
-  {%block foot_js%}
-  <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#search').keyup(function(){
-        repository = $("#repository").val();
-        search     = $(this).val();
-       $(this).ajaxify(
+{%block foot_js%}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#search').on('input', function(event)
+    {
+      repository = $("#repository").val();
+      search     = $(this).val();
+      $(this).ajaxify(
+      {
+        ajax:
         {
-          ajax:
+          url: '@/add',
+          method: 'post',
+          data:
           {
-            url: '@/add',
-            method: 'post',
-            data:
+            'repository': repository,
+            'search': search
+          },
+          abort: true,
+          success: function(e)
+          {
+            var el = '<li>';
+            for (var r in e.msg.result)
             {
-              'repository': repository,
-              'search': search
-            },
-            abort: true,
-            success: function(e)
-            {
-              for(poll in e.msg.result)
+              el = el + '<div>' + e.msg.result[r].title + '</div>';
+              el += '<ul class="answers">';
+              for (var a in e.msg.result[r].meta.opt)
               {
-
+                el += '<li class="ac-custom ac-checkbox ac-checkmark">';
+                el = el + '<input type="checkbox" name="' + e.msg.result[r].meta.opt[a].key + '" id="'+ e.msg.result[r].meta.opt[a].key +'">';
+                el = el + '<label for="' + e.msg.result[r].meta.opt[a].key + '">' + e.msg.result[r].meta.opt[a].txt + '</label>';
+                el = el + '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>';
+                el += '</li>';
               }
-              console.log(e.msg.result);
+              el += '</ul>';
             }
+            el += '</li>';
+
+            $('.questions').append($(el));
           }
-        });
+        }
       });
     });
-  </script>
-  {%endblock%}
+  });
+</script>
+{%endblock%}
