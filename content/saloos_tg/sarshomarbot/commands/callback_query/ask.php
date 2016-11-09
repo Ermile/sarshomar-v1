@@ -78,6 +78,7 @@ class ask
 			$_poll_id = \lib\utility\shortURL::decode($_poll_short_link);
 		}
 		$poll_result = \lib\db\stat_polls::get_telegram_result($_poll_id);
+		handle::send_log($poll_result);
 
 		$poll_answer = array();
 		$poll_list = '';

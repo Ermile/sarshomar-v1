@@ -28,7 +28,7 @@ class callback_query
 		/**
 		 * check if unique request
 		 */
-		$callback_session = session::get('tmp', 'callback_query');
+		$callback_session = false; //session::get('tmp', 'callback_query');
 		if(!$callback_session)
 		{
 			$callback_session = [];
@@ -119,7 +119,8 @@ class callback_query
 		{
 			return $response;
 		}
-		bot::sendResponse($response);
+		handle::send_log($response);
+		handle::send_log(bot::sendResponse($response));
 	}
 }
 ?>

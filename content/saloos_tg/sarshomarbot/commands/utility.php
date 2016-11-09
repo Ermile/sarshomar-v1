@@ -65,4 +65,9 @@ class utility
 		}
 		return $object;
 	}
+
+	public static function microtime_id($_pref = 'id_')
+	{
+		return $_pref . preg_replace(".", "_", microtime(true));
+	}
 }

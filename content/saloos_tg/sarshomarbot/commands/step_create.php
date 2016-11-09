@@ -109,8 +109,13 @@ class step_create
 		else
 		{
 			$txt_text = "نظرسنجی که ثبت کردید به صورت زیر می‌باشد: \n\n";
-			$poll = ['title' => $question_export[0]];
-			foreach (array_slice($question_export, 1) as $key => $value) {
+			$poll_title 		= $question_export[0];
+			$poll_answers 	= array_slice($question_export, 1);
+			$poll_id 		= utility::microtime_id();
+			session::set('poll', $poll_id, ["title" => $poll_title, "answers" => $poll_answers]);
+
+			$poll = ['title' => $poll_title];
+			foreach ($poll_answers as $key => $value) {
 				$poll['meta']['opt'][] = ["txt" => $value];
 			}
 			$poll_tmp = poll_result::make($poll);
@@ -118,7 +123,6 @@ class step_create
 			array_pop($poll_tmp['message']);
 			$txt_text .= poll_result::get_message($poll_tmp['message']);
 			$txt_text .= "\nقصد دارید انتشار دهید یا حذف کنید؟";
-			handle::send_log($poll_tmp);
 			step::stop();
 			// $poll_id = \lib\db\polls::insert_quick([
 			// 	'user_id' => bot::$user_id,
@@ -137,8 +141,8 @@ class step_create
 				'reply_markup' 				=> [
 					'inline_keyboard' 		=> [
 						[
-						utility::inline(T_("delete"), 'poll/delete/'.$short_link),
-						utility::inline(T_("Publish"), 'poll/publish/'.$short_link)
+						utility::inline(T_("Discard"), 'poll/discard/'.$poll_id),
+						utility::inline(T_("Publish"), 'poll/publish/'.$poll_id)
 						]
 					]
 				]
