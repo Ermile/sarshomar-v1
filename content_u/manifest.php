@@ -10,10 +10,10 @@ $modules['complete_profile'] = array(
 	);
 
 /**
- *	sarshomart cat
- *	set the cat of poll on sarshomar
+ *	sarshomart knowledge
+ *	can set the poll in knowledge from sarshomar
  */
-$modules['sarshomar_poll'] = array(
+$modules['sarshomar_knowledge'] = array(
 	'desc' 			=> T_("can add the poll by sarshomar cat"),
 	'icon'			=> 'file-text-o',
 	'permissions'	=> ['add', 'edit', 'view', 'update', 'admin'],

@@ -1,250 +1,258 @@
-{%extends display.main%}
+  {%extends display.main%}
 
-{%block content%}
-<div class="box">
-<form method="post">
-  <input type="hidden" name="poll_type" value="">
-  <div class="row auto">
-    <div class="span8">
-      <div class="row">
-        <div class="type">
-          <ul class="tabs">
-            <li data-tab="multiple_choice" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
-            <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
-            <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
-            <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
-            <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
-            <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
-            <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
-          </ul>
-        </div><!-- /.type -->
+  {%block content%}
+  <div class="box">
+  <form method="post">
+    <input type="hidden" name="poll_type" value="">
+    <div class="row auto">
+      <div class="span8">
+        <div class="row">
+          <div class="type">
+            <ul class="tabs">
+              <li data-tab="multiple_choice" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
+              <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
+              <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
+              <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
+              <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
+              <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
+              <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sort"%}</span></li>
+            </ul>
+          </div><!-- /.type -->
 
-        <ul class="tab">
-          <li id="tab-multiple_choice" class="active">
-            <div class="element">
-              <label class="title" for="title" autocomplete="off">Title</label>
-              <input class="input" type="text" name="title" id="title">
-            </div>
+          <ul class="tab">
+            <li id="tab-multiple_choice" class="active">
+              <div class="element">
+                <label class="title" for="title" autocomplete="off">Title</label>
+                <input class="input" type="text" name="title" id="title">
+              </div>
 
-              <div class="input-group">
-                <div class="element small" data-number="1">
-                  <label class="title" for="answer1">Answer 1</label>
-                  <input class="input" type="text" name="answers[]" id="answer1" autocomplete="off">
-                  <input type="hidden" name="answer_true[]" value="true">
-                  <input type="hidden" name="answer_type[]" value="text">
-                  <span class="fa fa-times delete" aria-hidden="true"></span>
-                </div>
-
-                <div class="element small" data-number="2">
-                  <label class="title" for="answer2">Answer 2</label>
-                  <input class="input" type="text" name="answers[]" id="answer2" autocomplete="off">
-                  <input type="hidden" name="answer_true[]" value="true">
-                  <input type="hidden" name="answer_type[]" value="text">
-                  <span class="fa fa-times delete" aria-hidden="true"></span>
-                </div>
-              </div><!-- /.input-group -->
-
-              <div class="row auto element-checkbox">
-                <div class="span6">
-                  <div autocomplete="off">
-                    <ul>
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_descriptive" id="descriptive" checked="checked">
-                        <label for="descriptive">{%trans "Descriptive Answer"%}</label>
-                      </li>
-
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_score" id="score">
-                        <label for="score">{%trans "Score"%}</label>
-                      </li>
-
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
-                        <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
-                      </li>
-
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_hidden_result" id="hidden_result">
-                        <label for="hidden_result">{%trans "Hidden Result"%}</label>
-                      </li>
-                    </ul>
-
+                <div class="input-group">
+                  <div class="element small" data-number="1">
+                    <label class="title" for="answer1">Answer 1</label>
+                    <input class="input" type="text" name="answers[]" id="answer1" autocomplete="off">
+                    <input type="hidden" name="answer_true[]" value="true">
+                    <input type="hidden" name="answer_type[]" value="text">
+                    <span class="fa fa-times delete" aria-hidden="true"></span>
                   </div>
-                </div>
-                <div class="span6">
-                  <div autocomplete="off">
-                    <ul>
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_random_sort" id="random_sort">
-                        <label for="random_sort">{%trans "Random Sort"%}</label>
-                      </li>
 
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_true_answer" id="true_answer">
-                        <label for="true_answer">{%trans "True Answer"%}</label>
-                      </li>
-
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_tree" id="poll_tree">
-                        <label for="poll_tree">{%trans "Poll Tree"%}</label>
-                      </li>
-
-                       <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input type="checkbox" name="meta_comment" id="comment" checked>
-                        <label for="comment">{%trans "Comment"%}</label>
-                      </li>
-                    </ul>
+                  <div class="element small" data-number="2">
+                    <label class="title" for="answer2">Answer 2</label>
+                    <input class="input" type="text" name="answers[]" id="answer2" autocomplete="off">
+                    <input type="hidden" name="answer_true[]" value="true">
+                    <input type="hidden" name="answer_type[]" value="text">
+                    <span class="fa fa-times delete" aria-hidden="true"></span>
                   </div>
-                </div><!-- /.span6 -->
-              </div><!--/.row-->
+                </div><!-- /.input-group -->
 
-              <div class="poll-complete">
-                <span class="ac-custom ac-checkbox ac-checkmark">
-                  <input class="" type="checkbox" name="pollComplete" id="pollComplete">
-                  <label for="pollComplete">{%trans "Poll Complete"%}</label>
-                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                </span>
-                <select class="poll-complete-dropdown">
-                  <option>Personal</option>
-                  <option>Horizontal</option>
-                  <option>Vertical</option>
-                </select>
-              </div>
+                <div class="row auto element-checkbox">
+                  <div class="span6">
+                    <div autocomplete="off">
+                      <ul>
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_descriptive" id="descriptive" checked="checked">
+                          <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                        </li>
 
-              <div class="tree">
-                <span class="ac-custom ac-checkbox ac-checkmark">
-                  <input class="" type="checkbox" name="tree" id="tree">
-                  <label for="tree">{%trans "Tree"%}</label>
-                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                </span>
-                <input class="" type="text" name="text" id="text" value="Lorem ipsum dolor sit amet">
-                <span class="fa fa-search search" aria-hidden="true"></span>
-                <select class="tree-dropdown">
-                  <option>Personal</option>
-                  <option>Horizontal</option>
-                  <option>Vertical</option>
-                </select>
-              </div>
-              <div class="tree-list">
-                <ul class="questions">
-                  <li>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                    <ul class="answers">
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input class="" type="checkbox" name="zzz" id="zzz">
-                        <label for="zzz">{%trans "Lorem ipsum dolor sit amet"%}</label>
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                      </li>
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input class="" type="checkbox" name="yyy" id="yyy">
-                        <label for="yyy">{%trans "Lorem ipsum dolor sit amet"%}</label>
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                      </li>
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input class="" type="checkbox" name="www" id="www">
-                        <label for="www">{%trans "Lorem ipsum dolor sit amet"%}</label>
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                      </li>
-                      <li class="ac-custom ac-checkbox ac-checkmark">
-                        <input class="" type="checkbox" name="rrr" id="rrr">
-                        <label for="rrr">{%trans "Lorem ipsum dolor sit amet"%}</label>
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
-                  <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
-                </ul>
-              </div>
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_score" id="score">
+                          <label for="score">{%trans "Score"%}</label>
+                        </li>
 
-              <div class="panel-text">
-                <div class="title">
-                  <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
-                </div>
-                <textarea name="summary"></textarea>
-              </div>
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
+                          <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                        </li>
+                        {%if perm.hidden_result.admin%}
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_hidden_result" id="hidden_result">
+                          <label for="hidden_result">{%trans "Hidden Result"%}</label>
+                        </li>
+                        {%endif%}
+                      </ul>
 
-              <div class="panel-text">
-                <div class="title">
-                  <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
-                </div>
-                <textarea name="description"></textarea>
-              </div>
+                    </div>
+                  </div>
+                  <div class="span6">
+                    <div autocomplete="off">
+                      <ul>
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_random_sort" id="random_sort">
+                          <label for="random_sort">{%trans "Random Sort"%}</label>
+                        </li>
 
-              {%if sarshomar_mod%}
-                 <div class="element">
-                  <label class="title" for="profile">{%trans "Poll To Complete Profile"%}</label>
-                  <select class="input" name="meta_profile" id="profile" >
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_true_answer" id="true_answer">
+                          <label for="true_answer">{%trans "True Answer"%}</label>
+                        </li>
+
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_tree" id="poll_tree">
+                          <label for="poll_tree">{%trans "Poll Tree"%}</label>
+                        </li>
+
+                         <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input type="checkbox" name="meta_comment" id="comment" checked>
+                          <label for="comment">{%trans "Comment"%}</label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div><!-- /.span6 -->
+                </div><!--/.row-->
+
+                {% if perm.complete_profile.admin %}
+                <div class="poll-complete">
+                  <span class="ac-custom ac-checkbox ac-checkmark">
+                    <input class="" type="checkbox" name="pollComplete" id="pollComplete">
+                    <label for="pollComplete">{%trans "Profile"%}</label>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                  </span>
+                  <select class="poll-complete-dropdown" name="meta_profile">
                     <option value="">{%trans "Please Select One Item"%}</option>
-                    {%for key, value in profile_lock%}
-                      <option value="{{value}}">{{value}}</option>
-                    {%endfor%}
+                      {%for key, value in profile_lock%}
+                        {%set t_value = value %}
+                        <option value="{{value}}">{%trans t_value%}</option>
+                      {%endfor%}
                   </select>
                 </div>
-              {%endif%}
-              {%if survey_mod%}
-                <div class="element">
-                  <label class="title" for="survey_title">Survey Title</label>
-                  <input class="input" type="text" name="survey_title" id="survey_title">
+                {%endif%}
+
+                <div class="tree">
+                  <span class="ac-custom ac-checkbox ac-checkmark">
+                    <input class="" type="checkbox" name="tree" id="tree">
+                    <label for="tree">{%trans "Tree"%}</label>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                  </span>
+                  <input class="" type="text" id="search" placeholder='{%trans "Search"%}'>
+                  <span class="fa fa-search search" aria-hidden="true"></span>
+                  <select class="tree-dropdown" id="repository">
+                    <option value="personal" >{%trans "Personal" %}</option>
+                    <option value="sarshomar" >{%trans "Sarshomar" %}</option>
+                  </select>
                 </div>
-              {%endif%}
-          </li><!-- /#tab-multiple_choice -->
-          <li id="tab-descriptive">descriptive</li>
-          <li id="tab-notification">notification</li>
-          <li id="tab-upload">upload</li>
-          <li id="tab-starred">starred</li>
-          <li id="tab-numerical">numerical</li>
-          <li id="tab-sort">sort</li>
-        </ul><!-- /.tab -->
-      </div><!-- /.row -->
+                <div class="tree-list">
+                  <ul class="questions">
+                    <li>
+                      <div>ssssit</div>
+                      <ul class="answers">
+                        <li class="ac-custom ac-checkbox ac-checkmark">
+                          <input class="" type="checkbox" name="zzz" id="zzz">
+                          <label for="zzz">{%trans "Lorem ipsum dolor sit amet"%}</label>
+                          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+                    <li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+                  </ul>
+                </div>
 
-      <div class="buttons">
-        <input type="hidden" name="n" value="v" id="submit-form">
-        <nav>
-          <button send-name="filter" value="filter">{%trans "Filter"%}</button>
-        {%if survey_mod%}
-          <button send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-        {%else%}
-          <button send-name="survey" value="survey">{%trans "Survey"%}</button>
-        {%endif%}
-          <button send-name="publish" value="publish">{%trans "Publish"%}</button>
-        </nav>
-      </div><!-- /.buttons -->
-    </div><!-- /.span8 -->
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
+                  </div>
+                  <textarea name="summary"></textarea>
+                </div>
 
-    <div class="span4">
-      <div class="row">
-        {%if poll_list %}
-        <div class="group">
-          <div class="title-line"><span>Survey</span></div>
-          <div class="element small">
-            <label class="title" for="secondary-title">Title</label>
-            <input class="input" type="text" name="secondary-title" id="secondary-title">
-          </div>
-        </div>
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
+                  </div>
+                  <textarea name="description"></textarea>
+                </div>
 
-        <div class="group">
-          <div class="title-line"><span>Questions List</span></div>
-          {%for key, value in poll_list%}
-          <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
-            <div class="element small has-floating">
-              <label class="title" for="question{{key + 1}}">Question {{key + 1}}</label>
-              <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
-              <span class="addon floating">
-                <span><i class="fa fa-check" aria-hidden="true"></i></span>
-              </span>
+                {%if survey_mod%}
+                  <div class="element">
+                    <label class="title" for="survey_title">Survey Title</label>
+                    <input class="input" type="text" name="survey_title" id="survey_title">
+                  </div>
+                {%endif%}
+            </li><!-- /#tab-multiple_choice -->
+            <li id="tab-descriptive">descriptive</li>
+            <li id="tab-notification">notification</li>
+            <li id="tab-upload">upload</li>
+            <li id="tab-starred">starred</li>
+            <li id="tab-numerical">numerical</li>
+            <li id="tab-sort">sort</li>
+          </ul><!-- /.tab -->
+        </div><!-- /.row -->
+
+        <div class="buttons">
+          <input type="hidden" name="n" value="v" id="submit-form">
+          <nav>
+            <button send-name="filter" value="filter">{%trans "Filter"%}</button>
+          {%if survey_mod%}
+            <button send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+          {%else%}
+            <button send-name="survey" value="survey">{%trans "Survey"%}</button>
+          {%endif%}
+            <button send-name="publish" value="publish">{%trans "Publish"%}</button>
+          </nav>
+        </div><!-- /.buttons -->
+      </div><!-- /.span8 -->
+
+      <div class="span4">
+        <div class="row">
+          {%if poll_list %}
+          <div class="group">
+            <div class="title-line"><span>Survey</span></div>
+            <div class="element small">
+              <label class="title" for="secondary-title">Title</label>
+              <input class="input" type="text" name="secondary-title" id="secondary-title">
             </div>
-          <!-- </a> -->
-          {%endfor%}
-        </div>
-        {%endif%}
-      </div><!-- /.row -->
-    </div><!-- /.span4 -->
-  </div><!-- /.row.auto -->
-</form>
-</div>
-{%endblock%}
+          </div>
 
-{%block foot_js%}
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-{%endblock%}
+          <div class="group">
+            <div class="title-line"><span>Questions List</span></div>
+            {%for key, value in poll_list%}
+            <!-- <a href="{{base.url}}/{{value.url}}?preview=yes"> -->
+              <div class="element small has-floating">
+                <label class="title" for="question{{key + 1}}">Question {{key + 1}}</label>
+                <input class="input" type="text" name="question{{key}}" id="question{{key + 1}}" value="{{value.title}}">
+                <span class="addon floating">
+                  <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                </span>
+              </div>
+            <!-- </a> -->
+            {%endfor%}
+          </div>
+          {%endif%}
+        </div><!-- /.row -->
+      </div><!-- /.span4 -->
+    </div><!-- /.row.auto -->
+  </form>
+  </div>
+  {%endblock%}
+
+  {%block foot_js%}
+  <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#search').keyup(function(){
+        repository = $("#repository").val();
+        search     = $(this).val();
+       $(this).ajaxify(
+        {
+          ajax:
+          {
+            url: '@/add',
+            method: 'post',
+            data:
+            {
+              'repository': repository,
+              'search': search
+            },
+            abort: true,
+            success: function(e)
+            {
+              for(poll in e.msg.result)
+              {
+
+              }
+              console.log(e.msg.result);
+            }
+          }
+        });
+      });
+    });
+  </script>
+  {%endblock%}

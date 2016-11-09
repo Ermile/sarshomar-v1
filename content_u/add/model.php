@@ -6,11 +6,29 @@ use \lib\debug;
 class model extends \content_u\home\model
 {
 
+	public function post_search()
+	{
+		$repository = utility::post("repository");
+		$search     = utility::post("search");
+		$meta       = [];
+		if($repository == 'personal')
+		{
+			$meta = ['user_id' => $this->login("id")];
+		}
+		$result = \lib\db\polls::search($search, $meta);
+		debug::msg("result", $result);
+	}
+
 	/**
 	 * get data to add new add
 	 */
 	function post_add($_args)
 	{
+		if(utility::post("repository"))
+		{
+			$this->post_search();
+			return;
+		}
 		// start transaction
 		\lib\db::transaction();
 

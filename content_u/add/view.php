@@ -11,10 +11,8 @@ class view extends \mvc\view
 	{
 		$this->include->fontawesome = true;
 		// check permisson
-		$perm = $this->access('u', 'sarshomar', 'add');
-		if($perm)
+		if($this->access('u', 'complete_profile', 'admin'))
 		{
-			$this->data->sarshomar_mod = true;
 			$this->data->profile_lock = array_keys(\lib\db\filters::support_filter());
 		}
 	}
