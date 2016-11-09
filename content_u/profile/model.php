@@ -1,14 +1,14 @@
 <?php
-namespace content_u\me;
+namespace content_u\profile;
 use \lib\utility;
 
 class model extends \mvc\model
 {
 
 	/**
-	 * get me data to show
+	 * get profile data to show
 	 */
-	public function get_me()
+	public function get_profile()
 	{
 		$user_id = $this->login("id");
 		$me = \lib\db\profiles::get_profile_data($user_id);
@@ -23,7 +23,7 @@ class model extends \mvc\model
 	/**
 	 * post data and update or insert me data
 	 */
-	public function post_me()
+	public function post_profile()
 	{
 		if(utility::post("type") == 'autocomplete')
 		{

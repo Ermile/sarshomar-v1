@@ -1,11 +1,11 @@
 <?php
-namespace content_u\me;
+namespace content_u\profile;
 
 class view extends \mvc\view
 {
-	public function view_me($_args)
+	public function view_profile($_args)
 	{
-		$this->data->me = $_args->api_callback;
+		$this->data->profile = $_args->api_callback;
 		// $profile_data =
 		// [
 			// 	'email' 		   => null,

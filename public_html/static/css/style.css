@@ -419,7 +419,7 @@ nav#page-nav #nav-prev{float:left;}
 .tab>li{display:none;}
 .tab>li.active{display:inherit;}
 
-#me .buttons{margin-top:5em;}
+#profile .buttons{margin-top:5em;}
 
 /* vertical tabs */
 .vertical-tabs, .vertical-tabs-content{display:table-cell;}
@@ -440,9 +440,9 @@ nav#page-nav #nav-prev{float:left;}
 
 #tab-personal img{width:150px;height:150px;margin-bottom:2em;}
 .margin-bottom{margin-bottom:2em;}
-#me .title-line::before{width:180px;}
-#me .title-line.reverse::before{left:-50px;}
-#me .buttons::before{width:100%;left:0px;}
+#profile .title-line::before{width:180px;}
+#profile .title-line.reverse::before{left:-50px;}
+#profile .buttons::before{width:100%;left:0px;}
 
 
 /* knowledge */
