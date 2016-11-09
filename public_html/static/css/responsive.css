@@ -67,43 +67,68 @@
   @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
   @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
 }
+  
 /************************************************************** Media Queries */
 
 /* #Large Desktop ======================================== Design for a width of 1400 until 1823px*/
-@media screen and (min-width: 1400px){
-
-}
+@media screen and (min-width: 1400px){}
 
 /* #Tablet (Portrait) =================================== Design for a width of 768px until 959px */
 @media only screen and (max-width:959px){
   header #header-profile .login{background-color: transparent;color: #888;}
-  header #header-profile{padding: 0;}
-}
+  header #header-profile{padding: 0; margin: 1em;}
+  .ltr .special-heading::after{display: none;}
+  header .logo img{width: 6.3em;}
+  header #header-profile .login{padding: 0 2em;font-weight: 600;font-size: 1.4em;}}
+
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
-@media only screen and (max-width: 767px) {
-}
+@media only screen and (max-width: 767px){
+  #random-chart h3{text-align: left;font-size: 1.5em;}
+  #homepage .box{padding: 0;}
+  #map{display: none;}
+  header .logo img{width: 8em;}
+  header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
+  header{border:none;text-align: center;}
+  header #header-box{border-right: 8px solid transparent;border-left: 8px solid transparent;border-top: 8px solid transparent;height:auto;-webkit-border-image: url(../images/border.png) 8 stretch;}
+  header #header-profile{width: 30%;}
+  header #header-quick a{padding: 15px 7px;}
+  .wrapper{padding: 0;border-bottom: 8px solid transparent;}
+  nav.breadcrumb{display: none;}
+  #homepage .box{padding:0 10px;}
+  #features-box .tab{width: 33.33%;}
+  #intro-box p{font-size:1.6em;}
+  #random-chart h3 {padding: 1em .2em;font-size: 1.3em;}
+  #random-chart h3 a{font-size: 1.4em;font-weight: 500;}
+  .special-heading{display: none;}
+  #worldSvgObject{display: none;}
+  .chart{background-color: #f4f4f4;}
+  #customers-box{padding: 0;}
+  #customers-box .customer h3::before{display: none;}
+  #customers-box .customer h3::after{display: none;}
+  #customers-box .customer:nth-child(even){width: 90%;text-align: left;margin: .5em auto;}
+  #customers-box .customer:nth-child(odd){width: 90%;text-align: left;margin: .5em auto;}
+  #customers-box .customer p{width: 90%;margin:0 auto;}
+  #features-box{padding: 10px 0;}
+  #inestimable::before{display: none;}
+  #inestimable::after{display: none;}
+  #inestimable{padding: 0; margin:0;}
+  #inestimable h3 {margin-top: 30px;}
+  .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
+  #inestimable img{display: none;}
+  footer #footer-links{border-bottom:0;}
+  footer #footer-links a{padding: .5em;display: inline-block;}
+  footer #footer-note .counter, footer #footer-note .love{display: inline-block !important;width:50% !important; margin-top:5px !important; }
+  footer #footer-links section h4{text-align: left;}}
 
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 @media only screen and (max-width: 479px){
-header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
-header{border:none;text-align: center;}
-header #header-box{border-right: 8px solid transparent;border-left: 8px solid transparent;border-top: 8px solid transparent;height:auto;-webkit-border-image: url(../images/border.png) 8 stretch;}
-header #header-profile{width: 30%;}
-header #header-quick a{padding: 15px 7px;}
-.wrapper{padding: 0;}
-nav.breadcrumb{display: none;}
-#homepage .box{padding:0 20px;}
-#intro-box p{font-size:1.6em;}
-#random-chart h3 {padding: 1em .2em;font-size: 1.3em;}
-#random-chart h3 a{font-size: 1.4em;font-weight: 500;}
-.special-heading{display: none;}
-#worldSvgObject{display: none;}
-.chart{background-color: #f4f4f4;}
-}
+#map{display: none;}
+#features-box .tab{width: 100%;}
+header #header-profile{margin: 0;}
+header .logo img{width: 7em;}}
 
-@media only screen and (max-width: 320px){
-
-}
+/*================================== */
+@media only screen and (max-width: 320px){}
 
 
 
