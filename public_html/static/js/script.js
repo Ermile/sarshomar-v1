@@ -82,6 +82,47 @@ route(/\@\/add/, function()
 	{
 		$(this).parent('li').children('.answers').slideToggle();
 	});
+
+	$(this).on('input', '#search', function(event)
+	{
+	  repository = $("#repository").val();
+	  search     = $(this).val();
+	  $(this).ajaxify(
+	  {
+	    ajax:
+	    {
+	      url: '@/add',
+	      method: 'post',
+	      data:
+	      {
+	        'repository': repository,
+	        'search': search
+	      },
+	      abort: true,
+	      success: function(e)
+	      {
+	        var el = '<li>';
+	        for (var r in e.msg.result)
+	        {
+	          el = el + '<div>' + e.msg.result[r].title + '</div>';
+	          el += '<ul class="answers">';
+	          for (var a in e.msg.result[r].meta.opt)
+	          {
+	            el += '<li class="ac-custom ac-checkbox ac-checkmark">';
+	            el = el + '<input type="checkbox" name="' + e.msg.result[r].meta.opt[a].key + '" id="'+ e.msg.result[r].meta.opt[a].key +'">';
+	            el = el + '<label for="' + e.msg.result[r].meta.opt[a].key + '">' + e.msg.result[r].meta.opt[a].txt + '</label>';
+	            el = el + '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>';
+	            el += '</li>';
+	          }
+	          el += '</ul>';
+	        }
+	        el += '</li>';
+
+	        $('.questions').append($(el));
+	      }
+	    }
+	  });
+	});
 });
 
 
