@@ -19,6 +19,7 @@ body{background-color:#00667a;}
 #homepage .box{padding:0 50px;}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:"";}
 .wrapper::after,.box::after,header::after{clear:both;}
+.wrapper>aside{background-color:#eee;width:180px;}
 
 /* for left aligned input labels */
 .text-left{text-align:left;}
@@ -73,7 +74,7 @@ nav.breadcrumb > a + a:before {content:">";color: #99a0aa;padding: 0px 8px;float
 
 
 /* header logo*/
-header .logo{position:relative;float:left;text-align:left;height:89px;width:240px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0;}
+header .logo{position:relative;float:left;text-align:left;height:90px;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0;}
 .rtl header .logo{text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
 header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;}
 header .logo h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
@@ -364,7 +365,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .question-box .buttons::before{left:-30px;}
 
 
-/* social */
+/* sharebox */
 .sharebox{text-align:right;}
 .sharebox a{display:inline-block;width:30px;height:30px;margin:0 .1em;text-align:center;position:relative;overflow:hidden;opacity:.99;border-radius:2%;}
 .sharebox a:before{content:'';width:50%;height:400%;position:absolute;top:-214%;left:-61%;transform:rotate(30deg);z-index:-1}
@@ -419,7 +420,6 @@ nav#page-nav #nav-prev{float:left;}
 .tab>li{display:none;}
 .tab>li.active{display:inherit;}
 
-#profile .buttons{margin-top:5em;}
 
 /* vertical tabs */
 .vertical-tabs, .vertical-tabs-content{display:table-cell;}
@@ -440,6 +440,9 @@ nav#page-nav #nav-prev{float:left;}
 
 #tab-personal img{width:150px;height:150px;margin-bottom:2em;}
 .margin-bottom{margin-bottom:2em;}
+
+/* ======================================================== @/profile */
+#profile .buttons{margin-top:5em;}
 #profile .title-line::before{width:180px;}
 #profile .title-line.reverse::before{left:-50px;}
 #profile .buttons::before{width:100%;left:0px;}

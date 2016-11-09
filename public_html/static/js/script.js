@@ -188,11 +188,10 @@ route(/\@\/me/, function ()
 
 
 // pollsearch | Knowledge
-// route(/^\$(.*)$/, function (_doc)
-route('*', function (_doc)
+route(/^\/?(fa\/)?\$(.*)$/, function ()
 {
 	var change = 0;
-	$('.pollsearch', _doc).keyup(function(e)
+	$('.pollsearch', this).keyup(function(e)
 	{
 		var val = $(this).val();
 		change  += 1;
@@ -210,7 +209,7 @@ route('*', function (_doc)
 				change -= 1;
 		}, 250);
 	});
-	$('.pollsearch', _doc).focus().val($('.pollsearch').val());
+	$('.pollsearch', this).focus().val($('.pollsearch').val());
 });
 
 
