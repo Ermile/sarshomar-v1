@@ -3,7 +3,162 @@
 {%block content%}
  <div class="row auto">
 
-   <div class="span8 searchs-list">
+
+  <div class="search-tools">
+	 	<div class="full-line-title" data-title='{%trans "questions"%}'></div>
+	 	<div class="search-options-box">
+		  <span class="ac-custom ac-checkmark">
+ 				<input id="questions1" type="checkbox" name='questions'>
+				<label for="questions1">سرشمار</label>
+			</span>
+		  <span class="ac-custom ac-checkmark">
+ 				<input id="questions2" type="checkbox" name='questions'>
+				<label for="questions2">مردمی</label>
+			</span>
+		</div>
+		<div class="full-line-title" data-title='{%trans "question type"%}'></div>
+		<div class="search-options-box">
+		  <span class="ac-custom ac-checkmark reverse">
+				<input id="type1" type="checkbox" name='type'>
+				<label for="type1">نظرسنجی</label>
+			</span>
+		  <span class="ac-custom ac-checkmark reverse">
+				<input id="type2" type="checkbox" name='type'>
+				<label for="type2">آزمون‌آنلاین</label>
+			</span>
+		  <span class="ac-custom ac-checkmark reverse">
+				<input id="type4" type="checkbox" name='type'>
+				<label for="type4">پرسشنامه</label>
+			</span>
+		</div>
+
+
+		<div class="full-line-title" data-title='{%trans "survey time"%}'></div>
+		<div class="search-options-box">
+		  <span class="ac-custom ac-checkmark reverse">
+				<input id="time1" type="checkbox" name='time'>
+				<label for="time1">در حال انجام</label>
+			</span>
+		  <span class="ac-custom ac-checkmark reverse">
+				<input id="time2" type="checkbox" name='time'>
+				<label for="time2">منقضی شده</label>
+			</span>
+		</div>
+			<div class="full-line-title" data-title='{%trans "prize"%}'></div>
+		<div class="search-options-box">
+		  <span class="ac-custom ac-checkmark" >
+				<input id="prize1" type="checkbox" name='prize'>
+				<label for="prize1">پاسخ‌دهی</label>
+			</span>
+		  <span class="ac-custom ac-checkmark" >
+				<input id="prize2" type="checkbox" name='prize'>
+				<label for="prize2">قرعه‌کشی</label>
+			</span>
+		</div>
+
+
+		<div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
+		<div class="search-options-box">
+			<span class="ac-custom ac-checkmark">
+				<input id="accord1" type="checkbox">
+				<label for="accord1">گزینه‌ای</label>
+			</span>
+			<span class="ac-custom ac-checkmark">
+				<input id="accord2" type="checkbox">
+				<label for="accord2">تشریحی</label>
+			</span>
+			<span class="ac-custom ac-checkmark">
+				<input id="accord3" type="checkbox">
+				<label for="accord3">ستاره‌ای</label>
+			</span>
+			<span class="ac-custom ac-checkmark">
+				<input id="accord4" type="checkbox">
+				<label for="accord4">اطلاع‌رسانی</label>
+			</span>
+			<span class="ac-custom ac-checkmark">
+				<input id="accord5" type="checkbox">
+				<label for="accord5">شماره‌ای</label>
+			</span>
+			<span class="ac-custom ac-checkmark">
+				<input id="accord6" type="checkbox">
+				<label for="accord6">مرتب‌سازی</label>
+			</span>
+		</div>
+
+
+		<div class="full-line-title" data-title='{%trans "filters"%}'></div>
+		<div class="search-options-box">
+
+			<div class="select-box">
+				<label for="education">تأهل</label>
+				<select name="education inline">
+			    <option value="volvo">مجرد</option>
+			    <option value="saab">متأهل</option>
+			  </select>
+			 </div>
+
+			<div class="select-box">
+				<label for="education">شغل</label>
+				<select name="education inline">
+			    <option value="volvo">دولتی</option>
+			    <option value="saab">آزاد</option>
+			    <option value="fiat">بیکار</option>
+		  	</select>
+		  </div>
+
+			<div class="select-box">
+				<label for="education">جنسیت</label>
+				<select name="education inline">
+			    <option value="volvo">male</option>
+			    <option value="saab">female</option>
+			  </select>
+			 </div>
+
+			<div class="select-box">
+				<label for="education">تحصیلات</label>
+				<select name="education inline">
+			    <option value="volvo">دکتری</option>
+			    <option value="saab">فوق لیسانس</option>
+			    <option value="fiat">لیسانس</option>
+			    <option value="audi">فوق دیپلم</option>
+			    <option value="audi">دیپلم</option>
+			    <option value="audi">سیکل</option>
+			    <option value="audi">تحصیلات ابتدایی</option>
+			    <option value="audi">بیسواد</option>
+			  </select>
+			 </div>
+
+			<div class="select-box">
+				<label for="education">کشور</label>
+				<select name="education inline">
+			    <option value="volvo">ایران</option>
+			    <option value="saab">عراق</option>
+			    <option value="fiat">ترکیه</option>
+		  	</select>
+		  </div>
+
+
+
+				<div class="select-box">
+					<label for="education">سن</label>
+					<select name="education inline">
+				    <option value="volvo">۲۰ سال</option>
+				    <option value="saab">بیش از ۲۰ سال</option>
+				    <option value="fiat">کمتر از ۲۰ سال</option>
+			  	</select>
+			  </div>
+
+
+
+					</div>
+	  		</div>
+
+  <div class="span1"></div>
+  <div class="span8 searchs-list">
+  	<div class="search-box">
+	    <input type="text" name="search" placeholder="Search" class="pollsearch" value="" autocomplete="off">
+	    <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+   </div>
 		<div class="search-result" data-xhr="search-result">
 	    <div class="polls-head">
 	      <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
@@ -30,172 +185,57 @@
 	        <div class="votes-count"></div>
 	        <div class="date">2016-11-08 13:01:43</div>
 	      </li>
+	      <li class="polls-row">
+	        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+	        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+	        <div class="title"><a href="/$/3/soal1">soal1</a></div>
+	        <div class="comments-count"></div>
+	        <div class="votes-count"></div>
+	        <div class="date">2016-11-08 13:01:43</div>
+	      </li>
+	      <li class="polls-row">
+	        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+	        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+	        <div class="title"><a href="/$/3/soal1">soal1</a></div>
+	        <div class="comments-count"></div>
+	        <div class="votes-count"></div>
+	        <div class="date">2016-11-08 13:01:43</div>
+	      </li>
+	      <li class="polls-row">
+	        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+	        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+	        <div class="title"><a href="/$/3/soal1">soal1</a></div>
+	        <div class="comments-count"></div>
+	        <div class="votes-count"></div>
+	        <div class="date">2016-11-08 13:01:43</div>
+	      </li>
+	      <li class="polls-row">
+	        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+	        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+	        <div class="title"><a href="/$/3/soal1">soal1</a></div>
+	        <div class="comments-count"></div>
+	        <div class="votes-count"></div>
+	        <div class="date">2016-11-08 13:01:43</div>
+	      </li>
 	    </ul>
 	   </div>
 	   <div class="my-navigation">
 		   <nav class="ali-navigation">
+			   <a href="">></a>
 			   <a href="">1</a>
 			   <a href="">2</a>
 			   <a href="">3</a>
 			   <a href="">4</a>
-			   <a href="">5</a>
+			   <a href="" class="active">5</a>
 			   <a href="">6</a>
 			   <a href="">7</a>
 			   <a href="">8</a>
+			   <a href=""><</a>
 		   </nav>
 	   </div>
   </div>
-  <div class="span4">
-	 	<div class="full-line-title" data-title='{%trans "questions"%}'></div>
-	 	<div class="search-options">
-		  <span class="ac-custom inline ac-fill">
-				<input id="questions1" type="radio" name='questions'>
-				<label for="questions1">سرشمار</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="questions2" type="radio" name='questions'>
-				<label for="questions2">مردمی</label>
-			</span>
-			<span class="ac-custom inline ac-fill">
-				<input id="questions3" type="radio" name='questions'>
-				<label for="questions3">همه</label>
-			</span>
-		</div>
-		<div class="full-line-title" data-title='{%trans "question type"%}'></div>
-		<div class="search-options">
-		  <span class="ac-custom inline ac-fill">
-				<input id="type1" type="radio" name='type'>
-				<label for="type1">نظرسنجی</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="type2" type="radio" name='type'>
-				<label for="type2">آزمون‌آنلاین</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="type3" type="radio" name='type'>
-				<label for="type3">همه</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="type4" type="radio" name='type'>
-				<label for="type4">پرسشنامه</label>
-			</span>
-		</div>
-		<div class="full-line-title" data-title='{%trans "survey time"%}'></div>
-		<div class="search-options">
-		  <span class="ac-custom inline ac-fill">
-				<input id="time1" type="radio" name='time'>
-				<label for="time1">در حال انجام</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="time2" type="radio" name='time'>
-				<label for="time2">منقضی شده</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="time3" type="radio" name='time'>
-				<label for="time3">همه</label>
-			</span>
-		</div>
-
-
-		<div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
-		<div class="search-options">
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord1" type="checkbox">
-				<label for="accord1">بارگذاری</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord2" type="checkbox">
-				<label for="accord2">اطلاع‌رسانی</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord3" type="checkbox">
-				<label for="accord3">تشریحی</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord4" type="checkbox">
-				<label for="accord4">مرتب‌سازی</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord5" type="checkbox">
-				<label for="accord5">شماره‌ای</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord6" type="checkbox">
-				<label for="accord6">ستاره‌ای</label>
-			</span>
-			<span class="ac-custom ac-checkbox inline ac-checkmark">
-				<input id="accord7" type="checkbox">
-				<label for="accord7">گزینه‌ای</label
-			</span>
-		</div>
-
-			<div class="full-line-title" data-title='{%trans "prize"%}'></div>
-		<div class="search-options">
-		  <span class="ac-custom inline ac-fill">
-				<input id="prize1" type="radio" name='prize'>
-				<label for="prize1">پاسخ‌دهی</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="prize2" type="radio" name='prize'>
-				<label for="prize2">قرعه‌کشی</label>
-			</span>
-		  <span class="ac-custom inline ac-fill">
-				<input id="prize3" type="radio" name='prize'>
-				<label for="prize3">همه</label>
-			</span>
-		</div>
-
-
-		<div class="full-line-title" data-title='{%trans "filters"%}'></div>
-		<div class="search-options">
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">دکتری</option>
-		    <option value="saab">فوق لیسانس</option>
-		    <option value="fiat">لیساسنس</option>
-		    <option value="audi">فوق دیپلم</option>
-		    <option value="audi">دیپلم</option>
-		    <option value="audi">سیکل</option>
-		    <option value="audi">تحصیلات ابتدایی</option>
-		    <option value="audi">بیسواد</option>
-		  </select>
-
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">مجرد</option>
-		    <option value="saab">متأهل</option>
-		  </select>
-
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">ایران</option>
-		    <option value="saab">عراق</option>
-		    <option value="fiat">ترکیه</option>
-		  </select>
-
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">دولتی</option>
-		    <option value="saab">آزاد</option>
-		    <option value="fiat">بیکار</option>
-		  </select>
-
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">۲۰ سال</option>
-		    <option value="saab">بیش از ۲۰ سال</option>
-		    <option value="fiat">کمتر از ۲۰ سال</option>
-		  </select>
-
-			<label for="education">label</label>
-			<select name="education inline">
-		    <option value="volvo">آقا</option>
-		    <option value="saab">خانم</option>
-		  </select>
-		</div>
-  </div>
  </div>
-	<div class="title-line reverse">{%trans "question type"%}</div>
+<!-- 	<div class="title-line reverse">{%trans "question type"%}</div>
 
 
 
@@ -204,7 +244,7 @@
 	<a href="">dd</a>
 	<a href="">dd</a>
 	<a href="">dd</a>
-</div>
+</div> -->
 
 
 
