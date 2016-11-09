@@ -726,6 +726,8 @@ class polls
 		"
 			SELECT
 				$public_fields
+			WHERE
+				posts.post_sarshomar = 1
 			ORDER BY posts.id DESC
 			LIMIT $limit
 

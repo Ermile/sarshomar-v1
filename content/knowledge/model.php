@@ -42,15 +42,16 @@ class model extends \mvc\model
 			}
 		}
 
-		$filter_id = [];
+		$meta                   = [];
+		$meta['post_sarshomar'] = 1;
 		if(!empty($filter))
 		{
-			$filter_id = \lib\db\filters::get_id($filter);
-			$filter_id = ['filter_id' => $filter_id];
+			$filter_id         = \lib\db\filters::get_id($filter);
+			$meta['filter_id'] = $filter_id;
 		}
 
 		$search = $_args->get("search")[0];
-		$result = \lib\db\polls::search($search, $filter_id);
+		$result = \lib\db\polls::search($search, $meta);
 		return $result;
 	}
 }

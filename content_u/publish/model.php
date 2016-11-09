@@ -43,8 +43,18 @@ class model extends \content_u\home\model
 		// @example : tag1,tag2,tag3,...
 		// split by ',' and insert
 		$tags = utility::post("tags");
+
+
 		if($tags)
 		{
+			// check count tags
+			$check_count = explode(',', $tags);
+			if(count($check_count) > 3 && !$this->access('u', 'sarshomar_knowledge', 'add'))
+			{
+				debug::error(T_("too tags added !!! remove some tags"));
+				return;
+			}
+
 			$insert_tag = \lib\db\tags::insert_multi($tags);
 
 			$tags_id    = \lib\db\tags::get_multi_id($tags);
@@ -98,23 +108,32 @@ class model extends \content_u\home\model
 		{
 			$publish_date = \lib\db\options::insert($publish_date[0]);
 		}
-
 		if(utility::post("article"))
 		{
-			$article =
-			[
-				'post_id' => $poll_survey_id,
-				'option_cat' => "poll_$poll_survey_id",
-				'option_key' => "article",
-				'option_value' => utility::post("article")
-			];
-			$article = \lib\db\options::insert($article);
+			if($this->access('u', 'sarshomar_knowledge', 'add'))
+			{
+				$article =
+				[
+					'post_id' => $poll_survey_id,
+					'option_cat' => "poll_$poll_survey_id",
+					'option_key' => "article",
+					'option_value' => utility::post("article")
+				];
+				$article = \lib\db\options::insert($article);
+			}
 		}
+
 		$language = utility::post("language");
+
+		$publish_status = 'awaiting';
+		if($this->access('u', 'sarshomar_knowledge', 'add'))
+		{
+			$publish_status = 'publish';
+		}
 
 		$update_posts =
 		[
-			'post_status'   => 'publish',
+			'post_status'   => $publish_status,
 			'post_language' => $language
 		];
 

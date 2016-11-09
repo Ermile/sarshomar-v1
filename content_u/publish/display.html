@@ -14,6 +14,8 @@
           </a>
         </span>
       </div>
+
+      {%if perm.sarshomar_knowledge.admin%}
       <div class="element">
         <label class="title" for="cat">{%trans "Category"%}</label>
          <select class="input" name="cat" id="cat">
@@ -37,7 +39,7 @@
           {%endfor%}
         </select>
       </div>
-
+      {%endif%}
 
       <div class="element">
         <label class="title">{%trans "Start Time"%}</label>

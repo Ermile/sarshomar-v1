@@ -15,6 +15,10 @@ class model extends \content_u\home\model
 		{
 			$meta = ['user_id' => $this->login("id")];
 		}
+		else
+		{
+			$meta = ['post_sarshomar' => 1];
+		}
 		$result = \lib\db\polls::search($search, $meta);
 		debug::msg("result", $result);
 	}
@@ -375,7 +379,7 @@ class model extends \content_u\home\model
 					$profile_lock = null;
 					if($meta[1] == "profile")
 					{
-						if(utility::post("meta_profile") != '')
+						if(utility::post("meta_profile") != '' && $this->access('u', 'complete_profile', 'admin'))
 						{
 
 							$profile_lock = utility::post("meta_profile");
@@ -385,6 +389,12 @@ class model extends \content_u\home\model
 						{
 							continue;
 						}
+					}
+
+					// check permission of hidden result
+					if($meta[1] == "hidden_result" && !$this->access('u', 'hidden_result', 'admin'))
+					{
+						continue;
 					}
 
 					$metas[] =
