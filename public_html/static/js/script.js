@@ -1,5 +1,5 @@
 // contact form
-route('contact', function()
+route(/contact/, function()
 {
 	$('form').on('ajaxify:success',function(data, debug)
 	{
@@ -13,7 +13,7 @@ route('contact', function()
 
 
 // Add
-route('@/add', function()
+route(/\@\/add/, function()
 {
 	$(this).on('click','button', function()
 	{
@@ -86,7 +86,7 @@ route('@/add', function()
 
 
 // Me | Profile
-route('@/me', function ()
+route(/\@\/me/, function ()
 {
 	// btns is generated in display in order to true translation
 	$.each($('.element.raw'), function (key, value)

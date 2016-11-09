@@ -220,7 +220,7 @@ class answers
 		$query =
 		"
 			SELECT
-				id
+				*
 			FROM
 				polldetails
 			WHERE
@@ -230,10 +230,10 @@ class answers
 			-- answers::is_answered()
 			-- check user is answered to this poll or no
 		";
-		$result = \lib\db::get($query, 'id', true);
+		$result = \lib\db::get($query, null, true);
 		if($result)
 		{
-			return true;
+			return $result;
 		}
 		return false;
 	}
