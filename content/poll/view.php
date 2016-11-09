@@ -18,13 +18,6 @@ class view extends \mvc\view
 	}
 
 
-	public function view_all()
-	{
-		$list = \lib\db\polls::get();
-		$this->data->list = $list;
-	}
-
-
 	public function check_url($_args)
 	{
 		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
@@ -114,7 +107,7 @@ class view extends \mvc\view
 
 						// show article
 						case "article":
-							$this->data->article = \lib\db\polls::xget(['id' => $value['option_value'], 'post_type' => 'article']);
+							$this->data->article = \lib\db\polls::get_poll($value['option_value']);
 							break;
 
 						// get start date of publish this poll

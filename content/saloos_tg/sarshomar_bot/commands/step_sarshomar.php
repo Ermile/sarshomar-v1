@@ -122,7 +122,7 @@ class step_sarshomar
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
-			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, $_answer_txt);
+			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
 
 			// create output text
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";

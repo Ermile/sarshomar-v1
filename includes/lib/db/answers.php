@@ -109,8 +109,16 @@ class answers
 	 * @param  [type] $_answer  [description]
 	 * @return [type]           [description]
 	 */
-	public static function save($_user_id, $_poll_id, $_answer, $_answer_txt = null)
+	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
+		$default_option =
+		[
+			'answer_txt' => null,
+			'port'       => 'site',
+			'subport'    => null
+		];
+		$_option = array_merge($default_option, $_option);
+
 		if(is_array($_answer))
 		{
 			foreach ($_answer as $key => $value)
@@ -126,7 +134,9 @@ class answers
 				{
 					continue;
 				}
-				$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $value);
+				$set_option = ['answer_txt' => $value];
+				$set_option = array_merge($_option, $set_option);
+				$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $set_option);
 				// save the poll lucked by profile
 				// update users profile
 				$answers_details =
@@ -150,7 +160,7 @@ class answers
 			}
 			$num_of_opt_kye = explode('_', $_answer);
 			$num_of_opt_kye = end($num_of_opt_kye);
-			$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_answer_txt);
+			$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_option);
 			// save the poll lucked by profile
 			// update users profile
 			$answers_details =
@@ -249,8 +259,34 @@ class answers
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_answer_txt = null)
+	public static function save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_option = [])
 	{
+		$default_option =
+		[
+			'answer_txt' => null,
+			'port'       => 'site',
+			'subport'    => null
+		];
+		$_option = array_merge($default_option, $_option);
+
+		if($_option['port'] == null)
+		{
+			$port = "NULL";
+		}
+		else
+		{
+			$port = "'$_option[port]'";
+		}
+
+		if($_option['subport'] == null)
+		{
+			$subport = "NULL";
+		}
+		else
+		{
+			$subport = "'$_option[subport]'";
+		}
+
 		$insert_polldetails =
 		"
 			INSERT INTO
@@ -258,9 +294,11 @@ class answers
 			SET
 				user_id = $_user_id,
 				post_id = $_poll_id,
+				port    = $port,
+				subport = $subport,
 				opt     = '$num_of_opt_kye',
 				type    = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
-				txt     = '$_answer_txt',
+				txt     = '$_option[answer_txt]',
 				profile = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
 				visitor_id = NULL
 				-- answers::save()

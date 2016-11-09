@@ -158,7 +158,7 @@ class step_sarshomar
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
-			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, $_answer_txt);
+			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
 			// create output text
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
 			// $txt_text .= 'سوال: '.step::get('question')."\n";
@@ -441,7 +441,7 @@ class step_sarshomar
 		}
 		else
 		{
-			$question = \lib\db\polls::get_last($_user_id, $_poll_id);
+			$question = \lib\db\polls::get_poll($_poll_id);
 			$poll_result = poll_result::make($question);
 		}
 

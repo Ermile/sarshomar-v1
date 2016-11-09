@@ -16,10 +16,6 @@ class model extends \mvc\model
 		return $comment_list;
 	}
 
-	public function get_all()
-	{
-		// echo ("All Questions is here || random result is here or other");
-	}
 
 	public function get_poll($_args)
 	{
@@ -212,7 +208,7 @@ class model extends \mvc\model
 		$result = null;
 		if(!empty($opt))
 		{
-			$result = \lib\db\answers::save($this->login('id'), $poll_id, $opt, $opt);
+			$result = \lib\db\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
 		}
 
 		if($result)

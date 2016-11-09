@@ -15,7 +15,7 @@ class model extends \mvc\model
 		'post_type' => 'article'
 		];
 
-		return \lib\db\polls::xget($args);
+		return \lib\db\polls::search(null, $args);
 	}
 
 

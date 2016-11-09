@@ -24,24 +24,13 @@ class model extends \content_u\home\model
 		}
 
 		$user_id = $this->login("id");
-
+		$arg = [];
 		if($type != 'sarshomar')
 		{
-			$search =
-			[
-				'user_id'    => $user_id,
-				'post_title' => $title
-			];
+			$arg = ['user_id' => $user_id];
 		}
-		else
-		{
-			$search =
-			[
-				// 'post_type'  => 'sarshomar',
-				'post_title' => $title
-			];
-		}
-		$result = \lib\db\polls::xget($search);
+
+		$result = \lib\db\polls::search($title, $arg);
 		return $result;
 
 	}

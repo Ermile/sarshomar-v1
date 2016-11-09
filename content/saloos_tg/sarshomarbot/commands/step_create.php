@@ -190,10 +190,6 @@ class step_create
 				$final_text = "انصراف از ثبت نظرسنجی\n";
 			}
 		}
-		elseif(\lib\db\polls::save(step::get('text'), bot::$user_id))
-		{
-			$final_text = "ثبت نظرسنجی با موفقیت به اتمام رسید.\n";
-		}
 		else
 		{
 			$final_text = "مشکلی در داده‌های ورودی یافت شد!\n";

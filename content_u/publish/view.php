@@ -18,7 +18,7 @@ class view extends \mvc\view
 		$this->data->cat = \lib\db\cats::get_multi("cat_poll");
 		// get article
 		$args =	['post_type' => 'article'];
-		$this->data->article = \lib\db\polls::xget($args);
+		$this->data->article = \lib\db\polls::search(null, $args);
 	}
 }
 ?>
