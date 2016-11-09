@@ -66,6 +66,7 @@ class callback_query
 		if(class_exists($class_name) && method_exists($class_name, 'start'))
 		{
 			$callback_result = $class_name::start($_query, $data_url);
+			$callback_result = is_array($callback_result) ? $callback_result : [];
 		}
 		return array_merge($result, $callback_result);
 

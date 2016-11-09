@@ -73,8 +73,6 @@ class step_create
 	public static function step2($_question)
 	{
 
-		$txt_text = "نظرسنجی شما ثبت شد \n";
-		$txt_text .= "کد نظرسنجی شما\n";
 		$question = markdown_filter::italic($_question);
 		$question = markdown_filter::bold($question);
 		$question = markdown_filter::link($question);
@@ -110,25 +108,37 @@ class step_create
 		}
 		else
 		{
-			$txt_text .= $question;
-			$result   = ['text' => $txt_text];
-			step::stop();
-			$poll_id = \lib\db\polls::insert_quick([
-				'user_id' => bot::$user_id,
-				'title'=> $question_export[0],
-				'answers' => array_slice($question_export, 1)
-				]);
-			if($poll_id)
-			{
-				$short_link = \lib\utility\shortURL::encode($poll_id);
+			$txt_text = "نظرسنجی که ثبت کردید به صورت زیر می‌باشد: \n\n";
+			$poll = ['title' => $question_export[0]];
+			foreach (array_slice($question_export, 1) as $key => $value) {
+				$poll['meta']['opt'][] = ["txt" => $value];
 			}
-			$result['text'] .= "\n[$short_link](https://telegram.me/sarshomarBot?start=sp_$short_link)";
-			$result['reply_markup'] = [
-			"inline_keyboard" => [
-					[
+			$poll_tmp = poll_result::make($poll);
+			array_pop($poll_tmp['message']);
+			array_pop($poll_tmp['message']);
+			$txt_text .= poll_result::get_message($poll_tmp['message']);
+			$txt_text .= "\nقصد دارید انتشار دهید یا حذف کنید؟";
+			handle::send_log($poll_tmp);
+			step::stop();
+			// $poll_id = \lib\db\polls::insert_quick([
+			// 	'user_id' => bot::$user_id,
+			// 	'title'=> $question_export[0],
+			// 	'answers' => array_slice($question_export, 1)
+			// 	]);
+			// if($poll_id)
+			// {
+			// 	$short_link = \lib\utility\shortURL::encode($poll_id);
+			// }
+			// $result['text'] .= "e\n[$short_link](https://telegram.me/sarshomarBot?start=sp_$short_link)";
+			$result = [
+				'text' 						=> $txt_text,
+				'parse_mode' 				=> 'Markdown',
+				'disable_web_page_preview' 	=> true,
+				'reply_markup' 				=> [
+					'inline_keyboard' 		=> [
 						[
-							"text" => T_("Publish"),
-							"callback_data" => 'poll/publish/'.$short_link
+						utility::inline(T_("delete"), 'poll/delete/'.$short_link),
+						utility::inline(T_("Publish"), 'poll/publish/'.$short_link)
 						]
 					]
 				]

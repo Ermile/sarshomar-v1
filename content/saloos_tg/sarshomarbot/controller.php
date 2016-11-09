@@ -116,11 +116,6 @@ class controller extends \lib\mvc\controller
 			 */
 			\lib\db\tg_session::save();
 
-
-			if (bot::$defaultText == T_('Undefined'))
-			{
-				bot::sendResponse(["method" => "sendMessage", "chat_id" => 58164083, "text" => "🚷 auto ftp is off"]);
-			}
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);

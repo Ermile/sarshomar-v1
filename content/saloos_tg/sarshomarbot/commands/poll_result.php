@@ -12,7 +12,7 @@ class poll_result
 
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		self::add_message($message, "❔*" . html_entity_decode($poll_result['title']) . "*");
-		preg_match("/^\\$\/([^\/]+)\/.*$/", $poll_result['url'], $url);
+		preg_match("/^\\$\/([^\/]+)(\/.*)*$/", $poll_result['url'], $url);
 		$short_link_id = $url[1];
 		$inline_keyboard = array();
 		foreach ($poll_result['meta']['opt'] as $answer_key => $answer_value) {
