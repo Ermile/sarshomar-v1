@@ -735,5 +735,34 @@ class polls
 		$result = \lib\db::get($query);
 		return \lib\utility\filter::meta_decode($result);
 	}
+
+
+	/**
+	 * check the poll is a poll of this users of no
+	 *
+	 * @param      <type>   $_poll_id  The poll identifier
+	 * @param      <type>   $_user_id  The user identifier
+	 *
+	 * @return     boolean  True if my poll, False otherwise.
+	 */
+	public static function is_my_poll($_poll_id, $_user_id)
+	{
+		$query =
+		"
+			SELECT
+				user_id AS 'id'
+			FROM
+				posts
+			WHERE
+				posts.id = $_poll_id
+			LIMIT 1
+		";
+		$result = \lib\db::get($query, 'id', true);
+		if($result && $result == $_user_id)
+		{
+			return true;
+		}
+		return false;
+	}
 }
 ?>
