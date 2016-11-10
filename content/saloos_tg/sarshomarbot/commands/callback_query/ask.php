@@ -66,7 +66,14 @@ class ask
 	public static function update($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
+		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');
 		$message = self::get_poll_result($_data_url[2]);
+
+		if($ask_expire->message_id == $_query['message']['message_id'] AND
+			$ask_expire->chat_id == $_query['message']['chat']['id'])
+		{
+			session::remove('expire', 'inline_cache', 'ask');
+		}
 		$message['text'] .= "\n Last update: " . date("H:i:s");
  		callback_query::edit_message($message);
 		return [];
@@ -112,13 +119,15 @@ class ask
 		$text .= "#sarshomar";
 
 		$return = [];
+		$inline_keyboard = [[utility::inline(T_("Update result"), "ask/update/" .$_poll_short_link)]];
+		if(\lib\db\polls::is_my_poll($_poll_id, bot::$user_id)){
+			array_push($inline_keyboard, [utility::inline(T_("Close poll "), "ask/close/" .$_poll_short_link)]);
+		}
 		$return = [
 			'text' 						=> $text,
 			'parse_mode' 				=> 'Markdown',
 			'disable_web_page_preview' 	=> true,
-			'reply_markup' 		=> ["inline_keyboard" => [[
-				utility::inline(T_("Update result"), "ask/update/" .$_poll_short_link)
-			]]]
+			'reply_markup' 		=> ["inline_keyboard" => $inline_keyboard]
 			];
 		return $return;
 	}

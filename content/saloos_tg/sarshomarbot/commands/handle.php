@@ -11,6 +11,7 @@ class handle
 
 	public static function exec($_cmd)
 	{
+		self::send_log(bot::$cmd);
 		bot::$defaultText = T_('Not Found');
 		if($_cmd['command'] == 'exit')
 		{
@@ -22,9 +23,21 @@ class handle
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
 				");
+			$id = 22;
+			\lib\db::query("DELETE FROM options
+				WHERE user_id = $id AND
+				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
+				");
 			\lib\db::query("DELETE from polldetails where 1");
 			session_destroy();
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
+			exit();
+		}
+		elseif($_cmd['command'] == 'clear')
+		{
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
 			exit();
 		}
 		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
