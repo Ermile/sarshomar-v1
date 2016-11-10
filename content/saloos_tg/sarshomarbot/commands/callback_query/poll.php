@@ -60,20 +60,9 @@ class poll
 		if($poll_id)
 		{
 			$short_link = \lib\utility\shortURL::encode($poll_id);
-			$poll = ['title' => $poll_title, 'url' => '$/'.$short_link];
-			foreach ($poll_answers as $key => $value) {
-				$poll['meta']['opt'][] = ["txt" => $value];
-			}
-			$poll_tmp = poll_result::make($poll);
-
-			handle::send_log([$poll_id, $short_link]);
-			//$poll_result = ask::get_poll_result($short_link, $poll_id);
-			callback_query::edit_message([
-				'text' => poll_result::get_message($poll_tmp['message']),
-				'reply_markup' => ['inline_keyboard' => $poll_tmp['inline_keyboard']]
-			]);
+			$poll_result = ask::get_poll_result($short_link, $poll_id, 0);
+			callback_query::edit_message($poll_result);
 		}
-
 	}
 }
 ?>

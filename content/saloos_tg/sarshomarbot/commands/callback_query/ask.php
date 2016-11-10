@@ -78,8 +78,14 @@ class ask
 			$_poll_id = \lib\utility\shortURL::decode($_poll_short_link);
 		}
 		$poll_result = \lib\db\stat_polls::get_telegram_result($_poll_id);
-		handle::send_log($poll_result);
-
+		if(!$poll_result)
+		{
+			$poll_result = \lib\db\polls::get_poll($_poll_id);
+			handle::send_log($poll_result);
+			foreach ($poll_result['meta']['opt'] as $key => $value) {
+				$poll_result['result'][$value['txt']] = 0;
+			}
+		}
 		$poll_answer = array();
 		$poll_list = '';
 		$count = 0;
@@ -102,7 +108,7 @@ class ask
 		$text .= "\n";
 		$text .= $poll_list;
 		$url = preg_split("[\/]", $poll_result['url']);
-		$text .= "[".$poll_result['title']."](https://telegram.me/SarshomarBot/sp_".$url[1].")";
+		$text .= "[".$poll_result['title']."](https://telegram.me/SarshomarBot?start=sp_".$url[1].")";
 		$text .= "\n";
 		$text .= "[view result](https://sarshomar.com/$/".$url[1].")";
 		$text .= "\n";

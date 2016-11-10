@@ -119,8 +119,7 @@ class callback_query
 		{
 			return $response;
 		}
-		handle::send_log($response);
-		handle::send_log(bot::sendResponse($response));
+		bot::sendResponse($response);
 	}
 }
 ?>
