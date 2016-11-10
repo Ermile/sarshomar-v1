@@ -18,6 +18,13 @@ class view extends \mvc\view
 	}
 
 
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function check_url($_args)
 	{
 		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
@@ -62,6 +69,23 @@ class view extends \mvc\view
 
 		$post = $this->model()->get_posts();
 
+		// this poll is not a published poll
+		// check some thing
+		// 1. the user is a sarshomar_knowlege permission and can see all poll
+		// 2. the user has been creat this poll and then can see the poll
+		//
+		if(!isset($post['id']))
+		{
+			$poll_id   = $this->data->child;
+			$poll_id   = \lib\utility\shortURL::decode($poll_id);
+
+			if(\lib\db\polls::is_my_poll($poll_id, $this->login('id')) || $this->access('u','publish_poll','admin'))
+			{
+				$post = \lib\db\polls::get_poll($poll_id);
+				$post['postmeta'] = \lib\db\posts::get_post_meta($poll_id);
+			}
+		}
+
 		if(isset($post['id']))
 		{
 			// set post_id
@@ -77,28 +101,28 @@ class view extends \mvc\view
 				if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
 				{
 					// this user answered to this poll
-					$post['post_meta'] = ['opt' => null];
+					$post['meta'] = ['opt' => null];
 				}
 				else
 				{
 					// users load poll from other link
-					$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+					$_SESSION['last_poll_opt'] = $post['meta']['opt'];
 				}
 			}
 			else
 			{
 				// this user not logined  => remove answers button
-				$post['post_meta'] = ['opt' => null];
+				$post['meta'] = ['opt' => null];
 			}
 
 			// get post status to show in html page
-			$this->data->status = $post['post_status'];
+			$this->data->status = $post['status'];
 			// compile meta of this post
 
 			if(isset($post['meta']))
 			{
 			$meta = [];
-				foreach ($post['meta'] as $key => $value) {
+				foreach ($post['postmeta'] as $key => $value) {
 					switch ($value['option_key']) {
 						// ignore opt_1, opt_2, ...
 						case substr($value['option_key'], 0,3) == "opt":
@@ -136,15 +160,15 @@ class view extends \mvc\view
 
 								case "random_sort":
 									// suffle the opt if random sort is enable
-									if(isset($post['post_meta']['opt']))
+									if(isset($post['meta']['opt']))
 									{
-										$keys = array_keys($post['post_meta']['opt']);
+										$keys = array_keys($post['meta']['opt']);
 								        shuffle($keys);
 								        foreach($keys as $key)
 								        {
-								        	$new[$key] = $post['post_meta']['opt'][$key];
+								        	$new[$key] = $post['meta']['opt'][$key];
 								        }
-								        $post['post_meta']['opt'] = $new;
+								        $post['meta']['opt'] = $new;
 									}
 									break;
 
@@ -229,7 +253,7 @@ class view extends \mvc\view
 			}
 
 			// comment
-			if(isset($post['post_comment']) && $post['post_comment'] == 'closed')
+			if(isset($post['comment']) && $post['comment'] == 'closed')
 			{
 				$thid->data->comment = false;
 			}
@@ -239,9 +263,7 @@ class view extends \mvc\view
 		}
 		else
 		{
-			// bad request resived
-			// post url not found
-			\lib\error::bad("Not found");
+			\lib\error::bad("NOT FOUND");
 		}
 	}
 

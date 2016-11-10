@@ -367,7 +367,8 @@ class model extends \content_u\home\model
 			return false;
 		}
 		// get the metas of this poll
-		$metas = [];
+		$metas       = [];
+		$post_meta   = [];
 		$insert_meta = false;
 		foreach (utility::post() as $key => $value)
 		{
@@ -405,8 +406,10 @@ class model extends \content_u\home\model
 						'option_value' => $meta[1],
 						'option_meta'  => $profile_lock
 					];
+
 					$insert_meta = true;
 
+					$post_meta[$meta[1]] = true;
 					// comment
 					if($meta[1] == 'comment')
 					{
@@ -418,7 +421,10 @@ class model extends \content_u\home\model
 		if($insert_meta)
 		{
 			$save_poll_metas = \lib\db\options::insert_multi($metas);
+			// save meta in post_meta
+			$update_post_meta = \lib\db\polls::merge_meta($post_meta, $poll_id);
 		}
+
 		if($answers)
 		{
 			\lib\utility\profiles::set_dashboard_data($this->login('id'), 'my_poll');

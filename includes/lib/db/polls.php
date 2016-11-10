@@ -9,7 +9,7 @@ class polls
 	 * v3.1
 	 */
 
-	private static $fields =
+	public static $fields =
 	"
 			posts.id					as 'id',
 			posts.post_language 		as 'language',

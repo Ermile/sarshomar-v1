@@ -16,10 +16,19 @@ class model extends \mvc\model
 				return false;
 			}
 
-			$url = $_args->match->url[0][1];
+			$url     = $_args->match->url[0][1];
+			$poll_id = \lib\utility\shortURL::decode($url);
+
+			// check is my poll this id
+			if(!\lib\db\polls::is_my_poll($poll_id, $this->login('id')))
+			{
+				\lib\error::bad(T_("This not your poll"));
+				return false;
+			}
+
 			if($_type == "decode")
 			{
-				return \lib\utility\shortURL::decode($url);
+				return $poll_id;
 			}
 			else
 			{
