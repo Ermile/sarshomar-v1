@@ -863,15 +863,18 @@ nav#page-nav #nav-prev{float:left;}
 #checkbox select option{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow: none;}
 
 
-#checkbox .ac-custom {margin: 8px 0;color:#777;}
+#checkbox .ac-custom {margin: 8px 0;color:#777;transition:.3s;}
+#checkbox .ac-custom:hover { background-color: #0a5260; color: #f4f4f4;}
+#checkbox .ac-custom:hover label{color: #f4f4f4;}
 #checkbox .ac-custom.selected {background-color:#e7e7e7;}
+#checkbox .ac-custom.selected:hover label{color:#00667a;}
 
 
 
 #checkbox .ac-custom label {background-color:transparent;padding: 0 .7em;}
-#checkbox .ac-custom svg{right:0;left:auto;width:20px;height:20px;margin-top:-12px;}
-.rtl#checkbox .ac-custom svg{left:0;right:auto;}
-#checkbox .ac-custom label{padding-right:30px;margin-left:0;color:#00667a;font-size:.9em;font-weight:500;width:100%;line-height:25px;padding-left:1.5em;}
+#checkbox .ac-custom svg{right:0;left:auto;width:17px;height:17px;margin-top:-9px;margin-right:5px;}
+.rtl#checkbox .ac-custom svg{left:0;right:auto;margin-left:5px;margin-right:0}
+#checkbox .ac-custom label{padding-right:30px;margin-left:0;color:#00667a;font-size:.9em;font-weight:500;width:100%;line-height:30px;padding-left:1.5em;}
 .rtl#checkbox .ac-custom label{padding-left:30px;padding-right:0;margin-right:1em;}
 #checkbox .ac-custom label::before{right:0;left:auto;}
 #checkbox .ac-custom input[type="checkbox"]+label::before{background-color:#e7e7e7;height:0;line-height:25px;}
@@ -887,13 +890,22 @@ nav#page-nav #nav-prev{float:left;}
 #checkbox .span9 .ali-navigation a{display: inline-block;padding:1em 1.5em;background-color:#e7e7e7;color:#00667A;float:right;transition:.3s;font-weight:500;}
 .rtl#checkbox .span9 .ali-navigation a{float:left;}
 
+
+
+#checkbox .span9 .ali-navigation a:first-child{padding-left:1.3em;padding-right:.3em;}
+#checkbox .span9 .ali-navigation a:last-child{padding-right:1.3em;padding-left:.3em;}
+
+.rtl#checkbox .span9 .ali-navigation a:first-child{padding-left:.3em;padding-right: 1.3em;}
+.rtl#checkbox .span9 .ali-navigation a:last-child{padding-right:.3em;padding-left:1.3em;}
+
+
+
+
 #checkbox .span9 .my-navigation .ali-navigation a:last-child::before{transition:.3s;font-family:'sarshomar';content:'c';top:-1px;bottom:0;margin:auto;left:0;position:absolute;font-size:3.7em;left:-.7em;color:#e7e7e7;}
 .rtl#checkbox .span9 .my-navigation .ali-navigation a:last-child::before{content:'b';right:-.7em;color:#e7e7e7;left:auto;}
-/*.rtl#checkbox .span9 .my-navigation .ali-navigation a:last-child:hover::before{color:#0a5260;}*/
 
 #checkbox .span9 .my-navigation .ali-navigation a:first-child::after{transition:.3s;font-family:'sarshomar';content:'b';top:-1px;bottom:0;margin:auto;right:0;position:absolute;font-size:3.7em;right:-.7em;color:#e7e7e7;}
 .rtl#checkbox .span9 .my-navigation .ali-navigation a:first-child::after{content:'c';left:-.7em;color:#e7e7e7;right:auto;}
-/*.rtl#checkbox .span9 .my-navigation .ali-navigation a:first-child:hover::after{color:#0a5260;}*/
 
 #checkbox .span9 .my-navigation .ali-navigation a:last-child:hover::before{color:#0a5260;}
 #checkbox .span9 .my-navigation .ali-navigation a:first-child:hover::after{color:#0a5260;}
