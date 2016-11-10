@@ -46,7 +46,7 @@ class step_sarshomar
 		$questionExist = self::getLastQuestion();
 		// fix limit of number of answered in a period of time
 		// $answeredLimit   = step::get('i');
-		$answeredLimit   = \lib\db\stat_polls::answeredInPeriod(bot::$user_id, 6);
+		$answeredLimit   = \lib\utility\stat_polls::answeredInPeriod(bot::$user_id, 6);
 		if(!$questionExist)
 		{
 			return step_subscribe::start("شما به همه سوالات پاسخ دادید!\n");
@@ -122,7 +122,7 @@ class step_sarshomar
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
-			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
+			\lib\utility\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
 
 			// create output text
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
@@ -410,7 +410,7 @@ class step_sarshomar
 		{
 			$_userAnswer = step::get('lastAnswer');
 		}
-		$result       = \lib\db\stat_polls::get_telegram_result($_question_id, 'count', 'txt');
+		$result       = \lib\utility\stat_polls::get_telegram_result($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result);
 		if(!$result_count)

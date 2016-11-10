@@ -229,7 +229,7 @@ class polls
 					'txt' => $value
 				];
 			}
-			\lib\db\answers::insert(['poll_id' => $insert_id , 'answers' => $answers_value]);
+			\lib\utility\answers::insert(['poll_id' => $insert_id , 'answers' => $answers_value]);
 		}
 		return $insert_id;
 	}
@@ -616,7 +616,7 @@ class polls
 	 */
 	public static function delete($_post_id)
 	{
-		if(\lib\db\answers::delete($_post_id))
+		if(\lib\utility\answers::delete($_post_id))
 		{
 			return \lib\db\posts::delete($_poll_id);
 		}

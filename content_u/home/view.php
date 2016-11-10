@@ -17,7 +17,7 @@ class view extends \mvc\view
 	function view_profile($o)
 	{
 		$user_id                       = $this->login("id");
-		$dashboard_data                = \lib\db\profiles::get_dashboard_data($user_id);
+		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
 		$this->data->dashboard_data    = $dashboard_data;
 	}
 }

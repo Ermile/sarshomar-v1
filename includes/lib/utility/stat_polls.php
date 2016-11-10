@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\utility;
 
 /** work with polls **/
 class stat_polls
@@ -87,7 +87,7 @@ class stat_polls
 			return;
 		}
 
-		$user_profile_data = \lib\db\profiles::get_profile_data($user_id);
+		$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
 
 	    $support_filter = \lib\db\filters::support_filter();
 

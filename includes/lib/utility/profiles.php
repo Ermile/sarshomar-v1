@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\utility;
 
 class profiles
 {
@@ -526,7 +526,7 @@ class profiles
 			return false;
 		}
 
-		$answers      = \lib\db\answers::get($_args['poll_id']);
+		$answers      = \lib\utility\answers::get($_args['poll_id']);
 		$opt_value    = array_column($answers, 'option_value', 'option_key');
 
 		// the user has send an answer we have not in database

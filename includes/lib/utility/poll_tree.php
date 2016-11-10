@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\utility;
 
 class poll_tree
 {

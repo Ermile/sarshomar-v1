@@ -13,7 +13,7 @@ class view extends \mvc\view
 			$this->include->js_main      = true;
 		}
 
-		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\db\stat_polls::get_sarshomar_total_answered()]);
+		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\utility\stat_polls::get_sarshomar_total_answered()]);
 		$this->include->fontawesome = true;
 	}
 
@@ -74,7 +74,7 @@ class view extends \mvc\view
 				// check next url and this post url to find load opt or no
 
 				// check this user answerd to this poll or no
-				if(\lib\db\answers::is_answered($this->login("id"), $post_id))
+				if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
 				{
 					// this user answered to this poll
 					$post['post_meta'] = ['opt' => null];
@@ -224,7 +224,7 @@ class view extends \mvc\view
 					'city'
 				];
 				// load result as chart
-				$chart = \lib\db\stat_polls::get_result($post_id, $chart_mode);
+				$chart = \lib\utility\stat_polls::get_result($post_id, $chart_mode);
 				$this->data->chart = $chart;
 			}
 

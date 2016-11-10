@@ -11,7 +11,7 @@ class model extends \mvc\model
 	public function get_profile()
 	{
 		$user_id = $this->login("id");
-		$me = \lib\db\profiles::get_profile_data($user_id);
+		$me = \lib\utility\profiles::get_profile_data($user_id);
 		$displayname = \lib\db\users::get_displayname($user_id);
 		$email = \lib\db\users::get_email($user_id);
 		$me['displayname'] = $displayname;
@@ -72,7 +72,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			$profiles = \lib\db\profiles::set_profile_data($user_id, [$name => $value]);
+			$profiles = \lib\utility\profiles::set_profile_data($user_id, [$name => $value]);
 			if(!$profiles)
 			{
 				\lib\debug::error(T_("we can not update your profiles"));

@@ -13,7 +13,7 @@ class view extends \mvc\view
 			$this->include->js_main      = true;
 		}
 
-		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\db\stat_polls::get_sarshomar_total_answered()]);
+		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\utility\stat_polls::get_sarshomar_total_answered()]);
 		$this->include->fontawesome = true;
 	}
 

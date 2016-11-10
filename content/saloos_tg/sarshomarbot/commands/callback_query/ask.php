@@ -46,7 +46,7 @@ class ask
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		\lib\db\answers::save(bot::$user_id, $poll_id, $answer_id);
+		\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
 
 		$on_edit = session::get_back('expire', 'inline_cache', 'ask', 'on_expire');
 
@@ -77,7 +77,7 @@ class ask
 		{
 			$_poll_id = \lib\utility\shortURL::decode($_poll_short_link);
 		}
-		$poll_result = \lib\db\stat_polls::get_telegram_result($_poll_id);
+		$poll_result = \lib\utility\stat_polls::get_telegram_result($_poll_id);
 		if(!$poll_result)
 		{
 			$poll_result = \lib\db\polls::get_poll($_poll_id);

@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\utility;
 
 class survey
 {

@@ -208,7 +208,7 @@ class model extends \mvc\model
 		$result = null;
 		if(!empty($opt))
 		{
-			$result = \lib\db\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
+			$result = \lib\utility\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
 		}
 
 		if($result)

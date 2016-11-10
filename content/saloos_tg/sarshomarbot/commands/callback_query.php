@@ -88,7 +88,7 @@ class callback_query
 		}
 
 		$poll_id = \lib\utility\shortURL::decode($data[3]);
-		$answer = \lib\db\answers::save(bot::$user_id, $poll_id, $data[4]);
+		$answer = \lib\utility\answers::save(bot::$user_id, $poll_id, $data[4]);
 		$poll = \lib\db\polls::get_poll($poll_id);
 		$poll_result = poll_result::make($poll);
 		$message = $poll_result['message'];

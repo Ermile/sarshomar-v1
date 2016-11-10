@@ -60,7 +60,7 @@ class step_sarshomar
 		if(!is_null($poll_url))
 		{
 			$poll_id = \lib\utility\shortURL::decode($poll_url);
-			$is_answered = \lib\db\answers::is_answered(bot::$user_id, $poll_id);
+			$is_answered = \lib\utility\answers::is_answered(bot::$user_id, $poll_id);
 			if($is_answered)
 			{
 				return callback_query\ask::get_poll_result($poll_url, $poll_id, 0);
@@ -74,7 +74,7 @@ class step_sarshomar
 			$questionExist = self::get_question();
 		}
 		// fix limit of number of answered in a period of time
-		$answeredLimit   = \lib\db\stat_polls::answeredInPeriod(bot::$user_id, 6);
+		$answeredLimit   = \lib\utility\stat_polls::answeredInPeriod(bot::$user_id, 6);
 		if(!$questionExist)
 		{
 			if(!$is_custom_poll)
@@ -158,7 +158,7 @@ class step_sarshomar
 			// get question id
 			$question_id = step::get('question_id');
 			// save answer
-			\lib\db\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
+			\lib\utility\answers::save(bot::$user_id, $question_id, $answer_id, ['answer_txt' => $_answer_txt]);
 			// create output text
 			// $txt_text = "پاسخ *سوال ". step::get('i')."*دریافت شد.\n\n";
 			// $txt_text .= 'سوال: '.step::get('question')."\n";
@@ -485,7 +485,7 @@ class step_sarshomar
 		{
 			$_userAnswer = step::get('lastAnswer');
 		}
-		$result       = \lib\db\stat_polls::get_telegram_result($_question_id, 'count', 'txt');
+		$result       = \lib\utility\stat_polls::get_telegram_result($_question_id, 'count', 'txt');
 		arsort($result);
 		$result_count = array_sum($result['result']);
 		if(!$result_count)

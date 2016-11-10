@@ -28,7 +28,7 @@ class view extends \mvc\view
 		// get survery id from url
 		$survey_id = $this->model()->check_poll_url($_args);
 		// get list of poll in this survey
-		$poll_list = \lib\db\survey::get_poll_list($survey_id);
+		$poll_list = \lib\utility\survey::get_poll_list($survey_id);
 		$this->data->poll_list = $poll_list;
 	}
 }

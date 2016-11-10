@@ -130,7 +130,7 @@ class model extends \content_u\home\model
 			if($insert_poll)
 			{
 				// set dashboard data
-				\lib\db\profiles::set_dashboard_data($this->login('id'), 'my_survey');
+				\lib\utility\profiles::set_dashboard_data($this->login('id'), 'my_survey');
 				$this->redirector()->set_url("@/add/$url");
 			}
 
@@ -168,7 +168,7 @@ class model extends \content_u\home\model
 				'opt'    => utility::post("parent_tree_opt"),
 				'child'  => $insert_poll
 			];
-			$result = \lib\db\poll_tree::set($arg);
+			$result = \lib\utility\poll_tree::set($arg);
 		}
 
 		if(debug::$status)
@@ -197,7 +197,7 @@ class model extends \content_u\home\model
 				'post_gender' => 'survey',
 				'post_slug'   => \lib\utility\filter::slug(utility::post("secondary-title"))
 			];
-			$result = \lib\db\survey::update($args, $_survey_id);
+			$result = \lib\utility\survey::update($args, $_survey_id);
 			if(!$result)
 			{
 				debug::error(T_("error in save survey title"));
@@ -359,7 +359,7 @@ class model extends \content_u\home\model
 				'poll_id' => $poll_id,
 				'answers' => $combine
 			];
-			$answers = \lib\db\answers::insert($answers_arg);
+			$answers = \lib\utility\answers::insert($answers_arg);
 		}
 		else
 		{
@@ -421,7 +421,7 @@ class model extends \content_u\home\model
 		}
 		if($answers)
 		{
-			\lib\db\profiles::set_dashboard_data($this->login('id'), 'my_poll');
+			\lib\utility\profiles::set_dashboard_data($this->login('id'), 'my_poll');
 			\lib\debug::true(T_("add poll Success"));
 			return $poll_id;
 		}

@@ -1,5 +1,5 @@
 <?php
-namespace lib\db;
+namespace lib\utility;
 
 class answers
 {
@@ -148,7 +148,7 @@ class answers
 				// save answered count
 				if($key != 'opt_other')
 				{
-					\lib\db\stat_polls::set_poll_result($answers_details);
+					\lib\utility\stat_polls::set_poll_result($answers_details);
 				}
 			}
 		}
@@ -172,22 +172,22 @@ class answers
 			// save answered count
 			if($_answer != 'opt_other')
 			{
-				\lib\db\stat_polls::set_poll_result($answers_details);
+				\lib\utility\stat_polls::set_poll_result($answers_details);
 			}
 		}
 
-		$update_profile = \lib\db\profiles::set_profile_by_poll($answers_details);
+		$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 
 		// set dashboard data
 		if($_answer == 'opt_0')
 		{
-			\lib\db\profiles::set_dashboard_data($_user_id, "poll_skipped");
-			\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
+			\lib\utility\profiles::set_dashboard_data($_user_id, "poll_skipped");
+			\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
 		}
 		else
 		{
-			\lib\db\profiles::set_dashboard_data($_user_id, "poll_answered");
-			\lib\db\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
+			\lib\utility\profiles::set_dashboard_data($_user_id, "poll_answered");
+			\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
 		}
 
 		return \lib\debug::$status;
