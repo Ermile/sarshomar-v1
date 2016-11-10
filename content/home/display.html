@@ -1,134 +1,138 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="box">
-  <div class="row auto">
-    <div class="span7" id="intro-box">
+  <div class="main">
+   <div class="box">
+    <div class="row auto">
+     <div class="span7" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Concentrate on your question. Do not have any concerns about asking and analyzing questions. Sarshomar with integrated infrastructure, provides you the possibility to ask questions in every platform."%}</p>
       <a href="" class="try-for-free">{%trans "Try free"%}</a>
-    </div>
-    <div class="span5" id='random-chart'>
+     </div>
+     <div class="span5" id='random-chart'>
       <div class='chart'>
-        <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
-        <div class='column palette{{(random(6)) + 1}}'></div>
+       <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
+       <div class='column palette{{(random(6)) + 1}}'></div>
       </div>
+     </div>
     </div>
-  </div>
 
-  <div class="row" id="map">
-    <h2 class="special-heading"><a href="#">{%trans "Sarshomar users according to gender and location"%}</a></h2>
-    <!-- <div class="h2">{%trans ""%}</div> -->
-{%if site.currentlang == "en"%}
-    <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
-{%else%}
-    <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
-    <div class="span7" id="chart">
+    <div class="row" id="map">
+     <h2 class="special-heading"><a href="#">{%trans "Sarshomar users according to gender and location"%}</a></h2>
+     <!-- <div class="h2">{%trans ""%}</div> -->
+   {%if site.currentlang == "en"%}
+     <object id="worldSvgObject" type="image/svg+xml" data="/static/images/world.svg"></object>
+   {%else%}
+     <div class="span5"><object type="image/svg+xml" data="/static/images/ir-all.svg"></object></div>
+     <div class="span7" id="chart">
       <div class="chart age-chart"></div>
+     </div>
+   {%endif%}
     </div>
-{%endif%}
-  </div>
-</div>
+   </div>
 
-<div class="row" id="customers-box">
-  <div class="customer">
-    <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
-    <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua."%}</p>
-  </div>
+   <div class="row" id="customers-box">
+    <div class="customer">
+     <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
+     <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua."%}</p>
+    </div>
 
-  <div class="customer">
-    <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
-    <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua."%}</p>
-  </div>
+    <div class="customer">
+     <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
+     <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua."%}</p>
+    </div>
 
-  <div class="customer">
-    <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
-    <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua."%}</p>
-  </div>
+    <div class="customer">
+     <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
+     <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua."%}</p>
+    </div>
 
-  <div class="customer">
-    <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
-    <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua."%}</p>
-  </div>
-</div><!-- /#customers-box -->
+    <div class="customer">
+     <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
+     <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua."%}</p>
+    </div>
+   </div><!-- /#customers-box -->
 
-<div class="row" id="features-box">
-  <div class="box">
-    <div class="row">
+   <div class="row" id="features-box">
+    <div class="box">
+     <div class="row">
       <div class="tab" data-tab="3">
-        <div class="circle variety"></div>
-        <div class="title">{%trans "Knowledge Base"%}</div>
+       <div class="circle variety"></div>
+       <div class="title">{%trans "Knowledge Base"%}</div>
       </div>
       <div class="tab current" data-tab="2">
-        <div class="circle precision"></div>
-        <div class="title">{%trans "Valid Population"%}</div>
+       <div class="circle precision"></div>
+       <div class="title">{%trans "Valid Population"%}</div>
       </div>
       <div class="tab " data-tab="1">
-        <div class="circle security"></div>
-        <div class="title">{%trans "Easy Access"%}</div>
+       <div class="circle security"></div>
+       <div class="title">{%trans "Easy Access"%}</div>
       </div>
-    </div>
-    <div class="row content">
+     </div>
+     <div class="row content">
       <p>{%trans "Just having the Internet without having to install software, take advantage of various services Census"%}</p>
       <p class="current">{%trans "Ask your questions of the population census and the results will be valid along with the chart breakdown"%}</p>
       <p>{%trans "The vast knowledge and valuable census, as a credible source to enjoy your goals"%}</p>
+     </div>
     </div>
+   </div>
+
   </div>
-</div>
 {%endblock%}
 
 {%block foot_js%}
-  <script type="text/javascript">
-    var topChartOptions =
-    {
-      chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
-      title: {text: ""},
-      xAxis:{categories:{{result['random_result']['categories'] | raw}}},
-      yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
-      plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
-      legend: {enabled: false},
-      credits: {enabled: false},
-      tooltip: {enabled: false},
-      series: {{result['random_result']['data'] | raw}}
-    };
+ <script type="text/javascript">
+  var topChartOptions =
+  {
+   chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
+   title: {text: ""},
+   xAxis:{categories:{{result['random_result']['categories'] | raw}}},
+   yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
+   plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
+   legend: {enabled: false},
+   credits: {enabled: false},
+   tooltip: {enabled: false},
+   series: {{result['random_result']['data'] | raw}}
+  };
 
-    var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
-    var newChartOptions =
-    {
-      chart: {type: 'bar',backgroundColor: 'rgba(255, 255, 255, 0)'},
-      title: {text: ''},
-      xAxis: [{categories: categories,reversed: false,labels: {enabled: true,step: 1},opposite: true}],
-      yAxis: {title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
-      plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: true,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
-      credits: {enabled: false},
-      tooltip: {enabled: false},
-      series: [{
-        name: '{%trans "Male"%}',
-        data: [-2.2, -2.7, -3.1, -3.2, -3.0, -3.2, -4.3, -4.4]
-      }, {
-        name: '{%trans "Female"%}',
-        data: [2.1, 2.6, 3.0, 3.1, 2.9, 3.1, 4.1, 4.3]
-      }]
-    };
+  var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
+  var newChartOptions =
+  {
+   chart: {type: 'bar',backgroundColor: 'rgba(255, 255, 255, 0)'},
+   title: {text: ''},
+   xAxis: [{categories: categories,reversed: false,labels: {enabled: true,step: 1},opposite: true}],
+   yAxis: {title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
+   plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: true,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
+   credits: {enabled: false},
+   tooltip: {enabled: false},
+   series: [{
+    name: '{%trans "Male"%}',
+    data: [-2.2, -2.7, -3.1, -3.2, -3.0, -3.2, -4.3, -4.4]
+   }, {
+    name: '{%trans "Female"%}',
+    data: [2.1, 2.6, 3.0, 3.1, 2.9, 3.1, 4.1, 4.3]
+   }]
+  };
 
-    $(function() {
-      $('#random-chart .chart > div').highcharts(topChartOptions);
-      $('#chart > .chart').highcharts(newChartOptions);
+  $(function() {
+   $('#random-chart .chart > div').highcharts(topChartOptions);
+   $('#chart > .chart').highcharts(newChartOptions);
 
-      var hoverOrClick = function()
-      {
-        var tab_id = $(this).attr('data-tab');
-        $('#features-box .tab').removeClass('current');
-        $('#features-box .content p').removeClass('current');
-        $(this).addClass('current');
-        $('#features-box .content p').eq(tab_id - 1).addClass('current');
-      };
+   var hoverOrClick = function()
+   {
+    var tab_id = $(this).attr('data-tab');
+    $('#features-box .tab').removeClass('current');
+    $('#features-box .content p').removeClass('current');
+    $(this).addClass('current');
+    $('#features-box .content p').eq(tab_id - 1).addClass('current');
+   };
 
-      $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
-    });
-  </script>
+   $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
+  });
+ </script>
+ <link rel="stylesheet" type="text/css" href="{{url.static}}css/responsive.css">
 {% endblock %}

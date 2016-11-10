@@ -67,7 +67,7 @@
   @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
   @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
 }
-  
+
 /************************************************************** Media Queries */
 
 /* #Large Desktop ======================================== Design for a width of 1400 until 1823px*/
@@ -85,6 +85,7 @@
 @media only screen and (max-width: 767px){
   #random-chart h3{text-align: left;font-size: 1.5em;}
   #homepage .box{padding: 0;}
+  #homepage .box{padding:0 10px;}
   #map{display: none;}
   header .logo img{width: 8em;}
   header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
@@ -94,7 +95,6 @@
   header #header-quick a{padding: 15px 7px;}
   .wrapper{padding: 0;border-bottom: 8px solid transparent;}
   nav.breadcrumb{display: none;}
-  #homepage .box{padding:0 10px;}
   #features-box .tab{width: 33.33%;}
   #intro-box p{font-size:1.6em;}
   #random-chart h3 {padding: 1em .2em;font-size: 1.3em;}

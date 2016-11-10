@@ -1,8 +1,5 @@
 {%extends display.main%}
 
-{%block head_css%}
-{%endblock%}
-
 {%block content%}
 
 {%if show_all_comments%}
@@ -23,234 +20,238 @@
 {%else%}
 
 <!-- show poll -->
+<div class="main">
 
-<div class="row question-box">
-  <article class="row auto">
-    <section class="span8">
-      <h2>{{post.post_title}}</h2>
-{%include template.social%}
+  <div class="row question-box">
+    <article class="row auto">
+      <section class="span8">
+        <h2>{{post.post_title}}</h2>
+  {%include template.social%}
 
-      {%if profile%}
-        {%trans "This question will complete your profile"%}
-      {%endif%}
-      <div class="description"><p>{{post.post_content}}</p></div>
-      {% if post.post_meta.opt %}
-      <form method="post">
-        <input type="hidden" name="data-id" value="{{post.id}}">
-        {% if multiple_choice %}
-        <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-          <ul>
-           {%for key, value in post.post_meta.opt%}
-            <li>
-              <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
-              <label for="check_{{value.key}}">{{value.txt}}</label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-            </li>
-          {%endfor%}
-
-          {% if descriptive %}
-            <li>
-              <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-              <label for="check_other"><input type="text" name="opt_other"></label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-            </li>
-          {%endif%}
-          </ul>
-        </div>
-        {%else%}
-        <div class="ac-custom ac-radio ac-fill" autocomplete="off">
-          <ul>
-          {%for key, value in post.post_meta.opt%}
-            <li>
-              <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-              <label for="radio_{{value.key}}">{{value.txt}}</label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-            </li>
-          {%endfor%}
-          {% if descriptive %}
-          <li>
-            <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-            <label for="radio_other"><input type="text" name="opt_other"></label>
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-          </li>
-          {%endif%}
-          </ul>
-        </div>
+        {%if profile%}
+          {%trans "This question will complete your profile"%}
         {%endif%}
-        <div class="buttons">
-          <nav class="btn-answers">
-            <button class="save-anwser">ثبت رای</button>
-          </nav>
-        </div>
-        <a class="save-anwser" data-key="opt_0" value="skip" style="cursor:pointer">skip</a>
-        </form>
-      {%else%}
+        <div class="description"><p>{{post.post_content}}</p></div>
+        {% if post.post_meta.opt %}
+        <form method="post">
+          <input type="hidden" name="data-id" value="{{post.id}}">
+          {% if multiple_choice %}
+          <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+            <ul>
+             {%for key, value in post.post_meta.opt%}
+              <li>
+                <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
+                <label for="check_{{value.key}}">{{value.txt}}</label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endfor%}
+
+            {% if descriptive %}
+              <li>
+                <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+                <label for="check_other"><input type="text" name="opt_other"></label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endif%}
+            </ul>
+          </div>
+          {%else%}
+          <div class="ac-custom ac-radio ac-fill" autocomplete="off">
+            <ul>
+            {%for key, value in post.post_meta.opt%}
+              <li>
+                <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
+                <label for="radio_{{value.key}}">{{value.txt}}</label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              </li>
+            {%endfor%}
+            {% if descriptive %}
+            <li>
+              <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+              <label for="radio_other"><input type="text" name="opt_other"></label>
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+            </li>
+            {%endif%}
+            </ul>
+          </div>
+          {%endif%}
           <div class="buttons">
             <nav class="btn-answers">
-              <button class="save-anwser"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button>
+              <button class="save-anwser">ثبت رای</button>
             </nav>
           </div>
-      {%endif%}
-
-      {%if article%}
-        <div class="read-more">
-          <label>در همین رابطه بخوانید</label>
-          <a href="{{article.url}}">
-            <span data-hover="{{article.title}}">{{article.title}}</span>
-          </a>
-        </div>
-      {%endif%}
-    </section>
-
-    <nav class="span4 related-questions">
-    <h3>{%trans "Similar Questions"%}</h3>
-      {% for key, value in similar_post()%}
-         <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
-      {%endfor%}
-    </nav>
-  </article>
-</div>
-
-
-{%if chart%}
-<div class="row results-box">
-  <section class="row results">
-    <div class="type">
-      <ul class="tabs">
-        {%for key, value in chart%}
-          {%if value.categories != 'null'%}
-            <li chart-type="{{key}}" class="chart-{{key}} {% if key == 'result' %}active{%endif%}">{{key|trans}}</li>
-          {%endif%}
-        {%endfor%}
-      </ul>
-    </div>
-  </section>
-  <div class="container poll-chart chart"></div>
-</div>
-{%endif%}
-<div class="row comments">
-  <div class="container">
-    <h4>نظرات و امتیازات</h4>
-    <div class="row auto">
-      <div class="span4 summary">
-        <div class="average-score">
-        {%if site.currentlang == "fa"%}
-          {{rate.total|persian}}
+          <a class="save-anwser" data-key="opt_0" value="skip" style="cursor:pointer">skip</a>
+          </form>
         {%else%}
-          {{rate.total}}
+            <div class="buttons">
+              <nav class="btn-answers">
+                <button class="save-anwser"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button>
+              </nav>
+            </div>
         {%endif%}
-        </div><!-- /.average-score -->
 
-        <!-- <div class="row">
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-          <span class="stars-number">
-            {%if site.currentlang == "fa"%}
-                {{108|persian}}
-            {%else%}
-                108
-            {%endif%}
-          </span>
-        </div> --><!-- /.row -->
-
-        <div class="bars">
-          <div class="bar-one"   style="width: {{rate.rate5 * 20}}%"></div>
-          <div class="bar-two"   style="width: {{rate.rate4 * 20}}%" ></div>
-          <div class="bar-three" style="width: {{rate.rate3 * 20}}%" ></div>
-          <div class="bar-four"  style="width: {{rate.rate2 * 20}}%" ></div>
-          <div class="bar-five"  style="width: {{rate.rate1 * 20}}%" ></div>
-        </div><!-- /.bars -->
-      </div><!-- /.summary -->
-    </div>
-    <div class="row auto">
-      {% for key, value in comments() %}
-        <div class="span4 comment">
-        <h4>minus{{value.comment_minus}}</h4>
-        <h4>plus{{value.comment_plus}}</h4>
-          <a class="minus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">-</a>
-          <a class="plus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">+</a>
-
-          <!--   <div class="score">
-            <div class="plus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}">
-              <object data="/static/images/score-g.svg"></object>
-            </div>
-            <div class="minus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}">
-              <object data="/static/images/score-r.svg" data-value="12"></object>
-            </div>
-          </div> -->
-          <div>
-          {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
-          {%for i in 1..k%}
-              <span><i class="fa fa-star" aria-hidden="true"></i></span>
-          {%endfor%}
+        {%if article%}
+          <div class="read-more">
+            <label>در همین رابطه بخوانید</label>
+            <a href="{{article.url}}">
+              <span data-hover="{{article.title}}">{{article.title}}</span>
+            </a>
           </div>
-          <div class="user">{{value.comment_author}}</div>
-          <div class="content">
-            <p>{{value.comment_content}}</p>
-          </div>
-          <span class="continue">{%trans "More"%}</span>
-        </div>
-      {% endfor %}
-    </div>
-    <!-- heart -->
-    <div class="heart" data-value="1" style="background: red; padding-top: 25px; padding-bottom: 25px; width: 100px; text-align: center; border-radius: 5px; opacity: 0.2">
-      1
-    </div>
-    <div class="save-heart"  style="background: green; height: 30px; width: 30px; text-align: center; border-radius: 5px;">
-      save
-    </div>
-    <!-- heart -->
-    <form method="post">
-        <input type="hidden" name="comment" value="comment">
-        <textarea name="content" placeholder="content"></textarea>
-        <input type="submit" value="send">
-      </form>
+        {%endif%}
+      </section>
+
+      <nav class="span4 related-questions">
+      <h3>{%trans "Similar Questions"%}</h3>
+        {% for key, value in similar_post()%}
+           <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+        {%endfor%}
+      </nav>
+    </article>
   </div>
-</div><!-- /.comments -->
 
-<div class="row details">
+  {%if chart%}
+  <div class="row results-box">
+    <section class="row results">
+      <div class="type">
+        <ul class="tabs">
+          {%for key, value in chart%}
+            {%if value.categories != 'null'%}
+              <li chart-type="{{key}}" class="chart-{{key}} {% if key == 'result' %}active{%endif%}">{{key|trans}}</li>
+            {%endif%}
+          {%endfor%}
+        </ul>
+      </div>
+    </section>
+    <div class="container poll-chart chart"></div>
+  </div>
+  {%endif%}
+  <div class="row comments">
     <div class="container">
-        <div class="row auto">
-            <h5>توضیحات</h5>
-            <div class="span6">
-                <div class="title">بازه سوال</div>
-                <div class="detail">
-                    <span class="green">{{date_start}}</span>
-                    <span>-</span>
-                    <span class="red">{{date_end}}</span>
-                </div>
-                <div class="title">وضعیت نظرسنجی</div>
-                <div class="detail"><span class="green">{{status}}</span></div>
-                <div class="title">کلیدواژه ها</div>
-                <div class="detail tags">
-                    {{tags({"html":true})}}
-                </div>
+      <h4>نظرات و امتیازات</h4>
+      <div class="row auto">
+        <div class="span4 summary">
+          <div class="average-score">
+          {%if site.currentlang == "fa"%}
+            {{rate.total|persian}}
+          {%else%}
+            {{rate.total}}
+          {%endif%}
+          </div><!-- /.average-score -->
+
+          <!-- <div class="row">
+            <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <span class="stars-number">
+              {%if site.currentlang == "fa"%}
+                  {{108|persian}}
+              {%else%}
+                  108
+              {%endif%}
+            </span>
+          </div> --><!-- /.row -->
+
+          <div class="bars">
+            <div class="bar-one"   style="width: {{rate.rate5 * 20}}%"></div>
+            <div class="bar-two"   style="width: {{rate.rate4 * 20}}%" ></div>
+            <div class="bar-three" style="width: {{rate.rate3 * 20}}%" ></div>
+            <div class="bar-four"  style="width: {{rate.rate2 * 20}}%" ></div>
+            <div class="bar-five"  style="width: {{rate.rate1 * 20}}%" ></div>
+          </div><!-- /.bars -->
+        </div><!-- /.summary -->
+      </div>
+      <div class="row auto">
+        {% for key, value in comments() %}
+          <div class="span4 comment">
+          <h4>minus{{value.comment_minus}}</h4>
+          <h4>plus{{value.comment_plus}}</h4>
+            <a class="minus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">-</a>
+            <a class="plus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}" style="cursor: pointer;">+</a>
+
+            <!--   <div class="score">
+              <div class="plus" data-value="{{value.comment_minus}}" data-comment-id="{{value.id}}">
+                <object data="/static/images/score-g.svg"></object>
+              </div>
+              <div class="minus" data-value="{{value.comment_plus}}" data-comment-id="{{value.id}}">
+                <object data="/static/images/score-r.svg" data-value="12"></object>
+              </div>
+            </div> -->
+            <div>
+            {%set k = value.comment_rate%}{%if k > 5 %}{%set k = 5 %}{%endif%}
+            {%for i in 1..k%}
+                <span><i class="fa fa-star" aria-hidden="true"></i></span>
+            {%endfor%}
             </div>
-            <div class="span6 border">
-                {%if filters %}
-                <div class="title">جامعه آماری هدف:</div>
-                <div class="row auto">
-                  {%for key, value in filters%}
-                  <div class="span6">
-                    <div class="detail">
-                      <span>
-                        <i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i>
-                        {{value.filter}}
-                      </span>
-                    </div>
-                  </div>
-                  {%endfor%}
-                </div>
-                {%endif%}
+            <div class="user">{{value.comment_author}}</div>
+            <div class="content">
+              <p>{{value.comment_content}}</p>
             </div>
-        </div>
+            <span class="continue">{%trans "More"%}</span>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- heart -->
+      <div class="heart" data-value="1" style="background: red; padding-top: 25px; padding-bottom: 25px; width: 100px; text-align: center; border-radius: 5px; opacity: 0.2">
+        1
+      </div>
+      <div class="save-heart"  style="background: green; height: 30px; width: 30px; text-align: center; border-radius: 5px;">
+        save
+      </div>
+      <!-- heart -->
+      <form method="post">
+          <input type="hidden" name="comment" value="comment">
+          <textarea name="content" placeholder="content"></textarea>
+          <input type="submit" value="send">
+        </form>
     </div>
+  </div><!-- /.comments -->
+
+  <div class="row details">
+      <div class="container">
+          <div class="row auto">
+              <h5>توضیحات</h5>
+              <div class="span6">
+                  <div class="title">بازه سوال</div>
+                  <div class="detail">
+                      <span class="green">{{date_start}}</span>
+                      <span>-</span>
+                      <span class="red">{{date_end}}</span>
+                  </div>
+                  <div class="title">وضعیت نظرسنجی</div>
+                  <div class="detail"><span class="green">{{status}}</span></div>
+                  <div class="title">کلیدواژه ها</div>
+                  <div class="detail tags">
+                      {{tags({"html":true})}}
+                  </div>
+              </div>
+              <div class="span6 border">
+                  {%if filters %}
+                  <div class="title">جامعه آماری هدف:</div>
+                  <div class="row auto">
+                    {%for key, value in filters%}
+                    <div class="span6">
+                      <div class="detail">
+                        <span>
+                          <i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i>
+                          {{value.filter}}
+                        </span>
+                      </div>
+                    </div>
+                    {%endfor%}
+                  </div>
+                  {%endif%}
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
+
 <!-- show comments only -->
 {%endif%}
+
+
 {%endblock%}
 
 {%block foot_js%}

@@ -1,31 +1,33 @@
 {%extends display.main%}
 
 {%block content%}
-<form method="post">
-<div class="box">
-  <div class="row">
-    <div class="span3"></div>
-    <div class="span6">
-    {%if login%}
-    {%else%}
-      <div class="element">
-        <label class="title" for="name">{%trans "name"%}</label>
-        <input class="input" type="text" name="name" id="name">
-      </div>
-      <div class="element">
-        <label class="title" for="email">{%trans "email"%}</label>
-        <input class="input" type="email" name="email" id="email">
-      </div>
-      {%endif%}
-      <div class="element">
-        <label class="title" for="content">{%trans "content"%}</label>
-        <textarea name="content" id="content" class="input"></textarea>
+<div class="main">
+  <form method="post">
+  <div class="box">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span6">
+      {%if login%}
+      {%else%}
+        <div class="element">
+          <label class="title" for="name">{%trans "name"%}</label>
+          <input class="input" type="text" name="name" id="name">
+        </div>
+        <div class="element">
+          <label class="title" for="email">{%trans "email"%}</label>
+          <input class="input" type="email" name="email" id="email">
+        </div>
+        {%endif%}
+        <div class="element">
+          <label class="title" for="content">{%trans "content"%}</label>
+          <textarea name="content" id="content" class="input"></textarea>
+        </div>
       </div>
     </div>
   </div>
+  <div class="buttons center">
+    <button type="submit">{%trans "submit"%}</button>
+  </div>
+  </form>
 </div>
-<div class="buttons center">
-  <button type="submit">{%trans "submit"%}</button>
-</div>
-</form>
 {%endblock%}
