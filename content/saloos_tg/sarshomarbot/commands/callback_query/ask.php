@@ -81,7 +81,6 @@ class ask
 		if(!$poll_result)
 		{
 			$poll_result = \lib\db\polls::get_poll($_poll_id);
-			handle::send_log($poll_result);
 			foreach ($poll_result['meta']['opt'] as $key => $value) {
 				$poll_result['result'][$value['txt']] = 0;
 			}
@@ -102,15 +101,13 @@ class ask
 				$poll_list .= $row[$count] . ' ' . $key . "\n";
 			}
 		}
-		$text = '📊' . $poll_result['title'];
+		$url = preg_split("[\/]", $poll_result['url']);
+		$text = '['.$poll_result['title'].']' . "(https://sarshomar.com/$/".$url[1].")";
 		$text .= "\n";
-		$text .= chart::calc_vertical($poll_answer);
+		$text .= utility::calc_vertical($poll_answer);
 		$text .= "\n";
 		$text .= $poll_list;
-		$url = preg_split("[\/]", $poll_result['url']);
-		$text .= "[".$poll_result['title']."](https://telegram.me/SarshomarBot?start=sp_".$url[1].")";
-		$text .= "\n";
-		$text .= "[view result](https://sarshomar.com/$/".$url[1].")";
+		$text .= '['.T_('Answer link').']' . "(https://telegram.me/SarshomarBot?start=sp_$_poll_short_link)";
 		$text .= "\n";
 		$text .= "#sarshomar";
 

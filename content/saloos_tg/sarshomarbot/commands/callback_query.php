@@ -28,7 +28,7 @@ class callback_query
 		/**
 		 * check if unique request
 		 */
-		$callback_session = false; //session::get('tmp', 'callback_query');
+		$callback_session = session::get('tmp', 'callback_query');
 		if(!$callback_session)
 		{
 			$callback_session = [];
@@ -46,7 +46,6 @@ class callback_query
 		else
 		{
 			session::remove_back('expire', 'inline_cache');
-			// $result['text'] = "repeated";
 			return $result;
 		}
 

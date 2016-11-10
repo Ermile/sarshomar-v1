@@ -11,9 +11,10 @@ class poll_result
 		}
 
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
-		self::add_message($message, "❔*" . html_entity_decode($poll_result['title']) . "*");
 		preg_match("/^\\$\/([^\/]+)(\/.*)*$/", $poll_result['url'], $url);
 		$short_link_id = $url[1];
+		$short_url = 'https://sarshomar.com/sp_' . $short_link_id;
+		self::add_message($message, "[" . html_entity_decode($poll_result['title']) . "]($short_url)");
 		$inline_keyboard = array();
 		foreach ($poll_result['meta']['opt'] as $answer_key => $answer_value) {
 			$callback_data = 'ask/poll/' . $short_link_id . '/' . ($answer_key +1);
@@ -38,11 +39,8 @@ class poll_result
 		'text' => "❌ مایل به پاسخگویی نیستم",
 		'callback_data' => 'ask/poll/' . $short_link_id. '/0'
 		];
+		self::add_message($message, '['.T_('Answer link').']' . "(https://telegram.me/SarshomarBot?start=sp_$short_link_id)");
 		self::add_message($message, "#sarshomar");
-		$short_url = 'https://sarshomar.com/sp_' . $short_link_id;
-		self::add_message($message, preg_replace("[_]", "\_", $short_url));
-		// $short_url = '(https://telegram.me/SarshomarBot?start=sp_' . $short_link_id .')';
-		// self::add_message($message, '[sp_'.$short_link_id.']' . preg_replace("[_]", "\_", $short_url));
 		return ["message" => $message, "inline_keyboard" => $inline_keyboard];
 	}
 
