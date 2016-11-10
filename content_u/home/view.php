@@ -12,6 +12,12 @@ class view extends \mvc\view
 	function config()
 	{
 		$this->include->fontawesome = true;
+		if($this->module() === 'home')
+		{
+			$this->data->bodyclass        = 'dashboard';
+			$this->include->chart         = true;
+
+		}
 	}
 
 	function view_profile($o)
