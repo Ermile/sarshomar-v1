@@ -1,246 +1,243 @@
 {%extends display.main%}
 {%block content%}
 <aside>
-  <div class="search-tools">
+  <div class="group">
+   <div class="full-line-title" data-title='{%trans "questions"%}'></div>
+   <div class="options-box">
+     <span class="ac-custom ac-checkmark">
+     <input id="questions1" type="checkbox" name='questions'>
+     <label for="questions1">سرشمار</label>
+    </span>
+     <span class="ac-custom ac-checkmark">
+     <input id="questions2" type="checkbox" name='questions'>
+     <label for="questions2">مردمی</label>
+    </span>
+   </div>
+  </div>
 
-	 	<div class="group">
-		 	<div class="full-line-title" data-title='{%trans "questions"%}'></div>
-		 	<div class="options-box">
-			  <span class="ac-custom ac-checkmark">
-	 				<input id="questions1" type="checkbox" name='questions'>
-					<label for="questions1">سرشمار</label>
-				</span>
-			  <span class="ac-custom ac-checkmark">
-	 				<input id="questions2" type="checkbox" name='questions'>
-					<label for="questions2">مردمی</label>
-				</span>
-			</div>
-		</div>
+  <div class="group">
+  <div class="full-line-title" data-title='{%trans "question type"%}'></div>
+   <div class="options-box">
+     <span class="ac-custom ac-checkmark reverse">
+     <input id="type1" type="checkbox" name='type'>
+     <label for="type1">نظرسنجی</label>
+    </span>
+     <span class="ac-custom ac-checkmark reverse">
+     <input id="type2" type="checkbox" name='type'>
+     <label for="type2">آزمون‌آنلاین</label>
+    </span>
+     <span class="ac-custom ac-checkmark reverse">
+     <input id="type4" type="checkbox" name='type'>
+     <label for="type4">پرسشنامه</label>
+    </span>
+   </div>
+  </div>
 
-		<div class="group">
-		<div class="full-line-title" data-title='{%trans "question type"%}'></div>
-			<div class="options-box">
-			  <span class="ac-custom ac-checkmark reverse">
-					<input id="type1" type="checkbox" name='type'>
-					<label for="type1">نظرسنجی</label>
-				</span>
-			  <span class="ac-custom ac-checkmark reverse">
-					<input id="type2" type="checkbox" name='type'>
-					<label for="type2">آزمون‌آنلاین</label>
-				</span>
-			  <span class="ac-custom ac-checkmark reverse">
-					<input id="type4" type="checkbox" name='type'>
-					<label for="type4">پرسشنامه</label>
-				</span>
-			</div>
-		</div>
+  <div class="group">
+   <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
+   <div class="options-box">
+    <span class="ac-custom ac-checkmark">
+     <input id="accord1" type="checkbox">
+     <label for="accord1">گزینه‌ای</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord2" type="checkbox">
+     <label for="accord2">تشریحی</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord3" type="checkbox">
+     <label for="accord3">بارگذاری</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord4" type="checkbox">
+     <label for="accord4">ستاره‌ای</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord5" type="checkbox">
+     <label for="accord5">اطلاع‌رسانی</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord6" type="checkbox">
+     <label for="accord6">شماره‌ای</label>
+    </span>
+    <span class="ac-custom ac-checkmark">
+     <input id="accord7" type="checkbox">
+     <label for="accord7">مرتب‌سازی</label>
+    </span>
+   </div>
+  </div>
 
-		<div class="group">
-			<div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
-			<div class="options-box">
-				<span class="ac-custom ac-checkmark">
-					<input id="accord1" type="checkbox">
-					<label for="accord1">گزینه‌ای</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord2" type="checkbox">
-					<label for="accord2">تشریحی</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord3" type="checkbox">
-					<label for="accord3">بارگذاری</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord4" type="checkbox">
-					<label for="accord4">ستاره‌ای</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord5" type="checkbox">
-					<label for="accord5">اطلاع‌رسانی</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord6" type="checkbox">
-					<label for="accord6">شماره‌ای</label>
-				</span>
-				<span class="ac-custom ac-checkmark">
-					<input id="accord7" type="checkbox">
-					<label for="accord7">مرتب‌سازی</label>
-				</span>
-			</div>
-		</div>
+  <div class="group">
+   <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
+   <div class="options-box">
+     <span class="ac-custom ac-checkmark reverse">
+     <input id="time1" type="checkbox" name='time'>
+     <label for="time1">در حال انجام</label>
+    </span>
+     <span class="ac-custom ac-checkmark reverse">
+     <input id="time2" type="checkbox" name='time'>
+     <label for="time2">منقضی شده</label>
+    </span>
+   </div>
+  </div>
 
-		<div class="group">
-			<div class="full-line-title" data-title='{%trans "survey time"%}'></div>
-			<div class="options-box">
-			  <span class="ac-custom ac-checkmark reverse">
-					<input id="time1" type="checkbox" name='time'>
-					<label for="time1">در حال انجام</label>
-				</span>
-			  <span class="ac-custom ac-checkmark reverse">
-					<input id="time2" type="checkbox" name='time'>
-					<label for="time2">منقضی شده</label>
-				</span>
-			</div>
-		</div>
+  <div class="group">
+   <div class="full-line-title" data-title='{%trans "prize"%}'></div>
+   <div class="options-box prize-box">
+     <span class="ac-custom ac-checkmark" >
+     <input id="prize1" type="checkbox" name='prize'>
+     <label for="prize1">پاسخ‌دهی</label>
+    </span>
+     <span class="ac-custom ac-checkmark">
+     <input id="prize2" type="checkbox" name='prize'>
+     <label for="prize2">قرعه‌کشی</label>
+    </span>
+   </div>
+  </div>
 
-		<div class="group">
-			<div class="full-line-title" data-title='{%trans "prize"%}'></div>
-			<div class="options-box prize-box">
-			  <span class="ac-custom ac-checkmark" >
-					<input id="prize1" type="checkbox" name='prize'>
-					<label for="prize1">پاسخ‌دهی</label>
-				</span>
-			  <span class="ac-custom ac-checkmark">
-					<input id="prize2" type="checkbox" name='prize'>
-					<label for="prize2">قرعه‌کشی</label>
-				</span>
-			</div>
-		</div>
-
-		<div class="group">
-			<div class="full-line-title" data-title='{%trans "filters"%}'></div>
-			<div class="options-box filters-box">
-				<div class="select-box">
-					<label for="education">تأهل</label>
-					<select name="education inline" id="education">
-				    <option value="">مجرد</option>
-				    <option value="">متأهل</option>
-				  </select>
-				 </div>
-				<div class="select-box">
-					<label for="education">شغل</label>
-					<select name="education inline">
-				    <option value="">دولتی</option>
-				    <option value="">آزاد</option>
-				    <option value="">بیکار</option>
-			  	</select>
-			  </div>
-				<div class="select-box">
-					<label for="education">جنسیت</label>
-					<select name="education inline">
-				    <option value="">male</option>
-				    <option value="">female</option>
-				  </select>
-				 </div>
-				<div class="select-box">
-					<label for="education">تحصیلات</label>
-					<select name="education inline">
-				    <option value="">دکتری</option>
-				    <option value="">فوق لیسانس</option>
-				    <option value="">لیسانس</option>
-				    <option value="">فوق دیپلم</option>
-				    <option value="">دیپلم</option>
-				    <option value="">سیکل</option>
-				    <option value="">ابتدایی</option>
-				    <option value="">بیسواد</option>
-				  </select>
-				 </div>
-				<div class="select-box">
-					<label for="education">کشور</label>
-					<select name="education inline">
-				    <option value="">ایران</option>
-				    <option value="">عراق</option>
-				    <option value="">ترکیه</option>
-			  	</select>
-			  </div>
-				<div class="select-box">
-					<label for="education">سن</label>
-					<select name="education inline">
-				    <option value="">۲۰ سال</option>
-				    <option value="">بیش از ۲۰ سال</option>
-				    <option value="">کمتر از ۲۰ سال</option>
-			  	</select>
-			  </div>
-			</div>
-		</div>
-	</div>
+  <div class="group">
+   <div class="full-line-title" data-title='{%trans "filters"%}'></div>
+   <div class="options-box filters-box">
+    <div class="select-box">
+     <label for="education">تأهل</label>
+     <select name="education inline" id="education">
+     <option value="">مجرد</option>
+     <option value="">متأهل</option>
+      </select>
+     </div>
+    <div class="select-box">
+     <label for="education">شغل</label>
+     <select name="education inline">
+     <option value="">دولتی</option>
+     <option value="">آزاد</option>
+     <option value="">بیکار</option>
+    </select>
+     </div>
+    <div class="select-box">
+     <label for="education">جنسیت</label>
+     <select name="education inline">
+     <option value="">male</option>
+     <option value="">female</option>
+      </select>
+     </div>
+    <div class="select-box">
+     <label for="education">تحصیلات</label>
+     <select name="education inline">
+     <option value="">دکتری</option>
+     <option value="">فوق لیسانس</option>
+     <option value="">لیسانس</option>
+     <option value="">فوق دیپلم</option>
+     <option value="">دیپلم</option>
+     <option value="">سیکل</option>
+     <option value="">ابتدایی</option>
+     <option value="">بیسواد</option>
+      </select>
+     </div>
+    <div class="select-box">
+     <label for="education">کشور</label>
+     <select name="education inline">
+     <option value="">ایران</option>
+     <option value="">عراق</option>
+     <option value="">ترکیه</option>
+    </select>
+     </div>
+    <div class="select-box">
+     <label for="education">سن</label>
+     <select name="education inline">
+     <option value="">۲۰ سال</option>
+     <option value="">بیش از ۲۰ سال</option>
+     <option value="">کمتر از ۲۰ سال</option>
+    </select>
+     </div>
+   </div>
+  </div>
 
 </aside>
 <div class="main">
 
-	 <div class="row auto">
+  <div class="row auto">
 
-	  <div class="span9 searchs-list">
-	  	<div class="search-box">
-		    <input type="text" name="search" placeholder="Search" class="pollsearch" value="" autocomplete="off">
-		    <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
-	   </div>
-			<div class="search-result" data-xhr="search-result">
-		    <div class="polls-head">
-		      <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		      <div class="type">نوع</div>
-		      <div class="title">عنوان</div>
-		      <div class="comments-count">تعداد نظرات</div>
-		      <div class="votes-count">تعداد آراء</div>
-		      <div class="date">تاریخ ثبت</div>
-		    </div>
-		    <ul class="polls-body">
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/4/uhdg">یک خروس در بام خانه‌ای که شیب دوطرفه دارد</a></div>
-		        <div class="comments-count">۴۳۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 14:01:47</div>
-		      </li>
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/3/soal1">یک فروند هواپیما در مرز آمریکا و کانادا سقوط می‌کند</a></div>
-		        <div class="comments-count">۲۶۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 13:01:43</div>
-		      </li>
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
-		        <div class="comments-count">۳۲۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 13:01:43</div>
-		      </li>
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
-		        <div class="comments-count">۳۲۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 13:01:43</div>
-		      </li>
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
-		        <div class="comments-count">۳۲۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 13:01:43</div>
-		      </li>
-		      <li class="polls-row">
-		        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-		        <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
-		        <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
-		        <div class="comments-count">۳۲۵</div>
-		        <div class="votes-count">۴۵۵۵۰</div>
-		        <div class="date">2016-11-08 13:01:43</div>
-		      </li>
-		    </ul>
-		   </div>
-		   <div class="my-navigation">
-			   <nav class="ali-navigation auto">
-				   <a href="">></a>
-				   <a href="">8</a>
-				   <a href="">7</a>
-				   <a href="">6</a>
-				   <a href="" class="active">5</a>
-				   <a href="">4</a>
-				   <a href="">3</a>
-				   <a href="">2</a>
-				   <a href="">1</a>
-				   <a href=""><</a>
-			   </nav>
-		   </div>
-	  </div>
-	 </div>
+   <div class="span9 searchs-list">
+  <div class="search-box">
+   <input type="text" name="search" placeholder="Search" class="pollsearch" value="" autocomplete="off">
+   <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+   <div class="search-result" data-xhr="search-result">
+   <div class="polls-head">
+     <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+     <div class="type">نوع</div>
+     <div class="title">عنوان</div>
+     <div class="comments-count">تعداد نظرات</div>
+     <div class="votes-count">تعداد آراء</div>
+     <div class="date">تاریخ ثبت</div>
+   </div>
+   <ul class="polls-body">
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/4/uhdg">یک خروس در بام خانه‌ای که شیب دوطرفه دارد</a></div>
+    <div class="comments-count">۴۳۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 14:01:47</div>
+     </li>
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/3/soal1">یک فروند هواپیما در مرز آمریکا و کانادا سقوط می‌کند</a></div>
+    <div class="comments-count">۲۶۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 13:01:43</div>
+     </li>
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
+    <div class="comments-count">۳۲۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 13:01:43</div>
+     </li>
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
+    <div class="comments-count">۳۲۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 13:01:43</div>
+     </li>
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
+    <div class="comments-count">۳۲۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 13:01:43</div>
+     </li>
+     <li class="polls-row">
+    <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
+    <div class="type"><span class="fa fa-select" aria-hidden="true"></span></div>
+    <div class="title"><a href="/$/3/soal1">مام وسایل‌ او به رنگ قرمز است. او در آپارتمانی یک طبقه که قرمزرنگ است، زندگی می‌کند.</a></div>
+    <div class="comments-count">۳۲۵</div>
+    <div class="votes-count">۴۵۵۵۰</div>
+    <div class="date">2016-11-08 13:01:43</div>
+     </li>
+   </ul>
+     </div>
+     <div class="my-navigation">
+      <nav class="ali-navigation auto">
+       <a href="">></a>
+       <a href="">8</a>
+       <a href="">7</a>
+       <a href="">6</a>
+       <a href="" class="active">5</a>
+       <a href="">4</a>
+       <a href="">3</a>
+       <a href="">2</a>
+       <a href="">1</a>
+       <a href=""><</a>
+      </nav>
+     </div>
+   </div>
+  </div>
 </div>
 
 
@@ -253,19 +250,19 @@
 <script>
 $(document).ready(function()
 {
-    $(".full-line-title").click(function()
-    {
-        $(this).next(".options-box").slideToggle();
-    });
-    $(".slide-filters").click(function()
-    {
-        $("#filters-slide").slideToggle();
-    });
+ $(".full-line-title").click(function()
+ {
+  $(this).next(".options-box").slideToggle();
+ });
+ $(".slide-filters").click(function()
+ {
+  $("#filters-slide").slideToggle();
+ });
 
-    $(".search-tools input[type=checkbox]").click(function()
-    {
-    	$(this).parent('.ac-custom').toggleClass('selected');
-    });
+ $("aside input[type=checkbox]").click(function()
+ {
+  $(this).parent('.ac-custom').toggleClass('selected');
+ });
 });
 
 </script>

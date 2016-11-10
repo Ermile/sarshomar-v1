@@ -16,7 +16,7 @@ body{background-color:#00667a;}
 .wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:0;position:relative;display:flex;}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:"";}
 .wrapper::after,.box::after,header::after{clear:both;}
-.wrapper>aside{background-color:#eee;width:200px;}
+.wrapper>aside{background-color:#eee;width:200px;min-width:200px;}
 .wrapper>.main{width:100%;}
 .box {display:block;padding:0 15px;margin:0;width:100%;}
 #homepage .box{padding:0 50px;}
@@ -852,8 +852,6 @@ nav#page-nav #nav-prev{float:left;}
 /************************************************************** Pagination */
 #checkbox .wrapper {padding-top:0;padding-bottom:0;}
 #checkbox .search-box {margin:2em 0;}
-#checkbox .search-tools{float:left;top:0;left:0;width:200px;margin-right:1%;padding-bottom:30px;padding-top:10px;background-color:#ebebeb;}
-.rtl#checkbox .search-tools{float:right;margin-right:0;}
 #checkbox .search-tools .select-box{display:flex;background-color:#e7e7e7;margin:10px 0;}
 #checkbox .search-tools .select-box label{line-height: 26px;font-size: 1.1em;color:#00667a;width:100%;font-weight:500;padding-left: 1.5em;}
 .rtl#checkbox .search-tools .select-box label{padding-right: 1em;padding-left:.5em;}
