@@ -25,7 +25,10 @@
   <div class="row question-box">
     <article class="row auto">
       <section class="span8">
-        <h2>{{post.title}}</h2>
+      {%if perm.publish_poll.admin%}
+      <h1>YOU CAN CHANGE THE STATUS OF THIS POLL</h1>
+      {%endif%}
+       <h2>{{post.title}}</h2>
   {%include template.social%}
 
         {%if profile%}
