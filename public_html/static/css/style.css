@@ -245,22 +245,34 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .palette7 .highcharts-series rect:nth-child(8){fill:#095592;}
 
 
-/************************************************************** Next... */
+/************************************************************** Dashboard */
 .dashboard aside{padding:2em 1em 0}
-.dashboard .row{margin-bottom: 1.5em;}
+.dashboard .main .row{margin-bottom:15px;}
+.dashboard #chart-answered{height:400px;}
 .two, .three, .four, .five{display:flex;justify-content:space-between;}
 .two>div{width:49%;}
 .three>div{width:32%;}
 .four>div{width:23%;}
 .five>div{width:18%;}
-.card{}
-.card .title{background-color:#e9e9e9;color:#00667a;display:block;padding:0.5em;}
-.card .value{background-color:#fdfdfd;color:#37aaa7;font-size:3em;font-weight:bold;text-align:center;line-height:2.5em;}
-.card .body{background-color:#fdfdfd;color:#37aaa7;}
-.card .body a{display:block;}
-.dashboard #chart-answered{height:300px}
+/* card */
+.card h3{background-color:#e9e9e9;color:#00667a;display:block;padding:5px 1em;margin:0;font-size:0.9em;line-height:20px;}
+.card>span{display:block;background-color:#fdfdfd;color:#37aaa7;transition:0.3s;}
+.card:hover>span{background-color:#eee;}
+.card.bold>span{color:#9f6915;}
+.card.fix>span{height:90px;}
+.card.number>span{font-size:2.5em;font-weight:bold;text-align:center;line-height:2.5em;}
+.card.number.fix>span{line-height:90px;}
+.card>span>i{font-size: 0.6em;vertical-align:middle;font-style:normal;padding:0 0.2em}
+.card>span a{display:block;padding:5px 1em;line-height:20px;transition:0.2s;}
+.card>span a:hover{background-color:#fff}
+.card.activity>span{height:265px}
+
+.personal-info{font-size:1.1em;margin-bottom:2em;}
+.personal-info>span{display:block;padding:0.2em 0.5em;color:#00667a;}
 
 
+
+/************************************************************** Next */
 /* map */
 #map{padding:50px 0;}
 #map #chart > div{height:350px;}

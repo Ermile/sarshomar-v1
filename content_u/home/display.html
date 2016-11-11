@@ -1,78 +1,70 @@
 {%extends display.main%}
 
 {%block content%}
-   <aside>
+   <aside class=''>
     <img src="http://sarshomar.dev/static/images/profile.svg" alt="">
-    <div>{{displayname}}</div>
+    <div class="personal-info">
+     <span class="name">{{login.displayname}}</span>
+     <span class="mobile">{{login.mobile}}</span>
+    </div>
     <a href="@/profile">{%trans "View Profile"%}</a>
    </aside>
 
    <div class="main padding">
-    <div class="row first-line">
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>83</div></div></div>
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>134</div></div></div>
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>159</div></div></div>
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>1,350</div></div></div>
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>7,456</div></div></div>
-     <div class='span2'><div class='card'><div class='title'>{%trans "Invite"%}</div><div class='value'>7,456</div></div></div>
+    <div class="row auto first-line">
+     <div class='span2 card number'><h3>{%trans "Referred count"%}</h3><span>83</span></div>
+     <div class='span2 card number'><h3>{%trans "Referred valid count"%}</h3><span>29</span></div>
+     <div class='span2 card number'><h3>{%trans "Comments count"%}</h3><span>134</span></div>
+     <div class='span2 card number'><h3>{%trans "Draft count"%}</h3><span>159</span></div>
+     <div class='span2 card number'><h3>{%trans "Total poll published"%}</h3><span>1,350</span></div>
+     <div class='span2 card number'><h3>{%trans "Total Like taken"%}</h3><span>7,456</span></div>
     </div>
 
-    <div class="row">
-     <div class="span6">
-      <div id='chart-answered'></div>
+    <div class="row auto">
+     <div class="span6 card">
+      <h3>{%trans "Summary of your activity in Sarshomar"%}</h3><span><div class="chart" id='chart-answered'></div></span>
      </div>
      <div class="span6">
-      <div class="row">
-       <div class='span6 card'>
-        <div class='title'>{%trans "Quick Access"%}</div>
-        <div class="body">
-         <a href='#'>{%trans "Create new poll"%}</a>
-         <a href='#'>{%trans "Ask from me"%}</a>
-         <a href='#'>{%trans "My polls"%}</a>
-        </div>
+      <div class="row auto">
+       <div class='span6 card list fix'>
+        <h3>{%trans "Quick Access"%}</h3>
+        <span>
+         <a href='/@/add'>{%trans "Create new poll"%}</a>
+         <a href='/@/$'>{%trans "My polls"%}</a>
+         <a href='/ask'>{%trans "Ask from me"%}</a>
+        </span>
        </div>
-       <div class='span6 card'><div class='title'>{%trans "Budget"%}</div><div class='value'>1,350,000</div></div>
+       <div class='span6 card number bold fix'><h3>{%trans "Your credit"%}</h3><span>1,350,000<i>{%trans "$"%}</i></span></div>
       </div>
-      <div class="row">
-       <div class='card'><div class='title'>{%trans "Last activity"%}</div><div class='value'>...</div></div>
+      <div class="row auto">
+       <div class='card activity'>
+        <h3>{%trans "Last activity"%}</h3>
+        <span>
 
+        </span>
+       </div>
       </div>
      </div>
     </div>
    </div>
-
-
-
-
-
 {%endblock%}
 
 
 {%block foot_js%}
  <script type="text/javascript">
-  $(function () {
-      Highcharts.chart('chart-answered', {
-          chart: {type: 'pie',},
-          title: {
-              text: ''
-          },
-          plotOptions: {
-              pie: {
-                  innerSize: 100,
-                  depth: 45
-              }
-          },
-   credits: {enabled: false},
-   tooltip: {enabled: false},
-          series: [{
-              name: 'Delivered amount',
-              data: [
-                  ['{%trans "Skip"%}', 6],
-                  ['{%trans "Answered"%}', 20],
-                  ['{%trans "Remained"%}', 10],
-              ]
-          }]
-      });
+  $(function ()
+  {
+    Highcharts.chart('chart-answered',
+    {
+      chart:{type:'pie',},
+      title:{text:''},
+      plotOptions:{pie:{innerSize:100,depth:45,allowPointSelect:true,cursor:'pointer',showInLegend:true,}},
+      credits:{enabled:false},
+      tooltip:{enabled:false},
+      series:[{name:'{%trans "Question Answered"%}',
+        data:[['{%trans "Remained"%}', 120],['{%trans "Skip"%}', 6],{name:'{%trans "Answered"%}',y:58,sliced:true,selected:true}]
+      }]
+    });
   });
  </script>
 {% endblock %}
