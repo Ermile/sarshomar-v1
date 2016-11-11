@@ -7,7 +7,10 @@
      <span class="name">{{login.displayname}}</span>
      <span class="mobile">{{login.mobile}}</span>
     </div>
-    <a href="@/profile">{%trans "View Profile"%}</a>
+    <div class="progress" data-percent="12">
+     <div class="bar"></div>
+     <div class="detail">{%trans "Your profile is not complete!"%}<br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
+    </div>
    </aside>
 
    <div class="main padding">
