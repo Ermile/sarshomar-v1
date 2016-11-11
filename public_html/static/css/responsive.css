@@ -75,12 +75,11 @@
 
 /* #Tablet (Portrait) =================================== Design for a width of 768px until 959px */
 @media only screen and (max-width:959px){
-  header #header-profile .login{background-color: transparent;color: #888;}
   header #header-profile{padding: 0; margin: 1em;}
+  header #header-profile .login{background-color: transparent;color: #888;padding:0 2em;font-weight: 600;font-size: 1.4em;}
   .ltr .special-heading::after{display: none;}
   header .logo img{width: 6.3em;}
-  header #header-profile .login{padding: 0 2em;font-weight: 600;font-size: 1.4em;}}
-
+}
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
   #random-chart h3{text-align: left;font-size: 1.5em;}
@@ -90,43 +89,57 @@
   header .logo img{width: 8em;}
   header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
   header{border:none;text-align: center;}
-  header #header-box{border-right: 8px solid transparent;border-left: 8px solid transparent;border-top: 8px solid transparent;height:auto;-webkit-border-image: url(../images/border.png) 8 stretch;}
-  header #header-profile{width: 30%;}
-  header #header-quick a{padding: 15px 7px;}
+  header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
+  header .logo img{width: 8em;}
+  /*----------wrapper-----------*/
+  #map{display: none;}
   .wrapper{padding: 0;border-bottom: 8px solid transparent;}
   nav.breadcrumb{display: none;}
   #features-box .tab{width: 33.33%;}
   #intro-box p{font-size:1.6em;}
-  #random-chart h3 {padding: 1em .2em;font-size: 1.3em;}
+  #random-chart h3{text-align: left;font-size: 1.5em;padding: 1em .2em}
   #random-chart h3 a{font-size: 1.4em;font-weight: 500;}
   .special-heading{display: none;}
   #worldSvgObject{display: none;}
   .chart{background-color: #f4f4f4;}
+  /*----------customer-----------*/
   #customers-box{padding: 0;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
-  #customers-box .customer:nth-child(even){width: 90%;text-align: left;margin: .5em auto;}
-  #customers-box .customer:nth-child(odd){width: 90%;text-align: left;margin: .5em auto;}
+  .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
   #customers-box .customer p{width: 90%;margin:0 auto;}
-  #features-box{padding: 10px 0;}
-  #inestimable::before{display: none;}
-  #inestimable::after{display: none;}
+  /*----------inestimable-----------*/
   #inestimable{padding: 0; margin:0;}
   #inestimable h3 {margin-top: 30px;}
-  .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
+  #inestimable::before{display: none;}
+  #inestimable::after{display: none;}
   #inestimable img{display: none;}
+  .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
+  /*----------footer-----------*/
+  footer{border-top: 0;}
   footer #footer-links{border-bottom:0;}
   footer #footer-links a{padding: .5em;display: inline-block;}
   footer #footer-note .counter, footer #footer-note .love{display: inline-block !important;width:50% !important; margin-top:5px !important; }
-  footer #footer-links section h4{text-align: left;}}
-
+  footer #footer-links section h4{text-align: left;}
+}
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 @media only screen and (max-width: 479px){
-#map{display: none;}
-#features-box .tab{width: 100%;}
-header #header-profile{margin: 0;}
-header .logo img{width: 7em;}}
-
+/*----------header-----------*/
+header .logo img{width: 8em;}
+header #header-box{background: #00667a;height: 70px;}
+header #header-quick {width: 100%;text-align: center;}
+header #header-quick a{color: #eee;text-align: center;width: 32%;padding: 0px 10px;}
+header #header-profile{margin: 0;text-align:left; }
+#homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
+header #header-profile .login{font-weight: 1.5em;color:#eee;}
+/*----------features-----------*/
+#features-box .tab{width: 100%;border: none;display: flex;} 
+#features-box .tab > div{height: 200px;width: 60%;}
+#features-box .title{position: absolute;right: 0em;font-size: 2em;padding-top: 4.5em;}
+#features-box .content p.current{display: none;}
+/*----------footer-----------*/
+footer #footer-nav .eco img{padding-top:40px}
+}
 /*================================== */
 @media only screen and (max-width: 320px){}
 
