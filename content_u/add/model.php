@@ -43,7 +43,7 @@ class model extends \content_u\home\model
 		$this->post_sarshomar = null;
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
 		{
-			if(utility::post('sarshomar_knowledge') == 'sarshomar')
+			if(utility::post('sarshomar'))
 			{
 				$this->post_sarshomar = 1;
 			}
