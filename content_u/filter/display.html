@@ -9,61 +9,90 @@
 
         <div class="type">
           <ul class="tabs">
-            {%for key, value in filter_list%}
-            <li data-tab="{{key}}"><span>{%trans key%}</span></li>
-            {%endfor%}
+            <li data-tab="public"><span>{%trans "Public"%}</span></li>
+            <li data-tab="education"><span>{%trans "Education"%}</span></li>
+            <li data-tab="family"><span>{%trans "Family"%}</span></li>
+            <li data-tab="job"><span>{%trans "Job"%}</span></li>
+            <li data-tab="location"><span>{%trans "Location"%}</span></li>
+            <li data-tab="other"><span>{%trans "Other"%}</span></li>
           </ul>
         </div><!-- /.type -->
 
         <ul class="tab">
-          {%for key, value in filter_list%}
-          <li id="tab-{{key}}">
-            <div class="element filter">
-              <label class="title" for="x" data-val="%20">asdasdadasd</label>
+          <li id="tab-public">
+            <div class="element">
+              <label class="title" for="gender">{%trans "Gender"%}</label>
               <input type="checkbox" name="male" id="male">
               <label class="checkbox" for="male">{%trans "Male"%}</label>
               <input type="checkbox" name="female" id="female">
               <label class="checkbox" for="female">{%trans "Female"%}</label>
             </div>
-            {%for name, list in value%}
+
             <div class="element">
-              <label class="title" for="{{name}}">{%trans name%}</label>
-              {%if list == null%}
-              <input type="text" name="filter_{{name}}" id="{{name}}" class="input"> {%else%}
-              <select class="input" name="filter_{{name}}" id="{{name}}">
-                {%for i, data in list %}
-                {%if i == 0%}
-                <option value="">{%trans "Please Select One Item"%}</option>
-                {%endif%}
-                <option value="{{data}}">{%trans data%}</option>
-                {%endfor%}
-              </select>
-              {%endif%}
+              <label class="title" for="marrital">{%trans "Marrital"%}</label>
+              <input type="checkbox" name="single" id="single">
+              <label class="checkbox" for="single">{%trans "Single"%}</label>
+              <input type="checkbox" name="marriade" id="marriade">
+              <label class="checkbox" for="marriade">{%trans "Marriade"%}</label>
             </div>
-            {%endfor%}
+
+            <div class="element">
+              <label class="title" for="language">{%trans "Language"%}</label>
+              <input class="input" type="text" name="filter_language" id="language">
+            </div>
           </li>
-          {%endfor%}
+          <li id="tab-education">
+            <div class="element">
+              <label class="title" for="graduation">{%trans "Graduation"%}</label>
+              <select class="input" name="filter_graduation" id="graduation">
+                <option value="">{%trans "Please select one option"%}</option>
+                <option value="illiterate">{%trans "Illiterate"%}</option>
+                <option value="undergraduate">{%trans "Undergraduate"%}</option>
+                <option value="graduate">{%trans "Graduate"%}</option>
+              </select>
+            </div>
 
-          <div class="buttons">
-            <button name="submit" value="publish">{%trans "Publish"%}</button>
-          </div><!-- /.buttons -->
+            <div class="element">
+              <label class="title" for="degree">{%trans "Degree"%}</label>
+              <select class="input" name="filter_degree" id="degree">
+                <option value="">{%trans "Please select one option"%}</option>
+                <option value="under diploma">{%trans "Under diploma"%}</option>
+                <option value="diploma">{%trans "Diploma"%}</option>
+                <option value="2 year college">{%trans "2 year college"%}</option>
+                <option value="bachelor">{%trans "Bachelor"%}</option>
+                <option value="master">{%trans "Master"%}</option>
+                <option value="phd">{%trans "PHD"%}</option>
+                <option value="other">{%trans "Other"%}</option>
+              </select>
+            </div>
 
-        </ul><!-- /.tab -->
+            <div class="element">
+              <label class="title" for="course">{%trans "Course"%}</label>
+              <input class="input" name="filter_course" id="course"></input>
+            </div>
+          </li>
+          <li id="tab-family">
+            <div class="element">
+              <label class="title" for=""></label>
+              <input class="input" name="" id=""></input>
+            </div>
+          </li>
+          <li id="tab-job"></li>
+          <li id="tab-location"></li>
+          <li id="tab-other"></li>
+        </ul>
       </div>
-
       <div class="span2"></div>
-
       <div class="span4">
-
         <div class="total">
           <span>Your total is 154,000$</span>
         </div>
-
       </div><!-- /.span4 -->
     </div><!-- /.row.auto -->
   </form>
 </div>
 {%endblock%}
+
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 {%endblock%}
