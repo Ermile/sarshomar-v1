@@ -88,6 +88,8 @@ class model extends \mvc\model
 
 		if($result)
 		{
+			// save comment count to dashboard
+			\lib\utility\profiles::set_dashboard_data($user_id, 'comment_count');
 			\lib\debug::true(T_("your comment saved, thank you"));
 			return ;
 		}

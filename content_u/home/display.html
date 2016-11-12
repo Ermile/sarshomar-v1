@@ -15,12 +15,12 @@
 
    <div class="main padding">
     <div class="row auto first-line">
-     <div class='span2 card number'><h3>{%trans "Referred count"%}</h3><span>83</span></div>
-     <div class='span2 card number'><h3>{%trans "Referred valid count"%}</h3><span>29</span></div>
-     <div class='span2 card number'><h3>{%trans "Comments count"%}</h3><span>134</span></div>
-     <div class='span2 card number'><h3>{%trans "Draft count"%}</h3><span>159</span></div>
-     <div class='span2 card number'><h3>{%trans "Total poll published"%}</h3><span>1,350</span></div>
-     <div class='span2 card number'><h3>{%trans "Total Like taken"%}</h3><span>7,456</span></div>
+     <div class='span2 card number'><h3>{%trans "Referred count"%}</h3><span>{{dashboard.user_referred}}</span></div>
+     <div class='span2 card number'><h3>{%trans "Referred valid count"%}</h3><span>{{dashboard.user_verified}}</span></div>
+     <div class='span2 card number'><h3>{%trans "Comments count"%}</h3><span>{{dashboard.comment_count}}</span></div>
+     <div class='span2 card number'><h3>{%trans "Draft count"%}</h3><span>{{dashboard.draft_count}}</span></div>
+     <div class='span2 card number'><h3>{%trans "Total poll published"%}</h3><span>{{dashboard.publish_count}}</span></div>
+     <div class='span2 card number'><h3>{%trans "Total Like taken"%}</h3><span>{{number_format(7583)}}</span></div>
     </div>
 
     <div class="row auto">
@@ -37,7 +37,7 @@
          <a href='/ask'>{%trans "Ask from me"%}</a>
         </span>
        </div>
-       <div class='span6 card number bold fix'><h3>{%trans "Your credit"%}</h3><span>1,350,000<i>{%trans "$"%}</i></span></div>
+       <div class='span6 card number bold fix'><h3>{%trans "Your credit"%}</h3><span>{{number_format(1254800)}}<i>{%trans "$"%}</i></span></div>
       </div>
       <div class="row auto">
        <div class='card activity'>
@@ -65,7 +65,7 @@
       credits:{enabled:false},
       tooltip:{enabled:false},
       series:[{name:'{%trans "Question Answered"%}',
-        data:[['{%trans "Remained"%}', 120],['{%trans "Skip"%}', 6],{name:'{%trans "Answered"%}',y:58,sliced:true,selected:true}]
+        data:[['{%trans "Remained"%}', {{dashboard.sarshomar_poll}}],['{%trans "Skip"%}', {{dashboard.poll_skipped}}],{name:'{%trans "Answered"%}',y:{{dashboard.poll_answered}},sliced:true,selected:true}]
       }]
     });
   });

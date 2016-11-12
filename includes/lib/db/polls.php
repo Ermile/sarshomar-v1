@@ -42,11 +42,11 @@ class polls
 	 *
 	 * @return     <type>  The count.
 	 */
-	public static function get_count($_args = [])
+	public static function get_count($_search = null, $_args = [])
 	{
-		$_args['pagenation'] = false;
-		$result = self::search(null, $_args);
-		return count($result);
+		$_args['get_count'] = true;
+		$result = self::search($_search, $_args);
+		return $result;
 	}
 
 
@@ -645,8 +645,9 @@ class polls
 
 		$default_options =
 		[
-			"pagenation"  => true,
-			"limit" 	  => 10
+			"get_count"  => false,
+			"pagenation" => true,
+			"limit"      => 10
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -655,9 +656,23 @@ class polls
 		{
 			// page nation
 		}
-		unset($_options['pagenation']);
 
-		$limit = $_options['limit'];
+		$only_one_value = false;
+		if($_options['get_count'] === true)
+		{
+			$public_fields = " COUNT(posts.id) AS 'postcount' FROM posts ";
+			$limit = null;
+			$only_one_value = true;
+		}
+		else
+		{
+			$public_fields = self::$fields;
+			$limit = "LIMIT 0, ". $_options['limit'];
+		}
+
+		// unset some value to not search in database as a field
+		unset($_options['pagenation']);
+		unset($_options['get_count']);
 		unset($_options['limit']);
 
 		$where = [];
@@ -692,7 +707,6 @@ class polls
 			}
 		}
 
-		$public_fields = self::$fields;
 		$query =
 		"
 			SELECT
@@ -700,12 +714,19 @@ class polls
 			WHERE
 				$where
 				$search
-			LIMIT 0, $limit
+			$limit
 			-- polls::search()
 		";
 
-		$result = \lib\db::get($query);
-		$result = \lib\utility\filter::meta_decode($result);
+		if(!$only_one_value)
+		{
+			$result = \lib\db::get($query);
+			$result = \lib\utility\filter::meta_decode($result);
+		}
+		else
+		{
+			$result = \lib\db::get($query, 'postcount', true);
+		}
 		return $result;
 	}
 
