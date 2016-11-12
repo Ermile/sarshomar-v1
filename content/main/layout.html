@@ -9,6 +9,9 @@
 	{%block content%}{%endblock%}
   </div>
 
+{% include template.register %}
+ </div>
+{% include template.footer %}
 {%block modal%}
  <div class='modal' id='not-login'>
   <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
@@ -26,8 +29,4 @@
   </form>
  </div>
 {%endblock%}
-
-{% include template.register %}
- </div>
-{% include template.footer %}
 {%endblock%}
