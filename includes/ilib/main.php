@@ -12,12 +12,12 @@ class main extends \lib\main
 			$redirect->redirect();
 		}
 
-		if(preg_match("/^\/(\w{2})\/\@/", $_SERVER['REQUEST_URI'], $lang))
-		{
-			$redirect = new \lib\redirector();
-			$redirect->url = "/@?lang=$lang[1]";
-			$redirect->redirect();
-		}
+		// if(preg_match("/^\/(\w{2})\/\@/", $_SERVER['REQUEST_URI'], $lang))
+		// {
+		// 	$redirect = new \lib\redirector();
+		// 	$redirect->url = "/@?lang=$lang[1]";
+		// 	$redirect->redirect();
+		// }
 
 		if(\lib\router::get_class() == '@')
 		{
