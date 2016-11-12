@@ -83,6 +83,35 @@ route(/\@\/add/, function()
 		$(this).parents('li').children('.answers').slideToggle();
 	});
 
+	$(this).on('change', '.answers > .ac-checkbox input[type="checkbox"]', function(event)
+	{
+		set_tree( $(this).attr('name') );
+	});
+
+	var questions   = [];
+	var answers     = [];
+
+	function array_add(arr, item)
+	{
+		if (arr.indexOf(item) == -1)
+		{
+	    arr.push(item);
+		}
+	}
+
+	function set_tree(name)
+	{
+		var _name       = name.split('-');
+		var question_id = _name[0];
+		var answer_id   = _name[1];
+
+		array_add(questions, question_id);
+		array_add(answers, answer_id);
+
+		console.log(questions);
+		console.log(answers);
+	}
+
 	$(this).on('input', '#search', function(event)
 	{
 	  repository = $("#repository").val();
@@ -103,8 +132,10 @@ route(/\@\/add/, function()
 	      {
 	      	$('.questions').html('');
 	      	var el = '';
+
 	        for (var r in e.msg.result)
 	        {
+	        	var id = e.msg.result[r].id;
 	        	el += '<li>';
 			  		el = el + '<div>' + e.msg.result[r].title + '</div>';
 	          el += '<ul class="answers">';
@@ -112,8 +143,8 @@ route(/\@\/add/, function()
 	          for (var a in e.msg.result[r].meta.opt)
 	          {
 	            el += '<li class="ac-custom ac-checkbox ac-checkmark">';
-	            el = el + '<input type="checkbox" name="' + e.msg.result[r].meta.opt[a].key + '" id="'+ e.msg.result[r].meta.opt[a].key +'">';
-	            el = el + '<label for="' + e.msg.result[r].meta.opt[a].key + '">' + e.msg.result[r].meta.opt[a].txt + '</label>';
+	            el = el + '<input type="checkbox" name="' + id + '-' + e.msg.result[r].meta.opt[a].key + '" id="'+  id + '-' +e.msg.result[r].meta.opt[a].key +'">';
+	            el = el + '<label for="' + id + '-' + e.msg.result[r].meta.opt[a].key + '">' + id + '-' + e.msg.result[r].meta.opt[a].txt + '</label>';
 	            el += '</li>';
 	          }
 	          el += '</ul>';
