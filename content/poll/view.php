@@ -118,7 +118,10 @@ class view extends \mvc\view
 				else
 				{
 					// users load poll from other link
-					$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+					if(isset($post['post_meta']['opt']))
+					{
+						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+					}
 				}
 			}
 			else

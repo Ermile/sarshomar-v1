@@ -111,6 +111,7 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
+		$skipped = false;
 		$default_option =
 		[
 			'answer_txt' => null,
@@ -128,12 +129,19 @@ class answers
 					$key = 'opt_'. $key;
 				}
 
+				// to save dashoboard data
+				if($key == 'opt_0')
+				{
+					$skipped = true;
+				}
+
 				$num_of_opt_kye = explode('_', $key);
 				$num_of_opt_kye = end($num_of_opt_kye);
-				if(!$num_of_opt_kye)
+				if(!$num_of_opt_kye && $num_of_opt_kye !== '0')
 				{
 					continue;
 				}
+
 				$set_option = ['answer_txt' => $value];
 				$set_option = array_merge($_option, $set_option);
 				$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $set_option);
@@ -158,6 +166,13 @@ class answers
 			{
 				$_answer = 'opt_'. $_answer;
 			}
+
+			// to save dashboard data
+			if($_answer == 'opt_0')
+			{
+				$skipped = true;
+			}
+
 			$num_of_opt_kye = explode('_', $_answer);
 			$num_of_opt_kye = end($num_of_opt_kye);
 			$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_option);
@@ -179,7 +194,7 @@ class answers
 		$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 
 		// set dashboard data
-		if($_answer == 'opt_0')
+		if($skipped)
 		{
 			\lib\utility\profiles::set_dashboard_data($_user_id, "poll_skipped");
 			\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");

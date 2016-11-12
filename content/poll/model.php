@@ -211,6 +211,11 @@ class model extends \mvc\model
 		if(!empty($opt))
 		{
 			$result = \lib\utility\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
+			// if user skip the poll redirect to ask page
+			if(isset($opt['opt_0']))
+			{
+				$this->redirector()->set_url("ask");
+			}
 		}
 
 		if($result)

@@ -179,13 +179,18 @@ class model extends \content_u\home\model
 		// save poll tree
 		if(utility::post("parent_tree_id") && utility::post("parent_tree_opt"))
 		{
-			$arg =
-			[
-				'parent' => utility::post("parent_tree_id"),
-				'opt'    => utility::post("parent_tree_opt"),
-				'child'  => $insert_poll
-			];
-			$result = \lib\utility\poll_tree::set($arg);
+			$loc_id  = utility::post("parent_tree_id");
+			$loc_opt = explode(',',utility::post("parent_tree_opt"));
+			foreach ($loc_opt as $key => $value) {
+				$arg =
+				[
+					'parent' => $loc_id,
+					'opt'    => $value,
+					'child'  => $insert_poll
+				];
+				$result = \lib\utility\poll_tree::set($arg);
+
+			}
 		}
 
 		if(debug::$status)
