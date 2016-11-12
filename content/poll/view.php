@@ -81,7 +81,19 @@ class view extends \mvc\view
 
 			if(\lib\db\polls::is_my_poll($poll_id, $this->login('id')) || $this->access('u','publish_poll','admin'))
 			{
-				$post = \lib\db\polls::get_poll($poll_id);
+				$new_post = \lib\db\polls::get_poll($poll_id);
+				$post = [];
+				foreach ($new_post as $key => $value) {
+					if($key == 'id' || $key == 'filter_id' || $key == 'user_id' || $key == 'date_modified')
+					{
+						$key = $key;
+					}
+					else
+					{
+						$key = 'post_'. $key;
+					}
+					$post[$key] = $value;
+				}
 				$post['postmeta'] = \lib\db\posts::get_post_meta($poll_id);
 			}
 		}
@@ -101,25 +113,25 @@ class view extends \mvc\view
 				if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
 				{
 					// this user answered to this poll
-					$post['meta'] = ['opt' => null];
+					$post['post_meta'] = ['opt' => null];
 				}
 				else
 				{
 					// users load poll from other link
-					$_SESSION['last_poll_opt'] = $post['meta']['opt'];
+					$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 				}
 			}
 			else
 			{
 				// this user not logined  => remove answers button
-				$post['meta'] = ['opt' => null];
+				$post['post_meta'] = ['opt' => null];
 			}
 
 			// get post status to show in html page
-			$this->data->status = $post['status'];
+			$this->data->status = $post['post_status'];
 			// compile meta of this post
 
-			if(isset($post['meta']))
+			if(isset($post['post_meta']))
 			{
 			$meta = [];
 				foreach ($post['postmeta'] as $key => $value) {
@@ -160,15 +172,15 @@ class view extends \mvc\view
 
 								case "random_sort":
 									// suffle the opt if random sort is enable
-									if(isset($post['meta']['opt']))
+									if(isset($post['post_meta']['opt']))
 									{
-										$keys = array_keys($post['meta']['opt']);
+										$keys = array_keys($post['post_meta']['opt']);
 								        shuffle($keys);
 								        foreach($keys as $key)
 								        {
-								        	$new[$key] = $post['meta']['opt'][$key];
+								        	$new[$key] = $post['post_meta']['opt'][$key];
 								        }
-								        $post['meta']['opt'] = $new;
+								        $post['post_meta']['opt'] = $new;
 									}
 									break;
 

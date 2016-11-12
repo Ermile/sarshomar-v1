@@ -28,13 +28,13 @@
       {%if perm.publish_poll.admin%}
       <h1>YOU CAN CHANGE THE STATUS OF THIS POLL</h1>
       {%endif%}
-       <h2>{{post.title}}</h2>
+       <h2>{{post.post_title}}</h2>
   {%include template.social%}
 
         {%if profile%}
           {%trans "This question will complete your profile"%}
         {%endif%}
-        <div class="description"><p>{{post.content}}</p></div>
+        <div class="description"><p>{{post.post_content}}</p></div>
         {% if post.meta.opt %}
         <form method="post">
           <input type="hidden" name="data-id" value="{{post.id}}">
@@ -50,7 +50,7 @@
 
             {% if descriptive %}
               <li>
-                <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.meta.opt|length + 1}}" value="other">
+                <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
                 <label for="check_other"><input type="text" name="opt_other"></label>
               </li>
             {%endif%}
@@ -67,7 +67,7 @@
             {%endfor%}
             {% if descriptive %}
             <li class="ac-custom ac-radio ac-fill">
-              <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.meta.opt|length + 1}}" value="other">
+              <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
               <label for="radio_other"><input type="text" name="opt_other"></label>
             </li>
             {%endif%}

@@ -21,6 +21,7 @@ class model extends \mvc\model
 			$next_url = '$';
 		}
 		$this->redirector()->set_url($next_url)->redirect();
+		debug::msg('direct', true);
 		return;
 	}
 
