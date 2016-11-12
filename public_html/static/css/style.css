@@ -761,8 +761,8 @@ nav#page-nav #nav-prev{float:left;}
 .buttons.center{text-align:center;}
 .buttons.center::before{left:0;}
 
-.buttons button[value="publish"]{background-color:#37AAA7;color:#F4F4F4;}
-.buttons button[value="publish"]::before,.buttons button[value="publish"]::after{color:#37AAA7;}
+#add .buttons button[value="publish"]{background-color:#37AAA7;color:#F4F4F4;}
+#add .buttons button[value="publish"]::before, #add .buttons button[value="publish"]::after{color:#37AAA7;}
 
 .padding-large .buttons::before{left:-35px;}
 .rtl .padding-large .buttons::before{right:-35px;}
