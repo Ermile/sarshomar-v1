@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `pollstats` (
 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 `post_id` bigint(20) unsigned NOT NULL,
 `port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
-`subport` varchar(500) NULL,
+`subport` varchar(64) NULL,
 `total` int(10) unsigned,
 `result` text,
 `gender` text,
