@@ -83,14 +83,15 @@
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
   #random-chart h3{text-align: left;font-size: 1.5em;}
-  #homepage .box{padding: 0;}
-  #homepage .box{padding:0 10px;}
   #map{display: none;}
   header .logo img{width: 8em;}
   header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
   header{border:none;text-align: center;}
   header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
   header .logo img{width: 8em;}
+#homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
+header #header-quick {display: none;}
+header #header-box{background: #00667a;height: 50px;}*/
   /*----------wrapper-----------*/
   #map{display: none;}
   .wrapper{padding: 0;border-bottom: 8px solid transparent;}
@@ -108,6 +109,8 @@
   #customers-box .customer h3::after{display: none;}
   .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
   #customers-box .customer p{width: 90%;margin:0 auto;}
+  /*----------features-----------*/
+#features-box{display: none;} 
   /*----------inestimable-----------*/
   #inestimable{padding: 0; margin:0;}
   #inestimable h3 {margin-top: 30px;}
@@ -126,21 +129,22 @@
 @media only screen and (max-width: 479px){
 /*----------header-----------*/
 header .logo img{width: 8em;}
-header #header-box{background: #00667a;height: 70px;}
-header #header-quick {width: 100%;text-align: center;}
-header #header-quick a{color: #eee;text-align: center;width: 32%;padding: 0px 10px;}
-header #header-profile{margin: 0;text-align:left; }
+.profile .info{display: none;}
+/*----------header-top-----------*/
+header #header-top{height: 40px;}
+header #header-top::before{display: none;}
+header #header-profile{margin: 0;width: 100%;text-align: right;}
+header #header-profile .register , header #header-profile .login{position: absolute;}
+header #header-profile .register {right: 44px;}
+header #header-profile .login {right: 10em;color:#eee;}
+header #header-box{background: #00667a;height: 50px;}
+header #header-quick {display: none;}
+#homepage .box{padding: 1em;}
 #homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
-header #header-profile .login{font-weight: 1.5em;color:#eee;}
-/*----------features-----------*/
-#features-box .tab{width: 100%;border: none;display: flex;} 
-#features-box .tab > div{height: 200px;width: 60%;}
-#features-box .title{position: absolute;right: 0em;font-size: 2em;padding-top: 4.5em;}
-#features-box .content p.current{display: none;}
 /*----------footer-----------*/
 footer #footer-nav .eco img{padding-top:40px}
 }
-/*================================== */
+/*================================== 
 @media only screen and (max-width: 320px){}
 
 
