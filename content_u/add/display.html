@@ -21,6 +21,16 @@
 
           <ul class="tab">
             <li id="tab-multiple_choice" class="active">
+              {%if perm.sarshomar_knowledge.add%}
+              <div class="element">
+                <label class="title" for="sarshomar_knowledge">{%trans "Sarshomar"%}</label>
+                <input type="checkbox" name="personal" id="personal">
+                <label class="checkbox" for="personal">{%trans "Male"%}</label>
+                <input type="checkbox" name="sarshomar" id="sarshomar">
+                <label class="checkbox" for="sarshomar">{%trans "Female"%}</label>
+              </div>
+              {%endif%}
+
               <div class="element">
                 <label class="title" for="title" autocomplete="off">Title</label>
                 <input class="input" type="text" name="title" id="title">
@@ -98,19 +108,6 @@
                     </div>
                   </div><!-- /.span6 -->
                 </div><!--/.row-->
-                {% if perm.sarshomar_knowledge.add %}
-                <div class="poll-complete">
-                  <span class="ac-custom ac-checkbox ac-checkmark">
-                    <input class="" type="checkbox" name="sarshomar_knowledge" id="sarshomar_knowledge">
-                    <label for="sarshomar_knowledge">{%trans "Sarshomar"%}</label>
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-                  </span>
-                  <select class="poll-complete-dropdown" name="sarshomar_knowledge">
-                        <option value="personal">{%trans "Add this poll to your profile"%}</option>
-                        <option value="sarshomar" selected="selected">{%trans "Add this poll to Sarshomar knowledge"%}</option>
-                  </select>
-                </div>
-                {%endif%}
 
                 {% if perm.complete_profile.admin %}
                 <div class="poll-complete">

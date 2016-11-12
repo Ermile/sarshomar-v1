@@ -644,7 +644,7 @@ nav#page-nav #nav-prev{float:left;}
 .element.filter .title::after{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
 .element.filter.active .title::after{background-color:#E96F4B;}
 
-.element .checkbox{position:relative;color:#035261;background-color:#E7E7E7;display:table-cell;text-align:center;vertical-align:middle;width:calc((100% - 130px)/2);}
+.element .checkbox{color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
 .element input[type="checkbox"]{display:none;}
 .element input[type="checkbox"]:checked + label{background-color:#0A5260;color:#D8DAD0;}
 
@@ -686,8 +686,8 @@ nav#page-nav #nav-prev{float:left;}
 .tree .tree-dropdown{background-color:#00667A;color:#E7E7E7;height:30px;line-height:30px;border:none;outline:none;}
 .tree .tree-dropdown option{min-width:160px;padding:0 5px;}
 .tree .search{color:#777777;background-color:#EFEFEF;height:30px;min-width:30px;line-height:30px;cursor:pointer;text-align:center;}
-.tree-list{background-color:#E7E7E7;margin-left:170px;padding:25px;}
-.rtl .tree-list{margin-left:0;margin-right:170px;margin-bottom:20px;}
+.tree-list{background-color:#E7E7E7;margin-left:10px;padding:25px;}
+.rtl .tree-list{margin-left:0;margin-right:10px;margin-bottom:20px;}
 .tree-list .questions > li > div{padding:5px;color:#00667A;line-height:30px;cursor:pointer;font-size:1.2em;}
 .tree-list .questions > li > div:hover{background-color:#00667A;color:#F4F4F4;}
 .tree-list .answers{padding:0 25px;display:none;}
@@ -763,6 +763,9 @@ nav#page-nav #nav-prev{float:left;}
 
 .buttons button[value="publish"]{background-color:#37AAA7;color:#F4F4F4;}
 .buttons button[value="publish"]::before,.buttons button[value="publish"]::after{color:#37AAA7;}
+
+.padding-large .buttons::before{left:-35px;}
+.rtl .padding-large .buttons::before{right:-35px;}
 
 
 /* Title Line */
