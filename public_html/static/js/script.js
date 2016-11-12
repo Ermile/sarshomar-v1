@@ -91,25 +91,37 @@ route(/\@\/add/, function()
 	var questions   = [];
 	var answers     = [];
 
-	function array_add(arr, item)
-	{
-		if (arr.indexOf(item) == -1)
-		{
-	    arr.push(item);
-		}
-	}
-
 	function set_tree(name)
 	{
 		var _name       = name.split('-');
 		var question_id = _name[0];
 		var answer_id   = _name[1];
 
-		array_add(questions, question_id);
-		array_add(answers, answer_id);
+		var old_id = $('input[name=parent_tree_id]').val();
+		if(old_id != question_id)
+		{
+			$('input[name=parent_tree_id]').val(question_id);
+			$('input[name=parent_tree_opt]').val('');
+		}
+		var old_opt = $('input[name=parent_tree_opt]').val();
 
-		console.log(questions);
-		console.log(answers);
+		split_opt = old_opt.split(',');
+		if(split_opt[0] == '')
+		{
+			$('input[name=parent_tree_opt]').val(answer_id);
+		}
+		else
+		{
+			if(split_opt.indexOf(answer_id) != -1)
+			{
+				$('input[name=parent_tree_opt]').val($('input[name=parent_tree_opt]').val() + ',' + answer_id);
+			}
+			else
+			{
+				console.error('pak');
+			}
+		}
+
 	}
 
 	$(this).on('input', '#search', function(event)
