@@ -41,8 +41,7 @@ header{border-right:8px solid transparent;-webkit-border-image:url(../images/bor
 header #header-box{position:relative;height:89px;overflow:hidden;}
 
 /* header top */
-header #header-top{height:60px;}
-header #header-top::before{content:"";position:absolute;height:2px;background-color:#00667a;right:0;left:0;}
+header #header-top{height:60px;border-top:2px solid #00667a;}
 header #header-top > a{color:#035261;display:inline-block;}
 header #header-top > a:hover{color:#37aaa7;}
 header #header-quick{display:inline-block;float:left;text-align:left;}
