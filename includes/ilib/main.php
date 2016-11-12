@@ -18,10 +18,14 @@ class main extends \lib\main
 		// 	$redirect->url = "/@?lang=$lang[1]";
 		// 	$redirect->redirect();
 		// }
-
 		if(\lib\router::get_class() == '@')
 		{
-			$url = preg_replace("/^\/@/", '', $_SERVER['REQUEST_URI']);
+			$request_url = $_SERVER['REQUEST_URI'];
+			if(\lib\utility\location\languages::check(substr($request_url, 1, 2)))
+			{
+				$request_url = substr($request_url, 5);
+			}
+			$url = preg_replace("/^\/@/", '', $request_url);
 			new \lib\router("$url");
 			self::$myrep        = \lib\router::set_repository('content_u', true);
 		}

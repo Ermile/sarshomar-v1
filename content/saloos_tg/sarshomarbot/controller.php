@@ -60,11 +60,13 @@ class controller extends \lib\mvc\controller
 			$language = \lib\db\users::get_language(bot::$user_id);
 			if(empty($language) || !$language)
 			{
-				$this->set_language(\lib\router::get_storage('language'));
+				\lib\define::set_language(self::$language);
+				// $this->set_language(\lib\router::get_storage('language'));
 			}
 			else
 			{
-				$this->set_language($language);
+				\lib\define::set_language($language);
+				// $this->set_language($language);
 			}
 			// exit();
 			bot::$fill        =
