@@ -39,13 +39,12 @@
         <form method="post">
           <input type="hidden" name="data-id" value="{{post.id}}">
           {% if multiple_choice %}
-          <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+          <div autocomplete="off">
             <ul>
              {%for key, value in post.meta.opt%}
-              <li>
+              <li class="ac-custom ac-checkbox ac-checkmark">
                 <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
                 <label for="check_{{value.key}}">{{value.txt}}</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endfor%}
 
@@ -53,26 +52,23 @@
               <li>
                 <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.meta.opt|length + 1}}" value="other">
                 <label for="check_other"><input type="text" name="opt_other"></label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endif%}
             </ul>
           </div>
           {%else%}
-          <div class="ac-custom ac-radio ac-fill" autocomplete="off">
+          <div autocomplete="off">
             <ul>
             {%for key, value in post.meta.opt%}
-              <li>
+              <li class="ac-custom ac-radio ac-fill">
                 <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
                 <label for="radio_{{value.key}}">{{value.txt}}</label>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
               </li>
             {%endfor%}
             {% if descriptive %}
-            <li>
+            <li class="ac-custom ac-radio ac-fill">
               <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.meta.opt|length + 1}}" value="other">
               <label for="radio_other"><input type="text" name="opt_other"></label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
             </li>
             {%endif%}
             </ul>
