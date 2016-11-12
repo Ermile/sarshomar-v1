@@ -80,7 +80,7 @@ route(/\@\/add/, function()
 
 	$(this).on('click', '.questions > li > div', function(event)
 	{
-		$(this).parent('li').children('.answers').slideToggle();
+		$(this).parents('li').children('.answers').slideToggle();
 	});
 
 	$(this).on('input', '#search', function(event)
@@ -102,10 +102,11 @@ route(/\@\/add/, function()
 	      success: function(e)
 	      {
 	      	$('.questions').html('');
-	        var el = '<li>';
+	      	var el = '';
 	        for (var r in e.msg.result)
 	        {
-	          el = el + '<div>' + e.msg.result[r].title + '</div>';
+	        	el += '<li>';
+			  		el = el + '<div>' + e.msg.result[r].title + '</div>';
 	          el += '<ul class="answers">';
 
 	          for (var a in e.msg.result[r].meta.opt)
@@ -116,8 +117,8 @@ route(/\@\/add/, function()
 	            el += '</li>';
 	          }
 	          el += '</ul>';
+	        	el += '</li>';
 	        }
-	        el += '</li>';
 
 	        $('.questions').append($(el));
 	      }
