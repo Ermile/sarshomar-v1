@@ -23,8 +23,6 @@
           <ul class="tab">
             <li id="tab-multiple_choice" class="active">
               {%if perm.sarshomar_knowledge.add%}
-              <input type="hidden" name="parent_tree_id" value="">
-              <input type="hidden" name="parent_tree_opt" value="">
               <div class="element">
                 <label class="title" for="sarshomar_knowledge">{%trans "Sarshomar"%}</label>
                 <input type="checkbox" name="sarshomar" id="sarshomar">
@@ -75,6 +73,7 @@
                           <input type="checkbox" name="meta_multiple_choice" id="multiple_choice">
                           <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
                         </li>
+
                         {%if perm.hidden_result.admin%}
                         <li class="ac-custom ac-checkbox ac-checkmark">
                           <input type="checkbox" name="meta_hidden_result" id="hidden_result">
@@ -128,7 +127,8 @@
                   </select>
                 </div>
                 {%endif%}
-
+                <input type="hidden" name="parent_tree_id" value="">
+                <input type="hidden" name="parent_tree_opt" value="">
                 <div class="tree">
                   <span class="ac-custom ac-checkbox ac-checkmark">
                     <input class="" type="checkbox" name="tree" id="tree">

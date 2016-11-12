@@ -112,13 +112,14 @@ route(/\@\/add/, function()
 		}
 		else
 		{
-			if(split_opt.indexOf(answer_id) != -1)
+			if(split_opt.indexOf(answer_id) == -1)
 			{
 				$('input[name=parent_tree_opt]').val($('input[name=parent_tree_opt]').val() + ',' + answer_id);
 			}
 			else
 			{
-				console.error('pak');
+				split_opt.splice(answer_id, 1);
+				$('input[name=parent_tree_opt]').val(split_opt);
 			}
 		}
 
