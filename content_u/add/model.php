@@ -38,6 +38,17 @@ class model extends \content_u\home\model
 			$this->post_search();
 			return;
 		}
+
+		// check sarshoamr knowlege permission
+		$this->post_sarshomar = null;
+		if($this->access('u', 'sarshomar_knowledge', 'add'))
+		{
+			if(utility::post('sarshomar_knowledge') == 'sarshomar')
+			{
+				$this->post_sarshomar = 1;
+			}
+		}
+
 		// start transaction
 		\lib\db::transaction();
 
@@ -118,13 +129,14 @@ class model extends \content_u\home\model
 			// we save the survey
 			$args =
 			[
-				'user_id'      => $this->login('id'),
-				'post_title'   => 'untitled survey',
-				'post_privacy' => 'private',
-				'post_type'    => 'survey',
-				'post_survey'  => null,
-				'post_gender'  => 'survey',
-				'post_status'  => 'draft',
+				'user_id'        => $this->login('id'),
+				'post_title'     => 'untitled survey',
+				'post_privacy'   => 'private',
+				'post_type'      => 'survey',
+				'post_survey'    => null,
+				'post_gender'    => 'survey',
+				'post_status'    => 'draft',
+				'post_sarshomar' => $this->post_sarshomar
 			];
 			$survey_id = \lib\db\polls::insert($args);
 
@@ -144,10 +156,10 @@ class model extends \content_u\home\model
 		{
 			//users click on this buttom
 			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
-			$poll_type = "survey_poll_";
+			$poll_type   = "survey_poll_";
 			// get the survey id and survey url
-			$survey_id = $this->check_poll_url($_args, "decode");
-			$survey_url = $this->check_poll_url($_args, "encode");
+			$survey_id   = $this->check_poll_url($_args, "decode");
+			$survey_url  = $this->check_poll_url($_args, "encode");
 			// insert the poll
 			$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
 			// save survey title
@@ -314,19 +326,21 @@ class model extends \content_u\home\model
 			debug::error(T_("summary text must be less than 150 character"));
 			return false;
 		}
+
 		// ready to inset poll
 		$args =
 		[
-			'user_id'      => $this->login('id'),
-			'post_title'   => $title,
-			'post_type'    => $poll_type,
-			'post_content' => $content,
-			'post_survey'  => $survey_id,
-			'post_gender'  => $gender,
-			'post_privacy' => 'private',
-			'post_comment' => 'closed',
-			'post_status'  => 'draft',
-			'post_meta'    => "{\"desc\":\"$summary\"}"
+			'user_id'        => $this->login('id'),
+			'post_title'     => $title,
+			'post_type'      => $poll_type,
+			'post_content'   => $content,
+			'post_survey'    => $survey_id,
+			'post_gender'    => $gender,
+			'post_privacy'   => 'private',
+			'post_comment'   => 'closed',
+			'post_status'    => 'draft',
+			'post_meta'      => "{\"desc\":\"$summary\"}",
+			'post_sarshomar' => $this->post_sarshomar
 		];
 		// inset poll
 		$poll_id = \lib\db\polls::insert($args);

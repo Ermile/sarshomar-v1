@@ -564,6 +564,7 @@ class polls
 				polldetails
 			WHERE
 				user_id = $_user_id
+			-- polls::removeUserAnswers
 			";
 		$result = \lib\db::query($qry);
 		return $result;
@@ -700,6 +701,7 @@ class polls
 				$where
 				$search
 			LIMIT 0, $limit
+			-- polls::search()
 		";
 
 		$result = \lib\db::get($query);
@@ -734,6 +736,7 @@ class polls
 				posts.post_sarshomar = 1
 			ORDER BY posts.id DESC
 			LIMIT $limit
+			-- polls::get_last_poll()
 
 		";
 		$result = \lib\db::get($query);
@@ -760,6 +763,7 @@ class polls
 			WHERE
 				posts.id = $_poll_id
 			LIMIT 1
+			-- polls::is_my_poll()
 		";
 		$result = \lib\db::get($query, 'id', true);
 		if($result && $result == $_user_id)

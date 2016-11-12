@@ -35,13 +35,13 @@
           {%trans "This question will complete your profile"%}
         {%endif%}
         <div class="description"><p>{{post.post_content}}</p></div>
-        {% if post.meta.opt %}
+        {% if post.post_meta.opt %}
         <form method="post">
           <input type="hidden" name="data-id" value="{{post.id}}">
           {% if multiple_choice %}
           <div autocomplete="off">
             <ul>
-             {%for key, value in post.meta.opt%}
+             {%for key, value in post.post_meta.opt%}
               <li class="ac-custom ac-checkbox ac-checkmark">
                 <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
                 <label for="check_{{value.key}}">{{value.txt}}</label>
@@ -59,7 +59,7 @@
           {%else%}
           <div autocomplete="off">
             <ul>
-            {%for key, value in post.meta.opt%}
+            {%for key, value in post.post_meta.opt%}
               <li class="ac-custom ac-radio ac-fill">
                 <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
                 <label for="radio_{{value.key}}">{{value.txt}}</label>
