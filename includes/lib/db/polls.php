@@ -644,7 +644,8 @@ class polls
 
 		$default_options =
 		[
-			"pagenation"  => true
+			"pagenation"  => true,
+			"limit" 	  => 10
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -654,6 +655,9 @@ class polls
 			// page nation
 		}
 		unset($_options['pagenation']);
+
+		$limit = $_options['limit'];
+		unset($_options['limit']);
 
 		$where = [];
 		$where[] = " posts.post_type != 'post' ";
@@ -695,7 +699,7 @@ class polls
 			WHERE
 				$where
 				$search
-			LIMIT 0, 10
+			LIMIT 0, $limit
 		";
 
 		$result = \lib\db::get($query);

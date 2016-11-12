@@ -6,22 +6,27 @@ use \lib\debug;
 class model extends \content_u\home\model
 {
 
+	/**
+	 * search in polls for poll tree
+	 */
 	public function post_search()
 	{
-		$repository = utility::post("repository");
-		$search     = utility::post("search");
-		$meta       = [];
+		$repository    = utility::post("repository");
+		$search        = utility::post("search");
+		$meta          = [];
+		$meta['limit'] = 3;
 		if($repository == 'personal')
 		{
-			$meta = ['user_id' => $this->login("id")];
+			$meta['user_id'] = $this->login("id");
 		}
 		else
 		{
-			$meta = ['post_sarshomar' => 1];
+			$meta['post_sarshomar'] = 1;
 		}
 		$result = \lib\db\polls::search($search, $meta);
 		debug::msg("result", $result);
 	}
+
 
 	/**
 	 * get data to add new add
