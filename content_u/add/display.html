@@ -4,8 +4,6 @@
 <div class="box">
   <form method="post">
     <input type="hidden" name="poll_type" value="">
-    <input type="hidden" name="parent_tree_id" value="">
-    <input type="hidden" name="parent_tree_opt" value="">
 
     <div class="row auto padding-large">
       <div class="span8">
@@ -25,6 +23,8 @@
           <ul class="tab">
             <li id="tab-multiple_choice" class="active">
               {%if perm.sarshomar_knowledge.add%}
+              <input type="hidden" name="parent_tree_id" value="">
+              <input type="hidden" name="parent_tree_opt" value="">
               <div class="element">
                 <label class="title" for="sarshomar_knowledge">{%trans "Sarshomar"%}</label>
                 <input type="checkbox" name="sarshomar" id="sarshomar">
