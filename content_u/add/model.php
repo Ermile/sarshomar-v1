@@ -33,6 +33,8 @@ class model extends \content_u\home\model
 	 */
 	function post_add($_args)
 	{
+		// search in poll
+		// for poll tree
 		if(utility::post("repository"))
 		{
 			$this->post_search();

@@ -24,6 +24,9 @@ class view extends \lib\mvc\view
 		{
 			$this->data->displayname = $this->login("displayname");
 		}
+		// get total sarshomart answered
+		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
+		$this->data->stat = $total;
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
 

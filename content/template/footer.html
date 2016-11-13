@@ -52,7 +52,7 @@
      <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}{%if url.path%}/{{url.path}}{%endif%}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
 {%endfor%}
     </div>
-    <div class="span4 counter">{{stat}}</div>
+    <div class="span4 counter">{{stat|number_format}} {%trans "Questions answered"%}</div>
     <div class="span4 love"><a href="https://ermile.{{url.tld}}" target="_blank">{%trans "Proudly Made in IRAN"%}</a></div>
    </div>
   </div>

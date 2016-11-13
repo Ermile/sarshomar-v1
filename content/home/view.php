@@ -18,9 +18,7 @@ class view extends \mvc\view
 
 		// get #homepage post by random function
 		$this->data->result = $this->model()->random_result();
-		// get total sarshomart answered
-		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
-		$this->data->stat = T_(":number Questions answered", ["number"=> $total]);
+
 		$this->include->fontawesome = true;
 	}
 
