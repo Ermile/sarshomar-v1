@@ -1,7 +1,7 @@
 <?php
-namespace content_u\knowledge;
+namespace content_admin\knowledge;
 
-class controller extends  \content_u\home\controller
+class controller extends  \content_admin\home\controller
 {
 	public function _route()
 	{
@@ -16,6 +16,8 @@ class controller extends  \content_u\home\controller
 			]
 		]
 		);
+
+		$this->post("knowledge")->ALL("/^\\$/");
 	}
 }
 
