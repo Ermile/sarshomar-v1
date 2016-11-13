@@ -53,14 +53,14 @@
 
       <input type="hidden" name="tags" id="sp-tags" value="">
       <div class="element">
-        <label class="title" for="tag-add">{%trans "Tags"%}</label>
-        <input class="input" type="text" id="tag-add">
+        <label class="title" for="tags">{%trans "Tags"%}</label>
+        <input class="input similar-tag" data-list="tag-list" data-split="sp-tags" type="text" id="tags">
         <span class="addon btn tag-add-btn">
-          <!-- <button>{%trans "Add"%}</button> -->
+          <button class="btn-add-tags" element-id="tags">{%trans "Add"%}</button>
         </span>
       </div>
 
-      <div class="tag" id="tag-list">
+      <div class="tags" id="tag-list">
       </div>
     </div>
 

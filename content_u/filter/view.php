@@ -11,6 +11,8 @@ class view extends \mvc\view
 	 */
 	function view_filter($_args)
 	{
+		$this->include->fontawesome = true;
+
 		// get poll_id || suervey_id from url
 		$poll_survey_id = $this->model()->check_poll_url($_args);
 

@@ -300,12 +300,13 @@ route('*', function ()
 
 route('*', function ()
 {
-	$('#tag-add').keypress(function (e)
+	$('.similar-tag').keypress(function (e)
 	{
 		// if Enter pressed disallow it and run add func
 		if (e.which == 13)
 		{
-			addTag();
+			var element_id = $(this).attr('id');
+			addTag(element_id);
 			return false;
 		}
 	});
@@ -313,25 +314,26 @@ route('*', function ()
 	$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
 	$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});
 
-	$(document).on('click', '#tag-add-btn', function () { addTag(); });
-	$(document).on('click', '#tag-list span i', function ()
+	$(document).on('click', '.btn-add-tags' , function () { addTag($(this).attr('element-id')); return false; });
+	$(document).on('click', '.remove-tags', function ()
 	{
 		var span = $(this).parent();
-		$('#sp-tags').val($('#sp-tags').val().replace(span.text() + ', ', ''));
+		var split = $(this).attr('data-split');
+		$('#' + split).val($('#'+ split).val().replace(span.text() + ', ', ''));
 		span.remove();
 	});
 
 
-	var tagDefault = $('#sp-tags').val();
-	$('#tag-list').text('');
-	if (tagDefault)
-	{
-		$.each(tagDefault.split(', '), function (t, item)
-		{
-			if (item.trim())
-				$('#tag-list').append("<span><i class='fa fa-times'></i>" + item + "</span>");
-		});
-	}
+	// var tagDefault = $('#' + split).val();
+	// $('#' + list).text('');
+	// if (tagDefault)
+	// {
+	// 	$.each(tagDefault.split(', '), function (t, item)
+	// 	{
+	// 		if (item.trim())
+	// 			$('#' + list).append("<span><i class='fa fa-times'></i>" + item + "</span>");
+	// 	});
+	// }
 
 	// add tab support to cp
 	$('.tabs li').click(function()
@@ -396,28 +398,31 @@ route('*', function ()
 
 
 // -------------------------------------------------- Add Tag
-function addTag()
+function addTag(element_id)
 {
-	var tag = $('#tag-add');
+	list  = $('#'+ element_id).attr('data-list');
+	split = $('#'+ element_id).attr('data-split');
+
+	var tag = $('#'+ element_id);
 	var newTag = tag.val().trim();
 	if (newTag)
 	{
 		var exist = false;
-		$.each($('#sp-tags').val().split(', '), function (t, item)
+		$.each($('#'+ split).val().split(', '), function (t, item)
 		{
 			if (item == newTag) { exist = t + 1; }
 		});
 		if (exist)
 		{
-			existEl = $("#tag-list span:nth-child(" + exist + ")");
+			existEl = $("#" + list + " a:nth-child(" + exist + ")");
 			bg = existEl.css('background-color');
 			existEl.css('background-color', '#ddd');
 			setTimeout(function () { existEl.css("background-color", bg) }, 500);
 		}
 		else
 		{
-			$('#tag-list').append("<span><i class='fa fa-times'></i>" + newTag + "</span>");
-			$('#sp-tags').val($('#sp-tags').val() + newTag + ', ');
+			$('#' + list).append("<a><i class='fa fa-times remove-tags' data-split='"+split+"'></i>" + newTag + "</a>");
+			$('#' + split).val($('#' + split).val() + newTag + ', ');
 		}
 	}
 	tag.val('');

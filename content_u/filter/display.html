@@ -39,7 +39,9 @@
 
               <div class="element">
                 <label class="title" for="language">{%trans "Language"%}</label>
-                <input class="input" type="text" name="filter_language" id="language">
+                <input type="hidden" name="filter_language" id="sp-language" value="">
+                <input class="input similar-tag" data-list="language-list" data-split="sp-language" type="text" id="language">
+                <div id="language-list" class="tags"></div>
               </div>
             </li>
             <li id="tab-education">
@@ -69,13 +71,17 @@
 
               <div class="element">
                 <label class="title" for="course">{%trans "Course"%}</label>
-                <input class="input" name="filter_course" id="course">
+                <input type="hidden" name="filter_course" id="sp-course" value="">
+                <input class="input similar-tag" id="course" data-list="course-list" data-split="sp-course">
+                <div class="tags" id="course-list"></div>
               </div>
             </li>
             <li id="tab-family">
               <div class="element">
                 <label class="title" for="age">{%trans "Age"%}</label>
-                <input class="input" name="filter_age" id="age">
+                <input type="hidden" name="filter_age" id="sp-age" value="">
+                <input class="input similar-tag" id="age" data-split="sp-age" data-list="age-list">
+                <div class="tags" id="age-list"></div>
               </div>
 
               <div class="element">
@@ -104,23 +110,31 @@
 
               <div class="element">
                 <label class="title" for="industry">{%trans "Industry"%}</label>
-                <input class="input" type="text" name="filter_industry" id="industry">
+                <input type="hidden" name="filter_industry" id="sp-industry">
+                <input class="input similar-tag" type="text"  id="industry" data-split="sp-industry" data-list="industry-list">
+                <div class="tags" id="industry-list"></div>
               </div>
             </li>
             <li id="tab-location">
               <div class="element">
                 <label class="title" for="country">{%trans "Country"%}</label>
-                <input class="input" type="text" name="filter_country" id="country">
+                <input type="hidden" name="filter_country" id="sp-country">
+                <input class="input similar-tag" type="text" id="country" data-list="country-list" data-split="sp-country">
+                <div class="tags" id="country-list"></div>
               </div>
 
               <div class="element">
                 <label class="title" for="province">{%trans "Province"%}</label>
-                <input class="input" type="text" name="filter_province" id="province">
+                <input type="hidden" name="filter_province" id="sp-province" value="">
+                <input class="input similar-tag" type="text" id="province" data-list="province-list" data-split="sp-province">
+                <div class="tags" id="province-list"></div>
               </div>
 
               <div class="element">
                 <label class="title" for="city">{%trans "City"%}</label>
-                <input class="input" type="text" name="filter_city" id="city">
+                <input type="hidden" name="filter_city" id="sp-city" value="">
+                <input class="input similar-tag" type="text" id="city" data-list="city-list" data-split="sp-city">
+                <div class="tags" id="city-list"></div>
               </div>
 
               <div class="element">
@@ -144,7 +158,9 @@
 
               <div class="element">
                 <label class="title" for="religion">{%trans "Religion"%}</label>
-                <input class="input" type="text" name="filter_religion" id="religion">
+                <input type="hidden" name="filter_religion" id="sp-religion" value="">
+                <input class="input similar-tag" type="text" id="religion" data-list="religion-list" data-split="sp-religion">
+                <div class="tags" id="religion-list"></div>
               </div>
             </li>
           </ul>
