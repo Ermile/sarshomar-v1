@@ -73,8 +73,7 @@
 @media screen and (min-width: 1400px){}
 /* #Tablet (Portrait) =================================== Design for a width of 768px until 959px */
 @media only screen and (max-width:959px){
-  header #header-profile{padding: 0; margin: 1em 0;}
-  header #header-profile .login{background-color: transparent;color: #eee;padding:0 2em;font-weight: 600;font-size: 1.4em;}
+  header #header-profile > a{color:#888;}
   header .logo img{width: 6.3em;}
   .profile .info{display: none;}
   .special-heading::after{background-image: none;}
@@ -86,7 +85,9 @@
   /*----------header-----------*/
   header{border:none;}
   header .logo img{width: 8em;}
-  header .logo{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
+  header{float:none; display:block; width:100%; background-image: none;background-color:#00667a;text-align: center;}
+  header #header-profile {padding-right: 0;}
+  header #header-profile > a{color:#eee;}
   #homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
   header #header-quick {display: none;}
   header #header-box{background: #00667a;height: 50px;}
@@ -120,6 +121,7 @@
   footer #footer-links a{padding: .5em;display: inline-block;}
   footer #footer-note .counter, footer #footer-note .love{display: inline-block !important;width:50% !important; margin-top:5px !important; }
   footer #footer-links section h4{text-align: left;}
+  footer #footer-nav .eco img{display: none;}
 }
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 @media only screen and (max-width: 479px){
@@ -129,16 +131,12 @@
   /*----------header-top-----------*/
   header #header-top{height: 40px;}
   header #header-top::before{display: none;}
-  header #header-profile{margin: 0;width: 100%;text-align: right;height: 50px;}
-  header #header-profile .register , header #header-profile .login{position: absolute;}
-  header #header-profile .register {right: 44px;}
-  header #header-profile .login {right: 10em;color:#eee;}
-  header #header-box{background: #00667a;height: 50px;}
+    header #header-box{background: #00667a;height: 50px;}
   header #header-quick {display: none;}
   #homepage .box{padding: 1em;}
   #homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
   /*----------footer-----------*/
-  footer #footer-nav .eco img{padding-top:40px}
+  footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
   }
   /*================================== 
   @media only screen and (max-width: 320px){}
