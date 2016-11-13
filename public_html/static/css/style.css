@@ -932,14 +932,28 @@ aside .filters-box, aside .prize-box{display:none;}
 /* knowledge */
 .polls-head{border-bottom:1px solid #E0E0E0;text-align:left;}
 .polls-head > span{color:#00667A;font-weight:bold;vertical-align:middle;}
-.polls-head > span, .polls-row > span{min-width:3em;padding:13px 5px;}
+.polls-head > span, .polls-row > span{min-width:1em;padding:13px 5px;}
+
 .polls-head .title, .polls-row .title{}
+
 .polls-head .date, .polls-row .date{min-width:2em;}
-.polls-head .star{min-width:1em;font-size:1.5em;}
+
+.polls-row .star{min-width:1em;font-size:1.5em;flex:.5 .5em;}
+
+.polls-row .type{margin:0 auto; flex:1 1em;}
+
+.polls-row .title{flex:8 8em;}
+
+.polls-row .votes-count{min-width:1em;font-size:1.5em;flex:2 2em;}
+
+.polls-row .comments-count{min-width:1em;font-size:1.5em;flex:2 2em;}
+
+.polls-row .date{min-width:2em;flex:2 2em;}
+
 .polls-head .star .fa-star{vertical-align:middle;}
 .polls-body{width:100%;}
 .polls-row{display: flex;}
-.polls-row > span{vertical-align:middle;}
+.polls-row > span{vertical-align:middle;flex: 1 1em;}
 .polls-row .title a{color:#00667A;font-weight:bold;font-size:1.5em;}
 .polls-row .title i{color:#E96F4B;font-size:0.8em;}
 .polls-row .type i{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
