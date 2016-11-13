@@ -1,17 +1,21 @@
 {%extends display.mvc%}
 
-{%block body%}
+{%block head_css%}
+<link rel="stylesheet" type="text/css" href="{{url.static}}css/responsive.css">
+{%endblock%}
 
+{%block body%}
  <div class="container">
-{% include template.header %}
+  {% include template.header %}
 
   <div class="wrapper" data-xhr='wrapper' {%if notlogin %} data-modal='not-login' {%endif%}>
 	{%block content%}{%endblock%}
   </div>
 
-{% include template.register %}
+  {% include template.register %}
  </div>
 {% include template.footer %}
+
 {%block modal%}
  <div class='modal' id='not-login'>
   <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
@@ -29,4 +33,5 @@
   </form>
  </div>
 {%endblock%}
+
 {%endblock%}
