@@ -10,7 +10,7 @@
       <a href='{{url.base}}/$'>{%trans "Knowledge"%}</a>
       <a href='{{url.base}}/help'>{%trans "Help"%}</a>
      </nav>
-     <nav id='header-profile' data-xhr='header-profile'>
+     <nav id='header-profile' data-xhr='header-profile' {%if login%}class='login'{%endif%}>
 {%if login%}
       <a href='@/add' class='login'>{%trans "Add Question"%}</a>
       <a href='ask' class='register'>{%trans "Ask Me"%}</a>
