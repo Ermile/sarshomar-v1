@@ -51,15 +51,16 @@
         <input class="input" type="text" name="end_time">
       </div>
 
+      <input type="hidden" name="tags" id="sp-tags" value="">
       <div class="element">
-        <label class="title" for="tags">{%trans "Tags"%}</label>
-        <input class="input" type="text" name="tags" id="tags">
+        <label class="title" for="tag-add">{%trans "Tags"%}</label>
+        <input class="input" type="text" id="tag-add">
         <span class="addon btn tag-add-btn">
-          <button>{%trans "Add"%}</button>
+          <!-- <button>{%trans "Add"%}</button> -->
         </span>
       </div>
 
-      <div class="tags">
+      <div class="tag" id="tag-list">
       </div>
     </div>
 

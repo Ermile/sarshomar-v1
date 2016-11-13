@@ -12,6 +12,8 @@ class view extends \mvc\view
 	 */
 	function view_publish($_args)
 	{
+		$this->include->fontawesome = true;
+
 		// set the short url to data
 		$this->data->short_url = $_args->api_callback;
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
