@@ -17,6 +17,10 @@ class model extends \mvc\model
 			$search = $search[0];
 		}
 		$result = \lib\db\polls::search($search, ['user_id' => $user_id]);
+		if(!$result)
+		{
+			$result = [];
+		}
 		return $result;
 	}
 
