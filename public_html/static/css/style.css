@@ -493,25 +493,6 @@ nav#page-nav #nav-prev{float:left;}
 #profile .buttons::before{width:100%;left:0px;}
 
 
-/* knowledge */
-.polls-head{border-bottom:1px solid #E0E0E0;text-align:left;}
-.polls-head > div{color:#00667A;font-weight:bold;vertical-align:middle;}
-.polls-head > div, .polls-row > div{display:table-cell;padding:13px 5px;}
-.polls-head .title, .polls-row .title{width:100%;}
-.polls-head .date, .polls-row .date{min-width:80px}
-.polls-head .star{min-width:20px;font-size:1.2em;}
-.polls-head .star .fa-star{vertical-align:middle;}
-.polls-body{display:table;}
-.polls-row{display:table-row;}
-.polls-row:hover{background-color:#EBEBEB;transition: 0.3s;}
-.polls-row > div{vertical-align:middle;}
-.polls-row .title a{color:#00667A;font-weight:bold;font-size:1.2em;}
-.polls-row .title span{color:#E96F4B;font-size:0.8em;padding:0 5px;}
-.polls-row .type span{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
-.polls-row .date{color:#BDBDBD;}
-.polls-row .star .fa-star{font-size:1.2em;vertical-align:middle;color:#E7E7E7;}
-.polls-row:hover .star .fa-star{color:#00667A;}
-.polls-row.star .star .fa-star{color:#E7A429;}
 
 
 /* customers */
@@ -897,8 +878,7 @@ nav#page-nav #nav-prev{float:left;}
 .search-box .search-button:hover{background-color:#0A5260;}
 .search-box .search-button .fa-search{font-size:1.2em;}
 
-/************************************************************** Pagination */
-
+/************************************************************** aside */
 .main .search-box {margin:2em 0;}
 aside .select-box{display:flex;background-color:#e7e7e7;margin:10px 0;}
 aside .select-box label{line-height: 26px;font-size: 1.1em;color:#00667a;width:100%;font-weight:500;padding-left: 1.5em;}
@@ -925,6 +905,9 @@ aside .full-line-title::before{content:'';width:100%;position:absolute;height:1p
 aside .full-line-title::after{content:attr(data-title);position:absolute;background-color:#ebebeb;right:0;bottom:0;top:0;margin:auto;padding:0px 5px;padding-right:30px;color:#777;font-size: 1.1em;font-weight: 500;}
 .rtl aside .full-line-title::after{left:0;right:auto;padding-left:30px;padding-right:5px;}
 aside .filters-box, aside .prize-box{display:none;}
+
+
+/************************************************************** Pagination */
 .main .span9 {margin-left: 4em;}
 .rtl .main .span9 {margin-left:0;margin-right:4em;}
 .main .span9 .my-navigation{text-align:center;margin:2em 0;}
@@ -946,6 +929,25 @@ aside .filters-box, aside .prize-box{display:none;}
 .main .group{margin-bottom:1em;}
 
 
+/* knowledge */
+.polls-head{border-bottom:1px solid #E0E0E0;text-align:left;}
+.polls-head > span{color:#00667A;font-weight:bold;vertical-align:middle;}
+.polls-head > span, .polls-row > span{min-width:3em;padding:13px 5px;}
+.polls-head .title, .polls-row .title{}
+.polls-head .date, .polls-row .date{min-width:2em;}
+.polls-head .star{min-width:1em;font-size:1.5em;}
+.polls-head .star .fa-star{vertical-align:middle;}
+.polls-body{width:100%;}
+.polls-row{display: flex;}
+.polls-row > span{vertical-align:middle;}
+.polls-row .title a{color:#00667A;font-weight:bold;font-size:1.5em;}
+.polls-row .title i{color:#E96F4B;font-size:0.8em;}
+.polls-row .type i{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
+.polls-row .date{color:#BDBDBD;}
+.polls-row .star .fa-star{font-size:1.5em;vertical-align:middle;color: transparent;}
 
+.polls-row.star .star .fa-star{color:#E7A429;}
+.polls-row:hover .star .fa-star{color:#e7e7e7;}
+.polls-row:hover > span:not(:first-child){background-color:#ebebeb;}
 
 

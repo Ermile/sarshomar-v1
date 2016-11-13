@@ -152,7 +152,7 @@
 
   <div class="row">
     <div class="span1"></div>
-    <div class="span8">
+    <div class="span9">
      <div class="search-box">
       <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
       <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -161,22 +161,22 @@
      <div class="search-result" data-xhr='search-result'>
   {%if poll_list%}
       <div class="polls-head">
-        <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-        <div class="type">{%trans "Type"%}</div>
-        <div class="title">{%trans "Title"%}</div>
-        <div class="comments-count">{%trans "Comments"%}</div>
-        <div class="votes-count">{%trans "Votes"%}</div>
-        <div class="date">{%trans "Date"%}</div>
+        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+        <span class="type">{%trans "Type"%}</span>
+        <span class="title">{%trans "Title"%}</span>
+        <span class="comments-count">{%trans "Comments"%}</span>
+        <span class="votes-count">{%trans "Votes"%}</span>
+        <span class="date">{%trans "Date"%}</span>
       </div>
       <ul class="polls-body">
   {%for key, value in poll_list%}
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <div class="star"><span class="fa fa-star" aria-hidden="true"></span></div>
-          <div class="type"><span class="fa fa-{{value.type}}" aria-hidden="true"></span></div>
-          <div class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
-          <div class="comments-count"></div>
-          <div class="votes-count"></div>
-          <div class="date">{{value.date_modified}}</div>
+          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
+          <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></span>
+          <span class="comments-count"></span>
+          <span class="votes-count"></span>
+          <span class="date">{{value.date_modified}}</span>
         </li>
   {%endfor%}
       </ul>
