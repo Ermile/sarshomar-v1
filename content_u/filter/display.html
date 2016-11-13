@@ -41,23 +41,26 @@
                 <label class="title" for="language">{%trans "Language"%}</label>
                 <input type="hidden" name="filter_language" id="sp-language" value="">
                 <input class="input similar-tag" data-list="language-list" data-split="sp-language" type="text" id="language">
-                <div id="language-list" class="tags"></div>
               </div>
+              <div id="language-list" class="tags"></div>
             </li>
             <li id="tab-education">
               <div class="element">
                 <label class="title" for="graduation">{%trans "Graduation"%}</label>
-                <select class="input" name="filter_graduation" id="graduation">
+                <input type="hidden" name="filter_graduation" id="sp-graduation" value="">
+                <select class="input similar-tag" id="graduation" data-split="sp-graduation" data-list="graduation-list">
                   <option value="">{%trans "Please select one option"%}</option>
                   <option value="illiterate">{%trans "Illiterate"%}</option>
                   <option value="undergraduate">{%trans "Undergraduate"%}</option>
                   <option value="graduate">{%trans "Graduate"%}</option>
                 </select>
               </div>
+              <div class="tags" id="graduation-list"></div>
 
               <div class="element">
                 <label class="title" for="degree">{%trans "Degree"%}</label>
-                <select class="input" name="filter_degree" id="degree">
+                <input type="hidden" name="filter_degree" id="sp-degree" value="">
+                <select class="input similar-tag" id="degree" data-list="degree-list" data-split="sp-degree">
                   <option value="">{%trans "Please select one option"%}</option>
                   <option value="under diploma">{%trans "Under diploma"%}</option>
                   <option value="diploma">{%trans "Diploma"%}</option>
@@ -68,25 +71,26 @@
                   <option value="other">{%trans "Other"%}</option>
                 </select>
               </div>
-
+              <div class="tags" id="degree-list"></div>
               <div class="element">
                 <label class="title" for="course">{%trans "Course"%}</label>
                 <input type="hidden" name="filter_course" id="sp-course" value="">
                 <input class="input similar-tag" id="course" data-list="course-list" data-split="sp-course">
-                <div class="tags" id="course-list"></div>
               </div>
+              <div class="tags" id="course-list"></div>
             </li>
             <li id="tab-family">
               <div class="element">
                 <label class="title" for="age">{%trans "Age"%}</label>
                 <input type="hidden" name="filter_age" id="sp-age" value="">
                 <input class="input similar-tag" id="age" data-split="sp-age" data-list="age-list">
-                <div class="tags" id="age-list"></div>
               </div>
+              <div class="tags" id="age-list"></div>
 
               <div class="element">
                 <label class="title" for="range">{%trans "Range"%}</label>
-                <select class="input" name="filter_range" id="range">
+                <input type="hidden" name="filter_range" id="sp-range" value="">
+                <select class="input similar-tag" id="range" data-list="range-list" data-split="sp-range">
                   <option value="">{%trans "Please select one option"%}</option>
                   <option value="-13">-13</option>
                   <option value="14-17">14-17</option>
@@ -97,71 +101,79 @@
                   <option value="60+">60+</option>
                 </select>
               </div>
+              <div class="tags" id="range-list"></div>
             </li>
             <li id="tab-job">
               <div class="element">
                 <label class="title" for="employmentstatus">{%trans "Employment Status"%}</label>
-                <select class="input" name="filter_employmentstatus" id="employmentstatus">
+                <input type="hidden" name="filter_employmentstatus" id="sp-employmentstatus" value="">
+                <select class="input similar-tag" id="employmentstatus" data-list="employmentstatus-list" data-split="sp-employmentstatus">
+                  <option value="">{%trans "Please select one option"%}</option>
                   <option value="employee">{%trans "Employee"%}</option>
                   <option value="unemployee">{%trans "Unemployee"%}</option>
                   <option value="retired">{%trans "Retired"%}</option>
                 </select>
               </div>
-
+              <div class="tags" id="employmentstatus-list"></div>
               <div class="element">
                 <label class="title" for="industry">{%trans "Industry"%}</label>
                 <input type="hidden" name="filter_industry" id="sp-industry">
                 <input class="input similar-tag" type="text"  id="industry" data-split="sp-industry" data-list="industry-list">
-                <div class="tags" id="industry-list"></div>
               </div>
+              <div class="tags" id="industry-list"></div>
             </li>
             <li id="tab-location">
               <div class="element">
                 <label class="title" for="country">{%trans "Country"%}</label>
                 <input type="hidden" name="filter_country" id="sp-country">
                 <input class="input similar-tag" type="text" id="country" data-list="country-list" data-split="sp-country">
-                <div class="tags" id="country-list"></div>
               </div>
+              <div class="tags" id="country-list"></div>
 
               <div class="element">
                 <label class="title" for="province">{%trans "Province"%}</label>
                 <input type="hidden" name="filter_province" id="sp-province" value="">
                 <input class="input similar-tag" type="text" id="province" data-list="province-list" data-split="sp-province">
-                <div class="tags" id="province-list"></div>
               </div>
+              <div class="tags" id="province-list"></div>
 
               <div class="element">
                 <label class="title" for="city">{%trans "City"%}</label>
                 <input type="hidden" name="filter_city" id="sp-city" value="">
                 <input class="input similar-tag" type="text" id="city" data-list="city-list" data-split="sp-city">
-                <div class="tags" id="city-list"></div>
               </div>
+              <div class="tags" id="city-list"></div>
 
               <div class="element">
                 <label class="title" for="housestatus">{%trans "House Status"%}</label>
-                <select class="input" name="filter_housestatus" id="housestatus">
+                <input type="hidden" name="filter_housestatus" id="sp-housestatus" value="">
+                <select class="input similar-tag" id="housestatus" data-list="housestatus-list" data-split="sp-housestatus">
+                  <option value="">{%trans "Please select one option"%}</option>
                   <option value="owner">{%trans "Owner"%}</option>
                   <option value="tenant">{%trans "Tenant"%}</option>
                   <option value="homeless">{%trans "Homeless"%}</option>
                 </select>
               </div>
+              <div class="tags" id="housestatus-list"></div>
             </li>
             <li id="tab-other">
               <div class="element">
                 <label class="title" for="internetusage">{%trans "Internet Usage"%}</label>
-                <select class="input" name="filter_internetusage" id="internetusage">
+                <input type="hidden" name="filter_internetusage" id="sp-internetusage" value="">
+                <select class="input similar-tag" id="internetusage" data-list="internetusage-list" data-split="sp-internetusage">
+                  <option value="">{%trans "Please select one option"%}</option>
                   <option value="low">{%trans "Low"%}</option>
                   <option value="mid">{%trans "Mid"%}</option>
                   <option value="high">{%trans "High"%}</option>
                 </select>
               </div>
-
+              <div class="tags" id="internetusage-list"></div>
               <div class="element">
                 <label class="title" for="religion">{%trans "Religion"%}</label>
                 <input type="hidden" name="filter_religion" id="sp-religion" value="">
                 <input class="input similar-tag" type="text" id="religion" data-list="religion-list" data-split="sp-religion">
-                <div class="tags" id="religion-list"></div>
               </div>
+              <div class="tags" id="religion-list"></div>
             </li>
           </ul>
 

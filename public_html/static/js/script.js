@@ -311,8 +311,13 @@ route('*', function ()
 		}
 	});
 
-	$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
-	$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});
+	$('.similar-tag').change(function ()
+	{
+		// if Enter pressed disallow it and run add func
+		var element_id = $(this).attr('id');
+		addTag(element_id);
+		return false;
+	});
 
 	$(document).on('click', '.btn-add-tags' , function () { addTag($(this).attr('element-id')); return false; });
 	$(document).on('click', '.remove-tags', function ()
@@ -323,6 +328,8 @@ route('*', function ()
 		span.remove();
 	});
 
+	$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
+	$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});
 
 	// var tagDefault = $('#' + split).val();
 	// $('#' + list).text('');
@@ -415,9 +422,8 @@ function addTag(element_id)
 		if (exist)
 		{
 			existEl = $("#" + list + " a:nth-child(" + exist + ")");
-			bg = existEl.css('background-color');
-			existEl.css('background-color', '#ddd');
-			setTimeout(function () { existEl.css("background-color", bg) }, 500);
+			existEl.addClass("tag-exist");
+			setTimeout(function () { existEl.removeClass("tag-exist") }, 500);
 		}
 		else
 		{
