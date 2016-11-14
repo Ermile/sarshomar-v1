@@ -1,0 +1,95 @@
+{%extends display.main%}
+{%block content%}
+
+<div class="show-comments">
+
+      <div class="polls-head">
+		<span class="title">title</span>
+		<span class="title">comment_author</span>
+		<span class="title">comment_email</span>
+		<span class="title">email</span>
+		<span class="title">comment_url</span>
+		<span class="title">comment_content</span>
+		<span class="title">comment_meta</span>
+		<span class="title">comment_status</span>
+		<span class="title">comment_parent</span>
+      </div>
+      <ul class="polls-body">
+{%for key, value in comments%}
+	    <li class="polls-row">
+		    <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
+			<span class="title">{{value.comment_author}}</span>
+			<span class="title">{{value.comment_email}}</span>
+			<span class="title">{{value.email}}</span>
+			<span class="title">{{value.comment_url}}</span>
+			<span class="title">{{value.comment_content}}</span>
+			<span class="title">{{value.comment_meta}}</span>
+			<span class="title">{{value.comment_status}}</span>
+			<span class="title">{{value.comment_parent}}</span>
+			<span data-id="{{value.id}}" class="approved save-status" data-status="approved"></span>
+			<span data-id="{{value.id}}" class="unapproved save-status" data-status="unapproved"></span>
+        </li>
+  {%endfor%}
+      </ul>
+</div>
+
+<!-- pagenation -->
+    {% embed display.pagination %}{% endembed %}
+
+<style type="text/css">
+	.show-comments
+	{
+		color:black;
+	}
+	.approved
+	{
+		height: 10%;
+		widows: 10%;
+		border-radius: 30px;
+		background: green;
+		text-align: center;
+		font-size: 20px;
+		cursor: pointer;
+
+	}
+	.unapproved
+	{
+		height: 10%;
+		widows: 10%;
+		border-radius: 30px;
+		background: red;
+		text-align: center;
+		font-size: 20px;
+		cursor: pointer;
+
+	}
+</style>
+{%endblock%}
+{%block foot_js%}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.save-status').click(function (){
+		status = $(this).attr('data-status');
+		id = $(this).attr('data-id');
+		$(this).ajaxify(
+      {
+        ajax:
+        {
+          method: 'post',
+          data:
+          {
+            'status'  :status,
+            'id'  	  : id
+          },
+          abort: true,
+          success: function(e, data, x)
+          {
+
+          }
+        }
+      });
+	});
+
+});
+</script>
+{%endblock%}
