@@ -44,7 +44,8 @@ class polls
 	 */
 	public static function get_count($_search = null, $_args = [])
 	{
-		$_args['get_count'] = true;
+		$_args['get_count']  = true;
+		$_args['pagenation'] = false;
 		$result = self::search($_search, $_args);
 		return $result;
 	}
@@ -329,6 +330,21 @@ class polls
 	}
 
 
+
+	/**
+	 * Gets the poll status.
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The poll status.
+	 */
+	public static function get_poll_status($_poll_id)
+	{
+		$result = self::get_poll($_poll_id);
+		return isset($result['status']) ? $result['status'] : null;
+	}
+
+
 	/**
 	 * Gets the poll url.
 	 *
@@ -503,6 +519,58 @@ class polls
 			return $result[0];
 		}
 		return false;
+	}
+
+
+	/**
+	 * remove index from meta
+	 *
+	 * @param      <type>  $_field_meta  The field meta
+	 * @param      <type>  $_poll_id     The poll identifier
+	 */
+	public static function remove_index_meta($_field_meta, $_poll_id)
+	{
+
+		$meta = self::get_poll_meta($_poll_id);
+		if(!is_array($meta))
+		{
+			$meta = [];
+		}
+
+		$find_remove = false;
+
+		foreach ($_field_meta as $key => $value) {
+			if(isset($meta[$key]))
+			{
+				if($value === null || $value == $meta[$key])
+				{
+					$find_remove = true;
+					unset($meta[$key]);
+				}
+			}
+		}
+		if(!$find_remove)
+		{
+			return true;
+		}
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+		$meta_query = " '$meta' ";
+
+
+		$query =
+		"
+			UPDATE
+				posts
+			SET
+				post_meta  = $meta_query
+			WHERE
+				posts.id = $_poll_id
+			-- polls::remove_index_meta()
+			-- add new json to existing meta of post_meta
+		";
+		$result = \lib\db::query($query);
+		return $result;
 	}
 
 
