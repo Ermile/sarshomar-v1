@@ -31,6 +31,8 @@ class controller extends \mvc\controller
 			'property' => $property
 		]
 		);
+
+		$this->post("search")->ALL("/\$/");
 	}
 }
 ?>
