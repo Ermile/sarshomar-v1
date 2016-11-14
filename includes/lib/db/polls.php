@@ -810,5 +810,42 @@ class polls
 		}
 		return false;
 	}
+
+
+	/**
+	 * get full post data
+	 *
+	 * @param      string  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  The full.
+	 */
+	public static function get_full($_poll_id)
+	{
+		$post_id = " WHERE posts.id ='". $_poll_id. "' ";
+		if($_poll_id === null)
+		{
+			$post_id = null;
+		}
+		$query = "
+			SELECT
+					posts.*,
+					options.*,
+					pollstats.*
+			FROM
+				posts
+			LEFT JOIN pollstats
+				ON pollstats.post_id = posts.id
+			INNER JOIN options
+				ON 	options.post_id = posts.id AND
+					options.user_id IS NULL AND
+					options.option_key LIKE 'answers%'
+			$post_id";
+		list($limit_start, $limit_end) = \lib\db::pagnation($query, 10);
+		$query .= " LIMIT $limit_start, $limit_end ";
+
+		$result = \lib\db::get($query);
+		$result = \lib\utility\filter::meta_decode($result);
+		return $result;
+	}
 }
 ?>
