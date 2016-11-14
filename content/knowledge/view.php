@@ -19,16 +19,6 @@ class view extends \mvc\view
 
 
 	/**
-	 * view search box
-	 */
-	public function view_knowledge()
-	{
-		$result = \lib\db\polls::get_last_poll(['limit' => 10]);
-		$this->data->poll_list = $result;
-	}
-
-
-	/**
 	 * show search result
 	 *
 	 * @param      <type>  $_args  The arguments

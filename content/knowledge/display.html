@@ -157,33 +157,10 @@
       <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
       <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
      </div>
-
-     <div class="search-result" data-xhr='search-result'>
-  {%if poll_list%}
-      <div class="polls-head">
-        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
-        <span class="type">{%trans "Type"%}</span>
-        <span class="title">{%trans "Title"%}</span>
-        <span class="comments-count">{%trans "Comments"%}</span>
-        <span class="votes-count">{%trans "Votes"%}</span>
-        <span class="date">{%trans "Date"%}</span>
-      </div>
-      <ul class="polls-body">
-  {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
-          <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></span>
-          <span class="comments-count"></span>
-          <span class="votes-count"></span>
-          <span class="date">{{value.date_modified}}</span>
-        </li>
-  {%endfor%}
-      </ul>
-  {%else%}
-      <div class="msg error">{%trans "No Result Found"%}</div>
-  {%endif%}
+     <div class="search-result" data-xhr='search-result' id="search-result">
+      {{block('search_result')}}
      </div>
+
     </div><!-- /.span8 -->
   </div>
 </div>
@@ -208,5 +185,37 @@ $(document).ready(function()
 
 </script>
 
+
+{%endblock%}
+
+
+{%block search_result%}
+  {%if poll_list%}
+      <div class="polls-head">
+        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+        <span class="type">{%trans "Type"%}</span>
+        <span class="title">{%trans "Title"%}</span>
+        <span class="comments-count">{%trans "Comments"%}</span>
+        <span class="votes-count">{%trans "Votes"%}</span>
+        <span class="date">{%trans "Date"%}</span>
+      </div>
+      <ul class="polls-body">
+  {%for key, value in poll_list%}
+        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
+          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
+          <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
+          <span class="comments-count"></span>
+          <span class="votes-count"></span>
+          <span class="date">{{value.date_modified}}</span>
+        </li>
+  {%endfor%}
+      </ul>
+      <!-- pagenation -->
+    {% embed display.pagination %}{% endembed %}
+      <!-- ./pagenation -->
+  {%else%}
+      <div class="msg error">{%trans "No Result Found"%}</div>
+  {%endif%}
 
 {%endblock%}

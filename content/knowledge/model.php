@@ -6,23 +6,17 @@ class model extends \mvc\model
 {
 
 	/**
-	 * search in polls
-	 */
-	// public function post_search()
-	// {
-	// 	$search = utility::post("search");
-	// 	$result = \lib\db\polls::search($search);
-	// 	return $result;
-	// }
-
-
-	/**
 	 * Gets the search.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
 	public function get_search($_args)
 	{
+		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '')
+		{
+			return \lib\db\polls::get_last_poll(['limit' => 10]);
+		}
+
 		$match = $_args;
 		unset($_args->match->url);
 		unset($_args->method);
@@ -49,7 +43,6 @@ class model extends \mvc\model
 			$filter_id         = \lib\db\filters::get_id($filter);
 			$meta['filter_id'] = $filter_id;
 		}
-
 		$search = $_args->get("search")[0];
 		$result = \lib\db\polls::search($search, $meta);
 		return $result;

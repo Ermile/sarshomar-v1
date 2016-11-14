@@ -16,8 +16,6 @@ class controller extends \mvc\controller
 			\lib\router::set_controller("\\content_admin\\knowledge\\controller");
 			return ;
 		}
-
-		$this->get(false, "profile")->ALL();
 	}
 
 

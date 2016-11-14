@@ -173,7 +173,7 @@ route(/\@\/add/, function()
 
 
 // Me | Profile
-route(/\@\/me/, function ()
+route(/\@\/profile/, function ()
 {
 	// btns is generated in display in order to true translation
 	$.each($('.element.raw'), function (key, value)
@@ -234,7 +234,8 @@ route(/\@\/me/, function ()
 
 
 // pollsearch | Knowledge
-route(/^\/?(fa\/)?\$(.*)$/, function ()
+// route(/^\/?(fa\/)?\$(.*)$/, function ()
+route('*', function ()
 {
 	var change = 0;
 	$('.pollsearch', this).keyup(function(e)

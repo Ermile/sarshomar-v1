@@ -137,7 +137,7 @@ class model extends \content_u\home\model
 				'post_type'      => 'survey',
 				'post_survey'    => null,
 				'post_gender'    => 'survey',
-				'post_status'    => 'draft',
+				'post_status'    => 'publish',
 				'post_sarshomar' => $this->post_sarshomar
 			];
 			$survey_id = \lib\db\polls::insert($args);
@@ -158,7 +158,7 @@ class model extends \content_u\home\model
 		{
 			//users click on this buttom
 			// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
-			$poll_type   = "survey_poll_";
+			$poll_type   = "survey_poll_"; // need to check
 			// get the survey id and survey url
 			$survey_id   = $this->check_poll_url($_args, "decode");
 			$survey_url  = $this->check_poll_url($_args, "encode");
@@ -182,16 +182,19 @@ class model extends \content_u\home\model
 		if(utility::post("parent_tree_id") && utility::post("parent_tree_opt"))
 		{
 			$loc_id  = utility::post("parent_tree_id");
-			$loc_opt = explode(',',utility::post("parent_tree_opt"));
-			foreach ($loc_opt as $key => $value) {
-				$arg =
-				[
-					'parent' => $loc_id,
-					'opt'    => $value,
-					'child'  => $insert_poll
-				];
-				$result = \lib\utility\poll_tree::set($arg);
-
+			if(is_numeric($loc_id))
+			{
+				$loc_opt = explode(',',utility::post("parent_tree_opt"));
+				foreach ($loc_opt as $key => $value)
+				{
+					$arg =
+					[
+						'parent' => $loc_id,
+						'opt'    => $value,
+						'child'  => $insert_poll
+					];
+					$result = \lib\utility\poll_tree::set($arg);
+				}
 			}
 		}
 
@@ -214,17 +217,43 @@ class model extends \content_u\home\model
 		if(utility::post("secondary-title"))
 		{
 			// polls::update_url() has retrun  '$/[shortURL of survey id ]/suervy_title'
+			$slug = \lib\utility\filter::slug(utility::post("secondary-title"));
+			if(strlen($slug) > 100)
+			{
+				$slug = substr($slug, 0, 99);
+			}
+
+			$url = \lib\db\polls::update_url($_survey_id, utility::post("secondary-title"), false);
+			if(strlen($url) > 255)
+			{
+				$url = substr($url, 0, 254);
+			}
+
+			$title =  utility::post("secondary-title");
+			if(strlen($title) > 200)
+			{
+				$title = substr($title, 0, 199);
+			}
+
 			$args =
 			[
-				'post_title'  => utility::post("secondary-title"),
-				'post_url'    => \lib\db\polls::update_url($_survey_id, utility::post("secondary-title"), false),
+				'post_title'  => $title,
+				'post_url'    => $url,
 				'post_gender' => 'survey',
-				'post_slug'   => \lib\utility\filter::slug(utility::post("secondary-title"))
+				'post_slug'   => $slug
 			];
 			$result = \lib\utility\survey::update($args, $_survey_id);
 			if(!$result)
 			{
 				debug::error(T_("error in save survey title"));
+			}
+
+			// save and check words
+			if(!\lib\db\words::save_and_check($title))
+			{
+				\lib\db\survey::update(['post_status' => 'awaiting'], $_survey_id);
+				\lib\debug::warn(T_("You have to use words that are not approved in the survery title, Your text comes into review mode", 'secondary-title'));
+				\lib\debug::msg('spam', \lib\db\words::$spam);
 			}
 		}
 	}
@@ -321,6 +350,7 @@ class model extends \content_u\home\model
 		// get answers desc
 		$answer_desc  = utility::post("answer_desc");
 
+
 		// check title
 		if($title == null)
 		{
@@ -334,6 +364,15 @@ class model extends \content_u\home\model
 			return false;
 		}
 
+		$publish = 'publish';
+		// save and check words
+		if(!\lib\db\words::save_and_check(utility::post()))
+		{
+			$publish = 'awaiting';
+			\lib\debug::warn(T_("You have to use words that are not approved in the text, Your text comes into review mode"));
+			\lib\debug::msg('spam', \lib\db\words::$spam);
+		}
+
 		// ready to inset poll
 		$args =
 		[
@@ -345,7 +384,7 @@ class model extends \content_u\home\model
 			'post_gender'    => $gender,
 			'post_privacy'   => 'private',
 			'post_comment'   => 'closed',
-			'post_status'    => 'draft',
+			'post_status'    => $publish,
 			'post_meta'      => "{\"desc\":\"$summary\"}",
 			'post_sarshomar' => $this->post_sarshomar
 		];

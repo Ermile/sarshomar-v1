@@ -6,9 +6,6 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$this->get(false,"knowledge")->ALL("$");
-		// $this->post("search")->ALL("$");
-
 		/**
 		 * check the support filter and make all filter array
 		 * to route all filter
@@ -16,7 +13,8 @@ class controller extends \mvc\controller
 		$support_filter = \lib\db\filters::support_filter();
 		$property = [];
 
-		$property['search']   = ["/^.*$/", true, 'search'];
+		$property['search'] = ["/^.*$/", true, 'search'];
+		$property['page']   = ["/^\d+$/", true, 'page'];
 
 		foreach ($support_filter as $key => $value) {
 			$reg = "/^.*$/";
@@ -29,7 +27,7 @@ class controller extends \mvc\controller
 
 		$this->get("search", "search")->ALL(
 		[
-			'url'      => "/^\\$/",
+			'url'      => "/\$/",
 			'property' => $property
 		]
 		);

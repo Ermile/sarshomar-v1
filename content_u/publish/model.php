@@ -75,6 +75,8 @@ class model extends \content_u\home\model
 
 		$date_start = utility::post("start_time");
 		$date_end   = utility::post("end_time");
+		// dave start date and end date in post_meta
+		$update_post_meta = \lib\db\polls::merge_meta(['date_start' => $date_start, 'date_end' => $date_end], $poll_survey_id);
 
 		// set publish date
 		$publish_date = [];
@@ -125,10 +127,14 @@ class model extends \content_u\home\model
 
 		$language = utility::post("language");
 
-		$publish_status = 'awaiting';
-		if($this->access('u', 'sarshomar_knowledge', 'add'))
+		$publish_status = 'publish';
+
+		// save and check words
+		if(!\lib\db\words::save_and_check(utility::post()))
 		{
-			$publish_status = 'publish';
+			$publish_status = 'awaiting';
+			\lib\debug::warn(T_("You have to use words that are not approved in the text, Your text comes into review mode"));
+			\lib\debug::msg('spam', \lib\db\words::$spam);
 		}
 
 		$update_posts =

@@ -212,12 +212,14 @@
           <div class="row auto">
               <h5>{%trans "Description"%}</h5>
               <div class="span6">
+                  {%if date_start or date_end%}
                   <div class="title">{%trans "Poll Period"%}</div>
                   <div class="detail">
                       <span class="green">{{date_start}}</span>
                       <span>-</span>
                       <span class="red">{{date_end}}</span>
                   </div>
+                  {%endif%}
                   <div class="title">{%trans "Status"%}</div>
                   <div class="detail"><span class="green">{{status}}</span></div>
                   <div class="title">{%trans "Key word"%}</div>

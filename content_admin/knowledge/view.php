@@ -5,28 +5,23 @@ class view extends \mvc\view
 {
 
 	/**
-	 * view list of poll
-	 * for the user
+	 * show search result
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
 	public function view_search($_args)
 	{
-		$this->include->fontawesome = true;
-
-		$poll_list = $_args->api_callback;
-
-		$new_poll_list = [];
-		foreach ($poll_list as $key => $value) {
-			$new_poll_list[$key]['id']            = $value['id'];
-			$new_poll_list[$key]['url']           = $value['url'];
-			$new_poll_list[$key]['title']         = $value['title'];
-			$new_poll_list[$key]['total']         = $value['total'];
-			$new_poll_list[$key]['status']        = $value['status'];
-			$new_poll_list[$key]['type']          = self::find_icon($value['type']);
-			$new_poll_list[$key]['date_modified'] = date("Y-m-d", strtotime($value['date_modified']));
+		$this->data->search_value =  $_args->get("search")[0];
+		// get fontawesome class
+		$list = $_args->api_callback;
+		if($list && is_array($list))
+		{
+			foreach ($list as $key => $value)
+			{
+				$list[$key]['type'] = \content_u\knowledge\view::find_icon($value['type']);
+			}
 		}
-		$this->data->poll_list = $new_poll_list;
+		$this->data->poll_list = $list;
 	}
 
 }

@@ -652,9 +652,11 @@ class polls
 
 		$_options = array_merge($default_options, $_options);
 
+		$pagenation = false;
 		if($_options['pagenation'])
 		{
 			// page nation
+			$pagenation = true;
 		}
 
 		$only_one_value = false;
@@ -667,7 +669,7 @@ class polls
 		else
 		{
 			$public_fields = self::$fields;
-			$limit = "LIMIT 0, ". $_options['limit'];
+			$limit = $_options['limit'];
 		}
 
 		// unset some value to not search in database as a field
@@ -705,6 +707,17 @@ class polls
 			{
 				$search = " AND ". $search;
 			}
+		}
+
+		if($pagenation)
+		{
+			$pagenation_query = "SELECT	$public_fields	WHERE $where $search ";
+			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
+			$limit = " LIMIT $limit_start, $limit ";
+		}
+		else
+		{
+			$limit = " LIMIT 0, $limit ";
 		}
 
 		$query =
@@ -749,6 +762,10 @@ class polls
 
 		$public_fields = self::$fields;
 
+		$pagenation_query = "SELECT $public_fields	WHERE posts.post_sarshomar = 1 ";
+		list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
+		$limit = " LIMIT $limit_start, $limit ";
+
 		$query =
 		"
 			SELECT
@@ -756,7 +773,7 @@ class polls
 			WHERE
 				posts.post_sarshomar = 1
 			ORDER BY posts.id DESC
-			LIMIT $limit
+			$limit
 			-- polls::get_last_poll()
 
 		";
