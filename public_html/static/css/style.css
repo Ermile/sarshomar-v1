@@ -519,9 +519,9 @@ nav#page-nav #nav-prev{float:left;}
 #customers-box .customer:nth-child(odd) h3:hover::after{right:-255px;}
 #customers-box .customer:nth-child(even) h3:hover::after{left:-255px;}
 
-#customers-box .customer:nth-child(1) h3{color:#0C7C78;}
-#customers-box .customer:nth-child(1) h3::after{background-color:#0C7C78;}
-#customers-box .customer:nth-child(2) h3{color:#7A7600;}
+#customers-box .customer h3{color:#0C7C78;}
+#customers-box .customer h3::after{background-image:url(../images/art/customer.png);background-repeat:no-repeat;background-size:100%;background-position:center;}
+/*#customers-box .customer:nth-child(2) h3{color:#7A7600;}
 #customers-box .customer:nth-child(2) h3::after{background-color:#7A7600;}
 #customers-box .customer:nth-child(3) h3{color:#7A005C;}
 #customers-box .customer:nth-child(3) h3::after{background-color:#7A005C;}
@@ -530,7 +530,7 @@ nav#page-nav #nav-prev{float:left;}
 #customers-box .customer:nth-child(5) h3{color:#DBD40C;}
 #customers-box .customer:nth-child(5) h3::after{background-color:#DBD40C;}
 #customers-box .customer:nth-child(6) h3{color:#03007A;}
-#customers-box .customer:nth-child(6) h3::after{background-color:#03007A;}
+#customers-box .customer:nth-child(6) h3::after{background-color:#03007A;}*/
 
 
 /* features */
