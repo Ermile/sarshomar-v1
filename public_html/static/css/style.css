@@ -303,7 +303,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .rtl .ac-custom{margin:0 10px 20px 0px;}
 .ac-custom.inline{display:inline-block;}
 
-.ac-custom label{display:inline-block;line-height:30px;margin-left:30px;padding:0 2em;cursor:pointer;-webkit-transition:color 0.3s;transition:color 0.3s;vertical-align:top;color:#767676;background-color:#e7e7e7;transition:0.3s;min-width:50%;}
+.ac-custom label{display:inline-block;line-height:30px;margin-left:30px;padding:0 2em;cursor:pointer;-webkit-transition:color 0.3s;transition:color 0.3s;vertical-align:top;color:#767676;background-color:#e7e7e7;transition:0.3s;min-width:200px;max-width:100%;}
 .ac-custom label::before{content:'';-webkit-transition:opacity 0.3s;transition:opacity,background-color 0.3s;background-color:#ddd;position:absolute;top:50%;left:0;width:30px;height:30px;margin-top:-15px;cursor:pointer;}
 .ac-custom input[type='checkbox'], .ac-custom input[type='radio']{position:absolute;width:30px;height:30px;z-index:1;opacity:0;-webkit-appearance:none;display:none;}
 .ac-custom input[type='checkbox']:hover + label, .ac-custom input[type='radio']:hover + label{background-color:#ccc}
@@ -618,7 +618,7 @@ nav#page-nav #nav-prev{float:left;}
 .element:not(.small) .title{min-width:130px;}
 .rtl .element .title{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
 
-.element .title:before{position:absolute;top:5px;left:-12px;display:inline;width:13px;height:25px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
+.element .title:before{position:absolute;top:6px;left:-12px;display:inline;width:13px;height:24px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
 .rtl .element .title:before{right:auto;left:100%;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
 
 .element.filter .title::after{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
@@ -735,9 +735,9 @@ nav#page-nav #nav-prev{float:left;}
 .buttons button{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;}
 .buttons button:not(:last-child), .buttons input[type="submit"]:not(:last-child){margin-right:30px;}
 .rtl .buttons button:not(:last-child), .rtl .buttons input[type="submit"]:not(:last-child){margin-right:auto;margin-left:30px;}
-.buttons button::before,.buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:1px;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+/*.buttons button::before,.buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:1px;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .buttons button::before{left:-20px;content:'\6c';}
-.buttons button::after{right:-20px;content:'\6b';}
+.buttons button::after{right:-20px;content:'\6b';}*/
 .buttons.center{text-align:center;}
 .buttons.center::before{left:0;}
 

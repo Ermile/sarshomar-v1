@@ -1,7 +1,7 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main">
+<div class="main pad">
   <div class="box">
     <form method="post">
       <input type="hidden" name="type" value="">
@@ -21,20 +21,20 @@
 
           <ul class="tab">
             <li id="tab-public">
-              <div class="element">
+              <div class="element switch">
                 <label class="title" for="gender">{%trans "Gender"%}</label>
                 <input type="checkbox" name="male" id="male">
-                <label class="checkbox" for="male">{%trans "Male"%}</label>
+                <label for="male">{%trans "Male"%}</label>
                 <input type="checkbox" name="female" id="female">
-                <label class="checkbox" for="female">{%trans "Female"%}</label>
+                <label for="female">{%trans "Female"%}</label>
               </div>
 
-              <div class="element">
+              <div class="element switch">
                 <label class="title" for="marrital">{%trans "Marrital"%}</label>
                 <input type="checkbox" name="single" id="single">
-                <label class="checkbox" for="single">{%trans "Single"%}</label>
+                <label for="single">{%trans "Single"%}</label>
                 <input type="checkbox" name="marriade" id="marriade">
-                <label class="checkbox" for="marriade">{%trans "Marriade"%}</label>
+                <label for="marriade">{%trans "Marriade"%}</label>
               </div>
 
               <div class="element">

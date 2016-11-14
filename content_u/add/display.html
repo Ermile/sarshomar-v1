@@ -23,12 +23,11 @@
           <ul class="tab">
             <li id="tab-multiple_choice" class="active">
               {%if perm.sarshomar_knowledge.add%}
-              <div class="element">
-                <label class="title" for="sarshomar_knowledge">{%trans "Sarshomar"%}</label>
-                <input type="checkbox" name="sarshomar" id="sarshomar">
-                <label class="checkbox" for="sarshomar">{%trans "Sarshomar"%}</label>
-                <input type="checkbox" name="personal" id="personal">
-                <label class="checkbox" for="personal">{%trans "Personal"%}</label>
+              <div class="element switch">
+                <input type="radio" name="sarshomar_knowledge" id="sarshomar" value="sarshomar" checked>
+                <label for="sarshomar">{%trans "Sarshomar"%}</label>
+                <input type="radio" name="sarshomar_knowledge" id="personal" value="personal">
+                <label for="personal">{%trans "Personal"%}</label>
               </div>
               {%endif%}
 
@@ -103,7 +102,7 @@
                         </li>
 
                          <li class="ac-custom ac-checkbox ac-checkmark">
-                          <input type="checkbox" name="meta_comment" id="comment" checked>
+                          <input type="checkbox" name="meta_comment" id="comment">
                           <label for="comment">{%trans "Comment"%}</label>
                         </li>
                       </ul>
