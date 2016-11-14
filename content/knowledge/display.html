@@ -192,7 +192,7 @@ $(document).ready(function()
 {%block search_result%}
   {%if poll_list%}
       <div class="polls-head">
-        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+        <span class="fa fa-star star" aria-hidden="true"></span>
         <span class="type">{%trans "Type"%}</span>
         <span class="title">{%trans "Title"%}</span>
         <span class="comments-count">{%trans "Comments"%}</span>
@@ -202,12 +202,12 @@ $(document).ready(function()
       <ul class="polls-body">
   {%for key, value in poll_list%}
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
+          <span class="fa fa-star star" aria-hidden="true"></span>
+          <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
           <span class="comments-count"></span>
           <span class="votes-count"></span>
-          <span class="date">{{value.date_modified}}</span>
+          <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
         </li>
   {%endfor%}
       </ul>
