@@ -5,6 +5,11 @@ use \lib\utility;
 class model extends \mvc\model
 {
 
+	public function post_knowledge()
+	{
+		return \lib\db\polls::search(utility::post('search'));
+	}
+
 	/**
 	 * Gets the search.
 	 *

@@ -9,6 +9,7 @@ class controller extends  \content_admin\home\controller
 
 		$this->get("search", "search")->ALL(
 		[
+			'url' => "/.*/",
 			'property' =>
 			[
 				"search" => ["/^(.*)$/", true, 'search'],
