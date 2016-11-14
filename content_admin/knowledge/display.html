@@ -1,5 +1,174 @@
-{% extends 'content/knowledge/display.html'%}
+{% extends display.main%}
 {%block content%}
-{{ parent() }}
+	<div class="box">
+	<div id="load-modal" data-modal="words-check"></div>
+      <div class="polls-head">
+        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+        <span class="type">{%trans "Type"%}</span>
+        <span class="title">{%trans "Title"%}</span>
+        <span class="comments-count">{%trans "Comments"%}</span>
+        <span class="votes-count">{%trans "Votes"%}</span>
+        <span class="date">{%trans "Date"%}</span>
+        <span class="date">{%trans "admin"%}</span>
+      </div>
+      <ul class="polls-body">
+  	{%for key, value in poll_list%}
+        <li class="polls-row">
+          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
+          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
+          <span class="title"><a href="{{base.url}}/{{value.url}}">
+          <span class="poll-word-{{value.id}}"
+          {%if value.meta.review == 'ok' %} style="color:green;" {%endif%}>{{value.title|raw}}</span><a>
+          <br>
+          {%for k, v in value.meta.opt%}
+          	<a class="smal poll-word-{{value.id}}" >{{v.txt}}</a><br>
+          {%endfor%}
+          </span>
+          <span class="comments-count"></span>
+          <span class="votes-count"></span>
+          <span class="admin">
+          	<button class="btn change-status" data-id="{{value.id}}" status="ok" style="background: green; padding: 5px; margin: 5px" >OK</button>
+          	<br>
+          	<button class="btn change-status" data-id="{{value.id}}" status="spam" style="background: red; padding: 5px; margin: 5px" >spam</button>
+          	<br>
+          	Other:
 
+          	<select id="other-status">
+				<option></option>
+				<option value="stop">stop</option>
+				<option value="pause">pause</option>
+				<option value="trash">trash</option>
+				<option value="publish">publish</option>
+				<option value="draft">draft</option>
+				<option value="enable">enable</option>
+				<option value="disable">disable</option>
+				<option value="deleted">deleted</option>
+				<option value="schedule">schedule</option>
+				<option value="expired">expired</option>
+				<option value="awaiting">awaiting</option>
+				<option value="filtered">filtered</option>
+				<option value="blocked">blocked</option>
+				<option value="spam">spam</option>
+				<option value="violence">violence</option>
+				<option value="pornography">pornography</option>
+				<option value="other">other</option>
+          	</select>
+          	<button class="btn change-status" id="save-other" data-id="{{value.id}}" >save</button>
+
+          </span>
+          <span class="date">{{value.date_modified}}</span>
+        </li>
+        <hr>
+  	{%endfor%}
+ 	 </ul>
+	      <!-- pagenation -->
+	    {% embed display.pagination %}{% endembed %}
+	</div>
+{%endblock%}
+
+{%block foot_js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on('click', "#save-words", function(){
+			spam_words = new Array;
+			$(".is-tag").each(function(){
+				if($(this).hasClass('tag-red'))
+				{
+					spam_words.push($(this).html());
+				}
+			});
+			$(this).ajaxify(
+			{
+				ajax:
+				{
+					method: 'post',
+					data:
+					{
+						'spam-word': spam_words,
+						'status': status
+					},
+					abort: true,
+					success: function(e, data, x)
+					{
+						return true;
+					}
+				}
+			});
+		});
+
+		$('#other-status').change(function(){
+			$("#save-other").attr("status", $(this).val());
+		});
+
+		$(document).on('click' , '.change-status', function(){
+			id     = $(this).attr("data-id");
+			status = $(this).attr("status");
+
+			console.log(status);
+
+			if(status !== "publish" || status !== "ok")
+			{
+				$('#load-modal').click();
+				words = "";
+				$('.poll-word-' + id).each(function(){
+					var val = $(this).html();
+					console.log(val);
+					val = val.split(/\s|\,|\n|\\.|\t|\-|\=|\:|\;|\'|\"|\?|\>|\<|\!|\@|\#|\%|\^|\&|\*|\(|\)|\+|\/|\||\{|\}|\[|\]|\`|\؟|\~|\،|\؛|\_\;/);
+					for (a in val) {
+						if(val[a] != '')
+						{
+							words += "<a class='is-tag'>"+val[a]+"</a>";
+						}
+					}
+				});
+				$('#words-list').html('');
+				$('#words-list').append($(words));
+
+			}
+			$(this).ajaxify(
+			{
+				ajax:
+				{
+					method: 'post',
+					data:
+					{
+						'id': id,
+						'status': status
+					},
+					abort: true,
+					success: function(e, data, x)
+					{
+
+					}
+				}
+			});
+		});
+		$(document).on('click', '.is-tag', function(){
+			$(this).toggleClass('tag-red');
+		});
+	});
+</script>
+{%endblock%}
+{%block head_css%}
+<style type="text/css">
+	.tag-red
+	{
+		background: #c62828 !important;
+	}
+
+</style>
+{%endblock%}
+
+{%block modal%}
+ <div class='modal' id='words-check'>
+  <div class='modal-dialog' method="post" action="{{base.url}}/account/login">
+   <h3 class='modal-title'>به کدامین کلمه فیلترش کردی؟</h3>
+   <p class='modal-body'>
+   	<div class='tags' id="words-list" ></div>
+   	<dir>
+   		<div class="try" id="save-words">save</div>
+   	</dir>
+   </p>
+  </div>
+ </div>
 {%endblock%}

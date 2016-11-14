@@ -7,7 +7,37 @@ class model extends \mvc\model
 
 	public function post_knowledge()
 	{
-		return \lib\db\polls::search(utility::post('search'));
+		if(utility::post('spam-word'))
+		{
+			\lib\db\words::set_status(utility::post('spam-word'), utility::post("status"));
+			\lib\debug::true(T_("words change status"));
+			return;
+		}
+
+		$id     = utility::post("id");
+		$status = utility::post("status");
+
+		if($status == 'ok')
+		{
+			$update = ['post_status' => 'publish'];
+			// dave start date and end date in post_meta
+			$update_post_meta = \lib\db\polls::merge_meta(['review' => 'ok'], $id);
+		}
+		else
+		{
+			$update = ['post_status' => $status];
+			$update_post_meta = \lib\db\polls::remove_index_meta(['review' => 'ok'], $id);
+		}
+		$result = \lib\db\polls::update($update, $id);
+		if($result)
+		{
+			\lib\debug::true(T_("post status update"));
+		}
+		else
+		{
+			\lib\debug::error(T_("error in update post"));
+		}
+
 	}
 
 	/**

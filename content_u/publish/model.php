@@ -127,7 +127,15 @@ class model extends \content_u\home\model
 
 		$language = utility::post("language");
 
-		$publish_status = 'publish';
+		$post_status = \lib\db\polls::get_poll_status($poll_survey_id);
+		if($post_status != 'publish')
+		{
+			$publish_status = $post_status;
+		}
+		else
+		{
+			$publish_status = 'publish';
+		}
 
 		// save and check words
 		if(!\lib\db\words::save_and_check(utility::post()))
