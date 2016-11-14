@@ -19,6 +19,7 @@ body{background-color:#00667a;}
 .wrapper>.main.padding{padding:30px 2% 0;}
 .box {display:block;padding:0 15px;margin:0;width:100%;}
 #homepage .box{padding:0 50px;}
+.main.pad,.box.pad{padding-top:20px;}
 
 /* for left aligned input labels */
 .text-left{text-align:left;}
@@ -623,9 +624,9 @@ nav#page-nav #nav-prev{float:left;}
 .element.filter .title::after{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
 .element.filter.active .title::after{background-color:#E96F4B;}
 
-.element .checkbox{color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
-.element input[type="checkbox"]{display:none;}
-.element input[type="checkbox"]:checked + label{background-color:#0A5260;color:#D8DAD0;}
+.element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
+.element input[type="checkbox"],.element input[type="radio"]{display:none;}
+.element input[type="checkbox"]:checked + label,.element input[type="radio"]:checked + label{background-color:#0A5260;color:#D8DAD0;}
 
 .element.small label{min-width:110px;}
 .element.success .input{border:1px solid #6fd36b;border-right:none;background-color:#d9f1da;}
@@ -711,14 +712,14 @@ nav#page-nav #nav-prev{float:left;}
 /* Menu */
 .type{margin:0 auto 15px;text-align:center;padding:0 12px;}
 .type ul{display:inline-block;border-radius:7px;background-color:#00667a;}
-.type ul li{font-size:12px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer;}
+.type ul li{font-size:10px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer;}
 .type ul li:not(:first-child){margin-left:23px;}
 .rtl .type ul li:not(:first-child){margin-right:25px;margin-left:auto;}
 .rtl .type ul li{float:right;}
 .type ul li:hover{background-color:#15535f;}
-.type ul li::before, .type ul li::after{font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
-.type ul li::before{left:-18px;content:'c';}
-.type ul li::after{right:-17px;content:'b';}
+.type ul li::before, .type ul li::after{font-family:'sarshomar';font-size:22px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
+.type ul li::before{left:-15px;content:'c';}
+.type ul li::after{right:-15px;content:'b';}
 .type ul li:hover::before, .type ul li:hover::after{color:#15535f;}
 .type ul li.active{color:#454545;background-color:#e5a428;}
 .type ul li.active::before, .type ul li.active::after{color:#e5a428;}
@@ -734,7 +735,7 @@ nav#page-nav #nav-prev{float:left;}
 .buttons button{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;}
 .buttons button:not(:last-child), .buttons input[type="submit"]:not(:last-child){margin-right:30px;}
 .rtl .buttons button:not(:last-child), .rtl .buttons input[type="submit"]:not(:last-child){margin-right:auto;margin-left:30px;}
-.buttons button::before,.buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.buttons button::before,.buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:1px;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .buttons button::before{left:-20px;content:'\6c';}
 .buttons button::after{right:-20px;content:'\6b';}
 .buttons.center{text-align:center;}
