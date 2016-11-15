@@ -467,6 +467,15 @@ nav#page-nav #nav-prev{float:left;}
 .tab>li.active{display:inherit;}
 
 
+
+/************************************************************** Profile */
+#profile .profile-image{display:inline-block;width:150px;height:150px;margin-bottom:2em;}
+#profile .title-line::before{width:180px;}
+#profile .title-line.reverse::before{left:-50px;}
+
+/* Profile RTL */
+.rtl#profile .profile-image{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH";}
+
 /* Profile Tabs */
 #profile .tabs{padding-left:15%;margin-top:30px;}
 #profile .tabs li{position:relative;width:80%;margin-bottom:15px;height:34px;line-height:34px;cursor:pointer;transition:.3s;text-align:center;color:#d8dad0;border-top-left-radius:6px;border-bottom-left-radius:6px;background-color:#00667a;font-size:12px;}
@@ -483,10 +492,7 @@ nav#page-nav #nav-prev{float:left;}
 .rtl#profile .tabs li{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:6px;border-bottom-right-radius:6px;}
 .rtl#profile .tabs li::before{content:'b';left:auto;right:-15px;}
 
-/************************************************************** Profile */
-#profile .profile-image{display:inline-block;width:150px;height:150px;margin-bottom:2em;}
-#profile .title-line::before{width:180px;}
-#profile .title-line.reverse::before{left:-50px;}
+
 
 .addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
 .addon.btn.save button:hover{background-color:#15535f;}
