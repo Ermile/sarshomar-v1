@@ -938,7 +938,8 @@ aside .filters-box, aside .prize-box{display:none;}
 
 
 .polls-row > .star{max-width:2em;font-size:1.15em;color:transparent;}
-.polls-row:hover > .star::before{color:#e7a429;}
+.polls-row:hover > .star::before{color:#e7e7e7;}
+/*.polls-row:hover > .star::before{color:#e7a429;}*/
 .polls-row > .star::before {vertical-align: -webkit-baseline-middle;}
 .polls-row > .type{margin:0 auto;min-width:3em;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
