@@ -928,8 +928,8 @@ aside .filters-box, aside .prize-box{display:none;}
 .polls-head > span{color:#00667A;font-weight:bold;vertical-align:middle;margin:0 auto;}
 .polls-head > span, .polls-row > span{min-width:2em;padding:13px 5px;}
 
-.polls-head > .star {max-width:2em;font-size:1em;}
-.polls-head > .star::before {vertical-align: -webkit-baseline-middle;}
+.polls-head > .star {max-width:2em;font-size:1em; display: flex;}
+.polls-head > .star::before {align-items: center; justify-content: center;}
 .polls-head > .type {min-width:3em;}
 .polls-head > .title {-webkit-flex:1;flex:1;min-width:2em;}
 .polls-head > .votes-count {min-width:6em;max-width:6em;}
