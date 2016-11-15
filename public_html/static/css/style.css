@@ -467,21 +467,22 @@ nav#page-nav #nav-prev{float:left;}
 .tab>li.active{display:inherit;}
 
 
-/* vertical tabs */
-.vertical-tabs, .vertical-tabs-content{display:table-cell;}
-.vertical-tabs .tabs li{width:170px;height:50px;background-color:#00667A;margin-bottom:20px;color:#D8DAD0;line-height:50px;text-align:center;cursor:pointer;position:relative;margin-right:30px;border-top-left-radius:10px;border-bottom-left-radius:10px;transition:color 0.5s;}
-.vertical-tabs .tabs li:hover{background-color:#15535f;}
-.vertical-tabs .tabs li.active{background-color:#E7A429;color:#00667A;font-weight:bold;margin-right:0;width:200px;}
-.vertical-tabs-content{border-left:1px solid #E7A429;width:100%;}
-.vertical-tabs-content .tab li > .row{padding:0 50px;}
+/* Vertical Tabs (Profile) */
+#profile .tabs{padding-left:15%;margin-top:30px;}
+#profile .tabs li{position:relative;width:80%;margin-bottom:15px;height:34px;line-height:34px;cursor:pointer;transition:.3s;text-align:center;color:#d8dad0;border-top-left-radius:6px;border-bottom-left-radius:6px;background-color:#00667a;font-size:12px;}
+#profile .tabs li::before{font-family:'sarshomar';content:'c';position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:20px;left:-14px;transition:0.3s;}
+#profile .tabs li:hover{background-color:#15535f;opacity:.95;}
+#profile .tabs li:active{opacity:1;}
+#profile .tabs li:hover::before{color:#15535f;}
+#profile .tabs li.active{width:100%;background-color:#E7A429;color:#00667A;font-weight:bold;margin-right:0;}
+#profile .tabs li.active::before{font-weight:normal;color:#e7a429;}
+#profile .tab{padding: 30px 50px 0;}
+
+
 .addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
 .addon.btn.save button:hover{background-color:#15535f;}
 .addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
 .addon.btn.cancel button:hover{background-color:#d15530;color:#D8DAD0;}
-.vertical-tabs .tabs li::before{left:-18px;content:'c';font-family:'sarshomar';font-size:25px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:34px;left:-25px;}
-.vertical-tabs .tabs li.active::before{color:#e7a429;}
-.vertical-tabs .tabs li.active:hover::before{color:#e7a429;}
-.vertical-tabs .tabs li:hover::before{color:#15535f;}
 
 
 #tab-personal img{width:150px;height:150px;margin-bottom:2em;}

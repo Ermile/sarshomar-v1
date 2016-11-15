@@ -2,310 +2,293 @@
 
 {%block content%}
    <aside>
+    <ul class="tabs">
+     <li data-tab="personal" class="active">{%trans "Personal"%}</li>
+     <li data-tab="education">{%trans "Education"%}</li>
+     <li data-tab="job">{%trans "Job"%}</li>
+     <li data-tab="location">{%trans "Location"%}</li>
+     <li data-tab="user">{%trans "User"%}</li>
+     <li data-tab="family">{%trans "Family"%}</li>
+     <li data-tab="favorites">{%trans "Favorites"%}</li>
+    </ul>
    </aside>
 
-   <div class="row">
-   <div class="span1">
-   </div>
-    <div class="span10">
-    <div class="vertical-tabs">
-     <ul class="tabs">
-      <li data-tab="profile">{%trans "Profile"%}</li>
-      <li data-tab="personal" class="active">{%trans "Personal"%}</li>
-      <li data-tab="education">{%trans "Education"%}</li>
-      <li data-tab="job">{%trans "Job"%}</li>
-      <li data-tab="location">{%trans "Location"%}</li>
-      <li data-tab="user">{%trans "User"%}</li>
-      <li data-tab="family">{%trans "Family"%}</li>
-      <li data-tab="favorites">{%trans "Favorites"%}</li>
-     </ul>
-    </div>
-
-     <div class="vertical-tabs-content">
-      <ul class="tab">
-       <li id="tab-profile">
-        <div class="row">
-         <h2>Profile</h2>
-        </div>
-       </li>
-       <li id="tab-personal">
-        <div class="row">
-         <div><img src="/static/images/profile.svg" alt=""></div>
-         <div class="element{%if profile.firstname%} raw{%endif%}">
-          <label for="firstname" class="title">{%trans "First Name"%}</label>
-          <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.firstname%} raw{%endif%}">
-          <label for="lastname" class="title">{%trans "Last Name"%}</label>
-          <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.displayname%} raw{%endif%}">
-          <label for="displayname" class="title">{%trans "Display Name"%}</label>
-          <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.email%} raw{%endif%}">
-          <label for="email" class="title">{%trans "Email"%}</label>
-          <input type="text" name="email" id="email" value="{{profile.email}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.mobile%} raw{%endif%}">
-          <label for="mobile" class="title">{%trans "Mobile"%}</label>
-          <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.birthyear%} raw{%endif%}">
-          <label for="birthyear" class="title">{%trans "Birth Year"%}</label>
-          <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.birthmonth%} raw{%endif%}">
-          <label for="birthmonth" class="title">{%trans "Birth Month"%}</label>
-          <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.birthday%} raw{%endif%}">
-          <label for="birthday" class="title">{%trans "Birthday"%}</label>
-          <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" disabled>
-         </div>
-         <div class="element{%if profile.uilanguage%} raw{%endif%}">
-          <label for="uilanguage" class="title">{%trans "UI Language"%}</label>
-          <input type="text" name="uilanguage" id="uilanguage" value="{{profile.uilanguage}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element{%if profile.religion%} raw{%endif%}">
-          <label for="religion" class="title">{%trans "Religion"%}</label>
-          <input type="text" name="religion" id="religion" value="{{profile.religion}}" class="input autocomplete" disabled>
-         </div>
-        </div>
-       </li>
-       <li id="tab-education">
-        <div class="row">
-         <div class="element raw">
-          <label for="graduation" class="title">{%trans "Graduation"%}</label>
-          <select class="input" name="graduation" id="graduation">
-           <option value="">{%trans "Please Select One Item"%}</option>
-           <option value="illiterate">{%trans "Illiterate"%}</option>
-           <option value="undergraduate">{%trans "Undergraduate"%}</option>
-           <option value="graduate">{%trans "Graduate"%}</option>
-          </select>
-         </div>
-         <div class="element raw">
-          <label for="educationtype" class="title">{%trans "Education Type"%}</label>
-          <select name="educationtype" id="educationtype" class="input">
-           <option value="">{%trans "Please Select One Item"%}</option>
-           <option value="academic">{%trans "Academic"%}</option>
-           <option value="howzeh">{%trans "Howzeh"%}</option>
-          </select>
-         </div>
-         <div class="element raw">
-          <label class="title" for="course">{%trans "Course"%}</label>
-          <input class="input autocomplete" type="text" name="course" id="course" value="{{profile.course}}" disabled>
-         </div>
-         <div class="element raw">
-          <label for="degree" class="title">{%trans "Degree"%}</label>
-          <select name="degree" id="degree" class="input">
-           <option value="">{%trans "Please Select One Item"%}</option>
-           <option value="under diploma">{%trans "Under Diploma"%}</option>
-           <option value="diploma">{%trans "Diploma"%}</option>
-           <option value="2 year college">{%trans "2 Year College"%}</option>
-           <option value="bachelor">{%trans "Bachelor"%}</option>
-           <option value="master">{%trans "Master"%}</option>
-           <option value="phd">{%trans "PHD"%}</option>
-           <option value="other">{%trans "Other"%}</option>
-          </select>
-         </div>
-         <div class="element raw">
-          <label for="howzeh" class="title">{%trans "Howzeh"%}</label>
-          <input type="text" name="howzeh" id="howzeh" value="{{profile.howzeh}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="howzehdegree" class="title">{%trans "Howzeh Degree"%}</label>
-          <input type="text" name="howzehdegree" id="howzehdegree" value="{{profile.howzehdegree}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="howzehcourse" class="title">{%trans "Howzeh Course"%}</label>
-          <input type="text" name="howzehcourse" id="howzehcourse" value="{{profile.howzehcourse}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="educationcity" class="title">{%trans "Education City"%}</label>
-          <input type="text" name="educationcity" id="educationcity" value="{{profile.educationcity}}" class="input autocomplete" disabled>
-         </div>
-        </div>
-       </li>
-       <li id="tab-job">
-        <div class="row">
-         <div class="element raw">
-          <label for="employmentstatus" class="title">{%trans "Employment Status"%}</label>
-          <select name="employmentstatus" id="employmentstatus" class="input">
-           <option value="">{%trans "Please Select One Item"%}</option>
-           <option value="employee">{%trans "Employee"%}</option>
-           <option value="unemployee">{%trans "Unemployee"%}</option>
-           <option value="retired">{%trans "Retired"%}</option>
-          </select>
-         </div>
-         <div class="element raw">
-          <label for="industry" class="title">{%trans "Industry"%}</label>
-          <input type="text" name="industry" id="industry" value="{{profile.industry}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="company" class="title">{%trans "Company"%}</label>
-          <input type="text" name="company" id="company" value="{{profile.company}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="jobcity" class="title">{%trans "Job City"%}</label>
-          <input type="text" name="jobcity" id="jobcity" value="{{profile.jobcity}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="jobtitle" class="title">{%trans "Job Title"%}</label>
-          <input type="text" name="" id="jobtitle" value="{{profile.jobtitle}}" class="input autocomplete" disabled>
-         </div>
-        </div>
-       </li>
-       <li id="tab-location">
-        <div class="row">
-         <div class="group">
-          <div class="title-line reverse">
-           <span>{%trans "Birth"%}</span>
-          </div>
-          <div class="element raw">
-           <label for="birthcountry" class="title">{%trans "Birth Country"%}</label>
-           <input type="text" name="birthcountry" id="birthcountry" value="{{profile.birthcountry}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="birthprovince" class="title">{%trans "Birth Province"%}</label>
-           <input type="text" name="birthprovince" id="birthprovince" value="{{profile.birthprovince}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="birthcity" class="title">{%trans "Birth City"%}</label>
-           <input type="text" name="birthcity" id="birthcity" value="{{profile.birthcity}}" class="input autocomplete" disabled>
-          </div>
-         </div>
-         <div class="group">
-          <div class="title-line reverse">
-           <span>{%trans "Current"%}</span>
-          </div>
-          <div class="element raw">
-           <label for="country" class="title">{%trans "Country"%}</label>
-           <input type="text" name="country" id="country" value="{{profile.country}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="province" class="title">{%trans "Province"%}</label>
-           <input type="text" name="province" id="province" value="{{profile.province}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="city" class="title">{%trans "City"%}</label>
-           <input type="text" name="city" id="city" value="{{profile.city}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="village" class="title">{%trans "Village"%}</label>
-           <input type="text" name="village" id="village" value="{{profile.village}}" class="input autocomplete" disabled>
-          </div>
-          <div class="element raw">
-           <label for="housestatus" class="title">{%trans "House Status"%}</label>
-           <select name="housestatus" id="housestatus" class="input">
-            <option value="">{%trans "Please Select One Item"%}</option>
-            <option value="owner">{%trans "Owner"%}</option>
-            <option value="tenant">{%trans "Tenant"%}</option>
-            <option value="homeless">{%trans "Homeless"%}</option>
-           </select>
-          </div>
-         </div>
-        </div>
-       </li>
-       <li id="tab-user">
-        <div class="row">
-         <h2>{%trans "User"%}</h2>
-        </div>
-       </li>
-       <li id="tab-family">
-        <div class="row">
-         <div class="group">
-          <div class="title-line reverse">
-           <span>{%trans "Personal"%}</span>
-          </div>
-          <div class="element raw">
-           <label for="marrital" class="title">{%trans "Marrital"%}</label>
-           <select name="marrital" id="marrital" class="input">
-            <option value="">{%trans "Please Select One Item"%}</option>
-            <option value="single">{%trans "Single"%}</option>
-            <option value="married">{%trans "Married"%}</option>
-           </select>
-          </div>
-          <div class="element raw">
-           <label for="girlchild" class="title">{%trans "Girl Child"%}</label>
-           <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" disabled>
-          </div>
-          <div class="element raw">
-           <label for="boychild" class="title">{%trans "Boy Child"%}</label>
-           <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" disabled>
-          </div>
-         </div>
-        </div>
-       </li>
-       <li id="tab-favorites">
-        <div class="row">
-         <div class="element raw">
-          <label for="internetusage" class="title">{%trans "Internet Usage"%}</label>
-          <select name="internetusage" id="internetusage" class="input">
-           <option value="">{%trans "Please Select One Item"%}</option>
-           <option value="low">{%trans "Low"%}</option>
-           <option value="mid">{%trans "Mid"%}</option>
-           <option value="high">{%trans "High"%}</option>
-          </select>
-         </div>
-         <div class="element raw">
-          <label for="skills" class="title">{%trans "Skills"%}</label>
-          <input type="text" name="skills" id="skills" value="{{profile.skills}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="languages" class="title">{%trans "Languages"%}</label>
-          <input type="text" name="languages" id="languages" value="{{profile.languages}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="books" class="title">{%trans "Books"%}</label>
-          <input type="text" name="books" id="books" value="{{profile.books}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="writers" class="title">{%trans "Writers"%}</label>
-          <input type="text" name="writers" id="writers" value="{{profile.writers}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="films" class="title">{%trans "Films"%}</label>
-          <input type="text" name="films" id="films" value="{{profile.films}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="actors" class="title">{%trans "Actors"%}</label>
-          <input type="text" name="actors" id="actors" value="{{profile.actors}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="genre" class="title">{%trans "Genre"%}</label>
-          <input type="text" name="genre" id="genre" value="{{profile.genre}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="musics" class="title">{%trans "Musics"%}</label>
-          <input type="text" name="musics" id="musics" value="{{profile.musics}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="artists" class="title">{%trans "Artists"%}</label>
-          <input type="text" name="artists" id="artists" value="{{profile.artists}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="sports" class="title">{%trans "Sports"%}</label>
-          <input type="text" name="sports" id="sports" value="{{profile.sports}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="sportmans" class="title">{%trans "Sportmans"%}</label>
-          <input type="text" name="sportmans" id="sportmans" value="{{profile.sportmans}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="habbits" class="title">{%trans "Habbits"%}</label>
-          <input type="text" name="habbits" id="habbits" value="{{profile.habbits}}" class="input autocomplete" disabled>
-         </div>
-         <div class="element raw">
-          <label for="devices" class="title">{%trans "Devices"%}</label>
-          <input type="text" name="devices" id="devices" value="{{profile.devices}}" class="input autocomplete" disabled>
-         </div>
-        </div>
-       </li>
-      </ul>
+   <ul class="tab">
+    <li id="tab-personal">
+     <div class="row">
+      <div><img src="/static/images/profile.svg" alt=""></div>
+      <div class="element{%if profile.firstname%} raw{%endif%}">
+       <label for="firstname" class="title">{%trans "First Name"%}</label>
+       <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.firstname%} raw{%endif%}">
+       <label for="lastname" class="title">{%trans "Last Name"%}</label>
+       <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.displayname%} raw{%endif%}">
+       <label for="displayname" class="title">{%trans "Display Name"%}</label>
+       <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.email%} raw{%endif%}">
+       <label for="email" class="title">{%trans "Email"%}</label>
+       <input type="text" name="email" id="email" value="{{profile.email}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.mobile%} raw{%endif%}">
+       <label for="mobile" class="title">{%trans "Mobile"%}</label>
+       <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.birthyear%} raw{%endif%}">
+       <label for="birthyear" class="title">{%trans "Birth Year"%}</label>
+       <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.birthmonth%} raw{%endif%}">
+       <label for="birthmonth" class="title">{%trans "Birth Month"%}</label>
+       <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.birthday%} raw{%endif%}">
+       <label for="birthday" class="title">{%trans "Birthday"%}</label>
+       <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" disabled>
+      </div>
+      <div class="element{%if profile.uilanguage%} raw{%endif%}">
+       <label for="uilanguage" class="title">{%trans "UI Language"%}</label>
+       <input type="text" name="uilanguage" id="uilanguage" value="{{profile.uilanguage}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element{%if profile.religion%} raw{%endif%}">
+       <label for="religion" class="title">{%trans "Religion"%}</label>
+       <input type="text" name="religion" id="religion" value="{{profile.religion}}" class="input autocomplete" disabled>
+      </div>
      </div>
-    </div>
-   </div>
+    </li>
+    <li id="tab-education">
+     <div class="row">
+      <div class="element raw">
+       <label for="graduation" class="title">{%trans "Graduation"%}</label>
+       <select class="input" name="graduation" id="graduation">
+        <option value="">{%trans "Please Select One Item"%}</option>
+        <option value="illiterate">{%trans "Illiterate"%}</option>
+        <option value="undergraduate">{%trans "Undergraduate"%}</option>
+        <option value="graduate">{%trans "Graduate"%}</option>
+       </select>
+      </div>
+      <div class="element raw">
+       <label for="educationtype" class="title">{%trans "Education Type"%}</label>
+       <select name="educationtype" id="educationtype" class="input">
+        <option value="">{%trans "Please Select One Item"%}</option>
+        <option value="academic">{%trans "Academic"%}</option>
+        <option value="howzeh">{%trans "Howzeh"%}</option>
+       </select>
+      </div>
+      <div class="element raw">
+       <label class="title" for="course">{%trans "Course"%}</label>
+       <input class="input autocomplete" type="text" name="course" id="course" value="{{profile.course}}" disabled>
+      </div>
+      <div class="element raw">
+       <label for="degree" class="title">{%trans "Degree"%}</label>
+       <select name="degree" id="degree" class="input">
+        <option value="">{%trans "Please Select One Item"%}</option>
+        <option value="under diploma">{%trans "Under Diploma"%}</option>
+        <option value="diploma">{%trans "Diploma"%}</option>
+        <option value="2 year college">{%trans "2 Year College"%}</option>
+        <option value="bachelor">{%trans "Bachelor"%}</option>
+        <option value="master">{%trans "Master"%}</option>
+        <option value="phd">{%trans "PHD"%}</option>
+        <option value="other">{%trans "Other"%}</option>
+       </select>
+      </div>
+      <div class="element raw">
+       <label for="howzeh" class="title">{%trans "Howzeh"%}</label>
+       <input type="text" name="howzeh" id="howzeh" value="{{profile.howzeh}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="howzehdegree" class="title">{%trans "Howzeh Degree"%}</label>
+       <input type="text" name="howzehdegree" id="howzehdegree" value="{{profile.howzehdegree}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="howzehcourse" class="title">{%trans "Howzeh Course"%}</label>
+       <input type="text" name="howzehcourse" id="howzehcourse" value="{{profile.howzehcourse}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="educationcity" class="title">{%trans "Education City"%}</label>
+       <input type="text" name="educationcity" id="educationcity" value="{{profile.educationcity}}" class="input autocomplete" disabled>
+      </div>
+     </div>
+    </li>
+    <li id="tab-job">
+     <div class="row">
+      <div class="element raw">
+       <label for="employmentstatus" class="title">{%trans "Employment Status"%}</label>
+       <select name="employmentstatus" id="employmentstatus" class="input">
+        <option value="">{%trans "Please Select One Item"%}</option>
+        <option value="employee">{%trans "Employee"%}</option>
+        <option value="unemployee">{%trans "Unemployee"%}</option>
+        <option value="retired">{%trans "Retired"%}</option>
+       </select>
+      </div>
+      <div class="element raw">
+       <label for="industry" class="title">{%trans "Industry"%}</label>
+       <input type="text" name="industry" id="industry" value="{{profile.industry}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="company" class="title">{%trans "Company"%}</label>
+       <input type="text" name="company" id="company" value="{{profile.company}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="jobcity" class="title">{%trans "Job City"%}</label>
+       <input type="text" name="jobcity" id="jobcity" value="{{profile.jobcity}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="jobtitle" class="title">{%trans "Job Title"%}</label>
+       <input type="text" name="" id="jobtitle" value="{{profile.jobtitle}}" class="input autocomplete" disabled>
+      </div>
+     </div>
+    </li>
+    <li id="tab-location">
+     <div class="row">
+      <div class="group">
+       <div class="title-line reverse">
+        <span>{%trans "Birth"%}</span>
+       </div>
+       <div class="element raw">
+        <label for="birthcountry" class="title">{%trans "Birth Country"%}</label>
+        <input type="text" name="birthcountry" id="birthcountry" value="{{profile.birthcountry}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="birthprovince" class="title">{%trans "Birth Province"%}</label>
+        <input type="text" name="birthprovince" id="birthprovince" value="{{profile.birthprovince}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="birthcity" class="title">{%trans "Birth City"%}</label>
+        <input type="text" name="birthcity" id="birthcity" value="{{profile.birthcity}}" class="input autocomplete" disabled>
+       </div>
+      </div>
+      <div class="group">
+       <div class="title-line reverse">
+        <span>{%trans "Current"%}</span>
+       </div>
+       <div class="element raw">
+        <label for="country" class="title">{%trans "Country"%}</label>
+        <input type="text" name="country" id="country" value="{{profile.country}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="province" class="title">{%trans "Province"%}</label>
+        <input type="text" name="province" id="province" value="{{profile.province}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="city" class="title">{%trans "City"%}</label>
+        <input type="text" name="city" id="city" value="{{profile.city}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="village" class="title">{%trans "Village"%}</label>
+        <input type="text" name="village" id="village" value="{{profile.village}}" class="input autocomplete" disabled>
+       </div>
+       <div class="element raw">
+        <label for="housestatus" class="title">{%trans "House Status"%}</label>
+        <select name="housestatus" id="housestatus" class="input">
+         <option value="">{%trans "Please Select One Item"%}</option>
+         <option value="owner">{%trans "Owner"%}</option>
+         <option value="tenant">{%trans "Tenant"%}</option>
+         <option value="homeless">{%trans "Homeless"%}</option>
+        </select>
+       </div>
+      </div>
+     </div>
+    </li>
+    <li id="tab-user">
+     <div class="row">
+      <h2>{%trans "User"%}</h2>
+     </div>
+    </li>
+    <li id="tab-family">
+     <div class="row">
+      <div class="group">
+       <div class="title-line reverse">
+        <span>{%trans "Personal"%}</span>
+       </div>
+       <div class="element raw">
+        <label for="marrital" class="title">{%trans "Marrital"%}</label>
+        <select name="marrital" id="marrital" class="input">
+         <option value="">{%trans "Please Select One Item"%}</option>
+         <option value="single">{%trans "Single"%}</option>
+         <option value="married">{%trans "Married"%}</option>
+        </select>
+       </div>
+       <div class="element raw">
+        <label for="girlchild" class="title">{%trans "Girl Child"%}</label>
+        <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" disabled>
+       </div>
+       <div class="element raw">
+        <label for="boychild" class="title">{%trans "Boy Child"%}</label>
+        <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" disabled>
+       </div>
+      </div>
+     </div>
+    </li>
+    <li id="tab-favorites">
+     <div class="row">
+      <div class="element raw">
+       <label for="internetusage" class="title">{%trans "Internet Usage"%}</label>
+       <select name="internetusage" id="internetusage" class="input">
+        <option value="">{%trans "Please Select One Item"%}</option>
+        <option value="low">{%trans "Low"%}</option>
+        <option value="mid">{%trans "Mid"%}</option>
+        <option value="high">{%trans "High"%}</option>
+       </select>
+      </div>
+      <div class="element raw">
+       <label for="skills" class="title">{%trans "Skills"%}</label>
+       <input type="text" name="skills" id="skills" value="{{profile.skills}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="languages" class="title">{%trans "Languages"%}</label>
+       <input type="text" name="languages" id="languages" value="{{profile.languages}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="books" class="title">{%trans "Books"%}</label>
+       <input type="text" name="books" id="books" value="{{profile.books}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="writers" class="title">{%trans "Writers"%}</label>
+       <input type="text" name="writers" id="writers" value="{{profile.writers}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="films" class="title">{%trans "Films"%}</label>
+       <input type="text" name="films" id="films" value="{{profile.films}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="actors" class="title">{%trans "Actors"%}</label>
+       <input type="text" name="actors" id="actors" value="{{profile.actors}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="genre" class="title">{%trans "Genre"%}</label>
+       <input type="text" name="genre" id="genre" value="{{profile.genre}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="musics" class="title">{%trans "Musics"%}</label>
+       <input type="text" name="musics" id="musics" value="{{profile.musics}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="artists" class="title">{%trans "Artists"%}</label>
+       <input type="text" name="artists" id="artists" value="{{profile.artists}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="sports" class="title">{%trans "Sports"%}</label>
+       <input type="text" name="sports" id="sports" value="{{profile.sports}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="sportmans" class="title">{%trans "Sportmans"%}</label>
+       <input type="text" name="sportmans" id="sportmans" value="{{profile.sportmans}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="habbits" class="title">{%trans "Habbits"%}</label>
+       <input type="text" name="habbits" id="habbits" value="{{profile.habbits}}" class="input autocomplete" disabled>
+      </div>
+      <div class="element raw">
+       <label for="devices" class="title">{%trans "Devices"%}</label>
+       <input type="text" name="devices" id="devices" value="{{profile.devices}}" class="input autocomplete" disabled>
+      </div>
+     </div>
+    </li>
+   </ul>
 {%endblock%}
 
 {%block foot_js%}
