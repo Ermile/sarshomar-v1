@@ -467,10 +467,10 @@ nav#page-nav #nav-prev{float:left;}
 .tab>li.active{display:inherit;}
 
 
-/* Vertical Tabs (Profile) */
+/* Profile Tabs */
 #profile .tabs{padding-left:15%;margin-top:30px;}
 #profile .tabs li{position:relative;width:80%;margin-bottom:15px;height:34px;line-height:34px;cursor:pointer;transition:.3s;text-align:center;color:#d8dad0;border-top-left-radius:6px;border-bottom-left-radius:6px;background-color:#00667a;font-size:12px;}
-#profile .tabs li::before{font-family:'sarshomar';content:'c';position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:20px;left:-14px;transition:0.3s;}
+#profile .tabs li::before{font-family:'sarshomar';content:'c';position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:21px;left:-14px;transition:0.3s;}
 #profile .tabs li:hover{background-color:#15535f;opacity:.95;}
 #profile .tabs li:active{opacity:1;}
 #profile .tabs li:hover::before{color:#15535f;}
@@ -478,24 +478,20 @@ nav#page-nav #nav-prev{float:left;}
 #profile .tabs li.active::before{font-weight:normal;color:#e7a429;}
 #profile .tab{padding: 30px 50px 0;}
 
+/* Profile Tabs RTL */
+.rtl#profile .tabs{padding-left:0;padding-right:15%;}
+.rtl#profile .tabs li{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:6px;border-bottom-right-radius:6px;}
+.rtl#profile .tabs li::before{content:'b';left:auto;right:-15px;}
+
+/************************************************************** Profile */
+#profile .profile-image{display:inline-block;width:150px;height:150px;margin-bottom:2em;}
+#profile .title-line::before{width:180px;}
+#profile .title-line.reverse::before{left:-50px;}
 
 .addon.btn.save button{background-color:#00667A;color:#D8DAD0;}
 .addon.btn.save button:hover{background-color:#15535f;}
 .addon.btn.cancel button{background-color:#E96F4B;color:#D8DAD0;}
 .addon.btn.cancel button:hover{background-color:#d15530;color:#D8DAD0;}
-
-
-#tab-personal img{width:150px;height:150px;margin-bottom:2em;}
-.margin-bottom{margin-bottom:2em;}
-
-/* ======================================================== @/profile */
-#profile .buttons{margin-top:5em;}
-#profile .title-line::before{width:180px;}
-#profile .title-line.reverse::before{left:-50px;}
-#profile .buttons::before{width:100%;left:0px;}
-
-
-
 
 /* customers */
 #customers-box{padding:100px 0;background-color:#FCFCFC;}
