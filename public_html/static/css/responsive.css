@@ -79,9 +79,13 @@
 }
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
+ 
+  /**********************************homepage-1***************************/
   /*----------header-----------*/
   header{border:none;}
+  .rtl header{border:none;}
   header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
+  .rtl header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
   header .logo img{width: 8em;}
   header #header-box{display: block;width: 100%;height: 50px;}
   header #header-quick{display: none;}
@@ -91,13 +95,16 @@
   nav.breadcrumb{display: none;}
   /*----------wrapper-----------*/
   #map{display: none;}
-  .wrapper{padding: 0;border-bottom: 8px solid transparent;margin-top: 10px;border-top: 8px solid transparent;margin-top: 10px;}
+  .wrapper{padding: 0;border-bottom: 8px solid transparent;border-top: 8px solid transparent;margin-top: 10px;display: block}
   #intro-box p{font-size:1.6em;}
   #random-chart h3{text-align: left;padding: 1em .2em;}
   #random-chart h3 a{font-size: 2em;font-weight: 500;}
+  .special-heading::after{display: none;}
+  .rtl .special-heading::after{display: none;}
   /*----------customer-----------*/
   #customers-box{padding: 3em ;}
   .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
+  .rtl .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
   #customers-box .customer p{width: 90%;margin:0 auto;text-align: left;font-size: 1.6em;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
@@ -116,6 +123,18 @@
   footer #footer-links section h4{text-align: left;}
   footer #footer-nav .eco img{display: none;}
   footer #footer-note .counter, footer #footer-note .love{display: inline-block !important;width:50% !important; margin-top:5px !important; }
+
+  /**********************************dashbord***************************/
+  .wrapper>aside{display: block;width: 100%;text-align: center;padding-top: 5em;margin-bottom: 8em;}
+  .wrapper>aside img{width: 70%;}
+  .dashboard .progress{margin-top: 40px;}
+  .personal-info{font-size: 1.5em;}
+  .progress{font-size: 1.8em}
+  .progress::before{font-size: 1.5em}
+  .progress>.detail{font-size: 1.8em;display: block;}
+  .card h3{font-size:1.7em;}
+  .card>span a{font-size: 1.5em;}
+  .main{display: block;width: 100%;}
 }
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 @media only screen and (max-width: 479px){
@@ -126,7 +145,10 @@
   header .logo img{width: 8em;}
   /*----------footer-----------*/
   footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
-  }
+  /**********************************dashbord***************************/
+
+
+ }
   /*================================== 
   @media only screen and (max-width: 320px){}
 
