@@ -51,7 +51,7 @@
         <input class="input" type="text" name="end_time">
       </div>
 
-      <input type="hidden" name="tags" id="sp-tags" value="">
+      <input type="hidden" name="tags" id="sp-tags" value="{{tags|join(',') ~ ','}}">
       <div class="element">
         <label class="title" for="tags">{%trans "Tags"%}</label>
         <input class="input similar-tag" data-list="tag-list" data-split="sp-tags" type="text" id="tags">
@@ -61,6 +61,9 @@
       </div>
 
       <div class="tags" id="tag-list">
+      {%for key,value in tags%}
+        <a><i class="fa fa-times remove-tags" data-split="sp-tags"></i>{{value}}</a>
+      {%endfor%}
       </div>
     </div>
 

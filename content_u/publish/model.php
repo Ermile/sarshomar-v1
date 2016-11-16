@@ -15,10 +15,12 @@ class model extends \content_u\home\model
 	 */
 	function get_publish($_args)
 	{
+		$poll_id = $this->check_poll_url($_args);
 		// get poll url to show in publish form
-		$short_url = \lib\db\polls::get_poll_url($this->check_poll_url($_args));
-		return $short_url;
+		$poll = \lib\db\polls::get_poll($poll_id);
+		return $poll;
 		// check users to load cat and article
+
 	}
 
 
@@ -44,11 +46,13 @@ class model extends \content_u\home\model
 		// split by ',' and insert
 		$tags = utility::post("tags");
 
+		$remove_tags = \lib\db\tags::remove($poll_survey_id);
 
 		if($tags)
 		{
 			// check count tags
 			$check_count = explode(',', $tags);
+			$check_count = array_filter($check_count);
 			if(count($check_count) > 3 && !$this->access('u', 'sarshomar_knowledge', 'add'))
 			{
 				debug::error(T_("too tags added !!! remove some tags"));

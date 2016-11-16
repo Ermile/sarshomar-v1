@@ -380,7 +380,7 @@ route('*', function ()
 	{
 		var span = $(this).parent();
 		var split = $(this).attr('data-split');
-		$('#' + split).val($('#'+ split).val().replace(span.text() + ', ', ''));
+		$('#' + split).val($('#'+ split).val().replace(span.text() + ',', ''));
 		span.remove();
 	});
 
@@ -471,7 +471,7 @@ function addTag(element_id)
 	if (newTag)
 	{
 		var exist = false;
-		$.each($('#'+ split).val().split(', '), function (t, item)
+		$.each($('#'+ split).val().split(','), function (t, item)
 		{
 			if (item == newTag) { exist = t + 1; }
 		});
@@ -484,7 +484,7 @@ function addTag(element_id)
 		else
 		{
 			$('#' + list).append("<a><i class='fa fa-times remove-tags' data-split='"+split+"'></i>" + newTag + "</a>");
-			$('#' + split).val($('#' + split).val() + newTag + ', ');
+			$('#' + split).val($('#' + split).val() + newTag + ',');
 		}
 	}
 	tag.val('');

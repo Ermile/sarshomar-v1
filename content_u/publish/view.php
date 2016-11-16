@@ -15,7 +15,9 @@ class view extends \mvc\view
 		$this->include->fontawesome = true;
 
 		// set the short url to data
-		$this->data->short_url = $_args->api_callback;
+		$poll = $_args->api_callback;
+		$this->data->short_url = isset($poll['url']) ? $poll['url'] : '';
+
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
 		{
 			// get all cat_poll from terms
@@ -23,6 +25,11 @@ class view extends \mvc\view
 			// get article
 			$args =	['post_type' => 'article'];
 			$this->data->article = \lib\db\polls::search(null, $args);
+
+		}
+		if(isset($poll['id']))
+		{
+			$this->data->tags = \lib\db\tags::usage($poll['id']);
 		}
 	}
 }
