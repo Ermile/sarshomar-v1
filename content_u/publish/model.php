@@ -33,7 +33,8 @@ class model extends \content_u\home\model
 	 */
 	function post_publish($_args)
 	{
-		$poll_survey_id = $this->check_poll_url($_args);
+		$poll_survey_id       = $this->check_poll_url($_args);
+		$this->poll_survey_id = $poll_survey_id;
 		if(!$poll_survey_id)
 		{
 			debug::error(T_("poll id not found"));
@@ -62,7 +63,10 @@ class model extends \content_u\home\model
 			$insert_tag = \lib\db\tags::insert_multi($tags);
 
 			$tags_id    = \lib\db\tags::get_multi_id($tags);
-
+			if(!is_array($tags_id))
+			{
+				$tags_id = [];
+			}
 			// save tag to this poll
 			$useage_arg = [];
 			foreach ($tags_id as $key => $value) {
@@ -77,68 +81,42 @@ class model extends \content_u\home\model
 			$useage = \lib\db\termusages::insert_multi($useage_arg);
 		}
 
-		$date_start = utility::post("start_time");
-		$date_end   = utility::post("end_time");
 		// dave start date and end date in post_meta
-		$update_post_meta = \lib\db\polls::merge_meta(['date_start' => $date_start, 'date_end' => $date_end], $poll_survey_id);
+		$this->date_start_end("start_time");
+		$this->date_start_end("end_time");
 
-		// set publish date
-		$publish_date = [];
-		if($date_start)
+		if($this->access('u', 'sarshomar_knowledge', 'add'))
 		{
-			$publish_date[] =
-			[
-				'post_id'      => $poll_survey_id,
-				'option_cat'   => "poll_$poll_survey_id",
-				'option_key'   => "date_start",
-				'option_value' => $date_start
-			];
-		}
-
-		if($date_end)
-		{
-			$publish_date[] =
-			[
-				'post_id' => $poll_survey_id,
-				'option_cat' => "poll_$poll_survey_id",
-				'option_key' => "date_end",
-				'option_value' => $date_end
-			];
-		}
-
-		if(count($publish_date) == 2)
-		{
-			$publish_date = \lib\db\options::insert_multi($publish_date);
-		}
-		elseif(count($publish_date) == 1)
-		{
-			$publish_date = \lib\db\options::insert($publish_date[0]);
-		}
-		if(utility::post("article"))
-		{
-			if($this->access('u', 'sarshomar_knowledge', 'add'))
+			if(utility::post("article"))
 			{
 				$article =
 				[
-					'post_id' => $poll_survey_id,
-					'option_cat' => "poll_$poll_survey_id",
-					'option_key' => "article",
+					'post_id'      => $poll_survey_id,
+					'option_cat'   => "poll_$poll_survey_id",
+					'option_key'   => "article",
 					'option_value' => utility::post("article")
 				];
-				$article = \lib\db\options::insert($article);
+				$article_insert = \lib\db\options::insert($article);
+				if(!$article_insert)
+				{
+					\lib\db\options::update_on_error($article, array_splice($article, 1));
+				}
+			}
+
+			if(utility::post("cat"))
+			{
+				\lib\db\cats::set(utility::post("cat"), $poll_survey_id);
 			}
 		}
 
 		$language = utility::post("language");
 
+		$publish_status = 'publish';
+
 		$post_status = \lib\db\polls::get_poll_status($poll_survey_id);
 		if($post_status != 'publish')
 		{
 			$publish_status = $post_status;
-		}
-		else
-		{
-			$publish_status = 'publish';
 		}
 
 		// save and check words
@@ -167,6 +145,35 @@ class model extends \content_u\home\model
 		else
 		{
 			debug::error(T_("error in publish poll"));
+		}
+	}
+
+
+	/**
+	 * save publish date and date of stop poll
+	 * in option table and meta of poll
+	 *
+	 * @param      <type>  $_type  The type
+	 */
+	function date_start_end($_type)
+	{
+
+		$publish_date =
+		[
+			'post_id'      => $this->poll_survey_id,
+			'option_cat'   => "poll_{$this->poll_survey_id}",
+			'option_key'   => $_type,
+			'option_value' => utility::post($_type)
+		];
+		$publish_date_query = \lib\db\options::insert($publish_date);
+		if(!$publish_date_query)
+		{
+			\lib\db\options::update_on_error($publish_date, array_splice($publish_date, 1));
+			\lib\db\polls::replace_meta([$_type => utility::post($_type)], $this->poll_survey_id);
+		}
+		else
+		{
+			\lib\db\polls::merge_meta([$_type => utility::post($_type)], $this->poll_survey_id);
 		}
 	}
 }

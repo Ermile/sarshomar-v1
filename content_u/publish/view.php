@@ -31,6 +31,7 @@ class view extends \mvc\view
 		{
 			$this->data->tags = \lib\db\tags::usage($poll['id']);
 		}
+		$this->data->poll = $poll;
 	}
 }
 ?>

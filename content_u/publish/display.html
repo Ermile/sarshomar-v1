@@ -43,12 +43,12 @@
 
       <div class="element">
         <label class="title">{%trans "Start Time"%}</label>
-        <input class="input" type="text" name="start_time">
+        <input class="input" type="text" name="start_time" value="{{poll.meta.start_time}}">
       </div>
 
       <div class="element">
         <label class="title">{%trans "End Time"%}</label>
-        <input class="input" type="text" name="end_time">
+        <input class="input" type="text" name="end_time" value="{{poll.meta.end_time}}">
       </div>
 
       <input type="hidden" name="tags" id="sp-tags" value="{{tags|join(',') ~ ','}}">
