@@ -788,6 +788,8 @@ class polls
 	 */
 	public static function search($_string = null, $_options = [])
 	{
+		$where = [];
+
 		if(!$_string && empty($_options))
 		{
 			return null;
@@ -797,11 +799,25 @@ class polls
 		[
 			"get_count"  => false,
 			"pagenation" => true,
-			"limit"      => 10
+			"limit"      => 10,
+			"login"      => false,
+			"get_last"	 => false
 		];
 
 		$_options = array_merge($default_options, $_options);
+		// ------------------ faivorites
+		$faivorites = null;
+		if($_options['login'])
+		{
+			$faivorites =
+			"
+				LEFT JOIN options
+					ON options.post_id = posts.id AND
+						options.option_key = 'faivorites' AND
+						options.user_id = $_options[login] ";
+		}
 
+		// ------------------ pagenation
 		$pagenation = false;
 		if($_options['pagenation'])
 		{
@@ -809,6 +825,7 @@ class polls
 			$pagenation = true;
 		}
 
+		// ------------------ get count
 		$only_one_value = false;
 		if($_options['get_count'] === true)
 		{
@@ -821,13 +838,21 @@ class polls
 			$public_fields = self::$fields;
 			$limit = $_options['limit'];
 		}
+		// ------------------ get last
+		$order = null;
+		if($_options['get_last'])
+		{
+			$order = " ORDER BY posts.id DESC ";
+		}
 
+		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
 		unset($_options['get_count']);
 		unset($_options['limit']);
+		unset($_options['login']);
+		unset($_options['get_last']);
 
-		$where = [];
 		$where[] = " posts.post_type != 'post' ";
 
 		foreach ($_options as $key => $value) {
@@ -869,14 +894,23 @@ class polls
 		{
 			$limit = " LIMIT 0, $limit ";
 		}
+		// ------------------ faivorites
+		if($faivorites)
+		{
+			$public_fields = " options.option_value AS 'faivorites', ". $public_fields;
+		}
+
+
 
 		$query =
 		"
 			SELECT
 				$public_fields
+			$faivorites
 			WHERE
 				$where
 				$search
+			$order
 			$limit
 			-- polls::search()
 		";
@@ -904,31 +938,9 @@ class polls
 	 */
 	public static function get_last_poll($_args = [])
 	{
-		$limit = 50;
-		if(isset($_args['limit']))
-		{
-			$limit = $_args['limit'];
-		}
-
-		$public_fields = self::$fields;
-
-		$pagenation_query = "SELECT $public_fields	WHERE posts.post_sarshomar = 1 ";
-		list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
-		$limit = " LIMIT $limit_start, $limit ";
-
-		$query =
-		"
-			SELECT
-				$public_fields
-			WHERE
-				posts.post_sarshomar = 1
-			ORDER BY posts.id DESC
-			$limit
-			-- polls::get_last_poll()
-
-		";
-		$result = \lib\db::get($query);
-		return \lib\utility\filter::meta_decode($result);
+		$_args['get_last']  = true;
+		$_args['post_sarshomar'] = 1;
+		return self::search(null, $_args);
 	}
 
 

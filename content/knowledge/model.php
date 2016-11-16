@@ -7,7 +7,51 @@ class model extends \mvc\model
 
 	public function post_search()
 	{
-		return \lib\db\polls::search(utility::post("search"));
+
+		if(utility::post("type") == 'faivorites')
+		{
+			if($this->login())
+			{
+				$cat = 'user_faivorites_'. utility::post("id");
+				$args =
+				[
+					'post_id'       => utility::post("id"),
+					'user_id'       => $this->login('id'),
+					'option_cat'    => $cat,
+					'option_key'    => 'faivorites',
+					'option_value'  => utility::post("id"),
+					'option_status' => 'enable'
+				];
+
+				$insert_option = \lib\db\options::insert($args);
+				if(!$insert_option)
+				{
+					$where = $args;
+
+					array_splice($where, -1);
+
+					$exist_option_record = \lib\db\options::get($where);
+					if($exist_option_record)
+					{
+						$where['option_status'] = 'enable';
+					}
+					else
+					{
+						$where['option_status'] = 'disable';
+					}
+					\lib\db\options::update_on_error($args, $where);
+				}
+			}
+
+			return;
+		}
+		$field = [];
+		if($this->login())
+		{
+			$field = ['login' => $this->login('id')];
+		}
+
+		return \lib\db\polls::search(utility::post("search"), $field);
 	}
 
 	/**
@@ -19,7 +63,13 @@ class model extends \mvc\model
 	{
 		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '')
 		{
-			return \lib\db\polls::get_last_poll(['limit' => 10]);
+			$field = [];
+			$field['limit'] = 10;
+			if($this->login())
+			{
+				$field['login'] = $this->login('id');
+			}
+			return \lib\db\polls::get_last_poll($field);
 		}
 
 		$match = $_args;

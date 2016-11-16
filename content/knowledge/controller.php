@@ -32,7 +32,7 @@ class controller extends \mvc\controller
 		]
 		);
 
-		$this->post("search")->ALL("/\$/");
+		$this->post("search")->ALL("/^\\$/");
 	}
 }
 ?>
