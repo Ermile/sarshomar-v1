@@ -241,9 +241,8 @@ $(document).ready(function()
   {%endfor%}
       </ul>
       <!-- pagenation -->
-      <div class="test"> </div>
-      <div class="pagination-container">
-    {% embed display.pagination %}{% endembed %}
+      <div class="pagination-container" id="x">
+      {%include display.pagination%}
       </div>
       <!-- ./pagenation -->
   {%else%}
