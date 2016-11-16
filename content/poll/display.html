@@ -3,71 +3,73 @@
 {%block content%}
 <div class="main pad">
  <div class="box">
-  <section id="poll-box">
-   {%if perm.publish_poll.admin%}
-   <script type="text/javascript">alert('{%trans "YOU CAN CHANGE THE STATUS OF THIS POLL!"%}');</script>
-   {%endif%}
-   <h2>{{post.post_title}}</h2>
-   {%include template.social%}
-   {%if profile%}
-   <script type="text/javascript">alert('{%trans "This question will complete your profile"%}')</script>
-   {%endif%}
-   <p>{{post.post_content}}</p>
-   {%if article%}
-   <div class="read-more">
-    <span>{%trans "Read More"%}</span>
-    <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
-   </div>
-   {%endif%}
-   <form method="post">
+  <div class="row auto">
+   <div class="span3"></div>
+   <section class="span6" id="poll-box">
+    {%if perm.publish_poll.admin%}
+     <script type="text/javascript">alert('{%trans "YOU CAN CHANGE THE STATUS OF THIS POLL!"%}');</script>
+    {%endif%}
+    <h2>{{post.post_title}}</h2>
+    {%include template.social%}
+    {%if profile%}
+     <script type="text/javascript">alert('{%trans "This question will complete your profile"%}')</script>
+    {%endif%}
+    <p>{{post.post_content}}</p>
+    {%if article%}
+     <div class="read-more">
+      <span>{%trans "Read More"%}</span>
+      <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
+     </div>
+    {%endif%}
+    <form method="post">
+    {%if post.post_meta.opt%}{#check post meta exist#}
+     <input type="hidden" name="data-id" value="{{post.id}}">
+    {%if multiple_choice%}
+     <ul>
+     {%for key, value in post.post_meta.opt%}
+      <li class="ac-custom ac-checkbox ac-checkmark">
+       <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
+       <label for="check_{{value.key}}" data-number="{{key}}">{{value.txt}}</label>
+      </li>
+     {%endfor%}
+     {%if descriptive%}
+      <li>
+       <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+       <label for="check_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
+      </li>
+     {%endif%}
+     </ul>
+    {%else%}{#muliple_choice not set load the radio mod#}
+     <ul>
+     {%for key, value in post.post_meta.opt%}
+      <li class="ac-custom ac-radio ac-fill">
+       <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
+       <label for="radio_{{value.key}}" data-number="{{key}}">{{value.txt}}</label>
+      </li>
+     {%endfor%}
+     {%if descriptive%}
+      <li class="ac-custom ac-radio ac-fill">
+       <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+       <label for="radio_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
+      </li>
+     {%endif%}
+     </ul>
+    {%endif%}{#multiple_choice check end#}
+    <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
+    {%endif%}
+    </form>
+   </section>
+  </div><!-- /.row -->
+
+  <div class="row auto">
+   <div class="span6">
    {%if post.post_meta.opt%}{#check post meta exist#}
-   <input type="hidden" name="data-id" value="{{post.id}}">
-   {%if multiple_choice%}
-    <ul>
-    {%for key, value in post.post_meta.opt%}
-     <li class="ac-custom ac-checkbox ac-checkmark">
-      <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
-      <label for="check_{{value.key}}">{{value.txt}}</label>
-     </li>
-    {%endfor%}
-    {%if descriptive%}
-     <li>
-      <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-      <label for="check_other"><input type="text" name="opt_other"></label>
-     </li>
-    {%endif%}
-    </ul>
-   {%else%}{#muliple_choice not set load the radio mod#}
-    <ul>
-    {%for key, value in post.post_meta.opt%}
-     <li class="ac-custom ac-radio ac-fill">
-      <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-      <label for="radio_{{value.key}}">{{value.txt}}</label>
-     </li>
-    {%endfor%}
-    {%if descriptive%}
-     <li class="ac-custom ac-radio ac-fill">
-      <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-      <label for="radio_other"><input type="text" name="opt_other"></label>
-     </li>
-    {%endif%}
-    </ul>
-   {%endif%}{#multiple_choice check end#}
-   <input type="submit" name="opt_0" value="skip">
-   <div class="buttons">
-    <nav class="btn-answers">
-     <button class="save-anwser">{%trans "Save Answer"%}</button>
-    </nav>
+    <div class="poll buttons"><button class="save-anwser">{%trans "Save Answer"%}</button></div>
+   {%else%}
+    <div class="poll buttons"><button class="save-anwser"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button></div>
+   {%endif%}
    </div>
-   {%else%}{#post.meta not exist, the user answred the poll #}
-   <div class="buttons">
-    <nav class="btn-answers">
-     <button class="save-anwser"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button>
-    </nav>
-   </div>
-   {%endif%}{#post.meta check#}
-   </form>
-  </section>
+  </div>
 
   {%if chart%}
   <div class="row" id="poll-result">
@@ -80,8 +82,8 @@
      {%endfor%}
     </ul>
    </div>
-   <div class="poll chart"></div>
-  </div>
+   <div class="chart"></div>
+  </div><!-- /.row -->
   {%endif%}
 
   <div class="row" id="poll-extra">
@@ -99,7 +101,7 @@
     <div class="title">{%trans "Status"%}</div>
     <div class="status">{{status}}</div>
 
-    {%if tags%}
+    {%if tags()%}
     <div class="title">{%trans "Keyword"%}</div>
     <div class="tags">{{tags({"html":true})}}</div>
     {%endif%}
@@ -111,17 +113,189 @@
     {%endif%}
    </div>
    <div class="span4" id="poll-similar">
-    {%if similar_post()|length > 0%}
+    {%if similar_post()%}
     <div class="title">{%trans "Similar Questions"%}</div>
     {%for key, value in similar_post()%}
-    <div><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
+     <div><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
     {%endfor%}
     {%endif%}
    </div>
-  </div>
- </div>
-</div>
+  </div><!-- /.row -->
+
+  {%if comments()%}
+  <div class="row" id="comments-box">
+   <h2 class="special-heading">{%trans "Comments"%}</h2>
+  </div><!-- /.row -->
+  {%endif%}
+ </div><!-- /.box -->
+</div><!-- /.main -->
 {%endblock%}
 
 {%block foot_js%}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+<script type="text/javascript">
+function add_score_comment(_type, _data_id)
+{
+  $(this).ajaxify(
+  {
+    ajax:
+    {
+      method: 'post',
+      data:
+      {
+        'type'  : _type,
+        'data'  : _data_id
+      },
+      abort: true,
+      success: function(e, data, x)
+      {}
+    }
+  });
+}
+
+function bookmark(_poll_id) {
+  $.ajax(
+  {
+    type: 'get',
+    // url: '@/polls',
+    data:
+    {
+      'type'    : 'bookmark',
+      'poll_id' : _poll_id
+    },
+    success: function(data)
+    {}
+  });
+}
+
+function load_chart(_type)
+{
+  if(_type == 'result')
+  {
+    var result = {
+      chart: {
+        type: 'column',
+        backgroundColor: 'rgba(255, 255, 255, 0)'
+      },
+      exporting: {enabled: false},
+      credits: {enabled: false},
+      title : "",xAxis: { labels: { enabled: false }, categories: ['']},
+      yAxis: {min: 0,title: {text: 'درصد',enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0,},
+      legend: {enabled: false },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+        footerFormat: '</table>',
+        shared: false,
+        useHTML: true
+      }, plotOptions: {column: {pointPadding: 0.2, borderWidth: 0}},
+      series: eval({{chart.result.data| raw }})
+    };
+    return result;
+  }
+  data_chart =  {{chart|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+
+  data = {chart: {type: 'column'},
+    title: {text: data_chart[_type].title},
+    xAxis: {categories: eval(data_chart[_type].categories) },
+    yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
+      stackLabels: {enabled: true,style: {fontWeight: 'bold',
+          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        }
+      }
+    },
+    legend: {align: 'right',x: -30,verticalAlign: 'top',y: 25, floating: true,
+      backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+      borderColor: '#CCC',
+      borderWidth: 1,
+      shadow: false
+    },
+    tooltip: {
+      headerFormat: '<b>{point.x}</b><br/>',
+      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: true,
+          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+        }
+      }
+    },
+    series: eval(data_chart[_type].series)
+  };
+
+  return data;
+}
+
+$(document).ready(function() {
+  $('#poll-result .chart').highcharts(load_chart('result'));
+
+  $(".tabs li").click(function(){
+    var type = $(this).attr("chart-type");
+    $('#poll-result .chart').highcharts(load_chart(type));
+  });
+
+  $('.plus').on('click', function(){
+    add_score_comment('plus', $(this).attr('data-comment-id'));
+  });
+
+  $('.minus').on('click', function(){
+    add_score_comment('minus', $(this).attr('data-comment-id'));
+  });
+
+  $(".heart").on('click',function(){
+    value = parseInt($(this).attr("data-value"));
+    value = value + 1;
+    if(value > 5)
+    {
+      value = 1;
+    }
+    $(this).attr("data-value", value);
+    $(this).html(value);
+    $(this).css("opacity", 0.2 * value);
+  });
+
+  $('.save-heart').on('click', function(){
+    value = $(".heart").attr("data-value");
+    $(this).ajaxify(
+      {
+        ajax:
+        {
+          method: 'post',
+          data:
+          {
+            'type'  : 'heart',
+            'data'  : value
+          },
+          abort: true,
+          success: function(e, data, x)
+          {}
+        }
+      });
+  });
+
+  $(".save-anwser").on("ajaxify:success", function(_xhr, _data){
+    // next_url = _data.msg.callback;
+    // $(".btn-answers").children().remove();
+    // $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
+    // $("div.opt").fadeOut();
+  });
+
+  $(".comments .comment .continue").click(function() {
+    $(this).parents('.comment').children('.content').addClass('absolute-content');
+    event.preventDefault();
+      event.stopPropagation();
+    $(".absolute-content").click(function(event){
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  });
+
+  $('body').click(function(event) {
+    $(".content.absolute-content").removeClass("absolute-content");
+  });
+});
+</script>
 {%endblock%}
