@@ -1,87 +1,134 @@
-{% extends display.main %}
+{%extends display.main%}
 
-{% block content %}
+{%block content%}
+<div class="main">
   <div class="box">
-   <h2>{% trans "Sarshomar FAQ" %}</h2>
-   <p><a href="{{url.full}}#general-questions" data-direct>General</a></p>
-   <ul>
-     <li><a href="#">What is Sarshomar?</a></li>
-     <li><a href="#">Who is it for?</a></li>
-     <li><a href="#">How is it different from other survey systems?</a></li>
-     <li><a href="#">How old is Sarshomar?</a></li>
-     <li><a href="#">Is it available on my device?</a></li>
-     <li><a href="#">Who are the people behind Sarshomar?</a></li>
-   </ul>
 
 
 
+    <h4><a name="question" href="{{url.full}}#question" data-direct>{%trans "Question"%}</a></h4>
+    <p>{%trans "Answer"%}</p>
 
+    <h4><a name="what-is-sarshomar" href="{{url.full}}#what-is-sarshomar" data-direct>{%trans "What is Sarshomar?"%}</a></h4>
+    <p>unique service is to gauge public opinion on the Internet.</p>
 
-<h3><a class="anchor" name="general-questions" href="#general-questions"><i class="anchor-icon"></i></a>General Questions</h3>
-<h4><a class="anchor" name="q-what-is-telegram-what-do-i-do-here" href="#q-what-is-telegram-what-do-i-do-here"><i class="anchor-icon"></i></a>Q: What is Telegram? What do I do here?</h4>
-<p>Telegram is a messaging app with a focus on speed and security, it’s super-fast, simple and free. You can use Telegram on all your devices <strong>at the same time</strong> — your messages sync seamlessly across any number of your phones, tablets or computers.</p>
-<p>With Telegram, you can send messages, photos, videos and <a href="/blog/shared-files"><strong>files</strong></a> of any type (doc, zip, mp3, etc), as well as create groups for up to <strong>5000</strong> people or <a href="/blog/channels">channels</a> for broadcasting to <strong>unlimited</strong> audiences. You can write to your phone contacts and find people by their <a href="#usernames-and-telegram-me"><strong>usernames</strong></a>. As a result, Telegram is like SMS and email combined — and can take care of all your personal or business messaging needs.</p>
-<h4><a class="anchor" name="q-who-is-telegram-for" href="#q-who-is-telegram-for"><i class="anchor-icon"></i></a>Q: Who is Telegram for?</h4>
-<p>Telegram is for everyone who wants fast and reliable messaging. Business users and small teams may like the large groups, <a href="https://desktop.telegram.org">desktop apps</a> and powerful <a href="https://telegram.org/blog/shared-files">file sharing</a> options. Since Telegram groups can have up to <a href="/blog/supergroups5k">5000 members</a>, we support <a href="https://telegram.org/blog/replies-mentions-hashtags">replies, mentions and hashtags</a> that help maintain order and keep communication in large communities efficient.</p>
-<p>In case you&#39;re more into pictures, Telegram has animated <a href="/blog/gif-revolution">gif search</a>, a state of the art <a href="https://telegram.org/blog/photo-editor-and-passcodes">photo editor</a> and an <a href="/blog/stickers-revolution">open sticker platform</a> (find some cool stickers <a href="https://telegram.me/durov/40">here</a> or <a href="https://telegram.me/sticker">here</a>). What‘s more, there is no need to worry about disk space on your device. With Telegram’s cloud support and <a href="https://telegram.org/blog/cache-and-stickers">cache management options</a>,  Telegram can take up nearly <strong>zero</strong> space on your phone.</p>
-<p>Those looking for extra privacy should check out our <a href="/blog/privacy-revolution">advanced settings</a> and rather revolutionary <a href="/privacy">policy</a>. And if you want secrecy, try our device-specific <a href="#secret-chats">Secret Chats</a> with self-destructing messages, photos, and videos — and lock your app with an additional <a href="https://telegram.org/blog/photo-editor-and-passcodes">passcode</a>.</p>
-<blockquote>
-<p>We keep evolving — check out the <a href="https://telegram.org/blog">blog</a> and follow us on <a href="https://twitter.com/telegram">twitter</a> to stay in touch.</p>
-</blockquote>
-<h4><a class="anchor" name="q-how-is-telegram-different-from-whatsapp" href="#q-how-is-telegram-different-from-whatsapp"><i class="anchor-icon"></i></a>Q: How is Telegram different from WhatsApp?</h4>
-<p>Unlike WhatsApp, Telegram is a cloud-based messenger with seamless sync. As a result, you can access your messages from several devices at once, including tablets and computers, and share an unlimited number of photos, videos and files (doc, zip, mp3, etc.) of up to 1,5 GB each. And if you don&#39;t want to store that data on your device, you can always <a href="https://telegram.org/blog/cache-and-stickers">keep it in the cloud</a>.</p>
-<p>Thanks to our multi-data center infrastructure and encryption, Telegram is faster and way more <a href="#security">secure</a>. On top of that, Telegram is free and will stay free — no ads, no subscription fees, forever.</p>
-<p>Our API is open, and we welcome developers to create their own Telegram apps. We also have a <a href="https://core.telegram.org/bots">Bot API</a>, a platform for developers that allows anyone to easily build specialized tools for Telegram. </p>
-<p>And that‘s just the tip of the iceberg. Don’t forget to check out <a href="#q-who-is-telegram-for">this paragraph</a> for even more exclusive stuff.</p>
-<h4><a class="anchor" name="q-how-old-is-telegram" href="#q-how-old-is-telegram"><i class="anchor-icon"></i></a>Q: How old is Telegram?</h4>
-<p>Telegram for iOS was launched on August 14, 2013. The alpha version of Telegram for Android officially launched on October 20, 2013. More and more <a href="/apps">Telegram clients</a> appear, built by independent developers using Telegram&#39;s <a href="//core.telegram.org/api">open platform</a>.</p>
-<h4><a class="anchor" name="q-which-devices-can-i-use" href="#q-which-devices-can-i-use"><i class="anchor-icon"></i></a>Q: Which devices can I use?</h4>
-<p>You can use Telegram on smartphones, tablets, and even computers. We have apps for <a href="https://telegram.org/dl/ios">iOS</a> (6 and above), <a href="https://telegram.org/dl/android">Android</a> (2.2 and up) and <a href="https://telegram.org/dl/wp">Windows Phone</a>. You can also use Telegram&#39;s <a href="https://web.telegram.org">web version</a> or install one of our <a href="https://desktop.telegram.org">desktop apps</a> for Windows, OSX, and Linux.</p>
-<blockquote>
-<p>You can log in to Telegram from as many of your devices as you like — all <strong>at the same time</strong>. Just use your main mobile phone number to log in everywhere.</p>
-</blockquote>
-<p>Our <a href="//core.telegram.org/api">API</a> is open for developers, should you want to build your own applications for other platforms.  </p>
-<h4><a class="anchor" name="q-who-are-the-people-behind-telegram" href="#q-who-are-the-people-behind-telegram"><i class="anchor-icon"></i></a>Q: Who are the people behind Telegram?</h4>
-<p>Telegram is supported by Pavel and Nikolai Durov. Pavel supports Telegram financially and ideologically while Nikolai&#39;s input is technological. To make Telegram possible, Nikolai developed a unique custom data protocol, which is open, secure and optimized for work with multiple data-centers. As a result, Telegram combines security, reliability and speed on any network.</p>
-<p>While the Durov brothers were born in Russia, as were some of the key developers, Telegram is not connected to Russia – legally or physically. Telegram&#39;s HQ is in Berlin.</p>
-<blockquote>
-<p>See also: <a href="/press">articles about Telegram</a></p>
-</blockquote>
-<h4><a class="anchor" name="q-will-you-have-ads-or-sell-my-data-or-steal-my-beloved-and-ensl" href="#q-will-you-have-ads-or-sell-my-data-or-steal-my-beloved-and-ensl"><i class="anchor-icon"></i></a>Q: Will you have ads? Or sell my data? Or steal my beloved and enslave my children?</h4>
-<p>No.</p>
-<h4><a class="anchor" name="q-how-are-you-going-to-make-money-out-of-this" href="#q-how-are-you-going-to-make-money-out-of-this"><i class="anchor-icon"></i></a>Q: How are you going to make money out of this?</h4>
-<p>We believe in fast and secure messaging that is also 100% free.</p>
-<p>Pavel Durov, who shares our vision, supplied Telegram with a generous donation through his Digital Fortress fund, so we have quite enough money for the time being. If Telegram runs out, we&#39;ll invite our users to donate and add non-essential paid options to break even. But making profits will never be a goal for Telegram. </p>
-<h4><a class="anchor" name="q-what-are-your-thoughts-on-internet-privacy" href="#q-what-are-your-thoughts-on-internet-privacy"><i class="anchor-icon"></i></a>Q: What are your thoughts on internet privacy?</h4>
-<p>Big internet companies like Facebook or Google have effectively hijacked the privacy discourse in the recent years. Their marketers managed to convince the public that the most important things about privacy are superficial tools that allow hiding your public posts or your profile pictures from the people around you. Adding these superficial tools enables companies to calm down the public and change nothing in how they are turning over private data to marketers and other third parties.</p>
-<p>At Telegram we think that the two most important components of Internet privacy should be instead:</p>
-<ol>
-<li>Protecting your private conversations from snooping third parties, such as officials, employers, etc.</li>
-<li>Protecting your personal data from third parties, such as marketers, advertisers, etc.</li>
-</ol>
-<p>This is what everybody should care about, and these are some of our top priorities. Telegram&#39;s aim is to create a truly free messenger, <a href="/privacy">without the usual caveats</a>. This means that instead of diverting public attention with low-impact settings, we can afford to focus on the real privacy issues that exist in the modern world.</p>
-<h4><a class="anchor" name="q-there-39s-illegal-content-on-telegram-how-do-i-take-it-down" href="#q-there-39s-illegal-content-on-telegram-how-do-i-take-it-down"><i class="anchor-icon"></i></a>Q: There&#39;s illegal content on Telegram. How do I take it down?</h4>
-<p>All Telegram chats and group chats are private amongst their participants. We do not process any requests related to them.</p>
-<p>But <strong>sticker sets</strong>, <strong>channels</strong>, and <strong>bots</strong> on Telegram are <em>publicly available</em>. If you find sticker sets or bots on Telegram that you think are illegal, please ping us at <a href="mailto:abuse@telegram.org">abuse@telegram.org</a></p>
-<h4><a class="anchor" name="q-a-bot-or-channel-is-infringing-on-my-copyright-what-do-i-do" href="#q-a-bot-or-channel-is-infringing-on-my-copyright-what-do-i-do"><i class="anchor-icon"></i></a>Q: A bot or channel is infringing on my copyright. What do I do?</h4>
-<p>All Telegram chats and group chats are private amongst their participants. We do not process any requests related to them. But <strong>sticker sets</strong>, <strong>channels</strong>, and <strong>bots</strong> on Telegram are <em>publicly available</em>.</p>
-<p>If you see a bot, channel, or sticker set that is infringing on your copyright, kindly submit a complaint to <a href="mailto:dmca@telegram.org">dmca@telegram.org</a>. Please note that such requests should only be submitted by the copyright owner or an agent authorized to act on the owner’s behalf.</p>
-<h4><a class="anchor" name="q-wait-0-o-do-you-process-take-down-requests-from-third-parties" href="#q-wait-0-o-do-you-process-take-down-requests-from-third-parties"><i class="anchor-icon"></i></a>Q: Wait! 0_o Do you process take-down requests from third parties?</h4>
-<p>Our mission is to provide a secure means of communication that work everywhere on the planet. To do that in the places where it is most needed (and to continue distributing Telegram through the App Store and Google Play), we have to process legitimate requests to take down illegal <strong>public</strong> content (sticker sets, bots, and channels) within the app. For example, we can take down sticker sets that violate intellectual property rights or porn bots.</p>
-<p>User-uploaded stickers sets, channels, and bots by third-party developers are not part of the core Telegram UI. Whenever we receive a complaint at <a href="mailto:abuse@telegram.org">abuse@telegram.org</a> or <a href="mailto:dmca@telegram.org">dmca@telegram.org</a> regarding the legality of public content, we perform the necessary legal checks and take it down when deemed appropriate.</p>
-<p>Please note that this does <strong>not</strong> apply to local restrictions on freedom of speech.  For example, if criticizing the government is illegal in some country, Telegram won‘t be a part of such politically motivated censorship. This goes against our founders’ <a href="http://mashable.com/2015/05/18/russias-mark-zuckerberg-pavel-durov/">principles</a>. While we do block terrorist (e.g. ISIS-related) bots and channels, we will not block anybody who peacefully expresses alternative opinions.</p>
-<h4><a class="anchor" name="q-my-bot-or-sticker-set-was-banned-unfairly-what-do-i-do" href="#q-my-bot-or-sticker-set-was-banned-unfairly-what-do-i-do"><i class="anchor-icon"></i></a>Q: My bot or sticker set was banned unfairly, what do I do?</h4>
-<p>If you think we banned your bot, channel, or sticker set for no apparent reasons, drop us a line at <a href="mailto:abuse@telegram.org">abuse@telegram.org</a>.</p>
-<h4><a class="anchor" name="q-do-you-process-data-requests" href="#q-do-you-process-data-requests"><i class="anchor-icon"></i></a>Q: Do you process data requests?</h4>
-<p>To protect the data that is not covered by end-to-end encryption, Telegram uses a distributed infrastructure. Cloud chat data is stored in multiple data centers around the globe that are controlled by different legal entities spread across different jurisdictions. The relevant decryption keys are split into parts and are never kept in the same place as the data they protect. As a result, several court orders from different jurisdictions are required to force us to give up any data.</p>
-<p>Thanks to this structure, we can ensure that no single government or block of like-minded countries can intrude on people&#39;s privacy and freedom of expression. Telegram can be forced to give up data only if an issue is grave and universal enough to pass the scrutiny of several different legal systems around the world.</p>
-<p>To this day, we have disclosed 0 bytes of user data to third parties, including governments.</p>
+    <h4><a name="for-whom?" href="{{url.full}}#for-whom?" data-direct>{%trans "sarshomar for whom?"%}</a></h4>
+    <p>{%trans "A number of revolutionary youth"%}</p>
 
+    <h4><a name="have-sign-up" href="{{url.full}}#have-sign-up" data-direct>{%trans "To participate in surveys, census should I sign up?"%}</a></h4>
+    <p>{%trans "No, registered in the census is optional and without registration, you can still enjoy all the features of the census."%}</p>
 
+    <h4><a name="if-no-sign-up" href="{{url.full}}#if-no-sign-up" data-direct>{%trans "What happens if I do not register?"%}</a></h4>
+    <p>{%trans "Your participation in the census is very valuable to us and all activities are recorded in the service and apply it to validate your vote in polls is you need to register."%}</p>
 
+    <h4><a name="what-effect-My-participation" href="{{url.full}}#what-effect-My-participation" data-direct>{%trans "My participation in the census is what effect?"%}</a></h4>
+    <p>{%trans "Your participation in surveys is very valuable to us and we will help in reaching your goals."%}</p>
+
+    <h4><a name="what-different" href="{{url.full}}#what-different" data-direct>{%trans "survey services is different from the rest?"%}</a></h4>
+    <p>{%trans "International Census survey is a service that will cure all the weaknesses of existing services and many other unique features such as the question of demographic targeting, tree questions and provide added services through social networks."%}</p>
+
+    <h4><a name="Who-can-use" href="{{url.full}}#Who-can-use" data-direct>{%trans "Who can use the sarshomar?"%}</a></h4>
+    <p>{%trans "All natural and legal persons can use the census."%}</p>
+
+    <h4><a name="age-limit-for-activity" href="{{url.full}}#age-limit-for-activity" data-direct>{%trans "Is there an age restriction for activity in the census?"%}</a></h4>
+    <p>{%trans "No, there is no age limit for activity."%}</p>
+
+    <h4><a name="any-certain-degree" href="{{url.full}}#any-certain-degree" data-direct>{%trans "Are certain degree for census activities there?"%}</a></h4>
+    <p>{%trans "No, by no means qualification does not matter and all parties can trade with any evidence of any census work."%}</p>
+
+    <h4><a name="which-devices-to-use" href="{{url.full}}#which-devices-to-use" data-direct>{%trans "What devices can I use with the census?"%}</a></h4>
+    <p>{%trans "Computers, laptops, tablets, phones and any other digital system that can connect to the Internet."%}</p>
+
+    <h4><a name="install-software" href="{{url.full}}#install-software" data-direct>{%trans "Do I need to install special software to use the service census?"%}</a></h4>
+    <p>{%trans "No, you do not have to install any software and accessories you can easily use all the services?"%}</p>
+
+    <h4><a name="how-time-can-use" href="{{url.full}}#how-time-can-use" data-direct>{%trans "How long can I use the census?"%}</a></h4>
+    <p>{%trans "Throughout the day you can use census."%}</p>
+
+    <h4><a name="invite-friends" href="{{url.full}}#invite-friends" data-direct>{%trans "Can I invite my friends?"%}</a></h4>
+    <p>{%trans "Yes, the activity is open to the public and you can invite family and friends to join the big family of the census"%}</p>
+
+    <h4><a name="what-is-username" href="{{url.full}}#what-is-username" data-direct>{%trans "what is username?"%}</a></h4>
+    <p>{%trans "You can use a custom user name."%}</p>
+
+    <h4><a name="change-username" href="{{url.full}}#change-username" data-direct>{%trans "Can I replace my username?"%}</a></h4>
+    <p>{%trans "Yes, if the name of the user you want you can change the service does not exist."%}</p>
+
+    <h4><a name="updating-username" href="{{url.full}}#updating-username" data-direct>{%trans "Updating the user what is it used?"%}</a></h4>
+    <p>{%trans "According to our results based on the accuracy of the information that users update your account information on our planned"%}</p>
+
+    <h4><a name="password-what-could-be" href="{{url.full}}#password-what-could-be" data-direct>{%trans "Password What could it be?"%}</a></h4>
+    <p>{%trans "The password should be a mixture of numbers and English letters."%}</p>
+
+    <h4><a name="forget-password" href="{{url.full}}#forget-password" data-direct>{%trans "If I forget my password, what do I do?"%}</a></h4>
+    <p>{%trans "The entrance to the site, to get the new password Forgot your action."%}</p>
+
+    <h4><a name="multiple-accounts" href="{{url.full}}#multiple-accounts" data-direct>{%trans "Can I have multiple accounts?"%}</a></h4>
+    <p>{%trans "No, this offense and if such action is in accordance with laws dealing census."%}</p>
+
+    <h4><a name="edite-profile" href="{{url.full}}#edite-profile" data-direct>{%trans "Is it possible to edit the user profile there?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="people-see-my-account-information" href="{{url.full}}#people-see-my-account-information" data-direct>{%trans "Do people see my account information?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="enter-phonenumber" href="{{url.full}}#enter-phonenumber" data-direct>{%trans "Do not need to enter the phone number is?"%}</a></h4>
+    <p>{%trans "Yes, users need to enter your mobile phone number is snack."%}</p>
+
+    <h4><a name="change-phonenumber" href="{{url.full}}#change-phonenumber" data-direct>{%trans "Can my phone number, my replacement?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="kind-of-activities" href="{{url.full}}#kind-of-activities" data-direct>{%trans "What are the activities in the census?"%}</a></h4>
+    <p>{%trans "You can submit questions or reply to questions people have registered."%}</p>
+
+    <h4><a name="add-question" href="{{url.full}}#add-question" data-direct>{%trans "Whether I can register my question?"%}</a></h4>
+    <p>{%trans "Yes, you can submit your questions on the site, your blog or social networks, and its results will ask us."%}</p>
+
+    <h4><a name="how-long-to-send-question" href="{{url.full}}#how-long-to-send-question" data-direct>{%trans "After the record how long it takes to be on?"%}</a></h4>
+    <p>{%trans "Questions after review by experts on the site is up to x hours."%}</p>
+
+    <h4><a name="limite-question" href="{{url.full}}#limite-question" data-direct>{%trans "Is the number of responses to questions are limited?"%}</a></h4>
+    <p>{%trans "No, there is no limit to answer the questions."%}</p>
+
+    <h4><a name="answer-instead-of-someone-else" href="{{url.full}}#answer-instead-of-someone-else" data-direct>{%trans "Can I answer the questions instead of someone else?"%}</a></h4>
+    <p>{%trans "No, whoever he may only participate in Ntrsnjyha and if another account is logged and recorded by the census is one of the violations."%}</p>
+
+    <h4><a name="how-know-participation" href="{{url.full}}#how-know-participation" data-direct>{%trans "How can I learn from the participation in the census?"%}</a></h4>
+    <p>{%trans "You can use your account to have all its activities in graphical form."%}</p>
+
+    <h4><a name="what-benefit" href="{{url.full}}#what-benefit" data-direct>{%trans "What is the benefit to the user is responsible for cooperation with the census?"%}</a></h4>
+    <p>{%trans "Count in gratitude for your contribution in improving the quality of their service, exquisite gifts for your considered."%}</p>
+
+    <h4><a name="get-gifts" href="{{url.full}}#get-gifts" data-direct>{%trans "How to Get gifts What is the census?"%}</a></h4>
+    <p>{%trans "Awards will be contacted for users."%}</p>
+
+    <h4><a name="just-for-iranian" href="{{url.full}}#just-for-iranian" data-direct>{%trans "Have you used this service to Iranians?"%}</a></h4>
+    <p>{%trans "No, the census is an international service that the whole world can use it, be sure to explain that at the moment only in Farsi and English services that will be added over time."%}</p>
+
+    <h4><a name="specific-rules" href="{{url.full}}#specific-rules" data-direct>{%trans "Are there specific rules for activities in the census?"%}</a></h4>
+    <p>{%trans "Yes, it is sure to work, carefully read the rules and regulations of the census."%}</p>
+
+    <h4><a name="publish-for-certain-people" href="{{url.full}}#publish-for-certain-people" data-direct>{%trans "Does our information is in the hands of certain people?"%}</a></h4>
+    <p>{%trans "No, the questions and answers to questions and surveys is strictly confidential and will not be provided to any individual or organization."%}</p>
+
+    <h4><a name="Why-should-trust" href="{{url.full}}#Why-should-trust" data-direct>{%trans "Why should I trust you?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="how-safe" href="{{url.full}}#how-safe" data-direct>{%trans "How safe is the census?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="How-information-encrypted" href="{{url.full}}#How-information-encrypted" data-direct>{%trans "How information is encrypted?"%}</a></h4>
+    <p>{%trans "***"%}</p>
+
+    <h4><a name="how-support" href="{{url.full}}#how-support" data-direct>{%trans "What are your support user?"%}</a></h4>
+    <p>{%trans "Census support group for boarding in the service of their users."%}</p>
+
+    <h4><a name="How-can-cut" href="{{url.full}}#How-can-cut" data-direct>{%trans "How can I cut his ties with the census?"%}</a></h4>
+    <p>{%trans "You can easily remove Hsabkarbry choose the section in your account and stop its cooperation with the census."%}</p>
 
 
 
 
   </div>
-{% endblock %}
+</div>
+{%endblock%}
