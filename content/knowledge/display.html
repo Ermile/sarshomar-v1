@@ -239,7 +239,7 @@ $(document).ready(function()
       <ul class="polls-body">
   {%for key, value in poll_list%}
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
-          <span class="fa fa-star star" aria-hidden="true"></span>
+          <span class="fa fa-star star {%if value.faivorites%}starred{%endif%}" aria-hidden="true"></span>
           <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
           <span class="comments-count"></span>
