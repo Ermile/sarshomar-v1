@@ -953,15 +953,17 @@ aside .group{margin-bottom:1em;}
 .polls-head > .date {min-width:6.4em;max-width:6.4em;}
 
 .polls-row > .star{max-width:2em;font-size:1.15em;color:transparent;display:flex;}
-/*.polls-row:hover > .star::before{color:#e7a429;}*/
+.polls-row > .star.starred::before{color:#e7a429;}
 .polls-row > .star::before {align-items: center;justify-content: center;display:flex;}
 .polls-row:hover > .star::before{color:#e7e7e7;}
+.polls-row:hover > .star.starred::before{color:#e7a429;}
 .polls-row > .type{margin:0 auto;min-width:3em;padding-left:0;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
 .polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;}
 .polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;}
 .polls-row > .comments-count{min-width:7em;color:#777;font-weight:500;}
 .polls-row > .date{min-width:7.4em;font-size:.9em;display:flex;align-items:center;justify-content:center;}
+
 
 .polls-head .star .fa-star{vertical-align:middle;}
 .polls-body{width:100%;}

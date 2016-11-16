@@ -33,57 +33,16 @@
           <span class="date">۱۳۹۵/۰۳/۸</span>
         </li>
         </ul>
-      <!-- pagenation -->
-
-
-
-
-
-      <!-- ./pagenation -->
-
-
      </div>
-
-
-     </div>
-     <div class="my-navigation">
-      <nav class="ali-navigation auto">
-       <a href="">></a>
-       <a href="">{%trans "8"%}</a>
-       <a href="">{%trans "7"%}</a>
-       <a href="">{%trans "6"%}</a>
-       <a href="" class="active">{%trans "5"%}</a>
-       <a href="">{%trans "4"%}</a>
-       <a href="">{%trans "3"%}</a>
-       <a href="">{%trans "2"%}</a>
-       <a href="">{%trans "1"%}</a>
-       <a href=""><</a>
-      </nav>
-     </div>
-
     </div><!-- /.span9 -->
   </div>
+</div>
 </div>
 {%endblock%}
 
 
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-<script>
-$(document).ready(function()
-{
- $("aside .full-line-title").click(function()
- {
-  $(this).next(".options-box").slideToggle();
- });
-
- $("aside input[type=checkbox]").click(function()
- {
-  $(this).parent('.ac-custom').toggleClass('selected');
- });
-});
-
-</script>
 
 
 {%endblock%}
@@ -108,7 +67,9 @@ $(document).ready(function()
   {%endfor%}
       </ul>
       <!-- pagenation -->
-    {% embed display.pagination %}{% endembed %}
+      <div class="pagination-container">
+      {%include display.pagination%}
+      </div>
       <!-- ./pagenation -->
   {%else%}
       <div class="msg error">{%trans "No Result Found"%}</div>

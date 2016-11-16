@@ -160,21 +160,6 @@
      <div class="search-result" data-xhr='search-result' id="search-result">
       {{block('search_result')}}
      </div>
-<!--      <div class="my-navigation">
-      <nav class="ali-navigation auto">
-       <a href="">></a>
-       <a href="">{%trans "8"%}</a>
-       <a href="">{%trans "7"%}</a>
-       <a href="">{%trans "6"%}</a>
-       <a href="" class="active">{%trans "5"%}</a>
-       <a href="">{%trans "4"%}</a>
-       <a href="">{%trans "3"%}</a>
-       <a href="">{%trans "2"%}</a>
-       <a href="">{%trans "1"%}</a>
-       <a href=""><</a>
-      </nav>
-     </div> -->
-
     </div><!-- /.span9 -->
   </div>
 </div>
@@ -194,6 +179,28 @@ $(document).ready(function()
  $("aside input[type=checkbox]").click(function()
  {
   $(this).parent('.ac-custom').toggleClass('selected');
+ });
+
+ $(document).on('click', '.star', function(){
+   id = $(this).parent('li').attr("data-id");
+   _self = $(this);
+   $(this).ajaxify(
+      {
+        ajax:
+        {
+          data:
+          {
+            'type': 'faivorites',
+            'id': id
+          },
+          abort: true,
+          success: function(e, data, x)
+          {
+            $(_self).toggleClass("starred");
+          },
+          method: 'post'
+        }
+      });
  });
 
 
@@ -231,7 +238,7 @@ $(document).ready(function()
       </div>
       <ul class="polls-body">
   {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
+        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
           <span class="fa fa-star star" aria-hidden="true"></span>
           <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
@@ -241,7 +248,7 @@ $(document).ready(function()
   {%endfor%}
       </ul>
       <!-- pagenation -->
-      <div class="pagination-container" id="x">
+      <div class="pagination-container">
       {%include display.pagination%}
       </div>
       <!-- ./pagenation -->
