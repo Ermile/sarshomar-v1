@@ -3,6 +3,7 @@
 {%block content%}
 <div class="main pad">
  <div class="box">
+ <form method="post">
   <div class="row auto">
    <div class="span3"></div>
    <section class="span6" id="poll-box">
@@ -21,7 +22,6 @@
       <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
      </div>
     {%endif%}
-    <form method="post">
     {%if post.post_meta.opt%}{#check post meta exist#}
      <input type="hidden" name="data-id" value="{{post.id}}">
     {%if multiple_choice%}
@@ -29,7 +29,7 @@
      {%for key, value in post.post_meta.opt%}
       <li class="ac-custom ac-checkbox ac-checkmark">
        <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
-       <label for="check_{{value.key}}" data-number="{{key}}">{{value.txt}}</label>
+       <label for="check_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
       </li>
      {%endfor%}
      {%if descriptive%}
@@ -44,7 +44,7 @@
      {%for key, value in post.post_meta.opt%}
       <li class="ac-custom ac-radio ac-fill">
        <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-       <label for="radio_{{value.key}}" data-number="{{key}}">{{value.txt}}</label>
+       <label for="radio_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
       </li>
      {%endfor%}
      {%if descriptive%}
@@ -57,7 +57,6 @@
     {%endif%}{#multiple_choice check end#}
     <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
     {%endif%}
-    </form>
    </section>
   </div><!-- /.row -->
 
@@ -70,6 +69,7 @@
    {%endif%}
    </div>
   </div>
+ </form>
 
   {%if chart%}
   <div class="row" id="poll-result">
