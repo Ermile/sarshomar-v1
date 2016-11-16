@@ -17,10 +17,17 @@ class controller extends \mvc\controller
 			\lib\router::set_controller("\\content\\contact\\controller");
 			return;
 		}
-
-		if(preg_match("/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/", \lib\router::get_url()))
+		$reg = "/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/";
+		if(preg_match($reg, \lib\router::get_url(), $controller_name))
 		{
-			\lib\router::set_controller("\\content\\poll\\controller");
+			if($controller_name[4] == 'comments')
+			{
+				\lib\router::set_controller("\\content\\comments\\controller");
+			}
+			else
+			{
+				\lib\router::set_controller("\\content\\poll\\controller");
+			}
 			return;
 		}
 

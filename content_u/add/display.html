@@ -24,9 +24,9 @@
             <li id="tab-multiple_choice" class="active">
               {%if perm.sarshomar_knowledge.add%}
               <div class="element switch">
-                <input type="radio" name="sarshomar_knowledge" id="sarshomar" value="sarshomar" {%if poll.sarshomar == 1%}checked{%endif%}>
+                <input type="radio" name="sarshomar_knowledge" id="sarshomar" value="sarshomar" {%if poll %}{%if poll.sarshomar == 1%}checked{%endif%}{%else%}checked{%endif%}>
                 <label for="sarshomar">{%trans "Sarshomar"%}</label>
-                <input type="radio" name="sarshomar_knowledge" id="personal" value="personal" {%if poll.sarshomar == null%}checked{%endif%}>
+                <input type="radio" name="sarshomar_knowledge" id="personal" value="personal"  {%if poll and poll.sarshomar == null%}checked{%endif%}>
                 <label for="personal">{%trans "Personal"%}</label>
               </div>
               {%endif%}
