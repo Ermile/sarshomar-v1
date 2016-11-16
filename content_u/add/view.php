@@ -4,10 +4,7 @@ namespace content_u\add;
 class view extends \mvc\view
 {
 
-	/**
-	 * ready to load add poll
-	 */
-	function view_add()
+	function config()
 	{
 		$this->include->fontawesome = true;
 		// check permisson
@@ -15,6 +12,22 @@ class view extends \mvc\view
 		{
 			$this->data->profile_lock = array_keys(\lib\db\filters::support_filter());
 		}
+
+	}
+
+	function view_edit($_args)
+	{
+		$poll_id = $_args->api_callback;
+		$poll = \lib\db\polls::get_poll($poll_id);
+		$this->data->poll = $poll;
+	}
+
+	/**
+	 * ready to load add poll
+	 */
+	function view_add()
+	{
+
 	}
 
 

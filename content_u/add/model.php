@@ -7,6 +7,20 @@ class model extends \content_u\home\model
 {
 
 	/**
+	 * Gets the edit.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The edit.
+	 */
+	public function get_edit($_args)
+	{
+		$poll_id = $this->check_poll_url($_args);
+		return $poll_id;
+	}
+
+
+	/**
 	 * search in polls for poll tree
 	 */
 	public function post_search()
@@ -27,6 +41,306 @@ class model extends \content_u\home\model
 		debug::msg("result", $result);
 	}
 
+	public function update_meta_in_option($_meta_name, $_status = 'enable')
+	{
+		// get poll meta in option table
+		$poll_meta = \lib\db\posts::get_post_meta($this->poll_id);
+		$option_id = null;
+		foreach ($poll_meta as $key => $value) {
+			if($value['option_key'] == 'meta' && $value['option_value'] == $_meta_name)
+			{
+				$option_id = $value['id'];
+			}
+		}
+		if($option_id)
+		{
+			// update status of meta in option table
+			$update = ['option_status' => $_status];
+			\lib\db\options::update($update, $option_id);
+		}
+		elseif($_status == 'enable')
+		{
+			// insert new record in data in option_table
+			$insert_option =
+			[
+				'post_id'       => $this->poll_id,
+				'option_cat'    => "poll_{$this->poll_id}",
+				'option_key'    => 'meta',
+				'option_value'  => $_meta_name,
+				'option_status' => 'enable'
+			];
+			\lib\db\options::insert($insert_option);
+		}
+	}
+
+
+	/**
+	 * chekc value posted and update meta
+	 *
+	 * @param      <type>  $_key    The key
+	 * @param      string  $_value  The value
+	 */
+	function poll_meta_update($_key, $_value)
+	{
+		if($_value == 'on')
+		{
+			if(isset($this->poll['meta'][$_key]) && $this->poll['meta'][$_key] == false)
+			{
+				\lib\db\polls::replace_meta([$_key => true], $this->poll_id);
+			}
+			else
+			{
+				\lib\db\polls::merge_meta([$_key => true], $this->poll_id);
+			}
+			$this->update_meta_in_option($_key, 'enable');
+		}
+		elseif($_value == '')
+		{
+			if(isset($this->poll['meta'][$_key]) && $this->poll['meta'][$_key] == true)
+			{
+				\lib\db\polls::replace_meta([$_key => false], $this->poll_id);
+				$this->update_meta_in_option($_key, 'disable');
+
+			}
+		}
+	}
+
+
+	/**
+	 * update the poll
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	function update_poll($_args)
+	{
+		// get the poll id
+		$poll_id = $this->check_poll_url($_args);
+		// save poll id in $this
+		$this->poll_id = $poll_id;
+		// get poll data
+		$poll    = \lib\db\polls::get_poll($poll_id);
+		// save poll data in $this
+		$this->poll = $poll;
+		// get the answrs data
+		$answers = \lib\utility\answers::get($poll_id);
+		// get the $_POST
+		$post    = utility::post();
+
+		// list of value to update
+		$update_post = [];
+
+		//check the words of post and set the status
+		if(!\lib\db\words::save_and_check($post))
+		{
+			$update_post['post_status'] = 'awaiting';
+		}
+
+		// check all value posted to this page and update if need
+		foreach ($post as $key => $value)
+		{
+			// decode the value posted
+			$value = html_entity_decode($value);
+
+			// swich title of post
+			switch ($key)
+			{
+					case 'title':
+						// check old title and new title
+						if($poll['title'] != $value)
+						{
+							// update the title
+							$update_post['post_title'] = $value;
+							$update_post['post_url']   = \lib\db\polls::update_url($poll_id, $value, false);
+							$update_post['post_slug']  = \lib\utility\filter::slug($value);
+						}
+						break;
+
+					case 'description':
+						// check the content of poll
+						if($poll['content'] != $value)
+						{
+							$update_post['post_content'] = $value;
+						}
+						break;
+
+					case 'poll_type':
+						// check the poll type
+						$type = $this->change_type($value);
+						if($poll['type'] != $type)
+						{
+							$update_post['post_type'] = $type;
+						}
+						break;
+
+					case 'summary':
+						if(!isset($poll['meta']['desc']) || $poll['meta']['desc'] != $value)
+						{
+							\lib\db\polls::replace_meta(['desc' => $value], $poll_id);
+						}
+						break;
+
+					case 'sarshomar_knowledge':
+						if($this->access('u', 'sarshomar_knowledge', 'add'))
+						{
+							if($value == 'sarshomar')
+							{
+								if($poll['sarshomar'] == null)
+								{
+									$update_post['post_sarshomar'] = 1;
+								}
+							}
+							else
+							{
+								if($poll['sarshomar'] == '1')
+								{
+									$update_post['post_sarshomar'] = null;
+								}
+							}
+						}
+						break;
+
+					case 'meta_comment':
+						if($value == 'on')
+						{
+							if($poll['comment'] == 'close')
+							{
+								$update_post['post_comment'] = 'open';
+								\lib\db\polls::replace_meta(['comment' => true], $poll_id);
+								$this->update_meta_in_option('comment', 'enable');
+							}
+						}
+						elseif($value == '')
+						{
+							if($poll['comment'] == 'open')
+							{
+								$update_post['post_comment'] = 'close';
+								\lib\db\polls::replace_meta(['comment' => false], $poll_id);
+								$this->update_meta_in_option('comment', 'disable');
+							}
+						}
+						break;
+					// case 'parent_tree_id':
+					// case 'parent_tree_opt':
+					// case 'meta_profile':
+					case 'meta_random_sort':
+					case 'meta_descriptive':
+					case 'meta_score':
+					case 'hidden_result':
+						$this->poll_meta_update($key, $value);
+						break;
+
+					// update the answers
+					case substr($key, 0, 7) == 'answers':
+
+						$preg = preg_match("/(.*)\_(\d+)$/", $key, $ans);
+
+						if(!$preg)
+						{
+							break;
+						}
+
+						$type      = $ans[1];
+						$id        = intval($ans[2]);
+						$opt_index = $id - 1;
+
+						if($type != 'answers')
+						{
+							break;
+						}
+
+						// must update the
+						if(isset($answers[$opt_index]['option_value']))
+						{
+							$option_id = isset($answers[$opt_index]['id']) ? $answers[$opt_index]['id'] : 0;
+
+							if($answers[$opt_index]['option_value'] != $value && $value != '')
+							{
+								$answer_meta = [];
+
+								// if(isset($answers[$opt_index]['option_meta']['desc']))
+								// {
+								// 	if(utility::post("answer_desc_". $id) && utility::post("answer_desc_". $id != ''))
+								// 	{
+								// 		$answer_meta['desc'] = utility::post("answer_desc_". $id);
+								// 	}
+								// 	else
+								// 	{
+								// 		$answer_meta['desc'] = $answers[$opt_index]['option_meta']['desc'];
+								// 	}
+								// }
+
+								$update_answers =
+								[
+									'option_value' => $value,
+									// 'option_meta'  => json_encode($answer_meta, JSON_UNESCAPED_UNICODE)
+								];
+								\lib\db\options::update($update_answers, $option_id);
+							}
+							elseif ($value == '')
+							{
+								\lib\db\options::update(['option_status' => 'disable'], $option_id);
+							}
+						}
+						else
+						{
+							if($value != '')
+							{
+								$answer_meta          = [];
+								$answer_meta['type']  = utility::post("answer_type_". $id);
+								$answer_meta['point'] = utility::post("answer_point_". $id);
+								$answer_meta['true']  = utility::post("answer_true_". $id);
+								$answer_meta['desc']  = utility::post("answer_desc_". $id);
+								$answer_count = count($answers);
+								$answer_count++;
+								// must add new answer
+								$insert_answer =
+								[
+									'post_id'       => $poll_id,
+									'option_cat'    => "poll_$poll_id",
+									'option_key'    => "opt_$answer_count",
+									'option_value'  => $value,
+									'option_meta'   => json_encode($answer_meta, JSON_UNESCAPED_UNICODE),
+									'option_status' => 'enable'
+								];
+								\lib\db\options::insert($insert_answer);
+							}
+						}
+						break;
+					default:
+						# code...
+						break;
+				}
+		}
+		if(!empty($update_post))
+		{
+			$update_post = \lib\db\polls::update($update_post, $poll_id);
+		}
+
+		// muset be update post meta
+		\lib\db\polls::update_answer_in_meta($poll_id);
+
+		if(debug::$status)
+		{
+			debug::true(T_("all change saved"));
+			// get the url
+			$url = $this->check_poll_url($_args, "encode");
+			// must be redirect to filter page
+			if(utility::post("filter"))
+			{
+				$this->redirector()->set_url("@/add/$url/filter");
+			}
+			// must be redirect to publish page
+			elseif(utility::post("publish"))
+			{
+				$this->redirector()->set_url("@/add/$url/publish");
+			}
+		}
+		else
+		{
+			debug::error(T_("we can not save change on this poll"));
+		}
+
+	}
 
 	/**
 	 * get data to add new add
@@ -38,6 +352,16 @@ class model extends \content_u\home\model
 		if(utility::post("repository"))
 		{
 			$this->post_search();
+			return;
+		}
+
+
+		/**
+		 * update the poll or survey
+		 */
+		if($this->check_poll_url($_args))
+		{
+			$this->update_poll($_args);
 			return;
 		}
 
@@ -258,6 +582,59 @@ class model extends \content_u\home\model
 		}
 	}
 
+
+	/**
+	 * check the posted poll type and return the db poll type
+	 *
+	 * @param      boolean|string  $_poll_type  The poll type
+	 *
+	 * @return     boolean|string  ( description_of_the_return_value )
+	 */
+	function change_type($_poll_type)
+	{
+		$_poll_type = false;
+
+		switch ($_poll_type)
+		{
+			case 'multiple_choice':
+				$_poll_type = 'select';
+				break;
+
+			case 'descriptive':
+				$_poll_type = 'text';
+				break;
+
+			case 'notification':
+				$_poll_type = 'notify';
+				break;
+
+			case 'upload':
+				$_poll_type = 'upload';
+				break;
+
+			case 'starred':
+				$_poll_type = 'star';
+				break;
+
+			case 'numerical':
+				$_poll_type = 'number';
+				break;
+
+			case 'sort':
+				$_poll_type = 'order';
+				break;
+
+			// $poll_type = 'media_image';
+			// $poll_type = 'media_video';
+			// $poll_type = 'media_audio';
+
+			default:
+				$_poll_type = false;
+				break;
+		}
+		return $_poll_type;
+	}
+
 	/**
 	 * insert poll
 	 * get data from utility::post()
@@ -269,46 +646,12 @@ class model extends \content_u\home\model
 	public function insert_poll($_options = [])
 	{
 		// get poll_type
-		$poll_type    = utility::post("poll_type");
+		$poll_type    = $this->change_type(utility::post("poll_type"));
 		// swich html name and db name of poll type
-		switch ($poll_type)
+		if(!$poll_type)
 		{
-			case 'multiple_choice':
-				$poll_type = 'select';
-				break;
-
-			case 'descriptive':
-				$poll_type = 'text';
-				break;
-
-			case 'notification':
-				$poll_type = 'notify';
-				break;
-
-			case 'upload':
-				$poll_type = 'upload';
-				break;
-
-			case 'starred':
-				$poll_type = 'star';
-				break;
-
-			case 'numerical':
-				$poll_type = 'number';
-				break;
-
-			case 'sort':
-				$poll_type = 'order';
-				break;
-
-			// $poll_type = 'media_image';
-			// $poll_type = 'media_video';
-			// $poll_type = 'media_audio';
-
-			default:
-				debug::error(T_("poll type not found"));
-				return false;
-				break;
+			debug::error(T_("poll type not found"));
+			return false;
 		}
 		// default gender of all post record in sarshomar is 'poll'
 		$gender = "poll";
@@ -339,17 +682,6 @@ class model extends \content_u\home\model
 		$content      = utility::post("description");
 		// get summary of poll
 		$summary      = utility::post("summary");
-		// get answers
-		$answers      = utility::post("answers");
-		// get answers type
-		$answer_type  = utility::post("answer_type");
-		// get answers true
-		$answer_true  = utility::post("answer_true");
-		// get answers point
-		$answer_point = utility::post("answer_point");
-		// get answers desc
-		$answer_desc  = utility::post("answer_desc");
-
 
 		// check title
 		if($title == null)
@@ -360,8 +692,7 @@ class model extends \content_u\home\model
 		// check length of sumamry text
 		if($summary && strlen($summary) > 150)
 		{
-			debug::error(T_("summary text must be less than 150 character"));
-			return false;
+			$summary = substr($summary, 0, 149);
 		}
 
 		$publish = 'publish';
@@ -390,15 +721,41 @@ class model extends \content_u\home\model
 		];
 		// inset poll
 		$poll_id = \lib\db\polls::insert($args);
+
+		$answers      = [];
+		$answer_type  = [];
+		$answer_true  = [];
+		$answer_point = [];
+
+
+		foreach (utility::post() as $key => $value) {
+
+			$check = preg_match("/(.*)\_(\d+)$/", $key, $split);
+			if($check)
+			{
+				$type = $split[1];
+				$id   = $split[2];
+
+				switch ($type)
+				{
+					case 'answers':
+						$answers[$id] = $value;
+						break;
+
+					case 'answer_true':
+						$answer_true[$id] = $value;
+						break;
+
+					case 'answer_type':
+						$answer_type[$id] = $value;
+						break;
+				}
+			}
+		}
+
 		// check answers
 		if($answers)
 		{
-			// if answers is not array return false
-			if(!is_array($answers))
-			{
-				debug::error(T_("answer must be array"));
-				return false;
-			}
 			// remove empty index from answer array
 			$answers = array_filter($answers);
 			// check the count of answer array

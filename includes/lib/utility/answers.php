@@ -94,7 +94,8 @@ class answers
 					post_id = $_poll_id AND
 					option_cat LIKE 'poll_{$_poll_id}' AND
 					option_key LIKE 'opt%'  AND
-					user_id IS NULL
+					user_id IS NULL AND
+					option_status = 'enable'
 				-- answers::get()
 				";
 		$result = \lib\db\options::select($query, "get");

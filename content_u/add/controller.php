@@ -21,8 +21,10 @@ class controller extends \content_u\home\controller
 		$this->post("add")->ALL("/^add$/");
 
 		// for add survey
-		$this->get("survey", "survey")->ALL("/^add\/(.*)$/");
+		// $this->get("survey", "survey")->ALL("/^add\/(.*)$/");
 		$this->post("add")->ALL("/^add\/(.*)$/");
+		$this->get("edit", "edit")->ALL("/^add\/(.*)$/");
+		// $this->post("auto_save")->ALL("/^add\/(.*)$/");
 
 
 	}

@@ -10,11 +10,47 @@ route(/contact/, function()
 		}
 	});
 });
+function add_answer()
+{
+	var number_of_empty_inputs = 0;
 
+	// check if current element has not value and we have no empty inputs
+	$.each($('.element.small .input[type="text"]'), function(key, value)
+	{
+		if ( !$(this).val() && number_of_empty_inputs === 0 )
+		{
+			number_of_empty_inputs++;
+		}
+	});
+
+	// if we had no empty inputs and we needed one do this
+	if (number_of_empty_inputs === 0)
+	{
+		var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
+		var num = $('.element.small .input[type="text"]').length + 1;
+		template.children('label').text('answer ' + num).attr('for', 'answer' + num);
+		template.children('.input').attr('id', 'answer' + num);
+		template.children('.input').attr('name', 'answers_' + num);
+		template.children('.input').attr('value', '');
+		template.children('.input').val('');
+		template.children('input[data-true=true]').attr('name', 'answer_true_' + num);
+		template.children('input[data-type=type]').attr('name', 'answer_type_' + num);
+
+		$('.input-group').append(template);
+		template.addClass('animated fadeInDown');
+	}
+
+	// if we had empty inputs do this
+	else
+	{
+
+	}
+}
 
 // Add
 route(/\@\/add/, function()
 {
+
 	$(this).on('click','button', function()
 	{
 		$('#submit-form').attr("value", $(this).attr("send-name"));
@@ -23,34 +59,12 @@ route(/\@\/add/, function()
 	// run on input change
 	$(this).on('input', '.element.small .input[type="text"]', function(event)
 	{
-		var number_of_empty_inputs = 0;
+		add_answer();
+	});
 
-		// check if current element has not value and we have no empty inputs
-		$.each($('.element.small .input[type="text"]'), function(key, value)
-		{
-			if ( !$(this).val() && number_of_empty_inputs === 0 )
-			{
-				number_of_empty_inputs++;
-			}
-		});
-
-		// if we had no empty inputs and we needed one do this
-		if (number_of_empty_inputs === 0)
-		{
-			var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
-			var num = $('.element.small .input[type="text"]').length + 1;
-			template.children('label').text('answer ' + num).attr('for', 'answer' + num);
-			template.children('.input').attr('id', 'answer' + num);
-			template.children('.input').val('');
-			$('.input-group').append(template);
-			template.addClass('animated fadeInDown');
-		}
-
-		// if we had empty inputs do this
-		else
-		{
-
-		}
+	$(this).on('blur', '.element.small .input[type="text"]', function(event)
+	{
+		add_answer();
 	});
 
 	$(this).on('mouseenter', '.element.small', function()

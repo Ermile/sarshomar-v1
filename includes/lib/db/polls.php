@@ -26,6 +26,7 @@ class polls
 			posts.post_parent 			as 'parent',
 			posts.post_publishdate 		as 'publishdate',
 			posts.filter_id 			as 'filter_id',
+			posts.post_sarshomar		as 'sarshomar',
 			posts.date_modified  	    as 'date_modified',
 			pollstats.id 		     	as 'pollstatsid',
 			pollstats.total 			as 'total'
@@ -519,6 +520,87 @@ class polls
 			return $result[0];
 		}
 		return false;
+	}
+
+
+	/**
+	 * get the list of answers and update the poll meta
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function update_answer_in_meta($_poll_id)
+	{
+		$meta = self::get_poll_meta($_poll_id);
+		$answers = \lib\utility\answers::get($_poll_id);
+		$new_meta = [];
+		foreach ($answers as $key => $value)
+		{
+			$type = '';
+			if(isset($value['option_meta']['type']))
+			{
+				$type = $value['option_meta']['type'];
+			}
+
+			$new_meta[] =
+			[
+				'key'  => $value['option_key'],
+				'txt'  => $value['option_value'],
+				'type' => $type
+			];
+		}
+		return self::replace_meta(['opt' => $new_meta] , $_poll_id);
+	}
+
+
+	/**
+	 * remove index from meta
+	 *
+	 * @param      <type>  $_field_meta  The field meta
+	 * @param      <type>  $_poll_id     The poll identifier
+	 */
+	public static function replace_meta($_field_meta, $_poll_id)
+	{
+
+		$meta = self::get_poll_meta($_poll_id);
+		if(!is_array($meta))
+		{
+			$meta = [];
+		}
+
+		$find_replace = false;
+
+		foreach ($_field_meta as $key => $value)
+		{
+			if(isset($meta[$key]))
+			{
+				if($value != $meta[$key])
+				{
+					$find_replace = true;
+					$meta[$key] = $value;
+				}
+			}
+		}
+		if(!$find_replace)
+		{
+			return true;
+		}
+
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
+		$meta_query = " '$meta' ";
+
+		$query =
+		"
+			UPDATE
+				posts
+			SET
+				post_meta  = $meta_query
+			WHERE
+				posts.id = $_poll_id
+			-- polls::remove_index_meta()
+			-- add new json to existing meta of post_meta
+		";
+		$result = \lib\db::query($query);
+		return $result;
 	}
 
 
