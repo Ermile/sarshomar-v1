@@ -48,7 +48,7 @@
   @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 100.2deg); transform:rotate3d(1, 0, 0, 100.2deg);}}
   @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
   @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
-  .features .info{padding-top:8px; padding:12px; }
+  .features .info{padding-top:8px; padding:12px;}
 }
 
 @media only screen and (max-width:350px) {
@@ -76,6 +76,8 @@
   header #header-profile > a{color:#888;}
   header .logo img{width: 6.3em;}
   .profile .info{display: none;}
+  .rtl .special-heading::after{display:none;}
+  .special-heading::after{display: none;}
 }
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
@@ -100,7 +102,6 @@
   #random-chart h3{text-align: left;padding: 1em .2em;}
   #random-chart h3 a{font-size: 2em;font-weight: 500;}
   .special-heading::after{display: none;}
-  .rtl .special-heading::after{display: none;}
   /*----------customer-----------*/
   #customers-box{padding: 3em ;}
   .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
