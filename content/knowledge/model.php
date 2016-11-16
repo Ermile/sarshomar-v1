@@ -12,7 +12,7 @@ class model extends \mvc\model
 		{
 			if($this->login())
 			{
-				$cat = 'user_faivorites_'. utility::post("id");
+				$cat = 'user_detail_'. $this->login('id');
 				$args =
 				[
 					'post_id'       => utility::post("id"),

@@ -90,6 +90,7 @@ class model extends \mvc\model
 		{
 			// save comment count to dashboard
 			\lib\utility\profiles::set_dashboard_data($user_id, 'comment_count');
+			\lib\db\polls::plus_comment($poll_id);
 			\lib\debug::true(T_("your comment saved, thank you"));
 			return ;
 		}

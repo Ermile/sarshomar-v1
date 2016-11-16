@@ -28,8 +28,9 @@ class polls
 			posts.filter_id 			as 'filter_id',
 			posts.post_sarshomar		as 'sarshomar',
 			posts.date_modified  	    as 'date_modified',
+			IFNULL(posts.comment_count,0) ,
 			pollstats.id 		     	as 'pollstatsid',
-			pollstats.total 			as 'total'
+			IFNULL(pollstats.total,0)	as 'total'
 		FROM
 			posts
 		LEFT JOIN pollstats ON pollstats.post_id = posts.id
@@ -1009,6 +1010,27 @@ class polls
 		$result = \lib\db::get($query);
 		$result = \lib\utility\filter::meta_decode($result);
 		return $result;
+	}
+
+
+	/**
+	 * plus the number of comments in polls
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function plus_comment($_poll_id)
+	{
+		$query =
+		"
+			UPDATE
+				posts
+			SET
+				posts.comment_count =  IF(options.comment_count IS NULL OR options.comment_count = '', 1, options.comment_count + 1)
+			WHERE
+				posts.id = $_poll_id
+			LIMIT 1
+		";
+		\lib\db::query($query);
 	}
 }
 ?>
