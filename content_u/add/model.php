@@ -388,7 +388,8 @@ class model extends \content_u\home\model
 			// we check the url
 			// if in the survey we abrot save poll and redirect to filter page
 			// user discard the poll
-			if(utility::post("title") == '' && empty(array_filter(utility::post("answers"))))
+			$answers_in_post = $this->answers_in_post();
+			if(utility::post("title") == '' && empty($answers_in_post['answers']))
 			{
 				// if we not in survey we have error for title and answers
 				if(!$this->check_poll_url($_args))
@@ -635,6 +636,58 @@ class model extends \content_u\home\model
 		return $type;
 	}
 
+
+	/**
+	 * search in $_POST
+	 * and retrun all answer data in post
+	 *
+	 * @return     array  ( description_of_the_return_value )
+	 */
+	function answers_in_post()
+	{
+		$answers      =[];
+		$answer_true  =[];
+		$answer_type  =[];
+		$answer_point =[];
+
+		foreach (utility::post() as $key => $value)
+		{
+			$check = preg_match("/(.*)\_(\d+)$/", $key, $split);
+			if($check)
+			{
+				$type = $split[1];
+				$id   = $split[2];
+				switch ($type)
+				{
+					case 'answers':
+						$answers[$id] = $value;
+						break;
+
+					case 'answer_true':
+						$answer_true[$id] = $value;
+						break;
+
+					case 'answer_type':
+						$answer_type[$id] = $value;
+						break;
+
+					case 'answer_point':
+						$answer_point[$id] = $value;
+						break;
+				}
+			}
+		}
+
+		return
+		[
+			'answers'      => $answers,
+			'answer_true'  => $answer_true,
+			'answer_type'  => $answer_type,
+			'answer_point' => $answer_point,
+		];
+	}
+
+
 	/**
 	 * insert poll
 	 * get data from utility::post()
@@ -722,36 +775,11 @@ class model extends \content_u\home\model
 		// inset poll
 		$poll_id = \lib\db\polls::insert($args);
 
-		$answers      = [];
-		$answer_type  = [];
-		$answer_true  = [];
-		$answer_point = [];
-
-
-		foreach (utility::post() as $key => $value) {
-
-			$check = preg_match("/(.*)\_(\d+)$/", $key, $split);
-			if($check)
-			{
-				$type = $split[1];
-				$id   = $split[2];
-
-				switch ($type)
-				{
-					case 'answers':
-						$answers[$id] = $value;
-						break;
-
-					case 'answer_true':
-						$answer_true[$id] = $value;
-						break;
-
-					case 'answer_type':
-						$answer_type[$id] = $value;
-						break;
-				}
-			}
-		}
+		$answers_data = $this->answers_in_post();
+		$answers      = $answers_data['answers'];
+		$answer_type  = $answers_data['answer_type'];
+		$answer_true  = $answers_data['answer_true'];
+		$answer_point = $answers_data['answer_point'];
 
 		// check answers
 		if($answers)
