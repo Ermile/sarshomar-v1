@@ -31,13 +31,14 @@ class model extends \mvc\model
 					array_splice($where, -1);
 
 					$exist_option_record = \lib\db\options::get($where);
-					if($exist_option_record)
+
+					if(isset($exist_option_record[0]['status']) && $exist_option_record[0]['status'] == 'disable')
 					{
-						$where['option_status'] = 'enable';
+						$args['option_status'] = 'enable';
 					}
 					else
 					{
-						$where['option_status'] = 'disable';
+						$args['option_status'] = 'disable';
 					}
 					\lib\db\options::update_on_error($args, $where);
 				}

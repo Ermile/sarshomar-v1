@@ -814,7 +814,8 @@ class polls
 				LEFT JOIN options
 					ON options.post_id = posts.id AND
 						options.option_key = 'faivorites' AND
-						options.user_id = $_options[login] ";
+						options.user_id = $_options[login] AND
+						options.option_status = 'enable' ";
 		}
 
 		// ------------------ pagenation
