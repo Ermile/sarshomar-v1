@@ -592,36 +592,36 @@ class model extends \content_u\home\model
 	 */
 	function change_type($_poll_type)
 	{
-		$_poll_type = false;
+		$type = false;
 
 		switch ($_poll_type)
 		{
 			case 'multiple_choice':
-				$_poll_type = 'select';
+				$type = 'select';
 				break;
 
 			case 'descriptive':
-				$_poll_type = 'text';
+				$type = 'text';
 				break;
 
 			case 'notification':
-				$_poll_type = 'notify';
+				$type = 'notify';
 				break;
 
 			case 'upload':
-				$_poll_type = 'upload';
+				$type = 'upload';
 				break;
 
 			case 'starred':
-				$_poll_type = 'star';
+				$type = 'star';
 				break;
 
 			case 'numerical':
-				$_poll_type = 'number';
+				$type = 'number';
 				break;
 
 			case 'sort':
-				$_poll_type = 'order';
+				$type = 'order';
 				break;
 
 			// $poll_type = 'media_image';
@@ -629,10 +629,10 @@ class model extends \content_u\home\model
 			// $poll_type = 'media_audio';
 
 			default:
-				$_poll_type = false;
+				$type = false;
 				break;
 		}
-		return $_poll_type;
+		return $type;
 	}
 
 	/**
