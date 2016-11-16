@@ -242,7 +242,8 @@ $(document).ready(function()
           <span class="fa fa-star star {%if value.faivorites%}starred{%endif%}" aria-hidden="true"></span>
           <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="comments-count"></span>
+          <span class="votes-count">{{value.total}}</span>
+          <span class="comments-count">{{value.total}}</span>
           <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
         </li>
   {%endfor%}

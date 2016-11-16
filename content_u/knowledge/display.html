@@ -34,7 +34,7 @@
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
           <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="votes-count"></span>
+          <span class="votes-count votes-circle"></span>
           <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
         </li>
   {%endfor%}
