@@ -1,4 +1,5 @@
 {%extends display.main%}
+
 {%block content%}
 <div class="main">
 
@@ -10,7 +11,41 @@
       <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
      </div>
      <div class="search-result" data-xhr='search-result' id="search-result">
-      {{block('search_result')}}
+      <!-- {{block('search_result')}} -->
+
+     <div class="search-result" data-xhr="search-result" id="search-result">
+              <div class="polls-head">
+        <span class="type">Type</span>
+        <span class="title">Title</span>
+        <span class="comments-count">Comments</span>
+        <span class="date">Date</span>
+      </div>
+      <ul class="polls-body">
+          <li class="polls-row">
+          <span class="type" aria-hidden="true"><i class="fa fa-check"></i> </span>
+          <span class="title"><a href="/$/4/uhdg">uhdg</a></span>
+          <span class="votes-count"></span>
+          <span class="date">2016-11-10</span>
+        </li>
+          <li class="polls-row">
+          <span class="type" aria-hidden="true"><i class="fa fa-check"></i> </span>
+          <span class="title"><a href="/$/3/soal1">soal1</a></span>
+          <span class="votes-count"></span>
+          <span class="date">2016-11-10</span>
+        </li>
+        </ul>
+      <!-- pagenation -->
+
+
+
+
+
+      <!-- ./pagenation -->
+
+
+     </div>
+
+
      </div>
      <div class="my-navigation">
       <nav class="ali-navigation auto">
@@ -30,26 +65,44 @@
     </div><!-- /.span9 -->
   </div>
 </div>
+{%endblock%}
+
+
+{%block foot_js%}
+<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+<script>
+$(document).ready(function()
+{
+ $("aside .full-line-title").click(function()
+ {
+  $(this).next(".options-box").slideToggle();
+ });
+
+ $("aside input[type=checkbox]").click(function()
+ {
+  $(this).parent('.ac-custom').toggleClass('selected');
+ });
+});
+
+</script>
+
 
 {%endblock%}
+
 
 {%block search_result%}
   {%if poll_list%}
       <div class="polls-head">
-        <span class="fa fa-star star" aria-hidden="true"></span>
         <span class="type">{%trans "Type"%}</span>
         <span class="title">{%trans "Title"%}</span>
-        <span class="comments-count">{%trans "Comments"%}</span>
         <span class="votes-count">{%trans "Votes"%}</span>
         <span class="date">{%trans "Date"%}</span>
       </div>
       <ul class="polls-body">
   {%for key, value in poll_list%}
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="fa fa-star star" aria-hidden="true"></span>
           <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
           <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="comments-count"></span>
           <span class="votes-count"></span>
           <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
         </li>
@@ -61,12 +114,5 @@
   {%else%}
       <div class="msg error">{%trans "No Result Found"%}</div>
   {%endif%}
-
-{%endblock%}
-
-
-{%block foot_js%}
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-
 
 {%endblock%}

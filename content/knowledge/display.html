@@ -152,7 +152,7 @@
 
   <div class="row">
     <div class="span1"></div>
-    <div class="span9">
+    <div class="span10">
      <div class="search-box">
       <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
       <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -195,7 +195,20 @@ $(document).ready(function()
  {
   $(this).parent('.ac-custom').toggleClass('selected');
  });
+  $("aside .full-line-title").click(function()
+ {
+    var slider = $(this).next(".options-box");
+    console.log(slider);
+    if(slider.css('display') == "block") {
+      console.log('-----');
+    }
+    else{
+      console.log('++++');
+    }
+ });
+
 });
+
 
 </script>
 
