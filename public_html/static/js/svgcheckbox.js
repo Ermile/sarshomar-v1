@@ -57,10 +57,12 @@ if( document.createElement('svg').getAttributeNS )
 			if( el.checked )
 			{
 				draw( el, type );
+				el.setAttribute('checked','checked');
 			}
 			else
 			{
 				reset( el );
+				el.removeAttribute('checked');
 			}
 		} );
 	}

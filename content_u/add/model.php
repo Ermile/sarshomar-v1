@@ -41,12 +41,20 @@ class model extends \content_u\home\model
 		debug::msg("result", $result);
 	}
 
+
+	/**
+	 * udate record of poll meta has saved in option table
+	 *
+	 * @param      <type>  $_meta_name  The meta name
+	 * @param      string  $_status     The status
+	 */
 	public function update_meta_in_option($_meta_name, $_status = 'enable')
 	{
 		// get poll meta in option table
 		$poll_meta = \lib\db\posts::get_post_meta($this->poll_id);
 		$option_id = null;
-		foreach ($poll_meta as $key => $value) {
+		foreach ($poll_meta as $key => $value)
+		{
 			if($value['option_key'] == 'meta' && $value['option_value'] == $_meta_name)
 			{
 				$option_id = $value['id'];
@@ -82,6 +90,7 @@ class model extends \content_u\home\model
 	 */
 	function poll_meta_update($_key, $_value)
 	{
+		$_key = str_replace('meta_', '', $_key);
 		if($_value == 'on')
 		{
 			if(isset($this->poll['meta'][$_key]) && $this->poll['meta'][$_key] == false)
@@ -219,13 +228,34 @@ class model extends \content_u\home\model
 							}
 						}
 						break;
-					// case 'parent_tree_id':
-					// case 'parent_tree_opt':
+
+					case 'parent_tree_id':
+					case 'parent_tree_opt':
+						if(utility::post("parent_tree_opt") && utility::post("parent_tree_id"))
+						{
+							if(utility::post("parent_tree_id") == '')
+							{
+								\lib\utility\poll_tree::remove($poll_id);
+							}
+							else
+							{
+								$tree =
+								[
+									'parent' => utility::post("parent_tree_id"),
+									'child'  => $poll_id,
+									'opt'    => utility::post("parent_tree_opt")
+								];
+
+								\lib\utility\poll_tree::update($poll_id, $tree);
+							}
+						}
+						break;
+
 					// case 'meta_profile':
 					case 'meta_random_sort':
 					case 'meta_descriptive':
 					case 'meta_score':
-					case 'hidden_result':
+					case 'meta_hidden_result':
 						$this->poll_meta_update($key, $value);
 						break;
 
@@ -278,7 +308,10 @@ class model extends \content_u\home\model
 							}
 							elseif ($value == '')
 							{
-								\lib\db\options::update(['option_status' => 'disable'], $option_id);
+								if(count($answers) > 2)
+								{
+									\lib\db\options::update(['option_status' => 'disable'], $option_id);
+								}
 							}
 						}
 						else
@@ -339,8 +372,37 @@ class model extends \content_u\home\model
 		{
 			debug::error(T_("we can not save change on this poll"));
 		}
-
 	}
+
+
+	/**
+	 * Removes an answer.
+	 */
+	function remove_answer($_args)
+	{
+		$answer_id = utility::post("value");
+
+		$poll_id = $this->check_poll_url($_args);
+		if(!$poll_id)
+		{
+			return true;
+		}
+		else
+		{
+			$answers = \lib\utility\answers::get($poll_id);
+			if(count($answers) <= 2 )
+			{
+				return false;
+			}
+			else
+			{
+				\lib\db\options::update(['option_status' => 'disable'], $answer_id);
+				\lib\db\polls::update_answer_in_meta($poll_id);
+				return true;
+			}
+		}
+	}
+
 
 	/**
 	 * get data to add new add
@@ -355,6 +417,13 @@ class model extends \content_u\home\model
 			return;
 		}
 
+		// remove one answer
+		// the user click on element by class .delete
+		if(utility::post("type") == 'remove_answer')
+		{
+			$this->remove_answer($_args);
+			return;
+		}
 
 		/**
 		 * update the poll or survey

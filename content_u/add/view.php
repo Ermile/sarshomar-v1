@@ -20,6 +20,9 @@ class view extends \mvc\view
 		$poll_id = $_args->api_callback;
 		$poll = \lib\db\polls::get_poll($poll_id);
 		$this->data->poll = $poll;
+		$answers = \lib\utility\answers::get($poll_id);
+		$this->data->answers = $answers;
+
 	}
 
 	/**

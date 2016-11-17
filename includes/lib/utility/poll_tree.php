@@ -64,7 +64,55 @@ class poll_tree
 		{
 			return false;
 		}
+	}
 
+
+	/**
+	 * remove poll tree
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function remove($_poll_id)
+	{
+
+		$update_poll =
+		[
+			'post_parent' => null,
+		];
+		$result = \lib\db\posts::update($update_poll, $_poll_id);
+		$disable_option_record =
+		"
+			UPDATE
+				options
+			SET
+				option_status = 'disable'
+			WHERE
+				post_id = $_poll_id AND
+				option_cat = 'poll_$_poll_id' AND
+				option_key LIKE 'tree%'
+		";
+		$resutl = \lib\db::query($disable_option_record);
+		return $resutl;
+	}
+
+
+	/**
+	 * update poll tree
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function update($_poll_id, $_args)
+	{
+		$remove = self::remove($_poll_id);
+		if($remove)
+		{
+			return self::set($_args);
+		}
+		return false;
 	}
 }
 ?>

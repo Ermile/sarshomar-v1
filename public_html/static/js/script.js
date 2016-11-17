@@ -35,6 +35,7 @@ function add_answer()
 		template.children('.input').val('');
 		template.children('input[data-true=true]').attr('name', 'answer_true_' + num);
 		template.children('input[data-type=type]').attr('name', 'answer_type_' + num);
+		template.attr('data-number', num);
 
 		$('.input-group').append(template);
 		template.addClass('animated fadeInDown');
@@ -56,6 +57,7 @@ route(/\@\/add/, function()
 		$('#submit-form').attr("value", $(this).attr("send-name"));
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});
+
 	// run on input change
 	$(this).on('input', '.element.small .input[type="text"]', function(event)
 	{
@@ -79,7 +81,25 @@ route(/\@\/add/, function()
 	{
 		if ($('.element.small').length > 2)
 		{
-			$(this).parents('.element.small').remove();
+			_self = $(this);
+			answer_id = $(this).parent('div').attr('data-id');
+			$(this).ajaxify(
+			{
+				ajax:
+				{
+					data:
+					{
+						'type': 'remove_answer',
+						'value': answer_id
+					},
+					abort: true,
+					success: function(e, data, x)
+					{
+						$(_self).parents('.element.small').remove();
+					},
+					method: 'post'
+				}
+			});
 		}
 		else
 		{
