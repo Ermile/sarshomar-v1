@@ -174,7 +174,7 @@ class model extends \content_u\home\model
 
 					case 'poll_type':
 						// check the poll type
-						$type = $this->change_type($value);
+						$type = self::change_type($value);
 						if($poll['type'] != $type)
 						{
 							$update_post['post_type'] = $type;
@@ -663,13 +663,14 @@ class model extends \content_u\home\model
 	 *
 	 * @return     boolean|string  ( description_of_the_return_value )
 	 */
-	function change_type($_poll_type)
+	public static function change_type($_poll_type)
 	{
 		$type = false;
 
 		switch ($_poll_type)
 		{
 			case 'multiple_choice':
+			case 'multiplechoice':
 				$type = 'select';
 				break;
 
@@ -771,7 +772,7 @@ class model extends \content_u\home\model
 	public function insert_poll($_options = [])
 	{
 		// get poll_type
-		$poll_type    = $this->change_type(utility::post("poll_type"));
+		$poll_type    = self::change_type(utility::post("poll_type"));
 		// swich html name and db name of poll type
 		if(!$poll_type)
 		{

@@ -20,8 +20,7 @@ class controller extends \mvc\controller
 		$property['pollgender'] = ["/^poll|quiz|survey$/", true, 'pollgender'];
 		// question type
 		$property['polltype']   = ["/(multiplechoice|descriptive|notification|upload|starred|numerical|sort|,)+/", true, 'polltype'];
-
-		$property['status']     = ["/^expire|publish$/",true,'status'];
+		$property['status']     = ["/^expired|publish$/",true,'status'];
 
 
 		foreach ($support_filter as $key => $value) {

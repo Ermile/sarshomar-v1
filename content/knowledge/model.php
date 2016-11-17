@@ -51,6 +51,7 @@ class model extends \mvc\model
 		$match  = $match->match;
 
 		$filter = [];
+		$meta                   = [];
 
 		foreach ($match as $key => $value) {
 			if(is_array($value) && isset($value[0]))
@@ -61,10 +62,13 @@ class model extends \mvc\model
 			{
 				$filter[$key] = $value;
 			}
+			else
+			{
+				list($f,$v) = $this->db_field_name($key, $value);
+				$meta[$f] = $v;
+			}
 		}
 
-		$meta                   = [];
-		$meta['post_sarshomar'] = 1;
 		if(!empty($filter))
 		{
 			$filter_id         = \lib\db\filters::get_id($filter);
@@ -73,6 +77,50 @@ class model extends \mvc\model
 		$search = $_args->get("search")[0];
 		$result = \lib\db\polls::search($search, $meta);
 		return $result;
+	}
+
+
+	/**
+	 * check the url and make real name from posts table
+	 *
+	 * @param      <type>  $_url_arg  The url argument
+	 * @param      string  $_value    The value
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	function db_field_name($_url_arg, $_value)
+	{
+		$field = null;
+		$value = $_value;
+		switch ($_url_arg)
+		{
+			case 'pollcat':
+				if($_value == "sarshomar")
+				{
+					$field = "post_sarshomar" ;
+					$value = 1;
+				}
+				else
+				{
+					$field = "post_sarshomar" ;
+					$value = null;
+				}
+				break;
+
+			case 'pollgender':
+				$field = "post_gender";
+				break;
+
+			case 'polltype':
+				$field = "post_type";
+				$value = \content_u\add\model::change_type($_value);
+				break;
+
+			case 'status':
+				$field = "post_status";
+				break;
+		}
+		return [$field , $value];
 	}
 }
 ?>
