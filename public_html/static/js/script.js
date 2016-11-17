@@ -209,7 +209,7 @@ route(/\@\/add/, function()
 // Me | Profile
 route(/\@\/profile/, function ()
 {
-	  btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
+
 
 $.each($('.element.has-data'), function (key, value){
   $(this).dblclick(function ()

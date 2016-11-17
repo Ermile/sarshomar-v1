@@ -546,7 +546,8 @@ class polls
 			SELECT
 				$public_fields
 			WHERE
-				posts.post_sarshomar = 1
+				posts.post_sarshomar = 1 AND
+				posts.post_status = 'publish'
 			ORDER BY RAND()
 			LIMIT 1
 		";
@@ -759,43 +760,6 @@ class polls
 
 
 	/**
-	 * Set bookmark of polls
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public static function set_bookmark($_args)
-	{
-		if(isset($_args['user_id']))
-		{
-			$user_id = $_args['user_id'];
-		}
-		else
-		{
-			return false;
-		}
-
-		if(isset($_args['poll_id']))
-		{
-			$poll_id = $_args['poll_id'];
-		}
-		else
-		{
-			return false;
-		}
-
-		$args =
-		[
-			'user_id'      => $user_id,
-			'post_id'      => $poll_id,
-			'option_cat'   => 'user_detail_' . $poll_id,
-			'option_key'   => 'bookmark',
-			'option_value' => 'like'
-		];
-		return \lib\db\options::insert($args);
-	}
-
-
-	/**
 	 * delete polls
 	 *
 	 * @param      <type>   $_args  The arguments
@@ -825,6 +789,7 @@ class polls
 	 */
 	public static function search($_string = null, $_options = [])
 	{
+
 		$where = [];
 
 		if(!$_string && empty($_options))
@@ -838,7 +803,9 @@ class polls
 			"pagenation" => true,
 			"limit"      => 10,
 			"login"      => false,
-			"get_last"	 => false
+			"get_last"	 => false,
+			"my_poll" 	 => false,
+			"admin" 	 => false,
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -883,6 +850,12 @@ class polls
 			$order = " ORDER BY posts.id DESC ";
 		}
 
+		// if in my poll retur all reaulr
+		if($_options['my_poll'] === false)
+		{
+			$where[] = " posts.post_status = 'publish' ";
+		}
+
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -890,6 +863,8 @@ class polls
 		unset($_options['limit']);
 		unset($_options['login']);
 		unset($_options['get_last']);
+		unset($_options['my_poll']);
+		unset($_options['admin']);
 
 		$where[] = " posts.post_type != 'post' ";
 
@@ -899,7 +874,7 @@ class polls
 
 		if(empty($where))
 		{
-			$where = null;
+			$where = [];
 		}
 		else
 		{
@@ -909,6 +884,8 @@ class polls
 		$search = null;
 		if($_string != null)
 		{
+			$_string = \lib\utility\safe::safe($_string);
+
 			$search =
 			"(
 				posts.post_title 	LIKE '%$_string%' OR

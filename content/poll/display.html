@@ -107,7 +107,9 @@
    <div class="span4" id="poll-filters">
     {%if filters%}
     <div class="title">{%trans "Society Statistics"%}</div>
+    {%for key, value in filters%}
     <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>
+    {%endfor%}
     {%endif%}
    </div>
    <div class="span4" id="poll-similar">
@@ -304,8 +306,11 @@ function load_chart(_type)
   data_chart =  {{chart|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
 
   data = {chart: {type: 'column'},
+    exporting: {enabled: false},
+    credits: {enabled: false},
+    legend: {enabled: false },
     title: {text: data_chart[_type].title},
-    xAxis: {categories: eval(data_chart[_type].categories) },
+    xAxis: {labels: { enabled: false }, categories: eval(data_chart[_type].categories) },
     yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
       stackLabels: {enabled: true,style: {fontWeight: 'bold',
           color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
