@@ -12,38 +12,8 @@ class model extends \mvc\model
 		{
 			if($this->login())
 			{
-				$cat = 'user_detail_'. $this->login('id');
-				$args =
-				[
-					'post_id'       => utility::post("id"),
-					'user_id'       => $this->login('id'),
-					'option_cat'    => $cat,
-					'option_key'    => 'faivorites',
-					'option_value'  => utility::post("id"),
-					'option_status' => 'enable'
-				];
-
-				$insert_option = \lib\db\options::insert($args);
-				if(!$insert_option)
-				{
-					$where = $args;
-
-					array_splice($where, -1);
-
-					$exist_option_record = \lib\db\options::get($where);
-
-					if(isset($exist_option_record[0]['status']) && $exist_option_record[0]['status'] == 'disable')
-					{
-						$args['option_status'] = 'enable';
-					}
-					else
-					{
-						$args['option_status'] = 'disable';
-					}
-					\lib\db\options::update_on_error($args, $where);
-				}
+				\lib\db\polls::faiv_like("faivorites", $this->login('id'), utility::post('id'));
 			}
-
 			return;
 		}
 		$field = [];
