@@ -406,33 +406,56 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #poll-box .read-more span{font-weight:bold;margin-right:10px;}
 #poll-box .read-more a{color:#767676;}
 
-#poll-box .ac-custom{margin:0 0 20px 0;display:flex;}
+#poll-box .ac-custom{margin:0 0 2em 0;display:flex;}
 #poll-box .ac-custom input[type="checkbox"]:checked + label::after,#poll-box .ac-custom input[type="radio"]:checked + label::after{background-color:#E7A429;}
-#poll-box .ac-custom label{margin:0;padding:0 30px 0 50px;flex:1;line-height:42px;color:#00667A;font-weight:bold;border-top-left-radius:5px;border-bottom-left-radius:5px;overflow:hidden;position:relative;}
+#poll-box .ac-custom label{margin:0;padding:0 3em 0 5em;flex:1;line-height:3.6em;color:#00667A;font-weight:bold;border-top-left-radius:.5em;border-bottom-left-radius:.5em;overflow:hidden;position:relative;}
 #poll-box .ac-custom label::before{left:auto;right:0;background-color:transparent;}
-#poll-box .ac-custom label::after{content:attr(data-number);position:absolute;left:0;top:0;width:42px;height:100%;line-height:42px;background-color:#00667A;color:#E7E7E7;text-align:center;transition:.3s;}
+#poll-box .ac-custom label::after{content:attr(data-number);position:absolute;left:0;top:0;width:3.6em;height:100%;background-color:#00667A;color:#E7E7E7;text-align:center;transition:.3s;}
 #poll-box .ac-custom svg{left:auto;right:5px;}
-#poll-box input[type="submit"]{border:none;background-color:transparent;color:#00667A;cursor:pointer;float:right;}
+#poll-box input[type="submit"]{border:none;background-color:transparent;color:#00667A;cursor:pointer;float:right;font-size:1em;}
 #poll-box input[name="opt_other"]{border:none;display:inline-block;width:100%;height:100%;color:#00667A;background-color:transparent;}
 
+.button-container{width:55%;}
 .poll.buttons{margin-bottom:3em;}
+.buttons .save-answer{background-color:#007A03;}
 
 /* Poll Box RTL */
 .rtl #poll-box .read-more span{margin-right:0;margin-left:10px;}
 .rtl #poll-box input[type="submit"]{float:left;}
-.rtl #poll-box .ac-custom label{padding:0 50px 0 30px;border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;}
+.rtl #poll-box .ac-custom label{padding:0 5em 0 3em;border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:.5em;border-bottom-right-radius:.5em;}
 .rtl #poll-box .ac-custom label::before{left:0;right:auto;}
 .rtl #poll-box .ac-custom label::after{left:auto;right:0;}
 .rtl #poll-box .ac-custom svg{left:5px;right:auto;}
-#poll-box input[type="submit"]{float:left;}
+.rtl #poll-box input[type="submit"]{float:left;}
+
+#poll-result{margin-bottom:5em;}
 
 #poll-extra, #comments-box{padding-bottom:100px;}
 
 /* Poll Info Info */
-#poll-extra .title{font-weight:bold;color:#434348;}
+#poll-extra .title{font-size:1.2em;font-weight:bold;color:#434348;}
 #poll-info .title + div{padding:10px;color:#434348;}
 #poll-info .period .start-time{color:#176325;}
 #poll-info .period .end-time{color:#A41F1F;}
+#poll-info .status.publish{color:#176325;}
+#poll-info .status.awaiting{color:#176325;}
+#poll-info .status.stop{color:#A41F1F;}
+#poll-info .status.pause{color:#A41F1F;}
+#poll-info .status.disable{color:#A41F1F;}
+#poll-info .status.deleted{color:#A41F1F;}
+
+#poll-filters .title + div{padding:10px 0;color:#767676;}
+#poll-filters span{display:inline-block;
+    display: inline-flex;
+    min-width: 35%;
+    margin-bottom: 10px;
+    background-color: red;
+    padding: 5px;
+    line-height: 2em;}
+
+#poll-similar ul{font-size:1.2em;padding:10px 0;}
+#poll-similar ul li{margin-bottom:.5em;}
+#poll-similar a{color:#767676;}
 
 /* poll details */
 .tags a{font-size:12px;line-height:30px;position:relative;display:inline-block;min-width:50px;height:30px;margin-right:1.5em;margin-bottom:1em;padding:0 0 0 5px;text-align:center;color:#035261;background-color:#e7e7e7;}
@@ -717,12 +740,12 @@ nav#page-nav #nav-prev{float:left;}
 
 
 /* input reactions */
-.element.raw label{background-color:transparent;color:#A0A0A0;}
-.element.raw label::before{background-image:none;}
-.element.raw .input{background-color:transparent;color:#A0A0A0;cursor:default;}
+.element.has-data label{background-color:transparent;color:#A0A0A0;}
+.element.has-data label::before{background-image:none;}
+.element.has-data .input{background-color:transparent;color:#A0A0A0;cursor:default;}
 
-.element.raw:hover label{background-color:#D8D8D8;}
-.element.raw:hover .input{background-color:#D8D8D8;}
+.element.has-data:hover label{background-color:#D8D8D8;}
+.element.has-data:hover .input{background-color:#D8D8D8;}
 
 
 /* panel-text */
