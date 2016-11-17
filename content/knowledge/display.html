@@ -22,12 +22,12 @@
         <label for="type1">{%trans "Poll"%}</label>
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type2" type="checkbox" name='type'>
-       <label for="type2">{%trans "آزمون‌آنلاین"%}</label>
+       <input id="type2" type="checkbox" name='pollgender' value="quiz">
+       <label for="type2">{%trans "quiz"%}</label>
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type4" type="checkbox" name='type'>
-       <label for="type4">{%trans "پرسشنامه"%}</label>
+       <input id="type4" type="checkbox" name='pollgender' value="survey">
+       <label for="type4">{%trans "survey"%}</label>
       </span>
     </div>
    </div>
@@ -35,32 +35,32 @@
     <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
     <div class="options-box">
      <span class="ac-custom ac-checkmark">
-      <input id="accord1" type="checkbox">
-      <label for="accord1">{%trans "گزینه‌ای"%}</label>
+      <input id="accord1" type="checkbox" name="polltype" value="multiplechoice">
+      <label for="accord1">{%trans "multiplechoice"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord2" type="checkbox">
-      <label for="accord2">{%trans "تشریحی"%}</label>
+      <input id="accord2" type="checkbox" name="polltype" value="descriptive">
+      <label for="accord2">{%trans "descriptive"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord3" type="checkbox">
-      <label for="accord3">{%trans "بارگذاری"%}</label>
+      <input id="accord3" type="checkbox" name="polltype" value="notification">
+      <label for="accord3">{%trans "notification"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord4" type="checkbox">
-      <label for="accord4">{%trans "ستاره‌ای"%}</label>
+      <input id="accord4" type="checkbox" name="polltype" value="upload">
+      <label for="accord4">{%trans "upload"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord5" type="checkbox">
-      <label for="accord5">{%trans "اطلاع‌رسانی"%}</label>
+      <input id="accord5" type="checkbox" name="polltype" value="starred">
+      <label for="accord5">{%trans "starred"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord6" type="checkbox">
-      <label for="accord6">{%trans "شماره‌ای"%}</label>
+      <input id="accord6" type="checkbox" name="polltype" value="numerical">
+      <label for="accord6">{%trans "numerical"%}</label>
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord7" type="checkbox">
-      <label for="accord7">{%trans "مرتب‌سازی"%}</label>
+      <input id="accord7" type="checkbox" name="polltype" value="sort">
+      <label for="accord7">{%trans "sort"%}</label>
      </span>
     </div>
    </div>
@@ -68,12 +68,12 @@
     <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
     <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time1" type="checkbox" name='time'>
-        <label for="time1">{%trans "در حال انجام"%}</label>
+        <input id="time1" type="checkbox" name='status' value="publish">
+        <label for="time1">{%trans "publish"%}</label>
       </span>
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time2" type="checkbox" name='time'>
-        <label for="time2">{%trans "منقضی شده"%}</label>
+        <input id="time2" type="checkbox" name='status' value="expire">
+        <label for="time2">{%trans "expire"%}</label>
       </span>
     </div>
    </div>
