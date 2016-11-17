@@ -874,8 +874,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 /************************************************************** aside */
 .main .search-box {margin:2em 0;}
+aside .select-box input{width:100%;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow: none;background-color:#e7e7e7;color:#777;}
 aside .select-box{display:flex;background-color:#e7e7e7;margin:10px 0;}
-aside .select-box label{line-height: 26px;font-size: 1.1em;color:#00667a;width:100%;font-weight:500;padding-left: 1.5em;}
+aside .select-box label{line-height: 26px;font-size: 1.1em;color:#00667a;width:100%;font-weight:500;padding-left: .5em;}
 .rtl aside .select-box label{padding-right: 1em;padding-left:.5em;}
 aside select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;background-color:#e7e7e7;outline:none;box-shadow: none;}
 aside select:focus {outline:none;}
@@ -889,11 +890,11 @@ aside .group .options-box .ac-custom.selected:hover label{background-color:trans
 aside .group .options-box .ac-custom label {background-color:transparent;padding: 0 .7em;}
 aside .group .options-box .ac-custom svg{right:0;left:auto;width:17px;height:17px;margin-top:-9px;margin-right:5px;}
 .rtl aside .group .options-box .ac-custom svg{left:0;right:auto;margin-left:5px;margin-right:0}
-aside .group .options-box .ac-custom label{padding-right:30px;margin-left:0;color:#00667a;font-size:.9em;font-weight:500;width:100%;line-height:30px;padding-left:1.5em;}
+aside .group .options-box .ac-custom label{padding-right:30px;margin-left:0;color:#00667a;font-size:.9em;font-weight:500;width:100%;line-height:30px;padding-left:.5em;}
 .rtl aside .group .options-box .ac-custom label{padding-left:30px;padding-right:0;margin-right:1em;}
 aside .group .options-box .ac-custom label::before{right:0;left:auto;}
 aside .group .options-box .ac-custom input[type="checkbox"]+label::before{background-color:#e7e7e7;height:0;line-height:30px;}
-aside .options-box{padding:1em;padding-bottom:0;}
+aside .options-box{padding:.5em;padding-bottom:0;}
 aside .full-line-title{position:relative;height: 20px;cursor:pointer;}
 aside .full-line-title::before{content:'';width:100%;position:absolute;height:1px;background-color:#00667a;left:0;top:0;bottom:0;margin:auto;}
 aside .full-line-title::after{content:attr(data-title);position:absolute;background-color:#ebebeb;right:0;bottom:0;top:0;margin:auto;padding:0px 5px;padding-right:30px;color:#777;font-size: 1.1em;font-weight: 500;}
@@ -962,17 +963,10 @@ aside .group{margin-bottom:1em;}
 .polls-row .type i{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
 .polls-row .date{color:#BDBDBD;}
 .polls-row:hover > span:not(.star){background-color:#ebebeb;}
-/*.polls-row > .votes-count.votes-circle::before{content:'';width:25px;height:25px;background-color:#00667a;display:inline-block;border-radius:50%;margin-right:5px;vertical-align:middle;}*/
-
 .polls-row:hover .star .fa-star{color:red;}
 
-
-.pie {position:relative;background: #e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 25px;
-    height: 25px;
-    display: inline-block;
-    border-radius: 50%;
-    margin-right: 5px;
-    vertical-align: middle;}
+/*************************************************************** knowledge */
+.pie {position:relative;background:#e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 25px;height:25px;display: inline-block;border-radius: 50%;margin-right: 5px;vertical-align: middle;}
 .pie::before {content: '';display: block;margin-left:50%;height: 100%;border-radius: 0 100% 100% 0 / 50%;background-color: inherit;transform-origin: left;animation: spin 3s linear infinite, bg 6s step-end infinite;animation: spin 50s linear infinite, bg 100s step-end infinite;animation-play-state: paused;animation-delay: inherit;}
 @keyframes spin {to { transform: rotate(.5turn); }}
 @keyframes bg {50% { background: #00667a; }}
