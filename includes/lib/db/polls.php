@@ -1039,6 +1039,11 @@ class polls
 	 */
 	public static function faiv_like($_type, $_user_id, $_poll_id)
 	{
+		if(!$_user_id || !$_poll_id)
+		{
+			return false;
+		}
+
 		$cat = 'user_detail_'. $_user_id;
 		$args =
 		[

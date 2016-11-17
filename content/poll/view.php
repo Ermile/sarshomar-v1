@@ -275,6 +275,8 @@ class view extends \mvc\view
 
 			// to load post data in html
 			$this->data->post = $post;
+
+			$this->data->is_like = \lib\db\polls::is_like($this->login('id'), $post_id);
 		}
 		else
 		{

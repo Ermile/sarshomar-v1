@@ -164,6 +164,14 @@ class model extends \mvc\model
 			return;
 		}
 
+		// save like
+		if(utility::post("type") == 'like')
+		{
+			$result = \lib\db\polls::faiv_like("like", $this->login('id'), $poll_id);
+			return;
+		}
+
+
 		//----------------------------------------------------------------------------
 		// save score of comments
 		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
