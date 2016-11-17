@@ -430,6 +430,18 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #comments-box .bar.four{background-color:#c15d31;}
 #comments-box .bar.five{background-color:#b13838;}
 #comments-box .comment{position:relative;}
+
+#comments-box .comment .score{position:absolute;width:26px;height:76px;top:15px;right:15px;background:url(../images/svg/score-bg.svg) no-repeat;}
+.rtl #comments-box .comment .score{right:auto;left: 5px;}
+
+#comments-box .comment .score .plus, #comments-box .comment .score .minus{display:block;height:26px;position:relative;}
+#comments-box .comment .score .plus{margin-top:12px;}
+#comments-box .comment .score .minus{}
+
+#comments-box .comment .score .plus::before, #comments-box .comment .score .minus::before{display:none;content:attr(data-value);position:absolute;width:100%;top:0;bottom: 0;margin:auto;text-align:center;}
+#comments-box .comment .score .plus::after{content:'j';font-family:'sarshomar';color:red;position:absolute;top:0;bottom: 0;margin:auto;text-align:center;font-size:12px;}
+ #comments-box .comment .score .minus::after{content:'i';font-family:'sarshomar';color:green;position:absolute;top:0;bottom: 0;margin:auto;text-align:center;font-size:12px;}
+
 #comments-box .comment .title{font-size:1.2em;color:#767676;margin-bottom:.5em;}
 #comments-box .comment .stars .star{font-size:1.2em;}
 #comments-box .comment .author{font-size:1.1em;color:#767676;margin-bottom:1.4em;}
