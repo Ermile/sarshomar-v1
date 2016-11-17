@@ -4,7 +4,7 @@
 <div class="main pad">
   <div class="box">
     <form method="post">
-      <input type="hidden" name="type" value="">
+      <!-- <input type="hidden" name="type" value=""> -->
       <div class="row auto">
         <div class="span6">
 
@@ -23,17 +23,17 @@
             <li id="tab-public">
               <div class="element switch">
                 <label class="title" for="gender">{%trans "Gender"%}</label>
-                <input type="checkbox" name="male" id="male">
+                <input type="radio" name="filter_gender" value="male" id="male">
                 <label for="male">{%trans "Male"%}</label>
-                <input type="checkbox" name="female" id="female">
+                <input type="radio" name="filter_gender" value="female" id="female">
                 <label for="female">{%trans "Female"%}</label>
               </div>
 
               <div class="element switch">
                 <label class="title" for="marrital">{%trans "Marrital"%}</label>
-                <input type="checkbox" name="single" id="single">
+                <input type="radio" name="filter_marrital" value="single" id="single">
                 <label for="single">{%trans "Single"%}</label>
-                <input type="checkbox" name="marriade" id="marriade">
+                <input type="radio" name="filter_marrital" value="marriade" id="marriade">
                 <label for="marriade">{%trans "Marriade"%}</label>
               </div>
 

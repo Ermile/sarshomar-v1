@@ -377,34 +377,81 @@ class filters
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function count_filtered_member($_args)
+	public static function count_user($_args)
 	{
 		if(!is_array($_args))
 		{
 			return false;
 		}
-		$filter_id = self::check($_args, 'id');
+		$filter_id = self::search($_args);
 		if(empty($filter_id))
 		{
 			return 0;
 		}
 		else
 		{
-			if(!is_array($filter_id))
-			{
-				$query =
-				"
-					SELECT
-						COUNT(id) AS 'members'
-					FROM
-						users
-					WHERE
-						users.filter_id = $filter_id
-				";
-				$count = \lib\db::get($query, 'members', true);
-				return $count;
-			}
+			$id_in = join($filter_id, ',');
+			$query =
+			"
+				SELECT
+					COUNT(id) AS 'members'
+				FROM
+					users
+				WHERE
+					users.filter_id IN ($id_in)
+			";
+			$count = \lib\db::get($query, 'members', true);
+			return $count;
 		}
 		return 0;
 	}
+
+
+	/**
+	 * Searches for the first match.
+	 *
+	 * @param      <type>  $_filters  The filters
+	 */
+	public static function search($_filters)
+	{
+		if(!is_array($_filters))
+		{
+			return false;
+		}
+
+		$where = [];
+		foreach ($_filters as $key => $value)
+		{
+			if(self::support_filter($key))
+			{
+				if(is_array($value))
+				{
+					$or = [];
+					foreach ($value as $k => $v)
+					{
+						$or[] = " `$key` = '$v' ";
+					}
+					$or = join($or, " OR ");
+					$where[] = " ( $or ) ";
+				}
+				else
+				{
+					$where[] = " `$key` = '$value' ";
+				}
+			}
+		}
+
+		$where = join($where, " AND ");
+		$query =
+		"
+			SELECT
+				id
+			FROM
+				filters
+			WHERE
+				$where
+		";
+		return \lib\db::get($query, 'id');
+	}
 }
+?>

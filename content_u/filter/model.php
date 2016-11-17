@@ -26,53 +26,57 @@ class model extends \content_u\home\model
 	 */
 	public function post_filter($_args)
 	{
-		$result = null;
-		// get filter
-		// remove empty filters in post
-		$post = array_filter(utility::post());
-		$filter = [];
-		// get the post started by 'filter_' string
-		foreach ($post as $key => $value) {
-			if(preg_match("/^filter\_(.*)$/", $key, $name))
-			{
-				$filter[$name[1]] = $value;
-			}
+
+		// get the poll or survey id
+		$poll_id = $this->check_poll_url($_args);
+
+		if(!$poll_id)
+		{
+			debug::error(T_("poll id not found"));
+			return false;
 		}
 
-		if(!empty($filter))
+		$post = array_filter(utility::post());
+		$filter = [];
+		foreach ($post as $key => $value)
 		{
-			// get count member by tihs filter
-			$count_filtered_member = \lib\db\filters::count_filtered_member($filter);
-
-			if($count_filtered_member < 1)
+			if(substr($key, 0, 7) == 'filter_')
 			{
-				debug::error(T_(":max users found remove some filter",["max" => $count_filtered_member]));
-				return false;
-			}
-
-			// get the poll or survey id
-			$poll_id = $this->check_poll_url($_args);
-
-			if(!$poll_id)
-			{
-				debug::error(T_("poll id not found"));
-				return false;
-			}
-			// ready to insert filters in options table
-			// get the filter id if exist
-			$filter_id = \lib\db\filters::get_id($filter);
-
-			// if filter id not found insert the filter record and get the last_insert_id
-			if(!$filter_id)
-			{
-				$filter_id = \lib\db\filters::insert($filter);
-				// bug !!! . filter can not be add
-				if(!$filter_id)
+				$key = str_replace('filter_', '', $key);
+				$value = explode(',', $value);
+				$value = array_filter($value);
+				if(count($value) == 1)
 				{
-					return false;
+					$filter[$key] = $value[0];
+				}
+				else
+				{
+					foreach ($value as $k => $v) {
+						$filter[$key][] = $v;
+					}
 				}
 			}
+		}
+		$count = \lib\db\filters::count_user($filter);
 
+		if(intval($count) < 1)
+		{
+			debug::error(T_(":max users found remove some filter",["max" => $count]));
+			return false;
+		}
+
+		// ready to insert filters in options table
+		// get the filter id if exist
+		$filter_id = \lib\db\filters::get_id($filter);
+
+		// if filter id not found insert the filter record and get the last_insert_id
+		if(!$filter_id)
+		{
+			$filter_id = \lib\db\filters::insert($filter);
+		}
+
+		if($filter_id)
+		{
 			$poll_update = ['filter_id' => $filter_id];
 			$result      = \lib\db\polls::update($poll_update, $poll_id);
 		}
