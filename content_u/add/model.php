@@ -531,7 +531,7 @@ class model extends \content_u\home\model
 				'post_type'      => 'survey',
 				'post_survey'    => null,
 				'post_gender'    => 'survey',
-				'post_status'    => 'publish',
+				'post_status'    => 'draft',
 				'post_sarshomar' => $this->post_sarshomar
 			];
 			$survey_id = \lib\db\polls::insert($args);
@@ -629,11 +629,21 @@ class model extends \content_u\home\model
 				$title = substr($title, 0, 199);
 			}
 
+			$survey_status = 'draft';
+			// save and check words
+			if(!\lib\db\words::save_and_check($title))
+			{
+				$survey_status = 'awaiting';
+				\lib\debug::warn(T_("You have to use words that are not approved in the survery title, Your text comes into review mode", 'secondary-title'));
+				\lib\debug::msg('spam', \lib\db\words::$spam);
+			}
+
 			$args =
 			[
 				'post_title'  => $title,
 				'post_url'    => $url,
 				'post_gender' => 'survey',
+				'post_status' => $survey_status,
 				'post_slug'   => $slug
 			];
 			$result = \lib\utility\survey::update($args, $_survey_id);
@@ -642,13 +652,6 @@ class model extends \content_u\home\model
 				debug::error(T_("error in save survey title"));
 			}
 
-			// save and check words
-			if(!\lib\db\words::save_and_check($title))
-			{
-				\lib\db\survey::update(['post_status' => 'awaiting'], $_survey_id);
-				\lib\debug::warn(T_("You have to use words that are not approved in the survery title, Your text comes into review mode", 'secondary-title'));
-				\lib\debug::msg('spam', \lib\db\words::$spam);
-			}
 		}
 	}
 
@@ -817,7 +820,7 @@ class model extends \content_u\home\model
 			$summary = substr($summary, 0, 149);
 		}
 
-		$publish = 'publish';
+		$publish = 'draft';
 		// save and check words
 		if(!\lib\db\words::save_and_check(utility::post()))
 		{

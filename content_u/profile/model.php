@@ -39,7 +39,7 @@ class model extends \mvc\model
 		$name  = utility::post("name");
 		$value = utility::post("value");
 
-		if(!$name || !$value)
+		if(!$name)
 		{
 			return false;
 		}

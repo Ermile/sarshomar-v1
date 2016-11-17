@@ -7,9 +7,17 @@
      <span class="name">{{login.displayname}}</span>
      <span class="mobile">{{login.mobile}}</span>
     </div>
-    <div class="progress" data-percent="12">
+    <div class="progress" data-percent="{{complete_profile}}">
      <div class="bar"></div>
-     <div class="detail">{%trans "Your profile is not complete!"%}<br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
+     <div class="detail">
+     {%if complete_profile < 10 %}
+      {%trans "Your profile is not complete!"%}
+     {%elseif complete_profile < 50%}
+      {%trans "Please Complete Your Profile"%}
+     {%else%}
+      {%trans "Thank You for complete profile"%}
+     {%endif%}
+      <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
     </div>
    </aside>
 
@@ -57,7 +65,8 @@
  <script type="text/javascript">
   $(function ()
   {
-    Highcharts.chart('chart-answered',
+    // Highcharts.chart('#chart-answered',
+    $('#chart-answered').highcharts(
     {
       chart:{type:'pie',},
       title:{text:''},

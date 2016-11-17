@@ -907,7 +907,10 @@ class polls
 		}
 		else
 		{
-			$limit = " LIMIT 0, $limit ";
+			if($limit)
+			{
+				$limit = " LIMIT 0, $limit ";
+			}
 		}
 		// ------------------ faivorites
 		if($faivorites)

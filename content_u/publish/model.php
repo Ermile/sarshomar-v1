@@ -114,7 +114,7 @@ class model extends \content_u\home\model
 		$publish_status = 'publish';
 
 		$post_status = \lib\db\polls::get_poll_status($poll_survey_id);
-		if($post_status != 'publish')
+		if($post_status == 'awaiting')
 		{
 			$publish_status = $post_status;
 		}
