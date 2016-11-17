@@ -1,5 +1,5 @@
 <?php
-namespace content_u\article;
+namespace content_admin\article;
 
 class view extends \mvc\view
 {

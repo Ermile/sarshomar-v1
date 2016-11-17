@@ -1,0 +1,9 @@
+{%extends display.main%}
+
+{%block content%}
+{%for key, value in article%}
+<h1>
+	<a href="{{base.url}}/{{value.url}}">{{value.title}}</a>
+</h1>
+{%endfor%}
+{%endblock%}

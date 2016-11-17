@@ -1,5 +1,5 @@
 <?php
-namespace content_u\article;
+namespace content_admin\article;
 use \lib\utility;
 
 class model extends \mvc\model
