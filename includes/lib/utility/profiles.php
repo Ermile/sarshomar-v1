@@ -192,8 +192,8 @@ class profiles
 								{
 									$insert_filter['country'] = $value;
 								}
-								$insert_profile[$key] = $value;
 							}
+							$insert_profile[$key] = $value;
 							break;
 
 						// case 'province';

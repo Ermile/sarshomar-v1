@@ -27,6 +27,8 @@ class model extends \mvc\model
 	{
 		if(utility::post("type") == 'autocomplete')
 		{
+			return;
+			// neet to fix
 			$field  = utility::post("data");
 			$search = utility::post("search");
 			$result = \lib\db\terms::search($search, "users_$field");

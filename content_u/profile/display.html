@@ -17,128 +17,128 @@
     <li id="tab-personal">
      <div class="row">
       <img src="/static/images/profile.svg" alt='{%trans "Profile Photo"%}' class="profile-image">
-      <div class="element{%if profile.firstname%} raw{%endif%}">
+      <div class="element {%if profile.firstname%}has-data{%else%}no-data{%endif%}">
        <label for="firstname" class="title">{%trans "First Name"%}</label>
-       <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" disabled>
+       <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" >
       </div>
-      <div class="element{%if profile.firstname%} raw{%endif%}">
+      <div class="element {%if profile.lastname%}has-data{%else%}no-data{%endif%}">
        <label for="lastname" class="title">{%trans "Last Name"%}</label>
-       <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" disabled>
+       <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" >
       </div>
-      <div class="element{%if profile.displayname%} raw{%endif%}">
+      <div class="element {%if profile.displayname%}has-data{%else%}no-data{%endif%}">
        <label for="displayname" class="title">{%trans "Display Name"%}</label>
-       <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" disabled>
+       <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" >
       </div>
-      <div class="element{%if profile.email%} raw{%endif%}">
+      <div class="element {%if profile.email%}has-data{%else%}no-data{%endif%}">
        <label for="email" class="title">{%trans "Email"%}</label>
-       <input type="text" name="email" id="email" value="{{profile.email}}" class="input" disabled>
+       <input type="text" name="email" id="email" value="{{profile.email}}" class="input" >
       </div>
-      <div class="element{%if profile.mobile%} raw{%endif%}">
+      <div class="element {%if profile.mobile%}has-data{%else%}no-data{%endif%}">
        <label for="mobile" class="title">{%trans "Mobile"%}</label>
-       <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" disabled>
+       <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" >
       </div>
-      <div class="element{%if profile.birthyear%} raw{%endif%}">
+      <div class="element {%if profile.birthyear%}has-data{%else%}no-data{%endif%}">
        <label for="birthyear" class="title">{%trans "Birth Year"%}</label>
-       <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" disabled>
+       <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" >
       </div>
-      <div class="element{%if profile.birthmonth%} raw{%endif%}">
+      <div class="element {%if profile.birthmonth%}has-data{%else%}no-data{%endif%}">
        <label for="birthmonth" class="title">{%trans "Birth Month"%}</label>
-       <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" disabled>
+       <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" >
       </div>
-      <div class="element{%if profile.birthday%} raw{%endif%}">
+      <div class="element {%if profile.birthday%}has-data{%else%}no-data{%endif%}">
        <label for="birthday" class="title">{%trans "Birthday"%}</label>
-       <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" disabled>
+       <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" >
       </div>
-      <div class="element{%if profile.uilanguage%} raw{%endif%}">
+      <div class="element {%if profile.uilanguage%}has-data{%else%}no-data{%endif%}">
        <label for="uilanguage" class="title">{%trans "UI Language"%}</label>
-       <input type="text" name="uilanguage" id="uilanguage" value="{{profile.uilanguage}}" class="input autocomplete" disabled>
+       <input type="text" name="uilanguage" id="uilanguage" value="{{profile.uilanguage}}" class="input autocomplete" >
       </div>
-      <div class="element{%if profile.religion%} raw{%endif%}">
+      <div class="element {%if profile.religion%}has-data{%else%}no-data{%endif%}">
        <label for="religion" class="title">{%trans "Religion"%}</label>
-       <input type="text" name="religion" id="religion" value="{{profile.religion}}" class="input autocomplete" disabled>
+       <input type="text" name="religion" id="religion" value="{{profile.religion}}" class="input autocomplete" >
       </div>
      </div>
     </li>
     <li id="tab-education">
      <div class="row">
-      <div class="element raw">
+      <div class="element {%if profile.graduation%}has-data{%else%}no-data{%endif%}">
        <label for="graduation" class="title">{%trans "Graduation"%}</label>
        <select class="input" name="graduation" id="graduation">
         <option value="">{%trans "Please Select One Item"%}</option>
-        <option value="illiterate">{%trans "Illiterate"%}</option>
-        <option value="undergraduate">{%trans "Undergraduate"%}</option>
-        <option value="graduate">{%trans "Graduate"%}</option>
+        <option {%if profile.graduation == 'illiterate' %}selected{%endif%} value="illiterate">{%trans "Illiterate"%}</option>
+        <option {%if profile.graduation == 'undergraduate' %}selected{%endif%} value="undergraduate">{%trans "Undergraduate"%}</option>
+        <option {%if profile.graduation == 'graduate' %}selected{%endif%} value="graduate">{%trans "Graduate"%}</option>
        </select>
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.educationtype%}has-data{%else%}no-data{%endif%}">
        <label for="educationtype" class="title">{%trans "Education Type"%}</label>
        <select name="educationtype" id="educationtype" class="input">
         <option value="">{%trans "Please Select One Item"%}</option>
-        <option value="academic">{%trans "Academic"%}</option>
-        <option value="howzeh">{%trans "Howzeh"%}</option>
+        <option {%if profile.educationtype == 'academic' %}selected{%endif%} value="academic">{%trans "Academic"%}</option>
+        <option {%if profile.educationtype == 'howzeh' %}selected{%endif%} value="howzeh">{%trans "Howzeh"%}</option>
        </select>
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.course%}has-data{%else%}no-data{%endif%}">
        <label class="title" for="course">{%trans "Course"%}</label>
-       <input class="input autocomplete" type="text" name="course" id="course" value="{{profile.course}}" disabled>
+       <input class="input autocomplete" type="text" name="course" id="course" value="{{profile.course}}" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.degree%}has-data{%else%}no-data{%endif%}">
        <label for="degree" class="title">{%trans "Degree"%}</label>
        <select name="degree" id="degree" class="input">
         <option value="">{%trans "Please Select One Item"%}</option>
-        <option value="under diploma">{%trans "Under Diploma"%}</option>
-        <option value="diploma">{%trans "Diploma"%}</option>
-        <option value="2 year college">{%trans "2 Year College"%}</option>
-        <option value="bachelor">{%trans "Bachelor"%}</option>
-        <option value="master">{%trans "Master"%}</option>
-        <option value="phd">{%trans "PHD"%}</option>
-        <option value="other">{%trans "Other"%}</option>
+        <option {%if profile.degree == 'under diploma' %}selected{%endif%} value="under diploma">{%trans "Under Diploma"%}</option>
+        <option {%if profile.degree == 'diploma' %}selected{%endif%} value="diploma">{%trans "Diploma"%}</option>
+        <option {%if profile.degree == '2 year college' %}selected{%endif%} value="2 year college">{%trans "2 Year College"%}</option>
+        <option {%if profile.degree == 'bachelor' %}selected{%endif%} value="bachelor">{%trans "Bachelor"%}</option>
+        <option {%if profile.degree == 'master' %}selected{%endif%} value="master">{%trans "Master"%}</option>
+        <option {%if profile.degree == 'phd' %}selected{%endif%} value="phd">{%trans "PHD"%}</option>
+        <option {%if profile.degree == 'other' %}selected{%endif%} value="other">{%trans "Other"%}</option>
        </select>
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.howzeh%}has-data{%else%}no-data{%endif%}">
        <label for="howzeh" class="title">{%trans "Howzeh"%}</label>
-       <input type="text" name="howzeh" id="howzeh" value="{{profile.howzeh}}" class="input autocomplete" disabled>
+       <input type="text" name="howzeh" id="howzeh" value="{{profile.howzeh}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.howzehdegree%}has-data{%else%}no-data{%endif%}">
        <label for="howzehdegree" class="title">{%trans "Howzeh Degree"%}</label>
-       <input type="text" name="howzehdegree" id="howzehdegree" value="{{profile.howzehdegree}}" class="input autocomplete" disabled>
+       <input type="text" name="howzehdegree" id="howzehdegree" value="{{profile.howzehdegree}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.howzehcourse%}has-data{%else%}no-data{%endif%}">
        <label for="howzehcourse" class="title">{%trans "Howzeh Course"%}</label>
-       <input type="text" name="howzehcourse" id="howzehcourse" value="{{profile.howzehcourse}}" class="input autocomplete" disabled>
+       <input type="text" name="howzehcourse" id="howzehcourse" value="{{profile.howzehcourse}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.educationcity%}has-data{%else%}no-data{%endif%}">
        <label for="educationcity" class="title">{%trans "Education City"%}</label>
-       <input type="text" name="educationcity" id="educationcity" value="{{profile.educationcity}}" class="input autocomplete" disabled>
+       <input type="text" name="educationcity" id="educationcity" value="{{profile.educationcity}}" class="input autocomplete" >
       </div>
      </div>
     </li>
     <li id="tab-job">
      <div class="row">
-      <div class="element raw">
+      <div class="element {%if profile.employmentstatus%}has-data{%else%}no-data{%endif%}">
        <label for="employmentstatus" class="title">{%trans "Employment Status"%}</label>
        <select name="employmentstatus" id="employmentstatus" class="input">
         <option value="">{%trans "Please Select One Item"%}</option>
-        <option value="employee">{%trans "Employee"%}</option>
-        <option value="unemployee">{%trans "Unemployee"%}</option>
-        <option value="retired">{%trans "Retired"%}</option>
+        <option {%if profile.employmentstatus == 'employee'%}selected{%endif%} value="employee">{%trans "Employee"%}</option>
+        <option {%if profile.employmentstatus == 'unemployee'%}selected{%endif%} value="unemployee">{%trans "Unemployee"%}</option>
+        <option {%if profile.employmentstatus == 'retired'%}selected{%endif%} value="retired">{%trans "Retired"%}</option>
        </select>
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.industry%}has-data{%else%}no-data{%endif%}">
        <label for="industry" class="title">{%trans "Industry"%}</label>
-       <input type="text" name="industry" id="industry" value="{{profile.industry}}" class="input autocomplete" disabled>
+       <input type="text" name="industry" id="industry" value="{{profile.industry}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.company%}has-data{%else%}no-data{%endif%}">
        <label for="company" class="title">{%trans "Company"%}</label>
-       <input type="text" name="company" id="company" value="{{profile.company}}" class="input autocomplete" disabled>
+       <input type="text" name="company" id="company" value="{{profile.company}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.jobcity%}has-data{%else%}no-data{%endif%}">
        <label for="jobcity" class="title">{%trans "Job City"%}</label>
-       <input type="text" name="jobcity" id="jobcity" value="{{profile.jobcity}}" class="input autocomplete" disabled>
+       <input type="text" name="jobcity" id="jobcity" value="{{profile.jobcity}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.jobtitle%}has-data{%else%}no-data{%endif%}">
        <label for="jobtitle" class="title">{%trans "Job Title"%}</label>
-       <input type="text" name="" id="jobtitle" value="{{profile.jobtitle}}" class="input autocomplete" disabled>
+       <input type="text" name="jobtitle" id="jobtitle" value="{{profile.jobtitle}}" class="input autocomplete" >
       </div>
      </div>
     </li>
@@ -146,44 +146,44 @@
      <div class="row">
       <div class="group">
        <div class="floating-title" data-title='{%trans "Birth"%}'></div>
-       <div class="element raw">
+       <div class="element {%if profile.birthcountry%}has-data{%else%}no-data{%endif%}">
         <label for="birthcountry" class="title">{%trans "Birth Country"%}</label>
-        <input type="text" name="birthcountry" id="birthcountry" value="{{profile.birthcountry}}" class="input autocomplete" disabled>
+        <input type="text" name="birthcountry" id="birthcountry" value="{{profile.birthcountry}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.birthprovince%}has-data{%else%}no-data{%endif%}">
         <label for="birthprovince" class="title">{%trans "Birth Province"%}</label>
-        <input type="text" name="birthprovince" id="birthprovince" value="{{profile.birthprovince}}" class="input autocomplete" disabled>
+        <input type="text" name="birthprovince" id="birthprovince" value="{{profile.birthprovince}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.birthcity%}has-data{%else%}no-data{%endif%}">
         <label for="birthcity" class="title">{%trans "Birth City"%}</label>
-        <input type="text" name="birthcity" id="birthcity" value="{{profile.birthcity}}" class="input autocomplete" disabled>
+        <input type="text" name="birthcity" id="birthcity" value="{{profile.birthcity}}" class="input autocomplete" >
        </div>
       </div>
       <div class="group">
        <div class="floating-title" data-title='{%trans "Current"%}'></div>
-       <div class="element raw">
+       <div class="element {%if profile.country%}has-data{%else%}no-data{%endif%}">
         <label for="country" class="title">{%trans "Country"%}</label>
-        <input type="text" name="country" id="country" value="{{profile.country}}" class="input autocomplete" disabled>
+        <input type="text" name="country" id="country" value="{{profile.country}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.province%}has-data{%else%}no-data{%endif%}">
         <label for="province" class="title">{%trans "Province"%}</label>
-        <input type="text" name="province" id="province" value="{{profile.province}}" class="input autocomplete" disabled>
+        <input type="text" name="province" id="province" value="{{profile.province}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.city%}has-data{%else%}no-data{%endif%}">
         <label for="city" class="title">{%trans "City"%}</label>
-        <input type="text" name="city" id="city" value="{{profile.city}}" class="input autocomplete" disabled>
+        <input type="text" name="city" id="city" value="{{profile.city}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.village%}has-data{%else%}no-data{%endif%}">
         <label for="village" class="title">{%trans "Village"%}</label>
-        <input type="text" name="village" id="village" value="{{profile.village}}" class="input autocomplete" disabled>
+        <input type="text" name="village" id="village" value="{{profile.village}}" class="input autocomplete" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.housestatus%}has-data{%else%}no-data{%endif%}">
         <label for="housestatus" class="title">{%trans "House Status"%}</label>
         <select name="housestatus" id="housestatus" class="input">
          <option value="">{%trans "Please Select One Item"%}</option>
-         <option value="owner">{%trans "Owner"%}</option>
-         <option value="tenant">{%trans "Tenant"%}</option>
-         <option value="homeless">{%trans "Homeless"%}</option>
+         <option {%if profile.housestatus == 'owner'%}selected{%endif%} value="owner">{%trans "Owner"%}</option>
+         <option {%if profile.housestatus == 'tenant'%}selected{%endif%} value="tenant">{%trans "Tenant"%}</option>
+         <option {%if profile.housestatus == 'homeless'%}selected{%endif%} value="homeless">{%trans "Homeless"%}</option>
         </select>
        </div>
       </div>
@@ -198,87 +198,87 @@
      <div class="row">
       <div class="group">
        <div class="floating-title" data-title='{%trans "Personal"%}'></div>
-       <div class="element raw">
+       <div class="element {%if profile.marrital%}has-data{%else%}no-data{%endif%}">
         <label for="marrital" class="title">{%trans "Marrital"%}</label>
         <select name="marrital" id="marrital" class="input">
          <option value="">{%trans "Please Select One Item"%}</option>
-         <option value="single">{%trans "Single"%}</option>
-         <option value="married">{%trans "Married"%}</option>
+         <option {%if profile.marrital == 'single'%}selected{%endif%} value="single">{%trans "Single"%}</option>
+         <option {%if profile.marrital == 'married'%}selected{%endif%} value="married">{%trans "Married"%}</option>
         </select>
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.girlchild%}has-data{%else%}no-data{%endif%}">
         <label for="girlchild" class="title">{%trans "Girl Child"%}</label>
-        <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" disabled>
+        <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" >
        </div>
-       <div class="element raw">
+       <div class="element {%if profile.boychild%}has-data{%else%}no-data{%endif%}">
         <label for="boychild" class="title">{%trans "Boy Child"%}</label>
-        <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" disabled>
+        <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" >
        </div>
       </div>
      </div>
     </li>
     <li id="tab-favorites">
      <div class="row">
-      <div class="element raw">
+      <div class="element {%if profile.internetusage%}has-data{%else%}no-data{%endif%}">
        <label for="internetusage" class="title">{%trans "Internet Usage"%}</label>
        <select name="internetusage" id="internetusage" class="input">
         <option value="">{%trans "Please Select One Item"%}</option>
-        <option value="low">{%trans "Low"%}</option>
-        <option value="mid">{%trans "Mid"%}</option>
-        <option value="high">{%trans "High"%}</option>
+        <option {%if profile.internetusage == 'low'%}selected{%endif%} value="low">{%trans "Low"%}</option>
+        <option {%if profile.internetusage == 'mid'%}selected{%endif%} value="mid">{%trans "Mid"%}</option>
+        <option {%if profile.internetusage == 'high'%}selected{%endif%} value="high">{%trans "High"%}</option>
        </select>
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.skills%}has-data{%else%}no-data{%endif%}">
        <label for="skills" class="title">{%trans "Skills"%}</label>
-       <input type="text" name="skills" id="skills" value="{{profile.skills}}" class="input autocomplete" disabled>
+       <input type="text" name="skills" id="skills" value="{{profile.skills}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.languages%}has-data{%else%}no-data{%endif%}">
        <label for="languages" class="title">{%trans "Languages"%}</label>
-       <input type="text" name="languages" id="languages" value="{{profile.languages}}" class="input autocomplete" disabled>
+       <input type="text" name="languages" id="languages" value="{{profile.languages}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.books%}has-data{%else%}no-data{%endif%}">
        <label for="books" class="title">{%trans "Books"%}</label>
-       <input type="text" name="books" id="books" value="{{profile.books}}" class="input autocomplete" disabled>
+       <input type="text" name="books" id="books" value="{{profile.books}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.writers%}has-data{%else%}no-data{%endif%}">
        <label for="writers" class="title">{%trans "Writers"%}</label>
-       <input type="text" name="writers" id="writers" value="{{profile.writers}}" class="input autocomplete" disabled>
+       <input type="text" name="writers" id="writers" value="{{profile.writers}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.films%}has-data{%else%}no-data{%endif%}">
        <label for="films" class="title">{%trans "Films"%}</label>
-       <input type="text" name="films" id="films" value="{{profile.films}}" class="input autocomplete" disabled>
+       <input type="text" name="films" id="films" value="{{profile.films}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.actors%}has-data{%else%}no-data{%endif%}">
        <label for="actors" class="title">{%trans "Actors"%}</label>
-       <input type="text" name="actors" id="actors" value="{{profile.actors}}" class="input autocomplete" disabled>
+       <input type="text" name="actors" id="actors" value="{{profile.actors}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.genre%}has-data{%else%}no-data{%endif%}">
        <label for="genre" class="title">{%trans "Genre"%}</label>
-       <input type="text" name="genre" id="genre" value="{{profile.genre}}" class="input autocomplete" disabled>
+       <input type="text" name="genre" id="genre" value="{{profile.genre}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.musics%}has-data{%else%}no-data{%endif%}">
        <label for="musics" class="title">{%trans "Musics"%}</label>
-       <input type="text" name="musics" id="musics" value="{{profile.musics}}" class="input autocomplete" disabled>
+       <input type="text" name="musics" id="musics" value="{{profile.musics}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.artists%}has-data{%else%}no-data{%endif%}">
        <label for="artists" class="title">{%trans "Artists"%}</label>
-       <input type="text" name="artists" id="artists" value="{{profile.artists}}" class="input autocomplete" disabled>
+       <input type="text" name="artists" id="artists" value="{{profile.artists}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.sports%}has-data{%else%}no-data{%endif%}">
        <label for="sports" class="title">{%trans "Sports"%}</label>
-       <input type="text" name="sports" id="sports" value="{{profile.sports}}" class="input autocomplete" disabled>
+       <input type="text" name="sports" id="sports" value="{{profile.sports}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.sportmans%}has-data{%else%}no-data{%endif%}">
        <label for="sportmans" class="title">{%trans "Sportmans"%}</label>
-       <input type="text" name="sportmans" id="sportmans" value="{{profile.sportmans}}" class="input autocomplete" disabled>
+       <input type="text" name="sportmans" id="sportmans" value="{{profile.sportmans}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.habbits%}has-data{%else%}no-data{%endif%}">
        <label for="habbits" class="title">{%trans "Habbits"%}</label>
-       <input type="text" name="habbits" id="habbits" value="{{profile.habbits}}" class="input autocomplete" disabled>
+       <input type="text" name="habbits" id="habbits" value="{{profile.habbits}}" class="input autocomplete" >
       </div>
-      <div class="element raw">
+      <div class="element {%if profile.devices%}has-data{%else%}no-data{%endif%}">
        <label for="devices" class="title">{%trans "Devices"%}</label>
-       <input type="text" name="devices" id="devices" value="{{profile.devices}}" class="input autocomplete" disabled>
+       <input type="text" name="devices" id="devices" value="{{profile.devices}}" class="input autocomplete" >
       </div>
      </div>
     </li>
@@ -287,10 +287,50 @@
 
 {%block foot_js%}
 <script type="text/javascript">
-var btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
-$('.addon.btn.cancel button').click(function() {
- window.location.reload();
- return false;
+   btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
+
+$.each($('.element.has-data'), function (key, value){
+  $(this).dblclick(function ()
+  {
+      $(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
+  });
 });
+$.each($('.element.no-data'), function (key, value){
+  $(this).click(function ()
+  {
+      $(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
+  });
+});
+
+  $(document).on('blur', '.element .input', function (event)
+  {
+    // $('.addon.btn.save').remove();
+    // $('.addon.btn.cancel').remove();
+  });
+
+  $(document).on('click', '.btn.save button', function (event)
+  {
+
+    var val = $(this).parents('.element').children('.input').val();
+    var name = $(this).parents('.element').children('.input').attr("name");
+    $(this).ajaxify(
+    {
+      ajax:
+      {
+        data:
+        {
+          'name': name,
+          'value': val
+        },
+        abort: true,
+        success: function(e, data, x)
+        {
+
+        },
+        url: '@/me',
+        method: 'post'
+      }
+    });
+  });
 </script>
 {%endblock%}

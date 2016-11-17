@@ -209,61 +209,51 @@ route(/\@\/add/, function()
 // Me | Profile
 route(/\@\/profile/, function ()
 {
-	// btns is generated in display in order to true translation
-	$.each($('.element.raw'), function (key, value)
-	{
-		if ($(this).children('.input').val())
-		{
-			$(this).dblclick(function ()
-			{
-				if (!$('.main').hasClass('editing'))
-				{
-					$('.main').addClass('editing');
-					$(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
-				}
-			});
-		}
-		else
-		{
-			$(this).click(function ()
-			{
-				if (!$('.main').hasClass('editing'))
-				{
-					$('.main').addClass('editing');
-					$(this).removeClass('raw').append(btns).children('.input').removeAttr('disabled').focus();
-				}
-			});
-		}
-	});
+	  btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
 
-	$(this).on('blur', '.element .input', function (event)
-	{
-		$('.main').removeClass('editing');
-	});
+$.each($('.element.has-data'), function (key, value){
+  $(this).dblclick(function ()
+  {
+      $(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
+  });
+});
+$.each($('.element.no-data'), function (key, value){
+  $(this).click(function ()
+  {
+      $(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
+  });
+});
 
-	$(this).on('click', '.btn.save button', function (event)
-	{
-		var val = $(this).parents('.element').children('.input').val();
-		var name = $(this).parents('.element').children('.input').attr("name");
-		$(this).ajaxify(
-		{
-			ajax:
-			{
-				data:
-				{
-					'name': name,
-					'value': val
-				},
-				abort: true,
-				success: function(e, data, x)
-				{
+  $(document).on('blur', '.element .input', function (event)
+  {
+    // $('.addon.btn.save').remove();
+    // $('.addon.btn.cancel').remove();
+  });
 
-				},
-				url: '@/me',
-				method: 'post'
-			}
-		});
-	});
+  $(document).on('click', '.btn.save button', function (event)
+  {
+
+    var val = $(this).parents('.element').children('.input').val();
+    var name = $(this).parents('.element').children('.input').attr("name");
+    $(this).ajaxify(
+    {
+      ajax:
+      {
+        data:
+        {
+          'name': name,
+          'value': val
+        },
+        abort: true,
+        success: function(e, data, x)
+        {
+
+        },
+        url: '@/me',
+        method: 'post'
+      }
+    });
+  });
 });
 
 
