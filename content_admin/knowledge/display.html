@@ -96,8 +96,8 @@
 			});
 		});
 
-		$('#other-status').change(function(){
-			$("#save-other").attr("status", $(this).val());
+		$(this).on('change', '#other-status', function(){
+			$(this).parent('span').children('.btn').attr("status", $(this).val());
 		});
 
 		$(document).on('click' , '.change-status', function(){
