@@ -396,19 +396,16 @@ $(document).ready(function() {
     // $("div.opt").fadeOut();
   });
 
-  $(".comments .comment .continue").click(function() {
-    $(this).parents('.comment').children('.content').addClass('absolute-content');
-    event.preventDefault();
-      event.stopPropagation();
-    $(".absolute-content").click(function(event){
-      event.preventDefault();
-      event.stopPropagation();
-    });
+  $(document).on('click', '.comment .continue', function(event){
+   $(this).parents('.comment').children('p').addClass('full');
+   event.preventDefault().stopPropagation();
   });
 
-  $('body').click(function(event) {
-    $(".content.absolute-content").removeClass("absolute-content");
+  $(document).on('click', '.full', function(event){
+   event.preventDefault().stopPropagation();
   });
+
+  $(document).on('click', 'body', function(){ $('.full').removeClass('full'); });
 });
 </script>
 {%endblock%}

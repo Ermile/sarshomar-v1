@@ -185,6 +185,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 header .chart h3 a{color:#777}
 .rtl .chart{text-align:right;}
 .highcharts-title {fill:#434348;font-weight:bold;}
+.chart .highcharts-background{fill:rgba(255,255,255,0);}
 
 .column .highcharts-series rect{opacity:0.8;transition:0.3s;}
 .column .highcharts-series rect:hover{opacity:1}
@@ -428,10 +429,12 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #comments-box .bar.three{background-color:#bc982c;}
 #comments-box .bar.four{background-color:#c15d31;}
 #comments-box .bar.five{background-color:#b13838;}
+#comments-box .comment{position:relative;}
 #comments-box .comment .title{font-size:1.2em;color:#767676;margin-bottom:.5em;}
 #comments-box .comment .stars .star{font-size:1.2em;}
 #comments-box .comment .author{font-size:1.1em;color:#767676;margin-bottom:1.4em;}
-#comments-box .comment p{font-size:1.1em;color:#767676;text-align:justify;}
+#comments-box .comment p{font-size:1.1em;color:#767676;text-align:justify;background-color:#F4F4F4;max-height:150px;overflow:hidden;}
+#comments-box .comment p.full{max-height:500px;overflow-y:auto;overflow-x:hidden;position:absolute;left:15px;right:15px;z-index:1;}
 #comments-box .comment .continue{color:#767676;font-size:.8em;cursor:pointer;float:right;}
 .rtl #comments-box .comment .continue{float:left;}
 
@@ -440,6 +443,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .rtl .tags a{margin-right:auto;margin-left:1.5em;padding:0 5px 0 0;}
 .tags a::after{position:absolute;top:0;left:100%;content:'';border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:15px solid #e7e7e7;}
 .rtl .tags a::after{right:100%;left:auto;border-right:15px solid #e7e7e7;border-left:0;}
+
 
 
 /* sharebox */
