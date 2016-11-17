@@ -990,7 +990,8 @@ aside .group{margin-bottom:1em;}
 .polls-row:hover > .star.starred::before{color:#e7a429;}
 .polls-row > .type{margin:0 auto;min-width:3em;padding-left:0;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
-.polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;}
+.polls-row > .title.title-longer{max-width:60em}
+.polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;overflow:hidden;max-width:55em;}
 .polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;text-align:center;}
 .polls-row > .comments-count{min-width:7em;color:#777;font-weight:500;text-align:center;}
 .polls-row > .date{min-width:7.4em;font-size:.85em;display:flex;align-items:center;justify-content:center;}
@@ -1000,6 +1001,18 @@ aside .group{margin-bottom:1em;}
 .polls-row .type i{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
 .polls-row .date{color:#BDBDBD;}
 .polls-row:hover > span:not(.star){background-color:#ebebeb;}
-.polls-row > .votes-count.votes-circle::before{content:'';width:25px;height:25px;background-color:#00667a;display:inline-block;border-radius:50%;margin-right:5px;vertical-align:middle;}
+/*.polls-row > .votes-count.votes-circle::before{content:'';width:25px;height:25px;background-color:#00667a;display:inline-block;border-radius:50%;margin-right:5px;vertical-align:middle;}*/
 
 .polls-row:hover .star .fa-star{color:red;}
+
+
+.pie {position:relative;background: #e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;}
+.pie::before {content: '';display: block;margin-left:50%;height: 100%;border-radius: 0 100% 100% 0 / 50%;background-color: inherit;transform-origin: left;animation: spin 3s linear infinite, bg 6s step-end infinite;animation: spin 50s linear infinite, bg 100s step-end infinite;animation-play-state: paused;animation-delay: inherit;}
+@keyframes spin {to { transform: rotate(.5turn); }}
+@keyframes bg {50% { background: #00667a; }}
+.pie::after {content:'';display:inline-block;position:absolute;width: 60%;height: 60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}

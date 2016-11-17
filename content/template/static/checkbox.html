@@ -2,77 +2,39 @@
 
 {%block content%}
 <div class="main">
-  <div class="row">
-    <div class="span2"></div>
-    <div class="span8">
-     <div class="search-box">
-      <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
-      <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
-     </div>
-     <div class="search-result" data-xhr='search-result' id="search-result">
-      <!-- {{block('search_result')}} -->
+  <div class="box">
+    <style type="text/css">
 
-     <div class="search-result search-result-personal" data-xhr="search-result" id="search-result">
-      <div class="polls-head">
-        <span class="type">Type</span>
-        <span class="title">Title</span>
-        <span class="votes-count">ٰVotes</span>
-        <span class="date">Date</span>
-      </div>
-      <ul class="polls-body">
-          <li class="polls-row">
-          <span class="type" aria-hidden="true"><i class="fa fa-check"></i> </span>
-          <span class="title"><a href="/$/4/uhdg">آیا تاکنون از روش‌های درمانی طب‌سنتی استفاده کرده‌اید؟</a></span>
-          <span class="votes-count">۲۴۵</span>
-          <span class="date">۱۳۹۵/۲/۱۸</span>
-        </li>
-          <li class="polls-row">
-          <span class="type" aria-hidden="true"><i class="fa fa-check"></i> </span>
-          <span class="title"><a href="/$/3/soal1">آیا در هنگام خرید به برند کالا اهمیت می‌دهید</a></span>
-          <span class="votes-count">۴۳۹</span>
-          <span class="date">۱۳۹۵/۰۳/۸</span>
-        </li>
-        </ul>
-     </div>
-    </div><!-- /.span9 -->
+    </style>
+
+
+<div class="pie" data-persent="-60s"></div>
+<div class="pie" data-persent="-40s"></div>
+
+
+
   </div>
 </div>
-</div>
-{%endblock%}
+
 
 
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 
+<script>
+$(document).ready(function()
+{
+$$('.pie').forEach(function(pie) {
+  var p = parseFloat(pie.textContent);
+  pie.style.animationDelay = '-' + p + 's';
+});
+
+});
+
+</script>
+
 
 {%endblock%}
 
-
-{%block search_result%}
-  {%if poll_list%}
-      <div class="polls-head">
-        <span class="type">{%trans "Type"%}</span>
-        <span class="title">{%trans "Title"%}</span>
-        <span class="votes-count">{%trans "Votes"%}</span>
-        <span class="date">{%trans "Date"%}</span>
-      </div>
-      <ul class="polls-body">
-  {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
-          <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="votes-count"></span>
-          <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
-        </li>
-  {%endfor%}
-      </ul>
-      <!-- pagenation -->
-      <div class="pagination-container">
-      {%include display.pagination%}
-      </div>
-      <!-- ./pagenation -->
-  {%else%}
-      <div class="msg error">{%trans "No Result Found"%}</div>
-  {%endif%}
 
 {%endblock%}
