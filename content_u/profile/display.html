@@ -287,50 +287,6 @@
 
 {%block foot_js%}
 <script type="text/javascript">
-   btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
 
-$.each($('.element.has-data'), function (key, value){
-  $(this).dblclick(function ()
-  {
-      $(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
-  });
-});
-$.each($('.element.no-data'), function (key, value){
-  $(this).click(function ()
-  {
-      $(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
-  });
-});
-
-  $(document).on('blur', '.element .input', function (event)
-  {
-    // $('.addon.btn.save').remove();
-    // $('.addon.btn.cancel').remove();
-  });
-
-  $(document).on('click', '.btn.save button', function (event)
-  {
-
-    var val = $(this).parents('.element').children('.input').val();
-    var name = $(this).parents('.element').children('.input').attr("name");
-    $(this).ajaxify(
-    {
-      ajax:
-      {
-        data:
-        {
-          'name': name,
-          'value': val
-        },
-        abort: true,
-        success: function(e, data, x)
-        {
-
-        },
-        url: '@/me',
-        method: 'post'
-      }
-    });
-  });
 </script>
 {%endblock%}
