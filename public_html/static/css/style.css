@@ -358,45 +358,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .ac-checkbox svg path, .ac-checkbox.ac-diagonal svg path{stroke-width:16px;}
 .ac-checkbox>div, .ac-checkbox>span{position:relative;margin: 1em}
 
-/* poll comments */
-.comments{padding:5em 0;background-color:#e7e7e7;}
-.comments .summary, .comments .comment{margin-bottom:3em;padding:0 2em;}
-.comments h4{color:#767676;}
-.comments .average-score{font-size:6em;margin-bottom:-0.3em;color:#767676;}
-.comments .fa-star{color:#e2b31e;}
-.comments .stars-number{font-size:1.4em;padding:0 0.5em;vertical-align:top;}
-.comments .bars{margin-top:1em;}
-.comments .bars > div{height:1em;border-radius:0.3em;}
-.comments .bars > div:not(:last-child){margin-bottom:1em;}
-.comments .bar-one{width:15em;background-color:#62b138;}
-.comments .bar-two{width:4em;background-color:#859e1f;}
-.comments .bar-three{width:11em;background-color:#bc982c;}
-.comments .bar-four{width:3em;background-color:#c15d31;}
-.comments .bar-five{width:2em;background-color:#b13838;}
-.comments .comment{position:relative;}
-.comments .comment .score{position:absolute;top:2em;width:22px;height:60px;text-align:center;background-image:url(../images/score-bg.svg);background-repeat:no-repeat;background-size:100% 100%;}
-.ltr .comments .comment .score{right:2em;}
-.rtl .comments .comment .score{left:2em;}
-.comments .comment .score .plus, .comments .comment .score .minus{position:relative;text-align:center;}
-.comments .comment .score object{position:relative;width:72%;}
-.comments .comment .score .plus object{top:4px;}
-.comments .comment .score .minus object{bottom:1px;}
-.comments .comment .score span{font-size:10px;position:absolute;z-index:1;top:0;display:block;width:100%;text-align:center;}
-.comments .comment .score .plus span{top:14px;}
-.comments .comment .title{font-size:1.2em;margin-top:1.6em;margin-bottom:0.5em;color:#767676;}
-.comments .comment .user{margin-top:0.5em;margin-bottom:2em;color:#767676;}
-.comments .comment .content{height:7em;}
-.comments .comment .content > p{font-size:1.2em;line-height:2em;position:relative;overflow:hidden;max-height:6em;margin-bottom:1em;text-align:justify;color:#767676;}
-.comments .comment .absolute-content > p{max-height:none;background-color:#e7e7e7;}
-.comments .comment .content > p:before{position:absolute;right:0;bottom:0;content:'...';background-color:#e7e7e7;}
-.comments .comment .absolute-content > p:before{display:none;}
-#poll.rtl .comments .comment .content > p:before{right:auto;left:0;}
-.comments .comment .content > p:after{position:absolute;right:0;width:1em;height:1em;margin-top:0.2em;content:'';background:#e7e7e7;}
-#poll.rtl .comments .comment .content > p:after{right:auto;left:0;}
-.comments .comment .continue{cursor:pointer;transition:all 0.3s ease;color:#767676;}
-.ltr .comments .comment .continue{float:right;}
-.rtl .comments .comment .continue{float:left;}
-.comments .comment .continue:hover{color:#000;}
 
 /* Poll Box */
 #poll-box{word-wrap:break-word;}
@@ -429,7 +390,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .rtl #poll-box input[type="submit"]{float:left;}
 
 #poll-result{margin-bottom:5em;}
-
 #poll-extra, #comments-box{padding-bottom:100px;}
 
 /* Poll Info Info */
@@ -452,6 +412,28 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #poll-similar ul{font-size:1.2em;padding:10px 0;}
 #poll-similar ul li{margin-bottom:.5em;}
 #poll-similar a{color:#767676;}
+
+.eq-container{display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;position:relative;}
+.eq-container > div{width:33.3333333333%;padding:15px;}
+
+/* Poll Comments */
+#comments-box .overall{font-size:6em;color:#767676;line-height:1;}
+#comments-box .stars{display:inline-block;}
+#comments-box .stars .star{color:#E2B31E;font-size:2em;margin-bottom:1em;}
+#comments-box .stars .number{color:#767678;font-size:1.4em;padding:0 .5em;}
+#comments-box .bars{width:50%;}
+#comments-box .bars .bar{height:1em;border-radius:0.3em;margin-bottom:1em;}
+#comments-box .bar.one{background-color:#62b138;}
+#comments-box .bar.two{background-color:#859e1f;}
+#comments-box .bar.three{background-color:#bc982c;}
+#comments-box .bar.four{background-color:#c15d31;}
+#comments-box .bar.five{background-color:#b13838;}
+#comments-box .comment .title{font-size:1.2em;color:#767676;margin-bottom:.5em;}
+#comments-box .comment .stars .star{font-size:1.2em;}
+#comments-box .comment .author{font-size:1.1em;color:#767676;margin-bottom:1.4em;}
+#comments-box .comment p{font-size:1.1em;color:#767676;text-align:justify;}
+#comments-box .comment .continue{color:#767676;font-size:.8em;cursor:pointer;float:right;}
+.rtl #comments-box .comment .continue{float:left;}
 
 /* poll details */
 .tags a{font-size:12px;line-height:30px;position:relative;display:inline-block;min-width:50px;height:30px;margin-right:1.5em;margin-bottom:1em;padding:0 0 0 5px;text-align:center;color:#035261;background-color:#e7e7e7;}
@@ -481,33 +463,12 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .sharebox a.linkedin:before{background-color:#0077B5}
 .sharebox a.rss:before{background-color:#e68523}
 
-/* pagenav */
-/*section ul{list-style:square inside none;padding: 0 1em;}
-section ul li{padding:0.3em 0;font-size:1.3em;}
-section ul ul{list-style-type: circle}
-section ul ul ul{list-style-type: disc}
-nav#page-nav{display: block;position: relative;width:100%;float:left;padding:10px 0;transition:0.3s;font-size: 1.3em}
-nav#page-nav:hover{background-color:rgba(238, 238, 238, 0.4);}
-nav#page-nav a:hover{color:#000;}
-nav#page-nav #nav-next{float:right;}
-nav#page-nav #nav-prev{float:left;}
-.rtl nav#page-nav #nav-next{float:left;}
-.rtl nav#page-nav #nav-prev{float:right;}*/
-
 
 /* read more */
 .related-questions > h3{font-size:1.2em;font-weight:700;margin-top:1em;color:#454545;}
 .related-questions a{font-size:1.2em;padding-top:0.3em;padding-right:1em;padding-bottom:0.3em;transition:all 0.3s ease-out;color:#767676;}
 .related-questions a:hover{color:#00667A;}
 .results-box{padding:3em 0 2em;text-align:center;background-color:#f4f4f4;}
-
-
-/*Temporary*/
-.results-box .results{margin-top:1em;}
-.tabs>li{transition:0.3s;}
-.tab>li{display:none;}
-.tab>li.active{display:inherit;}
-
 
 
 /************************************************************** Profile */
