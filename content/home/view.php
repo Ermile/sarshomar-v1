@@ -35,13 +35,5 @@ class view extends \mvc\view
 		}
 	}
 
-
-	/**
-	 * { function_description }
-	 */
-	function view_ask()
-	{
-
-	}
 }
 ?>

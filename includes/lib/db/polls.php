@@ -115,6 +115,10 @@ class polls
 		if($_args['post_slug'] == null)
 		{
 			$_args['post_slug'] =  \lib\utility\filter::slug($_args['post_title']);
+			if(strlen($_args['post_slug']) > 99)
+			{
+				$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
+			}
 		}
 
 		// check type
@@ -521,6 +525,33 @@ class polls
 			return $result[0];
 		}
 		return false;
+	}
+
+
+	/**
+	 * get the random record of sarshomar knowledge
+	 *
+	 * @return     <type>  The random.
+	 */
+	public static function get_random()
+	{
+		$public_fields = self::$fields;
+		$query =
+		"
+			SELECT
+				$public_fields
+			WHERE
+				posts.post_sarshomar = 1
+			ORDER BY RAND()
+			LIMIT 1
+		";
+		$result =\lib\db::get($query);
+		if($result && isset($result[0]))
+		{
+			$result = \lib\utility\filter::meta_decode($result);
+			$result = $result[0];
+		}
+		return $result;
 	}
 
 

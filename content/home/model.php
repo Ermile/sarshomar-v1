@@ -5,6 +5,23 @@ use \lib\debug;
 class model extends \mvc\model
 {
 
+	/**
+	 * Gets the random.
+	 */
+	public function get_random()
+	{
+		$random = \lib\db\polls::get_random();
+		$url = '$';
+		if(isset($random['url']))
+		{
+			$url = $random['url'];
+		}
+
+		$this->redirector()->set_url($url)->redirect();
+		debug::msg('direct', true);
+		return;
+	}
+
 	public function get_ask()
 	{
 		// cehck login
