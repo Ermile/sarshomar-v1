@@ -993,7 +993,7 @@ aside .group{margin-bottom:1em;}
 .polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;}
 .polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;text-align:center;}
 .polls-row > .comments-count{min-width:7em;color:#777;font-weight:500;text-align:center;}
-.polls-row > .date{min-width:7.4em;font-size:.9em;display:flex;align-items:center;justify-content:center;}
+.polls-row > .date{min-width:7.4em;font-size:.85em;display:flex;align-items:center;justify-content:center;}
 
 .polls-row .title a{color:#00667A;font-weight:bold;vertical-align: -webkit-baseline-middle;}
 .polls-row .title i{color:#E96F4B;font-size:0.8em;}
