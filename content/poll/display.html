@@ -3,73 +3,71 @@
 {%block content%}
 <div class="main pad">
  <div class="box">
- <form method="post">
-  <div class="row auto">
-   <div class="span3"></div>
-   <section class="span6" id="poll-box">
-    {%if perm.publish_poll.admin%}
-     <script type="text/javascript">alert('{%trans "YOU CAN CHANGE THE STATUS OF THIS POLL!"%}');</script>
-    {%endif%}
-    <h2>{{post.post_title}}</h2>
-    {%include template.social%}
-    {%if profile%}
-     <script type="text/javascript">alert('{%trans "This question will complete your profile"%}')</script>
-    {%endif%}
-    <p>{{post.post_content}}</p>
-    {%if article%}
-     <div class="read-more">
-      <span>{%trans "Read More"%}</span>
-      <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
-     </div>
-    {%endif%}
-    {%if post.post_meta.opt%}{#check post meta exist#}
-     <input type="hidden" name="data-id" value="{{post.id}}">
-    {%if multiple_choice%}
-     <ul>
-     {%for key, value in post.post_meta.opt%}
-      <li class="ac-custom ac-checkbox ac-checkmark">
-       <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
-       <label for="check_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
-      </li>
-     {%endfor%}
-     {%if descriptive%}
-      <li>
-       <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-       <label for="check_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
-      </li>
+  <form method="post">
+   <div class="row auto">
+    <div class="span3"></div>
+    <section class="span6" id="poll-box">
+     {%if perm.publish_poll.admin%}
+      <script type="text/javascript">alert('{%trans "YOU CAN CHANGE THE STATUS OF THIS POLL!"%}');</script>
      {%endif%}
-     </ul>
-    {%else%}{#muliple_choice not set load the radio mod#}
-     <ul>
-     {%for key, value in post.post_meta.opt%}
-      <li class="ac-custom ac-radio ac-fill">
-       <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-       <label for="radio_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
-      </li>
-     {%endfor%}
-     {%if descriptive%}
-      <li class="ac-custom ac-radio ac-fill">
-       <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-       <label for="radio_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
-      </li>
+     <h2>{{post.post_title}}</h2>
+     {%include template.social%}
+     {%if profile%}
+      <script type="text/javascript">alert('{%trans "This question will complete your profile"%}')</script>
      {%endif%}
-     </ul>
-    {%endif%}{#multiple_choice check end#}
-    <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
-    {%endif%}
-   </section>
-  </div><!-- /.row -->
+     <p>{{post.post_content}}</p>
+     {%if article%}
+      <div class="read-more">
+       <span>{%trans "Read More"%}</span>
+       <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
+      </div>
+     {%endif%}
+     {%if post.post_meta.opt%}{#check post meta exist#}
+      <input type="hidden" name="data-id" value="{{post.id}}">
+     {%if multiple_choice%}
+      <ul>
+      {%for key, value in post.post_meta.opt%}
+       <li class="ac-custom ac-checkbox ac-checkmark">
+        <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
+        <label for="check_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
+       </li>
+      {%endfor%}
+      {%if descriptive%}
+       <li>
+        <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+        <label for="check_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
+       </li>
+      {%endif%}
+      </ul>
+     {%else%}{#muliple_choice not set load the radio mod#}
+      <ul>
+      {%for key, value in post.post_meta.opt%}
+       <li class="ac-custom ac-radio ac-fill">
+        <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
+        <label for="radio_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
+       </li>
+      {%endfor%}
+      {%if descriptive%}
+       <li class="ac-custom ac-radio ac-fill">
+        <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
+        <label for="radio_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
+       </li>
+      {%endif%}
+      </ul>
+     {%endif%}{#multiple_choice check end#}
+     <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
+     {%endif%}
+    </section>
+   </div><!-- /.row -->
 
-  <div class="row auto">
-   <div class="span6">
+   <div class="button-container">
    {%if post.post_meta.opt%}{#check post meta exist#}
-    <div class="poll buttons"><button class="save-anwser">{%trans "Save Answer"%}</button></div>
+    <div class="poll buttons"><button class="save-answer">{%trans "Save Answer"%}</button></div>
    {%else%}
-    <div class="poll buttons"><button class="save-anwser"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button></div>
+    <div class="poll buttons"><button class="save-answer"><a href="ask"  data-direct style="color:black;">{%trans "Ask Me"%}</a></button></div>
    {%endif%}
    </div>
-  </div>
- </form>
+  </form>
 
   {%if chart%}
   <div class="row" id="poll-result">
@@ -99,7 +97,7 @@
     {%endif%}
 
     <div class="title">{%trans "Status"%}</div>
-    <div class="status">{{status}}</div>
+    <div class="status {{status}}">{{status}}</div>
 
     {%if tags()%}
     <div class="title">{%trans "Keyword"%}</div>
@@ -115,9 +113,11 @@
    <div class="span4" id="poll-similar">
     {%if similar_post()%}
     <div class="title">{%trans "Similar Questions"%}</div>
+    <ul>
     {%for key, value in similar_post()%}
-     <div><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></div>
+     <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
     {%endfor%}
+    </ul>
     {%endif%}
    </div>
   </div><!-- /.row -->
@@ -276,10 +276,10 @@ $(document).ready(function() {
       });
   });
 
-  $(".save-anwser").on("ajaxify:success", function(_xhr, _data){
+  $(".save-answer").on("ajaxify:success", function(_xhr, _data){
     // next_url = _data.msg.callback;
     // $(".btn-answers").children().remove();
-    // $("<button class='save-anwser'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
+    // $("<button class='save-answer'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
     // $("div.opt").fadeOut();
   });
 

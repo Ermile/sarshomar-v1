@@ -445,13 +445,9 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #poll-info .status.deleted{color:#A41F1F;}
 
 #poll-filters .title + div{padding:10px 0;color:#767676;}
-#poll-filters span{display:inline-block;
-    display: inline-flex;
-    min-width: 35%;
-    margin-bottom: 10px;
-    background-color: red;
-    padding: 5px;
-    line-height: 2em;}
+#poll-filters span{display:inline-block;display:inline-flex;min-width:35%;margin-bottom:.5em;padding:5px;line-height:2em;font-size:1.2em;}
+#poll-filters span i{margin-right:.5em;}
+.rtl #poll-filters span i{margin-right:0;margin-left:.5em;}
 
 #poll-similar ul{font-size:1.2em;padding:10px 0;}
 #poll-similar ul li{margin-bottom:.5em;}
