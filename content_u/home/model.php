@@ -20,7 +20,7 @@ class model extends \mvc\model
 			$poll_id = \lib\utility\shortURL::decode($url);
 
 			// check is my poll this id
-			if(!\lib\db\polls::is_my_poll($poll_id, $this->login('id')))
+			if(!\lib\db\polls::is_my_poll($poll_id, $this->login('id')) && !$this->access('u', 'sarshomar_knowledge', 'admin'))
 			{
 				\lib\error::bad(T_("This not your poll"));
 				return false;

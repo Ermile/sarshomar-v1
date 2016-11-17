@@ -111,10 +111,15 @@ class polls
 			return false;
 		}
 
+		if(strlen($_args['post_title']) > 200)
+		{
+			$_args['post_title'] = substr($_args['post_title'], 0, 199);
+		}
+
 		// get slug string
 		if($_args['post_slug'] == null)
 		{
-			$_args['post_slug'] =  \lib\utility\filter::slug($_args['post_title']);
+			$_args['post_slug'] = \lib\utility\filter::slug($_args['post_title']);
 			if(strlen($_args['post_slug']) > 99)
 			{
 				$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
