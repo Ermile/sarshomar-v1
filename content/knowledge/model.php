@@ -19,6 +19,7 @@ class model extends \mvc\model
 		$field = [];
 		if($this->login())
 		{
+			// to get faivorites posts
 			$field = ['login' => $this->login('id')];
 		}
 

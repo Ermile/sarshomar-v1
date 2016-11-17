@@ -9,12 +9,20 @@ class controller extends \mvc\controller
 		/**
 		 * check the support filter and make all filter array
 		 * to route all filter
-		 */
+			*/
 		$support_filter = \lib\db\filters::support_filter();
-		$property = [];
+		$property               = [];
 
-		$property['search'] = ["/^.*$/", true, 'search'];
-		$property['page']   = ["/^\d+$/", true, 'page'];
+		$property['search']     = ["/^.*$/", true, 'search'];
+		$property['page']       = ["/^\d+$/", true, 'page'];
+		// public
+		$property['pollcat']    = ["/^civility|sarshomar$/", true, 'pollcat'];
+		$property['pollgender'] = ["/^poll|quiz|survey$/", true, 'pollgender'];
+		// question type
+		$property['polltype']   = ["/(multiplechoice|descriptive|notification|upload|starred|numerical|sort|,)+/", true, 'polltype'];
+
+		$property['status']     = ["/^expire|publish$/",true,'status'];
+
 
 		foreach ($support_filter as $key => $value) {
 			$reg = "/^.*$/";
@@ -27,12 +35,12 @@ class controller extends \mvc\controller
 
 		$this->get("search", "search")->ALL(
 		[
-			'url'      => "/\$/",
+			'url'      => "/.*/",
 			'property' => $property
 		]
 		);
 
-		$this->post("search")->ALL("/^\$/");
+		$this->post("search")->ALL("/.*/");
 	}
 }
 ?>
