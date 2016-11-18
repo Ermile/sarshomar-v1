@@ -978,7 +978,7 @@ aside .group{margin-bottom:1em;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
 .polls-row > .title.title-longer{max-width:60em}
 .polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;overflow:hidden;max-width:55em;display:flex;align-items:center;}
-.polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;text-align:center;}
+.polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;text-align:center;display:flex;align-items:center;text-align:center}
 .polls-row > .comments-count{min-width:7em;color:#777;font-weight:500;text-align:center;}
 .polls-row > .date{min-width:7.4em;font-size:.85em;display:flex;align-items:center;justify-content:center;min-width: 8.4em;}
 
@@ -989,7 +989,7 @@ aside .group{margin-bottom:1em;}
 .polls-row:hover > span:not(.star){background-color:#ebebeb;}
 .polls-row:hover > span .pie::after{background-color:#ebebeb;}
 
-/*************************************************************** knowledge */
+/*************************************************************** my questions ProgressBar */
 .pie {position:relative;background:#e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 32px;height:32px;display:inline-block;border-radius: 50%;margin-right: 5px;vertical-align: middle;}
 .rtl .pie {margin-right:0px;margin-left:5px;}
 .pie::before {content: '';display:block;margin-left:50%;height:100%;border-radius:0 100% 100% 0 / 50%;background-color:inherit;transform-origin:left;animation: spin 50s linear infinite, bg 100s step-end infinite;animation-play-state: paused;animation-delay: inherit;}
