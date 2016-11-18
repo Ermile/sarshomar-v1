@@ -10,7 +10,20 @@ class view extends \mvc\view
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
 		{
-			$this->data->profile_lock = array_keys(\lib\db\filters::support_filter());
+			$profile_lock = \lib\db\filters::support_filter();
+			$profile = [];
+			foreach ($profile_lock as $key => $value) {
+				if(is_array($value))
+				{
+					$trans = [];
+					foreach ($value as $k => $v) {
+						$trans[] = T_($v);
+					}
+					$value = join($trans, ",");
+				}
+				$profile[$key] = $value;
+			}
+			$this->data->profile_lock = $profile;
 		}
 
 	}

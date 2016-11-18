@@ -141,8 +141,8 @@
                   <select class="poll-complete-dropdown" name="meta_profile">
                     <option value="">{%trans "Please Select One Item"%}</option>
                       {%for key, value in profile_lock%}
-                        {%set t_value = value %}
-                        <option value="{{value}}">{%trans t_value%}</option>
+                        {%set t_value = key %}
+                        <option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
                       {%endfor%}
                   </select>
                 </div>
