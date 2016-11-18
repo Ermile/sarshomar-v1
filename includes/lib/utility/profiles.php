@@ -50,17 +50,17 @@ class profiles
 			'internetusage'    => ['low', 'mid', 'high'],
 			'skills'           => null,
 			'languages'        => null,
-			'books'            => null,
-			'writers'          => null,
-			'films'            => null,
-			'actors'           => null,
-			'genre'            => null,
-			'musics'           => null,
-			'artists'          => null,
-			'sports'           => null,
-			'sportmans'        => null,
-			'habbits'          => null,
-			'devices'          => null,
+			'books'            => [], // similar tags, can set some value
+			'writers'          => [], // similar tags, can set some value
+			'films'            => [], // similar tags, can set some value
+			'actors'           => [], // similar tags, can set some value
+			'genre'            => [], // similar tags, can set some value
+			'musics'           => [], // similar tags, can set some value
+			'artists'          => [], // similar tags, can set some value
+			'sports'           => [], // similar tags, can set some value
+			'sportmans'        => [], // similar tags, can set some value
+			'habbits'          => [], // similar tags, can set some value
+			'devices'          => [], // similar tags, can set some value
 		];
 		if($_check)
 		{
@@ -71,6 +71,10 @@ class profiles
 					if(is_array($profile_data[$_check]) && in_array($_value, $profile_data[$_check]))
 					{
 						return true;
+					}
+					elseif(is_array($profile_data[$_check]) && empty($profile_data[$_check]))
+					{
+						return [];
 					}
 					elseif($profile_data[$_check] === null)
 					{
@@ -110,10 +114,12 @@ class profiles
 	{
 		$profile = [];
 		$result  = \lib\db\termusages::usage($_user_id, 'users');
+
 		if(is_array($result))
 		{
 			foreach ($result as $key => $value)
 			{
+				$x_key = str_replace('users_', '', $value['term_type']);
 				// get the accepted value in terms for insert chart
 				if($_accepted_value)
 				{
@@ -121,8 +127,27 @@ class profiles
 					{
 						continue;
 					}
+					$profile[$x_key] = $value['term_title'];
 				}
-				$profile[str_replace('users_', '', $value['term_type'])] = $value['term_title'];
+				else
+				{
+					if(!isset($profile[$x_key]))
+					{
+						$profile[$x_key] = $value['term_title'];
+					}
+					else
+					{
+						if(is_array($profile[$x_key]))
+						{
+							array_push($profile[$x_key], $value['term_title']);
+						}
+						else
+						{
+							$exist_value = $profile[$x_key];
+							$profile[$x_key] = [$exist_value, $value['term_title']];
+						}
+					}
+				}
 			}
 		}
 		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
@@ -149,6 +174,54 @@ class profiles
 		return $user_filter;
 	}
 
+	/**
+	 * insert terms
+	 *
+	 * @param      string  $_key    The key
+	 * @param      <type>  $_value  The value
+	 */
+	public static function insert_terms($_key, $_value, $_valus_checked_true = [])
+	{
+		$new_term_id = \lib\db\terms::get_id($_value, "users_$_key");
+		// insrt new terms
+		if(!$new_term_id || empty($new_term_id))
+		{
+			// new term find we need to save this to terms table
+			$term_status = 'awaiting';
+			if(isset($_valus_checked_true[$_key]) && $_valus_checked_true[$_key] == $_value)
+			{
+				$term_status = 'enable';
+			}
+			// cehc termslug len
+			$term_slug = \lib\utility\filter::slug($_value);
+			if(strlen($term_slug) > 50)
+			{
+				$term_slug = substr($term_slug, 0, 49);
+			}
+			$insert_new_terms =
+			[
+				'term_type'   => 'users_'. $_key,
+				'term_title'  => $_value,
+				'term_slug'   => $term_slug,
+				'term_url'    => $_key. '/'. $_value,
+				'term_status' => $term_status
+			];
+
+			$new_term_id = \lib\db\terms::insert($insert_new_terms);
+
+			$new_term_id = \lib\db::insert_id();
+			if(!$new_term_id)
+			{
+				$new_term_id = \lib\db\terms::get_id($_value, "users_$_key");
+				if(!$new_term_id)
+				{
+					return false;
+				}
+			}
+		}
+		return $new_term_id;
+	}
+
 
 	/**
 	 * Sets the profiles data.
@@ -172,7 +245,16 @@ class profiles
 		$insert_filter  = [];
 		$insert_profile = [];
 
-		foreach ($_args as $key => $value) {
+		// if value in insert filter checked and not exist in terms table
+		// insert in terms table and set the status of this record 'enable'
+		// because checked value and no problem
+		$valus_checked_true = [];
+
+		// some index of profile is similar tags and users can set some value in this index
+		$profile_similar_tags = [];
+
+		foreach ($_args as $key => $value)
+		{
 			$value = trim($value);
 			if(self::profile_data($key))
 			{
@@ -185,42 +267,57 @@ class profiles
 					{
 						$insert_filter[$key] = $value;
 					}
+					$valus_checked_true[$key] = $value;
 					$insert_profile[$key] = $value;
 				}
 				// users can set eny value in this field
 				elseif($check === null)
 				{
-					switch ($key) {
-						case 'country':
-						case 'birthcountry':
-							$check = \lib\utility\location\countres::check($value);
-							if($check)
+					$insert_to_filters = false;
+					switch ($key)
+					{
+						case 'age':
+							if(intval($value) > 5 && intval($value) < 90)
 							{
-								if($key == 'country')
-								{
-									$insert_filter['country'] = $value;
-								}
+								$insert_to_filters = true;
 							}
-							$insert_profile[$key] = $value;
 							break;
 
-						// case 'province';
-						// case 'birthprovince';
-
-						// 	break;
-
-						// case 'educationcity':
-						// case 'jobcity':
-						// case 'city':
-						// case 'birthcity':
-
-						// 	break;
-
-						default:
-							$insert_profile[$key] = $value;
+						case 'country':
+							$insert_filter = \lib\utility\location\countres::check($value);
 							break;
+
+						case 'province':
+							$insert_filter = \lib\utility\location\provinces::check($value);
+							break;
+
+						case 'city':
+							$insert_filter = \lib\utility\location\cites::check($value);
+							break;
+
+						// case 'course':
+						// case 'religion':
+						// case 'language':
+						// case 'industry':
+
 					}
+
+					if($insert_to_filters)
+					{
+						$valus_checked_true[$key] = $value;
+						$insert_filter[$key]      = $value;
+					}
+					$insert_profile[$key] = $value;
+
 				}
+				// profile data has bee similar to tag and can set som one
+				elseif($check === [])
+				{
+					// we not set this value to $profile_data
+					$explode_value = explode(',', $value);
+					$profile_similar_tags[$key] = $explode_value;
+				}
+
 				// -------- get the age
 				if($key == 'birthyear')
 				{
@@ -262,71 +359,54 @@ class profiles
 		}
 
 		// no data add
-		if(empty($insert_profile))
+		if(!empty($insert_filter))
 		{
-			return true;
+			// get the exist filter value
+			// to not empty set in field has been complete befor
+			$old_user_filter = self::get_user_filter($_user_id);
+
+			if($old_user_filter && is_array($old_user_filter))
+			{
+				$old_user_filter = array_filter($old_user_filter);
+
+				unset($old_user_filter['id']);
+				unset($old_user_filter['unique']);
+
+				$insert_filter = array_merge($old_user_filter, $insert_filter);
+			}
+
+			// get the filter id if exist
+			$filter_id = \lib\db\filters::get_id($insert_filter);
+
+			// if filter id not found insert the filter record and get the last_insert_id
+			if(!$filter_id)
+			{
+				$filter_id = \lib\db\filters::insert($insert_filter);
+			}
+
+			if($filter_id)
+			{
+				$arg    = ['filter_id' => $filter_id];
+				$result = \lib\db\users::update($arg, $_user_id);
+			}
 		}
 
-		$old_user_filter = self::get_user_filter($_user_id);
-
-		if($old_user_filter && is_array($old_user_filter))
-		{
-			$old_user_filter = array_filter($old_user_filter);
-
-			unset($old_user_filter['id']);
-			unset($old_user_filter['unique']);
-
-			$insert_filter = array_merge($old_user_filter, $insert_filter);
-		}
-
-		// get the filter id if exist
-		$filter_id = \lib\db\filters::get_id($insert_filter);
-
-		// if filter id not found insert the filter record and get the last_insert_id
-		if(!$filter_id)
-		{
-			$filter_id = \lib\db\filters::insert($insert_filter);
-			// bug !!! . filter can not be add
-		}
-		if($filter_id)
-		{
-			$arg    = ['filter_id' => $filter_id];
-			$result = \lib\db\users::update($arg, $_user_id);
-		}
-
+		// insert data in terms
 		$insert_termusages = [];
 
-		foreach ($insert_profile as $key => $value) {
+		foreach ($insert_profile as $key => $value)
+		{
 			// chech exist this profie data or no
 			// if not exist insert new
 			// if exist and old value = new value continue
-			// if exist and old value != new value update terms and save old value in log
-			$new_term_id = \lib\db\terms::get_id($value, "users_$key");
-			// insrt new terms
-			if(!$new_term_id || empty($new_term_id))
+			// if exist and old value != new value update terms and save old value in log table
+			$new_term_id = self::insert_terms($key, $value, $valus_checked_true);
+
+			if(!$new_term_id)
 			{
-				// new term find we need to save this to terms table
-				$insert_new_terms =
-				[
-					'term_type'   => 'users_'. $key,
-					'term_title'  => $value,
-					'term_slug'   => \lib\utility\filter::slug($value),
-					'term_url'    => $key. '/'. $value,
-					'term_status' => 'awaiting'
-				];
-
-				$new_term_id = \lib\db\terms::insert($insert_new_terms);
-
-				$new_term_id = \lib\db::insert_id();
-				if(!$new_term_id)
-				{
-					$new_term_id = \lib\db\terms::get_id($value, "users_$key");
-					if(!$new_term_id)
-					{
-						continue;
-					}
-				}
+				continue;
 			}
+
 			// check this users has similar profile data to update this
 			$query =
 			"
@@ -341,6 +421,7 @@ class profiles
 					termusages.termusage_id = $_user_id AND
 					terms.term_type = 'users_$key'
 				LIMIT 1
+				-- check this users has similar profile data to update this
 			";
 
 			$similar_terms = \lib\db::get($query, null, true);
@@ -387,6 +468,45 @@ class profiles
 				$useage = \lib\db\termusages::insert($insert_termusages);
 			}
 		}
+		// insert profile similar tags
+		if(!empty($profile_similar_tags))
+		{
+			foreach ($profile_similar_tags as $key => $value)
+			{
+
+				$value = array_filter($value);
+				foreach ($value as $n => $tag)
+				{
+					$new_term_id = self::insert_terms($key, $tag);
+
+					if(!$new_term_id)
+					{
+						continue;
+					}
+
+					$args =
+					[
+						'termusage_id'      => $_user_id,
+						'termusage_foreign' => 'users',
+						'term_id'           => $new_term_id
+					];
+
+					if(!\lib\db\termusages::check($args))
+					{
+
+						// insert new termusages record
+						$insert_termusages =
+						[
+							'term_id'           => $new_term_id,
+							'termusage_foreign' => 'users',
+							'termusage_id'      => $_user_id
+						];
+						$useage = \lib\db\termusages::insert($insert_termusages);
+
+					}
+				}
+			}
+		}
 		return true;
 	}
 
@@ -411,6 +531,7 @@ class profiles
 				post_id IS NULL AND
 				user_id    = $_user_id AND
 				option_cat = 'user_dashboard_$_user_id'
+			-- profiles::get_dashboard_data()
 		";
 		$dashboard = \lib\db::get($query, ['key', 'value']);
 		return $dashboard;
@@ -437,6 +558,7 @@ class profiles
 				options.option_cat = 'user_dashboard_$_user_id' AND
 				options.option_key = '$_title'
 			LIMIT 1
+			-- profiles::set_dashboard_data()
 		";
 		$result = \lib\db::query($query);
 		$update_rows = mysqli_affected_rows(\lib\db::$link);
@@ -475,6 +597,7 @@ class profiles
 				options.user_id    = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1)	AND
 				options.option_cat = CONCAT('user_dashboard_', options.user_id) AND
 				options.option_key = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title')
+				-- profiles::people_see_my_poll()
 		";
 		$result = \lib\db::query($query);
 		$update_rows = mysqli_affected_rows(\lib\db::$link);
@@ -490,6 +613,7 @@ class profiles
 					options.option_cat   = CONCAT('user_dashboard_', options.user_id),
 					options.option_key   = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title'),
 					options.option_value = 1
+				-- profiles::people_see_my_poll()
 			";
 			\lib\db::query($insert_options);
 		}
@@ -526,6 +650,7 @@ class profiles
 				option_key   = 'meta' AND
 				option_value = 'profile'
 			LIMIT 1
+			-- profiles::set_profile_by_poll()
 		";
 
 		// check this poll has been locked to profile data ?

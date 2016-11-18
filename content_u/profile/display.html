@@ -244,50 +244,127 @@
        <label for="languages" class="title">{%trans "Languages"%}</label>
        <input type="text" name="languages" id="languages" value="{{profile.languages}}" class="input autocomplete" >
       </div>
-      <div class="element {%if profile.books%}has-data{%else%}no-data{%endif%}">
+      <div class="element no-data">
        <label for="books" class="title">{%trans "Books"%}</label>
-       <input type="text" name="books" id="books" value="{{profile.books}}" class="input autocomplete" >
+       <input type="hidden" name="books" id="sp-books" value="{% if profile.books %}{{profile.books|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="books" class="input autocomplete similar-tag" data-split="sp-books" data-list="books-list">
       </div>
-      <div class="element {%if profile.writers%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="books-list">
+        {%for key, value in profile.books%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-books"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="writers" class="title">{%trans "Writers"%}</label>
-       <input type="text" name="writers" id="writers" value="{{profile.writers}}" class="input autocomplete" >
+       <input type="hidden" name="writers" id="sp-writers" value="{% if profile.writers %}{{profile.writers|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="writers" class="input autocomplete similar-tag" data-split="sp-writers" data-list="writers-list">
       </div>
-      <div class="element {%if profile.films%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="writers-list">
+        {%for key, value in profile.writers%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-writers"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="films" class="title">{%trans "Films"%}</label>
-       <input type="text" name="films" id="films" value="{{profile.films}}" class="input autocomplete" >
+       <input type="hidden" name="films" id="sp-films" value="{% if profile.films %}{{profile.films|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="films" class="input autocomplete similar-tag" data-split="sp-films" data-list="films-list">
       </div>
-      <div class="element {%if profile.actors%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="films-list">
+        {%for key, value in profile.films%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-films"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="actors" class="title">{%trans "Actors"%}</label>
-       <input type="text" name="actors" id="actors" value="{{profile.actors}}" class="input autocomplete" >
+       <input type="hidden" name="actors" id="sp-actors" value="{% if profile.actors %}{{profile.actors|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="actors" class="input autocomplete similar-tag" data-split="sp-actors" data-list="actors-list">
       </div>
-      <div class="element {%if profile.genre%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="actors-list">
+        {%for key, value in profile.actors%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-actors"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="genre" class="title">{%trans "Genre"%}</label>
-       <input type="text" name="genre" id="genre" value="{{profile.genre}}" class="input autocomplete" >
+       <input type="hidden" name="genre" id="sp-genre" value="{% if profile.genre %}{{profile.genre|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="genre" class="input autocomplete similar-tag" data-split="sp-genre" data-list="genre-list">
       </div>
-      <div class="element {%if profile.musics%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="genre-list">
+        {%for key, value in profile.genre%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-genre"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="musics" class="title">{%trans "Musics"%}</label>
-       <input type="text" name="musics" id="musics" value="{{profile.musics}}" class="input autocomplete" >
+       <input type="hidden" name="musics" id="sp-musics" value="{% if profile.musics %}{{profile.musics|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="musics" class="input autocomplete similar-tag" data-split="sp-musics" data-list="musics-list">
       </div>
-      <div class="element {%if profile.artists%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="musics-list">
+        {%for key, value in profile.musics%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-musics"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="artists" class="title">{%trans "Artists"%}</label>
-       <input type="text" name="artists" id="artists" value="{{profile.artists}}" class="input autocomplete" >
+       <input type="hidden" name="artists" id="sp-artists" value="{% if profile.artists %}{{profile.artists|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="artists" class="input autocomplete similar-tag" data-split="sp-artists" data-list="artists-list">
       </div>
-      <div class="element {%if profile.sports%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="artists-list">
+        {%for key, value in profile.artists%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-artists"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="sports" class="title">{%trans "Sports"%}</label>
-       <input type="text" name="sports" id="sports" value="{{profile.sports}}" class="input autocomplete" >
+       <input type="hidden" name="sports" id="sp-sports" value="{% if profile.sports %}{{profile.sports|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="sports" class="input autocomplete similar-tag" data-split="sp-sports" data-list="sports-list">
       </div>
-      <div class="element {%if profile.sportmans%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="sports-list">
+        {%for key, value in profile.sports%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-sports"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="sportmans" class="title">{%trans "Sportmans"%}</label>
-       <input type="text" name="sportmans" id="sportmans" value="{{profile.sportmans}}" class="input autocomplete" >
+       <input type="hidden" name="sportmans" id="sp-sportmans" value="{% if profile.sportmans %}{{profile.sportmans|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="sportmans" class="input autocomplete similar-tag" data-split="sp-sportmans" data-list="sportmans-list">
       </div>
-      <div class="element {%if profile.habbits%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="sportmans-list">
+        {%for key, value in profile.sportmans%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-sportmans"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="habbits" class="title">{%trans "Habbits"%}</label>
-       <input type="text" name="habbits" id="habbits" value="{{profile.habbits}}" class="input autocomplete" >
+       <input type="hidden" name="habbits" id="sp-habbits" value="{% if profile.habbits %}{{profile.habbits|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="habbits" class="input autocomplete similar-tag" data-split="sp-habbits" data-list="habbits-list">
       </div>
-      <div class="element {%if profile.devices%}has-data{%else%}no-data{%endif%}">
+      <div class="tags" id="habbits-list">
+        {%for key, value in profile.habbits%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-habbits"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
+      <div class="element no-data">
        <label for="devices" class="title">{%trans "Devices"%}</label>
-       <input type="text" name="devices" id="devices" value="{{profile.devices}}" class="input autocomplete" >
+       <input type="hidden" name="devices" id="sp-devices" value="{% if profile.devices %}{{profile.devices|join(',') ~ ','}}{%endif%}" class="input autocomplete" >
+       <input type="text" id="devices" class="input autocomplete similar-tag" data-split="sp-devices" data-list="devices-list">
       </div>
+      <div class="tags" id="devices-list">
+        {%for key, value in profile.devices%}
+          <a><i class='fa fa-times remove-tags' data-split="sp-devices"></i>{{value}}</a>
+        {%endfor%}
+      </div>
+
      </div>
     </li>
    </ul>
@@ -298,3 +375,4 @@
    btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
 </script>
 {%endblock%}
+
