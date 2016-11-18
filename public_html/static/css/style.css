@@ -944,7 +944,6 @@ aside .group{margin-bottom:1em;}
 .pagination a.prev:hover::after{color:#0a5260;}
 .pagination a.prev::before{content:'<';position:absolute;text-align: center;top:.8em;left: 2px;}
 .rtl .pagination a.prev::before{content:'<';position:absolute;text-align: center;top: .65em;left:initial;right:3px;}
-
 .pagination a.next{padding:1.65em .95em;}
 .rtl .pagination a.next{padding-right:.3em;padding-left:1.3em;}
 .pagination a.next::after{font-weight: initial;transition:.3s;font-family:'sarshomar';content:'b';top:-2px;bottom:0;margin:auto;right:0;position:absolute;font-size:3.299em;right:-.7em;color:#e7e7e7;}
