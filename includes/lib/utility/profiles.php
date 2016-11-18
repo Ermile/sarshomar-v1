@@ -106,15 +106,23 @@ class profiles
 	 *
 	 * @return     array   The profile data.
 	 */
-	public static function get_profile_data($_user_id)
+	public static function get_profile_data($_user_id, $_accepted_value = true)
 	{
 		$profile = [];
 		$result  = \lib\db\termusages::usage($_user_id, 'users');
 		if(is_array($result))
 		{
-			$result  = array_column($result, 'term_title', 'term_type');
-			foreach ($result as $key => $value) {
-				$profile[str_replace('users_', '', $key)] = $value;
+			foreach ($result as $key => $value)
+			{
+				// get the accepted value in terms for insert chart
+				if($_accepted_value)
+				{
+					if($value['term_status'] != 'enable')
+					{
+						continue;
+					}
+				}
+				$profile[str_replace('users_', '', $value['term_type'])] = $value['term_title'];
 			}
 		}
 		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
@@ -519,6 +527,7 @@ class profiles
 				option_value = 'profile'
 			LIMIT 1
 		";
+
 		// check this poll has been locked to profile data ?
 		$profile_lock = \lib\db::get($profile_lock, 'lock', true);
 		if(!$profile_lock)
@@ -529,26 +538,45 @@ class profiles
 		$answers      = \lib\utility\answers::get($_args['poll_id']);
 		$opt_value    = array_column($answers, 'option_value', 'option_key');
 
-		// the user has send an answer we have not in database
-		if(!isset($opt_value[$_args['opt_key']]))
+		$support_filter = \lib\db\filters::support_filter();
+		if(!isset($support_filter[$profile_lock]))
 		{
 			return false;
 		}
-		$user_answer  = $opt_value[$_args['opt_key']];
 
-		// get exist profile data of this users
-		$profile_data = self::get_profile_data($_args['user_id']);
-
-		// check old profile data by new data get by poll
-		if(isset($profile_data[$profile_lock]))
+		if(preg_match("/^(|opt\_)(\d+)$/", $_args['opt_key'], $user_answer_index))
 		{
-			if($profile_data[$profile_lock] == $user_answer)
+			$user_answer_index = $user_answer_index[2];
+			$user_answer_index--;
+
+			// the user skip the poll
+			if($user_answer_index < 0)
 			{
-				// this user is reliable
-				return true;
+				return false;
 			}
+			if(isset($support_filter[$profile_lock][$user_answer_index]))
+			{
+				$user_answer = $support_filter[$profile_lock][$user_answer_index];
+			}
+			else
+			{
+				return false;
+			}
+			// get exist profile data of this users
+			$profile_data = self::get_profile_data($_args['user_id']);
+
+			// check old profile data by new data get by poll
+			if(isset($profile_data[$profile_lock]))
+			{
+				if($profile_data[$profile_lock] == $user_answer)
+				{
+					// this user is reliable
+					return true;
+				}
+			}
+			return self::set_profile_data($_args['user_id'], [$profile_lock => $user_answer]);
 		}
-		return self::set_profile_data($_args['user_id'], [$profile_lock => $user_answer]);
+		return false;
 	}
 
 

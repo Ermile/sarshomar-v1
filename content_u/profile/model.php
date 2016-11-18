@@ -11,7 +11,7 @@ class model extends \mvc\model
 	public function get_profile()
 	{
 		$user_id = $this->login("id");
-		$me = \lib\utility\profiles::get_profile_data($user_id);
+		$me = \lib\utility\profiles::get_profile_data($user_id, false);
 		$displayname = \lib\db\users::get_displayname($user_id);
 		$email = \lib\db\users::get_email($user_id);
 		$me['displayname'] = $displayname;
