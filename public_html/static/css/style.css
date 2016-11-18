@@ -959,38 +959,40 @@ aside .group{margin-bottom:1em;}
 .polls-head > span{color:#00667A;font-weight:bold;vertical-align:middle;margin:0 auto;}
 .polls-head > span, .polls-row > span{min-width:2em;padding:13px 5px;font-size:1.15em;}
 
-.polls-head > .star {max-width:2em;font-size:1em; display: flex;}
+.polls-head > .star {max-width:2em;font-size:1em; display:flex;}
 .polls-head > .star::before {align-items: center;justify-content: center;display:flex;}
 .polls-head > .type {min-width:3em;}
 .polls-head > .title {-webkit-flex:1;flex:1;min-width:2em;}
 .polls-head > .votes-count {text-align:center;min-width:6em;max-width:6em;}
-.polls-head > .comments-count {min-width:7em;max-width:7em;text-align: center;}
+.polls-head > .comments-count {min-width:7em;max-width:7em;text-align:center;}
 .polls-head > .date {min-width:6.4em;max-width:6.4em;text-align:center;}
 
-.polls-row{display: flex;}
+.polls-row{display:flex;}
 
 .polls-row > .star{max-width:2em;font-size:1.15em;color:transparent;display:flex;cursor:pointer;}
 .polls-row > .star.starred::before{color:#e7a429;}
-.polls-row > .star::before {align-items: center;justify-content: center;display:flex;}
+.polls-row > .star::before {align-items: center;justify-content:center;display:flex;}
 .polls-row:hover > .star::before{color:#e7e7e7;}
 .polls-row:hover > .star.starred::before{color:#e7a429;}
-.polls-row > .type{margin:0 auto;min-width:3em;padding-left:0;}
+.polls-row > .type{margin:0 auto;min-width:3em;padding-left:0;display:flex;align-items:center;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
 .polls-row > .title.title-longer{max-width:60em}
-.polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;overflow:hidden;max-width:55em;}
+.polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;overflow:hidden;max-width:55em;display:flex;align-items:center;}
 .polls-row > .votes-count{min-width:6em;color:#777;font-weight:500;text-align:center;}
 .polls-row > .comments-count{min-width:7em;color:#777;font-weight:500;text-align:center;}
-.polls-row > .date{min-width:7.4em;font-size:.85em;display:flex;align-items:center;justify-content:center;}
+.polls-row > .date{min-width:7.4em;font-size:.85em;display:flex;align-items:center;justify-content:center;min-width: 8.4em;}
 
-.polls-row .title a{color:#00667A;font-weight:bold;vertical-align:-webkit-baseline-middle;}
+.polls-row .title a{color:#00667A;font-weight:bold;}
 .polls-row .title i{color:#E96F4B;font-size:0.8em;}
 .polls-row .type i{background-color:#777777;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;vertical-align:middle;color:#F4F4F4;}
 .polls-row .date{color:#BDBDBD;}
 .polls-row:hover > span:not(.star){background-color:#ebebeb;}
+.polls-row:hover > span .pie::after{background-color:#ebebeb;}
 
 /*************************************************************** knowledge */
-.pie {position:relative;background:#e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 32px;height:32px;display: inline-block;border-radius: 50%;margin-right: 5px;vertical-align: middle;}
-.pie::before {content: '';display: block;margin-left:50%;height: 100%;border-radius: 0 100% 100% 0 / 50%;background-color: inherit;transform-origin: left;animation: spin 50s linear infinite, bg 100s step-end infinite;animation-play-state: paused;animation-delay: inherit;}
-@keyframes spin {to { transform: rotate(180deg); }}
-@keyframes bg {50% { background: #00667a; }}
-.pie::after {content:'';display:inline-block;position:absolute;width: 60%;height: 60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}
+.pie {position:relative;background:#e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 32px;height:32px;display:inline-block;border-radius: 50%;margin-right: 5px;vertical-align: middle;}
+.rtl .pie {margin-right:0px;margin-left:5px;}
+.pie::before {content: '';display:block;margin-left:50%;height:100%;border-radius:0 100% 100% 0 / 50%;background-color:inherit;transform-origin:left;animation: spin 50s linear infinite, bg 100s step-end infinite;animation-play-state: paused;animation-delay: inherit;}
+@keyframes spin {to { transform:rotate(180deg); }}
+@keyframes bg {50% { background:#00667a; }}
+.pie::after {content:'';display:inline-block;position:absolute;width:60%;height:60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}
