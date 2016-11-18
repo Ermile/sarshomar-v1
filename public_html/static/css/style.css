@@ -989,6 +989,7 @@ aside .group{margin-bottom:1em;}
 .polls-row:hover > span:not(.star){background-color:#ebebeb;}
 .polls-row:hover > span .pie::after{background-color:#ebebeb;}
 
+
 /*************************************************************** my questions ProgressBar */
 .pie {position:relative;background:#e0e0e0;background-image:linear-gradient(to right, transparent 50%, #00667a 0);width: 32px;height:32px;display:inline-block;border-radius: 50%;margin-right: 5px;vertical-align: middle;}
 .rtl .pie {margin-right:0px;margin-left:5px;}
