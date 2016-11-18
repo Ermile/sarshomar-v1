@@ -468,6 +468,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 
 /* sharebox */
 .sharebox{text-align:right;margin-bottom:2em;}
+.rtl .sharebox{text-align:left;}
 .sharebox a{display:inline-block;width:30px;height:30px;margin:0 .1em;text-align:center;position:relative;overflow:hidden;opacity:.99;border-radius:2%;}
 .sharebox a:before{content:'';width:50%;height:400%;position:absolute;top:-214%;left:-61%;transform:rotate(30deg);z-index:-1}
 .sharebox a:hover:before{top:30%;left:30%;transition:.5s .2s}
@@ -758,7 +759,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .buttons{position:relative;clear:both;text-align:right;margin-bottom:7em;}
 .rtl .buttons{text-align:left}
 .buttons::before{position:absolute;z-index:0;left:-15px;width:100%;height:2px;margin-top:17px;content:'';background-color:#00667a;}
-.rtl .buttons::before{left:auto;right:-15px;}
 .buttons nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
 .buttons button{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;padding:0 7px;}
 .buttons button:not(:last-child), .buttons input[type="submit"]:not(:last-child){margin-right:30px;}
@@ -974,6 +974,7 @@ aside .group{margin-bottom:1em;}
 .polls-row:hover > .star::before{color:#e7e7e7;}
 .polls-row:hover > .star.starred::before{color:#e7a429;}
 .polls-row > .type{margin:0 auto;min-width:3em;padding-left:0;display:flex;align-items:center;}
+.rtl .polls-row > .type{padding-right:0;padding-left:5px;}
 .polls-row > .type::before{vertical-align:-webkit-baseline-middle; }
 .polls-row > .title.title-longer{max-width:60em}
 .polls-row > .title{flex:1;-webkit-flex:1;min-width:2em;padding-left:10px;overflow:hidden;max-width:55em;display:flex;align-items:center;}

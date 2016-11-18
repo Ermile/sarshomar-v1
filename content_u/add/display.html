@@ -239,6 +239,26 @@
 
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(document).on('change', '.poll-complete input[type="checkbox"]', function(event){
+    if (this.checked)
+    {
+      $('.poll-complete .poll-complete-dropdown').show();
+    }
+    else
+    {
+      $('.poll-complete .poll-complete-dropdown').hide();
+    }
+  });
+
+  $(document).on('change', '.poll-complete .poll-complete-dropdown', function(event){
+      options = $(this).find('option:selected').attr('data-value').split(',');
+      console.log( options );
+    }
+  });
+});
+</script>
 {%endblock%}
 
 {%block check_svg%}
