@@ -33,7 +33,7 @@ class model extends \mvc\model
 	 */
 	public function get_search($_args)
 	{
-		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '')
+		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '$')
 		{
 			$field = [];
 			$field['limit'] = 10;
