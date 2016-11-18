@@ -150,7 +150,7 @@
        <span class="plus" data-value="133"></span>
        <span class="minus" data-value="455"></span>
      </div>
-     <div class="title">Lorem ipsum dolor sit amet</div>
+     <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -158,7 +158,6 @@
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
      </div>
-     <div class="author">some name here</div>
      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -168,7 +167,7 @@
      <span class="continue">{%trans "Continue"%}</span>
     </div>
     <div class="comment">
-     <div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+     <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -176,7 +175,6 @@
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
      </div>
-     <div class="author">some name here</div>
      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -186,7 +184,7 @@
      <span class="continue">{%trans "Continue"%}</span>
     </div>
     <div class="comment">
-     <div class="title">consectetur adipisicing elit</div>
+     <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -194,7 +192,6 @@
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
      </div>
-     <div class="author">some name here</div>
      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -204,7 +201,7 @@
      <span class="continue">{%trans "Continue"%}</span>
     </div>
     <div class="comment">
-     <div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+     <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -212,7 +209,6 @@
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
      </div>
-     <div class="author">some name here</div>
      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -222,7 +218,7 @@
      <span class="continue">{%trans "Continue"%}</span>
     </div>
     <div class="comment">
-     <div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+     <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -230,7 +226,6 @@
       <span class="fa fa-star star" aria-hidden="true"></span>
       <span class="fa fa-star star" aria-hidden="true"></span>
      </div>
-     <div class="author">some name here</div>
      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -402,14 +397,18 @@ $(document).ready(function() {
 
   $(document).on('click', '.comment .continue', function(event){
    $(this).parents('.comment').children('p').addClass('full');
-   event.preventDefault().stopPropagation();
+   event.preventDefault();
+   event.stopPropagation();
   });
 
   $(document).on('click', '.full', function(event){
-   event.preventDefault().stopPropagation();
+   event.preventDefault();
+   event.stopPropagation();
   });
 
-  $(document).on('click', 'body', function(){ $('.full').removeClass('full'); });
+  $(document).on('click', 'body', function(){
+    $('.full').removeClass('full');
+  });
 });
 </script>
 {%endblock%}
