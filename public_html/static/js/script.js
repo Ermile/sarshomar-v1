@@ -203,6 +203,22 @@ route(/\@\/add/, function()
 	    }
 	  });
 	});
+
+	$(this).on('change', '.poll-complete input[type="checkbox"]', function(event) {
+	    if (this.checked)
+	    {
+	        $('.poll-complete .poll-complete-dropdown').show();
+	    }
+	    else
+	    {
+	        $('.poll-complete .poll-complete-dropdown').hide();
+	    }
+	});
+
+	$(this).on('change', '.poll-complete .poll-complete-dropdown', function() {
+		var options = $(this).find('option:checked').attr('data-value').split(',');
+		console.log(options);
+	});
 });
 
 
