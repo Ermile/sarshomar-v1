@@ -287,8 +287,8 @@ $.each($('.element.no-data'), function (key, value){
 
 
 // pollsearch | Knowledge
-// route('*', function ()
-route(/^\/?(fa\/)?\$(.*)$/, function ()
+// route(/^\/?(fa\/)?\$(.*)$/, function ()
+route('*', function ()
 {
 	var change = 0;
 

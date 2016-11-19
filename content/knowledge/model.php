@@ -37,11 +37,13 @@ class model extends \mvc\model
 		{
 			$field = [];
 			$field['limit'] = 10;
+			$field['post_sarshomar'] = 1;
+			$field['get_last'] = true;
 			if($this->login())
 			{
 				$field['login'] = $this->login('id');
 			}
-			return \lib\db\polls::get_last_poll($field);
+			return \lib\db\polls::search(null, $field);
 		}
 
 		$match = $_args;

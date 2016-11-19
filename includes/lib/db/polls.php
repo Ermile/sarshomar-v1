@@ -947,22 +947,6 @@ class polls
 
 
 	/**
-	 * get the last poll
-	 * in the knowlege page
-	 *
-	 * @param      array   $_args  The arguments
-	 *
-	 * @return     <type>  The last poll.
-	 */
-	public static function get_last_poll($_args = [])
-	{
-		$_args['get_last']  = true;
-		$_args['post_sarshomar'] = 1;
-		return self::search(null, $_args);
-	}
-
-
-	/**
 	 * check the poll is a poll of this users of no
 	 *
 	 * @param      <type>   $_poll_id  The poll identifier

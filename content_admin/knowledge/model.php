@@ -49,7 +49,7 @@ class model extends \mvc\model
 	{
 		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '')
 		{
-			return \lib\db\polls::get_last_poll(['limit' => 10]);
+			return \lib\db\polls::search(null, ['get_last' => true, 'limit' => 10]);
 		}
 
 		$match = $_args;
@@ -72,7 +72,6 @@ class model extends \mvc\model
 		}
 
 		$meta                   = [];
-		$meta['post_sarshomar'] = 1;
 		if(!empty($filter))
 		{
 			$filter_id         = \lib\db\filters::get_id($filter);
