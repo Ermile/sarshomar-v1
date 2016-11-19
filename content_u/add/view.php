@@ -36,6 +36,8 @@ class view extends \mvc\view
 		$answers = \lib\utility\answers::get($poll_id);
 		$this->data->answers = $answers;
 
+		$this->page_progress_url($poll_id, "add");
+
 	}
 
 	/**

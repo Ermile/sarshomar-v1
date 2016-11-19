@@ -16,6 +16,8 @@ class view extends \mvc\view
 		// get poll_id || suervey_id from url
 		$poll_survey_id = $this->model()->check_poll_url($_args);
 
+		$this->page_progress_url($poll_survey_id, "filter");
+
 		// check is_survey or no
 		// if(!\lib\utility\survey::is_survey($poll_survey_id))
 		// {

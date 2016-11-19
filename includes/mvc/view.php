@@ -15,6 +15,7 @@ class view extends \lib\mvc\view
 
 		$this->data->template['register']    = 'content/template/register.html';
 		$this->data->template['social']      = 'content/template/social.html';
+		$this->data->template['progress']      = 'content/template/progress.html';
 		$displayname = $this->login("displayname");
 		if($displayname == '')
 		{
