@@ -5,6 +5,11 @@
   <div class="row">
     <div class="span4"></div>
     <div class="span4">
+      <div class="page-progress publish">
+        <a href="@/add" class="active add cube" data-label='{%trans "Add"%}'></a>
+        <a href="#" class="active filter cube" data-label='{%trans "Filter"%}'></a>
+        <a href="#" class="active publish cube" data-label='{%trans "Publish"%}'></a>
+      </div>
       <div class="element">
         <label class="title" for="short_url">{%trans "Short URL"%}</label>
         <input class="input text-left" type="text" id="short_url" value="{{short_url}}" readonly="readonly">
