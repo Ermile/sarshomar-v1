@@ -20,7 +20,7 @@ class controller extends \mvc\controller
 		$reg = "/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/";
 		if(preg_match($reg, \lib\router::get_url(), $controller_name))
 		{
-			if($controller_name[4] == 'comments')
+			if(isset($controller_name[4]) && $controller_name[4] == 'comments')
 			{
 				\lib\router::set_controller("\\content\\comments\\controller");
 			}
