@@ -51,7 +51,7 @@
         <input class="input" type="text" name="end_time" value="{{poll.meta.end_time}}">
       </div>
 
-      <input type="hidden" name="tags" id="sp-tags" value="{{tags|join(',') ~ ','}}">
+      <input type="hidden" name="tags" id="sp-tags" value="{% if tags %}{{tags|join(',') ~ ','}}{%endif%}">
       <div class="element">
         <label class="title" for="tags">{%trans "Tags"%}</label>
         <input class="input similar-tag" data-list="tag-list" data-split="sp-tags" type="text" id="tags">

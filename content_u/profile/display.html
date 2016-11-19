@@ -251,7 +251,7 @@
       </div>
       <div class="tags" id="books-list">
         {%for key, value in profile.books%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-books"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-books"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -262,7 +262,7 @@
       </div>
       <div class="tags" id="writers-list">
         {%for key, value in profile.writers%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-writers"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-writers"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -273,7 +273,7 @@
       </div>
       <div class="tags" id="films-list">
         {%for key, value in profile.films%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-films"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-films"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -284,7 +284,7 @@
       </div>
       <div class="tags" id="actors-list">
         {%for key, value in profile.actors%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-actors"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-actors"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -295,7 +295,7 @@
       </div>
       <div class="tags" id="genre-list">
         {%for key, value in profile.genre%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-genre"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-genre"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -306,7 +306,7 @@
       </div>
       <div class="tags" id="musics-list">
         {%for key, value in profile.musics%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-musics"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-musics"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -317,7 +317,7 @@
       </div>
       <div class="tags" id="artists-list">
         {%for key, value in profile.artists%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-artists"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-artists"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -328,7 +328,7 @@
       </div>
       <div class="tags" id="sports-list">
         {%for key, value in profile.sports%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-sports"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-sports"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -339,7 +339,7 @@
       </div>
       <div class="tags" id="sportmans-list">
         {%for key, value in profile.sportmans%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-sportmans"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-sportmans"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -350,7 +350,7 @@
       </div>
       <div class="tags" id="habbits-list">
         {%for key, value in profile.habbits%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-habbits"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-habbits"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -361,7 +361,7 @@
       </div>
       <div class="tags" id="devices-list">
         {%for key, value in profile.devices%}
-          <a><i class='fa fa-times remove-tags' data-split="sp-devices"></i>{{value}}</a>
+          <a><i class='fa fa-times remove-tags' data-id="{{key}}" data-split="sp-devices"></i>{{value}}</a>
         {%endfor%}
       </div>
 
@@ -373,6 +373,26 @@
 {%block foot_js%}
 <script type="text/javascript">
    btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
+   $(document).on('click', '.remove-tags', function(){
+      id = $(this).attr('data-id');
+      $(this).ajaxify(
+      {
+        ajax:
+        {
+          data:
+          {
+            'type': 'remove-tag',
+            'id': id
+          },
+          abort: true,
+          success: function(e, data, x)
+          {
+
+          },
+          method: 'post'
+        }
+      });
+   });
 </script>
 {%endblock%}
 

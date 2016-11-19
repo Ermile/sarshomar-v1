@@ -131,21 +131,19 @@ class profiles
 				}
 				else
 				{
-					if(!isset($profile[$x_key]))
+					$check_similar_tags = self::profile_data($x_key, $value['term_title']);
+					if($check_similar_tags === [])
 					{
-						$profile[$x_key] = $value['term_title'];
+						if(!isset($profile[$x_key]))
+						{
+							$profile[$x_key] = [];
+						}
+						$profile[$x_key][$value['id']] = $value['term_title'];
+
 					}
 					else
 					{
-						if(is_array($profile[$x_key]))
-						{
-							array_push($profile[$x_key], $value['term_title']);
-						}
-						else
-						{
-							$exist_value = $profile[$x_key];
-							$profile[$x_key] = [$exist_value, $value['term_title']];
-						}
+						$profile[$x_key] = $value['term_title'];
 					}
 				}
 			}

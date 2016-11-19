@@ -36,6 +36,19 @@ class model extends \mvc\model
 		}
 		$user_id = $this->login('id');
 
+		if(utility::post("type") == 'remove-tag')
+		{
+			$id = utility::post("id");
+			$args =
+			[
+				'term_id'           => $id,
+				'termusage_id'      => $user_id,
+				'termusage_foreign' => 'users'
+			];
+			\lib\db\termusages::remove($args);
+			return;
+		}
+
 		$name  = utility::post("name");
 		$value = utility::post("value");
 
