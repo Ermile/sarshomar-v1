@@ -13,8 +13,6 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = true;
 		}
-
-		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\utility\stat_polls::get_sarshomar_total_answered()]);
 		$this->include->fontawesome = true;
 	}
 
@@ -26,6 +24,7 @@ class view extends \mvc\view
 	 */
 	public function view_search($_args)
 	{
+
 		$this->data->search_value =  $_args->get("search")[0];
 		// get fontawesome class
 		$list = $_args->api_callback;
@@ -37,6 +36,20 @@ class view extends \mvc\view
 			}
 		}
 		$this->data->poll_list = $list;
+		$match = $_args;
+		unset($_args->match->url);
+		unset($_args->method);
+		unset($_args->match->property);
+		$match  = $match->match;
+		$checkbox = [];
+		foreach ($match as $key => $value) {
+			if(is_array($value) && isset($value[0]))
+			{
+				$value = $value[0];
+			}
+			$checkbox[$key] = $value;
+		}
+		$this->data->checkbox = $checkbox;
 	}
 
 	/**

@@ -5,12 +5,14 @@
    <div class="group">
     <div class="options-box">
       <span class="ac-custom ac-checkmark">
-       <input id="questions1" type="checkbox" name='pollcat' value="sarshomar">
+       <input id="questions1" type="checkbox" name='pollcat' value="sarshomar" {%if checkbox.pollcat == 'sarshomar'%}checked{%endif%}>
        <label for="questions1">{%trans "Sarshomar"%}</label>
+       {%if checkbox.pollcat == 'sarshomar'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark">
-       <input id="questions2" type="checkbox" name='pollcat' value="civility">
+       <input id="questions2" type="checkbox" name='pollcat' value="civility" {%if checkbox.pollcat == 'civility'%}checked{%endif%}>
        <label for="questions2">{%trans "Civility"%}</label>
+       {%if checkbox.pollcat == 'civility'%}{{block('check_svg')}}{%endif%}
      </span>
     </div>
    </div>
@@ -18,7 +20,7 @@
      <div class="full-line-title" data-title='{%trans "question type"%}'></div>
      <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="type1" type="checkbox" name='type'>
+        <input id="type1" type="checkbox" name='pollgender' value="poll">
         <label for="type1">{%trans "Poll"%}</label>
       </span>
       <span class="ac-custom ac-checkmark reverse">
@@ -72,7 +74,7 @@
         <label for="time1">{%trans "publish"%}</label>
       </span>
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time2" type="checkbox" name='status' value="expire">
+        <input id="time2" type="checkbox" name='status' value="expired">
         <label for="time2">{%trans "expire"%}</label>
       </span>
     </div>
@@ -210,19 +212,36 @@ $(document).ready(function()
       });
  });
 
+$(document).on('change', 'input[type=checkbox]', function(){
+  url = window.location.pathname;
+    console.log(url);
+    name = $(this).attr('name');
+    value = $(this).attr('value');
+    console.log(name,value);
 
+    var patt = new RegExp('/' + name + '\=' + value);
+    test = patt.test(url);
+    console.log(test);
+    if(test)
+    {
+      if($(this).prop("checked"))
+      {
+        // is checked
 
- //  $("aside .full-line-title").click(function()
- // {
- //    var slider = $(this).next(".options-box");
- //    console.log(slider);
- //    if(slider.css('display') == "block") {
- //      console.log('-----');
- //    }
- //    else{
- //      console.log('++++');
- //    }
- // });
+      }
+      else
+      {
+        // is not checked
+        url = url.replace(patt, '');
+      }
+    }
+    else
+    {
+      url = url +'/' + name + '=' + value;
+    }
+  Navigate({ url: url });
+
+});
 
 });
 
@@ -262,5 +281,9 @@ $(document).ready(function()
       <div class="msg error">{%trans "No Result Found"%}</div>
   {%endif%}
 
+{%endblock%}
+
+{%block check_svg%}
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M16.667,62.167c3.109,5.55,7.217,10.591,10.926,15.75 c2.614,3.636,5.149,7.519,8.161,10.853c-0.046-0.051,1.959,2.414,2.692,2.343c0.895-0.088,6.958-8.511,6.014-7.3 c5.997-7.695,11.68-15.463,16.931-23.696c6.393-10.025,12.235-20.373,18.104-30.707C82.004,24.988,84.802,20.601,87,16" style="stroke-dasharray: 126.37, 126.37; stroke-dashoffset: 0; transition: stroke-dashoffset 0.2s ease-in-out 0s;"></path></svg>
 {%endblock%}
 
