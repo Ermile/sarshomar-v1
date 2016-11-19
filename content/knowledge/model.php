@@ -52,7 +52,7 @@ class model extends \mvc\model
 
 		$filter = [];
 		$meta                   = [];
-
+		$meta['login'] = $this->login('id');
 		foreach ($match as $key => $value) {
 			if(is_array($value) && isset($value[0]))
 			{
@@ -65,7 +65,10 @@ class model extends \mvc\model
 			else
 			{
 				list($f,$v) = $this->db_field_name($key, $value);
-				$meta[$f] = $v;
+				if($f)
+				{
+					$meta[$f] = $v;
+				}
 			}
 		}
 
@@ -74,6 +77,7 @@ class model extends \mvc\model
 			$filter_id         = \lib\db\filters::get_id($filter);
 			$meta['filter_id'] = $filter_id;
 		}
+
 		$search = $_args->get("search")[0];
 		$result = \lib\db\polls::search($search, $meta);
 		return $result;
@@ -118,6 +122,10 @@ class model extends \mvc\model
 
 			case 'status':
 				$field = "post_status";
+				break;
+
+			default:
+				$field = false;
 				break;
 		}
 		return [$field , $value];

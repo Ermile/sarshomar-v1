@@ -287,52 +287,12 @@ route('*', function ()
 		{
 			if(change <= 1)
 			{
-				// if(val)
-				// {
-				// 	val = '/search=' + val;
-				// }
-				$(this).ajaxify(
+				if(val)
 				{
-					ajax:
-					{
-						method: 'post',
-						data:
-						{
-							'search': val
-						},
-						abort: true,
-						success: function(e, data, x)
-						{
-  		    				$('#search-result').html('');
-							var li = '<div class="polls-head">';
-								li += '<span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>';
-	    						li += '<span class="type"> Type</span>';
-	    						li += '<span class="title"> Title</span>';
-	    						li += '<span class="comments-count"> Comments</span>';
-	    						li += '<span class="votes-count"> Votes</span>';
-	    						li += '<span class="date"> Date</span>';
-	      						li += '</div>';
-      						li += '<ul class="polls-body">';
-							data = e.msg.callback;
-							for (a in data)
-							{
+					val = '/search=' + val;
+				}
 
-						        li += '<li class="polls-row">';
-						          li += '<span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>';
-						          li += '<span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>';
-						          li += '<span class="title"><a href="/'+data[a].url+'">'+data[a].title+'</a></span>';
-						          li += '<span class="comments-count"></span>';
-						          li += '<span class="votes-count"></span>';
-						          li += '<span class="date">'+data[a].date_modified+'</span>';
-						        li += '</li>';
-
-							}
-  		    				li += '</ul>';
-  		    				$('#search-result').append($(li))
-						}
-					}
-				});
-				// Navigate({ url: '$' + val });
+				Navigate({ url: '$' + val });
 			}
 				change -= 1;
 		}, 250);

@@ -39,6 +39,12 @@ class model extends \mvc\model
 		if(utility::post("type") == 'remove-tag')
 		{
 			$id = utility::post("id");
+
+			if(!is_numeric($id))
+			{
+				return false;
+			}
+
 			$args =
 			[
 				'term_id'           => $id,
