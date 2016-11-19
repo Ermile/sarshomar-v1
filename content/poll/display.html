@@ -64,7 +64,7 @@
    {%if post.post_meta.opt%}{#check post meta exist#}
     <div class="poll btn-container"><button class="save-answer">{%trans "Save Answer"%}</button></div>
    {%else%}
-    <div class="poll btn-container"><button class="save-answer"><a href="ask"  data-direct>{%trans "Ask Me"%}</a></button></div>
+    <div class="poll btn-container"><a class="btn save-answer" href="ask" data-direct>{%trans "Ask Me"%}</a></div>
    {%endif%}
    </div>
   </form>
@@ -146,27 +146,24 @@
      </div><!-- /.bars -->
     </div>
     <div class="comment">
+     <form>
+      <div class="author">some name here</div>
+      <div class="stars">
+       <span class="fa fa-star star" aria-hidden="true"></span>
+       <span class="fa fa-star star" aria-hidden="true"></span>
+       <span class="fa fa-star star" aria-hidden="true"></span>
+       <span class="fa fa-star star" aria-hidden="true"></span>
+       <span class="fa fa-star star" aria-hidden="true"></span>
+      </div>
+      <textarea class="user-comment"></textarea>
+      <button class="save-comment">{%trans "Send"%}</button>
+     </form>
+    </div>
+    <div class="comment">
      <div class="score">
        <span class="plus" data-value="133"></span>
        <span class="minus" data-value="455"></span>
      </div>
-     <div class="author">some name here</div>
-     <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-     </div>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-     <span class="continue">{%trans "Continue"%}</span>
-    </div>
-    <div class="comment">
      <div class="author">some name here</div>
      <div class="stars">
       <span class="fa fa-star star" aria-hidden="true"></span>
@@ -388,10 +385,10 @@ $(document).ready(function() {
       });
   });
 
-  $(".save-answer").on("ajaxify:success", function(_xhr, _data){
+  $(".btn.save-answer").on("ajaxify:success", function(_xhr, _data){
     // next_url = _data.msg.callback;
     // $(".btn-answers").children().remove();
-    // $("<button class='save-answer'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".btn-container");
+    // $("<button class='btn.save-answer'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".btn-container");
     // $("div.opt").fadeOut();
   });
 
