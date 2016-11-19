@@ -1,0 +1,29 @@
+{%if poll_list%}
+  <div class="polls-head">
+    <span class="fa fa-star star" aria-hidden="true"></span>
+    <span class="type">{%trans "Type"%}</span>
+    <span class="title">{%trans "Title"%}</span>
+    <span class="comments-count">{%trans "Comments"%}</span>
+    <span class="votes-count">{%trans "Votes"%}</span>
+    <span class="date">{%trans "Date"%}</span>
+  </div>
+  <ul class="polls-body">
+{%for key, value in poll_list%}
+    <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
+      <span class="fa fa-star star {%if value.faivorites%}starred{%endif%}" aria-hidden="true"></span>
+      <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
+      <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
+      <span class="comments-count">{{value.total}}</span>
+      <span class="votes-count">{{value.total}}</span>
+      <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
+    </li>
+{%endfor%}
+  </ul>
+  <!-- pagenation -->
+  <div class="pagination-container">
+  {%include display.pagination%}
+  </div>
+  <!-- ./pagenation -->
+{%else%}
+  <div class="msg error">{%trans "No Result Found"%}</div>
+{%endif%}

@@ -5,6 +5,7 @@ class view extends \mvc\view
 {
 	function config()
 	{
+		$this->data->display['result']     = "content/knowledge/layout-xhr.html";
 		// $this->include->css_ermile   = false;
 		$this->include->js    = true;
 		$this->include->chart = true;
@@ -36,6 +37,17 @@ class view extends \mvc\view
 			}
 		}
 		$this->data->poll_list = $list;
+	}
+
+	/**
+	 * [pushState description]
+	 * @return [type] [description]
+	 */
+	function pushState()
+	{
+		if($this->module() !== 'home')
+		{
+		}
 	}
 }
 ?>

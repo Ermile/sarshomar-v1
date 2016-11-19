@@ -287,30 +287,44 @@ $.each($('.element.no-data'), function (key, value){
 
 
 // pollsearch | Knowledge
-// route(/^\/?(fa\/)?\$(.*)$/, function ()
-route('*', function ()
+// route('*', function ()
+route(/^\/?(fa\/)?\$(.*)$/, function ()
 {
 	var change = 0;
-	$('.pollsearch', this).keyup(function(e)
+
+	$(document).on('keyup', '.pollsearch', function(e)
 	{
 		var val = $(this).val();
 		change  += 1;
-
 		setTimeout(function()
 		{
+
 			if(change <= 1)
 			{
-				if(val)
+
+				url = window.location.pathname;
+
+				test = /\/search\=(.*)/.test(url);
+
+				if(test)
 				{
-					val = '/search=' + val;
+					url = url.replace(/\/search\=(.*)(\/|)/, '/search=' + val + '/');
+				}
+				else
+				{
+					url = url + '/search=' + val + '/';
 				}
 
-				Navigate({ url: '$' + val });
+				Navigate({ url: url });
 			}
-				change -= 1;
+			change -= 1;
 		}, 250);
 	});
-	$('.pollsearch', this).focus().val($('.pollsearch').val());
+
+	$(document).ready(function(){
+		$('.pollsearch').focus().val($('.pollsearch').val());
+
+	});
 });
 
 

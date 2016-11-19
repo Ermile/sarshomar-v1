@@ -165,7 +165,7 @@
       <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
      </div>
      <div class="search-result" data-xhr='search-result' id="search-result">
-      {{block('search_result')}}
+       {%include display.result%}
      </div>
     </div><!-- /.span9 -->
   </div>
@@ -228,8 +228,6 @@ $(document).ready(function()
 
 
 </script>
-
-
 {%endblock%}
 
 
