@@ -753,8 +753,14 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .page-progress a:not(.active):hover::before{color:#ccc;}
 
 .page-progress.add::after{width:calc(50% - 10px);}
+.page-progress.add .add{background-color:#00667A;}
+.page-progress.add .add::before{color:#00667A;}
 .page-progress.filter::after{width:calc(100% - 20px);}
+.page-progress.filter .add,.page-progress.filter .filter{background-color:#00667A;}
+.page-progress.filter .add::before,.page-progress.filter .filter::before{color:#00667A;}
 .page-progress.publish::after{width:100%;}
+.page-progress.publish .add,.page-progress.publish .filter,.page-progress.publish .publish{background-color:#00667A;}
+.page-progress.publish .add::before,.page-progress.publish .filter::before,.page-progress.publish .publish::before{color:#00667A;}
 
 /* Menu */
 .type{margin:0 auto 15px;text-align:center;padding:0 12px;}
@@ -777,6 +783,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .btn-container{position:relative;clear:both;text-align:right;margin-bottom:3em;}
 .rtl .btn-container{text-align:left}
 .btn-container::before{position:absolute;z-index:0;left:-15px;width:100%;height:2px;margin-top:17px;content:'';background-color:#00667a;}
+.rtl .btn-container::before{left:auto;right:-15px;}
 .btn-container nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
 .btn-container button,.btn-container .btn{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;padding:0 7px;}
 .btn-container button:not(:last-child),.btn-container .btn:not(:last-child){margin-right:30px;}
