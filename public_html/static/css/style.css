@@ -378,9 +378,10 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #poll-box input[type="submit"]{border:none;background-color:transparent;color:#00667A;cursor:pointer;float:right;font-size:1em;}
 #poll-box input[name="opt_other"]{border:none;display:inline-block;width:100%;height:100%;color:#00667A;background-color:transparent;}
 
-.button-container{width:55%;}
-.poll.buttons{margin-bottom:3em;}
-.buttons .save-answer{background-color:#007A03;}
+.poll.btn-container{width:55%;}
+.poll.btn-container{margin-bottom:3em;}
+.btn-container .save-answer{background-color:#007A03;}
+.btn-container .save-answer::before,.btn-container .save-answer::after{color:#007A03;}
 
 /* Poll Box RTL */
 .rtl #poll-box .read-more span{margin-right:0;margin-left:10px;}
@@ -769,24 +770,24 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .rtl .options, .rtl .indent{padding-left:0;padding-right:40px;}
 
 /* Buttons */
-.buttons{position:relative;clear:both;text-align:right;margin-bottom:7em;}
-.rtl .buttons{text-align:left}
-.buttons::before{position:absolute;z-index:0;left:-15px;width:100%;height:2px;margin-top:17px;content:'';background-color:#00667a;}
-.buttons nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
-.buttons button{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;padding:0 7px;}
-.buttons button:not(:last-child), .buttons input[type="submit"]:not(:last-child){margin-right:30px;}
-.rtl .buttons button:not(:last-child), .rtl .buttons input[type="submit"]:not(:last-child){margin-right:auto;margin-left:30px;}
-/*.buttons button::before,.buttons button::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:1px;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.buttons button::before{left:-20px;content:'\6c';}
-.buttons button::after{right:-20px;content:'\6b';}*/
-.buttons.center{text-align:center;}
-.buttons.center::before{left:0;}
+.btn-container{position:relative;clear:both;text-align:right;margin-bottom:3em;}
+.rtl .btn-container{text-align:left}
+.btn-container::before{position:absolute;z-index:0;left:-15px;width:100%;height:2px;margin-top:17px;content:'';background-color:#00667a;}
+.btn-container nav{line-height:1;position:relative;z-index:1;display:inline-block;padding:0;background-color:#f4f4f4;}
+.btn-container button,.btn-container .btn{position:relative;min-width:80px;cursor:pointer;color:#F4F4F4;border:none;outline:none;background-color:#00667A;height:36px;line-height:36px;transition:0.3s;padding:0 7px;}
+.btn-container button:not(:last-child),.btn-container .btn:not(:last-child){margin-right:30px;}
+.rtl .btn-container button:not(:last-child),.rtl .btn-container .btn:not(:last-child){margin-right:auto;margin-left:30px;}
+.btn-container button::before,.btn-container button::after,.btn-container .btn::before,.btn-container .btn::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;color:#00667a;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.btn-container button::before,.btn-container .btn::before{left:-20px;content:'\6c';}
+.btn-container button::after,.btn-container .btn::after{right:-20px;content:'\6b';}
+.btn-container.center{text-align:center;position:static;}
+.btn-container.center::before{left:0;}
 
-#add .buttons button[value="publish"]{background-color:#37AAA7;color:#F4F4F4;}
-#add .buttons button[value="publish"]::before, #add .buttons button[value="publish"]::after{color:#37AAA7;}
+#add .btn-container button[value="publish"]{background-color:#37AAA7;color:#F4F4F4;}
+#add .btn-container button[value="publish"]::before, #add .btn-container button[value="publish"]::after{color:#37AAA7;}
 
-.padding-large .buttons::before{left:-35px;}
-.rtl .padding-large .buttons::before{right:-35px;}
+.padding-large .btn-container::before{left:-35px;}
+.rtl .padding-large .btn-container::before{right:-35px;}
 
 
 /* Title Line */

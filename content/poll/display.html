@@ -62,9 +62,9 @@
 
    <div class="button-container">
    {%if post.post_meta.opt%}{#check post meta exist#}
-    <div class="poll buttons"><button class="save-answer">{%trans "Save Answer"%}</button></div>
+    <div class="poll btn-container"><button class="save-answer">{%trans "Save Answer"%}</button></div>
    {%else%}
-    <div class="poll buttons"><button class="save-answer"><a href="ask"  data-direct>{%trans "Ask Me"%}</a></button></div>
+    <div class="poll btn-container"><button class="save-answer"><a href="ask"  data-direct>{%trans "Ask Me"%}</a></button></div>
    {%endif%}
    </div>
   </form>
@@ -391,7 +391,7 @@ $(document).ready(function() {
   $(".save-answer").on("ajaxify:success", function(_xhr, _data){
     // next_url = _data.msg.callback;
     // $(".btn-answers").children().remove();
-    // $("<button class='save-answer'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".buttons");
+    // $("<button class='save-answer'><a href='{{base.url}}/" + next_url + "' style='color:black;' data-direct>سوال بعدی</a></button>").appendTo(".btn-container");
     // $("div.opt").fadeOut();
   });
 

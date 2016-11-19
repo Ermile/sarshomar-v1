@@ -7,6 +7,7 @@
       <input type="hidden" name="poll_type" value="">
 
       <div class="row auto">
+        <div class="span2"></div>
         <div class="span8">
           <div class="page-progress">
             <a href="@/add" class="active add cube" data-label='{%trans "Add"%}'></a>
@@ -189,19 +190,20 @@
             </ul><!-- /.tab -->
           </div><!-- /.row -->
 
-          <div class="buttons">
-            <input type="hidden" name="n" value="v" id="submit-form">
-            <nav>
-              <button send-name="filter" value="filter">{%trans "Filter"%}</button>
-            {%if survey_mod%}
-              <button send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-            {%else%}
-              <button send-name="survey" value="survey">{%trans "Survey"%}</button>
-            {%endif%}
-              <button send-name="publish" value="publish">{%trans "Publish"%}</button>
-            </nav>
-          </div><!-- /.buttons -->
         </div><!-- /.span8 -->
+
+        <div class="btn-container center">
+          <input type="hidden" name="n" value="v" id="submit-form">
+          <nav>
+            <button class="btn" send-name="filter" value="filter">{%trans "Filter"%}</button>
+          {%if survey_mod%}
+            <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+          {%else%}
+            <button class="btn" send-name="survey" value="survey">{%trans "Survey"%}</button>
+          {%endif%}
+            <button class="btn" send-name="publish" value="publish">{%trans "Publish"%}</button>
+          </nav>
+        </div><!-- /.btn-container -->
 
         <div class="span4">
           <div class="row">
