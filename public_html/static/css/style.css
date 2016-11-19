@@ -423,7 +423,8 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 /* Poll Comments */
 #comments-box .overall{font-size:6em;color:#767676;line-height:1;}
 #comments-box .stars{display:inline-block;}
-#comments-box .stars .star{color:#E2B31E;font-size:2em;margin-bottom:1em;}
+#comments-box .stars .star{color:#9F9F9F;font-size:2em;margin-bottom:1em;transition:.3s;}
+#comments-box .stars .star.hover,#comments-box .stars .star.active{color:#E2B31E;}
 #comments-box .stars .number{color:#767678;font-size:1.4em;padding:0 .5em;}
 #comments-box .bars{width:50%;}
 #comments-box .bars .bar{height:1em;border-radius:0.3em;margin-bottom:1em;}
@@ -453,7 +454,7 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #comments-box .comment .score .plus:hover::after,#comments-box .comment .score .minus:hover::after{opacity:1;}
 
 #comments-box .comment .title{font-size:1.2em;color:#767676;margin-bottom:.5em;}
-#comments-box .comment .stars{margin-bottom:1em;}
+#comments-box .comment .stars{margin-bottom:1em;cursor:default;}
 #comments-box .comment .stars .star{font-size:1.2em;}
 #comments-box .comment .author{font-size:1.1em;color:#767676;margin-bottom:.5em;}
 #comments-box .comment p{font-size:1.1em;color:#767676;text-align:justify;background-color:#F4F4F4;max-height:150px;overflow:hidden;}

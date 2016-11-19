@@ -406,6 +406,28 @@ $(document).ready(function() {
   $(document).on('click', 'body', function(){
     $('.full').removeClass('full');
   });
+
+  $('.star').on({
+   mouseenter: function () {
+    var index = $(this).index();
+    for (var i = 0; i <= index; i++)
+    {
+     $(this).parent('.stars').children('.star').eq(i).addClass('hover');
+    }
+   },
+   mouseleave: function () {
+    $(this).parent('.stars').children('.star').removeClass('hover');
+   }
+  });
+
+  $('.star').on('click', function(){
+   var index = $(this).index();
+   $(this).parent('.stars').children('.star').removeClass('active');
+   for (var i = 0; i <= index; i++)
+   {
+    $(this).parent('.stars').children('.star').eq(i).addClass('active');
+   }
+  });
 });
 </script>
 {%endblock%}
