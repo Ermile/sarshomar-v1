@@ -749,8 +749,6 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .page-progress a::before{content:attr(data-label);color:#D8D8D8;font-weight:bold;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em;}
 .page-progress a.active{background-color:#00667A;}
 .page-progress a.active::before{color:#00667A;}
-.page-progress a:not(.active):hover{background-color:#ccc;}
-.page-progress a:not(.active):hover::before{color:#ccc;}
 
 .page-progress.add::after{width:calc(50% - 10px);}
 .page-progress.add .add{background-color:#00667A;}
