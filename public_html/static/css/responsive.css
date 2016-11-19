@@ -78,6 +78,17 @@
   .profile .info{display: none;}
   .rtl .special-heading::after{display:none;}
   .special-heading::after{display: none;}
+/**********************************Knowledge***************************/
+.main .search-box{margin:2em;}
+.polls-head > .comments-count{display: none;}
+.polls-head > .votes-count{display: none;}
+.polls-row > .comments-count{display: none;}
+.polls-row > .votes-count{display: none;} 
+#search-result .polls-body{font-size:1.2em;}
+#search-result .polls-head{font-size: 1.2em;}
+.polls-row .date{font-size: 1em;}
+.pagination-container{font-size: 1.4em;}
+.pagination a.next::after{top: -1px;}
 }
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
@@ -126,6 +137,7 @@
   footer #footer-note .counter, footer #footer-note .love{display: inline-block !important;width:50% !important; margin-top:5px !important; }
 
 /**********************************dashbord***************************/
+
   .wrapper>aside{display: block;width: 100%;text-align: center;padding-top: 5em;}
   .wrapper>aside img{width: 70%;}
   .dashboard .progress{margin-top: 40px;}
@@ -138,6 +150,7 @@
   .main{display: block;width: 100%;}
 
 /**********************************profile***************************/
+
 #profile .profile-image{margin: 0 auto;display: block;width: 60%;height: auto;}
 #profile .tabs{padding-left:0;}
 #profile .tab{padding: 2em;}
@@ -145,7 +158,11 @@
 #profile .tabs li.active{width: 32%;}
 #profile .tabs li::before{display: none;}
 
+/**********************************Knowledge***************************/
+aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
+.polls-row .date{display: none;}
 }
+
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 @media only screen and (max-width: 479px){
   .profile .info{display: none;}
@@ -161,6 +178,8 @@
 #profile .tabs li{width: 80%;}
 #profile .tabs li.active{width: 80%;}
 .element .title:before{display: none;}
+  /**********************************profile***************************/
+
  }
   /*================================== 
   @media only screen and (max-width: 320px){}
