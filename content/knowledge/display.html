@@ -212,43 +212,44 @@ $(document).ready(function()
       });
  });
 
-$(document).on('change', 'input[type=checkbox]', function(){
-  url = window.location.pathname;
-    console.log(url);
+  $(document).on('change', 'input[type=checkbox]', function(){
+    url = window.location.pathname;
     name = $(this).attr('name');
     value = $(this).attr('value');
-    console.log(name,value);
-
-    var patt = new RegExp('/' + name + '\=' + value);
-    test = patt.test(url);
-    console.log(test);
-    if(test)
+    var new_url;
+    var pattern = new RegExp('/' + name + '\=([^\/]*)');
+    match = url.match(pattern);
+    console.log(url);
+    if($(this).prop("checked"))
     {
-      if($(this).prop("checked"))
+      if(match !== null)
       {
-        // is checked
-
+        new_url = url.replace(pattern, name + '=' + value);
       }
       else
       {
-        // is not checked
-        url = url.replace(patt, '');
+        new_url = name + '=' + value;
       }
     }
     else
     {
-      url = url +'/' + name + '=' + value;
+      new_url = url.replace(pattern, '/');
     }
-  Navigate({ url: url });
-
+    console.log(new_url)
+    if(/\/$/.test(url))
+    {
+      url = url + new_url
+    }
+    else
+    {
+      url = url + '/' + new_url;
+    }
+    Navigate({ url: url });
+  });
 });
-
-});
-
 
 </script>
 {%endblock%}
-
 
 {%block search_result%}
   {%if poll_list%}

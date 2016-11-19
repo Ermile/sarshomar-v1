@@ -128,26 +128,30 @@
    <h2 class="special-heading">{%trans "Comments"%}</h2>
    <div class="eq-container">
     <div>
-     <div class="overall">4.6</div>
+     <div class="overall">
+      {%if site.currentlang == "fa"%}
+        {{rate.total|persian}}
+      {%else%}
+        {{rate.total}}
+      {%endif%}
+     </div>
      <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="number">108</span>
+     {%for i in 1..rate.total%}
+      <span class="fa fa-star star active" aria-hidden="true"></span>
+     {%endfor%}
+      <span class="number"></span>
      </div>
      <div class="bars">
-      <div class="bar one" style="width:100%"></div>
-      <div class="bar two" style="width:20%" ></div>
-      <div class="bar three" style="width:30%" ></div>
-      <div class="bar four" style="width:15%" ></div>
-      <div class="bar five" style="width:5%" ></div>
+      <div class="bar one" style="width:{{rate.rate5 * 20}}%"></div>
+      <div class="bar two" style="width:{{rate.rate4 * 20}}%" ></div>
+      <div class="bar three" style="width:{{rate.rate3 * 20}}%" ></div>
+      <div class="bar four" style="width:{{rate.rate2 * 20}}%" ></div>
+      <div class="bar five" style="width:{{rate.rate1 * 20}}%" ></div>
      </div><!-- /.bars -->
     </div>
     <div class="comment">
-     <form>
-      <div class="author">some name here</div>
+     <form method="post">
+      <div class="author"></div>
       <div class="stars">
        <span class="fa fa-star star" aria-hidden="true"></span>
        <span class="fa fa-star star" aria-hidden="true"></span>
@@ -155,82 +159,27 @@
        <span class="fa fa-star star" aria-hidden="true"></span>
        <span class="fa fa-star star" aria-hidden="true"></span>
       </div>
-      <textarea class="user-comment"></textarea>
-      <button class="save-comment">{%trans "Send"%}</button>
+      <input type="hidden" name="rate" id="user-rate" value="">
+      <textarea class="user-comment" name="content"></textarea>
+      <button class="save-comment" type="submit" name="comment" value="comment">{%trans "Send"%}</button>
      </form>
     </div>
+    {% for key, value in comments()%}
     <div class="comment">
      <div class="score">
-       <span class="plus" data-value="133"></span>
-       <span class="minus" data-value="455"></span>
+       <span class="plus" data-comment-id="{{value.id}}" data-value="{{value.comment_plus}}"></span>
+       <span class="minus" data-comment-id="{{value.id}}" data-value="{{value.comment_minus}}"></span>
      </div>
-     <div class="author">some name here</div>
+     <div class="author">{{value.comment_author}}</div>
      <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
+     {%for i in 1..value.comment_meta%}
+      <span class="fa fa-star star active" aria-hidden="true"></span>
+      {%endfor%}
      </div>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem</p>
+     <p>{{value.comment_content|raw}}</p>
      <span class="continue">{%trans "Continue"%}</span>
     </div>
-    <div class="comment">
-     <div class="author">some name here</div>
-     <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-     </div>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-     <span class="continue">{%trans "Continue"%}</span>
-    </div>
-    <div class="comment">
-     <div class="author">some name here</div>
-     <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-     </div>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-     <span class="continue">{%trans "Continue"%}</span>
-    </div>
-    <div class="comment">
-     <div class="author">some name here</div>
-     <div class="stars">
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-      <span class="fa fa-star star" aria-hidden="true"></span>
-     </div>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-     <span class="continue">{%trans "Continue"%}</span>
-    </div>
+    {%endfor%}
    </div>
   </div><!-- /.row -->
  </div><!-- /.box -->
@@ -253,8 +202,13 @@ function add_score_comment(_type, _data_id)
         'data'  : _data_id
       },
       abort: true,
-      success: function(e, data, x)
-      {}
+      success: function(debug)
+      {
+        if(debug.status)
+        {
+          return true;
+        }
+      }
     }
   });
 }
@@ -347,11 +301,16 @@ $(document).ready(function() {
   });
 
   $('.plus').on('click', function(){
-    add_score_comment('plus', $(this).attr('data-comment-id'));
+    status = add_score_comment('plus', $(this).attr('data-comment-id'));
+    if(status)
+    {
+      // $(this).html($(this).html() + 1);
+    }
   });
 
   $('.minus').on('click', function(){
     add_score_comment('minus', $(this).attr('data-comment-id'));
+    // $(this).html($(this).html() - 1);
   });
 
   $(".heart").on('click',function(){
@@ -427,6 +386,7 @@ $(document).ready(function() {
    {
     $(this).parent('.stars').children('.star').eq(i).addClass('active');
    }
+   $('#user-rate').attr('value', ++index);
   });
 });
 </script>

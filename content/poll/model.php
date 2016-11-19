@@ -72,7 +72,11 @@ class model extends \mvc\model
 		$type    = 'comment';
 		$status  = 'unapproved';
 		$content = utility::post("content");
-
+		$rate    = utility::post('rate');
+		if(intval($rate) > 5)
+		{
+			$rate = 5;
+		}
 		$args =
 		[
 			'comment_author'  => $this->login("displayname"),
@@ -81,10 +85,12 @@ class model extends \mvc\model
 			'comment_type'    => $type,
 			'comment_status'  => $status,
 			'user_id'         => $user_id,
-			'post_id'         => $poll_id
+			'post_id'         => $poll_id,
+			'comment_meta'    => $rate
 		];
 		// insert comments
 		$result = \lib\db\comments::insert($args);
+		\lib\db\comments::rate($this->login('id'), $poll_id, $rate);
 
 		if($result)
 		{
@@ -111,14 +117,14 @@ class model extends \mvc\model
 		$type       = utility::post("type");
 		$comment_id = utility::post("data");
 		$result = \lib\db\commentdetails::set($user_id, $comment_id, $type);
-		if($result)
-		{
-			\lib\debug::true(T_("score saved"));
-		}
-		else
-		{
-			\lib\debug::error(T_("score not save"));
-		}
+		// if($result)
+		// {
+		// 	\lib\debug::true(T_("score saved"));
+		// }
+		// else
+		// {
+		// 	\lib\debug::error(T_("score not save"));
+		// }
 	}
 
 	/**
@@ -149,20 +155,20 @@ class model extends \mvc\model
 
 		//----------------------------------------------------------------------------
 		// save heart
-		if(utility::post("type") == 'heart')
-		{
-			$rate   = utility::post("data");
-			$result = \lib\db\comments::rate($this->login('id'), $poll_id, $rate);
-			if($result)
-			{
-				\lib\debug::true(T_("Your Rate is Saved, Thank You"));
-			}
-			else
-			{
-				\lib\debug::error(T_("We can not save your rate, please reload the page and try again"));
-			}
-			return;
-		}
+		// if(utility::post("type") == 'heart')
+		// {
+		// 	$rate   = utility::post("data");
+		// 	$result = \lib\db\comments::rate($this->login('id'), $poll_id, $rate);
+		// 	if($result)
+		// 	{
+		// 		\lib\debug::true(T_("Your Rate is Saved, Thank You"));
+		// 	}
+		// 	else
+		// 	{
+		// 		\lib\debug::error(T_("We can not save your rate, please reload the page and try again"));
+		// 	}
+		// 	return;
+		// }
 
 		// save like
 		if(utility::post("type") == 'like')

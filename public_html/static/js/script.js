@@ -308,7 +308,7 @@ route('*', function ()
 
 				if(test)
 				{
-					url = url.replace(/\/search\=(.*)(\/|)/, '/search=' + val + '/');
+					url = url.replace(/\/search\=[^\/]*/, '/search=' + val + '/');
 				}
 				else
 				{
@@ -321,10 +321,7 @@ route('*', function ()
 		}, 250);
 	});
 
-	$(document).ready(function(){
-		$('.pollsearch').focus().val($('.pollsearch').val());
-
-	});
+	$('.pollsearch').focus().val($('.pollsearch').val());
 });
 
 
