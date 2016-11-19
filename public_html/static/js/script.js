@@ -219,6 +219,19 @@ route(/\@\/add/, function()
 		var options = $(this).find('option:checked').attr('data-value').split(',');
 		console.log(options);
 	});
+
+	$(this).on('change', '.tree > .ac-checkbox input[type="checkbox"]', function(event) {
+		if (this.checked)
+	    {
+	    	$('.tree .stuff').show().css('display', 'flex');
+	        $('.tree-list').show();
+	    }
+	    else
+	    {
+	    	$('.tree .stuff').hide();
+	        $('.tree-list').hide();
+	    }
+	});
 });
 
 

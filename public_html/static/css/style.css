@@ -691,12 +691,13 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .tree .ac-custom{margin:0;}
 .rtl .tree .ac-custom{margin:0;}
 .tree .ac-custom label::before{top:0;margin-top:0;}
+.tree .stuff{display:flex;flex:1;display:none;}
 .tree input[type="text"]{background-color:#EFEFEF;color:#00667A;border:none;outline:none;width:100%;padding:0 10px;font-size:14px;}
 .tree input[type="text"]:focus + .delete{display:block;`}
 .tree .tree-dropdown{background-color:#00667A;color:#E7E7E7;height:30px;line-height:30px;border:none;outline:none;}
 .tree .tree-dropdown option{min-width:160px;padding:0 5px;}
 .tree .search{color:#777777;background-color:#EFEFEF;height:30px;min-width:30px;line-height:30px;cursor:pointer;text-align:center;}
-.tree-list{background-color:#E7E7E7;margin-left:10px;padding:25px;}
+.tree-list{background-color:#E7E7E7;margin-left:10px;padding:25px;display:none;}
 .rtl .tree-list{margin-left:0;margin-right:10px;margin-bottom:20px;}
 .tree-list .questions > li > div{padding:5px;color:#00667A;line-height:30px;cursor:pointer;font-size:1.2em;}
 .tree-list .questions > li > div:hover{background-color:#00667A;color:#F4F4F4;}
@@ -743,11 +744,12 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 .page-progress{width:50%;margin:0 auto 4em;display:flex;justify-content:space-between;position:relative;}
 .page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#D8D8D8;}
 .page-progress::after{content:'';position:absolute;bottom:0;height:2px;width:calc(50% - 10px);background-color:#00667A;}
-.page-progress a{width:20px;height:20px;background:#D8D8D8;display:flex;position:relative;}
+.page-progress a{width:20px;height:20px;background:#D8D8D8;display:flex;position:relative;transition:.3s;}
 .page-progress a::before{content:attr(data-label);color:#D8D8D8;font-weight:bold;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em;}
 .page-progress a.active{background-color:#00667A;}
 .page-progress a.active::before{color:#00667A;}
-
+.page-progress a:not(.active):hover{background-color:#ccc;}
+.page-progress a:not(.active):hover::before{color:#ccc;}
 
 /* Menu */
 .type{margin:0 auto 15px;text-align:center;padding:0 12px;}
