@@ -28,7 +28,7 @@ class tg_session
 		{
 			self::$start = true;
 		}
-		if(array_key_exists(0, $original_result) && array_key_exists('option_meta', $original_result[0]))
+		if(is_array($original_result) && array_key_exists(0, $original_result) && array_key_exists('option_meta', $original_result[0]))
 		{
 			self::$data_json = $original_result[0]['option_meta'];
 			$original_result[0]['option_meta'] = utf8_decode($original_result[0]['option_meta']);

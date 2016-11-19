@@ -21,6 +21,7 @@ class language
 		if(empty($get) || isset($_data_url[2]))
 		{
 			self::set($_data_url[1], ["ref" => "callback_query"]);
+			handle::send_log(11);
 			$lang_name = $_data_url[1];
 			$lang = preg_replace("[_]", "\\\\_", $lang_name);
 		}
@@ -53,7 +54,7 @@ class language
 		}
 		elseif(!$get || $_update_on)
 		{
-			$update_on = $_update_on ? '/update' : ''; 
+			$update_on = $_update_on ? '/update' : '';
 			$inline_keyboard = array();
 			$inline_keyboard[0][0] = [
 			'text' => "فارسی",
@@ -100,7 +101,7 @@ class language
 				$meta = ["instert_text" => $_language];
 				$options['option_meta'] = json_encode(array_merge($meta, $_options));
 				self::$user_language = $key;
-				\lib\main::$controller->set_language($key);
+				\lib\define::set_language($key);
 				return \lib\db\users::set_language($key, $options);
 			}
 		}

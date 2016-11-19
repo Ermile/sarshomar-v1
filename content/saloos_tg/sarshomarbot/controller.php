@@ -4,7 +4,9 @@ namespace content\saloos_tg\sarshomarbot;
 use \lib\telegram\tg as bot;
 use \lib\db\tg_session as session;
 use content\saloos_tg\sarshomarbot\commands\handle;
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(-1);
 class controller extends \lib\mvc\controller
 {
 	public $custom_language = true;
@@ -117,7 +119,6 @@ class controller extends \lib\mvc\controller
 			 * save telegram sessions to db
 			 */
 			\lib\db\tg_session::save();
-
 			if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 			{
 				var_dump($result);
