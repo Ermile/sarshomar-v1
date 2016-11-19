@@ -45,7 +45,7 @@ class view extends \mvc\view
 	 */
 	function view_add()
 	{
-
+		$this->page_progress_url(null, "add");
 	}
 
 

@@ -62,10 +62,13 @@ class controller extends \mvc\controller
 	public function page_progress_url($_poll_id, $_status)
 	{
 		$this->view()->data->progress_status = $_status;
-		$default_url = $this->url('base') . '/@/add/' . \lib\utility\shortURL::encode($_poll_id);
-		$this->view()->data->add_url     = $default_url;
-		$this->view()->data->filter_url  = $default_url . '/filter';
-		$this->view()->data->publish_url = $default_url . '/publish';
+		if($_poll_id)
+		{
+			$default_url = $this->url('base') . '/@/add/' . \lib\utility\shortURL::encode($_poll_id);
+			$this->view()->data->add_url     = $default_url;
+			$this->view()->data->filter_url  = $default_url . '/filter';
+			$this->view()->data->publish_url = $default_url . '/publish';
+		}
 	}
 }
 ?>
