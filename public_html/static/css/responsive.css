@@ -89,6 +89,10 @@
 .polls-row .date{font-size: 1em;}
 .pagination-container{font-size: 1.4em;}
 .pagination a.next::after{top: -1px;}
+/**********************************filter***************************/
+.type ul{background-color: transparent;}
+.type ul li{width: 100%;margin: 10px 0;float: none;}
+.type ul li:not(:first-child){margin-left: 0;}
 }
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
 @media only screen and (max-width: 767px){
@@ -161,6 +165,12 @@
 /**********************************Knowledge***************************/
 aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .polls-row .date{display: none;}
+/**********************************filter***************************/
+.main .page-progress{width: 90%;}
+.element:not(.small) .title{min-width: 30%;font-size: 1.5em;}
+.element.switch label:not(.title){font-size: 1.5em;}
+/*.type ul li{font-size: 1.4em;}*/
+.page-progress a::before{font-size: 1.2em;font-weight: 400;}
 }
 
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
@@ -176,9 +186,8 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
   
   /**********************************profile***************************/
 #profile .tabs li{width: 80%;}
-#profile .tabs li.active{width: 80%;}
 .element .title:before{display: none;}
-  /**********************************profile***************************/
+  /**********************************filter***************************/
 
  }
   /*================================== 
