@@ -163,17 +163,25 @@
 #profile .tabs li::before{display: none;}
 
 /**********************************Knowledge***************************/
+
 aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .polls-row .date{display: none;}
+
 /**********************************filter***************************/
 .main .page-progress{width: 90%;}
 .element:not(.small) .title{min-width: 30%;font-size: 1.5em;}
 .element.switch label:not(.title){font-size: 1.5em;}
 /*.type ul li{font-size: 1.4em;}*/
 .page-progress a::before{font-size: 1.2em;font-weight: 400;}
-}
 
+/**********************************poll***************************/
+#poll-box input[type="submit"]{font-size: 1.5em;}
+.eq-container > div{width: 100%;font-size: 1.5em;}
+#poll-info .status.publish{font-size: 1.3em;}
+
+}
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
+
 @media only screen and (max-width: 479px){
   .profile .info{display: none;}
   #homepage .box{padding: 1em;}
@@ -181,14 +189,13 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
   /*--header--*/
   header .logo img{width: 8em;}
   /*--footer--*/
-  footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
-  /**********************************dashbord***************************/
-  
+  footer #footer-nav .eco img{padding-top:40px;display: inline-block;} 
+
   /**********************************profile***************************/
+
 #profile .tabs li{width: 80%;}
 .element .title:before{display: none;}
-  /**********************************filter***************************/
-
+#poll-extra{font-size: 1.4em;}
  }
   /*================================== 
   @media only screen and (max-width: 320px){}
