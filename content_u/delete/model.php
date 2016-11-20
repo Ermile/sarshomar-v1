@@ -55,8 +55,25 @@ class model extends \mvc\model
 			];
 			\lib\db\logs::insert($insert_log);
 		}
+		$user_data  = \lib\db\users::get($user_id);
+		$meta       = isset($user_data['user_meta']) ? $user_data['user_meta'] : null;
+		$old_status = isset($user_data['user_status']) ? $user_data['user_status'] : 'awaiting';
+		if($meta)
+		{
+			$meta = json_decode($meta, true);
+		}
+		if(is_array($meta))
+		{
+			$meta = array_merge($meta, ['old_status' => $old_status]);
+		}
+		else
+		{
+			$meta = ['old_status' => $old_status];
+		}
+		$meta = json_encode($meta, JSON_UNESCAPED_UNICODE);
 
-		$update_user_status = ['user_status' => 'removed'];
+		$update_user_status = ['user_status' => 'removed', 'user_meta' => $meta];
+
 		\lib\db\users::update($update_user_status, $user_id);
 
 		$this->redirector()->set_url("logout")->redirect();
