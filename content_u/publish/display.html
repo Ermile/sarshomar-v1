@@ -42,7 +42,7 @@
       </div>
       {%endif%}
 
-      <div class="element">
+      <!-- <div class="element">
         <label class="title">{%trans "Start Time"%}</label>
         <input class="input" type="text" name="start_time" value="{{poll.meta.start_time}}">
       </div>
@@ -50,7 +50,7 @@
       <div class="element">
         <label class="title">{%trans "End Time"%}</label>
         <input class="input" type="text" name="end_time" value="{{poll.meta.end_time}}">
-      </div>
+      </div> -->
 
       <input type="hidden" name="tags" id="sp-tags" value="{% if tags %}{{tags|join(',') ~ ','}}{%endif%}">
       <div class="element">

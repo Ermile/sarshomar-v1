@@ -220,6 +220,8 @@ route(/\@\/add/, function()
 			        var $elem = $('<div>', {class: 'element small'});
 			        $('<label>', {class: 'title', text: 'Answer ' + i, for: 'answer' + i}).appendTo($elem);
 			        $('<input>', {class: 'input', type: 'text', name: 'answer' + i, id: 'answer' + i}).appendTo($elem);
+			        $('<input>', {type: 'hidden', name: 'answer_type_' + i, 'data-true': 'true'}).appendTo($elem);
+					$('<input>', {type: 'hidden', name: 'answer_type_' + i, 'data-type': 'type', value: 'text'}).appendTo($elem);
 			        $('.input-group').append($elem);
 		        }
 	        }
@@ -232,10 +234,11 @@ route(/\@\/add/, function()
 		for (var i = 0; i < options.length; i++)
 		{
 			var option = options[i];
-			console.log(option);
 			var $elem  = $('<div>', {class: 'element small'});
 			$('<label>', {class: 'title', html: option, for: option}).appendTo($elem);
 			$('<input>', {class: 'input', type: 'text', name: option, id: option}).appendTo($elem);
+			$('<input>', {type: 'hidden', name: option, 'data-true': 'true'}).appendTo($elem);
+			$('<input>', {type: 'hidden', name: option, 'data-type': 'type', value: 'text'}).appendTo($elem);
 			$('.input-group').append($elem);
 		}
 	});
