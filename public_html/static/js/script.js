@@ -24,7 +24,7 @@ function add_answer()
 	});
 
 	// if we had no empty inputs and we needed one do this
-	if (number_of_empty_inputs === 0)
+	if (number_of_empty_inputs === 0 && !$('.input-group').hasClass('editing'))
 	{
 		var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
 		var num = $('.element.small .input[type="text"]').length + 1;
@@ -212,12 +212,32 @@ route(/\@\/add/, function()
 	    else
 	    {
 	        $('.poll-complete .poll-complete-dropdown').hide();
+	        if ($('.input-group').hasClass('editing'))
+	        {
+	        	$('.input-group').removeClass('editing').empty();	
+		        for (var i = 1; i <= 2; i++)
+		        {
+			        var $elem = $('<div>', {class: 'element small'});
+			        $('<label>', {class: 'title', text: 'Answer ' + i, for: 'answer' + i}).appendTo($elem);
+			        $('<input>', {class: 'input', type: 'text', name: 'answer' + i, id: 'answer' + i}).appendTo($elem);
+			        $('.input-group').append($elem);
+		        }
+	        }
 	    }
 	});
 
 	$(this).on('change', '.poll-complete .poll-complete-dropdown', function() {
 		var options = $(this).find('option:checked').attr('data-value').split(',');
-		console.log(options);
+		$('.input-group').addClass('editing').empty();
+		for (var i = 0; i < options.length; i++)
+		{
+			var option = options[i];
+			console.log(option);
+			var $elem  = $('<div>', {class: 'element small'});
+			$('<label>', {class: 'title', html: option, for: option}).appendTo($elem);
+			$('<input>', {class: 'input', type: 'text', name: option, id: option}).appendTo($elem);
+			$('.input-group').append($elem);
+		}
 	});
 
 	$(this).on('change', '.tree > .ac-checkbox input[type="checkbox"]', function(event) {
