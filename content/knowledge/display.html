@@ -5,13 +5,13 @@
    <div class="group">
     <div class="options-box">
       <span class="ac-custom ac-checkmark">
-       <input id="questions1" type="checkbox" name='pollcat' value="sarshomar" {%if checkbox.pollcat == 'sarshomar'%}checked{%endif%}>
-       <label for="questions1">{%trans "Sarshomar"%}</label>
+       <input id="sarshomar" type="checkbox" name='pollcat' value="sarshomar" {%if checkbox.pollcat == 'sarshomar'%}checked{%endif%}>
+       <label for="sarshomar">{%trans "Sarshomar"%}</label>
        {%if checkbox.pollcat == 'sarshomar'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark">
-       <input id="questions2" type="checkbox" name='pollcat' value="civility" {%if checkbox.pollcat == 'civility'%}checked{%endif%}>
-       <label for="questions2">{%trans "Civility"%}</label>
+       <input id="civility" type="checkbox" name='pollcat' value="civility" {%if checkbox.pollcat == 'civility'%}checked{%endif%}>
+       <label for="civility">{%trans "Civility"%}</label>
        {%if checkbox.pollcat == 'civility'%}{{block('check_svg')}}{%endif%}
      </span>
     </div>
@@ -20,58 +20,58 @@
      <div class="full-line-title" data-title='{%trans "question type"%}'></div>
      <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="type1" type="checkbox" name='pollgender' value="poll" {%if chechbox.pollgender == 'poll' %}chechek{%endif%}>
-        <label for="type1">{%trans "Poll"%}</label>
+        <input id="poll" type="checkbox" name='pollgender' value="poll" {%if chechbox.pollgender == 'poll' %}chechek{%endif%}>
+        <label for="poll">{%trans "Poll"%}</label>
        {%if checkbox.pollgender == 'poll'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if chechbox.pollgender == 'quiz' %}chechek{%endif%}>
-       <label for="type2">{%trans "quiz"%}</label>
+       <input id="quiz" type="checkbox" name='pollgender' value="quiz" {%if chechbox.pollgender == 'quiz' %}chechek{%endif%}>
+       <label for="quiz">{%trans "quiz"%}</label>
        {%if checkbox.pollgender == 'quiz'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type4" type="checkbox" name='pollgender' value="survey" {%if chechbox.pollgender == 'survey' %}chechek{%endif%}>
-       <label for="type4">{%trans "survey"%}</label>
+       <input id="survey" type="checkbox" name='pollgender' value="survey" {%if chechbox.pollgender == 'survey' %}chechek{%endif%}>
+       <label for="survey">{%trans "survey"%}</label>
        {%if checkbox.pollgender == 'survey'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
    </div>
    <div class="group">
     <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
-    <div class="options-box closed">
+    <div class="options-box">
      <span class="ac-custom ac-checkmark">
-      <input id="accord1" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
-      <label for="accord1">{%trans "multiplechoice"%}</label>
+      <input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
+      <label for="multiplechoice">{%trans "multiplechoice"%}</label>
       {%if checkbox.polltype == 'multiplechoice'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord2" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
-      <label for="accord2">{%trans "descriptive"%}</label>
+      <input id="descriptive" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
+      <label for="descriptive">{%trans "descriptive"%}</label>
       {%if checkbox.polltype == 'descriptive'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord3" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
-      <label for="accord3">{%trans "notification"%}</label>
+      <input id="notification" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
+      <label for="notification">{%trans "notification"%}</label>
       {%if checkbox.polltype == 'notification'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord4" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
-      <label for="accord4">{%trans "upload"%}</label>
+      <input id="upload" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
+      <label for="upload">{%trans "upload"%}</label>
       {%if checkbox.polltype == 'upload'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord5" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
-      <label for="accord5">{%trans "starred"%}</label>
+      <input id="starred" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
+      <label for="starred">{%trans "starred"%}</label>
       {%if checkbox.polltype == 'starred'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord6" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
-      <label for="accord6">{%trans "numerical"%}</label>
+      <input id="numerical" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
+      <label for="numerical">{%trans "numerical"%}</label>
       {%if checkbox.polltype == 'numerical'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord7" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
-      <label for="accord7">{%trans "sort"%}</label>
+      <input id="sort" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
+      <label for="sort">{%trans "sort"%}</label>
       {%if checkbox.polltype == 'sort'%}{{block('check_svg')}}{%endif%}
      </span>
     </div>
@@ -80,13 +80,13 @@
     <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
     <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time1" type="checkbox" name='status' value="publish" {%if chechbox.status == 'publish'%}checked{%endif%}>
-        <label for="time1">{%trans "publish"%}</label>
+        <input id="publish" type="checkbox" name='status' value="publish" {%if chechbox.status == 'publish'%}checked{%endif%}>
+        <label for="publish">{%trans "publish"%}</label>
         {%if checkbox.status == 'publish'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time2" type="checkbox" name='status' value="expired" {%if chechbox.status == 'expired'%}checked{%endif%}>
-        <label for="time2">{%trans "expire"%}</label>
+        <input id="expired" type="checkbox" name='status' value="expired" {%if chechbox.status == 'expired'%}checked{%endif%}>
+        <label for="expired">{%trans "expire"%}</label>
         {%if checkbox.status == 'expired'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
@@ -106,7 +106,7 @@
    </div> -->
    <div class="group">
     <div class="full-line-title" data-title='{%trans "filters"%}'></div>
-    <div class="options-box filters-box actived">
+    <div class="options-box filters-box closed">
      <div class="select-box">
       <label for="marrital">{%trans "marrital"%}</label>
        <select name="marrital" id="marrital">
