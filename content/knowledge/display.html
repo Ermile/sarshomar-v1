@@ -20,16 +20,19 @@
      <div class="full-line-title" data-title='{%trans "question type"%}'></div>
      <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="type1" type="checkbox" name='pollgender' value="poll">
+        <input id="type1" type="checkbox" name='pollgender' value="poll" {%if chechbox.pollgender == 'poll' %}chechek{%endif%}>
         <label for="type1">{%trans "Poll"%}</label>
+       {%if checkbox.pollgender == 'poll'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type2" type="checkbox" name='pollgender' value="quiz">
+       <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if chechbox.pollgender == 'quiz' %}chechek{%endif%}>
        <label for="type2">{%trans "quiz"%}</label>
+       {%if checkbox.pollgender == 'quiz'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="type4" type="checkbox" name='pollgender' value="survey">
+       <input id="type4" type="checkbox" name='pollgender' value="survey" {%if chechbox.pollgender == 'survey' %}chechek{%endif%}>
        <label for="type4">{%trans "survey"%}</label>
+       {%if checkbox.pollgender == 'survey'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
    </div>
@@ -37,32 +40,39 @@
     <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
     <div class="options-box">
      <span class="ac-custom ac-checkmark">
-      <input id="accord1" type="checkbox" name="polltype" value="multiplechoice">
+      <input id="accord1" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
       <label for="accord1">{%trans "multiplechoice"%}</label>
+      {%if checkbox.polltype == 'multiplechoice'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord2" type="checkbox" name="polltype" value="descriptive">
+      <input id="accord2" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
       <label for="accord2">{%trans "descriptive"%}</label>
+      {%if checkbox.polltype == 'descriptive'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord3" type="checkbox" name="polltype" value="notification">
+      <input id="accord3" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
       <label for="accord3">{%trans "notification"%}</label>
+      {%if checkbox.polltype == 'notification'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord4" type="checkbox" name="polltype" value="upload">
+      <input id="accord4" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
       <label for="accord4">{%trans "upload"%}</label>
+      {%if checkbox.polltype == 'upload'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord5" type="checkbox" name="polltype" value="starred">
+      <input id="accord5" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
       <label for="accord5">{%trans "starred"%}</label>
+      {%if checkbox.polltype == 'starred'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord6" type="checkbox" name="polltype" value="numerical">
+      <input id="accord6" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
       <label for="accord6">{%trans "numerical"%}</label>
+      {%if checkbox.polltype == 'numerical'%}{{block('check_svg')}}{%endif%}
      </span>
      <span class="ac-custom ac-checkmark">
-      <input id="accord7" type="checkbox" name="polltype" value="sort">
+      <input id="accord7" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
       <label for="accord7">{%trans "sort"%}</label>
+      {%if checkbox.polltype == 'sort'%}{{block('check_svg')}}{%endif%}
      </span>
     </div>
    </div>
@@ -70,12 +80,14 @@
     <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
     <div class="options-box">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time1" type="checkbox" name='status' value="publish">
+        <input id="time1" type="checkbox" name='status' value="publish" {%if chechbox.status == 'publish'%}checked{%endif%}>
         <label for="time1">{%trans "publish"%}</label>
+        {%if checkbox.status == 'publish'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-        <input id="time2" type="checkbox" name='status' value="expired">
+        <input id="time2" type="checkbox" name='status' value="expired" {%if chechbox.status == 'expired'%}checked{%endif%}>
         <label for="time2">{%trans "expire"%}</label>
+        {%if checkbox.status == 'expired'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
    </div>
@@ -98,6 +110,7 @@
      <div class="select-box">
       <label for="marrital">{%trans "marrital"%}</label>
        <select name="marrital" id="marrital">
+        <option value="">{%trans ""%}</option>
         <option value="single">{%trans "single"%}</option>
         <option value="marriade">{%trans "marriade"%}</option>
       </select>
@@ -105,6 +118,7 @@
      <div class="select-box">
        <label for="employmentstatus">{%trans "employmentstatus"%}</label>
        <select name="employmentstatus" id="employmentstatus">
+        <option value="">{%trans ""%}</option>
         <option value="employee">{%trans "employee"%}</option>
         <option value="unemployee">{%trans "unemployee"%}</option>
         <option value="retired">{%trans "retired"%}</option>
@@ -113,6 +127,7 @@
      <div class="select-box">
       <label for="gender">{%trans "gender"%}</label>
       <select name="gender" id="gender">
+        <option value="">{%trans ""%}</option>
         <option value="male">{%trans "male"%}</option>
         <option value="female">{%trans "female"%}</option>
       </select>
@@ -120,6 +135,7 @@
      <div class="select-box">
       <label for="graduation">{%trans "graduation"%}</label>
       <select name="graduation" id="graduation">
+        <option value="">{%trans ""%}</option>
         <option value="illiterate">{%trans "illiterate"%}</option>
         <option value="undergraduate">{%trans "undergraduate"%}</option>
         <option value="graduate">{%trans "graduate"%}</option>
@@ -212,15 +228,74 @@ $(document).ready(function()
       });
  });
 
-  $(document).on('change', 'input[type=checkbox]', function(){
-    url = window.location.pathname;
-    name = $(this).attr('name');
-    value = $(this).attr('value');
+  $(document).on('change', 'select', function(){
+
     var new_url;
-    var pattern = new RegExp('/' + name + '\=([^\/]*)');
+    var url        = window.location.pathname;
+    var pattern    = new RegExp( name + '\=([^\/]*)');
+    var exist_value_url = null;
+
+    name  = $(this).attr('name');
+    value = $(this).val();
+
     match = url.match(pattern);
-    console.log(url);
+    if(match !== null)
+    {
+      exist_value_url = match[1];
+    }
+
+    if(match !== null)
+    {
+      new_url = url.replace(pattern, name + '=' + value);
+    }
+    else if(value == '')
+    {
+      new_url = url.replace(pattern, '');
+    }
+    else
+    {
+      if(/\/$/.test(url))
+      {
+        new_url = url + name + '=' + value;
+      }
+      else
+      {
+        new_url = url + '/' + name + '=' + value;
+      }
+    }
+    Navigate({ url: new_url });
+  });
+
+  $(document).on('change', 'input[type=checkbox]', function(){
+
+    var new_url;
+    var url        = window.location.pathname;
+    var pattern    = new RegExp( name + '\=([^\/]*)');
+    var is_checked = false;
+    var exist_value_url = null;
+
+    name  = $(this).attr('name');
+    value = $(this).val();
+
+    match = url.match(pattern);
+    if(match !== null)
+    {
+      exist_value_url = match[1];
+    }
     if($(this).prop("checked"))
+    {
+      is_checked = false;
+    }
+    else
+    {
+      is_checked = true;
+    }
+
+    if(is_checked)
+    {
+      new_url = url.replace(pattern, '');
+    }
+    else
     {
       if(match !== null)
       {
@@ -228,23 +303,22 @@ $(document).ready(function()
       }
       else
       {
-        new_url = name + '=' + value;
+        if(/\/$/.test(url))
+        {
+          new_url = url + name + '=' + value;
+        }
+        else
+        {
+          new_url = url + '/' + name + '=' + value;
+        }
+
       }
+
     }
-    else
-    {
-      new_url = url.replace(pattern, '/');
-    }
-    console.log(new_url)
-    if(/\/$/.test(url))
-    {
-      url = url + new_url
-    }
-    else
-    {
-      url = url + '/' + new_url;
-    }
-    Navigate({ url: url });
+    console.log(new_url);
+    console.log(is_checked);
+    console.log(exist_value_url);
+    Navigate({ url: new_url });
   });
 });
 
