@@ -951,8 +951,9 @@ aside .full-line-title{position:relative;height: 20px;cursor:pointer;}
 aside .full-line-title::before{content:'';width:100%;position:absolute;height:1px;background-color:#00667a;left:0;top:0;bottom:0;margin:auto;}
 aside .full-line-title::after{content:attr(data-title);position:absolute;background-color:#ebebeb;right:0;bottom:0;top:0;margin:auto;padding:0px 5px;padding-right:30px;color:#777;font-size: 1.1em;font-weight: 500;}
 .rtl aside .full-line-title::after{left:0;right:auto;padding-left:30px;padding-right:5px;}
-aside .filters-box, aside .prize-box{display:none;}
 aside .group{margin-bottom:1em;}
+aside .closed{display:none;}
+aside .actived{display:block;}
 
 /************************************************************** Pagination */
 .pagination-container{text-align:center;margin-top:20px;}
@@ -1025,3 +1026,5 @@ aside .group{margin-bottom:1em;}
 @keyframes spin {to { transform:rotate(180deg); }}
 @keyframes bg {50% { background:#00667a; }}
 .pie::after {content:'';display:inline-block;position:absolute;width:60%;height:60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}
+
+

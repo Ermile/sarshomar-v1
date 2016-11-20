@@ -38,7 +38,7 @@
    </div>
    <div class="group">
     <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
-    <div class="options-box">
+    <div class="options-box closed">
      <span class="ac-custom ac-checkmark">
       <input id="accord1" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
       <label for="accord1">{%trans "multiplechoice"%}</label>
@@ -106,7 +106,7 @@
    </div> -->
    <div class="group">
     <div class="full-line-title" data-title='{%trans "filters"%}'></div>
-    <div class="options-box filters-box">
+    <div class="options-box filters-box actived">
      <div class="select-box">
       <label for="marrital">{%trans "marrital"%}</label>
        <select name="marrital" id="marrital">
@@ -200,19 +200,22 @@ $(document).ready(function()
  {
   var options_box = $(this).next(".options-box");
 //add actived and close classes to options-box on aside
-  if(options_box.is(":hidden"))
-  {
-    options_box.addClass( "actived" );
-    options_box.removeClass( "closed" );
-  }
+  options_box.slideToggle(function(){
 
-  if(options_box.is(":visible"))
-  {
-    options_box.addClass( "closed" );
-    options_box.removeClass( "actived" );
-  }
+    if(options_box.is(":hidden"))
+    {
+      options_box.addClass( "actived" );
+      options_box.removeClass( "closed" );
+    }
 
-  options_box.slideToggle();
+    if(options_box.is(":visible"))
+    {
+      options_box.addClass( "closed" );
+      options_box.removeClass( "actived" );
+    }
+
+  });
+
 
  });
 
