@@ -178,7 +178,15 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 #poll-box input[type="submit"]{font-size: 1.5em;}
 .eq-container > div{width: 100%;font-size: 1.5em;}
 #poll-info .status.publish{font-size: 1.3em;}
+/**********************************publish***************************/
+.page-progress{width: 90%;}
+.polls-row .date{display: initial;}
 
+/**********************************qeastion***************************/
+#dollar .polls-body{padding: 3em;}
+#dollar #search-result .polls-head{padding: 0 3em;}
+
+/*.add_6k_publish .element{padding: 0 10px;}*/
 }
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 
