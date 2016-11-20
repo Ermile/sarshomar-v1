@@ -60,6 +60,7 @@ class view extends \mvc\view
 	{
 		if($this->module() !== 'home')
 		{
+			$this->data->display['result']     = "content/knowledge/layout-xhr.html";
 		}
 	}
 }

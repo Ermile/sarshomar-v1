@@ -18,27 +18,31 @@
    </div>
    <div class="group">
      <div class="full-line-title" data-title='{%trans "question type"%}'></div>
-     <div class="options-box">
+     <div class="options-box {%if checkbox.pollgender %}actived{%else%}closed{%endif%}">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="poll" type="checkbox" name='pollgender' value="poll" {%if chechbox.pollgender == 'poll' %}chechek{%endif%}>
-        <label for="poll">{%trans "Poll"%}</label>
+
+        <input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
+        <label for="type1">{%trans "Poll"%}</label>
        {%if checkbox.pollgender == 'poll'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="quiz" type="checkbox" name='pollgender' value="quiz" {%if chechbox.pollgender == 'quiz' %}chechek{%endif%}>
-       <label for="quiz">{%trans "quiz"%}</label>
+       <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
+       <label for="type2">{%trans "quiz"%}</label>
        {%if checkbox.pollgender == 'quiz'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-       <input id="survey" type="checkbox" name='pollgender' value="survey" {%if chechbox.pollgender == 'survey' %}chechek{%endif%}>
-       <label for="survey">{%trans "survey"%}</label>
+       <input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
+       <label for="type4">{%trans "survey"%}</label>
+
        {%if checkbox.pollgender == 'survey'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
    </div>
    <div class="group">
     <div class="full-line-title" data-title='{%trans "according to survey"%}'></div>
-    <div class="options-box">
+
+    <div class="options-box closed {%if checkbox.polltype %}actived{%else%}closed{%endif%}">
+
      <span class="ac-custom ac-checkmark">
       <input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
       <label for="multiplechoice">{%trans "multiplechoice"%}</label>
@@ -78,22 +82,24 @@
    </div>
    <div class="group">
     <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
-    <div class="options-box">
+    <div class="options-box {%if checkbox.status %}actived{%else%}closed{%endif%}">
       <span class="ac-custom ac-checkmark reverse">
-        <input id="publish" type="checkbox" name='status' value="publish" {%if chechbox.status == 'publish'%}checked{%endif%}>
-        <label for="publish">{%trans "publish"%}</label>
+
+        <input id="time1" type="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
+        <label for="time1">{%trans "publish"%}</label>
         {%if checkbox.status == 'publish'%}{{block('check_svg')}}{%endif%}
       </span>
       <span class="ac-custom ac-checkmark reverse">
-        <input id="expired" type="checkbox" name='status' value="expired" {%if chechbox.status == 'expired'%}checked{%endif%}>
-        <label for="expired">{%trans "expire"%}</label>
+        <input id="time2" type="checkbox" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
+        <label for="time2">{%trans "expire"%}</label>
+
         {%if checkbox.status == 'expired'%}{{block('check_svg')}}{%endif%}
       </span>
     </div>
    </div>
    <!-- <div class="group">
     <div class="full-line-title" data-title='{%trans "prize"%}'></div>
-    <div class="options-box prize-box">
+    <div class="options-box prize-box ">
       <span class="ac-custom ac-checkmark" >
        <input id="prize1" type="checkbox" name='prize'>
        <label for="prize1">{%trans "پاسخ‌دهی"%}</label>
@@ -106,46 +112,48 @@
    </div> -->
    <div class="group">
     <div class="full-line-title" data-title='{%trans "filters"%}'></div>
-    <div class="options-box filters-box closed">
+
+    <div class="options-box filters-box  {%if checkbox.marrital or checkbox.employmentstatus or checkbox.gender or checkbox.graduation or checkbox.country or checkbox.province or checkbox.religion or checkbox.language or checkbox.age %}actived{%else%}closed{%endif%}">
+
      <div class="select-box">
       <label for="marrital">{%trans "marrital"%}</label>
        <select name="marrital" id="marrital">
         <option value="">{%trans ""%}</option>
-        <option value="single">{%trans "single"%}</option>
-        <option value="marriade">{%trans "marriade"%}</option>
+        <option value="single" {%if checkbox.marrital == 'single'%}selected{%endif%}>{%trans "single"%}</option>
+        <option value="marriade" {%if checkbox.marrital == 'marriade'%}selected{%endif%}>{%trans "marriade"%}</option>
       </select>
      </div>
      <div class="select-box">
-       <label for="employmentstatus">{%trans "employmentstatus"%}</label>
+       <label for="employmentstatus">{%trans "employment"%}</label>
        <select name="employmentstatus" id="employmentstatus">
         <option value="">{%trans ""%}</option>
-        <option value="employee">{%trans "employee"%}</option>
-        <option value="unemployee">{%trans "unemployee"%}</option>
-        <option value="retired">{%trans "retired"%}</option>
+        <option value="employee" {%if checkbox.employmentstatus == 'employee'%}selected{%endif%}>{%trans "employee"%}</option>
+        <option value="unemployee" {%if checkbox.employmentstatus == 'unemployee'%}selected{%endif%}>{%trans "unemployee"%}</option>
+        <option value="retired" {%if checkbox.employmentstatus == 'retired'%}selected{%endif%}>{%trans "retired"%}</option>
        </select>
      </div>
      <div class="select-box">
       <label for="gender">{%trans "gender"%}</label>
       <select name="gender" id="gender">
         <option value="">{%trans ""%}</option>
-        <option value="male">{%trans "male"%}</option>
-        <option value="female">{%trans "female"%}</option>
+        <option value="male" {%if checkbox.gender == 'male'%}selected{%endif%}>{%trans "male"%}</option>
+        <option value="female" {%if checkbox.gender == 'female'%}selected{%endif%}>{%trans "female"%}</option>
       </select>
      </div>
      <div class="select-box">
       <label for="graduation">{%trans "graduation"%}</label>
       <select name="graduation" id="graduation">
         <option value="">{%trans ""%}</option>
-        <option value="illiterate">{%trans "illiterate"%}</option>
-        <option value="undergraduate">{%trans "undergraduate"%}</option>
-        <option value="graduate">{%trans "graduate"%}</option>
-        <option value="under diploma">{%trans "under diploma"%}</option>
-        <option value="diploma">{%trans "diploma"%}</option>
-        <option value="2 year college">{%trans "2 year college"%}</option>
-        <option value="bachelor">{%trans "bachelor"%}</option>
-        <option value="master">{%trans "master"%}</option>
-        <option value="phd">{%trans "phd"%}</option>
-        <option value="other">{%trans "other"%}</option>
+        <option value="illiterate" {%if checkbox.graduation == 'illiterate' %}selected{%endif%} %>{%trans "illiterate"%}</option>
+        <option value="undergraduate" {%if checkbox.graduation == 'undergraduate' %}selected{%endif%} %>{%trans "undergraduate"%}</option>
+        <option value="graduate" {%if checkbox.graduation == 'graduate' %}selected{%endif%} %>{%trans "graduate"%}</option>
+        <option value="under diploma" {%if checkbox.graduation == 'under diploma' %}selected{%endif%} %>{%trans "under diploma"%}</option>
+        <option value="diploma" {%if checkbox.graduation == 'diploma' %}selected{%endif%} %>{%trans "diploma"%}</option>
+        <option value="2 year college" {%if checkbox.graduation == '2 year college' %}selected{%endif%} %>{%trans "2 year college"%}</option>
+        <option value="bachelor" {%if checkbox.graduation == 'bachelor' %}selected{%endif%} %>{%trans "bachelor"%}</option>
+        <option value="master" {%if checkbox.graduation == 'master' %}selected{%endif%} %>{%trans "master"%}</option>
+        <option value="phd" {%if checkbox.graduation == 'phd' %}selected{%endif%} %>{%trans "phd"%}</option>
+        <option value="other" {%if checkbox.graduation == 'other' %}selected{%endif%} %>{%trans "other"%}</option>
       </select>
      </div>
      <div class="select-box">
@@ -184,22 +192,21 @@
      </div>
      <div class="search-result" data-xhr='search-result' id="search-result">
        {%include display.result%}
+
      </div>
     </div><!-- /.span9 -->
   </div>
 </div>
 {%endblock%}
 
-
 {%block foot_js%}
 <script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 <script>
 $(document).ready(function()
 {
- $("aside .full-line-title").click(function()
- {
+ $("aside .full-line-title").click(function(){
   var options_box = $(this).next(".options-box");
-//add actived and close classes to options-box on aside
+  //add actived and close classes to options-box on aside
   options_box.slideToggle(function(){
 
     if(options_box.is(":hidden"))
@@ -213,14 +220,10 @@ $(document).ready(function()
       options_box.addClass( "closed" );
       options_box.removeClass( "actived" );
     }
-
   });
-
-
  });
 
- $("aside input[type=checkbox]").click(function()
- {
+ $("aside input[type=checkbox]").click(function(){
   $(this).parent('.ac-custom').toggleClass('selected');
  });
 
@@ -329,51 +332,15 @@ $(document).ready(function()
         {
           new_url = url + '/' + name + '=' + value;
         }
-
       }
-
     }
     console.log(new_url);
-    console.log(is_checked);
-    console.log(exist_value_url);
+    console.log(is_checked)
     Navigate({ url: new_url });
   });
 });
 
 </script>
-{%endblock%}
-
-{%block search_result%}
-  {%if poll_list%}
-      <div class="polls-head">
-        <span class="fa fa-star star" aria-hidden="true"></span>
-        <span class="type">{%trans "Type"%}</span>
-        <span class="title">{%trans "Title"%}</span>
-        <span class="comments-count">{%trans "Comments"%}</span>
-        <span class="votes-count">{%trans "Votes"%}</span>
-        <span class="date">{%trans "Date"%}</span>
-      </div>
-      <ul class="polls-body">
-  {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
-          <span class="fa fa-star star {%if value.faivorites%}starred{%endif%}" aria-hidden="true"></span>
-          <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
-          <span class="title"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="comments-count">{{value.total}}</span>
-          <span class="votes-count">{{value.total}}</span>
-          <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
-        </li>
-  {%endfor%}
-      </ul>
-      <!-- pagenation -->
-      <div class="pagination-container">
-      {%include display.pagination%}
-      </div>
-      <!-- ./pagenation -->
-  {%else%}
-      <div class="msg error">{%trans "No Result Found"%}</div>
-  {%endif%}
-
 {%endblock%}
 
 {%block check_svg%}

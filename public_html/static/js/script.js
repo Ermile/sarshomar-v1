@@ -304,11 +304,11 @@ route('*', function ()
 
 				url = window.location.pathname;
 
-				test = /\/search\=(.*)/.test(url);
+				test = /\/search\=(.*)\/?/.test(url);
 
 				if(test)
 				{
-					url = url.replace(/\/search\=[^\/]*/, '/search=' + val + '/');
+					url = url.replace(/\/search\=[^\/]*\/?/, '/search=' + val + '/');
 				}
 				else
 				{
