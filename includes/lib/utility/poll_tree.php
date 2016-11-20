@@ -62,6 +62,13 @@ class poll_tree
 		}
 		else
 		{
+			if(!$option_result)
+			{
+				$where = $option_insert;
+				$args = $option_insert;
+				$args['option_status'] = 'enable';
+				return \lib\db\options::update_on_error($args, $where);
+			}
 			return false;
 		}
 	}
@@ -113,6 +120,24 @@ class poll_tree
 			return self::set($_args);
 		}
 		return false;
+	}
+
+	/**
+	 * get the record of poll tree in option table
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function get($_poll_id)
+	{
+		$where =
+		[
+			'post_id'      => $_poll_id,
+			'option_cat'   => 'poll_'. $_poll_id,
+			'option_key'   => 'tree_%'
+		];
+		return \lib\db\options::get($where);
 	}
 }
 ?>

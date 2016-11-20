@@ -76,22 +76,26 @@
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
                             <label for="descriptive">{%trans "Descriptive Answer"%}</label>
+                            {%if poll.meta.descriptive%}{{block('check_svg')}}{%endif%}
                           </li>
 
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
                             <label for="score">{%trans "Score"%}</label>
+                            {%if poll.meta.score%}{{block('check_svg')}}{%endif%}
                           </li>
 
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_multiple_choice" id="multiple_choice" {%if poll.meta.multiple_choice%}checked{%endif%}>
                             <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+                            {%if poll.meta.multiple_choice%}{{block('check_svg')}}{%endif%}
                           </li>
 
                           {%if perm.hidden_result.admin%}
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_hidden_result" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
                             <label for="hidden_result">{%trans "Hidden Result"%}</label>
+                            {%if poll.meta.hidden_result%}{{block('check_svg')}}{%endif%}
                           </li>
                           {%endif%}
                         </ul>
@@ -104,21 +108,25 @@
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_random_sort" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
                             <label for="random_sort">{%trans "Random Sort"%}</label>
+                            {%if poll.meta.random_sort%}{{block('check_svg')}}{%endif%}
                           </li>
 
                           <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%}>
                             <label for="true_answer">{%trans "True Answer"%}</label>
+                            {%if poll.meta.true_answer%}{{block('check_svg')}}{%endif%}
                           </li>
 
-                          <li class="ac-custom ac-checkbox ac-checkmark">
-                            <input type="checkbox" name="meta_tree" id="poll_tree" {%if poll.meta.tree%}checked{%endif%}>
+                         <!--  <li class="ac-custom ac-checkbox ac-checkmark">
+                            <input type="checkbox" name="meta_tree" id="poll_tree" {%if poll_tree_title %}checked{%endif%}>
                             <label for="poll_tree">{%trans "Poll Tree"%}</label>
+                            {%if poll_tree_title%}{{block('check_svg')}}{%endif%}
                           </li>
-
+ -->
                            <li class="ac-custom ac-checkbox ac-checkmark">
                             <input type="checkbox" name="meta_comment" id="comment" {%if poll.comment == 'open'%}checked{%endif%}>
                             <label for="comment">{%trans "Comment"%}</label>
+                            {%if poll.comment == 'open'%}{{block('check_svg')}}{%endif%}
                           </li>
                         </ul>
                       </div>
@@ -130,6 +138,7 @@
                     <span class="ac-custom ac-checkbox ac-checkmark">
                       <input class="" type="checkbox" name="pollComplete" id="pollComplete" {%if poll.meta.profile%}checked{%endif%}>
                       <label for="pollComplete">{%trans "Profile"%}</label>
+                        {%if poll.meta.profile%}{{block('check_svg')}}{%endif%}
                       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
                     </span>
                     <select class="poll-complete-dropdown" name="meta_profile">
@@ -141,16 +150,20 @@
                     </select>
                   </div>
                   {%endif%}
-                  <input type="hidden" name="parent_tree_id" value="">
-                  <input type="hidden" name="parent_tree_opt" value="">
+
+
+                  <input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
+                  <input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
                   <div class="tree">
                     <span class="ac-custom ac-checkbox ac-checkmark">
-                      <input class="" type="checkbox" name="tree" id="tree">
+                      <input class="" type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
                       <label for="tree">{%trans "Tree"%}</label>
                       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                      {%if poll_tree_title%}{{block('check_svg')}}{%endif%}
+
                     </span>
-                    <div class="stuff">
-                      <input class="" type="text" id="search" placeholder='{%trans "Search"%}'>
+                    <div class="stuff" {%if poll_tree_title%}style="display: flex;"{%endif%}>
+                      <input class="" type="text" id="search" placeholder='{%trans "Search"%}' value="{{poll_tree_title}}">
                       <span class="fa fa-search search" aria-hidden="true"></span>
                       <select class="tree-dropdown" id="repository">
                         <option value="personal" >{%trans "Personal" %}</option>
@@ -158,7 +171,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="tree-list">
+                  <div class="tree-list" {%if poll_tree_title%}style="display: block;"{%endif%}>
                     <ul class="questions"></ul>
                   </div>
 
@@ -250,4 +263,8 @@
     }
   });
 </script>
+{%endblock%}
+
+{%block check_svg%}
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M16.667,62.167c3.109,5.55,7.217,10.591,10.926,15.75 c2.614,3.636,5.149,7.519,8.161,10.853c-0.046-0.051,1.959,2.414,2.692,2.343c0.895-0.088,6.958-8.511,6.014-7.3 c5.997-7.695,11.68-15.463,16.931-23.696c6.393-10.025,12.235-20.373,18.104-30.707C82.004,24.988,84.802,20.601,87,16" style="stroke-dasharray: 126.37, 126.37; stroke-dashoffset: 0; transition: stroke-dashoffset 0.2s ease-in-out 0s;"></path></svg>
 {%endblock%}

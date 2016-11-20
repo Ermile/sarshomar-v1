@@ -28,6 +28,12 @@ class view extends \mvc\view
 
 	}
 
+
+	/**
+	 *  load data for edit
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	function view_edit($_args)
 	{
 		$poll_id = $_args->api_callback;
@@ -38,7 +44,19 @@ class view extends \mvc\view
 
 		$this->page_progress_url($poll_id, "add");
 
+		if(isset($poll['parent']) && $poll['parent'] !== null)
+		{
+			$poll_tree = \lib\utility\poll_tree::get($poll['id']);
+			if($poll_tree && is_array($poll_tree))
+			{
+				$opt = array_column($poll_tree, 'value');
+				$this->data->poll_tree_opt = join($opt, ',');
+				$this->data->poll_tree_id = $poll['parent'];
+				$this->data->poll_tree_title = \lib\db\polls::get_poll_title($poll['parent']);
+			}
+		}
 	}
+
 
 	/**
 	 * ready to load add poll
