@@ -19,35 +19,35 @@
       <img src="/static/images/profile.svg" alt='{%trans "Profile Photo"%}' class="profile-image">
       <div class="element {%if profile.firstname%}has-data{%else%}no-data{%endif%}">
        <label for="firstname" class="title">{%trans "First Name"%}</label>
-       <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" >
+       <input type="text" name="firstname" id="firstname" value="{{profile.firstname}}" class="input" disabled>
       </div>
       <div class="element {%if profile.lastname%}has-data{%else%}no-data{%endif%}">
        <label for="lastname" class="title">{%trans "Last Name"%}</label>
-       <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" >
+       <input type="text" name="lastname" id="lastname" value="{{profile.lastname}}" class="input" disabled>
       </div>
       <div class="element {%if profile.displayname%}has-data{%else%}no-data{%endif%}">
        <label for="displayname" class="title">{%trans "Display Name"%}</label>
-       <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" >
+       <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" disabled>
       </div>
       <div class="element {%if profile.email%}has-data{%else%}no-data{%endif%}">
        <label for="email" class="title">{%trans "Email"%}</label>
-       <input type="text" name="email" id="email" value="{{profile.email}}" class="input" >
+       <input type="text" name="email" id="email" value="{{profile.email}}" class="input" disabled>
       </div>
       <div class="element {%if profile.mobile%}has-data{%else%}no-data{%endif%}">
        <label for="mobile" class="title">{%trans "Mobile"%}</label>
-       <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" >
+       <input type="text" name="mobile" id="mobile" value="{{profile.mobile}}" class="input" disabled>
       </div>
       <div class="element {%if profile.birthyear%}has-data{%else%}no-data{%endif%}">
        <label for="birthyear" class="title">{%trans "Birth Year"%}</label>
-       <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" >
+       <input type="text" name="birthyear" id="birthyear" value="{{profile.birthyear}}" class="input" disabled>
       </div>
       <div class="element {%if profile.birthmonth%}has-data{%else%}no-data{%endif%}">
        <label for="birthmonth" class="title">{%trans "Birth Month"%}</label>
-       <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" >
+       <input type="text" name="birthmonth" id="birthmonth" value="{{profile.birthmonth}}" class="input" disabled>
       </div>
       <div class="element {%if profile.birthday%}has-data{%else%}no-data{%endif%}">
        <label for="birthday" class="title">{%trans "Birthday"%}</label>
-       <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" >
+       <input type="text" name="birthday" id="birthday" value="{{profile.birthday}}" class="input" disabled>
       </div>
       <div class="element {%if profile.uilanguage%}has-data{%else%}no-data{%endif%}">
        <label for="uilanguage" class="title">{%trans "UI Language"%}</label>
@@ -63,7 +63,7 @@
      <div class="row">
       <div class="element {%if profile.graduation%}has-data{%else%}no-data{%endif%}">
        <label for="graduation" class="title">{%trans "Graduation"%}</label>
-       <select class="input" name="graduation" id="graduation">
+       <select class="input" disabledname="graduation" id="graduation">
         <option value="">{%trans "Please Select One Item"%}</option>
         <option {%if profile.graduation == 'illiterate' %}selected{%endif%} value="illiterate">{%trans "Illiterate"%}</option>
         <option {%if profile.graduation == 'undergraduate' %}selected{%endif%} value="undergraduate">{%trans "Undergraduate"%}</option>
@@ -72,7 +72,7 @@
       </div>
       <div class="element {%if profile.educationtype%}has-data{%else%}no-data{%endif%}">
        <label for="educationtype" class="title">{%trans "Education Type"%}</label>
-       <select name="educationtype" id="educationtype" class="input">
+       <select name="educationtype" id="educationtype" class="input" disabled>
         <option value="">{%trans "Please Select One Item"%}</option>
         <option {%if profile.educationtype == 'academic' %}selected{%endif%} value="academic">{%trans "Academic"%}</option>
         <option {%if profile.educationtype == 'howzeh' %}selected{%endif%} value="howzeh">{%trans "Howzeh"%}</option>
@@ -84,7 +84,7 @@
       </div>
       <div class="element {%if profile.degree%}has-data{%else%}no-data{%endif%}">
        <label for="degree" class="title">{%trans "Degree"%}</label>
-       <select name="degree" id="degree" class="input">
+       <select name="degree" id="degree" class="input" disabled>
         <option value="">{%trans "Please Select One Item"%}</option>
         <option {%if profile.degree == 'under diploma' %}selected{%endif%} value="under diploma">{%trans "Under Diploma"%}</option>
         <option {%if profile.degree == 'diploma' %}selected{%endif%} value="diploma">{%trans "Diploma"%}</option>
@@ -117,7 +117,7 @@
      <div class="row">
       <div class="element {%if profile.employmentstatus%}has-data{%else%}no-data{%endif%}">
        <label for="employmentstatus" class="title">{%trans "Employment Status"%}</label>
-       <select name="employmentstatus" id="employmentstatus" class="input">
+       <select name="employmentstatus" id="employmentstatus" class="input" disabled>
         <option value="">{%trans "Please Select One Item"%}</option>
         <option {%if profile.employmentstatus == 'employee'%}selected{%endif%} value="employee">{%trans "Employee"%}</option>
         <option {%if profile.employmentstatus == 'unemployee'%}selected{%endif%} value="unemployee">{%trans "Unemployee"%}</option>
@@ -179,7 +179,7 @@
        </div>
        <div class="element {%if profile.housestatus%}has-data{%else%}no-data{%endif%}">
         <label for="housestatus" class="title">{%trans "House Status"%}</label>
-        <select name="housestatus" id="housestatus" class="input">
+        <select name="housestatus" id="housestatus" class="input" disabled>
          <option value="">{%trans "Please Select One Item"%}</option>
          <option {%if profile.housestatus == 'owner'%}selected{%endif%} value="owner">{%trans "Owner"%}</option>
          <option {%if profile.housestatus == 'tenant'%}selected{%endif%} value="tenant">{%trans "Tenant"%}</option>
@@ -200,7 +200,7 @@
        <div class="floating-title" data-title='{%trans "Personal"%}'></div>
        <div class="element {%if profile.gender%}has-data{%else%}no-data{%endif%}">
         <label for="gender" class="title">{%trans "Gender"%}</label>
-        <select name="gender" id="gender" class="input">
+        <select name="gender" id="gender" class="input" disabled>
          <option value="">{%trans "Please Select One Item"%}</option>
          <option {%if profile.gender == 'male'%}selected{%endif%} value="male">{%trans "Male"%}</option>
          <option {%if profile.gender == 'female'%}selected{%endif%} value="female">{%trans "Female"%}</option>
@@ -208,7 +208,7 @@
        </div>
        <div class="element {%if profile.marrital%}has-data{%else%}no-data{%endif%}">
         <label for="marrital" class="title">{%trans "Marrital"%}</label>
-        <select name="marrital" id="marrital" class="input">
+        <select name="marrital" id="marrital" class="input" disabled>
          <option value="">{%trans "Please Select One Item"%}</option>
          <option {%if profile.marrital == 'single'%}selected{%endif%} value="single">{%trans "Single"%}</option>
          <option {%if profile.marrital == 'married'%}selected{%endif%} value="married">{%trans "Married"%}</option>
@@ -216,11 +216,11 @@
        </div>
        <div class="element {%if profile.girlchild%}has-data{%else%}no-data{%endif%}">
         <label for="girlchild" class="title">{%trans "Girl Child"%}</label>
-        <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" >
+        <input type="text" name="girlchild" id="girlchild" value="{{profile.girlchild}}" class="input" disabled>
        </div>
        <div class="element {%if profile.boychild%}has-data{%else%}no-data{%endif%}">
         <label for="boychild" class="title">{%trans "Boy Child"%}</label>
-        <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" >
+        <input type="text" name="boychild" id="boychild" value="{{profile.boychild}}" class="input" disabled>
        </div>
       </div>
      </div>
@@ -229,7 +229,7 @@
      <div class="row">
       <div class="element {%if profile.internetusage%}has-data{%else%}no-data{%endif%}">
        <label for="internetusage" class="title">{%trans "Internet Usage"%}</label>
-       <select name="internetusage" id="internetusage" class="input">
+       <select name="internetusage" id="internetusage" class="input" disabled>
         <option value="">{%trans "Please Select One Item"%}</option>
         <option {%if profile.internetusage == 'low'%}selected{%endif%} value="low">{%trans "Low"%}</option>
         <option {%if profile.internetusage == 'mid'%}selected{%endif%} value="mid">{%trans "Mid"%}</option>

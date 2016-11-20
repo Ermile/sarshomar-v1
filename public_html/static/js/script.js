@@ -258,28 +258,31 @@ route(/\@\/add/, function()
 });
 
 
-// Me | Profile
+// Profile
 route(/\@\/profile/, function ()
 {
-
-
-$.each($('.element.has-data'), function (key, value){
-  $(this).dblclick(function ()
-  {
-      $(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
+  // double click for elements that has data
+  $(document).on('dblclick', '.element.has-data', function(){
+  	$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
   });
-});
-$.each($('.element.no-data'), function (key, value){
-  $(this).click(function ()
-  {
-      $(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
-  });
-});
+
+	// click for elements that has no data
+	$(document).on('click', '.element.no-data', function(){
+  	$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
+  });  
 
   $(document).on('blur', '.element .input', function (event)
   {
-    // $('.addon.btn.save').remove();
-    // $('.addon.btn.cancel').remove();
+  	// if has data
+  	if ($(this).val())
+  	{
+  		$(this).parent('.element').addClass('has-data').children('.btn').remove();
+  	}
+  	// if has no data
+  	else
+  	{
+  		$(this).parent('.element').addClass('no-data').children('.btn').remove();
+  	}
   });
 
   $(document).on('click', '.btn.save button', function (event)
