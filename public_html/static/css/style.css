@@ -987,7 +987,7 @@ aside .actived{display:block;}
 .polls-head > span{color:#00667A;font-weight:bold;vertical-align:middle;margin:0 auto;}
 .polls-head > span, .polls-row > span{min-width:2em;padding:13px 5px;font-size:1.15em;}
 
-.polls-head > .star {max-width:2em;font-size:1em; display:flex;}
+.polls-head > .star {max-width:2em;font-size:1.35em; display:flex;align-items:center;}
 .polls-head > .star::before {align-items:center;justify-content:center;display:flex;}
 .polls-head > .type {min-width:3em;}
 .polls-head > .title {-webkit-flex:1;flex:1;min-width:2em;}
@@ -996,8 +996,7 @@ aside .actived{display:block;}
 .polls-head > .date {min-width:6.4em;max-width:6.4em;text-align:center;}
 
 .polls-row{display:flex;}
-
-.polls-row > .star{max-width:2em;font-size:1.15em;color:transparent;display:flex;cursor:pointer;}
+.polls-row > .star{max-width:2em;font-size:1.35em;color:transparent;display:flex;cursor:pointer;align-items:center;font-weight:bold;}
 .polls-row > .star.starred::before{color:#e7a429;}
 .polls-row > .star::before {align-items: center;justify-content:center;display:flex;}
 .polls-row:hover > .star::before{color:#e7e7e7;}
