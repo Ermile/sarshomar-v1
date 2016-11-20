@@ -198,7 +198,22 @@ $(document).ready(function()
 {
  $("aside .full-line-title").click(function()
  {
-  $(this).next(".options-box").slideToggle();
+  var options_box = $(this).next(".options-box");
+//add actived and close classes to options-box on aside
+  if(options_box.is(":hidden"))
+  {
+    options_box.addClass( "actived" );
+    options_box.removeClass( "closed" );
+  }
+
+  if(options_box.is(":visible"))
+  {
+    options_box.addClass( "closed" );
+    options_box.removeClass( "actived" );
+  }
+
+  options_box.slideToggle();
+
  });
 
  $("aside input[type=checkbox]").click(function()
