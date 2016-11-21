@@ -4,6 +4,7 @@ use \content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\step_sarshomar;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 use content\saloos_tg\sarshomarbot\commands\chart;
+use content\saloos_tg\sarshomarbot\commands\poll_result;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
@@ -43,22 +44,30 @@ class ask
 
 	public static function poll($_query, $_data_url)
 	{
-		handle::send_log("f");
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
+		if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
+		{
+			$return_text = "✅ you answerd to this poll";
+		}
+		else
+		{
+			\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
+			$return_text = "✅ save your poll";
+		}
 		if(!array_search('message', $_query))
 		{
-			$poll_result = poll_result::make($value);
+			$poll = \lib\db\polls::get_poll($poll_id);
+			$poll_result = poll_result::make($poll);
 			$poll_with_chart = callback_query\ask::get_poll_result($poll_short_link);
 			$message = $poll_with_chart['text'];
 			$inline_keyboard = $poll_result['inline_keyboard'];
 
 			if(!empty($inline_keyboard)) {
-				$reply_markup = [['inline_keyboard'] => $inline_keyboard];
+				$reply_markup = ['inline_keyboard' => $inline_keyboard];
 			}
-			callback_query::edit_message(['text' => '$message', 'reply_markup' => $reply_markup]);
+			callback_query::edit_message(['text' => $message, 'reply_markup' => $reply_markup]);
 		}
 		else
 		{
@@ -74,7 +83,7 @@ class ask
 			);
 			$on_edit->reply_markup 		= $edit_message['reply_markup'];
 		}
-		return ["text" => "✅ save your poll"];
+		return ["text" => $return_text];
 	}
 
 	public static function update($_query, $_data_url)
