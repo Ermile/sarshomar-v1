@@ -142,7 +142,10 @@ class ask
 		$text .= "#sarshomar";
 
 		$return = [];
-		$inline_keyboard = [[utility::inline(T_("Update result"), "ask/update/" .$_poll_short_link)]];
+		$inline_keyboard = [[
+		utility::inline(T_("Update result"), "ask/update/" .$_poll_short_link),
+		["text" => T_("Sahre"), "switch_inline_query" => "sp_10"]
+		]];
 		if(\lib\db\polls::is_my_poll($_poll_id, bot::$user_id)){
 			array_push($inline_keyboard, [utility::inline(T_("Close poll "), "ask/close/" .$_poll_short_link)]);
 		}

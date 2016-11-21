@@ -20,6 +20,10 @@ class inline_query
 		$result['switch_pm_parameter'] = "create";
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
+		if($search == '')
+		{
+			$search = "_";
+		}
 		$query_result = \lib\db\polls::search($search);
 
 		$result['results'] = [];

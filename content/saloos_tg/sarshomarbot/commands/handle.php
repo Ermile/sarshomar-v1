@@ -89,6 +89,7 @@ class handle
 				case 'main':
 				case 'mainmenu':
 				case 'منو':
+				case T_("Back"):
 				$response = menu::main();
 				break;
 
@@ -98,6 +99,8 @@ class handle
 				$response = step_sarshomar::start(empty($sp) ? null : $sp[2]);
 				break;
 
+				// case preg_match("/^\/view_(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
+				// break;
 
 				case T_("Language"):
 				case '/language':

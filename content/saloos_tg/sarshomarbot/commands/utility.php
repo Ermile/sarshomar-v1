@@ -75,13 +75,13 @@ class utility
 	{
 		$poll_emoji = ['0⃣', '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];
 		$count = array_sum($_result);
-		$max = (max($_result) * 100) / $count;
+		$max = max($_result) == 0 ? 0 : (max($_result) * 100) / $count;
 		$rows = 5;
 		$result = array();
 		foreach ($_result as $key => $value) {
-			$value = ($value * 100) / $count;
+			$value = $value == 0 ? 0 : ($value * 100) / $count;
 			$result[$key]['percent'] = $value;
-			$decimal = $value / 20;
+			$decimal = $value == 0 ? 0 : $value / 20;
 			$row_text = array_fill(0, $decimal, '⬛️');
 			$under_decimal = $decimal - floor($decimal);
 			if($under_decimal > 0.5)
