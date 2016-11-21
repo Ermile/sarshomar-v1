@@ -30,6 +30,10 @@ class step_starting
 	 */
 	public static function step1($_text = null)
 	{
+		if(bot::$cmd['optional'] == 'create')
+		{
+			return step_create::start();
+		}
 		step::start('starting');
 		$return = self::split_cmd(bot::$cmd['optional']);
 		if(is_array($return))

@@ -12,7 +12,6 @@ class handle
 	public static function exec($_cmd)
 	{
 		if(!preg_match("/^(99|5)$/", bot::$user_id)){
-			handle::send_log([bot::$user_id, bot::response('from')]);
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
 			exit();
 		}
@@ -27,14 +26,15 @@ class handle
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
 				");
+			\lib\db::query("DELETE from polldetails where user_id = $id");
 			$id = 22;
 			\lib\db::query("DELETE FROM options
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
 				");
-			// \lib\db::query("DELETE from polldetails where 1");
+			\lib\db::query("DELETE from polldetails where user_id = $id");
 			session_destroy();
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy']);
+			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy: ']);
 			exit();
 		}
 		elseif($_cmd['command'] == 'clear')

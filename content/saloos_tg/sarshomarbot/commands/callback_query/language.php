@@ -21,7 +21,6 @@ class language
 		if(empty($get) || isset($_data_url[2]))
 		{
 			self::set($_data_url[1], ["ref" => "callback_query"]);
-			handle::send_log(11);
 			$lang_name = $_data_url[1];
 			$lang = preg_replace("[_]", "\\\\_", $lang_name);
 		}
