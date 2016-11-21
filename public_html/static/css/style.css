@@ -28,7 +28,7 @@ body{background-color:#00667a;}
 /* Special Heading */
 .special-heading{position:relative;padding-left:90px;color:#00667A;font-size:22px;line-height:26px;margin-bottom:30px;}
 .special-heading a{color:inherit;font-weight:normal;}
-.special-heading::before{content:"";position:absolute;top:0;bottom:0;margin:auto;left:-15px;width:100px;height:2px;background-color:#00667A;}
+.special-heading::before{content:"";position:absolute;top:-2px;bottom:0;margin:auto;left:-15px;width:100px;height:2px;background-color:#00667A;}
 .special-heading::after{content:"";position:absolute;width:70px;height:137px;background-image:url(../images/border-object.png);background-repeat:no-repeat;top:5px;left:-85px;}
 .ltr .special-heading::after{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH";}
 
