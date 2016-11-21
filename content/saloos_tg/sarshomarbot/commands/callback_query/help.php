@@ -17,9 +17,7 @@ class help
 		{
 			callback_query::edit_message($method);
 		}
-		return [
-			"text" => join($_data_url),
-		];
+		return [];
 	}
 
 	public static function find_method($_query, $_data_url){

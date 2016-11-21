@@ -63,12 +63,10 @@ class controller extends \lib\mvc\controller
 			if(empty($language) || !$language)
 			{
 				\lib\define::set_language(self::$language);
-				// $this->set_language(\lib\router::get_storage('language'));
 			}
 			else
 			{
 				\lib\define::set_language($language);
-				// $this->set_language($language);
 			}
 			// exit();
 			bot::$fill        =
