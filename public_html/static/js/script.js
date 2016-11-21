@@ -236,9 +236,9 @@ route(/\@\/add/, function()
 			var option = options[i];
 			var $elem  = $('<div>', {class: 'element small'});
 			$('<label>', {class: 'title', html: option, for: option}).appendTo($elem);
-			$('<input>', {class: 'input', type: 'text', name: option, id: option}).appendTo($elem);
-			$('<input>', {type: 'hidden', name: option, 'data-true': 'true'}).appendTo($elem);
-			$('<input>', {type: 'hidden', name: option, 'data-type': 'type', value: 'text'}).appendTo($elem);
+			$('<input>', {class: 'input', type: 'text', name: 'answers_' + (i + 1), id: option}).appendTo($elem);
+			$('<input>', {type: 'hidden', name: 'answer_true_' + (i + 1), 'data-true': 'true'}).appendTo($elem);
+			$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
 			$('.input-group').append($elem);
 		}
 	});
@@ -323,13 +323,13 @@ route(/\@\/profile/, function() {
                 	if ( val && isNormal )
                 	{
                 		element.addClass('has-data');
-                		element.children('.input').attr('disabled', '');
+                		element.children('.input').attr('disabled', 'disabled');
                 		element.children('.btn').remove();
                 	}
                 	else if ( (!val) && isNormal)
                 	{
                 		element.addClass('no-data');
-                		element.children('.input').attr('disabled', '');
+                		element.children('.input').attr('disabled', 'disabled');
                 		element.children('.btn').remove();
                 	}
                 },
@@ -341,20 +341,17 @@ route(/\@\/profile/, function() {
     $(this).on('click', '.btn.cancel button', function(event) {
 		var element = $(this).parents('.element');
 		var val     = $(this).parents('.element').children('.input').val();
-		if ( isNormal )
+		if ( initial.val() )
 		{
-			if ( initial.val() )
-			{
-				element.addClass('has-data');
-			}
-			else
-			{
-				element.addClass('no-data');
-			}
-			element.children('.input').attr('disabled', '');
-			element.children('.btn').remove();
-			element.children('.input').val( initial.val() );
+			element.addClass('has-data');
 		}
+		else
+		{
+			element.addClass('no-data');
+		}
+		element.children('.input').attr('disabled', '');
+		element.children('.btn').remove();
+		element.children('.input').val( initial.val() );
     });
 });
 
