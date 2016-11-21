@@ -43,23 +43,37 @@ class ask
 
 	public static function poll($_query, $_data_url)
 	{
+		handle::send_log("f");
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
 		\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
+		if(!array_search('message', $_query))
+		{
+			$poll_result = poll_result::make($value);
+			$poll_with_chart = callback_query\ask::get_poll_result($poll_short_link);
+			$message = $poll_with_chart['text'];
+			$inline_keyboard = $poll_result['inline_keyboard'];
 
-		$on_edit = session::get_back('expire', 'inline_cache', 'ask', 'on_expire');
+			if(!empty($inline_keyboard)) {
+				$reply_markup = [['inline_keyboard'] => $inline_keyboard];
+			}
+			callback_query::edit_message(['text' => '$message', 'reply_markup' => $reply_markup]);
+		}
+		else
+		{
+			$on_edit = session::get_back('expire', 'inline_cache', 'ask', 'on_expire');
 
-		$edit_message = self::get_poll_result($poll_short_link, $poll_id, $answer_id);
+			$edit_message = self::get_poll_result($poll_short_link, $poll_id, $answer_id);
 
-		$on_edit->text 				= $edit_message['text'];
-		$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=>$edit_message['reply_markup']]);
-		array_unshift(
-			$edit_message['reply_markup']['inline_keyboard'][0],
-			utility::inline(T_("Next poll"), "ask/make")
-		);
-		$on_edit->reply_markup 		= $edit_message['reply_markup'];
-
+			$on_edit->text 				= $edit_message['text'];
+			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=>$edit_message['reply_markup']]);
+			array_unshift(
+				$edit_message['reply_markup']['inline_keyboard'][0],
+				utility::inline(T_("Next poll"), "ask/make")
+			);
+			$on_edit->reply_markup 		= $edit_message['reply_markup'];
+		}
 		return ["text" => "✅ save your poll"];
 	}
 

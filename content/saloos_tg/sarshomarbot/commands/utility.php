@@ -17,12 +17,12 @@ class utility
 			if($_response->ok)
 			{
 				$on_expire = [
-					"method" 					=> "editMessageText",
-					"text" 						=> $_data['text'],
-					"chat_id" 					=> $_response->result->chat->id,
-					"message_id" 				=> $_response->result->message_id,
-					'parse_mode' 				=> 'Markdown',
-					'disable_web_page_preview' 	=> true
+				"method" 					=> "editMessageText",
+				"text" 						=> $_data['text'],
+				"chat_id" 					=> $_response->result->chat->id,
+				"message_id" 				=> $_response->result->message_id,
+				'parse_mode' 				=> 'Markdown',
+				'disable_web_page_preview' 	=> true
 				];
 				$_response->save_unique_id = time() . rand(123456, 999999);
 				$_response->on_expire = array_merge($on_expire, $_options['on_expire']);
@@ -109,5 +109,38 @@ class utility
 			$text .= "\n";
 		}
 		return $text;
+	}
+
+	public static function replay_markup_id(){
+		return function(&$_name, &$_args){
+			if(isset($_args['reply_markup']) && isset($_args['reply_markup']['inline_keyboard']))
+			{
+				self::markup_set_id($_args['reply_markup']['inline_keyboard']);
+			}
+			elseif(isset($_args['results']))
+			{
+				foreach ($_args['results'] as $key => $value) {
+					if(isset($_args['results'][$key]['reply_markup']) && isset($_args['results'][$key]['reply_markup']['inline_keyboard']))
+					{
+						self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard']);
+					}
+				}
+			}
+		};
+	}
+
+	public static function markup_set_id(&$reply_markup)
+	{
+		$id = microtime(true);
+		for ($i=0; $i < count($reply_markup); $i++)
+		{
+			for ($j=0; $j < count($reply_markup[$i]); $j++)
+			{
+				if(isset($reply_markup[$i][$j]['callback_data']))
+				{
+					$reply_markup[$i][$j]['callback_data'] = $id . ':' . $reply_markup[$i][$j]['callback_data'];
+				}
+			}
+		}
 	}
 }

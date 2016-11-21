@@ -1,6 +1,8 @@
 <?php
 namespace content\saloos_tg\sarshomarbot\commands;
 // use telegram class as bot
+use \lib\db\tg_session as session;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 use \lib\telegram\tg as bot;
 
 class inline_query
@@ -15,7 +17,7 @@ class inline_query
 		$result['is_personal'] = true;
 		$result['cache_time'] = 1;
 		$result['switch_pm_text'] = "New Poll";
-		$result['switch_pm_parameter'] = "/define";
+		$result['switch_pm_parameter'] = "create";
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$query_result = \lib\db\polls::search($search);
@@ -41,9 +43,9 @@ class inline_query
 				$row_result['description'] = $value['contnet'];
 			}
 			$row_result['hide_url'] = false;
-			$inline_keyboard = [];
 			$poll_result = poll_result::make($value);
-			$message = $poll_result['message'];
+			$poll_with_chart = callback_query\ask::get_poll_result($short_link_id);
+			$message = $poll_with_chart['text'];
 			$inline_keyboard = $poll_result['inline_keyboard'];
 
 			if(!empty($inline_keyboard)) {
@@ -51,12 +53,13 @@ class inline_query
 			}
 
 			$row_result['input_message_content'] = [
-			'message_text' => poll_result::get_message($message),
-			'parse_mode' => 'Markdown',
-			'disable_web_page_preview' => true
+				'message_text' 				=> $message,
+				'parse_mode' 				=> 'Markdown',
+				'disable_web_page_preview' 	=> true
 			];
 			$result['results'][] = $row_result;
 		}
+		session::remove_back('expire', 'inline_cache');
 		return $result;
 	}
 }

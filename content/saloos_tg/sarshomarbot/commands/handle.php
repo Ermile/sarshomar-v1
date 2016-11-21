@@ -11,7 +11,7 @@ class handle
 
 	public static function exec($_cmd)
 	{
-		if(!preg_match("/^(99|5)$/", bot::$user_id)){
+		if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
 			exit();
 		}
@@ -104,6 +104,9 @@ class handle
 				$response = callback_query\language::make_result(null, true);
 				break;
 
+				case '/start':
+				$response = step_starting::start($_cmd['text']);
+				break;
 
 				case '/dashboard':
 				case T_('Dashboard'):
@@ -186,6 +189,10 @@ class handle
 			{
 				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
 			}
+		}
+		if(!is_array($response))
+		{
+			$response = [];
 		}
 		return $response;
 	}
