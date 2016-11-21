@@ -214,7 +214,7 @@ route(/\@\/add/, function()
 	        $('.poll-complete .poll-complete-dropdown').hide();
 	        if ($('.input-group').hasClass('editing'))
 	        {
-	        	$('.input-group').removeClass('editing').empty();	
+	        	$('.input-group').removeClass('editing').empty();
 		        for (var i = 1; i <= 2; i++)
 		        {
 			        var $elem = $('<div>', {class: 'element small'});
@@ -259,127 +259,103 @@ route(/\@\/add/, function()
 
 
 // Profile
-route(/\@\/profile/, function ()
-{
-	var initial = $('input[name="initial"]');
-  
-  // double click for elements that has data
-  $(document).on('dblclick', '.element.has-data', function(){
-  	initial.val( $(this).children('.input').val() );
-  	$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
-  });
+route(/\@\/profile/, function() {
+	var initial  = $('input[name="initial"]');
+	var isNormal = false;
 
-	// click for elements that has no data
-	$(document).on('click', '.element.no-data', function(){
-		initial.val("");
-  	$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
-  });  
+    // dblclick
+    $(this).on('dblclick', '.element.has-data', function()
+	{
+		// if double clicked input has not class similar-tag
+		if (!$(this).children('.input').hasClass('similar-tag')) {
+			isNormal = true;
+			initial.val( $(this).children('.input').val() );
+		}
+		$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
+	});
 
-  $(document).on('blur', '.element .input', function (event)
-  {
-  	var target = event.relatedTarget;
-  	
-  	// user clicks on save
-  	if (target && target.className == 'save') {
-  		
-  		// current element has value
-  		if ($(this).val()) {
-  			var val  = $(this).val();
-				var name = $(this).attr("name");
-				$(this).ajaxify({
-					ajax: {
-						data: {
-							'name': name,
-        			'value': val
-						},
-						abort: true,
-						success: function(e, data, x) {},
-						url: '@/me',
-						method: 'post'
-					}
-				});
-				$(this).attr('disabled', '');
-				$(this).parent('.element').addClass('has-data');
-				$(this).parent('.element').children('.btn').remove();
-  		}
+    // click
+    $(this).on('click', '.element.no-data', function()
+	{
+		// if clicked input has not class similar-tag
+		if (!$(this).children('.input').hasClass('similar-tag')) {
+			isNormal = true;
+			initial.val("");
+		}
+		$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
+	});
 
-  		// current element has no value
-  		else {
-  			if ($(this).val() != initial.val()) {
-  				// if this element had value do this
-  				var val  = $(this).val();
-  				var name = $(this).attr("name");
-  				$(this).ajaxify({
-  					ajax: {
-  						data: {
-  							'name': name,
-          			'value': val
-  						},
-  						abort: true,
-  						success: function(e, data, x) {},
-  						url: '@/me',
-  						method: 'post'
-  					}
-  				});
-  			}
-				$(this).attr('disabled', '');
-				$(this).parent('.element').addClass('no-data');
-				$(this).parent('.element').children('.btn').remove();
-  		}
-  	}
-  	
-  	// user clicks on cancel
-  	else if (target && target.className == 'cancel') {
-			$(this).val(initial.val());
-			$(this).attr('disabled', '');
-			$(this).parent('.element').children('.btn').remove();
-  		
-  		if ($(this).val()) {
-				$(this).parent('.element').addClass('has-data');
-  		}
-			else {
-				$(this).parent('.element').addClass('no-data');
+    $(this).on('focus', '.element .input', function(event) {
+    	$(this).unbind('blur.sarshomarblur');
+    	$(this).bind('blur.sarshomarblur', function(){
+    		$(this).unbind('blur.sarshomarblur');
+    		var element = $(this).parents('.element');
+			var val     = $(this).parents('.element').children('.input').val();
+			if ( isNormal )
+			{
+				if ( initial.val() )
+				{
+					element.addClass('has-data');
+				}
+				else
+				{
+					element.addClass('no-data');
+				}
+				element.children('.input').attr('disabled', '');
+				element.children('.btn').remove();
+				element.children('.input').val( initial.val() );
 			}
-  	}
-  	
-  	// user clicks anywhere else
-  	else {
-  		$(this).val(initial.val());
-			$(this).attr('disabled', '');
-			$(this).parent('.element').children('.btn').remove();
-  		
-  		if ($(this).val()) {
-				$(this).parent('.element').addClass('has-data');
-  		}
-			else {
-				$(this).parent('.element').addClass('no-data');
+    	});
+    });
+
+    $(this).on('click', '.btn.save button', function(event) {
+		var element = $(this).parents('.element');
+		var val     = $(this).parents('.element').children('.input').val();
+		var name    = $(this).parents('.element').children('.input').attr("name");
+        $(this).ajaxify({
+            ajax: {
+                data: {
+                    'name': name,
+                    'value': val
+                },
+                abort: true,
+                success: function(e, data, x) {
+                	if ( val && isNormal )
+                	{
+                		element.addClass('has-data');
+                		element.children('.input').attr('disabled', '');
+                		element.children('.btn').remove();
+                	}
+                	else if ( (!val) && isNormal)
+                	{
+                		element.addClass('no-data');
+                		element.children('.input').attr('disabled', '');
+                		element.children('.btn').remove();
+                	}
+                },
+                method: 'post'
+            }
+        });
+    });
+
+    $(this).on('click', '.btn.cancel button', function(event) {
+		var element = $(this).parents('.element');
+		var val     = $(this).parents('.element').children('.input').val();
+		if ( isNormal )
+		{
+			if ( initial.val() )
+			{
+				element.addClass('has-data');
 			}
-  	}
-  });
-
-  // $(document).on('click', '.btn.save button', function (event)
-  // {
-  //   var val = $(this).parents('.element').children('.input').val();
-  //   var name = $(this).parents('.element').children('.input').attr("name");
-  //   $(this).ajaxify(
-  //   {
-  //     ajax:
-  //     {
-  //       data:
-  //       {
-  //         'name': name,
-  //         'value': val
-  //       },
-  //       abort: true,
-  //       success: function(e, data, x)
-  //       {
-
-  //       },
-  //       url: '@/me',
-  //       method: 'post'
-  //     }
-  //   });
-  // });
+			else
+			{
+				element.addClass('no-data');
+			}
+			element.children('.input').attr('disabled', '');
+			element.children('.btn').remove();
+			element.children('.input').val( initial.val() );
+		}
+    });
 });
 
 
