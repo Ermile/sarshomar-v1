@@ -11,6 +11,15 @@ class handle
 
 	public static function exec($_cmd)
 	{
+		if($_cmd['command'] == '/maker')
+		{
+			$maker = new make_view(bot::$user_id);
+			$maker->message->add_title();
+			$maker->message->add_poll_chart();
+			self::send_log($maker->message->message);
+			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'get']);
+			return [];
+		}
 		if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
 			exit();
@@ -37,7 +46,7 @@ class handle
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy: ']);
 			exit();
 		}
-		elseif($_cmd['command'] == 'clear')
+		elseif($_cmd['command'] == 'clear' || $_cmd['command'] == '/clear')
 		{
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
