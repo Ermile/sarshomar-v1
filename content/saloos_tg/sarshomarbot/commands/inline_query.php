@@ -24,7 +24,16 @@ class inline_query
 		{
 			$search = "_";
 		}
-		$query_result = \lib\db\polls::search($search);
+		if(preg_match("/^\s*sp_(.*)$/", $search, $link_id))
+		{
+			$id = \lib\utility\shortURL::decode($link_id[1]);
+			$query_result = \lib\db\polls::get_poll($id);
+			$query_result = $query_result ? [$query_result] : [];
+		}
+		else
+		{
+			$query_result = \lib\db\polls::search($search);
+		}
 
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];

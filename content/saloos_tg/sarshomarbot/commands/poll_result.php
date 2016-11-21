@@ -67,9 +67,15 @@ class poll_result
 			$row_answer = next($keyboard_map[$count_answer]);
 			self::add_message($message, $step_shape[$answer_key+1] .' '. html_entity_decode($answer_value['txt']));
 		}
-		$inline_keyboard[][0] = [
-		'text' => "❌ مایل به پاسخگویی نیستم",
-		'callback_data' => 'ask/poll/' . $short_link_id. '/0'
+		$inline_keyboard[] = [
+			[
+			'text' => "پرش",
+			'callback_data' => 'ask/poll/' . $short_link_id. '/0'
+			],
+			[
+			"text" => T_("Share"),
+			"switch_inline_query" => 'sp_'.$short_link_id
+			]
 		];
 		self::add_message($message, '['.T_('Answer link').']' . "(https://telegram.me/SarshomarBot?start=sp_$short_link_id)");
 		self::add_message($message, "#sarshomar");
