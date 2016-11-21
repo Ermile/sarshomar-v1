@@ -285,28 +285,28 @@ route(/\@\/profile/, function() {
 		$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
 	});
 
-    $(this).on('focus', '.element .input', function(event) {
-    	$(this).unbind('blur.sarshomarblur');
-    	$(this).bind('blur.sarshomarblur', function(){
-    		$(this).unbind('blur.sarshomarblur');
-    		var element = $(this).parents('.element');
-			var val     = $(this).parents('.element').children('.input').val();
-			if ( isNormal )
-			{
-				if ( initial.val() )
-				{
-					element.addClass('has-data');
-				}
-				else
-				{
-					element.addClass('no-data');
-				}
-				element.children('.input').attr('disabled', '');
-				element.children('.btn').remove();
-				element.children('.input').val( initial.val() );
-			}
-    	});
-    });
+   //  $(this).on('focus', '.element .input', function(event) {
+   //  	$(this).unbind('blur.sarshomarblur');
+   //  	$(this).bind('blur.sarshomarblur', function(e){
+   //  		$(this).unbind('blur.sarshomarblur');
+   //  		var element = $(this).parents('.element');
+			// var val     = $(this).parents('.element').children('.input').val();
+			// if ( isNormal )
+			// {
+			// 	if ( initial.val() )
+			// 	{
+			// 		element.addClass('has-data');
+			// 	}
+			// 	else
+			// 	{
+			// 		element.addClass('no-data');
+			// 	}
+			// 	element.children('.input').attr('disabled', '');
+			// 	element.children('.btn').remove();
+			// 	element.children('.input').val( initial.val() );
+			// }
+   //  	});
+   //  });
 
     $(this).on('click', '.btn.save button', function(event) {
 		var element = $(this).parents('.element');
