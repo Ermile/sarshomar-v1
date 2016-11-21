@@ -13,6 +13,8 @@
     </ul>
    </aside>
 
+   <input type="hidden" name="initial" value="zzz">
+   
    <ul class="tab">
     <li id="tab-personal">
      <div class="row">
@@ -372,7 +374,7 @@
 
 {%block foot_js%}
 <script type="text/javascript">
-   btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
+   btns = $('<span class="addon btn save"><button class="save">{%trans "Save"%}</button></span><span class="addon btn cancel"><button class="cancel">{%trans "Cancel"%}</button></span>');
    $(document).on('click', '.remove-tags', function(){
       id = $(this).attr('data-id');
       $(this).ajaxify(

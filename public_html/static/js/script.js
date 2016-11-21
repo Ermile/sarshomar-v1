@@ -261,54 +261,125 @@ route(/\@\/add/, function()
 // Profile
 route(/\@\/profile/, function ()
 {
+	var initial = $('input[name="initial"]');
+  
   // double click for elements that has data
   $(document).on('dblclick', '.element.has-data', function(){
+  	initial.val( $(this).children('.input').val() );
   	$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
   });
 
 	// click for elements that has no data
 	$(document).on('click', '.element.no-data', function(){
+		initial.val("");
   	$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
   });  
 
   $(document).on('blur', '.element .input', function (event)
   {
-  	// if has data
-  	if ($(this).val())
-  	{
-  		$(this).parent('.element').addClass('has-data').children('.btn').remove();
+  	var target = event.relatedTarget;
+  	
+  	// user clicks on save
+  	if (target && target.className == 'save') {
+  		
+  		// current element has value
+  		if ($(this).val()) {
+  			var val  = $(this).val();
+				var name = $(this).attr("name");
+				$(this).ajaxify({
+					ajax: {
+						data: {
+							'name': name,
+        			'value': val
+						},
+						abort: true,
+						success: function(e, data, x) {},
+						url: '@/me',
+						method: 'post'
+					}
+				});
+				$(this).attr('disabled', '');
+				$(this).parent('.element').addClass('has-data');
+				$(this).parent('.element').children('.btn').remove();
+  		}
+
+  		// current element has no value
+  		else {
+  			if ($(this).val() != initial.val()) {
+  				// if this element had value do this
+  				var val  = $(this).val();
+  				var name = $(this).attr("name");
+  				$(this).ajaxify({
+  					ajax: {
+  						data: {
+  							'name': name,
+          			'value': val
+  						},
+  						abort: true,
+  						success: function(e, data, x) {},
+  						url: '@/me',
+  						method: 'post'
+  					}
+  				});
+  			}
+				$(this).attr('disabled', '');
+				$(this).parent('.element').addClass('no-data');
+				$(this).parent('.element').children('.btn').remove();
+  		}
   	}
-  	// if has no data
-  	else
-  	{
-  		$(this).parent('.element').addClass('no-data').children('.btn').remove();
+  	
+  	// user clicks on cancel
+  	else if (target && target.className == 'cancel') {
+			$(this).val(initial.val());
+			$(this).attr('disabled', '');
+			$(this).parent('.element').children('.btn').remove();
+  		
+  		if ($(this).val()) {
+				$(this).parent('.element').addClass('has-data');
+  		}
+			else {
+				$(this).parent('.element').addClass('no-data');
+			}
+  	}
+  	
+  	// user clicks anywhere else
+  	else {
+  		$(this).val(initial.val());
+			$(this).attr('disabled', '');
+			$(this).parent('.element').children('.btn').remove();
+  		
+  		if ($(this).val()) {
+				$(this).parent('.element').addClass('has-data');
+  		}
+			else {
+				$(this).parent('.element').addClass('no-data');
+			}
   	}
   });
 
-  $(document).on('click', '.btn.save button', function (event)
-  {
+  // $(document).on('click', '.btn.save button', function (event)
+  // {
+  //   var val = $(this).parents('.element').children('.input').val();
+  //   var name = $(this).parents('.element').children('.input').attr("name");
+  //   $(this).ajaxify(
+  //   {
+  //     ajax:
+  //     {
+  //       data:
+  //       {
+  //         'name': name,
+  //         'value': val
+  //       },
+  //       abort: true,
+  //       success: function(e, data, x)
+  //       {
 
-    var val = $(this).parents('.element').children('.input').val();
-    var name = $(this).parents('.element').children('.input').attr("name");
-    $(this).ajaxify(
-    {
-      ajax:
-      {
-        data:
-        {
-          'name': name,
-          'value': val
-        },
-        abort: true,
-        success: function(e, data, x)
-        {
-
-        },
-        url: '@/me',
-        method: 'post'
-      }
-    });
-  });
+  //       },
+  //       url: '@/me',
+  //       method: 'post'
+  //     }
+  //   });
+  // });
 });
 
 
