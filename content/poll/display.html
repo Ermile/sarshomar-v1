@@ -127,6 +127,7 @@
   <div class="row" id="comments-box">
    <h2 class="special-heading">{%trans "Comments"%}</h2>
    <div class="eq-container">
+    {%if rate.total%}
     <div>
      <div class="overall">
       {%if site.currentlang == "fa"%}
@@ -149,6 +150,7 @@
       <div class="bar five" style="width:{{rate.rate1 * 20}}%" ></div>
      </div><!-- /.bars -->
     </div>
+    {%endif%}
     <div class="comment">
      <form method="post">
       <div class="author"></div>

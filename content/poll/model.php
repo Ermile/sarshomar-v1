@@ -66,6 +66,7 @@ class model extends \mvc\model
 	 */
 	public function save_comment()
 	{
+		$result = false;
 		$user_id = $this->login("id");
 		$poll_id = $_SESSION['last_poll_id'];
 
@@ -77,20 +78,27 @@ class model extends \mvc\model
 		{
 			$rate = 5;
 		}
-		$args =
-		[
-			'comment_author'  => $this->login("displayname"),
-			'comment_email'   => $this->login("email"),
-			'comment_content' => $content,
-			'comment_type'    => $type,
-			'comment_status'  => $status,
-			'user_id'         => $user_id,
-			'post_id'         => $poll_id,
-			'comment_meta'    => $rate
-		];
-		// insert comments
-		$result = \lib\db\comments::insert($args);
-		\lib\db\comments::rate($this->login('id'), $poll_id, $rate);
+		if($content != '')
+		{
+
+			$args =
+			[
+				'comment_author'  => $this->login("displayname"),
+				'comment_email'   => $this->login("email"),
+				'comment_content' => $content,
+				'comment_type'    => $type,
+				'comment_status'  => $status,
+				'user_id'         => $user_id,
+				'post_id'         => $poll_id,
+				'comment_meta'    => $rate
+			];
+			// insert comments
+			$result = \lib\db\comments::insert($args);
+		}
+		if(intval($rate) > 0)
+		{
+			$result = \lib\db\comments::rate($this->login('id'), $poll_id, $rate);
+		}
 
 		if($result)
 		{

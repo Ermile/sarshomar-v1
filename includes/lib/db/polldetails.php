@@ -144,12 +144,20 @@ class polldetails
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_type     The type
 	 */
-	public static function user_total($_user_id, $_type = null, $_port = null, $_subport = null)
+	public static function user_total($_user_id, $_options = [])
 	{
 		$port    = "";
 		$subport = "";
+		$default_options =
+		[
+			'type'    => null,
+			'port'    => null,
+			'subport' => null
+		];
 
-		switch ($_type) {
+		$_options = array_merge($default_options, $_options);
+
+		switch ($_options['type']) {
 			case 'answered':
 				$opt = " AND polldetails.opt != '0' ";
 				break;
@@ -160,11 +168,11 @@ class polldetails
 				$opt = "";
 				break;
 		}
-		if($_port)
+		if($_options['port'])
 		{
 			$port = " AND polldetails.port = '$_port' ";
 		}
-		if($_subport)
+		if($_options['subport'])
 		{
 			$subport = " AND polldetails.subport = '$_subport' ";
 		}
@@ -195,7 +203,13 @@ class polldetails
 	 */
 	public static function user_total_answered($_user_id, $_port = null, $_subport = null)
 	{
-		return self::user_total($_user_id, "answered", $_port, $_subport);
+		$args =
+		[
+			'type'    => 'answered',
+			'port'    => $_port,
+			'subport' => $_subport
+		];
+		return self::user_total($_user_id, $args);
 	}
 
 
@@ -208,7 +222,13 @@ class polldetails
 	 */
 	public static function user_total_skipped($_user_id, $_port = null, $_subport = null)
 	{
-		return self::user_total($_user_id, "skipped", $_port, $_subport);
+		$args =
+		[
+			'type'    => 'skipped',
+			'port'    => $_port,
+			'subport' => $_subport
+		];
+		return self::user_total($_user_id, $_args);
 	}
 
 
