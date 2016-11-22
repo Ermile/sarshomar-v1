@@ -188,10 +188,101 @@
                     </div>
                     <textarea name="description">{{poll.content}}</textarea>
                   </div>
-
               </li><!-- /#tab-multiple_choice -->
-              <li id="tab-descriptive">descriptive</li>
-              <li id="tab-notification">notification</li>
+
+              <li id="tab-descriptive">
+                <!-- <div class="element">
+                  <label class="title" for="title">{%trans "Title"%}</label>
+                  <input class="input" type="text" name="title" id="title" value="{{poll.title}}" autocomplete="off">
+                </div>
+
+                <div autocomplete="off">
+                  <ul>
+                    <li class="ac-custom ac-checkbox ac-checkmark">
+                      <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
+                      <label for="score">{%trans "Score"%}</label>
+                      {%if poll.meta.score%}{{block('check_svg')}}{%endif%}
+                    </li>
+                  </ul>
+                </div>
+
+                {% if perm.complete_profile.admin %}
+                <div class="poll-complete">
+                  <span class="ac-custom ac-checkbox ac-checkmark">
+                    <input class="" type="checkbox" name="pollComplete" id="pollComplete" {%if poll.meta.profile%}checked{%endif%}>
+                    <label for="pollComplete">{%trans "Profile"%}</label>
+                      {%if poll.meta.profile%}{{block('check_svg')}}{%endif%}
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                  </span>
+                  <select class="poll-complete-dropdown" name="meta_profile">
+                    <option value="">{%trans "Please Select One Item"%}</option>
+                      {%for key, value in profile_lock%}
+                        {%set t_value = key %}
+                        <option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
+                      {%endfor%}
+                  </select>
+                </div>
+                {%endif%}
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
+                  </div>
+                  <textarea name="summary">{{poll.meta.desc}}</textarea>
+                </div>
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
+                  </div>
+                  <textarea name="description">{{poll.content}}</textarea>
+                </div> -->
+              </li><!-- /#tab-descriptive -->
+
+              <li id="tab-notification">
+                <!-- <div class="element">
+                  <label class="title" for="title">{%trans "Title"%}</label>
+                  <input class="input" type="text" name="title" id="title" value="{{poll.title}}" autocomplete="off">
+                </div>
+
+                <input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
+                <input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
+                <div class="tree">
+                  <span class="ac-custom ac-checkbox ac-checkmark">
+                    <input class="" type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
+                    <label for="tree">{%trans "Tree"%}</label>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
+                    {%if poll_tree_title%}{{block('check_svg')}}{%endif%}
+
+                  </span>
+                  <div class="stuff" {%if poll_tree_title%}style="display: flex;"{%endif%}>
+                    <input class="" type="text" id="search" placeholder='{%trans "Search"%}' value="{{poll_tree_title}}">
+                    <span class="fa fa-search search" aria-hidden="true"></span>
+                    <select class="tree-dropdown" id="repository">
+                      <option value="personal" >{%trans "Personal" %}</option>
+                      <option value="sarshomar" >{%trans "Sarshomar" %}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="tree-list" {%if poll_tree_title%}style="display: block;"{%endif%}>
+                  <ul class="questions"></ul>
+                </div>
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
+                  </div>
+                  <textarea name="summary">{{poll.meta.desc}}</textarea>
+                </div>
+
+                <div class="panel-text">
+                  <div class="title">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
+                  </div>
+                  <textarea name="description">{{poll.content}}</textarea>
+                </div> -->
+              </li><!-- /#tab-notification -->
+
               <li id="tab-upload">upload</li>
               <li id="tab-starred">starred</li>
               <li id="tab-numerical">numerical</li>
