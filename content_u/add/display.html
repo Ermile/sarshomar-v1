@@ -204,13 +204,12 @@
         <div class="btn-container center">
           <input type="hidden" name="n" value="v" id="submit-form">
           <nav>
-            <button class="btn" send-name="filter" value="filter">{%trans "Filter"%}</button>
+            <button class="btn" send-name="filter" value="filter">{%trans "Filter And Publish"%}</button>
           {%if survey_mod%}
-            <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+            <button class="primary btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
           {%else%}
-            <button class="btn" send-name="survey" value="survey">{%trans "Survey"%}</button>
+            <button class="primary btn" send-name="survey" value="survey">{%trans "Add Poll"%}</button>
           {%endif%}
-            <button class="btn" send-name="publish" value="publish">{%trans "Publish"%}</button>
           </nav>
         </div><!-- /.btn-container -->
 
