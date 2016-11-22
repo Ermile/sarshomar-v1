@@ -70,11 +70,6 @@ class answers
 		return $return;
 	}
 
-	public static function update($_args, $_id)
-	{
-		return \lib\db\options::update($_args, $_id);
-	}
-
 
 	/**
 	 * get post id and return opt of this post
@@ -317,10 +312,73 @@ class answers
 				txt     = '$_option[answer_txt]',
 				profile = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
 				visitor_id = NULL
-				-- answers::save()
+				-- answers::save_polldetails()
 		";
 		$result = \lib\db::query($insert_polldetails);
 		return $result;
+	}
+
+
+	/**
+	 * remove user answered to poll
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function remove($_user_id, $_poll_id, $_opt_index = null)
+	{
+		if($_opt_index === null)
+		{
+			$opt = null;
+		}
+		else
+		{
+			$opt = " AND opt = '$_opt_index' ";
+		}
+
+		$query =
+		"
+			DELETE FROM
+				polldetails
+			WHERE
+				user_id = $_user_id AND
+				post_id = $_poll_id
+				$opt
+		";
+		return \lib\db::query($query);
+	}
+
+
+	/**
+	 * update the user answer
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 * @param      <type>  $_answer   The answer
+	 * @param      array   $_option   The option
+	 */
+	public static function update($_user_id, $_poll_id, $_answer, $_option = [])
+	{
+		// this function in dev mode ... :)
+		return true;
+		// get the old answered user to this poll
+		$old_answer = \lib\db\polldetails::get($_user_id, $_poll_id);
+
+		// remove
+		$remove_old_answer = self::remove($_user_id, $_poll_id);
+
+		// check old answer and new answer and remove some record if need or insert record if need
+		// or the old answer = new answer the return true
+		// or old answer is skipped and new is a opt must be update
+		// or old answer is a opt and now the user skipped the poll
+
+
+		// when update the polldetails neet to update the pollstates
+		// on this process we check the old answer and new answer
+		// and update pollstats if need
+
 	}
 }
 ?>

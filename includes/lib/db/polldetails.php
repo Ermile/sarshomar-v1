@@ -139,6 +139,28 @@ class polldetails
 
 
 	/**
+	 * get the users answer of one poll
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 */
+	public static function get($_user_id, $_poll_id)
+	{
+		$query =
+		"
+			SELECT
+				*
+			FROM
+				polldetails
+			WHERE
+				user_id = $_user_id AND
+				post_id = $_poll_id
+		";
+		return \lib\db::get($query);
+	}
+
+
+	/**
 	 * Gets the user count of answered or skipped
 	 *
 	 * @param      <type>  $_user_id  The user identifier
@@ -150,6 +172,7 @@ class polldetails
 		$subport = "";
 		$default_options =
 		[
+			'gender'  => 'poll',
 			'type'    => null,
 			'port'    => null,
 			'subport' => null
@@ -183,8 +206,10 @@ class polldetails
 				COUNT(polldetails.id) AS 'count'
 			FROM
 				polldetails
+			INNER JOIN posts
+				ON polldetails.post_id = posts.id AND posts.post_gender = '$_options[gender]'
 			WHERE
-				user_id = $_user_id
+				polldetails.user_id = $_user_id
 				$opt
 				$port
 				$subport
@@ -201,15 +226,17 @@ class polldetails
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function user_total_answered($_user_id, $_port = null, $_subport = null)
+	public static function user_total_answered($_user_id, $_options = [])
 	{
-		$args =
+		$default_options =
 		[
+			'gender'  => 'poll',
 			'type'    => 'answered',
-			'port'    => $_port,
-			'subport' => $_subport
+			'port'    => null,
+			'subport' => null
 		];
-		return self::user_total($_user_id, $args);
+		$_options = array_merge($default_options, $_options);
+		return self::user_total($_user_id, $_options);
 	}
 
 
@@ -220,15 +247,17 @@ class polldetails
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function user_total_skipped($_user_id, $_port = null, $_subport = null)
+	public static function user_total_skipped($_user_id, $_options = [])
 	{
-		$args =
+		$default_options =
 		[
+			'gender'  => 'poll',
 			'type'    => 'skipped',
-			'port'    => $_port,
-			'subport' => $_subport
+			'port'    => null,
+			'subport' => null
 		];
-		return self::user_total($_user_id, $_args);
+		$_options = array_merge($default_options, $_options);
+		return self::user_total($_user_id, $_options);
 	}
 
 
@@ -240,11 +269,22 @@ class polldetails
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function people($_poll_ids, $_type = null, $_port = null, $_subport = null)
+	public static function people($_poll_ids, $_options = [])
 	{
+		$default_options =
+		[
+			'gender'  => 'poll',
+			'type'    => null,
+			'port'    => null,
+			'subport' => null
+		];
+
+		$_options = array_merge($default_options, $_options);
+
 		$port    = "";
 		$subport = "";
-		switch ($_type) {
+		switch ($_options['type'])
+		{
 			case 'answered':
 				$opt = " AND polldetails.opt != '0' ";
 				break;
@@ -256,13 +296,13 @@ class polldetails
 				break;
 		}
 
-		if($_port)
+		if($_options['port'])
 		{
-			$port = " AND polldetails.port = '$_port' ";
+			$port = " AND polldetails.port = '$_options[port]' ";
 		}
-		if($_subport)
+		if($_options['subport'])
 		{
-			$subport = " AND polldetails.subport = '$_subport' ";
+			$subport = " AND polldetails.subport = '$_options[subport]' ";
 		}
 
 		$poll_ids = join($_poll_ids, ",");
@@ -272,6 +312,8 @@ class polldetails
 				COUNT(polldetails.id) AS 'count'
 			FROM
 				polldetails
+			INNER JOIN posts
+				ON polldetails.post_id = posts.id AND posts.post_gender = '$_options[gender]'
 			WHERE
 				polldetails.post_id IN ($poll_ids)
 				$opt
@@ -290,9 +332,17 @@ class polldetails
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function people_answered($_poll_ids, $_port = null, $_subport = null)
+	public static function people_answered($_poll_ids, $_options = [])
 	{
-		return self::people($_poll_ids, "answered", $_port, $_subport);
+		$default_options =
+		[
+			'gender'  => 'poll',
+			'type'    => 'answered',
+			'port'    => null,
+			'subport' => null
+		];
+		$_options = array_merge($default_options, $_options);
+		return self::people($_poll_ids, $_options);
 	}
 
 
@@ -303,9 +353,17 @@ class polldetails
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function people_skipped($_poll_ids, $_port = null, $_subport = null)
+	public static function people_skipped($_poll_ids, $_options = [])
 	{
-		return self::people($_poll_ids, "skipped", $_port, $_subport);
+		$default_options =
+		[
+			'gender'  => 'poll',
+			'type'    => 'skipped',
+			'port'    => null,
+			'subport' => null
+		];
+		$_options = array_merge($default_options, $_options);
+		return self::people($_poll_ids, $_options);
 	}
 }
 ?>
