@@ -78,6 +78,8 @@
   .profile .info{display: none;}
   .rtl .special-heading::after{display:none;}
   .special-heading::after{display: none;}
+  .special-heading::after{display: none;}
+  #ir-map{width: 100%;}
 /**********************************Knowledge***************************/
 .main .search-box{margin:2em;}
 .polls-head > .comments-count{display: none;}
