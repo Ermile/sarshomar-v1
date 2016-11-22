@@ -81,7 +81,7 @@ class step_starting
 	{
 		if(!is_null($_poll_short_code))
 		{
-			return step_sarshomar::start($_poll_short_code, true);
+			return callback_query\ask::make(null, null, $_poll_short_code);
 		}
 	}
 

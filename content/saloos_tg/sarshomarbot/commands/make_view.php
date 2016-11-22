@@ -3,6 +3,7 @@ namespace content\saloos_tg\sarshomarbot\commands;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 class make_view
 {
+	public static $emoji_number = ['0⃣', '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];
 	public $short_link, $poll_id, $user_id, $query_result;
 
 	/**
@@ -11,11 +12,12 @@ class make_view
 	 *
 	**/
 	public function __construct($_user_id, $_poll = null, $_is_poll_id = false){
+		$this->user_id = $_user_id;
 		if($_poll){
 			if(!$_is_poll_id)
 			{
-				$this->poll_id 		= \lib\utility\shortURL::decode($_poll);
-				$this->short_link 	= $_poll;
+				$this->poll_id 		= \lib\utility\shortURL::decode((string) $_poll);
+				$this->short_link 	= (string) $_poll;
 			}
 			else
 			{
@@ -23,12 +25,21 @@ class make_view
 				$this->short_link 	= \lib\utility\shortURL::encode($_poll);
 			}
 		}
-		elseif ($_user_id) {
-			$this->user_id = $_user_id;
-		}
 		$this->get_poll_result();
 		$this->message = new make_view\message($this);
 		$this->inline_keyboard = new make_view\inline_keyboard($this);
+	}
+
+	public function make()
+	{
+		return [
+			"text" => $this->message->make(),
+			'reply_markup' => [
+				'inline_keyboard' => $this->inline_keyboard->make()
+			],
+			'parse_mode' 				=> 'Markdown',
+			'disable_web_page_preview' 	=> true
+		];
 	}
 
 	/**

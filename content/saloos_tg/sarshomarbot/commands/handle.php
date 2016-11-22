@@ -13,10 +13,17 @@ class handle
 	{
 		if($_cmd['command'] == '/maker')
 		{
-			$maker = new make_view(bot::$user_id);
+			$maker = new make_view(bot::$user_id, 4);
 			$maker->message->add_title();
-			$maker->message->add_poll_chart();
-			self::send_log($maker->message->message);
+			$maker->message->add_poll_chart(true);
+			$maker->message->add_poll_list(true);
+			$maker->message->add_telegram_link();
+			$maker->message->add_telegram_tag();
+			$maker->message->add('testLine', '#hasan');
+
+			$maker->inline_keyboard->add_poll_answers();
+			$maker->inline_keyboard->add_poll_skip_share();
+			self::send_log($maker->make());
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'get']);
 			return [];
 		}
@@ -30,6 +37,7 @@ class handle
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
 			$id = Tld === 'dev' ? 5 : 99;
 			\lib\db::query("DELETE FROM options
 				WHERE user_id = $id AND
@@ -51,6 +59,7 @@ class handle
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
+			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
 			exit();
 		}
 		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
@@ -105,7 +114,7 @@ class handle
 				case '/ask':
 				case T_('Ask from me'):
 				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
-				$response = step_sarshomar::start(empty($sp) ? null : $sp[2]);
+				$response = callback_query\ask::make(null, null, empty($sp) ? null : $sp[2]);
 				break;
 
 				// case preg_match("/^\/view_(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':

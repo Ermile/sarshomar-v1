@@ -8,6 +8,7 @@ use content\saloos_tg\sarshomarbot\commands\poll_result;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
+use content\saloos_tg\sarshomarbot\commands\make_view;
 use \content\saloos_tg\sarshomarbot\commands\utility;
 
 class ask
@@ -22,24 +23,35 @@ class ask
 		return [];
 	}
 
-	public static function type($_query, $_data_url)
+	public static function make($_query, $_data_url, $_short_link = null)
 	{
-		$type = $_data_url[2];
-		session::remove_back('expire', 'inline_cache', 'sarshomar');
-		session::remove('expire', 'inline_cache', 'sarshomar');
-		callback_query::edit_message(self::make($_query, $_data_url, true));
-		return [];
-	}
+		handle::send_log($_short_link);
+		$maker = new make_view(bot::$user_id, $_short_link);
 
-	public static function make($_query, $_data_url, $_return = false)
-	{
-		$poll = step_sarshomar::step1();
-		if($_return)
+		$maker->message->add_title();
+		$maker->message->add_poll_list(null, false);
+		$maker->message->add_telegram_link();
+		$maker->message->add_telegram_tag();
+
+		$maker->inline_keyboard->add_poll_answers();
+		$maker->inline_keyboard->add_guest_option(false, true, false);
+
+		$return = $maker->make();
+
+		$on_expire = $maker->inline_keyboard->get_guest_option(true);
+
+		$return["response_callback"] = utility::response_expire('ask', [
+			'reply_markup' => [
+				'inline_keyboard' => [$on_expire]
+			]
+		]);
+		if(is_array($_short_link))
 		{
-			return $poll;
+			handle::send_log($return);
+			bot::sendResponse($return);
+			return [];
 		}
-		bot::sendResponse($poll);
-		return [];
+		return $return;
 	}
 
 	public static function poll($_query, $_data_url)
@@ -47,16 +59,16 @@ class ask
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		// if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
-		// {
-		// 	$return_text = "✅ you answerd to this poll";
-		// }
-		// else
-		// {
+		if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
+		{
+			$return_text = "✅ you answerd to this poll";
+		}
+		else
+		{
 			\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
 			$return_text = "✅ save your poll";
-		// }
-		if(array_search('message', $_query) === false)
+		}
+		if(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');
 			$poll = \lib\db\polls::get_poll($poll_id);
@@ -74,15 +86,25 @@ class ask
 		{
 			$on_edit = session::get_back('expire', 'inline_cache', 'ask', 'on_expire');
 
-			$edit_message = self::get_poll_result($poll_short_link, $poll_id, $answer_id);
+			$maker = new make_view(bot::$user_id, $poll_short_link);
 
-			$on_edit->text 				= $edit_message['text'];
-			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=>$edit_message['reply_markup']]);
+			$maker->message->add_title();
+			$maker->message->add_poll_chart($answer_id);
+			$maker->message->add_poll_list($answer_id);
+			$maker->message->add_telegram_link();
+			$maker->message->add_telegram_tag();
+
+			$maker->inline_keyboard->add_guest_option(true);
+
+			$on_edit->text 				= $maker->message->make();
+			$on_expire_keyboard = $maker->inline_keyboard->make();
+
+			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
 			array_unshift(
-				$edit_message['reply_markup']['inline_keyboard'][0],
+				$on_expire_keyboard[0],
 				utility::inline(T_("Next poll"), "ask/make")
 			);
-			$on_edit->reply_markup 		= $edit_message['reply_markup'];
+			$on_edit->reply_markup 		= ['inline_keyboard' => $on_expire_keyboard];
 		}
 		return ["text" => $return_text];
 	}
@@ -90,16 +112,29 @@ class ask
 	public static function update($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
-		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');
-		$message = self::get_poll_result($_data_url[2]);
 
+		$maker = new make_view(bot::$user_id, $_data_url[2]);
+		$maker->message->add_title();
+		$maker->message->add_poll_chart($answer_id);
+		$maker->message->add_poll_list($answer_id);
+		$maker->message->add_telegram_link();
+		$maker->message->add_telegram_tag();
+		$maker->message->add('date', "Last update: " . date("H:i:s"));
+
+		$maker->inline_keyboard->add_guest_option(true);
+
+		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');
 		if($ask_expire->message_id == $_query['message']['message_id'] AND
 			$ask_expire->chat_id == $_query['message']['chat']['id'])
 		{
-			session::remove('expire', 'inline_cache', 'ask');
+			session::remove_back('expire', 'inline_cache', 'ask');
+			array_unshift(
+				$maker->inline_keyboard->inline_keyboard[0],
+				utility::inline(T_("Next poll"), "ask/make")
+			);
 		}
-		$message['text'] .= "\n Last update: " . date("H:i:s");
- 		callback_query::edit_message($message);
+
+ 		callback_query::edit_message($maker->make());
 		return [];
 	}
 	public static function get_poll_result($_poll_short_link, $_poll_id = null, $_answer_id = null)
