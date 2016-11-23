@@ -14,7 +14,8 @@ class menu
 	public static function main($_onlyMenu = false)
 	{
 		$txt_my = [T_('My polls'), T_('Create')];
-		if(!\lib\db\polls::get(bot::$user_id, 'count'))
+		$user_polls = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'pagenation' => false]);
+		if(!$user_polls)
 		{
 			$txt_my = [T_('Create new pool')];
 		}
