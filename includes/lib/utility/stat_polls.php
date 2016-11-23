@@ -75,81 +75,166 @@ class stat_polls
 			$opt_txt = null;
 		}
 
+		$type = 'plus';
+		$plus = true;
+		if(isset($_args['type']))
+		{
+			$type = $_args['type'];
+			$plus = false;
+		}
+
 		/**
 		 * set count total answere + 1
 		 * to get sarshomar total answered
 		 */
-		self::set_sarshomar_total_answered();
+		if($plus)
+		{
+			self::set_sarshomar_total_answered();
+		}
 
 		// user skip the poll
 		if($opt_key == "opt_0")
 		{
 			return;
 		}
-
-		$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
-
+		$user_profile_data = [];
+		if(isset($_args['profile']))
+		{
+			$user_profile_data = \lib\db\filters::get($_args['profile']);
+			if(is_array($user_profile_data))
+			{
+				$user_profile_data = array_filter($user_profile_data);
+			}
+		}
+		else
+		{
+			$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
+		}
 	    $support_filter = \lib\db\filters::support_filter();
 
 	    $support_filter = array_keys($support_filter);
 
-		if(defined("mysql_json"))
+		$pollstats = \lib\db\pollstats::get($poll_id);
+		if($pollstats)
 		{
+			// update record
 			$set = [];
-			$set_for_insert = [];
-			// save pollstats.result field
-			$set[] =
-			"
-				pollstats.result =
-			       	IF(pollstats.result IS NULL OR pollstats.result = '',
-				       		'{\"$opt_key\":1}',
-						IF(
-						   JSON_EXTRACT(pollstats.result, '$.$opt_key'),
-						   JSON_REPLACE(pollstats.result, '$.$opt_key', JSON_EXTRACT(pollstats.result, '$.$opt_key') + 1 ),
-						   JSON_SET(pollstats.result, '$.$opt_key', 1)
-						)
-					)
-	    	";
-	    	$set_for_insert[] = " pollstats.result = '{\"$opt_key\":1}' ";
-	    	// set profile result
-			foreach ($support_filter as $key => $value) {
-				if(isset($user_profile_data[$value]))
+			if(isset($pollstats['total']) && $pollstats['total'])
+			{
+				if($plus)
 				{
-					$v = '$.' . $opt_key. '."'. $user_profile_data[$value]. '"';
-					$set[] =
-					"
-						pollstats.$value =
-					       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
-						       		'{\"$opt_key\":{\"$value\":1}}',
-								IF(
-								   JSON_EXTRACT(pollstats.$value, '$v'),
-								   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
-								   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"{$user_profile_data[$value]}\",1))
-								)
-							)
-		        	";
-		        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"{$user_profile_data[$value]}\":1}}' ";
+					$pollstats['total']++;
+				}
+			}
+			else
+			{
+				$pollstats['total'] = 1;
+			}
+			$set[] = " pollstats.total = ". $pollstats['total'];
+
+			if(isset($pollstats['result'][$opt_key]))
+			{
+				if($plus)
+				{
+					$pollstats['result'][$opt_key]++;
 				}
 				else
 				{
-					// undifined
-					$v = '$.' . $opt_key. '.undefined';
-					$set[] =
-					"
-						pollstats.$value =
-					       	IF(pollstats.$value IS NULL OR pollstats.$value = '',
-						       		'{\"$opt_key\":{\"undefined\":1}}',
-								IF(
-								   JSON_EXTRACT(pollstats.$value, '$v'),
-								   JSON_REPLACE(pollstats.$value, '$v', JSON_EXTRACT(pollstats.$value, '$v') + 1 ),
-								   JSON_INSERT(pollstats.$value, '$.$opt_key',JSON_OBJECT(\"undefined\",1))
-								)
-							)
-		        	";
-		        	$set_for_insert[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\":1}}' ";
+					if(intval($pollstats['result'][$opt_key]) > 0)
+					{
+						$pollstats['result'][$opt_key]--;
+					}
 				}
 			}
-			$set[] = " pollstats.total = pollstats.total + 1 ";
+			else
+			{
+				if($plus)
+				{
+					$pollstats['result'][$opt_key] = 1;
+				}
+			}
+			$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
+
+			foreach ($support_filter as $key => $value)
+			{
+				if(isset($user_profile_data[$value]))
+				{
+					if(isset($pollstats[$value][$opt_key]))
+					{
+						if(isset($pollstats[$value][$opt_key][$user_profile_data[$value]]))
+						{
+							if($plus)
+							{
+								$pollstats[$value][$opt_key][$user_profile_data[$value]]++;
+							}
+							else
+							{
+								if(intval($pollstats[$value][$opt_key][$user_profile_data[$value]]) > 1)
+								{
+									$pollstats[$value][$opt_key][$user_profile_data[$value]]--;
+								}
+								else
+								{
+									unset($pollstats[$value][$opt_key][$user_profile_data[$value]]);
+								}
+							}
+						}
+						else
+						{
+							if($plus)
+							{
+								$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+							}
+						}
+					}
+					else
+					{
+						if($plus)
+						{
+							$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+						}
+					}
+				}
+				else
+				{
+					if(isset($pollstats[$value][$opt_key]))
+					{
+						if(isset($pollstats[$value][$opt_key]['undefined']))
+						{
+							if($plus)
+							{
+								$pollstats[$value][$opt_key]['undefined']++;
+							}
+							else
+							{
+								if(intval($pollstats[$value][$opt_key]['undefined']) > 1)
+								{
+									$pollstats[$value][$opt_key]['undefined']--;
+								}
+								else
+								{
+									unset($pollstats[$value][$opt_key]['undefined']);
+								}
+							}
+						}
+						else
+						{
+							if($plus)
+							{
+								$pollstats[$value][$opt_key]['undefined'] = 1;
+							}
+						}
+					}
+					else
+					{
+						if($plus)
+						{
+							$pollstats[$value][$opt_key]['undefined'] = 1;
+						}
+					}
+				}
+				$set[] = " pollstats.$value = '". json_encode($pollstats[$value], JSON_UNESCAPED_UNICODE). "'";
+			}
 			$set = join($set, " , ");
 			$pollstats_update_query =
 			"
@@ -162,163 +247,38 @@ class stat_polls
 				-- update poll stat result
 				-- stat_polls::set_poll_result()
 			";
-
 			$pollstats_update = \lib\db::query($pollstats_update_query);
-			$update_rows = mysqli_affected_rows(\lib\db::$link);
-			if(!$update_rows)
-			{
-				$set_for_insert[] = " pollstats.post_id = $poll_id ";
-				$set_for_insert[] = " pollstats.total = 1 ";
-				$set_for_insert = join($set_for_insert, " , ");
-				$pollstats_insert_query =
-				"
-					INSERT INTO
-						pollstats
-					SET
-						$set_for_insert
-					-- stat_polls::set_poll_result()
-					-- insert poll stat result
-				";
-				$pollstats_insert = \lib\db::query($pollstats_insert_query);
-			}
-
-
-			// // update post meta and save count answered in to meta
-			// $update_posts_meta =
-			// "
-			// 	UPDATE
-	  //           	posts
-	  //           SET
-	  //           	posts.post_meta =
-			// 	       	IF(posts.post_meta IS NULL OR posts.post_meta = '',
-			// 	       		'{\"answers\":{\"$opt_key\":1}}',
-			// 				IF(
-			// 				   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key'),
-			// 				   JSON_REPLACE(posts.post_meta, '$.answers.$opt_key',
-			// 				   JSON_EXTRACT(posts.post_meta, '$.answers.$opt_key') + 1 ),
-			// 				   JSON_SET(posts.post_meta, '$.answers', JSON_OBJECT(\"$opt_key\",1))
-			// 			      )
-			// 			)
-	  //           WHERE
-	  //           	posts.id 	 = $poll_id
-	  //  			-- stat_polls::set_poll_result()
-	  //           -- update post_meta and save answered count to post_meta
-
-			// ";
-			// $update_posts_meta = \lib\db::query($update_posts_meta);
-
 		}
-		// mysql not support json
 		else
 		{
-			$pollstats = \lib\db\pollstats::get($poll_id);
-			if($pollstats)
-			{
-				// update record
-				$set = [];
-				if(isset($pollstats['total']) && $pollstats['total'])
+			// insert record
+			$set = [];
+
+			$set[] =  " port = 'site' ";
+			$set[] =  " subport = NULL ";
+			$set[] =  " post_id = $poll_id ";
+			$set[] =  " pollstats.result = '{\"$opt_key\": 1 }' ";
+			foreach ($support_filter as $key => $value) {
+				if(isset($user_profile_data[$value]))
 				{
-					$pollstats['total']++;
+					$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }}' ";
 				}
 				else
 				{
-					$pollstats['total'] = 1;
+					$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }}' ";
 				}
-				$set[] = " pollstats.total = ". $pollstats['total'];
-
-				if(isset($pollstats['result'][$opt_key]))
-				{
-					$pollstats['result'][$opt_key]++;
-				}
-				else
-				{
-					$pollstats['result'][$opt_key] = 1;
-				}
-				$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
-
-				foreach ($support_filter as $key => $value) {
-					if(isset($user_profile_data[$value]))
-					{
-						if(isset($pollstats[$value][$opt_key]))
-						{
-							if(isset($pollstats[$value][$opt_key][$user_profile_data[$value]]))
-							{
-								$pollstats[$value][$opt_key][$user_profile_data[$value]]++;
-							}
-							else
-							{
-								$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
-							}
-						}
-						else
-						{
-							$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
-						}
-					}
-					else
-					{
-						if(isset($pollstats[$value][$opt_key]))
-						{
-							if(isset($pollstats[$value][$opt_key]['undefined']))
-							{
-								$pollstats[$value][$opt_key]['undefined']++;
-							}
-							else
-							{
-								$pollstats[$value][$opt_key]['undefined'] = 1;
-							}
-						}
-						else
-						{
-							$pollstats[$value][$opt_key]['undefined'] = 1;
-						}
-					}
-					$set[] = " pollstats.$value = '". json_encode($pollstats[$value], JSON_UNESCAPED_UNICODE). "'";
-				}
-				$set = join($set, " , ");
-				$pollstats_update_query =
-				"
-					UPDATE
-						pollstats
-					SET
-						$set
-					WHERE
-						pollstats.post_id = $poll_id
-					-- update poll stat result
-					-- stat_polls::set_poll_result()
-				";
-				$pollstats_update = \lib\db::query($pollstats_update_query);
 			}
-			else
-			{
-				// insert record
-				$set = [];
-
-				$set[] =  " port = 'site' ";
-				$set[] =  " subport = NULL ";
-				$set[] =  " post_id = $poll_id ";
-				$set[] =  " pollstats.result = '{\"$opt_key\": 1 }' ";
-				foreach ($support_filter as $key => $value) {
-					if(isset($user_profile_data[$value]))
-					{
-						$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }}' ";
-					}
-					else
-					{
-						$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }}' ";
-					}
-				}
-				$set = join($set, ",");
-				$query =
-				"
-					INSERT INTO
-						pollstats
-					SET
-						$set
-				";
-				$set_result = \lib\db::query($query);
-			}
+			$set = join($set, ",");
+			$query =
+			"
+				INSERT INTO
+					pollstats
+				SET
+					$set
+			";
+			$set_result = \lib\db::query($query);
 		}
+
 	}
 
 

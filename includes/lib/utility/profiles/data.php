@@ -13,6 +13,19 @@ trait data
 	 */
 	public static function get_profile_data($_user_id, $_accepted_value = true)
 	{
+		$user_filter = \lib\db\users::get($_user_id, "filter_id");
+		$user_filter = \lib\db\filters::get($user_filter);
+		if(is_array($user_filter))
+		{
+			$user_filter = array_filter($user_filter);
+			unset($user_filter['id']);
+			unset($user_filter['unique']);
+		}
+		else
+		{
+			$user_filter = [];
+		}
+
 		$profile = [];
 		$result  = \lib\db\termusages::usage($_user_id, 'users');
 
@@ -24,7 +37,7 @@ trait data
 				// get the accepted value in terms for insert chart
 				if($_accepted_value)
 				{
-					if($value['term_status'] != 'enable')
+					if($value['term_status'] != 'enable' && !isset($user_filter[$x_key]))
 					{
 						continue;
 					}
@@ -49,6 +62,7 @@ trait data
 				}
 			}
 		}
+
 		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
 		return $profile;
 	}
@@ -183,15 +197,15 @@ trait data
 							break;
 
 						case 'country':
-							$insert_filter = \lib\utility\location\countres::check($value);
+							$insert_to_filters = \lib\utility\location\countres::check($value);
 							break;
 
 						case 'province':
-							$insert_filter = \lib\utility\location\provinces::check($value);
+							$insert_to_filters = \lib\utility\location\provinces::check($value);
 							break;
 
 						case 'city':
-							$insert_filter = \lib\utility\location\cites::check($value);
+							$insert_to_filters = \lib\utility\location\cites::check($value);
 							break;
 
 						// case 'course':

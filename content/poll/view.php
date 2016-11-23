@@ -113,7 +113,7 @@ class view extends \mvc\view
 				if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
 				{
 					// this user answered to this poll
-					$post['post_meta'] = ['opt' => null];
+					// $post['post_meta'] = ['opt' => null];
 				}
 				else
 				{
@@ -127,7 +127,7 @@ class view extends \mvc\view
 			else
 			{
 				// this user not logined  => remove answers button
-				$post['post_meta'] = ['opt' => null];
+				// $post['post_meta'] = ['opt' => null];
 			}
 
 			// get post status to show in html page
@@ -136,7 +136,7 @@ class view extends \mvc\view
 
 			if(isset($post['post_meta']))
 			{
-			$meta = [];
+				$meta = [];
 				foreach ($post['postmeta'] as $key => $value) {
 					switch ($value['option_key']) {
 						// ignore opt_1, opt_2, ...
@@ -198,6 +198,10 @@ class view extends \mvc\view
 								case "hidden_result":
 									$show_result = false;
 									break;
+
+								case "update_result":
+									$this->data->update_result = true;
+									break;
 							}
 							break;
 							// show rate of comments
@@ -223,7 +227,7 @@ class view extends \mvc\view
 							break;
 					}
 				}
-			$this->data->meta = $meta;
+				$this->data->meta = $meta;
 			}
 
 			// load poll filters

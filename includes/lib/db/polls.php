@@ -130,5 +130,11 @@ class polls
 		";
 		\lib\db::query($query);
 	}
+
+
+	public static function check_meta($_poll_id, $_meta)
+	{
+		return true;
+	}
 }
 ?>

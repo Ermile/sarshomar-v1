@@ -10,7 +10,8 @@ class answers
 	 *
 	 * @return     <type>  mysql result
 	 */
-	public static function insert($_args){
+	public static function insert($_args)
+	{
 
 		// set key of option table to sort answer
 		// @example the poll have 3 answer
@@ -19,6 +20,25 @@ class answers
 		// 						poll_(post_id)		opt_1		[answer 1]
 		// 						poll_(post_id)		opt_1		[answer 1]
 		// 						poll_(post_id)		opt_3		[answer 3]
+		// $_args =
+		// [
+		// 	'poll_id' => 1,
+		// 	'answers' =>
+		// 		[
+		// 			'txt' => 'answer one',
+		// 			'type' => 'audio',
+		// 			'desc' => 'description',
+		// 			'true' => 'true|false',
+		// 			'point' => 10
+		// 		],
+		// 		[
+		// 			'txt' => 'answer two',
+		// 			'type' => 'audio',
+		// 			'desc' => 'description',
+		// 			'true' => 'true|false',
+		// 			'point' => 10
+		// 		]
+		// 	];
 		$answers   = [];
 		$opt_meta = [];
 		// answers key : opt_1, opt_2, opt_[$i], ...
@@ -27,7 +47,7 @@ class answers
 		{
 
 			$meta = [
-					'desc'  => '',
+					'desc'  => isset($value['desc'])  ? $value['desc']  : '',
 					'true'  => isset($value['true'])  ? $value['true']  : '',
 					'point' => isset($value['point']) ? $value['point'] : '',
 					'type'  => isset($value['type'])  ? $value['type']  : ''
@@ -46,7 +66,7 @@ class answers
 
 			$opt_meta[] =
 			[
-				'key'  => 'opt_' .  $i,
+				'key'  => 'opt_'.  $i,
 				'txt'  => isset($value['txt'])  ? $value['txt']  : '',
 				'type' => isset($value['type']) ? $value['type'] : ''
 			];
@@ -107,6 +127,24 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
+		$force = false;
+		if(isset($_option['force']) && $_option['force'])
+		{
+			$force = true;
+		}
+		unset($_option['force']);
+		// cehc is answer to this poll or no
+		if(!$force)
+		{
+			if(self::is_answered($_user_id, $_poll_id))
+			{
+				if(\lib\db\polls::check_meta($_poll_id, "update_result"))
+				{
+					return self::update(...func_get_args());
+				}
+				return false;
+			}
+		}
 		$skipped = false;
 		$default_option =
 		[
@@ -361,24 +399,68 @@ class answers
 	 */
 	public static function update($_user_id, $_poll_id, $_answer, $_option = [])
 	{
-		// this function in dev mode ... :)
-		return true;
-		// get the old answered user to this poll
-		$old_answer = \lib\db\polldetails::get($_user_id, $_poll_id);
-
-		// remove
-		$remove_old_answer = self::remove($_user_id, $_poll_id);
-
 		// check old answer and new answer and remove some record if need or insert record if need
 		// or the old answer = new answer the return true
 		// or old answer is skipped and new is a opt must be update
 		// or old answer is a opt and now the user skipped the poll
 
-
-		// when update the polldetails neet to update the pollstates
+		// when update the polldetails neet to update the pollstats
 		// on this process we check the old answer and new answer
 		// and update pollstats if need
 
+		// get the old answered user to this poll
+		$old_answer = \lib\db\polldetails::get($_user_id, $_poll_id);
+
+		if(is_array($old_answer) && empty($old_answer))
+		{
+			// the user not answered to this poll
+			// we save the user answer
+			return self::save(...func_get_args());
+		}
+
+		// make a array similar the answer array
+		$opt_list =  array_column($old_answer, 'opt', 'txt');
+		foreach ($opt_list as $key => $value)
+		{
+			$opt_list[$key] = "opt_". $value;
+		}
+		$opt_list    = array_flip($opt_list);
+		$must_remove = array_diff($opt_list, $_answer);
+		$must_insert = array_diff($_answer, $opt_list);
+
+		// remove answer must be remove
+		foreach ($must_remove as $key => $value)
+		{
+			$opt_index = explode("_", $key);
+			$opt_index = end($opt_index);
+			$remove_old_answer = self::remove($_user_id, $_poll_id, $opt_index);
+
+			$profile = 0;
+			foreach ($old_answer as $i => $o)
+			{
+				if($o['opt'] == $opt_index)
+				{
+					$profile = $o['profile'];
+				}
+			}
+
+			$answers_details =
+			[
+				'poll_id' => $_poll_id,
+				'opt_key' => $key,
+				'user_id' => $_user_id,
+				'type'    => 'minus',
+				'profile' => $profile
+			];
+			\lib\utility\stat_polls::set_poll_result($answers_details);
+		}
+
+		foreach ($must_insert as $key => $value)
+		{
+			self::save($_user_id, $_poll_id, [$key => $value], ['force' => true]);
+			// set the poll stat in save function
+		}
+		return true;
 	}
 }
 ?>
