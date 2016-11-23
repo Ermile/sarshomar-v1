@@ -1,14 +1,11 @@
 <?php
 namespace content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\callback_query;
-use \content\saloos_tg\sarshomarbot\commands\poll_result;
-use \content\saloos_tg\sarshomarbot\commands\step_sarshomar;
 use \content\saloos_tg\sarshomarbot\commands\handle;
-use content\saloos_tg\sarshomarbot\commands\chart;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
-use \lib\telegram\step;
 use \content\saloos_tg\sarshomarbot\commands\utility;
+use content\saloos_tg\sarshomarbot\commands\make_view;
 
 class poll
 {
@@ -34,13 +31,14 @@ class poll
 		foreach ($poll_answers as $key => $value) {
 			$poll['meta']['opt'][] = ["txt" => $value];
 		}
-		$poll_tmp = poll_result::make($poll);
-		array_pop($poll_tmp['message']);
-		array_pop($poll_tmp['message']);
-		$txt_text = poll_result::get_message($poll_tmp['message']);
-		$txt_text .= "\nCanceled";
-		callback_query::edit_message(["text" => $txt_text]);
-		session::remove('poll', $poll_id);
+		$poll_tmp = new make_view(bot::$user_id, $poll);
+		handle::send_log($poll_tmp);
+		// array_pop($poll_tmp['message']);
+		// array_pop($poll_tmp['message']);
+		// $txt_text = poll_result::get_message($poll_tmp['message']);
+		// $txt_text .= "\nCanceled";
+		// callback_query::edit_message(["text" => $txt_text]);
+		// session::remove('poll', $poll_id);
 	}
 
 	public static function publish($_query, $_data_url)

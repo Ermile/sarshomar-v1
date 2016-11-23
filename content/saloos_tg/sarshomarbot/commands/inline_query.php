@@ -41,32 +41,37 @@ class inline_query
 			$row_result = [];
 			$row_result['type'] = 'article';
 			$row_result['id'] = $value['id'];
-			$row_result['title'] = html_entity_decode($value['title']);
-			preg_match("/^\\$\/([^\/]+)\/.*$/", $value['url'], $url);
-			if(!isset($url[1]))
-			{
-				continue;
-			}
-			$short_link_id = $url[1];
-			$short_url = 'https://sarshomar.com/sp_' . $short_link_id;
 
-			$row_result['url'] = $short_url;
+			$maker = new make_view(bot::$user_id, $value);
+
+			$maker->message->add_title();
+			$maker->message->add_poll_chart();
+			$maker->message->add_poll_list();
+			$maker->message->add_telegram_link();
+			$maker->message->add_telegram_tag();
+
+			$row_result['title'] = html_entity_decode($value['title']);
+
+
+			$row_result['url'] = 'https://sarshomar.com/sp_' . $maker->short_link;
+
 			if(array_key_exists('description', $row_result) && !is_null($row_result['description']))
 			{
 				$row_result['description'] = $value['contnet'];
 			}
 			$row_result['hide_url'] = false;
-			$poll_result = poll_result::make($value);
-			$poll_with_chart = callback_query\ask::get_poll_result($short_link_id);
-			$message = $poll_with_chart['text'];
-			$inline_keyboard = $poll_result['inline_keyboard'];
+
+			$maker->inline_keyboard->add_poll_answers();
+			$maker->inline_keyboard->add_guest_option(true, true, false, false);
+
+			$inline_keyboard = $maker->inline_keyboard->make();
 
 			if(!empty($inline_keyboard)) {
 				$row_result['reply_markup']['inline_keyboard'] = $inline_keyboard;
 			}
 
 			$row_result['input_message_content'] = [
-				'message_text' 				=> $message,
+				'message_text' 				=> $maker->message->make(),
 				'parse_mode' 				=> 'Markdown',
 				'disable_web_page_preview' 	=> true
 			];

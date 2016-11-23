@@ -71,7 +71,7 @@ class inline_keyboard
 		$this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
 	}
 
-	public function get_guest_option($_no_skip = false, $_no_update = false, $_no_share = false)
+	public function get_guest_option($_no_skip = false, $_no_update = false, $_no_share = false, $_no_report = true)
 	{
 		$return = [];
 		if(!$_no_skip)
@@ -93,6 +93,13 @@ class inline_keyboard
 			$return[] = [
 				"text" => T_("Share"),
 				"switch_inline_query" => 'sp_'.$this->class->short_link
+			];
+		}
+		if(!$_no_report)
+		{
+			$return[] = [
+				"text" => T_("Report"),
+				"url" => 'https://telegram.me/SarshomarBot?start=report_'.$this->class->short_link
 			];
 		}
 		return $return;

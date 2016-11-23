@@ -14,7 +14,14 @@ class make_view
 	public function __construct($_user_id, $_poll = null, $_is_poll_id = false){
 		$this->user_id = $_user_id;
 		if($_poll){
-			if(!$_is_poll_id)
+			if(is_array($_poll))
+			{
+				$this->query_result = $_poll;
+				$this->poll_id = $this->query_result['id'];
+				$link_paths = preg_split("[\/]", $this->query_result['url']);
+				$this->short_link = $link_paths[1];
+			}
+			elseif(!$_is_poll_id)
 			{
 				$this->poll_id 		= \lib\utility\shortURL::decode((string) $_poll);
 				$this->short_link 	= (string) $_poll;
@@ -47,6 +54,10 @@ class make_view
 	 **/
 	public function get_poll_result()
 	{
+		if($this->query_result)
+		{
+			return true;
+		}
 		if(is_int($this->poll_id))
 		{
 			$this->query_result = \lib\db\polls::get_poll($this->poll_id);

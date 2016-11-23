@@ -1,9 +1,7 @@
 <?php
 namespace content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\callback_query;
-use \content\saloos_tg\sarshomarbot\commands\step_sarshomar;
 use \content\saloos_tg\sarshomarbot\commands\handle;
-use content\saloos_tg\sarshomarbot\commands\chart;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
 use \lib\telegram\step;
