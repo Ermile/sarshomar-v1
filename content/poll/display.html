@@ -27,7 +27,7 @@
      {%if multiple_choice%}
       <ul>
       {%for key, value in post.post_meta.opt%}
-       <li class="ac-custom ac-checkbox ac-checkmark">
+       <li>
         <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
         <label for="check_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
        </li>
@@ -42,13 +42,18 @@
      {%else%}{#muliple_choice not set load the radio mod#}
       <ul>
       {%for key, value in post.post_meta.opt%}
-       <li class="ac-custom ac-radio ac-fill">
-        <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-        <label for="radio_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
+       <li>
+        <span class="checkbox">
+         <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
+         <label class="check-box" for="radio_{{value.key}}" data-number="{{key + 1}}"></label>
+        </span>
+        <label for="radio_{{value.key}}" data-number="{{key + 1}}">
+         {{value.txt}}
+        </label>
        </li>
       {%endfor%}
       {%if descriptive%}
-       <li class="ac-custom ac-radio ac-fill">
+       <li>
         <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
         <label for="radio_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
        </li>
@@ -189,7 +194,6 @@
 {%endblock%}
 
 {%block foot_js%}
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
 <script type="text/javascript">
 function add_score_comment(_type, _data_id)
 {

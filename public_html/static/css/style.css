@@ -361,6 +361,17 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #poll-box .read-more span{font-weight:bold;margin-right:10px;}
 #poll-box .read-more a{color:#767676;}
 
+#poll-box ul li{background-color:#E7E7E7;margin-bottom:.5em;position:relative;overflow:hidden;border-top-left-radius:5px;border-bottom-left-radius:5px;}
+.rtl #poll-box ul li{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;}
+#poll-box ul li .checkbox{position:absolute;right:10px;top:15px;bottom:0;margin:auto;}
+.rtl #poll-box ul li .checkbox{right:auto;top:15px;left:10px;}
+#poll-box ul li .checkbox .check-box{border:none;}
+#poll-box ul li .checkbox .check-box::before{box-shadow:0 0 0 3px #e7e7e7;}
+#poll-box ul li > label{display:block;height:50px;line-height:50px;color:#00667a;font-size:1.2em;padding-left:65px;}
+.rtl #poll-box ul li > label{padding-left:0;padding-right:65px;}
+#poll-box ul li > label::before{content:attr(data-number);width:50px;height:100%;background-color:#00667a;position:absolute;top:0;left:0;color:#F4F4F4;text-align:center;}
+.rtl #poll-box ul li > label::before{left:auto;right:0;}
+
 #poll-box input[type="submit"]{border:none;background-color:transparent;color:#00667A;cursor:pointer;float:right;font-size:1em;}
 #poll-box input[name="opt_other"]{border:none;display:inline-block;width:100%;height:100%;color:#00667A;background-color:transparent;}
 
