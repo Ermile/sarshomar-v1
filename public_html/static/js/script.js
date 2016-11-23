@@ -204,14 +204,14 @@ route(/\@\/add/, function()
 	  });
 	});
 
-	$(this).on('change', '.poll-complete input[type="checkbox"]', function(event) {
+	$(this).on('change', '.complete-profile input[type="checkbox"]', function(event) {
 	    if (this.checked)
 	    {
-	        $('.poll-complete .poll-complete-dropdown').show();
+	        $('.complete-profile .complete-profile-dropdown').show();
 	    }
 	    else
 	    {
-	        $('.poll-complete .poll-complete-dropdown').hide();
+	        $('.complete-profile .complete-profile-dropdown').hide();
 	        if ($('.input-group').hasClass('editing'))
 	        {
 	        	$('.input-group').removeClass('editing').empty();
@@ -228,7 +228,7 @@ route(/\@\/add/, function()
 	    }
 	});
 
-	$(this).on('change', '.poll-complete .poll-complete-dropdown', function() {
+	$(this).on('change', '.complete-profile .complete-profile-dropdown', function() {
 		var options = $(this).find('option:checked').attr('data-value').split(',');
 		$('.input-group').addClass('editing').empty();
 		for (var i = 0; i < options.length; i++)
