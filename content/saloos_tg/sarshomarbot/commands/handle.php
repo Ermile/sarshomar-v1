@@ -27,10 +27,10 @@ class handle
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'get']);
 			return [];
 		}
-		if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
-			exit();
-		}
+		// if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
+		// 	bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
+		// 	exit();
+		// }
 		bot::$defaultText = T_('Not Found');
 		if($_cmd['command'] == 'exit')
 		{
