@@ -59,7 +59,7 @@ class model extends \content_u\home\model
 		}
 		$count = \lib\db\filters::count_user($filter);
 
-		if(intval($count) < 1)
+		if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < 1)
 		{
 			debug::error(T_(":max users found remove some filter",["max" => $count]));
 			return false;
