@@ -569,10 +569,10 @@ header .chart .column .highcharts-data-labels text{text-shadow:none!important;fo
 #customers-box .customer h3{color:#0C7C78;}
 #customers-box .customer h3::before{background-repeat:no-repeat;background-size:100%;}
 
-#customers-box .customer:nth-child(1) h3::before{background-image:url(../images/art/corporation.png);}
-#customers-box .customer:nth-child(2) h3::before{background-image:url(../images/art/research.png);}
-#customers-box .customer:nth-child(3) h3::before{background-image:url(../images/art/advertising.png);}
-#customers-box .customer:nth-child(4) h3::before{background-image:url(../images/art/developer.png);}
+#customers-box .customer:nth-child(1) h3::before{background-image:url(../images/art/organizations.png);}
+#customers-box .customer:nth-child(2) h3::before{background-image:url(../images/art/universities.png);}
+#customers-box .customer:nth-child(3) h3::before{background-image:url(../images/art/agencies.png);}
+#customers-box .customer:nth-child(4) h3::before{background-image:url(../images/art/developers.png);}
 
 
 /* features */
@@ -1013,3 +1013,4 @@ aside .actived{display:block;}
 .pie::after {content:'';display:inline-block;position:absolute;width:60%;height:60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}
 
 
+.modal#not-login input[type="text"],.modal#not-login input[type="password"]{border:none;outline:none;}
