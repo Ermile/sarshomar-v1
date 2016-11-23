@@ -60,15 +60,15 @@ class ask
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		// if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
-		// {
-		// 	$return_text = "✅ you answerd to this poll";
-		// }
-		// else
-		// {
+		if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
+		{
+			$return_text = "✅ you answerd to this poll";
+		}
+		else
+		{
 			\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
 			$return_text = "✅ save your poll";
-		// }
+		}
 		if(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');
