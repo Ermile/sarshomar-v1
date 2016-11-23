@@ -117,17 +117,6 @@
   $(function() {
    $('#random-chart .chart > div').highcharts(topChartOptions);
    $('#chart > .chart').highcharts(newChartOptions);
-
-   var hoverOrClick = function()
-   {
-    var tab_id = $(this).attr('data-tab');
-    $('#features-box .tab').removeClass('current');
-    $('#features-box .content p').removeClass('current');
-    $(this).addClass('current');
-    $('#features-box .content p').eq(tab_id - 1).addClass('current');
-   };
-
-   $('#features-box .tab').click(hoverOrClick).hover(hoverOrClick);
   });
  </script>
  <link rel="stylesheet" type="text/css" href="{{url.static}}css/responsive.css">
