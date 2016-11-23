@@ -31,14 +31,12 @@ class poll
 		foreach ($poll_answers as $key => $value) {
 			$poll['meta']['opt'][] = ["txt" => $value];
 		}
-		$poll_tmp = new make_view(bot::$user_id, $poll);
-		handle::send_log($poll_tmp);
-		// array_pop($poll_tmp['message']);
-		// array_pop($poll_tmp['message']);
-		// $txt_text = poll_result::get_message($poll_tmp['message']);
-		// $txt_text .= "\nCanceled";
-		// callback_query::edit_message(["text" => $txt_text]);
-		// session::remove('poll', $poll_id);
+		$maker = new make_view(bot::$user_id, $poll);
+		$maker->message->add_title(false);
+		$maker->message->add_poll_list(null, false);
+		$maker->message->add('cancel', '#Cancel');
+		callback_query::edit_message(["text" => $maker->message->make()]);
+		session::remove('poll', $poll_id);
 	}
 
 	public static function publish($_query, $_data_url)
@@ -57,9 +55,22 @@ class poll
 		]);
 		if($poll_id)
 		{
-			$short_link = \lib\utility\shortURL::encode($poll_id);
-			$poll_result = ask::get_poll_result($short_link, $poll_id, 0);
-			callback_query::edit_message($poll_result);
+			$maker = new make_view(bot::$user_id, $poll_id, true);
+			$maker->message->add_title();
+			$maker->message->add_poll_list();
+			$maker->message->add_telegram_link();
+			$maker->message->add_telegram_tag();
+
+			$maker->inline_keyboard->add_poll_answers();
+			$maker->inline_keyboard->add_guest_option(true);
+
+			$return = $maker->make();
+			$return["response_callback"] = utility::response_expire('ask', [
+				'reply_markup' => [
+					'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(true)]
+				]
+			]);
+			callback_query::edit_message($return);
 		}
 	}
 }

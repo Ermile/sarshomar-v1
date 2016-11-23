@@ -28,7 +28,14 @@ class ask
 		$maker->message->add_telegram_link();
 		$maker->message->add_telegram_tag();
 
-		$maker->inline_keyboard->add_poll_answers();
+		$set_last = [];
+		if(is_null($_short_link))
+		{
+			$set_last = ['callback_data' => function($_data){
+				return $_data .'/last';
+			}];
+		}
+		$maker->inline_keyboard->add_poll_answers($set_last);
 		$maker->inline_keyboard->add_guest_option(false, true, false);
 
 		$return = $maker->make();
@@ -102,10 +109,13 @@ class ask
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
 			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
-			array_unshift(
-				$on_expire_keyboard[0],
-				utility::inline(T_("Next poll"), "ask/make")
-			);
+			if(count($_data_url) > 4)
+			{
+				array_unshift(
+					$on_expire_keyboard[0],
+					utility::inline(T_("Next poll"), "ask/make")
+				);
+			}
 			$on_edit->reply_markup 		= ['inline_keyboard' => $on_expire_keyboard];
 		}
 		return ["text" => $return_text];
