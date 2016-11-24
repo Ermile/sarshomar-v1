@@ -16,7 +16,7 @@ class handle
 		// 	exit();
 		// }
 		bot::$defaultText = T_('Not Found');
-		if($_cmd['command'] == 'exit')
+		if($_cmd['command'] == 'exit' || $_cmd['command'] == '/exit')
 		{
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
