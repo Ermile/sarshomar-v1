@@ -83,6 +83,9 @@ trait search
 			$where[] = " posts.post_status = 'publish' ";
 		}
 
+		$start_limit = $_options['start_limit'];
+		$end_limit   = $_options['end_limit'];
+
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -136,8 +139,7 @@ trait search
 		}
 		else
 		{
-			$start_limit = $_options['start_limit'];
-			$end_limit   = $_options['end_limit'];
+
 			// in get count mode the $limit is null
 			if($limit)
 			{
