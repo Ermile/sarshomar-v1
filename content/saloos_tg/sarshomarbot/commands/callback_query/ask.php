@@ -51,7 +51,7 @@ class ask
 			else
 			{
 				$maker->inline_keyboard->add_guest_option(['update' => false, 'report' => true]);
-				$maker->message->add_poll_list(null, false);
+				$maker->message->add_poll_list(true, false);
 			}
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
