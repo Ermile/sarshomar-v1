@@ -23,9 +23,12 @@ class ask
 	{
 		$maker = new make_view(bot::$user_id, $_short_link);
 		if(
-			$maker->query_result['status'] != 'publish' &&
-			$maker->query_result['user_id'] != bot::$user_id
-			)
+			(
+				$maker->query_result['status'] != 'publish' &&
+				$maker->query_result['user_id'] != bot::$user_id
+			) ||
+			$maker->query_result['status'] == 'deleted'
+		)
 		{
 			$return = ['text' => T_("Answer not found")];
 		}
@@ -82,13 +85,13 @@ class ask
 	public static function poll($_query, $_data_url)
 	{
 		$poll_short_link = $_data_url[2];
+		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
 		$save = \lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
 		$return_text = "❌ ";
-		$answer_id = null;
 		if($save['status'])
 		{
-			$answer_id = $save['opt'];
+			$answer_id = $save['opt_index'];
 			$return_text = "✅ ";
 		}
 		$return_text .= $save['msg'];

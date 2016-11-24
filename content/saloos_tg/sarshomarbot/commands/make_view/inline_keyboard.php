@@ -128,7 +128,7 @@ class inline_keyboard
 					"callback_data" => 'poll/pause/'.$this->class->short_link
 				];
 			}
-			elseif($status == 'pause')
+			elseif($status == 'pause' || $status == 'draft')
 			{
 				$_return[] = [
 					"text" => T_("Publish"),
