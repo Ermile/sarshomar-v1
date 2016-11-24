@@ -117,8 +117,10 @@ class handle
 				$response = callback_query\ask::make(null, null, empty($sp) ? null : $sp[2]);
 				break;
 
-				// case preg_match("/^\/view_(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
-				// break;
+				case '/polls':
+				case T_('My polls'):
+				$response = callback_query\poll::list(null, null);
+				break;
 
 				case T_("Language"):
 				case '/language':

@@ -110,7 +110,11 @@ class message
 	}
 	public function set_answer_id($_answer_id = null)
 	{
-		if(is_int($_answer_id) && $_answer_id >= 0)
+		if(is_int($this->answer_id))
+		{
+			return $this->answer_id;
+		}
+		elseif(is_int($_answer_id) && $_answer_id >= 0)
 		{
 			$this->answer_id = (int) $_answer_id;
 		}

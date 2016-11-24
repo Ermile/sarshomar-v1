@@ -115,6 +115,12 @@ class ask
 					$on_expire_keyboard[0],
 					utility::inline(T_("Next poll"), "ask/make")
 				);
+				foreach ($on_expire_keyboard[0] as $key => $value) {
+					if(isset($on_expire_keyboard[0][$key]['callback_data']))
+					{
+						$on_expire_keyboard[0][$key]['callback_data'] = $value['callback_data'] . '/last';
+					}
+				}
 			}
 			$on_edit->reply_markup 		= ['inline_keyboard' => $on_expire_keyboard];
 		}
@@ -127,8 +133,8 @@ class ask
 
 		$maker = new make_view(bot::$user_id, $_data_url[2]);
 		$maker->message->add_title();
-		$maker->message->add_poll_chart($answer_id);
-		$maker->message->add_poll_list($answer_id);
+		$maker->message->add_poll_chart(true);
+		$maker->message->add_poll_list(true);
 		$maker->message->add_telegram_link();
 		$maker->message->add_telegram_tag();
 		$update_time = date("H:i:s", $_query['message']['edit_date']);
@@ -141,10 +147,19 @@ class ask
 			$ask_expire->chat_id == $_query['message']['chat']['id'])
 		{
 			session::remove_back('expire', 'inline_cache', 'ask');
-			array_unshift(
-				$maker->inline_keyboard->inline_keyboard[0],
-				utility::inline(T_("Next poll"), "ask/make")
-			);
+			if(end($_data_url) == 'last')
+			{
+				array_unshift(
+					$maker->inline_keyboard->inline_keyboard[0],
+					utility::inline(T_("Next poll"), "ask/make")
+				);
+				foreach ($maker->inline_keyboard->inline_keyboard[0] as $key => $value) {
+					if(isset($maker->inline_keyboard->inline_keyboard[0][$key]['callback_data']))
+					{
+					$maker->inline_keyboard->inline_keyboard[0][$key]['callback_data'] = $value['callback_data'] . '/last';
+					}
+				}
+			}
 		}
 
  		callback_query::edit_message($maker->make());

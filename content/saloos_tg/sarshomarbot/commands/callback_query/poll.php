@@ -14,9 +14,29 @@ class poll
 		if(count($_data_url) > 1)
 		{
 			$method = $_data_url[1];
-			return self::$method($_query, $_data_url);
+			$return = self::$method($_query, $_data_url);
+		}
+		if(is_array($return))
+		{
+			return $return;
 		}
 		return [];
+	}
+
+	public static function list($_query, $_data_url)
+	{
+		$count = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'pagenation' => false]);
+		if(is_null($_query))
+		{
+			$start = 0;
+			$end = 5;
+		}
+		$query_result = \lib\db\polls::search(null, [
+			'user_id'=> bot::$user_id,
+			'pagenation' => false,
+			'start_limit' => $start,
+			'end_limit' => $end
+			]);
 	}
 
 	public static function discard($_query, $_data_url)
