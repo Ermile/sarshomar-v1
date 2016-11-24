@@ -26,17 +26,36 @@ class poll
 	public static function list($_query, $_data_url)
 	{
 		$count = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'pagenation' => false]);
+		$message_per_page = 5;
+		$total_page = ceil($count / $message_per_page);
 		if(is_null($_query))
 		{
 			$start = 0;
-			$end = 5;
+			$end = $message_per_page;
+			$page = 1;
 		}
 		$query_result = \lib\db\polls::search(null, [
 			'user_id'=> bot::$user_id,
 			'pagenation' => false,
 			'start_limit' => $start,
-			'end_limit' => $end
+			'end_limit' => $end,
+			'my_poll' => true
 			]);
+		$message = $page . "/" . $total_page . "\n";
+		foreach ($query_result as $key => $value) {
+			$message .= htmlentities($value['title']);
+			$message .= " ($value[total])";
+			$message .= "\n";
+			$short_link = \lib\utility\shortURL::encode($value['id']);
+			$message .= "/sp\_$short_link";
+			$message .= "\n\n";
+		}
+
+		if(is_null($_query))
+		{
+			return ['text' => $message];
+		}
+		// handle::send_log($query_result);
 	}
 
 	public static function discard($_query, $_data_url)
@@ -82,12 +101,12 @@ class poll
 			$maker->message->add_telegram_tag();
 
 			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_guest_option(true);
+			$maker->inline_keyboard->add_guest_option(['skip' => false]);
 
 			$return = $maker->make();
 			$return["response_callback"] = utility::response_expire('ask', [
 				'reply_markup' => [
-					'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(true)]
+					'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(['skip' => false])]
 				]
 			]);
 			callback_query::edit_message($return);

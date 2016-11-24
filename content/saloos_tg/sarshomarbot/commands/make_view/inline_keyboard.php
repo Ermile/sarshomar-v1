@@ -71,31 +71,38 @@ class inline_keyboard
 		$this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
 	}
 
-	public function get_guest_option($_no_skip = false, $_no_update = false, $_no_share = false, $_no_report = true)
+	public function get_guest_option($_options = [])
 	{
+		$options = array_merge([
+			'skip' => true,
+			'update' => true,
+			'share' => true,
+			'report' => false,
+			'my_option' => false
+			], $_options);
 		$return = [];
-		if(!$_no_skip)
+		if($options['skip'])
 		{
 			$return[] = [
 				'text' => T_("Skip"),
 				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0'
 			];
 		}
-		if(!$_no_update)
+		if($options['update'])
 		{
 			$return[] = [
 				'text' => T_("Update"),
 				'callback_data' => "ask/update/" . $this->class->short_link
 			];
 		}
-		if(!$_no_share)
+		if($options['share'])
 		{
 			$return[] = [
 				"text" => T_("Share"),
 				"switch_inline_query" => 'sp_'.$this->class->short_link
 			];
 		}
-		if(!$_no_report)
+		if($options['report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
@@ -103,6 +110,34 @@ class inline_keyboard
 			];
 		}
 		return $return;
+	}
+
+	public function add_change_status()
+	{
+		if($this->class->user_id == $this->class->query_result['user_id'])
+		{
+			$status = $this->class->query_result['status'];
+			$this_row = $this->count();
+
+			if($status == 'publish')
+			{
+				$this->inline_keyboard[$this_row][] = [
+					"text" => T_("Pause"),
+					"callback_data" => 'poll/pause/'.$this->class->short_link
+				];
+			}
+			elseif($status == 'pause')
+			{
+				$this->inline_keyboard[$this_row][] = [
+					"text" => T_("Publish"),
+					"callback_data" => 'poll/publish/'.$this->class->short_link
+				];
+				$this->inline_keyboard[$this_row][] = [
+					"text" => T_("Delete"),
+					"callback_data" => 'poll/delete/'.$this->class->short_link
+				];
+			}
+		}
 	}
 
 
