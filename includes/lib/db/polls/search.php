@@ -110,8 +110,16 @@ trait search
 
 		$where[] = " posts.post_type != 'post' ";
 
-		foreach ($_options as $key => $value) {
-			$where[] = " posts.`$key` = '$value' ";
+		foreach ($_options as $key => $value)
+		{
+			if(is_array($value))
+			{
+				$where[] = " posts.`$key` $value[0] $value[1] ";
+			}
+			else
+			{
+				$where[] = " posts.`$key` = '$value' ";
+			}
 		}
 
 		$where = join($where, " AND ");
