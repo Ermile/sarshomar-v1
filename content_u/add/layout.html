@@ -1,0 +1,244 @@
+{%extends display.main%}
+
+
+
+{%block feature_title%}
+	<div class="large element">
+		<label class="title" for="title" autocomplete="off">{%trans "Title"%}</label>
+		<input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
+	</div>
+{%endblock%}
+
+
+{%block feature_opts%}
+	<div class="input-group">
+	{%if answers is iterable%}
+		{%for key, value in answers%}
+			<div class="small element" data-number="{{key + 1}}" data-id="{{value.id}}">
+				<label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
+				<input class="input" type="text" name="answers_{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
+				<input type="hidden" name="answer_true_{{key + 1}}" value="{{value.meta.true}}">
+				<input type="hidden" name="answer_type_{{key + 1}}" value="{{value.meta.type}}">
+				<span class="fa fa-times delete"></span>
+			</div>
+		{%endfor%}
+	{%else%}{# if no answer found #}
+		<div class="small element" data-number="1">
+			<label class="title" for="answer1">{%trans "Answer"%} 1</label>
+			<input class="input" type="text" name="answers_1" id="answer1" autocomplete="off">
+			<input type="hidden" name="answer_true_1" data-true="true">
+			<input type="hidden" name="answer_type_1" data-type="type" value="text">
+			<span class="fa fa-check check"></span>
+			<span class="score"><input class="score" type="number" name=""></span>
+			<span class="fa fa-picture-o icon"></span>
+			<span class="fa fa-times delete"></span>
+		</div>
+		<div class="small element" data-number="2">
+			<label class="title" for="answer2">{%trans "Answer"%} 2</label>
+			<input class="input" type="text" name="answers_2" id="answer2" autocomplete="off">
+			<input type="hidden" name="answer_true_2" data-true="true">
+			<input type="hidden" name="answer_type_2" data-type="type"value="text">
+			<span class="fa fa-check check"></span>
+			<span class="score"><input class="score" type="number" name=""></span>
+			<span class="fa fa-picture-o icon"></span>
+			<span class="fa fa-times delete"></span>
+		</div>
+	{%endif%}
+	</div>
+{%endblock%}
+
+
+{%block feature_tree%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
+			<label for="tree" class="check-box"></label>
+			<label for="tree">{%trans "Tree"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+{%block feature_score%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
+			<label for="score" class="check-box"></label>
+			<label for="score">{%trans "Score"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+
+{%block feature_other%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
+			<label for="descriptive" class="check-box"></label>
+			<label for="descriptive">{%trans "Descriptive"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+{%block feature_multiple%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_multiple_choice" id="multiple_choice" {%if poll.meta.multiple_choice%}checked{%endif%}>
+			<label for="multiple_choice" class="check-box"></label>
+			<label for="multiple_choice">{%trans "Multiple Choice"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+{%block feature_randomsort%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_random_sort" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
+			<label for="random_sort" class="check-box"></label>
+			<label for="random_sort">{%trans "Random Sort"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+{%block feature_hiddenresult%}
+	{%if perm.hidden_result.admin%}
+		<div>
+			<span class="checkbox">
+				<input type="checkbox" name="meta_hidden_result" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
+				<label for="hidden_result" class="check-box"></label>
+				<label for="hidden_result">{%trans "Hidden Result"%}</label>
+			</span>
+		</div>
+	{%endif%}
+{%endblock%}
+
+
+{%block feature_trueanswer%}
+	<div>
+		<span class="checkbox">
+			<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%}>
+			<label for="true_answer" class="check-box"></label>
+			<label for="true_answer">{%trans "True Answer"%}</label>
+		</span>
+	</div>
+{%endblock%}
+
+
+{%block feature_completeprofile%}
+	{% if perm.complete_profile.admin %}
+		<div>
+			<select class="complete-profile" name="meta_profile">
+				<option value="">{%trans "Complete Profile"%}</option>
+				{%for key, value in profile_lock%}{%set t_value = key %}
+				<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
+				{%endfor%}
+			</select>
+		</div>
+	{%endif%}
+{%endblock%}
+
+
+{%block feature_treebox%}
+	<div class="tree-container">
+		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
+		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
+		<div class="row tree-fields">
+			<div class="span8"><input type="text" name="" autocomplete="off" placeholder='{%trans "Search"%}'></div>
+			<div class="span4">
+			<select id="repository">
+				<option value="sarshomar" >{%trans "Sarshomar" %}</option>
+				<option value="personal" >{%trans "Personal" %}</option>
+			</select>
+			</div>
+		</div>
+		<ul class="tree-result-list">
+			<li>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+				<ul class="options">
+					<li>
+						<span class="checkbox">
+							<input type="checkbox" name="" id="x1">
+							<label class="check-box" for="x1"></label>
+						</span>
+						<label for="x1">Lorem ipsum dolor sit amet, consectetur adipisicing
+					tempor incididunt ut labore et dolore magna aliqua.</label>
+					</li>
+					<li>
+						<span class="checkbox">
+							<input type="checkbox" name="" id="x2">
+							<label class="check-box" for="x2"></label>
+						</span>
+						<label for="x2">Lorem ipsum dolor sit amet, consectetur adipisicing
+						tempor incididunt ut labore et dolore magna aliqua.</label>
+					</li>
+					<li>
+						<span class="checkbox">
+							<input type="checkbox" name="" id="x3">
+							<label class="check-box" for="x3"></label>
+						</span>
+						<label for="x3">Lorem ipsum dolor sit amet, consectetur adipisicing
+					tempor incididunt ut labore et dolore magna aliqua.</label>
+					</li>
+					<li>
+						<span class="checkbox">
+							<input type="checkbox" name="" id="x4">
+							<label class="check-box" for="x4"></label>
+						</span>
+						<label for="x4">Lorem ipsum dolor sit amet, consectetur adipisicing
+					tempor incididunt ut labore et dolore magna aliqua.</label>
+					</li>
+				</ul>
+			</li>
+			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
+		</ul>
+	</div>
+{%endblock%}
+
+
+{%block feature_summary%}
+	<div class="panel-text">
+		<div class="title">
+			<span><i class="fa fa-plus"></i> Summary</span>
+		</div>
+		<textarea name="summary">{{poll.meta.desc}}</textarea>
+	</div>
+{%endblock%}
+
+
+{%block feature_content%}
+	<div class="panel-text">
+		<div class="title">
+			<span><i class="fa fa-plus"></i> Description</span>
+		</div>
+		<textarea name="description">{{poll.content}}</textarea>
+	</div>
+{%endblock%}
+
+
+{%block feature_btn%}
+	<div class="row">
+		<div class="span7">
+			<div class="btn-container">
+				<input type="hidden" name="n" value="v" id="submit-form">
+				<nav>
+					<button class="btn" send-name="filter" value="filter">{%trans "Filter"%}</button>
+					{%if survey_mod%}
+					<button class="primary btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+					{%else%}
+					<button class="primary btn" send-name="survey" value="survey">{%trans "Add Poll"%}</button>
+					{%endif%}
+				</nav>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+
+
+

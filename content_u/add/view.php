@@ -1,22 +1,34 @@
 <?php
 namespace content_u\add;
 
-class view extends \mvc\view
+class view extends \content_u\home\view
 {
 
 	function config()
 	{
-		$this->include->fontawesome = true;
+		parent::config();
+
+		// add all template of question into new file
+		$this->data->template['add']['layout']   = 'content_u/add/layout.html';
+
+		$this->data->template['add']['multiple'] = 'content_u/add/template-multiple.html';
+		$this->data->template['add']['text']     = 'content_u/add/template-text.html';
+		$this->data->template['add']['notify']   = 'content_u/add/template-notify.html';
+		$this->data->template['add']['range']    = 'content_u/add/template-range.html';
+		$this->data->template['add']['upload']   = 'content_u/add/template-upload.html';
+
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
 		{
 			$profile_lock = \lib\db\filters::support_filter();
 			$profile = [];
-			foreach ($profile_lock as $key => $value) {
+			foreach ($profile_lock as $key => $value)
+			{
 				if(is_array($value))
 				{
 					$trans = [];
-					foreach ($value as $k => $v) {
+					foreach ($value as $k => $v)
+					{
 						$trans[] = T_($v);
 					}
 					$value = join($trans, ",");

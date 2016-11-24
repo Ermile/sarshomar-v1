@@ -11,7 +11,9 @@ class view extends \mvc\view
 	 */
 	function config()
 	{
-		$this->include->fontawesome = true;
+		$this->include->fontawesome              = true;
+		$this->data->template['progress']        = 'content_u/template/progress.html';
+
 		if($this->module() === 'home')
 		{
 			$this->data->bodyclass        = 'dashboard';

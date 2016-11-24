@@ -243,16 +243,16 @@ route(/\@\/add/, function()
 		}
 	});
 
-	$(this).on('change', '.tree > .ac-checkbox input[type="checkbox"]', function(event) {
+	$(this).on('change', '#tree', function(event)
+	{
 		if (this.checked)
 	    {
-	    	$('.tree .stuff').show().css('display', 'flex');
-	        $('.tree-list').show();
+			console.log(33)
+	        $('.tree-container').slideDown();
 	    }
 	    else
 	    {
-	    	$('.tree .stuff').hide();
-	        $('.tree-list').hide();
+	        $('.tree-container').slideUp();
 	    }
 	});
 });

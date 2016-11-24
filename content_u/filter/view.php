@@ -1,7 +1,7 @@
 <?php
 namespace content_u\filter;
 
-class view extends \mvc\view
+class view extends \content_u\home\view
 {
 
 	/**

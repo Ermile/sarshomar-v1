@@ -1,4 +1,4 @@
-{%extends display.main%}
+{%extends template.add.layout%}
 
 {%block content%}
 <div class="main pad">
@@ -12,234 +12,60 @@
           <div class="row">
             <div class="type">
               <ul class="tabs">
-                <li data-tab="multiple_choice" class="active"><i class="fa fa-check" aria-hidden="true"></i> <span>{%trans "Multiple Choice"%}</span></li>
-                <li data-tab="descriptive"><i class="fa fa-pencil" aria-hidden="true"></i> <span>{%trans "Descriptive"%}</span></li>
-                <li data-tab="notification"><i class="fa fa-bell" aria-hidden="true"></i> <span>{%trans "Notification"%}</span></li>
-                <li data-tab="upload"><i class="fa fa-upload" aria-hidden="true"></i> <span>{%trans "Upload"%}</span></li>
-                <li data-tab="starred"><i class="fa fa-star" aria-hidden="true"></i> <span>{%trans "Starred"%}</span></li>
-                <li data-tab="numerical"><i class="fa fa-sitemap" aria-hidden="true"></i> <span>{%trans "Numerical"%}</span></li>
-                <li data-tab="sort"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span>{% trans "Sortable"%}</span></li>
+                <li data-tab="multiple_choice" class="active"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></li>
+                <li data-tab="descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></li>
+                <li data-tab="notification"><i class="fa fa-bell"></i> <span>{%trans "Notification"%}</span></li>
+                <li data-tab="upload"><i class="fa fa-upload"></i> <span>{%trans "Upload"%}</span></li>
+                <li data-tab="range"><i class="fa fa-star"></i> <span>{%trans "range"%}</span></li>
               </ul>
             </div>
+            {{block('feature_title')}}
             <ul class="tab">
               <li id="tab-multiple_choice" class="active">
-                <div class="large element">
-                  <label class="title" for="title" autocomplete="off">{%trans "Title"%}</label>
-                  <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
-                </div>
                 <div class="padding-box">
-                  <div class="input-group">
-                  {%if answers is iterable%}
-                    {%for key, value in answers%}
-                    <div class="small element" data-number="{{key + 1}}" data-id="{{value.id}}">
-                      <label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
-                      <input class="input" type="text" name="answers_{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
-                      <input type="hidden" name="answer_true_{{key + 1}}" value="{{value.meta.true}}">
-                      <input type="hidden" name="answer_type_{{key + 1}}" value="{{value.meta.type}}">
-                      <span class="fa fa-times delete" aria-hidden="true"></span>
-                    </div>
-                    {%endfor%}
-                  {%else%}{# if no answer found #}
-                    <div class="small element" data-number="1">
-                      <label class="title" for="answer1">{%trans "Answer"%} 1</label>
-                      <input class="input" type="text" name="answers_1" id="answer1" autocomplete="off">
-                      <input type="hidden" name="answer_true_1" data-true="true">
-                      <input type="hidden" name="answer_type_1" data-type="type" value="text">
-                      <span class="fa fa-check check"></span>
-                      <span class="score"><input class="score" type="number" name=""></span>
-                      <span class="fa fa-picture-o icon" aria-hidden="true"></span>
-                      <span class="fa fa-times delete" aria-hidden="true"></span>
-                    </div>
-                    <div class="small element" data-number="2">
-                      <label class="title" for="answer2">{%trans "Answer"%} 2</label>
-                      <input class="input" type="text" name="answers_2" id="answer2" autocomplete="off">
-                      <input type="hidden" name="answer_true_2" data-true="true">
-                      <input type="hidden" name="answer_type_2" data-type="type"value="text">
-                      <span class="fa fa-check check"></span>
-                      <span class="score"><input class="score" type="number" name=""></span>
-                      <span class="fa fa-picture-o icon" aria-hidden="true"></span>
-                      <span class="fa fa-times delete" aria-hidden="true"></span>
-                    </div>
-                  {%endif%}
-                  </div><!-- /.input-group -->
-                  <div class="row auto">
-                    <div class="span4 checkbox-group">
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
-                          <label for="descriptive" class="check-box"></label>
-                          <label for="descriptive">{%trans "Descriptive"%}</label>
-                        </span>
-                      </div>
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
-                          <label for="score" class="check-box"></label>
-                          <label for="score">{%trans "Score"%}</label>
-                        </span>
-                      </div>
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
-                          <label for="tree" class="check-box"></label>
-                          <label for="tree">{%trans "Tree"%}</label>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="span4 checkbox-group">
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_multiple_choice" id="multiple_choice" {%if poll.meta.multiple_choice%}checked{%endif%}>
-                          <label for="multiple_choice" class="check-box"></label>
-                          <label for="multiple_choice">{%trans "Multiple Choice"%}</label>
-                        </span>
-                      </div>
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_random_sort" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
-                          <label for="random_sort" class="check-box"></label>
-                          <label for="random_sort">{%trans "Random Sort"%}</label>
-                        </span>
-                      </div>
-                      {%if perm.hidden_result.admin%}
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_hidden_result" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
-                          <label for="hidden_result" class="check-box"></label>
-                          <label for="hidden_result">{%trans "Hidden Result"%}</label>
-                        </span>
-                      </div>
-                      {%endif%}
-                    </div>
-                    <div class="span4 checkbox-group">
-                      <div>
-                        <span class="checkbox">
-                          <input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%}>
-                          <label for="true_answer" class="check-box"></label>
-                          <label for="true_answer">{%trans "True Answer"%}</label>
-                        </span>
-                      </div>
-                      {% if perm.complete_profile.admin %}
-                      <div>
-                        <select class="complete-profile" name="meta_profile">
-                          <option value="">{%trans "Complete Profile"%}</option>
-                          {%for key, value in profile_lock%}
-                          {%set t_value = key %}
-                          <option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
-                          {%endfor%}
-                        </select>
-                      </div>
-                      {%endif%}
-                    </div>
+                  {{block('feature_opts')}}
+                </div>
+                <div class="row auto">
+                  <div class="span4 checkbox-group">
+                    {{block('feature_other')}}
+                    {{block('feature_score')}}
                   </div>
-
-                  <div class="tree-container">
-                    <input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
-                    <input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
-                    <div class="row tree-fields">
-                      <div class="span8"><input type="text" name="" autocomplete="off" placeholder='{%trans "Search"%}'></div>
-                      <div class="span4">
-                        <select id="repository">
-                          <option value="sarshomar" >{%trans "Sarshomar" %}</option>
-                          <option value="personal" >{%trans "Personal" %}</option>
-                        </select>
-                      </div>
-                    </div>
-                    <ul class="tree-result-list">
-                      <li>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                        <ul class="options">
-                          <li>
-                            <span class="checkbox">
-                              <input type="checkbox" name="" id="xx">
-                              <label class="check-box" for="xx"></label>
-                            </span>
-                            <label for="xx">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</label>
-                          </li>
-                          <li>
-                            <span class="checkbox">
-                              <input type="checkbox" name="" id="xx">
-                              <label class="check-box" for=""></label>
-                            </span>
-                            <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</label>
-                          </li>
-                          <li>
-                            <span class="checkbox">
-                              <input type="checkbox" name="" id="xx">
-                              <label class="check-box" for=""></label>
-                            </span>
-                            <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</label>
-                          </li>
-                          <li>
-                            <span class="checkbox">
-                              <input type="checkbox" name="" id="xx">
-                              <label class="check-box" for=""></label>
-                            </span>
-                            <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</label>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                      </li>
-                      <li>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                      </li>
-                      <li>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                      </li>
-                      <li>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-                      </li>
-                    </ul>
+                  <div class="span4 checkbox-group">
+                    {{block('feature_multiple')}}
+                    {{block('feature_randomsort')}}
                   </div>
-
-                  <div class="panel-text">
-                    <div class="title">
-                      <span><i class="fa fa-plus" aria-hidden="true"></i> Summary</span>
-                    </div>
-                    <textarea name="summary">{{poll.meta.desc}}</textarea>
+                  <div class="span4 checkbox-group">
+                    {{block('feature_hiddenresult')}}
+                    {{block('feature_trueanswer')}}
+                    {{block('feature_completeprofile')}}
                   </div>
-
-                  <div class="panel-text">
-                    <div class="title">
-                      <span><i class="fa fa-plus" aria-hidden="true"></i> Description</span>
-                    </div>
-                    <textarea name="description">{{poll.content}}</textarea>
-                  </div>
-                </div><!-- /.padding-box -->
+                </div>
               </li>
-              <li id="tab-descriptive"></li>
-              <li id="tab-notification"></li>
-              <li id="tab-upload">{%trans "Upload"%}</li>
-              <li id="tab-starred">{%trans "Starred"%}</li>
-              <li id="tab-numerical">{%trans "Numerical"%}</li>
-              <li id="tab-sort">{%trans "Sortable"%}</li>
-            </ul><!-- /.tab -->
-          </div><!-- /.row -->
 
-        </div><!-- /.span8 -->
+              <li id="tab-descriptive">
+              </li>
 
-        <div class="row">
-          <div class="span7">
-            <div class="btn-container">
-              <input type="hidden" name="n" value="v" id="submit-form">
-              <nav>
-                <button class="btn" send-name="filter" value="filter">{%trans "Filter"%}</button>
-              {%if survey_mod%}
-                <button class="primary btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-              {%else%}
-                <button class="primary btn" send-name="survey" value="survey">{%trans "Add Poll"%}</button>
-              {%endif%}
-              </nav>
-            </div>
+              <li id="tab-notification">
+              </li>
+
+              <li id="tab-upload">
+                {{block('feature_filetype')}}
+                {{block('feature_filesizrange')}}
+              </li>
+
+              <li id="tab-range">
+                {{block('feature_star')}}
+              </li>
+            </ul>
+
+            {{block('feature_tree')}}
+            {{block('feature_treebox')}}
+            {{block('feature_summary')}}
+            {{block('feature_content')}}
           </div>
         </div>
-      </div><!-- /.row.auto -->
+        {{block('feature_btn')}}
+      </div>
     </form>
   </div>
 </div>
