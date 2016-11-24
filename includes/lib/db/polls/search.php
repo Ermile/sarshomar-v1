@@ -92,6 +92,8 @@ trait search
 		unset($_options['get_last']);
 		unset($_options['my_poll']);
 		unset($_options['admin']);
+		unset($_options['start_limit']);
+		unset($_options['end_limit']);
 
 		$where[] = " posts.post_type != 'post' ";
 
