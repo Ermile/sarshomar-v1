@@ -110,6 +110,10 @@ class message
 	}
 	public function set_answer_id($_answer_id = null)
 	{
+		if(!is_null($_answer_id) && !is_bool($_answer_id) && preg_match("/^\d$/", $_answer_id))
+		{
+			$_answer_id = (int) $_answer_id;
+		}
 		if(isset($this->answer_id) && is_int($this->answer_id))
 		{
 			return $this->answer_id;
