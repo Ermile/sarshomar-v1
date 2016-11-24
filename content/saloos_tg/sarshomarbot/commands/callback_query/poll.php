@@ -107,7 +107,7 @@ class poll
 		}
 		if($poll_id)
 		{
-			self::get_after_change($poll_id, true);
+			self::get_after_change($poll_id, false);
 		}
 	}
 
@@ -116,7 +116,7 @@ class poll
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
 		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
-		self::get_after_change($poll_id);
+		self::get_after_change($poll_id, $_query);
 	}
 
 	public static function publish($_query, $_data_url)
@@ -124,7 +124,7 @@ class poll
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
 		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
-		self::get_after_change($poll_id);
+		self::get_after_change($poll_id, $_query);
 	}
 
 	public static function delete($_query, $_data_url)
@@ -142,24 +142,35 @@ class poll
 		callback_query::edit_message($return);
 	}
 
-	public static function get_after_change($_poll_id, $_inline_poll = false)
+	public static function get_after_change($_poll_id, $_query = false)
 	{
+		$response = session::get('expire', 'inline_cache', 'ask');
+		$r_message_id = $response->result->message_id;
+		$r_chat_id = $response->result->chat->id;
+
+		$q_message_id = $_query['message']['message_id'];
+		$q_chat_id = $_query['message']['chat']['id'];
+
+		if($r_message_id == $q_message_id && $r_chat_id == $q_chat_id)
+		{
+			session::remove('expire', 'inline_cache', 'ask');
+		}
+
 		\lib\storage::set_disable_edit(true);
 		$maker = new make_view(bot::$user_id, $_poll_id, true);
 		$maker->message->add_title();
-		$maker->message->add_poll_chart();
-		$maker->message->add_poll_list();
+		$maker->message->add_poll_chart(true);
+		$maker->message->add_poll_list(true);
 		$maker->message->add_telegram_link();
 		$maker->message->add_telegram_tag();
 
-		if($_inline_poll)
+		if(!$_query)
 		{
 			$maker->inline_keyboard->add_poll_answers();
 		}
 		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
-
 		$return = $maker->make();
-		if($_inline_poll)
+		if(!$_query)
 		{
 			$return["response_callback"] = utility::response_expire('ask', [
 				'reply_markup' => [

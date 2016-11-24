@@ -23,8 +23,8 @@ class ask
 	{
 		$maker = new make_view(bot::$user_id, $_short_link);
 		if(
-			$maker->query_result['status'] !== 'publish' &&
-			$maker->query_result['user_id'] !== bot::$user_id
+			$maker->query_result['status'] != 'publish' &&
+			$maker->query_result['user_id'] != bot::$user_id
 			)
 		{
 			$return = ['text' => T_("Answer not found")];
@@ -40,7 +40,10 @@ class ask
 					return $_data .'/last';
 				}];
 			}
-			$maker->inline_keyboard->add_poll_answers($set_last);
+			if($maker->query_result['status'] == 'publish')
+			{
+				$maker->inline_keyboard->add_poll_answers($set_last);
+			}
 
 			if($maker->query_result['user_id'] == bot::$user_id)
 			{
@@ -59,12 +62,14 @@ class ask
 			$return = $maker->make();
 
 			$on_expire = $maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true]);
-
-			$return["response_callback"] = utility::response_expire('ask', [
-				'reply_markup' => [
-					'inline_keyboard' => [$on_expire]
-				]
-			]);
+			if($maker->query_result['status'] == 'publish')
+			{
+				$return["response_callback"] = utility::response_expire('ask', [
+					'reply_markup' => [
+						'inline_keyboard' => [$on_expire]
+					]
+				]);
+			}
 		}
 		if(is_array($_query))
 		{
@@ -77,17 +82,16 @@ class ask
 	public static function poll($_query, $_data_url)
 	{
 		$poll_short_link = $_data_url[2];
-		$answer_id = $_data_url[3];
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		if(\lib\utility\answers::is_answered(bot::$user_id, $poll_id))
+		$save = \lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
+		$return_text = "❌ ";
+		$answer_id = null;
+		if($save['status'])
 		{
-			$return_text = "✅ you answerd to this poll";
+			$answer_id = $save['opt'];
+			$return_text = "✅ ";
 		}
-		else
-		{
-			\lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
-			$return_text = "✅ save your poll";
-		}
+		$return_text .= $save['msg'];
 		if(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');

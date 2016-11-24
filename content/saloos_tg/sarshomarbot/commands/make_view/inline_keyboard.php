@@ -95,7 +95,7 @@ class inline_keyboard
 				'callback_data' => "ask/update/" . $this->class->short_link
 			];
 		}
-		if($options['share'])
+		if($options['share'] && $this->class->query_result['status'] == 'publish')
 		{
 			$return[] = [
 				"text" => T_("Share"),
