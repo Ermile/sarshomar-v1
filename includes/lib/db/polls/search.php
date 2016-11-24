@@ -33,6 +33,7 @@ trait search
 			"get_last"    => false,
 			"my_poll"     => false,
 			"admin"       => false,
+			"order"		  => "ASC",
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -77,6 +78,11 @@ trait search
 		{
 			$order = " ORDER BY posts.id DESC ";
 		}
+		else
+		{
+			$order = " ORDER BY posts.id $_options[order] ";
+		}
+
 
 		// if in my poll retur all poll
 		if($_options['my_poll'] === false)
@@ -87,6 +93,7 @@ trait search
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
+
 
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
@@ -99,6 +106,7 @@ trait search
 		unset($_options['admin']);
 		unset($_options['start_limit']);
 		unset($_options['end_limit']);
+		unset($_options['order']);
 
 		$where[] = " posts.post_type != 'post' ";
 
