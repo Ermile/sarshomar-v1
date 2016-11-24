@@ -132,9 +132,32 @@ class polls
 	}
 
 
+
+	/**
+	 * check the post meta of one poll
+	 *
+	 * @param      <type>   $_poll_id  The poll identifier
+	 * @param      <type>   $_meta     The meta
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public static function check_meta($_poll_id, $_meta)
 	{
-		return true;
+		$where =
+		[
+			'post_id'       => $_poll_id,
+			'option_cat'    => 'poll_'. $_poll_id,
+			'option_key'    => 'meta',
+			'option_value'  => $_meta,
+			'option_status' => 'enable'
+		];
+
+		$result = \lib\db\options::get($where);
+		if($result && !empty($result))
+		{
+			return true;
+		}
+		return false;
 	}
 }
 ?>
