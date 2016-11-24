@@ -80,10 +80,7 @@ class answers
 		// opt : answers of this poll
 		// answers : count of people answered to this poll
 		// desc : description of answers
-		$meta =
-		[
-			'opt'     	=> $opt_meta
-		];
+		$meta = ['opt' 	=> $opt_meta];
 
 		// merge old meta and new meta in post meta
 		$set_meta = \lib\db\polls::merge_meta($meta, $_args['poll_id']);
@@ -127,15 +124,19 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
-		$force = false;
-		if(isset($_option['force']) && $_option['force'])
+		$in_update = false;
+		if(isset($_option['in_update']) && $_option['in_update'])
 		{
-			$force = true;
+			$in_update = true;
 		}
-		unset($_option['force']);
-		// cehc is answer to this poll or no
-		if(!$force)
+		unset($_option['in_update']);
+
+		// if we not in update mod we need to check user answer
+		// but in update mod we need to save the user answer whitout check old answer
+		// the old answer was check in self::update()
+		if(!$in_update)
 		{
+			// cehck is answer to this poll or no
 			if(self::is_answered($_user_id, $_poll_id))
 			{
 				if(\lib\db\polls::check_meta($_poll_id, "update_result"))
@@ -145,6 +146,7 @@ class answers
 				return false;
 			}
 		}
+
 		$skipped = false;
 		$default_option =
 		[
@@ -227,16 +229,19 @@ class answers
 
 		$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 
-		// set dashboard data
-		if($skipped)
+		if(!$in_update)
 		{
-			\lib\utility\profiles::set_dashboard_data($_user_id, "poll_skipped");
-			\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
-		}
-		else
-		{
-			\lib\utility\profiles::set_dashboard_data($_user_id, "poll_answered");
-			\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
+			// set dashboard data
+			if($skipped)
+			{
+				\lib\utility\profiles::set_dashboard_data($_user_id, "poll_skipped");
+				\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
+			}
+			else
+			{
+				\lib\utility\profiles::set_dashboard_data($_user_id, "poll_answered");
+				\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
+			}
 		}
 
 		return \lib\debug::$status;
@@ -457,7 +462,7 @@ class answers
 
 		foreach ($must_insert as $key => $value)
 		{
-			self::save($_user_id, $_poll_id, [$key => $value], ['force' => true]);
+			self::save($_user_id, $_poll_id, [$key => $value], ['in_update' => true]);
 			// set the poll stat in save function
 		}
 		return true;
