@@ -11,22 +11,6 @@ class handle
 
 	public static function exec($_cmd)
 	{
-		if($_cmd['command'] == '/maker')
-		{
-			$maker = new make_view(bot::$user_id, 4);
-			$maker->message->add_title();
-			$maker->message->add_poll_chart(true);
-			$maker->message->add_poll_list(true);
-			$maker->message->add_telegram_link();
-			$maker->message->add_telegram_tag();
-			$maker->message->add('testLine', '#hasan');
-
-			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_poll_skip_share();
-			self::send_log($maker->make());
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'get']);
-			return [];
-		}
 		// if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
 		// 	bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
 		// 	exit();

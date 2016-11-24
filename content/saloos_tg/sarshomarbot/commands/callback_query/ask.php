@@ -22,7 +22,6 @@ class ask
 	public static function make($_query, $_data_url, $_short_link = null)
 	{
 		$maker = new make_view(bot::$user_id, $_short_link);
-		handle::send_log($maker->query_result);
 		if(
 			$maker->query_result['status'] !== 'publish' &&
 			$maker->query_result['user_id'] !== bot::$user_id
@@ -33,9 +32,6 @@ class ask
 		else
 		{
 			$maker->message->add_title();
-			$maker->message->add_poll_list(null, false);
-			$maker->message->add_telegram_link();
-			$maker->message->add_telegram_tag();
 
 			$set_last = [];
 			if(is_null($_short_link))
@@ -48,16 +44,21 @@ class ask
 
 			if($maker->query_result['user_id'] == bot::$user_id)
 			{
-				$maker->inline_keyboard->add_guest_option();
+				$maker->inline_keyboard->add_guest_option(['skip'=> false, 'poll_option' => true]);
+				$maker->message->add_poll_chart(true);
+				$maker->message->add_poll_list(true);
 			}
 			else
 			{
 				$maker->inline_keyboard->add_guest_option(['update' => false, 'report' => true]);
+				$maker->message->add_poll_list(null, false);
 			}
+			$maker->message->add_telegram_link();
+			$maker->message->add_telegram_tag();
 
 			$return = $maker->make();
 
-			$on_expire = $maker->inline_keyboard->get_guest_option(['skip' => false]);
+			$on_expire = $maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true]);
 
 			$return["response_callback"] = utility::response_expire('ask', [
 				'reply_markup' => [
@@ -121,7 +122,7 @@ class ask
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
-			$maker->inline_keyboard->add_guest_option(['skip' => false]);
+			$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
 
 			$on_edit->text 				= $maker->message->make();
 			$on_expire_keyboard = $maker->inline_keyboard->make();
@@ -158,7 +159,7 @@ class ask
 		$update_time = date("H:i:s", $_query['message']['edit_date']);
 		$maker->message->add('date', "_Last update: " . $update_time ."_");
 
-		$maker->inline_keyboard->add_guest_option(['skip' => false]);
+		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
 
 		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');
 		if($ask_expire->message_id == $_query['message']['message_id'] AND

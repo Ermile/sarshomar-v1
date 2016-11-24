@@ -78,7 +78,7 @@ class inline_keyboard
 			'update' => true,
 			'share' => true,
 			'report' => false,
-			'my_option' => false
+			'poll_option' => false
 			], $_options);
 		$return = [];
 		if($options['skip'])
@@ -109,30 +109,32 @@ class inline_keyboard
 				"url" => 'https://telegram.me/SarshomarBot?start=report_'.$this->class->short_link
 			];
 		}
+		if($options['poll_option'] )
+		{
+			$this->get_change_status($return);
+		}
 		return $return;
 	}
 
-	public function add_change_status()
+	public function get_change_status(&$_return)
 	{
 		if($this->class->user_id == $this->class->query_result['user_id'])
 		{
 			$status = $this->class->query_result['status'];
-			$this_row = $this->count();
-
 			if($status == 'publish')
 			{
-				$this->inline_keyboard[$this_row][] = [
+				$_return[] = [
 					"text" => T_("Pause"),
 					"callback_data" => 'poll/pause/'.$this->class->short_link
 				];
 			}
 			elseif($status == 'pause')
 			{
-				$this->inline_keyboard[$this_row][] = [
+				$_return[] = [
 					"text" => T_("Publish"),
 					"callback_data" => 'poll/publish/'.$this->class->short_link
 				];
-				$this->inline_keyboard[$this_row][] = [
+				$_return[] = [
 					"text" => T_("Delete"),
 					"callback_data" => 'poll/delete/'.$this->class->short_link
 				];

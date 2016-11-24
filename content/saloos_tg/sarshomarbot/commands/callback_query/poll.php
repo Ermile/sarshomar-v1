@@ -78,7 +78,7 @@ class poll
 		session::remove('poll', $poll_id);
 	}
 
-	public static function publish($_query, $_data_url)
+	public static function save($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
 
@@ -87,11 +87,17 @@ class poll
 		$poll_title = $poll_draft->title;
 		$poll_answers = (array) $poll_draft->answers;
 
-		$poll_id = \lib\db\polls::insert_quick([
-			'user_id' => bot::$user_id,
-			'title'=> $poll_title,
-			'answers' => $poll_answers
+		$answers = [];
+		foreach ($poll_answers as $key => $value) {
+			$answers[]['txt'] = $value;
+		}
+
+		$poll_id = \lib\db\polls::insert([
+			'user_id' 		=> bot::$user_id,
+			'post_title'	=> $poll_title,
+			'post_status' 	=> 'publish'
 		]);
+		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
 		if($poll_id)
 		{
 			$maker = new make_view(bot::$user_id, $poll_id, true);
@@ -111,6 +117,27 @@ class poll
 			]);
 			callback_query::edit_message($return);
 		}
+	}
+
+	public static function pause($_query, $_data_url)
+	{
+		$short_link = $_data_url[2];
+		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
+	}
+
+	public static function publish($_query, $_data_url)
+	{
+		$short_link = $_data_url[2];
+		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
+	}
+
+	public static function delete($_query, $_data_url)
+	{
+		$short_link = $_data_url[2];
+		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$result = \lib\db\polls::update(['post_status' => 'deleted'], $poll_id);
 	}
 }
 ?>

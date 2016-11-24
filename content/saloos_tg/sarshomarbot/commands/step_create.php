@@ -119,7 +119,7 @@ class step_create
 					'inline_keyboard' 		=> [
 						[
 						utility::inline(T_("Discard"), 'poll/discard/'.$poll_id),
-						utility::inline(T_("Publish"), 'poll/publish/'.$poll_id)
+						utility::inline(T_("Save"), 'poll/save/'.$poll_id)
 						]
 					]
 				]
