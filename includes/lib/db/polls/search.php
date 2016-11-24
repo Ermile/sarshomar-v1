@@ -70,6 +70,7 @@ trait search
 			$public_fields = self::$fields;
 			$limit = $_options['limit'];
 		}
+
 		// ------------------ get last
 		$order = null;
 		if($_options['get_last'])
@@ -77,10 +78,11 @@ trait search
 			$order = " ORDER BY posts.id DESC ";
 		}
 
-		// if in my poll retur all reaulr
+		// if in my poll retur all poll
 		if($_options['my_poll'] === false)
 		{
 			$where[] = " posts.post_status = 'publish' ";
+			$where[] = " posts.post_sarshomar = 1 ";
 		}
 
 		$start_limit = $_options['start_limit'];
@@ -104,14 +106,7 @@ trait search
 			$where[] = " posts.`$key` = '$value' ";
 		}
 
-		if(empty($where))
-		{
-			$where = [];
-		}
-		else
-		{
-			$where = join($where, " AND ");
-		}
+		$where = join($where, " AND ");
 
 		$search = null;
 		if($_string != null)
@@ -139,7 +134,6 @@ trait search
 		}
 		else
 		{
-
 			// in get count mode the $limit is null
 			if($limit)
 			{
@@ -151,8 +145,6 @@ trait search
 		{
 			$public_fields = " options.option_value AS 'faivorites', ". $public_fields;
 		}
-
-
 
 		$query =
 		"
