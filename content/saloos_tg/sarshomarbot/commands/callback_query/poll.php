@@ -92,30 +92,22 @@ class poll
 			$answers[]['txt'] = $value;
 		}
 
+		\lib\db::transaction();
+
 		$poll_id = \lib\db\polls::insert([
 			'user_id' 		=> bot::$user_id,
 			'post_title'	=> $poll_title,
-			'post_status' 	=> 'publish'
-		]);
+			'post_status' 	=> 'publish',
+			'post_type'		=> 'select'
+			]);
 		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
+		if(\lib\debug::$status)
+		{
+			\lib\db::commit();
+		}
 		if($poll_id)
 		{
-			$maker = new make_view(bot::$user_id, $poll_id, true);
-			$maker->message->add_title();
-			$maker->message->add_poll_list();
-			$maker->message->add_telegram_link();
-			$maker->message->add_telegram_tag();
-
-			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_guest_option(['skip' => false]);
-
-			$return = $maker->make();
-			$return["response_callback"] = utility::response_expire('ask', [
-				'reply_markup' => [
-					'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(['skip' => false])]
-				]
-			]);
-			callback_query::edit_message($return);
+			self::get_after_change($poll_id, true);
 		}
 	}
 
@@ -124,6 +116,7 @@ class poll
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
 		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
+		self::get_after_change($poll_id);
 	}
 
 	public static function publish($_query, $_data_url)
@@ -131,6 +124,7 @@ class poll
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
 		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
+		self::get_after_change($poll_id);
 	}
 
 	public static function delete($_query, $_data_url)
@@ -138,6 +132,42 @@ class poll
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
 		$result = \lib\db\polls::update(['post_status' => 'deleted'], $poll_id);
+		\lib\storage::set_disable_edit(true);
+		$maker = new make_view(bot::$user_id, $poll_id, true);
+		$maker->message->add_title(false);
+		$maker->message->add_poll_chart(true);
+		$maker->message->add_poll_list(true);
+		$maker->message->add('#' . T_('Deleted'));
+		$return = $maker->make();
+		callback_query::edit_message($return);
+	}
+
+	public static function get_after_change($_poll_id, $_inline_poll = false)
+	{
+		\lib\storage::set_disable_edit(true);
+		$maker = new make_view(bot::$user_id, $_poll_id, true);
+		$maker->message->add_title();
+		$maker->message->add_poll_chart();
+		$maker->message->add_poll_list();
+		$maker->message->add_telegram_link();
+		$maker->message->add_telegram_tag();
+
+		if($_inline_poll)
+		{
+			$maker->inline_keyboard->add_poll_answers();
+		}
+		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
+
+		$return = $maker->make();
+		if($_inline_poll)
+		{
+			$return["response_callback"] = utility::response_expire('ask', [
+				'reply_markup' => [
+				'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true])]
+				]
+				]);
+		}
+		callback_query::edit_message($return);
 	}
 }
 ?>
