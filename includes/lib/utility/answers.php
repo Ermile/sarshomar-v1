@@ -124,7 +124,19 @@ class answers
 	 */
 	public static function status($_status, $_opt, $_msg = null)
 	{
-		return ['status' => $_status, 'opt' => $_opt, 'msg' => $_msg];
+		$opt_index = null;
+		if(is_string($_opt))
+		{
+			$opt_index = explode("_", $_opt);
+			$opt_index = end($opt_index);
+		}
+		return
+		[
+			'status'    => $_status,
+			'opt'       => $_opt,
+			'opt_index' => $opt_index,
+			'msg'       => $_msg
+		];
 	}
 
 
