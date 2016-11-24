@@ -24,13 +24,15 @@ trait search
 
 		$default_options =
 		[
-			"get_count"  => false,
-			"pagenation" => true,
-			"limit"      => 10,
-			"login"      => false,
-			"get_last"	 => false,
-			"my_poll" 	 => false,
-			"admin" 	 => false,
+			"get_count"   => false,
+			"pagenation"  => true,
+			"limit"       => 10,
+			"start_limit" => 0,
+			"end_limit"   => 10,
+			"login"       => false,
+			"get_last"    => false,
+			"my_poll"     => false,
+			"admin"       => false,
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -132,9 +134,12 @@ trait search
 		}
 		else
 		{
+			$start_limit = $_options['start_limit'];
+			$end_limit   = $_options['end_limit'];
+			// in get count mode the $limit is null
 			if($limit)
 			{
-				$limit = " LIMIT 0, $limit ";
+				$limit = " LIMIT $start_limit, $end_limit ";
 			}
 		}
 		// ------------------ faivorites

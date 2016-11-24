@@ -66,20 +66,15 @@ class stat_polls
 			return false;
 		}
 
+		$opt_txt = null;
 		if(isset($_args['opt_txt']))
 		{
 			$opt_txt = $_args['opt_txt'];
 		}
-		else
-		{
-			$opt_txt = null;
-		}
 
-		$type = 'plus';
 		$plus = true;
-		if(isset($_args['type']))
+		if(isset($_args['type']) && $_args['type'] != 'plus')
 		{
-			$type = $_args['type'];
 			$plus = false;
 		}
 
