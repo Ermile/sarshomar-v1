@@ -134,7 +134,7 @@ class answers
 		[
 			'status'    => $_status,
 			'opt'       => $_opt,
-			'opt_index' => $opt_index,
+			'opt_index' => (int) $opt_index,
 			'msg'       => $_msg
 		];
 	}
