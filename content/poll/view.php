@@ -110,24 +110,24 @@ class view extends \mvc\view
 				// check next url and this post url to find load opt or no
 
 				// check this user answerd to this poll or no
-				if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
-				{
+				// if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
+				// {
 					// this user answered to this poll
 					// $post['post_meta'] = ['opt' => null];
-				}
-				else
-				{
+				// }
+				// else
+				// {
 					// users load poll from other link
 					if(isset($post['post_meta']['opt']))
 					{
 						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 					}
-				}
+				// }
 			}
 			else
 			{
-				// this user not logined  => remove answers button
-				// $post['post_meta'] = ['opt' => null];
+				// this user not logined  => remove answers opt
+				$post['post_meta'] = ['opt' => null];
 			}
 
 			// get post status to show in html page

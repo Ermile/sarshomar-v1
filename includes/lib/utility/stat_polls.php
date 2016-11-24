@@ -78,6 +78,18 @@ class stat_polls
 			$plus = false;
 		}
 
+		$port = "'site'";
+		if(isset($_args['port']))
+		{
+			$port = "'". $_args['port']. "'";
+		}
+
+		$subport = null;
+		if(isset($_args['subport']))
+		{
+			$subport = "'". $_args['subport']. "'";
+		}
+
 		/**
 		 * set count total answere + 1
 		 * to get sarshomar total answered
@@ -249,8 +261,8 @@ class stat_polls
 			// insert record
 			$set = [];
 
-			$set[] =  " port = 'site' ";
-			$set[] =  " subport = NULL ";
+			$set[] =  " port = $port ";
+			$set[] =  " subport = $subport ";
 			$set[] =  " post_id = $poll_id ";
 			$set[] =  " pollstats.result = '{\"$opt_key\": 1 }' ";
 			foreach ($support_filter as $key => $value) {

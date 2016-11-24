@@ -4,6 +4,14 @@ use \lib\utility;
 
 class model extends \mvc\model
 {
+
+	/**
+	 * Gets the comments.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     array   The comments.
+	 */
 	public function get_comments($_args)
 	{
 		$poll_id = $_args->match->url[0][2];
@@ -17,6 +25,11 @@ class model extends \mvc\model
 	}
 
 
+	/**
+	 * Gets the poll.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function get_poll($_args)
 	{
 		if(isset($_args->match->url[0]))
@@ -135,6 +148,7 @@ class model extends \mvc\model
 		// }
 	}
 
+
 	/**
 	 * save poll answers
 	 *
@@ -205,7 +219,7 @@ class model extends \mvc\model
 
 		$post = utility::post();
 		$opt  = [];
-
+		$session_opt = [];
 		if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
 		{
 			$session_opt = array_column($_SESSION['last_poll_opt'],'key');
@@ -230,7 +244,7 @@ class model extends \mvc\model
 			}
 		}
 
-		$result = null;
+		$result = ['status' => false, 'msg' => T_("error in save your answers")];
 		if(!empty($opt))
 		{
 			$result = \lib\utility\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
@@ -242,14 +256,16 @@ class model extends \mvc\model
 			}
 		}
 
-		if($result['status'])
+		$msg = isset($result['msg']) ? $result['msg'] : '';
+
+		if(isset($result['status']) && $result['status'])
 		{
-			\lib\debug::true($result['msg']);
+			\lib\debug::true($msg);
 			return ;
 		}
 		else
 		{
-			\lib\debug::error($result['msg']);
+			\lib\debug::error($msg);
 			return false;
 		}
 

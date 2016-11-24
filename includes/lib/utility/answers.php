@@ -220,8 +220,11 @@ class answers
 		}
 		else
 		{
-			if(substr($_answer, 0, 4) != 'opt_')
+			$num_of_opt_kye = null;
+
+			if(substr($_answer, 0, 4) !== 'opt_')
 			{
+				$num_of_opt_kye = $_answer;
 				$_answer = 'opt_'. $_answer;
 			}
 
@@ -231,8 +234,12 @@ class answers
 				$skipped = true;
 			}
 
-			$num_of_opt_kye = explode('_', $_answer);
-			$num_of_opt_kye = end($num_of_opt_kye);
+			if(!$num_of_opt_kye)
+			{
+				$num_of_opt_kye = explode('_', $_answer);
+				$num_of_opt_kye = end($num_of_opt_kye);
+			}
+
 			$result = self::save_polldetails($_user_id, $_poll_id, $num_of_opt_kye, $_option);
 			// save the poll lucked by profile
 			// update users profile
@@ -247,9 +254,8 @@ class answers
 			{
 				\lib\utility\stat_polls::set_poll_result($answers_details);
 			}
+			$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 		}
-
-		$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 
 		if(!$in_update)
 		{
