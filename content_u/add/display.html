@@ -44,7 +44,7 @@
                     {%for key, value in answers%}
                     <div class="element small" data-number="{{key + 1}}" data-id="{{value.id}}">
                       <label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
-                      <input class="input" type="text" name="{{value.option_key}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
+                      <input class="input" type="text" name="answers_{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
                       <input type="hidden" name="answer_true_{{key + 1}}" value="{{value.meta.true}}">
                       <input type="hidden" name="answer_type_{{key + 1}}" value="{{value.meta.type}}">
                       <span class="fa fa-times delete" aria-hidden="true"></span>
@@ -175,7 +175,6 @@
                       </div>
                     </div>
                   </div>
-
 
                   <div class="panel-text">
                     <div class="title">

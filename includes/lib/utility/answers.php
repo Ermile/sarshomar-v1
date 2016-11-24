@@ -124,6 +124,13 @@ class answers
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
+		// check poll status
+		$status = \lib\db\polls::get_poll_status($_poll_id);
+		if($status != 'publish')
+		{
+			return false;
+		}
+
 		$in_update = false;
 		if(isset($_option['in_update']) && $_option['in_update'])
 		{
