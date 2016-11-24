@@ -242,14 +242,14 @@ class model extends \mvc\model
 			}
 		}
 
-		if($result)
+		if($result['status'])
 		{
-			\lib\debug::true(T_("your answer saved"));
+			\lib\debug::true($result['msg']);
 			return ;
 		}
 		else
 		{
-			\lib\debug::error(T_("error in save your answer"));
+			\lib\debug::error($result['msg']);
 			return false;
 		}
 

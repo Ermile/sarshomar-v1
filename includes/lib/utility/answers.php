@@ -116,6 +116,19 @@ class answers
 
 
 	/**
+	 * return the status array
+	 *
+	 * @param      <type>   $_status  The status
+	 * @param      boolean  $_update  The update
+	 * @param      array    $_msg     The message
+	 */
+	public static function status($_status, $_opt, $_msg = null)
+	{
+		return ['status' => $_status, 'opt' => $_opt, 'msg' => $_msg];
+	}
+
+
+	/**
 	 * save user answer into options table
 	 * @param  [type] $_user_id [description]
 	 * @param  [type] $_poll_id [description]
@@ -128,7 +141,7 @@ class answers
 		$status = \lib\db\polls::get_poll_status($_poll_id);
 		if($status != 'publish')
 		{
-			return false;
+			return self::status(false, null, T_("poll is not published"));
 		}
 
 		$in_update = false;
@@ -141,16 +154,18 @@ class answers
 		// if we not in update mod we need to check user answer
 		// but in update mod we need to save the user answer whitout check old answer
 		// the old answer was check in self::update()
+
 		if(!$in_update)
 		{
 			// cehck is answer to this poll or no
-			if(self::is_answered($_user_id, $_poll_id))
+			$is_answered = self::is_answered($_user_id, $_poll_id);
+			if($is_answered)
 			{
 				if(\lib\db\polls::check_meta($_poll_id, "update_result"))
 				{
 					return self::update(...func_get_args());
 				}
-				return false;
+				return self::status(false, $is_answered, T_("poll can not update result"));
 			}
 		}
 
@@ -251,7 +266,14 @@ class answers
 			}
 		}
 
-		return \lib\debug::$status;
+		if(\lib\debug::$status)
+		{
+			return self::status(true, $_answer, T_("answer save"));
+		}
+		else
+		{
+			return self::status(false, null, T_("error in save your answer"));
+		}
 	}
 
 
@@ -472,7 +494,7 @@ class answers
 			self::save($_user_id, $_poll_id, [$key => $value], ['in_update' => true]);
 			// set the poll stat in save function
 		}
-		return true;
+		return self::status(true, $_answer, T_("poll answre updated"));
 	}
 }
 ?>
