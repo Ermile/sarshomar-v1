@@ -68,7 +68,7 @@ class utility
 
 	public static function microtime_id($_pref = 'id_')
 	{
-		return $_pref . preg_replace(".", "_", microtime(true));
+		return $_pref . preg_replace("[.]", "_", microtime(true));
 	}
 
 	public static function calc_vertical($_result)

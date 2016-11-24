@@ -17,9 +17,17 @@ class make_view
 			if(is_array($_poll))
 			{
 				$this->query_result = $_poll;
-				$this->poll_id = $this->query_result['id'];
-				$link_paths = preg_split("[\/]", $this->query_result['url']);
-				$this->short_link = $link_paths[1];
+				if(isset($this->query_result['id']))
+				{
+					$this->poll_id = $this->query_result['id'];
+					$link_paths = preg_split("[\/]", $this->query_result['url']);
+					$this->short_link = $link_paths[1];
+				}
+				else
+				{
+					$this->poll_id = 0;
+					$this->short_link = 0;
+				}
 			}
 			elseif(!$_is_poll_id)
 			{

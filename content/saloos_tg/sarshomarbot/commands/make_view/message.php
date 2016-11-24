@@ -86,15 +86,19 @@ class message
 				$poll_result['result'][$value['txt']] = 0;
 			}
 		}
+		$this->set_poll_list($poll_result['result'], $answer_id);
+	}
 
+	public function set_poll_list($_poll_result, $_answer_id = null)
+	{
 		$poll_answer = array();
 		$poll_list = array();
 		$count = 0;
 		$row      = $this->class::$emoji_number;
-		foreach ($poll_result['result'] as $key => $value) {
+		foreach ($_poll_result as $key => $value) {
 			$count++;
 			$poll_answer[$count] = $value;
-			if($answer_id === $count)
+			if($_answer_id === $count)
 			{
 				$this->poll_set_answer = true;
 				$poll_list[] = ['emoji'=> '✅ ', 'text' => $key, 'answer_count' => $value];
@@ -104,10 +108,10 @@ class message
 				$poll_list[] = ['emoji'=> $row[$count], 'text' => $key, 'answer_count' => $value];
 			}
 		}
-
 		$this->poll_list = $poll_list;
 		$this->poll_answer = $poll_answer;
 	}
+
 	public function set_answer_id($_answer_id = null)
 	{
 		if(!is_null($_answer_id) && !is_bool($_answer_id) && preg_match("/^\d$/", $_answer_id))

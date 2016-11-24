@@ -25,13 +25,22 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$count = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'pagenation' => false]);
+		$count = (int) \lib\db\polls::search(null, [
+			'get_count' => true,
+			'user_id'=> bot::$user_id,
+			'pagenation' => false,
+			'my_poll' => true,
+			'post_status' => ['in', "('publish', 'pause', 'draft')"],
+			]);
 		$message_per_page = 5;
 		$total_page = ceil($count / $message_per_page);
-		if(is_null($_query))
+
+		$page = (int) $_data_url[2];
+		$start = ($page - 1) * $message_per_page;
+		$end = $message_per_page;
+		if(is_null($_query) || $page > $total_page)
 		{
 			$start = 0;
-			$end = $message_per_page;
 			$page = 1;
 		}
 		$query_result = \lib\db\polls::search(null, [
@@ -39,23 +48,50 @@ class poll
 			'pagenation' => false,
 			'start_limit' => $start,
 			'end_limit' => $end,
-			'my_poll' => true
+			'my_poll' => true,
+			'post_status' => ['in', "('publish', 'pause', 'draft')"],
+			'order' => 'DESC'
 			]);
 		$message = $page . "/" . $total_page . "\n";
 		foreach ($query_result as $key => $value) {
-			$message .= htmlentities($value['title']);
+			$message .= $value['title'];
 			$message .= " ($value[total])";
+			$message .= ' - ' . T_(ucfirst($value['status']));
 			$message .= "\n";
 			$short_link = \lib\utility\shortURL::encode($value['id']);
 			$message .= "/sp\_$short_link";
 			$message .= "\n\n";
 		}
+		$return = ['text' => $message];
+		if($total_page > 1)
+		{
+			if($page > 2)
+			{
+				$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "poll/list/1"];
+			}
+			if($page > 1)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "poll/list/" . ($page-1)];
+			}
 
+
+
+			if($page < $total_page)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "poll/list/" . ($page+1)];
+			}
+
+			if(($page + 2) < $total_page)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "poll/list/" . $total_page];
+			}
+			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
+		}
 		if(is_null($_query))
 		{
-			return ['text' => $message];
+			return $return;
 		}
-		// handle::send_log($query_result);
+		callback_query::edit_message($return);
 	}
 
 	public static function discard($_query, $_data_url)
@@ -85,6 +121,7 @@ class poll
 		$poll_id = $_data_url[2];
 		$poll_draft = session::get('poll', $poll_id);
 		$poll_title = $poll_draft->title;
+
 		$poll_answers = (array) $poll_draft->answers;
 
 		$answers = [];
@@ -115,6 +152,13 @@ class poll
 	{
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$poll_result = \lib\db\polls::get_poll($poll_id);
+		$status = $poll_result['status'];
+		if($status == 'deleted')
+		{
+			self::delete($_query, $_data_url);
+			return ;
+		}
 		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
 		self::get_after_change($poll_id, $_query);
 	}
@@ -123,6 +167,13 @@ class poll
 	{
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$poll_result = \lib\db\polls::get_poll($poll_id);
+		$status = $poll_result['status'];
+		if($status == 'deleted')
+		{
+			self::delete($_query, $_data_url);
+			return ;
+		}
 		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
 		self::get_after_change($poll_id, $_query);
 	}
@@ -131,13 +182,21 @@ class poll
 	{
 		$short_link = $_data_url[2];
 		$poll_id = \lib\utility\shortURL::decode($short_link);
+		$poll_result = \lib\db\polls::get_poll($poll_id);
+		$status = $poll_result['status'];
+		$status = ($status == 'draft') ? 'pause' : $status;
+		if($status != 'pause' && $status != 'deleted')
+		{
+			self::publish($_query, $_data_url);
+			return ;
+		}
 		$result = \lib\db\polls::update(['post_status' => 'deleted'], $poll_id);
 		\lib\storage::set_disable_edit(true);
 		$maker = new make_view(bot::$user_id, $poll_id, true);
 		$maker->message->add_title(false);
 		$maker->message->add_poll_chart(true);
 		$maker->message->add_poll_list(true);
-		$maker->message->add('#' . T_('Deleted'));
+		$maker->message->add('deleted', '#' . T_('Deleted'));
 		$return = $maker->make();
 		callback_query::edit_message($return);
 	}
@@ -145,15 +204,18 @@ class poll
 	public static function get_after_change($_poll_id, $_query = false)
 	{
 		$response = session::get('expire', 'inline_cache', 'ask');
-		$r_message_id = $response->result->message_id;
-		$r_chat_id = $response->result->chat->id;
-
-		$q_message_id = $_query['message']['message_id'];
-		$q_chat_id = $_query['message']['chat']['id'];
-
-		if($r_message_id == $q_message_id && $r_chat_id == $q_chat_id)
+		if(isset($response->result))
 		{
-			session::remove('expire', 'inline_cache', 'ask');
+			$r_message_id = $response->result->message_id;
+			$r_chat_id = $response->result->chat->id;
+
+			$q_message_id = $_query['message']['message_id'];
+			$q_chat_id = $_query['message']['chat']['id'];
+
+			if($r_message_id == $q_message_id && $r_chat_id == $q_chat_id)
+			{
+				session::remove('expire', 'inline_cache', 'ask');
+			}
 		}
 
 		\lib\storage::set_disable_edit(true);

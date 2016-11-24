@@ -100,6 +100,7 @@ class step_create
 			$poll_title 		= $question_export[0];
 			$poll_answers 	= array_slice($question_export, 1);
 			$poll_id 		= utility::microtime_id();
+
 			session::set('poll', $poll_id, ["title" => $poll_title, "answers" => $poll_answers]);
 
 			$poll = ['title' => $poll_title];
@@ -108,6 +109,7 @@ class step_create
 			}
 			$maker = new make_view(bot::$user_id, $poll);
 			$maker->message->add_title(false);
+			$maker->message->set_poll_list(array_fill_keys($poll_answers, 0));
 			$maker->message->add_poll_list(null, false);
 			$txt_text .= $maker->message->make();
 			$txt_text .= "\nقصد دارید انتشار دهید یا حذف کنید؟";
