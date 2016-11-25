@@ -5,6 +5,104 @@ trait update
 {
 
 	/**
+	 * analyze the old answer and new answer to make list of must_insert and must_remove
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	private static function analyze($_user_id, $_poll_id, $_answer)
+	{
+			// get the old answered user to this poll
+		$old_answer = \lib\db\polldetails::get($_user_id, $_poll_id);
+
+		// error in poll detail record
+		if(!$old_answer || !is_array($old_answer))
+		{
+			// to we have not bug of foreach
+			return [[], [], []];
+		}
+
+		// make a array similar the answer array
+		$opt_list =  array_column($old_answer, 'opt', 'txt');
+		foreach ($opt_list as $key => $value)
+		{
+			$opt_list[$key] = "opt_". $value;
+		}
+		$opt_list    = array_flip($opt_list);
+		$must_remove = array_diff($opt_list, $_answer);
+		$must_insert = array_diff($_answer, $opt_list);
+		return [$must_remove, $must_insert, $old_answer];
+	}
+
+
+	/**
+	 * check last user update
+	 * the user can edit the answer for one min and 3 times
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 * @param      <type>  $_answer   The answer
+	 * @param      array   $_option   The option
+	 */
+	public static function recently_answered($_user_id, $_poll_id, $_answer, $_option = [])
+	{
+		$time  = 60; // secend wait for update
+		$count = 3;  // num of update poll
+
+		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
+		if($must_remove == $must_insert)
+		{
+			return self::status(false, $_answer, T_("duplicate answer, needless to update"));
+		}
+
+		// default insert date
+		$insert_time = "2001-01-01 00:00:00";
+		foreach ($old_answer as $key => $value)
+		{
+			$insert_time = $value['insertdate'];
+			break;
+		}
+
+		$insert_time  = strtotime($insert_time);
+		$now          = strtotime("now");
+		$diff_seconds = $now - $insert_time;
+
+		if($diff_seconds > $time)
+		{
+			return self::status(false, $_answer, T_("many time left of your answer, you can not update your answer"));
+		}
+
+		// get count of updated the poll
+		$where =
+		[
+			'post_id'    => $_poll_id,
+			'user_id'    => $_user_id,
+			'option_cat' => "update_user_$_user_id",
+			'option_key' => "update_result_$_poll_id"
+		];
+
+		\lib\db\options::plus($where);
+
+		$update_count = \lib\db\options::get($where);
+
+		if(!$update_count || !is_array($update_count) || !isset($update_count[0]['value']))
+		{
+			return self::status(false, $_answer, T_("undefined error was happend!"));
+		}
+
+		$update_count = intval($update_count[0]['value']);
+		if($update_count > $count)
+		{
+			return self::status(false, $_answer, T_("a lot update! what are you doing?"));
+		}
+
+		return self::status(true, $_answer, T_("you can update your answer"));
+	}
+
+
+	/**
 	 * update the user answer
 	 *
 	 * @param      <type>  $_user_id  The user identifier
@@ -23,25 +121,8 @@ trait update
 		// on this process we check the old answer and new answer
 		// and update pollstats if need
 
-		// get the old answered user to this poll
-		$old_answer = \lib\db\polldetails::get($_user_id, $_poll_id);
+		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
 
-		if(is_array($old_answer) && empty($old_answer))
-		{
-			// the user not answered to this poll
-			// we save the user answer
-			return self::save(...func_get_args());
-		}
-
-		// make a array similar the answer array
-		$opt_list =  array_column($old_answer, 'opt', 'txt');
-		foreach ($opt_list as $key => $value)
-		{
-			$opt_list[$key] = "opt_". $value;
-		}
-		$opt_list    = array_flip($opt_list);
-		$must_remove = array_diff($opt_list, $_answer);
-		$must_insert = array_diff($_answer, $opt_list);
 
 		// remove answer must be remove
 		foreach ($must_remove as $key => $value)

@@ -41,6 +41,18 @@ trait save
 				{
 					return self::update(...func_get_args());
 				}
+				else
+				{
+					// the user was recently answered to this poll
+					$recently_answered = self::recently_answered(...func_get_args());
+					if($recently_answered['status'])
+					{
+						return self::update(...func_get_args());
+					}
+					// return self::status(false, $is_answered, T_("a lot update! what are you doing?"));
+					return self::status(false, $is_answered, $recently_answered['msg']);
+
+				}
 				return self::status(false, $is_answered, T_("poll can not update result"));
 			}
 		}
