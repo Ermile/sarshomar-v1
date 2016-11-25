@@ -340,6 +340,8 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
 .checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;}
 
+div[data-parent]{display: none;}
+.tab li:not(.active){display:none}
 
 /* radio */
 @keyframes explode{0%{opacity:0;transform:scale(1.5);}60%{opacity:1;transform:scale(0.75);}100%{opacity:1;transform:scale(1);}}

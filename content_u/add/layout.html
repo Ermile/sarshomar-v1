@@ -3,7 +3,6 @@
 
 {%block feature_tabs%}
 {% spaceless %}
-
 	<div class="type">
 		<ul class="tabs">
 			<li data-tab="multiple_choice" class="active"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></li>
@@ -69,7 +68,7 @@
 
 {%block feature_tree%}
 {% spaceless %}
-	<div class="checkbox">
+	<div class="checkbox" data-effect='fade'>
 		<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
@@ -89,7 +88,6 @@
 {%endblock%}
 
 
-
 {%block feature_ordering%}
 {% spaceless %}
 	<div class="checkbox">
@@ -100,6 +98,21 @@
 {% endspaceless %}
 {%endblock%}
 
+
+{%block feature_choicemode%}
+{% spaceless %}
+	<div class="element switch">
+		<input type="radio" name="choicemode" value="one" id="one" checked="checked">
+		<label for="one">{%trans "One Choice"%}</label>
+
+		<input type="radio" name="choicemode" value="multi" id="multi">
+		<label for="multi">{%trans "Multi Choice"%}</label>
+
+		<input type="radio" name="choicemode" value="ordering" id="ordering">
+		<label for="ordering">{%trans "Ordering"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
 
 
 {%block feature_other%}
@@ -113,13 +126,9 @@
 {%endblock%}
 
 
-{%block feature_multiple%}
+{%block feature_multiplerange%}
 {% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_multiple_choice" id="multiple_choice" {%if poll.meta.multiple_choice%}checked{%endif%}>
-		<label for="multiple_choice" class="check-box"></label>
-		<label for="multiple_choice">{%trans "Multiple choice"%}</label>
-	</div>
+... range of answer allow to select ...
 {% endspaceless %}
 {%endblock%}
 
@@ -151,7 +160,7 @@
 {%block feature_trueanswer%}
 {% spaceless %}
 	<div class="checkbox">
-		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%}>
+		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
 		<label for="true_answer" class="check-box"></label>
 		<label for="true_answer">{%trans "Has correct option"%}</label>
 	</div>
@@ -162,12 +171,19 @@
 {%block feature_completeprofile%}
 {% spaceless %}
 	{% if perm.complete_profile.admin %}
-		<select class="complete-profile" name="meta_profile">
+	<div class="row">
+		<div class="checkbox span4">
+			<input type="checkbox" id="complete-profile">
+			<label for="complete-profile" class="check-box"></label>
+			<label for="complete-profile">{%trans "Complete Profile"%}</label>
+		</div>
+		<select class="complete-profile span8" name="meta_profile" data-parent='complete-profile'>
 			<option value="">{%trans "Complete Profile"%}</option>
 			{%for key, value in profile_lock%}{%set t_value = key %}
 			<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
 			{%endfor%}
 		</select>
+	</div>
 	{%endif%}
 {% endspaceless %}
 {%endblock%}
@@ -175,7 +191,7 @@
 
 {%block feature_treebox%}
 {% spaceless %}
-	<div class="tree-container">
+	<div class="tree-container" data-parent='tree'>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row tree-fields">
@@ -261,17 +277,17 @@
 
 {%block feature_btn%}
 {% spaceless %}
-	<div class="row">
+	<div class="row auto">
 		<div class="span7">
 			<div class="btn-container">
 				<input type="hidden" name="n" value="v" id="submit-form">
 				<nav>
-					<button class="btn" send-name="filter" value="filter">{%trans "Filter"%}</button>
 					{%if survey_mod%}
-					<button class="primary btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+					<button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
 					{%else%}
-					<button class="primary btn" send-name="survey" value="survey">{%trans "Add Poll"%}</button>
+					<button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button>
 					{%endif%}
+					<button class="btn primary" send-name="filter" value="filter">{%trans "Next Step"%}</button>
 				</nav>
 			</div>
 		</div>
@@ -291,6 +307,8 @@
 		<option value="password">{%trans "Password"%}</option>
 		<option value="regular">{%trans "Custom"%}</option>
 	</select>
+	<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-parent='tree'>
+
 {% endspaceless %}
 {%endblock%}
 

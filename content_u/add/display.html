@@ -15,25 +15,21 @@
          <li id="tab-multiple_choice" class="active">
           <div class="padding-box">{{block('feature_opts')}}</div>
           <div class="row auto">
+          {{block('feature_choicemode')}}
            <div class="span4 checkbox-group">
             {{block('feature_randomsort')}}
-            {{block('feature_multiple')}}
-           </div>
-           <div class="span4 checkbox-group">
-            {{block('feature_hiddenresult')}}
             {{block('feature_score')}}
            </div>
            <div class="span4 checkbox-group">
-            {{block('feature_other')}}
+            {{block('feature_hiddenresult')}}
             {{block('feature_trueanswer')}}
            </div>
-          </div>
-
-          <div class="row auto">
-           <div class="offset8 span4">
-            {{block('feature_completeprofile')}}
+           <div class="span4 checkbox-group">
+            {{block('feature_other')}}
            </div>
           </div>
+          {{block('feature_completeprofile')}}
+          {{block('feature_multiplerange')}}
          </li>
 
          <li id="tab-descriptive">
@@ -70,14 +66,14 @@
 
 {%block foot_js%}
     <script type="text/javascript">
-    $('.page-progress a').click(function() {
-     if ($(this).attr('href') == '') {
-      send_name = $(this).attr('send-name');
-      if (send_name == 'add') {
-       return false;
-      }
-      $('button[send-name=' + send_name + ']').click();
-     }
-    });
+      // $('.page-progress a').click(function() {
+      //  if ($(this).attr('href') == '') {
+      //   send_name = $(this).attr('send-name');
+      //   if (send_name == 'add') {
+      //    return false;
+      //   }
+      //   $('button[send-name=' + send_name + ']').click();
+      //  }
+      // });
     </script>
 {%endblock%}

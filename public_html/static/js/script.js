@@ -48,9 +48,161 @@ function add_answer()
 	}
 }
 
+
+
+
+
+/**
+ * this function check status of input after change parent one
+ */
+function checkInput(_this, _firstTime)
+{
+  var chkID                      = $(_this).attr('id');
+  var chkHide                    = $('[data-init=hide]').parent();
+  var disable                    = null;
+  // normal childrens
+  var chkChildrens               = $('[data-parent*='+ chkID +']:not([data-reverse])');
+  var chkChildrensReverse        = $('[data-parent*='+ chkID +'][data-reverse]');
+  var chkRelations               = $('input[type=checkbox][data-relation*='+ chkID +']');
+  var effect                     = 'slide';
+
+  if($(_this).is(":checked"))
+  {
+     if(effect === 'slide')
+     {
+	    chkChildrensReverse.slideUp();
+	    chkChildrens.slideDown();
+     }
+     else
+     {
+	    chkChildrensReverse.fadeOut();
+	    chkChildrens.fadeIn();
+     }
+
+    chkChildrens.each(function()
+    {
+      var mythis = $(this).children('input');
+      if(mythis.is(":checked"))
+      {
+      	if(effect === 'slide')
+      	{
+        	$('[data-parent*='+ mythis.attr('id') +']:not([data-reverse])').slideDown();
+      	}
+      	else
+      	{
+        	$('[data-parent*='+ mythis.attr('id') +']:not([data-reverse])').fadeIn();
+      	}
+      }
+      else
+      {
+      	if(effect === 'slide')
+      	{
+        	$('[data-parent*='+ mythis.attr('id') +'][data-reverse]').slideDown();
+      	}
+      	else
+      	{
+        	$('[data-parent*='+ mythis.attr('id') +'][data-reverse]').fadeIn();
+      	}
+      }
+    });
+    if(!_firstTime)
+    {
+      chkRelations.prop('checked', true);
+    }
+  }
+  else
+  {
+    if(effect === 'slide')
+    {
+	    chkChildrensReverse.slideDown();
+	    chkChildrens.slideUp();
+    }
+    else
+    {
+	    chkChildrensReverse.fadeIn();
+	    chkChildrens.fadeOut();
+    }
+
+    chkChildrens.each(function()
+    {
+      var mythis = $(this).children('input');
+      if(effect === 'slide')
+      {
+      	$('[data-parent*='+ mythis.attr('id') +']').slideUp();
+      }
+      else
+      {
+      	$('[data-parent*='+ mythis.attr('id') +']').fadeOut();
+      }
+    });
+  }
+  if(_firstTime)
+  {
+      if(effect === 'slide')
+      {
+    	chkHide.slideUp();
+      }
+      else
+      {
+    	chkHide.fadeOut();
+      }
+  }
+
+  // check disabled
+  if($(_this).attr('data-disable') == true)
+  {
+    disable             = true;
+    chkChildrens        = chkChildrens.find('input, textarea, button, select');
+    chkChildrensReverse = chkChildrensReverse.find('input, textarea, button, select');
+    if($(_this).is(":checked"))
+    {
+      chkChildrens.prop('disabled', false);
+      chkChildrensReverse.prop('disabled', true);
+    }
+    else
+    {
+      chkChildrens.prop('disabled', true);
+      chkChildrensReverse.prop('disabled', false);
+    }
+
+  }
+
+
+}
+
+/**
+ * check input for first time
+ */
+function checkInputFirstTime()
+{
+  $('input[type=checkbox]').each(function ()
+  {
+    checkInput(this, true);
+  });
+}
+
+/**
+ * check input for first time
+ */
+function checkInputChange()
+{
+  $('input[type="checkbox"]').change(function()
+  {
+    checkInput(this, false);
+  });
+}
+
+
+
+
+
+
 // Add
 route(/\@\/add/, function()
 {
+	// declare functions
+	checkInputFirstTime();
+	checkInputChange();
 
 	$(this).on('click','button', function()
 	{
@@ -241,20 +393,6 @@ route(/\@\/add/, function()
 			$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
 			$('.input-group').append($elem);
 		}
-	});
-
-
-	// new code
-	$(this).on('change', '#tree', function(event)
-	{
-		if (this.checked)
-	    {
-	        $('.tree-container').slideDown();
-	    }
-	    else
-	    {
-	        $('.tree-container').slideUp();
-	    }
 	});
 });
 
