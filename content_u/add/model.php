@@ -66,17 +66,13 @@ class model extends \content_u\home\model
 	function remove_meta()
 	{
 		$cat = "poll_". $this->poll_id;
-		$query =
-		"
-			DELETE FROM
-				options
-			WHERE
-			post_id = {$this->poll_id} AND
-			option_cat = '$cat' AND
-			option_key LIKE 'meta'
-		";
-		\lib\db::query($query);
-
+		$where =
+		[
+			'post_id'    => $this->poll_id,
+			'option_cat' => $cat,
+			'option_key' => 'meta'
+		];
+		return \lib\utility\answers::hard_delete($where);
 	}
 
 
@@ -86,17 +82,13 @@ class model extends \content_u\home\model
 	function remove_answers()
 	{
 		$cat = "poll_". $this->poll_id;
-		$query =
-		"
-			DELETE FROM
-				options
-			WHERE
-			post_id = {$this->poll_id} AND
-			option_cat = '$cat' AND
-			option_key LIKE 'opt%'
-		";
-		\lib\db::query($query);
-
+		$where =
+		[
+			'post_id'    => $this->poll_id,
+			'option_cat' => $cat,
+			'option_key' => 'opt%'
+		];
+		return \lib\utility\answers::hard_delete($where);
 	}
 
 

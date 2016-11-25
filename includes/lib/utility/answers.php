@@ -321,6 +321,45 @@ class answers
 
 
 	/**
+	 * real delete record from database
+	 *
+	 * @param      <type>  $_where_or_id  The where or identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function hard_delete($_where_or_id)
+	{
+		if(is_numeric($_where_or_id))
+		{
+			$where = " options.id = $_where_or_id ";
+		}
+		elseif(is_array($_where_or_id))
+		{
+			$tmp = [];
+			foreach ($_where_or_id as $key => $value)
+			{
+				if(preg_match("/\%/", $value))
+				{
+					$tmp[] = " $key LIKE '$value' ";
+				}
+				else
+				{
+					$tmp[] = " $key = '$value' ";
+				}
+			}
+			$where = join($tmp, " AND ");
+		}
+		else
+		{
+			return false;
+		}
+
+		$query = " DELETE FROM	options	WHERE $where -- answers::hard_delete() ";
+		return \lib\db::query($query);
+	}
+
+
+	/**
 	 * check the user answered to this poll or no
 	 *
 	 * @param      <type>  $_user_id  The user identifier
