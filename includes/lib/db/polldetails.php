@@ -161,6 +161,104 @@ class polldetails
 
 
 	/**
+	 * remove user answered to poll
+	 * use in update result of poll
+	 * we delete the poll details record and then insert the updated answer
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function remove($_user_id, $_poll_id, $_opt_index = null)
+	{
+		if($_opt_index === null)
+		{
+			$opt = null;
+		}
+		else
+		{
+			$opt = " AND opt = '$_opt_index' ";
+		}
+
+		$query =
+		"
+			DELETE FROM
+				polldetails
+			WHERE
+				user_id = $_user_id AND
+				post_id = $_poll_id
+				$opt
+		";
+		return \lib\db::query($query);
+	}
+
+
+	/**
+	 * Save user answer to poll in  polldetails table.
+	 *
+	 * @param      <type>  $_user_id        The user identifier
+	 * @param      <type>  $_poll_id        The poll identifier
+	 * @param      <type>  $_num_of_opt_kye  The number of option kye
+	 * @param      <type>  $_answer_txt     The answer text
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function save($_user_id, $_poll_id, $_num_of_opt_kye, $_option = [])
+	{
+		if($_num_of_opt_kye == 'other')
+		{
+			$_num_of_opt_kye = "NULL";
+		}
+
+		$default_option =
+		[
+			'answer_txt' => null,
+			'port'       => 'site',
+			'subport'    => null
+		];
+		$_option = array_merge($default_option, $_option);
+
+		if($_option['port'] == null)
+		{
+			$port = "NULL";
+		}
+		else
+		{
+			$port = "'$_option[port]'";
+		}
+
+		if($_option['subport'] == null)
+		{
+			$subport = "NULL";
+		}
+		else
+		{
+			$subport = "'$_option[subport]'";
+		}
+
+		$insert_polldetails =
+		"
+			INSERT INTO
+				polldetails
+			SET
+				user_id = $_user_id,
+				post_id = $_poll_id,
+				port    = $port,
+				subport = $subport,
+				opt     = $_num_of_opt_kye,
+				type    = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+				txt     = '$_option[answer_txt]',
+				profile = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				visitor_id = NULL
+				-- answers::save_polldetails()
+		";
+		$result = \lib\db::query($insert_polldetails);
+		return $result;
+	}
+
+
+	/**
 	 * Gets the user count of answered or skipped
 	 *
 	 * @param      <type>  $_user_id  The user identifier

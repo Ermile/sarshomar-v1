@@ -84,7 +84,7 @@ class stat_polls
 			$port = "'". $_args['port']. "'";
 		}
 
-		$subport = null;
+		$subport = "NULL";
 		if(isset($_args['subport']))
 		{
 			$subport = "'". $_args['subport']. "'";
