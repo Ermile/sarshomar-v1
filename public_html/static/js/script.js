@@ -243,11 +243,12 @@ route(/\@\/add/, function()
 		}
 	});
 
+
+	// new code
 	$(this).on('change', '#tree', function(event)
 	{
 		if (this.checked)
 	    {
-			console.log(33)
 	        $('.tree-container').slideDown();
 	    }
 	    else
