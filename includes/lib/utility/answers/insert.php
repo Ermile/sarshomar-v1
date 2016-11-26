@@ -25,17 +25,17 @@ trait insert
 		// 	'poll_id' => 1,
 		// 	'answers' =>
 		// 		[
-		// 			'txt' => 'answer one',
-		// 			'type' => 'audio',
-		// 			'desc' => 'description',
-		// 			'true' => 'true|false',
+		// 			'txt'   => 'answer one',
+		// 			'type'  => 'audio',
+		// 			'desc'  => 'description',
+		// 			'true'  => 'true|false',
 		// 			'point' => 10
 		// 		],
 		// 		[
-		// 			'txt' => 'answer two',
-		// 			'type' => 'audio',
-		// 			'desc' => 'description',
-		// 			'true' => 'true|false',
+		// 			'txt'   => 'answer two',
+		// 			'type'  => 'audio',
+		// 			'desc'  => 'description',
+		// 			'true'  => 'true|false',
 		// 			'point' => 10
 		// 		]
 		// 	];

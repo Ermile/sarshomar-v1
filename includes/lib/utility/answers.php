@@ -18,9 +18,8 @@ class answers
 	 */
 	public static function status($_status)
 	{
-		$return = new \lib\db\db_return;
-		$return->set_ok($_status);
-		return $return;
+		$return = new \lib\db\db_return();
+		return $return->set_ok($_status);
 	}
 
 

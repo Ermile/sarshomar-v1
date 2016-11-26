@@ -17,15 +17,17 @@ trait save
 		$poll = \lib\db\polls::get_poll($_poll_id);
 		if(!isset($poll['status']))
 		{
-			return self::status(false)->set_error_code(3000);
-
+			// poll not found
+			return self::status(false)->set_error_code(3000)->set_result($poll);
 		}
 		elseif($poll['status'] == 'deleted')
 		{
-			return self::status(false)->set_error_code(3001);
+			// poll is deleted
+			return self::status(false)->set_error_code(3001)->set_result($poll);
 		}
 		elseif($poll['status'] != 'publish')
 		{
+			// poll not published
 			return self::status(false)->set_error_code(3002)->set_result($poll);
 		}
 
@@ -125,11 +127,11 @@ trait save
 
 		if(\lib\debug::$status)
 		{
-			return self::status(true)->set_opt($_answer)->set_message(T_("answer save"));
+			return self::status(true)->set_opt($_answer)->set_result($poll)->set_message(T_("answer save"));
 		}
 		else
 		{
-			return self::status(false)->set_message(T_("error in save your answer"));
+			return self::status(false)->set_result($poll)->set_message(T_("error in save your answer"));
 		}
 	}
 }

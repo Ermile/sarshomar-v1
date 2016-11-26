@@ -66,9 +66,7 @@ trait update
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
 		if($must_remove == $must_insert)
 		{
-			return self::status(false)
-					->set_opt($_answer)
-					->set_error_code(3004);
+			return self::status(false)->set_opt($_answer)->set_error_code(3004);
 		}
 
 		// default insert date
@@ -85,9 +83,7 @@ trait update
 
 		if($diff_seconds > $time)
 		{
-			return self::status(false)
-					->set_opt($_answer)
-					->set_error_code(3005);
+			return self::status(false)->set_opt($_answer)->set_error_code(3005);
 		}
 
 		// get count of updated the poll
@@ -113,9 +109,7 @@ trait update
 		$update_count = intval($update_count[0]['value']);
 		if($update_count > $count)
 		{
-			return self::status(false)
-					->set_opt($_answer)
-					->set_error_code(3006);
+			return self::status(false)->set_opt($_answer)->set_error_code(3006);
 		}
 
 		return self::status(true)->set_opt($_answer)->set_message(T_("you can update your answer"));
@@ -140,9 +134,7 @@ trait update
 		// when update the polldetails neet to update the pollstats
 		// on this process we check the old answer and new answer
 		// and update pollstats if need
-
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
-
 
 		// remove answer must be remove
 		foreach ($must_remove as $key => $value)
