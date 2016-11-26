@@ -163,7 +163,8 @@ trait update
 
 		foreach ($must_insert as $key => $value)
 		{
-			self::save($_user_id, $_poll_id, $value, ['in_update' => true]);
+			$_option['in_update'] = true;
+			self::save($_user_id, $_poll_id, $value, $_option);
 			// set the poll stat in save function
 		}
 		return self::status(true, $_answer, T_("poll answre updated"));
