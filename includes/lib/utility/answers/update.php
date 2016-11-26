@@ -64,10 +64,6 @@ trait update
 		$count = $_count;  // num of update poll
 
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
-		if($must_remove == $must_insert)
-		{
-			return self::status(false)->set_opt($_answer)->set_error_code(3004);
-		}
 
 		// default insert date
 		$insert_time = "2001-01-01 00:00:00";
@@ -112,6 +108,10 @@ trait update
 			return self::status(false)->set_opt($_answer)->set_error_code(3006);
 		}
 
+		if($must_remove == $must_insert)
+		{
+			return self::status(false)->set_opt($_answer)->set_error_code(3004);
+		}
 		return self::status(true)->set_opt($_answer)->set_message(T_("You can update your answer"));
 	}
 
