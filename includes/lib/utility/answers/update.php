@@ -24,6 +24,24 @@ trait update
 			return [[], [], []];
 		}
 
+		if(is_array($_answer))
+		{
+			foreach ($_answer as $key => $value)
+			{
+				if(substr($key, 0, 4) != 'opt_')
+				{
+					$key = 'opt_'. $key;
+				}
+				$_answer[$key] = $value;
+			}
+		}
+		else
+		{
+			if(substr($_answer, 0, 4) != 'opt_')
+			{
+				$_answer = 'opt_'. $_answer;
+			}
+		}
 		// make a array similar the answer array
 		$opt_list =  array_column($old_answer, 'opt', 'txt');
 		foreach ($opt_list as $key => $value)
