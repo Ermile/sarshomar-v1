@@ -24,33 +24,27 @@ trait update
 			return [[], [], []];
 		}
 
-		if(is_array($_answer))
+		if(!is_array($_answer))
 		{
-			foreach ($_answer as $key => $value)
-			{
-				if(substr($key, 0, 4) != 'opt_')
-				{
-					$key = 'opt_'. $key;
-				}
-				$_answer[$key] = $value;
-			}
+			$_answer = [$_answer];
 		}
-		else
-		{
-			if(substr($_answer, 0, 4) != 'opt_')
-			{
-				$_answer = 'opt_'. $_answer;
-			}
-		}
+
 		// make a array similar the answer array
-		$opt_list =  array_column($old_answer, 'opt', 'txt');
+		$opt_list =  array_column($old_answer, 'opt');
 		foreach ($opt_list as $key => $value)
 		{
-			$opt_list[$key] = "opt_". $value;
+			if($value)
+			{
+				$opt_list[$key] = (int) $value;
+			}
+			else
+			{
+				$opt_list[$key] = $value;
+			}
 		}
-		$opt_list    = array_flip($opt_list);
 		$must_remove = array_diff($opt_list, $_answer);
 		$must_insert = array_diff($_answer, $opt_list);
+
 		return [$must_remove, $must_insert, $old_answer];
 	}
 
@@ -145,14 +139,12 @@ trait update
 		// remove answer must be remove
 		foreach ($must_remove as $key => $value)
 		{
-			$opt_index = explode("_", $key);
-			$opt_index = end($opt_index);
-			$remove_old_answer = \lib\db\polldetails::remove($_user_id, $_poll_id, $opt_index);
+			$remove_old_answer = \lib\db\polldetails::remove($_user_id, $_poll_id, $value);
 
 			$profile = 0;
 			foreach ($old_answer as $i => $o)
 			{
-				if($o['opt'] == $opt_index)
+				if($o['opt'] == $value)
 				{
 					$profile = $o['profile'];
 				}
@@ -161,7 +153,7 @@ trait update
 			$answers_details =
 			[
 				'poll_id' => $_poll_id,
-				'opt_key' => $key,
+				'opt_key' => $value,
 				'user_id' => $_user_id,
 				'type'    => 'minus',
 				'profile' => $profile
@@ -171,7 +163,7 @@ trait update
 
 		foreach ($must_insert as $key => $value)
 		{
-			self::save($_user_id, $_poll_id, [$key => $value], ['in_update' => true]);
+			self::save($_user_id, $_poll_id, $value, ['in_update' => true]);
 			// set the poll stat in save function
 		}
 		return self::status(true, $_answer, T_("poll answre updated"));

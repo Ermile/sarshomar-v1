@@ -23,7 +23,6 @@
       </div>
      {%endif%}
      {%if post.post_meta.opt%}{#check post meta exist#}
-      <input type="hidden" name="data-id" value="{{post.id}}">
      {%if multiple_choice%}
       <ul>
       {%for key, value in post.post_meta.opt%}

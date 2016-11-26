@@ -59,7 +59,7 @@ class stat_polls
 
 		if(isset($_args['opt_key']))
 		{
-			$opt_key = $_args['opt_key'];
+			$opt_key = 'opt_'. $_args['opt_key'];
 		}
 		else
 		{

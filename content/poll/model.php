@@ -225,21 +225,27 @@ class model extends \mvc\model
 			$session_opt = array_column($_SESSION['last_poll_opt'],'key');
 		}
 
-		foreach ($post as $key => $value) {
+		foreach ($post as $key => $value)
+		{
 			if(substr($key, 0,4) == 'opt_')
 			{
 				if($key == 'opt_other' && $value == '')
 				{
 					continue;
 				}
-				$opt[$key] = $value;
+				$opt[substr($key, 5)] = $value;
 			}
 			elseif ($key == 'radio')
 			{
 				if(in_array($value, $session_opt))
 				{
 					$opt_value   = array_column($_SESSION['last_poll_opt'],'txt', 'key');
-					$opt[$value] = $opt_value[$value];
+					$tmp = $value;
+					if(substr($value, 0,4) == 'opt_')
+					{
+						$tmp = substr($value, 4);
+					}
+					$opt[$tmp] = $opt_value[$value];
 				}
 			}
 		}
@@ -247,10 +253,19 @@ class model extends \mvc\model
 		$result = ['status' => false, 'msg' => T_("error in save your answers")];
 		if(!empty($opt))
 		{
-			$result = \lib\utility\answers::save($this->login('id'), $poll_id, $opt, ['answer_txt' => $opt]);
+			$result = \lib\utility\answers::save(
+					// the user id
+					$this->login('id'),
+					// the poll id
+					$poll_id,
+					// list of answer keys
+					array_keys($opt),
+					// answer txt
+					['answer_txt' => $opt]
+					);
 
 			// if user skip the poll redirect to ask page
-			if(isset($opt['opt_0']))
+			if(isset($opt[0]))
 			{
 				$this->redirector()->set_url("ask");
 			}
