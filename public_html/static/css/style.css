@@ -119,7 +119,8 @@ header #header-quick a{display:inline-block;padding:15px 10px 5px;color:#00667A;
 /* intro box  */
 #intro-box{padding:1em 0;}
 #intro-box h2{color:#00667A;margin-bottom:0;font-weight:bold;padding:0;padding-top:1em;}
-#intro-box p{color:#666666;width:90%;margin-bottom:1em;font-size:1.3em;font-weight:bold;}
+#intro-box p{color:#666666;width:90%;margin-bottom:1em;font-size:1.3em;}
+.rtl #intro-box p{font-weight:bold;}
 .try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;}
 .try:hover{background-color:#129491;color:#fff;}
 .try:focus{color:#F4F4F4;}
@@ -582,18 +583,18 @@ div[data-parent]{display: none;}
 #customers-box .customer h3{color:#0C7C78;}
 #customers-box .customer h3::before{background-repeat:no-repeat;background-size:100%;}
 
-#customers-box .customer:nth-child(1) h3::before{background-image:url(../images/art/organizations.png);}
+#customers-box .customer:nth-child(1) h3::before{background-image:url(../images/art/companies.png);}
 #customers-box .customer:nth-child(2) h3::before{background-image:url(../images/art/universities.png);}
-#customers-box .customer:nth-child(3) h3::before{background-image:url(../images/art/agencies.png);}
-#customers-box .customer:nth-child(4) h3::before{background-image:url(../images/art/developers.png);}
+#customers-box .customer:nth-child(3) h3::before{background-image:url(../images/art/developers.png);}
+#customers-box .customer:nth-child(4) h3::before{background-image:url(../images/art/agencies.png);}
 
 
 /* features */
 #features-box{padding:50px;text-align:center;}
+#features-box img{max-width:60%;margin:0 auto;margin-bottom:2em;}
 #features-box h4{color:#454545;font-size:1.8em;font-weight:bold;margin-bottom:1.6em;}
 #features-box h4 a{color:inherit;}
-#features-box img{max-width:60%;margin:0 auto;}
-#features-box p{color:#AAAAAA;margin:2em auto 0;font-size:1.4em;width:70%;}
+#features-box p{color:#AAAAAA;margin:0 auto;font-size:1.4em;width:70%;}
 
 /* tags */
 .sp-tags{width:100%;max-width:100%;max-height:200px;border:1px solid #ddd;}
