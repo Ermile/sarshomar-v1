@@ -66,7 +66,7 @@ trait update
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
 
 		// default insert date
-		$insert_time = "2001-01-01 00:00:00";
+		$insert_time = time();
 		foreach ($old_answer as $key => $value)
 		{
 			$insert_time = $value['insertdate'];
