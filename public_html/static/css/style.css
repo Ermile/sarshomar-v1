@@ -379,6 +379,7 @@ div[data-parent]{display: none;}
 .element .score input[type="number"]{border:none;height:29px;line-height:29px;margin-top:3px;background-color:#F4F4F4;padding:0 10px;}
 .element .icon{font-size:24px;height:inherit;line-height:inherit;padding:0 5px;color:#D8DAD0;background-color:#EFEFEF;transition:.3s;}
 .element .input:focus ~ .score,.element .input:focus ~ .check,.element .input:focus ~ .icon{background-color:#00667a;}
+.element.simple .title::before{display:none;}
 
 
 /* Poll Box */
