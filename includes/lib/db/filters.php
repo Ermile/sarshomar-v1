@@ -215,6 +215,7 @@ class filters
 	 */
 	public static function get($_fielter_id, $_field = null)
 	{
+		$_fielter_id = intval($_fielter_id);
 
 		$field     = '*';
 		$get_field = null;
