@@ -78,7 +78,7 @@ trait update
 		}
 
 		$insert_time  = strtotime($insert_time);
-		$now          = strtotime("now");
+		$now          = time();
 		$diff_seconds = $now - $insert_time;
 
 		if($diff_seconds > $time)

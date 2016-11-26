@@ -236,22 +236,23 @@ class polldetails
 		{
 			$subport = "'$_option[subport]'";
 		}
-
+		$date = date("Y-m-d H:i:s");
 		$insert_polldetails =
 		"
 			INSERT INTO
 				polldetails
 			SET
-				user_id = $_user_id,
-				post_id = $_poll_id,
-				port    = $port,
-				subport = $subport,
-				opt     = $_num_of_opt_kye,
-				type    = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
-				txt     = '$_option[answer_txt]',
-				profile = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				user_id    = $_user_id,
+				post_id    = $_poll_id,
+				port       = $port,
+				subport    = $subport,
+				opt        = $_num_of_opt_kye,
+				type       = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+				txt        = '$_option[answer_txt]',
+				profile    = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				insertdate = '$date',
 				visitor_id = NULL
-				-- answers::save_polldetails()
+				-- answers::save_polldetails() -> $date
 		";
 		$result = \lib\db::query($insert_polldetails);
 		return $result;

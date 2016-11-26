@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `polldetails` (
 `type` varchar(50) NULL DEFAULT NULL,
 `txt` text,
 `profile` bigint(20) unsigned,
-`insertdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`insertdate` datetime NULL,
 `visitor_id` bigint(20) unsigned DEFAULT NULL,
 PRIMARY KEY (`id`),
 UNIQUE KEY `unique_opt` (`post_id`,`user_id`,`opt`) USING BTREE,
