@@ -38,6 +38,10 @@ trait save
 		}
 		unset($_option['in_update']);
 
+		if(!is_array($_answer))
+		{
+			$_answer = [$_answer];
+		}
 		// if we not in update mod we need to check user answer
 		// but in update mod we need to save the user answer whitout check old answer
 		// the old answer was check in self::update()
@@ -48,21 +52,26 @@ trait save
 			$is_answered = self::is_answered($_user_id, $_poll_id);
 			if($is_answered)
 			{
+				$time  = 60; // secend wait for update
+				$count = 3;  // num of update poll
+
 				if(\lib\db\polls::check_meta($_poll_id, "update_result"))
 				{
-					return self::update(...func_get_args());
+					$time  = 60 * 60; // for 1 hours
+					$count = 3 * 2;  // for 6 times
 				}
 				else
 				{
 					// the user was recently answered to this poll
-					$recently_answered = self::recently_answered(...func_get_args());
+					$recently_answered =
+					self::recently_answered($_user_id, $_poll_id, $_answer, $_option, $time, $count);
+
 					if($recently_answered->is_ok())
 					{
-						return self::update(...func_get_args());
+						return self::update($_user_id, $_poll_id, $_answer, $_option);
 					}
 					// return self::status(false, $is_answered, T_("a lot update! what are you doing?"));
 					return $recently_answered;
-
 				}
 				return self::status(false)->set_error_code(3003)->set_result($poll)->set_opt($_answer);
 			}
@@ -76,11 +85,6 @@ trait save
 			'subport'    => null
 		];
 		$_option = array_merge($default_option, $_option);
-
-		if(!is_array($_answer))
-		{
-			$_answer = [$_answer];
-		}
 
 		foreach ($_answer as $key => $value)
 		{
@@ -127,11 +131,11 @@ trait save
 
 		if(\lib\debug::$status)
 		{
-			return self::status(true)->set_opt($_answer)->set_result($poll)->set_message(T_("answer save"));
+			return self::status(true)->set_opt($_answer)->set_result($poll)->set_message(T_("Answer Save"));
 		}
 		else
 		{
-			return self::status(false)->set_result($poll)->set_message(T_("error in save your answer"));
+			return self::status(false)->set_result($poll)->set_message(T_("Error in save your answer"));
 		}
 	}
 }

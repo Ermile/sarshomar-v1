@@ -58,10 +58,10 @@ trait update
 	 * @param      <type>  $_answer   The answer
 	 * @param      array   $_option   The option
 	 */
-	public static function recently_answered($_user_id, $_poll_id, $_answer, $_option = [])
+	public static function recently_answered($_user_id, $_poll_id, $_answer = [], $_option = [], $_time = 60, $_count = 3)
 	{
-		$time  = 60; // secend wait for update
-		$count = 3;  // num of update poll
+		$time  = $_time; // secend wait for update
+		$count = $_count;  // num of update poll
 
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
 		if($must_remove == $must_insert)
@@ -94,16 +94,16 @@ trait update
 			'option_cat' => "update_user_$_user_id",
 			'option_key' => "update_result_$_poll_id"
 		];
-
-		\lib\db\options::plus($where);
+		if($_answer !== [])
+		{
+			\lib\db\options::plus($where);
+		}
 
 		$update_count = \lib\db\options::get($where);
 
 		if(!$update_count || !is_array($update_count) || !isset($update_count[0]['value']))
 		{
-			return self::status(false)
-				->set_opt($_answer)
-				->set_message(T_("undefined error was happend!"));
+			return self::status(true)->set_message(T_("No problem"));
 		}
 
 		$update_count = intval($update_count[0]['value']);
@@ -112,7 +112,7 @@ trait update
 			return self::status(false)->set_opt($_answer)->set_error_code(3006);
 		}
 
-		return self::status(true)->set_opt($_answer)->set_message(T_("you can update your answer"));
+		return self::status(true)->set_opt($_answer)->set_message(T_("You can update your answer"));
 	}
 
 
@@ -167,7 +167,7 @@ trait update
 			self::save($_user_id, $_poll_id, $value, $_option);
 			// set the poll stat in save function
 		}
-		return self::status(true)->set_opt($_answer)->set_message(T_("poll answre updated"));
+		return self::status(true)->set_opt($_answer)->set_message(T_("Your answer updated"));
 	}
 }
 ?>
