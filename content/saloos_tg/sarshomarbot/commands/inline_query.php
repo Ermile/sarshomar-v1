@@ -28,7 +28,14 @@ class inline_query
 		{
 			$id = \lib\utility\shortURL::decode($link_id[1]);
 			$query_result = \lib\db\polls::get_poll($id);
-			$query_result = $query_result ? [$query_result] : [];
+			if($query_result['status'] != 'publish')
+			{
+				$query_result = [];
+			}
+			else
+			{
+				$query_result = $query_result ? [$query_result] : [];
+			}
 		}
 		else
 		{

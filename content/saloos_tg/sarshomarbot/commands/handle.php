@@ -205,19 +205,19 @@ class handle
 		return $response;
 	}
 
-	public static function send_log($_log)
+	public static function send_log($_log, $_file = 'send')
 	{
-		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/send.json"))
+		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/$_file.json"))
 		{
 
-			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/send.json");
+			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/$_file.json");
 			$json = json_decode($file, true);
 			if(!is_array($json))
 			{
 				$json = [];
 			}
 			array_unshift($json, $_log);
-			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", json_encode($json, JSON_UNESCAPED_UNICODE));
+			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/$_file.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
 	}
 }

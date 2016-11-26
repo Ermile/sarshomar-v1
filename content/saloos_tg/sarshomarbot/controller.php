@@ -15,6 +15,7 @@ class controller extends \lib\mvc\controller
 	 * to send response to our server
 	 * @return [type] [description]
 	 */
+	public static $microtime_log;
 	function _route()
 	{
 		if(isset($_GET['log']))
@@ -26,8 +27,19 @@ class controller extends \lib\mvc\controller
 		}
 		register_shutdown_function(function()
 		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
+			if(!empty(self::$microtime_log))
+			{
+				handle::send_log(['mt_' . microtime(true) => self::$microtime_log], 'error');
+			}
+			else
+			{
+				@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
+			}
 		});
+		set_error_handler(function(...$_args) {
+			self::$microtime_log[] = $_args;
+		});
+
 		$myhook = 'saloos_tg/sarshomarbot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
 		if($this->url('path') != $myhook)
 		{
