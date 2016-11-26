@@ -14,10 +14,19 @@ trait save
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
 		// check poll status
-		$status = \lib\db\polls::get_poll_status($_poll_id);
-		if($status != 'publish')
+		$poll = \lib\db\polls::get_poll($_poll_id);
+		if(!isset($poll['status']))
 		{
-			return self::status(false, null, T_("poll is not published"));
+			return self::status(false)->set_error_code(3000);
+
+		}
+		elseif($poll['status'] == 'deleted')
+		{
+			return self::status(false)->set_error_code(3001);
+		}
+		elseif($poll['status'] != 'publish')
+		{
+			return self::status(false)->set_error_code(3002)->set_result($poll);
 		}
 
 		$in_update = false;
@@ -45,15 +54,15 @@ trait save
 				{
 					// the user was recently answered to this poll
 					$recently_answered = self::recently_answered(...func_get_args());
-					if($recently_answered['status'])
+					if($recently_answered->is_ok())
 					{
 						return self::update(...func_get_args());
 					}
 					// return self::status(false, $is_answered, T_("a lot update! what are you doing?"));
-					return self::status(false, $is_answered, $recently_answered['msg']);
+					return $recently_answered;
 
 				}
-				return self::status(false, $is_answered, T_("poll can not update result"));
+				return self::status(false)->set_error_code(3003)->set_result($poll)->set_opt($_answer);
 			}
 		}
 
@@ -116,11 +125,11 @@ trait save
 
 		if(\lib\debug::$status)
 		{
-			return self::status(true, $_answer, T_("answer save"));
+			return self::status(true)->set_opt($_answer)->set_message(T_("answer save"));
 		}
 		else
 		{
-			return self::status(false, null, T_("error in save your answer"));
+			return self::status(false)->set_message(T_("error in save your answer"));
 		}
 	}
 }

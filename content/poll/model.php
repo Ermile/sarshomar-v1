@@ -271,16 +271,14 @@ class model extends \mvc\model
 			}
 		}
 
-		$msg = isset($result['msg']) ? $result['msg'] : '';
-
-		if(isset($result['status']) && $result['status'])
+		if($result->is_ok())
 		{
-			\lib\debug::true($msg);
+			\lib\debug::true($result->get_message());
 			return ;
 		}
 		else
 		{
-			\lib\debug::error($msg);
+			\lib\debug::error($result->get_message());
 			return false;
 		}
 

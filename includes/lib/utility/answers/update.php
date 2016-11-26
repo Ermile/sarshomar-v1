@@ -66,7 +66,9 @@ trait update
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
 		if($must_remove == $must_insert)
 		{
-			return self::status(false, $_answer, T_("duplicate answer, needless to update"));
+			return self::status(false)
+					->set_opt($_answer)
+					->set_error_code(3004);
 		}
 
 		// default insert date
@@ -83,7 +85,9 @@ trait update
 
 		if($diff_seconds > $time)
 		{
-			return self::status(false, $_answer, T_("many time left of your answer, you can not update your answer"));
+			return self::status(false)
+					->set_opt($_answer)
+					->set_error_code(3005);
 		}
 
 		// get count of updated the poll
@@ -101,16 +105,20 @@ trait update
 
 		if(!$update_count || !is_array($update_count) || !isset($update_count[0]['value']))
 		{
-			return self::status(false, $_answer, T_("undefined error was happend!"));
+			return self::status(false)
+				->set_opt($_answer)
+				->set_message(T_("undefined error was happend!"));
 		}
 
 		$update_count = intval($update_count[0]['value']);
 		if($update_count > $count)
 		{
-			return self::status(false, $_answer, T_("a lot update! what are you doing?"));
+			return self::status(false)
+					->set_opt($_answer)
+					->set_error_code(3006);
 		}
 
-		return self::status(true, $_answer, T_("you can update your answer"));
+		return self::status(true)->set_opt($_answer)->set_message(T_("you can update your answer"));
 	}
 
 
@@ -167,7 +175,7 @@ trait update
 			self::save($_user_id, $_poll_id, $value, $_option);
 			// set the poll stat in save function
 		}
-		return self::status(true, $_answer, T_("poll answre updated"));
+		return self::status(true)->set_opt($_answer)->set_message(T_("poll answre updated"));
 	}
 }
 ?>

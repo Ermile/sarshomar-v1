@@ -16,21 +16,11 @@ class answers
 	 * @param      boolean  $_update  The update
 	 * @param      array    $_msg     The message
 	 */
-	public static function status($_status, $_opt, $_msg = null)
+	public static function status($_status)
 	{
-		$opt_index = null;
-		if(is_string($_opt))
-		{
-			$opt_index = explode("_", $_opt);
-			$opt_index = end($opt_index);
-		}
-		return
-		[
-			'status'    => $_status,
-			'opt'       => $_opt,
-			'opt_index' => (int) $opt_index,
-			'msg'       => $_msg
-		];
+		$return = new \lib\db\db_return;
+		$return->set_ok($_status);
+		return $return;
 	}
 
 
