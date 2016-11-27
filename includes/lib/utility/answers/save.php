@@ -13,22 +13,10 @@ trait save
 	 */
 	public static function save($_user_id, $_poll_id, $_answer, $_option = [])
 	{
-		// check poll status
-		$poll = \lib\db\polls::get_poll($_poll_id);
-		if(!isset($poll['status']))
+		$check = self::check($_user_id, $_poll_id, "poll_status");
+		if(!$check->is_ok())
 		{
-			// poll not found
-			return self::status(false)->set_error_code(3000)->set_result($poll);
-		}
-		elseif($poll['status'] == 'deleted')
-		{
-			// poll is deleted
-			return self::status(false)->set_error_code(3001)->set_result($poll);
-		}
-		elseif($poll['status'] != 'publish')
-		{
-			// poll not published
-			return self::status(false)->set_error_code(3002)->set_result($poll);
+			return $check;
 		}
 
 		$in_update = false;
@@ -49,13 +37,13 @@ trait save
 		if(!$in_update)
 		{
 			// cehck is answer to this poll or no
-			$is_answered = self::is_answered($_user_id, $_poll_id);
-			if($is_answered)
+			$is_answered = self::check($_user_id, $_poll_id, "is_answered");
+			if($is_answered->is_ok())
 			{
 				$time  = 60; // secend wait for update
 				$count = 3;  // num of update poll
 
-				if(\lib\db\polls::check_meta($_poll_id, "update_result"))
+				if(self::check($_user_id, $_poll_id, "poll_update_result")->is_ok())
 				{
 					$time  = 60 * 60; // for 1 hours
 					$count = 3 * 2;  // for 6 times
@@ -63,8 +51,14 @@ trait save
 				else
 				{
 					// the user was recently answered to this poll
-					$recently_answered =
-					self::recently_answered($_user_id, $_poll_id, $_answer, $_option, $time, $count);
+					$recently_answered = self::check($_user_id, $_poll_id,
+						"recently_answered",
+						[
+							'answers'  => $_answer,
+							'options' => $_option,
+							'time'    => $time,
+							'count'   => $count
+						]);
 
 					if($recently_answered->is_ok())
 					{
@@ -73,7 +67,7 @@ trait save
 					// return self::status(false, $is_answered, T_("a lot update! what are you doing?"));
 					return $recently_answered;
 				}
-				return self::status(false)->set_error_code(3003)->set_result($poll)->set_opt($_answer);
+				return self::status(false)->set_error_code(3003)->set_result($check->get_result())->set_opt($_answer);
 			}
 		}
 
@@ -131,11 +125,11 @@ trait save
 
 		if(\lib\debug::$status)
 		{
-			return self::status(true)->set_opt($_answer)->set_result($poll)->set_message(T_("Answer Save"));
+			return self::status(true)->set_opt($_answer)->set_result($check->get_result())->set_message(T_("Answer Save"));
 		}
 		else
 		{
-			return self::status(false)->set_result($poll)->set_message(T_("Error in save your answer"));
+			return self::status(false)->set_result($check->get_result())->set_message(T_("Error in save your answer"));
 		}
 	}
 }

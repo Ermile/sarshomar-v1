@@ -3,6 +3,7 @@ namespace lib\utility;
 
 class answers
 {
+	use answers\access;
 	use answers\get;
 	use answers\insert;
 	use answers\save;
