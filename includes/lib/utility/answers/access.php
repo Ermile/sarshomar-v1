@@ -27,26 +27,14 @@ trait access
 					return $poll_status;
 				}
 
-				$poll_update = \lib\db\polls::check_meta($_poll_id, "update_result");
-				if(!$poll_update)
-				{
-					return self::status(false)->set_error_code(3003);
-				}
-
-				$recently_answered =self::recently_answered($_user_id, $_poll_id, $answers, $options, $time, $count);
+				$recently_answered =
+				self::recently_answered($_user_id, $_poll_id, $answers, $options, $time, $count);
 				if(!$recently_answered->is_ok())
 				{
 					return $recently_answered;
 				}
 
-				$is_answered = self::is_answered($_user_id, $_poll_id);
-				if(!$is_answered)
-				{
-					return self::status(false)->set_result($is_answered);
-				}
-
 				return self::status(true);
-
 
 				break;
 			case 'poll_update_result':
@@ -122,9 +110,17 @@ trait access
 		$count = $_count;  // num of update poll
 
 		list($must_remove, $must_insert, $old_answer) = self::analyze($_user_id, $_poll_id, $_answer);
+		if($_answer !== [])
+		{
+			if($must_remove == $must_insert)
+			{
+				return self::status(false)->set_opt($_answer)->set_error_code(3004);
+			}
+		}
 
 		// default insert date
 		$insert_time = date("Y-m-d H:i:s");
+		$now         = time();
 		foreach ($old_answer as $key => $value)
 		{
 			$insert_time = $value['insertdate'];
@@ -132,7 +128,6 @@ trait access
 		}
 
 		$insert_time  = strtotime($insert_time);
-		$now          = time();
 		$diff_seconds = $now - $insert_time;
 
 		if($diff_seconds > $time)
@@ -166,10 +161,6 @@ trait access
 			return self::status(false)->set_opt($_answer)->set_error_code(3006);
 		}
 
-		if($must_remove == $must_insert)
-		{
-			return self::status(false)->set_opt($_answer)->set_error_code(3004);
-		}
 		return self::status(true)->set_opt($_answer)->set_message(T_("You can update your answer"));
 	}
 }
