@@ -56,7 +56,7 @@ class ask
 			}
 			else
 			{
-				$maker->inline_keyboard->add_guest_option(['update' => false, 'report' => true]);
+				$maker->inline_keyboard->add_guest_option(['update' => false, 'inline_report' => true]);
 				$maker->message->add_poll_list(true, false);
 			}
 			$maker->message->add_telegram_link();
@@ -98,7 +98,6 @@ class ask
 		$return_text = "❌ ";
 		if($save->is_ok())
 		{
-			handle::send_log($save);
 			$answer_id = (int) $save->get_opt(0);
 			$return_text = "✅ ";
 		}

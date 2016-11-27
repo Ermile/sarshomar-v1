@@ -61,7 +61,12 @@ class step_starting
 				$commands[$url_command[0]] = $url_command[1];
 			}
 		}
-		if(array_key_exists('sp', $commands))
+		if(array_key_exists('report', $commands))
+		{
+			step::stop();
+			$return = callback_query\poll::report(null, null, $commands['report']);
+		}
+		elseif(array_key_exists('sp', $commands))
 		{
 			step::stop();
 			$return = self::cmd_poll($commands['sp']);

@@ -118,7 +118,7 @@ class callback_query
 		{
 			return $response;
 		}
-		bot::sendResponse($response);
+		return bot::sendResponse($response);
 	}
 }
 ?>

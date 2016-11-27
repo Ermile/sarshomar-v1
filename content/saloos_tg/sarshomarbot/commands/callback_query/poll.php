@@ -242,5 +242,35 @@ class poll
 		}
 		callback_query::edit_message($return);
 	}
+
+	public static function report($_query, $_data_url, $_short_link = null)
+	{
+		$short_link = !is_null($_short_link) ? $_short_link : $_data_url[2];
+		$maker = new make_view(bot::$user_id, $short_link);
+		$maker->message->add_title();
+		$maker->message->add_poll_list(false, false);
+		if(!is_null($_data_url) && count($_data_url) == 4)
+		{
+			$maker->message->add('report', '#' . T_('Report') . ' #' . T_(ucfirst($_data_url[3])));
+			session::remove('expire', 'inline_cache', 'ask');
+			session::remove_remove('expire', 'inline_cache', 'ask');
+			$return = $maker->make();
+		}
+		else
+		{
+			$maker->message->add('report', '#' . T_('Report'));
+			$maker->inline_keyboard->add_report_status();
+			$return = $maker->make();
+			session::remove_back('expire', 'inline_cache', 'ask');
+			$return["response_callback"] = utility::response_expire('ask');
+		}
+
+		if(!is_null($_query))
+		{
+			callback_query::edit_message($return);
+			return [];
+		}
+		return $return;
+	}
 }
 ?>

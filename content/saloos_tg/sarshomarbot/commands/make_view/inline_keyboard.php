@@ -78,6 +78,7 @@ class inline_keyboard
 			'update' => true,
 			'share' => true,
 			'report' => false,
+			'inline_report' => false,
 			'poll_option' => false
 			], $_options);
 		$return = [];
@@ -102,7 +103,14 @@ class inline_keyboard
 				"switch_inline_query" => 'sp_'.$this->class->short_link
 			];
 		}
-		if($options['report'])
+		if($options['inline_report'])
+		{
+			$return[] = [
+				"text" => T_("Report"),
+				"callback_data" => 'poll/report/'.$this->class->short_link
+			];
+		}
+		elseif($options['report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
@@ -142,6 +150,29 @@ class inline_keyboard
 		}
 	}
 
+	public function add_report_status()
+	{
+		$this->inline_keyboard[$this->count()] = [
+			[
+				'text' => T_('Lawbreaker'),
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/lawbreaker'
+			],
+			[
+				'text' => T_('Spam'),
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/spam'
+			]
+		];
+		$this->inline_keyboard[$this->count()] = [
+			[
+				'text' => T_('Not interested'),
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/interested'
+			],
+			[
+				'text' => T_('Privacy violation'),
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/privacy'
+			]
+		];
+	}
 
 	public function make()
 	{
