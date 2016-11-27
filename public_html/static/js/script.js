@@ -10,6 +10,8 @@ route(/contact/, function()
 		}
 	});
 });
+
+
 function add_answer()
 {
 	var number_of_empty_inputs = 0;
@@ -49,151 +51,110 @@ function add_answer()
 }
 
 
-
-
-
-/**
- * this function check status of input after change parent one
- */
-function checkInput(_this, _firstTime)
-{
-  var chkID                      = $(_this).attr('id');
-  var chkHide                    = $('[data-init=hide]').parent();
-  var disable                    = null;
-  // normal childrens
-  var chkChildrens               = $('[data-parent*='+ chkID +']:not([data-reverse])');
-  var chkChildrensReverse        = $('[data-parent*='+ chkID +'][data-reverse]');
-  var chkRelations               = $('input[type=checkbox][data-relation*='+ chkID +']');
-  var effect                     = 'slide';
-
-  if($(_this).is(":checked"))
-  {
-     if(effect === 'slide')
-     {
-	    chkChildrensReverse.slideUp();
-	    chkChildrens.slideDown();
-     }
-     else
-     {
-	    chkChildrensReverse.fadeOut();
-	    chkChildrens.fadeIn();
-     }
-
-    chkChildrens.each(function()
-    {
-      var mythis = $(this).children('input');
-      if(mythis.is(":checked"))
-      {
-      	if(effect === 'slide')
-      	{
-        	$('[data-parent*='+ mythis.attr('id') +']:not([data-reverse])').slideDown();
-      	}
-      	else
-      	{
-        	$('[data-parent*='+ mythis.attr('id') +']:not([data-reverse])').fadeIn();
-      	}
-      }
-      else
-      {
-      	if(effect === 'slide')
-      	{
-        	$('[data-parent*='+ mythis.attr('id') +'][data-reverse]').slideDown();
-      	}
-      	else
-      	{
-        	$('[data-parent*='+ mythis.attr('id') +'][data-reverse]').fadeIn();
-      	}
-      }
-    });
-    if(!_firstTime)
-    {
-      chkRelations.prop('checked', true);
-    }
-  }
-  else
-  {
-    if(effect === 'slide')
-    {
-	    chkChildrensReverse.slideDown();
-	    chkChildrens.slideUp();
-    }
-    else
-    {
-	    chkChildrensReverse.fadeIn();
-	    chkChildrens.fadeOut();
-    }
-
-    chkChildrens.each(function()
-    {
-      var mythis = $(this).children('input');
-      if(effect === 'slide')
-      {
-      	$('[data-parent*='+ mythis.attr('id') +']').slideUp();
-      }
-      else
-      {
-      	$('[data-parent*='+ mythis.attr('id') +']').fadeOut();
-      }
-    });
-  }
-  if(_firstTime)
-  {
-      if(effect === 'slide')
-      {
-    	chkHide.slideUp();
-      }
-      else
-      {
-    	chkHide.fadeOut();
-      }
-  }
-
-  // check disabled
-  if($(_this).attr('data-disable') == true)
-  {
-    disable             = true;
-    chkChildrens        = chkChildrens.find('input, textarea, button, select');
-    chkChildrensReverse = chkChildrensReverse.find('input, textarea, button, select');
-    if($(_this).is(":checked"))
-    {
-      chkChildrens.prop('disabled', false);
-      chkChildrensReverse.prop('disabled', true);
-    }
-    else
-    {
-      chkChildrens.prop('disabled', true);
-      chkChildrensReverse.prop('disabled', false);
-    }
-
-  }
-
-
-}
-
-/**
- * check input for first time
- */
-function checkInputFirstTime()
-{
-  $('input[type=checkbox]').each(function ()
-  {
-    checkInput(this, true);
-  });
-}
-
 /**
  * check input for first time
  */
 function checkInputChange()
 {
-  $('input[type="checkbox"]').change(function()
+  $('input', this).change(function()
   {
     checkInput(this, false);
   });
+
+  // // run for the first time
+  // $('input[type=checkbox]').each(function ()
+  // {
+  //   checkInput(this, true);
+  // });
 }
 
 
+function checkInput(_this, _firstTime)
+{
+  var elID    = $(_this).attr('id');
+  var elName  = $(_this).attr('name');
+  var elType  = $(_this).attr('type');
+  var elValue;
+  switch (elType)
+  {
+  	case 'checkbox':
+		elValue = $(_this).is(":checked");
+  		break;
 
+  	case 'radio':
+		elValue = $(_this).val();
+		elID    = elName;
+  		break;
+
+  	case 'text':
+  	default:
+		elValue = $(_this).val();
+  		break;
+  }
+
+  var childrens = $('[data-response*='+ elID +']');
+  childrens.each(function()
+  {
+	var effect   = $(this).attr('data-response-effect');
+	var where    = $(this).attr('data-response-where');
+	var whereNot = $(this).attr('data-response-where-not');
+	var toggle   = $(this).attr('data-response-toggle');
+	var disable  = $(this).attr('data-response-disable');
+
+    // set effect name and default is fade
+    if(effect == 'slide')
+    {
+    	effect = {'name':'slide', 'toggle':'slideToggle', 'open':'slideDown', 'close':'slideUp'}
+    }
+    else
+    {
+    	effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
+    }
+
+    // if wanna to toggle element do this
+    if(toggle)
+    {
+    	$(this)[effect['effect']]();
+    }
+    else
+    {
+    	// console.log(whereNot);
+    	// console.log(elValue.toString());
+    	// console.log(elValue.toString() != whereNot);
+
+    	// console.log(where);
+    	// console.log(elValue.toString());
+    	// console.log(elValue.toString() == where);
+
+	    // show and hide elements depending on parent change
+	    if((where && where == elValue.toString()) || (!where && elValue != false ) || (whereNot && whereNot != elValue.toString()))
+	    {
+	    	console.log(111);
+		    if(disable)
+		    {
+		    	$(this).prop('disabled', false);
+		    }
+		    else
+		    {
+		    	// if condition is true
+		    	$(this)[effect['open']]();
+		    }
+	    }
+	    else
+	    {
+		    if(disable)
+		    {
+		    	$(this).prop('disabled', true);
+		    }
+		    else
+		    {
+		    	// if condition is false
+		    	$(this)[effect['close']]();
+		    }
+	    }
+    }
+  });
+}
 
 
 
@@ -201,8 +162,7 @@ function checkInputChange()
 route(/\@\/add/, function()
 {
 	// declare functions
-	checkInputFirstTime();
-	checkInputChange();
+	checkInputChange.call(this);
 
 	$(this).on('click','button', function()
 	{

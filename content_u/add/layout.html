@@ -79,7 +79,7 @@
 
 {%block feature_score%}
 {% spaceless %}
-	<div class="checkbox">
+	<div class="checkbox" data-response='choicemode' data-response-where-not='ordering'>
 		<input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
 		<label for="score" class="check-box"></label>
 		<label for="score">{%trans "Options has score"%}</label>
@@ -159,7 +159,7 @@
 
 {%block feature_trueanswer%}
 {% spaceless %}
-	<div class="checkbox">
+	<div class="checkbox" data-response='choicemode' data-response-where-not='ordering'>
 		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
 		<label for="true_answer" class="check-box"></label>
 		<label for="true_answer">{%trans "Has correct option"%}</label>
@@ -177,7 +177,7 @@
 			<label for="complete-profile" class="check-box"></label>
 			<label for="complete-profile">{%trans "Complete Profile"%}</label>
 		</div>
-		<select class="complete-profile span8" name="meta_profile" data-parent='complete-profile'>
+		<select class="complete-profile span8" name="meta_profile" data-response='complete-profile' disabled="">
 			<option value="">{%trans "Complete Profile"%}</option>
 			{%for key, value in profile_lock%}{%set t_value = key %}
 			<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
@@ -191,7 +191,7 @@
 
 {%block feature_treebox%}
 {% spaceless %}
-	<div class="tree-container" data-parent='tree'>
+	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide'>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row tree-fields">
@@ -307,7 +307,7 @@
 		<option value="password">{%trans "Password"%}</option>
 		<option value="regular">{%trans "Custom"%}</option>
 	</select>
-	<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-parent='tree'>
+	<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='tree'>
 
 {% endspaceless %}
 {%endblock%}
