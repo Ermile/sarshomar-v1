@@ -273,7 +273,7 @@ class sync
 				options
 			SET
 				options.user_id = $new_user_id,
-				options.option_value = IF(options.option_value = options.user_id, $new_user_id, options.option_value)
+				options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value)
 			WHERE
 				options.user_id = $old_user_id AND
 				options.option_key NOT LIKE 'user%'
