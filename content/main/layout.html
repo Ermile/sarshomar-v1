@@ -17,6 +17,7 @@
 {% include template.footer %}
 
 {%block modal%}
+{% if not login%}
  <div class='modal' id='not-login'>
   <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
    <h3 class='modal-title'>{%trans%}LOGIN OR TRY{%endtrans%}</h3>
@@ -32,6 +33,7 @@
    </p>
   </form>
  </div>
+ {%endif%}
 {%endblock%}
 
 {%endblock%}
