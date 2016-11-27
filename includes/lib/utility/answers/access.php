@@ -34,7 +34,7 @@ trait access
 					return $recently_answered;
 				}
 
-				return self::status(true);
+				return self::status(true)->set_result($recently_answered->get_result());
 
 				break;
 			case 'poll_update_result':
@@ -114,7 +114,7 @@ trait access
 		{
 			if($must_remove == $must_insert)
 			{
-				return self::status(false)->set_opt($_answer)->set_error_code(3004);
+				return self::status(false)->set_opt($_answer)->set_result($old_answer)->set_error_code(3004);
 			}
 		}
 
@@ -132,7 +132,7 @@ trait access
 
 		if($diff_seconds > $time)
 		{
-			return self::status(false)->set_opt($_answer)->set_error_code(3005);
+			return self::status(false)->set_opt($_answer)->set_result($old_answer)->set_error_code(3005);
 		}
 
 		// get count of updated the poll
@@ -158,10 +158,10 @@ trait access
 		$update_count = intval($update_count[0]['value']);
 		if($update_count > $count)
 		{
-			return self::status(false)->set_opt($_answer)->set_error_code(3006);
+			return self::status(false)->set_opt($_answer)->set_result($old_answer)->set_error_code(3006);
 		}
 
-		return self::status(true)->set_opt($_answer)->set_message(T_("You can update your answer"));
+		return self::status(true)->set_opt($_answer)->set_result($old_answer)->set_message(T_("You can update your answer"));
 	}
 }
 ?>
