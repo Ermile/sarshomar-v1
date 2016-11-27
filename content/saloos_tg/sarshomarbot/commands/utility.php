@@ -131,6 +131,19 @@ class utility
 	public static function markup_set_id(&$reply_markup)
 	{
 		$id = microtime(true);
+		$callback_session = session::get('tmp', 'callback_query');
+		if(!$callback_session)
+		{
+			$callback_session = [];
+		}
+		elseif(!is_array($callback_session))
+		{
+			$callback_session = [$callback_session];
+		}
+
+		array_push($callback_session, $id);
+		session::set('tmp', 'callback_query', $callback_session);
+
 		for ($i=0; $i < count($reply_markup); $i++)
 		{
 			for ($j=0; $j < count($reply_markup[$i]); $j++)

@@ -37,10 +37,10 @@ class callback_query
 		{
 			$callback_session = [$callback_session];
 		}
-
-		if(array_search($unique_id, $callback_session) === false)
+		$callback_session_key = array_search($unique_id, $callback_session);
+		if($callback_session_key !== false)
 		{
-			array_push($callback_session, $unique_id);
+			array_splice($callback_session, $callback_session_key, 1);
 			session::set('tmp', 'callback_query', $callback_session);
 		}
 		else

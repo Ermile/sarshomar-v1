@@ -20,9 +20,10 @@ class controller extends \lib\mvc\controller
 	{
 		if(isset($_GET['log']))
 		{
+			header('Content-Type: application/json');
 			\lib\db\tg_session::$user_id = 99;
 			\lib\db\tg_session::start();
-			print_r(get_object_vars(\lib\db\tg_session::get()));
+			echo json_encode(\lib\db\tg_session::get());
 			exit();
 		}
 		register_shutdown_function(function()

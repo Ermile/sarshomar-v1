@@ -125,6 +125,13 @@ class handle
 				$response = step_dashboard::start();
 				break;
 
+				case '/profile':
+				case T_('Profile'):
+				$profile = \lib\utility\profiles::get_profile_data(bot::$user_id, false);
+				// $profile = preg_replace("[_]", '_', $profile);
+				$response = ['text' => "```\n". json_encode($profile) . "\n```"];
+				break;
+
 				case '/help':
 				case T_('Help'):
 				$response = step_help::start();
