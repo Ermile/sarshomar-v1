@@ -33,6 +33,9 @@ class sync
 	 */
 	public static function web_telegram($_web_mobile, $_telegram_id)
 	{
+		// this function in dev mod... :)
+		return self::status(true)->set_error_code(3502);
+
 		$mobile = \lib\utility\filter::mobile($_web_mobile);
 		$web = \lib\db\users::get_by_mobile($mobile);
 		if(!$web || empty($web))
@@ -202,9 +205,6 @@ class sync
 		{
 			if(array_key_exists($value['id'], $must_insert_answer))
 			{
-				// remove answer must be remove
-				\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
-
 				$answers_details =
 				[
 					'type'    => 'minus',
@@ -214,6 +214,8 @@ class sync
 					'profile' => $value['profile']
 				];
 				\lib\utility\stat_polls::set_poll_result($answers_details);
+				// remove answer must be remove
+				\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
 			}
 		}
 
