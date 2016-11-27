@@ -143,7 +143,7 @@ class handle
 				case T_('Profile'):
 				$profile = \lib\utility\profiles::get_profile_data(bot::$user_id, false);
 				// $profile = preg_replace("[_]", '_', $profile);
-				$response = ['text' => "```\n". json_encode($profile) . "\n```"];
+				$response = ['text' => "```\n". json_encode($profile, JSON_UNESCAPED_UNICODE) . "\n#" .bot::$user_id. "\n```"];
 				break;
 
 				case '/help':
