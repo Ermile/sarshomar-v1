@@ -27,7 +27,8 @@ trait insert
 			'post_parent'      => null,
 			'post_meta'        => null,
 			'post_publishdate' => null,
-			'post_gender'      => null,
+			'post_privacy' 	   => 'public',
+			'post_gender'      => 'poll',
 			'post_survey'      => null
 		];
 

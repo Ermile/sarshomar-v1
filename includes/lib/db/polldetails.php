@@ -281,10 +281,10 @@ class polldetails
 
 		switch ($_options['type']) {
 			case 'answered':
-				$opt = " AND polldetails.opt != '0' ";
+				$opt = " AND polldetails.opt > 0 ";
 				break;
 			case 'skipped':
-				$opt = " AND polldetails.opt = '0' ";
+				$opt = " AND polldetails.opt = 0 ";
 				break;
 			default:
 				$opt = "";
@@ -385,10 +385,10 @@ class polldetails
 		switch ($_options['type'])
 		{
 			case 'answered':
-				$opt = " AND polldetails.opt != '0' ";
+				$opt = " AND polldetails.opt > 0 ";
 				break;
 			case 'skipped':
-				$opt = " AND polldetails.opt = '0' ";
+				$opt = " AND polldetails.opt = 0 ";
 				break;
 			default:
 				$opt = "";

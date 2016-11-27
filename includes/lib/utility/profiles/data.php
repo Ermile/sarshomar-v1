@@ -14,7 +14,11 @@ trait data
 	public static function get_profile_data($_user_id, $_accepted_value = true)
 	{
 		$user_filter = \lib\db\users::get($_user_id, "filter_id");
-		$user_filter = \lib\db\filters::get($user_filter);
+		if($user_filter)
+		{
+			$user_filter = \lib\db\filters::get($user_filter);
+		}
+
 		if(is_array($user_filter))
 		{
 			$user_filter = array_filter($user_filter);

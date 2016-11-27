@@ -68,8 +68,12 @@ trait search
 		}
 		else
 		{
+			$limit = null;
 			$public_fields = self::$fields;
-			$limit = $_options['limit'];
+			if($_options['limit'])
+			{
+				$limit = $_options['limit'];
+			}
 		}
 
 		// ------------------ get last
