@@ -68,7 +68,7 @@
 
 {%block feature_tree%}
 {% spaceless %}
-	<div class="checkbox" data-effect='fade'>
+	<div class="checkbox">
 		<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
@@ -79,7 +79,7 @@
 
 {%block feature_score%}
 {% spaceless %}
-	<div class="checkbox" data-response='choicemode' data-response-where-not='ordering'>
+	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
 		<input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
 		<label for="score" class="check-box"></label>
 		<label for="score">{%trans "Options has score"%}</label>
@@ -117,7 +117,7 @@
 
 {%block feature_other%}
 {% spaceless %}
-	<div class="checkbox">
+	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
 		<input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
 		<label for="descriptive" class="check-box"></label>
 		<label for="descriptive">{%trans "Allow to type other answer"%}</label>
@@ -159,7 +159,7 @@
 
 {%block feature_trueanswer%}
 {% spaceless %}
-	<div class="checkbox" data-response='choicemode' data-response-where-not='ordering'>
+	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
 		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
 		<label for="true_answer" class="check-box"></label>
 		<label for="true_answer">{%trans "Has correct option"%}</label>
@@ -171,13 +171,13 @@
 {%block feature_completeprofile%}
 {% spaceless %}
 	{% if perm.complete_profile.admin %}
-	<div class="row">
+	<div class="row auto">
 		<div class="checkbox span4">
 			<input type="checkbox" id="complete-profile">
 			<label for="complete-profile" class="check-box"></label>
 			<label for="complete-profile">{%trans "Complete Profile"%}</label>
 		</div>
-		<select class="complete-profile span8" name="meta_profile" data-response='complete-profile' disabled="">
+		<select class="complete-profile span4" name="meta_profile" data-response='complete-profile' data-response-hide>
 			<option value="">{%trans "Complete Profile"%}</option>
 			{%for key, value in profile_lock%}{%set t_value = key %}
 			<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>

@@ -343,6 +343,7 @@ div.checkbox{display:-webkit-flex;display:flex;}
 
 div[data-parent]{display: none;}
 .tab li:not(.active){display:none}
+*[data-response-hide]{display:none}
 
 /* radio */
 @keyframes explode{0%{opacity:0;transform:scale(1.5);}60%{opacity:1;transform:scale(0.75);}100%{opacity:1;transform:scale(1);}}
@@ -357,7 +358,7 @@ div[data-parent]{display: none;}
 /* checkbox group */
 /* @/add */
 .checkbox-group > div{height:23px;margin-bottom:15px;}
-.complete-profile{color:#00667A;background-color:#EBEBEB;display:block;border:none;width:100%;height:30px;line-height:30px;}
+.complete-profile{color:#00667A;background-color:#EBEBEB;border:none;width:100%;height:30px;line-height:30px;}
 .element .check{background-color:#EFEFEF;font-size:24px;line-height:inherit;padding:0 10px;color:#E7E7E7;transition:.3s;}
 /*.element .check{line-height:inherit;font-size:24px;background-color:#e7e7e7;position:relative;flex:1;flex-basis:40px;padding:0 5px;}*/
 /*.element .check::before,.element .check::after{position:absolute;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:4px;content:' ';-webkit-transition:opacity ease .5;-moz-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;-moz-transform-origin:left top;-ms-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428;}

@@ -69,6 +69,13 @@ function checkInputChange()
 }
 
 
+/**
+ * check inputs and change status of them if needed
+ * V2
+ * @param  {[type]} _this      [description]
+ * @param  {[type]} _firstTime [description]
+ * @return {[type]}            [description]
+ */
 function checkInput(_this, _firstTime)
 {
   var elID    = $(_this).attr('id');
@@ -96,10 +103,16 @@ function checkInput(_this, _firstTime)
   childrens.each(function()
   {
 	var effect   = $(this).attr('data-response-effect');
+	var timing   = $(this).attr('data-response-timing');
 	var where    = $(this).attr('data-response-where');
 	var whereNot = $(this).attr('data-response-where-not');
 	var toggle   = $(this).attr('data-response-toggle');
 	var disable  = $(this).attr('data-response-disable');
+	if(!disable && $(this).attr('disabled'))
+	{
+		disable = $(this).attr('disabled');
+		$(this).attr('data-response-disable', 'disabled-manual');
+	}
 
     // set effect name and default is fade
     if(effect == 'slide')
@@ -110,26 +123,46 @@ function checkInput(_this, _firstTime)
     {
     	effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
     }
+    if(!timing)
+    {
+    	timing = 'fast';
+    }
+    // check where and if want set true or false for where
+    if(where)
+    {
+		// for each sentence in where seperated by |
+		$.each(where.split('|'), function(index, whereValue)
+		{
+			// if where is okay
+			if(whereValue == elValue.toString())
+			{
+				where = true;
+			}
+		});
+		// if where is not true set it as false
+    	if(where !== true)
+    	{
+    		where = false;
+    	}
+    }
+    else
+    {
+    	if(elValue != false)
+    	{
+    		where = true;
+    	}
+    }
 
     // if wanna to toggle element do this
     if(toggle)
     {
-    	$(this)[effect['effect']]();
+    	$(this)[effect['effect']](timing);
     }
     else
     {
-    	// console.log(whereNot);
-    	// console.log(elValue.toString());
-    	// console.log(elValue.toString() != whereNot);
-
-    	// console.log(where);
-    	// console.log(elValue.toString());
-    	// console.log(elValue.toString() == where);
-
 	    // show and hide elements depending on parent change
-	    if((where && where == elValue.toString()) || (!where && elValue != false ) || (whereNot && whereNot != elValue.toString()))
+	    if(where)
 	    {
-	    	console.log(111);
 		    if(disable)
 		    {
 		    	$(this).prop('disabled', false);
@@ -137,7 +170,7 @@ function checkInput(_this, _firstTime)
 		    else
 		    {
 		    	// if condition is true
-		    	$(this)[effect['open']]();
+		    	$(this)[effect['open']](timing);
 		    }
 	    }
 	    else
@@ -149,7 +182,7 @@ function checkInput(_this, _firstTime)
 		    else
 		    {
 		    	// if condition is false
-		    	$(this)[effect['close']]();
+		    	$(this)[effect['close']](timing);
 		    }
 	    }
     }
