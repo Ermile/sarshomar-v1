@@ -259,6 +259,31 @@ class sync
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
+		// get the user namse and last nams
+		$telegram_details =
+		[
+			'user_id'      => $old_user_id,
+			'option_cat'   => 'telegram',
+			'option_value' => 'id'
+		];
+		$telegram_details = \lib\db\options::get($telegram_details);
+		if($telegram_details && is_array($telegram_details))
+		{
+			if(isset($telegram_details[0]))
+			{
+				$telegram_details = $telegram_details[0];
+				if(isset($telegram_details['first_name']))
+				{
+					\lib\utility\profiles::set_profile_data($new_user_id, ['firstname' => $telegram_details['first_name']]);
+				}
+				if(isset($telegram_details['last_name']))
+				{
+					\lib\utility\profiles::set_profile_data($new_user_id, ['lastname' => $telegram_details['last_name']]);
+				}
+			}
+		}
+
+
 		// process dashboard data again
 		$user_post = \lib\db\polls::search(null,
 			['user_id'    => $old_user_id,
