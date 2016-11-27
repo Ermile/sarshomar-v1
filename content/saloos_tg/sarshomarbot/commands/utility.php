@@ -114,14 +114,25 @@ class utility
 		return function(&$_name, &$_args){
 			if(isset($_args['reply_markup']) && isset($_args['reply_markup']['inline_keyboard']))
 			{
-				self::markup_set_id($_args['reply_markup']['inline_keyboard']);
+				$session_id = self::markup_set_id($_args['reply_markup']['inline_keyboard']);
+				if(!isset($_args['storage']) || !is_array($_args['storage']))
+				{
+					$_args['storage'] = array();
+				}
+				$_args['storage']['callback_session'] = $session_id;
+
 			}
 			elseif(isset($_args['results']))
 			{
 				foreach ($_args['results'] as $key => $value) {
 					if(isset($_args['results'][$key]['reply_markup']) && isset($_args['results'][$key]['reply_markup']['inline_keyboard']))
 					{
-						self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard']);
+						$session_id = self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard']);
+						if(!isset($_args['storage']) || !is_array($_args['storage']))
+						{
+							$_args['storage'] = array();
+						}
+						$_args['storage']['callback_session'] = $session_id;
 					}
 				}
 			}
@@ -130,18 +141,15 @@ class utility
 
 	public static function markup_set_id(&$reply_markup)
 	{
-		$id = microtime(true);
-		$callback_session = session::get('tmp', 'callback_query');
-		if(!$callback_session)
+		$id = preg_replace("[\.]", '_', microtime(true));
+		$callback_session = (array) session::get('tmp', 'callback_query');
+		if(!is_array($callback_session))
 		{
 			$callback_session = [];
 		}
-		elseif(!is_array($callback_session))
-		{
-			$callback_session = [$callback_session];
-		}
+		$session_id = "ik_$id";
+		$callback_session[$session_id] = true;
 
-		array_push($callback_session, $id);
 		session::set('tmp', 'callback_query', $callback_session);
 
 		for ($i=0; $i < count($reply_markup); $i++)
@@ -154,5 +162,22 @@ class utility
 				}
 			}
 		}
+		return $session_id;
+	}
+
+	public static function callback_session()
+	{
+		return function(&$_name, &$_args, $_return){
+			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
+			{
+				$callback_session = $_args['storage']['callback_session'];
+				$callback_query = session::get('tmp', 'callback_query');
+				if(isset($callback_query[$callback_session]))
+				{
+					$callback_query[$callback_session] = $_return['result']['message_id'];
+				}
+				session::set('tmp', 'callback_query', $callback_query);
+			}
+		};
 	}
 }

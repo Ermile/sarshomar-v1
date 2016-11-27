@@ -23,7 +23,7 @@ class controller extends \lib\mvc\controller
 			header('Content-Type: application/json');
 			\lib\db\tg_session::$user_id = 99;
 			\lib\db\tg_session::start();
-			echo json_encode(\lib\db\tg_session::get());
+			echo json_encode(\lib\db\tg_session::get('tmp', 'callback_query'));
 			exit();
 		}
 		register_shutdown_function(function()
@@ -54,6 +54,7 @@ class controller extends \lib\mvc\controller
 		};
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = commands\utility::replay_markup_id();
+		bot::$methods['after']["/.*/"] = commands\utility::callback_session();
 
 		/**
 		 * start hooks and run telegram session from db
@@ -104,6 +105,13 @@ class controller extends \lib\mvc\controller
 
 				$edit_return = commands\utility::object_to_array($value->on_expire);
 				$get_original = session::get('expire', 'inline_cache', $key);
+				$callback_query = (array) session::get('tmp', 'callback_query');
+				$callback_session = array_search($edit_return['message_id'], $callback_query);
+				if($callback_session !== false)
+				{
+					unset($callback_query[$callback_session]);
+					session::set('tmp', 'callback_query', $callback_query);
+				}
 				if($value->save_unique_id == $get_original->save_unique_id)
 				{
 					session::remove('expire', 'inline_cache', $key);

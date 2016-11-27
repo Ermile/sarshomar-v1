@@ -36,8 +36,7 @@ class ask
 		{
 			$maker->message->add_title();
 			$poll_access = \lib\utility\answers::check(bot::$user_id, $maker->poll_id);
-			handle::send_log($poll_access);
-			handle::send_log($maker->poll_id);
+
 			$access = $poll_access->is_ok();
 			$set_last = [];
 			if(is_null($_short_link))

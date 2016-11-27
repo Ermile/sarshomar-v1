@@ -17,33 +17,15 @@ class callback_query
 			session::remove_back('expire', 'inline_cache');
 			return $result;
 		}
-		preg_match("/^(\d+\.\d+):(.*)$/", $data_url[0], $unique_id);
-		if(count($unique_id) < 2)
-		{
-			session::remove_back('expire', 'inline_cache');
-			return $result;
-		}
+		preg_match("/^(\d+_\d+):(.*)$/", $data_url[0], $unique_id);
 		$data_url[0] = $unique_id[2];
-		$unique_id = $unique_id[1];
+		$unique_id = !is_null($unique_id[1]) ? 'ik_' . $unique_id[1] : null;
+		$callback_session = session::get('tmp', 'callback_query', $unique_id);
+
 		/**
 		 * check if unique request
 		 */
-		$callback_session = session::get('tmp', 'callback_query');
-		if(!$callback_session)
-		{
-			$callback_session = [];
-		}
-		elseif(!is_array($callback_session))
-		{
-			$callback_session = [$callback_session];
-		}
-		$callback_session_key = array_search($unique_id, $callback_session);
-		if($callback_session_key !== false)
-		{
-			array_splice($callback_session, $callback_session_key, 1);
-			session::set('tmp', 'callback_query', $callback_session);
-		}
-		else
+		if(is_null($unique_id) || is_null($callback_session))
 		{
 			session::remove_back('expire', 'inline_cache');
 			return $result;
@@ -67,42 +49,12 @@ class callback_query
 			$callback_result = $class_name::start($_query, $data_url);
 			$callback_result = is_array($callback_result) ? $callback_result : [];
 		}
+
+		$callback_query = (array) session::get('tmp', 'callback_query');
+		unset($callback_query[$unique_id]);
+		session::set('tmp', 'callback_query', $callback_query);
+
 		return array_merge($result, $callback_result);
-
-
-		preg_match("/^((last|cancel)\/)?\\$\/([^\/]+)\/(\d+)$/", $_query['data'], $data);
-
-		if(empty($data))
-		{
-			// is fatal error and hack error
-			$result['text'] = "❌ پاسخ درست نمی‌باشد ";
-			return $result;
-		}elseif($data[2] == 'cancel')
-		{
-			$result['text'] = "⭕️ شاید کمتر از این موارد مشاهده کنید";
-			return $result;
-		}else
-		{
-			$result['text'] = '👍 پاسخ ' . ($data[4] + 1) . " برای شما ثبت شد";
-		}
-
-		$poll_id = \lib\utility\shortURL::decode($data[3]);
-		$answer = \lib\utility\answers::save(bot::$user_id, $poll_id, $data[4]);
-		$poll = \lib\db\polls::get_poll($poll_id);
-		$poll_result = poll_result::make($poll);
-		$message = $poll_result['message'];
-		poll_result::add_message($message, rand(123568, 999999) . " رای دادند", 3);
-		$inline_keyboard = $poll_result['inline_keyboard'];
-
-		bot::sendResponse([
-			"method" 				=> "editMessageText",
-			"inline_message_id" 	=> $inline_message_id,
-			"text"					=> poll_result::get_message($message),
-			'parse_mode' => 'Markdown',
-			'disable_web_page_preview' => true,
-			"reply_markup" 			=> ["inline_keyboard" => $inline_keyboard]
-			]);
-		return $result;
 	}
 
 	public static function edit_message($_result, $_return = false)
