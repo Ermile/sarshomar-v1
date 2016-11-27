@@ -82,6 +82,13 @@ class ask
 		return $return;
 	}
 
+
+	public static function change($_query, $_data_url){
+		callback_query::edit_message(self::make(null, null, $_data_url[2]));
+		session::remove_back('expire', 'inline_cache', 'ask');
+		return [];
+	}
+
 	public static function poll($_query, $_data_url)
 	{
 		$poll_short_link = $_data_url[2];
@@ -89,18 +96,25 @@ class ask
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
 		$save = \lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
 		$return_text = "❌ ";
-		if($save['status'])
+		if($save->is_ok())
 		{
-			$answer_id = $save['opt_index'];
+			handle::send_log($save);
+			$answer_id = (int) $save->get_opt(0);
 			$return_text = "✅ ";
 		}
-		$return_text .= $save['msg'];
-		if(!array_key_exists('message', $_query))
+
+		$return_text .= $save->get_message();
+
+		if($save->is_error_code(3000) || $save->is_error_code(3001))
+		{
+			// $return = self::make(null, null, $poll_short_link);
+			callback_query::edit_message(['text' => $save->get_message()]);
+		}
+		elseif(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');
 
 			$maker = new make_view(bot::$user_id, $poll_short_link);
-
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
 			$maker->message->add_poll_list();
@@ -135,6 +149,13 @@ class ask
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
 			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
+			if($save->is_ok())
+			{
+				array_unshift(
+						$on_expire_keyboard[0],
+						utility::inline(T_("Change poll"), "ask/change/". $poll_short_link)
+					);
+			}
 			if(count($_data_url) > 4)
 			{
 				array_unshift(
