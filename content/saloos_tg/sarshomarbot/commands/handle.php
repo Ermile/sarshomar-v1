@@ -63,7 +63,7 @@ class handle
 		$user_sync = \lib\storage::get_user_sync();
 		if(!is_null($user_sync))
 		{
-			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], '99');
+			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
 			if($sync->is_ok())
 			{
 				$text = $sync->get_message();
