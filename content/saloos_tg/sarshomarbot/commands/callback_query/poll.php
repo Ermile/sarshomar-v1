@@ -252,8 +252,8 @@ class poll
 		if(!is_null($_data_url) && count($_data_url) == 4)
 		{
 			$maker->message->add('report', '#' . T_('Report') . ' #' . T_(ucfirst($_data_url[3])));
-			session::remove('expire', 'inline_cache', 'ask');
-			session::remove_remove('expire', 'inline_cache', 'ask');
+			\lib\storage::set_disable_edit(true);
+			session::remove('expire', 'inline_cache', 'spam');
 			$return = $maker->make();
 		}
 		else
@@ -262,7 +262,8 @@ class poll
 			$maker->inline_keyboard->add_report_status();
 			$return = $maker->make();
 			session::remove_back('expire', 'inline_cache', 'ask');
-			$return["response_callback"] = utility::response_expire('ask');
+			session::remove('expire', 'inline_cache', 'ask');
+			$return["response_callback"] = utility::response_expire('spam');
 		}
 
 		if(!is_null($_query))
