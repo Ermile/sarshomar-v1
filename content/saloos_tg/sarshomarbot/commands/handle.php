@@ -60,6 +60,20 @@ class handle
 			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
 		$response = null;
+		$user_sync = \lib\storage::get_user_sync();
+		if(!is_null($user_sync))
+		{
+			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], '99');
+			if($sync->is_ok())
+			{
+				$text = $sync->get_message();
+				$text .= "\n";
+				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
+				$text .= "\n";
+				$text .= "#" . T_("Sync");
+				return ['text' => $text];
+			}
+		}
 		// check if we are in step then go to next step
 		if(!bot::is_aerial())
 		{
