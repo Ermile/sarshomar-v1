@@ -339,7 +339,7 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox input[type=checkbox]:checked + .check-box,.checkbox input[type=radio]:checked + .check-box,.checkbox .check-box.checked{border-color:#00667a;}
 .checkbox input[type=checkbox]:checked + .check-box::after,.checkbox input[type=radio]:checked + .check-box::after,.checkbox .check-box.checked::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;-moz-animation:dothabottomcheck .2s ease 0s forwards;-o-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards;}
 .checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
-.checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;}
+.checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
 
 div[data-parent]{display: none;}
 .tab li:not(.active){display:none}
@@ -628,9 +628,9 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .element{position:relative;display:inline-flex;width:100%;margin-bottom:20px;border-collapse:separate;vertical-align:middle;padding-left:12px;height:35px;line-height:35px;}
 .rtl .element{padding-left:0;padding-right:13px;}
 
-.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;display:none;cursor:pointer;opacity:0.9;}
+.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
 .rtl .element .delete{right:auto;left:-35px;}
-.element .delete:hover{background-color:#B03D3D;color:#E7E7E7;opacity:1;transition:0.3s;}
+.element .delete:hover{background-color:#B03D3D;color:#E7E7E7;opacity:1;}
 
 .element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 20px;transition:.3s;vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#EFEFEF;}
 .rtl .element .input{float:right;}
@@ -657,6 +657,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 .element.switch{padding-left:0;padding-right:0;}
 .element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
+.element.switch{border-radius:3px;overflow:hidden;}
 .element input[type="checkbox"],.element input[type="radio"]{display:none;}
 .element input[type="checkbox"]:checked + label,.element input[type="radio"]:checked + label{background-color:#0A5260;color:#D8DAD0;}
 
@@ -804,10 +805,10 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 
 /* animate.css */
-.animated {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
+.animated {-webkit-animation-duration:0.3s;animation-duration:0.3s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
 .fadeInDown {-webkit-animation-name:fadeInDown;animation-name:fadeInDown;}
-@-webkit-keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -100%, 0);transform:translate3d(0, -100%, 0);} to {opacity:1; -webkit-transform:none;transform:none;}}
-@keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -100%, 0);transform:translate3d(0, -100%, 0);} to {opacity:1; -webkit-transform:none; transform:none; }}
+@-webkit-keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -50%, 0);transform:translate3d(0, -50%, 0);} to {opacity:1; -webkit-transform:none;transform:none;}}
+@keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -50%, 0);transform:translate3d(0, -50%, 0);} to {opacity:1; -webkit-transform:none; transform:none; }}
 
 
 /* Sarshomar Font */
@@ -828,7 +829,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 
 /************************************************************** Features */
-.sarshomar-features{padding:60px 0;background-color:#fff}
+.sarshomar-features{padding:50px 0;background-color:#fff}
 #features-box .container{position:initial!important;text-align:center}
 /* features */
 .features{padding:40px 0; -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
@@ -991,8 +992,8 @@ aside .actived{display:block;}
 @keyframes bg {50% { background:#00667a; }}
 .pie::after {content:'';display:inline-block;position:absolute;width:60%;height:60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4;}
 
-.padding-box{padding-left:20px;}
-.rtl .padding-box{padding-left:0;padding-right:20px;}
+.input-group{padding-left:20px;}
+.rtl .input-group{padding-left:0;padding-right:20px;}
 
 
 /*.modal#not-login input[type="text"],.modal#not-login input[type="password"]{border:none;outline:none;}*/

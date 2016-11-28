@@ -31,34 +31,31 @@
 	<div class="input-group">
 	{%if answers is iterable%}
 		{%for key, value in answers%}
-			<div class="small element" data-number="{{key + 1}}" data-id="{{value.id}}">
+			<div class="small element" data-row="{{key + 1}}" data-id="{{value.id}}">
 				<label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
-				<input class="input" type="text" name="answers_{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
-				<input type="hidden" name="answer_true_{{key + 1}}" value="{{value.meta.true}}">
-				<input type="hidden" name="answer_type_{{key + 1}}" value="{{value.meta.type}}">
+				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
+			    <span class="fa fa-check check"></span>
+			    <span class="score"><input class="score" type="number" name="score{{key + 1}}"></span>
+			    <span class="fa fa-picture-o icon"></span>
 				<span class="fa fa-times delete"></span>
 			</div>
 		{%endfor%}
 	{%else%}{# if no answer found #}
-		<div class="small element" data-number="1">
+		<div class="small element" data-row="1">
 			<label class="title" for="answer1">{%trans "Answer"%} 1</label>
-			<input class="input" type="text" name="answers_1" id="answer1" autocomplete="off">
-			<input type="hidden" name="answer_true_1" data-true="true">
-			<input type="hidden" name="answer_type_1" data-type="type" value="text">
+			<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
 			<span class="fa fa-check check"></span>
-			<span class="score"><input class="score" type="number" name=""></span>
+			<span class="score"><input class="score" type="number" name="score1"></span>
 			<span class="fa fa-picture-o icon"></span>
-			<span class="fa fa-times delete"></span>
+			<span class="fa fa-times delete" tabindex="0"></span>
 		</div>
-		<div class="small element" data-number="2">
+		<div class="small element" data-row="2">
 			<label class="title" for="answer2">{%trans "Answer"%} 2</label>
-			<input class="input" type="text" name="answers_2" id="answer2" autocomplete="off">
-			<input type="hidden" name="answer_true_2" data-true="true">
-			<input type="hidden" name="answer_type_2" data-type="type"value="text">
+			<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
 			<span class="fa fa-check check"></span>
-			<span class="score"><input class="score" type="number" name=""></span>
+			<span class="score"><input class="score" type="number" name="score2"></span>
 			<span class="fa fa-picture-o icon"></span>
-			<span class="fa fa-times delete"></span>
+			<span class="fa fa-times delete" tabindex="1"></span>
 		</div>
 	{%endif%}
 	</div>

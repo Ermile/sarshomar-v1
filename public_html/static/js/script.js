@@ -1,56 +1,3 @@
-// contact form
-route(/contact/, function()
-{
-	$('form').on('ajaxify:success',function(data, debug)
-	{
-		if(debug.status)
-		{
-			$('input').val('');
-			$('textarea').val('');
-		}
-	});
-});
-
-
-function add_answer()
-{
-	var number_of_empty_inputs = 0;
-
-	// check if current element has not value and we have no empty inputs
-	$.each($('.element.small .input[type="text"]'), function(key, value)
-	{
-		if ( !$(this).val() && number_of_empty_inputs === 0 )
-		{
-			number_of_empty_inputs++;
-		}
-	});
-
-	// if we had no empty inputs and we needed one do this
-	if (number_of_empty_inputs === 0 && !$('.input-group').hasClass('editing'))
-	{
-		var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
-		var num = $('.element.small .input[type="text"]').length + 1;
-		template.children('label').text('answer ' + num).attr('for', 'answer' + num);
-		template.children('.input').attr('id', 'answer' + num);
-		template.children('.input').attr('name', 'answers_' + num);
-		template.children('.input').attr('value', '');
-		template.children('.input').val('');
-		template.children('input[data-true=true]').attr('name', 'answer_true_' + num);
-		template.children('input[data-type=type]').attr('name', 'answer_type_' + num);
-		template.attr('data-number', num);
-
-		$('.input-group').append(template);
-		template.addClass('animated fadeInDown');
-	}
-
-	// if we had empty inputs do this
-	else
-	{
-
-	}
-}
-
-
 /**
  * check input for first time
  */
@@ -206,6 +153,94 @@ function resizableTextarea()
 }
 
 
+/**
+ * add new record of answer
+ */
+function add_answer()
+{
+	var numberOfEmptyInputs = 0;
+	var emptyRowNumber;
+
+	// check if current element has not value and we have no empty inputs
+	$.each($('.element.small .input[type="text"]'), function(key, value)
+	{
+		if ( !$(this).val() && numberOfEmptyInputs === 0 )
+		{
+			numberOfEmptyInputs++;
+			emptyRowNumber = key;
+		}
+	});
+
+	// if we had no empty inputs and we needed one do this
+	if (numberOfEmptyInputs === 0 && !$('.input-group').hasClass('editing'))
+	{
+		var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
+		var num = $('.element.small .input[type="text"]').length + 1;
+		template.children('label').text('answer ' + num).attr('for', 'answer' + num);
+		template.children('.input').attr('id', 'answer' + num);
+		template.children('.input').attr('name', 'answer' + num);
+		template.children('.input').attr('value', '');
+		template.children('.input').val('');
+		template.children('.score input').attr('id', 'score' + num);
+		template.children('.score input').val('');
+		template.attr('data-row', num);
+
+		$('.input-group').append(template);
+		template.addClass('animated fadeInDown').delay(1000).queue(function()
+		{
+    		$(this).removeClass("animated fadeInDown").dequeue();
+		});
+	}
+	// if we had empty inputs do this
+	else
+	{
+		// highlight empty row
+	}
+}
+
+
+/**
+ * delete selected opt and do some event after that
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function deleteQuestionOpts(_this)
+{
+	if (countQuestionOpts() > 2)
+	{
+		_self     = $(_this);
+		answer_id = $(_this).parent('div').attr('data-id');
+		$(_this).parents('.element.small').fadeTo(200, 0).slideUp(200, function() { $(this).remove(); rearrangeQuestionOpts();} );
+	}
+}
+
+
+/**
+ * rearrange number of opts in question
+ * @return {[type]} [description]
+ */
+function rearrangeQuestionOpts()
+{
+	$.each($('.element.small'), function(key, value)
+	{
+		var row = key+1;
+		$(this).attr('data-row', row);
+		$(this).children('label').text('answer ' + row).attr('for', 'answer' + row);
+		$(this).children('.input').attr('id', 'answer' + row);
+		$(this).children('.input').attr('name', 'answer' + row);
+		$(this).children('.score input').attr('id', 'score' + row);
+	});
+}
+
+/**
+ * return count of question options exist in page
+ * @return {[type]} [description]
+ */
+function countQuestionOpts()
+{
+	return $('.element.small').length;
+}
+
 
 // Add
 route(/\@\/add/, function()
@@ -214,70 +249,58 @@ route(/\@\/add/, function()
 	checkInputChange.call(this);
 	resizableTextarea.call(this);
 
-	$(this).on('click','button', function()
-	{
-		$('#submit-form').attr("value", $(this).attr("send-name"));
-		$('#submit-form').attr("name", $(this).attr("send-name"));
-	});
-
-	// run on input change
+	// run on input change and add new opt for this question
 	$(this).on('input', '.element.small .input[type="text"]', function(event)
 	{
 		add_answer();
 	});
 
-	$(this).on('blur', '.element.small .input[type="text"]', function(event)
-	{
-		add_answer();
-	});
-
+	// show and hide delete btn on special condition
 	$(this).on('mouseenter', '.element.small', function()
 	{
-		$(this).children('.delete').stop().fadeIn(300);
+		if(countQuestionOpts() > 2)
+		{
+			$(this).children('.delete').stop().fadeIn(300);
+		}
 	}).on('mouseleave', '.element.small', function()
 	{
-		$(this).children('.delete').stop().fadeOut(300);
-	});
-
-	$(this).on('click', '.element.small .delete', function()
+		$(this).children('.delete').stop().fadeOut(200);
+	}).on('keyup', '.element.small input', function(e)
 	{
-		if ($('.element.small').length > 2)
+		if(countQuestionOpts() > 2 && e.shiftKey && e.keyCode === 46)
 		{
-			_self = $(this);
-			answer_id = $(this).parent('div').attr('data-id');
-			$(this).ajaxify(
-			{
-				ajax:
-				{
-					data:
-					{
-						'type': 'remove_answer',
-						'value': answer_id
-					},
-					abort: true,
-					success: function(e, data, x)
-					{
-						$(_self).parents('.element.small').remove();
-					},
-					method: 'post'
-				}
-			});
+			$(this).parent().children('.delete').click();
 		}
-		else
-		{
-			alert('You should have at least two answers.');
-		}
-	})
-
+	});
+	// on get focus and blus show and hide delete btn
 	$(this).on('focus', '.element.small input[type="text"]', function()
 	{
 		// always show delete button on input focus
+		if(countQuestionOpts() > 2)
+		{
+			$(this).parent().children('.delete').stop().fadeIn(300);
+		}
+	}).on('blur', '.element.small input[type="text"]', function()
+	{
+		// always show delete button on input focus
+		if(countQuestionOpts() > 2)
+		{
+			$(this).parent().children('.delete').stop().fadeOut(200);
+		}
 	});
 
-	$(this).on('click', '.questions > li > div', function(event)
+	// on press delete on each opt
+	$(this).on('click', '.element.small .delete', function()
 	{
-		$(this).parents('li').children('.answers').slideToggle();
-	});
+		deleteQuestionOpts(this);
+	})
+
+
+	// $(this).on('click', '.questions > li > div', function(event)
+	// {
+	// 	$(this).parents('li').children('.answers').slideToggle();
+	// });
+
 
 	$(this).on('change', '.answers > .ac-checkbox input[type="checkbox"]', function(event)
 	{
@@ -366,6 +389,14 @@ route(/\@\/add/, function()
 	  });
 	});
 
+	$(this).on('click','button', function()
+	{
+		$('#submit-form').attr("value", $(this).attr("send-name"));
+		$('#submit-form').attr("name", $(this).attr("send-name"));
+	});
+
+
+
 	$(this).on('change', '.complete-profile input[type="checkbox"]', function(event) {
 	    if (this.checked)
 	    {
@@ -398,7 +429,7 @@ route(/\@\/add/, function()
 			var option = options[i];
 			var $elem  = $('<div>', {class: 'element small'});
 			$('<label>', {class: 'title', html: option, for: option}).appendTo($elem);
-			$('<input>', {class: 'input', type: 'text', name: 'answers_' + (i + 1), id: option}).appendTo($elem);
+			$('<input>', {class: 'input', type: 'text', name: 'answer' + (i + 1), id: option}).appendTo($elem);
 			$('<input>', {type: 'hidden', name: 'answer_true_' + (i + 1), 'data-true': 'true'}).appendTo($elem);
 			$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
 			$('.input-group').append($elem);
@@ -838,3 +869,17 @@ var addClass = function ( ev, obj, state )
 };
 
 
+
+
+// contact form
+route(/contact/, function()
+{
+	$('form').on('ajaxify:success',function(data, debug)
+	{
+		if(debug.status)
+		{
+			$('input').val('');
+			$('textarea').val('');
+		}
+	});
+});
