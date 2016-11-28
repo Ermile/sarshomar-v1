@@ -105,7 +105,10 @@ class utility
 			foreach ($result as $key => $value) {
 				$text .= $value['row_text'][$row];
 			}
-			$text .= "\n";
+			if($row > 0)
+			{
+				$text .= "\n";
+			}
 		}
 		return $text;
 	}
@@ -174,7 +177,14 @@ class utility
 				$callback_query = session::get('tmp', 'callback_query');
 				if(isset($callback_query[$callback_session]))
 				{
-					$callback_query[$callback_session] = $_return['result']['message_id'];
+					if(!isset($_return['result']['message_id']))
+					{
+						unset($callback_query[$callback_session]);
+					}
+					else
+					{
+						$callback_query[$callback_session] = $_return['result']['message_id'];
+					}
 				}
 				session::set('tmp', 'callback_query', $callback_query);
 			}

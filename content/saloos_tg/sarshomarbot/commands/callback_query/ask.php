@@ -61,7 +61,8 @@ class ask
 			else
 			{
 				$maker->inline_keyboard->add_guest_option(['skip'=> $skip, 'update' => false, 'inline_report' => true]);
-				$maker->message->add_poll_list(true, false);
+				$maker->message->add_poll_chart(true);
+				$maker->message->add_poll_list(true);
 			}
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
@@ -152,18 +153,18 @@ class ask
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
 			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
-			if($save->is_ok())
-			{
-				array_unshift(
-						$on_expire_keyboard[0],
-						utility::inline(T_("Change poll"), "ask/change/". $poll_short_link)
-					);
-			}
+			// if($save->is_ok())
+			// {
+			// 	array_unshift(
+			// 			$on_expire_keyboard[0],
+			// 			utility::inline(T_("Change poll"), "ask/change/". $poll_short_link)
+			// 		);
+			// }
 			if(count($_data_url) > 4)
 			{
 				array_unshift(
-					$on_expire_keyboard[0],
-					utility::inline(T_("Next poll"), "ask/make")
+					$on_expire_keyboard,
+					[utility::inline(T_("Next poll"), "ask/make")]
 				);
 				foreach ($on_expire_keyboard[0] as $key => $value) {
 					if(isset($on_expire_keyboard[0][$key]['callback_data']))
@@ -200,8 +201,8 @@ class ask
 			if(end($_data_url) == 'last')
 			{
 				array_unshift(
-					$maker->inline_keyboard->inline_keyboard[0],
-					utility::inline(T_("Next poll"), "ask/make")
+					$maker->inline_keyboard->inline_keyboard,
+					[utility::inline(T_("Next poll"), "ask/make")]
 				);
 				foreach ($maker->inline_keyboard->inline_keyboard[0] as $key => $value) {
 					if(isset($maker->inline_keyboard->inline_keyboard[0][$key]['callback_data']))

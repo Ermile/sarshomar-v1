@@ -52,12 +52,15 @@ class message
 		}
 		$poll_list = '';
 		foreach ($this->poll_list as $key => $value) {
-			$poll_list .= $value['emoji'] . $value['text'];
+			$poll_list .= $value['emoji'] . ' ' . $value['text'];
 			if($_add_count)
 			{
 				$poll_list .= ' (' . $value['answer_count'] . ")";
 			}
-			$poll_list .= "\n";
+			if(end($this->poll_list) !== $value)
+			{
+				$poll_list .= "\n";
+			}
 		}
 		$this->message['poll_list'] = $poll_list;
 	}

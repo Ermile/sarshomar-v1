@@ -26,6 +26,7 @@ class handle
 			\lib\db::query("DELETE FROM options
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
+				AND option_key <> 'id'
 				");
 			\lib\db::query("DELETE from polldetails where user_id = $id");
 			\lib\db::query("DELETE from polldetails where user_id = 56");
@@ -33,6 +34,7 @@ class handle
 			\lib\db::query("DELETE FROM options
 				WHERE user_id = $id AND
 				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
+				AND option_key <> 'id'
 				");
 			\lib\db::query("DELETE from polldetails where user_id = $id");
 			session_destroy();

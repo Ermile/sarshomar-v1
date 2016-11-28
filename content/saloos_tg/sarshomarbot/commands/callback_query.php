@@ -25,7 +25,18 @@ class callback_query
 		/**
 		 * check if unique request
 		 */
-		if(is_null($unique_id) || is_null($callback_session))
+		$force_inline = false;
+		if(array_key_exists('inline_message_id', $_query))
+		{
+			self::$message_result['inline_message_id'] = $_query['inline_message_id'];
+			$force_inline = true;
+		}
+		elseif(array_key_exists('chat_instance', $_query))
+		{
+			self::$message_result['chat_instance'] = $_query['chat_instance'];
+		}
+
+		if((is_null($unique_id) || is_null($callback_session)) && !$force_inline)
 		{
 			session::remove_back('expire', 'inline_cache');
 			return $result;
@@ -34,14 +45,6 @@ class callback_query
 		/**
 		 * check type
 		 */
-		if(array_key_exists('inline_message_id', $_query))
-		{
-			self::$message_result['inline_message_id'] = $_query['inline_message_id'];
-		}
-		elseif(array_key_exists('chat_instance', $_query))
-		{
-			self::$message_result['chat_instance'] = $_query['chat_instance'];
-		}
 		$callback_result = [];
 		$class_name = '\content\saloos_tg\sarshomarbot\commands\callback_query\\' . $data_url[0];
 		if(class_exists($class_name) && method_exists($class_name, 'start'))
