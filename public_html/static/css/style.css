@@ -342,23 +342,22 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
 
 div[data-parent]{display: none;}
-.tab li:not(.active){display:none}
+.tab>li:not(.active){display:none}
 *[data-response-hide]{display:none}
 textarea[data-resizable]{min-height:100px;overflow:hidden;}
 /* sortable list styles*/
 
 .sortable {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
 .sortable.grid {overflow: hidden;}
-.sortable li {list-style: none;border:1px dashed transparent;background: #F6F6F6;color: #1C94C4;margin: 2px 5px;}
+.sortable li {list-style: none;}
 .sortable li:not(.disabled):hover{cursor: move}
 .sortable.grid li {float: left;text-align: center;}
 .handle {cursor: move;}
 .sortable.connected {float: left;}
 .sortable li.disabled {opacity: 0.5;}
 .sortable li.highlight {background: #FEE25F;}
-.sortable li.sortable-placeholder {border-color:#CCC;background: none;}
-.input-group.sortable li{min-height: 38px;line-height: 38px;padding: 2px 1%;}
-
+.sortable li.sortable-placeholder {border-color:#CCC;}
+.sortable li .title{cursor: move;}
 
 
 /* radio */
