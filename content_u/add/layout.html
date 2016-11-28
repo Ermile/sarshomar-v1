@@ -34,27 +34,27 @@
 			<div class="small element" data-row="{{key + 1}}" data-id="{{value.id}}">
 				<label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
 				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
-			    <span class="fa fa-check check"></span>
-			    <span class="score"><input class="score" type="number" name="score{{key + 1}}"></span>
-			    <span class="fa fa-picture-o icon"></span>
-				<span class="fa fa-times delete"></span>
+			    <span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+			    <span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
+			    <span class="fa fa-picture-o icon"data-response-hide></span>
+				<span class="fa fa-times delete" data-response-hide></span>
 			</div>
 		{%endfor%}
 	{%else%}{# if no answer found #}
 		<div class="small element" data-row="1">
 			<label class="title" for="answer1">{%trans "Answer"%} 1</label>
 			<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-			<span class="fa fa-check check"></span>
-			<span class="score"><input class="score" type="number" name="score1"></span>
-			<span class="fa fa-picture-o icon"></span>
+			<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+			<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
+			<span class="fa fa-picture-o icon" data-response-hide></span>
 			<span class="fa fa-times delete" tabindex="0"></span>
 		</div>
 		<div class="small element" data-row="2">
 			<label class="title" for="answer2">{%trans "Answer"%} 2</label>
 			<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-			<span class="fa fa-check check"></span>
-			<span class="score"><input class="score" type="number" name="score2"></span>
-			<span class="fa fa-picture-o icon"></span>
+			<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+			<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
+			<span class="fa fa-picture-o icon" data-response-hide></span>
 			<span class="fa fa-times delete" tabindex="1"></span>
 		</div>
 	{%endif%}
@@ -192,12 +192,15 @@
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row tree-fields">
-			<div class="span8"><input type="text" name="" autocomplete="off" placeholder='{%trans "Search"%}'></div>
+			<div class="span8">
+				<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}'>
+			</div>
 			<div class="span4">
-			<select id="repository">
-				<option value="sarshomar" >{%trans "Sarshomar" %}</option>
-				<option value="personal" >{%trans "Personal" %}</option>
-			</select>
+				<select id="tree-search-in">
+					<option value="all" >{%trans "All" %}</option>
+					<option value="sarshomar" >{%trans "Sarshomar" %}</option>
+					<option value="personal" >{%trans "Personal" %}</option>
+				</select>
 			</div>
 		</div>
 		<ul class="tree-result-list">
@@ -238,7 +241,6 @@
 					</li>
 				</ul>
 			</li>
-			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
 			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
 			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
 			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>

@@ -42,16 +42,22 @@ class model extends \content_u\home\model
 	{
 		$repository    = utility::post("repository");
 		$search        = utility::post("search");
+		$search_page   = utility::post("page");
 		$meta          = [];
 		$meta['limit'] = 3;
 		if($repository == 'personal')
 		{
 			$meta['user_id'] = $this->login("id");
 		}
+		elseif($repository == 'all')
+		{
+			$meta['all'] = 1;
+		}
 		else
 		{
 			$meta['post_sarshomar'] = 1;
 		}
+
 		$result = \lib\db\polls::search($search, $meta);
 		debug::msg("result", $result);
 	}

@@ -28,6 +28,7 @@ function checkInput(_this, _firstTime)
   var elID    = $(_this).attr('id');
   var elName  = $(_this).attr('name');
   var elType  = $(_this).attr('type');
+  var elResult;
   var elValue;
   switch (elType)
   {
@@ -119,6 +120,7 @@ function checkInput(_this, _firstTime)
 		    	// if condition is true
 		    	$(this)[effect['open']](timing);
 		    }
+		    elResult = 'open';
 	    }
 	    else
 	    {
@@ -131,9 +133,12 @@ function checkInput(_this, _firstTime)
 		    	// if condition is false
 		    	$(this)[effect['close']](timing);
 		    }
+		    elResult = 'close';
 	    }
     }
   });
+
+  $(window).trigger('response:open', [elID, elResult]);
 }
 
 
@@ -241,6 +246,62 @@ function countQuestionOpts()
 	return $('.element.small').length;
 }
 
+function treeSearch(_page)
+{
+	if(_page)
+	{
+		_page = 1;
+	}
+  $('#tree-search').ajaxify(
+  {
+    ajax:
+    {
+      url: '@/add',
+      method: 'post',
+      data:
+      {
+        'search': $('#tree-search').val(),
+        'repository': $("#tree-search-in").val(),
+        'page': _page,
+      },
+      abort: true,
+      success: function(e)
+      {
+      	$('.tree-result-list').html('');
+      	var el = '';
+      	console.log(e.msg.result);
+
+      	$.each(e.msg.result, function(_key, _value)
+      	{
+
+      	});
+
+
+
+        for (var datarow in e.msg.result)
+        {
+        	var id = e.msg.result[datarow].id;
+        	el += '<li>';
+		  		el = el + '<div>' + e.msg.result[datarow].title + '</div>';
+          el += '<ul class="answers">';
+
+          for (var a in e.msg.result[datarow].meta.opt)
+          {
+            el += '<li class="checkbox">';
+            el = el + '<input type="checkbox" name="' + id + '-' + e.msg.result[datarow].meta.opt[a].key + '" id="'+  id + '-' +e.msg.result[datarow].meta.opt[a].key +'">';
+            el = el + '<label for="' + id + '-' + e.msg.result[datarow].meta.opt[a].key + '">' + id + '-' + e.msg.result[datarow].meta.opt[a].txt + '</label>';
+            el += '</li>';
+          }
+          el += '</ul>';
+        	el += '</li>';
+        }
+
+        $('.tree-result-list').append($(el));
+      }
+    }
+  });
+}
+
 
 // Add
 route(/\@\/add/, function()
@@ -296,10 +357,30 @@ route(/\@\/add/, function()
 	})
 
 
-	// $(this).on('click', '.questions > li > div', function(event)
-	// {
-	// 	$(this).parents('li').children('.answers').slideToggle();
-	// });
+	// part2
+	// on open tree load content to it
+	$(window).on( "response:open", function(_obj, _name, _value)
+	{
+		// if open tree then fill with last qustions
+		if(_name == 'tree' && _value == 'open')
+		{
+			console.log('fill');
+			treeSearch();
+		}
+	});
+
+	$(this).on('input', '#tree-search', function(event)
+	{
+		treeSearch();
+	});
+
+
+	$(this).on('click', '.tree-result-list > li > div', function(event)
+	{
+		$(this).parents('li').children('.answers').slideToggle();
+	});
+
+
 
 
 	$(this).on('change', '.answers > .ac-checkbox input[type="checkbox"]', function(event)
@@ -344,50 +425,9 @@ route(/\@\/add/, function()
 
 	}
 
-	$(this).on('input', '#search', function(event)
-	{
-	  repository = $("#repository").val();
-	  search     = $(this).val();
-	  $(this).ajaxify(
-	  {
-	    ajax:
-	    {
-	      url: '@/add',
-	      method: 'post',
-	      data:
-	      {
-	        'repository': repository,
-	        'search': search
-	      },
-	      abort: true,
-	      success: function(e)
-	      {
-	      	$('.questions').html('');
-	      	var el = '';
 
-	        for (var r in e.msg.result)
-	        {
-	        	var id = e.msg.result[r].id;
-	        	el += '<li>';
-			  		el = el + '<div>' + e.msg.result[r].title + '</div>';
-	          el += '<ul class="answers">';
 
-	          for (var a in e.msg.result[r].meta.opt)
-	          {
-	            el += '<li class="ac-custom ac-checkbox ac-checkmark">';
-	            el = el + '<input type="checkbox" name="' + id + '-' + e.msg.result[r].meta.opt[a].key + '" id="'+  id + '-' +e.msg.result[r].meta.opt[a].key +'">';
-	            el = el + '<label for="' + id + '-' + e.msg.result[r].meta.opt[a].key + '">' + id + '-' + e.msg.result[r].meta.opt[a].txt + '</label>';
-	            el += '</li>';
-	          }
-	          el += '</ul>';
-	        	el += '</li>';
-	        }
 
-	        $('.questions').append($(el));
-	      }
-	    }
-	  });
-	});
 
 	$(this).on('click','button', function()
 	{
