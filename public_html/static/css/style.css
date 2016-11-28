@@ -631,6 +631,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
 .rtl .element .delete{right:auto;left:-35px;}
 .element .delete:hover{background-color:#B03D3D;color:#E7E7E7;opacity:1;}
+.element .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1;}
 
 .element .input{font-size:14px;position:relative;display:table-cell;float:left;width:100%;height:35px;margin-bottom:0;padding:6px 20px;transition:.3s;vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#EFEFEF;}
 .rtl .element .input{float:right;}

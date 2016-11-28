@@ -303,6 +303,23 @@ function treeSearch(_page)
 }
 
 
+/**
+ * [showQuestionOptsDel description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function showQuestionOptsDel(_this)
+{
+	// hide all elements
+	$('.element.small .delete').fadeOut(100);
+	// always show delete button on input focus
+	if(countQuestionOpts() > 2)
+	{
+		$(_this).stop().fadeIn(200);
+	}
+}
+
+
 // Add
 route(/\@\/add/, function()
 {
@@ -319,34 +336,32 @@ route(/\@\/add/, function()
 	// show and hide delete btn on special condition
 	$(this).on('mouseenter', '.element.small', function()
 	{
-		if(countQuestionOpts() > 2)
-		{
-			$(this).children('.delete').stop().fadeIn(300);
-		}
-	}).on('mouseleave', '.element.small', function()
+		// showQuestionOptsDel($(this).children('.delete'));
+	}).on('focus', '.element.small input[type="text"]', function()
 	{
-		$(this).children('.delete').stop().fadeOut(200);
-	}).on('keyup', '.element.small input', function(e)
-	{
-		if(countQuestionOpts() > 2 && e.shiftKey && e.keyCode === 46)
-		{
-			$(this).parent().children('.delete').click();
-		}
+		showQuestionOptsDel($(this).parent().children('.delete'));
 	});
-	// on get focus and blus show and hide delete btn
-	$(this).on('focus', '.element.small input[type="text"]', function()
+
+	// on keyup and press shift+del remove current record
+	$(this).on('keyup', '.element.small input', function(e)
 	{
-		// always show delete button on input focus
 		if(countQuestionOpts() > 2)
 		{
-			$(this).parent().children('.delete').stop().fadeIn(300);
-		}
-	}).on('blur', '.element.small input[type="text"]', function()
-	{
-		// always show delete button on input focus
-		if(countQuestionOpts() > 2)
-		{
-			$(this).parent().children('.delete').stop().fadeOut(200);
+			if(e.shiftKey && e.keyCode === 46)
+			{
+				$(this).parent().children('.delete').click();
+			}
+			else
+			{
+				// setTimeout(function()
+				// {
+				// 	if($(this).parent().children('.delete').is(':hidden'))
+				// 	{
+				// 		showQuestionOptsDel($(this).parent().children('.delete'));
+				// 		console.log('hidden, show it');
+				// 	}
+				// }, 500)
+			}
 		}
 	});
 
