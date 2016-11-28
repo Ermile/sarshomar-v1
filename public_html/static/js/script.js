@@ -190,12 +190,29 @@ function checkInput(_this, _firstTime)
 }
 
 
+/**
+ * allow textarea to be resizable
+ * @return {[type]} [description]
+ */
+function resizableTextarea()
+{
+	$('textarea[data-resizable]', this).keyup(function()
+	{
+		$(this).css( "height", function( index )
+		{
+			return $(this)[0].scrollHeight;
+		});
+	});
+}
+
+
 
 // Add
 route(/\@\/add/, function()
 {
 	// declare functions
 	checkInputChange.call(this);
+	resizableTextarea.call(this);
 
 	$(this).on('click','button', function()
 	{
