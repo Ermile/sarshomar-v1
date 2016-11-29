@@ -144,7 +144,7 @@ class model extends \content_u\home\model
 		// default survey id is null
 		$survey_id = null;
 		// users click on one of 'add filter' buttom
-		if(utility::post("filter") || utility::post("publish"))
+		if(utility::post("filter"))
 		{
 			$insert_poll = null;
 			// if title is null and answer is null
@@ -157,44 +157,28 @@ class model extends \content_u\home\model
 				// if we not in survey we have error for title and answers
 				if(!$this->check_poll_url($_args))
 				{
-					debug::error(T_("title or answers must be full"));
+					debug::error(T_("title or answers must be full"), ['title', 'answer1', 'answer2']);
+					return;
 				}
 			}
 			else
 			{
-				// we not in survey mode
-				if(!$this->check_poll_url($_args))
-				{
-					// insert the poll
-					$insert_poll = $this->insert_poll();
-				}
-				else
-				{
-					// users click on this buttom and the page has a data for insert
-					// we check the poll or survey mod
-					// if in survey mode we need to save last poll in user page as a survey record
-					// change type of the poll of this suervey to 'survey_poll_[polltype - media - image , text,  ... ]'
-					$poll_type = "survey_poll_";
-					// get the survey id and survey url
-					$survey_id = $this->check_poll_url($_args, "decode");
-					$survey_url = $this->check_poll_url($_args, "encode");
-					// insert the poll
-					$insert_poll = $this->insert_poll(['poll_type' => $poll_type, 'survey_id' => $survey_id]);
-					// save survey title
-					$this->set_suervey_title($survey_id);
-				}
+				// insert the poll
+				$insert_poll = $this->insert_poll();
 			}
+
 			// check the url
 			if($this->check_poll_url($_args))
 			{
 				// url like this >> @/(.*)/add
-				$url       = $this->check_poll_url($_args, "encode");
+				$url = $this->check_poll_url($_args, "encode");
 			}
 			else
 			{
 				// the url is @/add
 				$url = \lib\utility\shortURL::encode($insert_poll);
 			}
+
 			if(debug::$status)
 			{
 				// must be redirect to filter page
@@ -221,7 +205,7 @@ class model extends \content_u\home\model
 			[
 				'user_id'        => $this->login('id'),
 				'post_title'     => 'untitled survey',
-				'post_privacy'   => 'private',
+				'post_privacy'   => 'public',
 				'post_type'      => 'survey',
 				'post_survey'    => null,
 				'post_gender'    => 'survey',
@@ -242,8 +226,6 @@ class model extends \content_u\home\model
 					$this->redirector()->set_url("@/add/$url");
 				}
 			}
-
-
 		}
 		elseif(utility::post("add_poll"))
 		{
@@ -352,7 +334,7 @@ class model extends \content_u\home\model
 			$result = \lib\utility\survey::update($args, $_survey_id);
 			if(!$result)
 			{
-				debug::error(T_("error in save survey title"));
+				debug::error(T_("error in save survey title"), 'title');
 			}
 
 		}
@@ -435,11 +417,11 @@ class model extends \content_u\home\model
 			if(utility::post("answer$i"))
 			{
 				$do = true;
-				$answers[$i]       = utility::post("answer$i");
-				$answer_true[$id]  = (utility::post("true$i")  != '') ? utility::post("true$i") : '';
-				$answer_type[$id]  = (utility::post("type$i")  != '') ? utility::post("type$i") : 'select';
-				$answer_point[$id] = (utility::post("point$i") != '') ? utility::post("point$i"): '';
-				$answer_desc[$id]  = (utility::post("desc$i")  != '') ? utility::post("desc$i") : '';
+				$answers[$i]      = utility::post("answer$i");
+				$answer_true[$i]  = (utility::post("true$i")  != '') ? utility::post("true$i") : '';
+				$answer_type[$i]  = (utility::post("type$i")  != '') ? utility::post("type$i") : 'select';
+				$answer_point[$i] = (utility::post("point$i") != '') ? utility::post("point$i"): '';
+				$answer_desc[$i]  = (utility::post("desc$i")  != '') ? utility::post("desc$i") : '';
 			}
 		}
 		while($do);
@@ -506,7 +488,7 @@ class model extends \content_u\home\model
 		// check title
 		if($title == null)
 		{
-			debug::error(T_("poll title can not null"));
+			debug::error(T_("poll title can not null"), 'title');
 			return false;
 		}
 		// check length of sumamry text
@@ -593,7 +575,7 @@ class model extends \content_u\home\model
 		}
 		else
 		{
-			debug::error(T_("answers not found"));
+			debug::error(T_("answers not found"), ['answer1', 'answer2']);
 			return false;
 		}
 		// get the metas of this poll
