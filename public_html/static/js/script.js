@@ -207,18 +207,58 @@ function add_answer()
 
 
 /**
+ * [showQuestionOptsDel description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function showQuestionOptsDel(_this)
+{
+	// hide all elements
+	$('.element.small .delete').fadeOut(100);
+	var currentRowValue = $(_this).parent('.element').children('input[type="text"]').val();
+	// always show delete button on input focus
+	if(countQuestionOpts() > 2 && currentRowValue)
+	{
+		$(_this).stop().fadeIn(200);
+	}
+}
+
+
+/**
  * delete selected opt and do some event after that
  * @param  {[type]} _this [description]
  * @return {[type]}       [description]
  */
 function deleteQuestionOpts(_this)
 {
-	if (countQuestionOpts() > 2)
+	var currentRowValue = $(_this).closest('li').find('input[type="text"]').val();
+	if (countQuestionOpts() > 2 && currentRowValue)
 	{
-		_self     = $(_this);
-		answer_id = $(_this).parent('div').attr('data-id');
-		$(_this).parents('.element.small').fadeTo(200, 0).slideUp(200, function() { $(this).remove(); rearrangeQuestionOpts();} );
+		$(_this).closest('li').addClass('animated fadeOutSide').slideUp(200, function()
+		{
+			// set focus to next input
+			$(this).closest('li').next().find('input').focus();
+			// remove element
+			$(this).remove();
+			// rearrange question opts
+			rearrangeQuestionOpts();
+		});
 	}
+}
+
+
+/**
+ * generate sortable again and again after each change
+ */
+function setSortable()
+{
+	/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
+	!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
+	$('.sortable').sortable('destroy');
+	$('.sortable').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
+	{
+		rearrangeQuestionOpts();
+	});
 }
 
 
@@ -240,6 +280,7 @@ function rearrangeQuestionOpts()
 	});
 }
 
+
 /**
  * return count of question options exist in page
  * @return {[type]} [description]
@@ -248,6 +289,7 @@ function countQuestionOpts()
 {
 	return $('#tab-multiple_choice .element.small').length;
 }
+
 
 function treeSearch(_page)
 {
@@ -306,37 +348,6 @@ function treeSearch(_page)
 }
 
 
-/**
- * [showQuestionOptsDel description]
- * @param  {[type]} _this [description]
- * @return {[type]}       [description]
- */
-function showQuestionOptsDel(_this)
-{
-	console.log(countQuestionOpts());
-	// hide all elements
-	$('.element.small .delete').fadeOut(100);
-	// always show delete button on input focus
-	if(countQuestionOpts() > 2)
-	{
-		$(_this).stop().fadeIn(200);
-	}
-}
-
-
-function setSortable()
-{
-	/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
-	!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
-	$('.sortable').sortable('destroy');
-	$('.sortable').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
-	{
-		rearrangeQuestionOpts();
-	});
-}
-
-
-
 // Add
 route(/\@\/add/, function()
 {
@@ -387,7 +398,14 @@ route(/\@\/add/, function()
 	$(this).on('click', '.element.small .delete', function()
 	{
 		deleteQuestionOpts(this);
+	}).on('keyup', '.element.small .delete', function(e)
+	{
+		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
+		{
+			$(this).parent().children('.delete').click();
+		}
 	})
+	;
 
 
 	// part2
