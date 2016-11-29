@@ -167,7 +167,7 @@ function add_answer()
 	var emptyRowNumber;
 
 	// check if current element has not value and we have no empty inputs
-	$.each($('.element.small .input[type="text"]'), function(key, value)
+	$.each($('#tab-multiple_choice .element.small .input[type="text"]'), function(key, value)
 	{
 		if ( !$(this).val() && numberOfEmptyInputs === 0 )
 		{
@@ -177,10 +177,10 @@ function add_answer()
 	});
 
 	// if we had no empty inputs and we needed one do this
-	if (numberOfEmptyInputs === 0 && !$('.input-group').hasClass('editing'))
+	if (numberOfEmptyInputs === 0 && !$('#tab-multiple_choice .input-group').hasClass('editing'))
 	{
-		var template = $('.element.small .input[type="text"]').eq(0).parents('.element.small').clone();
-		var num = $('.element.small .input[type="text"]').length + 1;
+		var template = $('#tab-multiple_choice .element.small .input[type="text"]').eq(0).parents('.element.small').clone();
+		var num = $('#tab-multiple_choice .element.small .input[type="text"]').length + 1;
 		template.children('label').text('answer ' + num).attr('for', 'answer' + num);
 		template.children('.input').attr('id', 'answer' + num);
 		template.children('.input').attr('name', 'answer' + num);
@@ -190,7 +190,7 @@ function add_answer()
 		template.children('.score input').val('');
 		template.attr('data-row', num);
 
-		$('.input-group').append(template);
+		$('#tab-multiple_choice .input-group').append(template);
 		template.addClass('animated fadeInDown').delay(1000).queue(function()
 		{
     		$(this).removeClass("animated fadeInDown").dequeue();
@@ -243,7 +243,7 @@ function rearrangeQuestionOpts()
  */
 function countQuestionOpts()
 {
-	return $('.element.small').length;
+	return $('#tab-multiple_choice .element.small').length;
 }
 
 function treeSearch(_page)
@@ -310,6 +310,7 @@ function treeSearch(_page)
  */
 function showQuestionOptsDel(_this)
 {
+	console.log(countQuestionOpts());
 	// hide all elements
 	$('.element.small .delete').fadeOut(100);
 	// always show delete button on input focus
