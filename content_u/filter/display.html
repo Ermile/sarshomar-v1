@@ -1,44 +1,101 @@
-{%extends display.main%}
+ {%extends display.main%}
 
-{%block content%}
-<div class="main pad">
- <div class="box">
-  <div class="row auto">
-   <div class="span8">
+ {%block content%}
+ <div class="main pad">
+  <div class="box">
+   <div class="row auto">
     {%include template.progress%}
-    <div class="row auto">
-     <div class="span6">
-      <div class="element switch">
-       <label class="title large" for="gender">{%trans "Gender"%}</label>
-       <input type="checkbox" name="filter_gender" value="male" id="male">
-       <label for="male">{%trans "Male"%}</label>
-       <input type="checkbox" name="filter_gender" value="female" id="female">
-       <label for="female">{%trans "Female"%}</label>
-      </div>
+    <div class="span8">
+     <div class="row auto">
+      <div class="span6">
+       <div class="element switch">
+        <label class="title large" for="gender">{%trans "Gender"%}</label>
+        <input type="checkbox" name="filter_gender" value="male" id="male">
+        <label for="male">{%trans "Male"%}</label>
+        <input type="checkbox" name="filter_gender" value="female" id="female">
+        <label for="female">{%trans "Female"%}</label>
+       </div>
+       <div class="element switch">
+        <label class="title large" for="graduation">{%trans "Graduation"%}</label>
+        <input type="checkbox" name="illiterate" id="illiterate">
+        <label for="illiterate">{%trans "Illiterate"%}</label>
+        <input type="checkbox" name="undergraduate" id="undergraduate">
+        <label for="undergraduate">{%trans "Undergraduate"%}</label>
+        <input type="checkbox" name="graduate" id="graduate">
+        <label for="graduate">{%trans "Graduate"%}</label>
+       </div>
+      </div><!-- /.span6 -->
+
+      <div class="span6">
+       <div class="element switch">
+        <label class="title large" for="marrital">{%trans "Marrital"%}</label>
+        <input type="checkbox" name="filter_marrital" value="single" id="single">
+        <label for="single">{%trans "Single"%}</label>
+        <input type="checkbox" name="filter_marrital" value="marriade" id="marriade">
+        <label for="marriade">{%trans "Marriade"%}</label>
+       </div>
+
+       <div class="element switch">
+        <label class="title large" for="employmentstatus">{%trans "Employment"%}</label>
+        <input type="checkbox" name="employee" id="employee">
+        <label for="employee">{%trans "Employee"%}</label>
+        <input type="checkbox" name="unemployee" id="unemployee">
+        <label for="unemployee">{%trans "Unemployee"%}</label>
+        <input type="checkbox" name="retired" id="retired">
+        <label for="retired">{%trans "Retired"%}</label>
+       </div>
+      </div><!-- /.span6 -->
      </div>
-     <div class="span6">
-      <div class="element switch">
-       <label class="title large" for="marrital">{%trans "Marrital"%}</label>
-       <input type="checkbox" name="filter_marrital" value="single" id="single">
-       <label for="single">{%trans "Single"%}</label>
-       <input type="checkbox" name="filter_marrital" value="marriade" id="marriade">
-       <label for="marriade">{%trans "Marriade"%}</label>
-      </div>
+
+     <div class="element switch">
+      <label class="title large" for="degree">{%trans "Degree"%}</label>
+      <input type="checkbox" name="under diploma" id="under diploma">
+      <label for="under diploma">{%trans "Under diploma"%}</label>
+      <input type="checkbox" name="diploma" id="diploma">
+      <label for="diploma">{%trans "Diploma"%}</label>
+      <input type="checkbox" name="2 year college" id="2 year college">
+      <label for="2 year college">{%trans "2 year college"%}</label>
+      <input type="checkbox" name="bachelor" id="bachelor">
+      <label for="bachelor">{%trans "Bachelor"%}</label>
+      <input type="checkbox" name="master" id="master">
+      <label for="master">{%trans "Master"%}</label>
+      <input type="checkbox" name="phd" id="phd">
+      <label for="phd">{%trans "PHD"%}</label>
+      <input type="checkbox" name="other" id="other">
+      <label for="other">{%trans "Other"%}</label>
+     </div>
+
+     <div class="floating-title" data-title='{%trans "Selected Filters"%}'></div>
+     <div class="tags">
+      <a href="#">{%trans "Male"%}</a>
+      <a href="#">{%trans "Graduate"%}</a>
+      <a href="#">{%trans "Master"%}</a>
+      <a href="#">{%trans "Retired"%}</a>
+     </div>
+
+     <div class="btn-container">
+      <button class="btn secondary">{%trans "Publish"%}</button>
      </div>
     </div>
-    <div>
-     <div>education</div>
+
+    <style type="text/css">
+
+    </style>
+
+    <div class="span4">
+     <div class="pay-info">
+      <div class="title">
+       <div class="price"><span class="value">1,548,239</span> <span class="unit">Rials</span></div>
+       <div class="free">{%trans "It's free"%}</div>
+       <div class="cash-container">
+        <div class="cash-title">{%trans "Your Cash"%}</div>
+        <div class="cash"><span class="value">154,000</span> <span class="unit">{%trans "Tomans"%}</span></div>
+       </div>
+      </div>
+      <div></div>
+     </div>
     </div>
-    <div>
-     <div>age range</div>
-    </div>
-   </div>
-   <div class="span4">
-    <div>money box</div>
-    <br>
-    <div>vertical range</div>
    </div>
   </div>
  </div>
-</div>
-{%endblock%}
+ {%endblock%}
