@@ -660,7 +660,7 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .element .input:focus::-moz-placeholder{color:#d8dad0;}
 .element .input:focus:-ms-input-placeholder{color:#d8dad0;}
 .element .input:focus + .icon{color:#d8dad0;background-color:#00667a;}
-.element .title{position:relative;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;height:35px;line-height:35px;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;font-size:14px;}
+.element .title{position:relative;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;height:35px;line-height:35px;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;font-size:14px;padding:0 0.5em;}
 .element .title.large{min-width:120px;}
 .rtl .element .title{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;}
 
