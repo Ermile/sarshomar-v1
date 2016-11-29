@@ -67,17 +67,6 @@
 {%endblock%}
 
 
-{%block feature_tree%}
-{% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
-		<label for="tree" class="check-box"></label>
-		<label for="tree">{%trans "Tree"%}</label>
-	</div>
-{% endspaceless %}
-{%endblock%}
-
-
 {%block feature_score%}
 {% spaceless %}
 	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
@@ -129,7 +118,7 @@
 
 {%block feature_multiplerange%}
 {% spaceless %}
-... range of answer allow to select ...
+	<div class="range-slider multiple-range" data-type="horizontal" data-response='choicemode' data-response-where='multi' data-response-hide></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -190,8 +179,13 @@
 {%endblock%}
 
 
-{%block feature_treebox%}
+{%block feature_tree%}
 {% spaceless %}
+	<div class="checkbox">
+		<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
+		<label for="tree" class="check-box"></label>
+		<label for="tree">{%trans "Tree"%}</label>
+	</div>
 	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide'>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
@@ -250,6 +244,13 @@
 			<li><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit</div></li>
 		</ul>
 	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block feature_timing%}
+{% spaceless %}
+	<div class="range-slider timing-range" data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -348,9 +349,7 @@
 {%block feature_filesize%}
 {% spaceless %}
 {% spaceless %}
-	<div class="filesize">
-		Range...
-	</div>
+	<div class="range-slider filesize-range" data-type="horizontal"></div>
 {% endspaceless %}
 {% endspaceless %}
 {%endblock%}
@@ -372,18 +371,14 @@
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="numbersize" data-response='rangemode' data-response-where='number' data-response-effect='slide'>
-		numbersize...
-	</div>
+	<div class="range-slider numbersize-range" data-type="horizontal" data-response='rangemode' data-response-where='number' data-response-effect='slide'>--Number</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="starsize" data-response='rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>
-	  Star size...
-	</div>
+	<div class="range-slider starsize-range" data-type="horizontal" data-response='rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>--Star</div>
 {% endspaceless %}
 {%endblock%}
 
