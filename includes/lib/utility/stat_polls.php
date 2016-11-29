@@ -39,6 +39,7 @@ class stat_polls
 	 */
 	public static function set_poll_result($_args)
 	{
+		// get the poll id
 		if(isset($_args['poll_id']))
 		{
 			$poll_id = $_args['poll_id'];
@@ -48,6 +49,7 @@ class stat_polls
 			return false;
 		}
 
+		// get the user id
 		if(isset($_args['user_id']))
 		{
 			$user_id = $_args['user_id'];
@@ -57,33 +59,66 @@ class stat_polls
 			return false;
 		}
 
+		// default of chart is not sorting poll
+		$sorting  = false;
+		// key = the opt_key and value = the sort index
+		$sort_opt = [];
+		// check the opt keys
 		if(isset($_args['opt_key']))
 		{
-			$opt_key = 'opt_'. $_args['opt_key'];
+			// is array opt key mean we be in sorting mode
+			if(is_array($_args['opt_key']))
+			{
+				// example of $_args[opt_key] : [1,2,3,4,5] || [5,4,3,2,1] the sorting mode
+				$sorting = true;
+				foreach ($_args['opt_key'] as $key => $value)
+				{
+					$sort_opt['opt_'. $value] = count($_args['opt_key']) - $key;
+				}
+				// example of $sort_opt =
+				// [
+				// 	opt_1 => 5,
+				// 	opt_2 => 4,
+				// 	opt_3 => 3,
+				// 	opt_4 => 2,
+				// 	opt_5 => 1
+				// ];
+			}
+			// default poll and not sorting mode
+			else
+			{
+				$opt_key = 'opt_'. $_args['opt_key'];
+			}
 		}
 		else
 		{
 			return false;
 		}
 
+		// check the opt_text
 		$opt_txt = null;
 		if(isset($_args['opt_txt']))
 		{
 			$opt_txt = $_args['opt_txt'];
 		}
 
+		// default mode is plus the chart
 		$plus = true;
+		// check the type of change chart : plus | minus the chart
+		// in sorting mode we have not minus type of change chart
 		if(isset($_args['type']) && $_args['type'] != 'plus')
 		{
 			$plus = false;
 		}
 
+		// default port of user answer is 'site'
 		$port = "'site'";
 		if(isset($_args['port']))
 		{
 			$port = "'". $_args['port']. "'";
 		}
 
+		// default subport of the user answer is NULL, this method use in telegram mode
 		$subport = "NULL";
 		if(isset($_args['subport']))
 		{
@@ -93,6 +128,7 @@ class stat_polls
 		/**
 		 * set count total answere + 1
 		 * to get sarshomar total answered
+		 * in the minus mode we not change the sarshomar total answered
 		 */
 		if($plus)
 		{
@@ -100,45 +136,109 @@ class stat_polls
 		}
 
 		// user skip the poll
+		// neelless to change the chart
+		// and this check must be after set sarshomar_total_answered
+		// becaus the user see the poll and answer to this
+		// but the answer of this user needless to change the chart
 		if($opt_key == "opt_0")
 		{
-			return;
+			return true;
 		}
+
+		// the user profile data to make chart by this items
 		$user_profile_data = [];
+
+		// in minus mode we set the profile
+		// and we shuld not get the current user profile
+		// we get the profile of users has been answered by this profile
+		// and load old profile data to minus the chart
 		if(isset($_args['profile']))
 		{
+			// get profile data in filter table
 			$user_profile_data = \lib\db\filters::get($_args['profile']);
 			if(is_array($user_profile_data))
 			{
+				// remove empty value from profile to minus the 'undefined' of chart
 				$user_profile_data = array_filter($user_profile_data);
 			}
 		}
+		// the profile not set
+		// we get the current profile data of users
 		else
 		{
+			// get the current profile data of users
 			$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
 		}
+		// get the support filter of service
+		// some index of profile data we have not eny chart of this
+		// we have the chart of all index in filters::support_filter()
 	    $support_filter = \lib\db\filters::support_filter();
 
+	    // the keys of support_filter is important
+	    // the value of this array use in other place
 	    $support_filter = array_keys($support_filter);
 
+	    // get the poll stats record to open the chart and change it
 		$pollstats = \lib\db\pollstats::get($poll_id);
-		if($pollstats)
+		// if the poll stats record is find
+		// we must be change the chart
+		// and when the poll stats not found we must creat the chart
+		if($pollstats && is_array($pollstats))
 		{
-			// update record
-			$set = [];
-			if(isset($pollstats['total']) && $pollstats['total'])
+			// set the update mode to run update query
+			$update_mode = true;
+			$pollstats   = $pollstats;
+		}
+		else
+		{
+			// set the insert mod to run insert query
+			$update_mode = false;
+			$pollstats   = [];
+		}
+
+		// update mode
+		// we update the chart
+		$set = [];
+		// plus the total answered of this poll
+		if(isset($pollstats['total']) && $pollstats['total'])
+		{
+			// in plus mode we ++ the total answered to this poll
+			// in minus mode we not change the total field
+			if($plus)
 			{
-				if($plus)
+				$pollstats['total']++;
+			}
+		}
+		// first times to set the total fields
+		else
+		{
+			$pollstats['total'] = 1;
+		}
+		// set the pollstats.total field in query
+		$set[] = " pollstats.total = ". $pollstats['total'];
+
+		// if we in sorting mode:
+		// update all opt of this poll
+		// all opt of this poll was plused by sort index value
+		if($sorting)
+		{
+			// update all index of opt of this poll
+			foreach ($sort_opt as $opt => $sort_index)
+			{
+				if(isset($pollstats['result'][$opt]))
 				{
-					$pollstats['total']++;
+					$pollstats['result'][$opt] += $sort_index;
+				}
+				else
+				{
+					$pollstats['result'][$opt] = $sort_index;
 				}
 			}
-			else
-			{
-				$pollstats['total'] = 1;
-			}
-			$set[] = " pollstats.total = ". $pollstats['total'];
-
+		}
+			 // we not in sorting mode
+		else //
+		     // we plus one opt of this poll
+		{
 			if(isset($pollstats['result'][$opt_key]))
 			{
 				if($plus)
@@ -160,29 +260,62 @@ class stat_polls
 					$pollstats['result'][$opt_key] = 1;
 				}
 			}
-			$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
+		}
+		// update the result field in table
+		$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
 
-			foreach ($support_filter as $key => $value)
+		// for each support filter do this:
+		foreach ($support_filter as $key => $filter)
+		{
+			// check the user have this filter or no
+			// if the users have this filter:
+			if(isset($user_profile_data[$filter]))
 			{
-				if(isset($user_profile_data[$value]))
+				// if in sorting mode we update all opt index of this poll
+				if($sorting)
 				{
-					if(isset($pollstats[$value][$opt_key]))
+					// update all opt index of this poll
+					foreach ($sort_opt as $opt => $sort_index)
 					{
-						if(isset($pollstats[$value][$opt_key][$user_profile_data[$value]]))
+						if(isset($pollstats[$filter][$opt]))
 						{
-							if($plus)
+							if(isset($pollstats[$filter][$opt][$user_profile_data[$filter]]))
 							{
-								$pollstats[$value][$opt_key][$user_profile_data[$value]]++;
+								$pollstats[$filter][$opt][$user_profile_data[$filter]]+= $sort_index;
 							}
 							else
 							{
-								if(intval($pollstats[$value][$opt_key][$user_profile_data[$value]]) > 1)
+								$pollstats[$filter][$opt][$user_profile_data[$filter]] = $sort_index;
+							}
+						}
+						else
+						{
+							$pollstats[$filter][$opt][$user_profile_data[$filter]] = $sort_index;
+						}
+					}
+				}
+					 // we not in sorting mode
+				else // update one opt of this poll
+				     //
+				{
+					// check the filter of this opt
+					if(isset($pollstats[$filter][$opt_key]))
+					{
+						if(isset($pollstats[$filter][$opt_key][$user_profile_data[$filter]]))
+						{
+							if($plus)
+							{
+								$pollstats[$filter][$opt_key][$user_profile_data[$filter]]++;
+							}
+							else
+							{
+								if(intval($pollstats[$filter][$opt_key][$user_profile_data[$filter]]) > 1)
 								{
-									$pollstats[$value][$opt_key][$user_profile_data[$value]]--;
+									$pollstats[$filter][$opt_key][$user_profile_data[$filter]]--;
 								}
 								else
 								{
-									unset($pollstats[$value][$opt_key][$user_profile_data[$value]]);
+									unset($pollstats[$filter][$opt_key][$user_profile_data[$filter]]);
 								}
 							}
 						}
@@ -190,7 +323,7 @@ class stat_polls
 						{
 							if($plus)
 							{
-								$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+								$pollstats[$filter][$opt_key][$user_profile_data[$filter]] = 1;
 							}
 						}
 					}
@@ -198,50 +331,85 @@ class stat_polls
 					{
 						if($plus)
 						{
-							$pollstats[$value][$opt_key][$user_profile_data[$value]] = 1;
+							$pollstats[$filter][$opt_key][$user_profile_data[$filter]] = 1;
 						}
 					}
 				}
-				else
-				{
-					if(isset($pollstats[$value][$opt_key]))
-					{
-						if(isset($pollstats[$value][$opt_key]['undefined']))
-						{
-							if($plus)
-							{
-								$pollstats[$value][$opt_key]['undefined']++;
-							}
-							else
-							{
-								if(intval($pollstats[$value][$opt_key]['undefined']) > 1)
-								{
-									$pollstats[$value][$opt_key]['undefined']--;
-								}
-								else
-								{
-									unset($pollstats[$value][$opt_key]['undefined']);
-								}
-							}
-						}
-						else
-						{
-							if($plus)
-							{
-								$pollstats[$value][$opt_key]['undefined'] = 1;
-							}
-						}
-					}
-					else
-					{
-						if($plus)
-						{
-							$pollstats[$value][$opt_key]['undefined'] = 1;
-						}
-					}
-				}
-				$set[] = " pollstats.$value = '". json_encode($pollstats[$value], JSON_UNESCAPED_UNICODE). "'";
 			}
+				 // the user not set this filter
+			else //
+			     // we set this item of chart as 'undefined'
+			{
+				// if in sorting mode we update all opt index of this poll
+				if($sorting)
+				{
+					foreach ($sort_opt as $opt => $sort_index)
+					{
+						if(isset($pollstats[$filter][$opt]))
+						{
+							if(isset($pollstats[$filter][$opt]['undefined']))
+							{
+
+								$pollstats[$filter][$opt]['undefined']+= $sort_index;
+							}
+							else
+							{
+								$pollstats[$filter][$opt]['undefined'] = $sort_index;
+							}
+						}
+						else
+						{
+							$pollstats[$filter][$opt]['undefined'] = $sort_index;
+						}
+					}
+				}
+				else // we not in sorting mode
+				{
+					if(isset($pollstats[$filter][$opt_key]))
+					{
+						if(isset($pollstats[$filter][$opt_key]['undefined']))
+						{
+							if($plus)
+							{
+								$pollstats[$filter][$opt_key]['undefined']++;
+							}
+							else
+							{
+								if(intval($pollstats[$filter][$opt_key]['undefined']) > 1)
+								{
+									$pollstats[$filter][$opt_key]['undefined']--;
+								}
+								else
+								{
+									unset($pollstats[$filter][$opt_key]['undefined']);
+								}
+							}
+						}
+						else
+						{
+							if($plus)
+							{
+								$pollstats[$filter][$opt_key]['undefined'] = 1;
+							}
+						}
+					}
+					else
+					{
+						if($plus)
+						{
+							$pollstats[$filter][$opt_key]['undefined'] = 1;
+						}
+					}
+				}
+			}
+
+			$set[] = " pollstats.$filter = '". json_encode($pollstats[$filter], JSON_UNESCAPED_UNICODE). "'";
+
+		} // end of foreach $support_filter
+
+		//
+		if($update_mode)
+		{
 			$set = join($set, " , ");
 			$pollstats_update_query =
 			"
@@ -259,23 +427,11 @@ class stat_polls
 		else
 		{
 			// insert record
-			$set = [];
-
 			$set[] =  " port = $port ";
 			$set[] =  " subport = $subport ";
 			$set[] =  " post_id = $poll_id ";
-			$set[] =  " pollstats.result = '{\"$opt_key\": 1 }' ";
-			foreach ($support_filter as $key => $value) {
-				if(isset($user_profile_data[$value]))
-				{
-					$set[] = " pollstats.$value = '{\"$opt_key\":{\"$user_profile_data[$value]\": 1 }}' ";
-				}
-				else
-				{
-					$set[] = " pollstats.$value = '{\"$opt_key\":{\"undefined\": 1 }}' ";
-				}
-			}
-			$set = join($set, ",");
+
+			$set = join($set, " , ");
 			$query =
 			"
 				INSERT INTO
@@ -285,7 +441,7 @@ class stat_polls
 			";
 			$set_result = \lib\db::query($query);
 		}
-
+		return true;
 	}
 
 

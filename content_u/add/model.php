@@ -427,37 +427,22 @@ class model extends \content_u\home\model
 		$answer_point = [];
 		$answer_desc  = [];
 
-		foreach (utility::post() as $key => $value)
+		$i = 0;
+		do
 		{
-			$check = preg_match("/(.*)\_(\d+)$/", $key, $split);
-			if($check)
+			$do = false;
+			$i++;
+			if(utility::post("answer$i"))
 			{
-				$type = $split[1];
-				$id   = $split[2];
-				switch ($type)
-				{
-					case 'answers':
-						$answers[$id] = $value;
-						break;
-
-					case 'answer_true':
-						$answer_true[$id] = $value;
-						break;
-
-					case 'answer_type':
-						$answer_type[$id] = $value;
-						break;
-
-					case 'answer_point':
-						$answer_point[$id] = $value;
-						break;
-
-					case 'answer_desc':
-						$answer_desc[$id] = $value;
-						break;
-				}
+				$do = true;
+				$answers[$i]       = utility::post("answer$i");
+				$answer_true[$id]  = (utility::post("true$i")  != '') ? utility::post("true$i") : '';
+				$answer_type[$id]  = (utility::post("type$i")  != '') ? utility::post("type$i") : 'select';
+				$answer_point[$id] = (utility::post("point$i") != '') ? utility::post("point$i"): '';
+				$answer_desc[$id]  = (utility::post("desc$i")  != '') ? utility::post("desc$i") : '';
 			}
 		}
+		while($do);
 
 		return
 		[
