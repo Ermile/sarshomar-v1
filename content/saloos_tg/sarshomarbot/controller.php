@@ -9,7 +9,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(-1);
 class controller extends \lib\mvc\controller
 {
-	public $custom_language = true;
 	/**
 	 * allow telegram to access to this location
 	 * to send response to our server
@@ -63,11 +62,11 @@ class controller extends \lib\mvc\controller
 		$language = \lib\db\users::get_language(bot::$user_id);
 		if(empty($language) || !$language)
 		{
-			\lib\define::set_language(self::$language);
+			\lib\define::set_language('en_US');
 		}
 		else
 		{
-			\lib\define::set_language($language);
+			\lib\define::set_language($language, true);
 		}
 		// exit();
 		bot::$fill        =

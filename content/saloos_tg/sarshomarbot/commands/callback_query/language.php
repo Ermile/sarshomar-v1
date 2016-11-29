@@ -100,7 +100,7 @@ class language
 				$meta = ["instert_text" => $_language];
 				$options['option_meta'] = json_encode(array_merge($meta, $_options));
 				self::$user_language = $key;
-				\lib\define::set_language($key);
+				\lib\define::set_language($key, true);
 				return \lib\db\users::set_language($key, $options);
 			}
 		}
