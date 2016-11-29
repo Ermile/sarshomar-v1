@@ -34,7 +34,7 @@ class sync
 	public static function web_telegram($_web_mobile, $_telegram_id)
 	{
 		// this function in dev mod... :)
-		return self::status(true)->set_error_code(3502);
+		// return self::status(true)->set_error_code(3502);
 
 		$mobile = \lib\utility\filter::mobile($_web_mobile);
 		$web = \lib\db\users::get_by_mobile($mobile);
@@ -49,7 +49,10 @@ class sync
 				'user_pass'   => \lib\utility::hasher($temp_password)
 			];
 			\lib\db\users::update($update_users, $_telegram_id);
-			return self::status(true)->set_password($temp_password)->set_error_code(3502);
+			return self::status(true)
+				->set_password($temp_password)
+				->set_error_code(3502)
+				->set_message("You can login in sarshomar.com whit your username: mobile , and password: $temp_password");
 		}
 
 		if(!$web || !isset($web['id']))
@@ -66,7 +69,7 @@ class sync
 		{
 			return self::status(true)->set_error_code(3501);
 		}
-		// \lib\db::transaction();
+		\lib\db::transaction();
 
 		//----- sync the options
 		self::sync_options();
@@ -91,7 +94,7 @@ class sync
 		//----- deactive telegram user
 		self::sync_users();
 
-		// \lib\db::rollback();
+		\lib\db::rollback();
 
 		return self::status(true)->set_error_code(3502);
 	}
@@ -177,53 +180,28 @@ class sync
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		// get all old user answer to the polls
+		// update all polldetails by old user id to new user id
+		$query ="UPDATE IGNORE polldetails SET user_id = $new_user_id WHERE user_id = $old_user_id ";
+		$user_old_answers = \lib\db::get($query);
+
+		// get all record was not update this mean the record was duplicate
+		// we must minus the records
 		$query ="SELECT * FROM polldetails WHERE polldetails.user_id = $old_user_id ";
 		$user_old_answers = \lib\db::get($query);
-		if(!is_array($user_old_answers))
-		{
-			$user_old_answers = [];
-		}
-
-		// get all new user answer to the polls
-		$query ="SELECT * FROM polldetails WHERE polldetails.user_id = $new_user_id ";
-		$user_new_answers = \lib\db::get($query);
-		if(!is_array($user_new_answers))
-		{
-			$user_new_answers = [];
-		}
-
-		// find some answer was set on the new user_id
-		// and find some answer is duplicate in the two users
-		// so we remove old user answer
-		$new_poll_answered  = array_column($user_new_answers, 'post_id', 'id');
-		$old_poll_answered  = array_column($user_old_answers, 'post_id', 'id');
-		$must_insert_answer = array_diff($old_poll_answered, $new_poll_answered);
-		$muse_remove_answer = array_diff($old_poll_answered, $must_insert_answer);
 
 		foreach ($user_old_answers as $key => $value)
 		{
-			if(array_key_exists($value['id'], $must_insert_answer))
-			{
-				$answers_details =
-				[
-					'type'    => 'minus',
-					'opt_key' => $value['opt'],
-					'poll_id' => $value['post_id'],
-					'user_id' => $value['user_id'],
-					'profile' => $value['profile']
-				];
-				\lib\utility\stat_polls::set_poll_result($answers_details);
-				// remove answer must be remove
-				\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
-			}
-		}
-
-		if(!empty($must_insert_answer))
-		{
-			$ids = join(array_keys($must_insert_answer), ',');
-			$query = "UPDATE polldetails SET polldetails.user_id = $new_user_id WHERE polldetails.id IN ($ids) ";
-			\lib\db::query($query);
+			$answers_details =
+			[
+				'type'    => 'minus',
+				'opt_key' => $value['opt'],
+				'poll_id' => $value['post_id'],
+				'user_id' => $value['user_id'],
+				'profile' => $value['profile']
+			];
+			\lib\utility\stat_polls::set_poll_result($answers_details);
+			// remove answer must be remove
+			\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
 		}
 	}
 
@@ -271,16 +249,18 @@ class sync
 		$telegram_details = \lib\db\options::get($telegram_details);
 		if($telegram_details && is_array($telegram_details))
 		{
-			if(isset($telegram_details[0]))
+			if(isset($telegram_details[0]['meta']))
 			{
-				$telegram_details = $telegram_details[0];
+				$telegram_details = $telegram_details[0]['meta'];
 				if(isset($telegram_details['first_name']))
 				{
-					\lib\utility\profiles::set_profile_data($new_user_id, ['firstname' => $telegram_details['first_name']]);
+					\lib\utility\profiles::set_profile_data($new_user_id,
+						['firstname' => $telegram_details['first_name']]);
 				}
 				if(isset($telegram_details['last_name']))
 				{
-					\lib\utility\profiles::set_profile_data($new_user_id, ['lastname' => $telegram_details['last_name']]);
+					\lib\utility\profiles::set_profile_data($new_user_id,
+						['lastname' => $telegram_details['last_name']]);
 				}
 			}
 		}
