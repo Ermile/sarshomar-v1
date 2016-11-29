@@ -162,7 +162,7 @@ function resizableTextarea()
 /**
  * add new record of answer
  */
-function add_answer()
+function checkAddOpt()
 {
 	var numberOfEmptyInputs = 0;
 	var emptyRowNumber;
@@ -180,9 +180,33 @@ function add_answer()
 	// if we had no empty inputs and we needed one do this
 	if (numberOfEmptyInputs === 0 && !$('#tab-multiple_choice .input-group').hasClass('editing'))
 	{
-		var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
-		var num = $('#tab-multiple_choice>.input-group>li').length + 1;
-		template.find('.element label.title').attr('for', 'answer' + num);
+		addNewOpt();
+	}
+	// if we had empty inputs do this
+	else
+	{
+		// highlight empty row
+	}
+}
+
+
+/**
+ * add new option to items
+ */
+function addNewOpt(_group, _title)
+{
+	var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
+	var num = $('#tab-multiple_choice>.input-group>li').length + 1;
+	if(_group)
+	{
+		template.attr('data-profile', _group);
+	}
+	if(_title)
+	{
+		template.find('.element label.title').text(_title);
+	}
+	else
+	{
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
 		{
@@ -192,27 +216,23 @@ function add_answer()
 		{
 			template.find('.element label.title b').text(num);
 		}
-		template.find('.element .input').attr('id', 'answer' + num);
-		template.find('.element .input').attr('name', 'answer' + num);
-		template.find('.element .input').attr('value', '');
-		template.find('.element .input').val('');
-		template.find('.element .score input').attr('name', 'score' + num);
-		template.find('.element .score input').attr('id', 'score' + num);
-		template.find('.element .score input').val('');
-		template.attr('data-row', num);
+	}
+	template.find('.element label.title').attr('for', 'answer' + num);
+	template.find('.element .input').attr('id', 'answer' + num);
+	template.find('.element .input').attr('name', 'answer' + num);
+	template.find('.element .input').attr('value', '');
+	template.find('.element .input').val('');
+	template.find('.element .score input').attr('name', 'score' + num);
+	template.find('.element .score input').attr('id', 'score' + num);
+	template.find('.element .score input').val('');
+	template.attr('data-row', num);
 
-		$('#tab-multiple_choice>.input-group').append(template);
-		template.addClass('animated fadeInDown').delay(1000).queue(function()
-		{
-    		$(this).removeClass("animated fadeInDown").dequeue();
-		});
-		setSortable();
-	}
-	// if we had empty inputs do this
-	else
+	$('#tab-multiple_choice>.input-group').append(template);
+	template.addClass('animated fadeInDown').delay(1000).queue(function()
 	{
-		// highlight empty row
-	}
+		$(this).removeClass("animated fadeInDown").dequeue();
+	});
+	setSortable();
 }
 
 
@@ -384,16 +404,13 @@ function completeProfileFill(_this)
 		window.TEMP = $('#tab-multiple_choice>.input-group.sortable').clone();
 	}
 	// get options
-	var options = $('#complete-profile-dropdown').find('option:checked').attr('data-value').split(',');
-	$('.input-group').addClass('editing').empty();
+	var dropValue = $('#complete-profile-dropdown');
+	var options   = dropValue.find('option:checked').attr('data-value').split(',');
+	$('.input-group').addClass('editing');
 	for (var i = 0; i < options.length; i++)
 	{
-		var option = options[i];
-		var $elem  = $('<div>', {class: 'element'});
-		$('<label>', {class: 'title small', html: option, for: option}).appendTo($elem);
-		$('<input>', {class: 'input', type: 'text', name: 'answer' + (i + 1), id: option}).appendTo($elem);
-		$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
-		$('.input-group').append($elem);
+		addNewOpt(dropValue.val(), options[i]);
+		$('.input-group.sortable li[data-profile!="'+ dropValue.val() +'"]').remove();
 	}
 }
 
@@ -429,7 +446,7 @@ route(/\@\/add/, function()
 	// run on input change and add new opt for this question
 	$(this).on('input', '.input-group .element .input[type="text"]', function(event)
 	{
-		add_answer();
+		checkAddOpt();
 	});
 
 	// --------------------------------------------------------------------------------- Delete Elements
