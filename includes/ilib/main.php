@@ -23,7 +23,7 @@ class main extends \lib\main
 			$request_url = $_SERVER['REQUEST_URI'];
 			if(\lib\utility\location\languages::check(substr($request_url, 1, 2)))
 			{
-				$request_url = substr($request_url, 5);
+				$request_url = substr($request_url, 3);
 			}
 			$url = preg_replace("/^\/@/", '', $request_url);
 			new \lib\router("$url");
