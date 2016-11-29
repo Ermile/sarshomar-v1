@@ -410,7 +410,6 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .rtl #poll-box ul li{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;}
 #poll-box ul li .checkbox{position:absolute;right:10px;top:15px;bottom:0;margin:auto;}
 .rtl #poll-box ul li .checkbox{right:auto;top:15px;left:10px;}
-#poll-box ul li .checkbox .check-box{border:none;}
 #poll-box ul li .checkbox .check-box::before{box-shadow:0 0 0 3px #e7e7e7;}
 #poll-box ul li > label{display:block;height:50px;line-height:50px;color:#00667a;font-size:1.2em;padding-left:65px;}
 .rtl #poll-box ul li > label{padding-left:0;padding-right:65px;}
@@ -667,8 +666,9 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .element .title:after{position:absolute;top:6px;left:-12px;display:inline;width:13px;height:24px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
 .rtl .element .title:after{right:auto;left:100%;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
 
-.element.filter .title::before{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
-.element.filter.active .title::before{background-color:#E96F4B;}
+.element .title::before{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-13px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;}
+.rtl .element .title::before{right:auto;left:-13px;}
+.element .title.active::before{background-color:#E96F4B;}
 
 .element.switch{padding-left:0;padding-right:0;}
 .element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
