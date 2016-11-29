@@ -18,7 +18,7 @@ class sync
 	 * @param      boolean  $_update  The update
 	 * @param      array    $_msg     The message
 	 */
-	public static function status($_status)
+	private static function status($_status)
 	{
 		$return = new \lib\db\db_return();
 		return $return->set_ok($_status);
@@ -149,7 +149,7 @@ class sync
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		$query = "UPDATE commentdetails SET commentdetails.user_id = $new_user_id WHERE commentdetails.user_id = $old_user_id";
+		$query = "UPDATE commentdetails SET user_id = $new_user_id WHERE user_id = $old_user_id";
 		return \lib\db::query($query);
 	}
 
@@ -167,7 +167,7 @@ class sync
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		$query = "UPDATE notifications SET notifications.user_id = $new_user_id WHERE notifications.user_id = $old_user_id";
+		$query = "UPDATE notifications SET user_id = $new_user_id WHERE user_id = $old_user_id";
 		return \lib\db::query($query);
 	}
 
@@ -265,7 +265,6 @@ class sync
 			}
 		}
 
-
 		// process dashboard data again
 		$user_post = \lib\db\polls::search(null,
 			['user_id'    => $old_user_id,
@@ -326,7 +325,6 @@ class sync
 
 			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_poll',
 					count($user_post_id) - $count_user_survey);
-
 
 			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_poll_answered',
 					\lib\db\polldetails::people_answered($user_post_id));
