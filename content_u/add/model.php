@@ -44,7 +44,7 @@ class model extends \content_u\home\model
 		$search        = utility::post("search");
 		$search_page   = utility::post("page");
 		$meta          = [];
-		$meta['limit'] = 3;
+		$meta['limit'] = 7;
 		if($repository == 'personal')
 		{
 			$meta['user_id'] = $this->login("id");

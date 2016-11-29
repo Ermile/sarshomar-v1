@@ -1,3 +1,4 @@
+var TEMP = null;
 /**
  * check input for first time
  */
@@ -284,7 +285,6 @@ function rearrangeQuestionOpts()
 	{
 		var row = key+1;
 		$(this).attr('data-row', row);
-		console.log($(this).find('.element label'));
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
@@ -315,6 +315,7 @@ function countQuestionOpts()
 
 function treeSearch(_page)
 {
+	return;
 	if(_page)
 	{
 		_page = 1;
@@ -370,6 +371,52 @@ function treeSearch(_page)
 }
 
 
+/**
+ * [completeProfileFill description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function completeProfileFill(_this)
+{
+	// create a clone form opts
+	if(!window.TEMP)
+	{
+		window.TEMP = $('#tab-multiple_choice>.input-group.sortable').clone();
+	}
+	// get options
+	var options = $('#complete-profile-dropdown').find('option:checked').attr('data-value').split(',');
+	$('.input-group').addClass('editing').empty();
+	for (var i = 0; i < options.length; i++)
+	{
+		var option = options[i];
+		var $elem  = $('<div>', {class: 'element'});
+		$('<label>', {class: 'title small', html: option, for: option}).appendTo($elem);
+		$('<input>', {class: 'input', type: 'text', name: 'answer' + (i + 1), id: option}).appendTo($elem);
+		$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
+		$('.input-group').append($elem);
+	}
+}
+
+
+/**
+ * revert before check complete profile exactly
+ * @return {[type]} [description]
+ */
+function completeProfileRevert()
+{
+	if($('.input-group').hasClass('editing'))
+	{
+		$('.input-group').removeClass('editing');
+		if(window.TEMP)
+		{
+			$('.input-group').replaceWith(window.TEMP);
+			window.TEMP = null;
+			setSortable();
+		}
+	}
+}
+
+
 // Add
 route(/\@\/add/, function()
 {
@@ -385,6 +432,7 @@ route(/\@\/add/, function()
 		add_answer();
 	});
 
+	// --------------------------------------------------------------------------------- Delete Elements
 	// show and hide delete btn on special condition
 	$(this).on('mouseenter', '.input-group .element', function()
 	{
@@ -403,17 +451,6 @@ route(/\@\/add/, function()
 			{
 				$(this).parent().children('.delete').click();
 			}
-			else
-			{
-				// setTimeout(function()
-				// {
-				// 	if($(this).parent().children('.delete').is(':hidden'))
-				// 	{
-				// 		showQuestionOptsDel($(this).parent().children('.delete'));
-				// 		console.log('hidden, show it');
-				// 	}
-				// }, 500)
-			}
 		}
 	});
 
@@ -427,11 +464,9 @@ route(/\@\/add/, function()
 		{
 			$(this).parent().children('.delete').click();
 		}
-	})
-	;
+	});
 
-
-	// part2
+	// --------------------------------------------------------------------------------- Tree
 	// on open tree load content to it
 	$(window).on( "response:open", function(_obj, _name, _value)
 	{
@@ -448,58 +483,27 @@ route(/\@\/add/, function()
 		treeSearch();
 	});
 
-
 	$(this).on('click', '.tree-result-list > li > div', function(event)
 	{
 		$(this).parents('li').children('.answers').slideToggle();
 	});
 
 
-
-
-	$(this).on('change', '.answers > .ac-checkbox input[type="checkbox"]', function(event)
+	// --------------------------------------------------------------------------------- Complete profile
+	// if remove complete profile checkbox, return to old status and rerun sortable
+	$(this).on('change', '#complete-profile', function(event)
 	{
-		set_tree( $(this).attr('name') );
+		if (!this.checked)
+		{
+			completeProfileRevert();
+		}
 	});
 
-	var questions   = [];
-	var answers     = [];
-
-	function set_tree(name)
+	// if any item of complete profile is selected, then fill item with profile values
+	$(this).on('change', '#complete-profile-dropdown', function()
 	{
-		var _name       = name.split('-');
-		var question_id = _name[0];
-		var answer_id   = _name[1];
-
-		var old_id = $('input[name=parent_tree_id]').val();
-		if(old_id != question_id)
-		{
-			$('input[name=parent_tree_id]').val(question_id);
-			$('input[name=parent_tree_opt]').val('');
-		}
-		var old_opt = $('input[name=parent_tree_opt]').val();
-
-		split_opt = old_opt.split(',');
-		if(split_opt[0] == '')
-		{
-			$('input[name=parent_tree_opt]').val(answer_id);
-		}
-		else
-		{
-			if(split_opt.indexOf(answer_id) == -1)
-			{
-				$('input[name=parent_tree_opt]').val($('input[name=parent_tree_opt]').val() + ',' + answer_id);
-			}
-			else
-			{
-				split_opt.splice(answer_id, 1);
-				$('input[name=parent_tree_opt]').val(split_opt);
-			}
-		}
-
-	}
-
-
+		completeProfileFill();
+	});
 
 
 
@@ -507,47 +511,6 @@ route(/\@\/add/, function()
 	{
 		$('#submit-form').attr("value", $(this).attr("send-name"));
 		$('#submit-form').attr("name", $(this).attr("send-name"));
-	});
-
-
-
-	$(this).on('change', '.complete-profile input[type="checkbox"]', function(event) {
-	    if (this.checked)
-	    {
-	        $('.complete-profile .complete-profile-dropdown').show();
-	    }
-	    else
-	    {
-	        $('.complete-profile .complete-profile-dropdown').hide();
-	        if ($('.input-group').hasClass('editing'))
-	        {
-	        	$('.input-group').removeClass('editing').empty();
-		        for (var i = 1; i <= 2; i++)
-		        {
-			        var $elem = $('<div>', {class: 'element small'});
-			        $('<label>', {class: 'title', text: 'Answer ' + i, for: 'answer' + i}).appendTo($elem);
-			        $('<input>', {class: 'input', type: 'text', name: 'answer' + i, id: 'answer' + i}).appendTo($elem);
-			        $('<input>', {type: 'hidden', name: 'answer_type_' + i, 'data-true': 'true'}).appendTo($elem);
-					$('<input>', {type: 'hidden', name: 'answer_type_' + i, 'data-type': 'type', value: 'text'}).appendTo($elem);
-			        $('.input-group').append($elem);
-		        }
-	        }
-	    }
-	});
-
-	$(this).on('change', '.complete-profile .complete-profile-dropdown', function() {
-		var options = $(this).find('option:checked').attr('data-value').split(',');
-		$('.input-group').addClass('editing').empty();
-		for (var i = 0; i < options.length; i++)
-		{
-			var option = options[i];
-			var $elem  = $('<div>', {class: 'element small'});
-			$('<label>', {class: 'title', html: option, for: option}).appendTo($elem);
-			$('<input>', {class: 'input', type: 'text', name: 'answer' + (i + 1), id: option}).appendTo($elem);
-			$('<input>', {type: 'hidden', name: 'answer_true_' + (i + 1), 'data-true': 'true'}).appendTo($elem);
-			$('<input>', {type: 'hidden', name: 'answer_type_' + (i + 1), 'data-type': 'type', value: 'text'}).appendTo($elem);
-			$('.input-group').append($elem);
-		}
 	});
 });
 
