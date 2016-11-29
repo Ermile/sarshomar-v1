@@ -167,7 +167,7 @@ function add_answer()
 	var emptyRowNumber;
 
 	// check if current element has not value and we have no empty inputs
-	$.each($('#tab-multiple_choice .element.small .input[type="text"]'), function(key, value)
+	$.each($('#tab-multiple_choice .input-group .element .input[type="text"]'), function(key, value)
 	{
 		if ( !$(this).val() && numberOfEmptyInputs === 0 )
 		{
@@ -181,14 +181,14 @@ function add_answer()
 	{
 		var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
 		var num = $('#tab-multiple_choice>.input-group>li').length + 1;
-		template.find('.element.small label').text('answer ' + num).attr('for', 'answer' + num);
-		template.find('.element.small .input').attr('id', 'answer' + num);
-		template.find('.element.small .input').attr('name', 'answer' + num);
-		template.find('.element.small .input').attr('value', '');
-		template.find('.element.small .input').val('');
-		template.find('.element.small .score input').attr('name', 'score' + num);
-		template.find('.element.small .score input').attr('id', 'score' + num);
-		template.find('.element.small .score input').val('');
+		template.find('.element label').text('answer ' + num).attr('for', 'answer' + num);
+		template.find('.element .input').attr('id', 'answer' + num);
+		template.find('.element .input').attr('name', 'answer' + num);
+		template.find('.element .input').attr('value', '');
+		template.find('.element .input').val('');
+		template.find('.element .score input').attr('name', 'score' + num);
+		template.find('.element .score input').attr('id', 'score' + num);
+		template.find('.element .score input').val('');
 		template.attr('data-row', num);
 
 		$('#tab-multiple_choice>.input-group').append(template);
@@ -214,7 +214,7 @@ function add_answer()
 function showQuestionOptsDel(_this)
 {
 	// hide all elements
-	$('.element.small .delete').fadeOut(100);
+	$('.input-group .element .delete').fadeOut(100);
 	var currentRowValue = $(_this).parent('.element').children('input[type="text"]').val();
 	// always show delete button on input focus
 	if(countQuestionOpts() > 2 && currentRowValue)
@@ -271,7 +271,7 @@ function setSortable()
  */
 function rearrangeQuestionOpts()
 {
-	$.each($('.sortable .element.small'), function(key, value)
+	$.each($('.sortable .input-group .element'), function(key, value)
 	{
 		var row = key+1;
 		$(this).attr('data-row', row);
@@ -290,7 +290,7 @@ function rearrangeQuestionOpts()
  */
 function countQuestionOpts()
 {
-	return $('#tab-multiple_choice .element.small').length;
+	return $('#tab-multiple_choice .input-group .element').length;
 }
 
 
@@ -361,22 +361,22 @@ route(/\@\/add/, function()
 	$(".range-slider").ermile_slider();
 
 	// run on input change and add new opt for this question
-	$(this).on('input', '.element.small .input[type="text"]', function(event)
+	$(this).on('input', '.input-group .element .input[type="text"]', function(event)
 	{
 		add_answer();
 	});
 
 	// show and hide delete btn on special condition
-	$(this).on('mouseenter', '.element.small', function()
+	$(this).on('mouseenter', '.input-group .element', function()
 	{
 		// showQuestionOptsDel($(this).children('.delete'));
-	}).on('focus', '.element.small input[type="text"]', function()
+	}).on('focus', '.input-group .element input[type="text"]', function()
 	{
 		showQuestionOptsDel($(this).parent().children('.delete'));
 	});
 
 	// on keyup and press shift+del remove current record
-	$(this).on('keyup', '.element.small input', function(e)
+	$(this).on('keyup', '.input-group .element input', function(e)
 	{
 		if(countQuestionOpts() > 2)
 		{
@@ -399,10 +399,10 @@ route(/\@\/add/, function()
 	});
 
 	// on press delete on each opt
-	$(this).on('click', '.element.small .delete', function()
+	$(this).on('click', '.input-group .element .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('keyup', '.element.small .delete', function(e)
+	}).on('keyup', '.input-group .element .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
