@@ -18,8 +18,8 @@
 
 {%block feature_title%}
 {% spaceless %}
-	<div class="large element">
-		<label class="title" for="title" autocomplete="off">{%trans "Title"%}</label>
+	<div class="element">
+		<label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
 		<input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
 	</div>
 {% endspaceless %}
@@ -31,8 +31,8 @@
 	<ul class="input-group sortable">
 	{%if answers is iterable%}
 		{%for key, value in answers%}
-			<li class="small element" data-row="{{key + 1}}" data-id="{{value.id}}">
-				<label class="title" for="answer{{key + 1}}">Answer {{key + 1}}</label>
+			<li class="element" data-row="{{key + 1}}" data-id="{{value.id}}">
+				<label class="title small" for="answer{{key + 1}}">Answer {{key + 1}}</label>
 				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
 			    <span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 			    <span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
@@ -42,8 +42,8 @@
 		{%endfor%}
 	{%else%}{# if no answer found #}
 		<li>
-			<div class="small element" data-row="1">
-				<label class="title" for="answer1">{%trans "Answer"%} 1</label>
+			<div class="element" data-row="1">
+				<label class="title small" for="answer1">{%trans "Answer"%} 1</label>
 				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
@@ -52,8 +52,8 @@
 			</div>
 		</li>
 		<li>
-			<div class="small element" data-row="2">
-				<label class="title" for="answer2">{%trans "Answer"%} 2</label>
+			<div class="element" data-row="2">
+				<label class="title small" for="answer2">{%trans "Answer"%} 2</label>
 				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
