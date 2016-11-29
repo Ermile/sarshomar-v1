@@ -1,16 +1,11 @@
 {% extends display.main%}
 {%block content%}
 
-<div class="main">
-  <div class="row">
-    <div class="span2"></div>
-    <div class="span8">
-
-     <div class="search-box">
-      <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
-      <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
-     </div>
-     <div class="search-result" data-xhr='search-result' id="search-result">
+<div sclass="main">
+  <div sclass="row">
+    <div sclass="span2"></div>
+    <div sclass="span8">
+    <div sclass="search-result" data-xhr='search-result' id="search-result">
       {{block('search_result')}}
     </div><!-- /.span8 -->
   </div>
@@ -18,35 +13,19 @@
 </div>
 {%endblock%}
 
-{%block foot_js%}
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
-{%endblock%}
-
 {%block search_result%}
-  {%if poll_list%}
-      <div class="polls-head">
-        <span class="type">{%trans "Type"%}</span>
-        <span class="title">{%trans "Title"%}</span>
-        <span class="votes-count">{%trans "Votes"%}</span>
-        <span class="date">{%trans "Date"%}</span>
-      </div>
-      <ul class="polls-body">
-  {%for key, value in poll_list%}
-        <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
-          <span class="title title-longer"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
-          <span class="votes-count"><i class="pie" style='animation-delay:-{{value.total}}s'></i>{{value.total}}</span>
-          <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
-        </li>
-  {%endfor%}
-      </ul>
-      <!-- pagenation -->
-      <div class="pagination-container">
-      {%include display.pagination%}
-      </div>
-      <!-- ./pagenation -->
-  {%else%}
-      <div class="msg error">{%trans "No Result Found"%}</div>
-  {%endif%}
-
+{%for key, value in poll_list%}
+  <h6>{{value.title|raw}}</h6>
+    {%for i, opt in value.meta.opt%}
+      <txt>{{opt.key}}</txt>
+      <opt>{{opt.txt}}</opt>
+      <br>
+    {%endfor%}
+    <hr>
+{%endfor%}
+<!-- pagenation -->
+<div sclass="pagination-container">
+{%include display.pagination%}
+</div>
+  <!-- ./pagenation -->
 {%endblock%}

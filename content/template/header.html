@@ -1,7 +1,7 @@
   <header>
    <span class='logo'>
-    <a href="{{url.baseLang}}"><img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'></a>
-    <h1><a href="{{url.baseLang}}">{{site.title}}</a></h1>
+    <a href="{{url.base}}"><img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'></a>
+    <h1><a href="{{url.base}}">{{site.title}}</a></h1>
    </span>
    <div id='header-box'>
     <div id='header-top'>
@@ -12,8 +12,8 @@
      </nav>
      <nav id='header-profile' data-xhr='header-profile' {%if login%}class='login'{%endif%}>
 {%if login%}
-      <a href='{{url.baseLang}}/@/add' class='login'>{%trans "Add Question"%}</a>
-      <a href='{{url.baseLang}}/ask' class='register'>{%trans "Ask Me"%}</a>
+      <a href='{{url.base}}/@/add' class='login'>{%trans "Add Question"%}</a>
+      <a href='{{url.base}}/ask' class='register'>{%trans "Ask Me"%}</a>
       <div class="profile">
        <img src="{{url.static}}images/profile.svg" alt="">
        <div class="info">
@@ -21,7 +21,7 @@
         <span class="role">{%trans "Welcome"%}</span>
        </div>
        <div class="profile-detail">
-        <a href="{{url.baseLang}}/@" class="dashboard">{%trans "Dashboard"%}</a>
+        <a href="{{url.base}}/@" class="dashboard">{%trans "Dashboard"%}</a>
         <a href="logout" class="exit" data-direct>{%trans "Exit"%}</a>
        </div>
       </div>
