@@ -182,9 +182,9 @@ function add_answer()
 		var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
 		var num = $('#tab-multiple_choice>.input-group>li').length + 1;
 		template.find('.element label.title').attr('for', 'answer' + num);
+		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
 		{
-			// if language is farsi then convert number to persian
 			template.find('.element label.title b').text(num.toString().toFarsi());
 		}
 		else
@@ -280,15 +280,25 @@ function setSortable()
  */
 function rearrangeQuestionOpts()
 {
-	$.each($('.sortable .input-group .element'), function(key, value)
+	$.each($('.input-group.sortable li'), function(key, value)
 	{
 		var row = key+1;
 		$(this).attr('data-row', row);
-		$(this).find('label').text('answer ' + row).attr('for', 'answer' + row);
-		$(this).find('.input').attr('id', 'answer' + row);
-		$(this).find('.input').attr('name', 'answer' + row);
-		$(this).find('.score input').attr('id', 'score' + row);
-		$(this).find('.score input').attr('name', 'score' + row);
+		console.log($(this).find('.element label'));
+		$(this).find('.element label').attr('for', 'answer' + row);
+		// if language is farsi then convert number to persian
+		if($('html').attr('lang') === 'fa')
+		{
+			$(this).find('.element label.title b').text(row.toString().toFarsi());
+		}
+		else
+		{
+			$(this).find('.element label.title b').text(row);
+		}
+		$(this).find('.element .input').attr('id', 'answer' + row);
+		$(this).find('.element .input').attr('name', 'answer' + row);
+		$(this).find('.element .score input').attr('id', 'score' + row);
+		$(this).find('.element .score input').attr('name', 'score' + row);
 	});
 }
 
