@@ -179,22 +179,24 @@ function add_answer()
 	// if we had no empty inputs and we needed one do this
 	if (numberOfEmptyInputs === 0 && !$('#tab-multiple_choice .input-group').hasClass('editing'))
 	{
-		var template = $('#tab-multiple_choice .element.small .input[type="text"]').eq(0).parents('.element.small').clone();
-		var num = $('#tab-multiple_choice .element.small .input[type="text"]').length + 1;
-		template.children('label').text('answer ' + num).attr('for', 'answer' + num);
-		template.children('.input').attr('id', 'answer' + num);
-		template.children('.input').attr('name', 'answer' + num);
-		template.children('.input').attr('value', '');
-		template.children('.input').val('');
-		template.children('.score input').attr('id', 'score' + num);
-		template.children('.score input').val('');
+		var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
+		var num = $('#tab-multiple_choice>.input-group>li').length + 1;
+		template.find('.element.small label').text('answer ' + num).attr('for', 'answer' + num);
+		template.find('.element.small .input').attr('id', 'answer' + num);
+		template.find('.element.small .input').attr('name', 'answer' + num);
+		template.find('.element.small .input').attr('value', '');
+		template.find('.element.small .input').val('');
+		template.find('.element.small .score input').attr('name', 'score' + num);
+		template.find('.element.small .score input').attr('id', 'score' + num);
+		template.find('.element.small .score input').val('');
 		template.attr('data-row', num);
 
-		$('#tab-multiple_choice .input-group').append(template);
+		$('#tab-multiple_choice>.input-group').append(template);
 		template.addClass('animated fadeInDown').delay(1000).queue(function()
 		{
     		$(this).removeClass("animated fadeInDown").dequeue();
 		});
+		setSortable();
 	}
 	// if we had empty inputs do this
 	else
@@ -226,14 +228,15 @@ function deleteQuestionOpts(_this)
  */
 function rearrangeQuestionOpts()
 {
-	$.each($('.element.small'), function(key, value)
+	$.each($('.sortable .element.small'), function(key, value)
 	{
 		var row = key+1;
 		$(this).attr('data-row', row);
-		$(this).children('label').text('answer ' + row).attr('for', 'answer' + row);
-		$(this).children('.input').attr('id', 'answer' + row);
-		$(this).children('.input').attr('name', 'answer' + row);
-		$(this).children('.score input').attr('id', 'score' + row);
+		$(this).find('label').text('answer ' + row).attr('for', 'answer' + row);
+		$(this).find('.input').attr('id', 'answer' + row);
+		$(this).find('.input').attr('name', 'answer' + row);
+		$(this).find('.score input').attr('id', 'score' + row);
+		$(this).find('.score input').attr('name', 'score' + row);
 	});
 }
 
@@ -321,26 +324,16 @@ function showQuestionOptsDel(_this)
 }
 
 
-
-/*
- * HTML5 Sortable jQuery Plugin
- * http://farhadi.ir/projects/html5sortable
- *
- * Copyright 2012, Ali Farhadi
- * Released under the MIT license.
- */
-!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
-
-// after sorting element recalculate name of elements
-// $('.input-group').sortable().bind('sortupdate', function(e, ui)
-$('.input-group').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
+function setSortable()
 {
-    console.log(changed);
-    console.log(e);
-    console.log(ui);
-});
-
-
+	/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
+	!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
+	$('.sortable').sortable('destroy');
+	$('.sortable').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
+	{
+		rearrangeQuestionOpts();
+	});
+}
 
 
 
@@ -350,6 +343,7 @@ route(/\@\/add/, function()
 	// declare functions
 	checkInputChange.call(this);
 	resizableTextarea.call(this);
+	setSortable();
 
 	// run on input change and add new opt for this question
 	$(this).on('input', '.element.small .input[type="text"]', function(event)

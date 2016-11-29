@@ -41,21 +41,25 @@
 			</li>
 		{%endfor%}
 	{%else%}{# if no answer found #}
-		<li class="small element" data-row="1">
-			<label class="title" for="answer1">{%trans "Answer"%} 1</label>
-			<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-			<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
-			<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
-			<span class="fa fa-picture-o icon" data-response-hide></span>
-			<span class="fa fa-times delete" tabindex="0"></span>
+		<li>
+			<div class="small element" data-row="1">
+				<label class="title" for="answer1">{%trans "Answer"%} 1</label>
+				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
+				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
+				<span class="fa fa-picture-o icon" data-response-hide></span>
+				<span class="fa fa-times delete" tabindex="0"></span>
+			</div>
 		</li>
-		<li class="small element" data-row="2">
-			<label class="title" for="answer2">{%trans "Answer"%} 2</label>
-			<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-			<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
-			<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
-			<span class="fa fa-picture-o icon" data-response-hide></span>
-			<span class="fa fa-times delete" tabindex="0"></span>
+		<li>
+			<div class="small element" data-row="2">
+				<label class="title" for="answer2">{%trans "Answer"%} 2</label>
+				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
+				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
+				<span class="fa fa-picture-o icon" data-response-hide></span>
+				<span class="fa fa-times delete" tabindex="0"></span>
+			</div>
 		</li>
 	{%endif%}
 	</ul>
