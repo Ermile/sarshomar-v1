@@ -651,6 +651,7 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 ::-moz-placeholder{color:#cfcfcf;}
 :-ms-input-placeholder{color:#cfcfcf;}
 .element .input:focus{color:#d8dad0;background-color:#00667a;}
+.element .input option{background-color:#EFEFEF;color:#777;}
 .element .addon{line-height:1;display:table-cell;text-align:center;vertical-align:middle;white-space:nowrap;}
 .element .input:focus::-webkit-input-placeholder{color:#d8dad0;}
 .element .input:focus:-moz-placeholder{color:#d8dad0;}
