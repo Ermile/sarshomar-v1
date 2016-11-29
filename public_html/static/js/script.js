@@ -404,13 +404,24 @@ function completeProfileFill(_this)
 		window.TEMP = $('#tab-multiple_choice>.input-group.sortable').clone();
 	}
 	// get options
-	var dropValue = $('#complete-profile-dropdown');
-	var options   = dropValue.find('option:checked').attr('data-value').split(',');
-	$('.input-group').addClass('editing');
-	for (var i = 0; i < options.length; i++)
+	var dropValue      = $('#complete-profile-dropdown');
+	var dropValues     = dropValue.find('option:checked').attr('data-value');
+	if(dropValue.val())
 	{
-		addNewOpt(dropValue.val(), options[i]);
-		$('.input-group.sortable li[data-profile!="'+ dropValue.val() +'"]').remove();
+		if(dropValues)
+		{
+			var dropValueArray = dropValues.split(',');
+			$('.input-group').addClass('editing');
+			for (var i = 0; i < dropValueArray.length; i++)
+			{
+				addNewOpt(dropValue.val(), dropValueArray[i]);
+				$('.input-group.sortable li[data-profile!="'+ dropValue.val() +'"]').remove();
+			}
+		}
+	}
+	else
+	{
+		completeProfileRevert();
 	}
 }
 
@@ -512,7 +523,10 @@ route(/\@\/add/, function()
 	{
 		if (!this.checked)
 		{
+			// revert
 			completeProfileRevert();
+			// change dropdown to default value
+			$('#complete-profile-dropdown').val('');
 		}
 	});
 
