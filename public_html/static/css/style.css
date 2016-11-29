@@ -348,7 +348,6 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 /* sortable list styles*/
 
 .sortable {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
-.sortable li:not(.disabled):hover{cursor:move}
 .sortable li.disabled {opacity: 0.5;}
 .sortable li.highlight {background: #FEE25F;}
 .sortable li.sortable-placeholder {border-color:#CCC;}
