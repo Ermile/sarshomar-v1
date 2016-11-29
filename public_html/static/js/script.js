@@ -181,7 +181,16 @@ function add_answer()
 	{
 		var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
 		var num = $('#tab-multiple_choice>.input-group>li').length + 1;
-		template.find('.element label').text('answer ' + num).attr('for', 'answer' + num);
+		template.find('.element label.title').attr('for', 'answer' + num);
+		if($('html').attr('lang') === 'fa')
+		{
+			// if language is farsi then convert number to persian
+			template.find('.element label.title b').text(num.toString().toFarsi());
+		}
+		else
+		{
+			template.find('.element label.title b').text(num);
+		}
 		template.find('.element .input').attr('id', 'answer' + num);
 		template.find('.element .input').attr('name', 'answer' + num);
 		template.find('.element .input').attr('value', '');

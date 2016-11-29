@@ -32,7 +32,7 @@
 	{%if answers is iterable%}
 		{%for key, value in answers%}
 			<li class="element" data-row="{{key + 1}}" data-id="{{value.id}}">
-				<label class="title small" for="answer{{key + 1}}">Answer {{key + 1}}</label>
+				<label class="title small" for="answer{{key + 1}}">Answer <b>{{key + 1 |persian}}</b></label>
 				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
 			    <span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 			    <span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
@@ -43,7 +43,7 @@
 	{%else%}{# if no answer found #}
 		<li>
 			<div class="element" data-row="1">
-				<label class="title small" for="answer1">{%trans "Answer"%} 1</label>
+				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
 				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
@@ -53,7 +53,7 @@
 		</li>
 		<li>
 			<div class="element" data-row="2">
-				<label class="title small" for="answer2">{%trans "Answer"%} 2</label>
+				<label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
 				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
@@ -189,7 +189,7 @@
 	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide'>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
-		<div class="row tree-fields">
+		<div class="row auto tree-fields">
 			<div class="span8">
 				<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}'>
 			</div>
@@ -315,8 +315,11 @@
 				<option value="regular">{%trans "Custom"%}</option>
 			</select>
 		</div>
-		<div class="element">
-			<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='text-format' data-response-where='regular' data-response-hide>
+		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
+			<div class="element">
+				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
+				<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="">
+			</div>
 		</div>
 	</div>
 {% endspaceless %}
@@ -327,7 +330,7 @@
 {% spaceless %}
 	<div class="input-group">
 		<div class="element select">
-			<label class="title" for="file-format">{%trans "File Format"%}</label>
+			<label class="title small" for="file-format">{%trans "File Format"%}</label>
 				<select class="file-format input" name="file-format" id='file-format'>
 					<option value="any">{%trans "Any File"%}</option>
 					<option value="document">{%trans "Document"%}</option>
@@ -342,8 +345,11 @@
 					<option value="regular">{%trans "Custom"%}</option>
 				</select>
 		</div>
-		<div class="element">
-			<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response='file-format' data-response-where='regular' data-response-hide>
+		<div data-response='file-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
+			<div class="element">
+				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
+				<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="">
+			</div>
 		</div>
 	</div>
 {% endspaceless %}
