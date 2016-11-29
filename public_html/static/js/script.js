@@ -3,7 +3,7 @@
  */
 function checkInputChange()
 {
-  $('input', this).change(function()
+  $('input, select', this).change(function()
   {
     checkInput(this, false);
   });
@@ -402,7 +402,7 @@ route(/\@\/add/, function()
 		// if open tree then fill with last qustions
 		if(_name == 'tree' && _value == 'open')
 		{
-			console.log('fill');
+			console.log('fill tree...');
 			treeSearch();
 		}
 	});

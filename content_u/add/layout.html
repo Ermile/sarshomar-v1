@@ -254,7 +254,7 @@
 {% spaceless %}
 	<div class="panel-text">
 		<div class="title">
-			<span><i class="fa fa-plus"></i> Summary</span>
+			<span><i class="fa fa-plus"></i> {%trans "Summary"%}</span>
 		</div>
 		<textarea name="summary">{{poll.meta.desc}}</textarea>
 	</div>
@@ -266,7 +266,7 @@
 {% spaceless %}
 	<div class="panel-text">
 		<div class="title">
-			<span><i class="fa fa-plus"></i> Description</span>
+			<span><i class="fa fa-plus"></i> {%trans "Description"%}</span>
 		</div>
 		<textarea name="description" data-resizable>{{poll.content}}</textarea>
 	</div>
@@ -297,61 +297,89 @@
 
 {%block feature_textformat%}
 {% spaceless %}
-	<select class="text-format" name="text-format">
-		<option value="any">{%trans "Any Text"%}</option>
-		<option value="tel">{%trans "Phone Number"%}</option>
-		<option value="email">{%trans "Email"%}</option>
-		<option value="website">{%trans "Website"%}</option>
-		<option value="number">{%trans "Number"%}</option>
-		<option value="password">{%trans "Password"%}</option>
-		<option value="regular">{%trans "Custom"%}</option>
-	</select>
-	<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='tree'>
-
+	<div class="input-group">
+		<div class="element small">
+			<label class="title" for="text-format">{%trans "Text Format"%}</label>
+			<select class="text-format input" name="text-format" id='text-format'>
+				<option value="any">{%trans "Any Text"%}</option>
+				<option value="tel">{%trans "Phone Number"%}</option>
+				<option value="email">{%trans "Email"%}</option>
+				<option value="website">{%trans "Website"%}</option>
+				<option value="number">{%trans "Number"%}</option>
+				<option value="password">{%trans "Password"%}</option>
+				<option value="regular">{%trans "Custom"%}</option>
+			</select>
+			<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='text-format' data-response-where='regular' data-response-hide>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_fileformat%}
 {% spaceless %}
-	<select class="file-format" name="file-format">
-		<option value="any">{%trans "Any File"%}</option>
-		<option value="document">{%trans "Document"%}</option>
-		<option value="photo">{%trans "Photo"%}</option>
-		<option value="video">{%trans "Video"%}</option>
-		<option value="audio">{%trans "Audio"%}</option>
-		<option value="pdf">{%trans "PDF"%}</option>
-		<option value="doc">{%trans "Word"%}</option>
-		<option value="xls">{%trans "Excel"%}</option>
-		<option value="ppt">{%trans "PowerPoint"%}</option>
-		<option value="txt">{%trans "Text"%}</option>
-		<option value="regular">{%trans "Custom"%}</option>
-	</select>
+	<div class="input-group">
+		<div class="element small">
+			<label class="title" for="file-format">{%trans "File Format"%}</label>
+				<select class="file-format input" name="file-format" id='file-format'>
+					<option value="any">{%trans "Any File"%}</option>
+					<option value="document">{%trans "Document"%}</option>
+					<option value="photo">{%trans "Photo"%}</option>
+					<option value="video">{%trans "Video"%}</option>
+					<option value="audio">{%trans "Audio"%}</option>
+					<option value="pdf">{%trans "PDF"%}</option>
+					<option value="doc">{%trans "Word"%}</option>
+					<option value="xls">{%trans "Excel"%}</option>
+					<option value="ppt">{%trans "PowerPoint"%}</option>
+					<option value="txt">{%trans "Text"%}</option>
+					<option value="regular">{%trans "Custom"%}</option>
+				</select>
+			<input type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response='file-format' data-response-where='regular' data-response-hide>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_filesize%}
 {% spaceless %}
-...Range...
+{% spaceless %}
+	<div class="filesize">
+		Range...
+	</div>
+{% endspaceless %}
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_numberformat%}
 {% spaceless %}
-Star<br/>
-Like<br/>
-Number<br/>
-
+	<div class="element switch">
+		<input type="radio" name="rangemode" value="number" id="rangemodenumber" checked="checked">
+		<label for="rangemodenumber">{%trans "Range Number"%}</label>
+		<input type="radio" name="rangemode" value="star" id="rangemodestar">
+		<label for="rangemodestar">{%trans "Star"%}</label>
+		<input type="radio" name="rangemode" value="like" id="rangemodelike">
+		<label for="rangemodelike">{%trans "Like"%}</label>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_numbersize%}
 {% spaceless %}
-...Number Range...
+	<div class="numbersize" data-response='rangemode' data-response-where='number' data-response-effect='slide'>
+		numbersize...
+	</div>
 {% endspaceless %}
 {%endblock%}
 
+
+{%block feature_starsize%}
+{% spaceless %}
+	<div class="starsize" data-response='rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>
+	  Star size...
+	</div>
+{% endspaceless %}
+{%endblock%}
 
