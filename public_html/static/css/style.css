@@ -671,7 +671,11 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .element .title.active::before{background-color:#E96F4B;}
 
 .element.switch{padding-left:0;padding-right:0;}
-.element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;}
+.element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;position:relative;}
+
+.element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#B7BFC1;right:0;top:0;bottom:0;margin:auto;}
+.rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:0;}
+
 .element.switch{border-radius:3px;overflow:hidden;}
 .element input[type="checkbox"],.element input[type="radio"]{display:none;}
 .element input[type="checkbox"]:checked + label,.element input[type="radio"]:checked + label{background-color:#0A5260;color:#D8DAD0;}
