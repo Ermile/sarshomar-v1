@@ -51,7 +51,7 @@ class model extends \content_u\home\model
 		}
 		elseif($repository == 'all')
 		{
-			// $meta['all'] = 1;
+			$meta['all'] = true;
 		}
 		else
 		{

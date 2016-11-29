@@ -34,6 +34,7 @@ trait search
 			"my_poll"     => false,
 			"admin"       => false,
 			"order"		  => "ASC",
+			"all" 		  => false,
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -92,6 +93,10 @@ trait search
 		if($_options['my_poll'] === false)
 		{
 			$where[] = " posts.post_status = 'publish' ";
+		}
+
+		if($_options['all'] === false)
+		{
 			$where[] = " posts.post_sarshomar = 1 ";
 		}
 
@@ -111,6 +116,7 @@ trait search
 		unset($_options['start_limit']);
 		unset($_options['end_limit']);
 		unset($_options['order']);
+		unset($_options['all']);
 
 		$where[] = " posts.post_type != 'post' ";
 
