@@ -210,7 +210,7 @@
 							<input type="checkbox" name="" id="x1">
 							<label class="check-box" for="x1"></label>
 						</span>
-						<label for="x1">Lorem ipsum dolor sit amet, consectetur adipisicing
+						<label for="x1" class="active">Lorem ipsum dolor sit amet, consectetur adipisicing
 					tempor incididunt ut labore et dolore magna aliqua.</label>
 					</li>
 					<li>
@@ -303,8 +303,8 @@
 {%block feature_textformat%}
 {% spaceless %}
 	<div class="input-group">
-		<div class="element small">
-			<label class="title" for="text-format">{%trans "Text Format"%}</label>
+		<div class="element select">
+			<label class="title small" for="text-format">{%trans "Text Format"%}</label>
 			<select class="text-format input" name="text-format" id='text-format'>
 				<option value="any">{%trans "Any Text"%}</option>
 				<option value="tel">{%trans "Phone Number"%}</option>
@@ -314,7 +314,9 @@
 				<option value="password">{%trans "Password"%}</option>
 				<option value="regular">{%trans "Custom"%}</option>
 			</select>
-			<input type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='text-format' data-response-where='regular' data-response-hide>
+		</div>
+		<div class="element">
+			<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response='text-format' data-response-where='regular' data-response-hide>
 		</div>
 	</div>
 {% endspaceless %}
@@ -324,7 +326,7 @@
 {%block feature_fileformat%}
 {% spaceless %}
 	<div class="input-group">
-		<div class="element small">
+		<div class="element select">
 			<label class="title" for="file-format">{%trans "File Format"%}</label>
 				<select class="file-format input" name="file-format" id='file-format'>
 					<option value="any">{%trans "Any File"%}</option>
@@ -339,7 +341,9 @@
 					<option value="txt">{%trans "Text"%}</option>
 					<option value="regular">{%trans "Custom"%}</option>
 				</select>
-			<input type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response='file-format' data-response-where='regular' data-response-hide>
+		</div>
+		<div class="element">
+			<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response='file-format' data-response-where='regular' data-response-hide>
 		</div>
 	</div>
 {% endspaceless %}

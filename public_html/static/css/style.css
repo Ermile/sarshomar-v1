@@ -385,17 +385,20 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .tree-fields select{display:block;width:100%;background-color:#EBEBEB;color:#00667A;border:none;height:30px;line-height:30px;}
 .tree-fields select option{height:30px;line-height:30px;}
 .tree-result-list{background-color:#F7F7F7;padding:2em;}
-.tree-result-list > li > div{color:#00667a;padding:.5em;}
-.tree-result-list > li:not(:last-child){margin-bottom:.5em;}
-.tree-result-list .options li{display:flex;margin-bottom:.5em;}
+.tree-result-list>li>div{color:#00667a;padding:.5em;cursor:pointer;}
+.tree-result-list .options{margin-top:5px;}
+.tree-result-list .options li{display:flex;margin-bottom:5px;}
 .tree-result-list .options li .checkbox{margin-top:5px;}
 .tree-result-list .options li .checkbox input[type="checkbox"]:checked{}
-.tree-result-list .options li > label{min-height:35px;line-height:35px;margin-left:5px;padding:0 20px;color:#00667A;}
+.tree-result-list .options li>label{min-height:35px;line-height:35px;margin-left:5px;padding:0 20px;color:#00667A;cursor:pointer;width:100%;-webkit-flex:1;flex:1;}
+.tree-result-list .options li>label:hover,.tree-result-list .options li > label.active,.tree-result-list>li>div:hover{background-color:#0a5260;color:#F4F4F4;}
+
 .element .score{background-color:#EFEFEF;height:inherit;line-height:inherit;max-width:100px;color:#777777;transition:.3s;padding:0 1em;}
 .element .score input[type="number"]{border:none;height:29px;line-height:29px;margin-top:3px;background-color:#F4F4F4;padding:0 10px;width:60px;}
 .element .icon{font-size:24px;height:inherit;line-height:inherit;padding:0 5px;color:#D8DAD0;background-color:#EFEFEF;transition:.3s;}
 .element .input:focus ~ .score,.element .input:focus ~ .check,.element .input:focus ~ .icon{background-color:#00667a;}
-.element.simple .title::before{display:none;}
+.element.select .title::after{display:none;}
+
 
 
 /* Poll Box */
@@ -673,7 +676,7 @@ li.sortable-placeholder {border: 1px dashed #CCC;}
 .element.switch{padding-left:0;padding-right:0;}
 .element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;position:relative;}
 
-.element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#B7BFC1;right:0;top:0;bottom:0;margin:auto;}
+.element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#B7BFC1;right:0;top:0;bottom:0;margin:auto;transition:.3s;}
 .rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:0;}
 
 .element.switch{border-radius:3px;overflow:hidden;}
