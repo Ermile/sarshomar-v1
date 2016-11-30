@@ -4,28 +4,26 @@
     <div sclass="row">
       <div sclass="span2"></div>
       <div sclass="span8">
-      <div sclass="search-result" data-xhr='search-result' id="search-result">
-        {{block('search_result')}}
+        <div sclass="search-result" data-xhr='search-result' id="search-result">
+          {%block search_result%}
+          {%for key, value in poll_list%}
+          <h6>{{value.title|raw}}</h6>
+          {%for i, opt in value.meta.opt%}
+          <txt>{{opt.key}}</txt>
+          <opt>{{opt.txt}}</opt>
+          <br>
+          {%endfor%}
+          <hr>
+          {%endfor%}
+          <!-- pagenation -->
+          <div sclass="pagination-container">
+            {%include display.pagination%}
+          </div>
+        </div>
+        <!-- ./pagenation -->
+        {%endblock%}
       </div><!-- /.span8 -->
     </div>
   </div>
-  </div>
-  {%endblock%}
-
-  {%block search_result%}
-  {%for key, value in poll_list%}
-    <h6>{{value.title|raw}}</h6>
-      {%for i, opt in value.meta.opt%}
-        <txt>{{opt.key}}</txt>
-        <opt>{{opt.txt}}</opt>
-        <br>
-      {%endfor%}
-      <hr>
-  {%endfor%}
-  <!-- pagenation -->
-  <div sclass="pagination-container">
-  {%include display.pagination%}
-  </div>
 </div>
-  <!-- ./pagenation -->
 {%endblock%}

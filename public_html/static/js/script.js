@@ -528,7 +528,7 @@ route(/\@\/add/, function()
 		{
 			clearTimeout(tree_search_timeout);
 		}
-		var timeout = setTimeout(treeSearch.bind(this), 3000);
+		var timeout = setTimeout(treeSearch.bind(this), 200);
 		$(this).data('tree-search-timeout', timeout);
 	});
 
