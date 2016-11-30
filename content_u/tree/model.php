@@ -13,16 +13,6 @@ class model extends \mvc\model
 	public function get_search($_args)
 	{
 
-		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == 'tree')
-		{
-			return \lib\db\polls::search(null,
-				[
-					'all'  	   => true,
-					'get_last' => true,
-					'user_id'  => $this->login('id')
-				]);
-		}
-
 		$meta        = [];
 		$meta['all'] = true;
 		$repository  = $_args->get("repository")[0];
