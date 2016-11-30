@@ -167,7 +167,7 @@
 			<label for="complete-profile" class="check-box"></label>
 			<label for="complete-profile">{%trans "Complete Profile"%}</label>
 		</div>
-		<select class="complete-profile span4" name="meta_profile" id="complete-profile-dropdown" data-response='complete-profile' data-response-hide>
+		<select class="complete-profile span4" name="meta_profile" id="complete-profile-dropdown" data-response='complete-profile' data-response-hide data-response-focus>
 			<option value="">{%trans "Complete Profile"%}</option>
 			{%for key, value in profile_lock if value%}{%set t_value = key %}
 			<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
@@ -191,7 +191,7 @@
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row auto tree-fields">
 			<div class="span8">
-				<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}'>
+				<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
 			</div>
 			<div class="span4">
 				<select id="tree-search-in">
@@ -318,7 +318,7 @@
 		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
 			<div class="element">
 				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="">
+				<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response-focus>
 			</div>
 		</div>
 	</div>
@@ -348,7 +348,7 @@
 		<div data-response='file-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
 			<div class="element">
 				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="">
+				<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response-focus>
 			</div>
 		</div>
 	</div>

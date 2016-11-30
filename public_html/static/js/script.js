@@ -121,6 +121,14 @@ function checkInput(_this, _firstTime)
 		    	// if condition is true
 		    	$(this)[effect['open']](timing);
 		    }
+		    if($(this).find('[data-response-focus]').length)
+		    {
+		    	$(this).find('[data-response-focus]').focus();
+		    }
+		    else
+		    {
+		    	$(this).closest('[data-response-focus]').focus();
+		    }
 		    elResult = 'open';
 	    }
 	    else
