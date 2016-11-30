@@ -343,6 +343,15 @@ function countQuestionOpts()
 
 function treeSearch(_page)
 {
+	var path = location.pathname;
+	path = path.substr(0, path.indexOf('/add')) + '/tree';
+
+	Navigate({
+      data: false,
+      url: path,
+      nostate: true,
+    });
+
 	return;
 	if(_page)
 	{
@@ -509,14 +518,18 @@ route(/\@\/add/, function()
 		// if open tree then fill with last qustions
 		if(_name == 'tree' && _value == 'open')
 		{
-			console.log('fill tree...');
-			treeSearch();
+			treeSearch.call(null);
 		}
 	});
-
 	$(this).on('input', '#tree-search', function(event)
 	{
-		treeSearch();
+		var tree_search_timeout = $(this).data('tree-search-timeout');
+		if(tree_search_timeout)
+		{
+			clearTimeout(tree_search_timeout);
+		}
+		var timeout = setTimeout(treeSearch.bind(this), 3000);
+		$(this).data('tree-search-timeout', timeout);
 	});
 
 	$(this).on('click', '.tree-result-list > li > div', function(event)
