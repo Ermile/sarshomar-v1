@@ -1,81 +1,26 @@
 {%extends display.main%}
 
-{%block content%}
-<form method="post">
-  <div class="row">
-    <div class="span4"></div>
-    <div class="span4">
-      {%include template.progress%}
-
-      <div class="element ltr">
-        <label class="title" for="short_url">{%trans "Short URL"%}</label>
-        <input class="input text-left" type="text" id="short_url" value="{{short_url}}" readonly="readonly">
-        <span class="addon btn">
-          <a href="{{short_url}}" target="_blank" data-direct>
-            <button>{%trans "Preview"%}</button>
-          </a>
-        </span>
-      </div>
-
-      {%if perm.sarshomar_knowledge.admin%}
-      <div class="element">
-        <label class="title" for="cat">{%trans "Category"%}</label>
-         <select class="input" name="cat" id="cat">
-            {%for key, value in cat%}
-              {%if key == 0%}
-                <option value="">{%trans "Please Select One Item"%}</option>
-              {%endif%}
-              <option value="{{value.id}}">{{value.term_title|raw}}</option>
-            {%endfor%}
-          </select>
-      </div>
-
-      <div class="element">
-        <label class="title" for="article">{%trans "Article"%}</label>
-        <select class="input" name="article" id="article">
-          {%for key, value in article%}
-            {%if key == 0%}
-              <option value="">{%trans "Please Select One Item"%}</option>
-            {%endif%}
-            <option value="{{value.id}}">{{value.title|raw}}</option>
-          {%endfor%}
-        </select>
-      </div>
-      {%endif%}
-
-      <!-- <div class="element">
-        <label class="title">{%trans "Start Time"%}</label>
-        <input class="input" type="text" name="start_time" value="{{poll.meta.start_time}}">
-      </div>
-
-      <div class="element">
-        <label class="title">{%trans "End Time"%}</label>
-        <input class="input" type="text" name="end_time" value="{{poll.meta.end_time}}">
-      </div> -->
-
-      <input type="hidden" name="tags" id="sp-tags" value="{% if tags %}{{tags|join(',') ~ ','}}{%endif%}">
-      <div class="element">
-        <label class="title" for="tags">{%trans "Tags"%}</label>
-        <input class="input similar-tag" data-list="tag-list" data-split="sp-tags" type="text" id="tags">
-        <span class="addon btn tag-add-btn">
-          <button class="btn-add-tags" element-id="tags">{%trans "Add"%}</button>
-        </span>
-      </div>
-
-      <div class="tags" id="tag-list">
-      {%for key,value in tags%}
-        <a><i class="fa fa-times remove-tags" data-split="sp-tags"></i>{{value}}</a>
-      {%endfor%}
-      </div>
-    </div>
-
-    <div class="btn-container center">
-      <button>{%trans "Publish"%}</button>
-    </div>
-  </div>
-</form>
+{%block head_css%}
+<style type="text/css">
+</style>
 {%endblock%}
 
-{%block foot_js%}
-<script type="text/javascript" src="/static/js/svgcheckbox.js"></script>
+{%block content%}
+<div class="main pad box">
+ {%include template.progress%}
+ <div class="row auto">
+  <div class="span8 offset2">
+   {%if perm.sarshomar_knowledge.admin%}
+   <div class="element select no-pad">
+    <label class="title large" for="category">{%trans "Category"%}</label>
+    <select class="input" name="category" id="category">
+     {%for key, value in cat%}
+     <option value="{{value.id}}">{{value.term_title|raw}}</option>
+     {%endfor%}
+    </select>
+   </div>
+   {%endif%}
+  </div>
+ </div>
+</div>
 {%endblock%}
