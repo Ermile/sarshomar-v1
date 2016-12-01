@@ -492,9 +492,11 @@ route(/\@\/add/, function()
 		$(this).data('tree-search-timeout', timeout);
 	});
 
+	// if user click on title of each question
 	$(this).on('click', '.tree-result-list > li > div', function(event)
 	{
-		if($(this).parents('li').children('.options').is(':visible'))
+		var selectedItem = $(this).parents('li').children('.options');
+		if(selectedItem.is(':visible'))
 		{
 			// if want to close, close all tags
 			$('.tree-result-list > li .options').slideUp();
@@ -502,8 +504,16 @@ route(/\@\/add/, function()
 		else
 		{
 			$('.tree-result-list > li .options').slideUp();
-			$(this).parents('li').children('.options').slideDown();
+			selectedItem.slideDown();
+			$('[name="parent_tree_id"]').val($(this).attr('data-id'));
 		}
+	});
+	// if user change selection of each item
+	$(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
+	{
+		// get list of checked item and create text from them
+		var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
+		$('[name="parent_tree_opt"]').val(selectedOpts.get());
 	});
 
 

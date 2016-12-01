@@ -2,12 +2,12 @@
 {%block search_result%}
 {%for key, value in poll_list%}
 	<li>
-		<div>{{value.title|raw}}</div>
+		<div data-id='{{value.id}}'>{{value.title|raw}}</div>
 		<ul class="options">
 {%for i, opt in value.meta.opt%}
 			<li>
 				<span class="checkbox">
-					<input type="checkbox" name="{{opt.key}}" id="x{{key}}-{{i}}">
+					<input type="checkbox" value="{{opt.key}}" id="x{{key}}-{{i}}">
 					<label class="check-box" for="x{{key}}-{{i}}"></label>
 				</span>
 				<label for="x{{key}}-{{i}}">{{opt.txt}}</label>
