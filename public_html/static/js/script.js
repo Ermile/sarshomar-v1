@@ -349,7 +349,7 @@ function countQuestionOpts()
 function treeSearch(_search, _page)
 {
 	var path    = location.pathname;
-	if(_search)
+	if(!_search)
 	{
 		_search = $('#tree-search').val();
 	}
@@ -505,7 +505,7 @@ route(/\@\/add/, function()
 		{
 			$('.tree-result-list > li .options').slideUp();
 			selectedItem.slideDown();
-			$('[name="parent_tree_id"]').val($(this).attr('data-id'));
+			$('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
 		}
 	});
 	// if user change selection of each item
@@ -515,6 +515,12 @@ route(/\@\/add/, function()
 		var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
 		$('[name="parent_tree_opt"]').val(selectedOpts.get());
 	});
+	if($('#tree').is(':checked'))
+	{
+		console.log('checkd default...');
+		$('#tree-search').val($('[name="parent_tree_id"]').val());
+		// treeSearch();
+	}
 
 
 	// --------------------------------------------------------------------------------- Complete profile
