@@ -9,13 +9,8 @@ class view extends \content_u\home\view
 		parent::config();
 
 		// add all template of question into new file
-		$this->data->template['add']['layout']   = 'content_u/add/layout.html';
-
-		$this->data->template['add']['multiple'] = 'content_u/add/template-multiple.html';
-		$this->data->template['add']['text']     = 'content_u/add/template-text.html';
-		$this->data->template['add']['notify']   = 'content_u/add/template-notify.html';
-		$this->data->template['add']['range']    = 'content_u/add/template-range.html';
-		$this->data->template['add']['upload']   = 'content_u/add/template-upload.html';
+		$this->data->template['add']['layout'] = 'content_u/add/layout.html';
+		$this->data->template['add']['tree']   = 'content_u/add/tree.html';
 
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
@@ -101,15 +96,11 @@ class view extends \content_u\home\view
 	 */
 	public function view_tree($_args)
 	{
-		$this->include->fontawesome = true;
-
-		$this->data->search_value =  $_args->get("search")[0];
-		// get fontawesome class
-		$list = $_args->api_callback;
-
-		$this->data->poll_list = $list;
-
+		// only show with referrer
+		if(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], '@/add') !== false)
+		{
+			$this->data->poll_list = $_args->api_callback;
+		}
 	}
-
 }
 ?>

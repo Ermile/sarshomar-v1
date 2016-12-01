@@ -494,7 +494,16 @@ route(/\@\/add/, function()
 
 	$(this).on('click', '.tree-result-list > li > div', function(event)
 	{
-		$(this).parents('li').children('.answers').slideToggle();
+		if($(this).parents('li').children('.options').is(':visible'))
+		{
+			// if want to close, close all tags
+			$('.tree-result-list > li .options').slideUp();
+		}
+		else
+		{
+			$('.tree-result-list > li .options').slideUp();
+			$(this).parents('li').children('.options').slideDown();
+		}
 	});
 
 

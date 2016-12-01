@@ -410,7 +410,7 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .tree-fields select option{height:30px;line-height:30px;}
 .tree-result-list{background-color:#F7F7F7;padding:2em;}
 .tree-result-list>li>div{color:#00667a;padding:.5em;cursor:pointer;}
-.tree-result-list .options{margin-top:5px;}
+.tree-result-list .options{margin-top:5px;display:none}
 .tree-result-list .options li{display:flex;margin-bottom:5px;}
 .tree-result-list .options li .checkbox{margin-top:5px;}
 .tree-result-list .options li>label{min-height:35px;line-height:35px;margin-left:5px;padding:0 20px;color:#00667A;cursor:pointer;width:100%;-webkit-flex:1;flex:1;}
