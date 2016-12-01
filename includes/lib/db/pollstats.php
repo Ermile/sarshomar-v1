@@ -19,8 +19,9 @@ class pollstats
 	{
 		$default_option =
 		[
-			'port'  => 'site',
-			'field' => '*'
+			'validation' => 'valid',
+			'port'       => 'site',
+			'field'      => '*'
 		];
 		$_options = array_merge($default_option, $_options);
 
@@ -39,7 +40,8 @@ class pollstats
 				pollstats
 			WHERE
 				post_id = $_poll_id AND
-				port    = '$_options[port]'
+				port    = '$_options[port]' AND
+				type    = '$_options[validation]'
 			LIMIT 1
 			-- stat_polls::get_result()
 		";

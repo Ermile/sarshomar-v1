@@ -1,5 +1,5 @@
 <?php
-namespace content_u\filter;
+namespace content_u\add\filter;
 use \lib\utility;
 use \lib\debug;
 

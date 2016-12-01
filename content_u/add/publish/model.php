@@ -1,5 +1,5 @@
 <?php
-namespace content_u\publish;
+namespace content_u\add\publish;
 use \lib\utility;
 use \lib\debug;
 

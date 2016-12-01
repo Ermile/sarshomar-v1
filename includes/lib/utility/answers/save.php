@@ -19,6 +19,14 @@ trait save
 			return $check;
 		}
 
+		// check user status to set the chart 'valid' or 'invalid'
+		$validation  = 'invalid';
+		$user_validstatus = \lib\db\users::get($_user_id, 'user_validstatus');
+		if($user_validstatus && ($user_validstatus === 'valid' || $user_validstatus === 'invalid'))
+		{
+			$validation = $user_validstatus;
+		}
+
 		$in_update = false;
 		if(isset($_option['in_update']) && $_option['in_update'])
 		{
@@ -33,7 +41,6 @@ trait save
 		// if we not in update mod we need to check user answer
 		// but in update mod we need to save the user answer whitout check old answer
 		// the old answer was check in self::update()
-
 		if(!$in_update)
 		{
 			// cehck is answer to this poll or no
@@ -54,7 +61,7 @@ trait save
 					$recently_answered = self::check($_user_id, $_poll_id,
 						"recently_answered",
 						[
-							'answers'  => $_answer,
+							'answers' => $_answer,
 							'options' => $_option,
 							'time'    => $time,
 							'count'   => $count
@@ -67,7 +74,10 @@ trait save
 					// return self::status(false, $is_answered, T_("a lot update! what are you doing?"));
 					return $recently_answered;
 				}
-				return self::status(false)->set_error_code(3003)->set_result($check->get_result())->set_opt($_answer);
+				return self::status(false)
+						->set_error_code(3003)
+						->set_result($check->get_result())
+						->set_opt($_answer);
 			}
 		}
 
@@ -89,23 +99,25 @@ trait save
 			}
 
 			$answer_txt = isset($_option['answer_txt'][$value]) ? $_option['answer_txt'][$value] : '';
-			$set_option = ['answer_txt' => $answer_txt];
+			$set_option = ['answer_txt' => $answer_txt, 'validation' => $validation];
+
 			$set_option = array_merge($_option, $set_option);
 			$result = \lib\db\polldetails::save($_user_id, $_poll_id, $value, $set_option);
 			// save the poll lucked by profile
 			// update users profile
 			$answers_details =
 			[
-				'poll_id' => $_poll_id,
-				'opt_key' => $value,
-				'user_id' => $_user_id
+				'validation' => $validation,
+				'poll_id'    => $_poll_id,
+				'opt_key'    => $value,
+				'user_id'    => $_user_id
 			];
 			// save answered count
 			if($value != 'other')
 			{
+				\lib\utility\stat_polls::set_poll_result($answers_details);
+				$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 			}
-			\lib\utility\stat_polls::set_poll_result($answers_details);
-			$update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
 		}
 
 		if(!$in_update)

@@ -14,30 +14,47 @@ trait search
 	 */
 	public static function search($_string = null, $_options = [])
 	{
-
-		$where = [];
+		$where = []; // conditions
 
 		if(!$_string && empty($_options))
 		{
-			return null;
+			// default return of this function 10 last record of poll
+			$_options['get_last'] = true;
 		}
 
 		$default_options =
 		[
-			"get_count"   => false,
-			"pagenation"  => true,
-			"limit"       => 10,
-			"start_limit" => 0,
-			"end_limit"   => 10,
-			"login"       => false,
-			"get_last"    => false,
-			"my_poll"     => false,
-			"admin"       => false,
-			"order"		  => "ASC",
-			"all" 		  => false,
-		];
+			"get_count"   => false,  // just return the count record
 
+			"pagenation"  => true,   // enable|disable paignation,
+
+			                         // for example in get_count mode we needless to limit and pagenation
+			"limit"       => 10,	 // default limit of record is 10
+			                    	 // set the limit = null and pagenation = false to get all record whitout limit
+
+			"start_limit" => 0,		 // for manual pagenation set the statrt_limit and end limit
+
+			"end_limit"   => 10,	 // for manual pagenation set the statrt_limit and end limit
+
+			"login"       => false,  // get the login id to load faivorites post INNER JOIN options by this id
+
+			"get_last"    => false,	 // the the last record inserted to post table
+
+			"my_poll"     => false,  // disable check 'publish' poll because this is my poll
+
+			"admin"       => false,	 // no thing yet.
+
+			"order"		  => "ASC",  // default order by ASC you can change to DESC
+
+			"all" 		  => false,	 // if all == false load just sarshomar poll
+			      		           	 // if all == true disable check sarshomar poll to load
+
+			"search_post" => false   // default we not search in news (posts.post_type = 'post')
+			      		             // the news type is 'post'
+			      		             // set the 'post' => true to search in news and polls
+		];
 		$_options = array_merge($default_options, $_options);
+
 		// ------------------ faivorites
 		$faivorites = null;
 		if($_options['login'])
@@ -63,13 +80,13 @@ trait search
 		$only_one_value = false;
 		if($_options['get_count'] === true)
 		{
-			$public_fields = " COUNT(posts.id) AS 'postcount' FROM posts ";
-			$limit = null;
+			$public_fields  = " COUNT(posts.id) AS 'postcount' FROM posts ";
+			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
-			$limit = null;
+			$limit         = null;
 			$public_fields = self::$fields;
 			if($_options['limit'])
 			{
@@ -95,6 +112,7 @@ trait search
 			$where[] = " posts.post_status = 'publish' ";
 		}
 
+		// if all == true return all type of polls, sarshomar or personal
 		if($_options['all'] === false)
 		{
 			$where[] = " posts.post_sarshomar = 1 ";
@@ -103,6 +121,11 @@ trait search
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
+		// default we not search in news of service
+		if($_options['search_post'] === false)
+		{
+			$where[] = " posts.post_type != 'post' ";
+		}
 
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
@@ -117,13 +140,13 @@ trait search
 		unset($_options['end_limit']);
 		unset($_options['order']);
 		unset($_options['all']);
-
-		$where[] = " posts.post_type != 'post' ";
+		unset($_options['search_post']);
 
 		foreach ($_options as $key => $value)
 		{
 			if(is_array($value))
 			{
+				// for similar "posts.`field` LIKE '%valud%'"
 				$where[] = " posts.`$key` $value[0] $value[1] ";
 			}
 			else

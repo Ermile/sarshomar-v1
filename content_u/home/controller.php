@@ -5,22 +5,25 @@ class controller extends \mvc\controller
 {
 
 	/**
-	 * rout
+	 * route
 	 */
 	function _route()
 	{
-		if(substr(\lib\router::get_url(),0,1) == '$')
+		$url = \lib\router::get_url();
+
+		if(substr($url, 0, 1) == '$')
 		{
 			\lib\router::set_controller("\\content_u\\knowledge\\controller");
-			return ;
+			return;
 		}
-		/**
-		 * route url like 4dgF/add to add folder
-		 */
-		if(preg_match("/^(.*)\/(add|filter|publish)$/", \lib\router::get_url(), $controller_name))
+
+		if(preg_match("/^(.*)\/(add|filter|publish)$/", $url, $controller_name))
 		{
-			\lib\router::set_controller("\\content_u\\$controller_name[2]\\controller");
-			return ;
+			if(isset($controller_name[2]))
+			{
+				\lib\router::set_controller("\\content_u\\$controller_name[2]\\controller");
+				return ;
+			}
 		}
 
 		// try sarshomar
@@ -50,7 +53,6 @@ class controller extends \mvc\controller
 			// $this->redirector(null, false)->set_domain()->set_url('login')->redirect();
 			$this->view()->data->notlogin = true;
 		}
-
 	}
 
 

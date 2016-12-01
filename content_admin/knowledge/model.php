@@ -47,11 +47,6 @@ class model extends \mvc\model
 	 */
 	public function get_search($_args)
 	{
-		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '')
-		{
-			return \lib\db\polls::search(null, ['get_last' => true, 'limit' => 10]);
-		}
-
 		$match = $_args;
 		unset($_args->match->url);
 		unset($_args->method);

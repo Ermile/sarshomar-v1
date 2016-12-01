@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `polldetails` (
 `post_id` bigint(10) unsigned NOT NULL,
 `user_id` int(10) unsigned NOT NULL,
 `port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
+`validstatus` ENUM('valid','invalid') NOT NULL,
 `subport` bigint(20) unsigned NULL,
 `opt` tinyint(3) unsigned DEFAULT NULL,
 `type` varchar(50) NULL DEFAULT NULL,

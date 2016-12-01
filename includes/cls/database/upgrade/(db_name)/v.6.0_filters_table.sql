@@ -34,7 +34,5 @@ CREATE TABLE IF NOT EXISTS `filters` (
 `religion` VARCHAR(64) NULL,
 `language` VARCHAR(2) NULL,
 `industry`VARCHAR(200)NULL,
-`unique` VARCHAR(1024) NULL,
-PRIMARY KEY (`id`),
-UNIQUE KEY `unique_filters` (`unique`) USING BTREE
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

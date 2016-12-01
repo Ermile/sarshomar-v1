@@ -9,7 +9,6 @@ class answers
 	use answers\save;
 	use answers\update;
 
-
 	/**
 	 * return the status array
 	 *

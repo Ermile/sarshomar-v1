@@ -92,5 +92,24 @@ class view extends \content_u\home\view
 		$poll_list = \lib\utility\survey::get_poll_list($survey_id);
 		$this->data->poll_list = $poll_list;
 	}
+
+
+	/**
+	 * show search result
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function view_tree($_args)
+	{
+		$this->include->fontawesome = true;
+
+		$this->data->search_value =  $_args->get("search")[0];
+		// get fontawesome class
+		$list = $_args->api_callback;
+
+		$this->data->poll_list = $list;
+
+	}
+
 }
 ?>

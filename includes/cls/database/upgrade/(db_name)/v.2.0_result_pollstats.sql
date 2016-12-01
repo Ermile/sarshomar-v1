@@ -19,6 +19,7 @@ Date: 2016-10-08 14:52:05
 CREATE TABLE IF NOT EXISTS `pollstats` (
 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 `post_id` bigint(20) unsigned NOT NULL,
+`type` ENUM('valid', 'invalid') NOT NULL DEFAULT 'invalid',
 `port` ENUM('site','telegram','sms','api') NOT NULL DEFAULT 'site',
 `subport` varchar(64) NULL,
 `total` int(10) unsigned,
@@ -41,6 +42,6 @@ CREATE TABLE IF NOT EXISTS `pollstats` (
 `industry` text,
 `meta` mediumtext,
 PRIMARY KEY (`id`),
-UNIQUE KEY `unique_post` (`post_id`,`port`,`subport`) USING BTREE,
+UNIQUE KEY `unique_post` (`post_id`,`port`,`subport`, `type`) USING BTREE,
 CONSTRAINT `pollstats_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

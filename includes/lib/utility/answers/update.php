@@ -74,22 +74,26 @@ trait update
 		{
 			$remove_old_answer = \lib\db\polldetails::remove($_user_id, $_poll_id, $value);
 
-			$profile = 0;
+			$profile    = 0;
+			$validation = 'invalid';
+
 			foreach ($old_answer as $i => $o)
 			{
 				if($o['opt'] == $value)
 				{
-					$profile = $o['profile'];
+					$profile    = $o['profile'];
+					$validation = $o['validstatus'];
 				}
 			}
 
 			$answers_details =
 			[
-				'poll_id' => $_poll_id,
-				'opt_key' => $value,
-				'user_id' => $_user_id,
-				'type'    => 'minus',
-				'profile' => $profile
+				'poll_id'    => $_poll_id,
+				'opt_key'    => $value,
+				'user_id'    => $_user_id,
+				'type'       => 'minus',
+				'profile'    => $profile,
+				'validation' => $validation
 			];
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
@@ -101,6 +105,59 @@ trait update
 			// set the poll stat in save function
 		}
 		return self::status(true)->set_opt($_answer)->set_message(T_("Your answer updated"));
+	}
+
+
+	/**
+	 * change the user validation
+	 * the user was in 'awaiting' status and
+	 * we save all answers of this user in 'invalid' type of poll stats
+	 * now the user active her account
+	 * we change all stats the user was answered to it to 'valid' status
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function change_user_validation($_user_id)
+	{
+		// get all user answer to poll
+		$invalid_answers = \lib\db\polldetails::get($_user_id);
+
+		foreach ($invalid_answers as $key => $value)
+		{
+			// check validstatus
+			// we just update invalid answers to valid mod
+			if($value['validstatus'] === 'invalid')
+			{
+				// opt = 0 means the user skipped the poll and neddless to update chart
+				// opt = null means the user answers the other text (descriptive mode) needless to update chart
+				if($value['opt'] !== 0 && $value['opt'] != null)
+				{
+					// plus the valid answers
+					$plus_valid_chart =
+					[
+						'validation' => 'valid',
+						'poll_id'    => $value['post_id'],
+						'opt_key'    => $value['opt'],
+						'user_id'    => $_user_id
+					];
+
+					\lib\utility\stat_polls::set_poll_result($plus_valid_chart);
+					// minus the invalid answers
+					$minus_invalid_chart =
+					[
+						'poll_id'    => $value['post_id'],
+						'opt_key'    => $value['opt'],
+						'user_id'    => $_user_id,
+						'profile'    => $value['profile'],
+						'type'       => 'minus',
+						'validation' => 'invalid'
+					];
+					\lib\utility\stat_polls::set_poll_result($minus_invalid_chart);
+				}
+			}
+			$query = "UPDATE polldetails SET validstatus = 'valid' WHERE user_id = $_user_id";
+			return \lib\db::query($query);
+		}
 	}
 }
 ?>

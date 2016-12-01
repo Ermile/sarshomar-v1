@@ -18,7 +18,7 @@ class controller extends  \content_admin\home\controller
 		]
 		);
 
-		$this->post("knowledge")->ALL("/^\\$/");
+		$this->post("knowledge")->ALL("/.*/");
 	}
 }
 

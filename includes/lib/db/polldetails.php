@@ -144,8 +144,13 @@ class polldetails
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function get($_user_id, $_poll_id)
+	public static function get($_user_id, $_poll_id = null)
 	{
+		$poll_id = " AND post_id = $_poll_id ";
+		if($_poll_id === null)
+		{
+			$poll_id = null;
+		}
 		$query =
 		"
 			SELECT
@@ -153,8 +158,8 @@ class polldetails
 			FROM
 				polldetails
 			WHERE
-				user_id = $_user_id AND
-				post_id = $_poll_id
+				user_id = $_user_id
+				$poll_id
 		";
 		return \lib\db::get($query);
 	}
@@ -214,6 +219,7 @@ class polldetails
 		$default_option =
 		[
 			'answer_txt' => null,
+			'validation' => 'invalid',
 			'port'       => 'site',
 			'subport'    => null
 		];
@@ -242,16 +248,17 @@ class polldetails
 			INSERT INTO
 				polldetails
 			SET
-				user_id    = $_user_id,
-				post_id    = $_poll_id,
-				port       = $port,
-				subport    = $subport,
-				opt        = $_num_of_opt_kye,
-				type       = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
-				txt        = '$_option[answer_txt]',
-				profile    = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
-				insertdate = '$date',
-				visitor_id = NULL
+				user_id     = $_user_id,
+				post_id     = $_poll_id,
+				port        = $port,
+				subport     = $subport,
+				validstatus = '$_option[validation]',
+				opt         = $_num_of_opt_kye,
+				type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+				txt         = '$_option[answer_txt]',
+				profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				insertdate  = '$date',
+				visitor_id  = NULL
 				-- answers::save_polldetails() -> $date
 		";
 		$result = \lib\db::query($insert_polldetails);

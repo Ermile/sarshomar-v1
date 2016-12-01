@@ -41,9 +41,9 @@ class controller extends \mvc\controller
 
 		$this->post("random_result")->ALL("");
 
-		$this->get("ask")->ALL("ask");
+		$this->get("ask")->ALL("/ask/");
 
-		$this->get("random")->ALL("ask/random");
+		$this->get("random")->ALL("/ask\/random/");
 	}
 }
 ?>

@@ -59,6 +59,13 @@ class stat_polls
 			return false;
 		}
 
+		// get the validation result
+		$validation = 'invalid';
+		if(isset($_args['validation']))
+		{
+			$validation = $_args['validation'];
+		}
+
 		// default of chart is not sorting poll
 		$sorting  = false;
 		// key = the opt_key and value = the sort index
@@ -179,7 +186,7 @@ class stat_polls
 	    $support_filter = array_keys($support_filter);
 
 	    // get the poll stats record to open the chart and change it
-		$pollstats = \lib\db\pollstats::get($poll_id);
+		$pollstats = \lib\db\pollstats::get($poll_id, ['validation' => $validation]);
 		// if the poll stats record is find
 		// we must be change the chart
 		// and when the poll stats not found we must creat the chart
@@ -261,6 +268,7 @@ class stat_polls
 				}
 			}
 		}
+
 		// update the result field in table
 		$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
 
@@ -418,7 +426,8 @@ class stat_polls
 				SET
 					$set
 				WHERE
-					pollstats.post_id = $poll_id
+					pollstats.post_id = $poll_id AND
+					pollstats.type    = '$validation'
 				-- update poll stat result
 				-- stat_polls::set_poll_result()
 			";
@@ -427,9 +436,10 @@ class stat_polls
 		else
 		{
 			// insert record
-			$set[] =  " port = $port ";
-			$set[] =  " subport = $subport ";
-			$set[] =  " post_id = $poll_id ";
+			$set[] =  " pollstats.port    = $port ";
+			$set[] =  " pollstats.subport = $subport ";
+			$set[] =  " pollstats.post_id = $poll_id ";
+			$set[] =  " pollstats.type    = '$validation' ";
 
 			$set = join($set, " , ");
 			$query =

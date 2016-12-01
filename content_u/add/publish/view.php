@@ -1,5 +1,5 @@
 <?php
-namespace content_u\publish;
+namespace content_u\add\publish;
 
 class view extends \content_u\home\view
 {
