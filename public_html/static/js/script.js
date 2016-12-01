@@ -341,70 +341,30 @@ function countQuestionOpts()
 }
 
 
-function treeSearch(_page)
+/**
+ * search in tree;
+ * @param  {[type]} _page [description]
+ * @return {[type]}       [description]
+ */
+function treeSearch(_search, _page)
 {
-	var path = location.pathname;
-	path = path.substr(0, path.indexOf('/add')) + '/tree';
+	var path    = location.pathname;
+	if(_search)
+	{
+		_search = $('#tree-search').val();
+	}
+	path        = path.substr(0, path.indexOf('/add')) + '/add/tree';
+	if(_search)
+	{
+		path = path+ '/search='+ _search;
+	}
 
-	Navigate({
+	Navigate(
+	{
       data: false,
       url: path,
       nostate: true,
     });
-
-	return;
-	if(_page)
-	{
-		_page = 1;
-	}
-  $('#tree-search').ajaxify(
-  {
-    ajax:
-    {
-      url: '@/add',
-      method: 'post',
-      data:
-      {
-        'search': $('#tree-search').val(),
-        'repository': $("#tree-search-in").val(),
-        'page': _page,
-      },
-      abort: true,
-      success: function(e)
-      {
-      	$('.tree-result-list').html('');
-      	var el = '';
-      	console.log(e.msg.result);
-
-      	$.each(e.msg.result, function(_key, _value)
-      	{
-
-      	});
-
-
-
-        for (var datarow in e.msg.result)
-        {
-        	var id = e.msg.result[datarow].id;
-        	el += '<li>';
-		  		el = el + '<div>' + e.msg.result[datarow].title + '</div>';
-          el += '<ul class="answers">';
-
-          for (var a in e.msg.result[datarow].meta.opt)
-          {
-            el += '<li class="checkbox">';
-            el = el + '<input type="checkbox" name="' + id + '-' + e.msg.result[datarow].meta.opt[a].key + '" id="'+  id + '-' +e.msg.result[datarow].meta.opt[a].key +'">';
-            el = el + '<label for="' + id + '-' + e.msg.result[datarow].meta.opt[a].key + '">' + id + '-' + e.msg.result[datarow].meta.opt[a].txt + '</label>';
-            el += '</li>';
-          }
-          el += '</ul>';
-        	el += '</li>';
-        }
-
-        $('.tree-result-list').append($(el));
-      }
-    }
-  });
 }
 
 
