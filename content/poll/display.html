@@ -75,11 +75,10 @@
   <div class="row" id="poll-result">
    <div class="type">
     <ul class="tabs">
-     {%for key, value in chart%}
-      {%if value.categories != 'null'%}
-       <li chart-type="{{key}}" class="chart-{{key}} {%if key == 'result'%}active{%endif%}">{{key|trans}}</li>
-      {%endif%}
-     {%endfor%}
+        <li chart-type="result" class="chart-result active">{%trans "result"%}</li>
+     {%for key, value in chart.stacked%}
+        <li chart-type="{{key}}" class="chart-{{key}} {%if key == 'result'%}active{%endif%}">{{key|trans}}</li>
+      {%endfor%}
     </ul>
    </div>
    <div class="chart"></div>
@@ -242,7 +241,7 @@ function load_chart(_type)
       },
       exporting: {enabled: false},
       credits: {enabled: false},
-      title : "",xAxis: { labels: { enabled: false }, categories: ['']},
+      title : "",xAxis: { labels: { enabled: false }, categories: {{chart.categories | raw}}},
       yAxis: {min: 0,title: {text: 'درصد',enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0,},
       legend: {enabled: false },
       tooltip: {
@@ -251,19 +250,34 @@ function load_chart(_type)
         footerFormat: '</table>',
         shared: false,
         useHTML: true
-      }, plotOptions: {column: {pointPadding: 0.2, borderWidth: 0}},
-      series: eval({{chart.result.data| raw }})
+      },  plotOptions: {
+            column: {
+                // stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            }
+        },
+      series: {{chart.basic| raw }}
     };
     return result;
   }
-  data_chart =  {{chart|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+
+  stacked          = {{chart.stacked|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+  drilldown_series = {{chart.drilldown_series|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+  drilldown        = {{chart.drilldown|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+  // console.log(stacked);
+  // console.log(_type);
+  // console.log(stacked[_type])
+  x = stacked[_type];
 
   data = {chart: {type: 'column'},
     exporting: {enabled: false},
     credits: {enabled: false},
     legend: {enabled: false },
-    title: {text: data_chart[_type].title},
-    xAxis: {labels: { enabled: false }, categories: eval(data_chart[_type].categories) },
+    title: {text: '{{chart.title}}' },
+    xAxis: {labels: { enabled: false }, categories: {{chart.categories|raw}} },
     yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
       stackLabels: {enabled: true,style: {fontWeight: 'bold',
           color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -289,7 +303,7 @@ function load_chart(_type)
         }
       }
     },
-    series: eval(data_chart[_type].series)
+    series: eval(x)
   };
 
   return data;

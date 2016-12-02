@@ -259,7 +259,6 @@ class view extends \mvc\view
 				*/
 				$chart_mode =
 				[
-					'result',
 					'gender',
 					'marrital',
 					'range',
@@ -267,7 +266,8 @@ class view extends \mvc\view
 					'city'
 				];
 				// load result as chart
-				$chart = \lib\utility\stat_polls::get_result($post_id, $chart_mode);
+				$chart = \lib\utility\stat_polls::get_result($post_id,
+					['validation' => 'valid', 'filter' => $chart_mode]);
 				$this->data->chart = $chart;
 			}
 

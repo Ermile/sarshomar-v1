@@ -49,12 +49,12 @@ class model extends \mvc\model
 	 */
 	public function random_result()
 	{
-		// $random_result = \lib\utility\stat_polls::get_random_poll_result();
-		// if(!$random_result)
-		// {
+		$random_result = \lib\utility\stat_polls::get_random_poll_result();
+		if(!$random_result || $random_result == '[]')
+		{
 			$random_result = $this->random("main");
-		// }
-		return ['random_result' => $random_result, 'malefemale' => $this->random()];
+		}
+		return $random_result;
 	}
 
 	public function random($_type = "drilldown")
@@ -162,7 +162,7 @@ class model extends \mvc\model
 			[
 				'title' => $title,
 				'categories' => json_encode($categories,JSON_UNESCAPED_UNICODE),
-				'data' => json_encode(
+				'basic' => json_encode(
 				[
 					[
 						'name' => $name,

@@ -85,14 +85,14 @@
   var topChartOptions =
   {
    chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
-   title: {text: ""},
-   xAxis:{categories:{{result['random_result']['categories'] | raw}}},
+   title: {text: "{{result.title}}"},
+   xAxis:{categories:{{result.categories | raw}}},
    yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
    plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
    legend: {enabled: false},
    credits: {enabled: false},
    tooltip: {enabled: false},
-   series: {{result['random_result']['data'] | raw}}
+   series: {{result.basic | raw}}
   };
 
   var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];

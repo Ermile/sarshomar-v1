@@ -1,0 +1,87 @@
+$(function () {
+    Highcharts.chart('container', {
+
+        chart: {
+            type: 'column'
+        },
+
+        title: {
+            text: 'Total fruit consumtion, grouped by gender'
+        },
+
+        xAxis: {
+            categories: ['opt_text_1', 'opt_text_2']
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Number of fruits'
+            }
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+            }
+        },
+
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+
+        series: [{
+            name: 'male',
+            data: [5, 3, 4, 7, 2], //-------- 5 = opt_1, 3 = opt_2 , 4 = opt_3
+            stack: 'valid'
+        }, {
+            name: 'female',
+            data: [3, 4, 4, 2, 5],
+            stack: 'valid'
+        }, {
+            name: 'Jane',
+            data: [2, 5, 6, 2, 1],
+            stack: 'invalid'
+        }, {
+            name: 'Janet',
+            data: [3, 0, 4, 4, 3],
+            stack: 'invalid'
+        }]
+    });
+});
+
+{
+  "gender": {
+    "valid": [
+      {
+        "name": "undefined",
+        "data": [
+          0,
+          0
+        ],
+        "stack": "valid"
+      },
+      {
+        "name": "male",
+        "data": [
+          0,
+          0
+        ],
+        "stack": "valid"
+      },
+      {
+        "name": "female",
+        "data": [
+          0,
+          0
+        ],
+        "stack": "valid"
+      }
+    ]
+  }
+}

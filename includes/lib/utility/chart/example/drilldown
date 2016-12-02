@@ -1,0 +1,211 @@
+$(function () {
+    // Create the chart
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Browser market shares. January, 2015 to May, 2015'
+        },
+        subtitle: {
+            text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total percent market share'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        },
+
+        series: [{
+            name: 'valid',
+            colorByPoint: true,
+            data: [{
+                    name: 'opt_text_1',
+                    y: 56.33, // opt_1 in result
+                    drilldown: 'opt_txt_1'
+                }, {
+                    name: 'opt_text_2',
+                    y: 24.03, // opt_2 in result
+                    drilldown: 'opt_text_2'
+                }, {
+                    name: 'Firefox',
+                    y: 10.38,
+                    drilldown: 'Firefox'
+                }, {
+                    name: 'Safari',
+                    y: 4.77,
+                    drilldown: 'Safari'
+                }, {
+                    name: 'Opera',
+                    y: 0.91,
+                    drilldown: 'Opera'
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2,
+                    drilldown: null
+                }]
+        }],
+        drilldown: {
+            series: [
+            {
+                name: 'opt_text_1',
+                id: 'opt_text_1',
+                data: [
+                    [
+                        'qom',
+                        24.13
+                    ],
+                    [
+                        'tehran',
+                        17.2
+                    ],
+                    [
+                        'mashhad',
+                        8.11
+                    ],
+                    [
+                        'tabriz',
+                        5.33
+                    ],
+                    [
+                        'gorgan',
+                        1.06
+                    ],
+                    [
+                        '4mahalebakhtiyari :|',
+                        0.5
+                    ]
+                ]
+            }, {
+                name: 'opt_text_2',
+                id: 'opt_text_2',
+                data: [
+                    [
+                        'arak',
+                        5
+                    ],
+                    [
+                        'esfahan',
+                        4.32
+                    ],
+                    [
+                        'qom',
+                        0.14
+                    ]
+                ]
+            }, {
+                name: 'Firefox',
+                id: 'Firefox',
+                data: [
+                    [
+                        'v35',
+                        2.76
+                    ],
+                    [
+                        'v36',
+                        2.32
+                    ],
+                    [
+                        'v37',
+                        2.31
+                    ],
+                    [
+                        'v34',
+                        1.27
+                    ],
+                    [
+                        'v38',
+                        1.02
+                    ],
+                    [
+                        'v31',
+                        0.33
+                    ],
+                    [
+                        'v33',
+                        0.22
+                    ],
+                    [
+                        'v32',
+                        0.15
+                    ]
+                ]
+            }, {
+                name: 'Safari',
+                id: 'Safari',
+                data: [
+                    [
+                        'v8.0',
+                        2.56
+                    ],
+                    [
+                        'v7.1',
+                        0.77
+                    ],
+                    [
+                        'v5.1',
+                        0.42
+                    ],
+                    [
+                        'v5.0',
+                        0.3
+                    ],
+                    [
+                        'v6.1',
+                        0.29
+                    ],
+                    [
+                        'v7.0',
+                        0.26
+                    ],
+                    [
+                        'v6.2',
+                        0.17
+                    ]
+                ]
+            }, {
+                name: 'Opera',
+                id: 'Opera',
+                data: [
+                    [
+                        'v12.x',
+                        0.34
+                    ],
+                    [
+                        'v28',
+                        0.24
+                    ],
+                    [
+                        'v27',
+                        0.17
+                    ],
+                    [
+                        'v29',
+                        0.16
+                    ]
+                ]
+            }]
+        }
+    });
+});
