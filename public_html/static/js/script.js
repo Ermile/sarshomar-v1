@@ -293,13 +293,16 @@ function deleteQuestionOpts(_this)
 /**
  * generate sortable again and again after each change
  */
-function setSortable()
+function setSortable(_onlyDestroy)
 {
 	$('.sortable').sortable('destroy');
-	$('.sortable').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
+	if(!_onlyDestroy)
 	{
-		rearrangeQuestionOpts();
-	});
+		$('.sortable').sortable({handle: '.title'}).bind('sortupdate', function(e, ui)
+		{
+			rearrangeQuestionOpts();
+		});
+	}
 }
 
 
@@ -335,8 +338,21 @@ function rearrangeQuestionOpts()
  * return count of question options exist in page
  * @return {[type]} [description]
  */
-function countQuestionOpts()
+function countQuestionOpts(_fill)
 {
+	if(_fill)
+	{
+		_fill = 0;
+		$.each($('#tab-multiple_choice .input-group .element .input[type="text"]'), function(key, value)
+		{
+			if($(this).val())
+			{
+				_fill++;
+			}
+		});
+
+		return _fill;
+	}
 	return $('#tab-multiple_choice .input-group .element').length;
 }
 
@@ -394,7 +410,9 @@ function completeProfileFill(_this)
 				addNewOpt(dropValue.val(), dropValueArray[i]);
 				$('.input-group.sortable li[data-profile!="'+ dropValue.val() +'"]').remove();
 			}
+			setSortable(true);
 		}
+		detectPercentage();
 	}
 	else
 	{
@@ -419,6 +437,56 @@ function completeProfileRevert()
 			setSortable();
 		}
 	}
+	detectPercentage();
+}
+
+
+
+function detectPercentage()
+{
+	var percentage = 0;
+	console.log($('body').attr('id'));
+	switch ($('body').attr('id'))
+	{
+		case 'add':
+		case 'add_tree':
+			if($('#title').val())
+			{
+				percentage += 20;
+			}
+			var optPercent = countQuestionOpts(true) * 15;
+			if(optPercent > 30)
+			{
+				optPercent = 30;
+			}
+			percentage += optPercent;
+			break;
+
+		case 'filter':
+			percentage = 70;
+			break;
+
+		case 'publish':
+			percentage = 90;
+			break;
+	}
+	// call draw func
+	drawPercentage(percentage +'%');
+}
+
+
+/**
+ * draw percentage of progress bar
+ * @return {[type]} [description]
+ */
+function drawPercentage(_percent)
+{
+	if(!$('.page-progress b').length)
+	{
+		$('.page-progress').append('<b></b>');
+	}
+
+	$('.page-progress b').width(_percent);
 }
 
 
@@ -429,6 +497,8 @@ route(/\@\/add/, function()
 	checkInputChange.call(this);
 	resizableTextarea.call(this);
 	setSortable();
+	detectPercentage();
+
 	$(".range-slider").ermile_slider();
 
 	// run on input change and add new opt for this question
@@ -457,6 +527,12 @@ route(/\@\/add/, function()
 				$(this).parent().children('.delete').click();
 			}
 		}
+		detectPercentage();
+	});
+
+	$(this).on('change', '#title', function()
+	{
+		detectPercentage();
 	});
 
 	// on press delete on each opt

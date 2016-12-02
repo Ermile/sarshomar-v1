@@ -186,7 +186,7 @@
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
 	</div>
-	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide'>
+	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%}>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row auto tree-fields">

@@ -799,7 +799,7 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 /************************************************************** page progress */
 .page-progress{width:300px;margin:0 auto 4em;display:flex;justify-content:space-between;position:relative;}
 .page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#D8D8D8;}
-.page-progress::after{content:'';position:absolute;bottom:0;height:2px;width:0;background-color:#00667A;}
+.page-progress b{content:'';position:absolute;bottom:0;height:2px;width:0;background-color:#00667A;transition:2s;}
 .page-progress span::before{content:attr(data-label);color:#D8D8D8;font-weight:bold;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em;}
 
 
@@ -890,7 +890,7 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .element .title.badge.active::before{background-color:#E96F4B;}
 
 .element.switch{padding-left:0;padding-right:0;}
-.element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;position:relative;}
+.element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;position:relative;cursor:pointer;}
 
 .element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#d6d6d6;right:0;top:0;bottom:0;margin:auto;transition:.3s;}
 .rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:0;}
