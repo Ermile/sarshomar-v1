@@ -66,6 +66,14 @@ trait get
 		// set the title to return
 		$result['title'] = $title;
 
+		// get the poll chart url
+		$url = "#";
+		if(isset($poll['url']))
+		{
+			$url = $poll['url'];
+		}
+		$result['url'] = $url;
+
 		// get the categories
 		$categories = [];
 		// list of main opt
