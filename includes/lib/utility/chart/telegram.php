@@ -10,11 +10,40 @@ trait telegram
 	 * @param  [type] $_value   [description]
 	 * @param  [type] $_key     [description]
 	 * @return [type]           [description]
+	 * @example return array like this:
+	 * [the poll result merge by this array]
+	 * 'count_answered' =>
+	 *	 [
+	 *    'valid'   =>  44,
+	 *    'invalid' =>  2,
+	 *    'sum'     =>  46,
+	 *   ]
+	 * 'result' =>
+	 *	[
+	 *    1 =>
+	 *		[
+	 *        'text'    =>  'text 1',
+	 *        'key'     =>  '1',
+	 *        'type'    =>  'text',
+	 *        'valid'   =>  31,
+	 *        'invalid' =>  0,
+	 *        'sum'     =>  31,
+	 *      ]
+	 *    2 =>
+	 *		[
+	 *        'text'    =>  'text 2',
+	 *        'key'     =>  '2',
+	 *        'type'    =>  'text',
+	 *        'valid'   =>  9,
+	 *        'invalid' =>  1,
+	 *        'sum'     =>  10,
+	 *      ]
 	 */
 	public static function get_telegram_result($_poll_id)
 	{
 		// get the poll to find the opt
 		$poll = \lib\db\polls::get_poll($_poll_id);
+
 		$meta = [];
 		if(isset($poll['meta']))
 		{
@@ -32,55 +61,60 @@ trait telegram
 
 		// the valid answers
 		$valid_answers = [];
-		$valid_result = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'valid']);
-		if(isset($valid_result['result']) && is_array($valid_result['result']))
+		$valid_result_raw = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'valid']);
+		if(isset($valid_result_raw['result']) && is_array($valid_result_raw['result']))
 		{
-			$valid_answers = $valid_result['result'];
+			$valid_answers = $valid_result_raw['result'];
 		}
 
 		$invalid_answers = [];
-		$invalid_result = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'invalid']);
-		if(isset($invalid_result['result']) && is_array($invalid_result['result']))
+		$invalid_result_raw = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'invalid']);
+		if(isset($invalid_result_raw['result']) && is_array($invalid_result_raw['result']))
 		{
-			$invalid_answers = $invalid_result['result'];
+			$invalid_answers = $invalid_result_raw['result'];
 		}
 
-		$result                   = [];
-		$result['count']          = isset($valid_result['total']) ? $valid_result['total'] : 0;
-		$result['invalid_count']  = isset($invalid_result['total']) ? $invalid_result['total'] : 0;
-		$result['title']          = $poll['title'];
-		$result['url']            = $poll['url'];
-		$result['result']         = self::process($opt, $valid_answers);
-		$result['invalid_result'] = self::process($opt, $invalid_answers);
-		return $result;
-	}
-
-
-	/**
-	 * process the telegram chart
-	 * the syntax is 	'opt_text' => [count answered],
-	 * 					'opt_text' => [count answered],
-	 * 					...
-	 *
-	 * @param      <type>   $_opt      The option
-	 * @param      integer  $_answers  The answers
-	 *
-	 * @return     array    ( description_of_the_return_value )
-	 */
-	private static function process($_opt, $_answers)
-	{
-		$final_result = [];
-		foreach ($_opt as $key => $value)
+		// the example return of this foreach in firts of this function seted
+		$result = [];
+		$i = 1;
+		foreach ($opt as $key => $value)
 		{
-			$opt_key = $value['key'];
-			$final_result[$value['txt']] = 0;
-			if(!array_key_exists($opt_key, $_answers))
+			$sum = 0;
+			$result[$i]['text'] = isset($value['txt'])  ? $value['txt']: '';
+			$result[$i]['key']  = isset($value['key'])  ? substr($value['key'],4): '';
+			$result[$i]['type'] = isset($value['type']) ? $value['type']: '';
+
+			$opt_key = isset($value['key']) ? $value['key'] : '';
+			if(array_key_exists($opt_key, $valid_answers))
 			{
-				continue;
+				$result[$i]['valid'] = $valid_answers[$opt_key];
+				$sum += $valid_answers[$opt_key];
 			}
-			$final_result[$value['txt']] = $_answers[$opt_key];
+			else
+			{
+				$result[$i]['valid'] = 0;
+			}
+
+			if(array_key_exists($opt_key, $invalid_answers))
+			{
+				$result[$i]['invalid'] = $invalid_answers[$opt_key];
+				$sum += $invalid_answers[$opt_key];
+			}
+			else
+			{
+				$result[$i]['invalid'] = 0;
+			}
+			$result[$i]['sum'] = $sum;
+			$i++;
 		}
-		return $final_result;
+
+		$valid_count            = isset($valid_result_raw['total']) ? $valid_result_raw['total'] : 0;
+		$invalid_count          = isset($invalid_result_raw['total']) ? $invalid_result_raw['total'] : 0;
+		$sum_count              = intval($valid_count) + intval($invalid_count);
+
+		$poll['count_answered'] = ['valid' => $valid_count, 'invalid' => $invalid_count , 'sum' => $sum_count];
+		$poll['result']         = $result;
+		return self::status(true)->set_result($poll);
 	}
 }
 ?>

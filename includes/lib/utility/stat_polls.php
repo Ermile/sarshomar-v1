@@ -9,10 +9,17 @@ class stat_polls
 	use chart\telegram;
 
 	/**
-	 * this library work with acoount
-	 * v1.0
+	 * return the status array
+	 *
+	 * @param      <type>   $_status  The status
+	 * @param      boolean  $_update  The update
+	 * @param      array    $_msg     The message
 	 */
-
+	public static function status($_status)
+	{
+		$return = new \lib\db\db_return();
+		return $return->set_ok($_status);
+	}
 
 	/**
 	 * get list of questions that this user answered

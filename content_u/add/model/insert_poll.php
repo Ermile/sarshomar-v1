@@ -19,7 +19,7 @@ trait insert_poll
 		// get poll_type
 		// the poll type in html code is defrent by the db poll type
 		// this function change the html poll type to db poll type
-		$poll_type = self::change_type(utility::post("poll_type"));
+		$poll_type = self::set_db_type(utility::post("poll_type"));
 		// swich html name and db name of poll type
 		if(!$poll_type)
 		{
@@ -206,7 +206,7 @@ trait insert_poll
 				];
 
 				// save the meta in post_meta fields
-				$post_meta[$value] = true;
+				$post_meta[$value] = utility::post("meta_$value");
 				// comment met must be save in post_comment fields
 				if($value == 'comment')
 				{

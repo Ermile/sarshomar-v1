@@ -45,6 +45,11 @@ class view extends \content_u\home\view
 	{
 		$poll_id = $_args->api_callback;
 		$poll = \lib\db\polls::get_poll($poll_id);
+		if(isset($poll['type']))
+		{
+			$poll['type'] = \content_u\add\model\config::set_html_type($poll['type']);
+		}
+
 		$this->data->poll = $poll;
 		$answers = \lib\utility\answers::get($poll_id);
 		$this->data->answers = $answers;

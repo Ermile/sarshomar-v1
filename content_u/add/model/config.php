@@ -22,11 +22,21 @@ trait config
 		$meta['profile']       = false;
 		$meta['tree']          = true;
 		$meta['hidden_result'] = false;
-		$meta['comment']	   = false;
-
+		$meta['comment']       = false;
+		$meta['ordering']      = false;
+		$meta['choicemode']    = false;
+		// one
+		// multi
+		// ordering
+		$meta['text_format']   = false;
+		$meta['file_format']   = false;
+		$meta['rangemode']     = false;
+		// number
+		// star
+		// like
 		switch ($_poll_type)
 		{
-			// in html: multiple_choice
+			// in html: multiple
 			case 'select':
 				$meta['random_sort']   = true;
 				$meta['score']         = true;
@@ -34,32 +44,30 @@ trait config
 				$meta['descriptive']   = true;
 				$meta['profile']       = true;
 				$meta['hidden_result'] = true;
+				$meta['choicemode']    = true;
+				$meta['choicemode']    = true;
 				break;
 
 			// in html: descriptive
 			case 'text':
-
+				$meta['text_format']   = true;
 				break;
+
 			// in html: notification
 			case 'notify':
-
+				// no thing...
 				break;
+
 			// in html: upload
 			case 'upload':
-
+				$meta['file_format']   = true;
 				break;
+
 			// in html: starred
 			case 'star':
-
+				$meta['rangemode']     = true;
 				break;
-			// in html: numerical
-			case 'number':
 
-				break;
-			// in html: sort
-			case 'order':
-
-				break;
 			// default we have no meta
 			default:
 				$meta = [];
@@ -85,14 +93,13 @@ trait config
 	 *
 	 * @return     boolean|string  ( description_of_the_return_value )
 	 */
-	public static function change_type($_poll_type)
+	public static function set_db_type($_poll_type)
 	{
 		$type = false;
 
 		switch ($_poll_type)
 		{
-			case 'multiple_choice':
-			case 'multiplechoice':
+			case 'multiple':
 				$type = 'select';
 				break;
 
@@ -108,21 +115,9 @@ trait config
 				$type = 'upload';
 				break;
 
-			case 'starred':
+			case 'range':
 				$type = 'star';
 				break;
-
-			case 'numerical':
-				$type = 'number';
-				break;
-
-			case 'sort':
-				$type = 'order';
-				break;
-
-			// $poll_type = 'media_image';
-			// $poll_type = 'media_video';
-			// $poll_type = 'media_audio';
 
 			default:
 				$type = false;
@@ -131,7 +126,49 @@ trait config
 		return $type;
 	}
 
-		/**
+
+	/**
+	 * check the saved poll type and return the html poll type
+	 *
+	 * @param      boolean|string  $_poll_type  The poll type
+	 *
+	 * @return     boolean|string  ( description_of_the_return_value )
+	 */
+	public static function set_html_type($_poll_type)
+	{
+		$type = false;
+
+		switch ($_poll_type)
+		{
+			case 'select':
+				$type = 'multiple';
+				break;
+
+			case 'text':
+				$type = 'descriptive';
+				break;
+
+			case 'notify':
+				$type = 'notification';
+				break;
+
+			case 'upload':
+				$type = 'upload';
+				break;
+
+			case 'star':
+				$type = 'range';
+				break;
+
+			default:
+				$type = false;
+				break;
+		}
+		return $type;
+	}
+
+
+	/**
 	 * search in $_POST
 	 * and return all answer data in post
 	 *

@@ -5,15 +5,15 @@
 {% spaceless %}
 	<div class="menu">
 		<div class="menu-inside">
-			<input type="radio" name="poll_type" id="type_multiple" value="multiple" checked>
+			<input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' %}checked{%elseif poll.type is null%}checked{%endif%} >
 			<label for="type_multiple"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
-			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive">
+			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
 			<label for="type_descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
-			<input type="radio" name="poll_type" id="type_notification" value="notification">
+			<input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
 			<label for="type_notification"><i class="fa fa-bell"></i> <span>{%trans "Notification"%}</span></label>
-			<input type="radio" name="poll_type" id="type_upload" value="upload">
+			<input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
 			<label for="type_upload"><i class="fa fa-upload"></i> <span>{%trans "Upload"%}</span></label>
-			<input type="radio" name="poll_type" id="type_range" value="range">
+			<input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
 			<label for="type_range"><i class="fa fa-star"></i> <span>{%trans "Range / Star"%}</span></label>
 		</div>
 	</div>
@@ -36,14 +36,16 @@
 	<ul class="input-group sortable">
 	{%if answers is iterable%}
 		{%for key, value in answers%}
-			<li class="element" data-row="{{key + 1}}" data-id="{{value.id}}">
-				<label class="title small" for="answer{{key + 1}}">Answer <b>{{key + 1 |persian}}</b></label>
-				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" data-id={{value.id}}>
-			    <span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
-			    <span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
-			    <span class="fa fa-picture-o icon"data-response-hide></span>
-				<span class="fa fa-times delete" data-response-hide></span>
-			</li>
+		<li>
+			<div class="element" data-row="{{key + 1}}">
+				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{key + 1 |persian}}</b></label>
+				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" >
+				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
+				<span class="fa fa-picture-o icon" data-response-hide></span>
+				<span class="fa fa-times delete" tabindex="0"></span>
+			</div>
+		</li>
 		{%endfor%}
 	{%else%}{# if no answer found #}
 		<li>
@@ -86,7 +88,7 @@
 {%block feature_ordering%}
 {% spaceless %}
 	<div class="checkbox">
-		<input type="checkbox" name="meta_ordering" id="ordering" {%if poll.meta.order%}checked{%endif%}>
+		<input type="checkbox" name="meta_ordering" id="ordering" {%if poll.meta.ordering%}checked{%endif%}>
 		<label for="ordering" class="check-box"></label>
 		<label for="ordering">{%trans "Allow user to order Answers"%}</label>
 	</div>
@@ -97,13 +99,13 @@
 {%block feature_choicemode%}
 {% spaceless %}
 	<div class="element switch">
-		<input type="radio" name="choicemode" value="one" id="one" checked="checked">
+		<input type="radio" name="meta_choicemode" value="one" id="one" {%if poll.meta.choicemode == 'one' or poll.meta.choicemode is null %}checked{%endif%}>
 		<label for="one">{%trans "One Choice"%}</label>
 
-		<input type="radio" name="choicemode" value="multi" id="multi">
+		<input type="radio" name="meta_choicemode" value="multi" id="multi" {%if poll.meta.choicemode == 'multi'%}checked{%endif%}>
 		<label for="multi">{%trans "Multi Choice"%}</label>
 
-		<input type="radio" name="choicemode" value="ordering" id="ordering">
+		<input type="radio" name="meta_choicemode" value="ordering" id="ordering" {%if poll.meta.choicemode == 'ordering'%}checked{%endif%}>
 		<label for="ordering">{%trans "Ordering"%}</label>
 	</div>
 {% endspaceless %}
@@ -168,7 +170,7 @@
 	{% if perm.complete_profile.admin %}
 	<div class="row auto">
 		<div class="checkbox span4">
-			<input type="checkbox" id="complete-profile">
+			<input type="checkbox" id="complete-profile" {%if poll.meta.profile%}checked{%endif%}>
 			<label for="complete-profile" class="check-box"></label>
 			<label for="complete-profile">{%trans "Complete Profile"%}</label>
 		</div>
@@ -271,20 +273,20 @@
 	<div class="input-group">
 		<div class="element select">
 			<label class="title small" for="text-format">{%trans "Text Format"%}</label>
-			<select class="text-format input" name="text-format" id='text-format'>
-				<option value="any">{%trans "Any Text"%}</option>
-				<option value="tel">{%trans "Phone Number"%}</option>
-				<option value="email">{%trans "Email"%}</option>
-				<option value="website">{%trans "Website"%}</option>
-				<option value="number">{%trans "Number"%}</option>
-				<option value="password">{%trans "Password"%}</option>
-				<option value="regular">{%trans "Custom"%}</option>
+			<select class="text-format input" name="meta_text_format" id='text-format'>
+				<option value="any" {%if poll.meta.text_format == 'any' %}selected{%endif%}>{%trans "Any Text"%}</option>
+				<option value="tel" {%if poll.meta.text_format == 'tel' %}selected{%endif%}>{%trans "Phone Number"%}</option>
+				<option value="email" {%if poll.meta.text_format == 'email' %}selected{%endif%}>{%trans "Email"%}</option>
+				<option value="website" {%if poll.meta.text_format == 'website' %}selected{%endif%}>{%trans "Website"%}</option>
+				<option value="number" {%if poll.meta.text_format == 'number' %}selected{%endif%}>{%trans "Number"%}</option>
+				<option value="password" {%if poll.meta.text_format == 'password' %}selected{%endif%}>{%trans "Password"%}</option>
+				<option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
 			</select>
 		</div>
 		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
 			<div class="element">
 				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="text-custom" id="text-custom" autocomplete="off" value="" data-response-focus>
+				<input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="" data-response-focus>
 			</div>
 		</div>
 	</div>
@@ -297,7 +299,7 @@
 	<div class="input-group">
 		<div class="element select">
 			<label class="title small" for="file-format">{%trans "File Format"%}</label>
-				<select class="file-format input" name="file-format" id='file-format'>
+				<select class="file-format input" name="meta_file_format" id='file-format'>
 					<option value="any">{%trans "Any File"%}</option>
 					<option value="document">{%trans "Document"%}</option>
 					<option value="photo">{%trans "Photo"%}</option>
@@ -314,7 +316,7 @@
 		<div data-response='file-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
 			<div class="element">
 				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="file-custom" id="file-custom" autocomplete="off" value="" data-response-focus>
+				<input class="input" type="text" name="meta_file_format" id="file-custom" autocomplete="off" value="" data-response-focus>
 			</div>
 		</div>
 	</div>
@@ -334,11 +336,11 @@
 {%block feature_numberformat%}
 {% spaceless %}
 	<div class="element switch">
-		<input type="radio" name="rangemode" value="number" id="rangemodenumber" checked="checked">
+		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber" checked="checked">
 		<label for="rangemodenumber">{%trans "Range Number"%}</label>
-		<input type="radio" name="rangemode" value="star" id="rangemodestar">
+		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar">
 		<label for="rangemodestar">{%trans "Star"%}</label>
-		<input type="radio" name="rangemode" value="like" id="rangemodelike">
+		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike">
 		<label for="rangemodelike">{%trans "Like"%}</label>
 	</div>
 {% endspaceless %}
