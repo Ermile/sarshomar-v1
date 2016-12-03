@@ -170,7 +170,6 @@ trait insert_poll
 
 		$insert_meta = [];
 		$post_meta   = [];
-		$insert_meta = false;
 
 		foreach ($support_meta as $key => $value)
 		{
@@ -205,8 +204,6 @@ trait insert_poll
 					'option_value' => $value,
 					'option_meta'  => $profile_lock
 				];
-				// the insert key to insert the meta in options table
-				$insert_meta = true;
 
 				// save the meta in post_meta fields
 				$post_meta[$value] = true;
@@ -218,7 +215,7 @@ trait insert_poll
 			}
 		}
 
-		if($insert_meta)
+		if(!empty($insert_meta))
 		{
 			// insert the meta in options table
 			\lib\db\options::insert_multi($insert_meta);
