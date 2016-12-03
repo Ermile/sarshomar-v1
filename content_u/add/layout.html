@@ -3,14 +3,19 @@
 
 {%block feature_tabs%}
 {% spaceless %}
-	<div class="type">
-		<ul class="tabs">
-			<li data-tab="multiple_choice" class="active"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></li>
-			<li data-tab="descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></li>
-			<li data-tab="notification"><i class="fa fa-bell"></i> <span>{%trans "Notification"%}</span></li>
-			<li data-tab="upload"><i class="fa fa-upload"></i> <span>{%trans "Upload"%}</span></li>
-			<li data-tab="range"><i class="fa fa-star"></i> <span>{%trans "Range / Star"%}</span></li>
-		</ul>
+	<div class="menu">
+		<div class="menu-inside">
+			<input type="radio" name="poll_type" id="type_multiple" value="multiple" checked>
+			<label for="type_multiple"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
+			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive">
+			<label for="type_descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
+			<input type="radio" name="poll_type" id="type_notification" value="notification">
+			<label for="type_notification"><i class="fa fa-bell"></i> <span>{%trans "Notification"%}</span></label>
+			<input type="radio" name="poll_type" id="type_upload" value="upload">
+			<label for="type_upload"><i class="fa fa-upload"></i> <span>{%trans "Upload"%}</span></label>
+			<input type="radio" name="poll_type" id="type_range" value="range">
+			<label for="type_range"><i class="fa fa-star"></i> <span>{%trans "Range / Star"%}</span></label>
+		</div>
 	</div>
 {% endspaceless %}
 {%endblock%}

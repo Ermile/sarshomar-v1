@@ -11,45 +11,39 @@
        <div class="row">
         {{block('feature_tabs')}}
         {{block('feature_title')}}
-        <ul class="tab">
-         <li id="tab-multiple_choice" class="active">
-          {{block('feature_opts')}}
-          <div class="row auto">
-          {{block('feature_choicemode')}}
-           <div class="span4 checkbox-group">
-            {{block('feature_randomsort')}}
-            {{block('feature_other')}}
-           </div>
-           <div class="span4 checkbox-group">
-            {{block('feature_score')}}
-           </div>
-           <div class="span4 checkbox-group">
-            {{block('feature_trueanswer')}}
-           </div>
-          </div>
-          {{block('feature_completeprofile')}}
-          {{block('feature_multiplerange')}}
-         </li>
+        <div id="tab-multiple_choice" data-response="poll_type" data-response-where="multiple" data-response-effect="slide">
+         {{block('feature_opts')}}
+         {{block('feature_choicemode')}}
+         <div class="row auto">
+          <div class="span4">{{block('feature_randomsort')}}</div>
+          <div class="span4">{{block('feature_score')}}</div>
+          <div class="span4">{{block('feature_trueanswer')}}</div>
+         </div>
+         <div class="row auto">
+          <div class="span4">{{block('feature_other')}}</div>
+         </div>
+         {{block('feature_completeprofile')}}
+         {{block('feature_multiplerange')}}
+        </div>
 
-         <li id="tab-descriptive">
-          {{block('feature_textformat')}}
-         </li>
+        <div id="tab-descriptive" data-response="poll_type" data-response-where="descriptive" data-response-effect="slide" data-response-hide>
+         {{block('feature_textformat')}}
+        </div>
 
-         <li id="tab-notification">
+        <div id="tab-notification" data-response="poll_type" data-response-where="notification" data-response-effect="slide" data-response-hide>
 
-         </li>
+        </div>
 
-         <li id="tab-upload">
-          {{block('feature_fileformat')}}
-          {{block('feature_filesize')}}
-         </li>
+        <div id="tab-upload" data-response="poll_type" data-response-where="upload" data-response-effect="slide" data-response-hide>
+         {{block('feature_fileformat')}}
+         {{block('feature_filesize')}}
+        </div>
 
-         <li id="tab-range">
-          {{block('feature_numberformat')}}
-          {{block('feature_numbersize')}}
-          {{block('feature_starsize')}}
-         </li>
-        </ul>
+        <div id="tab-range" data-response="poll_type" data-response-where="range" data-response-effect="slide" data-response-hide>
+         {{block('feature_numberformat')}}
+         {{block('feature_numbersize')}}
+         {{block('feature_starsize')}}
+        </div>
 
         {{block('feature_timing')}}
         {{block('feature_tree')}}
@@ -57,7 +51,6 @@
         {{block('feature_content')}}
        </div>
       </div>
-      <input type="hidden" name="poll_type" value="">
      </div>
      {{block('feature_btn')}}
     </form>
@@ -72,7 +65,7 @@
       //   if (send_name == 'add') {
       //    return false;
       //   }
-      //   $('button[send-name=' + send_name + ']').click();
+      //   $('button[send-name=' + send_name + ']').cdivck();
       //  }
       // });
     </script>
