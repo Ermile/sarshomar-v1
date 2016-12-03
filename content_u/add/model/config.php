@@ -16,18 +16,23 @@ trait config
 		// the meta list
 		$meta                  = [];
 		$meta['random_sort']   = false;
-		$meta['hidden_result'] = false;
-		$meta['profile']       = false;
-		$meta['start_time']    = false;
-		$meta['end_time']      = false;
-		$meta['random_sort']   = false;
+		$meta['score']         = false;
+		$meta['true_answer']   = false;
 		$meta['descriptive']   = false;
+		$meta['profile']       = false;
+		$meta['tree']          = true;
+		$meta['hidden_result'] = false;
+		$meta['comment']	   = false;
 
 		switch ($_poll_type)
 		{
 			// in html: multiple_choice
 			case 'select':
 				$meta['random_sort']   = true;
+				$meta['score']         = true;
+				$meta['true_answer']   = true;
+				$meta['descriptive']   = true;
+				$meta['profile']       = true;
 				$meta['hidden_result'] = true;
 				break;
 
