@@ -11,7 +11,7 @@
      </div>
      <div class="span5" id='random-chart'>
       <div class='chart'>
-       <h3><a href='{{result["random_result"]["url"]}}'>{{result["random_result"]["title"]|trim('\"')}}</a></h3>
+       <h3><a href='{{result.url}}#?'>{{result.title|trim('\"')}}</a></h3>
        <div class='column palette{{(random(6)) + 1}}'></div>
       </div>
      </div>
@@ -85,7 +85,7 @@
   var topChartOptions =
   {
    chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
-   title: {text: "{{result.title}}"},
+   title: {text: ""},
    xAxis:{categories:{{result.categories | raw}}},
    yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
    plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
