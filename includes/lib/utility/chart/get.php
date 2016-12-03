@@ -287,68 +287,81 @@ trait get
 					}
 				}
 			}
-
 			$tmp = [];
-			foreach ($stacked_series[$filter] as $key => $value)
+			if(isset($stacked_series[$filter]) && is_array($stacked_series[$filter]))
 			{
-				$tmp[] = $value;
+				foreach ($stacked_series[$filter] as $key => $value)
+				{
+					$tmp[] = $value;
+				}
 			}
 			$stacked_series[$filter] = [];
 			$stacked_series[$filter] = json_encode($tmp, JSON_UNESCAPED_UNICODE);
 
+
 			$main_drilldown_tmp = [];
-			foreach ($main_drilldown_series[$filter] as $key => $value)
+			if(isset($main_drilldown_series[$filter]) && is_array($main_drilldown_series[$filter]))
 			{
-				if(isset($value['data']) && is_array($value['data']))
+				foreach ($main_drilldown_series[$filter] as $key => $value)
 				{
-					$tmp = [];
-					foreach ($value['data'] as $k => $v)
+					if(isset($value['data']) && is_array($value['data']))
 					{
-						$tmp[] = $v;
+						$tmp = [];
+						foreach ($value['data'] as $k => $v)
+						{
+							$tmp[] = $v;
+						}
+						$main_drilldown_tmp[] = ['name' => $key, 'data' => $tmp];
 					}
-					$main_drilldown_tmp[] = ['name' => $key, 'data' => $tmp];
 				}
 			}
 			$main_drilldown_series[$filter] = json_encode($main_drilldown_tmp, JSON_UNESCAPED_UNICODE);
+
 			$j = 0;
 			$drilldown_series[$filter][$j] = [];
 			if($valid)
 			{
-				foreach ($valid_result_raw[$filter] as $opt_key => $value)
+				if(isset($valid_result_raw[$filter]) && is_array($valid_result_raw[$filter]))
 				{
-					if(is_array($value))
+					foreach ($valid_result_raw[$filter] as $opt_key => $value)
 					{
-						$tmp = [];
-						foreach ($value as $title => $count)
+						if(is_array($value))
 						{
-							array_push($tmp, [$title, $count]);
+							$tmp = [];
+							foreach ($value as $title => $count)
+							{
+								array_push($tmp, [$title, $count]);
+							}
+							// var_dump($drilldown_series[$filter][$j]);
+							$drilldown_series[$filter][$j] =
+								['name' => $opt_list[$opt_key], 'id' => 'valid_'. $opt_key, 'data' => $tmp];
+							$j++;
 						}
-						// var_dump($drilldown_series[$filter][$j]);
-						$drilldown_series[$filter][$j] =
-							['name' => $opt_list[$opt_key], 'id' => 'valid_'. $opt_key, 'data' => $tmp];
-						$j++;
 					}
 				}
 			}
 			if($invalid)
 			{
-				foreach ($invalid_result_raw[$filter] as $opt_key => $value)
+				if(isset($invalid_result_raw[$filter]) && is_array($invalid_result_raw[$filter]))
 				{
-					if(is_array($value))
+					foreach ($invalid_result_raw[$filter] as $opt_key => $value)
 					{
-						$tmp = [];
-						foreach ($value as $title => $count)
+						if(is_array($value))
 						{
-							array_push($tmp, [$title, $count]);
+							$tmp = [];
+							foreach ($value as $title => $count)
+							{
+								array_push($tmp, [$title, $count]);
+							}
+							// var_dump($drilldown_series[$filter][$j]);
+							$drilldown_series[$filter][$j] =
+								['name' => $opt_list[$opt_key], 'id' => 'invalid_'. $opt_key, 'data' => $tmp];
+							$j++;
 						}
-						// var_dump($drilldown_series[$filter][$j]);
-						$drilldown_series[$filter][$j] =
-							['name' => $opt_list[$opt_key], 'id' => 'invalid_'. $opt_key, 'data' => $tmp];
-						$j++;
 					}
 				}
-
 			}
+
 			$drilldown_series[$filter] = json_encode($drilldown_series[$filter], JSON_UNESCAPED_UNICODE);
 		}
 		$result['stacked']          = $stacked_series;
