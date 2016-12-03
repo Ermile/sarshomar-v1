@@ -225,9 +225,9 @@
 
 {%block feature_summary%}
 {% spaceless %}
-	<div class="panel-text">
+	<div class="panel-text" tabindex='80'>
 		<div class="title">
-			<span><i class="fa fa-plus"></i> {%trans "Summary"%}</span>
+			<a href="#summary"><i class="fa fa-plus"></i> {%trans "Summary"%}</a>
 		</div>
 		<textarea name="summary">{{poll.meta.desc}}</textarea>
 	</div>
@@ -237,9 +237,9 @@
 
 {%block feature_content%}
 {% spaceless %}
-	<div class="panel-text">
+	<div class="panel-text" tabindex='81'>
 		<div class="title">
-			<span><i class="fa fa-plus"></i> {%trans "Description"%}</span>
+			<a href="#description"><i class="fa fa-plus"></i> {%trans "Description"%}</a>
 		</div>
 		<textarea name="description" data-resizable>{{poll.content}}</textarea>
 	</div>

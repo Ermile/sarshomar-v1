@@ -1,9 +1,9 @@
   <header>
-   <span class='logo'>
-     <a href="{{url.base}}" tabindex='1'>
-      <img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'>
-      <h1>{{site.title}}</h1>
-     </a>
+   <span class='logo' tabindex='1'>
+    <a href="{{url.base}}">
+     <img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'>
+     <h1>{{site.title}}</h1>
+    </a>
    </span>
    <div id='header-box'>
     <div id='header-top'>
@@ -16,15 +16,15 @@
 {%if login%}
       <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
       <a href='{{url.base}}/ask' class='register' tabindex='6'>{%trans "Ask Me"%}</a>
-      <div class="profile" tabindex='7'>
+      <div class="profile">
        <img src="{{url.static}}images/profile.svg" alt="">
        <div class="info">
         {{displayname}}
         <span class="role">{%trans "Welcome"%}</span>
        </div>
        <div class="profile-detail">
-        <a href="{{url.base}}/@" class="dashboard">{%trans "Dashboard"%}</a>
-        <a href="logout" class="exit" data-direct>{%trans "Exit"%}</a>
+        <a href="{{url.base}}/@" class="dashboard" tabindex='7'>{%trans "Dashboard"%}</a>
+        <a href="logout" class="exit" tabindex='8' data-direct>{%trans "Exit"%}</a>
        </div>
       </div>
 {%else%}
