@@ -53,6 +53,7 @@ header #header-top>a:hover{color:#37aaa7}
 header #header-quick{float:left;text-align:left;}
 .rtl header #header-quick{float:right;text-align:right}
 header #header-quick a{position:relative;display:inline-block;padding:15px 10px 5px;font-size:12px;color:#00667A;line-height:30px;font-weight:bold;}
+header #header-quick a:focus{color:red;}
 
 /* header profile */
 header #header-profile{float:right;padding:10px 1em 0 0;}
@@ -66,11 +67,12 @@ header #header-profile img{background-color:#c3c3c3}
 /* logo */
 header .logo{position:relative;float:left;text-align:left;height:90px;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0;}
 .rtl header .logo{float:right;text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
+header .logo>a{display:inline-block}
 header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;}
 header .logo h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
 .rtl header .logo h1{font-size:26px;margin-bottom:5px;}
 header .logo h1:hover{color:#fff;}
-header .logo h1 a{color:#f4f4f4;}
+header .logo h1{color:#f4f4f4;}
 header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo h2:hover{color:#fff;}
 header .logo:hover img{opacity:0.9}
@@ -86,10 +88,10 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0px 8px;float:left;}
 
 
 /************************************************************** header profile */
-.profile {display:inline-block;position:relative;max-height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;}
+.profile{display:inline-block;position:relative;max-height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;}
 .rtl .profile{border-left:none;border-right:1px solid #E76F6F;}
-.profile:hover{overflow-wrap:normal;overflow:visible;}
-.profile:hover .profile-detail{opacity:1;transform:none;transition:all 0.5s cubic-bezier(.36,-0.64,.34,1.76);}
+.profile:hover,.profile.open{overflow-wrap:normal;overflow:visible;}
+.profile:hover .profile-detail,.profile.open .profile-detail{opacity:1;transform:none;transition:all 0.5s cubic-bezier(.36,-0.64,.34,1.76);}
 .profile img{width:40px;height:40px;float:right;}
 .rtl .profile img{float:left;}
 .profile .info{display:inline-block;background-color:#E8E6E6;height:40px;overflow:hidden;padding:7px;min-width:115px;}
@@ -364,7 +366,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 @keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-webkit-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-moz-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
-.checkbox{display:-webkit-inline-flex;display:inline-flex;}
+.checkbox{display:-webkit-inline-flex;display:inline-flex;position:relative;}
 div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox input[type=checkbox],.checkbox input[type=radio]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
 .checkbox .check-box{position:relative;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;-moz-transition:border-color ease .2s;-o-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #D8D8D8;background-color:transparent;}

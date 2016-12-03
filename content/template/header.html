@@ -1,20 +1,22 @@
   <header>
    <span class='logo'>
-    <a href="{{url.base}}"><img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'></a>
-    <h1><a href="{{url.base}}">{{site.title}}</a></h1>
+     <a href="{{url.base}}" tabindex='1'>
+      <img src='{{url.static}}images/logo.svg' alt='{{site.title}} | {{site.desc}}'>
+      <h1>{{site.title}}</h1>
+     </a>
    </span>
    <div id='header-box'>
     <div id='header-top'>
      <nav id='header-quick' role='navigation'>
-      <a href='{{url.base}}/features'>{%trans "Features"%}</a>
-      <a href='{{url.base}}/$'>{%trans "Knowledge"%}</a>
-      <a href='{{url.base}}/help'>{%trans "Help"%}</a>
+      <a href='{{url.base}}/features' tabindex='2'>{%trans "Features"%}</a>
+      <a href='{{url.base}}/$' tabindex='3'>{%trans "Knowledge"%}</a>
+      <a href='{{url.base}}/help' tabindex='4'>{%trans "Help"%}</a>
      </nav>
      <nav id='header-profile' data-xhr='header-profile' {%if login%}class='login'{%endif%}>
 {%if login%}
-      <a href='{{url.base}}/@/add' class='login'>{%trans "Add Question"%}</a>
-      <a href='{{url.base}}/ask' class='register'>{%trans "Ask Me"%}</a>
-      <div class="profile">
+      <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
+      <a href='{{url.base}}/ask' class='register' tabindex='6'>{%trans "Ask Me"%}</a>
+      <div class="profile" tabindex='7'>
        <img src="{{url.static}}images/profile.svg" alt="">
        <div class="info">
         {{displayname}}
