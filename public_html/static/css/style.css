@@ -162,6 +162,9 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl#homepage .special-heading::after{right:-120px;}
 
 /* chart */
+.chart{direction:ltr;}
+.chart * {font-family:IRANSans, Tahoma, sans-serif}
+.rtl .chart{text-align:right;}
 .highcharts-title{fill:#434348;font-weight:bold;}
 .column .highcharts-background{fill:rgba(255,255,255,0);}
 .column .highcharts-series rect{opacity:0.8;transition:0.3s;}
