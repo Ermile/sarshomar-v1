@@ -885,6 +885,8 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .element .input:focus{color:#d8dad0;background-color:#00667a;}
 .element .input option{background-color:#EFEFEF;color:#777;}
 
+.element .checkbox{background-color:#efefef;padding:6px 10px;}
+
 
 
 

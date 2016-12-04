@@ -41,7 +41,10 @@
 			<div class="element" data-row="{{answer_key}}">
 				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
 				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
-				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="checkbox" data-response='true_answer'>
+					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
+					<label class="check-box" for="true{{answer_key}}"></label>
+				</span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{answer_key}}"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
@@ -53,7 +56,10 @@
 			<div class="element" data-row="1">
 				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
 				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="checkbox" data-response='true_answer'>
+					<input type="checkbox" name="true1" id="true1">
+					<label class="check-box" for="true1"></label>
+				</span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
@@ -64,6 +70,10 @@
 				<label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
 				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
+				<span class="checkbox" data-response='true_answer'>
+					<input type="checkbox" name="true2" id="true2">
+					<label class="check-box" for="true2"></label>
+				</span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
