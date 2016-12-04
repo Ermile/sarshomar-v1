@@ -57,33 +57,7 @@ class answers
 	 */
 	public static function hard_delete($_where_or_id)
 	{
-		if(is_numeric($_where_or_id))
-		{
-			$where = " options.id = $_where_or_id ";
-		}
-		elseif(is_array($_where_or_id))
-		{
-			$tmp = [];
-			foreach ($_where_or_id as $key => $value)
-			{
-				if(preg_match("/\%/", $value))
-				{
-					$tmp[] = " $key LIKE '$value' ";
-				}
-				else
-				{
-					$tmp[] = " $key = '$value' ";
-				}
-			}
-			$where = join($tmp, " AND ");
-		}
-		else
-		{
-			return false;
-		}
-
-		$query = " DELETE FROM	options	WHERE $where -- answers::hard_delete() ";
-		return \lib\db::query($query);
+		return \lib\db\options::hard_delete($_where_or_id);
 	}
 
 

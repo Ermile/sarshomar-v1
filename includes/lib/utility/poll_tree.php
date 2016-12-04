@@ -89,19 +89,15 @@ class poll_tree
 			'post_parent' => null,
 		];
 		$result = \lib\db\posts::update($update_poll, $_poll_id);
-		$disable_option_record =
-		"
-			UPDATE
-				options
-			SET
-				option_status = 'disable'
-			WHERE
-				post_id = $_poll_id AND
-				option_cat = 'poll_$_poll_id' AND
-				option_key LIKE 'tree%'
-		";
-		$resutl = \lib\db::query($disable_option_record);
-		return $resutl;
+
+		$where =
+		[
+			'post_id'    => $_poll_id,
+			'option_cat' => "poll_$_poll_id",
+			'option_key' => 'tree%'
+		];
+		$result = \lib\db\options::hard_delete($where);
+		return $result;
 	}
 
 

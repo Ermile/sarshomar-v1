@@ -59,11 +59,12 @@ class view extends \content_u\home\view
 		if(isset($poll['parent']) && $poll['parent'] !== null)
 		{
 			$poll_tree = \lib\utility\poll_tree::get($poll['id']);
+
 			if($poll_tree && is_array($poll_tree))
 			{
 				$opt = array_column($poll_tree, 'value');
-				$this->data->poll_tree_opt = join($opt, ',');
-				$this->data->poll_tree_id = $poll['parent'];
+				$this->data->poll_tree_opt = is_array($opt) ? join($opt, ',') : null;
+				$this->data->poll_tree_id = \lib\utility\shortURL::encode($poll['parent']);
 				$this->data->poll_tree_title = \lib\db\polls::get_poll_title($poll['parent']);
 			}
 		}
