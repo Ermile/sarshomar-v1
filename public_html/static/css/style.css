@@ -404,7 +404,7 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .sortable li.sortable-placeholder{border-color:#CCC;}
 .sortable li .handle{cursor:move;}
 .sortable li .title{cursor:move;}
-#tab-multiple_choice .sortable li{min-height:35px;}
+.input-group.sortable li{min-height:35px;}
 li.sortable-placeholder{border:1px dashed #CCC;}
 .sortable li{margin-bottom:1em}
 .sortable li .element{margin:0;}

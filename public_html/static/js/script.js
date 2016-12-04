@@ -176,7 +176,7 @@ function checkAddOpt()
 	var emptyRowNumber;
 
 	// check if current element has not value and we have no empty inputs
-	$.each($('#tab-multiple_choice .input-group .element .input[type="text"]'), function(key, value)
+	$.each($('.input-group.sortable .element .input[type="text"]'), function(key, value)
 	{
 		if ( !$(this).val() && numberOfEmptyInputs === 0 )
 		{
@@ -186,7 +186,7 @@ function checkAddOpt()
 	});
 
 	// if we had no empty inputs and we needed one do this
-	if (numberOfEmptyInputs === 0 && !$('#tab-multiple_choice .input-group').hasClass('editing'))
+	if (numberOfEmptyInputs === 0 && !$('.input-group.sortable').hasClass('editing'))
 	{
 		addNewOpt();
 	}
@@ -203,8 +203,8 @@ function checkAddOpt()
  */
 function addNewOpt(_group, _title)
 {
-	var template = $('#tab-multiple_choice>.input-group>li').eq(0).clone();
-	var num = $('#tab-multiple_choice>.input-group>li').length + 1;
+	var template = $('.input-group.sortable>li').eq(0).clone();
+	var num = $('.input-group.sortable>li').length + 1;
 	if(_group)
 	{
 		template.attr('data-profile', _group);
@@ -235,7 +235,7 @@ function addNewOpt(_group, _title)
 	template.find('.element .score input').val('');
 	template.attr('data-row', num);
 
-	$('#tab-multiple_choice>.input-group').append(template);
+	$('.input-group.sortable').append(template);
 	template.addClass('animated fadeInDown').delay(1000).queue(function()
 	{
 		$(this).removeClass("animated fadeInDown").dequeue();
@@ -252,7 +252,7 @@ function addNewOpt(_group, _title)
 function showQuestionOptsDel(_this)
 {
 	// hide all elements
-	$('.input-group .element .delete').fadeOut(100);
+	$('.input-group.sortable .element .delete').fadeOut(100);
 	var currentRowValue = $(_this).parent('.element').children('input[type="text"]').val();
 	// always show delete button on input focus
 	if(countQuestionOpts() > 2 && currentRowValue)
@@ -343,7 +343,7 @@ function countQuestionOpts(_fill)
 	if(_fill)
 	{
 		_fill = 0;
-		$.each($('#tab-multiple_choice .input-group .element .input[type="text"]'), function(key, value)
+		$.each($('.input-group.sortable .element .input[type="text"]'), function(key, value)
 		{
 			if($(this).val())
 			{
@@ -353,7 +353,7 @@ function countQuestionOpts(_fill)
 
 		return _fill;
 	}
-	return $('#tab-multiple_choice .input-group .element').length;
+	return $('.input-group.sortable .element').length;
 }
 
 
@@ -394,7 +394,7 @@ function completeProfileFill(_this)
 	// create a clone form opts
 	if(!window.TEMP)
 	{
-		window.TEMP = $('#tab-multiple_choice>.input-group.sortable').clone();
+		window.TEMP = $('.input-group.sortable').clone();
 	}
 	// get options
 	var dropValue      = $('#complete-profile-dropdown');
@@ -404,7 +404,7 @@ function completeProfileFill(_this)
 		if(dropValues)
 		{
 			var dropValueArray = dropValues.split(',');
-			$('.input-group').addClass('editing');
+			$('.input-group.sortable').addClass('editing');
 			for (var i = 0; i < dropValueArray.length; i++)
 			{
 				addNewOpt(dropValue.val(), dropValueArray[i]);
@@ -427,12 +427,12 @@ function completeProfileFill(_this)
  */
 function completeProfileRevert()
 {
-	if($('.input-group').hasClass('editing'))
+	if($('.input-group.sortable').hasClass('editing'))
 	{
-		$('.input-group').removeClass('editing');
+		$('.input-group.sortable').removeClass('editing');
 		if(window.TEMP)
 		{
-			$('.input-group').replaceWith(window.TEMP);
+			$('.input-group.sortable').replaceWith(window.TEMP);
 			window.TEMP = null;
 			setSortable();
 		}
@@ -502,23 +502,23 @@ route(/\@\/add/, function()
 	$(".range-slider").ermile_slider();
 
 	// run on input change and add new opt for this question
-	$(this).on('input', '.input-group .element .input[type="text"]', function(event)
+	$(this).on('input', '.input-group.sortable .element .input[type="text"]', function(event)
 	{
 		checkAddOpt();
 	});
 
 	// --------------------------------------------------------------------------------- Delete Elements
 	// show and hide delete btn on special condition
-	$(this).on('mouseenter', '.input-group .element', function()
+	$(this).on('mouseenter', '.input-group.sortable .element', function()
 	{
 		// showQuestionOptsDel($(this).children('.delete'));
-	}).on('focus', '.input-group .element input[type="text"]', function()
+	}).on('focus', '.input-group.sortable .element input[type="text"]', function()
 	{
 		showQuestionOptsDel($(this).parent().children('.delete'));
 	});
 
 	// on keyup and press shift+del remove current record
-	$(this).on('keyup', '.input-group .element input', function(e)
+	$(this).on('keyup', '.input-group.sortable .element input', function(e)
 	{
 		if(countQuestionOpts() > 2)
 		{
@@ -536,10 +536,10 @@ route(/\@\/add/, function()
 	});
 
 	// on press delete on each opt
-	$(this).on('click', '.input-group .element .delete', function()
+	$(this).on('click', '.input-group.sortable .element .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('keyup', '.input-group .element .delete', function(e)
+	}).on('keyup', '.input-group.sortable .element .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
