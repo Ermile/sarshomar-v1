@@ -90,13 +90,14 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0px 8px;float:left;}
 
 
 /************************************************************** header profile */
-.profile{display:inline-block;position:relative;max-height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;}
+.profile{display:inline-block;position:relative;height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;}
 .rtl .profile{border-left:none;border-right:1px solid #E76F6F;}
 .profile:hover,.profile.open{overflow-wrap:normal;overflow:visible;}
 .profile:hover .profile-detail,.profile.open .profile-detail{opacity:1;transform:none;transition:all 0.5s cubic-bezier(.36,-0.64,.34,1.76);}
 .profile img{width:40px;height:40px;float:right;}
 .rtl .profile img{float:left;}
-.profile .info{display:inline-block;background-color:#E8E6E6;height:40px;overflow:hidden;padding:7px;min-width:115px;}
+.profile .info{display:inline-block;background-color:#E8E6E6;height:40px;overflow:hidden;padding:7px;min-width:115px;float:left;}
+.rtl .profile .info{float:right;}
 .profile .info .name, .profile .info .role{display:block;line-height:1;font-size:9px;}
 .profile .info .name{font-size:12px;color:#035261;margin-bottom:5px;}
 .profile .info .role{font-size:10px;color:#A1A0A0;cursor:default;}
