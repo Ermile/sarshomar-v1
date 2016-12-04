@@ -4,16 +4,16 @@ var TEMP = null;
  */
 function checkInputChange()
 {
-  $('input, select', this).change(function()
-  {
-    checkInput(this, false);
-  });
+	$('input, select', this).change(function()
+	{
+	checkInput(this, false);
+	});
 
-  // // run for the first time
-  // $('input[type=checkbox]').each(function ()
-  // {
-  //   checkInput(this, true);
-  // });
+	// // run for the first time
+	// $('input[type=checkbox]').each(function ()
+	// {
+	//   checkInput(this, true);
+	// });
 }
 
 
@@ -26,31 +26,31 @@ function checkInputChange()
  */
 function checkInput(_this, _firstTime)
 {
-  var elID    = $(_this).attr('id');
-  var elName  = $(_this).attr('name');
-  var elType  = $(_this).attr('type');
-  var elResult;
-  var elValue;
-  switch (elType)
-  {
-  	case 'checkbox':
+	var elID    = $(_this).attr('id');
+	var elName  = $(_this).attr('name');
+	var elType  = $(_this).attr('type');
+	var elResult;
+	var elValue;
+	switch (elType)
+	{
+	case 'checkbox':
 		elValue = $(_this).is(":checked");
-  		break;
+		break;
 
-  	case 'radio':
+	case 'radio':
 		elValue = $(_this).val();
 		elID    = elName;
-  		break;
+		break;
 
-  	case 'text':
-  	default:
+	case 'text':
+	default:
 		elValue = $(_this).val();
-  		break;
-  }
+		break;
+	}
 
-  var childrens = $('[data-response*='+ elID +']');
-  childrens.each(function()
-  {
+	var childrens = $('[data-response*='+ elID +']');
+	childrens.each(function()
+	{
 	var effect   = $(this).attr('data-response-effect');
 	var timing   = $(this).attr('data-response-timing');
 	var where    = $(this).attr('data-response-where');
@@ -63,22 +63,22 @@ function checkInput(_this, _firstTime)
 		$(this).attr('data-response-disable', 'disabled-manual');
 	}
 
-    // set effect name and default is fade
-    if(effect == 'slide')
-    {
-    	effect = {'name':'slide', 'toggle':'slideToggle', 'open':'slideDown', 'close':'slideUp'}
-    }
-    else
-    {
-    	effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
-    }
-    if(!timing)
-    {
-    	timing = 'fast';
-    }
-    // check where and if want set true or false for where
-    if(where)
-    {
+	// set effect name and default is fade
+	if(effect == 'slide')
+	{
+		effect = {'name':'slide', 'toggle':'slideToggle', 'open':'slideDown', 'close':'slideUp'}
+	}
+	else
+	{
+		effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
+	}
+	if(!timing)
+	{
+		timing = 'fast';
+	}
+	// check where and if want set true or false for where
+	if(where)
+	{
 		// for each sentence in where seperated by |
 		$.each(where.split('|'), function(index, whereValue)
 		{
@@ -89,65 +89,65 @@ function checkInput(_this, _firstTime)
 			}
 		});
 		// if where is not true set it as false
-    	if(where !== true)
-    	{
-    		where = false;
-    	}
-    }
-    else
-    {
-    	if(elValue != false)
-    	{
-    		where = true;
-    	}
-    }
+		if(where !== true)
+		{
+			where = false;
+		}
+	}
+	else
+	{
+		if(elValue != false)
+		{
+			where = true;
+		}
+	}
 
-    // if wanna to toggle element do this
-    if(toggle)
-    {
-    	$(this)[effect['effect']](timing);
-    }
-    else
-    {
-	    // show and hide elements depending on parent change
-	    if(where)
-	    {
-		    if(disable)
-		    {
-		    	$(this).prop('disabled', false);
-		    }
-		    else
-		    {
-		    	// if condition is true
-		    	$(this)[effect['open']](timing);
-		    }
-		    if($(this).find('[data-response-focus]').length)
-		    {
-		    	$(this).find('[data-response-focus]').focus();
-		    }
-		    else
-		    {
-		    	$(this).closest('[data-response-focus]').focus();
-		    }
-		    elResult = 'open';
-	    }
-	    else
-	    {
-		    if(disable)
-		    {
-		    	$(this).prop('disabled', true);
-		    }
-		    else
-		    {
-		    	// if condition is false
-		    	$(this)[effect['close']](timing);
-		    }
-		    elResult = 'close';
-	    }
-    }
-  });
+	// if wanna to toggle element do this
+	if(toggle)
+	{
+		$(this)[effect['effect']](timing);
+	}
+	else
+	{
+		// show and hide elements depending on parent change
+		if(where)
+		{
+			if(disable)
+			{
+				$(this).prop('disabled', false);
+			}
+			else
+			{
+				// if condition is true
+				$(this)[effect['open']](timing);
+			}
+			if($(this).find('[data-response-focus]').length)
+			{
+				$(this).find('[data-response-focus]').focus();
+			}
+			else
+			{
+				$(this).closest('[data-response-focus]').focus();
+			}
+			elResult = 'open';
+		}
+		else
+		{
+			if(disable)
+			{
+				$(this).prop('disabled', true);
+			}
+			else
+			{
+				// if condition is false
+				$(this)[effect['close']](timing);
+			}
+			elResult = 'close';
+		}
+	}
+	});
 
-  $(window).trigger('response:open', [elID, elResult]);
+	$(window).trigger('response:open', [elID, elResult]);
 }
 
 
@@ -377,10 +377,10 @@ function treeSearch(_search, _page)
 
 	Navigate(
 	{
-      data: false,
-      url: path,
-      nostate: true,
-    });
+		data: false,
+		url: path,
+		nostate: true,
+	});
 }
 
 
@@ -618,7 +618,7 @@ route(/\@\/add/, function()
 		completeProfileFill();
 	});
 
-	// $('[tabindex="3"]').on('focus', function()
+	// show profile detail with tab
 	$(this).on('focus', '.profile-detail a', function()
 	{
 		$(this).parents('.profile').addClass('open');
@@ -626,8 +626,6 @@ route(/\@\/add/, function()
 	{
 		$(this).parents('.profile').removeClass('open');
 	});
-
-
 
 
 	$(this).on('click','button', function()
@@ -643,8 +641,8 @@ route(/\@\/profile/, function() {
 	var initial  = $('input[name="initial"]');
 	var isNormal = false;
 
-    // dblclick
-    $(this).on('dblclick', '.element.has-data', function()
+	// dblclick
+	$(this).on('dblclick', '.element.has-data', function()
 	{
 		// if double clicked input has not class similar-tag
 		if (!$(this).children('.input').hasClass('similar-tag')) {
@@ -654,8 +652,8 @@ route(/\@\/profile/, function() {
 		$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
 	});
 
-    // click
-    $(this).on('click', '.element.no-data', function()
+	// click
+	$(this).on('click', '.element.no-data', function()
 	{
 		// if clicked input has not class similar-tag
 		if (!$(this).children('.input').hasClass('similar-tag')) {
@@ -665,11 +663,11 @@ route(/\@\/profile/, function() {
 		$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
 	});
 
-   //  $(this).on('focus', '.element .input', function(event) {
-   //  	$(this).unbind('blur.sarshomarblur');
-   //  	$(this).bind('blur.sarshomarblur', function(e){
-   //  		$(this).unbind('blur.sarshomarblur');
-   //  		var element = $(this).parents('.element');
+	 //  $(this).on('focus', '.element .input', function(event) {
+	 //  	$(this).unbind('blur.sarshomarblur');
+	 //  	$(this).bind('blur.sarshomarblur', function(e){
+	 //  		$(this).unbind('blur.sarshomarblur');
+	 //  		var element = $(this).parents('.element');
 			// var val     = $(this).parents('.element').children('.input').val();
 			// if ( isNormal )
 			// {
@@ -685,40 +683,40 @@ route(/\@\/profile/, function() {
 			// 	element.children('.btn').remove();
 			// 	element.children('.input').val( initial.val() );
 			// }
-   //  	});
-   //  });
+	 //  	});
+	 //  });
 
-    $(this).on('click', '.btn.save button', function(event) {
+	$(this).on('click', '.btn.save button', function(event) {
 		var element = $(this).parents('.element');
 		var val     = $(this).parents('.element').children('.input').val();
 		var name    = $(this).parents('.element').children('.input').attr("name");
-        $(this).ajaxify({
-            ajax: {
-                data: {
-                    'name': name,
-                    'value': val
-                },
-                abort: true,
-                success: function(e, data, x) {
-                	if ( val && isNormal )
-                	{
-                		element.addClass('has-data');
-                		element.children('.input').attr('disabled', 'disabled');
-                		element.children('.btn').remove();
-                	}
-                	else if ( (!val) && isNormal)
-                	{
-                		element.addClass('no-data');
-                		element.children('.input').attr('disabled', 'disabled');
-                		element.children('.btn').remove();
-                	}
-                },
-                method: 'post'
-            }
-        });
-    });
+		$(this).ajaxify({
+			ajax: {
+				data: {
+					'name': name,
+					'value': val
+				},
+				abort: true,
+				success: function(e, data, x) {
+					if ( val && isNormal )
+					{
+						element.addClass('has-data');
+						element.children('.input').attr('disabled', 'disabled');
+						element.children('.btn').remove();
+					}
+					else if ( (!val) && isNormal)
+					{
+						element.addClass('no-data');
+						element.children('.input').attr('disabled', 'disabled');
+						element.children('.btn').remove();
+					}
+				},
+				method: 'post'
+			}
+		});
+	});
 
-    $(this).on('click', '.btn.cancel button', function(event) {
+	$(this).on('click', '.btn.cancel button', function(event) {
 		var element = $(this).parents('.element');
 		var val     = $(this).parents('.element').children('.input').val();
 		if ( initial.val() )
@@ -732,7 +730,7 @@ route(/\@\/profile/, function() {
 		element.children('.input').attr('disabled', '');
 		element.children('.btn').remove();
 		element.children('.input').val( initial.val() );
-    });
+	});
 });
 
 
@@ -1019,10 +1017,7 @@ $(function()
 		}
 	});
 
-	$('.panel-text>.title>span').click(function(){
-			$(this).parents('.panel-text').children('textarea').stop().slideToggle('fast');
-			$(this).children('.fa').toggleClass('fa-minus fa-plus');
-		});
+
 });
 
 
