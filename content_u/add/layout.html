@@ -237,11 +237,12 @@
 {%block feature_summary%}
 {% spaceless %}
 	<div class="panel-text">
-		<div class="title">
-			<a href="#summary"><i class="fa fa-plus"></i> {%trans "Summary"%}</a>
-		</div>
-		<textarea name="summary">{{poll.meta.desc}}</textarea>
+		<input type="checkbox" name="" id="zyzy">
+		<label for="zyzy">
+			<i class="fa fa-plus"></i><span>{%trans "Summary"%}</span>
+		</label>
 	</div>
+	<textarea data-response="zyzy" data-response-hide data-response-effect='slide'></textarea>
 {% endspaceless %}
 {%endblock%}
 
@@ -249,11 +250,12 @@
 {%block feature_content%}
 {% spaceless %}
 	<div class="panel-text">
-		<div class="title">
-			<a href="#description"><i class="fa fa-plus"></i> {%trans "Description"%}</a>
-		</div>
-		<textarea name="description" data-resizable>{{poll.content}}</textarea>
+		<input type="checkbox" name="xyxy" id="xyxy">
+		<label for="xyxy">
+			<i class="fa fa-plus"></i><span>{%trans "Description"%}</span>
+		</label>
 	</div>
+	<textarea data-response="xyxy" data-response-hide data-response-effect='slide'></textarea>
 {% endspaceless %}
 {%endblock%}
 
