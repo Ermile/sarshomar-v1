@@ -119,10 +119,8 @@ function checkInput(_this, _firstTime)
 			else
 			{
 				// if condition is true
-				$(this)[effect['open']](timing, function()
-				{
-					$(this).attr('data-response-hide', null);
-				});
+				$(this).attr('data-response-hide', null);
+				$(this)[effect['open']](timing);
 			}
 			if($(this).find('[data-response-focus]').length)
 			{
