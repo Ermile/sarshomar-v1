@@ -119,7 +119,10 @@ function checkInput(_this, _firstTime)
 			else
 			{
 				// if condition is true
-				$(this)[effect['open']](timing);
+				$(this)[effect['open']](timing, function()
+				{
+					$(this).attr('data-response-hide', null);
+				});
 			}
 			if($(this).find('[data-response-focus]').length)
 			{
@@ -140,7 +143,10 @@ function checkInput(_this, _firstTime)
 			else
 			{
 				// if condition is false
-				$(this)[effect['close']](timing);
+				$(this)[effect['close']](timing, function()
+				{
+					$(this).attr('data-response-hide', '');
+				});
 			}
 			elResult = 'close';
 		}
