@@ -154,6 +154,11 @@ function checkInput(_this, _firstTime)
 	$(window).trigger('response:open', [elID, elResult]);
 }
 
+
+/**
+ * fix problem of jumping on first slide with set height
+ * @return {[type]} [description]
+ */
 function fixSlideJumping()
 {
 	$('[data-response-hide][data-response-effect="slide"]').css('height',function(i,h)
@@ -243,6 +248,12 @@ function addNewOpt(_group, _title)
 	template.find('.element .input').attr('name', 'answer' + num);
 	template.find('.element .input').attr('value', '');
 	template.find('.element .input').val('');
+	// set true
+	template.find('.element .true input').attr('name', 'true' + num);
+	template.find('.element .true label').attr('for', 'true' + num);
+	template.find('.element .true input').attr('id', 'true' + num);
+	template.find('.element .true input').attr('checked', false);;
+	// set score
 	template.find('.element .score input').attr('name', 'score' + num);
 	template.find('.element .score input').attr('id', 'score' + num);
 	template.find('.element .score input').val('');
@@ -341,6 +352,11 @@ function rearrangeQuestionOpts()
 		}
 		$(this).find('.element .input').attr('id', 'answer' + row);
 		$(this).find('.element .input').attr('name', 'answer' + row);
+		// set true
+		$(this).find('.element .true input').attr('id', 'true' + row);
+		$(this).find('.element .true label').attr('for', 'true' + row);
+		$(this).find('.element .true input').attr('name', 'true' + row);
+		// set score
 		$(this).find('.element .score input').attr('id', 'score' + row);
 		$(this).find('.element .score input').attr('name', 'score' + row);
 	});

@@ -41,7 +41,7 @@
 			<div class="element" data-row="{{answer_key}}">
 				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
 				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
-				<span class="checkbox" data-response='true_answer'>
+				<span class="checkbox true" data-response='true_answer'>
 					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
 					<label class="check-box" for="true{{answer_key}}"></label>
 				</span>
@@ -56,7 +56,7 @@
 			<div class="element" data-row="1">
 				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
 				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-				<span class="checkbox" data-response='true_answer' data-response-hide>
+				<span class="checkbox true" data-response='true_answer' data-response-hide>
 					<input type="checkbox" name="true1" id="true1">
 					<label class="check-box" for="true1"></label>
 				</span>
@@ -69,7 +69,7 @@
 			<div class="element" data-row="2">
 				<label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
 				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-				<span class="checkbox" data-response='true_answer' data-response-hide>
+				<span class="checkbox true" data-response='true_answer' data-response-hide>
 					<input type="checkbox" name="true2" id="true2">
 					<label class="check-box" for="true2"></label>
 				</span>
