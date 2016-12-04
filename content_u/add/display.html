@@ -11,7 +11,7 @@
        <div class="row">
         {{block('feature_tabs')}}
         {{block('feature_title')}}
-        <div id="tab-multiple_choice" data-response="poll_type" data-response-where="multiple" data-response-effect="slide">
+        <div id="tab-multiple_choice" data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple'%}data-response-hide{%endif%}>
          {{block('feature_opts')}}
          {{block('feature_choicemode')}}
          <div class="row auto">
@@ -26,20 +26,20 @@
          {{block('feature_multiplerange')}}
         </div>
 
-        <div id="tab-descriptive" data-response="poll_type" data-response-where="descriptive" data-response-effect="slide" data-response-hide>
+        <div id="tab-descriptive" data-response="poll_type" data-response-where="descriptive" data-response-effect="slide" {%if poll.type != 'descriptive'%}data-response-hide{%endif%}>
          {{block('feature_textformat')}}
         </div>
 
-        <div id="tab-notification" data-response="poll_type" data-response-where="notification" data-response-effect="slide" data-response-hide>
+        <div id="tab-notification" data-response="poll_type" data-response-where="notification" data-response-effect="slide" {%if poll.type != 'notification'%}data-response-hide{%endif%}>
 
         </div>
 
-        <div id="tab-upload" data-response="poll_type" data-response-where="upload" data-response-effect="slide" data-response-hide>
+        <div id="tab-upload" data-response="poll_type" data-response-where="upload" data-response-effect="slide" {%if poll.type != 'upload'%}data-response-hide{%endif%}>
          {{block('feature_fileformat')}}
          {{block('feature_filesize')}}
         </div>
 
-        <div id="tab-range" data-response="poll_type" data-response-where="range" data-response-effect="slide" data-response-hide>
+        <div id="tab-range" data-response="poll_type" data-response-where="range" data-response-effect="slide" {%if poll.type != 'range'%}data-response-hide{%endif%}>
          {{block('feature_numberformat')}}
          {{block('feature_numbersize')}}
          {{block('feature_starsize')}}
