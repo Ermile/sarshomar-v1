@@ -203,20 +203,11 @@
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
 	</div>
-	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%}>
+	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%}>
 		<input type="hidden" name="parent_tree_id" value="{{poll_tree_id}}">
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row auto tree-fields">
-			<div class="span8">
-				<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
-			</div>
-			<div class="span4">
-				<select id="tree-search-in">
-					<option value="all" >{%trans "All" %}</option>
-					<option value="sarshomar" >{%trans "Sarshomar" %}</option>
-					<option value="personal" >{%trans "Personal" %}</option>
-				</select>
-			</div>
+			<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
 		</div>
 		<ul class="tree-result-list" data-xhr="tree">
 {%include template.add.tree%}

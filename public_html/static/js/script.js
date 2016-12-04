@@ -51,104 +51,104 @@ function checkInput(_this, _firstTime)
 	var childrens = $('[data-response*='+ elID +']');
 	childrens.each(function()
 	{
-	var effect   = $(this).attr('data-response-effect');
-	var timing   = $(this).attr('data-response-timing');
-	var where    = $(this).attr('data-response-where');
-	var whereNot = $(this).attr('data-response-where-not');
-	var toggle   = $(this).attr('data-response-toggle');
-	var disable  = $(this).attr('data-response-disable');
-	if(!disable && $(this).attr('disabled'))
-	{
-		disable = $(this).attr('disabled');
-		$(this).attr('data-response-disable', 'disabled-manual');
-	}
-
-	// set effect name and default is fade
-	if(effect == 'slide')
-	{
-		effect = {'name':'slide', 'toggle':'slideToggle', 'open':'slideDown', 'close':'slideUp'}
-	}
-	else
-	{
-		effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
-	}
-	if(!timing)
-	{
-		timing = 'fast';
-	}
-	// check where and if want set true or false for where
-	if(where)
-	{
-		// for each sentence in where seperated by |
-		$.each(where.split('|'), function(index, whereValue)
+		var effect   = $(this).attr('data-response-effect');
+		var timing   = $(this).attr('data-response-timing');
+		var where    = $(this).attr('data-response-where');
+		var whereNot = $(this).attr('data-response-where-not');
+		var toggle   = $(this).attr('data-response-toggle');
+		var disable  = $(this).attr('data-response-disable');
+		if(!disable && $(this).attr('disabled'))
 		{
-			// if where is okay
-			if(whereValue == elValue.toString())
-			{
-				where = true;
-			}
-		});
-		// if where is not true set it as false
-		if(where !== true)
-		{
-			where = false;
+			disable = $(this).attr('disabled');
+			$(this).attr('data-response-disable', 'disabled-manual');
 		}
-	}
-	else
-	{
-		if(elValue != false)
-		{
-			where = true;
-		}
-	}
 
-	// if wanna to toggle element do this
-	if(toggle)
-	{
-		$(this)[effect['effect']](timing);
-	}
-	else
-	{
-		// show and hide elements depending on parent change
-		if(where)
+		// set effect name and default is fade
+		if(effect == 'slide')
 		{
-			if(disable)
-			{
-				$(this).prop('disabled', false);
-			}
-			else
-			{
-				// if condition is true
-				$(this).attr('data-response-hide', null);
-				$(this)[effect['open']](timing);
-			}
-			if($(this).find('[data-response-focus]').length)
-			{
-				$(this).find('[data-response-focus]').focus();
-			}
-			else
-			{
-				$(this).closest('[data-response-focus]').focus();
-			}
-			elResult = 'open';
+			effect = {'name':'slide', 'toggle':'slideToggle', 'open':'slideDown', 'close':'slideUp'}
 		}
 		else
 		{
-			if(disable)
+			effect = {'name':'fade', 'toggle':'fadeToggle', 'open':'fadeIn', 'close':'fadeOut'}
+		}
+		if(!timing)
+		{
+			timing = 'fast';
+		}
+		// check where and if want set true or false for where
+		if(where)
+		{
+			// for each sentence in where seperated by |
+			$.each(where.split('|'), function(index, whereValue)
 			{
-				$(this).prop('disabled', true);
+				// if where is okay
+				if(whereValue == elValue.toString())
+				{
+					where = true;
+				}
+			});
+			// if where is not true set it as false
+			if(where !== true)
+			{
+				where = false;
+			}
+		}
+		else
+		{
+			if(elValue != false)
+			{
+				where = true;
+			}
+		}
+
+		// if wanna to toggle element do this
+		if(toggle)
+		{
+			$(this)[effect['effect']](timing);
+		}
+		else
+		{
+			// show and hide elements depending on parent change
+			if(where)
+			{
+				if(disable)
+				{
+					$(this).prop('disabled', false);
+				}
+				else
+				{
+					// if condition is true
+					$(this).attr('data-response-hide', null);
+					$(this)[effect['open']](timing);
+				}
+				if($(this).find('[data-response-focus]').length)
+				{
+					$(this).find('[data-response-focus]').focus();
+				}
+				else
+				{
+					$(this).closest('[data-response-focus]').focus();
+				}
+				elResult = 'open';
 			}
 			else
 			{
-				// if condition is false
-				$(this)[effect['close']](timing, function()
+				if(disable)
 				{
-					$(this).attr('data-response-hide', '');
-				});
+					$(this).prop('disabled', true);
+				}
+				else
+				{
+					// if condition is false
+					$(this)[effect['close']](timing, function()
+					{
+						$(this).attr('data-response-hide', '');
+					});
+				}
+				elResult = 'close';
 			}
-			elResult = 'close';
 		}
-	}
 	});
 
 	$(window).trigger('response:open', [elID, elResult]);
@@ -161,7 +161,8 @@ function checkInput(_this, _firstTime)
  */
 function fixSlideJumping()
 {
-	$('[data-response-hide][data-response-effect="slide"]').css('height',function(i,h)
+
+	$('[data-response-hide][data-response-effect="slide"]:not([data-response-notfix])').css('height',function(i,h)
 	{
 		$(this).hide();
 		return h;
@@ -391,8 +392,14 @@ function countQuestionOpts(_fill)
  * @param  {[type]} _page [description]
  * @return {[type]}       [description]
  */
-function treeSearch(_search, _page)
+function treeSearch(_search, _notLoad)
 {
+	if(_notLoad, $('#tree-search').attr('data-loaded'))
+	{
+		return false;
+	}
+	$('#tree-search').attr('data-loaded', true);
+
 	var path    = location.pathname;
 	if(!_search)
 	{
@@ -583,7 +590,7 @@ route(/\@\/add/, function()
 		// if open tree then fill with last qustions
 		if(_name == 'tree' && _value == 'open')
 		{
-			treeSearch.call(null);
+			treeSearch.call(null, null, true);
 		}
 	});
 	$(this).on('input', '#tree-search', function(event)
@@ -666,8 +673,8 @@ route(/\@\/add/, function()
 	});
 }).once(function()
 {
-	fixSlideJumping();
 	console.log('once........');
+	fixSlideJumping();
 });
 
 

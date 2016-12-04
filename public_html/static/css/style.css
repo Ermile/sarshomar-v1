@@ -412,7 +412,7 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .sortable .element .title:hover:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:0.3s;}
 
 .complete-profile{color:#00667A;background-color:#EBEBEB;border:none;width:100%;height:30px;line-height:30px;}
-.tree-container{margin-bottom:20px;}
+.tree-container{margin-bottom:20px;overflow:hidden;}
 .tree-fields{background-color:#EFEFEF;}
 .tree-fields input[type="text"]{display:block;width:100%;background-color:#EFEFEF;color:#00667A;border:none;height:30px;line-height:30px;padding:0 7px;}
 .tree-fields select{display:block;width:100%;background-color:#EBEBEB;color:#00667A;border:none;height:30px;line-height:30px;}
