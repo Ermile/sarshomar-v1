@@ -156,7 +156,7 @@ function checkInput(_this, _firstTime)
 
 function fixSlideJumping()
 {
-	$('[data-response-hide]').css('height',function(i,h)
+	$('[data-response-hide][data-response-effect="slide"]').css('height',function(i,h)
 	{
 		$(this).hide();
 		return h;
