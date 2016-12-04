@@ -181,7 +181,7 @@ class model extends \content_u\home\model
 		if(utility::post("parent_tree_id") && utility::post("parent_tree_opt"))
 		{
 
-			$loc_id  = utility::post("parent_tree_id");
+			$loc_id  = \lib\utility\shortURL::decode(utility::post("parent_tree_id"));
 			if(is_numeric($loc_id))
 			{
 				if($this->update_mode)

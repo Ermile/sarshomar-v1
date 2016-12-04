@@ -44,7 +44,7 @@ class view extends \content_u\home\view
 	function view_edit($_args)
 	{
 		$poll_id = $_args->api_callback;
-		$poll = \lib\db\polls::get_poll($poll_id);
+		$poll    = \lib\db\polls::get_poll($poll_id);
 		if(isset($poll['type']))
 		{
 			$poll['type'] = \content_u\add\model\config::set_html_type($poll['type']);

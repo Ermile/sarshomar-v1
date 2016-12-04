@@ -34,7 +34,7 @@
 {%block feature_opts%}
 {% spaceless %}
 	<ul class="input-group sortable">
-	{%if answers is iterable and answers is not empty%}
+	{%if answers %}
 		{%for key, value in answers%}
 		<li>
 			<div class="element" data-row="{{key + 1}}">

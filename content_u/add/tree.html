@@ -1,7 +1,7 @@
 <ul class="tree-result-list" data-xhr="tree">
 {%block search_result%}
 {%for key, value in poll_list%}
-	<li data-id='{{value.id}}'>
+	<li data-id='{{value.id|shortURL('encode')}}'>
 		<div>{{value.title|raw}}</div>
 		<ul class="options">
 {%for i, opt in value.meta.opt%}
