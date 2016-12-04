@@ -618,6 +618,16 @@ route(/\@\/add/, function()
 		completeProfileFill();
 	});
 
+	// $('[tabindex="3"]').on('focus', function()
+	$(this).on('focus', '.profile-detail a', function()
+	{
+		$(this).parents('.profile').addClass('open');
+	}).on('blur', '.profile-detail a', function()
+	{
+		$(this).parents('.profile').removeClass('open');
+	});
+
+
 
 
 	$(this).on('click','button', function()
