@@ -154,6 +154,15 @@ function checkInput(_this, _firstTime)
 	$(window).trigger('response:open', [elID, elResult]);
 }
 
+function fixSlideJumping()
+{
+	$('[data-response-hide]').css('height',function(i,h)
+	{
+		$(this).hide();
+		return h;
+	});
+}
+
 
 /**
  * allow textarea to be resizable
@@ -639,6 +648,10 @@ route(/\@\/add/, function()
 		$('#submit-form').attr("value", $(this).attr("send-name"));
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});
+}).once(function()
+{
+	fixSlideJumping();
+	console.log('once........');
 });
 
 
