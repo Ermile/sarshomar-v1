@@ -11,7 +11,7 @@
        <div class="row">
         {{block('feature_tabs')}}
         {{block('feature_title')}}
-        <div id="tab-multiple_choice" data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple'%}data-response-hide{%endif%}>
+        <div id="tab-multiple_choice" data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple' and poll.type is not null%}data-response-hide{%endif%}>
          {{block('feature_opts')}}
          {{block('feature_choicemode')}}
          <div class="row auto">

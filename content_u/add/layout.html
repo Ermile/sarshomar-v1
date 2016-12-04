@@ -36,12 +36,13 @@
 	<ul class="input-group sortable">
 	{%if answers %}
 		{%for key, value in answers%}
+		{% set answer_key = key + 1 %}
 		<li>
-			<div class="element" data-row="{{key + 1}}">
-				<label class="title small" for="answer{{key + 1}}">{%trans "Answer"%} <b>{{key + 1 |persian}}</b></label>
-				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" >
+			<div class="element" data-row="{{answer_key}}">
+				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
+				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
-				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
+				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{answer_key}}"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
 			</div>

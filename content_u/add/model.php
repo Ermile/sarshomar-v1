@@ -110,12 +110,12 @@ class model extends \content_u\home\model
 				// must be redirect to filter page
 				if(utility::post("filter"))
 				{
-					$this->redirector()->set_url("@/add/$url/filter");
+					$this->redirector()->set_url(\lib\define::get_language() . "/@/add/$url/filter");
 				}
 				// must be redirect to publish page
 				elseif(utility::post("publish"))
 				{
-					$this->redirector()->set_url("@/add/$url/publish");
+					$this->redirector()->set_url(\lib\define::get_language(). "/@/add/$url/publish");
 				}
 				else
 				{
