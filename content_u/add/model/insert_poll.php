@@ -120,41 +120,49 @@ trait insert_poll
 			$this->remove_answers();
 		}
 
-		// check answers
-		if($answers)
+		// the support meta
+		// for every poll type we have a list of meta
+		// in some mode we needless to answers
+		$support_meta = self::meta($poll_type);
+
+		if(in_array('answer', $support_meta))
 		{
-			// remove empty index from answer array
-			$answers = array_filter($answers);
-			// check the count of answer array
-			if(count($answers) < 2)
+			// check answers
+			if($answers)
 			{
-				debug::error(T_("you must set two answer"), ['answer1']);
+				// remove empty index from answer array
+				$answers = array_filter($answers);
+				// check the count of answer array
+				if(count($answers) < 2)
+				{
+					debug::error(T_("you must set two answer"), ['answer1']);
+					return false;
+				}
+				// combine answer type and answer text and answer point
+				$combine = [];
+				foreach ($answers as $key => $value)
+				{
+					$combine[] =
+					[
+						'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
+						'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
+						'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
+						'desc'  => isset($answer_desc[$key])  ? $answer_desc[$key] 	: null,
+						'txt'   => $value
+		     		];
+				}
+				$answers_arg =
+				[
+					'poll_id' => $poll_id,
+					'answers' => $combine
+				];
+				$answers = \lib\utility\answers::insert($answers_arg);
+			}
+			else
+			{
+				debug::error(T_("answers not found"), ['answer1', 'answer2']);
 				return false;
 			}
-			// combine answer type and answer text and answer point
-			$combine = [];
-			foreach ($answers as $key => $value)
-			{
-				$combine[] =
-				[
-					'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
-					'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
-					'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
-					'desc'  => isset($answer_desc[$key])  ? $answer_desc[$key] 	: null,
-					'txt'   => $value
-	     		];
-			}
-			$answers_arg =
-			[
-				'poll_id' => $poll_id,
-				'answers' => $combine
-			];
-			$answers = \lib\utility\answers::insert($answers_arg);
-		}
-		else
-		{
-			debug::error(T_("answers not found"), ['answer1', 'answer2']);
-			return false;
 		}
 
 		// in update mode we first remove all meta of the poll
@@ -164,9 +172,11 @@ trait insert_poll
 			$this->remove_meta();
 		}
 
-		// the support meta
-		// for every poll type we have a list of meta
-		$support_meta = self::meta($poll_type);
+		// remve the key of 'answer' suppot meta
+		if(($key = array_search('answer', $support_meta)) !== false)
+		{
+		    unset($support_meta[$key]);
+		}
 
 		$insert_meta = [];
 		$post_meta   = [];
@@ -223,7 +233,7 @@ trait insert_poll
 			\lib\db\polls::merge_meta($post_meta, $poll_id);
 		}
 
-		if($answers)
+		if(\lib\debug::$status)
 		{
 			\lib\utility\profiles::set_dashboard_data($this->login('id'), 'my_poll');
 			\lib\debug::true(T_("add poll Success"));

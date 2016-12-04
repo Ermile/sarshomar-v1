@@ -5,7 +5,7 @@
 {% spaceless %}
 	<div class="menu">
 		<div class="menu-inside">
-			<input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' %}checked{%elseif poll.type is null%}checked{%endif%} >
+			<input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' or poll.type is null%}checked{%endif%} >
 			<label for="type_multiple"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
 			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
 			<label for="type_descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
@@ -34,11 +34,11 @@
 {%block feature_opts%}
 {% spaceless %}
 	<ul class="input-group sortable">
-	{%if answers is iterable%}
+	{%if answers is iterable and answers is not empty%}
 		{%for key, value in answers%}
 		<li>
 			<div class="element" data-row="{{key + 1}}">
-				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{key + 1 |persian}}</b></label>
+				<label class="title small" for="answer{{key + 1}}">{%trans "Answer"%} <b>{{key + 1 |persian}}</b></label>
 				<input class="input" type="text" name="answer{{key + 1}}" id="answer{{key + 1}}" autocomplete="off" value="{{value.option_value}}" >
 				<span class="fa fa-check check" data-response-hide data-response='true_answer'></span>
 				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{key + 1}}"></span>
@@ -114,7 +114,7 @@
 
 {%block feature_other%}
 {% spaceless %}
-	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
+	<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
 		<input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
 		<label for="descriptive" class="check-box"></label>
 		<label for="descriptive">{%trans "Allow to type other answer"%}</label>
@@ -125,7 +125,7 @@
 
 {%block feature_multiplerange%}
 {% spaceless %}
-	<div class="range-slider multiple-range" data-type="horizontal" data-response='choicemode' data-response-where='multi' data-response-hide></div>
+	<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' data-response-where='multi' data-response-hide></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -156,7 +156,7 @@
 
 {%block feature_trueanswer%}
 {% spaceless %}
-	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
+	<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
 		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
 		<label for="true_answer" class="check-box"></label>
 		<label for="true_answer">{%trans "Has correct option"%}</label>
@@ -283,10 +283,10 @@
 				<option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
 			</select>
 		</div>
-		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
+		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
 			<div class="element">
 				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="" data-response-focus>
+				<input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="{{poll.meta.text_format_custom}}" data-response-focus>
 			</div>
 		</div>
 	</div>
@@ -300,23 +300,23 @@
 		<div class="element select">
 			<label class="title small" for="file-format">{%trans "File Format"%}</label>
 				<select class="file-format input" name="meta_file_format" id='file-format'>
-					<option value="any">{%trans "Any File"%}</option>
-					<option value="document">{%trans "Document"%}</option>
-					<option value="photo">{%trans "Photo"%}</option>
-					<option value="video">{%trans "Video"%}</option>
-					<option value="audio">{%trans "Audio"%}</option>
-					<option value="pdf">{%trans "PDF"%}</option>
-					<option value="doc">{%trans "Word"%}</option>
-					<option value="xls">{%trans "Excel"%}</option>
-					<option value="ppt">{%trans "PowerPoint"%}</option>
-					<option value="txt">{%trans "Text"%}</option>
-					<option value="regular">{%trans "Custom"%}</option>
+					<option value="any" {%if poll.meta.file_format == 'any' %}selected{%endif%}>{%trans "Any File"%}</option>
+					<option value="document" {%if poll.meta.file_format == 'document' %}selected{%endif%}>{%trans "Document"%}</option>
+					<option value="photo" {%if poll.meta.file_format == 'photo' %}selected{%endif%}>{%trans "Photo"%}</option>
+					<option value="video" {%if poll.meta.file_format == 'video' %}selected{%endif%}>{%trans "Video"%}</option>
+					<option value="audio" {%if poll.meta.file_format == 'audio' %}selected{%endif%}>{%trans "Audio"%}</option>
+					<option value="pdf" {%if poll.meta.file_format == 'pdf' %}selected{%endif%}>{%trans "PDF"%}</option>
+					<option value="doc" {%if poll.meta.file_format == 'doc' %}selected{%endif%}>{%trans "Word"%}</option>
+					<option value="xls" {%if poll.meta.file_format == 'xls' %}selected{%endif%}>{%trans "Excel"%}</option>
+					<option value="ppt" {%if poll.meta.file_format == 'ppt' %}selected{%endif%}>{%trans "PowerPoint"%}</option>
+					<option value="txt" {%if poll.meta.file_format == 'txt' %}selected{%endif%}>{%trans "Text"%}</option>
+					<option value="regular" {%if poll.meta.file_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
 				</select>
 		</div>
-		<div data-response='file-format' data-response-where='regular' data-response-effect='slide' data-response-hide>
+		<div data-response='file-format' data-response-where='regular' data-response-effect='slide'  {%if poll.meta.file_format_custom is null%}data-response-hide{%endif%}>
 			<div class="element">
 				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="meta_file_format" id="file-custom" autocomplete="off" value="" data-response-focus>
+				<input class="input" type="text" name="meta_file_format_custom" id="file-custom" autocomplete="off" value="{{poll.meta.file_format_custom}}" data-response-focus>
 			</div>
 		</div>
 	</div>
@@ -336,11 +336,11 @@
 {%block feature_numberformat%}
 {% spaceless %}
 	<div class="element switch">
-		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber" checked="checked">
+		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber" {% if poll.meta.rangemode == 'number'%}checked{%endif%}>
 		<label for="rangemodenumber">{%trans "Range Number"%}</label>
-		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar">
+		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar" {% if poll.meta.rangemode == 'star'%}checked{%endif%}>
 		<label for="rangemodestar">{%trans "Star"%}</label>
-		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike">
+		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike" {% if poll.meta.rangemode == 'like'%}checked{%endif%}>
 		<label for="rangemodelike">{%trans "Like"%}</label>
 	</div>
 {% endspaceless %}
@@ -349,14 +349,14 @@
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="range-slider numbersize-range" data-type="horizontal" data-response='rangemode' data-response-where='number' data-response-effect='slide'>--Number</div>
+	<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='number' data-response-effect='slide'>--Number</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="range-slider starsize-range" data-type="horizontal" data-response='rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>--Star</div>
+	<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>--Star</div>
 {% endspaceless %}
 {%endblock%}
 

@@ -14,30 +14,29 @@ trait config
 	private static function meta($_poll_type)
 	{
 		// the meta list
-		$meta                  = [];
-		$meta['random_sort']   = false;
-		$meta['score']         = false;
-		$meta['true_answer']   = false;
-		$meta['descriptive']   = false;
-		$meta['profile']       = false;
-		$meta['tree']          = true;
-		$meta['hidden_result'] = false;
-		$meta['comment']       = false;
-		$meta['ordering']      = false;
-		$meta['choicemode']    = false;
-		// one
-		// multi
-		// ordering
-		$meta['text_format']   = false;
-		$meta['file_format']   = false;
-		$meta['rangemode']     = false;
-		// number
-		// star
-		// like
+		$meta                       = [];
+		$meta['tree']               = true;
+		$meta['answer']            = false; // just in multichoise we need to answer
+		$meta['random_sort']        = false;
+		$meta['score']              = false;
+		$meta['true_answer']        = false;
+		$meta['descriptive']        = false;
+		$meta['profile']            = false;
+		$meta['hidden_result']      = false;
+		$meta['comment']            = false;
+		$meta['ordering']           = false;
+		$meta['choicemode']         = false; // one|multi|ordering
+		$meta['text_format']        = false;
+		$meta['file_format']        = false;
+		$meta['rangemode']          = false; //number|star|like
+		$meta['text_format_custom'] = false;
+		$meta['file_format_custom'] = false;
+
 		switch ($_poll_type)
 		{
-			// in html: multiple
+			//-------------- in html: multiple
 			case 'select':
+				$meta['answer']       = true;
 				$meta['random_sort']   = true;
 				$meta['score']         = true;
 				$meta['true_answer']   = true;
@@ -48,22 +47,24 @@ trait config
 				$meta['choicemode']    = true;
 				break;
 
-			// in html: descriptive
+			//-------------- in html: descriptive
 			case 'text':
-				$meta['text_format']   = true;
+				$meta['text_format']        = true;
+				$meta['text_format_custom'] = true;
 				break;
 
-			// in html: notification
+			//-------------- in html: notification
 			case 'notify':
 				// no thing...
 				break;
 
-			// in html: upload
+			//-------------- in html: upload
 			case 'upload':
-				$meta['file_format']   = true;
+				$meta['file_format']        = true;
+				$meta['file_format_custom'] = true;
 				break;
 
-			// in html: starred
+			//-------------- in html: starred
 			case 'star':
 				$meta['rangemode']     = true;
 				break;
