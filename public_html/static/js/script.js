@@ -582,6 +582,8 @@ route(/\@\/add/, function()
 			$('.tree-result-list > li .options').slideUp();
 			selectedItem.slideDown();
 			$('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
+			$('.tree-result-list > li .active').removeClass('active');
+			$(this).addClass('active');
 		}
 	});
 	// if user change selection of each item
