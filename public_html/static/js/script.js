@@ -309,11 +309,13 @@ function deleteQuestionOpts(_this)
 	}
 }
 
+
 // Range Slider
 !function(a){a.fn.ermile_slider=function(){a(this).each(function(){a(this).addClass("range-slider");var c=a(this).attr("data-infinity"),d=a(this).attr("data-type");"vertical"!==d&&(d="horizontal");var e=Number(a(this).attr("data-step"));isNaN(e)&&(e=1);var f=Number(a(this).attr("data-min"));isNaN(f)&&(f=0);var g=Number(a(this).attr("data-min-default"));(isNaN(g)||g<f)&&(g=f);var h=Number(a(this).attr("data-max"));(isNaN(h)||f>=h)&&(h=f+100);var i=Number(a(this).attr("data-max-default"));(isNaN(i)||h<i)&&(i=h);var j=h-f;a(this).data("range-slider",{min:f,max:h,min_default:g,max_default:i,unit:j,step:e,type:d,margin:g,depth:h}),a(this).init.prototype.range=function(b,c,d){var e=b,f=c,g=this.data("range-slider");option={type:"unit"},a.extend(option,d),option.from_type=option.type,option.to_type=option.type;var h="vertical"==g.type?"height":"width";if(null!==e&&e!==!1&&void 0!==e||(e=this.find(".dynamic-margin")[h](),option.from_type="pixel"),null!==f&&f!==!1&&void 0!==f||(f=this.find(".dynamic-margin")[h]()+this.find(".dynamic-range")[h](),option.to_type="pixel"),"vertical"==g.type){var i=e;e=f,f=i}var j=this[h]();"pixel"==option.from_type?e=e*g.unit/j:"percent"==option.from_type?e=e*g.unit/100:"ziro_unit"==option.from_type&&(e-=g.min),"pixel"==option.to_type?f=f*g.unit/j:"percent"==option.to_type?f=f*g.unit/100:"ziro_unit"==option.to_type&&(f-=g.min);var k=Math.round(e/g.step)*g.step,l=Math.round(f/g.step)*g.step;e=100*k/g.unit,f=100*l/g.unit;var m=f-e;this.find(".dynamic-margin").css(h,e+"%"),this.find(".dynamic-range").css(h,m+"%")};var k=a("<div class='dynamic-margin'></div>"),l=a("<div class='dynamic-range'></div>"),m=b.call(this,"min"),n=b.call(this,"max");"max"==c?n.appendTo(l):"min"==c?m.appendTo(l):(n.appendTo(l),m.appendTo(l)),k.hide(),l.hide(),k.appendTo(this),l.appendTo(this),a(this).range(0,e),k.show(),l.show()})};var b=function(b){var c=a(this).data("range-slider"),d=this,e=a("<div class='"+b+"'></div>");return e.unbind("mousedown.range-slider"),e.bind("mousedown.range-slider",function(){a(document).unbind("mousemove.range-slider"),a(document).bind("mousemove.range-slider",function(e){var f="vertical"==c.type?e.pageY:e.pageX,g="vertical"==c.type?a(d).offset().top:a(d).offset().left,h=f-g;"max"==b?a(d).range(null,h,{type:"pixel"}):a(d).range(h,null,{type:"pixel"})}).bind("mouseup.range-slider",function(){a(document).unbind("mouseup.range-slider"),a(document).unbind("mousemove.range-slider")})}).bind("mouseup",function(){a(document).unbind("mousemove.range-slider")}),e}}(jQuery);
 
 /* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
 !function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
+
 
 /**
  * generate sortable again and again after each change
@@ -477,7 +479,10 @@ function completeProfileRevert()
 }
 
 
-
+/**
+ * detect percentage of current state
+ * @return {[type]} [description]
+ */
 function detectPercentage()
 {
 	var percentage = 0;
@@ -524,6 +529,11 @@ function drawPercentage(_percent)
 	$('.page-progress b').width(_percent);
 }
 
+
+/**
+ * simulate tree navigation and do not change url on this condition
+ * @return {[type]} [description]
+ */
 function simulateTreeNavigation()
 {
 	$("nav.pagination a").click(function()
