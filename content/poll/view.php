@@ -230,25 +230,10 @@ class view extends \mvc\view
 				$this->data->meta = $meta;
 			}
 
-			// load poll filters
-			if(isset($post['filter_id']) && $post['filter_id'])
-			{
-				$filters = \lib\db\filters::get($post['filter_id']);
-				$filters = array_filter($filters);
-				unset($filters['id']);
-				unset($filters['unique']);
+			// load post filters
+			$post_filter         = \lib\db\filters::get_poll_filter($post['id']);
+			$this->data->filters = $post_filter;
 
-				$show_filters = [];
-				foreach ($filters as $key => $value)
-				{
-					$show_filters[] =
-					[
-						'filter' => $value,
-						'icon'   => self::filter_icon($key)
-					];
-				}
-				$this->data->filters = $show_filters;
-			}
 			$show_result = true;
 
 			// check show result
