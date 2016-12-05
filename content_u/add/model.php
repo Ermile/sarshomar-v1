@@ -10,6 +10,8 @@ class model extends \content_u\home\model
 	use model\survey;
 	use model\tree;
 
+	function post_filter(){}
+	function post_publish(){}
 
 	/**
 	 * update mod

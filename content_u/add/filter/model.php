@@ -27,6 +27,7 @@ class model extends \content_u\home\model
 	public function post_filter($_args)
 	{
 
+
 		// get the poll or survey id
 		$poll_id = $this->check_poll_url($_args);
 
@@ -36,29 +37,53 @@ class model extends \content_u\home\model
 			return false;
 		}
 
-		$post = array_filter(utility::post());
-		$filter = [];
-		foreach ($post as $key => $value)
+		$html_filter =
+		[
+			'male'           => ['male', 'gender'],			// gender
+			'female'         => ['female', 'gender'],		// gender
+			'single'         => ['single', 'marrital'],		// marrital
+			'marriade'       => ['marriade', 'marrital'],	// marrital
+			'illiterate'     => ['on', 'graduation'],		// graduation
+			'undergraduate'  => ['on', 'graduation'],		// graduation
+			'graduate'       => ['on', 'graduation'],		// graduation
+			'employee'       => ['on', 'employmentstatus'],	// employmentstatus
+			'unemployee'     => ['on', 'employmentstatus'],	// employmentstatus
+			'retired'        => ['on', 'employmentstatus'],	// employmentstatus
+			'under_diploma'  => ['on', 'degree'],			// degree
+			'diploma'        => ['on', 'degree'],			// degree
+			'2_year_college' => ['on', 'degree'],			// degree
+			'bachelor'       => ['on', 'degree'],			// degree
+			'master'         => ['on', 'degree'],			// degree
+			'phd'            => ['on', 'degree'],			// degree
+			'other'          => ['on', 'degree']			// degree
+		];
+
+		$filters = [];
+		foreach ($html_filter as $filter => $value)
 		{
-			if(substr($key, 0, 7) == 'filter_')
+			if(utility::post($filter) === $value[0])
 			{
-				$key = str_replace('filter_', '', $key);
-				$value = explode(',', $value);
-				$value = array_filter($value);
-				if(count($value) == 1)
+				$filters[$value[1]][] = str_replace('_', ' ', $filter);
+			}
+		}
+		// remove full insert filter
+		//
+		$support_filter = \lib\db\filters::support_filter();
+		foreach ($filters as $key => $value)
+		{
+			if(isset($support_filter[$key]))
+			{
+				if($value == $support_filter[$key])
 				{
-					$filter[$key] = $value[0];
-				}
-				else
-				{
-					foreach ($value as $k => $v) {
-						$filter[$key][] = $v;
-					}
+					unset($filters[$key]);
 				}
 			}
 		}
-		$count = \lib\db\filters::count_user($filter);
 
+		// get the count user by this filter
+		$count = \lib\db\filters::count_user($filters);
+
+		// check sarshomar knowledge add permission to show error count member
 		if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < 1)
 		{
 			debug::error(T_(":max users found remove some filter",["max" => $count]));
@@ -66,26 +91,19 @@ class model extends \content_u\home\model
 		}
 
 		// ready to insert filters in options table
-		// get the filter id if exist
-		$filter_id = \lib\db\filters::get_id($filter);
+		$filter_ids = \lib\db\filters::insert($filters);
 
 		// if filter id not found insert the filter record and get the last_insert_id
-		if(!$filter_id)
+		if(!is_null($filter_ids))
 		{
-			$filter_id = \lib\db\filters::insert($filter);
+			$insert_filters = \lib\db\postfilters::set($poll_id, $filter_ids);
 		}
 
-		if($filter_id)
-		{
-			$poll_update = ['filter_id' => $filter_id];
-			$result      = \lib\db\polls::update($poll_update, $poll_id);
-		}
-
-		if($result || empty($filter))
+		if(\lib\debug::$status)
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
 			\lib\debug::true(T_("add filter of poll Success"));
-			$this->redirector()->set_url("@/add/$short_url/publish");
+			$this->redirector()->set_url(\lib\define::get_language(). "/@/add/$short_url/publish");
 		}
 		else
 		{

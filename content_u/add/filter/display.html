@@ -1,18 +1,20 @@
  {%extends display.main%}
 
  {%block content%}
+<form method="post">
  <div class="main pad">
   <div class="box">
    <div class="row auto">
     {%include template.progress%}
+
     <div class="span8">
      <div class="row auto">
       <div class="span6">
        <div class="element switch">
         <label class="title large badge" for="gender" data-val="20%">{%trans "Gender"%}</label>
-        <input type="checkbox" name="filter_gender" value="male" id="male">
+        <input type="checkbox" name="male" value="male" id="male">
         <label for="male">{%trans "Male"%}</label>
-        <input type="checkbox" name="filter_gender" value="female" id="female">
+        <input type="checkbox" name="female" value="female" id="female">
         <label for="female">{%trans "Female"%}</label>
        </div>
        <div class="element switch">
@@ -29,9 +31,9 @@
       <div class="span6">
        <div class="element switch">
         <label class="title large badge" for="marrital" data-val="20%">{%trans "Marrital"%}</label>
-        <input type="checkbox" name="filter_marrital" value="single" id="single">
+        <input type="checkbox" name="single" value="single" id="single">
         <label for="single">{%trans "Single"%}</label>
-        <input type="checkbox" name="filter_marrital" value="marriade" id="marriade">
+        <input type="checkbox" name="marriade" value="marriade" id="marriade">
         <label for="marriade">{%trans "Marriade"%}</label>
        </div>
 
@@ -91,9 +93,10 @@
 
    <div class="row auto">
     <div class="span6 btn-container">
-     <button class="btn secondary">{%trans "Publish"%}</button>
+     <button type="submit" class="btn secondary">{%trans "Publish"%}</button>
     </div>
    </div>
   </div>
  </div>
+</form>
  {%endblock%}

@@ -3,6 +3,8 @@ namespace content_u\add;
 
 class view extends \content_u\home\view
 {
+	function view_filter(){}
+	function view_publish(){}
 
 	function config()
 	{

@@ -82,33 +82,84 @@ class filters
 		{
 			return null;
 		}
-		$set = [];
-		foreach ($_args as $key => $value) {
-			if($value === null)
+
+		$exits_record_id = [];
+
+		$where = self::extract_filter($_args, true);
+		$fields = [];
+		$values = [];
+		foreach ($where as $key => $value)
+		{
+			if($fields === [])
 			{
-				$set[] = " `$key` = NULL ";
+				$tmp = array_keys($value);
+				foreach ($tmp as $k => $v)
+				{
+					array_push($fields, "`$v`");
+				}
+				$fields = implode(" , ", $fields);
+
 			}
-			else
+			$check_exits_record = self::check($value, 'id');
+			if(!empty($check_exits_record))
 			{
-				$set[] = " `$key` = '$value' ";
+				array_push($exits_record_id, (int) $check_exits_record);
+			}
+
+			if(empty($check_exits_record))
+			{
+				$check_null = array_filter($value);
+				if(!empty($check_null))
+				{
+					$tmp = [];
+					foreach ($value as $k => $v)
+					{
+						if($v === null)
+						{
+							array_push($tmp, "NULL");
+						}
+						else
+						{
+							array_push($tmp, "'$v'");
+						}
+					}
+					$values[] = implode(" , ", $tmp);
+				}
 			}
 		}
-		$set = join($set, ',');
 
-		// set the unique field
-		$unique = json_encode($_args, JSON_UNESCAPED_UNICODE);
+		$count_inserted_record = count($values);
+		if(empty($values))
+		{
 
+			return array_unique($exits_record_id);
+		}
+
+		$values = join($values, '), (');
 		$query =
 		"
 			INSERT INTO
 				filters
-			SET
-				$set,
-				`unique` = '$unique'
+			($fields)
+			VALUES
+			($values)
 		";
+
 		$result = \lib\db::query($query);
 		// return the insert id
-		return \lib\db::insert_id();
+		$last_insert_id =  \lib\db::insert_id();
+		if($count_inserted_record === 1)
+		{
+			return $last_insert_id;
+		}
+		elseif($count_inserted_record > 1)
+		{
+			for ($i = 1; $i <= $count_inserted_record; $i++)
+			{
+				array_push($exits_record_id, $last_insert_id--);
+			}
+			return array_unique($exits_record_id);
+		}
 	}
 
 
@@ -139,7 +190,8 @@ class filters
 		$support_filter = self::support_filter();
 		$support_filter = array_keys($support_filter);
 
-		foreach ($support_filter as $key => $value) {
+		foreach ($support_filter as $key => $value)
+		{
 			if(isset($_args[$value]))
 			{
 				$where[] = " `$value` = '$_args[$value]' ";
@@ -255,7 +307,8 @@ class filters
 	{
 		$cat = null;
 
-		switch ($_cat) {
+		switch ($_cat)
+		{
 			// public
 			case 'gender':
 			case 'marrital':
@@ -314,7 +367,8 @@ class filters
 	{
 		$support_filter = self::support_filter();
 		$filters = [];
-		foreach ($support_filter as $key => $value) {
+		foreach ($support_filter as $key => $value)
+		{
 			$filters[self::filter_cat($key)][$key] = $value;
 		}
 
@@ -330,7 +384,8 @@ class filters
 		];
 		$sorted_filter = [];
 		// sort filter by sort array
-		foreach ($sort as $key => $value) {
+		foreach ($sort as $key => $value)
+		{
 			if(isset($filters[$value]))
 			{
 				$sorted_filter[$value] = $filters[$value];
@@ -384,7 +439,7 @@ class filters
 		{
 			return false;
 		}
-		$filter_id = self::search($_args);
+		$filter_id = self::search($_args, true);
 		if(empty($filter_id))
 		{
 			return 0;
@@ -413,7 +468,7 @@ class filters
 	 *
 	 * @param      <type>  $_filters  The filters
 	 */
-	public static function search($_filters)
+	public static function search($_filters, $_else_fiels_is_null = false)
 	{
 		if(!is_array($_filters))
 		{
@@ -421,28 +476,35 @@ class filters
 		}
 
 		$where = [];
-		foreach ($_filters as $key => $value)
+		if($_else_fiels_is_null)
 		{
-			if(self::support_filter($key))
+			foreach ($_filters as $key => $value)
 			{
-				if(is_array($value))
+				if(self::support_filter($key))
 				{
-					$or = [];
-					foreach ($value as $k => $v)
+					if(is_array($value))
 					{
-						$or[] = " `$key` = '$v' ";
+						$or = [];
+						foreach ($value as $k => $v)
+						{
+							$or[] = " `$key` = '$v' ";
+						}
+						$or = join($or, " OR ");
+						$where[] = " ( $or ) ";
 					}
-					$or = join($or, " OR ");
-					$where[] = " ( $or ) ";
-				}
-				else
-				{
-					$where[] = " `$key` = '$value' ";
+					else
+					{
+						$where[] = " `$key` = '$value' ";
+					}
 				}
 			}
+			$where = join($where, " AND ");
+		}
+		else
+		{
+			$where = self::extract_filter($_filters, false);
 		}
 
-		$where = join($where, " AND ");
 		$query =
 		"
 			SELECT
@@ -453,6 +515,141 @@ class filters
 				$where
 		";
 		return \lib\db::get($query, 'id');
+	}
+
+
+	/**
+	 * extract filters
+	 *
+	 * @param      <type>         $_filters  The filters
+	 * @param      string         $_result   The result
+	 *
+	 * @return     array|boolean  ( description_of_the_return_value )
+	 */
+	private static function extract_filter($_filters, $_return_array = true)
+	{
+		if(!is_array($_filters))
+		{
+			return false;
+		}
+		//
+		//---------------------------------------
+		//[
+		// 	degree  => diploma,
+		// 	gender  => [male,  female],
+		// 	marital => [single, marid]
+		//]
+		//=======================================
+		//
+		//=======================================
+		//---------------------------------------
+		//[
+		// 	0 => [gender => male,   marital => single,  degree => diploma, range => NULL, age => NULL, ... ],
+		// 	1 => [gender => female, marital => single,  degree => diploma, range => NULL, age => NULL, ... ],
+		// 	2 => [gender => male,   marital => marid,   degree => diploma, range => NULL, age => NULL, ... ],
+		// 	3 => [gender => female, marital => marid,   degree => diploma, range => NULL, age => NULL, ... ]
+		//]
+		//---------------------------------------
+		// SELECT// FROM filters WHERE
+		// (gender = male   AND marital = single AND degree IS NULL) OR
+		// (gender = female AND marital = single AND degree IS NULL) OR
+		// (gender = male   AND marital = marid  AND degree IS NULL) OR
+		// (gender = female AND marital = marid  AND degree IS NULL)
+		//---------------------------------------
+		//
+		$where        = [];
+		$rows         = [];
+		$i            = 0;
+		$clone        = array_keys(self::support_filter());
+		$clone        = array_flip($clone);
+		$clone        = array_map("self::set_null", $clone);
+		$sum          = array_map("self::set_count", $_filters);
+		$count_record = empty($_filters) ? 0 : 1;
+		foreach ($sum as $filter => $count)
+		{
+			$count_record *= $count;
+		}
+
+		$index       = 0;
+		$where_array = [];
+		for ($i = 0; $i < $count_record; $i++)
+		{
+			$where_array[$i] = $clone;
+		}
+
+		foreach ($_filters as $filter => $value)
+		{
+			if(is_array($value))
+			{
+				for ($i = 0; $i < $count_record; $i++)
+				{
+					foreach ($value as $k => $v)
+					{
+						$where_array[$i][$filter] = $v;
+						$i++;
+					}
+					$i--;
+				}
+			}
+			else
+			{
+				for ($i = 0; $i < $count_record; $i++)
+				{
+					$where_array[$i][$filter] = $vlaue;
+				}
+			}
+		}
+		$or = [];
+		foreach ($where_array as $key => $value)
+		{
+			$and = [];
+			foreach ($value as $k => $v)
+			{
+				if($v === null)
+				{
+					$and[] = " `$k` IS NULL ";
+				}
+				else
+				{
+					$and[] = " `$k` = '$v' ";
+				}
+			}
+			$or[] = '('. join($and, "AND"). ')';
+		}
+		$where = join($or, " OR ");
+
+		if($_return_array)
+		{
+			return $where_array;
+		}
+		else
+		{
+			return $where;
+		}
+	}
+
+
+	/**
+	 * Sets the null.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	private static function set_null()
+	{
+		return null;
+	}
+
+
+	/**
+	 * Sets the count.
+	 *
+	 * @param      <type>  $_array  The array
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	private static function set_count($_array)
+	{
+		return count($_array);
 	}
 }
 ?>
