@@ -40,8 +40,8 @@ class message
 		 * set telegram result: count of poll, answers and answers text
 		 */
 		$this->set_telegram_result($_answer_id);
-
-		$this->message['chart'] = utility::calc_vertical($this->poll_answer);
+		$sum = array_column($this->class->telegram_result->get_result('result'), 'sum', 'key');
+		$this->message['chart'] = utility::calc_vertical($sum);
 	}
 
 	public function add_poll_list($_answer_id = null, $_add_count = true)
@@ -70,7 +70,6 @@ class message
 		$this->message['telegram_link'] = '[' . T_('Answer link') . ']'.
 		'(https://telegram.me/sarshomarBot?start=sp_' . $this->class->short_link . ')';
 	}
-
 	public function add_telegram_tag()
 	{
 		$this->message['telegram_tag'] = '#Sarshomar';
@@ -82,14 +81,17 @@ class message
 
 		$this->class->telegram_result = \lib\utility\stat_polls::get_telegram_result($this->class->poll_id);
 		$poll_result = $this->class->telegram_result;
-		if(!$poll_result)
+		if(!$poll_result->is_ok())
 		{
 			$poll_result = $this->class->query_result;
 			foreach ($poll_result['meta']['opt'] as $key => $value) {
 				$poll_result['result'][$value['txt']] = 0;
 			}
+		}else
+		{
+			$poll_result = $poll_result->get_result('result');
 		}
-		$this->set_poll_list($poll_result['result'], $answer_id);
+		$this->set_poll_list($poll_result, $answer_id);
 	}
 
 	public function set_poll_list($_poll_result, $_answer_id = null)
@@ -98,17 +100,18 @@ class message
 		$poll_list = array();
 		$count = 0;
 		$row      = $this->class::$emoji_number;
+		handle::send_log($_poll_result);
 		foreach ($_poll_result as $key => $value) {
 			$count++;
 			$poll_answer[$count] = $value;
 			if($_answer_id === $count)
 			{
 				$this->poll_set_answer = true;
-				$poll_list[] = ['emoji'=> '✅ ', 'text' => $key, 'answer_count' => $value];
+				$poll_list[] = ['emoji'=> '✅ ', 'text' => $value['text'], 'answer_count' => $value['sum']];
 			}
 			else
 			{
-				$poll_list[] = ['emoji'=> $row[$count], 'text' => $key, 'answer_count' => $value];
+				$poll_list[] = ['emoji'=> $row[$count], 'text' => $value['text'], 'answer_count' => $value['sum']];
 			}
 		}
 		$this->poll_list = $poll_list;
