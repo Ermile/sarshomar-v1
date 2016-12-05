@@ -427,12 +427,12 @@ class filters
 						{
 							if(!in_array($v, $poll_filter[$filter]))
 							{
-								array_push($poll_filter[$filter], $v);
+								$poll_filter[$filter][$v] = $v;
 							}
 						}
 						else
 						{
-							$poll_filter[$filter] = [$v];
+							$poll_filter[$filter][$v] = $v;
 						}
 					}
 				}

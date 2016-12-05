@@ -11,17 +11,17 @@
       <div class="span5">
        <div class="element switch">
         <label class="title large badge" for="gender" data-val="20%">{%trans "Gender"%}</label>
-        <input type="checkbox" name="male" value="male" id="male">
+        <input type="checkbox" name="male" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
         <label for="male">{%trans "Male"%}</label>
-        <input type="checkbox" name="female" value="female" id="female">
+        <input type="checkbox" name="female" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
         <label for="female">{%trans "Female"%}</label>
        </div>
 
        <div class="element switch">
         <label class="title large badge" for="marrital" data-val="20%">{%trans "Marrital"%}</label>
-        <input type="checkbox" name="single" value="single" id="single">
+        <input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
         <label for="single">{%trans "Single"%}</label>
-        <input type="checkbox" name="marriade" value="marriade" id="marriade">
+        <input type="checkbox" name="marriade" value="marriade" id="marriade" {%if filters.marrital.marriade%}checked{%endif%}>
         <label for="marriade">{%trans "Marriade"%}</label>
        </div>
       </div><!-- /.span6 -->
@@ -29,21 +29,21 @@
       <div class="span7">
        <div class="element switch">
         <label class="title large badge" for="graduation" data-val="20%">{%trans "Graduation"%}</label>
-        <input type="checkbox" name="illiterate" id="illiterate">
+        <input type="checkbox" name="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
         <label for="illiterate">{%trans "Illiterate"%}</label>
-        <input type="checkbox" name="undergraduate" id="undergraduate">
+        <input type="checkbox" name="undergraduate" id="undergraduate" {%if filters.graduation.undergraduate%}checked{%endif%}>
         <label for="undergraduate">{%trans "Undergraduate"%}</label>
-        <input type="checkbox" name="graduate" id="graduate">
+        <input type="checkbox" name="graduate" id="graduate" {%if filters.graduation.graduate%}checked{%endif%}>
         <label for="graduate">{%trans "Graduate"%}</label>
        </div>
 
        <div class="element switch">
         <label class="title large badge" for="employmentstatus" data-val="20%">{%trans "Employment"%}</label>
-        <input type="checkbox" name="employee" id="employee">
+        <input type="checkbox" name="employee" id="employee" {% if filters.employmentstatus.employee%}checked{%endif%}>
         <label for="employee">{%trans "Employee"%}</label>
-        <input type="checkbox" name="unemployee" id="unemployee">
+        <input type="checkbox" name="unemployee" id="unemployee" {% if filters.employmentstatus.unemployee%}checked{%endif%}>
         <label for="unemployee">{%trans "Unemployee"%}</label>
-        <input type="checkbox" name="retired" id="retired">
+        <input type="checkbox" name="retired" id="retired" {% if filters.employmentstatus.retired%}checked{%endif%}>
         <label for="retired">{%trans "Retired"%}</label>
        </div>
       </div><!-- /.span6 -->
@@ -51,19 +51,19 @@
 
      <div class="element switch">
       <label class="title large badge" for="degree" data-val="20%">{%trans "Degree"%}</label>
-      <input type="checkbox" name="under diploma" id="under diploma">
+      <input type="checkbox" name="under diploma" id="under diploma" {% if filters.degree['under diploma']%}checked{%endif%}>
       <label for="under diploma">{%trans "Under diploma"%}</label>
-      <input type="checkbox" name="diploma" id="diploma">
+      <input type="checkbox" name="diploma" id="diploma" {% if filters.degree['diploma']%}checked{%endif%}>
       <label for="diploma">{%trans "Diploma"%}</label>
-      <input type="checkbox" name="2 year college" id="2 year college">
+      <input type="checkbox" name="2 year college" id="2 year college" {% if filters.degree['2 year college']%}checked{%endif%}>
       <label for="2 year college">{%trans "2 year college"%}</label>
-      <input type="checkbox" name="bachelor" id="bachelor">
+      <input type="checkbox" name="bachelor" id="bachelor" {% if filters.degree['bachelor']%}checked{%endif%}>
       <label for="bachelor">{%trans "Bachelor"%}</label>
-      <input type="checkbox" name="master" id="master">
+      <input type="checkbox" name="master" id="master" {% if filters.degree['master']%}checked{%endif%}>
       <label for="master">{%trans "Master"%}</label>
-      <input type="checkbox" name="phd" id="phd">
+      <input type="checkbox" name="phd" id="phd" {% if filters.degree['phd']%}checked{%endif%}>
       <label for="phd">{%trans "PHD"%}</label>
-      <input type="checkbox" name="other" id="other">
+      <input type="checkbox" name="other" id="other" {% if filters.degree['other']%}checked{%endif%}>
       <label for="other">{%trans "Other"%}</label>
      </div>
     </div><!-- /.span8 -->
