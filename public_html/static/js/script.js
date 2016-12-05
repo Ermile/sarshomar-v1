@@ -524,6 +524,20 @@ function drawPercentage(_percent)
 	$('.page-progress b').width(_percent);
 }
 
+function simulateTreeNavigation()
+{
+	$("nav.pagination a").click(function()
+	{
+		Navigate(
+		{
+			data: false,
+			url: $(this).attr('href'),
+			nostate: true,
+		});
+		return false;
+	});
+}
+
 
 // Add
 route(/\@\/add/, function()
@@ -533,6 +547,7 @@ route(/\@\/add/, function()
 	resizableTextarea.call(this);
 	setSortable();
 	detectPercentage();
+
 
 	$(".range-slider").ermile_slider();
 
@@ -628,12 +643,13 @@ route(/\@\/add/, function()
 		var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
 		$('[name="parent_tree_opt"]').val(selectedOpts.get());
 	});
-	if($('#tree').is(':checked'))
-	{
-		console.log('checkd default...');
-		// $('#tree-search').val($('[name="parent_tree_id"]').val());
-		// treeSearch();
-	}
+
+	// if($('#tree').is(':checked'))
+	// {
+	// 	// console.log('checkd default...');
+	// 	// $('#tree-search').val($('[name="parent_tree_id"]').val());
+	// 	// treeSearch();
+	// }
 
 
 	// --------------------------------------------------------------------------------- Complete profile
@@ -674,6 +690,7 @@ route(/\@\/add/, function()
 {
 	console.log('once........');
 	fixSlideJumping();
+	simulateTreeNavigation();
 });
 
 
