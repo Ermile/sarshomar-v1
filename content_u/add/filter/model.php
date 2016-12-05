@@ -11,9 +11,7 @@ class model extends \content_u\home\model
 	*/
 	function get_filter($_args)
 	{
-		// list of adds filter
-		$filter_list = \lib\db\filters::get_exist_filter();
-		return $filter_list;
+
 	}
 
 
@@ -26,7 +24,6 @@ class model extends \content_u\home\model
 	 */
 	public function post_filter($_args)
 	{
-
 
 		// get the poll or survey id
 		$poll_id = $this->check_poll_url($_args);
@@ -66,8 +63,10 @@ class model extends \content_u\home\model
 				$filters[$value[1]][] = str_replace('_', ' ', $filter);
 			}
 		}
+
 		// remove full insert filter
-		//
+		// for example the user set male and female filter
+		// we remove the gender filter
 		$support_filter = \lib\db\filters::support_filter();
 		foreach ($filters as $key => $value)
 		{
@@ -83,12 +82,18 @@ class model extends \content_u\home\model
 		// get the count user by this filter
 		$count = \lib\db\filters::count_user($filters);
 
+		// the min member
+		$min_member = 1;
+
 		// check sarshomar knowledge add permission to show error count member
-		if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < 1)
+		if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < $min_member)
 		{
 			debug::error(T_(":max users found remove some filter",["max" => $count]));
 			return false;
 		}
+
+		// remove exist filter saved of this poll
+		\lib\db\postfilters::remove($poll_id);
 
 		// ready to insert filters in options table
 		$filter_ids = \lib\db\filters::insert($filters);
@@ -102,7 +107,7 @@ class model extends \content_u\home\model
 		if(\lib\debug::$status)
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
-			\lib\debug::true(T_("add filter of poll Success"));
+			\lib\debug::true(T_("Add filter of poll Success"));
 			$this->redirector()->set_url(\lib\define::get_language(). "/@/add/$short_url/publish");
 		}
 		else

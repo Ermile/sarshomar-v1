@@ -34,7 +34,7 @@ class postfilters
 
 		$query =
 		"
-			INSERT INTO
+			INSERT IGNORE INTO
 				postfilters
 			(post_id, filter_id)
 			VALUES
@@ -52,10 +52,45 @@ class postfilters
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function remove($_poll_id, $_filter_id)
+	public static function remove($_poll_id, $_filter_id = null)
 	{
-		$query = " DELETE FROM	postfilters	WHERE post_id = $_poll_id AND filter_id = $_filter_id";
+		$filter_id = null;
+		if($_filter_id !== null)
+		{
+			$filter_id = " AND filter_id = $_filter_id ";
+		}
+		$query = " DELETE FROM	postfilters	WHERE post_id = $_poll_id $filter_id";
 		return \lib\db::query($query);
+	}
+
+
+	/**
+	 * get the postfilters
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function get($_poll_id, $_join_by_filters = true)
+	{
+		if($_join_by_filters)
+		{
+			$query =
+			"
+				SELECT
+					filters.*
+				FROM
+					postfilters
+				INNER JOIN filters ON filters.id = postfilters.filter_id
+				WHERE
+					postfilters.post_id = $_poll_id
+			";
+		}
+		else
+		{
+			$query = "SELECT * FROM postfilters WHERE post_id = $_poll_id";
+		}
+		return \lib\db::get($query);
 	}
 }
 ?>

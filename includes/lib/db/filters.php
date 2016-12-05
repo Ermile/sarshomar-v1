@@ -148,6 +148,7 @@ class filters
 		$result = \lib\db::query($query);
 		// return the insert id
 		$last_insert_id =  \lib\db::insert_id();
+
 		if($count_inserted_record === 1)
 		{
 			return $last_insert_id;
@@ -156,7 +157,7 @@ class filters
 		{
 			for ($i = 1; $i <= $count_inserted_record; $i++)
 			{
-				array_push($exits_record_id, $last_insert_id--);
+				array_push($exits_record_id, $last_insert_id++);
 			}
 			return array_unique($exits_record_id);
 		}
@@ -201,6 +202,12 @@ class filters
 				$where[] = " `$value` IS NULL ";
 			}
 		}
+
+		if(empty($where))
+		{
+			return null;
+		}
+
 		$where = join($where, " AND ");
 
 		// check need field and make get field
@@ -295,7 +302,6 @@ class filters
 		$result = \lib\db::get($query, $get_field, true);
 		return $result;
 	}
-
 
 
 	/**
@@ -403,28 +409,36 @@ class filters
 	 */
 	public static function get_poll_filter($_poll_id)
 	{
-		// muse be edit by new syntax of filters
-		return false;
-
-		// $query =
-		// "
-		// 	SELECT
-		// 		options.option_key 		AS 'key',
-		// 		options.option_value 	AS 'value'
-		// 	FROM
-		// 		options
-		// 	WHERE
-		// 		options.post_id = $_poll_id AND
-		// 		options.user_id IS NULL AND
-		// 		options.option_cat LIKE 'poll_$_poll_id' AND
-		// 		options.option_key NOT IN ('stat') AND
-		// 		options.option_key NOT LIKE 'opt_%' AND
-		// 		options.option_key NOT LIKE 'answer_%' AND
-		// 		options.option_key NOT LIKE 'tree_%'
-		// 		-- filters::get_poll_filter()
-		// ";
-		// $result = \lib\db::get($query);
-		// return $result;
+		$poll_filter = [];
+		$result = \lib\db\postfilters::get($_poll_id);
+		foreach ($result as $key => $value)
+		{
+			if(is_array($value))
+			{
+				foreach ($value as $filter => $v)
+				{
+					if(!self::support_filter($filter))
+					{
+						continue;
+					}
+					if($v !== null)
+					{
+						if(isset($poll_filter[$filter]) && is_array($poll_filter[$filter]))
+						{
+							if(!in_array($v, $poll_filter[$filter]))
+							{
+								array_push($poll_filter[$filter], $v);
+							}
+						}
+						else
+						{
+							$poll_filter[$filter] = [$v];
+						}
+					}
+				}
+			}
+		}
+		return $poll_filter;
 	}
 
 
@@ -504,16 +518,12 @@ class filters
 		{
 			$where = self::extract_filter($_filters, false);
 		}
+		if(!$where)
+		{
+			return null;
+		}
 
-		$query =
-		"
-			SELECT
-				id
-			FROM
-				filters
-			WHERE
-				$where
-		";
+		$query = "SELECT id	FROM filters WHERE $where ";
 		return \lib\db::get($query, 'id');
 	}
 
@@ -539,22 +549,19 @@ class filters
 		// 	gender  => [male,  female],
 		// 	marital => [single, marid]
 		//]
-		//=======================================
-		//
-		//=======================================
 		//---------------------------------------
 		//[
-		// 	0 => [gender => male,   marital => single,  degree => diploma, range => NULL, age => NULL, ... ],
-		// 	1 => [gender => female, marital => single,  degree => diploma, range => NULL, age => NULL, ... ],
-		// 	2 => [gender => male,   marital => marid,   degree => diploma, range => NULL, age => NULL, ... ],
-		// 	3 => [gender => female, marital => marid,   degree => diploma, range => NULL, age => NULL, ... ]
+		// 	0 => [gender => male, marital => single, degree => diploma, range => NULL, age => NULL, ... ],
+		// 	1 => [gender => female, marital => single,degree => diploma, range => NULL, age => NULL, ... ],
+		// 	2 => [gender => male,   marital => marid, degree => diploma, range => NULL, age => NULL, ... ],
+		// 	3 => [gender => female, marital => marid, degree => diploma, range => NULL, age => NULL, ... ]
 		//]
 		//---------------------------------------
 		// SELECT// FROM filters WHERE
-		// (gender = male   AND marital = single AND degree IS NULL) OR
-		// (gender = female AND marital = single AND degree IS NULL) OR
-		// (gender = male   AND marital = marid  AND degree IS NULL) OR
-		// (gender = female AND marital = marid  AND degree IS NULL)
+		// (gender = male   AND marital = single AND degree = diploma AND age IS NULL) OR
+		// (gender = female AND marital = single AND degree = diploma AND age IS NULL) OR
+		// (gender = male   AND marital = marid  AND degree = diploma AND age IS NULL) OR
+		// (gender = female AND marital = marid  AND degree = diploma AND age IS NULL)
 		//---------------------------------------
 		//
 		$where        = [];
