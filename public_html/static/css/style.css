@@ -958,10 +958,12 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 /************************************************************** dropdown */
 .element.dropdown{flex-wrap:wrap;}
-.element.dropdown .dropdown-wrapper{-webkit-flex:1;flex:1;background-color:#efefef;padding:0 10px;}
+.element.dropdown .dropdown-wrapper{-webkit-flex:1;flex:1;background-color:#efefef;padding:0 10px;display:flex;flex-wrap:wrap;}
 .element.dropdown .dropdown-wrapper .input:focus{background-color:#EFEFEF;color:#777;}
-.element.dropdown .dropdown-wrapper>a{background-color:#e7e7e7;color:#777;padding:3px 15px;border-radius:3px;position:relative;}
-.element.dropdown .dropdown-wrapper>a i{position:absolute;top:2px;right:2px;}
+.element.dropdown .dropdown-wrapper>a{background-color:#e7e7e7;color:#777;padding:2px 15px;border-radius:3px;position:relative;margin:3px;line-height:25px;transition:.3s;}
+.element.dropdown .dropdown-wrapper>a:hover{}
+.element.dropdown .dropdown-wrapper>a i{position:absolute;top:2px;right:2px;opacity:.5;transition:.3s;}
+.element.dropdown .dropdown-wrapper>a i:hover{opacity:1;}
 
 /************************************************************** other */
 div[data-parent]{display:none}
