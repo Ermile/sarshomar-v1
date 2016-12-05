@@ -605,7 +605,7 @@ route(/\@\/add/, function()
 	});
 
 	// if user click on title of each question
-	$(this).on('click', '.tree-result-list > li > div', function(event)
+	$(this).on('change', '.tree-result-list > li > [name="parent_tree_id"]', function(event)
 	{
 		var selectedItem = $(this).parents('li').children('.options');
 		if(selectedItem.is(':visible'))
@@ -617,9 +617,9 @@ route(/\@\/add/, function()
 		{
 			$('.tree-result-list > li .options').slideUp();
 			selectedItem.slideDown();
-			$('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
-			$('.tree-result-list > li .active').removeClass('active');
-			$(this).addClass('active');
+			// $('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
+			$('.tree-result-list > li.active').removeClass('active');
+			$(this).parents('li').addClass('active');
 		}
 	});
 	// if user change selection of each item

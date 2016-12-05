@@ -418,13 +418,13 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .tree-fields select{display:block;width:100%;background-color:#EBEBEB;color:#00667A;border:none;height:30px;line-height:30px;}
 .tree-fields select option{height:30px;line-height:30px;}
 .tree-result-list{background-color:#F7F7F7;padding:2em;}
-.tree-result-list>li>div{color:#00667a;padding:.5em;cursor:pointer;}
+.tree-result-list>li>label{color:#00667a;padding:.5em;cursor:pointer;display:block}
 .tree-result-list .options{margin-top:5px;display:none}
 .tree-result-list .options li{display:flex;margin-bottom:5px;}
 .tree-result-list .options li .checkbox{margin-top:5px;}
 .tree-result-list .options li>label{min-height:35px;line-height:35px;margin-left:5px;padding:0 20px;color:#00667A;cursor:pointer;width:100%;-webkit-flex:1;flex:1;}
-.tree-result-list .options li>label:hover,.tree-result-list>li>div:hover,.tree-result-list>li>div.active{background-color:#0a5260;color:#F4F4F4;}
-
+.tree-result-list .options li>label:hover,.tree-result-list>li>label:hover,.tree-result-list>li.active>label{background-color:#0a5260;color:#F4F4F4;}
+input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 /************************************************************** poll page */
 /* poll box */
@@ -780,29 +780,18 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 
 /************************************************************** pagination */
 .pagination-container{text-align:center;margin-top:20px;}
-.pagination{text-align:center;display:inline-block;position:relative;}
-.pagination a{display: inline-block;padding:.8em 1.2em;background-color:#e7e7e7;color:#00667A;float:left;transition:.3s;font-weight:600;}
+.pagination{text-align:center;display:inline-block;position:relative;border-radius:3px;overflow:hidden;}
+.pagination a{display: inline-block;padding:1em 1.2em;background-color:#efefef;color:#00667A;float:left;transition:.3s;font-weight:600;}
 .rtl .pagination a{float:right;}
-.pagination a:hover{background-color:#0a5260;color:#f4f4f4;}
-.pagination span{display: inline-block ;padding: .8em 1.2em;background-color:#e7e7e7;color:#00667A;float:left;transition:.3s;font-weight:600;cursor: default;}
+.pagination span{display: inline-block ;padding:1em 1.2em;background-color:#efefef;color:#00667A;float:left;transition:.3s;font-weight:600;cursor: default;}
 .rtl .pagination span{float:right;}
 .pagination span.current{background-color:#00667a;color:#f4f4f4;}
 .rtl .pagination span.current{float:right;}
-
-.pagination a.prev{padding: 1.65em .95em;}
-.rtl .pagination a.prev{padding-left:.3em;padding-right: 1.3em;}
-.pagination a.prev::after{font-weight: initial;transition:.3s;font-family:'sarshomar';content:'c';top:-2px;bottom:0;margin:auto;left:0;position:absolute;font-size:3.299em;left:-.7em;color:#e7e7e7;}
-.rtl .pagination a.prev::after{font-weight: initial;content:'b';right:-.7em;color:#e7e7e7;left:auto;}
-.pagination a.prev:hover::after{color:#0a5260;}
-.pagination a.prev::before{content:'<';position:absolute;text-align: center;top:.8em;left: 2px;}
-.rtl .pagination a.prev::before{content:'<';position:absolute;text-align: center;top: .65em;left:initial;right:3px;}
-.pagination a.next{padding:1.65em .95em;}
-.rtl .pagination a.next{padding-right:.3em;padding-left:1.3em;}
-.pagination a.next::after{font-weight: initial;transition:.3s;font-family:'sarshomar';content:'b';top:-2px;bottom:0;margin:auto;right:0;position:absolute;font-size:3.299em;right:-.7em;color:#e7e7e7;}
-.rtl .pagination a.next::after{font-weight: initial;content:'c';left:-.7em;color:#e7e7e7;right:auto;}
-.pagination a.next:hover::after{color:#0a5260;}
-.pagination a.next::before{content:'>';position:absolute;text-align: center;top:.8em;}
-.rtl .pagination a.next::before{left:3px;}
+.pagination a.next::before{content:'>';text-align:center;}
+.pagination a.prev::before{content:'<';text-align:center;}
+.pagination a.next, .pagination a.prev{padding:1em 3em;background-color:#e7e7e7}
+.pagination a:hover{background-color:#0a5260;color:#f4f4f4;}
+.pagination a:focus{background-color:#e3a23d;color:#f4f4f4;}
 
 
 /************************************************************** page progress */

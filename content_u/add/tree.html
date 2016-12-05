@@ -1,8 +1,10 @@
 <ul class="tree-result-list" data-xhr="tree">
 {%block search_result%}
 {%for key, value in poll_list%}
-	<li data-id='{{value.id|shortURL('encode')}}'>
-		<div>{{value.title|raw}}</div>
+	<li>
+		<input type="radio" value="{{value.id|shortURL('encode')}}" name="parent_tree_id" id="tree-i{{key}}" class='notshown'>
+		<label for="tree-i{{key}}">{{value.title|raw}}</label>
+
 		<ul class="options">
 {%for i, opt in value.meta.opt%}
 			<li data-id='{{i}}'>
