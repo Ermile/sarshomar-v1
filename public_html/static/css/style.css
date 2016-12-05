@@ -13,11 +13,11 @@ body{background-color:#00667a;}
 .wrapper{width:100%;min-height:60vh;border-right:8px solid transparent;border-left:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;padding:0;position:relative;display:flex;}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:"";}
 .wrapper::after,.box::after,header::after{clear:both;}
-.wrapper>aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px;}
-.wrapper>.main{width:100%;}
+.wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px;}
+.wrapper .main{width:100%;}
 .wrapper .box{padding:0 15px;}
-#homepage .wrapper>.main>.box{padding:0 50px;}
-.wrapper>.main.pad,.wrapper>.main>.box.pad{padding-top:20px;}
+#homepage .wrapper .main .box{padding:0 50px;}
+.wrapper .main.pad,.wrapper .main .box.pad{padding-top:20px;}
 
 
 /************************************************************** aside */
@@ -853,8 +853,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 .btn.secondary{background-color:#007A03;color:#F4F4F4;}
 .btn.secondary::before,.secondary.btn::after{color:#007A03;}
-.btn.secondary:hover,.btn.secondary:focus{background-color:red;}
-.btn.secondary:hover::before,.btn.secondary:hover::after,.btn.secondary:focus::before,.btn.secondary:focus::after{color:red;}
+.btn.secondary:hover,.btn.secondary:focus{background-color:#036705;}
+.btn.secondary:hover::before,.btn.secondary:hover::after,.btn.secondary:focus::before,.btn.secondary:focus::after{color:#036705;}
 
 /* btn in pages */
 .btn-container.margin-top{margin-top:3em}
