@@ -7,30 +7,65 @@
 
 {%block content%}
 <div class="main pad box">
- {%include template.progress%}
- <div class="row auto">
-  <div class="span8 offset2">
-   {%if perm.sarshomar_knowledge.admin%}
-   <div class="element select no-pad">
-    <label class="title large" for="category">{%trans "Category"%}</label>
-    <select class="input" name="category" id="category">
-     {%for key, value in cat%}
-     <option value="{{value.id}}">{{value.term_title|raw}}</option>
-     {%endfor%}
-    </select>
-   </div>
-   {%endif%}
-   <div class="element dropdown no-pad">
-    <label class="title large" for="search">{%trans "Title"%}</label>
-    <div class="dropdown-wrapper">
-      <input type="hidden" name="">
-      <a href="#">Choice 1<i class="fa fa-times"></i></a>
-      <a href="#">Choice 2<i class="fa fa-times"></i></a>
-      <a href="#">Choice 3<i class="fa fa-times"></i></a>
-      <input class="input dropdown" name="search" id="search">
+ <form method="post">
+  {%include template.progress%}
+  <div class="row auto">
+   <div class="span8 offset2">
+    {%if perm.sarshomar_knowledge.admin%}
+    <div class="element select no-pad">
+     <label class="title large" for="category">{%trans "Category"%}</label>
+     <select class="input" name="category" id="category">
+      {%for key, value in cat%}
+      <option value="{{value.id}}">{{value.term_title|raw}}</option>
+      {%endfor%}
+     </select>
     </div>
+    {%endif%}
+    
+    <div class="element dropdown no-pad">
+     <label class="title large" for="article">{%trans "Article"%}</label>
+     <div class="dropdown-wrapper">
+       <input type="hidden" name="">
+       <a href="#">Choice 1<i class="fa fa-times"></i></a>
+       <a href="#">Choice 2<i class="fa fa-times"></i></a>
+       <a href="#">Choice 3<i class="fa fa-times"></i></a>
+       <input class="input dropdown" name="article" id="article">
+       <div class="dropdown-box">
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+       </div>
+     </div>
+    </div>
+
+    <div class="element dropdown no-pad">
+     <label class="title large" for="tags">{%trans "Tags"%}</label>
+     <div class="dropdown-wrapper">
+       <input type="hidden" name="">
+       <a href="#">Choice 1<i class="fa fa-times"></i></a>
+       <a href="#">Choice 2<i class="fa fa-times"></i></a>
+       <a href="#">Choice 3<i class="fa fa-times"></i></a>
+       <input class="input dropdown" name="tags" id="tags">
+       <div class="dropdown-box">
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+       </div>
+     </div>
+    </div>
+
+    <div class="element no-pad ltr">
+     <label class="title large" for="short_url">{%trans "Short URL"%}</label>
+     <input class="input" type="text" name="short_url" id="short_url">
+    </div>
+   </div><!-- /.span8 -->
+  </div><!-- /.row -->
+  
+  <div class="row">
+   <div class="span6 btn-container">
+    <button class="btn" type="submit">{%trans "Publish"%}</button>
    </div>
-  </div>
- </div>
+  </div><!-- /.row -->
+ </form>
 </div>
 {%endblock%}
