@@ -11,7 +11,13 @@ class view extends \content_u\home\view
 	 */
 	function view_filter($_args)
 	{
-
+		$this->data->step =
+		[
+			'current' => 'filter',
+			'add'     => true,
+			'filter'  => true,
+			'publish' => false
+		];
 		$this->include->fontawesome = true;
 
 		// get poll_id || suervey_id from url

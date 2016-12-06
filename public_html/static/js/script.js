@@ -379,6 +379,8 @@ function deleteQuestionOpts(_this)
 			$(this).remove();
 			// rearrange question opts
 			rearrangeQuestionOpts();
+			// recalc percentage of progress bar
+			detectPercentage();
 		});
 	}
 }
@@ -557,35 +559,49 @@ function completeProfileRevert()
  * detect percentage of current state
  * @return {[type]} [description]
  */
-function detectPercentage()
+function detectPercentage(_submit)
 {
 	var percentage = 0;
-	switch ($('body').attr('id'))
+	// if press submit then plus 10 percent
+	// based on each type of page
+	switch ($('.page-progress').attr('data-current'))
 	{
 		case 'add':
 		case 'add_tree':
 			if($('#title').val())
 			{
-				percentage += 20;
+				percentage += 15;
 			}
-			var optPercent = countQuestionOpts(true) * 15;
+			var optCount = countQuestionOpts()-1;
+			optCount     = optCount<=2? 2: optCount;
+			console.log(countQuestionOpts());
+			console.log(countQuestionOpts(true));
+			var optPercent = countQuestionOpts(true) * (30/optCount);
 			if(optPercent > 30)
 			{
 				optPercent = 30;
 			}
 			percentage += optPercent;
+			if(_submit)
+			{
+				percentage += 10;
+			}
 			break;
 
 		case 'filter':
-			percentage = 70;
+			percentage = 50;
+			if(_submit)
+			{
+				percentage += 50;
+			}
 			break;
 
 		case 'publish':
-			percentage = 90;
+			percentage = 100;
 			break;
 	}
 	// call draw func
-	drawPercentage(percentage +'%');
+	drawPercentage(percentage, '%');
 }
 
 
@@ -593,14 +609,50 @@ function detectPercentage()
  * draw percentage of progress bar
  * @return {[type]} [description]
  */
-function drawPercentage(_percent)
+function drawPercentage(_percent, _axis)
 {
+	if($('.page-progress').attr('fix'))
+	{
+		return;
+	}
+	if(_percent < 0 || _percent > 100)
+	{
+		return false;
+	}
+	var currentStep = $('.page-progress').attr('data-current');
+
 	if(!$('.page-progress b').length)
 	{
 		$('.page-progress').append('<b></b>');
 	}
-
-	$('.page-progress b').width(_percent);
+	$('.page-progress b').width(_percent+_axis);
+	// check chekcbox of this step
+	if(currentStep == 'add')
+	{
+		if(_percent >= 50)
+		{
+			$('.page-progress [name="step-add"]').prop('checked', true);
+		}
+		else
+		{
+			$('.page-progress [name="step-add"]').prop('checked', false);
+		}
+	}
+	else if(currentStep == 'filter')
+	{
+		if(_percent >= 90)
+		{
+			$('.page-progress [name="step-filter"]').prop('checked', true);
+		}
+		else
+		{
+			$('.page-progress [name="step-filter"]').prop('checked', false);
+		}
+	}
+	else if(currentStep == 'publish')
+	{
+		// on some condition check checkbox after ending
+	}
 }
 
 
@@ -767,6 +819,7 @@ route(/\@\/add/, function()
 
 	$(this).on('click','button', function()
 	{
+		detectPercentage(true);
 		$('#submit-form').attr("value", $(this).attr("send-name"));
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});

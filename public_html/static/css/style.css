@@ -385,7 +385,7 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
 .checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
 .checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a;}
-
+.checkbox.active .check-box{border-color:#00667a;}
 
 /************************************************************** radio */
 @keyframes explode{0%{opacity:0;transform:scale(1.5);}60%{opacity:1;transform:scale(0.75);}100%{opacity:1;transform:scale(1);}}
@@ -797,6 +797,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 /************************************************************** page progress */
 .page-progress{width:300px;margin:0 auto 4em;display:flex;justify-content:space-between;position:relative;}
 .page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#D8D8D8;}
+.page-progress a{display:flex;}
 .page-progress b{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background-color:#00667A;transition:2s;}
 .rtl .page-progress b{left:auto;right:0;}
 .page-progress span::before{content:attr(data-label);color:#D8D8D8;font-weight:bold;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em;}

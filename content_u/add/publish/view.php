@@ -12,6 +12,13 @@ class view extends \content_u\home\view
 	 */
 	function view_publish($_args)
 	{
+		$this->data->step =
+		[
+			'current' => 'publish',
+			'add'     => true,
+			'filter'  => true,
+			'publish' => true
+		];
 		$this->include->fontawesome = true;
 
 		// set the short url to data

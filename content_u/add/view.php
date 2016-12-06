@@ -14,6 +14,13 @@ class view extends \content_u\home\view
 		$this->data->template['add']['layout'] = 'content_u/add/layout.html';
 		$this->data->template['add']['tree']   = 'content_u/add/tree.html';
 
+		$this->data->step =
+		[
+			'current' => 'add',
+			'add'     => true,
+			'filter'  => false,
+			'publish' => false
+		];
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
 		{
