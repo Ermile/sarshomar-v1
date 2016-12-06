@@ -11,17 +11,32 @@
       <script type="text/javascript">alert('{%trans "YOU CAN CHANGE THE STATUS OF THIS POLL!"%}');</script>
      {%endif%}
      <h2>{{post.post_title}}</h2>
-     {%include template.social%}
+
+     <div class="row auto" id="toolbox">
+      <div class="span6" id="interaction">
+       <input type="checkbox" name="star" id="star">
+       <label for="star" class="fa fa-2x fa-star"></label>
+       <input type="checkbox" name="heart" id="heart">
+       <label for="heart" class="fa fa-2x fa-heart"></label>
+      </div>
+      <div class="span6">{%include template.social%}</div>
+     </div>
+
      {%if profile%}
       <script type="text/javascript">alert('{%trans "This question will complete your profile"%}')</script>
      {%endif%}
-     <p>{{post.post_content}}</p>
+
+     {%if post.post_content%}<p>{{post.post_content}}</p>{%endif%}
+
      {%if article%}
       <div class="read-more">
        <span>{%trans "Read More"%}</span>
        <a href="{{article.url}}"><span data-hover="{{article.title}}">{{article.title}}</span></a>
       </div>
      {%endif%}
+
+     <div class="poll-guide">{%trans "You can select just two options."%}</div>
+
      {%if post.post_meta.opt%}{#check post meta exist#}
      {%if multiple_choice%}
       <ul>
@@ -59,7 +74,7 @@
       {%endif%}
       </ul>
      {%endif%}{#multiple_choice check end#}
-     <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
+     <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}' class="skip">
      {%endif%}
     </section>
    </div><!-- /.row -->
@@ -85,8 +100,20 @@
   </div><!-- /.row -->
   {%endif%}
 
-  <div class="row" id="poll-extra">
+  <div class="row auto" id="poll-extra">
    <h2 class="special-heading">{%trans "Description"%}</h2>
+
+   <div class="span4" id="poll-similar">
+    {%if similar_post()%}
+    <div class="title">{%trans "Similar Questions"%}</div>
+    <ul>
+    {%for key, value in similar_post()%}
+     <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+    {%endfor%}
+    </ul>
+    {%endif%}
+   </div><!-- /.poll-similar -->
+
    <div class="span4" id="poll-info">
     {%if date_start or date_end%}
     <div class="title">{%trans "Poll Period"%}</div>
@@ -105,22 +132,13 @@
     <div class="tags">{{tags({"html":true})}}</div>
     {%endif%}
    </div>
+
    <div class="span4" id="poll-filters">
     {%if filters%}
     <div class="title">{%trans "Society Statistics"%}</div>
     {%for key, value in filters%}
     <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>
     {%endfor%}
-    {%endif%}
-   </div>
-   <div class="span4" id="poll-similar">
-    {%if similar_post()%}
-    <div class="title">{%trans "Similar Questions"%}</div>
-    <ul>
-    {%for key, value in similar_post()%}
-     <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
-    {%endfor%}
-    </ul>
     {%endif%}
    </div>
   </div><!-- /.row -->
@@ -167,6 +185,34 @@
       <button class="save-comment" type="submit" name="comment" value="comment">{%trans "Send"%}</button>
      </form>
     </div>
+
+
+
+    <div class="comment">
+     <div class="comment-header">
+      <div class="author">sahelekaj</div>
+      <div class="stars">
+       <span class="fa fa-star star active" aria-hidden="true"></span>
+       <span class="fa fa-star star active" aria-hidden="true"></span>
+       <span class="fa fa-star star active" aria-hidden="true"></span>
+       <span class="fa fa-star star active" aria-hidden="true"></span>
+       <span class="fa fa-star star active" aria-hidden="true"></span>
+      </div>
+      <div class="date">1395/02/18</div>
+     </div>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     <div class="comment-footer">
+      <span class="continue">{%trans "Continue"%}</span>
+     </div>
+    </div>
+
+
+
     {% for key, value in comments()%}
     <div class="comment">
      <div class="score">
