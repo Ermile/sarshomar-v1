@@ -4,9 +4,15 @@ var TEMP = null;
  */
 function checkInputChange()
 {
+	// on select and input check inputs
 	$('input, select', this).change(function()
 	{
-	checkInput(this, false);
+		checkInput(this, false);
+	});
+	// add data-response-realtime to run realtime on input type
+	$('input[data-response-realtime]', this).keyup(function()
+	{
+		checkInput(this, false);
 	});
 
 	// // run for the first time
@@ -33,19 +39,19 @@ function checkInput(_this, _firstTime)
 	var elValue;
 	switch (elType)
 	{
-	case 'checkbox':
-		elValue = $(_this).is(":checked");
-		break;
+		case 'checkbox':
+			elValue = $(_this).is(":checked");
+			break;
 
-	case 'radio':
-		elValue = $(_this).val();
-		elID    = elName;
-		break;
+		case 'radio':
+			elValue = $(_this).val();
+			elID    = elName;
+			break;
 
-	case 'text':
-	default:
-		elValue = $(_this).val();
-		break;
+		case 'text':
+		default:
+			elValue = $(_this).val();
+			break;
 	}
 
 	var childrens = $('[data-response*='+ elID +']');
@@ -60,6 +66,7 @@ function checkInput(_this, _firstTime)
 		var classTrue  = $(this).attr('data-response-class');
 		var classFalse = $(this).attr('data-response-class-false');
 		var callFn     = $(this).attr('data-response-call');
+		var repeat     = $(this).attr('data-response-repeat');
 
 		if(!disable && $(this).attr('disabled'))
 		{
@@ -128,6 +135,10 @@ function checkInput(_this, _firstTime)
 						$(this).addClass(classTrue);
 						$(this).removeClass(classFalse);
 					}
+					else if(repeat != undefined)
+					{
+
+					}
 					else
 					{
 						// if condition is true run effect
@@ -159,6 +170,10 @@ function checkInput(_this, _firstTime)
 						$(this).addClass(classFalse);
 						$(this).removeClass(classTrue);
 					}
+					else if(repeat != undefined)
+					{
+
+					}
 					else
 					{
 						// if condition is false run effect
@@ -169,6 +184,25 @@ function checkInput(_this, _firstTime)
 					}
 				}
 				elResult = 'close';
+			}
+		}
+		// if wanna to repeat something
+		if(repeat != undefined)
+		{
+			var parentValue = '';
+			switch(elType)
+			{
+				case 'checkbox':
+					parentValue = $(_this).is(":checked");
+					$(this).prop('checked', parentValue);
+					break;
+
+				case 'radio':
+				case 'text':
+				default:
+					parentValue = $(_this).val();
+					$(this).val(parentValue);
+					break;
 			}
 		}
 		// if want to call
