@@ -31,7 +31,7 @@ class model extends \mvc\model
 			// neet to fix
 			$field  = utility::post("data");
 			$search = utility::post("search");
-			$result = \lib\db\terms::search($search, "users_$field");
+			$result = \lib\db\terms::search($search, ['term_type' => "users_$field"]);
 			return $result;
 		}
 		$user_id = $this->login('id');

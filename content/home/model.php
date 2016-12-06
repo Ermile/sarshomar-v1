@@ -5,6 +5,17 @@ use \lib\debug;
 class model extends \mvc\model
 {
 
+	public function post_terms()
+	{
+		if(\lib\utility::post("type") == 'autocomplete')
+		{
+			$field  = \lib\utility::post("data");
+			$search = \lib\utility::post("search");
+			$result = \lib\db\terms::search($search, ['term_type' => "$field"]);
+			return $result;
+		}
+	}
+
 	/**
 	 * Gets the random.
 	 */

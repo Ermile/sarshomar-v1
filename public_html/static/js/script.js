@@ -849,12 +849,14 @@ route('*', function ()
 		$(this).keyup(function(e)
 		{
 			name = $(this).attr('name');
-			val = $(this).val();
+			val  = $(this).val();
+
 			$(this).ajaxify(
 			{
 				ajax:
 				{
 					method: 'post',
+					url : '/',
 					data:
 					{
 						'type'  : 'autocomplete',
@@ -867,9 +869,9 @@ route('*', function ()
 						data = e.msg.callback;
 						for (a in data)
 						{
-							// console.log(data[a]['term_title']);
-							// console.log(data[a]['term_url']);
-							// console.log(data[a]['term_count']);
+							console.log(data[a]['term_title']);
+							console.log(data[a]['term_url']);
+							console.log(data[a]['term_count']);
 						}
 					}
 				}
