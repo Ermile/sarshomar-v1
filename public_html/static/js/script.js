@@ -54,9 +54,20 @@ function checkInput(_this, _firstTime)
 			break;
 	}
 
-	var childrens = $('[data-response*='+ elID +']');
+	var childrens = $('[data-response*="'+ elID +'"]');
+	// if one of then parents of this element has data-response-group then check for group
+	if($(_this).parents('[data-respnse-group]').length)
+	{
+		$(_this).parents('[data-respnse-group]').each(function(index, el)
+		{
+			var myGroup = $(this).attr('data-respnse-group');
+			childrens = childrens.add('[data-response*="'+ myGroup +'"]');
+		});
+	}
+
 	childrens.each(function()
 	{
+		console.log(this);
 		var effect     = $(this).attr('data-response-effect');
 		var timing     = $(this).attr('data-response-timing');
 		var where      = $(this).attr('data-response-where');
@@ -577,8 +588,6 @@ function detectPercentage(_submit)
 			}
 			var optCount = countQuestionOpts()-1;
 			optCount     = optCount<=2? 2: optCount;
-			console.log(countQuestionOpts());
-			console.log(countQuestionOpts(true));
 			var optPercent = countQuestionOpts(true) * (30/optCount);
 			if(optPercent > 30)
 			{
@@ -678,7 +687,7 @@ function simulateTreeNavigation()
 }
 
 
-// Add
+// ================================================================== @/add
 route(/\@\/add/, function()
 {
 	// declare functions
@@ -828,15 +837,42 @@ route(/\@\/add/, function()
 	});
 }).once(function()
 {
-	console.log('once........ on add');
+	console.log('.....................once run on add');
 	fixSlideJumping();
 	simulateTreeNavigation();
 });
 
 
+function calcFilterPrice()
+{
+	console.log('calculating Price...');
+
+	var min = 2500;
+	var my_random_value = Math.floor(min + (100000 - min) * Math.random());
+	$('.pay-info .price .value').text(my_random_value);
+
+}
+
+// ================================================================== @/add/7pr/filter
 route(/\@\/add\/[\w.]+\/filter/, function()
 {
-	console.log('filter')
+	// if any item of complete profile is selected, then fill item with profile values
+	$(this).on('change', '#rangepersons input[type=hidden]', function()
+	{
+		calcFilterPrice();
+	});
+
+	// on open tree load content to it
+	$(window).on( "response:open", function(_obj, _name, _value)
+	{
+		// console.log($(_obj).attr('data-group'));
+		// console.log($(_obj).attr('data-response-group'));
+		// console.log(_obj);
+		// console.log(_name);
+		// console.log(_value);
+		calcFilterPrice();
+	});
+
 
 });
 
