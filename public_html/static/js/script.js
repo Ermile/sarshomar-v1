@@ -828,9 +828,16 @@ route(/\@\/add/, function()
 	});
 }).once(function()
 {
-	console.log('once........');
+	console.log('once........ on add');
 	fixSlideJumping();
 	simulateTreeNavigation();
+});
+
+
+route(/\@\/add\/[\w.]+\/filter/, function()
+{
+	console.log('filter')
+
 });
 
 
