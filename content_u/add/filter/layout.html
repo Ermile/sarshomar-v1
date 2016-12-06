@@ -1,0 +1,99 @@
+{%extends display.main%}
+
+{%block filter_gender%}
+{% spaceless %}
+	<div class="element switch">
+		<label class="title large badge" for="gender" data-val="20%">{%trans "Gender"%}</label>
+		<input type="checkbox" name="male" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
+		<label for="male">{%trans "Male"%}</label>
+		<input type="checkbox" name="female" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
+		<label for="female">{%trans "Female"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+
+{%block filter_graduation%}
+{% spaceless %}
+	<div class="element switch">
+		<label class="title large badge" for="graduation" data-val="20%">{%trans "Graduation"%}</label>
+		<input type="checkbox" name="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
+		<label for="illiterate">{%trans "Illiterate"%}</label>
+		<input type="checkbox" name="undergraduate" id="undergraduate" {%if filters.graduation.undergraduate%}checked{%endif%}>
+		<label for="undergraduate">{%trans "Undergraduate"%}</label>
+		<input type="checkbox" name="graduate" id="graduate" {%if filters.graduation.graduate%}checked{%endif%}>
+		<label for="graduate">{%trans "Graduate"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block filter_marrital%}
+{% spaceless %}
+	<div class="element switch">
+		<label class="title large badge" for="marrital" data-val="20%">{%trans "Marrital"%}</label>
+		<input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
+		<label for="single">{%trans "Single"%}</label>
+		<input type="checkbox" name="marriade" value="marriade" id="marriade" {%if filters.marrital.marriade%}checked{%endif%}>
+		<label for="marriade">{%trans "Marriade"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block filter_employment%}
+{% spaceless %}
+	<div class="element switch">
+		<label class="title large badge" for="employmentstatus" data-val="20%">{%trans "Employment"%}</label>
+		<input type="checkbox" name="employee" id="employee" {% if filters.employmentstatus.employee%}checked{%endif%}>
+		<label for="employee">{%trans "Employee"%}</label>
+		<input type="checkbox" name="unemployee" id="unemployee" {% if filters.employmentstatus.unemployee%}checked{%endif%}>
+		<label for="unemployee">{%trans "Unemployee"%}</label>
+		<input type="checkbox" name="retired" id="retired" {% if filters.employmentstatus.retired%}checked{%endif%}>
+		<label for="retired">{%trans "Retired"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block filter_degree%}
+{% spaceless %}
+	<div class="element switch">
+		<label class="title large badge" for="degree" data-val="20%">{%trans "Degree"%}</label>
+		<input type="checkbox" name="under diploma" id="under diploma" {% if filters.degree['under diploma']%}checked{%endif%}>
+		<label for="under diploma">{%trans "Under diploma"%}</label>
+		<input type="checkbox" name="diploma" id="diploma" {% if filters.degree['diploma']%}checked{%endif%}>
+		<label for="diploma">{%trans "Diploma"%}</label>
+		<input type="checkbox" name="2 year college" id="2 year college" {% if filters.degree['2 year college']%}checked{%endif%}>
+		<label for="2 year college">{%trans "2 year college"%}</label>
+		<input type="checkbox" name="bachelor" id="bachelor" {% if filters.degree['bachelor']%}checked{%endif%}>
+		<label for="bachelor">{%trans "Bachelor"%}</label>
+		<input type="checkbox" name="master" id="master" {% if filters.degree['master']%}checked{%endif%}>
+		<label for="master">{%trans "Master"%}</label>
+		<input type="checkbox" name="phd" id="phd" {% if filters.degree['phd']%}checked{%endif%}>
+		<label for="phd">{%trans "PHD"%}</label>
+		<input type="checkbox" name="other" id="other" {% if filters.degree['other']%}checked{%endif%}>
+		<label for="other">{%trans "Other"%}</label>
+	</div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block filter_price%}
+{% spaceless %}
+	<div class="pay-info">
+		<div class="title">
+			<div class="price"><span class="value">1,548,239</span> <span class="unit">Rials</span></div>
+			<div class="free">{%trans "It's free"%}</div>
+			<div class="cash-container">
+				<div class="cash-title">{%trans "Your Cash"%}</div>
+				<div class="cash"><span class="value">154,000</span> <span class="unit">{%trans "Tomans"%}</span></div>
+			</div>
+		</div>
+		<div>
+			<div class="range-slider" id='rangepersons' data-type="vertical" data-min='10' data-unit='180' data-infinity="max"></div>
+		</div>
+	</div>
+{% endspaceless %}
+{%endblock%}

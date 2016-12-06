@@ -11,6 +11,9 @@ class view extends \content_u\home\view
 	 */
 	function view_filter($_args)
 	{
+		// add all template of question into new file
+		$this->data->template['filter']['layout'] = 'content_u/add/filter/layout.html';
+
 		$this->data->step =
 		[
 			'current'      => 'filter',
