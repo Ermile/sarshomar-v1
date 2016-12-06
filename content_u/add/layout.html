@@ -218,7 +218,7 @@
 
 {%block feature_timing%}
 {% spaceless %}
-	<div class="range-slider timing-range" data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"></div>
+	<div class="range-slider timing-range" id='rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -241,7 +241,7 @@
 	<div class="panel-text">
 		<input type="checkbox" name="desc-show" id="desc-show">
 		<label for="desc-show">
-			<i class="fa fa-minus" data-response='desc-show' data-response-class='fa-plus' data-response-class-false='fa-minus' data-response-call='test'></i><span>{%trans "Description"%}</span>
+			<i class="fa fa-minus" data-response='desc-show' data-response-class='fa-plus' data-response-class-false='fa-minus'></i><span>{%trans "Description"%}</span>
 		</label>
 	</div>
 	<textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide'></textarea>
