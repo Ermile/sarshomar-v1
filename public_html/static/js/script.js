@@ -51,12 +51,16 @@ function checkInput(_this, _firstTime)
 	var childrens = $('[data-response*='+ elID +']');
 	childrens.each(function()
 	{
-		var effect   = $(this).attr('data-response-effect');
-		var timing   = $(this).attr('data-response-timing');
-		var where    = $(this).attr('data-response-where');
-		var whereNot = $(this).attr('data-response-where-not');
-		var toggle   = $(this).attr('data-response-toggle');
-		var disable  = $(this).attr('data-response-disable');
+		var effect     = $(this).attr('data-response-effect');
+		var timing     = $(this).attr('data-response-timing');
+		var where      = $(this).attr('data-response-where');
+		var whereNot   = $(this).attr('data-response-where-not');
+		var toggle     = $(this).attr('data-response-toggle');
+		var disable    = $(this).attr('data-response-disable');
+		var classTrue  = $(this).attr('data-response-class');
+		var classFalse = $(this).attr('data-response-class-false');
+		var callFn     = $(this).attr('data-response-call');
+
 		if(!disable && $(this).attr('disabled'))
 		{
 			disable = $(this).attr('disabled');
@@ -118,9 +122,18 @@ function checkInput(_this, _firstTime)
 				}
 				else
 				{
-					// if condition is true
-					$(this).attr('data-response-hide', null);
-					$(this)[effect['open']](timing);
+					// if have class name toggle class name
+					if(classTrue !== undefined)
+					{
+						$(this).addClass(classTrue);
+						$(this).removeClass(classFalse);
+					}
+					else
+					{
+						// if condition is true run effect
+						$(this).attr('data-response-hide', null);
+						$(this)[effect['open']](timing);
+					}
 				}
 				if($(this).find('[data-response-focus]').length)
 				{
@@ -140,14 +153,41 @@ function checkInput(_this, _firstTime)
 				}
 				else
 				{
-					// if condition is false
-					$(this)[effect['close']](timing, function()
+					// if have class name toggle class name
+					if(classTrue !== undefined)
 					{
-						$(this).attr('data-response-hide', '');
-					});
+						$(this).addClass(classFalse);
+						$(this).removeClass(classTrue);
+					}
+					else
+					{
+						// if condition is false run effect
+						$(this)[effect['close']](timing, function()
+						{
+							$(this).attr('data-response-hide', '');
+						});
+					}
 				}
 				elResult = 'close';
 			}
+		}
+		// if want to call
+		if(callFn)
+		{
+			// true means open and false means close
+			if(elResult == true)
+			{
+				elResult = true;
+			}
+			else
+			{
+				elResult = false;
+			}
+			// call function with 3 paramenter
+			// first is status
+			// second is current el
+			// third is parent el
+			window[callFn](elResult, $(this), $(_this));
 		}
 	});
 

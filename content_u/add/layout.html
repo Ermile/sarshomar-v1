@@ -226,12 +226,12 @@
 {%block feature_summary%}
 {% spaceless %}
 	<div class="panel-text">
-		<input type="checkbox" name="" id="zyzy">
-		<label for="zyzy">
-			<i class="fa fa-plus"></i><span>{%trans "Summary"%}</span>
+		<input type="checkbox" name="summary-show" id="summary-show">
+		<label for="summary-show">
+			<i class="fa fa-minus" data-response='summary-show' data-response-class='fa-plus' data-response-class-false='fa-minus'></i><span>{%trans "Summary"%}</span>
 		</label>
 	</div>
-	<textarea data-response="zyzy" data-response-hide data-response-effect='slide'></textarea>
+	<textarea name='summary' value='' data-response="summary-show" data-response-hide data-response-effect='slide'></textarea>
 {% endspaceless %}
 {%endblock%}
 
@@ -239,12 +239,12 @@
 {%block feature_content%}
 {% spaceless %}
 	<div class="panel-text">
-		<input type="checkbox" name="xyxy" id="xyxy">
-		<label for="xyxy">
-			<i class="fa fa-plus"></i><span>{%trans "Description"%}</span>
+		<input type="checkbox" name="desc-show" id="desc-show">
+		<label for="desc-show">
+			<i class="fa fa-minus" data-response='desc-show' data-response-class='fa-plus' data-response-class-false='fa-minus' data-response-call='test'></i><span>{%trans "Description"%}</span>
 		</label>
 	</div>
-	<textarea data-response="xyxy" data-response-hide data-response-effect='slide'></textarea>
+	<textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide'></textarea>
 {% endspaceless %}
 {%endblock%}
 
