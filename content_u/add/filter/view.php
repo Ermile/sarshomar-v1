@@ -13,10 +13,13 @@ class view extends \content_u\home\view
 	{
 		$this->data->step =
 		[
-			'current' => 'filter',
-			'add'     => true,
-			'filter'  => true,
-			'publish' => false
+			'current'      => 'filter',
+			'add'          => true,
+			'filter'       => true,
+			'publish'      => false,
+			'link_add'     => 'add...',
+			'link_filter'  => 'filter....',
+			'link_publish' => 'publish.....'
 		];
 		$this->include->fontawesome = true;
 

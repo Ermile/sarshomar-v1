@@ -19,7 +19,10 @@ class view extends \content_u\home\view
 			'current' => 'add',
 			'add'     => true,
 			'filter'  => false,
-			'publish' => false
+			'publish' => false,
+			'link_add'     => 'add...',
+			'link_filter'  => 'filter....',
+			'link_publish' => 'publish.....'
 		];
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))

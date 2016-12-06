@@ -17,7 +17,10 @@ class view extends \content_u\home\view
 			'current' => 'publish',
 			'add'     => true,
 			'filter'  => true,
-			'publish' => true
+			'publish' => true,
+			'link_add'     => 'add...',
+			'link_filter'  => 'filter....',
+			'link_publish' => 'publish.....'
 		];
 		$this->include->fontawesome = true;
 
