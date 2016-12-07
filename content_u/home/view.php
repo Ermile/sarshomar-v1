@@ -74,8 +74,9 @@ class view extends \mvc\view
 			'sarshomar_poll'     => ($sarshomar_poll) ? $sarshomar_poll : 0
 		];
 
-		foreach ($dashboard_data as $key => $value) {
-			$this->data->dashboard[$key] = $value;
+		foreach ($dashboard_data as $key => $value)
+		{
+			$this->data->dashboard[$key] = (int) $value;
 		}
 	}
 }

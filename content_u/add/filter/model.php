@@ -108,7 +108,7 @@ class model extends \content_u\home\model
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
 			\lib\debug::true(T_("Add filter of poll Success"));
-			$this->redirector()->set_url(\lib\define::get_language(). "/@/add/$short_url/publish");
+			$this->redirector()->set_url($this->url('prefix'). "/add/$short_url/publish");
 		}
 		else
 		{
