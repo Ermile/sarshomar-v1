@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `ranks` (
+`id` 		bigint(20) 	unsigned NOT NULL AUTO_INCREMENT,
+`post_id` 	bigint(20) 	unsigned NOT NULL,
+`member` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+`filter` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+`report` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+`vot` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`like` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`faiv` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`skip` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`comment` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+`view` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`other` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+`sarshomar` int(10) 	unsigned NOT NULL DEFAULT 0,
+`createdate`timestamp 			 NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`ago` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`value` 	int(10) 	unsigned NOT NULL DEFAULT 0,
+PRIMARY KEY (`id`),
+UNIQUE KEY `unique_post_id` (`post_id`) USING BTREE,
+CONSTRAINT `ranks_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
