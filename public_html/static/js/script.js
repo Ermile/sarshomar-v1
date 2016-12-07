@@ -22,6 +22,34 @@ function checkInputChange()
 	// });
 }
 
+/**
+ * [getInputValue description]
+ * @param  {[type]} _el   [description]
+ * @param  {[type]} _type [description]
+ * @return {[type]}       [description]
+ */
+function getInputValue(_el)
+{
+	var elValue;
+	switch ($(_el).attr('type'))
+	{
+		case 'checkbox':
+			elValue = $(_el).is(":checked");
+			break;
+
+		case 'radio':
+			elValue = $(_el).val();
+			break;
+
+		case 'text':
+		default:
+			elValue = $(_el).val();
+			break;
+	}
+
+	return elValue;
+}
+
 
 /**
  * check inputs and change status of them if needed
@@ -32,42 +60,36 @@ function checkInputChange()
  */
 function checkInput(_this, _firstTime)
 {
-	var elID    = $(_this).attr('id');
-	var elName  = $(_this).attr('name');
-	var elType  = $(_this).attr('type');
+	// declare variable
 	var elResult;
-	var elValue;
-	switch (elType)
+	var elGroup    = false;
+	var elID       = $(_this).attr('id');
+	var elName     = $(_this).attr('name');
+	var elType     = $(_this).attr('type');
+	var elGroupEl  = $(_this).parents('[data-respnse-group]');
+	var elGet      = $(_this).attr('data-response-get');
+	var elValue    = getInputValue($(_this), elType);
+	var elSelector = elName;
+	// change selector if exist
+	if(elGet == 'id')
 	{
-		case 'checkbox':
-			elValue = $(_this).is(":checked");
-			break;
-
-		case 'radio':
-			elValue = $(_this).val();
-			elID    = elName;
-			break;
-
-		case 'text':
-		default:
-			elValue = $(_this).val();
-			break;
+		elSelector = elID;
 	}
+	var childrens  = $('[data-response*="'+ elSelector +'"]');
 
-	var childrens = $('[data-response*="'+ elID +'"]');
 	// if one of then parents of this element has data-response-group then check for group
-	if($(_this).parents('[data-respnse-group]').length)
+	if(elGroupEl.length)
 	{
-		$(_this).parents('[data-respnse-group]').each(function(index, el)
+		elGroupEl.each(function(index, el)
 		{
 			var myGroup = $(this).attr('data-respnse-group');
-			childrens = childrens.add('[data-response*="'+ myGroup +'"]');
+			elGroup     = myGroup;
+			childrens   = childrens.add('[data-response*="'+ myGroup +'"]');
 		});
 	}
 
 	childrens.each(function()
 	{
-		console.log(this);
 		var effect     = $(this).attr('data-response-effect');
 		var timing     = $(this).attr('data-response-timing');
 		var where      = $(this).attr('data-response-where');
@@ -98,29 +120,69 @@ function checkInput(_this, _firstTime)
 		{
 			timing = 'fast';
 		}
-		// check where and if want set true or false for where
-		if(where)
+
+		// if we have group then check for all values
+		if(elGroup)
 		{
-			// for each sentence in where seperated by |
-			$.each(where.split('|'), function(index, whereValue)
+			var groupWhere       = elGroupEl.attr('data-response-where');
+			var groupWhereNot    = elGroupEl.attr('data-response-where-not');
+			var groupWhereResult = true;
+			if(groupWhereNot)
 			{
-				// if where is okay
-				if(whereValue == elValue.toString())
+				groupWhereResult = false;
+			}
+			// check all input in this group
+			elGroupEl.find('input').each(function(index, el)
+			{
+				// if need where not then in normal it's false
+				// if one condition is exist then set to true
+				if(groupWhereNot)
 				{
-					where = true;
+					if(getInputValue(el).toString() !== groupWhereNot)
+					{
+						groupWhereResult = true;
+					}
+				}
+				// if condition is normal where on group
+				// then chack false status and if exist set as false
+				// else in normal condition it's true
+				else if(groupWhere)
+				{
+					if(getInputValue(el).toString() !== groupWhere)
+					{
+						groupWhereResult = false;
+					}
 				}
 			});
-			// if where is not true set it as false
-			if(where !== true)
-			{
-				where = false;
-			}
+			// save group where as final where
+			where = groupWhereResult;
 		}
 		else
 		{
-			if(elValue != false)
+			// check where and if want set true or false for where
+			if(where)
 			{
-				where = true;
+				// for each sentence in where seperated by |
+				$.each(where.split('|'), function(index, whereValue)
+				{
+					// if where is okay
+					if(whereValue == elValue.toString())
+					{
+						where = true;
+					}
+				});
+				// if where is not true set it as false
+				if(where !== true)
+				{
+					where = false;
+				}
+			}
+			else
+			{
+				if(elValue != false)
+				{
+					where = true;
+				}
 			}
 		}
 
@@ -239,7 +301,7 @@ function checkInput(_this, _firstTime)
 		}
 	});
 
-	$(window).trigger('response:open', [elID, elResult]);
+	$(window).trigger('response:open', [elSelector, elResult]);
 }
 
 
@@ -697,7 +759,7 @@ route(/\@\/add/, function()
 	detectPercentage();
 
 
-	$(".range-slider").ermile_slider();
+	$(".range-slider", this).ermile_slider();
 
 	// run on input change and add new opt for this question
 	$(this).on('input', '.input-group.sortable .element .input[type="text"]', function(event)
@@ -845,7 +907,7 @@ route(/\@\/add/, function()
 
 function calcFilterPrice()
 {
-	console.log('calculating Price...');
+	// console.log('calculating Price...');
 
 	var min = 2500;
 	var my_random_value = Math.floor(min + (100000 - min) * Math.random());

@@ -2,8 +2,8 @@
 
 {%block filter_gender%}
 {% spaceless %}
-	<div class="element switch" data-respnse-group='gender'>
-		<label class="title large badge" for="gender" data-val="20%" data-response='gender' data-response-class='active'>{%trans "Gender"%}</label>
+	<div class="element switch" data-respnse-group='gender' data-response-where-not='false'>
+		<label class="title large badge" for="gender" data-ratio="20" data-response='gender' data-response-class='active'>{%trans "Gender"%}</label>
 		<input type="checkbox" name="male" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
 		<label for="male">{%trans "Male"%}</label>
 		<input type="checkbox" name="female" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
@@ -16,8 +16,8 @@
 
 {%block filter_graduation%}
 {% spaceless %}
-	<div class="element switch" data-respnse-group='graduation'>
-		<label class="title large badge" for="graduation" data-val="20%" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
+	<div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
+		<label class="title large badge" for="graduation" data-ratio="20" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
 		<input type="checkbox" name="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
 		<label for="illiterate">{%trans "Illiterate"%}</label>
 		<input type="checkbox" name="undergraduate" id="undergraduate" {%if filters.graduation.undergraduate%}checked{%endif%}>
@@ -31,8 +31,8 @@
 
 {%block filter_marrital%}
 {% spaceless %}
-	<div class="element switch" data-respnse-group='marrital'>
-		<label class="title large badge" for="marrital" data-val="20%" data-response='marrital' data-response-class='active'>{%trans "Marrital"%}</label>
+	<div class="element switch" data-respnse-group='marrital' data-response-where-not='false'>
+		<label class="title large badge" for="marrital" data-ratio="20" data-response='marrital' data-response-class='active'>{%trans "Marrital"%}</label>
 		<input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
 		<label for="single">{%trans "Single"%}</label>
 		<input type="checkbox" name="marriade" value="marriade" id="marriade" {%if filters.marrital.marriade%}checked{%endif%}>
@@ -44,8 +44,8 @@
 
 {%block filter_employment%}
 {% spaceless %}
-	<div class="element switch" data-respnse-group='employmentstatus'>
-		<label class="title large badge" for="employmentstatus" data-val="20%" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
+	<div class="element switch" data-respnse-group='employmentstatus' data-response-where-not='false'>
+		<label class="title large badge" for="employmentstatus" data-ratio="20" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
 		<input type="checkbox" name="employee" id="employee" {%if filters.employmentstatus.employee%}checked{%endif%}>
 		<label for="employee">{%trans "Employee"%}</label>
 		<input type="checkbox" name="unemployee" id="unemployee" {%if filters.employmentstatus.unemployee%}checked{%endif%}>
@@ -59,8 +59,8 @@
 
 {%block filter_degree%}
 {% spaceless %}
-	<div class="element switch" data-respnse-group='degree'>
-		<label class="title large badge" for="degree" data-val="20%" data-response='degree' data-response-class='active'>{%trans "Degree"%}</label>
+	<div class="element switch" data-respnse-group='degree' data-response-where-not='false'>
+		<label class="title large badge" for="degree" data-ratio="20" data-response='degree' data-response-class='active'>{%trans "Degree"%}</label>
 		<input type="checkbox" name="under diploma" id="under diploma" {% if filters.degree['under diploma']%}checked{%endif%}>
 		<label for="under diploma">{%trans "Under diploma"%}</label>
 		<input type="checkbox" name="diploma" id="diploma" {% if filters.degree['diploma']%}checked{%endif%}>

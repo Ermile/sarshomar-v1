@@ -41,11 +41,11 @@
 			<div class="element" data-row="{{answer_key}}">
 				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
 				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
-				<span class="checkbox true" data-response='true_answer'>
+				<span class="checkbox true" data-response='meta_true_answer'>
 					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
 					<label class="check-box" for="true{{answer_key}}"></label>
 				</span>
-				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score{{answer_key}}"></span>
+				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
 			</div>
@@ -56,11 +56,11 @@
 			<div class="element" data-row="1">
 				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
 				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-				<span class="checkbox true" data-response='true_answer' data-response-hide>
+				<span class="checkbox true" data-response='meta_true_answer' data-response-hide>
 					<input type="checkbox" name="true1" id="true1">
 					<label class="check-box" for="true1"></label>
 				</span>
-				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score1"></span>
+				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score1"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
 			</div>
@@ -69,11 +69,11 @@
 			<div class="element" data-row="2">
 				<label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
 				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-				<span class="checkbox true" data-response='true_answer' data-response-hide>
+				<span class="checkbox true" data-response='meta_true_answer' data-response-hide>
 					<input type="checkbox" name="true2" id="true2">
 					<label class="check-box" for="true2"></label>
 				</span>
-				<span class="score" data-response-hide data-response='score'><input class="score" type="number" name="score2"></span>
+				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
 			</div>
@@ -86,7 +86,7 @@
 
 {%block feature_score%}
 {% spaceless %}
-	<div class="checkbox" data-response='choicemode' data-response-where='one|multi'>
+	<div class="checkbox">
 		<input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
 		<label for="score" class="check-box"></label>
 		<label for="score">{%trans "Options has score"%}</label>
@@ -180,7 +180,7 @@
 	{% if perm.complete_profile.admin %}
 	<div class="row auto">
 		<div class="checkbox span4">
-			<input type="checkbox" id="complete-profile" {%if poll.meta.profile%}checked{%endif%}>
+			<input type="checkbox" id="complete-profile" data-response-get='id' {%if poll.meta.profile%}checked{%endif%}>
 			<label for="complete-profile" class="check-box"></label>
 			<label for="complete-profile">{%trans "Complete Profile"%}</label>
 		</div>
@@ -199,7 +199,7 @@
 {%block feature_tree%}
 {% spaceless %}
 	<div class="checkbox">
-		<input type="checkbox" name="meta_tree" id="tree" {%if poll_tree_title %}checked{%endif%}>
+		<input type="checkbox" name="meta_tree" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
 	</div>
@@ -285,7 +285,7 @@
 				<option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
 			</select>
 		</div>
-		<div data-response='text-format' data-response-where='regular' data-response-effect='slide' {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
+		<div data-response='meta_text_format' data-response-where='regular' data-response-effect='slide' data-response-notfix {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
 			<div class="element">
 				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
 				<input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="{{poll.meta.text_format_custom}}" data-response-focus>
@@ -315,7 +315,7 @@
 					<option value="regular" {%if poll.meta.file_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
 				</select>
 		</div>
-		<div data-response='file-format' data-response-where='regular' data-response-effect='slide'  {%if poll.meta.file_format_custom is null%}data-response-hide{%endif%}>
+		<div data-response='meta_file_format' data-response-where='regular' data-response-effect='slide'  {%if poll.meta.file_format_custom is null%}data-response-hide{%endif%}>
 			<div class="element">
 				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
 				<input class="input" type="text" name="meta_file_format_custom" id="file-custom" autocomplete="off" value="{{poll.meta.file_format_custom}}" data-response-focus>

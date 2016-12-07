@@ -717,6 +717,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .range-slider[data-type='horizontal'][data-infinity='max'] .dynamic-range{right:initial;width:30px;left:0;}
 
 
+
 /************************************************************** sarshomar font */
 @font-face{font-family:'sarshomar';font-weight:400;font-style:normal;src:url(../fonts/sarshomar/sarshomar.eot);src:url(../fonts/sarshomar/sarshomar.eot?#iefix) format('embedded-opentype'),url(../fonts/sarshomar/sarshomar.woff) format('woff'),url(../fonts/sarshomar/sarshomar.ttf) format('truetype'),url(../fonts/sarshomar/sarshomar.svg#sarshomar) format('svg');}[data-icon]:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;content:attr(data-icon);text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}[class^='icon-']:before, [class*=' icon-']:before{font-family:'sarshomar'!important;font-weight:400!important;font-style:normal!important;font-variant:normal!important;line-height:1;text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .icon-drag:before{content:'\61';}
@@ -914,7 +915,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .rtl .element .title:after{left:auto;right:-12px;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;}
 
 /* badge for title */
-.element .title.badge::before{content:attr(data-val);position:absolute;top:0;bottom:0;margin:auto;right:-10px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;transition:0.3s;}
+.element .title.badge::before{content:attr(data-ratio) '%';position:absolute;top:0;bottom:0;margin:auto;right:-10px;background-color:#00667A;color:#F4F4F4;width:25px;height:25px;text-align:center;font-size:10px;line-height:25px;border-radius:50%;z-index:1;padding-top:1px;transition:0.3s;}
 .rtl .element .title.badge::before{right:auto;left:-13px;}
 .element .title.badge.active::before{background-color:#E96F4B;}
 
