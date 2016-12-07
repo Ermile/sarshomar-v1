@@ -688,7 +688,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .pay-info{border:1px solid #37AAA7;height:100%;}
 .pay-info .title{position:relative;background-color:#37AAA7;padding:.5em 3em;}
 .rtl .pay-info .title{padding:.5em 3em;}
-.pay-info .title .price{text-align:left;color:#0A5260;font-weight:bold;}
+.pay-info .title .price{text-align:center;color:#0A5260;font-weight:bold;}
 .rtl .pay-info .title .price{text-align:right;}
 .pay-info .title .price .value{font-size:2em;text-decoration:line-through;}
 .pay-info .title .free{color:#FFFFFF;text-align:center;}

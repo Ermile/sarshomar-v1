@@ -95,17 +95,21 @@
 {%block filter_price%}
 {% spaceless %}
 	<div class="pay-info">
-		<div class="title">
-			<div class="price">
-				<span class="value" data-basePrice='100'>--</span>
-				<span class="unit">Rials</span>
+		<div class="title row auto">
+			<div class="span6">
+				<div class="price">
+					<span class="value" data-basePrice='100'>--</span><span class="unit">Rials</span>
+				</div>
+				<div class="free">{%trans "It's free"%}</div>
 			</div>
-			<div class="free">{%trans "It's free"%}</div>
-			<div class="cash-container">
-				<div class="cash-title">{%trans "Your Cash"%}</div>
-				<div class="cash">
-					<span class="value">154,000</span>
-					<span class="unit">{%trans "Tomans"%}</span>
+
+			<div class="span6">
+				<div class="cash-container">
+					<div class="cash-title">{%trans "Your Cash"%}</div>
+					<div class="cash">
+						<span class="value">154,000</span>
+						<span class="unit">{%trans "Tomans"%}</span>
+					</div>
 				</div>
 			</div>
 		</div>
