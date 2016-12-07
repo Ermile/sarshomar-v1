@@ -26,15 +26,12 @@
      <label class="title large" for="article">{%trans "Article"%}</label>
      <div class="dropdown-wrapper">
        <input type="hidden" name="">
-       <a href="#">Choice 1<i class="fa fa-times"></i></a>
-       <a href="#">Choice 2<i class="fa fa-times"></i></a>
-       <a href="#">Choice 3<i class="fa fa-times"></i></a>
+       <div class="dropdown-tags">
+         <a href="#">Choice 1<i class="fa fa-times"></i></a>
+         <a href="#">Choice 2<i class="fa fa-times"></i></a>
+         <a href="#">Choice 3<i class="fa fa-times"></i></a>
+       </div>
        <input class="input dropdown" name="article" id="article">
-       <!-- <div class="dropdown-box">
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-       </div> -->
      </div>
     </div>
 
@@ -42,21 +39,27 @@
      <label class="title large" for="tags">{%trans "Tags"%}</label>
      <div class="dropdown-wrapper">
        <input type="hidden" name="">
-       <a href="#">Choice 1<i class="fa fa-times"></i></a>
-       <a href="#">Choice 2<i class="fa fa-times"></i></a>
-       <a href="#">Choice 3<i class="fa fa-times"></i></a>
+       <div class="dropdown-tags">
+        <a href="#">Choice 1<i class="fa fa-times"></i></a>
+        <a href="#">Choice 2<i class="fa fa-times"></i></a>
+       </div>
        <input class="input dropdown" name="tags" id="tags">
-       <!-- <div class="dropdown-box">
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-        <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-       </div> -->
      </div>
     </div>
 
     <div class="element no-pad ltr">
      <label class="title large" for="short_url">{%trans "Short URL"%}</label>
      <input class="input" type="text" name="short_url" id="short_url">
+     <button class="btn"><span class="fa fa-link"></span></button>
+    </div>
+
+    <div class="social-container">
+      <a href="" class="fa fa-2x fa-twitter"></a>
+      <a href="" class="fa fa-2x fa-rss"></a>
+      <a href="" class="fa fa-2x fa-facebook"></a>
+      <a href="" class="fa fa-2x fa-dribbble"></a>
+      <a href="" class="fa fa-2x fa-google-plus"></a>
+      <a href="" class="fa fa-2x fa-pinterest-p"></a>
     </div>
    </div><!-- /.span8 -->
   </div><!-- /.row -->
