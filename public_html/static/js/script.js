@@ -907,12 +907,24 @@ route(/\@\/add/, function()
 
 function calcFilterPrice()
 {
-	// console.log('calculating Price...');
+	var totalEl      = $('.pay-info .price .value');
+	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
+	var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
+	var totalPercent = 0;
+	var totalPrice   = 0;
+	$('.badge.active[data-ratio]').each(function(index, el)
+	{
+		var currentRatio = parseInt($(el).attr('data-ratio'));
+		totalPercent     += currentRatio;
+	});
+	// change percent to ratio
+	totalPercent = totalPercent/100;
+	totalPrice   = totalPerson + (totalPerson * totalPercent);
+	totalPrice   = totalPrice * basePrice;
 
-	var min = 2500;
-	var my_random_value = Math.floor(min + (100000 - min) * Math.random());
-	$('.pay-info .price .value').text(my_random_value);
 
+	// set value to show to enduser
+	totalEl.text(totalPrice.toLocaleString());
 }
 
 // ================================================================== @/add/7pr/filter
@@ -935,7 +947,9 @@ route(/\@\/add\/[\w.]+\/filter/, function()
 		calcFilterPrice();
 	});
 
-
+}).once(function()
+{
+	calcFilterPrice();
 });
 
 
