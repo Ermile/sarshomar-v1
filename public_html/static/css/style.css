@@ -701,20 +701,22 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 
 /************************************************************** range slider */
-.range-slider[data-type='horizontal']{height:30px;background-color:#e7e7e7;position:relative;margin:2.5em auto;-webkit-user-select:none;user-select:none;}
-.range-slider[data-type='horizontal'] .dynamic-range{height:30px;background-color:#00667a;position:absolute;/*left:20px;*/-webkit-user-select: none;user-select: none;}
-.range-slider[data-type='horizontal'] .dynamic-range .min{outline:none ;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;left:-15px;top:-20px;width:30px;height:30px;-webkit-user-select:none;user-select: none;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);}
-.range-slider[data-type='horizontal'] .dynamic-range .min:focus{color:red;}
-.range-slider[data-type='horizontal'] .dynamic-range .max{outline:none;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;right:-15px;bottom:-17px;width:30px;height:30px;-webkit-user-select:none;user-select: none;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);}
-.range-slider[data-type='vertical']{height:300px;background-color:#e7e7e7;position:relative;width:30px;margin:1em auto;-webkit-user-select:none;user-select:none;}
-.range-slider[data-type='vertical'] .dynamic-range{height:160px;background-color:#00667a;position:absolute;/*bottom:40px;*/width:30px;-webkit-user-select: none;user-select: none;}
-.range-slider[data-type='vertical'] .dynamic-range .min{outline:none;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;left:-17px;bottom:-15px;width:30px;height:30px;-webkit-user-select:none;user-select: none;}
-.range-slider[data-type='vertical'] .dynamic-range .max{outline:none;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;right:-21px;top:-15px;width:30px;height:30px;-webkit-user-select:none;user-select: none;}
-.range-slider[data-type='vertical'] .dynamic-range .max:focus, .range-slider[data-type='vertical'] .dynamic-range .min:focus{/*background-color:red;*/}
-.range-slider[data-type='vertical'][data-infinity='min'] .dynamic-range{bottom:initial;height:30px;top:0;}
-.range-slider[data-type='vertical'][data-infinity='max'] .dynamic-range{bottom:0;height:30px;top:initial;}
-.range-slider[data-type='horizontal'][data-infinity='min'] .dynamic-range{left:initial;width:30px;right:0;}
-.range-slider[data-type='horizontal'][data-infinity='max'] .dynamic-range{right:initial;width:30px;left:0;}
+.range-slider{display: inline-block;position: relative;margin-left:3em !important;margin-right:3em !important;direction: ltr;text-align: left;-webkit-user-select:none;user-select:none;}
+.range-slider *{-webkit-user-select:none;user-select:none;}
+.range-slider .dynamic-range{position: relative;margin: 0;padding: 0;background-color:#00667a;float: left;display: inline-block;}
+.range-slider .dynamic-margin{display: inline-block;float: left;margin: 0;padding: 0;}
+.range-slider[data-type='horizontal']{height:30px;background-color:#e7e7e7;margin:2em 0;display:block;}
+.range-slider[data-type='horizontal'] .dynamic-range{height:100%;}
+.range-slider[data-type='horizontal'] .dynamic-range .min{left:-15px;top:-20px;}
+.range-slider[data-type='horizontal'] .dynamic-range .max{right:-15px;bottom:-17px;}
+.range-slider[data-type='horizontal'] .dynamic-range .min, .range-slider[data-type='horizontal'] .dynamic-range .max{outline:none;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;width:30px;height:30px;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);-webkit-user-select:none;user-select:none;}
+.range-slider[data-type='horizontal'] .dynamic-margin{height: 100%;}
+.range-slider[data-type='vertical']{background-color:#e7e7e7;height:100%;width:30px;margin:1em 0;}
+.range-slider[data-type='vertical'] .dynamic-range{width:30px;background-color:#00667a;}
+.range-slider[data-type='vertical'] .dynamic-range .min{left:-17px;bottom:-15px;}
+.range-slider[data-type='vertical'] .dynamic-range .max{right:-21px;top:-15px;}
+.range-slider[data-type='vertical'] .dynamic-range .min, .range-slider[data-type='vertical'] .dynamic-range .max{outline:none;background:url(../images/svg/rangeslider.svg) no-repeat;position:absolute;width:30px;height:30px;-webkit-user-select:none;user-select:none;}
+.range-slider[data-type='vertical'] .dynamic-margin{width: 100%;}
 
 
 
