@@ -750,7 +750,8 @@ function simulateTreeNavigation()
 
 
 // ================================================================== @/add
-route(/\@\/add/, function()
+// route(/\@\/add/, function()
+route(/\@\/add(|\/[^\/]*)$/, function()
 {
 	// declare functions
 	checkInputChange.call(this);
@@ -934,12 +935,12 @@ function calcFilterPrice()
 }
 
 // ================================================================== @/add/7pr/filter
-route(/\@\/add\/[\w.]+\/filter/, function()
+// route(/\@\/add(|\/[^\/]*)$/, function()
+route(/\@\/add\/.+\/filter$/, function()
 {
 	// if any item of complete profile is selected, then fill item with profile values
 	$(this).on('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
-		console.log(_max);
 		calcFilterPrice();
 	});
 
@@ -953,6 +954,8 @@ route(/\@\/add\/[\w.]+\/filter/, function()
 		// console.log(_value);
 		calcFilterPrice();
 	});
+	// run rangeslider
+	$(".range-slider", this).rangeSlider();
 
 }).once(function()
 {
@@ -961,6 +964,55 @@ route(/\@\/add\/[\w.]+\/filter/, function()
 	{
 		detectPercentage(true);
 	});
+	console.log('once on filter....');
+
+});
+
+function runAutoComplete()
+{
+	$('.dropdown').autoComplete(
+	{
+		minChars: 0,
+		source: function(term, suggest)
+		{
+			term = term.toLowerCase();
+			var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
+			var matches = [];
+			for (i=0; i<choices.length; i++)
+				if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+			suggest(matches);
+		},
+		// source: function(term, response)
+		// {
+		// 	try { xhr.abort(); } catch(e){}
+		// 	xhr = $.getJSON('/@/ajax/article/', { q: term }, function(data){ response(data); });
+		// }
+	});
+	console.log('run...');
+	$('.dropdown').on('keydown', function(e)
+	{
+		if(e.keyCode == 13)
+		{
+			saveAutoComplete();
+			return false;
+		}
+	});
+}
+
+function saveAutoComplete()
+{
+	console.log('save');
+}
+
+// ================================================================== @/add/7pr/publish
+route(/\@\/add\/.+\/publish$/, function()
+// route(/\@\/add\/[\w.]+\/publish/, function()
+{
+
+}).once(function()
+{
+	console.log('once on publish....');
+	runAutoComplete();
 });
 
 
