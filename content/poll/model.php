@@ -269,16 +269,21 @@ class model extends \mvc\model
 			{
 				$this->redirector()->set_url("ask");
 			}
-		}
 
-		if($result->is_ok())
-		{
-			\lib\debug::true($result->get_message());
-			return ;
+			if($result->is_ok())
+			{
+				\lib\debug::true($result->get_message());
+				return ;
+			}
+			else
+			{
+				\lib\debug::error($result->get_message());
+				return false;
+			}
 		}
 		else
 		{
-			\lib\debug::error($result->get_message());
+			\lib\debug::error(T_("You muset select one answer or skip the poll"));
 			return false;
 		}
 
