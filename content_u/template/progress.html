@@ -1,5 +1,5 @@
 {% spaceless %}
-<div class="page-progress" data-current='{{step.current}}'>
+<div class="page-progress {{loadMode}}" data-current='{{step.current}}'>
 	<a href="{{url.baseContent}}/{{step.link_add}}">
 		<span class="checkbox {%if step.add%}active{%endif%}" data-label='{%trans "Add"%}'>
 			<input type="checkbox" name="step-add" disabled {%if step.add and step.current != 'add'%}checked{%endif%}>

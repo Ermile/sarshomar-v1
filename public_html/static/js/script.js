@@ -463,7 +463,7 @@ function deleteQuestionOpts(_this)
 
 
 // Range Slider
-!function(a){"use strict";function b(){a(this).removeClass("range-slider"),a(this).data("range-slider",void 0),a(this).init.prototype.range=void 0,a("*",this).remove()}function c(){a(this).ermile_slider("destroy"),a(this).ermile_slider()}a.fn.ermile_slider=function(e){a(this).each(function(){switch(e){case"destroy":return b.call(this);case"restart":return c.call(this);case"":return c.call(this)}a(this).hasClass("range-slider")&&a(this).ermile_slider("destroy"),a(this).trigger("range-slider::init::before"),a(this).addClass("range-slider");var f=a(this).attr("id");f&&(a('<input type="hidden" name="'+f+'-max" data-range-bind="'+f+'" data-range-value="max">').appendTo(this),a('<input type="hidden" name="'+f+'-min" data-range-bind="'+f+'" data-range-value="min">').appendTo(this));var g=a(this).attr("data-infinity"),h=a(this).attr("data-type");"vertical"!=h&&(h="horizontal",a(this).attr("data-type","horizontal"));var i=Number(a(this).attr("data-step"));isNaN(i)&&(i=1);var j=Number(a(this).attr("data-min"));isNaN(j)&&(j=0);var k=Number(a(this).attr("data-max"));(isNaN(k)||j>=k)&&(k=j+100);var l=k-j,m=Number(a(this).attr("data-min-default"));(isNaN(m)||m<j)&&(m=0);var n=Number(a(this).attr("data-max-default"));(isNaN(n)||k<n)&&(n=l),a(this).data("range-slider",{min:j,max:k,min_default:m,max_default:n,unit:l,step:i,type:h,margin:m,depth:k}),a(this).init.prototype.range=function(b,c,d){var e=b,f=c,g=this.data("range-slider"),h={type:"unit"};a.extend(h,d),h.from_type=h.type,h.to_type=h.type;var i="vertical"==g.type?"height":"width";null!==e&&e!==!1&&void 0!==e||(e=this.find(".dynamic-margin")[i](),"vertical"==g.type&&(e=this[i]()-(e+this.find(".dynamic-range")[i]())),h.from_type="pixel"),null!==f&&f!==!1&&void 0!==f||(f=this.find(".dynamic-margin")[i]()+this.find(".dynamic-range")[i](),"vertical"==g.type&&(f=this[i]()-this.find(".dynamic-margin")[i]()),h.to_type="pixel");var j=this[i]();"pixel"==h.from_type?e=e*g.unit/j:"percent"==h.from_type?e=e*g.unit/100:"ziro_unit"==h.from_type?e-=g.min:"step_plus"==h.from_type&&(e=e*g.step+g.from),"pixel"==h.to_type?f=f*g.unit/j:"percent"==h.to_type?f=f*g.unit/100:"ziro_unit"==h.to_type?f-=g.min:"step_plus"==h.to_type&&(f=f*g.step+g.to);var k=Math.round(e/g.step)*g.step,l=Math.round(f/g.step)*g.step;l<k&&(g.to==l?l=k:k=l),l>g.unit&&(l=g.unit),k>g.unit&&(k=g.unit),l<0&&(l=0),k<0&&(k=0);var m=this.attr("id");m&&a('[data-range-bind="'+m+'"]').each(function(){var b=a(this).attr("data-range-value");"max"==b?a(this).val(g.min+l):"min"==b&&a(this).val(g.min+k)}),e=100*k/g.unit,f=100*l/g.unit;var n=f-e;g.to==l&&g.from==k||(this.data("range-slider").from=k,this.data("range-slider").to=l,this.trigger("range-slider::change::before",[g.min+k,g.min+l]),"vertical"==g.type?this.find(".dynamic-margin").css(i,100-f+"%"):this.find(".dynamic-margin").css(i,e+"%"),this.find(".dynamic-range").css(i,n+"%"),this.trigger("range-slider::change",[g.min+k,g.min+l]))};var o=a("<div class='dynamic-margin'></div>"),p=a("<div class='dynamic-range'></div>");"max"==g?d.call(this,"min").appendTo(p):"min"==g?d.call(this,"max").appendTo(p):(d.call(this,"max").appendTo(p),d.call(this,"min").appendTo(p)),o.hide(),p.hide(),o.appendTo(this),p.appendTo(this),a(this).range(m,n),o.show(),p.show(),a(this).trigger("range-slider::init::after")})};var d=function(b){var c=a(this).data("range-slider"),d=this,e=a("<div class='"+b+"'></div>");return a(this).trigger("range-slider::selection",[e,b]),e.attr("tabindex","0"),e.unbind("mousedown.range-slider"),e.bind("mousedown.range-slider",function(){a(document).unbind("mousemove.range-slider"),a(document).bind("mousemove.range-slider",function(e){var f="vertical"==c.type?e.pageY:e.pageX,g="vertical"==c.type?a(d).offset().top:a(d).offset().left,h=f-g;h="vertical"==c.type?a(d).height()-h:h,"max"==b?a(d).range(null,h,{type:"pixel"}):a(d).range(h,null,{type:"pixel"})}).bind("mouseup.range-slider",function(){a(document).unbind("mouseup.range-slider"),a(document).unbind("mousemove.range-slider")})}).bind("mouseup",function(){a(document).unbind("mousemove.range-slider")}).bind("keydown.range-slider",function(b){var c,d;return c=1,d=null,a(this).is(".max")&&(c=null,d=1),38==b.keyCode||39==b.keyCode?(a(this).parents(".range-slider").range(c,d,{type:"step_plus"}),!1):37==b.keyCode||40==b.keyCode?(a(this).parents(".range-slider").range(c*-1,d*-1,{type:"step_plus"}),!1):void 0}),e}}(jQuery);
+!function(t){"use strict";function e(){t(this).removeClass("range-slider"),t(this).data("range-slider",void 0),t(this).init.prototype.range=void 0,t("*",this).remove()}function i(){t(this).rangeSlider("destroy"),t(this).rangeSlider()}t.fn.rangeSlider=function(n){t(this).each(function(){switch(n){case"destroy":return e.call(this);case"restart":return i.call(this);case"":return i.call(this)}t(this).hasClass("range-slider")&&t(this).rangeSlider("destroy"),t(this).trigger("range-slider::init::before"),t(this).addClass("range-slider");var r=t(this).attr("id");r&&(t('<input type="hidden" name="'+r+'-max" data-range-bind="'+r+'" data-range-value="max">').appendTo(this),t('<input type="hidden" name="'+r+'-min" data-range-bind="'+r+'" data-range-value="min">').appendTo(this));var s=t(this).attr("data-infinity"),d=t(this).attr("data-type");"vertical"!=d&&(d="horizontal",t(this).attr("data-type","horizontal"));var o=Number(t(this).attr("data-step"));isNaN(o)&&(o=1);var l=Number(t(this).attr("data-min"));isNaN(l)&&(l=0);var p=Number(t(this).attr("data-max"));(isNaN(p)||l>=p)&&(p=l+100);var h=p-l,m=Number(t(this).attr("data-min-default"));(isNaN(m)||m<l)&&(m=0);var u=Number(t(this).attr("data-max-default"));(isNaN(u)||p<u)&&(u=h),t(this).data("range-slider",{min:l,max:p,min_default:m,max_default:u,unit:h,step:o,type:d,margin:m,depth:p}),t(this).init.prototype.range=function(e,i,a){var n=e,r=i,s=this.data("range-slider"),d={type:"unit"};t.extend(d,a),d.from_type=d.type,d.to_type=d.type;var o="vertical"==s.type?"height":"width";null!==n&&n!==!1&&void 0!==n||(n=this.find(".dynamic-margin")[o](),"vertical"==s.type&&(n=this[o]()-(n+this.find(".dynamic-range")[o]())),d.from_type="pixel"),null!==r&&r!==!1&&void 0!==r||(r=this.find(".dynamic-margin")[o]()+this.find(".dynamic-range")[o](),"vertical"==s.type&&(r=this[o]()-this.find(".dynamic-margin")[o]()),d.to_type="pixel");var l=this[o]();"pixel"==d.from_type?n=n*s.unit/l:"percent"==d.from_type?n=n*s.unit/100:"ziro_unit"==d.from_type?n-=s.min:"step_plus"==d.from_type&&(n=n*s.step+s.from),"pixel"==d.to_type?r=r*s.unit/l:"percent"==d.to_type?r=r*s.unit/100:"ziro_unit"==d.to_type?r-=s.min:"step_plus"==d.to_type&&(r=r*s.step+s.to);var p=Math.round(n/s.step)*s.step,h=Math.round(r/s.step)*s.step;h<p&&(s.to==h?h=p:p=h),h>s.unit&&(h=s.unit),p>s.unit&&(p=s.unit),h<0&&(h=0),p<0&&(p=0);var m=this.attr("id");m&&t('[data-range-bind="'+m+'"]').each(function(){var e=t(this).attr("data-range-value");"max"==e?t(this).val(s.min+h):"min"==e&&t(this).val(s.min+p)}),n=100*p/s.unit,r=100*h/s.unit;var u=r-n;s.to==h&&s.from==p||(this.data("range-slider").from=p,this.data("range-slider").to=h,this.trigger("range-slider::change::before",[s.min+p,s.min+h]),"vertical"==s.type?this.find(".dynamic-margin").css(o,100-r+"%"):this.find(".dynamic-margin").css(o,n+"%"),this.find(".dynamic-range").css(o,u+"%"),this.trigger("range-slider::change",[s.min+p,s.min+h]))};var g=t("<div class='dynamic-margin'></div>"),c=t("<div class='dynamic-range'></div>");"max"==s?a.call(this,"min").appendTo(c):"min"==s?a.call(this,"max").appendTo(c):(a.call(this,"max").appendTo(c),a.call(this,"min").appendTo(c)),g.hide(),c.hide(),g.appendTo(this),c.appendTo(this),t(this).range(m,u),g.show(),c.show(),t(this).trigger("range-slider::init::after")})};var a=function(e){var i=t(this).data("range-slider"),a=this,n=t("<div class='"+e+"'></div>");return t(this).trigger("range-slider::selection",[n,e]),n.attr("tabindex","0"),n.unbind("mousedown.range-slider"),n.bind("mousedown.range-slider",function(){return t(document).unbind("mousemove.range-slider"),t(document).bind("mousemove.range-slider",function(n){var r="vertical"==i.type?n.pageY:n.pageX,s="vertical"==i.type?t(a).offset().top:t(a).offset().left,d=r-s;d="vertical"==i.type?t(a).height()-d:d,"max"==e?t(a).range(null,d,{type:"pixel"}):t(a).range(d,null,{type:"pixel"})}).bind("mouseup.range-slider",function(){t(document).unbind("mouseup.range-slider"),t(document).unbind("mousemove.range-slider")}),!1}).bind("mouseup",function(){t(document).unbind("mousemove.range-slider")}).bind("keydown.range-slider",function(e){var i,a;return i=1,a=null,t(this).is(".max")&&(i=null,a=1),38==e.keyCode||39==e.keyCode?(t(this).parents(".range-slider").range(i,a,{type:"step_plus"}),!1):37==e.keyCode||40==e.keyCode?(t(this).parents(".range-slider").range(i*-1,a*-1,{type:"step_plus"}),!1):void 0}),n}}(jQuery);
 
 /* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
 !function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
@@ -666,7 +666,7 @@ function detectPercentage(_submit)
 			percentage = 50;
 			if(_submit)
 			{
-				percentage += 50;
+				percentage += 40;
 			}
 			break;
 
@@ -759,7 +759,7 @@ route(/\@\/add/, function()
 	detectPercentage();
 
 
-	$(".range-slider", this).ermile_slider();
+	$(".range-slider", this).rangeSlider();
 
 	// run on input change and add new opt for this question
 	$(this).on('input', '.input-group.sortable .element .input[type="text"]', function(event)
@@ -909,7 +909,13 @@ function calcFilterPrice()
 {
 	var totalEl      = $('.pay-info .price .value');
 	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
-	var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
+	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
+	// var totalPerson  = $('#rangepersons').rangeSlider('to');
+	var totalPerson  = $('#rangepersons').data('range-slider').to;
+
+
+	// var totalPerson  = parseInt($('#rangepersons').val());
+
 	var totalPercent = 0;
 	var totalPrice   = 0;
 	$('.badge.active[data-ratio]').each(function(index, el)
@@ -931,8 +937,9 @@ function calcFilterPrice()
 route(/\@\/add\/[\w.]+\/filter/, function()
 {
 	// if any item of complete profile is selected, then fill item with profile values
-	$(this).on('change', '#rangepersons input[type=hidden]', function()
+	$(this).on('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
+		console.log(_max);
 		calcFilterPrice();
 	});
 
@@ -950,6 +957,10 @@ route(/\@\/add\/[\w.]+\/filter/, function()
 }).once(function()
 {
 	calcFilterPrice();
+	$(this).on('click','button', function()
+	{
+		detectPercentage(true);
+	});
 });
 
 

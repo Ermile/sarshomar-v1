@@ -6,7 +6,7 @@
     <form method="post">
      <div class="row auto">
       {%include template.progress%}
-      <div class="span8">
+      <div class="span9">
        <div class="row auto">
         <div class="span5">
          {{block('filter_gender')}}
@@ -18,8 +18,9 @@
         </div>
        </div>
        {{block('filter_degree')}}
+       {{block('filter_age')}}
       </div>
-      <div class="span4">{{block('filter_price')}}</div>
+      <div class="span3">{{block('filter_price')}}</div>
      </div>
 
      <div class="row auto">
