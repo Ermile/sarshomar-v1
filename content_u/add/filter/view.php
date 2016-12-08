@@ -33,6 +33,7 @@ class view extends \content_u\home\view
 
 		$filters = \lib\db\filters::get_poll_filter($poll_survey_id);
 
+		$this->data->filters = $filters;
 		// check is_survey or no
 		// if(!\lib\utility\survey::is_survey($poll_survey_id))
 		// {
