@@ -569,8 +569,8 @@ class filters
 		$i            = 0;
 		$clone        = array_keys(self::support_filter());
 		$clone        = array_flip($clone);
-		$clone        = array_map("self::set_null", $clone);
-		$sum          = array_map("self::set_count", $_filters);
+		$clone        = array_map(function(){return null;}, $clone); // set all index of array null
+		$sum          = array_map(function($_a){return count($_a);}, $_filters);
 		$count_record = empty($_filters) ? 0 : 1;
 		foreach ($sum as $filter => $count)
 		{
@@ -633,30 +633,6 @@ class filters
 		{
 			return $where;
 		}
-	}
-
-
-	/**
-	 * Sets the null.
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	private static function set_null()
-	{
-		return null;
-	}
-
-
-	/**
-	 * Sets the count.
-	 *
-	 * @param      <type>  $_array  The array
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	private static function set_count($_array)
-	{
-		return count($_array);
 	}
 }
 ?>
