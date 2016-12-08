@@ -602,7 +602,7 @@ class filters
 			{
 				for ($i = 0; $i < $count_record; $i++)
 				{
-					$where_array[$i][$filter] = $vlaue;
+					$where_array[$i][$filter] = $value;
 				}
 			}
 		}

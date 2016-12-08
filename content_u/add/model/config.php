@@ -184,21 +184,20 @@ trait config
 		$answer_desc  = [];
 
 		$i = 0;
-		do
+		$max_post = count(utility::post());
+
+		for ($j = 0; $j <= $max_post; $j++)
 		{
-			$do = false;
-			$i++;
-			if(utility::post("answer$i"))
+			if(utility::post("answer$j"))
 			{
-				$do = true;
-				$answers[$i]      = utility::post("answer$i");
-				$answer_true[$i]  = (utility::post("true$i")  != '') ? utility::post("true$i") : '';
-				$answer_type[$i]  = (utility::post("type$i")  != '') ? utility::post("type$i") : 'select';
-				$answer_point[$i] = (utility::post("point$i") != '') ? utility::post("point$i"): '';
-				$answer_desc[$i]  = (utility::post("desc$i")  != '') ? utility::post("desc$i") : '';
+				$i++;
+				$answers[$i]      = utility::post("answer$j");
+				$answer_true[$i]  = (utility::post("true$j")  != '') ? utility::post("true$j") : '';
+				$answer_type[$i]  = (utility::post("type$j")  != '') ? utility::post("type$j") : 'select';
+				$answer_point[$i] = (utility::post("point$j") != '') ? utility::post("point$j"): '';
+				$answer_desc[$i]  = (utility::post("desc$j")  != '') ? utility::post("desc$j") : '';
 			}
 		}
-		while($do);
 
 		return
 		[
