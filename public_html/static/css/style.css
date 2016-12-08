@@ -412,6 +412,8 @@ div.checkbox{display:-webkit-flex;display:flex;}
 .checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
 .checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a;}
 .checkbox.active .check-box{border-color:#00667a;}
+.checkbox.margin-bottom{margin-bottom:15px}
+
 
 /************************************************************** radio */
 @keyframes explode{0%{opacity:0;transform:scale(1.5);}60%{opacity:1;transform:scale(0.75);}100%{opacity:1;transform:scale(1);}}
