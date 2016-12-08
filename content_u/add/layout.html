@@ -136,11 +136,10 @@
 
 {%block feature_multiplerange%}
 {% spaceless %}
-	<div class="element no-pad">
+	<div class="element no-pad" {%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}>
 		<label class="title large">{%trans "Something"%}</label>
 		<div class="element-slider">
 		<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
-		{%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}
 			{% if poll.meta.choice_count_min%}
 				data-min-default="{{poll.meta.choice_count_min}}"
 			{%endif%}
@@ -413,11 +412,10 @@
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="element no-pad">
+	<div class="element no-pad" {%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}>
 		<label class="title large">{%trans "Something"%}</label>
 		<div class="element-slider">
 			<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
-			{%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}
 			data-response-where='number' data-response-effect='slide' id="meta_numbersize"
 				{% if poll.meta.numbersize_min%}
 					data-min-default="{{poll.meta.numbersize_min}}"
@@ -433,11 +431,10 @@
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="element no-pad">
+	<div class="element no-pad" {%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}>
 		<label class="title large">{%trans "Something"%}</label>
 		<div class="element-slider">
 			<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
-			{%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}
 			{% if poll.meta.starsize_min%}
 					data-min-default="{{poll.meta.starsize_min}}"
 				{%endif%}
