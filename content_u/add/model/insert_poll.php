@@ -188,20 +188,69 @@ trait insert_poll
 			{
 				// save the lock of this poll and profile item
 				$profile_lock = null;
-				if($value == "profile")
+				$continue     = false;
+				switch ($value)
 				{
-					if(utility::post("meta_profile") != '' && $this->access('u', 'complete_profile', 'admin'))
-					{
-						$profile_lock = utility::post("meta_profile");
-					}
-					else
-					{
-						continue;
-					}
+					case 'profile':
+						if(utility::post("meta_profile") != '')
+						{
+							if($this->access('u', 'complete_profile', 'admin'))
+							{
+								$profile_lock = utility::post("meta_profile");
+							}
+						}
+						else
+						{
+							$continue = true;
+						}
+						break;
+
+					case 'choice-count-min':
+					case 'choice-count-min':
+						if(utility::post("meta_choicemode") != 'multi')
+						{
+							$continue = true;
+						}
+						break;
+
+					case 'meta_descriptive':
+					case 'meta_true_answe':
+						if(utility::post("meta_choicemode") == 'ordering')
+						{
+							$continue = true;
+						}
+						break;
+
+					case 'textlength-max':
+					case 'textlength-min':
+						if(utility::post("meta_text_format") != 'any' && utility::post("meta_text_format") != 'number')
+						{
+							$continue = true;
+						}
+						break;
+
+					case 'numbersize-mix':
+					case 'numbersize-max':
+						if(utility::post("meta_rangemode") != 'number')
+						{
+							$continue = true;
+						}
+						break;
+
+					case 'starsize-mix':
+					case 'starsize-max':
+						if(utility::post("meta_rangemode") != 'star')
+						{
+							$continue = true;
+						}
+						break;
+
+					default:
+						$continue = false;
+						break;
 				}
 
-				// check permission of hidden result
-				if($value == "hidden_result" && !$this->access('u', 'hidden_result', 'admin'))
+				if($continue)
 				{
 					continue;
 				}
@@ -211,12 +260,12 @@ trait insert_poll
 					'post_id'      => $poll_id,
 					'option_cat'   => "poll_$poll_id",
 					'option_key'   => 'meta',
-					'option_value' => $value,
+					'option_value' => str_replace('-', '_', $value),
 					'option_meta'  => $profile_lock
 				];
 
 				// save the meta in post_meta fields
-				$post_meta[$value] = utility::post("meta_$value");
+				$post_meta[str_replace('-', '_', $value)] = utility::post("meta_$value");
 				// comment met must be save in post_comment fields
 				if($value == 'comment')
 				{

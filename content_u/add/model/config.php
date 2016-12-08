@@ -16,41 +16,57 @@ trait config
 		// the meta list
 		$meta                       = [];
 		$meta['tree']               = true;
-		$meta['answer']            = false; // just in multichoise we need to answer
-		$meta['random_sort']        = false;
-		$meta['score']              = false;
-		$meta['true_answer']        = false;
-		$meta['descriptive']        = false;
-		$meta['profile']            = false;
-		$meta['hidden_result']      = false;
-		$meta['comment']            = false;
-		$meta['ordering']           = false;
-		$meta['choicemode']         = false; // one|multi|ordering
-		$meta['text_format']        = false;
-		$meta['file_format']        = false;
-		$meta['rangemode']          = false; //number|star|like
-		$meta['text_format_custom'] = false;
-		$meta['file_format_custom'] = false;
+		$meta['rangetiming-min']    = true;
+		$meta['rangetiming-max']    = true;
+		// $meta['filesize-min']       = false;
+		// $meta['filesize-max']       = false;
+		// $meta['textlength-min']     = false;
+		// $meta['textlength-max']     = false;
+		// $meta['numbersize-min']     = false;
+		// $meta['numbersize-max']     = false;
+		// $meta['starsize-min']       = false;
+		// $meta['starsize-max']       = false;
+		// $meta['answer']             = false; // just in multichoise we need to answer
+		// $meta['choice-count-min']   = false;
+		// $meta['choice-count-max']   = false;
+		// $meta['random_sort']        = false;
+		// $meta['score']              = false;
+		// $meta['true_answer']        = false;
+		// $meta['descriptive']        = false;
+		// $meta['profile']            = false;
+		// $meta['hidden_result']      = false;
+		// $meta['comment']            = false;
+		// $meta['ordering']           = false;
+		// $meta['choicemode']         = false; // one|multi|ordering
+		// $meta['text_format']        = false;
+		// $meta['file_format']        = false;
+		// $meta['rangemode']          = false; //number|star|like
+		// $meta['text_format_custom'] = false;
+		// $meta['file_format_custom'] = false;
 
 		switch ($_poll_type)
 		{
 			//-------------- in html: multiple
 			case 'select':
-				$meta['answer']       = true;
-				$meta['random_sort']   = true;
-				$meta['score']         = true;
-				$meta['true_answer']   = true;
-				$meta['descriptive']   = true;
-				$meta['profile']       = true;
-				$meta['hidden_result'] = true;
-				$meta['choicemode']    = true;
-				$meta['choicemode']    = true;
+				$meta['answer']           = true;
+				$meta['choice-count-min'] = true;
+				$meta['choice-count-max'] = true;
+				$meta['random_sort']      = true;
+				$meta['score']            = true;
+				$meta['true_answer']      = true;
+				$meta['descriptive']      = true;
+				$meta['profile']          = true;
+				$meta['hidden_result']    = true;
+				$meta['choicemode']       = true;
+				$meta['choicemode']       = true;
 				break;
 
 			//-------------- in html: descriptive
 			case 'text':
 				$meta['text_format']        = true;
 				$meta['text_format_custom'] = true;
+				$meta['textlength-min']     = true;
+				$meta['textlength-max']     = true;
 				break;
 
 			//-------------- in html: notification
@@ -62,11 +78,17 @@ trait config
 			case 'upload':
 				$meta['file_format']        = true;
 				$meta['file_format_custom'] = true;
+				$meta['filesize-min']       = true;
+				$meta['filesize-max']       = true;
 				break;
 
 			//-------------- in html: starred
 			case 'star':
-				$meta['rangemode']     = true;
+				$meta['rangemode']      = true;
+				$meta['numbersize-min'] = true;
+				$meta['numbersize-max'] = true;
+				$meta['starsize-min']   = true;
+				$meta['starsize-max']   = true;
 				break;
 
 			// default we have no meta
@@ -86,6 +108,7 @@ trait config
 		}
 		return $return;
 	}
+
 
 	/**
 	 * check the posted poll type and return the db poll type
@@ -218,7 +241,7 @@ trait config
 	 */
 	function remove_meta()
 	{
-		$cat = "poll_". $this->poll_id;
+		$cat   = "poll_". $this->poll_id;
 		$where =
 		[
 			'post_id'    => $this->poll_id,
@@ -234,7 +257,7 @@ trait config
 	 */
 	function remove_answers()
 	{
-		$cat = "poll_". $this->poll_id;
+		$cat   = "poll_". $this->poll_id;
 		$where =
 		[
 			'post_id'    => $this->poll_id,

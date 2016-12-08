@@ -28,6 +28,7 @@
 
         <div data-response="poll_type" data-response-where="descriptive" data-response-effect="slide" {%if poll.type != 'descriptive'%}data-response-hide{%endif%}>
          {{block('feature_textformat')}}
+         {{block('feature_textlength')}}
         </div>
 
         <div data-response="poll_type" data-response-where="notification" data-response-effect="slide" {%if poll.type != 'notification'%}data-response-hide{%endif%}>

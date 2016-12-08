@@ -41,7 +41,7 @@
 			<div class="element" data-row="{{answer_key}}">
 				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
 				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
-				<span class="checkbox true" data-response='meta_true_answer'>
+				<span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
 					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
 					<label class="check-box" for="true{{answer_key}}"></label>
 				</span>
@@ -136,7 +136,14 @@
 
 {%block feature_multiplerange%}
 {% spaceless %}
-	<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' data-response-where='multi' data-response-hide></div>
+	<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
+	{%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}
+		{% if poll.meta.choice_count_min%}
+			data-min-default="{{poll.meta.choice_count_min}}"
+		{%endif%}
+		{% if poll.meta.choice_count_max%}
+			data-max-default="{{poll.meta.choice_count_max}}"
+		{%endif%}></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -219,7 +226,14 @@
 
 {%block feature_timing%}
 {% spaceless %}
-	<div class="range-slider timing-range" id='rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"></div>
+	<div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
+		{% if poll.meta.rangetiming_min%}
+			data-min-default="{{poll.meta.rangetiming_min}}"
+		{%endif%}
+		{% if poll.meta.rangetiming_max%}
+			data-max-default="{{poll.meta.rangetiming_max}}"
+		{%endif%}
+	></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -297,6 +311,21 @@
 {%endblock%}
 
 
+{%block feature_textlength%}
+{% spaceless %}
+<div data-response="meta_text_format" data-response-where='any|number' {%if poll.meta.text_format != 'any' and poll.meta.text_format != 'number' and poll.meta.text_format %}data-response-hide{%endif%}>
+	<div class="range-slider textlength-range" data-type="horizontal" id="meta_textlength"
+		{% if poll.meta.textlength_min%}
+			data-min-default="{{poll.meta.textlength_min}}"
+		{%endif%}
+		{% if poll.meta.textlength_max%}
+			data-max-default="{{poll.meta.textlength_max}}"
+		{%endif%}></div>
+</div>
+{% endspaceless %}
+{%endblock%}
+
+
 {%block feature_fileformat%}
 {% spaceless %}
 	<div class="input-group">
@@ -329,9 +358,13 @@
 
 {%block feature_filesize%}
 {% spaceless %}
-{% spaceless %}
-	<div class="range-slider filesize-range" data-type="horizontal"></div>
-{% endspaceless %}
+	<div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
+		{% if poll.meta.filesize_min%}
+			data-min-default="{{poll.meta.filesize_min}}"
+		{%endif%}
+		{% if poll.meta.filesize_max%}
+			data-max-default="{{poll.meta.filesize_max}}"
+		{%endif%}></div>
 {% endspaceless %}
 {%endblock%}
 
@@ -339,11 +372,19 @@
 {%block feature_numberformat%}
 {% spaceless %}
 	<div class="element switch">
-		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber" {% if poll.meta.rangemode == 'number'%}checked{%endif%}>
+		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber"
+			{% if poll.meta.rangemode == 'number'%}
+				checked
+			{%elseif poll.meta.rangemode%}
+			{%else%}
+				checked
+			{%endif%}>
 		<label for="rangemodenumber">{%trans "Range Number"%}</label>
-		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar" {% if poll.meta.rangemode == 'star'%}checked{%endif%}>
+		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar"
+			{% if poll.meta.rangemode == 'star'%}checked{%endif%}>
 		<label for="rangemodestar">{%trans "Star"%}</label>
-		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike" {% if poll.meta.rangemode == 'like'%}checked{%endif%}>
+		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike"
+			{% if poll.meta.rangemode == 'like'%}checked{%endif%}>
 		<label for="rangemodelike">{%trans "Like"%}</label>
 	</div>
 {% endspaceless %}
@@ -352,14 +393,29 @@
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='number' data-response-effect='slide'>--Number</div>
+	<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
+	{%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}
+	data-response-where='number' data-response-effect='slide' id="meta_numbersize"
+		{% if poll.meta.numbersize_min%}
+			data-min-default="{{poll.meta.numbersize_min}}"
+		{%endif%}
+		{% if poll.meta.numbersize_max%}
+			data-max-default="{{poll.meta.numbersize_max}}"
+		{%endif%}></div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>--Star</div>
+	<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
+	{%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}
+	{% if poll.meta.starsize_min%}
+			data-min-default="{{poll.meta.starsize_min}}"
+		{%endif%}
+		{% if poll.meta.starsize_max%}
+			data-max-default="{{poll.meta.starsize_max}}"
+		{%endif%}></div>
 {% endspaceless %}
 {%endblock%}
 
