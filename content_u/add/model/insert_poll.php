@@ -110,7 +110,7 @@ trait insert_poll
 		$answers      = $answers_data['answers'];
 		$answer_type  = $answers_data['answer_type'];
 		$answer_true  = $answers_data['answer_true'];
-		$answer_point = $answers_data['answer_point'];
+		$answer_score = $answers_data['answer_score'];
 		$answer_desc  = $answers_data['answer_desc'];
 
 		// if in update mode first remoce the answers
@@ -138,14 +138,14 @@ trait insert_poll
 					debug::error(T_("you must set two answer"), ['answer1']);
 					return false;
 				}
-				// combine answer type and answer text and answer point
+				// combine answer type and answer text and answer score
 				$combine = [];
 				foreach ($answers as $key => $value)
 				{
 					$combine[] =
 					[
 						'true'  => isset($answer_true[$key])  ? $answer_true[$key] 	: null,
-						'point' => isset($answer_point[$key]) ? $answer_point[$key] : null,
+						'score' => isset($answer_score[$key]) ? $answer_score[$key] : null,
 						'type'  => isset($answer_type[$key])  ? $answer_type[$key] 	: null,
 						'desc'  => isset($answer_desc[$key])  ? $answer_desc[$key] 	: null,
 						'txt'   => $value

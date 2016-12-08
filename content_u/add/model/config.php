@@ -180,7 +180,7 @@ trait config
 		$answers      = [];
 		$answer_true  = [];
 		$answer_type  = [];
-		$answer_point = [];
+		$answer_score = [];
 		$answer_desc  = [];
 
 		$i = 0;
@@ -194,7 +194,7 @@ trait config
 				$answers[$i]      = utility::post("answer$j");
 				$answer_true[$i]  = (utility::post("true$j")  != '') ? utility::post("true$j") : '';
 				$answer_type[$i]  = (utility::post("type$j")  != '') ? utility::post("type$j") : 'select';
-				$answer_point[$i] = (utility::post("point$j") != '') ? utility::post("point$j"): '';
+				$answer_score[$i] = (utility::post("score$j") != '') ? utility::post("score$j"): '';
 				$answer_desc[$i]  = (utility::post("desc$j")  != '') ? utility::post("desc$j") : '';
 			}
 		}
@@ -204,7 +204,7 @@ trait config
 			'answers'      => $answers,
 			'answer_true'  => $answer_true,
 			'answer_type'  => $answer_type,
-			'answer_point' => $answer_point,
+			'answer_score' => $answer_score,
 			'answer_desc'  => $answer_desc,
 		];
 	}

@@ -29,14 +29,14 @@ trait insert
 		// 			'type'  => 'audio',
 		// 			'desc'  => 'description',
 		// 			'true'  => 'true|false',
-		// 			'point' => 10
+		// 			'score' => 10
 		// 		],
 		// 		[
 		// 			'txt'   => 'answer two',
 		// 			'type'  => 'audio',
 		// 			'desc'  => 'description',
 		// 			'true'  => 'true|false',
-		// 			'point' => 10
+		// 			'score' => 10
 		// 		]
 		// 	];
 		$answers   = [];
@@ -49,7 +49,7 @@ trait insert
 			$meta = [
 					'desc'  => isset($value['desc'])  ? $value['desc']  : '',
 					'true'  => isset($value['true'])  ? $value['true']  : '',
-					'point' => isset($value['point']) ? $value['point'] : '',
+					'score' => isset($value['score']) ? $value['score'] : '',
 					'type'  => isset($value['type'])  ? $value['type']  : ''
 					];
 

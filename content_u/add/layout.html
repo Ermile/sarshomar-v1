@@ -42,10 +42,11 @@
 				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
 				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
 				<span class="checkbox true" data-response='meta_true_answer'>
-					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
+					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
 					<label class="check-box" for="true{{answer_key}}"></label>
 				</span>
-				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}"></span>
+
+				<span class="score" {%if value.option_meta.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}" value="{{value.option_meta.score}}"></span>
 				<span class="fa fa-picture-o icon" data-response-hide></span>
 				<span class="fa fa-times delete" tabindex="0"></span>
 			</div>
