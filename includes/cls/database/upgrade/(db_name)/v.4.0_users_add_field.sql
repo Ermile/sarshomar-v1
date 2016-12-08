@@ -7,7 +7,7 @@ ALTER TABLE `posts` ADD `post_survey` bigint(20) UNSIGNED NULL;
 ALTER TABLE `posts` ADD `post_gender` ENUM('poll', 'survey') NULL;
 ALTER TABLE `posts` ADD `post_sarshomar` bit(1) NULL DEFAULT NULL;
 ALTER TABLE `posts` ADD `post_privacy` ENUM('public', 'private') NULL;
-ALTER TABLE `posts` ADD `post_rank` int(10) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `posts` ADD `post_rank` bigint(20) UNSIGNED NULL DEFAULT NULL;
 
 ALTER TABLE `polldetails` CHANGE `type` `type` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
 
