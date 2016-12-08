@@ -332,10 +332,16 @@ trait get
 							{
 								array_push($tmp, [$title, $count]);
 							}
-							// var_dump($drilldown_series[$filter][$j]);
-							$drilldown_series[$filter][$j] =
-								['name' => $opt_list[$opt_key], 'id' => 'valid_'. $opt_key, 'data' => $tmp];
-							$j++;
+							if(isset($opt_list[$opt_key]))
+							{
+								$drilldown_series[$filter][$j] =
+									[
+										'name' => $opt_list[$opt_key],
+										'id' => 'valid_'. $opt_key,
+										'data' => $tmp
+									];
+								$j++;
+							}
 						}
 					}
 				}
@@ -353,16 +359,25 @@ trait get
 							{
 								array_push($tmp, [$title, $count]);
 							}
-							// var_dump($drilldown_series[$filter][$j]);
-							$drilldown_series[$filter][$j] =
-								['name' => $opt_list[$opt_key], 'id' => 'invalid_'. $opt_key, 'data' => $tmp];
-							$j++;
+
+							if(isset($opt_list[$opt_key]))
+							{
+								$drilldown_series[$filter][$j] =
+								[
+									'name' => $opt_list[$opt_key],
+									'id' => 'invalid_'. $opt_key,
+									'data' => $tmp
+								];
+								$j++;
+							}
 						}
 					}
 				}
 			}
-
-			$drilldown_series[$filter] = json_encode($drilldown_series[$filter], JSON_UNESCAPED_UNICODE);
+			if(isset($drilldown_series[$filter]))
+			{
+				$drilldown_series[$filter] = json_encode($drilldown_series[$filter], JSON_UNESCAPED_UNICODE);
+			}
 		}
 		$result['stacked']          = $stacked_series;
 		$result['drilldown_series'] = $main_drilldown_series;

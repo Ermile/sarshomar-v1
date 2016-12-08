@@ -92,6 +92,17 @@ class model extends \content_u\home\model
 			return false;
 		}
 
+		/**
+		 * set ranks
+		 * plus (int) member in member field
+		 */
+		$member = utility::post("member");
+		\lib\db\ranks::plus($poll_id, "member", intval($member));
+
+		$filter_rank = 20; // 10% + 10%
+		\lib\db\ranks::plus($poll_id, "filter", intval($filter_rank));
+
+
 		// remove exist filter saved of this poll
 		\lib\db\postfilters::remove($poll_id);
 

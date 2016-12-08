@@ -7,6 +7,7 @@ class polls
 	use polls\faiv_like;
 	use polls\get;
 	use polls\insert;
+	use polls\order;
 	use polls\update;
 	use polls\search;
 	/**

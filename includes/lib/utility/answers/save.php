@@ -125,11 +125,23 @@ trait save
 			// set dashboard data
 			if($skipped)
 			{
+				/**
+				 * plus the ranks
+				 * skip mod
+				 */
+				\lib\db\ranks::plus($_poll_id, 'skip');
+
 				\lib\utility\profiles::set_dashboard_data($_user_id, "poll_skipped");
 				\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "skipped");
 			}
 			else
 			{
+				/**
+				 * plus the ranks
+				 * vot mod
+				 */
+				\lib\db\ranks::plus($_poll_id, 'vot');
+
 				\lib\utility\profiles::set_dashboard_data($_user_id, "poll_answered");
 				\lib\utility\profiles::people_see_my_poll($_user_id, $_poll_id, "answered");
 			}

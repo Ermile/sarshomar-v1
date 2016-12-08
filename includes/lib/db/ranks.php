@@ -11,19 +11,18 @@ class ranks
 	 */
 	private static $values =
 	[
-		'member'     => [	5			, true	],
-		'filter'     => [	2			, true	],
-		'report'     => [	3			, false	],
-		'vot'        => [	4			, true	],
-		'like'       => [	5			, true	],
-		'faiv'       => [	6			, true	],
-		'skip'       => [	7			, false	],
-		'comment'    => [	8			, true	],
-		'view'       => [	9			, true	],
-		'other'      => [	10			, true	],
-		'sarshomar'  => [	100000		, true	],
-		'createdate' => [	12			, true	],
-		'ago'        => [	13			, true 	],
+		'member'     => [ true	, 	5	 		],
+		'filter'     => [ true	, 	2	 		],
+		'report'     => [ false	, 	10	 		],
+		'vot'        => [ true	, 	4	 		],
+		'like'       => [ true	, 	5	 		],
+		'faiv'       => [ true	, 	6	 		],
+		'skip'       => [ false	, 	1	 		],
+		'comment'    => [ true	, 	8	 		],
+		'view'       => [ true	, 	1	 		],
+		'other'      => [ true	, 	10	 		],
+		'sarshomar'  => [ true	, 	100 * 1000	],
+		'ago'        => [ true	, 	3	  		],
 	];
 
 
@@ -106,40 +105,44 @@ class ranks
 			self::set($_poll_id);
 			$post_rank               = self::$values;
 			$post_rank               = array_map(function(){ return 0; }, $post_rank);
-			$post_rank['createdate'] = time();
+			$post_rank['createdate'] = date("Y-m-d");
 			$post_rank['value']      = 0;
 		}
 
-		$sum = 0;
-		if(isset($post_rank['value']))
-		{
-			$sum = $post_rank['value'];
-		}
-
+		$sum    = 0;
+		$update = [];
 		foreach ($post_rank as $key => $value)
 		{
 			switch ($key)
 			{
 				case 'createdate':
-				case 'ago':
-					continue;
+					$now       = time();
+					$your_date = strtotime($value);
+					$datediff  = $now - $your_date;
+					$ago       =  intval($datediff / (60 * 60 * 24));
+					if(isset($post_rank['ago']) && $post_rank['ago'] != $ago)
+					{
+						$sum       = $sum + (intval($ago) * intval(self::$values['ago'][1]));
+						$update[] = " ranks.ago = $ago ";
+					}
 					break;
 
 				default:
 					if($key == $_field)
 					{
-						$value += $_plus;
+						$value = intval($value) + intval($_plus);
+						$update[] = " ranks.$key = ranks.$key + 1 ";
 					}
 
 					if(array_key_exists($key, self::$values))
 					{
-						if(self::$values[$key][1] === true)
+						if(self::$values[$key][0] === true)
 						{
-							$sum += intval($value) * intval(self::$values[$key][0]);
+							$sum = $sum + (intval($value) * intval(self::$values[$key][1]));
 						}
-						elseif(self::$values[$key][1] === false)
+						elseif(self::$values[$key][0] === false)
 						{
-							$sum -= intval($value) * intval(self::$values[$key][0]);
+							$sum = $sum - (intval($value) * intval(self::$values[$key][1]));
 						}
 					}
 					break;
@@ -151,7 +154,19 @@ class ranks
 			$sum = 0;
 		}
 
-		$query  = "UPDATE ranks SET ranks.value = $sum WHERE post_id = $_poll_id";
+		$update[] = " ranks.value = $sum ";
+
+		$update = implode(",", $update);
+		$query  =
+		"
+			UPDATE
+				ranks
+			SET
+				$update
+			WHERE
+				post_id = $_poll_id
+			LIMIT 1
+		";
 		$result = \lib\db::query($query);
 		return $result;
 	}
