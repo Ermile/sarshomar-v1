@@ -52,7 +52,7 @@ header #header-top>a:hover{color:#37aaa7}
 /* header quick */
 header #header-quick{float:left;text-align:left;}
 .rtl header #header-quick{float:right;text-align:right}
-header #header-quick>a{position:relative;display:inline-block;padding:15px 10px 5px;font-size:12px;color:#00667A;line-height:30px;font-weight:bold;transition:.3s;}
+header #header-quick>a{position:relative;display:inline-block;padding:0 10px;font-size:12px;color:#00667A;line-height:40px;font-weight:bold;transition:.3s;margin-top:10px}
 header #header-quick>a:focus{background-color:#00667a;color:#f4f4f4;}
 
 /* header profile */
