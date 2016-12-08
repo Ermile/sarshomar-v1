@@ -136,14 +136,19 @@
 
 {%block feature_multiplerange%}
 {% spaceless %}
-	<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
-	{%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}
-		{% if poll.meta.choice_count_min%}
-			data-min-default="{{poll.meta.choice_count_min}}"
-		{%endif%}
-		{% if poll.meta.choice_count_max%}
-			data-max-default="{{poll.meta.choice_count_max}}"
-		{%endif%}></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+		<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
+		{%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}
+			{% if poll.meta.choice_count_min%}
+				data-min-default="{{poll.meta.choice_count_min}}"
+			{%endif%}
+			{% if poll.meta.choice_count_max%}
+				data-max-default="{{poll.meta.choice_count_max}}"
+			{%endif%}></div>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
@@ -226,14 +231,19 @@
 
 {%block feature_timing%}
 {% spaceless %}
-	<div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
-		{% if poll.meta.rangetiming_min%}
-			data-min-default="{{poll.meta.rangetiming_min}}"
-		{%endif%}
-		{% if poll.meta.rangetiming_max%}
-			data-max-default="{{poll.meta.rangetiming_max}}"
-		{%endif%}
-	></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+			<div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
+				{% if poll.meta.rangetiming_min%}
+					data-min-default="{{poll.meta.rangetiming_min}}"
+				{%endif%}
+				{% if poll.meta.rangetiming_max%}
+					data-max-default="{{poll.meta.rangetiming_max}}"
+				{%endif%}
+			></div>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
@@ -314,13 +324,18 @@
 {%block feature_textlength%}
 {% spaceless %}
 <div data-response="meta_text_format" data-response-where='any|number' {%if poll.meta.text_format != 'any' and poll.meta.text_format != 'number' and poll.meta.text_format %}data-response-hide{%endif%}>
-	<div class="range-slider textlength-range" data-type="horizontal" id="meta_textlength"
-		{% if poll.meta.textlength_min%}
-			data-min-default="{{poll.meta.textlength_min}}"
-		{%endif%}
-		{% if poll.meta.textlength_max%}
-			data-max-default="{{poll.meta.textlength_max}}"
-		{%endif%}></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+			<div class="range-slider textlength-range" data-type="horizontal" id="meta_textlength"
+				{% if poll.meta.textlength_min%}
+					data-min-default="{{poll.meta.textlength_min}}"
+				{%endif%}
+				{% if poll.meta.textlength_max%}
+					data-max-default="{{poll.meta.textlength_max}}"
+				{%endif%}></div>
+		</div>
+	</div>
 </div>
 {% endspaceless %}
 {%endblock%}
@@ -358,13 +373,18 @@
 
 {%block feature_filesize%}
 {% spaceless %}
-	<div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
-		{% if poll.meta.filesize_min%}
-			data-min-default="{{poll.meta.filesize_min}}"
-		{%endif%}
-		{% if poll.meta.filesize_max%}
-			data-max-default="{{poll.meta.filesize_max}}"
-		{%endif%}></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+			<div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
+				{% if poll.meta.filesize_min%}
+					data-min-default="{{poll.meta.filesize_min}}"
+				{%endif%}
+				{% if poll.meta.filesize_max%}
+					data-max-default="{{poll.meta.filesize_max}}"
+				{%endif%}></div>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
@@ -393,29 +413,39 @@
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
-	{%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}
-	data-response-where='number' data-response-effect='slide' id="meta_numbersize"
-		{% if poll.meta.numbersize_min%}
-			data-min-default="{{poll.meta.numbersize_min}}"
-		{%endif%}
-		{% if poll.meta.numbersize_max%}
-			data-max-default="{{poll.meta.numbersize_max}}"
-		{%endif%}></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+			<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
+			{%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}
+			data-response-where='number' data-response-effect='slide' id="meta_numbersize"
+				{% if poll.meta.numbersize_min%}
+					data-min-default="{{poll.meta.numbersize_min}}"
+				{%endif%}
+				{% if poll.meta.numbersize_max%}
+					data-max-default="{{poll.meta.numbersize_max}}"
+				{%endif%}></div>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
-	{%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}
-	{% if poll.meta.starsize_min%}
-			data-min-default="{{poll.meta.starsize_min}}"
-		{%endif%}
-		{% if poll.meta.starsize_max%}
-			data-max-default="{{poll.meta.starsize_max}}"
-		{%endif%}></div>
+	<div class="element no-pad">
+		<label class="title large">{%trans "Something"%}</label>
+		<div class="element-slider">
+			<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
+			{%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}
+			{% if poll.meta.starsize_min%}
+					data-min-default="{{poll.meta.starsize_min}}"
+				{%endif%}
+				{% if poll.meta.starsize_max%}
+					data-max-default="{{poll.meta.starsize_max}}"
+				{%endif%}></div>
+		</div>
+	</div>
 {% endspaceless %}
 {%endblock%}
 

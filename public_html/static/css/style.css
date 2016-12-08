@@ -932,8 +932,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 /* switch */
 .element.switch{padding-left:0;padding-right:0;}
 .element.switch label:not(.title){color:#035261;background-color:#E7E7E7;text-align:center;-webkit-flex:1;flex:1;line-height:35px;position:relative;cursor:pointer;padding:0 10px;}
-.element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#d6d6d6;right:0;top:0;bottom:0;margin:auto;transition:.3s;}
-.rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:0;}
+.element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#d6d6d6;right:-.5px;top:0;bottom:0;margin:auto;transition:.3s;z-index:1;}
+.rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:-.5px;}
 .element.switch{border-radius:3px;overflow:hidden;}
 
 .element.switch input[type="checkbox"],.element.switch input[type="radio"]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
@@ -982,7 +982,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .element.select .title::after{display:none;}
 
 .element.no-pad{padding:0;}
-.element.no-pad .title::after{display:none;}
+.element.no-pad .title::after,.element.range .title::after{display:none;}
 
 .element .btn{padding:0 1em;background-color:#EBEBEB;border:none;color:#BDBDBD;transition:.3s;cursor:pointer;}
 .element .btn:hover,.element .btn:focus,.element .input:focus~.btn{background-color:#d8d8d8;color:#777;}
