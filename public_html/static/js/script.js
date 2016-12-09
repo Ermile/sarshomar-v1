@@ -960,12 +960,13 @@ route(/\@\/add\/.+\/filter$/, function()
 }).once(function()
 {
 	calcFilterPrice();
+	checkInputChange.call(this);
 	$(this).on('click','button', function()
 	{
 		detectPercentage(true);
 	});
 	console.log('once on filter....');
-
+	detectPercentage();
 });
 
 function runAutoComplete()
@@ -1013,6 +1014,7 @@ route(/\@\/add\/.+\/publish$/, function()
 {
 	console.log('once on publish....');
 	runAutoComplete();
+	detectPercentage();
 });
 
 
