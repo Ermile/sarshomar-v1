@@ -22,7 +22,8 @@ body{background-color:#00667a;}
 
 /************************************************************** aside */
 aside .select-box input{width:100%;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow:none;background-color:#e7e7e7;color:#777;}
-aside .select-box{display:flex;background-color:#e7e7e7;margin:10px 0;}
+aside .select-box{display:flex;background-color:#e7e7e7;margin:10px 0;padding-left: 1em;}
+.rtl aside .select-box{padding-left:0em;padding-right:1.5em; }
 aside .select-box label{line-height:26px;font-size:1.1em;color:#00667a;width:100%;font-weight:500;padding-left: .5em;}
 .rtl aside .select-box label{padding-right: 1em;padding-left:.5em;}
 aside select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;background-color:#e7e7e7;outline:none;box-shadow: none;}
