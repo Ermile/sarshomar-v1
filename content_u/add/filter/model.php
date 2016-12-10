@@ -30,7 +30,7 @@ class model extends \content_u\home\model
 
 		if(!$poll_id)
 		{
-			debug::error(T_("poll id not found"));
+			debug::error(T_("Poll id not found"));
 			return false;
 		}
 
@@ -131,12 +131,12 @@ class model extends \content_u\home\model
 		if(\lib\debug::$status)
 		{
 			$short_url = $this->check_poll_url($_args, "encode");
-			\lib\debug::true(T_("Add filter of poll Success"));
+			\lib\debug::true(T_("Sucessfully added filters"));
 			$this->redirector()->set_url($this->url('prefix'). "/add/$short_url/publish");
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in insert filter of poll"));
+			\lib\debug::error(T_("Error in inserting poll filters"));
 		}
 	}
 }

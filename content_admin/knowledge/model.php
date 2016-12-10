@@ -31,11 +31,11 @@ class model extends \mvc\model
 		$result = \lib\db\polls::update($update, $id);
 		if($result)
 		{
-			\lib\debug::true(T_("post status update"));
+			\lib\debug::true(T_("Post status updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("error in update post"));
+			\lib\debug::error(T_("Error in updating post"));
 		}
 
 	}

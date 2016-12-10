@@ -22,7 +22,7 @@ class model extends \mvc\model
 			// check is my poll this id
 			if(!\lib\db\polls::is_my_poll($poll_id, $this->login('id')) && !$this->access('u', 'sarshomar_knowledge', 'admin'))
 			{
-				\lib\error::bad(T_("This not your poll"));
+				\lib\error::bad(T_("This is not your poll"));
 				return false;
 			}
 
@@ -37,7 +37,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			// \lib\debug::error(T_("poll id not found"));
+			// \lib\debug::error(T_("Poll id not found"));
 			return false;
 		}
 	}

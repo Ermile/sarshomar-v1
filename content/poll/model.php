@@ -118,12 +118,12 @@ class model extends \mvc\model
 			// save comment count to dashboard
 			\lib\utility\profiles::set_dashboard_data($user_id, 'comment_count');
 			\lib\db\polls::plus_comment($poll_id);
-			\lib\debug::true(T_("your comment saved, thank you"));
+			\lib\debug::true(T_("Comment saved, Thank you"));
 			return ;
 		}
 		else
 		{
-			\lib\debug::error(T_("we can not save your comment, please reload the page and try again"));
+			\lib\debug::error(T_("We Couldn't save your comment, Please reload the page and try again"));
 			return false;
 		}
 	}
@@ -164,7 +164,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::error(T_("we can not find some data, please reload the page and try again"));
+			\lib\debug::error(T_("We couldn't find some data, Please reload the page and try again"));
 			return false;
 		}
 		//----------------------------------------------------------------------------
@@ -213,7 +213,7 @@ class model extends \mvc\model
 		// save answers
 		if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
 		{
-			\lib\debug::error(T_("poll id not match with your last question"));
+			\lib\debug::error(T_("The poll id does not match with your last question"));
 			return false;
 		}
 
@@ -250,7 +250,7 @@ class model extends \mvc\model
 			}
 		}
 
-		$result = ['status' => false, 'msg' => T_("error in save your answers")];
+		$result = ['status' => false, 'msg' => T_("Error in saving your answers")];
 		if(!empty($opt))
 		{
 			$result = \lib\utility\answers::save(

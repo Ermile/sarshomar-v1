@@ -15,14 +15,14 @@ class menu
 		$txt_my = T_('My polls');
 		if(!\lib\db\polls::get(bot::$user_id, 'count'))
 		{
-			$txt_my = T_('Create new pool');
+			$txt_my = T_('Create new poll');
 		}
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
-				[T_('Ask from me')],
+				[T_('Ask me')],
 				[$txt_my],
 				[T_('Sarshomar Panel')],
 			],

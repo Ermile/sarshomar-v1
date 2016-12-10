@@ -85,7 +85,7 @@ class model extends \content_u\home\model
 				// if we not in survey we have error for title and answers
 				if(!$this->check_poll_url($_args))
 				{
-					debug::error(T_("title or answers must be full"), ['title', 'answer1', 'answer2']);
+					debug::error(T_("You must complete title or answers"), ['title', 'answer1', 'answer2']);
 					return;
 				}
 			}
@@ -121,7 +121,7 @@ class model extends \content_u\home\model
 				}
 				else
 				{
-					debug::error(T_("can not found redirect page"));
+					debug::error(T_("Couldn't find redirect page"));
 				}
 			}
 		}
@@ -176,7 +176,7 @@ class model extends \content_u\home\model
 		else
 		{
 			// the user click on buttom was not support us !!
-			debug::error(T_("command not found"));
+			debug::error(T_("Command not found"));
 		}
 
 		// save poll tree

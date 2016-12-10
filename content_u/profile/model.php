@@ -68,7 +68,7 @@ class model extends \mvc\model
 			$displayname = \lib\db\users::set_displayname($user_id, $value);
 			if(!$displayname)
 			{
-				\lib\debug::error(T_("we can not update your displayname"));
+				\lib\debug::error(T_("We couldn't update your display name"));
 			}
 		}
 		elseif($name == 'email')
@@ -76,7 +76,7 @@ class model extends \mvc\model
 			$email = \lib\db\users::set_email($user_id, $value);
 			if(!$email)
 			{
-				\lib\debug::error(T_("we can not update your email"));
+				\lib\debug::error(T_("We couldn't update your email address"));
 			}
 		}
 		elseif($name == 'mobile')
@@ -87,7 +87,7 @@ class model extends \mvc\model
 				$mobile = \lib\db\users::set_mobile($user_id, $value);
 				if(!$mobile)
 				{
-					\lib\debug::error(T_("we can not update your mobile"));
+					\lib\debug::error(T_("We couldn't update your mobile number"));
 				}
 			}
 		}
@@ -96,13 +96,13 @@ class model extends \mvc\model
 			$profiles = \lib\utility\profiles::set_profile_data($user_id, [$name => $value]);
 			if(!$profiles)
 			{
-				\lib\debug::error(T_("we can not update your profiles"));
+				\lib\debug::error(T_("We couldn't update your profile"));
 			}
 		}
 
 		if(\lib\debug::$status)
 		{
-			\lib\debug::true(T_("profile data updated"));
+			\lib\debug::true(T_("Profile information updated"));
 		}
 	}
 }

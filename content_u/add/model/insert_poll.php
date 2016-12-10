@@ -23,7 +23,7 @@ trait insert_poll
 		// swich html name and db name of poll type
 		if(!$poll_type)
 		{
-			debug::error(T_("poll type not found"));
+			debug::error(T_("Poll type not found"));
 			return false;
 		}
 		// default gender of all post record in sarshomar is 'poll'
@@ -59,7 +59,7 @@ trait insert_poll
 		// check title
 		if($title == null)
 		{
-			debug::error(T_("poll title can not null"), 'title');
+			debug::error(T_("Poll title cann't be null"), 'title');
 			return false;
 		}
 		// check length of sumamry text
@@ -135,7 +135,7 @@ trait insert_poll
 				// check the count of answer array
 				if(count($answers) < 2)
 				{
-					debug::error(T_("you must set two answer"), ['answer1']);
+					debug::error(T_("You must set two answers"), ['answer1']);
 					return false;
 				}
 				// combine answer type and answer text and answer score
@@ -285,12 +285,12 @@ trait insert_poll
 		if(\lib\debug::$status)
 		{
 			\lib\utility\profiles::set_dashboard_data($this->login('id'), 'my_poll');
-			\lib\debug::true(T_("add poll Success"));
+			\lib\debug::true(T_("Poll Successfully added"));
 			return $poll_id;
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in add poll"));
+			\lib\debug::error(T_("Error in adding poll"));
 			return false;
 		}
 	}

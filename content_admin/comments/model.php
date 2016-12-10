@@ -27,7 +27,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				debug::error(T_("Error in update comment status"));
+				debug::error(T_("Error in updating comment status"));
 			}
 
 		}

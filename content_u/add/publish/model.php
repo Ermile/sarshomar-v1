@@ -37,7 +37,7 @@ class model extends \content_u\home\model
 		$this->poll_survey_id = $poll_survey_id;
 		if(!$poll_survey_id)
 		{
-			debug::error(T_("poll id not found"));
+			debug::error(T_("Poll id not found"));
 			return false;
 		}
 
@@ -56,7 +56,7 @@ class model extends \content_u\home\model
 			$check_count = array_filter($check_count);
 			if(count($check_count) > 3 && !$this->access('u', 'sarshomar_knowledge', 'add'))
 			{
-				debug::error(T_("too tags added !!! remove some tags"));
+				debug::error(T_("You have added so many tags, Please remove some of the tags"));
 				return;
 			}
 
@@ -137,14 +137,14 @@ class model extends \content_u\home\model
 
 		if($result)
 		{
-			debug::true(T_("poll published"));
+			debug::true(T_("Poll published"));
 			$url = \lib\db\polls::get_poll_url($poll_survey_id);
 			$this->redirector()->set_url("$url");
 
 		}
 		else
 		{
-			debug::error(T_("error in publish poll"));
+			debug::error(T_("Error in publishing poll"));
 		}
 	}
 

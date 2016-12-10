@@ -42,7 +42,7 @@ class model extends \mvc\model
 		// check content
 		if($content == '')
 		{
-			debug::error(T_("Please fill the content box"), "content");
+			debug::error(T_("Please fill in the field"), "content");
 			return false;
 		}
 		// ready to insert comments
@@ -58,11 +58,11 @@ class model extends \mvc\model
 		$result = \lib\db\comments::insert($args);
 		if($result)
 		{
-			debug::true(T_("Thank You For contact to us"));
+			debug::true(T_("Thank You For contacting us"));
 		}
 		else
 		{
-			debug::error(T_("We could not save contact"));
+			debug::error(T_("We could'nt save the contact"));
 		}
 	}
 }

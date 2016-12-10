@@ -17,14 +17,14 @@ class menu
 		$user_polls = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'my_poll'=>true, 'pagenation' => false]);
 		if(!$user_polls)
 		{
-			$txt_my = [T_('Create new pool')];
+			$txt_my = [T_('Create new poll')];
 		}
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
-				[T_('Ask from me')],
+				[T_('Ask me')],
 				$txt_my,
 				[T_('Dashboard'), T_("Help")],
 			],
