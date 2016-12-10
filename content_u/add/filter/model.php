@@ -36,23 +36,30 @@ class model extends \content_u\home\model
 
 		$html_filter =
 		[
-			'male'           => ['male', 'gender'],			// gender
-			'female'         => ['female', 'gender'],		// gender
-			'single'         => ['single', 'marrital'],		// marrital
-			'marriade'       => ['marriade', 'marrital'],	// marrital
-			'illiterate'     => ['on', 'graduation'],		// graduation
-			'undergraduate'  => ['on', 'graduation'],		// graduation
-			'graduate'       => ['on', 'graduation'],		// graduation
-			'employee'       => ['on', 'employmentstatus'],	// employmentstatus
-			'unemployee'     => ['on', 'employmentstatus'],	// employmentstatus
-			'retired'        => ['on', 'employmentstatus'],	// employmentstatus
-			'under_diploma'  => ['on', 'degree'],			// degree
-			'diploma'        => ['on', 'degree'],			// degree
-			'2_year_college' => ['on', 'degree'],			// degree
-			'bachelor'       => ['on', 'degree'],			// degree
-			'master'         => ['on', 'degree'],			// degree
-			'phd'            => ['on', 'degree'],			// degree
-			'other'          => ['on', 'degree']			// degree
+			'male'             => ['male', 'gender'],			// gender
+			'female'           => ['female', 'gender'],			// gender
+			'single'           => ['single', 'marrital'],		// marrital
+			'marriade'         => ['marriade', 'marrital'],		// marrital
+			'illiterate'       => ['on', 'graduation'],			// graduation
+			'undergraduate'    => ['on', 'graduation'],			// graduation
+			'graduate'         => ['on', 'graduation'],			// graduation
+			'employee'         => ['on', 'employmentstatus'],	// employmentstatus
+			'unemployee'       => ['on', 'employmentstatus'],	// employmentstatus
+			'retired'          => ['on', 'employmentstatus'],	// employmentstatus
+			'under_diploma'    => ['on', 'degree'],				// degree
+			'diploma'          => ['on', 'degree'],				// degree
+			'2_year_college'   => ['on', 'degree'],				// degree
+			'bachelor'         => ['on', 'degree'],				// degree
+			'master'           => ['on', 'degree'],				// degree
+			'phd'              => ['on', 'degree'],				// degree
+			'other'            => ['on', 'degree'],				// degree
+			'-13'              => ['on', 'range'],				// range
+			'14-17'            => ['on', 'range'],				// range
+			'18-24'            => ['on', 'range'],				// range
+			'25-30'            => ['on', 'range'],				// range
+			'31-44'            => ['on', 'range'],				// range
+			'45-59'            => ['on', 'range'],				// range
+			'60+'              => ['on', 'range'],				// range
 		];
 
 		$filters = [];
@@ -67,7 +74,8 @@ class model extends \content_u\home\model
 		// remove full insert filter
 		// for example the user set male and female filter
 		// we remove the gender filter
-		$support_filter = \lib\db\filters::support_filter();
+		$sum_money_filter = 0;
+		$support_filter   = \lib\db\filters::support_filter();
 		foreach ($filters as $key => $value)
 		{
 			if(isset($support_filter[$key]))
@@ -75,6 +83,10 @@ class model extends \content_u\home\model
 				if($value == $support_filter[$key])
 				{
 					unset($filters[$key]);
+				}
+				else
+				{
+					$sum_money_filter += (int) \lib\db\filters::money_filter($key);
 				}
 			}
 		}
@@ -96,12 +108,13 @@ class model extends \content_u\home\model
 		 * set ranks
 		 * plus (int) member in member field
 		 */
-		$member = utility::post("member");
-		\lib\db\ranks::plus($poll_id, "member", intval($member));
+		$member = utility::post("rangepersons-max");
+		\lib\db\ranks::plus($poll_id, "member", intval($member), ['replace' => true]);
 
-		$filter_rank = 20; // 10% + 10%
-		\lib\db\ranks::plus($poll_id, "filter", intval($filter_rank));
-
+		/**
+		 * insert the money filters in ranks table
+		 */
+		\lib\db\ranks::plus($poll_id, "filter", $sum_money_filter, ['replace' => true]);
 
 		// remove exist filter saved of this poll
 		\lib\db\postfilters::remove($poll_id);

@@ -84,10 +84,35 @@ class ranks
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get($_poll_id)
+	public static function get($_poll_id, $_field = null)
 	{
-		$query = "SELECT * FROM ranks WHERE post_id = $_poll_id LIMIT 1";
-		return \lib\db::get($query, null, true);
+		$field     = '*';
+		$get_field = null;
+		if(is_array($_field))
+		{
+			$field     = '`'. join($_field, '`, `'). '`';
+			$get_field = null;
+		}
+		elseif($_field && is_string($_field))
+		{
+			$field     = '`'. $_field. '`';
+			$get_field = $_field;
+		}
+
+		$query =
+		"
+			SELECT
+				$field
+			FROM
+				ranks
+			WHERE
+				ranks.post_id = $_poll_id
+			LIMIT 1
+			-- ranks::get()
+		";
+		$result = \lib\db::get($query, $get_field, true);
+		return $result;
+
 	}
 
 
@@ -97,8 +122,17 @@ class ranks
 	 * @param      <type>  $_poll_id  The poll identifier
 	 * @param      <type>  $_field    The field
 	 */
-	public static function plus($_poll_id, $_field, $_plus = 1)
+	public static function plus($_poll_id, $_field, $_plus = 1, $_options = [])
 	{
+		$default_options = ['replace' => false ];
+		$_options        = array_merge($default_options, $_options);
+
+		$replace = false;
+		if($_options['replace'] === true)
+		{
+			$replace = true;
+		}
+
 		$post_rank = self::get($_poll_id);
 		if(empty($post_rank))
 		{
@@ -122,7 +156,7 @@ class ranks
 					$ago       =  intval($datediff / (60 * 60 * 24));
 					if(isset($post_rank['ago']) && $post_rank['ago'] != $ago)
 					{
-						$sum       = $sum + (intval($ago) * intval(self::$values['ago'][1]));
+						$sum      += (intval($ago) * intval(self::$values['ago'][1]));
 						$update[] = " ranks.ago = $ago ";
 					}
 					break;
@@ -130,19 +164,27 @@ class ranks
 				default:
 					if($key == $_field)
 					{
-						$value = intval($value) + intval($_plus);
-						$update[] = " ranks.$key = ranks.$key + 1 ";
+						if($replace)
+						{
+							$value    = intval($_plus);
+							$update[] = " ranks.$key = $_plus ";
+						}
+						else
+						{
+							$value    = intval($value) + intval($_plus);
+							$update[] = " ranks.$key = ranks.$key + 1 ";
+						}
 					}
 
 					if(array_key_exists($key, self::$values))
 					{
 						if(self::$values[$key][0] === true)
 						{
-							$sum = $sum + (intval($value) * intval(self::$values[$key][1]));
+							$sum += (intval($value) * intval(self::$values[$key][1]));
 						}
 						elseif(self::$values[$key][0] === false)
 						{
-							$sum = $sum - (intval($value) * intval(self::$values[$key][1]));
+							$sum -= (intval($value) * intval(self::$values[$key][1]));
 						}
 					}
 					break;
