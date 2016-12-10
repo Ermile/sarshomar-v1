@@ -531,8 +531,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
   100%{-webkit-transform:scale(1);transform:scale(1)}
 }
 
-#interaction #star:checked+label{color:#E8C018}
-#interaction #heart:checked+label{color:#E8103F}
+#interaction #favorite:checked+label{color:#E8C018;}
+
 
 #poll-box .poll-guide{text-align:center;color:#00667A;margin-bottom:.5em;font-weight:bold;}
 
