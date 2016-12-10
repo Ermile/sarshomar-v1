@@ -5,20 +5,20 @@
    <div class="group">
      <div class="full-line-title" data-title='{%trans "question type"%}'></div>
      <div class="select-box {%if checkbox.pollgender %}actived{%else%}closed{%endif%}">
-      <div class="checkbox reverse">
+      <div class="checkbox">
 
         <input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
         <label for="type1" class="check-box"></label>
         <label for="type1">{%trans "Poll"%}</label>
        {%if checkbox.pollgender == 'poll'%}{%endif%}
       </div>
-      <div class="checkbox reverse">
+      <div class="checkbox">
        <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
        <label for="type2" class="check-box"></label>
        <label for="type2">{%trans "quiz"%}</label>
        {%if checkbox.pollgender == 'quiz'%}{%endif%}
       </div>
-      <div class="checkbox reverse">
+      <div class="checkbox">
        <input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
        <label for="type4" class="check-box"></label>
        <label for="type4">{%trans "survey"%}</label>
@@ -79,14 +79,14 @@
    <div class="group">
     <div class="full-line-title" data-title='{%trans "survey time"%}'></div>
     <div class="select-box {%if checkbox.status %}actived{%else%}closed{%endif%}">
-      <div class="checkbox reverse">
+      <div class="checkbox">
 
         <input id="time1" type="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
         <label for="time1" class="check-box"></label>
         <label for="time1">{%trans "publish"%}</label>
         {%if checkbox.status == 'publish'%}{%endif%}
       </div>
-      <div class="checkbox reverse">
+      <div class="checkbox">
         <input id="time2" type="checkbox" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
         <label for="time2" class="check-box"></label>
         <label for="time2">{%trans "expire"%}</label>
@@ -111,9 +111,9 @@
    <div class="group">
     <div class="full-line-title" data-title='{%trans "filters"%}'></div>
 
-    <div class="filters-box  {%if checkbox.marrital or checkbox.employmentstatus or checkbox.gender or checkbox.graduation or checkbox.country or checkbox.province or checkbox.religion or checkbox.language or checkbox.age %}actived{%else%}closed{%endif%}">
+    <div class="select-box filters-box  {%if checkbox.marrital or checkbox.employmentstatus or checkbox.gender or checkbox.graduation or checkbox.country or checkbox.province or checkbox.religion or checkbox.language or checkbox.age %}actived{%else%}closed{%endif%}">
 
-     <div class="select-box">
+     <div class="options-box">
       <label for="marrital">{%trans "marrital"%}</label>
        <select name="marrital" id="marrital">
         <option value="">{%trans ""%}</option>
@@ -121,7 +121,7 @@
         <option value="marriade" {%if checkbox.marrital == 'marriade'%}selected{%endif%}>{%trans "marriade"%}</option>
       </select>
      </div>
-     <div class="select-box">
+     <div class="options-box">
        <label for="employmentstatus">{%trans "employment"%}</label>
        <select name="employmentstatus" id="employmentstatus">
         <option value="">{%trans ""%}</option>
@@ -130,7 +130,7 @@
         <option value="retired" {%if checkbox.employmentstatus == 'retired'%}selected{%endif%}>{%trans "retired"%}</option>
        </select>
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="gender">{%trans "gender"%}</label>
       <select name="gender" id="gender">
         <option value="">{%trans ""%}</option>
@@ -138,7 +138,7 @@
         <option value="female" {%if checkbox.gender == 'female'%}selected{%endif%}>{%trans "female"%}</option>
       </select>
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="graduation">{%trans "graduation"%}</label>
       <select name="graduation" id="graduation">
         <option value="">{%trans ""%}</option>
@@ -154,23 +154,23 @@
         <option value="other" {%if checkbox.graduation == 'other' %}selected{%endif%} %>{%trans "other"%}</option>
       </select>
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="country">{%trans "country"%}</label>
       <input name="country" id="country" value="">
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="age">{%trans "age"%}</label>
       <input name="age" id="age" value="">
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="province">{%trans "province"%}</label>
       <input name="province" id="province" value="">
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="religion">{%trans "religion"%}</label>
       <input name="religion" id="religion" value="">
      </div>
-     <div class="select-box">
+     <div class="options-box">
       <label for="language">{%trans "language"%}</label>
       <input name="language" id="language" value="">
      </div>

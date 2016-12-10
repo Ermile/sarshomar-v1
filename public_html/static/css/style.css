@@ -29,8 +29,9 @@ aside .select-box label{line-height:26px;font-size:1.1em;color:#00667a;width:100
 aside select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;background-color:#e7e7e7;outline:none;box-shadow: none;}
 aside select:focus {outline:none;}
 aside .select-box select{width:100%;font-size: 1.1em;color:#777;}
+aside .options-box {display:flex;background-color:#e7e7e7;margin:10px 0;}
+
 aside select option{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow: none;}
-aside .options-box{padding:.5em;padding-bottom:0;}
 aside .full-line-title{position:relative;height: 20px;cursor:pointer;}
 aside .full-line-title::before{content:'';width:100%;position:absolute;height:1px;background-color:#00667a;left:0;top:0;bottom:0;margin:auto;}
 aside .full-line-title::after{content:attr(data-title);position:absolute;background-color:#ebebeb;right:0;bottom:0;top:0;margin:auto;padding:0px 5px;padding-right:30px;color:#777;font-size: 1.1em;font-weight: 500;}
