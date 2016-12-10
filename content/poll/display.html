@@ -102,43 +102,48 @@
 
   <div class="row auto" id="poll-extra">
    <h2 class="special-heading">{%trans "Description"%}</h2>
-
    <div class="span4" id="poll-similar">
-    {%if similar_post()%}
     <div class="title">{%trans "Similar Questions"%}</div>
+    {%if similar_post()%}
     <ul>
-    {%for key, value in similar_post()%}
+     {%for key, value in similar_post()%}
      <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
-    {%endfor%}
+     {%endfor%}
     </ul>
+    {%else%}
+    <div class="content">{%trans "There is no similar post"%}</div>
     {%endif%}
    </div><!-- /.poll-similar -->
 
    <div class="span4" id="poll-info">
-    {%if date_start or date_end%}
     <div class="title">{%trans "Poll Period"%}</div>
-    <div class="period">
-     <span class="start-time">{{date_start}}</span>
-     <span>{%trans "to"%}</span>
-     <span class="end-time">{{date_end}}</span>
+    {%if date_start or date_end%}
+    <div class="content period">
+     <span class="start-time">{{date_start}}</span><span>{%trans "to"%}</span><span class="end-time">{{date_end}}</span>
     </div>
+    {%else%}
+    <div class="content">{%trans "Not set"%}</div>
     {%endif%}
 
     <div class="title">{%trans "Status"%}</div>
-    <div class="status {{status}}">{{status}}</div>
+    <div class="content status {{status}}">{{status}}</div>
 
-    {%if tags()%}
     <div class="title">{%trans "Keyword"%}</div>
-    <div class="tags">{{tags({"html":true})}}</div>
-    {%endif%}
+    {%if tags()%}
+    <div class="content tags">{{tags({"html":true})}}</div>
+    {%else%}
+    <div class="content">{%trans "Not set"%}</div>
+    {%endif%}`
    </div>
 
    <div class="span4" id="poll-filters">
-    {%if filters%}
     <div class="title">{%trans "Society Statistics"%}</div>
-    {%for key, value in filters%}
-    <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>
-    {%endfor%}
+    {%if filters%}
+     {%for key, value in filters%}
+     <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>
+     {%endfor%}
+    {%else%}
+     <div class="content no-data">{%trans "Not set"%}</div>
     {%endif%}
    </div>
   </div><!-- /.row -->
@@ -185,9 +190,6 @@
       <button class="save-comment" type="submit" name="comment" value="comment">{%trans "Send"%}</button>
      </form>
     </div>
-
-
-
     <div class="comment">
      <div class="comment-header">
       <div class="author">sahelekaj</div>
@@ -206,13 +208,17 @@
      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-     <div class="comment-footer">
+     <div class="row auto comment-footer">
+      <div class="score minus">
+       <span class="icon">-</span><span class="value">106</span>
+      </div>
+      <div class="score plus">
+       <span class="value">358</span><span class="icon">+</span>
+      </div>
+      <div class="flag"><i class="fa fa-flag-o"></i></div>
       <span class="continue">{%trans "Continue"%}</span>
      </div>
     </div>
-
-
-
     {% for key, value in comments()%}
     <div class="comment">
      <div class="score">
