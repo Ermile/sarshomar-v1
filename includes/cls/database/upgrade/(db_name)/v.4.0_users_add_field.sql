@@ -24,3 +24,4 @@ ALTER TABLE `polldetails` ADD `validstatus` ENUM('valid','invalid') NOT NULL AFT
 
 ALTER TABLE `filters` ADD `agemax` SMALLINT(3) NULL AFTER `age`;
 ALTER TABLE `filters` ADD `agemin` SMALLINT(3) NULL AFTER `age`;
+UPDATE `posts` SET post_language = 'fa' WHERE 1;
