@@ -14,20 +14,23 @@ class view extends \content_u\home\view
 		// add all template of question into new file
 		$this->data->template['filter']['layout'] = 'content_u/add/filter/layout.html';
 
+		// get poll_id || suervey_id from url
+		$poll_survey_id = $this->model()->check_poll_url($_args);
+
+		$url = $this->url('baseLang'). 'add/'. \lib\utility\shortURL::encode($poll_survey_id);
+
 		$this->data->step =
 		[
 			'current'      => 'filter',
 			'add'          => true,
 			'filter'       => true,
 			'publish'      => false,
-			'link_add'     => 'add...',
-			'link_filter'  => 'filter....',
-			'link_publish' => 'publish.....'
+			'link_add'     => $url,
+			'link_filter'  => $url. '/filter',
+			'link_publish' => $url. '/publish'
 		];
 		$this->include->fontawesome = true;
 
-		// get poll_id || suervey_id from url
-		$poll_survey_id = $this->model()->check_poll_url($_args);
 
 		$this->page_progress_url($poll_survey_id, "filter");
 

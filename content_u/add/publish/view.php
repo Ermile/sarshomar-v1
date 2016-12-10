@@ -12,20 +12,11 @@ class view extends \content_u\home\view
 	 */
 	function view_publish($_args)
 	{
-		$this->data->step =
-		[
-			'current' => 'publish',
-			'add'     => true,
-			'filter'  => true,
-			'publish' => true,
-			'link_add'     => 'add...',
-			'link_filter'  => 'filter....',
-			'link_publish' => 'publish.....'
-		];
 		$this->include->fontawesome = true;
 
 		// set the short url to data
 		$poll = $_args->api_callback;
+
 		$this->data->short_url = isset($poll['url']) ? $poll['url'] : '';
 
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
@@ -37,12 +28,33 @@ class view extends \content_u\home\view
 			$this->data->article = \lib\db\polls::search(null, $args);
 
 		}
+		$poll_id = null;
 		if(isset($poll['id']))
 		{
 			$this->data->tags = \lib\db\tags::usage($poll['id']);
 			$this->page_progress_url($poll['id'], "publish");
+
+			$poll_id = \lib\utility\shortURL::encode($poll['id']);
 		}
+
 		$this->data->poll = $poll;
+
+		$url = null;
+		if($poll_id)
+		{
+			$url = $this->url('baseLang'). 'add/'. $poll_id;
+		}
+
+		$this->data->step =
+		[
+			'current'      => 'publish',
+			'add'          => true,
+			'filter'       => true,
+			'publish'      => true,
+			'link_add'     => $url,
+			'link_filter'  => $url. '/filter',
+			'link_publish' => $url. '/publish'
+		];
 	}
 }
 ?>

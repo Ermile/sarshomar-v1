@@ -41,7 +41,7 @@ class controller extends \content_u\home\controller
 		}
 
 		// add new
-		$this->get(false, "add")->ALL("/^add$/");
+		$this->get(false, false)->ALL("/^add$/");
 		$this->post("add")->ALL("/^add$/");
 
 		// for add survey

@@ -16,13 +16,13 @@ class view extends \content_u\home\view
 
 		$this->data->step =
 		[
-			'current' => 'add',
-			'add'     => true,
-			'filter'  => false,
-			'publish' => false,
-			'link_add'     => 'add...',
-			'link_filter'  => 'filter....',
-			'link_publish' => 'publish.....'
+			'current'      => 'add',
+			'add'          => true,
+			'filter'       => false,
+			'publish'      => false,
+			'link_add'     => false,
+			'link_filter'  => false,
+			'link_publish' => false,
 		];
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
@@ -55,7 +55,22 @@ class view extends \content_u\home\view
 	 */
 	function view_edit($_args)
 	{
+
 		$poll_id = $_args->api_callback;
+
+		$url = $this->url('baseLang'). 'add/'. \lib\utility\shortURL::encode($poll_id);
+
+		$this->data->step =
+		[
+			'current'      => 'add',
+			'add'          => true,
+			'filter'       => false,
+			'publish'      => false,
+			'link_add'     => $url,
+			'link_filter'  => $url. '/filter',
+			'link_publish' => $url. '/publish',
+		];
+
 		$poll    = \lib\db\polls::get_poll($poll_id);
 		if(isset($poll['type']))
 		{
@@ -65,8 +80,6 @@ class view extends \content_u\home\view
 		$this->data->poll = $poll;
 		$answers = \lib\utility\answers::get($poll_id);
 		$this->data->answers = $answers;
-
-		$this->page_progress_url($poll_id, "add");
 
 		if(isset($poll['parent']) && $poll['parent'] !== null)
 		{
@@ -80,15 +93,6 @@ class view extends \content_u\home\view
 				$this->data->poll_tree_title = \lib\db\polls::get_poll_title($poll['parent']);
 			}
 		}
-	}
-
-
-	/**
-	 * ready to load add poll
-	 */
-	function view_add()
-	{
-		$this->page_progress_url(null, "add");
 	}
 
 

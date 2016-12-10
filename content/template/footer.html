@@ -49,7 +49,7 @@
    <div class="row auto" id='footer-note'>
     <div class="span4 langlist" data-xhr='langlist'>
 {%for key, lang in site.langlist if site.langlist|length >1 and site.currentlang != key|slice(0, 2)%}
-     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}/{{key|slice(0, 2)}}/{%endif%}{{url.content}}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
+     <a href="{{url.root}}{%if site.defaultLang != key|slice(0, 2) %}/{{key|slice(0, 2)}}{%endif%}/{{url.content}}{{url.path}}" hreflang="{{key|slice(0, 2)}}" data-action>{{lang}}</a>
 {%endfor%}
     </div>
     <div class="span4 counter">{{stat|number_format}} {%trans "Questions answered"%}</div>
