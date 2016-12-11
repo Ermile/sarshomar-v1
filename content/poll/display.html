@@ -105,7 +105,7 @@
     {%if similar_post()%}
     <ul>
      {%for key, value in similar_post()%}
-     <li><a href="{{base.url}}/{{value.url}}">{{value.title}}</a></li>
+     <li><a href="{{url.prefix}}/{{value.url}}">{{value.title}}</a></li>
      {%endfor%}
     </ul>
     {%else%}

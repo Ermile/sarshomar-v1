@@ -42,7 +42,8 @@ trait update
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function update($_args, $_id) {
+	public static function update($_args, $_id)
+	{
 		return \lib\db\posts::update($_args, $_id);
 	}
 
@@ -145,7 +146,8 @@ trait update
 
 		$find_remove = false;
 
-		foreach ($_field_meta as $key => $value) {
+		foreach ($_field_meta as $key => $value)
+		{
 			if(isset($meta[$key]))
 			{
 				if($value === null || $value == $meta[$key])

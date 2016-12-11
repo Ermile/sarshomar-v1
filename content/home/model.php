@@ -5,19 +5,8 @@ use \lib\debug;
 class model extends \mvc\model
 {
 
-	public function post_terms()
-	{
-		if(\lib\utility::post("type") == 'autocomplete')
-		{
-			$field  = \lib\utility::post("data");
-			$search = \lib\utility::post("search");
-			$result = \lib\db\terms::search($search, ['term_type' => "$field"]);
-			return $result;
-		}
-	}
-
 	/**
-	 * Gets the random.
+	 * Gets the random result.
 	 */
 	public function get_random()
 	{
@@ -28,11 +17,16 @@ class model extends \mvc\model
 			$url = $random['url'];
 		}
 
-		$this->redirector()->set_url($url)->redirect();
+		$this->redirector()->set_url(trim($this->url('prefix').'/'. $url, '/'))->redirect();
 		debug::msg('direct', true);
 		return;
 	}
 
+
+	/**
+	 * Gets the ask.
+	 * the user click on ask button
+	 */
 	public function get_ask()
 	{
 		// cehck login
@@ -48,10 +42,12 @@ class model extends \mvc\model
 		{
 			$next_url = '$';
 		}
-		$this->redirector()->set_url($next_url)->redirect();
+
+		$this->redirector()->set_url(trim($this->url('prefix').'/'. $next_url, '/'))->redirect();
 		debug::msg('direct', true);
 		return;
 	}
+
 
 	/**
 	 * get random result from post has tag #homepage
@@ -68,6 +64,14 @@ class model extends \mvc\model
 		return $random_result;
 	}
 
+
+	/**
+	 * make a fake result if we have not result
+	 *
+	 * @param      string  $_type  The type
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
 	public function random($_type = "drilldown")
 	{
 		$lang = substr(\lib\router::get_storage('language'), 0, 2);

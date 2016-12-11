@@ -43,13 +43,13 @@ trait insert
 		// check language
 		if($_args['post_language'] == null)
 		{
-			$language = substr(\lib\router::get_storage('language'), 0, 2);
+			$language = \lib\define::get_language();
 		}
 		else
 		{
 			if(strlen($_args['post_language']) > 2)
 			{
-				$language = substr(\lib\router::get_storage('language'), 0, 2);
+				$language = \lib\define::get_language();
 			}
 			else
 			{
@@ -154,9 +154,11 @@ trait insert
 		}
 		// check insert id and answers exist
 		// for example the notify poll has no answerd
-		if($insert_id && $answers){
+		if($insert_id && $answers)
+		{
 			$answers_value = [];
-			foreach ($_args['answers'] as $key => $value) {
+			foreach ($_args['answers'] as $key => $value)
+			{
 				$answers_value[] =
 				[
 					'type' => 'select',

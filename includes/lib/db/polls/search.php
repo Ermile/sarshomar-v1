@@ -24,34 +24,51 @@ trait search
 
 		$default_options =
 		[
-			"get_count"   => false,  // just return the count record
+			// just return the count record
+			"get_count"   => false,
 
-			"pagenation"  => true,   // enable|disable paignation,
+			// enable|disable paignation,
+			"pagenation"  => true,
 
-			                         // for example in get_count mode we needless to limit and pagenation
-			"limit"       => 10,	 // default limit of record is 10
-			                    	 // set the limit = null and pagenation = false to get all record whitout limit
+			// for example in get_count mode we needless to limit and pagenation
+			// default limit of record is 10
+			// set the limit  = null and pagenation = false to get all record whitout limit
+			"limit"           => 10,
 
-			"start_limit" => 0,		 // for manual pagenation set the statrt_limit and end limit
+			// for manual pagenation set the statrt_limit and end limit
+			"start_limit"     => 0,
 
-			"end_limit"   => 10,	 // for manual pagenation set the statrt_limit and end limit
+			// for manual pagenation set the statrt_limit and end limit
+			"end_limit"       => 10,
 
-			"login"       => false,  // get the login id to load faivorites post INNER JOIN options by this id
+			// get the login id to load faivorites post INNER JOIN options by this id
+			"login"           => false,
 
-			"get_last"    => false,	 // the the last record inserted to post table
+			// the the last record inserted to post table
+			"get_last"        => false,
 
-			"my_poll"     => false,  // disable check 'publish' poll because this is my poll
+			// disable check 'publish' poll because this is my poll
+			"my_poll"         => false,
 
-			"admin"       => false,	 // no thing yet.
+			// no thing yet.
+			"admin"           => false,
 
-			"order"		  => "ASC",  // default order by ASC you can change to DESC
+			// default order by ASC you can change to DESC
+			"order"           => "ASC",
 
-			"all" 		  => false,	 // if all == false load just sarshomar poll
-			      		           	 // if all == true disable check sarshomar poll to load
+			// if all == false load just sarshomar poll
+			// if all == true disable check sarshomar poll to load
+			"all"             => false,
 
-			"search_post" => false   // default we not search in news (posts.post_type = 'post')
-			      		             // the news type is 'post'
-			      		             // set the 'post' => true to search in news and polls
+			// default we not search in news (posts.post_type = 'post')
+			// the news type is 'post'
+			// set the 'post' => true to search in news and polls
+			"search_post"     => false,
+
+			// default we check the language of user
+			// and load only the post was this language or her lang is null
+			"check_language"  => true,
+
 		];
 		$_options = array_merge($default_options, $_options);
 
@@ -127,6 +144,12 @@ trait search
 			$where[] = " posts.post_type != 'post' ";
 		}
 
+		if($_options['check_language'] === true)
+		{
+			$language = \lib\define::get_language();
+			$where[] = " (posts.post_language IS NULL OR posts.post_language = '$language') ";
+		}
+
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -141,6 +164,7 @@ trait search
 		unset($_options['order']);
 		unset($_options['all']);
 		unset($_options['search_post']);
+		unset($_options['check_language']);
 
 		foreach ($_options as $key => $value)
 		{

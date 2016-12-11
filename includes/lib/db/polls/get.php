@@ -75,7 +75,8 @@ trait get
 	 *
 	 * @return     <type>  The poll.
 	 */
-	public static function get_poll($_poll_id) {
+	public static function get_poll($_poll_id)
+	{
 		if(!is_int($_poll_id) && !is_string($_poll_id))
 		{
 			return false;
@@ -136,7 +137,8 @@ trait get
 	 *
 	 * @return     <type>  The poll title.
 	 */
-	public static function get_poll_title($_poll_id) {
+	public static function get_poll_title($_poll_id)
+	{
 		$result = self::get_poll($_poll_id);
 		return isset($result['title']) ? $result['title'] : null;
 	}
@@ -149,7 +151,8 @@ trait get
 	 *
 	 * @return     <type>  The poll title.
 	 */
-	public static function get_poll_meta($_poll_id) {
+	public static function get_poll_meta($_poll_id)
+	{
 		$result = self::get_poll($_poll_id);
 		return isset($result['meta']) ? $result['meta'] : null;
 	}
@@ -224,12 +227,17 @@ trait get
 	 */
 	public static function get_random()
 	{
+		$language = \lib\define::get_language();
 		$public_fields = self::$fields;
 		$query =
 		"
 			SELECT
 				$public_fields
 			WHERE
+				(
+					posts.post_language IS NULL OR
+					posts.post_language = '$language'
+				) AND
 				posts.post_sarshomar = 1 AND
 				posts.post_status = 'publish'
 			ORDER BY RAND()

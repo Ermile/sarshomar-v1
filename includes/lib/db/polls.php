@@ -50,7 +50,6 @@ class polls
 			pollstats.post_id = posts.id AND
 			pollstats.type    = 'valid'
 		LEFT JOIN ranks ON ranks.post_id = posts.id
-
 	";
 
 

@@ -12,6 +12,8 @@ trait order
 	 */
 	public static function get_last($_user_id)
 	{
+		$language = \lib\define::get_language();
+
 		$public_fields = self::$fields;
 
 		$qry ="
@@ -34,6 +36,8 @@ trait order
 						polldetails.user_id = $_user_id AND
 						polldetails.post_id = posts.id
 				)
+			-- Check the poll language
+			AND (posts.post_language IS NULL OR posts.post_language = '$language')
 			-- Check poll tree
 			AND
 				CASE
@@ -57,9 +61,9 @@ trait order
 									FROM
 										options
 									WHERE
-										options.post_id = posts.id AND
-										options.option_cat = 'poll_' & posts.id AND
-										options.option_key = 'tree_' & posts.post_parent AND
+										options.post_id    = posts.id AND
+										options.option_cat = CONCAT('poll_', posts.id) AND
+										options.option_key = CONCAT('tree_', posts.post_parent) AND
 										options.user_id IS NULL
 								)
 					)

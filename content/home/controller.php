@@ -39,11 +39,10 @@ class controller extends \mvc\controller
 
 		$this->get('tg_session', false)->ALL("#^tg_session/(json|object)/(\d+)$#");
 
-		$this->post("terms")->ALL();
+		$this->get("random")->ALL("/ask\/random$/");
 
-		$this->get("ask")->ALL("/ask/");
+		$this->get("ask")->ALL("/ask$/");
 
-		$this->get("random")->ALL("/ask\/random/");
 	}
 }
 ?>
