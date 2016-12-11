@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2016-12-11 08:52+0330\n"
-"PO-Revision-Date: 2016-12-11 10:02+0330\n"
+"POT-Creation-Date: 2016-12-11 14:34+0330\n"
+"PO-Revision-Date: 2016-12-11 15:20+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -95,6 +95,7 @@ msgid "Create new poll"
 msgstr "ایجاد نظرسنجی جدید"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:25
+#: content/saloos_tg/sarshomarbot/commands/handle.php:116
 #: content/saloos_tg/sarshomarbot/commands/menu.php:27
 #: includes/languages/trans_twig.php:570
 msgid "Ask me"
@@ -208,10 +209,6 @@ msgstr ""
 #: content/saloos_tg/sarshomarbot/commands/handle.php:75
 msgid "Sync"
 msgstr "همگام‌سازی"
-
-#: content/saloos_tg/sarshomarbot/commands/handle.php:116
-msgid "Ask from me"
-msgstr "ازم بپرس"
 
 #: content/saloos_tg/sarshomarbot/commands/handle.php:130
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:20
@@ -3070,7 +3067,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:124
 msgid "Analyzing descriptive result"
-msgstr ""
+msgstr "تحلیل نتیجه توصیفی"
 
 #: includes/languages/trans_twig.php:125
 msgid "providing analyzed text  from the result of questions."
@@ -3724,7 +3721,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:245
 msgid "Can I invite my friends?"
-msgstr ""
+msgstr "آیا میتوانم دوستانم را دعوت کنم؟"
 
 #: includes/languages/trans_twig.php:246
 msgid ""
@@ -3738,7 +3735,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:248
 msgid "You can use a custom user name."
-msgstr ""
+msgstr "میتوانید از یک نام کاربری سفارشی استفاده کنید."
 
 #: includes/languages/trans_twig.php:249
 msgid "Can I replace my username?"
@@ -3777,7 +3774,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:257
 msgid "Can I have multiple accounts?"
-msgstr ""
+msgstr "آیا میتوانم چندین حساب کاربری داشته باشم؟"
 
 #: includes/languages/trans_twig.php:258
 msgid ""
@@ -3840,11 +3837,11 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:272
 msgid "No, there is no limit to answer the questions."
-msgstr ""
+msgstr "خیر، هیچ محدودیتی در پاسخ به سوالات نیست."
 
 #: includes/languages/trans_twig.php:273
 msgid "Can I answer the questions instead of someone else?"
-msgstr ""
+msgstr "آیا میتوانم به جای شخص دیگری به سوالات پاسخ دهم؟"
 
 #: includes/languages/trans_twig.php:274
 msgid ""
@@ -3911,7 +3908,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:287
 msgid "Why should I trust you?"
-msgstr ""
+msgstr "چرا باید به شما اعتماد کنم؟"
 
 #: includes/languages/trans_twig.php:288
 msgid "How safe is the census?"
@@ -3919,7 +3916,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:289
 msgid "How information is encrypted?"
-msgstr ""
+msgstr "اطلاعات چگونه رمزگذاری می‌شوند؟"
 
 #: includes/languages/trans_twig.php:290
 msgid "What are your support user?"
@@ -4140,7 +4137,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:358
 msgid "illiterate"
-msgstr ""
+msgstr "بی‌سواد"
 
 #: includes/languages/trans_twig.php:359
 msgid "undergraduate"
@@ -4292,7 +4289,7 @@ msgstr "زبان رابط کاربری"
 
 #: includes/languages/trans_twig.php:415
 msgid "Religion"
-msgstr ""
+msgstr "مذهب"
 
 #: includes/languages/trans_twig.php:416
 msgid "Graduation"
@@ -4304,7 +4301,7 @@ msgstr "لطفا یک گزینه را انتخاب کنید"
 
 #: includes/languages/trans_twig.php:418
 msgid "Illiterate"
-msgstr ""
+msgstr "بی‌سواد"
 
 #: includes/languages/trans_twig.php:419
 msgid "Undergraduate"
@@ -4380,7 +4377,7 @@ msgstr "وضعیت شغلی"
 
 #: includes/languages/trans_twig.php:437
 msgid "Employee"
-msgstr ""
+msgstr "کارمند"
 
 #: includes/languages/trans_twig.php:438
 msgid "Unemployee"
@@ -4388,11 +4385,11 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:439
 msgid "Retired"
-msgstr ""
+msgstr "بازنشسته"
 
 #: includes/languages/trans_twig.php:440
 msgid "Industry"
-msgstr ""
+msgstr "صنعت"
 
 #: includes/languages/trans_twig.php:441
 msgid "Company"
@@ -4444,19 +4441,19 @@ msgstr "روستا"
 
 #: includes/languages/trans_twig.php:453
 msgid "House Status"
-msgstr ""
+msgstr "وضعیت منزل"
 
 #: includes/languages/trans_twig.php:454
 msgid "Owner"
-msgstr ""
+msgstr "صاحب"
 
 #: includes/languages/trans_twig.php:455
 msgid "Tenant"
-msgstr ""
+msgstr "مستاجر"
 
 #: includes/languages/trans_twig.php:456
 msgid "Homeless"
-msgstr ""
+msgstr "بی‌خانمان"
 
 #: includes/languages/trans_twig.php:457
 msgid "Gender"
@@ -4484,7 +4481,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:463
 msgid "Internet Usage"
-msgstr ""
+msgstr "میزان استفاده از اینترنت"
 
 #: includes/languages/trans_twig.php:464
 msgid "Low"
@@ -4560,7 +4557,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:489
 msgid "Employment"
-msgstr ""
+msgstr "اشتغال"
 
 #: includes/languages/trans_twig.php:490
 msgid "Under diploma"
@@ -4604,7 +4601,7 @@ msgstr "سن"
 
 #: includes/languages/trans_twig.php:500
 msgid "It's free"
-msgstr ""
+msgstr "رایگان است"
 
 #: includes/languages/trans_twig.php:501
 msgid "Your Cash"
@@ -4612,7 +4609,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:502
 msgid "Tomans"
-msgstr ""
+msgstr "تومان"
 
 #: includes/languages/trans_twig.php:507
 msgid "Multiple Choice"
@@ -4660,7 +4657,7 @@ msgstr "اجازه به تایپ گزینه سایر"
 
 #: includes/languages/trans_twig.php:518
 msgid "Something"
-msgstr ""
+msgstr "چیزی"
 
 #: includes/languages/trans_twig.php:519
 msgid "Randomize sort options"
@@ -4796,7 +4793,7 @@ msgstr "آدرس کوتاه"
 
 #: includes/languages/trans_twig.php:557
 msgid "Your profile is not complete!"
-msgstr ""
+msgstr "نمایه شما کامل نیست!"
 
 #: includes/languages/trans_twig.php:558
 msgid "Please Complete Your Profile"
@@ -4808,7 +4805,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:560
 msgid "Referred count"
-msgstr ""
+msgstr "تعداد ارجاع‌ها"
 
 #: includes/languages/trans_twig.php:561
 msgid "Referred valid count"
@@ -4816,7 +4813,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:562
 msgid "Comments count"
-msgstr ""
+msgstr "تعداد دیدگاه‌ها"
 
 #: includes/languages/trans_twig.php:563
 msgid "Draft count"
@@ -4904,11 +4901,11 @@ msgstr ""
 
 #: includes/lib/utility/answers/access.php:155
 msgid "No problem"
-msgstr ""
+msgstr "مشکلی وجود ندارد"
 
 #: includes/lib/utility/answers/access.php:164
 msgid "You can update your answer"
-msgstr ""
+msgstr "شما می‌توانید پاسخ خود را بروز کنید"
 
 #: includes/lib/utility/answers/save.php:152
 msgid "Answer Save"
@@ -4920,7 +4917,7 @@ msgstr ""
 
 #: includes/lib/utility/answers/update.php:107
 msgid "Your answer updated"
-msgstr ""
+msgstr "پاسخ شما بروز شد"
 
 #: includes/mvc/view.php:11
 msgid "Distinct Attitude"
@@ -4933,6 +4930,9 @@ msgstr "از هرکسی در هرجایی بپرسید"
 #: includes/mvc/view.php:14
 msgid "Sarshomar is intelligent"
 msgstr "سرشمار باهوش است"
+
+#~ msgid "Ask from me"
+#~ msgstr "ازم بپرس"
 
 #~ msgid "Please fill the content box"
 #~ msgstr "لطفا جعبه محتوا را پر کنید"
