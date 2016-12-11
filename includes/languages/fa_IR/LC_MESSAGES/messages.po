@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2016-12-10 17:07+0330\n"
-"PO-Revision-Date: 2016-12-10 17:07+0330\n"
+"POT-Creation-Date: 2016-12-11 08:52+0330\n"
+"PO-Revision-Date: 2016-12-11 10:02+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,35 +19,38 @@ msgstr ""
 
 #: content/contact/model.php:45
 msgid "Please fill in the field"
-msgstr ""
+msgstr "لطفا موارد مورد نیاز را پر کنید"
 
 #: content/contact/model.php:61
 msgid "Thank You For contacting us"
-msgstr ""
+msgstr "از تماس شما متشکریم"
 
 #: content/contact/model.php:65
 msgid "We could'nt save the contact"
-msgstr ""
+msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
 #: content/poll/model.php:121
 msgid "Comment saved, Thank you"
-msgstr ""
+msgstr "دیدگاه ذخیره شد، متشکریم"
 
 #: content/poll/model.php:126
 msgid "We Couldn't save your comment, Please reload the page and try again"
 msgstr ""
+"مشکلی در ذخیره دیدگاه پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
 
 #: content/poll/model.php:167
 msgid "We couldn't find some data, Please reload the page and try again"
 msgstr ""
+"مشکلی در پیدا کردن برخی داده‌ها پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره "
+"تلاش کنید"
 
 #: content/poll/model.php:216
 msgid "The poll id does not match with your last question"
-msgstr ""
+msgstr "شناسه نظرسنجی با آخرین سوال شما تطابق ندارد"
 
 #: content/poll/model.php:253
 msgid "Error in saving your answers"
-msgstr ""
+msgstr "خطا در ذخیره‌سازی پاسخ‌های شما"
 
 #: content/poll/model.php:286
 msgid "You muset select one answer or skip the poll"
@@ -89,13 +92,13 @@ msgstr "نظرسنجی‌های من"
 #: content/saloos_tg/sarshomarbot/commands/menu.php:20
 #: includes/languages/trans_twig.php:568
 msgid "Create new poll"
-msgstr ""
+msgstr "ایجاد نظرسنجی جدید"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:25
 #: content/saloos_tg/sarshomarbot/commands/menu.php:27
 #: includes/languages/trans_twig.php:570
 msgid "Ask me"
-msgstr ""
+msgstr "از من بپرس"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:27
 msgid "Sarshomar Panel"
@@ -309,7 +312,7 @@ msgstr "وضعیت دیدگاه به :status تغییر یافت"
 
 #: content_admin/comments/model.php:30
 msgid "Error in updating comment status"
-msgstr ""
+msgstr "خطا در بروزرسانی وضعیت دیدگاه"
 
 #: content_admin/knowledge/model.php:13
 msgid "words change status"
@@ -317,11 +320,11 @@ msgstr ""
 
 #: content_admin/knowledge/model.php:34
 msgid "Post status updated"
-msgstr ""
+msgstr "وضعیت پست بروز شد"
 
 #: content_admin/knowledge/model.php:38
 msgid "Error in updating post"
-msgstr ""
+msgstr "خطا در بروزرسانی پست"
 
 #: content_admin/manifest.php:8
 msgid "can change polls status to publish"
@@ -329,7 +332,7 @@ msgstr ""
 
 #: content_u/add/filter/model.php:33 content_u/add/publish/model.php:40
 msgid "Poll id not found"
-msgstr ""
+msgstr "شناسه نظرسنجی یافت نشد"
 
 #: content_u/add/filter/model.php:103
 msgid ":max users found remove some filter"
@@ -337,27 +340,27 @@ msgstr ""
 
 #: content_u/add/filter/model.php:134
 msgid "Sucessfully added filters"
-msgstr ""
+msgstr "فیلترها با موفقیت اضافه شدند"
 
 #: content_u/add/filter/model.php:139
 msgid "Error in inserting poll filters"
-msgstr ""
+msgstr "خطا در وارد کردن فیلترهای نظرسنجی"
 
 #: content_u/add/model.php:88
 msgid "You must complete title or answers"
-msgstr ""
+msgstr "عنوان یا پاسخ‌ها باید تکمیل شوند"
 
 #: content_u/add/model.php:124
 msgid "Couldn't find redirect page"
-msgstr ""
+msgstr "خطا در پیدا کردن صفحه تغییر مسیر"
 
 #: content_u/add/model.php:179
 msgid "Command not found"
-msgstr ""
+msgstr "دستور یافت نشد"
 
 #: content_u/add/model/insert_poll.php:26
 msgid "Poll type not found"
-msgstr ""
+msgstr "نوع نظرسنجی یافت نشد"
 
 #: content_u/add/model/insert_poll.php:62
 msgid "Poll title cann't be null"
@@ -371,7 +374,7 @@ msgstr ""
 
 #: content_u/add/model/insert_poll.php:138
 msgid "You must set two answers"
-msgstr ""
+msgstr "شما باید ۲ پاسخ را تعیین کنید"
 
 #: content_u/add/model/insert_poll.php:163
 msgid "answers not found"
@@ -379,11 +382,11 @@ msgstr "پاسخی یافت نشد "
 
 #: content_u/add/model/insert_poll.php:288
 msgid "Poll Successfully added"
-msgstr ""
+msgstr "نظرسنجی با موفقیت افزوده شد"
 
 #: content_u/add/model/insert_poll.php:293
 msgid "Error in adding poll"
-msgstr ""
+msgstr "خطا در افزودن نظرسنجی"
 
 #: content_u/add/model/survey.php:41
 msgid ""
@@ -401,15 +404,15 @@ msgstr ""
 
 #: content_u/add/publish/model.php:140
 msgid "Poll published"
-msgstr ""
+msgstr "نظرسنجی منتشر شد"
 
 #: content_u/add/publish/model.php:147
 msgid "Error in publishing poll"
-msgstr ""
+msgstr "خطا در انتشار نظرسنجی"
 
 #: content_u/home/model.php:25
 msgid "This is not your poll"
-msgstr ""
+msgstr "این نظرسنجی متعلق به شما نیست"
 
 #: content_u/manifest.php:7
 msgid "can add the poll to complete the profile"
@@ -425,23 +428,23 @@ msgstr ""
 
 #: content_u/profile/model.php:71
 msgid "We couldn't update your display name"
-msgstr ""
+msgstr "مشکلی در بروزرسانی نام نمایشی شما پیش آمد"
 
 #: content_u/profile/model.php:79
 msgid "We couldn't update your email address"
-msgstr ""
+msgstr "مشکلی در بروزرسانی آدرس ایمیل پیش آمد"
 
 #: content_u/profile/model.php:90
 msgid "We couldn't update your mobile number"
-msgstr ""
+msgstr "مشکلی در بروزرسانی شماره تلفن همراه پیش آمد"
 
 #: content_u/profile/model.php:99
 msgid "We couldn't update your profile"
-msgstr ""
+msgstr "مشکلی در بروزرسانی نمایه شما پیش آمد"
 
 #: content_u/profile/model.php:105
 msgid "Profile information updated"
-msgstr ""
+msgstr "اطلاعات نمایه بروزرسانی شد"
 
 #: includes/cls/database/sarshomar/translation.php:6
 #: includes/cls/database/sarshomar/translation.php:112
@@ -2707,15 +2710,15 @@ msgstr "بیشتر بخوانید"
 
 #: includes/languages/trans_twig.php:9
 msgid "You can select just two options."
-msgstr ""
+msgstr "شما تنها قادر به انتخاب دو گزینه هستید."
 
 #: includes/languages/trans_twig.php:10
 msgid "I am not willing to answer"
-msgstr ""
+msgstr "علاقه‌ای به پاسخ دادن ندارم"
 
 #: includes/languages/trans_twig.php:11
 msgid "Save Answer"
-msgstr ""
+msgstr "ذخیره پاسخ"
 
 #: includes/languages/trans_twig.php:12
 msgid "Ask Me"
@@ -2739,7 +2742,7 @@ msgstr "به"
 
 #: includes/languages/trans_twig.php:19
 msgid "Keyword"
-msgstr ""
+msgstr "کلمه کلیدی"
 
 #: includes/languages/trans_twig.php:20
 msgid "Society Statistics"
@@ -2771,7 +2774,7 @@ msgstr "سپس اگر ما را برترین یافتید، ثبت‌نام کن
 
 #: includes/languages/trans_twig.php:35
 msgid "Verify your account"
-msgstr ""
+msgstr "تایید حساب کاربری"
 
 #: includes/languages/trans_twig.php:36
 msgid "Try Sarshomar"
@@ -2871,7 +2874,7 @@ msgstr "آخرین اخبار"
 
 #: includes/languages/trans_twig.php:64
 msgid "Questions answered"
-msgstr ""
+msgstr "سوال پاسخ داده شده"
 
 #: includes/languages/trans_twig.php:65
 msgid "Proudly Made in IRAN"
@@ -2947,11 +2950,11 @@ msgstr "جزئیات نمدار"
 
 #: includes/languages/trans_twig.php:94
 msgid "There is the possibility of showing details in the form of chart."
-msgstr ""
+msgstr "امکان نمایش جزییات به شکل نمودار وجود دارد."
 
 #: includes/languages/trans_twig.php:95
 msgid "Exit from the result"
-msgstr ""
+msgstr "خروج از نتایج"
 
 #: includes/languages/trans_twig.php:96
 msgid "There is a possibility of getting the results in any format of your choice."
@@ -2967,7 +2970,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:99
 msgid "Online test"
-msgstr ""
+msgstr "آزمون آنلاین"
 
 #: includes/languages/trans_twig.php:100
 msgid "Without any limitation, easily organize online test."
@@ -2979,7 +2982,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:102
 msgid "Descriptive Question"
-msgstr ""
+msgstr "سوال توصیفی"
 
 #: includes/languages/trans_twig.php:103
 msgid "Design the descriptive question and get complete and exact answer. "
@@ -2999,11 +3002,11 @@ msgstr "ثبت‌نام اختیاری"
 
 #: includes/languages/trans_twig.php:107
 msgid "Registration in Sarshumar is optional"
-msgstr ""
+msgstr "ثبت‌نام در سرشمار اختیاری است"
 
 #: includes/languages/trans_twig.php:108
 msgid "Questionnaire"
-msgstr ""
+msgstr "پرسشنامه"
 
 #: includes/languages/trans_twig.php:109
 msgid "Design Online Questionnaire"
@@ -3015,15 +3018,15 @@ msgstr "بدون تبلیغات"
 
 #: includes/languages/trans_twig.php:111
 msgid "There are no annoying advertisements."
-msgstr ""
+msgstr "هیچ تبلیغ آزار دهنده‌ای وجود ندارد."
 
 #: includes/languages/trans_twig.php:112
 msgid "Free for regular users"
-msgstr ""
+msgstr "رایگان برای کاربران عادی"
 
 #: includes/languages/trans_twig.php:113
 msgid "Usage for non commercial purpose is free"
-msgstr ""
+msgstr "استفاده برای مقاصد غیرتجاری رایگان می‌باشد"
 
 #: includes/languages/trans_twig.php:114
 msgid "Earning Income for Users"
@@ -3071,7 +3074,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:125
 msgid "providing analyzed text  from the result of questions."
-msgstr ""
+msgstr "فراهم‌سازی متن تحلیل شده از نتیجه سوالات."
 
 #: includes/languages/trans_twig.php:126
 msgid "Determine the limitation for reply"
