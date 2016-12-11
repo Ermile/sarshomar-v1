@@ -84,7 +84,7 @@
 	<div class="element switch" data-respnse-group='range' data-response-where-not='false'>
 		<label class="title large badge {%if filters.range%}active{%endif%}" for="range" data-ratio="50" data-response='range' data-response-class='active'>{%trans "Range"%}</label>
 		<input type="checkbox" name="-13" id="-13" {% if filters.range['-13']%}checked{%endif%}>
-		<label for="-13">{%trans "-13"%}</label>
+		<label for="-13">{%trans "Under 13"%}</label>
 		<input type="checkbox" name="14-17" id="14-17" {% if filters.range['14-17']%}checked{%endif%}>
 		<label for="14-17">{%trans "14-17"%}</label>
 		<input type="checkbox" name="18-24" id="18-24" {% if filters.range['18-24']%}checked{%endif%}>
@@ -96,7 +96,7 @@
 		<input type="checkbox" name="45-59" id="45-59" {% if filters.range['45-59']%}checked{%endif%}>
 		<label for="45-59">{%trans "45-59"%}</label>
 		<input type="checkbox" name="60+" id="60+" {% if filters.range['60+']%}checked{%endif%}>
-		<label for="60+">{%trans "60+"%}</label>
+		<label for="60+">{%trans "Above 60"%}</label>
 	</div>
 {% endspaceless %}
 {%endblock%}
