@@ -38,7 +38,10 @@ class polls
 			posts.post_gender				AS 'gender',
 			posts.post_privacy				AS 'privacy',
 			posts.date_modified  	    	AS 'date_modified',
-			IFNULL(posts.comment_count,0)   AS 'comment_count',
+			IFNULL(ranks.comment,0)   		AS 'comment_count',
+			IFNULL(ranks.vot,0)   			AS 'vot',
+			IFNULL(ranks.like,0)   			AS 'like',
+			IFNULL(ranks.faiv,0)   			AS 'faiv',
 			pollstats.id 		     		AS 'pollstatsid',
 			IFNULL(pollstats.total,0)		AS 'total'
 		FROM
@@ -46,6 +49,8 @@ class polls
 		LEFT JOIN pollstats ON
 			pollstats.post_id = posts.id AND
 			pollstats.type    = 'valid'
+		LEFT JOIN ranks ON ranks.post_id = posts.id
+
 	";
 
 

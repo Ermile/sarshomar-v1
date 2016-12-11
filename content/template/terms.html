@@ -1,0 +1,11 @@
+{%extends display.main%}
+
+{%block content%}
+<div class="box">
+	<ul>
+		{% for key, value in tags_list%}
+		<li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
+		{%endfor%}
+	</ul>
+</div>
+{%endblock%}
