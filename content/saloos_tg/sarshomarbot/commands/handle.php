@@ -113,7 +113,7 @@ class handle
 				break;
 
 				case '/ask':
-				case T_('Ask from me'):
+				case T_('Ask me'):
 				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
 				$response = callback_query\ask::make(null, null, empty($sp) ? null : $sp[2]);
 				break;
