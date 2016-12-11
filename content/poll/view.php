@@ -5,15 +5,18 @@ class view extends \mvc\view
 {
 	function config()
 	{
-		// $this->include->css_ermile   = false;
-		$this->include->js    = true;
-		$this->include->chart = true;
-		if($this->module() === 'home')
+		// add all template of poll into new file
+		$this->data->template['poll']['layout'] = 'content/poll/layout.html';
+
+		if ($this->module() === 'home')
 		{
-			$this->include->js_main      = true;
+			$this->include->js_main = true;
 		}
 
 		$this->data->stat = T_(":number Questions answered", ["number"=>\lib\utility\stat_polls::get_sarshomar_total_answered()]);
+
+		$this->include->js          = true;
+		$this->include->chart       = true;
 		$this->include->fontawesome = true;
 	}
 

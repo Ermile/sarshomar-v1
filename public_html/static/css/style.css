@@ -485,7 +485,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .poll.btn-container{margin-bottom:3em;}
 
 /* toolbox */
-#toolbox{margin-bottom:1em;}
+#poll-box .toolbox{margin-bottom:1em;}
 
 /* sharebox */
 .sharebox{text-align:right;}
@@ -510,12 +510,12 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .sharebox a.rss:before{background-color:#e68523}
 
 /* poll interaction */
-#interaction{padding:0 .5em}
-#interaction input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1;}
-#interaction input[type="checkbox"]:focus,#interaction input[type="checkbox"]:hover{}
-#interaction label{margin:0 .1em;color:#838383;cursor:pointer;transition:.3s;opacity:.8;}
-#interaction label:hover{opacity:1;}
-#interaction #heart:checked+label{color:#E8103F;animation:pulse .5s linear;}
+#poll-box .interaction{padding:0 .5em}
+#poll-box .interaction input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1;}
+#poll-box .interaction input[type="checkbox"]:focus,#interaction input[type="checkbox"]:hover{}
+#poll-box .interaction label{margin:0 .1em;color:#838383;cursor:pointer;transition:.3s;opacity:.8;}
+#poll-box .interaction label:hover{opacity:1;}
+#poll-box .interaction #heart:checked+label{color:#E8103F;animation:pulse .5s linear;}
 @-webkit-keyframes pulse {
 	0%{-webkit-transform:scale(1);transform:scale(1)}
 	25%{-webkit-transform:scale(0.9);transform:scale(0.9)}
@@ -531,8 +531,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
   100%{-webkit-transform:scale(1);transform:scale(1)}
 }
 
-#interaction #favorite:checked+label{color:#E8C018;}
-
+#poll-box .interaction #favorite:checked+label{color:#E8C018;}
 
 #poll-box .poll-guide{text-align:center;color:#00667A;margin-bottom:.5em;font-weight:bold;}
 
@@ -574,10 +573,14 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 /* poll comments */
 #comments-box .overall{font-size:6em;color:#767676;line-height:1;}
 #comments-box .stars{}
+
 #comments-box .stars .star{color:#9F9F9F;transition:.3s;}
 #comments-box .stars .star.hover,#comments-box .stars .star.active{color:#E2B31E;}
 #comments-box .stars .number{color:#767678;font-size:1.4em;padding:0 .5em;}
-#comments-box .bars{width:50%;}
+
+#comments-box .stars.total{margin-bottom:1em}
+
+#comments-box .bars{width:90%;}
 #comments-box .bars .bar{height:1em;border-radius:0.3em;margin-bottom:1em;}
 #comments-box .bar.one{background-color:#62b138;}
 #comments-box .bar.two{background-color:#859e1f;}
