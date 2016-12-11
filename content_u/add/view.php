@@ -121,6 +121,32 @@ class view extends \content_u\home\view
 		// only show with referrer
 		if(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], '@/add') !== false)
 		{
+			$reg = "/@\/add\/([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)$/";
+			if(preg_match($reg, $_SERVER['HTTP_REFERER'], $split))
+			{
+				if(isset($split[1]))
+				{
+					$current_poll_id = $split[1]; // the current poll id
+					$current_poll_id = \lib\utility\shortURL::decode($current_poll_id);
+
+					// get this poll to find poll_parent
+					$poll = \lib\db\polls::get_poll($current_poll_id);
+					if(isset($poll['parent']))
+					{
+						// the parent poll id must be checked
+						$parent = $poll['parent'];
+						$this->data->parent_poll_id = $parent;
+
+						// get the poll tree to find the opt lock on this poll
+						$poll_tree = \lib\utility\poll_tree::get($current_poll_id);
+						if($poll_tree && is_array($poll_tree))
+						{
+							$opt = array_column($poll_tree, 'value');
+							$this->data->parent_poll_opt = $opt;
+						}
+					}
+				}
+			}
 			$this->data->poll_list = $_args->api_callback;
 		}
 	}

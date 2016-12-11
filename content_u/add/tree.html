@@ -1,27 +1,27 @@
 <ul class="tree-result-list" data-xhr="tree">
-{%block search_result%}
-{%for key, value in poll_list%}
-	<li>
-		<input type="radio" value="{{value.id|shortURL('encode')}}" name="parent_tree_id" id="tree-i{{key}}" class='notshown'>
+{% block search_result %}
+{% spaceless %}
+{% for key, value in poll_list %}
+	<li {% if value.id == parent_poll_id %}class="active"{% endif %}>
+		<input type="radio" value="{{value.id|shortURL('encode')}}" name="parent_tree_id" id="tree-i{{key}}" class='notshown' {% if value.id == parent_poll_id %}checked{% endif %}>
 		<label for="tree-i{{key}}">{{value.title|raw}}</label>
 
 		<ul class="options">
-{%for i, opt in value.meta.opt%}
+			{% for i, opt in value.meta.opt %}
 			<li data-id='{{i}}'>
 				<span class="checkbox">
-					<input type="checkbox" value="{{opt.key}}" id="x{{key}}-{{i}}">
+					<input type="checkbox" value="{{opt.key}}" id="x{{key}}-{{i}}" {% if value.id == parent_poll_id and opt.key in parent_poll_opt %}checked{% endif %}>
 					<label class="check-box" for="x{{key}}-{{i}}"></label>
 				</span>
 				<label for="x{{key}}-{{i}}">{{opt.txt}}</label>
 			</li>
-{%endfor%}
+			{% endfor %}
 		</ul>
 	</li>
-{%endfor%}
-
+{% endfor %}
+{% endspaceless %}
 <div class="pagination-container">
-	{%include display.pagination%}
+	{% include display.pagination %}
 </div>
-{%endblock%}
-
+{% endblock %}
 </ul>
