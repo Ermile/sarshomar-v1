@@ -2,6 +2,15 @@
 private function transtext()
 {
 
+	// ------------------------------------------------------------ Table commentdetails
+	echo T_("commentdetails");      // Table commentdetails
+	echo T_("commentdetail");       // commentdetail
+	echo T_("minus");               // Enum minus
+	echo T_("plus");                // Enum plus
+	echo T_("user");                // user_id
+	echo T_("comment");             // comment_id
+	echo T_("type");                // type
+
 	// ------------------------------------------------------------ Table comments
 	echo T_("comments");            // Table comments
 	echo T_("comment");             // comment
@@ -18,7 +27,6 @@ private function transtext()
 	echo T_("meta");                // comment_meta
 	echo T_("status");              // comment_status
 	echo T_("parent");              // comment_parent
-	echo T_("user");                // user_id
 	echo T_("visitor");             // visitor_id
 	echo T_("modified");            // date_modified
 
@@ -162,7 +170,6 @@ private function transtext()
 	echo T_("validstatus");         // validstatus
 	echo T_("subport");             // subport
 	echo T_("opt");                 // opt
-	echo T_("type");                // type
 	echo T_("txt");                 // txt
 	echo T_("profile");             // profile
 	echo T_("insertdate");          // insertdate
