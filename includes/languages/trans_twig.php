@@ -4,23 +4,25 @@ private function transtext()
 
 	//-------------------------------------------------------content/poll/display.html
 	echo T_("YOU CAN CHANGE THE STATUS OF THIS POLL!");                               // Line 11
-	echo T_("This question will complete your profile");                              // Line 26
-	echo T_("Read More");                                                             // Line 33
-	echo T_("You can select just two options.");                                      // Line 38
-	echo T_("I am not willing to answer");                                            // Line 77
-	echo T_("Save Answer");                                                           // Line 83
+	echo T_("This question will complete your profile");                              // Line 24
+	echo T_("Read More");                                                             // Line 31
+	echo T_("You can select just two options.");                                      // Line 36
+	echo T_("I am not willing to answer");                                            // Line 75
+	echo T_("Save Answer");                                                           // Line 81
 	echo T_("Ask Me");                                                                // Line 18
-	echo T_("result");                                                                // Line 93
+	echo T_("result");                                                                // Line 91
 	echo T_("Description");                                                           // Line 268
-	echo T_("Similar Questions");                                                     // Line 108
-	echo T_("Poll Period");                                                           // Line 119
-	echo T_("to");                                                                    // Line 122
+	echo T_("Similar Questions");                                                     // Line 104
+	echo T_("There is no similar post");                                              // Line 112
+	echo T_("Poll Period");                                                           // Line 117
+	echo T_("to");                                                                    // Line 120
+	echo T_("Not set");                                                               // Line 144
 	echo T_("Status");                                                                // Line 11
-	echo T_("Keyword");                                                               // Line 131
+	echo T_("Keyword");                                                               // Line 129
 	echo T_("Society Statistics");                                                    // Line 138
 	echo T_("Comments");                                                              // Line 9
-	echo T_("Send");                                                                  // Line 185
-	echo T_("Continue");                                                              // Line 229
+	echo T_("Send");                                                                  // Line 188
+	echo T_("Continue");                                                              // Line 233
 
 	//----------------------------------------------------content/contact/display.html
 	echo T_("name");                                                                  // Line 13
@@ -216,82 +218,6 @@ private function transtext()
 	//------------------------------------------------content/template/static/eco.html
 	echo T_("Eco");                                                                   // Line 6
 
-	//------------------------------------------------content/template/static/faq.html
-	echo T_("Question");                                                              // Line 9
-	echo T_("Answer");                                                                // Line 71
-	echo T_("What is Sarshomar?");                                                    // Line 12
-	echo T_("sarshomar for whom?");                                                   // Line 15
-	echo T_("A number of revolutionary youth");                                       // Line 16
-	echo T_("To participate in surveys, census should I sign up?");                   // Line 18
-	echo T_("No, registered in the census is optional and without registration, you can still enjoy all the features of the census.");// Line 19
-	echo T_("What happens if I do not register?");                                    // Line 21
-	echo T_("Your participation in the census is very valuable to us and all activities are recorded in the service and apply it to validate your vote in polls is you need to register.");// Line 22
-	echo T_("My participation in the census is what effect?");                        // Line 24
-	echo T_("Your participation in surveys is very valuable to us and we will help in reaching your goals.");// Line 25
-	echo T_("survey services is different from the rest?");                           // Line 27
-	echo T_("International Census survey is a service that will cure all the weaknesses of existing services and many other unique features such as the question of demographic targeting, tree questions and provide added services through social networks.");// Line 28
-	echo T_("Who can use the sarshomar?");                                            // Line 30
-	echo T_("All natural and legal persons can use the census.");                     // Line 31
-	echo T_("Is there an age restriction for activity in the census?");               // Line 33
-	echo T_("No, there is no age limit for activity.");                               // Line 34
-	echo T_("Are certain degree for census activities there?");                       // Line 36
-	echo T_("No, by no means qualification does not matter and all parties can trade with any evidence of any census work.");// Line 37
-	echo T_("What devices can I use with the census?");                               // Line 39
-	echo T_("Computers, laptops, tablets, phones and any other digital system that can connect to the Internet.");// Line 40
-	echo T_("Do I need to install special software to use the service census?");      // Line 42
-	echo T_("No, you do not have to install any software and accessories you can easily use all the services?");// Line 43
-	echo T_("How long can I use the census?");                                        // Line 45
-	echo T_("Throughout the day you can use census.");                                // Line 46
-	echo T_("Can I invite my friends?");                                              // Line 48
-	echo T_("Yes, the activity is open to the public and you can invite family and friends to join the big family of the census");// Line 49
-	echo T_("what is username?");                                                     // Line 51
-	echo T_("You can use a custom user name.");                                       // Line 52
-	echo T_("Can I replace my username?");                                            // Line 54
-	echo T_("Yes, if the name of the user you want you can change the service does not exist.");// Line 55
-	echo T_("Updating the user what is it used?");                                    // Line 57
-	echo T_("According to our results based on the accuracy of the information that users update your account information on our planned");// Line 58
-	echo T_("Password What could it be?");                                            // Line 60
-	echo T_("The password should be a mixture of numbers and English letters.");      // Line 61
-	echo T_("If I forget my password, what do I do?");                                // Line 63
-	echo T_("The entrance to the site, to get the new password Forgot your action."); // Line 64
-	echo T_("Can I have multiple accounts?");                                         // Line 66
-	echo T_("No, this offense and if such action is in accordance with laws dealing census.");// Line 67
-	echo T_("Is it possible to edit the user profile there?");                        // Line 69
-	echo T_("***");                                                                   // Line 121
-	echo T_("Do people see my account information?");                                 // Line 72
-	echo T_("Do not need to enter the phone number is?");                             // Line 75
-	echo T_("Yes, users need to enter your mobile phone number is snack.");           // Line 76
-	echo T_("Can my phone number, my replacement?");                                  // Line 78
-	echo T_("What are the activities in the census?");                                // Line 81
-	echo T_("You can submit questions or reply to questions people have registered.");// Line 82
-	echo T_("Whether I can register my question?");                                   // Line 84
-	echo T_("Yes, you can submit your questions on the site, your blog or social networks, and its results will ask us.");// Line 85
-	echo T_("After the record how long it takes to be on?");                          // Line 87
-	echo T_("Questions after review by experts on the site is up to x hours.");       // Line 88
-	echo T_("Is the number of responses to questions are limited?");                  // Line 90
-	echo T_("No, there is no limit to answer the questions.");                        // Line 91
-	echo T_("Can I answer the questions instead of someone else?");                   // Line 93
-	echo T_("No, whoever he may only participate in Ntrsnjyha and if another account is logged and recorded by the census is one of the violations.");// Line 94
-	echo T_("How can I learn from the participation in the census?");                 // Line 96
-	echo T_("You can use your account to have all its activities in graphical form.");// Line 97
-	echo T_("What is the benefit to the user is responsible for cooperation with the census?");// Line 99
-	echo T_("Count in gratitude for your contribution in improving the quality of their service, exquisite gifts for your considered.");// Line 100
-	echo T_("How to Get gifts What is the census?");                                  // Line 102
-	echo T_("Awards will be contacted for users.");                                   // Line 103
-	echo T_("Have you used this service to Iranians?");                               // Line 105
-	echo T_("No, the census is an international service that the whole world can use it, be sure to explain that at the moment only in Farsi and English services that will be added over time.");// Line 106
-	echo T_("Are there specific rules for activities in the census?");                // Line 108
-	echo T_("Yes, it is sure to work, carefully read the rules and regulations of the census.");// Line 109
-	echo T_("Does our information is in the hands of certain people?");               // Line 111
-	echo T_("No, the questions and answers to questions and surveys is strictly confidential and will not be provided to any individual or organization.");// Line 112
-	echo T_("Why should I trust you?");                                               // Line 114
-	echo T_("How safe is the census?");                                               // Line 117
-	echo T_("How information is encrypted?");                                         // Line 120
-	echo T_("What are your support user?");                                           // Line 123
-	echo T_("Census support group for boarding in the service of their users.");      // Line 124
-	echo T_("How can I cut his ties with the census?");                               // Line 126
-	echo T_("You can easily remove Hsabkarbry choose the section in your account and stop its cooperation with the census.");// Line 127
-
 	//------------------------------content/template/static/social-responsibility.html
 
 	//-------------------------------------------content/template/static/referral.html
@@ -377,7 +303,7 @@ private function transtext()
 	echo T_("Title");                                                                 // Line 8
 	echo T_("Votes");                                                                 // Line 10
 	echo T_("Date");                                                                  // Line 11
-	echo T_("No Result Found");                                                       // Line 49
+	echo T_("No Result Found");                                                       // Line 45
 
 	//--------------------------------------------------------content/main/layout.html
 	echo T_("LOGIN OR TRY");                                                          // Line 23 Seperate
@@ -509,6 +435,7 @@ private function transtext()
 	echo T_("Notification");                                                          // Line 13
 	echo T_("Upload");                                                                // Line 15
 	echo T_("Range / Star");                                                          // Line 17
+	echo T_("Answer");                                                                // Line 71
 	echo T_("Options has score");                                                     // Line 93
 	echo T_("Allow user to order Answers");                                           // Line 104
 	echo T_("One Choice");                                                            // Line 114
