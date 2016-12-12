@@ -1060,3 +1060,11 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .autocomplete-suggestions{width:100%!important;}
 
 .main .search-box{margin:2em 0;}
+
+
+/************************************************************** help center */
+.help-main-box {margin: 0 66px;}
+.help-main-category {border: 1px solid #E0E0E0; text-align: center; border-radius: 2px; min-height: 250px!important; display: flex; justify-content: center; align-items: center;}
+.help-main-category-img {display: block;width: 125px; height: 125px;background: #90A4AE;margin: auto; margin-bottom: 15px; border-radius: 50%;}
+.help-main-links {margin-top: 2em}
+.help-main-links h4 {color: #454545;font-size: 1.8em;font-weight: bold;margin-bottom: 1.6em;}
