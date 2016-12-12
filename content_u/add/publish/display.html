@@ -11,7 +11,13 @@
   {%include template.progress%}
   <div class="row auto">
    <div class="span8 offset2">
-    {%if perm.sarshomar_knowledge.admin%}
+    {% if perm.sarshomar_knowledge.admin %}
+    <div class="checkbox">
+      <input type="checkbox" name="homepage" id="homepage" {% if homepage %}checked{% endif %}>
+      <label for="homepage" class="check-box"></label>
+      <label for="homepage">{% trans "Show result in home page" %}</label>
+    </div>
+
     <div class="element select no-pad">
      <label class="title large" for="category">{%trans "Category"%}</label>
      <select class="input" name="category" id="category">
@@ -47,11 +53,17 @@
      </div>
     </div>
 
+    <div class="element no-pad">
+     <label class="title large" for="language">{%trans "Language"%}</label>
+     <input class="input" type="text" name="language" id="language" value="{{language}}">
+    </div>
+
     <div class="element no-pad ltr">
      <label class="title large" for="short_url">{%trans "Short URL"%}</label>
      <input class="input" type="text" name="short_url" id="short_url">
      <button class="btn"><span class="fa fa-link"></span></button>
     </div>
+
 
     <div class="social-container">
       <a href="" class="fa fa-2x fa-twitter"></a>

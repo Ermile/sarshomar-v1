@@ -124,23 +124,27 @@ class stat_polls
 			'validation' => 'valid'
 		];
 		$_options = array_merge($default_options, $_options);
-
+		$language = \lib\define::get_language();
 		$query =
 		"
 			SELECT
-				termusage_id AS 'id'
+				options.post_id AS 'id'
 			FROM
-				termusages
-			INNER JOIN terms ON
-				terms.id = termusages.term_id AND
-				terms.term_type = 'tag' AND
-				terms.term_slug = 'homepage'
-			INNER JOIN posts ON posts.id = termusages.termusage_id AND posts.post_status = 'publish'
+				options
+			RIGHT JOIN
+				posts
+			ON
+				posts.id = options.post_id AND
+				posts.post_status = 'publish' AND
+				posts.post_privacy = 'public' AND
+				(posts.post_language IS NULL OR posts.post_language = '$language')
 			WHERE
-				termusages.termusage_foreign = 'posts'
+				options.option_cat    = 'homepage' AND
+				options.option_key    = 'chart' AND
+				options.option_status = 'enable'
 			ORDER BY RAND()
 			LIMIT 1
-			-- get random poll id by tag homepage to show in homepage
+			-- get random poll id by homepage options to show in homepage
 		";
 		$random_poll_id = \lib\db::get($query, "id", true);
 		$poll_result = self::get_result($random_poll_id, $_options);

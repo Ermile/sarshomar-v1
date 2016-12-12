@@ -3,7 +3,7 @@ namespace content_u\add\filter;
 
 class view extends \content_u\home\view
 {
-
+	function view_edit(){}
 	/**
 	 * ready to load fieter page
 	 *

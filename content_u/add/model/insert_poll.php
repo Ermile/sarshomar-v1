@@ -80,6 +80,7 @@ trait insert_poll
 		// ready to inset poll
 		$args =
 		[
+			'id'			 => $this->get_poll_id(),
 			'user_id'        => $this->login('id'),
 			'post_title'     => $title,
 			'post_type'      => $poll_type,

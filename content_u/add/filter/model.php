@@ -5,6 +5,7 @@ use \lib\debug;
 
 class model extends \content_u\home\model
 {
+	function get_edit(){}
 
 	/**
 	*	get add filter

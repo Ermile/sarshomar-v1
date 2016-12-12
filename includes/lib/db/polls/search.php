@@ -122,11 +122,12 @@ trait search
 			$order = " ORDER BY posts.id $_options[order] ";
 		}
 
-
 		// if in my poll retur all poll
 		if($_options['my_poll'] === false)
 		{
 			$where[] = " posts.post_status = 'publish' ";
+			$where[] = " posts.post_privacy = 'public' ";
+
 		}
 
 		// if all == true return all type of polls, sarshomar or personal

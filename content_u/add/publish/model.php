@@ -34,12 +34,16 @@ class model extends \content_u\home\model
 	function post_publish($_args)
 	{
 		$poll_survey_id       = $this->check_poll_url($_args);
+
 		$this->poll_survey_id = $poll_survey_id;
+
 		if(!$poll_survey_id)
 		{
 			debug::error(T_("Poll id not found"));
 			return false;
 		}
+
+		$this->check_homepage();
 
 		// insert tags to tags table,
 		// @param string
@@ -109,7 +113,6 @@ class model extends \content_u\home\model
 			}
 		}
 
-		$language = utility::post("language");
 
 		$publish_status = 'publish';
 
@@ -125,6 +128,12 @@ class model extends \content_u\home\model
 			$publish_status = 'awaiting';
 			\lib\debug::warn(T_("You have to use words that are not approved in the text, Your text comes into review mode"));
 			\lib\debug::msg('spam', \lib\db\words::$spam);
+		}
+
+		$language = utility::post("language");
+		if($language === '' || !$language)
+		{
+			$language = null;
 		}
 
 		$update_posts =
@@ -174,6 +183,41 @@ class model extends \content_u\home\model
 		else
 		{
 			\lib\db\polls::merge_meta([$_type => utility::post($_type)], $this->poll_survey_id);
+		}
+	}
+
+
+	/**
+	 * check homepage feaucher and set in options table
+	 */
+	public function check_homepage()
+	{
+		// disable if home page exits
+		$disable = ['option_status' => 'disable'];
+		$enable  = ['option_status' => 'enable'];
+		$where =
+		[
+			'post_id'	   => $this->poll_survey_id,
+			'option_cat'   => 'homepage',
+			'option_key'   => 'chart',
+			'option_value' => $this->poll_survey_id
+		];
+
+		$result = \lib\db\options::get($where);
+		if(!empty($result))
+		{
+			\lib\db\options::update_on_error($disable, $where);
+		}
+		if(utility::post("homepage") != '')
+		{
+			if(!empty($result))
+			{
+				\lib\db\options::update_on_error($enable, $where);
+			}
+			else
+			{
+				\lib\db\options::insert($where);
+			}
 		}
 	}
 }

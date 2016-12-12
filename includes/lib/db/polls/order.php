@@ -38,6 +38,8 @@ trait order
 				)
 			-- Check the poll language
 			AND (posts.post_language IS NULL OR posts.post_language = '$language')
+			-- Check public poll
+			AND posts.post_privacy = 'public'
 			-- Check poll tree
 			AND
 				CASE

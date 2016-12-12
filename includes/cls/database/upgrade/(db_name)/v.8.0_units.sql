@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `units` (
-`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
 `title` varchar(500) NOT NULL,
 `desc` text NULL,
 `meta` text NULL,

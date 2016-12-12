@@ -16,6 +16,7 @@ trait insert
 	{
 		$default_value =
 		[
+			'id'			   => null,
 			'user_id'          => null,
 			'post_language'    => null,
 			'post_title'       => null,
@@ -41,19 +42,16 @@ trait insert
 		}
 
 		// check language
-		if($_args['post_language'] == null)
+		$language = null;
+		if($_args['post_language'] == null || $_args['post_language'] === '')
 		{
-			$language = \lib\define::get_language();
+			$language = null;
 		}
 		else
 		{
-			if(strlen($_args['post_language']) > 2)
+			if(strlen($_args['post_language']) !== 2)
 			{
 				$language = \lib\define::get_language();
-			}
-			else
-			{
-				$language = $_args['post_language'];
 			}
 		}
 
