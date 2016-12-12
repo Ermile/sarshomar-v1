@@ -231,7 +231,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 /************************************************************** features box */
 #features-box{padding:50px;text-align:center;}
 #features-box img{max-width:60%;margin:0 auto;margin-bottom:2em;}
-#features-box h4{color:#454545;font-size:1.8em;font-weight:bold;margin-bottom:1.6em;}
+#features-box h4{color:#454545;font-size:1.8em;font-weight:bold;margin-bottom:.5em;}
 #features-box h4 a{color:inherit;}
 #features-box p{color:#AAAAAA;margin:0 auto;font-size:1.4em;width:90%;}
 
