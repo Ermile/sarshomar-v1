@@ -867,7 +867,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .rtl .page-progress b{left:auto;right:0;}
 .page-progress.ajax b{transition:0.1s;}
 .page-progress span::before{content:attr(data-label);color:#D8D8D8;font-weight:bold;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em;}
-
+.page-progress span.active::before{color:#00667a;}
 
 /************************************************************** menu */
 .menu{margin:0 auto 15px;text-align:center;padding:0 12px;}

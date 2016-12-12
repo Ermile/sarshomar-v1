@@ -17,14 +17,14 @@
       <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
       <a href='{{url.base}}/ask' class='register' tabindex='6'>{%trans "Ask Me"%}</a>
       <div class="profile">
-       <img src="{{url.static}}images/profile.svg" alt="">
+       <!-- <img src="{{url.static}}images/profile.svg" alt=""> -->
        <div class="info">
         {{displayname}}
         <span class="role">{%trans "Welcome"%}</span>
        </div>
        <div class="profile-detail">
-        <a href="{{url.base}}/@" class="dashboard" tabindex='7'>{%trans "Dashboard"%}</a>
-        <a href="logout" class="exit" tabindex='8' data-direct>{%trans "Exit"%}</a>
+        <a href="logout" class="exit" tabindex='7' data-direct>{%trans "Exit"%}</a>
+        <a href="{{url.base}}/@" class="dashboard" tabindex='8'>{%trans "Dashboard"%}</a>
        </div>
       </div>
 {%else%}
