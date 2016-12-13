@@ -3633,4 +3633,40 @@
             </desc>
         </path>
     </g>
+    <script type="text/javascript">
+    <![CDATA[
+    var w = document.getElementById('world-svg');
+    w.addEventListener('load', function(){
+        for (var i = 0; i < w.querySelectorAll('g > path').length; i++)
+        {
+            if ( w.querySelectorAll('g > path')[i].hasAttribute('id') )
+            {
+                w.querySelectorAll('g > path')[i].onmousemove = function(event){
+                    var id = this.querySelectorAll('desc > name')[0].textContent;
+                }
+            }
+        }
+
+        function shuffle()
+        {
+            var min = 0;
+            var max = w.querySelectorAll('g > path').length;
+            var rand = Math.floor(Math.random() * (max - min + 1)) + min;
+            var path = w.querySelectorAll('g > path')[rand];
+            var name = path.querySelectorAll('desc > name')[0].textContent;
+            path.style.fill = '#e5a428';
+            console.log(name);
+            setTimeout(function()
+            {
+                path.style.fill = '#a3b7bb';
+            }, 2000);
+        }
+
+        setInterval(function(){
+            shuffle();
+        }, 3000);
+     }, false);
+    ]]>
+    </script>
 </svg>
+

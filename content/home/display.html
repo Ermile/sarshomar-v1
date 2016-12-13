@@ -7,7 +7,9 @@
      <div class="span7" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Focus on your question. Do not be too concerned about how to ask or analyze."%} {%trans "Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means."%}</p>
+   {%if not login%}
       <a href="" class="try">{%trans "Try Free"%}</a>
+   {%endif%}
      </div>
      <div class="span5" id='random-chart'>
       <div class='chart'>
@@ -34,7 +36,8 @@
    <div class="row" id="customers-box">
     <div class="customers-container">
      <div class="row auto customer">
-      <div class="span9">
+      <div class="span1"></div>
+      <div class="span8">
        <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
@@ -48,15 +51,17 @@
       <div class="span3">
        <img src="{{url.static}}images/art/universities.png">
       </div>
-      <div class="span9">
+      <div class="span8">
        <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua."%}</p>
+       tempor incididunt ut labore et dolore magna aliqua."%}</p>
       </div>
+      <div class="span1"></div>
      </div>
 
      <div class="row auto customer">
-      <div class="span9">
+      <div class="span1"></div>
+      <div class="span8">
        <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
@@ -70,11 +75,12 @@
       <div class="span3">
        <img src="{{url.static}}images/art/developers.png">
       </div>
-      <div class="span9">
+      <div class="span8">
        <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua."%}</p>
+       tempor incididunt ut labore et dolore magna aliqua."%}</p>
       </div>
+      <div class="span1"></div>
      </div>
     </div>
    </div><!-- /#customers-box -->
