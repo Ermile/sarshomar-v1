@@ -22,9 +22,9 @@
         {{displayname}}
         <span class="role">{%trans "Welcome"%}</span>
        </div>
-       <div class="profile-detail">
-        <a href="logout" class="exit" tabindex='7' data-direct>{%trans "Exit"%}</a>
-        <a href="{{url.base}}/@" class="dashboard" tabindex='8'>{%trans "Dashboard"%}</a>
+       <div class="row auto profile-detail">
+        <a href="{{url.base}}/@" class="span7 dashboard" tabindex='7'>{%trans "Dashboard"%}</a>
+        <a href="logout" class="span5 exit" tabindex='8' data-direct>{%trans "Exit"%}</a>
        </div>
       </div>
 {%else%}
@@ -33,10 +33,20 @@
 {%endif%}
      </nav>
     </div>
-    <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
+    <div id="header-bottom">
+     <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
 {%block breadcrumb%}
      {{breadcrumb(null, true, false) | raw}}
 {%endblock%}
-    </nav>
+     </nav>
+     <div id="financial-box">
+      <div class="cost">
+       <span class="title">{%trans "Cost"%}</span><span class="value">15,000</span><span class="unit">{%trans "Tomans"%}</span>
+      </div>
+      <div class="total">
+       <span class="title">{%trans "Total cash"%}</span><span class="value">1,208,100</span><span class="unit">{%trans "Tomans"%}</span>
+      </div>
+     </div>
+    </div>
    </div>
   </header>
