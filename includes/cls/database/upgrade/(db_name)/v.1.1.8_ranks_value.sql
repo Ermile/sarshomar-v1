@@ -1,0 +1,1 @@
+ALTER TABLE `ranks` CHANGE `value` `value` BIGINT(20) NOT NULL DEFAULT '0';

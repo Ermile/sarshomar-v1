@@ -191,11 +191,6 @@ class ranks
 			}
 		}
 
-		if(intval($sum) < 0)
-		{
-			$sum = 0;
-		}
-
 		$update[] = " ranks.value = $sum ";
 
 		$update = implode(",", $update);

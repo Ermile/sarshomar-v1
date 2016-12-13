@@ -1,0 +1,126 @@
+{%extends display.main%}
+{%block content%}
+<div class="main">
+  <form method="post">
+  <div class="box">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span6">
+        <div class="element">
+        	<label class="title" for="title">{%trans "title"%}</label>
+        	<input class="input" type="text" name="title" id="title" value="{{item.title}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="caller">{%trans "caller"%}</label>
+        	<input class="input" type="text" name="caller" id="caller" value="{{item.caller}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="unit_id">{%trans "unit_id"%}</label>
+        	<input class="input" type="text" name="unit_id" id="unit_id" value="{{item.unit_id}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="type">{%trans "type"%}</label>
+        	<select class="input" name="type" value="{{item.type}}">
+        		<option value="real" {%if item.type == 'real'%}selected{%endif%}>{%trans "real"%}</option>
+        		<option value="gift" {%if item.type == 'gift'%}selected{%endif%}>{%trans "gift"%}</option>
+        		<option value="prize" {%if item.type == 'prize'%}selected{%endif%}>{%trans "prize"%}</option>
+        		<option value="transfer" {%if item.type == 'transfer'%}selected{%endif%}>{%trans "transfer"%}</option>
+        	</select>
+        </div>
+        <div class="element">
+        	<label class="title" for="minus">{%trans "minus"%}</label>
+        	<input class="input" type="text" name="minus" id="minus" value="{{item.minus}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="plus">{%trans "plus"%}</label>
+        	<input class="input" type="text" name="plus" id="plus" value="{{item.plus}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="autoverify">{%trans "autoverify"%}</label>
+        	<select class="input" name="autoverify" value="{{item.autoverify}}">
+        		<option value="yes" {%if item.autoverify == 'yes' %}selected{%endif%}>{%trans "Yes"%}</option>
+        		<option value="no" {%if item.autoverify == 'no' %}selected{%endif%}>{%trans "No"%}</option>
+        	</select>
+        </div>
+        <div class="element">
+        	<label class="title" for="forcechange">{%trans "forcechange"%}</label>
+        	<select class="input" name="forcechange" value="{{item.forcechange}}">
+        		<option value="yes" {%if item.forcechange == 'yes' %}selected{%endif%}>{%trans "Yes"%}</option>
+        		<option value="no" {%if item.forcechange == 'no' %}selected{%endif%}>{%trans "No"%}</option>
+        	</select>
+        </div>
+        <div class="element">
+        	<label class="title" for="desc">{%trans "desc"%}</label>
+        	<input class="input" type="text" name="desc" id="desc" value="{{item.desc}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="meta">{%trans "meta"%}</label>
+        	<input class="input" type="text" name="meta" id="meta" value="{{item.meta}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="status">{%trans "status"%}</label>
+        	<select class="input"  name="status" id="status" value="{{item.status}}">
+        		<option value="enable" {% if item.status == 'enable' %}selected{%endif%}>{%trans "enable" %}</option>
+        		<option value="disable" {% if item.status == 'disable' %}selected{%endif%}>{%trans "disable" %}</option>
+        		<option value="deleted" {% if item.status == 'deleted' %}selected{%endif%}>{%trans "deleted" %}</option>
+        		<option value="expired" {% if item.status == 'expired' %}selected{%endif%}>{%trans "expired" %}</option>
+        		<option value="awaiting" {% if item.status == 'awaiting' %}selected{%endif%}>{%trans "awaiting" %}</option>
+        		<option value="filtered" {% if item.status == 'filtered' %}selected{%endif%}>{%trans "filtered" %}</option>
+        		<option value="blocked" {% if item.status == 'blocked' %}selected{%endif%}>{%trans "blocked" %}</option>
+        		<option value="spam" {% if item.status == 'spam' %}selected{%endif%}>{%trans "spam" %}</option>
+        	</select>
+        </div>
+        <div class="element">
+        	<label class="title" for="enddate">{%trans "enddate"%}</label>
+        	<input class="input" type="text" name="enddate" id="enddate" value="{{item.enddate}}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-container center">
+    <button type="submit">{%trans "submit"%}</button>
+  <table border="">
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>caller</th>
+			<th>unit_id</th>
+			<th>type</th>
+			<th>minus</th>
+			<th>plus</th>
+			<th>autoverify</th>
+			<th>forcechange</th>
+			<th>desc</th>
+			<th>meta</th>
+			<th>status</th>
+			<td>createdate</td>
+			<td>datemodified</td>
+			<th>enddate</th>
+		</tr>
+	{% for key, value in transactionitems%}
+		<tr>
+
+
+			<td><a href="{{url.base ~ '/transactionitems/' ~ value.id}}">{{value.id}}</a></td>
+			<td>{{value.title}}</td>
+			<td>{{value.caller}}</td>
+			<td>{{value.unit_id}}</td>
+			<td>{{value.type}}</td>
+			<td>{{value.minus}}</td>
+			<td>{{value.plus}}</td>
+			<td>{{value.autoverify}}</td>
+			<td>{{value.forcechange}}</td>
+			<td>{{value.desc}}</td>
+			<td>{{value.meta}}</td>
+			<td>{{value.status}}</td>
+			<td>{{value.createdate}}</td>
+			<td>{{value.datemodified}}</td>
+			<td>{{value.enddate}}</td>
+		</tr>
+	{%endfor%}
+  </table>
+  </div>
+  </form>
+
+</div>
+{%endblock%}

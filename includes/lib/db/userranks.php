@@ -198,11 +198,6 @@ class userranks
 			}
 		}
 
-		if(intval($sum) < 0)
-		{
-			$sum = 0;
-		}
-
 		$update[] = " userranks.value = $sum ";
 
 		$update = implode(",", $update);
