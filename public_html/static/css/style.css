@@ -220,26 +220,20 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 /************************************************************** customers box */
 #customers-box{padding:100px 0;background-color:#FCFCFC;}
-#customers-box .customer{position:relative;}
-#customers-box .customer:not(:last-child){margin-bottom:10em;}
-#customers-box .customer h3{position:relative;display:inline-block;color:#0C7C78;}
-#customers-box .customer:nth-child(odd){width:60%;direction:rtl;}
-.rtl #customers-box .customer:nth-child(odd){margin-right:40%;}
-#customers-box .customer:nth-child(even){width:60%;margin-left:40%;}
-.rtl #customers-box .customer:nth-child(even){direction:ltr;}
 
-#customers-box .customer h3::before{background-repeat:no-repeat;background-size:100%;transition:0.3s ease-in-out;}
-#customers-box .customer a{color:inherit;}
-#customers-box .customer p{color:#ADADAD;width:70%;text-align:justify;}
+#customers-box .customers-container{width:70%;margin:0 auto;}
 
-#customers-box .customer:nth-child(odd) h3::before, #customers-box .customer:nth-child(even) h3::before{content:"";position:absolute;width:240px;height:240px;top:-20px;}
-#customers-box .customer:nth-child(odd) h3::before{right:-265px;}
-#customers-box .customer:nth-child(even) h3::before{left:-265px;}
+#customers-box .customer h3{padding-top:2em;}
+#customers-box .customer h3 a{color:#0C7C78;}
+#customers-box .customer img{width:100%;height:auto;}
+#customers-box .customer p{color:#adadad;}
 
-#customers-box .customer:nth-child(1) h3::before{background-image:url(../images/art/companies.png);}
-#customers-box .customer:nth-child(2) h3::before{background-image:url(../images/art/universities.png);}
-#customers-box .customer:nth-child(3) h3::before{background-image:url(../images/art/developers.png);}
-#customers-box .customer:nth-child(4) h3::before{background-image:url(../images/art/agencies.png);}
+#customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right;}
+.rtl #customers-box .customer:nth-child(odd) h3,.rtl #customers-box .customer:nth-child(odd) p{text-align:left;}
+#customers-box .customer:nth-child(odd) p{padding-right:2em;}
+.rtl #customers-box .customer:nth-child(odd) p{padding-right:0;padding-left:2em;}
+#customers-box .customer:nth-child(even) p{padding-left:2em;}
+.rtl #customers-box .customer:nth-child(even) p{padding-left:0;padding-right:2em;}
 
 
 /************************************************************** features box */
