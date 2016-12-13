@@ -23,8 +23,6 @@ class view extends \content_u\home\view
 		if(isset($poll['id']))
 		{
 			$this->data->tags = \lib\db\tags::usage($poll['id']);
-			$this->page_progress_url($poll['id'], "publish");
-
 			$poll_id = \lib\utility\shortURL::encode($poll['id']);
 		}
 
