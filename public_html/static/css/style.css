@@ -234,7 +234,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #customers-box .customer img{width:100%;height:auto;}
 #customers-box .customer p{color:#adadad;}
 #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right;}
-.rtl #customers-box .customer:nth-child(odd) h3,.rtl #customers-box .customer:nth-child(odd) p{text-align:left;}
+.rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:left;}
 /*#customers-box .customer:nth-child(odd) p{padding-right:2em;}
 .rtl #customers-box .customer:nth-child(odd) p{padding-right:0;padding-left:2em;}
 #customers-box .customer:nth-child(even) p{padding-left:2em;}
