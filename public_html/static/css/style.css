@@ -348,10 +348,10 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .autocomplete-suggestion.selected { background: #f0f0f0; }
 
 /************************************************************** Dashboard */
-.dashboard aside{padding:2em 1em 0;}
-.dashboard .main .row{margin-bottom:15px;}
+.dashboard-aside{padding:2em 1em 0;}
+.dashboard-aside .progress{margin-top:100px;}
+.dashboard.main .row{margin-bottom:15px;}
 .dashboard #chart-answered{height:400px;}
-.dashboard .progress{margin-top:100px;}
 .two,.three,.four,.five{display:flex;justify-content:space-between;}
 .two>div{width:49%;}
 .three>div{width:32%;}

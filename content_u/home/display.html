@@ -1,7 +1,7 @@
 {%extends display.main%}
 
 {%block content%}
-   <aside class=''>
+   <aside class='dashboard-aside'>
     <img src="http://sarshomar.dev/static/images/profile.svg" alt="">
     <div class="personal-info">
      <span class="name">{{login.displayname}}</span>
@@ -21,7 +21,7 @@
     </div>
    </aside>
 
-   <div class="main padding">
+   <div class="main padding dashboard">
     <div class="row auto first-line">
      <div class='span2 card number'><h3>{%trans "Referred count"%}</h3><span>{{dashboard.user_referred}}</span></div>
      <div class='span2 card number'><h3>{%trans "Referred valid count"%}</h3><span>{{dashboard.user_verified}}</span></div>
