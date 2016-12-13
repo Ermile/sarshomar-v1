@@ -45,7 +45,7 @@ aside .actived{display:block;}
 /************************************************************** header */
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
-header #header-box{position:relative;height:90px;overflow:hidden;}
+header #header-box{position:relative;height:90px;}
 
 /* header top */
 header #header-top{height:60px;border-top:2px solid #00667a;}
@@ -97,7 +97,8 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0px 8px;float:left;}
 /* financial box */
 header #financial-box{margin:0 1em;float:right;}
 .rtl header #financial-box{float:left;}
-header #financial-box .total,header #financial-box .cost{display:inline-block;padding:5px;position:relative;}
+header #financial-box .total,header #financial-box .cost{display:inline-block;padding:5px;position:relative;min-width:15em;}
+header #financial-box .total:hover,header #financial-box .cost:hover{background-color:#EFEFEF;}
 .rtl header #financial-box .total,.rtl header #financial-box .cost{direction:rtl;text-align:right;}
 header #financial-box .total{display:none}
 header #financial-box .cost{display:none}
@@ -107,6 +108,10 @@ header #financial-box .cost::before{content:'|';position:absolute;right:-3px;}
 header #financial-box .total span{color:#00667A;}
 header #financial-box .cost span{color:#1D9028;}
 
+header #financial-box .total:hover .financial-detail,header #financial-box .cost:hover .financial-detail{display:block;}
+header #financial-box .financial-detail{position:absolute;left:0;right:0;z-index:1;border:1px solid #EFEFEF;display:none;}
+header #financial-box .financial-detail .row{display:-webkit-flex;display:flex;}
+header #financial-box .financial-detail .cell{-webkit-flex:1;flex:1;text-align:center;padding:3px;font-weight:bold;color:#5E5E5E;}
 
 /************************************************************** header profile */
 .profile{display:inline-block;position:relative;height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;z-index:1;}
