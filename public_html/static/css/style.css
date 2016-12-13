@@ -1070,11 +1070,25 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .autocomplete-suggestions{width:100%!important;}
 
 .main .search-box{margin:2em 0;}
-
+.clearfix {content:"";display:table;clear:both;}
 
 /************************************************************** help center */
 .help-main-box {margin: 0 66px;}
-.help-main-category {border: 1px solid #E0E0E0; text-align: center; border-radius: 2px; min-height: 250px!important; display: flex; justify-content: center; align-items: center;}
+.help-category {border: 1px solid #E0E0E0; text-align: center; border-radius: 2px; min-height: 250px!important; display: flex; justify-content: center; align-items: center;}
 .help-main-category-img {display: block;width: 125px; height: 125px;background: #90A4AE;margin: auto; margin-bottom: 15px; border-radius: 50%;}
-.help-main-links {margin-top: 2em}
+.help-main-links {margin: 2em 0}
 .help-main-links h4 {color: #454545;font-size: 1.8em;font-weight: bold;margin-bottom: 1.6em;}
+.help-main-btns {margin: 3em 0;}
+.help-main-btns .btn {text-align: center;background: #90A4AE; padding:1em 0; border-radius:2px;}
+.help-main-btns .btn>a {color:#000!important;display: block;}
+.help-sidebar>div {margin-bottom: 2em;}
+.help-sidebar>h4 {margin-bottom: .7em;}
+.help-related-articles>h4 {margin-bottom: .7em;}
+.help-user-satisfaction {background: #CFD8DC;padding: 1em;margin: 2em 0;border-radius: 2px;}
+.help-user-satisfaction h6 {font-size: 1em;}
+.help-platforms {margin-bottom: 1em}
+.help-platforms a {margin-right: 1em}
+.help-platforms a i {margin-right: 8px}
+.help-share {margin-bottom: 2em;}
+.help-share>h4 {margin-bottom: .7em;}
+.help-share a {margin-right: 1em}
