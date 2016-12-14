@@ -1064,6 +1064,10 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .element .element-slider .range-slider{margin:0;}
 
 
+/************************************************************** textarea */
+.textarea{width:100%;border:none;resize:none;padding:10px;margin-bottom:15px;}
+
+
 /************************************************************** social container */
 .social-container{text-align:center;margin-bottom:3em}
 .social-container .fa{width:2em;height:2em;line-height:2em;color:#fff;opacity:.9;transition:.3s;margin:0 .1em;}
@@ -1086,6 +1090,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .main .search-box{margin:2em 0;}
 .clearfix {content:"";display:table;clear:both;}
 
+
 /************************************************************** help center */
 .help-main-box {margin: 0 66px;}
 .help-category {border: 1px solid #E0E0E0; text-align: center; border-radius: 2px; min-height: 250px!important; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center;}
@@ -1106,3 +1111,15 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .help-most-visited ul li {padding: 0 0 1.5em 0;}
 .help-user-satisfaction .icon{margin-right: 1em;}
 .rtl .help-user-satisfaction .icon{margin-left: 1em;margin-right: 0;}
+
+
+/************************************************************** contact page */
+#contact .element .input{background-color:#FFF;}
+#contact .submit-contact{background-color:#37AAA7;color:#FFF;width:100%;border:none;padding:10px;margin-bottom:15px;}
+#contact .contact-box{background-color:#FFF;padding:1em 2em;}
+#contact .contact-box h2{font-size:1.6em;}
+#contact .sharebox{text-align:center;}
+#contact .contact-ways .row{margin-bottom:1.5em;}
+#contact .contact-ways .row img{width:3em;}
+#contact .contact-ways .row span{padding:1em;}
+#contact .contact-ways .map{display:block;width:100%;}

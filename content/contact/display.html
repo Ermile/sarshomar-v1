@@ -1,33 +1,52 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main">
-  <form method="post">
-  <div class="box">
-    <div class="row">
-      <div class="span3"></div>
-      <div class="span6">
-      {%if login%}
-      {%else%}
-        <div class="element">
-          <label class="title" for="name">{%trans "name"%}</label>
-          <input class="input" type="text" name="name" id="name">
-        </div>
-        <div class="element">
-          <label class="title" for="email">{%trans "email"%}</label>
-          <input class="input" type="email" name="email" id="email">
-        </div>
-        {%endif%}
-        <div class="element">
-          <label class="title" for="content">{%trans "content"%}</label>
-          <textarea name="content" id="content" class="input"></textarea>
-        </div>
-      </div>
+<div class="main pad box">
+ <div class="row auto">
+  <div class="span8">
+   <h1>{%trans "Request, offer, criticism and appreciation"%}</h1>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+   tempor incididunt ut labore et dolore magna aliqua.<br> Ut enim ad minim veniam,
+   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+   consequat.</p>
+   <form method="post">
+    <div class="element">
+     <label class="title large" for="name">{%trans "Name"%}</label>
+     <input class="input" type="text" name="name" id="name" placeholder='{%trans "Name"%}'>
     </div>
+    <div class="element">
+     <label class="title large" for="mobile">{%trans "Mobile"%}</label>
+     <input class="input" type="text" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}'>
+    </div>
+    <div class="element">
+     <label class="title large" for="email">{%trans "Email"%}</label>
+     <input class="input" type="text" name="email" id="email" placeholder='{%trans "Email"%}'>
+    </div>
+    <textarea class="textarea" rows="5" placeholder='{%trans "Write down your opinion here"%}'></textarea>
+    <input type="submit" name="submit-contact" value='{%trans "Submit"%}' class="submit-contact">
+   </form>
   </div>
-  <div class="btn-container center">
-    <button type="submit">{%trans "submit"%}</button>
+  <div class="span4">
+   <div class="contact-box">
+    <h2>{%trans "How to contact Sarshomar"%}</h2>
+    {%include template.social%}
+    <div class="contact-ways">
+     <div class="row">
+      <img src="{{url.static}}images/svg/contact/email.svg">
+      <span>info@sarshomar.com</span>
+     </div>
+     <div class="row">
+      <img src="{{url.static}}images/svg/contact/phone.svg">
+      <span>025-37735183</span>
+     </div>
+     <div class="row">
+      <img src="{{url.static}}images/svg/contact/location.svg">
+      <span>{%trans "Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488"%}</span>
+     </div>
+     <img src="{{url.static}}images/svg/contact/map.png" class="map">
+    </div>
+   </div>
   </div>
-  </form>
+ </div>
 </div>
 {%endblock%}
