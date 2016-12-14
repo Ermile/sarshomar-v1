@@ -39,6 +39,7 @@
      {{breadcrumb(null, true, false) | raw}}
 {%endblock%}
      </nav>
+   {%if url.tld == 'dev' and login%}
      <div id="financial-box">
       <div class="cost">
        <span class="title">{%trans "Cost"%}</span><span class="value">15,000</span><span class="unit">{%trans "Tomans"%}</span>
@@ -76,6 +77,8 @@
        </div>
       </div>
      </div>
+   {%endif%}
+
     </div>
    </div>
   </header>
