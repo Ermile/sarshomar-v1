@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomarbot\commands\callback_query\help;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 use \content\saloos_tg\sarshomarbot\commands\callback_query;
+use \content\saloos_tg\sarshomarbot\commands\utility;
 trait faq{
 
 	public static function faq($_query, $_data_url)
@@ -58,6 +59,7 @@ trait faq{
 		}
 		$inline_keyboard[][] = ['text' => T_('Help'), 'callback_data' => 'help/home'];
 		$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
+		$return['response_callback'] = utility::response_expire('help');
 		callback_query::edit_message($return);
 	}
 }
