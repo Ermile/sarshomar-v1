@@ -173,7 +173,7 @@ class handle
 				$response = step_help::exec($command_text);
 				break;
 
-				case T_('Create new pool'):
+				case T_('Create new poll'):
 				case T_('Create'):
 				case '/create':
 				$response = step_create::start();
