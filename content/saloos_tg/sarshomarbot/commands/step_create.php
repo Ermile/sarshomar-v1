@@ -28,9 +28,7 @@ class step_create
 	public static function step1()
 	{
 		step::plus(1);
-		$txt_text = "سوال نظرسنجی را در خط اول وارد نمایید\n";
-		$txt_text .= "پاسخ‌های خود را به ترتیب در هر خط قرار دهید\n";
-		$txt_text .= "هر نظرسنجی باید حداقل دو پاسخ داشته باشد\n";
+		$txt_text = T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
 		$result   =
 		[
 		'text'         => $txt_text ."\n#create",
@@ -39,7 +37,7 @@ class step_create
 			"inline_keyboard" => [
 				[
 					[
-						"text" => "انصراف",
+						"text" => T_("Cancel"),
 						"callback_data" => 'create/cancel'
 					]
 				]
@@ -67,22 +65,16 @@ class step_create
 		$question = markdown_filter::remove_external_link($question);
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
-		if(count($question_export) < 2)
+		if(count($question_export) < 3)
 		{
-			$txt_text = 'برای ثبت نظرسنجی باید حداقل سه خط وارد شود.';
+			$txt_text = T_("Errors in question upload process");
 			$txt_text .= "\n";
-			$txt_text .= 'خط اول: سوال نظرسنجی.';
-			$txt_text .= "\n";
-			$txt_text .= 'خط دوم: جواب اول نظرسنجی.';
-			$txt_text .= "\n";
-			$txt_text .= 'خط سوم: جواب دوم نظرسنجی.';
-			$txt_text .= "\n";
-			$txt_text .= 'به ترتیب هر خطی نشانگر یک جواب می‌باشد';
+			$txt_text .= T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
 			$markup = [
 			"inline_keyboard" => [
 					[
 						[
-							"text" => "انصراف",
+							"text" => T_("Cancel"),
 							"callback_data" => 'create/cancel'
 						]
 					]
@@ -96,7 +88,8 @@ class step_create
 		}
 		else
 		{
-			$txt_text = "نظرسنجی که ثبت کردید به صورت زیر می‌باشد: \n\n";
+			$txt_text = T_("Your question uploaded successfully.");
+			$txt_text .= "\n";
 			$poll_title 		= $question_export[0];
 			$poll_answers 	= array_slice($question_export, 1);
 			$poll_id 		= utility::microtime_id();
@@ -112,7 +105,6 @@ class step_create
 			$maker->message->set_poll_list(array_fill_keys($poll_answers, 0));
 			$maker->message->add_poll_list(null, false);
 			$txt_text .= $maker->message->make();
-			$txt_text .= "\nقصد دارید انتشار دهید یا حذف کنید؟";
 			$result = [
 				'text' 						=> $txt_text,
 				'parse_mode' 				=> 'Markdown',

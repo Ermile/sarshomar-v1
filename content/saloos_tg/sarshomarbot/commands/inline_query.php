@@ -42,6 +42,7 @@ class inline_query
 			$query_result = \lib\db\polls::search($search);
 		}
 
+		handle::send_log($query_result);
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		foreach ($query_result as $key => $value) {

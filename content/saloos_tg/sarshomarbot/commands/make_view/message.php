@@ -100,7 +100,6 @@ class message
 		$poll_list = array();
 		$count = 0;
 		$row      = $this->class::$emoji_number;
-		handle::send_log($_poll_result);
 		foreach ($_poll_result as $key => $value) {
 			$count++;
 			$poll_answer[$count] = $value;

@@ -73,7 +73,8 @@ class callback_query
 		{
 			return $response;
 		}
-		return bot::sendResponse($response);
+		$return = bot::sendResponse($response);
+		return $return;
 	}
 }
 ?>

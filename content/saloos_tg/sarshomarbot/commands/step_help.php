@@ -13,19 +13,19 @@ class step_help
 	public static function start($_text = null)
 	{
 		return [
-			"text"			=> "please selecet your menue",
+			"text"			=> T_("Our support center is at your service."),
 			"reply_markup"	=> [
 				"inline_keyboard" => [
 					[
-						['text' => 'faq', 'callback_data' => 'help/faq'],
-						['text' => 'commands', 'callback_data' => 'help/commands'],
+						['text' => T_('FAQ'), 'callback_data' => 'help/faq'],
+						['text' => T_('Commands'), 'callback_data' => 'help/commands'],
 					],
 					[
-						['text' => 'feedback', 'callback_data' => 'help/feedback'],
+						['text' => T_('Feedback'), 'callback_data' => 'help/feedback'],
 					],
 					[
-						['text' => 'privacy', 'callback_data' => 'help/privacy'],
-						['text' => 'about', 'callback_data' => 'help/about']
+						['text' => T_('Privacy'), 'callback_data' => 'help/privacy'],
+						['text' => T_('About'), 'callback_data' => 'help/about']
 					]
 				]
 			],

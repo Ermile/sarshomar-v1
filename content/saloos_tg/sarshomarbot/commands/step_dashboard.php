@@ -12,8 +12,11 @@ class step_dashboard
 
 	public static function start($_text = null)
 	{
+		$text = T_("Now you have entered your dashboard. Here, you can change the language or observe your profile.");
+		$text .= "\n";
+		$text .= T_("Besides, you can complete your registration and account integration on the website and telegram by clicking on the register button and synchronization of your cell phone number.");
 		return [
-		"text"			=> "please selecet your menue",
+		"text"			=> $text,
 		"reply_markup"	=> [
 			'keyboard' =>
 			[
