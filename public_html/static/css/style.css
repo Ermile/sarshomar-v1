@@ -163,7 +163,7 @@ footer #footer-links #footer-news p{font-size:0.8em;margin-bottom:0;color:#777;}
 /* footer-note*/
 footer #footer-note{font-size:1.2em;padding:2em 1em 3em;color:#aaa;}
 footer #footer-note .langlist{display:inline-block;}
-footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:0.5em 1em;}
+footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:0.5em 1em;display:inline-block;}
 footer #footer-note .langlist a:hover{background-color:rgba(0,0,0,0.2)}
 footer #footer-note .love{text-align:right;text-transform:uppercase}
 .rtl footer #footer-note .love{text-align:left}
