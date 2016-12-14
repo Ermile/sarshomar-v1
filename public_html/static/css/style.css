@@ -105,7 +105,7 @@ header #financial-box .total,header #financial-box .cost{display:inline-block;pa
 header #financial-box .total:hover,header #financial-box .cost:hover{background-color:#EFEFEF;}
 /*.rtl header #financial-box .total,.rtl header #financial-box .cost{direction:rtl;text-align:right;}*/
 header #financial-box .total{/*display:none*/}
-header #financial-box .cost{/*display:none*/text-align:right;}
+header #financial-box .cost{display:none;text-align:right;}
 .rtl header #financial-box .cost{text-align:left;}
 header #financial-box .total span,header #financial-box .cost span{padding:0 2px;font-weight:bold;}
 header #financial-box .cost::before{content:'|';position:absolute;right:-3px;}
