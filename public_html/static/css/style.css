@@ -216,7 +216,8 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 .rtl #intro-box{text-align:center;}
 #intro-box h2{color:#00667A;margin-bottom:0;font-weight:bold;padding:0;padding-top:1em;}
 #intro-box p{color:#666666;margin:1em 0;line-height:2em;}
-.rtl #intro-box p{font-weight:bold;margin:0 auto 1em;}
+.rtl #intro-box p{line-height:2.5em;}
+.rtl #intro-box p{font-weight:bold;}
 .try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;}
 .try:hover{background-color:#129491;color:#fff;}
 .try:focus{color:#F4F4F4;}
