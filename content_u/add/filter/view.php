@@ -33,9 +33,11 @@ class view extends \content_u\home\view
 
 		$filters = \lib\db\filters::get_poll_filter($poll_survey_id);
 
-		$this->data->filters = $filters;
-		$this->data->member = \lib\db\ranks::get($poll_survey_id, 'member');
+		$this->data->filters   = $filters;
+		$this->data->member    = \lib\db\ranks::get($poll_survey_id, 'member');
 
+		$this->data->user_cash = \lib\db\transactions::budget($this->login("id"));
+		$this->data->unit      = \lib\db\units::user_unit($this->login("id"));
 		// check is_survey or no
 		// if(!\lib\utility\survey::is_survey($poll_survey_id))
 		// {
