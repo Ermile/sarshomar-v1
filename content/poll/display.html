@@ -223,7 +223,7 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '.comment .continue', function(event){
-   $(this).parents('.comment').children('p').addClass('full');
+   $(this).parents('.comment').children('.comment-body').addClass('full');
    event.preventDefault();
    event.stopPropagation();
   });

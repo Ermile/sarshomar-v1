@@ -600,7 +600,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 #comments-box .bar.four{background-color:#c15d31;}
 #comments-box .bar.five{background-color:#b13838;}
 
-#comments-box .comment{position:relative;}
+#comments-box .comment{position:relative;margin-bottom:5em;}
 #comments-box .comment .comment-header{margin-bottom:1em;}
 #comments-box .comment .comment-header::after{content:"";display:table;clear:both;}
 
@@ -612,11 +612,9 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 #comments-box .comment .date{float:right;padding:0 1em;color:color:#767676;opacity:.5;}
 .rtl #comments-box .comment .date{float:left;}
 
-#comments-box .comment p{font-size:1.1em;line-height:2.2em;color:#767676;text-align:justify;background-color:#F4F4F4;margin-bottom:.5em;max-height:6.6em;overflow:hidden;}
-#comments-box .comment p.full{max-height:500px;overflow-y:auto;overflow-x:hidden;position:absolute;left:0;right:0;z-index:1;}
-#comments-box .comment p.full+.continue{display:none;}
+#comments-box .comment p{font-size:1.1em;line-height:2.2em;color:#767676;text-align:justify;margin-bottom:.5em;height:6.6em;overflow:hidden;}
 
-#comments-box .comment .comment-footer{margin-bottom:5em;}
+#comments-box .comment .comment-footer{}
 #comments-box .comment .comment-footer .score{border:1px solid transparent;display:inline-block;}
 #comments-box .comment .comment-footer .score .value{padding:0 7px;font-weight:bold;font-size:.8em;}
 #comments-box .comment .comment-footer .score .icon{display:inline-block;color:#F4F4F4;width:2em;text-align:center;font-weight:bold;}
@@ -633,6 +631,10 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 #comments-box .comment .user-comment{display:block;background-color:#f7f7f7;width:100%;border:1px solid rgba(118,118,118,0.25);max-height:50%;height:5em;resize:none;padding:5px;color:#767676;}
 #comments-box .comment .save-comment{background-color:#00667A;color:#F4F4F4;padding:.2em 1em;display:inline-block;margin-top:1em;border:none;cursor:pointer;}
 
+#comments-box .comment .comment-body{background-color:#F4F4F4;}
+#comments-box .comment .comment-body.full{position:absolute;z-index:1;}
+#comments-box .comment .comment-body.full p{height:auto;}
+#comments-box .comment .comment-body.full .continue{display:none;}
 
 #comments-box .user-comment{}
 #comments-box .user-comment .title{font-size:1.2em;color:#767678;margin-bottom:1em;}
