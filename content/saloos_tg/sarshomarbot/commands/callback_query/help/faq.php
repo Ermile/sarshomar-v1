@@ -1,63 +1,64 @@
 <?php
 namespace content\saloos_tg\sarshomarbot\commands\callback_query\help;
 use \content\saloos_tg\sarshomarbot\commands\handle;
+use \content\saloos_tg\sarshomarbot\commands\callback_query;
 trait faq{
 
 	public static function faq($_query, $_data_url)
 	{
 
-
-		handle::send_log(faq_text::$text);
-
-
-
-
-		if(array_key_exists(2, $_data_url) && $_data_url[2] > 1)
+		if(!array_key_exists(2, $_data_url))
 		{
-			if($_data_url[2] == 2)
-			{
-				return [
-					'text' => "faq list 2/3\n4. Which devices can I use?\n5. Who are the people behind Telegram?\n6. Will you have ads? Or sell my data? Or steal my beloved and enslave my children?",
-					"reply_markup"	=> [
-						"inline_keyboard" => [
-							[
-								['text' => '◀️', 'callback_data' => 'help/faq/1'],
-								['text' => T_('Help'), 'callback_data' => 'help/home'],
-								['text' => '▶️', 'callback_data' => 'help/faq/3'],
-							]
-						]
-					]
-				];
+			$_data_url[2] = 1;
+		}
+		$get_id = array_search($_data_url[2], array_column(faq_text::$text, 'id'));
+		$faq = faq_text::$text[$get_id];
+
+
+		$text = $faq['title'];
+		$text .= "\n\n";
+		if(is_array($faq['text']))
+		{
+			$text_trans = [];
+			foreach ($faq['text'] as $key => $value) {
+				$text_trans[] = T_($value);
 			}
-			elseif($_data_url[2] == 3)
-			{
-				return [
-					'text' => "faq list 3/3\n7. How are you going to make money out of this?\n8. What are your thoughts on internet privacy?\n9. There's illegal content on Telegram. How do I take it down?",
-					"reply_markup"	=> [
-						"inline_keyboard" => [
-							[
-								['text' => '◀️', 'callback_data' => 'help/faq/2'],
-								['text' => T_('Help'), 'callback_data' => 'help/home']
-							]
-						]
-					]
-				];
-			}
+			$text .= join($text_trans, "\n");
 		}
 		else
 		{
-			return [
-				'text' => "faq list 1/3\n1. Who\_ is Telegram\* for?\n2. How is Telegram different from WhatsApp?\n3. How old is Telegram?",
-				"reply_markup"	=> [
-					"inline_keyboard" => [
-						[
-							['text' => T_('Help'), 'callback_data' => 'help/home'],
-							['text' => '▶️', 'callback_data' => 'help/faq/2']
-						]
-					]
-				]
-			];
+			$text .= T_($faq['text']);
 		}
+		$return = ["text" => $text];
+
+		$total_page = count(faq_text::$text);
+		$inline_keyboard = [];
+		if($total_page > 1)
+		{
+			if($get_id > 2)
+			{
+				$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "help/faq/1"];
+			}
+			if($get_id > 1)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "help/faq/" . faq_text::$text[$get_id -1]['id']];
+			}
+
+
+
+			if($get_id < $total_page)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "help/faq/" . (faq_text::$text[$get_id +1]['id'])];
+			}
+
+			if(($get_id + 2) < $total_page)
+			{
+				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "help/faq/" . $total_page];
+			}
+		}
+		$inline_keyboard[][] = ['text' => T_('Help'), 'callback_data' => 'help/home'];
+		$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
+		callback_query::edit_message($return);
 	}
 }
 ?>
