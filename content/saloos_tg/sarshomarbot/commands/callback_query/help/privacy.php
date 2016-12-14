@@ -11,7 +11,7 @@ trait privacy{
 
 		$text .= "\n";
 		$text .= "\n";
-		$text .= T_("We hate advertising. Therefore, we ensure that Sarshomar will not create any disturbances to you and you can control the messages sent to you by Sarshomar s robot.");
+		$text .= T_("We hate advertising. Therefore, we ensure that Sarshomar will not create any disturbances to you and you can control the messages sent to you by Sarshomar's robot.");
 
 		$text .= "\n";
 		$text .= "\n";
@@ -19,7 +19,7 @@ trait privacy{
 
 		$text .= "\n";
 		$text .= "\n";
-		$text .= T_("Sarshomar has been designed to help its clients to conduct easy and rapid opinion polls on a large scale and at low cost. We will do our best to present unprecedented and hardly accessible services and facilities. These include qualities such as Sarshomar s integration, easy access, and extensive knowledge which we are further improving, trusting God and receiving your help.");
+		$text .= T_("Sarshomar has been designed to help its clients to conduct easy and rapid opinion polls on a large scale and at low cost. We will do our best to present unprecedented and hardly accessible services and facilities. These include qualities such as Sarshomar's integration, easy access, and extensive knowledge which we are further improving, trusting God and receiving your help.");
 
 		$text .= "\n";
 		$text .= "\n";

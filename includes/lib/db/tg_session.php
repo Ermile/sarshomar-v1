@@ -173,7 +173,7 @@ class tg_session
 			$user_id = self::$user_id;
 		}
 		$meta = utf8_encode(json_encode(self::$data, JSON_UNESCAPED_UNICODE));
-		// $meta = addcslashes($meta, '\\');
+		$meta = addcslashes($meta, "'");
 		$query = "INSERT INTO options SET
 		options.user_id = $user_id,
 		options.option_cat = 'telegram',

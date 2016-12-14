@@ -13,10 +13,10 @@ class faq_text{
 			"id" 		=> 2,
 			"title" 	=> "How does Sarshomar operate?",
 			"text" 		=> [
-			"Sarshomar s main function is divided into two parts of questioning and answering.",
+			"Sarshomar's main function is divided into two parts of questioning and answering.",
 			"The enquired questions are private by default and for the spreading and receiving the viewpoints and opinions, the questioner will be responsible. When the questioner is in need of having access to statistical population, Sarshomar converts the question into a general one and inquires it of its valid population. In return, Sarshomar receives a charge from the questioner.",
-			"In addition to the questions posed by the users, we will also pose ours to complete Sarshomar s rich knowledge.",
-			"Having answered the questions, besides uploading your valuable comments and contributing to Sarshomar s valid findings, you will receive a portion of the payments provided by the questioners as well as be included in our lottery."]
+			"In addition to the questions posed by the users, we will also pose ours to complete Sarshomar's rich knowledge.",
+			"Having answered the questions, besides uploading your valuable comments and contributing to Sarshomar's valid findings, you will receive a portion of the payments provided by the questioners as well as be included in our lottery."]
 			),
 		array(
 			"id" 		=> 3,
@@ -25,7 +25,7 @@ class faq_text{
 			),
 		array(
 			"id" 		=> 4,
-			"title" 	=> "How can I answer the other user s questions?",
+			"title" 	=> "How can I answer the other user's questions?",
 			"text" 		=> "In case you click on the Ask me icon or on the /Ask command, Sarshomar will start asking you questions."
 			),
 		array(
@@ -51,17 +51,17 @@ class faq_text{
 			"id" 		=> 8,
 			"title" 	=> "Can I use Sarshomar having several user accounts?",
 			"text" 		=> [
-			"Sarshomar considers it as a violation and upon noticing it, Sarshomar is entitled to act upon the rules. Sarshomar s preventing users from having several user accounts is for the sake of the validity of the received answers, and to that end, Sarshomar has some strategies to recognize it.",
+			"Sarshomar considers it as a violation and upon noticing it, Sarshomar is entitled to act upon the rules. Sarshomar's preventing users from having several user accounts is for the sake of the validity of the received answers, and to that end, Sarshomar has some strategies to recognize it.",
 			"It is worth mentioning that the answers given by all the society's members, from all strata, is of great value for us and will contribute to more exact and valid results."]
 			),
 		array(
 			"id" 		=> 9,
 			"title" 	=> "How does Sarshomar support its users?",
-			"text" 		=> "Sarshomar s support center is at your service and we will do our best to be accountable as well as solve potential problems of our respectful users."
+			"text" 		=> "Sarshomar's support center is at your service and we will do our best to be accountable as well as solve potential problems of our respectful users."
 			),
 		array(
 			"id" 		=> 10,
-			"title" 	=> "How can I delete my Sarshomar s user account?",
+			"title" 	=> "How can I delete my Sarshomar's user account?",
 			"text" 		=> [
 			"The users of telegram robot who have not completed their registration, can turn to dashboard and select Disabling user account, to end their cooperation with Sarshomar.",
 			"Those users who have confirmed their registration via uploading their cellphone number can turn to dashboard and select Delete user account to log in the website, and delete their user account after final confirmation."]
