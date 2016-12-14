@@ -98,11 +98,10 @@ class transactions
 		// get the budge befor
 		$budget_befor = self::budget($_user_id);
 		// new budget by $budget_befor + plus - minus
-		$new_budget  = $budget_befor + $plus - $minus;
 		$exchange_id = null;
 		if($force_change)
 		{
-			if($unit_id)
+			if($unit_id && $user_unit_id)
 			{
 				$from          = $unit_id;
 				$to            = $user_unit_id;
@@ -111,10 +110,15 @@ class transactions
 				{
 					if(isset($exchange_rate['rate']) && isset($exchange_rate['id']))
 					{
-						$rate       = (float) $exchange_rate['rate'];
-						$value_from = $new_budget;
-						$value_to   = $new_budget * $rate;
-						$exchange_id  = \lib\db\exchanges::set($exchange_rate['id'], $value_from, $value_to);
+						$rate        = (float) $exchange_rate['rate'];
+						$value_from  = $plus - $minus;
+						$value_to    = ($plus - $minus) * $rate;
+						$new_budget  = $budget_befor + $value_to;
+						$exchange_id = \lib\db\exchanges::set($exchange_rate['id'], $value_from, $value_to);
+					}
+					else
+					{
+						return false;
 					}
 				}
 				else
@@ -127,10 +131,18 @@ class transactions
 				return false;
 			}
 		}
-		exit();
+		else
+		{
+			$new_budget  = $budget_befor + $plus - $minus;
+		}
 
 		$status   = "enable";
+
 		$finished = "no";
+		if($type == 'gift')
+		{
+			$finished = "yes";
+		}
 
 		$arg =
 		[
