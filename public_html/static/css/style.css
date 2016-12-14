@@ -16,7 +16,7 @@ body{background-color:#00667a;}
 .wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px;}
 .wrapper .main{width:100%;}
 .wrapper .box{padding:0 15px;}
-#homepage .wrapper .main .box{padding:0 50px;}
+#homepage .wrapper .box{padding:0 50px;}
 .wrapper .main.pad,.wrapper .main .box.pad{padding-top:20px;}
 
 

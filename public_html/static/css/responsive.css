@@ -85,7 +85,7 @@
 .polls-head > .comments-count{display: none;}
 .polls-head > .votes-count{display: none;}
 .polls-row > .comments-count{display: none;}
-.polls-row > .votes-count{display: none;} 
+.polls-row > .votes-count{display: none;}
 #search-result .polls-body{font-size:1.2em;}
 #search-result .polls-head{font-size: 1.2em;}
 .polls-row .date{font-size: 1em;}
@@ -116,18 +116,17 @@
   #map{display: none;}
   .wrapper{padding: 0;border-bottom: 8px solid transparent;border-top: 8px solid transparent;margin-top: 10px;display: block}
   #intro-box p{font-size:1.6em;}
-  #random-chart h3{text-align: left;padding: 1em .2em;}
+  #random-chart h3{text-align: left;padding: 1em .2em;font-size: 1em;}
   #random-chart h3 a{font-size: 2em;font-weight: 500;}
   .special-heading::after{display: none;}
   /*--customer--*/
-  #customers-box{padding: 3em ;}
-  .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
-  .rtl .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding: 3em 0;}
+  #customers-box{padding:50px 0;overflow:hidden;}
+  .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding:1em 0;}
   #customers-box .customer p{width: 90%;margin:0 auto;text-align: left;font-size: 1.6em;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
   /*--features--*/
-  #features-box{display: none;} 
+  #features-box{display: none;}
   /*--inestimable--*/
   #inestimable{margin:0;padding: 25px 10px;}
   #inestimable::before{display: none;}
@@ -194,12 +193,13 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 
 @media only screen and (max-width: 479px){
   .profile .info{display: none;}
-  #homepage .box{padding: 1em;}
   #homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
+  #homepage .wrapper .box{padding: 1em;}
+  #customers-box .customers-container{width:98%;}
   /*--header--*/
   header .logo img{width: 8em;}
   /*--footer--*/
-  footer #footer-nav .eco img{padding-top:40px;display: inline-block;} 
+  footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
 
   /**********************************profile***************************/
 
@@ -207,7 +207,7 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .element .title:before{display: none;}
 #poll-extra{font-size: 1.4em;}
  }
-  /*================================== 
+  /*==================================
   @media only screen and (max-width: 320px){}
 
 
