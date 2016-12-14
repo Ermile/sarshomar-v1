@@ -92,25 +92,37 @@ class model extends \content_u\home\model
 			}
 		}
 
-		// get the count user by this filter
-		$count = \lib\db\filters::count_user($filters);
-
-		// the min member
-		$min_member = 1;
-
-		// check sarshomar knowledge add permission to show error count member
-		if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < $min_member)
+		if(!empty($filters))
 		{
-			debug::error(T_(":max users found remove some filter",["max" => $count]));
-			return false;
+			// get the count user by this filter
+			$count = \lib\db\filters::count_user($filters);
+
+			// the min member
+			$min_member = 1;
+
+			// check sarshomar knowledge add permission to show error count member
+			if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < $min_member)
+			{
+				debug::error(T_(":max users found remove some filter",["max" => $count]));
+				return false;
+			}
 		}
 
 		/**
 		 * set ranks
 		 * plus (int) member in member field
 		 */
-		$member = utility::post("rangepersons-max");
-		\lib\db\ranks::plus($poll_id, "member", intval($member), ['replace' => true]);
+		$member = (int) utility::post("rangepersons-max");
+		$member_exist = (int) \lib\db\users::get_count("awaiting");
+		if($member <= $member_exist)
+		{
+			\lib\db\ranks::plus($poll_id, "member", intval($member), ['replace' => true]);
+		}
+		else
+		{
+			debug::error(T_(":max user was found, low  the slide of members ",["max" => $member_exist]));
+			return false;
+		}
 
 		/**
 		 * insert the money filters in ranks table
