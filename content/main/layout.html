@@ -37,3 +37,9 @@
 {%endblock%}
 
 {%endblock%}
+
+{%block try_before_register_btn%}
+   {%if url.tld == 'dev' and not login%}
+      <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
+   {%endif%}
+{% endblock %}

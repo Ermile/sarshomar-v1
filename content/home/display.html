@@ -7,9 +7,7 @@
      <div class="span5" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Focus on your question. Do not be too concerned about how to ask or analyze."%} {%trans "Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means."%}</p>
-   {%if not login%}
-      <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
-   {%endif%}
+      {{block('try_before_register_btn')}}
      </div>
      <div class="span2"></div>
      <div class="span5" id='random-chart'>
