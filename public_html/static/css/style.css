@@ -1089,6 +1089,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 .main .search-box{margin:2em 0;}
 .clearfix {content:"";display:table;clear:both;}
+.element label,.element select,.element a,.checkbox label,.menu label,.panel-text label,.btn-container .btn,header .logo,.pay-info .title{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;}
 
 
 /************************************************************** help center */
