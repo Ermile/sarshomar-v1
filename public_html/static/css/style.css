@@ -46,6 +46,7 @@ aside .actived{display:block;}
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
 header #header-box{position:relative;height:90px;margin-left:260px;}
+.rtl header #header-box{margin:0;margin-right:260px;}
 
 /* header top */
 header #header-top{height:60px;border-top:2px solid #00667a;}
@@ -56,12 +57,14 @@ header #header-top>a:hover{color:#37aaa7}
 header #header-quick{float:left;text-align:left;}
 .rtl header #header-quick{float:right;text-align:right}
 header #header-quick>a{position:relative;display:inline-block;padding:0 10px;font-size:12px;color:#00667A;line-height:40px;font-weight:bold;transition:.3s;margin-top:10px}
+header #header-quick>a:hover{background-color:#e8e6e6;}
 header #header-quick>a:focus{background-color:#00667a;color:#f4f4f4;}
 
 /* header profile */
 header #header-profile{float:right;padding:10px 1em 0 0;}
 .rtl header #header-profile{float:left;padding:10px 0 0 1em;}
 header #header-profile>a{display:inline-block;vertical-align:top;color:#00667A;font-size:12px;height:40px;line-height:40px;padding:0 10px;font-weight:bold;transition:.3s;}
+header #header-profile>a.login:hover{background-color:#e8e6e6;}
 header #header-profile>a.login:focus{background-color:#e8e6e6;color:#494848;}
 header #header-profile .register{background-color:#37aaa7;color:#F4F4F4;transition:0.3s;font-size:15px;}
 header #header-profile .register:hover{background-color:#129491;color:#eee;}
@@ -72,15 +75,15 @@ header #header-profile img{background-color:#c3c3c3}
 header .logo{position:relative;float:left;text-align:left;height:90px;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0;}
 .rtl header .logo{float:right;text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
 header .logo>a{display:inline-block}
-header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;}
-header .logo:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1);}
+header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;transition:0.3s;}
+header .logo a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1);}
+header .logo a:hover img{opacity:0.8}
+header .logo a:focus h1{color:#fff;}
 header .logo h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
 .rtl header .logo h1{font-size:26px;margin-bottom:5px;}
-header .logo h1:hover{color:#fff;}
 header .logo h1{color:#f4f4f4;}
 header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo h2:hover{color:#fff;}
-header .logo:hover img{opacity:0.9}
 
 header #header-bottom{height:30px}
 
