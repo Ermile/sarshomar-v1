@@ -152,24 +152,21 @@ class ask
 			$on_edit->text 				= $maker->message->make();
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
+
 			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
-			// if($save->is_ok())
-			// {
-			// 	array_unshift(
-			// 			$on_expire_keyboard[0],
-			// 			utility::inline(T_("Change poll"), "ask/change/". $poll_short_link)
-			// 		);
-			// }
+
 			if(count($_data_url) > 4)
 			{
 				array_unshift(
 					$on_expire_keyboard,
 					[utility::inline(T_("Next poll"), "ask/make")]
 				);
-				foreach ($on_expire_keyboard[0] as $key => $value) {
-					if(isset($on_expire_keyboard[0][$key]['callback_data']))
+			}
+			foreach ($on_expire_keyboard as $key => $value) {
+				foreach ($value as $k => $v) {
+					if(array_key_exists('callback_data', $v))
 					{
-						$on_expire_keyboard[0][$key]['callback_data'] = $value['callback_data'] . '/last';
+						$on_expire_keyboard[$key][$k]['callback_data'] .= '/last';
 					}
 				}
 			}
@@ -204,10 +201,12 @@ class ask
 					$maker->inline_keyboard->inline_keyboard,
 					[utility::inline(T_("Next poll"), "ask/make")]
 				);
-				foreach ($maker->inline_keyboard->inline_keyboard[0] as $key => $value) {
-					if(isset($maker->inline_keyboard->inline_keyboard[0][$key]['callback_data']))
-					{
-					$maker->inline_keyboard->inline_keyboard[0][$key]['callback_data'] = $value['callback_data'] . '/last';
+				foreach ($maker->inline_keyboard->inline_keyboard as $key => $value) {
+					foreach ($value as $k => $v) {
+						if(array_key_exists('callback_data', $v))
+						{
+							$maker->inline_keyboard->inline_keyboard[$key][$k]['callback_data'] .= '/last';
+						}
 					}
 				}
 			}
