@@ -15,7 +15,7 @@ trait faq{
 		$faq = faq_text::$text[$get_id];
 
 
-		$text = $faq['title'];
+		$text = "*" . $faq['title'] ."*";
 		$text .= "\n\n";
 		if(is_array($faq['text']))
 		{
@@ -29,29 +29,29 @@ trait faq{
 		{
 			$text .= T_($faq['text']);
 		}
+		$text .= "\n/faq\_".$faq['id'];
+		$text .= "\n#" . preg_replace("[\s]", '\_', T_("FAQ"));
 		$return = ["text" => $text];
 
 		$total_page = count(faq_text::$text);
 		$inline_keyboard = [];
 		if($total_page > 1)
 		{
-			if($get_id > 2)
+			if($get_id > 1)
 			{
 				$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "help/faq/1"];
 			}
-			if($get_id > 1)
+			if($get_id > 0)
 			{
 				$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "help/faq/" . faq_text::$text[$get_id -1]['id']];
 			}
 
 
-
-			if($get_id < $total_page)
+			if($get_id < $total_page-1)
 			{
 				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "help/faq/" . (faq_text::$text[$get_id +1]['id'])];
 			}
-
-			if(($get_id + 2) < $total_page)
+			if(($get_id +2) < $total_page)
 			{
 				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "help/faq/" . $total_page];
 			}
