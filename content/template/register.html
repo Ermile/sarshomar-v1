@@ -1,8 +1,12 @@
   <div class="row auto {%if login and login.status == 'active'%}complete{%elseif login%}verify{%endif%}" id='inestimable'>
 
 {%if login and login.status == 'active'%}
-   <div class="span6 offset3">
-    <h3>:)</h3>
+   <div class="span3 offset2">
+    <img class="inestimable" src="{{url.static}}images/art/launch.png" alt='{%trans "We are inestimable"%}'>
+   </div>
+   <div class="span6">
+    <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
+    <h4>{%trans "Sarshomar is jumping..."%}</h4>
    </div>
 
 {%elseif login%}
@@ -10,9 +14,9 @@
     <img class="inestimable" src="{{url.static}}images/art/launch.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
-    <h3>{%trans "Inspection, Ask, Answer"%}</h3>
+    <h3>{%trans "Inspection and Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-    <a href="{{url.base}}/@/verify">{%trans "Verify your account"%}</a>
+    <a class="try" href="{{url.base}}/@/verify">{%trans "Verify your account"%}</a>
    </div>
 
 {%else%}
@@ -20,9 +24,9 @@
     <img class="inestimable" src="{{url.static}}images/art/launch.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
-    <h3>{%trans "Inspection, Ask, Answer"%}</h3>
+    <h3>{%trans "Inspection and Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-    <a href="{{url.base}}/@?inspection=inestimable">{%trans "Try Sarshomar"%}</a>
+    <a class="try" href="{{url.base}}/features/guest">{%trans "Try Before Register"%}</a>
    </div>
 {%endif%}
   </div>
