@@ -45,7 +45,7 @@ aside .actived{display:block;}
 /************************************************************** header */
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
-header #header-box{position:relative;height:90px;}
+header #header-box{position:relative;height:90px;margin-left:260px;}
 
 /* header top */
 header #header-top{height:60px;border-top:2px solid #00667a;}
@@ -82,7 +82,7 @@ header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
 header .logo h2:hover{color:#fff;}
 header .logo:hover img{opacity:0.9}
 
-header #header-bottom{}
+header #header-bottom{height:30px}
 
 /* breadcrumb */
 nav.breadcrumb{padding:6px 0px;display:inline-block;float:left;}
@@ -212,7 +212,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 #intro-box{padding:1em 0;}
 .rtl #intro-box{text-align:center;}
 #intro-box h2{color:#00667A;margin-bottom:0;font-weight:bold;padding:0;padding-top:1em;}
-#intro-box p{color:#666666;width:90%;margin-bottom:1em;/*font-size:1.3em;*/}
+#intro-box p{color:#666666;margin:1em 0;line-height:2em;}
 .rtl #intro-box p{font-weight:bold;margin:0 auto 1em;}
 .try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;}
 .try:hover{background-color:#129491;color:#fff;}
@@ -227,7 +227,7 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 
 
 /************************************************************** customers box */
-#customers-box{padding:100px 0;background-color:#FCFCFC;}
+#customers-box{padding:70px 0;background-color:#FCFCFC;}
 #customers-box .customers-container{width:80%;margin:0 auto;}
 #customers-box .customer h3{padding-top:2em;}
 #customers-box .customer h3 a{color:#0C7C78;}

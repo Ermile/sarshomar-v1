@@ -974,20 +974,21 @@ function runAutoComplete()
 	$('.dropdown').autoComplete(
 	{
 		minChars: 0,
-		source: function(term, suggest)
-		{
-			term = term.toLowerCase();
-			var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
-			var matches = [];
-			for (i=0; i<choices.length; i++)
-				if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-			suggest(matches);
-		},
-		// source: function(term, response)
+		// source: function(term, suggest)
 		// {
-		// 	try { xhr.abort(); } catch(e){}
-		// 	xhr = $.getJSON('/@/ajax/article/', { q: term }, function(data){ response(data); });
-		// }
+		// 	term = term.toLowerCase();
+		// 	var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
+		// 	var matches = [];
+		// 	for (i=0; i<choices.length; i++)
+		// 		if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+		// 	suggest(matches);
+		// },
+		source: function(term, response)
+		{
+			try { xhr.abort(); } catch(e){}
+			xhr = $.getJSON('/tag/', { q: term }, function(data){ response(data); });
+			console.log(xhr);
+		}
 	});
 	console.log('run...');
 	$('.dropdown').on('keydown', function(e)

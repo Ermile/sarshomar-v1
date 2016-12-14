@@ -4,22 +4,23 @@
   <div class="main">
    <div class="box">
     <div class="row auto">
-     <div class="span7" id="intro-box">
+     <div class="span5" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Focus on your question. Do not be too concerned about how to ask or analyze."%} {%trans "Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means."%}</p>
    {%if not login%}
-      <a href="" class="try">{%trans "Try Free"%}</a>
+      <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
    {%endif%}
      </div>
+     <div class="span2"></div>
      <div class="span5" id='random-chart'>
-      <div class='chart'>
+      <div class='chart unselectable'>
        <h3><a href='{{result.url}}#?'>{{result.title|trim('\"')}}</a></h3>
        <div class='column palette{{(random(6)) + 1}}'></div>
       </div>
      </div>
     </div>
 
-    <div class="row" id="map">
+    <div class="row unselectable" id="map">
      <h2 class="special-heading"><a href="#">{%trans "Sarshomar users according to gender and location"%}</a></h2>
      <!-- <div class="h2">{%trans ""%}</div> -->
    {%if site.currentlang == "en"%}
@@ -36,8 +37,8 @@
    <div class="row" id="customers-box">
     <div class="customers-container">
      <div class="row customer">
-      <div class="span1"></div>
-      <div class="span8">
+      <div class="span2"></div>
+      <div class="span7">
        <h3><a href="">{%trans "Organizations and Companies"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
@@ -51,17 +52,17 @@
       <div class="span3">
        <img src="{{url.static}}images/art/universities.png">
       </div>
-      <div class="span8">
+      <div class="span7">
        <h3><a href="">{%trans "Universities and Research Institutes"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
       </div>
-      <div class="span1"></div>
+      <div class="span2"></div>
      </div>
 
      <div class="row customer">
-      <div class="span1"></div>
-      <div class="span8">
+      <div class="span2"></div>
+      <div class="span7">
        <h3><a href="">{%trans "Advertising Agencies"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
@@ -75,12 +76,12 @@
       <div class="span3">
        <img src="{{url.static}}images/art/developers.png">
       </div>
-      <div class="span8">
+      <div class="span7">
        <h3><a href="">{%trans "Developers and Webmasters"%}</a></h3>
        <p>{%trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
        tempor incididunt ut labore et dolore magna aliqua."%}</p>
       </div>
-      <div class="span1"></div>
+      <div class="span2"></div>
      </div>
     </div>
    </div><!-- /#customers-box -->
