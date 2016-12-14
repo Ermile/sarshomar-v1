@@ -11,18 +11,23 @@ class ranks
 	 */
 	private static $values =
 	[
-		'member'     => [ true	, 	5	 		],
-		'filter'     => [ true	, 	2	 		],
-		'report'     => [ false	, 	10	 		],
-		'vot'        => [ true	, 	4	 		],
-		'like'       => [ true	, 	5	 		],
-		'faiv'       => [ true	, 	6	 		],
-		'skip'       => [ false	, 	1	 		],
-		'comment'    => [ true	, 	8	 		],
-		'view'       => [ true	, 	1	 		],
-		'other'      => [ true	, 	10	 		],
-		'sarshomar'  => [ true	, 	100 * 1000	],
-		'ago'        => [ true	, 	3	  		],
+		'member'    => [ true	, 	5	 		],
+		'filter'    => [ true	, 	2	 		],
+		'report'    => [ false	, 	10	 		],
+		'vot'       => [ true	, 	4	 		],
+		'like'      => [ true	, 	5	 		],
+		'faiv'      => [ true	, 	6	 		],
+		'skip'      => [ false	, 	1	 		],
+		'comment'   => [ true	, 	8	 		],
+		'view'      => [ true	, 	1	 		],
+		'other'     => [ true	, 	10	 		],
+		'sarshomar' => [ true	, 	100 * 1000	],
+		'ago'       => [ true	, 	3	  		],
+		'vip'       => [ true 	, 	4			],
+		'public'    => [ true 	, 	4			],
+		'admin'     => [ true 	, 	4			],
+		'money'     => [ true 	, 	4			],
+		'ad'        => [ true 	, 	4			],
 	];
 
 
@@ -48,7 +53,12 @@ class ranks
 			'other'      => 0,
 			'sarshomar'  => 0,
 			'createdate' => date("Y-m-d H:i:s"),
-			'ago'        => 0
+			'ago'        => 0,
+			'vip'        => 0,
+			'public'     => 0,
+			'admin'      => 0,
+			'money'      => 0,
+			'ad'         => 0
 		];
 		$_field = array_merge($default_fields, $_field);
 
@@ -70,7 +80,12 @@ class ranks
 				ranks.other      = $_field[other],
 				ranks.sarshomar  = $_field[sarshomar],
 				ranks.createdate = '$_field[createdate]',
-				ranks.ago        = $_field[ago]
+				ranks.ago        = $_field[ago],
+				ranks.vip        = $_field[vip],
+				ranks.public     = $_field[public],
+				ranks.admin      = $_field[admin],
+				ranks.money      = $_field[money],
+				ranks.ad         = $_field[ad]
 		";
 		$result = \lib\db::query($query);
 		return $result;
@@ -158,6 +173,26 @@ class ranks
 					{
 						$sum      += (intval($ago) * intval(self::$values['ago'][1]));
 						$update[] = " ranks.ago = $ago ";
+					}
+					break;
+
+				case 'public':
+					if($replace)
+					{
+						if(intval($_plus) == 0 || intval($_plus) == 1)
+						{
+							$value    = intval($_plus);
+							$update[] = " ranks.$key = $_plus ";
+						}
+					}
+					else
+					{
+						$value = intval($value) + intval($_plus);
+						if($value > 1)
+						{
+							$value = 1;
+						}
+						$update[] = " ranks.$key = ranks.$key + 1 ";
 					}
 					break;
 

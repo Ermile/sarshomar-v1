@@ -61,17 +61,17 @@
        </div>
       </div>
       <div class="total">
-       <span class="title">{%trans "Total cash"%}</span><span class="value">1,208,100</span><span class="unit">{%trans "Tomans"%}</span>
+       <span class="title">{%trans "Total cash"%}</span><span class="value">{{user_cash}}</span><span class="unit">{%trans user_unit%}</span>
        <div class="financial-detail">
         <div class="row">
          <div class="cell">Cash</div>
-         <div class="cell">1,000,000</div>
-         <div class="cell">Tomans</div>
+         <div class="cell">{{user_cash_real}}</div>
+         <div class="cell">{%trans user_unit%}</div>
         </div>
         <div class="row">
          <div class="cell">Gift</div>
-         <div class="cell">200,000</div>
-         <div class="cell">Tomans</div>
+         <div class="cell">{{user_cash_gift}}</div>
+         <div class="cell">{%trans user_unit%}</div>
         </div>
        </div>
       </div>

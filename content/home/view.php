@@ -20,6 +20,7 @@ class view extends \mvc\view
 		$this->data->result = $this->model()->random_result();
 
 		$this->include->fontawesome = true;
+
 	}
 
 

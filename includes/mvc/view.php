@@ -27,6 +27,14 @@ class view extends \lib\mvc\view
 		// get total sarshomart answered
 		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
 		$this->data->stat = $total;
+
+		if($this->login())
+		{
+			$this->data->user_unit      = \lib\db\units::user_unit($this->login('id'));
+			$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'real');
+			$this->data->user_cash_gift = \lib\db\transactions::budget($this->login('id'), 'gift');
+		}
+
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
 

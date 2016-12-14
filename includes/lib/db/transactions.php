@@ -82,6 +82,10 @@ class transactions
 		{
 			$type = $item['type'];
 		}
+		else
+		{
+			return false;
+		}
 
 		$minus = 0;
 		if(isset($item['minus']) && $item !== null)
@@ -96,7 +100,7 @@ class transactions
 		}
 
 		// get the budge befor
-		$budget_befor = self::budget($_user_id);
+		$budget_befor = self::budget($_user_id, $type);
 		// new budget by $budget_befor + plus - minus
 		$exchange_id = null;
 		if($force_change)
@@ -168,20 +172,55 @@ class transactions
 	}
 
 
+	public static function get_budget($_user_id, $_type)
+	{
+
+	}
+
 	/**
 	 * get the budget of users
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function budget($_user_id)
+	public static function budget($_user_id, $_type)
 	{
-		$query = "SELECT budget FROM transactions WHERE user_id = $_user_id ORDER BY id DESC LIMIT 1";
+		$query =
+		"
+			SELECT
+				budget
+			FROM
+				transactions
+			WHERE
+				transactions.user_id = $_user_id AND
+				transactions.type    = '$_type'
+			ORDER BY id DESC
+			LIMIT 1
+		";
 		$result = \lib\db::get($query, 'budget', true);
 		if(!$result)
 		{
 			return 0;
 		}
 		return $result;
+	}
+
+
+	/**
+	 * get the gitf budget
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function budget_gift($_user_id)
+	{
+		return self::budget($_user_id, 'gift');
+	}
+
+
+	public static function budget_real($_user_id)
+	{
+
 	}
 
 

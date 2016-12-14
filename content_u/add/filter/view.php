@@ -36,8 +36,8 @@ class view extends \content_u\home\view
 		$this->data->filters   = $filters;
 		$this->data->member    = \lib\db\ranks::get($poll_survey_id, 'member');
 
-		$this->data->user_cash = \lib\db\transactions::budget($this->login("id"));
-		$this->data->unit      = \lib\db\units::user_unit($this->login("id"));
+		$this->data->unit      = \lib\db\units::user_unit($this->login('id'));
+		$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'gift');
 		// check is_survey or no
 		// if(!\lib\utility\survey::is_survey($poll_survey_id))
 		// {
