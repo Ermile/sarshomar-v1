@@ -113,7 +113,7 @@
 				$('.poll-word-' + id).each(function(){
 					var val = $(this).html();
 					console.log(val);
-					val = val.split(/\s|\,|\n|\\.|\t|\-|\=|\:|\;|\'|\"|\?|\>|\<|\!|\@|\#|\%|\^|\&|\*|\(|\)|\+|\/|\||\{|\}|\[|\]|\`|\؟|\~|\،|\؛|\_\;/);
+					val = val.split(/\s/);
 					for (a in val) {
 						if(val[a] != '')
 						{
