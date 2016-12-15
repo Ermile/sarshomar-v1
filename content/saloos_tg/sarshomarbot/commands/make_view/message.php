@@ -142,7 +142,7 @@ class message
 		return $this->answer_id;
 	}
 
-	public function add_count_poll($_type = 'sum')
+	public function add_count_poll($_type = 'sum_invalid')
 	{
 		$count = $this->class->telegram_result->get_result('count_answered');
 		switch ($_type) {
@@ -150,12 +150,22 @@ class message
 				$this->message['count_poll'] = T_("Valid answer is:") . $count['valid'];
 				break;
 			case 'invalid':
-				$this->message['count_poll'] = T_("Invalid answer is:") . $count['valid'];
+				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
+				break;
+			case 'sum_invalid':
+				$text = T_("Sum") . '(' . $count['sum'] .') ';
+				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
+				$this->message['count_poll'] = $text;
+				break;
+			case 'sum_valid':
+				$text = T_("Sum") . '(' . $count['sum'] .') ';
+				$text .= T_("Valid") . '(' . $count['valid'] .')';
+				$this->message['count_poll'] = $text;
 				break;
 
 			default:
 				$text = T_("Valid") . '(' . $count['valid'] .') ';
-				$text .= T_("Invalid") . '(' . $count['invalid'] .')';
+				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
 				$this->message['count_poll'] = $text;
 				break;
 		}

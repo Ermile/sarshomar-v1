@@ -73,7 +73,12 @@ class step_starting
 		}elseif(!callback_query\language::check())
 		{
 			$return = callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
+		}elseif(array_key_exists('faq', $commands))
+		{
+			step::stop();
+			$return = callback_query\help::faq(null, null, $commands['faq']);
 		}
+
 		if(!$return || is_null($return))
 		{
 			step::stop();

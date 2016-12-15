@@ -87,7 +87,7 @@ class handle
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{
-				if(preg_match("#^\/(sp|report)_#", $_cmd['command']))
+				if(preg_match("#^\/(sp|report|faq)_#", $_cmd['command']))
 				{
 					$command_text = $_cmd['command'];
 				}
@@ -156,6 +156,10 @@ class handle
 
 				case '/faq':
 				$response = step_help::exec($command_text);
+				break;
+
+				case preg_match("/^(\/faq_([^\s]+))$/", $command_text, $faq) ? $faq[1] : '/faq':
+				$response = callback_query\help::faq(null, null, $faq[2]);
 				break;
 
 				case '/commands':
