@@ -64,6 +64,7 @@ class ask
 				$maker->message->add_poll_chart(true);
 				$maker->message->add_poll_list(true);
 			}
+			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
@@ -98,8 +99,25 @@ class ask
 	{
 		$poll_short_link = $_data_url[2];
 		$answer_id = $_data_url[3];
+		$options = ['port' => 'telegram'];
+		if(array_key_exists('inline_message_id', $_query))
+		{
+			$port = \lib\db\options::get([
+				'limit' 		=> 1,
+				'user_id' 		=> bot::$user_id,
+				'post_id'		=> \lib\utility\shortURL::decode($poll_short_link),
+				'option_cat'	=> 'telegram',
+				'option_key'	=> 'subport',
+				'option_value'	=> $_query['inline_message_id']
+				]);
+			if(!empty($port))
+			{
+				$port = $port[0];
+				$options['subport'] = $port['id'];
+			}
+		}
 		$poll_id = \lib\utility\shortURL::decode($poll_short_link);
-		$save = \lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id);
+		$save = \lib\utility\answers::save(bot::$user_id, $poll_id, $answer_id, $options);
 		$return_text = "❌ ";
 		if($save->is_ok())
 		{
@@ -109,12 +127,12 @@ class ask
 
 		$return_text .= $save->get_message();
 
-		if($save->is_error_code(3000) || $save->is_error_code(3001))
-		{
-			// $return = self::make(null, null, $poll_short_link);
-			callback_query::edit_message(['text' => $save->get_message()]);
-		}
-		elseif(!array_key_exists('message', $_query))
+		// if($save->is_error_code(3000) || $save->is_error_code(3001))
+		// {
+		// 	callback_query::edit_message(['text' => $save->get_message()]);
+		// }
+		// else
+			if(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');
 
@@ -123,6 +141,7 @@ class ask
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
 			$maker->message->add_poll_list();
+			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
@@ -146,6 +165,7 @@ class ask
 			$maker->message->add_title();
 			$maker->message->add_poll_chart($answer_id);
 			$maker->message->add_poll_list($answer_id);
+			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
@@ -185,6 +205,7 @@ class ask
 		$maker->message->add_title();
 		$maker->message->add_poll_chart(true);
 		$maker->message->add_poll_list(true);
+		$maker->message->add_count_poll();
 		$maker->message->add_telegram_link();
 		$maker->message->add_telegram_tag();
 

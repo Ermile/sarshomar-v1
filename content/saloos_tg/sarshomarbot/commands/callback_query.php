@@ -26,9 +26,10 @@ class callback_query
 		 * check if unique request
 		 */
 		$force_inline = false;
+		$sub_port = false;
 		if(array_key_exists('inline_message_id', $_query))
 		{
-			self::$message_result['inline_message_id'] = $_query['inline_message_id'];
+			self::$message_result['inline_message_id'] = $sub_port = $_query['inline_message_id'];
 			$force_inline = true;
 		}
 		elseif(array_key_exists('chat_instance', $_query))

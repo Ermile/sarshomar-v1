@@ -17,7 +17,6 @@ class inline_query
 		$result['is_personal'] = true;
 		$result['cache_time'] = 1;
 		$result['switch_pm_text'] = T_("Create new poll");
-		handle::send_log([T_("Create new poll"), callback_query\language::check(true)]);
 		$result['switch_pm_parameter'] = "create";
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
@@ -55,13 +54,14 @@ class inline_query
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
-			$row_result['id'] = $value['id'];
 
 			$maker = new make_view(bot::$user_id, $value);
+			$row_result['id'] =  $maker->short_link;
 
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
 			$maker->message->add_poll_list();
+			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
