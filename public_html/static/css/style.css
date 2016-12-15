@@ -37,11 +37,10 @@ aside input[type=checkbox].full-line-title+label{position:relative;height:20px;c
 aside input[type=checkbox].full-line-title+label::before{content:'';width:100%;position:absolute;height:1px;background-color:#00667a;left:0;top:0;bottom:0;margin:auto;}
 aside input[type=checkbox].full-line-title+label::after{content:attr(data-title);position:absolute;background-color:#ebebeb;right:0;bottom:0;top:0;margin:auto;padding:0px 5px;padding-right:30px;color:#777;font-size: 1.1em;font-weight: 500;cursor:pointer; }
 .rtl aside input[type=checkbox].full-line-title+label::after{left:0;right:auto;padding-left:30px;padding-right:5px;}
-aside .radio{display:flex;align-items: center; }
 aside .group{margin-bottom:1em;}
 aside .closed{display:none;}
 aside .actived{display:block;}
-aside .radio input[type="radio"]:checked+.radio-box::after{top:5px;left:3px;}
+
 
 /************************************************************** header */
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}

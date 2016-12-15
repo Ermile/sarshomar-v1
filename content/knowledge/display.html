@@ -9,22 +9,22 @@
        <label for="question" data-title='{%trans "question type"%}'></label>
      <!-- </div> -->
      <div class="select-box {%if checkbox.pollgender %}actived{%else%}closed{%endif%}">
-      <div class="radio">
+      <div class="checkbox">
 
-        <input id="type1" type="radio" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
-        <label for="type1" class="radio-box"></label>
+        <input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
+        <label for="type1" class="check-box"></label>
         <label for="type1">{%trans "Poll"%}</label>
        {%if checkbox.pollgender == 'poll'%}{%endif%}
       </div>
-      <div class="radio">
-       <input id="type2" type="radio" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
-       <label for="type2" class="radio-box"></label>
+      <div class="checkbox">
+       <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
+       <label for="type2" class="check-box"></label>
        <label for="type2">{%trans "quiz"%}</label>
        {%if checkbox.pollgender == 'quiz'%}{%endif%}
       </div>
-      <div class="radio">
-       <input id="type4" type="radio" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
-       <label for="type4" class="radio-box"></label>
+      <div class="checkbox">
+       <input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
+       <label for="type4" class="check-box"></label>
        <label for="type4">{%trans "survey"%}</label>
 
        {%if checkbox.pollgender == 'survey'%}{%endif%}
@@ -38,45 +38,45 @@
 
     <div class="select-box closed {%if checkbox.polltype %}actived{%else%}closed{%endif%}">
 
-     <div class="radio">
-      <input id="multiplechoice" type="radio" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
-      <label for="multiplechoice" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
+      <label for="multiplechoice" class="check-box"></label>
       <label for="multiplechoice">{%trans "multiplechoice"%}</label>
       {%if checkbox.polltype == 'multiplechoice'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="descriptive" type="radio" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
-      <label for="descriptive" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="descriptive" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
+      <label for="descriptive" class="check-box"></label>
       <label for="descriptive">{%trans "descriptive"%}</label>
       {%if checkbox.polltype == 'descriptive'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="notification" type="radio" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
-      <label for="notification" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="notification" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
+      <label for="notification" class="check-box"></label>
       <label for="notification">{%trans "notification"%}</label>
       {%if checkbox.polltype == 'notification'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="upload" type="radio" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
-      <label for="upload" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="upload" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
+      <label for="upload" class="check-box"></label>
       <label for="upload">{%trans "upload"%}</label>
       {%if checkbox.polltype == 'upload'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="starred" type="radio" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
-      <label for="starred" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="starred" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
+      <label for="starred" class="check-box"></label>
       <label for="starred">{%trans "starred"%}</label>
       {%if checkbox.polltype == 'starred'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="numerical" type="radio" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
-      <label for="numerical" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="numerical" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
+      <label for="numerical" class="check-box"></label>
       <label for="numerical">{%trans "numerical"%}</label>
       {%if checkbox.polltype == 'numerical'%}{%endif%}
      </div>
-     <div class="radio">
-      <input id="sort" type="radio" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
-      <label for="sort" class="radio-box"></label>
+     <div class="checkbox">
+      <input id="sort" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
+      <label for="sort" class="check-box"></label>
       <label for="sort">{%trans "sort"%}</label>
       {%if checkbox.polltype == 'sort'%}{%endif%}
      </div>
@@ -87,16 +87,16 @@
        <input type="checkbox" id="survey" class="full-line-title">
        <label for="survey" data-title='{%trans "survey time"%}''></label>
     <div class="select-box {%if checkbox.status %}actived{%else%}closed{%endif%}">
-      <div class="radio">
+      <div class="checkbox">
 
-        <input id="time1" type="radio" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
-        <label for="time1" class="radio-box"></label>
+        <input id="time1" type="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
+        <label for="time1" class="check-box"></label>
         <label for="time1">{%trans "publish"%}</label>
         {%if checkbox.status == 'publish'%}{%endif%}
       </div>
-      <div class="radio">
-        <input id="time2" type="radio" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
-        <label for="time2" class="radio-box"></label>
+      <div class="checkbox">
+        <input id="time2" type="checkbox" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
+        <label for="time2" class="check-box"></label>
         <label for="time2">{%trans "expire"%}</label>
 
         {%if checkbox.status == 'expired'%}{%endif%}
@@ -107,11 +107,11 @@
     <div class="full-line-title" data-title='{%trans "prize"%}'></div>
     <div class="select-box prize-box ">
       <div class="checkbox" >
-       <input id="prize1" type="radio" name='prize'>
+       <input id="prize1" type="checkbox" name='prize'>
        <label for="prize1">{%trans "پاسخ‌دهی"%}</label>
       </div>
-      <div class="radio">
-       <input id="prize2" type="radio" name='prize'>
+      <div class="checkbox">
+       <input id="prize2" type="checkbox" name='prize'>
        <label for="prize2">{%trans "قرعه‌کشی"%}</label>
       </div>
     </div>
