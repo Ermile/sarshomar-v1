@@ -1,4 +1,4 @@
-{%extends display.main%}
+ {%extends display.main%}
 
 {%block poll_title%}
 {% spaceless %}
@@ -93,7 +93,9 @@
 {% spaceless %}
  <div class="btn-container poll">
  {%if post.post_meta.opt%}{#check post meta exist#}
-  <button class="btn secondary save-answer">{%trans "Save Answer"%}</button>
+  <button class="btn secondary save-answer"
+    {% if login %}{%else%} disabled="disabled" {%endif%}>{%trans "Save Answer"%}
+  </button>
  {%else%}
   <a class="btn save-answer" href="ask" data-direct>{%trans "Ask Me"%}</a>
  {%endif%}

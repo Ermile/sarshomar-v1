@@ -105,32 +105,15 @@ class view extends \mvc\view
 		{
 			// set post_id
 			$post_id = $post['id'];
-			// check login for load opt
-			if($this->login())
-			{
-				// save poll id into session to get in answer
-				$_SESSION['last_poll_id']  = $post_id;
-				// check next url and this post url to find load opt or no
 
-				// check this user answerd to this poll or no
-				// if(\lib\utility\answers::is_answered($this->login("id"), $post_id))
-				// {
-					// this user answered to this poll
-					// $post['post_meta'] = ['opt' => null];
-				// }
-				// else
-				// {
-					// users load poll from other link
-					if(isset($post['post_meta']['opt']))
-					{
-						$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
-					}
-				// }
-			}
-			else
+			// save poll id into session to get in answer
+			$_SESSION['last_poll_id']  = $post_id;
+			// check next url and this post url to find load opt or no
+
+			// users load poll from other link
+			if(isset($post['post_meta']['opt']))
 			{
-				// this user not logined  => remove answers opt
-				$post['post_meta'] = ['opt' => null];
+				$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
 			}
 
 			// get post status to show in html page

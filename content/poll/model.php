@@ -211,6 +211,13 @@ class model extends \mvc\model
 
 		//----------------------------------------------------------------------------
 		// save answers
+
+		if(!$this->login())
+		{
+			\lib\debug::error(T_("You must login in order to answer the questions"));
+			return false;
+		}
+
 		if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
 		{
 			\lib\debug::error(T_("The poll id does not match with your last question"));
