@@ -316,57 +316,57 @@ console.log(this);
     Navigate({ url: new_url });
   });
 
-//   $(document).on('change', 'input[type=checkbox]', function(){
+  $(document).on('change', 'input[type=checkbox]', function(){
 
-//     var new_url;
-//     var url        = window.location.pathname;
-//     var pattern    = new RegExp( name + '\=([^\/]*)');
-//     var is_checked = false;
-//     var exist_value_url = null;
+    var new_url;
+    var url        = window.location.pathname;
+    var pattern    = new RegExp( name + '\=([^\/]*)');
+    var is_checked = false;
+    var exist_value_url = null;
 
-//     name  = $(this).attr('name');
-//     value = $(this).val();
+    name  = $(this).attr('name');
+    value = $(this).val();
 
-//     match = url.match(pattern);
-//     if(match !== null)
-//     {
-//       exist_value_url = match[1];
-//     }
-//     if($(this).prop("checked"))
-//     {
-//       is_checked = false;
-//     }
-//     else
-//     {
-//       is_checked = true;
-//     }
+    match = url.match(pattern);
+    if(match !== null)
+    {
+      exist_value_url = match[1];
+    }
+    if($(this).prop("checked"))
+    {
+      is_checked = false;
+    }
+    else
+    {
+      is_checked = true;
+    }
 
-//     if(is_checked)
-//     {
-//       new_url = url.replace(pattern, '');
-//     }
-//     else
-//     {
-//       if(match !== null)
-//       {
-//         new_url = url.replace(pattern, name + '=' + value);
-//       }
-//       else
-//       {
-//         if(/\/$/.test(url))
-//         {
-//           new_url = url + name + '=' + value;
-//         }
-//         else
-//         {
-//           new_url = url + '/' + name + '=' + value;
-//         }
-//       }
-//     }
-//     // console.log(new_url);
-//     // console.log(is_checked)
-//     Navigate({ url: new_url });
-//   });
+    if(is_checked)
+    {
+      new_url = url.replace(pattern, '');
+    }
+    else
+    {
+      if(match !== null)
+      {
+        new_url = url.replace(pattern, name + '=' + value);
+      }
+      else
+      {
+        if(/\/$/.test(url))
+        {
+          new_url = url + name + '=' + value;
+        }
+        else
+        {
+          new_url = url + '/' + name + '=' + value;
+        }
+      }
+    }
+    console.log(new_url);
+    console.log(is_checked)
+    Navigate({ url: new_url });
+  });
 });
 
 </script>

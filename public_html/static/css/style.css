@@ -724,11 +724,16 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .polls-head>.date {min-width:6.4em;max-width:6.4em;text-align:center;}
 
 .polls-row{display:flex;}
-.polls-row>.star{max-width:2em;font-size:1.35em;color:transparent;display:flex;cursor:pointer;align-items:center;font-weight:bold;}
-.polls-row>.star.starred::before{color:#e7a429;}
-.polls-row>.star::before {align-items: center;justify-content:center;display:flex;}
-.polls-row:hover>.star::before{color:#e7e7e7;}
-.polls-row:hover>.star.starred::before{color:#e7a429;}
+.polls-row>label.star{;padding:13px 5px;max-width:2em;font-size:1.35em;color:transparent;display:flex;cursor:pointer;align-items:center;font-weight:bold;}
+.polls-row>label.star.starred::before{color:#e7a429;}
+.polls-row>label.star::before {align-items: center;justify-content:center;display:flex;}
+.polls-row:hover>label.star::before{color:#e7e7e7;}
+.polls-row:hover>label.star.starred::before{color:#e7a429;}
+.polls-row input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1;}
+.polls-row input[type="checkbox"]:focus,#interaction input[type="checkbox"]:hover{}
+.polls-row label:hover{opacity:1;}
+
+
 .polls-row>.type{margin:0 auto;min-width:3em;padding-left:0;display:flex;align-items:center;}
 .rtl .polls-row>.type{padding-right:0;padding-left:5px;}
 .polls-row>.type::before{vertical-align:-webkit-baseline-middle; }
@@ -1124,3 +1129,7 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 #contact .contact-ways .row img{width:3em;}
 #contact .contact-ways .row span{padding:1em;}
 #contact .contact-ways .map{display:block;width:100%;}
+
+
+
+

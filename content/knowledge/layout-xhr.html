@@ -11,7 +11,8 @@
 {%for key, value in poll_list%}
 
     <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
-      <span class="fa fa-star star {%if value.faivorites%}starred{%endif%}" aria-hidden="true"></span>
+      <input type="checkbox" name="favorite" id="favorite">
+      <label for="favorite" class="fa fa-2x fa-star star"></label>
       <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
       <span class="title"><a href="{{url.prefix}}/{{value.url}}">{{value.title|raw}}</a></span>
       <span class="comments-count">{{value.comment_count}}</span>
