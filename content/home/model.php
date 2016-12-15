@@ -96,12 +96,12 @@ class model extends \mvc\model
 				[
 					[
 						'name'       => $male,
-						'y'          => $this->rnd(),
+						'y'          => 145,
 						'drilldown'  => 'Male'
 					],
 					[
 						'name'       => $female,
-						'y'          => $this->rnd(),
+						'y'          => 165,
 						'drilldown'  => 'Female'
 			        ]
 			    ],
@@ -113,11 +113,11 @@ class model extends \mvc\model
 						'id'   => 'Male',
 						'data' =>
 						[
-								['v1.0', $this->rnd()],
-								['v8.0', $this->rnd()],
-								['v9.0', $this->rnd()],
-								['v6.0', $this->rnd()],
-								['v7.0', $this->rnd()]
+								['v1.0', 25],
+								['v8.0', 35],
+								['v9.0', 55],
+								['v6.0', 95],
+								['v7.0', 15]
 							]
 						],
 						[
@@ -125,12 +125,12 @@ class model extends \mvc\model
 						'id'   => 'Female',
 						'data' =>
 						[
-								['v40.0', $this->rnd()],
-								['v41.0', $this->rnd()],
-								['v42.0', $this->rnd()],
-								['v39.0', $this->rnd()],
-								['v36.0', $this->rnd()],
-								['v30.0', $this->rnd()]
+								['v40.0', 35],
+								['v41.0', 5],
+								['v42.0', 15],
+								['v39.0', 85],
+								['v36.0', 55],
+								['v30.0', 95]
 						]
 					]
 				]
@@ -183,22 +183,17 @@ class model extends \mvc\model
 						'name' => $name,
 						'data' =>
 						[
-							$this->rnd(),
-							$this->rnd(),
-							$this->rnd(),
-							$this->rnd(),
-							$this->rnd(),
+							19,
+							35,
+							10,
+							50,
+							14,
 						],
 					]
 				], JSON_UNESCAPED_UNICODE)
 			];
 		}
 		return $random;
-	}
-
-	public function rnd()
-	{
-		return rand(20,70);
 	}
 
 	function get_tg_session($_args)
