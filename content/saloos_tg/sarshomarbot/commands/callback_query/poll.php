@@ -6,6 +6,7 @@ use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
 use \content\saloos_tg\sarshomarbot\commands\utility;
 use content\saloos_tg\sarshomarbot\commands\make_view;
+use \lib\telegram\step;
 
 class poll
 {
@@ -96,6 +97,7 @@ class poll
 
 	public static function discard($_query, $_data_url)
 	{
+		step::stop();
 		\lib\storage::set_disable_edit(true);
 
 		$poll_id = $_data_url[2];
