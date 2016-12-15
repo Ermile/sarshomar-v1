@@ -166,11 +166,11 @@ footer #footer-note .langlist{display:inline-block;}
 footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:0.5em 1em;display:inline-block;}
 footer #footer-note .langlist a:hover{background-color:rgba(0,0,0,0.2)}
 footer #footer-note .love{text-align:right;text-transform:uppercase}
-.rtl footer #footer-note .love{text-align:left}
 footer #footer-note .love a{color:#bbb;}
 footer #footer-note .counter{font-weight:700;text-align:center;text-transform:uppercase;}
-
-
+footer #footer-note {display: flex; flex-direction: row;}
+footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
+.rtl footer #footer-note .love {text-align: left;}
 /************************************************************** special heading */
 .special-heading{position:relative;padding-left:90px;color:#00667A;font-size:20px;line-height:26px;margin-bottom:30px;}
 .rtl .special-heading{padding-left:0;padding-right:90px;}
