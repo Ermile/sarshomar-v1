@@ -98,22 +98,17 @@ class poll
 	public static function discard($_query, $_data_url)
 	{
 		step::stop();
-		\lib\storage::set_disable_edit(true);
+		$edit = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft(function($_maker){
+			$_maker->message->message['sucsess'] = T_('Poll Discarted');
+		});
 
-		$poll_id = $_data_url[2];
-		$poll_draft = session::get('poll', $poll_id);
-		$poll_title = $poll_draft->title;
-		$poll_answers = $poll_draft->answers;
-		$poll = ['title' => $poll_title];
-		foreach ($poll_answers as $key => $value) {
-			$poll['meta']['opt'][] = ["txt" => $value];
-		}
-		$maker = new make_view(bot::$user_id, $poll);
-		$maker->message->add_title(false);
-		$maker->message->add_poll_list(null, false);
-		$maker->message->add('cancel', '#Cancel');
-		callback_query::edit_message(["text" => $maker->message->make()]);
-		session::remove('poll', $poll_id);
+		session::remove('poll');
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		unset($edit['reply_markup']);
+		unset($edit['response_callback']);
+		callback_query::edit_message($edit);
+		return ['text' => 'Your poll Discarted.'];
 	}
 
 	public static function save($_query, $_data_url)

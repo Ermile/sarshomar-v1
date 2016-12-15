@@ -47,6 +47,7 @@ class handle
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
 			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
+			step::stop();
 			exit();
 		}
 		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))

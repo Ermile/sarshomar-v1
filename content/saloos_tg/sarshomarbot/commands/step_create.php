@@ -27,7 +27,7 @@ class step_create
 
 	public static function step1()
 	{
-		step::plus(1);
+		step::plus();
 		$txt_text = T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
 		$result   =
 		[
@@ -38,7 +38,7 @@ class step_create
 				[
 					[
 						"text" => T_("Cancel"),
-						"callback_data" => 'create/cancel'
+						"callback_data" => 'poll/discard'
 					]
 				]
 			]
@@ -65,62 +65,84 @@ class step_create
 		$question = markdown_filter::remove_external_link($question);
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
-		if(count($question_export) < 3)
+
+		$poll_draft = session::get('poll');
+		if($poll_draft)
 		{
-			$txt_text = T_("Errors in question upload process");
-			$txt_text .= "\n";
-			$txt_text .= T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
-			$markup = [
-			"inline_keyboard" => [
-					[
-						[
-							"text" => T_("Cancel"),
-							"callback_data" => 'create/cancel'
-						]
-					]
-				]
-			];
-			$result   =[
-			'text' => $txt_text,
-			"reply_markup" => $markup,
-			"response_callback" => utility::response_expire('create')
-			];
+			$poll_answers = (array) session::get('poll', "answers");
+			$poll_answers = array_merge($poll_answers, $question_export);
+			session::set('poll', "answers", $poll_answers);
 		}
 		else
 		{
-			$txt_text = T_("Your question uploaded successfully.");
-			$txt_text .= "\n";
-			$poll_title 		= $question_export[0];
+			$poll_title 	= $question_export[0];
 			$poll_answers 	= array_slice($question_export, 1);
-			$poll_id 		= utility::microtime_id();
-
-			session::set('poll', $poll_id, ["title" => $poll_title, "answers" => $poll_answers]);
-
+			session::set('poll', "title", $poll_title);
+			session::set('poll', "answers", $poll_answers);
+		}
+		return self::make_draft();
+	}
+	public static function make_draft($_maker = false)
+	{
+		$poll_title 	= session::get('poll', 'title');
+		$poll_answers 	= session::get('poll', 'answers');
+		if(count($poll_answers) > 0)
+		{
 			$poll = ['title' => $poll_title];
+
+			$poll_result = [];
 			foreach ($poll_answers as $key => $value) {
-				$poll['meta']['opt'][] = ["txt" => $value];
+				$k = ""+ ($key +1);
+				$poll_result[$k] = [
+				'text' 		=> $value,
+				'key' 		=> $k,
+				'type' 		=> 'text',
+				'valid' 	=> 0,
+				'invalid' 	=> 0,
+				'sum' 		=> 0
+				];
 			}
 			$maker = new make_view(bot::$user_id, $poll);
+			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 			$maker->message->add_title(false);
-			$maker->message->set_poll_list(array_fill_keys($poll_answers, 0));
+			$maker->message->set_poll_list($poll_result);
 			$maker->message->add_poll_list(null, false);
-			$txt_text .= $maker->message->make();
-			$result = [
-				'text' 						=> $txt_text,
-				'parse_mode' 				=> 'Markdown',
-				'disable_web_page_preview' 	=> true,
-				'reply_markup' 				=> [
-					'inline_keyboard' 		=> [
-						[
-						utility::inline(T_("Discard"), 'poll/discard/'.$poll_id),
-						utility::inline(T_("Save"), 'poll/save/'.$poll_id)
-						]
-					]
-				]
-			];
-			$markup = null;
+			$inline_keyboard = [[
+					utility::inline(T_("Discard"), 'poll/discard'),
+					]];
+			if(count($poll_answers) > 1)
+			{
+				$inline_keyboard[0][] = utility::inline(T_("Save"), 'poll/save');
+			}
+			else
+			{
+				$maker->message->add('warn', T_("answers's poll min limit is 2, send secound answers."));
+			}
 		}
-		step::stop();
+		else
+		{
+			$poll = ['title' => $poll_title];
+			$maker = new make_view(bot::$user_id, $poll);
+			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
+			$maker->message->add_title(false);
+			$inline_keyboard[0][] = utility::inline(T_("Discard"), 'poll/discard');
+		}
+
+		if($_maker)
+		{
+			call_user_func_array($_maker, [$maker]);
+		}
+
+		$txt_text = $maker->message->make();
+		$result = [
+			'text' 						=> $txt_text,
+			"response_callback" 		=> utility::response_expire('create'),
+			'parse_mode' 				=> 'Markdown',
+			'disable_web_page_preview' 	=> true,
+			'reply_markup' 				=> [
+				'inline_keyboard' 		=> $inline_keyboard
+			]
+		];
 		return $result;
 	}
 }
