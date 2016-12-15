@@ -39,7 +39,7 @@ class view extends \mvc\view
 					$url = $_args->match->url[0][2];
 					$url = \lib\utility\shortURL::decode($url);
 					$url = \lib\db\polls::get_poll_url($url);
-					$this->redirector()->set_url($url)->redirect();
+					$this->redirector()->set_url($this->url('prefix').'/'. $url)->redirect();
 				}
 				else
 				{
