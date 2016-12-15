@@ -22,6 +22,12 @@ class view extends \mvc\view
 		}
 	}
 
+
+	/**
+	 * view profile data
+	 *
+	 * @param      <type>  $o      { parameter_description }
+	 */
 	function view_profile($o)
 	{
 
@@ -49,10 +55,10 @@ class view extends \mvc\view
 		}
 		$this->data->complete_profile = $complete_profile;
 
-		$draft_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'draft']);
-		$publish_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'publish']);
+		$draft_count    = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'draft']);
+		$publish_count  = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'publish']);
 		$awaiting_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'awaiting']);
-		$sarshomar_poll = \lib\db\polls::get_count(null, ['post_sarshomar' => 1]);
+		$sarshomar_poll = \lib\db\polls::get_count(null, ['post_privacy' => 'public']);
 		$this->data->dashboard =
 		[
 			'poll_answered'      => 0,

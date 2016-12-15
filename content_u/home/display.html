@@ -5,7 +5,13 @@
     <img src="http://sarshomar.dev/static/images/profile.svg" alt="">
     <div class="personal-info">
      <span class="name">{{login.displayname}}</span>
-     <span class="mobile">{{login.mobile}}</span>
+     <span class="mobile">
+     {% if login.mobile matches '/^\\d+$/' %}
+      {{login.mobile}}
+     {%else%}
+      {%trans "Undefined"%}
+     {% endif %}
+     </span>
     </div>
     <div class="progress" data-percent="{{complete_profile}}">
      <div class="bar"></div>
@@ -45,7 +51,7 @@
          <a href='/ask'>{%trans "Ask me"%}</a>
         </span>
        </div>
-       <div class='span6 card number bold fix'><h3>{%trans "Your credit"%}</h3><span>{{dashboard.poll_answered * 10|number_format}}<i>{%trans "$"%}</i></span></div>
+       <div class='span6 card number bold fix'><h3>{%trans "Your credit"%}</h3><span>{{user_cash + user_cash_gift|number_format}}<i>{%trans user_unit%}</i></span></div>
       </div>
       <div class="row auto">
        <div class='card activity'>
