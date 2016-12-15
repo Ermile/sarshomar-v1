@@ -37,30 +37,30 @@ class model extends \content_u\home\model
 
 		$html_filter =
 		[
-			'male'             => ['male', 'gender'],			// gender
-			'female'           => ['female', 'gender'],			// gender
-			'single'           => ['single', 'marrital'],		// marrital
-			'marriade'         => ['marriade', 'marrital'],		// marrital
-			'illiterate'       => ['on', 'graduation'],			// graduation
-			'undergraduate'    => ['on', 'graduation'],			// graduation
-			'graduate'         => ['on', 'graduation'],			// graduation
-			'employee'         => ['on', 'employmentstatus'],	// employmentstatus
-			'unemployee'       => ['on', 'employmentstatus'],	// employmentstatus
-			'retired'          => ['on', 'employmentstatus'],	// employmentstatus
-			'under_diploma'    => ['on', 'degree'],				// degree
-			'diploma'          => ['on', 'degree'],				// degree
-			'2_year_college'   => ['on', 'degree'],				// degree
-			'bachelor'         => ['on', 'degree'],				// degree
-			'master'           => ['on', 'degree'],				// degree
-			'phd'              => ['on', 'degree'],				// degree
-			'other'            => ['on', 'degree'],				// degree
-			'-13'              => ['on', 'range'],				// range
-			'14-17'            => ['on', 'range'],				// range
-			'18-24'            => ['on', 'range'],				// range
-			'25-30'            => ['on', 'range'],				// range
-			'31-44'            => ['on', 'range'],				// range
-			'45-59'            => ['on', 'range'],				// range
-			'60+'              => ['on', 'range'],				// range
+			'male'           => ['male', 'gender'],				// gender
+			'female'         => ['female', 'gender'],			// gender
+			'single'         => ['single', 'marrital'],			// marrital
+			'Married'        => ['married', 'marrital'],		// marrital
+			'illiterate'     => ['on', 'graduation'],			// graduation
+			'undergraduate'  => ['on', 'graduation'],			// graduation
+			'graduate'       => ['on', 'graduation'],			// graduation
+			'employee'       => ['on', 'employmentstatus'],		// employmentstatus
+			'unemployed'     => ['on', 'employmentstatus'],		// employmentstatus
+			'retired'        => ['on', 'employmentstatus'],		// employmentstatus
+			'under_diploma'  => ['on', 'degree'],				// degree
+			'diploma'        => ['on', 'degree'],				// degree
+			'2_year_college' => ['on', 'degree'],				// degree
+			'bachelor'       => ['on', 'degree'],				// degree
+			'master'         => ['on', 'degree'],				// degree
+			'phd'            => ['on', 'degree'],				// degree
+			'other'          => ['on', 'degree'],				// degree
+			'-13'            => ['on', 'range'],				// range
+			'14-17'          => ['on', 'range'],				// range
+			'18-24'          => ['on', 'range'],				// range
+			'25-30'          => ['on', 'range'],				// range
+			'31-44'          => ['on', 'range'],				// range
+			'45-59'          => ['on', 'range'],				// range
+			'60+'            => ['on', 'range'],				// range
 		];
 
 		$filters = [];
@@ -103,7 +103,7 @@ class model extends \content_u\home\model
 			// check sarshomar knowledge add permission to show error count member
 			if(!$this->access('u', 'sarshomar_knowledge', 'add') && intval($count) < $min_member)
 			{
-				debug::error(T_(":max users found remove some filter",["max" => $count]));
+				debug::error(T_("Currently there are :max users available but minimum allowd users is 100, please remove some tags to expand statistical population",["max" => $count]));
 				return false;
 			}
 		}

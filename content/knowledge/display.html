@@ -128,7 +128,7 @@
        <select name="marrital" id="marrital">
         <option value="">{%trans ""%}</option>
         <option value="single" {%if checkbox.marrital == 'single'%}selected{%endif%}>{%trans "single"%}</option>
-        <option value="marriade" {%if checkbox.marrital == 'marriade'%}selected{%endif%}>{%trans "marriade"%}</option>
+        <option value="married" {%if checkbox.marrital == 'married'%}selected{%endif%}>{%trans "Married"%}</option>
       </select>
      </div>
      <div class="options-box">
@@ -136,8 +136,8 @@
        <select name="employmentstatus" id="employmentstatus">
         <option value="">{%trans ""%}</option>
         <option value="employee" {%if checkbox.employmentstatus == 'employee'%}selected{%endif%}>{%trans "employee"%}</option>
-        <option value="unemployee" {%if checkbox.employmentstatus == 'unemployee'%}selected{%endif%}>{%trans "unemployee"%}</option>
-        <option value="retired" {%if checkbox.employmentstatus == 'retired'%}selected{%endif%}>{%trans "retired"%}</option>
+        <option value="unemployed" {%if checkbox.employmentstatus == 'unemployed'%}selected{%endif%}>{%trans "Unemployed"%}</option>
+        <option value="retired" {%if checkbox.employmentstatus == 'retired'%}selected{%endif%}>{%trans "Retired"%}</option>
        </select>
      </div>
      <div class="options-box">
@@ -216,7 +216,7 @@ $(document).ready(function()
 console.log(this);
       var label = $(this).next("aside input[type='checkbox'].full-line-title+label");
       var options_box = label.next(".select-box");
-    if ($(this).is(':checked')) 
+    if ($(this).is(':checked'))
     {
       //add actived and close classes to select-box on aside
       options_box.slideDown(function(){
@@ -232,7 +232,7 @@ console.log(this);
         }
       });
     }
-    else 
+    else
     {
       //add actived and close classes to select-box on aside
       options_box.slideUp(function(){

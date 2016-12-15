@@ -38,7 +38,7 @@ trait survey
 			if(!\lib\db\words::save_and_check($title))
 			{
 				$survey_status = 'awaiting';
-				\lib\debug::warn(T_("You have to use words that are not approved in the survery title, Your text comes into review mode", 'secondary-title'));
+				\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation", 'secondary-title'));
 				\lib\debug::msg('spam', \lib\db\words::$spam);
 			}
 

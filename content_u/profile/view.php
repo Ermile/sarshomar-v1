@@ -30,7 +30,7 @@ class view extends \mvc\view
 			// 	'howzehcourse'     => null,
 			// 	'educationcity'    => null,
 
-			// 	'employmentstatus' => ['employee', 'unemployee', 'retired'],
+			// 	'employmentstatus' => ['employee', 'unemployed', 'retired'],
 			// 	'industry'         => null,
 			// 	'company'          => null,
 			// 	'jobcity'          => null,

@@ -33,7 +33,7 @@ class profiles
 			'howzehdegree'     => null,
 			'howzehcourse'     => null,
 			'educationcity'    => null,
-			'employmentstatus' => ['employee', 'unemployee', 'retired'],
+			'employmentstatus' => ['employee', 'unemployed', 'retired'],
 			'industry'         => null,
 			'company'          => null,
 			'jobcity'          => null,

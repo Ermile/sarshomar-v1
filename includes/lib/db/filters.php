@@ -17,7 +17,7 @@ class filters
 		$support_filter =
 		[
 			'gender'           => ['male', 'female'],
-			'marrital'         => ['single', 'marriade'],
+			'marrital'         => ['single', 'married'],
 			'internetusage'    => ['low', 'mid', 'high'],
 			'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
 			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd', 'other'],
@@ -27,7 +27,7 @@ class filters
 			'country'          => null,
 			'province'         => null,
 			'city'             => null,
-			'employmentstatus' => ['employee', 'unemployee', 'retired'],
+			'employmentstatus' => ['employee', 'unemployed', 'retired'],
 			'housestatus'      => ['owner', 'tenant', 'homeless'],
 			'religion'         => null,
 			'language'         => null,

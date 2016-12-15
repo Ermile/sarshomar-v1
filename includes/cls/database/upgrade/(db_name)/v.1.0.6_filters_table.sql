@@ -19,7 +19,7 @@ Date: 2016-10-08 14:52:05
 CREATE TABLE IF NOT EXISTS `filters` (
 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 `gender` ENUM('male','female') NULL,
-`marrital` ENUM('single', 'marriade') NULL,
+`marrital` ENUM('single', 'married') NULL,
 `internetusage` ENUM('low', 'mid', 'high')NULL,
 `graduation` ENUM('illiterate','undergraduate','graduate') NULL,
 `degree` ENUM('under diploma','diploma','2 year college','bachelor','master','phd','other') NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `filters` (
 `country` VARCHAR(64) NULL,
 `province` VARCHAR(64) NULL,
 `city` VARCHAR(64) NULL,
-`employmentstatus` ENUM('employee','unemployee','retired') NULL,
+`employmentstatus` ENUM('employee','unemployed','retired') NULL,
 `housestatus` ENUM('owner','tenant','homeless') NULL,
 `religion` VARCHAR(64) NULL,
 `language` VARCHAR(2) NULL,

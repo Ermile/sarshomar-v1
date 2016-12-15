@@ -4,7 +4,7 @@ $modules = array();
  * poll to complete profile
  */
 $modules['complete_profile'] = array(
-	'desc' 			=> T_("can add the poll to complete the profile"),
+	'desc' 			=> T_("Allow to add the poll for profile completion"),
 	'icon'			=> 'file-text-o',
 	'permissions'	=> ['admin'],
 	);
@@ -14,7 +14,7 @@ $modules['complete_profile'] = array(
  *	can set the poll in knowledge from sarshomar
  */
 $modules['sarshomar_knowledge'] = array(
-	'desc' 			=> T_("can add the poll by sarshomar cat"),
+	'desc' 			=> T_("Allow to add poll to Sarshomar category"),
 	'icon'			=> 'file-text-o',
 	'permissions'	=> ['add', 'edit', 'view', 'update', 'admin'],
 	);
@@ -23,7 +23,7 @@ $modules['sarshomar_knowledge'] = array(
  * show hidden result checkbox
  */
 $modules['hidden_result'] = array(
-	'desc' 			=> T_("can hidden result poll"),
+	'desc' 			=> T_("Allow to hide the results"),
 	'icon'			=> 'file-text-o',
 	'permissions'	=> ['admin'],
 	);

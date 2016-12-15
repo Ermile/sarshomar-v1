@@ -35,8 +35,8 @@
 		<label class="title large badge {%if filters.marrital%}active{%endif%}" for="marrital" data-ratio="40" data-response='marrital' data-response-class='active'>{%trans "Marrital"%}</label>
 		<input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
 		<label for="single">{%trans "Single"%}</label>
-		<input type="checkbox" name="marriade" value="marriade" id="marriade" {%if filters.marrital.marriade%}checked{%endif%}>
-		<label for="marriade">{%trans "Marriade"%}</label>
+		<input type="checkbox" name="married" value="married" id="married" {%if filters.marrital.married%}checked{%endif%}>
+		<label for="married">{%trans "Married"%}</label>
 	</div>
 {% endspaceless %}
 {%endblock%}
@@ -48,8 +48,8 @@
 		<label class="title large badge {%if filters.employmentstatus%}active{%endif%}" for="employmentstatus" data-ratio="20" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
 		<input type="checkbox" name="employee" id="employee" {%if filters.employmentstatus.employee%}checked{%endif%}>
 		<label for="employee">{%trans "Employee"%}</label>
-		<input type="checkbox" name="unemployee" id="unemployee" {%if filters.employmentstatus.unemployee%}checked{%endif%}>
-		<label for="unemployee">{%trans "Unemployee"%}</label>
+		<input type="checkbox" name="unemployed" id="unemployed" {%if filters.employmentstatus.unemployed%}checked{%endif%}>
+		<label for="unemployed">{%trans "Unemployed"%}</label>
 		<input type="checkbox" name="retired" id="retired" {%if filters.employmentstatus.retired%}checked{%endif%}>
 		<label for="retired">{%trans "Retired"%}</label>
 	</div>

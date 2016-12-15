@@ -141,7 +141,7 @@ cp = copy data to terms table and save in user_profile
 	marrital				[single|married]
 	graduation 				[illiterate|undergraduate|graduate]
 	degree					[under diploma|diploma|2 year college|bachelor|master|phd|other]
-	employmentstatus		[employee|unemployee|retired]
+	employmentstatus		[employee|Unemployed|retired]
 	housestatus				[owner|tenant|homeless]
 	internetusage 			[low|mid|high]
 	range			cp		[-13|14-17|18-24|25-30|31-44|45-59|60+]

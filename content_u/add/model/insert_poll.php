@@ -59,7 +59,7 @@ trait insert_poll
 		// check title
 		if($title == null)
 		{
-			debug::error(T_("Poll title cann't be null"), 'title');
+			debug::error(T_("Poll title can't be null"), 'title');
 			return false;
 		}
 		// check length of sumamry text
@@ -73,7 +73,7 @@ trait insert_poll
 		if(!\lib\db\words::save_and_check(utility::post()))
 		{
 			$publish = 'awaiting';
-			\lib\debug::warn(T_("You have to use words that are not approved in the text, Your text comes into review mode"));
+			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"));
 			\lib\debug::msg('spam', \lib\db\words::$spam);
 		}
 

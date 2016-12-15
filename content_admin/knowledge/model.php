@@ -10,7 +10,7 @@ class model extends \mvc\model
 		if(utility::post('spam-word'))
 		{
 			\lib\db\words::set_status(utility::post('spam-word'), utility::post("status"));
-			\lib\debug::true(T_("words change status"));
+			\lib\debug::true(T_("Words Status change"));
 			return;
 		}
 

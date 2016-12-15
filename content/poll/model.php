@@ -283,7 +283,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			\lib\debug::error(T_("You muset select one answer or skip the poll"));
+			\lib\debug::error(T_("You must select one answer or skip the poll"));
 			return false;
 		}
 

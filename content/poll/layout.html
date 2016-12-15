@@ -155,7 +155,7 @@
 
 {%block poll_period%}
 {% spaceless %}
- <div class="title">{%trans "Poll Period"%}</div>
+ <div class="title">{%trans "Poll timespan"%}</div>
  {%if date_start or date_end%}
   <div class="content period">
    <span class="start-time">{{date_start}}</span><span>{%trans "to"%}</span><span class="end-time">{{date_end}}</span>
@@ -188,7 +188,7 @@
 
 {%block poll_filters%}
 {% spaceless %}
- <div class="title">{%trans "Society Statistics"%}</div>
+ <div class="title">{%trans "Statistical population"%}</div>
  {%if filters%}
   {%for key, value in filters%}
    <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>

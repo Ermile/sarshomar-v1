@@ -60,7 +60,7 @@ class model extends \content_u\home\model
 			$check_count = array_filter($check_count);
 			if(count($check_count) > 3 && !$this->access('u', 'sarshomar_knowledge', 'add'))
 			{
-				debug::error(T_("You have added so many tags, Please remove some of the tags"));
+				debug::error(T_("You have added so many tags, Please remove some of them"));
 				return;
 			}
 
@@ -126,7 +126,7 @@ class model extends \content_u\home\model
 		if(!\lib\db\words::save_and_check(utility::post()))
 		{
 			$publish_status = 'awaiting';
-			\lib\debug::warn(T_("You have to use words that are not approved in the text, Your text comes into review mode"));
+			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"));
 			\lib\debug::msg('spam', \lib\db\words::$spam);
 		}
 
