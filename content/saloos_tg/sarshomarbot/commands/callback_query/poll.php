@@ -99,7 +99,8 @@ class poll
 	{
 		step::stop();
 		$edit = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft(function($_maker){
-			$_maker->message->message['sucsess'] = T_('Poll Discarted');
+			$_maker->message->message['sucsess'] = T_('Poll Discarded');
+			$_maker->message->add("discard", '#'.T_('Discarded'));
 		});
 
 		session::remove('poll');
@@ -108,7 +109,7 @@ class poll
 		unset($edit['reply_markup']);
 		unset($edit['response_callback']);
 		callback_query::edit_message($edit);
-		return ['text' => 'Your poll Discarted.'];
+		return ['text' => 'Your poll Discarded.'];
 	}
 
 	public static function save($_query, $_data_url)
