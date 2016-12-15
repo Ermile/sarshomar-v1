@@ -16,13 +16,16 @@ class inline_query
 		$result['inline_query_id'] = $id;
 		$result['is_personal'] = true;
 		$result['cache_time'] = 1;
-		$result['switch_pm_text'] = "New Poll";
+		$result['switch_pm_text'] = T_("Create new poll");
+		handle::send_log([T_("Create new poll"), callback_query\language::check(true)]);
 		$result['switch_pm_parameter'] = "create";
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
+		$check_language = false;
 		if($search == '')
 		{
 			$search = "_";
+			$check_language = true;
 		}
 		if(preg_match("/^\s*sp_(.*)$/", $search, $link_id))
 		{
@@ -39,13 +42,17 @@ class inline_query
 		}
 		else
 		{
-			$query_result = \lib\db\polls::search($search);
+			$query_result = \lib\db\polls::search($search, [
+				"pagenation" 		=> false,
+				"order" 			=> "DESC",
+				"check_language" 	=> $check_language
+				]);
 		}
 
-		handle::send_log($query_result);
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		foreach ($query_result as $key => $value) {
+			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
 			$row_result['id'] = $value['id'];
@@ -85,6 +92,7 @@ class inline_query
 			];
 			$result['results'][] = $row_result;
 		}
+		\lib\define::set_language(callback_query\language::check(true), true);
 		session::remove_back('expire', 'inline_cache');
 		return $result;
 	}
