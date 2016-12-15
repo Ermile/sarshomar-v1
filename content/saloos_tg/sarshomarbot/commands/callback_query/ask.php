@@ -119,6 +119,7 @@ class ask
 			session::remove_back('expire', 'inline_cache');
 
 			$maker = new make_view(bot::$user_id, $poll_short_link);
+			\lib\define::set_language($maker->query_result['language'], true);
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
 			$maker->message->add_poll_list();
@@ -134,6 +135,7 @@ class ask
 				$reply_markup = ['inline_keyboard' => $inline_keyboard];
 			}
 			callback_query::edit_message(['text' => $maker->message->make(), 'reply_markup' => $reply_markup]);
+			\lib\define::set_language(language::check(true), true);
 		}
 		else
 		{
@@ -185,8 +187,12 @@ class ask
 		$maker->message->add_poll_list(true);
 		$maker->message->add_telegram_link();
 		$maker->message->add_telegram_tag();
-		$update_time = date("H:i:s", $_query['message']['edit_date']);
-		$maker->message->add('date', "_Last update: " . $update_time ."_");
+
+		$current_time = new \DateTime();
+		$current_time->setTimezone(new \DateTimeZone('Europe/London'));
+		$update_time = $current_time->format('Y-m-d H:i:s');
+
+		$maker->message->add('date', "_" . $update_time ." GMT_");
 
 		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
 
