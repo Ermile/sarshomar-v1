@@ -135,7 +135,9 @@ class poll
 			'user_id' 		=> bot::$user_id,
 			'post_title'	=> $poll_title,
 			'post_status' 	=> 'publish',
-			'post_type'		=> 'select'
+			'post_type'		=> 'select',
+			'post_privacy'	=> 'private',
+			'post_language'	=> language::check(true)
 			]);
 		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
 		if(\lib\debug::$status)

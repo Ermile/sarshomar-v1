@@ -79,11 +79,15 @@ class language
 		return false;
 	}
 
-	public static function check()
+	public static function check($_min = false)
 	{
 		if(!self::$user_language)
 		{
 			self::$user_language = \lib\db\users::get_language(bot::$user_id);
+		}
+		if($_min)
+		{
+			return preg_replace("/_.*$/", "", self::$user_language);
 		}
 		return self::$user_language;
 	}
