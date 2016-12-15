@@ -32,6 +32,11 @@ class controller extends \mvc\controller
 			$property[$key] = [$reg, true, $key];
 		}
 
+		if(substr(\lib\router::get_url(), 0, 1) != '$')
+		{
+			\lib\router::set_url(trim('$/' . \lib\router::get_url(),'/'));
+		}
+
 		$this->get("search", "search")->ALL(
 		[
 			'url'      => "/.*/",
