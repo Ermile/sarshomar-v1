@@ -1,8 +1,10 @@
   <div class="row auto {%if login and login.status == 'active'%}complete{%elseif login%}verify{%endif%}" id='inestimable'>
+   <img src="{{url.static}}images/svg/inside1.svg" class="inside right">
+   <img src="{{url.static}}images/svg/inside2.svg" class="inside left">
 
 {%if login and login.status == 'active'%}
    <div class="span3 offset2">
-    <img class="inestimable" src="{{url.static}}images/art/launch2.png" alt='{%trans "We are inestimable"%}'>
+    <img class="launch" src="{{url.static}}images/art/launch2.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
     <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
@@ -11,7 +13,7 @@
 
 {%elseif login%}
    <div class="span3 offset2">
-    <img class="inestimable" src="{{url.static}}images/art/launch2.png" alt='{%trans "We are inestimable"%}'>
+    <img class="launch" src="{{url.static}}images/art/launch2.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
     <h3>{%trans "Inspection and Answer"%}</h3>
@@ -21,13 +23,13 @@
 
 {%else%}
    <div class="span3 offset2">
-    <img class="inestimable" src="{{url.static}}images/art/launch.png" alt='{%trans "We are inestimable"%}'>
+    <img class="launch" src="{{url.static}}images/art/launch.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
     <h3>{%trans "Inspection and Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
    {%if url.tld == 'dev' and not login%}
-      <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
+    <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
    {%endif%}
    </div>
 {%endif%}
