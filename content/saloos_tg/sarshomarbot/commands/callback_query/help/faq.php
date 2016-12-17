@@ -19,6 +19,10 @@ trait faq{
 		{
 			$faq_id = $_id;
 		}
+		if(count(faq_text::$text) < (int) $_id)
+		{
+			return [];
+		}
 		$get_id = array_search($faq_id, array_column(faq_text::$text, 'id'));
 		$faq = faq_text::$text[$get_id];
 
