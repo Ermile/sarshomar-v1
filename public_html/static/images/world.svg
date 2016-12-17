@@ -3636,7 +3636,7 @@
 			if(path)
 			{
 				var name = path.querySelectorAll('desc > name')[0].textContent;
-				console.log(name);
+				//console.log(name);
 				path.setAttribute('class', 'selected');
 				setTimeout(function()
 				{
