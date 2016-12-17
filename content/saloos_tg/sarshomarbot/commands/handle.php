@@ -11,8 +11,10 @@ class handle
 
 	public static function exec($_cmd)
 	{
+		// ( ​​ ) free space :))
+		// handle::send_log(bot::$hook);
 		// if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
-		// 	bot::sendResponse(['method' => 'sendMessage', 'chat_id' => bot::response('from'), 'text' => 'This bot in dev mode...']);
+			// bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'salam [​](https://sarshomar.com/static/images/art/agencies.png)']);
 		// 	exit();
 		// }
 		bot::$defaultText = T_('Not Found');
