@@ -97,12 +97,12 @@ class poll
 
 	public static function discard($_query, $_data_url)
 	{
-		step::stop();
 		$edit = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft(function($_maker){
 			$_maker->message->message['sucsess'] = T_('Poll Discarded');
 			$_maker->message->add("discard", '#'.T_('Discarded'));
 		});
 
+		step::stop();
 		session::remove('poll');
 		session::remove_back('expire', 'inline_cache', 'create');
 		session::remove('expire', 'inline_cache', 'create');
@@ -116,8 +116,7 @@ class poll
 	{
 		\lib\storage::set_disable_edit(true);
 
-		$poll_id = $_data_url[2];
-		$poll_draft = session::get('poll', $poll_id);
+		$poll_draft = session::get('poll');
 		$poll_title = $poll_draft->title;
 
 		$poll_answers = (array) $poll_draft->answers;
@@ -145,6 +144,8 @@ class poll
 		if($poll_id)
 		{
 			self::get_after_change($poll_id, false);
+			step::stop();
+			session::remove('poll');
 		}
 	}
 
