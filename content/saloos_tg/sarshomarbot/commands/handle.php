@@ -12,18 +12,13 @@ class handle
 	public static function exec($_cmd)
 	{
 		// ( ​​ ) free space :))
-		// handle::send_log(bot::$hook);
-		// if(!preg_match("/^(99|5|22)$/", bot::$user_id)){
-			// bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'salam [​](https://sarshomar.com/static/images/art/agencies.png)']);
-		// 	exit();
-		// }
 		$q = \lib\db\options::get(['option_cat' => 'on_push', 'option_key' => 'telegram', 'limit' => 1]);
 		if(empty($q)){
-			\lib\db\options::insert(['option_cat' => 'on_push', 'option_key' => 'telegram', 'option_value' => filemtime(__FILE__)]);
+			\lib\db\options::insert(['option_cat' => 'on_push', 'option_key' => 'telegram', 'option_value' => filemtime(root)]);
 		}
-		elseif($q[0]['value'] != filemtime(__FILE__))
+		elseif($q[0]['value'] != filemtime(root))
 		{
-			\lib\db\options::update(['option_value' => filemtime(__FILE__)], $q[0]['id']);
+			\lib\db\options::update(['option_value' => filemtime(root)], $q[0]['id']);
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'have push']);
 		}
 		bot::$defaultText = T_('Not Found');
