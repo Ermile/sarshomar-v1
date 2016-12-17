@@ -215,7 +215,7 @@
 		<label for="tree" class="check-box"></label>
 		<label for="tree">{%trans "Tree"%}</label>
 	</div>
-	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%}>
+	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
 		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
 		<div class="row auto tree-fields">
 			<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
