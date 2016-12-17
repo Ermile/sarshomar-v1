@@ -42,7 +42,7 @@ trait faq{
 			$text .= T_($faq['text']);
 		}
 		$text .= "\n/faq\_".$faq['id'];
-		$text .= "\n#" . preg_replace("[\s]", '\_', T_("FAQ"));
+		$text .= "\n#" . preg_replace("[\s]", '_', T_("FAQ"));
 		$return = ["text" => $text];
 
 		if(is_null($_query))

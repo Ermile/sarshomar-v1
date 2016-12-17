@@ -213,7 +213,7 @@ class ask
 		$current_time->setTimezone(new \DateTimeZone('Europe/London'));
 		$update_time = $current_time->format('Y-m-d H:i:s');
 
-		$maker->message->add('date', "_" . $update_time ." GMT_");
+		$maker->message->add('date', utility::italic($update_time ." GMT"));
 
 		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
 

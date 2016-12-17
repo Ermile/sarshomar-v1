@@ -58,10 +58,14 @@ class step_create
 	 */
 	public static function step2($_question)
 	{
-
-		$question = markdown_filter::italic($_question);
-		$question = markdown_filter::bold($question);
-		$question = markdown_filter::link($question);
+		preg_match("/^type_(.*)$/", $_question, $file_content);
+		if($file_content && array_key_exists('caption', bot::$hook['message']))
+		{
+			$_question = bot::$hook['message']['caption'];
+		}
+		$question = $_question;
+		// $question = htmlentities($question);
+		$question = markdown_filter::tag($question);
 		$question = markdown_filter::remove_external_link($question);
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
@@ -79,6 +83,11 @@ class step_create
 			$poll_answers 	= array_slice($question_export, 1);
 			session::set('poll', "title", $poll_title);
 			session::set('poll', "answers", $poll_answers);
+		}
+		if($file_content && bot::$hook['message'][$file_content[1]])
+		{
+			session::set('poll', 'type', $file_content[1]);
+			session::set('poll', 'file_id', bot::$hook['message'][$file_content[1]][0]['file_id']);
 		}
 		return self::make_draft();
 	}
@@ -103,7 +112,7 @@ class step_create
 				];
 			}
 			$maker = new make_view(bot::$user_id, $poll);
-			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
+			$maker->message->add('sucsess', T_("Your question uploaded successfully.") ."\n");
 			$maker->message->add_title(false);
 			$maker->message->set_poll_list($poll_result);
 			$maker->message->add_poll_list(null, false);
@@ -132,17 +141,26 @@ class step_create
 		{
 			call_user_func_array($_maker, [$maker]);
 		}
-
+		$maker->message->add('hashtag', '#'.preg_replace('[\s]', '_', T_('Create new poll')));
 		$txt_text = $maker->message->make();
 		$result = [
 			'text' 						=> $txt_text,
 			"response_callback" 		=> utility::response_expire('create'),
-			'parse_mode' 				=> 'Markdown',
+			'parse_mode' 				=> 'HTML',
 			'disable_web_page_preview' 	=> true,
 			'reply_markup' 				=> [
 				'inline_keyboard' 		=> $inline_keyboard
 			]
 		];
+		$type = session::get('poll', 'type');
+		$file_id = session::get('poll', 'file_id');
+		// if($type)
+		// {
+		// 	$result['caption'] = stripslashes($result['text']);
+		// 	unset($result['text']);
+		// 	$result['method'] = 'send'.ucfirst($type);
+		// 	$result[$type] = ucfirst($file_id);
+		// }
 		return $result;
 	}
 }

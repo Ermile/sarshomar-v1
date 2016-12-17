@@ -22,12 +22,12 @@ class language
 		{
 			self::set($_data_url[1], ["ref" => "callback_query"]);
 			$lang_name = $_data_url[1];
-			$lang = preg_replace("[_]", "\\\\_", $lang_name);
+			$lang = $lang_name;
 		}
 		else
 		{
 			$lang_name = $get;
-			$lang = preg_replace("[_]", "\\\\_", $get);
+			$lang = $lang_name;
 		}
 		bot::sendResponse([
 			"method" => "sendMessage",

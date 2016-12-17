@@ -196,4 +196,9 @@ class utility
 		return '<a href="' .$_link . '">' .
 			T_(html_entity_decode($_title)) . '</a>';
 	}
+
+	public static function italic($_text)
+	{
+		return '<i>' . $_text . '</i>';
+	}
 }
