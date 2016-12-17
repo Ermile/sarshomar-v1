@@ -13,7 +13,6 @@ class handle
 	{
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
-		handle::send_log(['update' => nl2br($update_time)]);
 		// ( ​​ ) free space :))
 		$q = \lib\db\options::get(['option_cat' => 'on_push', 'option_key' => 'telegram', 'limit' => 1]);
 		if(empty($q)){
@@ -22,7 +21,7 @@ class handle
 		elseif($q[0]['value'] != $update_time)
 		{
 			\lib\db\options::update(['option_value' => $update_time], $q[0]['id']);
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'have push']);
+			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
 		}
 		bot::$defaultText = T_('Not Found');
 		if($_cmd['command'] == 'exit' || $_cmd['command'] == '/exit')
