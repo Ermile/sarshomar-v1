@@ -31,17 +31,7 @@ class model extends \mvc\model
 		$log_title = \lib\db\logitems::get_id("delete_account");
 		if(!$log_title)
 		{
-			$insert_log_items =
-			[
-				'logitem_type'     => 'users',
-				'logitem_title'    => 'delete_account',
-				'logitem_priority' => 'high'
-			];
-			$result = \lib\db\logitems::insert($insert_log_items);
-			if($result)
-			{
-				$log_title = intval(\lib\db::insert_id(\lib\db::$link));
-			}
+			return false;
 		}
 		if($log_title)
 		{

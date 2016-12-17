@@ -62,31 +62,26 @@ class ranks
 		];
 		$_field = array_merge($default_fields, $_field);
 
-		$query =
-		"
-			INSERT INTO
-				ranks
-			SET
-				ranks.post_id    = $_poll_id,
-				ranks.member     = $_field[member],
-				ranks.filter     = $_field[filter],
-				ranks.report     = $_field[report],
-				ranks.vot        = $_field[vot],
-				ranks.like       = $_field[like],
-				ranks.faiv       = $_field[faiv],
-				ranks.skip       = $_field[skip],
-				ranks.comment    = $_field[comment],
-				ranks.view       = $_field[view],
-				ranks.other      = $_field[other],
-				ranks.sarshomar  = $_field[sarshomar],
-				ranks.createdate = '$_field[createdate]',
-				ranks.ago        = $_field[ago],
-				ranks.vip        = $_field[vip],
-				ranks.public     = $_field[public],
-				ranks.admin      = $_field[admin],
-				ranks.money      = $_field[money],
-				ranks.ad         = $_field[ad]
-		";
+		$set = [];
+		foreach ($_field as $field => $value)
+		{
+			if($value === null)
+			{
+				$set[] = " ranks.$field = NULL ";
+			}
+			elseif(is_numeric($value))
+			{
+				$set[] = " ranks.$field = $value ";
+			}
+			elseif(is_string($value))
+			{
+				$set[] = " ranks.$field = '$value' ";
+			}
+		}
+
+		$set = implode(",", $set);
+
+		$query = "INSERT INTO ranks	SET	ranks.post_id = $_poll_id, $set ";
 		$result = \lib\db::query($query);
 		return $result;
 	}
@@ -192,7 +187,7 @@ class ranks
 						{
 							$value = 1;
 						}
-						$update[] = " ranks.$key = ranks.$key + 1 ";
+						$update[] = " ranks.$key = $value ";
 					}
 					break;
 

@@ -55,27 +55,25 @@ class userranks
 		];
 		$_field = array_merge($default_fields, $_field);
 
-		$query =
-		"
-			INSERT INTO
-				userranks
-			SET
-				userranks.user_id 		 = $_user_id,
-				userranks.reported       = $_field[reported],
-				userranks.usespamword    = $_field[usespamword],
-				userranks.changeprofile  = $_field[changeprofile],
-				userranks.improveprofile = $_field[improveprofile],
-				userranks.goodreport     = $_field[goodreport],
-				userranks.wrongreport    = $_field[wrongreport],
-				userranks.skip           = $_field[skip],
-				userranks.resetpassword  = $_field[resetpassword],
-				userranks.verification   = $_field[verification],
-				userranks.validation     = $_field[validation],
-				userranks.vip            = $_field[vip],
-				userranks.hated          = $_field[hated],
-				userranks.other          = $_field[other]
+		$set = [];
+		foreach ($_field as $field => $value)
+		{
+			if($value === null)
+			{
+				$set[] = " userranks.$field = NULL ";
+			}
+			elseif(is_numeric($value))
+			{
+				$set[] = " userranks.$field = $value ";
+			}
+			elseif(is_string($value))
+			{
+				$set[] = " userranks.$field = '$value' ";
+			}
+		}
 
-		";
+		$set    = implode(",", $set);
+		$query  = "INSERT INTO userranks	SET	userranks.user_id = $_user_id, $set ";
 		$result = \lib\db::query($query);
 		return $result;
 	}
@@ -153,7 +151,6 @@ class userranks
 		{
 			if($key == $_field)
 			{
-
 				if($replace)
 				{
 					if($key === 'verification' || $key === 'validation')
@@ -178,7 +175,6 @@ class userranks
 					}
 					else
 					{
-
 						$value    = intval($value) + intval($_plus);
 						$update[] = " userranks.$key = userranks.$key + 1 ";
 					}

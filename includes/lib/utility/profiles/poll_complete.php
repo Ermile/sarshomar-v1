@@ -103,20 +103,21 @@ trait poll_complete
 			!isset($_args['key'])		 ||
 			!isset($_args['old_value'])  ||
 			!isset($_args['new_value'])
-			)
+		  )
 		{
 			return false;
 		}
 
-		$log_item_title = "change_$_args[key]";
-		$log_item_id = \lib\db\logitems::get_id($log_item_title);
+		$caller      = "change_$_args[key]";
+		$log_item_id = \lib\db\logitems::get_id($caller);
 		if(!$log_item_id)
 		{
 			// list of priority in log item table
 			// 'critical','high','medium','low'
 			$log_item_priority = null;
 
-			switch ($_args['key']) {
+			switch ($_args['key'])
+			{
 				case 'gender':
 					$log_item_priority = 'critical';
 					break;
@@ -129,13 +130,19 @@ trait poll_complete
 			$insert_log_item =
 			[
 				'logitem_type'     => 'users',
-				'logitem_title'    => $log_item_title,
-				'logitem_desc'     => $log_item_title,
+				'logitem_caller'   => $caller,
+				'logitem_title'    => $caller,
+				'logitem_desc'     => $caller,
 				'logitem_meta'     => null,
 				'logitem_priority' => $log_item_priority,
 			];
 			$log_item_id = \lib\db\logitems::insert($insert_log_item);
 			$log_item_id = \lib\db::insert_id();
+		}
+
+		if(!$log_item_id)
+		{
+			return false;
 		}
 
 		$insert_log =
