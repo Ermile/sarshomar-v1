@@ -48,6 +48,9 @@ trait search
 			"get_last"        => false,
 
 			// disable check 'publish' poll because this is my poll
+			// if my_poll === true then
+			// option all === true to search in all post
+			// option check_language = false to not check langupage
 			"my_poll"         => false,
 
 			// no thing yet.
@@ -122,12 +125,16 @@ trait search
 			$order = " ORDER BY posts.id $_options[order] ";
 		}
 
-		// if in my poll retur all poll
+		// if in my poll return publish and public poll
 		if($_options['my_poll'] === false)
 		{
 			$where[] = " posts.post_status = 'publish' ";
 			$where[] = " posts.post_privacy = 'public' ";
-
+		}
+		elseif($_options['my_poll'] === true)
+		{
+			$_options['all']            = true;
+			$_options['check_language'] = false;
 		}
 
 		// if all == true return all type of polls, sarshomar or personal
