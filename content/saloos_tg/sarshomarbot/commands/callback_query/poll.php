@@ -33,7 +33,7 @@ class poll
 			'my_poll' => true,
 			'post_status' => ['in', "('publish', 'pause', 'draft')"],
 			]);
-		$message_per_page = 5;
+		$message_per_page = 3;
 		$total_page = ceil($count / $message_per_page);
 
 		$page = (int) $_data_url[2];
@@ -51,7 +51,7 @@ class poll
 			'end_limit' => $end,
 			'my_poll' => true,
 			'post_status' => ['in', "('publish', 'pause', 'draft')"],
-			'order' => 'DESC'
+			'order' => 'DESC',
 			]);
 		$message = $page . "/" . $total_page . "\n";
 		foreach ($query_result as $key => $value) {
@@ -82,7 +82,7 @@ class poll
 				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "poll/list/" . ($page+1)];
 			}
 
-			if(($page + 2) < $total_page)
+			if(($page + 1) < $total_page || $page == 1)
 			{
 				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "poll/list/" . $total_page];
 			}

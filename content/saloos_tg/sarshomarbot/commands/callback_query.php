@@ -65,7 +65,7 @@ class callback_query
 	{
 		$response = [
 			"method" 				=> "editMessageText",
-			'parse_mode' => 'Markdown',
+			'parse_mode' => 'HTML',
 			'disable_web_page_preview' => true,
 			];
 		$response = array_merge($response, self::$message_result);

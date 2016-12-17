@@ -21,7 +21,7 @@ class utility
 				"text" 						=> $_data['text'],
 				"chat_id" 					=> $_response->result->chat->id,
 				"message_id" 				=> $_response->result->message_id,
-				'parse_mode' 				=> 'Markdown',
+				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
 				];
 				$_response->save_unique_id = time() . rand(123456, 999999);
@@ -189,5 +189,11 @@ class utility
 				session::set('tmp', 'callback_query', $callback_query);
 			}
 		};
+	}
+
+	public static function link($_link, $_title)
+	{
+		return '<a href="' .$_link . '">' .
+			T_(html_entity_decode($_title)) . '</a>';
 	}
 }

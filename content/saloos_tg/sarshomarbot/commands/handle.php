@@ -243,8 +243,15 @@ class handle
 		return $response;
 	}
 
-	public static function send_log($_log, $_file = 'send')
+	public static function send_log($_log, $_file = 'send', $_text = false)
 	{
+		if($_text)
+		{
+			$myfile = fopen("/home/domains/sarshomar/public_html/files/hooks/$_file.html", "w");
+			fwrite($myfile, $_log);
+			fclose($myfile);
+			return true;
+		}
 		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/$_file.json"))
 		{
 

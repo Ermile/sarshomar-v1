@@ -54,7 +54,14 @@ class inline_query
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
-
+			if($value['sarshomar'] == '1')
+			{
+				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/favicon.png';
+			}
+			else
+			{
+				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/profile.svg';
+			}
 			$maker = new make_view(bot::$user_id, $value);
 			$row_result['id'] =  $maker->short_link;
 
@@ -87,7 +94,7 @@ class inline_query
 
 			$row_result['input_message_content'] = [
 				'message_text' 				=> $maker->message->make(),
-				'parse_mode' 				=> 'Markdown',
+				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
 			];
 			$result['results'][] = $row_result;

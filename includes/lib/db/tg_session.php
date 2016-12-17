@@ -1,5 +1,6 @@
 <?php
 namespace lib\db;
+use content\saloos_tg\sarshomarbot\commands\handle;
 
 class tg_session
 {
@@ -34,10 +35,17 @@ class tg_session
 			$original_result[0]['option_meta'] = utf8_decode($original_result[0]['option_meta']);
 
 			$json_result = \lib\utility\filter::meta_decode($original_result, null, ['return_object' => true]);
-			self::$data = $json_result[0]['option_meta'];
-
-			$json_result = \lib\utility\filter::meta_decode($original_result, null, ['return_object' => true]);
-			self::$data_back = $json_result[0]['option_meta'];
+			if(is_object($json_result[0]['option_meta']))
+			{
+				self::$data = $json_result[0]['option_meta'];
+				$json_result = \lib\utility\filter::meta_decode($original_result, null, ['return_object' => true]);
+				self::$data_back = $json_result[0]['option_meta'];
+			}
+			else
+			{
+				self::$data = (object) array();
+				self::$data_back = (object) array();
+			}
 		}
 		else
 		{
@@ -173,6 +181,7 @@ class tg_session
 			$user_id = self::$user_id;
 		}
 		$meta = utf8_encode(json_encode(self::$data, JSON_UNESCAPED_UNICODE));
+		$meta = addcslashes($meta, "\\");
 		$meta = addcslashes($meta, "'");
 		$query = "INSERT INTO options SET
 		options.user_id = $user_id,
@@ -183,7 +192,6 @@ class tg_session
 		ON DUPLICATE KEY UPDATE
 		options.option_meta = '$meta'";
 		\lib\db::query($query);
-		// var_dump(mysql_e);
 	}
 
 	public static function __callStatic($_name, $_args)

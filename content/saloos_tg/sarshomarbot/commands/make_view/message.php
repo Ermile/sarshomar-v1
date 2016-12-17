@@ -18,8 +18,7 @@ class message
 	{
 		if($_with_link)
 		{
-			$title = '[' . html_entity_decode($this->class->query_result['title']) . ']' .
-			'(https://sarshomar.com/sp_' . $this->class->short_link .')';
+			$title = utility::link('https://sarshomar.com/sp_' .$this->class->short_link, $this->class->query_result['title']);
 		}
 		else
 		{
@@ -67,8 +66,7 @@ class message
 
 	public function add_telegram_link()
 	{
-		$this->message['telegram_link'] = '[' . T_('Answer link') . ']'.
-		'(https://telegram.me/sarshomarBot?start=sp_' . $this->class->short_link . ')';
+		$this->message['telegram_link'] = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link, 'Answer link');
 	}
 	public function add_telegram_tag()
 	{
@@ -150,11 +148,11 @@ class message
 				$this->message['count_poll'] = T_("Valid answer is:") . $count['valid'];
 				break;
 			case 'invalid':
-				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
+				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
 				break;
 			case 'sum_invalid':
 				$text = T_("Sum") . '(' . $count['sum'] .') ';
-				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
+				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
 				$this->message['count_poll'] = $text;
 				break;
 			case 'sum_valid':
@@ -165,7 +163,7 @@ class message
 
 			default:
 				$text = T_("Valid") . '(' . $count['valid'] .') ';
-				$text .= '[' . T_("Invalid") . '(' . $count['invalid'] .')](https://telegram.me/SarshomarBot?start=faq_5)';
+				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
 				$this->message['count_poll'] = $text;
 				break;
 		}

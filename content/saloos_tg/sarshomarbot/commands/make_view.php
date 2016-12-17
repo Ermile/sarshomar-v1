@@ -52,7 +52,7 @@ class make_view
 			'reply_markup' => [
 				'inline_keyboard' => $this->inline_keyboard->make()
 			],
-			'parse_mode' 				=> 'Markdown',
+			'parse_mode' 				=> 'HTML',
 			'disable_web_page_preview' 	=> true
 		];
 	}
