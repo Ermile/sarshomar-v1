@@ -258,6 +258,7 @@ class poll
 			\lib\storage::set_disable_edit(true);
 			session::remove('expire', 'inline_cache', 'spam');
 			$return = $maker->make();
+			\lib\utility\report::set($maker->poll_id, bot::$user_id, "report:$_data_url[3]");
 		}
 		else
 		{
