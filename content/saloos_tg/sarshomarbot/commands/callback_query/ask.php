@@ -51,6 +51,13 @@ class ask
 				$maker->inline_keyboard->add_poll_answers($set_last);
 				$skip = true;
 			}
+			elseif(is_null($_short_link))
+			{
+				$maker->inline_keyboard->add([
+					'text' => T_('Privacy violation'),
+					'callback_data' => 'ask/make/last'
+					]);
+			}
 
 			if($maker->query_result['user_id'] == bot::$user_id)
 			{
@@ -169,7 +176,7 @@ class ask
 			$maker->message->add_telegram_link();
 			$maker->message->add_telegram_tag();
 
-			$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
+			$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true, 'inline_report' => true]);
 
 			$on_edit->text 				= $maker->message->make();
 			$on_expire_keyboard = $maker->inline_keyboard->make();
@@ -215,7 +222,7 @@ class ask
 
 		$maker->message->add('date', utility::italic($update_time ." GMT"));
 
-		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
+		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true, 'inline_report' => true]);
 
 		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');
 		if($ask_expire->message_id == $_query['message']['message_id'] AND

@@ -252,7 +252,9 @@ class poll
 		$maker->message->add_poll_list(false, false);
 		if(!is_null($_data_url) && count($_data_url) == 4)
 		{
-			$maker->message->add('report', '#' . T_('Report') . ' #' . T_(ucfirst($_data_url[3])));
+			$tag = utility::un_tag($_data_url[3]);
+			$tag = utility::tag($tag);
+			$maker->message->add('report', '#' . T_('Report') . ' ' . $tag);
 			\lib\storage::set_disable_edit(true);
 			session::remove('expire', 'inline_cache', 'spam');
 			$return = $maker->make();

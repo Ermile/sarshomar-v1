@@ -165,11 +165,11 @@ class inline_keyboard
 		$this->inline_keyboard[$this->count()] = [
 			[
 				'text' => T_('Not interested'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/interested'
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/not_interested'
 			],
 			[
 				'text' => T_('Privacy violation'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/privacy'
+				'callback_data' => 'poll/report/' . $this->class->short_link . '/privacy_violation'
 			]
 		];
 	}

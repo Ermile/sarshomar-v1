@@ -191,6 +191,17 @@ class utility
 		};
 	}
 
+	public static function un_tag($_string)
+	{
+		$string = preg_replace("[_]", " ", $_string);
+		return $string;
+	}
+
+	public static function tag($_string)
+	{
+		return "#" . ucfirst(preg_replace("[\s]", "_", $_string));
+	}
+
 	public static function link($_link, $_title)
 	{
 		return '<a href="' .$_link . '">' .
