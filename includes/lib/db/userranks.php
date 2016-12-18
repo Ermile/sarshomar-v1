@@ -11,20 +11,32 @@ class userranks
 	 */
 	private static $values =
 	[
-
-		'reported'       => [ false,	100	],
-		'usespamword'    => [ false,	5	],
-		'changeprofile'  => [ false,	5	],
-		'improveprofile' => [ true,		5	],
-		'goodreport'     => [ true,		5	],
-		'wrongreport'    => [ false,	5	],
-		'skip'           => [ false,	5	],
-		'resetpassword'  => [ false,	5	],
-		'verification'   => [ true,		50	],
-		'validation'     => [ true,		5	],
-		'vip'            => [ true,		5	],
-		'hated'          => [ false,	5	],
-		'other'          => [ true,		5	],
+		// the user was reported
+		'reported'       => [ false,	100			],
+		// user use spam words
+		'usespamword'    => [ false,	5			],
+		// user change the profile
+		'changeprofile'  => [ false,	5			],
+		// user improve her profile
+		'improveprofile' => [ true,		5			],
+		// the user report a poll
+		'report'         => [ true,		5			],
+		// the report poll of the user is wrong
+		'wrongreport'    => [ false,	5			],
+		// user skip the poll
+		'skip'           => [ false,	5			],
+		// user forger her password
+		'resetpassword'  => [ false,	5			],
+		// account of user is verification (bit 0|1)
+		'verification'   => [ true,		50			],
+		// the user is valid user (bit 0|1)
+		'validation'     => [ true,		5			],
+		// the VIP users
+		'vip'            => [ true,		100 * 100	],
+		// hated <> vip , nobody user, not vip user
+		'hated'          => [ false,	5			],
+		// the other
+		'other'          => [ true,		5			],
 
 	];
 
@@ -37,22 +49,9 @@ class userranks
 	 */
 	public static function set($_user_id, $_field = [])
 	{
-		$default_fields =
-		[
-			'reported'       => 0,
-			'usespamword'    => 0,
-			'changeprofile'  => 0,
-			'improveprofile' => 0,
-			'goodreport'     => 0,
-			'wrongreport'    => 0,
-			'skip'           => 0,
-			'resetpassword'  => 0,
-			'verification'   => 0,
-			'validation'     => 0,
-			'vip'            => 0,
-			'hated'          => 0,
-			'other'          => 0,
-		];
+		$default_fields = self::$values;
+		$default_fields = array_map(function(){ return 0; }, $default_fields);
+
 		$_field = array_merge($default_fields, $_field);
 
 		$set = [];
@@ -73,7 +72,7 @@ class userranks
 		}
 
 		$set    = implode(",", $set);
-		$query  = "INSERT INTO userranks	SET	userranks.user_id = $_user_id, $set ";
+		$query  = "INSERT INTO userranks SET userranks.user_id = $_user_id, $set ";
 		$result = \lib\db::query($query);
 		return $result;
 	}

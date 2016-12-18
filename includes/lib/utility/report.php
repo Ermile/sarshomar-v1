@@ -76,7 +76,7 @@ class report
 		\lib\db\ranks::plus($_poll_id, 'report', $plus);
 
 		// save the user ranks
-		\lib\db\userranks::plus($_user_id, 'goodreport');
+		\lib\db\userranks::plus($_user_id, 'report');
 	}
 
 

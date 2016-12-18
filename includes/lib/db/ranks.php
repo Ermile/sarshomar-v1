@@ -11,22 +11,39 @@ class ranks
 	 */
 	private static $values =
 	[
+		// valur of member
 		'member'    => [ true	, 	5	 		],
+		// valur of filter
 		'filter'    => [ true	, 	2	 		],
+		// valur of report
 		'report'    => [ false	, 	10	 		],
+		// valur of vot
 		'vot'       => [ true	, 	4	 		],
+		// valur of like
 		'like'      => [ true	, 	5	 		],
+		// valur of faiv
 		'faiv'      => [ true	, 	6	 		],
+		// valur of skip
 		'skip'      => [ false	, 	1	 		],
+		// valur of comment
 		'comment'   => [ true	, 	8	 		],
+		// valur of view
 		'view'      => [ true	, 	1	 		],
+		// valur of other
 		'other'     => [ true	, 	10	 		],
+		// valur of sarshomar
 		'sarshomar' => [ true	, 	100 * 1000	],
+		// valur of ago
 		'ago'       => [ true	, 	3	  		],
+		// valur of vip
 		'vip'       => [ true 	, 	4			],
+		// valur of public
 		'public'    => [ true 	, 	4			],
+		// valur of admin
 		'admin'     => [ true 	, 	4			],
+		// valur of money
 		'money'     => [ true 	, 	4			],
+		// valur of ad
 		'ad'        => [ true 	, 	4			],
 	];
 
@@ -39,27 +56,13 @@ class ranks
 	 */
 	public static function set($_poll_id, $_field = [])
 	{
-		$default_fields =
-		[
-			'member'     => 0,
-			'filter'     => 0,
-			'report'     => 0,
-			'vot'        => 0,
-			'like'       => 0,
-			'faiv'       => 0,
-			'skip'       => 0,
-			'comment'    => 0,
-			'view'       => 0,
-			'other'      => 0,
-			'sarshomar'  => 0,
-			'createdate' => date("Y-m-d H:i:s"),
-			'ago'        => 0,
-			'vip'        => 0,
-			'public'     => 0,
-			'admin'      => 0,
-			'money'      => 0,
-			'ad'         => 0
-		];
+		$default_fields = self::$values;
+		$default_fields = array_map(function(){ return 0; } , $default_fields);
+		if(isset($default_fields['createdate']))
+		{
+			$default_fields['createdate'] = date("Y-m-d H:i:s");
+		}
+
 		$_field = array_merge($default_fields, $_field);
 
 		$set = [];
