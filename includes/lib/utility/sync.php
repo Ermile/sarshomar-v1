@@ -10,13 +10,16 @@ class sync
 	private static $new_user_id;
 	private static $old_user_id;
 
+	// check error was happend
+	private static $has_error = false;
+
 
 	/**
-	 * return the status array
+	 * return status by db_return class
 	 *
-	 * @param      <type>   $_status  The status
-	 * @param      boolean  $_update  The update
-	 * @param      array    $_msg     The message
+	 * @param      <type>  $_status  The status
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
 	 */
 	private static function status($_status)
 	{
@@ -30,6 +33,8 @@ class sync
 	 *
 	 * @param      <type>  $_web_mobile   The web mobile
 	 * @param      <type>  $_telegram_id  The telegram identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
 	 */
 	public static function web_telegram($_web_mobile, $_telegram_id)
 	{
@@ -52,7 +57,7 @@ class sync
 			return self::status(true)
 				->set_password($temp_password)
 				->set_error_code(3502)
-				->set_message("You can login in sarshomar.com whit your username: mobile , and password: $temp_password");
+				->set_message(T_("You can login in sarshomar.com whit your username: mobile , and password: :password ", ['password' => $temp_password]));
 		}
 
 		if(!$web || !isset($web['id']))
@@ -69,6 +74,7 @@ class sync
 		{
 			return self::status(true)->set_error_code(3501);
 		}
+		// start trasaction of mysql engine
 		\lib\db::transaction();
 
 		//----- sync the options
@@ -92,19 +98,37 @@ class sync
 		self::sync_posts();
 
 		//----- deactive telegram user
+		self::sync_transactions();
+
+		//----- sync the logs table
+		self::sync_logs();
+
+		//----- sync the userranks
+		self::sync_userranks();
+
+		//----- sync the socialapi
+		self::sync_socialapi();
+
+		//----- deactive telegram user
 		self::sync_users();
 
+		// check error was happend or no
 		\lib\db::rollback();
-
-		return self::status(true)->set_error_code(3502);
+		if(self::$has_error)
+		{
+			\lib\db::rollback();
+			return self::status(false)->set_error_code(3503);
+		}
+		else
+		{
+			// \lib\db::commit();
+			return self::status(true)->set_error_code(3502);
+		}
 	}
 
 
 	/**
 	 * sync all post the user has created it
-	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
@@ -121,9 +145,6 @@ class sync
 	/**
 	 * sync all comments the user has created it
 	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
-	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
 	private static function sync_comments()
@@ -139,9 +160,6 @@ class sync
 	/**
 	 * sync all commentdetails
 	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
-	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
 	private static function sync_commentdetails()
@@ -156,9 +174,6 @@ class sync
 
 	/**
 	 * sync all notifications
-	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
@@ -230,9 +245,6 @@ class sync
 
 	/**
 	 * sync the options table
-	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
 	 */
 	private static function sync_options()
 	{
@@ -254,23 +266,23 @@ class sync
 				$telegram_details = $telegram_details[0]['meta'];
 				if(isset($telegram_details['first_name']))
 				{
-					\lib\utility\profiles::set_profile_data($new_user_id,
-						['firstname' => $telegram_details['first_name']]);
+					\lib\utility\profiles::set_profile_data($new_user_id, ['firstname' => $telegram_details['first_name']]);
 				}
 				if(isset($telegram_details['last_name']))
 				{
-					\lib\utility\profiles::set_profile_data($new_user_id,
-						['lastname' => $telegram_details['last_name']]);
+					\lib\utility\profiles::set_profile_data($new_user_id, ['lastname' => $telegram_details['last_name']]);
 				}
 			}
 		}
 
 		// process dashboard data again
 		$user_post = \lib\db\polls::search(null,
-			['user_id'    => $old_user_id,
-			 'my_poll'    => true,
-			 'pagenation' => false,
-			 'limit'      => null]);
+		[
+			'user_id'    => $old_user_id,
+			'my_poll'    => true,
+			'pagenation' => false,
+			'limit'      => null
+		]);
 
 		// update default record
 		$query =
@@ -351,15 +363,170 @@ class sync
 
 	/**
 	 * deactive the old user
-	 *
-	 * @param      <type>  $new_user_id  The new user identifier
-	 * @param      <type>  $old_user_id  The old user identifier
 	 */
 	private static function sync_users()
 	{
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 		$deactive_old_user = \lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
+	}
+
+
+	/**
+	 * sync the transactions
+	 */
+	private static function sync_transactions()
+	{
+		$new_user_id = self::$new_user_id;
+		$old_user_id = self::$old_user_id;
+		$query =
+		"
+			INSERT INTO transactions
+			(
+				transactions.title,
+				transactions.transactionitem_id,
+				transactions.user_id,
+				transactions.type,
+				transactions.unit_id,
+				transactions.plus,
+				transactions.minus,
+				transactions.budgetbefor,
+				transactions.budget,
+				transactions.exchange_id,
+				transactions.status,
+				transactions.meta,
+				transactions.desc,
+				transactions.related_user_id,
+				transactions.parent_id,
+				transactions.finished
+			)
+			SELECT
+				transactions.title,
+				transactions.transactionitem_id,
+				$new_user_id,
+				transactions.type,
+				transactions.unit_id,
+				transactions.plus,
+				transactions.minus,
+				transactions.budgetbefor,
+				transactions.budget,
+				transactions.exchange_id,
+				transactions.status,
+				transactions.meta,
+				transactions.desc,
+				transactions.related_user_id,
+				transactions.parent_id,
+				transactions.finished
+			FROM
+				transactions
+			WHERE
+				transactions.user_id = $old_user_id
+		";
+		\lib\db::query($query);
+	}
+
+
+	/**
+	 * sync the logs
+	 */
+	private static function sync_logs()
+	{
+		$new_user_id = self::$new_user_id;
+		$old_user_id = self::$old_user_id;
+		$query =
+		"
+			INSERT INTO logs
+			(
+				logs.logitem_id,
+				logs.user_id,
+				logs.log_data,
+				logs.log_meta,
+				logs.log_status,
+				logs.log_createdate,
+				logs.date_modified
+			)
+			SELECT
+				logs.logitem_id,
+				$new_user_id,
+				logs.log_data,
+				logs.log_meta,
+				logs.log_status,
+				logs.log_createdate,
+				logs.date_modified
+			FROM
+				logs
+			WHERE
+				logs.user_id = $old_user_id
+		";
+		\lib\db::query($query);
+	}
+
+
+	/**
+	 * sync the userranks
+	 */
+	private static function sync_userranks()
+	{
+		$new_user_id = self::$new_user_id;
+		$old_user_id = self::$old_user_id;
+		$query =
+		"
+			REPLACE INTO
+				userranks
+			(
+				userranks.user_id,
+				userranks.reported,
+				userranks.usespamword,
+				userranks.changeprofile,
+				userranks.improveprofile,
+				userranks.report,
+				userranks.wrongreport,
+				userranks.skip,
+				userranks.resetpassword,
+				userranks.verification,
+				userranks.validation,
+				userranks.vip,
+				userranks.hated,
+				userranks.other
+			)
+			(
+				SELECT
+					$new_user_id,
+					SUM(exist_record.reported),
+					SUM(exist_record.usespamword),
+					SUM(exist_record.changeprofile),
+					SUM(exist_record.improveprofile),
+					SUM(exist_record.report),
+					SUM(exist_record.wrongreport),
+					SUM(exist_record.skip),
+					SUM(exist_record.resetpassword),
+					SUM(exist_record.verification),
+					SUM(exist_record.validation),
+					SUM(exist_record.vip),
+					SUM(exist_record.hated),
+					SUM(exist_record.other)
+				FROM
+					userranks AS `exist_record`
+			)
+			WHERE
+				exist_record.user_id IN ($old_user_id, $new_user_id) AND
+				user_id = $new_user_id
+		";
+		\lib\db::query($query);
+		$query = "DELETE FROM userranks WHERE user_id = $old_user_id";
+		\lib\db::query($query);
+	}
+
+
+	/**
+	 * sync the socialapi
+	 */
+	private static function sync_socialapi()
+	{
+		$new_user_id = self::$new_user_id;
+		$old_user_id = self::$old_user_id;
+		$query = "UPDATE socialapi SET user_id = $new_user_id WHERE user_id = $old_user_id";
+		\lib\db::query($query);
 	}
 }
 ?>

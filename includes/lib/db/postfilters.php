@@ -32,14 +32,7 @@ class postfilters
 			return false;
 		}
 
-		$query =
-		"
-			INSERT IGNORE INTO
-				postfilters
-			(post_id, filter_id)
-			VALUES
-			($values)
-		";
+		$query = "INSERT IGNORE INTO postfilters (post_id, filter_id) VALUES ($values) ";
 		return \lib\db::query($query);
 	}
 
