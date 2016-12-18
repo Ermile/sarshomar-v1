@@ -46,8 +46,8 @@ aside .actived{display:block;}
 /************************************************************** header */
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
-header #header-box{position:relative;height:90px;margin-left:260px;}
-.rtl header #header-box{margin:0;margin-right:260px;}
+header #header-box{/*position:relative;*/height:90px;margin-left:260px;}
+.rtl header #header-box{margin:0;/*margin-right:260px;*/}
 
 /* header top */
 header #header-top{height:60px;border-top:2px solid #00667a;}
@@ -466,7 +466,8 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .tree-fields select{display:block;width:100%;background-color:#EBEBEB;color:#00667A;border:none;height:30px;line-height:30px;}
 .tree-fields select option{height:30px;line-height:30px;}
 .tree-result-list{background-color:#F7F7F7;padding:2em;}
-.tree-result-list>li>label{color:#00667a;padding:.5em;cursor:pointer;display:block}
+.tree-result-list>li>label{color:#00667a;padding:.5em;cursor:pointer;display:block; text-align: left;}
+.rtl .tree-result-list>li>label {text-align: right;}
 .tree-result-list .options{margin-top:5px;display:none}
 .tree-result-list .options li{display:flex;margin-bottom:5px;}
 .tree-result-list .options li .checkbox{margin-top:5px;}
