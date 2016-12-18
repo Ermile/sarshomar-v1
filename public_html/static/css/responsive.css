@@ -205,8 +205,11 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
   /*--footer--*/
   footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
 
-/**********************************************/
+/*********************poll*************************/
 .rtl .polls-row>.type {padding-right: 5px;}
+.poll.btn-container{width: 100%;}
+.rtl .btn-container {text-align: center; margin: 1em 0}
+.rtl .btn-container .btn{ margin: 1em 0}
   /**********************************profile***************************/
 
 #profile .tabs li{width: 80%;}

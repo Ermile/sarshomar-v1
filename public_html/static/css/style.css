@@ -46,8 +46,8 @@ aside .actived{display:block;}
 /************************************************************** header */
 header{border-right:8px solid transparent;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}
 .rtl header{border-right:none;border-left:8px solid transparent;}
-header #header-box{/*position:relative;*/height:90px;margin-left:260px;}
-.rtl header #header-box{margin:0;/*margin-right:260px;*/}
+header #header-box{height:90px}
+.rtl header #header-box{margin:0;}
 
 /* header top */
 header #header-top{height:60px;border-top:2px solid #00667a;}
