@@ -216,6 +216,7 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .element .title:before{display: none;}
 #poll-extra{font-size: 1.4em;}
 .profile .info{min-width:60px;}
+#profile .tabs {padding: 0}
 /**********************************add question page***************************/
 
 .btn-container::before {display: none;}
