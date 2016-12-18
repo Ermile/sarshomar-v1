@@ -127,10 +127,11 @@
   #customers-box .customer p{width: 100%;margin:0 auto;text-align: left;font-size: 1.6em;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
-  .rtl #customers-box .customer:nth-child(even) h3, .rtl #customers-box .customer:nth-child(even) p {text-align: right;}
-  #customers-box .customer h3, #customers-box .customer p {text-align: left!important;}
+  .rtl #customers-box .customer:nth-child(even) h3, .rtl #customers-box .customer:nth-child(even) p {text-align: center;}
+  #customers-box .customer h3, #customers-box .customer p {text-align: center}
+  .rtl #customers-box .customer h3, #customers-box .customer p {text-align: center}
+  #customers-box .customer:nth-child(odd) h3, #customers-box .customer:nth-child(odd) p {text-align: center;}
   /*--features--*/
-  #features-box{display: none;}
   /*--inestimable--*/
   #inestimable{margin:0;padding: 25px 10px;}
   #inestimable::before{display: none;}
@@ -211,14 +212,23 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .element .title:before{display: none;}
 #poll-extra{font-size: 1.4em;}
 
-/**********************************question***************************/
+/**********************************add question page***************************/
 
 .btn-container::before {display: none;}
 .rtl .btn-container .btn:not(:last-child) {margin-left: 0;}
 .rtl .input-group {padding-right: 0;}
-.panel-text {margin: 15px 0 0;text-align: right;}
+.input-group {padding-left: 0;}
+.rtl .panel-text {margin: 15px 0 0;text-align: right;}
+.panel-text {margin: 15px 0 0;text-align: left;}
 .element .checkbox {position: absolute;left: -3px;}
+.menu .menu-inside label {display: block;width: 100%;}
+.menu .menu-inside label:not(:first-of-type) {margin-right: 0 !important;margin-left: 0!important;}
+.element.switch {flex-direction: column;}
+.element.switch label:not(.title):not(:last-child)::before {display: none;}
+.element.switch:not(.small) .title {border-radius: 5px 5px 0 0;}
+#poll-filters {text-align: right;}
  }
+
   /*==================================
   @media only screen and (max-width: 320px){}
 
