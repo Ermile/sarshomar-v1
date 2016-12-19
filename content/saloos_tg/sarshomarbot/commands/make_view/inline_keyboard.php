@@ -75,6 +75,7 @@ class inline_keyboard
 	{
 		$options = array_merge([
 			'skip' => true,
+			'skip_last' => false,
 			'update' => true,
 			'share' => true,
 			'report' => false,
@@ -82,7 +83,14 @@ class inline_keyboard
 			'poll_option' => false
 			], $_options);
 		$return = [];
-		if($options['skip'])
+		if($options['skip_last'])
+		{
+			$return[] = [
+				'text' => T_("Skip"),
+				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0/last'
+			];
+		}
+		elseif($options['skip'])
 		{
 			$return[] = [
 				'text' => T_("Skip"),

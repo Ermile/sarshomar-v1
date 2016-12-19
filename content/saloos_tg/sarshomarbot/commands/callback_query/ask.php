@@ -39,11 +39,13 @@ class ask
 
 			$access = $poll_access->is_ok();
 			$set_last = [];
+			$skip_type = 'skip';
 			if(is_null($_short_link))
 			{
 				$set_last = ['callback_data' => function($_data){
 					return $_data .'/last';
 				}];
+				$skip_type = 'skip_last';
 			}
 			$skip = false;
 			if($maker->query_result['status'] == 'publish' && $access)
@@ -61,13 +63,13 @@ class ask
 
 			if($maker->query_result['user_id'] == bot::$user_id)
 			{
-				$maker->inline_keyboard->add_guest_option(['skip'=> false, 'poll_option' => true]);
+				$maker->inline_keyboard->add_guest_option([$skip_type => false, 'poll_option' => true]);
 				$maker->message->add_poll_chart(true);
 				$maker->message->add_poll_list(true);
 			}
 			else
 			{
-				$maker->inline_keyboard->add_guest_option(['skip'=> $skip, 'update' => false, 'inline_report' => true]);
+				$maker->inline_keyboard->add_guest_option([$skip_type => $skip, 'update' => false, 'inline_report' => true]);
 				$maker->message->add_poll_chart(true);
 				$maker->message->add_poll_list(true);
 			}
@@ -77,7 +79,9 @@ class ask
 
 			$return = $maker->make();
 
-			$on_expire = $maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true]);
+			handle::send_log($skip_type);
+
+			$on_expire = $maker->inline_keyboard->get_guest_option([$skip_type => false, 'poll_option' => true]);
 			if($maker->query_result['status'] == 'publish')
 			{
 				$return["response_callback"] = utility::response_expire('ask', [
@@ -134,12 +138,11 @@ class ask
 
 		$return_text .= $save->get_message();
 
-		// if($save->is_error_code(3000) || $save->is_error_code(3001))
-		// {
-		// 	callback_query::edit_message(['text' => $save->get_message()]);
-		// }
-		// else
-			if(!array_key_exists('message', $_query))
+		if($save->is_error_code(3000) || $save->is_error_code(3001))
+		{
+			callback_query::edit_message(['text' => $save->get_message()]);
+		}
+		elseif(!array_key_exists('message', $_query))
 		{
 			session::remove_back('expire', 'inline_cache');
 
@@ -221,7 +224,6 @@ class ask
 		$update_time = $current_time->format('Y-m-d H:i:s');
 
 		$maker->message->add('date', utility::italic($update_time ." GMT"));
-
 		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true, 'inline_report' => true]);
 
 		$ask_expire = session::get('expire', 'inline_cache', 'ask', 'on_expire');

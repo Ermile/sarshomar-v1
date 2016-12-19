@@ -34,14 +34,14 @@ class step_create
 		'text'         => $txt_text ."\n#create",
 		"response_callback" => utility::response_expire('create'),
 		'reply_markup' => [
-			"inline_keyboard" => [
-				[
-					[
-						"text" => T_("Cancel"),
-						"callback_data" => 'poll/discard'
-					]
-				]
-			]
+		"inline_keyboard" => [
+		[
+		[
+		"text" => T_("Cancel"),
+		"callback_data" => 'poll/discard'
+		]
+		]
+		]
 		]
 		];
 
@@ -59,9 +59,19 @@ class step_create
 	public static function step2($_question)
 	{
 		preg_match("/^type_(.*)$/", $_question, $file_content);
+		$poll_draft = session::get('poll');
 		if($file_content && array_key_exists('caption', bot::$hook['message']))
 		{
 			$_question = bot::$hook['message']['caption'];
+		}
+		if(count($file_content) > 0 && $poll_draft)
+		{
+			return self::make_draft(function($_maker){
+				handle::send_log($_maker->message->message);
+				$_maker->message->add("wrong_data", T_("Answer type not valid"), 'before', 'hashtag');
+				handle::send_log($_maker->message->message);
+			});
+
 		}
 		$question = $_question;
 		// $question = htmlentities($question);
@@ -70,7 +80,6 @@ class step_create
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
 
-		$poll_draft = session::get('poll');
 		if($poll_draft)
 		{
 			$poll_answers = (array) session::get('poll', "answers");
@@ -87,7 +96,7 @@ class step_create
 		if($file_content && bot::$hook['message'][$file_content[1]])
 		{
 			session::set('poll', 'type', $file_content[1]);
-			session::set('poll', 'file_id', bot::$hook['message'][$file_content[1]][0]['file_id']);
+			session::set('poll', 'file_id', bot::$hook['message'][$file_content[1]]);
 		}
 		return self::make_draft();
 	}
@@ -117,8 +126,8 @@ class step_create
 			$maker->message->set_poll_list($poll_result);
 			$maker->message->add_poll_list(null, false);
 			$inline_keyboard = [[
-					utility::inline(T_("Discard"), 'poll/discard'),
-					]];
+			utility::inline(T_("Discard"), 'poll/discard'),
+			]];
 			if(count($poll_answers) > 1)
 			{
 				$inline_keyboard[0][] = utility::inline(T_("Save"), 'poll/save');
@@ -137,23 +146,23 @@ class step_create
 			$inline_keyboard[0][] = utility::inline(T_("Discard"), 'poll/discard');
 		}
 
+		$maker->message->add('hashtag', '#'.preg_replace('[\s]', '_', T_('Create new poll')));
 		if($_maker)
 		{
 			call_user_func_array($_maker, [$maker]);
 		}
-		$maker->message->add('hashtag', '#'.preg_replace('[\s]', '_', T_('Create new poll')));
 		$txt_text = $maker->message->make();
 		$result = [
-			'text' 						=> $txt_text,
-			"response_callback" 		=> utility::response_expire('create'),
-			'parse_mode' 				=> 'HTML',
-			'disable_web_page_preview' 	=> true,
-			'reply_markup' 				=> [
-				'inline_keyboard' 		=> $inline_keyboard
-			]
+		'text' 						=> $txt_text,
+		"response_callback" 		=> utility::response_expire('create'),
+		'parse_mode' 				=> 'HTML',
+		'disable_web_page_preview' 	=> true,
+		'reply_markup' 				=> [
+		'inline_keyboard' 		=> $inline_keyboard
+		]
 		];
 		$type = session::get('poll', 'type');
-		$file_id = session::get('poll', 'file_id');
+		// $file_id = session::get('poll', 'file_id');
 		// if($type)
 		// {
 		// 	$result['caption'] = stripslashes($result['text']);

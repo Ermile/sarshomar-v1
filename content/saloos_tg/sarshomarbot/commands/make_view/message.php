@@ -54,7 +54,7 @@ class message
 			$poll_list .= $value['emoji'] . ' ' . $value['text'];
 			if($_add_count)
 			{
-				$poll_list .= ' (' . $value['answer_count'] . ")";
+				$poll_list .= ' | ' . utility::italic($value['answer_count'] . ' ' . T_("Answer"));
 			}
 			if(end($this->poll_list) !== $value)
 			{
@@ -174,9 +174,47 @@ class message
 		return join($this->message, "\n");
 	}
 
-	public function add($_key, $_message)
+	public function add($_key, $_message, $_status = 'end', $_pointer = null)
 	{
-		$this->message[$_key] = $_message;
+		$find = false;
+		switch ($_status) {
+			case 'before':
+				$new_message = [];
+				foreach ($this->message as $key => $value) {
+					if($key == $_pointer)
+					{
+						$new_message[$_key] = $_message;
+						$find = true;
+					}
+					$new_message[$key] = $value;
+				}
+				if(!$find)
+				{
+					$new_message[$key] = $value;
+				}
+				$this->message = $new_message;
+				break;
+			case 'after':
+				$new_message = [];
+				foreach ($this->message as $key => $value) {
+					$new_message[$key] = $value;
+					if($key == $_pointer)
+					{
+						$find = true;
+						$new_message[$_key] = $_message;
+					}
+				}
+				if(!$find)
+				{
+					$new_message[$key] = $value;
+				}
+				$this->message = $new_message;
+				break;
+
+			default:
+				$this->message[$_key] = $_message;
+				break;
+		}
 	}
 }
 ?>
