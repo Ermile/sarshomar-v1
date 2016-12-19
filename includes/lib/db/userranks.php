@@ -4,42 +4,7 @@ namespace lib\db;
 /** userranks managing **/
 class userranks
 {
-	/**
-	 * the userranrank values
-	 *
-	 * @var        array
-	 */
-	private static $values =
-	[
-		// the user was reported
-		'reported'       => [ false,	100			],
-		// user use spam words
-		'usespamword'    => [ false,	5			],
-		// user change the profile
-		'changeprofile'  => [ false,	5			],
-		// user improve her profile
-		'improveprofile' => [ true,		5			],
-		// the user report a poll
-		'report'         => [ true,		5			],
-		// the report poll of the user is wrong
-		'wrongreport'    => [ false,	5			],
-		// user skip the poll
-		'skip'           => [ false,	5			],
-		// user forger her password
-		'resetpassword'  => [ false,	5			],
-		// account of user is verification (bit 0|1)
-		'verification'   => [ true,		50			],
-		// the user is valid user (bit 0|1)
-		'validation'     => [ true,		5			],
-		// the VIP users
-		'vip'            => [ true,		100 * 100	],
-		// hated <> vip , nobody user, not vip user
-		'hated'          => [ false,	5			],
-		// the other
-		'other'          => [ true,		5			],
-
-	];
-
+	use \lib\utility\money;
 
 	/**
 	 * insert new record of userranks table
@@ -49,7 +14,7 @@ class userranks
 	 */
 	public static function set($_user_id, $_field = [])
 	{
-		$default_fields = self::$values;
+		$default_fields = self::$user_ranks_value;
 		$default_fields = array_map(function(){ return 0; }, $default_fields);
 
 		$_field = array_merge($default_fields, $_field);
@@ -138,7 +103,7 @@ class userranks
 		if(empty($user_rank))
 		{
 			self::set($_user_id);
-			$user_rank               = self::$values;
+			$user_rank               = self::$user_ranks_value;
 			$user_rank               = array_map(function(){ return 0; }, $user_rank);
 			$user_rank['createdate'] = date("Y-m-d");
 			$user_rank['value']      = 0;
@@ -180,15 +145,15 @@ class userranks
 				}
 			}
 
-			if(array_key_exists($key, self::$values))
+			if(array_key_exists($key, self::$user_ranks_value))
 			{
-				if(self::$values[$key][0] === true)
+				if(self::$user_ranks_value[$key][0] === true)
 				{
-					$sum += (intval($value) * intval(self::$values[$key][1]));
+					$sum += (intval($value) * intval(self::$user_ranks_value[$key][1]));
 				}
-				elseif(self::$values[$key][0] === false)
+				elseif(self::$user_ranks_value[$key][0] === false)
 				{
-					$sum -= (intval($value) * intval(self::$values[$key][1]));
+					$sum -= (intval($value) * intval(self::$user_ranks_value[$key][1]));
 				}
 			}
 		}

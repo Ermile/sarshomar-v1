@@ -4,49 +4,7 @@ namespace lib\db;
 /** ranks managing **/
 class ranks
 {
-	/**
-	 * the rank values
-	 *
-	 * @var        array
-	 */
-	private static $values =
-	[
-		// valur of member
-		'member'    => [ true	, 	5	 		],
-		// valur of filter
-		'filter'    => [ true	, 	2	 		],
-		// valur of report
-		'report'    => [ false	, 	10	 		],
-		// valur of vot
-		'vot'       => [ true	, 	4	 		],
-		// valur of like
-		'like'      => [ true	, 	5	 		],
-		// valur of faiv
-		'faiv'      => [ true	, 	6	 		],
-		// valur of skip
-		'skip'      => [ false	, 	1	 		],
-		// valur of comment
-		'comment'   => [ true	, 	8	 		],
-		// valur of view
-		'view'      => [ true	, 	1	 		],
-		// valur of other
-		'other'     => [ true	, 	10	 		],
-		// valur of sarshomar
-		'sarshomar' => [ true	, 	100 * 1000	],
-		// valur of ago
-		'ago'       => [ true	, 	3	  		],
-		// valur of vip
-		'vip'       => [ true 	, 	4			],
-		// valur of public
-		'public'    => [ true 	, 	4			],
-		// valur of admin
-		'admin'     => [ true 	, 	4			],
-		// valur of money
-		'money'     => [ true 	, 	4			],
-		// valur of ad
-		'ad'        => [ true 	, 	4			],
-	];
-
+	use \lib\utility\money;
 
 	/**
 	 * insert new record of ranks table
@@ -56,7 +14,7 @@ class ranks
 	 */
 	public static function set($_poll_id, $_field = [])
 	{
-		$default_fields = self::$values;
+		$default_fields = self::$poll_ranks_value;
 		$default_fields = array_map(function(){ return 0; } , $default_fields);
 		if(isset($default_fields['createdate']))
 		{
@@ -150,7 +108,7 @@ class ranks
 		if(empty($post_rank))
 		{
 			self::set($_poll_id);
-			$post_rank               = self::$values;
+			$post_rank               = self::$poll_ranks_value;
 			$post_rank               = array_map(function(){ return 0; }, $post_rank);
 			$post_rank['createdate'] = date("Y-m-d");
 			$post_rank['value']      = 0;
@@ -169,7 +127,7 @@ class ranks
 					$ago       =  intval($datediff / (60 * 60 * 24));
 					if(isset($post_rank['ago']) && $post_rank['ago'] != $ago)
 					{
-						$sum      += (intval($ago) * intval(self::$values['ago'][1]));
+						$sum      += (intval($ago) * intval(self::$poll_ranks_value['ago'][1]));
 						$update[] = " ranks.ago = $ago ";
 					}
 					break;
@@ -209,15 +167,15 @@ class ranks
 						}
 					}
 
-					if(array_key_exists($key, self::$values))
+					if(array_key_exists($key, self::$poll_ranks_value))
 					{
-						if(self::$values[$key][0] === true)
+						if(self::$poll_ranks_value[$key][0] === true)
 						{
-							$sum += (intval($value) * intval(self::$values[$key][1]));
+							$sum += (intval($value) * intval(self::$poll_ranks_value[$key][1]));
 						}
-						elseif(self::$values[$key][0] === false)
+						elseif(self::$poll_ranks_value[$key][0] === false)
 						{
-							$sum -= (intval($value) * intval(self::$values[$key][1]));
+							$sum -= (intval($value) * intval(self::$poll_ranks_value[$key][1]));
 						}
 					}
 					break;

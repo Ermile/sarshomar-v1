@@ -3,7 +3,7 @@ namespace lib\db;
 
 class filters
 {
-
+	use \lib\utility\money;
 	/**
 	 * get supoort filters
 	 * this array exist in to pollstat table
@@ -78,38 +78,18 @@ class filters
 	 */
 	public static function money_filter($_filter = null)
 	{
-		$filter_money =
-		[
-			'gender'           => 10,
-			'marrital'         => 20,
-			'internetusage'    => 30,
-			'graduation'       => 40,
-			'degree'           => 50,
-			'course'           => 60,
-			'age'              => 70,
-			'range'            => 80,
-			'country'          => 90,
-			'province'         => 10,
-			'city'             => 20,
-			'employmentstatus' => 30,
-			'housestatus'      => 40,
-			'religion'         => 50,
-			'language'         => 60,
-			'industry'         => 70,
-		];
-
 		if($_filter)
 		{
-			if(isset($filter_money[$_filter]))
+			if(isset(self::$money_filter[$_filter]))
 			{
-				return $filter_money[$_filter];
+				return self::$money_filter[$_filter];
 			}
 			else
 			{
 				return 0;
 			}
 		}
-		return $filter_money;
+		return self::$money_filter;
 	}
 
 
