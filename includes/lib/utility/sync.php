@@ -113,7 +113,6 @@ class sync
 		self::sync_users();
 
 		// check error was happend or no
-		\lib\db::rollback();
 		if(self::$has_error)
 		{
 			\lib\db::rollback();
@@ -121,7 +120,7 @@ class sync
 		}
 		else
 		{
-			// \lib\db::commit();
+			\lib\db::commit();
 			return self::status(true)->set_error_code(3502);
 		}
 	}
@@ -469,49 +468,39 @@ class sync
 	{
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
-		$query =
-		"
-			REPLACE INTO
-				userranks
-			(
-				userranks.user_id,
-				userranks.reported,
-				userranks.usespamword,
-				userranks.changeprofile,
-				userranks.improveprofile,
-				userranks.report,
-				userranks.wrongreport,
-				userranks.skip,
-				userranks.resetpassword,
-				userranks.verification,
-				userranks.validation,
-				userranks.vip,
-				userranks.hated,
-				userranks.other
-			)
-			(
-				SELECT
-					$new_user_id,
-					SUM(exist_record.reported),
-					SUM(exist_record.usespamword),
-					SUM(exist_record.changeprofile),
-					SUM(exist_record.improveprofile),
-					SUM(exist_record.report),
-					SUM(exist_record.wrongreport),
-					SUM(exist_record.skip),
-					SUM(exist_record.resetpassword),
-					SUM(exist_record.verification),
-					SUM(exist_record.validation),
-					SUM(exist_record.vip),
-					SUM(exist_record.hated),
-					SUM(exist_record.other)
-				FROM
-					userranks AS `exist_record`
-			)
-			WHERE
-				exist_record.user_id IN ($old_user_id, $new_user_id) AND
-				user_id = $new_user_id
-		";
+		$old_user_rank = \lib\db\userranks::get($old_user_id);
+		$new_user_rank = \lib\db\userranks::get($new_user_id);
+
+		unset($old_user_rank['id']);
+		unset($new_user_rank['id']);
+		unset($old_user_rank['value']);
+		unset($new_user_rank['value']);
+		unset($old_user_rank['user_id']);
+		unset($new_user_rank['user_id']);
+
+		$set = [];
+		foreach ($new_user_rank as $key => $value)
+		{
+			if(isset($old_user_rank[$key]))
+			{
+				$new_user_rank[$key] = (float) $old_user_rank[$key] + (float) $value;
+			}
+
+			switch ($key)
+			{
+				case 'verification':
+				case 'validation':
+					if($new_user_rank[$key] > 1)
+					{
+						$new_user_rank[$key] = 1;
+					}
+					break;
+			}
+			$set[] = " userranks.`$key` = ". $new_user_rank[$key];
+		}
+		$set = implode(" , ", $set);
+
+		$query = "UPDATE userranks SET $set WHERE user_id = $new_user_id LIMIT 1";
 		\lib\db::query($query);
 		$query = "DELETE FROM userranks WHERE user_id = $old_user_id";
 		\lib\db::query($query);

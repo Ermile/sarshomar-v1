@@ -100,7 +100,7 @@ class socialapi
 		$_where = array_merge($default_where, $_where);
 
 		// check require field and return 'where not complete' error if error
-		if($_where['uniqueid'] === null || $_where['type']     === null)
+		if($_where['uniqueid'] === null || $_where['type'] === null)
 		{
 			return self::status(false)->set_error_code(3525);
 		}
@@ -121,16 +121,7 @@ class socialapi
 		$where = implode(" AND ", $where);
 
 		// select query to get record
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				socialapi
-			WHERE
-				$where
-			LIMIT 1
-		";
+		$query = "SELECT * FROM socialapi WHERE	$where	LIMIT 1 ";
 
 		$result = \lib\db::get($query, null, true);
 		// return db return
@@ -227,16 +218,7 @@ class socialapi
 		$where = implode(" AND ", $where);
 
 		// update query
-		$query =
-		"
-			UPDATE
-				socialapi
-			SET
-				$set
-			WHERE
-				$where
-			LIMIT 1
-		";
+		$query = "UPDATE socialapi SET $set	WHERE $where LIMIT 1 ";
 		$result = \lib\db::query($query);
 		// return db return
 		if(!$result)

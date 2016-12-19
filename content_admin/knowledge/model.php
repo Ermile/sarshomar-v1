@@ -67,11 +67,13 @@ class model extends \mvc\model
 		}
 
 		$meta                   = [];
-		if(!empty($filter))
-		{
-			$filter_id         = \lib\db\filters::get_id($filter);
-			$meta['filter_id'] = $filter_id;
-		}
+		// if(!empty($filter))
+		// {
+		// 	$filter_id         = \lib\db\filters::get_id($filter);
+		// 	$meta['filter_id'] = $filter_id;
+		// }
+		$meta['my_poll'] = true;
+
 		$search = $_args->get("search")[0];
 		$result = \lib\db\polls::search($search, $meta);
 		return $result;
