@@ -30,7 +30,7 @@
   .features li h3{font-size:.22em;}
   .features li p{font-size:12px}
   .features li .normal span{ font-size:.22em; }
-
+.container {width: 96%;}
 }
 
 @media only screen and (max-width:480px) {
@@ -109,8 +109,6 @@
   header .logo img{width: 8em;}
   header #header-box{display: block;width: 100%;height: 50px;}
   header #header-quick{display: none;}
-  header #header-top{background-color:#00667a;}
-  /*header #header-profile > a{color:#eee;}*/
   header #header-profile {padding-right: 0;}
   nav.breadcrumb{display: none;}
   /*--wrapper--*/
@@ -217,6 +215,8 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 #poll-extra{font-size: 1.4em;}
 .profile .info{min-width:60px;}
 #profile .tabs {padding: 0}
+.rtl#profile .tabs {padding-right: 0;}
+.rtl#profile .tabs li {border-radius: 6px;}
 /**********************************add question page***************************/
 
 .btn-container::before {display: none;}
@@ -232,6 +232,7 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .element.switch label:not(.title):not(:last-child)::before {display: none;}
 .element.switch:not(.small) .title {border-radius: 5px 5px 0 0;}
 #poll-filters {text-align: right;}
+.rtl .element .delete {left: 0;}
  }
 
   /*==================================
