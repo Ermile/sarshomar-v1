@@ -60,7 +60,7 @@ class poll
 			$message .= ' - ' . T_(ucfirst($value['status']));
 			$message .= "\n";
 			$short_link = \lib\utility\shortURL::encode($value['id']);
-			$message .= "/sp\_$short_link";
+			$message .= "/sp_$short_link";
 			$message .= "\n\n";
 		}
 		$return = ['text' => $message];
@@ -88,6 +88,7 @@ class poll
 			}
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 		}
+		$return['parse_mode'] = "HTML";
 		if(is_null($_query))
 		{
 			return $return;
