@@ -1159,3 +1159,13 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .poll-management .poll-value::-moz-placeholder {text-align: center;color: #9E9E9E;}
 .poll-management .poll-value:-ms-input-placeholder {text-align: center;color: #9E9E9E;}
 .poll-management .star.active {color: #E2B31E}
+
+
+/************************************************************** privacy page */
+#privacy .special-heading{color:#6E6E6E;font-size:30px}
+#privacy-box h2{color:#00667A;padding-left:.5em;border-left:4px solid #AAAAAA;line-height:2.0em;font-weight:bold}
+.rtl #privacy-box h2{padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
+#privacy-box .content{padding:0 3em}
+#privacy-box .content p{color:#6E6F6F}
+p.em{background-color:#EFEFEF;padding:1em 1em;text-align:center;font-weight:bold;position:relative}
+p.em::before{content:'';position:absolute;width:10px;height:4px;background-color:#E5A428;bottom:0;right:0;left:0;width:50%;margin:auto}
