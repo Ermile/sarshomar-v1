@@ -8,11 +8,16 @@
 				<div class="poll-content">
 					<div class="poll-content-top">
 						<div class="poll-question">
-							<h6 class="poll-word-{{value.id}} {%if value.meta.review == 'ok' %}accepted{%endif%} "><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></h6>
+							<h6 class="poll-word-{{value.id}} {%if value.meta.review == 'ok' %}accepted{%endif%} ">
+							<a href="{{url.base}}/{{value.url}}">{{value.title|raw}}</a>
+							</h6>
+							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{%trans "edit" %}</a> |
+							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter">{%trans "filter page" %}</a> |
+							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish">{%trans "publish page" %}</a>
 							<div class="poll-question-options">
 								<ul>
 									{%for k, v in value.meta.opt%}
-									<li class="poll-word-{{value.id}}">{{v.txt}}</li>
+										<li class="poll-word-{{value.id}}">{{v.txt}}</li>
 									{%endfor%}
 									<div class="clearfix"></div>
 								</ul>
@@ -41,20 +46,38 @@
 								<option value="pornography">pornography</option>
 								<option value="other">other</option>
 							</select>
-							<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}"></button>
+							<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
+							</button>
 						</div>
 					</div>
 					<div class="poll-content-bottom">
-						<div><span class="date hint--right hint--success" data-hint="{{value.date_modified|date(" H:m:s ")|persian}}">{{value.date_modified|date("Y/m/d")|persian}}</span></div>
-						<div class="stars">							
+						<div><span class="date hint--right hint--success" data-hint="{{value.date_modified}}">
+						{% if site.currentlang == 'fa' %}
+							{{value.date_modified|jdate("Y-m-d")|persian}}
+						{%else%}
+							{{value.date_modified|date("Y-m-d")}}
+						{%endif%} |
+						{% trans "language" %}	: {{value.language }} |
+						{% trans "status" %}	: {{value.status }} |
+						{% trans "parent" %}	: {{value.parent }} |
+						{% trans "sarshomar" %}	: {{value.sarshomar }} |
+						{% trans "survey" %}	: {{value.survey }} |
+						{% trans "gender" %}	: {{value.gender }} |
+						{% trans "privacy" %}	: {{value.privacy }} |
+						{% trans "total" %}		: {{value.total }} |
+						</span></div>
+
+						<div class="stars">
 								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
 								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
 								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
 								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>							
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
 						</div>
 						<div>
-							<input type="text" class="poll-value" name="" value="" placeholder="ارزش">							
+							<input type="text" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
+							<button class="btn fa fa-check confirm-poll-status" id="save-vip" data-id="{{value.id}}">
+							</button>
 						</div>
 					</div>
 				</div>
@@ -92,6 +115,25 @@
 
 		$(this).on('change', '#other-status', function () {
 			$(this).parent('span').children('.btn').attr("status", $(this).val());
+		});
+
+		$(document).on('click','#save-vip', function(){
+			id = $(this).attr("data-id");
+			value = $("#vip-value-" + id ).val();
+			$(this).ajaxify({
+				ajax: {
+					method: 'post',
+					data: {
+						'id': id,
+						'vip-value': value
+					},
+					abort: true,
+					success: function (e, data, x)
+					{
+
+					}
+				}
+			});
 		});
 
 		$(document).on('click', '.change-status', function () {
@@ -136,13 +178,18 @@
 		});
 	});
 </script>
-{%endblock%} {%block head_css%} {{parent()}}
+{%endblock%}
+
+{%block head_css%}
+{{parent()}}
 <style type="text/css">
 	.tag-red {
 		background: #c62828 !important;
 	}
 </style>
-{%endblock%} {%block modal%}
+{%endblock%}
+
+{%block modal%}
 <div class='modal' id='words-check'>
 	<div class='modal-dialog' method="post" action="{{base.url}}/account/login">
 		<h3 class='modal-title'>به کدامین کلمه فیلترش کردی؟</h3>

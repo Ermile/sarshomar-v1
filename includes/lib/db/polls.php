@@ -43,6 +43,7 @@ class polls
 			IFNULL(ranks.vot,0)   			AS 'vot',
 			IFNULL(ranks.like,0)   			AS 'like',
 			IFNULL(ranks.faiv,0)   			AS 'faiv',
+			IFNULL(ranks.vip,0)   			AS 'vip',
 			pollstats.id 		     		AS 'pollstatsid',
 			IFNULL(pollstats.total,0)		AS 'total'
 		FROM

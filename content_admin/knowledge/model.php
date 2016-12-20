@@ -7,11 +7,20 @@ class model extends \mvc\model
 
 	public function post_knowledge()
 	{
-		if(utility::post('spam-word'))
+		if(utility::post('spam-word') != '')
 		{
 			\lib\db\words::set_status(utility::post('spam-word'), utility::post("status"));
 			\lib\debug::true(T_("Words Status change"));
 			return;
+		}
+
+		if(utility::post("vip-value") != '')
+		{
+			$poll_id = utility::post("id");
+			$vip_value = utility::post("vip-value");
+			\lib\db\ranks::plus($poll_id, 'vip', $vip_value, ['replace' => true]);
+			\lib\debug::true(T_("Vip ranks of post saved"));
+			return ;
 		}
 
 		$id     = utility::post("id");
