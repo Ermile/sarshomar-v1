@@ -1,123 +1,115 @@
-{% extends display.main%}
-{%block content%}
-	<div class="box">
-	<div id="load-modal" data-modal="words-check"></div>
-      <div class="polls-head">
-        <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
-        <span class="type">{%trans "Type"%}</span>
-        <span class="title">{%trans "Title"%}</span>
-        <span class="comments-count">{%trans "Comments"%}</span>
-        <span class="votes-count">{%trans "Votes"%}</span>
-        <span class="date">{%trans "Date"%}</span>
-        <span class="date">{%trans "admin"%}</span>
-      </div>
-      <ul class="polls-body">
-  	{%for key, value in poll_list%}
-        <li class="polls-row">
-          <span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>
-          <span class="type"><i class="fa fa-{{value.type}}" aria-hidden="true"></i></span>
-          <span class="title"><a href="{{base.url}}/{{value.url}}">
-          <span class="poll-word-{{value.id}}"
-          {%if value.meta.review == 'ok' %} style="color:green;" {%endif%}>{{value.title|raw}}</span><a>
-          <br>
-          {%for k, v in value.meta.opt%}
-          	<a class="smal poll-word-{{value.id}}" >{{v.txt}}</a><br>
-          {%endfor%}
-          </span>
-          <span class="comments-count"></span>
-          <span class="votes-count"></span>
-          <span class="admin">
-          	<button class="btn change-status" data-id="{{value.id}}" status="ok" style="background: green; padding: 5px; margin: 5px" >OK</button>
-          	<br>
-          	<button class="btn change-status" data-id="{{value.id}}" status="spam" style="background: red; padding: 5px; margin: 5px" >spam</button>
-          	<br>
-          	Other:
-
-          	<select id="other-status">
-				<option></option>
-				<option value="stop">stop</option>
-				<option value="pause">pause</option>
-				<option value="trash">trash</option>
-				<option value="publish">publish</option>
-				<option value="draft">draft</option>
-				<option value="enable">enable</option>
-				<option value="disable">disable</option>
-				<option value="deleted">deleted</option>
-				<option value="schedule">schedule</option>
-				<option value="expired">expired</option>
-				<option value="awaiting">awaiting</option>
-				<option value="filtered">filtered</option>
-				<option value="blocked">blocked</option>
-				<option value="spam">spam</option>
-				<option value="violence">violence</option>
-				<option value="pornography">pornography</option>
-				<option value="other">other</option>
-          	</select>
-          	<button class="btn change-status" id="save-other" data-id="{{value.id}}" >save</button>
-
-          </span>
-          <span class="date">{{value.date_modified}}</span>
-        </li>
-        <hr>
-  	{%endfor%}
- 	 </ul>
-	      <!-- pagenation -->
-	    {% embed display.pagination %}{% endembed %}
+{% extends display.main%} {%block content%}
+<div class="box poll-management">
+	<div>
+		<div class="row auto">
+			<div id="load-modal" data-modal="words-check"></div>
+			{%for key, value in poll_list%}
+			<div class="poll-card {{value.type}}">
+				<div class="poll-content">
+					<div class="poll-content-top">
+						<div class="poll-question">
+							<h6 class="poll-word-{{value.id}} {%if value.meta.review == 'ok' %}accepted{%endif%} "><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></h6>
+							<div class="poll-question-options">
+								<ul>
+									{%for k, v in value.meta.opt%}
+									<li class="poll-word-{{value.id}}">{{v.txt}}</li>
+									{%endfor%}
+									<div class="clearfix"></div>
+								</ul>
+							</div>
+						</div>
+						<div class="poll-management-options">
+							<button class="fa fa-check accept change-status btn btn-success btn-save-option" title="OK" data-id="{{value.id}}" status="ok"></button>
+							<button class="fa fa-times reject change-status btn btn-danger btn-save-option" title="Spam" data-id="{{value.id}}" status="spam"></button>
+							<select id="other-status" class="change-poll-status">
+								<option value="" disabled selected>Select</option>
+								<option value="stop">stop</option>
+								<option value="pause">pause</option>
+								<option value="trash">trash</option>
+								<option value="publish">publish</option>
+								<option value="draft">draft</option>
+								<option value="enable">enable</option>
+								<option value="disable">disable</option>
+								<option value="deleted">deleted</option>
+								<option value="schedule">schedule</option>
+								<option value="expired">expired</option>
+								<option value="awaiting">awaiting</option>
+								<option value="filtered">filtered</option>
+								<option value="blocked">blocked</option>
+								<option value="spam">spam</option>
+								<option value="violence">violence</option>
+								<option value="pornography">pornography</option>
+								<option value="other">other</option>
+							</select>
+							<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}"></button>
+						</div>
+					</div>
+					<div class="poll-content-bottom">
+						<div><span class="date hint--right hint--success" data-hint="{{value.date_modified|date(" H:m:s ")|persian}}">{{value.date_modified|date("Y/m/d")|persian}}</span></div>
+						<div class="stars">							
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>							
+						</div>
+						<div>
+							<input type="text" class="poll-value" name="" value="" placeholder="ارزش">							
+						</div>
+					</div>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+		<!-- pagenation -->
+		{% embed display.pagination %}{% endembed %}
 	</div>
-{%endblock%}
-
-{%block foot_js%}
+</div>
+{%endblock%} {%block foot_js%}
 <script type="text/javascript">
-	$(document).ready(function(){
-		$(document).on('click', "#save-words", function(){
+	$(document).ready(function () {
+		$(document).on('click', "#save-words", function () {
 			spam_words = new Array;
-			$(".is-tag").each(function(){
-				if($(this).hasClass('tag-red'))
-				{
+			$(".is-tag").each(function () {
+				if ($(this).hasClass('tag-red')) {
 					spam_words.push($(this).html());
 				}
 			});
-			$(this).ajaxify(
-			{
-				ajax:
-				{
+			$(this).ajaxify({
+				ajax: {
 					method: 'post',
-					data:
-					{
+					data: {
 						'spam-word': spam_words,
 						'status': status
 					},
 					abort: true,
-					success: function(e, data, x)
-					{
+					success: function (e, data, x) {
 						return true;
 					}
 				}
 			});
 		});
 
-		$(this).on('change', '#other-status', function(){
+		$(this).on('change', '#other-status', function () {
 			$(this).parent('span').children('.btn').attr("status", $(this).val());
 		});
 
-		$(document).on('click' , '.change-status', function(){
-			id     = $(this).attr("data-id");
+		$(document).on('click', '.change-status', function () {
+			id = $(this).attr("data-id");
 			status = $(this).attr("status");
 
 			console.log(status);
 
-			if(status !== "publish" || status !== "ok")
-			{
+			if (status !== "publish" || status !== "ok") {
 				$('#load-modal').click();
 				words = "";
-				$('.poll-word-' + id).each(function(){
+				$('.poll-word-' + id).each(function () {
 					var val = $(this).html();
 					console.log(val);
 					val = val.split(/\s/);
 					for (a in val) {
-						if(val[a] != '')
-						{
-							words += "<a class='is-tag'>"+val[a]+"</a>";
+						if (val[a] != '') {
+							words += "<a class='is-tag'>" + val[a] + "</a>";
 						}
 					}
 				});
@@ -125,50 +117,41 @@
 				$('#words-list').append($(words));
 
 			}
-			$(this).ajaxify(
-			{
-				ajax:
-				{
+			$(this).ajaxify({
+				ajax: {
 					method: 'post',
-					data:
-					{
+					data: {
 						'id': id,
 						'status': status
 					},
 					abort: true,
-					success: function(e, data, x)
-					{
+					success: function (e, data, x) {
 
 					}
 				}
 			});
 		});
-		$(document).on('click', '.is-tag', function(){
+		$(document).on('click', '.is-tag', function () {
 			$(this).toggleClass('tag-red');
 		});
 	});
 </script>
-{%endblock%}
-{%block head_css%}
+{%endblock%} {%block head_css%} {{parent()}}
 <style type="text/css">
-	.tag-red
-	{
+	.tag-red {
 		background: #c62828 !important;
 	}
-
 </style>
-{%endblock%}
-
-{%block modal%}
- <div class='modal' id='words-check'>
-  <div class='modal-dialog' method="post" action="{{base.url}}/account/login">
-   <h3 class='modal-title'>به کدامین کلمه فیلترش کردی؟</h3>
-   <p class='modal-body'>
-   	<div class='tags' id="words-list" ></div>
-   	<dir>
-   		<div class="try" id="save-words">save</div>
-   	</dir>
-   </p>
-  </div>
- </div>
+{%endblock%} {%block modal%}
+<div class='modal' id='words-check'>
+	<div class='modal-dialog' method="post" action="{{base.url}}/account/login">
+		<h3 class='modal-title'>به کدامین کلمه فیلترش کردی؟</h3>
+		<p class='modal-body'>
+			<div class='tags' id="words-list"></div>
+			<dir>
+				<div class="try" id="save-words">save</div>
+			</dir>
+		</p>
+	</div>
+</div>
 {%endblock%}
