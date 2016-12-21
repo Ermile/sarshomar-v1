@@ -1,7 +1,7 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main pad box">
+<div class="main pad box" id="publish">
  <form method="post">
   {%include template.progress%}
   <div class="row auto">
@@ -59,15 +59,7 @@
      <button class="btn"><span class="fa fa-link"></span></button>
     </div>
 
-
-    <div class="social-container">
-      <a href="" class="fa fa-2x fa-twitter"></a>
-      <a href="" class="fa fa-2x fa-rss"></a>
-      <a href="" class="fa fa-2x fa-facebook"></a>
-      <a href="" class="fa fa-2x fa-dribbble"></a>
-      <a href="" class="fa fa-2x fa-google-plus"></a>
-      <a href="" class="fa fa-2x fa-pinterest-p"></a>
-    </div>
+    {% include template.social %}
    </div><!-- /.span8 -->
   </div><!-- /.row -->
 

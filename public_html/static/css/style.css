@@ -476,6 +476,11 @@ li.sortable-placeholder{border:1px dashed #CCC;}
 .tree-result-list .options li>label:hover,.tree-result-list>li>label:hover,.tree-result-list>li.active>label{background-color:#0a5260;color:#F4F4F4;}
 input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
+
+/************************************************************** poll page */
+#publish .sharebox{text-align:center;margin:2em 0}
+
+
 /************************************************************** poll page */
 /* poll box */
 #poll-box{word-wrap:break-word;}
@@ -1078,18 +1083,6 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 /************************************************************** textarea */
 .textarea{width:100%;border:none;resize:none;padding:10px;margin-bottom:15px;}
-
-
-/************************************************************** social container */
-.social-container{text-align:center;margin-bottom:3em}
-.social-container .fa{width:2em;height:2em;line-height:2em;color:#fff;opacity:.9;transition:.3s;margin:0 .1em;}
-.social-container .fa:hover{opacity:1;}
-.social-container .fa-twitter{background-color:#01BBF6;}
-.social-container .fa-rss{background-color:#F8A32C;}
-.social-container .fa-facebook{background-color:#3C5A9A;}
-.social-container .fa-dribbble{background-color:#F66A9B;}
-.social-container .fa-google-plus{background-color:#242223;}
-.social-container .fa-pinterest-p{background-color:#F23434;}
 
 
 /************************************************************** other */
