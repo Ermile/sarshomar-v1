@@ -56,11 +56,11 @@ class inline_query
 			$row_result['type'] = 'article';
 			if($value['sarshomar'] == '1')
 			{
-				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/favicon.png';
+				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp_sarshomar.png';
 			}
 			else
 			{
-				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/profile.svg';
+				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp-users.png';
 			}
 			$maker = new make_view(bot::$user_id, $value);
 			$row_result['id'] =  $maker->short_link;

@@ -26,9 +26,8 @@ trait faq{
 		$get_id = array_search($faq_id, array_column(faq_text::$text, 'id'));
 		$faq = faq_text::$text[$get_id];
 
-
-		$text = "*" . $faq['title'] ."*";
-		$text .= "\n\n";
+		$text = "<strong>" . T_($faq['title']) ."</strong>";
+		$text .= "\n";
 		if(is_array($faq['text']))
 		{
 			$text_trans = [];
@@ -41,7 +40,7 @@ trait faq{
 		{
 			$text .= T_($faq['text']);
 		}
-		$text .= "\n/faq\_".$faq['id'];
+		$text .= "\n/faq_".$faq['id'];
 		$text .= "\n#" . preg_replace("[\s]", '_', T_("FAQ"));
 		$return = ["text" => $text];
 
