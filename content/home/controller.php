@@ -12,6 +12,7 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
+
 		// route contact form
 		if(\lib\router::get_url() == 'contact')
 		{
@@ -19,7 +20,7 @@ class controller extends \mvc\controller
 			return;
 		}
 
-		$reg = "/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/";
+		$reg = "/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/";
 		if(preg_match($reg, \lib\router::get_url(), $controller_name))
 		{
 			if(isset($controller_name[4]) && $controller_name[4] == 'comments')
@@ -37,6 +38,11 @@ class controller extends \mvc\controller
 		{
 			\lib\router::set_controller("\\content\\knowledge\\controller");
 			return;
+		}
+
+		if(preg_match("/^sp\_([". self::$shortURL. "]+)$/", \lib\router::get_url(), $split_url))
+		{
+			\lib\router::set_controller("\\content\\poll\\controller");
 		}
 
 

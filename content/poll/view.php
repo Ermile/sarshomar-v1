@@ -30,22 +30,57 @@ class view extends \mvc\view
 	 */
 	public function check_url($_args)
 	{
+		$shortURL = $this->controller()::$shortURL;
+		$redirect = false;
+		$url      = null;
 		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
 		{
-			if(isset($_args->match->url[0][2]))
+			if(isset($_args->match->url[0][2]) && preg_match("/^". $shortURL. "$/", $_args->match->url[0][2]))
 			{
 				if(!isset($_args->match->url[0][3]) || !isset($_args->match->url[0][4]))
 				{
 					$url = $_args->match->url[0][2];
-					$url = \lib\utility\shortURL::decode($url);
-					$url = \lib\db\polls::get_poll_url($url);
-					$this->redirector()->set_url($this->url('prefix').'/'. $url)->redirect();
+					$redirect = true;
 				}
 				else
 				{
-					return $_args->match->url[0][0];
+					$url = $_args->match->url[0][0];
+					$redirect = false;
 				}
 			}
+			elseif(isset($_args->match->url[0][1]))
+			{
+				if(preg_match("/^". $shortURL ."$/", $_args->match->url[0][1]))
+				{
+					$url = $_args->match->url[0][1];
+					$redirect = true;
+				}
+			}
+		}
+
+		if($redirect)
+		{
+			$url = \lib\utility\shortURL::decode($url);
+			$url = \lib\db\polls::get_poll($url);
+
+			$language = null;
+			if(isset($url['language']))
+			{
+				$language = \lib\define::get_current_language_string($url['language']);
+			}
+
+			$post_url = null;
+			if(isset($url['url']))
+			{
+				$post_url = $url['url'];
+			}
+
+			$new_url = trim($this->url('prefix'). $language. '/'. $post_url, '/');
+			$this->redirector()->set_url($new_url)->redirect();
+		}
+		else
+		{
+			return $url;
 		}
 	}
 

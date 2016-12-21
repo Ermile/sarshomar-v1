@@ -9,9 +9,7 @@ class controller extends \content_u\home\controller
 		// check login
 		parent::check_login();
 
-		$shortURL = "[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+";
-
-		if(preg_match("/add\/(". $shortURL. ")\/(filter|publish)$/", \lib\router::get_url(), $load))
+		if(preg_match("/add\/([". self::$shortURL. "]+)\/(filter|publish)$/", \lib\router::get_url(), $load))
 		{
 			if(isset($load[2]))
 			{
@@ -19,11 +17,11 @@ class controller extends \content_u\home\controller
 				$this->view_name    = "\\content_u\\add\\$load[2]\\view";
 				$this->display_name = "\\content_u\\add\\$load[2]\\display.html";
 
-				$this->get("filter", "filter")->ALL("/^add\/(". $shortURL. ")\/filter$/");
-				$this->post("filter")->ALL("/^add\/(". $shortURL. ")\/filter$/");
+				$this->get("filter", "filter")->ALL("/^add\/([". self::$shortURL. "]+)\/filter$/");
+				$this->post("filter")->ALL("/^add\/([". self::$shortURL. "]+)\/filter$/");
 
-				$this->get("publish", "publish")->ALL("/^add\/(". $shortURL. ")\/publish$/");
-				$this->post("publish")->ALL("/^add\/(". $shortURL. ")\/publish$/");
+				$this->get("publish", "publish")->ALL("/^add\/([". self::$shortURL. "]+)\/publish$/");
+				$this->post("publish")->ALL("/^add\/([". self::$shortURL. "]+)\/publish$/");
 			}
 		}
 
@@ -49,8 +47,8 @@ class controller extends \content_u\home\controller
 		// for add survey
 		// $this->get("survey", "survey")->ALL("/^add\/(.*)$/");
 
-		$this->post("add")->ALL("/^add\/(". $shortURL. ")$/");
-		$this->get("edit", "edit")->ALL("/^add\/(". $shortURL. ")$/");
+		$this->post("add")->ALL("/^add\/([". self::$shortURL. "]+)$/");
+		$this->get("edit", "edit")->ALL("/^add\/([". self::$shortURL. "]+)$/");
 	}
 }
 ?>

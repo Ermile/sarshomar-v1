@@ -6,8 +6,9 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$this->get("poll","poll")->ALL("/^\\$\/(([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)(\/(.+))?)$/");
-		$this->post("save_answer")->ALL("/^\\$\/[23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+\/(.*)$/");
+		$this->get("poll","poll")->ALL("/^sp\_([". self::$shortURL. "]+)$/");
+		$this->get("poll","poll")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
+		$this->post("save_answer")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
 	}
 }
 ?>

@@ -8,6 +8,7 @@ class view extends \content_u\home\view
 
 	function config()
 	{
+
 		parent::config();
 
 		// add all template of question into new file
@@ -121,7 +122,7 @@ class view extends \content_u\home\view
 		// only show with referrer
 		if(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], '@/add') !== false)
 		{
-			$reg = "/@\/add\/([23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]+)$/";
+			$reg = "/@\/add\/([". $this->controller()::$shortURL ."]+)$/";
 			if(preg_match($reg, $_SERVER['HTTP_REFERER'], $split))
 			{
 				if(isset($split[1]))
