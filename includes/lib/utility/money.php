@@ -107,5 +107,104 @@ trait money
 		'language'         => 60,
 		'industry'         => 70,
 	];
+
+
+	/**
+	 * gift value
+	 *
+	 * @var        array
+	 */
+	private static $gift =
+	[
+		100    => 105,
+		1000   => 1100,
+		5000   => 10000,
+		10000  => 13000,
+		20000  => 28000,
+		50000  => 75000,
+		100000 => 160000,
+	];
+
+	/**
+	 * the gift tilt
+	 *
+	 * @var        array
+	 */
+	private static $gift_tilt = [];
+
+
+	/**
+	 * process gift tilt
+	 */
+	private static function gift_tilt()
+	{
+		$end = end(self::$gift);
+
+		foreach (self::$gift as $x => $y)
+		{
+			if($y === $end)
+			{
+				break;
+			}
+
+			$next = next(self::$gift);
+			$x1 = $x;
+			$x2 = array_search($next, self::$gift);
+
+			$y1 = $y;
+			$y2 = $next;
+
+			$tilt = 0;
+			if(($x2 - $x1) > 0)
+			{
+				$tilt = ($y2 - $y1) / ($x2 - $x1);
+			}
+
+			$tilt = round($tilt, 5);
+			self::$gift_tilt[$x1] = $tilt;
+		}
+
+		$y2 = end(self::$gift);
+		$y1 = prev(self::$gift);
+
+		$x1 = array_search($y1, self::$gift);
+		$x2 = array_search($y2, self::$gift);
+
+		$tilt = 0;
+		if(($x2 - $x1) > 0)
+		{
+			$tilt = ($y2 - $y1) / ($x2 - $x1);
+		}
+
+		$tilt = round($tilt, 5);
+		self::$gift_tilt[$x2] = $tilt;
+	}
+
+
+	/**
+	 * process gift money
+	 *
+	 * @param      <type>  $_money  The money
+	 */
+	public static function gift($_money)
+	{
+		$_money = floatval($_money);
+
+		if(empty(self::$gift_tilt))
+		{
+			self::gift_tilt();
+		}
+
+		$prev_tilt = null;
+		foreach (self::$gift_tilt as $money => $tilt)
+		{
+			if($_money < $money)
+			{
+				return $_money * $prev_tilt;
+				break;
+			}
+			$prev_tilt = $tilt;
+		}
+	}
 }
 ?>
