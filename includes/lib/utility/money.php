@@ -125,16 +125,33 @@ trait money
 		100000 => 160000,
 	];
 
+
 	/**
 	 * the gift tilt
-	 *
-	 * @var        array
+	 * process by self::gift_tilt()
 	 */
 	private static $gift_tilt = [];
 
 
 	/**
 	 * process gift tilt
+	 * tilt[=M] in math
+	 * y
+	 * |
+	 * |
+	 * |        _/
+	 * |     b_/
+	 * |   a_/
+	 * | __/
+	 * |/______________ x
+	 * 0
+	 * ********
+	 * M (a --> b) = (yb - ya) / (xb - xa);
+	 * y - ya = M ( x - xa)
+	 * ********
+	 * lenght of [a --> b] = sqr((xb-xa)^2 + (yb-ya)^2)
+	 * ********
+	 *
 	 */
 	private static function gift_tilt()
 	{
@@ -182,7 +199,23 @@ trait money
 
 
 	/**
-	 * process gift money
+	 * process gift tilt
+	 * tilt[=M] in math
+	 * y
+	 * |
+	 * |
+	 * |        _/
+	 * |     b_/
+	 * |   a_/
+	 * | __/
+	 * |/______________ x
+	 * 0
+	 * ********
+	 * M (a --> b) = (yb - ya) / (xb - xa);
+	 * y - ya = M ( x - xa)
+	 * ********
+	 * lenght of [a --> b] = sqr((xb-xa)^2 + (yb-ya)^2)
+	 * ********
 	 *
 	 * @param      <type>  $_money  The money
 	 */
@@ -195,16 +228,27 @@ trait money
 			self::gift_tilt();
 		}
 
-		$prev_tilt = null;
+		$prev_tilt = 1;
+		reset(self::$gift);
+		$start = key(self::$gift);
+		$x1    = end(self::$gift);
+		$y1    = array_search($x1, self::$gift);
+		$end   = $y1;
+		$y     = $_money;
+
 		foreach (self::$gift_tilt as $money => $tilt)
 		{
-			if($_money < $money)
+			if(($_money < $money || $money >= $end) && $_money >= $start)
 			{
-				return $_money * $prev_tilt;
+
+				$y = $prev_tilt * ($_money - $x1) + $y1;
 				break;
 			}
+			$x1        = $money;
+			$y1        = self::$gift[$money];
 			$prev_tilt = $tilt;
 		}
+		return $y;
 	}
 }
 ?>

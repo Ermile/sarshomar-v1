@@ -46,6 +46,11 @@ class model extends \content_u\home\model
 	 */
 	function post_add($_args)
 	{
+		if(!$this->login("id"))
+		{
+			debug::error(T_("Please login to insert a poll"));
+			return;
+		}
 
 		/**
 		 * update the poll or survey
