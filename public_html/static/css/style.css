@@ -1163,8 +1163,10 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 /************************************************************** privacy page */
 #privacy .special-heading,#about .special-heading{color:#6E6E6E;font-size:30px}
+.main.pad.text-base{padding-top:5em}
 .text-base h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAAAAA;line-height:2.0em;font-weight:bold}
 .rtl .text-base h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
+.text-base .special-heading{margin-bottom:2em}
 .text-base .content{padding:0 3em}
 .text-base .content p{color:#6E6F6F}
 p.em{background-color:#EFEFEF;padding:1em 1em;text-align:center;font-weight:bold;position:relative}
@@ -1172,9 +1174,9 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 
 
 /************************************************************** about page */
-#about-bottom{padding:4em;background-color:#FFFFFF}
+#about-bottom{padding:50px;background-color:#FFFFFF}
 #about-bottom .span4{text-align:center}
-#about-bottom img{margin-bottom:1em}
+#about-bottom img{margin-bottom:1em;max-width:60%}
 #about-bottom h3{color:#00667A;font-weight:bold}
 #about-bottom p{color:#AAAAAA}
 #about-bottom a{color:#00667A;font-weight:bold}
