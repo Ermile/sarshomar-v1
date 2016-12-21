@@ -1189,3 +1189,7 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 #about-bottom h3{color:#00667A;font-weight:bold}
 #about-bottom p{color:#AAAAAA}
 #about-bottom a{color:#00667A;font-weight:bold}
+
+ul.list li{position:relative;list-style:none}
+ul.list li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:1em;left:-2em}
+.rtl ul.list li::before{left:auto;right:-2em}
