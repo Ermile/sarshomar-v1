@@ -100,7 +100,7 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0px 8px;float:left;}
 .rtl nav.breadcrumb>a+a:before{float:right;}
 
 /* financial box */
-header #financial-box{margin:0 1em;float:right;}
+header #financial-box{margin:0 1em;float:right;height:30px}
 .rtl header #financial-box{float:left;}
 header #financial-box .total,header #financial-box .cost{display:inline-block;padding:5px;position:relative;min-width:15em;}
 header #financial-box .total:hover,header #financial-box .cost:hover{background-color:#EFEFEF;}
