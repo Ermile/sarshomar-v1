@@ -4,29 +4,71 @@
 		<div class="row auto">
 			<div id="load-modal" data-modal="words-check"></div>
 			{%for key, value in poll_list%}
-			<div class="poll-card {{value.type}}">
+			<div class="poll-card border-{{value.status }} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
 				<div class="poll-content">
 					<div class="poll-content-top">
 						<div class="poll-question">
-							<h6 class="poll-word-{{value.id}} {%if value.meta.review == 'ok' %}accepted{%endif%} ">
-							<a href="{{url.base}}/{{value.url}}">{{value.title|raw}}</a>
+							<h6 class="poll-word-{{value.id}}">
+								<a href="{{url.base}}/{{value.url}}">{{value.title|raw}}</a>
 							</h6>
-							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{%trans "edit" %}</a> |
-							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter">{%trans "filter page" %}</a> |
-							<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish">{%trans "publish page" %}</a>
 							<div class="poll-question-options">
 								<ul>
 									{%for k, v in value.meta.opt%}
-										<li class="poll-word-{{value.id}}">{{v.txt}}</li>
+									<li class="poll-word-{{value.id}}">{{v.txt}}</li>
 									{%endfor%}
 									<div class="clearfix"></div>
 								</ul>
 							</div>
 						</div>
 						<div class="poll-management-options">
-							<button class="fa fa-check accept change-status btn btn-success btn-save-option" title="OK" data-id="{{value.id}}" status="ok"></button>
-							<button class="fa fa-times reject change-status btn btn-danger btn-save-option" title="Spam" data-id="{{value.id}}" status="spam"></button>
-							<select id="other-status" class="change-poll-status">
+							<div class="btn-group">
+								<button class="fa fa-check accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok"></button>
+								<button class="fa fa-times reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam"></button>
+								<button class="fa fa-ellipsis-h btn btn-more dropdown">
+							<div class="dropdown-content">
+								<ul>
+									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{%trans "edit" %}</a></li>
+									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter">{%trans "filter page" %}</a></li>
+									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish">{%trans "publish page" %}</a></li>
+								</ul>
+									 
+							
+								</div>
+							</button>
+							</div>
+						</div>
+					</div>
+					<div class="poll-content-bottom">
+						<div class="row auto">
+							<div class="span6">
+								<span class="label date hint--top hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
+						{% if site.currentlang == 'fa' %}
+							{{value.date_modified|jdate("Y-m-d")|persian}}
+						{%else%}
+							{{value.date_modified|date("Y-m-d")}}
+						{%endif%}</span>
+								<span class="label label-lang">{% trans "language" %}	:	{{value.language }} </span>
+								<span class="label label-status label-{{value.status }}">{% trans "status" %}	:	{{value.status }} </span>
+								<span class="label label-parent">{% trans "parent" %}	:	{{value.parent }} </span>
+								<span class="label label-sarshomar">{% trans "sarshomar" %}	:	{{value.sarshomar }} </span>
+								<span class="label label-survey">{% trans "survey" %}	:	{{value.survey }} </span>
+								<span class="label label-gender">{% trans "gender" %}	:	{{value.gender }} </span>
+								<span class="label label-privacy">{% trans "privacy" %}	:	{{value.privacy }} </span>
+								<span class="label label-total">{% trans "total" %}	:	{{value.total }} </span>
+							</div>
+							<div class="span3 stars">
+								<span class="fa fa-star fa-lg star" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star" aria-hidden="true"></span>
+								<span class="fa fa-star fa-lg star" aria-hidden="true"></span>
+							</div>
+							<div class="span3">
+								<div class=" value-options">
+								<input type="text" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
+								<button class="btn fa fa-check confirm-poll-status confirm-poll-value" id="save-vip" data-id="{{value.id}}">
+							</button>
+								<select id="other-status" class="change-poll-status">
 								<option value="" disabled selected>Select</option>
 								<option value="stop">stop</option>
 								<option value="pause">pause</option>
@@ -46,38 +88,10 @@
 								<option value="pornography">pornography</option>
 								<option value="other">other</option>
 							</select>
-							<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
+								<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
 							</button>
-						</div>
-					</div>
-					<div class="poll-content-bottom">
-						<div><span class="date hint--right hint--success" data-hint="{{value.date_modified}}">
-						{% if site.currentlang == 'fa' %}
-							{{value.date_modified|jdate("Y-m-d")|persian}}
-						{%else%}
-							{{value.date_modified|date("Y-m-d")}}
-						{%endif%} |
-						{% trans "language" %}	: {{value.language }} |
-						{% trans "status" %}	: {{value.status }} |
-						{% trans "parent" %}	: {{value.parent }} |
-						{% trans "sarshomar" %}	: {{value.sarshomar }} |
-						{% trans "survey" %}	: {{value.survey }} |
-						{% trans "gender" %}	: {{value.gender }} |
-						{% trans "privacy" %}	: {{value.privacy }} |
-						{% trans "total" %}		: {{value.total }} |
-						</span></div>
-
-						<div class="stars">
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-								<span class="fa fa-star fa-lg star active" aria-hidden="true"></span>
-						</div>
-						<div>
-							<input type="text" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
-							<button class="btn fa fa-check confirm-poll-status" id="save-vip" data-id="{{value.id}}">
-							</button>
+							</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -117,9 +131,9 @@
 			$(this).parent('span').children('.btn').attr("status", $(this).val());
 		});
 
-		$(document).on('click','#save-vip', function(){
+		$(document).on('click', '#save-vip', function () {
 			id = $(this).attr("data-id");
-			value = $("#vip-value-" + id ).val();
+			value = $("#vip-value-" + id).val();
 			$(this).ajaxify({
 				ajax: {
 					method: 'post',
@@ -128,8 +142,7 @@
 						'vip-value': value
 					},
 					abort: true,
-					success: function (e, data, x)
-					{
+					success: function (e, data, x) {
 
 					}
 				}
@@ -178,18 +191,13 @@
 		});
 	});
 </script>
-{%endblock%}
-
-{%block head_css%}
-{{parent()}}
+{%endblock%} {%block head_css%} {{parent()}}
 <style type="text/css">
 	.tag-red {
 		background: #c62828 !important;
 	}
 </style>
-{%endblock%}
-
-{%block modal%}
+{%endblock%} {%block modal%}
 <div class='modal' id='words-check'>
 	<div class='modal-dialog' method="post" action="{{base.url}}/account/login">
 		<h3 class='modal-title'>به کدامین کلمه فیلترش کردی؟</h3>

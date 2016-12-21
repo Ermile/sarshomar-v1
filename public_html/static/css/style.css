@@ -1133,27 +1133,43 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 /************************************************************** poll management */
 .poll-management {margin: 2em 0;width: 100%;}
 .poll-management .poll-content-top {display: flex;flex-direction: row;justify-content: space-between;}
-.poll-management .poll-content-bottom {display: flex;justify-content: space-between;padding: 1em;background: #FAFAFA;border-top: 1px solid #EEEEEE;}
-.poll-management .poll-card {border-right: 4px solid #37aaa7;margin-bottom: 2em;}
+.poll-management .poll-content-bottom {padding: 1em;background: #FAFAFA;border-top: 1px solid #EEEEEE;}
+.poll-management .poll-card {border-right: 4px solid #E0E0E0;margin-bottom: 2em;}
 .poll-management .poll-card .poll-content-top { padding: 1em;background: #fff;}
 .poll-management .poll-question-options ul li {float: right;list-style-type: decimal;margin-left: 1em;}
 .poll-management .poll-management-options {display: flex;align-items: center;}
-.poll-management .btn-save-option {width: 30px;height: 30px;margin-left: 1em;border-radius: 50%;border: none;}
 .poll-management .btn {cursor: pointer;}
-.poll-management .btn-success {background: #00AF4C;color: #fff;}
-.poll-management .btn-danger {background: #E96914;color: #fff;}
-.poll-management .change-poll-status {border: 1px solid #E0E0E0;border-left: 0;height: 25px;border-radius: 0 4px 4px 0;}
-.poll-management .confirm-poll-status {height: 25px;border: 1px solid #E0E0E0;border-right: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 4px 0 0 4px;}
-.poll-management .poll-value {height: 20px;border: 1px solid #E0E0E0;border-radius: 4px;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center;}
+.poll-management .btn-group .btn {width: 30px;height: 25px;border: none;float: right;text-align: center;line-height: 25px;}
+.poll-management .btn-group .btn:first-child {border-radius: 0 4px 4px 0;}
+.poll-management .btn-group .btn:last-child {border-radius:4px 0 0 4px}
+.poll-management .btn-success {background: #80CBC4;color: rgba(0, 0, 0, 0.43);}
+.poll-management .btn-danger {background: #EF9A9A;color: rgba(0, 0, 0, 0.43);}
+.poll-management .btn-more {background: #B0BEC5;color: rgba(0, 0, 0, 0.43);}
+.poll-management .change-poll-status {float:right;border: 1px solid #E0E0E0;border-left: 0;height: 20px;border-radius: 0 4px 4px 0;}
+.poll-management .confirm-poll-status {float: right;height: 20px;border: 1px solid #E0E0E0;border-right: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 4px 0 0 4px;}
+.poll-management .poll-value {float: right;height: 20px;border: 1px solid #E0E0E0;border-radius: 0 4px 4px 0;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center; border-left: none;}
+.poll-management .confirm-poll-value {margin-left: 1em}
+.poll-question a {color: #607D8B;}
 .poll-management .poll-question h6 {font-size: 1.2em;}
 .poll-management .poll-question h6.accepted a {color: #009688;}
 .poll-management .poll-value::-webkit-input-placeholder {text-align: center;color: #9E9E9E;}
 .poll-management .poll-value:-moz-placeholder {text-align: center;color: #9E9E9E;}
 .poll-management .poll-value::-moz-placeholder {text-align: center;color: #9E9E9E;}
 .poll-management .poll-value:-ms-input-placeholder {text-align: center;color: #9E9E9E;}
+.poll-management .stars {text-align: center;}
+.poll-management .star {color: #9E9E9E}
 .poll-management .star.active {color: #E2B31E}
-
-
+.poll-management .star:hover {color: #E2B31E; cursor: pointer;}
+.poll-management .value-options {float: left;}
+.poll-management .dropdown {position: relative;display: inline-block;}
+.poll-management .dropdown-content {display: none; cursor: default;font-family: iransans;position: absolute;background-color: #b0bec5;min-width: 115px;z-index: 1;left: 0;text-align: right;border-radius: 4px;}
+.poll-management .dropdown-content a {color: #fff; padding: 1px 4px;}
+.poll-management .dropdown-content a:hover {color: rgba(0, 0, 0, 0.43);}
+.poll-management .dropdown:hover .dropdown-content {display: block;}
+.poll-management .label {background: #B0BEC5;margin-left: 1em;padding: 1px 4px;}
+.poll-management .label-publish{background: #4CAF50;}
+.poll-management .border-publish{border-color: #4CAF50;}
+.poll-management .border-spam{border-color: #F44336;}
 /************************************************************** privacy page */
 #privacy .special-heading,#about .special-heading{color:#6E6E6E;font-size:30px}
 .main.pad.text-base{padding-top:5em}
