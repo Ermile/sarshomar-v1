@@ -28,8 +28,23 @@ class message
 		{
 			$attachment = \lib\db\polls::get_poll($this->class->query_result['meta']['attachment_id']);
 			$url = \lib\router::$base;
-			$url .= preg_replace("/^.*\/public_html/", '', $attachment['meta']['url']);
-			$title = '<a href="'.$url.'">​​</a>' . $title;
+			$url .= preg_replace("/^.*\/public_html\//", '/', $attachment['meta']['url']);
+			switch ($this->class->query_result['meta']['data_type']) {
+				case 'photo':
+					$emoji = '🖼';
+					break;
+				case 'video':
+					$emoji = '📹';
+					break;
+				case 'audio':
+					$emoji = '🔊';
+					break;
+
+				default:
+					$emoji = '📝';
+					break;
+			}
+			$title = '<a href="'.$url.'">​​</a>' . $title ."\n" . '<a href="'.$url.'">'. $emoji . T_('File') .'</a>';
 		}
 		$this->message['title'] = $title;
 	}
@@ -61,7 +76,7 @@ class message
 			$poll_list .= $value['emoji'] . ' ' . $value['text'];
 			if($_add_count)
 			{
-				$poll_list .= ' | ' . utility::italic($value['answer_count'] . ' ' . T_("Answer"));
+				$poll_list .= ' | ' . utility::italic($value['answer_count'] . ' ' . T_("Person"));
 			}
 			if(end($this->poll_list) !== $value)
 			{
@@ -158,8 +173,8 @@ class message
 				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text = T_("Sum") . '(' . $count['sum'] .') ';
-				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
+				$text = utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . ' ' . $count['invalid']);
+				$text .= ' '. T_("From") . ' ' .$count['sum'] .' ' . T_("Person");
 				$this->message['count_poll'] = $text;
 				break;
 			case 'sum_valid':
