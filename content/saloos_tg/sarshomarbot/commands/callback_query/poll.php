@@ -146,8 +146,8 @@ class poll
 		$insert['post_meta'] = ['port' => 'telegram'];
 		if($file_id)
 		{
-			$insert['post_meta']['attachment_id'] 	= $file_id;
-			$insert['post_meta']['data_type'] 		= $file_id;
+			$insert['post_meta']['attachment_id'] 	= $file_id->get_result();
+			$insert['post_meta']['data_type'] 		= session::get('poll', 'file_type');
 		}
 
 		handle::send_log($insert);
