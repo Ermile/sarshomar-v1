@@ -143,11 +143,11 @@ class poll
 			'post_privacy'	=> 'private',
 			'post_language'	=> language::check(true)
 			];
-		$insert['meta'] = ['port' => 'telegram'];
+		$insert['post_meta'] = ['port' => 'telegram'];
 		if($file_id)
 		{
-			$insert['meta']['attachment_id'] 	= $file_id;
-			$insert['meta']['data_type'] 		= $file_id;
+			$insert['post_meta']['attachment_id'] 	= $file_id;
+			$insert['post_meta']['data_type'] 		= $file_id;
 		}
 
 		handle::send_log($insert);
