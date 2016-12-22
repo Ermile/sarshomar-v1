@@ -6,10 +6,10 @@
 
 {%block body%}
  <div class="container">
-  {% include template.header %}
+  {%include template.header%}
 
   <div class="wrapper" data-xhr='wrapper' {%if notlogin %} data-modal='not-login' {%endif%}>
-	{%block content%}{%endblock%}
+ {%block content%}{%endblock%}
   </div>
 
   {% include template.register %}
@@ -17,19 +17,23 @@
 {% include template.footer %}
 
 {%block modal%}
-{% if not login%}
- <div class='modal' id='not-login'>
-  <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
-   <h3 class='modal-title'>{%trans%}LOGIN OR TRY{%endtrans%}</h3>
+ {% if not login%}
+  <div class='modal' id='not-login'>
+   <form class='modal-dialog' method='post' action="{{base.url}}/account/login">
+   <h3 class='modal-title'>{%trans "Login or Try"%}</h3>
    <div class='modal-body'>
-    <input type="text" name="mobile" placeholder="mobile">
-    <br>
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" class='button' value='{%trans "Login"%}'>
-    <div class='or' data-text='{%trans "or"%}'></div>
-    <a href="{{base.url}}/@?inspection=inestimable">
-      <input type='submit' class='button positive' data-ok value='{%trans "Try Sarshomar"%}' />
-    </a>
+    <div class="element no-pad ltr">
+     <label class="title small" for="mobile">{%trans "Mobile"%}</label>
+     <input class="input" type="text" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}'>
+    </div>
+    <div class="element no-pad ltr">
+     <label class="title small" for="password">{%trans "Password"%}</label>
+     <input class="input" type="password" name="password" id="password" placeholder='{%trans "Password"%}'>
+    </div>
+    <div class="row auto btn-container center">
+     <button class="btn" type="submit">{%trans "Login"%}</button>
+     <a class="btn primary" href="{{base.url}}/@?inspection=inestimable">{%trans "Try Sarshomar"%}</a>
+    </div>
    </div>
   </form>
  </div>
@@ -39,7 +43,7 @@
 {%endblock%}
 
 {%block try_before_register_btn%}
-   {%if url.tld == 'dev' and not login%}
-      <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
-   {%endif%}
+ {%if url.tld == 'dev' and not login%}
+  <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
+ {%endif%}
 {% endblock %}
