@@ -18,39 +18,36 @@ class polls
 
 	public static $fields =
 	"
-			posts.id						AS 'id',
-			posts.post_language 			AS 'language',
-			posts.post_title 				AS 'title',
-			posts.post_slug 				AS 'slug',
-			posts.post_url 					AS 'url',
-			posts.post_content 				AS 'content',
-			posts.post_type 				AS 'type',
-			posts.post_comment 				AS 'comment',
-			posts.post_meta 				AS 'meta',
-			posts.post_count 				AS 'count',
-			posts.post_order 				AS 'order',
-			posts.post_status 				AS 'status',
-			posts.post_parent 				AS 'parent',
-			posts.post_publishdate 			AS 'publishdate',
-			posts.user_id 					AS 'user_id',
-			posts.filter_id 				AS 'filter_id',
-			posts.post_sarshomar			AS 'sarshomar',
-			posts.post_survey 				AS 'survey',
-			posts.post_gender				AS 'gender',
-			posts.post_privacy				AS 'privacy',
-			posts.date_modified  	    	AS 'date_modified',
-			IFNULL(ranks.comment,0)   		AS 'comment_count',
-			IFNULL(ranks.vot,0)   			AS 'vot',
-			IFNULL(ranks.like,0)   			AS 'like',
-			IFNULL(ranks.faiv,0)   			AS 'faiv',
-			IFNULL(ranks.vip,0)   			AS 'vip',
-			pollstats.id 		     		AS 'pollstatsid',
-			IFNULL(pollstats.total,0)		AS 'total'
+			posts.id						AS `id`,
+			posts.post_language 			AS `language`,
+			posts.post_title 				AS `title`,
+			posts.post_slug 				AS `slug`,
+			posts.post_url 					AS `url`,
+			posts.post_content 				AS `content`,
+			posts.post_type 				AS `type`,
+			posts.post_comment 				AS `comment`,
+			posts.post_meta 				AS `meta`,
+			posts.post_count 				AS `count`,
+			posts.post_order 				AS `order`,
+			posts.post_status 				AS `status`,
+			posts.post_parent 				AS `parent`,
+			posts.post_publishdate 			AS `publishdate`,
+			posts.user_id 					AS `user_id`,
+			posts.filter_id 				AS `filter_id`,
+			posts.post_sarshomar			AS `sarshomar`,
+			posts.post_survey 				AS `survey`,
+			posts.post_gender				AS `gender`,
+			posts.post_privacy				AS `privacy`,
+			posts.post_datatype				AS `datatype`,
+			posts.post_answertype			AS `answertype`,
+			posts.date_modified  	    	AS `date_modified`,
+			IFNULL(ranks.comment,0)   		AS `comment_count`,
+			IFNULL(ranks.like,0)   			AS `like`,
+			IFNULL(ranks.faiv,0)   			AS `faiv`,
+			IFNULL(ranks.vip,0)   			AS `vip`,
+			IFNULL(ranks.vot,0)   			AS `total`
 		FROM
 			posts
-		LEFT JOIN pollstats ON
-			pollstats.post_id = posts.id AND
-			pollstats.type    = 'valid'
 		LEFT JOIN ranks ON ranks.post_id = posts.id
 	";
 
