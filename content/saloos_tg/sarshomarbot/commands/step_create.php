@@ -140,7 +140,7 @@ class step_create
 			$inline_keyboard = [[
 			utility::inline(T_("Discard"), 'poll/discard'),
 			]];
-			if(count($poll_answers) > 1)
+			if(count($poll_answers) >= 1)
 			{
 				$inline_keyboard[0][] = utility::inline(T_("Save"), 'poll/save');
 			}
@@ -151,7 +151,7 @@ class step_create
 		}
 		else
 		{
-			$poll = ['title' => is_null($poll_title)? T_('Empty question') : $poll_title];
+			$poll = ['title' => is_null($poll_title)? T_('Please enter question title') : $poll_title];
 			$maker = new make_view(bot::$user_id, $poll);
 			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 			$maker->message->add_title(false);
