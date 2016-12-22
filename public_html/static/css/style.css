@@ -1170,15 +1170,16 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .poll-management .border-spam{border-color: #F44336;}
 
 
-/************************************************************** privacy page */
-#privacy .special-heading,#about .special-heading,#terms .special-heading{color:#6E6E6E;font-size:30px}
-.main.pad.text-base{padding-top:5em}
-.text-base h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAAAAA;line-height:2.0em;font-weight:bold}
-.rtl .text-base h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
-.text-base .special-heading{margin-bottom:2em}
-.text-base .content{padding:0 3em}
-.text-base .content p,.text-base .content .list{color:#6E6F6F}
-p.em{background-color:#EFEFEF;padding:1em 1em;text-align:center;font-weight:bold;position:relative}
+/************************************************************** text based pages */
+.main.pad.text-based{padding-top:5em}
+.text-based .special-heading{color:#6E6E6E;font-size:30px}
+.text-based h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAAAAA;line-height:2.0em;font-weight:bold;margin-bottom:2em}
+.rtl .text-based h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
+.text-based .special-heading{margin-bottom:2em}
+.text-based .content{padding:0 3em;margin-bottom:5em}
+.text-based .content p,.text-based .content .list{color:#6E6F6F;line-height:2em}
+
+p.em{position:relative;background-color:#EFEFEF;padding:1.5em 3em;text-align:center;font-weight:bold;margin-bottom:3em}
 p.em::before{content:'';position:absolute;width:10px;height:4px;background-color:#E5A428;bottom:0;right:0;left:0;width:50%;margin:auto}
 
 
@@ -1190,9 +1191,9 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 #about-bottom p{color:#AAAAAA}
 #about-bottom a{color:#00667A;font-weight:bold}
 
-ul.list li{position:relative;list-style:none}
-ul.list li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:1em;left:-2em}
-.rtl ul.list li::before{left:auto;right:-2em}
+.text-based ul li{position:relative;list-style:none;font-size:1.5em;line-height:2em;margin-bottom:1.5em;text-align:justify}
+.text-based ul li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:1em;left:-2em}
+.rtl .text-based ul li::before{left:auto;right:-2em}
+
 
 /************************************************************** fix and overwrite */
-/*.rtl .modal-dialog .btn-container::before{right:0}*/
