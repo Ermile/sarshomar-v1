@@ -24,6 +24,13 @@ class message
 		{
 			$title = html_entity_decode($this->class->query_result['title']);
 		}
+		if(isset($this->class->query_result['meta']) && isset($this->class->query_result['meta']['attachment_id']))
+		{
+			$attachment = \lib\db\polls::get_poll($this->class->query_result['meta']['attachment_id']);
+			$url = \lib\router::$base;
+			$url .= preg_replace("/^.*\/public_html/", '', $attachment['meta']['url']);
+			$title = '<a href="'.$url.'">​​</a>' . $title;
+		}
 		$this->message['title'] = $title;
 	}
 

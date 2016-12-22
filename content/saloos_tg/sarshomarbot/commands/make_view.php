@@ -47,13 +47,18 @@ class make_view
 
 	public function make()
 	{
+		$disable_web_page_preview = true;
+		if(isset($this->query_result['meta']) && isset($this->query_result['meta']['attachment_id']))
+		{
+			$disable_web_page_preview = false;
+		}
 		return [
 			"text" => $this->message->make(),
 			'reply_markup' => [
 				'inline_keyboard' => $this->inline_keyboard->make()
 			],
 			'parse_mode' 				=> 'HTML',
-			'disable_web_page_preview' 	=> true
+			'disable_web_page_preview' 	=> $disable_web_page_preview
 		];
 	}
 

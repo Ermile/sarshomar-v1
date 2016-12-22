@@ -79,8 +79,6 @@ class ask
 
 			$return = $maker->make();
 
-			handle::send_log($skip_type);
-
 			$on_expire = $maker->inline_keyboard->get_guest_option([$skip_type => false, 'poll_option' => true]);
 			if($maker->query_result['status'] == 'publish')
 			{
@@ -184,7 +182,10 @@ class ask
 			$on_edit->text 				= $maker->message->make();
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
-
+			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
+			{
+				$on_edit->disable_web_page_preview = false;
+			}
 			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
 
 			if(count($_data_url) > 4)
