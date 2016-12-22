@@ -236,7 +236,7 @@ footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 #customers-box .customers-container{width:80%;margin:0 auto;}
 #customers-box .customer h3{padding-top:2em;}
 #customers-box .customer h3 a{color:#0C7C78;}
-#customers-box .customer img{width:100%;height:auto;}
+#customers-box .customer img{width:100%;max-width:250px;height:auto;}
 #customers-box .customer p{color:#adadad;}
 #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right;}
 .rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:left;}
@@ -248,7 +248,7 @@ footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 
 /************************************************************** features box */
 #features-box{padding:50px;text-align:center;}
-#features-box img{max-width:60%;margin:0 auto;margin-bottom:2em;}
+#features-box img{width:100%;max-width:250px;margin:0 auto;margin-bottom:2em;}
 #features-box h4{font-size:1.8em;font-weight:bold;margin-bottom:.5em;}
 #features-box h4 a{color:#0C7C78;}
 #features-box p{color:#AAAAAA;margin:0 auto;font-size:1.4em;width:90%;}
@@ -1186,10 +1186,12 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 /************************************************************** about page */
 #about-bottom{padding:50px;background-color:#FFFFFF}
 #about-bottom .span4{text-align:center}
-#about-bottom img{margin-bottom:1em;max-width:60%}
+#about-bottom img{margin-bottom:1em;width:100%;max-width:250px}
 #about-bottom h3{color:#00667A;font-weight:bold}
 #about-bottom p{color:#AAAAAA}
-#about-bottom a{color:#00667A;font-weight:bold}
+#about-bottom a{position:relative;color:#00667A;font-weight:bold;font-size:1.2em}
+/*#about-bottom a::before{content:'';position:absolute;width:100%;height:2px;background-color:#00667A;left:0;bottom:-5px;opacity:.2;transition:all .3}*/
+#about-bottom a:hover,#about-bottom a:focus{text-decoration:underline}
 
 .text-based ul li{position:relative;list-style:none;font-size:1.5em;line-height:2em;margin-bottom:1.5em;text-align:justify}
 .text-based ul li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:1em;left:-2em}
