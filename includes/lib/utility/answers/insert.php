@@ -26,7 +26,7 @@ trait insert
 		// 	'answers' =>
 		// 		[
 		// 			'txt'   => 'answer one',
-		// 			'type'  => 'audio',
+		// 			'type'  => 'audio'|'emoji',
 		// 			'desc'  => 'description',
 		// 			'true'  => 'true|false',
 		// 			'score' => 10

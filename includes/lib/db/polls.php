@@ -38,8 +38,6 @@ class polls
 			posts.post_survey 				AS `survey`,
 			posts.post_gender				AS `gender`,
 			posts.post_privacy				AS `privacy`,
-			posts.post_datatype				AS `datatype`,
-			posts.post_answertype			AS `answertype`,
 			posts.date_modified  	    	AS `date_modified`,
 			IFNULL(ranks.comment,0)   		AS `comment_count`,
 			IFNULL(ranks.like,0)   			AS `like`,

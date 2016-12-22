@@ -133,7 +133,7 @@ class model extends \content_u\home\model
 		$language = utility::post("language");
 		if($language === '' || !$language)
 		{
-			$language = null;
+			$language = \lib\define::get_language();
 		}
 
 		$update_posts =

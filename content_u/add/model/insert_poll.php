@@ -74,13 +74,22 @@ trait insert_poll
 		{
 			$publish = 'awaiting';
 			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"));
-			\lib\debug::msg('spam', \lib\db\words::$spam);
+			// plus the userrank of usespamword
+			\lib\db\userranks::plus($this->login('id'), 'usespamword');
+		}
+
+		// get the insert id by check sarshomar permission
+		// when not in upldate mode
+		$insert_id = null;
+		if(!$this->update_mode)
+		{
+			$insert_id = $this->get_poll_id();
 		}
 
 		// ready to inset poll
 		$args =
 		[
-			'id'			 => $this->get_poll_id(),
+			'id'			 => $insert_id,
 			'user_id'        => $this->login('id'),
 			'post_title'     => $title,
 			'post_type'      => $poll_type,
@@ -102,6 +111,7 @@ trait insert_poll
 		{
 			// in update mode we update the poll
 			$poll_id = $this->poll_id;
+			array_shift($args);
 			\lib\db\polls::update($args, $this->poll_id);
 		}
 

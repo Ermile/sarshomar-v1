@@ -46,19 +46,22 @@ class model extends \content_u\home\model
 	 */
 	function post_add($_args)
 	{
+		// check user id
 		if(!$this->login("id"))
 		{
 			debug::error(T_("Please login to insert a poll"));
 			return;
 		}
 
-		/**
-		 * update the poll or survey
-		 */
-		if($this->check_poll_url($_args))
+		$answers_in_post = $this->answers_in_post();
+		if(utility::post("title") == '' && empty($answers_in_post['answers']))
 		{
-			$this->update_mode = true;
-			$this->poll_id = $this->check_poll_url($_args, "decode");
+			// if we not in survey we have error for title and answers
+			if(!$this->check_poll_url($_args))
+			{
+				debug::error(T_("You must complete title or answers"), ['title', 'answer1', 'answer2']);
+				return;
+			}
 		}
 
 		// check sarshoamr knowlege permission
@@ -69,6 +72,16 @@ class model extends \content_u\home\model
 			{
 				$this->post_sarshomar = 1;
 			}
+		}
+
+		/**
+		 * update the poll or survey
+		 */
+		if($this->check_poll_url($_args))
+		{
+			$this->update_mode = true;
+
+			$this->poll_id = $this->check_poll_url($_args, "decode");
 		}
 
 		// start transaction
@@ -84,21 +97,9 @@ class model extends \content_u\home\model
 			// we check the url
 			// if in the survey we abrot save poll and redirect to filter page
 			// user discard the poll
-			$answers_in_post = $this->answers_in_post();
-			if(utility::post("title") == '' && empty($answers_in_post['answers']))
-			{
-				// if we not in survey we have error for title and answers
-				if(!$this->check_poll_url($_args))
-				{
-					debug::error(T_("You must complete title or answers"), ['title', 'answer1', 'answer2']);
-					return;
-				}
-			}
-			else
-			{
-				// insert the poll
-				$insert_poll = $this->insert_poll();
-			}
+
+			// insert the poll
+			$insert_poll = $this->insert_poll();
 
 			// check the url
 			if($this->check_poll_url($_args))
@@ -115,19 +116,7 @@ class model extends \content_u\home\model
 			if(debug::$status)
 			{
 				// must be redirect to filter page
-				if(utility::post("filter"))
-				{
-					$this->redirector()->set_url($this->url('prefix'). "/add/$url/filter");
-				}
-				// must be redirect to publish page
-				elseif(utility::post("publish"))
-				{
-					$this->redirector()->set_url($this->url('prefix'). "/add/$url/publish");
-				}
-				else
-				{
-					debug::error(T_("Couldn't find redirect page"));
-				}
+				$this->redirector()->set_url($this->url('prefix'). "/add/$url/filter");
 			}
 		}
 		elseif(utility::post("survey"))
@@ -196,7 +185,7 @@ class model extends \content_u\home\model
 					\lib\utility\poll_tree::remove($this->poll_id);
 				}
 
-				$loc_opt = explode(',',utility::post("parent_tree_opt"));
+				$loc_opt = explode(',', utility::post("parent_tree_opt"));
 				foreach ($loc_opt as $key => $value)
 				{
 					$arg =
