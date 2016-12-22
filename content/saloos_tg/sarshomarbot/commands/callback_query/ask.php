@@ -82,10 +82,17 @@ class ask
 			$on_expire = $maker->inline_keyboard->get_guest_option([$skip_type => false, 'poll_option' => true]);
 			if($maker->query_result['status'] == 'publish')
 			{
+				$disable_web_page_preview = true;
+				if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
+				{
+					$disable_web_page_preview = false;
+				}
 				$return["response_callback"] = utility::response_expire('ask', [
 					'reply_markup' => [
 						'inline_keyboard' => [$on_expire]
-					]
+					],
+					'disable_web_page_preview' => $disable_web_page_preview
+
 				]);
 			}
 		}
@@ -161,7 +168,17 @@ class ask
 			if(!empty($inline_keyboard)) {
 				$reply_markup = ['inline_keyboard' => $inline_keyboard];
 			}
-			callback_query::edit_message(['text' => $maker->message->make(), 'reply_markup' => $reply_markup]);
+
+			$disable_web_page_preview = true;
+			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
+			{
+				$disable_web_page_preview = false;
+			}
+			callback_query::edit_message([
+				'text' => $maker->message->make(),
+				'reply_markup' => $reply_markup,
+				'disable_web_page_preview' => $disable_web_page_preview
+				]);
 			\lib\define::set_language(language::check(true), true);
 		}
 		else
@@ -182,11 +199,15 @@ class ask
 			$on_edit->text 				= $maker->message->make();
 			$on_expire_keyboard = $maker->inline_keyboard->make();
 
+			$disable_web_page_preview = true;
 			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
 			{
-				$on_edit->disable_web_page_preview = false;
+				$on_edit->disable_web_page_preview = $disable_web_page_preview = false;
 			}
-			$on_edit->response_callback	= utility::response_expire('ask', ["reply_markup"=> ['inline_keyboard' => $on_expire_keyboard]]);
+			$on_edit->response_callback	= utility::response_expire('ask', [
+				"reply_markup"=> ['inline_keyboard' => $on_expire_keyboard],
+				'disable_web_page_preview' => $disable_web_page_preview
+				]);
 
 			if(count($_data_url) > 4)
 			{

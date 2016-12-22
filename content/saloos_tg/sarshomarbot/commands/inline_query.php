@@ -92,10 +92,15 @@ class inline_query
 				$row_result['reply_markup']['inline_keyboard'] = $inline_keyboard;
 			}
 
+			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
+			{
+				$disable_web_page_preview = false;
+			}
+
 			$row_result['input_message_content'] = [
 				'message_text' 				=> $maker->message->make(),
 				'parse_mode' 				=> 'HTML',
-				'disable_web_page_preview' 	=> true
+				'disable_web_page_preview' 	=> $disable_web_page_preview
 			];
 			$result['results'][] = $row_result;
 		}
