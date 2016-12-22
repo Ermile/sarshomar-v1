@@ -23,7 +23,7 @@ trait insert
 			'post_slug'        => null,
 			'post_url'         => time(). '_'. rand(1,20), // insert post id ofter insert record
 			'post_content'     => null,
-			'post_type'        => 'question',
+			'post_type'        => null,
 			'post_status'      => 'draft',
 			'post_parent'      => null,
 			'post_meta'        => null,
@@ -31,8 +31,6 @@ trait insert
 			'post_privacy' 	   => 'public',
 			'post_gender'      => 'poll',
 			'post_survey'      => null,
-			'post_datatype'    => 'text',
-			'post_answertype'  => 'multiple',
 		];
 
 		$_args = array_merge($default_value, $_args);
