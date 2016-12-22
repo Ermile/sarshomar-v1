@@ -21,7 +21,7 @@
  <div class='modal' id='not-login'>
   <form class='modal-dialog' method="post" action="{{base.url}}/account/login">
    <h3 class='modal-title'>{%trans%}LOGIN OR TRY{%endtrans%}</h3>
-   <p class='modal-body'>
+   <div class='modal-body'>
     <input type="text" name="mobile" placeholder="mobile">
     <br>
     <input type="password" name="password" placeholder="password">
@@ -30,7 +30,7 @@
     <a href="{{base.url}}/@?inspection=inestimable">
       <input type='submit' class='button positive' data-ok value='{%trans "Try Sarshomar"%}' />
     </a>
-   </p>
+   </div>
   </form>
  </div>
  {%endif%}
