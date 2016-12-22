@@ -92,6 +92,7 @@ class inline_query
 				$row_result['reply_markup']['inline_keyboard'] = $inline_keyboard;
 			}
 
+			$disable_web_page_preview = true;
 			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
 			{
 				$disable_web_page_preview = false;
@@ -104,6 +105,7 @@ class inline_query
 			];
 			$result['results'][] = $row_result;
 		}
+
 		\lib\define::set_language(callback_query\language::check(true), true);
 		session::remove_back('expire', 'inline_cache');
 		return $result;
