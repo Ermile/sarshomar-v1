@@ -37,7 +37,7 @@ private function transtext()
 	echo T_("question type");                                                         // Line 9
 	echo T_("Poll");                                                                  // Line 13 Seperate
 	echo T_("quiz");                                                                  // Line 22
-	echo T_("survey");                                                                // Line 28
+	echo T_("survey");                                                                // Line 54
 	echo T_("according to survey");                                                   // Line 37
 	echo T_("multiplechoice");                                                        // Line 44
 	echo T_("descriptive");                                                           // Line 50
@@ -60,7 +60,7 @@ private function transtext()
 	echo T_("employee");                                                              // Line 138
 	echo T_("Unemployed");                                                            // Line 125
 	echo T_("Retired");                                                               // Line 126
-	echo T_("gender");                                                                // Line 144
+	echo T_("gender");                                                                // Line 55
 	echo T_("male");                                                                  // Line 147
 	echo T_("female");                                                                // Line 148
 	echo T_("graduation");                                                            // Line 152
@@ -78,13 +78,13 @@ private function transtext()
 	echo T_("age");                                                                   // Line 172
 	echo T_("province");                                                              // Line 176
 	echo T_("religion");                                                              // Line 180
-	echo T_("language");                                                              // Line 184
+	echo T_("language");                                                              // Line 50
 	echo T_("Search");                                                                // Line 10
 
 	//-----------------------------------------------content\knowledge\layout-xhr.html
 	echo T_("Type");                                                                  // Line 9
 	echo T_("Title");                                                                 // Line 10
-	echo T_("Comments");                                                              // Line 9
+	echo T_("Comments");                                                              // Line 34
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
 	echo T_("No Result Found");                                                       // Line 45
@@ -124,7 +124,7 @@ private function transtext()
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
 	echo T_("About");                                                                 // Line 5
-	echo T_("Press");                                                                 // Line 32
+	echo T_("Press");                                                                 // Line 61
 	echo T_("Careers");                                                               // Line 7
 	echo T_("Social Responsibility");                                                 // Line 7
 	echo T_("FAQ");                                                                   // Line 9
@@ -136,7 +136,7 @@ private function transtext()
 	echo T_("Referral Program");                                                      // Line 19
 	echo T_("Learn More");                                                            // Line 23
 	echo T_("Terms of Service");                                                      // Line 24
-	echo T_("Privacy Policy");                                                        // Line 25
+	echo T_("Privacy Policy");                                                        // Line 5
 	echo T_("Support");                                                               // Line 29
 	echo T_("Help Center");                                                           // Line 30
 	echo T_("Contact");                                                               // Line 31
@@ -170,31 +170,33 @@ private function transtext()
 	echo T_("Verify your account");                                                   // Line 21
 
 	//----------------------------------------------content\template\static\about.html
-	echo T_("What Is Sarshomar?");                                                    // Line 6
-	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 7
-	echo T_("By means of an opinion poll, we can become informed of people's interests, viewpoints and problems, and take measures to improve, develop or solve them.");// Line 7
-	echo T_("Having taken these measures, we can dominate the public opinions, attract them and lead them towards our own interests.");// Line 7
-	echo T_("Sarshomar, having a broad and knowledge-oriented outlook, came into being to provide solutions in this respect.");// Line 7
-	echo T_("The Name Sarshomar");                                                    // Line 9
-	echo T_("In Persian, the person undertaking the task of census (Sarshomari) is called Sarshomar (headcounter).");// Line 10
-	echo T_("Predicting the vast number of our service users, we have been searching for a term attuned with that vastness as well as our goal.");// Line 10
-	echo T_("Accordingly, having conducted extensive investigations, we selected the term '' Sarshomar '' as the trade name for the service.");// Line 10
-	echo T_("The Starting Point");                                                    // Line 12
-	echo T_("There have been various means to conduct an opinion poll and future will be no exception.");// Line 13
-	echo T_("Sarshomar, having known this, decided to enter this field. Being concerned with questioning a particular statistical population along with inferring valid results was one of the major reasons for Sarshomar's birth.");// Line 13
-	echo T_("To develop an international service equipped with unique facilities, we examined the available models; and aiming to eliminate the weaknesses and cover the unnoticed points, and placing our reliance on God, we embarked on the most comprehensive electronic opinion poll service.");// Line 14
-	echo T_("Services and Audiences");                                                // Line 16
-	echo T_("Sarshomar's potential addressees and clients would include all legal as well as natural persons; all trading companies; educational and research centers; institutions and organizations; advertising agencies; website owners and developers; and all individuals in society from novice to expert.");// Line 17
-	echo T_("You can use, according to your need, such unique characteristics as questioning the target statistical population, question charts, service provision through social networks and dozens of other ones.");// Line 18
-	echo T_("Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your contribution to promoting its quality and services.");// Line 18
-	echo T_("Job Opportunities");                                                     // Line 22
-	echo T_("We are constantly seeking to recruit the best. Are you willing to join us?");// Line 23
-	echo T_("Join our team");                                                         // Line 24
-	echo T_("Contact Us");                                                            // Line 27
-	echo T_("If you have any questions, our contact and support center is always ready to help.");// Line 28
-	echo T_("Get in touch");                                                          // Line 29
-	echo T_("Would you like to follow Sarshomar's latest media coverage news?");      // Line 33
-	echo T_("View press section");                                                    // Line 34
+	echo T_("About Us");                                                              // Line 6
+	echo T_("What Is Sarshomar?");                                                    // Line 14
+	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 12
+	echo T_("By means of an opinion poll, we can become informed of people's interests, viewpoints and problems, and take measures to improve, develop or solve them.");// Line 17
+	echo T_("Having taken these measures, we can dominate the public opinions, attract them and lead them towards our own interests.");// Line 17
+	echo T_("Sarshomar, having a broad and knowledge-oriented outlook, came into being to provide solutions in this respect.");// Line 17
+	echo T_("The Name Sarshomar");                                                    // Line 24
+	echo T_("In Persian, the person undertaking the task of census (Sarshomari) is called Sarshomar (headcounter).");// Line 27
+	echo T_("Predicting the vast number of our service users, we have been searching for a term attuned with that vastness as well as our goal.");// Line 28
+	echo T_("Accordingly, having conducted extensive investigations, we selected the term '' Sarshomar '' as the trade name for the service.");// Line 28
+	echo T_("The Starting Point");                                                    // Line 36
+	echo T_("There have been various means to conduct an opinion poll and future will be no exception.");// Line 34
+	echo T_("Sarshomar, having known this, decided to enter this field.");            // Line 34
+	echo T_("Being concerned with questioning a particular statistical population along with inferring valid results was one of the major reasons for Sarshomar's birth.");// Line 39
+	echo T_("To develop an international service equipped with unique facilities, we examined the available models; and aiming to eliminate the weaknesses and cover the unnoticed points, and placing our reliance on God, we embarked on the most comprehensive electronic opinion poll service.");// Line 39
+	echo T_("Services and Audiences");                                                // Line 47
+	echo T_("Sarshomar's potential addressees and clients would include all legal as well as natural persons; all trading companies; educational and research centers; institutions and organizations; advertising agencies; website owners and developers; and all individuals in society from novice to expert.");// Line 45
+	echo T_("You can use, according to your need, such unique characteristics as questioning the target statistical population, question charts, service provision through social networks and dozens of other ones.");// Line 50
+	echo T_("Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your contribution to promoting its quality and services.");// Line 50
+	echo T_("Would you like to follow Sarshomar's latest media coverage news?");      // Line 62
+	echo T_("View press section");                                                    // Line 63
+	echo T_("Contact Us");                                                            // Line 74
+	echo T_("If you have any questions, our contact and support center is always ready to help.");// Line 69
+	echo T_("Get in touch");                                                          // Line 70
+	echo T_("Job Opportunities");                                                     // Line 75
+	echo T_("We are constantly seeking to recruit the best. Are you willing to join us?");// Line 76
+	echo T_("Join our team");                                                         // Line 77
 
 	//------------------------------------------content\template\static\changelog.html
 
@@ -274,26 +276,26 @@ private function transtext()
 	//--------------------------------------------content\template\static\mission.html
 
 	//--------------------------------------------content\template\static\privacy.html
-	echo T_("What is Privacy?");                                                      // Line 6
-	echo T_("Privacy means that any individual is entitled to choose the information related to them, and selectively, share it with others.");// Line 7
-	echo T_("privacy is so important for mental peace as well as a peaceful personality that some experts have considered invasion of privacy disrespectful to human dignity.");// Line 7
-	echo T_("Controversies over the Invasion of Privacy");                            // Line 9
-	echo T_("Within e-commerce, privacy has always been from among the most controversial topics and continues to be.");// Line 10
-	echo T_("Accordingly, formulating privacy policies is regarded as one of the crucial concerns of technology companies.");// Line 10
-	echo T_("Meanwhile, widespread controversies have been provoked over invasion of privacy in e-commerce so that, occasionally, the regulations have to be revised to eliminate the existing weaknesses.");// Line 10
-	echo T_("Privacy from Our Point of View");                                        // Line 12
-	echo T_("Let us be straightforward! Cyberspace is not a safe location for personal information.");// Line 13
-	echo T_("For that reason, Sarshomar makes no request for important information of yours and the request for receiving general information including age, gender, education, interests, etc. is only for the sake of the documentation and validation of the results reached at by Sarshomar.");// Line 13
-	echo T_("It is worth mentioning that recording the aforementioned points is totally voluntary.");// Line 13
-	echo T_("However, taking the nature of cyberspace into account, we should remember that offering an absolute assurance might not be possible.");// Line 14
-	echo T_("Assuring privacy and security, with that ideal concept we bear in mind, does not exist; and if somebody gives you an assurance of securing your privacy, he has certainly abused your trust.");// Line 14
-	echo T_("Upon buying any digital or the so-called smart device, you have invaded your own privacy yourself.");// Line 15
-	echo T_("If you want your privacy not to be invaded, you should depart from technology and say goodbye to any digital and smart device.");// Line 15
-	echo T_("In fact, we have employed all updated technologies of the world to provide you with the maximum security.");// Line 15
-	echo T_("Due to the scientific nature of Sarshomar as well as the attempts made to enhance the trust in the found results of opinion polls, profile completion has been made possible in the system.");// Line 16
-	echo T_("In case you are willing to help us to improve the quality of Sarshomar and to promote the efficiency of your own contribution, provide us with your general information.");// Line 16
-	echo T_("Please remember that in case of your unwillingness, it is possible for you to refuse completing the profile questions.");// Line 16
-	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 17
+	echo T_("What is Privacy?");                                                      // Line 8
+	echo T_("Privacy means that any individual is entitled to choose the information related to them, and selectively, share it with others.");// Line 10
+	echo T_("privacy is so important for mental peace as well as a peaceful personality that some experts have considered invasion of privacy disrespectful to human dignity.");// Line 11
+	echo T_("Controversies over the Invasion of Privacy");                            // Line 14
+	echo T_("Within e-commerce, privacy has always been from among the most controversial topics and continues to be.");// Line 16
+	echo T_("Accordingly, formulating privacy policies is regarded as one of the crucial concerns of technology companies.");// Line 16
+	echo T_("Meanwhile, widespread controversies have been provoked over invasion of privacy in e-commerce so that, occasionally, the regulations have to be revised to eliminate the existing weaknesses.");// Line 16
+	echo T_("Privacy from Our Point of View");                                        // Line 19
+	echo T_("Let us be straightforward! Cyberspace is not a safe location for personal information.");// Line 21
+	echo T_("For that reason, Sarshomar makes no request for important information of yours and the request for receiving general information including age, gender, education, interests, etc. is only for the sake of the documentation and validation of the results reached at by Sarshomar.");// Line 22
+	echo T_("It is worth mentioning that recording the aforementioned points is totally voluntary.");// Line 22
+	echo T_("However, taking the nature of cyberspace into account, we should remember that offering an absolute assurance might not be possible.");// Line 23
+	echo T_("Assuring privacy and security, with that ideal concept we bear in mind, does not exist; and if somebody gives you an assurance of securing your privacy, he has certainly abused your trust.");// Line 23
+	echo T_("Upon buying any digital or the so-called smart device, you have invaded your own privacy yourself.");// Line 24
+	echo T_("If you want your privacy not to be invaded, you should depart from technology and say goodbye to any digital and smart device.");// Line 24
+	echo T_("In fact, we have employed all updated technologies of the world to provide you with the maximum security.");// Line 24
+	echo T_("Due to the scientific nature of Sarshomar as well as the attempts made to enhance the trust in the found results of opinion polls, profile completion has been made possible in the system.");// Line 25
+	echo T_("In case you are willing to help us to improve the quality of Sarshomar and to promote the efficiency of your own contribution, provide us with your general information.");// Line 25
+	echo T_("Please remember that in case of your unwillingness, it is possible for you to refuse completing the profile questions.");// Line 25
+	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 26
 
 	//-------------------------------------------content\template\static\referral.html
 	echo T_("Referral");                                                              // Line 5
@@ -303,31 +305,38 @@ private function transtext()
 	//-----------------------------------------content\template\static\statistics.html
 
 	//----------------------------------------------content\template\static\terms.html
-	echo T_("Terms of Service Agreement");                                            // Line 6
-	echo T_("Sarshomar acts upon international rules, depends on the countries receiving its services and renders its activities within this framework.");// Line 7
-	echo T_("Utilizing Sarshomar's services means the acceptance of and commitment to observing all the tenors of this agreement.");// Line 7
-	echo T_("To enhance the quality of the services provided, and in case of any infringements on the part of users, Sarshomar will act upon its regulations, which, according to the kind of violation, might include notification, restriction, blockage and removing users' account.");// Line 8
-	echo T_("Due to the voluntary nature of the registration and our emphasis on the informative nature of the service, the accuracy of the user's information is of tremendous importance and value for us.");// Line 11
-	echo T_("To prevent crating mistrust among other users, in case of receiving contradictions within the entered information, Sarshomar is entitled to act upon the rules.");// Line 11
-	echo T_("It is worth mentioning that due to the insecurity of cyberspace, you should never post your vital information on either Sarshomar or any other services!");// Line 11
-	echo T_("User's personal information is strictly confidential in our service. Sarshomar preserves the information as encoded and will not under any conditions transfer it to another person.");// Line 12
-	echo T_("Every user is entitled to have only one user account and in case Sarshomar happens to know that a user has more than one user account, it is entitled to act upon the rules.");// Line 13
-	echo T_("In case there is a request for receiving user's information by the competent authorities, according to the country the user lives in, Sarshomar will cooperate with them only upon receiving the judicial order issued by the country submitting the request.");// Line 14
-	echo T_("Sarshomar will not offer any guarantee as to the quality of the products or services presented by the questioners and will not accept any responsibility in this regard.");// Line 15
-	echo T_("Users should assume responsibility for any harm, both material and immaterial, caused by direct, indirect or penal factors and due to their utilization of this service; and, Sarshomar bears no responsibility accordingly.");// Line 16
-	echo T_("Sarshomar accepts no responsibility, under any conditions, for the harms caused by users' mutual trust in each other or by the disclosure of information by users.");// Line 17
-	echo T_("Sarshomar's scientific findings, gained through graphs, tables, articles and other means, belong to this service and all the rights related to them are reserved for Sarshomar.");// Line 18
-	echo T_("Sarshomar will do its best to protect both the users' information and the service; however, regarding the lack of certainty within the cyberspace, it will not assume any responsibility for the loss of the information entered on the service.");// Line 19
-	echo T_("We will publicize our information and news only via Sarshomar's formal website. Accordingly, those who publicize any attributed news and claims, within social media and networks, must assume the responsibility and Sarshomar will not assume any responsibility.");// Line 20
-	echo T_("Sarshomar will bear no responsibility for whatsoever messages sent to users, including those indicating winning a lottery, and all our information dissemination will be through the ways of Sarshomar's contact with users.");// Line 21
-	echo T_("Any misuse of Sarshomar's trade name is prohibited and will be suable by making a complaint to the legal competent authorities.");// Line 22
-	echo T_("Resharing Sarshomar's information is free and needs no permission; however, you can contribute to our better service provision by citing the resource.");// Line 23
-	echo T_("It should be mentioned that in case there would be any modifications in the above-mentioned tenors, an updated version will be available for the public, and as well, all the users will be informed. Furthermore, this agreement, under the name Terms and Conditions, will be available and observable, in all pages of the website. Users will be responsible for a lack of information on the most recent changes.");// Line 26
+	echo T_("Terms of Service Agreement");                                            // Line 5
+	echo T_("Sarshomar acts upon international rules, depends on the countries receiving its services and renders its activities within this framework.");// Line 9
+	echo T_("Utilizing Sarshomar's services means the acceptance of and commitment to observing all the tenors of this agreement.");// Line 9
+	echo T_("To enhance the quality of the services provided, and in case of any infringements on the part of users, Sarshomar will act upon its regulations, which, according to the kind of violation, might include notification, restriction, blockage and removing users' account.");// Line 10
+	echo T_("Due to the voluntary nature of the registration and our emphasis on the informative nature of the service, the accuracy of the user's information is of tremendous importance and value for us.");// Line 13
+	echo T_("To prevent crating mistrust among other users, in case of receiving contradictions within the entered information, Sarshomar is entitled to act upon the rules.");// Line 13
+	echo T_("It is worth mentioning that due to the insecurity of cyberspace, you should never post your vital information on either Sarshomar or any other services!");// Line 13
+	echo T_("User's personal information is strictly confidential in our service. Sarshomar preserves the information as encoded and will not under any conditions transfer it to another person.");// Line 14
+	echo T_("Every user is entitled to have only one user account and in case Sarshomar happens to know that a user has more than one user account, it is entitled to act upon the rules.");// Line 15
+	echo T_("In case there is a request for receiving user's information by the competent authorities, according to the country the user lives in, Sarshomar will cooperate with them only upon receiving the judicial order issued by the country submitting the request.");// Line 16
+	echo T_("Sarshomar will not offer any guarantee as to the quality of the products or services presented by the questioners and will not accept any responsibility in this regard.");// Line 17
+	echo T_("Users should assume responsibility for any harm, both material and immaterial, caused by direct, indirect or penal factors and due to their utilization of this service; and, Sarshomar bears no responsibility accordingly.");// Line 18
+	echo T_("Sarshomar accepts no responsibility, under any conditions, for the harms caused by users' mutual trust in each other or by the disclosure of information by users.");// Line 19
+	echo T_("Sarshomar's scientific findings, gained through graphs, tables, articles and other means, belong to this service and all the rights related to them are reserved for Sarshomar.");// Line 20
+	echo T_("Sarshomar will do its best to protect both the users' information and the service; however, regarding the lack of certainty within the cyberspace, it will not assume any responsibility for the loss of the information entered on the service.");// Line 21
+	echo T_("We will publicize our information and news only via Sarshomar's formal website. Accordingly, those who publicize any attributed news and claims, within social media and networks, must assume the responsibility and Sarshomar will not assume any responsibility.");// Line 22
+	echo T_("Sarshomar will bear no responsibility for whatsoever messages sent to users, including those indicating winning a lottery, and all our information dissemination will be through the ways of Sarshomar's contact with users.");// Line 23
+	echo T_("Any misuse of Sarshomar's trade name is prohibited and will be suable by making a complaint to the legal competent authorities.");// Line 24
+	echo T_("Resharing Sarshomar's information is free and needs no permission; however, you can contribute to our better service provision by citing the resource.");// Line 25
+	echo T_("It should be mentioned that in case there would be any modifications in the above-mentioned tenors, an updated version will be available for the public, and as well, all the users will be informed. Furthermore, this agreement, under the name Terms and Conditions, will be available and observable, in all pages of the website. Users will be responsible for a lack of information on the most recent changes.");// Line 28
 
 	//---------------------------------------------content\template\static\vision.html
 
 	//--------------------------------------------content_admin\knowledge\display.html
-	echo T_("admin");                                                                 // Line 12
+	echo T_("edit");                                                                  // Line 30
+	echo T_("filter page");                                                           // Line 31
+	echo T_("publish page");                                                          // Line 32
+	echo T_("status");                                                                // Line 61
+	echo T_("parent");                                                                // Line 52
+	echo T_("sarshomar");                                                             // Line 53
+	echo T_("privacy");                                                               // Line 56
+	echo T_("total");                                                                 // Line 57
 
 	//-------------------------------------content_admin\transactionitems\display.html
 	echo T_("title");                                                                 // Line 10
@@ -345,7 +354,6 @@ private function transtext()
 	echo T_("forcechange");                                                           // Line 46
 	echo T_("desc");                                                                  // Line 53
 	echo T_("meta");                                                                  // Line 57
-	echo T_("status");                                                                // Line 61
 	echo T_("enable");                                                                // Line 63
 	echo T_("disable");                                                               // Line 64
 	echo T_("deleted");                                                               // Line 65
@@ -397,7 +405,7 @@ private function transtext()
 	echo T_("Range / Star");                                                          // Line 17
 	echo T_("Answer");                                                                // Line 71
 	echo T_("Options has score");                                                     // Line 93
-	echo T_("Allow user to sort answers");                                            // Line 22
+	echo T_("Allow user to sort answers");                                            // Line 104
 	echo T_("One Choice");                                                            // Line 114
 	echo T_("Multi Choice");                                                          // Line 117
 	echo T_("Ordering");                                                              // Line 120
@@ -445,6 +453,7 @@ private function transtext()
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Undefined");                                                             // Line 12
 	echo T_("Your profile is not complete!");                                         // Line 20
+	echo T_("Please complete your profile");                                          // Line 22
 	echo T_("Thank you for completing profile");                                      // Line 24
 	echo T_("Referred count");                                                        // Line 32
 	echo T_("Referred valid count");                                                  // Line 33
