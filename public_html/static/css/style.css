@@ -78,14 +78,12 @@ header .logo{position:relative;float:left;text-align:left;height:90px;width:260p
 .rtl header .logo{float:right;text-align:right;background-image:url(/static/images/svg/header-rtl.svg);}
 header .logo>a{display:inline-block}
 header .logo img{width:60px;max-height:80px;transition:all 0.2s;margin:8px;transition:0.3s;}
-header .logo a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1);}
-header .logo a:hover img{opacity:0.8}
-header .logo a:focus h1{color:#fff;}
-header .logo h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
-.rtl header .logo h1{font-size:26px;margin-bottom:5px;}
-header .logo h1{color:#f4f4f4;}
-header .logo h2{line-height:1;font-size:1.1em;color:#f4f4f4;display:none}
-header .logo h2:hover{color:#fff;}
+header .logo>a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1);}
+header .logo>a:hover img{opacity:0.8}
+header .logo>h1{font-size:20px;margin-bottom:0;border-bottom:none;display:inline-block;font-weight:700;vertical-align:bottom;}
+.rtl header .logo>h1{font-size:26px;margin-bottom:5px;}
+header .logo>h1 a{color:#f4f4f4}
+header .logo>h1 a:focus,header .logo>h1 a:hover{color:#fff}
 
 header #header-bottom{height:30px}
 
