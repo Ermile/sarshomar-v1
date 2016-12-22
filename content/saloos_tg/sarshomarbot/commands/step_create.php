@@ -64,6 +64,10 @@ class step_create
 		{
 			$_question = bot::$hook['message']['caption'];
 		}
+		elseif($file_content)
+		{
+			$_question = '';
+		}
 		if(count($file_content) > 0 && $poll_draft)
 		{
 			return self::make_draft(function($_maker){
@@ -78,23 +82,33 @@ class step_create
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
 
-		if($poll_draft)
+		if(session::get('poll', 'title'))
 		{
 			$poll_answers = (array) session::get('poll', "answers");
 			$poll_answers = array_merge($poll_answers, $question_export);
 			session::set('poll', "answers", $poll_answers);
 		}
-		else
+		elseif(!empty($question_export[0]))
 		{
 			$poll_title 	= $question_export[0];
 			$poll_answers 	= array_slice($question_export, 1);
 			session::set('poll', "title", $poll_title);
 			session::set('poll', "answers", $poll_answers);
 		}
-		if($file_content && bot::$hook['message'][$file_content[1]])
+
+		if(!session::get('poll', 'file_link') && $file_content && bot::$hook['message'][$file_content[1]])
 		{
-			session::set('poll', 'type', $file_content[1]);
-			session::set('poll', 'file_id', bot::$hook['message'][$file_content[1]]);
+			$file = bot::$hook['message'][$file_content[1]];
+			$file = isset($file['file_id']) ? $file : end($file);
+			$file_id = $file['file_id'];
+			$get_file = bot::getFile([
+				'file_id' => $file_id
+				]);
+			$file_link = 'https://api.telegram.org/file/bot' . bot::$api_key . '/' . $get_file['result']['file_path'];
+			$file_server_addr = \lib\utility\upload::temp_donwload($file_link);
+			session::set('poll', 'file_link', $file_server_addr->get_link());
+			session::set('poll', 'file_addr', $file_server_addr->get_new_name());
+			session::set('poll', 'file_type', $file_content[1]);
 		}
 		return self::make_draft();
 	}
@@ -137,12 +151,34 @@ class step_create
 		}
 		else
 		{
-			$poll = ['title' => $poll_title];
+			$poll = ['title' => is_null($poll_title)? T_('Empty question') : $poll_title];
 			$maker = new make_view(bot::$user_id, $poll);
 			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 			$maker->message->add_title(false);
 			$inline_keyboard[0][] = utility::inline(T_("Discard"), 'poll/discard');
 		}
+		$file = session::get('poll', 'file_link');
+		if($file)
+		{
+			$type = session::get('poll', 'file_type');
+			switch ($type) {
+				case 'photo':
+					$emoji = '🖼';
+					break;
+				case 'video':
+					$emoji = '📹';
+					break;
+				case 'audio':
+					$emoji = '🔊';
+					break;
+
+				default:
+					$emoji = '📝';
+					break;
+			}
+			$maker->message->add('file', $emoji . utility::link($file, 'File'), 'after', 'title');
+		}
+
 
 		$maker->message->add('hashtag', '#'.preg_replace('[\s]', '_', T_('Create new poll')));
 		if($_maker)
@@ -154,12 +190,16 @@ class step_create
 		'text' 						=> $txt_text,
 		"response_callback" 		=> utility::response_expire('create'),
 		'parse_mode' 				=> 'HTML',
-		'disable_web_page_preview' 	=> true,
+		// 'disable_web_page_preview' 	=> true,
 		'reply_markup' 				=> [
 		'inline_keyboard' 		=> $inline_keyboard
 		]
 		];
-		$type = session::get('poll', 'type');
+
+		//
+		//📸
+		//🖼
+		//
 		// $file_id = session::get('poll', 'file_id');
 		// if($type)
 		// {

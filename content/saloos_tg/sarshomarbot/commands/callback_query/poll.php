@@ -127,16 +127,32 @@ class poll
 			$answers[]['txt'] = $value;
 		}
 
-		\lib\db::transaction();
+		$file_id = false;
+		if(session::get('poll', 'file_addr'))
+		{
+			handle::send_log(session::get('poll', 'file_addr'));
+			 $file_id = \lib\utility\upload::temp_move(session::get('poll', 'file_addr'), ['user_id' => bot::$user_id]);
+		}
 
-		$poll_id = \lib\db\polls::insert([
+		\lib\db::transaction();
+		$insert = [
 			'user_id' 		=> bot::$user_id,
 			'post_title'	=> $poll_title,
 			'post_status' 	=> 'publish',
 			'post_type'		=> 'select',
 			'post_privacy'	=> 'private',
 			'post_language'	=> language::check(true)
-			]);
+			];
+		$insert['meta'] = ['port' => 'telegram'];
+		if($file_id)
+		{
+			$insert['meta']['attachment_id'] 	= $file_id;
+			$insert['meta']['data_type'] 		= $file_id;
+		}
+
+		handle::send_log($insert);
+
+		$poll_id = \lib\db\polls::insert($insert);
 		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
 		if(\lib\debug::$status)
 		{
