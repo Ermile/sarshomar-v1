@@ -5,18 +5,14 @@
 <div class="main">
   <section class="box">
 {%block page_content%}
+   <h1>Help - Posts</h1>
+
    <h2>{{post.title}}</h2>
    <div class="content">{{post.content |raw}}</div>
    <nav id="page-nav">
     <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
     <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
    </nav>
-
-	<ul>
-		{% for key, value in tags_list%}
-		<li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
-		{%endfor%}
-	</ul>
 {%endblock%}
   </section>
 </div>

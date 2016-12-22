@@ -58,7 +58,6 @@ class controller extends \mvc\controller
 			}
 		}
 
-		$this->get('tg_session', false)->ALL("#^tg_session/(json|object)/(\d+)$#");
 
 		$this->get("random")->ALL("/ask\/random$/");
 
