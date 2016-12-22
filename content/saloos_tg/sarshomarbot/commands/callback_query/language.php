@@ -68,12 +68,6 @@ class language
 			"reply_markup" => ["inline_keyboard" => $inline_keyboard],
 			"response_callback" => utility::response_expire('language')
 			];
-			if($edit_return)
-			{
-				bot::sendResponse($return);
-				return callback_query::edit_message($edit_return, true);
-			}
-			callback_query::edit_message($return);
 			return $return;
 		}
 		return false;

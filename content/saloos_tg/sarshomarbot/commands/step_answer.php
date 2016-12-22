@@ -19,12 +19,10 @@ class step_answer
 	{
 		step::start('answer');
 		step::plus(1);
-		handle::send_log('$_poll_id');
 		session::set("step_answer", $_poll_id);
 		return [];
 	}
 	public static function step1($_string){
-		// handle::send_log(20);
 		// $poll_id = session::get("step_answer");
 		// $poll_result = \lib\utility\stat_polls::get_telegram_result($poll_id);
 		// $result = $poll_result->get_result('result');

@@ -67,9 +67,7 @@ class step_create
 		if(count($file_content) > 0 && $poll_draft)
 		{
 			return self::make_draft(function($_maker){
-				handle::send_log($_maker->message->message);
 				$_maker->message->add("wrong_data", T_("Answer type not valid"), 'before', 'hashtag');
-				handle::send_log($_maker->message->message);
 			});
 
 		}
