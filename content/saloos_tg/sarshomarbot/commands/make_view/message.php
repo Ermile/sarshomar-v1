@@ -28,7 +28,7 @@ class message
 		{
 			$attachment = \lib\db\polls::get_poll($this->class->query_result['meta']['attachment_id']);
 			$url = \lib\router::$base;
-			$url .= preg_replace("/^.*\/public_html\//", '/', $attachment['meta']['url']);
+			$url .= '/' . preg_replace("/^.*\/public_html\//", '', $attachment['meta']['url']);
 			switch ($this->class->query_result['meta']['data_type']) {
 				case 'photo':
 					$emoji = '🖼';
