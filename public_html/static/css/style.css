@@ -145,9 +145,9 @@ footer .container{padding:0 2%;}
 
 /* footer-nav */
 footer #footer-nav{margin-bottom:2em;border-bottom:1px solid #e5a428;font-size:1.6em;font-weight:900;position:relative;}
-footer #footer-nav a{display:inline-block;padding:1.2em 2em 1.2em 0;color:#aaa;}
-.rtl footer #footer-nav a{padding:1.2em 0 1.2em 2em}
-footer #footer-nav a:hover{color:#fff;}
+footer #footer-nav a{display:inline-block;padding:1.2em .5em;color:#aaa;margin-right:1.5em}
+.rtl footer #footer-nav a{margin-right:0;margin-left:1.5em}
+footer #footer-nav a:hover,footer #footer-nav a:focus{color:#fff;}
 footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%;}
 .rtl footer #footer-nav .eco{right:auto;left:0;padding:0;}
 footer #footer-nav .eco img{height:100%;padding-top:5px;}
