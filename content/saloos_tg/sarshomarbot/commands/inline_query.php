@@ -84,7 +84,7 @@ class inline_query
 			$row_result['hide_url'] = false;
 
 			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_guest_option(['skip' => false, 'update' => false, 'report' => true]);
+			$maker->inline_keyboard->add_guest_option(['share'=> false, 'skip' => false, 'update' => false, 'report' => false]);
 
 			$inline_keyboard = $maker->inline_keyboard->make();
 
