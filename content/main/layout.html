@@ -40,6 +40,9 @@
  {%endif%}
 {%endblock%}
 
+{%set introOption%}
+.setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true' })
+{%endset%}
 {%endblock%}
 
 {%block try_before_register_btn%}

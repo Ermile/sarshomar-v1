@@ -12,10 +12,13 @@
      <nav id='header-quick' role='navigation'>
       <a href='{{url.base}}/features' tabindex='2'>{%trans "Features"%}</a>
       <a href='{{url.base}}/$' tabindex='3'>{%trans "Knowledge"%}</a>
-      <!-- <a href='{{url.base}}/help' tabindex='4'>{%trans "Help"%}</a> -->
+      <a href='{{url.base}}/help' tabindex='4'>{%trans "Help Center"%}</a>
      </nav>
      <nav id='header-profile' data-xhr='header-profile' {%if login%}class='login'{%endif%}>
 {%if login%}
+{%if url.tld == 'dev'%}
+      <a href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();">ℹ️</a>
+{%endif%}
       <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
       <a href='{{url.base}}/ask' class='register' tabindex='6'>{%trans "Ask Me"%}</a>
       <div class="profile">

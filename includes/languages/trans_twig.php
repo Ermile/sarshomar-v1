@@ -12,6 +12,15 @@ private function transtext()
 	echo T_("How to contact Sarshomar");                                              // Line 31
 	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 44
 
+	//-------------------------------------------------------content\help\display.html
+	echo T_("Two minute tour");                                                       // Line 5
+	echo T_("Contact Us");                                                            // Line 74
+	echo T_("Quick Access");                                                          // Line 47
+	echo T_("Link");                                                                  // Line 18
+	echo T_("Help Title");                                                            // Line 62
+	echo T_("Help Description");                                                      // Line 63
+	echo T_("Most visited questions");                                                // Line 69
+
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
@@ -90,13 +99,17 @@ private function transtext()
 	echo T_("No Result Found");                                                       // Line 45
 
 	//----------------------------------------------------content\main\layout-xhr.html
-	echo T_("View your current location and navigate to parent of it");               // Line 37
+	echo T_("View your current location and navigate to parent of it");               // Line 42
 
 	//--------------------------------------------------------content\main\layout.html
-	echo T_("LOGIN OR TRY");                                                          // Line 23 Seperate
-	echo T_("Login");                                                                 // Line 31
-	echo T_("or");                                                                    // Line 29
-	echo T_("Try Sarshomar");                                                         // Line 31
+	echo T_("Login or Try");                                                          // Line 23
+	echo T_("Password");                                                              // Line 308
+	echo T_("Login");                                                                 // Line 36
+	echo T_("Try Sarshomar");                                                         // Line 35
+	echo T_("Next →");                                                              // Line 44
+	echo T_("← Back");                                                              // Line 44
+	echo T_("Skip");                                                                  // Line 83
+	echo T_("Done");                                                                  // Line 44
 	echo T_("Try Before Register");                                                   // Line 32
 
 	//-------------------------------------------------------content\poll\display.html
@@ -107,7 +120,7 @@ private function transtext()
 	echo T_("You can select just two options.");                                      // Line 43
 	echo T_("I am not willing to answer");                                            // Line 86
 	echo T_("Save Answer");                                                           // Line 97
-	echo T_("Ask Me");                                                                // Line 18
+	echo T_("Ask Me");                                                                // Line 23
 	echo T_("result");                                                                // Line 112
 	echo T_("Similar Questions");                                                     // Line 134
 	echo T_("There is no similar post");                                              // Line 142
@@ -130,15 +143,15 @@ private function transtext()
 	echo T_("FAQ");                                                                   // Line 9
 	echo T_("Eco Friendly");                                                          // Line 10
 	echo T_("Service");                                                               // Line 15
-	echo T_("Features");                                                              // Line 11
-	echo T_("Knowledge");                                                             // Line 12
+	echo T_("Features");                                                              // Line 13
+	echo T_("Knowledge");                                                             // Line 14
 	echo T_("Random Poll");                                                           // Line 18
 	echo T_("Referral Program");                                                      // Line 19
 	echo T_("Learn More");                                                            // Line 23
 	echo T_("Terms of Service");                                                      // Line 24
 	echo T_("Privacy Policy");                                                        // Line 5
 	echo T_("Support");                                                               // Line 29
-	echo T_("Help Center");                                                           // Line 30
+	echo T_("Help Center");                                                           // Line 15
 	echo T_("Contact");                                                               // Line 31
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 5
@@ -151,15 +164,14 @@ private function transtext()
 	echo T_("Proudly Made in IRAN");                                                  // Line 54
 
 	//----------------------------------------------------content\template\header.html
-	echo T_("Help");                                                                  // Line 13
-	echo T_("Add Question");                                                          // Line 17
-	echo T_("Welcome");                                                               // Line 23
-	echo T_("Dashboard");                                                             // Line 26
-	echo T_("Exit");                                                                  // Line 27
-	echo T_("Register");                                                              // Line 32
-	echo T_("Cost");                                                                  // Line 45
-	echo T_("Tomans");                                                                // Line 45
-	echo T_("Total cash");                                                            // Line 65
+	echo T_("Add Question");                                                          // Line 22
+	echo T_("Welcome");                                                               // Line 28
+	echo T_("Dashboard");                                                             // Line 31
+	echo T_("Exit");                                                                  // Line 32
+	echo T_("Register");                                                              // Line 37
+	echo T_("Cost");                                                                  // Line 50
+	echo T_("Tomans");                                                                // Line 50
+	echo T_("Total cash");                                                            // Line 70
 
 	//--------------------------------------------------content\template\register.html
 	echo T_("We are inestimable");                                                    // Line 26
@@ -191,7 +203,6 @@ private function transtext()
 	echo T_("Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your contribution to promoting its quality and services.");// Line 50
 	echo T_("Would you like to follow Sarshomar's latest media coverage news?");      // Line 62
 	echo T_("View press section");                                                    // Line 63
-	echo T_("Contact Us");                                                            // Line 74
 	echo T_("If you have any questions, our contact and support center is always ready to help.");// Line 69
 	echo T_("Get in touch");                                                          // Line 70
 	echo T_("Job Opportunities");                                                     // Line 75
@@ -324,7 +335,8 @@ private function transtext()
 	echo T_("Sarshomar will bear no responsibility for whatsoever messages sent to users, including those indicating winning a lottery, and all our information dissemination will be through the ways of Sarshomar's contact with users.");// Line 23
 	echo T_("Any misuse of Sarshomar's trade name is prohibited and will be suable by making a complaint to the legal competent authorities.");// Line 24
 	echo T_("Resharing Sarshomar's information is free and needs no permission; however, you can contribute to our better service provision by citing the resource.");// Line 25
-	echo T_("It should be mentioned that in case there would be any modifications in the above-mentioned tenors, an updated version will be available for the public, and as well, all the users will be informed. Furthermore, this agreement, under the name Terms and Conditions, will be available and observable, in all pages of the website. Users will be responsible for a lack of information on the most recent changes.");// Line 28
+	echo T_("Furthermore, this agreement, under the name Terms and Conditions, will be available and observable, in all pages of the website. Users will be responsible for a lack of information on the most recent changes.");// Line 26
+	echo T_("It should be mentioned that in case there would be any modifications in the above-mentioned tenors, an updated version will be available for the public, and as well, all the users will be informed.");// Line 29
 
 	//---------------------------------------------content\template\static\vision.html
 
@@ -425,7 +437,6 @@ private function transtext()
 	echo T_("Phone Number");                                                          // Line 304
 	echo T_("Website");                                                               // Line 306
 	echo T_("Number");                                                                // Line 12
-	echo T_("Password");                                                              // Line 308
 	echo T_("Custom");                                                                // Line 359
 	echo T_("Regular");                                                               // Line 364
 	echo T_("File Format");                                                           // Line 347
@@ -462,7 +473,6 @@ private function transtext()
 	echo T_("Total Poll published");                                                  // Line 36
 	echo T_("Total Like taken");                                                      // Line 37
 	echo T_("Summary of your activity in Sarshomar");                                 // Line 42
-	echo T_("Quick Access");                                                          // Line 47
 	echo T_("Create new poll");                                                       // Line 49
 	echo T_("My polls");                                                              // Line 50
 	echo T_("Ask me");                                                                // Line 51
@@ -470,7 +480,6 @@ private function transtext()
 	echo T_("Last activity");                                                         // Line 58
 	echo T_("Question Answered");                                                     // Line 82
 	echo T_("Remained");                                                              // Line 83
-	echo T_("Skip");                                                                  // Line 83
 	echo T_("Answered");                                                              // Line 83
 
 	//------------------------------------------------content_u\knowledge\display.html
