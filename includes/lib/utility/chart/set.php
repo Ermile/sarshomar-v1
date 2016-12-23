@@ -89,6 +89,16 @@ trait set
 			$plus = false;
 		}
 
+		$update_mode = false;
+		// default answer of users not in update mode
+		// but when the user update her answer
+		// we must update the user answer
+		// and we don't plus the total of pollstats
+		if(isset($_args['update_mode']) && $_args['update_mode'] === true)
+		{
+			$update_mode = true;
+		}
+
 		// default port of user answer is 'site'
 		$port = "'site'";
 		if(isset($_args['port']))
@@ -164,14 +174,14 @@ trait set
 		if($pollstats && is_array($pollstats))
 		{
 			// set the update mode to run update query
-			$update_mode = true;
-			$pollstats   = $pollstats;
+			$update_pollstat_record = true;
+			$pollstats              = $pollstats;
 		}
 		else
 		{
 			// set the insert mod to run insert query
-			$update_mode = false;
-			$pollstats   = [];
+			$update_pollstat_record = false;
+			$pollstats              = [];
 		}
 
 		// update mode
@@ -182,7 +192,7 @@ trait set
 		{
 			// in plus mode we ++ the total answered to this poll
 			// in minus mode we not change the total field
-			if($plus)
+			if($plus && !$update_mode)
 			{
 				$pollstats['total']++;
 			}
@@ -387,7 +397,7 @@ trait set
 		} // end of foreach $support_filter
 
 		//
-		if($update_mode)
+		if($update_pollstat_record)
 		{
 			$set = join($set, " , ");
 			$pollstats_update_query =

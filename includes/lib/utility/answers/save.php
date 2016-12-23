@@ -34,6 +34,14 @@ trait save
 		}
 		unset($_option['in_update']);
 
+		// update the total field of poll stats
+		$poll_status_update_mode = false;
+		if(isset($_option['update_mode']) && $_option['update_mode'] === true)
+		{
+			$poll_status_update_mode = true;
+		}
+		unset($_option['update_mode']);
+
 		if(!is_array($_answer))
 		{
 			$_answer = [$_answer];
@@ -107,10 +115,11 @@ trait save
 			// update users profile
 			$answers_details =
 			[
-				'validation' => $validation,
-				'poll_id'    => $_poll_id,
-				'opt_key'    => $value,
-				'user_id'    => $_user_id
+				'validation'  => $validation,
+				'poll_id'     => $_poll_id,
+				'opt_key'     => $value,
+				'user_id'     => $_user_id,
+				'update_mode' => $poll_status_update_mode,
 			];
 			// save answered count
 			if($value != 'other')

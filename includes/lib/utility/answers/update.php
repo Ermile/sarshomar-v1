@@ -100,7 +100,8 @@ trait update
 
 		foreach ($must_insert as $key => $value)
 		{
-			$_option['in_update'] = true;
+			$_option['in_update']   = true;
+			$_option['update_mode'] = true;
 			self::save($_user_id, $_poll_id, $value, $_option);
 			// set the poll stat in save function
 		}
@@ -135,10 +136,11 @@ trait update
 					// plus the valid answers
 					$plus_valid_chart =
 					[
-						'validation' => 'valid',
-						'poll_id'    => $value['post_id'],
-						'opt_key'    => $value['opt'],
-						'user_id'    => $_user_id
+						'validation'  => 'valid',
+						'update_mode' => true,
+						'poll_id'     => $value['post_id'],
+						'opt_key'     => $value['opt'],
+						'user_id'     => $_user_id
 					];
 
 					\lib\utility\stat_polls::set_poll_result($plus_valid_chart);
