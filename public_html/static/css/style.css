@@ -20,6 +20,7 @@ body{background-color:#00667a;}
 .wrapper .main.pad,.wrapper .main .box.pad{padding-top:20px;}
 .row.reverse > [class*="span"]{float:right;margin-left: 2.127659%;margin-right:0;}
 .row.reverse > [class*="span"]:last-child , .rtl .row.auto > .endline{margin-left:0;}
+img{-webkit-user-select:none;user-select:none}
 
 /************************************************************** aside */
 aside .select-box input{width:100%;background-color:#ebebeb;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow:none;color:#777;}
