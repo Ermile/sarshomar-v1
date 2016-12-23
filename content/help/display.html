@@ -1,87 +1,80 @@
 {%extends display.main%} {%block content%}
+<aside>
+ <a href="#" class="help-tour">
+  <img src="{{url.static}}images/svg/help/tour.svg" alt='{%trans "Two minute tour"%}'>
+  <p>{%trans "Two minute tour"%}</p>
+ </a>
+ <a href="{{url.base}}/contact" class="help-contact">
+  <p>{%trans "Contact Us"%}</p>
+  <img src="{{url.static}}images/miniature/help-contact.png" alt='{%trans "Contact Us"%}'>
+ </a>
+ <div class="help-quick-access">
+  <h4>{%trans "Quick Access"%}</h4>
+  <nav>
+   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a>
+  </nav>
+ </div>
+</aside>
 <div class="main help-main-page">
-    <div class="box help-main-box">
-        <div class="row">
-            <div class="span12">
-                <div class="search-box">
-                    <input type="text" placeholder='Search in Help Center'>
-                    <button class="search-button">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="search-result" data-xhr='search-result' id="search-result">
-                </div>
-            </div>
-            <!-- /.span9 -->
-        </div>
-        <div class="row">
-            <a href="/help-category" class="span3">
-                <div class="help-category">
-                    <figure>
-                        <span class="help-main-category-img"></span>
-                        <figcaption>Category Name</figcaption>
-                    </figure>
-                </div>
-            </a>
-            <a href="/help-category" class="span3">
-                <div class="help-category">
-                    <figure>
-                        <span class="help-main-category-img"></span>
-                        <figcaption>Category Name</figcaption>
-                    </figure>
-                </div>
-            </a>
-            <a href="/help-category" class="span3">
-                <div class="help-category">
-                    <figure>
-                        <span class="help-main-category-img"></span>
-                        <figcaption>Category Name</figcaption>
-                    </figure>
-                </div>
-            </a>
-            <a href="/help-category" class="span3">
-                <div class="help-category">
-                    <figure>
-                        <span class="help-main-category-img"></span>
-                        <figcaption>Category Name</figcaption>
-                    </figure>
-                </div>
-            </a>
-        </div>
-        <div class="row help-main-btns">
-            <div class="span6 btn">
-                <a href="#!">2 minutes tour</a>
-            </div>
-            <div class="span6 btn">
-                <a href="#!">Ask from support</a>
-            </div>
-        </div>
-        <div class="row help-main-links">
-            <div class="span8">
-                <h4>Most visited questions</h4>
-                <div class="help-most-visited">
-                    <ul>
-                        <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-                        <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-                        <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-                        <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-                        <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="span4">
-                <h4>Quick Access</h4>
-                <div class="help-quick-access">
-                    <ul>
-                        <li><a href="/help-category">Quick Access to...</a></li>
-                        <li><a href="/help-category">Quick Access to...</a></li>
-                        <li><a href="/help-category">Quick Access to...</a></li>
-                        <li><a href="/help-category">Quick Access to...</a></li>
-                        <li><a href="/help-category">Quick Access to...</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+ <div class="box help-main-box">
+  <div class="row">
+   <div class="span12">
+    <div class="search-box">
+     <input type="text" placeholder='Search in Help Center'>
+      <button class="search-button">
+       <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
     </div>
+    <div class="search-result" data-xhr='search-result' id="search-result"></div>
+   </div>
+  </div>
+
+  <div class="help-category-container">
+   <div class="help-category-box">
+    <a href="/help-category" class="help-category-item">
+     <p class="title">{%trans "Help Title"%} 1</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+    <a href="/help-category" class="help-category-item vertical-separator">
+     <p class="title">{%trans "Help Title"%}</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+    <a href="/help-category" class="help-category-item">
+     <p class="title">{%trans "Help Title"%}</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+   </div>
+
+   <div class="help-category-box">
+    <a href="/help-category" class="help-category-item">
+     <p class="title">{%trans "Help Title"%}</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+    <a href="/help-category" class="help-category-item horizontal-separator">
+     <p class="title">{%trans "Help Title"%}</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+    <a href="/help-category" class="help-category-item">
+     <p class="title">{%trans "Help Title"%}</p>
+     <p class="description">{%trans "Help Description"%}</p>
+    </a>
+   </div>
+  </div>
+
+  <div class="help-most-visited">
+   <h4>{%trans "Most visited questions"%}</h4>
+   <ul>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+   </ul>
+  </div>
+ </div>
 </div>
 {%endblock%}
