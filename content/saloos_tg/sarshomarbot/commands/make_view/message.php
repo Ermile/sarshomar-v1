@@ -92,7 +92,7 @@ class message
 	}
 	public function add_telegram_tag()
 	{
-		$this->message['telegram_tag'] = '#' .T_('Sarshomar');
+		$this->message['telegram_tag'] = '#' .T_('Sarshomar') .' @SarshomarBot';
 	}
 
 	public function set_telegram_result($_answer_id = null)

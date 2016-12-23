@@ -104,7 +104,11 @@ class utility
 		{
 			foreach ($result as $key => $value) {
 				$text .= join($value['row_text']);
-				$text .= ' ' . self::nubmer_language(round($value['percent']) ."%") ."\n";
+				$text .= ' ' . self::nubmer_language(round($value['percent']) ."%");
+				if(end($result) != $value)
+				{
+					$text .= "\n";
+				}
 			}
 		}
 		else

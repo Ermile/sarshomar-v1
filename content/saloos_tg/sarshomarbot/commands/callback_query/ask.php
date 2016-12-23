@@ -174,11 +174,24 @@ class ask
 			{
 				$disable_web_page_preview = false;
 			}
-			callback_query::edit_message([
-				'text' => $maker->message->make(),
-				'reply_markup' => $reply_markup,
-				'disable_web_page_preview' => $disable_web_page_preview
+			$inline_message_id = $_query['inline_message_id'];
+			$lock = \lib\db\options::get([
+				'option_cat' => 'telegram', 'option_key' => 'lock', 'option_value' => $inline_message_id, 'limit'=> 1
 				]);
+			if(empty($lock))
+			{
+				\lib\db\options::insert([
+				'option_cat' => 'telegram', 'option_key' => 'lock', 'option_value' => $inline_message_id
+				]);
+				callback_query::edit_message([
+					'text' => $maker->message->make(),
+					'reply_markup' => $reply_markup,
+					'disable_web_page_preview' => $disable_web_page_preview
+					]);
+				\lib\db\options::hard_delete([
+				'option_cat' => 'telegram', 'option_key' => 'lock', 'option_value' => $inline_message_id
+				]);
+			}
 			\lib\define::set_language(language::check(true), true);
 		}
 		else
