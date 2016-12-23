@@ -1117,13 +1117,13 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .help-tour img{max-width:60%}
 .rtl .help-tour img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
 .help-tour p{margin-bottom:0;font-size:1.2em}
-.help-tour:hover,.help-tour:focus{opacity:.8;color:#F4F4F4}
+.help-tour:hover,.help-tour:focus{background-color:#E5A428;color:#F4F4F4}
 .help-contact{position:relative;display:block;background-color:#127D7A;padding:1em 2em;text-align:left;color:#F4F4F4;transition:.3s;min-height:130px;margin-bottom:1em}
 .rtl .help-contact{text-align:right}
 .help-contact p{margin-bottom:0;font-size:1.2em}
 .help-contact img{position:absolute;bottom:-12px;right:-20px}
 .rtl .help-contact img{right:auto;left:-20px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
-.help-contact:hover,.help-contact:focus{opacity:.8;color:#F4F4F4}
+.help-contact:hover,.help-contact:focus{background-color:#E5A428;color:#F4F4F4}
 .help-quick-access h4{position:relative;color:#00667A;padding:1em 2em;font-size:1.2em;margin-bottom:0}
 .help-quick-access h4::before{content:'';position:absolute;width:1.5em;height:2px;left:0;top:0;bottom:0;margin:auto;background-color:#00667A}
 .rtl .help-quick-access h4::before{left:auto;right:0}
