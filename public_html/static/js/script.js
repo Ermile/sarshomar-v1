@@ -1,26 +1,35 @@
 var TEMP = null;
+
+
+// Range Slider
+!function(t){"use strict";function e(){t(this).removeClass("range-slider"),t(this).data("range-slider",void 0),t(this).init.prototype.range=void 0,t("*",this).remove()}function i(){t(this).rangeSlider("destroy"),t(this).rangeSlider()}t.fn.rangeSlider=function(n){t(this).each(function(){switch(n){case"destroy":return e.call(this);case"restart":return i.call(this);case"":return i.call(this)}t(this).hasClass("range-slider")&&t(this).rangeSlider("destroy"),t(this).trigger("range-slider::init::before"),t(this).addClass("range-slider");var r=t(this).attr("id");r&&(t('<input type="hidden" name="'+r+'-max" data-range-bind="'+r+'" data-range-value="max">').appendTo(this),t('<input type="hidden" name="'+r+'-min" data-range-bind="'+r+'" data-range-value="min">').appendTo(this));var s=t(this).attr("data-infinity"),d=t(this).attr("data-type");"vertical"!=d&&(d="horizontal",t(this).attr("data-type","horizontal"));var o=Number(t(this).attr("data-step"));isNaN(o)&&(o=1);var l=Number(t(this).attr("data-min"));isNaN(l)&&(l=0);var p=Number(t(this).attr("data-max"));(isNaN(p)||l>=p)&&(p=l+100);var h=p-l,m=Number(t(this).attr("data-min-default"));(isNaN(m)||m<l)&&(m=0);var u=Number(t(this).attr("data-max-default"));(isNaN(u)||p<u)&&(u=h),t(this).data("range-slider",{min:l,max:p,min_default:m,max_default:u,unit:h,step:o,type:d,margin:m,depth:p}),t(this).init.prototype.range=function(e,i,a){var n=e,r=i,s=this.data("range-slider"),d={type:"unit"};t.extend(d,a),d.from_type=d.type,d.to_type=d.type;var o="vertical"==s.type?"height":"width";null!==n&&n!==!1&&void 0!==n||(n=this.find(".dynamic-margin")[o](),"vertical"==s.type&&(n=this[o]()-(n+this.find(".dynamic-range")[o]())),d.from_type="pixel"),null!==r&&r!==!1&&void 0!==r||(r=this.find(".dynamic-margin")[o]()+this.find(".dynamic-range")[o](),"vertical"==s.type&&(r=this[o]()-this.find(".dynamic-margin")[o]()),d.to_type="pixel");var l=this[o]();"pixel"==d.from_type?n=n*s.unit/l:"percent"==d.from_type?n=n*s.unit/100:"ziro_unit"==d.from_type?n-=s.min:"step_plus"==d.from_type&&(n=n*s.step+s.from),"pixel"==d.to_type?r=r*s.unit/l:"percent"==d.to_type?r=r*s.unit/100:"ziro_unit"==d.to_type?r-=s.min:"step_plus"==d.to_type&&(r=r*s.step+s.to);var p=Math.round(n/s.step)*s.step,h=Math.round(r/s.step)*s.step;h<p&&(s.to==h?h=p:p=h),h>s.unit&&(h=s.unit),p>s.unit&&(p=s.unit),h<0&&(h=0),p<0&&(p=0);var m=this.attr("id");m&&t('[data-range-bind="'+m+'"]').each(function(){var e=t(this).attr("data-range-value");"max"==e?t(this).val(s.min+h):"min"==e&&t(this).val(s.min+p)}),n=100*p/s.unit,r=100*h/s.unit;var u=r-n;s.to==h&&s.from==p||(this.data("range-slider").from=p,this.data("range-slider").to=h,this.trigger("range-slider::change::before",[s.min+p,s.min+h]),"vertical"==s.type?this.find(".dynamic-margin").css(o,100-r+"%"):this.find(".dynamic-margin").css(o,n+"%"),this.find(".dynamic-range").css(o,u+"%"),this.trigger("range-slider::change",[s.min+p,s.min+h]))};var g=t("<div class='dynamic-margin'></div>"),c=t("<div class='dynamic-range'></div>");"max"==s?a.call(this,"min").appendTo(c):"min"==s?a.call(this,"max").appendTo(c):(a.call(this,"max").appendTo(c),a.call(this,"min").appendTo(c)),g.hide(),c.hide(),g.appendTo(this),c.appendTo(this),t(this).range(m,u),g.show(),c.show(),t(this).trigger("range-slider::init::after")})};var a=function(e){var i=t(this).data("range-slider"),a=this,n=t("<div class='"+e+"'></div>");return t(this).trigger("range-slider::selection",[n,e]),n.attr("tabindex","0"),n.unbind("mousedown.range-slider"),n.bind("mousedown.range-slider",function(){return t(document).unbind("mousemove.range-slider"),t(document).bind("mousemove.range-slider",function(n){var r="vertical"==i.type?n.pageY:n.pageX,s="vertical"==i.type?t(a).offset().top:t(a).offset().left,d=r-s;d="vertical"==i.type?t(a).height()-d:d,"max"==e?t(a).range(null,d,{type:"pixel"}):t(a).range(d,null,{type:"pixel"})}).bind("mouseup.range-slider",function(){t(document).unbind("mouseup.range-slider"),t(document).unbind("mousemove.range-slider")}),!1}).bind("mouseup",function(){t(document).unbind("mousemove.range-slider")}).bind("keydown.range-slider",function(e){var i,a;return i=1,a=null,t(this).is(".max")&&(i=null,a=1),38==e.keyCode||39==e.keyCode?(t(this).parents(".range-slider").range(i,a,{type:"step_plus"}),!1):37==e.keyCode||40==e.keyCode?(t(this).parents(".range-slider").range(i*-1,a*-1,{type:"step_plus"}),!1):void 0}),n}}(jQuery);
+
+/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
+!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
+
 /**
  * check input for first time
  */
-function checkInputChange()
+function runDataResponse()
 {
 	// on select and input check inputs
 	$('input, select', this).change(function()
 	{
-		checkInput(this, false);
+		checkInputResponse(this, false);
 	});
 	// add data-response-realtime to run realtime on input type
 	$('input[data-response-realtime]', this).keyup(function()
 	{
-		checkInput(this, false);
+		checkInputResponse(this, false);
 	});
 
 	// // run for the first time
 	// $('input[type=checkbox]').each(function ()
 	// {
-	//   checkInput(this, true);
+	//   checkInputResponse(this, true);
 	// });
 }
+
 
 /**
  * [getInputValue description]
@@ -58,7 +67,7 @@ function getInputValue(_el)
  * @param  {[type]} _firstTime [description]
  * @return {[type]}            [description]
  */
-function checkInput(_this, _firstTime)
+function checkInputResponse(_this, _firstTime)
 {
 	// declare variable
 	var elResult;
@@ -311,8 +320,7 @@ function checkInput(_this, _firstTime)
  */
 function fixSlideJumping()
 {
-
-	$('[data-response-hide][data-response-effect="slide"]:not([data-response-notfix])').css('height',function(i,h)
+	$('[data-response-hide][data-response-effect="slide"]:not([data-response-notfix])', this).css('height',function(i,h)
 	{
 		$(this).hide();
 		return h;
@@ -336,6 +344,22 @@ function resizableTextarea()
 }
 
 
+
+// ================================================================== run on all part of each page
+route('*', function ()
+{
+	// run data-response detector
+	runDataResponse.call(this);
+	// run rangeSlider on all pages
+	$(".range-slider", this).rangeSlider();
+	// run func to fixSlideJumping
+	fixSlideJumping.call(this);
+}).once(function()
+{
+});
+
+
+// ************************************************************************************************************ Add
 /**
  * add new record of answer
  */
@@ -460,13 +484,6 @@ function deleteQuestionOpts(_this)
 		});
 	}
 }
-
-
-// Range Slider
-!function(t){"use strict";function e(){t(this).removeClass("range-slider"),t(this).data("range-slider",void 0),t(this).init.prototype.range=void 0,t("*",this).remove()}function i(){t(this).rangeSlider("destroy"),t(this).rangeSlider()}t.fn.rangeSlider=function(n){t(this).each(function(){switch(n){case"destroy":return e.call(this);case"restart":return i.call(this);case"":return i.call(this)}t(this).hasClass("range-slider")&&t(this).rangeSlider("destroy"),t(this).trigger("range-slider::init::before"),t(this).addClass("range-slider");var r=t(this).attr("id");r&&(t('<input type="hidden" name="'+r+'-max" data-range-bind="'+r+'" data-range-value="max">').appendTo(this),t('<input type="hidden" name="'+r+'-min" data-range-bind="'+r+'" data-range-value="min">').appendTo(this));var s=t(this).attr("data-infinity"),d=t(this).attr("data-type");"vertical"!=d&&(d="horizontal",t(this).attr("data-type","horizontal"));var o=Number(t(this).attr("data-step"));isNaN(o)&&(o=1);var l=Number(t(this).attr("data-min"));isNaN(l)&&(l=0);var p=Number(t(this).attr("data-max"));(isNaN(p)||l>=p)&&(p=l+100);var h=p-l,m=Number(t(this).attr("data-min-default"));(isNaN(m)||m<l)&&(m=0);var u=Number(t(this).attr("data-max-default"));(isNaN(u)||p<u)&&(u=h),t(this).data("range-slider",{min:l,max:p,min_default:m,max_default:u,unit:h,step:o,type:d,margin:m,depth:p}),t(this).init.prototype.range=function(e,i,a){var n=e,r=i,s=this.data("range-slider"),d={type:"unit"};t.extend(d,a),d.from_type=d.type,d.to_type=d.type;var o="vertical"==s.type?"height":"width";null!==n&&n!==!1&&void 0!==n||(n=this.find(".dynamic-margin")[o](),"vertical"==s.type&&(n=this[o]()-(n+this.find(".dynamic-range")[o]())),d.from_type="pixel"),null!==r&&r!==!1&&void 0!==r||(r=this.find(".dynamic-margin")[o]()+this.find(".dynamic-range")[o](),"vertical"==s.type&&(r=this[o]()-this.find(".dynamic-margin")[o]()),d.to_type="pixel");var l=this[o]();"pixel"==d.from_type?n=n*s.unit/l:"percent"==d.from_type?n=n*s.unit/100:"ziro_unit"==d.from_type?n-=s.min:"step_plus"==d.from_type&&(n=n*s.step+s.from),"pixel"==d.to_type?r=r*s.unit/l:"percent"==d.to_type?r=r*s.unit/100:"ziro_unit"==d.to_type?r-=s.min:"step_plus"==d.to_type&&(r=r*s.step+s.to);var p=Math.round(n/s.step)*s.step,h=Math.round(r/s.step)*s.step;h<p&&(s.to==h?h=p:p=h),h>s.unit&&(h=s.unit),p>s.unit&&(p=s.unit),h<0&&(h=0),p<0&&(p=0);var m=this.attr("id");m&&t('[data-range-bind="'+m+'"]').each(function(){var e=t(this).attr("data-range-value");"max"==e?t(this).val(s.min+h):"min"==e&&t(this).val(s.min+p)}),n=100*p/s.unit,r=100*h/s.unit;var u=r-n;s.to==h&&s.from==p||(this.data("range-slider").from=p,this.data("range-slider").to=h,this.trigger("range-slider::change::before",[s.min+p,s.min+h]),"vertical"==s.type?this.find(".dynamic-margin").css(o,100-r+"%"):this.find(".dynamic-margin").css(o,n+"%"),this.find(".dynamic-range").css(o,u+"%"),this.trigger("range-slider::change",[s.min+p,s.min+h]))};var g=t("<div class='dynamic-margin'></div>"),c=t("<div class='dynamic-range'></div>");"max"==s?a.call(this,"min").appendTo(c):"min"==s?a.call(this,"max").appendTo(c):(a.call(this,"max").appendTo(c),a.call(this,"min").appendTo(c)),g.hide(),c.hide(),g.appendTo(this),c.appendTo(this),t(this).range(m,u),g.show(),c.show(),t(this).trigger("range-slider::init::after")})};var a=function(e){var i=t(this).data("range-slider"),a=this,n=t("<div class='"+e+"'></div>");return t(this).trigger("range-slider::selection",[n,e]),n.attr("tabindex","0"),n.unbind("mousedown.range-slider"),n.bind("mousedown.range-slider",function(){return t(document).unbind("mousemove.range-slider"),t(document).bind("mousemove.range-slider",function(n){var r="vertical"==i.type?n.pageY:n.pageX,s="vertical"==i.type?t(a).offset().top:t(a).offset().left,d=r-s;d="vertical"==i.type?t(a).height()-d:d,"max"==e?t(a).range(null,d,{type:"pixel"}):t(a).range(d,null,{type:"pixel"})}).bind("mouseup.range-slider",function(){t(document).unbind("mouseup.range-slider"),t(document).unbind("mousemove.range-slider")}),!1}).bind("mouseup",function(){t(document).unbind("mousemove.range-slider")}).bind("keydown.range-slider",function(e){var i,a;return i=1,a=null,t(this).is(".max")&&(i=null,a=1),38==e.keyCode||39==e.keyCode?(t(this).parents(".range-slider").range(i,a,{type:"step_plus"}),!1):37==e.keyCode||40==e.keyCode?(t(this).parents(".range-slider").range(i*-1,a*-1,{type:"step_plus"}),!1):void 0}),n}}(jQuery);
-
-/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
-!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
 
 
 /**
@@ -753,14 +770,11 @@ function simulateTreeNavigation()
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
 {
+	// run textarea resizable
 	// declare functions
-	checkInputChange.call(this);
 	resizableTextarea.call(this);
 	setSortable();
 	detectPercentage();
-
-
-	$(".range-slider", this).rangeSlider();
 
 	// run on input change and add new opt for this question
 	$(this).on('input', '.input-group.sortable .element .input[type="text"]', function(event)
@@ -862,7 +876,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 	// treeSearch();
 	// }
 
-
 	// --------------------------------------------------------------------------------- Complete profile
 	// if remove complete profile checkbox, return to old status and rerun sortable
 	$(this).on('change', '#complete-profile', function(event)
@@ -900,21 +913,30 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 }).once(function()
 {
-	console.log('.....................once run on add');
-	fixSlideJumping();
 	simulateTreeNavigation();
 });
 
 
+// ************************************************************************************************************ Filter
+/**
+ * [calcFilterPrice description]
+ * @return {[type]} [description]
+ */
 function calcFilterPrice()
 {
 	var totalEl      = $('.pay-info .price .value');
 	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
 	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
 	// var totalPerson  = $('#rangepersons').rangeSlider('to');
-	var totalPerson  = $('#rangepersons').data('range-slider').to;
-
-
+	var totalPerson  = $('#rangepersons').data('range-slider');
+	if(totalPerson)
+	{
+		totalPerson = totalPerson.to;
+	}
+	else
+	{
+		totalPerson = 0;
+	}
 	// var totalPerson  = parseInt($('#rangepersons').val());
 
 	var totalPercent = 0;
@@ -929,7 +951,6 @@ function calcFilterPrice()
 	totalPrice   = totalPerson + (totalPerson * totalPercent);
 	totalPrice   = totalPrice * basePrice;
 
-
 	// set value to show to enduser
 	totalEl.text(totalPrice.toLocaleString());
 }
@@ -941,7 +962,7 @@ route(/\@\/add\/.+\/filter$/, function()
 	// if any item of complete profile is selected, then fill item with profile values
 	$(this).on('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
-		calcFilterPrice();
+		calcFilterPrice.call(this);
 	});
 
 	// on open tree load content to it
@@ -952,23 +973,21 @@ route(/\@\/add\/.+\/filter$/, function()
 		// console.log(_obj);
 		// console.log(_name);
 		// console.log(_value);
-		calcFilterPrice();
+		calcFilterPrice.call(this);
 	});
 	// run rangeslider
-	$(".range-slider", this).rangeSlider();
-
 }).once(function()
 {
-	calcFilterPrice();
-	checkInputChange.call(this);
+	console.log('once on filter....');
+	calcFilterPrice.call(this);
 	$(this).on('click','button', function()
 	{
 		detectPercentage(true);
 	});
-	console.log('once on filter....');
 	detectPercentage();
 });
 
+// ************************************************************************************************************ Publish
 function runAutoComplete()
 {
 	$('.dropdown').autoComplete(
@@ -1007,8 +1026,8 @@ function saveAutoComplete()
 }
 
 // ================================================================== @/add/7pr/publish
-route(/\@\/add\/.+\/publish$/, function()
 // route(/\@\/add\/[\w.]+\/publish/, function()
+route(/\@\/add\/.+\/publish$/, function()
 {
 
 }).once(function()
