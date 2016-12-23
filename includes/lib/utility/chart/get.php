@@ -146,7 +146,7 @@ trait get
 		$result['basic']      = json_encode($basic_series, JSON_UNESCAPED_UNICODE);
 
 		// get the support filter to load chart of this filter
-		$support_filter = \lib\utility\filters::support_filter();
+		$support_filter = \lib\db\filters::support_filter();
 		$support_filter = array_keys($support_filter);
 
 		// check the filter of users was request form system

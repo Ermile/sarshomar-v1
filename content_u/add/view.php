@@ -28,7 +28,7 @@ class view extends \content_u\home\view
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
 		{
-			$profile_lock = \lib\utility\filters::support_filter();
+			$profile_lock = \lib\db\filters::support_filter();
 			$profile = [];
 			foreach ($profile_lock as $key => $value)
 			{

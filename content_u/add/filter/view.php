@@ -31,7 +31,7 @@ class view extends \content_u\home\view
 		];
 		$this->include->fontawesome = true;
 
-		$filters = \lib\utility\filters::get_poll_filter($poll_survey_id);
+		$filters = \lib\db\filters::get_poll_filter($poll_survey_id);
 
 		$this->data->filters   = $filters;
 		$this->data->member    = \lib\db\ranks::get($poll_survey_id, 'member');

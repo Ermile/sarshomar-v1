@@ -47,7 +47,7 @@ trait poll_complete
 		$answers      = \lib\utility\answers::get($_args['poll_id']);
 		$opt_value    = array_column($answers, 'option_value', 'option_key');
 
-		$support_filter = \lib\utility\filters::support_filter();
+		$support_filter = \lib\db\filters::support_filter();
 		if(!isset($support_filter[$profile_lock]))
 		{
 			return false;

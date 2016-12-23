@@ -69,7 +69,7 @@ class model extends \mvc\model
 			{
 				$value = $value[0];
 			}
-			if(\lib\utility\filters::support_filter($key))
+			if(\lib\db\filters::support_filter($key))
 			{
 				$filter[$key] = $value;
 			}
@@ -78,7 +78,7 @@ class model extends \mvc\model
 		$meta                   = [];
 		// if(!empty($filter))
 		// {
-		// 	$filter_id         = \lib\utility\filters::get_id($filter);
+		// 	$filter_id         = \lib\db\filters::get_id($filter);
 		// 	$meta['filter_id'] = $filter_id;
 		// }
 		$meta['my_poll'] = true;

@@ -76,7 +76,7 @@ class model extends \content_u\home\model
 		// for example the user set male and female filter
 		// we remove the gender filter
 		$sum_money_filter = 0;
-		$support_filter   = \lib\utility\filters::support_filter();
+		$support_filter   = \lib\db\filters::support_filter();
 		foreach ($filters as $key => $value)
 		{
 			if(isset($support_filter[$key]))
@@ -87,7 +87,7 @@ class model extends \content_u\home\model
 				}
 				else
 				{
-					$sum_money_filter += (int) \lib\utility\filters::money_filter($key);
+					$sum_money_filter += (int) \lib\db\filters::money_filter($key);
 				}
 			}
 		}
@@ -95,7 +95,7 @@ class model extends \content_u\home\model
 		if(!empty($filters))
 		{
 			// get the count user by this filter
-			$count = \lib\utility\filters::count_user($filters);
+			$count = \lib\db\filters::count_user($filters);
 
 			// the min member
 			$min_member = 1;
@@ -129,8 +129,17 @@ class model extends \content_u\home\model
 		 */
 		\lib\db\ranks::plus($poll_id, "filter", $sum_money_filter, ['replace' => true]);
 
+		// remove exist filter saved of this poll
+		\lib\db\postfilters::remove($poll_id);
+
 		// ready to insert filters in options table
-		$filter_ids = \lib\utility\filters::update($filters, $poll_id);
+		$filter_ids = \lib\db\filters::insert($filters);
+
+		// if filter id not found insert the filter record and get the last_insert_id
+		if(!is_null($filter_ids))
+		{
+			$insert_filters = \lib\db\postfilters::set($poll_id, $filter_ids);
+		}
 
 		if(\lib\debug::$status)
 		{
