@@ -34,7 +34,7 @@ class sync
 	 * @param      <type>  $_web_mobile   The web mobile
 	 * @param      <type>  $_telegram_id  The telegram identifier
 	 */
-	public static function is_sync_web_telegram($_web_mobile, $_telegram_id)
+	public static function is_telegram_sync($_web_mobile, $_telegram_id)
 	{
 		return self::web_telegram($_web_mobile, $_telegram_id, true);
 	}
