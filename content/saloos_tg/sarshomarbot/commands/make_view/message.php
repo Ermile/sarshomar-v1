@@ -76,7 +76,7 @@ class message
 			$poll_list .= $value['emoji'] . ' ' . $value['text'];
 			if($_add_count)
 			{
-				$poll_list .= ' | ' . utility::italic($value['answer_count'] . ' ' . T_("Person"));
+				$poll_list .= ' - ' . utility::nubmer_language($value['answer_count']);
 			}
 			if(end($this->poll_list) !== $value)
 			{
@@ -173,8 +173,8 @@ class message
 				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text = utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . ' ' . $count['invalid']);
-				$text .= ' '. T_("From") . ' ' .$count['sum'] .' ' . T_("Person");
+				$text = '👥' .utility::nubmer_language($count['sum']) . ' ';
+				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', '❗️' . utility::nubmer_language($count['invalid']));
 				$this->message['count_poll'] = $text;
 				break;
 			case 'sum_valid':

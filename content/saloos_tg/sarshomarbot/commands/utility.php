@@ -104,7 +104,7 @@ class utility
 		{
 			foreach ($result as $key => $value) {
 				$text .= join($value['row_text']);
-				$text .= ' ' . round($value['percent']) ."%\n";
+				$text .= ' ' . self::nubmer_language(round($value['percent']) ."%") ."\n";
 			}
 		}
 		else
@@ -120,6 +120,7 @@ class utility
 				}
 			}
 		}
+
 		return $text;
 	}
 
@@ -232,6 +233,27 @@ END;
 )$/x
 END;
     	return (preg_match($regex, $_str) === 1) === false;
+	}
+
+	public static function fa_number($_text)
+	{
+		return preg_replace_callback("/\d/", function($_str){
+		    $fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+		    return $fa[$_str[0]];
+		}, $_text);
+	}
+
+	public static function nubmer_language($_text)
+	{
+		$text = $_text;
+		if(callback_query\language::check(true) == 'fa')
+		{
+			$text = preg_replace_callback("/[\d%]/", function($_str){
+				$fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '%' => '٪'];
+				return $fa[$_str[0]];
+			}, $text);
+		}
+		return $text;
 	}
 
 	public static function un_tag($_string)
