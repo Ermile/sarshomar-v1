@@ -1,25 +1,63 @@
 {%extends display.main%}
 
-
 {%block content%}
+<aside></aside>
 <div class="main">
-  <section class="box">
+ <section class="box help-category-box">
+  <div class="row">
+   <div class="search-box">
+    <input type="text" placeholder='Search in Help Center'>
+    <button class="search-button"><i class="fa fa-search"></i></button>
+   </div>
+   <div class="search-result" data-xhr='search-result' id="search-result"></div>
+  </div>
 {%block page_content%}
-   <h1>Help - Terms</h1>
+  <div class="row">
+   <h2 class="help-category-title">{{post.title |capitalize}}</h2>
+   <div class="help-category-content">{{post.content |raw}}</div>
+  </div>
 
-   <h2>{{post.title}}</h2>
-   <div class="content">{{post.content |raw}}</div>
-   <nav id="page-nav">
-    <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
-    <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
-   </nav>
-
-	<ul>
-		{% for key, value in tags_list%}
-		<li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
-		{%endfor%}
-	</ul>
+  <div class="sideline-title">
+   <h4>{%trans "Questions List"%}</h4>
+   <ul>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+   </ul>
+  </div>
 {%endblock%}
-  </section>
+  <div class="sideline-title">
+   <h4>{%trans "Latest questions"%}</h4>
+   <ul>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+   </ul>
+  </div>
+ </section>
 </div>
+{%endblock%}
+
+
+
+
+
+
+{%block page_content2%}
+  <h1>Help - Terms</h1>
+  <h2>{{post.title}}</h2>
+  <div class="content">{{post.content |raw}}</div>
+  <nav id="page-nav">
+   <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+   <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+  </nav>
+  <ul>
+{% for key, value in tags_list%}
+   <li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
+{%endfor%}
+  </ul>
 {%endblock%}

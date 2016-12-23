@@ -22,19 +22,17 @@
 <div class="main help-main-page">
  <div class="box help-main-box">
   <div class="row">
-   <div class="span12">
-    <div class="search-box">
-     <input type="text" placeholder='Search in Help Center'>
-      <button class="search-button">
-       <i class="fa fa-search" aria-hidden="true"></i>
-      </button>
-    </div>
-    <div class="search-result" data-xhr='search-result' id="search-result"></div>
+   <div class="search-box">
+    <input type="text" placeholder='Search in Help Center'>
+     <button class="search-button">
+      <i class="fa fa-search" aria-hidden="true"></i>
+     </button>
    </div>
+   <div class="search-result" data-xhr='search-result' id="search-result"></div>
   </div>
 
   <div class="help-category-container">
-   <div class="help-category-box">
+   <div class="help-category-items">
     <a href="/help-category" class="help-category-item">
      <p class="title">{%trans "Help Title"%} 1</p>
      <p class="description">{%trans "Help Description"%}</p>
@@ -49,7 +47,7 @@
     </a>
    </div>
 
-   <div class="help-category-box">
+   <div class="help-category-items">
     <a href="/help-category" class="help-category-item">
      <p class="title">{%trans "Help Title"%}</p>
      <p class="description">{%trans "Help Description"%}</p>
@@ -65,7 +63,7 @@
    </div>
   </div>
 
-  <div class="help-most-visited">
+  <div class="sideline-title">
    <h4>{%trans "Most visited questions"%}</h4>
    <ul>
     <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>

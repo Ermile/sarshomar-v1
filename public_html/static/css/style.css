@@ -1096,20 +1096,23 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 
 
 /************************************************************** help center */
-.help-main-box{margin: 0 10em}
+.help-main-box,.help-category-box,.help-post-box{margin: 0 10em}
 .help-category-container{margin-bottom:5em}
-.help-category-box{display:-webkit-flex;display:flex}
-.help-category-container .help-category-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s}
-.help-category-container .help-category-item .title{color:#0C7C78;font-weight:bold}
-.help-category-container .help-category-item .description{color:#A1A1A1;margin-bottom:0;font-size:1.2em}
-.help-category-container .help-category-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#E7A429;opacity:0;transition:.3s}
-.help-category-container .help-category-item:hover,.help-category-container .help-category-item:focus{background-color:#EBEBEB}
+.help-category-items{display:-webkit-flex;display:flex}
+.help-category-items .help-category-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s}
+.help-category-items .help-category-item .title{color:#0C7C78;font-weight:bold}
+.help-category-items .help-category-item .description{color:#A1A1A1;margin-bottom:0;font-size:1.2em}
+.help-category-items .help-category-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#E7A429;opacity:0;transition:.3s}
+.help-category-items .help-category-item:hover,.help-category-items .help-category-item:focus{background-color:#EBEBEB}
 .help-category-container .help-category-item:hover::before,.help-category-container .help-category-item:focus::before{opacity:1}
-.help-most-visited h4{color:#0C7C78;padding-left:.5em;border-left:4px solid #AAAAAA;font-weight:bold;margin-bottom:2em}
-.rtl .help-most-visited h4{padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
-.help-most-visited ul{margin-bottom:5em;padding:0 2em}
-.help-most-visited ul li a{font-size:1.2em;padding:.5em 2em;color:#00667A;display:block;transition:.3s}
-.help-most-visited ul li a:hover,.help-most-visited ul li a:focus{background-color:#00667A;color:#F4F4F4}
+.sideline-title h4{color:#0C7C78;padding-left:.5em;border-left:4px solid #AAAAAA;font-weight:bold;margin-bottom:2em}
+.rtl .sideline-title h4{padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
+.sideline-title ul{margin-bottom:5em;padding:0 2em}
+.sideline-title ul li a{font-size:1.2em;padding:.5em 2em;color:#00667A;display:block;transition:.3s}
+.sideline-title ul li a:hover,.sideline-title ul li a:focus{background-color:#00667A;color:#F4F4F4}
+.sideline-title .content{color:#6E6E6E}
+.sideline-title .content p{font-size:1.2em;padding-left:30px;text-align:justify}
+.rtl .sideline-title .content p{padding-left:0;padding-right:30px}
 .help-tour{display:block;background-color:#189491;padding:1em 2em;text-align:center;color:#F4F4F4;transition:.3s}
 .help-tour img{max-width:60%}
 .rtl .help-tour img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
@@ -1126,6 +1129,17 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 .rtl .help-quick-access h4::before{left:auto;right:0}
 .help-quick-access nav a{display:block;font-size:1.2em;color:#5A5A5A;padding:.2em 1.5em;transition:.3s}
 .help-quick-access nav a:hover,.help-quick-access nav a:focus{background-color:#00667A;color:#EBEBEB}
+.help-category-title{color:#0C7C78;font-weight:bold}
+.help-category-content{color:#A1A1A1;margin-bottom:5em}
+.help-category-content p{font-size:1.2em}
+.help-prompt{position:relative;background-color:#EFEFEF;padding:1.5em 3em;margin:0 0 5em 30px}
+.rtl .help-prompt{margin:0 30px 5em 0}
+.help-prompt::before{content:'';position:absolute;top:0;left:0;right:0;margin:auto;height:4px;width:50%;background-color:#E5A428}
+.help-prompt span{font-weight:bold;color:#6E6E6E;font-size:1.2em;margin-right:2em}
+.rtl .help-prompt span{margin-right:0;margin-left:2em}
+.help-prompt .try{border:none}
+.help-prompt .try:first-of-type{margin-right:1em}
+.rtl .help-prompt .try:first-of-type{margin-right:0;margin-left:1em}
 
 
 /************************************************************** contact page */
