@@ -100,7 +100,14 @@ class utility
 			$result[$key]['row_text'] = $row_text;
 		}
 		$text = '';
-		if($count > 4)
+		if(true)
+		{
+			foreach ($result as $key => $value) {
+				$text .= join($value['row_text']);
+				$text .= ' ' . round($value['percent']) ."%\n";
+			}
+		}
+		else
 		{
 			for($row = $rows ; $row >= 0; $row--)
 			{

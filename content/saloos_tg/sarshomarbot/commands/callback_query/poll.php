@@ -130,7 +130,6 @@ class poll
 		$file_id = false;
 		if(session::get('poll', 'file_addr'))
 		{
-			handle::send_log(session::get('poll', 'file_addr'));
 			 $file_id = \lib\utility\upload::temp_move(session::get('poll', 'file_addr'), ['user_id' => bot::$user_id]);
 		}
 
@@ -150,7 +149,6 @@ class poll
 			$insert['post_meta']['data_type'] 		= session::get('poll', 'file_type');
 		}
 
-		handle::send_log($insert);
 
 		$poll_id = \lib\db\polls::insert($insert);
 		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
