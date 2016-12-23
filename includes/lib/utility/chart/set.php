@@ -133,7 +133,7 @@ trait set
 		if(isset($_args['profile']))
 		{
 			// get profile data in filter table
-			$user_profile_data = \lib\db\filters::get($_args['profile']);
+			$user_profile_data = \lib\utility\filters::get($_args['profile']);
 			if(is_array($user_profile_data))
 			{
 				// remove empty value from profile to minus the 'undefined' of chart
@@ -150,7 +150,7 @@ trait set
 		// get the support filter of service
 		// some index of profile data we have not eny chart of this
 		// we have the chart of all index in filters::support_filter()
-	    $support_filter = \lib\db\filters::support_filter();
+	    $support_filter = \lib\utility\filters::support_filter();
 
 	    // the keys of support_filter is important
 	    // the value of this array use in other place

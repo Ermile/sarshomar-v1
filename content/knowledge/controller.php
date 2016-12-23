@@ -10,7 +10,7 @@ class controller extends \mvc\controller
 		 * check the support filter and make all filter array
 		 * to route all filter
 		 */
-		$support_filter = \lib\db\filters::support_filter();
+		$support_filter = \lib\utility\filters::support_filter();
 		$property               = [];
 
 		$property['search']     = ["/^.*$/", true, 'search'];

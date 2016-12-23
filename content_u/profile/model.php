@@ -63,6 +63,11 @@ class model extends \mvc\model
 			return false;
 		}
 
+		if(!\lib\utility\profiles::profile_data($name))
+		{
+			return false;
+		}
+
 		if($name == 'displayname')
 		{
 			$displayname = \lib\db\users::set_displayname($user_id, $value);

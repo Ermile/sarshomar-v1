@@ -252,7 +252,7 @@ class view extends \mvc\view
 			}
 
 			// load post filters
-			$post_filter         = \lib\db\filters::get_poll_filter($post['id']);
+			$post_filter         = \lib\utility\filters::get_poll_filter($post['id']);
 			$this->data->filters = $post_filter;
 
 			$show_result = true;
