@@ -113,7 +113,7 @@ header #financial-box .total span{color:#00667A;}
 header #financial-box .cost span{color:#1D9028;}
 
 header #financial-box .total:hover .financial-detail,header #financial-box .cost:hover .financial-detail{display:block;}
-header #financial-box .financial-detail{position:absolute;left:0;right:0;z-index:1;border:1px solid #EFEFEF;display:none;}
+header #financial-box .financial-detail{position:absolute;left:0;right:0;z-index:1;border:1px solid #EFEFEF;display:none;background-color:#f4f4f4}
 header #financial-box .financial-detail .row{display:-webkit-flex;display:flex;}
 header #financial-box .financial-detail .cell{-webkit-flex:1;flex:1;text-align:center;padding:3px;font-weight:bold;color:#5E5E5E;}
 
@@ -1101,13 +1101,18 @@ textarea[data-resizable]{min-height:100px;overflow:hidden;}
 /************************************************************** help center */
 .help-main-box,.help-category-box,.help-post-box{margin: 0 10em}
 .help-category-container{margin-bottom:5em}
-.help-category-items{display:-webkit-flex;display:flex}
-.help-category-items .help-category-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s}
+.help-category-items{display:-webkit-flex;display:flex;flex-wrap:wrap}
+.help-category-items .help-category-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s;flex-basis:33.3333333%}
 .help-category-items .help-category-item .title{color:#0C7C78;font-weight:bold}
 .help-category-items .help-category-item .description{color:#A1A1A1;margin-bottom:0;font-size:1.2em}
-.help-category-items .help-category-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#E7A429;opacity:0;transition:.3s}
+.help-category-items .help-category-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#E7A429;opacity:0;transition:.3s;z-index:1}
 .help-category-items .help-category-item:hover,.help-category-items .help-category-item:focus{background-color:#EBEBEB}
 .help-category-container .help-category-item:hover::before,.help-category-container .help-category-item:focus::before{opacity:1}
+.help-category-items .help-category-item:nth-child(2)::after{content:'';position:absolute;bottom:0;width:160%;height:1px;background-color:#EBEBEB;left:-30%}
+.help-category-items .help-category-item:nth-child(4)::after{content:'';position:absolute;height:100%;width:1px;background-color:#EBEBEB;top:-50%;right:0}
+.rtl .help-category-items .help-category-item:nth-child(4)::after{right:auto;left:0}
+.help-category-items .help-category-item:nth-child(6)::after{content:'';position:absolute;height:100%;width:1px;background-color:#EBEBEB;top:-50%;left:0}
+.rtl .help-category-items .help-category-item:nth-child(6)::after{left:auto;right:0}
 .sideline-title h4{color:#0C7C78;padding-left:.5em;border-left:4px solid #AAAAAA;font-weight:bold;margin-bottom:2em}
 .rtl .sideline-title h4{padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
 .sideline-title ul{margin-bottom:5em;padding:0 2em}
