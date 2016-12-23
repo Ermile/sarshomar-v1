@@ -27,6 +27,19 @@ class sync
 		return $return->set_ok($_status);
 	}
 
+
+	/**
+	 * check synced the web and telegram or no
+	 *
+	 * @param      <type>  $_web_mobile   The web mobile
+	 * @param      <type>  $_telegram_id  The telegram identifier
+	 */
+	public static function is_sync_web_telegram($_web_mobile, $_telegram_id)
+	{
+		return self::web_telegram($_web_mobile, $_telegram_id, true);
+	}
+
+
 	/**
 	 * get the mobile of web service and the telegram id
 	 * and sync
@@ -36,7 +49,7 @@ class sync
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function web_telegram($_web_mobile, $_telegram_id)
+	public static function web_telegram($_web_mobile, $_telegram_id, $_is_sync_just_check = false)
 	{
 		// this function in dev mod... :)
 		// return self::status(true)->set_error_code(3502);
@@ -45,6 +58,12 @@ class sync
 		$web = \lib\db\users::get_by_mobile($mobile);
 		if(!$web || empty($web))
 		{
+			// need to sync
+			if($_is_sync_just_check)
+			{
+				return false;
+			}
+
 			// new signup in site
 			// we set the mobile in telegram account and the sync is ok
 			$temp_password = rand(1000,9999);
@@ -62,6 +81,12 @@ class sync
 
 		if(!$web || !isset($web['id']))
 		{
+			if($_is_sync_just_check)
+			{
+				// :| need to sync
+				return false;
+			}
+
 			return self::status(false)->set_error_code(3500);
 		}
 
@@ -72,8 +97,19 @@ class sync
 
 		if(self::$new_user_id == self::$old_user_id)
 		{
+			if($_is_sync_just_check)
+			{
+				return true;
+			}
+
 			return self::status(true)->set_error_code(3501);
 		}
+
+		if($_is_sync_just_check)
+		{
+			return false;
+		}
+
 		// start trasaction of mysql engine
 		\lib\db::transaction();
 
@@ -367,6 +403,17 @@ class sync
 	{
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
+
+		$update_new_user                     = [];
+		$update_new_user['user_validstatus'] = 'valid';
+
+		$current_status = \lib\db\users::get_user_data($new_user_id, 'user_status');
+		if($current_status == 'awaiting')
+		{
+			$update_new_user['user_status'] = 'active';
+		}
+
+		$deactive_old_user = \lib\db\users::update($update_new_user, $new_user_id);
 		$deactive_old_user = \lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
 	}
 
