@@ -6,6 +6,7 @@ use \content\saloos_tg\sarshomarbot\commands\menu;
 use \content\saloos_tg\sarshomarbot\commands\utility;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
+use \lib\telegram\step;
 
 class help
 {
@@ -16,6 +17,7 @@ class help
 	use help\privacy;
 	public static function start($_query, $_data_url)
 	{
+		step::stop();
 		session::remove_back('expire', 'inline_cache', 'help');
 		$method = self::find_method($_query, $_data_url);
 		if($method)

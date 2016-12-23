@@ -46,6 +46,7 @@ trait faq{
 
 		if(is_null($_query))
 		{
+			$return['parse_mode'] = 'HTML';
 			return $return;
 		}
 		else

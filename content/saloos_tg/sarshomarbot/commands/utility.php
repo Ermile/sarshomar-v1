@@ -100,14 +100,17 @@ class utility
 			$result[$key]['row_text'] = $row_text;
 		}
 		$text = '';
-		for($row = $rows ; $row >= 0; $row--)
+		if($count > 4)
 		{
-			foreach ($result as $key => $value) {
-				$text .= $value['row_text'][$row];
-			}
-			if($row > 0)
+			for($row = $rows ; $row >= 0; $row--)
 			{
-				$text .= "\n";
+				foreach ($result as $key => $value) {
+					$text .= $value['row_text'][$row];
+				}
+				if($row > 0)
+				{
+					$text .= "\n";
+				}
 			}
 		}
 		return $text;

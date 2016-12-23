@@ -44,7 +44,7 @@ class message
 					$emoji = '📝';
 					break;
 			}
-			$title = '<a href="'.$url.'">​​</a>' . $title ."\n" . '<a href="'.$url.'">'. $emoji . T_('File') .'</a>';
+			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
 	}
@@ -92,7 +92,7 @@ class message
 	}
 	public function add_telegram_tag()
 	{
-		$this->message['telegram_tag'] = '#Sarshomar';
+		$this->message['telegram_tag'] = '#' .T_('Sarshomar');
 	}
 
 	public function set_telegram_result($_answer_id = null)
