@@ -26,7 +26,7 @@
   @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 104deg); transform:rotate3d(0, 1, 0, 104deg);}}
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:992px) {
   .features li h3{font-size:.22em;}
   .features li p{font-size:12px}
   .features li .normal span{ font-size:.22em; }
@@ -72,7 +72,7 @@
 /************************************************************** Media Queries */
 /* #Large Desktop ======================================== Design for a width of 1400 until 1823px*/
 @media screen and (min-width: 1400px){}
-/* #Tablet (Portrait) =================================== Design for a width of 768px until 959px */
+/* #Tablet (Portrait) =================================== Design for a width of 992px until 959px */
 @media only screen and (max-width:959px){
   /*header #header-profile > a{color:#888;}*/
   header .logo img{width: 6.3em;}
@@ -98,7 +98,7 @@
 .type ul li:not(:first-child){margin-left: 0;}
 }
 /* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 992px){
 
 /**********************************homepage-1***************************/
   /*--header--*/
@@ -107,20 +107,30 @@
   header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
   .rtl header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
   header .logo img{width: 8em;}
-  header #header-box{display: block;width: 100%;height: 50px;}
+  header #header-box{display: block;width: 100%;height:auto;border-style: solid;border-width:8px 8px 0 8px;-moz-border-image: url(../images/border.png) 8 stretch;-webkit-border-image: url(../images/border.png) 8 stretch;-o-border-image: url(../images/border.png) 8 stretch;border-image: url(../images/border.png) 8 stretch;}
   header #header-quick{display: none;}
   header #header-profile {padding-right: 0;}
-  nav.breadcrumb{display: none;}
+  .rtl header #header-profile .register{float: right;}
+  .rtl .profile{float: left;}
+  .rtl header #header-profile {padding: 10px;}
+  header #header-profile>a {float: left}
+  header #header-bottom {padding: 10px;}
+  .rtl header .logo{float: none;}
+ /* nav.breadcrumb{display: none;}*/
+  header #header-profile {width: 100%;}
+  .rtl header #header-profile {float: right; width: 100%;}
+  header #header-top {border-top: none}
+  /*header #header-profile>a {color: #f4f4f4;}*/
   /*--wrapper--*/
   #map{display: none;}
-  .wrapper{padding: 0;border-bottom: 8px solid transparent;border-top: 8px solid transparent;margin-top: 10px;display: block}
+  .wrapper{padding: 0;border-bottom: 8px solid transparent;border-top:0;display: block}
   #intro-box p{font-size:1.6em;}
   #random-chart h3{text-align: left;padding: 1em .2em;font-size: 1em;}
   #random-chart h3 a{font-size: 2em;font-weight: 500;}
   .special-heading::after{display: none;}
   /*--customer--*/
   #customers-box{padding:0;overflow:hidden;}
-  .wrapper #customers-box .customer{width: 90%; text-align: left;margin: 0em auto;padding:1em 0;}
+  .wrapper #customers-box .customer{width: 90%; text-align: center;margin: 0em auto;padding:1em 0;}
   #customers-box .customer p{width: 100%;margin:0 auto;text-align: left;font-size: 1.6em;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
@@ -194,8 +204,6 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 
 @media only screen and (max-width: 479px){
-  /*.profile .info{display: none;}*/
-  #homepage .wrapper{border-top: 8px solid transparent;-webkit-border-image: url(../images/border.png) 8 stretch;}
   #homepage .wrapper .box{padding: 1em;}
   #customers-box .customers-container{width:98%;}
   /*--header--*/
