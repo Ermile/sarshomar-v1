@@ -9,6 +9,7 @@ use content\saloos_tg\sarshomarbot\commands\handle;
 
 class step_starting
 {
+	static $force_return;
 	/**
 	 * create define menu that allow user to select
 	 * @param  boolean $_onlyMenu [description]
@@ -32,7 +33,7 @@ class step_starting
 			'option_key' => 'start_status',
 			]);
 		$user_language = callback_query\language::check();
-		if(!$start_status)
+		if(!$start_status && preg_match("#^\/start#", bot::$cmd['text']))
 		{
 			\lib\db\options::insert([
 				'user_id' => bot::$user_id,
@@ -42,10 +43,14 @@ class step_starting
 				]);
 			if($user_language)
 			{
-				bot::sendResponse([
-					'text' 			=> T_("For changing language go to profile or enter /language"),
+				self::$force_return = [
+					'text' 			=> T_('Welcome') . "\n" . T_("For changing language go to profile or enter /language"),
 					'reply_markup' 	=> menu::main(true)
-					]);
+					];
+				if(bot::$cmd['text'] === '/start')
+				{
+					return $return;
+				}
 			}
 		}
 		if(bot::$cmd['optional'] == 'new')
@@ -117,7 +122,14 @@ class step_starting
 		if(!$return || is_null($return))
 		{
 			step::stop();
-			$return = ["text" => T_("Welcome"), "reply_markup" => menu::main(true)];
+			if(self::$force_return)
+			{
+				$return = self::$force_return;
+			}
+			else
+			{
+				$return = ["text" => T_("Welcome"), "reply_markup" => menu::main(true)];
+			}
 		}
 		return $return;
 	}
