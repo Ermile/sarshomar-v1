@@ -97,7 +97,7 @@ private function transtext()
 	echo T_("age");                                                                   // Line 172
 	echo T_("province");                                                              // Line 176
 	echo T_("religion");                                                              // Line 180
-	echo T_("language");                                                              // Line 50
+	echo T_("language");                                                              // Line 184
 	echo T_("Search");                                                                // Line 10
 
 	//-----------------------------------------------content\knowledge\layout-xhr.html
@@ -142,7 +142,7 @@ private function transtext()
 	echo T_("Statistical population");                                                // Line 193
 	echo T_("There is nothing to display!");                                          // Line 244
 	echo T_("What is your opinion? Please rate this poll.");                          // Line 255
-	echo T_("Continue");                                                              // Line 319
+	echo T_("Continue");                                                              // Line 312
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
@@ -359,12 +359,8 @@ private function transtext()
 	//---------------------------------------------content\template\static\vision.html
 
 	//--------------------------------------------content_admin\knowledge\display.html
-	echo T_("edit");                                                                  // Line 30
-	echo T_("filter page");                                                           // Line 31
-	echo T_("publish page");                                                          // Line 32
-	echo T_("status");                                                                // Line 61
-	echo T_("parent");                                                                // Line 52
-	echo T_("sarshomar");                                                             // Line 53
+	echo T_("parent");                                                                // Line 50
+	echo T_("sarshomar");                                                             // Line 52
 	echo T_("privacy");                                                               // Line 56
 	echo T_("total");                                                                 // Line 57
 
@@ -382,6 +378,7 @@ private function transtext()
 	echo T_("forcechange");                                                           // Line 46
 	echo T_("desc");                                                                  // Line 53
 	echo T_("meta");                                                                  // Line 57
+	echo T_("status");                                                                // Line 61
 	echo T_("enable");                                                                // Line 63
 	echo T_("disable");                                                               // Line 64
 	echo T_("deleted");                                                               // Line 65
