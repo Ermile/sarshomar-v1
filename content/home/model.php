@@ -144,7 +144,6 @@ class model extends \mvc\model
 		}
 		else
 		{
-			var_dump($lang);
 			if($lang == "fa")
 			{
 				$title  = "طرفدار کدام تیم هستید؟";
