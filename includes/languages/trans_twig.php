@@ -34,14 +34,14 @@ private function transtext()
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
-	echo T_("Sarshomar users according to gender and location");                      // Line 22
-	echo T_("Organizations and Companies");                                           // Line 42
+	echo T_("Distribution of Sarshomar Society");                                     // Line 22
+	echo T_("Organizations and Companies");                                           // Line 6
 	echo T_("Exprience evaluation of current status, measuring customers satisfaction, conducting market research and promoting services level by the help of Sarshomar.");// Line 43
-	echo T_("Universities and Research Institutes");                                  // Line 53
+	echo T_("Universities and Research Institutes");                                  // Line 6
 	echo T_("Have access to accurate information and reduce the cost of gathering and processing data by giving tests, polls and assessments in Sarshomar.");// Line 54
-	echo T_("Advertising Agencies");                                                  // Line 64
+	echo T_("Advertising Agencies");                                                  // Line 6
 	echo T_("By offering new advertising solutions and targeted advertsing, get your customers excited.");// Line 65
-	echo T_("Developers and Webmasters");                                             // Line 75
+	echo T_("Developers and Webmasters");                                             // Line 6
 	echo T_("By using API, enjoy Sarshomar's features and forget the concern of opinion polls.");// Line 76
 	echo T_("Easy Access");                                                           // Line 86
 	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 87
@@ -120,7 +120,7 @@ private function transtext()
 	echo T_("← Back");                                                              // Line 44
 	echo T_("Skip");                                                                  // Line 83
 	echo T_("Done");                                                                  // Line 44
-	echo T_("Try Before Register");                                                   // Line 47
+	echo T_("Try Before Register");                                                   // Line 50
 
 	//-------------------------------------------------------content\poll\display.html
 	echo T_("Description");                                                           // Line 268
@@ -184,14 +184,14 @@ private function transtext()
 	echo T_("Total cash");                                                            // Line 70
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("Sarshomar Vision");                                                      // Line 17
-	echo T_("Ask Anyone Anywhere");                                                   // Line 18
-	echo T_("We are inestimable");                                                    // Line 41
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 25
-	echo T_("Sarshomar is jumping...");                                               // Line 26
-	echo T_("Inspection and Answer");                                                 // Line 44
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 45
-	echo T_("Verify your account");                                                   // Line 36
+	echo T_("Sarshomar Vision");                                                      // Line 20
+	echo T_("Ask Anyone Anywhere");                                                   // Line 21
+	echo T_("We are inestimable");                                                    // Line 44
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 28
+	echo T_("Sarshomar is jumping...");                                               // Line 29
+	echo T_("Inspection and Answer");                                                 // Line 47
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 48
+	echo T_("Verify your account");                                                   // Line 39
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("About Us");                                                              // Line 6
@@ -261,7 +261,7 @@ private function transtext()
 	echo T_("Descriptive Question (Open Question)");                                  // Line 70
 	echo T_("Descriptive Question");                                                  // Line 73
 	echo T_("Ask a descriptive question and get the complete and exact answer. ");    // Line 74
-	echo T_("Multi Languages");                                                       // Line 85
+	echo T_("Multi Languages");                                                       // Line 6
 	echo T_("All services are provided in both Persian and English languages.");      // Line 86
 	echo T_("Optional Registration");                                                 // Line 97
 	echo T_("Registration in Sarshumar is optional");                                 // Line 98
@@ -290,11 +290,20 @@ private function transtext()
 	echo T_("Giving special points( Scholarism)");                                    // Line 241
 	echo T_("Giving special points depends on the tests and observations taken based on the behavior of the answerers");// Line 242
 
+	//---------------------------content\template\static\features\multi-languages.html
+	echo T_("in preparation");                                                        // Line 7
+
 	//--------------------------------content\template\static\features\multimedia.html
 	echo T_("MultiMedia");                                                            // Line 5
 
+	//---------------------------content\template\static\features\social-networks.html
+	echo T_("Social Networks");                                                       // Line 6
+
 	//--------------------------------------content\template\static\features\tree.html
 	echo T_("Support Tree");                                                          // Line 5
+
+	//-----------------------content\template\static\features\try-before-register.html
+	echo T_("Try before register");                                                   // Line 6
 
 	//--------------------------------------------content\template\static\mission.html
 
@@ -326,9 +335,27 @@ private function transtext()
 	//---------------------------content\template\static\social-responsibility-fa.html
 
 	//------------------------------content\template\static\social-responsibility.html
-	echo T_("in preparation");                                                        // Line 8
 
 	//-----------------------------------------content\template\static\statistics.html
+
+	//---------------------------------------------content\template\static\target.html
+	echo T_("Sarshomar Special Targets");                                             // Line 6
+
+	//---------------------content\template\static\target_advertising-agencies-fa.html
+
+	//------------------------content\template\static\target_advertising-agencies.html
+
+	//----------------content\template\static\target_developers-and-webmasters-fa.html
+
+	//-------------------content\template\static\target_developers-and-webmasters.html
+
+	//--------------content\template\static\target_organizations-and-companies-fa.html
+
+	//-----------------content\template\static\target_organizations-and-companies.html
+
+	//-----content\template\static\target_universities-and-research-institutes-fa.html
+
+	//--------content\template\static\target_universities-and-research-institutes.html
 
 	//----------------------------------------------content\template\static\terms.html
 	echo T_("Terms of Service Agreement");                                            // Line 5
