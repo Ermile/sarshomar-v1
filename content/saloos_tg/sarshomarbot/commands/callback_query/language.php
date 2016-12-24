@@ -45,7 +45,7 @@ class language
 			}
 		}
 		callback_query::edit_message([
-			'text' => T_("For change language go to profile or enter /language"),
+			'text' => T_("For changing language go to profile or enter /language"),
 			]);
 		session::remove_back('expire', 'inline_cache', 'language');
 		session::remove('expire', 'inline_cache', 'language');
