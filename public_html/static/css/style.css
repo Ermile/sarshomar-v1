@@ -241,10 +241,7 @@ footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 #customers-box .customer p{color:#adadad;}
 #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right;}
 .rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:left;}
-/*#customers-box .customer:nth-child(odd) p{padding-right:2em;}
-.rtl #customers-box .customer:nth-child(odd) p{padding-right:0;padding-left:2em;}
-#customers-box .customer:nth-child(even) p{padding-left:2em;}
-.rtl #customers-box .customer:nth-child(even) p{padding-left:0;padding-right:2em;}*/
+#target #customers-box{background-color:transparent;padding:0 0 70px}
 
 
 /************************************************************** features box */
