@@ -263,6 +263,10 @@ class poll
 	{
 		$short_link = !is_null($_short_link) ? $_short_link : $_data_url[2];
 		$maker = new make_view(bot::$user_id, $short_link);
+		if(!language::check())
+		{
+			language::set($maker->query_result['language']);
+		}
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
 		if(!is_null($_data_url) && count($_data_url) == 4)

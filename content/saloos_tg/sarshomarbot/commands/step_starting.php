@@ -35,25 +35,29 @@ class step_starting
 		if(!$start_status)
 		{
 			\lib\db\options::insert([
-			'user_id' => bot::$user_id,
-			'option_cat' => 'user_telegram_'. bot::$user_id,
-			'option_key' => 'start_status',
-			'option_value' => 'start'
-			]);
+				'user_id' => bot::$user_id,
+				'option_cat' => 'user_telegram_'. bot::$user_id,
+				'option_key' => 'start_status',
+				'option_value' => 'start'
+				]);
 		}
 		if(bot::$cmd['optional'] == 'new')
 		{
-			if($user_language)
+			if(!$user_language)
 			{
-				return step_create::start();
+				step::start('starting');
+				$return = self::split_cmd(bot::$cmd['optional']);
 			}
 			else
 			{
-				session::set('step', 'name', 'starting');
+				return step_create::start();
 			}
 		}
-		step::start('starting');
-		$return = self::split_cmd(bot::$cmd['optional']);
+		else
+		{
+			step::start('starting');
+			$return = self::split_cmd(bot::$cmd['optional']);
+		}
 		if(is_array($return))
 		{
 			return $return;
@@ -73,13 +77,21 @@ class step_starting
 		$return = [];
 		if(!is_null($_args))
 		{
+			session::set('step', 'run', bot::$cmd);
 			foreach ($url_command_group as $key => $value)
 			{
 				$url_command = preg_split("[_]", $value, 2);
 				$commands[$url_command[0]] = $url_command[1];
 			}
 		}
-		if(array_key_exists('report', $commands))
+		if(!callback_query\language::check() && !array_key_exists('sp', $commands) && !array_key_exists('report', $commands))
+		{
+			if(array_key_exists('lang', $commands)){
+				session::remove('step', 'run');
+			}
+			$return = callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
+		}
+		elseif(array_key_exists('report', $commands))
 		{
 			step::stop();
 			$return = callback_query\poll::report(null, null, $commands['report']);
@@ -89,10 +101,7 @@ class step_starting
 			step::stop();
 			$return = self::cmd_poll($commands['sp']);
 		}
-		elseif(!callback_query\language::check())
-		{
-			$return = callback_query\language::make_result(array_key_exists('lang', $commands) ? $commands['lang'] : null);
-		}elseif(array_key_exists('faq', $commands))
+		elseif(array_key_exists('faq', $commands))
 		{
 			step::stop();
 			$return = callback_query\help::faq(null, null, $commands['faq']);

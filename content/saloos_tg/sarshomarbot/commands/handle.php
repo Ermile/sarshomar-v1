@@ -9,7 +9,7 @@ class handle
 {
 	public static $return = false;
 
-	public static function exec($_cmd)
+	public static function exec($_cmd, $_run = false)
 	{
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
@@ -92,12 +92,17 @@ class handle
 			}
 		}
 		// check if we are in step then go to next step
-		if(!bot::is_aerial())
+		if(!bot::is_aerial() || $_run)
 		{
 			$response = step::check($_cmd['text'], $_cmd['command']);
 			if($response)
 			{
 				return $response;
+			}
+			if(!callback_query\language::check())
+			{
+				session::set('step', 'run', bot::$cmd);
+				return step_starting::start();
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{

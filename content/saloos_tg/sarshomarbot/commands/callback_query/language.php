@@ -30,25 +30,23 @@ class language
 			$lang = $lang_name;
 		}
 
-		if(!$get)
-		{
-			$welcome_text = T_("Welcome");
-			$welcome_text .= "\n";
-			$welcome_text .= T_("For change language go to profile or enter /language");
-		}
-		else
-		{
-			$welcome_text = T_("Welcome");
-		}
 		bot::sendResponse([
-			"text" => $welcome_text,
+			"text" => T_("Welcome"),
 			"reply_markup" => menu::main(true)
 			]);
+		$run = (array) session::get('step', 'run');
+		if($run)
+		{
+			session::remove('step', 'run');
+			if($run['text'] !== '/start')
+			{
+				bot::$cmd = $run;
+				bot::sendResponse(handle::exec($run, true));
+			}
+		}
 		callback_query::edit_message([
-			'text' => T_("Your language changed"),
-			// "reply_markup" => menu::main(true)
+			'text' => T_("For change language go to profile or enter /language"),
 			]);
-		$step = session::set('step', 'name');
 		session::remove_back('expire', 'inline_cache', 'language');
 		session::remove('expire', 'inline_cache', 'language');
 		return ['text' => '🗣 Your language set : ' . $lang_name];
@@ -113,8 +111,8 @@ class language
 
 	public static function set($_language, $_options = [])
 	{
+		$language = strtolower($_language);
 		foreach (self::$valid_lang as $key => $value) {
-			$language = strtolower($_language);
 			if(array_search($language, $value) !== false)
 			{
 				step::stop();

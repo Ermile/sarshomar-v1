@@ -22,6 +22,7 @@ class ask
 	public static function make($_query, $_data_url, $_short_link = null)
 	{
 		$maker = new make_view(bot::$user_id, $_short_link);
+		self::check_language($maker);
 		if(
 			(
 				$maker->query_result['status'] != 'publish' &&
@@ -104,6 +105,13 @@ class ask
 		return $return;
 	}
 
+	public static function check_language($_maker)
+	{
+		if(!language::check())
+		{
+			language::set($_maker->query_result['language']);
+		}
+	}
 
 	public static function change($_query, $_data_url){
 		callback_query::edit_message(self::make(null, null, $_data_url[2]));
@@ -152,6 +160,7 @@ class ask
 			session::remove_back('expire', 'inline_cache');
 
 			$maker = new make_view(bot::$user_id, $poll_short_link);
+			self::check_language($maker);
 			\lib\define::set_language($maker->query_result['language'], true);
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
