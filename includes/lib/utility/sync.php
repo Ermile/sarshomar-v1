@@ -81,6 +81,7 @@ class sync
 			];
 			\lib\db\users::update($update_users, $_telegram_id);
 			return self::status(true)
+				->set_result($_telegram_id)
 				->set_password($temp_password)
 				->set_error_code(3502)
 				->set_message(T_("You can login in sarshomar.com whit your username: mobile , and password: :password ", ['password' => $temp_password]));
@@ -98,7 +99,7 @@ class sync
 
 		if(self::$new_user_id == self::$old_user_id)
 		{
-			return self::status(true)->set_error_code(3501);
+			return self::status(true)->set_result(self::$new_user_id)->set_error_code(3501);
 		}
 
 		// start trasaction of mysql engine
@@ -143,12 +144,12 @@ class sync
 		if(self::$has_error)
 		{
 			\lib\db::rollback();
-			return self::status(false)->set_error_code(3503);
+			return self::status(false)->set_result(self::$new_user_id)->set_error_code(3503);
 		}
 		else
 		{
 			\lib\db::commit();
-			return self::status(true)->set_error_code(3502);
+			return self::status(true)->set_result(self::$new_user_id)->set_error_code(3502);
 		}
 	}
 

@@ -21,7 +21,6 @@ trait order
 				$public_fields
 			-- To get options of this poll
 			LEFT JOIN options ON options.post_id = posts.id
-
 			WHERE
 				posts.post_status = 'publish' AND
 				posts.post_url LIKE '$%' AND
@@ -40,6 +39,31 @@ trait order
 			AND (posts.post_language IS NULL OR posts.post_language = '$language')
 			-- Check public poll
 			AND posts.post_privacy = 'public'
+			-- Check post filter
+			AND
+				CASE
+					WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) = 0 THEN
+						TRUE
+					ELSE
+						CASE
+							WHEN (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1) IS NULL THEN
+								TRUE
+						ELSE
+							CASE
+								WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) = 1 THEN
+					  					(SELECT filter_id FROM postfilters WHERE postfilters.post_id = posts.id) =
+					  					(SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1)
+					  		ELSE
+					  			CASE
+					  				WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) > 1 THEN
+									  	(SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1) IN
+									  	(SELECT filter_id FROM postfilters WHERE postfilters.post_id = posts.id)
+									ELSE
+										FALSE
+								END
+							END
+						END
+				END
 			-- Check poll tree
 			AND
 				CASE
