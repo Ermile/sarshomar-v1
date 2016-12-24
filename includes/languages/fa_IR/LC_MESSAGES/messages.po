@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2016-12-24 18:10+0330\n"
-"PO-Revision-Date: 2016-12-24 18:14+0330\n"
+"POT-Creation-Date: 2016-12-24 18:38+0330\n"
+"PO-Revision-Date: 2016-12-24 18:42+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -87,8 +87,8 @@ msgstr ":number سوال پاسخ داده شده است"
 #: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:32
 #: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:77
 #: content/saloos_tg/sarshomar_bot/commands/menu_psychology.php:22
-#: content/saloos_tg/sarshomarbot/commands/handle.php:200
-#: content/saloos_tg/sarshomarbot/commands/handle.php:208
+#: content/saloos_tg/sarshomarbot/commands/handle.php:205
+#: content/saloos_tg/sarshomarbot/commands/handle.php:213
 #: content/saloos_tg/sarshomarbot/commands/menu.php:77
 #: content/saloos_tg/sarshomarbot/commands/menu_civility.php:22
 #: content/saloos_tg/sarshomarbot/commands/menu_my.php:22
@@ -101,7 +101,7 @@ msgstr "باز گشت 🔙"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:15
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
-#: content/saloos_tg/sarshomarbot/commands/handle.php:141
+#: content/saloos_tg/sarshomarbot/commands/handle.php:146
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:23
 #: includes/languages/trans_twig.php:547
 msgid "My polls"
@@ -117,7 +117,7 @@ msgstr "ایجاد نظرسنجی جدید"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:25
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:8
-#: content/saloos_tg/sarshomarbot/commands/handle.php:131
+#: content/saloos_tg/sarshomarbot/commands/handle.php:136
 #: content/saloos_tg/sarshomarbot/commands/menu.php:27
 #: includes/languages/trans_twig.php:548
 msgid "Ask me"
@@ -170,17 +170,17 @@ msgstr "تعریف‌نشده"
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:33
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:34
 msgid "Answer not found"
 msgstr "پاسخی یافت نشد"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:59
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:60
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:179
 msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:229
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:273
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:238
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:282
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
@@ -211,7 +211,7 @@ msgstr ""
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:77
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/feedback.php:12
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:30
-#: content/saloos_tg/sarshomarbot/commands/handle.php:165
+#: content/saloos_tg/sarshomarbot/commands/handle.php:170
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
 #: includes/languages/trans_addons.php:67
 msgid "Help"
@@ -273,7 +273,7 @@ msgstr "اولین"
 
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:75
-#: content/saloos_tg/sarshomarbot/commands/handle.php:126
+#: content/saloos_tg/sarshomarbot/commands/handle.php:131
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
 msgid "Back"
 msgstr "قبلی"
@@ -350,22 +350,18 @@ msgstr "امیدواریم در این راه طولانی بتوانیم انت
 msgid "Sarshomar, a product of Ermile; Developed in Iran"
 msgstr "سرشمار محصولی از ارمایل؛ ساخت ایران"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:35
-#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:41
-#: content/saloos_tg/sarshomarbot/commands/step_starting.php:104
+#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:34
+#: content/saloos_tg/sarshomarbot/commands/step_starting.php:120
 #: includes/languages/trans_twig.php:180
 msgid "Welcome"
 msgstr "خوش‌آمدید"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:37
-msgid "For change language go to profile or enter /language"
+#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:48
+#: content/saloos_tg/sarshomarbot/commands/step_starting.php:46
+msgid "For changing language go to profile or enter /language"
 msgstr "برای تغییر زبان به بخش پروفایل رفته و یا /language را بزنید"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:48
-msgid "Your language changed"
-msgstr "زبان شما تغییر یافت"
-
-#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:79
+#: content/saloos_tg/sarshomarbot/commands/callback_query/language.php:77
 msgid "Choose the language."
 msgstr "زبان خود را انتخاب کنید."
 
@@ -382,8 +378,8 @@ msgstr "کنارگذاشته شد"
 msgid "Deleted"
 msgstr "حذف شده"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:272
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:280
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:276
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:284
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:117
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:124
 msgid "Report"
@@ -401,26 +397,26 @@ msgstr "شماره موبایل شما"
 msgid "Sync"
 msgstr "همگام‌سازی"
 
-#: content/saloos_tg/sarshomarbot/commands/handle.php:145
+#: content/saloos_tg/sarshomarbot/commands/handle.php:150
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
 #: includes/languages/trans_addons.php:154 includes/languages/trans_twig.php:531
 msgid "Language"
 msgstr "زبان"
 
-#: content/saloos_tg/sarshomarbot/commands/handle.php:155
+#: content/saloos_tg/sarshomarbot/commands/handle.php:160
 #: content/saloos_tg/sarshomarbot/commands/menu.php:28
 #: includes/languages/trans_addons.php:61 includes/languages/trans_twig.php:181
 msgid "Dashboard"
 msgstr "داشبورد"
 
-#: content/saloos_tg/sarshomarbot/commands/handle.php:160
+#: content/saloos_tg/sarshomarbot/commands/handle.php:165
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:40
 #: includes/languages/trans_addons.php:314
 msgid "Profile"
 msgstr "پروفایل"
 
-#: content/saloos_tg/sarshomarbot/commands/handle.php:193
+#: content/saloos_tg/sarshomarbot/commands/handle.php:198
 #: content/saloos_tg/sarshomarbot/commands/menu.php:28
 msgid "New"
 msgstr "جدید"
@@ -632,7 +628,7 @@ msgstr "خطا در وارد کردن فیلترهای نظرسنجی"
 
 #: content_u/add/model.php:52
 msgid "Please login to insert a poll"
-msgstr ""
+msgstr "لطفا برای افزودن نظرسنجی جدید وارد سیستم شوید"
 
 #: content_u/add/model.php:62
 msgid "You must complete title or answers"
@@ -931,7 +927,7 @@ msgstr "به"
 
 #: includes/cls/database/sarshomar/translation.php:47
 msgid "rate"
-msgstr ""
+msgstr "رتبه"
 
 #: includes/cls/database/sarshomar/translation.php:48
 msgid "roundtype"
@@ -1151,7 +1147,7 @@ msgstr "مقطع"
 
 #: includes/cls/database/sarshomar/translation.php:104
 msgid "course"
-msgstr ""
+msgstr "رشته"
 
 #: includes/cls/database/sarshomar/translation.php:105
 #: includes/languages/trans_twig.php:99
@@ -1160,11 +1156,11 @@ msgstr "سن"
 
 #: includes/cls/database/sarshomar/translation.php:106
 msgid "agemin"
-msgstr ""
+msgstr "حداقل سن"
 
 #: includes/cls/database/sarshomar/translation.php:107
 msgid "agemax"
-msgstr ""
+msgstr "حداکثر سن"
 
 #: includes/cls/database/sarshomar/translation.php:108
 msgid "range"
@@ -1195,7 +1191,7 @@ msgstr ""
 #: includes/cls/database/sarshomar/translation.php:114
 #: includes/languages/trans_twig.php:101
 msgid "religion"
-msgstr ""
+msgstr "مذهب"
 
 #: includes/cls/database/sarshomar/translation.php:115
 #: includes/cls/database/sarshomar/translation.php:205
@@ -1206,7 +1202,7 @@ msgstr "زبان"
 
 #: includes/cls/database/sarshomar/translation.php:116
 msgid "industry"
-msgstr ""
+msgstr "صنعت"
 
 #: includes/cls/database/sarshomar/translation.php:119
 msgid "logitems"
@@ -1336,7 +1332,7 @@ msgstr "نامعتبر"
 
 #: includes/cls/database/sarshomar/translation.php:169
 msgid "port"
-msgstr ""
+msgstr "درگاه"
 
 #: includes/cls/database/sarshomar/translation.php:170
 #: includes/cls/database/sarshomar/translation.php:313
@@ -1345,11 +1341,11 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:171
 msgid "subport"
-msgstr ""
+msgstr "درگاه زیرین"
 
 #: includes/cls/database/sarshomar/translation.php:172
 msgid "opt"
-msgstr ""
+msgstr "گزینه"
 
 #: includes/cls/database/sarshomar/translation.php:173
 msgid "txt"
@@ -1504,7 +1500,7 @@ msgstr "گزارش"
 
 #: includes/cls/database/sarshomar/translation.php:230
 msgid "vot"
-msgstr ""
+msgstr "رای"
 
 #: includes/cls/database/sarshomar/translation.php:231
 msgid "like"
@@ -1512,7 +1508,7 @@ msgstr "پسندیدن"
 
 #: includes/cls/database/sarshomar/translation.php:232
 msgid "faiv"
-msgstr ""
+msgstr "علاقمندی"
 
 #: includes/cls/database/sarshomar/translation.php:233
 msgid "skip"
@@ -1633,11 +1629,11 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:287
 msgid "budget"
-msgstr ""
+msgstr "بودجه"
 
 #: includes/cls/database/sarshomar/translation.php:289
 msgid "user_id"
-msgstr ""
+msgstr "کد کاربر"
 
 #: includes/cls/database/sarshomar/translation.php:291
 msgid "finished"
@@ -3639,11 +3635,11 @@ msgstr "مقالات مرتبط"
 
 #: includes/languages/trans_twig.php:31
 msgid "Questions List"
-msgstr ""
+msgstr "لیست سوالات"
 
 #: includes/languages/trans_twig.php:32
 msgid "Latest questions"
-msgstr ""
+msgstr "آخرین سوالات"
 
 #: includes/languages/trans_twig.php:35
 msgid "Focus on your question. Do not be too concerned about how to ask or analyze."
@@ -3745,11 +3741,11 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:52
 msgid "Age range"
-msgstr ""
+msgstr "محدوده سنی"
 
 #: includes/languages/trans_twig.php:53
 msgid "Population"
-msgstr ""
+msgstr "جمعیت"
 
 #: includes/languages/trans_twig.php:54
 msgid "Male"
@@ -3805,7 +3801,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:75
 msgid "lottory"
-msgstr ""
+msgstr "قرعه‌کشی"
 
 #: includes/languages/trans_twig.php:79
 msgid "Married"
@@ -3813,11 +3809,11 @@ msgstr "متاهل"
 
 #: includes/languages/trans_twig.php:80
 msgid "employment"
-msgstr ""
+msgstr "استخدام"
 
 #: includes/languages/trans_twig.php:82
 msgid "Unemployed"
-msgstr ""
+msgstr "بیکار"
 
 #: includes/languages/trans_twig.php:83
 msgid "Retired"
@@ -4273,7 +4269,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:251
 msgid "in preparation"
-msgstr ""
+msgstr "در حال آماده‌سازی"
 
 #: includes/languages/trans_twig.php:254
 msgid "Demographic targeting"
@@ -4281,7 +4277,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:259
 msgid "Export Results"
-msgstr ""
+msgstr "خروجی از نتایج"
 
 #: includes/languages/trans_twig.php:262
 msgid "Guest"
@@ -4885,7 +4881,7 @@ msgstr "مقطع"
 
 #: includes/languages/trans_twig.php:464
 msgid "Under diploma"
-msgstr ""
+msgstr "زیردیپلم"
 
 #: includes/languages/trans_twig.php:465
 msgid "Diploma"
@@ -4913,11 +4909,11 @@ msgstr "محدوده"
 
 #: includes/languages/trans_twig.php:471
 msgid "Under 13"
-msgstr ""
+msgstr "زیر سیزده"
 
 #: includes/languages/trans_twig.php:477
 msgid "Above 60"
-msgstr ""
+msgstr "بالای شصت"
 
 #: includes/languages/trans_twig.php:478
 msgid "Age"
@@ -5045,7 +5041,7 @@ msgstr "سفارشی"
 
 #: includes/languages/trans_twig.php:511
 msgid "Regular"
-msgstr ""
+msgstr "رگولار"
 
 #: includes/languages/trans_twig.php:512
 msgid "File Format"
@@ -5505,7 +5501,7 @@ msgstr ""
 
 #: includes/lib/db/db_errors.php:37
 msgid "insert sucessfuly"
-msgstr ""
+msgstr "با موفقیت ثبت شد"
 
 #: includes/lib/db/db_errors.php:38
 msgid "type or unique id is null"
@@ -5560,6 +5556,12 @@ msgstr "نگرشی متفاوت"
 #: includes/mvc/view.php:14
 msgid "Sarshomar is intelligent"
 msgstr "سرشمار باهوش است"
+
+#~ msgid "For change language go to profile or enter /language"
+#~ msgstr "برای تغییر زبان به بخش پروفایل رفته و یا /language را بزنید"
+
+#~ msgid "Your language changed"
+#~ msgstr "زبان شما تغییر یافت"
 
 #~ msgid "Refresh"
 #~ msgstr "بروزرسانی"
