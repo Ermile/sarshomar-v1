@@ -36,19 +36,21 @@ private function transtext()
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
 	echo T_("Sarshomar Society Distributtion");                                       // Line 22
 	echo T_("Organizations and Companies");                                           // Line 6
-	echo T_("Exprience evaluation of current status, measuring customers satisfaction, conducting market research and promoting services level by the help of Sarshomar.");// Line 43
+	echo T_("Exprience evaluation of current status, measuring customers satisfaction, conducting market research and promoting services level by the help of Sarshomar.");// Line 17
 	echo T_("Universities and Research Institutes");                                  // Line 6
-	echo T_("Have access to accurate information and reduce the cost of gathering and processing data by giving tests, polls and assessments in Sarshomar.");// Line 54
+	echo T_("Have access to accurate information and reduce the cost of gathering and processing data by giving tests, polls and assessments in Sarshomar.");// Line 30
 	echo T_("Advertising Agencies");                                                  // Line 6
-	echo T_("By offering new advertising solutions and targeted advertsing, get your customers excited.");// Line 65
+	echo T_("By offering new advertising solutions and targeted advertsing, get your customers excited.");// Line 43
 	echo T_("Developers and Webmasters");                                             // Line 6
-	echo T_("By using API, enjoy Sarshomar's features and forget the concern of opinion polls.");// Line 76
-	echo T_("Easy Access");                                                           // Line 86
-	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 87
-	echo T_("Valid Statistical Population");                                          // Line 92
-	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 93
-	echo T_("Knowledge Base");                                                        // Line 98
-	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 99
+	echo T_("By using API, enjoy Sarshomar's features and forget the concern of opinion polls.");// Line 56
+	echo T_("Easy Access");                                                           // Line 6
+	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 97
+	echo T_("Valid Statistical Population");                                          // Line 104
+	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 105
+	echo T_("Knowledge Base");                                                        // Line 6
+	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 113
+	echo T_("Age range");                                                             // Line 144
+	echo T_("Population");                                                            // Line 144
 	echo T_("Male");                                                                  // Line 207
 	echo T_("Female");                                                                // Line 208
 
@@ -251,6 +253,8 @@ private function transtext()
 	//---------------------content\template\static\features\demographic-targeting.html
 	echo T_("Demographic targeting");                                                 // Line 6
 
+	//-------------------------------content\template\static\features\easy-access.html
+
 	//----------------------------content\template\static\features\export-results.html
 	echo T_("Export Results");                                                        // Line 6
 
@@ -300,6 +304,8 @@ private function transtext()
 	echo T_("Giving special points( Scholarism)");                                    // Line 241
 	echo T_("Giving special points depends on the tests and observations taken based on the behavior of the answerers");// Line 242
 
+	//----------------------------content\template\static\features\knowledge-base.html
+
 	//---------------------------content\template\static\features\multi-languages.html
 
 	//--------------------------------content\template\static\features\multimedia.html
@@ -325,6 +331,9 @@ private function transtext()
 
 	//-----------------------content\template\static\features\try-before-register.html
 	echo T_("Try before register");                                                   // Line 6
+
+	//--------------------------content\template\static\features\valid-population.html
+	echo T_("Valid Population");                                                      // Line 6
 
 	//--------------------------------------------content\template\static\mission.html
 

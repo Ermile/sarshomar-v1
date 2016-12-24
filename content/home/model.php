@@ -74,7 +74,7 @@ class model extends \mvc\model
 	 */
 	public function random($_type = "drilldown")
 	{
-		$lang = substr(\lib\router::get_storage('language'), 0, 2);
+		$lang = substr(\lib\define::get_language('name'), 0, 2);
 
 		if($_type == "drilldown")
 		{
@@ -86,9 +86,9 @@ class model extends \mvc\model
 			}
 			else
 			{
-				$title  = 'Which team are you a fan of?';
-				$male   = "male";
-				$female = "female";
+				$title  = T_('Which team are you a fan of?');
+				$male   = T_("male");
+				$female = T_("female");
 			}
 			$random = [
 				'title' => $title,
@@ -144,6 +144,7 @@ class model extends \mvc\model
 		}
 		else
 		{
+			var_dump($lang);
 			if($lang == "fa")
 			{
 				$title  = "طرفدار کدام تیم هستید؟";
