@@ -8,8 +8,20 @@
 				<div class="poll-content">
 					<div class="poll-content-top">
 						<div class="poll-question">
-							<h6 class="poll-word-{{value.id}}">
-								<a target="_blank" href="{{url.base}}/{{value.url}}">{{value.title|raw}} <i class="fa fa-external-link"></i></a>
+							<h6 class="poll-word-{{value.id}} poll-title">
+								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
+								<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="fa fa-external-link"></i></a>
+								<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
+												filter page " %}"><i class="fa fa-filter"></i></a>
+								<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
+												publish page " %}"><i class="fa fa-paper-plane-o"></i></a>
+								<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
+								{% if site.currentlang == 'fa' %}
+									{{value.date_modified|jdate("Y-m-d")|persian}}
+								{%else%}
+									{{value.date_modified|date("Y-m-d")}}
+								{%endif%}
+								</span>
 							</h6>
 							<div class="poll-question-options">
 								<ul>
@@ -18,64 +30,54 @@
 									{%endfor%}
 									<div class="clearfix"></div>
 								</ul>
+								<div class="poll-description">{{value.meta.desc}}</div>
 							</div>
 						</div>
 						<div class="poll-management-options">
 							<div class="btn-group">
 								<button class="fa fa-check accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok"></button>
 								<button class="fa fa-times reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam"></button>
-								<button class="fa fa-ellipsis-h btn btn-more dropdown">
-							<div class="dropdown-content">
-								<ul>
-									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{%trans "edit" %}</a></li>
-									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter">{%trans "filter page" %}</a></li>
-									<li><a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish">{%trans "publish page" %}</a></li>
-								</ul>
-
-
-								</div>
-							</button>
 							</div>
 						</div>
 					</div>
 					<div class="poll-content-bottom">
 						<div class="row auto">
-							<div class="span6">
-								<span class="label date hint--top hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
-						{% if site.currentlang == 'fa' %}
-							{{value.date_modified|jdate("Y-m-d")|persian}}
-						{%else%}
-							{{value.date_modified|date("Y-m-d")}}
-						{%endif%}</span>
-								<span class="label label-lang">{% trans "language" %}	:	{{value.language }} </span>
-								<span class="label label-status label-{{value.status }}">{% trans "status" %}	:	{{value.status }} </span>
-								<span class="label label-parent">{% trans "parent" %}	:	{{value.parent }} </span>
-								<span class="label label-sarshomar">{% trans "sarshomar" %}	:	{{value.sarshomar }} </span>
+							<div class="span7">
+								{% if value.language %}
+								<span class="label label-lang">{{value.language }}</span> 
+								{%endif%}
+								<span class="label label-status label-{{value.status }}">{{value.status }}</span>
+								<span class="label label-parent">{% trans "parent" %} : {{value.parent }}</span> 
+								{% if value.sarshomar==1 %}
+								<span class="label label-sarshomar">{% trans "sarshomar" %}</span> 
+								{%endif%}
 								<span class="label label-survey">{% trans "survey" %}	:	{{value.survey }} </span>
 								<span class="label label-gender">{% trans "gender" %}	:	{{value.gender }} </span>
 								<span class="label label-privacy">{% trans "privacy" %}	:	{{value.privacy }} </span>
 								<span class="label label-total">{% trans "total" %}	:	{{value.total }} </span>
 							</div>
-							<div class="span3 star-rating">
+
+							<div class="span2 star-rating">
+
 								<div class="star-rating-wrap">
 									<input class="star-rating-input" id="star-rating-5" type="radio" name="rating" value="5">
-									<label class="star-rating-ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
+									<label class="star-rating-ico fa fa-star-o fa-2x" for="star-rating-5" title="5 out of 5 stars"></label>
 									<input class="star-rating-input" id="star-rating-4" type="radio" name="rating" value="4">
-									<label class="star-rating-ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
+									<label class="star-rating-ico fa fa-star-o fa-2x" for="star-rating-4" title="4 out of 5 stars"></label>
 									<input class="star-rating-input" id="star-rating-3" type="radio" name="rating" value="3">
-									<label class="star-rating-ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
+									<label class="star-rating-ico fa fa-star-o fa-2x" for="star-rating-3" title="3 out of 5 stars"></label>
 									<input class="star-rating-input" id="star-rating-2" type="radio" name="rating" value="2">
-									<label class="star-rating-ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
+									<label class="star-rating-ico fa fa-star-o fa-2x" for="star-rating-2" title="2 out of 5 stars"></label>
 									<input class="star-rating-input" id="star-rating-1" type="radio" name="rating" value="1">
-									<label class="star-rating-ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
+									<label class="star-rating-ico fa fa-star-o fa-2x" for="star-rating-1" title="1 out of 5 stars"></label>
 								</div>
 							</div>
 							<div class="span3">
 								<div class=" value-options">
-								<input type="text" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
-								<button class="btn fa fa-check confirm-poll-status confirm-poll-value" id="save-vip" data-id="{{value.id}}">
+									<input type="number" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
+									<button class="btn fa fa-check confirm-poll-status confirm-poll-value" id="save-vip" data-id="{{value.id}}">
 							</button>
-								<select id="other-status" class="change-poll-status">
+									<select id="other-status" class="change-poll-status">
 								<option value="" disabled selected>Select</option>
 								<option value="stop">stop</option>
 								<option value="pause">pause</option>
@@ -95,9 +97,9 @@
 								<option value="pornography">pornography</option>
 								<option value="other">other</option>
 							</select>
-								<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
+									<button class="btn change-status fa fa-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
 							</button>
-							</div>
+								</div>
 							</div>
 						</div>
 					</div>
