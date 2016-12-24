@@ -16,8 +16,7 @@ class view extends \content_u\home\view
 
 		// get poll_id || suervey_id from url
 		$poll_survey_id = $this->model()->check_poll_url($_args);
-
-		$url = $this->url('baseLang'). 'add/'. \lib\utility\shortURL::encode($poll_survey_id);
+		$url = 'add/'. \lib\utility\shortURL::encode($poll_survey_id);
 
 		$this->data->step =
 		[
@@ -37,7 +36,7 @@ class view extends \content_u\home\view
 		$this->data->member    = \lib\db\ranks::get($poll_survey_id, 'member');
 
 		$this->data->unit      = \lib\db\units::user_unit($this->login('id'));
-		$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'gift');
+		$this->data->user_cash = \lib\db\transactions::budget($this->login('id'), 'gift');
 		// check is_survey or no
 		// if(!\lib\utility\survey::is_survey($poll_survey_id))
 		// {

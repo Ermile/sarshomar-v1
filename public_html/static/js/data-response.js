@@ -4,12 +4,12 @@
 function runDataResponse()
 {
 	// on select and input check inputs
-	$('input, select', this).change(function()
+	$(document).on('change', 'input, select', function()
 	{
 		checkInputResponse(this, false);
 	});
 	// add data-response-realtime to run realtime on input type
-	$('input[data-response-realtime]', this).keyup(function()
+	$(document).on('keyup', 'input[data-response-realtime]', function()
 	{
 		checkInputResponse(this, false);
 	});

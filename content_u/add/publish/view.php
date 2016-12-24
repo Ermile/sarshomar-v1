@@ -31,7 +31,7 @@ class view extends \content_u\home\view
 		$url = null;
 		if($poll_id)
 		{
-			$url = $this->url('baseLang'). 'add/'. $poll_id;
+			$url = 'add/'. $poll_id;
 		}
 
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
