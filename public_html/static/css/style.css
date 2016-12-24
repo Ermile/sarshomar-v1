@@ -1242,6 +1242,7 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 /************************************************************** about page */
 #features_guest .try.guest,#features_guest .try.register{width:100%;padding:1em 1.5em;font-size:2em}
 #features_guest .try.register{background-color:#169B23}
+#features_guest img{max-width:250px;margin:0 auto;display:block;margin-bottom:5em}
 .captcha-box{padding:1.5em 3em;background-color:#EFEFEF;margin:5em auto}
 .captcha-box input[type="text"]{border:none;width:100%;padding:.5em 1em;display:block;margin-bottom:1em;text-align:left;direction:ltr}
 .captcha-box .try{width:100%;display:block}
