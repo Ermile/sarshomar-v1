@@ -1,14 +1,14 @@
 {%extends display.main%}
 
 {%block content%}
-  <div class="box">
-   <h2>{%trans "Guest"%}</h2>
-	  <br>
-	<h1>CAPTCHA CODE IS : {{captcha}}
-	</h1>
-	<form method="post" action="{{url.base}}/@">
-		<input type="text" name="captcha">
-		<input type="submit">
-	</form>
+  <div class="main pad text-based">
+   <div class="box">
+    <h2 class="special-heading">{%trans "Guest"%}</h2>
+    <div class="row">
+     <div class="span2"></div>
+     <div class="span8">
+     </div>
+    </div>
+   </div>
   </div>
 {%endblock%}

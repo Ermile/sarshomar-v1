@@ -220,7 +220,7 @@ footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 #intro-box p{color:#666666;margin:1em 0;line-height:2em;}
 .rtl #intro-box p{line-height:2.5em;}
 .rtl #intro-box p{font-weight:bold;}
-.try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;}
+.try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;border:none}
 .try:hover{background-color:#129491;color:#fff;}
 .try:focus{color:#F4F4F4;}
 #intro-box .try{font-size:2em;}
@@ -1224,6 +1224,7 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 /* intro js rtl style*/
 .rtl .introjs-tooltipbuttons{text-align:left}.rtl .introjs-skipbutton{margin-left:5px;float:right;}.rtl .introjs-tooltip{direction:rtl}.rtl .introjs-prevbutton{float:left;}.rtl .introjs-nextbutton{float:left;}
 
+
 /************************************************************** about page */
 #about-bottom{padding:50px;background-color:#FFFFFF}
 #about-bottom .span4{text-align:center}
@@ -1236,3 +1237,13 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 .text-based ul li{position:relative;list-style:none;font-size:1.5em;line-height:2em;margin-bottom:1.5em;text-align:justify}
 .text-based ul li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:1em;left:-2em}
 .rtl .text-based ul li::before{left:auto;right:-2em}
+
+
+/************************************************************** about page */
+#features_guest .try.guest,#features_guest .try.register{width:100%;padding:1em 1.5em;font-size:2em}
+#features_guest .try.register{background-color:#169B23}
+.captcha-box{padding:1.5em 3em;background-color:#EFEFEF;margin:5em auto}
+.captcha-box input[type="text"]{border:none;width:100%;padding:.5em 1em;display:block;margin-bottom:1em;text-align:left;direction:ltr}
+.captcha-box .try{width:100%;display:block}
+.captcha-box .captcha{background-color:#898D8E;color:#F4F4F4;text-align:center;font-size:2em;font-weight:bold;padding:1em 2em}
+
