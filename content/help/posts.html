@@ -28,11 +28,9 @@
   <div class="sideline-title">
    <h4>{%trans "Related articles"%}</h4>
    <ul>
-    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
-    <li><a href="/help-single">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing...</a></li>
+    {% for clink in posts(10, { 'type':'help'} ) %}
+        <li><a href="{{url.baseRaw}}/{{clink.language}}/{{clink.url}}" title='{{clink.title}}'>{{clink.title}}</a></li>
+    {% endfor %}
    </ul>
   </div>
  </section>
