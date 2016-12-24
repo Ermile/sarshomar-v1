@@ -40,6 +40,13 @@ class step_starting
 				'option_key' => 'start_status',
 				'option_value' => 'start'
 				]);
+			if($user_language)
+			{
+				bot::sendResponse([
+					'text' 			=> T_("For changing language go to profile or enter /language"),
+					'reply_markup' 	=> menu::main(true)
+					]);
+			}
 		}
 		if(bot::$cmd['optional'] == 'new')
 		{
