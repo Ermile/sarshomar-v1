@@ -79,7 +79,7 @@ class handle
 			{
 				$text = $sync->get_message();
 				$text .= "\n";
-				$text .= T_("Words Status change") . ': ' . $user_sync['mobile'];
+				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
 				$text .= "\n";
 				$text .= "#" . T_("Sync");
 				return ['text' => $text];
