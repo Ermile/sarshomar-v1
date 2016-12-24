@@ -21,7 +21,7 @@ trait commands{
 		$text .= "\n";
 		$text .= "/dashboard " . T_("Dashboard menu");
 		$text .= "\n";
-		$text .= "/commands " . T_("Command usages");
+		$text .= "/commands " . T_("Commands");
 		$text .= "\n";
 		$text .= "/feedback " . T_("Send Feedback");
 		$text .= "\n";
