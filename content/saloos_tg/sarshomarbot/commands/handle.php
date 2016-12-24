@@ -190,9 +190,8 @@ class handle
 				$response = step_help::exec($command_text);
 				break;
 
-				case T_('Create new poll'):
-				case T_('Create'):
-				case '/create':
+				case T_('New'):
+				case '/new':
 				$response = step_create::start();
 				break;
 

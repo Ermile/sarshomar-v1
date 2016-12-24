@@ -13,20 +13,19 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
-		$txt_my = [T_('My polls'), T_('Create')];
-		$user_polls = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'my_poll' => true, 'pagenation' => false]);
-		if(!$user_polls)
-		{
-			$txt_my = [T_('Create new poll')];
-		}
+		// $txt_my = [T_('My polls'), T_('Create')];
+		// $user_polls = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'my_poll' => true, 'pagenation' => false]);
+		// if(!$user_polls)
+		// {
+		// 	$txt_my = [T_('Create new poll')];
+		// }
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
 				[T_('Ask me')],
-				$txt_my,
-				[T_('Dashboard'), T_("Help")],
+				[T_('Dashboard'), T_('New')],
 			],
 			"resize_keyboard" => true
 			];

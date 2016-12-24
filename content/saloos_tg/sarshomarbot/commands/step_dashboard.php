@@ -20,12 +20,9 @@ class step_dashboard
 		"reply_markup"	=> [
 			'keyboard' =>
 			[
+				[T_('My polls')],
 				[T_('Profile'), T_('Language')],
-				[[
-					'text' 				=> T_('Register & sync'),
-					'request_contact' 	=> true
-				]],
-				[T_('Back')]
+				[T_('Back'), T_('Help')],
 			],
 			"resize_keyboard" => true
 			]
