@@ -34,9 +34,21 @@ class sync
 	 * @param      <type>  $_web_mobile   The web mobile
 	 * @param      <type>  $_telegram_id  The telegram identifier
 	 */
-	public static function is_telegram_sync($_web_mobile, $_telegram_id)
+	public static function is_telegram_sync($_telegram_id)
 	{
-		return self::web_telegram($_web_mobile, $_telegram_id, true);
+		$user_detail = \lib\db\users::get($_telegram_id);
+		if(isset($user_detail['user_mobile']))
+		{
+			if(preg_match("/^tg\_\d+$/", $user_detail['user_mobile']))
+			{
+				return false;
+			}
+			elseif (preg_match("/^\d+$/", $user_detail['user_mobile']))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 
@@ -49,7 +61,7 @@ class sync
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function web_telegram($_web_mobile, $_telegram_id, $_is_sync_just_check = false)
+	public static function web_telegram($_web_mobile, $_telegram_id)
 	{
 		// this function in dev mod... :)
 		// return self::status(true)->set_error_code(3502);
@@ -58,11 +70,6 @@ class sync
 		$web = \lib\db\users::get_by_mobile($mobile);
 		if(!$web || empty($web))
 		{
-			// need to sync
-			if($_is_sync_just_check)
-			{
-				return false;
-			}
 
 			// new signup in site
 			// we set the mobile in telegram account and the sync is ok
@@ -81,12 +88,6 @@ class sync
 
 		if(!$web || !isset($web['id']))
 		{
-			if($_is_sync_just_check)
-			{
-				// :| need to sync
-				return false;
-			}
-
 			return self::status(false)->set_error_code(3500);
 		}
 
@@ -97,17 +98,7 @@ class sync
 
 		if(self::$new_user_id == self::$old_user_id)
 		{
-			if($_is_sync_just_check)
-			{
-				return true;
-			}
-
 			return self::status(true)->set_error_code(3501);
-		}
-
-		if($_is_sync_just_check)
-		{
-			return false;
 		}
 
 		// start trasaction of mysql engine
