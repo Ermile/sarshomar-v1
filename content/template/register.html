@@ -1,7 +1,22 @@
-  <div class="row auto unselectable {%if login and login.status == 'active'%}complete{%elseif login%}verify{%endif%}" id='inestimable'>
-   <img src="{{url.static}}images/svg/home/inestimable-right-img.svg" class="inside right" alt="inestimable">
-   <img src="{{url.static}}images/svg/home/inestimable-left-img.svg" class="inside left" alt="inestimable">
+{%set inestimableClass%}
+{%spaceless%}
+  {%if module == 'about'%}special
+  {%else%}
+    {%if login and login.status == 'active'%}complete
+    {%elseif login%}verify
+    {%endif%}
+  {%endif%}
+{%endspaceless%}
+{%endset%}
+  <div class="row auto unselectable {{inestimableClass}}" id='inestimable'>
+   <!-- <img src="{{url.static}}images/svg/home/inestimable-right-img.svg" class="inside right" alt="inestimable"> -->
+   <!-- <img src="{{url.static}}images/svg/home/inestimable-left-img.svg" class="inside left" alt="inestimable"> -->
 
+
+{%if module == 'about'%}
+<h2>{%trans "Sarshomar Vision"%}</h2>
+<h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
+{%else%}
 {%if login and login.status == 'active'%}
    <div class="span3 offset2">
     <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
@@ -32,5 +47,6 @@
     <a href="{{url.base}}/features/guest" class="try">{%trans "Try Before Register"%}</a>
    {%endif%}
    </div>
+{%endif%}
 {%endif%}
   </div>
