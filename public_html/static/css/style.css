@@ -1129,7 +1129,7 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .rtl .help-contact{text-align:right}
 .help-contact p{margin-bottom:0;font-size:1.2em}
 .help-contact img{position:absolute;bottom:-16px;right:-24px}
-.rtl .help-contact img{right:auto;left:-20px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
+.rtl .help-contact img{right:auto;left:-24px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
 .help-contact:hover,.help-contact:focus{background-color:#E5A428;color:#F4F4F4}
 .help-quick-access h4{position:relative;color:#00667A;padding:1em 2em;font-size:1.2em;margin-bottom:0}
 .help-quick-access h4::before{content:'';position:absolute;width:1.5em;height:2px;left:0;top:0;bottom:0;margin:auto;background-color:#00667A}
