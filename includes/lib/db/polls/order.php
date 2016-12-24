@@ -5,6 +5,41 @@ trait order
 {
 
 	/**
+	 * get the user filter as a string query
+	 * @example gender=male and age = 18
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	private static function user_filters($_user_id)
+	{
+		$user_filter_id = \lib\db\users::get($_user_id);
+		$where          = null;
+
+		if(isset($user_filter_id['filter_id']))
+		{
+			$filters = \lib\db\filters::get($user_filter_id['filter_id']);
+			$filters = array_filter($filters);
+			unset($filters['id'], $filters['unique']);
+			if(is_array($filters))
+			{
+				$where = [];
+				foreach ($filters as $field => $value)
+				{
+					$where[] = " filters.`$field` = '$value' ";
+				}
+				$where = implode(' AND ', $where);
+			}
+		}
+		if($where && is_string($where))
+		{
+			$where = ' AND '. $where;
+		}
+
+		return $where;
+	}
+
+
+	/**
 	 * return last question for this user
 	 * @param  [type] $_user_id [description]
 	 * @param  string $_type    [description]
@@ -16,7 +51,10 @@ trait order
 
 		$public_fields = self::$fields;
 
-		$qry ="
+		$user_filters = self::user_filters($_user_id);
+
+		$qry =
+		"
 			SELECT
 				$public_fields
 			-- To get options of this poll
@@ -41,29 +79,32 @@ trait order
 			AND posts.post_privacy = 'public'
 			-- Check post filter
 			AND
-				CASE
-					WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) = 0 THEN
-						TRUE
-					ELSE
-						CASE
-							WHEN (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1) IS NULL THEN
-								TRUE
-						ELSE
-							CASE
-								WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) = 1 THEN
-					  					(SELECT filter_id FROM postfilters WHERE postfilters.post_id = posts.id) =
-					  					(SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1)
-					  		ELSE
-					  			CASE
-					  				WHEN (SELECT COUNT(filter_id) FROM postfilters WHERE postfilters.post_id = posts.id) > 1 THEN
-									  	(SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1) IN
-									  	(SELECT filter_id FROM postfilters WHERE postfilters.post_id = posts.id)
-									ELSE
-										FALSE
-								END
-							END
-						END
-				END
+				posts.id IN
+				(
+					CONCAT_WS(',',
+						(SELECT IF(COUNT(postfilters.post_id) = 0, 0, posts.id) FROM postfilters WHERE postfilters.post_id)
+						,
+						(SELECT IF(filter_id IS NULL, 0, posts.id) FROM users WHERE users.id = $_user_id LIMIT 1)
+						,
+						(
+							SELECT
+								IF(COUNT(filters.id) >= 1, 0, posts.id)
+							FROM
+								filters
+							WHERE
+								filters.id IN
+								(
+									SELECT
+										filter_id
+									FROM
+										postfilters
+									WHERE
+										postfilters.post_id = posts.id
+								)
+							$user_filters
+						)
+					)
+				)
 			-- Check poll tree
 			AND
 				CASE
