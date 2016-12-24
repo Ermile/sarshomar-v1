@@ -11,9 +11,9 @@
 							<h6 class="poll-word-{{value.id}} poll-title">
 								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
 								<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="fa fa-external-link"></i></a>
-								<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
+								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
 												filter page " %}"><i class="fa fa-filter"></i></a>
-								<a href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
+								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
 												publish page " %}"><i class="fa fa-paper-plane-o"></i></a>
 								<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
 								{% if site.currentlang == 'fa' %}
