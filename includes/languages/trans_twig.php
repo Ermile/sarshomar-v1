@@ -34,7 +34,7 @@ private function transtext()
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
-	echo T_("Distribution of Sarshomar Society");                                     // Line 22
+	echo T_("Sarshomar Society Distributtion");                                       // Line 22
 	echo T_("Organizations and Companies");                                           // Line 6
 	echo T_("Exprience evaluation of current status, measuring customers satisfaction, conducting market research and promoting services level by the help of Sarshomar.");// Line 43
 	echo T_("Universities and Research Institutes");                                  // Line 6
@@ -120,7 +120,7 @@ private function transtext()
 	echo T_("← Back");                                                              // Line 44
 	echo T_("Skip");                                                                  // Line 83
 	echo T_("Done");                                                                  // Line 44
-	echo T_("Try Before Register");                                                   // Line 50
+	echo T_("Try Before Register");                                                   // Line 49
 
 	//-------------------------------------------------------content\poll\display.html
 	echo T_("Description");                                                           // Line 268
@@ -184,14 +184,14 @@ private function transtext()
 	echo T_("Total cash");                                                            // Line 70
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("Sarshomar Vision");                                                      // Line 20
-	echo T_("Ask Anyone Anywhere");                                                   // Line 21
-	echo T_("We are inestimable");                                                    // Line 44
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 28
-	echo T_("Sarshomar is jumping...");                                               // Line 29
-	echo T_("Inspection and Answer");                                                 // Line 47
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 48
-	echo T_("Verify your account");                                                   // Line 39
+	echo T_("Sarshomar Vision");                                                      // Line 19
+	echo T_("Ask Anyone Anywhere");                                                   // Line 20
+	echo T_("We are inestimable");                                                    // Line 43
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 27
+	echo T_("Sarshomar is jumping...");                                               // Line 28
+	echo T_("Inspection and Answer");                                                 // Line 46
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 47
+	echo T_("Verify your account");                                                   // Line 38
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("About Us");                                                              // Line 6
@@ -244,6 +244,16 @@ private function transtext()
 	echo T_("Add");                                                                   // Line 4
 	echo T_("Slug");                                                                  // Line 96
 
+	//------------------------content\template\static\features\anatomical-answers.html
+	echo T_("Anatomical Answers");                                                    // Line 6
+	echo T_("in preparation");                                                        // Line 7
+
+	//---------------------content\template\static\features\demographic-targeting.html
+	echo T_("Demographic targeting");                                                 // Line 6
+
+	//----------------------------content\template\static\features\export-results.html
+	echo T_("Export Results");                                                        // Line 6
+
 	//-------------------------------------content\template\static\features\guest.html
 	echo T_("Guest");                                                                 // Line 5
 
@@ -291,10 +301,21 @@ private function transtext()
 	echo T_("Giving special points depends on the tests and observations taken based on the behavior of the answerers");// Line 242
 
 	//---------------------------content\template\static\features\multi-languages.html
-	echo T_("in preparation");                                                        // Line 7
 
 	//--------------------------------content\template\static\features\multimedia.html
-	echo T_("MultiMedia");                                                            // Line 5
+	echo T_("Multimedia");                                                            // Line 6
+
+	//---------------------------content\template\static\features\no-interference.html
+	echo T_("No Interference");                                                       // Line 6
+
+	//----------------------content\template\static\features\population-breakdown.html
+	echo T_("Population Breakdown");                                                  // Line 6
+
+	//---------------------content\template\static\features\privatization-results.html
+	echo T_("Privatization Results");                                                 // Line 6
+
+	//----------------------------content\template\static\features\questions-tree.html
+	echo T_("Questions Tree");                                                        // Line 6
 
 	//---------------------------content\template\static\features\social-networks.html
 	echo T_("Social Networks");                                                       // Line 6
