@@ -43,8 +43,12 @@ class step_starting
 				]);
 			if($user_language)
 			{
+				$count = \lib\db\users::get_count();
+				$sum = array_sum(array_column($count, 'count'));
+				$text = T_("Welcome to the society of :count people of sarshomar",
+				['count'=> utility::nubmer_language($sum)]);
 				self::$force_return = [
-					'text' 			=> T_('Welcome') . "\n" . T_("For changing language go to profile or enter /language"),
+					'text' 			=> $text . "\n" . T_("For changing language go to profile or enter /language"),
 					'reply_markup' 	=> menu::main(true)
 					];
 				if(bot::$cmd['text'] === '/start')

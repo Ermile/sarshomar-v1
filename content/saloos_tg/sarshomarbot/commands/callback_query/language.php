@@ -30,8 +30,19 @@ class language
 			$lang = $lang_name;
 		}
 
+		if(!$get)
+		{
+			$count = \lib\db\users::get_count();
+			$sum = array_sum(array_column($count, 'count'));
+			$text = T_("Welcome to the society of :count people of sarshomar",
+				['count'=> utility::nubmer_language($sum)]);
+		}
+		else
+		{
+			$text = T_("Welcome");
+		}
 		bot::sendResponse([
-			"text" => T_("Welcome"),
+			"text" => $text,
 			"reply_markup" => menu::main(true)
 			]);
 		$run = (array) session::get('step', 'run');
