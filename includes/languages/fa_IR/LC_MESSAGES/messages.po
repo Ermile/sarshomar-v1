@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2016-12-24 14:36+0330\n"
-"PO-Revision-Date: 2016-12-24 14:38+0330\n"
+"POT-Creation-Date: 2016-12-24 14:41+0330\n"
+"PO-Revision-Date: 2016-12-24 14:46+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -73,9 +73,9 @@ msgstr ":number سوال پاسخ داده شده است"
 #: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:32
 #: content/saloos_tg/sarshomar_bot/commands/menu_profile.php:77
 #: content/saloos_tg/sarshomar_bot/commands/menu_psychology.php:22
-#: content/saloos_tg/sarshomarbot/commands/handle.php:201
-#: content/saloos_tg/sarshomarbot/commands/handle.php:209
-#: content/saloos_tg/sarshomarbot/commands/menu.php:78
+#: content/saloos_tg/sarshomarbot/commands/handle.php:200
+#: content/saloos_tg/sarshomarbot/commands/handle.php:208
+#: content/saloos_tg/sarshomarbot/commands/menu.php:77
 #: content/saloos_tg/sarshomarbot/commands/menu_civility.php:22
 #: content/saloos_tg/sarshomarbot/commands/menu_my.php:22
 #: content/saloos_tg/sarshomarbot/commands/menu_my.php:61
@@ -86,17 +86,16 @@ msgid "🔙 Back"
 msgstr "باز گشت 🔙"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:15
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
 #: content/saloos_tg/sarshomarbot/commands/handle.php:141
-#: content/saloos_tg/sarshomarbot/commands/menu.php:16
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:23
 #: includes/languages/trans_twig.php:490
 msgid "My polls"
 msgstr "نظرسنجی‌های من"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:18
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:10
-#: content/saloos_tg/sarshomarbot/commands/handle.php:193
 #: content/saloos_tg/sarshomarbot/commands/inline_query.php:19
-#: content/saloos_tg/sarshomarbot/commands/menu.php:20
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:183
 #: includes/languages/trans_twig.php:489
 msgid "Create new poll"
@@ -115,7 +114,7 @@ msgid "Sarshomar Panel"
 msgstr "پنل سرشمار"
 
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:36
-#: content/saloos_tg/sarshomarbot/commands/menu.php:48
+#: content/saloos_tg/sarshomarbot/commands/menu.php:47
 msgid "Main menu"
 msgstr "منوی اصلی"
 
@@ -197,12 +196,12 @@ msgstr ""
 "کنید."
 
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:20
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:34
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:36
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:77
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/feedback.php:12
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:30
 #: content/saloos_tg/sarshomarbot/commands/handle.php:165
-#: content/saloos_tg/sarshomarbot/commands/menu.php:29
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
 #: includes/languages/trans_addons.php:67
 msgid "Help"
 msgstr "راهنمایی"
@@ -215,43 +214,44 @@ msgstr ""
 "برای دسترسی سریع به هر یک از بخش‌های مربوطه، علاوه بر دکمه‌های موجود، می‌توانید از "
 "دستورات زیر نیز استفاده کنید."
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
-msgid "Change language"
-msgstr "تغییر زبان"
-
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:14
 msgid "View Profile"
 msgstr "مشاهده صفحه‌شخصی"
 
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:16
-msgid "Dashboard menu"
-msgstr "منوی پیشخوان"
-
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:18
 msgid "Help center"
 msgstr "مرکز راهنما"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:20
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:18
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:44
 #: content/saloos_tg/sarshomarbot/commands/step_help.php:20
 #: includes/languages/trans_twig.php:153
 msgid "FAQ"
 msgstr "سوالات پرتکرار"
 
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:20
+msgid "Change language"
+msgstr "تغییر زبان"
+
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:22
-msgid "Commands usage"
-msgstr ""
+msgid "Dashboard menu"
+msgstr "منوی پیشخوان"
 
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:24
+#: content/saloos_tg/sarshomarbot/commands/step_help.php:21
+msgid "Commands"
+msgstr "دستورات"
+
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:26
 msgid "Send Feedback"
 msgstr "ارسال بازخورد"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:26
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:28
 #: content/saloos_tg/sarshomarbot/commands/step_help.php:27
 msgid "Privacy"
 msgstr "حریم خصوصی"
 
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:28
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:30
 msgid "About us"
 msgstr "درباره ما"
 
@@ -263,7 +263,7 @@ msgstr "اولین"
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:75
 #: content/saloos_tg/sarshomarbot/commands/handle.php:126
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:28
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
 msgid "Back"
 msgstr "قبلی"
 
@@ -382,28 +382,28 @@ msgid "Sync"
 msgstr "همگام‌سازی"
 
 #: content/saloos_tg/sarshomarbot/commands/handle.php:145
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:23
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
 #: includes/languages/trans_addons.php:154 includes/languages/trans_twig.php:474
 msgid "Language"
 msgstr "زبان"
 
 #: content/saloos_tg/sarshomarbot/commands/handle.php:155
-#: content/saloos_tg/sarshomarbot/commands/menu.php:29
+#: content/saloos_tg/sarshomarbot/commands/menu.php:28
 #: includes/languages/trans_addons.php:61 includes/languages/trans_twig.php:179
 msgid "Dashboard"
 msgstr "داشبورد"
 
 #: content/saloos_tg/sarshomarbot/commands/handle.php:160
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:23
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:43
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:40
 #: includes/languages/trans_addons.php:314
 msgid "Profile"
 msgstr "پروفایل"
 
-#: content/saloos_tg/sarshomarbot/commands/handle.php:194
-#: content/saloos_tg/sarshomarbot/commands/menu.php:16
-msgid "Create"
-msgstr "ساخت"
+#: content/saloos_tg/sarshomarbot/commands/handle.php:193
+#: content/saloos_tg/sarshomarbot/commands/menu.php:28
+msgid "New"
+msgstr "جدید"
 
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:89
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:96
@@ -412,8 +412,8 @@ msgid "Skip"
 msgstr "پرش"
 
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:103
-msgid "Refresh result"
-msgstr "بروزرسانی نتایج"
+msgid "Refresh"
+msgstr "بروزرسانی"
 
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:110
 msgid "Share"
@@ -463,8 +463,7 @@ msgstr "جمع"
 msgid "Valid"
 msgstr "معتبر"
 
-#: content/saloos_tg/sarshomarbot/commands/menu.php:37
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
+#: content/saloos_tg/sarshomarbot/commands/menu.php:36
 msgid "Register & sync"
 msgstr "ثبت‌نام و همگام‌سازی"
 
@@ -526,7 +525,7 @@ msgstr ""
 "همچنین برای تکمیل ثبت‌نام و یکپارچه‌سازی اکانت خود در وب‌سایت و تلگرام، با فشردن "
 "دکمه ثبت‌نام و همگام‌سازی شماره موبایل خود را در سرشمار ثبت کنید."
 
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:37
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:34
 msgid "Your info:"
 msgstr "اطلاعات شما:"
 
@@ -546,10 +545,6 @@ msgstr "بازخورد"
 #: content/saloos_tg/sarshomarbot/commands/step_help.php:16
 msgid "Our support center is at your service."
 msgstr "مرکز پشتیبانی سرشمار در خدمت شماست."
-
-#: content/saloos_tg/sarshomarbot/commands/step_help.php:21
-msgid "Commands"
-msgstr "دستورات"
 
 #: content/saloos_tg/sarshomarbot/commands/step_help.php:28
 #: includes/languages/trans_twig.php:149
@@ -5511,6 +5506,12 @@ msgstr "نگرشی متفاوت"
 #: includes/mvc/view.php:14
 msgid "Sarshomar is intelligent"
 msgstr "سرشمار باهوش است"
+
+#~ msgid "Create"
+#~ msgstr "ساخت"
+
+#~ msgid "Refresh result"
+#~ msgstr "بروزرسانی نتایج"
 
 #~ msgid "Person"
 #~ msgstr "نفر"
