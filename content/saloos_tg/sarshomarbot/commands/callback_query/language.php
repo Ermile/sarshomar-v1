@@ -86,6 +86,11 @@ class language
 		return self::$user_language;
 	}
 
+	public static function set_client_language()
+	{
+		\lib\define::set_language(self::check(true), true);
+	}
+
 	public static function set($_language, $_options = [])
 	{
 		foreach (self::$valid_lang as $key => $value) {

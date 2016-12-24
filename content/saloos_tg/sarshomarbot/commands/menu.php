@@ -31,6 +31,15 @@ class menu
 			"resize_keyboard" => true
 			];
 
+		if(!\lib\utility\sync::is_telegram_sync(bot::$user_id))
+		{
+			$menu['keyboard'][] = [[
+					'text' 				=> T_('Register & sync'),
+					'request_contact' 	=> true
+				]];
+		}
+
+
 		if($_onlyMenu)
 		{
 			return $menu;

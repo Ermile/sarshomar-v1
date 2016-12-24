@@ -75,14 +75,20 @@ class handle
 		if(!is_null($user_sync))
 		{
 			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
+			bot::$user_id = (int) $sync->get_result();
 			if($sync->is_ok())
 			{
+				callback_query\language::set_client_language();
 				$text = $sync->get_message();
 				$text .= "\n";
 				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
 				$text .= "\n";
 				$text .= "#" . T_("Sync");
-				return ['text' => $text];
+				$return = [
+				'text' => $text,
+				'reply_markup' => menu::main(true)
+				];
+				return $return;
 			}
 		}
 		// check if we are in step then go to next step
