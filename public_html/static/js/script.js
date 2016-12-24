@@ -69,7 +69,6 @@ route('*', function ()
 	fixSlideJumping.call(this);
 }).once(function()
 {
-	shortkey();
 	openProfile.call(this);
 });
 
@@ -526,10 +525,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// on press delete on each opt
-	$(this).on('click', '.input-group.sortable .element .delete', function()
+	$(this).bind('click', '.input-group.sortable .element .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('keyup', '.input-group.sortable .element .delete', function(e)
+	}).bind('keyup', '.input-group.sortable .element .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
@@ -538,16 +537,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// --------------------------------------------------------------------------------- Tree
-	// on open tree load content to it
-	$(window).on( "response:open", function(_obj, _name, _value)
-	{
-		// if open tree then fill with last qustions
-		if(_name == 'tree' && _value == 'open')
-		{
-			treeSearch.call(null, null, true);
-		}
-	});
-	$(this).on('input', '#tree-search', function(event)
+	$(this).bind('input', '#tree-search', function(event)
 	{
 		var tree_search_timeout = $(this).data('tree-search-timeout');
 		if(tree_search_timeout)
@@ -559,8 +549,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// if user click on title of each question
-	$(this).on('change', '.tree-result-list > li > [name="parent_tree_id"]', function(event)
+	console.log($('li > [name="parent_tree_id"]', this));
+	$('li > [name="parent_tree_id"]', this).bind('change', function(event)
 	{
+		console.log(333);
 		var selectedItem = $(this).parents('li').children('.options');
 		if(selectedItem.is(':visible'))
 		{
@@ -577,7 +569,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		}
 	});
 	// if user change selection of each item
-	$(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
+	$(this).bind('change', '.tree-result-list > li > .options .checkbox', function(event)
 	{
 		// get list of checked item and create text from them
 		var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
@@ -593,7 +585,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	// --------------------------------------------------------------------------------- Complete profile
 	// if remove complete profile checkbox, return to old status and rerun sortable
-	$(this).on('change', '#complete-profile', function(event)
+	$(this).bind('change', '#complete-profile', function(event)
 	{
 		if (!this.checked)
 		{
@@ -605,13 +597,13 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// if any item of complete profile is selected, then fill item with profile values
-	$(this).on('change', '#complete-profile-dropdown', function()
+	$(this).bind('change', '#complete-profile-dropdown', function()
 	{
 		completeProfileFill();
 	});
 
 
-	$(this).on('click','button', function()
+	$(this).bind('click','button', function()
 	{
 		detectPercentage(true);
 		$('#submit-form').attr("value", $(this).attr("send-name"));
@@ -620,6 +612,18 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	simulateTreeNavigation();
+
+	// on open tree load content to it
+	$(window).off("response:open");
+	$(window).on("response:open", function(_obj, _name, _value)
+	{
+		console.log('open'+ _name);
+		// if open tree then fill with last qustions
+		if(_name == 'tree' && _value == 'open')
+		{
+			treeSearch.call(null, null, true);
+		}
+	});
 });
 
 
@@ -666,21 +670,11 @@ function calcFilterPrice()
 route(/\@\/add\/.+\/filter$/, function()
 {
 	// if any item of complete profile is selected, then fill item with profile values
-	$(this).on('range-slider::change', '#rangepersons', function(_e, _min, _max)
+	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
 		calcFilterPrice.call(this);
 	});
 
-	// on open tree load content to it
-	$(window).on( "response:open", function(_obj, _name, _value)
-	{
-		// console.log($(_obj).attr('data-group'));
-		// console.log($(_obj).attr('data-response-group'));
-		// console.log(_obj);
-		// console.log(_name);
-		// console.log(_value);
-		calcFilterPrice.call(this);
-	});
 	// run rangeslider
 }).once(function()
 {
@@ -691,6 +685,18 @@ route(/\@\/add\/.+\/filter$/, function()
 		detectPercentage(true);
 	});
 	detectPercentage();
+
+	// on open tree load content to it
+	$(window).off( "response:open");
+	$(window).on( "response:open", function(_obj, _name, _value)
+	{
+		// console.log($(_obj).attr('data-group'));
+		// console.log($(_obj).attr('data-response-group'));
+		// console.log(_obj);
+		// console.log(_name);
+		// console.log(_value);
+		calcFilterPrice.call(this);
+	});
 });
 
 // ************************************************************************************************************ Publish
@@ -1188,3 +1194,19 @@ route(/contact/, function()
 		}
 	});
 });
+
+
+runAllScripts();
+/**
+ * this function run all scripts and all subfunctions
+ * @return {[type]} [description]
+ */
+function runAllScripts()
+{
+	// handle all shortkeys
+	shortkey();
+
+
+}
+
+
