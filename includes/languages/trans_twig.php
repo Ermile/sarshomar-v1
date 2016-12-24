@@ -17,9 +17,19 @@ private function transtext()
 	echo T_("Contact Us");                                                            // Line 74
 	echo T_("Quick Access");                                                          // Line 47
 	echo T_("Link");                                                                  // Line 18
-	echo T_("Help Title");                                                            // Line 62
-	echo T_("Help Description");                                                      // Line 63
-	echo T_("Most visited questions");                                                // Line 69
+	echo T_("Help Title");                                                            // Line 58
+	echo T_("Help Description");                                                      // Line 59
+	echo T_("Most visited questions");                                                // Line 65
+
+	//---------------------------------------------------------content\help\posts.html
+	echo T_("Was this information helpful?");                                         // Line 23
+	echo T_("Yes");                                                                   // Line 48
+	echo T_("No");                                                                    // Line 49
+	echo T_("Related articles");                                                      // Line 29
+
+	//---------------------------------------------------------content\help\terms.html
+	echo T_("Questions List");                                                        // Line 21
+	echo T_("Latest questions");                                                      // Line 32
 
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
@@ -59,8 +69,8 @@ private function transtext()
 	echo T_("publish");                                                               // Line 94
 	echo T_("expire");                                                                // Line 100
 	echo T_("prize");                                                                 // Line 26
-	echo T_("پاسخ‌دهی");                                                     // Line 111
-	echo T_("قرعه‌کشی");                                                     // Line 115
+	echo T_("answering");                                                             // Line 111
+	echo T_("lottory");                                                               // Line 115
 	echo T_("filters");                                                               // Line 122
 	echo T_("marrital");                                                              // Line 127
 	echo T_("single");                                                                // Line 130
@@ -110,7 +120,7 @@ private function transtext()
 	echo T_("← Back");                                                              // Line 44
 	echo T_("Skip");                                                                  // Line 83
 	echo T_("Done");                                                                  // Line 44
-	echo T_("Try Before Register");                                                   // Line 32
+	echo T_("Try Before Register");                                                   // Line 47
 
 	//-------------------------------------------------------content\poll\display.html
 	echo T_("Description");                                                           // Line 268
@@ -132,7 +142,7 @@ private function transtext()
 	echo T_("Statistical population");                                                // Line 193
 	echo T_("There is nothing to display!");                                          // Line 244
 	echo T_("What is your opinion? Please rate this poll.");                          // Line 255
-	echo T_("Continue");                                                              // Line 312
+	echo T_("Continue");                                                              // Line 319
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
@@ -174,12 +184,14 @@ private function transtext()
 	echo T_("Total cash");                                                            // Line 70
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("We are inestimable");                                                    // Line 26
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 10
-	echo T_("Sarshomar is jumping...");                                               // Line 11
-	echo T_("Inspection and Answer");                                                 // Line 29
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 30
-	echo T_("Verify your account");                                                   // Line 21
+	echo T_("Sarshomar Vision");                                                      // Line 17
+	echo T_("Ask Anyone Anywhere");                                                   // Line 18
+	echo T_("We are inestimable");                                                    // Line 41
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 25
+	echo T_("Sarshomar is jumping...");                                               // Line 26
+	echo T_("Inspection and Answer");                                                 // Line 44
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 45
+	echo T_("Verify your account");                                                   // Line 36
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("About Us");                                                              // Line 6
@@ -311,7 +323,10 @@ private function transtext()
 	//-------------------------------------------content\template\static\referral.html
 	echo T_("Referral");                                                              // Line 5
 
+	//---------------------------content\template\static\social-responsibility-fa.html
+
 	//------------------------------content\template\static\social-responsibility.html
+	echo T_("in preparation");                                                        // Line 8
 
 	//-----------------------------------------content\template\static\statistics.html
 
@@ -338,6 +353,9 @@ private function transtext()
 	echo T_("Furthermore, this agreement, under the name Terms and Conditions, will be available and observable, in all pages of the website. Users will be responsible for a lack of information on the most recent changes.");// Line 26
 	echo T_("It should be mentioned that in case there would be any modifications in the above-mentioned tenors, an updated version will be available for the public, and as well, all the users will be informed.");// Line 29
 
+	//-----------------------------------------------content\template\static\tour.html
+	echo T_("Tour");                                                                  // Line 5
+
 	//---------------------------------------------content\template\static\vision.html
 
 	//--------------------------------------------content_admin\knowledge\display.html
@@ -361,8 +379,6 @@ private function transtext()
 	echo T_("minus");                                                                 // Line 31
 	echo T_("plus");                                                                  // Line 35
 	echo T_("autoverify");                                                            // Line 39
-	echo T_("Yes");                                                                   // Line 48
-	echo T_("No");                                                                    // Line 49
 	echo T_("forcechange");                                                           // Line 46
 	echo T_("desc");                                                                  // Line 53
 	echo T_("meta");                                                                  // Line 57
