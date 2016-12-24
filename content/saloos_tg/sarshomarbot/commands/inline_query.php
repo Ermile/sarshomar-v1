@@ -17,7 +17,7 @@ class inline_query
 		$result['is_personal'] = true;
 		$result['cache_time'] = 1;
 		$result['switch_pm_text'] = T_("Create new poll");
-		$result['switch_pm_parameter'] = "create";
+		$result['switch_pm_parameter'] = "new";
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$check_language = false;

@@ -100,7 +100,7 @@ class inline_keyboard
 		if($options['update'])
 		{
 			$return[] = [
-				'text' => T_("Refresh"),
+				'text' => '🔄',
 				'callback_data' => "ask/update/" . $this->class->short_link
 			];
 		}

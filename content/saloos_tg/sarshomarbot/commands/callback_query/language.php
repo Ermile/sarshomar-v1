@@ -18,7 +18,7 @@ class language
 	public static function start($_query, $_data_url)
 	{
 		$get = self::check();
-		if(empty($get) || isset($_data_url[2]))
+		if(!$get || empty($get) || isset($_data_url[2]))
 		{
 			self::set($_data_url[1], ["ref" => "callback_query"]);
 			$lang_name = $_data_url[1];
@@ -29,14 +29,26 @@ class language
 			$lang_name = $get;
 			$lang = $lang_name;
 		}
+
+		if(!$get)
+		{
+			$welcome_text = T_("Welcome");
+			$welcome_text .= "\n";
+			$welcome_text .= T_("For change language go to profile or enter /language");
+		}
+		else
+		{
+			$welcome_text = T_("Welcome");
+		}
 		bot::sendResponse([
-			"method" => "sendMessage",
-			"text" => T_("Welcome"),
+			"text" => $welcome_text,
 			"reply_markup" => menu::main(true)
 			]);
 		callback_query::edit_message([
-			'text' => 'Language set '. $lang
+			'text' => T_("Your language changed"),
+			// "reply_markup" => menu::main(true)
 			]);
+		$step = session::set('step', 'name');
 		session::remove_back('expire', 'inline_cache', 'language');
 		session::remove('expire', 'inline_cache', 'language');
 		return ['text' => '🗣 Your language set : ' . $lang_name];
@@ -77,7 +89,15 @@ class language
 	{
 		if(!self::$user_language)
 		{
-			self::$user_language = \lib\db\users::get_language(bot::$user_id);
+			$language = \lib\db\users::get_language(bot::$user_id);
+			if(empty($language))
+			{
+				$language = null;
+			}
+			else
+			{
+				self::$user_language = $language;
+			}
 		}
 		if($_min)
 		{
