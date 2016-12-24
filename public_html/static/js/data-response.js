@@ -53,7 +53,7 @@ function getInputValue(_el)
 
 /**
  * check inputs and change status of them if needed
- * V2
+ * V2.1
  * @param  {[type]} _this      [description]
  * @param  {[type]} _firstTime [description]
  * @return {[type]}            [description]
@@ -76,6 +76,13 @@ function checkInputResponse(_this, _firstTime)
 		elSelector = elID;
 	}
 	var childrens  = $('[data-response*="'+ elSelector +'"]');
+	// if this name is not exist use id for selector
+	if(childrens.length < 1)
+	{
+		elSelector = elID;
+		childrens  = $('[data-response*="'+ elSelector +'"]');
+	}
+
 
 	// if one of then parents of this element has data-response-group then check for group
 	if(elGroupEl.length)
