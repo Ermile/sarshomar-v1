@@ -1219,7 +1219,7 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .text-based .content p,.text-based .content .list{color:#6E6F6F;line-height:2em}
 .rtl .text-based{text-align:justify;}
 
-p.em{position:relative;background-color:#EFEFEF;padding:1.5em 3em;text-align:center;font-weight:bold;margin-bottom:3em}
+p.em{position:relative;background-color:#EFEFEF;color:#6E6F6F;padding:1.5em 3em;line-height:2em;text-align:center;font-weight:bold;margin-bottom:3em}
 p.em::before{content:'';position:absolute;width:10px;height:4px;background-color:#E5A428;bottom:0;right:0;left:0;width:50%;margin:auto}
 
 /* intro js style*/
