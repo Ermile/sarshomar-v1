@@ -6,15 +6,15 @@
 	<div class="menu">
 		<div class="menu-inside">
 			<input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' or poll.type is null%}checked{%endif%} >
-			<label for="type_multiple"><i class="fa fa-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
+			<label for="type_multiple"><i class="icon-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
 			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
-			<label for="type_descriptive"><i class="fa fa-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
+			<label for="type_descriptive"><i class="icon-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
 			<input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
-			<label for="type_notification"><i class="fa fa-bell"></i> <span>{%trans "Notification"%}</span></label>
+			<label for="type_notification"><i class="icon-bell"></i> <span>{%trans "Notification"%}</span></label>
 			<input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
-			<label for="type_upload"><i class="fa fa-upload"></i> <span>{%trans "Upload"%}</span></label>
+			<label for="type_upload"><i class="icon-upload"></i> <span>{%trans "Upload"%}</span></label>
 			<input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
-			<label for="type_range"><i class="fa fa-star"></i> <span>{%trans "Range / Star"%}</span></label>
+			<label for="type_range"><i class="icon-star"></i> <span>{%trans "Range / Star"%}</span></label>
 		</div>
 	</div>
 {% endspaceless %}
@@ -47,8 +47,8 @@
 				</span>
 
 				<span class="score" {%if value.option_meta.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}" value="{{value.option_meta.score}}"></span>
-				<span class="fa fa-picture-o icon" data-response-hide></span>
-				<span class="fa fa-times delete" tabindex="0"></span>
+				<span class="icon-picture-o icon" data-response-hide></span>
+				<span class="icon-times delete" tabindex="0"></span>
 			</div>
 		</li>
 		{%endfor%}
@@ -62,8 +62,8 @@
 					<label class="check-box" for="true1"></label>
 				</span>
 				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score1"></span>
-				<span class="fa fa-picture-o icon" data-response-hide></span>
-				<span class="fa fa-times delete" tabindex="0"></span>
+				<span class="icon-picture-o icon" data-response-hide></span>
+				<span class="icon-times delete" tabindex="0"></span>
 			</div>
 		</li>
 		<li>
@@ -75,8 +75,8 @@
 					<label class="check-box" for="true2"></label>
 				</span>
 				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
-				<span class="fa fa-picture-o icon" data-response-hide></span>
-				<span class="fa fa-times delete" tabindex="0"></span>
+				<span class="icon-picture-o icon" data-response-hide></span>
+				<span class="icon-times delete" tabindex="0"></span>
 			</div>
 		</li>
 	{%endif%}
@@ -252,7 +252,7 @@
 	<div class="panel-text">
 		<input type="checkbox" name="summary-show" id="summary-show">
 		<label for="summary-show">
-			<i class="fa fa-minus" data-response='summary-show' data-response-class='fa-plus' data-response-class-false='fa-minus'></i><span>{%trans "Summary"%}</span>
+			<i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
 		</label>
 	</div>
 	<textarea name='summary' value='' data-response="summary-show" data-response-hide data-response-effect='slide'></textarea>
@@ -265,7 +265,7 @@
 	<div class="panel-text">
 		<input type="checkbox" name="desc-show" id="desc-show">
 		<label for="desc-show">
-			<i class="fa fa-minus" data-response='desc-show' data-response-class='fa-plus' data-response-class-false='fa-minus'></i><span>{%trans "Description"%}</span>
+			<i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
 		</label>
 	</div>
 	<textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide' data-resizable></textarea>

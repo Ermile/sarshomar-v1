@@ -11,9 +11,9 @@
 							<div class="span10">
 						<div class="poll-question">
 							<h6 class="poll-title">
-								<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در 
+								<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در
 								<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
-								<a target="_blank" href="{{value.comment_url}}"><i class="fa fa-external-link"></i></a>
+								<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
 							</h6>
 							<div class="poll-question-options">
 								<div class="poll-description">{{value.comment_content}}</div>
@@ -23,22 +23,22 @@
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
-								<button class="fa fa-check accept btn btn-success save-status" data-status="approved" title="OK" data-id="{{value.id}}"></button>
-								<button class="fa fa-times reject btn btn-danger  save-status" data-status="unapproved" title="Spam" data-id="{{value.id}}"></button>
+								<button class="icon-check accept btn btn-success save-status" data-status="approved" title="OK" data-id="{{value.id}}"></button>
+								<button class="icon-times reject btn btn-danger  save-status" data-status="unapproved" title="Spam" data-id="{{value.id}}"></button>
 							</div>
 						</div>
-					
+
 						</div>
 					</div>
 					<div class="bottom-content">
 						<div class="row auto">
 							<div class="span9">
-								<span class="label label-{{value.comment_status}}">{{value.comment_status}}</span> 
+								<span class="label label-{{value.comment_status}}">{{value.comment_status}}</span>
 								<span class="label label-parent">{% trans "parent" %} : {{value.comment_parent}}</span>
 							</div>
 
-						
-							
+
+
 						</div>
 					</div>
 				</div>

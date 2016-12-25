@@ -8,7 +8,7 @@
 
      <div class="search-box">
       <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
-      <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+      <button class="search-button"><i class="icon-search" aria-hidden="true"></i></button>
      </div>
      <div class="search-result" data-xhr='search-result' id="search-result">
       {{block('search_result')}}
@@ -29,7 +29,7 @@
       <ul class="polls-body">
   {%for key, value in poll_list%}
         <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}">
-          <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
+          <span class="type" aria-hidden="true"><i class="icon-{{value.type}}"></i> </span>
           <span class="title title-longer"><a href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></span>
           <span class="votes-count"><i class="pie" style='animation-delay:-{{value.total}}s'></i>{{value.total}}</span>
           <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
