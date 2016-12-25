@@ -9,6 +9,72 @@ class pollstats
 	 * v1.0
 	 */
 
+	/**
+	 * get supoort charts
+	 * this array exist in to pollstat table
+	 * when inserting new value to this table check field
+	 * all field of that table is here
+	 *
+	 * @return     array  ( description_of_the_return_value )
+	 */
+	public static function support_chart($_check = null, $_value = null)
+	{
+		$support_chart =
+		[
+			'gender'           => ['male', 'female'],
+			'marrital'         => ['single', 'married'],
+			'internetusage'    => ['low', 'mid', 'high'],
+			'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
+			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd', 'other'],
+			'course'           => null,
+			'age'              => null,
+			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-59', '60+'],
+			'country'          => null,
+			'province'         => null,
+			'city'             => null,
+			'employmentstatus' => ['employee', 'unemployed', 'retired'],
+			'housestatus'      => ['owner', 'tenant', 'homeless'],
+			'religion'         => null,
+			'language'         => null,
+			'industry'         => null
+		];
+
+		if($_check)
+		{
+			if($_value)
+			{
+				if(array_key_exists($_check, $support_chart))
+				{
+					if(is_array($support_chart[$_check]) && in_array($_value, $support_chart[$_check]))
+					{
+						return true;
+					}
+					elseif($support_chart[$_check] === null)
+					{
+						return null;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+			elseif(array_key_exists($_check, $support_chart))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return $support_chart;
+	}
+
 
 	/**
 	 * get poll stat record

@@ -83,7 +83,7 @@ class model extends \content_u\home\model
 			{
 				if($value == $support_filter[$key])
 				{
-					unset($filters[$key]);
+					// unset($filters[$key]);
 				}
 				else
 				{
@@ -129,17 +129,8 @@ class model extends \content_u\home\model
 		 */
 		\lib\db\ranks::plus($poll_id, "filter", $sum_money_filter, ['replace' => true]);
 
-		// remove exist filter saved of this poll
-		\lib\db\postfilters::remove($poll_id);
-
-		// ready to insert filters in options table
-		$filter_ids = \lib\db\filters::insert($filters);
-
-		// if filter id not found insert the filter record and get the last_insert_id
-		if(!is_null($filter_ids))
-		{
-			$insert_filters = \lib\db\postfilters::set($poll_id, $filter_ids);
-		}
+		// insert the post filters in terms table
+		$insert_filters = \lib\utility\postfilters::update($filters, $poll_id);
 
 		if(\lib\debug::$status)
 		{

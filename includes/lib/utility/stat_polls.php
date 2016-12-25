@@ -150,5 +150,97 @@ class stat_polls
 		$poll_result = self::get_result($random_poll_id, $_options);
 		return $poll_result;
 	}
+
+
+	/**
+	 * get the homepage chart by gender and range
+	 *
+	 * @return     array|boolean  ( description_of_the_return_value )
+	 */
+	public static function gender_chart()
+	{
+		$query =
+		"
+			SELECT
+				filters.gender AS `gender`,
+				filters.range AS `age_range`,
+				SUM(filters.count) AS 'count'
+			FROM
+				filters
+			WHERE
+				filters.gender IS NOT NULL AND
+				filters.range IS NOT NULL
+			GROUP BY
+			gender, age_range
+		";
+		$result = \lib\db::get($query);
+
+		if(!$result || !is_array($result))
+		{
+			return false;
+		}
+
+		$male_female = array_column($result, 'gender');
+		$male_female = array_unique($male_female);
+
+		$categories = array_column($result, 'age_range');
+		$categories = array_unique($categories);
+		sort($categories);
+
+
+		$tmp_resutl                   = [];
+
+		$tmp_resutl['male']           = [];
+		$tmp_resutl['male']['name']   = T_("male");
+		$tmp_resutl['male']['data']   = [];
+
+		$tmp_resutl['female']         = [];
+		$tmp_resutl['female']['name'] = T_("female");
+		$tmp_resutl['female']['data'] = [];
+
+		foreach ($categories as $index => $range)
+		{
+			$tmp_resutl['male']['data'][$range]   = 0;
+			$tmp_resutl['female']['data'][$range] = 0;
+			foreach ($result as $key => $value)
+			{
+				if($value['age_range'] == $range)
+				{
+					if($value['gender'] == 'male')
+					{
+						$tmp_resutl['male']['data'][$range] = (int)  $value['count'];
+					}
+
+					if($value['gender'] == 'female')
+					{
+						$tmp_resutl['female']['data'][$range] = (int) $value['count']  * -1;
+					}
+				}
+			}
+		}
+
+		foreach ($categories as $key => $range)
+		{
+			if($tmp_resutl['male']['data'][$range] == 0 && $tmp_resutl['female']['data'][$range] == 0)
+			{
+				unset($tmp_resutl['male']['data'][$range]);
+				unset($tmp_resutl['female']['data'][$range]);
+				unset($categories[$key]);
+			}
+		}
+
+		$series = [];
+		foreach ($tmp_resutl as $key => $value)
+		{
+			$series[] = ['name' => $value['name'], 'data' => array_values($value['data'])];
+		}
+
+		$return               = [];
+		$return['categories'] = json_encode(array_values($categories), JSON_UNESCAPED_UNICODE);
+		$return['series']     = json_encode($series, JSON_UNESCAPED_UNICODE);
+
+		return $return;
+
+	}
 }
 ?>

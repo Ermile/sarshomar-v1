@@ -18,6 +18,7 @@ class view extends \mvc\view
 
 		// get #homepage post by random function
 		$this->data->result = $this->model()->random_result();
+		$this->data->male_female_chart = $this->model()->male_female_chart();
 
 		$this->include->fontawesome = true;
 

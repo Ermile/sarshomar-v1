@@ -5,41 +5,6 @@ trait order
 {
 
 	/**
-	 * get the user filter as a string query
-	 * @example gender=male and age = 18
-	 *
-	 * @param      <type>  $_user_id  The user identifier
-	 */
-	private static function user_filters($_user_id)
-	{
-		$user_filter_id = \lib\db\users::get($_user_id);
-		$where          = null;
-
-		if(isset($user_filter_id['filter_id']))
-		{
-			$filters = \lib\db\filters::get($user_filter_id['filter_id']);
-			$filters = array_filter($filters);
-			unset($filters['id'], $filters['unique']);
-			if(is_array($filters))
-			{
-				$where = [];
-				foreach ($filters as $field => $value)
-				{
-					$where[] = " filters.`$field` = '$value' ";
-				}
-				$where = implode(' AND ', $where);
-			}
-		}
-		if($where && is_string($where))
-		{
-			$where = ' AND '. $where;
-		}
-
-		return $where;
-	}
-
-
-	/**
 	 * return last question for this user
 	 * @param  [type] $_user_id [description]
 	 * @param  string $_type    [description]
@@ -50,8 +15,6 @@ trait order
 		$language = \lib\define::get_language();
 
 		$public_fields = self::$fields;
-
-		$user_filters = self::user_filters($_user_id);
 
 		$qry =
 		"
@@ -82,26 +45,53 @@ trait order
 				posts.id IN
 				(
 					CONCAT_WS(',',
-						(SELECT IF(COUNT(postfilters.post_id) = 0, 0, posts.id) FROM postfilters WHERE postfilters.post_id)
-						,
-						(SELECT IF(filter_id IS NULL, 0, posts.id) FROM users WHERE users.id = $_user_id LIMIT 1)
+
+						(
+							IF(
+							(
+								SELECT
+									COUNT(*)
+								FROM
+									termusages
+								WHERE
+									termusages.termusage_id = posts.id AND
+									termusages.termusage_foreign = 'posts'
+							) = 0 , posts.id , 0
+						  )
+						)
 						,
 						(
 							SELECT
-								IF(COUNT(filters.id) >= 1, 0, posts.id)
+								IF(filter_id IS NULL, posts.id, 0)
 							FROM
-								filters
-							WHERE
-								filters.id IN
-								(
-									SELECT
-										filter_id
-									FROM
-										postfilters
-									WHERE
-										postfilters.post_id = posts.id
-								)
-							$user_filters
+								users WHERE users.id = $_user_id LIMIT 1
+						)
+						,
+						(
+						IF(
+							(
+								SELECT
+									GROUP_CONCAT(termusages.term_id SEPARATOR ' AND ')
+								FROM
+									termusages
+								INNER JOIN terms ON termusages.term_id = terms.id
+								WHERE
+									termusages.termusage_id = posts.id AND
+									termusages.termusage_foreign = 'posts' AND
+									terms.term_type LIKE 'users%'
+							)
+							IN
+							(
+								SELECT
+									term_id
+								FROM
+									termusages
+								WHERE
+									termusages.termusage_id = $_user_id AND
+									termusages.termusage_foreign = 'users'
+							),
+							posts.id, 0
+							)
 						)
 					)
 				)

@@ -4,6 +4,26 @@ use \lib\debug;
 
 class model extends \mvc\model
 {
+	public function male_female_chart()
+	{
+		$chart = \lib\utility\stat_polls::gender_chart();
+		if($chart)
+		{
+			return $chart;
+		}
+		else
+		{
+			return
+			[
+				'categories' => '["-13","14-17","18-24","25-30","31-44","45-59","60+"]',
+				'series'     => '[
+									{"name":"'. T_("male"). '","data":[10,20,30,40,30,20,10]},
+									{"name":"'. T_("female").'","data":[-10,-20,-30,-40,-30,-20,-10]}
+								]'
+			];
+		}
+	}
+
 
 	/**
 	 * Gets the random result.

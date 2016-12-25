@@ -14,13 +14,23 @@ trait data
 	public static function get_profile_data($_user_id, $_accepted_value = true)
 	{
 		$profile = [];
-		$result  = \lib\db\termusages::usage($_user_id, 'users');
+
+		$result   = \lib\db\terms::usage($_user_id, [], 'users', 'users%');
 
 		if(is_array($result))
 		{
 			foreach ($result as $key => $value)
 			{
-				$x_key = str_replace('users_', '', $value['term_type']);
+				$x_key = explode(":", $value['term_caller']);
+				if(isset($x_key[0]))
+				{
+					$x_key = $x_key[0];
+				}
+				else
+				{
+					continue;
+				}
+
 				// get the accepted value in terms for insert chart
 				if($_accepted_value)
 				{
@@ -51,6 +61,7 @@ trait data
 		}
 
 		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
+
 		return $profile;
 	}
 
@@ -63,10 +74,52 @@ trait data
 	 */
 	public static function insert_terms($_key, $_value, $_valus_checked_true = [])
 	{
-		$new_term_id = \lib\db\terms::caller("$_key:$_value");
+		$parent_id   = null;
+
+		$value_slug  = \lib\utility\filter::slug($_value);
+		$key_slug    = \lib\utility\filter::slug($_key);
+
+		$new_term_id = \lib\db\terms::caller("$_key:$value_slug");
 		// insrt new terms
 		if(!$new_term_id || empty($new_term_id))
 		{
+			$new_term_id_parent = \lib\db\terms::caller("$_key");
+
+			if(!$new_term_id_parent || empty($new_term_id_parent))
+			{
+				$insert_new_terms_parent =
+				[
+					'term_type'   => 'users',
+					'term_caller' => $key_slug,
+					'term_title'  => $_key,
+					'term_slug'   => $key_slug,
+					'term_url'    => $_key,
+					'term_status' => 'awaiting'
+				];
+				$insert_new_terms_parent = \lib\db\terms::insert($insert_new_terms_parent);
+				if($insert_new_terms_parent)
+				{
+					$parent_id = \lib\db::insert_id();
+				}
+				else
+				{
+					return false;
+				}
+			}
+			elseif(isset($new_term_id_parent['id']))
+			{
+				$parent_id = $new_term_id_parent['id'];
+			}
+			else
+			{
+				return false;
+			}
+
+			if(!$parent_id)
+			{
+				return false;
+			}
+
 			// new term find we need to save this to terms table
 			$term_status = 'awaiting';
 			if(isset($_valus_checked_true[$_key]) && $_valus_checked_true[$_key] == $_value)
@@ -74,31 +127,30 @@ trait data
 				$term_status = 'enable';
 			}
 			// cehc termslug len
-			$term_slug = \lib\utility\filter::slug($_value);
-			if(strlen($term_slug) > 50)
+			$value_slug = \lib\utility\filter::slug($_value);
+			if(strlen($value_slug) > 50)
 			{
-				$term_slug = substr($term_slug, 0, 49);
+				$value_slug = substr($value_slug, 0, 49);
 			}
+
 			$insert_new_terms =
 			[
-				'term_type'   => 'users_'. $_key,
-				'term_caller' => "$_key:$_value",
+				'term_type'   => 'users',
+				'term_caller' => "$_key:$value_slug",
 				'term_title'  => $_value,
-				'term_slug'   => $term_slug,
-				'term_url'    => $_key. '/'. $_value,
-				'term_status' => $term_status
+				'term_slug'   => $value_slug,
+				'term_url'    => $_key. '/'. $value_slug,
+				'term_status' => $term_status,
+				'term_parent' => $parent_id,
 			];
 
 			$new_term_id = \lib\db\terms::insert($insert_new_terms);
 
-			$new_term_id = \lib\db::insert_id();
+			$new_term_id = \lib\db\terms::caller("$_key:$_value");
+
 			if(!$new_term_id)
 			{
-				$new_term_id = \lib\db\terms::caller("$_key:$_value");
-				if(!$new_term_id)
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 		return $new_term_id;
@@ -203,29 +255,35 @@ trait data
 			// if exist and old value != new value update terms and save old value in log table
 			$new_term_id = self::insert_terms($key, $value, $valus_checked_true);
 
-			if(!$new_term_id)
+			if(!$new_term_id || !isset($new_term_id['id']))
 			{
 				continue;
 			}
+
+			$new_term_id = $new_term_id['id'];
+
+			$key_slug   = \lib\utility\filter::slug($key);
+			$value_slug = \lib\utility\filter::slug($value);
 
 			// check this users has similar profile data to update this
 			$query =
 			"
 				SELECT
 					termusages.*,
-					terms.term_title
+					terms.term_caller
 				FROM
 					termusages
 				INNER JOIN terms ON terms.id = termusages.term_id
 				WHERE
 					termusages.termusage_foreign = 'users' AND
 					termusages.termusage_id = $_user_id AND
-					terms.term_type = 'users_$key'
+					terms.term_caller = '$key_slug:$value_slug'
 				LIMIT 1
 				-- check this users has similar profile data to update this
 			";
 
 			$similar_terms = \lib\db::get($query, null, true);
+
 			if($similar_terms)
 			{
 				if($similar_terms['term_id'] == $new_term_id)

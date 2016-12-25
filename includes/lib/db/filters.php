@@ -425,46 +425,6 @@ class filters
 
 
 	/**
-	 * Gets the poll filter.
-	 *
-	 * @param      <type>  $_poll_id  The poll identifier
-	 */
-	public static function get_poll_filter($_poll_id)
-	{
-		$poll_filter = [];
-		$result = \lib\db\postfilters::get($_poll_id);
-		foreach ($result as $key => $value)
-		{
-			if(is_array($value))
-			{
-				foreach ($value as $filter => $v)
-				{
-					if(!self::support_filter($filter))
-					{
-						continue;
-					}
-					if($v !== null)
-					{
-						if(isset($poll_filter[$filter]) && is_array($poll_filter[$filter]))
-						{
-							if(!in_array($v, $poll_filter[$filter]))
-							{
-								$poll_filter[$filter][$v] = $v;
-							}
-						}
-						else
-						{
-							$poll_filter[$filter][$v] = $v;
-						}
-					}
-				}
-			}
-		}
-		return $poll_filter;
-	}
-
-
-	/**
 	 * get filter list and reutnr count number of member by this filter
 	 *
 	 * @param      <type>  $_args  The arguments
@@ -475,36 +435,32 @@ class filters
 		{
 			return false;
 		}
-		$filter_id = self::search($_args, true);
-		if(empty($filter_id))
+
+		$filter_query = self::search($_args, true, true);
+
+		if($filter_query)
 		{
-			return 0;
+			$query = "SELECT SUM(filters.count) AS `count` FROM filters WHERE $filter_query ";
+			$count = \lib\db::get($query, 'count', true);
+			return $count;
 		}
 		else
 		{
-			$id_in = join($filter_id, ',');
-			$query =
-			"
-				SELECT
-					COUNT(id) AS 'members'
-				FROM
-					users
-				WHERE
-					users.filter_id IN ($id_in)
-			";
-			$count = \lib\db::get($query, 'members', true);
-			return $count;
+			return 0;
 		}
-		return 0;
 	}
 
 
 	/**
 	 * Searches for the first match.
 	 *
-	 * @param      <type>  $_filters  The filters
+	 * @param      <type>         $_filters             The filters
+	 * @param      boolean        $_else_fiels_is_null  The else fiels is null
+	 * @param      boolean        $_return_raw          The return raw
+	 *
+	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public static function search($_filters, $_else_fiels_is_null = false)
+	public static function search($_filters, $_else_fiels_is_null = false, $_return_raw = false)
 	{
 		if(!is_array($_filters))
 		{
@@ -545,8 +501,15 @@ class filters
 			return null;
 		}
 
-		$query = "SELECT id	FROM filters WHERE $where ";
-		return \lib\db::get($query, 'id');
+		if($_return_raw)
+		{
+			return $where;
+		}
+		else
+		{
+			$query = "SELECT id	FROM filters WHERE $where ";
+			return \lib\db::get($query, 'id');
+		}
 	}
 
 

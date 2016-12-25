@@ -157,14 +157,14 @@ trait set
 			// get the current profile data of users
 			$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
 		}
-		// get the support filter of service
+		// get the support chart of service
 		// some index of profile data we have not eny chart of this
-		// we have the chart of all index in filters::support_filter()
-	    $support_filter = \lib\db\filters::support_filter();
+		// we have the chart of all index in pollstats::support_chart()
+	    $support_chart = \lib\db\pollstats::support_chart();
 
-	    // the keys of support_filter is important
+	    // the keys of support_charts is important
 	    // the value of this array use in other place
-	    $support_filter = array_keys($support_filter);
+	    $support_chart = array_keys($support_chart);
 
 	    // get the poll stats record to open the chart and change it
 		$pollstats = \lib\db\pollstats::get($poll_id, ['validation' => $validation]);
@@ -253,8 +253,8 @@ trait set
 		// update the result field in table
 		$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
 
-		// for each support filter do this:
-		foreach ($support_filter as $key => $filter)
+		// for each support chart do this:
+		foreach ($support_chart as $key => $filter)
 		{
 			// check the user have this filter or no
 			// if the users have this filter:
@@ -394,7 +394,7 @@ trait set
 
 			$set[] = " pollstats.$filter = '". json_encode($pollstats[$filter], JSON_UNESCAPED_UNICODE). "'";
 
-		} // end of foreach $support_filter
+		} // end of foreach $support_chart
 
 		//
 		if($update_pollstat_record)

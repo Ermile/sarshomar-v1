@@ -132,7 +132,7 @@
    series: {{result.basic | raw}}
   };
 
-  var categories = ['0-18', '19-25', '25-35', '36-39', '40-50', '51-60', '61-80', '80 +'];
+  var categories = {{male_female_chart.categories|raw}};
   var newChartOptions =
   {
    chart: {type: 'bar',backgroundColor: 'rgba(255, 255, 255, 0)'},
@@ -142,13 +142,7 @@
    plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: false,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
    credits: {enabled: false},
    tooltip: {formatter: function () {return '<b>' + this.series.name +'<br/>'+ '{%trans "Age range"%} ' + this.point.category + '</b><br/>' + '{%trans "Population"%}: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }},
-   series: [{
-    name: '{%trans "Male"%}',
-    data: [-2.2, -4.7, -7.1, -5.2, -3.0, -2.2, -3.3, -1.4]
-   }, {
-    name: '{%trans "Female"%}',
-    data: [2.1, 2.6, 6.0, 8.1, 2.9, 3.1, 2.1, 0.3]
-   }]
+   series: {{male_female_chart.series|raw}}
   };
 
   $(function() {
