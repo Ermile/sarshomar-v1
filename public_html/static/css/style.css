@@ -80,7 +80,7 @@ img{-webkit-user-select:none;user-select:none}
 aside .select-box input{width:100%;background-color:#ebebeb;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow:none;color:#777;}
 aside .select-box{margin:10px 0;padding-left: 1em;}
 aside .group:first-child{margin-top:1.5em;}
-.rtl aside .select-box{padding-left:0em;padding-right:1.5em; }
+.rtl aside .select-box{padding-left:0em;padding-right:1.5em; margin-bottom:0; }
 aside .select-box label{line-height:26px;font-size:1.1em;color:#00667a;width:100%;font-weight:500;padding-left: .5em;}
 .rtl aside .select-box label{padding-right: 1em;padding-left:.5em;}
 aside select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;outline:none;box-shadow: none;}
