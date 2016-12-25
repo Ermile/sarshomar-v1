@@ -1120,6 +1120,24 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .help-prompt .try:first-of-type{margin-right:1em}
 .rtl .help-prompt .try:first-of-type{margin-right:0;margin-left:1em}
 
+/************************************************************** Admin Area */
+.admin-area,.help-category-box,.help-post-box{margin: 0 10em}
+.admin-area-chart {text-align: center}
+.admin-area-box-container{margin:5em 0}
+.admin-area-items{display:-webkit-flex;display:flex;flex-wrap:wrap}
+.admin-area-items .admin-area-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s;flex-basis:33.3333333%}
+.admin-area-items .admin-area-item .title{color:#0C7C78;font-weight:bold}
+.admin-area-items .admin-area-item .description{color:#A1A1A1;margin-bottom:0;font-size:1.2em}
+.admin-area-items .admin-area-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#E7A429;opacity:0;transition:.3s;z-index:1}
+.admin-area-items .admin-area-item:hover,.admin-area-items .admin-area-item:focus{background-color:#EBEBEB}
+.admin-area-box-container .admin-area-item:hover::before,.admin-area-box-container .admin-area-item:focus::before{opacity:1}
+.admin-area-items .admin-area-item:nth-child(2)::after{content:'';position:absolute;bottom:0;width:160%;height:1px;background-color:#EBEBEB;left:-30%}
+.admin-area-items .admin-area-item:nth-child(4)::after{content:'';position:absolute;height:100%;width:1px;background-color:#EBEBEB;top:-50%;right:0}
+.rtl .admin-area-items .admin-area-item:nth-child(4)::after{right:auto;left:0}
+.admin-area-items .admin-area-item:nth-child(6)::after{content:'';position:absolute;height:100%;width:1px;background-color:#EBEBEB;top:-50%;left:0}
+.rtl .admin-area-items .admin-area-item:nth-child(6)::after{left:auto;right:0}
+
+
 
 /************************************************************** contact page */
 #contact .element .input{background-color:#FFF;}
@@ -1133,43 +1151,43 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 #contact .contact-ways .map{display:block;width:100%;}
 
 /************************************************************** poll management */
-.poll-management {margin: 2em 0;width: 100%;}
-.poll-management .poll-content-top {display: flex;flex-direction: row;justify-content: space-between;}
-.poll-management .poll-content-bottom {padding: 1em;background: #FAFAFA;border-top: 1px solid #EEEEEE;}
-.poll-management .poll-card {border-right: 4px solid #E0E0E0;margin-bottom: 2em;}
-.poll-management .poll-card .poll-content-top { padding: 1em;background: #fff;}
-.poll-management .poll-question-options ul {margin-bottom: 1em}
-.poll-management .poll-question-options ul li {float: right;list-style-type: decimal;margin-left: 1em;}
-.poll-management .poll-question-options ul li:hover {color: #9E9E9E}
-.poll-management .poll-management-options {display: flex;align-items: center;}
-.poll-management .btn {cursor: pointer;}
-.poll-management .btn-group .btn {width: 45px;height: 33px;border: none;float: right;text-align: center;line-height: 25px;}
-.poll-management .btn-group .btn:first-child {border-radius: 0 4px 4px 0;}
-.poll-management .btn-group .btn:last-child {border-radius:4px 0 0 4px}
-.poll-management .btn-success {background: #37aaa7;color: #fff;}
-.poll-management .btn-danger {background: #F44336;color: #fff;}
-.poll-management .change-poll-status {float:right;border: 1px solid #E0E0E0;border-left: 0;height: 20px;border-radius: 0 4px 4px 0;}
-.poll-management .confirm-poll-status {float: right;height: 20px;border: 1px solid #E0E0E0;border-right: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 4px 0 0 4px;}
-.poll-management .poll-value {float: right;height: 20px;border: 1px solid #E0E0E0;border-radius: 0 4px 4px 0;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center; border-left: none;}
-.poll-management .confirm-poll-value {margin-left: 1em}
+.content-management {margin: 2em 0;width: 100%;}
+.content-management .top-content {display: flex;flex-direction: row;justify-content: space-between;}
+.content-management .bottom-content {padding: 1em;background: #FAFAFA;border-top: 1px solid #EEEEEE;}
+.content-management .poll-card {border-right: 4px solid #E0E0E0;margin-bottom: 2em;}
+.content-management .poll-card .top-content { padding: 1em;background: #fff;}
+.content-management .poll-question-options ul {margin-bottom: 1em}
+.content-management .poll-question-options ul li {float: right;list-style-type: decimal;margin-left: 1em;}
+.content-management .poll-question-options ul li:hover {color: #9E9E9E}
+.content-management .poll-management-options {display: flex;align-items: center; justify-content: center; height: 100%}
+.content-management .btn {cursor: pointer;}
+.content-management .btn-group .btn {width: 45px;height: 33px;border: none;float: right;text-align: center;line-height: 25px;}
+.content-management .btn-group .btn:first-child {border-radius: 0 4px 4px 0;}
+.content-management .btn-group .btn:last-child {border-radius:4px 0 0 4px}
+.content-management .btn-success {background: #37aaa7;color: #fff;}
+.content-management .btn-danger {background: #F44336;color: #fff;}
+.content-management .change-poll-status {float:right;border: 1px solid #E0E0E0;border-left: 0;height: 20px;border-radius: 0 4px 4px 0;}
+.content-management .confirm-poll-status {float: right;height: 20px;border: 1px solid #E0E0E0;border-right: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 4px 0 0 4px;}
+.content-management .poll-value {float: right;height: 20px;border: 1px solid #E0E0E0;border-radius: 0 4px 4px 0;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center; border-left: none;}
+.content-management .confirm-poll-value {margin-left: 1em}
 .poll-question a {color: #607D8B;}
-.poll-management .poll-question .poll-title {font-size: 1.2em;}
-.poll-management .poll-question .poll-title a {margin-left: 8px;}
-.poll-management .poll-question .poll-title .label {font-size: 12px;}
-.poll-management .poll-question .poll-title.accepted a {color: #009688;}
-.poll-management .poll-value::-webkit-input-placeholder {text-align: center;color: #9E9E9E;}
-.poll-management .poll-value:-moz-placeholder {text-align: center;color: #9E9E9E;}
-.poll-management .poll-value::-moz-placeholder {text-align: center;color: #9E9E9E;}
-.poll-management .poll-value:-ms-input-placeholder {text-align: center;color: #9E9E9E;}
-.poll-management .value-options {float: left;}
-.poll-management .label {background: #B0BEC5;margin-left: 1em;padding: 1px 4px;}
-.poll-management .label-publish{background: #4CAF50;}
-.poll-management .label-pause{background: #FFAB91}
-.poll-management .label-stop{background: #795548}
-.poll-management .label-draft{background: #9E9E9E}
-.poll-management .border-publish{border-color: #4CAF50;}
-.poll-management .border-spam{border-color: #F44336;}
-
+.content-management .poll-question .poll-title {font-size: 1.2em;}
+.content-management .poll-question .poll-title a {margin-left: 8px;}
+.content-management .poll-question .poll-title .label {font-size: 12px;}
+.content-management .poll-question .poll-title.accepted a {color: #009688;}
+.content-management .poll-value::-webkit-input-placeholder {text-align: center;color: #9E9E9E;}
+.content-management .poll-value:-moz-placeholder {text-align: center;color: #9E9E9E;}
+.content-management .poll-value::-moz-placeholder {text-align: center;color: #9E9E9E;}
+.content-management .poll-value:-ms-input-placeholder {text-align: center;color: #9E9E9E;}
+.content-management .value-options {float: left;}
+.content-management .label {background: #B0BEC5;margin-left: 1em;padding: 1px 4px;}
+.content-management .label-publish,.content-management .label-approved{background: #4CAF50;}
+.content-management .label-pause{background: #FFAB91}
+.content-management .label-stop{background: #795548}
+.content-management .label-draft{background: #9E9E9E}
+.content-management .border-publish,.content-management .border-approved {border-color: #4CAF50;}
+.content-management .border-spam{border-color: #F44336;}
+.paginate {text-align: center}
 /************************************************************** Star Rating */
 .star-rating {text-align: center;}
 .star-rating-wrap{display: inline-block;font-size: 1rem;vertical-align: middle;}

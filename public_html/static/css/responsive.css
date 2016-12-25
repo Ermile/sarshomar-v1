@@ -123,7 +123,7 @@
   /*header #header-profile>a {color: #f4f4f4;}*/
   /*--wrapper--*/
   #map{display: none;}
-  .wrapper{padding: 0;border-bottom: 8px solid transparent;border-top:0;display: block}
+  .wrapper{padding: 0;border-top:0;display: block}
   #intro-box p{font-size:1.6em;}
   #random-chart h3{text-align: left;padding: 1em .2em;font-size: 1em;}
   #random-chart h3 a{font-size: 2em;font-weight: 500;}
@@ -139,19 +139,9 @@
   .rtl #customers-box .customer h3, #customers-box .customer p {text-align: center}
   #customers-box .customer:nth-child(odd) h3, #customers-box .customer:nth-child(odd) p {text-align: center;}
   /*--features--*/
-  /*--inestimable--*/
-  #inestimable{margin:0;padding: 25px 10px;}
-  #inestimable::before{display: none;}
-  #inestimable::after{display: none;}
-  #inestimable img{display: none;}
+
   .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
-  /*--footer--*/
-  footer{border-top: 0;}
-  footer #footer-links{border-bottom:0;}
-  footer #footer-links a{padding: .5em;display: inline-block;}
-  .rtl footer #footer-links section h4{text-align: right;}
-  footer #footer-links section h4{text-align: left;}
-  footer #footer-nav .eco img{display: none;}
+
 
 /**********************************dashbord***************************/
 
@@ -200,6 +190,23 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 #dollar #search-result .polls-head{padding: 0 3em;}
 
 /*.add_6k_publish .element{padding: 0 10px;}*/
+}
+
+@media only screen and (max-width: 768px){
+  /*--inestimable--*/
+  #inestimable{margin:0;padding: 25px 10px;}
+  #inestimable::before{display: none;}
+  #inestimable::after{display: none;}
+  #inestimable img{display: none;}
+  /*--footer--*/
+  footer{border-top: 0;}
+  footer #footer-links{border-bottom:0;}
+  footer #footer-links a{padding: .5em;display: inline-block;}
+  .rtl footer #footer-links section h4{text-align: right;}
+  footer #footer-links section h4{text-align: left;}
+  footer #footer-nav .eco img{display: none;}
+
+.wrapper{border-bottom: 8px solid transparent;}
 }
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 

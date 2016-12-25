@@ -1,12 +1,14 @@
 {% extends display.main%} {%block content%}
-<div class="box poll-management">
-	<div>
+<div class="box content-management">
+
 		<div class="row auto">
 			<div id="load-modal" data-modal="words-check"></div>
 			{%for key, value in poll_list%}
 			<div class="poll-card border-{{value.status }} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
 				<div class="poll-content">
-					<div class="poll-content-top">
+					<div class="top-content">
+						<div class="row auto">
+							<div class="span10">
 						<div class="poll-question">
 							<h6 class="poll-word-{{value.id}} poll-title">
 								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
@@ -33,14 +35,16 @@
 								<div class="poll-description">{{value.meta.desc}}</div>
 							</div>
 						</div>
-						<div class="poll-management-options">
+						</div>
+						<div class="poll-management-options span2">
 							<div class="btn-group">
 								<button class="fa fa-check accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok"></button>
 								<button class="fa fa-times reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam"></button>
 							</div>
 						</div>
 					</div>
-					<div class="poll-content-bottom">
+					</div>
+					<div class="bottom-content">
 						<div class="row auto">
 							<div class="span7">
 								{% if value.language %}
@@ -107,9 +111,11 @@
 			</div>
 			{%endfor%}
 		</div>
+		<div class="paginate">
 		<!-- pagenation -->
 		{% embed display.pagination %}{% endembed %}
-	</div>
+		</div>
+
 </div>
 {%endblock%} {%block foot_js%}
 <script type="text/javascript">

@@ -1,5 +1,38 @@
-{%extends display.main%}
+{%extends display.main%} {%block content%}
 
-{%block content%}
-  YOU ARE ADMIN OF SARSHOMAR
-{% endblock %}
+<div class="main">
+  <div class="admin-area-chart">
+    <img src="{{url.static}}images/chart-sample.jpg" alt="">
+  </div>
+  <div class="box admin-area">
+    <div class="admin-area-box-container">
+      <div class="admin-area-items">
+        <a href="/fa/admin/$" class="admin-area-item">
+          <p class="title">مدیریت نظرسنجی‌ها</p>
+          <p class="description">۸۷ سوال نیازمند بررسی</p>
+        </a>
+        <a href="/fa/admin/comments" class="admin-area-item">
+          <p class="title">مدیریت دیدگاه‌ها</p>
+          <p class="description">۳۷ دیدگاه نیازمند بررسی</p>
+        </a>
+        <a href="/fa/admin" class="admin-area-item">
+          <p class="title">مدیریت...</p>
+          <p class="description">مقداری توضیحات...</p>
+        </a>
+        <a href="/fa/admin" class="admin-area-item">
+          <p class="title">مدیریت...</p>
+          <p class="description">مقداری توضیحات...</p>
+        </a>
+        <a href="/fa/admin" class="admin-area-item horizontal-separator">
+          <p class="title">مدیریت...</p>
+          <p class="description">مقداری توضیحات...</p>
+        </a>
+        <a href="/fa/admin" class="admin-area-item">
+          <p class="title">مدیریت...</p>
+          <p class="description">مقداری توضیحات...</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
