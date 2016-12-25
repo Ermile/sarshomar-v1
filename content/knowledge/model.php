@@ -119,7 +119,7 @@ class model extends \mvc\model
 
 			case 'polltype':
 				$field = "post_type";
-				$value = \content_u\add\model::change_type($_value);
+				// $value = \content_u\add\model::change_type($_value);
 				break;
 
 			case 'status':
