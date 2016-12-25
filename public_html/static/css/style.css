@@ -105,6 +105,13 @@ aside .filters_group.selected{background-color:#083942;}
 aside .actived{display:block;}
 
 
+
+#dollar_search .floating-title{margin-top: 4em; }
+#dollar_search .floating-title::before{left:0; }
+#dollar_search.rtl .floating-title::before{right:0; }
+#dollar_search .tags{padding:0 2em; }
+
+
 /************************************************************** header */
 /*header{border-style: solid;border-width: 0px 8px 0px 0px;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;background-color:#f4f4f4;}*/
 header {background-color:#f4f4f4;border-style: solid;border-width: 0px 8px 0px 0px;-moz-border-image: url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image: url(../images/border.png) 6 8 6 0 stretch;-o-border-image: url(../images/border.png) 6 8 6 0 stretch;border-image: url(../images/border.png) 6 8 6 0 stretch;}

@@ -1,9 +1,9 @@
 {%extends display.main%}
 
 {%block content%}
-<aside>
-<div class="filters_group">مربوط به فیلترها</div>
-<div class="filters_group selected">مربوط به سؤالات</div>
+<aside class="unselectable">
+<div class="filters_group">{%trans "مربوط به فیلترها"%}</div>
+<div class="filters_group selected">{%trans "مربوط به سؤالات"%}</div>
 	{{block('aside_gender')}}
 	{{block('aside_marrital')}}
 	{{block('aside_employment')}}
@@ -25,7 +25,13 @@
 				{%include display.result%}
 			</div>
 		</div>
-		<div class="tags"></div>
+
+	</div>
+	<div class="row">
+		<div class="floating-title" data-title="{%trans 'فیلترهای اعمالی'%}"></div>
+		<div class="tags">
+			<a href=""></a>
+		</div>
 	</div>
 </div>
 {%endblock%}
