@@ -2,22 +2,22 @@
 <aside class="admin-area-states">
   <ul>
     <li class="header">نظرسنجی‌ها</li>
-    <li>کل: <span class="label label-count">۲۳۴۵</span></li>
-    <li>تایید نشده: <span class="label label-count label-unapproved">۵۴۶</span></li>
-    <li>فیلتر شده: <span class="label label-count">۱۲۴</span></li>
-    <li>رد شده: <span class="label label-count label-rejected">۸۷۳</span></li>
+    <li>کل <span class="label label-count">۲۳۴۵</span></li>
+    <li class="label-unapproved">تایید نشده <span class="label label-count">۵۴۶</span></li>
+    <li>فیلتر شده <span class="label label-count">۱۲۴</span></li>
+    <li class="label-rejected">رد شده <span class="label label-count">۸۷۳</span></li>
     <li class="header">دیدگاه‌ها</li>
-    <li>کل: <span class="label label-count">۶۴۵</span></li>
-    <li>تایید نشده: <span class="label label-count label-unapproved">۴۶</span></li>
-    <li>رد شده: <span class="label label-count label-rejected">۱۱۴</span></li>
+    <li>کل <span class="label label-count">۶۴۵</span></li>
+    <li class="label-unapproved">تایید نشده <span class="label label-count">۴۶</span></li>
+    <li class="label-rejected">رد شده <span class="label label-count">۱۱۴</span></li>
   </ul>
 </aside>
 <div class="main">
 
 
 
-  <div class="admin-area-chart">
-  {%if visitors%}
+<div class="admin-area-chart">
+{%if visitors%}
  <div class="row auto unselectable">
 {%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
   <div id="chart" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
@@ -36,13 +36,13 @@
           <p class="title">مدیریت دیدگاه‌ها</p>
           <p class="description">تایید و رد دیدگاه‌ها</p>
         </a>
-        <a href="/fa/admin" class="admin-area-item">
-          <p class="title">مدیریت...</p>
-          <p class="description">مقداری توضیحات...</p>
+        <a href="/fa/admin/keywords" class="admin-area-item">
+          <p class="title">مدیریت کلیدواژه‌ها</p>
+          <p class="description">تایید، تصحیح و... کلیدواژه‌ها</p>
         </a>
-        <a href="/fa/admin" class="admin-area-item">
-          <p class="title">مدیریت...</p>
-          <p class="description">مقداری توضیحات...</p>
+        <a href="/fa/admin/users" class="admin-area-item">
+          <p class="title">مدیریت کاربران</p>
+          <p class="description">حذف، اضافه و... کاربران</p>
         </a>
         <a href="/fa/admin" class="admin-area-item horizontal-separator">
           <p class="title">مدیریت...</p>
@@ -83,6 +83,9 @@
 
 
         },
+        credits: {
+      enabled: false
+  },
         legend: {
           layout: 'vertical',
           align: 'right',

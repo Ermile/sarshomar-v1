@@ -1131,9 +1131,11 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .admin-area-chart {text-align: center}
 .admin-area-states li.header {background: #E0E0E0;padding: 10px 8px;font-weight: bold;color: #616161;}
 .admin-area-states li {padding: 10px 12px;color: #616161;}
-.admin-area-states .label-count {background: #607D8B;padding: 1px 4px;float: left;}
-.admin-area-states .label-unapproved {background: #FFC107;}
-.admin-area-states .label-rejected {background: #F44336;}
+.admin-area-states li:hover {color: #424242;}
+.admin-area-states .label-count {background: #9E9E9E;padding: 1px 4px;float: right;transition: all 0.3s;}
+.rtl .admin-area-states .label-count {float: left;}
+.admin-area-states li.label-unapproved:hover .label {background: #FFC107;}
+.admin-area-states li.label-rejected:hover .label {background: #F44336;}
 .admin-area-chart .highcharts-background {fill: #f4f4f4;}
 .admin-area-box-container{margin:5em 0}
 .admin-area-items{display:-webkit-flex;display:flex;flex-wrap:wrap}
