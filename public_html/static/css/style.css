@@ -176,7 +176,7 @@ footer #footer-note {display: flex; flex-direction: row;}
 footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 .rtl footer #footer-note .love {text-align: left;}
 /************************************************************** special heading */
-.special-heading{position:relative;padding-left:90px;color:#00667A;font-size:20px;line-height:26px;margin-bottom:30px;}
+.special-heading{position:relative;padding-left:90px;color:#00667A;font-size:20px;line-height:26px;margin-bottom:30px;-webkit-user-select:none;user-select:none;cursor:default}
 .rtl .special-heading{padding-left:0;padding-right:90px;}
 .special-heading a{color:inherit;font-weight:normal;}
 .special-heading::before{content:"";position:absolute;top:-2px;bottom:0;margin:auto;left:-15px;width:100px;height:2px;background-color:#00667A;}
