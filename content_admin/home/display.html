@@ -1,30 +1,40 @@
 {%extends display.main%} {%block content%}
-<aside>
-  
+<aside class="admin-area-states">
+  <ul>
+    <li class="header">نظرسنجی‌ها</li>
+    <li>کل: <span class="label label-count">۲۳۴۵</span></li>
+    <li>تایید نشده: <span class="label label-count label-unapproved">۵۴۶</span></li>
+    <li>فیلتر شده: <span class="label label-count">۱۲۴</span></li>
+    <li>رد شده: <span class="label label-count label-rejected">۸۷۳</span></li>
+    <li class="header">دیدگاه‌ها</li>
+    <li>کل: <span class="label label-count">۶۴۵</span></li>
+    <li>تایید نشده: <span class="label label-count label-unapproved">۴۶</span></li>
+    <li>رد شده: <span class="label label-count label-rejected">۱۱۴</span></li>
+  </ul>
 </aside>
 <div class="main">
 
-{%if visitors%}
+
+
+  <div class="admin-area-chart">
+  {%if visitors%}
  <div class="row auto unselectable">
 {%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
   <div id="chart" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
  </div>
 {%endif%}
 
-
-  <div class="admin-area-chart">
-  
   </div>
   <div class="box admin-area">
     <div class="admin-area-box-container">
       <div class="admin-area-items">
         <a href="/fa/admin/$" class="admin-area-item">
           <p class="title">مدیریت نظرسنجی‌ها</p>
-          <p class="description">۸۷ سوال نیازمند بررسی</p>
+          <p class="description">تایید، تصحیح و... سوالات</p>
         </a>
         <a href="/fa/admin/comments" class="admin-area-item">
           <p class="title">مدیریت دیدگاه‌ها</p>
-          <p class="description">۳۷ دیدگاه نیازمند بررسی</p>
+          <p class="description">تایید و رد دیدگاه‌ها</p>
         </a>
         <a href="/fa/admin" class="admin-area-item">
           <p class="title">مدیریت...</p>
@@ -57,7 +67,8 @@
   {
     $(function () {
       $('#chart').highcharts({
-        chart: { type: '{{chart_type}}' {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
+        chart: { type: 'area' 
+        {%if global.lang=='fa_IR'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
         title: { text: '' },
         xAxis: { categories: [{%for datarow in visitors%}'{%if global.lang=="fa_IR"%}{{datarow.date|jdate("y/m/j")}} {%else%} {{datarow.date |date("j F")}}{%endif%}', {%endfor%}] ,crosshair: true},
         yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
@@ -79,8 +90,18 @@
           borderWidth: 0
         },
         plotOptions: {
-          series: {stacking: 'normal',
-        }
+          area: {
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
 
         },
         series:
@@ -100,6 +121,18 @@
     });
 
   });
+  Highcharts.theme = {
+   colors: [ '#e5a428', '#009688', '#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
+      '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+
+};
+// Add the background image to the container
+Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
+   proceed.call(this);
+   this.container.style.background = 'url({{url.static}}images/sand.png)';
+});
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);
  </script>
 {%endif%}
 {%endblock%}

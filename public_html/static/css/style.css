@@ -1130,6 +1130,12 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 /************************************************************** Admin Area */
 .admin-area,.help-category-box,.help-post-box{margin: 0 10em}
 .admin-area-chart {text-align: center}
+.admin-area-states li.header {background: #E0E0E0;padding: 10px 8px;font-weight: bold;color: #616161;}
+.admin-area-states li {padding: 10px 12px;color: #616161;}
+.admin-area-states .label-count {background: #607D8B;padding: 1px 4px;float: left;}
+.admin-area-states .label-unapproved {background: #FFC107;}
+.admin-area-states .label-rejected {background: #F44336;}
+.admin-area-chart .highcharts-background {fill: #f4f4f4;}
 .admin-area-box-container{margin:5em 0}
 .admin-area-items{display:-webkit-flex;display:flex;flex-wrap:wrap}
 .admin-area-items .admin-area-item{position:relative;-webkit-flex:1;flex:1;text-align:center;padding:3em;transition:.3s;flex-basis:33.3333333%}
