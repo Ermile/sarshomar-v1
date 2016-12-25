@@ -2,69 +2,10 @@
 
 {%block content%}
 <aside>
-	<div class="group">
-		<input type="checkbox" id="question" class="full-line-title">
-		<label for="question" data-title='{%trans "Question type"%}'></label>
-		<div class="select-box" data-response='question'>
-			<div class="checkbox">
-				<input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
-				<label for="type1" class="check-box"></label>
-				<label for="type1">{%trans "Poll"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
-				<label for="type2" class="check-box"></label>
-				<label for="type2">{%trans "Quiz"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
-				<label for="type4" class="check-box"></label>
-				<label for="type4">{%trans "Survey"%}</label>
-			</div>
-		</div>
-	</div>
+	{{block('aside_question')}}
+	{{block('aside_according')}}
 
-	<div class="group">
-		<input type="checkbox" id="according" class="full-line-title">
-		<label for="according" data-title='{%trans "According to survey"%}'></label>
-		<div class="select-box" data-response='according'>
-			<div class="checkbox">
-				<input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
-				<label for="multiplechoice" class="check-box"></label>
-				<label for="multiplechoice">{%trans "Multiplechoice"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="descriptive" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
-				<label for="descriptive" class="check-box"></label>
-				<label for="descriptive">{%trans "Descriptive"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="notification" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
-				<label for="notification" class="check-box"></label>
-				<label for="notification">{%trans "Notification"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="upload" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
-				<label for="upload" class="check-box"></label>
-				<label for="upload">{%trans "Upload"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="starred" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
-				<label for="starred" class="check-box"></label>
-				<label for="starred">{%trans "Starred"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="numerical" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
-				<label for="numerical" class="check-box"></label>
-				<label for="numerical">{%trans "Numerical"%}</label>
-			</div>
-			<div class="checkbox">
-				<input id="sort" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
-				<label for="sort" class="check-box"></label>
-				<label for="sort">{%trans "Sort"%}</label>
-			</div>
-		</div>
-	</div>
+
 
 	<div class="group">
 		<!-- <div class="full-line-title" data-title='{%trans "survey time"%}'></div> -->
@@ -170,7 +111,7 @@
 </aside>
 
 <div class="main">
-	<div class="row">
+	<div class="row unselectable">
 		<div class="span1"></div>
 		<div class="span10">
 			<div class="search-box">
@@ -180,10 +121,84 @@
 			<div class="search-result" data-xhr='search-result' id="search-result">
 				{%include display.result%}
 			</div>
-		</div><!-- /.span9 -->
+		</div>
 	</div>
 </div>
 {%endblock%}
+
+
+
+{%block aside_question%}
+	<div class="group">
+		<input type="checkbox" id="question" class="full-line-title">
+		<label for="question" data-title='{%trans "Question type"%}'></label>
+		<div class="select-box" data-response='question'>
+			<div class="checkbox">
+				<input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
+				<label for="type1" class="check-box"></label>
+				<label for="type1">{%trans "Poll"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
+				<label for="type2" class="check-box"></label>
+				<label for="type2">{%trans "Quiz"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
+				<label for="type4" class="check-box"></label>
+				<label for="type4">{%trans "Survey"%}</label>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+
+
+{%block aside_according%}
+	<div class="group">
+		<input type="checkbox" id="according" class="full-line-title">
+		<label for="according" data-title='{%trans "According to survey"%}'></label>
+		<div class="select-box" data-response='according'>
+			<div class="checkbox">
+				<input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
+				<label for="multiplechoice" class="check-box"></label>
+				<label for="multiplechoice">{%trans "Multiplechoice"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="descriptive" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
+				<label for="descriptive" class="check-box"></label>
+				<label for="descriptive">{%trans "Descriptive"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="notification" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
+				<label for="notification" class="check-box"></label>
+				<label for="notification">{%trans "Notification"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="upload" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
+				<label for="upload" class="check-box"></label>
+				<label for="upload">{%trans "Upload"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="starred" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
+				<label for="starred" class="check-box"></label>
+				<label for="starred">{%trans "Starred"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="numerical" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
+				<label for="numerical" class="check-box"></label>
+				<label for="numerical">{%trans "Numerical"%}</label>
+			</div>
+			<div class="checkbox">
+				<input id="sort" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
+				<label for="sort" class="check-box"></label>
+				<label for="sort">{%trans "Sort"%}</label>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+
+
+
 
 {%block foot_js2%}
 <script>

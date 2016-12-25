@@ -11,13 +11,13 @@
 {%for key, value in poll_list%}
 
     <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
-      <input type="checkbox" name="favorite" id="favorite">
-      <label for="favorite" class="fa fa-2x fa-star star"></label>
+      <input type="checkbox" name="favorite" id="fav{{key}}">
+      <label for="fav{{key}}" class="fa fa-2x fa-star star"></label>
       <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
       <span class="title"><a href="{{url.prefix}}/{{value.url}}">{{value.title|raw}}</a></span>
-      <span class="comments-count">{{value.comment_count}}</span>
-      <span class="votes-count">{{value.total}}</span>
-      <span class="date">{{value.date_modified|date('Y-m-d')}}</span>
+      <span class="comments-count">{{value.comment_count | persian}}</span>
+      <span class="votes-count">{{value.total | persian}}</span>
+      <span class="date">{{value.date_modified| jdate('Y-m-d')}}</span>
     </li>
 {%endfor%}
   </ul>
