@@ -1203,17 +1203,19 @@ label, select,.element a, .btn{-webkit-user-select:none;user-select:none}
 .rtl .admin-area-items .admin-area-item:nth-child(6)::after{left:auto;right:0}
 
 
-
 /************************************************************** contact page */
 .element .input.white{background-color:#FFF;color:#00667a}
+#contact .box{margin:0 5em}
 #contact .submit-contact{width:100%;padding:10px;margin-bottom:5em}
-#contact .contact-box{background-color:#FFF;padding:1em 2em;}
-#contact .contact-box h2{font-size:1.6em;}
+#contact .contact-box{background-color:#FFF}
+#contact .contact-box .contact-data{padding:2em}
+#contact .contact-box h2{font-size:1.6em;-webkit-user-select:none;user-select:none}
 #contact .sharebox{text-align:center}
-#contact .contact-ways .row{margin-bottom:1.5em;}
-#contact .contact-ways .row img{width:3em;}
-#contact .contact-ways .row span{padding:1em;}
-#contact .contact-ways .map{display:block;width:100%;}
+#contact .contact-ways .row{margin-bottom:1.5em;display:-webkit-flex;display:flex}
+#contact .contact-ways .row img{height:3em}
+#contact .contact-ways .row span{padding:1em}
+#contact .contact-box .map{display:block;padding:1em}
+
 
 /************************************************************** poll management */
 .content-management {margin: 2em 0;width: 100%;}
