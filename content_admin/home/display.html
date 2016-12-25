@@ -1,15 +1,23 @@
 {%extends display.main%} {%block content%}
 <aside class="admin-area-states">
   <ul>
-    <li class="header">نظرسنجی‌ها</li>
-    <li>کل <span class="label label-count">۲۳۴۵</span></li>
-    <li class="label-unapproved">تایید نشده <span class="label label-count">۵۴۶</span></li>
-    <li>فیلتر شده <span class="label label-count">۱۲۴</span></li>
-    <li class="label-rejected">رد شده <span class="label label-count">۸۷۳</span></li>
-    <li class="header">دیدگاه‌ها</li>
-    <li>کل <span class="label label-count">۶۴۵</span></li>
-    <li class="label-unapproved">تایید نشده <span class="label label-count">۴۶</span></li>
-    <li class="label-rejected">رد شده <span class="label label-count">۱۱۴</span></li>
+    <a href="{{url.base}}/admin/$"><li class="header">{% trans "Polls" %}</li></a>
+    <li>{% trans "Total" %}<span class="label label-count">۲۳۴۵</span></li>
+    <a href="{{url.base}}/admin/$/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۵۴۶</span></li></a>
+    <a href="{{url.base}}/admin/$/status=filtered"><li>{% trans "Filtered" %}<span class="label label-count">۱۲۴</span></li></a>
+    <a href="{{url.base}}/admin/$/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۸۷۳</span></li></a>
+    <a href="{{url.base}}/admin/comments"><li class="header">{% trans "Comments" %}</li></a>
+    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
+    <a href="{{url.base}}/admin/comments/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
+    <a href="{{url.base}}/admin/comments/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
+    <a href="{{url.base}}/admin/keywords"><li class="header">{% trans "Keywords" %}</li></a>
+    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
+    <a href="{{url.base}}/admin/keywords/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
+    <a href="{{url.base}}/admin/keywords/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
+    <a href="{{url.base}}/admin/users"><li class="header">{% trans "Users" %}</li></a>
+    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
+    <a href="{{url.base}}/admin/users/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
+    <a href="{{url.base}}/admin/users/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
   </ul>
 </aside>
 <div class="main">
@@ -28,29 +36,29 @@
   <div class="box admin-area">
     <div class="admin-area-box-container">
       <div class="admin-area-items">
-        <a href="/fa/admin/$" class="admin-area-item">
-          <p class="title">مدیریت نظرسنجی‌ها</p>
-          <p class="description">تایید، تصحیح و... سوالات</p>
+        <a href="{{url.base}}/admin/$" class="admin-area-item">
+          <p class="title">{% trans "Polls" %}</p>
+          <p class="description">{% trans "Approve, edit,... polls" %}</p>
         </a>
-        <a href="/fa/admin/comments" class="admin-area-item">
-          <p class="title">مدیریت دیدگاه‌ها</p>
-          <p class="description">تایید و رد دیدگاه‌ها</p>
+        <a href="{{url.base}}/admin/comments" class="admin-area-item">
+          <p class="title">{% trans "Comments" %}</p>
+          <p class="description">{% trans "Approve or reject comments" %}</p>
         </a>
-        <a href="/fa/admin/keywords" class="admin-area-item">
-          <p class="title">مدیریت کلیدواژه‌ها</p>
-          <p class="description">تایید، تصحیح و... کلیدواژه‌ها</p>
+        <a href="{{url.base}}/admin/keywords" class="admin-area-item">
+          <p class="title">{% trans "Keywords" %}</p>
+          <p class="description">{% trans "Approve, edit,... keywords" %}</p>
         </a>
-        <a href="/fa/admin/users" class="admin-area-item">
-          <p class="title">مدیریت کاربران</p>
-          <p class="description">حذف، اضافه و... کاربران</p>
+        <a href="{{url.base}}/admin/users" class="admin-area-item">
+          <p class="title">{% trans "Users" %}</p>
+          <p class="description">{% trans "Add, remove,... Users" %}</p>
         </a>
-        <a href="/fa/admin" class="admin-area-item horizontal-separator">
-          <p class="title">مدیریت...</p>
-          <p class="description">مقداری توضیحات...</p>
+        <a href="{{url.base}}/admin" class="admin-area-item horizontal-separator">
+          <p class="title">{% trans "Management" %}</p>
+          <p class="description">{% trans "Description..." %}</p>
         </a>
-        <a href="/fa/admin" class="admin-area-item">
-          <p class="title">مدیریت...</p>
-          <p class="description">مقداری توضیحات...</p>
+        <a href="{{url.base}}/admin" class="admin-area-item">
+          <p class="title">{% trans "Management" %}</p>
+          <p class="description">{% trans "Description..." %}</p>
         </a>
       </div>
     </div>
