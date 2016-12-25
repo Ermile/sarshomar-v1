@@ -284,7 +284,7 @@ footer #footer-note .counter, footer #footer-note .love {padding: 0.5em 0}
 #intro-box p{color:#666666;margin:1em 0;line-height:2em;}
 .rtl #intro-box p{line-height:2.5em;}
 .rtl #intro-box p{font-weight:bold;}
-.try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;border:none}
+.try{background-color:#37AAA7;padding:5px 25px;display:inline-block;text-align:center;margin:0 auto;transition:0.3s;color:#F4F4F4;border:none;cursor:pointer}
 .try:hover{background-color:#129491;color:#fff;}
 .try:focus{color:#F4F4F4;}
 #intro-box .try{font-size:2em;}
@@ -1105,7 +1105,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 
 
 /************************************************************** textarea */
-.textarea{width:100%;border:none;resize:none;padding:10px;margin-bottom:15px;}
+.textarea{width:100%;border:none;resize:none;padding:10px;margin-bottom:15px;color:#00667A}
 
 
 /************************************************************** other */
@@ -1198,8 +1198,8 @@ label, select,.element a, .btn{-webkit-user-select:none;user-select:none}
 
 
 /************************************************************** contact page */
-#contact .element .input{background-color:#FFF;}
-#contact .submit-contact{background-color:#37AAA7;color:#FFF;width:100%;border:none;padding:10px;margin-bottom:15px;}
+.element .input.white{background-color:#FFF;color:#00667a}
+#contact .submit-contact{width:100%;padding:10px;margin-bottom:5em}
 #contact .contact-box{background-color:#FFF;padding:1em 2em;}
 #contact .contact-box h2{font-size:1.6em;}
 #contact .sharebox{text-align:center}
