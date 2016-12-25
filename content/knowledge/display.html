@@ -9,22 +9,6 @@
 	{{block('aside_according')}}
 	{{block('aside_survey')}}
 	{{block('aside_filters')}}
-
-
-	<!-- <div class="group">
-		<div class="full-line-title" data-title='{%trans "prize"%}'></div>
-		<div class="select-box prize-box ">
-			<div class="checkbox" >
-			<input id="prize1" type="checkbox" name='prize'>
-			<label for="prize1">{%trans "answering"%}</label>
-			</div>
-			<div class="checkbox">
-			<input id="prize2" type="checkbox" name='prize'>
-			<label for="prize2">{%trans "lottory"%}</label>
-			</div>
-		</div>
-	</div> -->
-
 </aside>
 
 <div class="main">
@@ -139,7 +123,7 @@
 
 {%block aside_marrital%}
 		<input type="checkbox" id="marrital" class="full-line-title">
-		<label for="marrital" data-title='{%trans "Survey time"%}'></label>
+		<label for="marrital" data-title='{%trans "marrital"%}'></label>
 
 		<div class="select-box" data-response='marrital'>
 			<div class="checkbox">
@@ -159,10 +143,10 @@
 
 
 {%block aside_employment%}
-		<input type="checkbox" id="marrital" class="full-line-title">
-		<label for="marrital" data-title='{%trans "Survey time"%}'></label>
+		<input type="checkbox" id="employment" class="full-line-title">
+		<label for="employment" data-title='{%trans "Employment"%}'></label>
 
-		<div class="select-box" data-response='marrital'>
+		<div class="select-box" data-response='employment'>
 			<div class="checkbox">
 				<input id="employee" type="checkbox" name='status' value="employee" {%if checkbox.status == 'publish'%}checked{%endif%}>
 				<label for="employee" class="check-box"></label>
@@ -187,7 +171,7 @@
 
 {%block aside_gender%}
 		<input type="checkbox" id="gender" class="full-line-title">
-		<label for="gender" data-title='{%trans "Survey time"%}'></label>
+		<label for="gender" data-title='{%trans "Gender"%}'></label>
 
 		<div class="select-box" data-response='gender'>
 			<div class="checkbox">
@@ -216,7 +200,6 @@
 		<input type="checkbox" id="filters" class="full-line-title">
 		<label for="filters" data-title='{%trans "Filters"%}'></label>
 		<div class="select-box filters-box  {%if checkbox.marrital or checkbox.employmentstatus or checkbox.gender or checkbox.graduation or checkbox.country or checkbox.province or checkbox.religion or checkbox.language or checkbox.age %}actived{%endif%}" ata-response='filters'>
-
 
 		<div class="options-box">
 			<label for="graduation">{%trans "graduation"%}</label>
