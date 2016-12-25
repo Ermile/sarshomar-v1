@@ -8,10 +8,10 @@ class view extends \lib\mvc\view
 		// define default value for global
 
 		$this->data->site['title']   = T_("Sarshomar");
-		$this->data->site['desc']    = T_("Distinct Attitude");
+		$this->data->site['desc']    = T_("Focus on your question. Do not be too concerned about how to ask or analyze.");
 		$this->data->site['slogan']  = T_("Ask Anyone Anywhere");
 
-		$this->data->page['desc']    = T_("Sarshomar is intelligent");
+		$this->data->page['desc']    = $this->data->site['desc']. ' '.T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");
 
 		$this->data->template['register']    = 'content/template/register.html';
 		$this->data->template['social']      = 'content/template/social.html';
