@@ -2,6 +2,8 @@
 
 {%block content%}
 <aside>
+<div class="filters_group">مربوط به فیلترها</div>
+<div class="filters_group selected">مربوط به سؤالات</div>
 	{{block('aside_gender')}}
 	{{block('aside_marrital')}}
 	{{block('aside_employment')}}
@@ -23,6 +25,7 @@
 				{%include display.result%}
 			</div>
 		</div>
+		<div class="tags"></div>
 	</div>
 </div>
 {%endblock%}
