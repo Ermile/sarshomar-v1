@@ -1,249 +1,54 @@
 {%extends display.main%}
 
 {%block content%}
-  <div class="box">
-   <div class="row auto features">
-     <ul>
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/panel.svg" alt="multimedia">
-        <span>{%trans "Multimedia Questions"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Multimedia Questions"%}</h3>
-         <p>{%trans "Possibility of using new and modern methods for asking questions."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/analytics.svg" alt="chart details">
-        <span>{%trans "Chart details"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Chart details"%}</h3>
-         <p>{%trans "There is the possibility of showing details in the form of chart."%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/test.svg" alt="results">
-        <span>{%trans "Exit from the result"%}</span>
-        <a href="{{url.base}}/features/export-results"></a>
-        <div class='info'>
-         <h3>{%trans "Exit from the result"%}</h3>
-         <p>{%trans "Possibility of exporting results in any format of your choice."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <li>
-       <div class="normal">
-       <img src="{{url.static}}images/svg/features/chart.svg" alt="">
-       <span>{%trans "Observe the result in separation of Statistical population"%}</span>
-       <a href="{{url.base}}/features/population-breakdown"></a>
-        <div class='info'>
-         <h3>{%trans "Observe the result in separation of Statistical population"%}</h3>
-         <p>{%trans "Receive comparing graph and tables separately from   requested option. "%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/online.svg" alt="">
-        <span>{%trans "Online test"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Online test"%}</h3>
-         <p>{%trans "Easily organize online test without any limitation."%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/notepad.svg" alt="">
-        <span>{%trans "Descriptive Question (Open Question)"%}</span>
-        <a href="{{url.base}}/features/anatomical-answers"></a>
-        <div class='info'>
-         <h3>{%trans "Descriptive Question"%}</h3>
-         <p>{%trans "Ask a descriptive question and get the complete and exact answer. "%}</p>
-        </div>
-       </div>
-      </li>
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/translation.svg" alt="">
-        <span>{%trans "Multi Languages"%}</span>
-        <a href="{{url.base}}/features/multi-languages"></a>
-        <div class='info'>
-         <h3>{%trans "Multi Languages"%}</h3>
-         <p>{%trans "All services are provided in both Persian and English languages."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/cash-register.svg" alt="">
-        <span>{%trans "Optional Registration"%}</span>
-        <a href="{{url.base}}/features/try-before-register"></a>
-        <div class='info'>
-         <h3>{%trans "Optional Registration"%}</h3>
-         <p>{%trans "Registration in Sarshumar is optional"%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/notepad1.svg" alt="">
-        <span>{%trans "Questionnaire"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Questionnaire"%}</h3>
-         <p>{%trans "Design Online Questionnaire"%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/paper-plane.svg" alt="">
-        <span>{%trans "Without Advertisement"%}</span>
-        <a href="{{url.base}}/features/no-interference"></a>
-        <div class='info'>
-         <h3>{%trans "Without Advertisement"%}</h3>
-         <p>{%trans "There are no annoying advertisements."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/dollar-symbol.svg" alt="">
-        <span>{%trans "Free for regular users"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Free for regular users"%}</h3>
-         <p>{%trans "Usage for non commercial purpose is free"%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/get-money.svg" alt="">
-        <span>{%trans "Earning Income for Users"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Earning Income for Users"%}</h3>
-         <p>{%trans "Earning Income for Users"%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/telegram-color.svg" alt="">
-        <span>{%trans "Providing services through Telegram"%}</span>
-        <a href="{{url.base}}/features/social-networks"></a>
-        <div class='info'>
-         <h3>{%trans "Providing services through Telegram"%}</h3>
-         <p>{%trans "Use Sarshomar bot in your Telegram channels and groups"%}</p>
-        </div>
-       </div>
-      </li>
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/group.svg" alt="">
-        <span>{%trans "Determining the Statistical population"%}</span>
-        <a href="{{url.base}}/features/demographic-targeting"></a>
-        <div class='info'>
-         <h3>{%trans "Determining the Statistical population"%}</h3>
-         <p>{%trans "Compare from sightly Statistical population. "%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/results.svg" alt="">
-        <span>{%trans "Issue the results"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Issue the results."%}</h3>
-         <p>{%trans "Possibility of issuing results publicly and privately"%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/clipboard.svg" alt="">
-        <span>{%trans "Question Tree"%}</span>
-        <a href="{{url.base}}/features/questions-tree"></a>
-        <div class='info'>
-         <h3>{%trans "Question Tree"%}</h3>
-         <p>{%trans "Tree is a device to organize the questions."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/business-presentation.svg" alt="">
-        <span>{%trans "Analyzing descriptive result"%}</span>
-        <a href="{{url.base}}/features/privatization-results"></a>
-        <div class='info'>
-         <h3>{%trans "Analyzing descriptive result"%}</h3>
-         <p>{%trans "providing analyzed text  from the result of questions."%}</p>
-        </div>
-       </div>
-      </li>
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/locked.svg" alt="">
-        <span>{%trans "Determine the limitation for reply"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Determine the limitation for reply"%}</h3>
-         <p>{%trans "Applying kinds of limitations for reply"%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/lottery.svg" alt="">
-        <span>{%trans "Organizing the campaign competition and live draw/lottery."%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Organizing the campaign competition and live draw/lottery."%}</h3>
-         <p>{%trans "Possibility of organizing online campaign, competition and lottery for our dear users."%}</p>
-        </div>
-       </div>
-      </li> -->
-
-      <!-- <li>
-       <div class="normal">
-        <img src="{{url.static}}images/svg/features/information.svg" alt="">
-        <span>{%trans "Giving special points( Scholarism)"%}</span>
-        <a href="{{url.base}}/features/multimedia"></a>
-        <div class='info'>
-         <h3>{%trans "Giving special points( Scholarism)"%}</h3>
-         <p>{%trans "Giving special points depends on the tests and observations taken based on the behavior of the answerers"%}</p>
-        </div>
-       </div>
-      </li> -->
-     </ul>
+  <div class="main pad">
+   <div class="box">
+    <div class="feature-items">
+     <a href="{{url.base}}/features/multimedia" class="feature-item">
+      <p class="title">{%trans "Multimedia Questions"%}</p>
+      <p class="description">{%trans "Possibility of using new and modern methods for asking questions."%}</p>
+     </a>
+     <a href="{{url.base}}/features/export-results" class="feature-item">
+      <p class="title">{%trans "Exit from the result"%}</p>
+      <p class="description">{%trans "Possibility of exporting results in any format of your choice."%}</p>
+     </a>
+     <a href="{{url.base}}/features/population-breakdown" class="feature-item">
+      <p class="title">{%trans "Observe the result in separation of Statistical population"%}</p>
+      <p class="description">{%trans "Receive comparing graph and tables separately from   requested option."%}</p>
+     </a>
+     <a href="{{url.base}}/features/anatomical-answers" class="feature-item">
+      <p class="title">{%trans "Descriptive Question (Open Question)"%}</p>
+      <p class="description">{%trans "Ask a descriptive question and get the complete and exact answer."%}</p>
+     </a>
+     <a href="{{url.base}}/features/multi-languages" class="feature-item">
+      <p class="title">{%trans "Multi Languages"%}</p>
+      <p class="description">{%trans "All services are provided in both Persian and English languages."%}</p>
+     </a>
+     <a href="{{url.base}}/features/try-before-register" class="feature-item">
+      <p class="title">{%trans "Optional Registration"%}</p>
+      <p class="description">{%trans "Registration in Sarshumar is optional"%}</p>
+     </a>
+     <a href="{{url.base}}/features/no-interference" class="feature-item">
+      <p class="title">{%trans "Without Advertisement"%}</p>
+      <p class="description">{%trans "There are no annoying advertisements."%}</p>
+     </a>
+     <a href="{{url.base}}/features/social-networks" class="feature-item">
+      <p class="title">{%trans "Providing services through Telegram"%}</p>
+      <p class="description">{%trans "Use Sarshomar bot in your Telegram channels and groups"%}</p>
+     </a>
+     <a href="{{url.base}}/features/demographic-targeting" class="feature-item">
+      <p class="title">{%trans "Determining the Statistical population"%}</p>
+      <p class="description">{%trans "Compare from sightly Statistical population."%}</p>
+     </a>
+     <a href="{{url.base}}/features/questions-tree" class="feature-item">
+      <p class="title">{%trans "Question Tree"%}</p>
+      <p class="description">{%trans "Tree is a device to organize the questions."%}</p>
+     </a>
+     <a href="{{url.base}}/features/privatization-results" class="feature-item">
+      <p class="title">{%trans "Analyzing descriptive result"%}</p>
+      <p class="description">{%trans "providing analyzed text  from the result of questions."%}</p>
+     </a>
+    </div>
    </div>
   </div>
 {%endblock%}
