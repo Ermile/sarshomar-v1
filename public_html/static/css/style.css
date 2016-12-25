@@ -594,22 +594,22 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 #poll-box .interaction{padding:0 .5em}
 #poll-box .interaction input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1;}
 #poll-box .interaction input[type="checkbox"]:focus,#interaction input[type="checkbox"]:hover{}
-#poll-box .interaction label{margin:0 .1em;color:#838383;cursor:pointer;transition:.3s;opacity:.8;}
+#poll-box .interaction label{margin:0 .1em;color:#838383;cursor:pointer;transition:.3s;opacity:.8;font-size:2em}
 #poll-box .interaction label:hover{opacity:1;}
 #poll-box .interaction #heart:checked+label{color:#E8103F;animation:pulse .5s linear;}
-@-webkit-keyframes pulse {
-	0%{-webkit-transform:scale(1);transform:scale(1)}
-	25%{-webkit-transform:scale(0.9);transform:scale(0.9)}
-	50%{-webkit-transform:scale(1.1);transform:scale(1.1)}
-	75%{-webkit-transform:scale(0.9);transform:scale(0.9)}
-	100%{-webkit-transform:scale(1);transform:scale(1)}
+@-webkit-keyframes pulse{
+0%{-webkit-transform:scale(1);transform:scale(1)}
+25%{-webkit-transform:scale(0.9);transform:scale(0.9)}
+50%{-webkit-transform:scale(1.1);transform:scale(1.1)}
+75%{-webkit-transform:scale(0.9);transform:scale(0.9)}
+100%{-webkit-transform:scale(1);transform:scale(1)}
 }
-@keyframes pulse {
-  0%{-webkit-transform:scale(1);transform:scale(1)}
-  25%{-webkit-transform:scale(0.9);transform:scale(0.9)}
-  50%{-webkit-transform:scale(1.1);transform:scale(1.1)}
-  75%{-webkit-transform:scale(0.9);transform:scale(0.9)}
-  100%{-webkit-transform:scale(1);transform:scale(1)}
+@keyframes pulse{
+0%{-webkit-transform:scale(1);transform:scale(1)}
+25%{-webkit-transform:scale(0.9);transform:scale(0.9)}
+50%{-webkit-transform:scale(1.1);transform:scale(1.1)}
+75%{-webkit-transform:scale(0.9);transform:scale(0.9)}
+100%{-webkit-transform:scale(1);transform:scale(1)}
 }
 
 #poll-box .interaction #favorite:checked+label{color:#E8C018;}
