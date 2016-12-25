@@ -1118,11 +1118,10 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .help-category-title{color:#0C7C78;font-weight:bold}
 .help-category-content{color:#A1A1A1;margin-bottom:5em}
 .help-category-content p{font-size:1.2em}
-.help-prompt{position:relative;background-color:#EFEFEF;padding:1.5em 3em;margin:0 0 5em 30px}
+.help-prompt{position:relative;background-color:#EFEFEF;padding:1.5em 3em;margin:0 0 5em 30px;text-align:center}
 .rtl .help-prompt{margin:0 30px 5em 0}
 .help-prompt::before{content:'';position:absolute;top:0;left:0;right:0;margin:auto;height:4px;width:50%;background-color:#E5A428}
-.help-prompt span{font-weight:bold;color:#6E6E6E;font-size:1.2em;margin-right:2em}
-.rtl .help-prompt span{margin-right:0;margin-left:2em}
+.help-prompt div{font-weight:bold;color:#6E6E6E;font-size:1.2em;margin-bottom:1.5em}
 .help-prompt .try{border:none}
 .help-prompt .try:first-of-type{margin-right:1em}
 .rtl .help-prompt .try:first-of-type{margin-right:0;margin-left:1em}
