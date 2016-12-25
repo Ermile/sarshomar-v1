@@ -38,8 +38,10 @@
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
-								<button class="icon-check accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok"></button>
-								<button class="icon-times reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam"></button>
+
+								<button class="accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok">تایید</button>
+								<button class="reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam">رد</button>
+
 							</div>
 						</div>
 					</div>
@@ -51,14 +53,16 @@
 								<span class="label label-lang">{{value.language }}</span>
 								{%endif%}
 								<span class="label label-status label-{{value.status }}">{{value.status }}</span>
-								<span class="label label-parent">{% trans "parent" %} : {{value.parent }}</span>
+
+								<span class="label label-parent">{% trans "parent" %} {{value.parent }}</span> 
+
 								{% if value.sarshomar==1 %}
 								<span class="label label-sarshomar">{% trans "sarshomar" %}</span>
 								{%endif%}
-								<span class="label label-survey">{% trans "survey" %}	:	{{value.survey }} </span>
-								<span class="label label-gender">{% trans "gender" %}	:	{{value.gender }} </span>
-								<span class="label label-privacy">{% trans "privacy" %}	:	{{value.privacy }} </span>
-								<span class="label label-total">{% trans "total" %}	:	{{value.total }} </span>
+								<span class="label label-survey">{% trans "survey" %}	{{value.survey }} </span>
+								<span class="label label-gender">{% trans "gender" %}	{{value.gender }} </span>
+								<span class="label label-privacy">{% trans "privacy" %}	{{value.privacy }} </span>
+								<span class="label label-total">{% trans "total" %}	{{value.total }} </span>
 							</div>
 
 							<div class="span2 star-rating">

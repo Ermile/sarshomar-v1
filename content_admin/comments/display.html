@@ -1,84 +1,70 @@
-{%extends display.main%}
-{%block content%}
+{%extends display.main%} {%block content%}
 <div class="box content-management">
 	<div class="row auto">
-
-{%for key, value in comments%}
-<div class="poll-card border-{{value.comment_status}}">
-				<div class="poll-content">
-					<div class="top-content">
-						<div class="row auto">
-							<div class="span10">
-						<div class="poll-question">
-							<h6 class="poll-title">
-								<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در
-								<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
-								<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
-							</h6>
-							<div class="poll-question-options">
-								<div class="poll-description">{{value.comment_content}}</div>
-								<div class="poll-description">{{value.comment_meta}}</div>
+		{%for key, value in comments%}
+		<div class="poll-card border-{{value.comment_status}}">
+			<div class="poll-content">
+				<div class="top-content">
+					<div class="row auto">
+						<div class="span10">
+							<div class="poll-question">
+								<h6 class="poll-title">
+									<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در
+									<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
+									<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
+								</h6>
+								<div class="poll-question-options">
+									<div class="poll-description">{{value.comment_content}}</div>
+									<div class="poll-description">{{value.comment_meta}}</div>
+								</div>
 							</div>
-						</div>
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
-								<button class="icon-check accept btn btn-success save-status" data-status="approved" title="OK" data-id="{{value.id}}"></button>
-								<button class="icon-times reject btn btn-danger  save-status" data-status="unapproved" title="Spam" data-id="{{value.id}}"></button>
+								<button class="accept btn btn-success save-status" data-status="approved" title="OK" data-id="{{value.id}}">تایید</button>
+								<button class="reject btn btn-danger  save-status" data-status="unapproved" title="Spam" data-id="{{value.id}}">رد</button>
 							</div>
-						</div>
-
 						</div>
 					</div>
-					<div class="bottom-content">
-						<div class="row auto">
-							<div class="span9">
-								<span class="label label-{{value.comment_status}}">{{value.comment_status}}</span>
-								<span class="label label-parent">{% trans "parent" %} : {{value.comment_parent}}</span>
-							</div>
-
-
-
+				</div>
+				<div class="bottom-content">
+					<div class="row auto">
+						<div class="span9">
+							<span class="label label-{{value.comment_status}}">{{value.comment_status}}</span>
+							<span class="label label-parent">{% trans "parent" %} {{value.comment_parent}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
-  {%endfor%}
-
-
-
-</div>
-<div class="paginate">
+		</div>
+		{%endfor%}
+	</div>
+	<div class="paginate">
 		<!-- pagenation -->
 		{% embed display.pagination %}{% endembed %}
-		</div>
+	</div>
 </div>
-{%endblock%}
-{%block foot_js%}
+{%endblock%} {%block foot_js%}
 <script type="text/javascript">
-$(document).ready(function(){
-	$('.save-status').click(function (){
-		status = $(this).attr('data-status');
-		id = $(this).attr('data-id');
-		$(this).ajaxify(
-      {
-        ajax:
-        {
-          method: 'post',
-          data:
-          {
-            'status'  :status,
-            'id'  	  : id
-          },
-          abort: true,
-          success: function(e, data, x)
-          {
+	$(document).ready(function () {
+		$('.save-status').click(function () {
+			status = $(this).attr('data-status');
+			id = $(this).attr('data-id');
+			$(this).ajaxify({
+				ajax: {
+					method: 'post',
+					data: {
+						'status': status,
+						'id': id
+					},
+					abort: true,
+					success: function (e, data, x) {
 
-          }
-        }
-      });
+					}
+				}
+			});
+		});
+
 	});
-
-});
 </script>
 {%endblock%}

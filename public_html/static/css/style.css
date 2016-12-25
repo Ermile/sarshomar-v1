@@ -1206,7 +1206,8 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .content-management .poll-card {border-right: 4px solid #E0E0E0;margin-bottom: 2em;}
 .content-management .poll-card .top-content { padding: 1em;background: #fff;}
 .content-management .poll-question-options ul {margin-bottom: 1em}
-.content-management .poll-question-options ul li {float: right;list-style-type: decimal;margin-left: 1em;}
+.content-management .poll-question-options ul li {float: left;list-style-type: decimal;margin-left: 1em;}
+.rtl .content-management .poll-question-options ul li {float: right;}
 .content-management .poll-question-options ul li:hover {color: #9E9E9E}
 .content-management .poll-management-options {display: flex;align-items: center; justify-content: center; height: 100%}
 .content-management .btn {cursor: pointer;}
@@ -1228,7 +1229,8 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .content-management .poll-value:-moz-placeholder {text-align: center;color: #9E9E9E;}
 .content-management .poll-value::-moz-placeholder {text-align: center;color: #9E9E9E;}
 .content-management .poll-value:-ms-input-placeholder {text-align: center;color: #9E9E9E;}
-.content-management .value-options {float: left;}
+.content-management .value-options {float: right;}
+.rtl .content-management .value-options {float: left;}
 .content-management .label {background: #B0BEC5;margin-left: 1em;padding: 1px 4px;}
 .content-management .label-publish,.content-management .label-approved{background: #4CAF50;}
 .content-management .label-pause{background: #FFAB91}
