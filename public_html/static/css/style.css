@@ -107,8 +107,8 @@ aside .actived{display:block;}
 /************************************************************** dollar page specific styles */
 #dollar .tags{padding:2em; }
 #dollar div.checkbox{padding-top: 12px;}
-#dollar .checkbox .check-box + label{color:#6E6F6F; }
-#dollar aside input[type=checkbox].full-line-title+label::after{color:#106d6b; }
+#dollar .checkbox .check-box + label{color:#6E6F6F;font-size:1.5em;  }
+#dollar aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.6em;font-weight:bold;   }
 div .filters-title{color:#106d6b;font-size:1.2em;font-weight:bold;padding:1em 1.9em;margin-top:1em;  }
 
 /************************************************************** header */
@@ -807,7 +807,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .polls-head>.date {min-width:6.4em;max-width:6.4em;display:flex;align-items:center;justify-content:flex-end;padding-left:10px;}
 
 .polls-row{display:flex;}
-.polls-row>label.star{;padding:13px 5px;max-width:2em;font-size:1.8em;color:transparent;display:flex;cursor:pointer;align-items:center;font-weight:bold;}
+.polls-row>label.star{;padding:13px 5px;max-width:2em;font-size:2.1em;color:transparent;display:flex;cursor:pointer;align-items:center;font-weight:bold;}
 .polls-row>label.star.starred::before{color:#e7a429;}
 .polls-row>label.star::before {align-items: center;justify-content:center;display:flex;}
 .polls-row:hover>label.star::before{color:#e7e7e7;}
