@@ -1087,10 +1087,10 @@ label, select,.element a, .btn{-webkit-touch-callout:none;-webkit-user-select:no
 .sideline-title h4{color:#0C7C78;padding-left:.5em;border-left:4px solid #AAAAAA;font-weight:bold;margin-bottom:2em}
 .rtl .sideline-title h4{padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAAAAA}
 .sideline-title ul{margin-bottom:5em;padding:0 2em}
-.sideline-title ul li a{font-size:1.2em;padding:.5em 2em;color:#00667A;display:block;transition:.3s}
+.sideline-title ul li a{font-size:1.4em;padding:.5em 2em;color:#00667A;display:block;transition:.3s}
 .sideline-title ul li a:hover,.sideline-title ul li a:focus{background-color:#00667A;color:#F4F4F4}
 .sideline-title .content{color:#6E6E6E}
-.sideline-title .content p{font-size:1.2em;padding-left:30px;text-align:justify}
+.sideline-title .content p{font-size:1.4em;padding-left:30px;text-align:justify}
 .rtl .sideline-title .content p{padding-left:0;padding-right:30px}
 .help-tour{display:block;background-color:#189491;padding:1em 2em;text-align:center;color:#F4F4F4;transition:.3s}
 .help-tour img{max-width:60%}
