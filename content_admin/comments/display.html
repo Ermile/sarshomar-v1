@@ -1,5 +1,57 @@
 {%extends display.main%} {%block content%}
-<div class="box content-management">
+<div class="box content-management comments-management">
+	<div class="statistics row auto">
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-total"><i class="fa fa-comments-o fa-4x"></i></div>
+				<div>
+					<h5 class="title">کل</h5>
+					<h6 class="amount">۳۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-rejected"><i class="fa fa-comment fa-4x"></i></div>
+				<div>
+					<h5 class="title">رد شده</h5>
+					<h6 class="amount">۳۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-unapproved"><i class="fa fa-commenting-o fa-4x"></i></div>
+				<div>
+					<h5 class="title">تایید نشده</h5>
+					<h6 class="amount">۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-spam"><i class="fa fa-minus-circle fa-4x"></i></div>
+				<div>
+					<h5 class="title">هرزنامه</h5>
+					<h6 class="amount">۱۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span3">
+			<div class="statistics-box">
+				<div class="icon icon-trash"><i class="fa fa-trash fa-4x"></i></div>
+				<div>
+					<h5 class="title">سطل بازیافت</h5>
+					<h6 class="amount">۱۰۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="{{url.base}}/admin" class="span1" title="{% trans "Return to admin area" %}">
+			<div class="statistics-box return">
+				<div class="icon icon-return"><i class="fa fa-angle-left fa-4x"></i></div>				
+			</div>
+		</a>
+	</div>
 	<div class="row auto">
 		{%for key, value in comments%}
 		<div class="poll-card border-{{value.comment_status}}">
@@ -10,13 +62,8 @@
 							<div class="poll-question">
 								<h6 class="poll-title">
 									<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در
-									<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
-									<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
-								</h6>
-								<div class="poll-question-options">
-									<div class="poll-description">{{value.comment_content}}</div>
-									<div class="poll-description">{{value.comment_meta}}</div>
-								</div>
+									
+								</h6>								
 							</div>
 						</div>
 						<div class="poll-management-options span2">
@@ -26,15 +73,13 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="bottom-content">
-					<div class="row auto">
-						<div class="span9">
-							<span class="label label-{{value.comment_status}}">{{value.comment_status}}</span>
-							<span class="label label-parent">{% trans "parent" %} {{value.comment_parent}}</span>
-						</div>
-					</div>
-				</div>
+				</div>		
+					<div class="poll-question-options">
+						<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
+									<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
+									<div class="poll-description">{{value.comment_content}}</div>
+									<div class="poll-description">{{value.comment_meta}}</div>
+								</div>	
 			</div>
 		</div>
 		{%endfor%}
