@@ -45,28 +45,6 @@ trait order
 				posts.id IN
 				(
 					CONCAT_WS(',',
-
-						(
-							IF(
-							(
-								SELECT
-									COUNT(*)
-								FROM
-									termusages
-								WHERE
-									termusages.termusage_id = posts.id AND
-									termusages.termusage_foreign = 'posts'
-							) = 0 , posts.id , 0
-						  )
-						)
-						,
-						(
-							SELECT
-								IF(filter_id IS NULL, posts.id, 0)
-							FROM
-								users WHERE users.id = $_user_id LIMIT 1
-						)
-						,
 						(
 						IF(
 							(
@@ -92,7 +70,28 @@ trait order
 							),
 							posts.id, 0
 							)
+						),
+						(
+							IF(
+							(
+								SELECT
+									COUNT(*)
+								FROM
+									termusages
+								WHERE
+									termusages.termusage_id = posts.id AND
+									termusages.termusage_foreign = 'posts'
+							) = 0 , posts.id , 0
+						  )
 						)
+						,
+						(
+							SELECT
+								IF(filter_id IS NULL, posts.id, 0)
+							FROM
+								users WHERE users.id = $_user_id LIMIT 1
+						)
+
 					)
 				)
 			-- Check poll tree
