@@ -253,14 +253,26 @@ trait data
 			// if not exist insert new
 			// if exist and old value = new value continue
 			// if exist and old value != new value update terms and save old value in log table
-			$new_term_id = self::insert_terms($key, $value, $valus_checked_true);
+			$new_term = self::insert_terms($key, $value, $valus_checked_true);
 
-			if(!$new_term_id || !isset($new_term_id['id']))
+			if(!$new_term || !isset($new_term['id']))
 			{
 				continue;
 			}
 
-			$new_term_id = $new_term_id['id'];
+			$term_parent = null;
+			if(isset($new_term['term_parent']))
+			{
+				$term_parent = $new_term['term_parent'];
+			}
+
+			if(!is_numeric($term_parent))
+			{
+				continue;
+			}
+
+
+			$new_term_id = $new_term['id'];
 
 			$key_slug   = \lib\utility\filter::slug($key);
 			$value_slug = \lib\utility\filter::slug($value);
@@ -269,16 +281,14 @@ trait data
 			$query =
 			"
 				SELECT
-					termusages.*,
-					terms.term_caller
+					*
 				FROM
 					termusages
 				INNER JOIN terms ON terms.id = termusages.term_id
 				WHERE
 					termusages.termusage_foreign = 'users' AND
-					termusages.termusage_id = $_user_id AND
-					terms.term_caller = '$key_slug:$value_slug'
-				LIMIT 1
+					termusages.termusage_id      = $_user_id AND
+					terms.term_parent            = $term_parent
 				-- check this users has similar profile data to update this
 			";
 
@@ -310,7 +320,7 @@ trait data
 				[
 					'user_id'   => $_user_id,
 					'key'       => $key,
-					'old_value' => $similar_terms['term_title'],
+					'old_value' => $similar_terms['term_caller'],
 					'new_value' => $value
 				];
 				self::save_change_log($log);
