@@ -4,7 +4,7 @@ namespace lib\db;
 /** work with polls **/
 class polls
 {
-	use polls\faiv_like;
+	use polls\favo_like;
 	use polls\get;
 	use polls\insert;
 	use polls\order;
@@ -41,7 +41,7 @@ class polls
 			posts.date_modified  	    	AS `date_modified`,
 			IFNULL(ranks.comment,0)   		AS `comment_count`,
 			IFNULL(ranks.like,0)   			AS `like`,
-			IFNULL(ranks.faiv,0)   			AS `faiv`,
+			IFNULL(ranks.favo,0)   			AS `favo`,
 			IFNULL(ranks.vip,0)   			AS `vip`,
 			IFNULL(ranks.vot,0)   			AS `total`
 		FROM

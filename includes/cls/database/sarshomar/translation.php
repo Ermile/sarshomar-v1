@@ -229,7 +229,7 @@ private function transtext()
 	echo T_("report");              // report
 	echo T_("vot");                 // vot
 	echo T_("like");                // like
-	echo T_("faiv");                // faiv
+	echo T_("favo");                // favo
 	echo T_("skip");                // skip
 	echo T_("view");                // view
 	echo T_("other");               // other

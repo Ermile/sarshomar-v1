@@ -1,0 +1,1 @@
+ALTER TABLE `ranks` CHANGE `faiv` `favo` int(10) 	unsigned NOT NULL DEFAULT 0;

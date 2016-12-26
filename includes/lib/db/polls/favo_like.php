@@ -1,13 +1,13 @@
 <?php
 namespace lib\db\polls;
 
-trait faiv_like
+trait favo_like
 {
 
 	/**
-	 * set the faivorites or liked the poll
+	 * set the favourites or liked the poll
 	 */
-	public static function faiv_like($_type, $_user_id, $_poll_id)
+	public static function favo_like($_type, $_user_id, $_poll_id)
 	{
 		if(!$_user_id || !$_poll_id)
 		{
@@ -49,15 +49,15 @@ trait faiv_like
 
 
 	/**
-	 * check and return true if the poll is liked or faivorites of user
+	 * check and return true if the poll is liked or favourites of user
 	 *
 	 * @param      <type>   $_user_id  The user identifier
 	 * @param      <type>   $_poll_id  The poll identifier
 	 * @param      <type>   $_type     The type
 	 *
-	 * @return     boolean  True if faiv OR like, False otherwise.
+	 * @return     boolean  True if favo OR like, False otherwise.
 	 */
-	public static function is_faiv_like($_type, $_user_id, $_poll_id)
+	public static function is_favo_like($_type, $_user_id, $_poll_id)
 	{
 		$cat = 'user_detail_'. $_user_id;
 		$args =
@@ -87,26 +87,26 @@ trait faiv_like
 
 
 	/**
-	 * check and return true is the poll is a faivorites of the user
+	 * check and return true is the poll is a favourites of the user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function is_faiv($_user_id, $_poll_id)
+	public static function is_favo($_user_id, $_poll_id)
 	{
-		return self::is_faiv_like("faivorites", ...func_get_args());
+		return self::is_favo_like("favourites", ...func_get_args());
 	}
 
 
 	/**
-	 * check and return true is the poll is a faivorites of the user
+	 * check and return true is the poll is a favourites of the user
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
 	public static function is_like($_user_id, $_poll_id)
 	{
-		return self::is_faiv_like("like", ...func_get_args());
+		return self::is_favo_like("like", ...func_get_args());
 	}
 }
 ?>

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `ranks` (
 `report` 	int(10) 	unsigned NOT NULL DEFAULT 0,
 `vot` 		int(10) 	unsigned NOT NULL DEFAULT 0,
 `like` 		int(10) 	unsigned NOT NULL DEFAULT 0,
-`faiv` 		int(10) 	unsigned NOT NULL DEFAULT 0,
+`favo` 		int(10) 	unsigned NOT NULL DEFAULT 0,
 `skip` 		int(10) 	unsigned NOT NULL DEFAULT 0,
 `comment` 	int(10) 	unsigned NOT NULL DEFAULT 0,
 `view` 		bigint(20) 	unsigned NOT NULL DEFAULT 0,

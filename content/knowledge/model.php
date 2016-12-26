@@ -8,18 +8,18 @@ class model extends \mvc\model
 	public function post_search()
 	{
 
-		if(utility::post("type") == 'faivorites')
+		if(utility::post("type") == 'favourites')
 		{
 			if($this->login())
 			{
-				\lib\db\polls::faiv_like("faivorites", $this->login('id'), utility::post('id'));
+				\lib\db\polls::favo_like("favourites", $this->login('id'), utility::post('id'));
 			}
 			return;
 		}
 		$field = [];
 		if($this->login())
 		{
-			// to get faivorites posts
+			// to get favourites posts
 			$field = ['login' => $this->login('id')];
 		}
 

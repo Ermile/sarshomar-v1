@@ -41,7 +41,7 @@ trait search
 			// for manual pagenation set the statrt_limit and end limit
 			"end_limit"       => 10,
 
-			// get the login id to load faivorites post INNER JOIN options by this id
+			// get the login id to load favourites post INNER JOIN options by this id
 			"login"           => false,
 
 			// the the last record inserted to post table
@@ -75,15 +75,15 @@ trait search
 		];
 		$_options = array_merge($default_options, $_options);
 
-		// ------------------ faivorites
-		$faivorites = null;
+		// ------------------ favourites
+		$favourites = null;
 		if($_options['login'])
 		{
-			$faivorites =
+			$favourites =
 			"
 				LEFT JOIN options
 					ON options.post_id = posts.id AND
-						options.option_key = 'faivorites' AND
+						options.option_key = 'favourites' AND
 						options.user_id = $_options[login] AND
 						options.option_status = 'enable' ";
 		}
@@ -221,17 +221,17 @@ trait search
 				$limit = " LIMIT $start_limit, $end_limit ";
 			}
 		}
-		// ------------------ faivorites
-		if($faivorites)
+		// ------------------ favourites
+		if($favourites)
 		{
-			$public_fields = " options.option_value AS 'faivorites', ". $public_fields;
+			$public_fields = " options.option_value AS 'favourites', ". $public_fields;
 		}
 
 		$query =
 		"
 			SELECT
 				$public_fields
-			$faivorites
+			$favourites
 			WHERE
 				$where
 				$search
