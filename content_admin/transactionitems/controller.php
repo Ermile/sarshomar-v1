@@ -1,10 +1,12 @@
 <?php
 namespace content_admin\transactionitems;
 
-class controller extends \mvc\controller
+class controller extends \content_admin\home\controller
 {
-	function _route()
+	public function _route()
 	{
+		parent::check_login();
+
 		$this->get("add", "add")->ALL("transactionitems");
 		$this->get("edit", "edit")->ALL("/^transactionitems\/(\d+)$/");
 		$this->post("transactionitems")->ALL("transactionitems");
