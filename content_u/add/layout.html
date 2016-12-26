@@ -231,7 +231,7 @@
 {%block feature_timing%}
 {% spaceless %}
 	<div class="element no-pad">
-		<label class="title large">{%trans "Something"%}</label>
+		<label class="title large">{%trans "Time"%}</label>
 		<div class="element-slider">
 			<div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
 				{% if poll.meta.rangetiming_min%}
@@ -320,7 +320,7 @@
 {%endblock%}
 
 
-{%block feature_textlength%}
+{%block feature_textlength2%}
 {% spaceless %}
 <div data-response="meta_text_format" data-response-where='any|number' {%if poll.meta.text_format != 'any' and poll.meta.text_format != 'number' and poll.meta.text_format %}data-response-hide{%endif%}>
 	<div class="element no-pad">
@@ -373,7 +373,7 @@
 {%block feature_filesize%}
 {% spaceless %}
 	<div class="element no-pad">
-		<label class="title large">{%trans "Something"%}</label>
+		<label class="title large">{%trans "File Size"%}</label>
 		<div class="element-slider">
 			<div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
 				{% if poll.meta.filesize_min%}

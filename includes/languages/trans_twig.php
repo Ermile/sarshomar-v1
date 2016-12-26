@@ -8,7 +8,7 @@ private function transtext()
 	echo T_("Mobile");                                                                // Line 39
 	echo T_("Email");                                                                 // Line 35
 	echo T_("Write down your opinion here");                                          // Line 25
-	echo T_("Submit");                                                                // Line 273
+	echo T_("Submit");                                                                // Line 275
 	echo T_("How to co1ntact Sarshomar");                                             // Line 33
 	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 46
 
@@ -132,22 +132,22 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Read More");                                                             // Line 33
-	echo T_("You can select just two options.");                                      // Line 43
-	echo T_("I am not willing to answer");                                            // Line 86
-	echo T_("Save Answer");                                                           // Line 97
+	echo T_("You can select just two options.");                                      // Line 44
+	echo T_("I am not willing to answer");                                            // Line 88
+	echo T_("Save Answer");                                                           // Line 99
 	echo T_("Ask Me");                                                                // Line 23
-	echo T_("result");                                                                // Line 112
-	echo T_("Similar Questions");                                                     // Line 134
-	echo T_("There is no similar post");                                              // Line 142
-	echo T_("Poll timespan");                                                         // Line 160
-	echo T_("to");                                                                    // Line 163
-	echo T_("Not set");                                                               // Line 199
+	echo T_("result");                                                                // Line 114
+	echo T_("Similar Questions");                                                     // Line 136
+	echo T_("There is no similar post");                                              // Line 144
+	echo T_("Poll timespan");                                                         // Line 162
+	echo T_("to");                                                                    // Line 165
+	echo T_("Not set");                                                               // Line 201
 	echo T_("Status");                                                                // Line 11
-	echo T_("Keyword");                                                               // Line 181
-	echo T_("Statistical population");                                                // Line 193
-	echo T_("There is nothing to display!");                                          // Line 244
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 255
-	echo T_("Continue");                                                              // Line 312
+	echo T_("Keyword");                                                               // Line 183
+	echo T_("Statistical population");                                                // Line 195
+	echo T_("There is nothing to display!");                                          // Line 246
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 257
+	echo T_("Continue");                                                              // Line 314
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
@@ -523,6 +523,7 @@ private function transtext()
 	echo T_("Has correct option");                                                    // Line 184
 	echo T_("Complete Profile");                                                      // Line 26
 	echo T_("Tree");                                                                  // Line 216
+	echo T_("Time");                                                                  // Line 234
 	echo T_("Summary");                                                               // Line 255
 	echo T_("Add Poll");                                                              // Line 284
 	echo T_("Add Another Poll and Convert to Survery");                               // Line 286
@@ -545,6 +546,7 @@ private function transtext()
 	echo T_("Excel");                                                                 // Line 356
 	echo T_("PowerPoint");                                                            // Line 357
 	echo T_("Text");                                                                  // Line 358
+	echo T_("File Size");                                                             // Line 376
 	echo T_("Range Number");                                                          // Line 401
 	echo T_("Star");                                                                  // Line 404
 	echo T_("Like");                                                                  // Line 407
