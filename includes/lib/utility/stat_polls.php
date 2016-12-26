@@ -164,7 +164,7 @@ class stat_polls
 			SELECT
 				filters.gender AS `gender`,
 				filters.range AS `age_range`,
-				SUM(filters.count) AS 'count'
+				SUM(filters.usercount) AS 'count'
 			FROM
 				filters
 			WHERE
@@ -174,7 +174,6 @@ class stat_polls
 			gender, age_range
 		";
 		$result = \lib\db::get($query);
-
 		if(!$result || !is_array($result))
 		{
 			return false;
