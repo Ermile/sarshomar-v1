@@ -40,7 +40,9 @@
 
 {%block poll_guide%}
 {% spaceless %}
- <div class="poll-guide">{%trans "You can select just two options."%}</div>
+ {%if multiple_choice%}
+  <div class="poll-guide">{%trans "You can select just two options."%}</div>
+ {%endif%}
 {% endspaceless %}
 {%endblock%}
 
