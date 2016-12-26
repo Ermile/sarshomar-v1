@@ -84,6 +84,7 @@ aside .select-box input{width:100%;background-color:#ebebeb;-webkit-appearance:n
 aside .select-box{margin:10px 0;padding-left: 1.2em;}
 aside .group:first-child{margin-top:1.5em;}
 .rtl aside .select-box{padding-left:0em;padding-right:2em;margin-bottom:0; }
+.rtl aside .select-box.filters-box {padding-right:1.2em;}
 aside .select-box label{line-height:26px;color: #6E6F6F;font-size: 1.5em;;width:100%;font-weight:500;padding-left: .5em;}
 .rtl aside .select-box label{padding-right: 1em;padding-left:.5em;}
 aside select {-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;outline:none;box-shadow: none;}
@@ -102,7 +103,6 @@ aside .actived{display:block;}
 aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height:50px;display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:600;  }
 aside .filters_group.selected{background-color:#083942;}
 aside .actived{display:block;}
-
 
 /************************************************************** dollar page specific styles */
 #dollar .tags{padding:2em; }
