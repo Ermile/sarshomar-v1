@@ -1,91 +1,139 @@
 {% extends display.main%} {%block content%}
-<div class="box content-management">
-
-		<div class="row auto">
-			<div id="load-modal" data-modal="words-check"></div>
-			{%for key, value in poll_list%}
-			<div class="poll-card border-{{value.status }} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
-				<div class="poll-content">
-					<div class="top-content">
-						<div class="row auto">
-							<div class="span10">
-						<div class="poll-question">
-							<h6 class="poll-word-{{value.id}} poll-title">
-								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
-								<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="icon-external-link"></i></a>
-								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
-												filter page " %}"><i class="icon-filter"></i></a>
-								<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
-												publish page " %}"><i class="icon-paper-plane-o"></i></a>
-								<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
+<div class="box content-management polls-management">
+	<div class="statistics row auto">
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-total"><i class="fa fa-list fa-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Total" %}</h5>
+					<h6 class="amount">۳۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-rejected"><i class="fa fa-ban fa-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Rejected" %}</h5>
+					<h6 class="amount">۳۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-unapproved"><i class="fa fa-times-circle-o fa-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Unapproved" %}</h5>
+					<h6 class="amount">۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span2">
+			<div class="statistics-box">
+				<div class="icon icon-spam"><i class="fa fa-minus-circle fa-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Spam" %}</h5>
+					<h6 class="amount">۱۴۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="#!" class="span3">
+			<div class="statistics-box">
+				<div class="icon icon-trash"><i class="fa fa-trash fa-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Trash" %}</h5>
+					<h6 class="amount">۱۰۵</h6>
+				</div>
+			</div>
+		</a>
+		<a href="{{url.base}}/admin" class="span1" title="{% trans " Return to admin area " %}">
+			<div class="statistics-box return">
+				<div class="icon icon-return">
+					{%if site.currentlang == "fa"%}
+					<i class="fa fa-angle-left fa-4x"></i>
+					{%else%}
+					<i class="fa fa-angle-right fa-4x"></i>
+					{%endif%}					
+					</div>
+			</div>
+		</a>
+	</div>
+	<div class="row auto">
+		<div id="load-modal" data-modal="words-check"></div>
+		{%for key, value in poll_list%}
+		<div class="poll-card border-{{value.status }} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
+			<div class="poll-content">
+				<div class="top-content">
+					<div class="row auto">
+						<div class="span10">
+							<div class="poll-question">
+								<h6 class="poll-word-{{value.id}} poll-title">
+									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
+									<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="icon-external-link"></i></a>
+									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
+													filter page " %}"><i class="fa fa-filter"></i></a>
+									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
+													publish page " %}"><i class="icon-paper-plane-o"></i></a>
+									<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
 								{% if site.currentlang == 'fa' %}
 									{{value.date_modified|jdate("Y-m-d")|persian}}
 								{%else%}
 									{{value.date_modified|date("Y-m-d")}}
 								{%endif%}
 								</span>
-							</h6>
-							<div class="poll-question-options">
-								<ul>
-									{%for k, v in value.meta.opt%}
-									<li class="poll-word-{{value.id}}">{{v.txt}}</li>
-									{%endfor%}
-									<div class="clearfix"></div>
-								</ul>
-								<div class="poll-description">{{value.meta.desc}}</div>
+								</h6>
+								<div class="poll-question-options">
+									<ul>
+										{%for k, v in value.meta.opt%}
+										<li class="poll-word-{{value.id}}">{{v.txt}}</li>
+										{%endfor%}
+										<div class="clearfix"></div>
+									</ul>
+									<div class="poll-description">{{value.meta.desc}}</div>
+								</div>
 							</div>
-						</div>
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
-
 								<button class="accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok">تایید</button>
 								<button class="reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam">رد</button>
-
 							</div>
 						</div>
 					</div>
-					</div>
-					<div class="bottom-content">
-						<div class="row auto">
-							<div class="span7">
-								{% if value.language %}
-								<span class="label label-lang">{{value.language }}</span>
-								{%endif%}
-								<span class="label label-status label-{{value.status }}">{{value.status }}</span>
-
-								<span class="label label-parent">{% trans "parent" %} {{value.parent }}</span> 
-
-								{% if value.sarshomar==1 %}
-								<span class="label label-sarshomar">{% trans "sarshomar" %}</span>
-								{%endif%}
-								<span class="label label-survey">{% trans "survey" %}	{{value.survey }} </span>
-								<span class="label label-gender">{% trans "gender" %}	{{value.gender }} </span>
-								<span class="label label-privacy">{% trans "privacy" %}	{{value.privacy }} </span>
-								<span class="label label-total">{% trans "total" %}	{{value.total }} </span>
+				</div>
+				<div class="bottom-content">
+					<div class="row auto">
+						<div class="span7">
+							{% if value.language %}
+							<span class="label label-lang">{{value.language }}</span> {%endif%}
+							<span class="label label-status label-{{value.status }}">{{value.status }}</span>
+							<span class="label label-parent">{% trans "parent" %} {{value.parent }}</span> {% if value.sarshomar==1 %}
+							<span class="label label-sarshomar">{% trans "sarshomar" %}</span> {%endif%}
+							<span class="label label-survey">{% trans "survey" %}	{{value.survey }} </span>
+							<span class="label label-gender">{% trans "gender" %}	{{value.gender }} </span>
+							<span class="label label-privacy">{% trans "privacy" %}	{{value.privacy }} </span>
+							<span class="label label-total">{% trans "total" %}	{{value.total }} </span>
+						</div>
+						<div class="span2 star-rating">
+							<div class="star-rating-wrap">
+								<input class="star-rating-input" id="star-rating-5" type="radio" name="rating" value="5">
+								<label class="star-rating-ico icon-star-o" for="star-rating-5" title="5 out of 5 stars"></label>
+								<input class="star-rating-input" id="star-rating-4" type="radio" name="rating" value="4">
+								<label class="star-rating-ico icon-star-o" for="star-rating-4" title="4 out of 5 stars"></label>
+								<input class="star-rating-input" id="star-rating-3" type="radio" name="rating" value="3">
+								<label class="star-rating-ico icon-star-o" for="star-rating-3" title="3 out of 5 stars"></label>
+								<input class="star-rating-input" id="star-rating-2" type="radio" name="rating" value="2">
+								<label class="star-rating-ico icon-star-o" for="star-rating-2" title="2 out of 5 stars"></label>
+								<input class="star-rating-input" id="star-rating-1" type="radio" name="rating" value="1">
+								<label class="star-rating-ico icon-star-o" for="star-rating-1" title="1 out of 5 stars"></label>
 							</div>
-
-							<div class="span2 star-rating">
-
-								<div class="star-rating-wrap">
-									<input class="star-rating-input" id="star-rating-5" type="radio" name="rating" value="5">
-									<label class="star-rating-ico icon-star-o" for="star-rating-5" title="5 out of 5 stars"></label>
-									<input class="star-rating-input" id="star-rating-4" type="radio" name="rating" value="4">
-									<label class="star-rating-ico icon-star-o" for="star-rating-4" title="4 out of 5 stars"></label>
-									<input class="star-rating-input" id="star-rating-3" type="radio" name="rating" value="3">
-									<label class="star-rating-ico icon-star-o" for="star-rating-3" title="3 out of 5 stars"></label>
-									<input class="star-rating-input" id="star-rating-2" type="radio" name="rating" value="2">
-									<label class="star-rating-ico icon-star-o" for="star-rating-2" title="2 out of 5 stars"></label>
-									<input class="star-rating-input" id="star-rating-1" type="radio" name="rating" value="1">
-									<label class="star-rating-ico icon-star-o" for="star-rating-1" title="1 out of 5 stars"></label>
-								</div>
-							</div>
-							<div class="span3">
-								<div class=" value-options">
-									<input type="number" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
-									<button class="btn icon-check confirm-poll-status confirm-poll-value" id="save-vip" data-id="{{value.id}}">
+						</div>
+						<div class="span3">
+							<div class=" value-options">
+								<input type="number" class="poll-value" id="vip-value-{{value.id}}" value="{{value.vip}}" placeholder="{%trans 'value' %}">
+								<button class="btn icon-check confirm-poll-status confirm-poll-value" id="save-vip" data-id="{{value.id}}">
 							</button>
-									<select id="other-status" class="change-poll-status">
+								<select id="other-status" class="change-poll-status">
 								<option value="" disabled selected>Select</option>
 								<option value="stop">stop</option>
 								<option value="pause">pause</option>
@@ -105,21 +153,20 @@
 								<option value="pornography">pornography</option>
 								<option value="other">other</option>
 							</select>
-									<button class="btn change-status icon-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
+								<button class="btn change-status icon-check confirm-poll-status" id="save-other" data-id="{{value.id}}">
 							</button>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			{%endfor%}
 		</div>
-		<div class="paginate">
+		{%endfor%}
+	</div>
+	<div class="paginate">
 		<!-- pagenation -->
 		{% embed display.pagination %}{% endembed %}
-		</div>
-
+	</div>
 </div>
 {%endblock%} {%block foot_js%}
 <script type="text/javascript">
