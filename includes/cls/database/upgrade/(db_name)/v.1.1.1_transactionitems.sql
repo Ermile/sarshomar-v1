@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `transactionitems` (
 `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 `title` varchar(500) NOT NULL,
-`caller` varchar(500) NOT NULL,
+`caller` varchar(200) NOT NULL,
 `unit_id` smallint(5) unsigned NOT NULL,
 `type` ENUM('real','gift','prize','transfer') NOT NULL,
 `minus` float(53) NULL,
