@@ -59,12 +59,20 @@
 				<div class="top-content">
 					<div class="row auto">
 						<div class="span10">
-							<div class="poll-question">
-								<h6 class="poll-title">
-									<a href="mailto:{{value.comment_email}}">{{value.comment_author}}</a>در
-									
-								</h6>								
+
+							<div class="media">
+								<div class="media-right">								
+									<img class="media-object" src="{{base.url}}/static/images/svg/avatar.svg" width="68" height="68" alt="...">	
+									<div class="external-links"><a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a></div>
+								</div>
+								<div class="media-body">
+									<p class="media-heading">{{value.comment_author}} در <a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a></p>
+									<a href="mailto:{{value.comment_email}}">{{value.comment_email}}</a>
+									<p>{{value.comment_content}}</p>
+								</div>
 							</div>
+
+
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
@@ -73,13 +81,8 @@
 							</div>
 						</div>
 					</div>
-				</div>		
-					<div class="poll-question-options">
-						<a target="_blank" href="{{base.url}}/{{value.url}}">{{value.title|raw}}</a>
-									<a target="_blank" href="{{value.comment_url}}"><i class="icon-external-link"></i></a>
-									<div class="poll-description">{{value.comment_content}}</div>
-									<div class="poll-description">{{value.comment_meta}}</div>
-								</div>	
+				</div>	
+				
 			</div>
 		</div>
 		{%endfor%}
