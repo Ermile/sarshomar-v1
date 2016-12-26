@@ -60,8 +60,6 @@ trait data
 			}
 		}
 
-		$profile['mobile'] = \lib\db\users::get_mobile($_user_id);
-
 		return $profile;
 	}
 
@@ -158,6 +156,26 @@ trait data
 
 
 	/**
+	 * Gets the user filter data.
+	 *
+	 * @param      <type>  $_args  The argumens
+	 */
+	public static function get_user_filter($_user_id)
+	{
+		$filter_id = \lib\db\users::get($_user_id, 'filter_id');
+
+		if(!$filter_id)
+		{
+			return null;
+		}
+
+		$user_filter = \lib\db\filters::get($filter_id);
+
+		return $user_filter;
+	}
+
+
+	/**
 	 * Sets the profiles data.
 	 *
 	 * @param      <type>   $_user_id  The user identifier
@@ -176,6 +194,7 @@ trait data
 		$birthmonth = null;
 		$birthday   = null;
 
+		$insert_filter  = [];
 		$insert_profile = [];
 
 		// if value in insert filter checked and not exist in terms table
@@ -189,39 +208,82 @@ trait data
 		foreach ($_args as $key => $value)
 		{
 			$value = trim($value);
+			if(self::profile_data($key))
+			{
+				$check = self::profile_data($key, $value);
+				// true value
+				// users can set some value and the value is true
+				if($check === true)
+				{
+					if(\lib\db\filters::support_filter($key))
+					{
+						$insert_filter[$key] = $value;
+					}
+					$valus_checked_true[$key] = $value;
+					$insert_profile[$key] = $value;
+				}
+				// users can set eny value in this field
+				elseif($check === null)
+				{
+					$insert_to_filters = false;
+					switch ($key)
+					{
+						case 'age':
+							if(intval($value) > 5 && intval($value) < 90)
+							{
+								$insert_to_filters = true;
+							}
+							break;
 
-			$check = self::profile_data($key, $value);
-			// true value
-			// users can set some value and the value is true
-			if($check === true)
-			{
-				$valus_checked_true[$key] = $value;
-				$insert_profile[$key] = $value;
-			}
-			// profile data has bee similar to tag and can set som one
-			elseif($check === [])
-			{
-				// we not set this value to $profile_data
-				$explode_value = explode(',', $value);
-				$profile_similar_tags[$key] = $explode_value;
-			}
-			else
-			{
-				$insert_profile[$key] = $value;
-			}
+						case 'country':
+							$insert_to_filters = \lib\utility\location\countres::check($value);
+							break;
 
-			// -------- get the age
-			if($key == 'birthyear')
-			{
-				$birthyear = $value;
-			}
-			if($key == 'birthmonth')
-			{
-				$birthmonth = $value;
-			}
-			if($key == 'birthday')
-			{
-				$birthday = $value;
+						case 'province':
+							$insert_to_filters = \lib\utility\location\provinces::check($value);
+							break;
+
+						case 'city':
+							$insert_to_filters = \lib\utility\location\cites::check($value);
+							break;
+
+						// case 'course':
+						// case 'religion':
+						// case 'language':
+						// case 'industry':
+
+					}
+
+					if($insert_to_filters)
+					{
+						$valus_checked_true[$key] = $value;
+						$insert_filter[$key]      = $value;
+					}
+					$insert_profile[$key] = $value;
+
+				}
+				// profile data has bee similar to tag and can set som one
+				elseif($check === [])
+				{
+					// we not set this value to $profile_data
+					$explode_value = explode(',', $value);
+					$profile_similar_tags[$key] = $explode_value;
+				}
+
+				// -------- get the age
+				if($key == 'birthyear')
+				{
+					$birthyear = $value;
+				}
+				if($key == 'birthmonth')
+				{
+					$birthmonth = $value;
+				}
+				if($key == 'birthday')
+				{
+					$birthday = $value;
+				}
+				// --------------------
 			}
 		}
 
@@ -238,10 +300,47 @@ trait data
 				}
 			}
 			$age                          = \lib\utility\age::get_age($date_birth);
+
+			$insert_filter['age']         = $age;
+			$insert_filter['range']       = \lib\utility\age::get_range($age);
+
 			$insert_profile['age']        = $age;
 			$insert_profile['range']      = \lib\utility\age::get_range($age);
 			$insert_profile['rangetitle'] = \lib\utility\age::get_range_title($age);
 
+		}
+
+		// no data add
+		if(!empty($insert_filter))
+		{
+			// get the exist filter value
+			// to not empty set in field has been complete befor
+			$old_user_filter = self::get_user_filter($_user_id);
+
+			if($old_user_filter && is_array($old_user_filter))
+			{
+				$old_user_filter = array_filter($old_user_filter);
+
+				unset($old_user_filter['id']);
+				unset($old_user_filter['unique']);
+
+				$insert_filter = array_merge($old_user_filter, $insert_filter);
+			}
+
+			// get the filter id if exist
+			$filter_id = \lib\db\filters::get_id($insert_filter);
+
+			// if filter id not found insert the filter record and get the last_insert_id
+			if(!$filter_id)
+			{
+				$filter_id = \lib\db\filters::insert($insert_filter);
+			}
+
+			if($filter_id)
+			{
+				$arg    = ['filter_id' => $filter_id];
+				$result = \lib\db\users::update($arg, $_user_id);
+			}
 		}
 
 		// insert data in terms

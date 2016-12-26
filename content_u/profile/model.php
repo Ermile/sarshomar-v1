@@ -10,12 +10,16 @@ class model extends \mvc\model
 	 */
 	public function get_profile()
 	{
-		$user_id = $this->login("id");
-		$me = \lib\utility\profiles::get_profile_data($user_id, false);
-		$displayname = \lib\db\users::get_displayname($user_id);
-		$email = \lib\db\users::get_email($user_id);
+		$user_id           = $this->login("id");
+		$me                = \lib\utility\profiles::get_profile_data($user_id, false);
+
+		$displayname       = $this->login("displayname");
+		$mobile            = $this->login("mobile");
+		$email             = $this->login("email");
+
 		$me['displayname'] = $displayname;
-		$me['email'] = $email;
+		$me['email']       = $email;
+		$me['mobile']      = $mobile;
 		return $me;
 	}
 

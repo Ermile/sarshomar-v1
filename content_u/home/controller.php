@@ -17,15 +17,6 @@ class controller extends \mvc\controller
 			return;
 		}
 
-		// if(preg_match("/^(.*)\/(add|filter|publish)$/", $url, $controller_name))
-		// {
-		// 	if(isset($controller_name[2]))
-		// 	{
-		// 		\lib\router::set_controller("\\content_u\\$controller_name[2]\\controller");
-		// 		return ;
-		// 	}
-		// }
-
 		// try sarshomar
 		if(\lib\utility::get("inspection") == "inestimable" && !$this->login())
 		{

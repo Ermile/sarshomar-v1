@@ -30,6 +30,10 @@ class view extends \mvc\view
 	 */
 	function view_profile($o)
 	{
+		if(!$this->login())
+		{
+			return false;
+		}
 
 		$user_id                       = $this->login("id");
 		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
