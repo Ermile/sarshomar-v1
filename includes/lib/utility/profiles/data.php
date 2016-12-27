@@ -323,6 +323,7 @@ trait data
 
 				unset($old_user_filter['id']);
 				unset($old_user_filter['unique']);
+				unset($old_user_filter['usercount']);
 
 				$insert_filter = array_merge($old_user_filter, $insert_filter);
 			}
