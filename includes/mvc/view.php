@@ -35,6 +35,16 @@ class view extends \lib\mvc\view
 			$this->data->user_cash_gift = \lib\db\transactions::budget($this->login('id'), 'gift');
 		}
 
+		$this->data->xhr =
+		[
+			'breadcrumb' => true,
+			'wrapper'    => true,
+			'content'    => false,
+			'register'   => true,
+			'footjs'     => true,
+		];
+
+
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
 
