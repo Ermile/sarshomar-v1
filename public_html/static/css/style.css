@@ -1238,10 +1238,14 @@ label, select,.element a, .btn{-webkit-user-select:none;user-select:none}
 .content-management .btn-success:hover {background: #1a716f;}
 .content-management .btn-danger {background: #F44336;color: #fff;}
 .content-management .btn-danger:hover {background: #a91f15;}
-.content-management .change-poll-status {float:right;border: 1px solid #E0E0E0;border-left: 0;height: 20px;border-radius: 0 4px 4px 0;}
-.content-management .confirm-poll-status {float: right;height: 20px;border: 1px solid #E0E0E0;border-right: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 4px 0 0 4px;}
-.content-management .poll-value {float: right;height: 20px;border: 1px solid #E0E0E0;border-radius: 0 4px 4px 0;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center; border-left: none;}
-.content-management .confirm-poll-value {margin-left: 1em}
+.content-management .change-poll-status {float:left;border: 1px solid #E0E0E0;border-right: 0;height: 20px;border-radius: 4px 0 0 4px;}
+.rtl .content-management .change-poll-status {float: right;border-right: 1px solid #E0E0E0;border-left: 0;height: 20px;border-radius: 0 4px 4px 0;}
+.content-management .confirm-poll-status {float: left;height: 20px;border: 1px solid #E0E0E0;border-left: 0;background: #F5F5F5;color: #9E9E9E;width: 22px;border-radius: 0 4px 4px 0;}
+.rtl .content-management .confirm-poll-status {float: right;border-left: 1px solid #E0E0E0;border-right: 0;border-radius: 4px 0 0 4px;}
+.content-management .poll-value {float: left;height: 20px;border: 1px solid #E0E0E0;border-radius: 4px 0 0 4px;width: 52px;background: #EEEEEE;padding: 0 2px;font-size: 12px;text-align: center; border-right: none;}
+.rtl .content-management .poll-value {float: right;border-radius: 0 4px 4px 0;border-left: none;border-right: 1px solid #E0E0E0}
+.content-management .confirm-poll-value {margin-right: 1em}
+.rtl .content-management .confirm-poll-value {margin-left: 1em;margin-right: 0}
 .poll-question a {color: #607D8B;}
 .content-management .poll-question .poll-title {font-size: 1.2em;}
 .content-management .poll-question .poll-title a {margin-left: 8px;}
@@ -1332,7 +1336,8 @@ p.em::before{content:'';position:absolute;width:10px;height:4px;background-color
 .statistics-box.return {justify-content: center;}
 .statistics-box:hover::before {opacity: 1;transition: all 0.3s;}
 .statistics-box:before {background: #00bcd4;background: -moz-linear-gradient(45deg, #00bcd4 0%, #7872d3 100%);background: -webkit-linear-gradient(45deg, #00bcd4 0%,#7872d3 100%);background: linear-gradient(45deg, #00bcd4 0%,#7872d3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bcd4', endColorstr='#7872d3',GradientType=1 );content: '';width: 100%;height: 100%;position: absolute;z-index: 1;border-radius: 4px;opacity: 0;transition: all 0.3s;}
-.statistics-box>div {padding: 1em;z-index: 2;}
+.statistics-box>div {padding: 1em 0 1em 1em;z-index: 2;}
+.rtl .statistics-box>div {padding: 1em;}
 .statistics-box .amount {margin: 0;font-size: 1.2em;color: #9E9E9E;transition: all 0.3s}
 .statistics-box .icon {transition: all 0.3s}
 .statistics-box .icon-rejected {color: #FF7043;}
