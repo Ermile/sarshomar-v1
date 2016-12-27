@@ -17,14 +17,14 @@ private function transtext()
 	echo T_("Contact Us");                                                            // Line 74
 	echo T_("Quick Access");                                                          // Line 47
 	echo T_("Link");                                                                  // Line 18
-	echo T_("What is Sarshomar?");                                                    // Line 35
-	echo T_("Help Description");                                                      // Line 57
-	echo T_("Account");                                                               // Line 39
-	echo T_("Knowledge");                                                             // Line 14
-	echo T_("Add question");                                                          // Line 48
-	echo T_("Financial");                                                             // Line 52
-	echo T_("Help Title");                                                            // Line 56
-	echo T_("Most visited questions");                                                // Line 63
+	echo T_("General");                                                               // Line 36
+	echo T_("Billing");                                                               // Line 40
+	echo T_("Add a question");                                                        // Line 44
+	echo T_("Sarshomar knowledge");                                                   // Line 47
+	echo T_("Participation in Sarshomar knowledge");                                  // Line 48
+	echo T_("Intro");                                                                 // Line 52
+	echo T_("Account");                                                               // Line 56
+	echo T_("Most visited questions");                                                // Line 62
 
 	//---------------------------------------------------------content\help\posts.html
 	echo T_("Was this information helpful?");                                         // Line 23
@@ -159,6 +159,7 @@ private function transtext()
 	echo T_("Eco Friendly");                                                          // Line 10
 	echo T_("Service");                                                               // Line 15
 	echo T_("Features");                                                              // Line 13
+	echo T_("Knowledge");                                                             // Line 14
 	echo T_("Random Poll");                                                           // Line 18
 	echo T_("Referral Program");                                                      // Line 19
 	echo T_("Learn More");                                                            // Line 23
