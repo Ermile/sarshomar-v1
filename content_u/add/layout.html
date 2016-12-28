@@ -3,319 +3,319 @@
 
 {%block feature_tabs%}
 {% spaceless %}
-	<div class="menu">
-		<div class="menu-inside">
-			<input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' or poll.type is null%}checked{%endif%} >
-			<label for="type_multiple"><i class="icon-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
-			<input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
-			<label for="type_descriptive"><i class="icon-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
-			<input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
-			<label for="type_notification"><i class="icon-bell"></i> <span>{%trans "Notification"%}</span></label>
-			<input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
-			<label for="type_upload"><i class="icon-upload"></i> <span>{%trans "Upload"%}</span></label>
-			<input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
-			<label for="type_range"><i class="icon-star"></i> <span>{%trans "Range / Star"%}</span></label>
-		</div>
-	</div>
+ <div class="menu">
+  <div class="menu-inside">
+   <input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' or poll.type is null%}checked{%endif%} >
+   <label for="type_multiple"><i class="icon-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
+   <input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
+   <label for="type_descriptive"><i class="icon-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
+   <input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
+   <label for="type_notification"><i class="icon-bell"></i> <span>{%trans "Notification"%}</span></label>
+   <input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
+   <label for="type_upload"><i class="icon-upload"></i> <span>{%trans "Upload"%}</span></label>
+   <input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
+   <label for="type_range"><i class="icon-star"></i> <span>{%trans "Range / Star"%}</span></label>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_title%}
 {% spaceless %}
-	<div class="element">
-		<label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
-		<input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
-	</div>
+ <div class="element">
+  <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
+  <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_opts%}
 {% spaceless %}
-	<ul class="input-group sortable">
-	{%if answers %}
-		{%for key, value in answers%}
-		{% set answer_key = key + 1 %}
-		<li>
-			<div class="element" data-row="{{answer_key}}">
-				<label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
-				<input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
-				<span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
-					<input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
-					<label class="check-box" for="true{{answer_key}}"></label>
-				</span>
+ <ul class="input-group sortable">
+ {%if answers %}
+  {%for key, value in answers%}
+  {% set answer_key = key + 1 %}
+  <li>
+   <div class="element" data-row="{{answer_key}}">
+    <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
+    <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
+    <span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
+     <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
+     <label class="check-box" for="true{{answer_key}}"></label>
+    </span>
 
-				<span class="score" {%if value.option_meta.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}" value="{{value.option_meta.score}}"></span>
-				<span class="icon-picture-o icon" data-response-hide></span>
-				<span class="icon-times delete" tabindex="0"></span>
-			</div>
-		</li>
-		{%endfor%}
-	{%else%}{# if no answer found #}
-		<li>
-			<div class="element" data-row="1">
-				<label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
-				<input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-				<span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-					<input type="checkbox" name="true1" id="true1">
-					<label class="check-box" for="true1"></label>
-				</span>
-				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score1"></span>
-				<span class="icon-picture-o icon" data-response-hide></span>
-				<span class="icon-times delete" tabindex="0"></span>
-			</div>
-		</li>
-		<li>
-			<div class="element" data-row="2">
-				<label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
-				<input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-				<span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-					<input type="checkbox" name="true2" id="true2">
-					<label class="check-box" for="true2"></label>
-				</span>
-				<span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
-				<span class="icon-picture-o icon" data-response-hide></span>
-				<span class="icon-times delete" tabindex="0"></span>
-			</div>
-		</li>
-	{%endif%}
-	</ul>
+    <span class="score" {%if value.option_meta.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}" value="{{value.option_meta.score}}"></span>
+    <span class="icon-picture-o icon" data-response-hide></span>
+    <span class="icon-times delete" tabindex="0"></span>
+   </div>
+  </li>
+  {%endfor%}
+ {%else%}{# if no answer found #}
+  <li>
+   <div class="element" data-row="1">
+    <label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
+    <input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
+    <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
+     <input type="checkbox" name="true1" id="true1">
+     <label class="check-box" for="true1"></label>
+    </span>
+    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score1"></span>
+    <span class="icon-picture-o icon" data-response-hide></span>
+    <span class="icon-times delete" tabindex="0"></span>
+   </div>
+  </li>
+  <li>
+   <div class="element" data-row="2">
+    <label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
+    <input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
+    <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
+     <input type="checkbox" name="true2" id="true2">
+     <label class="check-box" for="true2"></label>
+    </span>
+    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
+    <span class="icon-picture-o icon" data-response-hide></span>
+    <span class="icon-times delete" tabindex="0"></span>
+   </div>
+  </li>
+ {%endif%}
+ </ul>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_score%}
 {% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
-		<label for="score" class="check-box"></label>
-		<label for="score">{%trans "Options has score"%}</label>
-	</div>
+ <div class="checkbox">
+  <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
+  <label for="score" class="check-box"></label>
+  <label for="score">{%trans "Options has score"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_ordering%}
 {% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_ordering" id="ordering" {%if poll.meta.ordering%}checked{%endif%}>
-		<label for="ordering" class="check-box"></label>
-		<label for="ordering">{%trans "Allow user to sort answers"%}</label>
-	</div>
+ <div class="checkbox">
+  <input type="checkbox" name="meta_ordering" id="ordering" {%if poll.meta.ordering%}checked{%endif%}>
+  <label for="ordering" class="check-box"></label>
+  <label for="ordering">{%trans "Allow user to sort answers"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_choicemode%}
 {% spaceless %}
-	<div class="element switch">
-		<input type="radio" name="meta_choicemode" value="one" id="one" {%if poll.meta.choicemode == 'one' or poll.meta.choicemode is null %}checked{%endif%}>
-		<label for="one">{%trans "One Choice"%}</label>
+ <div class="element switch">
+  <input type="radio" name="meta_choicemode" value="one" id="one" {%if poll.meta.choicemode == 'one' or poll.meta.choicemode is null %}checked{%endif%}>
+  <label for="one">{%trans "One Choice"%}</label>
 
-		<input type="radio" name="meta_choicemode" value="multi" id="multi" {%if poll.meta.choicemode == 'multi'%}checked{%endif%}>
-		<label for="multi">{%trans "Multi Choice"%}</label>
+  <input type="radio" name="meta_choicemode" value="multi" id="multi" {%if poll.meta.choicemode == 'multi'%}checked{%endif%}>
+  <label for="multi">{%trans "Multi Choice"%}</label>
 
-		<input type="radio" name="meta_choicemode" value="ordering" id="ordering" {%if poll.meta.choicemode == 'ordering'%}checked{%endif%}>
-		<label for="ordering">{%trans "Ordering"%}</label>
-	</div>
+  <input type="radio" name="meta_choicemode" value="ordering" id="ordering" {%if poll.meta.choicemode == 'ordering'%}checked{%endif%}>
+  <label for="ordering">{%trans "Ordering"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_other%}
 {% spaceless %}
-	<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
-		<input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
-		<label for="descriptive" class="check-box"></label>
-		<label for="descriptive">{%trans "Allow to type other answer"%}</label>
-	</div>
+ <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
+  <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
+  <label for="descriptive" class="check-box"></label>
+  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_multiplerange%}
 {% spaceless %}
-	<div class="element no-pad" {%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}>
-		<label class="title large">{%trans "Something"%}</label>
-		<div class="element-slider">
-		<div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
-			{% if poll.meta.choice_count_min%}
-				data-min-default="{{poll.meta.choice_count_min}}"
-			{%endif%}
-			{% if poll.meta.choice_count_max%}
-				data-max-default="{{poll.meta.choice_count_max}}"
-			{%endif%}></div>
-		</div>
-	</div>
+ <div class="element no-pad" {%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%}>
+  <label class="title large">{%trans "Something"%}</label>
+  <div class="element-slider">
+  <div class="range-slider multiple-range" data-type="horizontal" data-response='meta_choicemode' id="meta_choice-count" data-response-where='multi'
+   {% if poll.meta.choice_count_min%}
+    data-min-default="{{poll.meta.choice_count_min}}"
+   {%endif%}
+   {% if poll.meta.choice_count_max%}
+    data-max-default="{{poll.meta.choice_count_max}}"
+   {%endif%}></div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_randomsort%}
 {% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_random_sort" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
-		<label for="random_sort" class="check-box"></label>
-		<label for="random_sort">{%trans "Randomize sort options"%}</label>
-	</div>
+ <div class="checkbox">
+  <input type="checkbox" name="meta_random_sort" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
+  <label for="random_sort" class="check-box"></label>
+  <label for="random_sort">{%trans "Randomize sort options"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_hiddenresult%}
 {% spaceless %}
-	{%if perm.hidden_result.admin%}
-		<div class="checkbox">
-			<input type="checkbox" name="meta_hidden_result" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
-			<label for="hidden_result" class="check-box"></label>
-			<label for="hidden_result">{%trans "Hidden result"%}</label>
-		</div>
-	{%endif%}
+ {%if perm.hidden_result.admin%}
+  <div class="checkbox">
+   <input type="checkbox" name="meta_hidden_result" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
+   <label for="hidden_result" class="check-box"></label>
+   <label for="hidden_result">{%trans "Hidden result"%}</label>
+  </div>
+ {%endif%}
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_trueanswer%}
 {% spaceless %}
-	<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
-		<input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
-		<label for="true_answer" class="check-box"></label>
-		<label for="true_answer">{%trans "Has correct option"%}</label>
-	</div>
+ <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
+  <input type="checkbox" name="meta_true_answer" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
+  <label for="true_answer" class="check-box"></label>
+  <label for="true_answer">{%trans "Has correct option"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_completeprofile%}
 {% spaceless %}
-	{% if perm.complete_profile.admin %}
-	<div class="row auto">
-		<div class="span4 checkbox margin-bottom">
-			<input type="checkbox" id="complete-profile" data-response-get='id' {%if poll.meta.profile%}checked{%endif%}>
-			<label for="complete-profile" class="check-box"></label>
-			<label for="complete-profile">{%trans "Complete Profile"%}</label>
-		</div>
-		<select class="complete-profile span4" name="meta_profile" id="complete-profile-dropdown" data-response='complete-profile' data-response-hide data-response-focus>
-			<option value="">{%trans "Complete Profile"%}</option>
-			{%for key, value in profile_lock if value%}{%set t_value = key %}
-			<option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
-			{%endfor%}
-		</select>
-	</div>
-	{%endif%}
+ {% if perm.complete_profile.admin %}
+ <div class="row auto">
+  <div class="span4 checkbox margin-bottom">
+   <input type="checkbox" id="complete-profile" data-response-get='id' {%if poll.meta.profile%}checked{%endif%}>
+   <label for="complete-profile" class="check-box"></label>
+   <label for="complete-profile">{%trans "Complete Profile"%}</label>
+  </div>
+  <select class="complete-profile span4" name="meta_profile" id="complete-profile-dropdown" data-response='complete-profile' data-response-hide data-response-focus>
+   <option value="">{%trans "Complete Profile"%}</option>
+   {%for key, value in profile_lock if value%}{%set t_value = key %}
+   <option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
+   {%endfor%}
+  </select>
+ </div>
+ {%endif%}
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_tree%}
 {% spaceless %}
-	<div class="checkbox">
-		<input type="checkbox" name="meta_tree" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
-		<label for="tree" class="check-box"></label>
-		<label for="tree">{%trans "Tree"%}</label>
-	</div>
-	<div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
-		<input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
-		<div class="row auto tree-fields">
-			<input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
-		</div>
-		<ul class="tree-result-list" data-xhr="tree">
+ <div class="checkbox">
+  <input type="checkbox" name="meta_tree" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
+  <label for="tree" class="check-box"></label>
+  <label for="tree">{%trans "Tree"%}</label>
+ </div>
+ <div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
+  <input type="hidden" name="parent_tree_opt" value="{{poll_tree_opt}}">
+  <div class="row auto tree-fields">
+   <input type="text" name="tree-search" id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
+  </div>
+  <ul class="tree-result-list" data-xhr="tree">
 {%include template.add.tree%}
-		</ul>
-	</div>
+  </ul>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_timing%}
 {% spaceless %}
-	<div class="element no-pad">
-		<label class="title large">{%trans "Time"%}</label>
-		<div class="element-slider">
-			<div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
-				{% if poll.meta.rangetiming_min%}
-					data-min-default="{{poll.meta.rangetiming_min}}"
-				{%endif%}
-				{% if poll.meta.rangetiming_max%}
-					data-max-default="{{poll.meta.rangetiming_max}}"
-				{%endif%}
-			></div>
-		</div>
-	</div>
+ <div class="element no-pad">
+  <label class="title large">{%trans "Time"%}</label>
+  <div class="element-slider">
+   <div class="range-slider timing-range" id='meta_rangetiming' data-type="horizontal" data-min='10' data-unit='180' data-infinity="min"
+    {% if poll.meta.rangetiming_min%}
+     data-min-default="{{poll.meta.rangetiming_min}}"
+    {%endif%}
+    {% if poll.meta.rangetiming_max%}
+     data-max-default="{{poll.meta.rangetiming_max}}"
+    {%endif%}
+   ></div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_summary%}
 {% spaceless %}
-	<div class="panel-text">
-		<input type="checkbox" name="summary-show" id="summary-show">
-		<label for="summary-show">
-			<i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
-		</label>
-	</div>
-	<textarea name='summary' value='' data-response="summary-show" data-response-hide data-response-effect='slide'></textarea>
+ <div class="panel-text">
+  <input type="checkbox" name="summary-show" id="summary-show">
+  <label for="summary-show">
+   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
+  </label>
+ </div>
+ <textarea name='summary' value='' data-response="summary-show" data-response-hide data-response-effect='slide'></textarea>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_content%}
 {% spaceless %}
-	<div class="panel-text">
-		<input type="checkbox" name="desc-show" id="desc-show">
-		<label for="desc-show">
-			<i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
-		</label>
-	</div>
-	<textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide' data-resizable></textarea>
+ <div class="panel-text">
+  <input type="checkbox" name="desc-show" id="desc-show">
+  <label for="desc-show">
+   <i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
+  </label>
+ </div>
+ <textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide' data-resizable></textarea>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_btn%}
 {% spaceless %}
-	<div class="row auto">
-		<div class="span7">
-			<div class="btn-container margin-top">
-				<input type="hidden" name="n" value="v" id="submit-form">
-				<nav>
-					{%if survey_mod%}
-					<button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-					{%else%}
-					<button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button>
-					{%endif%}
-					<button class="btn primary" send-name="filter" value="filter">{%trans "Next Step"%}</button>
-				</nav>
-			</div>
-		</div>
-	</div>
+ <div class="row auto">
+  <div class="span7">
+   <div class="btn-container margin-top">
+    <input type="hidden" name="n" value="v" id="submit-form">
+    <nav>
+     {%if survey_mod%}
+     <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+     {%else%}
+     <button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button>
+     {%endif%}
+     <button class="btn primary" send-name="filter" value="filter">{%trans "Next Step"%}</button>
+    </nav>
+   </div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_textformat%}
 {% spaceless %}
-	<div class="input-group">
-		<div class="element select">
-			<label class="title small" for="text-format">{%trans "Text Format"%}</label>
-			<select class="text-format input" name="meta_text_format" id='text-format'>
-				<option value="any" {%if poll.meta.text_format == 'any' %}selected{%endif%}>{%trans "Any Text"%}</option>
-				<option value="tel" {%if poll.meta.text_format == 'tel' %}selected{%endif%}>{%trans "Phone Number"%}</option>
-				<option value="email" {%if poll.meta.text_format == 'email' %}selected{%endif%}>{%trans "Email"%}</option>
-				<option value="website" {%if poll.meta.text_format == 'website' %}selected{%endif%}>{%trans "Website"%}</option>
-				<option value="number" {%if poll.meta.text_format == 'number' %}selected{%endif%}>{%trans "Number"%}</option>
-				<option value="password" {%if poll.meta.text_format == 'password' %}selected{%endif%}>{%trans "Password"%}</option>
-				<option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
-			</select>
-		</div>
-		<div data-response='meta_text_format' data-response-where='regular' data-response-effect='slide' data-response-notfix {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
-			<div class="element">
-				<label class="title small" for="text-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="{{poll.meta.text_format_custom}}" data-response-focus>
-			</div>
-		</div>
-	</div>
+ <div class="input-group">
+  <div class="element select">
+   <label class="title small" for="text-format">{%trans "Text Format"%}</label>
+   <select class="text-format input" name="meta_text_format" id='text-format'>
+    <option value="any" {%if poll.meta.text_format == 'any' %}selected{%endif%}>{%trans "Any Text"%}</option>
+    <option value="tel" {%if poll.meta.text_format == 'tel' %}selected{%endif%}>{%trans "Phone Number"%}</option>
+    <option value="email" {%if poll.meta.text_format == 'email' %}selected{%endif%}>{%trans "Email"%}</option>
+    <option value="website" {%if poll.meta.text_format == 'website' %}selected{%endif%}>{%trans "Website"%}</option>
+    <option value="number" {%if poll.meta.text_format == 'number' %}selected{%endif%}>{%trans "Number"%}</option>
+    <option value="password" {%if poll.meta.text_format == 'password' %}selected{%endif%}>{%trans "Password"%}</option>
+    <option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
+   </select>
+  </div>
+  <div data-response='meta_text_format' data-response-where='regular' data-response-effect='slide' data-response-notfix {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
+   <div class="element">
+    <label class="title small" for="text-custom">{%trans "Regular"%}</label>
+    <input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="{{poll.meta.text_format_custom}}" data-response-focus>
+   </div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
@@ -323,18 +323,18 @@
 {%block feature_textlength2%}
 {% spaceless %}
 <div data-response="meta_text_format" data-response-where='any|number' {%if poll.meta.text_format != 'any' and poll.meta.text_format != 'number' and poll.meta.text_format %}data-response-hide{%endif%}>
-	<div class="element no-pad">
-		<label class="title large">{%trans "Something"%}</label>
-		<div class="element-slider">
-			<div class="range-slider textlength-range" data-type="horizontal" id="meta_textlength"
-				{% if poll.meta.textlength_min%}
-					data-min-default="{{poll.meta.textlength_min}}"
-				{%endif%}
-				{% if poll.meta.textlength_max%}
-					data-max-default="{{poll.meta.textlength_max}}"
-				{%endif%}></div>
-		</div>
-	</div>
+ <div class="element no-pad">
+  <label class="title large">{%trans "Something"%}</label>
+  <div class="element-slider">
+   <div class="range-slider textlength-range" data-type="horizontal" id="meta_textlength"
+    {% if poll.meta.textlength_min%}
+     data-min-default="{{poll.meta.textlength_min}}"
+    {%endif%}
+    {% if poll.meta.textlength_max%}
+     data-max-default="{{poll.meta.textlength_max}}"
+    {%endif%}></div>
+  </div>
+ </div>
 </div>
 {% endspaceless %}
 {%endblock%}
@@ -342,107 +342,107 @@
 
 {%block feature_fileformat%}
 {% spaceless %}
-	<div class="input-group">
-		<div class="element select">
-			<label class="title small" for="file-format">{%trans "File Format"%}</label>
-				<select class="file-format input" name="meta_file_format" id='file-format'>
-					<option value="any" {%if poll.meta.file_format == 'any' %}selected{%endif%}>{%trans "Any File"%}</option>
-					<option value="document" {%if poll.meta.file_format == 'document' %}selected{%endif%}>{%trans "Document"%}</option>
-					<option value="photo" {%if poll.meta.file_format == 'photo' %}selected{%endif%}>{%trans "Photo"%}</option>
-					<option value="video" {%if poll.meta.file_format == 'video' %}selected{%endif%}>{%trans "Video"%}</option>
-					<option value="audio" {%if poll.meta.file_format == 'audio' %}selected{%endif%}>{%trans "Audio"%}</option>
-					<option value="pdf" {%if poll.meta.file_format == 'pdf' %}selected{%endif%}>{%trans "PDF"%}</option>
-					<option value="doc" {%if poll.meta.file_format == 'doc' %}selected{%endif%}>{%trans "Word"%}</option>
-					<option value="xls" {%if poll.meta.file_format == 'xls' %}selected{%endif%}>{%trans "Excel"%}</option>
-					<option value="ppt" {%if poll.meta.file_format == 'ppt' %}selected{%endif%}>{%trans "PowerPoint"%}</option>
-					<option value="txt" {%if poll.meta.file_format == 'txt' %}selected{%endif%}>{%trans "Text"%}</option>
-					<option value="regular" {%if poll.meta.file_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
-				</select>
-		</div>
-		<div data-response='meta_file_format' data-response-where='regular' data-response-effect='slide'  {%if poll.meta.file_format_custom is null%}data-response-hide{%endif%}>
-			<div class="element">
-				<label class="title small" for="file-custom">{%trans "Regular"%}</label>
-				<input class="input" type="text" name="meta_file_format_custom" id="file-custom" autocomplete="off" value="{{poll.meta.file_format_custom}}" data-response-focus>
-			</div>
-		</div>
-	</div>
+ <div class="input-group">
+  <div class="element select">
+   <label class="title small" for="file-format">{%trans "File Format"%}</label>
+    <select class="file-format input" name="meta_file_format" id='file-format'>
+     <option value="any" {%if poll.meta.file_format == 'any' %}selected{%endif%}>{%trans "Any File"%}</option>
+     <option value="document" {%if poll.meta.file_format == 'document' %}selected{%endif%}>{%trans "Document"%}</option>
+     <option value="photo" {%if poll.meta.file_format == 'photo' %}selected{%endif%}>{%trans "Photo"%}</option>
+     <option value="video" {%if poll.meta.file_format == 'video' %}selected{%endif%}>{%trans "Video"%}</option>
+     <option value="audio" {%if poll.meta.file_format == 'audio' %}selected{%endif%}>{%trans "Audio"%}</option>
+     <option value="pdf" {%if poll.meta.file_format == 'pdf' %}selected{%endif%}>{%trans "PDF"%}</option>
+     <option value="doc" {%if poll.meta.file_format == 'doc' %}selected{%endif%}>{%trans "Word"%}</option>
+     <option value="xls" {%if poll.meta.file_format == 'xls' %}selected{%endif%}>{%trans "Excel"%}</option>
+     <option value="ppt" {%if poll.meta.file_format == 'ppt' %}selected{%endif%}>{%trans "PowerPoint"%}</option>
+     <option value="txt" {%if poll.meta.file_format == 'txt' %}selected{%endif%}>{%trans "Text"%}</option>
+     <option value="regular" {%if poll.meta.file_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
+    </select>
+  </div>
+  <div data-response='meta_file_format' data-response-where='regular' data-response-effect='slide'  {%if poll.meta.file_format_custom is null%}data-response-hide{%endif%}>
+   <div class="element">
+    <label class="title small" for="file-custom">{%trans "Regular"%}</label>
+    <input class="input" type="text" name="meta_file_format_custom" id="file-custom" autocomplete="off" value="{{poll.meta.file_format_custom}}" data-response-focus>
+   </div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_filesize%}
 {% spaceless %}
-	<div class="element no-pad">
-		<label class="title large">{%trans "File Size"%}</label>
-		<div class="element-slider">
-			<div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
-				{% if poll.meta.filesize_min%}
-					data-min-default="{{poll.meta.filesize_min}}"
-				{%endif%}
-				{% if poll.meta.filesize_max%}
-					data-max-default="{{poll.meta.filesize_max}}"
-				{%endif%}></div>
-		</div>
-	</div>
+ <div class="element no-pad">
+  <label class="title large">{%trans "File Size"%}</label>
+  <div class="element-slider">
+   <div class="range-slider filesize-range" data-type="horizontal" id="meta_filesize"
+    {% if poll.meta.filesize_min%}
+     data-min-default="{{poll.meta.filesize_min}}"
+    {%endif%}
+    {% if poll.meta.filesize_max%}
+     data-max-default="{{poll.meta.filesize_max}}"
+    {%endif%}></div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_numberformat%}
 {% spaceless %}
-	<div class="element switch">
-		<input type="radio" name="meta_rangemode" value="number" id="rangemodenumber"
-			{% if poll.meta.rangemode == 'number'%}
-				checked
-			{%elseif poll.meta.rangemode%}
-			{%else%}
-				checked
-			{%endif%}>
-		<label for="rangemodenumber">{%trans "Range Number"%}</label>
-		<input type="radio" name="meta_rangemode" value="star" id="rangemodestar"
-			{% if poll.meta.rangemode == 'star'%}checked{%endif%}>
-		<label for="rangemodestar">{%trans "Star"%}</label>
-		<input type="radio" name="meta_rangemode" value="like" id="rangemodelike"
-			{% if poll.meta.rangemode == 'like'%}checked{%endif%}>
-		<label for="rangemodelike">{%trans "Like"%}</label>
-	</div>
+ <div class="element switch">
+  <input type="radio" name="meta_rangemode" value="number" id="rangemodenumber"
+   {% if poll.meta.rangemode == 'number'%}
+    checked
+   {%elseif poll.meta.rangemode%}
+   {%else%}
+    checked
+   {%endif%}>
+  <label for="rangemodenumber">{%trans "Range Number"%}</label>
+  <input type="radio" name="meta_rangemode" value="star" id="rangemodestar"
+   {% if poll.meta.rangemode == 'star'%}checked{%endif%}>
+  <label for="rangemodestar">{%trans "Star"%}</label>
+  <input type="radio" name="meta_rangemode" value="like" id="rangemodelike"
+   {% if poll.meta.rangemode == 'like'%}checked{%endif%}>
+  <label for="rangemodelike">{%trans "Like"%}</label>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_numbersize%}
 {% spaceless %}
-	<div class="element no-pad" {%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}>
-		<label class="title large">{%trans "Something"%}</label>
-		<div class="element-slider">
-			<div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
-			data-response-where='number' data-response-effect='slide' id="meta_numbersize"
-				{% if poll.meta.numbersize_min%}
-					data-min-default="{{poll.meta.numbersize_min}}"
-				{%endif%}
-				{% if poll.meta.numbersize_max%}
-					data-max-default="{{poll.meta.numbersize_max}}"
-				{%endif%}></div>
-		</div>
-	</div>
+ <div class="element no-pad" {%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}>
+  <label class="title large">{%trans "Something"%}</label>
+  <div class="element-slider">
+   <div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
+   data-response-where='number' data-response-effect='slide' id="meta_numbersize"
+    {% if poll.meta.numbersize_min%}
+     data-min-default="{{poll.meta.numbersize_min}}"
+    {%endif%}
+    {% if poll.meta.numbersize_max%}
+     data-max-default="{{poll.meta.numbersize_max}}"
+    {%endif%}></div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 
 
 {%block feature_starsize%}
 {% spaceless %}
-	<div class="element no-pad" {%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}>
-		<label class="title large">{%trans "Something"%}</label>
-		<div class="element-slider">
-			<div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
-			{% if poll.meta.starsize_min%}
-					data-min-default="{{poll.meta.starsize_min}}"
-				{%endif%}
-				{% if poll.meta.starsize_max%}
-					data-max-default="{{poll.meta.starsize_max}}"
-				{%endif%}></div>
-		</div>
-	</div>
+ <div class="element no-pad" {%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}>
+  <label class="title large">{%trans "Something"%}</label>
+  <div class="element-slider">
+   <div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
+   {% if poll.meta.starsize_min%}
+     data-min-default="{{poll.meta.starsize_min}}"
+    {%endif%}
+    {% if poll.meta.starsize_max%}
+     data-max-default="{{poll.meta.starsize_max}}"
+    {%endif%}></div>
+  </div>
+ </div>
 {% endspaceless %}
 {%endblock%}
 

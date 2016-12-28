@@ -9,54 +9,87 @@
 
 
 /************************************************************** sarshomar font */
-@font-face{font-family:"sarshomar";src:url(../fonts/sarshomar/sarshomar.eot);src:url(../fonts/sarshomar/sarshomar.eot?#iefix) format("embedded-opentype"),url(../fonts/sarshomar/sarshomar.woff) format("woff"),url(../fonts/sarshomar/sarshomar.ttf) format("truetype"),url(../fonts/sarshomar/sarshomar.svg#sarshomar) format("svg");font-weight:400;font-style:normal}
-[data-icon]:before{font-family:"sarshomar"!important;content:attr(data-icon);font-style:normal!important;font-weight:400!important;font-variant:normal!important;text-transform:none!important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-[class^="icon-"]:before,[class*=" icon-"]:before{font-family:"sarshomar"!important;font-style:normal!important;font-weight:400!important;font-variant:normal!important;text-transform:none!important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-.icon-input-after:before{content:"\62"}
-.icon-input-before:before{content:"\63"}
-.icon-picture:before{content:"\64"}
-.icon-range-up:before{content:"\68"}
-.icon-button-after:before{content:"\6b"}
-.icon-button-before:before{content:"\6c"}
-.icon-search:before{content:"\6d"}
-.icon-desktop:before{content:"\6e"}
-.icon-mobile:before{content:"\6f"}
-.icon-frown-o:before{content:"\70"}
-.icon-meh-o:before{content:"\71"}
-.icon-smile-o:before{content:"\72"}
-.icon-facebook:before{content:"\73"}
-.icon-twitter:before{content:"\74"}
-.icon-pinterest:before{content:"\75"}
-.icon-google-plus:before{content:"\76"}
-.icon-paper-plane-o:before{content:"\77"}
-.icon-star:before{content:"\69"}
-.icon-star-half:before{content:"\6a"}
-.icon-star-half-o:before{content:"\78"}
-.icon-star-o:before{content:"\79"}
-.icon-heart:before{content:"\7a"}
-.icon-heart-o:before{content:"\41"}
-.icon-flag:before{content:"\42"}
-.icon-flag-checkered:before{content:"\43"}
-.icon-flag-o:before{content:"\44"}
-.icon-paper-plane:before{content:"\45"}
-.icon-picture-o:before{content:"\61"}
-.icon-check:before{content:"\46"}
-.icon-times:before{content:"\47"}
-.icon-external-link:before{content:"\4a"}
-.icon-external-link-square:before{content:"\4b"}
-.icon-pencil:before{content:"\4c"}
-.icon-pencil-square:before{content:"\4d"}
-.icon-pencil-square-o:before{content:"\4e"}
-.icon-bell:before{content:"\4f"}
-.icon-bell-o:before{content:"\50"}
-.icon-bell-slash:before{content:"\51"}
-.icon-bell-slash-o:before{content:"\52"}
-.icon-upload:before{content:"\53"}
-.icon-range-down:before{content:"\65"}
-.icon-range-left:before{content:"\66"}
-.icon-range-right:before{content:"\67"}
-.icon-plus:before{content:"\48"}
-.icon-minus:before{content:"\49"}
+@font-face{font-family:'sarshomar';src:url('../fonts/sarshomar/sarshomar.eot?4ghcml');src:url('../fonts/sarshomar/sarshomar.eot?4ghcml#iefix') format('embedded-opentype'),url('../fonts/sarshomar/sarshomar.ttf?4ghcml') format('truetype'),url('../fonts/sarshomar/sarshomar.woff?4ghcml') format('woff'),url('../fonts/sarshomar/sarshomar.svg?4ghcml#sarshomar') format('svg');font-weight:normal;font-style:normal}
+[class^="icon-"],[class*=" icon-"]{font-family:'sarshomar' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-tour:before{content:"\e909"}
+.icon-email:before{content:"\e90a"}
+.icon-location:before{content:"\e90b"}
+.icon-phone:before{content:"\e90c"}
+.icon-before:before{content:"\e900"}
+.icon-before-rtl:before{content:"\e901"}
+.icon-button-left:before{content:"\e902"}
+.icon-button-right:before{content:"\e903"}
+.icon-pic:before{content:"\e904"}
+.icon-range-down:before{content:"\e905"}
+.icon-range-left:before{content:"\e906"}
+.icon-range-right:before{content:"\e907"}
+.icon-range-up:before{content:"\e908"}
+.icon-plus:before{content:"\f067"}
+.icon-question:before{content:"\f128"}
+.icon-minus:before{content:"\f068"}
+.icon-search:before{content:"\f002"}
+.icon-heart:before{content:"\f004"}
+.icon-star:before{content:"\f005"}
+.icon-star-o:before{content:"\f006"}
+.icon-film:before{content:"\f008"}
+.icon-th-list:before{content:"\f00b"}
+.icon-check:before{content:"\f00c"}
+.icon-times:before{content:"\f00d"}
+.icon-signal:before{content:"\f012"}
+.icon-gear:before{content:"\f013"}
+.icon-trash-o:before{content:"\f014"}
+.icon-home:before{content:"\f015"}
+.icon-file-o:before{content:"\f016"}
+.icon-flag:before{content:"\f024"}
+.icon-volume-up:before{content:"\f028"}
+.icon-bookmark:before{content:"\f02e"}
+.icon-image:before{content:"\f03e"}
+.icon-pencil:before{content:"\f040"}
+.icon-times-circle:before{content:"\f057"}
+.icon-comment:before{content:"\f075"}
+.icon-bar-chart:before{content:"\f080"}
+.icon-comments:before{content:"\f086"}
+.icon-star-half:before{content:"\f089"}
+.icon-heart-o:before{content:"\f08a"}
+.icon-external-link:before{content:"\f08e"}
+.icon-upload:before{content:"\f093"}
+.icon-bookmark-o:before{content:"\f097"}
+.icon-twitter:before{content:"\f099"}
+.icon-facebook:before{content:"\f09a"}
+.icon-credit-card:before{content:"\f09d"}
+.icon-bell-o:before{content:"\f0a2"}
+.icon-filter:before{content:"\f0b0"}
+.icon-link:before{content:"\f0c1"}
+.icon-save:before{content:"\f0c7"}
+.icon-pinterest:before{content:"\f0d2"}
+.icon-google-plus:before{content:"\f0d5"}
+.icon-linkedin:before{content:"\f0e1"}
+.icon-comment-o:before{content:"\f0e5"}
+.icon-comments-o:before{content:"\f0e6"}
+.icon-bell:before{content:"\f0f3"}
+.icon-desktop:before{content:"\f108"}
+.icon-laptop:before{content:"\f109"}
+.icon-tablet:before{content:"\f10a"}
+.icon-mobile:before{content:"\f10b"}
+.icon-quote-left:before{content:"\f10d"}
+.icon-quote-right:before{content:"\f10e"}
+.icon-smile-o:before{content:"\f118"}
+.icon-frown-o:before{content:"\f119"}
+.icon-meh-o:before{content:"\f11a"}
+.icon-flag-o:before{content:"\f11d"}
+.icon-star-half-empty:before{content:"\f123"}
+.icon-youtube:before{content:"\f167"}
+.icon-youtube-play:before{content:"\f16a"}
+.icon-send:before{content:"\f1d8"}
+.icon-send-o:before{content:"\f1d9"}
+.icon-bell-slash:before{content:"\f1f6"}
+.icon-bell-slash-o:before{content:"\f1f7"}
+.icon-area-chart:before{content:"\f1fe"}
+.icon-pie-chart:before{content:"\f200"}
+.icon-line-chart:before{content:"\f201"}
+.icon-pinterest-p:before{content:"\f231"}
+.icon-commenting:before{content:"\f27a"}
+.icon-commenting-o:before{content:"\f27b"}
 
 
 /************************************************************** layout */
@@ -936,13 +969,14 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .menu input[type="radio"]{opacity:0;width:0;height:0;z-index:0;position:absolute;}
 .menu .menu-inside{display:inline-block;border-radius:7px;background-color:#00667a;}
 .menu .menu-inside label{font-size:10px;font-weight:700;position:relative;display:inline-block;float:left;padding:9px 3px;transition:all 0.2s;color:#d8dad0;border-radius:5px;background-color:#00667a;cursor:pointer;}
+.menu .menu-inside label i{vertical-align:middle}
 .menu .menu-inside label span{padding:0 0.5em}
 .menu .menu-inside label:not(:first-of-type){margin-left:23px;}
 .rtl .menu .menu-inside label:not(:first-of-type){margin-right:25px;margin-left:auto;}
 .rtl .menu .menu-inside label{float:right;}
-.menu .menu-inside label::before, .menu .menu-inside label::after{font-family:'sarshomar';font-size:22px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
-.menu .menu-inside label::before{left:-15px;content:'c';}
-.menu .menu-inside label::after{right:-15px;content:'b';}
+.menu .menu-inside label::before,.menu .menu-inside label::after{font-family:'sarshomar';font-size:22px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;transition:color 0.2s;color:#00667a;}
+.menu .menu-inside label::before{left:-10px;content:'\e901'}
+.menu .menu-inside label::after{right:-10px;content:'\e900'}
 .menu .menu-inside label:hover{background-color:#15535f;}
 .menu .menu-inside label:hover::before, .menu .menu-inside label:hover::after{color:#15535f;}
 .menu .menu-inside input[type="radio"]:checked+label{color:#454545;background-color:#e5a428;}
@@ -964,8 +998,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute;}
 .btn-container .btn:not(:last-child){margin-right:30px;}
 .rtl .btn-container .btn:not(:last-child){margin-right:auto;margin-left:30px;}
 .btn-container .btn::before,.btn-container .btn::after{font-family:'sarshomar'!important;font-size:36px;font-weight:400!important;font-style:normal!important;font-variant:normal!important;position:absolute;top:0;bottom:0;margin:auto;content:'';text-transform:none!important;speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#00667a;transition:.3s;}
-.btn-container .btn::before{left:-20px;content:'\6c';}
-.btn-container .btn::after{right:-20px;content:'\6b';}
+.btn-container .btn::before{left:-8px;content:'\e902'}
+.btn-container .btn::after{right:-8px;content:'\e903'}
 .btn-container.center{text-align:center;position:static;}
 .btn-container.center::before{left:0;right:0}
 
