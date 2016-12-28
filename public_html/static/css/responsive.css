@@ -110,7 +110,6 @@
   header .logo img{width: 8em;}
   header #header-box{display: block;width: 100%;height:auto;border-style: solid;border-width:8px 8px 0 8px;-moz-border-image: url(../images/border.png) 8 stretch;-webkit-border-image: url(../images/border.png) 8 stretch;-o-border-image: url(../images/border.png) 8 stretch;border-image: url(../images/border.png) 8 stretch;}
   header #header-quick{display: none;}
-  header #header-profile {padding-right: 0;}
   header #header-profile .register{float: left;}
   .rtl header #header-profile .register{float: right;}
   .profile{float:right;}
@@ -122,7 +121,7 @@
   .rtl header .logo{float: none;}
  /* nav.breadcrumb{display: none;}*/
   header #header-profile {width: 100%;}
-  .rtl header #header-profile {float: right; width: 100%;}
+  .rtl header #header-profile {float: right; width: 100%; padding: 10px;}
   header #header-top {border-top: none}
   /*header #header-profile>a {color: #f4f4f4;}*/
   /*--wrapper--*/
@@ -147,6 +146,10 @@
 
   .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
 
+  /*--help--*/
+  .help-main-box, .help-category-box, .help-post-box {
+    margin: 0;
+}
 
 /**********************************dashbord***************************/
 

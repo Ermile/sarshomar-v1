@@ -3,7 +3,7 @@
 	<div class="statistics row auto">
 		<a href="{{url.base}}/admin/$/status=total" class="span2">
 			<div class="statistics-box">
-				<div class="icon icon-total"><i class="fa fa-list fa-4x"></i></div>
+				<div class="icon show-icon-total"><i class="icon-list fa-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Total" %}</h5>
 					<h6 class="amount">۳۴۵</h6>
@@ -12,7 +12,7 @@
 		</a>
 		<a href="{{url.base}}/admin/$/status=rejected" class="span2">
 			<div class="statistics-box">
-				<div class="icon icon-rejected"><i class="fa fa-ban fa-4x"></i></div>
+				<div class="icon show-icon-rejected"><i class="icon-ban fa-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Rejected" %}</h5>
 					<h6 class="amount">۳۴۵</h6>
@@ -21,7 +21,7 @@
 		</a>
 		<a href="{{url.base}}/admin/$/status=unapproved" class="span2">
 			<div class="statistics-box">
-				<div class="icon icon-unapproved"><i class="fa fa-times-circle-o fa-4x"></i></div>
+				<div class="icon show-icon-unapproved"><i class="icon-times-circle-o fa-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Unapproved" %}</h5>
 					<h6 class="amount">۴۵</h6>
@@ -30,7 +30,7 @@
 		</a>
 		<a href="{{url.base}}/admin/$/status=spam" class="span2">
 			<div class="statistics-box">
-				<div class="icon icon-spam"><i class="fa fa-minus-circle fa-4x"></i></div>
+				<div class="icon show-icon-spam"><i class="icon-minus-circle fa-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Spam" %}</h5>
 					<h6 class="amount">۱۴۵</h6>
@@ -39,7 +39,7 @@
 		</a>
 		<a href="{{url.base}}/admin/$/status=trash" class="span3">
 			<div class="statistics-box">
-				<div class="icon icon-trash"><i class="fa fa-trash fa-4x"></i></div>
+				<div class="icon show-icon-trash"><i class="icon-trash fa-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Trash" %}</h5>
 					<h6 class="amount">۱۰۵</h6>
@@ -48,11 +48,11 @@
 		</a>
 		<a href="{{url.base}}/admin" class="span1" title="{% trans " Return to admin area " %}">
 			<div class="statistics-box return">
-				<div class="icon icon-return">
+				<div class="icon show-icon-return">
 					{%if site.currentlang == "fa"%}
-					<i class="fa fa-angle-left fa-4x"></i>
+					<i class="icon-angle-left fa-4x"></i>
 					{%else%}
-					<i class="fa fa-angle-right fa-4x"></i>
+					<i class="icon-angle-right fa-4x"></i>
 					{%endif%}					
 					</div>
 			</div>
@@ -71,9 +71,9 @@
 									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
 									<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="icon-external-link"></i></a>
 									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
-													filter page " %}"><i class="fa fa-filter"></i></a>
+													filter page " %}"><i class="icon-filter"></i></a>
 									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
-													publish page " %}"><i class="icon-paper-plane-o"></i></a>
+													publish page " %}"><i class="icon-send-o"></i></a>
 									<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
 								{% if site.currentlang == 'fa' %}
 									{{value.date_modified|jdate("Y-m-d")|persian}}
@@ -104,15 +104,31 @@
 				<div class="bottom-content">
 					<div class="row auto">
 						<div class="span7">
-							{% if value.language %}
-							<span class="label label-lang">{{value.language }}</span> {%endif%}
 							<span class="label label-status label-{{value.status }}">{{value.status }}</span>
-							<span class="label label-parent">{% trans "parent" %} {{value.parent }}</span> {% if value.sarshomar==1 %}
-							<span class="label label-sarshomar">{% trans "sarshomar" %}</span> {%endif%}
-							<span class="label label-survey">{% trans "survey" %}	{{value.survey }} </span>
-							<span class="label label-gender">{% trans "gender" %}	{{value.gender }} </span>
-							<span class="label label-privacy">{% trans "privacy" %}	{{value.privacy }} </span>
-							<span class="label label-total">{% trans "total" %}	{{value.total }} </span>
+							<span class="content-properties">
+								{% if value.language %}
+									{% if value.language=='fa' %} 
+									{% trans "Persian" %}
+									{% else %}
+									{{value.language }}
+									{%endif%}
+								{%endif%}
+								<span>|</span>
+								{% trans "parent" %} {{value.parent }}
+								<span>|</span>
+								{% if value.sarshomar==1 %}
+									{% trans "sarshomar" %}
+								{%endif%}
+								<span>|</span>
+								{% trans "survey" %} {{value.survey }}
+								<span>|</span>
+								{% trans "gender" %} {{value.gender }}
+								<span>|</span>
+								{% trans "privacy" %} {{value.privacy }}
+								<span>|</span>
+								{% trans "total" %}	{{value.total }}
+								</span> 
+							
 						</div>
 						<div class="span2 star-rating">
 							<div class="star-rating-wrap">
