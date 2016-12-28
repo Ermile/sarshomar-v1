@@ -9,8 +9,8 @@
 
 
 /************************************************************** sarshomar font */
-@font-face{font-family:'sarshomar';src:url('../fonts/sarshomar/sarshomar.eot?4ghcml');src:url('../fonts/sarshomar/sarshomar.eot?4ghcml#iefix') format('embedded-opentype'),url('../fonts/sarshomar/sarshomar.ttf?4ghcml') format('truetype'),url('../fonts/sarshomar/sarshomar.woff?4ghcml') format('woff'),url('../fonts/sarshomar/sarshomar.svg?4ghcml#sarshomar') format('svg');font-weight:normal;font-style:normal}
-[class^="icon-"],[class*=" icon-"]{font-family:'sarshomar' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:'sarshomar';src:url(../fonts/sarshomar/sarshomar.eot?4ghcml);src:url(../fonts/sarshomar/sarshomar.eot?4ghcml#iefix) format("embedded-opentype"),url(../fonts/sarshomar/sarshomar.ttf?4ghcml) format("truetype"),url(../fonts/sarshomar/sarshomar.woff?4ghcml) format("woff"),url(../fonts/sarshomar/sarshomar.svg?4ghcml#sarshomar) format("svg");font-weight:400;font-style:normal}
+[class^="icon-"],[class*=" icon-"]{font-family:'sarshomar'!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .icon-tour:before{content:"\e909"}
 .icon-email:before{content:"\e90a"}
 .icon-location:before{content:"\e90b"}
@@ -43,9 +43,13 @@
 .icon-flag:before{content:"\f024"}
 .icon-volume-up:before{content:"\f028"}
 .icon-bookmark:before{content:"\f02e"}
+.icon-list:before{content:"\f03a"}
 .icon-image:before{content:"\f03e"}
 .icon-pencil:before{content:"\f040"}
+.icon-minus-circle:before{content:"\f056"}
 .icon-times-circle:before{content:"\f057"}
+.icon-times-circle-o:before{content:"\f05c"}
+.icon-ban:before{content:"\f05e"}
 .icon-comment:before{content:"\f075"}
 .icon-bar-chart:before{content:"\f080"}
 .icon-comments:before{content:"\f086"}
@@ -67,6 +71,8 @@
 .icon-comment-o:before{content:"\f0e5"}
 .icon-comments-o:before{content:"\f0e6"}
 .icon-bell:before{content:"\f0f3"}
+.icon-angle-left:before{content:"\f104"}
+.icon-angle-right:before{content:"\f105"}
 .icon-desktop:before{content:"\f108"}
 .icon-laptop:before{content:"\f109"}
 .icon-tablet:before{content:"\f10a"}
@@ -84,6 +90,7 @@
 .icon-send-o:before{content:"\f1d9"}
 .icon-bell-slash:before{content:"\f1f6"}
 .icon-bell-slash-o:before{content:"\f1f7"}
+.icon-trash:before{content:"\f1f8"}
 .icon-area-chart:before{content:"\f1fe"}
 .icon-pie-chart:before{content:"\f200"}
 .icon-line-chart:before{content:"\f201"}
@@ -94,7 +101,7 @@
 
 /************************************************************** layout */
 body{background-color:#00667a;color:#6E6F6F}
-.wrapper{border-style:solid;border-width: 0px 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:flex}
+.wrapper{border-style:solid;border-width:0 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:flex}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:""}
 .wrapper::after,.box::after,header::after{clear:both}
 .wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px}
@@ -105,7 +112,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
 img{-webkit-user-select:none;user-select:none}
-.rtl .flip-rtl{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}
+.rtl .flip-rtl{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
 /* override default text select color */
 ::selection{background:#00667A;color:#f4f4f4}
