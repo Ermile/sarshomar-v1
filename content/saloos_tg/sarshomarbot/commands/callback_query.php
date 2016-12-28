@@ -12,6 +12,11 @@ class callback_query
 		$data_url = preg_split("[\/]", $_query['data']);
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
+		if(array_key_exists('game_short_name', $_query))
+		{
+			$result['url'] = 'https://sarshomar.com/game';
+			return $result;
+		}
 		if(count($data_url) < 1)
 		{
 			session::remove_back('expire', 'inline_cache');
