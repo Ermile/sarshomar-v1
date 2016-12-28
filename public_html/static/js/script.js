@@ -72,6 +72,35 @@ function shortkey()
 	});
 }
 
+/**
+ * set link of language on each page
+ */
+function setLanguageURL()
+{
+	var urlPath     = window.location.pathname;
+	var indexOfLang = urlPath.indexOf('/' + $('html').attr('lang'));
+
+	if(indexOfLang === 0)
+	{
+		urlPath = urlPath.substr(4);
+	}
+	else
+	{
+		urlPath = urlPath.substr(1);
+	}
+
+	$('.langlist a').each(function(key, index)
+	{
+		var lang = $(index).attr('hreflang');
+		if(lang == 'en')
+		{
+			lang = '';
+		}
+		var url = lang + '/' + urlPath;
+		$(index).attr('href', url.trim('/'));
+	})
+}
+
 
 // ================================================================== run on all part of each page
 route('*', function ()
@@ -82,7 +111,7 @@ route('*', function ()
 	fixSlideJumping.call(this);
 }).once(function()
 {
-
+	setLanguageURL();
 });
 
 
