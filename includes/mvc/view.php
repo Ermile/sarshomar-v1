@@ -44,6 +44,14 @@ class view extends \lib\mvc\view
 			'footjs'     => true,
 		];
 
+		$this->data->breadcrumb =
+		[
+			'u'      => T_('user'),
+			'$'      => T_('knowledge'),
+			'target' => T_('Case Study'),
+			'help'   => T_('Help Center'),
+		];
+
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;

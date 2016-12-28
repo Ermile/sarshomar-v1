@@ -16,7 +16,7 @@
      </nav>
      <nav id='header-profile' data-xhr='header-profile' {%if login%}class='login'{%endif%}>
 {%if login%}
-{%if url.tld == 'dev'%}
+{%if url.tld == 'dev' and false%}
       <a href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();">ℹ️</a>
 {%endif%}
       <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
