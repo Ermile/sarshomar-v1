@@ -49,10 +49,12 @@ class ask
 				$skip_type = 'skip_last';
 			}
 			$skip = false;
+			$update = true;
 			if($maker->query_result['status'] == 'publish' && $access)
 			{
 				$maker->inline_keyboard->add_poll_answers($set_last);
 				$skip = true;
+				$update = false;
 			}
 			elseif(is_null($_short_link))
 			{
@@ -70,7 +72,7 @@ class ask
 			}
 			else
 			{
-				$maker->inline_keyboard->add_guest_option([$skip_type => $skip, 'update' => false, 'inline_report' => true]);
+				$maker->inline_keyboard->add_guest_option([$skip_type => $skip, 'update' => $update, 'inline_report' => true]);
 				$maker->message->add_poll_chart(true);
 				$maker->message->add_poll_list(true);
 			}

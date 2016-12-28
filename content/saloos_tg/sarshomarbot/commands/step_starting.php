@@ -135,6 +135,7 @@ class step_starting
 				$return = ["text" => T_("Welcome"), "reply_markup" => menu::main(true)];
 			}
 		}
+		session::remove('step', 'run');
 		return $return;
 	}
 

@@ -88,7 +88,7 @@ class message
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link,'📎');
+		$dashboard = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link,'⚙');
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
