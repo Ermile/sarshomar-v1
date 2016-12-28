@@ -11,6 +11,11 @@
 /************************************************************** sarshomar font */
 @font-face{font-family:'sarshomar';src:url(../fonts/sarshomar/sarshomar.eot?4ghcml);src:url(../fonts/sarshomar/sarshomar.eot?4ghcml#iefix) format("embedded-opentype"),url(../fonts/sarshomar/sarshomar.ttf?4ghcml) format("truetype"),url(../fonts/sarshomar/sarshomar.woff?4ghcml) format("woff"),url(../fonts/sarshomar/sarshomar.svg?4ghcml#sarshomar) format("svg");font-weight:400;font-style:normal}
 [class^="icon-"],[class*=" icon-"]{font-family:'sarshomar'!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-lg{font-size:1.33333333em;line-height:0.75em;vertical-align:-15%}
+.icon-2x{font-size:2em}
+.icon-3x{font-size:3em}
+.icon-4x{font-size:4em}
+.icon-5x{font-size:5em}
 .icon-tour:before{content:"\e909"}
 .icon-email:before{content:"\e90a"}
 .icon-location:before{content:"\e90b"}
