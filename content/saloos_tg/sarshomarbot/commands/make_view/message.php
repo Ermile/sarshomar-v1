@@ -88,11 +88,19 @@ class message
 
 	public function add_telegram_link()
 	{
-		$this->message['telegram_link'] = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link, 'Dashboard');
+		$dashboard = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link,'📎');
+		if(isset($this->message['options']))
+		{
+			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
+		}
+		else
+		{
+			$this->message['options'] = $dashboard;
+		}
 	}
 	public function add_telegram_tag()
 	{
-		$this->message['telegram_tag'] = '#' .T_('Sarshomar') .' @SarshomarBot';
+		$this->message['telegram_tag'] = '#' .T_('Sarshomar');
 	}
 
 	public function set_telegram_result($_answer_id = null)
@@ -167,7 +175,7 @@ class message
 		$count = $this->class->telegram_result->get_result('count_answered');
 		switch ($_type) {
 			case 'valid':
-				$this->message['count_poll'] = T_("Valid answer is:") . $count['valid'];
+				$text = T_("Valid answer is:") . $count['valid'];
 				break;
 			case 'invalid':
 				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
@@ -175,19 +183,24 @@ class message
 			case 'sum_invalid':
 				$text = '👥' .utility::nubmer_language($count['sum']) . ' ';
 				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', '❗️' . utility::nubmer_language($count['invalid']));
-				$this->message['count_poll'] = $text;
 				break;
 			case 'sum_valid':
 				$text = T_("Sum") . '(' . $count['sum'] .') ';
 				$text .= T_("Valid") . '(' . $count['valid'] .')';
-				$this->message['count_poll'] = $text;
 				break;
 
 			default:
 				$text = T_("Valid") . '(' . $count['valid'] .') ';
 				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
-				$this->message['count_poll'] = $text;
 				break;
+		}
+		if(isset($this->message['options']))
+		{
+			$this->message['options'] .= ' ' . $text;
+		}
+		else
+		{
+			$this->message['options'] = $text;
 		}
 	}
 
