@@ -27,6 +27,7 @@
   <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
   <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
   <div class="file">
+   <span class='preview'></span>
    <input type="file" name="file_title" id="file_title">
    <label class="label-file icon-pic" for="file_title"></label>
   </div>
@@ -47,8 +48,9 @@
     <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
 
     <div class="file">
-     <input type="file" name="file_title" id="file_title">
-     <label class="label-file icon-pic" for="file_title"></label>
+     <span class='preview'></span>
+     <input type="file" name="file{{answer_key}}" id="file{{answer_key}}">
+     <label class="label-file icon-pic" for="file{{answer_key}}"></label>
     </div>
 
     <span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>

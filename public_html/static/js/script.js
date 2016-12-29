@@ -723,17 +723,13 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 
-	// ------------------------------------------------------------------ Tree
+	// ------------------------------------------------------------------ File Preview
 	//
-	$(this).on('change', '.input-group.sortable input[type="file"]', function(event)
+	$(this).on('change', 'input[type="file"]', function(event)
 	{
 		var output = $(this).parents('.file').find('.preview');
-		// console.log($(this).parents('.file').find('.preview'));
 		var imagePreview = showImagePreview(this, output);
-		// console.log(imagePreview);
 	});
-   // document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
 });
 
 
