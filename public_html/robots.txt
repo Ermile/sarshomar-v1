@@ -7,4 +7,5 @@ Disallow: /tmp/
 Disallow: /*.asp$
 Disallow: /*.txt$
 
-Sitemap: /sitemap.xml
+Sitemap: http://sarshomar.com/sitemap.xml
+Sitemap: http://sarshomar.com/sitemap/sitemap.xml
