@@ -5,7 +5,6 @@ use \lib\debug;
 
 class model extends \content_u\home\model
 {
-	use model\config;
 	use model\insert_poll;
 	use model\survey;
 	use model\tree;
@@ -53,17 +52,6 @@ class model extends \content_u\home\model
 			return;
 		}
 
-		// $answers_in_post = $this->answers_in_post();
-		// if(utility::post("title") == '' && empty($answers_in_post['answers']))
-		// {
-		// 	// if we not in survey we have error for title and answers
-		// 	if(!$this->check_poll_url($_args))
-		// 	{
-		// 		debug::error(T_("You must complete title or answers"), ['title', 'answer1', 'answer2']);
-		// 		return;
-		// 	}
-		// }
-
 		// check sarshomar knowlege permission
 		$this->sarshomar = false;
 		if($this->access('u', 'sarshomar_knowledge', 'add'))
@@ -82,15 +70,9 @@ class model extends \content_u\home\model
 
 		// default survey id is null
 		$survey_id = null;
-		// users click on one of 'add filter' buttom
+		// users click on one of 'filter' buttom
 		if(utility::post("filter"))
 		{
-			$insert_poll = null;
-			// if title is null and answer is null
-			// we check the url
-			// if in the survey we abrot save poll and redirect to filter page
-			// user discard the poll
-
 			// insert the poll
 			$insert_poll = $this->insert_poll();
 
@@ -114,8 +96,8 @@ class model extends \content_u\home\model
 		}
 		elseif(utility::post("survey"))
 		{
-			// the user click on this buttom
-			// we save the survey
+			// // the user click on this buttom
+			// // we save the survey
 			// $args =
 			// [
 			// 	'user_id'        => $this->login('id'),

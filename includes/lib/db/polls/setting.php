@@ -14,8 +14,8 @@ trait setting
 		// the meta list
 		$meta                       = [];
 		$meta['tree']               = true;
-		$meta['rangetiming-min']    = true;
 		$meta['rangetiming-max']    = true;
+		// $meta['rangetiming-min']    = true;
 		// $meta['filesize-min']       = false;
 		// $meta['filesize-max']       = false;
 		// $meta['textlength-min']     = false;

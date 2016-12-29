@@ -121,7 +121,8 @@ class view extends \mvc\view
 			{
 				$new_post = \lib\db\polls::get_poll($poll_id);
 				$post = [];
-				foreach ($new_post as $key => $value) {
+				foreach ($new_post as $key => $value)
+				{
 					if($key == 'id' || $key == 'filter_id' || $key == 'user_id' || $key == 'date_modified')
 					{
 						$key = $key;
@@ -158,8 +159,10 @@ class view extends \mvc\view
 			if(isset($post['post_meta']))
 			{
 				$meta = [];
-				foreach ($post['postmeta'] as $key => $value) {
-					switch ($value['option_key']) {
+				foreach ($post['postmeta'] as $key => $value)
+				{
+					switch ($value['option_key'])
+					{
 						// ignore opt_1, opt_2, ...
 						case substr($value['option_key'], 0,3) == "opt":
 							continue;
@@ -181,7 +184,8 @@ class view extends \mvc\view
 							break;
 						case "meta":
 							// check the meta of this poll
-							switch ($value['option_value']) {
+							switch ($value['option_value'])
+							{
 								case "multiple_choice":
 									// the people can select multiple choice
 									$this->data->multiple_choice = true;
@@ -228,7 +232,8 @@ class view extends \mvc\view
 							// show rate of comments
 						case 'comment':
 							$rate = [];
-							for ($i=1; $i <= 5; $i++) {
+							for ($i=1; $i <= 5; $i++)
+							{
 								if(isset($value['option_meta']["rate$i"]))
 								{
 									$rate["rate$i"] = $value['option_meta']["rate$i"]['avg'];
