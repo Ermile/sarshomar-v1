@@ -1144,12 +1144,15 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 
 /************************************************************** branding */
-.element-branding{text-align:center;margin-bottom:2em;position:relative}
-.element-branding::before{content:'';position:absolute;width:100%;height:2px;background-color:#00667a;left:0;right:0;top:0;bottom:0;margin:auto;z-index:0}
-.element-branding-inner{display:inline-block;background-color:#00667a;padding:1em 2em;border-radius:.3em;position:relative}
-.element-branding-inner::before,.element-branding-inner::after{font-family:'sarshomar';position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:30px;margin-top:10px}
+.element-branding{text-align:center;margin-bottom:2em;position:relative;height:42px}
+.element-branding::before,.element-branding::after{content:'';position:absolute;width:50%;height:2px;background-color:#00667a;top:0;bottom:0;margin:auto;z-index:0}
+.element-branding::before{left:-15px}
+.element-branding::after{right:-15px}
+.element-branding-inner{display:inline-block;background-color:#00667a;height:42px;border-radius:.3em;position:relative;z-index:1;min-width:50%}
+.element-branding-inner::before,.element-branding-inner::after{font-family:'sarshomar';position:absolute;top:0;bottom:0;margin:auto;color:#00667a;font-size:32px;margin-top:5px}
 .element-branding-inner::before{content:'\e901';left:-14px}
 .element-branding-inner::after{content:'\e900';right:-14px}
+.element-branding-inner input[type="text"]{width:100%;height:42px;line-height:42px;border:none;padding:0 2em;background-color:transparent;color:#f4f4f4}
 
 
 /************************************************************** other */
