@@ -120,16 +120,6 @@
    </div>
   </li>
 
-
-  <!-- <li data-response='meta_branding' data-response-hide data-response-effect='slide'>
-   <div class="element" data-row="brand">
-    <label class="title small" for="answer_brand">{%trans "brand"%}</label>
-    <input class="input" type="text" name="answer_brand" id="answer_brand" autocomplete="off">
-    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
-    <span class="icon-picture-o icon" data-response-hide></span>
-   </div>
-  </li> -->
-
  </ul>
 {% endspaceless %}
 {%endblock%}
@@ -339,9 +329,10 @@
 {%block feature_btn%}
 {% spaceless %}
  <div class="row auto">
-  <div class="element-branding">
+
+  <div class="element-branding" data-response='meta_branding' data-response-hide data-response-effect='slide'>
    <div class="element-branding-inner">
-    <input type="text" name="answer_brand" autocomplete="off">
+    <input type="text" name="answer_brand" autocomplete="off" data-response-focus>
    </div>
   </div>
 
