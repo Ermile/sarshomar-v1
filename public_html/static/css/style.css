@@ -1139,7 +1139,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .element .input:focus~.file{background-color:#00667a}
 .element .input:focus~.file label{color:#d8dad0}
 .element .input:focus~.file label:hover{color:#fff}
-.element .file img{max-height:2.1em;margin-right:.5em}
+.element .file span{height:100%;}
+.element .file img{max-height:2.1em;margin-right:.5em;vertical-align:middle;}
 .rtl .element .file img{margin-right:0;margin-left:.5em}
 
 

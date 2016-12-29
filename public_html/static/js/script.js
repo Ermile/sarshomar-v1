@@ -72,6 +72,52 @@ function shortkey()
 	});
 }
 
+
+function showImagePreview(_file, _output)
+{
+	// if we do not support fileReader return false!
+	if (typeof (FileReader) == "undefined")
+	{
+		return false;
+	}
+	// declare variables
+	var files = $(_file)[0].files;
+
+	// Loop through the FileList and render image files as thumbnails.
+	for (var i = 0, f; f = files[i]; i++)
+	{
+		// Only process image files.
+		if (!f.type.match('image.*'))
+		{
+			$(_output).addClass('otherFile');
+			continue;
+		}
+		else
+		{
+			$(_output).removeClass('otherFile');
+		}
+		// create new instance
+		var reader = new FileReader();
+		// Closure to capture the file information.
+		reader.onload = (function(theFile)
+		{
+			return function(e)
+			{
+				// if span of preview is not exist, then create element for preview
+				// var span = document.createElement('span');
+
+				// Render thumbnail
+				var span = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
+				$(_output).html(span);
+			};
+		})(f);
+
+		// Read in the image file as a data URL.
+		reader.readAsDataURL(f);
+	}
+}
+
+
 /**
  * set link of language on each page
  */
@@ -675,6 +721,19 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 			$(this).parents('li').addClass('active');
 		}
 	});
+
+
+	// ------------------------------------------------------------------ Tree
+	//
+	$(this).on('change', '.input-group.sortable input[type="file"]', function(event)
+	{
+		var output = $(this).parents('.file').find('.preview');
+		// console.log($(this).parents('.file').find('.preview'));
+		var imagePreview = showImagePreview(this, output);
+		// console.log(imagePreview);
+	});
+   // document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
 });
 
 
