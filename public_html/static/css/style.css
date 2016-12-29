@@ -148,15 +148,18 @@ aside .actived{display:block}
 aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height:50px;display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:600}
 aside .filters_group.selected{background-color:#083942}
 aside .actived{display:block}
+aside  div.checkbox{padding-top:12px}
+aside  .checkbox .check-box + label{color:#6E6F6F;font-size:1.2em; text-align: left}
+.rtl aside  .checkbox .check-box + label{text-align: right}
+aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.3em;font-weight:700}
 
 
 /************************************************************** dollar page specific styles */
-#dollar .tags{padding:2em}
-#dollar div.checkbox{padding-top:12px}
-#dollar .checkbox .check-box + label{color:#6E6F6F;font-size:1.5em; text-align: left}
-.rtl#dollar .checkbox .check-box + label{text-align: right}
-#dollar aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.6em;font-weight:700}
-div .filters-title{color:#106d6b;font-size:1.2em;font-weight:700;padding:1em 1.9em;margin-top:1em}
+#dollar .tags{padding:0 2em}
+#dollar .floating-title{margin-top:3em; }
+#dollar .floating-title::before{left:0; }
+#dollar.rtl .floating-title::before{right:0; }
+
 
 
 /************************************************************** header */
