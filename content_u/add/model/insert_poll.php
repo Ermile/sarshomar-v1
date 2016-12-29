@@ -24,11 +24,12 @@ trait insert_poll
 			if(utility::post("answer$j"))
 			{
 				$i++;
-				$answers[$i]['txt']  = utility::post("answer$j");
-				$answers[$i]['true']  = (utility::post("true$j")  != '') ? utility::post("true$j") : null;
-				$answers[$i]['type']  = (utility::post("type$j")  != '') ? utility::post("type$j") : null;
-				$answers[$i]['score'] = (utility::post("score$j") != '') ? utility::post("score$j"): null;
-				$answers[$i]['desc']  = (utility::post("desc$j")  != '') ? utility::post("desc$j") : null;
+				$answers[$i]['txt']         = utility::post("answer$j");
+				$answers[$i]['true']        = (utility::post("true$j")  != '') ? utility::post("true$j")  : null;
+				$answers[$i]['type']        = (utility::post("type$j")  != '') ? utility::post("type$j")  : null;
+				$answers[$i]['score']       = (utility::post("score$j") != '') ? utility::post("score$j") : null;
+				$answers[$i]['desc']        = (utility::post("desc$j")  != '') ? utility::post("desc$j")  : null;
+				$answers[$i]['upload_name'] = (utility::files("file$j")) ? "file$j" : null;
 			}
 		}
 		return $answers;
@@ -51,6 +52,7 @@ trait insert_poll
 		$args['language']             = \lib\define::get_language();
 		$args['type']                 = utility::post("poll_type");
 		$args['title']                = utility::post("title");
+		$args['upload_name']          = (utility::files("file_title")) ? "file_title" : null;
 		$args['description']          = utility::post("description");
 		$args['summary']              = utility::post("summary");
 		$args['tree']                 = utility::post("parent_tree_id");

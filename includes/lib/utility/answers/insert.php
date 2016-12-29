@@ -39,19 +39,21 @@ trait insert
 		// 			'score' => 10
 		// 		]
 		// 	];
-		$answers   = [];
+		$answers  = [];
 		$opt_meta = [];
 		// answers key : opt_1, opt_2, opt_[$i], ...
 		$i = 0;
 		foreach ($_args['answers'] as $key => $value)
 		{
 
-			$meta = [
-					'desc'  => isset($value['desc'])  ? $value['desc']  : '',
-					'true'  => isset($value['true'])  ? $value['true']  : '',
-					'score' => isset($value['score']) ? $value['score'] : '',
-					'type'  => isset($value['type'])  ? $value['type']  : ''
-					];
+			$meta =
+			[
+				'desc'          => isset($value['desc'])  ? $value['desc']  : '',
+				'true'          => isset($value['true'])  ? $value['true']  : '',
+				'score'         => isset($value['score']) ? $value['score'] : '',
+				'type'          => isset($value['type'])  ? $value['type']  : '',
+				'attachment_id' => isset($value['attachment_id'])  ? $value['attachment_id'] : '',
+			];
 
 			// answers key : opt_1, opt_2, opt_[$i], ...
 			$i++;
@@ -66,11 +68,11 @@ trait insert
 
 			$opt_meta[] =
 			[
-				'key'  => 'opt_'.  $i,
-				'txt'  => isset($value['txt'])  ? $value['txt']  : '',
-				'type' => isset($value['type']) ? $value['type'] : ''
+				'key'           => 'opt_'.  $i,
+				'txt'           => isset($value['txt'])  ? $value['txt']  : '',
+				'type'          => isset($value['type']) ? $value['type'] : '',
+				'attachment_id' => isset($value['attachment_id']) ? $value['attachment_id'] : '',
 			];
-
 		}
 
 		$return = \lib\db\options::insert_multi($answers);

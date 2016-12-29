@@ -38,8 +38,10 @@ trait insert
 			'type'                            => null,
 			// title is image or video or audio
 			'multi_media'                     => false,
-			// the file path or upload name
-			'file'                            => null,
+			// the file path
+			'file_path'                       => null,
+			// the upload name
+			'upload_name'                     => null,
 			// the parent
 			'parent'                          => null,
 			// the publish date
@@ -51,7 +53,8 @@ trait insert
 			// 	'type'                        => 'audio'|'emoji',
 			// 	'desc'                        => 'description',
 			// 	'true'                        => 'true|false',
-			// 	'file'                        => file path or upload name
+			// 	'upload_name'                 => upload name,
+			// 	'file_path'					  => the file path
 			// 	'score'                       => 10
 			// ], ...
 			'answers'                         => null,
@@ -150,12 +153,17 @@ trait insert
 			$survey_id = null;
 		}
 
+		// the post meta as json
+		$post_meta         = [];
+
 		// get title
-		$title   = $_args['title'];
+		$title             = $_args['title'];
 		// get content
-		$content = $_args['description'];
+		$content           = $_args['description'];
 		// get summary of poll
-		$summary = $_args['summary'];
+		$summary           = $_args['summary'];
+
+		$post_meta['desc'] = $summary;
 
 		// check title
 		if($title == null)
@@ -184,6 +192,28 @@ trait insert
 			\lib\db\userranks::plus($_args['user'], 'usespamword');
 		}
 
+		// start transaction
+		\lib\db::transaction();
+
+		/**
+		 * upload files of poll title
+		 */
+		if((isset($_args['upload_name']) && $_args['upload_name']) || (isset($_args['file_path']) && $_args['file_path']))
+		{
+			$upload_args =
+			[
+				'user_id'     => $_args['user'],
+				'upload_name' => $_args['upload_name'],
+				'file_path'   => $_args['file_path']
+			];
+
+			$file_title = \lib\utility\upload::upload($upload_args);
+			if($file_title->is_ok())
+			{
+				$post_meta['attachment_id'] = $file_title->get_result();
+			}
+		}
+
 		// get the insert id by check sarshomar permission
 		// when not in upldate mode
 		$insert_id = null;
@@ -207,12 +237,9 @@ trait insert
 			'post_privacy'   => 'public',
 			'post_comment'   => 'open',
 			'post_status'    => $publish,
-			'post_meta'      => "{\"desc\":\"$summary\"}",
+			'post_meta'      => json_encode($post_meta, JSON_UNESCAPED_UNICODE),
 			'post_sarshomar' => $_args['permission_sarshomar'] === true ? 1 : 0,
 		];
-
-		// start transaction
-		\lib\db::transaction();
 
 		// inset poll if we not in update mode
 		if($_args['update'] === false)
@@ -256,7 +283,6 @@ trait insert
 			// check answers
 			if(is_array($_args['answers']))
 			{
-
 				$answers = $_args['answers'];
 				// remove empty index from answer array
 				$answers = array_filter($answers);
@@ -266,13 +292,35 @@ trait insert
 				{
 					if(is_array($value))
 					{
+						$attachment_id = null;
+
+						if(isset($value['upload_name']))
+						{
+							$upload_answer = ['upload_name' => $value['upload_name'], 'user_id' => $_args['user']];
+							$upload_answer = \lib\utility\upload::upload($upload_answer);
+							if($upload_answer->is_ok())
+							{
+								$attachment_id = $upload_answer->get_result();
+							}
+						}
+						elseif(isset($value['file_path']))
+						{
+							$upload_answer = ['file_path' => $value['file_path'], 'user_id' => $_args['user']];
+							$upload_answer = \lib\utility\upload::upload($upload_answer);
+							if($upload_answer->is_ok())
+							{
+								$attachment_id = $upload_answer->get_result();
+							}
+						}
+
 						$combine[] =
 						[
-							'true'  => isset($value['true'])  ? $value['true'] 	: null,
-							'score' => isset($value['score']) ? $value['score'] : null,
-							'type'  => isset($value['type'])  ? $value['type'] 	: null,
-							'desc'  => isset($value['desc'])  ? $value['desc'] 	: null,
-							'txt'   => isset($value['txt'])   ? $value['txt'] 	: null,
+							'true'          => isset($value['true'])  ? $value['true'] 	: null,
+							'score'         => isset($value['score']) ? $value['score'] : null,
+							'type'          => isset($value['type'])  ? $value['type'] 	: null,
+							'desc'          => isset($value['desc'])  ? $value['desc'] 	: null,
+							'txt'           => isset($value['txt'])   ? $value['txt'] 	: null,
+							'attachment_id' => $attachment_id,
 			     		];
 					}
 				}
