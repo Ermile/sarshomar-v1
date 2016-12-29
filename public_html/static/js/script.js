@@ -184,11 +184,19 @@ function addNewOpt(_group, _title)
 	template.find('.element .true label').attr('for', 'true' + num);
 	template.find('.element .true input').attr('id', 'true' + num);
 	template.find('.element .true input').attr('checked', false);;
+	// set file
+	template.find('.element .file input').attr('name', 'file' + num);
+	template.find('.element .file input').attr('id', 'file' + num);
+	template.find('.element .file input').val('');
+	template.find('.element .file label').attr('for', 'file' + num);
+	template.find('.element .file img').remove();
+
+
 	// set score
 	template.find('.element .score input').attr('name', 'score' + num);
 	template.find('.element .score input').attr('id', 'score' + num);
 	template.find('.element .score input').val('');
-	template.attr('data-row', num);
+	// template.find('.element').attr('data-row', num);
 
 	$('.input-group.sortable').append(template);
 	template.addClass('animated fadeInDown').delay(1000).queue(function()
@@ -267,7 +275,7 @@ function rearrangeQuestionOpts()
 	$.each($('.input-group.sortable li'), function(key, value)
 	{
 		var row = key+1;
-		$(this).attr('data-row', row);
+		$(this).find('.element').attr('data-row', row);
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
