@@ -106,7 +106,7 @@
 
 /************************************************************** layout */
 body{background-color:#00667a;color:#6E6F6F}
-.wrapper{border-style:solid;border-width:0 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:flex}
+.wrapper{border-style:solid;border-width:0 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;width:100%;/*min-height:60vh;*/background-color:#f4f4f4;padding:0;position:relative;display:flex}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:""}
 .wrapper::after,.box::after,header::after{clear:both}
 .wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px}
@@ -152,7 +152,8 @@ aside .actived{display:block}
 /************************************************************** dollar page specific styles */
 #dollar .tags{padding:2em}
 #dollar div.checkbox{padding-top:12px}
-#dollar .checkbox .check-box + label{color:#6E6F6F;font-size:1.5em}
+#dollar .checkbox .check-box + label{color:#6E6F6F;font-size:1.5em; text-align: left}
+.rtl#dollar .checkbox .check-box + label{text-align: right}
 #dollar aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.6em;font-weight:700}
 div .filters-title{color:#106d6b;font-size:1.2em;font-weight:700;padding:1em 1.9em;margin-top:1em}
 
@@ -280,8 +281,11 @@ footer #footer-note .counter{font-weight:700;text-align:center;text-transform:up
 footer #footer-note{display:flex;flex-direction:row}
 footer #footer-note .counter,footer #footer-note .love{padding:.5em 0}
 .rtl footer #footer-note .love{text-align:left}
-
-
+footer .checkbox .check-box {display: none}
+footer .checkbox {margin-right: 0;margin-left: 1.5em;padding: 1.2em .5em !important;}
+footer .checkbox .title {color: #aaa !important;font-size: inherit !important;padding: 0 !important;}
+footer .checkbox .title:hover {color: #fff !important}
+footer .is-open i {transform:rotate(180deg);}
 /************************************************************** special heading */
 .special-heading{position:relative;padding-left:90px;color:#00667A;font-size:20px;line-height:26px;margin-bottom:30px;-webkit-user-select:none;user-select:none;cursor:default}
 .rtl .special-heading{padding-left:0;padding-right:90px}
@@ -347,6 +351,7 @@ footer #footer-note .counter,footer #footer-note .love{padding:.5em 0}
 #customers-box .customer h3 a:hover,#customers-box .customer h3 a:focus{color:#00667a}
 #customers-box .customer img{width:100%;max-width:250px;height:auto}
 #customers-box .customer p{color:#adadad}
+#customers-box .customer:nth-child(even) h3,#customers-box .customer:nth-child(even) p{text-align:left}
 #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right}
 .rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:left}
 #target #customers-box{background-color:transparent;padding:0 0 50px}
@@ -1359,10 +1364,12 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 /************************************************************** text based pages */
 .main.pad.text-based{padding-top:5em}
 .text-based .special-heading{color:#6E6E6E;font-size:30px}
-.text-based h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAA;line-height:2em;font-weight:700;margin-bottom:2em}
-.rtl .text-based h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAA}
+.text-based h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAA;line-height:2em;font-weight:700;margin-bottom:2em; text-align: left}
+.rtl .text-based h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAA; text-align: right;}
 .text-based .special-heading{margin-bottom:2em}
 .text-based .content{padding:0 3em;margin-bottom:5em}
+.text-based .content p:not(.em){text-align: left}
+.rtl .text-based .content p:not(.em){text-align: right}
 .text-based .content p,.text-based .content ul li{color:#6E6F6F;line-height:2em}
 .rtl .text-based{text-align:justify}
 .text-based ul{list-style:none;margin-bottom:5em}

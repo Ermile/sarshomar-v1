@@ -129,31 +129,32 @@
   .wrapper{padding: 0;border-top:0;display: block}
   #intro-box p{font-size:1.6em;}
   #random-chart h3{text-align: left;padding: 1em .2em;font-size: 1em;}
-  #random-chart h3 a{font-size: 2em;font-weight: 500;}
+  #random-chart h3 a{font-size: 1.5em;font-weight: 500;}
   .special-heading::after{display: none;}
+  /*--Home--*/
+  #random-chart {background: transparent}
+  #intro-box h2 {padding: 0; line-height: normal}
   /*--customer--*/
   #customers-box{padding:0;overflow:hidden;}
   .wrapper #customers-box .customer{width: 90%; text-align: center;margin: 0em auto;padding:1em 0;}
+  .wrapper #customers-box .customer div:last-child {display: none;}
+  .wrapper #customers-box .customer div:nth-child(2) {width: 70%}
   #customers-box .customer p{width: 100%;margin:0 auto;text-align: left;font-size: 1.6em;}
   #customers-box .customer h3 {padding-top: 0;}
   #customers-box .customer h3::before{display: none;}
   #customers-box .customer h3::after{display: none;}
-  .rtl #customers-box .customer:nth-child(even) h3, .rtl #customers-box .customer:nth-child(even) p {text-align: center;}
-  #customers-box .customer h3, #customers-box .customer p {text-align: center}
-  .rtl #customers-box .customer h3, #customers-box .customer p {text-align: center}
-  #customers-box .customer:nth-child(odd) h3, #customers-box .customer:nth-child(odd) p {text-align: center;}
+  #customers-box .customers-container{width:90%;}
   /*--features--*/
 
   .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
-
+#features-box {padding: 50px 15px;}
+#features .box {margin: 0 3em}
   /*--help--*/
-  .help-main-box, .help-category-box, .help-post-box {
-    margin: 0;
-}
+  .help-main-box, .help-category-box, .help-post-box {margin: 0;}
 
 /**********************************dashbord***************************/
 
-  .wrapper>aside{display: block;width: 100%;text-align: center;padding-top: 5em;}
+  .wrapper>aside{display: block;width: 100%;text-align: center;/*padding-top: 5em;*/}
   .wrapper>aside img{width: 70%;}
   .dashboard .progress{margin-top: 40px;}
   .personal-info{font-size: 1.5em;}
@@ -193,11 +194,18 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .page-progress{width: 90%;}
 .polls-row .date{display: initial;}
 
-/**********************************qeastion***************************/
+/**********************************question***************************/
 #dollar .polls-body{padding: 3em;}
 #dollar #search-result .polls-head{padding: 0 3em;}
 
 /*.add_6k_publish .element{padding: 0 10px;}*/
+
+p.em {padding: 1.5em 2em;}
+#about-bottom {padding: 50px 15px;}
+#contact .box {margin:0;}
+#contact .contact-ways .row span {padding: 4px 1em;font-size: 12px;}
+
+
 }
 
 @media only screen and (max-width: 768px){
@@ -208,19 +216,27 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
   #inestimable img{display: none;}
   /*--footer--*/
   footer{border-top: 0;}
-  footer #footer-links{border-bottom:0;}
+  footer #footer-links{border-bottom:0;padding-bottom: 0em;margin-bottom: 0em;}
   footer #footer-links a{padding: .5em;display: inline-block;}
   .rtl footer #footer-links section h4{text-align: right;}
   footer #footer-links section h4{text-align: left;}
   footer #footer-nav .eco img{display: none;}
+  
 
 .wrapper{border-bottom: 8px solid transparent;}
+
+footer .hide-md {display: none;}
+footer .show-this {display: block;}
 }
 /* #Mobile (Portrait) ================================== Design for a width until 479px */
 
 @media only screen and (max-width: 479px){
   #homepage .wrapper .box{padding: 1em;}
   #customers-box .customers-container{width:98%;}
+    .rtl #customers-box .customer:nth-child(even) h3, .rtl #customers-box .customer:nth-child(even) p {text-align: center;}
+  #customers-box .customer h3, #customers-box .customer p {text-align: center}
+  .rtl #customers-box .customer h3, #customers-box .customer p {text-align: center}
+  #customers-box .customer:nth-child(odd) h3, #customers-box .customer:nth-child(odd) p {text-align: center;}
   /*--header--*/
   header .logo img{width: 8em;}
   /*--footer--*/
@@ -262,8 +278,16 @@ aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
 .rtl .text-based h2:not(.special-heading) {text-align: right;}
 .text-based .content {padding: 0 1em;}
 .text-based .special-heading {font-size: 20px;}
-#contact .box {margin:0;}
+
  }
+
+
+@media only screen and (min-width: 768px){
+  .hide-in-desktop {
+    display: none;
+  }
+}
+
 
   /*==================================
   @media only screen and (max-width: 320px){}
