@@ -130,7 +130,7 @@ aside .select-box{margin:10px 0;padding-left:1.2em}
 aside .group:first-child{margin-top:1.5em}
 .rtl aside .select-box{padding-left:0;padding-right:2em;margin-bottom:0}
 .rtl aside .select-box.filters-box{padding-right:1.2em}
-aside .select-box label{line-height:26px;color:#6E6F6F;font-size:1.5em;width:100%;font-weight:500;padding-left:.5em}
+aside .select-box label{line-height:26px;color:#6E6F6F;font-size:1.2em;width:100%;font-weight:500;padding-left:.5em}
 .rtl aside .select-box label{padding-right:1em;padding-left:.5em}
 aside select{-webkit-appearance:none;-moz-appearance:none;appearance:none;min-width:70px;padding:.2em;border:none;outline:none;box-shadow:none}
 aside select:focus{outline:none}
@@ -145,20 +145,23 @@ aside input[type=checkbox].full-line-title+label::after{content:attr(data-title)
 aside .group{margin-bottom:1em}
 aside .closed{display:none}
 aside .actived{display:block}
-aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height:50px;display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:600}
-aside .filters_group.selected{background-color:#083942}
-aside .actived{display:block}
 aside  div.checkbox{padding-top:12px}
 aside  .checkbox .check-box + label{color:#6E6F6F;font-size:1.2em; text-align: left}
 .rtl aside  .checkbox .check-box + label{text-align: right}
 aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.3em;font-weight:700}
+aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height:50px;display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:600}
+aside .filters_group.selected{}
 
 
 /************************************************************** dollar page specific styles */
 #dollar .tags{padding:0 2em}
 #dollar .floating-title{margin-top:3em; }
 #dollar .floating-title::before{left:0; }
-.rtl #dollar .floating-title::before{right:0; }
+#dollar.rtl .floating-title::before{right:0;left:initial;}
+aside input[type=checkbox]#for_questions, #dollar input#for_filter{display:none;}
+aside input[type=checkbox]#for_questions:checked +label, #dollar input#for_filter:checked +label{background-color:#083942;}
+
+
 
 /************************************************************** header */
 header{background-color:#f4f4f4;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}

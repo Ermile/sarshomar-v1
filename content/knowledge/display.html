@@ -2,18 +2,30 @@
 
 {%block content%}
 <aside class="unselectable">
-<div class="filters_group">{%trans "مربوط به فیلترها"%}</div>
-<div class="filters_group selected">{%trans "مربوط به سؤالات"%}</div>
-	{{block('aside_gender')}}
-	{{block('aside_marrital')}}
-	{{block('aside_employment')}}
-	{{block('aside_question')}}
-	{{block('aside_according')}}
-	{{block('aside_survey')}}
-	{{block('aside_filters')}}
+
+	<input type="checkbox" id="for_questions" name="for_questions" checked>
+	<label class="filters_group selected" for="for_questions">{%trans "مربوط به سؤالات"%}</label>
+	<div data-response="for_questions" data-response-effect='slide'>
+		{{block('aside_gender')}}
+		{{block('aside_marrital')}}
+		{{block('aside_employment')}}
+	</div>
+
+	<input type="checkbox" id="for_filter" name="for_filter" checked>
+	<label class="filters_group" for="for_filter">{%trans "مربوط به فیلترها"%}</label>
+	<div data-response="for_filter" data-response-effect='slide'>
+		{{block('aside_question')}}
+		{{block('aside_according')}}
+		{{block('aside_survey')}}
+		{{block('aside_filters')}}
+	</div>
+
+
+
+
 </aside>
 
-<div class="main" id="knowledge">
+<div class="main">
 	<div class="row unselectable">
 		<div class="span1"></div>
 		<div class="span10">
@@ -28,7 +40,6 @@
 
 	</div>
 	<div class="row">
-		<!-- <div class="floating-title" data-title="{%trans 'فیلترهای اعمالی'%}"></div> -->
 		<div class="floating-title" data-title="{%trans 'فیلترهای اعمالی'%}"></div>
 		<div class="tags">
 			<a href=""></a>
@@ -43,7 +54,7 @@
 	<div class="group">
 		<input type="checkbox" id="question" class="full-line-title">
 		<label for="question" data-title='{%trans "Question type"%}'></label>
-		<div class="select-box" data-response='question'>
+		<div class="select-box" data-response='question' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
 				<label for="type1" class="check-box"></label>
@@ -68,7 +79,7 @@
 	<div class="group">
 		<input type="checkbox" id="according" class="full-line-title">
 		<label for="according" data-title='{%trans "According to survey"%}'></label>
-		<div class="select-box" data-response='according'>
+		<div class="select-box" data-response='according' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
 				<label for="multiplechoice" class="check-box"></label>
@@ -113,7 +124,7 @@
 	<div class="group">
 		<input type="checkbox" id="survey" class="full-line-title">
 		<label for="survey" data-title='{%trans "Survey time"%}'></label>
-		<div class="select-box" data-response='survey'>
+		<div class="select-box" data-response='survey' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="time1" type="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
 				<label for="time1" class="check-box"></label>
@@ -135,7 +146,7 @@
 		<input type="checkbox" id="marrital" class="full-line-title">
 		<label for="marrital" data-title='{%trans "marrital"%}'></label>
 
-		<div class="select-box" data-response='marrital'>
+		<div class="select-box" data-response='marrital' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="single" type="checkbox" name='status' value="single" {%if checkbox.status == 'publish'%}checked{%endif%}>
 				<label for="single" class="check-box"></label>
@@ -156,7 +167,7 @@
 		<input type="checkbox" id="employment" class="full-line-title">
 		<label for="employment" data-title='{%trans "Employment"%}'></label>
 
-		<div class="select-box" data-response='employment'>
+		<div class="select-box" data-response='employment' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="employee" type="checkbox" name='status' value="employee" {%if checkbox.status == 'publish'%}checked{%endif%}>
 				<label for="employee" class="check-box"></label>
@@ -183,7 +194,7 @@
 		<input type="checkbox" id="gender" class="full-line-title">
 		<label for="gender" data-title='{%trans "Gender"%}'></label>
 
-		<div class="select-box" data-response='gender'>
+		<div class="select-box" data-response='gender' data-response-effect='slide'>
 			<div class="checkbox">
 				<input id="male" type="checkbox" name='status' value="male" {%if checkbox.status == 'publish'%}checked{%endif%}>
 				<label for="male" class="check-box"></label>
@@ -250,10 +261,6 @@
 		</div>
 	</div>
 {%endblock%}
-
-
-
-
 
 
 
