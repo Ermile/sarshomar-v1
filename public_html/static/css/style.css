@@ -1279,9 +1279,9 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #contact .contact-box .contact-data{padding:2em}
 #contact .contact-box h2{font-size:1.6em;-webkit-user-select:none;user-select:none}
 #contact .sharebox{text-align:center}
-#contact .contact-ways .row{margin-bottom:1.5em;display:-webkit-flex;display:flex}
-#contact .contact-ways .row img{height:3em}
-#contact .contact-ways .row span{padding:1em}
+#contact .contact-ways .row{margin-bottom:1.5em;display:-webkit-flex;display:flex;align-items:center}
+#contact .contact-ways .row i{color:#28618a}
+#contact .contact-ways .row span{padding:0 1em}
 #contact .contact-box .map{display:block;padding:1em}
 
 
