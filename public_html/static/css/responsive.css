@@ -221,7 +221,7 @@ p.em {padding: 1.5em 2em;}
   .rtl footer #footer-links section h4{text-align: right;}
   footer #footer-links section h4{text-align: left;}
   footer #footer-nav .eco img{display: none;}
-  
+
 
 .wrapper{border-bottom: 8px solid transparent;}
 
@@ -289,8 +289,11 @@ footer .show-this {display: block;}
 }
 
 
-  /*==================================
-  @media only screen and (max-width: 320px){}
+  /*==================================*/
+ @media only screen and (max-width: 310px){
+  body{display:none;}
+  html::before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center;}
+ }
 
 
 
@@ -304,3 +307,9 @@ footer .show-this {display: block;}
 
 
 
+@media print {
+   .wrapper, footer, header, header #header-top{border:none;}
+   .container, .wrapper{width:100%;max-width:100%;}
+   #inestimable{display:none}
+   footer{background-color:#eee}
+}
