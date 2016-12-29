@@ -514,14 +514,8 @@ right:0;left:0;top:100%}
 .progress>.bar{display:block;line-height:1;height:1.75em;position:relative;width:0;min-width:2em;background:#888;border-radius:.28571429rem;-webkit-transition:width .1s ease,background-color .1s ease;transition:width .1s ease,background-color .1s ease}
 .progress>.bar::after{content:'';opacity:0;position:absolute;top:0;left:0;right:0;bottom:0;background:#FFF;border-radius:.28571429rem;-webkit-animation:progress-active 2s ease infinite;animation:progress-active 2s ease infinite}
 .progress>.detail{position:absolute;width:100%;font-size:1em;top:100%;right:auto;left:0;bottom:auto;color:#afafaf;font-weight:700;text-shadow:none;margin-top:.5em;text-align:center;-webkit-transition:color .4s ease;transition:color .4s ease;line-height:2em}
-@-webkit-keyframes progress-active {
-0%{opacity:.3;width:0}
-100%{opacity:0;width:100%}
-}
-@keyframes progress-active {
-0%{opacity:.3;width:0}
-100%{opacity:0;width:100%}
-}
+@-webkit-keyframes progress-active { 0%{opacity:.3;width:0} 100%{opacity:0;width:100%} }
+@keyframes progress-active { 0%{opacity:.3;width:0} 100%{opacity:0;width:100%} }
 .progress[data-percent^="1"] .bar{width:10%}
 .progress[data-percent^="2"] .bar{width:20%}
 .progress[data-percent^="3"] .bar{width:30%;background-color:#EFBC72}
@@ -535,54 +529,30 @@ right:0;left:0;top:100%}
 
 
 /************************************************************** checkbox */
-@-moz-keyframes dothabottomcheck {
-0%{height:0}
-100%{height:12px}
-}
-@-webkit-keyframes dothabottomcheck {
-0%{height:0}
-100%{height:12px}
-}
-@keyframes dothabottomcheck {
-0%{height:0}
-100%{height:12px}
-}
-@keyframes dothatopcheck {
-0%{height:0}
-50%{height:0}
-100%{height:30px}
-}
-@-webkit-keyframes dothatopcheck {
-0%{height:0}
-50%{height:0}
-100%{height:30px}
-}
-@-moz-keyframes dothatopcheck {
-0%{height:0}
-50%{height:0}
-100%{height:30px}
-}
-.checkbox{display:-webkit-inline-flex;display:inline-flex;position:relative}
-div.checkbox{display:-webkit-flex;display:flex;width:100%}
-.checkbox input[type=checkbox],.checkbox input[type=radio]{opacity:0;width:0;height:0;z-index:-1;position:absolute}
-.checkbox .check-box{position:relative;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;-moz-transition:border-color ease .2s;-o-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #D8D8D8;background-color:transparent}
-.checkbox .check-box::before,.checkbox .check-box::after{position:absolute;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:4px;height:0;content:' ';-webkit-transition:opacity ease .5;-moz-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;-moz-transform-origin:left top;-ms-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428}
-.checkbox .check-box::before{top:17px;left:11px;-webkit-transform:rotate(-135deg);-moz-transform:rotate(-135deg);-ms-transform:rotate(-135deg);-o-transform:rotate(-135deg);transform:rotate(-135deg);box-shadow:0 0 0 2px transparent}
-.checkbox .check-box::after{top:8px;left:2px;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}
-.checkbox input[type=checkbox]:checked + .check-box::after,.checkbox input[type=radio]:checked + .check-box::after,.checkbox .check-box.checked::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0 forwards;-moz-animation:dothabottomcheck .2s ease 0 forwards;-o-animation:dothabottomcheck .2s ease 0 forwards;animation:dothabottomcheck .2s ease 0 forwards}
-.checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0 forwards;-moz-animation:dothatopcheck .4s ease 0 forwards;-o-animation:dothatopcheck .4s ease 0 forwards;animation:dothatopcheck .4s ease 0 forwards}
-.checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer}
-.checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a}
-.checkbox.active .check-box{border-color:#00667a}
+@-moz-keyframes dothabottomcheck{0%{height:0;}100%{height:12px;}}
+@-webkit-keyframes dothabottomcheck{0%{height:0;}100%{height:12px;}}
+@keyframes dothabottomcheck{0%{height:0;}100%{height:12px;}}
+@keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
+@-webkit-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
+@-moz-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
+.checkbox{display:-webkit-inline-flex;display:inline-flex;position:relative;}
+div.checkbox{display:-webkit-flex;display:flex;width: 100%;}
+.checkbox input[type=checkbox],.checkbox input[type=radio]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
+.checkbox .check-box{position:relative;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;-moz-transition:border-color ease .2s;-o-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #D8D8D8;background-color:transparent;}
+.checkbox .check-box::before,.checkbox .check-box::after{position:absolute;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:4px;height:0;content:' ';-webkit-transition:opacity ease .5;-moz-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;-moz-transform-origin:left top;-ms-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428;}
+.checkbox .check-box::before{top:17px;left:11px;-webkit-transform:rotate(-135deg);-moz-transform:rotate(-135deg);-ms-transform:rotate(-135deg);-o-transform:rotate(-135deg);transform:rotate(-135deg);box-shadow:0 0 0 2px transparent;}
+.checkbox .check-box::after{top:8px;left:2px;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);}
+.checkbox input[type=checkbox]:checked + .check-box,.checkbox input[type=radio]:checked + .check-box,.checkbox .check-box.checked{}
+.checkbox input[type=checkbox]:checked + .check-box::after,.checkbox input[type=radio]:checked + .check-box::after,.checkbox .check-box.checked::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;-moz-animation:dothabottomcheck .2s ease 0s forwards;-o-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards;}
+.checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
+.checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
+.checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a;}
+.checkbox.active .check-box{border-color:#00667a;}
 .checkbox.margin-bottom{margin-bottom:15px}
 
 
 /************************************************************** radio */
-@keyframes explode {
-0%{opacity:0;transform:scale(1.5)}
-60%{opacity:1;transform:scale(0.75)}
-100%{opacity:1;transform:scale(1)}
-}
+@keyframes explode{0%{opacity:0;transform:scale(1.5);}60%{opacity:1;transform:scale(0.75);}100%{opacity:1;transform:scale(1);}}
 .radio{display:inline-flex}
 .radio .radio-box{position:relative;width:30px;height:30px;display:inline-block}
 .radio .radio-box::before{content:'';width:12px;height:12px;background:#00667a;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;box-sizing:border-box;border-radius:50%}
@@ -887,12 +857,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .rtl .pie{margin-right:0;margin-left:5px}
 .pie::before{content:'';display:block;margin-left:50%;height:100%;border-radius:0 100% 100% 0 / 50%;background-color:inherit;transform-origin:left;animation:spin 50s linear infinite,bg 100s step-end infinite;animation-play-state:paused;animation-delay:inherit}
 .pie::after{content:'';display:inline-block;position:absolute;width:60%;height:60%;top:20%;right:20%;border-radius:50%;background-color:#f4f4f4}
-@keyframes spin {
-to{transform:rotate(180deg)}
-}
-@keyframes bg {
-50%{background:#00667a}
-}
+@keyframes spin{to{transform:rotate(180deg)}}
+@keyframes bg{50%{background:#00667a}}
 
 
 /*************************************************************** filter page */
@@ -920,30 +886,12 @@ to{transform:rotate(180deg)}
 .fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}
 .fadeOutSide{-webkit-animation-name:fadeOutRight;animation-name:fadeOutRight}
 .rtl .fadeOutSide{-webkit-animation-name:fadeOutLeft;animation-name:fadeOutLeft}
-@-webkit-keyframes fadeInDown {
-from{opacity:0;-webkit-transform:translate3d(0,-50%,0);transform:translate3d(0,-50%,0)}
-to{opacity:1;-webkit-transform:none;transform:none}
-}
-@keyframes fadeInDown {
-from{opacity:0;-webkit-transform:translate3d(0,-50%,0);transform:translate3d(0,-50%,0)}
-to{opacity:1;-webkit-transform:none;transform:none}
-}
-@-webkit-keyframes fadeOutRight {
-from{opacity:1;-webkit-transform:none;transform:none}
-to{opacity:0;-webkit-transform:translate3d(10%,0,0);transform:translate3d(10%,0,0)}
-}
-@keyframes fadeOutRight {
-from{opacity:1;-webkit-transform:none;transform:none}
-to{opacity:0;-webkit-transform:translate3d(10%,0,0);transform:translate3d(10%,0,0)}
-}
-@-webkit-keyframes fadeOutLeft {
-from{opacity:1;-webkit-transform:none;transform:none}
-to{opacity:0;-webkit-transform:translate3d(-10%,0,0);transform:translate3d(-10%,0,0)}
-}
-@keyframes fadeOutLeft {
-from{opacity:1;-webkit-transform:none;transform:none}
-to{opacity:0;-webkit-transform:translate3d(-10%,0,0);transform:translate3d(-10%,0,0)}
-}
+@-webkit-keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -50%, 0);transform:translate3d(0, -50%, 0);} to {opacity:1; -webkit-transform:none;transform:none;}}
+@keyframes fadeInDown { from {opacity:0; -webkit-transform:translate3d(0, -50%, 0);transform:translate3d(0, -50%, 0);} to {opacity:1; -webkit-transform:none; transform:none; }}
+@-webkit-keyframes fadeOutRight { from {opacity:1; -webkit-transform:none;transform:none;} to {opacity:0; -webkit-transform:translate3d(10%, 0, 0);transform:translate3d(10%, 0, 0);}}
+@keyframes fadeOutRight { from {opacity:1; -webkit-transform:none; transform:none; } to {opacity:0; -webkit-transform:translate3d(10%, 0, 0);transform:translate3d(10%, 0, 0);}}
+@-webkit-keyframes fadeOutLeft { from {opacity:1; -webkit-transform:none;transform:none;} to {opacity:0; -webkit-transform:translate3d(-10%, 0, 0);transform:translate3d(-10%, 0, 0);}}
+@keyframes fadeOutLeft { from {opacity:1; -webkit-transform:none; transform:none; } to {opacity:0; -webkit-transform:translate3d(-10%, 0, 0);transform:translate3d(-10%, 0, 0);}}
 
 
 /************************************************************** features page */
