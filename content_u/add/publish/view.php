@@ -12,8 +12,6 @@ class view extends \content_u\home\view
 	 */
 	function view_publish($_args)
 	{
-		$this->include->fontawesome = true;
-
 		// set the short url to data
 		$poll = $_args->api_callback;
 

@@ -15,7 +15,6 @@ class view extends \content\home\view
 		{
 			$this->data->page['title'] = T_($this->data->module);
 		}
-		$this->include->fontawesome = true;
 	}
 }
 ?>

@@ -17,7 +17,6 @@ class view extends \mvc\view
 
 		$this->include->js          = true;
 		$this->include->chart       = true;
-		$this->include->fontawesome = true;
 	}
 
 

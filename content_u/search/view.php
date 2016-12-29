@@ -9,8 +9,6 @@ class view extends \mvc\view
 	 */
 	function view_search($_args)
 	{
-		$this->include->fontawesome = true;
-
 		$poll_list = $_args->api_callback;
 
 		$new_poll_list = [];

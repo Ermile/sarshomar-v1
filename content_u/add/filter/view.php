@@ -28,7 +28,6 @@ class view extends \content_u\home\view
 			'link_filter'  => $url. '/filter',
 			'link_publish' => $url. '/publish'
 		];
-		$this->include->fontawesome = true;
 
 		$filters = \lib\utility\postfilters::get_filter($poll_survey_id);
 

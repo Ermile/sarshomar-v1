@@ -5,8 +5,6 @@ class view extends \mvc\view
 {
 	public function view_profile($_args)
 	{
-		$this->include->fontawesome = true;
-
 		$this->data->profile = $_args->api_callback;
 		// $profile_data =
 		// [

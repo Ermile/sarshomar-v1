@@ -13,7 +13,6 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = true;
 		}
-		$this->include->fontawesome = true;
 	}
 
 
@@ -26,7 +25,6 @@ class view extends \mvc\view
 	{
 
 		$this->data->search_value =  $_args->get("search")[0];
-		// get fontawesome class
 		$list = $_args->api_callback;
 		if($list && is_array($list))
 		{
