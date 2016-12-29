@@ -149,6 +149,7 @@ aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height
 aside .filters_group.selected{background-color:#083942}
 aside .actived{display:block}
 
+
 /************************************************************** dollar page specific styles */
 #dollar .tags{padding:2em}
 #dollar div.checkbox{padding-top:12px}
@@ -156,6 +157,7 @@ aside .actived{display:block}
 .rtl#dollar .checkbox .check-box + label{text-align: right}
 #dollar aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.6em;font-weight:700}
 div .filters-title{color:#106d6b;font-size:1.2em;font-weight:700;padding:1em 1.9em;margin-top:1em}
+
 
 /************************************************************** header */
 header{background-color:#f4f4f4;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
