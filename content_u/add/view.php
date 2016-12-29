@@ -75,7 +75,7 @@ class view extends \content_u\home\view
 		$poll    = \lib\db\polls::get_poll($poll_id);
 		if(isset($poll['type']))
 		{
-			$poll['type'] = \content_u\add\model\config::set_html_type($poll['type']);
+			$poll['type'] = \lib\db\polls::set_html_type($poll['type']);
 		}
 
 		$this->data->poll = $poll;

@@ -40,7 +40,61 @@ trait order
 			AND (posts.post_language IS NULL OR posts.post_language = '$language')
 			-- Check public poll
 			AND posts.post_privacy = 'public'
+			-- Check post filter
+			AND
+				posts.id IN
+				(
+					CONCAT_WS(',',
 
+						(
+							IF(
+							(
+								SELECT
+									COUNT(*)
+								FROM
+									termusages
+								WHERE
+									termusages.termusage_id = posts.id AND
+									termusages.termusage_foreign = 'posts'
+							) = 0 , posts.id , 0
+						  )
+						)
+						,
+						(
+							SELECT
+								IF(filter_id IS NULL, posts.id, 0)
+							FROM
+								users WHERE users.id = $_user_id LIMIT 1
+						)
+						,
+						(
+						IF(
+							(
+								SELECT
+									GROUP_CONCAT(termusages.term_id SEPARATOR ' AND ')
+								FROM
+									termusages
+								INNER JOIN terms ON termusages.term_id = terms.id
+								WHERE
+									termusages.termusage_id = posts.id AND
+									termusages.termusage_foreign = 'posts' AND
+									terms.term_type LIKE 'users%'
+							)
+							IN
+							(
+								SELECT
+									term_id
+								FROM
+									termusages
+								WHERE
+									termusages.termusage_id = $_user_id AND
+									termusages.termusage_foreign = 'users'
+							),
+							posts.id, 0
+							)
+						)
+					)
+				)
 			-- Check poll tree
 			AND
 				CASE
