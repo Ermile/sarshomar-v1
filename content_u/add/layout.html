@@ -70,8 +70,8 @@
 
     <div class="file">
      <img src="{{url.static}}images/telegram/germile/about.jpg">
-     <input type="file" name="file_title" id="file_title">
-     <label class="label-file icon-pic" for="file_title"></label>
+     <input type="file" name="file1" id="file1">
+     <label class="label-file icon-pic" for="file1"></label>
     </div>
 
     <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
@@ -90,8 +90,8 @@
     <input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
 
     <div class="file">
-     <input type="file" name="file_title" id="file_title">
-     <label class="label-file icon-pic" for="file_title"></label>
+     <input type="file" name="file2" id="file2">
+     <label class="label-file icon-pic" for="file2"></label>
     </div>
 
     <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
@@ -105,9 +105,35 @@
    </div>
   </li>
  {%endif%}
+
+
+
+ </ul>
+
+ <ul class="input-group">
+  <li data-response='meta_descriptive' data-response-hide data-response-effect='slide'>
+   <div class="element" data-row="other">
+    <label class="title small" for="answer_other">{%trans "Other"%}</label>
+    <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
+    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
+    <span class="icon-picture-o icon" data-response-hide></span>
+   </div>
+  </li>
+
+  <li data-response='meta_branding' data-response-hide data-response-effect='slide'>
+   <div class="element" data-row="brand">
+    <label class="title small" for="answer_brand">{%trans "brand"%}</label>
+    <input class="input" type="text" name="answer_brand" id="answer_brand" autocomplete="off">
+    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
+    <span class="icon-picture-o icon" data-response-hide></span>
+   </div>
+  </li>
+
  </ul>
 {% endspaceless %}
 {%endblock%}
+
+
 
 
 {%block feature_score%}
@@ -154,6 +180,17 @@
   <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
   <label for="descriptive" class="check-box"></label>
   <label for="descriptive">{%trans "Allow to type other answer"%}</label>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block feature_branding%}
+{% spaceless %}
+ <div class="checkbox">
+  <input type="checkbox" name="meta_branding" id="meta_branding" {%if poll.meta.branding%}checked{%endif%}>
+  <label for="meta_branding" class="check-box"></label>
+  <label for="meta_branding">{%trans "Branding"%}</label>
  </div>
 {% endspaceless %}
 {%endblock%}
