@@ -26,6 +26,10 @@
  <div class="element">
   <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
   <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
+  <div class="file">
+   <input type="file" name="file_title" id="file_title">
+   <label class="label-file icon-pic" for="file_title"></label>
+  </div>
  </div>
 {% endspaceless %}
 {%endblock%}
