@@ -45,6 +45,12 @@
    <div class="element" data-row="{{answer_key}}">
     <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
     <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
+
+    <div class="file">
+     <input type="file" name="file_title" id="file_title">
+     <label class="label-file icon-pic" for="file_title"></label>
+    </div>
+
     <span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
      <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
      <label class="check-box" for="true{{answer_key}}"></label>
@@ -61,10 +67,18 @@
    <div class="element" data-row="1">
     <label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
     <input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
+
+    <div class="file">
+     <img src="{{url.static}}images/telegram/germile/about.jpg">
+     <input type="file" name="file_title" id="file_title">
+     <label class="label-file icon-pic" for="file_title"></label>
+    </div>
+
     <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
      <input type="checkbox" name="true1" id="true1">
      <label class="check-box" for="true1"></label>
     </span>
+
     <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score1"></span>
     <span class="icon-picture-o icon" data-response-hide></span>
     <span class="icon-times delete" tabindex="0"></span>
@@ -74,10 +88,17 @@
    <div class="element" data-row="2">
     <label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
     <input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
+
+    <div class="file">
+     <input type="file" name="file_title" id="file_title">
+     <label class="label-file icon-pic" for="file_title"></label>
+    </div>
+
     <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
      <input type="checkbox" name="true2" id="true2">
      <label class="check-box" for="true2"></label>
     </span>
+
     <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
     <span class="icon-picture-o icon" data-response-hide></span>
     <span class="icon-times delete" tabindex="0"></span>
@@ -287,7 +308,7 @@
      {%if survey_mod%}
      <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
      {%else%}
-     <button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button>
+     <!-- <button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button> -->
      {%endif%}
      <button class="btn primary" send-name="filter" value="filter">{%trans "Next Step"%}</button>
     </nav>
