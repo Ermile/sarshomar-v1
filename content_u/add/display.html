@@ -57,4 +57,13 @@
      {{block('feature_btn')}}
     </form>
    </div>
+   {{block('modalCrop')}}
+{%endblock%}
+
+
+
+{%block foot_js%}
+
+  <link rel="stylesheet" href="{{url.static}}css/cropper.min.css">
+  <script src="{{url.static}}js/cropper.min.js"></script>
 {%endblock%}

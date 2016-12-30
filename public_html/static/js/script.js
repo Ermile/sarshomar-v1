@@ -107,14 +107,51 @@ function showImagePreview(_file, _output)
 				// var span = document.createElement('span');
 
 				// Render thumbnail
-				var span = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
-				$(_output).html(span);
+				var imageEl = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
+				$(_output).html(imageEl);
+				$(window).trigger('cropBox:open', _output);
 			};
 		})(f);
 
 		// Read in the image file as a data URL.
 		reader.readAsDataURL(f);
 	}
+}
+
+
+/**
+ * [startCrop description]
+ * @param  {[type]} _el [description]
+ * @return {[type]}     [description]
+ */
+function startCrop(_el)
+{
+	$('#modal-crop').trigger('open');
+	console.log(_el);
+
+	var cropBox = $('#modal-crop .cropBox');
+	var img     = $(_el).find('img').clone();
+	console.log(img);
+
+
+	cropBox.html(img);
+
+	cropBox.find('img').cropper(
+	{
+		aspectRatio: 1,
+		preview: '.img-preview',
+		crop: function(e)
+		{
+			// Output the result data for cropping image.
+			// console.log(e.x);
+			// console.log(e.y);
+			// console.log(e.width);
+			// console.log(e.height);
+			// console.log(e.rotate);
+			// console.log(e.scaleX);
+			console.log(e);
+		}
+	});
 }
 
 
@@ -730,6 +767,31 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		var output = $(this).parents('.file').find('.preview');
 		var imagePreview = showImagePreview(this, output);
 	});
+	// after complete loading, open cropbox
+	$(window).off("cropBox:open");
+	$(window).on("cropBox:open", function(_e, _el)
+	{
+		if(!_el)
+		{
+			return false;
+		}
+		$(_el).attr('data-modal', '');
+		// start crop with this image
+		// startCrop(_el);
+	});
+	// on click on preview of imagee
+	$('body').on("click", ".file .preview", function(_e, _el)
+	{
+		startCrop(this);
+	});
+	// on click on preview of imagee
+	$('body').on("click", "#modal-crop .btn", function(_e, _el)
+	{
+		// complete croping
+		$('#modal-crop').trigger('close');
+	});
+
+
 });
 
 

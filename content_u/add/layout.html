@@ -509,3 +509,30 @@
 {% endspaceless %}
 {%endblock%}
 
+
+
+{%block modalCrop%}
+  <div class='modal' id='modal-crop'>
+   <div class='modal-dialog'>
+   <h3 class='modal-title'>{%trans "Fit to best size"%}</h3>
+   <div class='modal-body'>
+    <div class="row">
+     <div class="span12">
+      <div class="cropBox"></div>
+     </div>
+<!--
+     <div class="span3">
+      <div class="img-preview preview-large"></div>
+      <div class="img-preview preview-medium"></div>
+      <div class="img-preview preview-small"></div>
+     </div>
+-->
+    </div>
+    <br />
+    <div class="row auto btn-container center">
+     <div class='btn'>{%trans "Apply"%}</div>
+    </div>
+   </div>
+  </div>
+ </div>
+{%endblock%}
