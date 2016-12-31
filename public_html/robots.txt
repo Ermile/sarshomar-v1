@@ -9,3 +9,7 @@ Disallow: /*.txt$
 
 Sitemap: http://sarshomar.com/sitemap.xml
 Sitemap: http://sarshomar.com/sitemap/sitemap.xml
+
+
+User-agent: Browsershots
+Disallow:
