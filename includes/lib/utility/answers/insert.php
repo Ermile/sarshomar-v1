@@ -81,11 +81,13 @@ trait insert
 				if(isset($old_answers[$i]) && $old_answers[$i] == $tmp_answers)
 				{
 					\lib\db\pollopts::update(['status' => 'enable'], $_args['poll_id'], $i);
-					continue;
-				}
 
-				$tmp_answers['status'] = 'enable';
-				\lib\db\pollopts::update($tmp_answers, $_args['poll_id'], $i);
+				}
+				else
+				{
+					$tmp_answers['status'] = 'enable';
+					\lib\db\pollopts::update($tmp_answers, $_args['poll_id'], $i);
+				}
 			}
 			else
 			{
