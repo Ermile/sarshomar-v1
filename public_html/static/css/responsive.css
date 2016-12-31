@@ -117,12 +117,12 @@
   header #header-profile{padding:10px;margin:0}
   .rtl header #header-profile>a {}
    header #header-profile>a {}
-  header #header-bottom{}
+  header #header-bottom{padding:0 1em}
   .rtl header .logo{float: none;}
  /* nav.breadcrumb{display: none;}*/
   header #header-profile{}
-  .rtl header #header-profile {float: right; width: 100%; padding: 10px;}
-  header #header-top {border-top: none}
+  .rtl header #header-profile{}
+  header #header-top{border-top:none;display:flex;justify-content:space-between}
   /*header #header-profile>a {color: #f4f4f4;}*/
   /*--wrapper--*/
   #map{display: none;}
@@ -210,7 +210,6 @@ p.em {padding: 1.5em 2em;}
 
 @media only screen and (max-width: 768px){
   header #header-quick{display:none}
-  header #header-bottom{padding:0 1em}
   header #header-profile{display:block}
   /*--inestimable--*/
   #inestimable{margin:0;padding: 25px 10px;}
