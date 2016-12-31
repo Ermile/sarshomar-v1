@@ -162,7 +162,6 @@ aside input[type=checkbox]#for_questions, #dollar input#for_filter{display:none;
 aside input[type=checkbox]#for_questions:checked +label, #dollar input#for_filter:checked +label{background-color:#083942;}
 
 
-
 /************************************************************** header */
 header{display:-webkit-flex;display:flex;flex-direction:row;background-color:#f4f4f4;height:90px;border:none;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
 .rtl header{border-width:0 0 0 8px;-moz-border-image:url(../images/border.png) 6 0 6 8 stretch;-webkit-border-image:url(../images/border.png) 6 0 6 8 stretch;-o-border-image:url(../images/border.png) 6 0 6 8 stretch;border-image:url(../images/border.png) 6 0 6 8 stretch}
@@ -179,7 +178,7 @@ header .logo>a:hover img{opacity:.8}
 
 header #header-box{display:-webkit-flex;display:flex;-webkit-flex:1;flex:1;flex-direction:column;justify-content:space-between}
 header #header-top{display:-webkit-flex;display:flex;border-top:2px solid #00667a;height:60px;justify-content:space-between}
-header #header-bottom{display:-webkit-flex;display:flex;height:30px;align-items:flex-end;justify-content:space-between}
+header #header-bottom{display:-webkit-flex;display:flex;height:30px;align-items:center;justify-content:space-between}
 
 /* header quick */
 header #header-quick{}

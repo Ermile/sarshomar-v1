@@ -103,24 +103,24 @@
 
 /**********************************homepage-1***************************/
   /*--header--*/
-  header{border:none;}
-  .rtl header{border:none;}
-  header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
+  header{border:none;display:block;height:auto}
+  .rtl header{border:none}
+  header .logo{background-image:none;background-color:#00667a;width:100%;text-align:center;display:block;padding:1em 1em .5em}
   .rtl header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
-  header .logo img{width: 8em;}
+  header .logo img{width:8em}
   header #header-box{display: block;width: 100%;height:auto;border-style: solid;border-width:8px 8px 0 8px;-moz-border-image: url(../images/border.png) 8 stretch;-webkit-border-image: url(../images/border.png) 8 stretch;-o-border-image: url(../images/border.png) 8 stretch;border-image: url(../images/border.png) 8 stretch;}
-  header #header-quick{display: none;}
-  header #header-profile .register{float: left;}
-  .rtl header #header-profile .register{float: right;}
-  .profile{float:right;}
-  .rtl .profile{float: left;}
-  header #header-profile {padding: 10px;}
-  .rtl header #header-profile>a {float: left}
-   header #header-profile>a {float: right}
-  header #header-bottom {padding: 10px;}
+  header #header-quick{}
+  header #header-profile .register{}
+  .rtl header #header-profile .register{}
+  .profile{}
+  .rtl .profile{}
+  header #header-profile{padding:10px;margin:0}
+  .rtl header #header-profile>a {}
+   header #header-profile>a {}
+  header #header-bottom{}
   .rtl header .logo{float: none;}
  /* nav.breadcrumb{display: none;}*/
-  header #header-profile {width: 100%;}
+  header #header-profile{}
   .rtl header #header-profile {float: right; width: 100%; padding: 10px;}
   header #header-top {border-top: none}
   /*header #header-profile>a {color: #f4f4f4;}*/
@@ -209,6 +209,9 @@ p.em {padding: 1.5em 2em;}
 }
 
 @media only screen and (max-width: 768px){
+  header #header-quick{display:none}
+  header #header-bottom{padding:0 1em}
+  header #header-profile{display:block}
   /*--inestimable--*/
   #inestimable{margin:0;padding: 25px 10px;}
   #inestimable::before{display: none;}
