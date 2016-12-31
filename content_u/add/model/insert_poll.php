@@ -15,7 +15,6 @@ trait insert_poll
 	function answers_in_post()
 	{
 		$answers      = [];
-
 		$i = 0;
 		$max_post = count(utility::post());
 
@@ -25,10 +24,11 @@ trait insert_poll
 			{
 				$i++;
 				$answers[$i]['txt']         = utility::post("answer$j");
-				$answers[$i]['true']        = (utility::post("true$j")  != '') ? utility::post("true$j")  : null;
-				$answers[$i]['type']        = (utility::post("type$j")  != '') ? utility::post("type$j")  : null;
-				$answers[$i]['score']       = (utility::post("score$j") != '') ? utility::post("score$j") : null;
-				$answers[$i]['desc']        = (utility::post("desc$j")  != '') ? utility::post("desc$j")  : null;
+				$answers[$i]['true']        = (utility::post("true$j")  != '') 		? utility::post("true$j")  		: null;
+				$answers[$i]['type']        = (utility::post("type$j")  != '') 		? utility::post("type$j")  		: null;
+				$answers[$i]['score']       = (utility::post("score$j") != '') 		? utility::post("score$j") 		: null;
+				$answers[$i]['desc']        = (utility::post("desc$j")  != '') 		? utility::post("desc$j")  		: null;
+				$answers[$i]['file']        = (utility::post("saved-file$j") != '') ? utility::post("saved-file$j") : null;
 				$answers[$i]['upload_name'] = (utility::files("file$j")) ? "file$j" : null;
 			}
 		}

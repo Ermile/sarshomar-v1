@@ -195,6 +195,8 @@ trait insert
 		// start transaction
 		\lib\db::transaction();
 
+
+
 		/**
 		 * upload files of poll title
 		 */
@@ -222,6 +224,8 @@ trait insert
 			$next_id   = (int) \lib\db\polls::sarshomar_id();
 			$insert_id = ++$next_id;
 		}
+
+
 
 		// ready to inset poll
 		$insert_poll =
@@ -255,22 +259,13 @@ trait insert
 			}
 			// in update mode we update the poll
 			$poll_id = $update_id;
+
+			$old_post_meta            = \lib\db\polls::get_poll_meta($poll_id);
+			$post_meta                = array_merge($old_post_meta, $post_meta);
+			$insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
+
 			array_shift($insert_poll);
 			self::update($insert_poll, $poll_id);
-		}
-
-		// if in update mode first remoce the answers
-		// then set the new answers again
-		if($_args['update'] !== false)
-		{
-			$cat   = "poll_". $poll_id;
-			$where =
-			[
-				'post_id'    => $poll_id,
-				'option_cat' => $cat,
-				'option_key' => 'opt%'
-			];
-			\lib\utility\answers::hard_delete($where);
 		}
 
 		// the support meta
@@ -286,6 +281,7 @@ trait insert
 				$answers = $_args['answers'];
 				// remove empty index from answer array
 				$answers = array_filter($answers);
+
 				// combine answer type and answer text and answer score
 				$combine = [];
 				foreach ($answers as $key => $value)
@@ -320,11 +316,11 @@ trait insert
 							'type'          => isset($value['type'])  ? $value['type'] 	: null,
 							'desc'          => isset($value['desc'])  ? $value['desc'] 	: null,
 							'txt'           => isset($value['txt'])   ? $value['txt'] 	: null,
+							'file'          => isset($value['file'])  ? $value['file'] 	: null,
 							'attachment_id' => $attachment_id,
 			     		];
 					}
 				}
-
 				// check the count of answer array
 				if(count($combine) < 2)
 				{
@@ -334,7 +330,8 @@ trait insert
 				$answers_arg =
 				[
 					'poll_id' => $poll_id,
-					'answers' => $combine
+					'answers' => $combine,
+					'update'  => $_args['update'],
 				];
 				$answers = \lib\utility\answers::insert($answers_arg);
 			}
@@ -342,6 +339,11 @@ trait insert
 			{
 				return debug::error(T_("answers not found"), ['answer1', 'answer2']);
 			}
+		}
+		else
+		{
+			// disable all answer saved from this poll
+			\lib\db\pollopts::set_status($poll_id, 'disable');
 		}
 
 		if(!is_null($_args['tree']) && preg_match("/^[". $shortURL. "]+$/", $_args['tree']))

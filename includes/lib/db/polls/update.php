@@ -56,22 +56,20 @@ trait update
 	public static function update_answer_in_meta($_poll_id)
 	{
 		$meta = self::get_poll_meta($_poll_id);
-		$answers = \lib\utility\answers::get($_poll_id);
+		$answers = \lib\db\pollopts::get($_poll_id);
+
 		$new_meta = [];
 		foreach ($answers as $key => $value)
 		{
-			$type = '';
-			if(isset($value['option_meta']['type']))
+			if(isset($value['key']) && isset($value['text']) && isset($value['attachmenttype']))
 			{
-				$type = $value['option_meta']['type'];
+				$new_meta[] =
+				[
+					'key'  => $value['key'],
+					'txt'  => $value['text'],
+					'type' => $value['attachmenttype']
+				];
 			}
-
-			$new_meta[] =
-			[
-				'key'  => $value['option_key'],
-				'txt'  => $value['option_value'],
-				'type' => $type
-			];
 		}
 		return self::replace_meta(['opt' => $new_meta] , $_poll_id);
 	}

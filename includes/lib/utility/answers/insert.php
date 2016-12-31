@@ -3,8 +3,8 @@ namespace lib\utility\answers;
 
 trait insert
 {
-/**
-	 * insert answers to options table
+	/**
+	 * insert answers to pollopts table
 	 *
 	 * @param      array  $_args  list of answers and post id
 	 *
@@ -12,77 +12,113 @@ trait insert
 	 */
 	public static function insert($_args)
 	{
+		if(!isset($_args['poll_id']) || !isset($_args['answers']) || !is_array($_args['answers']))
+		{
+			return false;
+		}
 
-		// set key of option table to sort answer
-		// @example the poll have 3 answer
-		// who we save this answers to table ?
-		// [options table] : 	cat 				kye 		value  		 (the fields)
-		// 						poll_(post_id)		opt_1		[answer 1]
-		// 						poll_(post_id)		opt_1		[answer 1]
-		// 						poll_(post_id)		opt_3		[answer 3]
-		// $_args =
-		// [
-		// 	'poll_id' => 1,
-		// 	'answers' =>
-		// 		[
-		// 			'txt'   => 'answer one',
-		// 			'type'  => 'audio'|'emoji',
-		// 			'desc'  => 'description',
-		// 			'true'  => 'true|false',
-		// 			'score' => 10
-		// 		],
-		// 		[
-		// 			'txt'   => 'answer two',
-		// 			'type'  => 'audio',
-		// 			'desc'  => 'description',
-		// 			'true'  => 'true|false',
-		// 			'score' => 10
-		// 		]
-		// 	];
+		$update = false;
+		if(isset($_args['update']) && $_args['update'])
+		{
+			$update = true;
+		}
+
+
+		$old_answers = [];
+		$old_opt_key = [];
+		if($update)
+		{
+			$field = ['id', 'key','post_id','true','text','desc','score','profile','attachment_id', 'attachmenttype'];
+			$old_answers = \lib\db\pollopts::get_all($_args['poll_id'], $field);
+			$old_opt_key = array_column($old_answers, 'key', 'id');
+			if(is_array($old_answers))
+			{
+				$tmp_old_answer = [];
+				foreach ($old_answers as $key => $value)
+				{
+					array_shift($value);
+					$tmp_old_answer[$value['key']] = $value;
+				}
+				$old_answers = $tmp_old_answer;
+			}
+		}
+
 		$answers  = [];
 		$opt_meta = [];
 		// answers key : opt_1, opt_2, opt_[$i], ...
 		$i = 0;
 		foreach ($_args['answers'] as $key => $value)
 		{
+			$old_attachment = isset($value['file']) ? $value['file'] : null;
 
-			$meta =
-			[
-				'desc'          => isset($value['desc'])  ? $value['desc']  : '',
-				'true'          => isset($value['true'])  ? $value['true']  : '',
-				'score'         => isset($value['score']) ? $value['score'] : '',
-				'type'          => isset($value['type'])  ? $value['type']  : '',
-				'attachment_id' => isset($value['attachment_id'])  ? $value['attachment_id'] : '',
-			];
-
-			// answers key : opt_1, opt_2, opt_[$i], ...
 			$i++;
-			$answers[] =
+			$tmp_answers =
 			[
-				'post_id'      => $_args['poll_id'],
-				'option_cat'   => 'poll_' . $_args['poll_id'],
-				'option_key'   => 'opt_' .  $i,
-				'option_value' => $value['txt'],
-				'option_meta'  => json_encode($meta, JSON_UNESCAPED_UNICODE)
+				'key'           => $i,
+				'post_id'       => $_args['poll_id'],
+				'true'          => isset($value['true'])  			? 1 						: 0,
+				'text'          => isset($value['txt'])  			? $value['txt']  			: null,
+				'desc'          => isset($value['desc'])  			? $value['desc']  			: null,
+				'score'         => isset($value['score']) 			? $value['score'] 			: null,
+				'profile'       => isset($value['profile'])  		? $value['profile']  		: null,
+				'attachment_id' => isset($value['attachment_id'])  	? $value['attachment_id'] 	: null,
+				'attachmenttype'=> isset($value['attachmenttype'])  ? $value['attachmenttype']  : null,
 			];
+
+			if($update && in_array($i, $old_opt_key))
+			{
+				$all_old_attachment = array_column($old_answers, 'attachment_id');
+				if($old_attachment)
+				{
+					$old_attachment = \lib\utility\shortURL::decode($old_attachment);
+
+					if(in_array($old_attachment, $all_old_attachment))
+					{
+						$tmp_answers['attachment_id'] = $old_attachment;
+					}
+				}
+
+				if(isset($old_answers[$i]) && $old_answers[$i] == $tmp_answers)
+				{
+					\lib\db\pollopts::update(['status' => 'enable'], $_args['poll_id'], $i);
+					continue;
+				}
+
+				$tmp_answers['status'] = 'enable';
+				\lib\db\pollopts::update($tmp_answers, $_args['poll_id'], $i);
+			}
+			else
+			{
+				$answers[] = $tmp_answers;
+			}
 
 			$opt_meta[] =
 			[
-				'key'           => 'opt_'.  $i,
-				'txt'           => isset($value['txt'])  ? $value['txt']  : '',
-				'type'          => isset($value['type']) ? $value['type'] : '',
-				'attachment_id' => isset($value['attachment_id']) ? $value['attachment_id'] : '',
+				'key'           => $i,
+				'txt'           => $tmp_answers['text'],
+				'attachment_id' => $tmp_answers['attachment_id'],
 			];
 		}
+		$return = true;
+		if(!empty($answers))
+		{
+			$return = \lib\db\pollopts::insert_multi($answers);
+		}
 
-		$return = \lib\db\options::insert_multi($answers);
+		if(count($old_answers) > $i)
+		{
+			for ($delete = $i + 1; $delete <= count($old_answers); $delete++)
+			{
+				\lib\db\pollopts::update(['status' => 'disable'], $_args['poll_id'], $delete);
+			}
+		}
 
-		// creat meta of options table for one answers record
+		// creat meta of pollopts table for one answers record
 		// every question have more than two json param.
 		// opt : answers of this poll
 		// answers : count of people answered to this poll
 		// desc : description of answers
-		$meta = ['opt' 	=> $opt_meta];
+		$meta = ['opt' => $opt_meta];
 
 		// merge old meta and new meta in post meta
 		$set_meta = \lib\db\polls::merge_meta($meta, $_args['poll_id']);

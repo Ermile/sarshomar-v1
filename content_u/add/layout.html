@@ -27,7 +27,11 @@
   <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
   <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
   <div class="file">
-   <span class='preview'></span>
+   <span class='preview'>
+     {%if poll.meta.attachment_id%}
+      <img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
+     {%endif%}
+   </span>
    <input type="file" name="file_title" id="file_title">
    <label class="label-file icon-pic" for="file_title"></label>
   </div>
@@ -45,20 +49,28 @@
   <li>
    <div class="element" data-row="{{answer_key}}">
     <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
-    <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.option_value}}" >
+    <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off" value="{{value.text}}" >
 
     <div class="file">
-     <span class='preview'></span>
+     <span class='preview'>
+        {%if value.attachment_id%}
+          <img src="{{attachment({"id" : value.attachment_id, "url" : true})}}">
+        {%endif%}
+     </span>
+     {%if value.attachment_id%}
+      <input type="hidden" name="saved-file{{answer_key}}" value="{{value.attachment_id|shortURL("encode")}}">
+     {%endif%}
      <input type="file" name="file{{answer_key}}" id="file{{answer_key}}">
      <label class="label-file icon-pic" for="file{{answer_key}}"></label>
     </div>
 
     <span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
-     <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.option_meta.true == 'on' %}checked{%endif%}>
+     <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.true %}checked{%endif%}>
      <label class="check-box" for="true{{answer_key}}"></label>
     </span>
 
-    <span class="score" {%if value.option_meta.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'><input class="score" type="number" name="score{{answer_key}}" value="{{value.option_meta.score}}"></span>
+    <span class="score" {%if value.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'>
+    <input class="score" type="number" name="score{{answer_key}}" value="{{value.score}}"></span>
     <span class="icon-picture-o icon" data-response-hide></span>
     <span class="icon-times delete" tabindex="0"></span>
    </div>

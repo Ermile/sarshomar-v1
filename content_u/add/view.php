@@ -79,7 +79,8 @@ class view extends \content_u\home\view
 		}
 
 		$this->data->poll = $poll;
-		$answers = \lib\utility\answers::get($poll_id);
+		$answers = \lib\db\pollopts::get($poll_id);
+
 		$this->data->answers = $answers;
 
 		if(isset($poll['parent']) && $poll['parent'] !== null)
