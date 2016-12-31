@@ -9,7 +9,6 @@ class callback_query
 	public static $message_result = [];
 	public static function start($_query = null)
 	{
-		$data_url = preg_split("[\/]", $_query['data']);
 		$result = ['method' => 'answerCallbackQuery'];
 		$result['callback_query_id'] = $_query['id'];
 		if(array_key_exists('game_short_name', $_query))
@@ -17,6 +16,7 @@ class callback_query
 			$result['url'] = 'https://sarshomar.com/game';
 			return $result;
 		}
+		$data_url = preg_split("[\/]", $_query['data']);
 		if(count($data_url) < 1)
 		{
 			session::remove_back('expire', 'inline_cache');

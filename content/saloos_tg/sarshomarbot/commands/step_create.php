@@ -28,6 +28,7 @@ class step_create
 	public static function step1()
 	{
 		step::plus();
+		session::remove('poll');
 		$txt_text = T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
 		$result   =
 		[
