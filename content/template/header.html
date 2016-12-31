@@ -1,4 +1,4 @@
-  <header>
+  <header class="unselect">
    <div class='logo'>
     <a href='{{url.base}}' tabindex='1'>
      <img src='{{url.static}}images/svg/general/logo.svg' alt='{{site.title}} | {{site.desc}}'>
@@ -7,9 +7,9 @@
      <a href='{{url.base}}' tabindex='-1'>{{site.title}}</a>
     </h1>
    </div>
-   <div class='header-box'>
-    <div class='header-top'>
-     <nav class='header-quick'>
+   <div id='header-box'>
+    <div id='header-top'>
+     <nav id='header-quick'>
       <a href='{{url.base}}/features' tabindex='2'>{%trans "Features"%}</a>
       <a href='{{url.base}}/$' tabindex='3'>{%trans "Knowledge"%}</a>
       <a href='{{url.base}}/help' tabindex='4'>{%trans "Help Center"%}</a>
@@ -38,7 +38,7 @@
 {%endif%}
      </nav>
     </div>
-    <div class='header-bottom'>
+    <div id='header-bottom'>
      <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
 {%block breadcrumb%}
      {{breadcrumb(null, true, false) | raw}}
