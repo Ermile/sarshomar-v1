@@ -78,6 +78,23 @@
   {%endfor%}
  {%else%}{# if no answer found #}
   <li>
+   <div class="ultra-item">
+    <div class="ultra-item-content">
+     <div class="element">
+      <label class="title small">Answer 1</label>
+      <input class="input" type="text" name="">
+     </div>
+     <div class="ultra-item-modules">
+      <div class="ultra-item-module">1</div>
+      <div class="ultra-item-module">2</div>
+      <div class="ultra-item-module">3</div>
+     </div>
+    </div>
+    <div class="ultra-item-img">
+     <img src="{{url.static}}images/telegram/germile/about.jpg" alt="">
+    </div>
+   </div>
+
    <div class="element" data-row="1">
     <label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
     <input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
