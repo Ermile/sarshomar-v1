@@ -113,15 +113,18 @@
       </span>
      </div>
      <div class="ultra-item-modules">
-      <div class="ultra-item-module profile-module">
-       <label for="yyy">{%trans "Profile"%}</label>
-       <input list="browsers" id="yyy" placeholder='{%trans "Profile"%}'>
-       <datalist id="browsers">
-        <option value="1">
-        <option value="2">
-        <option value="3">
-        <option value="4">
-        <option value="5">
+      <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
+       <label for="">{%trans "Profile"%}</label>
+       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
+       <datalist id="profile_cat">
+        <option value='{%trans "Gender"%}'>
+        <option value='{%trans "Education"%}'>
+       </datalist>
+
+       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
+       <datalist id="profile_key">
+        <option value='{%trans "Male"%}'>
+        <option value='{%trans "Female"%}'>
        </datalist>
       </div>
       <div class="ultra-item-module score-module">
@@ -160,15 +163,18 @@
       </span>
      </div>
      <div class="ultra-item-modules">
-      <div class="ultra-item-module profile-module">
-       <label for="zzz">{%trans "Profile"%}</label>
-       <input list="browsers" id="zzz" placeholder='{%trans "Profile"%}'>
-       <datalist id="browsers">
-        <option value="1">
-        <option value="2">
-        <option value="3">
-        <option value="4">
-        <option value="5">
+      <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
+       <label for="">{%trans "Profile"%}</label>
+       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
+       <datalist id="profile_cat">
+        <option value='{%trans "Gender"%}'>
+        <option value='{%trans "Education"%}'>
+       </datalist>
+
+       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
+       <datalist id="profile_key">
+        <option value='{%trans "Male"%}'>
+        <option value='{%trans "Female"%}'>
        </datalist>
       </div>
       <div class="ultra-item-module score-module">
@@ -413,7 +419,7 @@
 {% spaceless %}
  <div class="row auto">
 
-  <div class="element-branding" data-response='meta_branding' data-response-hide data-response-effect='slide'>
+  <div class="element-branding" data-response='meta_branding' data-response-effect='slide'>
    <div class="element-branding-inner">
     <input type="text" name="answer_brand" autocomplete="off" data-response-focus>
    </div>
