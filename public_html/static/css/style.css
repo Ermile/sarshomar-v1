@@ -1014,12 +1014,28 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** ultra element */
 .ultra-item{display:-webkit-flex;display:flex;height:75px;margin-bottom:100px}
+
 .ultra-item .ultra-item-content{-webkit-flex:1;flex:1;margin-right:5px}
 .rtl .ultra-item .ultra-item-content{margin-right:0;margin-left:5px}
+
 .ultra-item .ultra-item-content .element{margin-bottom:5px}
-.ultra-item .ultra-item-modules{width:100%;height:35px;line-height:35px;display:-webkit-flex;display:flex;justify-content:flex-end;align-items:stretch}
-.ultra-item .ultra-item-modules .ultra-item-module{background-color:#efefef;margin-left:5px;padding:0 5px}
+
+.ultra-item .ultra-item-modules{width:100%;height:35px;line-height:35px;display:-webkit-flex;display:flex;justify-content:flex-end;align-items:center}
+
+.ultra-item .ultra-item-modules .ultra-item-module{display:-webkit-flex;display:flex;background-color:#efefef;margin-left:5px;padding:0 5px;align-items:center}
+.rtl .ultra-item .ultra-item-modules .ultra-item-module{margin-left:0;margin-right:5px}
+
+.ultra-item .ultra-item-modules .ultra-item-module label{color:#777;font-size:1em}
+.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module select{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
+.rtl .ultra-item .ultra-item-modules .ultra-item-module input,.rtl .ultra-item .ultra-item-modules .ultra-item-module select{margin-left:0;margin-right:5px}
+.ultra-item .ultra-item-modules .ultra-item-module input[type="text"],.ultra-item .ultra-item-modules .ultra-item-module select{width:10em}
+.ultra-item .ultra-item-modules .ultra-item-module input[type="number"]{width:8em}
+
+.ultra-item .ultra-item-modules .ultra-item-module.audio{background-color:transparent}
+.ultra-item .ultra-item-modules .ultra-item-module audio{vertical-align:middle;max-width:20em}
+
 .ultra-item .ultra-item-img img{width:75px;height:75px}
+
 
 /************************************************************** element */
 ::-webkit-input-placeholder{color:#d8dad0;}
@@ -1035,12 +1051,12 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .rtl .element .delete{right:auto;left:-35px;}
 .element .delete:hover,.element .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1;}
 
-.element .input{width:100%;font-size:14px;position:relative;line-height:35px;margin-bottom:0;padding:6px 5px;transition:.3s;vertical-align:middle;color:#777;border:none;border-radius:0;background-color:#EFEFEF;-webkit-flex:1;flex:1;height:35px;}
-.element .input:focus{color:#d8dad0;background-color:#00667a;}
-.element .input option{background-color:#EFEFEF;color:#777;}
+.element .input{width:100%;-webkit-flex:1;flex:1;font-size:1.2em;border:none;border-radius:0;height:35px;line-height:35px;padding:0 5px;margin:0;vertical-align:middle;background-color:#efefef}
+.element .input:focus{background-color:#00667a;color:#d8dad0}
+.element .input option{background-color:#efefef;color:#777}
 
-.element .checkbox{background-color:#efefef;padding:5px 10px;transition:.3s;}
-.element .input:focus~.checkbox{background-color:red;}
+.element .checkbox{display:-webkit-flex;display:flex;align-items:center;background-color:#efefef;padding:0 5px;transition:.3s}
+.element .checkbox .check-box{vertical-align:middle}
 
 /* input group */
 .input-group{padding-left:40px;margin-bottom:20px;}
@@ -1140,7 +1156,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /************************************************************** file */
 .element .file{display:-webkit-flex;display:flex;align-items:center;background-color:#efefef;padding:0 5px;transition:.3s;cursor:pointer;}
 .element .file input[type="file"]{width:0;height:0;opacity:0;position:absolute;z-index:-1}
-.element .file label{color:#777;font-size:2em;transition:.3s;cursor:pointer;}
+.element .file label{color:#777;font-size:2em;transition:.3s;cursor:pointer;vertical-align:middle}
 .element .file label:hover,.element .file input[type="file"]:focus+label{color:#00667a}
 .element .input:focus~.file{background-color:#00667a}
 .element .input:focus~.file label{color:#d8dad0}

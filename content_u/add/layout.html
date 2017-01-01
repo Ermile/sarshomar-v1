@@ -83,16 +83,49 @@
      <div class="element">
       <label class="title small">Answer 1</label>
       <input class="input" type="text" name="">
+
+      <div class="file">
+       <input type="file" name="file1" id="file1">
+       <label class="label-file icon-pic" for="file1"></label>
+      </div>
+
+      <span class="checkbox true">
+       <input type="checkbox" name="true1" id="true1">
+       <label class="check-box" for="true1"></label>
+      </span>
      </div>
+
      <div class="ultra-item-modules">
-      <div class="ultra-item-module">1</div>
-      <div class="ultra-item-module">2</div>
-      <div class="ultra-item-module">3</div>
+      <div class="ultra-item-module">
+       <label>{%trans "Profile"%}</label>
+       <select>
+        <option>Lorem</option>
+        <option>Lorem</option>
+        <option>Lorem</option>
+        <option>Lorem</option>
+       </select>
+      </div>
+
+      <div class="ultra-item-module score-module">
+       <label>{%trans "Score"%}</label>
+       <input type="text" name="" placeholder="نام دسته را وارد کنید">
+       <input type="number" name="" placeholder="امتیاز">
+      </div>
+
+      <div class="ultra-item-module audio">
+       <audio controls>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="horse.mp3" type="audio/mpeg">
+       Your browser does not support the audio element.
+       </audio>
+      </div>
      </div>
     </div>
+
     <div class="ultra-item-img">
      <img src="{{url.static}}images/telegram/germile/about.jpg" alt="">
     </div>
+
    </div>
 
    <div class="element" data-row="1">
