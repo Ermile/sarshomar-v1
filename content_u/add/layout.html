@@ -384,13 +384,14 @@
     <option value="regular" {%if poll.meta.text_format == 'regular' %}selected{%endif%}>{%trans "Custom"%}</option>
    </select>
   </div>
-  <div data-response='meta_text_format' data-response-where='regular' data-response-effect='slide' data-response-notfix {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
-   <div class="element">
+  <div>
+   <div class="element" data-response='meta_text_format' data-response-where='regular' data-response-effect='slide' data-response-notfix {%if poll.meta.text_format_custom is null %}data-response-hide{%endif%}>
     <label class="title small" for="text-custom">{%trans "Regular"%}</label>
     <input class="input" type="text" name="meta_text_format_custom" id="text-custom" autocomplete="off" value="{{poll.meta.text_format_custom}}" data-response-focus>
    </div>
   </div>
  </div>
+ <hr/>
 {% endspaceless %}
 {%endblock%}
 

@@ -1,6 +1,7 @@
 <ul class="tree-result-list" data-xhr="tree">
 {% block search_result %}
 {% spaceless %}
+{%if poll_list%}
 {% for key, value in poll_list %}
 	<li {% if value.id == parent_poll_id %}class="active"{% endif %}>
 		<input type="radio" value="{{value.id|shortURL('encode')}}" name="parent_tree_id" id="tree-i{{key}}" class='notshown' {% if value.id == parent_poll_id %}checked{% endif %}>
@@ -19,9 +20,12 @@
 		</ul>
 	</li>
 {% endfor %}
-{% endspaceless %}
 <div class="pagination-container">
 	{% include display.pagination %}
 </div>
+{%else%}
+  <div class="msg error">{%trans "No Result Found"%}</div>
+{%endif%}
+{% endspaceless %}
 {% endblock %}
 </ul>
