@@ -232,10 +232,10 @@ header #financial-box .total:hover,header #financial-box .total.open{overflow-wr
 .profile:hover .profile-detail,.profile.open .profile-detail{opacity:1;transform:none;transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
 .profile img{width:40px;height:40px;float:right}
 .rtl .profile img{float:left}
-.profile .info{display:inline-block;background-color:#E8E6E6;height:40px;overflow:hidden;padding:7px;min-width:115px;float:left}
+.profile .info{display:inline-block;background-color:#efefef;height:40px;overflow:hidden;padding:7px;min-width:115px;float:left;transition:.3s}
 .rtl .profile .info{float:right}
 .profile .info .role{display:block;line-height:1;font-size:9px;font-size:10px;color:#A1A0A0;cursor:default}
-.profile .profile-detail{position:absolute;top:100%;background-color:#DDD;width:100%;opacity:0;transform:rotateX(-90deg);transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
+.profile .profile-detail{position:absolute;top:100%;background-color:#efefef;width:100%;opacity:0;transform:rotateX(-90deg);transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
 .profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#E76F6F;left:-1px}
 .rtl .profile .profile-detail::before{right:-1px}
 .profile .profile-detail a{color:#7F7F7F;text-align:center;padding:7px 0;transition:.3s}
@@ -1030,6 +1030,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .rtl .ultra-item .ultra-item-modules .ultra-item-module input,.rtl .ultra-item .ultra-item-modules .ultra-item-module datalist{margin-left:0;margin-right:5px}
 .ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module datalist{width:100px}
 .ultra-item .ultra-item-modules .ultra-item-module input[type="number"]{width:50px}
+.ultra-item .ultra-item-modules .ultra-item-module datalist option{font-size:1.2em}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 
 .ultra-item .ultra-item-modules .ultra-item-module.audio{background-color:transparent}
 .ultra-item .ultra-item-modules .ultra-item-module audio{vertical-align:middle;max-width:200px}
