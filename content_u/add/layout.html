@@ -114,8 +114,8 @@
      </div>
      <div class="ultra-item-modules">
       <div class="ultra-item-module profile-module">
-       <label>{%trans "Profile"%}</label>
-       <input list="browsers">
+       <label for="yyy">{%trans "Profile"%}</label>
+       <input list="browsers" id="yyy" placeholder='{%trans "Profile"%}'>
        <datalist id="browsers">
         <option value="1">
         <option value="2">
@@ -127,7 +127,7 @@
       <div class="ultra-item-module score-module">
        <label for="score1">{%trans "Score"%}</label>
        <input type="text" name="score1" placeholder='{%trans "Category"%}'>
-       <input type="number" name="score1" placeholder='{%trans "Score"%}'>
+       <input type="number" name="score1" id="score1" placeholder='{%trans "Score"%}'>
       </div>
       <div class="ultra-item-module audio-module">
        <audio controls>
@@ -161,8 +161,8 @@
      </div>
      <div class="ultra-item-modules">
       <div class="ultra-item-module profile-module">
-       <label>{%trans "Profile"%}</label>
-       <input list="browsers">
+       <label for="zzz">{%trans "Profile"%}</label>
+       <input list="browsers" id="zzz" placeholder='{%trans "Profile"%}'>
        <datalist id="browsers">
         <option value="1">
         <option value="2">
@@ -174,7 +174,7 @@
       <div class="ultra-item-module score-module">
        <label for="score2">{%trans "Score"%}</label>
        <input type="text" name="score2" placeholder='{%trans "Category"%}'>
-       <input type="number" name="score2" placeholder='{%trans "Score"%}'>
+       <input type="number" name="score2" id="score2" placeholder='{%trans "Score"%}'>
       </div>
       <div class="ultra-item-module audio-module">
        <audio controls>
@@ -191,9 +191,6 @@
    </div>
   </li>
  {%endif%}
-
-
-
  </ul>
 
  <ul class="input-group">
