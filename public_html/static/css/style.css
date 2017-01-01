@@ -1026,15 +1026,15 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .rtl .ultra-item .ultra-item-modules .ultra-item-module{margin-left:0;margin-right:5px}
 
 .ultra-item .ultra-item-modules .ultra-item-module label{color:#777;font-size:1em}
-.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module select{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
-.rtl .ultra-item .ultra-item-modules .ultra-item-module input,.rtl .ultra-item .ultra-item-modules .ultra-item-module select{margin-left:0;margin-right:5px}
-.ultra-item .ultra-item-modules .ultra-item-module input[type="text"],.ultra-item .ultra-item-modules .ultra-item-module select{width:10em}
-.ultra-item .ultra-item-modules .ultra-item-module input[type="number"]{width:8em}
+.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module datalist{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
+.rtl .ultra-item .ultra-item-modules .ultra-item-module input,.rtl .ultra-item .ultra-item-modules .ultra-item-module datalist{margin-left:0;margin-right:5px}
+.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module datalist{width:100px}
+.ultra-item .ultra-item-modules .ultra-item-module input[type="number"]{width:50px}
 
 .ultra-item .ultra-item-modules .ultra-item-module.audio{background-color:transparent}
-.ultra-item .ultra-item-modules .ultra-item-module audio{vertical-align:middle;max-width:20em}
+.ultra-item .ultra-item-modules .ultra-item-module audio{vertical-align:middle;max-width:200px}
 
-.ultra-item .ultra-item-img img{width:75px;height:75px}
+.ultra-item .ultra-item-img img{width:75px;height:75px;min-width:75px;max-height:75px}
 
 
 /************************************************************** element */

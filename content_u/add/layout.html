@@ -98,12 +98,14 @@
      <div class="ultra-item-modules">
       <div class="ultra-item-module">
        <label>{%trans "Profile"%}</label>
-       <select>
-        <option>Lorem</option>
-        <option>Lorem</option>
-        <option>Lorem</option>
-        <option>Lorem</option>
-       </select>
+       <input list="browsers">
+       <datalist id="browsers">
+        <option value="Internet Explorer">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+       </datalist>
       </div>
 
       <div class="ultra-item-module score-module">
@@ -114,8 +116,7 @@
 
       <div class="ultra-item-module audio">
        <audio controls>
-        <source src="horse.ogg" type="audio/ogg">
-        <source src="horse.mp3" type="audio/mpeg">
+        <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
        Your browser does not support the audio element.
        </audio>
       </div>
