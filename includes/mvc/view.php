@@ -27,6 +27,8 @@ class view extends \lib\mvc\view
 		// get total sarshomart answered
 		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
 		$this->data->stat = $total;
+		// enable heatmap to detect users action
+		$this->include->heatmap = true;
 
 		if($this->login())
 		{
