@@ -154,28 +154,28 @@ private function transtext()
 	echo T_("About");                                                                 // Line 5
 	echo T_("Press");                                                                 // Line 61
 	echo T_("Careers");                                                               // Line 7
-	echo T_("Service");                                                               // Line 38
-	echo T_("Learn More");                                                            // Line 46
-	echo T_("Support");                                                               // Line 52
-	echo T_("Latest News");                                                           // Line 67
-	echo T_("FAQ");                                                                   // Line 29
-	echo T_("Eco Friendly");                                                          // Line 30
+	echo T_("Social Responsibility");                                                 // Line 6
+	echo T_("Help Center");                                                           // Line 15
+	echo T_("Eco Friendly");                                                          // Line 10
+	echo T_("Service");                                                               // Line 15
 	echo T_("Features");                                                              // Line 13
 	echo T_("Knowledge");                                                             // Line 14
-	echo T_("Random Poll");                                                           // Line 41
-	echo T_("Referral Program");                                                      // Line 42
-	echo T_("Terms of Service");                                                      // Line 47
+	echo T_("Random Poll");                                                           // Line 18
+	echo T_("Referral Program");                                                      // Line 19
+	echo T_("Learn More");                                                            // Line 23
+	echo T_("Terms of Service");                                                      // Line 24
 	echo T_("Privacy Policy");                                                        // Line 5
-	echo T_("Help Center");                                                           // Line 15
-	echo T_("Contact");                                                               // Line 54
+	echo T_("Support");                                                               // Line 29
+	echo T_("Contact");                                                               // Line 31
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 5
 	echo T_("Vision");                                                                // Line 5
 	echo T_("Changelog");                                                             // Line 6
-	echo T_("In the News");                                                           // Line 62
+	echo T_("In the News");                                                           // Line 39
 	echo T_("Statistics");                                                            // Line 5
-	echo T_("Questions answered");                                                    // Line 76
-	echo T_("Proudly Made in IRAN");                                                  // Line 77
+	echo T_("Latest News");                                                           // Line 44
+	echo T_("Questions answered");                                                    // Line 53
+	echo T_("Proudly Made in IRAN");                                                  // Line 54
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Add Question");                                                          // Line 22
@@ -229,6 +229,15 @@ private function transtext()
 
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("Eco");                                                                   // Line 6
+	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 11
+	echo T_("One of the main reasons behind this inattention to environment is a lack of direct observation of the dangers of that inattention in short term.");// Line 12
+	echo T_("These destructive consequences usually form slower than to be easily tangible by us.");// Line 13
+	echo T_("The advancement of sophisticated technology, though having brought up numerous accomplishments for us, has invited an uncalled-for guest, namely pollution.");// Line 14
+	echo T_("Undoubtedly, the issue of environmental pollution is one of the major problems which has made us face serious challenges and will do the same.");// Line 15
+	echo T_("In order to protect the environment and prevent it from being destructed, green businesses appeared, aiming at adopting environment friendly methods towards sustainable development as well as contribution to decreasing unnecessary costs.");// Line 16
+	echo T_("We, in Sarshomar, consider respecting the environment as an inseparable responsibility for ourselves, and to reach that end, we reengineered polling procedure with a new attitude.");// Line 17
+	echo T_("One of our goals in redesigning the procedures is to minimize the need for paper when receiving your opinions.");// Line 18
+	echo T_("Therefore, we invite you to use Sarshomar for its paper-saving purposes to save plants and have a beautiful earth.");// Line 19
 
 	//-------------------------------------------content\template\static\elements.html
 	echo T_("Elements");                                                              // Line 6
@@ -345,7 +354,6 @@ private function transtext()
 	echo T_("Referral");                                                              // Line 5
 
 	//------------------------------content\template\static\social-responsibility.html
-	echo T_("Social Responsibility");                                                 // Line 6
 	echo T_("Social responsibility refers to our role in maintaining, caring about and helping our society, while having set as its goal a responsibility-centered enterprise along with wealth production.");// Line 11
 	echo T_("The issue of the social responsibility of organizations and corporations towards the society is from among the important issues being focused on in recent years.");// Line 12
 	echo T_("The social responsibility of organizations relates to the organization's responsibility towards society, human beings and the environment in which they are active.");// Line 13
