@@ -1012,31 +1012,31 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .panel-text input[type="checkbox"]:hover+label>span,.panel-text input[type="checkbox"]:focus+label>span,.panel-text input[type="checkbox"]:active+label>span{font-weight:700}
 
 
-/************************************************************** ultra element */
-.ultra-item{display:-webkit-flex;display:flex;height:75px;margin-bottom:100px}
-
+/************************************************************** ultra item */
+.ultra-item{position:relative;display:-webkit-flex;display:flex;height:75px}
 .ultra-item .ultra-item-content{-webkit-flex:1;flex:1;margin-right:5px}
 .rtl .ultra-item .ultra-item-content{margin-right:0;margin-left:5px}
-
-.ultra-item .ultra-item-content .element{margin-bottom:5px}
-
-.ultra-item .ultra-item-modules{width:100%;height:35px;line-height:35px;display:-webkit-flex;display:flex;justify-content:flex-end;align-items:center}
-
-.ultra-item .ultra-item-modules .ultra-item-module{display:-webkit-flex;display:flex;background-color:#efefef;margin-left:5px;padding:0 5px;align-items:center}
-.rtl .ultra-item .ultra-item-modules .ultra-item-module{margin-left:0;margin-right:5px}
-
-.ultra-item .ultra-item-modules .ultra-item-module label{color:#777;font-size:1em}
-.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module datalist{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
-.rtl .ultra-item .ultra-item-modules .ultra-item-module input,.rtl .ultra-item .ultra-item-modules .ultra-item-module datalist{margin-left:0;margin-right:5px}
-.ultra-item .ultra-item-modules .ultra-item-module input,.ultra-item .ultra-item-modules .ultra-item-module datalist{width:100px}
-.ultra-item .ultra-item-modules .ultra-item-module input[type="number"]{width:50px}
-.ultra-item .ultra-item-modules .ultra-item-module datalist option{font-size:1.2em}
-input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-
-.ultra-item .ultra-item-modules .ultra-item-module.audio{background-color:transparent}
-.ultra-item .ultra-item-modules .ultra-item-module audio{vertical-align:middle;max-width:200px}
-
 .ultra-item .ultra-item-img img{width:75px;height:75px;min-width:75px;max-height:75px}
+
+/* ultra item content */
+.ultra-item .ultra-item-modules{display:-webkit-flex;display:flex;width:100%;height:35px;line-height:35px;justify-content:flex-end;align-items:center;margin-top:5px}
+.ultra-item .ultra-item-module{display:-webkit-flex;display:flex;background-color:#efefef;margin-left:5px;padding:0 5px;align-items:center}
+.rtl .ultra-item .ultra-item-module{margin-left:0;margin-right:5px}
+.ultra-item .ultra-item-module label{color:#777;font-size:1em}
+.ultra-item .ultra-item-module input,.ultra-item .ultra-item-module datalist{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
+.rtl .ultra-item .ultra-item-module input,.rtl .ultra-item .ultra-item-module datalist{margin-left:0;margin-right:5px}
+.ultra-item .profile-module input{width:100px}
+.ultra-item .score-module input[type="text"]{width:70px}
+.ultra-item .score-module input[type="number"]{width:40px}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.ultra-item .audio-module{background-color:transparent}
+.ultra-item .audio-module audio{vertical-align:middle;max-width:200px}
+
+/* delete button at the end of ultra item */
+.ultra-item .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
+.rtl .ultra-item .delete{right:auto;left:-35px;}
+.ultra-item .delete:hover,.ultra-item .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1}
+
 
 
 /************************************************************** element */
@@ -1049,9 +1049,9 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .rtl .element{padding-left:0;padding-right:13px;}
 
 /* delete button at the end of element */
-.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
+/*.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
 .rtl .element .delete{right:auto;left:-35px;}
-.element .delete:hover,.element .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1;}
+.element .delete:hover,.element .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1;}*/
 
 .element .input{width:100%;-webkit-flex:1;flex:1;font-size:1.2em;border:none;border-radius:0;height:35px;line-height:35px;padding:0 5px;margin:0;vertical-align:middle;background-color:#efefef}
 .element .input:focus{background-color:#00667a;color:#d8dad0}
