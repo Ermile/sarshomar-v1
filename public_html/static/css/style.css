@@ -342,6 +342,7 @@ footer .is-open i {transform:rotate(180deg);}
 /************************************************************** customers box */
 #customers-box{padding:50px 0;background-color:#FCFCFC}
 #customers-box .customers-container{width:80%;margin:0 auto}
+#customers-box .customers-container .span4{text-align:center}
 #customers-box .customer h3{padding-top:2em}
 #customers-box .customer h3 a{color:#0C7C78}
 #customers-box .customer h3 a:hover,#customers-box .customer h3 a:focus{color:#00667a}
