@@ -1,55 +1,58 @@
 {%extends display.main%}
 
 {%block content%}
-<div class="main pad box">
- <div class="row auto">
-  <div class="span7">
-   <h1>{%trans "Request, offer, criticism and appreciation"%}</h1>
-   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua.<br> Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat.</p>
-   <form method="post">
-    <div class="element">
-     <label class="title large" for="name">{%trans "Name"%}</label>
-     <input class="input white" type="text" name="name" id="name" placeholder='{%trans "Name"%}'>
-    </div>
-    <div class="element">
-     <label class="title large" for="mobile">{%trans "Mobile"%}</label>
-     <input class="input white" type="text" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}'>
-    </div>
-    <div class="element">
-     <label class="title large" for="email">{%trans "Email"%}</label>
-     <input class="input white" type="email" name="email" id="email" placeholder='{%trans "Email"%}'>
-    </div>
-    <textarea class="textarea" name="content" rows="5" placeholder='{%trans "Write down your opinion here"%}'></textarea>
-    <input type="submit" name="submit-contact" value='{%trans "Submit"%}' class="try submit-contact">
-   </form>
-  </div>
-  <div class="span1"></div>
-  <div class="span4">
-   <div class="contact-box">
-    <div class="contact-data">
-     <h2>{%trans "How to contact Sarshomar"%}</h2>
-     {%include template.social%}
-     <div class="contact-ways">
-      <div class="row">
-       <i class="icon-email icon-3x"></i>
-       <span>info@sarshomar.com</span>
-      </div>
-      <div class="row">
-       <i class="icon-phone icon-3x"></i>
-       <span>025-37735183</span>
-      </div>
-      <div class="row">
-       <i class="icon-location icon-3x"></i>
-       <span>{%trans "Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488"%}</span>
+<div class="main pad">
+ <div class="box">
+  <h2 class="special-heading">{%trans "Contact"%}</h2>
+  <div class="row auto" id="contact-box">
+   <div class="span7">
+    <h1>{%trans "Request, offer, criticism and appreciation"%}</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.<br> Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
+    <form method="post">
+     <div class="element">
+      <label class="title large" for="name">{%trans "Name"%}</label>
+      <input class="input white" type="text" name="name" id="name" placeholder='{%trans "Name"%}'>
+     </div>
+     <div class="element">
+      <label class="title large" for="mobile">{%trans "Mobile"%}</label>
+      <input class="input white" type="text" name="mobile" id="mobile" placeholder='{%trans "Mobile"%}'>
+     </div>
+     <div class="element">
+      <label class="title large" for="email">{%trans "Email"%}</label>
+      <input class="input white" type="email" name="email" id="email" placeholder='{%trans "Email"%}'>
+     </div>
+     <textarea class="textarea" name="content" rows="5" placeholder='{%trans "Write down your opinion here"%}'></textarea>
+     <input type="submit" name="submit-contact" value='{%trans "Submit"%}' class="try submit-contact">
+    </form>
+   </div>
+   <div class="span1"></div>
+   <div class="span4">
+    <div class="contact-box">
+     <div class="contact-data">
+      <h2>{%trans "How to contact Sarshomar"%}</h2>
+      {%include template.social%}
+      <div class="contact-ways">
+       <div class="row">
+        <i class="icon-email icon-3x"></i>
+        <span>info@sarshomar.com</span>
+       </div>
+       <div class="row">
+        <i class="icon-phone icon-3x"></i>
+        <span>025-37735183</span>
+       </div>
+       <div class="row">
+        <i class="icon-location icon-3x"></i>
+        <span>{%trans "Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488"%}</span>
+       </div>
       </div>
      </div>
+     <a href="https://goo.gl/maps/eTEyNRE7aP92" target="_blank" class="map">
+      <img src="{{url.static}}images/svg/contact/map.png">
+     </a>
     </div>
-    <a href="https://goo.gl/maps/eTEyNRE7aP92" target="_blank" class="map">
-     <img src="{{url.static}}images/svg/contact/map.png">
-    </a>
    </div>
   </div>
  </div>

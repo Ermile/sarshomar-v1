@@ -1281,7 +1281,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 
 /************************************************************** contact page */
 .element .input.white{background-color:#FFF;color:#00667a}
-#contact .box{margin:0 5em}
+#contact-box{padding:0 5em}
 #contact .submit-contact{width:100%;padding:10px;margin-bottom:5em}
 #contact .contact-box{background-color:#FFF}
 #contact .contact-box .contact-data{padding:2em}
