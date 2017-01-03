@@ -16,24 +16,23 @@
        <p class="em">پس از ثبت‌نام و تایید حساب‌کاربری، مشارکت‌های ذخیره‌شده شما هم‌چنان در اختیار شماست و <b>سرشمار</b> به‌پاس تثبیت حضورتان، هدیه‌ای را برای این اقدام ارزشمند در حساب‌کاربری شما لحاظ خواهد کرد.</p>
        <p>با تکمیل ثبت‌نام علاوه بر دریافت هدیه‌ی ثبت‌نام، براساس فعالیت‌های انجام‌شده از هدایای تعیین‌شده در <b>سرشمار</b> برخوردار خواهید شد.</p>
 
+       {%if not login%}
 
-       <div class="row">
-        <div class="span6">
-         <button class="try guest">{%trans "Guest"%}</button>
-        </div>
-        <div class="span6">
-         <button class="try register">{%trans "Register"%}</button>
-        </div>
+       <div class="guest-box">
+        <a class="try" href='{{url.base}}/signup' data-direct>{%trans "Register"%}</a>
+        <input type="checkbox" id="guest-button">
+        <label class="try" for="guest-button">{%trans "Guest"%}</label>
        </div>
 
+       {%endif%}
 
-       <div class="captcha-box">
+       <div class="captcha-box" data-response='guest-button' data-response-hide>
         <h3>لطفا شماره داخل کادر را اینجا وارد کنید</h3>
-        <div class="row">
-         <div class="span6">
+        <div class="captcha-container">
+         <div>
           <div class="captcha">{{captcha}}</div>
          </div>
-         <div class="span6">
+         <div class="form-container">
           <form method="post" action="{{url.base}}/@">
            <input type="text" name="captcha">
            <input type="submit" class="try submit">
@@ -41,6 +40,7 @@
          </div>
         </div>
        </div>
+
       </div>
      </div>
     </div>
