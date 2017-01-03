@@ -46,6 +46,9 @@ class view extends \content_u\home\view
 			$this->data->profile_lock = $profile;
 		}
 
+		// load empty answers for first loading
+		$this->data->answers = [[],[]];
+
 	}
 
 
