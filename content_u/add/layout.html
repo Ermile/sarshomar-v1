@@ -43,40 +43,44 @@
 {%block feature_opts%}
 {% spaceless %}
  <ul class="input-group sortable">
- {%if answers %}
+ 
   {%for key, value in answers%}
-  {% set answer_key = key + 1 %}
-  <li>
+   {% set answer_key = key + 1 %}
+ <li>
    <div class="ultra-item" data-row="{{answer_key}}">
     <div class="ultra-item-content">
      <div class="element">
-      <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key|persian}}</b></label>
-      <input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
+      <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key |persian}}</b></label>
+      <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off"
+      value="{{value.text}}">
       <div class="file">
-       <input type="file" name="file1" id="file1">
-       <label class="label-file icon-pic" for="file1"></label>
+       <input type="file" name="file{{answer_key}}" id="file{{answer_key}}">
+       <label class="label-file icon-pic" for="file{{answer_key}}"></label>
       </div>
-      <span class="checkbox true" data-response='meta_true_answer' {% if poll.meta.true_answer == 'on' %}{%else%}data-response-hide{%endif%}>
-       <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}" {%if value.true %}checked{%endif%}>
+      <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
+       <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
        <label class="check-box" for="true{{answer_key}}"></label>
       </span>
      </div>
      <div class="ultra-item-modules">
-      <div class="ultra-item-module profile-module">
-       <label>{%trans "Profile"%}</label>
-       <input list="browsers">
-       <datalist id="browsers">
-        <option value="1">
-        <option value="2">
-        <option value="3">
-        <option value="4">
-        <option value="5">
+      <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
+       <label for="">{%trans "Profile"%}</label>
+       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
+       <datalist id="profile_cat">
+        <option value='{%trans "Gender"%}'>
+        <option value='{%trans "Education"%}'>
+       </datalist>
+
+       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
+       <datalist id="profile_key">
+        <option value='{%trans "Male"%}'>
+        <option value='{%trans "Female"%}'>
        </datalist>
       </div>
-      <div class="ultra-item-module score-module" {%if value.score %}{%else%}data-response-hide{%endif%} data-response='meta_score'>
+      <div class="ultra-item-module score-module">
        <label for="score{{answer_key}}">{%trans "Score"%}</label>
-       <input type="text" name="score_" placeholder='{%trans "Category"%}'>
-       <input class="score" type="number" name="score{{answer_key}}" value="{{value.score}}"></span>
+       <input type="text" name="score{{answer_key}}" placeholder='{%trans "Category"%}'>
+       <input type="number" name="score{{answer_key}}" id="score{{answer_key}}" placeholder='{%trans "Score"%}'>
       </div>
       <div class="ultra-item-module audio-module">
        <audio controls>
@@ -87,116 +91,12 @@
      </div>
     </div>
     <div class="ultra-item-img">
-    {%if value.attachment_id%}
-     <img src="{{attachment({"id" : value.attachment_id, "url" : true})}}">
-     <input type="hidden" name="saved-file{{answer_key}}" value="{{value.attachment_id|shortURL("encode")}}">
-    {%endif%}
+     <img src="{{url.static}}images/telegram/germile/about.jpg" alt="">
     </div>
     <span class="icon-times delete" tabindex="0"></span>
    </div>
   </li>
   {%endfor%}
- {%else%}{# if no answer found #}
-  <li>
-   <div class="ultra-item" data-row="1">
-    <div class="ultra-item-content">
-     <div class="element">
-      <label class="title small" for="answer1">{%trans "Answer"%} <b>{{1 |persian}}</b></label>
-      <input class="input" type="text" name="answer1" id="answer1" autocomplete="off">
-      <div class="file">
-       <input type="file" name="file1" id="file1">
-       <label class="label-file icon-pic" for="file1"></label>
-      </div>
-      <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-       <input type="checkbox" name="true1" id="true1">
-       <label class="check-box" for="true1"></label>
-      </span>
-     </div>
-     <div class="ultra-item-modules">
-      <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
-       <label for="">{%trans "Profile"%}</label>
-       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
-       <datalist id="profile_cat">
-        <option value='{%trans "Gender"%}'>
-        <option value='{%trans "Education"%}'>
-       </datalist>
-
-       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
-       <datalist id="profile_key">
-        <option value='{%trans "Male"%}'>
-        <option value='{%trans "Female"%}'>
-       </datalist>
-      </div>
-      <div class="ultra-item-module score-module">
-       <label for="score1">{%trans "Score"%}</label>
-       <input type="text" name="score1" placeholder='{%trans "Category"%}'>
-       <input type="number" name="score1" id="score1" placeholder='{%trans "Score"%}'>
-      </div>
-      <div class="ultra-item-module audio-module">
-       <audio controls>
-        <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
-       Your browser does not support the audio element.
-       </audio>
-      </div>
-     </div>
-    </div>
-    <div class="ultra-item-img">
-     <img src="{{url.static}}images/telegram/germile/about.jpg" alt="">
-    </div>
-    <span class="icon-times delete" tabindex="0"></span>
-   </div>
-  </li>
-
-  <li>
-   <div class="ultra-item" data-row="2">
-    <div class="ultra-item-content">
-     <div class="element">
-      <label class="title small" for="answer2">{%trans "Answer"%} <b>{{2 |persian}}</b></label>
-      <input class="input" type="text" name="answer2" id="answer2" autocomplete="off">
-      <div class="file">
-       <input type="file" name="file2" id="file2">
-       <label class="label-file icon-pic" for="file2"></label>
-      </div>
-      <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-       <input type="checkbox" name="true2" id="true2">
-       <label class="check-box" for="true2"></label>
-      </span>
-     </div>
-     <div class="ultra-item-modules">
-      <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
-       <label for="">{%trans "Profile"%}</label>
-       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
-       <datalist id="profile_cat">
-        <option value='{%trans "Gender"%}'>
-        <option value='{%trans "Education"%}'>
-       </datalist>
-
-       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
-       <datalist id="profile_key">
-        <option value='{%trans "Male"%}'>
-        <option value='{%trans "Female"%}'>
-       </datalist>
-      </div>
-      <div class="ultra-item-module score-module">
-       <label for="score2">{%trans "Score"%}</label>
-       <input type="text" name="score2" placeholder='{%trans "Category"%}'>
-       <input type="number" name="score2" id="score2" placeholder='{%trans "Score"%}'>
-      </div>
-      <div class="ultra-item-module audio-module">
-       <audio controls>
-        <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
-       Your browser does not support the audio element.
-       </audio>
-      </div>
-     </div>
-    </div>
-    <div class="ultra-item-img">
-     <img src="{{url.static}}images/telegram/germile/about.jpg" alt="">
-    </div>
-    <span class="icon-times delete" tabindex="0"></span>
-   </div>
-  </li>
- {%endif%}
  </ul>
 
  <ul class="input-group">
