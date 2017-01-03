@@ -564,6 +564,7 @@ div.checkbox{display:-webkit-flex;display:flex;width: 100%;}
 .sortable li .handle{cursor:move}
 .sortable li .title{cursor:move}
 .input-group.sortable li{min-height:35px}
+.input-group.sortable li.multi-line{height:75px}
 li.sortable-placeholder{border:1px dashed #CCC}
 .sortable li{margin-bottom:1em}
 .sortable li .element{margin:0}
@@ -1013,9 +1014,11 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 
 /************************************************************** ultra item */
-.ultra-item{position:relative;display:-webkit-flex;display:flex;height:75px}
+.ultra-item{position:relative;display:-webkit-flex;display:flex}
+.ultra-item.multi-line{height:75px}
 .ultra-item .ultra-item-content{-webkit-flex:1;flex:1;margin-right:5px}
 .rtl .ultra-item .ultra-item-content{margin-right:0;margin-left:5px}
+.ultra-item .ultra-item-img{max-height:75px}
 .ultra-item .ultra-item-img img{width:75px;height:75px;min-width:75px;max-height:75px}
 
 /* ultra item content */
