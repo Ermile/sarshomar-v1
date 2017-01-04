@@ -266,6 +266,12 @@ private function transtext()
 	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 11
 	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 13
 
+	//---------------------------content\template\static\features\graphic-results.html
+	echo T_("Observing Graphic Results according to the Statistical Population");     // Line 6
+	echo T_("Graphs are powerful means that might not take more than a few minutes to study; however, they can provide you with a large amount of complicated information in a simple and effective way.");// Line 11
+	echo T_("Polls' charts and tables, based on separate statistical populations of the respondents as well as their key factors, are available in Sarshomar.");// Line 13
+	echo T_("These key factors include gender, age range, marital status, academic degree, educational status and residence.");// Line 13
+
 	//----------------------------------content\template\static\features\guest-fa.html
 	echo T_("Guest");                                                                 // Line 6
 
@@ -305,9 +311,6 @@ private function transtext()
 
 	//--------------------------------content\template\static\features\multimedia.html
 	echo T_("Multimedia");                                                            // Line 6
-
-	//----------------------content\template\static\features\population-breakdown.html
-	echo T_("Population Breakdown");                                                  // Line 6
 
 	//---------------------------content\template\static\features\question-charts.html
 	echo T_("Question Charts");                                                       // Line 6
