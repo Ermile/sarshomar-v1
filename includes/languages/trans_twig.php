@@ -261,9 +261,6 @@ private function transtext()
 	echo T_("Anatomical Answers");                                                    // Line 6
 	echo T_("in preparation");                                                        // Line 7
 
-	//---------------------content\template\static\features\demographic-targeting.html
-	echo T_("Demographic targeting");                                                 // Line 6
-
 	//-------------------------------content\template\static\features\easy-access.html
 
 	//----------------------------content\template\static\features\export-results.html
@@ -323,6 +320,13 @@ private function transtext()
 	echo T_("One of the best and paramount characteristics of Sarshomar is to provide services via social networks.");// Line 11
 	echo T_("Sarshomar's services, regarding the presentable features in any social network, are accessible integratively.");// Line 11
 	echo T_("One of the objectives of Sarshomar's service provision via social networks is easy access. Besides, you do not have to install any software on your device, which readily makes Sarshomar's services accessible to you.");// Line 13
+
+	//-------------content\template\static\features\target-statistical-population.html
+	echo T_("Determining the Target Statistical Population");                         // Line 6
+	echo T_("Another outstanding feature presented by Sarshomar is determining the target statistical population.");// Line 11
+	echo T_("To do so, you can present your question or advertisement based on your goal and exact needs, and receive the feedbacks from that determined target without any concerns and as soon as possible.");// Line 11
+	echo T_("For instance, you can target your question at below 25 married men who hold bachelor or master degree and are employed.");// Line 13
+	echo T_("Just imagine that, in Sarshomar, you can purposefully send your advertisements only to single women with the age range of 18 to 30.");// Line 13
 
 	//--------------------------------------content\template\static\features\tree.html
 	echo T_("Questions Tree");                                                        // Line 6
