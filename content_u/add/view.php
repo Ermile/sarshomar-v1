@@ -61,8 +61,14 @@ class view extends \content_u\home\view
 	{
 		
 		$poll = $_args->api_callback;
+		
+		$poll_id = false;
+		if(isset($poll['poll']['id']))
+		{
+			$poll_id = $poll['poll']['id'];
+		}
 
-		$url = $this->url('baseLang'). 'add/'. isset($poll['poll']['id']) ? $poll['poll']['id'] : null;
+		$url = $this->url('baseLang'). 'add/'. $poll_id;
 
 		$this->data->step =
 		[
@@ -75,28 +81,13 @@ class view extends \content_u\home\view
 			'link_publish' => $url. '/publish',
 		];
 		
-		$this->data->poll    = isset($poll['poll']) 	? $poll['poll'] 	: null;
-		$this->data->answers = isset($poll['answers']) 	? $poll['answers'] 	: null;
+		$this->data->poll            = isset($poll['poll']) 	? $poll['poll'] 	: null;
+		$this->data->answers         = isset($poll['answers']) 	? $poll['answers'] 	: null;
 		
 		$this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		$this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
 		$this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
-	
-	}
-
-
-	/**
-	 * ready to load survey mode
-	 */
-	function view_survey($_args)
-	{
-		// enable survey mod to load buttom and something else
-		$this->data->survey_mod = true;
-		// get survery id from url
-		$survey_id = $this->model()->check_poll_url($_args);
-		// get list of poll in this survey
-		$poll_list = \lib\utility\survey::get_poll_list($survey_id);
-		$this->data->poll_list = $poll_list;
+		$this->data->poll_id         = '/'. $poll_id;
 	}
 
 

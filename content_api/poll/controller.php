@@ -29,22 +29,22 @@ class controller extends  \mvc\controller
 		/**
 		 * post to add a poll
 		 */
-		$this->post("poll")->ALL("/^poll$/");
+		$this->post("poll")->REST("/^poll$/");
 		
 		/**
 		 * get to load poll details
 		 */
-		$this->get("poll")->ALL("/^poll\/([". self::$shortURL. "]+)$/");
+		$this->get("poll")->REST("/^poll\/([". self::$shortURL. "]+)$/");
 			
 		/**
 		 * put to update a poll
 		 */
-		$this->put("poll")->ALL("/^poll\/([". self::$shortURL. "]+)$/");
+		$this->put("poll")->REST("/^poll\/([". self::$shortURL. "]+)$/");
 			
 		/**
 		 * delete to delete a poll
 		 */
-		$this->delete("poll")->ALL("/^poll\/([". self::$shortURL. "]+)$/");
+		$this->delete("poll")->REST("/^poll\/([". self::$shortURL. "]+)$/");
 
 	}
 }
