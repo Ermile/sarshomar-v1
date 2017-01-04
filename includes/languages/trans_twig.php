@@ -3,14 +3,15 @@ private function transtext()
 {
 
 	//----------------------------------------------------content\contact\display.html
-	echo T_("Request, offer, criticism and appreciation");                            // Line 7
-	echo T_("Name");                                                                  // Line 15
+	echo T_("Contact");                                                               // Line 31
+	echo T_("Request, offer, criticism and appreciation");                            // Line 8
+	echo T_("Name");                                                                  // Line 16
 	echo T_("Mobile");                                                                // Line 39
 	echo T_("Email");                                                                 // Line 35
-	echo T_("Write down your opinion here");                                          // Line 25
+	echo T_("Write down your opinion here");                                          // Line 26
 	echo T_("Submit");                                                                // Line 275
-	echo T_("How to contact Sarshomar");                                              // Line 33
-	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 46
+	echo T_("How to contact Sarshomar");                                              // Line 34
+	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 47
 
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
@@ -118,7 +119,7 @@ private function transtext()
 
 	//--------------------------------------------------------content\main\layout.html
 	echo T_("Login or Try");                                                          // Line 23
-	echo T_("Password");                                                              // Line 383
+	echo T_("Password");                                                              // Line 368
 	echo T_("Login");                                                                 // Line 36
 	echo T_("Try Sarshomar");                                                         // Line 35
 	echo T_("Next →");                                                              // Line 44
@@ -128,7 +129,7 @@ private function transtext()
 	echo T_("Try Before Register");                                                   // Line 49
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 336
+	echo T_("Description");                                                           // Line 319
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Read More");                                                             // Line 33
@@ -166,7 +167,6 @@ private function transtext()
 	echo T_("Terms of Service");                                                      // Line 24
 	echo T_("Privacy Policy");                                                        // Line 5
 	echo T_("Support");                                                               // Line 29
-	echo T_("Contact");                                                               // Line 31
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 5
 	echo T_("Vision");                                                                // Line 5
@@ -182,7 +182,7 @@ private function transtext()
 	echo T_("Welcome");                                                               // Line 28
 	echo T_("Dashboard");                                                             // Line 31
 	echo T_("Exit");                                                                  // Line 32
-	echo T_("Register");                                                              // Line 23
+	echo T_("Register");                                                              // Line 22
 	echo T_("Cost");                                                                  // Line 50
 	echo T_("Tomans");                                                                // Line 50
 	echo T_("Total cash");                                                            // Line 70
@@ -230,13 +230,13 @@ private function transtext()
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("Eco");                                                                   // Line 6
 	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 11
-	echo T_("One of the main reasons behind this inattention to environment is a lack of direct observation of the dangers of that inattention in short term.");// Line 12
+	echo T_("One of the main reasons behind this inattention to environment is a lack of direct observation of the dangers of that inattention in short term.");// Line 13
 	echo T_("These destructive consequences usually form slower than to be easily tangible by us.");// Line 13
-	echo T_("The advancement of sophisticated technology, though having brought up numerous accomplishments for us, has invited an uncalled-for guest, namely pollution.");// Line 14
+	echo T_("The advancement of sophisticated technology, though having brought up numerous accomplishments for us, has invited an uncalled-for guest, namely pollution.");// Line 15
 	echo T_("Undoubtedly, the issue of environmental pollution is one of the major problems which has made us face serious challenges and will do the same.");// Line 15
-	echo T_("In order to protect the environment and prevent it from being destructed, green businesses appeared, aiming at adopting environment friendly methods towards sustainable development as well as contribution to decreasing unnecessary costs.");// Line 16
-	echo T_("We, in Sarshomar, consider respecting the environment as an inseparable responsibility for ourselves, and to reach that end, we reengineered polling procedure with a new attitude.");// Line 17
-	echo T_("One of our goals in redesigning the procedures is to minimize the need for paper when receiving your opinions.");// Line 18
+	echo T_("In order to protect the environment and prevent it from being destructed, green businesses appeared, aiming at adopting environment friendly methods towards sustainable development as well as contribution to decreasing unnecessary costs.");// Line 17
+	echo T_("We, in Sarshomar, consider respecting the environment as an inseparable responsibility for ourselves, and to reach that end, we reengineered polling procedure with a new attitude.");// Line 19
+	echo T_("One of our goals in redesigning the procedures is to minimize the need for paper when receiving your opinions.");// Line 19
 	echo T_("Therefore, we invite you to use Sarshomar for its paper-saving purposes to save plants and have a beautiful earth.");// Line 19
 
 	//-------------------------------------------content\template\static\elements.html
@@ -321,7 +321,15 @@ private function transtext()
 	echo T_("Questions Tree");                                                        // Line 6
 
 	//-----------------------content\template\static\features\try-before-register.html
-	echo T_("Try before register");                                                   // Line 6
+	echo T_("Try Before Registering");                                                // Line 6
+	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 11
+	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 11
+	echo T_("When you are a guest user, you have all Sarshomar's qualities at your service to investigate.");// Line 13
+	echo T_("You can save your question or questionnaire as well as answer Sarshomar's questions.");// Line 13
+	echo T_("Your activities and participation, when you are a guest, will be saved and kept safe by us for a while; however, to share the question or to make the results received from you effective in opinion polls, you are required to register.");// Line 13
+	echo T_("The reason behind not sharing the questions and not putting into effect the received results from users while they are guest users is to prevent creating unreal results and sharing improper questions.");// Line 13
+	echo T_("After registration and user account confirmation, your will still have access to your saved participation. Furthermore, to appreciate your presence confirmation, Sarshomar will award you a bonus in your user account for taking that valuable measure.");// Line 15
+	echo T_("Upon completing your registration, you will both receive a registration gift and, based on the activities done, Sarshomar's other allocated gifts and bonuses.");// Line 15
 
 	//--------------------------content\template\static\features\valid-population.html
 	echo T_("Valid Population");                                                      // Line 6
@@ -524,53 +532,58 @@ private function transtext()
 	//-------------------------------------------------------content_u\add\layout.html
 	echo T_("Multiple Choice");                                                       // Line 9
 	echo T_("Range / Star");                                                          // Line 17
-	echo T_("Answer");                                                                // Line 103
-	echo T_("Options has score");                                                     // Line 150
-	echo T_("Allow user to sort answers");                                            // Line 161
-	echo T_("One Choice");                                                            // Line 171
-	echo T_("Multi Choice");                                                          // Line 174
-	echo T_("Ordering");                                                              // Line 177
-	echo T_("Allow to type other answer");                                            // Line 188
-	echo T_("Branding");                                                              // Line 199
-	echo T_("Something");                                                             // Line 511
-	echo T_("Randomize sort options");                                                // Line 228
-	echo T_("Hidden result");                                                         // Line 240
-	echo T_("Has correct option");                                                    // Line 252
+	echo T_("Answer");                                                                // Line 53
+	echo T_("Profile");                                                               // Line 67
+	echo T_("Category");                                                              // Line 17
+	echo T_("Education");                                                             // Line 7
+	echo T_("Key");                                                                   // Line 74
+	echo T_("Score");                                                                 // Line 83
+	echo T_("Options has score");                                                     // Line 123
+	echo T_("Advance score");                                                         // Line 133
+	echo T_("Allow user to sort answers");                                            // Line 144
+	echo T_("One Choice");                                                            // Line 154
+	echo T_("Multi Choice");                                                          // Line 157
+	echo T_("Ordering");                                                              // Line 160
+	echo T_("Allow to type other answer");                                            // Line 171
+	echo T_("Branding");                                                              // Line 182
+	echo T_("Something");                                                             // Line 496
+	echo T_("Randomize sort options");                                                // Line 211
+	echo T_("Hidden result");                                                         // Line 223
+	echo T_("Has correct option");                                                    // Line 235
 	echo T_("Complete Profile");                                                      // Line 26
-	echo T_("Tree");                                                                  // Line 284
-	echo T_("Time");                                                                  // Line 302
-	echo T_("Summary");                                                               // Line 323
-	echo T_("Add Poll");                                                              // Line 359
-	echo T_("Add Another Poll and Convert to Survery");                               // Line 361
-	echo T_("Next Step");                                                             // Line 363
-	echo T_("Text Format");                                                           // Line 376
-	echo T_("Any Text");                                                              // Line 378
-	echo T_("Phone Number");                                                          // Line 379
-	echo T_("Website");                                                               // Line 381
+	echo T_("Tree");                                                                  // Line 267
+	echo T_("Time");                                                                  // Line 285
+	echo T_("Summary");                                                               // Line 306
+	echo T_("Add Poll");                                                              // Line 344
+	echo T_("Add Another Poll and Convert to Survery");                               // Line 346
+	echo T_("Next Step");                                                             // Line 348
+	echo T_("Text Format");                                                           // Line 361
+	echo T_("Any Text");                                                              // Line 363
+	echo T_("Phone Number");                                                          // Line 364
+	echo T_("Website");                                                               // Line 366
 	echo T_("Number");                                                                // Line 12
-	echo T_("Custom");                                                                // Line 435
-	echo T_("Regular");                                                               // Line 440
-	echo T_("File Format");                                                           // Line 423
-	echo T_("Any File");                                                              // Line 425
-	echo T_("Document");                                                              // Line 426
-	echo T_("Photo");                                                                 // Line 427
-	echo T_("Video");                                                                 // Line 428
-	echo T_("Audio");                                                                 // Line 429
-	echo T_("PDF");                                                                   // Line 430
-	echo T_("Word");                                                                  // Line 431
-	echo T_("Excel");                                                                 // Line 432
-	echo T_("PowerPoint");                                                            // Line 433
-	echo T_("Text");                                                                  // Line 434
-	echo T_("File Size");                                                             // Line 452
-	echo T_("Range Number");                                                          // Line 477
-	echo T_("Star");                                                                  // Line 480
-	echo T_("Like");                                                                  // Line 483
-	echo T_("Fit to best size");                                                      // Line 530
-	echo T_("Apply");                                                                 // Line 546
+	echo T_("Custom");                                                                // Line 420
+	echo T_("Regular");                                                               // Line 425
+	echo T_("File Format");                                                           // Line 408
+	echo T_("Any File");                                                              // Line 410
+	echo T_("Document");                                                              // Line 411
+	echo T_("Photo");                                                                 // Line 412
+	echo T_("Video");                                                                 // Line 413
+	echo T_("Audio");                                                                 // Line 414
+	echo T_("PDF");                                                                   // Line 415
+	echo T_("Word");                                                                  // Line 416
+	echo T_("Excel");                                                                 // Line 417
+	echo T_("PowerPoint");                                                            // Line 418
+	echo T_("Text");                                                                  // Line 419
+	echo T_("File Size");                                                             // Line 437
+	echo T_("Range Number");                                                          // Line 462
+	echo T_("Star");                                                                  // Line 465
+	echo T_("Like");                                                                  // Line 468
+	echo T_("Fit to best size");                                                      // Line 515
+	echo T_("Apply");                                                                 // Line 531
 
 	//----------------------------------------------content_u\add\publish\display.html
 	echo T_("Show result in home page");                                              // Line 13
-	echo T_("Category");                                                              // Line 17
 	echo T_("Article");                                                               // Line 27
 	echo T_("Short URL");                                                             // Line 57
 
@@ -601,7 +614,6 @@ private function transtext()
 
 	//--------------------------------------------------content_u\profile\display.html
 	echo T_("Personal");                                                              // Line 202
-	echo T_("Education");                                                             // Line 7
 	echo T_("Job");                                                                   // Line 8
 	echo T_("Location");                                                              // Line 9
 	echo T_("User");                                                                  // Line 196
