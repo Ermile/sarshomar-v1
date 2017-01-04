@@ -1383,10 +1383,10 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .rtl .text-based .content p{text-align:justify}
 .text-based .content p,.text-based .content ul li{color:#6E6F6F;line-height:2em}
 .rtl .text-based{text-align:justify}
-.text-based ul{list-style:none;margin-bottom:5em}
-.text-based ul li{position:relative}
-.text-based ul li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:.8em;left:-2em}
-.rtl .text-based ul li::before{left:auto;right:-2em}
+.text-based ul.text-based{list-style:none;margin-bottom:5em}
+.text-based ul.text-based li{position:relative}
+.text-based ul.text-based li::before{content:'';position:absolute;width:1em;height:1em;background-color:#37AAA7;top:.8em;left:-2em}
+.rtl .text-based ul.text-based li::before{left:auto;right:-2em}
 .em{position:relative;background-color:#EFEFEF;color:#6E6F6F;padding:1.5em 3em;line-height:2em;text-align:center!important;font-weight:700;margin-bottom:3em}
 .em::before{content:'';position:absolute;width:10px;height:4px;background-color:#E5A428;bottom:0;right:0;left:0;width:50%;margin:auto}
 
@@ -1442,3 +1442,13 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .statistics-box .show-icon-return{color:#03A9F4}
 .statistics-box:hover .title,.statistics-box:hover .amount,.statistics-box:hover .icon{color:#fff;transition:all .3s}
 .statistics-box .title{color:#607D8B;font-weight:700;transition:all .3s}
+
+
+/************************************************************** api */
+#abc ul{padding: 1.5em;margin-bottom:3em}
+#abc ul li{display: flex;border-bottom: 1px solid #555;transition:.2s;}
+#abc ul li span{-webkit-flex:1;flex:1;padding: .8em;font-size: 1.25em;}
+#abc ul li span:last-child{-webkit-flex:2;flex:2;}
+#abc li:nth-child(odd) {color:#eee;background-color: #273044;}
+#abc li:nth-child(even) {color:#eee;background-color: #464A52;}
+#abc li:hover{opacity: .9;cursor: pointer}
