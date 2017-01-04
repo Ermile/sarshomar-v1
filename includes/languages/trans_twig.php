@@ -306,9 +306,6 @@ private function transtext()
 	//--------------------------------content\template\static\features\multimedia.html
 	echo T_("Multimedia");                                                            // Line 6
 
-	//---------------------------content\template\static\features\no-interference.html
-	echo T_("No Interference");                                                       // Line 6
-
 	//----------------------content\template\static\features\population-breakdown.html
 	echo T_("Population Breakdown");                                                  // Line 6
 
@@ -344,6 +341,13 @@ private function transtext()
 
 	//--------------------------content\template\static\features\valid-population.html
 	echo T_("Valid Population");                                                      // Line 6
+
+	//-----------------------content\template\static\features\without-disturbance.html
+	echo T_("Without Disturbance");                                                   // Line 6
+	echo T_("Sarshomar is opposed to annoying advertisements, striving to create a desirable feeling in you while you are using this service.");// Line 11
+	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 11
+	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 13
+	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 13
 
 	//--------------------------------------------content\template\static\mission.html
 
