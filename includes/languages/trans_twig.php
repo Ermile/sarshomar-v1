@@ -312,9 +312,6 @@ private function transtext()
 	//----------------------content\template\static\features\population-breakdown.html
 	echo T_("Population Breakdown");                                                  // Line 6
 
-	//---------------------content\template\static\features\privatization-results.html
-	echo T_("Privatization Results");                                                 // Line 6
-
 	//---------------------------content\template\static\features\question-charts.html
 	echo T_("Question Charts");                                                       // Line 6
 	echo T_("A question chart links a question to another.");                         // Line 11
@@ -322,6 +319,15 @@ private function transtext()
 	echo T_("For example, as for the questions related to Bloodletting, you can only ask those users who have chosen the positive option for using Iranian traditional medicine.");// Line 13
 	echo T_("In contrast, if your question regards why not to use traditional medicine, you can ask those who have chosen the corresponding negative option.");// Line 13
 	echo T_("Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive knowledge, you purposefully direct your question or message towards your desired addressees.");// Line 15
+
+	//-------------------content\template\static\features\results-personalization.html
+	echo T_("Results Personalization");                                               // Line 6
+	echo T_("All of Sarshomar's contents and questions are publically available and usable for all.");// Line 11
+	echo T_("In order to protect the privacy of the questions, Sarshomar has considered two features that you can use based on your need.");// Line 11
+	echo T_("The first feature is the capability of assigning a code to the polls."); // Line 13
+	echo T_("In this way, only those who have the given password can observe and answer the question.");// Line 13
+	echo T_("The second feature is the capability of hiding the results of the questions.");// Line 15
+	echo T_("In this way, while answering the questions is possible for all, the results will be personal and displayed only for the user who has asked the question.");// Line 15
 
 	//---------------------------content\template\static\features\social-networks.html
 	echo T_("Service Provision via Social Networks");                                 // Line 6
