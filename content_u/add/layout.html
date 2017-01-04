@@ -43,7 +43,7 @@
 {%block feature_opts%}
 {% spaceless %}
  <ul class="input-group sortable">
- 
+
   {%for key, value in answers%}
    {% set answer_key = key + 1 %}
  <li>
@@ -71,15 +71,15 @@
         <option value='{%trans "Education"%}'>
        </datalist>
 
-       <input list="profile_key" id="" placeholder='{%trans "Key"%}'>
+       <input list="profile_key" id="" placeholder='{%trans "Key"%}' disabled>
        <datalist id="profile_key">
         <option value='{%trans "Male"%}'>
         <option value='{%trans "Female"%}'>
        </datalist>
       </div>
-      <div class="ultra-item-module score-module">
+      <div class="ultra-item-module score-module" data-response='meta_score' data-response-hide>
        <label for="score{{answer_key}}">{%trans "Score"%}</label>
-       <input type="text" name="score{{answer_key}}" placeholder='{%trans "Category"%}'>
+       <input type="text" name="score{{answer_key}}" placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
        <input type="number" name="score{{answer_key}}" id="score{{answer_key}}" placeholder='{%trans "Score"%}'>
       </div>
       <div class="ultra-item-module audio-module">
@@ -104,7 +104,6 @@
    <div class="element" data-row="other">
     <label class="title small" for="answer_other">{%trans "Other"%}</label>
     <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
-    <span class="score" data-response-hide data-response='meta_score'><input class="score" type="number" name="score2"></span>
     <span class="icon-picture-o icon" data-response-hide></span>
    </div>
   </li>
@@ -122,6 +121,16 @@
   <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
   <label for="score" class="check-box"></label>
   <label for="score">{%trans "Options has score"%}</label>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+{%block feature_score_advance%}
+{% spaceless %}
+ <div class="checkbox" data-response='meta_score' data-response-hide>
+  <input type="checkbox" name="meta_score_advance" id="score-advance" {%if poll.meta.score-advance%}checked{%endif%}>
+  <label for="score-advance" class="check-box"></label>
+  <label for="score-advance">{%trans "Advance score"%}</label>
  </div>
 {% endspaceless %}
 {%endblock%}
