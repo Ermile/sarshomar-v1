@@ -257,11 +257,14 @@ private function transtext()
 	echo T_("Add");                                                                   // Line 4
 	echo T_("Slug");                                                                  // Line 96
 
-	//------------------------content\template\static\features\anatomical-answers.html
-	echo T_("Anatomical Answers");                                                    // Line 6
+	//-------------------------------content\template\static\features\easy-access.html
 	echo T_("in preparation");                                                        // Line 7
 
-	//-------------------------------content\template\static\features\easy-access.html
+	//----------------------content\template\static\features\essay-type-questions.html
+	echo T_("Receiving Answers to Essay-type Questions");                             // Line 6
+	echo T_("Ask essay-type questions and receive valid and complete answers.");      // Line 11
+	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 11
+	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 13
 
 	//----------------------------content\template\static\features\export-results.html
 	echo T_("Export Results");                                                        // Line 6
