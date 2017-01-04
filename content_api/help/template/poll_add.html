@@ -1,0 +1,309 @@
+<div class="main pad text-based" id="abc">
+  <div class="box">
+   <h2 class="special-heading">ثبت یک نظر سنجی</h2>
+   <div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+     <!-- <h2>ارسال گروهی</h2> -->
+     <div class="content">
+      <p>
+      برای ثبت یک نظر سنجی ابتدا باید وارد سیستم شود
+      سپس طبق الگوی زیر عمل می کنید.
+      باید توجه داشت که بسیاری از پارامتر های ورودی طبق نوع نظر سنجی شما تنظیم می شوند
+      به عبارت دیگر برخی از پارامتر ها در نوع خاصی از نظر سنجی استفاده می شوند و برخی در نوع دیگر
+
+      </p>
+     </div>
+     <h2>URL</h2>
+     <div class="content">
+      <p>
+      <a href="https://sarshomar.com/api/poll">
+        https://sarshomar.com/api/poll
+        </a>
+      </p>
+     </div>
+     <h2>METHOD : POST</h2>
+
+     <h2>Input</h2>
+     <div>
+      <ul>
+      <!-- type -->
+        <li>
+          <span>نوع نظر سنجی <br>
+            که میتواند یکی از مقادیر زیر باشد <br>
+            multiple <br>
+            descriptive <br>
+            notification <br>
+            upload <br>
+            range <br>
+          </span>
+          <span>String</span>
+          <span>اجباری</span>
+          <span>type</span>
+        </li>
+        <!-- title -->
+        <li>
+          <span>عنوان نظر سنجی (متن سوال)</span>
+          <span>String</span>
+          <span>اجباری</span>
+          <span>title</span>
+        </li>
+       <!-- answer -->
+        <li>
+          <span>گزینه های سوال. در حالت سوال multiple اجباری </span>
+          <span>String</span>
+          <span>اجباری</span>
+          <span>answer1,answer2,...</span>
+        </li>
+        <!-- files -->
+         <li>
+          <span>نام آپلود</span>
+          <span>Files</span>
+          <span>اختیاری</span>
+          <span>upload_name</span>
+        </li>
+        <!-- description -->
+         <li>
+          <span>توضیحاتی کامل در خصوص این نظر سنجی</span>
+          <span>String</span>
+          <span>اختیاری</span>
+          <span>description</span>
+        </li>
+        <!-- summary -->
+         <li>
+          <span>خلاصه ای از سوال جهت نمایش در شبکه های اجتماعی</span>
+          <span>String</span>
+          <span>اختیاری</span>
+          <span>summary</span>
+        </li>
+        <!-- parent_tree_id -->
+         <li>
+          <span>شناسه سوال سرشاخه درختواره</span>
+          <span>String</span>
+          <span>اختیاری</span>
+          <span>parent_tree_id</span>
+        </li>
+        <!-- parent_tree_opt -->
+         <li>
+          <span>گزینه های سوال درختواره</span>
+          <span>String</span>
+          <span>اختیاری</span>
+          <span>parent_tree_opt</span>
+        </li>
+
+
+        <!-- rangetiming-min -->
+        <li>
+          <span>حد اقل زمان پاسخگویی به نظر سنجی</span>
+          <span>integer</span>
+          <span>اختیاری</span>
+          <span>rangetiming-min</span>
+        </li>
+        <!-- rangetiming-max -->
+        <li>
+          <span>حد اکثر زمان پاسخگویی به نظر سنجی</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>rangetiming-max</span>
+        </li>
+        <!-- filesize-min -->
+        <li>
+          <span>حد اقل حجم فایل ارسالی توسط کاربر. این مقدار در حالت آپلود فایل استفاده خواهد شد</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>filesize-min</span>
+        </li>
+        <!-- filesize-max -->
+        <li>
+          <span>حد اکثر حجم فایل ارسالی توسط کاربر. این مقدار در حالت آپلود فایل استفاده خواهد شد</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>filesize-max</span>
+        </li>
+        <!-- textlength-min -->
+        <li>
+          <span>حد اقل طول متن </span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>textlength-min</span>
+        </li>
+        <!-- textlength-max -->
+        <li>
+          <span>حد اکثر طول متن</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>textlength-max</span>
+        </li>
+        <!-- numbersize-min -->
+        <li>
+          <span>حد اقل عدد ورودی</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>numbersize-min</span>
+        </li>
+        <!-- numbersize-max -->
+        <li>
+          <span> حد اکثر عدد ورودی</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>numbersize-max</span>
+        </li>
+        <!-- starsize-min -->
+        <li>
+          <span>حد اقل ستاره ها برای سوال ستاره ای</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>starsize-min</span>
+        </li>
+        <!-- starsize-max -->
+        <li>
+          <span>حد اکثر ستاره ها برای سوال ستاره ای</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>starsize-max</span>
+        </li>
+       
+        <!-- choice-count-min -->
+        <li>
+          <span>حد اقل گزینه های انتخابی توسط کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>choice-count-min</span>
+        </li>
+        <!-- choice-count-max -->
+        <li>
+          <span>حد اکثر گزینه های انتخابی توسط کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>choice-count-max</span>
+        </li>
+        <!-- random_sort -->
+        <li>
+          <span>مرتب سازی تصادفی سوال</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>random_sort</span>
+        </li>
+        <!-- score -->
+        <li>
+          <span>سوال دارای گزینه های امتیاز دار</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>score</span>
+        </li>
+        <!-- true_answer -->
+        <li>
+          <span>سوال دارای گزینه صحیح</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>true_answer</span>
+        </li>
+        <!-- descriptive -->
+        <li>
+          <span>سوال دارای گزینه سایر</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>descriptive</span>
+        </li>
+        
+        <!-- hidden_result -->
+        <li>
+          <span>مخفی سازی نتایج سوال</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>hidden_result</span>
+        </li>
+        <!-- comment -->
+        <li>
+          <span>اجازه ثبت کامنت برای سوال</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>comment</span>
+        </li>
+        <!-- ordering -->
+        <li>
+          <span>سوال مرتب سازی</span>
+          <span>on|off</span>
+          <span>اختیاری</span>
+          <span>ordering</span>
+        </li>
+        <!-- choicemode -->
+        <li>
+          <span>نوع پاسخگویی کاربر به گزینه ها</span>
+          <span>one|multi|ordering</span>
+          <span>اختیاری</span>
+          <span>choicemode</span>
+        </li>
+        <!-- text_format -->
+        <li>
+          <span>نوع متن درخواستی از سمت کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>text_format</span>
+        </li>
+        <!-- file_format -->
+        <li>
+          <span>نوع فایل درخواستی از سمت کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>file_format</span>
+        </li>
+        <!-- rangemode -->
+        <li>
+          <span>نوع انتخاب سوال محدوده ای</span>
+          <span>number|star|like</span>
+          <span>اختیاری</span>
+          <span>rangemode</span>
+        </li>
+        <!-- text_format_custom -->
+        <li>
+          <span>درخواست متن دلخواه از کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>text_format_custom</span>
+        </li>
+        <!-- file_format_custom -->
+        <li>
+          <span>درخواست نوع خاصی فایل از کاربر</span>
+          <span></span>
+          <span>اختیاری</span>
+          <span>file_format_custom</span>
+        </li>
+      </ul>
+     </div>
+
+     <h2>Output</h2>
+     <span>
+     <code>
+       <pre>
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": "4sJhf"
+  },
+  "messages": {
+    "true": [
+      {
+        "title": "Poll Successfully added",
+        "element": false,
+        "group": "public"
+      }
+    ]
+  }
+}</pre>
+     </code>
+     </span>
+      <p>
+       خطاهایی که در حین عملیات رخ میدهد در قسمت 
+       <code>messages</code>
+       به شما نشان داده خواهد شد و در صورت موفقیت آمیز بودن عملیات 
+       شناسه نظر سنجی شما در قسمت 
+       <code>msg->callback</code>
+       برای استفاده های بعدی به شما اعلام می شود.
+     </p>
+    </div>
+   </div>
+
+  </div>
+</div>

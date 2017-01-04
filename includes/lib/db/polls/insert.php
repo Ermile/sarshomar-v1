@@ -72,7 +72,6 @@ trait insert
 
 			// the options of poll is:
 			//
-			// tree
 			// rangetiming-min
 			// rangetiming-max
 			// filesize-min
@@ -102,8 +101,8 @@ trait insert
 			// file_format_custom
 			'options'                         => [],
 		];
-
 		$_args = array_merge($default_value, $_args);
+		
 
 		// the shortURL of poll to check if need
 		$shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
@@ -415,7 +414,7 @@ trait insert
 		foreach ($support_meta as $key => $value)
 		{
 			// check the meta isset and !is_null()
-			if(isset($_args['options'][$value]) && $_args['options'][$value] != '')
+			if(isset($_args['options'][$value]) && $_args['options'][$value] == 'on')
 			{
 				// save the lock of this poll and profile item
 				$profile_lock = null;
