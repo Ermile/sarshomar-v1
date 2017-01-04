@@ -111,8 +111,13 @@ trait get
 	 */
 	public static function get_poll_status($_poll_id)
 	{
-		$result = self::get_poll($_poll_id);
-		return isset($result['status']) ? $result['status'] : null;
+		$query  = "SELECT post_status AS `status` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
+		$result = \lib\db::get($query, 'status', true);
+		if(!is_string($result))
+		{
+			$result = null;
+		}
+		return $result;
 	}
 
 
@@ -125,8 +130,13 @@ trait get
 	 */
 	public static function get_poll_url($_poll_id)
 	{
-		$result = self::get_poll($_poll_id);
-		return isset($result['url']) ? $result['url'] : null;
+		$query  = "SELECT post_url AS `url` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
+		$result = \lib\db::get($query, 'url', true);
+		if(!is_string($result))
+		{
+			$result = null;
+		}
+		return $result;
 	}
 
 
@@ -139,8 +149,13 @@ trait get
 	 */
 	public static function get_poll_title($_poll_id)
 	{
-		$result = self::get_poll($_poll_id);
-		return isset($result['title']) ? $result['title'] : null;
+		$query  = "SELECT post_title AS `title` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
+		$result = \lib\db::get($query, 'title', true);
+		if(!is_string($result))
+		{
+			$result = null;
+		}
+		return $result;
 	}
 
 
@@ -153,8 +168,14 @@ trait get
 	 */
 	public static function get_poll_meta($_poll_id)
 	{
-		$result = self::get_poll($_poll_id);
-		return isset($result['meta']) ? $result['meta'] : null;
+		$query  = "SELECT post_meta AS `meta` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
+		$result = \lib\db::get($query, 'meta', true);
+		$result = json_decode($result, true);
+		if(!is_array($result))
+		{
+			$result = [];
+		}
+		return $result;
 	}
 
 

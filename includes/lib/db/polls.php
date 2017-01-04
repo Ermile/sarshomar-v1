@@ -34,7 +34,6 @@ class polls
 			posts.post_parent 				AS `parent`,
 			posts.post_publishdate 			AS `publishdate`,
 			posts.user_id 					AS `user_id`,
-			posts.filter_id 				AS `filter_id`,
 			posts.post_sarshomar			AS `sarshomar`,
 			posts.post_survey 				AS `survey`,
 			posts.post_gender				AS `gender`,

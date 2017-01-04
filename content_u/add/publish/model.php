@@ -2,8 +2,10 @@
 namespace content_u\add\publish;
 use \lib\utility;
 use \lib\debug;
-
-class model extends \content_u\home\model
+/**
+ * this model use in add moled
+ */
+trait model
 {
 
 

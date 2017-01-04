@@ -10,6 +10,20 @@ class pollopts
 	 */
 
 
+	private static $public_fields = 
+	"
+		`post_id`			AS `poll`,
+		`key` 				AS `key`,
+		`text` 				AS `text`,
+		`subtype` 			AS `subtype`,
+		`true` 				AS `true`,
+		`groupscore` 		AS `group_score`,
+		`score` 			AS `score`,
+		`attachment_id` 	AS `attachment`,
+		`attachmenttype` 	AS `attachment_type`,
+		`status` 			AS `status`
+	";
+
 	/**
 	 * insert new recrod in pollopts table
 	 * @param array $_args fields data
@@ -223,7 +237,7 @@ class pollopts
 	 */
 	public static function get($_poll_id, $_field = null)
 	{
-		$field     = '*';
+		$field     = self::$public_fields;
 		$get_field = null;
 		if(is_array($_field))
 		{
@@ -239,7 +253,7 @@ class pollopts
 		$query =
 		"
 			SELECT
-				*
+				$field
 			FROM
 				pollopts
 			WHERE
@@ -249,6 +263,9 @@ class pollopts
 			";
 		$result = \lib\db::get($query, $get_field);
 		$result = \lib\utility\filter::meta_decode($result);
+
+		$result = self::encode($result);
+
 		return $result;
 	}
 
@@ -262,7 +279,7 @@ class pollopts
 	 */
 	public static function get_all($_poll_id, $_field = null)
 	{
-		$field     = '*';
+		$field     = self::$public_fields;
 		$get_field = null;
 		if(is_array($_field))
 		{
@@ -278,6 +295,8 @@ class pollopts
 		$query = "SELECT $field FROM pollopts WHERE post_id = $_poll_id ORDER BY pollopts.key ASC ";
 		$result = \lib\db::get($query, $get_field);
 		$result = \lib\utility\filter::meta_decode($result);
+		$result = self::encode($result);
+		
 		return $result;
 	}
 
@@ -294,6 +313,39 @@ class pollopts
 	{
 		$query = "UPDATE pollopts SET pollopts.status = '$_status' WHERE pollopts.post_id = $_poll_id";
 		return \lib\db::query($query);
+	}
+
+
+	/**
+	 * encode some fields
+	 *
+	 * @param      <type>  $_result  The result
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	private static function encode($_result)
+	{
+		if(!is_array($_result))
+		{
+			return $_result;
+		}
+		
+		foreach ($_result as $key => $value) 
+		{	
+			if(isset($value['id']))
+			{
+				$_result[$key]['id'] = \lib\utility\shortURL::encode($value['id']);
+			}
+			if(isset($value['poll']))
+			{
+				$_result[$key]['poll'] = \lib\utility\shortURL::encode($value['poll']);
+			}
+			if(isset($value['attachment']))
+			{
+				$_result[$key]['attachment'] = \lib\utility\shortURL::encode($value['attachment']);
+			}
+		}
+		return $_result;
 	}
 }
 ?>

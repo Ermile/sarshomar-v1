@@ -1,7 +1,7 @@
 <?php
 namespace content_u\add\filter;
 
-class view extends \content_u\home\view
+trait view 
 {
 	function view_edit(){}
 	/**

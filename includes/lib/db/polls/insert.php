@@ -518,21 +518,31 @@ trait insert
 			self::merge_meta($post_meta, $poll_id);
 		}
 
+		/**
+			T_("Poll Successfully added");
+			T_("Poll Successfully edited");
+			T_("Error in adding poll");
+			T_("Error in editing poll");
+		 */
+		$msg_mod = "add";
+		if($_args['update'])
+		{
+			$msg_mod = "edit";
+		}
+
 		if(\lib\debug::$status)
 		{
 			// commit code
 			\lib\db::commit();
-
 			\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
-			\lib\debug::true(T_("Poll Successfully added"));
-			return $poll_id;
+			\lib\debug::true(T_("Poll Successfully {$msg_mod}ed"));
+			return \lib\utility\shortURL::encode($poll_id);
 		}
 		else
 		{
 			// rollback
 			\lib\db::rollback();
-
-			\lib\debug::error(T_("Error in adding poll"));
+			\lib\debug::error(T_("Error in {$msg_mod}ing poll"));
 			return false;
 		}
 	}

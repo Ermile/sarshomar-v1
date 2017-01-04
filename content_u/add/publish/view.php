@@ -1,7 +1,7 @@
 <?php
 namespace content_u\add\publish;
 
-class view extends \content_u\home\view
+trait view 
 {
 
 	/**

@@ -2,9 +2,12 @@
 namespace content_u\add\filter;
 use \lib\utility;
 use \lib\debug;
-
-class model extends \content_u\home\model
+/**
+ * this model use in add model
+ */
+trait model
 {
+	public $x;
 	function get_edit(){}
 
 	/**
@@ -13,6 +16,7 @@ class model extends \content_u\home\model
 	function get_filter($_args)
 	{
 
+		
 	}
 
 

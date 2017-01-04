@@ -3,8 +3,8 @@ namespace content_u\add;
 
 class view extends \content_u\home\view
 {
-	function view_filter(){}
-	function view_publish(){}
+	use filter\view;
+	use publish\view;
 
 	function config()
 	{
@@ -59,10 +59,10 @@ class view extends \content_u\home\view
 	 */
 	function view_edit($_args)
 	{
+		
+		$poll = $_args->api_callback;
 
-		$poll_id = $_args->api_callback;
-
-		$url = $this->url('baseLang'). 'add/'. \lib\utility\shortURL::encode($poll_id);
+		$url = $this->url('baseLang'). 'add/'. isset($poll['poll']['id']) ? $poll['poll']['id'] : null;
 
 		$this->data->step =
 		[
@@ -74,30 +74,14 @@ class view extends \content_u\home\view
 			'link_filter'  => $url. '/filter',
 			'link_publish' => $url. '/publish',
 		];
-
-		$poll    = \lib\db\polls::get_poll($poll_id);
-		if(isset($poll['type']))
-		{
-			$poll['type'] = \lib\db\polls::set_html_type($poll['type']);
-		}
-
-		$this->data->poll = $poll;
-		$answers = \lib\db\pollopts::get($poll_id);
-
-		$this->data->answers = $answers;
-
-		if(isset($poll['parent']) && $poll['parent'] !== null)
-		{
-			$poll_tree = \lib\utility\poll_tree::get($poll['id']);
-
-			if($poll_tree && is_array($poll_tree))
-			{
-				$opt = array_column($poll_tree, 'value');
-				$this->data->poll_tree_opt = is_array($opt) ? join($opt, ',') : null;
-				$this->data->poll_tree_id = \lib\utility\shortURL::encode($poll['parent']);
-				$this->data->poll_tree_title = \lib\db\polls::get_poll_title($poll['parent']);
-			}
-		}
+		
+		$this->data->poll    = isset($poll['poll']) 	? $poll['poll'] 	: null;
+		$this->data->answers = isset($poll['answers']) 	? $poll['answers'] 	: null;
+		
+		$this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
+		$this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
+		$this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
+	
 	}
 
 
