@@ -278,7 +278,7 @@ private function transtext()
 	//-------------------------------------content\template\static\features\guest.html
 
 	//--------------------------------------content\template\static\features\home.html
-	echo T_("Multimedia Questions");                                                  // Line 8
+	echo T_("Multimedia Questions");                                                  // Line 6
 	echo T_("Possibility of using new and modern methods for asking questions.");     // Line 9
 	echo T_("Exit from the result");                                                  // Line 12
 	echo T_("Possibility of exporting results in any format of your choice.");        // Line 13
@@ -309,8 +309,9 @@ private function transtext()
 	echo T_("To that end, we are improving our service to support more and more languages so that you will be able to use our service via your own language.");// Line 11
 	echo T_("In case you are interested to help us to localize more languages, please contact Sarshomar.");// Line 12
 
-	//--------------------------------content\template\static\features\multimedia.html
-	echo T_("Multimedia");                                                            // Line 6
+	//----------------------content\template\static\features\multimedia-questions.html
+	echo T_("One of Sarshomar's most attractive features is employing multimedia content within questions.");// Line 11
+	echo T_("For instance, you can play a 60-second short movie on the environment and, then, ask the addressees their descriptive opinion on it.");// Line 11
 
 	//---------------------------content\template\static\features\question-charts.html
 	echo T_("Question Charts");                                                       // Line 6
