@@ -300,7 +300,7 @@ private function transtext()
 
 	//----------------------------content\template\static\features\knowledge-base.html
 
-	//---------------------------content\template\static\features\multi-languages.html
+	//---------------------content\template\static\features\language-localization.html
 	echo T_("Language Localization");                                                 // Line 6
 	echo T_("Sarshomar does its best to provide you with an ideal impression.");      // Line 11
 	echo T_("To that end, we are improving our service to support more and more languages so that you will be able to use our service via your own language.");// Line 11
@@ -319,12 +319,15 @@ private function transtext()
 	echo T_("Privatization Results");                                                 // Line 6
 
 	//---------------------------content\template\static\features\social-networks.html
-	echo T_("Social Networks");                                                       // Line 6
+	echo T_("Service Provision via Social Networks");                                 // Line 6
+	echo T_("One of the best and paramount characteristics of Sarshomar is to provide services via social networks.");// Line 11
+	echo T_("Sarshomar's services, regarding the presentable features in any social network, are accessible integratively.");// Line 11
+	echo T_("One of the objectives of Sarshomar's service provision via social networks is easy access. Besides, you do not have to install any software on your device, which readily makes Sarshomar's services accessible to you.");// Line 13
 
 	//--------------------------------------content\template\static\features\tree.html
 	echo T_("Questions Tree");                                                        // Line 6
 
-	//-----------------------content\template\static\features\try-before-register.html
+	//--------------------content\template\static\features\try-before-registering.html
 	echo T_("Try Before Registering");                                                // Line 6
 	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 11
 	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 11
