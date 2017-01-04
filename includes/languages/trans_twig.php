@@ -315,6 +315,14 @@ private function transtext()
 	//---------------------content\template\static\features\privatization-results.html
 	echo T_("Privatization Results");                                                 // Line 6
 
+	//---------------------------content\template\static\features\question-charts.html
+	echo T_("Question Charts");                                                       // Line 6
+	echo T_("A question chart links a question to another.");                         // Line 11
+	echo T_("To do so, you can specify the desired options to create the link when defining the question.");// Line 11
+	echo T_("For example, as for the questions related to Bloodletting, you can only ask those users who have chosen the positive option for using Iranian traditional medicine.");// Line 13
+	echo T_("In contrast, if your question regards why not to use traditional medicine, you can ask those who have chosen the corresponding negative option.");// Line 13
+	echo T_("Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive knowledge, you purposefully direct your question or message towards your desired addressees.");// Line 15
+
 	//---------------------------content\template\static\features\social-networks.html
 	echo T_("Service Provision via Social Networks");                                 // Line 6
 	echo T_("One of the best and paramount characteristics of Sarshomar is to provide services via social networks.");// Line 11
@@ -327,9 +335,6 @@ private function transtext()
 	echo T_("To do so, you can present your question or advertisement based on your goal and exact needs, and receive the feedbacks from that determined target without any concerns and as soon as possible.");// Line 11
 	echo T_("For instance, you can target your question at below 25 married men who hold bachelor or master degree and are employed.");// Line 13
 	echo T_("Just imagine that, in Sarshomar, you can purposefully send your advertisements only to single women with the age range of 18 to 30.");// Line 13
-
-	//--------------------------------------content\template\static\features\tree.html
-	echo T_("Questions Tree");                                                        // Line 6
 
 	//--------------------content\template\static\features\try-before-registering.html
 	echo T_("Try Before Registering");                                                // Line 6
