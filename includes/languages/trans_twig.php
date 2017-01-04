@@ -283,7 +283,7 @@ private function transtext()
 	echo T_("Receive comparing graph and tables separately from   requested option.");// Line 17
 	echo T_("Descriptive Question (Open Question)");                                  // Line 20
 	echo T_("Ask a descriptive question and get the complete and exact answer.");     // Line 21
-	echo T_("Multi Languages");                                                       // Line 6
+	echo T_("Multi Languages");                                                       // Line 24
 	echo T_("All services are provided in both Persian and English languages.");      // Line 25
 	echo T_("Optional Registration");                                                 // Line 28
 	echo T_("Registration in Sarshumar is optional");                                 // Line 29
@@ -301,6 +301,10 @@ private function transtext()
 	//----------------------------content\template\static\features\knowledge-base.html
 
 	//---------------------------content\template\static\features\multi-languages.html
+	echo T_("Language Localization");                                                 // Line 6
+	echo T_("Sarshomar does its best to provide you with an ideal impression.");      // Line 11
+	echo T_("To that end, we are improving our service to support more and more languages so that you will be able to use our service via your own language.");// Line 11
+	echo T_("In case you are interested to help us to localize more languages, please contact Sarshomar.");// Line 12
 
 	//--------------------------------content\template\static\features\multimedia.html
 	echo T_("Multimedia");                                                            // Line 6
