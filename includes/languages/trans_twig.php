@@ -266,9 +266,6 @@ private function transtext()
 	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 11
 	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 13
 
-	//----------------------------content\template\static\features\export-results.html
-	echo T_("Export Results");                                                        // Line 6
-
 	//----------------------------------content\template\static\features\guest-fa.html
 	echo T_("Guest");                                                                 // Line 6
 
@@ -319,6 +316,11 @@ private function transtext()
 	echo T_("For example, as for the questions related to Bloodletting, you can only ask those users who have chosen the positive option for using Iranian traditional medicine.");// Line 13
 	echo T_("In contrast, if your question regards why not to use traditional medicine, you can ask those who have chosen the corresponding negative option.");// Line 13
 	echo T_("Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive knowledge, you purposefully direct your question or message towards your desired addressees.");// Line 15
+
+	//----------------------------content\template\static\features\results-output.html
+	echo T_("Results Output");                                                        // Line 6
+	echo T_("In case there is a need to the polls' findings, you will be able to receive a variety of outputs from the results.");// Line 11
+	echo T_("The results will be given to you separately and along with details so that you will be able to use the data in computational softwares.");// Line 11
 
 	//-------------------content\template\static\features\results-personalization.html
 	echo T_("Results Personalization");                                               // Line 6
