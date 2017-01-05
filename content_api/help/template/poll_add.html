@@ -29,245 +29,310 @@
       <ul>
       <!-- type -->
         <li>
-          <span>نوع نظر سنجی <br>
-            که میتواند یکی از مقادیر زیر باشد <br>
-            multiple <br>
-            descriptive <br>
-            notification <br>
-            upload <br>
-            range <br>
-          </span>
-          <span>String</span>
+          <span>نوع نظر سنجی</span>
+          <span>این پارامتر می تواند یکی از مقادیر زیر باشد  <code>multiple</code>  <code>descriptive</code> <code>notification</code> <code>upload</code> <code>range</code> </span>
+          <span><code>String</code></span>
           <span>اجباری</span>
-          <span>type</span>
+          <span><code>type</code></span>
         </li>
         <!-- title -->
         <li>
-          <span>عنوان نظر سنجی (متن سوال)</span>
-          <span>String</span>
+          <span>عنوان نظر سنجی</span>
+          <span>متن سوال که حداکثر می تواند 200 کاراکتر را در خود جای دهد</span>
+          <span><code>String</code></span>
           <span>اجباری</span>
-          <span>title</span>
+          <span><code>title</code></span>
         </li>
-       <!-- answer -->
+       <!-- answer1,answer2,... -->
         <li>
-          <span>گزینه های سوال. در حالت سوال multiple اجباری </span>
-          <span>String</span>
+          <span>گزینه های سوال</span>
+          <span>در حالت سوال <code>multiple</code> اجباری اس و در سایر انواع سوالات این پارامتر غیر فعال است </span>
+          <span><code>String</code></span>
           <span>اجباری</span>
-          <span>answer1,answer2,...</span>
+          <span><code>answer1,answer2,...</code></span>
+        </li>
+          <!-- true1,true2,... -->
+        <li>
+          <span>گزینه صحیح</span>
+          <span>مشخص کردن گزینه صحیح یک نظر سنجی. این مقدار در صورتی که پارامتر <code>true_answer</code> سوال تنظیم شده باشد فعال خواهد بود . در صورتی که این پارامتر خالی رها شود به صورت پیشفرض <code>0</code> خواهد بود</span>
+          <span><code>0|1</code></span>
+          <span>اختیاری</span>
+          <span><code>true1,true2,...</code></span>
+        </li>
+         
+          <!-- score1,score2,... -->
+        <li>
+          <span>امتیاز</span>
+          <span>مشخص کردن امتیاز هر گزینه. این مقدار در صورتی که پارامتر <code>score</code> سوال تنظیم شده باشد فعال خواهد بود .</span>
+          <span><code>Integer</code></span>
+          <span>اختیاری</span>
+          <span><code>score1,score2,...</code></span>
+        </li>
+          <!-- desc1,desc2,... -->
+        <li>
+          <span>توضیحات هر گزینه</span>
+          <span></span>
+          <span><code>String</code></span>
+          <span>اختیاری</span>
+          <span><code>desc1,desc2,...</code></span>
+        </li>
+          <!-- saved-file1,saved-file2,... -->
+        <li>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span><code>saved-file1,saved-file2,...</code></span>
+        </li>
+          <!-- file1,file2,... -->
+        <li>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span><code>file1,file2,...</code></span>
+        </li>
+        <!-- language -->
+           <li>
+          <span>زبان نظر سنجی  در صورتی که این مقدار را خالی رها کنید زبان پیشفرض سیستم به عنوان زبان نظر سنجی تنظیم می شود.</span>
+          <span></span>
+          <span><code>String</code></span>
+          <span>اختیاری</span>
+          <span><code>languag</code></span>
         </li>
         <!-- files -->
          <li>
           <span>نام آپلود</span>
-          <span>Files</span>
+          <span></span>
+          <span><code>Files</code></span>
           <span>اختیاری</span>
-          <span>upload_name</span>
+          <span><code>upload_name</code></span>
         </li>
         <!-- description -->
          <li>
           <span>توضیحاتی کامل در خصوص این نظر سنجی</span>
-          <span>String</span>
+          <span></span>
+          <span><code>String</code></span>
           <span>اختیاری</span>
-          <span>description</span>
+          <span><code>description</code></span>
         </li>
         <!-- summary -->
          <li>
+          <span>چکیدهی نظر سنجی</span>
           <span>خلاصه ای از سوال جهت نمایش در شبکه های اجتماعی</span>
-          <span>String</span>
+          <span><code>String</code></span>
           <span>اختیاری</span>
-          <span>summary</span>
+          <span><code>summary</code></span>
         </li>
-        <!-- parent_tree_id -->
+        <!-- tree -->
          <li>
-          <span>شناسه سوال سرشاخه درختواره</span>
-          <span>String</span>
+          <span>شناسه سوال درختواره</span>
+          <span>جهت اتصال سوال خود به سوال دیگر شناسه سوال والد را در این پارامتر ارسال کنید</span>
+          <span><code>String</code></span>
           <span>اختیاری</span>
-          <span>parent_tree_id</span>
+          <span><code>tree</code></span>
         </li>
-        <!-- parent_tree_opt -->
+        <!-- tree_answers -->
          <li>
           <span>گزینه های سوال درختواره</span>
-          <span>String</span>
+          <span>شما می تواند در این پارامتر یک یا چند گزینه از سوال والد را متصل کنید که پارامتر ها با <kbd>,</kbd> جدا کنید</span>
+          <span><code>String</code></span>
           <span>اختیاری</span>
-          <span>parent_tree_opt</span>
-        </li>
-
-
-        <!-- rangetiming-min -->
-        <li>
-          <span>حد اقل زمان پاسخگویی به نظر سنجی</span>
-          <span>integer</span>
-          <span>اختیاری</span>
-          <span>rangetiming-min</span>
+          <span><code>tree_answers</code></span>
         </li>
         <!-- rangetiming-max -->
         <li>
           <span>حد اکثر زمان پاسخگویی به نظر سنجی</span>
-          <span></span>
+          <span>شما می توانید برای نظر سنجی خود زمان قرار دهید و کاربران می بایست در زمان تعیین شده به نظر سنجی پاسخ دهند. این زمان به صورت ثانیه دریافت می شود.</span>
+          <span><code>Integer</code></span>
           <span>اختیاری</span>
-          <span>rangetiming-max</span>
+          <span><code>meta_rangetiming-max</code></span>
         </li>
         <!-- filesize-min -->
         <li>
-          <span>حد اقل حجم فایل ارسالی توسط کاربر. این مقدار در حالت آپلود فایل استفاده خواهد شد</span>
-          <span></span>
+          <span>حد اقل حجم فایل ارسالی </span>
+          <span> این مقدار در حالت <code>upload</code> فایل استفاده خواهد شد. در حالت <code>upload</code> شما از کاربر درخواست می کنید تا فایلی را برای شما ارسال نماید پس میتوانید حد اقل حجم فایل را تعیین کنید. این مقدار به صورت کیلو بایت دریافت میشود</span>
+          <span><code>Integer</code></span>
           <span>اختیاری</span>
-          <span>filesize-min</span>
+          <span><code>meta_filesize-min</code></span>
         </li>
         <!-- filesize-max -->
         <li>
-          <span>حد اکثر حجم فایل ارسالی توسط کاربر. این مقدار در حالت آپلود فایل استفاده خواهد شد</span>
-          <span></span>
+          <span>حد اکثر حجم فایل.</span>
+          <span> این مقدار در حالت <code>upload</code> فایل استفاده خواهد شد. در حالت <code>upload</code> شما از کاربر درخواست می کنید تا فایلی را برای شما ارسال نماید پس میتوانید حد اکثر حجم فایل را تعیین کنید. این مقدار به صورت کیلو بایت دریافت میشود. در صورت خالی رها شدن این پارامتر مقدار پیشفرض آپلود سرویس لحاظ خواهد شد.</span>
+          <span><code>Integer</code></span>
           <span>اختیاری</span>
-          <span>filesize-max</span>
+          <span><code>meta_filesize-max</code></span>
         </li>
         <!-- textlength-min -->
         <li>
-          <span>حد اقل طول متن </span>
+          <span>حد اقل طول متن</span>
+          <span></span>
           <span></span>
           <span>اختیاری</span>
-          <span>textlength-min</span>
+          <span><code>meta_textlength-min</code></span>
         </li>
         <!-- textlength-max -->
         <li>
           <span>حد اکثر طول متن</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>textlength-max</span>
+          <span><code>textlength-max</code></span>
         </li>
         <!-- numbersize-min -->
         <li>
           <span>حد اقل عدد ورودی</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>numbersize-min</span>
+          <span><code>meta_numbersize-min</code></span>
         </li>
         <!-- numbersize-max -->
         <li>
           <span> حد اکثر عدد ورودی</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>numbersize-max</span>
+          <span><code>meta_numbersize-max</code></span>
         </li>
         <!-- starsize-min -->
         <li>
           <span>حد اقل ستاره ها برای سوال ستاره ای</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>starsize-min</span>
+          <span><code>meta_starsize-min</code></span>
         </li>
         <!-- starsize-max -->
         <li>
           <span>حد اکثر ستاره ها برای سوال ستاره ای</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>starsize-max</span>
+          <span><code>meta_starsize-max</code></span>
         </li>
        
         <!-- choice-count-min -->
         <li>
           <span>حد اقل گزینه های انتخابی توسط کاربر</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>choice-count-min</span>
+          <span><code>meta_choice-count-min</code></span>
         </li>
         <!-- choice-count-max -->
         <li>
           <span>حد اکثر گزینه های انتخابی توسط کاربر</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>choice-count-max</span>
+          <span><code>meta_choice-count-max</code></span>
         </li>
         <!-- random_sort -->
         <li>
           <span>مرتب سازی تصادفی سوال</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>random_sort</span>
+          <span><code>meta_random_sort</code></span>
         </li>
         <!-- score -->
         <li>
           <span>سوال دارای گزینه های امتیاز دار</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>score</span>
+          <span><code>meta_score</code></span>
         </li>
         <!-- true_answer -->
         <li>
           <span>سوال دارای گزینه صحیح</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>true_answer</span>
+          <span><code>meta_true_answer</code></span>
         </li>
         <!-- descriptive -->
         <li>
           <span>سوال دارای گزینه سایر</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>descriptive</span>
+          <span><code>meta_descriptive</code></span>
         </li>
         
         <!-- hidden_result -->
         <li>
           <span>مخفی سازی نتایج سوال</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>hidden_result</span>
+          <span><code>meta_hidden_result</code></span>
         </li>
         <!-- comment -->
         <li>
           <span>اجازه ثبت کامنت برای سوال</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>comment</span>
+          <span><code>meta_comment</code></span>
         </li>
         <!-- ordering -->
         <li>
           <span>سوال مرتب سازی</span>
-          <span>on|off</span>
+          <span></span>
+          <span><code>on|off</code></span>
           <span>اختیاری</span>
-          <span>ordering</span>
+          <span><code>meta_ordering</code></span>
         </li>
         <!-- choicemode -->
         <li>
           <span>نوع پاسخگویی کاربر به گزینه ها</span>
+          <span></span>
           <span>one|multi|ordering</span>
           <span>اختیاری</span>
-          <span>choicemode</span>
+          <span><code>meta_choicemode</code></span>
         </li>
         <!-- text_format -->
         <li>
           <span>نوع متن درخواستی از سمت کاربر</span>
           <span></span>
+          <span><code>any</code><br><code>tel</code><br><code>email</code><br><code>website</code><br><code>number</code><br><code>password</code><br><code>regular</code></span>
           <span>اختیاری</span>
-          <span>text_format</span>
+          <span><code>meta_text_format</code></span>
         </li>
         <!-- file_format -->
         <li>
           <span>نوع فایل درخواستی از سمت کاربر</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>file_format</span>
+          <span><code>meta_file_format</code></span>
         </li>
         <!-- rangemode -->
         <li>
           <span>نوع انتخاب سوال محدوده ای</span>
+          <span></span>
           <span>number|star|like</span>
           <span>اختیاری</span>
-          <span>rangemode</span>
+          <span><code>meta_rangemode</code></span>
         </li>
         <!-- text_format_custom -->
         <li>
           <span>درخواست متن دلخواه از کاربر</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>text_format_custom</span>
+          <span><code>meta_text_format_custom</code></span>
         </li>
         <!-- file_format_custom -->
         <li>
           <span>درخواست نوع خاصی فایل از کاربر</span>
           <span></span>
+          <span></span>
           <span>اختیاری</span>
-          <span>file_format_custom</span>
+          <span><code>meta_file_format_custom</code></span>
         </li>
       </ul>
      </div>
