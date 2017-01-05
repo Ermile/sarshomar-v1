@@ -51,14 +51,14 @@
     <div class="ultra-item-content">
      <div class="element">
       <label class="title small" for="answer{{answer_key}}">{%trans "Answer"%} <b>{{answer_key |persian}}</b></label>
-      <input class="input" type="text" name="answer{{answer_key}}" id="answer{{answer_key}}" autocomplete="off"
+      <input class="input" type="text" name="answer[{{key}}][text]" id="answer{{answer_key}}" autocomplete="off"
       value="{{value.text}}">
       <div class="file">
-       <input type="file" name="file{{answer_key}}" id="file{{answer_key}}">
+       <input type="file" name="answer[{{key}}][file]" id="file{{answer_key}}">
        <label class="label-file icon-pic" for="file{{answer_key}}"></label>
       </div>
       <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-       <input type="checkbox" name="true{{answer_key}}" id="true{{answer_key}}">
+       <input type="checkbox" name="answer[{{key}}][true]" id="true{{answer_key}}">
        <label class="check-box" for="true{{answer_key}}"></label>
       </span>
      </div>
@@ -79,8 +79,8 @@
       </div>
       <div class="ultra-item-module score-module" data-response='meta_score' data-response-hide>
        <label for="score{{answer_key}}">{%trans "Score"%}</label>
-       <input type="text" name="score{{answer_key}}" placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
-       <input type="number" name="score{{answer_key}}" id="score{{answer_key}}" placeholder='{%trans "Score"%}'>
+       <input type="text" name="answer[{{key}}][groupscore]" placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
+       <input type="number" name="answer[{{key}}][score]" id="score{{answer_key}}" placeholder='{%trans "Score"%}'>
       </div>
       <div class="ultra-item-module audio-module">
        <audio controls>
