@@ -1207,7 +1207,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-branding input[type="text"]{width:100%;height:80%;line-height:100%;border:none;padding:0;background-color:transparent;color:#00667a;text-align:center;font-size:1.6em}
 
 .element-branding-url{width:35%;margin:-18px auto 0;background-color:#e7e7e7;height:35px;position:relative;border-top:1px solid #00667a;border-bottom:1px solid #00667a}
-.element-branding-url::before,.element-branding-url::after{content:'';position:absolute;top:0;width:40px;height:35px;display:inline-block;background-image:url(../images/svg/add/branding-url.svg);background-repeat:no-repeat}
+.element-branding-url::before,.element-branding-url::after{content:'';position:absolute;top:-1px;width:40px;height:35px;display:inline-block;background-image:url(../images/svg/add/branding-url.svg);background-repeat:no-repeat}
 .element-branding-url::before{left:-40px}
 .element-branding-url::after{right:-40px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 .element-branding-url input[type="text"]{width:100%;height:100%;line-height:100%;border:none;padding:0;background-color:transparent;color:#efefef;text-align:center;font-size:1.2em;direction:ltr}
@@ -1400,6 +1400,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .text-based h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAA;line-height:2em;font-weight:700;margin-bottom:2em; text-align: left}
 .rtl .text-based h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAA; text-align: right;}
 .text-based .special-heading{margin-bottom:2em}
+.text-based-container{width:60%;margin:0 auto}
 .text-based .content{padding:0 3em;margin-bottom:5em}
 .text-based .content p{text-align:left}
 .rtl .text-based .content p{text-align:justify}
@@ -1470,7 +1471,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #abc ul{padding: 1.5em;margin-bottom:3em}
 #abc ul li{display: flex;border-bottom: 1px solid #555;transition:.2s;}
 #abc ul li span{-webkit-flex:1;flex:1;padding: .8em;font-size: 1.25em;}
-#abc ul li span:last-child{-webkit-flex:2;flex:2;}
+#abc ul li span:first-child{-webkit-flex:2;flex:2;}
 #abc li:nth-child(odd) {color:#eee;background-color: #273044;}
 #abc li:nth-child(even) {color:#eee;background-color: #464A52;}
 #abc li:hover{opacity: .9;cursor: pointer}

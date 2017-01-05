@@ -1,13 +1,14 @@
 {%extends template.add.layout%}
 
 {%block content%}
+   <aside>Sidebar</aside>
 
    <div class="main pad box">
     {%include template.progress%}
     <form method="post" data-xhr='content' action="api/poll{{poll_id}}">
      <div class="row auto">
-      <div class="span2"></div>
-      <div class="span8" id='question-add'>
+      <div class="span1"></div>
+      <div class="span10" id='question-add'>
        <div class="row">
         {{block('feature_tabs')}}
         {{block('feature_title')}}
