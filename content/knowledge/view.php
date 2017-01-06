@@ -13,6 +13,8 @@ class view extends \mvc\view
 		{
 			$this->include->js_main      = true;
 		}
+		$this->data->page['special'] = true;
+		$this->data->page['title'] = T_('Sarshomar Knowledge');
 	}
 
 
