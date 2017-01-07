@@ -11,7 +11,10 @@ class users
 	public $user_status      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@active,awaiting,deactive,removed,filter!awaiting'];
 	public $user_permission  = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'permission'      ,'type'=>'smallint@5'];
 	public $user_createdate  = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@'];
+	public $user_parent      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'parent'          ,'type'=>'int@10'                          ,'foreign'=>'users@id!user_title'];
+	public $user_validstatus = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'validstatus'     ,'type'=>'enum@valid,invalid!invalid'];
 	public $date_modified    = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'modified'        ,'type'=>'timestamp@'];
+	public $filter_id        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'filter'          ,'type'=>'bigint@20'                       ,'foreign'=>'filters@id!id'];
 
 	//--------------------------------------------------------------------------------id
 	public function id(){}
@@ -51,6 +54,24 @@ class users
 
 	public function user_createdate(){}
 
+	public function user_parent()
+	{
+		$this->form()->type('select')->name('parent');
+		$this->setChild();
+	}
+
+	public function user_validstatus()
+	{
+		$this->form()->type('radio')->name('validstatus')->required();
+		$this->setChild();
+	}
+
 	public function date_modified(){}
+	//--------------------------------------------------------------------------------foreign
+	public function filter_id()
+	{
+		$this->form()->type('select')->name('filter_');
+		$this->setChild();
+	}
 }
 ?>

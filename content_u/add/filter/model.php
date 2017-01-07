@@ -7,18 +7,7 @@ use \lib\debug;
  */
 trait model
 {
-	public $x;
-	function get_edit(){}
-
-	/**
-	*	get add filter
-	*/
-	function get_filter($_args)
-	{
-
-		
-	}
-
+	
 
 	/**
 	 * save filter

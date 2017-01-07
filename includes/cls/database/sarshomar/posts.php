@@ -13,11 +13,17 @@ class posts
 	public $post_comment     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'comment'         ,'type'=>'enum@open,closed'];
 	public $post_count       = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'count'           ,'type'=>'smallint@5'];
 	public $post_order       = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'order'           ,'type'=>'int@10'];
-	public $post_status      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@publish,draft,schedule,deleted,expire!draft'];
+	public $post_status      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@stop,pause,trash,publish,draft,enable,disable,deleted,schedule,expired,awaiting,filtered,blocked,spam,violence,pornography,other!draft'];
 	public $post_parent      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'parent'          ,'type'=>'bigint@20'                       ,'foreign'=>'posts@id!post_title'];
 	public $user_id          = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'user'            ,'type'=>'int@10'                          ,'foreign'=>'users@id!user_displayname'];
 	public $post_publishdate = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'publishdate'     ,'type'=>'datetime@'];
 	public $date_modified    = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'modified'        ,'type'=>'timestamp@'];
+	public $filter_id        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'filter'          ,'type'=>'bigint@20'                       ,'foreign'=>'filters@id!id'];
+	public $post_survey      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'survey'          ,'type'=>'bigint@20'];
+	public $post_gender      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'gender'          ,'type'=>'enum@poll,survey'];
+	public $post_sarshomar   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'sarshomar'       ,'type'=>'bit@1'];
+	public $post_privacy     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'privacy'         ,'type'=>'enum@public,private'];
+	public $post_rank        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'rank'            ,'type'=>'bigint@20'];
 
 	//--------------------------------------------------------------------------------id
 	public function id(){}
@@ -94,5 +100,35 @@ class posts
 	}
 
 	public function date_modified(){}
+	//--------------------------------------------------------------------------------foreign
+	public function filter_id()
+	{
+		$this->form()->type('select')->name('filter_');
+		$this->setChild();
+	}
+
+	public function post_survey()
+	{
+		$this->form()->type('number')->name('survey')->min()->max('99999999999999999999');
+	}
+
+	public function post_gender()
+	{
+		$this->form()->type('radio')->name('gender');
+		$this->setChild();
+	}
+
+	public function post_sarshomar(){}
+
+	public function post_privacy()
+	{
+		$this->form()->type('radio')->name('privacy');
+		$this->setChild();
+	}
+
+	public function post_rank()
+	{
+		$this->form()->type('number')->name('rank')->min()->max('99999999999999999999');
+	}
 }
 ?>

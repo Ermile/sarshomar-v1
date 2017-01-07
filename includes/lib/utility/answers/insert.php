@@ -28,7 +28,7 @@ trait insert
 		$old_opt_key = [];
 		if($update)
 		{
-			$field = ['id', 'key','post_id','true','text','desc','score','profile','attachment_id', 'attachmenttype'];
+			$field = ['id', 'key','post_id','true','title','desc','score','profile','attachment_id', 'attachmenttype'];
 			$old_answers = \lib\db\pollopts::get_all($_args['poll_id'], $field);
 			$old_opt_key = array_column($old_answers, 'key', 'id');
 			if(is_array($old_answers))
@@ -57,12 +57,13 @@ trait insert
 				'key'           => $i,
 				'post_id'       => $_args['poll_id'],
 				'true'          => isset($value['true'])  			? 1 						: 0,
-				'text'          => isset($value['txt'])  			? $value['txt']  			: null,
+				'title'         => isset($value['title'])  			? $value['title']  			: null,
+				'type'          => isset($value['type'])  			? $value['type']  			: null,
+				'meta'          => isset($value['meta'])  			? json_encode($value['meta'], JSON_UNESCAPED_UNICODE) : null,
 				'desc'          => isset($value['desc'])  			? $value['desc']  			: null,
 				'score'         => isset($value['score']) 			? $value['score'] 			: null,
 				'profile'       => isset($value['profile'])  		? $value['profile']  		: null,
 				'attachment_id' => isset($value['attachment_id'])  	? $value['attachment_id'] 	: null,
-				'attachmenttype'=> isset($value['attachmenttype'])  ? $value['attachmenttype']  : null,
 			];
 
 			if($update && in_array($i, $old_opt_key))
@@ -93,15 +94,10 @@ trait insert
 			{
 				$answers[] = $tmp_answers;
 			}
-
-			$opt_meta[] =
-			[
-				'key'           => $i,
-				'txt'           => $tmp_answers['text'],
-				'attachment_id' => $tmp_answers['attachment_id'],
-			];
 		}
+
 		$return = true;
+		
 		if(!empty($answers))
 		{
 			$return = \lib\db\pollopts::insert_multi($answers);
@@ -114,16 +110,6 @@ trait insert
 				\lib\db\pollopts::update(['status' => 'disable'], $_args['poll_id'], $delete);
 			}
 		}
-
-		// creat meta of pollopts table for one answers record
-		// every question have more than two json param.
-		// opt : answers of this poll
-		// answers : count of people answered to this poll
-		// desc : description of answers
-		$meta = ['opt' => $opt_meta];
-
-		// merge old meta and new meta in post meta
-		$set_meta = \lib\db\polls::merge_meta($meta, $_args['poll_id']);
 		return $return;
 	}
 }

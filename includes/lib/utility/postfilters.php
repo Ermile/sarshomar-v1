@@ -4,6 +4,33 @@ namespace lib\utility;
 /** postfilters managing **/
 class postfilters
 {
+	private static function check($_filters)
+	{
+			// remove full insert filter
+		// for example the user set male and female filter
+		// we remove the gender filter
+		
+		$sum_money_filter = 0;
+		$support_filter   = \lib\db\filters::support_filter();
+		$filters = [];
+		foreach ($_filters as $key => $value)
+		{
+			if(\lib\db\filters::support_filter($key, $value))
+			{
+				$fitlers[$key] = $value;
+				if($value == $support_filter[$key])
+				{
+					// unset($_filters[$key]);
+				}
+				else
+				{
+					$sum_money_filter += (int) \lib\db\filters::money_filter($key);
+				}
+
+			}
+		}
+		return $filters;
+	}
 
 
 	/**
@@ -17,6 +44,8 @@ class postfilters
 		{
 			return false;
 		}
+
+		$_filters = self::check($_filters);
 
 		$saved_filters = self::get_filter($_poll_id);
 

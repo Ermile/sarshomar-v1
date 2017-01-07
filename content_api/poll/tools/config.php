@@ -98,36 +98,6 @@ trait config
 
 
 	/**
-	 * search in $_POST
-	 * and return all answer data in post
-	 *
-	 * @return     array  ( description_of_the_return_value )
-	 */
-	private function answers_in_request()
-	{
-		$answers      = [];
-		$i = 0;
-		$max_post = count(utility::request());
-
-		for ($j = 0; $j <= $max_post; $j++)
-		{
-			if(utility::request("answer$j"))
-			{
-				$i++;
-				$answers[$i]['txt']         = utility::request("answer$j");
-				$answers[$i]['true']        = (utility::request("true$j")  != '') 		? utility::request("true$j")  		: null;
-				$answers[$i]['type']        = (utility::request("type$j")  != '') 		? utility::request("type$j")  		: null;
-				$answers[$i]['score']       = (utility::request("score$j") != '') 		? utility::request("score$j") 		: null;
-				$answers[$i]['desc']        = (utility::request("desc$j")  != '') 		? utility::request("desc$j")  		: null;
-				$answers[$i]['file']        = (utility::request("saved-file$j") != '') ? utility::request("saved-file$j") : null;
-				$answers[$i]['upload_name'] = (utility::files("file$j")) ? "file$j" : null;
-			}
-		}
-		return $answers;
-	}
-
-
-	/**
 	 * insert poll
 	 * get data from utility::request()
 	 *
@@ -141,34 +111,27 @@ trait config
 		$_options        = array_merge($default_options, $_options);
 
 		// insert args
-		$args = [];
-		$args['user']                 = $this->login('id');
-		$args['language']             = \lib\define::get_language();
-		$args['type']                 = utility::request("poll_type");
-		$args['title']                = utility::request("title");
-		$args['upload_name']          = (utility::files("file_title")) ? "file_title" : null;
-		$args['description']          = utility::request("description");
-		$args['summary']              = utility::request("summary");
-		$args['tree']                 = utility::request("parent_tree_id");
-		$args['tree_answers']         = utility::request("parent_tree_opt");
-		$args['permission_sarshomar'] = $this->sarshomar;
-		$args['update']               = $_options['update'];
-		// get the answers in $_POST
-		$args['answers']              = $this->answers_in_request();
-		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
-
-		$options = [];
-		if(is_array(utility::request()))
-		{	
-			foreach (utility::request() as $key => $value)
-			{
-				if(substr($key, 0, 5) == 'meta_')
-				{
-					$options[substr($key, 5)] = $value;
-				}
-			}
+		$args                           = [];
+		$args['user']                   = $this->login('id');
+		$args['title']                  = utility::request("title");
+		$args['answers']                = utility::request("answers");
+		
+		if(utility::files("poll_file"))
+		{
+			$args['upload_name']        = "poll_file";
 		}
-		$args['options'] = $options;
+		elseif (utility::request("file_path")) 
+		{
+			$args['file_path']          = utility::request("file_path");
+		}
+		
+		$args['options']                = utility::request("options");
+		$args['filters']                = utility::request("filters");
+		
+		$args['update']                 = $_options['update'];
+		$args['permission_sarshomar']   = $this->sarshomar;
+		$args['permission_profile']     = $this->access('u', 'complete_profile', 'admin');
+
 		return \lib\db\polls::create($args);
 	}
 }

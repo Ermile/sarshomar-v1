@@ -14,7 +14,7 @@ class pollopts
 	"
 		`post_id`			AS `poll`,
 		`key` 				AS `key`,
-		`text` 				AS `text`,
+		`title`				AS `title`,
 		`subtype` 			AS `subtype`,
 		`true` 				AS `true`,
 		`groupscore` 		AS `group_score`,

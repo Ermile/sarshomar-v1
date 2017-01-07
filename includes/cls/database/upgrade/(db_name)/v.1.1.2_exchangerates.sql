@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `exchangerates` (
 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-`from` int(10) unsigned NOT NULL,
-`to` int(10) unsigned NOT NULL,
+`from` smallint(5) unsigned NOT NULL,
+`to` smallint(5) unsigned NOT NULL,
 `rate` float(53) NOT NULL,
 `roundtype` ENUM('up','down','round') NULL,
 `round` float(53) NULL,

@@ -170,7 +170,11 @@ trait get
 	{
 		$query  = "SELECT post_meta AS `meta` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
 		$result = \lib\db::get($query, 'meta', true);
-		$result = json_decode($result, true);
+		if(is_string($result))
+		{
+			$result = json_decode($result, true);
+		}
+		
 		if(!is_array($result))
 		{
 			$result = [];

@@ -18,6 +18,8 @@ private function transtext()
 	echo T_("unapproved");          // Enum unapproved
 	echo T_("spam");                // Enum spam
 	echo T_("deleted");             // Enum deleted
+	echo T_("comment");             // Enum comment
+	echo T_("rate");                // Enum rate
 	echo T_("id");                  // id
 	echo T_("post");                // post_id
 	echo T_("author");              // comment_author
@@ -27,6 +29,9 @@ private function transtext()
 	echo T_("meta");                // comment_meta
 	echo T_("status");              // comment_status
 	echo T_("parent");              // comment_parent
+	echo T_("minus");               // comment_minus
+	echo T_("plus");                // comment_plus
+	echo T_("type");                // comment_type
 	echo T_("visitor");             // visitor_id
 	echo T_("modified");            // date_modified
 
@@ -69,7 +74,7 @@ private function transtext()
 	echo T_("male");                // Enum male
 	echo T_("female");              // Enum female
 	echo T_("single");              // Enum single
-	echo T_("marriade");            // Enum marriade
+	echo T_("married");             // Enum married
 	echo T_("low");                 // Enum low
 	echo T_("mid");                 // Enum mid
 	echo T_("high");                // Enum high
@@ -91,11 +96,13 @@ private function transtext()
 	echo T_("45-59");               // Enum 45-59
 	echo T_("60+");                 // Enum 60+
 	echo T_("employee");            // Enum employee
-	echo T_("unemployee");          // Enum unemployee
+	echo T_("unemployed");          // Enum unemployed
 	echo T_("retired");             // Enum retired
+	echo T_("unemployee");          // Enum unemployee
 	echo T_("owner");               // Enum owner
 	echo T_("tenant");              // Enum tenant
 	echo T_("homeless");            // Enum homeless
+	echo T_("usercount");           // usercount
 	echo T_("gender");              // gender
 	echo T_("marrital");            // marrital
 	echo T_("internetusage");       // internetusage
@@ -120,9 +127,12 @@ private function transtext()
 	echo T_("logitem");             // logitem
 	echo T_("critical");            // Enum critical
 	echo T_("medium");              // Enum medium
+	echo T_("type");                // logitem_type
+	echo T_("caller");              // logitem_caller
 	echo T_("title");               // logitem_title
 	echo T_("desc");                // logitem_desc
 	echo T_("meta");                // logitem_meta
+	echo T_("count");               // count
 	echo T_("priority");            // logitem_priority
 
 	// ------------------------------------------------------------ Table logs
@@ -174,6 +184,28 @@ private function transtext()
 	echo T_("profile");             // profile
 	echo T_("insertdate");          // insertdate
 
+	// ------------------------------------------------------------ Table pollopts
+	echo T_("pollopts");            // Table pollopts
+	echo T_("pollopt");             // pollopt
+	echo T_("select");              // Enum select
+	echo T_("emoji");               // Enum emoji
+	echo T_("descriptive");         // Enum descriptive
+	echo T_("upload");              // Enum upload
+	echo T_("range");               // Enum range
+	echo T_("notification");        // Enum notification
+	echo T_("image");               // Enum image
+	echo T_("audio");               // Enum audio
+	echo T_("video");               // Enum video
+	echo T_("pdf");                 // Enum pdf
+	echo T_("title");               // title
+	echo T_("key");                 // key
+	echo T_("subtype");             // subtype
+	echo T_("true");                // true
+	echo T_("groupscore");          // groupscore
+	echo T_("score");               // score
+	echo T_("attachment");          // attachment_id
+	echo T_("attachmenttype");      // attachmenttype
+
 	// ------------------------------------------------------------ Table pollstats
 	echo T_("pollstats");           // Table pollstats
 	echo T_("pollstat");            // pollstat
@@ -220,12 +252,14 @@ private function transtext()
 	echo T_("sarshomar");           // post_sarshomar
 	echo T_("privacy");             // post_privacy
 	echo T_("rank");                // post_rank
-	echo T_("count");               // comment_count
 
 	// ------------------------------------------------------------ Table ranks
 	echo T_("ranks");               // Table ranks
 	echo T_("rank");                // rank
 	echo T_("member");              // member
+	echo T_("public");              // public
+	echo T_("ad");                  // ad
+	echo T_("money");               // money
 	echo T_("report");              // report
 	echo T_("vot");                 // vot
 	echo T_("like");                // like
@@ -235,19 +269,34 @@ private function transtext()
 	echo T_("other");               // other
 	echo T_("sarshomar");           // sarshomar
 	echo T_("ago");                 // ago
+	echo T_("admin");               // admin
+	echo T_("vip");                 // vip
 	echo T_("value");               // value
+
+	// ------------------------------------------------------------ Table socialapi
+	echo T_("socialapi");           // Table socialapi
+	echo T_("socialap");            // socialap
+	echo T_("facebook");            // Enum facebook
+	echo T_("twitter");             // Enum twitter
+	echo T_("uniqueid");            // uniqueid
+	echo T_("request");             // request
+	echo T_("response");            // response
 
 	// ------------------------------------------------------------ Table terms
 	echo T_("terms");               // Table terms
 	echo T_("term");                // term
 	echo T_("language");            // term_language
 	echo T_("type");                // term_type
+	echo T_("caller");              // term_caller
 	echo T_("title");               // term_title
 	echo T_("slug");                // term_slug
 	echo T_("url");                 // term_url
 	echo T_("desc");                // term_desc
 	echo T_("meta");                // term_meta
 	echo T_("parent");              // term_parent
+	echo T_("status");              // term_status
+	echo T_("count");               // term_count
+	echo T_("usercount");           // term_usercount
 
 	// ------------------------------------------------------------ Table termusages
 	echo T_("termusages");          // Table termusages
@@ -257,6 +306,7 @@ private function transtext()
 	echo T_("attachments");         // Enum attachments
 	echo T_("files");               // Enum files
 	echo T_("comments");            // Enum comments
+	echo T_("users");               // Enum users
 	echo T_("term");                // term_id
 	echo T_("termusage");           // termusage_id
 	echo T_("foreign");             // termusage_foreign
@@ -271,7 +321,6 @@ private function transtext()
 	echo T_("transfer");            // Enum transfer
 	echo T_("yes");                 // Enum yes
 	echo T_("no");                  // Enum no
-	echo T_("title");               // title
 	echo T_("caller");              // caller
 	echo T_("unit");                // unit_id
 	echo T_("minus");               // minus
@@ -293,6 +342,30 @@ private function transtext()
 	// ------------------------------------------------------------ Table units
 	echo T_("units");               // Table units
 	echo T_("unit");                // unit
+
+	// ------------------------------------------------------------ Table userranks
+	echo T_("userranks");           // Table userranks
+	echo T_("userrank");            // userrank
+	echo T_("reported");            // reported
+	echo T_("usespamword");         // usespamword
+	echo T_("changeprofile");       // changeprofile
+	echo T_("improveprofile");      // improveprofile
+	echo T_("wrongreport");         // wrongreport
+	echo T_("resetpassword");       // resetpassword
+	echo T_("verification");        // verification
+	echo T_("validation");          // validation
+	echo T_("hated");               // hated
+	echo T_("pollanswered");        // pollanswered
+	echo T_("pollskipped");         // pollskipped
+	echo T_("surveyanswered");      // surveyanswered
+	echo T_("surveyskipped");       // surveyskipped
+	echo T_("mypollanswered");      // mypollanswered
+	echo T_("mypollskipped");       // mypollskipped
+	echo T_("mysurveyanswered");    // mysurveyanswered
+	echo T_("mysurveyskipped");     // mysurveyskipped
+	echo T_("userreferred");        // userreferred
+	echo T_("userverified");        // userverified
+	echo T_("commentcount");        // commentcount
 
 	// ------------------------------------------------------------ Table users
 	echo T_("users");               // Table users

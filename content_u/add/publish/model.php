@@ -45,7 +45,7 @@ trait model
 			return false;
 		}
 
-		$this->check_homepage();
+		// $this->check_homepage();
 
 		// insert tags to tags table,
 		// @param string
@@ -75,7 +75,8 @@ trait model
 			}
 			// save tag to this poll
 			$useage_arg = [];
-			foreach ($tags_id as $key => $value) {
+			foreach ($tags_id as $key => $value) 
+			{
 
 				$useage_arg[] =
 				[
