@@ -232,8 +232,6 @@ trait insert
 			self::update($insert_poll, $poll_id);
 		}
 
-		
-
 		$answers = $_args['answers'];
 		// remove empty index from answer array
 		$answers = array_filter($answers);
@@ -288,17 +286,26 @@ trait insert
 					$attachment_id = \lib\debug::get_msg("result");
 				}
 			}
-			$combine[$key] =
-			[
-				'txt'           => $title,
-				'type'          => $value['type'],
-				'desc'          => isset($value['description'])  	? $value['description'] 	: null,
-				'attachment_id' => $attachment_id,
-     		];
+			$combine[$key]['attachment_id'] = $attachment_id;
+			
+			$combine[$key]['txt']           = $title;
+			$combine[$key]['type']          = $value['type'];
+			$combine[$key]['desc']          = isset($value['description'])  	? $value['description'] 	: null;
 
-			// 'meta'          => $answer_meta,
-			// 'true'          => isset($answer_meta['is_true'])  	? $answer_meta['is_true'] 	: null,
-			// 'score'         => isset($answer_meta['score']) 	? $answer_meta['score'] 	: null,
+     		if(isset($value[$value['type']]['score']['value']) && is_numeric($value[$value['type']]['score']['value']) && $value[$value['type']]['score']['value'])
+     		{
+     			$combine[$key]['score'] = $value[$value['type']]['score']['value'];
+     		}
+
+ 	 		if(isset($value[$value['type']]['score']['group']) && is_string($value[$value['type']]['score']['group']) && $value[$value['type']]['score']['group'])
+     		{
+     			$combine[$key]['groupscore'] = $value[$value['type']]['score']['group'];
+     		}
+
+ 	 		if(isset($value[$value['type']]['is_true']) && $value[$value['type']]['is_true'])
+     		{
+     			$combine[$key]['true'] = $value[$value['type']]['is_true'];
+     		}
 
 			$support_answer_object = self::support_answer_object($value['type']);
 			$answer_meta           = [];
@@ -307,27 +314,39 @@ trait insert
 			{	
 				foreach ($support_answer_object as $index => $reg) 
 				{
+					$ok = false;
 					if(isset($value[$value['type']][$index]))
 					{
-						if(preg_match($reg, $value[$value['type']][$index]))
+						if(is_bool($reg) && is_bool($value[$value['type']][$index]))
 						{
-							switch ($index) 
-							{
-								case 'value':
-									# code...
-									break;
-								
-								default:
-									# code...
-									break;
-							}
+							$ok = true;
+						}
+						elseif(is_int($reg) && is_int($value[$value['type']][$index]))
+						{
+							$ok = true;
+						}
+						elseif(is_string($reg) && is_string($value[$value['type']][$index]))
+						{
+							$ok = true;
+						}
+						elseif(is_array($reg) && is_array($value[$value['type']][$index]) && 
+								in_array($value[$value['type']][$index], $reg))
+						{
+							$ok = true;
+						}
+						if($ok)
+						{
 							$answer_meta[$index] = $value[$value['type']][$index];
 						}
 					}
 				}
 			}
-	
 
+			if(!empty($answer_meta))
+			{
+				$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
+			}
+	
      		if($value['type'] != 'select')
      		{
      			break;
@@ -346,6 +365,7 @@ trait insert
 			'answers' => $combine,
 			'update'  => $_args['update'],
 		];
+		
 		$answers = \lib\utility\answers::insert($answers_arg);
 
 		if(

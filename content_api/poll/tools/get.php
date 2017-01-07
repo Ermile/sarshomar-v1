@@ -74,8 +74,7 @@ trait get
 		$filters = \lib\utility\postfilters::get_filter($poll_id);
 		$result['filters'] = $filters;
 		$result['filters']['member'] = \lib\db\ranks::get($poll_id, 'member');
-		var_dump($result);
-		exit();
+		
 		return $result;
 	}
 }
