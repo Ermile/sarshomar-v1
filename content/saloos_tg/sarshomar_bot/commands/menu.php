@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomar_bot\commands;
 // use telegram class as bot
 use \lib\telegram\tg as bot;
+use \content\saloos_tg\sarshomar_bot\commands\handle;
 
 class menu
 {
@@ -12,21 +13,31 @@ class menu
 	 */
 	public static function main($_onlyMenu = false)
 	{
-		$txt_my = T_('My polls');
-		if(!\lib\db\polls::get(bot::$user_id, 'count'))
-		{
-			$txt_my = T_('Create new poll');
-		}
+		// $txt_my = [T_('My polls'), T_('Create')];
+		// $user_polls = \lib\db\polls::search(null, ['user_id'=> bot::$user_id, 'get_count' => true, 'my_poll' => true, 'pagenation' => false]);
+		// if(!$user_polls)
+		// {
+		// 	$txt_my = [T_('Create new poll')];
+		// }
 		// define
 		$menu =
 		[
 			'keyboard' =>
 			[
 				[T_('Ask me')],
-				[$txt_my],
-				[T_('Sarshomar Panel')],
+				[T_('Dashboard'), T_('New')],
 			],
-		];
+			"resize_keyboard" => true
+			];
+
+		if(!\lib\utility\sync::is_telegram_sync(bot::$user_id))
+		{
+			$menu['keyboard'][] = [[
+					'text' 				=> T_('Register & sync'),
+					'request_contact' 	=> true
+				]];
+		}
+
 
 		if($_onlyMenu)
 		{

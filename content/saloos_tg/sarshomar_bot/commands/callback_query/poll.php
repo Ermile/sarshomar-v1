@@ -1,11 +1,11 @@
 <?php
-namespace content\saloos_tg\sarshomarbot\commands\callback_query;
-use \content\saloos_tg\sarshomarbot\commands\callback_query;
-use \content\saloos_tg\sarshomarbot\commands\handle;
+namespace content\saloos_tg\sarshomar_bot\commands\callback_query;
+use \content\saloos_tg\sarshomar_bot\commands\callback_query;
+use \content\saloos_tg\sarshomar_bot\commands\handle;
 use \lib\db\tg_session as session;
 use \lib\telegram\tg as bot;
-use \content\saloos_tg\sarshomarbot\commands\utility;
-use content\saloos_tg\sarshomarbot\commands\make_view;
+use \content\saloos_tg\sarshomar_bot\commands\utility;
+use content\saloos_tg\sarshomar_bot\commands\make_view;
 use \lib\telegram\step;
 
 class poll
@@ -98,7 +98,7 @@ class poll
 
 	public static function discard($_query, $_data_url)
 	{
-		$edit = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft(function($_maker){
+		$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(function($_maker){
 			$_maker->message->message['sucsess'] = T_('Poll Discarded');
 			$_maker->message->add("discard", '#'.T_('Discarded'));
 		});

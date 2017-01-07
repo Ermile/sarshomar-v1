@@ -17,28 +17,7 @@ class user
 		{
 			case '/start':
 			case 'start':
-			case 'شروع':
-				// generate respnse
-				$_args = null;
-				if(substr($_cmd['optional'], 0, 5) === 'poll_')
-				{
-					$opt = substr($_cmd['optional'], 5);
-					// show related poll id
-				}
-				if(substr($_cmd['optional'], 0, 4) === 'ref_')
-				{
-					$opt = substr($_cmd['optional'], 4);
-					// save this reference
-					self::saveRef($opt);
-				}
-				if(substr($_cmd['optional'], 0, 5) === 'lang_')
-				{
-					$opt               = substr($_cmd['optional'], 5);
-					$_args['language'] = $opt;
-					// save this reference
-					// set lang and skip asking new language step
-				}
-				$response = self::start($_args);
+				$response = step_starting::start($_cmd);
 				break;
 
 			case '/about':
@@ -103,40 +82,6 @@ class user
 				break;
 		}
 		return $response;
-	}
-
-
-	/**
-	 * start conversation
-	 * @return [type] [description]
-	 */
-	public static function start($_args = null)
-	{
-		$site_url = 'https://sarshomar.com';
-		if(isset($_args['language']) && $_args['language'] == 'fa')
-		{
-			$site_url .= '/fa';
-		}
-		$txt_start = T_("Welcome to [_name_]($site_url)!");
-		$txt_start .= "\n". T_("*Ask Anyone Anywhere*."). "\n\n";
-		$txt_start .= T_("[_name_](https://sarshomar.com) is a modern service to give your precious opinion and help you to ask from anyone of you want."). "\n\n\n";
-		$menu      = menu::main(true);
-		// if language isset then do not show message for selecting language and show main menu
-		if(!isset($_args['language']))
-		{
-			$txt_start .= T_("At first choose your language. You can change it later on settings.");
-			$menu      = menu_language::set_one(true);
-		}
-		// $txt_start .= T_("To be continue...");
-		$result =
-		[
-			// [
-				'text'                     => $txt_start,
-				'reply_markup'             => $menu,
-				'disable_web_page_preview' => true,
-			// ],
-		];
-		return $result;
 	}
 
 
@@ -280,58 +225,6 @@ class user
 		];
 
 		return $result;
-	}
-
-	/**
-	 * save reference at start using bot
-	 * @param  boolean $_status [description]
-	 * @return [type]           [description]
-	 */
-	public static function saveRef($_ref)
-	{
-		$ref  = \lib\utility\shortURL::decode($_ref);
-		$meta =
-		[
-			'time' => date('Y-m-d H:i:s'),
-			'ref'  => $ref,
-			'me'   => bot::$user_id,
-		];
-		// check if this is first time for this user
-		$userDetail =
-		[
-			'user'   => $ref,
-			'cat'    => 'ref_'.$ref,
-			'key'    => 'telegram',
-			'value'  => bot::$user_id,
-			'meta'   => $meta,
-			'stauts' => 'enable',
-		];
-		if(!bot::$user_id)
-		{
-			$userDetail['status'] = 'disable';
-		}
-
-		// save in options table
-		$result = \lib\utility\option::set($userDetail, true);
-		// reference is correct, save point for sender
-		if($result)
-		{
-
-		}
-
-
-		/**
-
-		 * send message to sender to say thanks
-		 */
-		// $text   = "اولین کاربری که معرفی کردید در سیستم ثبت نام کرد:)\n";
-		// $text   .= "به پاس قدردانی از حسن اعتمادتان حساب کاربری شما *100* امتیاز شارژ شد.";
-		// $result =
-		// [
-		// 	'text'  => $text,
-		// 	'chat' => '',
-		// ];
-		// bot::sendResponse($result);
 	}
 }
 ?>
