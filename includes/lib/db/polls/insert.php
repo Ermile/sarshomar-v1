@@ -44,24 +44,24 @@ trait insert
 		// update id must be a shortURL
 		if($_args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", $_args['update']))
 		{
-			return \lib\debug::error(T_("invalid parametr update"));
+			return \lib\debug::error(T_("invalid parametr update"), 'update', 'system');
 		}
 
 		// check user id. 
 		if(!is_numeric($_args['user']))
 		{
-			return \lib\debug::error(T_("invalid parametr user"));
+			return \lib\debug::error(T_("invalid parametr user"), 'user', 'arguments');
 		}
 		// check answers
 		if(is_null($_args['answers']) || empty($_args['answers']) || !is_array($_args['answers']))
 		{
-			return \lib\debug::error(T_("invalid parametr answers"));
+			return \lib\debug::error(T_("invalid parametr answers"), 'answers', 'arguments');
 		}
 
 		// check answers	
 		if(!isset($_args['answers'][0]['type']) || (isset($_args['answers'][0]['type']) && empty($_args['answers'][0]['type'])))
 		{
-			return \lib\debug::error(T_("invalid parametr answer type"));
+			return \lib\debug::error(T_("invalid parametr answer type"), 'type', 'arguments');
 		}
 		// set the answer type
 		$answer_type = $_args['answers'][0]['type'];
@@ -73,7 +73,7 @@ trait insert
 		// 	)
 		//   )
 		// {
-		// 	return \lib\debug::error(T_("invalid object of answer type"));
+		// 	return \lib\debug::error(T_("invalid object of answer type"), 'type', 'arguments');
 		// }
 		// // get options of answer type
 		// $answer_type_object = $_args['answers'][0][$answer_type];
@@ -88,7 +88,7 @@ trait insert
 			)
 		  )
 		{
-			return \lib\debug::error(T_("invalid parametr language"));
+			return \lib\debug::error(T_("invalid parametr language"), 'language', 'arguments');
 		}
 
 		// check the suevey id to set in post_parent
@@ -98,7 +98,17 @@ trait insert
 			!preg_match("/^[". $shortURL. "]+$/", $_args['options']['survey_id'])
 		  )
 		{
-			return \lib\debug::error(T_("invalid parametr survey_id"));
+			return \lib\debug::error(T_("invalid parametr survey_id"), 'survey_id', 'arguments');
+		}
+
+		// check the article id
+		if(
+			isset($_args['options']['article']) && 
+			$_args['options']['article'] && 
+			!preg_match("/^[". $shortURL. "]+$/", $_args['options']['article'])
+		  )
+		{
+			return \lib\debug::error(T_("invalid parametr article"), 'article', 'arguments');
 		}
 
 		// default gender of all post record in sarshomar is 'poll'
@@ -135,18 +145,18 @@ trait insert
 		// check title
 		if($title == null)
 		{
-			return debug::error(T_("Poll title can't be null"), 'title');
+			return debug::error(T_("Poll title can't be null"), 'title', 'arguments');
 		}
 		// check lenght of title
 		if(strlen($title) > 190)
 		{
-			return debug::error(T_("Poll title must be less than 190 character"), 'title');
+			return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 		}
 
 		// check length of sumamry text
 		if($summary && strlen($summary) > 150)
 		{
-			return debug::error(T_("Summery must be less than 150 character"), 'summary', 'options');
+			return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
 		}
 
 		// start transaction
@@ -157,7 +167,7 @@ trait insert
 		if(!\lib\db\words::save_and_check($_args))
 		{
 			$poll_status = 'awaiting';
-			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"));
+			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
 			// plus the userrank of usespamword
 			\lib\db\userranks::plus($_args['user'], 'usespamword');
 		}
@@ -219,7 +229,7 @@ trait insert
 			$update_id = \lib\utility\shortURL::decode($_args['update']);
 			if(!self::is_my_poll($update_id, $_args['user']))
 			{
-				return debug::error(T_("This is not your poll, can't update"));
+				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
 			}
 			// in update mode we update the poll
 			$poll_id = $update_id;
@@ -261,13 +271,13 @@ trait insert
 						break;
 					
 					default:
-						return debug::error(T_("invalid parametr type (:type) in index :key of answer", ['key' => $key, 'type' => $value['type']]),false, 'answers');
+						return debug::error(T_("invalid parametr type (:type) in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
 						break;
 				}
 			}
 			else
 			{
-				return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), false, 'answers');
+				return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
 			}
 
 			$attachment_id = null;
@@ -360,7 +370,7 @@ trait insert
 		// check the count of answer array
 		if($answer_type == 'select' && count($combine) < 2)
 		{
-			return debug::error(T_("You must set two answers"), ['answer1', 'answer2'], 'answers');
+			return debug::error(T_("You must set two answers"), ['answer1', 'answer2'], 'arguments');
 		}
 
 		$answers_arg =
@@ -440,6 +450,91 @@ trait insert
 				}
 			}
 		}
+
+		// $remove_tags = \lib\db\tags::remove($poll_id);
+
+		if(isset($_args['options']['tags']) && is_array($_args['options']['tags']))
+		{
+			$tags = $_args['options']['tags'];
+			$check_count = array_filter($tags);
+			if(count($check_count) > 3 && $_args['permission_sarshomar'] === false)
+			{
+				return debug::error(T_("You have added so many tags, Please remove some of them"));
+			}
+			$tags = implode(",", $tags);
+			$insert_tag = \lib\db\tags::insert_multi($tags);
+
+			$tags_id    = \lib\db\tags::get_multi_id($tags);
+			if(!is_array($tags_id))
+			{
+				$tags_id = [];
+			}
+			// save tag to this poll
+			$useage_arg = [];
+			foreach ($tags_id as $key => $value) 
+			{
+				$useage_arg[] =
+				[
+					'termusage_foreign' => 'posts',
+					'term_id'           => $value,
+					'termusage_id'      => $poll_id
+				];
+			}
+			$useage = \lib\db\termusages::insert_multi($useage_arg);
+		}
+
+		$publish_date = [];
+		if(isset($_args['options']['start_date']) && $_args['options']['start_date'])
+		{	
+			$publish_date[] =
+			[
+				'post_id'      => $poll_id,
+				'option_cat'   => "poll_{$poll_id}",
+				'option_key'   => "start_date",
+				'option_value' => $_args['options']['start_date']
+			];
+		}
+
+		if(isset($_args['options']['end_date']) && $_args['options']['end_date'])
+		{	
+			$publish_date[] =
+			[
+				'post_id'      => $poll_id,
+				'option_cat'   => "poll_{$poll_id}",
+				'option_key'   => "end_date",
+				'option_value' => $_args['options']['end_date']
+			];
+		}
+		if(!empty($publish_date))
+		{
+			$publish_date_query = \lib\db\options::insert_multi($publish_date);
+		}
+
+
+		if($_args['permission_sarshomar'] === true)
+		{
+			if($_args['options']['article'])
+			{
+				$article =
+				[
+					'post_id'      => $poll_id,
+					'option_cat'   => "poll_$poll_id",
+					'option_key'   => "article",
+					'option_value' => \lib\utility\shortURL::decode($_args['options']['article'])
+				];
+				$article_insert = \lib\db\options::insert($article);
+				if(!$article_insert)
+				{
+					\lib\db\options::update_on_error($article, array_splice($article, 1));
+				}
+			}
+
+			// if(isset($_args['options']['cats']))
+			// {
+			// 	\lib\db\cats::set($_args['options']['cats'], $poll_id);
+			// }
+		}
+
 
 		/**
 			T_("Poll Successfully added");
