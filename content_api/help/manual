@@ -1,0 +1,71 @@
+METHOD		URL 						HEADER 								BODY
+# POLL
+POST		api/poll 					[application/json]					[args]
+GET 		api/poll?short_url=[short_url] 		
+PUT			api/poll 														[short_url]
+DELETE		api/poll?short_url=[short_url] 									[short_url]
+
+# FILE
+POST		api/file
+GET 		api/file?short_url=[short_url]
+
+# ANSWER
+POST		api/answer
+GET 		api/answer?shorURL=[short_url]
+PUT			api/answer 														[short_url]
+
+# CONTACT
+POST		api/contact
+
+# SEARCH
+GET 	 	api/search?[search condition]
+POST 	 	api/search 														[search condition]
+ 
+# ASK
+GET 		api/ask 					[type: random|null]
+
+-------------------------------------------------------------------------------------------
+METHOD		URL 						HEADER 								BODY
+# POLL
+POST		api/addPoll 					[application/json]				[args]
+
+GET 		api/getPoll?short_url=[short_url] 		
+POST 		api/getPoll														[short_url] 		
+
+PUT			api/editPoll 													[short_url]
+POST		api/editPoll 													[short_url]
+
+DELETE		api/removePoll?short_url=[short_url]							[short_url]
+POST		api/removePoll 													[short_url]
+
+# FILE
+POST		api/addFile
+
+GET 		api/getFile?short_url=[short_url]
+POST		api/getFile														[short_url]
+
+
+# ANSWER
+POST		api/addAnswer
+
+GET 		api/getAnswer?shorURL=[short_url]
+POST		api/getAnswer													[short_url]
+
+PUT			api/editAnswer 													[short_url]
+POST		api/editAnswer													[short_url]
+
+
+# CONTACT
+POST		api/sendContact
+
+GET 		api/getContact?agrs
+POST 		api/getContact													[args]
+
+# SEARCH
+GET 	 	api/search?[search condition]
+POST 	 	api/search 														[search condition]
+ 
+# ASK
+GET 		api/ask?type=null|random
+POST 		api/ask 														[type: random|null]
+
