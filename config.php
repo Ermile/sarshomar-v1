@@ -18,5 +18,6 @@ if(!defined('db_user'))
 if(!defined('db_pass'))
  define("db_pass", 'Ermile@#$1233');
 
+define('subDevelop', 'dev');
 
 ?>
