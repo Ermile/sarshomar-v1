@@ -423,7 +423,7 @@ trait insert
 				}
 			}
 		}
-		elseif($_args['options']['tree']['parent_id'])
+		elseif(isset($_args['options']['tree']['parent_id']) && $_args['options']['tree']['parent_id'])
 		{
 			return debug::error(T_("invalid parametr tree:parent_id"));
 		}
