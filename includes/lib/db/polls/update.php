@@ -17,7 +17,8 @@ trait update
 		$short_url = \lib\utility\shortURL::encode($_poll_id);
 		// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
 		$_title = str_replace(" ", "_", $_title);
-		$url = '$/' . $short_url . '/'. $_title;
+		// $url = '$/' . $short_url . '/'. $_title;
+		$url = '$/' . $short_url;
 		// default the update is true
 		// we update the poll url
 		if($_update)

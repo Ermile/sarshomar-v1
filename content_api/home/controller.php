@@ -10,14 +10,6 @@ class controller extends  \mvc\controller
 	}
 
 	/**
-	 * the short url
-	 *
-	 * @var        string
-	 */
-	public static $shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-	
-
-	/**
 	 * route url like this:
 	 * post > poll/ to add poll
 	 * get poll/[shorturl] to get poll

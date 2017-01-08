@@ -11,13 +11,7 @@ trait put
 	 */
 	public function put_poll($_args)
 	{
-		$url       = $_args->get("url");
-		$update_id = false;
-		if(isset($url[0][1]))
-		{
-			$update_id = $url[0][1];
-		}
-		return $this->add($_args, ['update' => $update_id]);
+		return $this->add($_args);
 	}
 
 }

@@ -1,0 +1,111 @@
+{
+  "title": "string",
+  "answers": [
+    {
+      "title": "null|string",
+      "type": "select|emoji|descriptive|upload|range|notification",
+      "description": "null|string",
+      "file": "url|answer_file[]",
+      "select": {
+        "is_true": "true|false",
+        "score": {
+          "group": "null|string",
+          "value": "null|int"
+        }
+      },
+      "emoji": {
+        "type": "star|like|get from title",
+        "is_true": "true|false",
+        "score": {
+          "group": "null|string",
+          "value": "null|int"
+        },
+        "star_size_min": "int|null",
+        "star_size_max": "int|null"
+      },
+      "descriptive": {
+        "text_format": "any|tel|email|website|number|password|custom",
+        "text_length_min": "int|null",
+        "text_length_max": "int|null"
+      },
+      "upload": {
+        "file_format": "string",
+        "file_size_min": "int|null",
+        "file_size_max": "int|null"
+      },
+      "range": {
+        "number_size_min": "int",
+        "number_size_max": "int"
+      }
+    }
+  ],
+  "options": {
+    "status" : "draft|publish",
+    "language": "fa|en|ar|null",
+    "file": "poll_file|url|null",
+    "summary": "string|null",
+    "tree": {
+      "parent_id": "string",
+      "answers": "array"
+    },
+    "range_timing_max": "int|null",
+    "choice_count_min": "int|null",
+    "choice_count_max": "int|null",
+    "random_sort": "true|false",
+    "hidden_result": "true|false",
+    "comment": "true|false",
+    "ordering": "true|false",
+    "survey_id": "null|string",
+    "tags": [],
+    "start_date": "null|date_time",
+    "end_date": "null|date_time",
+    "article": "article_code",
+    "cats": [],
+    "slug": "string",
+    "is_sarshomar": "true|false"
+  },
+  "filters": {
+    "max_member": "int|null",
+    "gender": "male|female|null",
+    "marrital": "single|married|null",
+    "internetusage": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "graduation": [
+      "illiterate",
+      "undergraduate",
+      "graduate"
+    ],
+    "degree": [
+      "under_diploma",
+      "diploma",
+      "2_year_college",
+      "bachelor",
+      "master",
+      "phd"
+    ],
+    "range": [
+      "-13",
+      "14-17",
+      "18-24",
+      "25-30",
+      "31-44",
+      "45-59",
+      "60+"
+    ],
+    "employmentstatus": [
+      "employee",
+      "unemployed",
+      "retired"
+    ],
+    "housestatus": [
+      "owner",
+      "tenant",
+      "homeless"
+    ]
+  }
+}
+
+

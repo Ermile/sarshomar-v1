@@ -33,132 +33,153 @@ trait insert
 			'options'                         => [],
 			// filters
 			'filters'                         => [],
+
+			'shortURL'						  => "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ",
 		];
 		$_args = array_merge($default_value, $_args);
 		
 		// the shortURL of poll to check if need
-		$shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+		$shortURL = $_args['shortURL'];
+		
 		/**
 		 * check parametr
 		 */
 		// update id must be a shortURL
+		$update_mod = false;
 		if($_args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", $_args['update']))
 		{
 			return \lib\debug::error(T_("invalid parametr update"), 'update', 'system');
+		}
+		elseif($_args['update'])
+		{
+			$update_mod = true;
 		}
 
 		// check user id. 
 		if(!is_numeric($_args['user']))
 		{
-			return \lib\debug::error(T_("invalid parametr user"), 'user', 'arguments');
+			return \lib\debug::error(T_("invalid parametr user"), 'user', 'system');
 		}
-		// check answers
-		if(is_null($_args['answers']) || empty($_args['answers']) || !is_array($_args['answers']))
-		{
-			return \lib\debug::error(T_("invalid parametr answers"), 'answers', 'arguments');
-		}
-
-		// check answers	
-		if(!isset($_args['answers'][0]['type']) || (isset($_args['answers'][0]['type']) && empty($_args['answers'][0]['type'])))
-		{
-			return \lib\debug::error(T_("invalid parametr answer type"), 'type', 'arguments');
-		}
-		// set the answer type
-		$answer_type = $_args['answers'][0]['type'];
 		
-		// check language
-		$language = null;
-		if(	
-			!isset($_args['options']['language']) || 
-			(
-				isset($_args['options']['language']) && 
-				!\lib\utility\location\languages::check($_args['options']['language'])
-			)
-		  )
+		$publish_mod = false;
+		$draft_mod   = true;
+
+		if(isset($_args['options']['status']))
 		{
-			return \lib\debug::error(T_("invalid parametr language"), 'language', 'arguments');
+			if($_args['options']['status'] == 'publish')
+			{
+				$publish_mod = true;
+				$draft_mod   = false;
+			}
+			elseif($_args['options']['status'] == 'draft')
+			{
+				$publish_mod = false;
+				$draft_mod   = true;
+			}
+			elseif($_args['options']['status'])
+			{
+				return debug::error(T("invalid parametr status"), 'options', 'arguments');
+			}
+		}
+		else
+		{
+			$draft_mod = true;
 		}
 
-		// check the suevey id to set in post_parent
-		if(
-			isset($_args['options']['survey_id']) && 
-			$_args['options']['survey_id'] && 
-			!preg_match("/^[". $shortURL. "]+$/", $_args['options']['survey_id'])
-		  )
-		{
-			return \lib\debug::error(T_("invalid parametr survey_id"), 'survey_id', 'arguments');
-		}
+		$answer_type = null;
+		$language    = null;
+		if($publish_mod)
+		{	
+			// check answers
+			if(is_null($_args['answers']) || empty($_args['answers']) || !is_array($_args['answers']))
+			{
+				return \lib\debug::error(T_("invalid parametr answers"), 'answers', 'arguments');
+			}
+			// check answers	
+			if(!isset($_args['answers'][0]['type']) || (isset($_args['answers'][0]['type']) && empty($_args['answers'][0]['type'])))
+			{
+				return \lib\debug::error(T_("invalid parametr answer type"), 'type', 'arguments');
+			}
+			// set the answer type
+			$answer_type = $_args['answers'][0]['type'];
 
-		// check the article id
-		if(
-			isset($_args['options']['article']) && 
-			$_args['options']['article'] && 
-			!preg_match("/^[". $shortURL. "]+$/", $_args['options']['article'])
-		  )
-		{
-			return \lib\debug::error(T_("invalid parametr article"), 'article', 'arguments');
-		}
+			// check language
+			if(	
+				!isset($_args['options']['language']) || 
+				(
+					isset($_args['options']['language']) && 
+					!\lib\utility\location\languages::check($_args['options']['language'])
+				)
+			  )
+			{
+				return \lib\debug::error(T_("invalid parametr language"), 'language', 'arguments');
+			}
+			if(
+				isset($_args['options']['survey_id']) && 
+				$_args['options']['survey_id'] && 
+				!preg_match("/^[". $shortURL. "]+$/", $_args['options']['survey_id'])
+			  )
+			{
+				return \lib\debug::error(T_("invalid parametr survey_id"), 'survey_id', 'arguments');
+			}
 
-		// default gender of all post record in sarshomar is 'poll'
-		$gender    = "poll";
-		$survey_id = null;
+			// check the article id
+			if(
+				isset($_args['options']['article']) && 
+				$_args['options']['article'] && 
+				!preg_match("/^[". $shortURL. "]+$/", $_args['options']['article'])
+			  )
+			{
+				return \lib\debug::error(T_("invalid parametr article"), 'article', 'arguments');
+			}
+
+			if($publish_mod)
+			{
+				// save and check words
+				if(!\lib\db\words::save_and_check($_args))
+				{
+					$poll_status = 'awaiting';
+					\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
+					// plus the userrank of usespamword
+					\lib\db\userranks::plus($_args['user'], 'usespamword');
+				}
+			}
+		}
+		// insert poll arguments
+		$__insert_poll = [];
 
 		if(isset($_args['options']['survey_id']))
 		{
-			$survey_id = \lib\utility\shortURL::decode($_args['options']['survey_id']);
-			$gender    = "survey";
+			$__insert_poll['parent_id'] = \lib\utility\shortURL::decode($_args['options']['survey_id']);
+			$__insert_poll['type']      = "survey";
 		}
-
-		// the post meta as json
-		$post_meta         = [];
 
 		// get title
-		$title             = $_args['title'];
+		if($_args['title'])
+		{
+			$__insert_poll['post_title'] = $_args['title'];
+			if(strlen($_args['title']) > 190)
+			{
+				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
+			}
+		}
+		
 		// get content
-		$content           = null;
+		
 		if(isset($_args['options']['description']))
 		{
-			$content       = $_args['options']['description'];
+			$__insert_poll['post_content'] = $_args['options']['description'];
 		}
 
-		// get summary of poll
-		$summary           = null;
 		if(isset($_args['options']['summary']))
 		{
-			$summary = $_args['options']['summary'];
+			$__insert_poll['post_meta']['desc'] = $_args['options']['summary'];
+			if($_args['options']['summary'] && strlen($_args['options']['summary']) > 150)
+			{
+				return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
+			}
 		}
-
-		$post_meta['desc'] = $summary;
-
-		// check title
-		if($title == null)
-		{
-			return debug::error(T_("Poll title can't be null"), 'title', 'arguments');
-		}
-		// check lenght of title
-		if(strlen($title) > 190)
-		{
-			return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
-		}
-
-		// check length of sumamry text
-		if($summary && strlen($summary) > 150)
-		{
-			return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
-		}
-
-		// start transaction
-		\lib\db::transaction();
-
-		$poll_status = 'draft';
-		// save and check words
-		if(!\lib\db\words::save_and_check($_args))
-		{
-			$poll_status = 'awaiting';
-			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
-			// plus the userrank of usespamword
-			\lib\db\userranks::plus($_args['user'], 'usespamword');
-		}
+	
 
 		/**
 		 * upload files of poll title
@@ -176,7 +197,7 @@ trait insert
 			
 			if(\lib\debug::get_msg("result"))
 			{
-				$post_meta['attachment_id'] = \lib\debug::get_msg("result");
+				$__insert_poll['post_meta']['attachment_id'] = \lib\debug::get_msg("result");
 			}
 		}
 
@@ -186,31 +207,39 @@ trait insert
 		if($_args['update'] === false && $_args['permission_sarshomar'] === true)
 		{
 			$next_id   = (int) \lib\db\polls::sarshomar_id();
-			$insert_id = ++$next_id;
+			$__insert_poll['id'] = ++$next_id;
 		}
 
-		// ready to inset poll
-		$insert_poll =
-		[
-			'id'			 => $insert_id,
-			'user_id'        => $_args['user'],
-			'post_title'     => $title,
-			'post_type'      => $gender,
-			'post_content'   => $content,
-			'post_language'  => $_args['options']['language'],
-			'post_survey'    => $survey_id,
-			'post_gender'    => $gender,
-			'post_privacy'   => 'private',
-			'post_comment'   => 'open',
-			'post_status'    => $poll_status,
-			'post_meta'      => json_encode($post_meta, JSON_UNESCAPED_UNICODE),
-			'post_sarshomar' => $_args['permission_sarshomar'] === true ? 1 : 0,
-		];
+		$__insert_poll['user_id']=  $_args['user'];
+
+		if(isset($_args['options']['language']))
+		{
+			$__insert_poll['post_language'] = $_args['options']['language'];
+		}
+
+		$__insert_poll['post_sarshomar'] = $_args['permission_sarshomar'] === true ? 1 : 0;
+
+		$__insert_poll['post_privacy'] = 'private';
+		$__insert_poll['post_comment'] = 'open';
+		if($publish_mod)
+		{
+			$__insert_poll['post_status'] = "publish";
+		}
+		else
+		{
+			$__insert_poll['post_status'] = "draft";
+		}
+		$post_meta = [];
+		if(isset($__insert_poll['post_meta']) && !empty($__insert_poll['post_meta']))
+		{
+			$post_meta                  = $__insert_poll['post_meta'];
+			$__insert_poll['post_meta'] = json_encode($__insert_poll['post_meta'], JSON_UNESCAPED_UNICODE);
+		}
 
 		// inset poll if we not in update mode
 		if($_args['update'] === false)
 		{
-			$poll_id = self::insert($insert_poll);
+			$poll_id = self::insert($__insert_poll);
 		}
 		else
 		{
@@ -224,151 +253,158 @@ trait insert
 
 			$old_post_meta            = \lib\db\polls::get_poll_meta($poll_id);
 			$post_meta                = array_merge($old_post_meta, $post_meta);
-			$insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
+			$__insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
+			if(isset($__insert_poll['id']))
+			{
+				unset($__insert_poll['id']);
+			}
 
-			array_shift($insert_poll);
-			self::update($insert_poll, $poll_id);
+			self::update($__insert_poll, $poll_id);
 		}
 
-		$answers = $_args['answers'];
-		// remove empty index from answer array
-		$answers = array_filter($answers);
+		if(isset($_args['answers']) && is_array($_args['answers']))
+		{		
+			$answers = $_args['answers'];
+			// remove empty index from answer array
+			$answers = array_filter($answers);
 
-		// combine answer type and answer text and answer score
-		$combine = [];
-		foreach ($answers as $key => $value)
-		{
-			$title = null;
-			if(isset($value['title']) && $value['title'])
+			// combine answer type and answer text and answer score
+			$combine = [];
+			foreach ($answers as $key => $value)
 			{
-				$title = $value['title'];
-			}
-
-			$type  = null;
-			if(isset($value['type']))
-			{
-				switch ($value['type'])
+				$title = null;
+				if(isset($value['title']) && $value['title'])
 				{
-					case 'select':
-					case 'emoji':
-					case 'descriptive':
-					case 'upload':
-					case 'range':
-					case 'notification':
-						$type = $value['type'];
-						break;
-					
-					default:
-						return debug::error(T_("invalid parametr type (:type) in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
-						break;
+					$title = $value['title'];
 				}
-			}
-			else
-			{
-				return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
-			}
 
-			$attachment_id = null;
-			if(isset($value['file']) && $value['file'])
-			{
-				$upload_answer = 
-				[
-					'upload_name' => $value['file'], 
-					'file_path'   => $value['file'], 
-					'user_id'     => $_args['user']
-				];
-				
-				$upload_answer = \lib\utility\upload::upload($upload_answer);
-				if(\lib\debug::get_msg("result"))
+				$type  = null;
+				if(isset($value['type']))
 				{
-					$attachment_id = \lib\debug::get_msg("result");
-				}
-			}
-			$combine[$key]['attachment_id'] = $attachment_id;
-			
-			$combine[$key]['txt']           = $title;
-			$combine[$key]['type']          = $value['type'];
-			$combine[$key]['desc']          = isset($value['description']) ? $value['description'] : null;
-
-			// get score value 
-     		if(isset($value[$value['type']]['score']['value']) && is_numeric($value[$value['type']]['score']['value']) && $value[$value['type']]['score']['value'])
-     		{
-     			$combine[$key]['score'] = $value[$value['type']]['score']['value'];
-     		}
-
-     		// get score group
- 	 		if(isset($value[$value['type']]['score']['group']) && is_string($value[$value['type']]['score']['group']) && $value[$value['type']]['score']['group'])
-     		{
-     			$combine[$key]['groupscore'] = $value[$value['type']]['score']['group'];
-     		}
-
-     		// get true answer
- 	 		if(isset($value[$value['type']]['is_true']) && $value[$value['type']]['is_true'])
-     		{
-     			$combine[$key]['true'] = $value[$value['type']]['is_true'];
-     		}
-
-     		// get meta of this object of answer
-			$support_answer_object = self::support_answer_object($value['type']);
-			$answer_meta           = [];
-
-			if(isset($value[$value['type']]))
-			{	
-				foreach ($support_answer_object as $index => $reg) 
-				{
-					$ok = false;
-					if(isset($value[$value['type']][$index]))
+					switch ($value['type'])
 					{
-						if(is_bool($reg) && is_bool($value[$value['type']][$index]))
+						case 'select':
+						case 'emoji':
+						case 'descriptive':
+						case 'upload':
+						case 'range':
+						case 'notification':
+							$type = $value['type'];
+							break;
+						
+						default:
+							return debug::error(T_("invalid parametr type (:type) in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
+							break;
+					}
+				}
+				else
+				{
+					return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
+				}
+
+				$attachment_id = null;
+				if(isset($value['file']) && $value['file'])
+				{
+					$upload_answer = 
+					[
+						'upload_name' => $value['file'], 
+						'file_path'   => $value['file'], 
+						'user_id'     => $_args['user']
+					];
+					
+					$upload_answer = \lib\utility\upload::upload($upload_answer);
+					if(\lib\debug::get_msg("result"))
+					{
+						$attachment_id = \lib\debug::get_msg("result");
+					}
+				}
+				$combine[$key]['attachment_id'] = $attachment_id;
+				
+				$combine[$key]['txt']           = $title;
+				$combine[$key]['type']          = $value['type'];
+				$combine[$key]['desc']          = isset($value['description']) ? $value['description'] : null;
+
+				// get score value 
+	     		if(isset($value[$value['type']]['score']['value']) && is_numeric($value[$value['type']]['score']['value']) && $value[$value['type']]['score']['value'])
+	     		{
+	     			$combine[$key]['score'] = $value[$value['type']]['score']['value'];
+	     		}
+
+	     		// get score group
+	 	 		if(isset($value[$value['type']]['score']['group']) && is_string($value[$value['type']]['score']['group']) && $value[$value['type']]['score']['group'])
+	     		{
+	     			$combine[$key]['groupscore'] = $value[$value['type']]['score']['group'];
+	     		}
+
+	     		// get true answer
+	 	 		if(isset($value[$value['type']]['is_true']) && $value[$value['type']]['is_true'])
+	     		{
+	     			$combine[$key]['true'] = $value[$value['type']]['is_true'];
+	     		}
+
+	     		// get meta of this object of answer
+				$support_answer_object = self::support_answer_object($value['type']);
+				$answer_meta           = [];
+
+				if(isset($value[$value['type']]))
+				{	
+					foreach ($support_answer_object as $index => $reg) 
+					{
+						$ok = false;
+						if(isset($value[$value['type']][$index]))
 						{
-							$ok = true;
-						}
-						elseif(is_int($reg) && is_int($value[$value['type']][$index]))
-						{
-							$ok = true;
-						}
-						elseif(is_string($reg) && is_string($value[$value['type']][$index]))
-						{
-							$ok = true;
-						}
-						elseif(is_array($reg) && is_array($value[$value['type']][$index]) && in_array($value[$value['type']][$index], $reg))
-						{
-							$ok = true;
-						}
-						// check entered parametr and set meta
-						if($ok)
-						{
-							$answer_meta[$index] = $value[$value['type']][$index];
+							if(is_bool($reg) && is_bool($value[$value['type']][$index]))
+							{
+								$ok = true;
+							}
+							elseif(is_int($reg) && is_int($value[$value['type']][$index]))
+							{
+								$ok = true;
+							}
+							elseif(is_string($reg) && is_string($value[$value['type']][$index]))
+							{
+								$ok = true;
+							}
+							elseif(is_array($reg) && is_array($value[$value['type']][$index]) && in_array($value[$value['type']][$index], $reg))
+							{
+								$ok = true;
+							}
+							// check entered parametr and set meta
+							if($ok)
+							{
+								$answer_meta[$index] = $value[$value['type']][$index];
+							}
 						}
 					}
 				}
-			}
 
-			if(!empty($answer_meta))
-			{
-				$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
-			}
-	
-     		if($value['type'] != 'select')
-     		{
-     			break;
-     		}
-			
-		}
-		// check the count of answer array
-		if($answer_type == 'select' && count($combine) < 2)
-		{
-			return debug::error(T_("You must set two answers"), ['answer1', 'answer2'], 'arguments');
-		}
-
-		$answers_arg =
-		[
-			'poll_id' => $poll_id,
-			'answers' => $combine,
-			'update'  => $_args['update'],
-		];
+				if(!empty($answer_meta))
+				{
+					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
+				}
 		
-		$answers = \lib\utility\answers::insert($answers_arg);
+	     		if($value['type'] != 'select')
+	     		{
+	     			break;
+	     		}
+				
+			}
+			// check the count of answer array
+			if($answer_type == 'select' && count($combine) < 2)
+			{
+				return debug::error(T_("You must set two answers"), ['answer1', 'answer2'], 'arguments');
+			}
+
+			$answers_arg =
+			[
+				'poll_id' => $poll_id,
+				'answers' => $combine,
+				'update'  => $_args['update'],
+			];
+			
+			$answers = \lib\utility\answers::insert($answers_arg);
+
+		}
 
 		if(
 			isset($_args['options']['tree']['parent_id']) && 
@@ -439,10 +475,9 @@ trait insert
 			}
 		}
 
-		$remove_tags = \lib\db\tags::remove($poll_id);
-
 		if(isset($_args['options']['tags']) && is_array($_args['options']['tags']))
 		{
+			$remove_tags = \lib\db\tags::remove($poll_id);
 			$tags = $_args['options']['tags'];
 			$check_count = array_filter($tags);
 			if(count($check_count) > 3 && $_args['permission_sarshomar'] === false)
@@ -539,7 +574,7 @@ trait insert
 		if(\lib\debug::$status)
 		{
 			// commit code
-			\lib\db::commit();
+			// \lib\db::commit();
 			\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			\lib\debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			return ['id' => \lib\utility\shortURL::encode($poll_id)];
@@ -547,7 +582,7 @@ trait insert
 		else
 		{
 			// rollback
-			\lib\db::rollback();
+			// \lib\db::rollback();
 			\lib\debug::error(T_("Error in {$msg_mod}ing poll"));
 			return false;
 		}
@@ -573,7 +608,7 @@ trait insert
 			'post_slug'        => null,
 			'post_url'         => time(). '_'. rand(1,20), // insert post id ofter insert record
 			'post_content'     => null,
-			'post_type'        => null,
+			'post_type'        => 'poll',
 			'post_status'      => 'draft',
 			'post_parent'      => null,
 			'post_meta'        => null,
@@ -585,32 +620,7 @@ trait insert
 
 		$_args = array_merge($default_value, $_args);
 
-		// check user_id
-		if($_args['user_id'] == null)
-		{
-			return false;
-		}
-
-		// check language
-		$language = null;
-		if($_args['post_language'] == null || $_args['post_language'] === '')
-		{
-			$language = null;
-		}
-		else
-		{
-			if(strlen($_args['post_language']) !== 2)
-			{
-				$language = \lib\define::get_language();
-			}
-		}
-
-		// check title
-		if($_args['post_title'] == null)
-		{
-			return false;
-		}
-
+		
 		if(strlen($_args['post_title']) > 200)
 		{
 			$_args['post_title'] = substr($_args['post_title'], 0, 199);
@@ -624,12 +634,6 @@ trait insert
 			{
 				$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
 			}
-		}
-
-		// check type
-		if($_args['post_type'] == null)
-		{
-			return false;
 		}
 
 		// check status
@@ -651,7 +655,7 @@ trait insert
 		}
 		else
 		{
-			return false;
+			return debug::error(T_("Cann't add poll"), false, 'sql');
 		}
 	}
 

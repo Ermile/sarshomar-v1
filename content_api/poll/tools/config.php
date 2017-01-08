@@ -4,57 +4,6 @@ use \lib\utility;
 
 trait config
 {
-	public $current_poll_id   = null;
-	public $current_short_url = null;
-
-	/**
-	 * check short url and return the poll id
-	 */
-	public function check_poll_url($_args, $_type = "decode")
-	{
-		if(is_null($this->current_poll_id) || is_null($this->current_short_url))
-		{
-			if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
-			{
-				if(!isset($_args->match->url[0][1]))
-				{
-					return false;
-				}
-
-				$url     = $_args->match->url[0][1];
-				$poll_id = \lib\utility\shortURL::decode($url);
-
-				// check is my poll this id
-				
-				if(
-					!\lib\db\polls::is_my_poll($poll_id, $this->login('id')) &&
-					!$this->access('u', 'sarshomar_knowledge', 'admin'))
-				{
-					\lib\debug::error(T_("This is not your poll"));
-					return false;
-				}
-
-				$this->current_short_url = $url;
-				$this->current_poll_id = $poll_id;
-			}
-			else
-			{
-				// \lib\debug::error(T_("Poll id not found"));
-				return false;
-			}
-		}
-
-		if($_type == "decode")
-		{
-			return $this->current_poll_id;
-		}
-		else
-		{
-			return $this->current_short_url;
-		}
-
-	}
-
 	/**
 	 * add a post
 	 *
@@ -63,36 +12,33 @@ trait config
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function add($_args, $_options = [])
+	public function add($_args)
 	{
-		$default_options = ['update' => false];
-		$_options        = array_merge($default_options, $_options);
-
 		//	check user id
 		if(!$this->login("id"))
 		{
-			\lib\debug::error(T_("Please login to insert a poll"));
-			return false;
+			return \lib\debug::error(T_("Please login to insert a poll"));
 		}
-
-		// check sarshomar knowlege permission
-		$this->sarshomar = false;
-		if($this->access('u', 'sarshomar_knowledge', 'add'))
-		{
-			$this->sarshomar = true;
-		}
-
-
+			
 		/**
 		 * update the poll or survey
 		 */
-		$this->update = false;
-		if($this->check_poll_url($_args))
+		$options['update'] = false;
+
+		if(utility::request("id"))
 		{
-			$this->update = $this->check_poll_url($_args, "encode");
+			if(preg_match("/^[". $this->shortURL. "]+$/", utility::request("id")))
+			{
+				$options['update'] = utility::request("id");
+			}
+			else
+			{
+				return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			}
 		}
 
-		$insert_poll = $this->insert_poll($_options);
+		$insert_poll = $this->insert_poll($options);
+
 		return $insert_poll;
 	}
 
@@ -112,8 +58,11 @@ trait config
 
 		// insert args
 		$args                           = [];
+
 		$args['user']                   = $this->login('id');
+		
 		$args['title']                  = utility::request("title");
+		
 		$args['answers']                = utility::request("answers");
 		
 		if(utility::files("poll_file"))
@@ -126,11 +75,16 @@ trait config
 		}
 		
 		$args['options']                = utility::request("options");
+
 		$args['filters']                = utility::request("filters");
 		
 		$args['update']                 = $_options['update'];
-		$args['permission_sarshomar']   = $this->sarshomar;
+
+		$args['permission_sarshomar']   = $this->access('u', 'sarshomar_knowledge', 'add');
+		
 		$args['permission_profile']     = $this->access('u', 'complete_profile', 'admin');
+
+		$args['shortURL']    			= $this->shortURL;
 
 		return \lib\db\polls::create($args);
 	}
