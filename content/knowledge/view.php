@@ -5,6 +5,9 @@ class view extends \mvc\view
 {
 	function config()
 	{
+		// add all template of knowledge into new file
+		$this->data->template['knowledge']['layout'] = 'content/knowledge/layout.html';
+
 		$this->data->display['result']     = "content/knowledge/layout-xhr.html";
 		// $this->include->css_ermile   = false;
 		$this->include->js    = true;

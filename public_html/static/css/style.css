@@ -125,7 +125,7 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 
 
 /************************************************************** aside */
-aside .select-box input{width:100%;background-color:#ebebeb;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow:none;color:#777}
+/*aside .select-box input{width:100%;background-color:#ebebeb;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;outline:none;box-shadow:none;color:#777}
 aside .select-box{margin:10px 0;padding-left:1.2em}
 aside .group:first-child{margin-top:1.5em}
 .rtl aside .select-box{padding-left:0;padding-right:2em;margin-bottom:0}
@@ -144,22 +144,38 @@ aside input[type=checkbox].full-line-title+label::after{content:attr(data-title)
 .rtl aside input[type=checkbox].full-line-title+label::after{left:0;right:auto;padding-left:30px;padding-right:5px}
 aside .group{margin-bottom:1em}
 aside .closed{display:none}
-aside .actived{display:block}
-aside  div.checkbox{padding-top:12px}
-aside  .checkbox .check-box + label{color:#6E6F6F;font-size:1.2em; text-align: left}
+aside .actived{display:block}*/
+/*aside  div.checkbox{padding-top:12px}*/
+/*aside  .checkbox .check-box + label{color:#6E6F6F;font-size:1.2em; text-align: left}
 .rtl aside  .checkbox .check-box + label{text-align: right}
 aside input[type=checkbox].full-line-title+label::after{color:#106d6b;font-size:1.3em;font-weight:700}
 aside .filters_group{display:block;background-color:#00667a;color:#f4f4f4;height:50px;display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:600}
-aside .filters_group.selected{}
+aside .filters_group.selected{}*/
 
 
 /************************************************************** dollar page specific styles */
-#dollar .tags{padding:0 2em}
+.accordion-label input[type='checkbox'],.aside-group-title input[type='checkbox']{width:0;height:0;opacity:0;position:absolute;z-index:-1}
+.accordion-label label{display:block;text-align:center;background-color:#00667a;color:#f4f4f4;height:50px;line-height:50px;font-weight:bold;font-size:1.4em}
+.accordion-body{padding:1em 0}
+.aside-group-title{position:relative;padding:.5em .5em .5em 2.5em}
+.rtl .aside-group-title{padding:.5em 2.5em .5em .5em}
+.aside-group-title::before{content:'';position:absolute;width:2em;top:0;bottom:0;margin:auto;left:0;height:2px;background-color:#00667a}
+.rtl .aside-group-title::before{left:auto;right:0}
+.aside-group-title label{color:#00667a;font-size:1.2em;font-weight:bold}
+.aside-group-body{padding:1em}
+.aside-group-body div.checkbox:not(:last-child){margin-bottom:15px}
+
+.aside-input-group:not(:last-child){margin-bottom:15px}
+.aside-input-group input,.aside-input-group select{display:block;width:100%;color:#777;border:none;outline:none;padding:2px 0}
+.aside-input-group input{padding:2px 5px}
+.aside-input-group label{display:block;color:#00667a;font-size:1.2em}
+
+/*#dollar .tags{padding:0 2em}
 #dollar .floating-title{margin-top:3em; }
 #dollar .floating-title::before{left:0; }
-#dollar.rtl .floating-title::before{right:0;left:initial;}
-aside input[type=checkbox]#for_questions, #dollar input#for_filter{display:none;}
-aside input[type=checkbox]#for_questions:checked +label, #dollar input#for_filter:checked +label{background-color:#083942;}
+#dollar.rtl .floating-title::before{right:0;left:initial;}*/
+/*aside input[type=checkbox]#for_questions, #dollar input#for_filter{display:none;}
+aside input[type=checkbox]#for_questions:checked +label, #dollar input#for_filter:checked +label{background-color:#083942;}*/
 
 
 /************************************************************** header */
@@ -553,7 +569,7 @@ right:0;left:0;top:100%}
 @-webkit-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-moz-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 .checkbox{display:-webkit-inline-flex;display:inline-flex;position:relative;}
-div.checkbox{display:-webkit-flex;display:flex;width: 100%;}
+div.checkbox{display:-webkit-flex;display:flex;width:100%}
 .checkbox input[type=checkbox],.checkbox input[type=radio]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
 .checkbox .check-box{position:relative;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;-moz-transition:border-color ease .2s;-o-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #D8D8D8;background-color:transparent;}
 .checkbox .check-box::before,.checkbox .check-box::after{position:absolute;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:4px;height:0;content:' ';-webkit-transition:opacity ease .5;-moz-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;-moz-transform-origin:left top;-ms-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428;}
@@ -562,7 +578,7 @@ div.checkbox{display:-webkit-flex;display:flex;width: 100%;}
 .checkbox input[type=checkbox]:checked + .check-box,.checkbox input[type=radio]:checked + .check-box,.checkbox .check-box.checked{}
 .checkbox input[type=checkbox]:checked + .check-box::after,.checkbox input[type=radio]:checked + .check-box::after,.checkbox .check-box.checked::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;-moz-animation:dothabottomcheck .2s ease 0s forwards;-o-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards;}
 .checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
-.checkbox .check-box + label{height:30px;line-height:30px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
+.checkbox .check-box + label{height:25px;line-height:25px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
 .checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a;}
 .checkbox.active .check-box{border-color:#00667a;}
 .checkbox.margin-bottom{margin-bottom:15px}
