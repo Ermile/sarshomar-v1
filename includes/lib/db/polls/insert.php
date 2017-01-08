@@ -65,19 +65,7 @@ trait insert
 		}
 		// set the answer type
 		$answer_type = $_args['answers'][0]['type'];
-		// if(
-		// 	!isset($_args['answers'][0][$answer_type]) || 
-		// 	(
-		// 		isset($_args['answers'][0][$answer_type]) && 
-		// 		!is_array($_args['answers'][0][$answer_type])
-		// 	)
-		//   )
-		// {
-		// 	return \lib\debug::error(T_("invalid object of answer type"), 'type', 'arguments');
-		// }
-		// // get options of answer type
-		// $answer_type_object = $_args['answers'][0][$answer_type];
-
+		
 		// check language
 		$language = null;
 		if(	
@@ -451,7 +439,7 @@ trait insert
 			}
 		}
 
-		// $remove_tags = \lib\db\tags::remove($poll_id);
+		$remove_tags = \lib\db\tags::remove($poll_id);
 
 		if(isset($_args['options']['tags']) && is_array($_args['options']['tags']))
 		{
@@ -529,10 +517,10 @@ trait insert
 				}
 			}
 
-			// if(isset($_args['options']['cats']))
-			// {
-			// 	\lib\db\cats::set($_args['options']['cats'], $poll_id);
-			// }
+			if(isset($_args['options']['cats']))
+			{
+				\lib\db\cats::set($_args['options']['cats'], $poll_id);
+			}
 		}
 
 
