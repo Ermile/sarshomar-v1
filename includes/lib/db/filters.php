@@ -20,7 +20,7 @@ class filters
 			'marrital'         => ['single', 'married'],
 			'internetusage'    => ['low', 'mid', 'high'],
 			'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
-			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd', 'other'],
+			'degree'           => ['under_diploma', 'diploma', '2_year_college', 'bachelor', 'master', 'phd'],
 			'course'           => null,
 			'age'              => null,
 			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-59', '60+'],
@@ -40,17 +40,33 @@ class filters
 			{
 				if(array_key_exists($_check, $support_filter))
 				{
-					if(is_array($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
+					if(is_array($_value))
 					{
-						return true;
-					}
-					elseif($support_filter[$_check] === null)
-					{
-						return null;
+						$check = true;
+						foreach ($_value as $key => $value) 
+						{
+							if(!in_array($value, $support_filter[$_check]))
+							{
+								$check = false;
+							}
+						}
+						return $check;
 					}
 					else
-					{
-						return false;
+					{	
+						if(is_array($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
+						{
+							return true;
+						}
+						elseif($support_filter[$_check] === null)
+						{
+							return null;
+						}
+						else
+						{
+							return false;
+						}
+
 					}
 				}
 				else

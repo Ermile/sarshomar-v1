@@ -14,6 +14,17 @@ trait get
 	{
 		$result  = [];
 		$poll_id = $this->check_poll_url($_args);
+
+		if(!$poll_id)
+		{
+			$poll_id = \lib\utility::request("id");
+		}
+
+		if(!$poll_id)
+		{
+			\lib\debug::error(T_("poll id not found"));
+		}
+
 		$poll    = \lib\db\polls::get_poll($poll_id);
 				
 		if(isset($poll['id']))

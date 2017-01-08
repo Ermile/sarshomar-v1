@@ -1,5 +1,5 @@
 <?php
-namespace content_api\upload;
+namespace content_api\file;
 
 class controller extends  \mvc\controller
 {	

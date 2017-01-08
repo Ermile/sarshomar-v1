@@ -17,7 +17,7 @@ class postfilters
 		{
 			if(\lib\db\filters::support_filter($key, $value))
 			{
-				$fitlers[$key] = $value;
+				$filters[$key] = $value;
 				if($value == $support_filter[$key])
 				{
 					// unset($_filters[$key]);
@@ -26,7 +26,6 @@ class postfilters
 				{
 					$sum_money_filter += (int) \lib\db\filters::money_filter($key);
 				}
-
 			}
 		}
 		return $filters;
@@ -46,10 +45,11 @@ class postfilters
 		}
 
 		$_filters = self::check($_filters);
-
+		
 		$saved_filters = self::get_filter($_poll_id);
 
 		$caller_term_id = [];
+
 		foreach ($_filters as $key => $value)
 		{
 			if(is_array($value))
@@ -67,9 +67,9 @@ class postfilters
 			}
 			elseif(is_string($value))
 			{
-				if(!isset($saved_filters[$key][$filter]))
+				if(!isset($saved_filters[$key][$value]))
 				{
-					$caller_term_id["$key:$filter"] = \lib\utility\profiles::insert_terms($key, $value);
+					$caller_term_id["$key:$value"] = \lib\utility\profiles::insert_terms($key, $value);
 				}
 			}
 		}
@@ -101,7 +101,7 @@ class postfilters
 			{
 				if(isset($_filters[$key]) && !in_array($value, $_filters[$key]))
 				{
-					$must_remove[] = "$key:$filter";
+					$must_remove[] = "$key:$value";
 				}
 			}
 		}

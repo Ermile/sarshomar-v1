@@ -12,7 +12,6 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
-
 		// route contact form
 		if(\lib\router::get_url() == 'contact')
 		{

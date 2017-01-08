@@ -65,18 +65,18 @@ trait insert
 		}
 		// set the answer type
 		$answer_type = $_args['answers'][0]['type'];
-		if(
-			!isset($_args['answers'][0][$answer_type]) || 
-			(
-				isset($_args['answers'][0][$answer_type]) && 
-				!is_array($_args['answers'][0][$answer_type])
-			)
-		  )
-		{
-			return \lib\debug::error(T_("invalid object of answer type"));
-		}
-		// get options of answer type
-		$answer_type_object = $_args['answers'][0][$answer_type];
+		// if(
+		// 	!isset($_args['answers'][0][$answer_type]) || 
+		// 	(
+		// 		isset($_args['answers'][0][$answer_type]) && 
+		// 		!is_array($_args['answers'][0][$answer_type])
+		// 	)
+		//   )
+		// {
+		// 	return \lib\debug::error(T_("invalid object of answer type"));
+		// }
+		// // get options of answer type
+		// $answer_type_object = $_args['answers'][0][$answer_type];
 
 		// check language
 		$language = null;
@@ -149,18 +149,18 @@ trait insert
 			return debug::error(T_("Summery must be less than 150 character"), 'summary', 'options');
 		}
 
-		$publish = 'draft';
+		// start transaction
+		\lib\db::transaction();
+
+		$poll_status = 'draft';
 		// save and check words
 		if(!\lib\db\words::save_and_check($_args))
 		{
-			$publish = 'awaiting';
+			$poll_status = 'awaiting';
 			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"));
 			// plus the userrank of usespamword
 			\lib\db\userranks::plus($_args['user'], 'usespamword');
 		}
-
-		// start transaction
-		\lib\db::transaction();
 
 		/**
 		 * upload files of poll title
@@ -204,7 +204,7 @@ trait insert
 			'post_gender'    => $gender,
 			'post_privacy'   => 'private',
 			'post_comment'   => 'open',
-			'post_status'    => $publish,
+			'post_status'    => $poll_status,
 			'post_meta'      => json_encode($post_meta, JSON_UNESCAPED_UNICODE),
 			'post_sarshomar' => $_args['permission_sarshomar'] === true ? 1 : 0,
 		];
@@ -290,23 +290,27 @@ trait insert
 			
 			$combine[$key]['txt']           = $title;
 			$combine[$key]['type']          = $value['type'];
-			$combine[$key]['desc']          = isset($value['description'])  	? $value['description'] 	: null;
+			$combine[$key]['desc']          = isset($value['description']) ? $value['description'] : null;
 
+			// get score value 
      		if(isset($value[$value['type']]['score']['value']) && is_numeric($value[$value['type']]['score']['value']) && $value[$value['type']]['score']['value'])
      		{
      			$combine[$key]['score'] = $value[$value['type']]['score']['value'];
      		}
 
+     		// get score group
  	 		if(isset($value[$value['type']]['score']['group']) && is_string($value[$value['type']]['score']['group']) && $value[$value['type']]['score']['group'])
      		{
      			$combine[$key]['groupscore'] = $value[$value['type']]['score']['group'];
      		}
 
+     		// get true answer
  	 		if(isset($value[$value['type']]['is_true']) && $value[$value['type']]['is_true'])
      		{
      			$combine[$key]['true'] = $value[$value['type']]['is_true'];
      		}
 
+     		// get meta of this object of answer
 			$support_answer_object = self::support_answer_object($value['type']);
 			$answer_meta           = [];
 
@@ -329,11 +333,11 @@ trait insert
 						{
 							$ok = true;
 						}
-						elseif(is_array($reg) && is_array($value[$value['type']][$index]) && 
-								in_array($value[$value['type']][$index], $reg))
+						elseif(is_array($reg) && is_array($value[$value['type']][$index]) && in_array($value[$value['type']][$index], $reg))
 						{
 							$ok = true;
 						}
+						// check entered parametr and set meta
 						if($ok)
 						{
 							$answer_meta[$index] = $value[$value['type']][$index];
@@ -411,7 +415,7 @@ trait insert
 		}
 		elseif($_args['options']['tree']['parent_id'])
 		{
-			return debug::error(T_("invalid parametr tree"));
+			return debug::error(T_("invalid parametr tree:parent_id"));
 		}
 
 		// insert filters

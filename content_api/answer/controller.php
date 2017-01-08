@@ -1,18 +1,19 @@
 <?php
-namespace content_api\help;
+namespace content_api\answer;
 
 class controller extends  \mvc\controller
 {	
 	public function __construct()
 	{
-		\lib\storage::set_api(false);
+		\lib\storage::set_api(true);
 		parent::__construct();
 	}
 
-	
 	public function _route()
 	{
-		$this->get(false,false)->ALL("/.*/");
+		$url = \lib\router::get_url(0);
+
+
 	}
 }
 ?>

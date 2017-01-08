@@ -60,3 +60,8 @@ POST		api/sendFeedback
 
 GET 	 	api/search?[search condition]
 POST 	 	api/search 														[search condition]
+
+# TRANSACTIONS
+
+POST 		api/calcPrice
+GET 		api/calcPrice
