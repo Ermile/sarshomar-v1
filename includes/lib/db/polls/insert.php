@@ -513,7 +513,7 @@ trait insert
 
 		if($_args['permission_sarshomar'] === true)
 		{
-			if($_args['options']['article'])
+			if(isset($_args['options']['article']) && $_args['options']['article'])
 			{
 				$article =
 				[
