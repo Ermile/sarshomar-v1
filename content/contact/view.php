@@ -13,7 +13,7 @@ class view extends \content\home\view
 		}
 		else
 		{
-			$this->data->page['title'] = T_($this->data->module);
+			$this->data->page['title'] = $this->data->module;
 		}
 	}
 }

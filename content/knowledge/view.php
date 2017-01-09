@@ -17,7 +17,9 @@ class view extends \mvc\view
 			$this->include->js_main      = true;
 		}
 		$this->data->page['special'] = true;
-		$this->data->page['title'] = T_('Sarshomar Knowledge');
+		$this->data->page['title']   = T_('Sarshomar Knowledge');
+		$this->data->page['desc']    = T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");
+
 	}
 
 
