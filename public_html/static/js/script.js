@@ -42,6 +42,9 @@ function openProfile()
 	$(document).on('focus', '.profile-detail a', function()
 	{
 		$(this).parents('.profile').addClass('open');
+		// set scroll to top of page
+		$('body').scrollTop(0);
+
 	}).on('blur', '.profile-detail a', function()
 	{
 		$(this).parents('.profile').removeClass('open');

@@ -3,8 +3,9 @@
 {%set pageDesc%}
 {%trans "Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings."%} {%trans "Sarshomar created for this!"%}
 {%endset%}
-{%block content%}
 
+
+{%block content%}
    <div class="main pad text-based">
     <div class="box">
      <h2 class="special-heading">{%trans "About Us"%}</h2>
@@ -57,7 +58,7 @@
      </div>
     </div>
 
-    <div class="row" id="about-bottom">
+    <div class="row auto" id="about-bottom">
      <div class="span4">
       <img src="{{url.static}}images/miniature/press.png" alt='{%trans "Press"%}'>
       <h3>{%trans "Press"%}</h3>
@@ -66,17 +67,17 @@
      </div>
 
      <div class="span4">
+      <img src="{{url.static}}images/miniature/job.png" alt='{%trans "Contact Us"%}'>
+      <h3>{%trans "Job Opportunities"%}</h3>
+      <p>{%trans "We are constantly seeking to recruit the best. Are you willing to join us?"%}</p>
+      <a href="{%if site.currentlang =='fa'%}http://ermile.ir{%else%}https://ermile.com{%endif%}/careers" target="_blank">{%trans "Join our team"%}</a>
+     </div>
+
+     <div class="span4">
       <img src="{{url.static}}images/miniature/contact.png" alt='{%trans "Contact Us"%}'>
       <h3>{%trans "Contact Us"%}</h3>
       <p>{%trans "If you have any questions, our contact and support center is always ready to help."%}</p>
       <a href="{{url.base}}/contact">{%trans "Get in touch"%}</a>
-     </div>
-
-     <div class="span4">
-      <img src="{{url.static}}images/miniature/job.png" alt='{%trans "Contact Us"%}'>
-      <h3>{%trans "Job Opportunities"%}</h3>
-      <p>{%trans "We are constantly seeking to recruit the best. Are you willing to join us?"%}</p>
-      <a href="{%if site.currentlang =='ir'%}http://ermile.ir{%else%}https://ermile.com{%endif%}/careers" target="_blank">{%trans "Join our team"%}</a>
      </div>
     </div>
    </div>
