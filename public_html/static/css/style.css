@@ -170,12 +170,7 @@ aside .filters_group.selected{}*/
 .aside-input-group input{padding:2px 5px}
 .aside-input-group label{display:block;color:#00667a;font-size:1.2em}
 
-/*#dollar .tags{padding:0 2em}
-#dollar .floating-title{margin-top:3em; }
-#dollar .floating-title::before{left:0; }
-#dollar.rtl .floating-title::before{right:0;left:initial;}*/
-/*aside input[type=checkbox]#for_questions, #dollar input#for_filter{display:none;}
-aside input[type=checkbox]#for_questions:checked +label, #dollar input#for_filter:checked +label{background-color:#083942;}*/
+.aside-knowledge{display:none}
 
 
 /************************************************************** header */

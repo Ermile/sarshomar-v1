@@ -1,7 +1,7 @@
 {%extends template.knowledge.layout%}
 
 {%block content%}
-   <aside class="unselectable">
+   <aside class="unselectable aside-knowledge">
     {{block('accordion_questions_label')}}
     {{block('accordion_questions')}}
     {{block('accordion_filters_label')}}
@@ -10,7 +10,7 @@
    <div class="main pad">
     <div class="box">
      <div class="row unselectable">
-      <div class="span10 offset1">
+      <div class="span8 offset2">
        <div class="search-box">
         <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
         <button class="search-button">
