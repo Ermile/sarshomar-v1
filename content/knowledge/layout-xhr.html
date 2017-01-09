@@ -1,6 +1,8 @@
 {%if poll_list%}
  <div class="polls-head">
+{%if login%}
   <span class="icon-star star" aria-hidden="true"></span>
+{%endif%}
   <span class="type">{%trans "Type"%}</span>
   <span class="title">{%trans "Title"%}</span>
   <span class="comments-count">{%trans "Comments"%}</span>
@@ -11,8 +13,12 @@
 
 {%for key, value in poll_list%}
    <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
-    <input type="checkbox" name="favorite" id="fav{{key}}">
-    <label for="fav{{key}}" class="icon-star star"></label>
+{%if login%}
+    <span class="star">
+     <input type="checkbox" name="favorite" id="fav{{key}}">
+     <label for="fav{{key}}" class="icon-star"></label>
+    </span>
+{%endif%}
     <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
     <span class="title"><a href="{{url.prefix}}/{{value.url}}">{{value.title|raw}}</a></span>
     <span class="comments-count">{{value.comment_count | persian}}</span>
