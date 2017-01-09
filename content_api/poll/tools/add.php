@@ -2,7 +2,7 @@
 namespace content_api\poll\tools;
 use \lib\utility;
 
-trait config
+trait add
 {
 	/**
 	 * add a post
@@ -64,6 +64,8 @@ trait config
 		$args['title']                  = utility::request("title");
 		
 		$args['answers']                = utility::request("answers");
+		
+		$args['type']                   = utility::request("type");
 		
 		if(utility::files("poll_file"))
 		{

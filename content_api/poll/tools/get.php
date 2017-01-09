@@ -10,7 +10,7 @@ trait get
 	 *
 	 * @return     array   The poll.
 	 */
-	public function get_poll($_args)
+	public function get($_args)
 	{
 		$result  = [];
 		$poll_id = $this->check_poll_url($_args);

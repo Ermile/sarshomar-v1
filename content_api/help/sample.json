@@ -39,14 +39,15 @@
       }
     }
   ],
+  "type" : "poll|survey|[leave it null to set poll]",
   "options": {
     "status" : "draft|publish",
     "language": "fa|en|ar|null",
-    "file": "poll_file|url|null",
+    "file": "[upload_name]|url|null",
     "summary": "string|null",
     "tree": {
       "parent_id": "string",
-      "answers": "array"
+      "answers": []
     },
     "range_timing_max": "int|null",
     "choice_count_min": "int|null",
