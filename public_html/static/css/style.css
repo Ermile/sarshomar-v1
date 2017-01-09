@@ -1421,6 +1421,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .text-based .content p{text-align:left}
 .rtl .text-based .content p{text-align:justify}
 .text-based .content p,.text-based .content ul li{color:#6E6F6F;line-height:2em}
+.text-based ul.list{padding:2em 0;}
 .rtl .text-based{text-align:justify}
 .text-based ul.text-based{list-style:none;margin-bottom:5em}
 .text-based ul.text-based li{position:relative}
