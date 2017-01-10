@@ -18,6 +18,11 @@ trait check
 			return;	
 		}
 
+		if(!\lib\debug::$status)
+		{
+			return;
+		}
+
 		$words = [];
 		$poll = \lib\db\polls::get_poll(self::$poll_id);
 
@@ -25,7 +30,6 @@ trait check
 		{
 			return debug::error(T_("Poll title not set"), 'title', 'arguments');
 		}
-		
 		
 		if(!isset($poll['language']) || (isset($poll['language']) && !$poll['language']))
 		{
@@ -59,6 +63,8 @@ trait check
 		{
 			return debug::error(T_("Can not set more than 1 answers in upload,range and notification mod"), 'answers', 'arguments');
 		}
+		
+		$answers_have_attachment = false;
 
 		foreach ($answers as $key => $value) 
 		{
@@ -96,10 +102,14 @@ trait check
 				array_push($words, $value['group_score']);
 			}
 
-
 			if(isset($value['sub_type']))
 			{
 				array_push($words, $value['sub_type']);
+			}
+
+			if(isset($value['attachment']) && $value['attachment'])
+			{
+				$answers_have_attachment = true;
 			}
 		}
 
@@ -128,6 +138,32 @@ trait check
 				// plus the userrank of usespamword
 				\lib\db\userranks::plus(self::$args['user'], 'usespamword');
 			}
+		}
+
+		$option_key   = [];
+		$poll_options = \lib\db\posts::get_post_meta(self::$poll_id);
+		if(is_array($poll_options))
+		{
+			$option_key = array_column($poll_options, 'option_key');
+		}
+
+		if(in_array('title_attachment', $option_key) || $answers_have_attachment)
+		{
+			if($answers_have_attachment)
+			{
+				$in      = 'answer';
+				$element = 'answers';
+				$group   = 'arguments';
+			}
+			else
+			{
+				$in      = 'poll';
+				$element = 'file';
+				$group   = 'arguments';	
+			}
+
+			\lib\db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
+			\lib\debug::warn(T_("You are using multi media in :in, your poll is awaiting moderation", ['in' => $in]), $element, $group);
 		}
 	}
 }

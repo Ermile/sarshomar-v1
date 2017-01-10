@@ -12,13 +12,16 @@ trait update
 	 * @param      <type>  $_poll_id  The poll identifier
 	 * @param      <type>  $_title    The title
 	 */
-	public static function update_url($_poll_id, $_title, $_update = true)
+	public static function update_url($_poll_id, $_slug = null, $_update = true)
 	{
 		$short_url = \lib\utility\shortURL::encode($_poll_id);
-		// $title = preg_replace("/[\n\t\s\,\-\(\)\!\@\#\$\%\^\&\/\.\?\<\>\|\{\}\[\]\"\'\:\;\*]/", "_", $title);
-		$_title = str_replace(" ", "_", $_title);
-		// $url = '$/' . $short_url . '/'. $_title;
-		$url = '$/' . $short_url;
+		$url       = '$/' . $short_url;
+		if($_slug)
+		{
+			$_slug = \lib\utility\filter::slug($_slug);
+			$url .= '/'. $_slug;
+		}
+
 		// default the update is true
 		// we update the poll url
 		if($_update)
@@ -31,7 +34,6 @@ trait update
 			// for update another place
 			return $url;
 		}
-
 	}
 
 

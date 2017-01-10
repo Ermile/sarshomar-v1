@@ -21,7 +21,8 @@ trait survey
 				$slug = substr($slug, 0, 99);
 			}
 
-			$url = \lib\db\polls::update_url($_survey_id, utility::post("secondary-title"), false);
+			// $url = \lib\db\polls::update_url($_survey_id, utility::post("secondary-title"), false);
+			$url = null;
 			if(strlen($url) > 255)
 			{
 				$url = substr($url, 0, 254);

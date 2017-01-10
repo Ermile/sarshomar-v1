@@ -12,16 +12,34 @@ trait poll
 		// check and insert poll title
 		if(isset(self::$args['title']))
 		{	
-			$insert_poll['post_title'] = self::$args['title'];
-			$slug = \lib\utility\filter::slug(self::$args['title']);
-
-			$insert_poll['post_slug'] = substr($slug, 0 , 99);
-	
+			$insert_poll['post_title'] = trim(self::$args['title']);
+			
 			if(strlen(self::$args['title']) > 190)
 			{
 				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 			}
 		}
+		
+		// post slug
+		if(isset(self::$args['options']['slug']))
+		{	
+			$slug = \lib\utility\filter::slug(self::$args['options']['slug']);
+
+			$insert_poll['post_slug'] = substr($slug, 0 , 50);
+
+			if(self::$update_mod)
+			{
+				$new_url = '$/'. \lib\utility\shortURL::encode(self::$poll_id);
+				$new_url .= ($slug) ? '/'. $slug : null;
+				$insert_poll['post_url'] = $new_url;
+			}
+
+			if(strlen(self::$args['options']['slug']) > 50)
+			{
+				return debug::error(T_("Poll slug must be less than 50 character"), 'slug', 'arguments');
+			}
+		}
+
 		// if poll title is null set ~ 
 		if(!self::$update_mod && !self::$args['title'])
 		{
@@ -31,20 +49,48 @@ trait poll
 		// check surver id
 		if(isset(self::$args['options']['survey_id']))
 		{
-			$insert_poll['parent_id'] = \lib\utility\shortURL::decode(self::$args['options']['survey_id']);
-			$insert_poll['type']      = "survey";
+			if(self::$args['options']['survey_id'])
+			{
+				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['options']['survey_id']))
+				{
+					return debug::error(T_("Invalid parametr survey_id"), 'survey_id', 'arguments');
+				}
+
+				$poll_parent_id = \lib\utility\shortURL::decode(self::$args['options']['survey_id']);
+				$poll_parent_id = \lib\db\polls::get_poll($poll_parent_id);
+
+				if(!$poll_parent_id)
+				{
+					return debug::error(T_("Survey id not found"), 'survey_id', 'arguments');
+				}
+
+				if(!isset($poll_parent_id['type']) || (isset($poll_parent_id['type']) && $poll_parent_id['type'] != 'survey'))
+				{
+					return debug::error(T_("Survey id must be a survey record"), 'survey_id', 'arguments');
+				}
+
+				if(!isset($poll_parent_id['user_id']) || (isset($poll_parent_id['user_id']) && $poll_parent_id['user_id'] != self::$user_id))
+				{
+					return debug::error(T_("This is not your survey"), 'survey_id', 'arguments');
+				}
+				$insert_poll['post_survey'] = self::$args['options']['survey_id'];
+			}	
+			else
+			{
+				$insert_poll['post_survey'] = null;
+			}
 		}
 
 		// get content
 		if(isset(self::$args['options']['description']))
 		{
-			$insert_poll['post_content'] = self::$args['options']['description'];
+			$insert_poll['post_content'] = trim(self::$args['options']['description']);
 		}
 
 		// summary 
 		if(isset(self::$args['options']['summary']))
 		{
-			$insert_poll['post_meta']['summary'] = self::$args['options']['summary'];
+			$insert_poll['post_meta']['summary'] = trim(self::$args['options']['summary']);
 			if(self::$args['options']['summary'] && strlen(self::$args['options']['summary']) > 150)
 			{
 				return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
@@ -160,7 +206,7 @@ trait poll
 		// insert filters
 		if(isset(self::$args['filters']) && is_array(self::$args['filters']))
 		{
-			$insert_filters = \lib\utility\postfilters::update(self::$args['filters'], $poll_id);
+			$insert_filters = \lib\utility\postfilters::update(self::$args['filters'], self::$poll_id);
 			/**
 			 * set ranks
 			 * plus (int) member in member field

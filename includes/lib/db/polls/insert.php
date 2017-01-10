@@ -6,11 +6,6 @@ trait insert
 {
 	protected static $args          = [];
 
-	protected static $saved_poll    = [];
-	protected static $saved_answers = [];
-	protected static $saved_options = [];
-	protected static $saved_filters = [];
-	
 	protected static $draft_mod     = true;
 	protected static $publish_mod   = false;
 	
@@ -153,13 +148,8 @@ trait insert
 			{
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
-			
 			\lib\debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
-		}
-		else
-		{
-			return \lib\debug::error(T_("Error in {$msg_mod}ing poll"));
 		}
 	}
 
@@ -201,13 +191,9 @@ trait insert
 		}
 
 		// get slug string
-		if($_args['post_slug'] == null)
+		if($_args['post_slug'] && strlen($_args['post_slug']) > 99)
 		{
-			$_args['post_slug'] = \lib\utility\filter::slug($_args['post_title']);
-			if(strlen($_args['post_slug']) > 99)
-			{
-				$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
-			}
+			$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
 		}
 
 		// check status
@@ -224,7 +210,7 @@ trait insert
 		if($insert_id)
 		{
 			// update post url
-			self::update_url($insert_id, $_args['post_title']);
+			self::update_url($insert_id, $_args['post_slug']);
 			return $insert_id;
 		}
 		else

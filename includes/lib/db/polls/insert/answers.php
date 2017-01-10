@@ -19,7 +19,7 @@ trait answers
 				$title = null;
 				if(isset($value['title']))
 				{
-					$title = $value['title'];
+					$title = trim($value['title']);
 				}
 				$combine[$key]['title'] = $title;
 
@@ -100,7 +100,7 @@ trait answers
 				}
 				$combine[$key]['attachment_id'] = $attachment_id;
 				
-				$combine[$key]['desc']          = isset($value['description']) ? $value['description'] : null;
+				$combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
 				if($type == 'select' || $type == 'emoji')
 				{	
@@ -113,7 +113,7 @@ trait answers
 		     		// get score group
 		 	 		if(isset($value[$type]['score']['group']) && is_string($value[$type]['score']['group']))
 		     		{
-		     			$combine[$key]['groupscore'] = $value[$type]['score']['group'];
+		     			$combine[$key]['groupscore'] = trim($value[$type]['score']['group']);
 		     		}
 
 		     		// get true answer
@@ -179,20 +179,9 @@ trait answers
 				if(!empty($answer_meta))
 				{
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
-				}
-		
-	     		// if($type != 'select')
-	     		// {
-	     		// 	break;
-	     		// }
-				
+				}		
 			}
-			// // check the count of answer array
-			// if($answer_type == 'select' && count($combine) < 2)
-			// {
-			// 	return debug::error(T_("You must set two answers"), ['answer1', 'answer2'], 'arguments');
-			// }
-		
+				
 			$answers_arg =
 			[
 				'poll_id' => self::$poll_id,
@@ -204,9 +193,7 @@ trait answers
 			{
 				$answers = \lib\utility\answers::insert($answers_arg);
 			}
-
 		}
-
 	}
 }
 ?>

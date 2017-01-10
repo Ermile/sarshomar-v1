@@ -1,5 +1,6 @@
 {
   "title": "string",
+  "type" : "poll|survey|[leave it null to set poll]",
   "answers": [
     {
       "title": "null|string",
@@ -39,7 +40,6 @@
       }
     }
   ],
-  "type" : "poll|survey|[leave it null to set poll]",
   "options": {
     "status" : "draft|publish",
     "language": "fa|en|ar|null",
@@ -62,7 +62,7 @@
     "end_date": "null|date_time",
     "article": "article_code",
     "cats": [],
-    "slug": "string",
+    "slug": "string|null[max 50 character]",
     "is_sarshomar": "true|false"
   },
   "filters": {

@@ -1,0 +1,1 @@
+ALTER TABLE `posts` CHANGE `post_url` `post_url` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
