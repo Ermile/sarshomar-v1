@@ -3,6 +3,16 @@ namespace content_api\home;
 
 class model extends \mvc\model
 {
+	public $shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+	
+	/**
+	 * ready poll record to show
+	 *
+	 * @param      <type>  $_poll_data  The poll data
+	 * @param      array   $_options    The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function ready_poll($_poll_data, $_options = [])
 	{
 		$default_options = 
@@ -79,7 +89,4 @@ class model extends \mvc\model
 		return $_poll_data;
 	}
 }
-
-
-
 ?>
