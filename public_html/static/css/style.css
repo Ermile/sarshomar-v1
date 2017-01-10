@@ -927,12 +927,13 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** search box */
 .search-box{position:relative;margin-bottom:2em}
-.search-box input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:20px;padding-right:60px;font-size:1.6em}
+.search-box input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:20px;padding-right:60px;font-size:1.6em;transition:.3s}
 .rtl .search-box input[type="text"]{padding-right:20px;padding-left:60px}
-.search-box .search-button{position:absolute;top:0;right:0;height:100%;width:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;line-height:100%;cursor:pointer}
-.rtl .search-box .search-button{right:auto;left:0}
-.search-box .search-button:hover{background-color:#0A5260}
-.search-box .search-button .fa-search{font-size:1.2em}
+.search-box input[type="text"]:focus{background-color:#efefef}
+.search-box .search-label{position:absolute;top:0;right:0;width:50px;height:50px;line-height:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;cursor:pointer;text-align:center}
+.rtl .search-box .search-label{right:auto;left:0}
+.search-box .search-label:hover,.search-box .search-label:focus{background-color:#0A5260}
+.search-box .search-label .icon-search{font-size:1.2em}
 
 
 /************************************************************** pagination */
@@ -1423,21 +1424,21 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 
 
 /************************************************************** about page */
-#features_guest .content img{width:100%;max-width:360px;margin:0 auto;display:block;margin-bottom:5em}
+/*#features_guest .content img{width:100%;max-width:360px;margin:0 auto;display:block;margin-bottom:5em}*/
 .guest-box{display:-webkit-flex;display:flex;justify-content:space-between;margin-bottom:2em}
 .guest-box input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1}
 .guest-box .try{font-size:2em;padding:.5em 0;margin:0;-webkit-flex:1;flex:1}
-.guest-box a.try{margin-right:2em}
-.guest-box a.try{margin-right:0;margin-left:2em;background-color:#169B23}
+.guest-box a.try{margin-right:2em;background-color:#169B23}
+.rtl .guest-box a.try{margin-right:0;margin-left:2em}
 .captcha-box{background-color:#efefef;padding:1.5em 3em;min-height:10em}
 .captcha-box h3{color:#4e4e4e;font-weight:bold;font-size:1.6em}
-.captcha-box .captcha-container{display:-webkit-flex;display:flex;direction:ltr}
-.captcha-box .captcha-container>div,.captcha-box .captcha-container form{display:-webkit-flex;display:flex;-webkit-flex:1;flex:1;flex-direction:column;justify-content:space-between}
+.captcha-box .captcha-container{display:-webkit-flex;display:flex}
+.captcha-box .captcha-container .captcha,.captcha-box .captcha-container .form-container{-webkit-flex:1;flex:1}
 .captcha-box .captcha-container .captcha{background-color:#898d8e;color:#f4f4f4;padding:1.2em;text-align:center;font-size:2em;font-weight:bold}
-.captcha-box .captcha-container input[type="text"]{background-color:#FBFBFB;display:block;width:100%;border:none;font-size:1.4em;padding:.5em;color:#00667a;text-align:center;direction:ltr}
-.captcha-box .captcha-container input[type="submit"]{font-size:1.4em;padding:.5em;display:block;width:100%}
-.captcha-box .form-container{margin-right:4em}
+.captcha-box .form-container{margin-right:4em;display:-webkit-flex;display:flex;flex-direction:column;justify-content:space-between}
 .rtl .captcha-box .form-container{margin-right:0;margin-left:4em}
+.captcha-box .form-container input[type="text"]{background-color:#FBFBFB;display:block;width:100%;border:none;font-size:1.4em;padding:.5em;color:#00667a;text-align:center;direction:ltr}
+.captcha-box .form-container input[type="submit"]{font-size:1.4em;padding:.5em;display:block;width:100%}
 
 
 /************************************************************** Statistics */

@@ -1,8 +1,8 @@
 {%extends display.main%}
 
 {%block content%}
-  <div class="main pad">
-   <div class="box">
+  <div class="main">
+   <div class="box pad">
     <div class="feature-items">
      <a href="{{url.base}}/features/multimedia-questions" class="feature-item">
       <p class="title">{%trans "Multimedia Questions"%}</p>
@@ -24,7 +24,7 @@
       <p class="title">{%trans "Language Localization"%}</p>
       <p class="description">{%trans "Language Localization"%}</p>
      </a>
-     <a href="{{url.base}}/features/try-before-registering" class="feature-item">
+     <a href="{{url.base}}/features/guest" class="feature-item">
       <p class="title">{%trans "Try Before Registering"%}</p>
       <p class="description">{%trans "Try Before Registering"%}</p>
      </a>
@@ -48,6 +48,32 @@
       <p class="title">{%trans "Results Personalization"%}</p>
       <p class="description">{%trans "Results Personalization"%}</p>
      </a>
+    </div>
+   </div>
+
+   <div class="row" id="features-box">
+    <div class="span4">
+     <a href="{{url.base}}/features/easy-access">
+      <img src="{{url.static}}images/miniature/easy-access.png" alt='{%trans "Easy Access"%}'>
+     </a>
+     <h4><a href="{{url.base}}/features/easy-access">{%trans "Easy Access"%}</a></h4>
+     <p>{%trans "You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software"%}</p>
+    </div>
+
+    <div class="span4">
+     <a href="{{url.base}}/features/valid-population">
+      <img src="{{url.static}}images/miniature/valid-population.png" alt='{%trans "Valid Statistical Population"%}'>
+     </a>
+     <h4><a href="{{url.base}}/features/valid-population">{%trans "Valid Statistical Population"%}</a></h4>
+     <p>{%trans "Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs"%}</p>
+    </div>
+
+    <div class="span4">
+     <a href="{{url.base}}/features/knowledge-base">
+      <img src="{{url.static}}images/miniature/knowledge-base.png" alt='{%trans "Knowledge Base"%}'>
+     </a>
+     <h4><a href="{{url.base}}/features/knowledge-base">{%trans "Knowledge Base"%}</a></h4>
+     <p>{%trans "Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives"%}</p>
     </div>
    </div>
   </div>

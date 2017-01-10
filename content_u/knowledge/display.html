@@ -4,14 +4,15 @@
 <div class="main box pad">
   <div class="row">
     <div class="container-center">
-
      <div class="search-box">
       <input type="text" name="search" placeholder='{%trans "Search"%}' class="pollsearch" value="{{search_value}}" autocomplete='off'>
-      <button class="search-button"><i class="icon-search" aria-hidden="true"></i></button>
+      <button class="search-label">
+       <i class="icon-search"</i>
+      </button>
      </div>
      <div class="search-result" data-xhr='search-result' id="search-result">
       {{block('search_result')}}
-    </div><!-- /.span8 -->
+    </div>
   </div>
 </div>
 </div>
@@ -43,5 +44,4 @@
   {%else%}
       <div class="msg error">{%trans "No Result Found"%}</div>
   {%endif%}
-
 {%endblock%}
