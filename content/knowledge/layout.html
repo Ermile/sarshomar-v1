@@ -1,5 +1,16 @@
 {%extends display.main%}
 
+
+{%block filters_aside%}
+   <aside class="unselectable aside-knowledge">
+    {{block('accordion_questions_label')}}
+    {{block('accordion_questions')}}
+    {{block('accordion_filters_label')}}
+    {{block('accordion_filters')}}
+   </aside>
+{%endblock%}
+
+
 {%block accordion_questions_label%}
 {% spaceless %}
  <div class="accordion-label">

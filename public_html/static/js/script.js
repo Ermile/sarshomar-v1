@@ -51,6 +51,43 @@ function openProfile()
 	});
 }
 
+/**
+ * [setFav description]
+ * @param {[type]} argument [description]
+ */
+function setFav()
+{
+	$(document).on('change', '[name="favorite"]', function()
+	{
+		_self = $(this);
+		id    = _self.parents('[data-id]').attr("data-id");
+		console.log(id);
+
+		_self.ajaxify(
+		{
+			ajax:
+			{
+				data:
+				{
+					'type': 'favourites',
+					'id': id
+				},
+				abort: true,
+				method: 'post',
+				error: function(e, data, x)
+				{
+					console.log(_self);
+					if(data !== 'success')
+					{
+						_self.prop("checked", false);
+						console.log(_self.prop('checked'));
+					}
+				},
+			}
+		});
+	});
+}
+
 
 /**
  * [shortkey description]
@@ -921,6 +958,49 @@ route(/\@\/add\/.+\/publish$/, function()
 });
 
 
+
+// ================================================================== $
+/**
+ * [searchInPolls description]
+ * @return {[type]} [description]
+ */
+function searchInPolls()
+{
+	var path = location.pathname;
+	_search  = $('.search-box input').val();
+	// path     = path.substr(0, path.indexOf('/$')) + '/add/tree';
+	path     = '$';
+	if(_search)
+	{
+		path = path+ '/search='+ _search;
+	}
+
+
+	Navigate({ url: path});
+}
+
+
+route(/\$/, function()
+{
+
+}).once(function()
+{
+	// --------------------------------------------------------------------------------- Search
+	$(this).on('input', '.search-box input', function(event)
+	{
+		var tree_search_timeout = $(this).data('search-timeout');
+		if(tree_search_timeout)
+		{
+			clearTimeout(tree_search_timeout);
+		}
+		var timeout = setTimeout(searchInPolls(), 200);
+		$(this).data('search-timeout', timeout);
+	});
+
+});
+
+
+
 // Profile
 route(/\@\/profile/, function() {
 	var initial  = $('input[name="initial"]');
@@ -1382,7 +1462,8 @@ function runAllScripts()
 	runDataResponse();
 	// open profile on getting focus
 	openProfile();
-
+	// allow to set fav
+	setFav();
 
 
 }
