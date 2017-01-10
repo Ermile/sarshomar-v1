@@ -5,7 +5,8 @@ class controller extends  \mvc\controller
 {	
 	public function _route()
 	{
-		$url = \lib\router::get_url(0);
+		$this->get("search", false)->ALL("/search/");
+		$this->post("search")->ALL("/search/");
 	}
 }
 ?>

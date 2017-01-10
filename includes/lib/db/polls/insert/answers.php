@@ -7,7 +7,7 @@ trait answers
 	protected static function insert_answers()
 	{
 		if(isset(self::$args['answers']) && is_array(self::$args['answers']))
-		{		
+		{	
 			$answers = self::$args['answers'];
 			// remove empty index from answer array
 			$answers = array_filter($answers);

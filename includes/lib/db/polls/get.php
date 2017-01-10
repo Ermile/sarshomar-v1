@@ -287,27 +287,27 @@ trait get
 	 */
 	public static function get_full($_poll_id)
 	{
-		$post_id = " WHERE posts.id ='". $_poll_id. "' ";
-		if($_poll_id === null)
+	
+		if(!$_poll_id)
 		{
-			$post_id = null;
+			return false;
 		}
-		$query = "
+		$query = 
+		"
 			SELECT
 					posts.*,
 					options.*,
-					pollstats.*
+					pollstats.*,
+					pollopts.*,
+					ranks.*
 			FROM
 				posts
-			LEFT JOIN pollstats
-				ON pollstats.post_id = posts.id
-			INNER JOIN options
-				ON 	options.post_id = posts.id AND
-					options.user_id IS NULL AND
-					options.option_key LIKE 'answers%'
-			$post_id";
-		list($limit_start, $limit_end) = \lib\db::pagnation($query, 10);
-		$query .= " LIMIT $limit_start, $limit_end ";
+			LEFT JOIN pollstats	ON pollstats.post_id = posts.id
+			LEFT JOIN options	ON options.post_id  = posts.id AND	options.user_id IS NULL
+			LEFT JOIN pollopts	ON pollopts.post_id  = posts.id
+			LEFT JOIN ranks		ON ranks.post_id     = posts.id
+			WHERE posts.id = $_poll_id
+		";
 
 		$result = \lib\db::get($query);
 		$result = \lib\utility\filter::meta_decode($result);

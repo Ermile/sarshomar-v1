@@ -14,14 +14,15 @@ class pollopts
 	"
 		`post_id`			AS `poll`,
 		`key` 				AS `key`,
+		`type`				AS `type`,
 		`title`				AS `title`,
-		`subtype` 			AS `subtype`,
-		`true` 				AS `true`,
+		`subtype` 			AS `sub_type`,
+		`true` 				AS `is_true`,
 		`groupscore` 		AS `group_score`,
+		`desc`				AS `description`,
 		`score` 			AS `score`,
 		`attachment_id` 	AS `attachment`,
-		`attachmenttype` 	AS `attachment_type`,
-		`status` 			AS `status`
+		`attachmenttype` 	AS `attachment_type`
 	";
 
 	/**

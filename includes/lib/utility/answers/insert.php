@@ -60,7 +60,7 @@ trait insert
 				'title'         => isset($value['title'])  			? $value['title']  			: null,
 				'type'          => isset($value['type'])  			? $value['type']  			: null,
 				'meta'          => isset($value['meta'])  			? $value['meta']			: null,
-				'desc'          => isset($value['desc'])  			? $value['desc']  			: null,
+				'desc'          => isset($value['desc'])    		? $value['desc']  			: null,
 				'score'         => isset($value['score']) 			? $value['score'] 			: null,
 				'groupscore'    => isset($value['groupscore']) 		? $value['groupscore'] 		: null,
 				'profile'       => isset($value['profile'])  		? $value['profile']  		: null,

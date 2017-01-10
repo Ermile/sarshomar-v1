@@ -149,7 +149,7 @@ trait search
 		// default we not search in news of service
 		if($_options['search_post'] === false)
 		{
-			$where[] = " posts.post_type != 'post' ";
+			$where[] = " posts.post_type IN ('poll','survey') ";
 		}
 
 		if($_options['check_language'] === true)

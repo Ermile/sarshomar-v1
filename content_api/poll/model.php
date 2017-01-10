@@ -1,7 +1,7 @@
 <?php
 namespace content_api\poll;
 
-class model extends \mvc\model
+class model extends \content_api\home\model
 {
 	use tools\add;
 	use tools\get;

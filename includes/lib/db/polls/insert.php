@@ -22,7 +22,6 @@ trait insert
 
 	use insert\answers;
 	use insert\check;
-	use insert\filters;
 	use insert\options;
 	use insert\poll;
 	
@@ -74,7 +73,7 @@ trait insert
 		// update id must be a shortURL
 		if(self::$args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", self::$args['update']))
 		{
-			return \lib\debug::error(T_("invalid parametr update"), 'update', 'system');
+			return \lib\debug::error(T_("Invalid parametr update"), 'update', 'system');
 		}
 		elseif(self::$args['update'])
 		{
@@ -85,7 +84,7 @@ trait insert
 		// check user id. 
 		if(!is_numeric(self::$args['user']))
 		{
-			return \lib\debug::error(T_("invalid parametr user"), 'user', 'system');
+			return \lib\debug::error(T_("Invalid parametr user"), 'user', 'system');
 		}
 
 		self::$user_id = self::$args['user'];
@@ -105,7 +104,7 @@ trait insert
 			}
 			elseif(self::$args['options']['status'])
 			{
-				return debug::error(T("invalid parametr status"), 'options', 'arguments');
+				return debug::error(T("Invalid parametr status"), 'options', 'arguments');
 			}
 		}
 		else
@@ -113,8 +112,14 @@ trait insert
 			self::$draft_mod = true;
 		}
 
-		// if in update mod get the saved record and match
-		self::ready();
+		// if in update mod check permission on editing this poll
+		if(self::$update_mod)
+		{
+			if(!self::is_my_poll(self::$poll_id, self::$user_id))
+			{
+				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
+			}		
+		}	
 
 		// insert poll record
 		self::insert_poll();
@@ -124,9 +129,6 @@ trait insert
 
 		// insert options of poll
 		self::insert_options();
-
-		// insert filters of poll
-		self::insert_filters();
 
 		// check poll
 		// if in publish mod and have error return the error
@@ -187,7 +189,6 @@ trait insert
 			'post_meta'        => null,
 			'post_publishdate' => null,
 			'post_privacy' 	   => 'public',
-			'post_gender'      => 'poll',
 			'post_survey'      => null,
 		];
 
