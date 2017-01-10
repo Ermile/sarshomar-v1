@@ -54,7 +54,7 @@ trait insert
 			// filters
 			'filters'                         => [],
 
-			'shortURL'						  => "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ",
+			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
 		];
 
 		$_args = array_merge($default_value, $_args);

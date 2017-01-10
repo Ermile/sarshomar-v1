@@ -45,11 +45,11 @@ class model extends \content_api\home\model
 			$meta['get_count'] = true;
 		}
 
-		if(!utility::request("language"))
+		if(utility::request("language") && \lib\utility\location\languages::check(utility::request("language")))
 		{
-			$meta['check_language'] = false;
+			$meta['post_language'] = utility::request("language");
 		}
-
+	
 		$meta['login'] = $this->login('id');
 		$result        = \lib\db\polls::search($search, $meta);
 		$tmp_result    = [];
@@ -61,12 +61,7 @@ class model extends \content_api\home\model
 				$tmp_result[] = $this->ready_poll($value);		
 			}
 		}
-		var_dump($tmp_result);
-		exit();
-		var_dump(utility::request());
-		
-		var_dump($result);
-		exit();
+		return $tmp_result;
 	}
 }
 ?>

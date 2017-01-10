@@ -14,7 +14,7 @@ class controller extends  \mvc\controller
 	 *
 	 * @var        string
 	 */
-	public static $shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+	public static $shortURL = \lib\utility\shortURL::ALPHABET;
 	
 
 	/**

@@ -3,7 +3,7 @@ namespace content_api\home;
 
 class model extends \mvc\model
 {
-	public $shortURL = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+	public $shortURL = \lib\utility\shortURL::ALPHABET;
 	
 	/**
 	 * ready poll record to show

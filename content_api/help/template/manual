@@ -1,32 +1,32 @@
 METHOD		URL 						HEADER 								BODY
-# POLL
+# ------------------------------------------ POLL
 POST		api/poll 					[application/json]					[args]
 GET 		api/poll?id=[id]
 PUT			api/poll 														[id]
 DELETE		api/poll?id=[id] 									[id]
 
-# FILE
+# ------------------------------------------ FILE
 POST		api/file
 GET 		api/file?id=[id]
 
-# ANSWER
+# ------------------------------------------ ANSWER
 POST		api/answer
 GET 		api/answer?id=[id]
 PUT			api/answer 														[id]
 
-# CONTACT
+# ------------------------------------------ CONTACT
 POST		api/contact
 
-# SEARCH
+# ------------------------------------------ SEARCH
 GET 	 	api/search?[search condition]
 POST 	 	api/search 														[search condition]
 
-# ASK
+# ------------------------------------------ ASK
 GET 		api/ask 					[type: random|null]
 
 -------------------------------------------this-is-okay------------------------------------------------
 METHOD		URL 						HEADER 								BODY
-# POLL
+# ------------------------------------------ POLL
 POST		api/addPoll 					[application/json]				[args]
 
 GET 		api/getPoll?{id=[id]|?type=last|random}
@@ -36,14 +36,14 @@ POST		api/editPoll 													[id]
 
 POST		api/removePoll 													[id]
 
-# FILE
+# ------------------------------------------ FILE
 POST		api/addFile
 
 GET 		api/getFile?id=[id]
 POST		api/getFile														[id]
 
 
-# ANSWER
+# ------------------------------------------ ANSWER
 POST		api/addAnswer
 
 GET 		api/getAnswer?id=[id]
@@ -53,15 +53,29 @@ PUT			api/editAnswer 													[id]
 POST		api/editAnswer													[id]
 
 
-# CONTACT
+# ------------------------------------------ CONTACT
 POST		api/sendFeedback
 
-# SEARCH
+# ------------------------------------------ SEARCH
 
 GET 	 	api/search?[search condition]
 POST 	 	api/search 														[search condition]
 
-# TRANSACTIONS
-
+# ------------------------------------------ TRANSACTIONS
 POST 		api/calcPrice
 GET 		api/calcPrice
+
+# ------------------------------------------ FAVORITES
+GET 		api/getFavorites?user=[id]
+POST 		api/getFavorites
+
+POST 		api/addFavorites
+
+
+# ------------------------------------------ LIKE
+GET 		api/getLike?user=[id]
+POST 		api/getLike
+
+POST 		api/addLike
+
+

@@ -19,7 +19,6 @@ class controller extends  \mvc\controller
 	public function _route()
 	{
 		$url = \lib\router::get_url(0);
-
 		switch ($url) 
 		{
 			case 'addPoll':
@@ -50,6 +49,18 @@ class controller extends  \mvc\controller
 
 			case 'search':
 				\lib\router::set_controller("\\content_api\\search\\controller");
+				return;
+				break;
+
+			case 'addFavorites':
+			case 'getFavorites':
+				\lib\router::set_controller("\\content_api\\favorites\\controller");
+				return;
+				break;
+
+			case 'addLike':
+			case 'getLike':
+				\lib\router::set_controller("\\content_api\\like\\controller");
 				return;
 				break;
 
