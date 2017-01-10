@@ -60,6 +60,9 @@ class view extends \lib\mvc\view
 			'eco'     => T_('Eco Friendly'),
 		];
 
+		$this->include->css_ermile = false;
+		$this->include->css        = false;
+
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;
