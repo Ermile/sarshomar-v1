@@ -33,29 +33,24 @@ class view extends \mvc\view
 
 		$this->data->search_value =  $_args->get("search")[0];
 		$list = $_args->api_callback;
-		if($list && is_array($list))
-		{
-			foreach ($list as $key => $value)
-			{
-				$list[$key]['type'] = \content_u\knowledge\view::find_icon($value['type']);
-			}
-		}
 		$this->data->poll_list = $list;
-		$match = $_args;
-		unset($_args->match->url);
-		unset($_args->method);
-		unset($_args->match->property);
-		$match  = $match->match;
-		$checkbox = [];
-		foreach ($match as $key => $value) {
-			if(is_array($value) && isset($value[0]))
-			{
-				$value = $value[0];
-			}
-			$checkbox[$key] = $value;
-		}
-		$this->data->checkbox = $checkbox;
+
+		// $match = $_args;
+		// unset($_args->match->url);
+		// unset($_args->method);
+		// unset($_args->match->property);
+		// $match  = $match->match;
+		// $checkbox = [];
+		// foreach ($match as $key => $value) {
+		// 	if(is_array($value) && isset($value[0]))
+		// 	{
+		// 		$value = $value[0];
+		// 	}
+		// 	$checkbox[$key] = $value;
+		// }
+		// $this->data->checkbox = $checkbox;
 	}
+
 
 	/**
 	 * [pushState description]

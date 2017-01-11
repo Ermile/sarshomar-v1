@@ -4,6 +4,8 @@ use \lib\utility;
 
 class model extends \content_api\home\model
 {
+
+	use tools\search;
 	/**
 	 * Gets the search.
 	 *
@@ -23,45 +25,8 @@ class model extends \content_api\home\model
 	 */
 	public function post_search($_args)
 	{	
-		$meta   = [];
-		$search = null;
-
-		if(utility::request("search"))
-		{
-			$search = utility::request("search");
-		}
-		else
-		{
-			$meta['get_last'] = true;	
-		}
-
-		if(utility::request("my_poll"))
-		{
-			$meta['my_poll'] = true;
-		}
-
-		if(utility::request("get_count"))
-		{
-			$meta['get_count'] = true;
-		}
-
-		if(utility::request("language") && \lib\utility\location\languages::check(utility::request("language")))
-		{
-			$meta['post_language'] = utility::request("language");
-		}
-	
-		$meta['login'] = $this->login('id');
-		$result        = \lib\db\polls::search($search, $meta);
-		$tmp_result    = [];
-
-		if(is_array($result))
-		{			
-			foreach ($result as $key => $value) 
-			{
-				$tmp_result[] = $this->ready_poll($value);		
-			}
-		}
-		return $tmp_result;
+		return $this->search($_args);
 	}
+
 }
 ?>

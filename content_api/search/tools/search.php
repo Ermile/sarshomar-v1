@@ -1,0 +1,62 @@
+<?php 
+namespace content_api\search\tools;
+use \lib\utility;
+trait search 
+{
+	/**
+	 * Searches for the first match.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	public function search($_args)
+	{
+
+		$meta   = [];
+		$search = null;
+
+		if(utility::request("search"))
+		{
+			$search = utility::request("search");
+		}
+		elseif(isset($_args->get("search")[0]))
+		{
+			$search = $_args->get("search")[0];
+		}
+		else
+		{
+			$meta['get_last'] = true;	
+		}
+
+		if(utility::request("my_poll"))
+		{
+			$meta['my_poll'] = true;
+		}
+
+		if(utility::request("get_count"))
+		{
+			$meta['get_count'] = true;
+		}
+
+		if(utility::request("language") && \lib\utility\location\languages::check(utility::request("language")))
+		{
+			$meta['post_language'] = utility::request("language");
+		}
+	
+		$meta['login'] = $this->login('id');
+		$result        = \lib\db\polls::search($search, $meta);
+		$tmp_result    = [];
+
+		if(is_array($result))
+		{			
+			foreach ($result as $key => $value) 
+			{
+				$tmp_result[] = $this->ready_poll($value);		
+			}
+		}
+		return $tmp_result;
+	}
+}
+
+?>

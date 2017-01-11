@@ -31,58 +31,20 @@ class model extends \mvc\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
+	use \content_api\search\tools\search;
+	use \content_api\home\tools\ready;
+
 	public function get_search($_args)
-	{
-		if(isset($_args->match->url[0][0]) && $_args->match->url[0][0] == '$')
+	{	
+		$search = null;
+		if(isset($_args->get("search")[0]))
 		{
-			$field = [];
-			$field['limit'] = 10;
-			$field['post_sarshomar'] = 1;
-			$field['get_last'] = true;
-			if($this->login())
-			{
-				$field['login'] = $this->login('id');
-			}
-			return \lib\db\polls::search(null, $field);
+			$search = $_args->get("search")[0];
 		}
 
-		$match = $_args;
-		unset($_args->match->url);
-		unset($_args->method);
-		unset($_args->match->property);
-		$match  = $match->match;
+		$user_id = $this->login('id');
 
-		$filter = [];
-		$meta                   = [];
-		$meta['login'] = $this->login('id');
-		foreach ($match as $key => $value) {
-			if(is_array($value) && isset($value[0]))
-			{
-				$value = $value[0];
-			}
-			if(\lib\db\filters::support_filter($key))
-			{
-				$filter[$key] = $value;
-			}
-			else
-			{
-				list($f,$v) = $this->db_field_name($key, $value);
-				if($f)
-				{
-					$meta[$f] = $v;
-				}
-			}
-		}
-
-		if(!empty($filter))
-		{
-			$filter_id         = \lib\db\filters::get_id($filter);
-			$meta['filter_id'] = $filter_id;
-		}
-
-		$search = $_args->get("search")[0];
-		$result = \lib\db\polls::search($search, $meta);
-		return $result;
+		return $this->search($_args);
 	}
 
 
