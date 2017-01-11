@@ -968,8 +968,7 @@ function searchInPolls()
 {
 	var path = location.pathname;
 	_search  = $('.search-box input').val();
-	// path     = path.substr(0, path.indexOf('/$')) + '/add/tree';
-	path     = '$';
+	path     = path.substr(0, path.indexOf('/$')+2);
 	if(_search)
 	{
 		path = path+ '/search='+ _search;
@@ -986,15 +985,16 @@ route(/\$/, function()
 }).once(function()
 {
 	// --------------------------------------------------------------------------------- Search
+	$(this).off('input', '.search-box input');
 	$(this).on('input', '.search-box input', function(event)
 	{
-		var tree_search_timeout = $(this).data('search-timeout');
-		if(tree_search_timeout)
+		var search_timeout = $(this).attr('data-search-timeout');
+		if(search_timeout)
 		{
-			clearTimeout(tree_search_timeout);
+			clearTimeout(search_timeout);
 		}
-		var timeout = setTimeout(searchInPolls(), 200);
-		$(this).data('search-timeout', timeout);
+		var timeout = setTimeout(function(){ searchInPolls(); }, 500);
+		$(this).attr('data-search-timeout', timeout);
 	});
 
 });
