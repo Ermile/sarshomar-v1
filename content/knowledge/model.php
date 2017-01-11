@@ -1,30 +1,28 @@
 <?php
 namespace content\knowledge;
 use \lib\utility;
+use \lib\debug;
 
 class model extends \mvc\model
 {
 
+	/**
+	 * Posts a search.
+	 * to set or unset fav
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function post_search()
 	{
-
 		if(utility::post("type") == 'favourites')
 		{
 			if($this->login())
 			{
-				\lib\db\polls::favo_like("favourites", $this->login('id'), utility::post('id'));
+				$poll_id = utility\shortURL::decode(utility::post('id'));
+				return \lib\db\polls::fav($this->login('id'), $poll_id);
 			}
-			return;
 		}
-		$field = [];
-		if($this->login())
-		{
-			// to get favourites posts
-			$field = ['login' => $this->login('id')];
-		}
-
-		return \lib\db\polls::search(utility::post("search"), $field);
 	}
+
 
 	/**
 	 * Gets the search.

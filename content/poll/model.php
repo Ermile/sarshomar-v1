@@ -195,7 +195,7 @@ class model extends \mvc\model
 		// save like
 		if(utility::post("type") == 'like')
 		{
-			$result = \lib\db\polls::favo_like("like", $this->login('id'), $poll_id);
+			$result = \lib\db\polls::like($this->login('id'), $poll_id);
 			return;
 		}
 
