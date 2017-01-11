@@ -900,13 +900,12 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** search box */
 .search-box{position:relative;margin-bottom:2em}
-.search-box input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:20px;padding-right:60px;font-size:1.6em;transition:.3s}
+.search-box input[type="text"]{display:table-cell;width:100%;border:none;outline:none;height:50px;line-height:50px;background-color:#EBEBEB;color:#00667A;padding-left:10px;padding-right:60px;font-size:1.6em;transition:.3s}
 .rtl .search-box input[type="text"]{padding-right:20px;padding-left:60px}
 .search-box input[type="text"]:focus{background-color:#efefef}
-.search-box .search-label{position:absolute;top:0;right:0;width:50px;height:50px;line-height:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;cursor:pointer;text-align:center}
+.search-box .search-label{position:absolute;top:0;right:0;width:50px;height:50px;line-height:50px;background-color:#00667A;color:#F4F4F4;border:none;outline:none;text-align:center}
 .rtl .search-box .search-label{right:auto;left:0}
-.search-box .search-label:hover,.search-box .search-label:focus{background-color:#0A5260}
-.search-box .search-label .icon-search{font-size:1.2em}
+.search-box .search-label .icon-search{font-size:1.4em;vertical-align:middle}
 
 
 /************************************************************** pagination */
