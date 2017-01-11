@@ -58,9 +58,9 @@ class view extends \mvc\view
 	 */
 	function pushState()
 	{
-		if($this->module() !== 'home')
+		if(\lib\utility::get('onlySearch'))
 		{
-			$this->data->display['result']     = "content/knowledge/layout-xhr.html";
+			$this->data->display['main'] = "content/knowledge/layout-xhr.html";
 		}
 	}
 }

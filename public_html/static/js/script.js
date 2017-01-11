@@ -975,7 +975,8 @@ function searchInPolls()
 	}
 
 
-	Navigate({ url: path});
+	Navigate({ url: path, ajax:{method:'get', data:{'onlySearch' : true}}});
+	// Navigate({ url: path});
 }
 
 
