@@ -1,4 +1,5 @@
-METHOD		URL 						HEADER 								BODY
+{%block old_syntax%}
+
 # ------------------------------------------ POLL
 POST		api/poll 					[application/json]					[args]
 GET 		api/poll?id=[id]
@@ -23,10 +24,12 @@ POST 	 	api/search 														[search condition]
 
 # ------------------------------------------ ASK
 GET 		api/ask 					[type: random|null]
+{%endblock%}
 
--------------------------------------------this-is-okay------------------------------------------------
-METHOD		URL 						HEADER 								BODY
-# ------------------------------------------ POLL
+
+
+{#------------------------------------------------ poll -----------------------------------------------#}
+{%block poll%}
 POST		api/addPoll 					[application/json]				[args]
 
 GET 		api/getPoll?{id=[id]|?type=last|random}
@@ -35,15 +38,18 @@ POST 		api/getPoll														[id]
 POST		api/editPoll 													[id]
 
 POST		api/removePoll 													[id]
+{%endblock%}
 
-# ------------------------------------------ FILE
+{#------------------------------------------------ file -----------------------------------------------#}
+{%block file%}
 POST		api/addFile
 
 GET 		api/getFile?id=[id]
 POST		api/getFile														[id]
+{%endblock%}
 
-
-# ------------------------------------------ ANSWER
+{#------------------------------------------------ answer -----------------------------------------------#}
+{%block answer%}
 POST		api/addAnswer
 
 GET 		api/getAnswer?id=[id]
@@ -51,31 +57,32 @@ POST		api/getAnswer													[id]
 
 PUT			api/editAnswer 													[id]
 POST		api/editAnswer													[id]
+{%endblock%}
 
-
-# ------------------------------------------ CONTACT
+{#------------------------------------------------ contact -----------------------------------------------#}
+{%block contact%}
 POST		api/sendFeedback
+{%endblock%}
 
-# ------------------------------------------ SEARCH
-
+{#------------------------------------------------ search -----------------------------------------------#}
+{%block search%}
 GET 	 	api/search?[search condition]
 POST 	 	api/search 														[search condition]
+{%endblock%}
 
-# ------------------------------------------ TRANSACTIONS
+{#------------------------------------------------ transaction -----------------------------------------------#}
+{%block transaction%}
 POST 		api/calcPrice
 GET 		api/calcPrice
+{%endblock%}
 
-# ------------------------------------------ FAVORITES
-GET 		api/getFavorites?user=[id]
-POST 		api/getFavorites
-
+{#------------------------------------------------ fav -----------------------------------------------#}
+{%block fav%}
 POST 		api/addFavorites
+{%endblock%}
 
-
-# ------------------------------------------ LIKE
-GET 		api/getLike?user=[id]
-POST 		api/getLike
-
+{#------------------------------------------------ like -----------------------------------------------#}
+{%block like%}
 POST 		api/addLike
-
+{%endblock%}
 

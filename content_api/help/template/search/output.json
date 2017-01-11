@@ -1,0 +1,32 @@
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": [
+      {
+        "favourites": "75",
+        "id": "3y",
+        "title": "[title]",
+        "slug": "[title]",
+        "url": "$/3y",
+        "type": "poll",
+        "status": "publish",
+        "user_id": "6",
+        "sarshomar": "yes",
+        "privacy": "public"
+      },
+      {
+        "favourites": "74",
+        "id": "3x",
+        "title": "[title]",
+        "slug": "[title]",
+        "url": "$/3x",
+        "type": "poll",
+        "status": "publish",
+        "user_id": "6",
+        "sarshomar": "yes",
+        "privacy": "public"
+      }
+    ]
+  }
+}

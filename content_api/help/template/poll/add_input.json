@@ -1,6 +1,6 @@
 {
   "title": "string",
-  "type" : "poll|survey|[leave it null to set poll]",
+  "type": "poll|survey|[leave it null to set poll]",
   "answers": [
     {
       "title": "null|string",
@@ -41,7 +41,7 @@
     }
   ],
   "options": {
-    "status" : "draft|publish",
+    "status": "draft|publish",
     "language": "fa|en|ar|null",
     "file": "[upload_name]|url|null",
     "summary": "string|null",
