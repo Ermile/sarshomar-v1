@@ -76,16 +76,45 @@ trait search
 		$_options = array_merge($default_options, $_options);
 
 		// ------------------ favourites
-		$favourites = null;
+		$my_fav = null;
+		$my_like       = null;
+		$is_answered     = null;
+
 		if($_options['login'])
 		{
-			$favourites =
+			$my_fav =
 			"
-				LEFT JOIN options
-					ON options.post_id = posts.id AND
-						options.option_key = 'favourites' AND
-						options.user_id = $_options[login] AND
-						options.option_status = 'enable' ";
+				LEFT JOIN options AS `fav`
+					ON fav.post_id = posts.id AND
+						fav.option_key = 'favourites' AND
+						fav.user_id = $_options[login] AND
+						fav.option_status = 'enable' 
+			";
+
+			$my_like =
+			"
+				LEFT JOIN options AS `my_like`
+					ON my_like.post_id = posts.id AND
+						my_like.option_key = 'like' AND
+						my_like.user_id = $_options[login] AND
+						my_like.option_status = 'enable' 
+			";
+
+			$is_answered =
+			"
+				IF(
+					(
+						SELECT 
+							COUNT(polldetails.id) 
+						FROM 
+							polldetails 
+						WHERE 
+							polldetails.post_id = posts.id AND
+						polldetails.user_id = $_options[login]
+					) >= 1 , TRUE, FALSE
+				) AS `is_answered` ,
+			";
+
 		}
 
 		// ------------------ pagenation
@@ -98,8 +127,11 @@ trait search
 
 		// ------------------ get count
 		$only_one_value = false;
+		$get_count      = false;
+
 		if($_options['get_count'] === true)
 		{
+			$get_count      = true;
 			$public_fields  = " COUNT(posts.id) AS 'postcount' FROM posts ";
 			$limit          = null;
 			$only_one_value = true;
@@ -150,6 +182,11 @@ trait search
 		if($_options['search_post'] === false)
 		{
 			$where[] = " posts.post_type IN ('poll','survey') ";
+		}
+
+		if(isset($_options['post_language']))
+		{
+			$_options['check_language'] = false;
 		}
 
 		if($_options['check_language'] === true)
@@ -207,7 +244,7 @@ trait search
 			}
 		}
 
-		if($pagenation)
+		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	$public_fields	WHERE $where $search ";
 			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
@@ -221,17 +258,32 @@ trait search
 				$limit = " LIMIT $start_limit, $end_limit ";
 			}
 		}
-		// ------------------ favourites
-		if($favourites)
-		{
-			$public_fields = " options.option_value AS 'favourites', ". $public_fields;
+		if(!$get_count)
+		{	
+			// ------------------ favourites
+			if($my_fav)
+			{
+				$public_fields = " fav.option_value AS 'my_fav', ". $public_fields;
+			}
+
+			if($my_like)
+			{
+				$public_fields = " my_like.option_value AS 'my_like', ". $public_fields;
+			}
+
+			if($is_answered)
+			{
+				$public_fields = $is_answered. $public_fields;
+			}
 		}
 
 		$query =
 		"
 			SELECT
 				$public_fields
-			$favourites
+			$my_fav
+			$my_like
+			
 			WHERE
 				$where
 				$search

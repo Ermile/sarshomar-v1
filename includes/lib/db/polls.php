@@ -36,16 +36,52 @@ class polls
 			posts.post_sarshomar			AS `sarshomar`,
 			posts.post_survey 				AS `survey`,
 			posts.post_privacy				AS `privacy`,
-			IFNULL(ranks.comment,0)   		AS `comment_count`,
-			IFNULL(ranks.like,0)   			AS `like`,
-			IFNULL(ranks.favo,0)   			AS `favo`,
-			IFNULL(ranks.vip,0)   			AS `vip`,
-			IFNULL(ranks.vot,0)   			AS `total`
+			IFNULL(ranks.comment,0)   		AS `count_comment`,
+			IFNULL(ranks.like,0)   			AS `count_like`,
+			IFNULL(ranks.favo,0)   			AS `count_favo`,
+			IFNULL(ranks.vot,0)   			AS `count_vot`
 		FROM
 			posts
 		LEFT JOIN ranks ON ranks.post_id = posts.id
 	";
+			// (
+			// select 
+			// GROUP_CONCAT(
+			// 	  JSON_OBJECT(
+			// 		'key' , pollopts.key,
+			// 		'type' , pollopts.type,
+			// 		'title' , pollopts.title,
+			// 		'sub_type' , pollopts.subtype,
+			// 		'is_true' , pollopts.true,
+			// 		'group_score' , pollopts.groupscore,
+			// 		'description' , pollopts.desc,
+			// 		'score' , pollopts.score,
+			// 		'attachment' , pollopts.attachment_id,
+			// 		'attachment_type' , pollopts.attachmenttype
+			// 	  )
+			// 	) 
+			// from pollopts
+			// 	WHERE 
+			// 		pollopts.post_id = posts.id 
+			// ) AS `answers`
 
+// SELECT
+// 					GROUP_CONCAT(
+// 				 		CONCAT('{',
+// 								'\"key\":\"', 				pollopts.key , 				'\",',
+// 								'\"type\":\"', 				pollopts.type , 			'\",',
+// 								'\"title\":\"', 			pollopts.title , 			'\",',
+// 								'\"sub_type\":\"', 			pollopts.subtype , 			'\",',
+// 								'\"is_true\":\"', 			pollopts.true , 			'\",',
+// 								'\"group_score\":\"', 		pollopts.groupscore , 		'\",',
+// 								'\"description\":\"', 		pollopts.desc , 			'\",',
+// 								'\"score\":\"', 			pollopts.score , 			'\",',
+// 								'\"attachment\":\"', 		pollopts.attachment_id , 	'\",',
+// 								'\"attachment_type\":\"', 	pollopts.attachmenttype , 	'\",',
+// 				 			'}')
+// 				 			) 
+// 				FROM 
+// 					pollopts
 
 	/**
 	 * delete answers of specefic user

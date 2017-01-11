@@ -4,27 +4,29 @@
   "msg": {
     "callback": [
       {
-        "favourites": "75",
+        "is_answered": true,
+        "my_fav": true,
         "id": "3y",
-        "title": "[title]",
-        "slug": "[title]",
+        "title": "sf",
+        "slug": "sf",
         "url": "$/3y",
         "type": "poll",
         "status": "publish",
         "user_id": "6",
-        "sarshomar": "yes",
+        "sarshomar": true,
         "privacy": "public"
       },
       {
-        "favourites": "74",
+        "my_like": true,
+        "my_fav": true,
         "id": "3x",
-        "title": "[title]",
-        "slug": "[title]",
+        "title": "sf",
+        "slug": "sf",
         "url": "$/3x",
         "type": "poll",
         "status": "publish",
         "user_id": "6",
-        "sarshomar": "yes",
+        "sarshomar": true,
         "privacy": "public"
       }
     ]

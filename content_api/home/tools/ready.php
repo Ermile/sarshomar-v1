@@ -48,18 +48,29 @@ trait ready
 
 		if(isset($_poll_data['sarshomar']) && $_poll_data['sarshomar'])
 		{
-			$_poll_data['sarshomar'] = "yes";
+			$_poll_data['sarshomar'] = true;
 		}
-		else
-		{
-			$_poll_data['sarshomar'] = "no";
+			
+		if(isset($_poll_data['is_answered']) && $_poll_data['is_answered'])
+		{			
+			$_poll_data['is_answered'] = true;	
+		}
+		
+		if(isset($_poll_data['my_fav']) && $_poll_data['my_fav'])
+		{			
+			$_poll_data['my_fav'] = true;	
+		}
+		
+		if(isset($_poll_data['my_like']) && $_poll_data['my_like'])
+		{			
+			$_poll_data['my_like'] = true;	
 		}
 		
 		if(is_array($_poll_data))
 		{
 			$_poll_data = array_filter($_poll_data);
 		}
-
+		
 		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null)
 		{
 			$_poll_data['tree'] = [];

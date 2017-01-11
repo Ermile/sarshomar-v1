@@ -33,9 +33,11 @@ trait search
 		{
 			$meta['my_poll'] = true;
 		}
-
+		
+		$get_count = false;
 		if(utility::request("get_count"))
 		{
+			$get_count = true;
 			$meta['get_count'] = true;
 		}
 
@@ -48,13 +50,18 @@ trait search
 		$result        = \lib\db\polls::search($search, $meta);
 		$tmp_result    = [];
 
-		if(is_array($result))
+		if(is_array($result) && !$get_count)
 		{			
 			foreach ($result as $key => $value) 
 			{
 				$tmp_result[] = $this->ready_poll($value);		
 			}
 		}
+		elseif($get_count)
+		{
+			return (int) $result;
+		}
+		
 		return $tmp_result;
 	}
 }
