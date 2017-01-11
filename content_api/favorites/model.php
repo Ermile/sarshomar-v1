@@ -20,11 +20,11 @@ class model extends \content_api\home\model
 		}
 
 		$type = null;
-		if(utility::request("favorites") === '')
+		if(utility::request("fav") === '')
 		{
 			$type = false;
 		}
-		elseif(utility::request("favorites"))
+		elseif(utility::request("fav"))
 		{
 			$type = true;
 		}
