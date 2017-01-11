@@ -1,317 +1,44 @@
-/**
- * In the Name of God
- * Sarshomar Responsive Styles
- * Version:1.0.0
- * Author:Ermile
- * Author URI:Ermile.com
- */
-@charset "utf-8";
+@media only screen and (max-width: 480px) {
+ header{display:block;height:auto;border:none}
+ header .logo{background-image:none;display:block;width:100%;padding:1em;text-align:center;background-color:#00667a}
+ .rtl header .logo{background-image:none}
+ header .logo h1{display:none}
+ header #header-box{border-style:solid;border-width:8px 8px 0;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch}
+ header #header-top{border:none;height:auto;flex-direction:column-reverse}
 
 
-/* media */
-@media only screen and (max-width:1000px) {
-  .features li .normal span{ font-size:.27em; }
-  .features li h3{font-size:.22em;}
-  .features li p{font-size:13px;}
-  .features li img{padding:42px; padding-top:27px;}
-  .features li{width:200px;height:200px}
-  .features li .normal span{ padding-top:78px; }
-  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 104deg); transform:rotate3d(-1, 0, 0, 104deg);}}
-  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 104deg); transform:rotate3d(-1, 0, 0, 104deg);}}
-  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 104deg); transform:rotate3d(0, -1, 0, 104deg);}}
-  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 104deg); transform:rotate3d(0, -1, 0, 104deg);}}
-  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 104deg); transform:rotate3d(1, 0, 0, 104deg);}}
-  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 104deg); transform:rotate3d(1, 0, 0, 104deg);}}
-  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 104deg); transform:rotate3d(0, 1, 0, 104deg);}}
-  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 104deg); transform:rotate3d(0, 1, 0, 104deg);}}
-}
-
-@media only screen and (max-width:992px) {
-  .features li h3{font-size:.22em;}
-  .features li p{font-size:12px}
-  .features li .normal span{ font-size:.22em; }
-.container {width: 96%;}
-}
-
-@media only screen and (max-width:480px) {
-  .features li .normal span{ font-size:.25em; }
-  .features li .normal span {padding-top:26px;}
-  .features li img{padding:36px; padding-top:25px;}
-  .features li {width:144px; height:144px;}
-  .features li .normal span{ font-size:.2em; }
-  .features li h3{font-size:.2em;}
-  .features li p{font-size:10px}
-  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 100.2deg); transform:rotate3d(-1, 0, 0, 100.2deg);}}
-  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 100.2deg); transform:rotate3d(-1, 0, 0, 100.2deg);}}
-  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 100.2deg); transform:rotate3d(0, -1, 0, 100.2deg);}}
-  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 100.2deg); transform:rotate3d(0, -1, 0, 100.2deg);}}
-  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 100.2deg); transform:rotate3d(1, 0, 0, 100.2deg);}}
-  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 100.2deg); transform:rotate3d(1, 0, 0, 100.2deg);}}
-  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
-  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 100.2deg); transform:rotate3d(0, 1, 0, 100.2deg);}}
-  .features .info{padding-top:8px; padding:12px;}
-}
-
-@media only screen and (max-width:350px) {
-  .features .info{padding:5px;padding-top:2px;}
-  .features li {width:130px; height:130px;}
-  .features li .normal span {padding-top:8px;}
-  .features .card.span4 { width:100%!important;margin-right:0%!important;}
-  .row:before, .row:after{ display:initial;}
-  .row>[class*=span]:nth-child(even), .row .row>[class*=span]:nth-child(even){ margin-right:0!important;}
-  @-webkit-keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 99.22deg); transform:rotate3d(-1, 0, 0, 99.22deg);}}
-  @keyframes out-top { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(-1, 0, 0, 99.22deg); transform:rotate3d(-1, 0, 0, 99.22deg);}}
-  @-webkit-keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 99.22deg); transform:rotate3d(0, -1, 0, 99.22deg);}}
-  @keyframes out-right { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, -1, 0, 99.22deg); transform:rotate3d(0, -1, 0, 99.22deg);}}
-  @-webkit-keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 99.22deg); transform:rotate3d(1, 0, 0, 99.22deg);}}
-  @keyframes out-bottom { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(1, 0, 0, 99.22deg); transform:rotate3d(1, 0, 0, 99.22deg);}}
-  @-webkit-keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
-  @keyframes out-left { from { -webkit-transform:rotate3d(0, 0, 0, 0deg); transform:rotate3d(0, 0, 0, 0deg);} to { -webkit-transform:rotate3d(0, 1, 0, 99.22deg); transform:rotate3d(0, 1, 0, 99.22deg);}}
-}
-
-/************************************************************** Media Queries */
-/* #Large Desktop ======================================== Design for a width of 1400 until 1823px*/
-@media screen and (min-width: 1400px){}
-/* #Tablet (Portrait) =================================== Design for a width of 992px until 959px */
-@media only screen and (max-width:959px){
-  /*header #header-profile > a{color:#888;}*/
-  header .logo img{width: 6.3em;}
-  header .logo {float: none}
-  /*.profile .info{display: none;}*/
-  .rtl .special-heading::after{display:none;}
-  .special-heading::after{display: none;}
-  .special-heading::after{display: none;}
-  #ir-map{width: 100%;}
-/**********************************Knowledge***************************/
-.main .search-box{margin:2em;}
-.polls-head > .comments-count{display: none;}
-.polls-head > .votes-count{display: none;}
-.polls-row > .comments-count{display: none;}
-.polls-row > .votes-count{display: none;}
-#search-result .polls-body{font-size:1.2em;}
-#search-result .polls-head{font-size: 1.2em;}
-.polls-row .date{font-size: 1em;}
-.pagination-container{font-size: 1.4em;}
-.pagination a.next::after{top: -1px;}
-/**********************************filter***************************/
-.type ul{background-color: transparent;}
-.type ul li{width: 100%;margin: 10px 0;float: none;}
-.type ul li:not(:first-child){margin-left: 0;}
-}
-/* #Mobile (Landscape) =================================== Design for a width 480px until 767px*/
-@media only screen and (max-width: 992px){
-
-/**********************************homepage-1***************************/
-  /*--header--*/
-  header{border:none;display:block;height:auto}
-  .rtl header{border:none}
-  header .logo{background-image:none;background-color:#00667a;width:100%;text-align:center;display:block;padding:1em 1em .5em}
-  .rtl header .logo{background-image:none;background-color: #00667a;width: 100%;text-align: center; }
-  header .logo img{width:8em}
-  header #header-box{display: block;width: 100%;height:auto;border-style: solid;border-width:8px 8px 0 8px;-moz-border-image: url(../images/border.png) 8 stretch;-webkit-border-image: url(../images/border.png) 8 stretch;-o-border-image: url(../images/border.png) 8 stretch;border-image: url(../images/border.png) 8 stretch;}
-  header #header-quick{}
-  header #header-profile .register{}
-  .rtl header #header-profile .register{}
-  .profile{}
-  .rtl .profile{}
-  header #header-profile{padding:10px;margin:0}
-  .rtl header #header-profile>a {}
-   header #header-profile>a {}
-  header #header-bottom{padding:0 1em}
-  .rtl header .logo{float: none;}
- /* nav.breadcrumb{display: none;}*/
-  header #header-profile{}
-  .rtl header #header-profile{}
-  header #header-top{border-top:none;display:flex;justify-content:space-between}
-  /*header #header-profile>a {color: #f4f4f4;}*/
-  /*--wrapper--*/
-  #map{display: none;}
-  .wrapper{padding: 0;border-top:0;display: block}
-  #intro-box p{font-size:1.6em;}
-  #random-chart h3{text-align: left;padding: 1em .2em;font-size: 1em;}
-  #random-chart h3 a{font-size: 1.5em;font-weight: 500;}
-  .special-heading::after{display: none;}
-  /*--Home--*/
-  #random-chart {background: transparent}
-  #intro-box h2 {padding: 0; line-height: normal}
-  /*--customer--*/
-  #customers-box{padding:0;overflow:hidden;}
-  .wrapper #customers-box .customer{width: 90%; text-align: center;margin: 0em auto;padding:1em 0;}
-  .wrapper #customers-box .customer div:last-child {display: none;}
-  .wrapper #customers-box .customer div:nth-child(2) {width: 70%}
-  #customers-box .customer p{width: 100%;margin:0 auto;text-align: left;font-size: 1.6em;}
-  #customers-box .customer h3 {padding-top: 0;}
-  #customers-box .customer h3::before{display: none;}
-  #customers-box .customer h3::after{display: none;}
-  #customers-box .customers-container{width:90%;}
-  /*--features--*/
-
-  .row.auto > [class*=span]:last-child, .row.auto .endline{text-align: center;}
-#features-box {padding: 50px 15px;}
-#features .box {margin: 0 3em}
-  /*--help--*/
-  .help-main-box, .help-category-box, .help-post-box {margin: 0;}
-
-/**********************************dashbord***************************/
-
-  .wrapper>aside{display: block;width: 100%;text-align: center;/*padding-top: 5em;*/}
-  .wrapper>aside img{width: 70%;}
-  .dashboard .progress{margin-top: 40px;}
-  .personal-info{font-size: 1.5em;}
-  .progress{font-size: 1.4em}
-  .progress::before{font-size: 1.2em;top:0;color:#555;}
-  .progress>.detail{font-size: 1.4em;position:initial;background-color:#f4f4f4;margin-top: 0;padding-top: 2em;}
-  .card h3{font-size:1.7em;}
-  .card>span a{font-size: 1.5em;}
-  .main{display: block;width: 100%;}
-
-/**********************************profile***************************/
-
-#profile .profile-image{margin: 0 auto;display: block;width: 60%;height: auto;}
-#profile .tabs{padding-left:0;}
-#profile .tab{padding: 2em;}
-#profile .tabs li{display: inline-block;width:32%;border-top-right-radius: 6px;border-bottom-right-radius: 6px;}
-#profile .tabs li.active{width: 32%;}
-#profile .tabs li::before{display: none;}
-
-/**********************************Knowledge***************************/
-
-aside .group .options-box .ac-custom{display: inline-block;font-size: 1.5em;}
-.polls-row .date{display: none;}
-
-/**********************************filter***************************/
-.main .page-progress{width: 90%;}
-.element:not(.small) .title{min-width: 30%;font-size: 1.5em;}
-.element.switch label:not(.title){font-size: 1.5em;}
-/*.type ul li{font-size: 1.4em;}*/
-.page-progress a::before{font-size: 1.2em;font-weight: 400;}
-
-/**********************************poll***************************/
-#poll-box input[type="submit"]{font-size: 1.5em;}
-.eq-container > div{width: 100%;font-size: 1.5em;}
-#poll-info .status.publish{font-size: 1.3em;}
-/**********************************publish***************************/
-.page-progress{width: 90%;}
-.polls-row .date{display: initial;}
-
-/**********************************question***************************/
-#dollar .polls-body{padding: 3em;}
-#dollar #search-result .polls-head{padding: 0 3em;}
-
-/*.add_6k_publish .element{padding: 0 10px;}*/
-
-p.em {padding: 1.5em 2em;}
-#about-bottom {padding: 50px 15px;}
-#contact .box {margin:0;}
-#contact .contact-ways .row span {padding: 4px 1em;font-size: 12px;}
-
-
-}
-
-@media only screen and (max-width: 768px){
-  header #header-quick{display:none}
-  header #header-profile{display:block}
-  /*--inestimable--*/
-  #inestimable{margin:0;padding: 25px 10px;}
-  #inestimable::before{display: none;}
-  #inestimable::after{display: none;}
-  #inestimable img{display: none;}
-  /*--footer--*/
-  footer{border-top: 0;}
-  footer #footer-links{border-bottom:0;padding-bottom: 0em;margin-bottom: 0em;}
-  footer #footer-links a{padding: .5em;display: inline-block;}
-  .rtl footer #footer-links section h4{text-align: right;}
-  footer #footer-links section h4{text-align: left;}
-  footer #footer-nav .eco img{display: none;}
-
-
-.wrapper{border-bottom: 8px solid transparent;}
-
-footer .hide-md {display: none;}
-footer .show-this {display: block;}
-}
-/* #Mobile (Portrait) ================================== Design for a width until 479px */
-
-@media only screen and (max-width: 479px){
-  #homepage .wrapper .box{padding: 1em;}
-  #customers-box .customers-container{width:98%;}
-    .rtl #customers-box .customer:nth-child(even) h3, .rtl #customers-box .customer:nth-child(even) p {text-align: center;}
-  #customers-box .customer h3, #customers-box .customer p {text-align: center}
-  .rtl #customers-box .customer h3, #customers-box .customer p {text-align: center}
-  #customers-box .customer:nth-child(odd) h3, #customers-box .customer:nth-child(odd) p {text-align: center;}
-  /*--header--*/
-  header .logo img{width: 8em;}
-  /*--footer--*/
-  footer #footer-nav .eco img{padding-top:40px;display: inline-block;}
-
-/*********************poll*************************/
-.rtl .polls-row>.type {padding-right: 5px;}
-.poll.btn-container{width: 100%;}
-.rtl .btn-container {text-align: center; margin: 1em 0}
-.rtl .btn-container .btn{ margin: 1em 0}
-  /**********************************profile***************************/
-
-#profile .tabs li{width: 80%;}
-.element .title:before{display: none;}
-#poll-extra{font-size: 1.4em;}
-.profile .info{min-width:60px;}
-#profile .tabs {padding: 0}
-.rtl#profile .tabs {padding-right: 0;}
-.rtl#profile .tabs li {border-radius: 6px;}
-/**********************************add question page***************************/
-
-.btn-container::before {display: none;}
-.rtl .btn-container .btn:not(:last-child) {margin-left: 0;}
-.rtl .input-group {padding-right: 0;}
-.input-group {padding-left: 0;}
-.rtl .panel-text {margin: 15px 0 0;text-align: right;}
-.panel-text {margin: 15px 0 0;text-align: left;}
-.element .checkbox {position: absolute;left: -3px;}
-.menu .menu-inside label {display: block;width: 100%;}
-.menu .menu-inside label:not(:first-of-type) {margin-right: 0 !important;margin-left: 0!important;}
-.element.switch {flex-direction: column;}
-.element.switch label:not(.title):not(:last-child)::before {display: none;}
-.element.switch:not(.small) .title {border-radius: 5px 5px 0 0;}
-#poll-filters {text-align: right;}
-.rtl .element .delete {left: 0;}
-
-/**********************************Text based***************************/
-.text-based h2:not(.special-heading) {text-align: left;}
-.rtl .text-based h2:not(.special-heading) {text-align: right;}
-.text-based .content {padding: 0 1em;}
-.text-based .special-heading {font-size: 20px;}
-
- }
-
-
-@media only screen and (min-width: 768px){
-  .hide-in-desktop {
-    display: none;
-  }
-}
-
-
-  /*==================================*/
- @media only screen and (max-width: 310px){
-  body{display:none;}
-  html::before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center;}
- }
+ header #header-quick{text-align:center;width:80%;margin:0 auto;border-bottom:1px solid #e5a428}
+ header #header-quick>a{margin-top:0;font-size:1.2em}
 
 
 
+ header #header-profile{display:-webkit-flex;display:-ms-flexbox;display:flex;justify-content:flex-end;margin:0;padding:1em}
+ header #header-bottom{display:none}
 
+ #homepage .wrapper .box{padding:0}
 
+ #intro-box{text-align:center;padding:3em 0}
+ #intro-box h2{padding-top:0}
+ #intro-box p{margin:0;margin-bottom:1em;padding:0 15px}
 
+ #random-chart{margin:0!important}
+ #random-chart h3 a{font-weight:500}
 
+ #map{display:none}
 
+ #customers-box{border-top:1px solid #f4f4f4}
+ #customers-box .customer h3{padding-top:1em}
+ #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:center}
+ .rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:center}
+ #customers-box .customer:last-child p{margin-bottom:0}
+ #customers-box .customer .span2{margin:0!important}
 
+ #inestimable{padding:25px;text-align:center}
+ #inestimable::before,#inestimable::after{display:none}
+ #inestimable .launch{display:none}
 
+ footer #footer-nav .eco{height:60px}
+ footer #footer-links a{display:inline-block;margin-right:1em}
+ .rtl footer #footer-links a{margin-right:0;margin-left:1em}
 
-
-
-@media print {
-   .wrapper, footer, header, header #header-top{border:none;}
-   .container, .wrapper{width:100%;max-width:100%;}
-   #inestimable{display:none}
-   footer{background-color:#eee}
 }
