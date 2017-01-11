@@ -78,11 +78,23 @@ GET 		api/calcPrice
 
 {#------------------------------------------------ fav -----------------------------------------------#}
 {%block fav%}
-POST 		api/addFavorites
+POST 		api/addFav
+GET 		api/getFav
+POST 		api/getFav
 {%endblock%}
 
 {#------------------------------------------------ like -----------------------------------------------#}
 {%block like%}
 POST 		api/addLike
+GET 		api/getLike
+POST 		api/getLike
+{%endblock%}
+
+
+{#------------------------------------------------ comment -----------------------------------------------#}
+{%block comment%}
+POST 		api/addComment
+GET 		api/getComment
+POST 		api/getComment
 {%endblock%}
 

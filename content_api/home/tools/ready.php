@@ -17,10 +17,11 @@ trait ready
 	{
 		$default_options = 
 		[
-			'get_filter' => false,
-			'get_opts'   => false,	
+			'get_filter'         => false,
+			'get_opts'           => false,
+			'get_public_result'  => false,
+			'get_advance_result' => false,
 		];
-
 		$_options = array_merge($default_options, $_options);
 
 		$poll_id = 0;
@@ -66,15 +67,10 @@ trait ready
 			$_poll_data['my_like'] = true;	
 		}
 		
-		if(is_array($_poll_data))
-		{
-			$_poll_data = array_filter($_poll_data);
-		}
-		
-		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null)
+		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null && $poll_id)
 		{
 			$_poll_data['tree'] = [];
-			$_poll_data_tree = \lib\utility\poll_tree::get($_poll_data['id']);
+			$_poll_data_tree = \lib\utility\poll_tree::get($poll_id);
 
 			if($_poll_data_tree && is_array($_poll_data_tree))
 			{
@@ -85,18 +81,34 @@ trait ready
 			}
 		}
 
-		if($_options['get_opts'])
+		if($_options['get_opts'] && $poll_id)
 		{
 			$answers = \lib\db\pollopts::get($poll_id);
 			$_poll_data['answers'] = $answers;
 		}
 
-		if($_options['get_filter'])
+		if($_options['get_filter'] && $poll_id)
 		{
-			$filters = \lib\utility\postfilters::get_filter($poll_id);
+			$filters               = \lib\utility\postfilters::get_filter($poll_id);
+			$filters['member']     = \lib\db\ranks::get($poll_id, 'member');
+			$filters               = array_filter($filters);	
 			$_poll_data['filters'] = $filters;
-			$_poll_data['filters']['member'] = \lib\db\ranks::get($poll_id, 'member');
 		}
+
+		if($_options['get_public_result'] && $poll_id)
+		{
+			$public_result = \lib\db\pollstats::get($poll_id,['field' => 'result']);
+			if(isset($public_result['result']))
+			{
+				$_poll_data['result'] = $public_result['result'];
+			}
+		}
+
+		if(is_array($_poll_data))
+		{
+			$_poll_data = array_filter($_poll_data);
+		}
+		
 		return $_poll_data;
 	}
 }

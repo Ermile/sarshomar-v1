@@ -19,7 +19,6 @@ class controller extends  \mvc\controller
 	public function _route()
 	{
 		$url = \lib\router::get_url(0);
-		
 		switch ($url) 
 		{
 			case 'addPoll':
@@ -27,47 +26,45 @@ class controller extends  \mvc\controller
 			case 'editPoll':
 			case 'removePoll':
 				\lib\router::set_controller("\\content_api\\poll\\controller");
-				return;
 				break;
 
 			case 'addFile':
 			case 'getFile':
 				\lib\router::set_controller("\\content_api\\file\\controller");
-				return;
 				break;
 
 			case 'addAnswer':
 			case 'getAnswer':
 			case 'editAnswer':
 				\lib\router::set_controller("\\content_api\\answer\\controller");
-				return;
 				break;
 
 			case 'sendFeedback':
 				\lib\router::set_controller("\\content_api\\feedback\\controller");
-				return;
 				break;
 
 			case 'search':
 				\lib\router::set_controller("\\content_api\\search\\controller");
-				return;
 				break;
 
-			case 'fav':
+			case 'addFav':
+			case 'getFav':
+			case 'removeFav':
 				\lib\router::set_controller("\\content_api\\favorites\\controller");
-				return;
 				break;
 
-			case 'like':
+			case 'addLike':
+			case 'getLike':
+			case 'removeLike':
 				\lib\router::set_controller("\\content_api\\like\\controller");
-				return;
 				break;
 
 			default:
 				\lib\error::page("API PAGE NOT FOUND");
-				return;
 				break;
 		}
+
+		return;
 
 	}
 }

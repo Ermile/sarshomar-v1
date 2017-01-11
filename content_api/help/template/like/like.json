@@ -1,4 +1,4 @@
 {
-	"id": "[poll id]",
-	"like": "true|false|[leave it null to toggle like]"
+  "id": "[poll id]",
+  "like": "true|false|[leave it null to toggle like]"
 }

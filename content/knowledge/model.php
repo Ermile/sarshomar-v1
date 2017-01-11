@@ -39,6 +39,13 @@ class model extends \mvc\model
 		{
 			$search = $_args->get("search")[0];
 		}
+		
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+			'search' => $search
+			]
+			]);
 
 		$user_id = $this->login('id');
 

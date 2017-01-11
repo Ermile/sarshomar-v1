@@ -5,7 +5,7 @@ class controller extends  \mvc\controller
 {	
 	public function _route()
 	{
-		$this->post("like")->ALL("/like/");
+		$this->post("like")->ALL("addLike");
 	}
 }
 ?>

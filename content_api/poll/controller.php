@@ -29,22 +29,22 @@ class controller extends  \mvc\controller
 		/**
 		 * post to add a poll
 		 */
-		$this->post("poll")->REST("/^addPoll$/");
+		$this->post("poll")->REST("addPoll");
 		
 		/**
 		 * get to load poll details
 		 */
-		$this->get("poll")->REST("/^getPoll$/");
+		$this->get("poll")->REST("getPoll");
 			
 		/**
 		 * put to update a poll
 		 */
-		$this->put("poll")->REST("/^editPoll$/");
+		$this->put("poll")->REST("editPoll");
 			
 		/**
 		 * delete to delete a poll
 		 */
-		$this->delete("poll")->REST("/^deletePoll$/");
+		$this->delete("poll")->REST("deletePoll");
 
 	}
 }

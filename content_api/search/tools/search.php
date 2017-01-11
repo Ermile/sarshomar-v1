@@ -20,10 +20,6 @@ trait search
 		{
 			$search = utility::request("search");
 		}
-		elseif(isset($_args->get("search")[0]))
-		{
-			$search = $_args->get("search")[0];
-		}
 		else
 		{
 			$meta['get_last'] = true;	

@@ -1,0 +1,4 @@
+{
+  "id": "[poll id]",
+  "type" : "ask|random|null"
+}
