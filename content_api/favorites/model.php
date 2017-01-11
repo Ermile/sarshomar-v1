@@ -5,36 +5,13 @@ use \lib\debug;
 
 class model extends \content_api\home\model
 {
-	/**
-	 * Gets the favorites.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  The favorites.
-	 */
-	public function get_getFavorites($_args)
-	{
-		return $this->post_getFavorites($_args);
-	}
-
-
-	/**
-	 * Posts a favorites.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_getFavorites($_args)
-	{	
-		return [];
-	}
-
 
 	/**
 	 * Posts post favorites.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_addFavorites($_args)
+	public function post_favorites($_args)
 	{
 		
 		if(!$this->login("id"))
@@ -52,7 +29,13 @@ class model extends \content_api\home\model
 			$type = true;
 		}
 
-		return \lib\db\polls::favo_like("favorites", $this->login('id'), utility::request('id'), $type);	
+		if(!preg_match("/^[". \lib\utility\shortURL::ALPHABET. "]+$/", utility::request("id")))
+		{
+			return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+		}
+
+		$poll_id = \lib\utility\shortURL::decode(utility::request('id'));
+		return \lib\db\polls::fav($this->login('id'), $poll_id, $type);	
 	}
 }
 ?>

@@ -19,6 +19,7 @@ class controller extends  \mvc\controller
 	public function _route()
 	{
 		$url = \lib\router::get_url(0);
+		
 		switch ($url) 
 		{
 			case 'addPoll':
@@ -52,20 +53,18 @@ class controller extends  \mvc\controller
 				return;
 				break;
 
-			case 'addFavorites':
-			case 'getFavorites':
+			case 'fav':
 				\lib\router::set_controller("\\content_api\\favorites\\controller");
 				return;
 				break;
 
-			case 'addLike':
-			case 'getLike':
+			case 'like':
 				\lib\router::set_controller("\\content_api\\like\\controller");
 				return;
 				break;
 
 			default:
-				\lib\error::page();
+				\lib\error::page("API PAGE NOT FOUND");
 				return;
 				break;
 		}

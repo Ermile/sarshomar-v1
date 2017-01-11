@@ -5,36 +5,13 @@ use \lib\debug;
 
 class model extends \content_api\home\model
 {
-	/**
-	 * Gets the like.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  The like.
-	 */
-	public function get_getLike($_args)
-	{
-		return $this->post_getlike($_args);
-	}
-
-
-	/**
-	 * Posts a like.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_getLike($_args)
-	{	
-		return [];
-	}
-
-
+	
 	/**
 	 * Posts post like.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function post_addLike($_args)
+	public function post_like($_args)
 	{
 		
 		if(!$this->login("id"))
@@ -52,7 +29,14 @@ class model extends \content_api\home\model
 			$type = true;
 		}
 
-		return \lib\db\polls::favo_like("like", $this->login('id'), utility::request('id'), $type);	
+		if(!preg_match("/^[". \lib\utility\shortURL::ALPHABET. "]+$/", utility::request("id")))
+		{
+			return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+		}
+
+		$poll_id = \lib\utility\shortURL::decode(utility::request('id'));
+
+		return \lib\db\polls::like($this->login('id'), $poll_id, $type);	
 	}
 }
 ?>

@@ -4,7 +4,7 @@ namespace lib\db;
 /** work with polls **/
 class polls
 {
-	use polls\favo_like;
+	use polls\fav_like;
 	use polls\get;
 	use polls\insert;
 	use polls\order;
