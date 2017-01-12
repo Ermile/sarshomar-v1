@@ -13,7 +13,10 @@ class controller extends \mvc\controller
 
 		if(substr($url, 0, 1) == '$')
 		{
-			\lib\router::set_controller("\\content_u\\knowledge\\controller");
+			\lib\router::set_repository('content');
+			\lib\router::set_controller("\\content\\knowledge\\controller");
+
+			// \lib\router::set_controller("\\content_u\\knowledge\\controller");
 			return;
 		}
 

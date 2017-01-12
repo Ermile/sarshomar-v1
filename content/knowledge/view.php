@@ -30,6 +30,13 @@ class view extends \mvc\view
 	 */
 	public function view_search($_args)
 	{
+		$this->data->isPersonal = false;
+
+		if(\lib\storage::get('rep') == 'u')
+		{
+			$this->data->isPersonal = true;
+
+		}
 
 		$this->data->search_value =  $_args->get("search")[0];
 		$list = $_args->api_callback;

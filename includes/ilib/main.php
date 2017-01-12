@@ -20,6 +20,7 @@ class main extends \lib\main
 		// }
 		if(\lib\router::get_class() == '@')
 		{
+			\lib\storage::set('rep', 'u');
 			$request_url = $_SERVER['REQUEST_URI'];
 			if(\lib\utility\location\languages::check(substr($request_url, 1, 2)))
 			{
