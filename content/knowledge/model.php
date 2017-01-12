@@ -24,28 +24,35 @@ class model extends \mvc\model
 	}
 
 
+	use \content_api\search\tools\search;
+	use \content_api\home\tools\ready;
 	/**
 	 * Gets the search.
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	use \content_api\search\tools\search;
-	use \content_api\home\tools\ready;
-
 	public function get_search($_args)
-	{	
+	{
 		$search = null;
 		if(isset($_args->get("search")[0]))
 		{
 			$search = $_args->get("search")[0];
 		}
-		
-		\lib\utility::$REQUEST = new \lib\utility\request([
+
+		if(\lib\storage::get('rep') == 'u')
+		{
+			// var_dump(22);
+			// 'user_id'  => $this->login('id')
+		}
+
+		\lib\utility::$REQUEST = new \lib\utility\request(
+		[
 			'method' => 'array',
-			'request' => [
-			'search' => $search
+			'request' =>
+			[
+				'search' => $search
 			]
-			]);
+		]);
 
 		$user_id = $this->login('id');
 
