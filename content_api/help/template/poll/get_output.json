@@ -1,0 +1,43 @@
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": {
+      "id": "3y",
+      "language": "fa",
+      "title": "روز معلم مصادف با چه روزی است؟",
+      "slug": "roz-maalm-msadf-ba-che-rozy-ast",
+      "url": "$/3y/روز_معلم_مصادف_با_چه_روزی_است؟",
+      "type": "poll",
+      "comment": "open",
+      "meta": {
+        "desc": "",
+        "opt": [
+          {
+            "key": "opt_1",
+            "txt": "شهادت شهید مطهری",
+            "type": "text"
+          },
+          {
+            "key": "opt_2",
+            "txt": "شهادت شهید بهشتی",
+            "type": "text"
+          },
+          {
+            "key": "opt_3",
+            "txt": "شهادت شهید رجایی",
+            "type": "text"
+          }
+        ],
+        "comment": true
+      },
+      "status": "deleted",
+      "user_id": "H",
+      "sarshomar": true,
+      "privacy": "public",
+      "result": {
+        "opt_2": 1
+      }
+    }
+  }
+}
