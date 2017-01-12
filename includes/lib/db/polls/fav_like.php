@@ -8,8 +8,15 @@ trait fav_like
 	/**
 	 * set the favourites or liked the poll
 	 */
-	public static function fav_like($_type, $_user_id, $_poll_id, $_set_or_unset = null)
+	public static function fav_like($_type, $_user_id, $_poll_id, $_options = [])
 	{
+		$default_options = 
+		[
+			'set_or_unset' => null, 
+			'return_debug' => true
+		];
+
+		$_options = array_merge($default_options, $_options);
 
 		if(!$_poll_id)
 		{
@@ -59,19 +66,25 @@ trait fav_like
 
 		if(!$exist_option_record)
 		{
-			if($_set_or_unset === null || $_set_or_unset === true)
+			if($_options['set_or_unset'] === null || $_options['set_or_unset'] === true)
 			{
 				$insert_option = \lib\db\options::insert($args);
-				return \lib\debug::true(T_(ucfirst($_type). " set"));
+				if($_options['return_debug'])
+				{
+					return debug::true(T_(ucfirst($_type). " set"));
+				}
 			}
 			else
 			{
-				return \lib\debug::true(T_(ucfirst($_type). " unset"));
+				if($_options['return_debug'])
+				{
+					return debug::true(T_(ucfirst($_type). " unset"));
+				}
 			}
 		}
 		else
 		{
-			if($_set_or_unset === null)
+			if($_options['set_or_unset'] === null)
 			{
 				if(isset($exist_option_record[0]['status']) && $exist_option_record[0]['status'] == 'disable')
 				{
@@ -84,27 +97,42 @@ trait fav_like
 				$result =\lib\db\options::update_on_error($args, $where);
 				if($args['option_status'] == 'enable')
 				{
-					return \lib\debug::true(T_(ucfirst($_type). " set"));
+					if($_options['return_debug'])
+					{
+						return debug::true(T_(ucfirst($_type). " set"));
+					}
 				}
 				else
 				{
-					return \lib\debug::true(T_(ucfirst($_type). " unset"));
+					if($_options['return_debug'])
+					{
+						return debug::true(T_(ucfirst($_type). " unset"));
+					}
 				}
 			}
-			elseif($_set_or_unset === true)
+			elseif($_options['set_or_unset'] === true)
 			{
 				$args['option_status'] = 'enable';
 				$result = \lib\db\options::update_on_error($args, $where);
-				return \lib\debug::true(T_(ucfirst($_type). " set"));
+				if($_options['return_debug'])
+				{
+					return debug::true(T_(ucfirst($_type). " set"));
+				}
 			}
-			elseif($_set_or_unset === false)
+			elseif($_options['set_or_unset'] === false)
 			{
 				$args['option_status'] = 'disable';
 				$result = \lib\db\options::update_on_error($args, $where);
-				return \lib\debug::true(T_(ucfirst($_type). " unset"));
+				if($_options['return_debug'])
+				{
+					return debug::true(T_(ucfirst($_type). " unset"));
+				}
 			}
 		}
-		return debug::error("Syntax error", false, 'system');
+		if($_options['return_debug'])
+		{
+			return debug::error("Syntax error", false, 'system');
+		}
 	}
 
 
@@ -152,7 +180,7 @@ trait fav_like
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function is_fav($_user_id, $_poll_id)
+	public static function is_fav()
 	{
 		return self::is_fav_like("favourites", ...func_get_args());
 	}
@@ -164,19 +192,19 @@ trait fav_like
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function is_like($_user_id, $_poll_id)
+	public static function is_like()
 	{
 		return self::is_fav_like("like", ...func_get_args());
 	}
 
 
-	public static function fav($_user_id, $_poll_id, $_type = null)
+	public static function fav()
 	{
 		return self::fav_like("favourites", ...func_get_args());
 	}
 
 
-	public static function like($_user_id, $_poll_id, $_type = null)
+	public static function like()
 	{
 		return self::fav_like("like", ...func_get_args());
 	}

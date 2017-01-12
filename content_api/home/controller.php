@@ -47,16 +47,9 @@ class controller extends  \mvc\controller
 				\lib\router::set_controller("\\content_api\\search\\controller");
 				break;
 
-			case 'addFav':
-			case 'getFav':
-			case 'removeFav':
-				\lib\router::set_controller("\\content_api\\favorites\\controller");
-				break;
-
-			case 'addLike':
-			case 'getLike':
-			case 'removeLike':
-				\lib\router::set_controller("\\content_api\\like\\controller");
+			case 'fav':
+			case 'like':
+				\lib\router::set_controller("\\content_api\\fav_like\\controller");
 				break;
 
 			default:
