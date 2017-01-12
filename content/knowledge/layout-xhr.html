@@ -15,7 +15,7 @@
  <ul class="polls-body">
 
 {%for key, value in poll_list%}
-   <li class="polls-row{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
+   <li class="{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
 {%if login%}
     <span class="star">
      <input type="checkbox" name="favorite" id="fav{{key}}">
