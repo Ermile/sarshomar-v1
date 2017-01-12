@@ -436,42 +436,46 @@ footer .is-open i {transform:rotate(180deg);}
 
 
 /************************************************************** range slider */
-.range-slider{display: inline-block;position:relative;direction:ltr;text-align:left;-webkit-user-select:none;user-select:none;}
-.range-slider *{-webkit-user-select:none;user-select:none;}
-.range-slider .dynamic-range{position: relative;margin: 0;padding: 0;background-color:rgb(0, 117, 140);float: left;display: inline-block;height: 100%;}
-.range-slider .dynamic-margin{display: inline-block;float: left;margin: 0;padding: 0;height: 100%;}
-.range-slider{height:35px;background-color:#e7e7e7;margin:2em 0;display:block;}
-.range-slider .dynamic-range .min{left:-15px;top:-20px;}
-.range-slider .dynamic-range .max{right:-15px;bottom:-21px;}
-
-.range-slider .dynamic-range div.active{z-index: 99999;}
-.range-slider .dynamic-range .max.active::before{content: "";position: absolute;top: -1px;background:url(../images/svg/b.svg) no-repeat;width:30px;height:30px;transform: rotate(90deg);}
-.range-slider[data-type="vertical"] .dynamic-range .max.active::before{transform: rotate(0deg);top: initial;left: -1px;}
-.range-slider .dynamic-range .min.active::before{content: "";position: absolute;top: 1px;background:url(../images/svg/b.svg) no-repeat;width:30px;height:30px;transform: rotate(270deg);}
-.range-slider[data-type='vertical'] .dynamic-range .min.active::before{transform: rotate(0deg);top: initial;left:-1px; }
-.range-slider .dynamic-range .min, .range-slider .dynamic-range .max{outline:none;position:absolute;width:30px;height:30px;}
-.range-slider .dynamic-range .max::after{content: "";position: absolute;background:url(../images/svg/rangeslider.svg) no-repeat;width: 30px;height: 30px;-webkit-transform: rotate(90deg);transform: rotate(90deg);}
-.range-slider[data-type='vertical'] .dynamic-range .max::after{-webkit-transform: rotate(0deg);transform: rotate(0deg);}
-.range-slider .dynamic-range .min::after{content: "";position: absolute;background:url(../images/svg/rangeslider.svg) no-repeat;width: 30px;height: 30px;-webkit-transform: rotate(270deg);transform: rotate(270deg);}
-.range-slider[data-type='vertical'] .dynamic-range .min::after{transform: rotate(0deg);}
-.range-slider[data-type='vertical']{background-color:#e7e7e7;width:30px;margin:1em 0;display:inline-block;min-height: 100px;}
-.range-slider[data-type='vertical'] .dynamic-range{width:30px;background-color:#00667a;}
-.range-slider[data-type='vertical'] .dynamic-range .min{top: initial;left:-21px;bottom:-15px;-webkit-transform: rotate(180deg);transform: rotate(180deg);}
-.range-slider[data-type='vertical'] .dynamic-range .max{right:-21px;top:-15px;-webkit-transform: none;transform: none;}
-.range-slider[data-type='vertical'] .dynamic-margin{width: 100%;}
-.dynamic-range span::after{content: attr(data-value-show);display: inline-block;height: 30px;background-color: #555;color: #eee;top: 27px;position: absolute;z-index: 22;padding: 2px 10px;display: flex;align-items: center;justify-content: center;}
-.dynamic-range .max span::after{top: 33px;}
-.dynamic-range span::before{content: "";display: inline-block;height: 15px;left: 5px;top: -6px;position: absolute;z-index: 22;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #555;}
-.range-slider[data-type="vertical"] .dynamic-range span::before{left:18px;top:7px;transform: rotate(90deg);}
-.dynamic-range .max span::before{transform: rotate(180deg);top: initial;bottom: -6px;}
-.dynamic-range .min span::after{top: initial;bottom: 33px;}
-.range-slider[data-type="vertical"] .dynamic-range .min span::after{bottom: 0px;left: 33px;}
-.range-slider[data-type="vertical"] .dynamic-range .min span::after{transform: rotate(180deg);}
-.dynamic-range .min span, .dynamic-range .max span{z-index: 9;}
-.dynamic-range .min, .dynamic-range .max{z-index: 9;}
-.range-slider[data-type="vertical"] .dynamic-range .max span::after{transform: rotate(0deg);top: initial;left: 33px;}
-.margin-range{margin: 120px 0;}
-.range-slider[data-type='vertical'] .margin-range{margin: 0;}
+.range-slider .dynamic-margin,.range-slider .dynamic-range{display:inline-block;float:left;margin:0;padding:0;height:100%}
+.range-slider{position:relative;direction:ltr;text-align:left;-webkit-user-select:none;user-select:none}
+.range-slider *{-webkit-user-select:none;user-select:none}
+.range-slider .dynamic-range{position:relative;background-color:#00758c}
+.range-slider{height:35px;background-color:#e7e7e7;margin:2em 0;display:block}
+.range-slider .dynamic-range .max.active::before,.range-slider .dynamic-range .min.active::before{content:"";position:absolute;background:url(../images/svg/rangeslider.svg) no-repeat}
+.range-slider .dynamic-range .min{left:-15px;top:-20px}
+.range-slider .dynamic-range .max{right:-15px;bottom:-21px}
+.range-slider .dynamic-range div.active{z-index:99999}
+.range-slider .dynamic-range .max.active::before{top:-1px;width:30px;height:30px;transform:rotate(90deg)}
+.range-slider[data-type=vertical] .dynamic-range .max.active::before{transform:rotate(0);top:initial;left:-1px}
+.range-slider .dynamic-range .min.active::before{top:1px;width:30px;height:30px;transform:rotate(270deg)}
+.range-slider .dynamic-range .max::after,.range-slider .dynamic-range .min::after{content:"";position:absolute;background:url(../images/svg/rangeslider.svg) no-repeat;width:30px;height:30px}
+.range-slider[data-type=vertical] .dynamic-range .min.active::before{transform:rotate(0);top:initial;left:-1px}
+.range-slider .dynamic-range .max,.range-slider .dynamic-range .min{outline:0;position:absolute;width:30px;height:30px}
+.range-slider .dynamic-range .max::after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}
+.range-slider[data-type=vertical] .dynamic-range .max::after{-webkit-transform:rotate(0);transform:rotate(0)}
+.range-slider .dynamic-range .min::after{-webkit-transform:rotate(270deg);transform:rotate(270deg)}
+.range-slider[data-type=vertical] .dynamic-range .min::after{transform:rotate(0)}
+.range-slider[data-type=vertical]{background-color:#e7e7e7;width:30px;margin:1em 4em;display:inline-block;min-height:100px}
+.range-slider[data-type=vertical] .dynamic-range{width:30px;background-color:#00667a}
+.range-slider[data-type=vertical] .dynamic-range .min{top:initial;left:-21px;bottom:-15px;-webkit-transform:rotate(180deg);transform:rotate(180deg)}
+.range-slider[data-type=vertical] .dynamic-range .max{right:-21px;top:-15px;-webkit-transform:none;transform:none}
+.range-slider[data-type=vertical] .dynamic-margin{width:100%}
+.dynamic-range span::after{content:attr(data-value-show);height:30px;background-color:#555;color:#eee;top:27px;position:absolute;z-index:22;padding:2px 10px;display:flex;align-items:center;justify-content:center}
+.range-slider .max_limit::before,.range-slider[data-type=vertical] .max_limit::before{content:"";position:absolute;background:url(../images/svg/rangeslider-limit.svg) no-repeat;width:30px}
+.dynamic-range .max span::after{top:33px}
+.dynamic-range span::before{content:"";display:inline-block;height:15px;left:5px;top:-6px;position:absolute;z-index:22;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #555}
+.range-slider[data-type=vertical] .dynamic-range span::before{left:18px;top:7px;transform:rotate(90deg)}
+.dynamic-range .max span::before{transform:rotate(180deg);top:initial;bottom:-6px}
+.dynamic-range .min span::after{top:initial;bottom:33px}
+.range-slider[data-type=vertical] .dynamic-range .min span::after{bottom:0;left:33px;transform:rotate(180deg)}
+.dynamic-range .max,.dynamic-range .max span,.dynamic-range .min,.dynamic-range .min span{z-index:9}
+.range-slider[data-type=vertical] .dynamic-range .max span::after{transform:rotate(0);top:initial;left:33px}
+.margin-range{margin:120px 0}
+.range-slider[data-type=vertical] .margin-range{margin:0}
+.range-slider .max_limit{width:30px;height:30px;display:inline-block;position:absolute;right:0;top:-20px}
+.range-slider[data-type=vertical] .max_limit{right:21px;top:-15px}
+.range-slider[data-type=vertical] .max_limit::before{top:-15px;right:0;height:30px;transform:rotate(180deg)}
+.range-slider .max_limit::before{top:0;right:15px;height:30px;transform:rotate(270deg)}
 
 
 /************************************************************** autocomplete */
