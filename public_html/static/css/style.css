@@ -829,27 +829,29 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /*************************************************************** knowledge page */
 .container-center{width:65%;margin:0 auto}
 /* polls head */
-.polls-head,.polls-row{display:-webkit-flex;display:flex;align-items:center}
+.polls-head,.polls-body li{display:-webkit-flex;display:flex;align-items:center}
 .polls-head{border-bottom:1px solid #e0e0e0;color:#00667a;font-weight:700}
-.polls-head>span,.polls-row>span{vertical-align:middle;padding:.5em 1em;min-width:70px;font-size:1.2em}
+.polls-head>span,.polls-body li>span{vertical-align:middle;padding:.5em 1em;min-width:70px;font-size:1.2em}
 .polls-head .star .icon-star{font-size:1.4em;vertical-align:middle}
-.polls-head .star,.polls-row .star{min-width:initial}
-.polls-head .title,.polls-row .title{-webkit-flex:1;flex:1}
-.polls-head .type,.polls-row .type{display:none}
+.polls-head .star,.polls-body li .star{min-width:initial}
+.polls-head .title,.polls-body li .title{-webkit-flex:1;flex:1}
+.polls-head .type,.polls-body li .type{display:none}
 
 /* polls row */
-.polls-row>span{text-align:center}
-.polls-row>.star input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1}
-.polls-row>.star label{color:#e7e7e7;font-size:1.4em;transition:.3s;cursor:pointer}
-.polls-row:hover .star label,.polls-row .star input[type="checkbox"]:focus+label{color:#c5c5c5}
-.polls-row>.star input[type="checkbox"]:checked+label{color:#e7a429}
-.polls-row .title{text-align:left}
-.rtl .polls-row .title{text-align:right}
-.polls-row .title a{color:#00667a}
-.polls-row .title a:hover,.polls-row .title a:focus{color:#e5a428}
-.polls-row .date{font-size:.9em}
-
 .polls-body{margin-bottom:2em}
+.polls-body li{transition:.3s}
+.polls-body li:hover{background-color:#eee}
+.polls-body li>span{text-align:center}
+.polls-body li>.star input[type="checkbox"]{width:0;height:0;opacity:0;position:absolute;z-index:-1}
+.polls-body li>.star label{color:#e7e7e7;font-size:1.4em;transition:.3s;cursor:pointer;vertical-align:middle}
+.polls-body li:hover .star label,.polls-body li .star input[type="checkbox"]:focus+label{color:#c5c5c5}
+.polls-body li>.star input[type="checkbox"]:checked+label{color:#e7a429}
+.polls-body li .title{text-align:left}
+.rtl .polls-body li .title{text-align:right}
+.polls-body li .title a{color:#00667a;display:inline-block}
+.polls-body li .title a:hover,.polls-body li .title a:focus{color:#e5a428}
+.polls-body li .date{font-size:.9em}
+
 
 
 /*************************************************************** filter page */
