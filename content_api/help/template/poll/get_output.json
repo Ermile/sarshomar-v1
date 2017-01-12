@@ -36,7 +36,29 @@
       "sarshomar": true,
       "privacy": "public",
       "result": {
-        "opt_2": 1
+        "count_answered": {
+          "valid": 39,
+          "invalid": 0,
+          "sum": 39
+        },
+        "result": {
+          "1": {
+            "text": "fff",
+            "key": "1",
+            "type": null,
+            "valid": 0,
+            "invalid": 0,
+            "sum": 0
+          },
+          "2": {
+            "text": "exded",
+            "key": "2",
+            "type": null,
+            "valid": 14,
+            "invalid": 0,
+            "sum": 14
+          }
+        }
       }
     }
   }

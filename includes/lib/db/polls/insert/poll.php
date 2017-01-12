@@ -46,6 +46,11 @@ trait poll
 			$insert_poll['post_title'] = '~';
 		}
 
+		if(!self::$update_mod && (!isset(self::$args['options']['slug']) || (isset(self::$args['options']['slug']) && !self::$args['options']['slug'])))
+		{
+			$insert_poll['post_slug'] = '~';
+		}
+
 		// check surver id
 		if(isset(self::$args['options']['survey_id']))
 		{

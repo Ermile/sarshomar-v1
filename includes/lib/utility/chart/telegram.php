@@ -39,26 +39,18 @@ trait telegram
 	 *        'sum'     =>  10,
 	 *      ]
 	 */
-	public static function get_telegram_result($_poll_id)
+	public static function get_telegram_result($_poll_id, $_get_raw = false)
 	{
 		// get the poll to find the opt
 		$poll = \lib\db\polls::get_poll($_poll_id);
 
-		$meta = [];
-		if(isset($poll['meta']))
-		{
-			$meta = $poll['meta'];
-		}
-
 		// get the opt of polls
 		$opt = [];
-		if(isset($meta['opt']) && is_array($meta['opt']))
-		{
-			$opt = $meta['opt'];
-		}
-
+		
+		$opt = \lib\db\pollopts::get($_poll_id);
+		
 		$field = ['total','result'];
-
+		
 		// the valid answers
 		$valid_answers = [];
 		$valid_result_raw = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'valid']);
@@ -80,11 +72,12 @@ trait telegram
 		foreach ($opt as $key => $value)
 		{
 			$sum = 0;
-			$result[$i]['text'] = isset($value['txt'])  ? $value['txt']: '';
-			$result[$i]['key']  = isset($value['key'])  ? substr($value['key'],4): '';
-			$result[$i]['type'] = isset($value['type']) ? $value['type']: '';
+			$result[$i]['text'] = isset($value['title'])  ? $value['title']: null;
+			$result[$i]['key']  = isset($value['key'])  ? $value['key']: null;
+			$result[$i]['type'] = isset($value['type']) ? $value['type']: null;
+			$value['key']                = 'opt_'. $key;
 
-			$opt_key = isset($value['key']) ? $value['key'] : '';
+			$opt_key = isset($value['key']) ? $value['key'] : null;
 			if(array_key_exists($opt_key, $valid_answers))
 			{
 				$result[$i]['valid'] = $valid_answers[$opt_key];
@@ -114,7 +107,13 @@ trait telegram
 
 		$poll['count_answered'] = ['valid' => $valid_count, 'invalid' => $invalid_count , 'sum' => $sum_count];
 		$poll['result']         = $result;
+		
+		if($_get_raw)
+		{
+			return ['count_answered' => $poll['count_answered'], 'result' => $poll['result']];
+		}
 		return self::status(true)->set_result($poll);
 	}
+
 }
 ?>

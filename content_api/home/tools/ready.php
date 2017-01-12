@@ -97,11 +97,9 @@ trait ready
 
 		if($_options['get_public_result'] && $poll_id)
 		{
-			$public_result = \lib\db\pollstats::get($poll_id,['field' => 'result']);
-			if(isset($public_result['result']))
-			{
-				$_poll_data['result'] = $public_result['result'];
-			}
+			$public_result = \lib\utility\stat_polls::get_telegram_result($poll_id, true);
+			$_poll_data['result'] = $public_result;
+			
 		}
 
 		if(is_array($_poll_data))

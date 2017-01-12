@@ -28,8 +28,6 @@ trait get
 		
 		$poll_id = utility::request("id");
 		
-		$poll_id = '3y';
-
 		if(!$poll_id)
 		{
 			return \lib\debug::error(T_("poll id not found"), 'id', 'arguments');
