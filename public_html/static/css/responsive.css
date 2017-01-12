@@ -34,7 +34,9 @@
  #customers-box .customer .span2{margin:0!important}
 
  #inestimable{padding:25px;text-align:center}
- #inestimable::before,#inestimable::after{display:none}
+ /*#inestimable::before,#inestimable::after{display:none}*/
+ #inestimable::before{}
+ #inestimable::before{background-image:url(../images/svg/home/inestimable-right-img-mobile.svg)}
  #inestimable .launch{display:none}
 
  footer #footer-nav .eco{height:60px}
