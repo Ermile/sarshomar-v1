@@ -51,7 +51,10 @@ class controller extends  \mvc\controller
 			case 'like':
 				\lib\router::set_controller("\\content_api\\fav_like\\controller");
 				break;
-
+			case 'getLogintoken':
+			case 'getGuesttoken':
+				\lib\router::set_controller("\\content_api\\logintoken\\controller");
+				break;
 			default:
 				\lib\error::page("API PAGE NOT FOUND");
 				break;
