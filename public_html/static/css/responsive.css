@@ -13,6 +13,11 @@
 
 
  header #header-profile{display:-webkit-flex;display:-ms-flexbox;display:flex;justify-content:flex-end;margin:0;padding:1em}
+
+ header #header-profile #add-question{}
+ header #header-profile #add-question .header-link-text{display:none}
+ header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
+
  header #header-bottom{display:none}
 
  #homepage .wrapper .box{padding:0}
@@ -26,18 +31,24 @@
 
  #map{display:none}
 
- #customers-box{border-top:1px solid #f4f4f4}
- #customers-box .customer h3{padding-top:1em}
- #customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:center}
- .rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:center}
- #customers-box .customer:last-child p{margin-bottom:0}
- #customers-box .customer .span2{margin:0!important}
+ .customers-container{border-top:1px solid #f4f4f4}
+ .customers-container .customer{display:block;width:100%;text-align:center}
+ .customers-container .customer-img{margin:0 auto 2em;width:60%}
+ .customers-container .customer-content{width:80%}
+ .customers-container .customer-content,
+ .rtl .customers-container .customer.reverse .customer-content,
+ .customers-container .customer.reverse .customer-content,
+ .rtl .customers-container .customer-content{margin:0 auto;text-align:center}
+ .customers-container .customer:not(:last-child) .customer-content p{margin-bottom:2em}
 
- #inestimable{padding:25px;text-align:center}
- /*#inestimable::before,#inestimable::after{display:none}*/
- #inestimable::before{}
- #inestimable::before{background-image:url(../images/svg/home/inestimable-right-img-mobile.svg)}
+
+ #inestimable{padding:25px;text-align:center;height:150px}
+ #inestimable::before,#inestimable::after{width:100px}
+ #inestimable::before{background-image:url(../images/svg/home/inestimable-left-img-mobile.svg);left:-10px}
+ #inestimable::after{background-image:url(../images/svg/home/inestimable-right-img-mobile.svg);right:-10px}
  #inestimable .launch{display:none}
+ #inestimable h3{font-size:1.6em}
+ #inestimable h4{font-size:1.4em}
 
  footer #footer-nav .eco{height:60px}
  footer #footer-links a{display:inline-block;margin-right:1em}

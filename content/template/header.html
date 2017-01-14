@@ -19,7 +19,10 @@
 {%if url.tld == 'dev' and false%}
       <a href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();">ℹ️</a>
 {%endif%}
-      <a href='{{url.base}}/@/add' class='login' tabindex='5'>{%trans "Add Question"%}</a>
+      <a href='{{url.base}}/@/add' class='login' tabindex='5' id="add-question">
+       <span class="header-link-text">{%trans "Add Question"%}</span>
+       <span class="header-link-icon icon-plus"></span>
+      </a>
       <a href='{{url.base}}/ask' class='register' tabindex='6'>{%trans "Ask Me"%}</a>
       <div class="profile">
        <!-- <img src="{{url.static}}images/svg/general/profile.svg" alt=""> -->
