@@ -1,64 +1,72 @@
 {%extends display.main%}
 
 {%block content%}
-  <div class="main pad text-based">
+  <div class="main text-based">
    <div class="box">
     <h2 class="special-heading">{%trans "Sarshomar Special Targets"%}</h2>
-    <div class="row" id="customers-box">
-     <div class="customers-container">
-      <div class="row reverse customer">
-       <div class="span3">
-        <a href="{{url.base}}/target/organizations-and-companies">
-         <img src="{{url.static}}images/miniature/companies.png" alt='{%trans "Organizations and Companies"%}'>
-        </a>
-       </div>
-       <div class="span6">
+   </div>
+
+
+
+    <!-- start -->
+    <div class="customers-container customers-target">
+
+     <div class="customer">
+      <div class="customer-content align-reverse">
+       <div class="vertically-aligned-container">
         <h3><a href="{{url.base}}/target/organizations-and-companies">{%trans "Organizations and Companies"%}</a></h3>
-        <p>{%trans "Exprience evaluation of current status, measuring customers satisfaction, conducting market research and promoting services level by the help of Sarshomar."%}</p>
+        <p>{%trans "Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services."%}</p>
        </div>
-       <div class="span3"></div>
       </div>
+      <a href="{{url.base}}/target/organizations-and-companies" class="customer-img">
+       <img src="{{url.static}}images/miniature/companies.png" alt='{%trans "Organizations and Companies"%}'>
+      </a>
+     </div>
 
-      <div class="row customer">
-       <div class="span3">
-        <a href="{{url.base}}/target/universities-and-research-institutes">
-         <img src="{{url.static}}images/miniature/universities.png" alt='{%trans "Universities and Research Institutes"%}'>
-        </a>
+     <div class="customer">
+      <a href="{{url.base}}/target/universities-and-research-institutes" class="customer-img">
+       <img src="{{url.static}}images/miniature/universities.png" alt='{%trans "Universities and Research Institutes"%}'>
+      </a>
+      <div class="customer-content">
+       <div class="vertically-aligned-container">
+        <h3>
+         <a href="{{url.base}}/target/universities-and-research-institutes">{%trans "Universities and Research Institutes"%}</a>
+        </h3>
+        <p>{%trans "By means of administering tests, polling and evaluating in Sarshomar, you will have access to accurate information, while enjoying a reduction in the costs of data gathering and processing."%}</p>
        </div>
-       <div class="span6">
-        <h3><a href="{{url.base}}/target/universities-and-research-institutes">{%trans "Universities and Research Institutes"%}</a></h3>
-        <p>{%trans "Have access to accurate information and reduce the cost of gathering and processing data by giving tests, polls and assessments in Sarshomar."%}</p>
-       </div>
-       <div class="span3"></div>
-      </div>
-
-      <div class="row reverse customer">
-       <div class="span3">
-        <a href="{{url.base}}/target/advertising-agencies">
-         <img src="{{url.static}}images/miniature/agencies.png" alt='{%trans "Advertising Agencies"%}'>
-        </a>
-       </div>
-       <div class="span6">
-        <h3><a href="{{url.base}}/target/advertising-agencies">{%trans "Advertising Agencies"%}</a></h3>
-        <p>{%trans "By offering new advertising solutions and targeted advertsing, get your customers excited."%}</p>
-       </div>
-       <div class="span3"></div>
-      </div>
-
-      <div class="row customer">
-       <div class="span3">
-        <a href="{{url.base}}/target/developers-and-webmasters">
-         <img src="{{url.static}}images/miniature/developers.png" alt='{%trans "Developers and Webmasters"%}'>
-        </a>
-       </div>
-       <div class="span6">
-        <h3><a href="{{url.base}}/target/developers-and-webmasters">{%trans "Developers and Webmasters"%}</a></h3>
-        <p>{%trans "By using API, enjoy Sarshomar's features and forget the concern of opinion polls."%}</p>
-       </div>
-       <div class="span3"></div>
       </div>
      </div>
+
+     <div class="customer">
+      <div class="customer-content align-reverse">
+       <div class="vertically-aligned-container">
+        <h3><a href="{{url.base}}/target/advertising-agencies">{%trans "Advertising Agencies"%}</a></h3>
+        <p>{%trans "Furthermore, excite your customers by use of Sarshomar's new advertising strategies along with goal-oriented advertising."%}</p>
+       </div>
+      </div>
+      <a href="{{url.base}}/target/advertising-agencies" class="customer-img">
+       <img src="{{url.static}}images/miniature/agencies.png" alt='{%trans "Advertising Agencies"%}'>
+      </a>
+     </div>
+
+     <div class="customer">
+      <a href="{{url.base}}/target/developers-and-webmasters" class="customer-img">
+       <img src="{{url.static}}images/miniature/developers.png" alt='{%trans "Developers and Webmasters"%}'>
+      </a>
+      <div class="customer-content">
+       <div class="vertically-aligned-container">
+        <h3><a href="{{url.base}}/target/developers-and-webmasters">{%trans "Developers and Webmasters"%}</a></h3>
+        <p>{%trans "Finally, using API, you can have the benefit of Sarshomar's qualities and forget your concerns about polling."%}</p>
+       </div>
+      </div>
+     </div>
+
     </div>
-   </div>
+    <!-- end -->
+
+
+
+
+   <!-- </div> -->
   </div>
 {%endblock%}

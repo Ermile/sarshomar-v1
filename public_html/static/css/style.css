@@ -323,23 +323,19 @@ footer .is-open i {transform:rotate(180deg);}
 #ir-map object{height:360px}
 
 
-/************************************************************** customers box */
-#customers-box{padding:50px 0;background-color:#FCFCFC}
-#customers-box .customers-container{width:80%;margin:0 auto}
-#customers-box .customers-container .span4{text-align:center}
-#customers-box .customer h3{padding-top:2em}
-#customers-box .customer h3 a{color:#0C7C78}
-#customers-box .customer h3 a:hover,#customers-box .customer h3 a:focus{color:#00667a}
-#customers-box .customer img{width:100%;max-width:250px;height:auto}
-#customers-box .customer p{color:#adadad}
-#customers-box .customer:nth-child(even) h3,#customers-box .customer:nth-child(even) p{text-align:left}
-#customers-box .customer:nth-child(odd) h3,#customers-box .customer:nth-child(odd) p{text-align:right}
-.rtl #customers-box .customer:nth-child(even) h3,.rtl #customers-box .customer:nth-child(even) p{text-align:left}
-#target #customers-box{background-color:transparent;padding:0 0 50px}
-.target-img{float:left;margin-right:2em}
-.rtl .target-img{float:right;margin-right:0;margin-left:2em}
-#target_organizations-and-companies .target-img{margin-right:3em}
-.rtl#target_organizations-and-companies .target-img{margin-right:0;margin-left:3em}
+/************************************************************** customers */
+.customers-container{padding:50px 0;background-color:#fcfcfc}
+.customers-container .customer{display:-webkit-flex;display:-ms-flexbox;display:flex;width:65%;margin:0 auto}
+.customers-container .customer-content{align-items:center;display:-webkit-flex;display:-ms-flexbox;display:flex;align-items:center;margin-left:50px}
+.customers-container .customer-content h3{/*line-height:1*/}
+.customers-container .customer-content h3 a{color:#0c7c78}
+.customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
+.customers-container .customer-content p{margin-bottom:0;color:#adadad}
+.customers-container .customer-content.align-reverse{margin-right:50px;margin-left:0}
+.customers-container .customer-content.align-reverse h3,.customers-container .customer .customer-content.align-reverse p{text-align:right}
+.customers-container .customer-img{width:100%;max-width:250px;height:auto;display:block}
+.customers-container .customer-img img{display:block}
+.customers-container.customers-target{padding-top:0;background-color:transparent}
 
 
 /************************************************************** features box */
@@ -1271,7 +1267,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 
 
 /************************************************************** text based pages */
-.main.pad.text-based{padding-top:5em}
+.text-based{padding-top:5em}
 .text-based .special-heading{color:#6E6E6E;font-size:30px}
 .text-based h2:not(.special-heading){color:#00667A;padding-left:.5em;border-left:4px solid #AAA;line-height:2em;font-weight:700;margin-bottom:2em; text-align: left}
 .rtl .text-based h2:not(.special-heading){padding-left:0;padding-right:.5em;border-left:none;border-right:4px solid #AAA; text-align: right;}
