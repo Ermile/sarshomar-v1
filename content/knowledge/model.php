@@ -39,10 +39,11 @@ class model extends \mvc\model
 			$search = $_args->get("search")[0];
 		}
 
+		$my_poll = false;
+
 		if(\lib\storage::get('rep') == 'u')
 		{
-			// var_dump(22);
-			// 'user_id'  => $this->login('id')
+			$my_poll = true;
 		}
 
 		\lib\utility::$REQUEST = new \lib\utility\request(
@@ -50,7 +51,8 @@ class model extends \mvc\model
 			'method' => 'array',
 			'request' =>
 			[
-				'search' => $search
+				'search'  => $search,
+				'my_poll' => $my_poll
 			]
 		]);
 
