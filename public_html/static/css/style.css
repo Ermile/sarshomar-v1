@@ -326,7 +326,8 @@ footer .is-open i {transform:rotate(180deg);}
 /************************************************************** customers */
 .customers-container{padding:50px 0;background-color:#fcfcfc}
 .customers-container .customer{display:-webkit-flex;display:-ms-flexbox;display:flex;align-items:center;width:65%;margin:0 auto}
-.customers-container .customer-content{margin-left:50px}
+.customers-container .customer-content,.rtl .customers-container .customer-content.align-reverse{margin-left:50px;margin-right:0}
+.customers-container .customer-content.align-reverse,.rtl .customers-container .customer-content{margin-left:0;margin-right:50px}
 .customers-container .customer-content h3 a{color:#0c7c78}
 .customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
 .customers-container .customer-content p{margin-bottom:0;color:#adadad}
