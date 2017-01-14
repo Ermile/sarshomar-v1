@@ -1,0 +1,16 @@
+{
+  "status": 1,
+  "title": null,
+  "msg": [
+    "callback"
+  ],
+  "messages": {
+    "true": [
+      {
+        "title": "Favourites set",
+        "element": false,
+        "group": "public"
+      }
+    ]
+  }
+}
