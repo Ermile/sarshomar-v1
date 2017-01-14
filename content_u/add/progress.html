@@ -1,24 +1,20 @@
 {% block progress %}
 {% spaceless %}
-<div class="page-progress {{loadMode}}" data-current='{{step.current}}' data-xhr='page-progress'>
-	{%if step.link_add%}<a href="{{url.baseFull}}/{{step.link_add}}">{%endif%}
-		<span class="checkbox {%if step.add%}active{%endif%}" data-label='{%trans "Add"%}'>
-			<input type="radio" name='currentStep' id="step-add" value='add' {%if step.add and step.current != 'add'%}checked{%endif%}>
-			<label class="check-box" for="step-add"></label>
-		</span>
-	{%if step.link_add%}</a>{%endif%}
-	{%if step.link_filter%}<a href="{{url.baseFull}}/{{step.link_filter}}">{%endif%}
-		<span class="checkbox {%if step.filter%}active{%endif%}" data-label='{%trans "Filter"%}'>
-			<input type="radio" name='currentStep' id="step-filter" value='filter' {%if step.filter and step.current != 'filter'%}checked{%endif%}>
-			<label class="check-box" for="step-filter"></label>
-		</span>
-	{%if step.link_filter%}</a>{%endif%}
-	{%if step.link_publish%}<a href="{{url.baseFull}}/{{step.link_publish}}">{%endif%}
-		<span class="checkbox {%if step.publish%}active{%endif%}" data-label='{%trans "Publish"%}'>
-			<input type="radio" name='currentStep' id="step-publish" value='publish' {%if step.publish and step.current != 'publish'%}checked{%endif%}>
-			<label class="check-box" for="step-publish"></label>
-		</span>
-	{%if step.link_publish%}</a>{%endif%}
+<div class="page-progress" data-current='{{step.current}}'>
+	<span class="checkbox {%if step.add%}active{%endif%}" data-label='{%trans "Add"%}'>
+		<input type="checkbox" name="step-add" id='step-add' {%if step.add and step.current != 'add'%}checked{%endif%}>
+		<label class="check-box" for="step-add"></label>
+	</span>
+
+	<span class="checkbox {%if step.filter%}active{%endif%}" data-label='{%trans "Filter"%}'>
+		<input type="checkbox" name="step-filter" id='step-filter' {%if step.filter and step.current != 'filter'%}checked{%endif%}>
+		<label class="check-box" for="step-filter"></label>
+	</span>
+
+	<span class="checkbox {%if step.publish%}active{%endif%}" data-label='{%trans "Publish"%}'>
+		<input type="checkbox" name="step-publish" id='step-publish' {%if step.publish and step.current != 'publish'%}checked{%endif%}>
+		<label class="check-box" for="step-publish"></label>
+	</span>
 </div>
 {% endspaceless %}
 {% endblock %}

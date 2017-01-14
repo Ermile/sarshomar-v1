@@ -161,6 +161,16 @@
   <label for="meta_branding" class="check-box"></label>
   <label for="meta_branding">{%trans "Branding"%}</label>
  </div>
+
+ <div data-response='meta_branding' data-response-hide data-response-effect='fade'>
+  <div class="element-branding">
+   <input type="text" name="answer_brand" autocomplete="off" data-response-focus>
+  </div>
+
+  <div class="element-branding-url">
+   <input type="text" name="answer_brand_url" autocomplete="off">
+  </div>
+ </div>
 {%endblock%}
 
 
@@ -287,14 +297,6 @@
 
 {%block feature_btn%}
  <div class="row auto">
-
-  <div class="element-branding" data-response='meta_branding' data-response-effect='slide'>
-   <input type="text" name="answer_brand" autocomplete="off" data-response-focus>
-  </div>
-
-  <div class="element-branding-url">
-    <input type="text" name="answer_brand_url" autocomplete="off">
-  </div>
 
   <div class="span7">
    <div class="btn-container margin-top">

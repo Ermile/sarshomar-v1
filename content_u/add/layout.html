@@ -5,21 +5,20 @@
 {% spaceless %}
    <div class="main pad box">
     {%include template.progress%}
-    <form method="post" data-xhr='content' action="api/poll{{poll_id}}">
      <div class="row auto">
       <div class="span2"></div>
 
       <div class="span8" id='question-add'>
 
-       <div class="row" data-response='currentStep' data-response-where='add' data-response-hide-notNow>
+       <div class="stepAdd">
         {%block step1%}1{%endblock%}
        </div>
 
-       <div class="row" data-response='currentStep' data-response-where='filter' data-response-hide>
+       <div class="stepFilter">
         {%block step2%}2{%endblock%}
        </div>
 
-       <div class="row" data-response='currentStep' data-response-where='publish' data-response-hide>
+       <div class="stepPublish">
         {%block step3%}3{%endblock%}
        </div>
 
@@ -27,7 +26,6 @@
 
      </div>
      {{block('feature_btn')}}
-    </form>
    </div>
    {{block('modalCrop')}}
 {% endspaceless %}

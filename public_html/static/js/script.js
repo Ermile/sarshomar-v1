@@ -187,7 +187,7 @@ function startCrop(_el)
 			// console.log(e.y);
 			// console.log(e.width);
 			// console.log(e.height);
-			// console.log(e.rotate);
+			// console.log(e.rotate);b
 			// console.log(e.scaleX);
 			console.log(e);
 		}
@@ -536,6 +536,87 @@ function completeProfileRevert()
 
 
 /**
+ * [detectStep description]
+ * @return {[type]} [description]
+ */
+function detectStep(_name)
+{
+	if(!_name && window.location.hash)
+	{
+		_name = 'step-' + (window.location.hash).substr(1);
+	}
+	// declare variables
+	var sthis    = _name;
+	var sAdd     = $('.page-progress #step-add:checkbox:checked').length;
+	var sFilter  = $('.page-progress #step-filter:checkbox:checked').length;
+	var sPublish = $('.page-progress #step-publish:checkbox:checked').length;
+
+	switch(sthis)
+	{
+		default:
+		case 'step-add':
+			sthis = 'step-add';
+			$('.page-progress #step-add').prop('checked', true).parent('.checkbox').addClass('active');
+			$('.page-progress #step-filter').prop('checked', false).parents('.checkbox').removeClass('active');
+			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			break;
+
+		case 'step-filter':
+			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
+			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
+			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			break;
+
+		case 'step-publish':
+			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
+			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
+			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
+			break;
+	}
+	changeStep(sthis);
+}
+
+
+/**
+ * [changeStep description]
+ * @param  {[type]} _name [description]
+ * @return {[type]}       [description]
+ */
+function changeStep(_name)
+{
+	switch(_name)
+	{
+		default:
+		case 'step-add':
+			$('.stepAdd').slideDown();
+			$('.stepFilter').slideUp();
+			$('.stepPublish').slideUp();
+			// window.location.hash = 'add';
+			break;
+
+		case 'step-filter':
+			$('.stepAdd').slideUp();
+			$('.stepFilter').slideDown();
+			$('.stepPublish').slideUp();
+			// window.location.hash = 'filter';
+			break;
+
+		case 'step-publish':
+			$('.stepAdd').slideUp();
+			$('.stepFilter').slideUp();
+			$('.stepPublish').slideDown();
+			// window.location.hash = 'publish';
+			break;
+	}
+
+	_name = _name.substr(5);
+	window.location.hash = _name;
+	$('.page-progress').attr('data-current', _name);
+	detectPercentage();
+}
+
+
+/**
  * detect percentage of current state
  * @return {[type]} [description]
  */
@@ -765,6 +846,16 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	simulateTreeNavigation();
+
+	$('.page-progress input').on('click', function(e)
+	{
+		detectStep($(this).attr('name'));
+		// e.stopPropagation();
+		// return false;
+	});
+	// on init
+	detectStep();
+
 
 	// on open tree load content to it
 	$(window).off("response:open");
