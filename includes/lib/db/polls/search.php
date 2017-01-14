@@ -59,6 +59,9 @@ trait search
 			// default order by ASC you can change to DESC
 			"order"           => "ASC",
 
+			// custom sort by field
+			"sort"			  => null,
+
 			// if all == false load just sarshomar poll
 			// if all == true disable check sarshomar poll to load
 			"all"             => false,
@@ -167,6 +170,11 @@ trait search
 		{
 			$_options['all']            = true;
 			$_options['check_language'] = false;
+			
+			if($_options['login'])
+			{
+				$_options['user_id'] = $_options['login'];
+			}
 		}
 
 		// if all == true return all type of polls, sarshomar or personal
@@ -210,6 +218,7 @@ trait search
 		unset($_options['all']);
 		unset($_options['search_post']);
 		unset($_options['check_language']);
+		unset($_options['sort']);
 
 		foreach ($_options as $key => $value)
 		{
