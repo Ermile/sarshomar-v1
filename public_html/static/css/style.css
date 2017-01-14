@@ -325,13 +325,12 @@ footer .is-open i {transform:rotate(180deg);}
 
 /************************************************************** customers */
 .customers-container{padding:50px 0;background-color:#fcfcfc}
-.customers-container .customer{display:-webkit-flex;display:-ms-flexbox;display:flex;width:65%;margin:0 auto}
-.customers-container .customer-content{align-items:center;display:-webkit-flex;display:-ms-flexbox;display:flex;align-items:center;margin-left:50px}
-.customers-container .customer-content h3{/*line-height:1*/}
+.customers-container .customer{display:-webkit-flex;display:-ms-flexbox;display:flex;align-items:center;width:65%;margin:0 auto}
+.customers-container .customer-content{margin-left:50px}
 .customers-container .customer-content h3 a{color:#0c7c78}
 .customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
 .customers-container .customer-content p{margin-bottom:0;color:#adadad}
-.customers-container .customer-content.align-reverse{margin-right:50px;margin-left:0}
+.customers-container .customer-content.align-reverse{margin-left:0;margin-right:50px}
 .customers-container .customer-content.align-reverse h3,.customers-container .customer .customer-content.align-reverse p{text-align:right}
 .customers-container .customer-img{width:100%;max-width:250px;height:auto;display:block}
 .customers-container .customer-img img{display:block}
