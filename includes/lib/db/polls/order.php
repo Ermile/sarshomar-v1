@@ -114,7 +114,7 @@ trait order
 							CONCAT('opt_', polldetails.opt) IN
 								(
 									SELECT
-										options.option_value
+										IFNULL(options.option_value, CONCAT('opt_', polldetails.opt)
 									FROM
 										options
 									WHERE

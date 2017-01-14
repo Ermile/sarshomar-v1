@@ -6,6 +6,7 @@ class poll_tree
 	/**
 	 * Sets the poll tree.
 	 *
+	 *
 	 * @param      <type>   $_args  The arguments
 	 * get parent id, child id and options to lock child poll to opt of parent poll
 	 *
@@ -41,6 +42,8 @@ class poll_tree
 			}
 		}
 
+		$opt = true;
+		
 		if(isset($_args['opt']))
 		{
 			$opt = $_args['opt'];
@@ -63,6 +66,7 @@ class poll_tree
 		$option_result = true;
 
 		$parent_poll_opt = \lib\db\pollopts::get($parent);
+
 		if(is_array($parent_poll_opt))
 		{
 			$parent_poll_opt = array_column($parent_poll_opt, 'key');
@@ -74,10 +78,11 @@ class poll_tree
 
 		foreach ($opt as $key => $value) 
 		{
-			if(!in_array($value, $parent_poll_opt))
+			if($value !== true && $value != 'skipped' && !in_array($value, $parent_poll_opt))
 			{
 				return \lib\debug::error(T_("The parent poll have not answer :key", ['key' => $value]),'tree', 'arguments');
 			}
+
 			$option_insert =
 			[
 				'post_id'       => $child,

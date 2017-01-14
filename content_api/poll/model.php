@@ -53,5 +53,10 @@ class model extends \content_api\home\model
 	{
 		return $this->add($_args);
 	}
+
+	public function post_getPoll($_args)
+	{
+		return $this->get_poll($_args);
+	}
 }
 ?>

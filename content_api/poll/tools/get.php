@@ -25,23 +25,49 @@ trait get
 		$_options = array_merge($default_options, $_options);
 
 		$result  = [];
-		
-		$poll_id = utility::request("id");
-		
-		if(!$poll_id)
+		$poll_id = null;
+		$poll = [];
+		if(utility::request("type"))
 		{
-			return \lib\debug::error(T_("poll id not found"), 'id', 'arguments');
-		}
+			switch (utility::request("type")) 
+			{
+				case 'ask':
+					if(!$this->login("id"))
+					{
+						return \lib\debug::error(T_("Please login and run ask"), 'type', 'login');
+					}
 
-		if(!preg_match("/^[". utility\shortURL::ALPHABET ."]+$/", $poll_id))
+					$poll = \lib\db\polls::get_last($this->login("id"));
+					break;
+
+				case 'random':
+					$poll = \lib\db\polls::get_random();
+					break;
+
+				default:
+					return \lib\debug::error(T_("Invalid parametr type"), 'type', 'arguments');
+					break;
+			}
+		}
+		elseif(utility::request("id"))
 		{
-			return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			$poll_id = utility::request("id");
+
+			if(!$poll_id)
+			{
+				return \lib\debug::error(T_("poll id not found"), 'id', 'arguments');
+			}
+
+			if(!preg_match("/^[". utility\shortURL::ALPHABET ."]+$/", $poll_id))
+			{
+				return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			}
+			
+			$poll_id = \lib\utility\shortURL::decode($poll_id);
+
+			$poll    = \lib\db\polls::get_poll($poll_id);
 		}
 		
-		$poll_id = \lib\utility\shortURL::decode($poll_id);
-
-		$poll    = \lib\db\polls::get_poll($poll_id);
-
 		$result = $this->ready_poll($poll, $_options);
 
 		return $result;

@@ -163,8 +163,8 @@ trait search
 		// if in my poll return publish and public poll
 		if($_options['my_poll'] === false)
 		{
-			$where[] = " posts.post_status = 'publish' ";
-			$where[] = " posts.post_privacy = 'public' ";
+			$_options['post_status']  = 'publish';
+			$_options['post_privacy'] = 'public';
 		}
 		elseif($_options['my_poll'] === true)
 		{
@@ -180,7 +180,7 @@ trait search
 		// if all == true return all type of polls, sarshomar or personal
 		if($_options['all'] === false)
 		{
-			$where[] = " posts.post_sarshomar = 1 ";
+			$_options['post_sarshomar'] = 1 ;
 		}
 
 		$start_limit = $_options['start_limit'];
@@ -189,7 +189,10 @@ trait search
 		// default we not search in news of service
 		if($_options['search_post'] === false)
 		{
-			$where[] = " posts.post_type IN ('poll','survey') ";
+			if(!isset($_options['post_type']))
+			{
+				$where[] = " posts.post_type IN ('poll','survey') ";
+			}
 		}
 
 		if(isset($_options['post_language']))

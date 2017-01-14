@@ -1,6 +1,7 @@
 {
   "title": "string",
   "type": "poll|survey|[leave it null to set poll]",
+  "id" : "[poll id]",
   "answers": [
     {
       "title": "null|string",
@@ -47,7 +48,7 @@
     "summary": "string|null",
     "tree": {
       "parent_id": "string",
-      "answers": []
+      "answers": "skipped|true|[1,2]"
     },
     "range_timing_max": "int|null",
     "choice_count_min": "int|null",

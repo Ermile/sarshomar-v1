@@ -15,6 +15,7 @@ trait insert
 	protected static $user_id       = false;
 
 
+	use insert\max;
 	use insert\answers;
 	use insert\check;
 	use insert\options;
@@ -116,6 +117,9 @@ trait insert
 			}		
 		}	
 
+		// check max draft count of every user
+		self::max_draft();
+
 		// insert poll record
 		self::insert_poll();
 
@@ -129,7 +133,6 @@ trait insert
 		// if in publish mod and have error return the error
 		// if in draft mod return no error
 		self::check();
-
 		/**
 			T_("Poll Successfully added");
 			T_("Poll Successfully edited");
@@ -151,6 +154,7 @@ trait insert
 			\lib\debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
 		}
+		return false;
 	}
 
 
@@ -215,7 +219,10 @@ trait insert
 		}
 		else
 		{
-			return debug::error(T_("Cann't add poll"), false, 'sql');
+			if(debug::$status)
+			{
+				return debug::error(T_("Cann't add poll"), false, 'sql');
+			}
 		}
 	}
 

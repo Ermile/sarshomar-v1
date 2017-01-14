@@ -32,6 +32,11 @@ trait ready
 			$_poll_data['id'] = \lib\utility\shortURL::encode($_poll_data['id']);
 		}
 
+		if(!$poll_id)
+		{
+			return \lib\debug::error(T_("Poll not found"));
+		}
+
 		if(isset($_poll_data['user_id']))
 		{
 			$_poll_data['user_id'] = \lib\utility\shortURL::encode($_poll_data['user_id']);
@@ -98,8 +103,36 @@ trait ready
 		if($_options['get_public_result'] && $poll_id)
 		{
 			$public_result = \lib\utility\stat_polls::get_telegram_result($poll_id, true);
-			$_poll_data['result'] = $public_result;
-			
+			$_poll_data['result'] = $public_result;	
+		}
+
+
+		$post_meta = \lib\db\posts::get_post_meta($poll_id);
+		if(is_array($post_meta))
+		{
+			$post_meta_key = array_column($post_meta, 'option_value');
+
+			if(in_array('random_sort', $post_meta_key))
+			{
+				if(isset($_poll_data['answers']) && is_array($_poll_data['answers']))
+				{
+					$new  = $_poll_data['answers'];
+					$keys = array_keys($_poll_data['answers']);
+
+			        shuffle($keys);
+			        foreach($keys as $key)
+			        {
+			        	$new[$key] = $_poll_data['answers'][$key];
+			        }
+			        $_poll_data['answers'] = $new;
+				}
+			}
+
+			if(in_array('hidden_result', $post_meta_key))
+			{
+				unset($_poll_data['result']);
+			}
+
 		}
 
 		if(is_array($_poll_data))
@@ -110,7 +143,4 @@ trait ready
 		return $_poll_data;
 	}
 }
-
-
-
 ?>

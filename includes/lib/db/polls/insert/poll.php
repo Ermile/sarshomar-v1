@@ -78,6 +78,9 @@ trait poll
 				{
 					return debug::error(T_("This is not your survey"), 'survey_id', 'arguments');
 				}
+
+				self::max_survey_child($poll_parent_id);
+				
 				$insert_poll['post_survey'] = self::$args['options']['survey_id'];
 			}	
 			else
@@ -147,16 +150,21 @@ trait poll
 			{
 				$loc_id  = \lib\utility\shortURL::decode($parent_id);
 				$loc_opt = self::$args['options']['tree']['answers'];
-				if(!is_array($loc_opt))
+				
+				if($value === true || $value == 'skipped')
+				{
+					$loc_opt = $value;
+				}
+				elseif(!is_array($loc_opt))
 				{
 					$loc_opt = [$loc_opt];
-				}
-				
-				foreach ($loc_opt as $key => $value)
-				{
-					if(!is_numeric($value))
+					
+					foreach ($loc_opt as $key => $value)
 					{
-						return debug::error(T_("Invalid parametr tree:answers (:value)", ['value' => $value]), 'answers', 'arguments');
+						if(!is_numeric($value))
+						{
+							return debug::error(T_("Invalid parametr tree:answers (:value)", ['value' => $value]), 'answers', 'arguments');
+						}
 					}
 				}
 

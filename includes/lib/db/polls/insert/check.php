@@ -140,31 +140,31 @@ trait check
 			}
 		}
 
-		$option_key   = [];
-		$poll_options = \lib\db\posts::get_post_meta(self::$poll_id);
-		if(is_array($poll_options))
-		{
-			$option_key = array_column($poll_options, 'option_key');
-		}
+		// $option_key   = [];
+		// $poll_options = \lib\db\posts::get_post_meta(self::$poll_id);
+		// if(is_array($poll_options))
+		// {
+		// 	$option_key = array_column($poll_options, 'option_key');
+		// }
 
-		if(in_array('title_attachment', $option_key) || $answers_have_attachment)
-		{
-			if($answers_have_attachment)
-			{
-				$in      = 'answer';
-				$element = 'answers';
-				$group   = 'arguments';
-			}
-			else
-			{
-				$in      = 'poll';
-				$element = 'file';
-				$group   = 'arguments';	
-			}
+		// if(in_array('title_attachment', $option_key) || $answers_have_attachment)
+		// {
+		// 	if($answers_have_attachment)
+		// 	{
+		// 		$in      = 'answer';
+		// 		$element = 'answers';
+		// 		$group   = 'arguments';
+		// 	}
+		// 	else
+		// 	{
+		// 		$in      = 'poll';
+		// 		$element = 'file';
+		// 		$group   = 'arguments';	
+		// 	}
 
-			\lib\db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
-			\lib\debug::warn(T_("You are using multi media in :in, your poll is awaiting moderation", ['in' => $in]), $element, $group);
-		}
+		// 	\lib\db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
+		// 	\lib\debug::warn(T_("You are using multi media in :in, your poll is awaiting moderation", ['in' => $in]), $element, $group);
+		// }
 	}
 }
 ?>
