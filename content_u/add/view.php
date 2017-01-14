@@ -14,9 +14,7 @@ class view extends \content_u\home\view
 		// add all template of question into new file
 		$this->data->template['add']['layout'] = 'content_u/add/layout.html';
 		$this->data->template['add']['tree']   = 'content_u/add/tree.html';
-		$this->data->template['add']['step1']   = 'content_u/add/step1.html';
-		$this->data->template['add']['step2']   = 'content_u/add/step2.html';
-		$this->data->template['add']['step3']   = 'content_u/add/step3.html';
+
 
 		$this->data->step =
 		[
