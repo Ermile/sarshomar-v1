@@ -1,9 +1,14 @@
 {%extends template.add.layout%}
 
+{%block content%}
+   <div class="main pad box">
+    {%include template.progress%}
+    <form method="post" data-xhr='content' action="api/poll{{poll_id}}">
+     <div class="row auto">
+      <div class="span2"></div>
+      <div class="span8" id='question-add'>
 
-{%block step1%}
--1
-  {%include template.add.step1%}
+
        <div class="row">
         {{block('feature_tabs')}}
         {{block('feature_title')}}
@@ -49,39 +54,18 @@
         {{block('feature_summary')}}
         {{block('feature_content')}}
        </div>
-{%endblock%}
-
-
-
-{%block step2%}
--2
-  {%include template.add.step2%}
-
-     <div class="row auto">
-      <div class="span9">
-       <div class="row auto">
-        <div class="span5">
-         {{block('filter_gender')}}
-         {{block('filter_marrital')}}
-        </div>
-        <div class="span7">
-         {{block('filter_graduation')}}
-         {{block('filter_employment')}}
-        </div>
-       </div>
-       {{block('filter_degree')}}
-       {{block('filter_range')}}
       </div>
-      <div class="span3">{{block('filter_price')}}</div>
      </div>
-
+     {{block('feature_btn')}}
+    </form>
+   </div>
+   {{block('modalCrop')}}
 {%endblock%}
 
 
 
-{%block step3%}
--3
-  {%include template.add.step3%}
+{%block foot_js%}
 
-
+  <link rel="stylesheet" href="{{url.static}}css/cropper.min.css">
+  <script src="{{url.static}}js/cropper.min.js"></script>
 {%endblock%}

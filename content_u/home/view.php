@@ -11,7 +11,7 @@ class view extends \mvc\view
 	 */
 	function config()
 	{
-		$this->data->template['progress']        = 'content_u/template/progress.html';
+		$this->data->template['progress']        = 'content_u/add/progress.html';
 
 		if($this->module() === 'home')
 		{

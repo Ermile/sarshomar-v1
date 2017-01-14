@@ -14,6 +14,9 @@ class view extends \content_u\home\view
 		// add all template of question into new file
 		$this->data->template['add']['layout'] = 'content_u/add/layout.html';
 		$this->data->template['add']['tree']   = 'content_u/add/tree.html';
+		$this->data->template['add']['step1']   = 'content_u/add/step1.html';
+		$this->data->template['add']['step2']   = 'content_u/add/step2.html';
+		$this->data->template['add']['step3']   = 'content_u/add/step3.html';
 
 		$this->data->step =
 		[
@@ -59,9 +62,9 @@ class view extends \content_u\home\view
 	 */
 	function view_edit($_args)
 	{
-		
+
 		$poll = $_args->api_callback;
-		
+
 		$poll_id = false;
 		if(isset($poll['poll']['id']))
 		{
@@ -80,10 +83,10 @@ class view extends \content_u\home\view
 			'link_filter'  => $url. '/filter',
 			'link_publish' => $url. '/publish',
 		];
-		
+
 		$this->data->poll            = isset($poll['poll']) 	? $poll['poll'] 	: null;
 		$this->data->answers         = isset($poll['answers']) 	? $poll['answers'] 	: null;
-		
+
 		$this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		$this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
 		$this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
