@@ -18,7 +18,7 @@
    <li class="{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
 {%if login%}
     <span class="star">
-     <input type="checkbox" name="favorite" id="fav{{key}}">
+     <input type="checkbox" name="favorite" id="fav{{key}}" {%if value.my_fav %}checked="checked"{%endif%}>
      <label for="fav{{key}}" class="icon-star"></label>
     </span>
 {%endif%}
