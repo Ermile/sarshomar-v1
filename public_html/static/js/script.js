@@ -231,7 +231,7 @@ route('*', function ()
 	// run rangeSlider on all pages
 	$(".range-slider", this).rangeSlider();
 	// run func to fixSlideJumping
-	fixSlideJumping.call(this);
+	// fixSlideJumping.call(this);
 }).once(function()
 {
 	setLanguageURL();
