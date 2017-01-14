@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 767px) {
  header{display:block;height:auto;border:none}
  header .logo{background-image:none;display:block;width:100%;padding:1em;text-align:center;background-color:#00667a}
  .rtl header .logo{background-image:none}
@@ -6,11 +6,8 @@
  header #header-box{border-style:solid;border-width:8px 8px 0;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch}
  header #header-top{border:none;height:auto;flex-direction:column-reverse}
 
-
  header #header-quick{text-align:center;width:80%;margin:0 auto;border-bottom:1px solid #e5a428}
  header #header-quick>a{margin-top:0;font-size:1.2em}
-
-
 
  header #header-profile{display:-webkit-flex;display:-ms-flexbox;display:flex;justify-content:flex-end;margin:0;padding:1em}
 
@@ -53,5 +50,16 @@
  footer #footer-nav .eco{height:60px}
  footer #footer-links a{display:inline-block;margin-right:1em}
  .rtl footer #footer-links a{margin-right:0;margin-left:1em}
+}
 
+@media only screen and (max-width: 319px) {
+ body{display:none}
+ html::before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center;}
+}
+
+@media print {
+ .wrapper, footer, header, header #header-top{border:none;}
+ .container, .wrapper{width:100%;max-width:100%;}
+ #inestimable{display:none}
+ footer{background-color:#eee}
 }
