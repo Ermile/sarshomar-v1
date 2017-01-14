@@ -7,8 +7,10 @@
    <label for="type_descriptive"><i class="icon-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
    <input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
    <label for="type_notification"><i class="icon-bell"></i> <span>{%trans "Notification"%}</span></label>
+{%if false%}
    <input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
    <label for="type_upload"><i class="icon-upload"></i> <span>{%trans "Upload"%}</span></label>
+{%endif%}
    <input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
    <label for="type_range"><i class="icon-star"></i> <span>{%trans "Range / Star"%}</span></label>
   </div>
@@ -34,11 +36,11 @@
 
 
 {%block feature_opts%}
- <ul class="input-group sortable">
+ <ul class="input-group sortable drag-big">
 
   {%for key, value in answers%}
    {% set answer_key = key + 1 %}
- <li>
+ <li class="multi-line">
    <div class="ultra-item" data-row="{{answer_key}}">
     <div class="ultra-item-content">
      <div class="element">
@@ -77,7 +79,6 @@
       <div class="ultra-item-module audio-module">
        <audio controls>
         <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
-       Your browser does not support the audio element.
        </audio>
       </div>
      </div>

@@ -575,8 +575,8 @@ div.checkbox{display:-webkit-flex;display:flex;width:100%}
 .sortable li .handle{cursor:move}
 .sortable li .title{cursor:move}
 .input-group.sortable li{min-height:35px}
-.input-group.sortable li.multi-line{height:75px}
 li.sortable-placeholder{border:1px dashed #CCC}
+.input-group.sortable.drag-big li.sortable-placeholder{height:75px}
 .sortable li{margin-bottom:1em}
 .sortable li .element{margin:0}
 .sortable .element .title:hover:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:.3s}
@@ -1178,7 +1178,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-branding-url::before,.element-branding-url::after{content:'';position:absolute;top:-1px;width:40px;height:35px;display:inline-block;background-image:url(../images/svg/add/branding-url.svg);background-repeat:no-repeat}
 .element-branding-url::before{left:-40px}
 .element-branding-url::after{right:-40px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
-.element-branding-url input[type="text"]{width:100%;height:100%;line-height:100%;border:none;padding:0;background-color:transparent;color:#efefef;text-align:center;font-size:1.2em;direction:ltr}
+.element-branding-url input[type="text"]{width:100%;height:100%;line-height:100%;border:none;padding:0;background-color:transparent;color:#00667a;text-align:center;font-size:1.2em;direction:ltr}
 
 
 /************************************************************** other */
