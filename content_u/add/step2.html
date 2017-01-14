@@ -1,5 +1,4 @@
 {%block filter_gender%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='gender' data-response-where-not='false'>
 		<label class="title large badge {%if filters.gender%}active{%endif%}" for="gender" data-ratio="20" data-response='gender' data-response-class='active'>{%trans "Gender"%}</label>
 		<input type="checkbox" name="male" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
@@ -7,13 +6,11 @@
 		<input type="checkbox" name="female" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
 		<label for="female">{%trans "Female"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 
 {%block filter_graduation%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
 		<label class="title large badge {%if filters.graduation%}active{%endif%}" for="graduation" data-ratio="25" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
 		<input type="checkbox" name="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
@@ -23,12 +20,10 @@
 		<input type="checkbox" name="graduate" id="graduate" {%if filters.graduation.graduate%}checked{%endif%}>
 		<label for="graduate">{%trans "Graduate"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block filter_marrital%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='marrital' data-response-where-not='false'>
 		<label class="title large badge {%if filters.marrital%}active{%endif%}" for="marrital" data-ratio="35" data-response='marrital' data-response-class='active'>{%trans "Marrital"%}</label>
 		<input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
@@ -36,12 +31,10 @@
 		<input type="checkbox" name="married" value="married" id="married" {%if filters.marrital.married%}checked{%endif%}>
 		<label for="married">{%trans "Married"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block filter_employment%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='employmentstatus' data-response-where-not='false'>
 		<label class="title large badge {%if filters.employmentstatus%}active{%endif%}" for="employmentstatus" data-ratio="30" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
 		<input type="checkbox" name="employee" id="employee" {%if filters.employmentstatus.employee%}checked{%endif%}>
@@ -51,12 +44,10 @@
 		<input type="checkbox" name="retired" id="retired" {%if filters.employmentstatus.retired%}checked{%endif%}>
 		<label for="retired">{%trans "Retired"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block filter_degree%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='degree' data-response-where-not='false'>
 		<label class="title large badge {%if filters.degree%}active{%endif%}" for="degree" data-ratio="60" data-response='degree' data-response-class='active'>{%trans "Degree"%}</label>
 		<input type="checkbox" name="under diploma" id="under diploma" {% if filters.degree['under diploma']%}checked{%endif%}>
@@ -74,11 +65,9 @@
 		<input type="checkbox" name="other" id="other" {% if filters.degree['other']%}checked{%endif%}>
 		<label for="other">{%trans "Other"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 {%block filter_range%}
-{% spaceless %}
 	<div class="element switch" data-respnse-group='range' data-response-where-not='false'>
 		<label class="title large badge {%if filters.range%}active{%endif%}" for="range" data-ratio="40" data-response='range' data-response-class='active'>{%trans "Range"%}</label>
 		<input type="checkbox" name="-13" id="-13" {% if filters.range['-13']%}checked{%endif%}>
@@ -96,24 +85,20 @@
 		<input type="checkbox" name="60+" id="60+" {% if filters.range['60+']%}checked{%endif%}>
 		<label for="60+">{%trans "Above 60"%}</label>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block filter_age%}
-{% spaceless %}
 	<div class="element no-pad {%if filters.age%}active{%endif%}">
 		<label class="title large badge" for="age" data-ratio="50">{%trans "Age"%}</label>
 		<div class="element-slider">
 			<div class="range-slider" id='rangeage' data-max='100' data-min='14' ></div>
 		</div>
 	</div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block filter_price%}
-{% spaceless %}
 	<div class="pay-info">
 		<div class="title row auto">
 			<div class="span6">
@@ -139,5 +124,4 @@
 			data-step=100></div>
 		</div>
 	</div>
-{% endspaceless %}
 {%endblock%}
