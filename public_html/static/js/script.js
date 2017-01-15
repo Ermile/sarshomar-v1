@@ -139,7 +139,7 @@ function shortkey()
 }
 
 
-function showImagePreview(_file, _output)
+function showPreview(_file, _output)
 {
 	// if we do not support fileReader return false!
 	if (typeof (FileReader) == "undefined")
@@ -152,35 +152,76 @@ function showImagePreview(_file, _output)
 	// Loop through the FileList and render image files as thumbnails.
 	for (var i = 0, f; f = files[i]; i++)
 	{
+		// clear for each file
+		$(_output).removeClass('otherFile');
+		$(_output).html('');
+		$(_output).parents('li').find('.audio-module').html('');
+
+		var fileType = 'other';
+		var fileUrl  = '';
+		console.log(f.type);
+
 		// Only process image files.
-		if (!f.type.match('image.*'))
+		if(f.type.match('image.*'))
 		{
-			$(_output).addClass('otherFile');
-			continue;
+			fileType = 'image';
+			var fileUrl  = window.URL.createObjectURL(f);
+		}
+		else if(f.type == 'audio/mp3')
+		{
+			fileType = 'audio';
+
+			// add element of audio
+			var audioEl = '<audio controls><source src="'+ window.URL.createObjectURL(f)+ '" type="audio/mp3"></audio>';
+			$(_output).parents('li').find('.audio-module').html(audioEl);
+		}
+		else if(f.type == 'video/mp4')
+		{
+			fileType = 'video';
+			// show image of audio
+			// fileUrl = '/static/images/file/video.svg';
+			// // add element of audio
+			// var audioEl = '<video controls><source src="'+ window.URL.createObjectURL(f)+ '" type="video/mp4"></audio>';
+			// $(_output).parents('li').find('.audio-module').html(audioEl);
 		}
 		else
 		{
-			$(_output).removeClass('otherFile');
+			fileType = 'file';
+			// fileUrl = '/static/images/file/file.svg';
+			$(_output).addClass('otherFile');
+			// continue;
 		}
-		// create new instance
-		var reader = new FileReader();
-		// Closure to capture the file information.
-		reader.onload = (function(theFile)
-		{
-			return function(e)
-			{
-				// if span of preview is not exist, then create element for preview
-				// var span = document.createElement('span');
 
-				// Render thumbnail
-				var imageEl = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
-				$(_output).html(imageEl);
-				$(window).trigger('cropBox:open', _output);
-			};
-		})(f);
+		// if is not set use default prev image
+		if(!fileUrl)
+		{
+			fileUrl = '/static/images/file/' + fileType + '.svg';
+		}
+		var imageEl = '<img src="'+ fileUrl + '"/>';
+		$(_output).html(imageEl);
+
+
+		// // create new instance
+		// var reader = new FileReader();
+		// // Closure to capture the file information.
+		// reader.onload = (function(theFile)
+		// {
+		// 	return function(e)
+		// 	{
+		// 		// if span of preview is not exist, then create element for preview
+		// 		// var span = document.createElement('span');
+
+		// 		// Render thumbnail
+		// 		var createdEl = '';
+		// 		createdEl = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
+
+		// 		$(_output).html(createdEl);
+		// 		$(window).trigger('cropBox:open', _output);
+		// 	};
+		// })(f);
 
 		// Read in the image file as a data URL.
-		reader.readAsDataURL(f);
+		// reader.readAsDataURL(f);
 	}
 }
 
@@ -925,8 +966,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	//
 	$(this).on('change', 'input[type="file"]', function(event)
 	{
-		var output = $(this).parents('.file').find('.preview');
-		var imagePreview = showImagePreview(this, output);
+		var output = $(this).parents('li').find('.preview');
+		var imagePreview = showPreview(this, output);
 	});
 	// after complete loading, open cropbox
 	$(window).off("cropBox:open");
