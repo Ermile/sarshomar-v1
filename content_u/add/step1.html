@@ -57,20 +57,16 @@
       </span>
      </div>
      <div class="ultra-item-modules">
+{% if perm.complete_profile.admin %}
       <div class="ultra-item-module profile-module" data-response='complete-profile' data-response-hide>
        <label for="">{%trans "Profile"%}</label>
-       <input list="profile_cat" id="" placeholder='{%trans "Category"%}'>
-       <datalist id="profile_cat">
-        <option value='{%trans "Gender"%}'>
-        <option value='{%trans "Education"%}'>
-       </datalist>
+       <input list="profile_cat_list" id="profile_cat{{answer_key}}" placeholder='{%trans "Category"%}' data-response-realtime>
+       <input list="profile_key_list{{answer_key}}" id="profile_key{{answer_key}}" placeholder='{%trans "Key"%}' disabled data-response='profile_cat{{answer_key}}'  data-response-call='completeProfileFill'>
 
-       <input list="profile_key" id="" placeholder='{%trans "Key"%}' disabled>
-       <datalist id="profile_key">
-        <option value='{%trans "Male"%}'>
-        <option value='{%trans "Female"%}'>
-       </datalist>
+       <datalist id="profile_key_list{{answer_key}}"><option value='{%trans "Male"%} {{answer_key}}'></datalist>
+
       </div>
+{%endif%}
       <div class="ultra-item-module score-module" data-response='meta_score' data-response-hide>
        <label for="score{{answer_key}}">{%trans "Score"%}</label>
        <input type="text" name="answer[{{key}}][groupscore]" placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
@@ -93,7 +89,7 @@
  </ul>
 
  <ul class="input-group">
-  <li data-response='meta_descriptive' data-response-hide data-response-effect='slide'>
+  <li data-response='meta_descriptive' data-response-hide>
    <div class="element" data-row="other">
     <label class="title small" for="answer_other">{%trans "Other"%}</label>
     <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
@@ -106,7 +102,6 @@
 
 
 
-
 {%block feature_score%}
  <div class="checkbox">
   <input type="checkbox" name="meta_score" id="score" {%if poll.meta.score%}checked{%endif%}>
@@ -114,6 +109,7 @@
   <label for="score">{%trans "Options has score"%}</label>
  </div>
 {%endblock%}
+
 
 {%block feature_score_advance%}
  <div class="checkbox" data-response='meta_score' data-response-hide>
@@ -228,14 +224,18 @@
    <label for="complete-profile" class="check-box"></label>
    <label for="complete-profile">{%trans "Complete Profile"%}</label>
   </div>
-  <select class="complete-profile span4" name="meta_profile" id="complete-profile-dropdown" data-response='complete-profile' data-response-hide data-response-focus>
-   <option value="">{%trans "Complete Profile"%}</option>
-   {%for key, value in profile_lock if value%}{%set t_value = key %}
-   <option value="{{key}}" data-value="{{value}}">{%trans t_value%}</option>
-   {%endfor%}
-  </select>
  </div>
+
+{{block('feature_profile_cats')}}
  {%endif%}
+{%endblock%}
+
+
+{%block feature_profile_cats%}
+ <datalist id="profile_cat_list">
+  <option value='{%trans "Gender"%}' data-items='["male", "female"]'>
+  <option value='{%trans "Education"%}' data-items='["diploma", "ms", "dr"]'>
+ </datalist>
 {%endblock%}
 
 
@@ -292,7 +292,7 @@
    <i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
   </label>
  </div>
- <textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='slide' data-resizable>{{poll.content}}</textarea>
+ <textarea name='description' value='' data-response="desc-show" data-response-hide data-response-effect='fade' data-resizable>{{poll.content}}</textarea>
 {%endblock%}
 
 

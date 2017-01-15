@@ -59,10 +59,10 @@ function resizableTextarea()
 
 
 /**
- * [openProfile description]
+ * [openTopNav description]
  * @return {[type]} [description]
  */
-function openProfile()
+function openTopNav()
 {
 	// show profile detail with tab
 	$(document).on('focus', '.profile-detail a', function()
@@ -504,58 +504,55 @@ function treeSearch(_search, _notLoad)
 
 /**
  * [completeProfileFill description]
- * @param  {[type]} _this [description]
- * @return {[type]}       [description]
+ * @param  {[type]} _e      [description]
+ * @param  {[type]} _target [description]
+ * @param  {[type]} _this   [description]
+ * @return {[type]}         [description]
  */
-function completeProfileFill(_this)
+function completeProfileFill(_e, _target, _this)
 {
-	// create a clone form opts
-	if(!window.TEMP)
+	// get items of selected value
+	var items = $('#profile_cat_list option[value="'+ $(_this).val() + '"]').attr('data-items');
+	// if we have item try to parse as array
+	if(items)
 	{
-		window.TEMP = $('.input-group.sortable').clone();
+		items = JSON.parse(items);
 	}
-	// get options
-	var dropValue      = $('#complete-profile-dropdown');
-	var dropValues     = dropValue.find('option:checked').attr('data-value');
-	if(dropValue.val())
+	// get name of target list
+	var targetList = $('#'+ $(_target).attr('list'));
+	// if we have targetList fill it with new data
+	if(targetList.length == 1)
 	{
-		if(dropValues)
+		// get first item
+		targetList = targetList[0];
+		// empty it
+		targetList.innerHTML = "";
+		// if we have items, fill it
+		if(items)
 		{
-			var dropValueArray = dropValues.split(',');
-			$('.input-group.sortable').addClass('editing');
-			for (var i = 0; i < dropValueArray.length; i++)
+			$(_target).addClass('filled').delay(1000).queue(function(next)
 			{
-				addNewOpt(dropValue.val(), dropValueArray[i]);
-				$('.input-group.sortable li[data-profile!="'+ dropValue.val() +'"]').remove();
-			}
-			setSortable(true);
+				$(this).removeClass("filled");
+				next();
+			});
+			items.forEach(function(_item)
+			{
+				var option = document.createElement('option');
+				option.value = _item;
+				targetList.appendChild(option);
+			});
 		}
-		detectPercentage();
 	}
 	else
 	{
-		completeProfileRevert();
+		targetList = null;
 	}
-}
 
 
-/**
- * revert before check complete profile exactly
- * @return {[type]} [description]
- */
-function completeProfileRevert()
-{
-	if($('.input-group.sortable').hasClass('editing'))
-	{
-		$('.input-group.sortable').removeClass('editing');
-		if(window.TEMP)
-		{
-			$('.input-group.sortable').replaceWith(window.TEMP);
-			window.TEMP = null;
-			setSortable();
-		}
-	}
-	detectPercentage();
+	// $('#profile_cat_list option[value="'+ $(_this).val() + '"]')
+
+	console.log(items);
+
 }
 
 
@@ -848,25 +845,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 	// treeSearch();
 	// }
 
-	// --------------------------------------------------------------------------------- Complete profile
-	// if remove complete profile checkbox, return to old status and rerun sortable
-	$(this).on('change', '#complete-profile', function(event)
-	{
-		if (!this.checked)
-		{
-			// revert
-			completeProfileRevert();
-			// change dropdown to default value
-			$('#complete-profile-dropdown').val('');
-		}
-	});
-
-	// if any item of complete profile is selected, then fill item with profile values
-	$(this).on('change', '#complete-profile-dropdown', function()
-	{
-		completeProfileFill();
-	});
-
 
 	$(this).on('click','button', function()
 	{
@@ -999,7 +977,6 @@ function calcFilterPrice()
 // route(/\@\/add(|\/[^\/]*)$/, function()
 route(/\@\/add\/.+\/filter$/, function()
 {
-	// if any item of complete profile is selected, then fill item with profile values
 	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
 		calcFilterPrice.call(this);
@@ -1120,105 +1097,6 @@ route(/\$/, function()
 		$(this).attr('data-search-timeout', timeout);
 	});
 
-});
-
-
-
-// Profile
-route(/\@\/profile/, function() {
-	var initial  = $('input[name="initial"]');
-	var isNormal = false;
-
-	// dblclick
-	$(this).on('dblclick', '.element.has-data', function()
-	{
-		// if double clicked input has not class similar-tag
-		if (!$(this).children('.input').hasClass('similar-tag')) {
-			isNormal = true;
-			initial.val( $(this).children('.input').val() );
-		}
-		$(this).removeClass('has-data').append(btns).children('.input').removeAttr('disabled').focus();
-	});
-
-	// click
-	$(this).on('click', '.element.no-data', function()
-	{
-		// if clicked input has not class similar-tag
-		if (!$(this).children('.input').hasClass('similar-tag')) {
-			isNormal = true;
-			initial.val("");
-		}
-		$(this).removeClass('no-data').append(btns).children('.input').removeAttr('disabled').focus();
-	});
-
-	 //  $(this).on('focus', '.element .input', function(event) {
-	 //  	$(this).unbind('blur.sarshomarblur');
-	 //  	$(this).bind('blur.sarshomarblur', function(e){
-	 //  		$(this).unbind('blur.sarshomarblur');
-	 //  		var element = $(this).parents('.element');
-			// var val     = $(this).parents('.element').children('.input').val();
-			// if ( isNormal )
-			// {
-			// 	if ( initial.val() )
-			// 	{
-			// 		element.addClass('has-data');
-			// 	}
-			// 	else
-			// 	{
-			// 		element.addClass('no-data');
-			// 	}
-			// 	element.children('.input').attr('disabled', '');
-			// 	element.children('.btn').remove();
-			// 	element.children('.input').val( initial.val() );
-			// }
-	 //  	});
-	 //  });
-
-	$(this).on('click', '.btn.save button', function(event) {
-		var element = $(this).parents('.element');
-		var val     = $(this).parents('.element').children('.input').val();
-		var name    = $(this).parents('.element').children('.input').attr("name");
-		$(this).ajaxify({
-			ajax: {
-				data: {
-					'name': name,
-					'value': val
-				},
-				abort: true,
-				success: function(e, data, x) {
-					if ( val && isNormal )
-					{
-						element.addClass('has-data');
-						element.children('.input').attr('disabled', 'disabled');
-						element.children('.btn').remove();
-					}
-					else if ( (!val) && isNormal)
-					{
-						element.addClass('no-data');
-						element.children('.input').attr('disabled', 'disabled');
-						element.children('.btn').remove();
-					}
-				},
-				method: 'post'
-			}
-		});
-	});
-
-	$(this).on('click', '.btn.cancel button', function(event) {
-		var element = $(this).parents('.element');
-		var val     = $(this).parents('.element').children('.input').val();
-		if ( initial.val() )
-		{
-			element.addClass('has-data');
-		}
-		else
-		{
-			element.addClass('no-data');
-		}
-		element.children('.input').attr('disabled', '');
-		element.children('.btn').remove();
-		element.children('.input').val( initial.val() );
-	});
 });
 
 
@@ -1582,7 +1460,7 @@ function runAllScripts()
 	// set all textarea resizable
 	resizableTextarea();
 	// open profile on getting focus
-	openProfile();
+	openTopNav();
 	// allow to set fav
 	setFav();
 
