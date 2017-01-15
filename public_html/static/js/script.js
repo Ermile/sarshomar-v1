@@ -556,6 +556,19 @@ function completeProfileFill(_e, _target, _this)
 				targetList.appendChild(option);
 			});
 		}
+		// change placeholder in all condition
+		if(!$(_target).attr('placeholder-first'))
+		{
+			$(_target).attr('placeholder-first', $(_target).attr('placeholder'));
+		}
+		if(selectedValue)
+		{
+			$(_target).attr('placeholder', $(_this).val());
+		}
+		else
+		{
+			$(_target).attr('placeholder', $(_target).attr('placeholder-first'));
+		}
 	}
 	else
 	{
