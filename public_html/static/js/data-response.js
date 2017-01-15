@@ -1,3 +1,6 @@
+// run for the first time
+runDataResponse()
+
 /**
  * check input for first time
  */
@@ -75,7 +78,7 @@ function checkInputResponse(_this, _firstTime)
 	{
 		elSelector = elID;
 	}
-	var childrens  = $('[data-response*="'+ elSelector +'"]');
+	var childrens  = $('[data-response="'+ elSelector +'"]');
 	// if this name is not exist use id for selector
 	if(childrens.length < 1)
 	{
