@@ -567,6 +567,7 @@ div.checkbox{display:-webkit-flex;display:flex;width:100%;margin-bottom:15px}
 
 
 /************************************************************** add page */
+.ultra-item.title-item{margin-bottom:1em}
 /* sortable list styles*/
 .sortable{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .sortable li.disabled{opacity:.5}
@@ -578,7 +579,7 @@ div.checkbox{display:-webkit-flex;display:flex;width:100%;margin-bottom:15px}
 li.sortable-placeholder{border:1px dashed #CCC}
 .input-group.sortable.drag-big li.sortable-placeholder{height:75px}
 .sortable li{margin-bottom:1em}
-.sortable li .element{margin:0}
+/*.sortable li .element{margin:0}*/
 .sortable .element .title:hover:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:.3s}
 
 /* for modal on cropbox*/
@@ -1008,25 +1009,25 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /************************************************************** ultra item */
 .ultra-item{position:relative;display:-webkit-flex;display:flex}
 .ultra-item.multi-line{height:75px}
-.ultra-item .ultra-item-content{-webkit-flex:1;flex:1;margin-right:5px}
-.rtl .ultra-item .ultra-item-content{margin-right:0;margin-left:5px}
+.ultra-item .ultra-item-content{-webkit-flex:1;flex:1}
 .ultra-item .preview{max-height:75px}
-.ultra-item .preview img{width:75px;height:75px;min-width:75px;max-height:75px}
+.ultra-item .preview img{width:75px;height:75px;min-width:75px;max-height:75px;margin-left:5px}
+.rtl .ultra-item .preview img{margin-left:0;margin-right:5px}
+.ultra-item .element{margin-bottom:5px}
 
 /* ultra item content */
-.ultra-item .ultra-item-modules{display:-webkit-flex;display:flex;width:100%;max-height:35px;line-height:35px;justify-content:flex-end;align-items:center;margin-top:5px}
-.ultra-item .ultra-item-module{display:-webkit-flex;display:flex;background-color:#efefef;margin-left:5px;padding:0 5px;align-items:center}
-.rtl .ultra-item .ultra-item-module{margin-left:0;margin-right:5px}
+.ultra-item .ultra-item-modules{display:-webkit-flex;display:flex;width:100%;max-height:35px;line-height:35px;justify-content:flex-end;align-items:center}
+.ultra-item .ultra-item-module{display:-webkit-flex;display:flex;background-color:#efefef;padding:0 5px;align-items:center}
 .ultra-item .ultra-item-module label{color:#777;font-size:1em}
 .ultra-item .ultra-item-module input,.ultra-item .ultra-item-module datalist{border:none;margin-left:5px;height:25px;padding:0 5px;color:#777;font-size:1em}
 .rtl .ultra-item .ultra-item-module input,.rtl .ultra-item .ultra-item-module datalist{margin-left:0;margin-right:5px}
 .ultra-item .profile-module input{width:100px}
 .ultra-item .score-module input[type="text"]{width:70px}
-.ultra-item .score-module input[type="number"]{width:40px}
+.ultra-item .score-module input[type="number"]{width:50px}
 .ultra-item input{background-color:#f7f7f7;transition:.3s}
 .ultra-item input:focus{background-color:#fff}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.ultra-item .audio-module{background-color:transparent}
+.ultra-item .audio-module{background-color:transparent;padding:0}
 .ultra-item .audio-module audio{vertical-align:middle;max-width:200px}
 
 /* delete button at the end of ultra item */
@@ -1156,7 +1157,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 /************************************************************** file */
 .element .file{display:-webkit-flex;display:flex;align-items:center;background-color:#efefef;padding:0 5px;transition:.3s;cursor:pointer;}
 .element .file input[type="file"]{width:0;height:0;opacity:0;position:absolute;z-index:-1}
-.element .file label{color:#777;font-size:2em;transition:.3s;cursor:pointer;vertical-align:middle}
+.element .file label{color:#777;font-size:2em;transition:.3s;cursor:pointer}
 .element .file label:hover,.element .file input[type="file"]:focus+label{color:#00667a}
 .element .input:focus~.file{background-color:#00667a}
 .element .input:focus~.file label{color:#d8dad0}

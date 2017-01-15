@@ -19,17 +19,40 @@
 
 
 {%block feature_title%}
- <div class="element">
-  <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
-  <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
-  <div class="file">
-   <span class='preview'>
-     {%if poll.meta.attachment_id%}
+ <div class="ultra-item title-item">
+  <div class="ultra-item-content">
+
+   <div class="element">
+    <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
+    <input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
+    <div class="file">
+     <span class='preview'>
+      {%if poll.meta.attachment_id%}
       <img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
-     {%endif%}
-   </span>
-   <input type="file" name="file_title" id="file_title">
-   <label class="label-file icon-pic" for="file_title"></label>
+      {%endif%}
+     </span>
+     <input type="file" name="file_title" id="file_title">
+     <label class="label-file icon-pic" for="file_title"></label>
+    </div>
+   </div>
+
+   <div class="ultra-item-modules">
+    <div class="ultra-item-module score-module">
+     <label>{%trans "Score"%}</label>
+     <input type="text" placeholder='{%trans "Category"%}'>
+     <input type="number" placeholder='{%trans "Score"%}'>
+    </div>
+
+    <div class="ultra-item-module audio-module">
+     <audio controls>
+      <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
+     </audio>
+    </div>
+   </div>
+
+  </div>
+  <div class="preview">
+   <img src="{{url.static}}images/telegram/germile/about.jpg">
   </div>
  </div>
 {%endblock%}
@@ -88,10 +111,39 @@
 
  <ul class="input-group">
   <li data-response='meta_descriptive' data-response-hide>
-   <div class="element" data-row="other">
-    <label class="title small" for="answer_other">{%trans "Other"%}</label>
-    <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
-    <span class="icon-picture-o icon" data-response-hide></span>
+   <div class="ultra-item">
+    <div class="ultra-item-content">
+     <div class="element" data-row="other">
+      <label class="title small" for="answer_other">{%trans "Other"%}</label>
+      <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
+      <div class="file">
+       <input type="file" name="other_file" id="other_file">
+       <label class="label-file icon-pic" for="other_file"></label>
+      </div>
+      <span class="checkbox true">
+       <input type="checkbox" name="other_checkbox" id="other_checkbox">
+       <label class="check-box" for="other_checkbox"></label>
+      </span>
+     </div>
+
+     <div class="ultra-item-modules">
+      <div class="ultra-item-module score-module">
+       <label>{%trans "Score"%}</label>
+       <input type="text" placeholder='{%trans "Category"%}'>
+       <input type="number" placeholder='{%trans "Score"%}'>
+      </div>
+
+      <div class="ultra-item-module audio-module">
+       <audio controls>
+        <source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
+       </audio>
+      </div>
+     </div>
+    </div>
+
+    <div class="preview">
+     <img src="{{url.static}}images/telegram/germile/about.jpg">
+    </div>
    </div>
   </li>
 
