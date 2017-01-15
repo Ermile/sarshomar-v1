@@ -403,8 +403,8 @@ function addNewOpt(_group, _title)
 function showQuestionOptsDel(_this)
 {
 	// hide all elements
-	$('.input-group.sortable .element .delete').fadeOut(100);
-	var currentRowValue = $(_this).parent('.element').children('input[type="text"]').val();
+	$('.input-group.sortable li .delete').fadeOut(100);
+	var currentRowValue = $(_this).closest('li').find('.element input[type="text"]').val();
 	// always show delete button on input focus
 	if(countQuestionOpts() > 2 && currentRowValue)
 	{
@@ -835,29 +835,29 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	detectPercentage();
 
 	// run on input change and add new opt for this question
-	$(this).on('input', '.input-group.sortable .element .input[type="text"]', function(event)
+	$(this).on('input', '.input-group.sortable li .input[type="text"]', function(event)
 	{
 		checkAddOpt();
 	});
 
 	// --------------------------------------------------------------------------------- Delete Elements
 	// show and hide delete btn on special condition
-	$(this).on('mouseenter', '.input-group.sortable .element', function()
+	$(this).on('mouseenter', '.input-group.sortable li', function()
 	{
-		// showQuestionOptsDel($(this).children('.delete'));
-	}).on('focus', '.input-group.sortable .element input[type="text"]', function()
+		showQuestionOptsDel($(this).find('.delete'));
+	}).on('focus', '.input-group.sortable li input[type="text"]', function()
 	{
-		showQuestionOptsDel($(this).parent().children('.delete'));
+		showQuestionOptsDel($(this).closest('li').find('.delete'));
 	});
 
 	// on keyup and press shift+del remove current record
-	$(this).on('keyup', '.input-group.sortable .element input', function(e)
+	$(this).on('keyup', '.input-group.sortable li input', function(e)
 	{
 		if(countQuestionOpts() > 2)
 		{
 			if(e.shiftKey && e.keyCode === 46)
 			{
-				$(this).parent().children('.delete').click();
+				$(this).closest('li').find('.delete').click();
 			}
 		}
 		detectPercentage();
@@ -869,14 +869,14 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// on press delete on each opt
-	$(this).on('click', '.input-group.sortable .element .delete', function()
+	$(this).on('click', '.input-group.sortable li .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('keyup', '.input-group.sortable .element .delete', function(e)
+	}).on('keyup', '.input-group.sortable li .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
-			$(this).parent().children('.delete').click();
+			$(this).closest('li').find('.delete').click();
 		}
 	});
 
