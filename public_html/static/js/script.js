@@ -512,12 +512,24 @@ function treeSearch(_search, _notLoad)
 function completeProfileFill(_e, _target, _this)
 {
 	// get items of selected value
-	var items = $('#profile_cat_list option[value="'+ $(_this).val() + '"]').attr('data-items');
+	var selectedList  = $('#profile_cat_list option[value="'+ $(_this).val() + '"]');
+	var selectedValue = selectedList.attr('data-value');
+	var items         = selectedList.attr('data-items');
+
+	// if selectedValue is notSet then decide about it
+	if(!selectedValue)
+	{
+		selectedValue = $(_this).val();
+		selectedValue = '';
+	}
+	// add data untranslated value
+	$(_this).attr('data-value', selectedValue);
 	// if we have item try to parse as array
 	if(items)
 	{
 		items = JSON.parse(items);
 	}
+	console.log(items);
 	// get name of target list
 	var targetList = $('#'+ $(_target).attr('list'));
 	// if we have targetList fill it with new data
@@ -535,10 +547,12 @@ function completeProfileFill(_e, _target, _this)
 				$(this).removeClass("filled");
 				next();
 			});
-			items.forEach(function(_item)
+
+			$.each(items, function(_value, _transKey)
 			{
 				var option = document.createElement('option');
-				option.value = _item;
+				option.value = _transKey;
+				$(option).attr('data-value', _value);
 				targetList.appendChild(option);
 			});
 		}
@@ -547,12 +561,6 @@ function completeProfileFill(_e, _target, _this)
 	{
 		targetList = null;
 	}
-
-
-	// $('#profile_cat_list option[value="'+ $(_this).val() + '"]')
-
-	console.log(items);
-
 }
 
 

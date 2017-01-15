@@ -63,8 +63,7 @@
        <input list="profile_cat_list" id="profile_cat{{answer_key}}" placeholder='{%trans "Category"%}' data-response-realtime>
        <input list="profile_key_list{{answer_key}}" id="profile_key{{answer_key}}" placeholder='{%trans "Key"%}' disabled data-response='profile_cat{{answer_key}}'  data-response-call='completeProfileFill'>
 
-       <datalist id="profile_key_list{{answer_key}}"><option value='{%trans "Male"%} {{answer_key}}'></datalist>
-
+       <datalist id="profile_key_list{{answer_key}}"></datalist>
       </div>
 {%endif%}
       <div class="ultra-item-module score-module" data-response='meta_score' data-response-hide>
@@ -233,8 +232,8 @@
 
 {%block feature_profile_cats%}
  <datalist id="profile_cat_list">
-  <option value='{%trans "Gender"%}' data-items='["male", "female"]'>
-  <option value='{%trans "Education"%}' data-items='["diploma", "ms", "dr"]'>
+  <option value='{%trans "Gender"%}' data-value='Gender' data-items='{"male":"مرد", "female": "زن"}'>
+  <option value='{%trans "Education"%}' data-value='Education' data-items='["diploma", "ms", "dr"]'>
  </datalist>
 {%endblock%}
 

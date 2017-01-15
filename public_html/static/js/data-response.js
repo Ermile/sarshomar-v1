@@ -7,12 +7,12 @@ runDataResponse()
 function runDataResponse()
 {
 	// on select and input check inputs
-	$(document).on('change', 'input, select', function()
+	$(document).on('change', 'input:not([data-response-realtime]), select', function()
 	{
 		checkInputResponse(this, false);
 	});
 	// add data-response-realtime to run realtime on input type
-	$(document).on('keyup', 'input[data-response-realtime]', function()
+	$(document).on('input', 'input[data-response-realtime]', function()
 	{
 		checkInputResponse(this, false);
 	});
