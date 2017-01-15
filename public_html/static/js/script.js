@@ -472,10 +472,11 @@ function setSortable(_onlyDestroy)
  */
 function rearrangeQuestionOpts()
 {
+	// console.log($('.input-group.sortable li'));
 	$.each($('.input-group.sortable li'), function(key, value)
 	{
 		var row = key + 1;
-		$(this).find('.element').attr('data-row', row);
+		$(this).attr('data-row', row);
 
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
@@ -491,11 +492,29 @@ function rearrangeQuestionOpts()
 		$(this).find('.element .input').attr('name', 'answer' + row);
 		// set true
 		$(this).find('.element .true input').attr('id', 'true' + row);
-		$(this).find('.element .true label').attr('for', 'true' + row);
 		$(this).find('.element .true input').attr('name', 'true' + row);
+		$(this).find('.element .true label').attr('for', 'true' + row);
 		// set score
-		$(this).find('.element .score input').attr('id', 'score' + row);
-		$(this).find('.element .score input').attr('name', 'score' + row);
+		// console.log($('.input-group.sortable li').find('.element .score-module input'));
+		$(this).find('.score-module input').attr('id', 'score' + row);
+		$(this).find('.score-module input').attr('name', 'score' + row);
+		$(this).find('.score-module label').attr('for', 'score' + row);
+
+		$(this).find('.score-module .groupscore label').attr('for', 'score' + row);
+
+		// console.log(22);
+
+	// // set file
+	// template.find('.element .file input').attr('name', 'file' + num);
+	// template.find('.element .file input').attr('id', 'file' + num);
+	// template.find('.element .file input').val('');
+	// template.find('.element .file label').attr('for', 'file' + num);
+	// // set score
+	// template.find('.element .score input').attr('name', 'score' + num);
+	// template.find('.element .score input').attr('id', 'score' + num);
+
+
+
 	});
 }
 
