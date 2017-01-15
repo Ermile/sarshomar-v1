@@ -362,35 +362,47 @@ function addNewOpt(_group, _title)
 			template.find('.element label.title b').text(num);
 		}
 	}
-	template.find('.element label.title').attr('for', 'answer' + num);
-	template.find('.element .input').attr('id', 'answer' + num);
-	template.find('.element .input').attr('name', 'answer' + num);
-	template.find('.element .input').attr('value', '');
-	template.find('.element .input').val('');
-	// set true
-	template.find('.element .true input').attr('name', 'true' + num);
-	template.find('.element .true label').attr('for', 'true' + num);
-	template.find('.element .true input').attr('id', 'true' + num);
-	template.find('.element .true input').attr('checked', false);;
-	// set file
-	template.find('.element .file input').attr('name', 'file' + num);
-	template.find('.element .file input').attr('id', 'file' + num);
-	template.find('.element .file input').val('');
-	template.find('.element .file label').attr('for', 'file' + num);
-	template.find('.element .file img').remove();
+
+	// clear all input and textareas
+	template.find("input, textarea").val('');
+	template.find("input[type='checkbox']").attr('checked', false);
+	// remove image and audio
+	template.find('.preview img').remove();
+	template.find('.audio-module audio').remove();
+
+	// do not need below code, we run regenerate
+	// template.find('.element label.title').attr('for', 'answer' + num);
+	// template.find('.element .input').attr('id', 'answer' + num);
+	// template.find('.element .input').attr('name', 'answer' + num);
+	// template.find('.element .input').attr('value', '');
+	// template.find('.element .input').val('');
+	// // set true
+	// template.find('.element .true input').attr('name', 'true' + num);
+	// template.find('.element .true label').attr('for', 'true' + num);
+	// template.find('.element .true input').attr('id', 'true' + num);
+	// template.find('.element .true input').attr('checked', false);
+	// // set file
+	// template.find('.element .file input').attr('name', 'file' + num);
+	// template.find('.element .file input').attr('id', 'file' + num);
+	// template.find('.element .file input').val('');
+	// template.find('.element .file label').attr('for', 'file' + num);
+	// // set score
+	// template.find('.element .score input').attr('name', 'score' + num);
+	// template.find('.element .score input').attr('id', 'score' + num);
+	// template.find('.element .score input').val('');
 
 
-	// set score
-	template.find('.element .score input').attr('name', 'score' + num);
-	template.find('.element .score input').attr('id', 'score' + num);
-	template.find('.element .score input').val('');
 	// template.find('.element').attr('data-row', num);
 
 	$('.input-group.sortable').append(template);
+	// rearrange after add new element
+	rearrangeQuestionOpts();
+
 	template.addClass('animated fadeInDown').delay(1000).queue(function()
 	{
 		$(this).removeClass("animated fadeInDown").dequeue();
 	});
+
 	setSortable();
 }
 
@@ -462,8 +474,9 @@ function rearrangeQuestionOpts()
 {
 	$.each($('.input-group.sortable li'), function(key, value)
 	{
-		var row = key+1;
+		var row = key + 1;
 		$(this).find('.element').attr('data-row', row);
+
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
