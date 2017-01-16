@@ -285,7 +285,7 @@ var worldData = [
  },
  {
   "hc-key": "ru",
-  "value": 71
+  "value": 471
  },
  {
   "hc-key": "va",
