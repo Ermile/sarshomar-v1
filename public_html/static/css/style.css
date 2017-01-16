@@ -119,6 +119,12 @@ body{background-color:#00667a;color:#6E6F6F}
 img,.unselect{-webkit-user-select:none;user-select:none}
 .rtl .flip-rtl{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
+.in{width:65%;margin:0 auto}
+.in.small{width:55%}
+.in.large{width:75%}
+.in.xlarge{width:85%}
+.in.xxlarge{width:95%}
+
 /* override default text select color */
 ::selection{background:#00667A;color:#f4f4f4}
 ::-moz-selection{background:#00667A;color:#f4f4f4}

@@ -1,8 +1,8 @@
 {%block content%}
-<div class="main pad box">
+<div class="">
  <form method="post">
-  <div class="row auto">
-   <div class="span8 offset2">
+  <div class="">
+   <div class="">
     {% if perm.sarshomar_knowledge.admin %}
     <div class="checkbox">
       <input type="checkbox" name="homepage" id="homepage" {% if homepage %}checked{% endif %}>
@@ -58,12 +58,6 @@
 
     {% include template.social %}
    </div><!-- /.span8 -->
-  </div><!-- /.row -->
-
-  <div class="row auto">
-   <div class="span6 btn-container">
-    <button class="btn primary" type="submit">{%trans "Publish"%}</button>
-   </div>
   </div><!-- /.row -->
  </form>
 </div>
