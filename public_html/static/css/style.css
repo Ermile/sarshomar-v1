@@ -573,14 +573,16 @@ div.checkbox{display:-webkit-flex;display:flex;width:100%;margin-bottom:15px}
 .sortable li.disabled{opacity:.5}
 .sortable li.highlight{background:#FEE25F}
 .sortable li.sortable-placeholder{border-color:#CCC}
-.sortable li .handle{cursor:move}
-.sortable li .title{cursor:move}
+.sortable li .handle{cursor:move;}
+.sortable li .title{cursor:move;cursor: -webkit-grabbing;}
 .input-group.sortable li{min-height:40px}
 li.sortable-placeholder{border:1px dashed #CCC}
 .input-group.sortable.drag-big li.sortable-placeholder{height:75px}
 .sortable li{margin-bottom:1em}
 /*.sortable li .element{margin:0}*/
-.sortable .element .title:hover:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:.3s}
+.sortable .element .title:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:.3s;opacity:0}
+.sortable .element .title:hover:before{opacity:1}
+.sortable .isChosen{opacity:0.7;}
 
 /* for modal on cropbox*/
 .modal-dialog{width:400px;border:2px solid #00667a;}

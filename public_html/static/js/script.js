@@ -1546,7 +1546,6 @@ function loadSortable()
 	{
 		$.cachedScript( "/static/js/Sortable.min.js" ).done(function(script, textStatus)
 		{
-			console.log( textStatus );
 			setSortable();
 		});
 	}, 300);
