@@ -519,11 +519,12 @@ function treeSearch(_search, _notLoad)
 	{
 		_search = $('#tree-search').val();
 	}
-	path        = path.substr(0, path.indexOf('/add')) + '/add/tree';
+	path        = path.substr(0, path.indexOf('/add')) + '/$';
 	if(_search)
 	{
 		path = path+ '/search='+ _search;
 	}
+	path = path + '?onlySearch=true';
 
 	Navigate(
 	{
