@@ -50,6 +50,49 @@
  footer #footer-nav .eco{height:60px}
  footer #footer-links a{display:inline-block;margin-right:1em}
  .rtl footer #footer-links a{margin-right:0;margin-left:1em}
+
+/**************************************Add Question*****************************/
+.page-progress {width: 100%;}
+.menu .menu-inside label::before,.menu .menu-inside label::after {display: none;}
+.menu .menu-inside {background-color: transparent;}
+.rtl .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;margin-bottom: 6px;border-radius: 0px;}
+.rtl .menu .menu-inside label {margin-right: auto;margin-left: 6px;margin-bottom: 6px;border-radius: 0px;}
+.menu {padding: 0;}
+.menu .menu-inside label i {display: none;}
+.rtl .element {padding-left: 0;padding-right: 0;}
+.ultra .data {width: 100%;}
+.ultra.title-item {margin-bottom: 3em;}
+.ultra .element {flex-direction: row;flex-wrap: wrap;}
+.ultra .element input {flex-basis: 80%;border-radius: 0 5px 5px 0;height: 30px}
+.ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}
+.element .title:before {position: absolute;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;content: '';-webkit-transform: rotate(-180deg);-moz-transform: rotate(-180deg);-ms-transform: rotate(-180deg);-o-transform: rotate(-180deg);transform: rotate(-180deg);background-image: url(../images/svg/input-before.svg);background-repeat: no-repeat;}
+.element .title:after {top: 3px;height: 15px;}
+.rtl .input-group {padding-right: 0;}
+.file:after {content: '';position: absolute;height: 1px;background: #00667a;z-index: 99999;width: 95%;left: 0;bottom: 100%;top: 19px;}
+.element .checkbox {background: transparent;position: absolute;left: 0;top: -2px;height: 20px;}
+.checkbox .check-box {height: 18px;width: 18px;}
+.checkbox .check-box::before, .checkbox .check-box::after {width: 3px;}
+.checkbox .check-box::before {top: 13px;left: 8px;}
+.checkbox .check-box::after {top: 6px;left: 1px;}
+@keyframes dothabottomcheck{0%{height:0;}100%{height:8px;}}
+@keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:20px;}}
+.sortable li {margin-bottom: 3em;}
+.element.switch label:not(.title) {line-height: 25px;}
+.range-slider {height: 20px;}
+.element .title.large {height: 20px;line-height: 20px; font-size: 10px;}
+.range-slider .dynamic-range .max::after, .range-slider .dynamic-range .min::after {width: 20px;height: 20px;}
+.range-slider .dynamic-range .max {right: -20px;bottom: -24px;}
+.range-slider .dynamic-range .max.active::before {width: 20px;height: 20px;}
+.range-slider .dynamic-range .max.active::before {top: 0px;}
+.ultra .module {width: 100%;}
+.sortable .element .title:hover:before {border: 0;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;}
+.dynamic-range span::after {left: -5px;}
+.dynamic-range span::before {left: 0px;}
+.btn-container::before {display: none}
+.rtl .btn-container {text-align: center;}
+
+
+
 }
 
 @media only screen and (max-width: 319px) {
