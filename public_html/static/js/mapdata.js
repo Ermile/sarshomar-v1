@@ -401,7 +401,7 @@ var worldData = [
  },
  {
   "hc-key": "ir",
-  "value": 100
+  "value": 1000
  },
  {
   "hc-key": "sv",
