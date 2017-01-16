@@ -368,7 +368,7 @@ function addNewOpt(_group, _title)
 	template.find("input[type='checkbox']").attr('checked', false);
 	// remove image and audio
 	template.find('.preview img').remove();
-	template.find('.audio-module audio').remove();
+	template.find('.audio audio').remove();
 
 	// do not need below code, we run regenerate
 	// template.find('.element label.title').attr('for', 'answer' + num);
