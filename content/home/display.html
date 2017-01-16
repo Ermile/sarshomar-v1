@@ -138,7 +138,7 @@
    yAxis: {title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
    plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: false,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
    credits: {enabled: false},
-   tooltip: {formatter: function () {return '<b>' + this.series.name +'<br/>'+ '{%trans "Age range"%} ' + this.point.category + '</b><br/>' + '{%trans "Population"%}: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }},
+   tooltip: {formatter: function () {return '<b>' + this.series.name + ' {%trans "Age"%} ' + this.point.category + '</b><br/>' + '{%trans "Population"%}: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }},
    series: {{male_female_chart.series|raw}}
   };
 
