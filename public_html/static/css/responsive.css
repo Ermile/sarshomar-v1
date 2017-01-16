@@ -1,4 +1,5 @@
 @media only screen and (max-width: 767px) {
+ .in{width:100%}
  header{display:block;height:auto;border:none}
  header .logo{background-image:none;display:block;width:100%;padding:1em;text-align:center;background-color:#00667a}
  .rtl header .logo{background-image:none}
@@ -51,7 +52,7 @@
  footer #footer-links a{display:inline-block;margin-right:1em}
  .rtl footer #footer-links a{margin-right:0;margin-left:1em}
 
-/**************************************Add Question*****************************/
+/************************************************************** add question */
 .page-progress {width: 100%;}
 .menu .menu-inside label::before,.menu .menu-inside label::after {display: none;}
 .menu .menu-inside {background-color: transparent;}
@@ -63,14 +64,16 @@
 .rtl .element {padding-left: 0;padding-right: 0;}
 .ultra .data {width: 100%;}
 .ultra.title-item {margin-bottom: 3em;}
-.ultra .element {flex-direction: row;flex-wrap: wrap;}
+.ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
+.ultra .element .element-in{border-top:1px solid #00667a}
 .ultra .element input {flex-basis: 87%;border-radius: 0 5px 5px 0;height: 30px}
-.ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}
-body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;content: '';-webkit-transform: rotate(-180deg);-moz-transform: rotate(-180deg);-ms-transform: rotate(-180deg);-o-transform: rotate(-180deg);transform: rotate(-180deg);background-image: url(../images/svg/input-before.svg);background-repeat: no-repeat;opacity: 1;border: 0;}
-.element .title:after {top: 3px;height: 15px;}
+/*.ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}*/
+.element .title::before,.element .title::after{display:none}
+/*body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;content: '';-webkit-transform: rotate(-180deg);-moz-transform: rotate(-180deg);-ms-transform: rotate(-180deg);-o-transform: rotate(-180deg);transform: rotate(-180deg);background-image: url(../images/svg/input-before.svg);background-repeat: no-repeat;opacity: 1;border: 0;}*/
+/*.element .title:after {top: 3px;height: 15px;}*/
 .element .input:focus~.score, .element .input:focus~.check, .element .input:focus~.icon, .element .input:focus~.checkbox {background-color: transparent;}
 .rtl .input-group {padding-right: 0;}
-.file:after {content: '';position: absolute;height: 1px;background: #00667a;z-index: 99999;width: 95%;left: 0;bottom: 100%;top: 19px;}
+/*.file:after {content: '';position: absolute;height: 1px;background: #00667a;z-index: 99999;width: 95%;left: 0;bottom: 100%;top: 19px;}*/
 .element .checkbox {background: transparent;position: absolute;left: 0;top: -2px;height: 20px;}
 .checkbox .check-box {height: 18px;width: 18px;}
 .checkbox .check-box::before, .checkbox .check-box::after {width: 3px;}
@@ -81,7 +84,8 @@ body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;disp
 .sortable li {margin-bottom: 3em;}
 .element.switch label:not(.title) {line-height: 25px;}
 .range-slider {height: 20px;}
-.element .title.large {height: 20px;line-height: 20px; font-size: 10px;}
+
+.element .title.large {/*height: 20px;line-height: 20px; font-size: 10px;*/}
 .range-slider .dynamic-range .max::after, .range-slider .dynamic-range .min::after {width: 20px;height: 20px;}
 .range-slider .dynamic-range .max {right: -20px;bottom: -24px;}
 .range-slider .dynamic-range .max.active::before {width: 20px;height: 20px;}

@@ -20,11 +20,12 @@
 
     <div class="row unselectable" id="map">
      <h2 class="special-heading" id='distribution'>{%trans "Sarshomar Society Distributtion"%}</h2>
-     <!-- <div class="h2">{%trans ""%}</div> -->
    {%if site.currentlang == "en"%}
-     <object id="worldSvgObject" type="image/svg+xml" data="/static/images/svg/home/world.svg"></object>
+     <div id="worldMap" class="map"></div>
    {%else%}
-     <div class="span5" id="ir-map"><object type="image/svg+xml" data="/static/images/svg/home/ir-all.svg"></object></div>
+     <div class="span5">
+      <div id="iranMap" class="map"></div>
+     </div>
      <div class="span7" id="chart">
       <div class="chart" id="age-chart"></div>
      </div>
@@ -106,6 +107,14 @@
 {%endblock%}
 
 {%block foot_js%}
+
+ <script src="{{url.static}}js/lib/highcharts/highcharts.js"></script>
+ <script src="{{url.static}}js/lib/highcharts/modules/map.js"></script>
+ <script src="{{url.static}}js/lib/highcharts/mapdata/world.js"></script>
+ <script src="{{url.static}}js/lib/highcharts/mapdata/ir-all.js"></script>
+ <script src="{{url.static}}js/mapdata.js"></script>
+
+
  <script type="text/javascript">
   var topChartOptions =
   {
@@ -136,6 +145,88 @@
   $(function() {
    $('#random-chart .chart > div').highcharts(topChartOptions);
    $('#chart > .chart').highcharts(newChartOptions);
+
+   // world map
+   $('#worldMap').highcharts('Map', {
+    chart: {
+     backgroundColor: 'transparent',
+    },
+    credits:{
+     enabled: false
+    },
+    title: {
+     text: ''
+    },
+    legend: {enabled: false},
+    mapNavigation: {
+     enabled: true,
+     enableButtons: false,
+     buttonOptions: {
+      verticalAlign: 'bottom'
+     }
+    },
+    colorAxis: {
+     min: 0
+    },
+    series: [{
+     data: worldData,
+     mapData: Highcharts.maps['custom/world'],
+     joinBy: 'hc-key',
+     name: '{%trans "Sarshomar Society"%}',
+     states: {
+      hover: {
+       color: '#a4edba'
+      }
+     },
+     dataLabels: {
+      enabled: false,
+      format: '{point.name}'
+     }
+    }]
+   });
+
+
+   // iran map
+   $('#iranMap').highcharts('Map', {
+    chart: {
+     backgroundColor: 'transparent',
+    },
+    credits:{
+     enabled: false
+    },
+    title : {
+     text : ''
+    },
+
+    legend: {enabled: false},
+    mapNavigation: {
+     enabled: true,
+     enableButtons: false,
+     buttonOptions: {
+      verticalAlign: 'bottom'
+     }
+    },
+    colorAxis: {
+     min: 0
+    },
+
+    series : [{
+     data : iranData,
+     mapData: Highcharts.maps['countries/ir/ir-all'],
+     joinBy: 'hc-key',
+     name: 'Random data',
+     states: {
+      hover: {
+       color: '#a4edba'
+      }
+     },
+     dataLabels: {
+      enabled: false,
+      format: '{point.name}'
+     }
+    }]
+   });
+
   });
  </script>
 {% endblock %}

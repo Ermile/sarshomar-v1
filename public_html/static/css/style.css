@@ -325,6 +325,9 @@ footer .is-open i {transform:rotate(180deg);}
 
 
 /************************************************************** map */
+#worldMap{height: 500px; min-width: 310px;width:100%; margin: 0 auto}
+#iranMap{height:500px;min-width:310px;max-width:800px;margin:0 auto}
+.map{direction:ltr;}
 #map{padding:50px 0}
 #ir-map{text-align:center}
 #ir-map object{height:360px}
@@ -1035,8 +1038,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .ultra input{background-color:#f7f7f7;transition:.3s}
 .ultra input:focus{background-color:#fff}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.ultra .audio-module{background-color:transparent;padding:0}
-.ultra .audio-module audio{vertical-align:middle;max-width:200px}
+.ultra .module.audio{background-color:transparent;padding:0}
+.ultra .module.audio audio{vertical-align:middle;max-width:200px}
 
 /* delete button at the end of ultra item */
 .ultra .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
@@ -1053,6 +1056,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 .element{position:relative;display:-webkit-flex;display:ms-flexbox;display:flex;margin-bottom:20px;border-collapse:separate;vertical-align:middle;padding-left:12px;line-height:35px;}
 .rtl .element{padding-left:0;padding-right:13px;}
+
+.element-in{display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1;flex:1}
 
 /* delete button at the end of element */
 /*.element .delete{position:absolute;width:35px;height:35px;line-height:35px;color:#e7e7e7;text-align:center;font-size:25px;right:-35px;cursor:pointer;opacity:0.9;transition:0.3s;display:none}
