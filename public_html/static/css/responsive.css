@@ -55,7 +55,8 @@
 .page-progress {width: 100%;}
 .menu .menu-inside label::before,.menu .menu-inside label::after {display: none;}
 .menu .menu-inside {background-color: transparent;}
-.rtl .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;margin-bottom: 6px;border-radius: 0px;}
+.menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;margin-bottom: 6px;border-radius: 0px;}
+.rtl .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;}
 .rtl .menu .menu-inside label {margin-right: auto;margin-left: 6px;margin-bottom: 6px;border-radius: 0px;}
 .menu {padding: 0;}
 .menu .menu-inside label i {display: none;}
@@ -63,7 +64,7 @@
 .ultra .data {width: 100%;}
 .ultra.title-item {margin-bottom: 3em;}
 .ultra .element {flex-direction: row;flex-wrap: wrap;}
-.ultra .element input {flex-basis: 80%;border-radius: 0 5px 5px 0;height: 30px}
+.ultra .element input {flex-basis: 87%;border-radius: 0 5px 5px 0;height: 30px}
 .ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}
 body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;content: '';-webkit-transform: rotate(-180deg);-moz-transform: rotate(-180deg);-ms-transform: rotate(-180deg);-o-transform: rotate(-180deg);transform: rotate(-180deg);background-image: url(../images/svg/input-before.svg);background-repeat: no-repeat;opacity: 1;border: 0;}
 .element .title:after {top: 3px;height: 15px;}
@@ -90,7 +91,7 @@ body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;disp
 .dynamic-range span::after {left: -5px;}
 .dynamic-range span::before {left: 0px;}
 .btn-container::before {display: none}
-.rtl .btn-container {text-align: center;}
+.rtl .btn-container,.btn-container {text-align: center;}
 .sortable .isChosen {will-change: initial !important;}
 .ultra .isChosen .element .title {background: #0d879e;}
 .ultra .isChosen .element .title::before,.ultra .isChosen .element .title::after {color: #0d879e;}
