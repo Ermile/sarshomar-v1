@@ -924,7 +924,7 @@ var iranData = [
  },
  {
   "hc-key": "ir-qm",
-  "value": 17
+  "value": 77
  },
  {
   "hc-key": "ir-hd",
