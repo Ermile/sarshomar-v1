@@ -62,14 +62,14 @@
 				<div class="element">
 					<label class="title small" for="answer{{myKey}}">{%trans "Answer"%} <b>{{myKey | persian}}</b></label>
 					<input class="input" type="text" id="answer{{myKey}}" autocomplete="off" value="{{value.text}}">
-					<div class="file">
-						<input type="file" id="file{{myKey}}">
-						<label class="label-file icon-pic" for="file{{myKey}}"></label>
-					</div>
 					<span class="checkbox true" data-response='meta_true_answer' data-response-hide>
 						<input type="checkbox" id="true{{myKey}}">
 						<label class="check-box" for="true{{myKey}}"></label>
 					</span>
+					<div class="file">
+						<input type="file" id="file{{myKey}}">
+						<label class="label-file icon-pic" for="file{{myKey}}"></label>
+					</div>
 				</div>
 				<div class="modules">
 {% if perm.complete_profile.admin %}
