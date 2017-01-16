@@ -23,31 +23,26 @@
 	<div class="data">
 		<div class="element">
 		<label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
-		<input class="input" type="text" name="title" id="title" autocomplete="off" value="{{poll.title}}">
+		<input class="input" type="text" id="title" autocomplete="off" value="{{poll.title}}">
 		<div class="file">
-			<span class='preview'>
-			{%if poll.meta.attachment_id%}
-			<img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
-			{%endif%}
-			</span>
-			<input type="file" name="file_title" id="file_title">
+			<input type="file" id="file_title">
 			<label class="label-file icon-pic" for="file_title"></label>
 		</div>
 		</div>
 		<div class="modules">
-		<div class="module score-module">
-			<label>{%trans "Score"%}</label>
-			<input type="text" placeholder='{%trans "Category"%}'>
-			<input type="number" placeholder='{%trans "Score"%}'>
+		<div class="module score-module" data-response='meta_score' data-response-hide>
+			<label for="scoreTitle">{%trans "Score"%}</label>
+			<input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
+			<input type="number" class='scoreVal' id="scoreTitle" placeholder='{%trans "Score"%}'>
 		</div>
-		<div class="module audio-module">
-			<audio controls>
-			<source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
-			</audio>
-		</div>
+		<div class="module audio"></div>
 		</div>
 	</div>
-	<div class="preview"></div>
+	<div class="preview">
+{%if poll.meta.attachment_id%}
+		<img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
+{%endif%}
+	</div>
 	</div>
 {%endblock%}
 

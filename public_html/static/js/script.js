@@ -1,13 +1,5 @@
 var TEMP = null;
 
-// Range Slider
-
-/* HTML5 Sortable jQuery Plugin -http://farhadi.ir/projects/html5sortable */
-!function(t){var e,r=t();t.fn.sortable=function(a){var n=String(a);return a=t.extend({connectWith:!1},a),this.each(function(){if(/^(enable|disable|destroy)$/.test(n)){var i=t(this).children(t(this).data("items")).attr("draggable","enable"==n);return void("destroy"==n&&i.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s"))}var s,d,i=t(this).children(a.items),o=t("<"+(/^(ul|ol)$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');i.find(a.handle).mousedown(function(){s=!0}).mouseup(function(){s=!1}),t(this).data("items",a.items),r=r.add(o),a.connectWith&&t(a.connectWith).add(this).data("connectWith",a.connectWith),i.attr("draggable","true").on("dragstart.h5s",function(r){if(a.handle&&!s)return!1;s=!1;var n=r.originalEvent.dataTransfer;n.effectAllowed="move",n.setData("Text","dummy"),d=(e=t(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){e&&(e.removeClass("sortable-dragging").show(),r.detach(),d!=e.index()&&e.parent().trigger("sortupdate",{item:e}),e=null)}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,o]).on("dragover.h5s dragenter.h5s drop.h5s",function(n){return i.is(e)||a.connectWith===t(e).parent().data("connectWith")?"drop"==n.type?(n.stopPropagation(),r.filter(":visible").after(e),e.trigger("dragend.h5s"),!1):(n.preventDefault(),n.originalEvent.dataTransfer.dropEffect="move",i.is(this)?(a.forcePlaceholderSize&&o.height(e.outerHeight()),e.hide(),t(this)[o.index()<t(this).index()?"after":"before"](o),r.not(o).detach()):r.is(this)||t(this).children(a.items).length||(r.detach(),t(this).append(o)),!1):!0})})}}(jQuery);
-// data-response library
-
-
-
 
 /**
  * [$import description]
@@ -155,7 +147,7 @@ function showPreview(_file, _output)
 		// clear for each file
 		$(_output).removeClass('otherFile');
 		$(_output).html('');
-		$(_output).parents('li').find('.audio-module').html('');
+		$(_output).find('.audio').html('');
 
 		var fileType = 'other';
 		var fileUrl  = '';
@@ -173,7 +165,7 @@ function showPreview(_file, _output)
 
 			// add element of audio
 			var audioEl = '<audio controls><source src="'+ window.URL.createObjectURL(f)+ '" type="audio/mp3"></audio>';
-			$(_output).parents('li').find('.audio-module').html(audioEl);
+			$(_output).parents('li').find('.audio').html(audioEl);
 		}
 		else if(f.type == 'video/mp4')
 		{
@@ -182,7 +174,7 @@ function showPreview(_file, _output)
 			// fileUrl = '/static/images/file/video.svg';
 			// // add element of audio
 			// var audioEl = '<video controls><source src="'+ window.URL.createObjectURL(f)+ '" type="video/mp4"></audio>';
-			// $(_output).parents('li').find('.audio-module').html(audioEl);
+			// $(_output).parents('li').find('.audio').html(audioEl);
 		}
 		else
 		{
@@ -396,14 +388,12 @@ function addNewOpt(_group, _title)
 
 	$('.input-group.sortable').append(template);
 	// rearrange after add new element
-	rearrangeQuestionOpts();
+	rearrangeSortable();
 
 	template.addClass('animated fadeInDown').delay(1000).queue(function()
 	{
 		$(this).removeClass("animated fadeInDown").dequeue();
 	});
-
-	setSortable();
 }
 
 
@@ -442,25 +432,9 @@ function deleteQuestionOpts(_this)
 			// remove element
 			$(this).remove();
 			// rearrange question opts
-			rearrangeQuestionOpts();
+			rearrangeSortable();
 			// recalc percentage of progress bar
 			detectPercentage();
-		});
-	}
-}
-
-
-/**
- * generate sortable again and again after each change
- */
-function setSortable(_onlyDestroy)
-{
-	$('.sortable').sortable('destroy');
-	if(!_onlyDestroy)
-	{
-		$('.sortable').sortable({items: ':not(.fix)'},{handle: '.title'}).bind('sortupdate', function(e, ui)
-		{
-			rearrangeQuestionOpts();
 		});
 	}
 }
@@ -470,7 +444,7 @@ function setSortable(_onlyDestroy)
  * rearrange number of opts in question
  * @return {[type]} [description]
  */
-function rearrangeQuestionOpts()
+function rearrangeSortable()
 {
 	$.each($('.input-group.sortable li'), function(key, value)
 	{
@@ -845,10 +819,7 @@ function simulateTreeNavigation()
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
 {
-	// run textarea resizable
 	// declare functions
-
-	setSortable();
 	detectPercentage();
 
 	// run on input change and add new opt for this question
@@ -933,6 +904,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 }).once(function()
 {
+	loadSortable();
 	simulateTreeNavigation();
 
 	$('.page-progress input').on('click', function(e)
@@ -983,7 +955,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	//
 	$(this).on('change', 'input[type="file"]', function(event)
 	{
-		var output = $(this).parents('li').find('.preview');
+		var output = $(this).parents('.ultra').find('.preview');
 		var imagePreview = showPreview(this, output);
 	});
 	// after complete loading, open cropbox
@@ -1546,6 +1518,38 @@ function runAllScripts()
 
 	// load needed js file
 	loadFiles();
+}
+
+
+jQuery.cachedScript = function(url, options)
+{
+  // Allow user to set any option except for dataType, cache, and url
+  options = $.extend( options || {},
+  {
+    dataType: "script",
+    cache: true,
+    url: url
+  });
+  // Use $.ajax() since it is more flexible than $.getScript
+  // Return the jqXHR object so we can chain callbacks
+  return jQuery.ajax(options);
+};
+
+
+/**
+ * [loadSortable description]
+ * @return {[type]} [description]
+ */
+function loadSortable()
+{
+	setTimeout(function()
+	{
+		$.cachedScript( "/static/js/Sortable.min.js" ).done(function(script, textStatus)
+		{
+			console.log( textStatus );
+			setSortable();
+		});
+	}, 300);
 }
 
 
