@@ -37,8 +37,7 @@ class model extends \mvc\model
 			$url = $random['url'];
 		}
 
-		debug::msg('direct', true);
-		$this->redirector()->set_url($url)->redirect();
+		$this->redirector()->set_url($url);
 		return;
 	}
 
@@ -63,10 +62,9 @@ class model extends \mvc\model
 			$next_url = '$';
 		}
 
-		debug::msg('direct', true);
-		$this->redirector()->set_url($next_url)->redirect();
-
-
+		$this->redirector()->set_url($next_url);
+		$this->controller->display = false;
+		$this->_processor(['force_stop' => true, 'force_json' => true]);
 	}
 
 
