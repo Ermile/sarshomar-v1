@@ -8,7 +8,7 @@ class view extends \content_u\home\view
 
 	function config()
 	{
-
+		
 		parent::config();
 
 		// add all template of question into new file

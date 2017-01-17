@@ -8,7 +8,7 @@ class main extends \lib\main
 		if(\lib\router::get_repository_name() == 'content_u')
 		{
 			$redirect = new \lib\redirector();
-			$redirect->url = '/@/' . $redirect->get_url();
+			$redirect->url = \lib\define::get_current_language_string() . '/@/' . $redirect->get_url();
 			$redirect->redirect();
 		}
 

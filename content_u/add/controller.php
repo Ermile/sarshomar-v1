@@ -37,14 +37,14 @@ class controller extends \content_u\home\controller
 		$this->get(false, false)->SERVER("/^add$/");
 
 		// add new poll
-		// $this->post("add")->SERVER("/^add$/");
+		$this->post("add")->SERVER("/^add$/");
 
 		// edit a poll
 		// alise of put in api mode
-		// $this->post("edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
+		$this->post("edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
 
 		// load data to ready to update
-		// $this->get("edit", "edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
+		$this->get("edit", "edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
 
 		// load filter data to update it
 		// $this->get("get", "filter")->SERVER("/^add\/([". self::$shortURL. "]+)\/filter$/");

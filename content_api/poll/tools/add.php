@@ -14,6 +14,11 @@ trait add
 	 */
 	public function add($_args)
 	{
+		if(utility::request() == '' || is_null(utility::request()))
+		{
+			return \lib\debug::error(T_("Invalid input"), 'input', 'arguments');
+		}
+
 		//	check user id
 		if(!$this->login("id"))
 		{
@@ -24,7 +29,7 @@ trait add
 		 * update the poll or survey
 		 */
 		$update = false;
-
+		
 		if(utility::request("id"))
 		{
 			if(preg_match("/^[". $this->shortURL. "]+$/", utility::request("id")))

@@ -37,8 +37,8 @@ class model extends \mvc\model
 			$url = $random['url'];
 		}
 
-		$this->redirector()->set_url(trim($this->url('prefix').'/'. $url, '/'))->redirect();
 		debug::msg('direct', true);
+		$this->redirector()->set_url($url)->redirect();
 		return;
 	}
 
@@ -63,9 +63,10 @@ class model extends \mvc\model
 			$next_url = '$';
 		}
 
-		$this->redirector()->set_url(trim($this->url('prefix').'/'. $next_url, '/'))->redirect();
 		debug::msg('direct', true);
-		return;
+		$this->redirector()->set_url($next_url)->redirect();
+
+
 	}
 
 

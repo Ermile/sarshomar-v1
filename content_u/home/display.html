@@ -27,9 +27,20 @@
       <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
     </div>
 {%endif%}
+    <form method="post">
+      {% set lang_list = langList({'all' : true}) %}
+      <select name="ui-language">
+            <option value="">{%trans "Please select one item"%}</option>
+            {%for key, value in lang_list%}
+            <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
+            {%endfor%}
+      </select>
+      <input type="submit" value="set">
+    </form>
    </aside>
 
    <div class="main box pad dashboard">
+  
     <div class="row auto first-line">
      <div class='span2 card number'><h3>{%trans "Referred count"%}</h3><span>{{dashboard.user_referred}}</span></div>
      <div class='span2 card number'><h3>{%trans "Referred valid count"%}</h3><span>{{dashboard.user_verified}}</span></div>
@@ -66,6 +77,7 @@
      </div>
     </div>
    </div>
+
 {%endblock%}
 
 

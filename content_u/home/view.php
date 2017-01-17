@@ -29,12 +29,16 @@ class view extends \mvc\view
 	 */
 	function view_profile($o)
 	{
+
 		if(!$this->login())
 		{
 			return false;
 		}
 
 		$user_id                       = $this->login("id");
+
+		$this->data->ui_language = \lib\db\users::get_language($user_id);
+
 		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
 		if(!is_array($dashboard_data))
 		{
