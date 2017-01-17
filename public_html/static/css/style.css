@@ -520,6 +520,9 @@ right:0;left:0;top:100%}
 .personal-info>span{display:block;padding:.2em .5em;color:#00667a}
 .personal-info>span.name{font-weight:700}
 
+.ui-language select{background-color:#ffffff;border:none;width:100%;padding:5px 10px;margin-bottom:.5em}
+.ui-language .try{width:100%}
+
 
 /************************************************************** progress */
 .progress{position:relative;display:block;max-width:100%;border:none;margin:1em 0 2.5em;box-shadow:none;background:rgba(0,0,0,0.1);padding:0;border-radius:.28571429rem;font-size:1rem}
