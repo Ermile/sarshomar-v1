@@ -237,7 +237,7 @@ footer{border-style:solid;border-width:8px 0 0;-moz-border-image:url(../images/b
 footer .container{padding:0 2%}
 
 /* footer-nav */
-footer #footer-nav{margin-bottom:2em;border-bottom:1px solid #e5a428;font-size:1.6em;font-weight:900;position:relative}
+footer #footer-nav{border-bottom:1px solid #e5a428;font-size:1.6em;font-weight:900;position:relative}
 footer #footer-nav a{display:inline-block;padding:1.2em .5em;color:#aaa;margin-right:1.5em}
 .rtl footer #footer-nav a{margin-right:0;margin-left:1.5em}
 footer #footer-nav a:hover,footer #footer-nav a:focus{color:#fff}
@@ -246,17 +246,19 @@ footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%
 footer #footer-nav .eco img{height:100%;padding-top:5px}
 
 /* footer-links */
-footer #footer-links{font-size:1.4em;margin-bottom:1em;border-bottom:1px solid #e5a428;padding-bottom:1em}
-footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:.3em;font-size:1.1em}
-footer #footer-links a{display:block;margin-bottom:.2em;color:#888}
+footer #footer-links{font-size:1.4em;border-bottom:1px solid #e5a428;padding:2em 0}
+footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:5px;font-size:1.1em}
+footer #footer-links a{display:block;color:#888}
+footer #footer-links a:not(:last-child){margin-bottom:.2em}
 footer #footer-links a:hover,footer #footer-links a:focus{color:#fff}
 footer #footer-links #footer-news article{margin-bottom:.5em;border:1px solid transparent}
 footer #footer-links #footer-news article:hover{border-right-color:#e5a428}
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent}
 footer #footer-links #footer-news p{font-size:.8em;margin-bottom:0;color:#777}
+footer #footer-links .enamad img{display:block}
 
 /* footer-note*/
-footer #footer-note{font-size:1.2em;padding:2em 1em 3em;color:#aaa}
+footer #footer-note{font-size:1.2em;padding:2em 1em;color:#aaa}
 footer #footer-note .langlist{display:inline-block}
 footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:.5em 1em;display:inline-block;transition:.3s}
 footer #footer-note .langlist a:hover,footer #footer-note .langlist a:focus{background-color:rgba(0,0,0,0.2)}
@@ -1355,3 +1357,6 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #abc li:nth-child(odd) {color:#eee;background-color: #273044;}
 #abc li:nth-child(even) {color:#eee;background-color: #464A52;}
 #abc li:hover{opacity: .9;cursor: pointer}
+
+pre{margin:0 auto;padding:0;max-width:100%}
+code{margin:0}

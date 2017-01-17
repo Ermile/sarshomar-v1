@@ -1,9 +1,11 @@
 {%extends display.main%}
 
 {%block content%}
-  
-
-    {%include template.sample%}
-
+ <link rel="stylesheet" type="text/css" href="{{url.static}}css/lib/highlight/default.min.css">
+ {%include template.sample%}
 {%endblock%}
 
+{%block foot_js%}
+ <script type="text/javascript" src="{{url.static}}js/lib/highlight/highlight.min.js"></script>
+ <script>hljs.initHighlightingOnLoad();</script>
+{%endblock%}
