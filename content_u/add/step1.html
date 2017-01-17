@@ -95,43 +95,6 @@
 	</li>
 	{%endfor%}
 </ul>
-
-
-<ul class="input-group">
-	<li data-response='meta_descriptive' data-response-hide>
-		<div class="ultra">
-		<div class="data">
-			<div class="element" data-row="other">
- 			<label class="title small" for="answer_other">{%trans "Other"%}</label>
- 			<div class="element-in">
-     <input class="input" type="text" name="answer_other" id="answer_other" autocomplete="off">
-     <div class="file">
-      <input type="file" name="other_file" id="other_file">
-      <label class="label-file icon-pic" for="other_file"></label>
-     </div>
-     <span class="checkbox true">
-      <input type="checkbox" name="other_checkbox" id="other_checkbox">
-      <label class="check-box" for="other_checkbox"></label>
-     </span>
-    </div>
-			</div>
-			<div class="modules">
-			<div class="module score-module">
-				<label>{%trans "Score"%}</label>
-				<input type="text" placeholder='{%trans "Category"%}'>
-				<input type="number" placeholder='{%trans "Score"%}'>
-			</div>
-			<div class="module audio-module">
-				<audio controls>
-				<source src="{{url.static}}sound/horse.mp3" type="audio/mpeg">
-				</audio>
-			</div>
-			</div>
-		</div>
-		<div class="preview"></div>
-		</div>
-	</li>
-</ul>
 {%endblock%}
 
 

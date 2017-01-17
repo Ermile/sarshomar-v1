@@ -1,6 +1,3 @@
-// run for the first time
-runDataResponse()
-
 /**
  * check input for first time
  */

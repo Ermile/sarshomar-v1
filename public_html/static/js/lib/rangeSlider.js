@@ -1110,5 +1110,11 @@ var add_selection = function(_name)
 })(jQuery);
 
 
-$('body .range-slider').rangeSlider();
-// @hasan, fix selector
+/**
+ * [runRangeSlider description]
+ * @return {[type]} [description]
+ */
+function runRangeSlider()
+{
+	$('.range-slider').rangeSlider();
+}

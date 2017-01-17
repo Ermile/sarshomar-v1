@@ -2,29 +2,57 @@ var TEMP = null;
 
 
 /**
- * [$import description]
- * @param  {[type]} src [description]
- * @return {[type]}     [description]
+ * now can call js files easily
+ * @param  {[type]} _src      [description]
+ * @param  {[type]} _func     [description]
+ * @param  {[type]} _delay    [description]
+ * @param  {[type]} _noCache  [description]
+ * @param  {[type]} _absolute [description]
+ * @return {[type]}           [description]
  */
-function $import(src)
+function $import(_src, _func, _delay, _noCache, _absolute)
 {
-	var scriptElem = document.createElement('script');
-	scriptElem.setAttribute('src',src);
-	scriptElem.setAttribute('type','text/javascript');
-	document.getElementsByTagName('head')[0].appendChild(scriptElem);
+	if(!_delay)
+	{
+		_delay = 100;
+	}
+	setTimeout(function()
+	{
+		if(!_absolute)
+		{
+			_src = '/static/js/' + _src;
+		}
+		console.log(_src);
+		if(_noCache)
+		{
+			$.getScript(_src, function()
+			{
+				callFunction(_func);
+			});
+		}
+		else
+		{
+			$.cachedScript(_src).done(function(_script, _textStatus)
+			{
+				callFunction(_func);
+			});
+		}
+	}, _delay);
 }
 
 
 /**
- * import with a random query parameter to avoid caching
- * @param  {[type]} src [description]
- * @return {[type]}     [description]
+ * call function if exist
+ * @param  {[type]} _func [description]
+ * @return {[type]}       [description]
  */
-function $importNoCache(src)
+function callFunction(_func)
 {
-	var ms = new Date().getTime().toString();
-	var seed = "?" + ms;
-	$import(src + seed);
+	// if wanna to call function and exist, call it
+	if(typeof window[_func] === 'function')
+	{
+		window[_func]();
+	}
 }
 
 
@@ -328,18 +356,37 @@ function checkAddOpt()
 
 
 /**
+ * [addNewOptOther description]
+ */
+function addNewOptSpecial(_text, _toggle)
+{
+	console.log('adding...');
+	if(!_text)
+	{
+		_text = 'other';
+	}
+	// check if not exist, add new one
+	addNewOpt(_text);
+}
+
+
+/**
  * add new option to items
  */
-function addNewOpt(_group, _title)
+function addNewOpt(_title, _group)
 {
 	var template = $('.input-group.sortable>li').eq(0).clone();
 	var num      = $('.input-group.sortable>li').length + 1;
-	if(_group)
-	{
-		template.attr('data-profile', _group);
-	}
 	if(_title)
 	{
+		var isExist = $('.input-group.sortable li[data-type='+ _title+']');
+		// if this special name is exist, return false
+		if(isExist.length > 0)
+		{
+			return false;
+		}
+		// set title and data for special type
+		template.attr('data-type', _title);
 		template.find('.element label.title').text(_title);
 	}
 	else
@@ -354,6 +401,10 @@ function addNewOpt(_group, _title)
 			template.find('.element label.title b').text(num);
 		}
 	}
+	// if(_group)
+	// {
+	// 	template.attr('data-profile', _group);
+	// }
 
 	// clear all input and textareas
 	template.find("input, textarea").val('');
@@ -361,30 +412,6 @@ function addNewOpt(_group, _title)
 	// remove image and audio
 	template.find('.preview img').remove();
 	template.find('.audio audio').remove();
-
-	// do not need below code, we run regenerate
-	// template.find('.element label.title').attr('for', 'answer' + num);
-	// template.find('.element .input').attr('id', 'answer' + num);
-	// template.find('.element .input').attr('name', 'answer' + num);
-	// template.find('.element .input').attr('value', '');
-	// template.find('.element .input').val('');
-	// // set true
-	// template.find('.element .true input').attr('name', 'true' + num);
-	// template.find('.element .true label').attr('for', 'true' + num);
-	// template.find('.element .true input').attr('id', 'true' + num);
-	// template.find('.element .true input').attr('checked', false);
-	// // set file
-	// template.find('.element .file input').attr('name', 'file' + num);
-	// template.find('.element .file input').attr('id', 'file' + num);
-	// template.find('.element .file input').val('');
-	// template.find('.element .file label').attr('for', 'file' + num);
-	// // set score
-	// template.find('.element .score input').attr('name', 'score' + num);
-	// template.find('.element .score input').attr('id', 'score' + num);
-	// template.find('.element .score input').val('');
-
-
-	// template.find('.element').attr('data-row', num);
 
 	$('.input-group.sortable').append(template);
 	// rearrange after add new element
@@ -905,7 +932,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 }).once(function()
 {
-	loadSortable();
+	// import needed js
+	$import('lib/rangeSlider.js', 'runRangeSlider', 250);
+	$import('lib/Sortable.min.js', 'setSortable', 300);
+
 	simulateTreeNavigation();
 
 	$('.page-progress input').on('click', function(e)
@@ -1538,33 +1568,10 @@ jQuery.cachedScript = function(url, options)
 
 
 /**
- * [loadSortable description]
- * @return {[type]} [description]
- */
-function loadSortable()
-{
-	setTimeout(function()
-	{
-		$.cachedScript( "/static/js/Sortable.min.js" ).done(function(script, textStatus)
-		{
-			setSortable();
-		});
-	}, 300);
-}
-
-
-/**
  * [loadFiles description]
  * @return {[type]} [description]
  */
 function loadFiles()
 {
-	setTimeout(function()
-	{
-		$import('/static/js/data-response.js');
-		$import('/static/js/rangeSlider.js');
-		$import('/static/js/introJs.js');
-	}, 200);
-
+	$import('lib/data-response.js', 'runDataResponse', 200);
 }
-
