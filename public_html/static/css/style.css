@@ -285,14 +285,6 @@ footer .is-open i {transform:rotate(180deg);}
 
 
 /************************************************************** homepage */
-/* special heading */
-#homepage .special-heading{padding-left:60px;margin-bottom:50px}
-.rtl#homepage .special-heading{padding-left:0;padding-right:60px}
-#homepage .special-heading::before{left:-51px}
-.rtl#homepage .special-heading::before{left:auto;right:-51px}
-#homepage .special-heading::after{left:-110px}
-.rtl#homepage .special-heading::after{right:-110px}
-
 /* chart */
 .chart{direction:ltr}
 .chart *{font-family:IRANSans,Tahoma,sans-serif}
@@ -325,12 +317,19 @@ footer .is-open i {transform:rotate(180deg);}
 
 
 /************************************************************** map */
-#worldMap{height: 500px; min-width: 310px;width:100%; margin: 0 auto}
-#iranMap{height:500px;min-width:310px;max-width:800px;margin:0 auto}
-.map{direction:ltr;}
-#map{padding:50px 0}
-#ir-map{text-align:center}
-#ir-map object{height:360px}
+.map-container{padding:50px 0}
+.rtl .map-container{padding:50px}
+#world-map{height:500px;min-width:310px;width:100%;margin:0 auto}
+#iran-map{height:500px;min-width:310px;max-width:800px;margin:0 auto}
+.map{direction:ltr}
+
+.map-container .special-heading{margin-bottom:50px;padding-left:60px}
+.rtl .map-container .special-heading{padding-left:0;padding-right:10px}
+.map-container .special-heading::before{width:50px;left:0}
+.rtl .map-container .special-heading::before{left:auto;right:-50px;width:50px}
+.map-container .special-heading::after{left:-60px}
+.rtl .map-container .special-heading::after{left:auto;right:-110px}
+
 
 
 /************************************************************** customers */

@@ -17,24 +17,25 @@
       </div>
      </div>
     </div>
+   </div>
 
-    <div class="row unselectable" id="map">
-     <h2 class="special-heading" id='distribution'>{%trans "Sarshomar Society Distributtion"%}</h2>
-   {%if site.currentlang == "en"%}
-     <div id="worldMap" class="map"></div>
-   {%else%}
+   <div class="map-container">
+    <h2 class="special-heading" id="distribution">{%trans "Sarshomar Society Distributtion"%}</h2>
+{%if site.currentlang == "en"%}
+    <div class="map" id="world-map"></div>
+{%else%}
+    <div class="row unselectable">
      <div class="span5">
-      <div id="iranMap" class="map"></div>
+      <div id="iran-map" class="map"></div>
      </div>
-     <div class="span7" id="chart">
+     <div class="span7">
       <div class="chart" id="age-chart"></div>
      </div>
-   {%endif%}
     </div>
+{%endif%}
    </div>
 
    <div class="customers-container">
-
     <div class="customer reverse">
      <a href="{{url.base}}/target/organizations-and-companies" class="customer-img">
       <img src="{{url.static}}images/miniature/companies.png" alt='{%trans "Organizations and Companies"%}'>
@@ -74,7 +75,6 @@
       <p>{%trans "Finally, using API, you can have the benefit of Sarshomar's qualities and forget your concerns about polling."%}</p>
      </div>
     </div>
-
    </div>
 
    <div class="row" id="features-box">
@@ -102,7 +102,6 @@
      <p>{%trans "Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives"%}</p>
     </div>
    </div>
-
   </div>
 {%endblock%}
 
@@ -144,10 +143,10 @@
 
   $(function() {
    $('#random-chart .chart > div').highcharts(topChartOptions);
-   $('#chart > .chart').highcharts(newChartOptions);
+   $('#age-chart').highcharts(newChartOptions);
 
    // world map
-   $('#worldMap').highcharts('Map', {
+   $('#world-map').highcharts('Map', {
     chart: {
      backgroundColor: 'transparent',
     },
@@ -187,7 +186,7 @@
 
 
    // iran map
-   $('#iranMap').highcharts('Map', {
+   $('#iran-map').highcharts('Map', {
     chart: {
      backgroundColor: 'transparent',
     },
