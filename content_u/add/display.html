@@ -2,6 +2,7 @@
 
 
 {%block step1%}
+<div class="in" id='question-add'>
   {%use "content_u/add/step1.html"%}
         {{block('feature_tabs')}}
         {{block('feature_title')}}
@@ -46,15 +47,17 @@
         {{block('feature_tree')}}
         {{block('feature_summary')}}
         {{block('feature_content')}}
+</div>
 {%endblock%}
 
 
 
 {%block step2%}
+
 -2
   {%use "content_u/add/step2.html"%}
 
-     <div class="row auto">
+     <div class="row auto poll-filters">
       <div class="span9">
        <div class="row auto">
         <div class="span5">
@@ -77,9 +80,10 @@
 
 
 {%block step3%}
+<div class="in" id='question-add'>
 -3
 
   {%include "content_u/add/step3.html"%}
 
-
+ </div>
 {%endblock%}
