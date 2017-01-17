@@ -56,25 +56,28 @@
 .page-progress {width: 100%;}
 .menu .menu-inside label::before,.menu .menu-inside label::after {display: none;}
 .menu .menu-inside {background-color: transparent;}
-.menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;margin-bottom: 6px;border-radius: 0px;}
-.rtl .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;}
-.rtl .menu .menu-inside label {margin-right: auto;margin-left: 6px;margin-bottom: 6px;border-radius: 0px;}
+.menu .menu-inside label {border-radius: 0;margin-bottom: 6px;}
+.menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;}
+.rtl .menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;}
 .menu {padding: 0;}
 .menu .menu-inside label i {display: none;}
-.rtl .element {padding-left: 0;padding-right: 0;}
+.rtl .element,.element {padding-left: 0;padding-right: 0;}
 .ultra .data {width: 100%;}
 .ultra.title-item {margin-bottom: 3em;}
 .ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
-.ultra .element .element-in{border-top:1px solid #00667a}
-.ultra .element input {flex-basis: 87%;border-radius: 0 5px 5px 0;height: 30px}
+.ultra .element input[type=text] {flex-basis: 87%;border-radius: 5px 0 0 5px;height: 30px}
+.rtl .ultra .element input[type=text] {border-radius: 0 5px 5px 0;}
+.element .file:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;right: 0;}
+.rtl .element .file:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;left: 0; right: auto}
 /*.ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}*/
 .element .title::before,.element .title::after{display:none}
 /*body .ultra .element .title:before {position: absolute;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;content: '';-webkit-transform: rotate(-180deg);-moz-transform: rotate(-180deg);-ms-transform: rotate(-180deg);-o-transform: rotate(-180deg);transform: rotate(-180deg);background-image: url(../images/svg/input-before.svg);background-repeat: no-repeat;opacity: 1;border: 0;}*/
 /*.element .title:after {top: 3px;height: 15px;}*/
 .element .input:focus~.score, .element .input:focus~.check, .element .input:focus~.icon, .element .input:focus~.checkbox {background-color: transparent;}
-.rtl .input-group {padding-right: 0;}
+.rtl .input-group,.input-group {padding-right: 0;padding-left: 0;}
 /*.file:after {content: '';position: absolute;height: 1px;background: #00667a;z-index: 99999;width: 95%;left: 0;bottom: 100%;top: 19px;}*/
-.element .checkbox {background: transparent;position: absolute;left: 0;top: -2px;height: 20px;}
+.rtl .element .checkbox {background: transparent;position: absolute;left: 0;top: -1px;height: 20px;padding: 0;}
+.ltr .element .checkbox {background: transparent;position: absolute;right: 0;top: -1px;height: 20px;padding: 0;}
 .checkbox .check-box {height: 18px;width: 18px;}
 .checkbox .check-box::before, .checkbox .check-box::after {width: 3px;}
 .checkbox .check-box::before {top: 13px;left: 8px;}
@@ -84,13 +87,13 @@
 .sortable li {margin-bottom: 3em;}
 .element.switch label:not(.title) {line-height: 25px;}
 .range-slider {height: 20px;}
-
-.element .title.large {/*height: 20px;line-height: 20px; font-size: 10px;*/}
+.element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;}
+.element .title.large {height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px;}
 .range-slider .dynamic-range .max::after, .range-slider .dynamic-range .min::after {width: 20px;height: 20px;}
 .range-slider .dynamic-range .max {right: -20px;bottom: -24px;}
 .range-slider .dynamic-range .max.active::before {width: 20px;height: 20px;}
 .range-slider .dynamic-range .max.active::before {top: 0px;}
-.ultra .module {width: 100%;}
+.ultra .module {width: 100%;margin-bottom: 5px;}
 .sortable .element .title:hover:before {border: 0;top: 3px;left: -12px;display: inline;width: 13px;height: 15px;}
 .dynamic-range span::after {left: -5px;}
 .dynamic-range span::before {left: 0px;}
@@ -99,6 +102,13 @@
 .sortable .isChosen {will-change: initial !important;}
 .ultra .isChosen .element .title {background: #0d879e;}
 .ultra .isChosen .element .title::before,.ultra .isChosen .element .title::after {color: #0d879e;}
+.ultra .modules {flex-direction: column;max-height: none;}
+
+
+
+
+
+
 
 }
 
