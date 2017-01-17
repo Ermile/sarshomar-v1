@@ -1358,5 +1358,5 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #abc li:nth-child(even) {color:#eee;background-color: #464A52;}
 #abc li:hover{opacity: .9;cursor: pointer}
 
-pre{margin:0 auto;padding:0;max-width:100%}
+pre{margin:0 auto;padding:0;max-width:100%;background-color:transparent;border-radius:0}
 code{margin:0}
