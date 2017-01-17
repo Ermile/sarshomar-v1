@@ -22,7 +22,6 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 		{
 			_src = '/static/js/' + _src;
 		}
-		console.log(_src);
 		if(_noCache)
 		{
 			$.getScript(_src, function()
@@ -718,9 +717,9 @@ function changeStep(_name)
 			break;
 	}
 
-	// window.location.hash = _name;
-	_name = _name.substr(5);
 	$('.page-progress').attr('data-current', _name);
+	// window.location.hash = _name;
+	// _name = _name.substr(5);
 	detectPercentage();
 }
 
@@ -738,6 +737,8 @@ function detectPercentage(_submit)
 	{
 		case 'add':
 		case 'add_tree':
+		case 'step-add':
+		case 'step1':
 			if($('#title').val())
 			{
 				percentage += 15;
@@ -757,6 +758,8 @@ function detectPercentage(_submit)
 			break;
 
 		case 'filter':
+		case 'step-filter':
+		case 'step2':
 			percentage = 50;
 			if(_submit)
 			{
@@ -765,6 +768,8 @@ function detectPercentage(_submit)
 			break;
 
 		case 'publish':
+		case 'step-publish':
+		case 'step3':
 			percentage = 100;
 			break;
 	}
@@ -847,9 +852,6 @@ function simulateTreeNavigation()
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
 {
-	// declare functions
-	detectPercentage();
-
 	// run on input change and add new opt for this question
 	$(this).on('input', '.input-group.sortable li .input[type="text"]', function(event)
 	{
