@@ -2,7 +2,9 @@
 namespace content_api\home;
 
 class controller extends  \mvc\controller
-{	
+{
+	use \content_api\poll\controller;
+	use \content_api\search\controller;
 	public function __construct()
 	{
 		\lib\storage::set_api(true);
@@ -19,49 +21,16 @@ class controller extends  \mvc\controller
 	public function _route()
 	{
 		$url = \lib\router::get_url(0);
-		switch ($url) 
+		if(preg_match('/^(add|get|edit|delete)?(.*)$/', $url, $_class))
 		{
-			case 'addPoll':
-			case 'getPoll':
-			case 'editPoll':
-			case 'removePoll':
-				\lib\router::set_controller("\\content_api\\poll\\controller");
-				break;
-
-			case 'addFile':
-			case 'getFile':
-				\lib\router::set_controller("\\content_api\\file\\controller");
-				break;
-
-			case 'addAnswer':
-			case 'getAnswer':
-			case 'editAnswer':
-				\lib\router::set_controller("\\content_api\\answer\\controller");
-				break;
-
-			case 'sendFeedback':
-				\lib\router::set_controller("\\content_api\\feedback\\controller");
-				break;
-
-			case 'search':
-				\lib\router::set_controller("\\content_api\\search\\controller");
-				break;
-
-			case 'fav':
-			case 'like':
-				\lib\router::set_controller("\\content_api\\fav_like\\controller");
-				break;
-			case 'getLogintoken':
-			case 'getGuesttoken':
-				\lib\router::set_controller("\\content_api\\logintoken\\controller");
-				break;
-			default:
-				\lib\error::page("API PAGE NOT FOUND");
-				break;
+			$class = strtolower($_class[2]);
+			$route_method = strtolower('route_'.$class);
+			if(method_exists($this, $route_method))
+			{
+				$this->model_name = '\content_api\\' . $class . '\model';
+				call_user_func([$this, $route_method]);
+			}
 		}
-
-		return;
-
 	}
 }
 ?>
