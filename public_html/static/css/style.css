@@ -130,6 +130,8 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 ::selection{background:#00667A;color:#f4f4f4}
 ::-moz-selection{background:#00667A;color:#f4f4f4}
 
+.ltr-text{display:inline-block;direction:ltr}
+
 
 /************************************************************** dollar page specific styles */
 .accordion-label input[type='checkbox'],.aside-group-title input[type='checkbox']{width:0;height:0;opacity:0;position:absolute;z-index:-1}
