@@ -41,6 +41,27 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 
 
 /**
+ * cache import requests
+ * @param  {[type]} url     [description]
+ * @param  {[type]} options [description]
+ * @return {[type]}         [description]
+ */
+jQuery.cachedScript = function(url, options)
+{
+  // Allow user to set any option except for dataType, cache, and url
+  options = $.extend( options || {},
+  {
+    dataType: "script",
+    cache: true,
+    url: url
+  });
+  // Use $.ajax() since it is more flexible than $.getScript
+  // Return the jqXHR object so we can chain callbacks
+  return jQuery.ajax(options);
+};
+
+
+/**
  * call function if exist
  * @param  {[type]} _func [description]
  * @return {[type]}       [description]
@@ -676,6 +697,7 @@ function completeProfileFill(_e, _target, _this)
  */
 function detectStep(_name)
 {
+	var firstTime = (!_name);
 	if(!_name && window.location.hash)
 	{
 		// _name = 'step-' + (window.location.hash).substr(1);
@@ -712,7 +734,7 @@ function detectStep(_name)
 			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
 			break;
 	}
-	changeStep(sthis);
+	changeStep(sthis, firstTime);
 }
 
 
@@ -721,17 +743,20 @@ function detectStep(_name)
  * @param  {[type]} _name [description]
  * @return {[type]}       [description]
  */
-function changeStep(_name)
+function changeStep(_name, _first)
 {
 	switch(_name)
 	{
 		default:
-		case 'step-add':
 		case 'step1':
+		case 'step-add':
 			$('.stepAdd').slideDown();
 			$('.stepFilter').slideUp();
 			$('.stepPublish').slideUp();
-			window.location.hash = 'step1';
+			if(!_first)
+			{
+				window.location.hash = 'step1';
+			}
 			break;
 
 		case 'step-filter':
@@ -1075,6 +1100,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// import needed js
 	$import('lib/rangeSlider.js', 'runRangeSlider', 150);
 	$import('lib/Sortable.min.js', 'setSortable', 200);
+	$import('lib/tagDetector.js', 'runTagDetector', 400);
 
 	simulateTreeNavigation();
 
@@ -1558,21 +1584,6 @@ function runAllScripts()
 	// load needed js file
 	loadFiles();
 }
-
-
-jQuery.cachedScript = function(url, options)
-{
-  // Allow user to set any option except for dataType, cache, and url
-  options = $.extend( options || {},
-  {
-    dataType: "script",
-    cache: true,
-    url: url
-  });
-  // Use $.ajax() since it is more flexible than $.getScript
-  // Return the jqXHR object so we can chain callbacks
-  return jQuery.ajax(options);
-};
 
 
 /**
