@@ -118,7 +118,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
 img,.unselect{-webkit-user-select:none;user-select:none}
-.rtl .flip-rtl{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
+.rtl .flip-rtl,.ltr .flip-ltr{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
 .in{width:65%;margin:0 auto}
 .in.small{width:55%}
@@ -352,13 +352,14 @@ footer .is-open i {transform:rotate(180deg);}
 .customers-container.customers-target{padding-top:0;background-color:transparent}
 
 
-/************************************************************** features box */
-#features-box{padding:50px;text-align:center}
-#features-box img{width:100%;max-width:250px;margin:0 auto;margin-bottom:2em}
-#features-box h4{font-size:1.8em;font-weight:700;margin-bottom:.5em}
-#features-box h4 a{color:#0C7C78}
-#features-box h4 a:hover,#features-box h4 a:focus{color:#00667a}
-#features-box p{color:#AAA;margin:0 auto;font-size:1.4em;width:90%}
+/************************************************************** triplet */
+.triplet{display:-webkit-flex;display:-ms-flexbox;display:flex;padding:50px}
+.triplet .triplet-item{-webkit-flex:1;flex:1;text-align:center}
+.triplet .triplet-item img{width:100%;max-width:250px;margin-bottom:2em}
+.triplet .triplet-item h4{font-size:1.8em}
+.triplet .triplet-item h4 a{color:#0c7c78}
+.triplet .triplet-item h4 a:hover,.triplet .triplet-item h4 a:focus{color:#00667a}
+.triplet .triplet-item p{width:85%;margin:0 auto;color:#aaa;font-size:1.4em}
 
 
 /************************************************************** inestimable */
