@@ -5,8 +5,7 @@
 {% spaceless %}
    <div class="main pad box">
     {%include template.progress%}
-     <div class="row auto">
-
+     <div class="row auto" id='question-add'>
 
        <div class="stepAdd">
         {%block step1%}1{%endblock%}
@@ -19,8 +18,6 @@
        <div class="stepPublish">
         {%block step3%}3{%endblock%}
        </div>
-
- 
 
      </div>
      {{block('feature_btn')}}

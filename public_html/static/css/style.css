@@ -1058,7 +1058,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .rtl .ultra .delete{right:auto;left:-35px;}
 .ultra .delete:hover,.ultra .delete:focus{background-color:#B03D3D;color:#E7E7E7;opacity:1}
 
-/*#question-add>div{display:none;}*/
+#question-add>div{display:none;}
 
 /************************************************************** element */
 ::-webkit-input-placeholder{color:#d8dad0;}
