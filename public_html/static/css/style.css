@@ -602,6 +602,7 @@ li.sortable-placeholder{border:1px dashed #CCC}
 .sortable li{margin-bottom:1em}
 /*.sortable li .element{margin:0}*/
 .sortable .element .title:before{position:absolute;top:0;left:-12px;display:inline-block;width:12px;height:100%;content:'';border:1px dashed #00667a;transition:.3s;opacity:0}
+.rtl .sortable .element .title:before{left:inherit;right:-12px;}
 .sortable .element .title:hover:before{opacity:1}
 .sortable .isChosen{opacity:0.7;}
 
