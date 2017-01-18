@@ -1,5 +1,7 @@
 <?php
 namespace content_api\home;
+use \lib\utility;
+use \lib\debug;
 
 class controller extends  \mvc\controller
 {
@@ -13,6 +15,15 @@ class controller extends  \mvc\controller
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
 
+
+	/**
+	 * the user id
+	 *
+	 * @var        integer
+	 */
+	public $user_id = 0;
+
+
 	/**
 	 * the short url
 	 *
@@ -24,6 +35,8 @@ class controller extends  \mvc\controller
 	{
 		\lib\storage::set_api(true);
 		parent::__construct();
+
+		$this->api_key();
 	}
 
 	/**
@@ -44,9 +57,55 @@ class controller extends  \mvc\controller
 			if(method_exists($this, $route_method))
 			{
 				$this->model_name = '\content_api\\' . $class . '\model';
+				// set user id
+				$this->model()->user_id = $this->user_id ;
+
 				call_user_func([$this, $route_method]);
 			}
 		}
+	}
+
+
+	/**
+	 * { function_description }
+	 */
+	public function api_key()
+	{
+
+		if(utility::header('authorization') || utility::header('Authorization'))
+		{
+			$api_key = utility::header('authorization') ? utility::header('authorization') : utility::header('Authorization');
+			$arg_check =
+			[
+				'option_cat'   => 'token',
+				'option_value' => $api_key,
+				'limit'        => 1
+			];
+			$check = \lib\db\options::get($arg_check);
+
+			if(empty($check) || !$check)
+			{
+				\lib\debug::error('Authorization failed', 'authorization', 'access');
+			}
+
+			if(isset($check['key']))
+			{
+				\lib\db\options::insert([
+				'option_cat' => 'token',
+				'option_value' => $api_key,
+				'limit' => 1
+				]);
+			}
+
+
+		}
+		else
+		{
+			\lib\debug::error('Authorization not found', 'authorization', 'access');
+		}
+
+		// var_dump(utility::request());
+		// exit();
 	}
 }
 ?>
