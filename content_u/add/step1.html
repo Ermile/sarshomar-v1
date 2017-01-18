@@ -3,16 +3,16 @@
  <div class="menu-inside">
   <input type="radio" name="poll_type" id="type_multiple" value="multiple" {% if poll.type == 'multiple' or poll.type is null%}checked{%endif%} >
   <label for="type_multiple"><i class="icon-check"></i> <span>{%trans "Multiple Choice"%}</span></label>
+{%if false%}
   <input type="radio" name="poll_type" id="type_descriptive" value="descriptive" {% if poll.type == 'descriptive' %}checked{%endif%}>
   <label for="type_descriptive"><i class="icon-pencil"></i> <span>{%trans "Descriptive"%}</span></label>
   <input type="radio" name="poll_type" id="type_notification" value="notification" {% if poll.type == 'notification' %}checked{%endif%}>
   <label for="type_notification"><i class="icon-bell"></i> <span>{%trans "Notification"%}</span></label>
-{%if false%}
   <input type="radio" name="poll_type" id="type_upload" value="upload" {% if poll.type == 'upload' %}checked{%endif%}>
   <label for="type_upload"><i class="icon-upload"></i> <span>{%trans "Upload"%}</span></label>
-{%endif%}
   <input type="radio" name="poll_type" id="type_range" value="range" {% if poll.type == 'range' %}checked{%endif%}>
   <label for="type_range"><i class="icon-star"></i> <span>{%trans "Range / Star"%}</span></label>
+{%endif%}
  </div>
 </div>
 {%endblock%}
