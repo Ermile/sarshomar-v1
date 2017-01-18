@@ -3,8 +3,10 @@
     .customers-container .customer {width: 75%;}
     header #header-profile #add-question .header-link-text{display:none}
     header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
+    header #header-quick>a {padding: 0 5px; font-size: 10px;}
     .society-dist .span7 {display: none;}
     .society-dist .span5 {width: 100%;}
+    
 }
 
 
