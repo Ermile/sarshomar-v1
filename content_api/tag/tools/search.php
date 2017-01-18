@@ -12,7 +12,7 @@ trait search
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public function search($_args)
+	public function search($_args = null)
 	{
 		$result = [];
 		$search = utility::request("search");
