@@ -1,5 +1,10 @@
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-
+    .special-heading::after {display: none;}
+    .customers-container .customer {width: 75%;}
+    header #header-profile #add-question .header-link-text{display:none}
+    header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
+    .society-dist .span7 {display: none;}
+    .society-dist .span5 {width: 100%;}
 }
 
 
