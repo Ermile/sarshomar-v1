@@ -42,9 +42,6 @@ class model extends \content_u\home\model
 			switch (utility::post("list"))
 			{
 				case 'profile':
-
-					break;
-
 				case 'tag':
 				case 'cat':
 					$result = \lib\db\terms::search($search, ['term_type' => utility::post("list"), 'end_limit' => 10]);
