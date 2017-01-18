@@ -1,15 +1,13 @@
-<?php 
-namespace content_api\fav_like;
-use \lib\utility;
+<?php
+namespace content_api\like\tools;
 use \lib\debug;
+use \lib\utility;
 
-class model extends \content_api\home\model
+trait fav_like
 {
-	/**
-	 * set a fav or like
-	 */
 	public function set($_type)
 	{
+
 		if(!$this->login("id"))
 		{
 			return debug::error(T_("Please login to save a :type", ['type' => $_type]), false, 'permission');
@@ -32,28 +30,6 @@ class model extends \content_api\home\model
 
 		$poll_id = \lib\utility\shortURL::decode(utility::request('id'));
 		return \lib\db\polls::$_type($this->login('id'), $poll_id, ['set_or_unset' => $type]);
-	}
-
-
-	/**
-	 * Posts post favorites.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_favorites($_args)
-	{
-		return $this->set("fav");
-	}
-
-
-	/**
-	 * Posts post favorites.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_like($_args)
-	{
-		return $this->set("like");
 	}
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
 namespace content_api\feedback;
 
-class controller extends  \mvc\controller
-{	
-	public function _route()
+trait controller
+{
+	public function route_feedback()
 	{
 		$url = \lib\router::get_url(0);
 	}

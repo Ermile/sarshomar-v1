@@ -1,21 +1,8 @@
 <?php
 namespace content_api\poll;
 
-class controller extends  \mvc\controller
-{	
-	public function __construct()
-	{
-		\lib\storage::set_api(true);
-		parent::__construct();
-	}
-
-	/**
-	 * the short url
-	 *
-	 * @var        string
-	 */
-	public static $shortURL = \lib\utility\shortURL::ALPHABET;
-	
+trait controller
+{
 
 	/**
 	 * route url like this:
@@ -24,24 +11,24 @@ class controller extends  \mvc\controller
 	 * put poll/[shorturl] to edit poll
 	 * delete poll/[shorturl] to delete poll
 	 */
-	public function _route()
+	public function route_poll()
 	{
 		/**
 		 * post to add a poll
 		 */
 		$this->post("poll")->ALL("addPoll");
-		
+
 		/**
 		 * get to load poll details
 		 */
 		$this->get("poll")->ALL("getPoll");
 		$this->post("getPoll")->ALL("getPoll");
-			
+
 		/**
 		 * put to update a poll
 		 */
 		$this->put("poll")->ALL("editPoll");
-			
+
 		/**
 		 * delete to delete a poll
 		 */

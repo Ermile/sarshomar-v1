@@ -1,9 +1,9 @@
 <?php
 namespace content_api\tag;
 
-class controller extends  \mvc\controller
-{	
-	public function _route()
+trait controller
+{
+	public function route_tag()
 	{
 		$this->get("tag", false)->ALL("tag");
 		$this->post("tag")->ALL("tag");

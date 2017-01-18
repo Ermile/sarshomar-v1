@@ -1,9 +1,9 @@
 <?php
 namespace content_api\search;
 
-class controller extends  \mvc\controller
-{	
-	public function _route()
+trait controller
+{
+	public function route_search()
 	{
 		$this->get("search", false)->ALL("search");
 		$this->post("search")->ALL("search");
