@@ -24,7 +24,7 @@
   <div class="element">
    <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
    <div class="element-in">
-    <input class="input" type="text" id="title" placeholder='{%trans "Title"%}' autocomplete="off" value="{{poll.title}}">
+    <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}">
     <div class="file">
      <input type="file" id="file_title">
      <label class="label-file icon-pic" for="file_title"></label>
@@ -142,7 +142,7 @@
 
 {%block feature_other%}
 <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
- <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%} data-title='{%trans "other"%}'>
+ <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
  <label for="descriptive" class="check-box"></label>
  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
 </div>

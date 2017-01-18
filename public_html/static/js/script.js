@@ -61,7 +61,7 @@ function callFunction(_func)
  */
 function resizableTextarea()
 {
-	$(document).on('keyup', 'textarea[data-resizable]', function()
+	$(document).on('input', 'textarea[data-resizable]', function()
 	{
 		var min     = 100;
 		var max     = 500;
@@ -357,7 +357,7 @@ function checkAddOpt()
 /**
  * add new option to items
  */
-function addNewOpt(_type, _title, _group)
+function addNewOpt(_type, _title, _placeholder, _group)
 {
 	var template = $('.input-group.sortable>li:not([data-type])').eq(0).clone();
 	var num      = $('.input-group.sortable>li').length + 1;
@@ -371,7 +371,7 @@ function addNewOpt(_type, _title, _group)
 		}
 		// set title and data for special type
 		template.attr('data-type', _type);
-		template.find('.element label.title').html('<b>'+ num + '</b> '+ _title);
+		template.find('.element label.title').html('<b>'+ num + '</b> '+ _title).attr('data-pl', _placeholder);
 	}
 	else
 	{
@@ -501,7 +501,12 @@ function rearrangeSortable()
 			$(this).find('.element label.title b').text(num);
 		}
 		// set placeholder
-		$(this).find('.element .input').attr('placeholder', $(this).find('.element label.title').text());
+		var myPl = $(this).find('.element label.title').attr('data-pl');
+		if(!myPl)
+		{
+			myPl = $(this).find('.element label.title').text();
+		}
+		$(this).find('.element .input').attr('placeholder', myPl);
 		// set main input
 		$(this).find('.element .input').attr('id', 'answer' + row);
 		// set file
@@ -884,8 +889,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		showQuestionOptsDel($(this).closest('li').find('.delete'));
 	});
 
-	// on keyup and press shift+del remove current record
-	$(this).on('keyup', '.input-group.sortable li input', function(e)
+	// on input and press shift+del remove current record
+	$(this).on('input', '.input-group.sortable li input', function(e)
 	{
 		if(countQuestionOpts() > 2)
 		{
@@ -897,7 +902,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		detectPercentage();
 	});
 
-	$(this).on('change', '#title', function()
+	$(this).on('input', '#title', function()
 	{
 		detectPercentage();
 	});
@@ -908,7 +913,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		console.log(this.checked)
 		if(this.checked)
 		{
-			addNewOpt('other', $(this).attr('data-title'));
+			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-subtitle'));
 		}
 		else
 		{
@@ -920,7 +925,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$(this).on('click', '.input-group.sortable li .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('keyup', '.input-group.sortable li .delete', function(e)
+	}).on('input', '.input-group.sortable li .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
@@ -1220,7 +1225,7 @@ route('*', function ()
 {
 	var change = 0;
 
-	$(document).on('keyup', '.pollsearch', function(e)
+	$(document).on('input', '.pollsearch', function(e)
 	{
 		var val = $(this).val();
 		change  += 1;
