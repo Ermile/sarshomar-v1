@@ -37,6 +37,7 @@
  #random-chart{margin:0!important}
  #random-chart h3 a{font-weight:500}
 
+.map-container {display: none;}
  #map{display:none}
 
  .customers-container{border-top:1px solid #f4f4f4}
@@ -58,10 +59,26 @@
  #inestimable h3{font-size:1.6em}
  #inestimable h4{font-size:1.4em}
  #inestimable .vision {font-size: 2em;}
+ #inestimable a {font-size: 12px;}
+ #inestimable .special-button::before, #inestimable .special-button::after {top: -3px;font-size: 36px;}
+ #inestimable .special-button::before {left: -5px;}
+ #inestimable .special-button::after {right: -5px;}
 
  footer #footer-nav .eco{height:60px}
  footer #footer-links a{display:inline-block;margin-right:1em}
  .rtl footer #footer-links a{margin-right:0;margin-left:1em}
+ footer #footer-note {flex-wrap: wrap;}
+footer #footer-note>div {flex: 1 0 50%;order: 2;}
+footer #footer-note>.counter {flex: 0 1 100%;order: 1;}
+footer #footer-links {display: flex;flex-direction: row;flex-wrap: wrap}
+footer #footer-links nav {flex: 0 1 50%;}
+footer #footer-links nav:nth-child(2) {flex: 0 1 100%;}
+footer #footer-links #footer-news {flex: 0 1 70%;}
+footer #footer-links .enamad {flex: 0 1 30%;}
+.enamad {order: 10;}
+
+
+
 
 /************************************************************** add question */
 .page-progress {width: 100%;}
@@ -129,7 +146,11 @@
 /************************************************************** Text based */
 .special-heading:after {display: none;}
 .text-based-container {width: 100%;}
-
+.text-based .special-heading {font-size: 18px;}
+.special-heading {padding-left: 34px;}
+.rtl .special-heading {padding-left: 0;padding-right: 34px;}
+.special-heading::before {width: 40px;}
+.em {padding: 1.5em 1em;}
 
 
 
