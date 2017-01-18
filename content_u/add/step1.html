@@ -142,7 +142,7 @@
 
 {%block feature_other%}
 <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
- <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%}>
+ <input type="checkbox" name="meta_descriptive" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%} data-title='{%trans "other"%}'>
  <label for="descriptive" class="check-box"></label>
  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
 </div>

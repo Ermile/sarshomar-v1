@@ -355,38 +355,23 @@ function checkAddOpt()
 
 
 /**
- * [addNewOptOther description]
- */
-function addNewOptSpecial(_text, _toggle)
-{
-	console.log('adding...');
-	if(!_text)
-	{
-		_text = 'other';
-	}
-	// check if not exist, add new one
-	addNewOpt(_text);
-}
-
-
-/**
  * add new option to items
  */
-function addNewOpt(_title, _group)
+function addNewOpt(_type, _title, _group)
 {
-	var template = $('.input-group.sortable>li').eq(0).clone();
+	var template = $('.input-group.sortable>li:not([data-type])').eq(0).clone();
 	var num      = $('.input-group.sortable>li').length + 1;
-	if(_title)
+	if(_type)
 	{
-		var isExist = $('.input-group.sortable li[data-type='+ _title+']');
+		var isExist = $('.input-group.sortable li[data-type='+ _type+']');
 		// if this special name is exist, return false
 		if(isExist.length > 0)
 		{
 			return false;
 		}
 		// set title and data for special type
-		template.attr('data-type', _title);
-		template.find('.element label.title').text(_title);
+		template.attr('data-type', _type);
+		template.find('.element label.title').html('<b>'+ num + '</b> '+ _title);
 	}
 	else
 	{
@@ -451,18 +436,39 @@ function deleteQuestionOpts(_this)
 	var currentRowValue = $(_this).closest('li').find('input[type="text"]').val();
 	if (countQuestionOpts() > 2 && currentRowValue)
 	{
-		$(_this).closest('li').addClass('animated fadeOutSide').slideUp(200, function()
-		{
-			// set focus to next input
-			$(this).closest('li').next().find('input').focus();
-			// remove element
-			$(this).remove();
-			// rearrange question opts
-			rearrangeSortable();
-			// recalc percentage of progress bar
-			detectPercentage();
-		});
+		deleteOpt(_this);
 	}
+}
+
+function deleteOpt(_this)
+{
+	var myEl = $(_this);
+	// if wanna delete specefic type of li, set it
+	if(typeof _this === 'string')
+	{
+		myEl = $('.input-group.sortable li[data-type=' + _this + ']');
+	}
+	if(myEl.length != 1)
+	{
+		return false;
+	}
+
+	myEl.closest('li').addClass('animated fadeOutSide').slideUp(200, function()
+	{
+		// if have data type
+		if($(this).attr('data-type') && $(this).attr('data-type') === 'other')
+		{
+			$('#descriptive').prop('checked', false);
+		}
+		// set focus to next input
+		$(this).closest('li').next().find('input').focus();
+		// remove element
+		$(this).remove();
+		// rearrange question opts
+		rearrangeSortable();
+		// recalc percentage of progress bar
+		detectPercentage();
+	});
 }
 
 
@@ -474,19 +480,28 @@ function rearrangeSortable()
 {
 	$.each($('.input-group.sortable li'), function(key, value)
 	{
-		var row = key + 1;
-		$(this).attr('data-row', row);
+
+		var num = key + 1;
+		var row = num;
+		$(this).attr('data-row', num);
+		// if data-type isset, use it as alternative of number
+		if($(this).attr('data-type'))
+		{
+			row = $(this).attr('data-type');
+		}
 
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
 		{
-			$(this).find('.element label.title b').text(row.toString().toFarsi());
+			$(this).find('.element label.title b').text(num.toString().toFarsi());
 		}
 		else
 		{
-			$(this).find('.element label.title b').text(row);
+			$(this).find('.element label.title b').text(num);
 		}
+		// set placeholder
+		$(this).find('.element .input').attr('placeholder', $(this).find('.element label.title').text());
 		// set main input
 		$(this).find('.element .input').attr('id', 'answer' + row);
 		// set file
@@ -884,6 +899,20 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$(this).on('change', '#title', function()
 	{
 		detectPercentage();
+	});
+
+
+	$(this).on('change', '#descriptive', function()
+	{
+		console.log(this.checked)
+		if(this.checked)
+		{
+			addNewOpt('other', $(this).attr('data-title'));
+		}
+		else
+		{
+			deleteOpt('other');
+		}
 	});
 
 	// on press delete on each opt
