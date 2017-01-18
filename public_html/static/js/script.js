@@ -869,6 +869,44 @@ function simulateTreeNavigation()
 }
 
 
+/**
+ * [calcFilterPrice description]
+ * @return {[type]} [description]
+ */
+function calcFilterPrice()
+{
+	var totalEl      = $('.pay-info .price .value');
+	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
+	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
+	// var totalPerson  = $('#rangepersons').rangeSlider('to');
+	var totalPerson  = $('#rangepersons').data('range-slider');
+	if(totalPerson)
+	{
+		totalPerson = totalPerson.to;
+	}
+	else
+	{
+		totalPerson = 0;
+	}
+	// var totalPerson  = parseInt($('#rangepersons').val());
+
+	var totalPercent = 0;
+	var totalPrice   = 0;
+	$('.badge.active[data-ratio]').each(function(index, el)
+	{
+		var currentRatio = parseInt($(el).attr('data-ratio'));
+		totalPercent     += currentRatio;
+	});
+	// change percent to ratio
+	totalPercent = totalPercent/100;
+	totalPrice   = totalPerson + (totalPerson * totalPercent);
+	totalPrice   = totalPrice * basePrice;
+
+	// set value to show to enduser
+	totalEl.text(totalPrice.toLocaleString());
+}
+
+
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
@@ -967,6 +1005,13 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		$('#submit-form').attr("value", $(this).attr("send-name"));
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});
+
+
+	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
+	{
+		calcFilterPrice.call(this);
+	});
+
 }).once(function()
 {
 	// import needed js
@@ -1051,60 +1096,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 
-});
-
-
-// ************************************************************************************************************ Filter
-/**
- * [calcFilterPrice description]
- * @return {[type]} [description]
- */
-function calcFilterPrice()
-{
-	var totalEl      = $('.pay-info .price .value');
-	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
-	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
-	// var totalPerson  = $('#rangepersons').rangeSlider('to');
-	var totalPerson  = $('#rangepersons').data('range-slider');
-	if(totalPerson)
-	{
-		totalPerson = totalPerson.to;
-	}
-	else
-	{
-		totalPerson = 0;
-	}
-	// var totalPerson  = parseInt($('#rangepersons').val());
-
-	var totalPercent = 0;
-	var totalPrice   = 0;
-	$('.badge.active[data-ratio]').each(function(index, el)
-	{
-		var currentRatio = parseInt($(el).attr('data-ratio'));
-		totalPercent     += currentRatio;
-	});
-	// change percent to ratio
-	totalPercent = totalPercent/100;
-	totalPrice   = totalPerson + (totalPerson * totalPercent);
-	totalPrice   = totalPrice * basePrice;
-
-	// set value to show to enduser
-	totalEl.text(totalPrice.toLocaleString());
-}
-
-// ================================================================== @/add/7pr/filter
-// route(/\@\/add(|\/[^\/]*)$/, function()
-route(/\@\/add\/.+\/filter$/, function()
-{
-	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
-	{
-		calcFilterPrice.call(this);
-	});
-
-	// run rangeslider
-}).once(function()
-{
-	console.log('once on filter....');
+	// ================================================================== filter
 	calcFilterPrice.call(this);
 	$(this).on('click','button', function()
 	{
@@ -1123,7 +1115,11 @@ route(/\@\/add\/.+\/filter$/, function()
 		// console.log(_value);
 		calcFilterPrice.call(this);
 	});
+
 });
+
+
+
 
 // ************************************************************************************************************ Publish
 function runAutoComplete()
