@@ -78,6 +78,18 @@ function resizableTextarea()
 
 
 /**
+ * [isActiveChecker description]
+ * @return {[type]} [description]
+ */
+function isActiveChecker()
+{
+    var myLoc = window.location.href;
+    $('.isActive').removeClass('isActive');
+	$('[href$="' + myLoc+ '"]').addClass("isActive");
+}
+
+
+/**
  * [openTopNav description]
  * @return {[type]} [description]
  */
@@ -319,6 +331,7 @@ route('*', function ()
 }).once(function()
 {
 	setLanguageURL();
+	isActiveChecker();
 });
 
 
