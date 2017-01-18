@@ -932,7 +932,6 @@ function runAutoComplete()
 			console.log(xhr);
 		}
 	});
-	console.log('run...');
 	$('.dropdown').on('keydown', function(e)
 	{
 		if(e.keyCode == 13)
@@ -1058,12 +1057,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		calcFilterPrice.call(this);
 	});
-
 }).once(function()
 {
 	// import needed js
-	$import('lib/rangeSlider.js', 'runRangeSlider', 250);
-	$import('lib/Sortable.min.js', 'setSortable', 300);
+	$import('lib/rangeSlider.js', 'runRangeSlider', 150);
+	$import('lib/Sortable.min.js', 'setSortable', 200);
 
 	simulateTreeNavigation();
 
@@ -1396,37 +1394,6 @@ route('*', function ()
 });
 
 
-// -------------------------------------------------- Add Tag
-function addTag(element_id)
-{
-	list  = $('#'+ element_id).attr('data-list');
-	split = $('#'+ element_id).attr('data-split');
-
-	var tag = $('#'+ element_id);
-	var newTag = tag.val().trim();
-	if (newTag)
-	{
-		var exist = false;
-		$.each($('#'+ split).val().split(','), function (t, item)
-		{
-			if (item == newTag) { exist = t + 1; }
-		});
-		if (exist)
-		{
-			existEl = $("#" + list + " a:nth-child(" + exist + ")");
-			existEl.addClass("tag-exist");
-			setTimeout(function () { existEl.removeClass("tag-exist") }, 500);
-		}
-		else
-		{
-			$('#' + list).append("<a><i class='fa fa-times remove-tags' data-split='"+split+"'></i>" + newTag + "</a>");
-			$('#' + split).val($('#' + split).val() + newTag + ',');
-		}
-	}
-	tag.val('');
-}
-
-
 // --------------------------------- Sliders ---------------------------------
 
 function pauseEvent(e)
@@ -1601,5 +1568,5 @@ jQuery.cachedScript = function(url, options)
  */
 function loadFiles()
 {
-	$import('lib/data-response.js', 'runDataResponse', 200);
+	$import('lib/data-response.js', 'runDataResponse', 50);
 }
