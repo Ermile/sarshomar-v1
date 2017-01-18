@@ -907,6 +907,53 @@ function calcFilterPrice()
 }
 
 
+/**
+ * [runAutoComplete description]
+ * @return {[type]} [description]
+ */
+function runAutoComplete()
+{
+	$('.dropdown').autoComplete(
+	{
+		minChars: 0,
+		// source: function(term, suggest)
+		// {
+		// 	term = term.toLowerCase();
+		// 	var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
+		// 	var matches = [];
+		// 	for (i=0; i<choices.length; i++)
+		// 		if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+		// 	suggest(matches);
+		// },
+		source: function(term, response)
+		{
+			try { xhr.abort(); } catch(e){}
+			xhr = $.getJSON('/tag/', { q: term }, function(data){ response(data); });
+			console.log(xhr);
+		}
+	});
+	console.log('run...');
+	$('.dropdown').on('keydown', function(e)
+	{
+		if(e.keyCode == 13)
+		{
+			saveAutoComplete();
+			return false;
+		}
+	});
+}
+
+
+/**
+ * [saveAutoComplete description]
+ * @return {[type]} [description]
+ */
+function saveAutoComplete()
+{
+	console.log('save');
+}
+
+
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
@@ -1116,61 +1163,9 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		calcFilterPrice.call(this);
 	});
 
-});
-
-
-
-
-// ************************************************************************************************************ Publish
-function runAutoComplete()
-{
-	$('.dropdown').autoComplete(
-	{
-		minChars: 0,
-		// source: function(term, suggest)
-		// {
-		// 	term = term.toLowerCase();
-		// 	var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
-		// 	var matches = [];
-		// 	for (i=0; i<choices.length; i++)
-		// 		if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-		// 	suggest(matches);
-		// },
-		source: function(term, response)
-		{
-			try { xhr.abort(); } catch(e){}
-			xhr = $.getJSON('/tag/', { q: term }, function(data){ response(data); });
-			console.log(xhr);
-		}
-	});
-	console.log('run...');
-	$('.dropdown').on('keydown', function(e)
-	{
-		if(e.keyCode == 13)
-		{
-			saveAutoComplete();
-			return false;
-		}
-	});
-}
-
-function saveAutoComplete()
-{
-	console.log('save');
-}
-
-// ================================================================== @/add/7pr/publish
-// route(/\@\/add\/[\w.]+\/publish/, function()
-route(/\@\/add\/.+\/publish$/, function()
-{
-
-}).once(function()
-{
-	console.log('once on publish....');
+	// ================================================================== publish
 	runAutoComplete();
-	detectPercentage();
 });
-
 
 
 // ================================================================== $
