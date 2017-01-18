@@ -513,9 +513,10 @@ function rearrangeSortable()
 		// set score
 		$(this).find('.score-module .scoreVal').attr('id', 'score' + row);
 		$(this).find('.score-module label').attr('for', 'score' + row);
-
-
 	});
+
+
+	$('#multiple-range').attr('data-max', countQuestionOpts);
 }
 
 

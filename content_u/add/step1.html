@@ -172,7 +172,7 @@
 <div class="element no-pad" {%if poll.meta.choicemode == 'multi' %}{%else%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
-  <div class="range-slider multiple-range" data-type="horizontal" data-max-title='{%trans "Ultimate"%}'
+  <div class="range-slider" id='multiple-range' data-type="horizontal" data-max-title='{%trans "Ultimate"%}'
   {% if poll.meta.choice_count_min%} data-min-default="{{poll.meta.choice_count_min}}" {%endif%}
   {% if poll.meta.choice_count_max%} data-max-default="{{poll.meta.choice_count_max}}"{%endif%}
   data-min='1' data-max='2'
