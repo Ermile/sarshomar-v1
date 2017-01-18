@@ -92,7 +92,7 @@ class model extends \content_u\home\model
 					break;
 
 				default:
-					return deubg::error(T_("Type not found"));
+					return debug::error(T_("Type not found"));
 					break;
 			}
 
