@@ -416,11 +416,11 @@
 
 
 {%block feature_numbersize%}
-<div class="element no-pad" {%if poll.meta.rangemode != 'number'%}data-response-hide{%endif%}>
- <label class="title large">{%trans "Something"%}</label>
+<div class="element no-pad" data-response='meta_rangemode'
+  data-response-where='number' data-response-effect='slide'>
+ <label class="title large">{%trans "Number Size"%}</label>
  <div class="element-slider">
-  <div class="range-slider numbersize-range" data-type="horizontal" data-response='meta_rangemode'
-  data-response-where='number' data-response-effect='slide' id="meta_numbersize"
+  <div class="range-slider numbersize-range" data-type="horizontal" id="meta_numbersize"
   {% if poll.meta.numbersize_min%}
    data-min-default="{{poll.meta.numbersize_min}}"
   {%endif%}
@@ -433,13 +433,10 @@
 
 
 {%block feature_starsize%}
-<div class="element no-pad" {%if poll.meta.rangemode != 'star'%}data-response-hide{%endif%}>
- <label class="title large">{%trans "Something"%}</label>
+<div class="element no-pad" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' data-response-hide>
+ <label class="title large">{%trans "Star size"%}</label>
  <div class="element-slider">
-  <div class="range-slider starsize-range" data-type="horizontal" data-response='meta_rangemode' data-response-where='star' data-response-effect='slide' id="meta_starsize"
-  {% if poll.meta.starsize_min%}
-   data-min-default="{{poll.meta.starsize_min}}"
-  {%endif%}
+  <div class="range-slider starsize-range" data-type="horizontal" id="meta_starsize" data-infinity='min' data-max='10'
   {% if poll.meta.starsize_max%}
    data-max-default="{{poll.meta.starsize_max}}"
   {%endif%}></div>
