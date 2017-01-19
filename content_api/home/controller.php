@@ -25,6 +25,14 @@ class controller extends  \mvc\controller
 
 
 	/**
+	 * the url
+	 *
+	 * @var        <type>
+	 */
+	public $url = null;
+
+
+	/**
 	 * the short url
 	 *
 	 * @var        string
@@ -35,6 +43,8 @@ class controller extends  \mvc\controller
 	{
 		\lib\storage::set_api(true);
 		parent::__construct();
+
+		$this->url = \lib\router::get_url(0);
 
 		$this->api_key();
 	}
@@ -48,7 +58,7 @@ class controller extends  \mvc\controller
 	 */
 	public function _route()
 	{
-		$url = \lib\router::get_url(0);
+		$url = $this->url;
 		if(preg_match('/^(add|get|edit|delete)?(.*)$/', $url, $_class))
 		{
 
@@ -67,45 +77,76 @@ class controller extends  \mvc\controller
 
 
 	/**
-	 * { function_description }
+	 * check api key and set the user id
 	 */
 	public function api_key()
 	{
 
-		if(utility::header('authorization') || utility::header('Authorization'))
+		$authorization = utility::header("authorization");
+
+		if(!$authorization)
 		{
-			$api_key = utility::header('authorization') ? utility::header('authorization') : utility::header('Authorization');
-			$arg_check =
-			[
-				'option_cat'   => 'token',
-				'option_value' => $api_key,
-				'limit'        => 1
-			];
-			$check = \lib\db\options::get($arg_check);
-
-			if(empty($check) || !$check)
-			{
-				\lib\debug::error('Authorization failed', 'authorization', 'access');
-			}
-
-			if(isset($check['key']))
-			{
-				\lib\db\options::insert([
-				'option_cat' => 'token',
-				'option_value' => $api_key,
-				'limit' => 1
-				]);
-			}
-
-
-		}
-		else
-		{
-			\lib\debug::error('Authorization not found', 'authorization', 'access');
+			$authorization = utility::header("Authorization");
 		}
 
-		// var_dump(utility::request());
-		// exit();
+		if(!$authorization)
+		{
+			return debug::error('Authorization not found', 'authorization', 'access');
+		}
+
+
+		$api_key = $authorization;
+
+		$arg_check =
+		[
+			'option_cat'   => 'token',
+			'option_value' => $api_key,
+			'limit'        => 1
+		];
+
+		$check = \lib\db\options::get($arg_check);
+
+		if(empty($check) || !$check)
+		{
+			return debug::error('Authorization failed', 'authorization', 'access');
+		}
+
+		if($check && !isset($check['key']))
+		{
+			return debug::error('Authorization failed (key not found)', 'authorization', 'access');
+		}
+
+		$key = $check['key'];
+
+		switch ($key)
+		{
+			case 'user':
+				if($this->url == 'loginToken' || $this->url == 'guestToken')
+				{
+					return debug::error(T_("Access denide"), 'authorization', 'access');
+				}
+				break;
+
+			case 'api_key':
+				if($this->url != 'loginToken' && $this->url != 'guestToken')
+				{
+					return debug::error(T_("Access denide"), 'authorization', 'access');
+				}
+				break;
+
+			default:
+				return debug::error(T_("Invalid authorization kye"), 'authorization', 'access');
+				break;
+		}
+
+		if(!isset($check['user_id']) || (isset($check['user_id']) && !$check['user_id']))
+		{
+			return debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
+		}
+
+		$user_id = $check['user_id'];
+
+		$this->user_id = $user_id;
 	}
 }
 ?>

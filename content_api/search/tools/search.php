@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace content_api\search\tools;
 use \lib\utility;
-trait search 
+trait search
 {
 	/**
 	 * Searches for the first match.
@@ -22,14 +22,14 @@ trait search
 		}
 		else
 		{
-			$meta['get_last'] = true;	
+			$meta['get_last'] = true;
 		}
 
 		if(utility::request("my_poll"))
 		{
 			$meta['my_poll'] = true;
 		}
-		
+
 		$get_count = false;
 		if(utility::request("get_count"))
 		{
@@ -41,23 +41,23 @@ trait search
 		{
 			$meta['post_language'] = utility::request("language");
 		}
-	
-		$meta['login'] = $this->login('id');
+
+		$meta['login'] = $this->user_id;
 		$result        = \lib\db\polls::search($search, $meta);
 		$tmp_result    = [];
 
 		if(is_array($result) && !$get_count)
-		{			
-			foreach ($result as $key => $value) 
+		{
+			foreach ($result as $key => $value)
 			{
-				$tmp_result[] = $this->ready_poll($value);		
+				$tmp_result[] = $this->ready_poll($value);
 			}
 		}
 		elseif($get_count)
 		{
 			return (int) $result;
 		}
-		
+
 		return $tmp_result;
 	}
 }

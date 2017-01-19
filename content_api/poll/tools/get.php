@@ -14,7 +14,7 @@ trait get
 	 */
 	public function get($_options = [])
 	{
-		$default_options = 
+		$default_options =
 		[
 			'get_filter'         => true,
 			'get_opts'           => true,
@@ -29,15 +29,10 @@ trait get
 		$poll = [];
 		if(utility::request("type"))
 		{
-			switch (utility::request("type")) 
+			switch (utility::request("type"))
 			{
 				case 'ask':
-					if(!$this->login("id"))
-					{
-						return \lib\debug::error(T_("Please login and run ask"), 'type', 'login');
-					}
-
-					$poll = \lib\db\polls::get_last($this->login("id"));
+					$poll = \lib\db\polls::get_last($this->user_id);
 					break;
 
 				case 'random':
@@ -62,12 +57,12 @@ trait get
 			{
 				return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
-			
+
 			$poll_id = \lib\utility\shortURL::decode($poll_id);
 
 			$poll    = \lib\db\polls::get_poll($poll_id);
 		}
-		
+
 		$result = $this->ready_poll($poll, $_options);
 
 		return $result;

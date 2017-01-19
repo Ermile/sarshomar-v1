@@ -1,62 +1,80 @@
 <?php
 namespace content_api\logintoken;
 use \lib\utility;
+use \lib\debug;
 
 class model extends \content_api\home\model
 {
 
+	/**
+	 * Gets the token.
+	 *
+	 * @return     <type>  The token.
+	 */
 	public function get_token()
 	{
 		return $this->token();
 	}
 
+
+	/**
+	 * Posts a token.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function post_token()
 	{
 		return $this->token();
 	}
 
+
+	/**
+	 * make token
+	 *
+	 * @return     array  ( description_of_the_return_value )
+	 */
 	public function token()
 	{
-		return ['token' => \lib\utility::hasher('username', null, true)];
+		$username      = utility::request("mobile");
+		$authorization = utility::header("authorization") ? utility::header("authorization") : utility::header("Authorization");
+
+		$token = "~Ermile~". $user_id . "_!_". time(). ":)" . rand(1,100);
+		$token = utility::hasher($token);
+		return ['token' => $token];
 	}
 
+
+	/**
+	 * Gets the guest token.
+	 *
+	 * @return     <type>  The guest token.
+	 */
 	public function get_guest_token()
 	{
 		return $this->guest_token();
 	}
 
+
+	/**
+	 * Posts a guest token.
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function post_guest_token()
 	{
 		return $this->guest_token();
 	}
 
-	public function guest_token(){
-		if(utility::header('authorization') || utility::header('Authorization'))
-		{
-			$api_key = utility::header('authorization') ? utility::header('authorization') : utility::header('Authorization');
-			$check = \lib\db\options::get([
-				'option_cat' => 'token',
-				'option_value' => $api_key,
-				'limit' => 1
-				]);
-			if(empty($check))
-			{
-				\lib\debug::error('Authorization failed', 'authorization', 'access');
-			}
-			else
-			{
-				\lib\db\options::insert([
-				'option_cat' => 'token',
-				'option_value' => $api_key,
-				'limit' => 1
-				]);
-			}
-		}
-		else
-		{
-			\lib\debug::error('Authorization not found', 'authorization', 'access');
-		}
+
+	/**
+	 * make guest token
+	 */
+	public function guest_token()
+	{
+
 	}
+
+
 
 }
 ?>

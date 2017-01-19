@@ -8,11 +8,6 @@ trait fav_like
 	public function set($_type)
 	{
 
-		if(!$this->login("id"))
-		{
-			return debug::error(T_("Please login to save a :type", ['type' => $_type]), false, 'permission');
-		}
-
 		$type = null;
 		if(utility::request("fav") === false)
 		{
@@ -29,7 +24,7 @@ trait fav_like
 		}
 
 		$poll_id = \lib\utility\shortURL::decode(utility::request('id'));
-		return \lib\db\polls::$_type($this->login('id'), $poll_id, ['set_or_unset' => $type]);
+		return \lib\db\polls::$_type($this->user_id, $poll_id, ['set_or_unset' => $type]);
 	}
 }
 ?>

@@ -1,0 +1,36 @@
+{%extends display.main%}
+
+{%block content%}
+
+	<div class="box ltr">
+	<div class="center">
+		<h5>
+<pre>
+{%if api_key%}
+<code id="api">{{api_key}}</code>
+{%else%}
+<code id="api"><i>...Not set...</i></code>
+{%endif%}
+</pre>
+		</h5>
+	</div>
+		<form method="post" id="create">
+			<div class="element">
+				<button class="btn" type="submit" name="get_api_code" value="Get api code" >Get api code</button>
+			</div>
+		</form>
+	</div>
+{%endblock%}
+
+{%block foot_js%}
+<script type="text/javascript">
+$("#create").on("ajaxify:success", function(_xhr, _data)
+{
+	if(_data['msg']['api_key'])
+	{
+		$("#api", document).html(_data['msg']['api_key']);
+	}
+}
+);
+</script>
+{%endblock%}
