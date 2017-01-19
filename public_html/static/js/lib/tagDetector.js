@@ -1,5 +1,5 @@
 /**
- * v1.0
+ * v1.1
  */
 
 /**
@@ -8,36 +8,23 @@
  */
 function runTagDetector()
 {
-
-	$('.tagDetector .tagInput').on('keypress', function(e)
+	// handle enter
+	$(document).on('keypress', '.tagDetector .tagInput', function(e)
 	{
 		// if Enter pressed disallow it and run add func
 		if (e.which == 13)
 		{
 			addNewTags(this);
-
-			// var element_id = $(this).attr('id');
-			// addTag(element_id);
 			return false;
 		}
 	});
-
-	$('.tagDetector .tagVals').on('change', function()
-	{
-		console.log('valChanged!');
-
-		// if Enter pressed disallow it and run add func
-		// var element_id = $(this).attr('id');
-		// addTag(element_id);
-		return false;
-	});
-
+	// handle click on btn
 	$(document).on('click', '.tagDetector .tagAdd' , function ()
 	{
-		addTag(this);
+		addNewTags(this);
+		$(this).closest('.tagDetector').find('.tagInput').focus();
 		return false;
 	});
-
 }
 
 
