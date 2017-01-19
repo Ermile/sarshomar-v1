@@ -975,7 +975,7 @@ function runAutoComplete()
 		if(e.keyCode == 13)
 		{
 			saveAutoComplete();
-			return false;
+			// return false;
 		}
 	});
 }

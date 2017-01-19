@@ -22,26 +22,17 @@
 
     <div class="element dropdown no-pad">
      <label class="title large" for="article">{%trans "Article"%}</label>
-     <div class="dropdown-wrapper">
-       <input type="hidden" name="">
-       <div class="dropdown-tags">
-         <a href="#">Choice 1<i class="icon-times"></i></a>
-         <a href="#">Choice 2<i class="icon-times"></i></a>
-         <a href="#">Choice 3<i class="icon-times"></i></a>
-       </div>
-       <input class="input dropdown" name="article" id="article">
+     <div class="dropdown-wrapper tagDetector" data-box-format="<a>:tag<i class='icon-times'></i></a>">
+       <div class="dropdown-tags tagBox"></div>
+       <input class="input dropdown tagInput" name="article" id="article">
      </div>
     </div>
 
     <div class="element dropdown no-pad">
-     <label class="title large" for="tags">{%trans "Tags"%}</label>
-     <div class="dropdown-wrapper">
-       <input type="hidden" name="">
-       <div class="dropdown-tags">
-        <a href="#">Choice 1<i class="icon-times"></i></a>
-        <a href="#">Choice 2<i class="icon-times"></i></a>
-       </div>
-       <input class="input dropdown" name="tags" id="tags">
+     <label class="title large" for="keywords">{%trans "Tags"%}</label>
+     <div class="dropdown-wrapper tagDetector" data-box-format="<a>:tag<i class='icon-times'></i></a>">
+       <div class="dropdown-tags tagBox"></div>
+       <input class="input dropdown tagInput" name="tags" id="keywords">
      </div>
     </div>
 
