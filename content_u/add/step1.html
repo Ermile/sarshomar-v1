@@ -74,12 +74,14 @@
     </div>
     <div class="modules">
 {% if perm.complete_profile.admin %}
-     <div class="module profile-module" data-response='complete-profile'>
-      <label for="">{%trans "Profile"%}</label>
-      <input list="profileCats" id="profileCat{{myKey}}" placeholder='{%trans "Category"%}' data-response-realtime>
-      <input list="profileVals{{myKey}}" id="profileVal{{myKey}}" placeholder='{%trans "Key"%}' disabled data-response='profileCat{{myKey}}' data-response-call='completeProfileFill'>
-      <datalist id="profileVals{{myKey}}"></datalist>
+
+     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile'  data-box-format="<a><i class='remove'></i>:tag</a>">
+      <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
+      <input class='tagInput' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}'>
+      <input type="button" value='{%trans "Add"%}'>
+      <div class="tagBox"></div>
      </div>
+
 {%endif%}
      <div class="module score-module" data-response='meta_score' data-response-hide>
       <label for="score{{myKey}}">{%trans "Score"%}</label>
@@ -223,17 +225,7 @@
    <label for="complete-profile">{%trans "Complete Profile"%}</label>
   </div>
  </div>
-
-{{block('feature_profile_cats')}}
  {%endif%}
-{%endblock%}
-
-
-{%block feature_profile_cats%}
-<datalist id="profileCats">
- <option value='{%trans "Gender"%}' data-value='Gender' data-items='{"male":"مرد", "female": "زن"}'>
- <option value='{%trans "Education"%}' data-value='Education' data-items='["diploma", "ms", "dr"]'>
-</datalist>
 {%endblock%}
 
 

@@ -65,6 +65,16 @@ function addNewTags(_elChilds)
 	var attrBindBox       = myDetector.attr('data-bind-box');
 	var attrBindBoxFormat = myDetector.attr('data-box-format');
 	var attrBindVal       = myDetector.attr('data-bind-val');
+	var attrData          = myDetector.attr('data-val');
+	// set data until now
+	if(attrData)
+	{
+		attrData = JSON.parse(attrData);
+	}
+	else
+	{
+		attrData = [];
+	}
 	// if wanna bind box to specefic content, set it
 	if(attrBindInput)
 	{
@@ -94,19 +104,11 @@ function addNewTags(_elChilds)
 	{
 		attrBindBoxFormat = "<span>:tag</span>";
 	}
-	// get list of current vals
-	var valTags = elVals.val();
-	if(valTags)
+	// if exist in old list
+	if(attrData.indexOf(valInput) >= 0)
 	{
-		valTags = valTags.trim().split(',');
-	}
-
-	if(valTags.indexOf(valInput) > 0)
-	{
-		console.log('yes, exist');
-
+		// get element of exist tag
 		var elTagExist = elBox.find('[data-val=' + valInput + ']');
-		// existEl = $("#" + list + " a:nth-child(" + exist + ")");
 		elTagExist.addClass("isExist");
 		setTimeout(function () { elTagExist.removeClass("isExist") }, 500);
 	}
@@ -119,8 +121,10 @@ function addNewTags(_elChilds)
 		// append to boxes
 		elBox.append(elNewTag);
 		// append to array of tags
-		valTags.push(valInput);
+		attrData.push(valInput);
 		// add to textarea of elements
-		elVals.val(valTags.join());
+		elVals.val(attrData.join());
+		// add vals to detector as json
+		myDetector.attr('data-val', JSON.stringify(attrData));
 	}
 }
