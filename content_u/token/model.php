@@ -86,8 +86,8 @@ class model extends \mvc\model
 	private function create_token()
 	{
 		$api_key = "!~~!". $this->user_id. ':_$_:'. time(). "*^*". rand(2, 200);
-		$api_key = md5($api_key);
 		$api_key = utility::hasher($api_key);
+		$api_key = md5($api_key);
 		$arg =
 		[
 			'user_id'      => $this->user_id,

@@ -11,6 +11,7 @@ class controller extends  \mvc\controller
 	use \content_api\feedback\controller;
 	use \content_api\file\controller;
 	use \content_api\logintoken\controller;
+	use \content_api\guesttoken\controller;
 	use \content_api\poll\controller;
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
@@ -61,7 +62,6 @@ class controller extends  \mvc\controller
 		$url = $this->url;
 		if(preg_match('/^(add|get|edit|delete)?(.*)$/', $url, $_class))
 		{
-
 			$class = strtolower($_class[2]);
 			$route_method = strtolower('route_'.$class);
 			if(method_exists($this, $route_method))
@@ -111,26 +111,34 @@ class controller extends  \mvc\controller
 			return debug::error('Authorization failed', 'authorization', 'access');
 		}
 
-		if($check && !isset($check['key']))
+		if($check && !isset($check[0]['key']))
 		{
 			return debug::error('Authorization failed (key not found)', 'authorization', 'access');
 		}
 
-		$key = $check['key'];
+		$key = $check[0]['key'];
 
 		switch ($key)
 		{
-			case 'user':
+			case 'tmp_login':
+			case 'guest':
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{
-					return debug::error(T_("Access denide"), 'authorization', 'access');
+					return debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
+				if(!isset($check[0]['user_id']) || (isset($check[0]['user_id']) && !$check[0]['user_id']))
+				{
+					return debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
+				}
+
+				$user_id = $check[0]['user_id'];
+				$this->user_id = $user_id;
 				break;
 
 			case 'api_key':
 				if($this->url != 'loginToken' && $this->url != 'guestToken')
 				{
-					return debug::error(T_("Access denide"), 'authorization', 'access');
+					return debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
 				break;
 
@@ -139,14 +147,7 @@ class controller extends  \mvc\controller
 				break;
 		}
 
-		if(!isset($check['user_id']) || (isset($check['user_id']) && !$check['user_id']))
-		{
-			return debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
-		}
 
-		$user_id = $check['user_id'];
-
-		$this->user_id = $user_id;
 	}
 }
 ?>

@@ -5,11 +5,9 @@ trait controller
 {
 	public function route_logintoken()
 	{
-		$this->get("token", false)->ALL("loginToken");
-		$this->post("token")->ALL("loginToken");
+		$this->get("login_token", false)->ALL("loginToken");
+		$this->post("login_token")->ALL("loginToken");
 
-		$this->get("guest_token", false)->ALL("guestToken");
-		$this->post("guest_token")->ALL("guestToken");
 	}
 }
 ?>
