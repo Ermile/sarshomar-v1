@@ -212,8 +212,8 @@ header #financial-box .cost span{color:#1D9028}
 header #financial-box .financial-detail .row{display:-webkit-flex;display:flex}
 header #financial-box .financial-detail .cell{-webkit-flex:1;flex:1;text-align:center;padding:5px 2px;font-weight:700;color:#5E5E5E}
 header #financial-box .total{display:inline-block;position:relative;perspective:100px;overflow:hidden}
-header #financial-box .total .financial-detail{position:absolute;top:100%;background-color:#fff;width:100%;opacity:0;transform:rotateX(-90deg);transition:all .5s cubic-bezier(.36,-0.64,.34,1.76);left:0}
-header #financial-box .total:hover .financial-detail,header #financial-box .total.open .financial-detail{opacity:1;transform:none;transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
+header #financial-box .total .financial-detail{position:absolute;top:100%;background-color:#fff;width:100%;opacity:0;left:0;transition:all .5s}
+header #financial-box .total:hover .financial-detail,header #financial-box .total.open .financial-detail{opacity:1;transition:all .5s}
 header #financial-box .total:hover,header #financial-box .total.open{overflow-wrap:normal;overflow:visible;z-index:1}
 
 
@@ -227,7 +227,7 @@ header #financial-box .total:hover,header #financial-box .total.open{overflow-wr
 .profile .info{display:inline-block;background-color:#efefef;height:40px;overflow:hidden;padding:7px;min-width:115px;float:left;transition:.3s}
 .rtl .profile .info{float:right}
 .profile .info .role{display:block;line-height:1;font-size:9px;font-size:10px;color:#A1A0A0;cursor:default}
-.profile .profile-detail{position:absolute;top:100%;background-color:#efefef;width:100%;opacity:0;transform:rotateX(-90deg);transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
+.profile .profile-detail{position:absolute;top:100%;background-color:#efefef;width:100%;opacity:0;transition:all .5s}
 .profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#E76F6F;left:-1px}
 .rtl .profile .profile-detail::before{right:-1px}
 .profile .profile-detail a{color:#7F7F7F;text-align:center;padding:7px 0;transition:.3s}
