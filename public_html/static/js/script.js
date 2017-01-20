@@ -966,7 +966,7 @@ function runAutoComplete()
 		source: function(term, response)
 		{
 			try { xhr.abort(); } catch(e){}
-			xhr = $.getJSON('/tag/', { q: term }, function(data){ response(data); });
+			xhr = $.getJSON('', { list:'tag', q: term }, function(data){ response(data); });
 			console.log(xhr);
 		}
 	});
