@@ -6,12 +6,12 @@ use \lib\debug;
 class controller extends  \mvc\controller
 {
 	use \content_api\answer\controller;
-	use \content_api\like\controller;
 	use \content_api\fav\controller;
 	use \content_api\feedback\controller;
 	use \content_api\file\controller;
-	use \content_api\logintoken\controller;
 	use \content_api\guesttoken\controller;
+	use \content_api\like\controller;
+	use \content_api\logintoken\controller;
 	use \content_api\poll\controller;
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
@@ -120,15 +120,20 @@ class controller extends  \mvc\controller
 
 		switch ($key)
 		{
+
 			case 'tmp_login':
+				debug::error(T_("Invalid authorization kye (tmp login can not access api url)"), 'authorization', 'access');
+				break;
+
+			case 'login':
 			case 'guest':
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{
-					return debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
 				if(!isset($check[0]['user_id']) || (isset($check[0]['user_id']) && !$check[0]['user_id']))
 				{
-					return debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
+					debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
 				}
 
 				$user_id = $check[0]['user_id'];
@@ -138,16 +143,14 @@ class controller extends  \mvc\controller
 			case 'api_key':
 				if($this->url != 'loginToken' && $this->url != 'guestToken')
 				{
-					return debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
 				break;
 
 			default:
-				return debug::error(T_("Invalid authorization kye"), 'authorization', 'access');
+				debug::error(T_("Invalid authorization kye"), 'authorization', 'access');
 				break;
 		}
-
-
 	}
 }
 ?>

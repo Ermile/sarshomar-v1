@@ -56,7 +56,7 @@ class model extends \mvc\model
 			]
 		]);
 
-		$user_id = $this->login('id');
+		$this->user_id = $this->login('id');
 
 		return $this->search($_args);
 	}
