@@ -1101,6 +1101,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$import('lib/rangeSlider.js', 'runRangeSlider', 150);
 	$import('lib/Sortable.min.js', 'setSortable', 200);
 	$import('lib/tagDetector.js', 'runTagDetector', 400);
+	$import('lib/awesomplete.min.js', null, 300);
 
 	simulateTreeNavigation();
 

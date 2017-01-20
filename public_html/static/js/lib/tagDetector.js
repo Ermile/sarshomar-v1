@@ -25,8 +25,24 @@ function runTagDetector()
 		$(this).closest('.tagDetector').find('.tagInput').focus();
 		return false;
 	});
+	// on click on existing tag, show it for edit
+	$(document).on('click', '.tagDetector .tagBox span' , function ()
+	{
+		// get value of clicked tag
+		var $this      = $(this);
+		var clickedTag = $this.text().trim();
+		var myDetector = $this.closest('.tagDetector');
+		var attrData   = getTagLists(myDetector);
+		// remove from array of data
+		attrData.splice(attrData.indexOf(clickedTag), 1);
+		// set taglist
+		setTagList(myDetector, attrData);
+		// fill text in input and set focus
+		myDetector.find('.tagInput').val(clickedTag).focus();
+		// remove element
+		$this.remove();
+	});
 }
-
 
 
 /**
@@ -46,22 +62,12 @@ function addNewTags(_elChilds)
 	// get detector main elements
 	var elInput = myDetector.find('.tagInput');
 	var elBox   = myDetector.find('.tagBox');
-	var elVals  = myDetector.find('.tagVals');
 	// get bind vals
 	var attrBindInput     = myDetector.attr('data-bind-input');
 	var attrBindBox       = myDetector.attr('data-bind-box');
 	var attrBindBoxFormat = myDetector.attr('data-box-format');
-	var attrBindVal       = myDetector.attr('data-bind-val');
-	var attrData          = myDetector.attr('data-val');
-	// set data until now
-	if(attrData)
-	{
-		attrData = JSON.parse(attrData);
-	}
-	else
-	{
-		attrData = [];
-	}
+	var attrData          = getTagLists(myDetector);
+
 	// if wanna bind box to specefic content, set it
 	if(attrBindInput)
 	{
@@ -71,11 +77,6 @@ function addNewTags(_elChilds)
 	if(attrBindBox)
 	{
 		elBox = myDetector.find(attrBindBox);
-	}
-	// if wanna bind vals to specefic content, set it
-	if(attrBindVal)
-	{
-		elVals = myDetector.find(attrBindVal);
 	}
 	// get value of tag input
 	var valInput = elInput.val().trim();
@@ -109,9 +110,49 @@ function addNewTags(_elChilds)
 		elBox.append(elNewTag);
 		// append to array of tags
 		attrData.push(valInput);
-		// add to textarea of elements
-		elVals.val(attrData.join());
-		// add vals to detector as json
-		myDetector.attr('data-val', JSON.stringify(attrData));
+		// set tagList
+		setTagList(myDetector, attrData);
 	}
+}
+
+/**
+ * [getTagLists description]
+ * @param  {[type]} _detector [description]
+ * @return {[type]}           [description]
+ */
+function getTagLists(_detector)
+{
+	var attrData = _detector.attr('data-val');
+	// set data until now
+	if(attrData)
+	{
+		attrData = JSON.parse(attrData);
+	}
+	else
+	{
+		attrData = [];
+	}
+
+	return attrData;
+}
+
+
+/**
+ * [setTagList description]
+ * @param {[type]} _detector [description]
+ * @param {[type]} _data     [description]
+ */
+function setTagList(_detector, _data)
+{
+	var elVals      = _detector.find('.tagVals');
+	var attrBindVal = _detector.attr('data-bind-val');
+	// if wanna bind vals to specefic content, set it
+	if(attrBindVal)
+	{
+		elVals = _detector.find(attrBindVal);
+	}
+	// add to textarea of elements
+	elVals.val(_data.join());
+	// add vals to detector as json
+	_detector.attr('data-val', JSON.stringify(_data));
 }

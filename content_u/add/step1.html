@@ -75,9 +75,9 @@
     <div class="modules">
 {% if perm.complete_profile.admin %}
 
-     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile'  data-box-format="<a><i class='remove'></i>:tag</a>">
+     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile'>
       <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
-      <input class='tagInput' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}'>
+      <input class='tagInput awesomplete' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-list="Java, JavaScript, PHP, Python">
       <input type="submit" class="tagAdd" value='{%trans "Add"%}'>
       <div class="tagBox"></div>
      </div>
