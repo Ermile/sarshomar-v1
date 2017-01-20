@@ -121,11 +121,11 @@ class controller extends  \mvc\controller
 		switch ($key)
 		{
 
-			case 'tmp_login':
-				debug::error(T_("Invalid authorization kye (tmp login can not access api url)"), 'authorization', 'access');
-				break;
+			// case 'tmp_login':
+			// 	debug::error(T_("Invalid authorization kye (tmp login can not access api url)"), 'authorization', 'access');
+			// 	break;
 
-			case 'login':
+			case 'user_token':
 			case 'guest':
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{
