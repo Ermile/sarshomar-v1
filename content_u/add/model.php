@@ -8,9 +8,21 @@ class model extends \content_u\home\model
 	use filter\model;
 	use publish\model;
 
+	public function get_add($_args)
+	{
+		if($this->term_list())
+		{
+			return;
+		}
+	}
+
+
 	public function get_edit($_args)
 	{
-
+		if($this->term_list())
+		{
+			return;
+		}
 	}
 
 
@@ -35,15 +47,15 @@ class model extends \content_u\home\model
 
 	private function term_list()
 	{
-		if(utility::post("list"))
+		if(utility::get("list"))
 		{
 			utility::$REQUEST = new utility\request(
 				[
 					'method' => 'array',
 					'request' =>
 					[
-						'type'   => utility::post("list"),
-						'search' => utility::post("q")
+						'type'   => utility::get("list"),
+						'search' => utility::get("q")
 					]
 				]
 			);

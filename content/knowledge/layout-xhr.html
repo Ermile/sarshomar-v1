@@ -23,7 +23,7 @@
     </span>
 {%endif%}
     <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
-    <span class="title"><a href="{{url.prefix}}/{{value.url}}">{{value.title|raw}}</a></span>
+    <span class="title"><a href="{{value.url}}">{{value.title|raw}}</a></span>
     <span class="comments-count">{{value.comment_count | persian}}</span>
     <span class="votes-count">{{value.total | persian}}</span>
     <span class="date">{{value.date_modified| jdate('Y-m-d')}}</span>

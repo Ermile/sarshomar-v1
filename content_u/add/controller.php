@@ -34,7 +34,7 @@ class controller extends \content_u\home\controller
 		}
 
 		// need less to load eny thing
-		$this->get(false, false)->SERVER("/^add$/");
+		$this->get("add", false)->SERVER("/^add$/");
 
 		// add new poll
 		$this->post("add")->SERVER("/^add$/");
@@ -57,7 +57,7 @@ class controller extends \content_u\home\controller
 
 		// edit publish data
 		// $this->post("publish")->SERVER("/^add\/([". self::$shortURL. "]+)\/publish$/");
-		
+
 		// for add survey
 		// $this->get("survey", "survey")->SERVER("/^add\/(.*)$/");
 	}
