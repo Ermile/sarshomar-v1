@@ -66,7 +66,13 @@ function addNewTags(_elChilds)
 	var attrBindInput     = myDetector.attr('data-bind-input');
 	var attrBindBox       = myDetector.attr('data-bind-box');
 	var attrBindBoxFormat = myDetector.attr('data-box-format');
+	var attrLimit         = parseInt(myDetector.attr('data-limit'));
 	var attrData          = getTagLists(myDetector);
+
+	if(attrData.length >= attrLimit)
+	{
+		return 'reach limit';
+	}
 
 	// if wanna bind box to specefic content, set it
 	if(attrBindInput)

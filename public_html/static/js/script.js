@@ -951,6 +951,21 @@ function calcFilterPrice()
  */
 function runAutoComplete()
 {
+	// $('')
+
+	var term = 'ا';
+	try { xhr.abort(); } catch(e){}
+	var xhr = $.getJSON('', { list:'tag', q: term }, function(data)
+	{
+		if(data && data.msg && data.msg.list)
+		{
+			var list = data.msg.list;
+			console.log(list);
+		}
+	});
+
+
+	return true;
 	$('.dropdown').autoComplete(
 	{
 		minChars: 0,
