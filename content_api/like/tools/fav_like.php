@@ -20,10 +20,10 @@ trait fav_like
 
 		if(!preg_match("/^[". \lib\utility\shortURL::ALPHABET. "]+$/", utility::request("id")))
 		{
-			return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
-		$poll_id = \lib\utility\shortURL::decode(utility::request('id'));
+		$poll_id = utility\shortURL::decode(utility::request('id'));
 		return \lib\db\polls::$_type($this->user_id, $poll_id, ['set_or_unset' => $type]);
 	}
 }

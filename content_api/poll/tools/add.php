@@ -1,6 +1,7 @@
 <?php
 namespace content_api\poll\tools;
 use \lib\utility;
+use \lib\debug;
 
 trait add
 {
@@ -16,13 +17,7 @@ trait add
 	{
 		if(utility::request() == '' || is_null(utility::request()))
 		{
-			return \lib\debug::error(T_("Invalid input"), 'input', 'arguments');
-		}
-
-		//	check user id
-		if(!$this->login("id"))
-		{
-			return \lib\debug::error(T_("Please login to insert a poll"));
+			return debug::error(T_("Invalid input"), 'input', 'arguments');
 		}
 
 		/**
@@ -38,7 +33,7 @@ trait add
 			}
 			else
 			{
-				return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
 		}
 

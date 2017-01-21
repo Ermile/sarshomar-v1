@@ -1,6 +1,8 @@
 <?php
 namespace content_api\poll\tools;
 use \lib\utility;
+use \lib\debug;
+use \lib\db;
 
 trait get
 {
@@ -32,15 +34,15 @@ trait get
 			switch (utility::request("type"))
 			{
 				case 'ask':
-					$poll = \lib\db\polls::get_last($this->user_id);
+					$poll = db\polls::get_last($this->user_id);
 					break;
 
 				case 'random':
-					$poll = \lib\db\polls::get_random();
+					$poll = db\polls::get_random();
 					break;
 
 				default:
-					return \lib\debug::error(T_("Invalid parametr type"), 'type', 'arguments');
+					return debug::error(T_("Invalid parametr type"), 'type', 'arguments');
 					break;
 			}
 		}
@@ -50,17 +52,17 @@ trait get
 
 			if(!$poll_id)
 			{
-				return \lib\debug::error(T_("poll id not found"), 'id', 'arguments');
+				return debug::error(T_("poll id not found"), 'id', 'arguments');
 			}
 
 			if(!preg_match("/^[". utility\shortURL::ALPHABET ."]+$/", $poll_id))
 			{
-				return \lib\debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
 
-			$poll_id = \lib\utility\shortURL::decode($poll_id);
+			$poll_id = utility\shortURL::decode($poll_id);
 
-			$poll    = \lib\db\polls::get_poll($poll_id);
+			$poll    = db\polls::get_poll($poll_id);
 		}
 
 		$result = $this->ready_poll($poll, $_options);

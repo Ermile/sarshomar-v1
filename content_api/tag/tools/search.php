@@ -48,7 +48,7 @@ trait search
 
 						if(isset($value['id']))
 						{
-							$id = \lib\utility\shortURL::encode($value['id']);
+							$id = utility\shortURL::encode($value['id']);
 						}
 
 						if(isset($value['title']))
@@ -69,7 +69,7 @@ trait search
 				break;
 
 			default:
-				return debug::error(T_("Type not found"));
+				return debug::error(T_("Type not found"), 'type', 'arguments');
 				break;
 		}
 		return $result;

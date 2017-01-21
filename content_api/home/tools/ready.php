@@ -1,10 +1,12 @@
-<?php 
+<?php
 namespace content_api\home\tools;
+use \lib\utility;
+use \lib\debug;
 
 trait ready
 {
-	public $shortURL = \lib\utility\shortURL::ALPHABET;
-	
+	public $shortURL = utility\shortURL::ALPHABET;
+
 	/**
 	 * ready poll record to show
 	 *
@@ -15,7 +17,7 @@ trait ready
 	 */
 	public function ready_poll($_poll_data, $_options = [])
 	{
-		$default_options = 
+		$default_options =
 		[
 			'get_filter'         => false,
 			'get_opts'           => false,
@@ -29,59 +31,59 @@ trait ready
 		if(isset($_poll_data['id']))
 		{
 			$poll_id          = $_poll_data['id'];
-			$_poll_data['id'] = \lib\utility\shortURL::encode($_poll_data['id']);
+			$_poll_data['id'] = utility\shortURL::encode($_poll_data['id']);
 		}
 
 		if(!$poll_id)
 		{
-			return \lib\debug::error(T_("Poll not found"));
+			return debug::error(T_("Poll not found"), "id", 'arguments');
 		}
 
 		if(isset($_poll_data['user_id']))
 		{
-			$_poll_data['user_id'] = \lib\utility\shortURL::encode($_poll_data['user_id']);
+			$_poll_data['user_id'] = utility\shortURL::encode($_poll_data['user_id']);
 		}
 
 		if(isset($_poll_data['parent']))
 		{
-			$_poll_data['parent'] = \lib\utility\shortURL::encode($_poll_data['parent']);
+			$_poll_data['parent'] = utility\shortURL::encode($_poll_data['parent']);
 		}
 
 		if(isset($_poll_data['survey']))
 		{
-			$_poll_data['survey'] = \lib\utility\shortURL::encode($_poll_data['survey']);
+			$_poll_data['survey'] = utility\shortURL::encode($_poll_data['survey']);
 		}
 
 		if(isset($_poll_data['sarshomar']) && $_poll_data['sarshomar'])
 		{
 			$_poll_data['sarshomar'] = true;
 		}
-			
+
 		if(isset($_poll_data['is_answered']) && $_poll_data['is_answered'])
-		{			
-			$_poll_data['is_answered'] = true;	
+		{
+			$_poll_data['is_answered'] = true;
 		}
-		
+
 		if(isset($_poll_data['my_fav']) && $_poll_data['my_fav'])
-		{			
-			$_poll_data['my_fav'] = true;	
+		{
+			$_poll_data['my_fav'] = true;
 		}
-		
+
 		if(isset($_poll_data['my_like']) && $_poll_data['my_like'])
-		{			
-			$_poll_data['my_like'] = true;	
+		{
+			$_poll_data['my_like'] = true;
 		}
-		
+
 		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null && $poll_id)
 		{
 			$_poll_data['tree'] = [];
-			$_poll_data_tree = \lib\utility\poll_tree::get($poll_id);
+			$_poll_data_tree = utility\poll_tree::get($poll_id);
 
 			if($_poll_data_tree && is_array($_poll_data_tree))
 			{
 				$opt = array_column($_poll_data_tree, 'value');
 				$_poll_data['tree']['answers']   = is_array($opt) ? $opt : [$opt];
-				$_poll_data['tree']['parent_id'] = \lib\utility\shortURL::encode($_poll_data['parent']);
+				$_poll_data['tree']['parent_id'] = utility\shortURL::encode($_poll_data['parent']);
 				$_poll_data['tree']['title']     = \lib\db\polls::get_poll_title($_poll_data['parent']);
 			}
 		}
@@ -94,16 +96,16 @@ trait ready
 
 		if($_options['get_filter'] && $poll_id)
 		{
-			$filters               = \lib\utility\postfilters::get_filter($poll_id);
+			$filters               = utility\postfilters::get_filter($poll_id);
 			$filters['member']     = \lib\db\ranks::get($poll_id, 'member');
-			$filters               = array_filter($filters);	
+			$filters               = array_filter($filters);
 			$_poll_data['filters'] = $filters;
 		}
 
 		if($_options['get_public_result'] && $poll_id)
 		{
-			$public_result = \lib\utility\stat_polls::get_telegram_result($poll_id, true);
-			$_poll_data['result'] = $public_result;	
+			$public_result = utility\stat_polls::get_telegram_result($poll_id, true);
+			$_poll_data['result'] = $public_result;
 		}
 
 
@@ -139,7 +141,7 @@ trait ready
 		{
 			$_poll_data = array_filter($_poll_data);
 		}
-		
+
 		return $_poll_data;
 	}
 }

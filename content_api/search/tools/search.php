@@ -37,7 +37,7 @@ trait search
 			$meta['get_count'] = true;
 		}
 
-		if(utility::request("language") && \lib\utility\location\languages::check(utility::request("language")))
+		if(utility::request("language") && utility\location\languages::check(utility::request("language")))
 		{
 			$meta['post_language'] = utility::request("language");
 		}
