@@ -439,6 +439,8 @@ function addNewOpt(_type, _title, _placeholder, _group)
 	{
 		$(this).removeClass("animated fadeInDown").dequeue();
 	});
+
+	$(document).trigger('addNewOpt', [template]);
 }
 
 
