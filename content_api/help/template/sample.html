@@ -1,20 +1,31 @@
-<div class="main pad text_based" id="abc">
-  <div class="box">
-  <ul id="list">
-    <li><a href="help/#addPoll" >ثبت یک نظر سنجی</a></li>
-    <li><a href="help/#search" >جستجو در نظر سنجی ها</a></li>
-    <li><a href="help/#getPoll" >دریافت نظر سنجی</a></li>
-    <li><a href="help/#addAnswer" >ثبت پاسخ یک سوال</a></li>
-    <li><a href="help/#fav" >ثبت علاقه مندی یک سوال</a></li>
-    <li><a href="help/#like" >لایک سوال</a></li>
+<aside class="api-quick-access">
+  <ul>
+    <li class="header">نظرسنجی‌</li>
+    <a href="help/#addPoll" data-direct>
+      <li>ثبت یک نظر سنجی</li>
+    </a>
+    <a href="help/#search" data-direct>
+      <li>جستجو در نظر سنجی ها</li>
+    </a>
+    <a href="help/#getPoll" data-direct>
+      <li>دریافت نظر سنجی</li>
+    </a>
+    <a href="help/#addAnswer" data-direct>
+      <li>ثبت پاسخ یک سوال</li>
+    </a>
+    <a href="help/#fav" data-direct>
+      <li>ثبت علاقه مندی یک سوال</li>
+    </a>
+    <a href="help/#like" data-direct>
+      <li>لایک سوال</li>
+    </a>
   </ul>
-{%include 'content_api/help/template/poll/add.html'%}
-{%include 'content_api/help/template/poll/get.html'%}
-{%include 'content_api/help/template/answer/answer.html'%}
-{%include 'content_api/help/template/search/search.html'%}
-{%include 'content_api/help/template/fav/fav.html'%}
-{%include 'content_api/help/template/like/like.html'%}
-{%include 'content_api/help/template/login/guest_token.html'%}
-{%include 'content_api/help/template/login/login_token.html'%}
+</aside>
+<div class="main pad text-based" id="abc">
+  <div class="box">
+    {%include 'content_api/help/template/poll/add.html'%} {%include 'content_api/help/template/poll/get.html'%} {%include 'content_api/help/template/answer/answer.html'%}
+    {%include 'content_api/help/template/search/search.html'%} {%include 'content_api/help/template/fav/fav.html'%} {%include
+    'content_api/help/template/like/like.html'%} {%include 'content_api/help/template/login/guest_token.html'%} {%include
+    'content_api/help/template/login/login_token.html'%}
   </div>
 </div>
