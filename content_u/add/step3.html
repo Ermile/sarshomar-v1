@@ -24,11 +24,7 @@
      <label class="title large" for="article">{%trans "Article"%}</label>
      <div class="dropdown-wrapper tagDetector">
        <div class="dropdown-tags tagBox"></div>
-       <input class="input dropdown tagInput awesomplete" id="article" list="listArticle">
-        <datalist id="listArticle">
-          <option>Java<span>5</span></option>
-          <option>JavaScript</option>
-        </datalist>
+       <input class="input dropdown tagInput autoList" id="article" data-find='article'>
      </div>
     </div>
 
@@ -36,7 +32,7 @@
      <label class="title large" for="tag">{%trans "Tags"%}</label>
      <div class="dropdown-wrapper tagDetector" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
        <div class="dropdown-tags tagBox"></div>
-       <input class="input dropdown tagInput" id="tag">
+       <input class="input dropdown tagInput autoList" id="tag" data-find='tag'>
      </div>
     </div>
 
