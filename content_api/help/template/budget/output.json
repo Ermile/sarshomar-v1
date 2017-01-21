@@ -1,0 +1,13 @@
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": {
+      "gift": 200,
+      "real": 100,
+      "prize": 300,
+      "transfer": 400,
+      "sum": 1000
+    }
+  }
+}

@@ -7,6 +7,7 @@ use \lib\utility\token;
 class controller extends  \mvc\controller
 {
 	use \content_api\answer\controller;
+	use \content_api\budget\controller;
 	use \content_api\fav\controller;
 	use \content_api\feedback\controller;
 	use \content_api\file\controller;
@@ -14,6 +15,7 @@ class controller extends  \mvc\controller
 	use \content_api\like\controller;
 	use \content_api\logintoken\controller;
 	use \content_api\poll\controller;
+	use \content_api\price\controller;
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
 
