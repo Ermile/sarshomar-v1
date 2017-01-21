@@ -1,6 +1,8 @@
-<?php 
+<?php
 namespace lib\db\polls\insert;
 use \lib\debug;
+use \lib\utility;
+use \lib\db;
 
 trait check
 
@@ -15,28 +17,28 @@ trait check
 		if(self::$draft_mod)
 		{
 			// in draft mod we not check every thing
-			return;	
+			return;
 		}
 
-		if(!\lib\debug::$status)
+		if(!debug::$status)
 		{
 			return;
 		}
 
 		$words = [];
-		$poll = \lib\db\polls::get_poll(self::$poll_id);
+		$poll = db\polls::get_poll(self::$poll_id);
 
 		if(!isset($poll['title']) || (isset($poll['title']) && !$poll['title'] || $poll['title'] == '~'))
 		{
 			return debug::error(T_("Poll title not set"), 'title', 'arguments');
 		}
-		
+
 		if(!isset($poll['language']) || (isset($poll['language']) && !$poll['language']))
 		{
 			return debug::error(T_("Poll language not set"), 'language', 'arguments');
 		}
 
-		$answers = \lib\db\pollopts::get(self::$poll_id);
+		$answers = db\pollopts::get(self::$poll_id);
 
 		if(!$answers || !is_array($answers))
 		{
@@ -54,19 +56,19 @@ trait check
 
 		if(
 			(
-				in_array('upload', $type) || 
-				in_array('range', $type) || 
+				in_array('upload', $type) ||
+				in_array('range', $type) ||
 				in_array('notification', $type)
-			) && 
+			) &&
 			count($answers) > 1
 		 )
 		{
 			return debug::error(T_("Can not set more than 1 answers in upload,range and notification mod"), 'answers', 'arguments');
 		}
-		
+
 		$answers_have_attachment = false;
 
-		foreach ($answers as $key => $value) 
+		foreach ($answers as $key => $value)
 		{
 			if(!isset($value['type']) || (isset($value['type']) && !$value['type']))
 			{
@@ -117,7 +119,7 @@ trait check
 		{
 			array_push($words, $poll['title']);
 		}
-		
+
 		if(isset($poll['content']))
 		{
 			array_push($words, $poll['content']);
@@ -127,21 +129,35 @@ trait check
 		{
 			array_push($words, $poll['meta']);
 		}
-		
+
 		// save and check words
-		if(!\lib\db\words::save_and_check($words))
+		if(!db\words::save_and_check($words))
 		{
-			\lib\db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
-			\lib\debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
+			db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
+			debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
 			if(!self::$update_mod)
-			{			
+			{
 				// plus the userrank of usespamword
-				\lib\db\userranks::plus(self::$args['user'], 'usespamword');
+				db\userranks::plus(self::$args['user'], 'usespamword');
 			}
 		}
 
+		$check_duplicate_poll_title =
+		[
+			'post_title' => $poll['title'],
+			'user_id'    => self::$user_id,
+			'my_poll'    => true,
+		];
+
+		$check_duplicate_poll_title = self::search(null, $check_duplicate_poll_title);
+
+		if(count($check_duplicate_poll_title) > 1)
+		{
+			debug::warn(T_("Duplicate poll title of your poll"), 'title', 'arguments');
+		}
+
 		// $option_key   = [];
-		// $poll_options = \lib\db\posts::get_post_meta(self::$poll_id);
+		// $poll_options = db\posts::get_post_meta(self::$poll_id);
 		// if(is_array($poll_options))
 		// {
 		// 	$option_key = array_column($poll_options, 'option_key');
@@ -159,11 +175,11 @@ trait check
 		// 	{
 		// 		$in      = 'poll';
 		// 		$element = 'file';
-		// 		$group   = 'arguments';	
+		// 		$group   = 'arguments';
 		// 	}
 
-		// 	\lib\db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
-		// 	\lib\debug::warn(T_("You are using multi media in :in, your poll is awaiting moderation", ['in' => $in]), $element, $group);
+		// 	db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
+		// 	debug::warn(T_("You are using multi media in :in, your poll is awaiting moderation", ['in' => $in]), $element, $group);
 		// }
 	}
 }
