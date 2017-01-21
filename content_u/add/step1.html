@@ -79,7 +79,10 @@
       <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
       <div class="tagBox"></div>
       <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile'>
-      <input type="submit" class="tagAdd" value='{%trans "Add"%}'>
+      <!-- <input type="submit" class="tagAdd" value='{%trans "Add"%}'> -->
+      <button type="submit" class="tagAdd">
+       <i class="icon-plus"></i>
+      </button>
      </div>
 
 {%endif%}
