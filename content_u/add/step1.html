@@ -55,8 +55,8 @@
 <ul class="input-group sortable drag-big">
 {%for key, value in answers%}
 {% set myKey = key + 1 %}
- <li class="multi-line">
-  <div class="ultra" data-row="{{myKey}}">
+ <li class="multi-line" data-row="{{myKey}}">
+  <div class="ultra">
    <div class="data">
     <div class="element">
      <label class="title small" for="answer{{myKey}}">{%trans "Answer"%} <b>{{myKey | persian}}</b></label>

@@ -425,11 +425,14 @@ function addNewOpt(_type, _title, _placeholder, _group)
 	// }
 
 	// clear all input and textareas
-	template.find("input, textarea").val('');
+	template.find("input:not([type='submit']), textarea").val('');
 	template.find("input[type='checkbox']").attr('checked', false);
 	// remove image and audio
 	template.find('.preview img').remove();
 	template.find('.audio audio').remove();
+	// clear tagbox
+	template.find('.tagDetector').attr('data-val', '');
+	template.find('.tagDetector .tagBox').html('');
 
 	$('.input-group.sortable').append(template);
 	// rearrange after add new element
@@ -525,7 +528,6 @@ function rearrangeSortable()
 		{
 			row = $(this).attr('data-type');
 		}
-
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
 		if($('html').attr('lang') === 'fa')
