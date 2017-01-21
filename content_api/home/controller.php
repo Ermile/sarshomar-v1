@@ -2,6 +2,7 @@
 namespace content_api\home;
 use \lib\utility;
 use \lib\debug;
+use \lib\utility\token;
 
 class controller extends  \mvc\controller
 {
@@ -94,49 +95,25 @@ class controller extends  \mvc\controller
 			return debug::error('Authorization not found', 'authorization', 'access');
 		}
 
+		$token = token::get_type($authorization);
 
-		$api_key = $authorization;
-
-		$arg_check =
-		[
-			'option_cat'   => 'token',
-			'option_value' => $api_key,
-			'limit'        => 1
-		];
-
-		$check = \lib\db\options::get($arg_check);
-
-		if(empty($check) || !$check)
+		switch ($token)
 		{
-			return debug::error('Authorization failed', 'authorization', 'access');
-		}
-
-		if($check && !isset($check[0]['key']))
-		{
-			return debug::error('Authorization failed (key not found)', 'authorization', 'access');
-		}
-
-		$key = $check[0]['key'];
-
-		switch ($key)
-		{
-
-			// case 'tmp_login':
-			// 	debug::error(T_("Invalid authorization kye (tmp login can not access api url)"), 'authorization', 'access');
-			// 	break;
-
 			case 'user_token':
+
 			case 'guest':
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
-				if(!isset($check[0]['user_id']) || (isset($check[0]['user_id']) && !$check[0]['user_id']))
+
+				$user_id = token::get_user_id($authorization);
+
+				if(!$user_id)
 				{
 					debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
 				}
 
-				$user_id = $check[0]['user_id'];
 				$this->user_id = $user_id;
 				break;
 
@@ -151,6 +128,7 @@ class controller extends  \mvc\controller
 				debug::error(T_("Invalid authorization kye"), 'authorization', 'access');
 				break;
 		}
+
 	}
 }
 ?>
