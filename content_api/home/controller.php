@@ -97,6 +97,11 @@ class controller extends  \mvc\controller
 
 		$token = token::get_type($authorization);
 
+		if(!debug::$status)
+		{
+			return false;
+		}
+
 		switch ($token)
 		{
 
@@ -122,10 +127,6 @@ class controller extends  \mvc\controller
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
-				break;
-
-			default:
-				debug::error(T_("Invalid authorization kye"), 'authorization', 'access');
 				break;
 		}
 
