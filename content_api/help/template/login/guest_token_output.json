@@ -1,3 +1,9 @@
-Accept: application/json
-Content-Type: application/json
-Authorization: $2y$07$vq9u5REtJNk7IWQZb.gVf.faVeMOr0B7bfwf35J9ftS8s2sFD5WQi
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": {
+      "token": "$2y$07$RZdXr8Y2nboe7wwDvBx6nuBG1aR7QiGTObmrE1KyR.Hd1S2ITkWMq"
+    }
+  }
+}

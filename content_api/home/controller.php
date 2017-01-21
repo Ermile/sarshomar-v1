@@ -99,8 +99,8 @@ class controller extends  \mvc\controller
 
 		switch ($token)
 		{
-			case 'user_token':
 
+			case 'user_token':
 			case 'guest':
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{

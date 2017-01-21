@@ -13,6 +13,12 @@ trait get_token
 	public function token($_guest = false)
 	{
 
+		$guest_token = null;
+		if(utility::request("guest"))
+		{
+			$guest_token = utility::request("guest");
+		}
+
 		$authorization = utility::header("authorization") ? utility::header("authorization") : utility::header("Authorization");
 
 		$token = null;
@@ -22,7 +28,7 @@ trait get_token
 		}
 		else
 		{
-			$token = \lib\utility\token::create_tmp_login($authorization);
+			$token = \lib\utility\token::create_tmp_login($authorization, $guest_token);
 		}
 		return ['token' => $token];
 	}
