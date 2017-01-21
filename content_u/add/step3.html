@@ -38,10 +38,10 @@
 
     <div class="element no-pad">
      <label class="title large" for="language">{%trans "Language"%}</label>
-     <input class="input" type="text" name="language" id="language" value="{{language}}">
+     <!-- <input class="input" type="text" name="language" id="language" value="{{language}}"> -->
 
      {% set lang_list = langList({'all' : true}) %}
-     <select name="ui-language">
+     <select name="ui-language" class="input">
       <option value="">{%trans "Default language"%}</option>
       {%for key, value in lang_list%}
       <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
