@@ -1,5 +1,5 @@
 /**
- * v1.1
+ * v1.2
  */
 
 /**
@@ -102,7 +102,7 @@ function addNewTags(_elChilds)
 	if(attrData.indexOf(valInput) >= 0)
 	{
 		// get element of exist tag
-		var elTagExist = elBox.find('[data-val=' + valInput + ']');
+		var elTagExist = elBox.find('[data-val="' + valInput + '"]');
 		elTagExist.addClass("isExist");
 		setTimeout(function () { elTagExist.removeClass("isExist") }, 500);
 	}

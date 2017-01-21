@@ -60,6 +60,7 @@ class model extends \content_u\home\model
 				]
 			);
 			$result = $this->search();
+			$result = json_encode($result);
 			debug::msg("list", $result);
 			return true;
 		}

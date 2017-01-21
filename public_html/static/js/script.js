@@ -945,67 +945,6 @@ function calcFilterPrice()
 }
 
 
-/**
- * [runAutoComplete description]
- * @return {[type]} [description]
- */
-function runAutoComplete()
-{
-	// $('')
-
-	var term = 'ا';
-	try { xhr.abort(); } catch(e){}
-	var xhr = $.getJSON('', { list:'tag', q: term }, function(data)
-	{
-		if(data && data.msg && data.msg.list)
-		{
-			var list = data.msg.list;
-			console.log(list);
-		}
-	});
-
-
-	return true;
-	$('.dropdown').autoComplete(
-	{
-		minChars: 0,
-		// source: function(term, suggest)
-		// {
-		// 	term = term.toLowerCase();
-		// 	var choices = ['ActionScript', 'AppleScript', 'Asp', 'PHP', 'CSS', 'JS'];
-		// 	var matches = [];
-		// 	for (i=0; i<choices.length; i++)
-		// 		if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-		// 	suggest(matches);
-		// },
-		source: function(term, response)
-		{
-			try { xhr.abort(); } catch(e){}
-			xhr = $.getJSON('', { list:'tag', q: term }, function(data){ response(data); });
-			console.log(xhr);
-		}
-	});
-	$('.dropdown').on('keydown', function(e)
-	{
-		if(e.keyCode == 13)
-		{
-			saveAutoComplete();
-			// return false;
-		}
-	});
-}
-
-
-/**
- * [saveAutoComplete description]
- * @return {[type]} [description]
- */
-function saveAutoComplete()
-{
-	console.log('save');
-}
-
-
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
@@ -1115,8 +1054,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// import needed js
 	$import('lib/rangeSlider.js', 'runRangeSlider', 150);
 	$import('lib/Sortable.min.js', 'setSortable', 200);
+	$import('lib/awesomplete.min.js', 'fillAuto', 300);
 	$import('lib/tagDetector.js', 'runTagDetector', 400);
-	$import('lib/awesomplete.min.js', null, 300);
 
 	simulateTreeNavigation();
 
@@ -1217,7 +1156,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// ================================================================== publish
-	runAutoComplete();
+	// runAutoComplete();
 });
 
 

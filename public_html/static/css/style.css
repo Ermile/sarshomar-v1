@@ -1454,6 +1454,14 @@ code{margin:0}
 		cursor: pointer;
 	}
 
+	.awesomplete > ul > li var {
+		float:right;
+	}
+
+	.rtl .awesomplete > ul > li var {
+		float:left;
+	}
+
 	.awesomplete > ul > li:hover {
 		background: hsl(200, 40%, 80%);
 		color: black;
