@@ -111,10 +111,16 @@ trait order
 						WHERE
 							polldetails.user_id = $_user_id AND
 							polldetails.post_id = posts.post_parent AND
-							CONCAT('opt_', polldetails.opt) IN
+							polldetails.opt IN
 								(
 									SELECT
-										IFNULL(options.option_value, CONCAT('opt_', polldetails.opt))
+										(
+											CASE options.option_value
+												WHEN 'true' 	THEN polldetails.opt
+												WHEN 'skipped' 	THEN 0
+												ELSE options.option_value
+											END
+										)
 									FROM
 										options
 									WHERE
