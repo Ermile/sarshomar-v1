@@ -11,21 +11,23 @@
  <div class="help-quick-access">
   <h4>{%trans "Quick Access"%}</h4>
   <nav>
+<!--    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
-   <a href="#">{%trans "Link"%}</a>
-   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a> -->
   </nav>
  </div>
 </aside>
 <div class="main help-main-page">
  <div class="box help-main-box">
   <div class="row">
-   <div class="search-box">
-    <input type="text" placeholder='Search in Help Center'>
-     <button class="search-button"><i class="icon-search"></i></button>
-   </div>
+     <div class="search-box">
+      <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+      <label class="search-label">
+       <i class="icon-search"></i>
+      </label>
+     </div>
    <div class="search-result" data-xhr='search-result' id="search-result"></div>
   </div>
 
