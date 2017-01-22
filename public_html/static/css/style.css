@@ -1176,7 +1176,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 /************************************************************** dropdown */
 .element.dropdown{flex-wrap:wrap}
-.element.dropdown .dropdown-wrapper{-webkit-flex:1;flex:1;background-color:#efefef;padding:0 10px;display:flex;flex-wrap:wrap;position:relative}
+.element.dropdown .dropdown-wrapper{display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1;flex:1;background-color:#efefef;padding:0 10px;flex-wrap:wrap;position:relative}
 .element.dropdown .dropdown-wrapper .input:focus{background-color:#EFEFEF;color:#777}
 
 .tagDetector{display:-webkit-inline-flex;display:inline-flex;flex-wrap:wrap}
@@ -1190,6 +1190,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .rtl .tagDetector .tagAdd{margin-left:0;margin-right:5px}
 .tagDetector .tagAdd:hover,.tagDetector .tagAdd:focus{background-color:#0e7d7a}
 .tagDetector .tagAdd i{vertical-align:middle}
+
+.tagDetector .tagBox{display:-webkit-flex;display:-ms-flexbox;display:flex;flex-wrap:wrap}
 
 
 /************************************************************** element slider */
