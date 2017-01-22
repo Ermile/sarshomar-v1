@@ -35,12 +35,13 @@ class units
 		[
 			'user_id'    => $_user_id,
 			'option_cat' => "user_detail_". $_user_id,
-			'option_key' => "unit"
+			'option_key' => "unit",
+			'limit'      => 1,
 		];
 		$user_unit = \lib\db\options::get($where);
-		if($user_unit && isset($user_unit[0]['value']))
+		if($user_unit && isset($user_unit['value']))
 		{
-			return $user_unit[0]['value'];
+			return $user_unit['value'];
 		}
 		return false;
 	}

@@ -45,7 +45,7 @@ class polls
 		LEFT JOIN ranks ON ranks.post_id = posts.id
 	";
 			// (
-			// select 
+			// select
 			// GROUP_CONCAT(
 			// 	  JSON_OBJECT(
 			// 		'key' , pollopts.key,
@@ -59,10 +59,10 @@ class polls
 			// 		'attachment' , pollopts.attachment_id,
 			// 		'attachment_type' , pollopts.attachmenttype
 			// 	  )
-			// 	) 
+			// 	)
 			// from pollopts
-			// 	WHERE 
-			// 		pollopts.post_id = posts.id 
+			// 	WHERE
+			// 		pollopts.post_id = posts.id
 			// ) AS `answers`
 
 // SELECT
@@ -79,8 +79,8 @@ class polls
 // 								'\"attachment\":\"', 		pollopts.attachment_id , 	'\",',
 // 								'\"attachment_type\":\"', 	pollopts.attachmenttype , 	'\",',
 // 				 			'}')
-// 				 			) 
-// 				FROM 
+// 				 			)
+// 				FROM
 // 					pollopts
 
 	/**
@@ -190,7 +190,8 @@ class polls
 			'option_cat'    => 'poll_'. $_poll_id,
 			'option_key'    => 'meta',
 			'option_value'  => $_meta,
-			'option_status' => 'enable'
+			'option_status' => 'enable',
+			'limit'		    => 1,
 		];
 
 		$result = \lib\db\options::get($where);

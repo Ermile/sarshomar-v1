@@ -138,7 +138,6 @@ class ask
 				]);
 			if(!empty($port))
 			{
-				$port = $port[0];
 				$options['subport'] = $port['id'];
 			}
 		}

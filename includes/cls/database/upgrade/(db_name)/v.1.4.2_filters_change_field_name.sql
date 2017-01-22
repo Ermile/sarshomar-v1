@@ -1,0 +1,1 @@
+ALTER TABLE `filters` CHANGE `usercount` `count` INT(10) UNSIGNED NOT NULL DEFAULT '0';

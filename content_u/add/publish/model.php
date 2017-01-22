@@ -75,7 +75,7 @@ trait model
 			}
 			// save tag to this poll
 			$useage_arg = [];
-			foreach ($tags_id as $key => $value) 
+			foreach ($tags_id as $key => $value)
 			{
 
 				$useage_arg[] =
@@ -200,13 +200,15 @@ trait model
 		$enable  = ['option_status' => 'enable'];
 		$where =
 		[
-			'post_id'	   => $this->poll_survey_id,
+			'post_id'      => $this->poll_survey_id,
 			'option_cat'   => 'homepage',
 			'option_key'   => 'chart',
-			'option_value' => $this->poll_survey_id
+			'option_value' => $this->poll_survey_id,
+			'limit'        => 1,
 		];
 
 		$result = \lib\db\options::get($where);
+		unset($where['limit']);
 		if(!empty($result))
 		{
 			\lib\db\options::update_on_error($disable, $where);

@@ -1,7 +1,7 @@
 <?php
 namespace content_u\add\publish;
 
-trait view 
+trait view
 {
 
 	/**
@@ -44,10 +44,11 @@ trait view
 			{
 				$where =
 				[
-					'post_id'	   => $poll['id'],
+					'post_id'      => $poll['id'],
 					'option_cat'   => 'homepage',
 					'option_key'   => 'chart',
-					'option_value' => $poll['id']
+					'option_value' => $poll['id'],
+					'limit'        => 1
 				];
 				$result = \lib\db\options::get($where);
 				if($result)

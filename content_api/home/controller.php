@@ -18,6 +18,7 @@ class controller extends  \mvc\controller
 	use \content_api\calcprice\controller;
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
+	use \content_api\temptoken\controller;
 
 
 	/**
@@ -25,7 +26,7 @@ class controller extends  \mvc\controller
 	 *
 	 * @var        integer
 	 */
-	public $user_id = 0;
+	public $user_id = null;
 
 
 	/**
@@ -34,6 +35,14 @@ class controller extends  \mvc\controller
 	 * @var        <type>
 	 */
 	public $url = null;
+
+
+	/**
+	 * the authorization
+	 *
+	 * @var        <type>
+	 */
+	public $authorization = null;
 
 
 	/**
@@ -71,8 +80,8 @@ class controller extends  \mvc\controller
 			{
 				$this->model_name = '\content_api\\' . $class . '\model';
 				// set user id
-				$this->model()->user_id = $this->user_id ;
-
+				$this->model()->user_id = (int) $this->user_id;
+				$this->model()->permission();
 				call_user_func([$this, $route_method]);
 			}
 		}
@@ -111,6 +120,7 @@ class controller extends  \mvc\controller
 				if($this->url == 'loginToken' || $this->url == 'guestToken')
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+					return false;
 				}
 
 				$user_id = token::get_user_id($authorization);
@@ -118,22 +128,26 @@ class controller extends  \mvc\controller
 				if(!$user_id)
 				{
 					debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
+					return false;
 				}
 
 				$this->user_id = $user_id;
 				break;
 
 			case 'api_key':
-				if($this->url != 'loginToken' && $this->url != 'guestToken')
+				if($this->url != 'tempToken' && $this->url != 'guestToken' && $this->url != 'loginToken')
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+					return false;
 				}
 				break;
 
 			default :
 				debug::error(T_("Invalid token"), 'authorization', 'access');
-
+				return false;
 		}
+
+		$this->authorization = $authorization;
 
 	}
 }

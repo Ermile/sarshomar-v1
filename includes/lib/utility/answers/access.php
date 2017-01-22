@@ -141,21 +141,23 @@ trait access
 			'post_id'    => $_poll_id,
 			'user_id'    => $_user_id,
 			'option_cat' => "update_user_$_user_id",
-			'option_key' => "update_result_$_poll_id"
+			'option_key' => "update_result_$_poll_id",
 		];
 		if($_answer !== [])
 		{
 			\lib\db\options::plus($where);
 		}
 
+		$where['limit'] = 1;
+
 		$update_count = \lib\db\options::get($where);
 
-		if(!$update_count || !is_array($update_count) || !isset($update_count[0]['value']))
+		if(!$update_count || !is_array($update_count) || !isset($update_count['value']))
 		{
 			return self::status(true)->set_message(T_("No problem"));
 		}
 
-		$update_count = intval($update_count[0]['value']);
+		$update_count = intval($update_count['value']);
 		if($update_count > $count)
 		{
 			return self::status(false)->set_opt($_answer)->set_result($old_answer)->set_error_code(3006);

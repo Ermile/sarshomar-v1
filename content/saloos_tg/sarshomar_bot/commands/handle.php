@@ -18,9 +18,9 @@ class handle
 		if(empty($q)){
 			\lib\db\options::insert(['option_cat' => 'on_push', 'option_key' => 'telegram', 'option_value' => $update_time]);
 		}
-		elseif($q[0]['value'] != $update_time)
+		elseif($q['value'] != $update_time)
 		{
-			\lib\db\options::update(['option_value' => $update_time], $q[0]['id']);
+			\lib\db\options::update(['option_value' => $update_time], $q['id']);
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
 		}
 		bot::$defaultText = T_('Not Found');

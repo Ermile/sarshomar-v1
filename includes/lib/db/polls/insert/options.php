@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace lib\db\polls\insert;
 use \lib\debug;
 
 trait options
 {
 	protected static function insert_options()
-	{		
+	{
 		// save meta range_timing_maxs
 		if(isset(self::$args['options']['range_timing_max']))
 		{
@@ -31,7 +31,7 @@ trait options
 		{
 			if(self::$args['options']['choice_count_max'] && !is_numeric(self::$args['options']['choice_count_max']))
 			{
-				return debug::error(T_("Invalid arguments choice_count_max"), 'choice_count_max', 'arguments');	
+				return debug::error(T_("Invalid arguments choice_count_max"), 'choice_count_max', 'arguments');
 			}
 			self::save_options('choice_count_max', self::$args['options']['choice_count_max']);
 		}
@@ -117,7 +117,7 @@ trait options
 				self::save_options('title_attachment', false);
 			}
 			else
-			{	
+			{
 				// upload new file
 				$upload_name_path = 'upload_name';
 
@@ -135,7 +135,7 @@ trait options
 				];
 
 				$file_title = \lib\utility\upload::upload($upload_args);
-				
+
 				if(\lib\debug::get_msg("result"))
 				{
 					self::save_options('title_attachment',  \lib\debug::get_msg("result"));
@@ -168,7 +168,7 @@ trait options
 			}
 			// save tag to this poll
 			$useage_arg = [];
-			foreach ($tags_id as $key => $value) 
+			foreach ($tags_id as $key => $value)
 			{
 				$useage_arg[] =
 				[
@@ -203,11 +203,12 @@ trait options
 		[
 			'post_id'       => self::$poll_id,
 			'option_cat'    => 'poll_'. self::$poll_id,
-			'option_key'    => $_key
+			'option_key'    => $_key,
+			'limit'			=> 1,
 		];
 
 		$check = \lib\db\options::get($option_insert);
-
+		unset($option_insert['limit']);
 		if($check)
 		{
 			$where                          = $option_insert;

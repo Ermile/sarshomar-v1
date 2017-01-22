@@ -10,9 +10,9 @@ trait fav_like
 	 */
 	public static function fav_like($_type, $_user_id, $_poll_id, $_options = [])
 	{
-		$default_options = 
+		$default_options =
 		[
-			'set_or_unset' => null, 
+			'set_or_unset' => null,
 			'return_debug' => true
 		];
 
@@ -22,7 +22,7 @@ trait fav_like
 		{
 			return debug::error(T_("Poll not selected"), 'id', 'arguments');
 		}
-		
+
 		$poll = \lib\db\polls::get_poll($_poll_id);
 
 		if(!$poll)
@@ -53,16 +53,18 @@ trait fav_like
 		$cat = 'user_detail_'. $_user_id;
 		$args =
 		[
-			'post_id'       => $_poll_id,
-			'user_id'       => $_user_id,
-			'option_cat'    => $cat,
-			'option_key'    => $_type,
-			'option_value'  => $_poll_id
+			'post_id'      => $_poll_id,
+			'user_id'      => $_user_id,
+			'option_cat'   => $cat,
+			'option_key'   => $_type,
+			'option_value' => $_poll_id,
+			'limit'        => 1,
 		];
 
 		$where = $args;
 
 		$exist_option_record = \lib\db\options::get($args);
+		unset($args['limit']);
 
 		if(!$exist_option_record)
 		{
@@ -86,7 +88,7 @@ trait fav_like
 		{
 			if($_options['set_or_unset'] === null)
 			{
-				if(isset($exist_option_record[0]['status']) && $exist_option_record[0]['status'] == 'disable')
+				if(isset($exist_option_record['status']) && $exist_option_record['status'] == 'disable')
 				{
 					$args['option_status'] = 'enable';
 				}
@@ -155,13 +157,14 @@ trait fav_like
 			'option_cat'    => $cat,
 			'option_key'    => $_type,
 			'option_value'  => $_poll_id,
-			'option_status' => 'enable'
+			'option_status' => 'enable',
+			'limit'         => 1,
 		];
 		$exist_option_record = \lib\db\options::get($args);
 
-		if(isset($exist_option_record[0]['status']))
+		if(isset($exist_option_record['status']))
 		{
-			if($exist_option_record[0]['status'] == 'disable')
+			if($exist_option_record['status'] == 'disable')
 			{
 				return false;
 			}

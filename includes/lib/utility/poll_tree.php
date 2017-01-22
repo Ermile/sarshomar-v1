@@ -43,7 +43,7 @@ class poll_tree
 		}
 
 		$opt = true;
-		
+
 		if(isset($_args['opt']))
 		{
 			$opt = $_args['opt'];
@@ -76,7 +76,7 @@ class poll_tree
 			$parent_poll_opt = [];
 		}
 
-		foreach ($opt as $key => $value) 
+		foreach ($opt as $key => $value)
 		{
 			if($value !== true && $value != 'skipped' && !in_array($value, $parent_poll_opt))
 			{
@@ -85,15 +85,18 @@ class poll_tree
 
 			$option_insert =
 			[
-				'post_id'       => $child,
-				'option_cat'    => 'poll_'. $child,
-				'option_key'    => 'tree_'. $parent,
-				'option_value'  => $value
+				'post_id'      => $child,
+				'option_cat'   => 'poll_'. $child,
+				'option_key'   => 'tree_'. $parent,
+				'option_value' => $value,
+				'limit'        => 1,
 			];
 			$check = \lib\db\options::get($option_insert);
+			unset($option_insert['limit']);
 
 			if($check)
 			{
+
 				$where                          = $option_insert;
 				$option_insert['option_status'] = 'enable';
 				$option_result = \lib\db\options::update_on_error($option_insert, $where);

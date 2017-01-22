@@ -283,14 +283,15 @@ class sync
 		[
 			'user_id'      => $old_user_id,
 			'option_cat'   => 'telegram',
-			'option_value' => 'id'
+			'option_value' => 'id',
+			'limit' 	   => 1,
 		];
 		$telegram_details = \lib\db\options::get($telegram_details);
 		if($telegram_details && is_array($telegram_details))
 		{
-			if(isset($telegram_details[0]['meta']))
+			if(isset($telegram_details['meta']))
 			{
-				$telegram_details = $telegram_details[0]['meta'];
+				$telegram_details = $telegram_details['meta'];
 				if(isset($telegram_details['first_name']))
 				{
 					\lib\utility\profiles::set_profile_data($new_user_id, ['firstname' => $telegram_details['first_name']]);

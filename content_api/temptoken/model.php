@@ -1,7 +1,5 @@
 <?php
-namespace content_api\logintoken;
-use \lib\utility;
-use \lib\debug;
+namespace content_api\temptoken;
 
 class model extends \content_api\home\model
 {
@@ -11,9 +9,9 @@ class model extends \content_api\home\model
 	 *
 	 * @return     <type>  The token.
 	 */
-	public function get_login_token()
+	public function get_temp_token()
 	{
-		return $this->check_verify();
+		return $this->token();
 	}
 
 
@@ -22,9 +20,9 @@ class model extends \content_api\home\model
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function post_login_token()
+	public function post_temp_token()
 	{
-		return $this->check_verify();
+		return $this->token();
 	}
 
 }

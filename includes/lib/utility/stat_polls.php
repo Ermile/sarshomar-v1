@@ -164,7 +164,7 @@ class stat_polls
 			SELECT
 				filters.gender AS `gender`,
 				filters.range AS `age_range`,
-				SUM(filters.usercount) AS 'count'
+				SUM(filters.count) AS 'count'
 			FROM
 				filters
 			WHERE

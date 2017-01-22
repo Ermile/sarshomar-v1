@@ -19,18 +19,33 @@ trait get_token
 			$guest_token = utility::request("guest");
 		}
 
-		$authorization = utility::header("authorization") ? utility::header("authorization") : utility::header("Authorization");
-
 		$token = null;
 		if($_guest)
 		{
-			$token = \lib\utility\token::create_guest($authorization);
+			$token = \lib\utility\token::create_guest($this->authorization);
 		}
 		else
 		{
-			$token = \lib\utility\token::create_tmp_login($authorization, $guest_token);
+			$token = \lib\utility\token::create_tmp_login($this->authorization, $guest_token);
 		}
 		return ['token' => $token];
+	}
+
+
+	/**
+	 * check verified temp token or no
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function check_verify()
+	{
+		$temp_token = utility::request("temp_token");
+		if(!$temp_token)
+		{
+			debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+			return false;
+		}
+		return utility\token::check_verify($temp_token);
 	}
 
 }
