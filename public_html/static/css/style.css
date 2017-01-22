@@ -235,7 +235,7 @@ header #financial-box .total:hover,header #financial-box .total.open{overflow-wr
 
 
 /************************************************************** footer */
-footer{border-style:solid;border-width:8px 0 0;-moz-border-image:url(../images/border.png) 8 8 0 stretch;-webkit-border-image:url(../images/border.png) 8 8 0 stretch;-o-border-image:url(../images/border.png) 8 8 0 stretch;border-image:url(../images/border.png) 8 8 0 stretch;background-color:#083942;padding-top:2.5em}
+footer{border-style:solid;border-width:8px 0 0;-moz-border-image:url(../images/border.png) 8 8 0 stretch;-webkit-border-image:url(../images/border.png) 8 8 0 stretch;-o-border-image:url(../images/border.png) 8 8 0 stretch;border-image:url(../images/border.png) 8 8 0 stretch;background-color:#083942;padding-top:2.5em;position: relative;}
 footer .container{padding:0 2%}
 
 /* footer-nav */
@@ -1424,7 +1424,8 @@ code{margin:0}
 .api-help .url-methods ul li:last-child {margin-bottom: 0;}
 .api-help table code {font-size: 14px;}
 .api-help .description {font-size: 1.2em;}
-.api-help .note {margin-bottom: 30px;color: #373737;background: #cee5ef;margin: 2em 0;padding: 25px;border-right: 3px solid #2c9ab7;}
+.api-help .note {margin-bottom: 30px;color: #373737;background: #cee5ef;margin: 2em 0;padding: 25px;border-left: 3px solid #2c9ab7;}
+.rtl .api-help .note {border-left:0;border-right: 3px solid #2c9ab7;}
 .api-help .note h2:not(.special-heading) {margin-bottom: 0;padding-right: 0;border-right: 0;}
 .api-help .note p {margin-bottom: 0;font-size: 1.3em;}
 .api-help .url-methods ul li .delete {color: #F44336;}
