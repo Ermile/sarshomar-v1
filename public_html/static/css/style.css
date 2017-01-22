@@ -1437,7 +1437,7 @@ code{margin:0}
 .api-sample .show-sample label {cursor: pointer;}
 .show-sample {text-align: center;font-size: 1.3em;}
 .api-sample legend {background: #607D8B;padding: 1px 8px;border-radius: 2px;margin-right: 8px;color: #fff;}
-fieldset.api-sample {border: 2px solid #607D8B;border-radius: 2px;padding: 1em;background: white;margin-bottom: 4em;}
+fieldset.api-sample {border: 2px solid #607D8B;border-radius: 2px;padding: 5px 10px 10px 10px;background: white;margin-bottom: 4em;}
 code {border-radius: 2px;}
 
 
