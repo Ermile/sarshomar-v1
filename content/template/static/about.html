@@ -7,8 +7,8 @@
 
 
 {%block content%}
-   <div class="main pad text-based">
-    <div class="box">
+   <div class="main text-based">
+    <div class="box pad">
      <h2 class="special-heading">{%trans "About Us"%}</h2>
      <div class="text-based-container">
 
@@ -55,26 +55,25 @@
         <p>{%trans "You can use, according to your need, such unique characteristics as questioning the target statistical population, question charts, service provision through social networks and dozens of other ones."%} {%trans "Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your contribution to promoting its quality and services."%}</p>
        </div>
       </div>
-
      </div>
     </div>
 
-    <div class="row auto" id="about-bottom">
-     <div class="span4">
+    <div class="triplet" id="about-bottom">
+     <div class="triplet-item">
       <img src="{{url.static}}images/miniature/press.png" alt='{%trans "Press"%}'>
       <h3>{%trans "Press"%}</h3>
       <p>{%trans "Would you like to follow Sarshomar's latest media coverage news?"%}</p>
       <a href="{{url.base}}/press">{%trans "View press section"%}</a>
      </div>
 
-     <div class="span4">
+     <div class="triplet-item">
       <img src="{{url.static}}images/miniature/job.png" alt='{%trans "Contact Us"%}'>
       <h3>{%trans "Job Opportunities"%}</h3>
       <p>{%trans "We are constantly seeking to recruit the best. Are you willing to join us?"%}</p>
       <a href="{%if site.currentlang =='fa'%}http://ermile.ir{%else%}https://ermile.com{%endif%}/careers" target="_blank">{%trans "Join our team"%}</a>
      </div>
 
-     <div class="span4">
+     <div class="triplet-item">
       <img src="{{url.static}}images/miniature/contact.png" alt='{%trans "Contact Us"%}'>
       <h3>{%trans "Contact Us"%}</h3>
       <p>{%trans "If you have any questions, our contact and support center is always ready to help."%}</p>
