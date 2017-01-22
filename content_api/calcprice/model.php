@@ -1,5 +1,5 @@
 <?php
-namespace content_api\price;
+namespace content_api\calcprice;
 use \lib\utility;
 
 class model extends \content_api\home\model

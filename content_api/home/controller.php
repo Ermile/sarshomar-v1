@@ -15,7 +15,7 @@ class controller extends  \mvc\controller
 	use \content_api\like\controller;
 	use \content_api\logintoken\controller;
 	use \content_api\poll\controller;
-	use \content_api\price\controller;
+	use \content_api\calcprice\controller;
 	use \content_api\search\controller;
 	use \content_api\tag\controller;
 
@@ -84,7 +84,6 @@ class controller extends  \mvc\controller
 	 */
 	public function api_key()
 	{
-
 		$authorization = utility::header("authorization");
 
 		if(!$authorization)
@@ -130,6 +129,10 @@ class controller extends  \mvc\controller
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 				}
 				break;
+
+			default :
+				debug::error(T_("Invalid token"), 'authorization', 'access');
+
 		}
 
 	}

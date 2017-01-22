@@ -15,6 +15,11 @@ trait add
 	 */
 	public function add($_args)
 	{
+		if(!debug::$status)
+		{
+			return ;
+		}
+
 		if(utility::request() == '' || is_null(utility::request()))
 		{
 			return debug::error(T_("Invalid input"), 'input', 'arguments');

@@ -16,6 +16,11 @@ trait get
 	 */
 	public function get($_options = [])
 	{
+		if(!debug::$status)
+		{
+			return ;
+		}
+
 		$default_options =
 		[
 			'get_filter'         => true,

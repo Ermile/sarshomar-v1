@@ -1,45 +1,25 @@
 {
-  "id": "[poll id]|null",
-  "filters": {
-    "max_member": "int|null",
-    "gender": "male|female|null",
-    "marrital": "single|married|null",
-    "internetusage": [
-      "low",
-      "mid",
-      "high"
-    ],
-    "graduation": [
-      "illiterate",
-      "undergraduate",
-      "graduate"
-    ],
-    "degree": [
-      "under_diploma",
-      "diploma",
-      "2_year_college",
-      "bachelor",
-      "master",
-      "phd"
-    ],
-    "range": [
-      "-13",
-      "14-17",
-      "18-24",
-      "25-30",
-      "31-44",
-      "45-59",
-      "60+"
-    ],
-    "employmentstatus": [
-      "employee",
-      "unemployed",
-      "retired"
-    ],
-    "housestatus": [
-      "owner",
-      "tenant",
-      "homeless"
-    ]
+  "id": "[poll or survey id]|null",
+  "poll":
+  {
+    "nofity":true
+  },
+  "survey":
+  {
+    "child": 20,
+    "nofity":1
+  },
+  "member": "int",
+  "branding": true,
+  "filters":
+  {
+    "gender": true,
+    "marrital": true,
+    "internetusage": true,
+    "graduation": true,
+    "degree": true,
+    "range": true,
+    "employmentstatus": true,
+    "housestatus": true
   }
 }
