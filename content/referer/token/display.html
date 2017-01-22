@@ -1,6 +1,20 @@
 {%extends display.main%}
 {%block content%}
 <h2>
-<a href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
+<a id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
 </h2>
+{%endblock%}
+
+{%block foot_js%}
+<script type="text/javascript">
+	$("#allow-token").on('ajaxify:success', function(){
+		try{
+			window.close();
+		}
+		catch(f)
+		{
+
+		}
+	});
+</script>
 {%endblock%}
