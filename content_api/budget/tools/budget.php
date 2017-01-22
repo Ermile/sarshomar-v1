@@ -17,7 +17,7 @@ trait budget
 		$budget = \lib\db\transactions::budget($this->user_id);
 		if(is_array($budget))
 		{
-			$budget['sum'] = array_sum($budget);
+			$budget['total'] = array_sum($budget);
 		}
 
 		foreach ($budget as $key => $value)

@@ -1,36 +1,58 @@
 <aside class="api-quick-access">
   <ul>
+   <li class="header">ورود به سیستم</li>
+    <a href="help#loginToken" >
+      <li>دریافت کلید ورود به سیستم</li>
+    </a>
+    <a href="help#guestToken" >
+      <li>دریافت کلید میهمان</li>
+    </a>
+
     <li class="header">نظرسنجی‌</li>
     <a href="help#addPoll" >
-      <li>ثبت یک نظر سنجی</li>
-    </a>
-    <a href="help#search" >
-      <li>جستجو در نظر سنجی ها</li>
+      <li>ثبت نظر سنجی</li>
     </a>
     <a href="help#getPoll" >
       <li>دریافت نظر سنجی</li>
     </a>
+    <li class="header">جستجو</li>
+    <a href="help#search" >
+      <li>جستجو در نظر سنجی ها</li>
+    </a>
+    <li class="header">پاسخ دهی</li>
     <a href="help#addAnswer" >
       <li>ثبت پاسخ یک سوال</li>
     </a>
+
+    <li class="header">علاقه مندی</li>
     <a href="help#fav" >
       <li>ثبت علاقه مندی یک سوال</li>
     </a>
     <a href="help#like" >
       <li>لایک سوال</li>
     </a>
+
+    <li class="header">مالی</li>
+    <a href="help#budget" >
+      <li>دریافت موجودی حساب کاربری</li>
+    </a>
+    <a href="help#calcPrice" >
+      <li>محاسبه هزیه یک سوال</li>
+    </a>
+
   </ul>
 </aside>
 <div class="main pad text-based" id="abc">
   <div class="box">
+    {%include 'content_api/help/template/login/login_token.html'%}
+    {%include 'content_api/help/template/login/guest_token.html'%}
     {%include 'content_api/help/template/poll/add.html'%}
     {%include 'content_api/help/template/poll/get.html'%}
-    {%include 'content_api/help/template/answer/answer.html'%}
     {%include 'content_api/help/template/search/search.html'%}
+    {%include 'content_api/help/template/answer/answer.html'%}
     {%include 'content_api/help/template/fav/fav.html'%}
     {%include 'content_api/help/template/like/like.html'%}
-    {%include 'content_api/help/template/login/guest_token.html'%}
-    {%include 'content_api/help/template/login/login_token.html'%}
     {%include 'content_api/help/template/budget/budget.html'%}
+    {%include 'content_api/help/template/price/price.html'%}
   </div>
 </div>
