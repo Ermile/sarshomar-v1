@@ -8,14 +8,14 @@
   <p>{%trans "Contact Us"%}</p>
   <img src="{{url.static}}images/miniature/help-contact.png" alt='{%trans "Contact Us"%}'>
  </a>
- <div class="help-quick-access">
+ <div class="help-quick-access hide">
   <h4>{%trans "Quick Access"%}</h4>
   <nav>
-<!--    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
    <a href="#">{%trans "Link"%}</a>
-   <a href="#">{%trans "Link"%}</a> -->
+   <a href="#">{%trans "Link"%}</a>
+   <a href="#">{%trans "Link"%}</a>
   </nav>
  </div>
 </aside>
@@ -61,12 +61,16 @@
   </div>
 
   <div class="sideline-title">
+{% set mostVisited = posts(10, { 'type':'help'} ) %}
+{%if mostVisited%}
    <h4>{%trans "Most visited questions"%}</h4>
    <ul>
-    {% for clink in posts(10, { 'type':'help'} ) %}
+    {% for clink in mostVisited %}
         <li><a href="{{url.baseRaw}}/{{clink.language}}/{{clink.url}}" title='{{clink.title}}'>{{clink.title}}</a></li>
     {% endfor %}
    </ul>
+{%endif%}
+
   </div>
  </div>
 </div>
