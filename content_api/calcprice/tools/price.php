@@ -8,8 +8,7 @@ trait price
 
 	public function price($_args = null)
 	{
-		var_dump(utility::request());
-		exit();
+		return utility\price::calc(utility::request());
 	}
 }
 ?>

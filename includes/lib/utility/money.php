@@ -110,6 +110,24 @@ trait money
 
 
 	/**
+	 * notify mony
+	 */
+	private static $notify =
+	[
+		'poll'         => 10,
+		'survey'       => 5,
+	];
+
+
+	/**
+	 * branding money
+	 *
+	 * @var        integer
+	 */
+	private static $branding = 100;
+
+
+	/**
 	 * gift value
 	 *
 	 * @var        array
