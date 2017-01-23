@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-01-21 17:37+0330\n"
-"PO-Revision-Date: 2017-01-21 17:42+0330\n"
+"POT-Creation-Date: 2017-01-23 13:40+0330\n"
+"PO-Revision-Date: 2017-01-23 15:31+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -104,10 +104,10 @@ msgstr "پاسخی یافت نشد"
 msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:240
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:284
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:240
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:284
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:239
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:283
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:239
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
@@ -720,20 +720,32 @@ msgstr "عملیات با خطا مواجه شد"
 msgid "Transaction items insert successfuly"
 msgstr "آیتم تراکنش با موفقیت ثبت شد"
 
-#: content_api/home/controller.php:112 content_api/home/controller.php:128
+#: content_api/home/controller.php:122 content_api/home/controller.php:140
 msgid "Access denide (Invalid url)"
 msgstr ""
 
-#: content_api/home/controller.php:119
+#: content_api/home/controller.php:130
 msgid "Invalid authorization kye (user not found)"
+msgstr ""
+
+#: content_api/home/controller.php:146
+msgid "Invalid token"
+msgstr ""
+
+#: content_api/home/model.php:14 includes/lib/db/polls/fav_like.php:50
+msgid "User not found"
+msgstr "کاربر یافت نشد"
+
+#: content_api/home/tools/get_token.php:47
+msgid "Invalid parameter temp_token"
 msgstr ""
 
 #: content_api/home/tools/ready.php:39
 msgid "Poll not found"
 msgstr ""
 
-#: content_api/like/tools/fav_like.php:23 content_api/poll/tools/add.php:36
-#: content_api/poll/tools/get.php:60
+#: content_api/like/tools/fav_like.php:23 content_api/poll/tools/add.php:41
+#: content_api/poll/tools/get.php:65
 msgid "Invalid parametr id"
 msgstr ""
 
@@ -749,15 +761,15 @@ msgstr "اجازه به افزودن نظرسنجی به دسته‌بندی س�
 msgid "Allow to hide the results"
 msgstr "اجازه به مخفی کردن نتایج"
 
-#: content_api/poll/tools/add.php:20
+#: content_api/poll/tools/add.php:25
 msgid "Invalid input"
 msgstr "داده‌ ورودی نامعتبر"
 
-#: content_api/poll/tools/get.php:45 includes/lib/db/polls/insert/poll.php:198
+#: content_api/poll/tools/get.php:50 includes/lib/db/polls/insert/poll.php:198
 msgid "Invalid parametr type"
 msgstr ""
 
-#: content_api/poll/tools/get.php:55
+#: content_api/poll/tools/get.php:60
 msgid "poll id not found"
 msgstr "شناسه ی نظرسنجی یافت نشد "
 
@@ -1069,7 +1081,7 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:56
 msgid "wage"
-msgstr ""
+msgstr "حقوق"
 
 #: includes/cls/database/sarshomar/translation.php:58
 #: includes/cls/database/sarshomar/translation.php:133
@@ -1086,7 +1098,7 @@ msgstr "تاریخ ایجاد"
 
 #: includes/cls/database/sarshomar/translation.php:61
 msgid "datemodified"
-msgstr ""
+msgstr "تاریخ ویرایش"
 
 #: includes/cls/database/sarshomar/translation.php:62
 #: includes/languages/trans_twig.php:507
@@ -1095,7 +1107,7 @@ msgstr "تاریخ پایان"
 
 #: includes/cls/database/sarshomar/translation.php:65
 msgid "exchanges"
-msgstr ""
+msgstr "تبادلات"
 
 #: includes/cls/database/sarshomar/translation.php:66
 #: includes/cls/database/sarshomar/translation.php:337
@@ -1126,7 +1138,7 @@ msgstr "مجرد"
 
 #: includes/cls/database/sarshomar/translation.php:77
 msgid "married"
-msgstr ""
+msgstr "متاهل"
 
 #: includes/cls/database/sarshomar/translation.php:78
 msgid "low"
@@ -1234,11 +1246,11 @@ msgstr "بیکار"
 
 #: includes/cls/database/sarshomar/translation.php:102
 msgid "owner"
-msgstr ""
+msgstr "صاحب‌خانه"
 
 #: includes/cls/database/sarshomar/translation.php:103
 msgid "tenant"
-msgstr ""
+msgstr "مستاجر"
 
 #: includes/cls/database/sarshomar/translation.php:104
 msgid "homeless"
@@ -1261,7 +1273,7 @@ msgstr "تاهل"
 
 #: includes/cls/database/sarshomar/translation.php:108
 msgid "internetusage"
-msgstr ""
+msgstr "میزان استفاده از اینترنت"
 
 #: includes/cls/database/sarshomar/translation.php:109
 msgid "graduation"
@@ -1306,11 +1318,11 @@ msgstr "شهر"
 
 #: includes/cls/database/sarshomar/translation.php:119
 msgid "employmentstatus"
-msgstr ""
+msgstr "وضعیت کار"
 
 #: includes/cls/database/sarshomar/translation.php:120
 msgid "housestatus"
-msgstr ""
+msgstr "وضعیت منزل"
 
 #: includes/cls/database/sarshomar/translation.php:121
 msgid "religion"
@@ -1435,11 +1447,11 @@ msgstr "مقدار"
 
 #: includes/cls/database/sarshomar/translation.php:171
 msgid "polldetails"
-msgstr ""
+msgstr "جزیییات نظرسنجی"
 
 #: includes/cls/database/sarshomar/translation.php:172
 msgid "polldetail"
-msgstr ""
+msgstr "جزییات نظرسنجی"
 
 #: includes/cls/database/sarshomar/translation.php:173
 msgid "site"
@@ -1505,11 +1517,11 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:190
 msgid "select"
-msgstr ""
+msgstr "انتخاب"
 
 #: includes/cls/database/sarshomar/translation.php:191
 msgid "emoji"
-msgstr ""
+msgstr "شکلک"
 
 #: includes/cls/database/sarshomar/translation.php:192
 msgid "descriptive"
@@ -1692,11 +1704,11 @@ msgstr "عضو"
 
 #: includes/cls/database/sarshomar/translation.php:261
 msgid "ad"
-msgstr ""
+msgstr "تبلیغ"
 
 #: includes/cls/database/sarshomar/translation.php:262
 msgid "money"
-msgstr ""
+msgstr "پول"
 
 #: includes/cls/database/sarshomar/translation.php:263
 msgid "report"
@@ -1734,7 +1746,7 @@ msgstr "ادمین"
 
 #: includes/cls/database/sarshomar/translation.php:273
 msgid "vip"
-msgstr ""
+msgstr "خصوصی"
 
 #: includes/cls/database/sarshomar/translation.php:277
 msgid "socialapi"
@@ -1746,23 +1758,23 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:279
 msgid "facebook"
-msgstr ""
+msgstr "فیسبوک"
 
 #: includes/cls/database/sarshomar/translation.php:280
 msgid "twitter"
-msgstr ""
+msgstr "توییتر"
 
 #: includes/cls/database/sarshomar/translation.php:281
 msgid "uniqueid"
-msgstr ""
+msgstr "شناسه منحصر به فرد"
 
 #: includes/cls/database/sarshomar/translation.php:282
 msgid "request"
-msgstr ""
+msgstr "درخواست"
 
 #: includes/cls/database/sarshomar/translation.php:283
 msgid "response"
-msgstr ""
+msgstr "پاسخ"
 
 #: includes/cls/database/sarshomar/translation.php:286
 msgid "terms"
@@ -1894,7 +1906,7 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:349
 msgid "reported"
-msgstr ""
+msgstr "گزارش شده"
 
 #: includes/cls/database/sarshomar/translation.php:350
 msgid "usespamword"
@@ -1902,19 +1914,19 @@ msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:351
 msgid "changeprofile"
-msgstr ""
+msgstr "تغییر پروفایل"
 
 #: includes/cls/database/sarshomar/translation.php:352
 msgid "improveprofile"
-msgstr ""
+msgstr "بهبود پروفایل"
 
 #: includes/cls/database/sarshomar/translation.php:353
 msgid "wrongreport"
-msgstr ""
+msgstr "گزارش اشتباهی"
 
 #: includes/cls/database/sarshomar/translation.php:354
 msgid "resetpassword"
-msgstr ""
+msgstr "بازنشانی رمزعبور"
 
 #: includes/cls/database/sarshomar/translation.php:355
 #: includes/languages/trans_addons.php:448
@@ -3892,6 +3904,10 @@ msgid ""
 "knowing your valuable comments about bugs and problems and more importantly your "
 "precious offers will help us in this way."
 msgstr ""
+"با آرزوی رضایت شما کاربر گرامی؛ از اینکه ما را شایسته انتخاب دانستید، خرسندیم. "
+"تمام تلاش ما بر افزایش کیفیت سرشمار است. دانستن نظرات ارزشمند شما درباره‌ی مشکلات "
+"و نواقص و صدالبته پیشنهادات گرانبهایتان از طریق فرم زیر سبب کمک به ما برای این "
+"مهم خواهد شد."
 
 #: includes/languages/trans_twig.php:9
 msgid "Name"
@@ -4095,7 +4111,7 @@ msgstr "نتیجه‌ای یافت نشد"
 
 #: includes/languages/trans_twig.php:75
 msgid "Questions"
-msgstr ""
+msgstr "سوالات"
 
 #: includes/languages/trans_twig.php:76
 msgid "Gender"
@@ -4111,7 +4127,7 @@ msgstr "زن"
 
 #: includes/languages/trans_twig.php:79
 msgid "Marital"
-msgstr ""
+msgstr "تاهل"
 
 #: includes/languages/trans_twig.php:80
 msgid "Single"
@@ -4143,7 +4159,7 @@ msgstr "فیلترها"
 
 #: includes/languages/trans_twig.php:87
 msgid "Question Type"
-msgstr ""
+msgstr "نوع سوال"
 
 #: includes/languages/trans_twig.php:88
 msgid "Poll"
@@ -4159,11 +4175,11 @@ msgstr "پرسش‌نامه"
 
 #: includes/languages/trans_twig.php:91
 msgid "According to Survey"
-msgstr ""
+msgstr "بر طبق پرسشنامه"
 
 #: includes/languages/trans_twig.php:92
 msgid "Multiplechoice"
-msgstr ""
+msgstr "چندگزینه‌ای"
 
 #: includes/languages/trans_twig.php:93
 msgid "Descriptive"
@@ -4191,7 +4207,7 @@ msgstr "مرتب سازی"
 
 #: includes/languages/trans_twig.php:99
 msgid "Survey Time"
-msgstr ""
+msgstr "زمان پرسشنامه"
 
 #: includes/languages/trans_twig.php:101
 msgid "Expire"
@@ -4343,7 +4359,7 @@ msgstr "حامی محیط‌زیست"
 
 #: includes/languages/trans_twig.php:162
 msgid "Enamad"
-msgstr ""
+msgstr "نماد اعتماد"
 
 #: includes/languages/trans_twig.php:163
 msgid "Service"
@@ -4479,7 +4495,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:204
 msgid "Sarshomar created for this!"
-msgstr ""
+msgstr "سرشمار برای همین هدف ایجاد شده است!"
 
 #: includes/languages/trans_twig.php:205
 msgid "About Us"
@@ -4898,7 +4914,7 @@ msgstr "مهمان"
 
 #: includes/languages/trans_twig.php:289
 msgid "Please enter shown numbers here"
-msgstr ""
+msgstr "لطفا اعداد نمایش داده شده را اینجا وارد کنید"
 
 #: includes/languages/trans_twig.php:292
 msgid "Multimedia Questions"
@@ -5689,7 +5705,7 @@ msgstr "زباله‌دان"
 
 #: includes/languages/trans_twig.php:457
 msgid "Return to admin area"
-msgstr ""
+msgstr "بازگشت به بخش مدیریت"
 
 #: includes/languages/trans_twig.php:460
 msgid "Polls"
@@ -5721,7 +5737,7 @@ msgstr "افزودن، حذف و ... کاربران"
 
 #: includes/languages/trans_twig.php:474
 msgid " Return to admin area "
-msgstr ""
+msgstr " بازگشت به بخش مدیریت "
 
 #: includes/languages/trans_twig.php:475
 msgid "Persian"
@@ -6161,11 +6177,11 @@ msgstr "رشته"
 
 #: includes/languages/trans_twig.php:647
 msgid "Howzeh Degree"
-msgstr ""
+msgstr "مدرک حوزوی"
 
 #: includes/languages/trans_twig.php:648
 msgid "Howzeh Course"
-msgstr ""
+msgstr "دوره‌ی حوزوی"
 
 #: includes/languages/trans_twig.php:649
 msgid "Education City"
@@ -6337,11 +6353,11 @@ msgstr "نظرسنجی حذف شده است"
 
 #: includes/lib/db/db_errors.php:5
 msgid "poll not published"
-msgstr ""
+msgstr "نظرسنجی منتشر نشد"
 
 #: includes/lib/db/db_errors.php:6
 msgid "poll can not update result"
-msgstr ""
+msgstr "نظرسنجی ناتوان در بروزرسانی نتایج است"
 
 #: includes/lib/db/db_errors.php:7
 msgid "duplicate answer, needless to update"
@@ -6423,17 +6439,13 @@ msgstr ""
 msgid "The id is not a poll or survey"
 msgstr ""
 
-#: includes/lib/db/polls/fav_like.php:50
-msgid "User not found"
-msgstr "کاربر یافت نشد"
-
-#: includes/lib/db/polls/fav_like.php:74 includes/lib/db/polls/fav_like.php:102
-#: includes/lib/db/polls/fav_like.php:119
+#: includes/lib/db/polls/fav_like.php:76 includes/lib/db/polls/fav_like.php:104
+#: includes/lib/db/polls/fav_like.php:121
 msgid " set"
 msgstr "تنظیم"
 
-#: includes/lib/db/polls/fav_like.php:81 includes/lib/db/polls/fav_like.php:109
-#: includes/lib/db/polls/fav_like.php:128
+#: includes/lib/db/polls/fav_like.php:83 includes/lib/db/polls/fav_like.php:111
+#: includes/lib/db/polls/fav_like.php:130
 msgid " unset"
 msgstr ""
 
@@ -6463,19 +6475,19 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/check.php:38
 msgid "Poll language not set"
-msgstr ""
+msgstr "زبان نظرسنجی تنظیم نشده است"
 
 #: includes/lib/db/polls/insert/check.php:45
 msgid "Answers can not be empty"
-msgstr ""
+msgstr "پاسخ‌ها نمی‌توانند خالی باشند"
 
 #: includes/lib/db/polls/insert/check.php:54
 msgid "Can not set more than 1 descriptive answers"
-msgstr ""
+msgstr "بیش از یک پاسخ تشریحی نمیتوان تنظیم کرد"
 
 #: includes/lib/db/polls/insert/check.php:66
 msgid "Can not set more than 1 answers in upload,range and notification mod"
-msgstr ""
+msgstr "بیش از یک پاسخ در آپلود، محدوده و اعلان نمیتوان تنظیم کرد"
 
 #: includes/lib/db/polls/insert/check.php:75
 msgid "Answer type not found in index :key of answers"
@@ -6491,15 +6503,15 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/check.php:156
 msgid "Duplicate poll title of your poll"
-msgstr ""
+msgstr "عنوان نظرسنجی شما مشابه است"
 
 #: includes/lib/db/polls/insert/max.php:30
 msgid "You can save :max draft poll"
-msgstr ""
+msgstr "میتوانید :max نظرسنجی را پیش‌نویس کنید"
 
 #: includes/lib/db/polls/insert/max.php:60
 msgid "You can save :max poll in one survey"
-msgstr ""
+msgstr "می‌توانید :max نظرسنجی در یک پرسشنامه ذخیره کنید"
 
 #: includes/lib/db/polls/insert/options.php:14
 msgid "Invalid arguments range_timing_max"
@@ -6527,11 +6539,11 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:19
 msgid "Poll title must be less than 190 character"
-msgstr ""
+msgstr "عنوان نظرسنجی باید کمتر از 190 کاراکتر باشد"
 
 #: includes/lib/db/polls/insert/poll.php:39
 msgid "Poll slug must be less than 50 character"
-msgstr ""
+msgstr "اسلاگ نظرسنجی باید کمتر از 50 کاراکتر باشد"
 
 #: includes/lib/db/polls/insert/poll.php:61
 msgid "Invalid parametr survey_id"
@@ -6539,7 +6551,7 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:69
 msgid "Survey id not found"
-msgstr ""
+msgstr "شناسه پرسشنامه پیدا نشد"
 
 #: includes/lib/db/polls/insert/poll.php:74
 msgid "Survey id must be a survey record"
@@ -6547,15 +6559,15 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:79
 msgid "This is not your survey"
-msgstr ""
+msgstr "این پرسشنامه شما نیست"
 
 #: includes/lib/db/polls/insert/poll.php:104
 msgid "Summery must be less than 150 character"
-msgstr ""
+msgstr "خلاصه باید کمتر از 150 کاراکتر باشد"
 
 #: includes/lib/db/polls/insert/poll.php:123
 msgid "Invalid parametr language"
-msgstr ""
+msgstr "پارامتر زبان نامعتبر است"
 
 #: includes/lib/db/polls/insert/poll.php:146
 msgid "Invalid parametr tree:parent_id"
@@ -6565,11 +6577,11 @@ msgstr ""
 msgid "Invalid parametr tree:answers (:value)"
 msgstr ""
 
-#: includes/lib/utility/answers/access.php:155
+#: includes/lib/utility/answers/access.php:157
 msgid "No problem"
 msgstr "مشکلی وجود ندارد"
 
-#: includes/lib/utility/answers/access.php:164
+#: includes/lib/utility/answers/access.php:166
 msgid "You can update your answer"
 msgstr "شما می‌توانید پاسخ خود را بروز کنید"
 
@@ -6587,11 +6599,11 @@ msgstr "پاسخ شما بروز شد"
 
 #: includes/lib/utility/poll_tree.php:30
 msgid "Parent poll not found"
-msgstr ""
+msgstr "نظرسنجی والد یافت نشد"
 
 #: includes/lib/utility/poll_tree.php:34
 msgid "Parent id is not a poll or survey"
-msgstr ""
+msgstr "شناسه والد نظرسنجی یا پرسشنامه نیست"
 
 #: includes/lib/utility/poll_tree.php:41
 msgid "Can not set tree on :status poll"
@@ -6601,7 +6613,7 @@ msgstr ""
 msgid "The parent poll have not answer :key"
 msgstr ""
 
-#: includes/lib/utility/poll_tree.php:117
+#: includes/lib/utility/poll_tree.php:120
 msgid "Can not set tree poll"
 msgstr ""
 

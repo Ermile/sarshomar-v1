@@ -1697,6 +1697,11 @@ code{margin:0}
 fieldset.api-sample {border: 2px solid #607D8B;border-radius: 2px;padding: 5px 10px 10px 10px;background: white;margin-bottom: 4em;}
 code {border-radius: 2px;}
 
+/************************************************************** Token Page */
+.token .btn-container {text-align: center}
+.token .btn-container:before {display: none;}
+.token .btn-deny {background: #e5a428;}
+.token .btn-deny:before,.token .btn-deny:after {color: #e5a428;}
 
 
 
@@ -1713,6 +1718,7 @@ code {border-radius: 2px;}
 .awesomplete {
     display: inline-block;
     position: relative;
+    width: 100%;
 }
 
 .awesomplete > input {
