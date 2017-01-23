@@ -1,22 +1,22 @@
-POST		api/addPoll 					[application/json]				[args]
-POST 		api/getPoll														[id]
-POST		api/editPoll 													[id]
-POST		api/removePoll 													[id]
+POST		api/addPoll
+POST 		api/getPoll
+POST		api/editPoll
+POST		api/removePoll
 
 POST		api/addFile
 GET 		api/getFile?id=[id]
-POST		api/getFile														[id]
+POST		api/getFile
 
 POST		api/addAnswer
 GET 		api/getAnswer?id=[id]
-POST		api/getAnswer													[id]
-PUT			api/editAnswer 													[id]
-POST		api/editAnswer													[id]
+POST		api/getAnswer
+PUT			api/editAnswer
+POST		api/editAnswer
 
 POST		api/sendFeedback
 
 GET 	 	api/search?[search condition]
-POST 	 	api/search 														[search condition]
+POST 	 	api/search
 
 POST 		api/calcPrice
 GET 		api/calcPrice
@@ -34,3 +34,46 @@ POST 		api/getComment
 POST 		api/addReport
 GET 		api/getReport
 POST 		api/getReport
+
+-----------------------------------
+GET 		api/poll
+POST		api/poll
+PUT 		api/poll
+DELETE  	api/poll
+
+GET 		api/poll/answer
+POST		api/poll/answer
+PUT 		api/poll/answer
+DELETE  	api/poll/answer
+
+GET 		api/poll/comment
+POST		api/poll/comment
+PUT 		api/poll/comment
+DELETE  	api/poll/comment
+
+GET 		api/poll/fav
+POST		api/poll/fav
+PUT 		api/poll/fav
+DELETE  	api/poll/fav
+
+GET 		api/poll/like
+POST		api/poll/like
+PUT 		api/poll/like
+DELETE  	api/poll/like
+
+GET 		api/poll/rank
+POST		api/poll/rank
+PUT 		api/poll/rank
+DELETE  	api/poll/rank
+
+POST		api/poll/feedback
+
+GET 		api/price/calc
+GET 		api/price/budget
+
+GET 		api/search
+
+POST		api/report
+
+GET 		api/file
+POST		api/file
