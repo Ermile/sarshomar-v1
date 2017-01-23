@@ -1,5 +1,5 @@
 <?php
-namespace content_api\guesttoken;
+namespace content_api\token\guest;
 use \lib\utility;
 use \lib\debug;
 
@@ -15,15 +15,5 @@ class model extends \content_api\home\model
 		return $this->token(true);
 	}
 
-
-	/**
-	 * Posts a guest token.
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function post_guest_token()
-	{
-		return $this->token(true);
-	}
 }
 ?>

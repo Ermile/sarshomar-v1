@@ -5,6 +5,13 @@ use \lib\debug;
 
 trait search
 {
+
+	public function add($_args)
+	{
+
+	}
+
+
 	/**
 	 * search for the first match.
 	 *

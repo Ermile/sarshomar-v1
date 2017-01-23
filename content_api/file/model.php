@@ -1,7 +1,7 @@
 <?php
 namespace content_api\file;
 
-class model extends \mvc\model
+class model extends \content_api\home\model
 {
 	use tools\get;
 	use tools\post;

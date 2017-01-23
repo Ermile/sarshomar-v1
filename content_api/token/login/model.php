@@ -1,5 +1,5 @@
 <?php
-namespace content_api\logintoken;
+namespace content_api\token\login;
 use \lib\utility;
 use \lib\debug;
 
@@ -15,17 +15,5 @@ class model extends \content_api\home\model
 	{
 		return $this->check_verify();
 	}
-
-
-	/**
-	 * Posts a token.
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function post_login_token()
-	{
-		return $this->check_verify();
-	}
-
 }
 ?>

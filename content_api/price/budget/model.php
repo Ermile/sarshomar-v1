@@ -1,5 +1,5 @@
 <?php
-namespace content_api\budget;
+namespace content_api\price\budget;
 use \lib\utility;
 
 class model extends \content_api\home\model
@@ -15,18 +15,7 @@ class model extends \content_api\home\model
 	 */
 	public function get_budget($_args)
 	{
-		return $this->post_budget($_args);
-	}
-
-	/**
-	 * Posts a budget.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_budget($_args)
-	{
 		return $this->budget($_args);
 	}
-
 }
 ?>

@@ -6,7 +6,7 @@ class model extends \content_api\home\model
 {
 	use tools\add;
 	use tools\get;
-	
+
 	/**
 	 * delete a poll
 	 *
@@ -39,7 +39,7 @@ class model extends \content_api\home\model
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
 	public function post_poll($_args)
-	{		
+	{
 		return $this->add($_args);
 	}
 
@@ -51,12 +51,8 @@ class model extends \content_api\home\model
 	 */
 	public function put_poll($_args)
 	{
-		return $this->add($_args);
+		return $this->add($_args, true);
 	}
 
-	public function post_getPoll($_args)
-	{
-		return $this->get_poll($_args);
-	}
 }
 ?>

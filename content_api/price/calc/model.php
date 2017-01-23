@@ -1,5 +1,5 @@
 <?php
-namespace content_api\calcprice;
+namespace content_api\price\calc;
 use \lib\utility;
 
 class model extends \content_api\home\model
@@ -15,18 +15,7 @@ class model extends \content_api\home\model
 	 */
 	public function get_price($_args)
 	{
-		return $this->post_price($_args);
-	}
-
-	/**
-	 * Posts a price.
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function post_price($_args)
-	{
 		return $this->price($_args);
 	}
-
 }
 ?>

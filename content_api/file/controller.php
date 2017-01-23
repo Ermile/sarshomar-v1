@@ -1,7 +1,7 @@
 <?php
 namespace content_api\file;
 
-trait controller
+class controller extends  \content_api\home\controller
 {
 
 	/**
@@ -16,22 +16,22 @@ trait controller
 		/**
 		 * post to upload
 		 */
-		$this->post("upload")->REST("/^upload$/");
+		$this->post("upload")->ALL("file");
 
 		/**
 		 * get to load upload details
 		 */
-		$this->get("upload")->REST("/^upload\/([". self::$shortURL. "]+)$/");
+		$this->get("upload")->ALL("file");
 
 		/**
 		 * put to update a upload
 		 */
-		$this->put("upload")->REST("/^upload\/([". self::$shortURL. "]+)$/");
+		$this->put("upload")->ALL("file");
 
 		/**
 		 * delete to delete a upload
 		 */
-		$this->delete("upload")->REST("/^upload\/([". self::$shortURL. "]+)$/");
+		$this->delete("upload")->ALL("file");
 
 	}
 }

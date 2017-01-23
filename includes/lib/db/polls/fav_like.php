@@ -64,7 +64,9 @@ trait fav_like
 		$where = $args;
 
 		$exist_option_record = \lib\db\options::get($args);
+
 		unset($args['limit']);
+		unset($where['limit']);
 
 		if(!$exist_option_record)
 		{

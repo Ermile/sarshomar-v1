@@ -1,5 +1,5 @@
 <?php
-namespace content_api\calcprice\tools;
+namespace content_api\price\calc\tools;
 use \lib\utility;
 use \lib\debug;
 

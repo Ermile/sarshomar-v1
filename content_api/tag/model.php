@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace content_api\tag;
 use \lib\utility;
 
@@ -15,7 +15,7 @@ class model extends \content_api\home\model
 	 */
 	public function get_tag($_args)
 	{
-		return $this->post_tag($_args);
+		return $this->search($_args);
 	}
 
 	/**
@@ -24,8 +24,8 @@ class model extends \content_api\home\model
 	 * @param      <type>  $_args  The arguments
 	 */
 	public function post_tag($_args)
-	{	
-		return $this->search($_args);
+	{
+		return $this->add($_args);
 	}
 
 }

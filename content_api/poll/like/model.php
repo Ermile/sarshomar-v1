@@ -1,11 +1,11 @@
 <?php
-namespace content_api\like;
+namespace content_api\poll\like;
 use \lib\utility;
 use \lib\debug;
 
 class model extends \content_api\home\model
 {
-	use tools\fav_like;
+	use \content_api\poll\tools\fav_like;
 
 	/**
 	 * Posts post favorites.
@@ -16,5 +16,11 @@ class model extends \content_api\home\model
 	{
 		return $this->set("like");
 	}
+
+	public function delete_like($_args)
+	{
+		return $this->unset("like");
+	}
+
 }
 ?>

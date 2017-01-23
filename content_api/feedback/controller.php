@@ -1,7 +1,7 @@
 <?php
 namespace content_api\feedback;
 
-trait controller
+class controller extends  \content_api\home\controller
 {
 	public function route_feedback()
 	{

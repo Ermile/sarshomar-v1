@@ -12,7 +12,6 @@ trait search
 	 */
 	public function search($_args)
 	{
-
 		$meta   = [];
 		$search = null;
 

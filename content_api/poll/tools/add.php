@@ -13,11 +13,11 @@ trait add
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function add($_args)
+	public function add($_args, $_put = false)
 	{
 		if(!debug::$status)
 		{
-			return ;
+			return false;
 		}
 
 		if(utility::request() == '' || is_null(utility::request()))
@@ -30,7 +30,7 @@ trait add
 		 */
 		$update = false;
 
-		if(utility::request("id"))
+		if($_put)
 		{
 			if(preg_match("/^[". $this->shortURL. "]+$/", utility::request("id")))
 			{
@@ -40,6 +40,10 @@ trait add
 			{
 				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
+		}
+		elseif(utility::request("id"))
+		{
+			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
 		// insert args

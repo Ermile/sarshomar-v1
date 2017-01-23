@@ -1,7 +1,7 @@
 <?php
 namespace content_api\poll;
 
-trait controller
+class controller extends  \content_api\home\controller
 {
 
 	/**
@@ -11,28 +11,27 @@ trait controller
 	 * put poll/[shorturl] to edit poll
 	 * delete poll/[shorturl] to delete poll
 	 */
-	public function route_poll()
+	public function _route()
 	{
 		/**
 		 * post to add a poll
 		 */
-		$this->post("poll")->ALL("addPoll");
+		$this->post("poll")->ALL("poll");
 
 		/**
 		 * get to load poll details
 		 */
-		$this->get("poll")->ALL("getPoll");
-		$this->post("getPoll")->ALL("getPoll");
+		$this->get("poll")->ALL("poll");
 
 		/**
 		 * put to update a poll
 		 */
-		$this->put("poll")->ALL("editPoll");
+		$this->put("poll")->ALL("poll");
 
 		/**
 		 * delete to delete a poll
 		 */
-		$this->delete("poll")->ALL("deletePoll");
+		$this->delete("poll")->ALL("poll");
 
 	}
 }

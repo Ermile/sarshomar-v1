@@ -1,11 +1,11 @@
 <?php
-namespace content_api\search;
+namespace content_api\token\login;
 
 class controller extends  \content_api\home\controller
 {
 	public function _route()
 	{
-		$this->get("search")->ALL("search");
+		$this->get("login_token")->ALL("token/login");
 	}
 }
 ?>
