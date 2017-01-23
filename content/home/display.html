@@ -108,14 +108,10 @@
 
 {%block foot_js%}
 
- <script src="{{url.static}}js/lib/highcharts/highcharts.js"></script>
- <script src="{{url.static}}js/lib/highcharts/modules/map.js"></script>
- <script src="{{url.static}}js/lib/highcharts/mapdata/world.js"></script>
- <script src="{{url.static}}js/lib/highcharts/mapdata/ir-all.js"></script>
- <script src="{{url.static}}js/mapdata.js"></script>
-
-
  <script type="text/javascript">
+  setTimeout(function()
+  {
+
   var topChartOptions =
   {
    chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
@@ -159,7 +155,7 @@
     },
     legend: {enabled: false},
     mapNavigation: {
-     enabled: true,
+     enabled: false,
      enableButtons: false,
      buttonOptions: {
       verticalAlign: 'bottom'
@@ -200,7 +196,7 @@
 
     legend: {enabled: false},
     mapNavigation: {
-     enabled: true,
+     enabled: false,
      enableButtons: false,
      buttonOptions: {
       verticalAlign: 'bottom'
@@ -228,5 +224,7 @@
    });
 
   });
+
+  }, 3000);
  </script>
 {% endblock %}

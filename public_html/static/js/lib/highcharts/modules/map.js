@@ -60,3 +60,21 @@ g(e,n),f.length&&(l={path:f})):"mappoint"===b&&"Point"===k&&(l={x:e[0],y:-e[1]})
 padding:5,style:{fontSize:"15px",fontWeight:"bold"},theme:{"stroke-width":1,"text-align":"center"}},buttons:{zoomIn:{onclick:function(){this.mapZoom(.5)},text:"+",y:0},zoomOut:{onclick:function(){this.mapZoom(2)},text:"-",y:28}},mouseWheelSensitivity:1.1};a.splitPath=function(a){var b;a=a.replace(/([A-Za-z])/g," $1 ");a=a.replace(/^\s*/,"").replace(/\s*$/,"");a=a.split(/[ ,]+/);for(b=0;b<a.length;b++)/[a-zA-Z]/.test(a[b])||(a[b]=parseFloat(a[b]));return a};a.maps={};c.prototype.symbols.topbutton=
 function(a,b,c,d,e){return f(a-1,b-1,c,d,e.r,e.r,0,0)};c.prototype.symbols.bottombutton=function(a,b,c,d,e){return f(a-1,b-1,c,d,0,0,e.r,e.r)};t===b&&d(["topbutton","bottombutton"],function(a){b.prototype.symbols[a]=c.prototype.symbols[a]});a.Map=a.mapChart=function(b,c,d){var f="string"===typeof b||b.nodeName,e=arguments[f?1:0],g={endOnTick:!1,visible:!1,minPadding:0,maxPadding:0,startOnTick:!1},k,h=a.getOptions().credits;k=e.series;e.series=null;e=q({chart:{panning:"xy",type:"map"},credits:{mapText:x(h.mapText,
 ' \u00a9 \x3ca href\x3d"{geojson.copyrightUrl}"\x3e{geojson.copyrightShort}\x3c/a\x3e'),mapTextFull:x(h.mapTextFull,"{geojson.copyright}")},tooltip:{followTouchMove:!1},xAxis:g,yAxis:q(g,{reversed:!0})},e,{chart:{inverted:!1,alignTicks:!1}});e.series=k;return f?new p(b,e,d):new p(e,c)}})(q)});
+
+
+
+function getMyMapData()
+{
+	console.log('run map data...........');
+
+	// require data of current design depending on country
+	myMapSource = 'lib/highcharts/mapdata/world.js';
+	if($('html').attr('lang') == 'fa')
+	{
+		myMapSource = 'lib/highcharts/mapdata/ir-all.js';
+	}
+	// import source of map
+	$import(myMapSource, null);
+	// import data of map
+	$import('mapdata.js', null, 100);
+}

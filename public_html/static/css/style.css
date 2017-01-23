@@ -550,7 +550,7 @@ footer .is-open i {transform:rotate(180deg);}
 .chart *{font-family:IRANSans,Tahoma,sans-serif}
 .rtl .chart{text-align:right}
 .highcharts-title{fill:#434348;font-weight:700}
-.column .highcharts-background{fill:rgba(255,255,255,0)}
+.column .highcharts-background{fill:#fcfcfc}
 .column .highcharts-series rect{opacity:.8;transition:.3s}
 .column .highcharts-series rect:hover{opacity:1}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif}

@@ -1627,4 +1627,7 @@ function runAllScripts()
 function loadFiles()
 {
 	$import('lib/data-response.js', 'runDataResponse', 50);
+	// load maps and chart js
+	$import('lib/highcharts/highcharts.js', null, 70);
+	$import('lib/highcharts/modules/map.js', 'getMyMapData', 100);
 }
