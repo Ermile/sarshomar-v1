@@ -738,6 +738,8 @@ function detectStep(_name)
 			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
 			break;
 	}
+	// change title of btn
+	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
 	changeStep(sthis, firstTime);
 }
 
@@ -763,16 +765,16 @@ function changeStep(_name, _first)
 			}
 			break;
 
-		case 'step-filter':
 		case 'step2':
+		case 'step-filter':
 			$('.stepAdd').slideUp();
 			$('.stepFilter').slideDown();
 			$('.stepPublish').slideUp();
 			window.location.hash = 'step2';
 			break;
 
-		case 'step-publish':
 		case 'step3':
+		case 'step-publish':
 			$('.stepAdd').slideUp();
 			$('.stepFilter').slideUp();
 			$('.stepPublish').slideDown();
@@ -784,6 +786,33 @@ function changeStep(_name, _first)
 	// window.location.hash = _name;
 	// _name = _name.substr(5);
 	detectPercentage();
+}
+
+
+/**
+ * [checkNextStep description]
+ * @return {[type]} [description]
+ */
+function checkNextStep()
+{
+	$(document).on('click', "#next-step", function()
+	{
+		switch ($('.page-progress .active:last').find('input').attr('id'))
+		{
+			case 'step-add':
+				detectStep('step-filter');
+				break;
+
+			case 'step-filter':
+				detectStep('step-publish');
+				break;
+
+			case 'step-publish':
+				console.log('what now?');
+				break;
+
+		}
+	})
 }
 
 
@@ -943,6 +972,7 @@ function calcFilterPrice()
 	totalPercent = totalPercent/100;
 	totalPrice   = totalPerson + (totalPerson * totalPercent);
 	totalPrice   = totalPrice * basePrice;
+	totalPrice   = Math.round(totalPrice);
 
 	// set value to show to enduser
 	totalEl.text(totalPrice.toLocaleString());
@@ -1062,6 +1092,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$import('lib/tagDetector.js', 'runTagDetector', 400);
 
 	simulateTreeNavigation();
+	checkNextStep();
 
 	$('.page-progress input').on('click', function(e)
 	{
