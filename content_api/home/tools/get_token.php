@@ -42,7 +42,10 @@ trait get_token
 		$temp_token = utility::request("temp_token");
 		if(!$temp_token)
 		{
-			debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+			if(debug::$status)
+			{
+				debug::error(T_("Invalid parameter temp_token"), 'temp_token', 'arguments');
+			}
 			return false;
 		}
 		return utility\token::check_verify($temp_token);
