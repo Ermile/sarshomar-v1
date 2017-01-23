@@ -50,8 +50,13 @@ if(a&&0<a.length)for(var b=0;b<a.length;b++)T.call(this,a[b].getAttribute("data-
 
 
 
-function runHelp()
+function runHelp(_firstTime)
 {
+	// on first time load css
+	if(_firstTime)
+	{
+		importCSS('/static/css/lib/introjs.css');
+	}
 	console.log("Need help?");
 	var intro = introJs();
 	// get below json from
