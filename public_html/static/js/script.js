@@ -32,7 +32,7 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 		else
 		{
 			// if function is exist, call it!
-			if(callFunction(_func, true))
+			if(callFunction(_func, null, true))
 			{
 				callFunction(_func);
 			}
@@ -41,7 +41,7 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 			{
 				$.cachedScript(_src).done(function(_script, _textStatus)
 				{
-					callFunction(_func);
+					callFunction(_func, true);
 				});
 			}
 		}
@@ -75,7 +75,7 @@ jQuery.cachedScript = function(url, options)
  * @param  {[type]} _func [description]
  * @return {[type]}       [description]
  */
-function callFunction(_func, _onlyCheckExist)
+function callFunction(_func, _arg, _onlyCheckExist)
 {
 	isExist = false;
 	// if wanna to call function and exist, call it
@@ -84,10 +84,40 @@ function callFunction(_func, _onlyCheckExist)
 		isExist = true;
 		if(!_onlyCheckExist)
 		{
-			window[_func]();
+			window[_func](_arg);
 		}
 	}
 	return isExist;
+}
+
+
+/**
+ * [importCSS description]
+ * @param  {[type]} _src [description]
+ * @return {[type]}      [description]
+ */
+function importCSS(_src)
+{
+	var isFirstTime = true;
+	$('head link[data-load="dynamic"]').each(function(i, _el)
+	{
+		if(_src == $(_el).attr('href'))
+		{
+			isFirstTime = false;
+		}
+	});
+	if(isFirstTime)
+	{
+		var fileref = document.createElement("link");
+		fileref.setAttribute("rel", "stylesheet");
+		fileref.setAttribute("data-load", 'dynamic');
+		fileref.setAttribute("href", _src);
+
+		if (typeof fileref != "undefined" )
+		{
+			document.getElementsByTagName("head")[0].appendChild(fileref);
+		}
+	}
 }
 
 
