@@ -1685,10 +1685,10 @@ code{margin:0}
 .rtl .api-help .note {border-left:0;border-right: 3px solid #2c9ab7;}
 .api-help .note h2:not(.special-heading) {margin-bottom: 0;padding-right: 0;border-right: 0;}
 .api-help .note p {margin-bottom: 0;font-size: 1.3em;}
-.api-help .url-methods ul li .delete {color: #F44336;}
-.api-help .url-methods ul li .put {color:#795548;}
-.api-help .url-methods ul li .post {color: #4CAF50;}
-.api-help .url-methods ul li .get {color: #03A9F4;}
+.api-help .url-methods ul li .delete {color: #ffffff;background: #03A9F4;border-radius: 2px;padding: 0 4px;}
+.api-help .url-methods ul li .put {color: #ffffff;background: #795548;border-radius: 2px;padding: 0 4px;}
+.api-help .url-methods ul li .post {color: #ffffff;background: #4CAF50;border-radius: 2px;padding: 0 4px;}
+.api-help .url-methods ul li .get {color: #ffffff;background: #03A9F4;border-radius: 2px;padding: 0 4px;}
 .api-help .url-methods ul li a {color: #069efb;}
 .api-sample input[type='checkbox'] {display: none;}
 .api-sample .show-sample label {cursor: pointer;}
