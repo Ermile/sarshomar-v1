@@ -31,10 +31,19 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 		}
 		else
 		{
-			$.cachedScript(_src).done(function(_script, _textStatus)
+			// if function is exist, call it!
+			if(callFunction(_func, true))
 			{
 				callFunction(_func);
-			});
+			}
+			// else if not exist import it for calling!
+			else
+			{
+				$.cachedScript(_src).done(function(_script, _textStatus)
+				{
+					callFunction(_func);
+				});
+			}
 		}
 	}, _delay);
 }
@@ -66,13 +75,19 @@ jQuery.cachedScript = function(url, options)
  * @param  {[type]} _func [description]
  * @return {[type]}       [description]
  */
-function callFunction(_func)
+function callFunction(_func, _onlyCheckExist)
 {
+	isExist = false;
 	// if wanna to call function and exist, call it
 	if(typeof window[_func] === 'function')
 	{
-		window[_func]();
+		isExist = true;
+		if(!_onlyCheckExist)
+		{
+			window[_func]();
+		}
 	}
+	return isExist;
 }
 
 
@@ -179,9 +194,8 @@ function shortkey()
 		{
 			// f1
 			case 112:
-				console.log("Need help?");
+				$import('lib/introJs.js', 'runHelp', 0);
 				e.preventDefault();
-				introJs().start();
 				break;
 
 			default:
