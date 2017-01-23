@@ -25,3 +25,21 @@
    {{block('modalCrop')}}
 {% endspaceless %}
 {%endblock%}
+
+
+{%block feature_btn%}
+<div class="row auto">
+ <div class="span7">
+  <div class="btn-container margin-top">
+  <input type="hidden" name="n" value="v" id="submit-form">
+  <nav>
+   {%if survey_mod%}
+   <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
+   {%else%}
+   {%endif%}
+   <button class="btn primary" id='next-step'>{%trans "Next Step"%}</button>
+  </nav>
+  </div>
+ </div>
+</div>
+{%endblock%}

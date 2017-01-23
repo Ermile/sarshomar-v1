@@ -22,7 +22,7 @@
 <div class="ultra title-item">
  <div class="data">
   <div class="element">
-   <label class="title large" for="title" autocomplete="off">{%trans "Title"%}</label>
+   <label class="title large" for="title">{%trans "Title"%}</label>
    <div class="element-in">
     <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}">
     <div class="file">
@@ -268,7 +268,7 @@
   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
  </label>
 </div>
-<textarea name='summary' placeholder='{%trans "Summary"%}' value='' data-response="summary-show" data-response-hide data-response-effect='slide'>{{poll.meta.desc}}</textarea>
+<textarea name='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" data-response-hide data-response-effect='slide'>{{poll.meta.desc}}</textarea>
 {%endblock%}
 
 
@@ -279,27 +279,7 @@
   <i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
  </label>
 </div>
-<textarea name='description' placeholder='{%trans "Description"%}' value='' data-response="desc-show" data-response-hide data-response-effect='fade' data-resizable>{{poll.content}}</textarea>
-{%endblock%}
-
-
-{%block feature_btn%}
-<div class="row auto">
-
- <div class="span7">
-  <div class="btn-container margin-top">
-  <input type="hidden" name="n" value="v" id="submit-form">
-  <nav>
-   {%if survey_mod%}
-   <button class="btn" send-name="add_poll" value="add_poll">{%trans "Add Poll"%}</button>
-   {%else%}
-   <!-- <button class="btn" send-name="survey" value="survey">{%trans "Add Another Poll and Convert to Survery"%}</button> -->
-   {%endif%}
-   <button class="btn primary" send-name="filter" value="filter">{%trans "Next Step"%}</button>
-  </nav>
-  </div>
- </div>
-</div>
+<textarea name='description' placeholder='{%trans "Description"%}' data-response="desc-show" data-response-hide data-response-effect='fade' data-resizable>{{poll.content}}</textarea>
 {%endblock%}
 
 
