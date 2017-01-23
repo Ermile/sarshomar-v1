@@ -1,5 +1,5 @@
 <?php
-namespace content_api\search;
+namespace content_api\poll\search;
 use \lib\utility;
 
 class model extends \content_api\home\model

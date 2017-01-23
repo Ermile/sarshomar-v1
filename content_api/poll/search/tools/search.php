@@ -1,5 +1,5 @@
 <?php
-namespace content_api\search\tools;
+namespace content_api\poll\search\tools;
 use \lib\utility;
 trait search
 {
