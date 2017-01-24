@@ -1,18 +1,60 @@
-{%extends display.main%}
-{%block content%}
-<h2>
-<a id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
-</h2>
-{%endblock%}
-
-{%block foot_js%}
+{%extends display.main%} {%block content%}
+<div class="main pad auth text-based">
+	<div class="box">
+		<div class="in small">
+			<div id="bd" role="main">
+				<div class="auth-box">
+					<div class="app-auth">
+						<h2><strong>به این اپلیکیشن اجازه دسترسی به حساب کاربری خود می‌دهید؟</strong></h2>
+						<div class="permissions allow">
+							<strong>این اپلیکیشن می‌تواند:</strong>
+							<ul>
+								<li>موقعیت مکانی کاربر- موقعیت های مبتنی بر شبکه</li>
+								<li>ارتباطات شبکه ای – اتصال بلوتوث</li>
+								<li>ارتباطات شبکه ای – دسترسی کامل به اینترنت</li>
+							</ul>
+						</div>
+						<div class="permissions deny">
+							<strong>این اپلیکیشن نخواهد توانست:</strong>
+							<ul>
+								<li>جلوگیری از به حالت خواب رفتن یا اسلیپ گوشی</li>
+								<li> ابزار سیستم – خواندن تنظیمات سازگاری</li>
+								<li>ابزار سیستم – شروع خودکار هنگام بوت</li>
+								<li>ابزار سیستم – بازیابی برنامه های در حال اجرا</li>
+							</ul>
+						</div>
+						<div class="btn-container">
+							<a class="btn primary" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
+							<a class="btn primary btn-deny" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Deny'%}</a>
+						</div>
+					</div>
+					<div class="app-info" role="content-info" tabindex="0">
+						<img alt="App Name" class="app-icon" width="95" src="{{url.static}}images/delete/wordpress-logo-notext-rgb.png" title="App Title">
+						<h3>
+							وردپرس
+						</h3>
+						<div>
+							<div>www.wordpress.com</div>
+							<div>
+								وردپرس نرم‌افزاری تحت وب است که می‌توانید از آن برای ساختن سرویس وبلاگدهی، وبسایت یا وبلاگی زیبا و قدرتمند استفاده کنید. مایلیم با افتخار اعلام کنیم که وردپرس باارزش و مجانی است.
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="auth-agreement">
+					با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از اطلاعات شما بر طبق <a href="{{url.static}}terms">شرایط استفاده</a> و <a href="{{url.static}}privacy">حریم خصوصی</a> استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری خود تغییر دهید.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%} {%block foot_js%}
 <script type="text/javascript">
-	$("#allow-token").on('ajaxify:success', function(){
-		try{
+	$("#allow-token").on('ajaxify:success', function () {
+		try {
 			window.close();
-		}
-		catch(f)
-		{
+		} catch (f) {
 
 		}
 	});
