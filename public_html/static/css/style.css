@@ -1693,8 +1693,7 @@ fieldset.api-sample {border: 2px solid #607D8B;border-radius: 2px;padding: 5px 1
 code {border-radius: 2px;}
 
 /************************************************************** Token Page */
-.auth .btn-container {text-align: left;margin: 3em;}
-.rtl .auth .btn-container {text-align: right;}
+.auth .btn-container {text-align: center;margin: 3em;}
 .auth .btn-container:before {display: none;}
 .auth .btn-deny {background: #E0E0E0;color: #083942;}
 .auth .btn-deny:before,.auth .btn-deny:after {color: #E0E0E0;}
@@ -1702,14 +1701,19 @@ code {border-radius: 2px;}
 .auth .btn-deny:hover:before,.auth .btn-deny:hover:after {color: #d6d6d6;}
 .auth hr {width: 100%;height: 2px;border: 0;background: rgba(0, 102, 122, 0.15);}
 .auth {margin: 6em 0;}
-.auth-box {display: flex;flex-direction: row;}
-.auth .app-info {flex: 1}
-.auth .app-auth {flex: 2}
-.auth .auth-agreement {padding: 2em 1em;}
-.auth .permissions.allow strong {color: #009688;}
-.auth .permissions strong {font-size: 1.5em;margin-bottom: 1em;display: block;}
-.auth .permissions {margin-bottom: 3em;}
-.auth .permissions ul li {font-size: 1.3em;margin-bottom: 5px;list-style-type: circle;margin-right: 6px;}
+.auth .app-info {display: flex;flex-direction: row;justify-content: space-around;align-items: center;}
+.auth .app-info img {border-radius: 50%;}
+.auth .auth-agreement {padding: 2em 1em;font-size: 1.2em;}
+.auth .text-center {text-align: center;}
+.auth .auth-desc {font-size: 1.1em; width: 50%; margin: auto}
+.auth .title {color: #00667a;margin: 2em 0 1em 0;}
+
+
+
+
+
+
+
 
 
 
