@@ -246,6 +246,13 @@
  .rtl .special-heading {padding-left: 0;padding-right: 34px;}
  .special-heading:before {width: 40px;}
  .em {padding: 1.5em 1em;}
+
+/************************************************************** Token Page */
+.auth .in.small {width: 100%;}
+.auth .auth-agreement {font-size: 2em}
+.auth .auth-desc {font-size: 2em;width: 100%;margin: auto;}
+
+
 }
 
 
