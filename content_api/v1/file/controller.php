@@ -16,22 +16,22 @@ class controller extends  \content_api\v1\home\controller
 		/**
 		 * post to upload
 		 */
-		$this->post("upload")->ALL("file");
+		$this->post("upload")->ALL("v1/file");
 
 		/**
 		 * get to load upload details
 		 */
-		$this->get("upload")->ALL("file");
+		$this->get("upload")->ALL("v1/file");
 
 		/**
 		 * put to update a upload
 		 */
-		$this->put("upload")->ALL("file");
+		$this->put("upload")->ALL("v1/file");
 
 		/**
 		 * delete to delete a upload
 		 */
-		$this->delete("upload")->ALL("file");
+		$this->delete("upload")->ALL("v1/file");
 
 	}
 }

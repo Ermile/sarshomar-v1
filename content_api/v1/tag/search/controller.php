@@ -5,7 +5,7 @@ class controller extends  \content_api\v1\home\controller
 {
 	public function route_tag()
 	{
-		$this->get("tag")->ALL("tag");
+		$this->get("tag")->ALL("v1/tag");
 	}
 }
 ?>

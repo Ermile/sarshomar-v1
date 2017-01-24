@@ -5,7 +5,7 @@ class controller extends  \content_api\v1\home\controller
 {
 	public function _route()
 	{
-		$this->get("search")->ALL("poll/search");
+		$this->get("search")->ALL("v1/poll/search");
 	}
 }
 ?>

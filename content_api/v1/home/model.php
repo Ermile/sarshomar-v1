@@ -103,7 +103,7 @@ class model extends \mvc\model
 
 			case 'user_token':
 			case 'guest':
-				if($this->url == 'token/login' || $this->url == 'token/guest')
+				if($this->url == 'v1/token/login' || $this->url == 'v1/token/guest')
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 					return false;
@@ -121,7 +121,7 @@ class model extends \mvc\model
 				break;
 
 			case 'api_key':
-				if($this->url != 'token/temp' && $this->url != 'token/guest' && $this->url != 'token/login')
+				if($this->url != 'v1/token/temp' && $this->url != 'v1/token/guest' && $this->url != 'v1/token/login')
 				{
 					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
 					return false;
