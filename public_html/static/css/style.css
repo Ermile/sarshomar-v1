@@ -358,6 +358,7 @@ form .error{background:#fff0f0;border-color:#dbb1b1;color:#d95c5c;border-radius:
 .icon-pinterest-p:before{content:"\f231"}
 .icon-commenting:before{content:"\f27a"}
 .icon-commenting-o:before{content:"\f27b"}
+.icon-globe:before{content:"\f0ac"}
 
 
 /************************************************************** layout */
@@ -444,7 +445,7 @@ header .header-profile-button{background-color:#37aaa7;color:#f4f4f4;font-size:1
 header .header-profile-button:hover{background-color:#129491;color:#eee}
 header .header-profile-button:active,header .header-profile-button:focus{background-color:#0e7d7a}
 
-header .ui-language-link{background-color:#e8e6e6;color:#37aaa7;margin-left:5px;padding:0 15px;background-color:red}
+header .ui-language-link{background-color:#e8e6e6;color:#37aaa7;margin-left:5px;font-size:2em}
 .rtl header .ui-language-link{margin:0;margin-right:5px}
 header .ui-language-link:hover,header .ui-language-link:focus{background-color:#cecdcd}
 
