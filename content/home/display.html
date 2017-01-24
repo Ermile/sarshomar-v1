@@ -162,7 +162,14 @@
      }
     },
     colorAxis: {
-     min: 0
+        min: 1,
+        minColor: '#fcfcfc',
+        maxColor: '#083942',
+        stops: [
+            [0, '#fcfcfc'],
+            [0.67, '#00667a'],
+            [1, '#083942']
+        ]
     },
     series: [{
      data: worldData,
@@ -171,7 +178,7 @@
      name: '{%trans "Sarshomar Society"%}',
      states: {
       hover: {
-       color: '#a4edba'
+       color: '#e7a429'
       }
      },
      dataLabels: {
@@ -203,9 +210,15 @@
      }
     },
     colorAxis: {
-     min: 0
+        min: 1,
+        minColor: '#fcfcfc',
+        maxColor: '#083942',
+        stops: [
+            [0, '#fcfcfc'],
+            [0.67, '#00667a'],
+            [1, '#083942']
+        ]
     },
-
     series : [{
      data : iranData,
      mapData: Highcharts.maps['countries/ir/ir-all'],
@@ -213,7 +226,7 @@
      name: 'Random data',
      states: {
       hover: {
-       color: '#a4edba'
+       color: '#e7a429'
       }
      },
      dataLabels: {
