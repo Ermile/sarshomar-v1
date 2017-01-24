@@ -1,5 +1,5 @@
 <?php
-namespace content_api\v1\tag;
+namespace content_api\v1\tag\search;
 use \lib\utility;
 
 class model extends \content_api\v1\home\model

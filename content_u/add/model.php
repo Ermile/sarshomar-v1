@@ -43,7 +43,7 @@ class model extends \content_u\home\model
 	}
 
 
-	use \content_api\tag\tools\search;
+	use \content_api\v1\tag\search\tools\search;
 
 	private function term_list()
 	{

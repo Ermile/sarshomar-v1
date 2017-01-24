@@ -1,5 +1,5 @@
 <?php
-namespace content_api\v1\tag\tools;
+namespace content_api\v1\tag\search\tools;
 use \lib\utility;
 use \lib\debug;
 
