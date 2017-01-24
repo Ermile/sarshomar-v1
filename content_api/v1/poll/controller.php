@@ -4,12 +4,6 @@ namespace content_api\v1\poll;
 class controller extends  \content_api\v1\home\controller
 {
 
-	public function __construct()
-	{
-		\lib\storage::set_api(false);
-		parent::__construct();
-	}
-
 	/**
 	 * route url like this:
 	 * post > poll/ to add poll

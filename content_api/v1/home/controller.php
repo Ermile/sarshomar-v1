@@ -5,7 +5,16 @@ class controller extends  \mvc\controller
 {
 	public function __construct()
 	{
-		\lib\storage::set_api(false);
+		$url = \lib\router::get_url();
+		if($url == 'v1')
+		{
+			\lib\storage::set_api(false);
+		}
+		else
+		{
+			\lib\storage::set_api(true);
+		}
+
 		parent::__construct();
 	}
 
