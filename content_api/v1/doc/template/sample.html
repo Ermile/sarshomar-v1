@@ -1,0 +1,58 @@
+<aside class="api-quick-access">
+  <ul>
+   <li class="header">ورود به سیستم</li>
+    <a href="v1/doc#loginToken" >
+      <li>دریافت کلید ورود به سیستم</li>
+    </a>
+    <a href="v1/doc#guestToken" >
+      <li>دریافت کلید میهمان</li>
+    </a>
+
+    <li class="header">نظرسنجی‌</li>
+    <a href="v1/doc#addPoll" >
+      <li>ثبت نظر سنجی</li>
+    </a>
+    <a href="v1/doc#getPoll" >
+      <li>دریافت نظر سنجی</li>
+    </a>
+    <li class="header">جستجو</li>
+    <a href="v1/doc#search" >
+      <li>جستجو در نظر سنجی ها</li>
+    </a>
+    <li class="header">پاسخ دهی</li>
+    <a href="v1/doc#addAnswer" >
+      <li>ثبت پاسخ یک سوال</li>
+    </a>
+
+    <li class="header">علاقه مندی</li>
+    <a href="v1/doc#fav" >
+      <li>ثبت علاقه مندی یک سوال</li>
+    </a>
+    <a href="v1/doc#like" >
+      <li>لایک سوال</li>
+    </a>
+
+    <li class="header">مالی</li>
+    <a href="v1/doc#budget" >
+      <li>دریافت موجودی حساب کاربری</li>
+    </a>
+    <a href="v1/doc#calcPrice" >
+      <li>محاسبه هزیه یک سوال</li>
+    </a>
+
+  </ul>
+</aside>
+<div class="main pad text-based">
+  <div class="box">
+    {%include 'content_api/v1/doc/template/login/login_token.html'%}
+    {%include 'content_api/v1/doc/template/login/guest_token.html'%}
+    {%include 'content_api/v1/doc/template/poll/add.html'%}
+    {%include 'content_api/v1/doc/template/poll/get.html'%}
+    {%include 'content_api/v1/doc/template/poll/search/search.html'%}
+    {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
+    {%include 'content_api/v1/doc/template/poll/fav/fav.html'%}
+    {%include 'content_api/v1/doc/template/poll/like/like.html'%}
+    {%include 'content_api/v1/doc/template/billing/balance.html'%}
+    {%include 'content_api/v1/doc/template/poll/price/price.html'%}
+  </div>
+</div>
