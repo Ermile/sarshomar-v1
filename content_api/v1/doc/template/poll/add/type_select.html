@@ -1,0 +1,29 @@
+گزینه ها از نوع انتخابی
+<table data-response-hide data-response-effect="fade" data-response="add-answers-select">
+    <thead>
+        <tr>
+            <th class="unselectable">نام</th>
+            <th class="unselectable">توضیح</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td><code>is_true</code>
+		<br>
+		<kbd><code>BOOL</code></kbd>
+		</td>
+		<td>مشخص کردن گزینه صحیح <div class="optional">اختیاری</div></td>
+	</tr>
+	<tr>
+		<td>
+		    <label for="add-answers-score"><code>score</code></label>
+		    <input type="checkbox" id="add-answers-score">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/answer_score.html'%}
+		</td>
+	</tr>
+    </tbody>
+</table>

@@ -1,80 +1,71 @@
 <div class="in large api-help">
-    <h2 class="bordered-title unselectable" id="addPoll">ثبت یک نظر سنجی</h2>
-    <div class="description">
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-        کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-        در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز
-        شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+    <h2 class="bordered-title unselectable" id="addPoll">ثبت نظر سنجی</h2>
+    <div class="description"> ثبت نظر سنجی یا پرسشنامه.
     </div>
     <div class="ltr url-methods">
-        <ul>
-            <li><strong class="post unselectable">POST</strong>
-                <div>
-                    <a href="{{url.base}}/api/addPoll">{{url.base}}/api/addPoll</a>
-                </div>
-            </li>
-            <li><strong class="post unselectable">POST</strong>
-                <div>
-                    <a href="{{url.base}}/api/editPoll">{{url.base}}/api/editPoll</a>
-                </div>
-            </li>
-        </ul>
+        <strong class="post unselectable">POST</strong>
+        <a>/poll</a>
     </div>
     <table>
         <thead>
             <tr>
-                <th class="unselectable">شناسه</th>
-                <th class="unselectable">متغیر</th>
                 <th class="unselectable">نام</th>
-                <th class="unselectable">توضیحات</th>
-                <th class="unselectable">اولویت</th>
+                <th class="unselectable">توضیح</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><code>emoji</code></td>
-                <td><code>string</code></td>
-                <td>شکلک</td>
-                <td>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</td>
-                <td class="mandatory">اجباری</td>
-            </tr>
-            <tr>
-                <td><code>star_size_min</code></td>
-                <td><code>int</code></td>
-                <td>ستاره</td>
-                <td>حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</td>
-                <td class="mandatory">اجباری</td>
-            </tr>
-            <tr>
-                <td><code>status</code></td>
-                <td><code>draft</code></td>
-                <td>وضعیت</td>
-                <td>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</td>
-                <td class="optional">اختیاری</td>
-            </tr>
-            <tr>
-                <td><code>start_date</code></td>
-                <td><code>date_time</code></td>
-                <td>تاریخ</td>
-                <td>حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</td>
-                <td class="optional">اختیاری</td>
-            </tr>
-            <tr>
-                <td><code>hidden_result</code></td>
-                <td><code>true</code></td>
-                <td>مخفی کردن نتایج</td>
-                <td>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</td>
-                <td class="mandatory">اجباری</td>
-            </tr>
-            <tr>
-                <td><code>graduation</code></td>
-                <td><code>graduate</code></td>
-                <td>تحصیلات</td>
-                <td>حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</td>
-                <td class="optional">اختیاری</td>
-            </tr>
+
+        <tr>
+            <td><code>title</code>
+            <br>
+                <kbd><code>"string"</code></kbd>
+            </td>
+            <td>عنوان نظر سنجی <div class="mandatory">اجباری</div>
+            <br>
+             <div class="note">
+                    <p>در حالتی که بخواهید نظر سنجی را به صورت <code>draft</code> ثبت کنید این مقدار <div class="optional">اختیاری</div> می باشد.</p>
+                </div>
+             </td>
+        </tr>
+        <tr>
+           <td><code>type</code>
+            <br>
+                <kbd><code>"string"</code></kbd>
+            </td>
+
+            <td>نوع نظر سنجی <div class="mandatory">اجباری</div>.
+                پیشفرض این مقدار <kbd><code>poll</code></kbd>
+                می باشد و یک از دو مقدار <kbd><code>poll</code></kbd> یا <kbd><code>survey</code></kbd> را می پذیرد.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="add-answers"><code>answers</code></label>
+                <input type="checkbox" id="add-answers">
+            <br>
+                <kbd><code>[]</code></kbd>
+            </td>
+            <td>
+                {%include 'content_api/v1/doc/template/poll/add/add_answers.html'%}
+
+            </td>
+        </tr>
+        <tr>
+            <td><code>options</code>
+            <br>
+                <kbd><code>{}</code></kbd>
+
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><code>filters</code>
+            <br>
+                <kbd><code>{}</code></kbd>
+            </td>
+            <td></td>
+        </tr>
+
         </tbody>
     </table>
     <div class="note">

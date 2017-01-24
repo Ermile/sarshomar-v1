@@ -1,0 +1,63 @@
+گزینه ها از نوع <code>emoji</code>
+<table data-response-hide data-response-effect="fade" data-response="add-answers-emoji">
+    <thead>
+        <tr>
+            <th class="unselectable">نام</th>
+            <th class="unselectable">توضیح</th>
+        </tr>
+    </thead>
+    <tbody>
+     <tr>
+		<td><code>type</code>
+		<br>
+		<kbd><code>"string"</code></kbd>
+		</td>
+		<td>نوع شکلک که میتواند یک از موارد زیر باشد و در صورت خالی رها کردن این مورد شکلک از عنوان اصلی گزینه انتخاب می شود.
+		<div class="optional">اختیاری</div>
+		<code>star</code><br>
+		<code>like</code>
+		</td>
+	</tr>
+	<tr>
+		<td><code>is_true</code>
+		<br>
+		<kbd><code>BOOL</code></kbd>
+		</td>
+		<td>مشخص کردن گزینه صحیح <div class="optional">اختیاری</div></td>
+	</tr>
+	<tr>
+		<td><code>star_size_min</code>
+		<br>
+		<kbd><code>integer</code></kbd>
+		</td>
+		<td>حد اقل امکان انتخاب ستاره توسط کاربران
+		<br>
+		پیشفرض این مقدار ۱ است.
+		<div class="optional">اختیاری</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>star_size_max</code>
+		<br>
+		<kbd><code>integer</code></kbd>
+		</td>
+		<td>حد اکثر انتخاب ستاره توسط کاربران
+		<br>
+		پیشفرض این مقدار ۵ است.
+		<div class="optional">اختیاری</div></td>
+	</tr>
+
+
+	<tr>
+		<td>
+		    <label for="add-answers-score"><code>score</code></label>
+		    <input type="checkbox" id="add-answers-score">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/answer_score.html'%}
+		</td>
+	</tr>
+    </tbody>
+</table>

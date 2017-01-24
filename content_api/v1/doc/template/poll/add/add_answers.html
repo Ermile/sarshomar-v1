@@ -1,0 +1,116 @@
+گزینه های نظر سنجی
+<table data-response-hide data-response-effect="fade" data-response="add-answers">
+    <thead>
+    	<tr>
+    		<td colspan="2">حد اکثر ۲۰ گزینه برای هر سوال
+    		<br>
+    		هر کدام از گزینه ها باید موارد <div class="mandatory">اجباری</div> را دارا باشند.
+    		</td>
+    	</tr>
+        <tr>
+            <th class="unselectable">نام</th>
+            <th class="unselectable">توضیح</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td><code>title</code>
+		<br>
+		<kbd><code>"string"</code></kbd>
+		</td>
+		<td>عنوان گزینه که در نوع <code>select</code> <kbd>اجباری </kbd> می باشد</td>
+	</tr>
+	<tr>
+		<td><code>description</code>
+		<br>
+		<kbd><code>"string"</code></kbd>
+		</td>
+		<td>توضیحات یک گزینه. <div class="optional">اختیاری</div>حد اکثر ۲۰۰ کاراکتر</td>
+	</tr>
+	<tr>
+		<td><code>file</code>
+		<br>
+		<kbd><code>"string"</code></kbd>
+		</td>
+		<td>آدرس فایل جهت آپلود
+		<div class="optional">اختیاری</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>type</code>
+		<br>
+		<kbd><code>"string"</code></kbd>
+		</td>
+		<td>نوع گزینه که می تواند یکی از موارد زیر باشد.
+		<br>
+		<dib class="ltr">
+			<code>select</code><br>
+			<code>emoji</code><br>
+			<code>descriptive</code><br>
+			<code>upload</code><br>
+			<code>range</code><br>
+			<code>notification</code>
+		</dib>
+		<div class="note">
+        	<h2 class="note-title">نکته</h2>
+        	<p>با انتخاب هر نوع گزینه یک <code>Object</code> با نام نوع گزینه باید ارسال شود که تنظیمات مربوط به آن گزینه را در خود جای می دهد. در ادامه همین جدول به این مقادیر اشاره شده است. </p>
+   		 </div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		    <label for="add-answers-select"><code>select</code></label>
+		    <input type="checkbox" id="add-answers-select">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/type_select.html'%}
+		</td>
+    </tr>
+    <tr>
+		<td>
+		    <label for="add-answers-emoji"><code>emoji</code></label>
+		    <input type="checkbox" id="add-answers-emoji">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/type_emoji.html'%}
+		</td>
+    </tr>
+    <tr>
+		<td>
+		    <label for="add-answers-descriptive"><code>descriptive</code></label>
+		    <input type="checkbox" id="add-answers-descriptive">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/type_descriptive.html'%}
+		</td>
+    </tr>
+    <tr>
+		<td>
+		    <label for="add-answers-upload"><code>upload</code></label>
+		    <input type="checkbox" id="add-answers-upload">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/type_upload.html'%}
+		</td>
+    </tr>
+    <tr>
+		<td>
+		    <label for="add-answers-range"><code>range</code></label>
+		    <input type="checkbox" id="add-answers-range">
+		<br>
+		    <kbd><code>{}</code></kbd>
+		</td>
+		<td>
+		    {%include 'content_api/v1/doc/template/poll/add/type_range.html'%}
+		</td>
+    </tr>
+   </tbody>
+</table>
