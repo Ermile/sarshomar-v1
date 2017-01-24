@@ -24,7 +24,7 @@ class model extends \mvc\model
 	}
 
 
-	use \content_api\search\tools\search;
+	use \content_api\poll\search\tools\search;
 	use \content_api\home\tools\ready;
 	/**
 	 * Gets the search.
