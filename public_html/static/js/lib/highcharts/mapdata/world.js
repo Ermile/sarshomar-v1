@@ -4,3 +4,909 @@ Highcharts.maps["custom/world"]={title:"World, Miller projection, medium resolut
 }},{type:"Feature",id:"TJ",properties:{"hc-group":"admin0","hc-middle-x":.28,"hc-middle-y":.56,"hc-key":"tj","hc-a2":"TJ",name:"Tajikistan",labelrank:"4","country-abbrev":"Tjk.",subregion:"Central Asia","region-wb":"Europe & Central Asia","iso-a3":"TJK","iso-a2":"TJ","woe-id":"23424961",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[6300,7759],[6300,7759],[6298,7762],[6299,7761],[6300,7759]]],[[[6300,7721],[6302,7720],[6299,7718],[6296,7722],[6300,7721]]],[[[6389,7707],[6395,7677],[6423,7675],[6426,7631],[6379,7639],[6329,7613],[6329,7653],[6299,7669],[6285,7641],[6259,7626],[6215,7629],[6232,7665],[6225,7691],[6203,7699],[6235,7710],[6264,7754],[6295,7762],[6310,7734],[6280,7734],[6261,7709],[6325,7713],[6348,7698],[6389,7707]]]]}},{type:"Feature",id:"LS",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.45,"hc-key":"ls","hc-a2":"LS",name:"Lesotho",labelrank:"6","country-abbrev":"Les.",subregion:"Southern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"LSO","iso-a2":"LS","woe-id":"23424880",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5040,5608],[5054,5613],[5078,5588],[5037,5545],[5006,5579],[5040,5608]]]}},{type:"Feature",id:"UZ",properties:{"hc-group":"admin0","hc-middle-x":.46,"hc-middle-y":.53,"hc-key":"uz","hc-a2":"UZ",name:"Uzbekistan",labelrank:"3","country-abbrev":"Uzb.",subregion:"Central Asia","region-wb":"Europe & Central Asia","iso-a3":"UZB","iso-a2":"UZ","woe-id":"23424980",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[6333,7723],[6332,7723],[6331,7724],[6334,7726],[6333,7723]]],[[[6316,7728],[6317,7722],[6312,7722],[6310,7729],[6316,7728]]],[[[5968,7910],[5961,7895],[5982,7876],[5986,7899],[6015,7882],[6045,7850],[6131,7858],[6157,7828],[6163,7797],[6178,7796],[6183,7768],[6220,7768],[6240,7747],[6253,7774],[6309,7805],[6286,7782],[6323,7766],[6333,7777],[6374,7754],[6331,7731],[6310,7734],[6295,7762],[6264,7754],[6235,7710],[6203,7699],[6225,7691],[6232,7665],[6215,7629],[6200,7629],[6178,7635],[6179,7658],[6151,7665],[6057,7726],[6043,7761],[5987,7775],[5981,7807],[5943,7825],[5915,7802],[5908,7809],[5898,7794],[5896,7770],[5865,7773],[5865,7905],[5943,7925],[5934,7884],[5947,7922],[5968,7910]],[[6300,7759],[6299,7761],[6298,7762],[6300,7759],[6300,7759]]]]}},{type:"Feature",id:"MA",properties:{"hc-group":"admin0","hc-middle-x":.6,"hc-middle-y":.21,"hc-key":"ma","hc-a2":"MA",name:"Morocco",labelrank:"3","country-abbrev":"Mor.",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"MAR","iso-a2":"MA","woe-id":"23424893",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4117,7564],[4118,7565],[4119,7560],[4138,7558],[4151,7547],[4154,7497],[4173,7473],[4167,7459],[4129,7460],[4095,7444],[4096,7414],[4033,7378],[3977,7371],[3946,7348],[3946,7316],[3943,7298],[3915,7290],[3866,7291],[3847,7264],[3835,7226],[3788,7182],[3782,7148],[3764,7121],[3699,7120],[3740,7201],[3762,7222],[3774,7267],[3800,7285],[3820,7324],[3863,7337],[3890,7358],[3919,7404],[3912,7436],[3929,7475],[3951,7498],[4002,7523],[4028,7582],[4044,7586],[4044,7585],[4045,7584],[4074,7560],[4116,7566],[4117,7566],[4117,7564]]]}},{type:"Feature",id:"CO",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.54,"hc-key":"co","hc-a2":"CO",name:"Colombia",labelrank:"2","country-abbrev":"Col.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"COL","iso-a2":"CO","woe-id":"23424787",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[1865,6521],[1868,6543],[1894,6559],[1916,6592],[1909,6611],[1909,6673],[1892,6692],[1914,6713],[1908,6735],[1920,6731],[1960,6758],[1963,6791],[2005,6815],[2029,6813],[2082,6847],[2087,6830],[2068,6824],[2040,6787],[2037,6753],[2056,6726],[2064,6688],[2123,6685],[2143,6659],[2201,6662],[2190,6612],[2207,6580],[2191,6564],[2210,6549],[2219,6515],[2206,6540],[2181,6529],[2131,6529],[2125,6474],[2143,6437],[2128,6354],[2105,6367],[2125,6399],[2096,6414],[2056,6406],[2032,6413],[2019,6442],[1970,6476],[1940,6492],[1905,6498],[1865,6521]]]}},{type:"Feature",id:"TL",properties:{"hc-group":"admin0","hc-middle-x":.65,"hc-middle-y":.36,"hc-key":"tl","hc-a2":"TL",name:"East Timor",labelrank:"5","country-abbrev":"T.L.",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"TLS","iso-a2":"TL","woe-id":"23424968",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[7885,6203],[7890,6206],[7897,6207],[7891,6198],[7885,6203]]],[[[7911,6214],[7918,6224],[7972,6233],[7957,6214],[7915,6198],[7912,6206],[7911,6214]]]]}},{type:"Feature",id:"TZ",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.5,"hc-key":"tz","hc-a2":"TZ",name:"United Republic of Tanzania",labelrank:"3","country-abbrev":"Tanz.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"TZA","iso-a2":"TZ","woe-id":"23424973",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5242,6136],[5241,6138],[5240,6141],[5240,6141],[5236,6143],[5235,6145],[5235,6145],[5234,6146],[5227,6185],[5222,6192],[5219,6195],[5219,6195],[5216,6197],[5215,6197],[5215,6198],[5211,6196],[5210,6191],[5195,6195],[5181,6201],[5153,6211],[5129,6225],[5093,6304],[5084,6347],[5118,6383],[5111,6408],[5119,6432],[5108,6447],[5119,6449],[5147,6449],[5147,6448],[5148,6449],[5149,6449],[5151,6407],[5189,6405],[5215,6448],[5321,6389],[5325,6371],[5367,6341],[5387,6324],[5371,6310],[5378,6289],[5372,6221],[5404,6169],[5316,6132],[5242,6136]]]}},{type:"Feature",id:"AR",properties:{"hc-group":"admin0","hc-middle-x":.46,"hc-middle-y":.27,"hc-key":"ar","hc-a2":"AR",name:"Argentina",labelrank:"2","country-abbrev":"Arg.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"ARG","iso-a2":"AR","woe-id":"23424747",continent:"South America"},geometry:{type:"MultiPolygon",coordinates:[[[[2167,4673],[2169,4670],[2167,4670],[2167,4673]]],[[[2584,5708],[2604,5706],[2606,5658],[2549,5623],[2494,5561],[2477,5505],[2477,5487],[2466,5426],[2509,5387],[2501,5373],[2522,5338],[2495,5295],[2451,5277],[2398,5267],[2362,5269],[2354,5201],[2310,5191],[2278,5207],[2273,5163],[2287,5146],[2312,5158],[2316,5134],[2292,5143],[2292,5126],[2265,5101],[2257,5052],[2239,5053],[2206,5030],[2197,5010],[2222,4978],[2246,4976],[2246,4939],[2199,4902],[2189,4865],[2160,4852],[2151,4826],[2173,4772],[2128,4786],[2070,4787],[2054,4804],[2058,4839],[2032,4835],[2020,4882],[2059,4928],[2051,4944],[2070,4970],[2088,5042],[2066,5062],[2077,5092],[2063,5125],[2075,5158],[2069,5206],[2085,5269],[2101,5277],[2091,5311],[2096,5352],[2115,5366],[2115,5397],[2133,5456],[2109,5516],[2137,5618],[2162,5659],[2177,5666],[2169,5733],[2206,5757],[2210,5794],[2238,5826],[2287,5813],[2295,5792],[2307,5819],[2345,5812],[2394,5763],[2422,5757],[2496,5712],[2465,5653],[2549,5649],[2578,5674],[2584,5708]]],[[[2167,4674],[2167,4761],[2173,4734],[2207,4704],[2250,4679],[2287,4669],[2229,4663],[2209,4666],[2202,4668],[2167,4674]]]]}},{type:"Feature",id:"SA",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.53,"hc-key":"sa","hc-a2":"SA",name:"Saudi Arabia",labelrank:"2","country-abbrev":"Saud.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"SAU","iso-a2":"SA","woe-id":"23424938",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5641,7344],[5655,7313],[5692,7284],[5692,7255],[5712,7224],[5717,7218],[5724,7220],[5726,7210],[5734,7208],[5764,7167],[5842,7160],[5855,7137],[5836,7076],[5747,7045],[5662,7034],[5633,7020],[5611,6987],[5544,6998],[5485,6995],[5474,6966],[5427,7036],[5419,7061],[5381,7090],[5364,7117],[5364,7155],[5345,7193],[5318,7209],[5309,7237],[5249,7328],[5230,7330],[5241,7370],[5274,7365],[5331,7407],[5301,7439],[5366,7460],[5404,7453],[5453,7426],[5530,7365],[5585,7362],[5612,7358],[5641,7344]]]}},{type:"Feature",id:"PK",properties:{"hc-group":"admin0","hc-middle-x":.34,"hc-middle-y":.64,"hc-key":"pk","hc-a2":"PK",name:"Pakistan",labelrank:"2","country-abbrev":"Pak.",subregion:"Southern Asia","region-wb":"South Asia","iso-a3":"PAK","iso-a2":"PK","woe-id":"23424922",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6416,7624],[6459,7605],[6482,7577],[6490,7559],[6453,7539],[6410,7548],[6393,7534],[6400,7495],[6438,7461],[6415,7446],[6416,7427],[6381,7388],[6368,7360],[6337,7325],[6295,7328],[6265,7289],[6313,7222],[6280,7205],[6247,7208],[6227,7195],[6203,7202],[6173,7246],[6088,7238],[6032,7238],[6039,7270],[6076,7283],[6067,7334],[6041,7344],[6010,7386],[6058,7372],[6106,7371],[6168,7385],[6173,7421],[6226,7450],[6261,7454],[6268,7491],[6290,7499],[6281,7523],[6313,7524],[6330,7562],[6316,7590],[6357,7617],[6416,7624]]]}},{type:"Feature",id:"YE",properties:{"hc-group":"admin0","hc-middle-x":.39,"hc-middle-y":.75,"hc-key":"ye","hc-a2":"YE",name:"Yemen",labelrank:"3","country-abbrev":"Yem.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"YEM","iso-a2":"YE","woe-id":"23425002",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5747,7045],[5769,6994],[5780,6974],[5754,6943],[5675,6916],[5649,6895],[5629,6896],[5590,6877],[5564,6875],[5508,6852],[5494,6859],[5472,6941],[5474,6966],[5485,6995],[5544,6998],[5611,6987],[5633,7020],[5662,7034],[5747,7045]]]}},{type:"Feature",id:"AE",properties:{"hc-group":"admin0","hc-middle-x":.59,"hc-middle-y":.65,"hc-key":"ae","hc-a2":"AE",name:"United Arab Emirates",labelrank:"4","country-abbrev":"U.A.E.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"ARE","iso-a2":"AE","woe-id":"23424738",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5874,7251],[5877,7248],[5877,7231],[5860,7228],[5842,7160],[5764,7167],[5734,7208],[5810,7205],[5868,7265],[5870,7253],[5874,7251]],[[5874,7239],[5876,7241],[5873,7241],[5873,7238],[5874,7239]]]}},{type:"Feature",id:"KE",properties:{"hc-group":"admin0","hc-middle-x":.87,"hc-middle-y":.7,"hc-key":"ke","hc-a2":"KE",name:"Kenya",labelrank:"2","country-abbrev":"Ken.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"KEN","iso-a2":"KE","woe-id":"23424863",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5367,6341],[5325,6371],[5321,6389],[5215,6448],[5220,6471],[5213,6486],[5242,6527],[5240,6552],[5212,6603],[5255,6627],[5270,6615],[5297,6609],[5335,6585],[5377,6579],[5414,6605],[5447,6596],[5420,6562],[5420,6453],[5437,6429],[5396,6397],[5367,6341]]]}},{type:"Feature",id:"PE",properties:{"hc-group":"admin0","hc-middle-x":.69,"hc-middle-y":.71,"hc-key":"pe","hc-a2":"PE",name:"Peru",labelrank:"2","country-abbrev":"Peru",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"PER","iso-a2":"PE","woe-id":"23424919",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[1970,6476],[2019,6442],[2032,6413],[2056,6406],[2096,6414],[2125,6399],[2105,6367],[2128,6354],[2103,6356],[2040,6327],[2034,6290],[2007,6256],[2061,6183],[2091,6185],[2111,6200],[2108,6153],[2139,6155],[2166,6108],[2153,6073],[2160,6058],[2145,6017],[2126,6008],[2153,5996],[2155,5997],[2157,5996],[2153,5988],[2155,5986],[2137,5964],[2141,5957],[2128,5935],[2115,5932],[2082,5964],[1973,6022],[1940,6061],[1942,6083],[1900,6144],[1860,6236],[1831,6278],[1797,6299],[1793,6354],[1820,6379],[1815,6358],[1858,6331],[1879,6379],[1928,6403],[1961,6433],[1970,6476]]]}},{type:"Feature",id:"DO",properties:{"hc-group":"admin0","hc-middle-x":.46,"hc-middle-y":.38,"hc-key":"do","hc-a2":"DO",name:"Dominican Republic",labelrank:"5","country-abbrev":"Dom. Rep.",subregion:"Caribbean","region-wb":"Latin America & Caribbean","iso-a3":"DOM","iso-a2":"DO","woe-id":"23424800",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[2070,7030],[2070,7030],[2069,7031],[2069,7031],[2067,7033],[2076,7038],[2075,7067],[2097,7074],[2128,7066],[2138,7048],[2175,7035],[2159,7028],[2106,7028],[2085,7003],[2074,7016],[2076,7025],[2070,7030]]]}},{type:"Feature",id:"HT",properties:{"hc-group":"admin0","hc-middle-x":.82,"hc-middle-y":.96,"hc-key":"ht","hc-a2":"HT",name:"Haiti",labelrank:"5","country-abbrev":"Haiti",subregion:"Caribbean","region-wb":"Latin America & Caribbean","iso-a3":"HTI","iso-a2":"HT","woe-id":"23424839",continent:"North America"},geometry:{type:"MultiPolygon",coordinates:[[[[2070,7030],[2069,7031],[2069,7031],[2069,7031],[2070,7030]]],[[[2075,7067],[2076,7038],[2067,7033],[2068,7030],[2070,7030],[2076,7025],[2074,7016],[2028,7023],[2011,7016],[2e3,7036],[2046,7028],[2046,7059],[2025,7070],[2075,7067]]]]}},{type:"Feature",id:"PG",properties:{"hc-group":"admin0","hc-middle-x":.14,"hc-middle-y":.5,"hc-key":"pg","hc-a2":"PG",name:"Papua New Guinea",labelrank:"2","country-abbrev":"P.N.G.",subregion:"Melanesia","region-wb":"East Asia & Pacific","iso-a3":"PNG","iso-a2":"PG","woe-id":"23424926",continent:"Oceania"},geometry:{type:"MultiPolygon",coordinates:[[[[8388,6210],[8388,6275],[8388,6402],[8478,6367],[8493,6366],[8531,6335],[8530,6317],[8580,6303],[8592,6281],[8565,6279],[8572,6258],[8600,6241],[8632,6198],[8684,6195],[8676,6166],[8595,6178],[8568,6199],[8539,6240],[8470,6255],[8460,6214],[8437,6203],[8388,6210]]],[[[8654,6406],[8646,6432],[8662,6408],[8716,6383],[8749,6353],[8741,6336],[8723,6373],[8654,6406]]],[[[8645,6292],[8598,6309],[8685,6319],[8703,6332],[8701,6355],[8727,6351],[8719,6320],[8669,6294],[8645,6292]]]]}},{type:"Feature",id:"AO",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.67,"hc-key":"ao","hc-a2":"AO",name:"Angola",labelrank:"3","country-abbrev":"Ang.",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"AGO","iso-a2":"AO","woe-id":"23424745",continent:"Africa"},geometry:{type:"MultiPolygon",coordinates:[[[[4566,6309],[4567,6317],[4560,6331],[4583,6349],[4592,6342],[4573,6330],[4566,6309]]],[[[4898,5953],[4821,5941],[4761,5950],[4752,5961],[4618,5960],[4595,5974],[4553,5965],[4553,6009],[4575,6081],[4609,6116],[4613,6163],[4590,6210],[4601,6232],[4568,6298],[4595,6306],[4697,6304],[4708,6263],[4726,6239],[4778,6242],[4783,6272],[4850,6264],[4851,6201],[4862,6185],[4864,6146],[4915,6157],[4916,6093],[4856,6093],[4856,5998],[4898,5953]]]]}},{type:"Feature",id:"KH",properties:{"hc-group":"admin0","hc-middle-x":.84,"hc-middle-y":.49,"hc-key":"kh","hc-a2":"KH",name:"Cambodia",labelrank:"3","country-abbrev":"Camb.",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"KHM","iso-a2":"KH","woe-id":"23424776",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[7395,6915],[7395,6844],[7342,6805],[7304,6787],[7279,6789],[7258,6824],[7241,6881],[7280,6907],[7325,6904],[7374,6904],[7395,6915]]]}},{type:"Feature",id:"VN",properties:{"hc-group":"admin0","hc-middle-x":.59,"hc-middle-y":.89,"hc-key":"vn","hc-a2":"VN",name:"Vietnam",labelrank:"2","country-abbrev":"Viet.",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"VNM","iso-a2":"VN","woe-id":"23424984",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[7304,6787],[7342,6805],[7395,6844],[7395,6915],[7399,6932],[7365,6984],[7311,7039],[7286,7055],[7319,7079],[7292,7106],[7264,7103],[7260,7125],[7234,7150],[7245,7162],[7289,7154],[7329,7180],[7372,7161],[7366,7149],[7409,7122],[7377,7105],[7350,7076],[7338,7046],[7368,6999],[7432,6936],[7452,6861],[7439,6815],[7387,6786],[7371,6790],[7364,6761],[7313,6739],[7314,6781],[7304,6787]]]}},{type:"Feature",id:"MZ",properties:{"hc-group":"admin0","hc-middle-x":.83,"hc-middle-y":.28,"hc-key":"mz","hc-a2":"MZ",name:"Mozambique",labelrank:"3","country-abbrev":"Moz.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"MOZ","iso-a2":"MZ","woe-id":"23424902",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5238,6078],[5234,6118],[5242,6136],[5316,6132],[5404,6169],[5416,6039],[5388,5991],[5305,5946],[5239,5885],[5233,5868],[5258,5816],[5246,5739],[5205,5723],[5169,5696],[5180,5668],[5164,5667],[5157,5668],[5155,5685],[5152,5696],[5153,5744],[5133,5807],[5166,5841],[5184,5880],[5176,5898],[5185,5932],[5182,5982],[5106,6014],[5101,6034],[5189,6063],[5202,6045],[5223,6052],[5220,6006],[5247,5987],[5266,6002],[5268,6044],[5238,6078]]]}},{type:"Feature",id:"CR",properties:{"hc-group":"admin0","hc-middle-x":.55,"hc-middle-y":.31,"hc-key":"cr","hc-a2":"CR",name:"Costa Rica",labelrank:"5","country-abbrev":"C.R.",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"CRI","iso-a2":"CR","woe-id":"23424791",continent:"North America"},geometry:{type:"MultiPolygon",coordinates:[[[[1722,6802],[1727,6789],[1754,6762],[1740,6726],[1740,6726],[1736,6734],[1656,6785],[1661,6807],[1701,6804],[1722,6802]]],[[[1744,6716],[1739,6725],[1740,6725],[1740,6725],[1744,6716]]]]}},{type:"Feature",id:"BJ",properties:{"hc-group":"admin0","hc-middle-x":.57,"hc-middle-y":.49,"hc-key":"bj","hc-a2":"BJ",name:"Benin",labelrank:"5","country-abbrev":"Benin",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"BEN","iso-a2":"BJ","woe-id":"23424764",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4311,6825],[4318,6792],[4286,6746],[4284,6667],[4260,6664],[4252,6662],[4252,6746],[4231,6804],[4247,6818],[4275,6831],[4288,6846],[4311,6825]]]}},{type:"Feature",id:"NG",properties:{"hc-group":"admin0","hc-middle-x":.36,"hc-middle-y":.33,"hc-key":"ng","hc-a2":"NG",name:"Nigeria",labelrank:"2","country-abbrev":"Nigeria",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"NGA","iso-a2":"NG","woe-id":"23424908",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4284,6667],[4286,6746],[4318,6792],[4311,6825],[4326,6878],[4368,6891],[4410,6864],[4436,6874],[4490,6859],[4504,6872],[4543,6875],[4574,6866],[4608,6885],[4621,6866],[4639,6839],[4567,6725],[4540,6669],[4518,6689],[4466,6651],[4459,6621],[4388,6605],[4370,6615],[4335,6666],[4284,6667]]]}},{type:"Feature",id:"IR",properties:{"hc-group":"admin0","hc-middle-x":.58,"hc-middle-y":.51,"hc-key":"ir","hc-a2":"IR",name:"Iran",labelrank:"2","country-abbrev":"Iran",subregion:"Southern Asia","region-wb":"Middle East & North Africa","iso-a3":"IRN","iso-a2":"IR","woe-id":"23424851",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5532,7628],[5516,7656],[5510,7704],[5534,7714],[5552,7692],[5573,7687],[5580,7689],[5584,7687],[5627,7716],[5629,7685],[5654,7672],[5659,7648],[5694,7636],[5720,7614],[5744,7609],[5807,7617],[5804,7634],[5849,7660],[5902,7666],[5906,7656],[5949,7646],[5995,7610],[6020,7608],[6022,7576],[6001,7491],[6009,7439],[6035,7435],[6038,7418],[6010,7386],[6041,7344],[6067,7334],[6076,7283],[6039,7270],[6032,7238],[5982,7242],[5905,7256],[5896,7290],[5876,7301],[5830,7279],[5729,7324],[5690,7397],[5657,7404],[5644,7390],[5619,7423],[5623,7448],[5611,7469],[5577,7487],[5551,7521],[5579,7582],[5549,7589],[5532,7628]]]}},{type:"Feature",id:"SV",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.55,"hc-key":"sv","hc-a2":"SV",name:"El Salvador",labelrank:"6","country-abbrev":"El. S.",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"SLV","iso-a2":"SV","woe-id":"23424807",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1598,6876],[1569,6871],[1530,6886],[1530,6889],[1552,6907],[1601,6889],[1598,6876]]]}},{type:"Feature",id:"SL",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.48,"hc-key":"sl","hc-a2":"SL",name:"Sierra Leone",labelrank:"4","country-abbrev":"S.L.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SLE","iso-a2":"SL","woe-id":"23424946",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3863,6683],[3820,6702],[3809,6746],[3833,6770],[3870,6774],[3899,6729],[3889,6708],[3863,6683]]]}},{type:"Feature",id:"GW",properties:{"hc-group":"admin0","hc-middle-x":.55,"hc-middle-y":.49,"hc-key":"gw","hc-a2":"GW",name:"Guinea Bissau",labelrank:"6","country-abbrev":"GnB.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GNB","iso-a2":"GW","woe-id":"23424929",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3758,6803],[3732,6811],[3708,6844],[3753,6854],[3797,6854],[3797,6825],[3767,6819],[3758,6803]]]}},{type:"Feature",id:"HR",properties:{"hc-group":"admin0","hc-middle-x":.35,"hc-middle-y":.59,"hc-key":"hr","hc-a2":"HR",name:"Croatia",labelrank:"6","country-abbrev":"Cro.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"HRV","iso-a2":"HR","woe-id":"23424843",continent:"Europe"},geometry:{type:"MultiPolygon",coordinates:[[[[4753,7811],[4732,7826],[4728,7828],[4734,7826],[4751,7816],[4751,7814],[4753,7811]]],[[[4607,7923],[4659,7921],[4668,7949],[4694,7960],[4719,7940],[4765,7939],[4769,7910],[4768,7900],[4706,7915],[4672,7911],[4685,7876],[4726,7830],[4699,7837],[4645,7875],[4645,7908],[4619,7898],[4607,7923]]]]}},{type:"Feature",id:"BZ",properties:{"hc-group":"admin0","hc-middle-x":.53,"hc-middle-y":.5,"hc-key":"bz","hc-a2":"BZ",name:"Belize",labelrank:"6","country-abbrev":"Belize",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"BLZ","iso-a2":"BZ","woe-id":"23424760",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1558,7009],[1567,7012],[1583,7030],[1586,6984],[1565,6951],[1556,6951],[1558,7009]]]}},{type:"Feature",id:"ZA",properties:{"hc-group":"admin0","hc-middle-x":.36,"hc-middle-y":.7,"hc-key":"za","hc-a2":"ZA",name:"South Africa",labelrank:"2","country-abbrev":"S.Af.",subregion:"Southern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"ZAF","iso-a2":"ZA","woe-id":"23424942",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5157,5668],[5164,5667],[5180,5668],[5165,5613],[5129,5581],[5106,5539],[5061,5492],[5008,5451],[4942,5430],[4874,5436],[4854,5424],[4787,5410],[4753,5441],[4733,5474],[4746,5480],[4744,5511],[4717,5555],[4693,5613],[4711,5630],[4720,5608],[4771,5600],[4797,5617],[4797,5734],[4822,5690],[4818,5666],[4847,5667],[4878,5695],[4887,5716],[4941,5700],[4963,5706],[4972,5734],[5e3,5749],[5006,5769],[5041,5799],[5075,5814],[5104,5809],[5133,5807],[5153,5744],[5152,5696],[5137,5702],[5118,5682],[5128,5656],[5157,5668]],[[5040,5608],[5006,5579],[5037,5545],[5078,5588],[5054,5613],[5040,5608]]]}},{type:"Feature",id:"CF",properties:{"hc-group":"admin0","hc-middle-x":.47,"hc-middle-y":.46,"hc-key":"cf","hc-a2":"CF",name:"Central African Republic",labelrank:"4","country-abbrev":"C.A.R.",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"CAF","iso-a2":"CF","woe-id":"23424792",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4882,6802],[4906,6770],[4901,6738],[4921,6735],[4956,6696],[4987,6675],[4988,6658],[5018,6628],[4963,6637],[4872,6602],[4815,6609],[4789,6630],[4754,6606],[4757,6581],[4722,6588],[4696,6581],[4685,6545],[4682,6562],[4654,6590],[4631,6657],[4663,6701],[4702,6702],[4756,6716],[4771,6745],[4810,6749],[4870,6804],[4882,6802]]]}},{type:"Feature",id:"SD",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.38,"hc-key":"sd","hc-a2":"SD",name:"Sudan",labelrank:"3","country-abbrev":"Sudan",subregion:"Northern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SDN","iso-a2":"SD","woe-id":"-90",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4921,6735],[4901,6738],[4906,6770],[4882,6802],[4863,6856],[4859,6887],[4873,6898],[4889,6945],[4916,6946],[4916,7061],[4916,7076],[4945,7076],[4945,7138],[5131,7138],[5299,7138],[5310,7102],[5318,7037],[5350,7015],[5302,6987],[5285,6928],[5288,6902],[5276,6855],[5263,6854],[5238,6796],[5230,6801],[5215,6758],[5189,6800],[5190,6840],[5156,6834],[5166,6806],[5131,6768],[5095,6783],[5060,6754],[4992,6760],[4970,6787],[4948,6783],[4921,6735]]]}},{type:"Feature",id:"CD",properties:{"hc-group":"admin0","hc-middle-x":.58,"hc-middle-y":.42,"hc-key":"cd","hc-a2":"CD",name:"Democratic Republic of the Congo",labelrank:"2","country-abbrev":"D.R.C.",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"COD","iso-a2":"CD","woe-id":"23424780",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5071,6380],[5067,6329],[5079,6281],[5111,6236],[5061,6228],[5045,6210],[5050,6201],[5056,6189],[5046,6140],[5066,6112],[5088,6119],[5088,6081],[5070,6080],[5011,6136],[4996,6123],[4956,6134],[4955,6147],[4925,6142],[4915,6157],[4864,6146],[4862,6185],[4851,6201],[4850,6264],[4783,6272],[4778,6242],[4726,6239],[4708,6263],[4697,6304],[4595,6306],[4573,6300],[4566,6309],[4573,6330],[4592,6342],[4631,6353],[4644,6337],[4685,6381],[4686,6416],[4731,6463],[4740,6542],[4757,6581],[4754,6606],[4789,6630],[4815,6609],[4872,6602],[4963,6637],[5018,6628],[5046,6605],[5088,6613],[5119,6582],[5115,6551],[5132,6543],[5109,6523],[5108,6515],[5093,6503],[5085,6476],[5074,6464],[5084,6465],[5081,6452],[5082,6438],[5075,6434],[5071,6429],[5063,6421],[5061,6406],[5061,6400],[5065,6398],[5072,6389],[5071,6380]]]}},{type:"Feature",id:"KW",properties:{"hc-group":"admin0","hc-middle-x":.61,"hc-middle-y":.4,"hc-key":"kw","hc-a2":"KW",name:"Kuwait",labelrank:"6","country-abbrev":"Kwt.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"KWT","iso-a2":"KW","woe-id":"23424870",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5641,7344],[5612,7358],[5585,7362],[5602,7390],[5627,7391],[5631,7370],[5641,7344]]]}},{type:"Feature",id:"DE",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.34,"hc-key":"de","hc-a2":"DE",name:"Germany",labelrank:"2","country-abbrev":"Ger.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"DEU","iso-a2":"DE","woe-id":"23424829",continent:"Europe"},geometry:{type:"MultiPolygon",coordinates:[[[[4477,8004],[4477,8003],[4477,8003],[4477,8004]]],[[[4461,8288],[4466,8289],[4484,8285],[4544,8248],[4575,8271],[4609,8275],[4620,8254],[4626,8249],[4625,8248],[4625,8247],[4621,8251],[4627,8239],[4623,8205],[4639,8194],[4644,8126],[4575,8108],[4571,8083],[4614,8045],[4582,8021],[4591,7997],[4565,8005],[4530,7993],[4492,7999],[4473,8009],[4477,8004],[4455,8001],[4429,8001],[4447,8053],[4392,8072],[4397,8085],[4386,8097],[4393,8105],[4382,8122],[4393,8164],[4412,8180],[4417,8221],[4422,8240],[4458,8233],[4471,8247],[4461,8288]]]]}},{type:"Feature",id:"BE",properties:{"hc-group":"admin0","hc-middle-x":.54,"hc-middle-y":.4,"hc-key":"be","hc-a2":"BE",name:"Belgium",labelrank:"2","country-abbrev":"Belg.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"BEL","iso-a2":"BE","woe-id":"23424757",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4382,8122],[4393,8105],[4386,8097],[4374,8088],[4376,8075],[4327,8092],[4279,8135],[4297,8145],[4303,8146],[4317,8140],[4329,8146],[4331,8144],[4330,8146],[4353,8150],[4382,8122]]]}},{type:"Feature",id:"IE",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.48,"hc-key":"ie","hc-a2":"IE",name:"Ireland",labelrank:"3","country-abbrev":"Ire.",subregion:"Northern Europe","region-wb":"Europe & Central Asia","iso-a3":"IRL","iso-a2":"IE","woe-id":"23424803",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[3989,8295],[3961,8270],[3987,8256],[4018,8256],[4026,8209],[4015,8179],[3979,8174],[3946,8154],[3913,8149],[3895,8167],[3939,8222],[3907,8226],[3912,8265],[3948,8262],[3958,8299],[3989,8295]]]}},{type:"Feature",id:"KP",properties:{"hc-group":"admin0","hc-middle-x":.32,"hc-middle-y":.63,"hc-key":"kp","hc-a2":"KP",name:"North Korea",labelrank:"3","country-abbrev":"N.K.",subregion:"Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"PRK","iso-a2":"KP","woe-id":"23424865",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[8083,7807],[8051,7781],[8053,7755],[7988,7717],[7986,7697],[8013,7678],[7978,7667],[7963,7651],[7931,7658],[7924,7646],[7907,7675],[7927,7702],[7895,7730],[7943,7758],[7962,7785],[8007,7774],[8004,7796],[8053,7812],[8057,7831],[8078,7815],[8081,7811],[8083,7807]]]}},{type:"Feature",id:"KR",properties:{"hc-group":"admin0","hc-middle-x":.54,"hc-middle-y":.5,"hc-key":"kr","hc-a2":"KR",name:"South Korea",labelrank:"2","country-abbrev":"S.K.",subregion:"Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"KOR","iso-a2":"KR","woe-id":"23424868",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[7963,7651],[7978,7667],[8013,7678],[8042,7632],[8046,7573],[8021,7546],[8004,7553],[7987,7536],[7955,7542],[7963,7651]]]}},{type:"Feature",id:"GY",properties:{"hc-group":"admin0","hc-middle-x":.26,"hc-middle-y":.07,"hc-key":"gy","hc-a2":"GY",name:"Guyana",labelrank:"4","country-abbrev":"Guy.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"GUY","iso-a2":"GY","woe-id":"23424836",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[2423,6732],[2450,6715],[2507,6658],[2505,6641],[2481,6602],[2528,6536],[2509,6538],[2459,6514],[2431,6534],[2423,6558],[2437,6595],[2424,6629],[2401,6632],[2382,6653],[2387,6672],[2415,6689],[2408,6709],[2423,6732]]]}},{type:"Feature",id:"HN",properties:{"hc-group":"admin0","hc-middle-x":.71,"hc-middle-y":.09,"hc-key":"hn","hc-a2":"HN",name:"Honduras",labelrank:"5","country-abbrev":"Hond.",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"HND","iso-a2":"HN","woe-id":"23424841",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1586,6946],[1654,6955],[1702,6949],[1737,6924],[1688,6919],[1660,6893],[1630,6887],[1613,6864],[1607,6873],[1598,6876],[1601,6889],[1552,6907],[1558,6926],[1586,6946]]]}},{type:"Feature",id:"MM",properties:{"hc-group":"admin0","hc-middle-x":.17,"hc-middle-y":.49,"hc-key":"mm","hc-a2":"MM",name:"Myanmar",labelrank:"3","country-abbrev":"Myan.",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"MMR","iso-a2":"MM","woe-id":"23424763",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6942,7109],[6953,7116],[6951,7137],[6969,7150],[6973,7200],[6996,7195],[7023,7255],[7024,7278],[7074,7306],[7092,7333],[7098,7343],[7132,7313],[7133,7260],[7103,7234],[7101,7195],[7130,7203],[7138,7175],[7157,7171],[7146,7143],[7170,7139],[7177,7120],[7206,7124],[7193,7117],[7175,7086],[7128,7066],[7113,7070],[7095,7030],[7137,6959],[7119,6918],[7146,6886],[7161,6829],[7134,6785],[7129,6870],[7106,6921],[7102,6963],[7088,6985],[7036,6946],[7e3,6955],[7012,7001],[6993,7058],[6965,7077],[6942,7109]]]}},{type:"Feature",id:"GA",properties:{"hc-group":"admin0","hc-middle-x":.36,"hc-middle-y":.65,"hc-key":"ga","hc-a2":"GA",name:"Gabon",labelrank:"4","country-abbrev":"Gabon",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GAB","iso-a2":"GA","woe-id":"23424822",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4495,6508],[4540,6508],[4540,6543],[4541,6547],[4599,6542],[4597,6515],[4633,6506],[4614,6473],[4634,6461],[4622,6405],[4573,6423],[4547,6410],[4555,6369],[4534,6363],[4479,6425],[4462,6461],[4479,6467],[4480,6495],[4495,6508]]]}},{type:"Feature",id:"GQ",properties:{"hc-group":"admin0","hc-middle-x":.53,"hc-middle-y":.55,"hc-key":"gq","hc-a2":"GQ",name:"Equatorial Guinea",labelrank:"4","country-abbrev":"Eq. G.",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GNQ","iso-a2":"GQ","woe-id":"23424804",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4540,6543],[4540,6508],[4495,6508],[4481,6514],[4495,6548],[4500,6543],[4540,6543]]]}},{type:"Feature",id:"NI",properties:{"hc-group":"admin0","hc-middle-x":.84,"hc-middle-y":.5,"hc-key":"ni","hc-a2":"NI",name:"Nicaragua",labelrank:"5","country-abbrev":"Nic.",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"NIC","iso-a2":"NI","woe-id":"23424915",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1661,6807],[1603,6860],[1613,6864],[1630,6887],[1660,6893],[1688,6919],[1737,6924],[1715,6816],[1722,6802],[1701,6804],[1661,6807]]]}},{type:"Feature",id:"LV",properties:{"hc-group":"admin0","hc-middle-x":.05,"hc-middle-y":.36,"hc-key":"lv","hc-a2":"LV",name:"Latvia",labelrank:"5","country-abbrev":"Lat.",subregion:"Northern Europe","region-wb":"Europe & Central Asia","iso-a3":"LVA","iso-a2":"LV","woe-id":"23424874",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[5016,8399],[5024,8370],[5039,8340],[5023,8325],[4993,8320],[4942,8353],[4929,8345],[4860,8352],[4829,8337],[4829,8370],[4849,8401],[4875,8408],[4907,8375],[4927,8386],[4925,8413],[4954,8422],[4990,8398],[5016,8399]]]
 }},{type:"Feature",id:"UG",properties:{"hc-group":"admin0","hc-middle-x":.16,"hc-middle-y":.56,"hc-key":"ug","hc-a2":"UG",name:"Uganda",labelrank:"3","country-abbrev":"Uga.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"UGA","iso-a2":"UG","woe-id":"23424974",continent:"Africa"},geometry:{type:"MultiPolygon",coordinates:[[[[5148,6449],[5148,6450],[5149,6449],[5148,6449]]],[[[5082,6438],[5081,6452],[5084,6465],[5091,6474],[5085,6476],[5093,6503],[5108,6515],[5136,6535],[5132,6543],[5115,6551],[5119,6582],[5198,6589],[5212,6603],[5240,6552],[5242,6527],[5213,6486],[5171,6483],[5147,6449],[5119,6449],[5108,6447],[5092,6435],[5082,6438]]]]}},{type:"Feature",id:"MW",properties:{"hc-group":"admin0","hc-middle-x":.16,"hc-middle-y":.29,"hc-key":"mw","hc-a2":"MW",name:"Malawi",labelrank:"6","country-abbrev":"Mal.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"MWI","iso-a2":"MW","woe-id":"23424889",continent:"Africa"},geometry:{type:"MultiPolygon",coordinates:[[[[5240,6141],[5240,6141],[5240,6141],[5240,6141]]],[[[5235,6145],[5235,6146],[5234,6146],[5235,6145],[5235,6145]]],[[[5222,6192],[5219,6195],[5219,6195],[5222,6192]]],[[[5216,6197],[5215,6198],[5215,6197],[5216,6197]]],[[[5181,6201],[5195,6195],[5210,6191],[5223,6133],[5222,6082],[5238,6078],[5268,6044],[5266,6002],[5247,5987],[5220,6006],[5223,6052],[5202,6045],[5189,6063],[5178,6072],[5194,6107],[5190,6157],[5203,6166],[5181,6201]]]]}},{type:"Feature",id:"AM",properties:{"hc-group":"admin0","hc-middle-x":.1,"hc-middle-y":.12,"hc-key":"am","hc-a2":"AM",name:"Armenia",labelrank:"6","country-abbrev":"Arm.",subregion:"Western Asia","region-wb":"Europe & Central Asia","iso-a3":"ARM","iso-a2":"AM","woe-id":"23424743",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5584,7687],[5580,7689],[5573,7687],[5563,7710],[5533,7716],[5500,7730],[5493,7765],[5515,7769],[5539,7771],[5568,7734],[5558,7727],[5584,7687]],[[5540,7763],[5540,7764],[5538,7764],[5539,7762],[5540,7763]],[[5546,7760],[5545,7761],[5545,7761],[5545,7760],[5546,7760]],[[5554,7747],[5555,7747],[5556,7749],[5554,7749],[5554,7747]]]}},{type:"Feature",id:"SX",properties:{"hc-group":"admin0","hc-middle-x":.76,"hc-middle-y":.53,"hc-key":"sx","hc-a2":"SX",name:"Somaliland",labelrank:"5","country-abbrev":"Solnd.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"-99","iso-a2":"SX","woe-id":"-99",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5487,6819],[5518,6788],[5562,6801],[5582,6795],[5611,6810],[5656,6812],[5656,6758],[5628,6715],[5598,6715],[5510,6744],[5470,6793],[5478,6804],[5487,6819]]]}},{type:"Feature",id:"TM",properties:{"hc-group":"admin0","hc-middle-x":.4,"hc-middle-y":.42,"hc-key":"tm","hc-a2":"TM",name:"Turkmenistan",labelrank:"4","country-abbrev":"Turkm.",subregion:"Central Asia","region-wb":"Europe & Central Asia","iso-a3":"TKM","iso-a2":"TM","woe-id":"23424972",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[5898,7794],[5921,7785],[5915,7802],[5943,7825],[5981,7807],[5987,7775],[6043,7761],[6057,7726],[6151,7665],[6179,7658],[6178,7635],[6156,7642],[6126,7626],[6117,7598],[6052,7560],[6022,7576],[6020,7608],[5995,7610],[5949,7646],[5906,7656],[5902,7666],[5849,7660],[5804,7634],[5806,7688],[5794,7724],[5769,7728],[5775,7760],[5798,7748],[5828,7765],[5803,7799],[5792,7800],[5792,7800],[5812,7808],[5851,7770],[5865,7773],[5896,7770],[5898,7794]]],[[[5780,7795],[5782,7800],[5792,7800],[5792,7800],[5780,7795],[5780,7795],[5780,7795]]],[[[5780,7795],[5771,7775],[5760,7788],[5780,7795],[5780,7795],[5780,7795]]]]}},{type:"Feature",id:"ZM",properties:{"hc-group":"admin0","hc-middle-x":.36,"hc-middle-y":.58,"hc-key":"zm","hc-a2":"ZM",name:"Zambia",labelrank:"3","country-abbrev":"Zambia",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"ZMB","iso-a2":"ZM","woe-id":"23425003",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5050,6201],[5069,6222],[5061,6228],[5111,6236],[5125,6219],[5129,6225],[5153,6211],[5181,6201],[5203,6166],[5190,6157],[5194,6107],[5178,6072],[5189,6063],[5101,6034],[5106,6014],[5060,6001],[5058,5987],[5038,5977],[5022,5969],[5006,5944],[4996,5940],[4954,5949],[4923,5958],[4898,5953],[4856,5998],[4856,6093],[4916,6093],[4915,6157],[4925,6142],[4955,6147],[4956,6134],[4996,6123],[5011,6136],[5070,6080],[5088,6081],[5088,6119],[5066,6112],[5046,6140],[5056,6189],[5050,6201]]]}},{type:"Feature",id:"NC",properties:{"hc-group":"admin0","hc-middle-x":.56,"hc-middle-y":.71,"hc-key":"nc","hc-a2":"NC",name:"Northern Cyprus",labelrank:"6","country-abbrev":"N. Cy.",subregion:"Western Asia","region-wb":"Europe & Central Asia","iso-a3":"-99","iso-a2":"NC","woe-id":"-90",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[5210,7558],[5206,7556],[5203,7556],[5196,7562],[5175,7561],[5175,7561],[5175,7561],[5175,7561],[5175,7561],[5175,7561],[5231,7579],[5213,7557],[5210,7558]]],[[[5171,7561],[5173,7562],[5172,7561],[5171,7561]]]]}},{type:"Feature",id:"MR",properties:{"hc-group":"admin0","hc-middle-x":.61,"hc-middle-y":.63,"hc-key":"mr","hc-a2":"MR",name:"Mauritania",labelrank:"3","country-abbrev":"Mrt.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"MRT","iso-a2":"MR","woe-id":"23424896",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3946,7304],[4040,7245],[4061,7231],[4008,7231],[4040,6939],[3886,6937],[3856,6941],[3840,6917],[3779,6974],[3719,6968],[3713,6949],[3728,7014],[3714,7058],[3723,7083],[3698,7100],[3701,7117],[3818,7117],[3818,7170],[3847,7183],[3847,7263],[3946,7263],[3946,7304]]]}},{type:"Feature",id:"DZ",properties:{"hc-group":"admin0","hc-middle-x":.63,"hc-middle-y":.5,"hc-key":"dz","hc-a2":"DZ",name:"Algeria",labelrank:"3","country-abbrev":"Alg.",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"DZA","iso-a2":"DZ","woe-id":"23424740",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4061,7231],[4040,7245],[3946,7304],[3946,7316],[3946,7348],[3977,7371],[4033,7378],[4096,7414],[4095,7444],[4129,7460],[4167,7459],[4173,7473],[4154,7497],[4151,7547],[4138,7558],[4235,7605],[4291,7616],[4346,7619],[4359,7611],[4423,7626],[4459,7621],[4452,7604],[4448,7543],[4426,7518],[4451,7473],[4472,7458],[4486,7398],[4496,7363],[4496,7279],[4483,7267],[4502,7227],[4546,7209],[4559,7185],[4426,7103],[4376,7059],[4329,7050],[4296,7050],[4299,7070],[4260,7083],[4238,7110],[4061,7231]]]}},{type:"Feature",id:"LT",properties:{"hc-group":"admin0","hc-middle-x":.27,"hc-middle-y":.06,"hc-key":"lt","hc-a2":"LT",name:"Lithuania",labelrank:"5","country-abbrev":"Lith.",subregion:"Northern Europe","region-wb":"Europe & Central Asia","iso-a3":"LTU","iso-a2":"LT","woe-id":"23424875",continent:"Europe"},geometry:{type:"MultiPolygon",coordinates:[[[[4835,8303],[4832,8321],[4829,8337],[4860,8352],[4929,8345],[4942,8353],[4993,8320],[4998,8305],[4972,8290],[4960,8264],[4927,8247],[4901,8249],[4900,8258],[4880,8266],[4881,8288],[4835,8303]]],[[[4825,8304],[4830,8313],[4827,8304],[4825,8304]]]]}},{type:"Feature",id:"ET",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.58,"hc-key":"et","hc-a2":"ET",name:"Ethiopia",labelrank:"2","country-abbrev":"Eth.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"ETH","iso-a2":"ET","woe-id":"23424808",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5444,6813],[5441,6810],[5444,6807],[5449,6802],[5478,6804],[5470,6793],[5510,6744],[5598,6715],[5628,6715],[5538,6624],[5509,6625],[5447,6596],[5414,6605],[5377,6579],[5335,6585],[5297,6609],[5270,6615],[5235,6675],[5205,6705],[5185,6709],[5190,6729],[5211,6728],[5215,6758],[5230,6801],[5238,6796],[5263,6854],[5276,6855],[5288,6902],[5328,6921],[5416,6897],[5462,6848],[5443,6820],[5444,6813]]]}},{type:"Feature",id:"ER",properties:{"hc-group":"admin0","hc-middle-x":.29,"hc-middle-y":.05,"hc-key":"er","hc-a2":"ER",name:"Eritrea",labelrank:"4","country-abbrev":"Erit.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"ERI","iso-a2":"ER","woe-id":"23424806",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5462,6848],[5416,6897],[5328,6921],[5288,6902],[5285,6928],[5302,6987],[5350,7015],[5382,6928],[5426,6913],[5484,6855],[5471,6845],[5462,6848]]]}},{type:"Feature",id:"GH",properties:{"hc-group":"admin0","hc-middle-x":.13,"hc-middle-y":.77,"hc-key":"gh","hc-a2":"GH",name:"Ghana",labelrank:"3","country-abbrev":"Ghana",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GHA","iso-a2":"GH","woe-id":"23424824",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4239,6659],[4142,6618],[4111,6629],[4112,6629],[4116,6629],[4120,6631],[4108,6681],[4130,6721],[4124,6759],[4122,6804],[4199,6808],[4215,6781],[4219,6681],[4239,6659]]]}},{type:"Feature",id:"SI",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.57,"hc-key":"si","hc-a2":"SI",name:"Slovenia",labelrank:"6","country-abbrev":"Slo.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"SVN","iso-a2":"SI","woe-id":"23424945",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4607,7923],[4607,7925],[4611,7927],[4601,7952],[4611,7961],[4635,7956],[4682,7974],[4687,7974],[4694,7960],[4668,7949],[4659,7921],[4607,7923]]]}},{type:"Feature",id:"GT",properties:{"hc-group":"admin0","hc-middle-x":.44,"hc-middle-y":.87,"hc-key":"gt","hc-a2":"GT",name:"Guatemala",labelrank:"3","country-abbrev":"Guat.",subregion:"Central America","region-wb":"Latin America & Caribbean","iso-a3":"GTM","iso-a2":"GT","woe-id":"23424834",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1565,6951],[1574,6947],[1586,6946],[1558,6926],[1552,6907],[1530,6889],[1530,6886],[1494,6893],[1466,6911],[1482,6956],[1522,6966],[1491,6992],[1504,7009],[1558,7009],[1556,6951],[1565,6951]]]}},{type:"Feature",id:"BA",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.48,"hc-key":"ba","hc-a2":"BA",name:"Bosnia and Herzegovina",labelrank:"5","country-abbrev":"B.H.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"BIH","iso-a2":"BA","woe-id":"23424761",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4728,7828],[4725,7830],[4726,7830],[4685,7876],[4672,7911],[4706,7915],[4768,7900],[4779,7901],[4774,7851],[4752,7832],[4751,7816],[4734,7826],[4728,7828]]]}},{type:"Feature",id:"JO",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.85,"hc-key":"jo","hc-a2":"JO",name:"Jordan",labelrank:"4","country-abbrev":"Jord.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"JOR","iso-a2":"JO","woe-id":"23424860",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5255,7426],[5258,7429],[5255,7431],[5254,7432],[5255,7434],[5259,7434],[5259,7448],[5259,7477],[5265,7480],[5296,7466],[5355,7501],[5363,7472],[5366,7460],[5301,7439],[5331,7407],[5274,7365],[5241,7370],[5243,7376],[5241,7377],[5247,7405],[5255,7426]]]}},{type:"Feature",id:"SY",properties:{"hc-group":"admin0","hc-middle-x":.25,"hc-middle-y":.54,"hc-key":"sy","hc-a2":"SY",name:"Syria",labelrank:"3","country-abbrev":"Syria",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"SYR","iso-a2":"SY","woe-id":"23424956",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5355,7501],[5296,7466],[5265,7480],[5269,7487],[5267,7502],[5290,7529],[5271,7544],[5270,7569],[5270,7586],[5291,7617],[5338,7620],[5384,7614],[5457,7634],[5461,7627],[5432,7606],[5427,7548],[5412,7533],[5355,7501]]]}},{type:"Feature",id:"MC",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.67,"hc-key":"mc","hc-a2":"MC",name:"Monaco",labelrank:"6","country-abbrev":"Mco.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"MCO","iso-a2":"MC","woe-id":"23424892",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4425,7859],[4424,7858],[4423,7858],[4424,7860],[4425,7859]]]}},{type:"Feature",id:"AL",properties:{"hc-group":"admin0","hc-middle-x":.39,"hc-middle-y":.49,"hc-key":"al","hc-a2":"AL",name:"Albania",labelrank:"6","country-abbrev":"Alb.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"ALB","iso-a2":"AL","woe-id":"23424742",continent:"Europe"},geometry:{type:"MultiPolygon",coordinates:[[[[4826,7757],[4826,7757],[4825,7758],[4826,7757]]],[[[4779,7800],[4779,7805],[4780,7808],[4789,7820],[4799,7816],[4812,7804],[4814,7792],[4811,7781],[4816,7764],[4817,7758],[4819,7758],[4822,7758],[4825,7758],[4825,7757],[4826,7756],[4826,7756],[4824,7753],[4826,7754],[4826,7753],[4828,7750],[4827,7750],[4828,7750],[4809,7720],[4798,7715],[4777,7749],[4779,7791],[4778,7795],[4779,7800]]],[[[4779,7807],[4779,7807],[4779,7806],[4779,7807]]]]}},{type:"Feature",id:"UY",properties:{"hc-group":"admin0","hc-middle-x":.81,"hc-middle-y":.63,"hc-key":"uy","hc-a2":"UY",name:"Uruguay",labelrank:"4","country-abbrev":"Ury.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"URY","iso-a2":"UY","woe-id":"23424979",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[2626,5480],[2612,5465],[2615,5450],[2615,5447],[2620,5444],[2608,5422],[2573,5404],[2537,5404],[2487,5420],[2471,5437],[2477,5487],[2477,5505],[2494,5561],[2517,5563],[2542,5531],[2554,5539],[2626,5480]]]}},{type:"Feature",id:"CNM",properties:{"hc-group":"admin0","hc-middle-x":.39,"hc-middle-y":.11,"hc-key":"cnm","hc-a2":"CN",name:"Cyprus No Mans Area",labelrank:"9","country-abbrev":null,subregion:"Western Asia","region-wb":"Europe & Central Asia","iso-a3":"-99","iso-a2":null,"woe-id":"-99",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[5213,7557],[5214,7557],[5213,7557],[5210,7557],[5210,7558],[5213,7557]]],[[[5171,7561],[5171,7561],[5172,7561],[5173,7562],[5173,7562],[5172,7560],[5171,7561]]],[[[5175,7561],[5174,7561],[5175,7561],[5175,7561],[5175,7561],[5175,7561]]],[[[5203,7556],[5205,7555],[5204,7555],[5196,7561],[5175,7561],[5175,7561],[5196,7562],[5203,7556]]]]}},{type:"Feature",id:"MN",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.53,"hc-key":"mn","hc-a2":"MN",name:"Mongolia",labelrank:"3","country-abbrev":"Mong.",subregion:"Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"MNG","iso-a2":"MN","woe-id":"23424887",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[7691,8008],[7702,8011],[7698,8015],[7722,8015],[7762,7975],[7756,7963],[7714,7968],[7664,7953],[7637,7921],[7603,7919],[7575,7895],[7528,7908],[7511,7885],[7526,7857],[7453,7813],[7372,7807],[7326,7787],[7282,7788],[7232,7803],[7220,7815],[7064,7822],[7034,7879],[6979,7903],[6901,7912],[6906,7963],[6885,8003],[6847,8016],[6814,8039],[6810,8061],[6945,8127],[7001,8115],[7011,8094],[7093,8083],[7121,8113],[7106,8132],[7139,8176],[7237,8144],[7239,8117],[7280,8098],[7330,8111],[7407,8090],[7425,8067],[7490,8060],[7559,8077],[7596,8104],[7628,8089],[7667,8086],[7632,8021],[7642,8005],[7691,8008]]]}},{type:"Feature",id:"RW",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.56,"hc-key":"rw","hc-a2":"RW",name:"Rwanda",labelrank:"3","country-abbrev":"Rwa.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"RWA","iso-a2":"RW","woe-id":"23424937",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5065,6398],[5061,6400],[5061,6406],[5075,6419],[5071,6429],[5075,6434],[5082,6438],[5092,6435],[5108,6447],[5119,6432],[5111,6408],[5091,6400],[5065,6398]]]}},{type:"Feature",id:"SO",properties:{"hc-group":"admin0","hc-middle-x":.39,"hc-middle-y":.74,"hc-key":"so","hc-a2":"SO",name:"Somalia",labelrank:"6","country-abbrev":"Som.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SOM","iso-a2":"SO","woe-id":"-90",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5447,6596],[5509,6625],[5538,6624],[5628,6715],[5656,6758],[5656,6812],[5726,6829],[5713,6758],[5627,6610],[5570,6551],[5494,6497],[5437,6429],[5420,6453],[5420,6562],[5447,6596]]]}},{type:"Feature",id:"BO",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.59,"hc-key":"bo","hc-a2":"BO",name:"Bolivia",labelrank:"3","country-abbrev":"Bolivia",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"BOL","iso-a2":"BO","woe-id":"23424762",continent:"South America"},geometry:{type:"MultiPolygon",coordinates:[[[[2153,5996],[2153,6001],[2157,5996],[2155,5997],[2153,5996]]],[[[2141,5957],[2137,5964],[2155,5986],[2169,5993],[2145,6017],[2160,6058],[2153,6073],[2166,6108],[2139,6155],[2177,6154],[2226,6186],[2262,6192],[2263,6149],[2293,6110],[2332,6104],[2369,6077],[2409,6069],[2419,5995],[2469,5993],[2471,5965],[2496,5937],[2478,5876],[2450,5903],[2371,5892],[2356,5864],[2345,5812],[2307,5819],[2295,5792],[2287,5813],[2238,5826],[2210,5794],[2189,5794],[2180,5842],[2163,5868],[2173,5898],[2157,5913],[2141,5957]]]]}},{type:"Feature",id:"CM",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.81,"hc-key":"cm","hc-a2":"CM",name:"Cameroon",labelrank:"3","country-abbrev":"Cam.",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"CMR","iso-a2":"CM","woe-id":"23424785",continent:"Africa"},geometry:{type:"MultiPolygon",coordinates:[[[[4599,6542],[4541,6547],[4540,6543],[4500,6543],[4495,6548],[4490,6593],[4459,6621],[4466,6651],[4518,6689],[4540,6669],[4567,6725],[4639,6839],[4621,6866],[4629,6866],[4627,6861],[4634,6863],[4653,6820],[4651,6798],[4669,6774],[4625,6774],[4618,6764],[4655,6729],[4663,6701],[4631,6657],[4654,6590],[4682,6562],[4685,6545],[4684,6530],[4636,6544],[4599,6542]]],[[[4631,6866],[4631,6866],[4630,6866],[4631,6866]]]]}},{type:"Feature",id:"CG",properties:{"hc-group":"admin0","hc-middle-x":.15,"hc-middle-y":.78,"hc-key":"cg","hc-a2":"CG",name:"Republic of Congo",labelrank:"4","country-abbrev":"Rep. Congo",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"COG","iso-a2":"CG","woe-id":"23424779",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4599,6542],[4636,6544],[4684,6530],[4685,6545],[4696,6581],[4722,6588],[4757,6581],[4740,6542],[4731,6463],[4686,6416],[4685,6381],[4644,6337],[4631,6353],[4592,6342],[4583,6349],[4560,6331],[4554,6344],[4534,6363],[4555,6369],[4547,6410],[4573,6423],[4622,6405],[4634,6461],[4614,6473],[4633,6506],[4597,6515],[4599,6542]]]}},{type:"Feature",id:"EH",properties:{"hc-group":"admin0","hc-middle-x":.41,"hc-middle-y":.71,"hc-key":"eh","hc-a2":"EH",name:"Western Sahara",labelrank:"7","country-abbrev":"W. Sah.",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"ESH","iso-a2":"EH","woe-id":"23424990",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3698,7100],[3696,7103],[3699,7120],[3764,7121],[3782,7148],[3788,7182],[3835,7226],[3847,7264],[3866,7291],[3915,7290],[3943,7298],[3946,7316],[3946,7304],[3946,7263],[3847,7263],[3847,7183],[3818,7170],[3818,7117],[3701,7117],[3698,7100]]]}},{type:"Feature",id:"RS",properties:{"hc-group":"admin0","hc-middle-x":.42,"hc-middle-y":.52,"hc-key":"rs","hc-a2":"RS",name:"Republic of Serbia",labelrank:"5","country-abbrev":"Serb.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"SRB","iso-a2":"RS","woe-id":"-90",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4774,7851],[4779,7901],[4768,7900],[4769,7910],[4765,7939],[4784,7948],[4805,7946],[4842,7910],[4839,7897],[4877,7877],[4867,7861],[4885,7836],[4867,7808],[4855,7808],[4844,7805],[4850,7820],[4820,7842],[4808,7826],[4786,7839],[4774,7851]]]}},{type:"Feature",id:"ME",properties:{"hc-group":"admin0","hc-middle-x":.42,"hc-middle-y":.47,"hc-key":"me","hc-a2":"ME",name:"Montenegro",labelrank:"6","country-abbrev":"Mont.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"MNE","iso-a2":"ME","woe-id":"20069817",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4774,7851],[4786,7839],[4808,7826],[4798,7822],[4799,7816],[4789,7820],[4780,7808],[4779,7807],[4779,7806],[4772,7806],[4779,7800],[4778,7795],[4779,7791],[4761,7806],[4753,7811],[4751,7814],[4751,7816],[4752,7832],[4774,7851]]]}},{type:"Feature",id:"TG",properties:{"hc-group":"admin0","hc-middle-x":.76,"hc-middle-y":.81,"hc-key":"tg","hc-a2":"TG",name:"Togo",labelrank:"6","country-abbrev":"Togo",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"TGO","iso-a2":"TG","woe-id":"23424965",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4231,6804],[4252,6746],[4252,6662],[4246,6661],[4239,6659],[4219,6681],[4215,6781],[4199,6808],[4218,6804],[4231,6804]]]}},{type:"Feature",id:"LA",properties:{"hc-group":"admin0","hc-middle-x":.88,"hc-middle-y":.79,"hc-key":"la","hc-a2":"LA",name:"Laos",labelrank:"4","country-abbrev":"Laos",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"LAO","iso-a2":"LA","woe-id":"23424872",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[7395,6915],[7374,6904],[7325,6904],[7338,6946],[7313,6970],[7315,6996],[7290,7025],[7272,7029],[7249,7010],[7233,7022],[7205,6999],[7209,7061],[7186,7062],[7175,7086],[7193,7117],[7206,7124],[7222,7111],[7217,7146],[7234,7150],[7260,7125],[7264,7103],[7292,7106],[7319,7079],[7286,7055],[7311,7039],[7365,6984],[7399,6932],[7395,6915]]]}},{type:"Feature",id:"AF",properties:{"hc-group":"admin0","hc-middle-x":.37,"hc-middle-y":.52,"hc-key":"af","hc-a2":"AF",name:"Afghanistan",labelrank:"3","country-abbrev":"Afg.",subregion:"Southern Asia","region-wb":"South Asia","iso-a3":"AFG","iso-a2":"AF","woe-id":"23424739",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6426,7631],[6411,7627],[6416,7624],[6357,7617],[6316,7590],[6330,7562],[6313,7524],[6281,7523],[6290,7499],[6268,7491],[6261,7454],[6226,7450],[6173,7421],[6168,7385],[6106,7371],[6058,7372],[6010,7386],[6038,7418],[6035,7435],[6009,7439],[6001,7491],[6022,7576],[6052,7560],[6117,7598],[6126,7626],[6156,7642],[6178,7635],[6200,7629],[6215,7629],[6259,7626],[6285,7641],[6299,7669],[6329,7653],[6329,7613],[6379,7639],[6426,7631]]]}},{type:"Feature",id:"UA",properties:{"hc-group":"admin0","hc-middle-x":.7,"hc-middle-y":.46,"hc-key":"ua","hc-a2":"UA",name:"Ukraine",labelrank:"3","country-abbrev":"Ukr.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"UKR","iso-a2":"UA","woe-id":"23424976",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4861,8032],[4866,8042],[4873,8057],[4876,8075],[4919,8114],[4905,8152],[4928,8166],[4969,8168],[5013,8155],[5074,8146],[5110,8154],[5122,8174],[5147,8175],[5207,8185],[5225,8161],[5218,8142],[5245,8140],[5262,8106],[5315,8109],[5367,8087],[5395,8064],[5382,8045],[5384,8010],[5356,8011],[5338,7983],[5269,7966],[5237,7948],[5260,7909],[5212,7882],[5179,7928],[5206,7939],[5146,7950],[5163,7959],[5129,7965],[5089,7927],[5084,7913],[5059,7914],[5041,7922],[5063,7958],[5097,7955],[5068,7999],[5072,8011],[5028,8033],[4994,8026],[4954,8013],[4883,8014],[4875,8020],[4861,8032]],[[5098,7955],[5107,7945],[5109,7947],[5100,7956],[5098,7955]],[[5213,7945],[5242,7929],[5237,7943],[5218,7952],[5213,7945]]]}},{type:"Feature",id:"SK",properties:{"hc-group":"admin0","hc-middle-x":.21,"hc-middle-y":.52,"hc-key":"sk","hc-a2":"SK",name:"Slovakia",labelrank:"6","country-abbrev":"Svk.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"SVK","iso-a2":"SK","woe-id":"23424877",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4873,8057],[4866,8042],[4861,8032],[4812,8036],[4795,8021],[4733,8007],[4713,8017],[4704,8030],[4707,8039],[4741,8058],[4763,8074],[4852,8069],[4873,8057]]]}},{type:"Feature",id:"JK",properties:{"hc-group":"admin0","hc-middle-x":.4,"hc-middle-y":.63,"hc-key":"jk","hc-a2":"JK",name:"Siachen Glacier",labelrank:"5","country-abbrev":"Siachen",subregion:"Southern Asia","region-wb":"South Asia","iso-a3":"-99","iso-a2":"JK","woe-id":"23424928",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6513,7572],[6490,7559],[6482,7577],[6500,7571],[6513,7572]]]}},{type:"Feature",id:"BG",properties:{"hc-group":"admin0","hc-middle-x":.76,"hc-middle-y":.51,"hc-key":"bg","hc-a2":"BG",name:"Bulgaria",labelrank:"4","country-abbrev":"Bulg.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"BGR","iso-a2":"BG","woe-id":"23424771",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[5052,7859],[5026,7812],[5035,7796],[5007,7799],[4985,7786],[4953,7770],[4931,7781],[4884,7773],[4887,7787],[4867,7808],[4885,7836],[4867,7861],[4877,7877],[4896,7864],[4957,7856],[5006,7875],[5052,7859]]]}},{type:"Feature",id:"QA",properties:{"hc-group":"admin0","hc-middle-x":.36,"hc-middle-y":.46,"hc-key":"qa","hc-a2":"QA",name:"Qatar",labelrank:"5","country-abbrev":"Qatar",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"QAT","iso-a2":"QA","woe-id":"23424930",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5712,7224],[5710,7247],[5735,7259],[5724,7220],[5717,7218],[5712,7224]]]}},{type:"Feature",id:"LI",properties:{"hc-group":"admin0","hc-middle-x":.61,"hc-middle-y":.53,"hc-key":"li","hc-a2":"LI",name:"Liechtenstein",labelrank:"6","country-abbrev":"Liech.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"LIE","iso-a2":"LI","woe-id":"23424879",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4487,7989],[4489,7983],[4488,7981],[4485,7981],[4487,7989]]]}},{type:"Feature",id:"AT",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.62,"hc-key":"at","hc-a2":"AT",name:"Austria",labelrank:"4","country-abbrev":"Aust.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"AUT","iso-a2":"AT","woe-id":"23424750",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4488,7981],[4489,7983],[4487,7989],[4490,7994],[4488,7998],[4491,7997],[4492,7999],[4530,7993],[4565,8005],[4591,7997],[4582,8021],[4614,8045],[4640,8039],[4648,8053],[4707,8039],[4704,8030],[4713,8017],[4696,8007],[4682,7974],[4635,7956],[4611,7961],[4572,7967],[4566,7982],[4514,7974],[4504,7973],[4488,7981]]]}},{type:"Feature",id:"SZ",properties:{"hc-group":"admin0","hc-middle-x":.51,"hc-middle-y":.45,"hc-key":"sz","hc-a2":"SZ",name:"Swaziland",labelrank:"4","country-abbrev":"Swz.",subregion:"Southern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SWZ","iso-a2":"SZ","woe-id":"23424993",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5152,5696],[5155,5685],[5157,5668],[5128,5656],[5118,5682],[5137,5702],[5152,5696]]]}},{type:"Feature",id:"HU",properties:{"hc-group":"admin0","hc-middle-x":.27,"hc-middle-y":.61,"hc-key":"hu","hc-a2":"HU",name:"Hungary",labelrank:"5","country-abbrev":"Hun.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"HUN","iso-a2":"HU","woe-id":"23424844",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4861,8032],[4875,8020],[4883,8014],[4857,7997],[4831,7952],[4805,7946],[4784,7948],[4765,7939],[4719,7940],[4694,7960],[4687,7974],[4682,7974],[4696,8007],[4713,8017],[4733,8007],[4795,8021],[4812,8036],[4861,8032]]]}},{type:"Feature",id:"RO",properties:{"hc-group":"admin0","hc-middle-x":.67,"hc-middle-y":.5,"hc-key":"ro","hc-a2":"RO",name:"Romania",labelrank:"3","country-abbrev":"Rom.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"ROU","iso-a2":"RO","woe-id":"23424933",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4877,7877],[4839,7897],[4842,7910],[4805,7946],[4831,7952],[4857,7997],[4883,8014],[4954,8013],[4994,8026],[5005,8023],[5042,7965],[5041,7922],[5059,7914],[5084,7913],[5054,7880],[5052,7859],[5006,7875],[4957,7856],[4896,7864],[4877,7877]]]}},{type:"Feature",id:"NE",properties:{"hc-group":"admin0","hc-middle-x":.64,"hc-middle-y":.53,"hc-key":"ne","hc-a2":"NE",name:"Niger",labelrank:"3","country-abbrev":"Niger",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"NER","iso-a2":"NE","woe-id":"23424906",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4311,6825],[4288,6846],[4275,6831],[4269,6852],[4233,6865],[4210,6922],[4243,6933],[4308,6935],[4328,6967],[4329,7050],[4376,7059],[4426,7103],[4559,7185],[4604,7175],[4626,7157],[4649,7169],[4655,7122],[4678,7087],[4671,7073],[4663,6982],[4603,6906],[4608,6885],[4574,6866],[4543,6875],[4504,6872],[4490,6859],[4436,6874],[4410,6864],[4368,6891],[4326,6878],[4311,6825]]]}},{type:"Feature",id:"LU",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.6,"hc-key":"lu","hc-a2":"LU",name:"Luxembourg",labelrank:"6","country-abbrev":"Lux.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"LUX","iso-a2":"LU","woe-id":"23424881",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4392,8072],[4381,8071],[4376,8075],[4374,8088],[4386,8097],[4397,8085],[4392,8072]]]}},{type:"Feature",id:"AD",properties:{"hc-group":"admin0","hc-middle-x":.58,"hc-middle-y":.28,"hc-key":"ad","hc-a2":"AD",name:"Andorra",labelrank:"6","country-abbrev":"And.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"AND","iso-a2":"AD","woe-id":"23424744",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4246,7818],[4255,7818],[4255,7814],[4249,7812],[4246,7818]]]}},{type:"Feature",id:"CI",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.48,"hc-key":"ci","hc-a2":"CI",name:"Ivory Coast",labelrank:"3","country-abbrev":"I.C.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"CIV","iso-a2":"CI","woe-id":"23424854",continent:"Africa"},geometry:{type:"MultiPolygon",coordinates:[[[[4124,6759],[4130,6721],[4108,6681],[4120,6631],[4030,6627],[3980,6607],[3982,6650],[3948,6670],[3952,6702],[3971,6757],[3967,6779],[4019,6782],[4040,6787],[4065,6765],[4109,6772],[4124,6759]]],[[[4111,6629],[4107,6630],[4112,6629],[4111,6629]]]]}},{type:"Feature",id:"LR",properties:{"hc-group":"admin0","hc-middle-x":.96,"hc-middle-y":.75,"hc-key":"lr","hc-a2":"LR",name:"Liberia",labelrank:"4","country-abbrev":"Liberia",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"LBR","iso-a2":"LR","woe-id":"23424876",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3952,6702],[3948,6670],[3982,6650],[3980,6607],[3929,6631],[3863,6683],[3889,6708],[3899,6729],[3922,6725],[3933,6691],[3952,6702]]]}},{type:"Feature",id:"BN",properties:{"hc-group":"admin0","hc-middle-x":.32,"hc-middle-y":.34,"hc-key":"bn","hc-a2":"BN",name:"Brunei",labelrank:"6","country-abbrev":"Brunei",subregion:"South-Eastern Asia","region-wb":"East Asia & Pacific","iso-a3":"BRN","iso-a2":"BN","woe-id":"23424773",continent:"Asia"},geometry:{type:"MultiPolygon",coordinates:[[[[7618,6621],[7621,6622],[7621,6623],[7627,6606],[7618,6621]]],[[[7587,6614],[7603,6617],[7616,6623],[7606,6597],[7587,6614]]]]}},{type:"Feature",id:"IQ",properties:{"hc-group":"admin0","hc-middle-x":.46,"hc-middle-y":.44,"hc-key":"iq","hc-a2":"IQ",name:"Iraq",labelrank:"3","country-abbrev":"Iraq",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"IRQ","iso-a2":"IQ","woe-id":"23424855",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5644,7390],[5632,7392],[5627,7391],[5602,7390],[5585,7362],[5530,7365],[5453,7426],[5404,7453],[5366,7460],[5363,7472],[5355,7501],[5412,7533],[5427,7548],[5432,7606],[5461,7627],[5472,7635],[5532,7628],[5549,7589],[5579,7582],[5551,7521],[5577,7487],[5611,7469],[5623,7448],[5619,7423],[5644,7390]]]}},{type:"Feature",id:"GE",properties:{"hc-group":"admin0","hc-middle-x":.99,"hc-middle-y":.82,"hc-key":"ge","hc-a2":"GE",name:"Georgia",labelrank:"5","country-abbrev":"Geo.",subregion:"Western Asia","region-wb":"Europe & Central Asia","iso-a3":"GEO","iso-a2":"GE","woe-id":"23424823",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5539,7771],[5515,7769],[5493,7765],[5474,7782],[5436,7779],[5436,7819],[5391,7846],[5475,7838],[5508,7816],[5534,7823],[5582,7793],[5584,7763],[5539,7771]]]}},{type:"Feature",id:"GM",properties:{"hc-group":"admin0","hc-middle-x":.51,"hc-middle-y":.51,"hc-key":"gm","hc-a2":"GM",name:"Gambia",labelrank:"6","country-abbrev":"Gambia",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GMB",
 "iso-a2":"GM","woe-id":"23424821",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3707,6866],[3705,6874],[3713,6882],[3762,6888],[3734,6869],[3707,6866]]]}},{type:"Feature",id:"CH",properties:{"hc-group":"admin0","hc-middle-x":.12,"hc-middle-y":.55,"hc-key":"ch","hc-a2":"CH",name:"Switzerland",labelrank:"4","country-abbrev":"Switz.",subregion:"Western Europe","region-wb":"Europe & Central Asia","iso-a3":"CHE","iso-a2":"CH","woe-id":"23424957",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4477,8004],[4477,8004],[4477,8003],[4477,8003],[4486,7997],[4488,7998],[4490,7994],[4487,7989],[4485,7981],[4488,7981],[4504,7973],[4514,7974],[4500,7955],[4466,7944],[4444,7951],[4412,7939],[4405,7947],[4405,7957],[4400,7961],[4393,7956],[4389,7952],[4386,7963],[4429,8001],[4455,8001],[4477,8004]]]}},{type:"Feature",id:"TD",properties:{"hc-group":"admin0","hc-middle-x":.47,"hc-middle-y":.63,"hc-key":"td","hc-a2":"TD",name:"Chad",labelrank:"3","country-abbrev":"Chad",subregion:"Middle Africa","region-wb":"Sub-Saharan Africa","iso-a3":"TCD","iso-a2":"TD","woe-id":"23424777",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4634,6863],[4642,6866],[4631,6866],[4630,6866],[4628,6868],[4629,6866],[4621,6866],[4608,6885],[4603,6906],[4663,6982],[4671,7073],[4678,7087],[4655,7122],[4649,7169],[4678,7183],[4916,7061],[4916,6946],[4889,6945],[4873,6898],[4859,6887],[4863,6856],[4882,6802],[4870,6804],[4810,6749],[4771,6745],[4756,6716],[4702,6702],[4663,6701],[4655,6729],[4618,6764],[4625,6774],[4669,6774],[4651,6798],[4653,6820],[4634,6863]]]}},{type:"Feature",id:"KV",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.52,"hc-key":"kv","hc-a2":"KV",name:"Kosovo",labelrank:"6","country-abbrev":"Kos.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"-99","iso-a2":"KV","woe-id":"-90",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4814,7792],[4812,7804],[4799,7816],[4798,7822],[4808,7826],[4820,7842],[4850,7820],[4844,7805],[4830,7804],[4814,7792]]]}},{type:"Feature",id:"LB",properties:{"hc-group":"admin0","hc-middle-x":.39,"hc-middle-y":.57,"hc-key":"lb","hc-a2":"LB",name:"Lebanon",labelrank:"5","country-abbrev":"Leb.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"LBN","iso-a2":"LB","woe-id":"23424873",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5246,7492],[5260,7519],[5271,7544],[5290,7529],[5267,7502],[5257,7492],[5246,7492]]]}},{type:"Feature",id:"DJ",properties:{"hc-group":"admin0","hc-middle-x":.56,"hc-middle-y":.55,"hc-key":"dj","hc-a2":"DJ",name:"Djibouti",labelrank:"5","country-abbrev":"Dji.",subregion:"Eastern Africa","region-wb":"Middle East & North Africa","iso-a3":"DJI","iso-a2":"DJ","woe-id":"23424797",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5478,6804],[5449,6802],[5444,6807],[5447,6810],[5444,6813],[5443,6820],[5462,6848],[5471,6845],[5484,6855],[5490,6834],[5487,6819],[5478,6804]]]}},{type:"Feature",id:"BI",properties:{"hc-group":"admin0","hc-middle-x":.57,"hc-middle-y":.47,"hc-key":"bi","hc-a2":"BI",name:"Burundi",labelrank:"6","country-abbrev":"Bur.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"BDI","iso-a2":"BI","woe-id":"23424774",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5084,6347],[5076,6364],[5071,6380],[5072,6389],[5065,6398],[5091,6400],[5111,6408],[5118,6383],[5084,6347]]]}},{type:"Feature",id:"SR",properties:{"hc-group":"admin0","hc-middle-x":.91,"hc-middle-y":.09,"hc-key":"sr","hc-a2":"SR",name:"Suriname",labelrank:"4","country-abbrev":"Sur.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"SUR","iso-a2":"SR","woe-id":"23424913",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[2583,6547],[2543,6553],[2528,6536],[2481,6602],[2505,6641],[2514,6656],[2601,6651],[2596,6636],[2587,6623],[2601,6581],[2583,6547]]]}},{type:"Feature",id:"IL",properties:{"hc-group":"admin0","hc-middle-x":.68,"hc-middle-y":.1,"hc-key":"il","hc-a2":"IL",name:"Palestine",labelrank:"4","country-abbrev":"Pls.",subregion:"Western Asia","region-wb":"Middle East & North Africa","iso-a3":"PLS","iso-a2":"IL","woe-id":"23424852",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[5219,7433],[5238,7465],[5246,7492],[5257,7492],[5267,7502],[5269,7487],[5265,7480],[5259,7477],[5259,7448],[5254,7440],[5255,7434],[5254,7432],[5255,7431],[5253,7429],[5255,7426],[5247,7405],[5241,7377],[5240,7374],[5239,7374],[5237,7382],[5219,7433]]]}},{type:"Feature",id:"ML",properties:{"hc-group":"admin0","hc-middle-x":.59,"hc-middle-y":.38,"hc-key":"ml","hc-a2":"ML",name:"Mali",labelrank:"3","country-abbrev":"Mali",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"MLI","iso-a2":"ML","woe-id":"23424891",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4040,6787],[4019,6782],[3967,6779],[3955,6815],[3931,6848],[3886,6831],[3866,6846],[3845,6885],[3840,6917],[3856,6941],[3886,6937],[4040,6939],[4008,7231],[4061,7231],[4238,7110],[4260,7083],[4299,7070],[4296,7050],[4329,7050],[4328,6967],[4308,6935],[4243,6933],[4210,6922],[4183,6927],[4141,6899],[4120,6895],[4099,6869],[4083,6876],[4069,6839],[4051,6832],[4040,6787]]]}},{type:"Feature",id:"SN",properties:{"hc-group":"admin0","hc-middle-x":.2,"hc-middle-y":.55,"hc-key":"sn","hc-a2":"SN",name:"Senegal",labelrank:"3","country-abbrev":"Sen.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SEN","iso-a2":"SN","woe-id":"23424943",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3708,6844],[3705,6859],[3707,6866],[3734,6869],[3762,6888],[3713,6882],[3695,6922],[3713,6949],[3719,6968],[3779,6974],[3840,6917],[3845,6885],[3866,6846],[3837,6843],[3797,6854],[3753,6854],[3708,6844]]]}},{type:"Feature",id:"GN",properties:{"hc-group":"admin0","hc-middle-x":.24,"hc-middle-y":.51,"hc-key":"gn","hc-a2":"GN",name:"Guinea",labelrank:"3","country-abbrev":"Gin.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"GIN","iso-a2":"GN","woe-id":"23424835",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[3866,6846],[3886,6831],[3931,6848],[3955,6815],[3967,6779],[3971,6757],[3952,6702],[3933,6691],[3922,6725],[3899,6729],[3870,6774],[3833,6770],[3809,6746],[3793,6770],[3758,6803],[3767,6819],[3797,6825],[3797,6854],[3837,6843],[3866,6846]]]}},{type:"Feature",id:"ZW",properties:{"hc-group":"admin0","hc-middle-x":.81,"hc-middle-y":.42,"hc-key":"zw","hc-a2":"ZW",name:"Zimbabwe",labelrank:"3","country-abbrev":"Zimb.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"ZWE","iso-a2":"ZW","woe-id":"23425004",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4954,5949],[4996,5940],[5006,5944],[5038,5977],[5038,5977],[5058,5987],[5060,6001],[5106,6014],[5182,5982],[5185,5932],[5176,5898],[5184,5880],[5166,5841],[5133,5807],[5104,5809],[5075,5814],[5036,5833],[5026,5865],[4979,5896],[4954,5949]]]}},{type:"Feature",id:"PL",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.48,"hc-key":"pl","hc-a2":"PL",name:"Poland",labelrank:"3","country-abbrev":"Pol.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"POL","iso-a2":"PL","woe-id":"23424923",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4786,8270],[4779,8263],[4790,8269],[4878,8266],[4880,8266],[4900,8258],[4901,8249],[4912,8198],[4891,8183],[4905,8152],[4919,8114],[4876,8075],[4873,8057],[4852,8069],[4763,8074],[4755,8089],[4691,8116],[4644,8126],[4639,8194],[4623,8205],[4627,8239],[4638,8245],[4625,8247],[4625,8248],[4626,8249],[4683,8263],[4696,8274],[4748,8286],[4756,8269],[4786,8270],[4786,8270]]]}},{type:"Feature",id:"MK",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.44,"hc-key":"mk","hc-a2":"MK",name:"Macedonia",labelrank:"6","country-abbrev":"Mkd.",subregion:"Southern Europe","region-wb":"Europe & Central Asia","iso-a3":"MKD","iso-a2":"MK","woe-id":"23424890",continent:"Europe"},geometry:{type:"MultiPolygon",coordinates:[[[[4826,7756],[4826,7756],[4826,7756],[4826,7756]]],[[[4867,7808],[4887,7787],[4884,7773],[4854,7765],[4831,7756],[4826,7762],[4826,7757],[4825,7758],[4825,7758],[4822,7758],[4819,7758],[4822,7765],[4816,7764],[4811,7781],[4814,7792],[4830,7804],[4844,7805],[4855,7808],[4867,7808]]]]}},{type:"Feature",id:"PY",properties:{"hc-group":"admin0","hc-middle-x":.35,"hc-middle-y":.36,"hc-key":"py","hc-a2":"PY",name:"Paraguay",labelrank:"4","country-abbrev":"Para.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"PRY","iso-a2":"PY","woe-id":"23424917",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[2594,5755],[2590,5743],[2583,5712],[2584,5709],[2584,5708],[2578,5674],[2549,5649],[2465,5653],[2496,5712],[2422,5757],[2394,5763],[2345,5812],[2356,5864],[2371,5892],[2450,5903],[2478,5876],[2488,5852],[2483,5817],[2530,5817],[2553,5800],[2559,5759],[2594,5755]]]}},{type:"Feature",id:"BY",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.5,"hc-key":"by","hc-a2":"BY",name:"Belarus",labelrank:"4","country-abbrev":"Bela.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"BLR","iso-a2":"BY","woe-id":"23424765",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4905,8152],[4891,8183],[4912,8198],[4901,8249],[4927,8247],[4960,8264],[4972,8290],[4998,8305],[4993,8320],[5023,8325],[5039,8340],[5121,8317],[5146,8243],[5175,8229],[5131,8212],[5147,8175],[5122,8174],[5110,8154],[5074,8146],[5013,8155],[4969,8168],[4928,8166],[4905,8152]]]}},{type:"Feature",id:"CZ",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.56,"hc-key":"cz","hc-a2":"CZ",name:"Czech Republic",labelrank:"5","country-abbrev":"Cz. Rep.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"CZE","iso-a2":"CZ","woe-id":"23424810",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[4763,8074],[4741,8058],[4707,8039],[4648,8053],[4640,8039],[4614,8045],[4571,8083],[4575,8108],[4644,8126],[4691,8116],[4755,8089],[4763,8074]]]}},{type:"Feature",id:"BF",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.54,"hc-key":"bf","hc-a2":"BF",name:"Burkina Faso",labelrank:"3","country-abbrev":"B.F.",subregion:"Western Africa","region-wb":"Sub-Saharan Africa","iso-a3":"BFA","iso-a2":"BF","woe-id":"23424978",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4231,6804],[4218,6804],[4199,6808],[4122,6804],[4124,6759],[4109,6772],[4065,6765],[4040,6787],[4051,6832],[4069,6839],[4083,6876],[4099,6869],[4120,6895],[4141,6899],[4183,6927],[4210,6922],[4233,6865],[4269,6852],[4275,6831],[4247,6818],[4231,6804]]]}},{type:"Feature",id:"NA",properties:{"hc-group":"admin0","hc-middle-x":.33,"hc-middle-y":.37,"hc-key":"na","hc-a2":"NA",name:"Namibia",labelrank:"3","country-abbrev":"Nam.",subregion:"Southern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"NAM","iso-a2":"NA","woe-id":"23424987",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4898,5953],[4923,5958],[4954,5949],[4904,5928],[4895,5942],[4826,5933],[4827,5821],[4797,5819],[4797,5734],[4797,5617],[4771,5600],[4720,5608],[4711,5630],[4693,5613],[4658,5652],[4637,5740],[4631,5811],[4602,5855],[4577,5909],[4561,5927],[4553,5965],[4595,5974],[4618,5960],[4752,5961],[4761,5950],[4821,5941],[4898,5953]]]}},{type:"Feature",id:"LY",properties:{"hc-group":"admin0","hc-middle-x":.51,"hc-middle-y":.38,"hc-key":"ly","hc-a2":"LY",name:"Libya",labelrank:"3","country-abbrev":"Libya",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"LBY","iso-a2":"LY","woe-id":"23424882",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4649,7169],[4626,7157],[4604,7175],[4559,7185],[4546,7209],[4502,7227],[4483,7267],[4496,7279],[4496,7363],[4486,7398],[4509,7421],[4504,7437],[4547,7471],[4545,7495],[4570,7483],[4600,7486],[4655,7469],[4680,7432],[4719,7426],[4770,7399],[4790,7407],[4795,7448],[4814,7474],[4846,7487],[4890,7477],[4889,7467],[4945,7455],[4950,7445],[4937,7397],[4945,7364],[4945,7138],[4945,7076],[4916,7076],[4916,7061],[4678,7183],[4649,7169]]]}},{type:"Feature",id:"TN",properties:{"hc-group":"admin0","hc-middle-x":.53,"hc-middle-y":.03,"hc-key":"tn","hc-a2":"TN",name:"Tunisia",labelrank:"3","country-abbrev":"Tun.",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"TUN","iso-a2":"TN","woe-id":"23424967",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4545,7495],[4547,7471],[4504,7437],[4509,7421],[4486,7398],[4472,7458],[4451,7473],[4426,7518],[4448,7543],[4452,7604],[4459,7621],[4493,7635],[4535,7563],[4505,7533],[4511,7512],[4532,7515],[4545,7495]]]}},{type:"Feature",id:"BT",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.48,"hc-key":"bt","hc-a2":"BT",name:"Bhutan",labelrank:"5","country-abbrev":"Bhutan",subregion:"Southern Asia","region-wb":"South Asia","iso-a3":"BTN","iso-a2":"BT","woe-id":"23424770",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6842,7305],[6882,7338],[6923,7319],[6937,7293],[6869,7285],[6842,7305]]]}},{type:"Feature",id:"MD",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.42,"hc-key":"md","hc-a2":"MD",name:"Moldova",labelrank:"6","country-abbrev":"Mda.",subregion:"Eastern Europe","region-wb":"Europe & Central Asia","iso-a3":"MDA","iso-a2":"MD","woe-id":"23424885",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[5041,7922],[5042,7965],[5005,8023],[4994,8026],[5028,8033],[5072,8011],[5068,7999],[5097,7955],[5063,7958],[5041,7922]]]}},{type:"Feature",id:"SS",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.58,"hc-key":"ss","hc-a2":"SS",name:"South Sudan",labelrank:"3","country-abbrev":"S. Sud.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"SSD","iso-a2":"SS","woe-id":"-99",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5212,6603],[5198,6589],[5119,6582],[5088,6613],[5046,6605],[5018,6628],[4988,6658],[4987,6675],[4956,6696],[4921,6735],[4948,6783],[4970,6787],[4992,6760],[5060,6754],[5095,6783],[5131,6768],[5166,6806],[5156,6834],[5190,6840],[5189,6800],[5215,6758],[5211,6728],[5190,6729],[5185,6709],[5205,6705],[5235,6675],[5270,6615],[5255,6627],[5212,6603]]]}},{type:"Feature",id:"BW",properties:{"hc-group":"admin0","hc-middle-x":.49,"hc-middle-y":.6,"hc-key":"bw","hc-a2":"BW",name:"Botswana",labelrank:"4","country-abbrev":"Bwa.",subregion:"Southern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"BWA","iso-a2":"BW","woe-id":"23424755",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[4954,5949],[4979,5896],[5026,5865],[5036,5833],[5075,5814],[5041,5799],[5006,5769],[5e3,5749],[4972,5734],[4963,5706],[4941,5700],[4887,5716],[4878,5695],[4847,5667],[4818,5666],[4822,5690],[4797,5734],[4797,5819],[4827,5821],[4826,5933],[4895,5942],[4904,5928],[4954,5949]]]}},{type:"Feature",id:"BS",properties:{"hc-group":"admin0","hc-middle-x":.8,"hc-middle-y":.92,"hc-key":"bs","hc-a2":"BS",name:"The Bahamas",labelrank:"4","country-abbrev":"Bhs.",subregion:"Caribbean","region-wb":"Latin America & Caribbean","iso-a3":"BHS","iso-a2":"BS","woe-id":"23424758",continent:"North America"},geometry:{type:"MultiPolygon",coordinates:[[[[1956,7219],[1937,7241],[1937,7241],[1937,7241],[1944,7236],[1956,7219],[1956,7219]]],[[[1956,7219],[1970,7205],[1976,7173],[2045,7149],[1983,7165],[1949,7190],[1966,7207],[1956,7219],[1956,7219]]],[[[1937,7241],[1911,7260],[1890,7236],[1901,7192],[1881,7221],[1883,7237],[1912,7268],[1937,7241],[1937,7241],[1937,7241]]]]}},{type:"Feature",id:"NZ",properties:{"hc-group":"admin0","hc-middle-x":.25,"hc-middle-y":.81,"hc-key":"nz","hc-a2":"NZ",name:"New Zealand",labelrank:"2","country-abbrev":"N.Z.",subregion:"Australia and New Zealand","region-wb":"East Asia & Pacific","iso-a3":"NZL","iso-a2":"NZ","woe-id":"23424916",continent:"Oceania"},geometry:{type:"MultiPolygon",coordinates:[[[[9238,4994],[9198,4996],[9194,4975],[9181,5009],[9153,5008],[9145,5023],[9159,5047],[9201,5088],[9241,5104],[9282,5140],[9311,5200],[9330,5213],[9341,5185],[9362,5199],[9374,5165],[9321,5099],[9289,5079],[9268,5027],[9238,4994]]],[[[9429,5191],[9404,5174],[9386,5186],[9404,5221],[9361,5252],[9385,5272],[9393,5308],[9378,5347],[9341,5395],[9364,5402],[9402,5361],[9422,5343],[9427,5313],[9470,5301],[9503,5310],[9483,5263],[9469,5264],[9429,5191]]]]}},{type:"Feature",id:"CU",properties:{"hc-group":"admin0","hc-middle-x":.67,"hc-middle-y":.64,"hc-key":"cu","hc-a2":"CU",name:"Cuba",labelrank:"3","country-abbrev":"Cuba",subregion:"Caribbean","region-wb":"Latin America & Caribbean","iso-a3":"CUB","iso-a2":"CU","woe-id":"23424793",continent:"North America"},geometry:{type:"Polygon",coordinates:[[[1916,7091],[1870,7097],[1853,7124],[1817,7140],[1776,7144],[1774,7159],[1748,7160],[1696,7131],[1700,7149],[1734,7169],[1770,7175],[1828,7171],[1852,7150],[1867,7154],[1879,7155],[1933,7113],[1986,7095],[2e3,7078],[1898,7071],[1916,7091]]]}},{type:"Feature",id:"EC",properties:{"hc-group":"admin0","hc-middle-x":.16,"hc-middle-y":.37,"hc-key":"ec","hc-a2":"EC",name:"Ecuador",labelrank:"3","country-abbrev":"Ecu.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"ECU","iso-a2":"EC","woe-id":"23424801",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[1820,6379],[1837,6400],[1803,6410],[1803,6447],[1828,6480],[1827,6500],[1865,6521],[1905,6498],[1940,6492],[1970,6476],[1961,6433],[1928,6403],[1879,6379],[1858,6331],[1815,6358],[1820,6379]]]}},{type:"Feature",id:"AU",properties:{"hc-group":"admin0","hc-middle-x":.53,"hc-middle-y":.39,"hc-key":"au","hc-a2":"AU",name:"Australia",labelrank:"2","country-abbrev":"Auz.",subregion:"Australia and New Zealand","region-wb":"East Asia & Pacific","iso-a3":"AUS","iso-a2":"AU","woe-id":"-90",continent:"Oceania"},geometry:{type:"MultiPolygon",coordinates:[[[[8563,5105],[8537,5105],[8515,5139],[8497,5193],[8499,5215],[8479,5229],[8543,5191],[8602,5210],[8604,5168],[8595,5117],[8581,5130],[8563,5105]]],[[[8541,5953],[8550,5909],[8629,5866],[8644,5812],[8680,5798],[8682,5771],[8712,5753],[8733,5720],[8756,5726],[8746,5701],[8761,5650],[8762,5603],[8731,5487],[8709,5472],[8660,5372],[8655,5318],[8605,5306],[8551,5275],[8505,5283],[8507,5304],[8464,5271],[8430,5288],[8379,5298],[8351,5328],[8347,5368],[8329,5384],[8261,5366],[8280,5383],[8270,5405],[8300,5464],[8283,5464],[8229,5404],[8216,5439],[8189,5463],[8185,5486],[8128,5500],[8096,5519],[8032,5512],[7981,5492],[7949,5494],[7887,5463],[7870,5437],[7765,5438],[7718,5405],[7680,5400],[7646,5408],[7616,5433],[7637,5459],[7637,5513],[7616,5560],[7616,5583],[7592,5627],[7587,5653],[7556,5702],[7573,5710],[7590,5680],[7592,5701],[7570,5741],[7577,5802],[7645,5849],[7698,5861],[7793,5892],[7834,5938],[7830,5965],[7853,5985],[7871,5957],[7872,5998],[7896,5993],[7897,6026],[7916,6045],[7961,6056],[7971,6072],[8008,6042],[8052,6031],[8043,6051],[8090,6125],[8063,6129],[8073,6147],[8104,6146],[8105,6115],[8141,6119],[8139,6152],[8156,6132],[8212,6115],[8254,6129],[8267,6115],[8237,6071],[8224,6036],[8256,6011],[8329,5976],[8359,5951],[8384,5959],[8408,6030],[8406,6107],[8417,6122],[8422,6177],[8436,6161],[8463,6071],[8476,6048],[8492,6058],[8517,6035],[8519,5993],[8541,5953]]]]}},{type:"Feature",id:"VE",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.33,"hc-key":"ve","hc-a2":"VE",name:"Venezuela",labelrank:"3","country-abbrev":"Ven.",subregion:"South America","region-wb":"Latin America & Caribbean","iso-a3":"VEN","iso-a2":"VE","woe-id":"23424982",continent:"South America"},geometry:{type:"Polygon",coordinates:[[[2087,6830],[2070,6823],[2080,6796],[2064,6769],[2082,6746],[2096,6767],[2080,6799],[2122,6818],[2160,6818],[2188,6788],[2237,6794],[2282,6777],[2307,6793],[2343,6797],[2357,6776],[2400,6756],[2397,6742],[2423,6732],[2408,6709],[2415,6689],[2387,6672],[2382,6653],[2401,6632],[2377,6604],[2286,6596],[2303,6552],[2324,6550],[2301,6525],[2258,6498],[2219,6515],[2210,6549],[2191,6564],[2207,6580],[2190,6612],[2201,6662],[2143,6659],[2123,6685],[2064,6688],[2056,6726],[2037,6753],[2040,6787],[2068,6824],[2087,6830]]]}},{type:"Feature",id:"SB",properties:{"hc-group":"admin0","hc-middle-x":.13,"hc-middle-y":.24,"hc-key":"sb","hc-a2":"SB",name:"Solomon Islands",labelrank:"3","country-abbrev":"S. Is.",subregion:"Melanesia","region-wb":"East Asia & Pacific","iso-a3":"SLB","iso-a2":"SB","woe-id":"23424766",continent:"Oceania"},geometry:{type:"Polygon",coordinates:[[[8977,6187],[8947,6189],[8947,6226],[8902,6255],[8881,6242],[8899,6222],[8858,6239],[8861,6266],[8912,6255],[8947,6233],[8955,6212],[8982,6224],[8977,6187]]]}},{type:"Feature",id:"MG",properties:{"hc-group":"admin0","hc-middle-x":.45,"hc-middle-y":.48,"hc-key":"mg","hc-a2":"MG",name:"Madagascar",labelrank:"3","country-abbrev":"Mad.",subregion:"Eastern Africa","region-wb":"Sub-Saharan Africa","iso-a3":"MDG","iso-a2":"MG","woe-id":"23424883",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5683,5987],[5616,5762],[5601,5727],[5544,5707],[5511,5726],[5503,5774],[5487,5812],[5495,5841],[5524,5882],[5508,5959],[5523,5997],[5558,6004],[5613,6031],[5635,6081],[5650,6080],[5665,6125],[5686,6092],[5702,6020],[5677,6017],[5683,5987]]]}},{type:"Feature",id:"IS",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.5,"hc-key":"is","hc-a2":"IS",name:"Iceland",labelrank:"3","country-abbrev":"Iceland",subregion:"Northern Europe","region-wb":"Europe & Central Asia","iso-a3":"ISL","iso-a2":"IS","woe-id":"23424845",continent:"Europe"},geometry:{type:"Polygon",coordinates:[[[3490,8732],[3556,8739],[3551,8757],[3516,8766],[3476,8762],[3500,8775],[3508,8796],[3538,8790],[3534,8809],[3571,8786],[3566,8765],[3584,8755],[3607,8792],[3661,8795],[3682,8785],[3715,8796],[3713,8811],[3768,8789],[3763,8773],[3795,8763],[3803,8741],[3772,8709],[3677,8676],[3648,8661],[3605,8668],[3575,8684],[3530,8682],[3560,8708],[3538,8728],[3490,8732]]]}},{type:"Feature",id:"EG",properties:{"hc-group":"admin0","hc-middle-x":.5,"hc-middle-y":.66,"hc-key":"eg","hc-a2":"EG",name:"Egypt",labelrank:"2","country-abbrev":"Egypt",subregion:"Northern Africa","region-wb":"Middle East & North Africa","iso-a3":"EGY","iso-a2":"EG","woe-id":"23424802",continent:"Africa"},geometry:{type:"Polygon",coordinates:[[[5239,7374],[5220,7318],[5190,7345],[5169,7390],[5172,7358],[5201,7320],[5213,7282],[5258,7199],[5263,7167],[5299,7138],[5131,7138],[4945,7138],[4945,7364],[4937,7397],[4950,7445],[5015,7435],[5065,7418],[5105,7440],[5140,7438],[5157,7425],[5219,7433],[5237,7382],[5239,7374]]]}},{type:"Feature",id:"KG",properties:{"hc-group":"admin0","hc-middle-x":.48,"hc-middle-y":.43,"hc-key":"kg","hc-a2":"KG",name:"Kyrgyzstan",labelrank:"4","country-abbrev":"Kgz.",subregion:"Central Asia","region-wb":"Europe & Central Asia","iso-a3":"KGZ","iso-a2":"KG","woe-id":"23424864",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6389,7707],[6348,7698],[6325,7713],[6261,7709],[6280,7734],[6310,7734],[6331,7731],[6374,7754],[6333,7777],[6323,7766],[6286,7782],[6309,7805],[6336,7826],[6385,7812],[6405,7842],[6435,7827],[6531,7828],[6584,7803],[6529,7774],[6521,7763],[6482,7759],[6450,7736],[6446,7748],[6399,7728],[6389,7707]],[[6300,7721],[6296,7722],[6299,7718],[6302,7720],[6300,7721]],[[6333,7723],[6334,7726],[6331,7724],[6332,7723],[6333,7723]],[[6316,7728],[6310,7729],[6312,7722],[6317,7722],[6316,7728]]]}},{type:"Feature",id:"NP",properties:{"hc-group":"admin0","hc-middle-x":.52,"hc-middle-y":.54,"hc-key":"np","hc-a2":"NP",name:"Nepal",labelrank:"3","country-abbrev":"Nepal",subregion:"Southern Asia","region-wb":"South Asia","iso-a3":"NPL","iso-a2":"NP","woe-id":"23424911",continent:"Asia"},geometry:{type:"Polygon",coordinates:[[[6819,7322],[6820,7286],[6795,7274],[6751,7281],[6714,7305],[6660,7310],[6579,7353],[6589,7383],[6608,7397],[6640,7401],[6683,7364],[6699,7367],[6729,7336],[6756,7323],[6773,7330],[6819,7322]]]}}]};
+
+
+
+var worldData = [
+ {
+  "hc-key": "fo",
+  "value": 0
+ },
+ {
+  "hc-key": "um",
+  "value": 1
+ },
+ {
+  "hc-key": "us",
+  "value": 2
+ },
+ {
+  "hc-key": "jp",
+  "value": 3
+ },
+ {
+  "hc-key": "sc",
+  "value": 4
+ },
+ {
+  "hc-key": "in",
+  "value": 5
+ },
+ {
+  "hc-key": "fr",
+  "value": 6
+ },
+ {
+  "hc-key": "fm",
+  "value": 7
+ },
+ {
+  "hc-key": "cn",
+  "value": 8
+ },
+ {
+  "hc-key": "pt",
+  "value": 9
+ },
+ {
+  "hc-key": "sw",
+  "value": 10
+ },
+ {
+  "hc-key": "sh",
+  "value": 11
+ },
+ {
+  "hc-key": "br",
+  "value": 12
+ },
+ {
+  "hc-key": "ki",
+  "value": 13
+ },
+ {
+  "hc-key": "ph",
+  "value": 14
+ },
+ {
+  "hc-key": "mx",
+  "value": 15
+ },
+ {
+  "hc-key": "es",
+  "value": 16
+ },
+ {
+  "hc-key": "bu",
+  "value": 17
+ },
+ {
+  "hc-key": "mv",
+  "value": 18
+ },
+ {
+  "hc-key": "sp",
+  "value": 19
+ },
+ {
+  "hc-key": "gb",
+  "value": 20
+ },
+ {
+  "hc-key": "gr",
+  "value": 21
+ },
+ {
+  "hc-key": "as",
+  "value": 22
+ },
+ {
+  "hc-key": "dk",
+  "value": 23
+ },
+ {
+  "hc-key": "gl",
+  "value": 24
+ },
+ {
+  "hc-key": "gu",
+  "value": 25
+ },
+ {
+  "hc-key": "mp",
+  "value": 26
+ },
+ {
+  "hc-key": "pr",
+  "value": 27
+ },
+ {
+  "hc-key": "vi",
+  "value": 28
+ },
+ {
+  "hc-key": "ca",
+  "value": 29
+ },
+ {
+  "hc-key": "st",
+  "value": 30
+ },
+ {
+  "hc-key": "cv",
+  "value": 31
+ },
+ {
+  "hc-key": "dm",
+  "value": 32
+ },
+ {
+  "hc-key": "nl",
+  "value": 33
+ },
+ {
+  "hc-key": "jm",
+  "value": 34
+ },
+ {
+  "hc-key": "ws",
+  "value": 35
+ },
+ {
+  "hc-key": "om",
+  "value": 36
+ },
+ {
+  "hc-key": "vc",
+  "value": 37
+ },
+ {
+  "hc-key": "tr",
+  "value": 38
+ },
+ {
+  "hc-key": "bd",
+  "value": 39
+ },
+ {
+  "hc-key": "lc",
+  "value": 40
+ },
+ {
+  "hc-key": "nr",
+  "value": 41
+ },
+ {
+  "hc-key": "no",
+  "value": 42
+ },
+ {
+  "hc-key": "kn",
+  "value": 43
+ },
+ {
+  "hc-key": "bh",
+  "value": 44
+ },
+ {
+  "hc-key": "to",
+  "value": 45
+ },
+ {
+  "hc-key": "fi",
+  "value": 46
+ },
+ {
+  "hc-key": "id",
+  "value": 47
+ },
+ {
+  "hc-key": "mu",
+  "value": 48
+ },
+ {
+  "hc-key": "se",
+  "value": 49
+ },
+ {
+  "hc-key": "tt",
+  "value": 50
+ },
+ {
+  "hc-key": "my",
+  "value": 51
+ },
+ {
+  "hc-key": "pa",
+  "value": 52
+ },
+ {
+  "hc-key": "pw",
+  "value": 53
+ },
+ {
+  "hc-key": "tv",
+  "value": 54
+ },
+ {
+  "hc-key": "mh",
+  "value": 55
+ },
+ {
+  "hc-key": "cl",
+  "value": 56
+ },
+ {
+  "hc-key": "th",
+  "value": 57
+ },
+ {
+  "hc-key": "gd",
+  "value": 58
+ },
+ {
+  "hc-key": "ee",
+  "value": 59
+ },
+ {
+  "hc-key": "ag",
+  "value": 60
+ },
+ {
+  "hc-key": "tw",
+  "value": 61
+ },
+ {
+  "hc-key": "bb",
+  "value": 62
+ },
+ {
+  "hc-key": "it",
+  "value": 63
+ },
+ {
+  "hc-key": "mt",
+  "value": 64
+ },
+ {
+  "hc-key": "vu",
+  "value": 65
+ },
+ {
+  "hc-key": "sg",
+  "value": 66
+ },
+ {
+  "hc-key": "cy",
+  "value": 67
+ },
+ {
+  "hc-key": "lk",
+  "value": 68
+ },
+ {
+  "hc-key": "km",
+  "value": 69
+ },
+ {
+  "hc-key": "fj",
+  "value": 70
+ },
+ {
+  "hc-key": "ru",
+  "value": 471
+ },
+ {
+  "hc-key": "va",
+  "value": 72
+ },
+ {
+  "hc-key": "sm",
+  "value": 73
+ },
+ {
+  "hc-key": "kz",
+  "value": 74
+ },
+ {
+  "hc-key": "az",
+  "value": 75
+ },
+ {
+  "hc-key": "tj",
+  "value": 76
+ },
+ {
+  "hc-key": "ls",
+  "value": 77
+ },
+ {
+  "hc-key": "uz",
+  "value": 78
+ },
+ {
+  "hc-key": "ma",
+  "value": 79
+ },
+ {
+  "hc-key": "co",
+  "value": 80
+ },
+ {
+  "hc-key": "tl",
+  "value": 81
+ },
+ {
+  "hc-key": "tz",
+  "value": 82
+ },
+ {
+  "hc-key": "ar",
+  "value": 83
+ },
+ {
+  "hc-key": "sa",
+  "value": 84
+ },
+ {
+  "hc-key": "pk",
+  "value": 85
+ },
+ {
+  "hc-key": "ye",
+  "value": 86
+ },
+ {
+  "hc-key": "ae",
+  "value": 87
+ },
+ {
+  "hc-key": "ke",
+  "value": 88
+ },
+ {
+  "hc-key": "pe",
+  "value": 89
+ },
+ {
+  "hc-key": "do",
+  "value": 90
+ },
+ {
+  "hc-key": "ht",
+  "value": 91
+ },
+ {
+  "hc-key": "pg",
+  "value": 92
+ },
+ {
+  "hc-key": "ao",
+  "value": 93
+ },
+ {
+  "hc-key": "kh",
+  "value": 94
+ },
+ {
+  "hc-key": "vn",
+  "value": 95
+ },
+ {
+  "hc-key": "mz",
+  "value": 96
+ },
+ {
+  "hc-key": "cr",
+  "value": 97
+ },
+ {
+  "hc-key": "bj",
+  "value": 98
+ },
+ {
+  "hc-key": "ng",
+  "value": 99
+ },
+ {
+  "hc-key": "ir",
+  "value": 1000
+ },
+ {
+  "hc-key": "sv",
+  "value": 101
+ },
+ {
+  "hc-key": "sl",
+  "value": 102
+ },
+ {
+  "hc-key": "gw",
+  "value": 103
+ },
+ {
+  "hc-key": "hr",
+  "value": 104
+ },
+ {
+  "hc-key": "bz",
+  "value": 105
+ },
+ {
+  "hc-key": "za",
+  "value": 106
+ },
+ {
+  "hc-key": "cf",
+  "value": 107
+ },
+ {
+  "hc-key": "sd",
+  "value": 108
+ },
+ {
+  "hc-key": "cd",
+  "value": 109
+ },
+ {
+  "hc-key": "kw",
+  "value": 110
+ },
+ {
+  "hc-key": "de",
+  "value": 111
+ },
+ {
+  "hc-key": "be",
+  "value": 112
+ },
+ {
+  "hc-key": "ie",
+  "value": 113
+ },
+ {
+  "hc-key": "kp",
+  "value": 114
+ },
+ {
+  "hc-key": "kr",
+  "value": 115
+ },
+ {
+  "hc-key": "gy",
+  "value": 116
+ },
+ {
+  "hc-key": "hn",
+  "value": 117
+ },
+ {
+  "hc-key": "mm",
+  "value": 118
+ },
+ {
+  "hc-key": "ga",
+  "value": 119
+ },
+ {
+  "hc-key": "gq",
+  "value": 120
+ },
+ {
+  "hc-key": "ni",
+  "value": 121
+ },
+ {
+  "hc-key": "lv",
+  "value": 122
+ },
+ {
+  "hc-key": "ug",
+  "value": 123
+ },
+ {
+  "hc-key": "mw",
+  "value": 124
+ },
+ {
+  "hc-key": "am",
+  "value": 125
+ },
+ {
+  "hc-key": "sx",
+  "value": 126
+ },
+ {
+  "hc-key": "tm",
+  "value": 127
+ },
+ {
+  "hc-key": "zm",
+  "value": 128
+ },
+ {
+  "hc-key": "nc",
+  "value": 129
+ },
+ {
+  "hc-key": "mr",
+  "value": 130
+ },
+ {
+  "hc-key": "dz",
+  "value": 131
+ },
+ {
+  "hc-key": "lt",
+  "value": 132
+ },
+ {
+  "hc-key": "et",
+  "value": 133
+ },
+ {
+  "hc-key": "er",
+  "value": 134
+ },
+ {
+  "hc-key": "gh",
+  "value": 135
+ },
+ {
+  "hc-key": "si",
+  "value": 136
+ },
+ {
+  "hc-key": "gt",
+  "value": 137
+ },
+ {
+  "hc-key": "ba",
+  "value": 138
+ },
+ {
+  "hc-key": "jo",
+  "value": 139
+ },
+ {
+  "hc-key": "sy",
+  "value": 140
+ },
+ {
+  "hc-key": "mc",
+  "value": 141
+ },
+ {
+  "hc-key": "al",
+  "value": 142
+ },
+ {
+  "hc-key": "uy",
+  "value": 143
+ },
+ {
+  "hc-key": "cnm",
+  "value": 144
+ },
+ {
+  "hc-key": "mn",
+  "value": 145
+ },
+ {
+  "hc-key": "rw",
+  "value": 146
+ },
+ {
+  "hc-key": "so",
+  "value": 147
+ },
+ {
+  "hc-key": "bo",
+  "value": 148
+ },
+ {
+  "hc-key": "cm",
+  "value": 149
+ },
+ {
+  "hc-key": "cg",
+  "value": 150
+ },
+ {
+  "hc-key": "eh",
+  "value": 151
+ },
+ {
+  "hc-key": "rs",
+  "value": 152
+ },
+ {
+  "hc-key": "me",
+  "value": 153
+ },
+ {
+  "hc-key": "tg",
+  "value": 154
+ },
+ {
+  "hc-key": "la",
+  "value": 155
+ },
+ {
+  "hc-key": "af",
+  "value": 156
+ },
+ {
+  "hc-key": "ua",
+  "value": 157
+ },
+ {
+  "hc-key": "sk",
+  "value": 158
+ },
+ {
+  "hc-key": "jk",
+  "value": 159
+ },
+ {
+  "hc-key": "bg",
+  "value": 160
+ },
+ {
+  "hc-key": "qa",
+  "value": 161
+ },
+ {
+  "hc-key": "li",
+  "value": 162
+ },
+ {
+  "hc-key": "at",
+  "value": 163
+ },
+ {
+  "hc-key": "sz",
+  "value": 164
+ },
+ {
+  "hc-key": "hu",
+  "value": 165
+ },
+ {
+  "hc-key": "ro",
+  "value": 166
+ },
+ {
+  "hc-key": "ne",
+  "value": 167
+ },
+ {
+  "hc-key": "lu",
+  "value": 168
+ },
+ {
+  "hc-key": "ad",
+  "value": 169
+ },
+ {
+  "hc-key": "ci",
+  "value": 170
+ },
+ {
+  "hc-key": "lr",
+  "value": 171
+ },
+ {
+  "hc-key": "bn",
+  "value": 172
+ },
+ {
+  "hc-key": "iq",
+  "value": 173
+ },
+ {
+  "hc-key": "ge",
+  "value": 174
+ },
+ {
+  "hc-key": "gm",
+  "value": 175
+ },
+ {
+  "hc-key": "ch",
+  "value": 176
+ },
+ {
+  "hc-key": "td",
+  "value": 177
+ },
+ {
+  "hc-key": "kv",
+  "value": 178
+ },
+ {
+  "hc-key": "lb",
+  "value": 179
+ },
+ {
+  "hc-key": "dj",
+  "value": 180
+ },
+ {
+  "hc-key": "bi",
+  "value": 181
+ },
+ {
+  "hc-key": "sr",
+  "value": 182
+ },
+ {
+  "hc-key": "il",
+  "value": 183
+ },
+ {
+  "hc-key": "ml",
+  "value": 184
+ },
+ {
+  "hc-key": "sn",
+  "value": 185
+ },
+ {
+  "hc-key": "gn",
+  "value": 186
+ },
+ {
+  "hc-key": "zw",
+  "value": 187
+ },
+ {
+  "hc-key": "pl",
+  "value": 188
+ },
+ {
+  "hc-key": "mk",
+  "value": 189
+ },
+ {
+  "hc-key": "py",
+  "value": 190
+ },
+ {
+  "hc-key": "by",
+  "value": 191
+ },
+ {
+  "hc-key": "cz",
+  "value": 192
+ },
+ {
+  "hc-key": "bf",
+  "value": 193
+ },
+ {
+  "hc-key": "na",
+  "value": 194
+ },
+ {
+  "hc-key": "ly",
+  "value": 195
+ },
+ {
+  "hc-key": "tn",
+  "value": 196
+ },
+ {
+  "hc-key": "bt",
+  "value": 197
+ },
+ {
+  "hc-key": "md",
+  "value": 198
+ },
+ {
+  "hc-key": "ss",
+  "value": 199
+ },
+ {
+  "hc-key": "bw",
+  "value": 200
+ },
+ {
+  "hc-key": "bs",
+  "value": 201
+ },
+ {
+  "hc-key": "nz",
+  "value": 202
+ },
+ {
+  "hc-key": "cu",
+  "value": 203
+ },
+ {
+  "hc-key": "ec",
+  "value": 204
+ },
+ {
+  "hc-key": "au",
+  "value": 205
+ },
+ {
+  "hc-key": "ve",
+  "value": 206
+ },
+ {
+  "hc-key": "sb",
+  "value": 207
+ },
+ {
+  "hc-key": "mg",
+  "value": 208
+ },
+ {
+  "hc-key": "is",
+  "value": 209
+ },
+ {
+  "hc-key": "eg",
+  "value": 210
+ },
+ {
+  "hc-key": "kg",
+  "value": 211
+ },
+ {
+  "hc-key": "np",
+  "value": 212
+ }
+];
+
+
+
+   // world map
+   $('#world-map').highcharts('Map', {
+    chart: {
+     backgroundColor: 'transparent',
+    },
+    credits:{
+     enabled: false
+    },
+    title: {
+     text: ''
+    },
+    legend: {enabled: false},
+    mapNavigation: {
+     enabled: false,
+     enableButtons: false,
+     buttonOptions: {
+      verticalAlign: 'bottom'
+     }
+    },
+    colorAxis: {
+        min: 1,
+        minColor: '#fcfcfc',
+        maxColor: '#083942',
+        stops: [
+            [0, '#fcfcfc'],
+            [0.67, '#00667a'],
+            [1, '#083942']
+        ]
+    },
+    series: [{
+     data: worldData,
+     mapData: Highcharts.maps['custom/world'],
+     joinBy: 'hc-key',
+     name: 'Sarshomar Society',
+     states: {
+      hover: {
+       color: '#e7a429'
+      }
+     },
+     dataLabels: {
+      enabled: false,
+      format: '{point.name}'
+     }
+    }]
+   });
+

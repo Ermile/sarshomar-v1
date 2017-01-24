@@ -75,6 +75,4 @@ function getMyMapData()
 	}
 	// import source of map
 	$import(myMapSource, null);
-	// import data of map
-	$import('mapdata.js', null, 100);
 }
