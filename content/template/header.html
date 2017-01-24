@@ -19,25 +19,31 @@
 {%if url.tld == 'dev' and false%}
       <a href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();">ℹ️</a>
 {%endif%}
-      <a href='{{url.base}}/@/add' class='login' tabindex='5' id="add-question">
+
+      <a href='{{url.base}}/@/add' class='header-profile-link' tabindex='5' id="add-question">
        <span class="header-link-text">{%trans "Add Question"%}</span>
        <span class="header-link-icon icon-plus"></span>
       </a>
-      <a href='{{url.base}}/ask' class='register' tabindex='6' data-direct>{%trans "Ask Me"%}</a>
+
+      <a href='{{url.base}}/ask' class='header-profile-button' tabindex='6' data-direct>{%trans "Ask Me"%}</a>
+
       <div class="profile">
        <!-- <img src="{{url.static}}images/svg/general/profile.svg" alt=""> -->
        <div class="info">
-        {{displayname}}
-        <span class="role">{%trans "Welcome"%}</span>
+        <div class="displayname">{{displayname}}</div>
+        <div class="role">{%trans "Welcome"%}</div>
        </div>
-       <div class="row auto profile-detail">
-        <a href="{{url.base}}/@" class="span7 dashboard" tabindex='7'>{%trans "Dashboard"%}</a>
-        <a href="logout" class="span5 exit" tabindex='8' data-direct>{%trans "Exit"%}</a>
+       <div class="profile-detail">
+        <a href="{{url.base}}/@" class="dashboard" tabindex='7'>{%trans "Dashboard"%}</a>
+        <a href="logout" class="exit" tabindex='8' data-direct>{%trans "Exit"%}</a>
        </div>
       </div>
+
+      <a href="#" class="icon-plus header-profile-link ui-language-link">ss</a>
+
 {%elseif url.tld == 'dev'%}
-      <a href='{{url.base}}/login' data-direct class='login'>{%trans "Login"%}</a>
-      <a href='{{url.base}}/signup' data-direct class='register'>{%trans "Register"%}</a>
+      <a href='{{url.base}}/login' data-direct class='header-profile-link'>{%trans "Login"%}</a>
+      <a href='{{url.base}}/signup' data-direct class='header-profile-button'>{%trans "Register"%}</a>
 {%endif%}
      </nav>
     </div>
