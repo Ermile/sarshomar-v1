@@ -397,6 +397,9 @@ route('*', function ()
 {
 	setLanguageURL();
 	isActiveChecker();
+	// load maps and chart js
+	$import('lib/highcharts/highcharts.js', 'drawChart', 70);
+	$import('lib/highcharts/modules/map.js', 'getMyMapData', 200);
 });
 
 
@@ -1320,44 +1323,44 @@ route('*', function ()
 });
 
 
-// Me | Profile
-route('*', function ()
-{
-	$.each($('input.autocomplete'),function()
-	{
-		$(this).keyup(function(e)
-		{
-			name = $(this).attr('name');
-			val  = $(this).val();
+// // Me | Profile
+// route('*', function ()
+// {
+// 	$.each($('input.autocomplete'),function()
+// 	{
+// 		$(this).keyup(function(e)
+// 		{
+// 			name = $(this).attr('name');
+// 			val  = $(this).val();
 
-			$(this).ajaxify(
-			{
-				ajax:
-				{
-					method: 'post',
-					url : '/',
-					data:
-					{
-						'type'  : 'autocomplete',
-						'data'  : name,
-						'search': val
-					},
-					abort: true,
-					success: function(e, data, x)
-					{
-						data = e.msg.callback;
-						for (a in data)
-						{
-							console.log(data[a]['term_title']);
-							console.log(data[a]['term_url']);
-							console.log(data[a]['term_count']);
-						}
-					}
-				}
-			});
-		});
-	});
-});
+// 			$(this).ajaxify(
+// 			{
+// 				ajax:
+// 				{
+// 					method: 'post',
+// 					url : '/',
+// 					data:
+// 					{
+// 						'type'  : 'autocomplete',
+// 						'data'  : name,
+// 						'search': val
+// 					},
+// 					abort: true,
+// 					success: function(e, data, x)
+// 					{
+// 						data = e.msg.callback;
+// 						for (a in data)
+// 						{
+// 							console.log(data[a]['term_title']);
+// 							console.log(data[a]['term_url']);
+// 							console.log(data[a]['term_count']);
+// 						}
+// 					}
+// 				}
+// 			});
+// 		});
+// 	});
+// });
 
 
 
@@ -1467,78 +1470,6 @@ route('*', function ()
 });
 
 
-// --------------------------------- Sliders ---------------------------------
-
-function pauseEvent(e)
-{
-	if (e.stopPropagation) e.stopPropagation();
-	if (e.preventDefault) e.preventDefault();
-	e.cancelBubble = true;
-	e.returnValue = false;
-	return false;
-}
-
-$(function()
-{
-	$('.input-slider').each(function(id, el){
-		$(el).append($('<div style="width: 10px;height: 25px;background: #666;position: absolute;top: 5px;left: 100px;cursor:pointer"></div>'));
-
-		var offset = $(el.children[0]).outerWidth(),
-			inpEl = $(el.children[1]),
-				maxim = inpEl.outerWidth() - 10,
-				sl = $(el.children[2]);
-
-		inpEl.css({height: 8, margin: '11px 0' });
-		inpEl.on('mousedown, mouseup', function(ev) {
-				setSlider(offset + ev.screenX - inpEl.offset().left);
-				return pauseEvent(ev);
-			});
-
-
-		var dragStart = false, currentLeft;
-		sl.on('mousedown', function (ev) {
-			dragStart = ev.screenX;
-			currentLeft = parseFloat(sl.css('left'));
-			inpEl.focus();
-			return pauseEvent(ev);
-		});
-
-
-		var minVal = inpEl.data('min'), maxVal = inpEl.data('max');
-		if(minVal==undefined) minVal = 0;
-		if(maxVal==undefined) maxVal = 100;
-
-		$(document).on('mousemove', function (ev) {
-			if (dragStart && ev.buttons !== 0) {
-				setSlider(currentLeft + ev.screenX - dragStart);
-				return pauseEvent(ev);
-			}
-		});
-
-		function setSlider(val) {
-			var newLeft = Math.max(Math.min(val, offset + maxim), offset);
-			sl.css('left', newLeft);
-			inpEl.val( parseInt((newLeft-offset)*(maxVal-minVal) / maxim)+minVal );
-			inpEl.focus();
-		}
-
-		$(document).on('mouseup', function(){
-			dragStart = false;
-		});
-
-		updateSlider();
-
-		function updateSlider() {
-			var val = parseFloat(inpEl.val());
-			var newLeft = offset + ((val - minVal) / (maxVal - minVal)) * maxim;
-			sl.css('left', newLeft);
-		}
-	});
-
-
-});
-
-
 
 
 
@@ -1627,7 +1558,4 @@ function runAllScripts()
 function loadFiles()
 {
 	$import('lib/data-response.js', 'runDataResponse', 50);
-	// load maps and chart js
-	$import('lib/highcharts/highcharts.js', null, 70);
-	$import('lib/highcharts/modules/map.js', 'getMyMapData', 100);
 }

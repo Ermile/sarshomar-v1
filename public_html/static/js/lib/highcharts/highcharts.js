@@ -381,3 +381,110 @@ c];)b["zone-graph-"+c].attr(f),c+=1},setVisible:function(a,b){var c=this,d=c.cha
 a.visible&&(a.isDirty=!0)});p(c.linkedSeries,function(b){b.setVisible(a,!1)});h&&(d.isDirtyBox=!0);!1!==b&&d.redraw();l(c,f)},show:function(){this.setVisible(!0)},hide:function(){this.setVisible(!1)},select:function(a){this.selected=a=void 0===a?!this.selected:a;this.checkbox&&(this.checkbox.checked=a);l(this,a?"select":"unselect")},drawTracker:a.drawTrackerGraph})})(L);(function(a){var D=a.Chart,C=a.each,G=a.inArray,I=a.isObject,h=a.pick,f=a.splat;D.prototype.setResponsive=function(a){var f=this.options.responsive;
 f&&f.rules&&C(f.rules,function(f){this.matchResponsiveRule(f,a)},this)};D.prototype.matchResponsiveRule=function(f,v){var l=this.respRules,p=f.condition,d;d=p.callback||function(){return this.chartWidth<=h(p.maxWidth,Number.MAX_VALUE)&&this.chartHeight<=h(p.maxHeight,Number.MAX_VALUE)&&this.chartWidth>=h(p.minWidth,0)&&this.chartHeight>=h(p.minHeight,0)};void 0===f._id&&(f._id=a.uniqueKey());d=d.call(this);!l[f._id]&&d?f.chartOptions&&(l[f._id]=this.currentOptions(f.chartOptions),this.update(f.chartOptions,
 v)):l[f._id]&&!d&&(this.update(l[f._id],v),delete l[f._id])};D.prototype.currentOptions=function(a){function h(a,d,c){var l,p;for(l in a)if(-1<G(l,["series","xAxis","yAxis"]))for(a[l]=f(a[l]),c[l]=[],p=0;p<a[l].length;p++)c[l][p]={},h(a[l][p],d[l][p],c[l][p]);else I(a[l])?(c[l]={},h(a[l],d[l]||{},c[l])):c[l]=d[l]||null}var l={};h(a,this.options,l);return l}})(L);return L});
+
+
+
+
+function drawChart()
+{
+	$('.chart:not([data-draw])').each(function()
+	{
+		// declare variables
+		$this              = $(this);
+		var attrType       = $this.attr('data-type');
+		var attrPlace      = $this.attr('data-place');
+		var attrCats       = $this.attr('data-cats');
+		var attrVals       = $this.attr('data-vals');
+		var attrFormat     = $this.attr('data-format');
+		var chartContainer = $this;
+
+		// if not set replace them
+		if(!attrType)
+		{
+			attrType = 'column';
+		}
+		if(!attrCats)
+		{
+			attrCats = [];
+		}
+		else
+		{
+			attrCats = JSON.parse(attrCats);
+		}
+		if(!attrVals)
+		{
+			attrVals = [];
+		}
+		else
+		{
+			attrVals = JSON.parse(attrVals);
+		}
+		if(attrPlace && chartContainer.find(attrPlace).length)
+		{
+			chartContainer = chartContainer.find(attrPlace);
+		}
+		// generate global options
+		var myChartOptions =
+		{
+			chart: {type: attrType},
+			title: {text: ''},
+			xAxis:{categories:attrCats},
+			yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
+			plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			tooltip: {enabled: false},
+			series: attrVals
+		};
+		if(attrFormat && typeof window[attrFormat] == 'function')
+		{
+			myChartOptions = window[attrFormat](myChartOptions);
+		}
+
+		chartContainer.highcharts(myChartOptions);
+	});
+}
+
+
+
+/**
+ * customized for gender chart
+ * @param  {[type]} _option [description]
+ * @return {[type]}         [description]
+ */
+function homepageGender(_option)
+{
+	_option.chart.type = 'bar';
+	// xAxis
+	_option.xAxis.reversed = false;
+	// _option.xAxis.labels = {enabled: true, step: 1};
+	_option.xAxis.opposite = true;
+
+	_option.yAxis =
+	{
+		title: {enabled: false},
+		labels: {enabled: false},
+		gridLineWidth: 0,
+		minorGridLineWidth: 0
+	};
+	_option.plotOptions =
+	{
+		series:
+		{
+			stacking: 'normal',
+			dataLabels:{enabled: false,format: '{point.y:f}'}},
+			bar: {pointPadding: 0,groupPadding: 0.01,
+		}
+	};
+
+	_option.tooltip =
+	{
+		shared: true,
+		useHTML: true,
+		headerFormat: 'رده سنی <b>{point.key}</b><table>',
+		pointFormat: '<tr><td style="color: {series.color}">{series.name} </td>' + '<td style="text-align: right"><b>' + '{point.y}' +'</b> نفر</td></tr>',
+		footerFormat: '</table>',
+		crosshairs: true
+	}
+	return _option;
+}

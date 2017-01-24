@@ -11,7 +11,7 @@
      </div>
      <div class="span2"></div>
      <div class="span5" id='random-chart'>
-      <div class='chart unselectable'>
+      <div class='chart unselectable' data-type='column' data-place='div' data-vals='{{result.basic | raw}}' data-cats='{{result.categories | raw}}'>
        <h3><a href='{{result.url}}#?'>{{result.title|trim('\"')}}</a></h3>
        <div class='column palette{{(random(6)) + 1}}'></div>
       </div>
@@ -29,7 +29,10 @@
       <div id="iran-map" class="map"></div>
      </div>
      <div class="span7">
-      <div class="chart" id="age-chart"></div>
+{%set ageTooltip%}
+{formatter: '::xformater'}
+{%endset%}
+      <div class="chart" id="age-chart" data-format="homepageGender" data-cats='{{male_female_chart.categories|raw}}' data-vals='{{male_female_chart.series|raw}}'></div>
      </div>
     </div>
 {%endif%}
@@ -106,7 +109,7 @@
   </div>
 {%endblock%}
 
-{%block foot_js%}
+{%block foot_js2%}
 
  <script type="text/javascript">
   setTimeout(function()
