@@ -59,7 +59,8 @@ class controller extends \lib\mvc\controller
 		 * start hooks and run telegram session from db
 		 */
 		bot::hook();
-		$language = \lib\db\users::get_language(bot::$user_id);
+		\lib\main::$controller->model()->user_id = bot::$user_id;
+		$language = \lib\db\users::get_language((int) bot::$user_id);
 		if(empty($language) || !$language)
 		{
 			\lib\define::set_language('en_US');
