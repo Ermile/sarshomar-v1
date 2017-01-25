@@ -1,58 +1,172 @@
 <aside class="api-quick-access">
   <ul>
-   <li class="header">ورود به سیستم</li>
-    <a href="v1/doc#loginToken" >
+    <li class="header unselectable">ورود به سیستم</li>
+    <a href="v1/doc#loginToken">
       <li>دریافت کلید ورود به سیستم</li>
     </a>
-    <a href="v1/doc#guestToken" >
+    <a href="v1/doc#guestToken">
       <li>دریافت کلید میهمان</li>
     </a>
-
-    <li class="header">نظرسنجی‌</li>
-    <a href="v1/doc#addPoll" >
+    <li class="header unselectable">نظرسنجی‌</li>
+    <a href="v1/doc#addPoll">
       <li>ثبت نظر سنجی</li>
     </a>
-    <a href="v1/doc#getPoll" >
+    <a href="v1/doc#getPoll">
       <li>دریافت نظر سنجی</li>
     </a>
-    <li class="header">جستجو</li>
-    <a href="v1/doc#search" >
+    <li class="header unselectable">جستجو</li>
+    <a href="v1/doc#search">
       <li>جستجو در نظر سنجی ها</li>
     </a>
-    <li class="header">پاسخ دهی</li>
-    <a href="v1/doc#addAnswer" >
+    <li class="header unselectable">پاسخ دهی</li>
+    <a href="v1/doc#addAnswer">
       <li>ثبت پاسخ یک سوال</li>
     </a>
-
-    <li class="header">علاقه مندی</li>
-    <a href="v1/doc#fav" >
+    <li class="header unselectable">علاقه مندی</li>
+    <a href="v1/doc#fav">
       <li>ثبت علاقه مندی یک سوال</li>
     </a>
-    <a href="v1/doc#like" >
+    <a href="v1/doc#like">
       <li>لایک سوال</li>
     </a>
-
-    <li class="header">مالی</li>
-    <a href="v1/doc#budget" >
+    <li class="header unselectable">مالی</li>
+    <a href="v1/doc#budget">
       <li>دریافت موجودی حساب کاربری</li>
     </a>
-    <a href="v1/doc#calcPrice" >
+    <a href="v1/doc#calcPrice">
       <li>محاسبه هزیه یک سوال</li>
     </a>
-
   </ul>
 </aside>
-<div class="main pad text-based">
-  <div class="box">
+<div class="main pad text-based api-docs">
+  <div class="box in xxlarge">
+    <div class="api-desc">
+      <h2 class="unselectable">Getting started</h2>
+      <p>Cloudflare's API exposes the entire Cloudflare infrastructure via a standardized programmatic interface. Using Cloudflare's
+        API, you can do just about anything you can do on cloudflare.com via the customer dashboard.</p>
+      <p>The Cloudflare API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Cloudflare,
+        you can obtain your API key from the bottom of the "My Account" page, found here: Go to My account.</p>
+      <h2 class="unselectable">What is Cloudflare?</h2>
+      <p>Cloudflare makes sites lightning fast, protects them from attacks, ensures they are always online, and makes it simple
+        to add web apps with a single click. More than 5 percent of global Web requests flow through Cloudflare's network;
+        every month more than 1.8 billion people experience a faster, safer, better Internet thanks to Cloudflare.</p>
+      <h2 class="unselectable"> Audience for APIs</h2>
+      <p>Cloudflare offers public APIs with three audiences in mind.</p>
+      <ol>
+        <li>Cloudflare customers</li>
+        <li>Cloudflare partners</li>
+        <li>Developers</li>
+      </ol>
+      <p>Customers: Individuals and organizations all over the world choose Cloudflare to protect and accelerate their web applications.
+        Most customers manage their settings in the web dashboard, built using these APIs. Virtually anything you can do
+        in the customer dashboard may be done via API. Example: purging the Cloudflare edge cache for a single file when
+        it's updated on the origin server.</p>
+      <h2 class="unselectable">Endpoints</h2>
+      <p>The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT, PATCH, and
+        DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the
+        SSL-enabled HTTPS (port 443) protocol.</p>
+      <p>Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version
+        is Version 4.</p>
+      <p>The stable HTTPS endpoint for the latest version is:</p>
+      <div class="codex ltr" data-reactid="211">{{url.base}}/api/v1/</div>
+      <h2>HTTP response codes</h2>
+      <p>The status of a response can be determined from the HTTP status code.</p>
+      <div class="flex-table">
+        <div class="flex-table-child flex-child-small">
+          <div class="flex-table-cell flex-table-header"><strong>Code</strong></div>
+          <div class="flex-table-cell">200</div>
+          <div class="flex-table-cell">304</div>
+          <div class="flex-table-cell">400</div>
+          <div class="flex-table-cell">401</div>
+          <div class="flex-table-cell">403</div>
+          <div class="flex-table-cell">429</div>
+          <div class="flex-table-cell">405</div>
+          <div class="flex-table-cell">415</div>
+        </div>
+        <div class="flex-table-child">
+          <div class="flex-table-cell flex-table-header"><strong>Status</strong></div>
+          <div class="flex-table-cell">OK</div>
+          <div class="flex-table-cell">Not Modified</div>
+          <div class="flex-table-cell">Bad Request</div>
+          <div class="flex-table-cell">Unauthorized</div>
+          <div class="flex-table-cell">Forbidden</div>
+          <div class="flex-table-cell">Too many requests</div>
+          <div class="flex-table-cell">Method Not Allowed</div>
+          <div class="flex-table-cell">Unsupported Media Type</div>
+        </div>
+        <div class="flex-table-child">
+          <div class="flex-table-cell flex-table-header"><strong>Description</strong></div>
+          <div class="flex-table-cell">request successful</div>
+          <div class="flex-table-cell"></div>
+          <div class="flex-table-cell">request was invalid</div>
+          <div class="flex-table-cell">user does not have permission</div>
+          <div class="flex-table-cell">request not authenticated</div>
+          <div class="flex-table-cell">client is rate limited</div>
+          <div class="flex-table-cell">incorrect HTTP method provided</div>
+          <div class="flex-table-cell">response is not valid JSON</div>
+        </div>
+      </div>
+    </div>
+    <h2 class="bordered-title unselectable" id="addPoll"><span class="method post">POST</span>ثبت نظر سنجی☺</h2>
+    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده <span class="inline-code unselectable">X-Auth-User-Service-Key</span>      از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
+      مورد نیاز و کاربردهای متنوع با هدف بهبود <span class="inline-code unselectable">X-Auth-User-Service-Key</span> ابزارهای
+      کاربردی می باشد.</p>
+    <br>
+    <div class="ltr codex"><span class="url-method">post</span>/poll</div>
+    <br>
+    <div class="flex-table-header"><strong>پارامتر‌های<i> مورد نیاز </i></strong></div>
+    <div class="flex-table">
+      <div class="flex-table-child">
+        <div class="flex-table-cell flex-table-header unselectable"><strong>شناسه <small>/متغیر</small></strong></div>
+        <div class="flex-table-cell"><strong>first_name</strong> <br> <small><i>string</i></small></div>
+        <div class="flex-table-cell"><strong>last_name</strong> <br> <small><i>string</i></small></div>
+        <div class="flex-table-cell"><strong>telephone</strong> <br> <small><i>int</i></small></div>
+      </div>
+      <div class="flex-table-child">
+        <div class="flex-table-cell flex-table-header unselectable"><strong>توضیحات <small>/اولویت</small></strong></div>
+        <div class="flex-table-cell unselectable">User's first name <br> <small class="mandatory">اجباری</small></div>
+        <div class="flex-table-cell unselectable">User's last name <br> <small class="optional">اختیاری</small></div>
+        <div class="flex-table-cell unselectable">User's telephone number <br> <small class="conditional">مشروط</small></div>
+      </div>
+      <div class="flex-table-child">
+        <div class="flex-table-cell flex-table-header unselectable"><strong>مثال</strong></div>
+        <div class="flex-table-cell"><code class="example-code">"John"</code></div>
+        <div class="flex-table-cell"><code class="example-code">"Appleseed"</code></div>
+        <div class="flex-table-cell"><code class="example-code">"+98 123-123-1234"</code></div>
+      </div>
+    </div>
+    <fieldset class="api-sample">
+      <legend>مثال</legend>
+      <h2 class="unselectable">درخواست</h2>
+      <div class="codex ltr">
+        { "id": "[poll id]", "type" : "ask|random|null" }
+      </div>
+      <h2 class="unselectable">Header</h2>
+      <div class="codex ltr">
+        GET / HTTP/1.1[CRLF] Host: sarshomar.com[CRLF] Connection: close[CRLF] User-Agent: Web-sniffer/1.1.0 (+http://web-sniffer.net/)[CRLF]
+        Accept-Encoding: gzip[CRLF] Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7[CRLF] Cache-Control: no-cache[CRLF] Accept-Language:
+        de,en;q=0.7,en-us;q=0.3[CRLF] Referer: http://web-sniffer.net/[CRLF]
+      </div>
+      <h2 class="unselectable">cURL</h2>
+      <div class="codex ltr">
+        curl -X PATCH "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \ -H "X-Auth-Email:
+        user@example.com" \ -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \ -H "Content-Type: application/json"
+        \ --data '{"value":"on"}'
+      </div>
+      <h2 class="unselectable">پاسخ</h2>
+      <div class="ltr codex">
+        { "success": true, "errors": [], "messages": [], "result": "off" }
+      </div>
+    </fieldset>
     {#%include 'content_api/v1/doc/template/login/login_token.html'%#}
     {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
-    {%include 'content_api/v1/doc/template/poll/add.html'%}
-    {%include 'content_api/v1/doc/template/poll/get.html'%}
-    {%include 'content_api/v1/doc/template/poll/search/search.html'%}
+    {%include 'content_api/v1/doc/template/poll/add.html'%} 
+    {%include 'content_api/v1/doc/template/poll/get.html'%} 
+    {%include 'content_api/v1/doc/template/poll/search/search.html'%} 
     {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
-    {%include 'content_api/v1/doc/template/poll/fav/fav.html'%}
+    {%include 'content_api/v1/doc/template/poll/fav/fav.html'%} 
     {%include 'content_api/v1/doc/template/poll/like/like.html'%}
-    {%include 'content_api/v1/doc/template/billing/balance.html'%}
+    {%include 'content_api/v1/doc/template/billing/balance.html'%} 
     {%include 'content_api/v1/doc/template/poll/price/price.html'%}
   </div>
 </div>
