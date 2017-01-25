@@ -91,7 +91,7 @@ trait search
 					ON fav.post_id = posts.id AND
 						fav.option_key = 'favourites' AND
 						fav.user_id = $_options[login] AND
-						fav.option_status = 'enable' 
+						fav.option_status = 'enable'
 			";
 
 			$my_like =
@@ -100,18 +100,18 @@ trait search
 					ON my_like.post_id = posts.id AND
 						my_like.option_key = 'like' AND
 						my_like.user_id = $_options[login] AND
-						my_like.option_status = 'enable' 
+						my_like.option_status = 'enable'
 			";
 
 			$is_answered =
 			"
 				IF(
 					(
-						SELECT 
-							COUNT(polldetails.id) 
-						FROM 
-							polldetails 
-						WHERE 
+						SELECT
+							COUNT(polldetails.id)
+						FROM
+							polldetails
+						WHERE
 							polldetails.post_id = posts.id AND
 						polldetails.user_id = $_options[login]
 					) >= 1 , TRUE, FALSE
@@ -170,7 +170,7 @@ trait search
 		{
 			$_options['all']            = true;
 			$_options['check_language'] = false;
-			
+
 			if($_options['login'])
 			{
 				$_options['user_id'] = $_options['login'];
@@ -241,8 +241,6 @@ trait search
 		$search = null;
 		if($_string != null)
 		{
-			$_string = \lib\utility\safe::safe($_string);
-
 			$search =
 			"(
 				posts.post_title 	LIKE '%$_string%' OR
@@ -271,7 +269,7 @@ trait search
 			}
 		}
 		if(!$get_count)
-		{	
+		{
 			// ------------------ favourites
 			if($my_fav)
 			{
@@ -295,7 +293,7 @@ trait search
 				$public_fields
 			$my_fav
 			$my_like
-			
+
 			WHERE
 				$where
 				$search
