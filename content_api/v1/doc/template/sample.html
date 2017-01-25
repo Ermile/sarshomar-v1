@@ -42,24 +42,24 @@
   <div class="box in xxlarge">
     <div class="api-desc">
       <h2 class="unselectable">Getting started</h2>
-      <p>Cloudflare's API exposes the entire Cloudflare infrastructure via a standardized programmatic interface. Using Cloudflare's
-        API, you can do just about anything you can do on cloudflare.com via the customer dashboard.</p>
-      <p>The Cloudflare API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Cloudflare,
+      <p>Sarshomar's API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomar's
+        API, you can do just about anything you can do on Sarshomar.com via the customer dashboard.</p>
+      <p>The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Sarshomar,
         you can obtain your API key from the bottom of the "My Account" page, found here: Go to My account.</p>
-      <h2 class="unselectable">What is Cloudflare?</h2>
-      <p>Cloudflare makes sites lightning fast, protects them from attacks, ensures they are always online, and makes it simple
-        to add web apps with a single click. More than 5 percent of global Web requests flow through Cloudflare's network;
-        every month more than 1.8 billion people experience a faster, safer, better Internet thanks to Cloudflare.</p>
+      <h2 class="unselectable">What is Sarshomar?</h2>
+      <p>Sarshomar makes sites lightning fast, protects them from attacks, ensures they are always online, and makes it simple
+        to add web apps with a single click. More than 5 percent of global Web requests flow through Sarshomar's network;
+        every month more than 1.8 billion people experience a faster, safer, better Internet thanks to Sarshomar.</p>
       <h2 class="unselectable"> Audience for APIs</h2>
-      <p>Cloudflare offers public APIs with three audiences in mind.</p>
+      <p>Sarshomar offers public APIs with three audiences in mind.</p>
       <ol>
-        <li>Cloudflare customers</li>
-        <li>Cloudflare partners</li>
+        <li>Sarshomar customers</li>
+        <li>Sarshomar partners</li>
         <li>Developers</li>
       </ol>
-      <p>Customers: Individuals and organizations all over the world choose Cloudflare to protect and accelerate their web applications.
+      <p>Customers: Individuals and organizations all over the world choose Sarshomar to protect and accelerate their web applications.
         Most customers manage their settings in the web dashboard, built using these APIs. Virtually anything you can do
-        in the customer dashboard may be done via API. Example: purging the Cloudflare edge cache for a single file when
+        in the customer dashboard may be done via API. Example: purging the Sarshomar edge cache for a single file when
         it's updated on the origin server.</p>
       <h2 class="unselectable">Endpoints</h2>
       <p>The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT, PATCH, and
@@ -107,57 +107,76 @@
         </div>
       </div>
     </div>
-    <h2 class="bordered-title unselectable" id="addPoll"><span class="method post">POST</span>ثبت نظر سنجی☺</h2>
-    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده <span class="inline-code unselectable">X-Auth-User-Service-Key</span>      از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
-      مورد نیاز و کاربردهای متنوع با هدف بهبود <span class="inline-code unselectable">X-Auth-User-Service-Key</span> ابزارهای
-      کاربردی می باشد.</p>
-    <br>
-    <div class="ltr codex"><span class="url-method">post</span>/poll</div>
-    <br>
-    <div class="flex-table-header"><strong>پارامتر‌های<i> مورد نیاز </i></strong></div>
-    <div class="flex-table">
-      <div class="flex-table-child">
-        <div class="flex-table-cell flex-table-header unselectable"><strong>شناسه <small>/متغیر</small></strong></div>
-        <div class="flex-table-cell"><strong>first_name</strong> <br> <small><i>string</i></small></div>
-        <div class="flex-table-cell"><strong>last_name</strong> <br> <small><i>string</i></small></div>
-        <div class="flex-table-cell"><strong>telephone</strong> <br> <small><i>int</i></small></div>
+
+
+<h2 class="bordered-title unselectable" id="addPoll"><span class="method post">POST</span>ثبت نظر سنجی☺</h2>
+<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده <span class="inline-code unselectable">X-Auth-User-Service-Key</span> از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود <span class="inline-code unselectable">X-Auth-User-Service-Key</span> ابزارهای کاربردی می باشد.</p>
+<br>
+<div class="ltr codex"><span class="url-method">post</span>/poll</div>
+<br>
+<div class="flex-table-header"><strong>پارامتر‌های<i> مورد نیاز </i></strong></div>
+<div class="flex-table">
+        <div class="flex-table-child">
+          <div class="flex-table-cell flex-table-header unselectable"><strong>شناسه <small>/متغیر</small></strong></div>
+          <div class="flex-table-cell"><strong>first_name</strong> <br> <small><i>string</i></small></div>
+          <div class="flex-table-cell"><strong>last_name</strong> <br> <small><i>string</i></small></div>
+          <div class="flex-table-cell"><strong>telephone</strong> <br> <small><i>int</i></small></div>
+        </div>
+        <div class="flex-table-child">
+          <div class="flex-table-cell flex-table-header unselectable"><strong>توضیحات <small>/اولویت</small></strong></div>
+          <div class="flex-table-cell unselectable">User's first name <br> <small class="mandatory">اجباری</small></div>
+          <div class="flex-table-cell unselectable">User's last name <br> <small class="optional">اختیاری</small></div>
+          <div class="flex-table-cell unselectable">User's telephone number <br> <small class="conditional">مشروط</small></div>
+        </div>
+        <div class="flex-table-child">
+          <div class="flex-table-cell flex-table-header unselectable"><strong>مثال</strong></div>
+          <div class="flex-table-cell"><code class="example-code">"John"</code></div>
+          <div class="flex-table-cell"><code class="example-code">"Appleseed"</code></div>
+          <div class="flex-table-cell"><code class="example-code">"+98 123-123-1234"</code></div>
+        </div>
       </div>
-      <div class="flex-table-child">
-        <div class="flex-table-cell flex-table-header unselectable"><strong>توضیحات <small>/اولویت</small></strong></div>
-        <div class="flex-table-cell unselectable">User's first name <br> <small class="mandatory">اجباری</small></div>
-        <div class="flex-table-cell unselectable">User's last name <br> <small class="optional">اختیاری</small></div>
-        <div class="flex-table-cell unselectable">User's telephone number <br> <small class="conditional">مشروط</small></div>
-      </div>
-      <div class="flex-table-child">
-        <div class="flex-table-cell flex-table-header unselectable"><strong>مثال</strong></div>
-        <div class="flex-table-cell"><code class="example-code">"John"</code></div>
-        <div class="flex-table-cell"><code class="example-code">"Appleseed"</code></div>
-        <div class="flex-table-cell"><code class="example-code">"+98 123-123-1234"</code></div>
-      </div>
-    </div>
-    <fieldset class="api-sample">
-      <legend>مثال</legend>
-      <h2 class="unselectable">درخواست</h2>
-      <div class="codex ltr">
-        { "id": "[poll id]", "type" : "ask|random|null" }
-      </div>
-      <h2 class="unselectable">Header</h2>
-      <div class="codex ltr">
-        GET / HTTP/1.1[CRLF] Host: sarshomar.com[CRLF] Connection: close[CRLF] User-Agent: Web-sniffer/1.1.0 (+http://web-sniffer.net/)[CRLF]
-        Accept-Encoding: gzip[CRLF] Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7[CRLF] Cache-Control: no-cache[CRLF] Accept-Language:
-        de,en;q=0.7,en-us;q=0.3[CRLF] Referer: http://web-sniffer.net/[CRLF]
-      </div>
-      <h2 class="unselectable">cURL</h2>
-      <div class="codex ltr">
-        curl -X PATCH "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \ -H "X-Auth-Email:
-        user@example.com" \ -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \ -H "Content-Type: application/json"
-        \ --data '{"value":"on"}'
-      </div>
-      <h2 class="unselectable">پاسخ</h2>
-      <div class="ltr codex">
-        { "success": true, "errors": [], "messages": [], "result": "off" }
-      </div>
-    </fieldset>
+
+
+<fieldset class="api-sample">
+  <legend>مثال</legend>
+  <h2 class="unselectable">درخواست</h2>
+
+  <div class="codex ltr">
+  {
+    "id": "[poll id]",
+    "type" : "ask|random|null"
+  }
+  </div>
+  <h2 class="unselectable">Header</h2>
+  <div class="codex ltr">
+  GET / HTTP/1.1[CRLF]
+  Host: sarshomar.com[CRLF]
+  Connection: close[CRLF]
+  User-Agent: Web-sniffer/1.1.0 (+http://web-sniffer.net/)[CRLF]
+  Accept-Encoding: gzip[CRLF]
+  Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7[CRLF]
+  Cache-Control: no-cache[CRLF]
+  Accept-Language: de,en;q=0.7,en-us;q=0.3[CRLF]
+  Referer: http://web-sniffer.net/[CRLF]
+  </div>
+<h2 class="unselectable">cURL</h2>
+  <div class="codex ltr">
+  curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
+    -H "X-Auth-Email: user@example.com" \
+    -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+    -H "Content-Type: application/json" \
+    --data '{"value":"on"}'
+  </div>
+  <h2 class="unselectable">پاسخ</h2>
+  <div class="ltr codex">
+  {
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "result": "off"
+  }
+  </div>
+</fieldset>
     {#%include 'content_api/v1/doc/template/login/login_token.html'%#}
     {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
     {%include 'content_api/v1/doc/template/poll/add.html'%} 
