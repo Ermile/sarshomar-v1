@@ -46,11 +46,11 @@ trait telegram
 
 		// get the opt of polls
 		$opt = [];
-		
+
 		$opt = \lib\db\pollopts::get($_poll_id);
-		
+
 		$field = ['total','result'];
-		
+
 		// the valid answers
 		$valid_answers = [];
 		$valid_result_raw = \lib\db\pollstats::get($_poll_id, ['field' => $field, 'validation' => 'valid']);
@@ -72,9 +72,9 @@ trait telegram
 		foreach ($opt as $key => $value)
 		{
 			$sum = 0;
-			$result[$i]['text'] = isset($value['title'])  ? $value['title']: null;
-			$result[$i]['key']  = isset($value['key'])  ? $value['key']: null;
-			$result[$i]['type'] = isset($value['type']) ? $value['type']: null;
+			// $result[$i]['text'] = isset($value['title'])  ? $value['title']: null;
+			// $result[$i]['key']  = isset($value['key'])  ? $value['key']: null;
+			// $result[$i]['type'] = isset($value['type']) ? $value['type']: null;
 			$value['key']                = 'opt_'. $key;
 
 			$opt_key = isset($value['key']) ? $value['key'] : null;
@@ -107,7 +107,7 @@ trait telegram
 
 		$poll['count_answered'] = ['valid' => $valid_count, 'invalid' => $invalid_count , 'sum' => $sum_count];
 		$poll['result']         = $result;
-		
+
 		if($_get_raw)
 		{
 			return ['count_answered' => $poll['count_answered'], 'result' => $poll['result']];

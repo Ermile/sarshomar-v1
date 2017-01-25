@@ -54,5 +54,31 @@ class model extends \content_api\v1\home\model
 		return $this->add($_args, true);
 	}
 
+
+	/**
+	 * Gets the ask.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The ask.
+	 */
+	public function get_ask($_args)
+	{
+		return $this->get(['ask' => true]);
+	}
+
+
+	/**
+	 * Gets the random.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The random.
+	 */
+	public function get_random($_args)
+	{
+		return $this->get(['random' => true]);
+	}
+
 }
 ?>

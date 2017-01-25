@@ -2,14 +2,17 @@
 namespace content_api\v1\home\tools;
 use \lib\utility;
 use \lib\debug;
+use \lib\utility\shortURL;
 
 trait ready
 {
-	public $shortURL = utility\shortURL::ALPHABET;
+	public $shortURL = shortURL::ALPHABET;
 
 	/**
 	 * ready poll record to show
-	 *
+	 * encode id
+	 * remove null index
+	 * some thing more...
 	 * @param      <type>  $_poll_data  The poll data
 	 * @param      array   $_options    The options
 	 *
@@ -24,56 +27,67 @@ trait ready
 			'get_public_result'  => false,
 			'get_advance_result' => false,
 		];
+		// merge settings
 		$_options = array_merge($default_options, $_options);
 
 		$poll_id = 0;
 
+		// encode id
 		if(isset($_poll_data['id']))
 		{
 			$poll_id          = $_poll_data['id'];
-			$_poll_data['id'] = utility\shortURL::encode($_poll_data['id']);
+			$_poll_data['id'] = shortURL::encode($_poll_data['id']);
 		}
 
+		// check id
 		if(!$poll_id)
 		{
 			return debug::error(T_("Poll not found"), "id", 'arguments');
 		}
 
+		// encode user id
 		if(isset($_poll_data['user_id']))
 		{
-			$_poll_data['user_id'] = utility\shortURL::encode($_poll_data['user_id']);
+			$_poll_data['user_id'] = shortURL::encode($_poll_data['user_id']);
 		}
 
+		// encode parent
 		if(isset($_poll_data['parent']))
 		{
-			$_poll_data['parent'] = utility\shortURL::encode($_poll_data['parent']);
+			$_poll_data['parent'] = shortURL::encode($_poll_data['parent']);
 		}
 
+		// encode suervey
 		if(isset($_poll_data['survey']))
 		{
-			$_poll_data['survey'] = utility\shortURL::encode($_poll_data['survey']);
+			$_poll_data['survey'] = shortURL::encode($_poll_data['survey']);
 		}
 
+		// change sarshomar field
 		if(isset($_poll_data['sarshomar']) && $_poll_data['sarshomar'])
 		{
 			$_poll_data['sarshomar'] = true;
 		}
 
+		// change is_answered parametr
 		if(isset($_poll_data['is_answered']) && $_poll_data['is_answered'])
 		{
 			$_poll_data['is_answered'] = true;
 		}
 
+		// change my_fav parametr
 		if(isset($_poll_data['my_fav']) && $_poll_data['my_fav'])
 		{
 			$_poll_data['my_fav'] = true;
 		}
 
+		// change my_like parametr
 		if(isset($_poll_data['my_like']) && $_poll_data['my_like'])
 		{
 			$_poll_data['my_like'] = true;
 		}
 
+		// check parent and load tree data
 		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null && $poll_id)
 		{
 			$_poll_data['tree'] = [];
@@ -83,17 +97,32 @@ trait ready
 			{
 				$opt = array_column($_poll_data_tree, 'value');
 				$_poll_data['tree']['answers']   = is_array($opt) ? $opt : [$opt];
-				$_poll_data['tree']['parent_id'] = utility\shortURL::encode($_poll_data['parent']);
+				$_poll_data['tree']['parent_id'] = shortURL::encode($_poll_data['parent']);
 				$_poll_data['tree']['title']     = \lib\db\polls::get_poll_title($_poll_data['parent']);
 			}
 		}
 
+		// get opts of poll
 		if($_options['get_opts'] && $poll_id)
 		{
-			$answers = \lib\db\pollopts::get($poll_id);
+			$custom_field =
+			[
+				'type',
+				'title',
+				'subtype',
+				'true',
+				'groupscore',
+				'desc',
+				'score',
+				'attachment_id',
+				'attachmenttype',
+			];
+
+			$answers = \lib\db\pollopts::get($poll_id, $custom_field);
 			$_poll_data['answers'] = $answers;
 		}
 
+		// get filters of poll
 		if($_options['get_filter'] && $poll_id)
 		{
 			$filters               = utility\postfilters::get_filter($poll_id);
@@ -105,7 +134,7 @@ trait ready
 		if($_options['get_public_result'] && $poll_id)
 		{
 			$public_result = utility\stat_polls::get_telegram_result($poll_id, true);
-			$_poll_data['result'] = $public_result;
+			$_poll_data['data'] = $public_result;
 		}
 
 
@@ -132,9 +161,8 @@ trait ready
 
 			if(in_array('hidden_result', $post_meta_key))
 			{
-				unset($_poll_data['result']);
+				unset($_poll_data['data']);
 			}
-
 		}
 
 		if(is_array($_poll_data))

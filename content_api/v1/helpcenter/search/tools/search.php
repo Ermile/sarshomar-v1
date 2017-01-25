@@ -27,11 +27,7 @@ trait search
 		{
 			foreach ($result as $key => $value)
 			{
-				$result[$key] = array_filter($value);
-				if(isset($value['id']))
-				{
-					$result[$key]['id'] = \lib\utility\shortURL::encode($value['id']);
-				}
+				$result[$key] = $this->ready_poll($value);
 			}
 		}
 		else

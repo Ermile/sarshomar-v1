@@ -27,47 +27,44 @@ trait get
 			'get_opts'           => true,
 			'get_public_result'  => true,
 			'get_advance_result' => false,
+			'ask'                => false,
+			'random'             => false,
 		];
 
 		$_options = array_merge($default_options, $_options);
 
 		$result  = [];
 		$poll_id = null;
-		$poll = [];
-		if(utility::request("type"))
+		$poll    = [];
+		$need_id = true;
+
+		if($_options['ask'])
 		{
-			switch (utility::request("type"))
-			{
-				case 'ask':
-					$poll = db\polls::get_last($this->user_id);
-					break;
-
-				case 'random':
-					$poll = db\polls::get_random();
-					break;
-
-				default:
-					return debug::error(T_("Invalid parametr type"), 'type', 'arguments');
-					break;
-			}
+			$need_id = false;
+			$poll    = db\polls::get_last($this->user_id);
 		}
-		elseif(utility::request("id"))
+
+		if($_options['random'])
+		{
+			$need_id = false;
+			$poll    = db\polls::get_random();
+		}
+
+		if(utility::request("id") && $need_id)
 		{
 			$poll_id = utility::request("id");
 
-			if(!$poll_id)
-			{
-				return debug::error(T_("poll id not found"), 'id', 'arguments');
-			}
-
-			if(!preg_match("/^[". utility\shortURL::ALPHABET ."]+$/", $poll_id))
+			if(!$poll_id || !preg_match("/^[". utility\shortURL::ALPHABET ."]+$/", $poll_id))
 			{
 				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
 
 			$poll_id = utility\shortURL::decode($poll_id);
-
 			$poll    = db\polls::get_poll($poll_id);
+		}
+		elseif($need_id && !utility::request("id"))
+		{
+			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
 		$result = $this->ready_poll($poll, $_options);

@@ -24,6 +24,16 @@ class controller extends  \content_api\v1\home\controller
 		$this->get("poll")->ALL("v1/poll");
 
 		/**
+		 * get ask poll
+		 */
+		$this->get("ask")->ALL("v1/poll/ask");
+
+		/**
+		 * get random poll
+		 */
+		$this->get("random")->ALL("v1/poll/random");
+
+		/**
 		 * put to update a poll
 		 */
 		$this->put("poll")->ALL("v1/poll");
