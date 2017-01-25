@@ -275,5 +275,10 @@ class handle
 			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/$_file.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
 	}
+
+	public static function send_log_clear()
+	{
+		file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", 'null');
+	}
 }
 ?>

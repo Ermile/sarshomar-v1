@@ -60,7 +60,15 @@ class step_create
 	public static function step2($_question)
 	{
 		preg_match("/^type_(.*)$/", $_question, $file_content);
-		$poll_draft = session::get('poll');
+		$get_poll = '3KZZh';//session::get('poll');
+
+		if($get_poll)
+		{
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
+			$get_poll = \lib\main::$controller->model()->get_poll();
+			$maker = new make_view();
+		}
+
 		if($file_content && array_key_exists('caption', bot::$hook['message']))
 		{
 			$_question = bot::$hook['message']['caption'];
@@ -69,32 +77,65 @@ class step_create
 		{
 			$_question = '';
 		}
-		if(count($file_content) > 0 && $poll_draft)
+		if(count($file_content) > 0 && $get_poll)
 		{
-			return self::make_draft(function($_maker){
+			return self::make_draft($get_poll, function($_maker){
 				$_maker->message->add("wrong_data", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 
 		}
 		$question = $_question;
-		// $question = htmlentities($question);
 		$question = markdown_filter::tag($question);
 		$question = markdown_filter::remove_external_link($question);
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);
 
-		if(session::get('poll', 'title'))
+		if(!empty($question_export[0]))
 		{
-			$poll_answers = (array) session::get('poll', "answers");
-			$poll_answers = array_merge($poll_answers, $question_export);
-			session::set('poll', "answers", $poll_answers);
-		}
-		elseif(!empty($question_export[0]))
-		{
-			$poll_title 	= $question_export[0];
-			$poll_answers 	= array_slice($question_export, 1);
-			session::set('poll', "title", $poll_title);
-			session::set('poll', "answers", $poll_answers);
+			$poll_request = [];
+
+			if($get_poll)
+			{
+				$poll_request['id'] = $get_poll['id'];
+
+				if(isset($get_poll['title']))
+				{
+					$poll_request['answers'] = isset($get_poll['answers']) ? $get_poll['answers'] : [];
+					$poll_answers 	= $question_export;
+
+				}
+				else
+				{
+					$poll_request['title'] = $question_export[0];
+					$poll_answers 	= array_slice($question_export, 1);
+					if($poll_answers)
+					{
+						$poll_request['answers'] = [];
+					}
+				}
+			}
+			else
+			{
+				$poll_request['title'] = $question_export[0];
+				$poll_answers 	= array_slice($question_export, 1);
+			}
+
+			if($poll_answers)
+			{
+				foreach ($poll_answers as $key => $value) {
+					$poll_request['answers'][] = ['title' => $value, 'type' => 'select'];
+				}
+			}
+			handle::send_log_clear();
+			handle::send_log($poll_request);
+			return ['text' => $_question];
+
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+			$add_poll = \lib\main::$controller->model()->add_poll(null);
+			if(\lib\debug::$status)
+			{
+				session::set('poll', $add_poll['id']);
+			}
 		}
 
 		if(!session::get('poll', 'file_link') && $file_content && bot::$hook['message'][$file_content[1]])
@@ -111,9 +152,9 @@ class step_create
 			session::set('poll', 'file_addr', $file_server_addr->get_new_name());
 			session::set('poll', 'file_type', $file_content[1]);
 		}
-		return self::make_draft();
+		return self::make_draft($get_poll);
 	}
-	public static function make_draft($_maker = false)
+	public static function make_draft($_poll, $_maker = false)
 	{
 		$poll_title 	= session::get('poll', 'title');
 		$poll_answers 	= session::get('poll', 'answers');
