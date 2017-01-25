@@ -45,6 +45,34 @@ trait ready
 			return debug::error(T_("Poll not found"), "id", 'arguments');
 		}
 
+		if(isset($_poll_data['status']))
+		{
+			$permission_load_poll = false;
+			switch ($_poll_data['status'])
+			{
+				case 'publish':
+					$permission_load_poll = true;
+					break;
+				case 'filtered':
+					$permission_load_poll = false;
+					break;
+				default:
+					if(isset($_poll_data['user_id']))
+					{
+						if($this->user_id == $_poll_data['user_id'])
+						{
+							$permission_load_poll = true;
+						}
+					}
+					break;
+			}
+
+			if(!$permission_load_poll)
+			{
+				return debug::error(T_("Can not access to load this poll"), "id", 'permission');
+			}
+		}
+
 		// encode user id
 		if(isset($_poll_data['user_id']))
 		{
@@ -102,6 +130,8 @@ trait ready
 			}
 		}
 
+		unset($_poll_data['meta']);
+
 		// get opts of poll
 		if($_options['get_opts'] && $poll_id)
 		{
@@ -134,7 +164,7 @@ trait ready
 		if($_options['get_public_result'] && $poll_id)
 		{
 			$public_result = utility\stat_polls::get_telegram_result($poll_id, true);
-			$_poll_data['data'] = $public_result;
+			$_poll_data['stats'] = $public_result;
 		}
 
 
@@ -161,7 +191,7 @@ trait ready
 
 			if(in_array('hidden_result', $post_meta_key))
 			{
-				unset($_poll_data['data']);
+				unset($_poll_data['stats']);
 			}
 		}
 
