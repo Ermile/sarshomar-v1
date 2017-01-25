@@ -9,6 +9,7 @@ class controller extends \mvc\controller
 		if($this->url('child') == null)
 		{
 			$this->get(false, false)->ALL("help");
+			$this->post("search")->ALL("help");
 			// $this->route_check_true = true;
 		}
 		else
