@@ -1,79 +1,323 @@
 {%extends display.main%}
 
 {%block content%}
-<div id="chartdiv" style="width:640px;height:400px"></div>
+<div class="main pad">
+ <div class="box">
+  <ul>
+   <li>amCharts: 204 KB</li>
+   <li>serial.js: 48.0 KB</li>
+   <li>pie.js: 14.3 KB</li>
+  </ul>
+  <div id="chartdiv1" style="width:100%;height:400px"></div>
+  <div id="chartdiv2" style="width:100%;height:500px"></div>
+  <div id="chartdiv3" style="width:100%;height:500px"></div>
+
+  <ul>
+   <li>amMap: 162 KB</li>
+   <li>worldLow: 134 KB</li>
+  </ul>
+  <div id="chartdiv4" style="width:100%;height:500px"></div>
+ </div>
+</div>
 {%endblock%}
 
 {%block foot_js%}
 <script type="text/javascript" src="{{url.static}}js/lib/amcharts/amcharts.js"></script>
 <script type="text/javascript" src="{{url.static}}js/lib/amcharts/serial.js"></script>
+<script type="text/javascript" src="{{url.static}}js/lib/amcharts/pie.js"></script>
+<script type="text/javascript" src="{{url.static}}js/lib/ammap/ammap.js"></script>
+<script type="text/javascript" src="{{url.static}}js/lib/ammap/maps/js/worldLow.js"></script>
 <script>
-var chartData = [ {
- "country": "USA",
- "visits": 4252
-}, {
- "country": "China",
- "visits": 1882
-}, {
- "country": "Japan",
- "visits": 1809
-}, {
- "country": "Germany",
- "visits": 1322
-}, {
- "country": "UK",
- "visits": 1122
-}, {
- "country": "France",
- "visits": 1114
-}, {
- "country": "India",
- "visits": 984
-}, {
- "country": "Spain",
- "visits": 711
-}, {
- "country": "Netherlands",
- "visits": 665
-}, {
- "country": "Russia",
- "visits": 580
-}, {
- "country": "South Korea",
- "visits": 443
-}, {
- "country": "Canada",
- "visits": 441
-}, {
- "country": "Brazil",
- "visits": 395
-}, {
- "country": "Italy",
- "visits": 386
-}, {
- "country": "Australia",
- "visits": 384
-}, {
- "country": "Taiwan",
- "visits": 338
-}, {
+// chartdiv1
+var chartData = [
+ {
+  "country": "USA",
+  "visits": 4252
+ }, {
+  "country": "China",
+  "visits": 1882
+ }, {
+  "country": "Japan",
+  "visits": 1809
+ }, {
+  "country": "Germany",
+  "visits": 1322
+ }, {
+  "country": "UK",
+  "visits": 1122
+ }, {
+  "country": "France",
+  "visits": 1114
+ }, {
+  "country": "India",
+  "visits": 984
+ }, {
+  "country": "Spain",
+  "visits": 711
+ }, {
+  "country": "Netherlands",
+  "visits": 665
+ }, {
+  "country": "Russia",
+  "visits": 580
+ }, {
+  "country": "South Korea",
+  "visits": 443
+ }, {
+  "country": "Canada",
+  "visits": 441
+ }, {
+  "country": "Brazil",
+  "visits": 395
+ }, {
+  "country": "Italy",
+  "visits": 386
+ }, {
+  "country": "Australia",
+  "visits": 384
+ }, {
+  "country": "Taiwan",
+  "visits": 338
+ }, {
  "country": "Poland",
  "visits": 328
-} ];
+ }
+];
+
+AmCharts.makeChart( "chartdiv1",
+ {
+  "type": "serial",
+  "dataProvider": chartData,
+  "categoryField": "country",
+  "graphs": [
+   {
+    "valueField": "visits",
+    "type": "column",
+    "fillAlphas": 0.8,
+    "angle": 30,
+    "depth3D": 15,
+    "balloonText": "[[category]]: <b>[[value]]</b>"
+   }
+  ]
+ });
+
+// chartdiv2
+AmCharts.makeChart("chartdiv2", {
+  "type": "serial",
+  "theme": "light",
+  "rotate": true,
+  "marginBottom": 50,
+  "dataProvider": [{
+    "age": "85+",
+    "male": -0.1,
+    "female": 0.3
+  }, {
+    "age": "80-54",
+    "male": -0.2,
+    "female": 0.3
+  }, {
+    "age": "75-79",
+    "male": -0.3,
+    "female": 0.6
+  }, {
+    "age": "70-74",
+    "male": -0.5,
+    "female": 0.8
+  }, {
+    "age": "65-69",
+    "male": -0.8,
+    "female": 1.0
+  }, {
+    "age": "60-64",
+    "male": -1.1,
+    "female": 1.3
+  }, {
+    "age": "55-59",
+    "male": -1.7,
+    "female": 1.9
+  }, {
+    "age": "50-54",
+    "male": -2.2,
+    "female": 2.5
+  }, {
+    "age": "45-49",
+    "male": -2.8,
+    "female": 3.0
+  }, {
+    "age": "40-44",
+    "male": -3.4,
+    "female": 3.6
+  }, {
+    "age": "35-39",
+    "male": -4.2,
+    "female": 4.1
+  }, {
+    "age": "30-34",
+    "male": -5.2,
+    "female": 4.8
+  }, {
+    "age": "25-29",
+    "male": -5.6,
+    "female": 5.1
+  }, {
+    "age": "20-24",
+    "male": -5.1,
+    "female": 5.1
+  }, {
+    "age": "15-19",
+    "male": -3.8,
+    "female": 3.8
+  }, {
+    "age": "10-14",
+    "male": -3.2,
+    "female": 3.4
+  }, {
+    "age": "5-9",
+    "male": -4.4,
+    "female": 4.1
+  }, {
+    "age": "0-4",
+    "male": -5.0,
+    "female": 4.8
+  }],
+  "startDuration": 1,
+  "graphs": [{
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "male",
+    "title": "Male",
+    "labelText": "[[value]]",
+    "clustered": false,
+    "labelFunction": function(item) {
+      return Math.abs(item.values.value);
+    },
+    "balloonFunction": function(item) {
+      return item.category + ": " + Math.abs(item.values.value) + "%";
+    }
+  }, {
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "female",
+    "title": "Female",
+    "labelText": "[[value]]",
+    "clustered": false,
+    "labelFunction": function(item) {
+      return Math.abs(item.values.value);
+    },
+    "balloonFunction": function(item) {
+      return item.category + ": " + Math.abs(item.values.value) + "%";
+    }
+  }],
+  "categoryField": "age",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0.2,
+    "axisAlpha": 0
+  },
+  "valueAxes": [{
+    "gridAlpha": 0,
+    "ignoreAxisWidth": true,
+    "labelFunction": function(value) {
+      return Math.abs(value) + '%';
+    },
+    "guides": [{
+      "value": 0,
+      "lineAlpha": 0.2
+    }]
+  }],
+  "balloon": {
+    "fixedPosition": true
+  },
+  "chartCursor": {
+    "valueBalloonsEnabled": false,
+    "cursorAlpha": 0.05,
+    "fullWidth": true
+  },
+  "allLabels": [{
+    "text": "Male",
+    "x": "28%",
+    "y": "97%",
+    "bold": true,
+    "align": "middle"
+  }, {
+    "text": "Female",
+    "x": "75%",
+    "y": "97%",
+    "bold": true,
+    "align": "middle"
+  }],
+ "export": {
+    "enabled": true
+  }
+
+});
 
 
-AmCharts.makeChart( "chartdiv", {
- "type": "serial",
- "dataProvider": chartData,
- "categoryField": "country",
- "graphs": [ {
-  "valueField": "visits",
-  "type": "column",
-  "fillAlphas": 0.8,
-  "angle": 30,
-  "depth3D": 15,
-  "balloonText": "[[category]]: <b>[[value]]</b>"
- } ]
+// chartdiv3
+AmCharts.makeChart( "chartdiv3", {
+  "type": "pie",
+  "theme": "light",
+  "dataProvider": [ {
+    "country": "Lithuania",
+    "litres": 501.9
+  }, {
+    "country": "Czech Republic",
+    "litres": 301.9
+  }, {
+    "country": "Ireland",
+    "litres": 201.1
+  }, {
+    "country": "Germany",
+    "litres": 165.8
+  }, {
+    "country": "Australia",
+    "litres": 139.9
+  }, {
+    "country": "Austria",
+    "litres": 128.3
+  }, {
+    "country": "UK",
+    "litres": 99
+  }, {
+    "country": "Belgium",
+    "litres": 60
+  }, {
+    "country": "The Netherlands",
+    "litres": 50
+  } ],
+  "valueField": "litres",
+  "titleField": "country",
+   "balloon":{
+   "fixedPosition":true
+  },
+  "export": {
+    "enabled": false
+  }
+} );
+
+
+// chartdiv4
+var map = AmCharts.makeChart( "chartdiv4", {
+
+  "type": "map",
+  "theme": "light",
+  "projection": "miller",
+
+  "dataProvider": {
+    "map": "worldLow",
+    "getAreasFromMap": true
+  },
+  "areasSettings": {
+    "autoZoom": true,
+    "selectedColor": "#CC0000"
+  },
+  "smallMap": {},
+  "export": {
+    "enabled": true,
+    "position": "bottom-right"
+  }
 } );
 
 </script>
