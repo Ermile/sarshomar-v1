@@ -526,6 +526,12 @@ function deleteQuestionOpts(_this)
 	}
 }
 
+
+/**
+ * [deleteOpt description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
 function deleteOpt(_this)
 {
 	var myEl = $(_this);
@@ -1141,6 +1147,23 @@ function prepareQuestionData()
 	myQuestion.options.description = $('#description').val();
 	// get subType
 	myQuestion.subType             = $('input[name="meta_choicemode"]:checked').val();
+
+	// data of publish page
+	// articles
+	myQuestion.article = $('#article').attr('data-val');
+	if(myQuestion.article)
+	{
+		myQuestion.article = JSON.parse(myQuestion.article);
+	}
+	// tags
+	myQuestion.tags = $('#tags').attr('data-val');
+	if(myQuestion.tags)
+	{
+		myQuestion.tags = JSON.parse(myQuestion.tags);
+	}
+	// languages
+	myQuestion.options.language = $('input[name="ui-language"]:checked').val();
+	myQuestion.inHomepage = $('#inHomepage').is(":checked");
 
 	return myQuestion;
 }

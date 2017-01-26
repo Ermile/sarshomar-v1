@@ -2,9 +2,9 @@
  <form method="post">
  {% if perm.sarshomar_knowledge.admin %}
  <div class="checkbox">
-   <input type="checkbox" name="homepage" id="homepage" {% if homepage %}checked{% endif %}>
-   <label for="homepage" class="check-box"></label>
-   <label for="homepage">{% trans "Show result in home page" %}</label>
+   <input type="checkbox" name="homepage" id="inHomepage" {% if homepage %}checked{% endif %}>
+   <label for="inHomepage" class="check-box"></label>
+   <label for="inHomepage">{% trans "Show result in home page" %}</label>
  </div>
 
  <div class="element select no-pad">
@@ -19,24 +19,24 @@
 
  <div class="element dropdown no-pad">
   <label class="title large" for="article">{%trans "Article"%}</label>
-  <div class="dropdown-wrapper tagDetector">
+  <div class="dropdown-wrapper tagDetector" id="article">
     <div class="dropdown-tags tagBox"></div>
-    <input class="input dropdown tagInput autoList" id="article" data-find='article'>
+    <input class="input dropdown tagInput autoList"data-find='article'>
   </div>
  </div>
 
  <div class="element dropdown no-pad">
   <label class="title large" for="tag">{%trans "Tags"%}</label>
-  <div class="dropdown-wrapper tagDetector" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
+  <div class="dropdown-wrapper tagDetector" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
     <div class="dropdown-tags tagBox"></div>
-    <input class="input dropdown tagInput autoList" id="tag" data-find='tag'>
+    <input class="input dropdown tagInput autoList" data-find='tag'>
   </div>
  </div>
 
  <div class="element switch">
   {% set lang_list = langList({'all' : true}) %}
   {%for key, value in lang_list%}
-  <input type="radio" name="ui-language" value="{{value}}" id="language-{{key}}" {%if ui_language == key %}checked{%endif%}>
+  <input type="radio" name="ui-language" value="{{key}}" id="language-{{key}}" {%if ui_language == key %}checked{%endif%}>
   <label for="language-{{key}}">{{value}}</label>
   {%endfor%}
  </div>
