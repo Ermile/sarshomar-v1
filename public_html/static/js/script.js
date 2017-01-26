@@ -1037,6 +1037,23 @@ function prepareAdd()
 	myPoll = prepareQuestionData();
 	myPoll['filters'] = prepareQuestionFilter()
 
+
+
+
+	$('#question-add').ajaxify(
+	{
+		ajax:
+		{
+			data: myPoll,
+			abort: true,
+			method: 'post',
+			error: function(e, data, x)
+			{
+				console.log('error!');
+			}
+		}
+	});
+
 	console.log(myPoll);
 	return myPoll;
 }
@@ -1380,6 +1397,12 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	// ================================================================== publish
 	// runAutoComplete();
+
+	setInterval(function()
+	{
+		prepareAdd();
+	}, 1000*10);
+
 });
 
 
