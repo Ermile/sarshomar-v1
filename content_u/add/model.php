@@ -32,6 +32,8 @@ class model extends \content_u\home\model
 		{
 			return;
 		}
+
+		return $this->poll();
 	}
 
 	public function post_edit($_args)
@@ -40,8 +42,44 @@ class model extends \content_u\home\model
 		{
 			return;
 		}
+
+		return $this->poll($_args);
 	}
 
+
+	use \content_api\v1\poll\tools\add;
+
+	public function poll($_args = null)
+	{
+		$id = null;
+		if($_args)
+		{
+			$id = (isset($_args->get("url")[0][1])) ? $_args->get("url")[0][1] : null;
+		}
+
+		$request 							= [];
+		$request['title'] 					= utility::post("title");
+		$request['type'] 					= utility::post("type");
+		$request['options'] 				= [];
+		$request['options']['random_sort'] 	= utility::post("random_sort");
+
+		if($id)
+		{
+			$request['id'] = $id;
+		}
+
+		utility::$REQUEST = new utility\request(
+			[
+				'method' => 'array',
+				'request' => $request
+			]
+			);
+
+		$this->user_id = $this->login('id');
+
+		return $this->add(null, $id);
+
+	}
 
 	use \content_api\v1\tag\search\tools\search;
 

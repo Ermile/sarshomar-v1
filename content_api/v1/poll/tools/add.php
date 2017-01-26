@@ -32,7 +32,7 @@ trait add
 
 		if($_put)
 		{
-			if(preg_match("/^[". $this->shortURL. "]+$/", utility::request("id")))
+			if(preg_match("/^[". \lib\utility\shortURL::ALPHABET. "]+$/", utility::request("id")))
 			{
 				$update = utility::request("id");
 			}
@@ -55,7 +55,7 @@ trait add
 		$args['options']              = utility::request("options");
 		$args['filters']              = utility::request("filters");
 		$args['update']               = $update;
-		$args['shortURL']             = $this->shortURL;
+		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;
 		$args['permission_sarshomar'] = $this->access('u', 'sarshomar_knowledge', 'add');
 		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
 
