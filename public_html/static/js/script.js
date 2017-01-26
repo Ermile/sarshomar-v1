@@ -1102,16 +1102,22 @@ function prepareQuestionData()
 				}
 				break;
 		}
-
-		thisOpt.random_sort = $('#random_sort').is(":checked");
-
-
-
-
-		console.log(thisOpt);
 		// add to total array of this question
 		myQuestion.answers.push(thisOpt);
 	});
+
+	// save randomSort for multiple selection
+	myQuestion.random_sort = $('#random_sort').is(":checked");
+	if($('#meta_branding').is(":checked"))
+	{
+		myQuestion.brand    = $('#answer_brand').val();
+		myQuestion.brandUrl = $('#answer_brand_url').val();
+	}
+	// summary
+	myQuestion.options             = [];
+	myQuestion.options.summary     = $('#summary').val();
+	myQuestion.options.description = $('#description').val();
+
 
 
 
