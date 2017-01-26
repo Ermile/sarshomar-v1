@@ -70,6 +70,10 @@ class model extends \mvc\model
 		$this->url = \lib\router::get_url();
 		$this->api_key();
 		$this->permission();
+		if(!debug::$status)
+		{
+			$this->_processor(['force_stop' => true]);
+		}
 		return parent::_call($_name, $_args, $parm);
 	}
 

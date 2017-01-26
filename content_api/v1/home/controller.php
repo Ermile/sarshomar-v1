@@ -28,5 +28,13 @@ class controller extends  \mvc\controller
 			return;
 		}
 	}
+
+	public function corridor()
+	{
+		if(!$this->method && $_SERVER['REQUEST_METHOD'] !== 'GET')
+		{
+			\lib\error::method($_SERVER['REQUEST_METHOD'] . " not allowed");
+		}
+	}
 }
 ?>
