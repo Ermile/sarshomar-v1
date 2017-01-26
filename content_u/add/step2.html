@@ -2,9 +2,9 @@
  <div class="element switch" data-respnse-group='gender' data-response-where-not='false'>
   <label class="title large badge {%if filters.gender%}active{%endif%}" data-ratio="20" data-response='gender' data-response-class='active'>{%trans "Gender"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="male" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
+   <input type="checkbox" value="male" id="male" {%if filters.gender.male%}checked{%endif%}>
    <label for="male">{%trans "Male"%}</label>
-   <input type="checkbox" name="female" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
+   <input type="checkbox" value="female" id="female" {%if filters.gender.female%}checked{%endif%}>
    <label for="female">{%trans "Female"%}</label>
   </div>
  </div>
@@ -16,11 +16,11 @@
  <div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
   <label class="title large badge {%if filters.graduation%}active{%endif%}" data-ratio="25" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
+   <input type="checkbox" value="illiterate" id="illiterate" {%if filters.graduation.illiterate%}checked{%endif%}>
    <label for="illiterate">{%trans "Illiterate"%}</label>
-   <input type="checkbox" name="undergraduate" id="undergraduate" {%if filters.graduation.undergraduate%}checked{%endif%}>
+   <input type="checkbox" value="undergraduate" id="undergraduate" {%if filters.graduation.undergraduate%}checked{%endif%}>
    <label for="undergraduate">{%trans "Undergraduate"%}</label>
-   <input type="checkbox" name="graduate" id="graduate" {%if filters.graduation.graduate%}checked{%endif%}>
+   <input type="checkbox" value="graduate" id="graduate" {%if filters.graduation.graduate%}checked{%endif%}>
    <label for="graduate">{%trans "Graduate"%}</label>
   </div>
  </div>
@@ -31,9 +31,9 @@
  <div class="element switch" data-respnse-group='marrital' data-response-where-not='false'>
   <label class="title large badge {%if filters.marrital%}active{%endif%}" data-ratio="35" data-response='marrital' data-response-class='active'>{%trans "Marrital"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="single" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
+   <input type="checkbox" value="single" id="single" {%if filters.marrital.single%}checked{%endif%}>
    <label for="single">{%trans "Single"%}</label>
-   <input type="checkbox" name="married" value="married" id="married" {%if filters.marrital.married%}checked{%endif%}>
+   <input type="checkbox" value="married" id="married" {%if filters.marrital.married%}checked{%endif%}>
    <label for="married">{%trans "Married"%}</label>
   </div>
  </div>
@@ -44,11 +44,11 @@
  <div class="element switch" data-respnse-group='employmentstatus' data-response-where-not='false'>
   <label class="title large badge {%if filters.employmentstatus%}active{%endif%}" data-ratio="30" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="employee" id="employee" {%if filters.employmentstatus.employee%}checked{%endif%}>
+   <input type="checkbox" value="employee" id="employee" {%if filters.employmentstatus.employee%}checked{%endif%}>
    <label for="employee">{%trans "Employee"%}</label>
-   <input type="checkbox" name="unemployed" id="unemployed" {%if filters.employmentstatus.unemployed%}checked{%endif%}>
+   <input type="checkbox" value="unemployed" id="unemployed" {%if filters.employmentstatus.unemployed%}checked{%endif%}>
    <label for="unemployed">{%trans "Unemployed"%}</label>
-   <input type="checkbox" name="retired" id="retired" {%if filters.employmentstatus.retired%}checked{%endif%}>
+   <input type="checkbox" value="retired" id="retired" {%if filters.employmentstatus.retired%}checked{%endif%}>
    <label for="retired">{%trans "Retired"%}</label>
   </div>
  </div>
@@ -59,19 +59,19 @@
  <div class="element switch" data-respnse-group='degree' data-response-where-not='false'>
   <label class="title large badge {%if filters.degree%}active{%endif%}" data-ratio="60" data-response='degree' data-response-class='active'>{%trans "Degree"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="under diploma" id="underdiploma" {% if filters.degree['under diploma']%}checked{%endif%}>
+   <input type="checkbox" value="under diploma" id="underdiploma" {% if filters.degree['under diploma']%}checked{%endif%}>
    <label for="underdiploma">{%trans "Under diploma"%}</label>
-   <input type="checkbox" name="diploma" id="diploma" {% if filters.degree['diploma']%}checked{%endif%}>
+   <input type="checkbox" value="diploma" id="diploma" {% if filters.degree['diploma']%}checked{%endif%}>
    <label for="diploma">{%trans "Diploma"%}</label>
-   <input type="checkbox" name="2 year college" id="2yearcollege" {% if filters.degree['2 year college']%}checked{%endif%}>
+   <input type="checkbox" value="2 year college" id="2yearcollege" {% if filters.degree['2 year college']%}checked{%endif%}>
    <label for="2yearcollege">{%trans "2 year college"%}</label>
-   <input type="checkbox" name="bachelor" id="bachelor" {% if filters.degree['bachelor']%}checked{%endif%}>
+   <input type="checkbox" value="bachelor" id="bachelor" {% if filters.degree['bachelor']%}checked{%endif%}>
    <label for="bachelor">{%trans "Bachelor"%}</label>
-   <input type="checkbox" name="master" id="master" {% if filters.degree['master']%}checked{%endif%}>
+   <input type="checkbox" value="master" id="master" {% if filters.degree['master']%}checked{%endif%}>
    <label for="master">{%trans "Master"%}</label>
-   <input type="checkbox" name="phd" id="phd" {% if filters.degree['phd']%}checked{%endif%}>
+   <input type="checkbox" value="phd" id="phd" {% if filters.degree['phd']%}checked{%endif%}>
    <label for="phd">{%trans "PHD"%}</label>
-   <input type="checkbox" name="other" id="other" {% if filters.degree['other']%}checked{%endif%}>
+   <input type="checkbox" value="other" id="other" {% if filters.degree['other']%}checked{%endif%}>
    <label for="other">{%trans "Other"%}</label>
   </div>
  </div>
@@ -81,19 +81,19 @@
  <div class="element switch" data-respnse-group='range' data-response-where-not='false'>
   <label class="title large badge {%if filters.range%}active{%endif%}" data-ratio="40" data-response='range' data-response-class='active'>{%trans "Range"%}</label>
   <div class="switch-container">
-   <input type="checkbox" name="-13" id="-13" {% if filters.range['-13']%}checked{%endif%}>
+   <input type="checkbox" value="-13" id="-13" {% if filters.range['-13']%}checked{%endif%}>
    <label for="-13">{%trans "Under 13"%}</label>
-   <input type="checkbox" name="14-17" id="14-17" {% if filters.range['14-17']%}checked{%endif%}>
+   <input type="checkbox" value="14-17" id="14-17" {% if filters.range['14-17']%}checked{%endif%}>
    <label for="14-17">{%trans "14-17"%}</label>
-   <input type="checkbox" name="18-24" id="18-24" {% if filters.range['18-24']%}checked{%endif%}>
+   <input type="checkbox" value="18-24" id="18-24" {% if filters.range['18-24']%}checked{%endif%}>
    <label for="18-24">{%trans "18-24"%}</label>
-   <input type="checkbox" name="25-30" id="25-30" {% if filters.range['25-30']%}checked{%endif%}>
+   <input type="checkbox" value="25-30" id="25-30" {% if filters.range['25-30']%}checked{%endif%}>
    <label for="25-30">{%trans "25-30"%}</label>
-   <input type="checkbox" name="31-44" id="31-44" {% if filters.range['31-44']%}checked{%endif%}>
+   <input type="checkbox" value="31-44" id="31-44" {% if filters.range['31-44']%}checked{%endif%}>
    <label for="31-44">{%trans "31-44"%}</label>
-   <input type="checkbox" name="45-59" id="45-59" {% if filters.range['45-59']%}checked{%endif%}>
+   <input type="checkbox" value="45-59" id="45-59" {% if filters.range['45-59']%}checked{%endif%}>
    <label for="45-59">{%trans "45-59"%}</label>
-   <input type="checkbox" name="60+" id="60+" {% if filters.range['60+']%}checked{%endif%}>
+   <input type="checkbox" value="60+" id="60+" {% if filters.range['60+']%}checked{%endif%}>
    <label for="60+">{%trans "Above 60"%}</label>
   </div>
  </div>

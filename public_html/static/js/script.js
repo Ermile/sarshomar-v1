@@ -1026,13 +1026,18 @@ function calcFilterPrice()
 }
 
 
-
+/**
+ * [prepareAdd description]
+ * @return {[type]} [description]
+ */
 function prepareAdd()
 {
 	var myPoll = [];
 
 	myPoll = prepareQuestionData();
+	myPoll['filters'] = prepareQuestionFilter()
 
+	console.log(myPoll);
 	return myPoll;
 }
 
@@ -1117,12 +1122,48 @@ function prepareQuestionData()
 	myQuestion.options             = [];
 	myQuestion.options.summary     = $('#summary').val();
 	myQuestion.options.description = $('#description').val();
+	// get subType
+	myQuestion.subType             = $('input[name="meta_choicemode"]:checked').val();
 
-
-
-
-	console.log(myQuestion);
 	return myQuestion;
+}
+
+
+/**
+ * [prepareQuestionFilter description]
+ * @return {[type]} [description]
+ */
+function prepareQuestionFilter()
+{
+	var myFilters = [];
+	// get total person
+	var totalPerson  = $('#rangepersons').data('range-slider');
+	if(totalPerson)
+	{
+		totalPerson = totalPerson.to;
+	}
+	else
+	{
+		totalPerson = 0;
+	}
+	myFilters.max_member = totalPerson;
+	// myFilters.gender = $('input[name="meta_choicemode"]:checked').val();
+
+	$('.element[data-respnse-group]').each(function()
+	{
+		var group = $(this).attr('data-respnse-group');
+		var activeVals = $(this).find('input[type="checkbox"]:checked');
+		if(activeVals.length)
+		{
+			myFilters[group] = [];
+			activeVals.each(function()
+			{
+				myFilters[group].push($(this).val());
+			});
+		}
+	});
+
+	return myFilters;
 }
 
 
