@@ -1676,15 +1676,17 @@ fieldset.api-sample {border: 2px solid #607D8B;border-radius: 2px;padding: 5px 1
 code {border-radius: 2px;}
 
 
-.api-docs p {font-size: 1.1em;margin-bottom: 1em;}
+.api-docs p {font-size: 1.3em;margin-bottom: 1em;}
 .api-docs h2:not(:first-child) {margin-top: 2em;margin-bottom: 1em;}
 .api-docs .codex {background-color: #333;border: 0;border-left: 3px solid #e5a428;color: #dedede;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;padding: 0.8em 1.5rem;white-space: pre;font-weight: bold;font-size: 1.3em;}
+.api-docs .url {background-color: #dfe3e6;color:#48545d;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;padding: 1em 1.5rem;white-space: pre;font-weight: bold;font-size: 1.3em;}
 .api-docs .delete {background: #03A9F4;}
 .api-docs .put {background: #795548;}
 .api-docs .post {background: #4CAF50;}
 .api-docs .get {background: #03A9F4;}
-.api-docs .method {border-radius: 2px;color: #FFF;font-size: 0.86667rem;font-weight: 600;line-height: 1em;padding: 0.36667em 0.4em;text-transform: uppercase;display: inline-block;vertical-align: middle;margin-left: 1em;}
-.api-docs .url-method {color: #FFF;font-weight: 600;text-transform: uppercase;margin-right: 1em;}
+.api-docs .method {border-radius: 2px;color: #FFF;font-size: 0.86667rem;font-weight: 600;line-height: 1em;padding: 0.36667em 0.4em;text-transform: uppercase;display: inline-block;vertical-align: middle;margin-right: 1em;}
+.rtl .api-docs .method {margin-left: 1em;margin-right: 0;}
+.api-docs .url-method {color: #6b7882;font-weight: 600;text-transform: uppercase;margin-right: 1em;}
 .api-docs .mandatory {color: #F44336}
 .api-docs .optional {color: #4CAF50}
 .api-docs .conditional {color: #FF9800}
@@ -1693,16 +1695,24 @@ code {border-radius: 2px;}
 .api-docs .api-sample h2 {margin-top: 1em;}
 .inline-code {background-color: #7c7c7c;color: #FFF;font-size: .8em;font-weight: 600;line-height: 1em;padding: 0.3em 0.4em;white-space: nowrap;text-transform: uppercase;display: inline-block;vertical-align: middle;border-radius: 2px;}
 .api-docs ol {margin-right: 2em;margin-bottom: 1em;}
+code.curl {font-size: .8em;}
+.api-docs h3 {font-size: 1.3em;color: #00667a;margin-bottom: 0;}
+
 
 
 /************************************************************** Flexbox Table */
-.flex-table {display: flex;flex-wrap: wrap;flex-direction: row;border: 1px solid #c9ced2;border-radius: 1px;;margin-bottom: 3em;}
-.flex-table-child {flex: 1;display: flex;flex-direction: column;}
-.flex-table-cell {padding: 0.8em 1.2em;overflow: hidden;background: rgba(222, 228, 234, 0.2);flex: 1;}
-.flex-table-child .flex-table-cell:not(.flex-table-header):nth-child(odd) {background: white;}
-.flex-table-cell.flex-table-header {background: rgb(201, 206, 210);flex: initial;}
-.flex-child-small {flex: .5;}
-.flex-table-header {background: #fff;padding: 1em;border: 1px solid #c9ced2;border-bottom: 0;}
+.table {display: flex;flex-wrap: wrap;flex-direction: column;margin-bottom: 3em;}
+.table-child {flex: 1;display: flex;flex-direction: row;background:rgb(239, 239, 239);}
+.table-cell {padding: 0.8em 1.2em;overflow: hidden;flex: 1;}
+.table .table-child:not(.table-header):nth-child(odd) {background: white;}
+.table-child-mini {flex: .3;}
+.table-child-small {flex: .5;}
+.table-title {background: #fff; padding: 1em;}
+.table .table-child:hover:not(.table-title) div {background: #dfe3e6;}
+.table .table-child:hover:not(.table-header) div {background: #dfe3e6;}
+.table-header {background: rgb(232, 230, 230);}
+
+
 
 
 /************************************************************** Token Page */
