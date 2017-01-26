@@ -1026,6 +1026,100 @@ function calcFilterPrice()
 }
 
 
+
+function prepareAdd()
+{
+	var myPoll = [];
+
+	myPoll = prepareQuestionData();
+
+	return myPoll;
+}
+
+
+
+/**
+ * [prepareAddData description]
+ * @return {[type]} [description]
+ */
+function prepareQuestionData()
+{
+	var myQuestion     = [];
+	myQuestion.title   = $('#title').val();
+	myQuestion.type    = 'poll';
+	myQuestion.answers = [];
+
+	// for each input added by user
+	$('.input-group.sortable li').each(function(_e)
+	{
+		var $this   = $(this);
+		var row     = $this.attr('data-row');
+		// dont get id from html
+		// row         = _e+1;
+		var thisOpt = [];
+		// title
+		thisOpt.title   = $('#answer'+row).val();
+		// complete profile
+
+		if($('#complete-profile').is(":checked"))
+		{
+			thisOpt.profile = $('#profileTag'+row).attr('data-val');
+			if(thisOpt.profile)
+			{
+				thisOpt.profile = JSON.parse(thisOpt.profile);
+			}
+			else
+			{
+				thisOpt.profile = [];
+			}
+		}
+		// type of opt
+		thisOpt.type    = $this.attr('data-type');
+		if(!thisOpt.type)
+		{
+			thisOpt.type = 'select';
+		}
+		// switch for each type of data
+		switch(thisOpt.type)
+		{
+			case 'other':
+			case 'select':
+				thisOpt.select = [];
+				// if checked true, save it
+				if($('#true_answer').is(":checked"))
+				{
+					thisOpt.select.is_true = $('#true'+row).is(":checked");
+				}
+				// if checked score, save it
+				if($('#score').is(":checked"))
+				{
+					thisOpt.select.score = [];
+					thisOpt.select.score.value = parseInt($('#score'+row).val());
+					if($('#score-advance').is(":checked"))
+					{
+						thisOpt.select.score.group = $('#score'+row).parent().find('.scoreCat').val();
+					}
+				}
+				break;
+		}
+
+		thisOpt.random_sort = $('#random_sort').is(":checked");
+
+
+
+
+		console.log(thisOpt);
+		// add to total array of this question
+		myQuestion.answers.push(thisOpt);
+	});
+
+
+
+	console.log(myQuestion);
+	return myQuestion;
+}
+
+
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
