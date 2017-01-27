@@ -1058,13 +1058,14 @@ function prepareAdd()
 				if(e.result && e.result.id)
 				{
 					var id = e.result.id;
-					var myurl = window.location.pathname + '/' + id;
-					if(myurl.indexOf('add/'+ id))
+					var myurl = window.location.pathname;
+					if(myurl.indexOf('add/'+ id) >= 0)
 					{
 						// edit
 					}
 					else
 					{
+						var myurl = window.location.pathname + '/' + id;
 						// add new and redirect url
 						$('#question-add').attr('data-id', id);
 						Navigate(
