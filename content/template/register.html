@@ -42,7 +42,7 @@
    <div class="span6">
     <h3>{%trans "Inspection and Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-   {%if url.tld == 'dev' and not login%}
+   {%if not login%}
     <a href="{{url.base}}/features/guest" class="try special-button">{%trans "Try Before Register"%}</a>
    {%endif%}
    </div>
