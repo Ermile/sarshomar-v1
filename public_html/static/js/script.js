@@ -1053,6 +1053,28 @@ function prepareAdd()
 			data: myPoll,
 			abort: true,
 			method: 'post',
+			success: function(e, data, x)
+			{
+				if(e.result && e.result.id)
+				{
+					var id = e.result.id;
+					var myurl = window.location.pathname + '/' + id;
+					if(myurl.indexOf('add/'+ id))
+					{
+						// edit
+					}
+					else
+					{
+						// add new and redirect url
+						$('#question-add').attr('data-id', id);
+						Navigate(
+						{
+							url: myurl,
+							fake: true,
+						});
+					}
+				}
+			},
 			error: function(e, data, x)
 			{
 				console.log('error!');
