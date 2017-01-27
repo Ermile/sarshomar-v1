@@ -29,10 +29,11 @@ AddDefaultCharset "Content-Type: text/html; charset=UTF-8"
 
 <IfModule mod_expires.c>
 ExpiresActive on
-ExpiresByType text/css "access plus 14 days"
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType text/javascript "access plus 7 days"
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType application/x-javascript "access plus 7 days"
 ExpiresByType text/xml "access plus 0 seconds"
-ExpiresByType text/javascript "access plus 14 days"
-ExpiresByType application/x-javascript "access plus 14 days"
 ExpiresByType image/ico "access plus 14 days"
 ExpiresByType image/jpg "access plus 1 month"
 ExpiresByType image/jpeg "access plus 1 month"
@@ -50,6 +51,12 @@ ExpiresByType application/xml "access plus 0 seconds"
 ExpiresByType application/json "access plus 0 seconds"
 ExpiresByType application/rss+xml "access plus 1 hour"
 ExpiresByType application/atom+xml "access plus 1 hour"
+# Webfonts
+ExpiresByType application/x-font-ttf "access plus 1 month"
+ExpiresByType font/opentype "access plus 1 month"
+ExpiresByType application/x-font-woff "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 </IfModule>
 
 
