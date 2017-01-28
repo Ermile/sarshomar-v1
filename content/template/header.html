@@ -39,11 +39,19 @@
        </div>
       </div>
 
-      <a href="#" class="icon-globe icon-2x header-profile-link ui-language-link"></a>
-
 {%elseif url.tld == 'dev'%}
       <a href='{{url.base}}/login' data-direct class='header-profile-link'>{%trans "Login"%}</a>
       <a href='{{url.base}}/signup' data-direct class='header-profile-button'>{%trans "Register"%}</a>
+
+      <div class="icon-globe icon-2x header-profile-link ui-language-link">
+       {% set lang_list = langList({'all' : true}) %}
+       <nav class="ui-language-list">
+        {%for key, value in lang_list%}
+        <a href="{{key}}/" hreflang="{{key}}" data-direct {%if ui_language == key %}class="isActive"{%endif%}>{{value}}</a>
+        {%endfor%}
+       </nav>
+      </div>
+
 {%endif%}
      </nav>
     </div>
