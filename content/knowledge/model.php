@@ -18,7 +18,7 @@ class model extends \mvc\model
 			if($this->login())
 			{
 				$poll_id = utility\shortURL::decode(utility::post('id'));
-				return \lib\db\polls::fav($this->login('id'), $poll_id, ['return_debug' => false]);
+				return \lib\db\polls::fav($this->login('id'), $poll_id, ['debug' => false]);
 			}
 		}
 	}

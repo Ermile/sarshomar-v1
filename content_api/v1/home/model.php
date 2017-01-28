@@ -17,6 +17,16 @@ class model extends \mvc\model
 
 
 	/**
+	 * make debug return
+	 * default is true
+	 * in some where in site this method is false
+	 *
+	 * @var        boolean
+	 */
+	public $debug = true;
+
+
+	/**
 	 * the url
 	 *
 	 * @var        <type>

@@ -13,7 +13,7 @@ trait fav_like
 		$default_options =
 		[
 			'set_or_unset' => null,
-			'return_debug' => true
+			'debug'        => true,
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -73,14 +73,14 @@ trait fav_like
 			if($_options['set_or_unset'] === null || $_options['set_or_unset'] === true)
 			{
 				$insert_option = \lib\db\options::insert($args);
-				if($_options['return_debug'])
+				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
 				}
 			}
 			else
 			{
-				if($_options['return_debug'])
+				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " unset"));
 				}
@@ -101,14 +101,14 @@ trait fav_like
 				$result =\lib\db\options::update_on_error($args, $where);
 				if($args['option_status'] == 'enable')
 				{
-					if($_options['return_debug'])
+					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " set"));
 					}
 				}
 				else
 				{
-					if($_options['return_debug'])
+					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " unset"));
 					}
@@ -118,7 +118,7 @@ trait fav_like
 			{
 				$args['option_status'] = 'enable';
 				$result = \lib\db\options::update_on_error($args, $where);
-				if($_options['return_debug'])
+				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
 				}
@@ -127,13 +127,13 @@ trait fav_like
 			{
 				$args['option_status'] = 'disable';
 				$result = \lib\db\options::update_on_error($args, $where);
-				if($_options['return_debug'])
+				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " unset"));
 				}
 			}
 		}
-		if($_options['return_debug'])
+		if($_options['debug'])
 		{
 			return debug::error("Syntax error", false, 'system');
 		}

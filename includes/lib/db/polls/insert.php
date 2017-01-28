@@ -8,10 +8,10 @@ trait insert
 
 	protected static $draft_mod     = true;
 	protected static $publish_mod   = false;
-	
+
 	protected static $update_mod    = false;
 	protected static $poll_id       = false;
-	
+
 	protected static $user_id       = false;
 
 
@@ -20,7 +20,7 @@ trait insert
 	use insert\check;
 	use insert\options;
 	use insert\poll;
-	
+
 
 	/**
 	 * create new poll
@@ -54,22 +54,24 @@ trait insert
 			'options'                         => [],
 			// filters
 			'filters'                         => [],
-
+			// the short url
 			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
+			// enable debug mode
+			'debug' 						  => true,
 		];
 
 		$_args = array_merge($default_value, $_args);
-		
+
 		// set args
 		self::$args = $_args;
-		
+
 		// the shortURL of poll to check if need
 		$shortURL = self::$args['shortURL'];
-				
+
 		// update id must be a shortURL
 		if(self::$args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", self::$args['update']))
 		{
-			return \lib\debug::error(T_("Invalid parametr update"), 'update', 'system');
+			return debug::error(T_("Invalid parametr update"), 'update', 'system');
 		}
 		elseif(self::$args['update'])
 		{
@@ -77,15 +79,15 @@ trait insert
 			self::$poll_id    = \lib\utility\shortURL::decode(self::$args['update']);
 		}
 
-		// check user id. 
+		// check user id.
 		if(!is_numeric(self::$args['user']))
 		{
-			return \lib\debug::error(T_("Invalid parametr user"), 'user', 'system');
+			return debug::error(T_("Invalid parametr user"), 'user', 'system');
 		}
 
 		self::$user_id = self::$args['user'];
 
-		// set status mod		
+		// set status mod
 		if(isset(self::$args['options']['status']))
 		{
 			if(self::$args['options']['status'] == 'publish')
@@ -114,8 +116,8 @@ trait insert
 			if(!self::is_my_poll(self::$poll_id, self::$user_id))
 			{
 				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
-			}		
-		}	
+			}
+		}
 
 		// check max draft count of every user
 		self::max_draft();
@@ -151,7 +153,10 @@ trait insert
 			{
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
-			\lib\debug::true(T_("Poll Successfully {$msg_mod}ed"));
+			if($_args['debug'])
+			{
+				debug::true(T_("Poll Successfully {$msg_mod}ed"));
+			}
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
 		}
 		return false;
@@ -188,7 +193,7 @@ trait insert
 
 		$_args = array_merge($default_value, $_args);
 
-		
+
 		if(strlen($_args['post_title']) > 200)
 		{
 			$_args['post_title'] = substr($_args['post_title'], 0, 199);

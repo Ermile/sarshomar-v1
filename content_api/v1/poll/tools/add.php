@@ -58,6 +58,7 @@ trait add
 		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;
 		$args['permission_sarshomar'] = $this->access('u', 'sarshomar_knowledge', 'add');
 		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
+		$args['debug']  			  = $this->debug;
 
 		if(utility::files("poll_file"))
 		{

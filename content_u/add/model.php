@@ -8,6 +8,12 @@ class model extends \content_u\home\model
 	use filter\model;
 	use publish\model;
 
+
+	/**
+	 * Gets the add.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function get_add($_args)
 	{
 		if($this->term_list())
@@ -17,6 +23,11 @@ class model extends \content_u\home\model
 	}
 
 
+	/**
+	 * Gets the edit.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function get_edit($_args)
 	{
 		if($this->term_list())
@@ -26,6 +37,13 @@ class model extends \content_u\home\model
 	}
 
 
+	/**
+	 * Posts an add.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function post_add($_args)
 	{
 		if($this->term_list())
@@ -36,6 +54,14 @@ class model extends \content_u\home\model
 		return $this->poll();
 	}
 
+
+	/**
+	 * Posts an edit.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function post_edit($_args)
 	{
 		if($this->term_list())
@@ -47,8 +73,18 @@ class model extends \content_u\home\model
 	}
 
 
+	/**
+	 * use api add poll
+	 */
 	use \content_api\v1\poll\tools\add;
 
+	/**
+	 * insert or update poll
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public function poll($_args = null)
 	{
 		$id = null;
@@ -76,13 +112,23 @@ class model extends \content_u\home\model
 			);
 
 		$this->user_id = $this->login('id');
-
+		$this->debug   = false;
 		return $this->add(null, $id);
-
 	}
 
+
+
+	/**
+	 * use api teg search
+	 */
 	use \content_api\v1\tag\search\tools\search;
 
+
+	/**
+	 * search in terms list
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	private function term_list()
 	{
 		if(utility::get("list"))
