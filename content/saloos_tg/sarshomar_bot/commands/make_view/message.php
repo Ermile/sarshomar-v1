@@ -18,7 +18,7 @@ class message
 	{
 		if($_with_link)
 		{
-			$title = utility::link('https://sarshomar.com/sp_' .$this->class->short_link, $this->class->query_result['title']);
+			$title = utility::link('https://sarshomar.com/sp_' .$this->class->poll_id, $this->class->query_result['title']);
 		}
 		else
 		{
@@ -67,28 +67,21 @@ class message
 
 	public function add_poll_list($_answer_id = null, $_add_count = true)
 	{
-		if(!isset($this->poll_list))
-		{
-			$this->set_telegram_result($_answer_id);
-		}
+
+		handle::send_log($this->class->query_result['answers']);
 		$poll_list = '';
-		foreach ($this->poll_list as $key => $value) {
-			$poll_list .= $value['emoji'] . ' ' . $value['text'];
-			if($_add_count)
-			{
-				$poll_list .= ' - ' . utility::nubmer_language($value['answer_count']);
-			}
-			if(end($this->poll_list) !== $value)
-			{
-				$poll_list .= "\n";
-			}
+		foreach ($this->class->query_result['answers'] as $key => $value) {
+			$emoji = $this->class::$emoji_number[$key+1];
+			$poll_list .= $emoji . ' ' . $value['title'];
+			$poll_list .= "\n";
+
 		}
 		$this->message['poll_list'] = $poll_list;
 	}
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/\sarshomar_bot?start=sp_' .$this->class->short_link,'⚙');
+		$dashboard = utility::link('https://telegram.me/\sarshomar_bot?start=sp_' .$this->class->poll_id,'⚙');
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -101,48 +94,6 @@ class message
 	public function add_telegram_tag()
 	{
 		$this->message['telegram_tag'] = '#' .T_('Sarshomar');
-	}
-
-	public function set_telegram_result($_answer_id = null)
-	{
-		$answer_id = $this->set_answer_id($_answer_id);
-
-		$this->class->telegram_result = \lib\utility\stat_polls::get_telegram_result($this->class->poll_id);
-		$poll_result = $this->class->telegram_result;
-		if(!$poll_result->is_ok())
-		{
-			$poll_result = $this->class->query_result;
-			foreach ($poll_result['meta']['opt'] as $key => $value) {
-				$poll_result['result'][$value['txt']] = 0;
-			}
-		}else
-		{
-			$poll_result = $poll_result->get_result('result');
-		}
-		$this->set_poll_list($poll_result, $answer_id);
-	}
-
-	public function set_poll_list($_poll_result, $_answer_id = null)
-	{
-		$poll_answer = array();
-		$poll_list = array();
-		$count = 0;
-		$row      = $this->class::$emoji_number;
-		foreach ($_poll_result as $key => $value) {
-			$count++;
-			$poll_answer[$count] = $value;
-			if($_answer_id === $count)
-			{
-				$this->poll_set_answer = true;
-				$poll_list[] = ['emoji'=> '✅ ', 'text' => $value['text'], 'answer_count' => $value['sum']];
-			}
-			else
-			{
-				$poll_list[] = ['emoji'=> $row[$count], 'text' => $value['text'], 'answer_count' => $value['sum']];
-			}
-		}
-		$this->poll_list = $poll_list;
-		$this->poll_answer = $poll_answer;
 	}
 
 	public function set_answer_id($_answer_id = null)

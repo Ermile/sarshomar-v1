@@ -98,7 +98,19 @@ class poll
 
 	public static function discard($_query, $_data_url)
 	{
-		$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(function($_maker){
+		handle::send_log_clear();
+		$poll_id = $_data_url[2];
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
+			[
+			'id' 	=> $poll_id,
+			'status'	=> 'publish'
+			]
+		]);
+		$add_poll = \lib\main::$controller->model()->add_poll(null, true);
+		handle::send_log(['debug' => \lib\debug::compile(), 'change' => $add_poll]);
+		return;
+		$poll_id = session::get('poll');
+		$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll_id, function($_maker){
 			$_maker->message->message['sucsess'] = T_('Poll Discarded');
 			$_maker->message->add("discard", '#'.T_('Discarded'));
 		});
@@ -115,8 +127,22 @@ class poll
 
 	public static function save($_query, $_data_url)
 	{
-		handle::send_log($_query);
-		handle::send_log($_data_url);
+		handle::send_log_clear();
+		$poll_id = $_data_url[2];
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
+			[
+			'id' 	=> $poll_id,
+			'status'	=> 'publish'
+			]
+		]);
+		$add_poll = \lib\main::$controller->model()->add_poll(null, true);
+		handle::send_log(['debug' => \lib\debug::compile(), 'change' => $add_poll]);
+		// if(\lib\debug::$status)
+		// {
+			// session::set('poll', $add_poll['id']);
+		// }
+
+
 		return;
 		\lib\storage::set_disable_edit(true);
 

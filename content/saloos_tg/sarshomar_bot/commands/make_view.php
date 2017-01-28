@@ -58,8 +58,8 @@ class make_view
 		}
 		else
 		{
-			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['type' => 'random']]);
-			$this->query_result = \lib\main::$controller->model()->get_poll();
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => []]);
+			$this->query_result = \lib\main::$controller->model()->get_poll(['type' => 'ask']);
 			$this->poll_id = $this->query_result['id'];
 		}
 	}

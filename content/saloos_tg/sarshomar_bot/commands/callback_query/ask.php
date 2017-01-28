@@ -21,7 +21,9 @@ class ask
 
 	public static function make($_query, $_data_url, $_short_link = null)
 	{
-		$maker = new make_view(bot::$user_id, $_short_link);
+		handle::send_log_clear();
+		$maker = new make_view($_short_link);
+		handle::send_log($maker->query_result);
 		self::check_language($maker);
 		if(
 			(

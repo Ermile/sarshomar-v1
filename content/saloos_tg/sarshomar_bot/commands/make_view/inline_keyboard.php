@@ -41,11 +41,11 @@ class inline_keyboard
 				[0, 0] , [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2],
 			]
 		];
-		$count_answer = count($this->class->query_result['meta']['opt']);
+		$count_answer = count($this->class->query_result['answers']);
 		$row_answer = current($keyboard_map[$count_answer]);
 		$last_count = $this->count();
-		foreach ($this->class->query_result['meta']['opt'] as $answer_key => $answer_value) {
-			$callback_data = 'ask/poll/' . $this->class->short_link . '/' . ($answer_key +1);
+		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
+			$callback_data = 'ask/poll/' . $this->class->poll_id . '/' . ($answer_key +1);
 			if(array_key_exists("callback_data", $_options))
 			{
 				if(is_object($_options['callback_data']))
@@ -87,42 +87,42 @@ class inline_keyboard
 		{
 			$return[] = [
 				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0/last'
+				'callback_data' => 'ask/poll/' . $this->class->poll_id. '/0/last'
 			];
 		}
 		elseif($options['skip'])
 		{
 			$return[] = [
 				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0'
+				'callback_data' => 'ask/poll/' . $this->class->poll_id. '/0'
 			];
 		}
 		if($options['update'])
 		{
 			$return[] = [
 				'text' => '🔄',
-				'callback_data' => "ask/update/" . $this->class->short_link
+				'callback_data' => "ask/update/" . $this->class->poll_id
 			];
 		}
 		if($options['share'] && $this->class->query_result['status'] == 'publish')
 		{
 			$return[] = [
 				"text" => T_("Share"),
-				"switch_inline_query" => 'sp_'.$this->class->short_link
+				"switch_inline_query" => 'sp_'.$this->class->poll_id
 			];
 		}
 		if($options['inline_report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"callback_data" => 'poll/report/'.$this->class->short_link
+				"callback_data" => 'poll/report/'.$this->class->poll_id
 			];
 		}
 		elseif($options['report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"url" => 'https://telegram.me/\sarshomar_bot?start=report_'.$this->class->short_link
+				"url" => 'https://telegram.me/\sarshomar_bot?start=report_'.$this->class->poll_id
 			];
 		}
 		if($options['poll_option'] )
@@ -141,18 +141,18 @@ class inline_keyboard
 			{
 				$_return[] = [
 					"text" => T_("Pause"),
-					"callback_data" => 'poll/pause/'.$this->class->short_link
+					"callback_data" => 'poll/pause/'.$this->class->poll_id
 				];
 			}
 			elseif($status == 'pause' || $status == 'draft')
 			{
 				$_return[] = [
 					"text" => T_("Publish"),
-					"callback_data" => 'poll/publish/'.$this->class->short_link
+					"callback_data" => 'poll/publish/'.$this->class->poll_id
 				];
 				$_return[] = [
 					"text" => T_("Delete"),
-					"callback_data" => 'poll/delete/'.$this->class->short_link
+					"callback_data" => 'poll/delete/'.$this->class->poll_id
 				];
 			}
 		}
@@ -163,21 +163,21 @@ class inline_keyboard
 		$this->inline_keyboard[$this->count()] = [
 			[
 				'text' => T_('Lawbreaker'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/lawbreaker'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/lawbreaker'
 			],
 			[
 				'text' => T_('Spam'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/spam'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/spam'
 			]
 		];
 		$this->inline_keyboard[$this->count()] = [
 			[
 				'text' => T_('Not interested'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/not_interested'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/not_interested'
 			],
 			[
 				'text' => T_('Privacy violation'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/privacy_violation'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/privacy_violation'
 			]
 		];
 	}
