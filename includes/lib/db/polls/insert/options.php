@@ -7,6 +7,27 @@ trait options
 	protected static function insert_options()
 	{
 		// save meta range_timing_maxs
+		if(isset(self::$args['branding']['title']))
+		{
+			if(self::$args['branding']['title'] && strlen(self::$args['branding']['title']) > 160)
+			{
+				return debug::error(T_("Invalid arguments branding title, you must set les than 160 character for branding"), 'title', 'arguments');
+			}
+
+			$url = null;
+			if(isset(self::$args['branding']['url']))
+			{
+				if(strlen(self::$args['branding']['url']) > 100)
+				{
+					return debug::error(T_("Invalid arguments branding url, you must set les than 100 character for branding url "), 'url', 'arguments');
+				}
+
+				$url = self::$args['branding']['url'];
+			}
+			self::save_options('branding', self::$args['branding']['title'], ['url' => $url]);
+		}
+
+		// save meta range_timing_maxs
 		if(isset(self::$args['options']['range_timing_max']))
 		{
 			if(self::$args['options']['range_timing_max'] && !is_numeric(self::$args['options']['range_timing_max']))
@@ -180,13 +201,11 @@ trait options
 			$useage = \lib\db\termusages::insert_multi($useage_arg);
 		}
 
-		if(self::$args['permission_sarshomar'] === true)
+		if(isset(self::$args['options']['cats']))
 		{
-			if(isset(self::$args['options']['cats']))
-			{
-				\lib\db\cats::set(self::$args['options']['cats'], self::$poll_id);
-			}
+			\lib\db\cats::set(self::$args['options']['cats'], self::$poll_id);
 		}
+
 
 	}
 
@@ -197,8 +216,14 @@ trait options
 	 * @param      <type>  $_key    The key
 	 * @param      <type>  $_value  The value
 	 */
-	private static function save_options($_key, $_value)
+	private static function save_options($_key, $_value, $_meta = [])
 	{
+		$option_meta = null;
+		if(!empty($_meta))
+		{
+			$option_meta = json_encode($_meta, JSON_UNESCAPED_UNICODE);
+		}
+
 		$option_insert =
 		[
 			'post_id'       => self::$poll_id,
@@ -211,9 +236,14 @@ trait options
 		unset($option_insert['limit']);
 		if($check)
 		{
-			$where                          = $option_insert;
+			$where = $option_insert;
 			if($_value)
 			{
+				if($option_meta)
+				{
+					$option_insert['option_meta'] = $option_meta;
+				}
+
 				$option_insert['option_value']  = $_value;
 				$option_insert['option_status'] = 'enable';
 			}
@@ -228,6 +258,11 @@ trait options
 		{
 			if($_value)
 			{
+				if($option_meta)
+				{
+					$option_insert['option_meta'] = $option_meta;
+				}
+
 				$option_insert['option_value']  = $_value;
 				$option_result = \lib\db\options::insert($option_insert);
 			}

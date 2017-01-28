@@ -24,6 +24,7 @@ trait ready
 		[
 			'get_filter'         => false,
 			'get_opts'           => false,
+			'get_options' 		 => false,
 			'get_public_result'  => false,
 			'get_advance_result' => false,
 		];
@@ -169,8 +170,15 @@ trait ready
 
 
 		$post_meta = \lib\db\posts::get_post_meta($poll_id);
+
 		if(is_array($post_meta))
 		{
+
+			if($_options['get_options'])
+			{
+				$_poll_data['options'] = array_column($post_meta, 'option_value', 'option_key');
+			}
+
 			$post_meta_key = array_column($post_meta, 'option_value');
 
 			if(in_array('random_sort', $post_meta_key))
@@ -187,11 +195,34 @@ trait ready
 			        }
 			        $_poll_data['answers'] = $new;
 				}
+
+				unset($_poll_data['options']['random_sort']);
 			}
 
 			if(in_array('hidden_result', $post_meta_key))
 			{
 				unset($_poll_data['stats']);
+				unset($_poll_data['options']['hidden_result']);
+			}
+
+			$branding = [];
+
+			foreach ($post_meta as $key => $value)
+			{
+				if($value['option_key'] == 'branding')
+				{
+					$branding['title'] = $value['option_value'];
+					if(isset($value['option_meta']['url']))
+					{
+						$branding['url'] = $value['option_meta']['url'];
+					}
+				}
+			}
+
+			if(!empty($branding))
+			{
+				$_poll_data['branding'] = $branding;
+				unset($_poll_data['options']['branding']);
 			}
 		}
 

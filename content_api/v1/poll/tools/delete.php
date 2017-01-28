@@ -21,18 +21,17 @@ trait delete
 			return false;
 		}
 
-		if(utility::request() == '' || is_null(utility::request()))
-		{
-			return debug::error(T_("Invalid input"), 'input', 'arguments');
-		}
+		$id = \lib\router::get_url(2);
 
-		if(!utility::request("id"))
+		if(!$id)
 		{
 			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
-		$id = \lib\utility\shortURL::decode(utility::request("id"));
+		$id   = \lib\utility\shortURL::decode($id);
+
 		$poll = \lib\db\polls::get_poll($id);
+
 		if(!$poll)
 		{
 			return debug::error(T_("Poll not found"), 'id', 'arguments');

@@ -29,11 +29,11 @@ trait answers
 					switch ($value['type'])
 					{
 						case 'select':
-						case 'emoji':
-						case 'descriptive':
-						case 'upload':
-						case 'range':
-						case 'notification':
+						// case 'emoji':
+						// case 'descriptive':
+						// case 'upload':
+						// case 'range':
+						// case 'notification':
 							$type = $value['type'];
 							break;
 
@@ -100,7 +100,7 @@ trait answers
 				}
 				$combine[$key]['attachment_id'] = $attachment_id;
 
-				$combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
+				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
 				if($type == 'select' || $type == 'emoji')
 				{

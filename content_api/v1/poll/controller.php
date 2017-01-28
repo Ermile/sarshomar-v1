@@ -46,7 +46,7 @@ class controller extends  \content_api\v1\home\controller
 		/**
 		 * delete to delete a poll
 		 */
-		$this->delete("poll")->ALL("v1/poll");
+		$this->delete("poll")->ALL("/^v1\/poll\/[". \lib\utility\shortURL::ALPHABET ."]+$/");
 	}
 }
 ?>

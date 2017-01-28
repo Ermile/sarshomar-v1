@@ -1,6 +1,6 @@
 {
   "title": "string",
-  "survey_id": "null|code",
+  "survey": "null|code",
   "status": "draft|publish",
   "language": "fa|en|ar|null for set as default",
   "summary": "string|null",
@@ -8,8 +8,13 @@
   "file": "[upload_name]|url|null",
   "tree":
   {
-    "parent_id": "code",
+    "parent": "code",
     "answers": "skipped|true|[1,2]"
+  },
+  "branding":
+  {
+    "title" : "string",
+    "url" : "string|null"
   },
   "answers":
   [

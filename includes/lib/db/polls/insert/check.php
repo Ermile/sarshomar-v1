@@ -130,10 +130,18 @@ trait check
 			array_push($words, $poll['meta']);
 		}
 
+		$set_status_awaiting = false;
+
+		if(isset($poll['privacy']) && $poll['privacy'] == 'public')
+		{
+			$set_status_awaiting = true;
+			debug::warn(T_("You poll is awaiting moderation"));
+		}
+
 		// save and check words
 		if(!db\words::save_and_check($words))
 		{
-			db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
+			$set_status_awaiting = true;
 			debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
 			if(!self::$update_mod)
 			{
@@ -154,6 +162,11 @@ trait check
 		if(count($check_duplicate_poll_title) > 1)
 		{
 			debug::warn(T_("Duplicate poll title of your poll"), 'title', 'arguments');
+		}
+
+		if($set_status_awaiting)
+		{
+			db\polls::update(['post_status' => 'awaiting'], self::$poll_id);
 		}
 
 		// $option_key   = [];

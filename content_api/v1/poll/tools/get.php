@@ -25,6 +25,7 @@ trait get
 		[
 			'get_filter'         => true,
 			'get_opts'           => true,
+			'get_options'	     => true,
 			'get_public_result'  => true,
 			'get_advance_result' => false,
 			'type'               => null, // ask || random
@@ -48,6 +49,8 @@ trait get
 			$need_id = false;
 			$poll    = db\polls::get_random();
 		}
+
+		unset($_options['type']);
 
 		if(utility::request("id") && $need_id)
 		{

@@ -53,7 +53,7 @@ trait insert
 			// the options of poll:
 			'options'                         => [],
 			// filters
-			'filters'                         => [],
+			'from'                         => [],
 			// the short url
 			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
 			// enable debug mode
@@ -63,9 +63,9 @@ trait insert
 			// poll status
 			'status'       					  => 'draft',
 			// the survey id
-			'survey_id'    					  => null,
+			'survey'    					  => null,
 			// comment
-			'comment'      					  => true,
+			// 'comment'      					  => true,
 			// summary of poll
 			'summary'      					  => null,
 			// descriptin
@@ -74,12 +74,12 @@ trait insert
 			'language'     					  => null,
 			// poll file in title
 			'file'         					  => null,
-			// sarshomar poll
-			'is_sarshomar' 					  => false,
 			// poll slug
-			'slug'         					  => null,
+			// 'slug'         					  => null,
 			// tree
 			'tree'         					  => [],
+			// branding
+			'branding' 						  => [],
 		];
 
 		$_args = array_merge($default_value, $_args);
