@@ -1038,15 +1038,31 @@ function calcFilterPrice()
  */
 function prepareAdd()
 {
-	var myPoll = [];
 
-	myPoll            = prepareQuestionData();
-	myPoll['filters'] = prepareQuestionFilter();
-	myPoll            = JSON.stringify(myPoll);
+	var saveTimeout = $('#question-add').attr('data-saving-timeout');
+	if(saveTimeout)
+	{
+		clearTimeout(saveTimeout);
+	}
+	var savingTimeout = setTimeout(function()
+	{
+		sendQuestionData();
+	}, 2000);
+	$('#question-add').attr('data-saving-timeout', savingTimeout);
+}
 
 
-
-
+/**
+ * [sendQuestionData description]
+ * @return {[type]} [description]
+ */
+function sendQuestionData()
+{
+	var myPoll     = {};
+	myPoll         = prepareQuestionData();
+	myPoll.filters = prepareQuestionFilter();
+	myPoll         = JSON.stringify(myPoll);
+	$('#question-add').addClass('syncing');
 
 	$('#question-add').ajaxify(
 	{
@@ -1080,14 +1096,17 @@ function prepareAdd()
 						});
 					}
 				}
+				$('#question-add').removeClass('syncing');
 			},
 			error: function(e, data, x)
 			{
+				$('#question-add').addClass('failed');
 				console.log('error!');
 			}
 		}
 	});
 
+	$('#question-add').attr('data-saving-timeout', null);
 	console.log(myPoll);
 	return myPoll;
 }
@@ -1095,7 +1114,7 @@ function prepareAdd()
 
 
 /**
- * [prepareAddData description]
+ * [prepareQuestionData description]
  * @return {[type]} [description]
  */
 function prepareQuestionData()
@@ -1449,10 +1468,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// ================================================================== publish
 	// runAutoComplete();
 
-	setInterval(function()
+	$('#question-add').on('change', 'input, textarea', function()
 	{
 		prepareAdd();
-	}, 1000*10);
+		console.log('changed...');
+	});
 
 });
 
