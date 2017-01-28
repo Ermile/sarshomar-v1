@@ -1053,6 +1053,9 @@ function prepareAdd()
 		ajax:
 		{
 			data: {data : myPoll},
+			// data: myPoll,
+			// dataType: "json",
+			// contentType:"application/json; charset=utf-8",
 			abort: true,
 			method: 'post',
 			success: function(e, data, x)
@@ -1109,7 +1112,7 @@ function prepareQuestionData()
 		var row     = $this.attr('data-row');
 		// dont get id from html
 		// row         = _e+1;
-		var thisOpt = [];
+		var thisOpt = {};
 		// title
 		thisOpt.title   = $('#answer'+row).val();
 		// complete profile
