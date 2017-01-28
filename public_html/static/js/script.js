@@ -1058,10 +1058,10 @@ function prepareAdd()
  */
 function sendQuestionData()
 {
-	var myPoll     = {};
-	myPoll         = prepareQuestionData();
-	myPoll.filters = prepareQuestionFilter();
-	myPoll         = JSON.stringify(myPoll);
+	var myPoll  = {};
+	myPoll      = prepareQuestionData();
+	myPoll.from = prepareQuestionFilter();
+	myPoll      = JSON.stringify(myPoll);
 	$('#question-add').addClass('syncing');
 
 	$('#question-add').ajaxify(
@@ -1121,7 +1121,7 @@ function prepareQuestionData()
 {
 	var myQuestion     = {};
 	myQuestion.title   = $('#title').val();
-	myQuestion.type    = 'poll';
+	// myQuestion.type    = 'poll';
 	myQuestion.answers = {};
 
 	// for each input added by user
@@ -1189,27 +1189,29 @@ function prepareQuestionData()
 		myQuestion.brandUrl = $('#answer_brand_url').val();
 	}
 	// summary
+	myQuestion.summary     = $('#summary').val();
+	// description
+	myQuestion.description = $('#description').val();
+	// languages
+	myQuestion.language = $('input[name="ui-language"]:checked').val();
+	// options
 	myQuestion.options             = {};
-	myQuestion.options.summary     = $('#summary').val();
-	myQuestion.options.description = $('#description').val();
 	// get subType
 	myQuestion.subType             = $('input[name="meta_choicemode"]:checked').val();
 
 	// data of publish page
 	// articles
-	myQuestion.article = $('#article').attr('data-val');
-	if(myQuestion.article)
+	myQuestion.options.article = $('#article').attr('data-val');
+	if(myQuestion.options.article)
 	{
-		myQuestion.article = JSON.parse(myQuestion.article);
+		myQuestion.options.article = JSON.parse(myQuestion.options.article);
 	}
 	// tags
-	myQuestion.tags = $('#tags').attr('data-val');
-	if(myQuestion.tags)
+	myQuestion.options.tags = $('#tags').attr('data-val');
+	if(myQuestion.options.tags)
 	{
-		myQuestion.tags = JSON.parse(myQuestion.tags);
+		myQuestion.options.tags = JSON.parse(myQuestion.options.tags);
 	}
-	// languages
-	myQuestion.options.language = $('input[name="ui-language"]:checked').val();
 	myQuestion.inHomepage = $('#inHomepage').is(":checked");
 
 	return myQuestion;
@@ -1233,12 +1235,12 @@ function prepareQuestionFilter()
 	{
 		totalPerson = 0;
 	}
-	myFilters.max_member = totalPerson;
+	myFilters.count = totalPerson;
 	// myFilters.gender = $('input[name="meta_choicemode"]:checked').val();
 
 	$('.element[data-respnse-group]').each(function(_e)
 	{
-		var group = $(this).attr('data-respnse-group');
+		var group      = $(this).attr('data-respnse-group');
 		var activeVals = $(this).find('input[type="checkbox"]:checked');
 		if(activeVals.length)
 		{
