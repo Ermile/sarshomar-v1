@@ -57,6 +57,12 @@ trait search
 			return (int) $result;
 		}
 
+		// set pagnation in result
+		if(isset(\lib\storage::get_pagnation()['total_pages']))
+		{
+			$tmp_result['total_pages'] = \lib\storage::get_pagnation()['total_pages'];
+		}
+
 		return $tmp_result;
 	}
 }
