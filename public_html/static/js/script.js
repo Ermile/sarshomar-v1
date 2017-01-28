@@ -1040,8 +1040,10 @@ function prepareAdd()
 {
 	var myPoll = [];
 
-	myPoll = prepareQuestionData();
+	myPoll            = prepareQuestionData();
 	myPoll['filters'] = prepareQuestionFilter();
+	myPoll            = JSON.stringify(myPoll);
+
 
 
 
