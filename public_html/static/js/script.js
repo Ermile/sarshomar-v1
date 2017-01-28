@@ -1052,7 +1052,7 @@ function prepareAdd()
 	{
 		ajax:
 		{
-			data: myPoll,
+			data: {data : myPoll},
 			abort: true,
 			method: 'post',
 			success: function(e, data, x)
