@@ -1041,7 +1041,7 @@ function prepareAdd()
 	var myPoll = [];
 
 	myPoll = prepareQuestionData();
-	myPoll['filters'] = prepareQuestionFilter()
+	myPoll['filters'] = prepareQuestionFilter();
 
 
 
@@ -1095,10 +1095,10 @@ function prepareAdd()
  */
 function prepareQuestionData()
 {
-	var myQuestion     = [];
+	var myQuestion     = {};
 	myQuestion.title   = $('#title').val();
 	myQuestion.type    = 'poll';
-	myQuestion.answers = [];
+	myQuestion.answers = {};
 
 	// for each input added by user
 	$('.input-group.sortable li').each(function(_e)
@@ -1121,7 +1121,7 @@ function prepareQuestionData()
 			}
 			else
 			{
-				thisOpt.profile = [];
+				thisOpt.profile = {};
 			}
 		}
 		// type of opt
@@ -1135,7 +1135,7 @@ function prepareQuestionData()
 		{
 			case 'other':
 			case 'select':
-				thisOpt.select = [];
+				thisOpt.select = {};
 				// if checked true, save it
 				if($('#true_answer').is(":checked"))
 				{
@@ -1144,7 +1144,7 @@ function prepareQuestionData()
 				// if checked score, save it
 				if($('#score').is(":checked"))
 				{
-					thisOpt.select.score = [];
+					thisOpt.select.score = {};
 					thisOpt.select.score.value = parseInt($('#score'+row).val());
 					if($('#score-advance').is(":checked"))
 					{
@@ -1154,7 +1154,7 @@ function prepareQuestionData()
 				break;
 		}
 		// add to total array of this question
-		myQuestion.answers.push(thisOpt);
+		myQuestion.answers[_e] = thisOpt;
 	});
 
 	// save randomSort for multiple selection
@@ -1165,7 +1165,7 @@ function prepareQuestionData()
 		myQuestion.brandUrl = $('#answer_brand_url').val();
 	}
 	// summary
-	myQuestion.options             = [];
+	myQuestion.options             = {};
 	myQuestion.options.summary     = $('#summary').val();
 	myQuestion.options.description = $('#description').val();
 	// get subType
@@ -1198,7 +1198,7 @@ function prepareQuestionData()
  */
 function prepareQuestionFilter()
 {
-	var myFilters = [];
+	var myFilters = {};
 	// get total person
 	var totalPerson  = $('#rangepersons').data('range-slider');
 	if(totalPerson)
@@ -1212,16 +1212,16 @@ function prepareQuestionFilter()
 	myFilters.max_member = totalPerson;
 	// myFilters.gender = $('input[name="meta_choicemode"]:checked').val();
 
-	$('.element[data-respnse-group]').each(function()
+	$('.element[data-respnse-group]').each(function(_e)
 	{
 		var group = $(this).attr('data-respnse-group');
 		var activeVals = $(this).find('input[type="checkbox"]:checked');
 		if(activeVals.length)
 		{
-			myFilters[group] = [];
+			myFilters[group] = {};
 			activeVals.each(function()
 			{
-				myFilters[group].push($(this).val());
+				myFilters[group][$(this).val()] = true;
 			});
 		}
 	});
