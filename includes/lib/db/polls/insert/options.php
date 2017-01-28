@@ -109,10 +109,10 @@ trait options
 		 * upload files of poll title
 		 */
 		// save meta file
-		if(isset(self::$args['options']['file']))
+		if(isset(self::$args['file']))
 		{
 			// remove attachment from this post
-			if(!self::$args['options']['file'])
+			if(!self::$args['file'])
 			{
 				self::save_options('title_attachment', false);
 			}
@@ -121,8 +121,8 @@ trait options
 				// upload new file
 				$upload_name_path = 'upload_name';
 
-				if(substr(self::$args['options']['file'], 0, 7) == 'http://' ||
-					substr(self::$args['options']['file'], 0, 8) == 'https://'
+				if(substr(self::$args['file'], 0, 7) == 'http://' ||
+					substr(self::$args['file'], 0, 8) == 'https://'
 				)
 				{
 					$upload_name_path = 'file_path';
@@ -131,7 +131,7 @@ trait options
 				$upload_args =
 				[
 					'user_id'         => self::$args['user'],
-					$upload_name_path => self::$args['options']['file']
+					$upload_name_path => self::$args['file']
 				];
 
 				$file_title = \lib\utility\upload::upload($upload_args);

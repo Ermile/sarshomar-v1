@@ -58,6 +58,28 @@ trait insert
 			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
 			// enable debug mode
 			'debug' 						  => true,
+			// method
+			'method' 						  => 'post',
+			// poll status
+			'status'       					  => 'draft',
+			// the survey id
+			'survey_id'    					  => null,
+			// comment
+			'comment'      					  => true,
+			// summary of poll
+			'summary'      					  => null,
+			// descriptin
+			'description'  					  => null,
+			// poll laguage
+			'language'     					  => null,
+			// poll file in title
+			'file'         					  => null,
+			// sarshomar poll
+			'is_sarshomar' 					  => false,
+			// poll slug
+			'slug'         					  => null,
+			// tree
+			'tree'         					  => [],
 		];
 
 		$_args = array_merge($default_value, $_args);
@@ -88,21 +110,21 @@ trait insert
 		self::$user_id = self::$args['user'];
 
 		// set status mod
-		if(isset(self::$args['options']['status']))
+		if(isset(self::$args['status']))
 		{
-			if(self::$args['options']['status'] == 'publish')
+			if(self::$args['status'] == 'publish')
 			{
 				self::$publish_mod = true;
 				self::$draft_mod   = false;
 			}
-			elseif(self::$args['options']['status'] == 'draft')
+			elseif(self::$args['status'] == 'draft')
 			{
 				self::$publish_mod = false;
 				self::$draft_mod   = true;
 			}
-			elseif(self::$args['options']['status'])
+			elseif(self::$args['status'])
 			{
-				return debug::error(T("Invalid parametr status"), 'options', 'arguments');
+				return debug::error(T_("Invalid parametr status"), 'status', 'arguments');
 			}
 		}
 		else
@@ -153,10 +175,12 @@ trait insert
 			{
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
+
 			if($_args['debug'])
 			{
 				debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			}
+
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
 		}
 		return false;

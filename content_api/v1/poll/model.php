@@ -41,7 +41,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function post_poll($_args)
 	{
-		return $this->add($_args);
+		return $this->add(['args' => $_args]);
 	}
 
 
@@ -52,7 +52,18 @@ class model extends \content_api\v1\home\model
 	 */
 	public function put_poll($_args)
 	{
-		return $this->add($_args, true);
+		return $this->add(['args' => $_args, 'method' => 'put']);
+	}
+
+
+	/**
+	 * patch a poll
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function patch_poll($_args)
+	{
+		return $this->add(['args' => $_args, 'method' => 'patch']);
 	}
 
 
@@ -65,7 +76,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_ask($_args)
 	{
-		return $this->get(['ask' => true]);
+		return $this->get(['type' => 'ask']);
 	}
 
 
@@ -78,7 +89,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_random($_args)
 	{
-		return $this->get(['random' => true]);
+		return $this->get(['type' => 'random']);
 	}
 
 }

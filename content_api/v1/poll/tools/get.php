@@ -27,8 +27,7 @@ trait get
 			'get_opts'           => true,
 			'get_public_result'  => true,
 			'get_advance_result' => false,
-			'ask'                => false,
-			'random'             => false,
+			'type'               => null, // ask || random
 		];
 
 		$_options = array_merge($default_options, $_options);
@@ -38,13 +37,13 @@ trait get
 		$poll    = [];
 		$need_id = true;
 
-		if($_options['ask'])
+		if($_options['type'] == 'ask')
 		{
 			$need_id = false;
 			$poll    = db\polls::get_last($this->user_id);
 		}
 
-		if($_options['random'])
+		if($_options['type'] == 'random')
 		{
 			$need_id = false;
 			$poll    = db\polls::get_random();
@@ -64,7 +63,7 @@ trait get
 		}
 		elseif($need_id && !utility::request("id"))
 		{
-			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			return debug::error(T_("Parametr id not set in request"), 'id', 'arguments');
 		}
 
 		$result = $this->ready_poll($poll, $_options);

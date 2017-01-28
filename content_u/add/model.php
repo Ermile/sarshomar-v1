@@ -87,17 +87,21 @@ class model extends \content_u\home\model
 	 */
 	public function poll($_args = null)
 	{
+		$data = '{}';
+
+		if(isset($_POST['data']))
+		{
+			$data = $_POST['data'];
+		}
+		$data = json_decode($data, true);
+
 		$id = null;
 		if($_args)
 		{
 			$id = (isset($_args->get("url")[0][1])) ? $_args->get("url")[0][1] : null;
 		}
 
-		$request 							= [];
-		$request['title'] 					= utility::post("title");
-		$request['type'] 					= utility::post("type");
-		$request['options'] 				= [];
-		$request['options']['random_sort'] 	= utility::post("random_sort");
+		$request = $data;
 
 		if($id)
 		{
@@ -113,7 +117,7 @@ class model extends \content_u\home\model
 
 		$this->user_id = $this->login('id');
 		$this->debug   = false;
-		return $this->add(null, $id);
+		return $this->add(['method' => 'put']);
 	}
 
 

@@ -1,7 +1,20 @@
 {
+  "id": "[poll id just in put and pathc mod]",
   "title": "string",
   "type": "poll|survey|[leave it null to set poll]",
-  "id" : "[poll id]",
+  "survey_id": "null|string",
+  "status": "draft|publish",
+  "language": "fa|en|ar|null",
+  "comment": "true|false",
+  "summary": "string|null",
+  "description": "null|string",
+  "file": "[upload_name]|url|null",
+  "is_sarshomar": "true|false",
+  "slug": "string|null[max 50 character]",
+  "tree": {
+    "parent_id": "string",
+    "answers": "skipped|true|[1,2]"
+  },
   "answers": [
     {
       "title": "null|string",
@@ -42,34 +55,30 @@
     }
   ],
   "options": {
-    "status": "draft|publish",
-    "language": "fa|en|ar|null",
-    "file": "[upload_name]|url|null",
-    "summary": "string|null",
-    "tree": {
-      "parent_id": "string",
-      "answers": "skipped|true|[1,2]"
-    },
     "range_timing_max": "int|null",
     "choice_count_min": "int|null",
     "choice_count_max": "int|null",
     "random_sort": "true|false",
     "hidden_result": "true|false",
-    "comment": "true|false",
     "ordering": "true|false",
-    "survey_id": "null|string",
-    "tags": [],
     "start_date": "null|date_time",
     "end_date": "null|date_time",
     "article": "article_code",
-    "cats": [],
-    "slug": "string|null[max 50 character]",
-    "is_sarshomar": "true|false"
+    "tags": [],
+    "cats": []
   },
   "filters": {
     "max_member": "int|null",
-    "gender": "male|female|null",
-    "marrital": "single|married|null",
+    "gender": [
+      "male",
+      "female",
+      "null"
+    ],
+    "marrital": [
+      "single",
+      "married",
+      "null"
+    ],
     "internetusage": [
       "low",
       "mid",

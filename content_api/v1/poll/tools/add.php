@@ -13,11 +13,16 @@ trait add
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function add($_args, $_put = false)
+	public function add($_args = [])
 	{
 		if(!debug::$status)
 		{
 			return false;
+		}
+
+		if(!is_array($_args))
+		{
+			$_args = [$_args];
 		}
 
 		if(utility::request() == '' || is_null(utility::request()))
@@ -25,12 +30,25 @@ trait add
 			return debug::error(T_("Invalid input"), 'input', 'arguments');
 		}
 
+		$default_args =
+		[
+			'args'   => [],
+			'method' => 'post'
+		];
+
+		$_args = array_merge($default_args, $_args);
+
+		if($_args['method'] != 'put' && $_args['method'] != 'patch')
+		{
+			$_args['method'] = 'post';
+		}
+
 		/**
 		 * update the poll or survey
 		 */
 		$update = false;
 
-		if($_put)
+		if($_args['method'] == 'put' || $_args['method'] == 'patch')
 		{
 			if(preg_match("/^[". \lib\utility\shortURL::ALPHABET. "]+$/", utility::request("id")))
 			{
@@ -46,11 +64,23 @@ trait add
 			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
+
+
 		// insert args
 		$args                         = [];
 		$args['user']                 = $this->user_id;
 		$args['title']                = utility::request("title");
 		$args['answers']              = utility::request("answers");
+		$args['survey_id']            = utility::request('survey_id');
+		$args['status']               = utility::request('status');
+		$args['comment']              = utility::request('comment');
+		$args['summary']              = utility::request('summary');
+		$args['description']          = utility::request('description');
+		$args['language']             = utility::request('language');
+		$args['file']                 = utility::request('file');
+		$args['is_sarshomar']         = utility::request('is_sarshomar');
+		$args['slug']                 = utility::request('slug');
+		$args['tree']                 = utility::request('tree');
 		$args['type']                 = utility::request("type");
 		$args['options']              = utility::request("options");
 		$args['filters']              = utility::request("filters");
@@ -58,7 +88,8 @@ trait add
 		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;
 		$args['permission_sarshomar'] = $this->access('u', 'sarshomar_knowledge', 'add');
 		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
-		$args['debug']  			  = $this->debug;
+		$args['debug']                = $this->debug;
+		$args['method']               = $_args['method'];
 
 		if(utility::files("poll_file"))
 		{

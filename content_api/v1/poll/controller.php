@@ -39,10 +39,14 @@ class controller extends  \content_api\v1\home\controller
 		$this->put("poll")->ALL("v1/poll");
 
 		/**
+		 * patch to update a poll
+		 */
+		$this->patch("poll")->ALL("v1/poll");
+
+		/**
 		 * delete to delete a poll
 		 */
 		$this->delete("poll")->ALL("v1/poll");
-
 	}
 }
 ?>

@@ -70,7 +70,7 @@ trait delete
 					break;
 
 				case 'deleted':
-					return debug::error(T_("This poll already deleted"), 'id');
+					return debug::error(T_("The poll has already been deleted"), 'id');
 					break;
 
 				default:
