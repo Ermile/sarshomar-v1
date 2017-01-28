@@ -532,24 +532,27 @@ private function transtext()
 	echo T_("Financial");                                                             // Line 35
 	echo T_("Get account cash");                                                      // Line 37
 	echo T_("Calculate a question's price");                                          // Line 40
-	echo T_("Go to My account.");                                                     // Line 51
-	echo T_("Endpoints");                                                             // Line 52
-	echo T_("The stable HTTPS endpoint for the latest version is:");                  // Line 58
-	echo T_("HTTP response codes");                                                   // Line 60
-	echo T_("The status of a response can be determined from the HTTP status code."); // Line 61
-	echo T_("Code");                                                                  // Line 64
-	echo T_("request successful");                                                    // Line 71
-	echo T_("request was invalid");                                                   // Line 81
-	echo T_("user does not have permission");                                         // Line 86
-	echo T_("request not authenticated");                                             // Line 91
-	echo T_("client is rate limited");                                                // Line 96
-	echo T_("incorrect HTTP method provided");                                        // Line 101
-	echo T_("response is not valid JSON");                                            // Line 106
-	echo T_("Rrequired Parameters");                                                  // Line 117
-	echo T_("Example");                                                               // Line 141
-	echo T_("Request");                                                               // Line 142
-	echo T_("Header");                                                                // Line 144
-	echo T_("Response");                                                              // Line 164
+	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 48
+	echo T_("The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Sarshomar, you can obtain your API key from My Account page, found here: ");// Line 49
+	echo T_("Go to My account.");                                                     // Line 49
+	echo T_("Endpoints");                                                             // Line 50
+	echo T_("The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol.");// Line 51
+	echo T_("Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version is Version 1.");// Line 52
+	echo T_("The stable HTTPS endpoint for the latest version is:");                  // Line 53
+	echo T_("HTTP response codes");                                                   // Line 55
+	echo T_("The status of a response can be determined from the HTTP status code."); // Line 56
+	echo T_("Code");                                                                  // Line 59
+	echo T_("request successful");                                                    // Line 66
+	echo T_("request was invalid");                                                   // Line 76
+	echo T_("user does not have permission");                                         // Line 81
+	echo T_("request not authenticated");                                             // Line 86
+	echo T_("client is rate limited");                                                // Line 91
+	echo T_("incorrect HTTP method provided");                                        // Line 96
+	echo T_("response is not valid JSON");                                            // Line 101
+	echo T_("Request");                                                               // Line 136
+	echo T_(" (example)");                                                            // Line 158
+	echo T_("Header");                                                                // Line 138
+	echo T_("Response");                                                              // Line 158
 
 	//-------------------------------------------------------content_u\add\layout.html
 	echo T_("Add Poll");                                                              // Line 37
