@@ -5,6 +5,7 @@ use \lib\utility;
 class model extends \content_api\v1\home\model
 {
 	use tools\add;
+	use tools\delete;
 	use tools\get;
 
 	/**
@@ -14,7 +15,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function delete_poll($_args)
 	{
-		return "delete";
+		return $this->poll_delete();
 	}
 
 
