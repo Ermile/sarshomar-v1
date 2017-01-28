@@ -1,60 +1,35 @@
 {
-  "id": "[poll id just in put and pathc mod]",
   "title": "string",
-  "type": "poll|survey|[leave it null to set poll]",
-  "survey_id": "null|string",
+  "survey_id": "null|code",
   "status": "draft|publish",
-  "language": "fa|en|ar|null",
-  "comment": "true|false",
+  "language": "fa|en|ar|null for set as default",
   "summary": "string|null",
-  "description": "null|string",
+  "description": "string|null",
   "file": "[upload_name]|url|null",
-  "is_sarshomar": "true|false",
-  "slug": "string|null[max 50 character]",
-  "tree": {
-    "parent_id": "string",
+  "tree":
+  {
+    "parent_id": "code",
     "answers": "skipped|true|[1,2]"
   },
-  "answers": [
+  "answers":
+  [
     {
       "title": "null|string",
-      "type": "select|emoji|descriptive|upload|range|notification",
-      "description": "null|string",
+      "type": "select",
       "file": "url|answer_file[]",
-      "select": {
+      "select":
+      {
         "is_true": "true|false",
-        "score": {
+        "score":
+        {
           "group": "null|string",
           "value": "null|int"
         }
-      },
-      "emoji": {
-        "type": "star|like|get from title",
-        "is_true": "true|false",
-        "score": {
-          "group": "null|string",
-          "value": "null|int"
-        },
-        "star_size_min": "int|null",
-        "star_size_max": "int|null"
-      },
-      "descriptive": {
-        "text_format": "any|tel|email|website|number|password|custom",
-        "text_length_min": "int|null",
-        "text_length_max": "int|null"
-      },
-      "upload": {
-        "file_format": "string",
-        "file_size_min": "int|null",
-        "file_size_max": "int|null"
-      },
-      "range": {
-        "number_size_min": "int",
-        "number_size_max": "int"
       }
     }
   ],
-  "options": {
+  "options":
+  {
     "range_timing_max": "int|null",
     "choice_count_min": "int|null",
     "choice_count_max": "int|null",
@@ -63,33 +38,33 @@
     "ordering": "true|false",
     "start_date": "null|date_time",
     "end_date": "null|date_time",
-    "article": "article_code",
+    "article": [],
     "tags": [],
-    "cats": []
+    "cats": "code"
   },
-  "filters": {
-    "max_member": "int|null",
-    "gender": [
+  "from":
+  {
+    "count": "ultimate|int|null",
+    "gender":
+    [
       "male",
       "female",
       "null"
     ],
-    "marrital": [
+    "marrital":
+    [
       "single",
       "married",
       "null"
     ],
-    "internetusage": [
-      "low",
-      "mid",
-      "high"
-    ],
-    "graduation": [
+    "graduation":
+    [
       "illiterate",
       "undergraduate",
       "graduate"
     ],
-    "degree": [
+    "degree":
+    [
       "under_diploma",
       "diploma",
       "2_year_college",
@@ -97,7 +72,8 @@
       "master",
       "phd"
     ],
-    "range": [
+    "range":
+    [
       "-13",
       "14-17",
       "18-24",
@@ -106,12 +82,14 @@
       "45-59",
       "60+"
     ],
-    "employmentstatus": [
+    "employmentstatus":
+    [
       "employee",
       "unemployed",
       "retired"
     ],
-    "housestatus": [
+    "housestatus":
+    [
       "owner",
       "tenant",
       "homeless"
