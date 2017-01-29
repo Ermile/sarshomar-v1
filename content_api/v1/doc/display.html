@@ -1,11 +1,17 @@
 {%extends display.main%}
 
 {%block content%}
- <link rel="stylesheet" type="text/css" href="{{url.static}}css/lib/highlight/default.min.css">
+ <link rel="stylesheet" type="text/css" href="{{url.static}}css/lib/highlight/atom-one-dark.css">
  {%include template.sample%}
 {%endblock%}
 
 {%block foot_js%}
  <script type="text/javascript" src="{{url.static}}js/lib/highlight/highlight.min.js"></script>
- <script>hljs.initHighlightingOnLoad();</script>
+ <script>
+ $(document).ready(function() {
+  $('code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
 {%endblock%}

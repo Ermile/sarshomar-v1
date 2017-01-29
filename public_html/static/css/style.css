@@ -1679,7 +1679,7 @@ code{margin:0}
 fieldset.api-sample {border: 0;padding: 5px 0 10px 0;margin-bottom: 4em;}
 .api-docs p {font-size: 1.3em;margin-bottom: 1em;}
 .api-docs h2:not(:first-child) {margin-top: 2em;margin-bottom: 1em;}
-.api-docs code {margin-bottom: 1em;border-radius: 2px;background-color: #333;border-left: 3px solid #e5a428;color: #dedede;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;white-space: pre;}
+.api-docs code {font-size: 1.6em;padding: 1em;margin-bottom: 1em;border-radius: 2px;background-color: #333;color: #dedede;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;white-space: pre;}
 .api-docs .url {background-color: #fff;color:#48545d;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;padding: 1em 1.5rem;white-space: pre;font-weight: bold;font-size: 1.4em;border: 1px solid #e0e0e0;border-radius: 2px;}
 .api-docs .method.delete {background: #03A9F4;}
 .api-docs .method.put {background: #795548;}
@@ -1695,7 +1695,7 @@ fieldset.api-sample {border: 0;padding: 5px 0 10px 0;margin-bottom: 4em;}
 .api-docs .api-sample h2 {margin-top: 1em;}
 .inline-code {background-color: #7c7c7c;color: #FFF;font-size: .8em;font-weight: 600;line-height: 11px;padding: 4px 6px;white-space: nowrap;text-transform: uppercase;display: inline-block;vertical-align: middle;border-radius: 2px;}
 .api-docs ol {margin-right: 2em;margin-bottom: 1em;}
-code.curl {font-size: 1em;}
+code.curl {font-size: 1.4em;}
 code {font-size: 1.2em;}
 .api-docs h3 {font-size: 1.3em;color: #00667a;margin: 4px 0;}
 
@@ -1720,12 +1720,15 @@ code {font-size: 1.2em;}
 .table-child-mini {flex: .3;}
 .table-child-small {flex: .5;}
 .table>div:hover:not(.table-header) span {background: #dfe3e6;}
-.table-header {background: rgb(224, 224, 224);font-weight: bold;}
+.table>div.table-header {background: rgb(224, 224, 224);font-weight: bold;}
 
 .table.response-codes>div>span:first-child {flex: .2;}
 .table.response-codes>div>span:nth-child(2) {flex: .3;}
 .table.response-codes>div>span:last-child {flex: 1;}
 
+.table.method-table>div>span:first-child {flex: .2;}
+.table.method-table>div>span:nth-child(2) {flex: 1;}
+.table.method-table>div>span:last-child {flex: .3;}
 
 
 
