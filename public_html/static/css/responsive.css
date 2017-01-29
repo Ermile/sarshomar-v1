@@ -60,6 +60,9 @@
  #formError{bottom:10px;width:100%}
  [data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}
 
+.rtl .special-button::before, .rtl .special-button::after {font-size: 35px;}
+.rtl .special-button::before {left: -5px;}
+.rtl .special-button::after {right: -5px;}
  /* Sarshomar */
  .in{width:100%}
  header{display:block;height:auto;border:none}
