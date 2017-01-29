@@ -39,14 +39,17 @@
     "choice_count_min": "int|null",
     "choice_count_max": "int|null",
     "random_sort": "true|false",
-    "hidden_result": "true|false",
-    "ordering": "true|false",
-    "start_date": "null|date_time",
-    "end_date": "null|date_time",
-    "article": [],
-    "tags": [],
-    "cats": "code"
+    "ordering": "true|false"
   },
+  "hidden_result": "true|false",
+  "schedule":
+  {
+    "start" : "null|date_time",
+    "end": "null|date_time"
+  },
+  "article": [],
+  "tags": [],
+  "cats": "code",
   "from":
   {
     "count": "ultimate|int|null",
