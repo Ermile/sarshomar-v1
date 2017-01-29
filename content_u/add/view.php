@@ -8,7 +8,7 @@ class view extends \content_u\home\view
 
 	function config()
 	{
-		
+
 		parent::config();
 
 		// add all template of question into new file
@@ -65,32 +65,16 @@ class view extends \content_u\home\view
 
 		$poll = $_args->api_callback;
 
-		$poll_id = false;
-		if(isset($poll['poll']['id']))
-		{
-			$poll_id = $poll['poll']['id'];
-		}
-
-		$url = $this->url('baseLang'). 'add/'. $poll_id;
-
-		$this->data->step =
-		[
-			'current'      => 'add',
-			'add'          => true,
-			'filter'       => false,
-			'publish'      => false,
-			'link_add'     => $url,
-			'link_filter'  => $url. '/filter',
-			'link_publish' => $url. '/publish',
-		];
-
-		$this->data->poll            = isset($poll['poll']) 	? $poll['poll'] 	: null;
 		$this->data->answers         = isset($poll['answers']) 	? $poll['answers'] 	: null;
 
-		$this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
-		$this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
-		$this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
-		$this->data->poll_id         = '/'. $poll_id;
+		unset($poll['answers']);
+
+		$this->data->poll            = $poll;
+
+		// $this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
+		// $this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
+		// $this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
+		// $this->data->poll_id         = '/'. $poll_id;
 	}
 
 

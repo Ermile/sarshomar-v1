@@ -39,49 +39,68 @@ class polls
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
 			IFNULL(ranks.favo,0)   			AS `count_favo`,
-			IFNULL(ranks.vot,0)   			AS `count_vot`
+			IFNULL(ranks.vot,0)   			AS `count_vot`,
+			(
+				SELECT
+					IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
+				FROM
+					pollopts
+				WHERE
+					pollopts.post_id = posts.id AND
+					(pollopts.groupscore IS NOT NULL OR pollopts.score IS NOT NULL)
+				LIMIT 1 ) AS `have_score`,
+			(
+				SELECT
+					IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
+				FROM
+					pollopts
+				WHERE
+					pollopts.post_id = posts.id AND
+					pollopts.true    = 1
+				LIMIT 1 ) AS `have_true_answer`
 		FROM
 			posts
 		LEFT JOIN ranks ON ranks.post_id = posts.id
 	";
-			// (
-			// select
-			// GROUP_CONCAT(
-			// 	  JSON_OBJECT(
-			// 		'key' , pollopts.key,
-			// 		'type' , pollopts.type,
-			// 		'title' , pollopts.title,
-			// 		'sub_type' , pollopts.subtype,
-			// 		'is_true' , pollopts.true,
-			// 		'group_score' , pollopts.groupscore,
-			// 		'description' , pollopts.desc,
-			// 		'score' , pollopts.score,
-			// 		'attachment' , pollopts.attachment_id,
-			// 		'attachment_type' , pollopts.attachmenttype
-			// 	  )
-			// 	)
-			// from pollopts
-			// 	WHERE
-			// 		pollopts.post_id = posts.id
-			// ) AS `answers`
 
-// SELECT
-// 					GROUP_CONCAT(
-// 				 		CONCAT('{',
-// 								'\"key\":\"', 				pollopts.key , 				'\",',
-// 								'\"type\":\"', 				pollopts.type , 			'\",',
-// 								'\"title\":\"', 			pollopts.title , 			'\",',
-// 								'\"sub_type\":\"', 			pollopts.subtype , 			'\",',
-// 								'\"is_true\":\"', 			pollopts.true , 			'\",',
-// 								'\"group_score\":\"', 		pollopts.groupscore , 		'\",',
-// 								'\"description\":\"', 		pollopts.desc , 			'\",',
-// 								'\"score\":\"', 			pollopts.score , 			'\",',
-// 								'\"attachment\":\"', 		pollopts.attachment_id , 	'\",',
-// 								'\"attachment_type\":\"', 	pollopts.attachmenttype , 	'\",',
-// 				 			'}')
-// 				 			)
-// 				FROM
-// 					pollopts
+	// (
+	// select
+	// GROUP_CONCAT(
+	// 	  JSON_OBJECT(
+	// 		'key' , pollopts.key,
+	// 		'type' , pollopts.type,
+	// 		'title' , pollopts.title,
+	// 		'sub_type' , pollopts.subtype,
+	// 		'is_true' , pollopts.true,
+	// 		'group_score' , pollopts.groupscore,
+	// 		'description' , pollopts.desc,
+	// 		'score' , pollopts.score,
+	// 		'attachment' , pollopts.attachment_id,
+	// 		'attachment_type' , pollopts.attachmenttype
+	// 	  )
+	// 	)
+	// from pollopts
+	// 	WHERE
+	// 		pollopts.post_id = posts.id
+	// ) AS `answers`
+
+	// SELECT
+	// 					GROUP_CONCAT(
+	// 				 		CONCAT('{',
+	// 								'\"key\":\"', 				pollopts.key , 				'\",',
+	// 								'\"type\":\"', 				pollopts.type , 			'\",',
+	// 								'\"title\":\"', 			pollopts.title , 			'\",',
+	// 								'\"sub_type\":\"', 			pollopts.subtype , 			'\",',
+	// 								'\"is_true\":\"', 			pollopts.true , 			'\",',
+	// 								'\"group_score\":\"', 		pollopts.groupscore , 		'\",',
+	// 								'\"description\":\"', 		pollopts.desc , 			'\",',
+	// 								'\"score\":\"', 			pollopts.score , 			'\",',
+	// 								'\"attachment\":\"', 		pollopts.attachment_id , 	'\",',
+	// 								'\"attachment_type\":\"', 	pollopts.attachmenttype , 	'\",',
+	// 				 			'}')
+	// 				 			)
+	// 				FROM
+	// 					pollopts
 
 	/**
 	 * delete answers of specefic user

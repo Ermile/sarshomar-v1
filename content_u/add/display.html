@@ -6,7 +6,7 @@
   {%use "content_u/add/step1.html"%}
         {{block('feature_tabs_old')}}
         {{block('feature_title')}}
-        <div data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple' and poll.type is not null%}data-response-hide{%endif%}>
+        <div data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple' and poll.type is not null%}--------data-response-hide{%endif%}>
          {{block('feature_opts')}}
          {{block('feature_choicemode')}}
          <div class="row auto">

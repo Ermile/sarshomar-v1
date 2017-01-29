@@ -23,6 +23,10 @@ class model extends \content_u\home\model
 	}
 
 
+	use \content_api\v1\poll\tools\get;
+	use \content_api\v1\home\tools\ready;
+
+
 	/**
 	 * Gets the edit.
 	 *
@@ -34,6 +38,29 @@ class model extends \content_u\home\model
 		{
 			return;
 		}
+
+		$poll_id = \lib\router::get_url(1);
+
+		$this->user_id = $this->login('id');
+		$args =
+		[
+			'get_filter'         => true,
+			'get_opts'           => true,
+			'get_options'	     => true,
+			'get_public_result'  => false,
+		];
+		utility::$REQUEST = new utility\request(
+			[
+				'method' => 'array',
+				'request' =>
+				[
+					'id'   => $poll_id,
+				]
+			]
+		);
+		$result = $this->get($args);
+
+		return $result;
 	}
 
 
@@ -93,6 +120,7 @@ class model extends \content_u\home\model
 		{
 			$data = $_POST['data'];
 		}
+
 		$data = json_decode($data, true);
 
 		$id = null;
@@ -102,10 +130,12 @@ class model extends \content_u\home\model
 		}
 
 		$request = $data;
+		$method  = ['method' => 'post'];
 
 		if($id)
 		{
 			$request['id'] = $id;
+			$method        = ['method' => 'put'];
 		}
 
 		utility::$REQUEST = new utility\request(
@@ -117,7 +147,7 @@ class model extends \content_u\home\model
 
 		$this->user_id = $this->login('id');
 		$this->debug   = false;
-		return $this->add(['method' => 'put']);
+		return $this->add($method);
 	}
 
 

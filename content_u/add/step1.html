@@ -61,9 +61,9 @@
     <div class="element">
      <label class="title small" for="answer{{myKey}}">{%trans "Answer"%} <b>{{myKey | persian}}</b></label>
      <div class="element-in">
-      <input class="input" type="text" id="answer{{myKey}}" placeholder='{%trans "Answer"%} {{myKey | persian}}' autocomplete="off" value="{{value.text}}">
-      <span class="checkbox true" data-response='meta_true_answer' data-response-hide>
-       <input type="checkbox" id="true{{myKey}}">
+      <input class="input" type="text" id="answer{{myKey}}" placeholder='{%trans "Answer"%} {{myKey | persian}}' autocomplete="off" value="{{value.title}}">
+      <span class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
+       <input type="checkbox" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
        <label class="check-box" for="true{{myKey}}"></label>
       </span>
       <div class="file">
@@ -86,10 +86,10 @@
      </div>
 
 {%endif%}
-     <div class="module score-module" data-response='meta_score' data-response-hide>
+     <div class="module score-module" data-response='meta_score' {% if not poll.have_score%}data-response-hide{%endif%}>
       <label for="score{{myKey}}">{%trans "Score"%}</label>
-      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
-      <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}'>
+      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' {% if not poll.have_score%}data-response-hide{%endif%} value="{{value.groupscore}}">
+      <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}">
      </div>
      <div class="module audio"></div>
     </div>
@@ -106,7 +106,7 @@
 
 {%block feature_score%}
 <div class="checkbox">
- <input type="checkbox" id="score" {%if poll.meta.score%}checked{%endif%}>
+ <input type="checkbox" id="score" {%if poll.have_score%}checked{%endif%}>
  <label for="score" class="check-box"></label>
  <label for="score">{%trans "Options has score"%}</label>
 </div>
@@ -115,7 +115,7 @@
 
 {%block feature_score_advance%}
 <div class="checkbox" data-response='meta_score' data-response-hide>
- <input type="checkbox" id="score-advance" {%if poll.meta.score-advance%}checked{%endif%}>
+ <input type="checkbox" id="score-advance" {%if poll.have_score%}checked{%endif%}>
  <label for="score-advance" class="check-box"></label>
  <label for="score-advance">{%trans "Advance score"%}</label>
 </div>
@@ -156,7 +156,7 @@
 
 {%block feature_branding%}
 <div class="checkbox">
- <input type="checkbox" id="meta_branding" {%if poll.meta.branding%}checked{%endif%}>
+ <input type="checkbox" id="meta_branding" {%if poll.branding%}checked{%endif%}>
  <label for="meta_branding" class="check-box"></label>
  <label for="meta_branding">{%trans "Branding"%}</label>
 </div>
@@ -192,7 +192,7 @@
 
 {%block feature_randomsort%}
 <div class="checkbox">
- <input type="checkbox" id="random_sort" {%if poll.meta.random_sort%}checked{%endif%}>
+ <input type="checkbox" id="random_sort" {%if poll.random_sort%}checked{%endif%}>
  <label for="random_sort" class="check-box"></label>
  <label for="random_sort">{%trans "Randomize sort options"%}</label>
 </div>
@@ -202,7 +202,7 @@
 {%block feature_hiddenresult%}
  {%if perm.hidden_result.admin%}
  <div class="checkbox">
-  <input type="checkbox" id="hidden_result" {%if poll.meta.hidden_result%}checked{%endif%}>
+  <input type="checkbox" id="hidden_result" {%if poll.hidden_result%}checked{%endif%}>
   <label for="hidden_result" class="check-box"></label>
   <label for="hidden_result">{%trans "Hidden result"%}</label>
  </div>
@@ -212,7 +212,7 @@
 
 {%block feature_trueanswer%}
 <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
- <input type="checkbox" id="true_answer" {%if poll.meta.true_answer%}checked{%endif%} >
+ <input type="checkbox" id="true_answer" {%if poll.have_true_answer%}checked{%endif%} >
  <label for="true_answer" class="check-box"></label>
  <label for="true_answer">{%trans "Has correct option"%}</label>
 </div>

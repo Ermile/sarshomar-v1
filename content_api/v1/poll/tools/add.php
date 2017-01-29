@@ -61,7 +61,7 @@ trait add
 		}
 		elseif(utility::request("id"))
 		{
-			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			return debug::error(T_("Can not send parametr id in post mod"), 'id', 'arguments');
 		}
 
 

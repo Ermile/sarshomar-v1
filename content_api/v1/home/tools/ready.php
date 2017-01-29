@@ -92,6 +92,19 @@ trait ready
 			$_poll_data['survey'] = shortURL::encode($_poll_data['survey']);
 		}
 
+		// change have_score field
+		if(isset($_poll_data['have_score']))
+		{
+			if($_poll_data['have_score'] === '1')
+			{
+				$_poll_data['have_score'] = true;
+			}
+			else
+			{
+				$_poll_data['have_score'] = false;
+			}
+		}
+
 		// change sarshomar field
 		if(isset($_poll_data['sarshomar']) && $_poll_data['sarshomar'])
 		{
@@ -150,7 +163,20 @@ trait ready
 			];
 
 			$answers = \lib\db\pollopts::get($poll_id, $custom_field);
-			$_poll_data['answers'] = $answers;
+
+			foreach ($answers as $key => $value)
+			{
+				if(isset($value['true']) && $value['true'] == '1')
+				{
+					$answers[$key]['true'] = true;
+				}
+				else
+				{
+					$answers[$key]['true'] = false;
+				}
+				$answers[$key] = array_filter($answers[$key]);
+			}
+			$_poll_data['answers'] = $answers	;
 		}
 
 		// get filters of poll
@@ -196,13 +222,13 @@ trait ready
 			        $_poll_data['answers'] = $new;
 				}
 
-				unset($_poll_data['options']['random_sort']);
+				// unset($_poll_data['options']['random_sort']);
 			}
 
 			if(in_array('hidden_result', $post_meta_key))
 			{
 				unset($_poll_data['stats']);
-				unset($_poll_data['options']['hidden_result']);
+				// unset($_poll_data['options']['hidden_result']);
 			}
 
 			$branding = [];
@@ -222,7 +248,7 @@ trait ready
 			if(!empty($branding))
 			{
 				$_poll_data['branding'] = $branding;
-				unset($_poll_data['options']['branding']);
+				// unset($_poll_data['options']['branding']);
 			}
 		}
 

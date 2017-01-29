@@ -53,7 +53,7 @@ trait insert
 			// the options of poll:
 			'options'                         => [],
 			// filters
-			'from'                         => [],
+			'from'                            => [],
 			// the short url
 			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
 			// enable debug mode

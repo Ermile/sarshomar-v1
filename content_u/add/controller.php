@@ -34,7 +34,10 @@ class controller extends \content_u\home\controller
 		}
 
 		// need less to load eny thing
-		$this->get("add", false)->SERVER("/^add$/");
+		$this->get("add")->SERVER("/^add$/");
+
+		// load data to ready to update
+		$this->get("edit", "edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
 
 		// add new poll
 		$this->post("add")->SERVER("/^add$/");
@@ -42,9 +45,6 @@ class controller extends \content_u\home\controller
 		// edit a poll
 		// alise of put in api mode
 		$this->post("edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
-
-		// load data to ready to update
-		$this->get("edit", "edit")->SERVER("/^add\/([". self::$shortURL. "]+)$/");
 
 		// load filter data to update it
 		// $this->get("get", "filter")->SERVER("/^add\/([". self::$shortURL. "]+)\/filter$/");
