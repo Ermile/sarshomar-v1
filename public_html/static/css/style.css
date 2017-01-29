@@ -388,6 +388,8 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 
 .ltr-text{display:inline-block;direction:ltr}
 
+a[href*="amcharts.com"]{display:none!important}
+
 
 /************************************************************** dollar page specific styles */
 .accordion-label input[type='checkbox'],.aside-group-title input[type='checkbox']{width:0;height:0;opacity:0;position:absolute;z-index:-1}
