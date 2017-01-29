@@ -47,7 +47,7 @@
        {% set lang_list = langList({'all' : true}) %}
        <nav class="ui-language-list">
         {%for key, value in lang_list%}
-        <a href="{{key}}/" hreflang="{{key}}" data-direct {%if ui_language == key %}class="isActive"{%endif%}>{{value}}</a>
+         <a href="/{{key}}" hreflang="{{key}}" data-direct {%if ui_language == key %}class="isActive"{%endif%}>{{value}}</a>
         {%endfor%}
        </nav>
       </div>

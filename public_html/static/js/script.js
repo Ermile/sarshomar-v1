@@ -398,8 +398,8 @@ route('*', function ()
 	setLanguageURL();
 	isActiveChecker();
 	// load maps and chart js
-	$import('lib/highcharts/highcharts.js', 'drawChart', 70);
-	$import('lib/highcharts/modules/map.js', 'getMyMapData', 200);
+	$import('lib/amcharts/amcharts.js', 'drawChart', 70);
+	$import('lib/ammap/ammap.js', 'getMyMapData', 200);
 });
 
 

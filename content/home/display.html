@@ -111,47 +111,56 @@
   </div>
 {%endblock%}
 
-{%block foot_js2%}
+{%block foot_js%}
+ <script type="text/javascript" src="{{url.static}}js/lib/amcharts/amcharts.js"></script>
+ <script type="text/javascript" src="{{url.static}}js/lib/amcharts/serial.js"></script>
+ <script type="text/javascript" src="{{url.static}}js/lib/ammap/ammap.js"></script>
+ <script type="text/javascript" src="{{url.static}}js/lib/ammap/maps/js/worldLow.js"></script>
+ <script type="text/javascript" src="{{url.static}}js/lib/ammap/maps/js/iranHigh.js"></script>
 
  <script type="text/javascript">
   setTimeout(function()
   {
+   var worldMap = AmCharts.makeChart('world-map', {
+    "type": "map",
+    "theme": "light",
+    "projection": "miller",
 
-  var topChartOptions =
-  {
-   chart: {type: 'column',backgroundColor: 'rgba(255, 255, 255, 0)',verticalAlign: 'center'},
-   title: {text: ""},
-   xAxis:{categories:{{result.categories | raw}}},
-   yAxis: {min: 0,title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
-   plotOptions: {column: {pointPadding: 0,groupPadding: 0.15,},series: {dataLabels: {enabled: false,format: '{point.y:f}%'}},inside: true},
-   legend: {enabled: false},
-   credits: {enabled: false},
-   tooltip: {enabled: false},
-   series: {{result.basic | raw}}
-  };
+    "dataProvider": {
+     "map": "worldLow",
+     "getAreasFromMap": true
+    },
 
-  var categories = {{male_female_chart.categories|raw}};
-  var newChartOptions =
-  {
-   chart: {type: 'bar',backgroundColor: 'rgba(255, 255, 255, 0)'},
-   title: {text: ''},
-   xAxis: [{categories: categories,reversed: false,labels: {enabled: true,step: 1},opposite: true}],
-   yAxis: {title: {enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0},
-   plotOptions: {series: {stacking: 'normal',dataLabels: {enabled: false,format: '{point.y:f}'}},bar: {pointPadding: 0,groupPadding: 0.01,}},
-   credits: {enabled: false},
-   tooltip: {formatter: function () {return '<b>' + this.series.name + ' {%trans "Age"%} ' + this.point.category + '</b><br/>' + '{%trans "Population"%}: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0); }},
-   series: {{male_female_chart.series|raw}}
-  };
+    "areasSettings": {
+     "autoZoom": true,
+     "selectedColor": "#CC0000"
+    },
 
-  $(function() {
-   $('#random-chart .chart > div').highcharts(topChartOptions);
-   $('#age-chart').highcharts(newChartOptions);
+    "smallMap": {
+     "backgroundAlpha": 0.5
+    }
+   });
 
+   var iranMap = AmCharts.makeChart('iran-map', {
+    "type": "map",
+    "theme": "light",
+    "projection": "miller",
 
+    "dataProvider": {
+     "map": "iranHigh",
+     "getAreasFromMap": true
+    },
 
+    "areasSettings": {
+     "autoZoom": true,
+     "selectedColor": "#CC0000"
+    },
 
-  });
-
+    "smallMap": {
+     "enabled": false,
+     "backgroundAlpha": 0.5
+    }
+   });
   }, 3000);
  </script>
-{% endblock %}
+{%endblock%}
