@@ -1407,3 +1407,12 @@ var add_selection = function(_name)
 	return selection;
 }
 })(jQuery);
+
+/**
+ * [runRangeSlider description]
+ * @return {[type]} [description]
+ */
+function runRangeSlider()
+{
+	$('.range-slider').rangeSlider();
+}
