@@ -172,3 +172,27 @@ AmCharts.maps.iranHigh={
 		}
 	}
 };
+
+
+
+var iranMap = AmCharts.makeChart('iran-map',
+{
+	"type": "map",
+	"theme": "light",
+	"projection": "miller",
+
+	"dataProvider": {
+  		"map": "iranHigh",
+		"getAreasFromMap": true
+ 	},
+
+ 	"areasSettings": {
+  		"autoZoom": true,
+  		"selectedColor": "#CC0000"
+ 	},
+
+ 	"smallMap": {
+  		"enabled": false,
+  		"backgroundAlpha": 0.5
+ 	}
+});

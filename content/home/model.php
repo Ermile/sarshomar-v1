@@ -212,6 +212,79 @@ class model extends \mvc\model
 				], JSON_UNESCAPED_UNICODE)
 			];
 		}
+
+
+		// remove Above code
+
+		if($lang == "fa")
+		{
+			$random =
+			[
+				'title' => $title,
+				'data' =>
+				[
+					[
+					 'key' => 'استقلال',
+					 'value' => 100
+					],
+					[
+					 'key' => 'پرسپولیس',
+					 'value' => 10
+					],
+					[
+					 'key' => 'تراکتورسازی',
+					 'value' => 500
+					],
+					[
+					 'key' => 'نفت تهران',
+					 'value' => 70
+					],
+					[
+					 'key' => 'سپاهان',
+					 'value' => 100
+					],
+					[
+					 'key' => 'ملوان',
+					 'value' => 60
+					],
+				]
+			];
+		}
+		else
+		{
+			$random =
+			[
+				'title' => $title,
+				'data' =>
+				[
+					[
+					 'key' => 'Manchester',
+					 'value' => 100
+					],
+					[
+					 'key' => 'Liverpool',
+					 'value' => 20
+					],
+					[
+					 'key' => 'Real Madrid',
+					 'value' => 40
+					],
+					[
+					 'key' => 'Barcelona',
+					 'value' => 70
+					],
+					[
+					 'key' => 'Juventus',
+					 'value' => 100
+					],
+					[
+					 'key' => 'Bayern',
+					 'value' => 60
+					],
+				]
+			];
+		}
+		$random['data'] = json_encode($random['data']);
 		return $random;
 	}
 

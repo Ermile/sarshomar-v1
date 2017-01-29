@@ -13,10 +13,8 @@
      </div>
      <div class="span2"></div>
      <div class="span5" id='random-chart'>
-      <div class='chart unselectable' data-type='column' data-place='div' data-vals='{{result.basic | raw}}' data-cats='{{result.categories | raw}}'>
        <h3><a href='{{result.url}}#?'>{{result.title|trim('\"')}}</a></h3>
-       <div class='column palette{{(random(6)) + 1}}'></div>
-      </div>
+       <div class='column palette{{(random(6)) + 1}} chart unselectable' data-type='column' data-place='div' data-vals='{{result.data}}'></div>
      </div>
     </div>
    </div>
@@ -34,7 +32,7 @@
 {%set ageTooltip%}
 {formatter: '::xformater'}
 {%endset%}
-      <div class="chart" id="age-chart" data-format="homepageGender" data-cats='{{male_female_chart.categories|raw}}' data-vals='{{male_female_chart.series|raw}}'></div>
+      <div class="chart" id="age-chart" data-format="homepageGender" data-vals-old='{{male_female_chart.series2|raw}}' data-vals='{{result.data}}'></div>
      </div>
     </div>
 {%endif%}
@@ -109,58 +107,4 @@
    </div>
 
   </div>
-{%endblock%}
-
-{%block foot_js%}
- <script type="text/javascript" src="{{url.static}}js/lib/amcharts/amcharts.js"></script>
- <script type="text/javascript" src="{{url.static}}js/lib/amcharts/serial.js"></script>
- <script type="text/javascript" src="{{url.static}}js/lib/ammap/ammap.js"></script>
- <script type="text/javascript" src="{{url.static}}js/lib/ammap/maps/js/worldLow.js"></script>
- <script type="text/javascript" src="{{url.static}}js/lib/ammap/maps/js/iranHigh.js"></script>
-
- <script type="text/javascript">
-  setTimeout(function()
-  {
-   var worldMap = AmCharts.makeChart('world-map', {
-    "type": "map",
-    "theme": "light",
-    "projection": "miller",
-
-    "dataProvider": {
-     "map": "worldLow",
-     "getAreasFromMap": true
-    },
-
-    "areasSettings": {
-     "autoZoom": true,
-     "selectedColor": "#CC0000"
-    },
-
-    "smallMap": {
-     "backgroundAlpha": 0.5
-    }
-   });
-
-   var iranMap = AmCharts.makeChart('iran-map', {
-    "type": "map",
-    "theme": "light",
-    "projection": "miller",
-
-    "dataProvider": {
-     "map": "iranHigh",
-     "getAreasFromMap": true
-    },
-
-    "areasSettings": {
-     "autoZoom": true,
-     "selectedColor": "#CC0000"
-    },
-
-    "smallMap": {
-     "enabled": false,
-     "backgroundAlpha": 0.5
-    }
-   });
-  }, 3000);
- </script>
 {%endblock%}

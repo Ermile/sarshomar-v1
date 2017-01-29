@@ -399,7 +399,7 @@ route('*', function ()
 	isActiveChecker();
 	// load maps and chart js
 	$import('lib/amcharts/amcharts.js', 'drawChart', 70);
-	$import('lib/ammap/ammap.js', 'getMyMapData', 200);
+	$import('lib/ammap/ammap.js', 'getMyMapData', 50);
 });
 
 

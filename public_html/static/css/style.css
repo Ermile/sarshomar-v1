@@ -591,7 +591,8 @@ footer .is-open i {transform:rotate(180deg);}
 .column .highcharts-series rect:hover{opacity:1}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif}
 .highcharts-data-labels text{text-shadow:none!important}
-
+.chart{height:300px;width:100%}
+#age-chart{height:450px}
 
 /************************************************************** random chart */
 #random-chart{background-color:#fff}

@@ -314,5 +314,12 @@ a.title){var d=c.chart,g=document.createElement("li");g.className=d.classNamePre
 
 function getMyMapData()
 {
-	console.log('getMyMapData');
+	// require data of current design depending on country
+	myMapSource = 'lib/ammap/maps/js/worldLow.js';
+	if ($('html').attr('lang') == 'fa')
+	{
+		myMapSource = 'lib/ammap/maps/js/iranHigh.js';
+	}
+	// import source of map
+	$import(myMapSource);
 }

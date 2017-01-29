@@ -897,3 +897,27 @@ AmCharts.maps.worldLow={
 		}
 	}
 };
+
+
+
+
+var worldMap = AmCharts.makeChart('world-map',
+{
+	"type": "map",
+	"theme": "light",
+	"projection": "miller",
+
+	"dataProvider": {
+		"map": "worldLow",
+		"getAreasFromMap": true
+	},
+
+	"areasSettings": {
+		"autoZoom": true,
+		"selectedColor": "#CC0000"
+	},
+
+	"smallMap": {
+		"backgroundAlpha": 0.5
+	}
+});
