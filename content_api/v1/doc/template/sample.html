@@ -45,60 +45,65 @@
   <div class="box in xxlarge">
     <div class="api-desc">
       <h2 class="unselectable" id="start">{%trans "Getting started"%}</h2>
-      <p>{%trans "Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com."%}</p>
-      <p>{%trans "The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Sarshomar, you can obtain your API key from My Account page, found here: "%} <a href="{{url.base}}/@"> {%trans "Go to My account."%}</a></p>
+      <p>{%trans "Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using
+        Sarshomars API, you can do just about anything you can do on Sarshomar.com."%}</p>
+      <p>{%trans "The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with
+        Sarshomar, you can obtain your API key from My Account page, found here: "%} <a href="{{url.base}}/@"> {%trans "Go to My account."%}</a></p>
       <h2 class="unselectable">{%trans "Endpoints"%}</h2>
-      <p>{%trans "The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol."%}</p>
-      <p>{%trans "Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version is Version 1."%}</p>
+      <p>{%trans "The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and
+        DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the
+        SSL-enabled HTTPS (port 443) protocol."%}</p>
+      <p>{%trans "Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The
+        latest version is Version 1."%}</p>
       <p>{%trans "The stable HTTPS endpoint for the latest version is:"%}</p>
       <div class="url ltr" data-reactid="211">{{url.base}}/api/v1/</div>
       <h2 class="unselectable">{%trans "HTTP response codes"%}</h2>
       <p>{%trans "The status of a response can be determined from the HTTP status code."%}</p>
-      <div class="table">
-        <div class="table-child table-header">
-          <div class="table-cell table-header table-child-mini unselectable">{%trans "Code"%}</div>
-          <div class="table-cell table-header table-child-small unselectable">{%trans "Status"%}</div>
-          <div class="table-cell table-header unselectable">{%trans "Description"%}</div>
+      <div class="table response-codes">
+        <div class="table-header">
+          <span>{%trans "Code"%}</span>
+          <span>{%trans "Status"%}</span>
+          <span>{%trans "Description"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">200</div>
-          <div class="table-cell table-child-small">OK</div>
-          <div class="table-cell">{%trans "request successful"%}</div>
+        <div>
+          <span>200</span>
+          <span>OK</span>
+          <span>{%trans "request successful"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">304</div>
-          <div class="table-cell table-child-small">Not Modified</div>
-          <div class="table-cell"></div>
+        <div>
+          <span>304</span>
+          <span>Not Modified</span>
+          <span></span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">400</div>
-          <div class="table-cell table-child-small">Bad Request</div>
-          <div class="table-cell">{%trans "request was invalid"%}</div>
+        <div>
+          <span>400</span>
+          <span>Bad Request</span>
+          <span>{%trans "request was invalid"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">401</div>
-          <div class="table-cell table-child-small">Unauthorized</div>
-          <div class="table-cell">{%trans "user does not have permission"%}</div>
+        <div>
+          <span>401</span>
+          <span>Unauthorized</span>
+          <span>{%trans "user does not have permission"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">403</div>
-          <div class="table-cell table-child-small">Forbidden</div>
-          <div class="table-cell">{%trans "request not authenticated"%}</div>
+        <div>
+          <span>403</span>
+          <span>Forbidden</span>
+          <span>{%trans "request not authenticated"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">429</div>
-          <div class="table-cell table-child-small">Too many requests</div>
-          <div class="table-cell">{%trans "client is rate limited"%}</div>
+        <div>
+          <span>429</span>
+          <span>Too many requests</span>
+          <span>{%trans "client is rate limited"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">405</div>
-          <div class="table-cell table-child-small">Method Not Allowed</div>
-          <div class="table-cell">{%trans "incorrect HTTP method provided"%}</div>
+        <div>
+          <span>405</span>
+          <span>Method Not Allowed</span>
+          <span>{%trans "incorrect HTTP method provided"%}</span>
         </div>
-        <div class="table-child">
-          <div class="table-cell table-child-mini">415</div>
-          <div class="table-cell table-child-small">Unsupported Media Type</div>
-          <div class="table-cell">{%trans "response is not valid JSON"%}</div>
+        <div>
+          <span>415</span>
+          <span>Unsupported Media Type</span>
+          <span>{%trans "response is not valid JSON"%}</span>
         </div>
       </div>
     </div>
@@ -107,36 +112,35 @@
       مورد نیاز و کاربردهای متنوع با هدف بهبود <span class="inline-code unselectable">X-Auth-User-Service-Key</span> ابزارهای
       کاربردی می باشد.</p>
     <br>
-    <div class="ltr url"><span class="url-method post unselectable">post</span>/poll</div>
+    <div class="ltr url-method post"><span>post</span><span>/poll</span></div>
     <br>
     <div class="table ltr">
-      <div class="table-child table-header">
-        <div class="table-cell unselectable">شناسه <small>/متغیر</small></div>
-        <div class="table-cell unselectable">توضیحات <small>/اولویت</small></div>
-        <div class="table-cell unselectable">مثال</div>
+      <div class="table-header">
+        <span class="unselectable">شناسه <small>/متغیر</small></span>
+        <span class="unselectable">توضیحات <small>/اولویت</small></span>
+        <span class="unselectable">مثال</span>
       </div>
-      <div class="table-child">
-        <div class="table-cell"><strong>first_name</strong> <br> <small><i>string</i></small></div>
-        <div class="table-cell unselectable">User's first name <br> <small class="mandatory">اجباری</small></div>
-        <div class="table-cell"><code class="example-code">"John"</code></div>
+      <div>
+        <span><strong>first_name</strong> <br> <small><i>string</i></small></span>
+        <span class="unselectable">User's first name <br> <small class="mandatory">اجباری</small></span>
+        <span><code class="example-code">"John"</code></span>
       </div>
-      <div class="table-child">
-        <div class="table-cell"><strong>last_name</strong> <br> <small><i>string</i></small></div>
-        <div class="table-cell unselectable">User's last name <br> <small class="optional">اختیاری</small></div>
-        <div class="table-cell"><code class="example-code">"Appleseed"</code></div>
+      <div>
+        <span><strong>last_name</strong> <br> <small><i>string</i></small></span>
+        <span class="unselectable">User's last name <br> <small class="optional">اختیاری</small></span>
+        <span><code class="example-code">"Appleseed"</code></span>
       </div>
-      <div class="table-child">
-        <div class="table-cell"><strong>telephone</strong> <br> <small><i>int</i></small></div>
-        <div class="table-cell unselectable">User's telephone number <br> <small class="conditional">مشروط</small></div>
-        <div class="table-cell"><code class="example-code">"+98 123-123-1234"</code></div>
+      <div>
+        <span><strong>telephone</strong> <br> <small><i>int</i></small></span>
+        <span class="unselectable">User's telephone number <br> <small class="conditional">مشروط</small></span>
+        <span><code class="example-code">"+98 123-123-1234"</code></span>
       </div>
     </div>
     <fieldset class="api-sample">
-      
       <h3 class="unselectable">{%trans "Request"%}</h3>
-<pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_input.json'%}</code></pre>
-        <h3 class="unselectable">{%trans "Header"%}</h3>
-<pre><code>
+      <pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_input.json'%}</code></pre>
+      <h3 class="unselectable">{%trans "Header"%}</h3>
+      <pre><code>
   GET / HTTP/1.1[CRLF]
   Host: sarshomar.com[CRLF]
   Connection: close[CRLF]
@@ -147,26 +151,21 @@
   Accept-Language: de,en;q=0.7,en-us;q=0.3[CRLF]
   Referer: http://web-sniffer.net/[CRLF]
 </code></pre>
-<h3 class="unselectable">cURL</h3>
-<pre><code class="curl">
+      <h3 class="unselectable">cURL</h3>
+      <pre><code class="curl">
   curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
     -H "X-Auth-Email: user@example.com" \
     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
     -H "Content-Type: application/json" \
     --data '{"value":"on"}'
 </code></pre>
- <h3 class="unselectable">{%trans "Response"%}</h3>
- <pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_output.json'%}</code></pre>
+      <h3 class="unselectable">{%trans "Response"%}</h3>
+      <pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_output.json'%}</code></pre>
     </fieldset>
-    {#%include 'content_api/v1/doc/template/login/login_token.html'%#}
-    {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
-    {%include 'content_api/v1/doc/template/poll/add.html'%}
-    {%include 'content_api/v1/doc/template/poll/get.html'%}
-    {%include 'content_api/v1/doc/template/poll/search/search.html'%}
-    {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
-    {%include 'content_api/v1/doc/template/poll/fav/fav.html'%}
-    {%include 'content_api/v1/doc/template/poll/like/like.html'%}
-    {%include 'content_api/v1/doc/template/billing/balance.html'%}
-    {%include 'content_api/v1/doc/template/poll/price/price.html'%}
+    {#%include 'content_api/v1/doc/template/login/login_token.html'%#} {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
+    {%include 'content_api/v1/doc/template/poll/add.html'%} {%include 'content_api/v1/doc/template/poll/get.html'%} {%include
+    'content_api/v1/doc/template/poll/search/search.html'%} {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
+    {%include 'content_api/v1/doc/template/poll/fav/fav.html'%} {%include 'content_api/v1/doc/template/poll/like/like.html'%}
+    {%include 'content_api/v1/doc/template/billing/balance.html'%} {%include 'content_api/v1/doc/template/poll/price/price.html'%}
   </div>
 </div>
