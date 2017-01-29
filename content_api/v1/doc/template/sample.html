@@ -51,7 +51,7 @@
       <p>{%trans "The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol."%}</p>
       <p>{%trans "Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version is Version 1."%}</p>
       <p>{%trans "The stable HTTPS endpoint for the latest version is:"%}</p>
-      <div class="url ltr" data-reactid="211">{{url.base}}/api/v1/</div>
+      <div class="url ltr">{{url.base}}/api/v1/</div>
       <h2 class="unselectable">{%trans "HTTP response codes"%}</h2>
       <p>{%trans "The status of a response can be determined from the HTTP status code."%}</p>
       <div class="table response-codes">
@@ -135,8 +135,7 @@
       <h3 class="unselectable" id="sample-request"><a href="v1/doc#sample-request">{%trans "Request"%}</a></h3>
       <code class="json ltr">{%include 'content_api/v1/doc/template/poll/get_input.json'%}</code>
       <h3 class="unselectable" id="sample-header"><a href="v1/doc#sample-header">{%trans "Header"%}</a></h3>
-      <code class="ltr http">
-  GET / HTTP/1.1[CRLF]
+      <code class="ltr http">GET / HTTP/1.1[CRLF]
   Host: sarshomar.com[CRLF]
   Connection: close[CRLF]
   User-Agent: Web-sniffer/1.1.0 (+http://web-sniffer.net/)[CRLF]
@@ -144,22 +143,18 @@
   Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7[CRLF]
   Cache-Control: no-cache[CRLF]
   Accept-Language: de,en;q=0.7,en-us;q=0.3[CRLF]
-  Referer: http://web-sniffer.net/[CRLF]
-</code>
+  Referer: http://web-sniffer.net/[CRLF]</code>
       <h3 class="unselectable" id="sample-curl"><a href="v1/doc#sample-curl">cURL</a></h3>
-      <code class="curl http ltr">
-  curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
+      <code class="curl http ltr">curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
     -H "X-Auth-Email: user@example.com" \
     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
     -H "Content-Type: application/json" \
-    --data '{"value":"on"}'
-</code>
+    --data '{"value":"on"}'</code>
       <h3 class="unselectable" id="sample-response"><a href="v1/doc#sample-response">{%trans "Response"%}</a></h3>
       <code class="json ltr">{%include 'content_api/v1/doc/template/poll/get_output.json'%}</code>
     </fieldset>
     {#%include 'content_api/v1/doc/template/login/login_token.html'%#} {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
-    {%include 'content_api/v1/doc/template/poll/add.html'%} {%include 'content_api/v1/doc/template/poll/get.html'%} {%include
-    'content_api/v1/doc/template/poll/search/search.html'%} {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
+    {%include 'content_api/v1/doc/template/poll/add.html'%} {%include 'content_api/v1/doc/template/poll/get.html'%} {%include 'content_api/v1/doc/template/poll/search/search.html'%} {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
     {%include 'content_api/v1/doc/template/poll/fav/fav.html'%} {%include 'content_api/v1/doc/template/poll/like/like.html'%}
     {%include 'content_api/v1/doc/template/billing/balance.html'%} {%include 'content_api/v1/doc/template/poll/price/price.html'%}
   </div>
