@@ -15,7 +15,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function delete_poll($_args)
 	{
-		return $this->poll_delete();
+		return $this->poll_delete(['id' => \lib\router::get_url(2)]);
 	}
 
 

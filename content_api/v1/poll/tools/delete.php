@@ -13,7 +13,7 @@ trait delete
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function poll_delete($_args = null)
+	public function poll_delete($_options = [])
 	{
 
 		if(!debug::$status)
@@ -21,16 +21,20 @@ trait delete
 			return false;
 		}
 
-		$id = \lib\router::get_url(2);
+		$default_options =
+		[
+			'id' => null
+		];
+		$_options = array_merge($default_options, $_options);
 
-		if(!$id)
+		if(!$_options['id'])
 		{
 			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}
 
-		$id   = \lib\utility\shortURL::decode($id);
+		$_options['id'] = \lib\utility\shortURL::decode($_options['id']);
 
-		$poll = \lib\db\polls::get_poll($id);
+		$poll = \lib\db\polls::get_poll($_options['id']);
 
 		if(!$poll)
 		{
