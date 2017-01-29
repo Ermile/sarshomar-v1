@@ -1003,10 +1003,10 @@ function calcFilterPrice()
 	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
 	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
 	// var totalPerson  = $('#rangepersons').rangeSlider('to');
-	var totalPerson  = $('#rangepersons').data('range-slider');
+	var totalPerson  = parseInt($('input[name="rangepersons-max"]').val());
 	if(totalPerson)
 	{
-		totalPerson = totalPerson.to;
+		// totalPerson = totalPerson.to;
 	}
 	else
 	{
