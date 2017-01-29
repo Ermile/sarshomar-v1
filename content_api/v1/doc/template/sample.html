@@ -107,7 +107,7 @@
       مورد نیاز و کاربردهای متنوع با هدف بهبود <span class="inline-code unselectable">X-Auth-User-Service-Key</span> ابزارهای
       کاربردی می باشد.</p>
     <br>
-    <div class="ltr url"><span class="url-method post">post</span>/poll</div>
+    <div class="ltr url"><span class="url-method post unselectable">post</span>/poll</div>
     <br>
     <div class="table ltr">
       <div class="table-child table-header">
@@ -133,9 +133,9 @@
     </div>
     <fieldset class="api-sample">
       
-      <h3 class="unselectable">{%trans "Request"%}<span class="example">{%trans " (example)"%}</span></h3>
+      <h3 class="unselectable">{%trans "Request"%}</h3>
 <pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_input.json'%}</code></pre>
-        <h3 class="unselectable">{%trans "Header"%}<span class="example">{%trans " (example)"%}</span></h3>
+        <h3 class="unselectable">{%trans "Header"%}</h3>
 <pre><code>
   GET / HTTP/1.1[CRLF]
   Host: sarshomar.com[CRLF]
@@ -147,7 +147,7 @@
   Accept-Language: de,en;q=0.7,en-us;q=0.3[CRLF]
   Referer: http://web-sniffer.net/[CRLF]
 </code></pre>
-<h3 class="unselectable">cURL<span class="example">{%trans " (example)"%}</span></h3>
+<h3 class="unselectable">cURL</h3>
 <pre><code class="curl">
   curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
     -H "X-Auth-Email: user@example.com" \
@@ -155,7 +155,7 @@
     -H "Content-Type: application/json" \
     --data '{"value":"on"}'
 </code></pre>
- <h3 class="unselectable">{%trans "Response"%}<span class="example">{%trans " (example)"%}</span></h3>
+ <h3 class="unselectable">{%trans "Response"%}</h3>
  <pre><code class="json">{%include 'content_api/v1/doc/template/poll/get_output.json'%}</code></pre>
     </fieldset>
     {#%include 'content_api/v1/doc/template/login/login_token.html'%#}
