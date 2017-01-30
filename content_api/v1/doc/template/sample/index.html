@@ -1,0 +1,20 @@
+ {%include 'content_api/v1/doc/template/sample/description.html'%}
+ {%include 'content_api/v1/doc/template/sample/table.html'%}
+<div class="api-sample">
+    <h3 class="unselectable" id="sample-request">
+        <a href="v1/doc#sample-request">{%trans "Request"%}</a>
+    </h3>
+    <code class="json ltr">{%include 'content_api/v1/doc/template/sample/request.json'%}</code>
+    <h3 class="unselectable" id="sample-header">
+        <a href="v1/doc#sample-header">{%trans "Header"%}</a>
+    </h3>
+    <code class="ltr http">{%include 'content_api/v1/doc/template/header.json'%}</code>
+    <h3 class="unselectable" id="sample-curl">
+        <a href="v1/doc#sample-curl">cURL</a>
+    </h3>
+    <code class="curl http ltr">{%include 'content_api/v1/doc/template/sample/curl.json'%}</code>
+    <h3 class="unselectable" id="sample-response">
+        <a href="v1/doc#sample-response">{%trans "Response"%}</a>
+    </h3>
+    <code class="json ltr">{%include 'content_api/v1/doc/template/sample/response.json'%}</code>
+</div>

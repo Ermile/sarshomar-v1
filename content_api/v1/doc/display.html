@@ -2,7 +2,18 @@
 
 {%block content%}
  <link rel="stylesheet" type="text/css" href="{{url.static}}css/lib/highlight/atom-one-dark.css">
- {%include template.sample%}
+ {%include 'content_api/v1/doc/template/sidebar.html'%}
+  <div class="main pad text-based api-docs">
+    <div class="box in xxlarge">
+      {%include 'content_api/v1/doc/template/start/index.html'%}
+      {%include 'content_api/v1/doc/template/sample/index.html'%}
+      
+      {#%include 'content_api/v1/doc/template/login/login_token.html'%#} {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
+      {%include 'content_api/v1/doc/template/poll/add.html'%} {%include 'content_api/v1/doc/template/poll/get.html'%} {%include 'content_api/v1/doc/template/poll/search/search.html'%} {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
+      {%include 'content_api/v1/doc/template/poll/fav/fav.html'%} {%include 'content_api/v1/doc/template/poll/like/like.html'%}
+      {%include 'content_api/v1/doc/template/billing/balance.html'%} {%include 'content_api/v1/doc/template/poll/price/price.html'%}
+    </div>
+  </div>
 {%endblock%}
 
 {%block foot_js%}

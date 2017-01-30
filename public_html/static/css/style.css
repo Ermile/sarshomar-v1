@@ -1679,7 +1679,7 @@ code{margin:0}
 .api-sample input[type='checkbox'] {display: none;}
 .api-sample .show-sample label {cursor: pointer;}
 .show-sample {text-align: center;font-size: 1.3em;}
-fieldset.api-sample {border: 0;padding: 5px 0 10px 0;margin-bottom: 4em;}
+.api-sample {border: 0;padding: 5px 0 10px 0;margin-bottom: 4em;}
 .api-docs p {font-size: 1.3em;margin-bottom: 1em;}
 .api-docs h2:not(:first-child) {margin-top: 2em;margin-bottom: 1em;}
 .api-docs code {font-size: 1.6em;padding: 1em;margin-bottom: 1em;border-radius: 2px;background-color: #333;color: #dedede;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;white-space: pre;}
