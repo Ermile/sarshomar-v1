@@ -245,7 +245,6 @@ class model extends \mvc\model
 					],
 					[
 					 'key' => 'سایر',
-					 "color" =>  "#e21b22",
 					 'value' => 70
 					],
 				]
