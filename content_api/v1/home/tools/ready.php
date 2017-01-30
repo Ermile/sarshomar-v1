@@ -74,6 +74,23 @@ trait ready
 			}
 		}
 
+		if(isset($_poll_data['title']) && $_poll_data['title'] === '~')
+		{
+			$_poll_data['title'] = '';
+		}
+
+
+		if(isset($_poll_data['slug']) && $_poll_data['slug'] === '~')
+		{
+			$_poll_data['slug'] = '';
+		}
+
+
+		if(isset($_poll_data['url']) && $_poll_data['url'] === '~')
+		{
+			$_poll_data['url'] = '';
+		}
+
 		// encode user id
 		if(isset($_poll_data['user_id']))
 		{
