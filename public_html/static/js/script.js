@@ -1185,8 +1185,9 @@ function prepareQuestionData()
 	myQuestion.random_sort = $('#random_sort').is(":checked");
 	if($('#meta_branding').is(":checked"))
 	{
-		myQuestion.brand    = $('#answer_brand').val();
-		myQuestion.brandUrl = $('#answer_brand_url').val();
+		myQuestion.brand       = {};
+		myQuestion.brand.title = $('#answer_brand').val();
+		myQuestion.brand.url   = $('#answer_brand_url').val();
 	}
 	// summary
 	myQuestion.summary     = $('#summary').val();
@@ -1201,18 +1202,18 @@ function prepareQuestionData()
 
 	// data of publish page
 	// articles
-	myQuestion.options.article = $('#article').attr('data-val');
-	if(myQuestion.options.article)
+	myQuestion.article = $('#article').attr('data-val');
+	if(myQuestion.article)
 	{
-		myQuestion.options.article = JSON.parse(myQuestion.options.article);
+		myQuestion.article = JSON.parse(myQuestion.article);
 	}
 	// tags
-	myQuestion.options.tags = $('#tags').attr('data-val');
-	if(myQuestion.options.tags)
+	myQuestion.tags = $('#tags').attr('data-val');
+	if(myQuestion.tags)
 	{
-		myQuestion.options.tags = JSON.parse(myQuestion.options.tags);
+		myQuestion.tags = JSON.parse(myQuestion.tags);
 	}
-	myQuestion.inHomepage = $('#inHomepage').is(":checked");
+	// myQuestion.inHomepage = $('#inHomepage').is(":checked");
 
 	return myQuestion;
 }
