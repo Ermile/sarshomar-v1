@@ -9,11 +9,19 @@
 
  <div class="element select no-pad">
   <label class="title large" for="category">{%trans "Category"%}</label>
+  <input type="text" id="cat0" placeholder='{%trans "Main Category"%}' class='category autoList' data-find='profile' data-call='fillCategory'>
+  <input type="text" id="cat1" placeholder='{%trans "Sub Category"%}' class='category autoList' data-find='profile' data-parent="abc">
+  <input type="text" id="cat2" placeholder='{%trans "child Category"%}' class='category autoList' data-find='profile' data-parent="abc">
+
+
+{%if false%}
   <select class="input" name="category" id="category">
    {%for key, value in cat%}
    <option value="{{value.id}}">{{value.term_title|raw}}</option>
    {%endfor%}
   </select>
+{%endif%}
+
  </div>
  {%endif%}
 
@@ -21,7 +29,7 @@
   <label class="title large" for="article">{%trans "Article"%}</label>
   <div class="dropdown-wrapper tagDetector" id="article">
     <div class="dropdown-tags tagBox"></div>
-    <input class="input dropdown tagInput autoList"data-find='article'>
+    <input class="input dropdown tagInput autoList" data-find='article' data-call='addNewTags'>
   </div>
  </div>
 
@@ -29,7 +37,7 @@
   <label class="title large" for="tag">{%trans "Tags"%}</label>
   <div class="dropdown-wrapper tagDetector" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
     <div class="dropdown-tags tagBox"></div>
-    <input class="input dropdown tagInput autoList" data-find='tag'>
+    <input class="input dropdown tagInput autoList" data-find='tag' data-call='addNewTags'>
   </div>
  </div>
 

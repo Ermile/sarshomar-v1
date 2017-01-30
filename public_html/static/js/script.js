@@ -1258,6 +1258,17 @@ function prepareQuestionFilter()
 }
 
 
+/**
+ * [fillCategory description]
+ * @return {[type]} [description]
+ */
+function fillCategory(_el)
+{
+	console.log('fill');
+	console.log(_el);
+}
+
+
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
