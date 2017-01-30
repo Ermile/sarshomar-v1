@@ -106,7 +106,7 @@ trait telegram
 		$sum_count              = intval($valid_count) + intval($invalid_count);
 
 		$poll['count_answered'] = ['valid' => $valid_count, 'invalid' => $invalid_count , 'sum' => $sum_count];
-		$poll['result']         = $result;
+		$poll['result']         = array_values($result);
 
 		if($_get_raw)
 		{

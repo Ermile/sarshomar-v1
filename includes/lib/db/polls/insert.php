@@ -5,6 +5,7 @@ use \lib\debug;
 trait insert
 {
 	protected static $args          = [];
+	protected static $debug         = true;
 
 	protected static $draft_mod     = true;
 	protected static $publish_mod   = false;
@@ -79,11 +80,16 @@ trait insert
 			// 'slug'         					  => null,
 			// tree
 			'tree'         					  => [],
-			// branding
-			'branding' 						  => [],
+			// brand
+			'brand' 						  => [],
 		];
 
 		$_args = array_merge($default_value, $_args);
+
+		if($_args['debug'] === false)
+		{
+			self::$debug = false;
+		}
 
 		// set args
 		self::$args = $_args;
@@ -105,7 +111,11 @@ trait insert
 		// check user id.
 		if(!is_numeric(self::$args['user']))
 		{
-			return debug::error(T_("Invalid parametr user"), 'user', 'system');
+			if(self::$debug)
+			{
+				debug::error(T_("Invalid parametr user"), 'user', 'system');
+			}
+			return;
 		}
 
 		self::$user_id = self::$args['user'];
@@ -183,13 +193,16 @@ trait insert
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
 
-			if($_args['debug'])
+			debug::title(T_("Poll Successfully {$msg_mod}ed"));
+
+			if(self::$debug)
 			{
 				debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			}
 
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
 		}
+		debug::title(T_("Poll can not {$msg_mod}ed"));
 		return false;
 	}
 

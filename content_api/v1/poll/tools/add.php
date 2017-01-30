@@ -82,7 +82,7 @@ trait add
 		$args['tree']                 = utility::request('tree');
 		// $args['type']              = utility::request("type");
 		$args['options']              = utility::request("options");
-		$args['branding']             = utility::request("branding");
+		$args['brand']                = utility::request("brand");
 		$args['from']                 = utility::request("from");
 		$args['update']               = $update;
 		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;

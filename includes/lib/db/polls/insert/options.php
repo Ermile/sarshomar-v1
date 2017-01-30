@@ -7,24 +7,24 @@ trait options
 	protected static function insert_options()
 	{
 		// save meta range_timing_maxs
-		if(isset(self::$args['branding']['title']))
+		if(isset(self::$args['brand']['title']))
 		{
-			if(self::$args['branding']['title'] && strlen(self::$args['branding']['title']) > 160)
+			if(self::$args['brand']['title'] && strlen(self::$args['brand']['title']) > 160)
 			{
-				return debug::error(T_("Invalid arguments branding title, you must set les than 160 character for branding"), 'title', 'arguments');
+				return debug::error(T_("Invalid arguments brand title, you must set les than 160 character for brand"), 'title', 'arguments');
 			}
 
 			$url = null;
-			if(isset(self::$args['branding']['url']))
+			if(isset(self::$args['brand']['url']))
 			{
-				if(strlen(self::$args['branding']['url']) > 100)
+				if(strlen(self::$args['brand']['url']) > 100)
 				{
-					return debug::error(T_("Invalid arguments branding url, you must set les than 100 character for branding url "), 'url', 'arguments');
+					return debug::error(T_("Invalid arguments brand url, you must set les than 100 character for brand url "), 'url', 'arguments');
 				}
 
-				$url = self::$args['branding']['url'];
+				$url = self::$args['brand']['url'];
 			}
-			self::save_options('branding', self::$args['branding']['title'], ['url' => $url]);
+			self::save_options('brand', self::$args['brand']['title'], ['url' => $url]);
 		}
 
 		// save meta range_timing_maxs
