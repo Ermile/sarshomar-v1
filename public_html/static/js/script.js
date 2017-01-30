@@ -1089,6 +1089,7 @@ function sendQuestionData()
 						var myurl = window.location.pathname + '/' + id;
 						// add new and redirect url
 						$('#question-add').attr('data-id', id);
+						$('#short_url').val(id);
 						Navigate(
 						{
 							url: myurl,
