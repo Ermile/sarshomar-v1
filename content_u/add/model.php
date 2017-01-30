@@ -173,7 +173,8 @@ class model extends \content_u\home\model
 					'request' =>
 					[
 						'type'   => utility::get("list"),
-						'search' => utility::get("q")
+						'search' => utility::get("q"),
+						'parent' => utility::get("parent"),
 					]
 				]
 			);

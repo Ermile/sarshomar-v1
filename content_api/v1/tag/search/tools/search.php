@@ -15,6 +15,8 @@ trait search
 	 */
 	public function search($_args = null)
 	{
+		debug::title(T_("Search faild"));
+
 		$result = [];
 		$search = utility::request("search");
 		switch (utility::request("type"))
@@ -22,14 +24,35 @@ trait search
 			case 'profile':
 			case 'tag':
 			case 'cat':
-				$result = \lib\db\terms::search($search, ['term_type' => utility::request("type"), 'end_limit' => 10]);
+
+				$meta = [];
+				$meta['term_type'] = utility::request("type");
+				$meta['end_limit'] = 10;
+				if(utility::request("parent"))
+				{
+					if(preg_match("/^[". utility\shortURL::ALPHABET ."]$/", utility::request("parent")))
+					{
+						$meta['parent'] = utility\shortURL::decode(utility::request("parent"));
+					}
+					else
+					{
+						debug::error(T_("Invalid parameter parent"), 'parent', 'arguments');
+						return;
+					}
+				}
+				$result = \lib\db\terms::search($search, $meta);
 				if(is_array($result))
 				{
 					foreach ($result as $key => $value)
 					{
-						if(isset($result[$key]['id']))
+						if(isset($value['id']))
 						{
-							$result[$key]['id'] = utility\shortURL::encode($result[$key]['id']);
+							$result[$key]['id'] = utility\shortURL::encode($value['id']);
+						}
+
+						if(isset($value['parent']))
+						{
+							$result[$key]['parent'] = utility\shortURL::encode($value['parent']);
 						}
 					}
 				}
@@ -73,6 +96,7 @@ trait search
 				return debug::error(T_("Type not found"), 'type', 'arguments');
 				break;
 		}
+		debug::title(T_("Search successfuly"));
 		return $result;
 	}
 }
