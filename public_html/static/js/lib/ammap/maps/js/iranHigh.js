@@ -181,17 +181,25 @@ var iranMap = AmCharts.makeChart('iran-map',
 	"theme": "light",
 	"projection": "miller",
 
-	"dataProvider": {
+	"dataProvider":
+	{
   		"map": "iranHigh",
 		"getAreasFromMap": true
  	},
 
- 	"areasSettings": {
-  		"autoZoom": true,
+ 	"areasSettings":
+ 	{
+  		"autoZoom": false,
   		"selectedColor": "#e5a428"
  	},
-
- 	"smallMap": {
+	"zoomControl":
+	{
+		"panControlEnabled": false,
+		"zoomControlEnabled": false,
+		"homeButtonEnabled": false
+	},
+ 	"smallMap":
+ 	{
   		"enabled": false,
   		"backgroundAlpha": 0.5
  	}

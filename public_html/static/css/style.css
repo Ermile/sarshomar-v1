@@ -592,7 +592,7 @@ footer .is-open i {transform:rotate(180deg);}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif}
 .highcharts-data-labels text{text-shadow:none!important}
 .chart{height:300px;width:100%}
-#age-chart{height:450px}
+#age-chart{height:400px}
 
 /************************************************************** random chart */
 #random-chart{background-color:#fff}
@@ -616,7 +616,7 @@ footer .is-open i {transform:rotate(180deg);}
 .map-container{padding:50px 0}
 .rtl .map-container{padding:50px}
 #world-map{height:500px;min-width:310px;width:100%;margin:0 auto}
-#iran-map{height:500px;min-width:310px;max-width:800px;margin:0 auto}
+#iran-map{height:400px;min-width:310px;max-width:800px;margin:0 auto}
 .map{direction:ltr}
 
 .map-container .special-heading{margin-bottom:50px;padding-left:60px}
