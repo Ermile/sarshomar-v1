@@ -1,0 +1,89 @@
+{
+  "title": "string",
+  "survey": "null|code",
+  "status": "draft|publish",
+  "language": "fa|en|ar|null for set as default",
+  "summary": "string|null",
+  "description": "string|null",
+  "file": "[upload_name]|url|null",
+  "tree": {
+    "parent": "code",
+    "answers": "skipped|true|[1,2]"
+  },
+  "branding": {
+    "title": "string",
+    "url": "string|null"
+  },
+  "answers": [{
+    "title": "null|string",
+    "type": "select",
+    "file": "url|answer_file[]",
+    "select": {
+      "is_true": "true|false",
+      "score": {
+        "group": "null|string",
+        "value": "null|int"
+      }
+    }
+  }],
+  "options": {
+    "range_timing_max": "int|null",
+    "choice_count_min": "int|null",
+    "choice_count_max": "int|null",
+    "random_sort": "true|false",
+    "ordering": "true|false"
+  },
+  "hidden_result": "true|false",
+  "schedule": {
+    "start": "null|date_time",
+    "end": "null|date_time"
+  },
+  "article": [],
+  "tags": [],
+  "cats": "code",
+  "from": {
+    "count": "ultimate|int|null",
+    "gender": [
+      "male",
+      "female",
+      "null"
+    ],
+    "marrital": [
+      "single",
+      "married",
+      "null"
+    ],
+    "graduation": [
+      "illiterate",
+      "undergraduate",
+      "graduate"
+    ],
+    "degree": [
+      "under_diploma",
+      "diploma",
+      "2_year_college",
+      "bachelor",
+      "master",
+      "phd"
+    ],
+    "range": [
+      "-13",
+      "14-17",
+      "18-24",
+      "25-30",
+      "31-44",
+      "45-59",
+      "60+"
+    ],
+    "employmentstatus": [
+      "employee",
+      "unemployed",
+      "retired"
+    ],
+    "housestatus": [
+      "owner",
+      "tenant",
+      "homeless"
+    ]
+  }
+}

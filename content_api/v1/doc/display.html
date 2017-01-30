@@ -7,11 +7,20 @@
     <div class="box in xxlarge">
       {%include 'content_api/v1/doc/template/start/index.html'%}
       {%include 'content_api/v1/doc/template/sample/index.html'%}
-      
-      {#%include 'content_api/v1/doc/template/login/login_token.html'%#} {#%include 'content_api/v1/doc/template/login/guest_token.html'%#}
-      {%include 'content_api/v1/doc/template/poll/add.html'%} {%include 'content_api/v1/doc/template/poll/get.html'%} {%include 'content_api/v1/doc/template/poll/search/search.html'%} {%include 'content_api/v1/doc/template/poll/answer/answer.html'%}
-      {%include 'content_api/v1/doc/template/poll/fav/fav.html'%} {%include 'content_api/v1/doc/template/poll/like/like.html'%}
-      {%include 'content_api/v1/doc/template/billing/balance.html'%} {%include 'content_api/v1/doc/template/poll/price/price.html'%}
+      {%include 'content_api/v1/doc/template/login/loginToken/index.html'%}
+      {%include 'content_api/v1/doc/template/login/guestToken/index.html'%}
+      {%include 'content_api/v1/doc/template/poll/add/index.html'%}
+      {%include 'content_api/v1/doc/template/poll/get/index.html'%}
+      {%include 'content_api/v1/doc/template/poll/search/index.html'%}
+
+      {#%include 'content_api/v1/doc/template/poll/add.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/get.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/search/search.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/answer/answer.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/fav/fav.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/like/like.html'%#}
+      {#%include 'content_api/v1/doc/template/billing/balance.html'%#}
+      {#%include 'content_api/v1/doc/template/poll/price/price.html'%#}
     </div>
   </div>
 {%endblock%}

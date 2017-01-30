@@ -1,0 +1,5 @@
+curl -X PATCH "https://api.Sarshomar.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/always_online" \
+    -H "X-Auth-Email: user@example.com" \
+    -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+    -H "Content-Type: application/json" \
+    --data '{"value":"on"}'

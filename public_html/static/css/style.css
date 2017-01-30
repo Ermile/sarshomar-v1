@@ -1684,12 +1684,6 @@ code{margin:0}
 .api-docs h2:not(:first-child) {margin-top: 2em;margin-bottom: 1em;}
 .api-docs code {font-size: 1.6em;padding: 1em;margin-bottom: 1em;border-radius: 2px;background-color: #333;color: #dedede;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;white-space: pre;}
 .api-docs .url {background-color: #fff;color:#48545d;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;padding: 1em 1.5rem;white-space: pre;font-weight: bold;font-size: 1.4em;border: 1px solid #e0e0e0;border-radius: 2px;}
-.api-docs .method.delete {background: #03A9F4;}
-.api-docs .method.put {background: #795548;}
-.api-docs .method.post {background: #4CAF50;}
-.api-docs .method.get {background: #03A9F4;}
-.api-docs .method {border-radius: 2px;color: #FFF;font-size: .6em;line-height: 2em;font-weight: bold;padding: .2em .4em;text-transform: uppercase;display: inline-block;vertical-align: middle;margin-right: 1em;}
-.rtl .api-docs .method {margin-left: 1em;margin-right: 0;}
 .api-docs .mandatory {color: #F44336}
 .api-docs .optional {color: #4CAF50}
 .api-docs .conditional {color: #FF9800}
@@ -1701,18 +1695,14 @@ code{margin:0}
 code.curl {font-size: 1.4em;}
 code {font-size: 1.2em;}
 .api-docs h3 {font-size: 1.3em;color: #00667a;margin: 4px 0;}
-
-
-
-
-.api-docs .url-method {border-radius: 2px;font-size: 1.5em;font-weight: bold;text-transform: uppercase;font-family: monospace;display: flex;flex-direction: row;background: #fff;}
-.api-docs .url-method>span:first-child {color: #fff;padding: 1em;border-radius: 2px 0 0 2px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}
+.api-docs .url-method {border-radius: 2px;font-size: 1.5em;font-weight: bold;font-family: monospace;display: flex;flex-direction: row;background: #fff;}
+.api-docs .url-method>span:first-child {text-transform: uppercase;color: #fff;padding: 1em;border-radius: 2px 0 0 2px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}
 .api-docs .url-method>span:nth-child(2) {padding: 1em;border: 1px solid #e0e0e0;border-left: 0;border-radius: 0 2px 2px 0; flex: 1}
 .api-docs .url-method.delete>span:first-child {background: #03A9F4;}
 .api-docs .url-method.put>span:first-child {background: #795548;}
 .api-docs .url-method.post>span:first-child {background: #4CAF50;}
 .api-docs .url-method.get>span:first-child {background: #03A9F4;}
-
+.api-docs h2 a {cursor: pointer;color: #00667A;}
 
 
 /************************************************************** Flexbox Table */
@@ -1732,8 +1722,8 @@ code {font-size: 1.2em;}
 .table.method-table>div>span:first-child {flex: .2;}
 .table.method-table>div>span:nth-child(2) {flex: 1;}
 .table.method-table>div>span:last-child {flex: .3;}
-
-
+.table>div>span>label {color: #54B4EF;cursor: pointer;}
+.inner-table {border: 3px solid #E0E0E0;border-bottom: 0;border-top: 0;}
 
 
 /************************************************************** Token Page */

@@ -1,0 +1,18 @@
+{
+  "status": 1,
+  "title": null,
+  "msg": {
+    "callback": {
+      "id": "3D"
+    }
+  },
+  "messages": {
+    "true": [
+      {
+        "title": "Poll Successfully edited",
+        "element": false,
+        "group": "public"
+      }
+    ]
+  }
+}

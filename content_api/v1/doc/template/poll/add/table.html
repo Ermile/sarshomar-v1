@@ -1,0 +1,243 @@
+<div class="table method-table ltr">
+    <div class="table-header">
+        <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
+        <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
+        <span>{%trans "Example"%}</span>
+    </div>
+    <div>
+        <span><strong>title</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Poll title"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "Some title..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>survey</strong> <br> <small><i>code</i></small></span>
+        <span>{%trans "Survey..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>status</strong> <br> <small><i>publish</i></small></span>
+        <span>draft | publish <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>language</strong> <br> <small><i>fa</i></small></span>
+        <span>fa | en | ar <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>summary</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Summary..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>description</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Description..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>file</strong> <br> <small><i>url</i></small></span>
+        <span>{%trans "File..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-tree"><strong>tree</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-tree" id="addPoll-tree">
+        </span>
+        <span>{%trans "Tree..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-tree" data-response-effect="fade">
+        <span><strong>parent</strong> <br> <small><i>code</i></small></span>
+        <span>{%trans "Parent..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-tree" data-response-effect="fade">
+        <span><strong>answers</strong> <br> <small><i>skipped</i></small></span>
+        <span>skipped|true|[1,2] <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-branding"><strong>branding</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-branding" id="addPoll-branding">
+        </span>
+        <span>{%trans "Branding..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-branding" data-response-effect="fade">
+        <span><strong>title</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Title..."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-branding" data-response-effect="fade">
+        <span><strong>url</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "url..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-answers"><strong>answers</strong></label> <br> <small><i>array of objects</i></small><input type="checkbox" data-response-hide name="addPoll-answers" id="addPoll-answers">
+        </span>
+        <span>{%trans "Answers..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-answers" data-response-effect="fade">
+        <span><strong>title</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Title..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-answers" data-response-effect="fade">
+        <span><strong>type</strong> <br> <small><i>select</i></small></span>
+        <span>{%trans "Type..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-answers" data-response-effect="fade">
+        <span><strong>file</strong> <br> <small><i>url</i></small></span>
+        <span>{%trans "file..."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-answers" data-response-effect="fade">
+        <span>
+            <label for="addPoll-select"><strong>select</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-select" id="addPoll-select">
+        </span>
+        <span>{%trans "Answers..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-select" data-response-effect="fade">
+        <span><strong>is_true</strong> <br> <small><i>BOOL</i></small></span>
+        <span>{%trans "is true..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-select" data-response-effect="fade">
+        <span>
+            <label for="addPoll-score"><strong>score</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-score" id="addPoll-score">
+        </span>
+        <span>{%trans "score..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-score" data-response-effect="fade">
+        <span><strong>group</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "group..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-score" data-response-effect="fade">
+        <span><strong>value</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "value..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-options"><strong>options</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-options" id="addPoll-options">
+        </span>
+        <span>{%trans "options..."%} <br> <small class="optional">{%trans "optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-options" data-response-effect="fade">
+        <span><strong>range_timing_max</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "range_timing_max..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-options" data-response-effect="fade">
+        <span><strong>choice_count_min</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "choice_count_min..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-options" data-response-effect="fade">
+        <span><strong>choice_count_max</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "choice_count_max..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-options" data-response-effect="fade">
+        <span><strong>random_sort</strong> <br> <small><i>BOOL</i></small></span>
+        <span>{%trans "random_sort..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-options" data-response-effect="fade">
+        <span><strong>ordering</strong> <br> <small><i>BOOL</i></small></span>
+        <span>{%trans "ordering..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>hidden_result</strong> <br> <small><i>BOOL</i></small></span>
+        <span>{%trans "Hide results..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-schedule"><strong>schedule</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-schedule" id="addPoll-schedule">
+        </span>
+        <span>{%trans "schedule..."%} <br> <small class="optional">{%trans "optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-schedule" data-response-effect="fade">
+        <span><strong>start</strong> <br> <small><i>date_time</i></small></span>
+        <span>{%trans "start..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-schedule" data-response-effect="fade">
+        <span><strong>end</strong> <br> <small><i>date_time</i></small></span>
+        <span>{%trans "end..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>article</strong> <br> <small><i>array</i></small></span>
+        <span>{%trans "Article..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>tags</strong> <br> <small><i>array</i></small></span>
+        <span>{%trans "Tags..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div>
+        <span><strong>cats</strong> <br> <small><i>code</i></small></span>
+        <span>{%trans "Cats..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table">
+        <span>
+            <label for="addPoll-from"><strong>from</strong></label> <br> <small><i>object</i></small><input type="checkbox" data-response-hide name="addPoll-from" id="addPoll-from">
+        </span>
+        <span>{%trans "from..."%} <br> <small class="optional">{%trans "optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>count</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "Count..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>gender</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["male","female","null"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>marrital</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["single","married","null"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>graduation</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["illiterate","undergraduate","graduate"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>degree</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["under_diploma","diploma","2_year_college","bachelor","master","phd"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>range</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["-13","diploma","14-17","18-24","25-30","31-44","45-59","60+"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>employmentstatus</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["employee","unemployed","retired"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+    <div class="inner-table" data-response="addPoll-from" data-response-effect="fade">
+        <span><strong>housestatus</strong> <br> <small><i>array</i></small></span>
+        <span><code class="example-code html">["owner","tenant","homeless"]</code><br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>...</span>
+    </div>
+</div>
