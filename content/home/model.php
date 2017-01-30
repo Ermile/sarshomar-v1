@@ -259,27 +259,34 @@ class model extends \mvc\model
 				[
 					[
 					 'key' => 'Manchester',
-					 'value' => 100
+					 'value' => 100,
+					 "color" =>  "#e21b22",
+
 					],
 					[
 					 'key' => 'Liverpool',
-					 'value' => 20
+					 'value' => 20,
+					 "color" =>  "#e26e83",
 					],
 					[
 					 'key' => 'Real Madrid',
-					 'value' => 40
+					 'value' => 40,
+					 "color" =>  "#fdbd24",
 					],
 					[
 					 'key' => 'Barcelona',
-					 'value' => 70
+					 'value' => 70,
+					 "color" =>  "#85063b",
 					],
 					[
 					 'key' => 'Juventus',
-					 'value' => 100
+					 'value' => 100,
+					 "color" =>  "#13160e",
 					],
 					[
 					 'key' => 'Bayern',
-					 'value' => 60
+					 'value' => 60,
+					 "color" =>  "#ed1248",
 					],
 				]
 			];

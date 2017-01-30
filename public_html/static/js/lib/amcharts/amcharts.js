@@ -546,29 +546,44 @@ function drawChart()
 			"type": "serial",
 			"dataProvider": attrVals,
 			"categoryField": "key",
+			// "colorField": "color",
+			// "labelColorField": "color",
+			// "fillColorsField": "color",
 
 			"graphs":
 			[{
 				"valueField": "value",
+				"colorField": "color",
+				"lineColorField": "color",
 				"type": "column",
 				"fillAlphas": 0.9,
+				"lineAlpha": 0.2,
 				"balloonText": "[[category]] <b>[[value]]</b>"
 			}],
 
 			"gridAboveGraphs": true,
-
+			"startDuration": 1,
 			"valueAxes":
 			[{
     			"gridColor": "#FFFFFF",
-    			"gridAlpha": 0.2,
-    			"dashLength": 0
+    			"gridAlpha": 0.1,
+    			"dashLength": 0,
+				// "axisAlpha": 0.2,
+				"labelsEnabled": false,
+			    "axisAlpha": 0,
   			}],
 
 			"categoryAxis": {
     			"gridPosition": "start",
     			"gridAlpha": 0,
     			"tickPosition": "start",
-    			"tickLength": 20
+    			"twoLineMode": true,
+    			"tickLength": 5,
+				"axisAlpha": 0.2,
+				"autoWrap":true,
+				// "labelRotation": 45,
+				"autoRotateCount": 6,
+				"autoRotateAngle": 45,
   			},
 		};
 
