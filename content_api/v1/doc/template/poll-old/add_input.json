@@ -35,11 +35,14 @@
   ],
   "options":
   {
-    "range_timing_max": "int|null",
-    "choice_count_min": "int|null",
-    "choice_count_max": "int|null",
-    "random_sort": "true|false",
-    "ordering": "true|false"
+    "multi":
+    {
+      "min":2,
+      "max":3
+    },
+    "ordering": "true|false",
+    "time": "int|null",
+    "random_sort": "true|false"
   },
   "hidden_result": "true|false",
   "schedule":
