@@ -1061,6 +1061,7 @@ function sendQuestionData()
 	var myPoll  = {};
 	myPoll      = prepareQuestionData();
 	myPoll.from = prepareQuestionFilter();
+	console.log(myPoll);
 	myPoll      = JSON.stringify(myPoll);
 	$('#question-add').addClass('syncing');
 
@@ -1108,7 +1109,6 @@ function sendQuestionData()
 	});
 
 	$('#question-add').attr('data-saving-timeout', null);
-	console.log(myPoll);
 	return myPoll;
 }
 
@@ -1193,11 +1193,11 @@ function prepareQuestionData()
 	// description
 	myQuestion.description = $('#description').val();
 	// languages
-	myQuestion.language = $('input[name="ui-language"]:checked').val();
+	myQuestion.language    = $('input[name="ui-language"]:checked').val();
 	// options
-	myQuestion.options             = {};
+	myQuestion.options     = {};
 	// get subType
-	myQuestion.subType             = $('input[name="meta_choicemode"]:checked').val();
+	myQuestion.subType     = $('input[name="meta_choicemode"]:checked').val();
 
 	// save randomSort for multiple selection
 	myQuestion.options.random_sort = $('#random_sort').is(":checked");
@@ -1246,10 +1246,10 @@ function prepareQuestionFilter()
 		var activeVals = $(this).find('input[type="checkbox"]:checked');
 		if(activeVals.length)
 		{
-			myFilters[group] = {};
+			myFilters[group] = [];
 			activeVals.each(function()
 			{
-				myFilters[group][$(this).val()] = true;
+				myFilters[group].push($(this).val());
 			});
 		}
 	});
@@ -1486,7 +1486,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$('#question-add').on('change', 'input, textarea', function()
 	{
 		prepareAdd();
-		console.log('changed...');
 	});
 
 });
