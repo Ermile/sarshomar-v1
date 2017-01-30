@@ -582,7 +582,7 @@ footer .is-open i {transform:rotate(180deg);}
 /************************************************************** homepage */
 /* chart */
 .chart{direction:ltr}
-.chart *{font-family:IRANSans,Tahoma,sans-serif!important}
+.chart *, .map *{font-family:IRANSans,Tahoma,sans-serif!important}
 .rtl .chart{text-align:right}
 .rtl .chart .highcharts-tooltip{direction:rtl}
 .highcharts-title{fill:#434348;font-weight:700}

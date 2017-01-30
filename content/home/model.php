@@ -226,26 +226,27 @@ class model extends \mvc\model
 					[
 					 'key' => 'استقلال',
 					 "color" =>  "#3687c8",
-					 'value' => 100
+					 'value' => 200
 					],
 					[
 					 'key' => 'پرسپولیس',
 					 "color" =>  "#ff0e17",
-					 'value' => 10
+					 'value' => 400
 					],
 					[
 					 'key' => 'تراکتورسازی',
 					 "color" =>  "#ee2424",
-					 'value' => 500
+					 'value' => 300
 					],
 					[
 					 'key' => 'سپاهان',
 					 "color" =>  "#ffcc00",
-					 'value' => 100
+					 'value' => 70
 					],
 					[
 					 'key' => 'سایر',
-					 'value' => 70
+					 "color" =>  "#666",
+					 'value' => 120
 					],
 				]
 			];
