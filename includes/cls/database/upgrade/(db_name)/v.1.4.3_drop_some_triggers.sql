@@ -1,0 +1,1 @@
+DROP TRIGGER IF EXISTS `users_change_filters_count_on_update`;

@@ -15,6 +15,7 @@ trait insert
 	protected static $user_id       = false;
 
 
+	use insert\reset;
 	use insert\max;
 	use insert\answers;
 	use insert\check;
@@ -139,6 +140,12 @@ trait insert
 			{
 				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
 			}
+		}
+
+		// reset poll
+		if($_args['method'] == 'put' && self::$poll_id)
+		{
+			self::reset();
 		}
 
 		// check max draft count of every user

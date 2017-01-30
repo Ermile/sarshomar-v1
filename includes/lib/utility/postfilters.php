@@ -9,7 +9,7 @@ class postfilters
 			// remove full insert filter
 		// for example the user set male and female filter
 		// we remove the gender filter
-		
+
 		$sum_money_filter = 0;
 		$support_filter   = \lib\db\filters::support_filter();
 		$filters = [];
@@ -45,7 +45,7 @@ class postfilters
 		}
 
 		$_filters = self::check($_filters);
-		
+
 		$saved_filters = self::get_filter($_poll_id);
 
 		$caller_term_id = [];
@@ -112,15 +112,21 @@ class postfilters
 		if(!empty($must_remove))
 		{
 			$must_remove = implode("', '", $must_remove);
-			$query =
-			"
-				DELETE FROM termusages
-				WHERE
-					termusage_foreign = 'posts' AND
-					termusage_id = $_poll_id AND
-					term_id IN (SELECT terms.id FROM terms WHERE terms.term_caller IN ('$must_remove'));
-			";
-			\lib\db::query($query);
+			$must_remove = "SELECT terms.id  AS `id` FROM terms WHERE terms.term_caller IN ('$must_remove')";
+			$must_remove = \lib\db::get($must_remove, 'id');
+			if(!empty($must_remove))
+			{
+				$must_remove = implode(",", $must_remove);
+				$query =
+				"
+					DELETE FROM termusages
+					WHERE
+						termusage_foreign = 'posts' AND
+						termusage_id = $_poll_id AND
+						term_id IN ($must_remove);
+				";
+				\lib\db::query($query);
+			}
 		}
 
 		$term_ids         = array_column($caller_term_id, 'id');
