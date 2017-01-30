@@ -156,18 +156,18 @@
 
 {%block feature_branding%}
 <div class="checkbox">
- <input type="checkbox" id="meta_branding" {%if poll.branding%}checked{%endif%}>
+ <input type="checkbox" id="meta_branding" {%if poll.brand.title%}checked{%endif%}>
  <label for="meta_branding" class="check-box"></label>
  <label for="meta_branding">{%trans "Branding"%}</label>
 </div>
 
-<div data-response='meta_branding' data-response-hide data-response-effect='fade'>
+<div data-response='meta_branding' {%if not poll.brand.title%}data-response-hide{%endif%} data-response-effect='fade'>
  <div class="element-branding">
-  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus>
+  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus value="{{poll.brand.title}}">
  </div>
 
  <div class="element-branding-url">
-  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off">
+  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" value={{poll.brand.url}}>
  </div>
 </div>
 {%endblock%}
@@ -192,7 +192,7 @@
 
 {%block feature_randomsort%}
 <div class="checkbox">
- <input type="checkbox" id="random_sort" {%if poll.random_sort%}checked{%endif%}>
+ <input type="checkbox" id="random_sort" {%if poll.options.random_sort%}checked{%endif%}>
  <label for="random_sort" class="check-box"></label>
  <label for="random_sort">{%trans "Randomize sort options"%}</label>
 </div>
@@ -268,7 +268,7 @@
   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
  </label>
 </div>
-<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" data-response-hide data-response-effect='slide'>{{poll.meta.desc}}</textarea>
+<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary%}data-response-hide{%endif%} data-response-effect='slide'>{{poll.summary}}</textarea>
 {%endblock%}
 
 
@@ -279,7 +279,7 @@
   <i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
  </label>
 </div>
-<textarea id='description' placeholder='{%trans "Description"%}' data-response="desc-show" data-response-hide data-response-effect='slide' data-resizable>{{poll.content}}</textarea>
+<textarea id='description' placeholder='{%trans "Description"%}' data-response="desc-show" {%if not poll.description%}data-response-hide{%endif%} data-response-effect='slide' data-resizable>{{poll.description}}</textarea>
 {%endblock%}
 
 

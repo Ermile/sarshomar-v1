@@ -1182,8 +1182,6 @@ function prepareQuestionData()
 		myQuestion.answers[_e] = thisOpt;
 	});
 
-	// save randomSort for multiple selection
-	myQuestion.random_sort = $('#random_sort').is(":checked");
 	if($('#meta_branding').is(":checked"))
 	{
 		myQuestion.brand       = {};
@@ -1201,6 +1199,8 @@ function prepareQuestionData()
 	// get subType
 	myQuestion.subType             = $('input[name="meta_choicemode"]:checked').val();
 
+	// save randomSort for multiple selection
+	myQuestion.options.random_sort = $('#random_sort').is(":checked");
 	// data of publish page
 	// articles
 	myQuestion.article = $('#article').attr('data-val');

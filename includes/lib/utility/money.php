@@ -85,6 +85,36 @@ trait money
 
 	];
 
+
+	/**
+	 * lock user if set this method for this time
+	 */
+	private static $userranrank_method_time =
+	[
+		'usespamword' =>
+		[
+			60 * 60 * 1,
+			60 * 60 * 2,
+			60 * 60 * 3,
+			-1,
+		],
+
+		'reported'    =>
+		[
+			60 * 60 * 72,
+			-1,
+		],
+
+		'wrongreport' =>
+		[
+			60 * 60 * 2,
+			60 * 60 * 4,
+			60 * 60 * 6,
+			60 * 60 * 8,
+		],
+	];
+
+
 	/**
 	* the money of filters
 	*/

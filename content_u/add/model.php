@@ -121,7 +121,8 @@ class model extends \content_u\home\model
 			$data = $_POST['data'];
 		}
 
-		$data = json_decode($data, true);
+		$data    = json_decode($data, true);
+		$request = utility\safe::safe($data);
 
 		$id = null;
 		if($_args)
@@ -129,7 +130,6 @@ class model extends \content_u\home\model
 			$id = (isset($_args->get("url")[0][1])) ? $_args->get("url")[0][1] : null;
 		}
 
-		$request = $data;
 		$method  = ['method' => 'post'];
 
 		if($id)

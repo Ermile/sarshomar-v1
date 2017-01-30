@@ -27,6 +27,7 @@ trait ready
 			'get_options' 		 => false,
 			'get_public_result'  => false,
 			'get_advance_result' => false,
+			'run_options' 		 => true,
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);
@@ -103,6 +104,11 @@ trait ready
 			$_poll_data['parent'] = shortURL::encode($_poll_data['parent']);
 		}
 
+		if(isset($_poll_data['content']))
+		{
+			$_poll_data['description'] = $_poll_data['content'];
+		}
+
 		// encode suervey
 		if(isset($_poll_data['survey']))
 		{
@@ -159,6 +165,12 @@ trait ready
 				$_poll_data['tree']['parent_id'] = shortURL::encode($_poll_data['parent']);
 				$_poll_data['tree']['title']     = \lib\db\polls::get_poll_title($_poll_data['parent']);
 			}
+		}
+
+		if(isset($_poll_data['meta']['summary']))
+		{
+			$_poll_data['summary'] = $_poll_data['meta']['summary'];
+			unset($_poll_data['meta']['summary']);
 		}
 
 		unset($_poll_data['meta']);
@@ -224,7 +236,7 @@ trait ready
 
 			$post_meta_key = array_column($post_meta, 'option_value');
 
-			if(in_array('random_sort', $post_meta_key))
+			if(in_array('random_sort', $post_meta_key) && $_options['run_options'])
 			{
 				if(isset($_poll_data['answers']) && is_array($_poll_data['answers']))
 				{
@@ -242,30 +254,30 @@ trait ready
 				// unset($_poll_data['options']['random_sort']);
 			}
 
-			if(in_array('hidden_result', $post_meta_key))
+			if(in_array('hidden_result', $post_meta_key) && $_options['run_options'])
 			{
 				unset($_poll_data['stats']);
 				// unset($_poll_data['options']['hidden_result']);
 			}
 
-			$branding = [];
+			$brand = [];
 
 			foreach ($post_meta as $key => $value)
 			{
-				if($value['option_key'] == 'branding')
+				if($value['option_key'] == 'brand')
 				{
-					$branding['title'] = $value['option_value'];
+					$brand['title'] = $value['option_value'];
 					if(isset($value['option_meta']['url']))
 					{
-						$branding['url'] = $value['option_meta']['url'];
+						$brand['url'] = $value['option_meta']['url'];
 					}
 				}
 			}
 
-			if(!empty($branding))
+			if(!empty($brand))
 			{
-				$_poll_data['branding'] = $branding;
-				// unset($_poll_data['options']['branding']);
+				$_poll_data['brand'] = $brand;
+				unset($_poll_data['options']['brand']);
 			}
 		}
 
@@ -273,7 +285,8 @@ trait ready
 		{
 			$_poll_data = array_filter($_poll_data);
 		}
-
+		// var_dump($_poll_data);
+		// exit();
 		return $_poll_data;
 	}
 }
