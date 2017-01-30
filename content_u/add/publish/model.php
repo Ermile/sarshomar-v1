@@ -110,10 +110,6 @@ trait model
 				}
 			}
 
-			if(utility::post("cat"))
-			{
-				\lib\db\cats::set(utility::post("cat"), $poll_survey_id);
-			}
 		}
 
 

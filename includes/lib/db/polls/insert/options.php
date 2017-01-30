@@ -70,17 +70,13 @@ trait options
 			}
 		}
 
-		// save meta hidden_result
-		if(isset(self::$args['options']['hidden_result']))
+		if(self::$args['hidden_result'])
 		{
-			if(self::$args['options']['hidden_result'])
-			{
-				self::save_options('hidden_result', true);
-			}
-			else
-			{
-				self::save_options('hidden_result', false);
-			}
+			self::save_options('hidden_result', true);
+		}
+		else
+		{
+			self::save_options('hidden_result', false);
 		}
 
 		// save meta ordering
@@ -97,33 +93,42 @@ trait options
 		}
 
 		// save meta start_date
-		if(isset(self::$args['options']['start_date']))
+		if(isset(self::$args['schedule']['start']))
 		{
-			if(self::$args['options']['start_date'] && \DateTime::createFromFormat('Y-m-d', self::$args['options']['start_date']) === false)
+			if(self::$args['schedule']['start'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['start']) === false)
 			{
-				return debug::error(T_("Invalid arguments start_date"), 'start_date', 'arguments');
+				return debug::error(T_("Invalid arguments start"), 'schedule', 'arguments');
 			}
-			self::save_options('start_date', self::$args['options']['start_date']);
+			self::save_options('start_date', self::$args['schedule']['start']);
 		}
 
 		// save meta end_date
-		if(isset(self::$args['options']['end_date']))
+		if(isset(self::$args['schedule']['end']))
 		{
-			if(self::$args['options']['end_date'] && \DateTime::createFromFormat('Y-m-d', self::$args['options']['end_date']) === false)
+			if(self::$args['schedule']['end'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['end']) === false)
 			{
 				return debug::error(T_("Invalid arguments end_date"), 'end_date', 'arguments');
 			}
-			self::save_options('end_date', self::$args['options']['end_date']);
+			self::save_options('end_date', self::$args['schedule']['end']);
 		}
 
 		// save meta article
-		if(isset(self::$args['options']['article']) && self::$args['permission_sarshomar'] === true)
+		if(self::$args['article'])
 		{
-			if(self::$args['options']['article'] && !preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['options']['article']))
+			if(!is_array(self::$args['article']))
 			{
-				return debug::error(T_("Invalid arguments article"), 'article', 'arguments');
+				return debug::error(T_("Parameter article must be array"), 'article', 'arguments');
 			}
-			self::save_options('article', \lib\utility\shortURL::decode(self::$args['options']['article']));
+
+			foreach (self::$args['article'] as $key => $value)
+			{
+				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", $value))
+				{
+					return debug::error(T_("Invalid arguments article on index :key", ['key' => $key]), 'article', 'arguments');
+					break;
+				}
+				self::save_options('article', \lib\utility\shortURL::decode($value));
+			}
 		}
 
 		/**
@@ -164,11 +169,16 @@ trait options
 			}
 		}
 
-		if(isset(self::$args['options']['tags']) && is_array(self::$args['options']['tags']))
+		if(self::$args['tags'])
 		{
+			if(!is_array(self::$args['tags']))
+			{
+				return debug::error(T_("Parameter tags must be array"), 'tags', 'arguments');
+			}
+
 			$remove_tags = \lib\db\tags::remove(self::$poll_id);
 
-			$tags = self::$args['options']['tags'];
+			$tags = self::$args['tags'];
 
 			$check_count = array_filter($tags);
 
@@ -201,12 +211,14 @@ trait options
 			$useage = \lib\db\termusages::insert_multi($useage_arg);
 		}
 
-		if(isset(self::$args['options']['cats']))
+		if(self::$args['cats'])
 		{
-			\lib\db\cats::set(self::$args['options']['cats'], self::$poll_id);
+			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cats']))
+			{
+				return debug::error(T_("Invalid parameter cats"), 'cats', 'arguments');
+			}
+			\lib\db\cats::set(utility\shortURL::decode(self::$args['cats']), self::$poll_id);
 		}
-
-
 	}
 
 

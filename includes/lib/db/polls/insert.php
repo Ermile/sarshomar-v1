@@ -82,6 +82,16 @@ trait insert
 			'tree'         					  => [],
 			// brand
 			'brand' 						  => [],
+			// the schedule
+			'schedule'						  => [],
+			// hidden result
+			'hidden_result' 				  => false,
+			// article
+			'article'       				  => [],
+			// tags
+			'tags'          				  => [],
+			// cats
+			'cats'          				  => null,
 		];
 
 		$_args = array_merge($default_value, $_args);

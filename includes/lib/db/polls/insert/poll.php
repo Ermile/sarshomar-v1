@@ -127,7 +127,7 @@ trait poll
 		if(self::$args['language'])
 		{
 			// check language
-			if(self::$args['language'] && !\lib\utility\location\languages::check(self::$args['language']))
+			if(!\lib\utility\location\languages::check(self::$args['language']))
 			{
 				return \lib\debug::error(T_("Invalid parametr language"), 'language', 'arguments');
 			}

@@ -11,7 +11,7 @@
     "parent": "code",
     "answers": "skipped|true|[1,2]"
   },
-  "branding":
+  "brand":
   {
     "title" : "string",
     "url" : "string|null"
