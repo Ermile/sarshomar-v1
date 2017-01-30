@@ -167,15 +167,18 @@ class model extends \content_u\home\model
 	{
 		if(utility::get("list"))
 		{
+			$request = [];
+			$request['type'] = utility::get("list");
+			$request['search'] = utility::get("q");
+			if(utility::get('parent') != '~')
+			{
+				$request['parent'] = utility::get('parent');
+			}
+
 			utility::$REQUEST = new utility\request(
 				[
-					'method' => 'array',
-					'request' =>
-					[
-						'type'   => utility::get("list"),
-						'search' => utility::get("q"),
-						'parent' => utility::get("parent"),
-					]
+					'method'  => 'array',
+					'request' => $request,
 				]
 			);
 			$result = $this->search();
