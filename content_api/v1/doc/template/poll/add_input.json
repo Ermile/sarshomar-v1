@@ -1,11 +1,11 @@
 {
   "title": "string",
   "survey": "null|code",
-  "status": "draft|publish",
+  "status": "draft|publish|null to set draft",
   "language": "fa|en|ar|null for set as default",
   "summary": "string|null",
   "description": "string|null",
-  "file": "[upload_name]|url|null",
+  "file": "url|null",
   "tree":
   {
     "parent": "code",
@@ -20,8 +20,8 @@
   [
     {
       "title": "null|string",
-      "type": "select",
-      "file": "url|answer_file[]",
+      "type": "select|upload|notify",
+      "file": "url",
       "select":
       {
         "is_true": "true|false",
@@ -38,10 +38,10 @@
     "range_timing_max": "int|null",
     "choice_count_min": "int|null",
     "choice_count_max": "int|null",
-    "random_sort": "true|false",
+    "random_sort": "true|false|null",
     "ordering": "true|false"
   },
-  "hidden_result": "true|false",
+  "hidden_result": "true|false|null",
   "schedule":
   {
     "start" : "null|date_time",
@@ -104,3 +104,4 @@
     ]
   }
 }
+
