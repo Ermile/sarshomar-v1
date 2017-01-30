@@ -225,27 +225,28 @@ class model extends \mvc\model
 				[
 					[
 					 'key' => 'استقلال',
+					 "color" =>  "#3687c8",
 					 'value' => 100
 					],
 					[
 					 'key' => 'پرسپولیس',
+					 "color" =>  "#ff0e17",
 					 'value' => 10
 					],
 					[
 					 'key' => 'تراکتورسازی',
+					 "color" =>  "#ee2424",
 					 'value' => 500
 					],
 					[
-					 'key' => 'نفت تهران',
-					 'value' => 70
-					],
-					[
 					 'key' => 'سپاهان',
+					 "color" =>  "#ffcc00",
 					 'value' => 100
 					],
 					[
-					 'key' => 'ملوان',
-					 'value' => 60
+					 'key' => 'سایر',
+					 "color" =>  "#e21b22",
+					 'value' => 70
 					],
 				]
 			];

@@ -573,7 +573,8 @@ function drawChart()
 			    "axisAlpha": 0,
   			}],
 
-			"categoryAxis": {
+			"categoryAxis":
+			{
     			"gridPosition": "start",
     			"gridAlpha": 0,
     			"tickPosition": "start",
@@ -592,11 +593,7 @@ function drawChart()
 			myChartOptions = window[attrFormat](myChartOptions);
 		}
 
-
-
-
 		AmCharts.makeChart( chartContainer, myChartOptions);
-
 	});
 }
 
