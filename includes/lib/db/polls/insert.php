@@ -207,7 +207,7 @@ trait insert
 
 			if(self::$debug)
 			{
-				debug::true(T_("Poll Successfully {$msg_mod}ed"));
+				// debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			}
 
 			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];

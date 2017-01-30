@@ -64,32 +64,36 @@ trait add
 			return debug::error(T_("Can not send parametr id in post mod"), 'id', 'arguments');
 		}
 
-
-
 		// insert args
 		$args                         = [];
+		$args['update']               = $update;
+		$args['debug']                = $this->debug;
 		$args['user']                 = $this->user_id;
+		$args['method']               = $_args['method'];
+		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;
+		$args['permission_sarshomar'] = $this->access('u', 'sarshomar_knowledge', 'add');
+		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
 		$args['title']                = utility::request("title");
 		$args['answers']              = utility::request("answers");
 		$args['survey']               = utility::request('survey');
 		$args['status']               = utility::request('status');
-		// $args['comment']           = utility::request('comment');
 		$args['summary']              = utility::request('summary');
 		$args['description']          = utility::request('description');
 		$args['language']             = utility::request('language');
 		$args['file']                 = utility::request('file');
-		// $args['slug']              = utility::request('slug');
 		$args['tree']                 = utility::request('tree');
-		// $args['type']              = utility::request("type");
 		$args['options']              = utility::request("options");
 		$args['brand']                = utility::request("brand");
 		$args['from']                 = utility::request("from");
-		$args['update']               = $update;
-		$args['shortURL']             = \lib\utility\shortURL::ALPHABET;
-		$args['permission_sarshomar'] = $this->access('u', 'sarshomar_knowledge', 'add');
-		$args['permission_profile']   = $this->access('u', 'complete_profile', 'admin');
-		$args['debug']                = $this->debug;
-		$args['method']               = $_args['method'];
+		$args['schedule']             = utility::request('schedule');
+		$args['hidden_result']        = utility::request('hidden_result');
+		$args['article']              = utility::request('article');
+		$args['tags']                 = utility::request('tags');
+		$args['cats']                 = utility::request('cats');
+
+		// $args['comment']           = utility::request('comment');
+		// $args['slug']              = utility::request('slug');
+		// $args['type']              = utility::request("type");
 
 		if(utility::files("poll_file"))
 		{
