@@ -1228,10 +1228,10 @@ function prepareQuestionFilter()
 {
 	var myFilters = {};
 	// get total person
-	var totalPerson  = $('#rangepersons').data('range-slider');
+	var totalPerson  = $('input[name="rangepersons-max"]').val();
 	if(totalPerson)
 	{
-		totalPerson = totalPerson.to;
+		// totalPerson = totalPerson.to;
 	}
 	else
 	{
