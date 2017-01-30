@@ -18,16 +18,7 @@ class view extends \content_u\home\view
 		$this->data->page['title']   = T_('Add');
 		$this->data->page['desc']    = T_("Add new poll");
 
-		$this->data->step =
-		[
-			'current'      => 'add',
-			'add'          => true,
-			'filter'       => false,
-			'publish'      => false,
-			'link_add'     => false,
-			'link_filter'  => false,
-			'link_publish' => false,
-		];
+
 		// check permisson
 		if($this->access('u', 'complete_profile', 'admin'))
 		{
@@ -65,8 +56,26 @@ class view extends \content_u\home\view
 
 		$poll = $_args->api_callback;
 
-		$this->data->answers         = isset($poll['answers']) 	? $poll['answers'] 	: null;
-
+		if(isset($poll['answers']))
+		{
+			if(count($poll['answers']) > 2)
+			{
+				$answers = $poll['answers'];
+			}
+			elseif(count($poll['answers']) == 1)
+			{
+				$answers = [$poll['answers'], []];
+			}
+			else
+			{
+				$answers = [[],[]];
+			}
+		}
+		else
+		{
+			$answers = [[],[]];
+		}
+		$this->data->answers = $answers;
 		unset($poll['answers']);
 
 		$this->data->poll            = $poll;
