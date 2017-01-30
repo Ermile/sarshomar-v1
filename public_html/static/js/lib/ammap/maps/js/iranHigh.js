@@ -188,7 +188,7 @@ var iranMap = AmCharts.makeChart('iran-map',
 
  	"areasSettings": {
   		"autoZoom": true,
-  		"selectedColor": "#CC0000"
+  		"selectedColor": "#e5a428"
  	},
 
  	"smallMap": {

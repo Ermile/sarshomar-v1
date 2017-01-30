@@ -380,7 +380,7 @@ AmCharts.maps.worldLow={
 				},
 				{
 					"id":"IL",
-					"title":"Israel",
+					"title":"Palestine",
 					"d":"M575.41,366.82L574.92,367.87L573.9,367.41L573.32,369.61L574.02,369.97L573.31,370.43L573.18,371.29L574.5,370.84L574.57,372.11L573.17,377.28L571.33,371.73L572.14,370.65L571.95,370.46L572.69,368.93L573.26,366.43L573.66,365.59L573.74,365.56L574.68,365.56L574.94,364.98L575.69,364.93L575.73,366.3L575.35,366.8z"
 				},
 				{
@@ -900,7 +900,6 @@ AmCharts.maps.worldLow={
 
 
 
-
 var worldMap = AmCharts.makeChart('world-map',
 {
 	"type": "map",
@@ -914,10 +913,10 @@ var worldMap = AmCharts.makeChart('world-map',
 
 	"areasSettings": {
 		"autoZoom": true,
-		"selectedColor": "#CC0000"
+		"selectedColor": "#e5a428"
 	},
 
 	"smallMap": {
-		"backgroundAlpha": 0.5
+		"backgroundAlpha": 0.1
 	}
 });
