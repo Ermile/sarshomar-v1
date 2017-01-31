@@ -11,11 +11,22 @@ function runTagDetector()
 	// handle enter
 	$(document).on('keypress', '.tagDetector .tagInput', function(e)
 	{
+		console.log(e.which);
 		// if Enter pressed disallow it and run add func
-		if (e.which == 13)
+		switch(e.which)
 		{
-			addNewTags(this);
-			return false;
+			// enter
+			case 13:
+			// comma
+			case 44:
+			// semicolon
+			case 59:
+				addNewTags(this);
+				return false;
+				break;
+
+			default:
+				break;
 		}
 	});
 	// handle click on btn
