@@ -1881,3 +1881,7 @@ code {font-size: 1.2em;}
    color: inherit;
   }
 /*# sourceMappingURL=awesomplete.css.map */
+
+[data-copy]{position:relative;}
+[data-copy]::after{position:absolute;top:-5px;right:30px;display:block;content:"copied";font-size:0.9em;padding:0.5em 1em;color:#fff;background-color:#00667a;border-radius:2px;opacity:0;transition:0.2s;}
+.copied[data-copy]::after{opacity:1}

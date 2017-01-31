@@ -47,15 +47,15 @@
    <label class="title large">{%trans "Language"%}</label>
    {% set lang_list = langList({'all' : true}) %}
    {%for key, value in lang_list%}
-   <input type="radio" name="ui-language" value="{{key}}" id="language-{{key}}" {%if site.currentlang == key %}checked{%endif%}>
+   <input type="radio" value="{{key}}" id="language-{{key}}" {%if site.currentlang == key %}checked{%endif%}>
    <label for="language-{{key}}">{{value}}</label>
    {%endfor%}
   </div>
 
   <div class="element no-pad ltr-element">
    <label class="title large" for="short_url">{%trans "Short URL"%}</label>
-   <input class="input" type="text" name="short_url" id="short_url" disabled>
-   <button class="btn"><span class="icon-link"></span></button>
+   <input class="input" type="text" id="short_url" value='{{poll.url}}' readonly>
+   <button class="btn"><span class="icon-link" data-copy='#short_url'></span></button>
   </div>
  </div>
 

@@ -144,6 +144,39 @@ function resizableTextarea()
 
 
 /**
+ * [copy description]
+ * @return {[type]} [description]
+ */
+function handleCopy()
+{
+	$('[data-copy]').on('click', function()
+	{
+		var $this = $(this);
+		var targetEl = $($this.attr('data-copy'));
+		if(targetEl.length)
+		{
+			targetEl.attr('disabled', null);
+			targetEl.select();
+			try
+			{
+				// copy to clipboard
+				document.execCommand('copy');
+				targetEl.blur();
+
+				// copied animation
+				$this.addClass('copied');
+				setTimeout(function() { $this.removeClass('copied'); }, 200);
+			}
+			catch (err)
+			{
+				console.log('cant copy! Ctrl/Cmd+C to copy')
+			}
+		}
+	})
+}
+
+
+/**
  * [isActiveChecker description]
  * @return {[type]} [description]
  */
@@ -1089,7 +1122,7 @@ function sendQuestionData()
 					}
 					else
 					{
-						var myurl = window.location.pathname + '/' + id;
+						var myurl = window.location.pathname + '/' + id + window.location.hash;
 						// add new and redirect url
 						$('#question-add').attr('data-id', id);
 						$('#short_url').val(id);
@@ -1409,6 +1442,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	// simulateTreeNavigation();
 	checkNextStep();
+	// handle copy btn
+	handleCopy();
 
 	$('.page-progress input').on('click', function(e)
 	{
