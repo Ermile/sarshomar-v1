@@ -20,6 +20,7 @@ class model extends \content_u\home\model
 
 	use \content_api\v1\poll\search\tools\search;
 
+
 	/**
 	 * Gets the add.
 	 *

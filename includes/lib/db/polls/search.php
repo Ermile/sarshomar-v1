@@ -73,7 +73,8 @@ trait search
 
 			// default we check the language of user
 			// and load only the post was this language or her lang is null
-			"check_language"  => true,
+			"check_language" => true,
+			'api_mode'       => false,
 
 		];
 		$_options = array_merge($default_options, $_options);
@@ -206,6 +207,12 @@ trait search
 			$where[] = " (posts.post_language IS NULL OR posts.post_language = '$language') ";
 		}
 
+		$api_mode = false;
+		if($_options['api_mode'] === true)
+		{
+			$api_mode = true;
+		}
+
 		// ------------------ remove system index
 		// unset some value to not search in database as a field
 		unset($_options['pagenation']);
@@ -222,6 +229,7 @@ trait search
 		unset($_options['search_post']);
 		unset($_options['check_language']);
 		unset($_options['sort']);
+		unset($_options['api_mode']);
 
 		foreach ($_options as $key => $value)
 		{
@@ -253,8 +261,11 @@ trait search
 				$search = " AND ". $search;
 			}
 		}
-
-		if($pagenation && !$get_count)
+		if($api_mode)
+		{
+			$limit = " LIMIT $start_limit, $limit ";
+		}
+		elseif($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	$public_fields	WHERE $where $search ";
 			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
@@ -289,7 +300,7 @@ trait search
 
 		$query =
 		"
-			SELECT
+			SELECT SQL_CALC_FOUND_ROWS
 				$public_fields
 			$my_fav
 			$my_like
@@ -311,6 +322,13 @@ trait search
 		{
 			$result = \lib\db::get($query, 'postcount', true);
 		}
+
+		if($api_mode)
+		{
+			$found_rows = \lib\db::get("SELECT FOUND_ROWS() AS `total`", 'total', true);
+			\lib\storage::set_total_record($found_rows);
+		}
+
 		return $result;
 	}
 }

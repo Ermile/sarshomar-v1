@@ -42,7 +42,6 @@ class view extends \content_u\home\view
 
 		// load empty answers for first loading
 		$this->data->answers = [[],[]];
-
 	}
 
 

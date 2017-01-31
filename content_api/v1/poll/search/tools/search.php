@@ -83,6 +83,7 @@ trait search
 		}
 
 		$meta['login']       = $this->user_id;
+		$meta['api_mode']    = $this->api_mode;
 		$meta['start_limit'] = $from;
 		$meta['limit']       = $to - $from;
 		$result              = \lib\db\polls::search($search, $meta);
@@ -97,14 +98,9 @@ trait search
 			}
 		}
 
-		$tmp_result['from'] = $from;
-		$tmp_result['to']   = (int) $from  + count($tmp_result['data']);
-		$page = \lib\storage::get_pagnation();
-
-		if(isset($page['total_records']))
-		{
-			$tmp_result['total'] = $page['total_records'];
-		}
+		$tmp_result['from']  = $from;
+		$tmp_result['to']    = (int) $from  + count($tmp_result['data']);
+		$tmp_result['total'] = (int) \lib\storage::get_total_record();
 
 		return $tmp_result;
 	}

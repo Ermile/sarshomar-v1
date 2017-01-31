@@ -55,8 +55,8 @@ class model extends \mvc\model
 				'my_poll' => $my_poll
 			]
 		]);
-
-		$this->user_id = $this->login('id');
+		$this->api_mode = false;
+		$this->user_id  = $this->login('id');
 
 		return $this->poll_search($_args);
 	}

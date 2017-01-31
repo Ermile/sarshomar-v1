@@ -5,6 +5,8 @@ use \lib\utility;
 class model extends \content_api\v1\home\model
 {
 
+	public $api_mode = true;
+
 	use tools\search;
 	/**
 	 * Gets the search.
