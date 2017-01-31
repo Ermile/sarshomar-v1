@@ -98,99 +98,64 @@ class poll
 
 	public static function discard($_query, $_data_url)
 	{
-		handle::send_log_clear();
 		$poll_id = $_data_url[2];
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
-			[
-			'id' 	=> $poll_id,
-			'status'	=> 'publish'
-			]
-		]);
-		$add_poll = \lib\main::$controller->model()->add_poll(null, true);
-		handle::send_log(['debug' => \lib\debug::compile(), 'change' => $add_poll]);
-		return;
-		$poll_id = session::get('poll');
+		$return = ['text' => 'Your poll Discarded.'];
+		step::stop();
+		session::remove('poll');
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+
 		$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll_id, function($_maker){
 			$_maker->message->message['sucsess'] = T_('Poll Discarded');
 			$_maker->message->add("discard", '#'.T_('Discarded'));
 		});
 
-		step::stop();
-		session::remove('poll');
-		session::remove_back('expire', 'inline_cache', 'create');
-		session::remove('expire', 'inline_cache', 'create');
 		unset($edit['reply_markup']);
 		unset($edit['response_callback']);
 		callback_query::edit_message($edit);
-		return ['text' => 'Your poll Discarded.'];
+		return $return;
 	}
 
 	public static function save($_query, $_data_url)
 	{
-		handle::send_log_clear();
 		$poll_id = $_data_url[2];
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
-			'id' 	=> $poll_id,
+			'id' 		=> $poll_id,
 			'status'	=> 'publish'
 			]
 		]);
-		$add_poll = \lib\main::$controller->model()->add_poll(null, true);
-		handle::send_log(['debug' => \lib\debug::compile(), 'change' => $add_poll]);
-		// if(\lib\debug::$status)
-		// {
-			// session::set('poll', $add_poll['id']);
-		// }
-
-
-		return;
-		\lib\storage::set_disable_edit(true);
-
-		$poll_draft = session::get('poll');
-		$poll_title = $poll_draft->title;
-
-		$poll_answers = (array) $poll_draft->answers;
-
-		$answers = [];
-		foreach ($poll_answers as $key => $value) {
-			$answers[]['txt'] = $value;
-		}
-
-		$file_id = false;
-		if(session::get('poll', 'file_addr'))
-		{
-			 $file_id = \lib\utility\upload::temp_move(session::get('poll', 'file_addr'), ['user_id' => bot::$user_id]);
-		}
-
-		\lib\db::transaction();
-		$insert = [
-			'user_id' 		=> bot::$user_id,
-			'post_title'	=> $poll_title,
-			'post_status' 	=> 'publish',
-			'post_type'		=> 'select',
-			'post_privacy'	=> 'private',
-			'post_language'	=> language::check(true)
-			];
-		$insert['post_meta'] = ['port' => 'telegram'];
-		if($file_id)
-		{
-			$insert['post_meta']['attachment_id'] 	= $file_id->get_result();
-			$insert['post_meta']['data_type'] 		= session::get('poll', 'file_type');
-		}
-
-
-		$poll_id = \lib\db\polls::insert($insert);
-		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
+		$add_poll = \lib\main::$controller->model()->add_poll(['method' => 'patch']);
 		if(\lib\debug::$status)
 		{
-			\lib\db::commit();
-		}
-		if($poll_id)
-		{
-			self::get_after_change($poll_id, false);
 			step::stop();
-			session::remove('poll');
+			$edit = ask::make(null, null, $add_poll['id']);
+			session::remove_back('expire', 'inline_cache');
+			session::remove('expire', 'inline_cache');
+			callback_query::edit_message($edit);
 		}
+		else
+		{
+			$_errors = \lib\debug::compile();
+			$errors = $_errors['messages']['error'];
+
+			$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll_id, function($_maker) use ($errors){
+					$_maker->message->message['sucsess'] = T_('Error in poll publish');
+					$error_text = [];
+					foreach ($errors as $key => $value) {
+						$error_text[] = "❌ $value[title]";
+					}
+					$_maker->message->add("insert", join($error_text, "\n"));
+					handle::send_log(func_get_args());
+					$_maker->message->add("error", '#'.T_('Error'));
+			});
+
+			callback_query::edit_message($edit);
+			session::remove_back('expire', 'inline_cache', 'create');
+			return [];
+		}
+
+		return [];
 	}
 
 	public static function pause($_query, $_data_url)
@@ -225,19 +190,19 @@ class poll
 
 	public static function delete($_query, $_data_url)
 	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		$status = ($status == 'draft') ? 'pause' : $status;
-		if($status != 'pause' && $status != 'deleted')
+		$poll_id = isset($_data_url[2]) ? $_data_url[2] : null;
+		if(!$poll_id)
 		{
-			self::publish($_query, $_data_url);
-			return ;
+			session::remove_back('expire', 'inline_cache', 'create');
+			session::remove('expire', 'inline_cache', 'create');
+			callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
+			step::stop();
+			return [];
 		}
-		$result = \lib\db\polls::update(['post_status' => 'deleted'], $poll_id);
+		$delete = \lib\main::$controller->model()->poll_delete(['id' => $poll_id]);
+		return [];
 		\lib\storage::set_disable_edit(true);
-		$maker = new make_view(bot::$user_id, $poll_id, true);
+		$maker = new make_view($poll_id);
 		$maker->message->add_title(false);
 		$maker->message->add_poll_chart(true);
 		$maker->message->add_poll_list(true);

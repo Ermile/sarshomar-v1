@@ -17,6 +17,7 @@ class controller extends \lib\mvc\controller
 	public static $microtime_log;
 	function _route()
 	{
+		handle::send_log_clear();
 		if(isset($_GET['log']))
 		{
 			header('Content-Type: application/json');
@@ -102,7 +103,6 @@ class controller extends \lib\mvc\controller
 		if($get_back_response && !\lib\storage::get_disable_edit())
 		{
 			foreach ($get_back_response as $key => $value) {
-
 				$edit_return = commands\utility::object_to_array($value->on_expire);
 				$get_original = session::get('expire', 'inline_cache', $key);
 				$callback_query = (array) session::get('tmp', 'callback_query');
@@ -129,6 +129,7 @@ class controller extends \lib\mvc\controller
 		{
 			var_dump($result);
 		}
+		handle::send_log(\lib\debug::compile());
 		exit();
 	}
 }

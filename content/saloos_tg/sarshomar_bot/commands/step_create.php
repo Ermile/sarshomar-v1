@@ -39,7 +39,7 @@ class step_create
 		[
 		[
 		"text" => T_("Cancel"),
-		"callback_data" => 'poll/discard'
+		"callback_data" => 'poll/delete'
 		]
 		]
 		]
@@ -59,10 +59,8 @@ class step_create
 	 */
 	public static function step2($_question)
 	{
-		handle::send_log_clear();
 		preg_match("/^type_(.*)$/", $_question, $file_content);
 		$get_poll = '3KZZh'; //session::get('poll');
-		session::set('poll', '3KZZh');
 
 		if($get_poll)
 		{
@@ -129,9 +127,10 @@ class step_create
 					$poll_request['answers'][] = ['title' => $value, 'type' => 'select'];
 				}
 			}
+			$poll_request['language'] = callback_query\language::check(true);
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-			$add_poll = \lib\main::$controller->model()->add_poll(['method' => $get_poll ? 'put' : 'post']);
+			$add_poll = \lib\main::$controller->model()->add_poll(['method' => $get_poll ? 'patch' : 'post']);
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
@@ -176,7 +175,7 @@ class step_create
 		$inline_keyboard = [
 			[
 				['text' => T_('Publish'), 'callback_data' => 'poll/save/' . $poll_id],
-				['text' => T_('Discard'), 'callback_data' => 'poll/discard/' . $poll_id]
+				['text' => T_('Discard'), 'callback_data' => 'poll/delete/' . $poll_id]
 			],
 			[
 				['text' => T_('Save as draft'), 'callback_data' => 'poll/back'],
