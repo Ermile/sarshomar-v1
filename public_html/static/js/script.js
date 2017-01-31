@@ -1105,7 +1105,8 @@ function sendQuestionData()
 				$('#question-add').addClass('failed');
 				console.log('error!');
 			}
-		}
+		},
+		lockForm: false,
 	});
 
 	$('#question-add').attr('data-saving-timeout', null);
