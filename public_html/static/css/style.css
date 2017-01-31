@@ -1486,6 +1486,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .tagDetector .element{margin-bottom:0}
 .tagDetector.separate{display:block}
 
+.stepAdd .tagDetector .tagBox span{max-width:200px;overflow:hidden;text-overflow:ellipsis}
+
 
 /************************************************************** element slider */
 .element .element-slider{-webkit-box-flex:1;-ms-flex:1;flex:1}
@@ -1526,7 +1528,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-branding-url::after{right:-40px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 .element-branding-url input[type="text"]{width:100%;height:100%;line-height:100%;border:none;padding:0;background-color:transparent;color:#00667a;text-align:center;font-size:1.2em;direction:ltr}
 
-.element-in .awesomplete{background-color:red;-webkit-box-flex:1;-ms-flex:1;flex:1}
+.element-in .awesomplete{-webkit-box-flex:1;-ms-flex:1;flex:1}
 .element-in .awesomplete input{display:block;width:100%;height:35px;border:none;padding:0 5px}
 
 
