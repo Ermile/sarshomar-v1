@@ -26,41 +26,42 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$count = (int) \lib\db\polls::search(null, [
-			'get_count' => true,
-			'user_id'=> bot::$user_id,
-			'pagenation' => false,
-			'my_poll' => true,
-			'post_status' => ['in', "('publish', 'pause', 'draft')"],
-			]);
 		$message_per_page = 3;
-		$total_page = ceil($count / $message_per_page);
-
-		$page = (int) $_data_url[2];
-		$start = ($page - 1) * $message_per_page;
-		$end = $message_per_page;
-		if(is_null($_query) || $page > $total_page)
+		if(is_null($_query))
 		{
-			$start = 0;
 			$page = 1;
+			$start = 0;
 		}
-		$query_result = \lib\db\polls::search(null, [
-			'user_id'=> bot::$user_id,
-			'pagenation' => false,
-			'start_limit' => $start,
-			'end_limit' => $end,
-			'my_poll' => true,
-			'post_status' => ['in', "('publish', 'pause', 'draft')"],
-			'order' => 'DESC',
+		else
+		{
+			$page = (int) $_data_url[2];
+			$start = (($page-1) * $message_per_page);
+		}
+
+
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' => [
+				'my_poll' 	=> true,
+				'from'  	=> (int) $start,
+				'to'  		=> (int) ($start + $message_per_page),
+			]
 			]);
-		$message = $page . "/" . $total_page . "\n";
+		handle::send_log(\lib\utility::request());
+		$search = \lib\main::$controller->model()->poll_search(true);
+		handle::send_log($search);
+
+		$query_result = $search['data'];
+
+		$total_page = ceil($search['total'] / $message_per_page);
+
+		$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
 		foreach ($query_result as $key => $value) {
 			$message .= $value['title'];
-			$message .= " ($value[total])";
+			$message .= utility::nubmer_language("($value[count_vote])");
 			$message .= ' - ' . T_(ucfirst($value['status']));
 			$message .= "\n";
-			$short_link = \lib\utility\shortURL::encode($value['id']);
-			$message .= "/sp_$short_link";
+			$message .= "/sp_" . $value['id'];
 			$message .= "\n\n";
 		}
 		$return = ['text' => $message];
@@ -186,6 +187,12 @@ class poll
 		}
 		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
 		self::get_after_change($poll_id, $_query);
+	}
+
+	public static function back()
+	{
+		step::stop();
+		session::remove('poll');
 	}
 
 	public static function delete($_query, $_data_url)
