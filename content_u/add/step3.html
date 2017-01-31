@@ -9,9 +9,9 @@
 
  <div class="element select no-pad">
   <label class="title large" for="category">{%trans "Category"%}</label>
-  <input type="text" id="cat0" placeholder='{%trans "Main Category"%}' class='category autoList' data-find='cat' data-call='fillCategory' data-parent="~">
-  <input type="text" id="cat1" placeholder='{%trans "Sub Category"%}' class='category autoList' data-find='cat' data-parent="abc">
-  <input type="text" id="cat2" placeholder='{%trans "child Category"%}' class='category autoList' data-find='cat' data-parent="abc">
+  <input type="text" id="cat0" placeholder='{%trans "Main Category"%}' class='category autoList' data-find='profile' data-parent="">
+  <input type="text" id="cat1" placeholder='{%trans "Sub Category"%}' class='category autoList' data-find='profile' data-parent="#cat0">
+  <input type="text" id="cat2" placeholder='{%trans "child Category"%}' class='category autoList' data-find='profile' data-parent="#cat1">
 
 
 {%if false%}
