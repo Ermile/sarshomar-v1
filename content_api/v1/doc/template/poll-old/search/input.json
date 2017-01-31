@@ -1,6 +1,0 @@
-{
-  "search": "string|null to get last",
-  "my_poll": "true|false|null",
-  "get_count": "true|false|null",
-  "language": "fa|en|ar|null"
-}

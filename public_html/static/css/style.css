@@ -1717,7 +1717,7 @@ code {font-size: 1.2em;}
 .table.method-table>div>span:nth-child(2) {flex: 1;}
 .table.method-table>div>span:last-child {flex: .3;}
 .table>div>span>label {color: #54b4ef;cursor: pointer;}
-.inner-table {border: 3px solid #e0e0e0;border-bottom: 0;border-top: 0;}
+.inner-table {border: 18px solid #e0e0e0;border-bottom: 0;border-top: 0;}
 
 
 /************************************************************** Token Page */

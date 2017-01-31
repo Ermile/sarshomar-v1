@@ -1,4 +1,0 @@
-{
-  "id"     : "[poll id]",
-  "fav": "true|false|[leave it null to toggle favorites]"
-}
