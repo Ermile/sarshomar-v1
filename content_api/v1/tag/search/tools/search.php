@@ -41,18 +41,20 @@ trait search
 					}
 				}
 				$result = \lib\db\terms::search($search, $meta);
+
 				if(is_array($result))
 				{
 					foreach ($result as $key => $value)
 					{
 						if(isset($value['id']))
 						{
-							$result[$key]['id'] = utility\shortURL::encode($value['id']);
+							$result[$key]['value'] = utility\shortURL::encode($value['id']);
+							unset($result[$key]['id']);
 						}
 
 						if(isset($value['parent']))
 						{
-							$result[$key]['value'] = utility\shortURL::encode($value['parent']);
+							unset($result[$key]['parent']);
 						}
 					}
 				}
