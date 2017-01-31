@@ -21,7 +21,7 @@ private function transtext()
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 38
-	echo T_("Billing");                                                               // Line 42
+	echo T_("Billing");                                                               // Line 1
 	echo T_("Add a question");                                                        // Line 46
 	echo T_("Sarshomar knowledge");                                                   // Line 49
 	echo T_("Participation in Sarshomar knowledge");                                  // Line 50
@@ -43,7 +43,7 @@ private function transtext()
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
 	echo T_("Try Before Register");                                                   // Line 46
-	echo T_("Sarshomar Society Distributtion");                                       // Line 25
+	echo T_("Sarshomar Society Distributtion");                                       // Line 23
 	echo T_("Organizations and Companies");                                           // Line 10
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 16
 	echo T_("Universities and Research Institutes");                                  // Line 10
@@ -58,8 +58,6 @@ private function transtext()
 	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 68
 	echo T_("Knowledge Base");                                                        // Line 10
 	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 76
-	echo T_("Age");                                                                   // Line 105
-	echo T_("Population");                                                            // Line 142
 
 	//--------------------------------------------------content\knowledge\display.html
 
@@ -111,16 +109,17 @@ private function transtext()
 	echo T_("PHD");                                                                   // Line 96
 	echo T_("Other");                                                                 // Line 97
 	echo T_("Country");                                                               // Line 167
+	echo T_("Age");                                                                   // Line 105
 	echo T_("Province");                                                              // Line 171
 	echo T_("Religion");                                                              // Line 59
-	echo T_("Language");                                                              // Line 280
+	echo T_("Language");                                                              // Line 53
 
 	//----------------------------------------------------content\main\layout-xhr.html
-	echo T_("View your current location and navigate to parent of it");               // Line 51
+	echo T_("View your current location and navigate to parent of it");               // Line 59
 
 	//--------------------------------------------------------content\main\layout.html
 	echo T_("Login or Try");                                                          // Line 25
-	echo T_("Password");                                                              // Line 296
+	echo T_("Password");                                                              // Line 312
 	echo T_("Login");                                                                 // Line 6
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                              // Line 46
@@ -129,7 +128,7 @@ private function transtext()
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 282
+	echo T_("Description");                                                           // Line 298
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Read More");                                                             // Line 33
@@ -186,10 +185,10 @@ private function transtext()
 	echo T_("Welcome");                                                               // Line 34
 	echo T_("Dashboard");                                                             // Line 37
 	echo T_("Exit");                                                                  // Line 38
-	echo T_("Register");                                                              // Line 46
-	echo T_("Cost");                                                                  // Line 59
-	echo T_("Tomans");                                                                // Line 59
-	echo T_("Total cash");                                                            // Line 79
+	echo T_("Register");                                                              // Line 44
+	echo T_("Cost");                                                                  // Line 67
+	echo T_("Tomans");                                                                // Line 67
+	echo T_("Total cash");                                                            // Line 87
 
 	//--------------------------------------------------content\template\register.html
 	echo T_("Sarshomar Vision");                                                      // Line 16
@@ -259,8 +258,8 @@ private function transtext()
 	echo T_("Warn");                                                                  // Line 46
 	echo T_("Fail");                                                                  // Line 53
 	echo T_("Disabled");                                                              // Line 60
-	echo T_("Tags");                                                                  // Line 29
-	echo T_("Add");                                                                   // Line 82
+	echo T_("Tags");                                                                  // Line 41
+	echo T_("Add");                                                                   // Line 4
 	echo T_("Slug");                                                                  // Line 96
 
 	//------------------------------------------------content\template\static\faq.html
@@ -517,42 +516,186 @@ private function transtext()
 	echo T_("enddate");                                                               // Line 74
 	echo T_("submit");                                                                // Line 81
 
-	//-----------------------------------------content_api\v1\doc\template\sample.html
-	echo T_("Getting started");                                                       // Line 47
+	//----------------------------content_api\v1\doc\template\billing\description.html
+	echo T_("Billing via Sarshomar API");                                             // Line 3
+
+	//----------------------------------content_api\v1\doc\template\billing\index.html
+	echo T_("Request");                                                               // Line 5
+	echo T_("Header");                                                                // Line 9
+	echo T_("Response");                                                              // Line 17
+
+	//----------------------------------content_api\v1\doc\template\billing\table.html
+	echo T_("ID");                                                                    // Line 3
+	echo T_("Variable");                                                              // Line 3
+	echo T_("Priority");                                                              // Line 4
+	echo T_("Example");                                                               // Line 5
+
+	//-------------------content_api\v1\doc\template\login\guestToken\description.html
+	echo T_("Request guest token");                                                   // Line 1
+	echo T_("Request a guest token from Sarshomar");                                  // Line 3
+
+	//-------------------------content_api\v1\doc\template\login\guestToken\index.html
+
+	//-------------------content_api\v1\doc\template\login\loginToken\description.html
+	echo T_("Get temporary login key");                                               // Line 1
+	echo T_("Get a temporary login key from Sarshomar");                              // Line 3
+
+	//-------------------------content_api\v1\doc\template\login\loginToken\index.html
+
+	//-------------------------content_api\v1\doc\template\login\loginToken\table.html
+	echo T_("Guest token");                                                           // Line 9
+	echo T_("Optional");                                                              // Line 55
+
+	//---------------------------content_api\v1\doc\template\poll\add\description.html
+	echo T_("Add poll");                                                              // Line 1
+	echo T_("Add poll via Sarshomar API");                                            // Line 3
+
+	//---------------------------------content_api\v1\doc\template\poll\add\index.html
+
+	//---------------------------------content_api\v1\doc\template\poll\add\table.html
+	echo T_("Poll title");                                                            // Line 9
+	echo T_("Mandatory");                                                             // Line 95
+	echo T_("Some title...");                                                         // Line 10
+	echo T_("Survey...");                                                             // Line 55
+	echo T_("e.g...");                                                                // Line 25
+	echo T_("Summary...");                                                            // Line 29
+	echo T_("Description...");                                                        // Line 34
+	echo T_("File...");                                                               // Line 39
+	echo T_("Tree...");                                                               // Line 46
+	echo T_("Parent...");                                                             // Line 51
+	echo T_("Branding...");                                                           // Line 63
+	echo T_("Title...");                                                              // Line 85
+	echo T_("url...");                                                                // Line 73
+	echo T_("Answers...");                                                            // Line 102
+	echo T_("Type...");                                                               // Line 90
+	echo T_("file...");                                                               // Line 95
+	echo T_("is true...");                                                            // Line 107
+	echo T_("score...");                                                              // Line 114
+	echo T_("group...");                                                              // Line 119
+	echo T_("value...");                                                              // Line 124
+	echo T_("options...");                                                            // Line 131
+	echo T_("optional");                                                              // Line 24
+	echo T_("range_timing_max...");                                                   // Line 136
+	echo T_("choice_count_min...");                                                   // Line 141
+	echo T_("choice_count_max...");                                                   // Line 146
+	echo T_("random_sort...");                                                        // Line 151
+	echo T_("ordering...");                                                           // Line 156
+	echo T_("Hide results...");                                                       // Line 161
+	echo T_("schedule...");                                                           // Line 168
+	echo T_("start...");                                                              // Line 173
+	echo T_("end...");                                                                // Line 178
+	echo T_("Article...");                                                            // Line 183
+	echo T_("Tags...");                                                               // Line 188
+	echo T_("Cats...");                                                               // Line 193
+	echo T_("from...");                                                               // Line 200
+	echo T_("Count...");                                                              // Line 205
+
+	//------------------------content_api\v1\doc\template\poll\answer\description.html
+	echo T_("Submit a poll answer");                                                  // Line 1
+	echo T_("Submit an answer via Sarshomar API");                                    // Line 3
+
+	//------------------------------content_api\v1\doc\template\poll\answer\index.html
+
+	//------------------------------content_api\v1\doc\template\poll\answer\table.html
+	echo T_("search");                                                                // Line 9
+	echo T_("search...");                                                             // Line 10
+
+	//---------------------------content_api\v1\doc\template\poll\fav\description.html
+	echo T_("Favorite a question");                                                   // Line 30
+	echo T_("Favorite a question via Sarshomar API");                                 // Line 3
+
+	//---------------------------------content_api\v1\doc\template\poll\fav\index.html
+
+	//---------------------------------content_api\v1\doc\template\poll\fav\table.html
+	echo T_("id");                                                                    // Line 9
+
+	//---------------------------content_api\v1\doc\template\poll\get\description.html
+	echo T_("Get poll");                                                              // Line 18
+	echo T_("Get poll via Sarshomar API");                                            // Line 3
+
+	//---------------------------------content_api\v1\doc\template\poll\get\index.html
+
+	//---------------------------------content_api\v1\doc\template\poll\get\table.html
+	echo T_("Poll ID");                                                               // Line 9
+	echo T_("an ID...");                                                              // Line 10
+
+	//--------------------------content_api\v1\doc\template\poll\like\description.html
+	echo T_("like a question");                                                       // Line 1
+	echo T_("like a question via Sarshomar API");                                     // Line 3
+
+	//--------------------------------content_api\v1\doc\template\poll\like\index.html
+
+	//--------------------------------content_api\v1\doc\template\poll\like\table.html
+
+	//-------------------------content_api\v1\doc\template\poll\price\description.html
+	echo T_("calculate price of a question");                                         // Line 1
+	echo T_("Calculate price of a question via Sarshomar API");                       // Line 3
+
+	//-------------------------------content_api\v1\doc\template\poll\price\index.html
+
+	//-------------------------------content_api\v1\doc\template\poll\price\table.html
+	echo T_("poll or survey id");                                                     // Line 9
+	echo T_("Poll...");                                                               // Line 16
+	echo T_("Nofity...");                                                             // Line 21
+	echo T_("child...");                                                              // Line 33
+	echo T_("nofity...");                                                             // Line 38
+	echo T_("member");                                                                // Line 43
+	echo T_("branding");                                                              // Line 48
+	echo T_("gender...");                                                             // Line 60
+	echo T_("marrital...");                                                           // Line 65
+	echo T_("internetusage...");                                                      // Line 70
+	echo T_("graduation...");                                                         // Line 75
+	echo T_("degree...");                                                             // Line 80
+	echo T_("range...");                                                              // Line 85
+	echo T_("employmentstatus...");                                                   // Line 90
+	echo T_("housestatus...");                                                        // Line 95
+
+	//------------------------content_api\v1\doc\template\poll\search\description.html
+	echo T_("Search poll");                                                           // Line 1
+	echo T_("Search poll via Sarshomar API");                                         // Line 3
+
+	//------------------------------content_api\v1\doc\template\poll\search\index.html
+
+	//------------------------------content_api\v1\doc\template\poll\search\table.html
+
+	//-----------------------------------content_api\v1\doc\template\sample\index.html
+
+	//-----------------------------------content_api\v1\doc\template\sample\table.html
+
+	//----------------------------------------content_api\v1\doc\template\sidebar.html
+	echo T_("Getting started");                                                       // Line 2
 	echo T_("Get login key");                                                         // Line 8
 	echo T_("Get guest key");                                                         // Line 11
 	echo T_("Submit poll");                                                           // Line 15
-	echo T_("Get poll");                                                              // Line 18
 	echo T_("Search in polls");                                                       // Line 22
 	echo T_("Answering");                                                             // Line 24
 	echo T_("Submit a questions answer");                                             // Line 26
 	echo T_("Favorite");                                                              // Line 28
-	echo T_("Favorite a question");                                                   // Line 30
 	echo T_("Like question");                                                         // Line 33
 	echo T_("Financial");                                                             // Line 35
 	echo T_("Get account cash");                                                      // Line 37
 	echo T_("Calculate a question's price");                                          // Line 40
-	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 48
-	echo T_("The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Sarshomar, you can obtain your API key from My Account page, found here: ");// Line 49
-	echo T_("Go to My account.");                                                     // Line 49
-	echo T_("Endpoints");                                                             // Line 50
-	echo T_("The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol.");// Line 51
-	echo T_("Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version is Version 1.");// Line 52
-	echo T_("The stable HTTPS endpoint for the latest version is:");                  // Line 53
-	echo T_("HTTP response codes");                                                   // Line 55
-	echo T_("The status of a response can be determined from the HTTP status code."); // Line 56
-	echo T_("Code");                                                                  // Line 59
-	echo T_("request successful");                                                    // Line 66
-	echo T_("request was invalid");                                                   // Line 76
-	echo T_("user does not have permission");                                         // Line 81
-	echo T_("request not authenticated");                                             // Line 86
-	echo T_("client is rate limited");                                                // Line 91
-	echo T_("incorrect HTTP method provided");                                        // Line 96
-	echo T_("response is not valid JSON");                                            // Line 101
-	echo T_("Request");                                                               // Line 136
-	echo T_(" (example)");                                                            // Line 158
-	echo T_("Header");                                                                // Line 138
-	echo T_("Response");                                                              // Line 158
+
+	//------------------------------------content_api\v1\doc\template\start\index.html
+	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 3
+	echo T_("The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are registered with Sarshomar, you can obtain your API key from My Account page, found here: ");// Line 4
+	echo T_("Go to My account.");                                                     // Line 4
+	echo T_("Endpoints");                                                             // Line 5
+	echo T_("The API is accessed by making HTTPS requests to a specific version endpoint URL, in which GET, POST, PUT and DELETE methods dictate how your interact with the information available. Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol.");// Line 6
+	echo T_("Everything (methods, parameters, etc.) is fixed to a version number, and every call must contain one. The latest version is Version 1.");// Line 7
+	echo T_("The stable HTTPS endpoint for the latest version is:");                  // Line 8
+	echo T_("HTTP response codes");                                                   // Line 10
+	echo T_("The status of a response can be determined from the HTTP status code."); // Line 11
+
+	//------------------------------------content_api\v1\doc\template\start\table.html
+	echo T_("Code");                                                                  // Line 3
+	echo T_("request successful");                                                    // Line 10
+	echo T_("request was invalid");                                                   // Line 20
+	echo T_("user does not have permission");                                         // Line 25
+	echo T_("request not authenticated");                                             // Line 30
+	echo T_("client is rate limited");                                                // Line 35
+	echo T_("incorrect HTTP method provided");                                        // Line 40
+	echo T_("response is not valid JSON");                                            // Line 45
 
 	//-------------------------------------------------------content_u\add\layout.html
 	echo T_("Add Poll");                                                              // Line 37
@@ -567,60 +710,60 @@ private function transtext()
 	echo T_("Multiple Choice");                                                       // Line 5
 	echo T_("Range / Star");                                                          // Line 14
 	echo T_("Title of question");                                                     // Line 27
-	echo T_("Score");                                                                 // Line 92
-	echo T_("Category");                                                              // Line 11
+	echo T_("Score");                                                                 // Line 93
+	echo T_("Category");                                                              // Line 92
 	echo T_("Answer");                                                                // Line 64
-	echo T_("Profile");                                                               // Line 79
-	echo T_("Search in Profiles");                                                    // Line 81
-	echo T_("Options has score");                                                     // Line 111
-	echo T_("Advance score");                                                         // Line 120
-	echo T_("Allow user to sort answers");                                            // Line 129
-	echo T_("One Choice");                                                            // Line 137
-	echo T_("Multi Choice");                                                          // Line 140
-	echo T_("Ordering");                                                              // Line 143
-	echo T_("other");                                                                 // Line 150
-	echo T_("text given from user");                                                  // Line 150
-	echo T_("Allow to type other answer");                                            // Line 152
-	echo T_("Branding");                                                              // Line 166
-	echo T_("URL");                                                                   // Line 170
-	echo T_("Choice Range");                                                          // Line 178
+	echo T_("Profile");                                                               // Line 81
+	echo T_("Search in Profiles");                                                    // Line 82
+	echo T_("Options has score");                                                     // Line 112
+	echo T_("Advance score");                                                         // Line 121
+	echo T_("Allow user to sort answers");                                            // Line 130
+	echo T_("One Choice");                                                            // Line 138
+	echo T_("Multi Choice");                                                          // Line 141
+	echo T_("Ordering");                                                              // Line 144
+	echo T_("other");                                                                 // Line 151
+	echo T_("text given from user");                                                  // Line 151
+	echo T_("Allow to type other answer");                                            // Line 153
+	echo T_("Branding");                                                              // Line 167
+	echo T_("URL");                                                                   // Line 171
+	echo T_("Choice Range");                                                          // Line 179
 	echo T_("Ultimate");                                                              // Line 138
-	echo T_("One");                                                                   // Line 184
-	echo T_("Max");                                                                   // Line 184
-	echo T_("Randomize sort options");                                                // Line 197
-	echo T_("Hidden result");                                                         // Line 207
-	echo T_("Has correct option");                                                    // Line 217
+	echo T_("One");                                                                   // Line 185
+	echo T_("Max");                                                                   // Line 185
+	echo T_("Randomize sort options");                                                // Line 198
+	echo T_("Hidden result");                                                         // Line 208
+	echo T_("Has correct option");                                                    // Line 218
 	echo T_("Complete Profile");                                                      // Line 27
-	echo T_("Tree");                                                                  // Line 239
-	echo T_("Time");                                                                  // Line 253
-	echo T_("Summary");                                                               // Line 271
-	echo T_("Text Format");                                                           // Line 289
-	echo T_("Any Text");                                                              // Line 291
-	echo T_("Phone Number");                                                          // Line 292
-	echo T_("Website");                                                               // Line 294
+	echo T_("Tree");                                                                  // Line 255
+	echo T_("Time");                                                                  // Line 269
+	echo T_("Summary");                                                               // Line 287
+	echo T_("Text Format");                                                           // Line 305
+	echo T_("Any Text");                                                              // Line 307
+	echo T_("Phone Number");                                                          // Line 308
+	echo T_("Website");                                                               // Line 310
 	echo T_("Number");                                                                // Line 12
-	echo T_("Custom");                                                                // Line 344
-	echo T_("Regular");                                                               // Line 349
-	echo T_("Something");                                                             // Line 314
-	echo T_("File Format");                                                           // Line 332
-	echo T_("Any File");                                                              // Line 334
-	echo T_("Document");                                                              // Line 335
-	echo T_("Photo");                                                                 // Line 336
-	echo T_("Video");                                                                 // Line 337
-	echo T_("Audio");                                                                 // Line 338
-	echo T_("PDF");                                                                   // Line 339
-	echo T_("Word");                                                                  // Line 340
-	echo T_("Excel");                                                                 // Line 341
-	echo T_("PowerPoint");                                                            // Line 342
-	echo T_("Text");                                                                  // Line 343
-	echo T_("File Size");                                                             // Line 359
-	echo T_("Range Number");                                                          // Line 382
-	echo T_("Star");                                                                  // Line 385
-	echo T_("Like");                                                                  // Line 388
-	echo T_("Number Size");                                                           // Line 396
-	echo T_("Star size");                                                             // Line 412
-	echo T_("Fit to best size");                                                      // Line 427
-	echo T_("Apply");                                                                 // Line 443
+	echo T_("Custom");                                                                // Line 360
+	echo T_("Regular");                                                               // Line 365
+	echo T_("Something");                                                             // Line 330
+	echo T_("File Format");                                                           // Line 348
+	echo T_("Any File");                                                              // Line 350
+	echo T_("Document");                                                              // Line 351
+	echo T_("Photo");                                                                 // Line 352
+	echo T_("Video");                                                                 // Line 353
+	echo T_("Audio");                                                                 // Line 354
+	echo T_("PDF");                                                                   // Line 355
+	echo T_("Word");                                                                  // Line 356
+	echo T_("Excel");                                                                 // Line 357
+	echo T_("PowerPoint");                                                            // Line 358
+	echo T_("Text");                                                                  // Line 359
+	echo T_("File Size");                                                             // Line 375
+	echo T_("Range Number");                                                          // Line 398
+	echo T_("Star");                                                                  // Line 401
+	echo T_("Like");                                                                  // Line 404
+	echo T_("Number Size");                                                           // Line 412
+	echo T_("Star size");                                                             // Line 428
+	echo T_("Fit to best size");                                                      // Line 443
+	echo T_("Apply");                                                                 // Line 459
 
 	//--------------------------------------------------------content_u\add\step2.html
 	echo T_("Marrital");                                                              // Line 212
@@ -640,9 +783,11 @@ private function transtext()
 	echo T_("Private");                                                               // Line 138
 
 	//--------------------------------------------------------content_u\add\step3.html
-	echo T_("Show result in home page");                                              // Line 7
-	echo T_("Article");                                                               // Line 21
-	echo T_("Short URL");                                                             // Line 45
+	echo T_("Main Category");                                                         // Line 7
+	echo T_("Sub Category");                                                          // Line 14
+	echo T_("Child Category");                                                        // Line 21
+	echo T_("Article");                                                               // Line 28
+	echo T_("Short URL");                                                             // Line 62
 
 	//---------------------------------------------------------content_u\add\tree.html
 
