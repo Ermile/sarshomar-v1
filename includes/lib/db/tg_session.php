@@ -24,7 +24,8 @@ class tg_session
 		options.option_key = 'session' AND
 		options.option_value = '$user_id'
 		LIMIT 1";
-		$original_result = \lib\db::get($get_sesstion);
+		$original_result = \lib\db::query($get_sesstion, true, ['resume_on_error' => true]);
+		$original_result = $original_result->fetch_assoc();
 		if($original_result)
 		{
 			self::$start = true;
@@ -191,7 +192,7 @@ class tg_session
 		options.option_meta = '$meta'
 		ON DUPLICATE KEY UPDATE
 		options.option_meta = '$meta'";
-		\lib\db::query($query);
+		\lib\db::query($query, true, ['resume_on_error' => true]);
 	}
 
 	public static function __callStatic($_name, $_args)
