@@ -1,6 +1,7 @@
 {
-  "search": "string|null to get last",
+  "search": "sdghl|null to get last",
   "my_poll": "true|false|null",
-  "get_count": "true|false|null",
-  "language": "fa|en|ar|null"
+  "language": "fa|en|ar|null",
+  "from" : 0,
+  "to" : 10,
 }

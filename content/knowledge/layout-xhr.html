@@ -14,7 +14,7 @@
  </div>
  <ul class="polls-body">
 
-{%for key, value in poll_list%}
+{%for key, value in poll_list.data%}
    <li class="{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
 {%if login%}
     <span class="star">

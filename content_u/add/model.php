@@ -195,7 +195,7 @@ class model extends \content_u\home\model
 	public function tree()
 	{
 		$search = utility::get("q");
-		$my_poll = true;
+		$my_poll = false;
 		\lib\utility::$REQUEST = new \lib\utility\request(
 		[
 			'method' => 'array',
@@ -209,7 +209,15 @@ class model extends \content_u\home\model
 		$this->user_id = $this->login('id');
 
 		$result = $this->poll_search();
-		return json_encode($result);
+		$tmp_result = [];
+		foreach ($result['data'] as $key => $value)
+		{
+			$tmp_result[$key]['title'] = isset($value['title']) ? $value['title'] : null;
+			$tmp_result[$key]['desc']  = isset($value['summary']) ? $value['summary'] : null;
+			$tmp_result[$key]['value'] = isset($value['id']) ? $value['id'] : null;
+			$tmp_result[$key]['url']   = isset($value['url']) ? $value['url'] : null;
+		}
+		return json_encode($tmp_result);
 	}
 
 
