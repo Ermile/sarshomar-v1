@@ -60,8 +60,7 @@ class step_create
 	public static function step2($_question)
 	{
 		preg_match("/^type_(.*)$/", $_question, $file_content);
-		$get_poll = '3KZZh'; //session::get('poll');
-
+		$get_poll = session::get('poll');
 		if($get_poll)
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
@@ -100,9 +99,7 @@ class step_create
 				if(isset($get_poll['title']))
 				{
 					$poll_request['answers'] = isset($get_poll['answers']) ? $get_poll['answers'] : [];
-					// $poll_request['answers'] = [];
 					$poll_answers 	= $question_export;
-					$poll_answers 	= [];
 
 				}
 				else
@@ -137,21 +134,6 @@ class step_create
 			}
 			return self::make_draft($add_poll['id']);
 		}
-
-		// if($file_content && bot::$hook['message'][$file_content[1]])
-		// {
-		// 	$file = bot::$hook['message'][$file_content[1]];
-		// 	$file = isset($file['file_id']) ? $file : end($file);
-		// 	$file_id = $file['file_id'];
-		// 	$get_file = bot::getFile([
-		// 		'file_id' => $file_id
-		// 		]);
-		// 	$file_link = 'https://api.telegram.org/file/bot' . bot::$api_key . '/' . $get_file['result']['file_path'];
-		// 	$file_server_addr = \lib\utility\upload::temp_donwload($file_link);
-		// 	session::set('poll', 'file_link', $file_server_addr->get_link());
-		// 	session::set('poll', 'file_addr', $file_server_addr->get_new_name());
-		// 	session::set('poll', 'file_type', $file_content[1]);
-		// }
 	}
 	public static function make_draft($_poll, $_maker = false)
 	{

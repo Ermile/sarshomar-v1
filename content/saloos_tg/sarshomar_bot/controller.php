@@ -129,7 +129,6 @@ class controller extends \lib\mvc\controller
 		{
 			var_dump($result);
 		}
-		handle::send_log(\lib\debug::compile());
 		exit();
 	}
 }
