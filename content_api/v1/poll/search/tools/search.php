@@ -65,6 +65,10 @@ trait search
 			$to = (int) $to;
 		}
 
+		if($from > $to)
+		{
+			return debug::error(T_("Parameter 'from' must be less than parameter 'to'"), 'from', 'arguments');
+		}
 
 		if(utility::request("language"))
 		{
@@ -78,13 +82,12 @@ trait search
 			}
 		}
 
-
 		$meta['login']       = $this->user_id;
 		$meta['start_limit'] = $from;
-		$meta['limit']   = $to - $from;
-		$result             = \lib\db\polls::search($search, $meta);
-		$tmp_result         = [];
-		$tmp_result['data'] = [];
+		$meta['limit']       = $to - $from;
+		$result              = \lib\db\polls::search($search, $meta);
+		$tmp_result          = [];
+		$tmp_result['data']  = [];
 
 		if(is_array($result))
 		{
