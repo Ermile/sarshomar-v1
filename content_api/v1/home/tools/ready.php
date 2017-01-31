@@ -31,10 +31,10 @@ trait ready
 		// merge settings
 		$_options = array_merge($default_options, $_options);
 
-		$poll_id = 0;
+		$poll_id = false;
 
 		// encode id
-		if(isset($_poll_data['id']))
+		if(array_key_exists('id', $_poll_data))
 		{
 			$poll_id          = $_poll_data['id'];
 			$_poll_data['id'] = shortURL::encode($_poll_data['id']);
@@ -46,7 +46,7 @@ trait ready
 			return debug::error(T_("Poll not found"), "id", 'arguments');
 		}
 
-		if(isset($_poll_data['status']))
+		if(array_key_exists('status', $_poll_data))
 		{
 			$permission_load_poll = false;
 			switch ($_poll_data['status'])
@@ -58,7 +58,7 @@ trait ready
 					$permission_load_poll = false;
 					break;
 				default:
-					if(isset($_poll_data['user_id']))
+					if(array_key_exists('user_id', $_poll_data))
 					{
 						if($this->user_id == $_poll_data['user_id'])
 						{
@@ -74,48 +74,46 @@ trait ready
 			}
 		}
 
-		if(isset($_poll_data['title']) && $_poll_data['title'] === '~')
+		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] === '~')
 		{
 			$_poll_data['title'] = '';
 		}
 
-
-		if(isset($_poll_data['slug']) && $_poll_data['slug'] === '~')
+		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] === '~')
 		{
 			$_poll_data['slug'] = '';
 		}
 
-
-		if(isset($_poll_data['url']) && $_poll_data['url'] === '~')
+		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] === '~')
 		{
 			$_poll_data['url'] = '';
 		}
 
 		// encode user id
-		if(isset($_poll_data['user_id']))
+		if(array_key_exists('user_id', $_poll_data))
 		{
 			$_poll_data['user_id'] = shortURL::encode($_poll_data['user_id']);
 		}
 
 		// encode parent
-		if(isset($_poll_data['parent']))
+		if(array_key_exists('parent', $_poll_data))
 		{
 			$_poll_data['parent'] = shortURL::encode($_poll_data['parent']);
 		}
 
-		if(isset($_poll_data['content']))
+		if(array_key_exists('content', $_poll_data))
 		{
 			$_poll_data['description'] = $_poll_data['content'];
 		}
 
 		// encode suervey
-		if(isset($_poll_data['survey']))
+		if(array_key_exists('survey', $_poll_data))
 		{
 			$_poll_data['survey'] = shortURL::encode($_poll_data['survey']);
 		}
 
 		// change have_score field
-		if(isset($_poll_data['have_score']))
+		if(array_key_exists('have_score', $_poll_data))
 		{
 			if($_poll_data['have_score'] === '1')
 			{
@@ -127,32 +125,84 @@ trait ready
 			}
 		}
 
+		// change is_answered field
+		if(array_key_exists('is_answered', $_poll_data))
+		{
+			if($_poll_data['is_answered'] === '1')
+			{
+				$_poll_data['is_answered'] = true;
+			}
+			else
+			{
+				$_poll_data['is_answered'] = false;
+			}
+		}
+
+		// change my_like field
+		if(array_key_exists('my_like', $_poll_data))
+		{
+			if($_poll_data['my_like'] === '1')
+			{
+				$_poll_data['my_like'] = true;
+			}
+			else
+			{
+				$_poll_data['my_like'] = false;
+			}
+		}
+
+		// change my_fav field
+		if(array_key_exists('my_fav', $_poll_data))
+		{
+			if($_poll_data['my_fav'] === '1')
+			{
+				$_poll_data['my_fav'] = true;
+			}
+			else
+			{
+				$_poll_data['my_fav'] = false;
+			}
+		}
+
+		// change have_true_answer field
+		if(array_key_exists('have_true_answer', $_poll_data))
+		{
+			if($_poll_data['have_true_answer'] === '1')
+			{
+				$_poll_data['have_true_answer'] = true;
+			}
+			else
+			{
+				$_poll_data['have_true_answer'] = false;
+			}
+		}
+
 		// change sarshomar field
-		if(isset($_poll_data['sarshomar']) && $_poll_data['sarshomar'])
+		if(array_key_exists('sarshomar', $_poll_data) && $_poll_data['sarshomar'])
 		{
 			$_poll_data['sarshomar'] = true;
 		}
-
-		// change is_answered parametr
-		if(isset($_poll_data['is_answered']) && $_poll_data['is_answered'])
+		else
 		{
-			$_poll_data['is_answered'] = true;
+			$_poll_data['sarshomar'] = false;
 		}
 
-		// change my_fav parametr
-		if(isset($_poll_data['my_fav']) && $_poll_data['my_fav'])
-		{
-			$_poll_data['my_fav'] = true;
-		}
 
-		// change my_like parametr
-		if(isset($_poll_data['my_like']) && $_poll_data['my_like'])
+		foreach ($_poll_data as $key => $value)
 		{
-			$_poll_data['my_like'] = true;
+			if(is_numeric($value))
+			{
+				$_poll_data[$key] = (float) $value;
+			}
+
+			if($value === null || $value === '')
+			{
+				$_poll_data[$key] = null;
+			}
 		}
 
 		// check parent and load tree data
-		if(isset($_poll_data['parent']) && $_poll_data['parent'] !== null && $poll_id)
+		if(array_key_exists('parent', $_poll_data) && $_poll_data['parent'] !== null && $poll_id)
 		{
 			$_poll_data['tree'] = [];
 			$_poll_data_tree = utility\poll_tree::get($poll_id);
@@ -250,7 +300,7 @@ trait ready
 
 			if(in_array('random_sort', $post_meta_key) && $_options['run_options'])
 			{
-				if(isset($_poll_data['answers']) && is_array($_poll_data['answers']))
+				if(array_key_exists('answers', $_poll_data) && is_array($_poll_data['answers']))
 				{
 					$new  = $_poll_data['answers'];
 					$keys = array_keys($_poll_data['answers']);
@@ -293,6 +343,7 @@ trait ready
 			}
 		}
 
+		ksort($_poll_data);
 		if(is_array($_poll_data))
 		{
 			// $_poll_data = array_filter($_poll_data);
