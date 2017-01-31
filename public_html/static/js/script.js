@@ -1047,6 +1047,8 @@ function prepareAdd()
 	var savingTimeout = setTimeout(function()
 	{
 		sendQuestionData();
+		$('#question-add').attr('data-saving-timeout', null);
+
 	}, 2000);
 	$('#question-add').attr('data-saving-timeout', savingTimeout);
 }
@@ -1109,7 +1111,6 @@ function sendQuestionData()
 		lockForm: false,
 	});
 
-	$('#question-add').attr('data-saving-timeout', null);
 	return myPoll;
 }
 

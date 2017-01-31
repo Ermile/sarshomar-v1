@@ -85,13 +85,23 @@ function addNewTags(_elChilds)
 		elBox = myDetector.find(attrBindBox);
 	}
 	// get value of tag input
-	var valInput = elInput.val().trim();
+	var inputText = elInput.val();
+	var inputVal  = elInput.attr('data-val');
 	// empty value of tag
 	elInput.val('');
+	elInput.attr('data-val', null);
 	// if isnot set return false
-	if(!valInput)
+	if(inputText)
+	{
+		inputText = inputText.trim();
+	}
+	else
 	{
 		return false;
+	}
+	if(inputVal)
+	{
+		inputVal = inputVal.trim();
 	}
 	// if box format isnt setm use default format
 	if(!attrBindBoxFormat)
@@ -99,23 +109,23 @@ function addNewTags(_elChilds)
 		attrBindBoxFormat = "<span>:tag</span>";
 	}
 	// if exist in old list
-	if(attrData.indexOf(valInput) >= 0)
+	if(attrData.indexOf(inputText) >= 0)
 	{
 		// get element of exist tag
-		var elTagExist = elBox.find('[data-val="' + valInput + '"]');
+		var elTagExist = elBox.find('[data-val="' + inputText + '"]');
 		elTagExist.addClass("isExist");
 		setTimeout(function () { elTagExist.removeClass("isExist") }, 500);
 	}
 	else
 	{
 		// replace :tag with real value
-		var elNewTag = attrBindBoxFormat.replace(':tag', valInput);
+		var elNewTag = attrBindBoxFormat.replace(':tag', inputText);
 		// add data-val for detecting for add on duplicate
-		elNewTag     = $(elNewTag).attr('data-val', valInput);
+		elNewTag     = $(elNewTag).attr('data-val', inputVal);
 		// append to boxes
 		elBox.append(elNewTag);
 		// append to array of tags
-		attrData.push(valInput);
+		attrData.push(inputText);
 		// set tagList
 		setTagList(myDetector, attrData);
 	}
