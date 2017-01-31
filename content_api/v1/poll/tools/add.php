@@ -13,7 +13,7 @@ trait add
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function add($_args = [])
+	public function poll_add($_args = [])
 	{
 		if(!debug::$status)
 		{

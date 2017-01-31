@@ -13,7 +13,7 @@ trait search
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public function search($_args = null)
+	public function helpcenter_search($_args = null)
 	{
 		$result = [];
 		$search = utility::request("search");
@@ -27,7 +27,7 @@ trait search
 		{
 			foreach ($result as $key => $value)
 			{
-				$result[$key] = $this->ready_poll($value);
+				$result[$key] = $this->poll_ready($value);
 			}
 		}
 		else

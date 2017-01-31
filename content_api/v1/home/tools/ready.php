@@ -17,7 +17,7 @@ trait ready
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function ready_poll($_poll_data, $_options = [])
+	public function poll_ready($_poll_data, $_options = [])
 	{
 		$default_options =
 		[

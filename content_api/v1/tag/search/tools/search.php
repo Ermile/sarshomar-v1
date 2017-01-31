@@ -13,7 +13,7 @@ trait search
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public function search($_args = null)
+	public function tag_search($_args = null)
 	{
 		debug::title(T_("Search faild"));
 

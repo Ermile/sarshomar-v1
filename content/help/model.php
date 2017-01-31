@@ -15,7 +15,7 @@ class model extends \mvc\model
 			'method'  => 'array',
 			'request' => ['search'  => $search]
 		]);
-		$result = $this->search();
+		$result = $this->helpcenter_search();
 		debug::result($result);
 
 	}

@@ -28,7 +28,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_poll($_args)
 	{
-		return $this->get();
+		return $this->poll_get();
 	}
 
 
@@ -41,7 +41,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function post_poll($_args)
 	{
-		return $this->add(['args' => $_args]);
+		return $this->poll_add(['args' => $_args]);
 	}
 
 
@@ -52,7 +52,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function put_poll($_args)
 	{
-		return $this->add(['args' => $_args, 'method' => 'put']);
+		return $this->poll_add(['args' => $_args, 'method' => 'put']);
 	}
 
 
@@ -63,7 +63,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function patch_poll($_args)
 	{
-		return $this->add(['args' => $_args, 'method' => 'patch']);
+		return $this->poll_add(['args' => $_args, 'method' => 'patch']);
 	}
 
 
@@ -76,7 +76,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_ask($_args)
 	{
-		return $this->get(['type' => 'ask']);
+		return $this->poll_get(['type' => 'ask']);
 	}
 
 
@@ -89,7 +89,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_random($_args)
 	{
-		return $this->get(['type' => 'random']);
+		return $this->poll_get(['type' => 'random']);
 	}
 
 }

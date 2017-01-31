@@ -14,7 +14,7 @@ trait get
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function get($_options = [])
+	public function poll_get($_options = [])
 	{
 		if(!debug::$status)
 		{
@@ -69,7 +69,7 @@ trait get
 			return debug::error(T_("Parametr id not set in request"), 'id', 'arguments');
 		}
 
-		$result = $this->ready_poll($poll, $_options);
+		$result = $this->poll_ready($poll, $_options);
 
 		return $result;
 	}

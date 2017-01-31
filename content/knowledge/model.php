@@ -58,7 +58,7 @@ class model extends \mvc\model
 
 		$this->user_id = $this->login('id');
 
-		return $this->search($_args);
+		return $this->poll_search($_args);
 	}
 
 

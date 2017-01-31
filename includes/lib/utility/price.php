@@ -95,7 +95,7 @@ class price
 				'get_advance_result' => false,
 			];
 
-			$result = (new \content_api\v1\home\model)->ready_poll($poll, $options);
+			$result = (new \content_api\v1\home\model)->poll_ready($poll, $options);
 
 			if(isset($result['filters']['member']))
 			{

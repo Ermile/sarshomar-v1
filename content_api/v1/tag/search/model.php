@@ -15,7 +15,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_tag($_args)
 	{
-		return $this->search($_args);
+		return $this->tag_search($_args);
 	}
 
 	/**

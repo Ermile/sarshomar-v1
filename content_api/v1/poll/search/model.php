@@ -15,7 +15,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_search($_args)
 	{
-		return $this->search($_args);
+		return $this->poll_search($_args);
 	}
 }
 ?>

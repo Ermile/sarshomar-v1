@@ -5,9 +5,20 @@ use \lib\debug;
 
 class model extends \content_u\home\model
 {
-	use filter\model;
-	use publish\model;
 
+	/**
+	 * use api teg search
+	 */
+
+	use \content_api\v1\poll\tools\add;
+
+	use \content_api\v1\poll\tools\get;
+
+	use \content_api\v1\home\tools\ready;
+
+	use \content_api\v1\tag\search\tools\search;
+
+	use \content_api\v1\poll\search\tools\search;
 
 	/**
 	 * Gets the add.
@@ -16,16 +27,11 @@ class model extends \content_u\home\model
 	 */
 	public function get_add($_args)
 	{
-		if($this->term_list())
+		if($this->local_search())
 		{
 			return;
 		}
 	}
-
-
-	use \content_api\v1\poll\tools\get;
-	use \content_api\v1\home\tools\ready;
-
 
 	/**
 	 * Gets the edit.
@@ -34,7 +40,7 @@ class model extends \content_u\home\model
 	 */
 	public function get_edit($_args)
 	{
-		if($this->term_list())
+		if($this->local_search())
 		{
 			return;
 		}
@@ -58,7 +64,7 @@ class model extends \content_u\home\model
 				]
 			]
 		);
-		$result = $this->get($args);
+		$result = $this->poll_get($args);
 
 		return $result;
 	}
@@ -73,7 +79,7 @@ class model extends \content_u\home\model
 	 */
 	public function post_add($_args)
 	{
-		if($this->term_list())
+		if($this->local_search())
 		{
 			return;
 		}
@@ -91,7 +97,7 @@ class model extends \content_u\home\model
 	 */
 	public function post_edit($_args)
 	{
-		if($this->term_list())
+		if($this->local_search())
 		{
 			return;
 		}
@@ -100,10 +106,6 @@ class model extends \content_u\home\model
 	}
 
 
-	/**
-	 * use api add poll
-	 */
-	use \content_api\v1\poll\tools\add;
 
 	/**
 	 * insert or update poll
@@ -147,15 +149,8 @@ class model extends \content_u\home\model
 
 		$this->user_id = $this->login('id');
 		$this->debug   = false;
-		return $this->add($method);
+		return $this->poll_add($method);
 	}
-
-
-
-	/**
-	 * use api teg search
-	 */
-	use \content_api\v1\tag\search\tools\search;
 
 
 	/**
@@ -163,31 +158,87 @@ class model extends \content_u\home\model
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	private function term_list()
+	private function local_search()
 	{
 		if(utility::get("list"))
 		{
-			$request = [];
-			$request['type'] = utility::get("list");
-			$request['search'] = utility::get("q");
-			if(utility::get('parent') != '~')
-			{
-				$request['parent'] = utility::get('parent');
-			}
 
-			utility::$REQUEST = new utility\request(
-				[
-					'method'  => 'array',
-					'request' => $request,
-				]
-			);
-			$result = $this->search();
-			$result = json_encode($result);
+			$result = null;
+			switch (utility::get("list"))
+			{
+				case 'cat':
+				case 'tag':
+				case 'profile':
+					$result = $this->term_list();
+					break;
+
+				case 'tree':
+					$result = $this->tree();
+					break;
+
+				default:
+					return false;
+					break;
+			}
 			debug::msg("list", $result);
 			return true;
 		}
 		return false;
 	}
 
+
+	/**
+	 * Gets the search.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function tree()
+	{
+		$search = utility::get("q");
+		$my_poll = true;
+		\lib\utility::$REQUEST = new \lib\utility\request(
+		[
+			'method' => 'array',
+			'request' =>
+			[
+				'search'  => $search,
+				'my_poll' => $my_poll
+			]
+		]);
+
+		$this->user_id = $this->login('id');
+
+		$result = $this->poll_search();
+		return json_encode($result);
+	}
+
+
+	/**
+	 * search in terms
+	 * cat
+	 * tag
+	 * profile
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function term_list()
+	{
+		$request = [];
+		$request['type'] = utility::get("list");
+		$request['search'] = utility::get("q");
+		if(utility::get('parent') != '~')
+		{
+			$request['parent'] = utility::get('parent');
+		}
+
+		utility::$REQUEST = new utility\request(
+			[
+				'method'  => 'array',
+				'request' => $request,
+			]
+		);
+		$result = $this->tag_search();
+		return json_encode($result);
+	}
 }
 ?>

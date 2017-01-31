@@ -25,7 +25,7 @@ trait get
 			'run_options'       => false,
 		];
 
-		$result = $this->get($args);
+		$result = $this->poll_get($args);
 
 		if(isset($result['answers']))
 		{

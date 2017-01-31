@@ -15,7 +15,7 @@ class model extends \content_api\v1\home\model
 	 */
 	public function get_price($_args)
 	{
-		return $this->price($_args);
+		return $this->poll_price($_args);
 	}
 }
 ?>

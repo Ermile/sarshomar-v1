@@ -6,7 +6,7 @@ use \lib\debug;
 trait price
 {
 
-	public function price($_args = null)
+	public function poll_price($_args = null)
 	{
 		if(!utility::request())
 		{

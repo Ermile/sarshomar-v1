@@ -1,6 +1,7 @@
 <?php
 namespace content_api\v1\poll\search\tools;
 use \lib\utility;
+
 trait search
 {
 	/**
@@ -10,7 +11,7 @@ trait search
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public function search($_args)
+	public function poll_search($_args = [])
 	{
 		$meta   = [];
 		$search = null;
@@ -49,7 +50,7 @@ trait search
 		{
 			foreach ($result as $key => $value)
 			{
-				$tmp_result[] = $this->ready_poll($value);
+				$tmp_result[] = $this->poll_ready($value);
 			}
 		}
 		elseif($get_count)
