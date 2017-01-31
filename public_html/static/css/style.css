@@ -374,6 +374,7 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 .rtl .flip-rtl,.ltr .flip-ltr{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
 .in{width:65%;margin:0 auto}
+.in.xsmall{width:45%}
 .in.small{width:55%}
 .in.large{width:75%}
 .in.xlarge{width:85%}
@@ -1410,7 +1411,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 .element.switch input[type="checkbox"],.element.switch input[type="radio"]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
 .element.switch input[type="checkbox"]+label:hover,.element.switch input[type="radio"]+label:hover{background-color:#00758c;color:#d8dad0;}
-.element.switch input[type="checkbox"]:focus+label,.element.switch input[type="radio"]:focus+label{background-color:#0086a0;color:#d8dad0;}
+.element.switch input[type="checkbox"]:focus+label,.element.switch input[type="radio"]:focus+label{background-color:#e5a428;color:#0066}
 .element.switch input[type="checkbox"]:checked+label,.element.switch input[type="radio"]:checked+label{background-color:#005869;color:#d8dad0;}
 .element.switch input[type="checkbox"]:checked+label:hover,.element.switch input[type="radio"]:checked+label:hover,
 .element.switch input[type="checkbox"]:checked:focus+label,.element.switch input[type="radio"]:checked:focus+label{background-color:#004552;}
@@ -1518,6 +1519,9 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-branding-url::before{left:-40px}
 .element-branding-url::after{right:-40px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 .element-branding-url input[type="text"]{width:100%;height:100%;line-height:100%;border:none;padding:0;background-color:transparent;color:#00667a;text-align:center;font-size:1.2em;direction:ltr}
+
+.element-in .awesomplete{background-color:red;-webkit-box-flex:1;-ms-flex:1;flex:1}
+.element-in .awesomplete input{display:block;width:100%;height:35px;border:none;padding:0 5px}
 
 
 /************************************************************** other */
