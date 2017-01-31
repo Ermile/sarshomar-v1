@@ -52,7 +52,7 @@ trait search
 
 						if(isset($value['parent']))
 						{
-							$result[$key]['parent'] = utility\shortURL::encode($value['parent']);
+							$result[$key]['value'] = utility\shortURL::encode($value['parent']);
 						}
 					}
 				}
