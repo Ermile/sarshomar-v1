@@ -295,7 +295,7 @@ trait ready
 
 		if(is_array($_poll_data))
 		{
-			$_poll_data = array_filter($_poll_data);
+			// $_poll_data = array_filter($_poll_data);
 		}
 		// var_dump($_poll_data);
 		// exit();
