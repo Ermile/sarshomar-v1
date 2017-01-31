@@ -1444,9 +1444,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element.disabled .input{color:#bbb;background-color:#d7d7d7;}
 
 /* ltr */
-.element.ltr{direction:ltr;padding-left:13px;padding-right:0;}
-.element.ltr .title{border-top-right-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-bottom-left-radius:5px;}
-.element.ltr .title::before{left:auto;right:100%;background-image:url(../images/svg/input-before.svg);-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);}
+.element.ltr-element .input{text-align:left}
 
 .element .score{background-color:#efefef;height:inherit;line-height:inherit;max-width:100px;color:#777;transition:.3s;padding:0 1em;}
 .element .score input[type="number"]{border:none;height:29px;line-height:29px;margin-top:3px;background-color:#f4f4f4;padding:0 10px;width:60px;margin:0;}
@@ -1461,6 +1459,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 .element .btn{padding:0 1em;background-color:#ebebeb;border:none;color:#bdbdbd;transition:.3s;cursor:pointer;}
 .element .btn:hover,.element .btn:focus,.element .input:focus~.btn{background-color:#d8d8d8;color:#777;}
+.element .btn span{vertical-align:middle}
 
 
 /************************************************************** dropdown */
@@ -1475,10 +1474,10 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .tagDetector a i{position:absolute;top:2px;right:2px;opacity:.5;transition:.3s}
 .tagDetector a i:hover{opacity:1}
 
-.tagDetector .tagAdd{border:none;width:25px;height:25px;background-color:#37aaa7;color:#f4f4f4;text-align:center;cursor:pointer;margin-left:5px;border-radius:3px}
-.rtl .tagDetector .tagAdd{margin-left:0;margin-right:5px}
-.tagDetector .tagAdd:hover,.tagDetector .tagAdd:focus{background-color:#0e7d7a}
-.tagDetector .tagAdd i{vertical-align:middle}
+.module .tagAdd{border:none;width:25px;height:25px;background-color:#37aaa7;color:#f4f4f4;text-align:center;cursor:pointer;margin-left:5px;border-radius:3px}
+.rtl .module .tagAdd{margin-left:0;margin-right:5px}
+.module .tagAdd:hover,.module .tagAdd:focus{background-color:#0e7d7a}
+.module .tagAdd i{vertical-align:middle}
 
 .tagDetector .tagBox{display:-webkit-box;display:-ms-flexbox;display:flex;flex-wrap:wrap}
 
