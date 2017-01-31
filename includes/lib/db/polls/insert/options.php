@@ -6,7 +6,7 @@ trait options
 {
 	protected static function insert_options()
 	{
-		// save meta range_timing_maxs
+		// save meta times
 		if(isset(self::$args['brand']['title']))
 		{
 			if(self::$args['brand']['title'] && strlen(self::$args['brand']['title']) > 160)
@@ -27,34 +27,75 @@ trait options
 			self::save_options('brand', self::$args['brand']['title'], ['url' => $url]);
 		}
 
-		// save meta range_timing_maxs
-		if(isset(self::$args['options']['range_timing_max']))
+		// save meta times
+		if(isset(self::$args['options']['time']))
 		{
-			if(self::$args['options']['range_timing_max'] && !is_numeric(self::$args['options']['range_timing_max']))
+			if(self::$args['options']['time'] && !is_numeric(self::$args['options']['time']))
 			{
-				return debug::error(T_("Invalid arguments range_timing_max"), 'range_timing_max', 'arguments');
+				return debug::error(T_("Invalid arguments time"), 'time', 'arguments');
 			}
-			self::save_options('range_timing_max', self::$args['options']['range_timing_max']);
+			self::save_options('time', self::$args['options']['time']);
 		}
 
-		// save meta choice_count_min
-		if(isset(self::$args['options']['choice_count_min']))
+		$set_multi_min = false;
+		$set_multi_max = false;
+		$set_multi     = false;
+		$ordering      = false;
+
+		// save meta min
+		if(isset(self::$args['options']['multi']['min']))
 		{
-			if(self::$args['options']['choice_count_min'] && !is_numeric(self::$args['options']['choice_count_min']))
+			if(self::$args['options']['multi']['min'] && !is_numeric(self::$args['options']['multi']['min']))
 			{
-				return debug::error(T_("Invalid arguments choice_count_min"), 'choice_count_min', 'arguments');
+				return debug::error(T_("Invalid arguments min"), 'min', 'arguments');
 			}
-			self::save_options('choice_count_min', self::$args['options']['choice_count_min']);
+			self::save_options('multi_min', self::$args['options']['multi']['min']);
+			$set_multi_min = true;
 		}
 
-		// save meta choice_count_max
-		if(isset(self::$args['options']['choice_count_max']))
+		// save meta max
+		if(isset(self::$args['options']['multi']['max']))
 		{
-			if(self::$args['options']['choice_count_max'] && !is_numeric(self::$args['options']['choice_count_max']))
+			if(self::$args['options']['multi']['max'] && !is_numeric(self::$args['options']['multi']['max']))
 			{
-				return debug::error(T_("Invalid arguments choice_count_max"), 'choice_count_max', 'arguments');
+				return debug::error(T_("Invalid arguments max"),'max', 'arguments');
 			}
-			self::save_options('choice_count_max', self::$args['options']['choice_count_max']);
+			self::save_options('multi_max', self::$args['options']['multi']['max']);
+			$set_multi_max = true;
+		}
+
+		if(isset(self::$args['options']['multi']) && !$set_multi_min && !$set_multi_max)
+		{
+			self::save_options('multi', true);
+			$set_multi = true;
+		}
+
+		// save meta ordering
+		if(isset(self::$args['options']['ordering']))
+		{
+			if(self::$args['options']['ordering'])
+			{
+				if($set_multi_min)
+				{
+					return debug::error(T_("Can not use multi:min and ordering"), 'ordering', 'arguments');
+				}
+
+				if($set_multi_max)
+				{
+					return debug::error(T_("Can not use multi:max and ordering"), 'ordering', 'arguments');
+				}
+
+				if($set_multi)
+				{
+					return debug::error(T_("Can not use multi and ordering"), 'ordering', 'arguments');
+				}
+
+				self::save_options('ordering', true);
+			}
+			else
+			{
+				self::save_options('ordering', false);
+			}
 		}
 
 		// save meta random_sort
@@ -77,19 +118,6 @@ trait options
 		else
 		{
 			self::save_options('hidden_result', false);
-		}
-
-		// save meta ordering
-		if(isset(self::$args['options']['ordering']))
-		{
-			if(self::$args['options']['ordering'])
-			{
-				self::save_options('ordering', true);
-			}
-			else
-			{
-				self::save_options('ordering', false);
-			}
 		}
 
 		// save meta start_date

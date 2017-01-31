@@ -232,6 +232,13 @@ trait ready
 			if($_options['get_options'])
 			{
 				$_poll_data['options'] = array_column($post_meta, 'option_value', 'option_key');
+				foreach ($_poll_data['options'] as $key => $value)
+				{
+					if($value == '1')
+					{
+						$_poll_data['options'][$key] = true;
+					}
+				}
 			}
 
 			$post_meta_key = array_column($post_meta, 'option_value');

@@ -1196,8 +1196,25 @@ function prepareQuestionData()
 	myQuestion.language    = $('input[name="ui-language"]:checked').val();
 	// options
 	myQuestion.options     = {};
-	// get subType
-	myQuestion.subType     = $('input[name="meta_choicemode"]:checked').val();
+
+	// get choice_mode
+	var choice_mode = $('input[name="meta_choicemode"]:checked').val();
+
+	switch(choice_mode)
+	{
+		case 'multi':
+			myQuestion.options.multi = {};
+			break;
+
+		case 'ordering':
+			myQuestion.options.ordering = true;
+			break;
+
+		case 'one':
+		default:
+			// no thing!
+			break;
+	}
 
 	// save randomSort for multiple selection
 	myQuestion.options.random_sort = $('#random_sort').is(":checked");

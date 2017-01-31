@@ -133,13 +133,13 @@
 
 {%block feature_choicemode%}
 <div class="element switch">
- <input type="radio" name="meta_choicemode" value="one" id="one" {%if poll.meta.choicemode == 'one' or poll.meta.choicemode is null %}checked{%endif%}>
+ <input type="radio" name="meta_choicemode" value="one" id="one" {%if not poll.options.multi and not poll.options.ordering %}checked{%endif%}>
  <label for="one">{%trans "One Choice"%}</label>
 
- <input type="radio" name="meta_choicemode" value="multi" id="multi" {%if poll.meta.choicemode == 'multi'%}checked{%endif%}>
+ <input type="radio" name="meta_choicemode" value="multi" id="multi" {%if poll.options.multi%}checked{%endif%}>
  <label for="multi">{%trans "Multi Choice"%}</label>
 
- <input type="radio" name="meta_choicemode" value="ordering" id="ordering" {%if poll.meta.choicemode == 'ordering'%}checked{%endif%}>
+ <input type="radio" name="meta_choicemode" value="ordering" id="ordering" {%if poll.options.ordering %}checked{%endif%}>
  <label for="ordering">{%trans "Ordering"%}</label>
 </div>
 {%endblock%}
