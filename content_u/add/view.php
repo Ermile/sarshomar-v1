@@ -13,7 +13,7 @@ class view extends \content_u\home\view
 
 		// add all template of question into new file
 		$this->data->template['add']['layout'] = 'content_u/add/layout.html';
-		$this->data->template['add']['tree']   = 'content_u/add/tree.html';
+		// $this->data->template['add']['tree']   = 'content_u/add/tree.html';
 
 		$this->data->page['title']   = T_('Add');
 		$this->data->page['desc']    = T_("Add new poll");

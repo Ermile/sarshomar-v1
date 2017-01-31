@@ -1360,24 +1360,24 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// --------------------------------------------------------------------------------- Tree
-	$(this).on('input', '#tree-search', function(event)
-	{
-		var tree_search_timeout = $(this).data('tree-search-timeout');
-		if(tree_search_timeout)
-		{
-			clearTimeout(tree_search_timeout);
-		}
-		var timeout = setTimeout(treeSearch.bind(this), 200);
-		$(this).data('tree-search-timeout', timeout);
-	});
+	// $(this).on('input', '#tree-search', function(event)
+	// {
+	// 	var tree_search_timeout = $(this).data('tree-search-timeout');
+	// 	if(tree_search_timeout)
+	// 	{
+	// 		clearTimeout(tree_search_timeout);
+	// 	}
+	// 	var timeout = setTimeout(treeSearch.bind(this), 200);
+	// 	$(this).data('tree-search-timeout', timeout);
+	// });
 
-	// if user change selection of each item
-	$(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
-	{
-		// get list of checked item and create text from them
-		var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
-		$('[name="parent_tree_opt"]').val(selectedOpts.get());
-	});
+	// // if user change selection of each item
+	// $(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
+	// {
+	// 	// get list of checked item and create text from them
+	// 	var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
+	// 	$('[name="parent_tree_opt"]').val(selectedOpts.get());
+	// });
 
 	// if($('#tree').is(':checked'))
 	// {
@@ -1407,7 +1407,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$import('lib/awesomplete.min.js', 'fillAuto', 300);
 	$import('lib/tagDetector.js', 'runTagDetector', 400);
 
-	simulateTreeNavigation();
+	// simulateTreeNavigation();
 	checkNextStep();
 
 	$('.page-progress input').on('click', function(e)
@@ -1420,16 +1420,16 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	detectStep();
 
 
-	// on open tree load content to it
-	$(window).off("response:open");
-	$(window).on("response:open", function(_obj, _name, _value)
-	{
-		// if open tree then fill with last qustions
-		if(_name == 'tree' && _value == 'open')
-		{
-			treeSearch.call(null, null, true);
-		}
-	});
+	// // on open tree load content to it
+	// $(window).off("response:open");
+	// $(window).on("response:open", function(_obj, _name, _value)
+	// {
+	// 	// if open tree then fill with last qustions
+	// 	if(_name == 'tree' && _value == 'open')
+	// 	{
+	// 		treeSearch.call(null, null, true);
+	// 	}
+	// });
 
 
 	// ------------------------------------------------------------------ Tree
