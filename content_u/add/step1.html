@@ -239,12 +239,20 @@
  <label for="tree" class="check-box"></label>
  <label for="tree">{%trans "Tree"%}</label>
 </div>
-<div class="tree-container" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
+
+<div class="element no-pad" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
+ <label class="title large">{%trans "Tree"%}</label>
+ <div class="element-in">
+  <input type="text" class="input autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
+ </div>
+</div>
+
+<!-- <div class="tree-container" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
  <div class="row auto tree-fields">
   <input type="text" class="autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
  </div>
  <ul class="tree-result-list"></ul>
-</div>
+</div> -->
 {%endblock%}
 
 

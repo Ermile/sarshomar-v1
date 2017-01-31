@@ -1797,7 +1797,7 @@ code {font-size: 1.2em;}
 .awesomplete > ul {
     position: absolute;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     min-width: 100%;
     box-sizing: border-box;
     list-style: none;
