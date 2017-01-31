@@ -11,7 +11,6 @@ function runTagDetector()
 	// handle enter
 	$(document).on('keypress', '.tagDetector .tagInput', function(e)
 	{
-		console.log(e.which);
 		// if Enter pressed disallow it and run add func
 		switch(e.which)
 		{
