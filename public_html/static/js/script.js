@@ -1161,6 +1161,7 @@ function prepareQuestionData()
 		switch(thisOpt.type)
 		{
 			case 'other':
+				thisOpt.type = 'descriptive';
 			case 'select':
 				thisOpt.select = {};
 				// if checked true, save it
