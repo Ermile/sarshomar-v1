@@ -1711,28 +1711,44 @@ code {font-size: 1.2em;}
 
 
 /************************************************************** Flexbox Table */
-.table {display: flex;flex-wrap: wrap;flex-direction: column;margin-bottom: 3em; font-size: 1.2em;border: 1px solid #e0e0e0;}
-.table>div {flex: 1;display: flex;flex-direction: row;background:rgb(239, 239, 239);}
-.table>div>span {padding: 0.8em 1.2em;overflow: hidden;flex: 1;white-space: nowrap;}
-.table>div:not(.table-header):nth-child(even) {background: #fff;}
-.table-child-mini {flex: .3;}
-.table-child-small {flex: .5;}
-.table>div:hover:not(.table-header) span {background: #dfe3e6;}
-.table>div.table-header {background: rgb(224, 224, 224);font-weight: bold;}
+.table{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin-bottom:3em;font-size:1.2em}
+.table>div{flex:1;display:flex;flex-direction:row}
+.table>div>span{padding:0.8em 1.2em;overflow:hidden;flex:1;white-space:nowrap}
+.table>div:not(.table-header):nth-child(even){}
+.table-child-mini{flex:.3;}
+.table-child-small{flex:.5;}
+.table>div:hover:not(.table-header) span{}
+.table>div.table-header{font-weight:bold}
 
-.table.response-codes>div>span:first-child {flex: .2;}
-.table.response-codes>div>span:nth-child(2) {flex: .3;}
-.table.response-codes>div>span:last-child {flex: 1;}
+.table.response-codes>div>span:first-child{flex:.2}
+.table.response-codes>div>span:nth-child(2){flex:.3}
+.table.response-codes>div>span:last-child{flex:1}
 
-.table.method-table>div>span:first-child {flex: .2;}
-.table.method-table>div>span:nth-child(2) {flex: 1;}
-.table.method-table>div>span:last-child {flex: .3;}
-.table>div>span>label {color: #54b4ef;cursor: pointer;}
-.inner-table {border: 18px solid #e0e0e0;border-bottom: 0;border-top: 0;}
+.table.method-table>div>span:first-child{flex:.2}
+.table.method-table>div>span:nth-child(2){flex:1}
+.table.method-table>div>span:last-child{flex:.3}
+.table>div>span>label{cursor:pointer}
+.inner-table{border-bottom:0;border-top:0}
+
+/* api theme */
+.api-docs .table{border:1px solid #e0e0e0}
+.api-docs .table>div{background:rgb(239, 239, 239)}
+.api-docs .table>div:not(.table-header):nth-child(even){background:#fff}
+.api-docs .table>div:hover:not(.table-header) span{background:#dfe3e6}
+.api-docs .table>div.table-header{background:rgb(224,224,224);font-weight:bold}
+.api-docs .table>div>span>label{color:#54b4ef}
+.api-docs .inner-table{border:18px solid #e0e0e0}
+
+/* step publish theme */
+.stepPublish .table>div:not(.table-header):nth-child(even){background-color:#efefef}
+.stepPublish .table>div:not(.table-header):nth-child(odd){background-color:#ebebeb}
+.stepPublish .table .table-header{background-color:#189491;color:#f4f4f4;border-bottom:1px solid #5f5f5f}
+.stepPublish .table .table-footer{border-top:1px solid #5f5f5f;color:#3c3c3c;font-weight:bold}
+.stepPublish .table .factor{color:#bb0a0a;font-weight:bold}
 
 
 /************************************************************** Token Page */
-.auth .btn-container {text-align: center;margin: 3em;}
+.auth .btn-container {text-align: center;margin: 3em}
 .auth .btn-container:before {display: none;}
 .auth .btn-deny {background: #e0e0e0;color: #083942;}
 .auth .btn-deny:before,.auth .btn-deny:after {color: #e0e0e0;}
