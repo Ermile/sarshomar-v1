@@ -1217,6 +1217,12 @@ function prepareQuestionData()
 			break;
 	}
 
+	if(typeof myQuestion.options.multi === "object")
+	{
+		myQuestion.options.multi.min = parseInt($("input[name=multiple-range-min]").val());
+		myQuestion.options.multi.max = parseInt($("input[name=multiple-range-max]").val());
+	}
+
 	// save randomSort for multiple selection
 	myQuestion.options.random_sort = $('#random_sort').is(":checked");
 	// data of publish page

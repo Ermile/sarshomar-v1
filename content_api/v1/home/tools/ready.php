@@ -238,6 +238,12 @@ trait ready
 					{
 						$_poll_data['options'][$key] = true;
 					}
+
+					if($key === 'multi_min' || $key === 'multi_max')
+					{
+						$_poll_data['options']['multi'][substr($key,6)] = (int) $value;
+						unset($_poll_data['options'][$key]);
+					}
 				}
 			}
 
