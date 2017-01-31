@@ -6,7 +6,6 @@ use \lib\utility\shortURL;
 
 trait ready
 {
-	public $shortURL = shortURL::ALPHABET;
 
 	/**
 	 * ready poll record to show
