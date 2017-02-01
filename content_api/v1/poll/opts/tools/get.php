@@ -5,9 +5,6 @@ use \lib\debug;
 
 trait get
 {
-
-	use \content_api\v1\poll\tools\get;
-	use \content_api\v1\home\tools\ready;
 	/**
 	 * get pollopts
 	 *

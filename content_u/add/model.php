@@ -15,6 +15,8 @@ class model extends \content_u\home\model
 
 	use \content_api\v1\home\tools\ready;
 
+	use \content_api\v1\poll\opts\tools\get;
+
 	use \content_api\v1\tag\search\tools\search;
 
 	use \content_api\v1\poll\search\tools\search;
@@ -176,6 +178,9 @@ class model extends \content_u\home\model
 					$result = $this->tree();
 					break;
 
+				case 'opts':
+					$result = $this->opts();
+
 				default:
 					return false;
 					break;
@@ -184,6 +189,29 @@ class model extends \content_u\home\model
 			return true;
 		}
 		return false;
+	}
+
+
+	/**
+	 * get poll opts
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function opts()
+	{
+		$request =
+		[
+			'method' => 'array',
+			'request' =>
+			[
+				'id' => utility::get("id")
+			],
+		];
+		utility::$REQUEST = new utility\request($request);
+
+		$this->user_id = $this->login('id');
+		$result = $this->poll_opts();
+		return $result;
 	}
 
 
