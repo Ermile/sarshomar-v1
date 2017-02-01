@@ -2,20 +2,20 @@
 
 {%block content%}
  <link rel="stylesheet" type="text/css" href="{{url.static}}css/lib/highlight/atom-one-dark.css">
- {%include 'content_api/v1/doc/template/sidebar.html'%}
+ {%include doc.base~'/sidebar.html'%}
   <div class="main pad text-based api-docs">
     <div class="box in xxlarge">
-      {%include 'content_api/v1/doc/template/start/index.html'%}
-      {%include 'content_api/v1/doc/template/login/loginToken/index.html'%}
-      {%include 'content_api/v1/doc/template/login/guestToken/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/add/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/get/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/search/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/answer/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/fav/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/like/index.html'%}
-      {%include 'content_api/v1/doc/template/poll/price/index.html'%}
-      {%include 'content_api/v1/doc/template/billing/index.html'%}
+      {%include doc.start~'/index.html'%}
+      {%include doc.login~'/loginToken/index.html'%}
+      {%include doc.login~'/guestToken/index.html'%}
+      {%include doc.poll~'/add/index.html'%}
+      {%include doc.poll~'/get/index.html'%}
+      {%include doc.poll~'/search/index.html'%}
+      {%include doc.poll~'/answer/index.html'%}
+      {%include doc.poll~'/fav/index.html'%}
+      {%include doc.poll~'/like/index.html'%}
+      {%include doc.poll~'/price/index.html'%}
+      {%include doc.billing~'/index.html'%}
     </div>
   </div>
 {%endblock%}

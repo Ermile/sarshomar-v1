@@ -1,20 +1,20 @@
- {%include 'content_api/v1/doc/template/poll/like/description.html'%}
- {%include 'content_api/v1/doc/template/poll/like/table.html'%}
+ {%include doc.poll~'/like/description.html'%}
+ {%include doc.poll~'/like/table.html'%}
 <div class="api-sample">
     <h3 class="unselectable" id="likePoll-request">
         <a href="v1/doc#likePoll-request">{%trans "Request"%}</a>
     </h3>
-    <code class="json ltr">{%include 'content_api/v1/doc/template/poll/like/request.json'%}</code>
+    <code class="json ltr">{%include doc.poll~'/like/request.json'%}</code>
     <h3 class="unselectable" id="likePoll-header">
         <a href="v1/doc#likePoll-header">{%trans "Header"%}</a>
     </h3>
-    <code class="ltr http">{%include 'content_api/v1/doc/template/header.json'%}</code>
+    <code class="ltr http">{%include doc.base~'/header.json'%}</code>
     <h3 class="unselectable" id="likePoll-curl">
         <a href="v1/doc#likePoll-curl">cURL</a>
     </h3>
-    <code class="curl http ltr">{%include 'content_api/v1/doc/template/poll/like/curl.json'%}</code>
+    <code class="curl http ltr">{%include doc.poll~'/like/curl.json'%}</code>
     <h3 class="unselectable" id="likePoll-response">
         <a href="v1/doc#likePoll-response">{%trans "Response"%}</a>
     </h3>
-    <code class="json ltr">{%include 'content_api/v1/doc/template/poll/like/response.json'%}</code>
+    <code class="json ltr">{%include doc.poll~'/like/response.json'%}</code>
 </div>

@@ -1,20 +1,20 @@
- {%include 'content_api/v1/doc/template/poll/price/description.html'%}
- {%include 'content_api/v1/doc/template/poll/price/table.html'%}
+ {%include doc.poll~'/price/description.html'%}
+ {%include doc.poll~'/price/table.html'%}
 <div class="api-sample">
     <h3 class="unselectable" id="pricePoll-request">
         <a href="v1/doc#pricePoll-request">{%trans "Request"%}</a>
     </h3>
-    <code class="json ltr">{%include 'content_api/v1/doc/template/poll/price/request.json'%}</code>
+    <code class="json ltr">{%include doc.poll~'/price/request.json'%}</code>
     <h3 class="unselectable" id="pricePoll-header">
         <a href="v1/doc#pricePoll-header">{%trans "Header"%}</a>
     </h3>
-    <code class="ltr http">{%include 'content_api/v1/doc/template/header.json'%}</code>
+    <code class="ltr http">{%include doc.base~'/header.json'%}</code>
     <h3 class="unselectable" id="pricePoll-curl">
         <a href="v1/doc#pricePoll-curl">cURL</a>
     </h3>
-    <code class="curl http ltr">{%include 'content_api/v1/doc/template/poll/price/curl.json'%}</code>
+    <code class="curl http ltr">{%include doc.poll~'/price/curl.json'%}</code>
     <h3 class="unselectable" id="pricePoll-response">
         <a href="v1/doc#pricePoll-response">{%trans "Response"%}</a>
     </h3>
-    <code class="json ltr">{%include 'content_api/v1/doc/template/poll/price/response.json'%}</code>
+    <code class="json ltr">{%include doc.poll~'/price/response.json'%}</code>
 </div>
