@@ -962,6 +962,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /* sharebox */
 .sharebox{text-align:right;-webkit-user-select:none;user-select:none}
 .rtl .sharebox{text-align:left}
+.sharebox b{display:none;}
 .sharebox a{display:inline-block;width:30px;height:30px;margin:0 .1em;text-align:center;position:relative;overflow:hidden;opacity:.99;border-radius:2%}
 .sharebox a:before{content:'';width:50%;height:400%;position:absolute;top:-214%;left:-61%;transform:rotate(30deg);z-index:-1}
 .sharebox a:hover:before{top:30%;left:30%;transition:.5s .2s}
