@@ -233,7 +233,7 @@ var data =
 },
 {
 	"id":"IR-26",
-	"value": 92
+	"value": 292
 },
 {
 	"id":"IR-22",
