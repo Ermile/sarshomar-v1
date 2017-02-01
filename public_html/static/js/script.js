@@ -673,37 +673,49 @@ function countQuestionOpts(_fill)
 
 
 /**
- * search in tree;
- * @param  {[type]} _page [description]
- * @return {[type]}       [description]
+ * [fillTree description]
+ * @return {[type]} [description]
  */
-function treeSearch(_search, _notLoad)
+function fillTree(_e, _b, _c)
 {
-	if(_notLoad && $('#tree-search').attr('data-loaded'))
-	{
-		return false;
-	}
-	$('#tree-search').attr('data-loaded', true);
-
-	var path    = location.pathname;
-	if(!_search)
-	{
-		_search = $('#tree-search').val();
-	}
-	path        = path.substr(0, path.indexOf('/add')) + '/$';
-	if(_search)
-	{
-		path = path+ '/search='+ _search;
-	}
-	path = path + '?onlySearch=true';
-
-	Navigate(
-	{
-		data: false,
-		url: path,
-		nostate: true,
-	});
+	console.log(_e);
+	console.log(_b);
+	console.log(_c);
 }
+
+
+// /**
+//  * search in tree;
+//  * @param  {[type]} _page [description]
+//  * @return {[type]}       [description]
+//  */
+// function treeSearch(_search, _notLoad)
+// {
+// 	if(_notLoad && $('#tree-search').attr('data-loaded'))
+// 	{
+// 		return false;
+// 	}
+// 	$('#tree-search').attr('data-loaded', true);
+
+// 	var path    = location.pathname;
+// 	if(!_search)
+// 	{
+// 		_search = $('#tree-search').val();
+// 	}
+// 	path        = path.substr(0, path.indexOf('/add')) + '/$';
+// 	if(_search)
+// 	{
+// 		path = path+ '/search='+ _search;
+// 	}
+// 	path = path + '?onlySearch=true';
+
+// 	Navigate(
+// 	{
+// 		data: false,
+// 		url: path,
+// 		nostate: true,
+// 	});
+// }
 
 
 /**

@@ -544,6 +544,7 @@ function drawChart()
 		var myChartOptions =
 		{
 			"type": "serial",
+			"colors": ["#eee"],
 			"dataProvider": attrVals,
 			"categoryField": "key",
 			// "colorField": "color",

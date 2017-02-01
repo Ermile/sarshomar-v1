@@ -287,27 +287,27 @@ class model extends \mvc\model
 				[
 					[
 					 'key' => 'پرسپولیس',
-					 "color" =>  "#ff0e17",
+					 // "color" =>  "#ff0e17",
 					 'value' => 400
 					],
 					[
 					 'key' => 'استقلال',
-					 "color" =>  "#3687c8",
+					 // "color" =>  "#3687c8",
 					 'value' => 200
 					],
 					[
 					 'key' => 'تراکتورسازی',
-					 "color" =>  "#ee2424",
+					 // "color" =>  "#ee2424",
 					 'value' => 300
 					],
 					[
 					 'key' => 'سپاهان',
-					 "color" =>  "#ffcc00",
+					 // "color" =>  "#ffcc00",
 					 'value' => 70
 					],
 					[
 					 'key' => 'سایر',
-					 "color" =>  "#666",
+					 // "color" =>  "#666",
 					 'value' => 120
 					],
 				]
@@ -323,33 +323,33 @@ class model extends \mvc\model
 					[
 					 'key' => 'Manchester',
 					 'value' => 100,
-					 "color" =>  "#e21b22",
+					 // "color" =>  "#e21b22",
 
 					],
 					[
 					 'key' => 'Liverpool',
 					 'value' => 20,
-					 "color" =>  "#e26e83",
+					 // "color" =>  "#e26e83",
 					],
 					[
 					 'key' => 'Real Madrid',
 					 'value' => 40,
-					 "color" =>  "#fdbd24",
+					 // "color" =>  "#fdbd24",
 					],
 					[
 					 'key' => 'Barcelona',
 					 'value' => 70,
-					 "color" =>  "#85063b",
+					 // "color" =>  "#85063b",
 					],
 					[
 					 'key' => 'Juventus',
 					 'value' => 100,
-					 "color" =>  "#13160e",
+					 // "color" =>  "#13160e",
 					],
 					[
 					 'key' => 'Bayern',
 					 'value' => 60,
-					 "color" =>  "#ed1248",
+					 // "color" =>  "#ed1248",
 					],
 				]
 			];
