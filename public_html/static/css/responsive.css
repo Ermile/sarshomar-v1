@@ -9,7 +9,7 @@
 
 
 /* Large Desktop - Design for a width of 1400px until ... */
-@media screen and (min-width: 1400px) and (max-width: 1823px) {
+@media all and (min-width: 1400px) {
  html{font-size:70%}
  .container{max-width:1400px;min-width:1024px;/*min-width:1150px*/}
 }
@@ -18,7 +18,7 @@
 /************************************************************** Sarshomar */
 
 /* Tablet (Portrait) - Design for a width of 768px until 959px */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+@media all and (min-width: 768px) and (max-width: 959px) {
  /* ermile*/
  .hidden-desktop{display:inherit}
  .hidden-tablet{display:none}
@@ -38,15 +38,12 @@
  .society-dist .span5 {width: 100%;}
 
  .triplet .triplet-item img{max-width:150px}
-
- footer #footer-nav .eco{height:60%;min-height:65px}
- header .ui-language-link{display:none}
- header .header-profile-button{font-size:12px}
 }
 
 
+
 /* Mobile  (Portrait) and (Landscape) - Design for a width 320px until 767px */
-@media only screen and (min-width: 320px) and (max-width: 767px) {
+@media all and (min-width: 320px) and (max-width: 767px) {
  /* Ermile */
  .hidden-desktop{display:inherit}
  .hidden-tablet{display:inherit}
@@ -62,7 +59,7 @@
  .container{max-width:750px;min-width:300px}
  #footer{position:relative}
  #formError{bottom:10px;width:100%}
- [data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}
+ /*[data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}*/
 
 .rtl .special-button::before, .rtl .special-button::after {font-size: 35px;}
 .rtl .special-button::before {left: -5px;}
@@ -74,19 +71,16 @@
  .rtl header .logo{background-image:none}
  header .logo h1{display:inline-block;vertical-align:bottom}
  header #header-box{border-style:solid;border-width:8px 8px 0;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch}
- header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;margin-top:10px}
- header #header-quick{/*text-align:center;*/width:85%;margin:0 auto;border-bottom:1px solid #e5a428;display:-webkit-flex;display:-ms-flexbox;display:flex;justify-content:space-between;margin-top:5px}
+ header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}
+ header #header-quick{/*text-align:center;*/width:85%;margin:0 auto;border-bottom:1px solid #e5a428;display:-webkit-flex;display:-ms-flexbox;display:flex;justify-content:space-between}
  header #header-quick>a{margin-top:0}
  .ltr header #header-quick>a{font-size:1.2em}
- header #header-profile{display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;margin:0;padding:0 10px}
+ header #header-profile{display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;margin:0}
  header #header-profile #add-question{}
  header #header-profile .register{margin-left:5px}
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
  header #header-bottom{display:none}
-
- header .header-profile-button{font-size:12px}
- header .ui-language-link{display:none}
 
  #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}
@@ -227,7 +221,7 @@
 
 
 /************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
-@media only screen and (max-width: 319px) {
+@media all and (max-width: 319px) {
  body{display:none}
  html:before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center}
  .container{max-width:96%;min-width:60%}
