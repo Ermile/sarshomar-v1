@@ -3,7 +3,7 @@
  <div class="polls-head">
 {%if login%}
   <span class="star">
-   <i class="icon-star"></i>
+   <span class="icon-star"></span>
   </span>
 {%endif%}
   <span class="type">{%trans "Type"%}</span>
@@ -22,7 +22,7 @@
      <label for="fav{{key}}" class="icon-star"></label>
     </span>
 {%endif%}
-    <span class="type" aria-hidden="true"><i class="fa fa-{{value.type}}"></i> </span>
+    <span class="type" aria-hidden="true"><span class="fa fa-{{value.type}}"></span> </span>
     <span class="title"><a href="{{value.url}}">{{value.title|raw}}</a></span>
     <span class="comments-count">{{value.comment_count | persian}}</span>
     <span class="votes-count">{{value.total | persian}}</span>
