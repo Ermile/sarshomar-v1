@@ -86,6 +86,7 @@
  header #header-bottom{display:none}
 
  header .header-profile-button{font-size:12px}
+ header .ui-language-link{display:none}
 
  #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}
