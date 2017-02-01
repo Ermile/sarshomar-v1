@@ -217,7 +217,6 @@ function setFav()
 	{
 		_self = $(this);
 		id    = _self.parents('[data-id]').attr("data-id");
-		console.log(id);
 
 		_self.ajaxify(
 		{
@@ -232,11 +231,9 @@ function setFav()
 				method: 'post',
 				error: function(e, data, x)
 				{
-					console.log(_self);
 					if(data !== 'success')
 					{
 						_self.prop("checked", false);
-						console.log(_self.prop('checked'));
 					}
 				},
 			}
@@ -288,7 +285,6 @@ function showPreview(_file, _output)
 
 		var fileType = 'other';
 		var fileUrl  = '';
-		console.log(f.type);
 
 		// Only process image files.
 		if(f.type.match('image.*'))
@@ -612,7 +608,7 @@ function rearrangeSortable()
 		// if data-type isset, use it as alternative of number
 		if($(this).attr('data-type'))
 		{
-			row = $(this).attr('data-type');
+			// row = $(this).attr('data-type');
 		}
 		$(this).find('.element label').attr('for', 'answer' + row);
 		// if language is farsi then convert number to persian
@@ -682,17 +678,34 @@ function fillTree(_el)
 	var sendData  = {};
 	sendData.list = 'opts'
 	sendData.id   = $(_el).attr('data-val');
+
 	// try to abort old request
 	try { xhr.abort(); } catch(e){}
 	// try to get new list from server
 	var xhr = $.getJSON('', sendData, function(_data)
 	{
-
-		console.log('get from reza, json of poll detail');
 		// fill it
-		console.log(_data);
 		var list = clearJson(_data);
-		console.log(list);
+		var tree_opts = '';
+		if(list.length > 0)
+		{
+			tree_opts = '<ul>';
+			$.each(list, function(_i)
+			{
+				var itemId = 'tree_opt_' + this.key;
+				tree_opts += '<li>';
+				tree_opts += '<span class="checkbox"><input type="checkbox" id="' + itemId + '"><label class="check-box" for="' + itemId + '"></label></span>';
+				tree_opts += '<label for="' + itemId + '">'+ this.title + '</label>';
+				tree_opts += '</li>';
+			});
+			tree_opts += '</ul>';
+		}
+		else
+		{
+			tree_opts = "Not Found!";
+		}
+		// fill in tree result
+		$('.tree-result-list').html(tree_opts);
 	});
 }
 
@@ -1582,11 +1595,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$(window).off( "response:open");
 	$(window).on( "response:open", function(_obj, _name, _value)
 	{
-		// console.log($(_obj).attr('data-group'));
-		// console.log($(_obj).attr('data-response-group'));
-		// console.log(_obj);
-		// console.log(_name);
-		// console.log(_value);
 		calcFilterPrice.call(this);
 	});
 
@@ -1710,9 +1718,7 @@ route('*', function ()
 // 						data = e.msg.callback;
 // 						for (a in data)
 // 						{
-// 							console.log(data[a]['term_title']);
-// 							console.log(data[a]['term_url']);
-// 							console.log(data[a]['term_count']);
+//
 // 						}
 // 					}
 // 				}

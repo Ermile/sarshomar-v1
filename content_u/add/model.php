@@ -213,11 +213,11 @@ class model extends \content_u\home\model
 			{
 				if(isset($value['title']))
 				{
-					$tmp_result[] = ['value' => ++$key, 'title' => $value['title']];
+					$tmp_result[] = ['key' => ++$key, 'title' => $value['title']];
 				}
 			}
 		}
-		return $result;
+		return $tmp_result;
 	}
 
 
