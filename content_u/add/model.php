@@ -7,9 +7,8 @@ class model extends \content_u\home\model
 {
 
 	/**
-	 * use api teg search
+	 * use api tools
 	 */
-
 	use \content_api\v1\poll\tools\add;
 
 	use \content_api\v1\poll\tools\get;

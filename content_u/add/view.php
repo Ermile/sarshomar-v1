@@ -77,7 +77,8 @@ class view extends \content_u\home\view
 		$this->data->answers = $answers;
 		unset($poll['answers']);
 
-		$this->data->poll            = $poll;
+		$this->data->poll      = $poll;
+		$this->data->edit_mode = true;
 
 		// $this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		// $this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;

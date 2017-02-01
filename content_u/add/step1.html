@@ -75,7 +75,7 @@
     <div class="modules">
 {% if perm.complete_profile.admin %}
 
-     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile'>
+     <div  class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile' {% if not edit_mode or poll.profile %}{%else%}data-response-hide{% endif %}>
       <div class="tagBox"></div>
       <div class="module-in">
        <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
@@ -221,7 +221,7 @@
  {% if perm.complete_profile.admin %}
  <div class="row auto">
   <div class="span4 checkbox margin-bottom">
-   <input type="checkbox" id="complete-profile" data-response-get='id' {%if poll.meta.profile != 'false'%}checked{%endif%}>
+   <input type="checkbox" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>
    <label for="complete-profile" class="check-box"></label>
    <label for="complete-profile">{%trans "Complete Profile"%}</label>
   </div>
