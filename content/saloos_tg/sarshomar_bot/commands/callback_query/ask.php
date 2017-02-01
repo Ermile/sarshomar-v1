@@ -23,7 +23,6 @@ class ask
 	{
 		$maker = new make_view($_short_link);
 		self::check_language($maker);
-		handle::send_log($maker->query_result);
 		if(is_null($maker->query_result))
 		{
 			$return = ['text' => T_("Answer not found")];

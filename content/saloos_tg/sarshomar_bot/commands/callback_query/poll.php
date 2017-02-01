@@ -126,6 +126,7 @@ class poll
 
 	public static function save($_query, $_data_url)
 	{
+		session::remove('poll');
 		$poll_id = $_data_url[2];
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
@@ -134,12 +135,14 @@ class poll
 			]
 		]);
 		$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
+
+		session::remove_back('expire', 'inline_cache');
+		session::remove('expire', 'inline_cache');
+
 		if(\lib\debug::$status)
 		{
 			step::stop();
 			$edit = ask::make(null, null, $add_poll['id']);
-			session::remove_back('expire', 'inline_cache');
-			session::remove('expire', 'inline_cache');
 			callback_query::edit_message($edit);
 		}
 		else
@@ -158,7 +161,6 @@ class poll
 			});
 
 			callback_query::edit_message($edit);
-			session::remove_back('expire', 'inline_cache', 'create');
 			return [];
 		}
 
@@ -167,32 +169,21 @@ class poll
 
 	public static function pause($_query, $_data_url)
 	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		if($status == 'deleted')
-		{
-			self::delete($_query, $_data_url);
-			return ;
-		}
-		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
+		$poll_id = $_data_url[2];
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
+			[
+			'id' 		=> $poll_id,
+			'status'	=> 'pause'
+			]
+		]);
+		$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
+
 		self::get_after_change($poll_id, $_query);
 	}
 
 	public static function publish($_query, $_data_url)
 	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		if($status == 'deleted')
-		{
-			self::delete($_query, $_data_url);
-			return ;
-		}
-		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
-		self::get_after_change($poll_id, $_query);
+		return self::save($_query, $_data_url);
 	}
 
 	public static function back()
@@ -204,23 +195,26 @@ class poll
 	public static function delete($_query, $_data_url)
 	{
 		$poll_id = isset($_data_url[2]) ? $_data_url[2] : null;
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		step::stop();
+
 		if(!$poll_id)
 		{
-			session::remove_back('expire', 'inline_cache', 'create');
-			session::remove('expire', 'inline_cache', 'create');
 			callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
-			step::stop();
 			return [];
 		}
-		$delete = \lib\main::$controller->model()->poll_delete(['id' => $poll_id]);
-		return [];
 		\lib\storage::set_disable_edit(true);
 		$maker = new make_view($poll_id);
 		$maker->message->add_title(false);
 		$maker->message->add_poll_chart(true);
-		$maker->message->add_poll_list(true);
-		$maker->message->add('deleted', '#' . T_('Deleted'));
+		$maker->message->add_poll_list(true, true);
+		$maker->message->add('deleted', utility::tag(T_('Deleted')));
 		$return = $maker->make();
+		$delete = \lib\main::$controller->model()->poll_delete(['id' => $poll_id]);
+
+		session::remove_back('expire', 'inline_cache', 'ask');
+		session::remove('expire', 'inline_cache', 'ask');
 		callback_query::edit_message($return);
 	}
 
@@ -242,7 +236,7 @@ class poll
 		}
 
 		\lib\storage::set_disable_edit(true);
-		$maker = new make_view(bot::$user_id, $_poll_id, true);
+		$maker = new make_view($_poll_id);
 		$maker->message->add_title();
 		$maker->message->add_poll_chart(true);
 		$maker->message->add_poll_list(true);

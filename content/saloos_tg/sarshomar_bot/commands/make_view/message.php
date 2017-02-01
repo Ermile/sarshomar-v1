@@ -74,6 +74,10 @@ class message
 		foreach ($this->class->query_result['answers'] as $key => $value) {
 			$emoji = $this->class::$emoji_number[$key+1];
 			$poll_list .= $emoji . ' ' . $value['title'];
+			if($_add_count)
+			{
+				$poll_list .= ' - ' . utility::nubmer_language($this->class->query_result['stats']['result'][$key]['sum']);
+			}
 			$poll_list .= "\n";
 
 		}
