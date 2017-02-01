@@ -559,7 +559,9 @@ function drawChart()
 				"type": "column",
 				"fillAlphas": 0.9,
 				"lineAlpha": 0.2,
-				"balloonText": "[[category]] <b>[[value]]</b>"
+				"balloonText": "[[category]] <b>[[value]]</b>",
+				"customBulletField": "bullet",
+				"bulletSize": 40,
 			}],
 
 			"gridAboveGraphs": true,
