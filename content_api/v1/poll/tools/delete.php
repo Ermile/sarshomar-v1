@@ -53,18 +53,20 @@ trait delete
 			return debug::error(T_("Poll user not found"), 'user_id', 'system');
 		}
 
+		debug::title(T_("Can not delete poll"));
+
 		if(isset($poll['status']))
 		{
 			switch ($poll['status'])
 			{
 				case 'draft':
-				case 'publish':
 				case 'awaiting':
+				case 'pause':
 
 					$delete = \lib\db\polls::update(['post_status' => 'deleted'], $poll['id']);
 					if($delete)
 					{
-						return debug::true(T_("Poll deleted"));
+						return debug::title(T_("Poll deleted"));
 					}
 					else
 					{
@@ -77,7 +79,7 @@ trait delete
 					break;
 
 				default:
-					return debug::error(T_("Can not access to delete this poll"), 'id', 'permission');
+					return debug::error(T_("To delete a question the status of it must be one of these: Draft, Awaiting and Puase"), 'id', 'permission');
 					break;
 			}
 		}

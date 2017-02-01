@@ -48,6 +48,7 @@ trait ready
 
 		if(array_key_exists('status', $_poll_data))
 		{
+			$msg = null;
 			$permission_load_poll = false;
 			switch ($_poll_data['status'])
 			{
@@ -55,6 +56,8 @@ trait ready
 					$permission_load_poll = true;
 					break;
 				case 'filtered':
+				case 'deleted':
+					$msg = T_("(The poll is :status)", ['status' => $_poll_data['status']]);
 					$permission_load_poll = false;
 					break;
 				default:
@@ -64,13 +67,17 @@ trait ready
 						{
 							$permission_load_poll = true;
 						}
+						else
+						{
+							$msg = T_("(This is not your poll)");
+						}
 					}
 					break;
 			}
 
 			if(!$permission_load_poll)
 			{
-				return debug::error(T_("Can not access to load this poll"), "id", 'permission');
+				return debug::error(T_("Can not access to load this poll :msg",['msg' => $msg]), "id", 'permission');
 			}
 		}
 
