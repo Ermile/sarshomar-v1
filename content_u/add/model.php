@@ -180,14 +180,17 @@ class model extends \content_u\home\model
 
 				case 'opts':
 					$result = $this->opts();
+					break;
 
 				default:
 					return false;
 					break;
 			}
-			debug::msg("list", $result);
+
+			debug::msg("list", json_encode($result,JSON_UNESCAPED_UNICODE));
 			return true;
 		}
+
 		return false;
 	}
 
@@ -245,7 +248,7 @@ class model extends \content_u\home\model
 			$tmp_result[$key]['value'] = isset($value['id']) ? $value['id'] : null;
 			$tmp_result[$key]['url']   = isset($value['url']) ? $value['url'] : null;
 		}
-		return json_encode($tmp_result);
+		return $tmp_result;
 	}
 
 
@@ -274,7 +277,7 @@ class model extends \content_u\home\model
 		]);
 
 		$result = $this->tag_search();
-		return json_encode($result);
+		return $result;
 	}
 }
 ?>
