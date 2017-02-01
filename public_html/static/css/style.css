@@ -445,15 +445,15 @@ header .header-profile-button{background-color:#37aaa7;color:#f4f4f4;font-size:1
 header .header-profile-button:hover{background-color:#129491;color:#eee}
 header .header-profile-button:active,header .header-profile-button:focus{background-color:#0e7d7a}
 
-header .ui-language-link{background-color:#e8e6e6;color:#37aaa7;margin-left:5px;font-size:2em;position:relative}
+header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;font-size:2em;position:relative;cursor:pointer}
 .rtl header .ui-language-link{margin:0;margin-right:5px}
-header .ui-language-link:hover,header .ui-language-link:focus{background-color:#cecdcd}
+header .ui-language-link:hover,header .ui-language-link:focus{background-color:#e5e3e3}
 
 .ui-language-link:hover .ui-language-list{display:block}
 .ui-language-list{background-color:#e5e3e3;position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none}
 .rtl .ui-language-list{right:auto;left:0}
 .ui-language-list a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
-.ui-language-list a:hover,.ui-language-list a:focus,.ui-language-list a:active{background-color:#cecdcd}
+.ui-language-list a:hover,.ui-language-list a:focus,.ui-language-list a:active{background-color:#e5a428}
 
 
 /************************************************************** header profile */
