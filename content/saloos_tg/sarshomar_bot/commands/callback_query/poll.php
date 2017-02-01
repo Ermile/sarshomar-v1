@@ -47,9 +47,7 @@ class poll
 				'to'  		=> (int) ($start + $message_per_page),
 			]
 			]);
-		handle::send_log(\lib\utility::request());
 		$search = \lib\main::$controller->model()->poll_search(true);
-		handle::send_log($search);
 
 		$query_result = $search['data'];
 
@@ -147,7 +145,6 @@ class poll
 						$error_text[] = "❌ $value[title]";
 					}
 					$_maker->message->add("insert", join($error_text, "\n"));
-					handle::send_log(func_get_args());
 					$_maker->message->add("error", '#'.T_('Error'));
 			});
 
