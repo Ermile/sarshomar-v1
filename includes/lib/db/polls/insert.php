@@ -4,16 +4,19 @@ use \lib\debug;
 
 trait insert
 {
-	protected static $args          = [];
-	protected static $debug         = true;
+	protected static $args           = [];
+	protected static $debug          = true;
 
-	protected static $draft_mod     = true;
-	protected static $publish_mod   = false;
+	protected static $draft_mod      = true;
+	protected static $publish_mod    = false;
 
-	protected static $update_mod    = false;
-	protected static $poll_id       = false;
+	protected static $update_mod     = false;
+	protected static $poll_id        = false;
 
-	protected static $user_id       = false;
+	protected static $old_saved_poll = [];
+
+	protected static $user_id        = false;
+	protected static $old_status     = null;
 
 
 	use insert\reset;
@@ -114,8 +117,10 @@ trait insert
 		}
 		elseif(self::$args['update'])
 		{
-			self::$update_mod = true;
-			self::$poll_id    = \lib\utility\shortURL::decode(self::$args['update']);
+			self::$update_mod     = true;
+			self::$poll_id        = \lib\utility\shortURL::decode(self::$args['update']);
+			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
+			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
 		}
 
 		// check user id.
@@ -130,27 +135,112 @@ trait insert
 
 		self::$user_id = self::$args['user'];
 
+		$method = strtolower($_args['method']);
+
 		// set status mod
 		if(isset(self::$args['status']))
 		{
-			if(self::$args['status'] == 'publish')
+			// sarshomar permission!!!!!
+			switch (self::$args['status'])
 			{
-				self::$publish_mod = true;
-				self::$draft_mod   = false;
-			}
-			elseif(self::$args['status'] == 'draft')
-			{
-				self::$publish_mod = false;
-				self::$draft_mod   = true;
-			}
-			elseif(self::$args['status'])
-			{
-				return debug::error(T_("Invalid parametr status"), 'status', 'arguments');
+				case 'pause':
+					// no problem!
+					break;
+
+				case 'stop':
+					// transactions mony
+					break;
+
+				case 'trash':
+					// check no body answer to this poll
+					switch (self::$old_status)
+					{
+						case null: // no old status
+						    return debug::error(T_("You can not trash poll in first request of insert"), 'status', 'arguments');
+						    break;
+
+						case 'publish':
+						case 'pause':
+						case 'stop':
+							if(!self::no_body_answer())
+							{
+								return debug::error(T_("The people answered to this poll can not change status"), 'status', 'permission');
+							}
+							break;
+
+						case 'draft':
+						case 'awaiting':
+							// no problem!
+							break;
+
+						default:
+							return debug::error(T_("You can not publish this poll because the poll status is :status", ['status' => self::$old_status]), 'status', 'arguments');
+							break;
+					}
+					break;
+
+				case 'publish':
+					switch (self::$old_status)
+					{
+						case null: // no old status
+						case 'stop':
+						case 'pause':
+						case 'draft':
+							// no problem!
+							break;
+
+						default:
+							return debug::error(T_("You can not publish this poll because the poll status is :status", ['status' => self::$old_status]), 'status', 'arguments');
+							break;
+					}
+					// check to publish this poll
+					self::$publish_mod = true;
+					self::$draft_mod   = false;
+					break;
+
+				case 'draft':
+					switch (self::$old_status)
+					{
+						case null: // no old status
+						case 'trash':
+						case 'awaiting':
+						case 'draft':
+						case self::no_body_answer();
+							// no problem!
+							break;
+
+						default:
+							return debug::error(T_("You can not draft this poll because the poll status is :status", ['status' => self::$old_status]), 'status', 'arguments');
+							break;
+					}
+					// check no body answer to this poll
+					self::$publish_mod = false;
+					self::$draft_mod   = true;
+					break;
+
+				case 'delete':
+					switch (self::$old_status)
+					{
+						case null: // no old status
+						case 'trash':
+							// no problem!
+							break;
+
+						default:
+							return debug::error(T_("You can not delete this poll because the poll status is :status", ['status' => self::$old_status]), 'status', 'arguments');
+							break;
+					}
+				break;
+
+				default:
+					return debug::error(T_("Invalid parametr status"), 'status', 'arguments');
+					break;
 			}
 		}
 		else
 		{
-			self::$draft_mod = true;
+			self::$draft_mod      = true;
+			self::$args['status'] = 'draft';
 		}
 
 		// if in update mod check permission on editing this poll

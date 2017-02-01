@@ -14,9 +14,9 @@ trait reset
 		$reset_value =
 		[
 			'post_language'    => null,
-			'post_title'       => '~',
-			'post_slug'        => '~',
-			'post_url'         => time(). '_'. rand(1,20). '_'. self::$poll_id,
+			'post_title'       => '‌',
+			'post_slug'        => '‌',
+			'post_url'         => '$/'. utility\shortURL::encode(self::$poll_id),
 			'post_content'     => null,
 			'post_status'      => 'draft',
 			'post_parent'      => null,

@@ -49,15 +49,15 @@ trait poll
 
 
 
-		// if poll title is null set ~
+		// if poll title is null set this character >>‌<< this caracter
 		if(!self::$update_mod && !self::$args['title'])
 		{
-			$insert_poll['post_title'] = '~';
+			$insert_poll['post_title'] = '‌';
 		}
 
 		if(!self::$update_mod)
 		{
-			$insert_poll['post_slug'] = '~';
+			$insert_poll['post_slug'] = '‌';
 		}
 
 		// check surver id
@@ -197,14 +197,7 @@ trait poll
 			$insert_poll['post_comment'] = 'open';
 		}
 
-		if(self::$publish_mod)
-		{
-			$insert_poll['post_status'] = "publish";
-		}
-		else
-		{
-			$insert_poll['post_status'] = "draft";
-		}
+		$insert_poll['post_status'] = self::$args['status'];
 
 		$post_meta = [];
 
@@ -221,13 +214,10 @@ trait poll
 		}
 		else
 		{
-			$old_post_meta            = \lib\db\polls::get_poll_meta(self::$poll_id);
-			$post_meta                = array_merge($old_post_meta, $post_meta);
+			$old_post_meta = isset(self::$old_saved_poll['meta']) ? self::$old_saved_poll['meta'] : [];
+			$post_meta     = array_merge($old_post_meta, $post_meta);
 			$insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
-			if(isset($insert_poll['id']))
-			{
-				unset($insert_poll['id']);
-			}
+			unset($insert_poll['id']);
 			self::update($insert_poll, self::$poll_id);
 		}
 

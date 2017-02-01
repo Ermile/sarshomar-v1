@@ -46,32 +46,57 @@ trait ready
 			return debug::error(T_("Poll not found"), "id", 'arguments');
 		}
 
+		$my_poll = false;
+		if(array_key_exists('user_id', $_poll_data))
+		{
+			if($this->user_id == $_poll_data['user_id'])
+			{
+				$my_poll = true;
+			}
+		}
+
 		if(array_key_exists('status', $_poll_data))
 		{
 			$msg = null;
 			$permission_load_poll = false;
 			switch ($_poll_data['status'])
 			{
+
+				case 'draft':
+				case 'trash':
+				case 'awaiting':
+					if($my_poll)
+					{
+						$permission_load_poll = true;
+					}
+					break;
+
 				case 'publish':
+				case 'stop':
+				case 'pause':
+				case 'schedule':
+				case 'expired':
 					$permission_load_poll = true;
 					break;
-				case 'filtered':
+
 				case 'deleted':
-					$msg = T_("(The poll is :status)", ['status' => $_poll_data['status']]);
+				case 'filtered':
+				case 'blocked':
+				case 'spam':
+				case 'violence':
+				case 'pornography':
+				case 'disable':
 					$permission_load_poll = false;
-					break;
-				default:
-					if(array_key_exists('user_id', $_poll_data))
+					if($my_poll)
 					{
-						if($this->user_id == $_poll_data['user_id'])
-						{
-							$permission_load_poll = true;
-						}
-						else
-						{
-							$msg = T_("(This is not your poll)");
-						}
+						$msg = T_("(The poll is :status)", ['status' => $_poll_data['status']]);
 					}
+					break;
+
+				case 'other':
+				case 'enable':
+				default:
+					$permission_load_poll = false;
 					break;
 			}
 
@@ -79,6 +104,10 @@ trait ready
 			{
 				return debug::error(T_("Can not access to load this poll :msg",['msg' => $msg]), "id", 'permission');
 			}
+		}
+		else
+		{
+			return debug::error(T_("Invalid parameter status"), 'status', 'system');
 		}
 
 		foreach ($_poll_data as $key => $value)
@@ -99,17 +128,17 @@ trait ready
 			}
 		}
 
-		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] === '~')
+		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] === '‌')
 		{
 			$_poll_data['title'] = '';
 		}
 
-		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] === '~')
+		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] === '‌')
 		{
 			$_poll_data['slug'] = '';
 		}
 
-		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] === '~')
+		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] === '‌')
 		{
 			$_poll_data['url'] = '';
 		}

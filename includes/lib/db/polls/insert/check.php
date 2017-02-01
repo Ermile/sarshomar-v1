@@ -5,8 +5,18 @@ use \lib\utility;
 use \lib\db;
 
 trait check
-
 {
+	/**
+	 * no body answer to this poll
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	protected static function no_body_answer()
+	{
+		return true;
+	}
+
+
 	/**
 	 * check poll syntax
 	 *
