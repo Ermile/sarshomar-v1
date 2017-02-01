@@ -52,8 +52,9 @@
      <h4>{%trans "Latest News"%}</h4>
 {{ posts(3, {"cat":['news'], 'desc':1, 'html':true} ) }}
    </section>
-   </div>
+   {%include template.social%}
 
+   </div>
    <div class="row auto" id='footer-note'>
     <div class="span4">
      {{langList({'html':true})}}
