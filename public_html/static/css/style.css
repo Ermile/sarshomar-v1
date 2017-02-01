@@ -745,7 +745,12 @@ footer .is-open i {transform:rotate(180deg);}
 
 /************************************************************** range slider */
 .range-slider .dynamic-margin,.range-slider .dynamic-range{display:inline-block;float:left;margin:0;padding:0;height:100%}
-.range-slider{position:relative;direction:ltr;text-align:left;-webkit-user-select:none;user-select:none;margin-top:17px!important;margin-bottom:17px!important;}
+
+.range-slider{position:relative;direction:ltr;text-align:left;-webkit-user-select:none;user-select:none;margin-top:17px!important;margin-bottom:17px!important;border-right:15px solid #f4f4f4;}
+.rtl .range-slider{border-left:15px solid #f4f4f4;border-right:none;}
+
+.range-slider[data-type=vertical]{border:none;border-top:15px solid #f4f4f4;border-bottom:15px solid #f4f4f4; }
+
 .range-slider *{-webkit-user-select:none;user-select:none}
 .range-slider .dynamic-range{position:relative;background-color:#00758c}
 .range-slider{height:35px;background-color:#e7e7e7;margin:2em 0;display:block}

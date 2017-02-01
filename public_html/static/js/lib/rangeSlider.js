@@ -181,38 +181,34 @@ var json_string = $(this).attr("save_jason");
 		var data_max = parseInt($(this).attr('data-max'));
 
 
-var my_step = 0;
-var json_string = $(this).attr("save_jason");
-if (json_string)
-{
-	var ends = [];
-	var multi_steps = JSON.parse(json_string);
-	var json_steps = multi_steps;
-	for (var i = 0; i < multi_steps.length; i++)
-	{
-		var multi_steps_details = multi_steps[i];
-		var start = parseInt(multi_steps_details["start"]);
-		var end   = parseInt(multi_steps_details["end"]);
-		ends.push(end);
-
-		var max = data_max;
-		if (max <= end && max>start)
+		var my_step = 0;
+		var json_string = $(this).attr("save_jason");
+		if (json_string)
 		{
-			end = max;
-			var step  = parseInt(multi_steps_details["step"]);
-			my_step  += ((end - start) / step);
-			break
+			var ends = [];
+			var multi_steps = JSON.parse(json_string);
+			var json_steps = multi_steps;
+			for (var i = 0; i < multi_steps.length; i++)
+			{
+				var multi_steps_details = multi_steps[i];
+				var start = parseInt(multi_steps_details["start"]);
+				var end   = parseInt(multi_steps_details["end"]);
+				ends.push(end);
+
+				var max = data_max;
+				if (max <= end && max>start)
+				{
+					end = max;
+					var step  = parseInt(multi_steps_details["step"]);
+					my_step  += ((end - start) / step);
+					break
+				}
+				var step  = parseInt(multi_steps_details["step"]);
+				my_step  += ((end - start) / step);
+			}
+			var _unit = $(this).rangeSlider('option', 'unit');
+			$(this).attr('data-step', (_unit/my_step));
 		}
-
-		var step  = parseInt(multi_steps_details["step"]);
-		my_step  += ((end - start) / step);
-	}
-
-
-	var _unit = $(this).rangeSlider('option', 'unit');
-	// $(this).rangeSlider('option', step,(_unit/my_step));
-	$(this).attr('data-step', (_unit/my_step));
-}
 
 		if(isNaN(data_max) || data_min >= data_max)
 		{
@@ -1051,29 +1047,8 @@ if (json_string)
 					}
 				}
 
-
-
-				// var id = this.attr('id');
-				// if(id)
-				// {
-				// 	var min_mount = $(this).find(".dynamic-range .min .mount").attr("data-value-show");
-				// 	var max_mount = $(this).find(".dynamic-range .max .mount").attr("data-value-show");
-				// 	$('[data-range-bind="' + id + '"]').each(function(){
-				// 		var value_type = $(this).attr('data-range-value');
-				// 		if(value_type == 'max')
-				// 		{
-				// 			$(this).val(max_mount);
-				// 		}
-				// 		else if(value_type == 'min')
-				// 		{
-				// 			$(this).val(min_mount);
-				// 		}
-				// 	});
-				// }
-
 				from = (from_step * 100) / ($(this).rangeSlider('option', 'unit'));
 				to   = (to_step * 100) / ($(this).rangeSlider('option', 'unit'));
-
 
 				var depth = to - from;
 				if(data.to != to_step || data.from != from_step)
