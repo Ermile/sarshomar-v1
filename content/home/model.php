@@ -6,21 +6,82 @@ class model extends \mvc\model
 {
 	public function male_female_chart()
 	{
-		$chart = \lib\utility\stat_polls::gender_chart();
+		$chart = [];
+		// $chart = \lib\utility\stat_polls::gender_chart();
 		if($chart)
 		{
 			return $chart;
 		}
 		else
 		{
-			return
+			// return
+			// [
+			// 	'categories' => '["-13","14-17","18-24","25-30","31-44","45-59","60+"]',
+			// 	'series'     => '[
+			// 						{"name":"'. T_("male"). '","data":[10,20,30,40,30,20,10]},
+			// 						{"name":"'. T_("female").'","data":[-10,-20,-30,-40,-30,-20,-10]}
+			// 					]'
+			// ];
+
+			$data=
 			[
-				'categories' => '["-13","14-17","18-24","25-30","31-44","45-59","60+"]',
-				'series'     => '[
-									{"name":"'. T_("male"). '","data":[10,20,30,40,30,20,10]},
-									{"name":"'. T_("female").'","data":[-10,-20,-30,-40,-30,-20,-10]}
-								]'
+				[
+					"key" => "60+",
+					"male" => -1.1,
+					"female" => 1.3
+				],
+				[
+					"key" => "50-59",
+					"male" => -3.2,
+					"female" => 4.5
+				],
+				[
+					"key" => "45-49",
+					"male" => -2.8,
+					"female" => 3.0
+				],
+				[
+					"key" => "40-44",
+					"male" => -4.4,
+					"female" => 3.6
+				],
+				[
+					"key" => "35-39",
+					"male" => -4.2,
+					"female" => 5.1
+				],
+				[
+					"key" => "30-34",
+					"male" => -5.2,
+					"female" => 4.8
+				],
+				[
+					"key" => "25-29",
+					"male" => -7.6,
+					"female" => 6.1
+				],
+				[
+					"key" => "20-24",
+					"male" => -6.1,
+					"female" => 5.1
+				],
+				[
+					"key" => "15-19",
+					"male" => -3.8,
+					"female" => 3.8
+				],
+				[
+					"key" => "-13",
+					"male" => -4.2,
+					"female" => 2.4
+				],
 			];
+
+
+
+
+			$chart['data'] = json_encode($data);
+			return $chart;
 		}
 	}
 
@@ -75,7 +136,8 @@ class model extends \mvc\model
 	 */
 	public function random_result()
 	{
-		$random_result = \lib\utility\stat_polls::get_random_poll_result();
+		$random_result = [];
+		// $random_result = \lib\utility\stat_polls::get_random_poll_result();
 		if(!$random_result || $random_result == '[]')
 		{
 			$random_result = $this->random("main");
@@ -95,123 +157,123 @@ class model extends \mvc\model
 	{
 		$lang = substr(\lib\define::get_language('name'), 0, 2);
 
-		if($_type == "drilldown")
-		{
-			if($lang == "fa")
-			{
-				$title  = 'آیا با جراحی‌های زیبایی، مخصوصا بینی موافق هستید؟';
-				$male   = "مرد";
-				$female = "زن";
-			}
-			else
-			{
-				$title  = T_('Which team are you a fan of?');
-				$male   = T_("male");
-				$female = T_("female");
-			}
-			$random = [
-				'title' => $title,
-				'data' =>
-				[
-					[
-						'name'       => $male,
-						'y'          => 145,
-						'drilldown'  => 'Male'
-					],
-					[
-						'name'       => $female,
-						'y'          => 165,
-						'drilldown'  => 'Female'
-			        ]
-			    ],
+		// if($_type == "drilldown")
+		// {
+		// 	if($lang == "fa")
+		// 	{
+		// 		$title  = 'آیا با جراحی‌های زیبایی، مخصوصا بینی موافق هستید؟';
+		// 		$male   = "مرد";
+		// 		$female = "زن";
+		// 	}
+		// 	else
+		// 	{
+		// 		$title  = T_('Which team are you a fan of?');
+		// 		$male   = T_("male");
+		// 		$female = T_("female");
+		// 	}
+		// 	$random = [
+		// 		'title' => $title,
+		// 		'data' =>
+		// 		[
+		// 			[
+		// 				'name'       => $male,
+		// 				'y'          => 145,
+		// 				'drilldown'  => 'Male'
+		// 			],
+		// 			[
+		// 				'name'       => $female,
+		// 				'y'          => 165,
+		// 				'drilldown'  => 'Female'
+		// 	        ]
+		// 	    ],
 
-				'series' =>
-				[
-						[
-						'name' => 'Male',
-						'id'   => 'Male',
-						'data' =>
-						[
-								['v1.0', 25],
-								['v8.0', 35],
-								['v9.0', 55],
-								['v6.0', 95],
-								['v7.0', 15]
-							]
-						],
-						[
-						'name' => 'Female',
-						'id'   => 'Female',
-						'data' =>
-						[
-								['v40.0', 35],
-								['v41.0', 5],
-								['v42.0', 15],
-								['v39.0', 85],
-								['v36.0', 55],
-								['v30.0', 95]
-						]
-					]
-				]
-	        ];
-	        $result = [];
-	        foreach ($random as $key => $value)
-	        {
-	        	$result[$key] = json_encode($value, JSON_UNESCAPED_UNICODE);
-	        }
-       		return $result;
-		}
-		else
-		{
-			if($lang == "fa")
-			{
-				$title  = "طرفدار کدام تیم هستید؟";
-				$categories =
-				[
-					'استقلال',
-					'پرسپولیس',
-					'تراکتورسازی',
-					'نفت تهران',
-					'سپاهان',
-					'ملوان',
-				];
-				$name   = "تیم ها";
+		// 		'series' =>
+		// 		[
+		// 				[
+		// 				'name' => 'Male',
+		// 				'id'   => 'Male',
+		// 				'data' =>
+		// 				[
+		// 						['v1.0', 25],
+		// 						['v8.0', 35],
+		// 						['v9.0', 55],
+		// 						['v6.0', 95],
+		// 						['v7.0', 15]
+		// 					]
+		// 				],
+		// 				[
+		// 				'name' => 'Female',
+		// 				'id'   => 'Female',
+		// 				'data' =>
+		// 				[
+		// 						['v40.0', 35],
+		// 						['v41.0', 5],
+		// 						['v42.0', 15],
+		// 						['v39.0', 85],
+		// 						['v36.0', 55],
+		// 						['v30.0', 95]
+		// 				]
+		// 			]
+		// 		]
+	 //        ];
+	 //        $result = [];
+	 //        foreach ($random as $key => $value)
+	 //        {
+	 //        	$result[$key] = json_encode($value, JSON_UNESCAPED_UNICODE);
+	 //        }
+  //      		return $result;
+		// }
+		// else
+		// {
+		// 	if($lang == "fa")
+		// 	{
+		// 		$title  = "طرفدار کدام تیم هستید؟";
+		// 		$categories =
+		// 		[
+		// 			'استقلال',
+		// 			'پرسپولیس',
+		// 			'تراکتورسازی',
+		// 			'نفت تهران',
+		// 			'سپاهان',
+		// 			'ملوان',
+		// 		];
+		// 		$name   = "تیم ها";
 
-			}
-			else
-			{
-				$title  = "Which team are you a fan of?";
-				$categories =
-				[
-					'Manchester',
-					'Liverpool',
-					'Real Madrid',
-					'Barcelona',
-					'Juventus',
-				];
-				$name   = "teams";
+		// 	}
+		// 	else
+		// 	{
+		// 		$title  = "Which team are you a fan of?";
+		// 		$categories =
+		// 		[
+		// 			'Manchester',
+		// 			'Liverpool',
+		// 			'Real Madrid',
+		// 			'Barcelona',
+		// 			'Juventus',
+		// 		];
+		// 		$name   = "teams";
 
-			}
-			$random =
-			[
-				'title' => $title,
-				'categories' => json_encode($categories,JSON_UNESCAPED_UNICODE),
-				'basic' => json_encode(
-				[
-					[
-						'name' => $name,
-						'data' =>
-						[
-							19,
-							35,
-							10,
-							50,
-							14,
-						],
-					]
-				], JSON_UNESCAPED_UNICODE)
-			];
-		}
+		// 	}
+		// 	$random =
+		// 	[
+		// 		'title' => $title,
+		// 		'categories' => json_encode($categories,JSON_UNESCAPED_UNICODE),
+		// 		'basic' => json_encode(
+		// 		[
+		// 			[
+		// 				'name' => $name,
+		// 				'data' =>
+		// 				[
+		// 					19,
+		// 					35,
+		// 					10,
+		// 					50,
+		// 					14,
+		// 				],
+		// 			]
+		// 		], JSON_UNESCAPED_UNICODE)
+		// 	];
+		// }
 
 
 		// remove Above code
@@ -220,18 +282,18 @@ class model extends \mvc\model
 		{
 			$random =
 			[
-				'title' => $title,
+				'title' => 'آیا با جراحی‌های زیبایی، مخصوصا بینی موافق هستید؟',
 				'data' =>
 				[
-					[
-					 'key' => 'استقلال',
-					 "color" =>  "#3687c8",
-					 'value' => 200
-					],
 					[
 					 'key' => 'پرسپولیس',
 					 "color" =>  "#ff0e17",
 					 'value' => 400
+					],
+					[
+					 'key' => 'استقلال',
+					 "color" =>  "#3687c8",
+					 'value' => 200
 					],
 					[
 					 'key' => 'تراکتورسازی',
@@ -255,7 +317,7 @@ class model extends \mvc\model
 		{
 			$random =
 			[
-				'title' => $title,
+				'title' => T_('Which team are you a fan of?'),
 				'data' =>
 				[
 					[

@@ -606,46 +606,95 @@ function drawChart()
  */
 function homepageGender(_option)
 {
-
-
-	return _option;
-
-
-
-
-	_option.chart.type = 'bar';
-	// xAxis
-	_option.xAxis.reversed = false;
-	// _option.xAxis.labels = {enabled: true, step: 1};
-	_option.xAxis.opposite = true;
-
-	_option.yAxis =
-	{
-		title: {enabled: false},
-		labels: {enabled: false},
-		gridLineWidth: 0,
-		minorGridLineWidth: 0
-	};
-	_option.plotOptions =
-	{
-		series:
+	_option.colors = ["#67b7dc", "#ff80c0" ];
+	_option.rotate = true;
+	_option.marginBottom = 50;
+	_option.graphs =
+	[
 		{
-			stacking: 'normal',
-			dataLabels:{enabled: false,format: '{point.y:f}'}},
-			bar: {pointPadding: 0,groupPadding: 0.01,
+			"fillAlphas": 0.8,
+			"lineAlpha": 0.2,
+			"type": "column",
+			"valueField": "male",
+			"title": "Male",
+			"labelText": "[[value]]",
+			"clustered": false,
+			"labelFunction": function(item)
+			{
+				return Math.abs(item.values.value);
+			},
+			"balloonFunction": function(item)
+			{
+				return item.category + ": " + Math.abs(item.values.value) + "%";
+			}
+		},
+		{
+			"fillAlphas": 0.8,
+			"lineAlpha": 0.2,
+			"type": "column",
+			"valueField": "female",
+			"title": "Female",
+			"labelText": "[[value]]",
+			"clustered": false,
+			"labelFunction": function(item)
+			{
+				return Math.abs(item.values.value);
+			},
+			"balloonFunction": function(item)
+			{
+				return item.category + ": " + Math.abs(item.values.value) + "%";
+			}
 		}
-	};
-
-	_option.tooltip =
+	];
+	_option.categoryAxis =
 	{
-		shared: true,
-		useHTML: true,
-		headerFormat: 'رده سنی <b>{point.key}</b><table>',
-		pointFormat: '<tr><td style="color: {series.color}">{series.name} </td>' + '<td style="text-align: right"><b>' + '{point.y}' +'</b> نفر</td></tr>',
-		footerFormat: '</table>',
-		crosshairs: true
-	}
+		"gridPosition": "start",
+		"gridAlpha": 0.05,
+		"axisAlpha": 0,
+	};
+	_option.valueAxes =
+	[
+		{
+			"gridAlpha": 0,
+			"axisAlpha": 0.2,
+			"ignoreAxisWidth": true,
+			"labelFunction": function(value)
+			{
+				return Math.abs(value) + '%';
+			},
+			"guides":
+			[{
+				"value": 0,
+				"lineAlpha": 0.1
+			}]
+		}
+	]
+	_option.balloon = {"fixedPosition": true};
+	_option.chartCursor =
+	{
+		"valueBalloonsEnabled": false,
+		"cursorAlpha": 0.05,
+		"fullWidth": true
+	};
+	_option.allLabels =
+	[
+		{
+			"text": "مرد",
+			"x": "28%",
+			"y": "0%",
+			"bold": true,
+			"align": "top"
+		},
+		{
+			"text": "زن",
+			"x": "75%",
+			"y": "0%",
+			"bold": true,
+			"align": "middle"
+		}
+	];
+
+
 	return _option;
 }
-
 
