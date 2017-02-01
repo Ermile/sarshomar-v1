@@ -74,6 +74,24 @@ trait ready
 			}
 		}
 
+		foreach ($_poll_data as $key => $value)
+		{
+			if($key == 'id')
+			{
+				continue;
+			}
+
+			if(is_numeric($value))
+			{
+				$_poll_data[$key] = (float) $value;
+			}
+
+			if($value === null || $value === '')
+			{
+				$_poll_data[$key] = null;
+			}
+		}
+
 		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] === '~')
 		{
 			$_poll_data['title'] = '';
@@ -185,20 +203,6 @@ trait ready
 		else
 		{
 			$_poll_data['sarshomar'] = false;
-		}
-
-
-		foreach ($_poll_data as $key => $value)
-		{
-			if(is_numeric($value))
-			{
-				$_poll_data[$key] = (float) $value;
-			}
-
-			if($value === null || $value === '')
-			{
-				$_poll_data[$key] = null;
-			}
 		}
 
 		// check parent and load tree data
