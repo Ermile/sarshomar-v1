@@ -199,18 +199,21 @@ class model extends \content_u\home\model
 	 */
 	public function opts()
 	{
-		$request =
-		[
-			'method' => 'array',
-			'request' =>
-			[
-				'id' => utility::get("id")
-			],
-		];
-		utility::$REQUEST = new utility\request($request);
-
+		utility::set_request_array(['id' => utility::get("id")]);
 		$this->user_id = $this->login('id');
-		$result = $this->poll_opts();
+		$result        = $this->poll_opts();
+		$tmp_result = [];
+
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				if(isset($value['title']))
+				{
+					$tmp_result[] = ['value' => ++$key, 'title' => $value['title']];
+				}
+			}
+		}
 		return $result;
 	}
 
@@ -224,14 +227,11 @@ class model extends \content_u\home\model
 	{
 		$search = utility::get("q");
 		$my_poll = false;
-		\lib\utility::$REQUEST = new \lib\utility\request(
+
+		utility::set_request_array(
 		[
-			'method' => 'array',
-			'request' =>
-			[
-				'search'  => $search,
-				'my_poll' => $my_poll
-			]
+			'search'  => $search,
+			'my_poll' => $my_poll
 		]);
 
 		$this->user_id = $this->login('id');
@@ -267,12 +267,12 @@ class model extends \content_u\home\model
 			$request['parent'] = utility::get('parent');
 		}
 
-		utility::$REQUEST = new utility\request(
-			[
-				'method'  => 'array',
-				'request' => $request,
-			]
-		);
+		utility::set_request_array(
+		[
+			'method'  => 'array',
+			'request' => $request,
+		]);
+
 		$result = $this->tag_search();
 		return json_encode($result);
 	}
