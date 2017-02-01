@@ -676,11 +676,49 @@ function countQuestionOpts(_fill)
  * [fillTree description]
  * @return {[type]} [description]
  */
-function fillTree(_e, _b, _c)
+function fillTree(_el)
 {
-	console.log(_e);
-	console.log(_b);
-	console.log(_c);
+	// prepare sended data
+	var sendData  = {};
+	sendData.list = 'opts'
+	sendData.id   = $(_el).attr('data-val');
+	// try to abort old request
+	try { xhr.abort(); } catch(e){}
+	// try to get new list from server
+	var xhr = $.getJSON('', sendData, function(_data)
+	{
+
+		console.log('get from reza, json of poll detail');
+		// fill it
+		console.log(_data);
+		var list = clearJson(_data);
+		console.log(list);
+	});
+}
+
+
+/**
+ * [clearJson description]
+ * @param  {[type]} _data [description]
+ * @return {[type]}       [description]
+ */
+function clearJson(_data)
+{
+	var list = null;
+	if(_data && _data.msg && _data.msg.list)
+	{
+		list = _data.msg.list;
+		list = JSON.parse(list);
+		if(list)
+		{
+			// do nothing
+		}
+		else
+		{
+			list = [];
+		}
+	}
+	return list;
 }
 
 
@@ -1381,7 +1419,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$(this).on('change', '#descriptive', function()
 	{
-		console.log(this.checked)
 		if(this.checked)
 		{
 			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-subtitle'));
