@@ -1728,7 +1728,6 @@ code {font-size: 1.2em;}
 .api-docs .table>div:hover:not(.table-header) span{background:#dfe3e6}
 .api-docs .table>div.table-header{background:rgb(224,224,224);font-weight:bold}
 .api-docs .table>div>span>label{color:#54b4ef}
-.api-docs .inner-table{border:18px solid #e0e0e0}
 
 /* step publish theme */
 .stepPublish .table>div:not(.table-header):nth-child(even){background-color:#efefef}
