@@ -173,34 +173,155 @@ AmCharts.maps.iranHigh={
 	}
 };
 
-
+var data =
+[
+{
+	"id":"IR-32",
+	"value": 10
+},
+{
+	"id":"IR-15",
+	"value": 12
+},
+{
+	"id":"IR-13",
+	"value": 25
+},
+{
+	"id":"IR-31",
+	"value": 102
+},
+{
+	"id":"IR-30",
+	"value": 38
+},
+{
+	"id":"IR-29",
+	"value": 18
+},
+{
+	"id":"IR-16",
+	"value": 71
+},
+{
+	"id":"IR-19",
+	"value": 33
+},
+{
+	"id":"IR-17",
+	"value": 69
+},
+{
+	"id":"IR-01",
+	"value": 85
+},
+{
+	"id":"IR-02",
+	"value": 97
+},
+{
+	"id":"IR-28",
+	"value": 88
+},
+{
+	"id":"IR-11",
+	"value": 91
+},
+{
+	"id":"IR-24",
+	"value": 90
+},
+{
+	"id":"IR-26",
+	"value": 92
+},
+{
+	"id":"IR-22",
+	"value": 45
+},
+{
+	"id":"IR-03",
+	"value": 56
+},
+{
+	"id":"IR-23",
+	"value": 104
+},
+{
+	"id":"IR-05",
+	"value": 120
+},
+{
+	"id":"IR-20",
+	"value": 201
+},
+{
+	"id":"IR-10",
+	"value": 100
+},
+{
+	"id":"IR-08",
+	"value": 133
+},
+{
+	"id":"IR-25",
+	"value": 9
+},
+{
+	"id":"IR-07",
+	"value": 11
+},
+{
+	"id":"IR-12",
+	"value": 143
+},
+{
+	"id":"IR-21",
+	"value": 110
+},
+{
+	"id":"IR-27",
+	"value": 95
+},
+{
+	"id":"IR-14",
+	"value": 51
+},
+{
+	"id":"IR-04",
+	"value": 44
+},
+{
+	"id":"IR-06",
+	"value": 30
+},
+{
+	"id":"IR-18",
+	"value": 1
+}
+];
 
 var iranMap = AmCharts.makeChart('iran-map',
 {
 	"type": "map",
-	"theme": "light",
-	"projection": "miller",
+    "theme": "light",
+    "colorSteps": 10,
 
 	"dataProvider":
 	{
   		"map": "iranHigh",
-		"getAreasFromMap": true
+		"areas": data
  	},
 
- 	"areasSettings":
- 	{
-  		"autoZoom": false,
-  		"selectedColor": "#e5a428"
- 	},
 	"zoomControl":
 	{
 		"panControlEnabled": false,
 		"zoomControlEnabled": false,
 		"homeButtonEnabled": false
 	},
- 	"smallMap":
- 	{
-  		"enabled": false,
-  		"backgroundAlpha": 0.5
- 	}
+
+	"areasSettings": {
+      "autoZoom": false,
+      "balloonText": "[[title]]: <strong>[[value]]</strong>"
+    }
 });
