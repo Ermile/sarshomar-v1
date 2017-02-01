@@ -75,6 +75,12 @@ class view extends \content_u\home\view
 			$answers = [[],[]];
 		}
 		$this->data->answers = $answers;
+
+		$answer_type = array_column($answers, 'type');
+		if(in_array("descriptive", $answer_type))
+		{
+			$this->data->have_other_opt = true;
+		}
 		unset($poll['answers']);
 
 		$this->data->poll      = $poll;

@@ -54,14 +54,34 @@
 {%block feature_opts%}
 <ul class="input-group sortable drag-big">
 {%for key, value in answers%}
-{% set myKey = key + 1 %}
- <li class="multi-line" data-row="{{myKey}}">
+{%if value.type == 'descriptive' %}
+  {% set myKey    = 'other' %}
+  {% set myKeyNum = key + 1 %}
+  {% set other    = true %}
+{%else%}
+  {% set myKey = key + 1 %}
+{%endif%}
+
+ <li class="multi-line" data-row="{{myKey}}" {%if value.type == 'descriptive' %}data-type="other"{%endif%}>
   <div class="ultra">
    <div class="data">
     <div class="element">
-     <label class="title small" for="answer{{myKey}}">{%trans "Answer"%} <b>{{myKey | persian}}</b></label>
+     <label class="title small" for="answer{{myKey}}">
+     {%if other%}
+      <b>{{myKeyNum | persian}}</b> {%trans "Other"%}</label>
+     {%else%}
+      {%trans "Answer"%} <b>{{myKey | persian}}</b></label>
+     {%endif%}
      <div class="element-in">
-      <input class="input" type="text" id="answer{{myKey}}" placeholder='{%trans "Answer"%} {{myKey | persian}}' autocomplete="off" value="{{value.title}}">
+      <input class="input" type="text"
+        {% if other%}
+          id="other{{myKeyNum}}"
+          placeholder='{%trans "text given from user"%}'
+        {% else %}
+          id="answer{{myKey}}"
+          placeholder='{%trans "Answer"%} {{myKey | persian}}'
+        {% endif %}
+      autocomplete="off" value="{{value.title}}">
       <span class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
        <input type="checkbox" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
        <label class="check-box" for="true{{myKey}}"></label>
@@ -145,7 +165,7 @@
 
 {%block feature_other%}
 <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
- <input type="checkbox" id="descriptive" {%if poll.meta.descriptive%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
+ <input type="checkbox" id="descriptive" {%if have_other_opt%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
  <label for="descriptive" class="check-box"></label>
  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
 </div>

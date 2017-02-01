@@ -29,8 +29,8 @@ trait answers
 					switch ($value['type'])
 					{
 						case 'select':
+						case 'descriptive':
 						// case 'emoji':
-						// case 'descriptive':
 						// case 'upload':
 						// case 'range':
 						// case 'notification':
@@ -102,7 +102,7 @@ trait answers
 
 				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
-				if($type == 'select' || $type == 'emoji')
+				if($type == 'select' || $type == 'emoji' || $type == 'descriptive')
 				{
 					// get score value
 		     		if(isset($value[$type]['score']['value']) && is_numeric($value[$type]['score']['value']))
