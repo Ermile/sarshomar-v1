@@ -23,13 +23,8 @@ class ask
 	{
 		$maker = new make_view($_short_link);
 		self::check_language($maker);
-		if(
-			(
-				$maker->query_result['status'] != 'publish' &&
-				$maker->query_result['user_id'] != bot::$user_id
-			) ||
-			$maker->query_result['status'] == 'deleted'
-		)
+		handle::send_log($maker->query_result);
+		if(is_null($maker->query_result))
 		{
 			$return = ['text' => T_("Answer not found")];
 		}
@@ -64,7 +59,7 @@ class ask
 					]);
 			}
 
-			if($maker->query_result['user_id'] == bot::$user_id)
+			if($maker->query_result['user_id'] == \lib\utility\shortURL::encode(bot::$user_id))
 			{
 				$maker->inline_keyboard->add_guest_option([$skip_type => false, 'poll_option' => true]);
 				$maker->message->add_poll_chart(true);
@@ -82,22 +77,7 @@ class ask
 
 			$return = $maker->make();
 
-			$on_expire = $maker->inline_keyboard->get_guest_option([$skip_type => false, 'poll_option' => true]);
-			if($maker->query_result['status'] == 'publish')
-			{
-				$disable_web_page_preview = true;
-				if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
-				{
-					$disable_web_page_preview = false;
-				}
-				$return["response_callback"] = utility::response_expire('ask', [
-					'reply_markup' => [
-						'inline_keyboard' => [$on_expire]
-					],
-					'disable_web_page_preview' => $disable_web_page_preview
-
-				]);
-			}
+			$return["response_callback"] = utility::response_expire('ask');
 		}
 		if(is_array($_query))
 		{

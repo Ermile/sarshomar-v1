@@ -2,6 +2,8 @@
 namespace content\saloos_tg\sarshomar_bot\commands\make_view;
 use \content\saloos_tg\sarshomar_bot\commands\handle;
 use \content\saloos_tg\sarshomar_bot\commands\utility;
+use \lib\telegram\tg as bot;
+
 class inline_keyboard
 {
 	public $inline_keyboard = array();
@@ -134,7 +136,7 @@ class inline_keyboard
 
 	public function get_change_status(&$_return)
 	{
-		if($this->class->user_id == $this->class->query_result['user_id'])
+		if(\lib\utility\shortURL::encode(bot::$user_id) == $this->class->query_result['user_id'])
 		{
 			$status = $this->class->query_result['status'];
 			if($status == 'publish')
@@ -153,6 +155,14 @@ class inline_keyboard
 				$_return[] = [
 					"text" => T_("Delete"),
 					"callback_data" => 'poll/delete/'.$this->class->poll_id
+				];
+			}
+
+			if($status == 'draft')
+			{
+				$_return[] = [
+					"text" => T_("Edit"),
+					"callback_data" => 'poll/edit/'.$this->class->poll_id
 				];
 			}
 		}

@@ -115,6 +115,15 @@ class poll
 		return $return;
 	}
 
+	public static function edit($_query, $_data_url)
+	{
+		session::set('poll', $_data_url[2]);
+		$return = \content\saloos_tg\sarshomar_bot\commands\step_create::start(null, true);
+		session::remove_back('expire', 'inline_cache', 'ask');
+		session::remove('expire', 'inline_cache', 'ask');
+		callback_query::edit_message($return);
+	}
+
 	public static function save($_query, $_data_url)
 	{
 		$poll_id = $_data_url[2];
@@ -124,7 +133,7 @@ class poll
 			'status'	=> 'publish'
 			]
 		]);
-		$add_poll = \lib\main::$controller->model()->add_poll(['method' => 'patch']);
+		$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		if(\lib\debug::$status)
 		{
 			step::stop();

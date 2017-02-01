@@ -18,9 +18,14 @@ class step_create
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start($_text = null)
+	public static function start($_text = null, $_run_as_edit = false)
 	{
 		step::start('create');
+		if($_run_as_edit)
+		{
+			step::goingto(2);
+			return self::make_draft(session::get('poll'));
+		}
 		return self::step1();
 	}
 
@@ -64,7 +69,7 @@ class step_create
 		if($get_poll)
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
-			$get_poll = \lib\main::$controller->model()->get_poll();
+			$get_poll = \lib\main::$controller->model()->poll_get();
 		}
 
 		if($file_content && array_key_exists('caption', bot::$hook['message']))
@@ -127,7 +132,7 @@ class step_create
 			$poll_request['language'] = callback_query\language::check(true);
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-			$add_poll = \lib\main::$controller->model()->add_poll(['method' => $get_poll ? 'patch' : 'post']);
+			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
