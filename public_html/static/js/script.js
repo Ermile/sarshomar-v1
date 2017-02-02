@@ -870,8 +870,8 @@ function detectStep(_name)
 		var myTitle = $('#title');
 		if(!myTitle.val())
 		{
-			myTitle.addClass('error');
-			return false;
+			myTitle.addClass('isError');
+			// return false;
 		}
 	}
 
@@ -950,7 +950,6 @@ function checkNextStep()
 			case 'step-publish':
 				console.log('what now?');
 				break;
-
 		}
 	})
 }
@@ -1212,13 +1211,13 @@ function prepareQuestionData()
 	var myQuestion     = {};
 	myQuestion.title   = $('#title').val();
 	// change status of title
-	if(!$('#title').val())
+	if($('#title').val())
 	{
-		$('#title').addClass('error');
+		$('#title').removeClass('isError')
 	}
 	else
 	{
-		$('#title').removeClass('error')
+		$('#title').addClass('isError');
 	}
 	// myQuestion.type    = 'poll';
 	myQuestion.answers = {};
