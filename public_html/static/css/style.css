@@ -504,12 +504,19 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0 8px;float:left}
 .rtl nav.breadcrumb>a+a:before{float:right}
 
 /* financial box */
-header #financial-box{height:30px;background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;margin-right:10px}
+header #financial-box{height:30px;display:-webkit-box;display:-ms-flexbox;display:flex;margin-right:10px}
 .rtl header #financial-box{margin-right:0;margin-left:10px}
 
-header #financial-box .total,header #financial-box .cost{-webkit-box-flex:1;-ms-flex:1;flex:1;font-weight:bold;min-width:15em;text-align:center;line-height:30px}
-header #financial-box .total{color:#00667a;position:relative}
-header #financial-box .cost{color:#1d9028}
+header #financial-box .total,header #financial-box .cost{-webkit-box-flex:1;-ms-flex:1;flex:1;font-weight:bold;min-width:15em;text-align:center;line-height:30px;position:relative}
+header #financial-box .total:hover,header #financial-box .cost:hover{background-color:#efefef}
+
+header #financial-box .total a{color:#00667a}
+header #financial-box .cost{color:#1d9028/*;margin-right:1px*/}
+/*.rtl header #financial-box .cost{margin-right:0;margin-left:1px}*/
+
+/*header #financial-box .cost::before{position:absolute;content:'';width:1px;height:80%;top:10%;right:-1px;background-color:#8a8a8a}*/
+/*.rtl header #financial-box .cost::before{right:auto;left:-1px}*/
+
 header #financial-box .total>span,header #financial-box .cost>span{padding:0 2px}
 
 header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:1;background-color:#fff;display:none}
@@ -787,7 +794,7 @@ footer .is-open i {transform:rotate(180deg);}
 .range-slider[data-type=vertical] .dynamic-range .max::after{-webkit-transform:rotate(0);transform:rotate(0)}
 .range-slider .dynamic-range .min::after{-webkit-transform:rotate(270deg);transform:rotate(270deg)}
 .range-slider[data-type=vertical] .dynamic-range .min::after{transform:rotate(0)}
-.range-slider[data-type=vertical]{background-color:#e7e7e7;width:30px;margin:1em 4em;display:inline-block;min-height:100px;margin-top:16px;margin-bottom:16px;}
+.range-slider[data-type=vertical]{background-color:#efefef;width:30px;margin:1em 4em;display:inline-block;min-height:100px;margin-top:16px;margin-bottom:16px;}
 .range-slider[data-type=vertical] .dynamic-range{width:30px;background-color:#00667a}
 .range-slider[data-type=vertical] .dynamic-range .min{top:initial;left:-20px;bottom:-15px;-webkit-transform:rotate(180deg);transform:rotate(180deg)}
 .range-slider[data-type=vertical] .dynamic-range .max{right:-20px;top:-15px;-webkit-transform:none;transform:none}
@@ -893,7 +900,7 @@ right:0;left:0;top:100%}
 .checkbox:checked+label::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards}
 .checkbox:checked+label::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards}
 .checkbox:focus+label{border:2px solid #00667a}
-.checkbox.active{border-color:#00667a}
+.checkbox.active+label{border-color:#00667a}
 .checkbox-block{margin-bottom:15px}
 
 
@@ -1267,14 +1274,19 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}
 
 
 /************************************************************** page progress */
-.page-progress{width:300px;margin:0 auto 4em;display:flex;justify-content:space-between;position:relative}
+.page-progress{width:300px;margin:0 auto 4em;display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:space-between;position:relative}
 .page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#d8d8d8}
 .page-progress a{display:flex}
 .page-progress b{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background-color:#00667a;transition:2s}
 .rtl .page-progress b{left:auto;right:0}
 .page-progress.ajax b{transition:.1s}
-.page-progress span::before{content:attr(data-label);color:#d8d8d8;font-weight:700;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em}
-.page-progress span.active::before{color:#00667a}
+
+.page-progress .step-block{position:relative}
+.page-progress .step-block::before{content:attr(data-label);color:#d8d8d8;font-weight:700;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em}
+
+.page-progress .step-block.active::before{color:#00667a}
+
+.page-progress .checkbox+label{margin:0}
 
 /************************************************************** menu */
 .menu{margin:0 auto 15px;text-align:center;padding:0 12px}
@@ -1419,7 +1431,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 /* switch */
 .element.switch{padding-left:0;padding-right:0;width: 100%;}
-.element.switch label:not(.title){color:#035261;background-color:#e7e7e7;text-align:center;-webkit-box-flex:1;-ms-flex:1;flex:1;line-height:35px;position:relative;cursor:pointer;padding:0 10px;}
+.element.switch label:not(.title){color:#035261;background-color:#efefef;text-align:center;-webkit-box-flex:1;-ms-flex:1;flex:1;line-height:35px;position:relative;cursor:pointer;padding:0 10px;}
 .element.switch label:not(.title):not(:last-child)::before{content:'';position:absolute;width:1px;height:70%;background-color:#d6d6d6;right:-.5px;top:0;bottom:0;margin:auto;transition:.3s;z-index:1;}
 .rtl .element.switch label:not(.title):not(:last-child)::before{right:auto;left:-.5px;}
 .element.switch{border-radius:3px;overflow:hidden;}

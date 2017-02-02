@@ -66,21 +66,25 @@
      <div id="financial-box">
 
       <div class="cost">
-       <span class="title">{%trans "Cost"%}</span><span class="value">15,000</span><span class="unit">{%trans "Tomans"%}</span>
+       <span class="title">{%trans "Cost"%}</span><span class="value">{{0 | number_format | persian}}</span><span class="unit">{%trans "Tomans"%}</span>
       </div>
 
       <div class="total">
-       <span class="title">{%trans "Total cash"%}</span><span class="value">{{user_cash}}</span><span class="unit">{%trans user_unit%}</span>
+       <a href="#">
+        <span class="title">{%trans "Total cash"%}</span>
+        <span class="value">{{user_cash | number_format | persian}}</span>
+        <span class="unit">{%trans user_unit%}</span>
+       </a>
 
        <div class="financial-detail">
         <div class="row">
          <div class="cell">Cash</div>
-         <div class="cell">{{user_cash_real}}</div>
+         <div class="cell">{{user_cash_real | number_format | persian}}</div>
          <div class="cell">{%trans user_unit%}</div>
         </div>
         <div class="row">
          <div class="cell">Gift</div>
-         <div class="cell">{{user_cash_gift}}</div>
+         <div class="cell">{{user_cash_gift | number_format | persian}}</div>
          <div class="cell">{%trans user_unit%}</div>
         </div>
        </div>

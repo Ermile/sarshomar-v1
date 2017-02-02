@@ -80,11 +80,14 @@
  header #header-profile .register{margin-left:5px}
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
- header #header-bottom{}
+
+ header #header-bottom{height:auto;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}
 
  .rtl header .header-profile-button{font-size:12px}
 
  header #financial-box{width:100%;margin:0 20px!important}
+
+ .checkbox+label::before{top:16px;left:10px}
 
  #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}
@@ -152,7 +155,7 @@
  .ultra .data {width: 100%;}
  .ultra.title-item {margin-bottom: 3em;}
  .ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
- .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;flex-basis: 87%;border-radius: 5px 0 0 5px;height: 30px}
+ .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;flex-basis: 87%;/*border-radius: 5px 0 0 5px;*/height: 30px}
  .rtl .ultra .element input[type=text] {border-radius: 0 5px 5px 0;}
  .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;right: 0;}
  .rtl .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;left: 0; right: auto}
@@ -176,8 +179,10 @@
  .sortable li {margin-bottom: 3em;}
  .element.switch label:not(.title) {line-height: 20px;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
  .range-slider {height: 20px;}
- .element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;}
- .element .title.large {min-height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px}
+ .element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
+ .element .title.large {min-height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
+ .tree-container .element .title.small,.tree-container .element .title.large{border-radius:0;line-height:35px}
+
  .range-slider .dynamic-range .max:after, .range-slider .dynamic-range .min:after,.range-slider .dynamic-range .min.active:before {top: 0px;width: 20px;height: 20px;}
  .range-slider .dynamic-range .max {right: -20px;bottom: -24px;}
  .range-slider .dynamic-range .max.active:before {width: 20px;height: 20px;}
