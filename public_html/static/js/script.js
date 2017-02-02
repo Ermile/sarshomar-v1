@@ -1342,11 +1342,24 @@ function prepareQuestionData()
 	// save randomSort for multiple selection
 	myQuestion.options.random_sort = $('#random_sort').is(":checked");
 	// data of publish page
-	// articles
-	myQuestion.article = $('#article').attr('data-val');
-	if(myQuestion.article)
+	// category
+	if($('#cat0').attr('data-val'))
 	{
-		myQuestion.article = JSON.parse(myQuestion.article);
+		myQuestion.cat = $('#cat0').attr('data-val');
+		if($('#cat1').attr('data-val'))
+		{
+			myQuestion.cat = $('#cat1').attr('data-val');
+			if($('#cat2').attr('data-val'))
+			{
+				myQuestion.cat = $('#cat2').attr('data-val');
+			}
+		}
+	}
+	// articles
+	myQuestion.articles = $('#article').attr('data-val');
+	if(myQuestion.articles)
+	{
+		myQuestion.articles = JSON.parse(myQuestion.articles);
 	}
 	// tags
 	myQuestion.tags = $('#tags').attr('data-val');
