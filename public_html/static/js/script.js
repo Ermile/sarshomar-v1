@@ -1155,12 +1155,11 @@ function calcTotalPrice()
 	var prBrand  = $('#prBrand');
 	var prTotal  = $('#prTotal');
 
-	// add question price to total
-	totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
 
 	// if person count isset show or hide
 	if(filters.person)
 	{
+		// remove base price
 		prPerson.removeClass('hide');
 		// if exsit show or hide
 		if(filters.filter)
@@ -1171,12 +1170,18 @@ function calcTotalPrice()
 		{
 			prFilter.addClass('hide');
 		}
+		// hide base price
+		prAdd.addClass('hide');
 	}
 	else
 	{
 		// hide person and filter
 		prPerson.addClass('hide');
 		prFilter.addClass('hide');
+		// show add base price
+		prAdd.removeClass('hide');
+		// add question price to total
+		totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
 	}
 	// if person is correct
 	if(typeof filters.person == "number")
