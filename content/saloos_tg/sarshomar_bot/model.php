@@ -12,5 +12,8 @@ class model extends \lib\mvc\model{
 	use \content_api\v1\poll\tools\delete;
 
 	use \content_api\v1\poll\search\tools\search;
+
+	use \content_api\v1\poll\status\tools\get;
+	use \content_api\v1\poll\status\tools\set;
 }
 ?>
