@@ -908,6 +908,7 @@ function detectStep(_name)
 
 		case 'step-publish':
 		case 'step3':
+			calcTotalPrice();
 			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
@@ -1107,6 +1108,12 @@ function calcFilterPrice()
 		var currentRatio = parseInt($(el).attr('data-ratio'));
 		totalPercent     += currentRatio;
 	});
+	// set return result
+	var returnResult    = {};
+	returnResult.base   = basePrice;
+	returnResult.person = totalPerson;
+	returnResult.filter = totalPercent;
+
 	// change percent to ratio
 	totalPercent = totalPercent/100;
 	totalPrice   = totalPerson + (totalPerson * totalPercent);
@@ -1114,7 +1121,148 @@ function calcFilterPrice()
 	totalPrice   = Math.round(totalPrice);
 
 	// set value to show to enduser
-	totalEl.text(totalPrice.toLocaleString());
+	totalEl.text(fitNumber(totalPrice));
+
+
+	return returnResult;
+}
+
+
+/**
+ * [calcTotalPrice description]
+ * @return {[type]} [description]
+ */
+function calcTotalPrice()
+{
+	var totalPrice = 0;
+	// get filter data
+	var filters  = calcFilterPrice();
+	var prAdd    = $('#prAdd');
+	var prPerson = $('#prPerson');
+	var prFilter = $('#prFilter');
+	var prBrand  = $('#prBrand');
+	var prTotal  = $('#prTotal');
+
+	// add question price to total
+	totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
+
+	// if person count isset show or hide
+	if(filters.person)
+	{
+		prPerson.removeClass('hide');
+		// if exsit show or hide
+		if(filters.filter)
+		{
+			prFilter.removeClass('hide');
+		}
+		else
+		{
+			prFilter.addClass('hide');
+		}
+	}
+	else
+	{
+		// hide person and filter
+		prPerson.addClass('hide');
+		prFilter.addClass('hide');
+	}
+	// if person is correct
+	if(typeof filters.person == "number")
+	{
+		var personPrice = filters.base * filters.person;
+		prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
+		// set value
+		prPerson.find('.pr').attr('data-val', personPrice).text(fitNumber(personPrice));
+		totalPrice += personPrice;
+
+		if(typeof filters.filter == "number")
+		{
+			// person * filter
+			var filterPrice = personPrice * (filters.filter/100);
+
+			prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
+			prFilter.find('.pr').attr('data-val', filterPrice).text(fitNumber(filterPrice));
+			totalPrice += filterPrice;
+		}
+	}
+
+	// brand
+	if($('#meta_branding').is(":checked"))
+	{
+		prBrand.removeClass('hide');
+		var untilBrand = calcUntilPrice('prBrand');
+		// set value of brand
+		var brandFactor = parseInt(prBrand.attr('data-val'));
+		prBrand.find('span:first-child b').text('x' + fitNumber(brandFactor));
+		var brandPrice  = untilBrand * brandFactor;
+		// set value of price
+		prBrand.find('.pr').attr('data-val', brandPrice).text(fitNumber(brandPrice));
+		// add brand to totalPrice
+		totalPrice += brandPrice;
+	}
+	else
+	{
+		prBrand.addClass('hide');
+	}
+
+	// set total price
+	prTotal.find('.pr').attr('data-val', totalPrice).text(fitNumber(totalPrice));
+}
+
+
+/**
+ * [calcUntilPrice description]
+ * @param  {[type]} _current [description]
+ * @return {[type]}          [description]
+ */
+function calcUntilPrice(_current)
+{
+	var continuesValue = 0;
+	var untilCurrent   = null;
+	$('#totalPrice div:not(".hide") .pr').each(function()
+	{
+		var thisValue = $(this).attr('data-val');
+		if(thisValue)
+		{
+			continuesValue += parseInt(thisValue);
+			$(this).closest('div').attr('data-until', continuesValue);
+		}
+
+		// if find this element
+		if(untilCurrent === null)
+		{
+			// if($(this).closest('div').attr('id') === 'pr' + _current.ucFirst())
+			if($(this).closest('div').attr('id') === _current)
+			{
+				untilCurrent = continuesValue;
+			}
+		}
+	});
+
+	return untilCurrent;
+}
+
+
+/**
+ * [fitNumber description]
+ * @param  {[type]} _num [description]
+ * @return {[type]}      [description]
+ */
+function fitNumber(_num)
+{
+	_num = _num.toLocaleString();
+	if($('html').attr('lang') === 'fa')
+	{
+		_num = _num.toFarsi();
+	}
+
+	return _num;
+}
+
+
+String.prototype.ucFirst = function()
+{
+	return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 

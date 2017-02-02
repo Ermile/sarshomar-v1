@@ -60,36 +60,35 @@
  </div>
 
  <div class="span4">
-  <div class="table">
-   <div class="table-header">
-    <span>Title</span>
-    <span>Cost</span>
+  <div class="tbl" id='totalPrice'>
+   <div class="tbl-header">
+    <span>{%trans "Title"%}</span>
+    <span>{%trans "Price"%} <span>{%trans "Toman"%}</span></span>
    </div>
-   <div>
-    <span>Question</span>
-    <span>570,000</span>
+
+   <div id='prPerson' class="hide">
+    <span>{%trans "Society"%}</span>
+    <span class='pr'>{{15000 | number_format | persian}}</span>
    </div>
-   <div>
-    <span>Question</span>
-    <span>
-     570,000 <span class="factor">(x10)</span>
-    </span>
+
+   <div id='prFilter' class="hide">
+    <span>{%trans "Filter"%}<b>30%</b></span>
+    <span class='pr'>{{0 | number_format | persian}}</span>
    </div>
-   <div>
-    <span>Question</span>
-    <span>570,000</span>
+
+   <div id='prAdd'>
+    <span>{%trans "Register Question"%}</span>
+    <span class='pr' data-val=1000>{{1000 | number_format | persian}}</span>
    </div>
-   <div>
-    <span>Question</span>
-    <span>570,000</span>
+
+   <div id='prBrand' class="hide" data-val='10'>
+    <span>{%trans "Branding"%}<b>x10</b></span>
+    <span class='pr'>{{30000 | number_format | persian}}</span>
    </div>
-   <div>
-    <span>Question</span>
-    <span>570,000</span>
-   </div>
-   <div class="table-footer">
-    <span>Question</span>
-    <span>570,000</span>
+
+   <div id='prTotal' class="tbl-footer">
+    <span>{%trans "Total Price"%}</span>
+    <span class='pr'>{{57000 | number_format | persian}}</span>
    </div>
   </div>
  </div>
