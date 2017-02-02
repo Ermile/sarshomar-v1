@@ -1280,13 +1280,32 @@ function prepareQuestionData()
 		// add to total array of this question
 		myQuestion.answers[_e] = thisOpt;
 	});
-
+	// get branding data
 	if($('#meta_branding').is(":checked"))
 	{
 		myQuestion.brand       = {};
 		myQuestion.brand.title = $('#answer_brand').val();
 		myQuestion.brand.url   = $('#answer_brand_url').val();
 	}
+	// get tree data
+	if($('#tree').is(':checked'))
+	{
+		myQuestion.tree         = {};
+		myQuestion.tree.parent  = $('#tree-search').attr('data-val');
+		myQuestion.tree.answers = [];
+
+		$('.tree-result-list input:checked').each(function(_e)
+		{
+			var myId = $(this).attr('id');
+			myId     = myId.substr(9);
+			myQuestion.tree.answers.push(myId);
+		});
+		if(myQuestion.tree.answers.length < 1)
+		{
+			myQuestion.tree.answers = true
+		}
+	}
+
 	// summary
 	myQuestion.summary     = $('#summary').val();
 	// description
