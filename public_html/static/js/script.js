@@ -1243,22 +1243,6 @@ function calcUntilPrice(_current)
 }
 
 
-/**
- * [fitNumber description]
- * @param  {[type]} _num [description]
- * @return {[type]}      [description]
- */
-function fitNumber(_num)
-{
-	_num = _num.toLocaleString();
-	if($('html').attr('lang') === 'fa')
-	{
-		_num = _num.toFarsi();
-	}
-
-	return _num;
-}
-
 
 String.prototype.ucFirst = function()
 {
@@ -1333,6 +1317,12 @@ function sendQuestionData()
 							fake: true,
 						});
 					}
+					var limit = 500;
+					if(limit < 100)
+					{
+						lockStep();
+					}
+					$('#rangepersons').rangeSlider('option', 'max_limit', limit, 1);
 				}
 				$('#question-add').removeClass('syncing');
 			},
