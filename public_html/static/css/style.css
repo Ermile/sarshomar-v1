@@ -462,7 +462,7 @@ header .ui-language-link:hover,header .ui-language-link:focus{background-color:#
 .profile .info{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;height:40px;padding:0 10px}
 .profile .info>div{line-height:1}
 .profile .info .displayname{margin:2px 0}
-.profile .info .role{font-size:10px}
+.profile .info .role{/*font-size:10px*/}
 
 .profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;display:none;z-index:1}
 .profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#e76f6f;left:-1px}
