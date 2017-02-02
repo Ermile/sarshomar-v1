@@ -81,6 +81,23 @@ trait search
 				$meta['post_language'] = utility::request("language");
 			}
 		}
+		else
+		{
+			$meta['check_language'] = false;
+		}
+
+		if(utility::request("sarshomar"))
+		{
+			if(!is_bool(utility::request("sarshomar")))
+			{
+				return debug::error(T_("Invalid parameter sarshomar"), 'sarshomar', 'arguments');
+			}
+			$meta['all'] = false;
+		}
+		else
+		{
+			$meta['all'] = true;
+		}
 
 		$meta['login']       = $this->user_id;
 		$meta['api_mode']    = $this->api_mode;

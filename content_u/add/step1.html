@@ -54,26 +54,24 @@
 {%block feature_opts%}
 <ul class="input-group sortable drag-big">
 {%for key, value in answers%}
+{% set myKey = key + 1 %}
+
 {%if value.type == 'descriptive' %}
-  {% set myKey    = 'other' %}
-  {% set myKeyNum = key + 1 %}
-  {% set other    = true %}
+  {% set other = true %}
 {%else%}
-  {% set myKey = key + 1 %}
+  {% set other = false %}
 {%endif%}
 
- <li class="multi-line" data-row="{{myKey}}" {%if value.type == 'descriptive' %}data-type="other"{%endif%}>
+ <li class="multi-line" data-row="{{myKey}}" {% if other %} data-type="other" {% endif %}>
   <div class="ultra">
    <div class="data">
     <div class="element">
-     <label class="title small" for="answer{{myKey}}">{%if other%}<b>{{myKeyNum | persian}}</b> {%trans "Other"%}{%else%}{%trans "Answer"%} <b>{{myKey | persian}}</b>{%endif%}</label>
+     <label class="title small" for="answer{{myKey}}">{%if other%}<b>{{myKey | persian}}</b> {%trans "Other"%}{%else%}{%trans "Answer"%} <b>{{myKey | persian}}</b>{%endif%}</label>
      <div class="element-in">
-      <input class="input" type="text"
-        {% if other%}
-          id="other{{myKeyNum}}"
+      <input class="input" type="text" id="answer{{myKey}}"
+        {% if other %}
           placeholder='{%trans "text given from user"%}'
         {% else %}
-          id="answer{{myKey}}"
           placeholder='{%trans "Answer"%} {{myKey | persian}}'
         {% endif %}
       autocomplete="off" value="{{value.title}}">

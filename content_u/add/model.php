@@ -225,8 +225,10 @@ class model extends \content_u\home\model
 
 		utility::set_request_array(
 		[
-			'search'  => $search,
-			'my_poll' => $my_poll
+			'search'    => $search,
+			'my_poll'   => $my_poll,
+			'language'  => null,
+			'sarshomar' => false,
 		]);
 
 		$this->user_id = $this->login('id');
