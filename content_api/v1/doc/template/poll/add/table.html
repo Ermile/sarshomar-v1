@@ -1,5 +1,5 @@
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -50,7 +50,7 @@
         <span>
             <a href="v1/doc#poll-branding"><strong>branding</strong></a> <br> <small><i>object</i></small>
         </span>
-        <span><span>{%trans "If the poll is being created by a brand or company, they can fill in the required information to show their brand identity."%}</span> <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><span class="long-txt">{%trans "If the poll is being created by a brand or company, they can fill in the required information to show their brand identity."%}</span>        <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><a href="v1/doc#poll-branding"><strong>{%trans "Go to table"%}</strong></a></span>
     </div>
     <div>
@@ -60,8 +60,6 @@
         <span>{%trans "The answer to the poll or question is specified by this variable"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
         <span><a href="v1/doc#poll-answers"><strong>{%trans "Go to table"%}</strong></a></span>
     </div>
-  
-    
     <div>
         <span>
             <a href="v1/doc#poll-options"><strong>options</strong></a> <br> <small><i>object</i></small>
@@ -109,7 +107,7 @@
     <a href="v1/doc#poll-tree">{%trans "Poll Tree"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -130,7 +128,7 @@
     <a href="v1/doc#poll-branding">{%trans "Poll Branding"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -151,7 +149,7 @@
     <a href="v1/doc#poll-answers">{%trans "Poll Answers"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -171,7 +169,7 @@
         <span>{%trans "If your answers has a file like an image, specify it here."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
         <span><code class="example-code html">{%trans "URL of an image that shows the weather is cold"%}</code></span>
     </div>
-      <div>
+    <div>
         <span>
             <a href="v1/doc#poll-select"><strong>select</strong></a> <br> <small><i>object</i></small>
         </span>
@@ -184,7 +182,7 @@
     <a href="v1/doc#poll-select">{%trans "Poll Select"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -207,7 +205,7 @@
     <a href="v1/doc#poll-score">{%trans "Poll Score"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -228,7 +226,7 @@
     <a href="v1/doc#poll-options">{%trans "Poll Options"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -264,7 +262,7 @@
     <a href="v1/doc#poll-schedule">{%trans "Poll Schedule"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -285,7 +283,7 @@
     <a href="v1/doc#poll-from">{%trans "Poll From"%}</a>
 </h3>
 <div class="tbl method-table ltr">
-    <div class="table-header">
+    <div class="tbl-header">
         <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
         <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
         <span>{%trans "Example"%}</span>
@@ -297,8 +295,8 @@
     </div>
     <div>
         <span><strong>gender</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Select the gender that can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["male","female","null"]</code></span>
+        <span>{%trans "Select the gender that can answer the poll. It can be "%} <code class="example-code html">male | female | null</code> <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">["male"]</code></span>
     </div>
     <div>
         <span><strong>marrital</strong> <br> <small><i>array</i></small></span>

@@ -1711,7 +1711,7 @@ code {font-size: 1.2em;}
 
 /************************************************************** Flexbox Table */
 .tbl{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin-bottom:3em;font-size:1.2em}
-.tbl>div{-webkit-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
+.tbl>div{-webkit-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;}
 .tbl>div>span{padding:0.8em 1.2em;overflow:hidden;/*-webkit-box-flex:1;-ms-flex:1;flex:1;*/white-space:nowrap;}
 .tbl>div:not(.tbl-header):nth-child(even){}
 .tbl>div:hover:not(.tbl-header) span{}
@@ -1730,10 +1730,10 @@ code {font-size: 1.2em;}
 .api-docs .tbl{border:1px solid #e0e0e0}
 .api-docs .tbl>div{background:rgb(239, 239, 239)}
 .api-docs .tbl>div:not(.tbl-header):nth-child(even){background:#fff}
-.api-docs .tbl>div:hover:not(.tbl-header) span{background:#dfe3e6}
+.api-docs .tbl>div:hover:not(.tbl-header)>span{background:#dfe3e6}
 .api-docs .tbl>div.tbl-header{background:rgb(224,224,224);font-weight:bold}
 .api-docs .tbl>div>span>label{color:#54b4ef}
-
+.api-docs .long-txt {white-space: pre-wrap;}
 /* step publish theme */
 .stepPublish .tbl>div:not(.tbl-header):nth-child(even){background-color:#efefef}
 .stepPublish .tbl>div:not(.tbl-header):nth-child(odd){background-color:#ebebeb}
