@@ -656,8 +656,9 @@ function homepageGender(_option)
 	_option.categoryAxis =
 	{
 		"gridPosition": "start",
-		"gridAlpha": 0.05,
+		"gridAlpha": 0.02,
 		"axisAlpha": 0,
+		"position": "right",
 	};
 	_option.valueAxes =
 	[
