@@ -23,10 +23,11 @@ trait ready
 		[
 			'get_filter'         => false,
 			'get_opts'           => false,
-			'get_options' 		 => false,
+			'get_options'        => false,
 			'get_public_result'  => false,
 			'get_advance_result' => false,
-			'run_options' 		 => true,
+			'run_options'        => true,
+			'check_is_my_poll'   => false,
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);
@@ -53,6 +54,11 @@ trait ready
 			{
 				$my_poll = true;
 			}
+		}
+
+		if($_options['check_is_my_poll'] && !$my_poll)
+		{
+			return debug::error(T_("Can not access to load this poll (this is not your poll)"), "id", 'permission');
 		}
 
 		if(array_key_exists('status', $_poll_data))

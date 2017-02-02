@@ -221,12 +221,11 @@ class model extends \content_u\home\model
 	public function tree()
 	{
 		$search = utility::get("q");
-		$my_poll = false;
 
 		utility::set_request_array(
 		[
 			'search'    => $search,
-			'my_poll'   => $my_poll,
+			'my_poll'   => false,
 			'language'  => null,
 			'sarshomar' => false,
 		]);

@@ -1,8 +1,7 @@
 {
   "search": "sdghl|null to get last",
-  "my_poll": "true|false|null",
+  "in": "sarshomar|me|null",
   "language": "fa|en|ar|null",
-  "sarshomar" : false,
   "from" : 0,
   "to" : 10,
 }

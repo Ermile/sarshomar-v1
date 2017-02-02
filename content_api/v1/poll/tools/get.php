@@ -23,6 +23,7 @@ trait get
 
 		$default_options =
 		[
+			'check_is_my_poll'   => false,
 			'get_filter'         => true,
 			'get_opts'           => true,
 			'get_options'	     => true,
