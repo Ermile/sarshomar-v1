@@ -1203,9 +1203,9 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}
 
 /*************************************************************** filter page */
 /* pay info */
-.pay-info{border:1px solid #37aaa7;height:100%}
-.pay-info .title{background-color:#37aaa7;padding:.5em 1em;text-align:center}
-.pay-info .title .price{color:#0a5260;font-weight:700}
+.pay-info{border:1px solid #00667a;height:100%}
+.pay-info .title{background-color:#00667a;padding:.5em 1em;text-align:center}
+.pay-info .title .price{color:#f4f4f4;font-weight:700}
 .pay-info .title .price .value{font-size:2em}
 .pay-info .title .price .unit{padding:0 .5em}
 .pay-info .range-slider{margin:1em auto;height:300px;display:block}
