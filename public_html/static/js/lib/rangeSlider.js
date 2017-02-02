@@ -359,7 +359,7 @@ var json_string = $(this).attr("save_jason");
 				var data_min_default = _set;
 				if(isNaN(data_min_default) || data_min > data_min_default)
 				{
-					data_min_default = 0;
+					data_min_default = data_min;
 				}
 				$(this).attr('data-min-default',data_min_default);
 				return data_min_default;
@@ -368,7 +368,7 @@ var json_string = $(this).attr("save_jason");
 			var data_min_default = Number($(this).attr('data-min-default'));
 			if(isNaN(data_min_default) || data_min > data_min_default)
 			{
-				data_min_default = 0;
+				data_min_default = data_min;
 				$(this).attr('data-min-default',data_min_default);
 			}
 			return data_min_default;
@@ -1110,11 +1110,17 @@ var json_string = $(this).attr("save_jason");
 
 				if ($(this).attr("data-infinity") == 'max')
 				{
-					$(this).range($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min'), $(this).rangeSlider('option', 'max'));
+					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), $(this).rangeSlider('option', 'max'));
 				}
+
+				else if ($(this).attr("data-infinity") == 'min')
+				{
+					$(this).range( 0,  $(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min'));
+				}
+
 				else
 				{
-					$(this).range($(this).rangeSlider('option', 'min_default'), $(this).rangeSlider('option', 'max_default'));
+					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), ($(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min')) );
 				}
 
 				add_selection.call(this, 'min');
@@ -1159,19 +1165,34 @@ var add_selection = function(_name)
 			{
 
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
+				var json_string = $(_self).attr("save_jason");
+				// in qemat baraye multi level ha dorost kar nemikone
+				// if (json_string)
+				// {
+				// 	my_max_limit = $(_self).attr('data-max-limit-first');
+				// }
 			}
 			else
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max');	
 			}
+
+// console.log('my_max_limit: ', my_max_limit)
+// console.log('min: ', $(_self).rangeSlider('option', 'min'))
+
 			var total_width_unit  = my_max_limit - $(_self).rangeSlider('option', 'min');
 			var total_width_pixel = $(_self).rangeSlider('option', 'unit_to_pixel', total_width_unit);
 
 			var final_from        = margin+move;
 			var final_to          = range_width+margin+move;
 
+
+			console.log('final_to: ',final_to)
+			console.log('total_width_pixel: ',total_width_pixel)
+			// console.log('total_width_unit: ',total_width_unit)
 			if (final_to >= total_width_pixel)
 			{
+			console.log(1111111)
 				final_from = total_width_pixel-range_width;
 			}
 			else if(final_from <= 0)
