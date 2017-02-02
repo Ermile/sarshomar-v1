@@ -64,28 +64,14 @@
      </nav>
    {%if url.tld == 'dev' and login%}
      <div id="financial-box">
+
       <div class="cost">
        <span class="title">{%trans "Cost"%}</span><span class="value">15,000</span><span class="unit">{%trans "Tomans"%}</span>
-       <div class="financial-detail">
-        <div class="row">
-         <div class="cell">Poll</div>
-         <div class="cell">1,000</div>
-         <div class="cell">Tomans</div>
-        </div>
-        <div class="row">
-         <div class="cell">Upload</div>
-         <div class="cell">1,000</div>
-         <div class="cell">Tomans</div>
-        </div>
-        <div class="row">
-         <div class="cell">Ads</div>
-         <div class="cell">x10</div>
-         <div class="cell"></div>
-        </div>
-       </div>
       </div>
+
       <div class="total">
        <span class="title">{%trans "Total cash"%}</span><span class="value">{{user_cash}}</span><span class="unit">{%trans user_unit%}</span>
+
        <div class="financial-detail">
         <div class="row">
          <div class="cell">Cash</div>
@@ -99,6 +85,7 @@
         </div>
        </div>
       </div>
+
      </div>
    {%endif%}
     </div>

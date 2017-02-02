@@ -80,9 +80,11 @@
  header #header-profile .register{margin-left:5px}
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
- header #header-bottom{display:none}
+ header #header-bottom{/*display:none*/}
 
  .rtl header .header-profile-button{font-size:12px}
+
+ header #financial-box{width:100%;margin:0 20px!important}
 
  #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}

@@ -447,10 +447,10 @@ header .header-profile-button:active,header .header-profile-button:focus{backgro
 
 header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;font-size:2em;position:relative;cursor:pointer}
 .rtl header .ui-language-link{margin:0;margin-right:5px}
-header .ui-language-link:hover,header .ui-language-link:focus{background-color:#e5e3e3}
+header .ui-language-link:hover,header .ui-language-link:focus{}
 
 .ui-language-link:hover .ui-language-list{display:block}
-.ui-language-list{background-color:#e5e3e3;position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none}
+.ui-language-list{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none;background-color:#e8e6e6}
 .rtl .ui-language-list{right:auto;left:0}
 .ui-language-list a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
 .ui-language-list a:hover,.ui-language-list a:focus,.ui-language-list a:active{background-color:#e5a428}
@@ -504,11 +504,27 @@ nav.breadcrumb>a+a:before{content:">";color:#99a0aa;padding:0 8px;float:left}
 .rtl nav.breadcrumb>a+a:before{float:right}
 
 /* financial box */
-header #financial-box{margin:0 1em;height:30px}
-header #financial-box .total,header #financial-box .cost{position:relative;display:inline-block;padding:0 5px;height:30px;line-height:30px;min-width:15em;transition:.3s}
+header #financial-box{height:30px;background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;margin-right:10px}
+.rtl header #financial-box{margin-right:0;margin-left:10px}
+
+header #financial-box .total,header #financial-box .cost{-webkit-box-flex:1;-ms-flex:1;flex:1;font-weight:bold;min-width:15em;text-align:center;line-height:30px}
+header #financial-box .total{color:#00667a;position:relative}
+header #financial-box .cost{color:#1d9028}
+header #financial-box .total>span,header #financial-box .cost>span{padding:0 2px}
+
+header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:1;background-color:#fff;display:none}
+header #financial-box .financial-detail .row{display:-webkit-box;display:-ms-flexbox;display:flex;}
+header #financial-box .financial-detail .row>div{-webkit-box-flex:1;-ms-flex:1;flex:1;}
+
+header #financial-box .total:hover .financial-detail{display:initial}
+
+
+/*header #financial-box .total,header #financial-box .cost{position:relative;display:inline-block;padding:0 5px;height:30px;line-height:30px;min-width:15em;transition:.3s}
 header #financial-box .total:hover,header #financial-box .cost:hover{background-color:#efefef}
-header #financial-box .cost{display:none;text-align:right}
+
+header #financial-box .cost{text-align:right}
 .rtl header #financial-box .cost{text-align:left}
+
 header #financial-box .total span,header #financial-box .cost span{padding:0 2px;font-weight:700}
 header #financial-box .cost::before{content:'|';position:absolute;right:-3px}
 .rtl header #financial-box .cost::before{right:auto;left:-3px}
@@ -519,7 +535,7 @@ header #financial-box .financial-detail .cell{-webkit-box-flex:1;-ms-flex:1;flex
 header #financial-box .total{display:inline-block;position:relative;perspective:100px;overflow:hidden}
 header #financial-box .total .financial-detail{position:absolute;top:100%;background-color:#fff;width:100%;opacity:0;left:0;transition:all .5s}
 header #financial-box .total:hover .financial-detail,header #financial-box .total.open .financial-detail{opacity:1;transition:all .5s}
-header #financial-box .total:hover,header #financial-box .total.open{overflow-wrap:normal;overflow:visible;z-index:1}
+header #financial-box .total:hover,header #financial-box .total.open{overflow-wrap:normal;overflow:visible;z-index:1}*/
 
 
 /************************************************************** footer */
