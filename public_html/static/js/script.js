@@ -1103,9 +1103,9 @@ function calcFilterPrice()
 
 	var totalPercent = 0;
 	var totalPrice   = 0;
-	$('.badge.active[data-ratio]').each(function(index, el)
+	$('.badge.active[data-ratio-val]').each(function(index, el)
 	{
-		var currentRatio = parseInt($(el).attr('data-ratio'));
+		var currentRatio = parseInt($(el).attr('data-ratio-val'));
 		totalPercent     += currentRatio;
 	});
 	// set return result
