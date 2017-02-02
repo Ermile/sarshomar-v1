@@ -544,7 +544,7 @@ function drawChart()
 		var myChartOptions =
 		{
 			"type": "serial",
-			"colors": ["#eee"],
+			"colors": ["#f4f4f4"],
 			"dataProvider": attrVals,
 			"categoryField": "key",
 			// "colorField": "color",
@@ -566,6 +566,8 @@ function drawChart()
 
 			"gridAboveGraphs": true,
 			"startDuration": 1,
+			"startEffect":"easeOutSine",
+			"startAlpha": 0.5,
 			"valueAxes":
 			[{
     			"gridColor": "#FFFFFF",
@@ -612,6 +614,8 @@ function homepageGender(_option)
 	_option.colors = ["#67b7dc", "#ff80c0" ];
 	_option.rotate = true;
 	_option.marginBottom = 50;
+	_option.startDuration = 1;
+	_option.startEffect = 'easeOutSine',
 	_option.graphs =
 	[
 		{
@@ -620,7 +624,7 @@ function homepageGender(_option)
 			"type": "column",
 			"valueField": "male",
 			"title": "Male",
-			"labelText": "[[value]]",
+			// "labelText": "[[value]]",
 			"clustered": false,
 			"labelFunction": function(item)
 			{
@@ -628,7 +632,7 @@ function homepageGender(_option)
 			},
 			"balloonFunction": function(item)
 			{
-				return item.category + ": " + Math.abs(item.values.value) + "%";
+				return item.category + " <b>" + Math.abs(item.values.value) + "%</b>";
 			}
 		},
 		{
@@ -637,7 +641,7 @@ function homepageGender(_option)
 			"type": "column",
 			"valueField": "female",
 			"title": "Female",
-			"labelText": "[[value]]",
+			// "labelText": "[[value]]",
 			"clustered": false,
 			"labelFunction": function(item)
 			{
@@ -645,7 +649,7 @@ function homepageGender(_option)
 			},
 			"balloonFunction": function(item)
 			{
-				return item.category + ": " + Math.abs(item.values.value) + "%";
+				return item.category + " <b>" + Math.abs(item.values.value) + "%</b>";
 			}
 		}
 	];
@@ -676,6 +680,7 @@ function homepageGender(_option)
 	_option.chartCursor =
 	{
 		"valueBalloonsEnabled": false,
+		"cursorColor":"#00667a",
 		"cursorAlpha": 0.05,
 		"fullWidth": true
 	};
