@@ -880,6 +880,14 @@ function detectStep(_name)
 	var sCurrent = $('.page-progress').attr('data-current');
 	var result   = true
 
+	var dAdd     = $('.page-progress #step-add');
+	var dFilter  = $('.page-progress #step-filter');
+	var dPublish = $('.page-progress #step-publish');
+
+	var cAdd     = $('.stepAdd');
+	var cFilter  = $('.stepFilter');
+	var cPublish = $('.stepPublish');
+
 	// if go from step1 to another step
 	if(!firstTime && sthis != 'step1' && sCurrent == 'step1')
 	{
@@ -890,21 +898,25 @@ function detectStep(_name)
 			// return false;
 		}
 	}
-	$('#question-add').addClass('loading');
+	// $('#question-add').addClass('loading');
 
 	switch(sthis)
 	{
 		default:
 		case 'step-add':
 		case 'step1':
+			if(firstTime)
+			{
+				cAdd.show();
+			}
 			sthis = 'step-add';
-			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
-			$('.page-progress #step-filter').prop('checked', false).parent('div').removeClass('active');
-			$('.page-progress #step-publish').prop('checked', false).parent('div').removeClass('active');
+			dAdd.prop('checked', true).parent('div').addClass('active');
+			dFilter.prop('checked', false).parent('div').removeClass('active');
+			dPublish.prop('checked', false).parent('div').removeClass('active');
 			// show step1
-			$('.stepAdd').slideDown();
-			$('.stepFilter').slideUp();
-			$('.stepPublish').slideUp();
+			cAdd.slideDown();
+			cFilter.slideUp();
+			cPublish.slideUp();
 			if(!firstTime)
 			{
 				window.location.hash = 'step1';
@@ -913,25 +925,33 @@ function detectStep(_name)
 
 		case 'step-filter':
 		case 'step2':
-			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
-			$('.page-progress #step-filter').prop('checked', true).parent('div').addClass('active');
-			$('.page-progress #step-publish').prop('checked', false).parent('div').removeClass('active');
+			if(firstTime)
+			{
+				cFilter.show();
+			}
+			dAdd.prop('checked', true).parent('div').addClass('active');
+			dFilter.prop('checked', true).parent('div').addClass('active');
+			dPublish.prop('checked', false).parent('div').removeClass('active');
 			// show step2
-			$('.stepAdd').slideUp();
-			$('.stepFilter').slideDown();
-			$('.stepPublish').slideUp();
+			cAdd.slideUp();
+			cFilter.slideDown();
+			cPublish.slideUp();
 			window.location.hash = 'step2';
 			break;
 
 		case 'step-publish':
 		case 'step3':
-			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
-			$('.page-progress #step-filter').prop('checked', true).parent('div').addClass('active');
-			$('.page-progress #step-publish').prop('checked', true).parent('div').addClass('active');
+			if(firstTime)
+			{
+				cPublish.show();
+			}
+			dAdd.prop('checked', true).parent('div').addClass('active');
+			dFilter.prop('checked', true).parent('div').addClass('active');
+			dPublish.prop('checked', true).parent('div').addClass('active');
 			// show step3
-			$('.stepAdd').slideUp();
-			$('.stepFilter').slideUp();
-			$('.stepPublish').slideDown();
+			cAdd.slideUp();
+			cFilter.slideUp();
+			cPublish.slideDown();
 			window.location.hash = 'step3';
 			break;
 	}
@@ -943,7 +963,8 @@ function detectStep(_name)
 	{
 		$('#question-add').removeClass('loading');
 		detectPercentage();
-	}, 100);
+	}, 300);
+	//
 	return result;
 }
 
@@ -1771,7 +1792,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		}
 		$(_el).attr('data-modal', '');
 		// start crop with this image
-		// startCrop(_el);
+		startCrop(_el);
 	});
 	// on click on preview of imagee
 	$('body').on("click", ".file .preview", function(_e, _el)
