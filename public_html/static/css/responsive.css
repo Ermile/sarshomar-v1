@@ -82,7 +82,7 @@
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
  header #header-bottom{display:none}
 
- .rtl header .header-profile-button{background-color:red;font-size:12px}
+ .rtl header .header-profile-button{font-size:12px}
 
  #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}
