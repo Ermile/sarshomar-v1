@@ -1389,6 +1389,9 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .ultra .delete:hover,.ultra .delete:focus{background-color:#B03D3D;color:#e7e7e7;opacity:1}
 
 #question-add>div{display:none;}
+#question-add{min-height:300px}
+#question-add::before{content:''; position:absolute;top:0;bottom:0;right:0;left:0;display:block;background:#f4f4f4;opacity:0;transition:0.2s;z-index:-1}
+#question-add.loading::before{opacity:1;z-index:3;}
 
 /************************************************************** element */
 ::-webkit-input-placeholder{color:#d8dad0;}

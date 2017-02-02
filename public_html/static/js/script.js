@@ -890,6 +890,7 @@ function detectStep(_name)
 			// return false;
 		}
 	}
+	$('#question-add').addClass('loading');
 
 	switch(sthis)
 	{
@@ -938,9 +939,11 @@ function detectStep(_name)
 	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
 
 	$('.page-progress').attr('data-current', _name);
-	// window.location.hash = _name;
-	// _name = _name.substr(5);
-	detectPercentage();
+	setTimeout(function()
+	{
+		$('#question-add').removeClass('loading');
+		detectPercentage();
+	}, 100);
 	return result;
 }
 
