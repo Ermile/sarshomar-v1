@@ -7,6 +7,15 @@
     {%include template.progress%}
      <div class="row auto" id='question-add'>
 
+       <div class="sync" data-sync='insync'>
+        <div class="sync-in">
+         <span class="loader"></span>
+         <span class="checkmark"></span>
+         <span class="message inSync">{%trans "In Sync"%}</span>
+         <span class="message syncing">{%trans "Syncing"%}</span>
+        </div>
+       </div>
+
        <div class="stepAdd">
         {%block step1%}1{%endblock%}
        </div>

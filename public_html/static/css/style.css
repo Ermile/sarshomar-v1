@@ -389,6 +389,133 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 
 a[href*="amcharts.com"]{display:none!important}
 
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(360deg);
+                transform:rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(360deg);
+                transform:rotate(360deg);
+    }
+}
+
+
+.loader {
+  font-size: 10px;
+  margin: 0;
+  text-indent: -9999em;
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 50%;
+  background: #00667a;
+  background: -moz-linear-gradient(left, #00667a 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #00667a 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #00667a 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #00667a 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #00667a 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1s infinite linear;
+  animation: load3 1s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #00667a;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+  background: #efefef;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.sync{position:absolute;top:1em;left:1em}
+.rtl .sync{left:auto;right:1em}
+.sync-in{position:relative;padding:.7em 1em;background-color:#efefef;border:1px solid #efefef;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center}
+
+.sync-in::before{height:1px;width:80%;background-color:#00667a;bottom:0;position:absolute;content:'';left:0}
+.rtl .sync-in::before{left:auto;right:0}
+
+.sync .message{margin-left:1em;font-weight:bold;color:#00667a}
+.sync[data-sync='insync'] .syncing{display:none}
+.sync[data-sync='syncing'] .inSync{display:none}
+
+.sync .icon-check{color:#00667a}
+
+
+@-moz-keyframes aaa{0%{height:0;}100%{height:8px;}}
+@-webkit-keyframes aaa{0%{height:0;}100%{height:8px;}}
+@keyframes aaa{0%{height:0;}100%{height:8px;}}
+
+@keyframes bbb{0%{height:0;}50%{height:0;}100%{height:20px;}}
+@-webkit-keyframes bbb{0%{height:0;}50%{height:0;}100%{height:20px;}}
+@-moz-keyframes bbb{0%{height:0;}50%{height:0;}100%{height:20px;}}
+
+.checkmark{position:relative;margin:0 10px}
+.checkmark.isChecked::before{position:absolute;content:'';width:2px;height:0;background-color:#00667a;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);left:0;top:2px;-webkit-animation:aaa .2s ease 0s forwards;animation:aaa .2s ease 0s forwards;
+    -webkit-transition: opacity ease .5;
+    transition: opacity ease .5;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+.checkmark.isChecked::after{position:absolute;content:'';width:2px;height:0;background-color:#00667a;-webkit-transform:rotate(30deg);transform:rotate(30deg);left:15px;top:-10px;-webkit-animation:bbb .4s ease 0s forwards;animation:bbb .4s ease 0s forwards;
+    -webkit-transition: opacity ease .5;
+    transition: opacity ease .5;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+
+/*.checkbox:checked+label::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards}
+.checkbox:checked+label::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards}*/
+
 
 /************************************************************** dollar page specific styles */
 .accordion-label input[type='checkbox'],.aside-group-title input[type='checkbox']{width:0;height:0;opacity:0;position:absolute;z-index:-1}
@@ -1388,7 +1515,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .rtl .ultra .delete{right:auto;left:-35px;}
 .ultra .delete:hover,.ultra .delete:focus{background-color:#B03D3D;color:#e7e7e7;opacity:1}
 
-#question-add>div{display:none;}
+#question-add>div:not(.sync){display:none;}
 #question-add{min-height:300px}
 #question-add::before{content:''; position:absolute;top:0;bottom:0;right:0;left:0;display:block;background:#f4f4f4;opacity:0;transition:0.2s;z-index:-1}
 #question-add.loading::before{opacity:1;z-index:3;}
