@@ -1,7 +1,6 @@
 {
   "title": "string",
   "survey": "null|code",
-  "status": "draft|publish",
   "language": "fa|en|ar|null for set as default",
   "summary": "string|null",
   "description": "string|null",

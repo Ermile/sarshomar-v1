@@ -18,14 +18,17 @@ class postfilters
 			if(\lib\db\filters::support_filter($key, $value))
 			{
 				$filters[$key] = $value;
-				if($value == $support_filter[$key])
-				{
-					// unset($_filters[$key]);
-				}
-				else
-				{
-					$sum_money_filter += (int) \lib\db\filters::money_filter($key);
-				}
+
+				$sum_money_filter += (int) \lib\db\filters::money_filter($key);
+
+				// if($value == $support_filter[$key])
+				// {
+				// 		unset($_filters[$key]);
+				// }
+				// else
+				// {
+				// 		$sum_money_filter += (int) \lib\db\filters::money_filter($key);
+				// }
 			}
 		}
 		return $filters;
@@ -39,9 +42,14 @@ class postfilters
 	 */
 	public static function update($_filters, $_poll_id)
 	{
-		if(!is_array($_filters) || !$_poll_id)
+		if(!is_array($_filters))
 		{
-			return false;
+			return debug::error(T_("Parameter filters must be array"), 'filters', 'db');
+		}
+
+		if(!$_poll_id)
+		{
+			return debug::error(T_("Poll id not set"), 'poll_id', 'db');
 		}
 
 		$_filters = self::check($_filters);
@@ -73,7 +81,8 @@ class postfilters
 				}
 			}
 		}
-
+		// var_dump($caller_term_id);
+		// exit();
 		$must_remove = [];
 		foreach ($saved_filters as $key => $value)
 		{

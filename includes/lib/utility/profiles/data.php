@@ -94,15 +94,9 @@ trait data
 					'term_url'    => $_key,
 					'term_status' => 'awaiting'
 				];
+
 				$insert_new_terms_parent = \lib\db\terms::insert($insert_new_terms_parent);
-				if($insert_new_terms_parent)
-				{
-					$parent_id = \lib\db::insert_id();
-				}
-				else
-				{
-					return false;
-				}
+
 			}
 			elseif(isset($new_term_id_parent['id']))
 			{
@@ -144,14 +138,11 @@ trait data
 
 			$new_term_id = \lib\db\terms::insert($insert_new_terms);
 
-			$new_term_id = \lib\db\terms::caller("$_key:$_value");
+			return $new_term_id;
 
-			if(!$new_term_id)
-			{
-				return false;
-			}
+			// $new_term_id = \lib\db\terms::caller("$_key:$_value");
 		}
-		return $new_term_id;
+		return isset($new_term_id['id']) ? $new_term_id : false;
 	}
 
 

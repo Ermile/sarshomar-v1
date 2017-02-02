@@ -123,6 +123,19 @@ trait answers
 		     		}
 				}
 
+				// if(self::$args['permission_profile'] === true)
+				// {
+				// 	if(isset($value['profile']) && $value['profile'])
+				// 	{
+				// 		$profile_value = \lib\utility\shortURL::decode($value['profile']);
+		  //    			$combine[$key]['profile'] = $profile_value;
+				// 	}
+				// 	else
+				// 	{
+		  //    			$combine[$key]['profile'] = null;
+				// 	}
+				// }
+
 	     		// get meta of this object of answer
 				$support_answer_object = self::support_answer_object($type);
 				$answer_meta           = [];

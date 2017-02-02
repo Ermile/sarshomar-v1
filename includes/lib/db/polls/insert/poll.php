@@ -47,8 +47,6 @@ trait poll
 			$insert_poll['post_url'] = $new_url;
 		}
 
-
-
 		// if poll title is null set this character >>‌<< this caracter
 		if(!self::$update_mod && !self::$args['title'])
 		{
@@ -197,7 +195,7 @@ trait poll
 			$insert_poll['post_comment'] = 'open';
 		}
 
-		$insert_poll['post_status'] = self::$args['status'];
+		$insert_poll['post_status'] = 'draft';
 
 		$post_meta = [];
 
@@ -232,8 +230,13 @@ trait poll
 		}
 
 		// insert filters
-		if(self::$args['from'] && is_array(self::$args['from']))
+		if(self::$args['from'])
 		{
+			if(!is_array(self::$args['from']))
+			{
+				return debug::error(T_("Parametr from muse be array"), 'from', 'arguments');
+			}
+
 			$insert_filters = \lib\utility\postfilters::update(self::$args['from'], self::$poll_id);
 			/**
 			 * set ranks
@@ -243,17 +246,21 @@ trait poll
 			{
 
 				$member       = (int) self::$args['from']['count'];
+
 				$member_exist = (int) \lib\db\users::get_count("awaiting");
+
+				debug::msg("member_exist", $member_exist);
+
+				\lib\db\ranks::plus(self::$poll_id, "member", $member, ['replace' => true]);
 				if($member <= $member_exist)
 				{
-					\lib\db\ranks::plus(self::$poll_id, "member", $member, ['replace' => true]);
-				}
-				else
-				{
-					return debug::error(T_(":max user was found, low  the slide of members ",["max" => $member_exist]), 'count', 'arguments');
+					if(self::$debug)
+					{
+						return debug::error(T_(":max user was found, low  the slide of members ",["max" => $member_exist]), 'count', 'arguments');
+					}
 				}
 
-				if(self::$args['from']['count'])
+				if($member > 0)
 				{
 					$insert_poll['post_privacy'] = 'public';
 				}

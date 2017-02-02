@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1000,
+    "term_type": "profile",
+    "term_caller": "gender",
+    "term_title": "gender",
+    "term_slug": "gender",
+    "term_status": "enable",
+    "term_language" : null,
+    "term_parent": null
+  },
+  {
+    "id": 1001,
+    "term_type": "profile",
+    "term_caller": "gender:male",
+    "term_title": "male",
+    "term_slug": "male",
+    "term_status": "enable",
+    "term_language" : null,
+    "term_parent": 1000
+  },
+  {
+    "id": 1002,
+    "term_type": "profile",
+    "term_caller": "gender:female",
+    "term_title": "female",
+    "term_slug": "female",
+    "term_status": "enable",
+    "term_language" : null,
+    "term_parent": 1000
+  }
+]
