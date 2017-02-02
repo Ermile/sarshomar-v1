@@ -192,6 +192,21 @@ class poll
 		session::remove('poll');
 	}
 
+	public static function status($_query, $_data_url)
+	{
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'status' 	=> $_data_url[2],
+				'id' 		=> $_data_url[3]
+			]]);
+		$request_status = \lib\main::$controller->model()->poll_set_status();
+		handle::send_log($request_status);
+		handle::send_log(\lib\debug::compile());
+		callback_query::edit_message(ask::make(null, null, $_data_url[3]));
+		\lib\storage::set_disable_edit(true);
+	}
+
 	public static function delete($_query, $_data_url)
 	{
 		$poll_id = isset($_data_url[2]) ? $_data_url[2] : null;

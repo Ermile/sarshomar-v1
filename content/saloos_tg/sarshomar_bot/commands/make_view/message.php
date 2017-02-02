@@ -116,7 +116,7 @@ class message
 			$this->answer_id = (int) $_answer_id;
 		}
 		elseif ($_answer_id === true && !isset($this->answer_id)) {
-			$answer = \lib\utility\answers::is_answered($this->class->user_id, $this->class->poll_id);
+			$answer = \lib\utility\answers::is_answered(\lib\main::$controller->model()->user_id, \lib\utility\shortURL::decode($this->class->poll_id));
 			$this->answer_id = (int) $answer['opt'];
 		}
 		else

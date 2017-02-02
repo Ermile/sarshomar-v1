@@ -30,9 +30,7 @@ class ask
 		else
 		{
 			$maker->message->add_title();
-			$poll_access = \lib\utility\answers::check(bot::$user_id, $maker->poll_id);
 
-			$access = $poll_access->is_ok();
 			$set_last = [];
 			$skip_type = 'skip';
 			if(is_null($_short_link))
@@ -44,7 +42,7 @@ class ask
 			}
 			$skip = false;
 			$update = true;
-			if($maker->query_result['status'] == 'publish' && $access)
+			if($maker->query_result['status'] == 'publish')
 			{
 				$maker->inline_keyboard->add_poll_answers($set_last);
 				$skip = true;
@@ -58,17 +56,16 @@ class ask
 					]);
 			}
 
+			$maker->message->add_poll_chart(true);
+			$maker->message->add_poll_list(true);
 			if($maker->query_result['user_id'] == \lib\utility\shortURL::encode(bot::$user_id))
 			{
 				$maker->inline_keyboard->add_guest_option([$skip_type => false, 'poll_option' => true]);
-				$maker->message->add_poll_chart(true);
-				$maker->message->add_poll_list(true);
+				$maker->inline_keyboard->add_change_status();
 			}
 			else
 			{
 				$maker->inline_keyboard->add_guest_option([$skip_type => $skip, 'update' => $update, 'inline_report' => true]);
-				$maker->message->add_poll_chart(true);
-				$maker->message->add_poll_list(true);
 			}
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();

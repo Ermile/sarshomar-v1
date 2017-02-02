@@ -70,6 +70,16 @@ class inline_keyboard
 
 	public function add_guest_option(...$_args)
 	{
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'id' => $this->class->query_result['id']
+			]]);
+		$request_status = \lib\main::$controller->model()->poll_status();
+		if($request_status['current'] !== 'publish')
+		{
+			return ;
+		}
 		$this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
 	}
 
@@ -82,7 +92,6 @@ class inline_keyboard
 			'share' => true,
 			'report' => false,
 			'inline_report' => false,
-			'poll_option' => false
 			], $_options);
 		$return = [];
 		if($options['skip_last'])
@@ -127,45 +136,27 @@ class inline_keyboard
 				"url" => 'https://telegram.me/\sarshomar_bot?start=report_'.$this->class->poll_id
 			];
 		}
-		if($options['poll_option'] )
-		{
-			$this->get_change_status($return);
-		}
 		return $return;
 	}
 
-	public function get_change_status(&$_return)
+	public function add_change_status()
 	{
-		if(\lib\utility\shortURL::encode(bot::$user_id) == $this->class->query_result['user_id'])
-		{
-			$status = $this->class->query_result['status'];
-			if($status == 'publish')
-			{
-				$_return[] = [
-					"text" => T_("Pause"),
-					"callback_data" => 'poll/pause/'.$this->class->poll_id
-				];
-			}
-			elseif($status == 'pause' || $status == 'draft')
-			{
-				$_return[] = [
-					"text" => T_("Publish"),
-					"callback_data" => 'poll/publish/'.$this->class->poll_id
-				];
-				$_return[] = [
-					"text" => T_("Delete"),
-					"callback_data" => 'poll/delete/'.$this->class->poll_id
-				];
-			}
-
-			if($status == 'draft')
-			{
-				$_return[] = [
-					"text" => T_("Edit"),
-					"callback_data" => 'poll/edit/'.$this->class->poll_id
-				];
-			}
+		$return = [];
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'id' => $this->class->query_result['id']
+			]]);
+		$request_status = \lib\main::$controller->model()->poll_status();
+		$available_status = $request_status['available'];
+		handle::send_log($available_status);
+		foreach ($available_status as $key => $value) {
+			$return[] = [
+				"text" => T_(ucfirst($value)),
+				"callback_data" => 'poll/status/' . $value . '/'.$this->class->poll_id
+			];
 		}
+		$this->add($return);
 	}
 
 	public function add_report_status()
