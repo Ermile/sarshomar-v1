@@ -38,6 +38,9 @@
  .society-dist .span5 {width: 100%;}
 
  .triplet .triplet-item img{max-width:150px}
+
+ nav.breadcrumb{display:none}
+ header #header-bottom{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}
 }
 
 
