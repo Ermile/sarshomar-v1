@@ -908,7 +908,6 @@ function detectStep(_name)
 
 		case 'step-publish':
 		case 'step3':
-			calcTotalPrice();
 			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
@@ -1220,13 +1219,6 @@ function calcUntilPrice(_current)
 	var untilCurrent   = null;
 	$('#totalPrice div:not(".hide") .pr').each(function()
 	{
-		var thisValue = $(this).attr('data-val');
-		if(thisValue)
-		{
-			continuesValue += parseInt(thisValue);
-			$(this).closest('div').attr('data-until', continuesValue);
-		}
-
 		// if find this element
 		if(untilCurrent === null)
 		{
@@ -1235,6 +1227,13 @@ function calcUntilPrice(_current)
 			{
 				untilCurrent = continuesValue;
 			}
+		}
+
+		var thisValue = $(this).attr('data-val');
+		if(thisValue)
+		{
+			continuesValue += parseInt(thisValue);
+			$(this).closest('div').attr('data-until', continuesValue);
 		}
 	});
 
@@ -1660,7 +1659,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
-		calcFilterPrice.call(this);
+		calcTotalPrice();
 	});
 }).once(function()
 {
@@ -1674,6 +1673,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	checkNextStep();
 	// handle copy btn
 	handleCopy();
+	// draw factor and fill total price on start
+	calcTotalPrice()
 
 	$('.page-progress input').on('click', function(e)
 	{
