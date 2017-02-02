@@ -81,8 +81,10 @@
        <label class="check-box" for="true{{myKey}}"></label>
       </span> -->
 
-      <input type="checkbox" class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%} id="true{{myKey}}" {%if value.true %}checked{%endif%}>
-      <label for="true{{myKey}}"></label>
+      <span class="element-checkbox" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
+       <input type="checkbox" class="checkbox true" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
+       <label for="true{{myKey}}"></label>
+      </span>
 
       <div class="file">
        <input type="file" id="file{{myKey}}">
@@ -193,9 +195,11 @@
  <label for="meta_branding">{%trans "Branding"%}</label>
 </div> -->
 
-<input type="checkbox" class="checkbox" id="meta_branding" {%if poll.brand.title%}checked{%endif%}>
-<label for="meta_branding"></label>
-<label for="meta_branding">{%trans "Branding"%}</label>
+<div class="checkbox-block">
+ <input type="checkbox" class="checkbox" id="meta_branding" {%if poll.brand.title%}checked{%endif%}>
+ <label for="meta_branding"></label>
+ <label for="meta_branding">{%trans "Branding"%}</label>
+</div>
 
 <div data-response='meta_branding' {%if not poll.brand.title%}data-response-hide{%endif%} data-response-effect='fade'>
  <div class="element-branding">
@@ -270,8 +274,8 @@
 {%block feature_completeprofile%}
  {% if perm.complete_profile.admin %}
  <div class="row auto">
-  <div class="span4">
-   <input type="checkbox" class="checkbox margin-bottom" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>
+  <div class="span4 checkbox-block">
+   <input type="checkbox" class="checkbox" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>
    <label for="complete-profile" class="check-box"></label>
    <label for="complete-profile">{%trans "Complete Profile"%}</label>
   </div>
@@ -287,9 +291,11 @@
  <label for="tree">{%trans "Tree"%}</label>
 </div> -->
 
-<input type="checkbox" class="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
-<label for="tree"></label>
-<label for="tree">{%trans "Tree"%}</label>
+<div class="checkbox-block">
+ <input type="checkbox" class="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
+ <label for="tree"></label>
+ <label for="tree">{%trans "Tree"%}</label>
+</div>
 
 <div class="tree-container" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
  <div class="element no-pad">
