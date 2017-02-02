@@ -250,10 +250,26 @@ function shortkey()
 {
 	$(document).keydown(function(e)
 	{
-		switch (e.keyCode)
+		var key    = String(e.which);
+		var ctrl   = e.ctrlKey  ? 'ctrl'  : '';
+		var shift  = e.shiftKey ? 'shift' : '';
+		var alt    = e.altKey   ? 'alt'   : '';
+		var mytxt  = key + ctrl + alt + shift;
+		// console.log(mytxt);
+
+		switch (mytxt)
 		{
+			case '83':
+			case '83ctrl':
+				console.log('save');
+				// send data to server for saving
+				sendQuestionData();
+				// prepareAdd();
+
+				e.preventDefault();
+				break;
 			// f1
-			case 112:
+			case '112':
 				$import('lib/introJs.js', 'runHelp', 0);
 				e.preventDefault();
 				break;
