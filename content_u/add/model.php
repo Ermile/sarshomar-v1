@@ -57,15 +57,7 @@ class model extends \content_u\home\model
 			'get_options'	     => true,
 			'get_public_result'  => false,
 		];
-		utility::$REQUEST = new utility\request(
-			[
-				'method' => 'array',
-				'request' =>
-				[
-					'id'   => $poll_id,
-				]
-			]
-		);
+		utility::set_request_array(['id'   => $poll_id]);
 		$result = $this->poll_get($args);
 
 		return $result;
@@ -265,17 +257,12 @@ class model extends \content_u\home\model
 		$request = [];
 		$request['type'] = utility::get("list");
 		$request['search'] = utility::get("q");
-		if(utility::get('parent') != '~')
+		if(utility::get('parent') != '')
 		{
 			$request['parent'] = utility::get('parent');
 		}
 
-		utility::set_request_array(
-		[
-			'method'  => 'array',
-			'request' => $request,
-		]);
-
+		utility::set_request_array($request);
 		$result = $this->tag_search();
 		return $result;
 	}
