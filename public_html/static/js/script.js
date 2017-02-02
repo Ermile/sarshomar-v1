@@ -881,9 +881,9 @@ function detectStep(_name)
 		case 'step-add':
 		case 'step1':
 			sthis = 'step-add';
-			$('.page-progress #step-add').prop('checked', true).parent('.checkbox').addClass('active');
-			$('.page-progress #step-filter').prop('checked', false).parents('.checkbox').removeClass('active');
-			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
+			$('.page-progress #step-filter').prop('checked', false).parent('div').removeClass('active');
+			$('.page-progress #step-publish').prop('checked', false).parent('div').removeClass('active');
 			// show step1
 			$('.stepAdd').slideDown();
 			$('.stepFilter').slideUp();
@@ -896,9 +896,10 @@ function detectStep(_name)
 
 		case 'step-filter':
 		case 'step2':
-			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
-			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
-			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
+			console.log($('.page-progress #step-add').prop('checked', true).parent('div'));
+			$('.page-progress #step-filter').prop('checked', true).parent('div').addClass('active');
+			$('.page-progress #step-publish').prop('checked', false).parent('div').removeClass('active');
 			// show step2
 			$('.stepAdd').slideUp();
 			$('.stepFilter').slideDown();
@@ -908,9 +909,9 @@ function detectStep(_name)
 
 		case 'step-publish':
 		case 'step3':
-			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
-			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
-			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
+			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
+			$('.page-progress #step-filter').prop('checked', true).parent('div').addClass('active');
+			$('.page-progress #step-publish').prop('checked', true).parent('div').addClass('active');
 			// show step3
 			$('.stepAdd').slideUp();
 			$('.stepFilter').slideUp();
