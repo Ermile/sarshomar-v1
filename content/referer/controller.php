@@ -20,7 +20,7 @@ class controller extends \mvc\controller
 		elseif($referer)
 		{
 			\lib\debug::msg('direct', true);
-			$this->redirect($referer)->redirect();
+			$this->redirector($referer)->redirect();
 		}
 		elseif(\lib\router::get_url(1))
 		{
