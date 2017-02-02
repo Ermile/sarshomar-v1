@@ -694,7 +694,7 @@ function fillTree(_el)
 			{
 				var itemId = 'tree_opt_' + this.key;
 				tree_opts += '<li>';
-				tree_opts += '<span class="checkbox"><input type="checkbox" id="' + itemId + '"><label class="check-box" for="' + itemId + '"></label></span>';
+				tree_opts += '<input type="checkbox" class="checkbox" id="' + itemId + '"><label for="' + itemId + '"></label></span>';
 				tree_opts += '<label for="' + itemId + '">'+ this.title + '</label>';
 				tree_opts += '</li>';
 			});

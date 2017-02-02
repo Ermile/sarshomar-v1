@@ -38,16 +38,28 @@
    <label for="gender">{%trans "Gender"%}</label>
   </div>
   <div class="aside-group-body" data-response='gender' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="male" value="male">
     <label for="male" class="check-box"></label>
     <label for="male">{%trans "Male"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="male" value="male">
+   <label for="male"></label>
+   <label for="male">{%trans "Male"%}</label>
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="female" value="female">
     <label for="female" class="check-box"></label>
     <label for="female">{%trans "Female"%}</label>
-   </div>
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="female" value="female">
+   <label for="female"></label>
+   <label for="female">{%trans "Female"%}</label>
+
+
   </div>
  </div>
 {% endspaceless %}
@@ -61,16 +73,27 @@
    <label for="marital">{%trans "Marital"%}</label>
   </div>
   <div class="aside-group-body" data-response='marital' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="single" value="single">
     <label for="single" class="check-box"></label>
     <label for="single">{%trans "Single"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="single" value="single">
+   <label for="single"></label>
+   <label for="single">{%trans "Single"%}</label>
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="married" value="married">
     <label for="married" class="check-box"></label>
     <label for="married">{%trans "Married"%}</label>
-   </div>
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="married" value="married">
+   <label for="married"></label>
+   <label for="married">{%trans "Married"%}</label>
+
   </div>
  </div>
 {% endspaceless %}
@@ -84,21 +107,37 @@
    <label for="employment">{%trans "Employment"%}</label>
   </div>
   <div class="aside-group-body" data-response='employment' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="employee" value="employee">
     <label for="employee" class="check-box"></label>
     <label for="employee">{%trans "Employee"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="employee" value="employee">
+   <label for="employee"></label>
+   <label for="employee">{%trans "Employee"%}</label>
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="unemployed" value="unemployed">
     <label for="unemployed" class="check-box"></label>
     <label for="unemployed">{%trans "Unemployed"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="unemployed" value="unemployed">
+   <label for="unemployed"></label>
+   <label for="unemployed">{%trans "Unemployed"%}</label>
+
+   <!-- <div class="checkbox">
     <input type="checkbox" name="status" id="retired" value="retired">
     <label for="retired" class="check-box"></label>
     <label for="retired">{%trans "Retired"%}</label>
-   </div>
+   </div> -->
+
+   <input type="checkbox" class="checkbox" name="status" id="retired" value="retired">
+   <label for="retired"></label>
+   <label for="retired">{%trans "Retired"%}</label>
+
   </div>
  </div>
 {% endspaceless %}
@@ -132,21 +171,37 @@
    <label for="type">{%trans "Question Type"%}</label>
   </div>
   <div class="aside-group-body" data-response='type' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input id="type1" type="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
     <label for="type1" class="check-box"></label>
     <label for="type1">{%trans "Poll"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="type1" type="checkbox" class="checkbox" name='pollgender' value="poll" {%if checkbox.pollgender == 'poll' %}checked{%endif%}>
+   <label for="type1"></label>
+   <label for="type1">{%trans "Poll"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="type2" type="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
     <label for="type2" class="check-box"></label>
     <label for="type2">{%trans "Quiz"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="type2" type="checkbox" class="checkbox" name='pollgender' value="quiz" {%if checkbox.pollgender == 'quiz' %}checked{%endif%}>
+   <label for="type2"></label>
+   <label for="type2">{%trans "Quiz"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="type4" type="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
     <label for="type4" class="check-box"></label>
     <label for="type4">{%trans "Survey"%}</label>
-   </div>
+   </div> -->
+
+   <input id="type4" type="checkbox" class="checkbox" name='pollgender' value="survey" {%if checkbox.pollgender == 'survey' %}checked{%endif%}>
+   <label for="type4"></label>
+   <label for="type4">{%trans "Survey"%}</label>
+
   </div>
  </div>
 {% endspaceless %}
@@ -160,41 +215,77 @@
    <label for="according">{%trans "According to Survey"%}</label>
   </div>
   <div class="aside-group-body" data-response='according' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input id="multiplechoice" type="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
     <label for="multiplechoice" class="check-box"></label>
     <label for="multiplechoice">{%trans "Multiplechoice"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="multiplechoice" type="checkbox" class="checkbox" name="polltype" value="multiplechoice" {%if checkbox.polltype == 'multiplechoice' %}checked{%endif%}>
+   <label for="multiplechoice"></label>
+   <label for="multiplechoice">{%trans "Multiplechoice"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="descriptive" type="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
     <label for="descriptive" class="check-box"></label>
     <label for="descriptive">{%trans "Descriptive"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="descriptive" type="checkbox" class="checkbox" name="polltype" value="descriptive" {%if checkbox.polltype == 'descriptive' %}checked{%endif%}>
+   <label for="descriptive"></label>
+   <label for="descriptive">{%trans "Descriptive"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="notification" type="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
     <label for="notification" class="check-box"></label>
     <label for="notification">{%trans "Notification"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="notification" type="checkbox" class="checkbox" name="polltype" value="notification" {%if checkbox.polltype == 'notification' %}checked{%endif%}>
+   <label for="notification"></label>
+   <label for="notification">{%trans "Notification"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="upload" type="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
     <label for="upload" class="check-box"></label>
     <label for="upload">{%trans "Upload"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="upload" type="checkbox" class="checkbox" name="polltype" value="upload" {%if checkbox.polltype == 'upload' %}checked{%endif%}>
+   <label for="upload"></label>
+   <label for="upload">{%trans "Upload"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="starred" type="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
     <label for="starred" class="check-box"></label>
     <label for="starred">{%trans "Starred"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="starred" type="checkbox" class="checkbox" name="polltype" value="starred" {%if checkbox.polltype == 'starred' %}checked{%endif%}>
+   <label for="starred"></label>
+   <label for="starred">{%trans "Starred"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="numerical" type="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
     <label for="numerical" class="check-box"></label>
     <label for="numerical">{%trans "Numerical"%}</label>
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="numerical" type="checkbox" class="checkbox" name="polltype" value="numerical" {%if checkbox.polltype == 'numerical' %}checked{%endif%}>
+   <label for="numerical"></label>
+   <label for="numerical">{%trans "Numerical"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="sort" type="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
     <label for="sort" class="check-box"></label>
     <label for="sort">{%trans "Sort"%}</label>
-   </div>
+   </div> -->
+
+   <input id="sort" type="checkbox" class="checkbox" name="polltype" value="sort" {%if checkbox.polltype == 'sort' %}checked{%endif%}>
+   <label for="sort"></label>
+   <label for="sort">{%trans "Sort"%}</label>
+
   </div>
  </div>
 {% endspaceless %}
@@ -210,18 +301,29 @@
   </div>
 
   <div class="aside-group-body" data-response='survey_time' data-response-effect='slide'>
-   <div class="checkbox">
+
+   <!-- <div class="checkbox">
     <input id="time1" type="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
     <label for="time1" class="check-box"></label>
     <label for="time1">{%trans "Publish"%}</label>
     {%if checkbox.status == 'publish'%}{%endif%}
-   </div>
-   <div class="checkbox">
+   </div> -->
+
+   <input id="time1" type="checkbox" class="checkbox" name='status' value="publish" {%if checkbox.status == 'publish'%}checked{%endif%}>
+   <label for="time1"></label>
+   <label for="time1">{%trans "Publish"%}</label>
+
+   <!-- <div class="checkbox">
     <input id="time2" type="checkbox" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
     <label for="time2" class="check-box"></label>
     <label for="time2">{%trans "Expire"%}</label>
     {%if checkbox.status == 'expired'%}{%endif%}
-   </div>
+   </div> -->
+
+   <input id="time2" type="checkbox" class="checkbox" name='status' value="expired" {%if checkbox.status == 'expired'%}checked{%endif%}>
+   <label for="time2"></label>
+   <label for="time2">{%trans "Expire"%}</label>
+
   </div>
 
  </div>

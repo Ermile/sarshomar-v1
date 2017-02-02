@@ -867,19 +867,17 @@ right:0;left:0;top:100%}
 @keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-webkit-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-moz-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
-.checkbox{display:-webkit-inline-flex;display:inline-flex;position:relative;}
-div.checkbox{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;margin-bottom:15px}
-.checkbox input[type=checkbox],.checkbox input[type=radio]{opacity:0;width:0;height:0;z-index:-1;position:absolute;}
-.checkbox .check-box{position:relative;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;-moz-transition:border-color ease .2s;-o-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #d8d8d8;background-color:transparent;}
-.checkbox .check-box::before,.checkbox .check-box::after{position:absolute;display:inline-block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:4px;height:0;content:' ';-webkit-transition:opacity ease .5;-moz-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;-moz-transform-origin:left top;-ms-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428;}
-.checkbox .check-box::before{top:17px;left:11px;-webkit-transform:rotate(-135deg);-moz-transform:rotate(-135deg);-ms-transform:rotate(-135deg);-o-transform:rotate(-135deg);transform:rotate(-135deg);box-shadow:0 0 0 2px transparent;}
-.checkbox .check-box::after{top:8px;left:2px;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);}
-.checkbox input[type=checkbox]:checked + .check-box,.checkbox input[type=radio]:checked + .check-box,.checkbox .check-box.checked{}
-.checkbox input[type=checkbox]:checked + .check-box::after,.checkbox input[type=radio]:checked + .check-box::after,.checkbox .check-box.checked::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;-moz-animation:dothabottomcheck .2s ease 0s forwards;-o-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards;}
-.checkbox input[type=checkbox]:checked + .check-box::before,.checkbox input[type=radio]:checked + .check-box::before,.checkbox .check-box.checked::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;-moz-animation:dothatopcheck .4s ease 0s forwards;-o-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards;}
-.checkbox .check-box + label{height:25px;line-height:25px;padding:0 1em;font-size:1.2em;color:#00667a;cursor:pointer;}
-.checkbox input[type=checkbox]:focus + label,.checkbox input[type=radio]:focus + label{border:2px solid #00667a;}
-.checkbox.active .check-box{border-color:#00667a;}
+
+.checkbox{opacity:0;width:0;height:0;z-index:-1;position:absolute}
+.checkbox+label{position:relative;display:inline-block;background-color:transparent;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #d8d8d8;background-color:transparent;vertical-align:text-bottom}
+.checkbox+label::before,.checkbox+label::after{position:absolute;display:inline-block;box-sizing:border-box;width:4px;height:0;content:'';-webkit-transition:opacity ease .5;transition:opacity ease .5;-webkit-transform-origin:left top;transform-origin:left top;border-radius:5px;background-color:#e5a428}
+.checkbox+label::before{top:17px;left:11px;-webkit-transform:rotate(-135deg);transform:rotate(-135deg);box-shadow:0 0 0 2px transparent}
+.checkbox+label::after{top:8px;left:2px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+.checkbox:checked+label::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards}
+.checkbox:checked+label::before{-webkit-animation:dothatopcheck .4s ease 0s forwards;animation:dothatopcheck .4s ease 0s forwards}
+.checkbox:focus+label{border:2px solid #00667a}
+
+.checkbox.active{border-color:#00667a}
 .checkbox.margin-bottom{margin-bottom:15px}
 
 
