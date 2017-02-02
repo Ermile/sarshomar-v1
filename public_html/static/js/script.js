@@ -861,6 +861,19 @@ function detectStep(_name)
 	var sAdd     = $('.page-progress #step-add:checkbox:checked').length;
 	var sFilter  = $('.page-progress #step-filter:checkbox:checked').length;
 	var sPublish = $('.page-progress #step-publish:checkbox:checked').length;
+	var sCurrent = $('.page-progress').attr('data-current');
+	var result   = true
+
+	// if go from step1 to another step
+	if(!firstTime && sthis != 'step1' && sCurrent == 'step1')
+	{
+		var myTitle = $('#title');
+		if(!myTitle.val())
+		{
+			myTitle.addClass('error');
+			return false;
+		}
+	}
 
 	switch(sthis)
 	{
@@ -871,6 +884,14 @@ function detectStep(_name)
 			$('.page-progress #step-add').prop('checked', true).parent('.checkbox').addClass('active');
 			$('.page-progress #step-filter').prop('checked', false).parents('.checkbox').removeClass('active');
 			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			// show step1
+			$('.stepAdd').slideDown();
+			$('.stepFilter').slideUp();
+			$('.stepPublish').slideUp();
+			if(!firstTime)
+			{
+				window.location.hash = 'step1';
+			}
 			break;
 
 		case 'step-filter':
@@ -878,6 +899,11 @@ function detectStep(_name)
 			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-publish').prop('checked', false).parents('.checkbox').removeClass('active');
+			// show step2
+			$('.stepAdd').slideUp();
+			$('.stepFilter').slideDown();
+			$('.stepPublish').slideUp();
+			window.location.hash = 'step2';
 			break;
 
 		case 'step-publish':
@@ -885,56 +911,21 @@ function detectStep(_name)
 			$('.page-progress #step-add').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-filter').prop('checked', true).parents('.checkbox').addClass('active');
 			$('.page-progress #step-publish').prop('checked', true).parents('.checkbox').addClass('active');
-			break;
-	}
-	// change title of btn
-	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
-	changeStep(sthis, firstTime);
-}
-
-
-/**
- * [changeStep description]
- * @param  {[type]} _name [description]
- * @return {[type]}       [description]
- */
-function changeStep(_name, _first)
-{
-	switch(_name)
-	{
-		default:
-		case 'step1':
-		case 'step-add':
-			$('.stepAdd').slideDown();
-			$('.stepFilter').slideUp();
-			$('.stepPublish').slideUp();
-			if(!_first)
-			{
-				window.location.hash = 'step1';
-			}
-			break;
-
-		case 'step2':
-		case 'step-filter':
-			$('.stepAdd').slideUp();
-			$('.stepFilter').slideDown();
-			$('.stepPublish').slideUp();
-			window.location.hash = 'step2';
-			break;
-
-		case 'step3':
-		case 'step-publish':
+			// show step3
 			$('.stepAdd').slideUp();
 			$('.stepFilter').slideUp();
 			$('.stepPublish').slideDown();
 			window.location.hash = 'step3';
 			break;
 	}
+	// change title of btn
+	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
 
 	$('.page-progress').attr('data-current', _name);
 	// window.location.hash = _name;
 	// _name = _name.substr(5);
 	detectPercentage();
+	return result;
 }
 
 
@@ -949,11 +940,11 @@ function checkNextStep()
 		switch ($('.page-progress .active:last').find('input').attr('id'))
 		{
 			case 'step-add':
-				detectStep('step-filter');
+				detectStep('step2');
 				break;
 
 			case 'step-filter':
-				detectStep('step-publish');
+				detectStep('step3');
 				break;
 
 			case 'step-publish':
@@ -984,8 +975,8 @@ function detectPercentage(_submit)
 			{
 				percentage += 15;
 			}
-			var optCount = countQuestionOpts()-1;
-			optCount     = optCount<=2? 2: optCount;
+			var optCount   = countQuestionOpts()-1;
+			optCount       = optCount<=2? 2: optCount;
 			var optPercent = countQuestionOpts(true) * (30/optCount);
 			if(optPercent > 30)
 			{
@@ -1220,6 +1211,15 @@ function prepareQuestionData()
 {
 	var myQuestion     = {};
 	myQuestion.title   = $('#title').val();
+	// change status of title
+	if(!$('#title').val())
+	{
+		$('#title').addClass('error');
+	}
+	else
+	{
+		$('#title').removeClass('error')
+	}
 	// myQuestion.type    = 'poll';
 	myQuestion.answers = {};
 
@@ -1528,7 +1528,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$('.page-progress input').on('click', function(e)
 	{
-		detectStep($(this).attr('name'));
+		return detectStep($(this).attr('name'));
 		// e.stopPropagation();
 		// return false;
 	});

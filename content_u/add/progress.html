@@ -2,17 +2,17 @@
 {% spaceless %}
 <div class="page-progress" data-current='{{step.current}}'>
 	<span class="checkbox{%if step.add%} active{%endif%}" data-label='{%trans "Add"%}' data-btn='{%trans "Filter"%}'>
-		<input type="checkbox" name="step-add" id='step-add' {%if step.add and step.current != 'add'%}checked{%endif%}>
+		<input type="checkbox" name="step1" id='step-add' {%if step.add and step.current != 'add'%}checked{%endif%}>
 		<label class="check-box" for="step-add"></label>
 	</span>
 
 	<span class="checkbox{%if step.filter%} active{%endif%}" data-label='{%trans "Filter"%}' data-btn='{%trans "Next"%}'>
-		<input type="checkbox" name="step-filter" id='step-filter' {%if step.filter and step.current != 'filter'%}checked{%endif%}>
+		<input type="checkbox" name="step2" id='step-filter' {%if step.filter and step.current != 'filter'%}checked{%endif%}>
 		<label class="check-box" for="step-filter"></label>
 	</span>
 
 	<span class="checkbox{%if step.publish%} active{%endif%}" data-label='{%trans "Publish"%}' data-btn='{%trans "Show my poll"%}'>
-		<input type="checkbox" name="step-publish" id='step-publish' {%if step.publish and step.current != 'publish'%}checked{%endif%}>
+		<input type="checkbox" name="step3" id='step-publish' {%if step.publish and step.current != 'publish'%}checked{%endif%}>
 		<label class="check-box" for="step-publish"></label>
 	</span>
 </div>
