@@ -39,16 +39,25 @@ function runTagDetector()
 	$(document).on('click', '.tagDetector .tagBox span' , function ()
 	{
 		// get value of clicked tag
-		var $this      = $(this);
-		var clickedTag = $this.text().trim();
-		var myDetector = $this.closest('.tagDetector');
-		var attrData   = getTagLists(myDetector);
+		var $this          = $(this);
+		var clickedTagText = $this.text().trim();
+		var clickedTagVal  = clickedTagText;
+		var myDetector     = $this.closest('.tagDetector');
+		var attrData       = getTagLists(myDetector);
+		var elInput        = myDetector.find('.tagInput');
+		var attrRestrict   = myDetector.attr('data-restrict');
+		// if restricted list use value instead of text
+		if(attrRestrict === 'list')
+		{
+			clickedTagVal = $this.attr('data-val').trim();
+		}
 		// remove from array of data
-		attrData.splice(attrData.indexOf(clickedTag), 1);
+		attrData.splice(attrData.indexOf(clickedTagVal), 1);
 		// set taglist
 		setTagList(myDetector, attrData);
 		// fill text in input and set focus
-		myDetector.find('.tagInput').val(clickedTag).focus();
+		elInput.val(clickedTagText).focus();
+		fillDataList(elInput);
 		// remove element
 		$this.remove();
 	});
@@ -138,14 +147,14 @@ function addNewTags(_elChilds)
 	if(attrData.indexOf(myNewTag) >= 0)
 	{
 		// get element of exist tag
-		var elTagExist = elBox.find('[data-val="' + inputVal + '"]');
+		var elTagExist = elBox.find('[data-val="' + myNewTag + '"]');
 		elTagExist.addClass("isExist");
 		setTimeout(function () { elTagExist.removeClass("isExist") }, 500);
 	}
 	else
 	{
 		// replace :tag with real value
-		var elNewTag = attrBindBoxFormat.replace(':tag', myNewTag);
+		var elNewTag = attrBindBoxFormat.replace(':tag', inputText);
 		// add data-val for detecting for add on duplicate
 		elNewTag     = $(elNewTag).attr('data-val', inputVal);
 		// append to boxes
