@@ -57,19 +57,21 @@
 
      <div class="row auto poll-filters">
       <div class="span9">
-       <div class="row auto">
-        <div class="span5">
-         {{block('filter_gender')}}
-         {{block('filter_marrital')}}
+        <div id='filter-conditions'>
+         <div class="row auto">
+          <div class="span5">
+           {{block('filter_gender')}}
+           {{block('filter_marrital')}}
+          </div>
+          <div class="span7">
+           {{block('filter_graduation')}}
+           {{block('filter_employment')}}
+          </div>
+         </div>
+         {{block('filter_degree')}}
+         {{block('filter_range')}}
         </div>
-        <div class="span7">
-         {{block('filter_graduation')}}
-         {{block('filter_employment')}}
         </div>
-       </div>
-       {{block('filter_degree')}}
-       {{block('filter_range')}}
-      </div>
       <div class="span3">{{block('filter_price')}}</div>
      </div>
 

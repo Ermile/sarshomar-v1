@@ -913,7 +913,6 @@ function detectStep(_name)
 		case 'step-filter':
 		case 'step2':
 			$('.page-progress #step-add').prop('checked', true).parent('div').addClass('active');
-			console.log($('.page-progress #step-add').prop('checked', true).parent('div'));
 			$('.page-progress #step-filter').prop('checked', true).parent('div').addClass('active');
 			$('.page-progress #step-publish').prop('checked', false).parent('div').removeClass('active');
 			// show step2
@@ -1676,7 +1675,17 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
+		// calc total price
 		calcTotalPrice();
+		// if value isset to zero hide filters
+		if(_max == 0)
+		{
+			$('.stepFilter #filter-conditions').fadeOut();
+		}
+		else
+		{
+			$('.stepFilter #filter-conditions').fadeIn();
+		}
 	});
 }).once(function()
 {
