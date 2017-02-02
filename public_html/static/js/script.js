@@ -1113,17 +1113,14 @@ function calcFilterPrice()
 	returnResult.base   = basePrice;
 	returnResult.person = totalPerson;
 	returnResult.filter = totalPercent;
-
 	// change percent to ratio
 	totalPercent = totalPercent/100;
 	totalPrice   = totalPerson + (totalPerson * totalPercent);
 	totalPrice   = totalPrice * basePrice;
 	totalPrice   = Math.round(totalPrice);
-
 	// set value to show to enduser
 	totalEl.text(fitNumber(totalPrice));
-
-
+	// return final result
 	return returnResult;
 }
 
@@ -1207,6 +1204,8 @@ function calcTotalPrice()
 
 	// set total price
 	prTotal.find('.pr').attr('data-val', totalPrice).text(fitNumber(totalPrice));
+	// show on topbox
+	$('#financial-box .cost .value').text(fitNumber(totalPrice));
 }
 
 
@@ -1256,7 +1255,7 @@ String.prototype.ucFirst = function()
  */
 function prepareAdd()
 {
-
+	calcTotalPrice();
 	var saveTimeout = $('#question-add').attr('data-saving-timeout');
 	if(saveTimeout)
 	{
