@@ -38,9 +38,9 @@
     "start": "null|date_time",
     "end": "null|date_time"
   },
-  "article": [],
+  "articles": [],
   "tags": [],
-  "cats": "code",
+  "cat": "code",
   "from": {
     "count": "ultimate|int|null",
     "gender": [
