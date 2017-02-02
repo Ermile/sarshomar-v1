@@ -52,14 +52,15 @@ trait get
 				break;
 
 			case 'publish':
-				if(true) // not body answer to this poll
+				// not body answer to this poll
+				if(true)
 				{
 					$can_change_to =
 					[
 						'draft',
-						'trash',
+						// 'trash',
 						'pause',
-						'stop',
+						// 'stop',
 					];
 				}
 				else
@@ -67,12 +68,19 @@ trait get
 					$can_change_to =
 					[
 						'pause',
-						'stop',
+						// 'stop',
 					];
 				}
 				break;
 
 			case 'pause':
+				$can_change_to =
+				[
+					'publish',
+					'stop',
+				];
+				break;
+
 			case 'stop':
 				$can_change_to =
 				[
