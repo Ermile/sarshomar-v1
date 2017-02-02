@@ -6,7 +6,9 @@
     "term_title": "gender",
     "term_slug": "gender",
     "term_status": "enable",
+    "term_desc" : null,
     "term_language" : null,
+    "term_meta" :{"fa" : "جنسیت", "desc" : ""},
     "term_parent": null
   },
   {
@@ -16,6 +18,8 @@
     "term_title": "male",
     "term_slug": "male",
     "term_status": "enable",
+    "term_desc" : null,
+    "term_meta" :{"fa" : "مدر", "desc" : ""},
     "term_language" : null,
     "term_parent": 1000
   },
@@ -26,6 +30,8 @@
     "term_title": "female",
     "term_slug": "female",
     "term_status": "enable",
+    "term_desc" : null,
+    "term_meta" :{"fa" : "زن", "ar" : "المراء", "desc" : ""},
     "term_language" : null,
     "term_parent": 1000
   }
