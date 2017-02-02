@@ -1,5 +1,5 @@
 /**
- * v1.2
+ * v1.3
  */
 
 /**
@@ -76,6 +76,7 @@ function addNewTags(_elChilds)
 	var attrBindInput     = myDetector.attr('data-bind-input');
 	var attrBindBox       = myDetector.attr('data-bind-box');
 	var attrBindBoxFormat = myDetector.attr('data-box-format');
+	var attrRestrict      = myDetector.attr('data-restrict');
 	var attrLimit         = parseInt(myDetector.attr('data-limit'));
 	var attrData          = getTagLists(myDetector);
 
@@ -118,24 +119,39 @@ function addNewTags(_elChilds)
 	{
 		attrBindBoxFormat = "<span>:tag</span>";
 	}
+	var myNewTag = inputText;
+	// if restrict to list, then return and show disallow
+	if(attrRestrict === 'list')
+	{
+		if(inputVal)
+		{
+			myNewTag = inputVal;
+		}
+		else
+		{
+			elInput.addClass("isDisallow");
+			setTimeout(function () { elInput.removeClass("isDisallow") }, 500);
+			return;
+		}
+	}
 	// if exist in old list
-	if(attrData.indexOf(inputText) >= 0)
+	if(attrData.indexOf(myNewTag) >= 0)
 	{
 		// get element of exist tag
-		var elTagExist = elBox.find('[data-val="' + inputText + '"]');
+		var elTagExist = elBox.find('[data-val="' + inputVal + '"]');
 		elTagExist.addClass("isExist");
 		setTimeout(function () { elTagExist.removeClass("isExist") }, 500);
 	}
 	else
 	{
 		// replace :tag with real value
-		var elNewTag = attrBindBoxFormat.replace(':tag', inputText);
+		var elNewTag = attrBindBoxFormat.replace(':tag', myNewTag);
 		// add data-val for detecting for add on duplicate
 		elNewTag     = $(elNewTag).attr('data-val', inputVal);
 		// append to boxes
 		elBox.append(elNewTag);
 		// append to array of tags
-		attrData.push(inputText);
+		attrData.push(myNewTag);
 		// set tagList
 		setTagList(myDetector, attrData);
 	}

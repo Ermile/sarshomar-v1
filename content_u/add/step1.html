@@ -95,7 +95,7 @@
     <div class="modules">
 {% if perm.complete_profile.admin %}
 
-     <div  class="module profile-module tagDetector" id="profileTag{{myKey}}" data-response='complete-profile' {% if not edit_mode or poll.profile %}{%else%}data-response-hide{% endif %}>
+     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-restrict='list' data-response='complete-profile' {% if not edit_mode or poll.profile %}{%else%}data-response-hide{% endif %}>
       <div class="tagBox"></div>
       <div class="module-in">
        <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>

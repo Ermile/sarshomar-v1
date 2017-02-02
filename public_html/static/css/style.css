@@ -254,7 +254,8 @@ ul.list li a{padding:0.3em 0.5em}
 label,input,select,textarea,button{font-family:"IRANSans",'Roboto Slab',sans-serif;box-sizing:border-box;transition:border .2s,color .2s,background .2s}
 input[type=url],input[type=email]{direction:ltr}
 input:focus,select:focus,textarea:focus,button:focus{outline:none}
-body .input.isError{background:#fff0f0;border-color:#dbb1b1;color:#d95c5c;border-radius:0 .2857em .2857em 0;box-shadow:0 0 1px 0 #d95c5c inset}
+body .input.isError{background:#fff0f0;border-color:#dbb1b1;color:#d95c5c;border-radius:0 .2em .2em 0;box-shadow:0 0 1px 0 #d95c5c inset}
+body .isDisallow{box-shadow:0 0 3px 0 #e5a428 inset}
 
 /************************************************************** Responsie Style */
 .hidden-desktop{display:none} .hidden-tablet{display:inherit} .hidden-phone{display:inherit} .visible-desktop{display:inherit} .visible-tablet{display:none} .visible-phone{display:none}
