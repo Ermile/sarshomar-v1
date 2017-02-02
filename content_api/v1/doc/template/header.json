@@ -1,8 +1,3 @@
-GET / HTTP/1.1[CRLF]
-  Host: sarshomar.com[CRLF]
-  Connection: close[CRLF]
-  User-Agent: Web-sniffer/1.1.0
-  Accept-Encoding: gzip[CRLF]
-  Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7[CRLF]
-  Cache-Control: no-cache[CRLF]
-  Accept-Language: de,en;q=0.7,en-us;q=0.3[CRLF]
+Accept:application/json
+Authorization:$2y$07$fRI1wcT6B6JxCaowePUliuNgkNbswDCbmKcnnDWynfEpxUjfRzVry
+//Content-Type:application/json
