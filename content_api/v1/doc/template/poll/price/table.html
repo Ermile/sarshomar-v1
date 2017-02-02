@@ -6,7 +6,7 @@
     </div>
     <div>
         <span><strong>id</strong> <br> <small><i>int</i></small></span>
-        <span>{%trans "poll or survey id"%}<br> <small class="optional">{%trans "optional"%}</small></span>
+        <span>{%trans "Poll ID"%}<br> <small class="optional">{%trans "optional"%}</small></span>
         <span><code class="example-code html">{%trans "e.g..."%}</code></span>
     </div>
     <div>
@@ -14,36 +14,36 @@
             <a href="v1/doc#calcPrice-poll"><strong>poll</strong></a> <br> <small><i>object</i></small>
         </span>
         <span>{%trans "Poll..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><a href="v1/doc#calcPrice-poll"><strong>{%trans "Go to poll"%}</strong></a></span>
     </div>
     <div>
         <span>
             <a href="v1/doc#calcPrice-survey"><strong>survey</strong></a> <br> <small><i>object</i></small>
         </span>
-        <span>{%trans "Survey..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Survey options"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><a href="v1/doc#calcPrice-survey"><strong>{%trans "Go to poll"%}</strong></a></span>
     </div>
     <div>
         <span><strong>member</strong> <br> <small><i>int</i></small></span>
-        <span>{%trans "member"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "member..."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">5488</code></span>
     </div>
     <div>
         <span><strong>branding</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "branding"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Whether is it for a brand or not"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span>
             <a href="v1/doc#calcPrice-filters"><strong>Filters</strong></a> <br> <small><i>object</i></small>
         </span>
-        <span>{%trans "Filters..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Filter options"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><a href="v1/doc#calcPrice-survey"><strong>{%trans "Go to poll"%}</strong></a></span>
     </div>
 </div>
 <!--inner table-->
 <h3 class="unselectable" id="calcPrice-poll">
-    <a href="v1/doc#calcPrice-poll">{%trans "Calculate Price > Poll"%}</a>
+    <a href="v1/doc#calcPrice-poll">{%trans "Calculate Price Poll"%}</a>
 </h3>
 <div class="table method-table ltr">
     <div class="table-header">
@@ -54,12 +54,12 @@
     <div>
         <span><strong>nofity</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "Nofity..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
 </div>
 <!--inner table-->
 <h3 class="unselectable" id="calcPrice-survey">
-    <a href="v1/doc#calcPrice-survey">{%trans "Calculate Price > Survey"%}</a>
+    <a href="v1/doc#calcPrice-survey">{%trans "Calculate Price of Survey"%}</a>
 </h3>
 <div class="table method-table ltr">
     <div class="table-header">
@@ -70,17 +70,17 @@
     <div>
         <span><strong>child</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "child..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">5489</code></span>
     </div>
     <div>
         <span><strong>nofity</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "nofity..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">244</code></span>
     </div>
 </div>
 <!--inner table-->
 <h3 class="unselectable" id="calcPrice-filters">
-    <a href="v1/doc#calcPrice-filters">{%trans "Calculate Price > Filters"%}</a>
+    <a href="v1/doc#calcPrice-filters">{%trans "Calculate Price Filters"%}</a>
 </h3>
 <div class="table method-table ltr">
     <div class="table-header">
@@ -90,42 +90,42 @@
     </div>
     <div>
         <span><strong>gender</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "gender..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has gender filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>marrital</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "marrital..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has marrital filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>internetusage</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "internetusage..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has internet usage filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>graduation</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "graduation..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has graduation filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>degree</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "degree..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has degree filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>range</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "range..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has range filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>employmentstatus</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "employmentstatus..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has employment filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
     <div>
         <span><strong>housestatus</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "housestatus..."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span>{%trans "Has housing filter"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">True | False</code></span>
     </div>
 </div>
