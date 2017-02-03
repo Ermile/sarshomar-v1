@@ -822,7 +822,7 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable.complete{background-color:#2c584f}
 #inestimable.special{background-color:#2c4858}
 #inestimable h2{color:#f4f4f4;margin-bottom:0;line-height:2em}
-#inestimable .vision{text-align:center;font-size:4em}
+#inestimable .vision{text-align:center;font-size:4em;line-height:2em;}
 
 .special-button{position:relative;border-radius:15px;font-size:20px}
 .rtl .special-button{font-size:18px}
@@ -1742,8 +1742,8 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #about-bottom .span4{text-align:center}
 #about-bottom img{margin-bottom:1em;width:100%;max-width:250px}
 #about-bottom h3{color:#00667a;font-weight:700}
-#about-bottom p{color:#aaa;max-width:70%;margin:0 auto 2em}
-#about-bottom a{position:relative;color:#00667a;font-weight:700;font-size:1.2em;padding:.5em 1em;transition:.3s}
+#about-bottom p{color:#aaa;max-width:80%;margin:0 auto 2em;min-height:70px;}
+#about-bottom a{position:relative;color:#00667a;font-weight:700;font-size:1.2em;padding:.5em 1em;transition:.3s;background-color:#f4f4f4}
 #about-bottom a:hover,#about-bottom a:focus{background-color:#e8e6e6}
 
 
