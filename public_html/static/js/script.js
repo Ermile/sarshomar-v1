@@ -1202,7 +1202,7 @@ function calcTotalPrice()
 			prFilter.addClass('hide');
 		}
 		// hide base price
-		prAdd.addClass('hide');
+		// prAdd.addClass('hide');
 	}
 	else
 	{
@@ -1211,9 +1211,9 @@ function calcTotalPrice()
 		prFilter.addClass('hide');
 		// show add base price
 		prAdd.removeClass('hide');
-		// add question price to total
-		totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
 	}
+	// add question price to total
+	totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
 	// if person is correct
 	if(typeof filters.person == "number")
 	{
@@ -1259,6 +1259,8 @@ function calcTotalPrice()
 	$('#financial-box .cost .value').text(fitNumber(totalPrice));
 
 	$('#financial-box .cost').addClass('isCurrent');
+
+	return totalPrice;
 }
 
 
@@ -1308,7 +1310,11 @@ String.prototype.ucFirst = function()
  */
 function prepareAdd()
 {
-	calcTotalPrice();
+	// cal total price with a short delay to give all
+	setTimeout(function()
+	{
+		calcTotalPrice();
+	},50);
 	var saveTimeout = $('#question-add').attr('data-saving-timeout');
 	if(saveTimeout)
 	{
@@ -1702,8 +1708,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
-		// calc total price
-		calcTotalPrice();
+		// ready to send data
+		prepareAdd();
 		// if value isset to zero hide filters
 		if(_max == 0)
 		{
@@ -1727,7 +1733,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// handle copy btn
 	handleCopy();
 	// draw factor and fill total price on start
-	calcTotalPrice()
+	calcTotalPrice();
 
 	$('.page-progress input').on('click', function(e)
 	{
@@ -1811,7 +1817,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 
 	// ================================================================== filter
-	calcFilterPrice.call(this);
 	$(this).on('click','button', function()
 	{
 		detectPercentage(true);
@@ -1819,11 +1824,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	detectPercentage();
 
 	// on open tree load content to it
-	$(window).off( "response:open");
-	$(window).on( "response:open", function(_obj, _name, _value)
-	{
-		calcFilterPrice.call(this);
-	});
+	// $(window).off( "response:open");
+	// $(window).on( "response:open", function(_obj, _name, _value)
+	// {
+	//	calcTotalPrice();
+	// });
 
 	// ================================================================== publish
 	// runAutoComplete();
