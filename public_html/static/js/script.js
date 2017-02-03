@@ -270,7 +270,7 @@ function shortkey()
 				break;
 			// f1
 			case '112':
-				$import('lib/introJs.js', 'runHelp', 0);
+				$import('lib/introJs/introJs.js', 'runHelp', 0);
 				e.preventDefault();
 				break;
 
@@ -339,7 +339,9 @@ function showPreview(_file, _output)
 			fileUrl = '/static/images/file/' + fileType + '.svg';
 		}
 		var imageEl = '<img src="'+ fileUrl + '"/>';
-		$(_output).html(imageEl);
+		$(_output).html(imageEl).attr('data-type', fileType);
+		// open modal for edit
+		$(window).trigger('cropBox:open', _output);
 
 
 		// // create new instance
@@ -379,27 +381,26 @@ function startCrop(_el)
 
 	var cropBox = $('#modal-crop .cropBox');
 	var img     = $(_el).find('img').clone();
-	console.log(img);
-
-
+	var elType  = $(_el).attr('data-type');
+	// transfer image to modal
 	cropBox.html(img);
 
-	cropBox.find('img').cropper(
+	switch (elType)
 	{
-		aspectRatio: 1,
-		preview: '.img-preview',
-		crop: function(e)
-		{
-			// Output the result data for cropping image.
-			// console.log(e.x);
-			// console.log(e.y);
-			// console.log(e.width);
-			// console.log(e.height);
-			// console.log(e.rotate);b
-			// console.log(e.scaleX);
-			console.log(e);
-		}
-	});
+		case 'image':
+			$import('lib/cropper/cropper.min.js', 'runCropper', 0);
+			break;
+
+		case 'audio':
+		case 'video':
+
+			break;
+
+		default:
+			break;
+	}
+
+	console.log(img);
 }
 
 
@@ -1757,10 +1758,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	// import needed js
-	$import('lib/rangeSlider.js', 'runRangeSlider', 150);
-	$import('lib/Sortable.min.js', 'setSortable', 200);
-	$import('lib/awesomplete.min.js', 'fillAuto', 300);
-	$import('lib/tagDetector.js', 'runTagDetector', 400);
+	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', 150);
+	$import('lib/sortable/Sortable.min.js', 'setSortable', 200);
+	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', 300);
+	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', 400);
 
 	// simulateTreeNavigation();
 	checkNextStep();
@@ -1838,7 +1839,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		startCrop(_el);
 	});
 	// on click on preview of imagee
-	$('body').on("click", ".file .preview", function(_e, _el)
+	$('body').on("click", ".preview", function(_e, _el)
 	{
 		startCrop(this);
 	});
@@ -2190,5 +2191,5 @@ function runAllScripts()
  */
 function loadFiles()
 {
-	$import('lib/data-response.js', 'runDataResponse', 50);
+	$import('lib/dataResponse/dataResponse.js', 'runDataResponse', 50);
 }

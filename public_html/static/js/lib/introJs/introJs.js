@@ -55,7 +55,7 @@ function runHelp(_firstTime)
 	// on first time load css
 	if(_firstTime)
 	{
-		importCSS('/static/css/lib/introjs.css');
+		importCSS('/static/css/lib/introJs/introjs.css');
 	}
 	console.log("Need help?");
 	var intro = introJs();
