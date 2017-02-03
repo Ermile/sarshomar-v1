@@ -27,7 +27,7 @@ html.noscroll{position:fixed;overflow-y:scroll;width:100%}
 
 /************************************************************** HTML5 display definitions */
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
-audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline;max-width:100%;}
 audio:not([controls]){display:none;height:0}
 [hidden],template{display:none}
 

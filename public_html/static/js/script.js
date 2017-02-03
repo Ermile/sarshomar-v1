@@ -311,47 +311,51 @@ function showPreview(_file, _output)
 		$(_output).html('');
 		$(_output).find('.audio').html('');
 
-		var fileType = 'other';
-		var fileUrl  = '';
+		var fileModel   = 'other';
+		var filePrevUrl = '';
+		var fileUrl     = window.URL.createObjectURL(f);
 
 		// Only process image files.
 		if(f.type.match('image.*'))
 		{
-			fileType = 'image';
-			var fileUrl  = window.URL.createObjectURL(f);
+			fileModel   = 'image';
+			filePrevUrl = fileUrl;
 		}
 		else if(f.type == 'audio/mp3')
 		{
-			fileType = 'audio';
+			fileModel = 'audio';
 
 			// add element of audio
-			var audioEl = '<audio controls><source src="'+ window.URL.createObjectURL(f)+ '" type="audio/mp3"></audio>';
+			// var audioEl = '<audio controls><source src="' + fileUrl + '" type="audio/mp3"></audio>';
+			var audioEl = createNewEl(fileModel, {"url":fileUrl});
 			$(_output).parents('li').find('.audio').html(audioEl);
 		}
 		else if(f.type == 'video/mp4')
 		{
-			fileType = 'video';
+			fileModel = 'video';
 			// show image of audio
-			// fileUrl = '/static/images/file/video.svg';
+			// filePrevUrl = '/static/images/file/video.svg';
 			// // add element of audio
-			// var audioEl = '<video controls><source src="'+ window.URL.createObjectURL(f)+ '" type="video/mp4"></audio>';
-			// $(_output).parents('li').find('.audio').html(audioEl);
+			// var videoEl = '<video controls><source src="' + fileUrl + '" type="video/mp4"></audio>';
+			// var videoEl = createNewEl(fileModel, {"url":fileUrl});
+			// $(_output).parents('li').find('.audio').html(videoEl);
 		}
 		else
 		{
-			fileType = 'file';
-			// fileUrl = '/static/images/file/file.svg';
+			fileModel = 'file';
+			// filePrevUrl = '/static/images/file/file.svg';
 			$(_output).addClass('otherFile');
 			// continue;
 		}
 
 		// if is not set use default prev image
-		if(!fileUrl)
+		if(!filePrevUrl)
 		{
-			fileUrl = '/static/images/file/' + fileType + '.svg';
+			filePrevUrl = '/static/images/file/' + fileModel + '.svg';
 		}
-		var imageEl = '<img src="'+ fileUrl + '"/>';
-		$(_output).html(imageEl).attr('data-type', fileType);
+		var imageEl = '<img src="'+ filePrevUrl + '"/>';
+		$(_output).html(imageEl).attr('data-model', fileModel).attr('data-type', f.type).attr('data-url', fileUrl);
+
 		// open modal for edit
 		$(window).trigger('cropBox:open', _output);
 
@@ -381,6 +385,31 @@ function showPreview(_file, _output)
 }
 
 
+function createNewEl(_type, _args)
+{
+	var createdEl = '';
+	switch (_type)
+	{
+		case 'audio':
+			if(_args && _args.url)
+			{
+				createdEl = '<audio controls><source src="' + _args.url + '" type="audio/mp3"></audio>';
+			}
+			break;
+
+
+		case 'video':
+			if(_args && _args.url)
+			{
+				createdEl = '<video controls><source src="' + _args.url + '" type="video/mp4"></video>';
+			}
+			break;
+	}
+	// return created el
+	return createdEl;
+}
+
+
 /**
  * [startCrop description]
  * @param  {[type]} _el [description]
@@ -390,28 +419,37 @@ function startCrop(_el)
 {
 	$('#modal-crop').trigger('open');
 
-	var cropBox = $('#modal-crop .cropBox');
-	var img     = $(_el).find('img').clone();
-	var elType  = $(_el).attr('data-type');
-	var elImg   = $(_el).find('img');
+	var finalPreview = $('#modal-crop .finalPreview');
+	var elImgPrev    = $(_el).find('img');
+	var attr         = {};
+	attr.type        = $(_el).attr('data-type');
+	attr.model       = $(_el).attr('data-model');
+	attr.url         = $(_el).attr('data-url');
 	// transfer image to modal
-	cropBox.html(img);
 
-	switch (elType)
+	switch (attr.model)
 	{
 		case 'image':
+			// create a clone from selected image
+			var elImgNew  = elImgPrev.clone();
+			// fill final preview with image
+			finalPreview.html(elImgNew);
 			var argSend      = {};
-			argSend.targetEl = cropBox;
-			argSend.preview  = elImg;
+			argSend.targetEl = finalPreview;
+			argSend.preview  = elImgPrev;
 			$import('lib/cropper/cropper.min.js', 'runCropper', argSend);
 			break;
 
 		case 'audio':
 		case 'video':
-
+			// create multimedia el for audio and video
+			var multimediaEl = createNewEl(attr.model, {"url":attr.url});
+			// fill final preview with image
+			finalPreview.html(multimediaEl);
 			break;
 
 		default:
+			finalPreview.html('');
 			break;
 	}
 }
