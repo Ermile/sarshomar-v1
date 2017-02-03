@@ -496,6 +496,32 @@ String(d));return a=a.replace(/\[\[toCategory\]\]/g,String(g))},adjustBalloonCoo
 
 function drawChart()
 {
+	AmCharts.addInitHandler(function(chart)
+	{
+		// check if there are graphs with autoColor: true set
+		for(var i = 0; i < chart.graphs.length; i++)
+		{
+			var graph = chart.graphs[i];
+			if (graph.autoColor !== true)
+			{
+				continue;
+			}
+			// var colorKey = "autoColor-"+i;
+			colorPallet = pallet();
+			colorKey    = colorPallet[i];
+			graph.lineColorField = colorKey;
+			graph.fillColorsField = colorKey;
+			for(var x = 0; x < chart.dataProvider.length; x++)
+			{
+				// var color = chart.colors[x]
+				var color = colorPallet[x];
+				chart.dataProvider[x][colorKey] = color;
+			}
+		}
+
+	}, ["serial"]);
+
+
 	$('.chart:not([data-draw])').each(function()
 	{
 		// declare variables
@@ -504,12 +530,28 @@ function drawChart()
 		var attrPlace      = $this.attr('data-place');
 		var attrVals       = $this.attr('data-vals');
 		var attrFormat     = $this.attr('data-format');
+		var attrColor      = $this.attr('data-color');
 		var chartContainer = $this;
+		var attrAutoColor  = false;
 
 		// if not set replace them
 		if(!attrType)
 		{
 			attrType = 'column';
+		}
+		// set color of chart data
+		if(attrColor === 'auto')
+		{
+			attrAutoColor = true;
+			attrColor     = false;
+		}
+		else if(attrColor)
+		{
+			attrColor = JSON.parse(attrColor);
+		}
+		else
+		{
+			attrColor = ["#f4f4f4"];
 		}
 		if(!attrVals)
 		{
@@ -544,7 +586,7 @@ function drawChart()
 		var myChartOptions =
 		{
 			"type": "serial",
-			"colors": ["#f4f4f4"],
+			"colors": attrColor,
 			"dataProvider": attrVals,
 			"categoryField": "key",
 			// "colorField": "color",
@@ -562,6 +604,7 @@ function drawChart()
 				"balloonText": "[[category]] <b>[[value]]</b>",
 				"customBulletField": "bullet",
 				"bulletSize": 40,
+				"autoColor": attrAutoColor,
 			}],
 
 			"gridAboveGraphs": true,
@@ -707,3 +750,53 @@ function homepageGender(_option)
 	return _option;
 }
 
+
+/**
+ * pre defined color pallet
+ * @param  {[type]} _index [description]
+ * @return {[type]}        [description]
+ */
+function pallet(_index)
+{
+	if(!_index)
+	{
+		_index = Math.floor(Math.random() * 7) + 1;
+	}
+	var pt = ['f4f4f4'];
+
+	switch (_index)
+	{
+		case 1:
+			pt = ['#FA4D58', '#FB574C', '#FB574C', '#FC7F33', '#FD9526', '#FEAA18', '#FEBD0D', '#FFCC04',];
+			break;
+
+		case 2:
+			pt = ['#CC4F00', '#DC6000', '#F9943F', '#FDB072', '#FCC496', '#FACDA6', '#F9D8BB', '#F9E3D0', '#087B34',];
+			break;
+
+		case 3:
+			pt = ['#1E852F', '#3C9128', '#5E9F1F', '#82AE17', '#A5BD0F', '#C4CA08', '#DCD402',];
+			break;
+
+		case 4:
+			pt = ['#00C28B', '#00B6A1', '#00B2AA', '#00ACB3', '#00A7BD', '#00A3C6', '#009ECE', '#0694C9',];
+			break;
+
+		case 5:
+			pt = ['#00C18E', '#00B68F', '#00A790', '#009591', '#008392', '#007192', '#006293', '#005594',];
+			break;
+
+		case 6:
+			pt = ['#F5C909', '#DBBF18', '#B9B32B', '#93A540', '#6B9756', '#45896C', '#237D7F', '#0A758C',];
+			break;
+
+		case 7:
+			pt = ['#F24A57', '#D84C5E', '#B64D66', '#904F70', '#68507A', '#425283', '#2D639F', '#095592',];
+			break;
+
+		default:
+			break;
+	}
+
+	return pt;
+}

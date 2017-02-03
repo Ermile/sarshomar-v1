@@ -972,6 +972,7 @@ function detectStep(_name)
 		$('#question-add').removeClass('loading');
 		detectPercentage();
 	}, 300);
+	scrollSmoothTo('top', null, 300);
 	return result;
 }
 
