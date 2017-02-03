@@ -389,6 +389,9 @@ img,.unselect{-webkit-user-select:none;user-select:none}
 .ltr-text{display:inline-block;direction:ltr}
 
 a[href*="amcharts.com"]{display:none!important}
+.ltr #random-chart{overflow: hidden;}
+.ltr #random-chart .amcharts-main-div{padding-left:1em}
+.ltr #random-chart .amcharts-chart-div, .ltr #random-chart svg{overflow:visible!important;}
 
 @-webkit-keyframes spin {
     from {
