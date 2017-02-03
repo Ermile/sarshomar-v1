@@ -221,10 +221,10 @@ img.scale-with-grid{max-width:100%;height:auto}
 .hide{display:none!important}
 
 /* Modals - v2*/
-.modal{position:fixed;overflow:auto;text-align:center;top:0;left:0;width:100%;height:100%;padding:0;margin:0;border:0;z-index:1001;background:rgba(0,0,0,0.7);opacity:0;-webkit-transition:opacity 0.3s;transition:opacity 0.3s;pointer-events:none}
+.modal{position:fixed;overflow:auto;text-align:center;top:0;left:0;width:100%;height:100%;padding:0;margin:0;border:0;z-index:-1;background:rgba(0,0,0,0.7);opacity:0;-webkit-transition:opacity 0.3s;transition:opacity 0.3s;pointer-events:none}
 .modal-dialog{position:fixed;top:40%;left:50%;padding:2em;background:#fff;border-radius:5px;text-align:center;opacity:0;-webkit-transition:-webkit-transform 0.3s, opacity 0.3s;transition:transform 0.3s, opacity 0.3s;-webkit-transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);pointer-events:none}
 .modal.visible .modal-dialog{opacity:1;-webkit-transform:translate3d(-50%,-50%,0) scale3d(1,1,1);transform:translate3d(-50%,-50%,0) scale3d(1,1,1);pointer-events:auto;cursor:auto}
-.modal.visible{opacity:1;pointer-events:auto;cursor:progress}
+.modal.visible{opacity:1;pointer-events:auto;cursor:progress;z-index:1001;}
 .modal-body{color:rgba(0,0,0,0.6);line-height:1.4;margin-bottom:50px}
 .modal-footer-old{position:absolute;bottom:10%;margin:0 auto;left:50%;transform:translate(-50%, 0)}
 .modal-header{margin:0 auto}
@@ -1429,7 +1429,7 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}
 .ultra{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}
 .ultra.multi-line{height:75px}
 .ultra .data{-webkit-box-flex:1;-ms-flex:1;flex:1}
-.ultra .preview{max-height:75px}
+.ultra .preview{max-height:75px;max-width:75px;}
 .ultra .preview img{width:75px;height:75px;min-width:75px;max-height:75px;margin-left:5px}
 .rtl .ultra .preview img{margin-left:0;margin-right:5px}
 .ultra .element{margin-bottom:5px}

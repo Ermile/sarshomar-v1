@@ -393,13 +393,17 @@ function startCrop(_el)
 	var cropBox = $('#modal-crop .cropBox');
 	var img     = $(_el).find('img').clone();
 	var elType  = $(_el).attr('data-type');
+	var elImg   = $(_el).find('img');
 	// transfer image to modal
 	cropBox.html(img);
 
 	switch (elType)
 	{
 		case 'image':
-			$import('lib/cropper/cropper.min.js', 'runCropper', cropBox);
+			var argSend      = {};
+			argSend.targetEl = cropBox;
+			argSend.preview  = elImg;
+			$import('lib/cropper/cropper.min.js', 'runCropper', argSend);
 			break;
 
 		case 'audio':
