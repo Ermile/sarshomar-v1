@@ -909,7 +909,7 @@ function detectStep(_name)
 			{
 				cAdd.show();
 			}
-			sthis = 'step-add';
+			sthis = 'step1';
 			dAdd.prop('checked', true).parent('div').addClass('active');
 			dFilter.prop('checked', false).parent('div').removeClass('active');
 			dPublish.prop('checked', false).parent('div').removeClass('active');
@@ -929,6 +929,7 @@ function detectStep(_name)
 			{
 				cFilter.show();
 			}
+			sthis = 'step2';
 			dAdd.prop('checked', true).parent('div').addClass('active');
 			dFilter.prop('checked', true).parent('div').addClass('active');
 			dPublish.prop('checked', false).parent('div').removeClass('active');
@@ -939,12 +940,19 @@ function detectStep(_name)
 			window.location.hash = 'step2';
 			break;
 
+		case 'factor':
+			$('#totalPrice').addClass('isHighligh');
+			setTimeout(function()
+			{
+				$('#totalPrice').removeClass('isHighligh');
+			}, 700);
 		case 'step-publish':
 		case 'step3':
 			if(firstTime)
 			{
 				cPublish.show();
 			}
+			sthis = 'step3';
 			dAdd.prop('checked', true).parent('div').addClass('active');
 			dFilter.prop('checked', true).parent('div').addClass('active');
 			dPublish.prop('checked', true).parent('div').addClass('active');
@@ -958,13 +966,12 @@ function detectStep(_name)
 	// change title of btn
 	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
 
-	$('.page-progress').attr('data-current', _name);
+	$('.page-progress').attr('data-current', sthis);
 	setTimeout(function()
 	{
 		$('#question-add').removeClass('loading');
 		detectPercentage();
 	}, 300);
-	//
 	return result;
 }
 
@@ -1250,6 +1257,8 @@ function calcTotalPrice()
 	prTotal.find('.pr').attr('data-val', totalPrice).text(fitNumber(totalPrice));
 	// show on topbox
 	$('#financial-box .cost .value').text(fitNumber(totalPrice));
+
+	$('#financial-box .cost').addClass('isCurrent');
 }
 
 
@@ -1592,17 +1601,6 @@ function prepareQuestionFilter()
 }
 
 
-/**
- * [fillCategory description]
- * @return {[type]} [description]
- */
-function fillCategory(_el)
-{
-	console.log('fill');
-	console.log(_el);
-}
-
-
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
@@ -1736,6 +1734,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		return detectStep($(this).attr('name'));
 		// e.stopPropagation();
 		// return false;
+	});
+	// on click on price goto step3
+	$('#financial-box .cost').on('click', function(e)
+	{
+		detectStep('factor');
 	});
 	// on init
 	detectStep();
@@ -2055,6 +2058,8 @@ route('*', function ()
 	$('.tabs li').click(function(){
 		$('input[name="poll_type"], input[name="filter_type"]').val( $(this).data('tab') );
 	});
+	// hide cost box on all page except add new poll
+	$('#financial-box .cost').removeClass('isCurrent');
 
 });
 
