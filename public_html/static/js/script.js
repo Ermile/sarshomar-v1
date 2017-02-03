@@ -995,10 +995,43 @@ function checkNextStep()
 				break;
 
 			case 'step-publish':
-				console.log('what now?');
+				changePollStatus();
 				break;
 		}
 	})
+}
+
+
+/**
+ * [changePollStatus description]
+ * @param  {[type]} _status [description]
+ * @return {[type]}         [description]
+ */
+function changePollStatus(_status)
+{
+	if(!_status)
+	{
+		_status = 'awaiting';
+	}
+
+	$('#question-add').ajaxify(
+	{
+		ajax:
+		{
+			data: {status : _status},
+			abort: true,
+			method: 'post',
+			success: function(e, data, x)
+			{
+				console.log('successfully change status!');
+			},
+			error: function(e, data, x)
+			{
+				console.log('error!');
+			}
+		},
+		// lockForm: false,
+	});
 }
 
 
