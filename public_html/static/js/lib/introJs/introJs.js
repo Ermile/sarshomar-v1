@@ -50,10 +50,10 @@ if(a&&0<a.length)for(var b=0;b<a.length;b++)T.call(this,a[b].getAttribute("data-
 
 
 
-function runHelp(_firstTime)
+function runHelp(_args)
 {
 	// on first time load css
-	if(_firstTime)
+	if(_args && _args.firstTime)
 	{
 		importCSS('/static/css/lib/introJs/introjs.css');
 	}

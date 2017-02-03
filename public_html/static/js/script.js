@@ -10,12 +10,24 @@ var TEMP = null;
  * @param  {[type]} _absolute [description]
  * @return {[type]}           [description]
  */
-function $import(_src, _func, _delay, _noCache, _absolute)
+function $import(_src, _func, _args, _delay, _noCache, _absolute)
 {
-	if(!_delay)
+	if(_delay === true)
 	{
 		_delay = 100;
 	}
+	else if(!_delay)
+	{
+		_delay = 0;
+	}
+	// pre define args as empty object if notset
+	if(!_args)
+	{
+		_args = {};
+	}
+	var myArgs  = {};
+	myArgs.data = _args;
+
 	setTimeout(function()
 	{
 		if(!_absolute)
@@ -26,7 +38,7 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 		{
 			$.getScript(_src, function()
 			{
-				callFunction(_func);
+				callFunction(_func, myArgs);
 			});
 		}
 		else
@@ -34,14 +46,15 @@ function $import(_src, _func, _delay, _noCache, _absolute)
 			// if function is exist, call it!
 			if(callFunction(_func, null, true))
 			{
-				callFunction(_func);
+				callFunction(_func, myArgs);
 			}
 			// else if not exist import it for calling!
 			else
 			{
 				$.cachedScript(_src).done(function(_script, _textStatus)
 				{
-					callFunction(_func, true);
+					myArgs.firstTime = true;
+					callFunction(_func, myArgs);
 				});
 			}
 		}
@@ -79,7 +92,7 @@ function callFunction(_func, _arg, _onlyCheckExist)
 {
 	isExist = false;
 	// if wanna to call function and exist, call it
-	if(typeof window[_func] === 'function')
+	if(_func && typeof window[_func] === 'function')
 	{
 		isExist = true;
 		if(!_onlyCheckExist)
@@ -261,7 +274,6 @@ function shortkey()
 		{
 			case '83':
 			case '83ctrl':
-				console.log('save');
 				// send data to server for saving
 				sendQuestionData();
 				// prepareAdd();
@@ -270,7 +282,7 @@ function shortkey()
 				break;
 			// f1
 			case '112':
-				$import('lib/introJs/introJs.js', 'runHelp', 0);
+				$import('lib/introJs/introJs.js', 'runHelp');
 				e.preventDefault();
 				break;
 
@@ -377,7 +389,6 @@ function showPreview(_file, _output)
 function startCrop(_el)
 {
 	$('#modal-crop').trigger('open');
-	console.log(_el);
 
 	var cropBox = $('#modal-crop .cropBox');
 	var img     = $(_el).find('img').clone();
@@ -388,7 +399,7 @@ function startCrop(_el)
 	switch (elType)
 	{
 		case 'image':
-			$import('lib/cropper/cropper.min.js', 'runCropper', 0);
+			$import('lib/cropper/cropper.min.js', 'runCropper', cropBox);
 			break;
 
 		case 'audio':
@@ -399,8 +410,6 @@ function startCrop(_el)
 		default:
 			break;
 	}
-
-	console.log(img);
 }
 
 
@@ -444,8 +453,8 @@ route('*', function ()
 	setLanguageURL();
 	isActiveChecker();
 	// load maps and chart js
-	$import('lib/amcharts/amcharts.js', 'drawChart', 70);
-	$import('lib/ammap/ammap.js', 'getMyMapData', 50);
+	$import('lib/amcharts/amcharts.js', 'drawChart', null, 70);
+	$import('lib/ammap/ammap.js', 'getMyMapData', null, 50);
 });
 
 
@@ -1414,6 +1423,7 @@ function sendQuestionData()
 					if(e.msg && e.msg.member_exist)
 					{
 						limit = parseInt(e.msg.member_exist);
+						console.log('limit is: ' + limit);
 					}
 					if(limit < 100)
 					{
@@ -1762,10 +1772,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	// import needed js
-	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', 150);
-	$import('lib/sortable/Sortable.min.js', 'setSortable', 200);
-	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', 300);
-	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', 400);
+	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', null, 150);
+	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
+	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
+	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', null, 400);
 
 	// simulateTreeNavigation();
 	checkNextStep();
@@ -2195,5 +2205,5 @@ function runAllScripts()
  */
 function loadFiles()
 {
-	$import('lib/dataResponse/dataResponse.js', 'runDataResponse', 50);
+	$import('lib/dataResponse/dataResponse.js', 'runDataResponse', null, 50);
 }
