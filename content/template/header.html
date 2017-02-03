@@ -41,7 +41,7 @@
 
       <div class="icon-globe icon-2x header-profile-link ui-language-link">
        {% set lang_list = langList({'all' : true}) %}
-       <nav class="ui-language-list">
+       <nav class="langlist">
         {%for key, value in lang_list%}
          <a href="/{{key}}" hreflang="{{key}}" data-direct {%if ui_language == key %}class="isActive"{%endif%}>{{value}}</a>
         {%endfor%}

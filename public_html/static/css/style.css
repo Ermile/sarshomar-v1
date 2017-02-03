@@ -581,11 +581,11 @@ header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;
 .rtl header .ui-language-link{margin:0;margin-right:5px}
 header .ui-language-link:hover,header .ui-language-link:focus{}
 
-.ui-language-link:hover .ui-language-list{display:block}
-.ui-language-list{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none;background-color:#e8e6e6}
-.rtl .ui-language-list{right:auto;left:0}
-.ui-language-list a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
-.ui-language-list a:hover,.ui-language-list a:focus,.ui-language-list a:active{background-color:#e5a428}
+header .ui-language-link:hover .langlist{display:block}
+header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none;background-color:#e8e6e6}
+.rtl header .langlist{right:auto;left:0}
+header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
+header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#e5a428}
 
 
 /************************************************************** header profile */
@@ -800,7 +800,8 @@ footer .is-open i {transform:rotate(180deg);}
 /************************************************************** triplet */
 .triplet{display:-webkit-box;display:-ms-flexbox;display:flex;padding:50px}
 .triplet .triplet-item{-webkit-box-flex:1;-ms-flex:1;flex:1;text-align:center}
-.triplet .triplet-item img{width:100%;max-width:250px;margin-bottom:2em}
+.triplet .triplet-item a{display:block;}
+.triplet .triplet-item img{width:60%;max-width:250px;margin:0 auto 2em;display:block;}
 .triplet .triplet-item h4{font-size:1.8em}
 .triplet .triplet-item h4 a{color:#0c7c78}
 .triplet .triplet-item h4 a:hover,.triplet .triplet-item h4 a:focus{color:#00667a}
@@ -1740,7 +1741,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 /************************************************************** about page */
 #about-bottom{padding:50px;background-color:#fff}
 #about-bottom .span4{text-align:center}
-#about-bottom img{margin-bottom:1em;width:100%;max-width:250px}
+#about-bottom img{margin-bottom:1em;width:60%;max-width:250px}
 #about-bottom h3{color:#00667a;font-weight:700}
 #about-bottom p{color:#aaa;max-width:80%;margin:0 auto 2em;min-height:70px;}
 #about-bottom a{position:relative;color:#00667a;font-weight:700;font-size:1.2em;padding:.5em 1em;transition:.3s;background-color:#f4f4f4}
