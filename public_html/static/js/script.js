@@ -1410,7 +1410,11 @@ function sendQuestionData()
 							fake: true,
 						});
 					}
-					var limit = 500;
+					var limit = null;
+					if(e.msg && e.msg.member_exist)
+					{
+						limit = parseInt(e.msg.member_exist);
+					}
 					if(limit < 100)
 					{
 						lockStep();
