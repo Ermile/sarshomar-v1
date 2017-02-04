@@ -1,1 +1,5 @@
-curl
+curl - X POST - H "Accept: application/json" -
+    H "Authorization: $2y$07$fRI1wcT6B6JxCaowePUliuNgkNbswDCbmKcnnDWynfEpxUjfRzVry" -
+    H "Content-Type: application/json" -
+    H "Cache-Control: no-cache" -
+    H "Postman-Token: 3290ba65-4654-7450-219e-ae67b95cc82d"

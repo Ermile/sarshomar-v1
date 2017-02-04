@@ -12,7 +12,7 @@
     <div>
         <span><strong>survey</strong> <br> <small><i>code</i></small></span>
         <span>{%trans "Survey..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code go">3r</code></span>
+        <span><code class="example-code html">"3r"</code></span>
     </div>
     <div>
         <span><strong>status</strong> <br> <small><i>publish</i></small></span>
@@ -295,21 +295,36 @@
     </div>
     <div>
         <span><strong>gender</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Select the gender that can answer the poll. It can be "%} <code class="example-code html">male | female | null</code> <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>{%trans "Select the gender that can answer the poll. It can be:"%}
+        <br> <code class="example-code html">["male"]</code> {%trans "Only ask from males."%}
+        <br> <code class="example-code html">["female"]</code> {%trans "Only ask from females."%}
+        <br> <code class="example-code html">["male" | "female"]</code> {%trans "Only ask from males and females."%}
+        <br> <code class="example-code html">[null]</code>  {%trans "Ask anyone."%}
+        <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["male"]</code></span>
     </div>
     <div>
         <span><strong>marrital</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the marrital status of the people who can answer the poll"%}
-            <br> <code class="example-code html"> ["single", "married", "null"]</code>
+        <span>{%trans "Set the marrital status of the people who can answer the poll. It cant be:"%}
+            <br> <code class="example-code html"> ["single"]</code> {%trans "Only ask from single people."%}
+            <br> <code class="example-code html"> ["married"]</code> {%trans "Only ask from married people."%}
+            <br> <code class="example-code html"> ["single", "married"]</code> {%trans "Only ask from single and married people."%}
+            <br> <code class="example-code html"> [null]</code> {%trans "Ask anyone."%}
             <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["single"]</code></span>
     </div>
     <div>
         <span><strong>graduation</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "Set the graduation status of the people who can answer the poll"%}
-            <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code>
-                <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <br> <code class="example-code html"> ["illiterate"] </code> {%trans "Ask from illiterate people."%}
+        <br> <code class="example-code html"> ["undergraduate"] </code> {%trans "Ask from undergraduate people."%}
+        <br> <code class="example-code html"> ["graduate"] </code> {%trans "Ask from graduate people."%}
+        <br> <code class="example-code html"> ["illiterate", "undergraduate"] </code> {%trans "Ask from illiterate and undergraduate people."%}
+        <br> <code class="example-code html"> ["illiterate","graduate"] </code> {%trans "Ask from illiterate and graduate people."%}
+        <br> <code class="example-code html"> ["undergraduate", "graduate"] </code> {%trans "Ask from undergraduate and graduate people."%}
+        <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code> {%trans "Ask from illiterate, undergraduate and graduate people."%}
+        <br> <code class="example-code html"> [null] </code> {%trans "Ask anyone."%}
+        <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["graduate"]</code></span>
     </div>
     <div>
