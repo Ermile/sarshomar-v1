@@ -1,18 +1,12 @@
 {
   "status": 1,
-  "title": null,
+  "title": "Poll Successfully added",
   "msg": {
     "callback": {
-      "id": "3D"
+      "id": "3y"
     }
   },
-  "messages": {
-    "true": [
-      {
-        "title": "Poll Successfully edited",
-        "element": false,
-        "group": "public"
-      }
-    ]
+  "result": {
+    "id": "3y"
   }
 }

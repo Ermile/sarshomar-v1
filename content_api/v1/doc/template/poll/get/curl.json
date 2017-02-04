@@ -2,4 +2,4 @@ curl - X GET - H "Accept: application/json" -
     H "Authorization: $2y$07$fRI1wcT6B6JxCaowePUliuNgkNbswDCbmKcnnDWynfEpxUjfRzVry" -
     H "Cache-Control: no-cache" -
     H "Postman-Token: b518c969-a4df-b3b4-14a7-a07a3d29dc02"
-    "http://sarshomar.dev/fa/api/v1/poll?id=3"
+    "http://sarshomar.dev/fa/api/v1/poll?id=3r"

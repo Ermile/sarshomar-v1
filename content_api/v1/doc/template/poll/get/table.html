@@ -7,11 +7,16 @@
     <div>
         <span><strong>id</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "Poll ID"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">45874</code></span>
+        <span><code class="example-code html">"3rs15"</code></span>
     </div>
     <div>
-        <span><strong>type</strong> <br> <small><i>ask</i></small></span>
-        <span>{%trans "Poll Type can be one of "%} <code class="example-code html">ask | random | null</code><br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">ask</code></span>
+        <span><strong>type</strong> <br> <small><i>string</i></small></span>
+        <span>{%trans "Poll Type can be one of "%} 
+        <br> <code class="example-code html">["ask"]</code> {%trans "Get questions from type ask"%} 
+        <br> <code class="example-code html">["random"]</code> {%trans "Get random questions"%}  
+        <br> <code class="example-code html">["ask", "random"]</code> {%trans "Get random questions from type ask"%} 
+        <br> <code class="example-code html">[null]</code> {%trans "Get any type of questions"%} 
+        <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">["ask"]</code></span>
     </div>    
 </div>
