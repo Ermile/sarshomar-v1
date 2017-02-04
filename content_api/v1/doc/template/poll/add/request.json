@@ -7,7 +7,7 @@
   "file": "[upload_name]|url|null",
   "tree": {
     "parent": "code",
-    "answers": "skipped|true|[1,2]"
+    "answers": "skipped|true|[1,5,7]"
   },
   "branding": {
     "title": "string",
@@ -26,9 +26,12 @@
     }
   }],
   "options": {
-    "range_timing_max": "int|null",
-    "choice_count_min": "int|null",
-    "choice_count_max": "int|null",
+    "time": "int|null",
+    "multi" :
+    {
+      "min" : 3,
+      "max" : 10,
+    },
     "random_sort": "true|false",
     "ordering": "true|false"
   },
@@ -37,8 +40,8 @@
     "start": "null|date_time",
     "end": "null|date_time"
   },
-  "articles": [],
-  "tags": [],
+  "articles": ["code", "code"],
+  "tags": ["movi","film","some tag"],
   "cat": "code",
   "from": {
     "count": "ultimate|int|null",
