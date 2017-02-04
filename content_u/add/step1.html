@@ -99,9 +99,9 @@
      </div>
 
 {%endif%}
-     <div class="module score-module" data-response='meta_score' {% if not poll.have_score%}data-response-hide{%endif%}>
+     <div class="module score-module" data-response='score' {% if not poll.have_score%}data-response-hide{%endif%}>
       <label for="score{{myKey}}">{%trans "Score"%}</label>
-      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' {% if not poll.have_score%}data-response-hide{%endif%} value="{{value.groupscore}}">
+      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='score-advance' {% if not poll.have_score%}data-response-hide{%endif%} value="{{value.groupscore}}">
       <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}">
      </div>
      <div class="module audio"></div>
@@ -127,7 +127,7 @@
 
 
 {%block feature_score_advance%}
-<div class="checkbox" data-response='meta_score' data-response-hide>
+<div class="checkbox">
  <input type="checkbox" id="score-advance" {%if poll.have_score%}checked{%endif%}>
  <label for="score-advance" class="check-box"></label>
  <label for="score-advance">{%trans "Advance score"%}</label>
