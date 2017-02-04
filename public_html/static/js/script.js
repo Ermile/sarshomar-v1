@@ -417,9 +417,9 @@ function createNewEl(_type, _args)
  */
 function startCrop(_el)
 {
-	$('#modal-crop').trigger('open');
+	$('#modal-preview').trigger('open');
 
-	var finalPreview = $('#modal-crop .finalPreview');
+	var finalPreview = $('#modal-preview .finalPreview');
 	var elImgPrev    = $(_el).find('img');
 	var attr         = {};
 	attr.type        = $(_el).attr('data-type');
@@ -1900,10 +1900,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		startCrop(this);
 	});
 	// on click on preview of imagee
-	$('body').on("click", "#modal-crop .btn", function(_e, _el)
+	$('body').on("click", "#modal-preview .btn", function(_e, _el)
 	{
 		// complete croping
-		$('#modal-crop').trigger('close');
+		$('#modal-preview').trigger('close');
 	});
 
 

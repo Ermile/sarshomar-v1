@@ -1,7 +1,7 @@
 /*
  * In the Name of God
  * Sarshomar Styles
- * Version: 4.2.0
+ * Version: 5.0.0
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -222,7 +222,7 @@ img.scale-with-grid{max-width:100%;height:auto}
 
 /* Modals - v2*/
 .modal{position:fixed;overflow:auto;text-align:center;top:0;left:0;width:100%;height:100%;padding:0;margin:0;border:0;z-index:-1;background:rgba(0,0,0,0.7);opacity:0;-webkit-transition:0.2s;transition:0.2s;pointer-events:none}
-.modal-dialog{position:fixed;top:40%;left:50%;padding:2em;background:#fff;border-radius:5px;text-align:center;opacity:0;-webkit-transition:-webkit-transform 0.3s, opacity 0.3s;transition:transform 0.3s, opacity 0.3s;-webkit-transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);pointer-events:none}
+.modal-dialog{position:fixed;top:45%;left:50%;padding:2em;background:#fff;border-radius:5px;text-align:center;opacity:0;-webkit-transition:-webkit-transform 0.3s, opacity 0.3s;transition:transform 0.3s, opacity 0.3s;-webkit-transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);transform:translate3d(-50%,-50%,0) scale3d(1.1,1.1,1);pointer-events:none;max-width:90%;min-width:40%;overflow-y:auto;max-height:80%}
 .modal.visible .modal-dialog{opacity:1;-webkit-transform:translate3d(-50%,-50%,0) scale3d(1,1,1);transform:translate3d(-50%,-50%,0) scale3d(1,1,1);pointer-events:auto;cursor:auto}
 .modal.visible{opacity:1;pointer-events:auto;cursor:progress;z-index:1001;}
 .modal.visible.focusing{-webkit-transform:scale3d(1.02, 1.02, 1.02);transform:scale3d(1.02, 1.02, 1.02);}
@@ -230,6 +230,11 @@ img.scale-with-grid{max-width:100%;height:auto}
 .modal-footer-old{position:absolute;bottom:10%;margin:0 auto;left:50%;transform:translate(-50%, 0)}
 .modal-header{margin:0 auto}
 .modal-footer{margin:0 auto}
+
+/* for modal on final preview*/
+#modal-preview .modal-dialog{width:400px;border:2px solid #00667a;min-width:50%;}
+#modal-preview .finalPreview{height:40vh;overflow:hidden;min-height:250px;max-height:330px}
+
 
 /* BASIC */
 img{margin:0;border:none;max-width:100%;height:auto}
@@ -1002,10 +1007,6 @@ li.sortable-placeholder{border:1px dashed #CCC}
 .rtl .sortable .element .title:before{left:inherit;right:-12px;}
 .sortable .element .title:hover:before{opacity:1}
 .sortable .isChosen{opacity:0.7;}
-
-/* for modal on cropbox*/
-.modal-dialog{width:400px;border:2px solid #00667a;}
-.modal-dialog .cropBox{height:40vh;overflow:hidden;min-height:250px;max-height:330px}
 
 .complete-profile{color:#00667a;background-color:#ebebeb;border:none;width:100%;height:30px;line-height:30px}
 body .ultra input.filled{background-color:#777;}
