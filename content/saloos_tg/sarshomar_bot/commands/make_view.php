@@ -35,14 +35,21 @@ class make_view
 		{
 			$disable_web_page_preview = false;
 		}
-		return [
+
+		$inline_keyboard = $this->inline_keyboard->make();
+		$return = [
 			"text" => $this->message->make(),
-			'reply_markup' => [
-				'inline_keyboard' => $this->inline_keyboard->make()
-			],
+
 			'parse_mode' 				=> 'HTML',
 			'disable_web_page_preview' 	=> $disable_web_page_preview
 		];
+		if($inline_keyboard)
+		{
+		$return['reply_markup'] = [
+				'inline_keyboard' => $inline_keyboard
+			];
+		}
+		return $return;
 	}
 
 	public function get_poll_result()

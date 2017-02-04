@@ -185,6 +185,10 @@ class inline_keyboard
 
 	public function make()
 	{
+		if(count($this->inline_keyboard) == 1 && empty($this->inline_keyboard[0])){
+			return null;
+		}
+
 		return $this->inline_keyboard;
 	}
 
