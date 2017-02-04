@@ -7,37 +7,37 @@
     <div>
         <span><strong>title</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Set the poll title"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "How is the weather like?"%}</code></span>
+        <span><code class="example-code html">{"title": "How is the weather like?"}</code></span>
     </div>
     <div>
         <span><strong>survey</strong> <br> <small><i>code</i></small></span>
         <span>{%trans "Survey..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">{"survey": "3r"}</code></span>
     </div>
     <div>
         <span><strong>status</strong> <br> <small><i>publish</i></small></span>
         <span>{%trans "Select the status of poll between draft and publish"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "publish"%}</code></span>
+        <span><code class="example-code html">{"status": "publish"}</code></span>
     </div>
     <div>
         <span><strong>language</strong> <br> <small><i>fa</i></small></span>
         <span>Set the language of your choice<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">fa | ar | en</code></span>
+        <span><code class="example-code html">{"language": "en"}</code></span>
     </div>
     <div>
         <span><strong>summary</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Write the summary of your poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "The weather is an important factor for travelers of your city."%}</code></span>
+        <span><code class="example-code html">{"summary": "The weather is an important factor for travelers of your city."}</code></span>
     </div>
     <div>
         <span><strong>description</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Describe your poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "please selectan option that describes the weather in your city."%}</code></span>
+        <span><code class="example-code html">{"description": "please selectan option that describes the weather in your city."}</code></span>
     </div>
     <div>
         <span><strong>file</strong> <br> <small><i>url</i></small></span>
         <span>{%trans "Upload a file like an image that shows the weather in your city."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "An image of your city in the winter"%}</code></span>
+        <span><code class="example-code html">{"file": "../images/winter.png"}</code></span>
     </div>
     <div>
         <span>
@@ -70,7 +70,7 @@
     <div>
         <span><strong>hidden_result</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "whether to hide the results from public or not is set by this variable "%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False</code></span>
+        <span><code class="example-code html">{"hidden_result": "true"}</code></span>
     </div>
     <div>
         <span>
@@ -82,17 +82,17 @@
     <div>
         <span><strong>article</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "Select an article to connect it to your poll or question"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">[]</code></span>
+        <span><code class="example-code html">{"article": []}</code></span>
     </div>
     <div>
         <span><strong>tags</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "select the tags of the question"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">[]</code></span>
+        <span><code class="example-code html">{"tags": []}</code></span>
     </div>
     <div>
         <span><strong>cats</strong> <br> <small><i>code</i></small></span>
         <span>{%trans "Set the category of the poll or question."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">{"cats": "x46"}</code></span>
     </div>
     <div>
         <span>
@@ -115,12 +115,12 @@
     <div>
         <span><strong>parent</strong> <br> <small><i>code</i></small></span>
         <span>{%trans "Set a parent for the poll."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">{"cats": "246js"}</code></span>
     </div>
     <div>
         <span><strong>answers</strong> <br> <small><i>skipped</i></small></span>
         <span>{%trans "Select the answers of the parent poll."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">skipped | true | [1,2]</code></span>
+        <span><code class="example-code html">{"answers": "true"}</code></span>
     </div>
 </div>
 <!--inner table-->
@@ -136,12 +136,12 @@
     <div>
         <span><strong>title</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Name of the brand"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "Digikala"%}</code></span>
+        <span><code class="example-code html">{"title": "digikala"}</code></span>
     </div>
     <div>
         <span><strong>url</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "The URL of the brand's company"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "https://digikala.com"%}</code></span>
+        <span><code class="example-code html">{"url": "https://digikala.com"}</code></span>
     </div>
 </div>
 <!--inner table-->
@@ -157,17 +157,17 @@
     <div>
         <span><strong>title</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Set a title for the answer."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "Weather Options"%}</code></span>
+        <span><code class="example-code html">{"title": "Weather conditions"}</code></span>
     </div>
     <div>
         <span><strong>type</strong> <br> <small><i>select</i></small></span>
         <span>{%trans "select the type of the answer."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">select</code></span>
+        <span><code class="example-code html">{"type": "select"}</code></span>
     </div>
     <div>
         <span><strong>file</strong> <br> <small><i>url</i></small></span>
         <span>{%trans "If your answers has a file like an image, specify it here."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">{%trans "URL of an image that shows the weather is cold"%}</code></span>
+        <span><code class="example-code html">{"file": "../images/summer.png"}</code></span>
     </div>
     <div>
         <span>
@@ -190,7 +190,7 @@
     <div>
         <span><strong>is_true</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "Set the true answer of the poll if it has one."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False</code></span>
+        <span><code class="example-code html">{"is_true": "true"}</code></span>
     </div>
     <div>
         <span>
@@ -213,12 +213,12 @@
     <div>
         <span><strong>group</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "group..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "e.g..."%}</code></span>
+        <span><code class="example-code html">{"group": "grp"}</code></span>
     </div>
     <div>
         <span><strong>value</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "An integer showing the value of score"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">12</code></span>
+        <span><code class="example-code html">{"value": "12"}</code></span>
     </div>
 </div>
 <!--inner table-->
@@ -234,27 +234,27 @@
     <div>
         <span><strong>range_timing_max</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "Set the maximum time for the range"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">38</code></span>
+        <span><code class="example-code html">{"range_timing_max": "12"}</code></span>
     </div>
     <div>
         <span><strong>choice_count_min</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "Set the minimum count for the choice"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">5</code></span>
+        <span><code class="example-code html">{"choice_count_min": "18"}</code></span>
     </div>
     <div>
         <span><strong>choice_count_max</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "Set the maximum count for the choice"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">15</code></span>
+        <span><code class="example-code html">{"choice_count_max": "28"}</code></span>
     </div>
     <div>
         <span><strong>random_sort</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "To do a random sort of options set this variable"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False</code></span>
+        <span><code class="example-code html">{"random_sort": "true"}</code></span>
     </div>
     <div>
         <span><strong>ordering</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "Set the order of options by this variable"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False</code></span>
+        <span><code class="example-code html">{"ordering": "true"}</code></span>
     </div>
 </div>
 <!--inner table-->
@@ -270,12 +270,12 @@
     <div>
         <span><strong>start</strong> <br> <small><i>date_time</i></small></span>
         <span>{%trans "Set the date and time that the poll should start."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "2017-10-03:10:53:14"%}</code></span>
+        <span><code class="example-code html">{"start": "2017-10-03 10:53:14"}</code></span>
     </div>
     <div>
         <span><strong>end</strong> <br> <small><i>date_time</i></small></span>
         <span>{%trans "Set the date and time that the poll should end."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">{%trans "2017-11-22:13:03:25"%}</code></span>
+        <span><code class="example-code html">{"end": "2018-11-11 09:13:26"}</code></span>
     </div>
 </div>
 <!--inner table-->
@@ -291,41 +291,53 @@
     <div>
         <span><strong>count</strong> <br> <small><i>int</i></small></span>
         <span>{%trans "From how many person the poll should be asked."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">3500</code></span>
+        <span><code class="example-code html">{"count": "3500"}</code></span>
     </div>
     <div>
         <span><strong>gender</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "Select the gender that can answer the poll. It can be "%} <code class="example-code html">male | female | null</code> <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["male"]</code></span>
+        <span><code class="example-code html">{"gender": ["male"]}</code></span>
     </div>
     <div>
         <span><strong>marrital</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the marrital status of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["single", "married", "null"]</code></span>
+        <span>{%trans "Set the marrital status of the people who can answer the poll"%}
+            <br> <code class="example-code html"> ["single", "married", "null"]</code>
+            <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"marrital": ["single"]}</code></span>
     </div>
     <div>
         <span><strong>graduation</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the graduation status of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["illiterate", "undergraduate", "graduate"]</code></span>
+        <span>{%trans "Set the graduation status of the people who can answer the poll"%}
+            <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code>
+                <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"graduation": ["graduate"]}</code></span>
     </div>
     <div>
         <span><strong>degree</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the university or college degree status of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code></span>
+        <span>{%trans "Set the university or college degree status of the people who can answer the poll"%}
+            <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code>
+                <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"degree": ["master"]}</code></span>
     </div>
     <div>
         <span><strong>range</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the age range of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["-13", "diploma", "14-17", "18-24", "25-30", "31-44", "45-59", "60+"]</code></span>
+        <span>{%trans "Set the age range of the people who can answer the poll"%}
+            <br> <code class="example-code html"> ["-13", "diploma", "14-17", "18-24", "25-30", "31-44", "45-59", "60+"]</code>
+                <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"range": ["18-24"]}</code></span>
     </div>
     <div>
         <span><strong>employmentstatus</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the job status of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["employee", "unemployed", "retired"]</code></span>
+        <span>{%trans "Set the job status of the people who can answer the poll"%}
+            <br> <code class="example-code html"> ["employee", "unemployed", "retired"]</code>
+                <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"employmentstatus": ["unemployed"]}</code></span>
     </div>
     <div>
         <span><strong>housestatus</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the housing status of the people who can answer the poll"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">["owner", "tenant", "homeless"]</code></span>
+        <span>{%trans "Set the housing status of the people who can answer the poll"%} 
+            <br> <code class="example-code html"> ["owner", "tenant", "homeless"] </code>
+            <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">{"housestatus": ["tenant"]}</code></span>
     </div>
 </div>
