@@ -69,13 +69,10 @@
    {%for key, value in post.post_meta.opt%}
     <li>
 
-     <!-- <span class="checkbox">
+     <span class="checkbox">
       <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
       <label class="check-box" for="radio_{{value.key}}" data-number="{{key + 1}}"></label>
-     </span> -->
-
-     <input type="radio" class="checkbox" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-     <label for="radio_{{value.key}}" data-number="{{key + 1}}"></label>
+     </span>
 
      <label for="radio_{{value.key}}" data-number="{{key + 1}}">
       {{value.txt}}

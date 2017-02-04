@@ -76,13 +76,8 @@
         {% endif %}
       autocomplete="off" value="{{value.title}}">
 
-      <!-- <span class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
+      <span class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
        <input type="checkbox" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
-       <label class="check-box" for="true{{myKey}}"></label>
-      </span> -->
-
-      <span class="element-checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
-       <input type="checkbox" class="checkbox true" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
        <label for="true{{myKey}}"></label>
       </span>
 
@@ -123,41 +118,29 @@
 
 
 {%block feature_score%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="score" {%if poll.have_score%}checked{%endif%}>
  <label for="score" class="check-box"></label>
  <label for="score">{%trans "Options has score"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="score" {%if poll.have_score%}checked{%endif%}>
-<label for="score"></label>
-<label for="score">{%trans "Options has score"%}</label>
+</div>
 {%endblock%}
 
 
 {%block feature_score_advance%}
-<!-- <div class="checkbox" data-response='meta_score' data-response-hide>
+<div class="checkbox" data-response='meta_score' data-response-hide>
  <input type="checkbox" id="score-advance" {%if poll.have_score%}checked{%endif%}>
  <label for="score-advance" class="check-box"></label>
  <label for="score-advance">{%trans "Advance score"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="score-advance" {%if poll.have_score%}checked{%endif%}>
-<label for="score-advance"></label>
-<label for="score-advance">{%trans "Advance score"%}</label>
+</div>
 {%endblock%}
 
 
 {%block feature_ordering%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="ordering" {%if poll.meta.ordering%}checked{%endif%}>
  <label for="ordering" class="check-box"></label>
  <label for="ordering">{%trans "Allow user to sort answers"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="ordering" {%if poll.meta.ordering%}checked{%endif%}>
-<label for="ordering"></label>
-<label for="ordering">{%trans "Allow user to sort answers"%}</label>
+</div>
 {%endblock%}
 
 
@@ -176,28 +159,18 @@
 
 
 {%block feature_other%}
-<!-- <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
+<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
  <input type="checkbox" id="descriptive" {%if have_other_opt%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
  <label for="descriptive" class="check-box"></label>
  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" data-response='meta_choicemode' data-response-where='one|multi' id="descriptive" {%if have_other_opt%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
-<label for="descriptive"></label>
-<label for="descriptive">{%trans "Allow to type other answer"%}</label>
+</div>
 {%endblock%}
 
 
 {%block feature_branding%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="meta_branding" {%if poll.brand.title%}checked{%endif%}>
  <label for="meta_branding" class="check-box"></label>
- <label for="meta_branding">{%trans "Branding"%}</label>
-</div> -->
-
-<div class="checkbox-block">
- <input type="checkbox" class="checkbox" id="meta_branding" {%if poll.brand.title%}checked{%endif%}>
- <label for="meta_branding"></label>
  <label for="meta_branding">{%trans "Branding"%}</label>
 </div>
 
@@ -231,51 +204,39 @@
 
 
 {%block feature_randomsort%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="random_sort" {%if poll.options.random_sort%}checked{%endif%}>
  <label for="random_sort" class="check-box"></label>
  <label for="random_sort">{%trans "Randomize sort options"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="random_sort" {%if poll.options.random_sort%}checked{%endif%}>
-<label for="random_sort"></label>
-<label for="random_sort">{%trans "Randomize sort options"%}</label>
+</div>
 {%endblock%}
 
 
 {%block feature_hiddenresult%}
  {%if perm.hidden_result.admin%}
- <!-- <div class="checkbox">
+ <div class="checkbox">
   <input type="checkbox" id="hidden_result" {%if poll.hidden_result%}checked{%endif%}>
   <label for="hidden_result" class="check-box"></label>
   <label for="hidden_result">{%trans "Hidden result"%}</label>
- </div> -->
-
- <input type="checkbox" class="checkbox" id="hidden_result" {%if poll.hidden_result%}checked{%endif%}>
- <label for="hidden_result"></label>
- <label for="hidden_result">{%trans "Hidden result"%}</label>
+ </div>
  {%endif%}
 {%endblock%}
 
 
 {%block feature_trueanswer%}
-<!-- <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
+<div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
  <input type="checkbox" id="true_answer" {%if poll.have_true_answer%}checked{%endif%} >
  <label for="true_answer" class="check-box"></label>
  <label for="true_answer">{%trans "Has correct option"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="true_answer" {%if poll.have_true_answer%}checked{%endif%} >
-<label for="true_answer"></label>
-<label for="true_answer">{%trans "Has correct option"%}</label>
+</div>
 {%endblock%}
 
 
 {%block feature_completeprofile%}
  {% if perm.complete_profile.admin %}
  <div class="row auto">
-  <div class="span4 checkbox-block">
-   <input type="checkbox" class="checkbox" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>
+  <div class="span4 checkbox margin-bottom">
+   <input type="checkbox" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>
    <label for="complete-profile" class="check-box"></label>
    <label for="complete-profile">{%trans "Complete Profile"%}</label>
   </div>
@@ -285,15 +246,9 @@
 
 
 {%block feature_tree%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
  <label for="tree" class="check-box"></label>
- <label for="tree">{%trans "Tree"%}</label>
-</div> -->
-
-<div class="checkbox-block">
- <input type="checkbox" class="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
- <label for="tree"></label>
  <label for="tree">{%trans "Tree"%}</label>
 </div>
 
@@ -307,27 +262,15 @@
 
   <div class="tree-result-list"></div>
 </div>
-
-
-<!-- <div class="tree-container" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
- <div class="row auto tree-fields">
-  <input type="text" class="autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus>
- </div>
- <ul class="tree-result-list"></ul>
-</div> -->
 {%endblock%}
 
 
 {%block feature_tree_old%}
-<!-- <div class="checkbox">
+<div class="checkbox">
  <input type="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
  <label for="tree" class="check-box"></label>
  <label for="tree">{%trans "Tree"%}</label>
-</div> -->
-
-<input type="checkbox" class="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
-<label for="tree"></label>
-<label for="tree">{%trans "Tree"%}</label>
+</div>
 
 
 <div class="tree-container" data-response='tree' data-response-where='true' data-response-effect='slide' data-response-timing='slow' data-response-notfix {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>

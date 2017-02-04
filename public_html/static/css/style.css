@@ -883,6 +883,8 @@ right:0;left:0;top:100%}
 @-webkit-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 @-moz-keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:30px;}}
 
+.checkbox{position:relative}
+div.checkbox{margin-bottom:15px}
 .checkbox input{opacity:0;width:0;height:0;z-index:-1;position:absolute}
 .checkbox input+label{position:relative;display:inline-block;background-color:transparent;box-sizing:border-box;width:25px;height:25px;cursor:pointer;-webkit-transition:border-color ease .2s;transition:border-color ease .2s;border:2px solid #d8d8d8;background-color:transparent;vertical-align:text-bottom;margin-right:5px}
 .rtl .checkbox input+label{margin-right:0;margin-left:5px}
@@ -893,7 +895,7 @@ right:0;left:0;top:100%}
 .checkbox input:checked+label::after{height:15px;-webkit-animation:dothabottomcheck .2s ease 0s forwards;animation:dothabottomcheck .2s ease 0s forwards}
 .checkbox input:focus+label{border:2px solid #00667a}
 .checkbox.active input+label{border-color:#00667a}
-.checkbox.checkbox-block{margin-bottom:15px}
+.checkbox.margin-bottom{margin-bottom:15px}
 
 
 /************************************************************** radio */
@@ -1269,13 +1271,10 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}
 .rtl .page-progress b{left:auto;right:0}
 .page-progress.ajax b{transition:.1s}
 
-.page-progress .step-block{position:relative}
-.page-progress .step-block::before{content:attr(data-label);color:#d8d8d8;font-weight:700;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em}
+.page-progress .checkbox::before{content:attr(data-label);color:#d8d8d8;font-weight:700;position:absolute;width:200%;bottom:-2.2em;text-align:center;left:-50%;font-size:.8em}
+.page-progress .checkbox.active::before{color:#00667a}
 
-.page-progress .step-block.active::before{color:#00667a}
-.page-progress .step-block.active .checkbox+label{border:2px solid #00667a}
-
-.page-progress .checkbox+label{margin:0}
+.page-progress .checkbox input+label{margin:0}
 
 /************************************************************** menu */
 .menu{margin:0 auto 15px;text-align:center;padding:0 12px}
@@ -1400,9 +1399,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element .input:focus{background-color:#00667a;color:#d8dad0}
 .element .input option{background-color:#efefef;color:#777}
 
-.element .element-checkbox{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center;background-color:#efefef;padding:0 5px;transition:.3s}
-.element .element-checkbox .checkbox{vertical-align:middle}
-.element .checkbox+label{margin-right:0;margin-left:0}
+.element .checkbox{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center;background-color:#efefef;padding:0 5px;transition:.3s}
+.element .checkbox input+label{margin-right:0;margin-left:0}
 
 /* input group */
 .input-group{padding-left:40px;margin-bottom:20px;}

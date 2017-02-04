@@ -10,14 +10,10 @@
   <ul class="options">
    {% for i, opt in value.meta.opt %}
    <li data-id='{{i}}'>
-    <!-- <span class="checkbox">
+    <span class="checkbox">
      <input type="checkbox" value="{{opt.key}}" id="x{{key}}-{{i}}" {% if value.id == parent_poll_id and opt.key in parent_poll_opt %}checked{% endif %}>
-     <label class="check-box" for="x{{key}}-{{i}}"></label>
-    </span> -->
-
-    <input type="checkbox" class="checkbox" value="{{opt.key}}" id="x{{key}}-{{i}}" {% if value.id == parent_poll_id and opt.key in parent_poll_opt %}checked{% endif %}>
-    <label class="check-box" for="x{{key}}-{{i}}"></label>
-
+     <label for="x{{key}}-{{i}}"></label>
+    </span>
     <label for="x{{key}}-{{i}}">{{opt.txt}}</label>
    </li>
    {% endfor %}
