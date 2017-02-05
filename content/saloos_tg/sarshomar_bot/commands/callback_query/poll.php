@@ -42,7 +42,7 @@ class poll
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' 	=> 'array',
 			'request' => [
-				'my_poll' 	=> true,
+				'in' 		=> 'me',
 				'from'  	=> (int) $start,
 				'to'  		=> (int) ($start + $message_per_page),
 			]
@@ -53,14 +53,26 @@ class poll
 
 		$total_page = ceil($search['total'] / $message_per_page);
 
-		$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
-		foreach ($query_result as $key => $value) {
-			$message .= $value['title'];
-			$message .= utility::nubmer_language("($value[count_vote])");
-			$message .= ' - ' . T_(ucfirst($value['status']));
-			$message .= "\n";
-			$message .= "/sp_" . $value['id'];
-			$message .= "\n\n";
+		if(empty($query_result))
+		{
+			$message = T_("You dont add eny poll");
+			$message = "\n";
+			$message = T_("Do you like add poll");
+			$inline_keyboard =  [
+				[["text" => T_("Add new poll"), "callback_data" => "poll/new"]]
+			];
+		}
+		else
+		{
+			$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
+			foreach ($query_result as $key => $value) {
+				$message .= $value['title'];
+				$message .= utility::nubmer_language("($value[count_vote])");
+				$message .= ' - ' . T_(ucfirst($value['status']));
+				$message .= "\n";
+				$message .= "/sp_" . $value['id'];
+				$message .= "\n\n";
+			}
 		}
 		$return = ['text' => $message];
 		if($total_page > 1)
@@ -85,6 +97,9 @@ class poll
 			{
 				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "poll/list/" . $total_page];
 			}
+		}
+		if(isset($inline_keyboard))
+		{
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 		}
 		$return['parse_mode'] = "HTML";
@@ -93,6 +108,13 @@ class poll
 			return $return;
 		}
 		callback_query::edit_message($return);
+	}
+
+	public static function new()
+	{
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::start());
+		\lib\storage::set_disable_edit(true);
+		return [];
 	}
 
 	public static function discard($_query, $_data_url)
@@ -201,8 +223,6 @@ class poll
 				'id' 		=> $_data_url[3]
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
-		handle::send_log($request_status);
-		handle::send_log(\lib\debug::compile());
 		callback_query::edit_message(ask::make(null, null, $_data_url[3]));
 		\lib\storage::set_disable_edit(true);
 	}
