@@ -7,16 +7,18 @@
     <div>
         <span><strong>id</strong> <br> <small><i>string</i></small></span>
         <span>{%trans "Poll ID"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">434sf</code></span>
+        <span><code class="example-code html">"434sf"</code></span>
     </div>
     <div>
         <span><strong>skipped</strong> <br> <small><i>BOOL</i></small></span>
-        <span>{%trans "skipped..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False</code></span>
+        <span>{%trans "Is the poll skipped"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">true</code></span>
     </div>
     <div>
         <span><strong>answer</strong> <br> <small><i>array of objects</i></small></span>
-        <span>{%trans "answer..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">True | False | int | string | url</code></span>
+        <span>{%trans "Answers to the poll"%}
+        <br> <code class="example-code html">["True", "False", "int", "string", "url"]</code>
+        <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><code class="example-code html">true</code></span>
     </div>
 </div>
