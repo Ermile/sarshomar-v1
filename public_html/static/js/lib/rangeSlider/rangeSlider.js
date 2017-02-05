@@ -4,7 +4,7 @@
 	/**
 	 * [destroy description]
 	 * @return {[type]} [description]
-	 * if call this 
+	 * if call this
 	 */
 	function destroy()
 	{
@@ -128,14 +128,13 @@
 				data_min = start;
 				$(this).attr('data-min', data_min)
 			}
-			
+
 			if (isNaN(data_min))
 			{
 				data_min = 0;
 			}
 
 			$(this).attr('data-min',data_min);
-			// console.log($(this).attr('data-min'))
 		return data_min;
 		}
 
@@ -154,7 +153,6 @@
 			data_min = 0;
 			$(this).attr('data-min',data_min);
 		}
-// console.log(data_min)
 		return data_min;
 	}
 
@@ -171,7 +169,6 @@
 var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
-					console.log(11111111111)
 					// data_max = 100000;
 				}
 			}
@@ -285,23 +282,21 @@ var json_string = $(this).attr("save_jason");
 
 				// agar bekhaahim ba ejraye function lhodemaan meghdaare max_limit ro taghyeer bedim bayad meghdare 3om ro set konim
 				// $('#a').rangeSlider('option', 'max_limit', 500, 1);
-				// 
+				//
 				var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
-					if ($(this).attr('_status') ) 
+					if ($(this).attr('_status') )
 					{
 						$(this).removeAttr('_status')
 					}
 					var my_step = $(this).rangeSlider('option','step');
 					var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', _set);
-					if (!real_limit_unit) 
+					if (!real_limit_unit)
 					{
-						console.log(' FALSE ')
 						var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
 						var _status = 'float';
 						$(this).attr('_status', _set);
-						console.log(_status)
 					}
 					var max_limit = real_limit_unit * my_step;
 				}
@@ -317,7 +312,6 @@ var json_string = $(this).attr("save_jason");
 
 
 			var limit_value = max_limit - $(this).rangeSlider('option','min');
-// console.log(limit_value)
 			var json_string = $(this).attr("save_jason");
 			if (json_string)
 			{
@@ -338,7 +332,6 @@ var json_string = $(this).attr("save_jason");
 			}
 			else
 			{
-				// console.log($(this).attr('data-support-rtl'))
 				if ($(document).find("body.rtl").hasClass('rtl') && $(this).attr('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
 				{
 					limit_value_percent = (100-limit_value_percent);
@@ -354,8 +347,8 @@ var json_string = $(this).attr("save_jason");
 				show_max_limit = $(this).rangeSlider('option','multi_level_real_to_value', Math.round(show_max_limit/my_step));
 			}
 			$(this).attr("data-max-limit-first", show_max_limit);
-			
-			if ($(this).attr('_status')) 
+
+			if ($(this).attr('_status'))
 			{
 				$(this).attr("data-max-limit-first", $(this).attr('_status'));
 			}
@@ -488,7 +481,7 @@ var json_string = $(this).attr("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
-		if (json_string) 
+		if (json_string)
 		{
 			var json_steps = jQuery.parseJSON( json_string );
 			for (var i = 0; i < json_steps.length; i++)
@@ -523,11 +516,9 @@ var json_string = $(this).attr("save_jason");
 				{
 					counter += steps[i];
 					changed_mount++;
-				console.log(counter,' : ',changed_mount)
-				// console.log(levels_length)
-				// console.log(changed_mount)
 
-					if (_set == counter) 
+
+					if (_set == counter)
 					{
 						changed_mount = changed_mount - levels_length+1;
 						return (changed_mount)
@@ -535,7 +526,6 @@ var json_string = $(this).attr("save_jason");
 					else if (_set < counter)
 					{
 						changed_mount = changed_mount - levels_length+1;
-						console.log('yeeaaaah')
 						return (changed_mount)
 					}
 				}
@@ -554,7 +544,7 @@ var json_string = $(this).attr("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
-		if (json_string) 
+		if (json_string)
 		{
 			var json_steps = jQuery.parseJSON( json_string );
 			for (var i = 0; i < json_steps.length; i++)
@@ -589,7 +579,7 @@ var json_string = $(this).attr("save_jason");
 				{
 					counter += steps[i];
 					changed_mount++;
-					if (_set == counter) 
+					if (_set == counter)
 					{
 						changed_mount = changed_mount - levels_length+1;
 						return (changed_mount)
@@ -641,7 +631,7 @@ var json_string = $(this).attr("save_jason");
 			{
 				var sum_counter = null;
 				levels_length++;
-				
+
 				while(sum_counter < ends[i]){
 					changed_mount++;
 					sum_counter += steps[i];
@@ -869,7 +859,6 @@ var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
 					var my_step = $(this).rangeSlider('option','step');
-				// console.log(data.max_limit)
 					var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', data.max_limit);
 					var real_limit = real_limit_unit * my_step;
 					$(this).rangeSlider('option', 'max_limit', real_limit);
@@ -991,7 +980,7 @@ var json_string = $(this).attr("save_jason");
 						}
 
 
-						else if (i == 0 && min<=start) 
+						else if (i == 0 && min<=start)
 						{
 							$(this).rangeSlider('option','min',start);
 							var my_max   = $(this).rangeSlider('option','multi_level_value_to_real', $(this).rangeSlider('option','max'));
@@ -1053,26 +1042,26 @@ var json_string = $(this).attr("save_jason");
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(to_multi_step_value));
 
 
-if ($(this).attr('_status')) 
+if ($(this).attr('_status'))
 {
 	var my_limit = $(this).rangeSlider('option', 'max_limit');
 	var _step = ($(this).rangeSlider('option', 'step'));
 	my_limit = my_limit / _step;
 	var my_limit_mount = $(this).rangeSlider('option', 'multi_level_real_to_value',my_limit)
 
-	if (from_multi_step_value == my_limit_mount) 
+	if (from_multi_step_value == my_limit_mount)
 	{
 		$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		if (from_multi_step_value == to_multi_step_value) 
+		if (from_multi_step_value == to_multi_step_value)
 		{
 			$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
 		}
 	}
 
-	else if (to_multi_step_value == my_limit_mount) 
+	else if (to_multi_step_value == my_limit_mount)
 	{
 		$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		if (from_multi_step_value == to_multi_step_value) 
+		if (from_multi_step_value == to_multi_step_value)
 		{
 			$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
 		}
@@ -1119,7 +1108,7 @@ if ($(this).attr('_status'))
 						for(var key in show_title_details)
 						{
 							var key_mount = key;
-							if (key == 'min') 
+							if (key == 'min')
 							{
 								key = data.min;
 								var str_min = true;
@@ -1131,7 +1120,7 @@ if ($(this).attr('_status'))
 							}
 
 							var str = show_title_details[key];
-							if (str) 
+							if (str)
 							{
 								if (str.indexOf(":val") >= 0)
 								{
@@ -1141,12 +1130,12 @@ if ($(this).attr('_status'))
 
 							if (data_value_max == key)
 							{
-								if (key == data.min && str_min ) 
+								if (key == data.min && str_min )
 								{
 									var key_mount = key;
 									key = 'min';
 								}
-								else if (key == data.max && str_max ) 
+								else if (key == data.max && str_max )
 								{
 									var key_mount = key;
 									key = 'max';
@@ -1158,15 +1147,15 @@ if ($(this).attr('_status'))
 									$(this).find(".dynamic-range .min .mount").attr("data-value-show",show_title_details[key]);
 								}
 							}
-							
+
 							else if(data_value_min == key )
 							{
-								if (key == data.min && str_min ) 
+								if (key == data.min && str_min )
 								{
 									var key_mount = key;
 									key = 'min';
 								}
-								else if (key == data.max && str_max ) 
+								else if (key == data.max && str_max )
 								{
 									var key_mount = key;
 									key = 'max';
@@ -1220,7 +1209,7 @@ if ($(this).attr('_status'))
 					add_selection.call(this, 'max').appendTo(dynamic_range);
 					add_selection.call(this, 'min').appendTo(dynamic_range);
 				}
- if ($(this).attr('data-support-rtl')) 
+ if ($(this).attr('data-support-rtl'))
  {
  	$(this).addClass('support-rtl')
  }
@@ -1279,7 +1268,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1327,7 +1316,7 @@ var add_selection = function(_name)
 			}
 			else
 			{
-				var my_max_limit = $(_self).rangeSlider('option', 'max');	
+				var my_max_limit = $(_self).rangeSlider('option', 'max');
 			}
 
 			var total_width_unit  = my_max_limit - $(_self).rangeSlider('option', 'min');
@@ -1357,7 +1346,6 @@ var add_selection = function(_name)
 					$(_self).find('.dynamic-range span.mount').hide(); //design*********
 				}
 
-				console.log('margin')
 				$(this).trigger("range-slider::mouseup::margin");
 				$(document).unbind("mousemove.dynamic-range");
 				$(document).unbind("mouseup.dynamic-range");
@@ -1383,7 +1371,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1427,7 +1415,7 @@ var add_selection = function(_name)
 			}
 			else
 			{
-				var my_max_limit = $(_self).rangeSlider('option', 'max');	
+				var my_max_limit = $(_self).rangeSlider('option', 'max');
 			}
 
 			var total_width_unit   = my_max_limit - $(_self).rangeSlider('option', 'min');
@@ -1456,7 +1444,6 @@ var add_selection = function(_name)
 				$(_self).find('.dynamic-range span.mount').hide(); //design*********
 			}
 			$(this).trigger("range-slider::touchend::margin_touch");
-			console.log('margin_touch')
 			$(document).unbind('touchend');
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
@@ -1475,7 +1462,7 @@ var add_selection = function(_name)
 		var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 		var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 		{
 			var _width = $(_self).width();
 			var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1500,7 +1487,7 @@ var add_selection = function(_name)
 			mouse_selection = data.type == 'vertical' ? $(_self).height() - mouse_selection : mouse_selection;
 
 
-if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 {
 	var _width = $(_self).width();
 	var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1536,7 +1523,6 @@ if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-
 		return false;
 	}).bind("mouseup", function(){
 		$(document).unbind("mousemove.range-slider");
-		console.log('min_max')
 		$(this).trigger("range-slider::mouseup::min_max");
 	}).bind('keydown.range-slider', function(event){
 
@@ -1596,7 +1582,7 @@ if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-
 			var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
@@ -1623,7 +1609,6 @@ if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-
 			}
 
 			$(this).trigger("range-slider::touchend::margin_touch");
-			console.log('margin_touch')
 
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
