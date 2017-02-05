@@ -39,24 +39,25 @@ class model extends \mvc\model
 			$search = $_args->get("search")[0];
 		}
 
-		$my_poll = false;
+		$in = 'sarshomar';
 
 		if(\lib\storage::get('rep') == 'u')
 		{
-			$my_poll = true;
+			$in = 'me';
 		}
+		$this->user_id  = $this->login('id');
 
 		\lib\utility::$REQUEST = new \lib\utility\request(
 		[
 			'method' => 'array',
 			'request' =>
 			[
-				'search'  => $search,
-				'my_poll' => $my_poll
+				'search'   => $search,
+				'in'       => $in,
+				'language' => \lib\define::get_language(),
 			]
 		]);
 		$this->api_mode = false;
-		$this->user_id  = $this->login('id');
 
 		return $this->poll_search($_args);
 	}

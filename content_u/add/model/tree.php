@@ -18,7 +18,7 @@ trait tree
 		{
 			case 'personal':
 				$meta['user_id'] = $this->login('id');
-				$meta['my_poll'] = true; // to load not published poll
+				$meta['in'] = 'sarshomar'; // to load not published poll
 				break;
 
 			case 'sarshomar':

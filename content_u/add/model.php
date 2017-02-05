@@ -59,7 +59,6 @@ class model extends \content_u\home\model
 		];
 		utility::set_request_array(['id'   => $poll_id]);
 		$result = $this->poll_get($args);
-
 		return $result;
 	}
 
@@ -225,7 +224,7 @@ class model extends \content_u\home\model
 		utility::set_request_array(
 		[
 			'search'    => $search,
-			'my_poll'   => false,
+			'in'        => null,
 			'language'  => null,
 			'sarshomar' => false,
 		]);

@@ -164,7 +164,7 @@ trait check
 		[
 			'post_title' => $poll['title'],
 			'user_id'    => self::$user_id,
-			'my_poll'    => true,
+			'in'         => 'me',
 		];
 
 		$check_duplicate_poll_title = self::search(null, $check_duplicate_poll_title);

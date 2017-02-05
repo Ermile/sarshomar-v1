@@ -54,16 +54,12 @@ class view extends \content_u\home\view
 	{
 
 		$poll = $_args->api_callback;
-
 		if(isset($poll['answers']))
 		{
-			if(count($poll['answers']) > 2)
+			if(count($poll['answers']) >= 1)
 			{
 				$answers = $poll['answers'];
-			}
-			elseif(count($poll['answers']) == 1)
-			{
-				$answers = [$poll['answers'], []];
+				array_push($answers, []);
 			}
 			else
 			{
@@ -74,6 +70,7 @@ class view extends \content_u\home\view
 		{
 			$answers = [[],[]];
 		}
+
 		$this->data->answers = $answers;
 
 		$answer_type = array_column($answers, 'type');

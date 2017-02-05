@@ -14,6 +14,7 @@ trait search
 	 */
 	public static function search($_string = null, $_options = [])
 	{
+
 		$where = []; // conditions
 
 		if(!$_string && empty($_options))
@@ -51,7 +52,7 @@ trait search
 			// if my_poll === true then
 			// option all === true to search in all post
 			// option check_language = false to not check langupage
-			"my_poll"         => false,
+			"in"              => 'sarshomar',
 
 			// no thing yet.
 			"admin"           => false,
@@ -161,28 +162,59 @@ trait search
 			$order = " ORDER BY posts.id $_options[order] ";
 		}
 
-		// if in my poll return publish and public poll
-		if($_options['my_poll'] === false)
+		// make repository
+		// search in sarshomar
+		if($_options['in'] === 'sarshomar')
 		{
-			$_options['post_status']  = 'publish';
-			$_options['post_privacy'] = 'public';
+			$_options['post_status']    = 'publish';
+			$_options['post_privacy']   = 'public';
+			$_options['post_sarshomar'] = 1 ;
+
 		}
-		elseif($_options['my_poll'] === true)
+		// search in my poll
+		elseif($_options['in'] === 'me')
 		{
-			$_options['all']            = true;
+			$_options['post_status']    = ['in' , "('publish', 'draft','awaiting', 'pause', 'stop')"];
 			$_options['check_language'] = false;
 
 			if($_options['login'])
 			{
 				$_options['user_id'] = $_options['login'];
 			}
+			else
+			{
+				$_options['post_status']    = 'publish';
+				$_options['post_privacy']   = 'public';
+			}
+		}
+		// search in trash when login
+		elseif($_options['in'] === 'trash' && $_options['login'])
+		{
+			$_options['post_status']    = 'trash';
+			$_options['check_language'] = false;
+			$_options['user_id']        = $_options['login'];
+		}
+		// default search
+		else
+		{
+			$_options['post_status']    = 'publish';
+			$_options['post_privacy']   = 'public';
+
+			if($_options['login'])
+			{
+				$_options['check_language'] = false;
+			}
+			else
+			{
+				$_options['post_sarshomar'] = 1 ;
+			}
 		}
 
-		// if all == true return all type of polls, sarshomar or personal
-		if($_options['all'] === false)
-		{
-			$_options['post_sarshomar'] = 1 ;
-		}
+		// // if all == true return all type of polls, sarshomar or personal
+		// if($_options['all'] === false)
+		// {
+		// 	$_options['post_sarshomar'] = 1 ;
+		// }
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
@@ -230,6 +262,7 @@ trait search
 		unset($_options['check_language']);
 		unset($_options['sort']);
 		unset($_options['api_mode']);
+		unset($_options['in']);
 
 		foreach ($_options as $key => $value)
 		{

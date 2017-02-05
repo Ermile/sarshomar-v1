@@ -1,6 +1,7 @@
 <?php
 namespace lib\db\polls\insert;
 use \lib\debug;
+use \lib\db\pollopts;
 
 trait answers
 {
@@ -17,11 +18,11 @@ trait answers
 			foreach ($answers as $key => $value)
 			{
 				$title = null;
-				if(isset($value['title']))
+				if(isset($value['title']) && $value['title'] != '')
 				{
 					$title = trim($value['title']);
+					$combine[$key]['title'] = $title;
 				}
-				$combine[$key]['title'] = $title;
 
 				$type  = null;
 				if(isset($value['type']))
@@ -47,39 +48,6 @@ trait answers
 					// return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
 				}
 
-				if(is_null($type))
-				{
-					if(isset($value['select']))
-					{
-						$type = 'select';
-					}
-
-					if(isset($value['emoji']))
-					{
-						$type = 'emoji';
-					}
-
-					if(isset($value['descriptive']))
-					{
-						$type = 'descriptive';
-					}
-
-					if(isset($value['upload']))
-					{
-						$type = 'upload';
-					}
-
-					if(isset($value['range']))
-					{
-						$type = 'range';
-					}
-
-					if(isset($value['notification']))
-					{
-						$type = 'notification';
-					}
-				}
-
 				$combine[$key]['type'] = $type;
 
 				$attachment_id = null;
@@ -95,10 +63,14 @@ trait answers
 					$upload_answer = \lib\utility\upload::upload($upload_answer);
 					if(\lib\debug::get_msg("result"))
 					{
-						$attachment_id = \lib\debug::get_msg("result");
+						$attachment_id = debug::get_msg("result");
 					}
 				}
-				$combine[$key]['attachment_id'] = $attachment_id;
+
+				if($attachment_id)
+				{
+					$combine[$key]['attachment_id'] = $attachment_id;
+				}
 
 				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
@@ -123,18 +95,13 @@ trait answers
 		     		}
 				}
 
-				// if(self::$args['permission_profile'] === true)
-				// {
-				// 	if(isset($value['profile']) && $value['profile'])
-				// 	{
-				// 		$profile_value = \lib\utility\shortURL::decode($value['profile']);
-		  //    			$combine[$key]['profile'] = $profile_value;
-				// 	}
-				// 	else
-				// 	{
-		  //    			$combine[$key]['profile'] = null;
-				// 	}
-				// }
+				if(self::$args['permission_profile'] === true)
+				{
+					if(isset($value['profile']))
+					{
+		     			$combine[$key]['profile'] = $value['profile'];
+					}
+				}
 
 	     		// get meta of this object of answer
 				$support_answer_object = self::support_answer_object($type);
@@ -193,20 +160,63 @@ trait answers
 				{
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
+				if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
+				{
+					unset($combine[$key]);
+				}
 			}
-
-			$answers_arg =
-			[
-				'poll_id' => self::$poll_id,
-				'answers' => $combine,
-				'update'  => self::$args['update'],
-			];
 
 			if(self::$poll_id)
 			{
-				$answers = \lib\utility\answers::insert($answers_arg);
+				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update']]);
 			}
 		}
+	}
+
+
+	/**
+	 * set the options for every poll type
+	 *
+	 * @param      <type>  $_poll_type  The poll type
+	 */
+	private static function support_answer_object($_answer_type)
+	{
+		$support_options = [];
+		switch ($_answer_type)
+		{
+			case "select" :
+				// $support_options["is_true"] 		= true;
+				// $support_options["group"]           = (string) 'string';
+				// $support_options["value"]           = (int) 1;
+				break;
+
+			case "emoji" :
+				$support_options["type"]            = (array) ['star','like'];
+				// $support_options["is_true"]         = true;
+				// $support_options["group"]           = (string) 'string';
+				// $support_options["value"]           = (int) 1;
+				$support_options["star_size_min"]   = (int) 1;
+				$support_options["star_size_max"]   = (int) 1;
+				break;
+
+			case "descriptive" :
+				$support_options["text_format"]     = (array) ['any','tel','email','website','number','password','custom'];
+				$support_options["text_length_min"] = (int) 1;
+				$support_options["text_length_max"] = (int) 1;
+				break;
+
+			case "upload" :
+				$support_options["file_format"]     = (string) 'string';
+				$support_options["file_size_min"]   = (int) 1;
+				$support_options["file_size_max"]   = (int) 1;
+				break;
+
+			case "range" :
+				$support_options["number_size_min"] = (int) 1;
+				$support_options["number_size_max"] = (int) 1;
+
+		}
+		return $support_options;
 	}
 }
 ?>

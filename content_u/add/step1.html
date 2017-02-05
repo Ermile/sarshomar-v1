@@ -89,9 +89,21 @@
     </div>
     <div class="modules">
 {% if perm.complete_profile.admin %}
-
-     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-restrict='list' data-response='complete-profile' {% if not edit_mode or poll.profile %}{%else%}data-response-hide{% endif %}>
-      <div class="tagBox"></div>
+{% if value.profile%}
+{% set saved_code = [] %}
+        {%for  profile in value.profile %}
+          {% set saved_code = saved_code|merge([profile.id])%}
+        {%endfor%}
+{% set saved_code = saved_code|json_encode()%}
+{%endif%}
+     <div class="module profile-module tagDetector" id="profileTag{{myKey}}" data-restrict='list' data-response='complete-profile' {% if not edit_mode or poll.profile %}{%else%}data-response-hide{% endif %} {% if value.profile%} data-val="{{saved_code}}" {%endif%}>
+      <div class="tagBox">
+      {% if value.profile%}
+        {%for  profile in value.profile %}
+          <span data-val="{{profile.id}}">{{profile.title}}</span>
+        {%endfor%}
+      {%endif%}
+      </div>
       <div class="module-in">
        <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
        <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile' data-call='addNewTags'>

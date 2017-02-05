@@ -26,9 +26,15 @@ trait search
 			$meta['get_last'] = true;
 		}
 
-		if(utility::request("my_poll"))
+		if(utility::request("in"))
 		{
-			$meta['my_poll'] = true;
+			$in_list = ['sarshomar', 'me', 'trash'];
+			if(!in_array(utility::request('in'), $in_list))
+			{
+				return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
+			}
+
+			$meta['in'] = utility::request("in");
 		}
 
 		$from = utility::request("from");
@@ -78,7 +84,7 @@ trait search
 			}
 			else
 			{
-				$meta['post_language'] = utility::request("language");
+				// $meta['post_language'] = utility::request("language");
 			}
 		}
 		else

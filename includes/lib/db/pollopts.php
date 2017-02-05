@@ -1,5 +1,8 @@
 <?php
 namespace lib\db;
+use \lib\debug;
+use \lib\utility;
+
 
 /** pollopts managing **/
 class pollopts
@@ -10,7 +13,7 @@ class pollopts
 	 */
 
 
-	private static $public_fields = 
+	private static $public_fields =
 	"
 		`post_id`			AS `poll`,
 		`key` 				AS `key`,
@@ -183,7 +186,7 @@ class pollopts
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function update($_args, $_poll_id, $_key)
+	public static function update($_args, $_poll_id, $_key = false)
 	{
 		$set = [];
 		foreach ($_args as $key => $value)
@@ -208,7 +211,15 @@ class pollopts
 		}
 
 		$set = implode(',', $set);
-		$query = "UPDATE pollopts SET $set WHERE post_id = $_poll_id AND pollopts.key = $_key  LIMIT 1";
+		if($_key)
+		{
+			$query = "UPDATE pollopts SET $set WHERE post_id = $_poll_id AND pollopts.key = $_key  LIMIT 1";
+		}
+		else
+		{
+			// if key is null or false the poll id is pollopts.id
+			$query = "UPDATE pollopts SET $set WHERE id = $_poll_id LIMIT 1";
+		}
 		return \lib\db::query($query);
 	}
 
@@ -265,8 +276,6 @@ class pollopts
 		$result = \lib\db::get($query, $get_field);
 		$result = \lib\utility\filter::meta_decode($result);
 
-		$result = self::encode($result);
-
 		return $result;
 	}
 
@@ -278,7 +287,7 @@ class pollopts
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get_all($_poll_id, $_field = null)
+	public static function get_all($_poll_id, $_field = null, $_raw = false)
 	{
 		$field     = self::$public_fields;
 		$get_field = null;
@@ -289,15 +298,26 @@ class pollopts
 		}
 		elseif($_field && is_string($_field))
 		{
-			$field     = '`'. $_field. '`';
-			$get_field = $_field;
+			if($_field == '*')
+			{
+				$field     = '*';
+				$get_field = null;
+			}
+			else
+			{
+				$field     = '`'. $_field. '`';
+				$get_field = $_field;
+			}
 		}
 
 		$query = "SELECT $field FROM pollopts WHERE post_id = $_poll_id ORDER BY pollopts.key ASC ";
 		$result = \lib\db::get($query, $get_field);
 		$result = \lib\utility\filter::meta_decode($result);
-		$result = self::encode($result);
-		
+		if(!$_raw)
+		{
+			$result = self::encode($result);
+		}
+
 		return $result;
 	}
 
@@ -330,9 +350,9 @@ class pollopts
 		{
 			return $_result;
 		}
-		
-		foreach ($_result as $key => $value) 
-		{	
+
+		foreach ($_result as $key => $value)
+		{
 			if(isset($value['id']))
 			{
 				$_result[$key]['id'] = \lib\utility\shortURL::encode($value['id']);
@@ -347,6 +367,303 @@ class pollopts
 			}
 		}
 		return $_result;
+	}
+
+
+	/**
+	 * insert answers to pollopts table
+	 *
+	 * @param      array  $_args  list of answers and post id
+	 *
+	 * @return     <type>  mysql result
+	 */
+	public static function set($_poll_id, $_opts, $_options = [])
+	{
+		if(!$_poll_id)
+		{
+			return debug::error(T_("Poll id not found"), 'id', 'db');
+		}
+
+		if(!is_array($_opts))
+		{
+			return debug::error(T_("answers must be array"), 'answers', 'db');
+		}
+
+		$default_optsion = ['update' => false];
+		$_options = array_merge($default_optsion, $_options);
+
+		$update = false;
+		if(isset($_options['update']) && $_options['update'])
+		{
+			$update = true;
+		}
+
+		$must_update = [];
+		$must_insert = [];
+		$must_delete = [];
+
+		$old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
+
+		if(!$old_answers || empty($old_answers))
+		{
+			$must_insert = $_opts;
+		}
+		elseif(is_array($old_answers))
+		{
+			$must_delete = array_slice($old_answers, count($_opts));
+
+			foreach ($_opts as $key => $value)
+			{
+				$new_key = $key + 1;
+				if(isset($old_answers[$key]))
+				{
+					$check = self::check_update($value, $old_answers[$key]);
+					if(!empty($check))
+					{
+						$must_update[] = $check;
+					}
+				}
+				else
+				{
+					$must_insert[] = $value;
+				}
+			}
+		}
+		else
+		{
+			return debug::error(T_("Invalid old answers"), 'answers', 'db');
+		}
+
+		if(!empty($must_update))
+		{
+			foreach ($must_update as $key => $value)
+			{
+				$id = array_splice($value, -1);
+
+				if(isset($id['id']))
+				{
+					$id = $id['id'];
+				}
+				else
+				{
+					continue;
+				}
+
+				if(isset($value['profile']))
+				{
+					self::opt_profile($id, $value['profile']);
+				}
+				else
+				{
+					self::opt_profile($id, []);
+				}
+
+				unset($value['profile']);
+				$value['status'] = 'enable';
+				self::update($value, $id);
+			}
+		}
+
+		if(!empty($must_insert))
+		{
+			$profile = [];
+			foreach ($must_insert as $key => $value)
+			{
+				if(isset($value['profile']))
+				{
+					$profile[] = $value['profile'];
+				}
+				else
+				{
+					$profile[] = [];
+				}
+
+				unset($must_insert[$key]['profile']);
+
+				$must_insert[$key]['post_id'] = $_poll_id;
+			}
+
+			self::insert_multi($must_insert);
+
+			$insert_id = \lib\db::insert_id();
+
+			$ids = [];
+			for ($i = ($insert_id - count($must_insert)) + 1; $i <= $insert_id; $i++)
+			{
+				$ids[] = $i;
+			}
+			if(count($ids) === count($profile))
+			{
+				foreach ($profile as $key => $value)
+				{
+					self::opt_profile($ids[$key], $value);
+				}
+			}
+		}
+
+		if(!empty($must_delete))
+		{
+			$ids   = array_column($must_delete, 'id');
+			$ids   = implode(',', $ids);
+			$query = "UPDATE pollopts SET pollopts.status = 'disable' WHERE pollopts.id IN ($ids) ";
+			\lib\db::query($query);
+			$query =
+			"
+				DELETE FROM
+					termusages
+				WHERE
+					termusages.termusage_foreign = 'pollopts' AND
+					termusages.termusage_id IN ($ids)
+			";
+			\lib\db::query($query);
+		}
+
+		return true;
+	}
+
+
+	/**
+	 * Determines if profile.
+	 *
+	 * @param      <type>  $_opts  The options
+	 */
+	private static function opt_profile($_pollopts_id, $_profile)
+	{
+		if($_profile === [])
+		{
+			$query =
+			"
+				DELETE FROM
+					termusages
+				WHERE
+					termusages.termusage_foreign = 'pollopts' AND
+					termusages.termusage_id      = $_pollopts_id
+			";
+			\lib\db::query($query);
+		}
+		elseif(!empty($_profile))
+		{
+			if(is_array($_profile))
+			{
+				foreach ($_profile as $key => $value)
+				{
+					$term_id = utility\shortURL::decode($value);
+					$term = \lib\db\terms::get($term_id);
+					if(!$term || !is_array($term) || !isset($term['term_type']))
+					{
+						return debug::error(T_("Profile code not found"), 'profile', 'arguments');
+					}
+
+					if($term['term_type'] != 'profile')
+					{
+						return debug::error(T_("Invalid parameter profile :code", ['code' => $value]), 'profile', 'arguments');
+					}
+
+					$query =
+					"
+						INSERT INTO
+							termusages
+						SET
+							termusages.termusage_foreign = 'pollopts',
+							termusages.termusage_id      = $_pollopts_id,
+							termusages.term_id           = $term_id
+						ON DUPLICATE KEY UPDATE
+							termusages.term_id = $term_id
+
+					";
+					\lib\db::query($query);
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * check opts change and return muse update
+	 *
+	 * @param      <type>  $_new_opt  The new option
+	 * @param      <type>  $_old_opt  The old option
+	 *
+	 * @return     array   ( description_of_the_return_value )
+	 */
+	private static function check_update($_new_opt, $_old_opt)
+	{
+		$update = [];
+		if(is_array($_new_opt) || is_array($_old_opt))
+		{
+			foreach ($_old_opt as $key => $value)
+			{
+
+				if(isset($_new_opt[$key]))
+				{
+					switch ($key)
+					{
+						case 'true':
+							if(boolval($value) != boolval($_new_opt[$key]))
+							{
+								$update[$key] = $_new_opt[$key];
+							}
+
+							break;
+
+						default:
+							if($value != $_new_opt[$key])
+							{
+								$update[$key] = $_new_opt[$key]
+;							}
+							break;
+					}
+				}
+				else
+				{
+					switch ($key)
+					{
+						case 'id':
+						case 'post_id':
+						case 'createdate':
+						case 'datemodified':
+						case 'key':
+						case 'desc':
+						case 'meta':
+							continue;
+							break;
+
+						case 'status':
+								$update[$key] = 'enable';
+							break;
+
+						case 'true':
+							if($value)
+							{
+								$update[$key] = false;
+							}
+							break;
+
+						case 'title':
+						case 'type':
+						case 'subtype':
+						case 'groupscore':
+						case 'score':
+						case 'attachment_id':
+						case 'attachmenttype':
+						case 'profile':
+						default:
+							if($value)
+							{
+								$update[$key] = null;
+							}
+							break;
+					}
+				}
+			}
+		}
+
+		if(!empty($update) && isset($_old_opt['id']))
+		{
+			$update['id'] = $_old_opt['id'];
+			return $update;
+		}
+		return [];
 	}
 }
 ?>

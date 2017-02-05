@@ -11,7 +11,7 @@ class polls
 	use polls\update;
 	use polls\search;
 	use polls\sarshomar;
-	use polls\setting;
+
 	/**
 	 * this library work with acoount
 	 * v3.1

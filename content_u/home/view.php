@@ -62,9 +62,9 @@ class view extends \mvc\view
 		}
 		$this->data->complete_profile = $complete_profile;
 
-		$draft_count    = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'draft']);
-		$publish_count  = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'publish']);
-		$awaiting_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'my_poll' => true, 'post_status' => 'awaiting']);
+		$draft_count    = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'draft']);
+		$publish_count  = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'publish']);
+		$awaiting_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'awaiting']);
 		$sarshomar_poll = \lib\db\polls::get_count(null, ['post_privacy' => 'public']);
 		$this->data->dashboard =
 		[

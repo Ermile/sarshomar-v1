@@ -275,6 +275,7 @@ trait ready
 		{
 			$custom_field =
 			[
+				'id',
 				'type',
 				'title',
 				'subtype',
@@ -286,10 +287,43 @@ trait ready
 				'attachmenttype',
 			];
 
-			$answers = \lib\db\pollopts::get($poll_id, $custom_field);
+			$answers = \lib\db\pollopts::get($poll_id, $custom_field, true);
+			// var_dump($answers);
 
 			foreach ($answers as $key => $value)
 			{
+				if($this->access('u','complete_profile', 'admin'))
+				{
+					$opt_profile = [];
+					if(isset($value['id']))
+					{
+						$profile = \lib\db\terms::usage($value['id'], [], 'pollopts', 'profile');
+						if($profile && is_array($profile))
+						{
+							foreach ($profile as $k => $v)
+							{
+
+								if(isset($v['id']))
+								{
+									$opt_profile[$k]['id'] = utility\shortURL::encode($v['id']);
+								}
+
+								if(isset($v['term_title']))
+								{
+									$opt_profile[$k]['title'] = $v['term_title'];
+								}
+							}
+						}
+					}
+					if(!empty($opt_profile))
+					{
+						$_poll_data['profile'] = true;
+					}
+					$answers[$key]['profile'] = $opt_profile;
+				}
+
+				unset($answers[$key]['id']);
+
 				if(isset($value['true']) && $value['true'] == '1')
 				{
 					$answers[$key]['true'] = true;
@@ -300,6 +334,8 @@ trait ready
 				}
 				$answers[$key] = array_filter($answers[$key]);
 			}
+			// var_dump($answers);
+			// exit();
 			$_poll_data['answers'] = $answers	;
 		}
 
