@@ -272,7 +272,6 @@ function shortkey()
 
 		switch (mytxt)
 		{
-			case '83':
 			case '83ctrl':
 				// send data to server for saving
 				sendQuestionData();
