@@ -469,6 +469,25 @@ class pollopts
 			}
 		}
 
+		if(!empty($must_delete))
+		{
+			$ids   = array_column($must_delete, 'id');
+			$ids   = implode(',', $ids);
+			$query = "UPDATE pollopts SET pollopts.status = 'disable' WHERE pollopts.id IN ($ids) ";
+			\lib\db::query($query);
+			if(!$delete_all_profile)
+			{
+				$query =
+				"
+					DELETE FROM
+						termusages
+					WHERE
+						termusages.termusage_foreign = 'pollopts' AND
+						termusages.termusage_id IN ($ids)
+				";
+				\lib\db::query($query);
+			}
+		}
 		if(!empty($must_update))
 		{
 			foreach ($must_update as $key => $value)
@@ -549,27 +568,7 @@ class pollopts
 				}
 			}
 		}
-
-		if(!empty($must_delete))
-		{
-			$ids   = array_column($must_delete, 'id');
-			$ids   = implode(',', $ids);
-			$query = "UPDATE pollopts SET pollopts.status = 'disable' WHERE pollopts.id IN ($ids) ";
-			\lib\db::query($query);
-			if(!$delete_all_profile)
-			{
-				$query =
-				"
-					DELETE FROM
-						termusages
-					WHERE
-						termusages.termusage_foreign = 'pollopts' AND
-						termusages.termusage_id IN ($ids)
-				";
-				\lib\db::query($query);
-			}
-		}
-
+		// exit();
 		return true;
 	}
 
@@ -641,6 +640,7 @@ class pollopts
 	private static function check_update($_new_opt, $_old_opt)
 	{
 		$update = [];
+		// var_dump(...func_get_args());
 		if(is_array($_new_opt) || is_array($_old_opt))
 		{
 			foreach ($_old_opt as $key => $value)

@@ -97,19 +97,27 @@ trait poll
 		}
 
 		// get content
-		if(self::$args['description'])
+		if(isset(self::$args['description']))
 		{
 			$insert_poll['post_content'] = trim(self::$args['description']);
 		}
+		else
+		{
+			$insert_poll['post_content'] = null;
+		}
 
 		// summary
-		if(self::$args['summary'])
+		if(isset(self::$args['summary']))
 		{
 			$insert_poll['post_meta']['summary'] = trim(self::$args['summary']);
 			if(self::$args['summary'] && strlen(self::$args['summary']) > 150)
 			{
 				return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
 			}
+		}
+		else
+		{
+			$insert_poll['post_meta']['summary'] = null;
 		}
 
 		// get the insert id by check sarshomar permission

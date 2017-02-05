@@ -91,6 +91,11 @@ trait options
 				}
 
 				self::save_options('ordering', true);
+
+				self::save_options('multi', false);
+				self::save_options('multi_min', false);
+				self::save_options('multi_max', false);
+
 			}
 			else
 			{
