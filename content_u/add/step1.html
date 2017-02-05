@@ -66,13 +66,13 @@
   <div class="ultra">
    <div class="data">
     <div class="element">
-     <label class="title small" for="answer{{myKey}}">{%if other%}<b>{{myKey | persian}}</b> {%trans "Other"%}{%else%}{%trans "Answer"%} <b>{{myKey | persian}}</b>{%endif%}</label>
+     <label class="title small" for="answer{{myKey}}">{%if other%}<b>{{myKey | fitNumber}}</b> {%trans "Other"%}{%else%}{%trans "Answer"%} <b>{{myKey | fitNumber}}</b>{%endif%}</label>
      <div class="element-in">
       <input class="input" type="text" id="answer{{myKey}}"
         {% if other %}
           placeholder='{%trans "text given from user"%}'
         {% else %}
-          placeholder='{%trans "Answer"%} {{myKey | persian}}'
+          placeholder='{%trans "Answer"%} {{myKey | fitNumber}}'
         {% endif %}
       autocomplete="off" value="{{value.title}}">
 
