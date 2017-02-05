@@ -274,8 +274,7 @@ function shortkey()
 		{
 			case '83ctrl':
 				// send data to server for saving
-				sendQuestionData();
-				// prepareAdd();
+				requestSavingData(true);
 
 				e.preventDefault();
 				break;
@@ -1390,28 +1389,42 @@ String.prototype.ucFirst = function()
 
 
 /**
- * [prepareAdd description]
+ * [requestSavingData description]
  * @return {[type]} [description]
  */
-function prepareAdd()
+function requestSavingData(_manualRequest)
 {
 	// cal total price with a short delay to give all
 	setTimeout(function()
 	{
 		calcTotalPrice();
 	},50);
-	var saveTimeout = $('#question-add').attr('data-saving-timeout');
-	if(saveTimeout)
-	{
-		clearTimeout(saveTimeout);
-	}
-	var savingTimeout = setTimeout(function()
+
+	if(_manualRequest === true)
 	{
 		sendQuestionData();
-		$('#question-add').attr('data-saving-timeout', null);
+	}
+	else if($('html').attr('data-develop') != undefined)
+	{
+		// we are Godzilla
+		console.log('we are Godzilla')
+	}
+	else
+	{
+		console.log('automatically saving...');
+		var saveTimeout = $('#question-add').attr('data-saving-timeout');
+		if(saveTimeout)
+		{
+			clearTimeout(saveTimeout);
+		}
+		var savingTimeout = setTimeout(function()
+		{
+			sendQuestionData();
+			$('#question-add').attr('data-saving-timeout', null);
 
-	}, 2000);
-	$('#question-add').attr('data-saving-timeout', savingTimeout);
+		}, 2000);
+		$('#question-add').attr('data-saving-timeout', savingTimeout);
+	}
 }
 
 
@@ -1421,12 +1434,15 @@ function prepareAdd()
  */
 function sendQuestionData()
 {
+	// change status to syncing
+	$('.sync').attr('data-syncing', true);
+
 	var myPoll  = {};
 	myPoll      = prepareQuestionData();
 	myPoll.from = prepareQuestionFilter();
 	console.log(myPoll);
 	myPoll      = JSON.stringify(myPoll);
-	$('#question-add').addClass('syncing');
+
 
 	$('#question-add').ajaxify(
 	{
@@ -1472,7 +1488,7 @@ function sendQuestionData()
 					}
 					$('#rangepersons').rangeSlider('option', 'max_limit', limit, 1);
 				}
-				$('#question-add').removeClass('syncing');
+				$('.sync').attr('data-syncing', null);
 			},
 			error: function(e, data, x)
 			{
@@ -1799,7 +1815,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
 	{
 		// ready to send data
-		prepareAdd();
+		requestSavingData();
 		// if value isset to zero hide filters
 		if(_max == 0)
 		{
@@ -1835,6 +1851,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	$('#financial-box .cost').on('click', function(e)
 	{
 		detectStep('factor');
+	});
+	// on click on price goto step3
+	$('.sync:not([data-syncing])').on('click', function(e)
+	{
+		requestSavingData(true);
 	});
 	// on init
 	detectStep();
@@ -1925,7 +1946,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$('#question-add').on('change', 'input, textarea', function()
 	{
-		prepareAdd();
+		requestSavingData();
 	});
 
 });
