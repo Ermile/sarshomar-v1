@@ -174,7 +174,7 @@ trait get
 		{
 			$result = json_decode($result, true);
 		}
-		
+
 		if(!is_array($result))
 		{
 			$result = [];
@@ -287,12 +287,12 @@ trait get
 	 */
 	public static function get_full($_poll_id)
 	{
-	
+
 		if(!$_poll_id)
 		{
 			return false;
 		}
-		$query = 
+		$query =
 		"
 			SELECT
 					posts.*,

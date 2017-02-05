@@ -173,9 +173,9 @@ trait poll
 				$loc_id  = \lib\utility\shortURL::decode($parent);
 				$loc_opt = self::$args['tree']['answers'];
 
-				if($value === true || $value == 'skipped')
+				if($loc_opt === true || $loc_opt == 'skipped')
 				{
-					$loc_opt = $value;
+					$loc_opt = $loc_opt;
 				}
 				elseif(!is_array($loc_opt))
 				{

@@ -76,22 +76,29 @@ trait answers
 
 				if($type == 'select' || $type == 'emoji' || $type == 'descriptive')
 				{
+					$object_type = $type;
+
+					if($type == 'descriptive')
+					{
+						$object_type = 'select';
+					}
+
 					// get score value
-		     		if(isset($value[$type]['score']['value']) && is_numeric($value[$type]['score']['value']))
+		     		if(isset($value[$object_type]['score']['value']) && is_numeric($value[$object_type]['score']['value']))
 		     		{
-		     			$combine[$key]['score'] = $value[$type]['score']['value'];
+		     			$combine[$key]['score'] = $value[$object_type]['score']['value'];
 		     		}
 
 		     		// get score group
-		 	 		if(isset($value[$type]['score']['group']) && is_string($value[$type]['score']['group']) && $value[$type]['score']['group'])
+		 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']) && $value[$object_type]['score']['group'])
 		     		{
-		     			$combine[$key]['groupscore'] = trim($value[$type]['score']['group']);
+		     			$combine[$key]['groupscore'] = trim($value[$object_type]['score']['group']);
 		     		}
 
 		     		// get true answer
-		 	 		if(isset($value[$type]['is_true']) && $value[$type]['is_true'])
+		 	 		if(isset($value[$object_type]['is_true']) && $value[$object_type]['is_true'])
 		     		{
-		     			$combine[$key]['true'] = $value[$type]['is_true'];
+		     			$combine[$key]['true'] = $value[$object_type]['is_true'];
 		     		}
 				}
 

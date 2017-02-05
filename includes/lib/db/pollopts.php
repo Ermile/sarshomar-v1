@@ -390,6 +390,11 @@ class pollopts
 	 */
 	public static function set($_poll_id, $_opts, $_options = [])
 	{
+		if(!debug::$status)
+		{
+			return false;
+		}
+
 		if(!$_poll_id)
 		{
 			return debug::error(T_("Poll id not found"), 'id', 'db');
@@ -447,7 +452,11 @@ class pollopts
 		}
 		else
 		{
-			return debug::error(T_("Invalid old answers"), 'answers', 'db');
+			if(debug::$status)
+			{
+				debug::error(T_("Invalid old answers"), 'answers', 'db');
+			}
+			return;
 		}
 		// var_dump($must_insert, $must_update, $must_delete);	exit();
 		$delete_all_profile = false;
@@ -473,7 +482,7 @@ class pollopts
 		{
 			$ids   = array_column($must_delete, 'id');
 			$ids   = implode(',', $ids);
-			$query = "UPDATE pollopts SET pollopts.status = 'disable' WHERE pollopts.id IN ($ids) ";
+			$query = "UPDATE pollopts SET pollopts.status = 'disable', pollopts.key = NULL WHERE pollopts.id IN ($ids) ";
 			\lib\db::query($query);
 			if(!$delete_all_profile)
 			{
@@ -513,14 +522,11 @@ class pollopts
 					self::opt_profile($id, []);
 				}
 
-				$value['status'] = 'enable';
-
-				// if(count($value) === 1 && isset($value['status']))
-				// {
-				// 	$value['status'] = 'disable';
-				// }
-
 				unset($value['profile']);
+
+				$value['status'] = 'enable';
+				$value['key']    = $key + 1;
+
 				self::update($value, $id);
 			}
 		}
@@ -548,6 +554,7 @@ class pollopts
 
 				unset($must_insert[$key]['profile']);
 
+				$must_insert[$key]['key']     = $key + 1;
 				$must_insert[$key]['post_id'] = $_poll_id;
 			}
 
@@ -607,7 +614,11 @@ class pollopts
 
 					if($term['term_type'] != 'profile')
 					{
-						return debug::error(T_("Invalid parameter profile :code", ['code' => $value]), 'profile', 'arguments');
+						if(debug::$status)
+						{
+							debug::error(T_("Invalid parameter profile :code", ['code' => $value]), 'profile', 'arguments');
+						}
+						return;
 					}
 
 					$query =

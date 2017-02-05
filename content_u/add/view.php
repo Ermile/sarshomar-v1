@@ -83,6 +83,10 @@ class view extends \content_u\home\view
 		$this->data->poll      = $poll;
 		$this->data->edit_mode = true;
 
+		if(isset($poll['tree']['parent']))
+		{
+			$this->data->poll_parent_opts = \lib\db\pollopts::get(\lib\utility\shortURL::decode($poll['tree']['parent']), ['key', 'title']);
+		}
 		// $this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		// $this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
 		// $this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;

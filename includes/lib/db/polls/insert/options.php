@@ -52,6 +52,10 @@ trait options
 			self::save_options('multi_min', self::$args['options']['multi']['min']);
 			$set_multi_min = true;
 		}
+		else
+		{
+			self::save_options('multi_min', false);
+		}
 
 		// save meta max
 		if(isset(self::$args['options']['multi']['max']))
@@ -63,11 +67,19 @@ trait options
 			self::save_options('multi_max', self::$args['options']['multi']['max']);
 			$set_multi_max = true;
 		}
+		else
+		{
+			self::save_options('multi_max', false);
+		}
 
 		if(isset(self::$args['options']['multi']) && !$set_multi_min && !$set_multi_max)
 		{
 			self::save_options('multi', true);
 			$set_multi = true;
+		}
+		else
+		{
+			self::save_options('multi', false);
 		}
 
 		// save meta ordering
@@ -101,6 +113,10 @@ trait options
 			{
 				self::save_options('ordering', false);
 			}
+		}
+		else
+		{
+			self::save_options('ordering', false);
 		}
 
 		// save meta random_sort

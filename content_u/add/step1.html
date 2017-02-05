@@ -259,20 +259,33 @@
 
 {%block feature_tree%}
 <div class="checkbox">
- <input type="checkbox" id="tree" data-response-get='id' {%if poll_tree_title %}checked{%endif%}>
+ <input type="checkbox" id="tree" data-response-get='id' {% if poll.tree.parent %}checked{% endif %}>
  <label for="tree" class="check-box"></label>
  <label for="tree">{%trans "Tree"%}</label>
 </div>
 
-<div class="tree-container" data-response='tree' data-response-effect='slide' {%if not poll_tree_title %}data-response-hide{%endif%} data-scroll='off'>
+<div class="tree-container" data-response='tree' data-response-effect='slide' {% if not poll.tree.title %}data-response-hide{%endif%} data-scroll='off'>
  <div class="element no-pad">
   <label class="title large">{%trans "Tree"%}</label>
   <div class="element-in">
-   <input type="text" class="input autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus data-maxItems='5' data-call='fillTree'>
+   <input type="text" class="input autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus data-maxItems='5' data-call='fillTree' {% if poll.tree.parent %} data-val="{{poll.tree.parent}}" {% endif %} {% if poll.tree.title %} value="{{poll.tree.title}}" {% endif %} >
   </div>
  </div>
-
-  <div class="tree-result-list"></div>
+  <div class="tree-result-list">
+    {%if poll_parent_opts%}
+    <ul>
+      {%for i, value in poll_parent_opts %}
+        <li>
+          <span class="checkbox">
+            <input type="checkbox" id="tree_opt_{{value.key}}" {% if value.key in poll.tree.answers %} checked="checked" {% endif %}>
+            <label class="check-box" for="tree_opt_{{value.key}}"></label>
+          </span>
+          <label for="tree_opt_{{value.key}}">{{value.title}}</label>
+        </li>
+      {%endfor%}
+    </ul>
+    {%endif%}
+  </div>
 </div>
 {%endblock%}
 

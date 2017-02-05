@@ -247,20 +247,6 @@ trait ready
 			$_poll_data['sarshomar'] = false;
 		}
 
-		// check parent and load tree data
-		if(array_key_exists('parent', $_poll_data) && $_poll_data['parent'] !== null && $poll_id)
-		{
-			$_poll_data['tree'] = [];
-			$_poll_data_tree = utility\poll_tree::get($poll_id);
-
-			if($_poll_data_tree && is_array($_poll_data_tree))
-			{
-				$opt = array_column($_poll_data_tree, 'value');
-				$_poll_data['tree']['answers']   = is_array($opt) ? $opt : [$opt];
-				$_poll_data['tree']['parent_id'] = shortURL::encode($_poll_data['parent']);
-				$_poll_data['tree']['title']     = \lib\db\polls::get_poll_title($_poll_data['parent']);
-			}
-		}
 
 		if(isset($_poll_data['meta']['summary']))
 		{
@@ -302,7 +288,6 @@ trait ready
 						{
 							foreach ($profile as $k => $v)
 							{
-
 								if(isset($v['id']))
 								{
 									$opt_profile[$k]['id'] = utility\shortURL::encode($v['id']);
@@ -336,7 +321,7 @@ trait ready
 			}
 			// var_dump($answers);
 			// exit();
-			$_poll_data['answers'] = $answers	;
+			$_poll_data['answers'] = $answers;
 		}
 
 		// get filters of poll
@@ -365,6 +350,11 @@ trait ready
 				$_poll_data['options'] = array_column($post_meta, 'option_value', 'option_key');
 				foreach ($_poll_data['options'] as $key => $value)
 				{
+					if(preg_match("/^tree/", $key))
+					{
+						unset($_poll_data['options'][$key]);
+					}
+
 					if($value == '1')
 					{
 						$_poll_data['options'][$key] = true;
@@ -375,7 +365,35 @@ trait ready
 						$_poll_data['options']['multi'][substr($key,6)] = (int) $value;
 						unset($_poll_data['options'][$key]);
 					}
+
 				}
+			}
+
+			$poll_tree_answer = [];
+			foreach ($post_meta as $key => $value)
+			{
+				if(isset($value['option_key']) && preg_match("/^tree/", $value['option_key']))
+				{
+					if(isset($value['option_value']))
+					{
+						array_push($poll_tree_answer, $value['option_value']);
+					}
+				}
+			}
+
+			if(!empty($poll_tree_answer) && isset($_poll_data['parent']))
+			{
+				$_poll_data['tree'] = [];
+				// $_poll_data_tree = utility\poll_tree::get($poll_id);
+
+				// if($_poll_data_tree && is_array($_poll_data_tree))
+				// {
+				// 	$opt = array_column($_poll_data_tree, 'value');
+					$_poll_data['tree']['parent']  = $_poll_data['parent'];
+					$_poll_data['tree']['title']   = \lib\db\polls::get_poll_title(shortURL::decode($_poll_data['parent']));
+					$_poll_data['tree']['answers'] = $poll_tree_answer;
+					unset($_poll_data['parent']);
+				// }
 			}
 
 			$post_meta_key = array_column($post_meta, 'option_value');
