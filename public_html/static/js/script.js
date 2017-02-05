@@ -1564,16 +1564,17 @@ function prepareQuestionData()
 				// if checked true, save it
 				if($('#true_answer').is(":checked"))
 				{
-					thisOpt.select.is_true = $('#true'+row).is(":checked");
+
+					thisOpt.select.is_true = $this.find('#true'+row).is(":checked");
 				}
 				// if checked score, save it
 				if($('#score').is(":checked"))
 				{
 					thisOpt.select.score = {};
-					thisOpt.select.score.value = parseInt($('#score'+row).val());
+					thisOpt.select.score.value = parseInt($this.find('#score'+row).val());
 					if($('#score-advance').is(":checked"))
 					{
-						thisOpt.select.score.group = $('#score'+row).parent().find('.scoreCat').val();
+						thisOpt.select.score.group = $this.find('.scoreCat').val();
 					}
 				}
 				break;
