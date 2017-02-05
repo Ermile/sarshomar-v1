@@ -1634,11 +1634,33 @@ function prepareQuestionData()
 			// no thing!
 			break;
 	}
-
+	// set for multi
 	if(typeof myQuestion.options.multi === "object")
 	{
-		myQuestion.options.multi.min = parseInt($("input[name=multiple-range-min]").val());
-		myQuestion.options.multi.max = parseInt($("input[name=multiple-range-max]").val());
+		var multiRangeEl = $('#multiple-range');
+		var multiMin     = parseInt($("input[name=multiple-range-min]").val());
+		var multiMax     = parseInt($("input[name=multiple-range-max]").val());
+
+		// set for min value
+		if(multiRangeEl.attr('data-min') == multiMin)
+		{
+			// do not need to set
+			// myQuestion.options.multi.min = null;
+		}
+		else
+		{
+			myQuestion.options.multi.min = multiMin;
+		}
+		// set for max value
+		if(multiRangeEl.attr('data-max') == multiMax)
+		{
+			// do not need to set
+			// myQuestion.options.multi.max = null;
+		}
+		else
+		{
+			myQuestion.options.multi.max = multiMax;
+		}
 	}
 
 	// save randomSort for multiple selection
