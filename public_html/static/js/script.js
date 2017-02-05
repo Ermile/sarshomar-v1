@@ -540,7 +540,7 @@ function addNewOpt(_type, _title, _placeholder, _group)
 	var num      = $('.input-group.sortable>li').length + 1;
 	if(_type)
 	{
-		var isExist = $('.input-group.sortable li[data-type='+ _type+']');
+		var isExist = $('.input-group.sortable > li[data-type='+ _type+']');
 		// if this special name is exist, return false
 		if(isExist.length > 0)
 		{
@@ -598,7 +598,7 @@ function addNewOpt(_type, _title, _placeholder, _group)
 function showQuestionOptsDel(_this)
 {
 	// hide all elements
-	$('.input-group.sortable li .delete').fadeOut(100);
+	$('.input-group.sortable > li .delete').fadeOut(100);
 	var currentRowValue = $(_this).closest('li').find('.element input[type="text"]').val();
 	// always show delete button on input focus
 	if(countQuestionOpts() > 2 && currentRowValue)
@@ -634,7 +634,7 @@ function deleteOpt(_this)
 	// if wanna delete specefic type of li, set it
 	if(typeof _this === 'string')
 	{
-		myEl = $('.input-group.sortable li[data-type=' + _this + ']');
+		myEl = $('.input-group.sortable > li[data-type=' + _this + ']');
 	}
 	if(myEl.length != 1)
 	{
@@ -666,7 +666,7 @@ function deleteOpt(_this)
  */
 function rearrangeSortable()
 {
-	$.each($('.input-group.sortable li'), function(key, value)
+	$.each($('.input-group.sortable > li'), function(key, value)
 	{
 
 		var num = key + 1;
@@ -1509,7 +1509,7 @@ function prepareQuestionData()
 	myQuestion.answers = {};
 
 	// for each input added by user
-	$('.input-group.sortable li').each(function(_e)
+	$('.input-group.sortable > li').each(function(_e)
 	{
 		var $this   = $(this);
 		var row     = $this.attr('data-row');
@@ -1702,23 +1702,23 @@ function prepareQuestionFilter()
 route(/\@\/add(|\/[^\/]*)$/, function()
 {
 	// run on input change and add new opt for this question
-	$(this).on('input', '.input-group.sortable li .input[type="text"]', function(event)
+	$(this).on('input', '.input-group.sortable > li .input[type="text"]', function(event)
 	{
 		checkAddOpt();
 	});
 
 	// --------------------------------------------------------------------------------- Delete Elements
 	// show and hide delete btn on special condition
-	$(this).on('mouseenter', '.input-group.sortable li', function()
+	$(this).on('mouseenter', '.input-group.sortable > li', function()
 	{
 		showQuestionOptsDel($(this).find('.delete'));
-	}).on('focus', '.input-group.sortable li input[type="text"]', function()
+	}).on('focus', '.input-group.sortable > li input[type="text"]', function()
 	{
 		showQuestionOptsDel($(this).closest('li').find('.delete'));
 	});
 
 	// on input and press shift+del remove current record
-	$(this).on('input', '.input-group.sortable li input', function(e)
+	$(this).on('input', '.input-group.sortable > li input', function(e)
 	{
 		if(countQuestionOpts() > 2)
 		{
@@ -1749,10 +1749,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// on press delete on each opt
-	$(this).on('click', '.input-group.sortable li .delete', function()
+	$(this).on('click', '.input-group.sortable > li .delete', function()
 	{
 		deleteQuestionOpts(this);
-	}).on('input', '.input-group.sortable li .delete', function(e)
+	}).on('input', '.input-group.sortable > li .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
 		{
