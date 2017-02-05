@@ -83,7 +83,7 @@ trait answers
 		     		}
 
 		     		// get score group
-		 	 		if(isset($value[$type]['score']['group']) && is_string($value[$type]['score']['group']))
+		 	 		if(isset($value[$type]['score']['group']) && is_string($value[$type]['score']['group']) && $value[$type]['score']['group'])
 		     		{
 		     			$combine[$key]['groupscore'] = trim($value[$type]['score']['group']);
 		     		}
@@ -97,7 +97,7 @@ trait answers
 
 				if(self::$args['permission_profile'] === true)
 				{
-					if(isset($value['profile']))
+					if(isset($value['profile']) && $value['profile'])
 					{
 		     			$combine[$key]['profile'] = $value['profile'];
 					}
@@ -160,6 +160,7 @@ trait answers
 				{
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
+
 				if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
 				{
 					unset($combine[$key]);

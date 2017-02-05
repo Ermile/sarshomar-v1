@@ -203,6 +203,17 @@ class pollopts
 			{
 				$set[] = "`$key` = '$value' ";
 			}
+			elseif(is_bool($value))
+			{
+				if($value)
+				{
+					$set[] = "`$key` = 1 ";
+				}
+				else
+				{
+					$set[] = "`$key` = 0 ";
+				}
+			}
 		}
 
 		if(empty($set))
@@ -389,7 +400,12 @@ class pollopts
 			return debug::error(T_("answers must be array"), 'answers', 'db');
 		}
 
-		$default_optsion = ['update' => false];
+		$default_optsion =
+		[
+			'update' => false,
+			'method' => 'put',
+		];
+
 		$_options = array_merge($default_optsion, $_options);
 
 		$update = false;
@@ -401,8 +417,8 @@ class pollopts
 		$must_update = [];
 		$must_insert = [];
 		$must_delete = [];
-
-		$old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
+		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
+		// var_dump($_opts, $old_answers);		exit();
 
 		if(!$old_answers || empty($old_answers))
 		{
@@ -433,11 +449,31 @@ class pollopts
 		{
 			return debug::error(T_("Invalid old answers"), 'answers', 'db');
 		}
+		// var_dump($must_insert, $must_update, $must_delete);	exit();
+		$delete_all_profile = false;
+		if($_options['method'] === 'put')
+		{
+			$old_answers_ids = array_column($old_answers_raw, 'id');
+			if(!empty($old_answers_ids))
+			{
+				$old_answers_ids = implode(',', $old_answers_ids);
+				$query =
+				"
+					DELETE FROM
+						termusages
+					WHERE
+						termusages.termusage_foreign = 'pollopts' AND
+						termusages.termusage_id IN ($old_answers_ids)
+				";
+				$delete_all_profile = \lib\db::query($query);
+			}
+		}
 
 		if(!empty($must_update))
 		{
 			foreach ($must_update as $key => $value)
 			{
+
 				$id = array_splice($value, -1);
 
 				if(isset($id['id']))
@@ -458,17 +494,30 @@ class pollopts
 					self::opt_profile($id, []);
 				}
 
-				unset($value['profile']);
 				$value['status'] = 'enable';
+
+				// if(count($value) === 1 && isset($value['status']))
+				// {
+				// 	$value['status'] = 'disable';
+				// }
+
+				unset($value['profile']);
 				self::update($value, $id);
 			}
 		}
 
+		// var_dump($_poll_id);
+		// exit();
 		if(!empty($must_insert))
 		{
 			$profile = [];
 			foreach ($must_insert as $key => $value)
 			{
+				if(count($value) === 1 && isset($value['type']))
+				{
+					continue;
+				}
+
 				if(isset($value['profile']))
 				{
 					$profile[] = $value['profile'];
@@ -507,15 +556,18 @@ class pollopts
 			$ids   = implode(',', $ids);
 			$query = "UPDATE pollopts SET pollopts.status = 'disable' WHERE pollopts.id IN ($ids) ";
 			\lib\db::query($query);
-			$query =
-			"
-				DELETE FROM
-					termusages
-				WHERE
-					termusages.termusage_foreign = 'pollopts' AND
-					termusages.termusage_id IN ($ids)
-			";
-			\lib\db::query($query);
+			if(!$delete_all_profile)
+			{
+				$query =
+				"
+					DELETE FROM
+						termusages
+					WHERE
+						termusages.termusage_foreign = 'pollopts' AND
+						termusages.termusage_id IN ($ids)
+				";
+				\lib\db::query($query);
+			}
 		}
 
 		return true;
@@ -609,8 +661,8 @@ class pollopts
 						default:
 							if($value != $_new_opt[$key])
 							{
-								$update[$key] = $_new_opt[$key]
-;							}
+								$update[$key] = $_new_opt[$key];
+							}
 							break;
 					}
 				}
@@ -663,6 +715,7 @@ class pollopts
 			$update['id'] = $_old_opt['id'];
 			return $update;
 		}
+
 		return [];
 	}
 }

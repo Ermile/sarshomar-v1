@@ -134,17 +134,17 @@ trait ready
 			}
 		}
 
-		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] === '‌')
+		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] == '‌')
 		{
 			$_poll_data['title'] = '';
 		}
 
-		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] === '‌')
+		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] == '‌')
 		{
 			$_poll_data['slug'] = '';
 		}
 
-		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] === '‌')
+		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] == '‌')
 		{
 			$_poll_data['url'] = '';
 		}
@@ -175,7 +175,7 @@ trait ready
 		// change have_score field
 		if(array_key_exists('have_score', $_poll_data))
 		{
-			if($_poll_data['have_score'] === '1')
+			if($_poll_data['have_score'] == '1')
 			{
 				$_poll_data['have_score'] = true;
 			}
@@ -188,7 +188,7 @@ trait ready
 		// change is_answered field
 		if(array_key_exists('is_answered', $_poll_data))
 		{
-			if($_poll_data['is_answered'] === '1')
+			if($_poll_data['is_answered'] == '1')
 			{
 				$_poll_data['is_answered'] = true;
 			}
@@ -201,7 +201,7 @@ trait ready
 		// change my_like field
 		if(array_key_exists('my_like', $_poll_data))
 		{
-			if($_poll_data['my_like'] === '1')
+			if($_poll_data['my_like'] == '1')
 			{
 				$_poll_data['my_like'] = true;
 			}
@@ -214,7 +214,7 @@ trait ready
 		// change my_fav field
 		if(array_key_exists('my_fav', $_poll_data))
 		{
-			if($_poll_data['my_fav'] === '1')
+			if($_poll_data['my_fav'] == '1')
 			{
 				$_poll_data['my_fav'] = true;
 			}
@@ -227,7 +227,7 @@ trait ready
 		// change have_true_answer field
 		if(array_key_exists('have_true_answer', $_poll_data))
 		{
-			if($_poll_data['have_true_answer'] === '1')
+			if($_poll_data['have_true_answer'] == '1')
 			{
 				$_poll_data['have_true_answer'] = true;
 			}
@@ -430,8 +430,7 @@ trait ready
 		{
 			// $_poll_data = array_filter($_poll_data);
 		}
-		// var_dump($_poll_data);
-		// exit();
+		// var_dump($_poll_data); exit();
 		return $_poll_data;
 	}
 }
