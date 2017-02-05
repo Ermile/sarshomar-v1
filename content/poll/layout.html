@@ -225,7 +225,7 @@
  <div class="span4">
  {%if rate.total%}
   <div class="overall">
-   {%if site.currentlang == "fa"%}{{rate.total|persian}}{%else%}{{rate.total}}{%endif%}
+   {%if site.currentlang == "fa"%}{{rate.total | fitNumber}}{%else%}{{rate.total}}{%endif%}
   </div>
 
   <div class="stars total">

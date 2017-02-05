@@ -59,7 +59,7 @@
     <div class="span4">
      {{langList({'html':true})}}
     </div>
-    <div class="span4 counter"><span data-value='{{stat}}'>{{stat|number_format|persian}}</span> {%trans "Questions answered"%}</div>
+    <div class="span4 counter"><span data-value='{{stat}}'>{{stat | number_format | fitNumber}}</span> {%trans "Questions answered"%}</div>
     <div class="span4 love"><a href="{%if site.currentlang =='fa'%}https://ermile.com/fa{%else%}https://ermile.com{%endif%}" target="_blank">{%trans "Proudly Made in IRAN"%}</a></div>
    </div>
   </div>

@@ -53,7 +53,7 @@
 					<i class="icon-angle-left icon-4x"></i>
 					{%else%}
 					<i class="icon-angle-right icon-4x"></i>
-					{%endif%}					
+					{%endif%}
 					</div>
 			</div>
 		</a>
@@ -74,9 +74,9 @@
 													filter page " %}"><i class="icon-filter"></i></a>
 									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
 													publish page " %}"><i class="icon-send-o"></i></a>
-									<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ")|persian}}">
+									<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ") | fitNumber}}">
 								{% if site.currentlang == 'fa' %}
-									{{value.date_modified|jdate("Y-m-d")|persian}}
+									{{value.date_modified|jdate("Y-m-d") | fitNumber}}
 								{%else%}
 									{{value.date_modified|date("Y-m-d")}}
 								{%endif%}
@@ -107,7 +107,7 @@
 							<span class="label label-status label-{{value.status }}">{{value.status }}</span>
 							<span class="content-properties">
 								{% if value.language %}
-									{% if value.language=='fa' %} 
+									{% if value.language=='fa' %}
 									{% trans "Persian" %}
 									{% else %}
 									{{value.language }}
@@ -127,8 +127,8 @@
 								{% trans "privacy" %} {{value.privacy }}
 								<span>|</span>
 								{% trans "total" %}	{{value.total }}
-								</span> 
-							
+								</span>
+
 						</div>
 						<div class="span2 star-rating">
 							<div class="star-rating-wrap">
