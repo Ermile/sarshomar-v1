@@ -1538,7 +1538,7 @@ function prepareQuestionData()
 
 		if($('#complete-profile').is(":checked"))
 		{
-			thisOpt.profile = $('#profileTag'+row).attr('data-val');
+			thisOpt.profile = $this.find('.profile-module').attr('data-val');
 			if(thisOpt.profile)
 			{
 				thisOpt.profile = JSON.parse(thisOpt.profile);
