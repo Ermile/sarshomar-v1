@@ -960,9 +960,9 @@ function detectStep(_name)
 				cAdd.show();
 			}
 			sthis = 'step1';
-			dAdd.prop('checked', true).parent('div').addClass('active');
-			dFilter.prop('checked', false).parent('div').removeClass('active');
-			dPublish.prop('checked', false).parent('div').removeClass('active');
+			dAdd.prop('checked', true).parent('.checkbox').addClass('active');
+			dFilter.prop('checked', false).parent('.checkbox').removeClass('active');
+			dPublish.prop('checked', false).parent('.checkbox').removeClass('active');
 			// show step1
 			cAdd.slideDown();
 			cFilter.slideUp();
@@ -980,9 +980,9 @@ function detectStep(_name)
 				cFilter.show();
 			}
 			sthis = 'step2';
-			dAdd.prop('checked', true).parent('div').addClass('active');
-			dFilter.prop('checked', true).parent('div').addClass('active');
-			dPublish.prop('checked', false).parent('div').removeClass('active');
+			dAdd.prop('checked', true).parent('.checkbox').addClass('active');
+			dFilter.prop('checked', true).parent('.checkbox').addClass('active');
+			dPublish.prop('checked', false).parent('.checkbox').removeClass('active');
 			// show step2
 			cAdd.slideUp();
 			cFilter.slideDown();
@@ -1003,9 +1003,9 @@ function detectStep(_name)
 				cPublish.show();
 			}
 			sthis = 'step3';
-			dAdd.prop('checked', true).parent('div').addClass('active');
-			dFilter.prop('checked', true).parent('div').addClass('active');
-			dPublish.prop('checked', true).parent('div').addClass('active');
+			dAdd.prop('checked', true).parent('.checkbox').addClass('active');
+			dFilter.prop('checked', true).parent('.checkbox').addClass('active');
+			dPublish.prop('checked', true).parent('.checkbox').addClass('active');
 			// show step3
 			cAdd.slideUp();
 			cFilter.slideUp();
