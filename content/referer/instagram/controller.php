@@ -12,9 +12,7 @@ trait controller
 		// 	$this->route_check_true = true;
 		// 	return false;
 		// }
-		$this->post('instagram')->ALL('referer/instagram');
-		$this->route('referer/instagram');
-
+		$this->get('instagram', 'instagram')->ALL('referer/instagram');
 		return true;
 	}
 }

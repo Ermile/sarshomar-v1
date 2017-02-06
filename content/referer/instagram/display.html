@@ -7,11 +7,11 @@
 					<div class="app-info">
 						<div><img alt="App Name" class="app-icon" width="95" src="https://dev.sarshomar.com/static/images/third-party/instagram.svg" title="App Title"></div>
 
-						<div><img alt="App Name" class="app-icon" width="95" src="{{url.static}}images/delete/avatar.gif" title="App Title"></div>
+						<div><img alt="App Name" class="app-icon" width="95" src="{{oauth.profile_picture}}" title="App Title"></div>
 					</div>
 					<h2 class="text-center title unselectable"><strong>{%trans "You are connected to Instagram"%}</strong></h2>
 					<h3 class="text-center">
-						{%trans "Enjoy!"%}
+						<strong>{{oauth.full_name}}</strong> {%trans "Enjoy!"%}
 					</h3>
 					<div class="auth-desc text-center">
 						<div><a href="#!">www.instagram.com</a></div>
@@ -20,10 +20,6 @@
 							مایلیم با افتخار اعلام کنیم که وردپرس باارزش و مجانی است.
 						</div> -->
 					</div>
-				</div>
-				<div class="btn-container">
-					<a class="btn primary" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
-					<a class="btn primary btn-deny" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Deny'%}</a>
 				</div>
 				<hr>
 				<div class="auth-agreement">
