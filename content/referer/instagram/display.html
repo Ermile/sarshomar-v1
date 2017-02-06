@@ -1,0 +1,47 @@
+{%extends display.main%} {%block content%}
+<div class="main pad auth">
+	<div class="box">
+		<div class="in">
+			<div id="bd" role="main">
+				<div class="auth-box">
+					<div class="app-info">
+						<div><img alt="App Name" class="app-icon" width="95" src="{{url.static}}images/delete/wordpress-logo-notext-rgb.png" title="App Title"></div>
+
+						<div><img alt="App Name" class="app-icon" width="95" src="{{url.static}}images/delete/avatar.gif" title="App Title"></div>
+					</div>
+					<h2 class="text-center title unselectable"><strong>شما به هسته اینستاگرام متصل شدید</strong></h2>
+					<h3 class="text-center">
+						خوشحال باشید
+					</h3>
+					<div class="auth-desc text-center">
+						<div><a href="#!">www.instagram.com</a></div>
+						<!-- <div>
+							وردپرس نرم‌افزاری تحت وب است که می‌توانید از آن برای ساختن سرویس وبلاگدهی، وبسایت یا وبلاگی زیبا و قدرتمند استفاده کنید.
+							مایلیم با افتخار اعلام کنیم که وردپرس باارزش و مجانی است.
+						</div> -->
+					</div>
+				</div>
+				<div class="btn-container">
+					<a class="btn primary" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Allow'%}</a>
+					<a class="btn primary btn-deny" id="allow-token" href="referer/token" data-ajaxify data-data='{"token": "{{token}}"}' data-method='post'>{% trans 'Deny'%}</a>
+				</div>
+				<hr>
+				<div class="auth-agreement">
+					با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از اطلاعات شما بر طبق <a href="{{url.static}}terms">شرایط استفاده</a>					و <a href="{{url.static}}privacy">حریم خصوصی</a> استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری
+					خود تغییر دهید.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%} {%block foot_js%}
+<script type="text/javascript">
+	$("#allow-token").on('ajaxify:success', function () {
+		try {
+			window.close();
+		} catch (f) {
+
+		}
+	});
+</script>
+{%endblock%}

@@ -4,8 +4,10 @@ namespace content\referer;
 class controller extends \mvc\controller
 {
 	use token\controller;
+	use instagram\controller;
 	function _route()
 	{
+
 		$referer = \lib\utility::get('to');
 		$class_name = null;
 		if(preg_match("/([^:]+):(.*)/", $referer, $_referer) && $referer)
@@ -26,7 +28,6 @@ class controller extends \mvc\controller
 		{
 			$class_name = \lib\router::get_url(1);
 		}
-
 		if($class_name)
 		{
 			$model_name = '\content\referer\\'. $class_name . '\model';
