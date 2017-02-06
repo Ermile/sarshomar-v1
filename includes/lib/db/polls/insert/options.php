@@ -164,21 +164,22 @@ trait options
 		}
 
 		// save meta article
-		if(self::$args['article'])
+		self::save_options('articles', false);
+		if(self::$args['articles'])
 		{
-			if(!is_array(self::$args['article']))
+			if(!is_array(self::$args['articles']))
 			{
 				return debug::error(T_("Parameter article must be array"), 'article', 'arguments');
 			}
 
-			foreach (self::$args['article'] as $key => $value)
+			foreach (self::$args['articles'] as $key => $value)
 			{
 				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", $value))
 				{
-					return debug::error(T_("Invalid arguments article on index :key", ['key' => $key]), 'article', 'arguments');
+					return debug::error(T_("Invalid arguments article on index :key", ['key' => $key]), 'articles', 'arguments');
 					break;
 				}
-				self::save_options('article', \lib\utility\shortURL::decode($value));
+				self::save_options('articles', \lib\utility\shortURL::decode($value), ['_multi_' => true]);
 			}
 		}
 
@@ -318,6 +319,13 @@ trait options
 	 */
 	private static function save_options($_key, $_value, $_meta = [])
 	{
+		$multi_options = false;
+		if(isset($_meta['_multi_']) && $_meta['_multi_'])
+		{
+			$multi_options = true;
+			unset($_meta['_multi_']);
+		}
+
 		$option_meta = null;
 		if(!empty($_meta))
 		{
@@ -331,6 +339,11 @@ trait options
 			'option_key'    => $_key,
 			'limit'			=> 1,
 		];
+
+		if($multi_options)
+		{
+			$option_insert['option_value'] = $_value;
+		}
 
 		$check = \lib\db\options::get($option_insert);
 		unset($option_insert['limit']);

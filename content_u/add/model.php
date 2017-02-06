@@ -155,7 +155,6 @@ class model extends \content_u\home\model
 	{
 		if(utility::get("list"))
 		{
-
 			$result = null;
 			switch (utility::get("list"))
 			{
@@ -163,6 +162,10 @@ class model extends \content_u\home\model
 				case 'tag':
 				case 'profile':
 					$result = $this->term_list();
+					break;
+
+				case 'article':
+					$result = $this->tree('article');
 					break;
 
 				case 'tree':
@@ -217,14 +220,14 @@ class model extends \content_u\home\model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function tree()
+	public function tree($_in = null)
 	{
 		$search = utility::get("q");
 
 		utility::set_request_array(
 		[
 			'search'    => $search,
-			'in'        => null,
+			'in'        => $_in,
 			'language'  => null,
 			'sarshomar' => false,
 		]);
@@ -233,12 +236,15 @@ class model extends \content_u\home\model
 
 		$result = $this->poll_search();
 		$tmp_result = [];
-		foreach ($result['data'] as $key => $value)
+		if(isset($result['data']) && is_array($result['data']))
 		{
-			$tmp_result[$key]['title'] = isset($value['title']) ? $value['title'] : null;
-			$tmp_result[$key]['desc']  = isset($value['summary']) ? $value['summary'] : null;
-			$tmp_result[$key]['value'] = isset($value['id']) ? $value['id'] : null;
-			$tmp_result[$key]['url']   = isset($value['url']) ? $value['url'] : null;
+			foreach ($result['data'] as $key => $value)
+			{
+				$tmp_result[$key]['title'] = isset($value['title']) ? $value['title'] : null;
+				$tmp_result[$key]['desc']  = isset($value['summary']) ? $value['summary'] : null;
+				$tmp_result[$key]['value'] = isset($value['id']) ? $value['id'] : null;
+				$tmp_result[$key]['url']   = isset($value['url']) ? $value['url'] : null;
+			}
 		}
 		return $tmp_result;
 	}

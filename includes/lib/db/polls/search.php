@@ -194,6 +194,13 @@ trait search
 			$_options['check_language'] = false;
 			$_options['user_id']        = $_options['login'];
 		}
+		// search in article
+		elseif($_options['in'] === 'article')
+		{
+			$_options['post_status']  = 'publish';
+			$_options['post_privacy'] = 'public';
+			$_options['post_type']    = 'article';
+		}
 		// default search
 		else
 		{

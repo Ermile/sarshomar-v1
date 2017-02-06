@@ -300,7 +300,7 @@ trait ready
 							{
 								if(isset($v['id']))
 								{
-									$opt_profile[$k]['id'] = utility\shortURL::encode($v['id']);
+									$opt_profile[$k]['id'] = shortURL::encode($v['id']);
 								}
 
 								if(isset($v['term_title']))
@@ -358,29 +358,30 @@ trait ready
 			if($_options['get_options'])
 			{
 				$temp_options = array_column($post_meta, 'option_value', 'option_key');
-				$_poll_data['options'] = array_merge($_poll_data['options'], $temp_options);
-				foreach ($_poll_data['options'] as $key => $value)
+				$show_options = [];
+				foreach ($temp_options as $key => $value)
 				{
-					if(preg_match("/^tree/", $key))
-					{
-						unset($_poll_data['options'][$key]);
-					}
 
 					if($value == '1')
 					{
-						$_poll_data['options'][$key] = true;
+						$show_options[$key] = true;
 					}
 
 					if($key === 'multi_min' || $key === 'multi_max')
 					{
-						$_poll_data['options']['multi'][substr($key,6)] = (int) $value;
-						unset($_poll_data['options'][$key]);
+						$show_options['multi'][substr($key,6)] = (int) $value;
 					}
 
+				}
+				if(!empty($show_options))
+				{
+					$_poll_data['options'] = array_merge($_poll_data['options'], $show_options);
 				}
 			}
 
 			$poll_tree_answer = [];
+			$poll_articles    = [];
+
 			foreach ($post_meta as $key => $value)
 			{
 				if(isset($value['option_key']) && preg_match("/^tree/", $value['option_key']))
@@ -390,7 +391,17 @@ trait ready
 						array_push($poll_tree_answer, $value['option_value']);
 					}
 				}
+
+				if(isset($value['option_key']) && preg_match("/^articles/", $value['option_key']))
+				{
+					if(isset($value['option_value']))
+					{
+						array_push($poll_articles, shortURL::encode($value['option_value']));
+					}
+				}
 			}
+
+			$_poll_data['articles'] = $poll_articles;
 
 			if(!empty($poll_tree_answer) && isset($_poll_data['parent']))
 			{

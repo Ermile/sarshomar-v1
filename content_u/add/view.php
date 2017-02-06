@@ -1,5 +1,7 @@
 <?php
 namespace content_u\add;
+use \lib\utility;
+use \lib\utility\shortURL;
 
 class view extends \content_u\home\view
 {
@@ -85,12 +87,12 @@ class view extends \content_u\home\view
 
 		if(isset($poll['tree']['parent']))
 		{
-			$this->data->poll_parent_opts = \lib\db\pollopts::get(\lib\utility\shortURL::decode($poll['tree']['parent']), ['key', 'title']);
+			$this->data->poll_parent_opts = \lib\db\pollopts::get(shortURL::decode($poll['tree']['parent']), ['key', 'title']);
 		}
 
 		if(isset($poll['options']['cat']) && isset($poll['id']))
 		{
-			$cat_id    = \lib\utility\shortURL::decode($poll['options']['cat']);
+			$cat_id    = shortURL::decode($poll['options']['cat']);
 			$cat       = \lib\db\terms::get($cat_id);
 			$cat_level = [];
 
@@ -100,11 +102,31 @@ class view extends \content_u\home\view
 				{
 					array_push($cat_level, $cat['term_title']);
 				}
-				$cat = \lib\db\terms::get($cat['term_parent']);
+				if($cat['term_parent'])
+				{
+					$cat = \lib\db\terms::get($cat['term_parent']);
+				}
+				else
+				{
+					$cat = [];
+				}
 			}
 			$this->data->cats = array_reverse($cat_level);
-
 		}
+		if(isset($poll['articles']) && is_array($poll['articles']) && !empty($poll['articles']))
+		{
+			$article_titles = [];
+			foreach ($poll['articles'] as $key => $value)
+			{
+				$id = shortURL::decode($value);
+				if($id)
+				{
+					$article_titles[$value] =  \lib\db\polls::get_poll_title($id);
+				}
+			}
+			$this->data->article_titles = $article_titles;
+		}
+		// exit();
 		// $this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		// $this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
 		// $this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;
@@ -128,7 +150,7 @@ class view extends \content_u\home\view
 				if(isset($split[1]))
 				{
 					$current_poll_id = $split[1]; // the current poll id
-					$current_poll_id = \lib\utility\shortURL::decode($current_poll_id);
+					$current_poll_id = shortURL::decode($current_poll_id);
 
 					// get this poll to find poll_parent
 					$poll = \lib\db\polls::get_poll($current_poll_id);

@@ -87,7 +87,7 @@ trait add
 		$args['from']                 = utility::request("from");
 		$args['schedule']             = utility::request('schedule');
 		$args['hidden_result']        = utility::request('hidden_result');
-		$args['article']              = utility::request('article');
+		$args['articles']             = utility::request('articles');
 		$args['tags']                 = utility::request('tags');
 		$args['cat']                  = utility::request('cat');
 

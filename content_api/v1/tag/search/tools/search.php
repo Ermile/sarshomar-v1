@@ -60,39 +60,39 @@ trait search
 				}
 				break;
 
-			case 'article':
-				$meta       = ['post_type' => 'article'];
-				$result     = \lib\db\polls::search($search, $meta);
-				$tmp_result = [];
-				if(is_array($result))
-				{
-					foreach ($result as $key => $value)
-					{
-						$id    = null;
-						$title = null;
-						$url   = null;
+			// case 'article':
+			// 	$meta       = ['post_type' => 'article'];
+			// 	$result     = \lib\db\polls::search($search, $meta);
+			// 	$tmp_result = [];
+			// 	if(is_array($result))
+			// 	{
+			// 		foreach ($result as $key => $value)
+			// 		{
+			// 			$id    = null;
+			// 			$title = null;
+			// 			$url   = null;
 
-						if(isset($value['id']))
-						{
-							$id = utility\shortURL::encode($value['id']);
-						}
+			// 			if(isset($value['id']))
+			// 			{
+			// 				$id = utility\shortURL::encode($value['id']);
+			// 			}
 
-						if(isset($value['title']))
-						{
-							$title = $value['title'];
-						}
+			// 			if(isset($value['title']))
+			// 			{
+			// 				$title = $value['title'];
+			// 			}
 
-						if(isset($value['url']))
-						{
-							$url = $value['url'];
-						}
+			// 			if(isset($value['url']))
+			// 			{
+			// 				$url = $value['url'];
+			// 			}
 
-						$tmp_result[] = ['id' => $id, 'title' => $title, 'url' => $url];
-					}
-				}
-				$result = $tmp_result;
+			// 			$tmp_result[] = ['id' => $id, 'title' => $title, 'url' => $url];
+			// 		}
+			// 	}
+			// 	$result = $tmp_result;
 
-				break;
+			// 	break;
 
 			default:
 				return debug::error(T_("Type not found"), 'type', 'arguments');

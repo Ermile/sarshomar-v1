@@ -28,7 +28,7 @@ trait search
 
 		if(utility::request("in"))
 		{
-			$in_list = ['sarshomar', 'me', 'trash'];
+			$in_list = ['sarshomar', 'me', 'trash', 'article'];
 			if(!in_array(utility::request('in'), $in_list))
 			{
 				return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');

@@ -23,14 +23,23 @@
   </div>
   {%endif%}
 
-  <div class="tagDetector separate" id="article" data-restrict='list'>
+  <div class="tagDetector separate" id="article" data-restrict='list' {% if article_titles %} data-val="{{article_titles|keys|json_encode()}}" {% endif %}>
    <div class="element no-pad">
     <label class="title large" for="article">{%trans "Article"%}</label>
     <div class="element-in">
      <input class="input dropdown tagInput autoList" id="article" data-find='article' data-call='addNewTags'>
     </div>
    </div>
-   <div class="tagBox"></div>
+   <div class="tagBox">
+   {%if article_titles%}
+      {%for i, value in article_titles %}
+        <span data-val="{{i}}">
+         {{value}}
+        </span>
+      {%endfor%}
+
+    {%endif%}
+   </div>
   </div>
 
   <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
