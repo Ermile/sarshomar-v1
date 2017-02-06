@@ -37,6 +37,9 @@
      </select>
      <input type="submit" value='{%trans "Set default language"%}' class="try">
     </form>
+    <a href="#" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}'>
+      <img src="{{url.static}}images/third-party/instagram.svg">
+    </a>
    </aside>
 
    <div class="main box pad dashboard">
@@ -52,7 +55,10 @@
 
     <div class="row auto">
      <div class="span6 card">
-      <h3>{%trans "Summary of your activity in Sarshomar"%}</h3><span><div class="chart" id='chart-answered'></div></span>
+      <h3>{%trans "Summary of your activity in Sarshomar"%}</h3>
+      <span>
+       <div class="chart" id='chart-answered' data-format='dashboadAnswered' data-vals='[{"country":"Lithuania","litres":501.9},{"country":"Czech Republic","litres":301.9},{"country":"Ireland","litres":201.1},{"country":"Germany","litres":165.8},{"country":"Australia","litres":139.9},{"country":"Austria","litres":128.3},{"country":"UK","litres":99},{"country":"Belgium","litres":60},{"country":"The Netherlands","litres":50}]'></div>
+      </span>
      </div>
      <div class="span6">
       <div class="row auto">
@@ -81,7 +87,7 @@
 {%endblock%}
 
 
-{%block foot_js%}
+{%block foot_js2%}
  <script type="text/javascript">
   $(function ()
   {

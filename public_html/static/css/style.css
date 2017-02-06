@@ -858,6 +858,9 @@ right:0;left:0;top:100%}
 .ui-language select{background-color:#fff;border:none;width:100%;padding:5px 10px;margin-bottom:.5em}
 .ui-language .try{width:100%}
 
+.instagram-dashboard{position:absolute;bottom:1em;left:1em}
+.instagram-dashboard img{width:3em}
+
 
 /************************************************************** progress */
 .progress{position:relative;display:block;max-width:100%;border:none;margin:1em 0 2.5em;box-shadow:none;background:rgba(0,0,0,0.1);padding:0;border-radius:.28571429rem;font-size:1rem}
