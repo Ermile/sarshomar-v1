@@ -4,11 +4,11 @@
 <aside></aside>
 <div class="main">
  <section class="box help-category-box">
-  <div class="row">
-   <div class="search-box">
-    <input type="text" placeholder='Search in Help Center'>
-    <button class="search-button"><i class="icon-search"></i></button>
-   </div>
+  <div class="search-box">
+   <input type="text" placeholder='{%trans "Search in Help Center"%}' autocomplete="off">
+   <label class="search-label">
+     <span class="icon-search"></span>
+   </label>
    <div class="search-result" data-xhr='search-result' id="search-result"></div>
   </div>
 {%block page_content%}
