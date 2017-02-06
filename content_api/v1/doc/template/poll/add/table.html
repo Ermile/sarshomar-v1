@@ -21,7 +21,7 @@
     </div>
     <div>
         <span><strong>language</strong> <br> <small><i>fa</i></small></span>
-        <span>Set the language of your choice<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>{%trans "Set the language of your choice"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">"en"</code></span>
     </div>
     <div>
@@ -37,7 +37,7 @@
     <div>
         <span><strong>file</strong> <br> <small><i>url</i></small></span>
         <span>{%trans "Upload a file like an image that shows the weather in your city."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">"../images/winter.png"</code></span>
+        <span><code class="example-code html">"https://sarshomar.com/static/images/svg/general/logo.svg"</code></span>
     </div>
     <div>
         <span>
@@ -80,17 +80,17 @@
         <span><a href="v1/doc#poll-schedule"><strong>{%trans "Go to table"%}</strong></a></span>
     </div>
     <div>
-        <span><strong>article</strong> <br> <small><i>array</i></small></span>
+        <span><strong>articles</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "Select an article to connect it to your poll or question"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">[]</code></span>
+        <span><code class="example-code html">["3rx","cv54"]</code></span>
     </div>
     <div>
         <span><strong>tags</strong> <br> <small><i>array</i></small></span>
         <span>{%trans "select the tags of the question"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">[]</code></span>
+        <span><code class="example-code html">["sample tag","sample tag"]</code></span>
     </div>
     <div>
-        <span><strong>cats</strong> <br> <small><i>code</i></small></span>
+        <span><strong>cat</strong> <br> <small><i>code</i></small></span>
         <span>{%trans "Set the category of the poll or question."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
         <span><code class="example-code html">"x46"</code></span>
     </div>
@@ -167,7 +167,7 @@
     <div>
         <span><strong>file</strong> <br> <small><i>url</i></small></span>
         <span>{%trans "If your answers has a file like an image, specify it here."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">"../images/summer.png"</code></span>
+        <span><code class="example-code html">"https://sarshomar.com/static/images/svg/general/logo.svg"</code></span>
     </div>
     <div>
         <span>
@@ -298,8 +298,8 @@
         <span>{%trans "Select the gender that can answer the poll. It can be:"%}
         <br> <code class="example-code html">["male"]</code> {%trans "Only ask from males."%}
         <br> <code class="example-code html">["female"]</code> {%trans "Only ask from females."%}
-        <br> <code class="example-code html">["male" | "female"]</code> {%trans "Only ask from males and females."%}
-        <br> <code class="example-code html">[null]</code>  {%trans "Ask anyone."%}
+        <br> <code class="example-code html">["male", "female"]</code> {%trans "Only ask from males and females."%}
+        <br> <code class="example-code html">null</code>  {%trans "Ask anyone."%}
         <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["male"]</code></span>
     </div>
@@ -309,7 +309,7 @@
             <br> <code class="example-code html"> ["single"]</code> {%trans "Only ask from single people."%}
             <br> <code class="example-code html"> ["married"]</code> {%trans "Only ask from married people."%}
             <br> <code class="example-code html"> ["single", "married"]</code> {%trans "Only ask from single and married people."%}
-            <br> <code class="example-code html"> [null]</code> {%trans "Ask anyone."%}
+            <br> <code class="example-code html"> null</code> {%trans "Ask anyone."%}
             <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["single"]</code></span>
     </div>
@@ -323,7 +323,7 @@
         <br> <code class="example-code html"> ["illiterate","graduate"] </code> {%trans "Ask from illiterate and graduate people."%}
         <br> <code class="example-code html"> ["undergraduate", "graduate"] </code> {%trans "Ask from undergraduate and graduate people."%}
         <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code> {%trans "Ask from illiterate, undergraduate and graduate people."%}
-        <br> <code class="example-code html"> [null] </code> {%trans "Ask anyone."%}
+        <br> <code class="example-code html"> null </code> {%trans "Ask anyone."%}
         <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["graduate"]</code></span>
     </div>
@@ -383,7 +383,7 @@
     </div>
     <div>
         <span><strong>housestatus</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the housing status of the people who can answer the poll"%} 
+        <span>{%trans "Set the housing status of the people who can answer the poll"%}
             <br> <code class="example-code html"> ["owner", "tenant", "homeless"] </code>
             <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["tenant"]</code></span>
