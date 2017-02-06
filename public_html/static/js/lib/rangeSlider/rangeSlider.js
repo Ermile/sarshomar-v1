@@ -852,7 +852,6 @@
 				var from_step = Math.round(from / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 				var to_step = Math.round(to / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 
-
 				var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
@@ -987,8 +986,6 @@
 							$(this).rangeSlider('option','unit',((my_max-my_start)*my_step))
 						}
 
-
-
 						var new_from_step = Math.round(from_step / ($(this).rangeSlider('option','step')));
 						var new_to_step = Math.round(to_step/ ($(this).rangeSlider('option','step')));
 					}
@@ -1039,36 +1036,33 @@
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(from_multi_step_value));
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(to_multi_step_value));
 
+					if ($(this).attr('_status')) 
+					{
+						var my_limit = $(this).rangeSlider('option', 'max_limit');
+						var _step = ($(this).rangeSlider('option', 'step'));
+						my_limit = my_limit / _step;
+						var my_limit_mount = $(this).rangeSlider('option', 'multi_level_real_to_value',my_limit)
 
-if ($(this).attr('_status')) 
-{
-	var my_limit = $(this).rangeSlider('option', 'max_limit');
-	var _step = ($(this).rangeSlider('option', 'step'));
-	my_limit = my_limit / _step;
-	var my_limit_mount = $(this).rangeSlider('option', 'multi_level_real_to_value',my_limit)
+						if (from_multi_step_value == my_limit_mount) 
+						{
+							$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							if (from_multi_step_value == to_multi_step_value) 
+							{
+								$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							}
+						}
 
-	if (from_multi_step_value == my_limit_mount) 
-	{
-		$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		if (from_multi_step_value == to_multi_step_value) 
-		{
-			$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		}
-	}
-
-	else if (to_multi_step_value == my_limit_mount) 
-	{
-		$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		if (from_multi_step_value == to_multi_step_value) 
-		{
-			$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
-		}
-	}
-}
-
+						else if (to_multi_step_value == my_limit_mount) 
+						{
+							$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							if (from_multi_step_value == to_multi_step_value) 
+							{
+								$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							}
+						}
+					}
 
 				}
-
 
 				var data_value_max = $(this).find(".dynamic-range .max .mount").attr("data-value-show");
 				var data_value_min = $(this).find(".dynamic-range .min .mount").attr("data-value-show");
@@ -1178,6 +1172,8 @@ if ($(this).attr('_status'))
 					this.data('range-slider').to = to_step;
 
 					this.trigger("range-slider::change::before", [data.min + from_step, data.min + to_step]);
+
+
 					if(data.type == 'vertical')
 					{
 						this.find('.dynamic-margin').css(depth_type, (100 - to) + "%");
@@ -1187,9 +1183,17 @@ if ($(this).attr('_status'))
 						this.find('.dynamic-margin').css(depth_type, from + "%");
 					}
 					this.find('.dynamic-range').css(depth_type, depth + "%");
-					this.trigger("range-slider::change", [data.min + from_step, data.min + to_step]);
+					
+					
+					this.trigger("range-slider::everychange", [data.min + from_step, data.min + to_step]);
+
+					if(_option)
+					{
+						this.trigger("range-slider::change", [data.min + from_step, data.min + to_step]);
+					}
 				}
 			}
+
 
 				var margin_range = $("<div class='dynamic-margin'></div>");
 				var dynamic_range = $("<div class='dynamic-range'></div>");
@@ -1207,10 +1211,13 @@ if ($(this).attr('_status'))
 					add_selection.call(this, 'max').appendTo(dynamic_range);
 					add_selection.call(this, 'min').appendTo(dynamic_range);
 				}
- if ($(this).attr('data-support-rtl')) 
- {
- 	$(this).addClass('support-rtl')
- }
+
+				if ($(this).attr('data-support-rtl')) 
+				{
+					$(this).addClass('support-rtl')
+				}
+
+
 				dynamic_range.find('div.min, div.max').append("<span class='mount'></span>");
 				dynamic_range.find('div.min, div.max').append("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 9' style='enable-background:new 0 0 8 9;' xml:space='preserve'><style type='text/css'>.st1{fill:#E5A428;}</style><path class='st1' d='M3.2,0C6.7-0.1,5.4,3.5,8,4.5C5.4,5.5,6.7,9.1,3.2,9L2.7,9V7.1L0,4.5l2.7-2.6V0L3.2,0z'/></svg>");
 				var my_mount = dynamic_range.find('div.min span.mount, div.max span.mount');
@@ -1325,7 +1332,6 @@ var add_selection = function(_name)
 			var final_from        = margin+move;
 			var final_to          = range_width+margin+move;
 
-
 			if (final_to >= total_width_pixel)
 			{
 				final_from = total_width_pixel-range_width;
@@ -1344,6 +1350,8 @@ var add_selection = function(_name)
 				$(document).unbind("mousemove.dynamic-range");
 
 				$(this).trigger("range-slider::mouseup::margin");
+				$(this).trigger("range-slider::afterchange");
+
 				
 				$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
 				if (data_fix_mount != "on")
@@ -1447,6 +1455,7 @@ var add_selection = function(_name)
 				$(_self).find('.dynamic-range span.mount').hide(); //design*********
 			}
 			$(this).trigger("range-slider::touchend::margin_touch");
+			$(this).trigger("range-slider::afterchange");
 			$(document).unbind('touchend');
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
@@ -1522,6 +1531,7 @@ var add_selection = function(_name)
 			$(document).unbind("mousemove.range-slider");
 			
 			$(this).trigger("range-slider::mouseup::min_max");
+			$(this).trigger("range-slider::afterchange");
 
 			$(document).unbind("mouseup.range-slider");
 		});
@@ -1596,6 +1606,8 @@ var add_selection = function(_name)
 		}
 	}).bind('keyup.range-slider',function(event){
 		$(this).trigger("range-slider::keyup");
+		$(this).trigger("range-slider::afterchange");
+
 	}).bind('touchmove',function(e){
 	      e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
@@ -1633,6 +1645,7 @@ var add_selection = function(_name)
 			}
 
 			$(this).trigger("range-slider::touchend::min_max_touch");
+			$(this).trigger("range-slider::afterchange");
 
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
