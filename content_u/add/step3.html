@@ -42,21 +42,29 @@
    </div>
   </div>
 
-  <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%}>
-   <div class="element no-pad">
+  <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%} {% if poll.tags %} data-val="{{'["' ~ poll.tags|join('","') ~ '"]'}}" {% endif %}>
+   <div class="element no-pad" >
     <label class="title large" for="tag">{%trans "Tags"%}</label>
     <div class="element-in">
      <input class="input dropdown tagInput autoList" data-find='tag' data-call='addNewTags'>
     </div>
    </div>
-   <div class="tagBox"></div>
+   <div class="tagBox">
+     {%if poll.tags%}
+      {%for i, value in poll.tags %}
+        <span data-val="{{i}}">
+         {{value}}
+        </span>
+      {%endfor%}
+    {%endif%}
+   </div>
   </div>
 
   <div class="element switch">
    <label class="title large">{%trans "Language"%}</label>
    {% set lang_list = langList({'all' : true}) %}
    {%for key, value in lang_list%}
-   <input type="radio" " name="ui-language" value="{{key}}" id="language-{{key}}" {%if site.currentlang == key %}checked{%endif%}>
+   <input type="radio" " name="ui-language" value="{{key}}" id="language-{{key}}" {% if poll.language == key%} checked="checked" {% endif %}{%if not poll.language and site.currentlang == key %}checked{%endif%}>
    <label for="language-{{key}}">{{value}}</label>
    {%endfor%}
   </div>

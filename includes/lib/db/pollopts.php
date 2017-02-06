@@ -612,14 +612,14 @@ class pollopts
 						return debug::error(T_("Profile code not found"), 'profile', 'arguments');
 					}
 
-					if($term['term_type'] != 'profile')
-					{
-						if(debug::$status)
-						{
-							debug::error(T_("Invalid parameter profile :code", ['code' => $value]), 'profile', 'arguments');
-						}
-						return;
-					}
+					// if($term['term_type'] != 'sarshomar')
+					// {
+					// 	if(debug::$status)
+					// 	{
+					// 		debug::error(T_("Invalid parameter profile :code", ['code' => $value]), 'profile', 'arguments');
+					// 	}
+					// 	return;
+					// }
 
 					$query =
 					"

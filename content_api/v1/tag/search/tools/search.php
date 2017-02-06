@@ -22,11 +22,20 @@ trait search
 		switch (utility::request("type"))
 		{
 			case 'profile':
-			case 'tag':
 			case 'cat':
+			case 'tag':
 
 				$meta = [];
-				$meta['term_type'] = utility::request("type");
+
+				if(utility::request("type") == 'tag')
+				{
+					$meta['term_type'] = 'sarshomar%';
+				}
+				else
+				{
+					$meta['term_type'] = 'sarshomar';
+				}
+
 				$meta['end_limit'] = 10;
 				if(utility::request("parent"))
 				{

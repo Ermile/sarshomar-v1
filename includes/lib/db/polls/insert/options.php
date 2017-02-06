@@ -228,27 +228,80 @@ trait options
 				return debug::error(T_("Parameter tags must be array"), 'tags', 'arguments');
 			}
 
-			$remove_tags = \lib\db\tags::remove(self::$poll_id);
-
 			$tags = self::$args['tags'];
 
 			$check_count = array_filter($tags);
 
-			if(count($check_count) > 3 && self::$args['permission_sarshomar'] === false)
+			if(count($check_count) >= 5 && self::$args['permission_sarshomar'] === false)
 			{
 				return debug::error(T_("You have added so many tags, Please remove some of them"), 'tags', 'arguments');
 			}
 
-			$tags = implode(",", $tags);
+			$temp_poll_id = self::$poll_id;
 
-			$insert_tag = \lib\db\tags::insert_multi($tags);
+			$remove_tags =
+			"
+				DELETE FROM
+					termusages
+				WHERE
+					termusages.termusage_foreign = 'tag' AND
+					termusages.termusage_id      = $temp_poll_id
 
-			$tags_id    = \lib\db\tags::get_multi_id($tags);
+			";
+
+			\lib\db::query($remove_tags);
+
+			$insert_tag = [];
+			foreach ($tags as $key => $value)
+			{
+				$value = trim($value);
+
+				if(strlen($value) > 45)
+				{
+						return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character"), 'tags', 'arguments');
+					if(self::$debug)
+					{
+					}
+
+				}
+
+				$slug  = utility\filter::slug($value);
+				$insert_tag[] =
+				[
+					'term_type'  => 'sarshomar_tag',
+					'term_title' => $value,
+					'term_url'   => '$/'. $slug,
+					'term_slug'  => $slug,
+				];
+			}
+
+			$tags_id = [];
+
+			if(!empty($insert_tag))
+			{
+				$insert = \lib\db\terms::insert_multi($insert_tag);
+
+				$tags_title = array_column($insert_tag, 'term_title');
+
+				$tags_title = implode("','", $tags_title);
+				$get_ids =
+				"
+					SELECT
+						terms.id  AS `id`
+					FROM
+						terms
+					WHERE
+						terms.term_title IN ('$tags_title') AND
+						terms.term_type LIKE 'sarshomar%'
+				";
+				$tags_id = \lib\db::get($get_ids, 'id');
+			}
 
 			if(!is_array($tags_id))
 			{
 				$tags_id = [];
 			}
+
 			// save tag to this poll
 			$useage_arg = [];
 			foreach ($tags_id as $key => $value)
@@ -279,7 +332,7 @@ trait options
 				return debug::error(T_("Cat not found"), 'cat', 'arguments');
 			}
 
-			if(!isset($check['term_type']) || (isset($check['term_type']) && $check['term_type'] != 'profile'))
+			if(!isset($check['term_type']) || (isset($check['term_type']) && $check['term_type'] != 'sarshomar'))
 			{
 				return debug::error(T_("Invalid cat"), 'cat', 'arguments');
 			}

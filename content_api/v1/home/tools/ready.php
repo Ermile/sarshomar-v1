@@ -21,6 +21,7 @@ trait ready
 	{
 		$default_options =
 		[
+			'get_tags'			 => true,
 			'get_filter'         => false,
 			'get_opts'           => false,
 			'get_options'        => false,
@@ -256,7 +257,7 @@ trait ready
 
 		unset($_poll_data['meta']);
 
-		$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'profile');
+		$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'sarshomar');
 
 		if($cat)
 		{
@@ -293,7 +294,7 @@ trait ready
 					$opt_profile = [];
 					if(isset($value['id']))
 					{
-						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'profile');
+						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'sarshomar');
 						if($profile && is_array($profile))
 						{
 							foreach ($profile as $k => $v)
@@ -463,6 +464,25 @@ trait ready
 				$_poll_data['brand'] = $brand;
 				unset($_poll_data['options']['brand']);
 			}
+		}
+
+		if($_options['get_tags'])
+		{
+			$tag = \lib\db\terms::usage($poll_id, [], 'tag', 'sarshomar%');
+			$new_tag = [];
+
+			if($tag && is_array($tag))
+			{
+				foreach ($tag as $key => $value)
+				{
+					if(isset($value['term_title']) && isset($value['id']))
+					{
+						$code = shortURL::encode($value['id']);
+						$new_tag[$code] = $value['term_title'];
+					}
+				}
+			}
+			$_poll_data['tags'] = $new_tag;
 		}
 
 		ksort($_poll_data);
