@@ -471,7 +471,7 @@ class pollopts
 					DELETE FROM
 						termusages
 					WHERE
-						termusages.termusage_foreign = 'pollopts' AND
+						termusages.termusage_foreign = 'profile' AND
 						termusages.termusage_id IN ($old_answers_ids)
 				";
 				$delete_all_profile = \lib\db::query($query);
@@ -491,7 +491,7 @@ class pollopts
 					DELETE FROM
 						termusages
 					WHERE
-						termusages.termusage_foreign = 'pollopts' AND
+						termusages.termusage_foreign = 'profile' AND
 						termusages.termusage_id IN ($ids)
 				";
 				\lib\db::query($query);
@@ -594,7 +594,7 @@ class pollopts
 				DELETE FROM
 					termusages
 				WHERE
-					termusages.termusage_foreign = 'pollopts' AND
+					termusages.termusage_foreign = 'profile' AND
 					termusages.termusage_id      = $_pollopts_id
 			";
 			\lib\db::query($query);
@@ -626,7 +626,7 @@ class pollopts
 						INSERT INTO
 							termusages
 						SET
-							termusages.termusage_foreign = 'pollopts',
+							termusages.termusage_foreign = 'profile',
 							termusages.termusage_id      = $_pollopts_id,
 							termusages.term_id           = $term_id
 						ON DUPLICATE KEY UPDATE

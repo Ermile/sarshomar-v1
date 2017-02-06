@@ -87,6 +87,24 @@ class view extends \content_u\home\view
 		{
 			$this->data->poll_parent_opts = \lib\db\pollopts::get(\lib\utility\shortURL::decode($poll['tree']['parent']), ['key', 'title']);
 		}
+
+		if(isset($poll['options']['cat']) && isset($poll['id']))
+		{
+			$cat_id    = \lib\utility\shortURL::decode($poll['options']['cat']);
+			$cat       = \lib\db\terms::get($cat_id);
+			$cat_level = [];
+
+			while (array_key_exists('term_parent', $cat))
+			{
+				if(isset($cat['term_title']))
+				{
+					array_push($cat_level, $cat['term_title']);
+				}
+				$cat = \lib\db\terms::get($cat['term_parent']);
+			}
+			$this->data->cats = array_reverse($cat_level);
+
+		}
 		// $this->data->poll_tree_opt   = isset($poll['poll_tree_opt']) 	? $poll['poll_tree_opt'] 	: null;
 		// $this->data->poll_tree_id    = isset($poll['poll_tree_id']) 	? $poll['poll_tree_id'] 	: null;
 		// $this->data->poll_tree_title = isset($poll['poll_tree_title']) 	? $poll['poll_tree_title'] 	: null;

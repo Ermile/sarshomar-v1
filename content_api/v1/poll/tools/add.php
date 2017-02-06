@@ -89,7 +89,7 @@ trait add
 		$args['hidden_result']        = utility::request('hidden_result');
 		$args['article']              = utility::request('article');
 		$args['tags']                 = utility::request('tags');
-		$args['cats']                 = utility::request('cats');
+		$args['cat']                  = utility::request('cat');
 
 		// $args['comment']           = utility::request('comment');
 		// $args['slug']              = utility::request('slug');

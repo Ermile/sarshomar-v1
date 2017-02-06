@@ -1,6 +1,8 @@
 <?php
 namespace lib\db\polls\insert;
 use \lib\debug;
+use \lib\utility;
+use \lib\utility\shortURL;
 
 trait options
 {
@@ -252,21 +254,58 @@ trait options
 			{
 				$useage_arg[] =
 				[
-					'termusage_foreign' => 'posts',
+					'termusage_foreign' => 'tag',
 					'term_id'           => $value,
 					'termusage_id'      => self::$poll_id
 				];
 			}
-			$useage = \lib\db\termusages::insert_multi($useage_arg);
+			\lib\db\termusages::insert_multi($useage_arg);
 		}
 
-		if(self::$args['cats'])
+		if(self::$args['cat'] && self::$args['permission_sarshomar'] === true)
 		{
-			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cats']))
+			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cat']))
 			{
-				return debug::error(T_("Invalid parameter cats"), 'cats', 'arguments');
+				return debug::error(T_("Invalid parameter cats"), 'cat', 'arguments');
 			}
-			\lib\db\cats::set(utility\shortURL::decode(self::$args['cats']), self::$poll_id);
+
+			$term_id = shortURL::decode(self::$args['cat']);
+
+			$check = \lib\db\terms::get($term_id);
+
+			if(!$check)
+			{
+				return debug::error(T_("Cat not found"), 'cat', 'arguments');
+			}
+
+			if(!isset($check['term_type']) || (isset($check['term_type']) && $check['term_type'] != 'profile'))
+			{
+				return debug::error(T_("Invalid cat"), 'cat', 'arguments');
+			}
+
+			$temp_poll_id = self::$poll_id;
+
+			$query =
+			"
+				INSERT INTO
+					termusages
+				SET
+					termusages.termusage_foreign = 'cat',
+					termusages.termusage_id      = $temp_poll_id,
+					termusages.term_id           = $term_id
+				ON DUPLICATE KEY UPDATE
+					termusages.term_id = $term_id
+			";
+
+			if(\lib\db::query($query))
+			{
+				if(isset($check['term_type']) && $check['term_type'])
+				{
+					$new_url = $check['term_url'];
+					$new_url .= '/'. shortURL::encode(self::$poll_id);
+					self::update(['post_url' => $new_url], self::$poll_id);
+				}
+			}
 		}
 	}
 

@@ -256,6 +256,16 @@ trait ready
 
 		unset($_poll_data['meta']);
 
+		$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'profile');
+
+		if($cat)
+		{
+			if(isset($cat[0]['id']))
+			{
+				$_poll_data['options']['cat'] = shortURL::encode($cat[0]['id']);
+			}
+		}
+
 		// get opts of poll
 		if($_options['get_opts'] && $poll_id)
 		{
@@ -283,7 +293,7 @@ trait ready
 					$opt_profile = [];
 					if(isset($value['id']))
 					{
-						$profile = \lib\db\terms::usage($value['id'], [], 'pollopts', 'profile');
+						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'profile');
 						if($profile && is_array($profile))
 						{
 							foreach ($profile as $k => $v)
@@ -347,7 +357,8 @@ trait ready
 
 			if($_options['get_options'])
 			{
-				$_poll_data['options'] = array_column($post_meta, 'option_value', 'option_key');
+				$temp_options = array_column($post_meta, 'option_value', 'option_key');
+				$_poll_data['options'] = array_merge($_poll_data['options'], $temp_options);
 				foreach ($_poll_data['options'] as $key => $value)
 				{
 					if(preg_match("/^tree/", $key))

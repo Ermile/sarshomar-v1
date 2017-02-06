@@ -4,21 +4,21 @@
   <div class="element no-pad">
    <label class="title large" for="cat0">{%trans "Main Category"%}</label>
    <div class="element-in">
-    <input type="text" id="cat0" placeholder='{%trans "Main Category"%}' class='input category autoList' data-find='profile' data-parent="">
+    <input type="text" id="cat0" placeholder='{%trans "Main Category"%}' class='input category autoList' data-find='profile' data-parent="" {% if cats[0] %} value="{{cats[0]}}" {% endif %}>
    </div>
   </div>
 
   <div class="element no-pad">
    <label class="title large" for="cat1">{%trans "Sub Category"%}</label>
    <div class="element-in">
-    <input type="text" id="cat1" placeholder='{%trans "Sub Category"%}' class='input category autoList' data-find='profile' data-parent="#cat0" disabled>
+    <input type="text" id="cat1" placeholder='{%trans "Sub Category"%}' class='input category autoList' data-find='profile' data-parent="#cat0"  {% if cats[1] %} value="{{cats[1]}}" {% else %} disabled {% endif %}>
    </div>
   </div>
 
   <div class="element no-pad">
    <label class="title large" for="cat2">{%trans "Child Category"%}</label>
    <div class="element-in">
-    <input type="text" id="cat2" placeholder='{%trans "Child Category"%}' class='input category autoList' data-find='profile' data-parent="#cat1" disabled>
+    <input type="text" id="cat2" placeholder='{%trans "Child Category"%}' class='input category autoList' data-find='profile' data-parent="#cat1"  {% if cats[2] %} value="{{cats[2]}}" {% else %} disabled {% endif %}>
    </div>
   </div>
   {%endif%}
