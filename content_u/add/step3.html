@@ -85,7 +85,7 @@
 
    <div id='prPerson' class="hide">
     <span>{%trans "Society"%}</span>
-    <span class='pr'>{{15000 | number_format | fitNumber}}</span>
+    <span class='pr'>{{0 | number_format | fitNumber}}</span>
    </div>
 
    <div id='prFilter' class="hide">
@@ -100,13 +100,26 @@
 
    <div id='prBrand' class="hide" data-val='10'>
     <span>{%trans "Branding"%}<b>x10</b></span>
-    <span class='pr'>{{30000 | number_format | fitNumber}}</span>
+    <span class='pr'>{{0 | number_format | fitNumber}}</span>
    </div>
 
    <div id='prTotal' class="tbl-footer">
     <span>{%trans "Total Price"%}</span>
-    <span class='pr'>{{57000 | number_format | fitNumber}}</span>
+    <span class='pr'>{{0 | number_format | fitNumber}}</span>
    </div>
+
+   <div id='prCash' class="tbl-footer">
+    <span>{%trans "Cash"%}</span>
+    <span class='pr'>{{10 | number_format | fitNumber}}</span>
+   </div>
+
+
+   <div id='prBalance' class="tbl-footer">
+    <span>{%trans "Balance"%}</span>
+    <span class='pr'>{{0 | number_format | fitNumber}}</span>
+   </div>
+
   </div>
+  <a href="{{url.base}}/@/billing/charge" class="try special-button">{%trans "Charge Account"%}</a>
  </div>
 {%endblock%}

@@ -1249,7 +1249,8 @@ function calcFilterPrice()
 	totalPrice   = totalPrice * basePrice;
 	totalPrice   = Math.round(totalPrice);
 	// set value to show to enduser
-	totalEl.text(fitNumber(totalPrice));
+	setCompleteVal(totalEl, totalPrice);
+
 	// return final result
 	return returnResult;
 }
@@ -1263,12 +1264,14 @@ function calcTotalPrice()
 {
 	var totalPrice = 0;
 	// get filter data
-	var filters  = calcFilterPrice();
-	var prAdd    = $('#prAdd');
-	var prPerson = $('#prPerson');
-	var prFilter = $('#prFilter');
-	var prBrand  = $('#prBrand');
-	var prTotal  = $('#prTotal');
+	var filters    = calcFilterPrice();
+	var prAdd      = $('#prAdd');
+	var prPerson   = $('#prPerson');
+	var prFilter   = $('#prFilter');
+	var prBrand    = $('#prBrand');
+	var prTotal    = $('#prTotal');
+	var prCash     = $('#prCash');
+	var prBalance  = $('#prBalance');
 
 
 	// if person count isset show or hide
@@ -1304,7 +1307,8 @@ function calcTotalPrice()
 		var personPrice = filters.base * filters.person;
 		prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
 		// set value
-		prPerson.find('.pr').attr('data-val', personPrice).text(fitNumber(personPrice));
+		setCompleteVal(prPerson.find('.pr'), personPrice);
+
 		totalPrice += personPrice;
 
 		if(typeof filters.filter == "number")
@@ -1313,7 +1317,8 @@ function calcTotalPrice()
 			var filterPrice = personPrice * (filters.filter/100);
 
 			prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
-			prFilter.find('.pr').attr('data-val', filterPrice).text(fitNumber(filterPrice));
+			setCompleteVal(prFilter.find('.pr'), filterPrice);
+
 			totalPrice += filterPrice;
 		}
 	}
@@ -1328,7 +1333,8 @@ function calcTotalPrice()
 		prBrand.find('span:first-child b').text('x' + fitNumber(brandFactor));
 		var brandPrice  = untilBrand * brandFactor;
 		// set value of price
-		prBrand.find('.pr').attr('data-val', brandPrice).text(fitNumber(brandPrice));
+		setCompleteVal(prBrand.find('.pr'), brandPrice);
+
 		// add brand to totalPrice
 		totalPrice += brandPrice;
 	}
@@ -1338,13 +1344,39 @@ function calcTotalPrice()
 	}
 
 	// set total price
-	prTotal.find('.pr').attr('data-val', totalPrice).text(fitNumber(totalPrice));
-	// show on topbox
-	$('#financial-box .cost .value').text(fitNumber(totalPrice));
+	setCompleteVal(prTotal.find('.pr'), totalPrice);
+	// get and set cash
+	var myCash = $('#financial-box .total .value').attr('data-val');
+	setCompleteVal(prCash.find('.pr'), myCash);
+	// calc final balance and set
+	var finalBalance = myCash - totalPrice;
+	setCompleteVal(prBalance.find('.pr'), finalBalance);
+	if(finalBalance < 0)
+	{
+		prBalance.addClass('isHighligh');
+		$('.stepPublish .span4 .try').slideDown();
+	}
+	else
+	{
+		prBalance.removeClass('isHighligh');
+		$('.stepPublish .span4 .try').slideUp();
+	}
 
+	// show on topbox
+	$('#financial-box .cost .value').attr('data-val', totalPrice).text(fitNumber(totalPrice));
 	$('#financial-box .cost').addClass('isCurrent');
 
 	return totalPrice;
+}
+
+
+/**
+ * [setCompleteVal description]
+ * @param {[type]} _el [description]
+ */
+function setCompleteVal(_el, _val)
+{
+	_el.attr('data-val', _val).text(fitNumber(_val));
 }
 
 
@@ -1503,6 +1535,17 @@ function sendQuestionData()
 	});
 
 	return myPoll;
+}
+
+
+/**
+ * [lockStep description]
+ * @return {[type]} [description]
+ */
+function lockStep()
+{
+	console.log('lock step!');
+
 }
 
 

@@ -1506,12 +1506,15 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 .tagDetector .tagBox{display:-webkit-box;display:-ms-flexbox;display:flex;flex-wrap:wrap}
 
+
 .stepPublish .tagDetector .tagBox{margin-bottom:20px}
 .tagDetector .element{margin-bottom:0}
 .tagDetector.separate{display:block}
 
 .stepAdd .tagDetector .tagBox span{max-width:200px;overflow:hidden;text-overflow:ellipsis}
 
+.stepPublish .span4{text-align:center;}
+.stepPublish .span4 .try{display:inline-block;}
 
 /************************************************************** element slider */
 .element .element-slider{-webkit-box-flex:1;-ms-flex:1;flex:1}

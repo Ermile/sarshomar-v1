@@ -72,7 +72,7 @@
       <div class="total">
        <a href="#">
         <span class="title">{%trans "Total cash"%}</span>
-        <span class="value">{{user_cash | number_format | fitNumber}}</span>
+        <span class="value" data-val="{{user_cash}}">{{user_cash | number_format | fitNumber}}</span>
         <span class="unit">{%trans user_unit%}</span>
        </a>
 
