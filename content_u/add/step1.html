@@ -19,34 +19,36 @@
 
 
 {%block feature_title%}
-<div class="ultra title-item">
- <div class="data">
-  <div class="element">
-   <label class="title large" for="title">{%trans "Title"%}</label>
-   <div class="element-in">
-    <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}">
-    <div class="file">
-     <input type="file" id="file_title">
-     <label class="label-file icon-pic" for="file_title"></label>
+<div data-row='title'>
+  <div class="ultra title-item">
+   <div class="data">
+    <div class="element">
+     <label class="title large" for="title">{%trans "Title"%}</label>
+     <div class="element-in">
+      <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}">
+      <div class="file">
+       <input type="file" id="file_title">
+       <label class="label-file icon-pic" for="file_title"></label>
+      </div>
+     </div>
+    </div>
+    <div class="modules">
+  {%if false%}
+     <div class="module score-module" data-response='meta_score' data-response-hide>
+      <label for="scoreTitle">{%trans "Score"%}</label>
+      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
+      <input type="number" class='scoreVal' id="scoreTitle" placeholder='{%trans "Score"%}'>
+     </div>
+  {%endif%}
+     <div class="module audio"></div>
     </div>
    </div>
-  </div>
-  <div class="modules">
-{%if false%}
-   <div class="module score-module" data-response='meta_score' data-response-hide>
-    <label for="scoreTitle">{%trans "Score"%}</label>
-    <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='meta_score_advance' data-response-hide>
-    <input type="number" class='scoreVal' id="scoreTitle" placeholder='{%trans "Score"%}'>
+   <div class="preview">
+  {%if poll.meta.attachment_id%}
+    <img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
+  {%endif%}
    </div>
-{%endif%}
-   <div class="module audio"></div>
   </div>
- </div>
- <div class="preview">
-{%if poll.meta.attachment_id%}
-  <img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
-{%endif%}
- </div>
 </div>
 {%endblock%}
 
