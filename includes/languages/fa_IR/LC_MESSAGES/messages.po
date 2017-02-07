@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-07 09:04+0330\n"
-"PO-Revision-Date: 2017-02-07 09:58+0330\n"
+"PO-Revision-Date: 2017-02-07 11:04+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -398,7 +398,7 @@ msgstr "خطا"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:239
 msgid "Add poll canceled"
-msgstr ""
+msgstr "افزودن نظرسنجی لغو شد"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:247
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:218
@@ -609,7 +609,7 @@ msgstr "حذف"
 
 #: content/saloos_tg/sarshomar_bot/commands/step_create.php:168
 msgid "Save as draft"
-msgstr ""
+msgstr "ذخیره پیش‌نویس"
 
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:15
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:15
@@ -768,7 +768,7 @@ msgstr ""
 #: content_api/v1/home/tools/ready.php:48 content_api/v1/poll/tools/delete.php:41
 #: includes/lib/utility/price.php:87
 msgid "Poll not found"
-msgstr ""
+msgstr "نظرسنجی یافت نشد"
 
 #: content_api/v1/home/tools/ready.php:62
 msgid "Can not access to load this poll (this is not your poll)"
@@ -776,7 +776,7 @@ msgstr ""
 
 #: content_api/v1/home/tools/ready.php:99
 msgid "(The poll is :status)"
-msgstr ""
+msgstr "(نظرسنجی :status)"
 
 #: content_api/v1/home/tools/ready.php:112
 msgid "Can not access to load this poll :msg"

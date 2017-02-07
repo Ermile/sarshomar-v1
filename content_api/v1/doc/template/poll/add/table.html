@@ -308,95 +308,49 @@
     </div>
     <div>
         <span><strong>gender</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Select the gender that can answer the poll. It can be:"%}
-        <br> <code class="example-code html">["male"]</code> {%trans "Only ask from males."%}
-        <br> <code class="example-code html">["female"]</code> {%trans "Only ask from females."%}
-        <br> <code class="example-code html">["male", "female"]</code> {%trans "Only ask from males and females."%}
-        <br> <code class="example-code html">null</code>  {%trans "Ask anyone."%}
+        <span><span class="long-txt">{%trans "Select the gender that can answer the poll. You can set one or more items or leave it null."%}</span>
+        <br> <code class="example-code html">["male", "female"]</code>
         <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["male"]</code></span>
     </div>
     <div>
         <span><strong>marrital</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the marrital status of the people who can answer the poll. It cant be:"%}
-            <br> <code class="example-code html"> ["single"]</code> {%trans "Only ask from single people."%}
-            <br> <code class="example-code html"> ["married"]</code> {%trans "Only ask from married people."%}
-            <br> <code class="example-code html"> ["single", "married"]</code> {%trans "Only ask from single and married people."%}
-            <br> <code class="example-code html"> null</code> {%trans "Ask anyone."%}
+        <span><span class="long-txt">{%trans "Set the marrital status of the people who can answer the poll.  You can set one or more items or leave it null."%}</span>
+            <br> <code class="example-code html"> ["single", "married"]</code>
             <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["single"]</code></span>
     </div>
     <div>
         <span><strong>graduation</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the graduation status of the people who can answer the poll"%}
-        <br> <code class="example-code html"> ["illiterate"] </code> {%trans "Ask from illiterate people."%}
-        <br> <code class="example-code html"> ["undergraduate"] </code> {%trans "Ask from undergraduate people."%}
-        <br> <code class="example-code html"> ["graduate"] </code> {%trans "Ask from graduate people."%}
-        <br> <code class="example-code html"> ["illiterate", "undergraduate"] </code> {%trans "Ask from illiterate and undergraduate people."%}
-        <br> <code class="example-code html"> ["illiterate","graduate"] </code> {%trans "Ask from illiterate and graduate people."%}
-        <br> <code class="example-code html"> ["undergraduate", "graduate"] </code> {%trans "Ask from undergraduate and graduate people."%}
-        <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code> {%trans "Ask from illiterate, undergraduate and graduate people."%}
-        <br> <code class="example-code html"> null </code> {%trans "Ask anyone."%}
+        <span><span class="long-txt">{%trans "Set the graduation status of the people who can answer the poll. You can set one or more items or leave it null."%}</span>
+        <br> <code class="example-code html"> ["illiterate", "undergraduate", "graduate"] </code>
         <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["graduate"]</code></span>
     </div>
     <div>
         <span><strong>degree</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the university or college degree status of the people who can answer the poll"%}
-        <br> <code class="example-code html"> ["under_diploma"]</code>
-        <br> <code class="example-code html"> ["diploma"]</code>
-        <br> <code class="example-code html"> ["2_year_college"]</code>
-        <br> <code class="example-code html"> ["bachelor"]</code>
-        <br> <code class="example-code html"> ["master"]</code>
-        <br> <code class="example-code html"> ["phd"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "2_year_college"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "bachelor"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "master"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "phd"]</code>
-        <br> <code class="example-code html"> ["diploma", "2_year_college"]</code>
-        <br> <code class="example-code html"> ["diploma", "bachelor"]</code>
-        <br> <code class="example-code html"> ["diploma", "master"]</code>
-        <br> <code class="example-code html"> ["diploma", "phd"]</code>
-        <br> <code class="example-code html"> ["2_year_college", "bachelor"]</code>
-        <br> <code class="example-code html"> ["2_year_college", "master"]</code>
-        <br> <code class="example-code html"> ["2_year_college", "phd"]</code>
-        <br> <code class="example-code html"> ["bachelor", "master"]</code>
-        <br> <code class="example-code html"> ["bachelor", "phd"]</code>
-        <br> <code class="example-code html"> ["master", "phd"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "bachelor"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "master"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "phd"]</code>
-        <br> <code class="example-code html"> ["diploma", "2_year_college", "bachelor"]</code>
-        <br> <code class="example-code html"> ["diploma", "2_year_college", "master"]</code>
-        <br> <code class="example-code html"> ["diploma", "2_year_college", "phd"]</code>
-        <br> <code class="example-code html"> ["2_year_college", "bachelor", "master"]</code>
-        <br> <code class="example-code html"> ["2_year_college", "bachelor","phd"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code>
-        <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code>
+        <span><span class="long-txt">{%trans "Set the university or college degree status of the people who can answer the poll. You can set one or more items or leave it null."%}</span>
         <br> <code class="example-code html"> ["under_diploma", "diploma", "2_year_college", "bachelor", "master", "phd"]</code>
         <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["master"]</code></span>
     </div>
     <div>
         <span><strong>range</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the age range of the people who can answer the poll"%}
+        <span><span class="long-txt">{%trans "Set the age range of the people who can answer the poll. You can set one or more items or leave it null."%}</span>
             <br> <code class="example-code html"> ["-13", "diploma", "14-17", "18-24", "25-30", "31-44", "45-59", "60+"]</code>
                 <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["18-24"]</code></span>
     </div>
     <div>
         <span><strong>employmentstatus</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the job status of the people who can answer the poll"%}
+        <span><span class="long-txt">{%trans "Set the job status of the people who can answer the poll. You can set one or more items or leave it null."%}</span>
             <br> <code class="example-code html"> ["employee", "unemployed", "retired"]</code>
                 <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["unemployed"]</code></span>
     </div>
     <div>
         <span><strong>housestatus</strong> <br> <small><i>array</i></small></span>
-        <span>{%trans "Set the housing status of the people who can answer the poll"%}
+        <span><span class="long-txt">{%trans "Set the housing status of the people who can answer the poll. You can set one or more items or leave it null."%}</span>
             <br> <code class="example-code html"> ["owner", "tenant", "homeless"] </code>
             <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">["tenant"]</code></span>
