@@ -228,10 +228,14 @@
 .auth .auth-agreement {font-size: 2em}
 .auth .auth-desc {font-size: 2em;width: 100%;margin: auto;}
 
-.api-quick-access {display: none;}
+
 
 }
 
+
+@media screen and (max-width:860px) {
+    .api-quick-access {display: none;}
+}
 
 /************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
 @media all and (max-width: 319px) {
