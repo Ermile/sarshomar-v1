@@ -1435,7 +1435,7 @@ function requestSavingData(_manualRequest)
 function sendQuestionData()
 {
 	// change status to syncing
-	$('.sync').attr('data-syncing', true);
+	syncing(true);
 
 	var myPoll  = {};
 	myPoll      = prepareQuestionData();
@@ -1488,7 +1488,7 @@ function sendQuestionData()
 					}
 					$('#rangepersons').rangeSlider('option', 'max_limit', limit, 1);
 				}
-				$('.sync').attr('data-syncing', null);
+				syncing();
 			},
 			error: function(e, data, x)
 			{
@@ -1502,6 +1502,30 @@ function sendQuestionData()
 	return myPoll;
 }
 
+
+/**
+ * [syncing description]
+ * @param  {[type]} _status   [description]
+ * @param  {[type]} _progress [description]
+ * @return {[type]}           [description]
+ */
+function syncing(_status, _progress)
+{
+	if(_status === true)
+	{
+		// change status to syncing
+		$('.sync').attr('data-syncing', true);
+	}
+	else if(_status === false)
+	{
+		// change status to syncing
+		$('.sync').attr('data-syncing', false);
+	}
+	else
+	{
+		$('.sync').attr('data-syncing', null);
+	}
+}
 
 
 /**

@@ -420,8 +420,8 @@ a[href*="amcharts.com"]{display:none!important}
 .sync[data-syncing]{cursor:progress}
 
 .sync-in{position:relative;padding:.7em 1em;background-color:#efefef;border:1px solid #efefef;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;}
-.sync-in::before{height:1px;width:0;background-color:#00667a;bottom:0;position:absolute;content:'';left:0}
-.rtl .sync-in::before{left:auto;right:0}
+.sync-in b{height:1px;width:0;background-color:#00667a;bottom:0;position:absolute;content:'';left:0;transition:1.5s}
+.rtl .sync-in b{left:auto;right:0}
 
 .sync .inSync,.sync .syncing{margin-left:1em;font-weight:bold;color:#00667a}
 .rtl .sync .inSync,.rtl .sync .syncing{margin-left:0;margin-right:1em}
