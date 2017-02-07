@@ -1,5 +1,11 @@
 /**
+ * v1.0
+ */
+
+
+/**
  * check input for first time
+ * @return {[type]} [description]
  */
 function runDataResponse()
 {
@@ -76,6 +82,12 @@ function checkInputResponse(_this, _firstTime)
 		elSelector = elID;
 	}
 	var childrens  = $('[data-response="'+ elSelector +'"]');
+	// if this name is not exist use id for selector
+	if(childrens.length < 1)
+	{
+		elSelector = elID;
+		childrens  = $('[data-response="'+ elSelector +'"]');
+	}
 	// if this name is not exist use id for selector
 	if(childrens.length < 1)
 	{
