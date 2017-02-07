@@ -1469,7 +1469,10 @@ function sendQuestionData()
 					{
 						var myurl = window.location.pathname + '/' + id + window.location.hash;
 						// add new and redirect url
-						$('#short_url').val(id);
+						if(e.result.short_url)
+						{
+							$('#short_url').val(e.result.short_url);
+						}
 						Navigate(
 						{
 							url: myurl,
