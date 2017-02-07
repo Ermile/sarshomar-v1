@@ -20,7 +20,7 @@ class filters
 			'marrital'         => ['single', 'married'],
 			'internetusage'    => ['low', 'mid', 'high'],
 			'graduation'       => ['illiterate', 'undergraduate', 'graduate'],
-			'degree'           => ['under_diploma', 'diploma', '2_year_college', 'bachelor', 'master', 'phd'],
+			'degree'           => ['under diploma', 'diploma', '2 year college', 'bachelor', 'master', 'phd'],
 			'course'           => null,
 			'age'              => null,
 			'range'            => ['-13', '14-17', '18-24', '25-30', '31-44', '45-59', '60+'],
@@ -43,7 +43,7 @@ class filters
 					if(is_array($_value))
 					{
 						$check = true;
-						foreach ($_value as $key => $value) 
+						foreach ($_value as $key => $value)
 						{
 							if(!in_array($value, $support_filter[$_check]))
 							{
@@ -53,7 +53,7 @@ class filters
 						return $check;
 					}
 					else
-					{	
+					{
 						if(is_array($support_filter[$_check]) && in_array($_value, $support_filter[$_check]))
 						{
 							return true;

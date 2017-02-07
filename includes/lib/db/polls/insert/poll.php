@@ -255,7 +255,9 @@ trait poll
 
 				$member       = (int) self::$args['from']['count'];
 
-				$member_exist = (int) \lib\db\users::get_count("awaiting");
+				unset(self::$args['from']['count']);
+
+				$member_exist = (int) \lib\db\filters::count_user(self::$args['from']);
 
 				debug::msg("member_exist", $member_exist);
 
@@ -264,7 +266,7 @@ trait poll
 				{
 					if(self::$debug)
 					{
-						return debug::error(T_(":max user was found, low  the slide of members ",["max" => $member_exist]), 'count', 'arguments');
+						return debug::error(T_(":max user was found, low the members ",["max" => $member_exist]), 'count', 'arguments');
 					}
 				}
 

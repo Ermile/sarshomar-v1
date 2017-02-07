@@ -339,7 +339,7 @@ trait ready
 		if($_options['get_filter'] && $poll_id)
 		{
 			$filters               = utility\postfilters::get_filter($poll_id);
-			$filters['member']     = \lib\db\ranks::get($poll_id, 'member');
+			$filters['count']     = \lib\db\ranks::get($poll_id, 'member');
 			$filters               = array_filter($filters);
 			$_poll_data['filters'] = $filters;
 		}
