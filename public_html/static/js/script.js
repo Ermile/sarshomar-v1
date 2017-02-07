@@ -1046,10 +1046,19 @@ function checkNextStep()
 				break;
 
 			case 'step-publish':
-				changePollStatus();
+				pollUrl = $('#short_url').val();
+				if(pollUrl)
+				{
+					Navigate({ url: pollUrl });
+				}
 				break;
 		}
-	})
+	});
+
+	$(document).on('click', ".stepPublish .publish", function()
+	{
+		changePollStatus();
+	});
 }
 
 
@@ -1062,7 +1071,7 @@ function changePollStatus(_status)
 {
 	if(!_status)
 	{
-		_status = 'awaiting';
+		_status = 'publish';
 	}
 
 	$('#question-add').ajaxify(
@@ -1354,12 +1363,18 @@ function calcTotalPrice()
 	if(finalBalance < 0)
 	{
 		prBalance.addClass('isHighligh');
-		$('.stepPublish .span4 .try').slideDown();
+		// show charge
+		$('.stepPublish .charge').slideDown();
+		// hide publish
+		$('.stepPublish .publish').slideUp();
 	}
 	else
 	{
 		prBalance.removeClass('isHighligh');
-		$('.stepPublish .span4 .try').slideUp();
+		// hide charge
+		$('.stepPublish .charge').slideUp();
+		// show publish
+		$('.stepPublish .publish').slideDown();
 	}
 
 	// show on topbox
