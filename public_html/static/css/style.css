@@ -624,7 +624,7 @@ footer #footer-nav .eco img{height:100%;padding-top:5px}
 /* footer-links */
 footer #footer-links{font-size:1.4em;border-bottom:1px solid #e5a428;padding:2em 0}
 footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:5px;font-size:1.1em}
-footer #footer-links a{display:block;color:#888;}
+footer #footer-links a{color:#888;}
 footer #footer-links a:not(:last-child){margin-bottom:.2em}
 footer #footer-links a:hover,footer #footer-links a:focus{color:#fff}
 footer #footer-links #footer-news article{margin-bottom:.5em;border:1px solid transparent}

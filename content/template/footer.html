@@ -15,28 +15,38 @@
 {%if site.currentlang =='fa'%}
     <nav class="span1 enamad">
      <a href="#">
-      <img src="{{url.static}}images/enamad.png" alt='{%trans "Enamad"%}' width="80">
+        <img src="{{url.static}}images/enamad.png" alt='{%trans "Enamad"%}' width="80">
      </a>
     </nav>
 {%endif%}
     <nav class="span2">
      <h4>{%trans "Service"%}</h4>
-     <a href="{{url.base}}/features">{%trans "Features"%}</a>
-     <a href="{{url.base}}/$">{%trans "Knowledge"%}</a>
-     <!-- <a href="{{url.base}}/ask/random">{%trans "Random Poll"%}</a> -->
-     <!-- <a href="{{url.base}}/referral">{%trans "Referral Program"%}</a> -->
+     <ul>
+         <li><a href="{{url.base}}/features">{%trans "Features"%}</a></li>
+         <li><a href="{{url.base}}/$">{%trans "Knowledge"%}</a></li>
+         <li><!-- <a href="{{url.base}}/ask/random">{%trans "Random Poll"%}</a> --></li>
+         <li><!-- <a href="{{url.base}}/referral">{%trans "Referral Program"%}</a> --></li>
+     </ul>
+
+
+
+
     </nav>
 
     <nav class="span2">
      <h4>{%trans "Learn More"%}</h4>
-     <a href="{{url.base}}/terms">{%trans "Terms of Service"%}</a>
-     <a href="{{url.base}}/privacy">{%trans "Privacy Policy"%}</a>
+     <ul>
+         <li><a href="{{url.base}}/terms">{%trans "Terms of Service"%}</a></li>
+         <li><a href="{{url.base}}/privacy">{%trans "Privacy Policy"%}</a></li>
+     </ul>
     </nav>
 
     <nav class="span2">
      <h4>{%trans "Support"%}</h4>
-     <!-- <a href="{{url.base}}/help">{%trans "Help Center"%}</a> -->
-     <a href="{{url.base}}/contact">{%trans "Contact"%}</a>
+     <ul>
+         <li><!-- <a href="{{url.base}}/help">{%trans "Help Center"%}</a> --></li>
+         <li><a href="{{url.base}}/contact">{%trans "Contact"%}</a></li>
+     </ul>
     </nav>
 
     <!-- <nav class="span2"> -->
