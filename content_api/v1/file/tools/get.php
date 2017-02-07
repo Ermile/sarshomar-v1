@@ -1,5 +1,5 @@
 <?php
-namespace content_api\v1\upload\tools;
+namespace content_api\v1\file\tools;
 
 trait get
 {
@@ -10,10 +10,9 @@ trait get
 	 *
 	 * @return     array   The upload.
 	 */
-	public function get_upload($_args)
+	public function get_file($_options = [])
 	{
-		return "get";
+
 	}
 }
-
 ?>

@@ -21,6 +21,10 @@ class model extends \content_u\home\model
 
 	use \content_api\v1\poll\search\tools\search;
 
+	use \content_api\v1\file\tools\link;
+
+	use \content_api\v1\file\tools\get;
+
 
 	/**
 	 * Gets the add.
@@ -77,6 +81,11 @@ class model extends \content_u\home\model
 			return;
 		}
 
+		if($this->local_upload())
+		{
+			return;
+		}
+
 		return $this->poll();
 	}
 
@@ -91,6 +100,11 @@ class model extends \content_u\home\model
 	public function post_edit($_args)
 	{
 		if($this->local_search())
+		{
+			return;
+		}
+
+		if($this->local_upload())
 		{
 			return;
 		}
@@ -271,6 +285,31 @@ class model extends \content_u\home\model
 		utility::set_request_array($request);
 		$result = $this->tag_search();
 		return $result;
+	}
+
+
+	/**
+	 * check upload file or no
+	 */
+	public function local_upload()
+	{
+		$file_uploaded = utility::files("croppedImage");
+		if($file_uploaded)
+		{
+			$args =
+			[
+				'upload_name' => 'croppedImage',
+				'poll'        => utility::post('question'),
+				'opt'         => utility::post('opt'),
+			];
+			utility::set_request_array($args);
+
+			$this->user_id = $this->login('id');
+
+			$this->upload_file();
+			return true;
+		}
+		return false;
 	}
 }
 ?>
