@@ -29,9 +29,31 @@ class model extends \mvc\model
 		curl_setopt($ch,CURLOPT_POST, count($fields));
 		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// exit();
 		$r = curl_exec($ch);
 		curl_close($ch);
-		return json_decode($r);
+		$response = json_decode($r, true);
+		if(isset($response['error_type']))
+		{
+			\lib\debug::error(T_("Token error", 'token', 'instagram'));
+			return '';
+		}
+		$access_token = $response['access_token'];
+		$user_id = $_SESSION['user']['id'];
+		$instagram_id = $response['user']['id'];
+		$q = "INSERT INTO options SET
+		user_id = $user_id,
+		option_cat = 'instagram',
+		option_key = 'id',
+		option_value = '$instagram_id'";
+		\lib\db::query($q);
+
+		$q = "INSERT INTO options SET
+		user_id = $user_id,
+		option_cat = 'instagram',
+		option_key = 'user_token_$user_id',
+		option_value = '$access_token'";
+		\lib\db::query($q);
+
+		return $response;
 	}
 }

@@ -12,9 +12,9 @@ class view extends \content\home\view
 
 	function view_instagram($_args)
 	{
-		if(isset($_args->api_callback->user))
+		if(isset($_args->api_callback['user']))
 		{
-			$this->data->oauth = $_args->api_callback->user;
+			$this->data->oauth = $_args->api_callback['user'];
 		}
 	}
 }

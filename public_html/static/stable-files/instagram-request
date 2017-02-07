@@ -1,0 +1,21 @@
+Sarshomar
+Ask Anyone Anywhere
+
+Focus on your question. Do not be too concerned about how to ask or analyze. Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.
+
+We are developing a full feature poll service and need to sync Instagram account of our users with Sarshomar account. We need to read opinion of people from comments and likes.
+
+First user need to add new poll with Sarshomar, then we create image and user can share it on Instagram. Then come to Sarshomar panel and connect specific Instagram media with specific Sarshomar poll.
+Now we start monitor comments on this post and give opinion of people for analyse. for some type of polls we give likes and set it as result of polls.
+
+
+Finally We are developer, help us;)
+
+
+
+https://dev.sarshomar.com/static/stable-files/Instagram-verify.mp4
+
+
+need permission to send result of poll after request of user in comments of specific media
+
+need permission of read comments and likes to analyse opinion of users to this media that linked to user poll on Sarshomar
