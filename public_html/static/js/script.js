@@ -1561,8 +1561,14 @@ function prepareQuestionData()
 		var thisOpt = {};
 		// title
 		thisOpt.title   = $('#answer'+row).val();
-		// complete profile
+		// set file id if exist
+		var fileId = $this.find('.preview').attr('data-file-id');
+		if(fileId)
+		{
+			thisOpt.file = fileId;
+		}
 
+		// complete profile
 		if($('#complete-profile').is(":checked"))
 		{
 			thisOpt.profile = $this.find('.profile-module').attr('data-val');
