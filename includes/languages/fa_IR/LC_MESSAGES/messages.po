@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-07 09:04+0330\n"
-"PO-Revision-Date: 2017-02-07 09:09+0330\n"
+"PO-Revision-Date: 2017-02-07 09:20+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -2929,7 +2929,7 @@ msgstr "مخزن افزونه‌های سالوس"
 
 #: includes/languages/trans_addons.php:247
 msgid "Current Project Repository"
-msgstr ""
+msgstr "مخزن پروژه‌ی کنونی"
 
 #: includes/languages/trans_addons.php:248
 msgid "Backup"
@@ -4132,7 +4132,7 @@ msgstr "مقالات مرتبط"
 
 #: includes/languages/trans_twig.php:39
 msgid "Search in Help Center"
-msgstr ""
+msgstr "جستجو در مرکز راهنمایی"
 
 #: includes/languages/trans_twig.php:40
 msgid "Questions List"
@@ -4480,7 +4480,7 @@ msgstr "ادامه"
 
 #: includes/languages/trans_twig.php:154
 msgid "You are connected to Instagram"
-msgstr ""
+msgstr "شما به اینستاگرام متصل شدید"
 
 #: includes/languages/trans_twig.php:155
 msgid "Enjoy!"

@@ -11,13 +11,8 @@
     </div>
     <div>
         <span><strong>survey</strong> <br> <small><i>code</i></small></span>
-        <span>{%trans "Survey..."%} <br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>{%trans "Survey code"%} <br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">"3r"</code></span>
-    </div>
-    <div>
-        <span><strong>status</strong> <br> <small><i>publish</i></small></span>
-        <span>{%trans "Select the status of poll between draft and publish"%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
-        <span><code class="example-code html">"publish"</code></span>
     </div>
     <div>
         <span><strong>language</strong> <br> <small><i>fa</i></small></span>
@@ -118,7 +113,7 @@
         <span><code class="example-code html">"246js"</code></span>
     </div>
     <div>
-        <span><strong>answers</strong> <br> <small><i>skipped</i></small></span>
+        <span><strong>answers</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "Select the answers of the parent poll."%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
         <span><code class="example-code html">true</code></span>
     </div>
@@ -161,7 +156,7 @@
     </div>
     <div>
         <span><strong>type</strong> <br> <small><i>select</i></small></span>
-        <span>{%trans "select the type of the answer."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>{%trans "select the type of the answer."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
         <span><code class="example-code html">"select"</code></span>
     </div>
     <div>
@@ -212,7 +207,7 @@
     </div>
     <div>
         <span><strong>group</strong> <br> <small><i>string</i></small></span>
-        <span>{%trans "group..."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span>{%trans "Specify the group that you poll belongs to."%}<br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">"Math and Physics"</code></span>
     </div>
     <div>
@@ -232,19 +227,16 @@
         <span>{%trans "Example"%}</span>
     </div>
     <div>
-        <span><strong>range_timing_max</strong> <br> <small><i>int</i></small></span>
-        <span>{%trans "Set the maximum time for the range"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
+        <span><strong>time</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "Set the time for the poll"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">12</code></span>
     </div>
     <div>
-        <span><strong>choice_count_min</strong> <br> <small><i>int</i></small></span>
-        <span>{%trans "Set the minimum count for the choice"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">18</code></span>
-    </div>
-    <div>
-        <span><strong>choice_count_max</strong> <br> <small><i>int</i></small></span>
-        <span>{%trans "Set the maximum count for the choice"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
-        <span><code class="example-code html">28</code></span>
+        <span>
+             <a href="v1/doc#poll-multi"><strong>multi</strong></a> <br> <small><i>object</i></small>
+        </span>
+        <span>{%trans "Set minimum and maximum time for the poll"%} <br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><a href="v1/doc#poll-multi"><strong>{%trans "Go to table"%}</strong></a></span>
     </div>
     <div>
         <span><strong>random_sort</strong> <br> <small><i>BOOL</i></small></span>
@@ -255,6 +247,27 @@
         <span><strong>ordering</strong> <br> <small><i>BOOL</i></small></span>
         <span>{%trans "Set the order of options by this variable"%}<br> <small class="optional">{%trans "Optional"%}</small></span>
         <span><code class="example-code html">true</code></span>
+    </div>
+</div>
+<!--inner table-->
+<h3 class="unselectable" id="poll-multi">
+    <a href="v1/doc#poll-multi">{%trans "Poll multi"%}</a>
+</h3>
+<div class="tbl method-table ltr">
+    <div class="tbl-header">
+        <span>{%trans "ID"%} <small> <br> {%trans "Variable"%}</small></span>
+        <span>{%trans "Description"%} <small> <br> {%trans "Priority"%}</small></span>
+        <span>{%trans "Example"%}</span>
+    </div>
+    <div>
+        <span><strong>min</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "Set the minimum time for the poll."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">10</code></span>
+    </div>
+   <div>
+        <span><strong>max</strong> <br> <small><i>int</i></small></span>
+        <span>{%trans "Set the maximum time for the poll."%}<br> <small class="mandatory">{%trans "Mandatory"%}</small></span>
+        <span><code class="example-code html">25</code></span>
     </div>
 </div>
 <!--inner table-->
