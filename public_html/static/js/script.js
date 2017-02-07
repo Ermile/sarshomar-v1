@@ -434,7 +434,7 @@ function startCrop(_el)
 			finalPreview.html(elImgNew);
 			var argSend      = {};
 			argSend.targetEl = finalPreview;
-			argSend.preview  = elImgPrev;
+			argSend.preview  = $(_el);
 			$import('lib/cropper/cropper.min.js', 'runCropper', argSend);
 			break;
 
@@ -1460,6 +1460,7 @@ function sendQuestionData()
 				{
 					var id = e.result.id;
 					var myurl = window.location.pathname;
+					$('#question-add').attr('data-id', id);
 					if(myurl.indexOf('add/'+ id) >= 0)
 					{
 						// edit
@@ -1468,7 +1469,6 @@ function sendQuestionData()
 					{
 						var myurl = window.location.pathname + '/' + id + window.location.hash;
 						// add new and redirect url
-						$('#question-add').attr('data-id', id);
 						$('#short_url').val(id);
 						Navigate(
 						{
