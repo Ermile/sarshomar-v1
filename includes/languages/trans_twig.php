@@ -849,6 +849,9 @@ private function transtext()
 	echo T_("Society");                                                               // Line 87
 	echo T_("Register Question");                                                     // Line 97
 	echo T_("Total Price");                                                           // Line 107
+	echo T_("Cash");                                                                  // Line 112
+	echo T_("Balance");                                                               // Line 118
+	echo T_("Charge Account");                                                        // Line 123
 
 	//---------------------------------------------------------content_u\add\tree.html
 
