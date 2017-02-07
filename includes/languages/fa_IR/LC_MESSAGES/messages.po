@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-07 11:52+0330\n"
-"PO-Revision-Date: 2017-02-07 11:57+0330\n"
+"PO-Revision-Date: 2017-02-07 12:28+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -751,7 +751,7 @@ msgstr "اجازه به مخفی کردن نتایج"
 
 #: content_api/v1/home/model.php:129 content_api/v1/home/model.php:147
 msgid "Access denide (Invalid url)"
-msgstr ""
+msgstr "دسترسی امکان‌پذیر نیست(آدرس نامعتبر)"
 
 #: content_api/v1/home/model.php:137
 msgid "Invalid authorization kye (user not found)"
@@ -759,7 +759,7 @@ msgstr ""
 
 #: content_api/v1/home/model.php:153
 msgid "Invalid token"
-msgstr ""
+msgstr "توکن نامعتبر"
 
 #: content_api/v1/home/tools/get_token.php:47
 msgid "Invalid parameter temp_token"
@@ -785,7 +785,7 @@ msgstr ""
 #: content_api/v1/home/tools/ready.php:117
 #: content_api/v1/poll/status/tools/set.php:74
 msgid "Invalid parameter status"
-msgstr ""
+msgstr "پارامتر وضعیت نامعتبر است"
 
 #: content_api/v1/poll/price/tools/price.php:13
 msgid "No parametr was send"
@@ -829,7 +829,7 @@ msgstr "ناتوان در تغییر وضعیت"
 
 #: content_api/v1/poll/status/tools/set.php:40
 msgid "Prameter status not set"
-msgstr ""
+msgstr "وضعیت پارامتر تعیین نشده است"
 
 #: content_api/v1/poll/status/tools/set.php:58
 msgid "Poll status changed"
@@ -862,7 +862,7 @@ msgstr ""
 
 #: content_api/v1/poll/tools/delete.php:48
 msgid "Can not access to delete this poll"
-msgstr ""
+msgstr "دسترسی برای حذف این نظرسنجی امکان پذیر نیست"
 
 #: content_api/v1/poll/tools/delete.php:53
 msgid "Poll user not found"
@@ -2076,7 +2076,7 @@ msgstr "اعتبارسنجی"
 
 #: includes/cls/database/sarshomar/translation.php:356
 msgid "validation"
-msgstr ""
+msgstr "اعتبارسنجی"
 
 #: includes/cls/database/sarshomar/translation.php:357
 msgid "hated"
@@ -5952,7 +5952,7 @@ msgstr ""
 
 #: includes/languages/trans_twig.php:541
 msgid "Billing via Sarshomar API"
-msgstr ""
+msgstr "پرداخت از طریق API سرشمار"
 
 #: includes/languages/trans_twig.php:544
 msgid "Header"
@@ -7454,7 +7454,7 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:172
 msgid "Parameter article must be array"
-msgstr ""
+msgstr "پارامتر مقالات باید آرایه باشد"
 
 #: includes/lib/db/polls/insert/options.php:179
 msgid "Invalid arguments article on index :key"
@@ -7462,7 +7462,7 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:228
 msgid "Parameter tags must be array"
-msgstr ""
+msgstr "پارامتر تگ باید آرایه باشد"
 
 #: includes/lib/db/polls/insert/options.php:261
 msgid "Invalid tag in index :key, tags must be less than 45 character"
@@ -7470,11 +7470,11 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:323
 msgid "Invalid parameter cats"
-msgstr ""
+msgstr "پارامتر دسته بندی نامعتبر است"
 
 #: includes/lib/db/polls/insert/options.php:332
 msgid "Cat not found"
-msgstr ""
+msgstr "دسته بندی یافت نشد"
 
 #: includes/lib/db/polls/insert/options.php:337
 msgid "Invalid cat"

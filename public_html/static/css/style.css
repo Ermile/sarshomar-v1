@@ -1715,7 +1715,7 @@ code{margin:0}
 .api-sample {border: 0;padding: 5px 0 10px 0;margin-bottom: 4em;}
 .api-docs p {font-size: 1.3em;margin-bottom: 1em;}
 .api-docs h2:not(:first-child) {margin-top: 2em;margin-bottom: 1em;}
-.api-docs code {font-size: 1.6em;padding: 1em;margin-bottom: 1em;border-radius: 2px;background-color: #333;color: #dedede;font-family: monospace;height: auto;overflow-x: auto;overflow-y: hidden;white-space: pre;}
+.api-docs code {font-size: 1.6em;padding: 1em;margin-bottom: 1em;border-radius: 2px;background-color: #333;color: #dedede;font-family: monospace;height: auto;overflow-x: auto;overflow-y: hidden;white-space: pre-wrap;}
 .api-docs .url {background-color: #fff;color:#48545d;font-family: monospace;height: auto;line-height: 1;overflow-x: auto;overflow-y: hidden;padding: 1em 1.5rem;white-space: pre;font-weight: bold;font-size: 1.4em;border: 1px solid #e0e0e0;border-radius: 2px;}
 .api-docs .mandatory {color: #f44336}
 .api-docs .optional {color: #4caf50}
