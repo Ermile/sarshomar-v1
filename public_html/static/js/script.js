@@ -1015,6 +1015,15 @@ function detectStep(_name)
 	}
 	// change title of btn
 	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
+	if(sthis == 'step3')
+	{
+		var pollAddr = $('#short_url').val();
+		$("#next-step").attr('href',  pollAddr);
+	}
+	else
+	{
+		$("#next-step").attr('href', null);
+	}
 
 	$('.page-progress').attr('data-current', sthis);
 	setTimeout(function()
@@ -1046,11 +1055,7 @@ function checkNextStep()
 				break;
 
 			case 'step-publish':
-				pollUrl = $('#short_url').val();
-				if(pollUrl)
-				{
-					Navigate({ url: pollUrl });
-				}
+				// do nothing. only navigate
 				break;
 		}
 	});
