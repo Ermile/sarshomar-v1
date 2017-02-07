@@ -23,8 +23,9 @@
 				</div>
 				<hr>
 				<div class="auth-agreement">
-					با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از اطلاعات شما بر طبق <a href="{{url.static}}terms">شرایط استفاده</a>					و <a href="{{url.static}}privacy">حریم خصوصی</a> استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری
-					خود تغییر دهید.
+					{% trans "By clicking Allow, you allow this app and Sarshomar to use your information in accordnace with their respective"%}
+					<a href="{{url.static}}terms">{% trans " terms of service "%}</a> {% trans "and"%}
+					<a href="{{url.static}}privacy">{% trans " privacy policies "%}</a> {% trans ". You can change this at any time."%}
 				</div>
 			</div>
 		</div>

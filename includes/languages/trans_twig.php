@@ -17,7 +17,7 @@ private function transtext()
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 78
-	echo T_("Quick Access");                                                          // Line 60
+	echo T_("Quick Access");                                                          // Line 66
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 38
@@ -36,6 +36,7 @@ private function transtext()
 	echo T_("Related articles");                                                      // Line 29
 
 	//---------------------------------------------------------content\help\terms.html
+	echo T_("Search in Help Center");                                                 // Line 8
 	echo T_("Questions List");                                                        // Line 21
 	echo T_("Latest questions");                                                      // Line 30
 
@@ -112,7 +113,7 @@ private function transtext()
 	echo T_("Age");                                                                   // Line 105
 	echo T_("Province");                                                              // Line 171
 	echo T_("Religion");                                                              // Line 59
-	echo T_("Language");                                                              // Line 47
+	echo T_("Language");                                                              // Line 64
 
 	//----------------------------------------------------content\main\layout-xhr.html
 	echo T_("View your current location and navigate to parent of it");               // Line 60
@@ -124,7 +125,7 @@ private function transtext()
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                              // Line 46
 	echo T_("← Back");                                                              // Line 46
-	echo T_("Skip");                                                                  // Line 97
+	echo T_("Skip");                                                                  // Line 103
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
@@ -150,8 +151,18 @@ private function transtext()
 	echo T_("Continue");                                                              // Line 314
 
 	//------------------------------------------content\referer\instagram\display.html
+	echo T_("You are connected to Instagram");                                        // Line 12
+	echo T_("Enjoy!");                                                                // Line 14
 
 	//----------------------------------------------content\referer\token\display.html
+	echo T_("Authorize this application to use your account?");                       // Line 12
+	echo T_("Allow");                                                                 // Line 25
+	echo T_("Deny");                                                                  // Line 26
+	echo T_("By clicking Allow, you allow this app and Sarshomar to use your information in accordnace with their respective");// Line 30
+	echo T_(" terms of service ");                                                    // Line 31
+	echo T_("and");                                                                   // Line 32
+	echo T_(" privacy policies ");                                                    // Line 33
+	echo T_(". You can change this at any time.");                                    // Line 34
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
@@ -268,7 +279,7 @@ private function transtext()
 	echo T_("Warn");                                                                  // Line 46
 	echo T_("Fail");                                                                  // Line 53
 	echo T_("Disabled");                                                              // Line 60
-	echo T_("Tags");                                                                  // Line 38
+	echo T_("Tags");                                                                  // Line 47
 	echo T_("Add");                                                                   // Line 4
 	echo T_("Slug");                                                                  // Line 96
 
@@ -762,7 +773,7 @@ private function transtext()
 	echo T_("Next Step");                                                             // Line 49
 
 	//-----------------------------------------------------content_u\add\progress.html
-	echo T_("Filter");                                                                // Line 75
+	echo T_("Filter");                                                                // Line 92
 	echo T_("Next");                                                                  // Line 9
 	echo T_("Show my poll");                                                          // Line 14
 
@@ -784,7 +795,7 @@ private function transtext()
 	echo T_("Ordering");                                                              // Line 168
 	echo T_("other");                                                                 // Line 175
 	echo T_("Allow to type other answer");                                            // Line 177
-	echo T_("Branding");                                                              // Line 85
+	echo T_("Branding");                                                              // Line 102
 	echo T_("URL");                                                                   // Line 195
 	echo T_("Choice Range");                                                          // Line 203
 	echo T_("Ultimate");                                                              // Line 125
@@ -838,7 +849,7 @@ private function transtext()
 	echo T_("31-44");                                                                 // Line 93
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
-	echo T_("Toman");                                                                 // Line 66
+	echo T_("Toman");                                                                 // Line 83
 	echo T_("Private");                                                               // Line 125
 
 	//--------------------------------------------------------content_u\add\step3.html
@@ -846,11 +857,11 @@ private function transtext()
 	echo T_("Sub Category");                                                          // Line 14
 	echo T_("Child Category");                                                        // Line 21
 	echo T_("Article");                                                               // Line 28
-	echo T_("Short URL");                                                             // Line 56
-	echo T_("Price");                                                                 // Line 66
-	echo T_("Society");                                                               // Line 70
-	echo T_("Register Question");                                                     // Line 80
-	echo T_("Total Price");                                                           // Line 90
+	echo T_("Short URL");                                                             // Line 73
+	echo T_("Price");                                                                 // Line 83
+	echo T_("Society");                                                               // Line 87
+	echo T_("Register Question");                                                     // Line 97
+	echo T_("Total Price");                                                           // Line 107
 
 	//---------------------------------------------------------content_u\add\tree.html
 
@@ -861,21 +872,22 @@ private function transtext()
 	echo T_("Thank you for completing profile");                                      // Line 25
 	echo T_("Default language");                                                      // Line 33
 	echo T_("Set default language");                                                  // Line 38
-	echo T_("Referred count");                                                        // Line 45
-	echo T_("Referred valid count");                                                  // Line 46
-	echo T_("Comments count");                                                        // Line 47
-	echo T_("Draft count");                                                           // Line 48
-	echo T_("Total Poll published");                                                  // Line 49
-	echo T_("Total Like taken");                                                      // Line 50
-	echo T_("Summary of your activity in Sarshomar");                                 // Line 55
-	echo T_("Create new poll");                                                       // Line 62
-	echo T_("My polls");                                                              // Line 63
-	echo T_("Ask me");                                                                // Line 64
-	echo T_("Your credit");                                                           // Line 67
-	echo T_("Last activity");                                                         // Line 71
-	echo T_("Question Answered");                                                     // Line 96
-	echo T_("Remained");                                                              // Line 97
-	echo T_("Answered");                                                              // Line 97
+	echo T_("Sync with Instagram");                                                   // Line 40
+	echo T_("Referred count");                                                        // Line 48
+	echo T_("Referred valid count");                                                  // Line 49
+	echo T_("Comments count");                                                        // Line 50
+	echo T_("Draft count");                                                           // Line 51
+	echo T_("Total Poll published");                                                  // Line 52
+	echo T_("Total Like taken");                                                      // Line 53
+	echo T_("Summary of your activity in Sarshomar");                                 // Line 58
+	echo T_("Create new poll");                                                       // Line 68
+	echo T_("My polls");                                                              // Line 69
+	echo T_("Ask me");                                                                // Line 70
+	echo T_("Your credit");                                                           // Line 73
+	echo T_("Last activity");                                                         // Line 77
+	echo T_("Question Answered");                                                     // Line 102
+	echo T_("Remained");                                                              // Line 103
+	echo T_("Answered");                                                              // Line 103
 
 	//------------------------------------------------content_u\knowledge\display.html
 
