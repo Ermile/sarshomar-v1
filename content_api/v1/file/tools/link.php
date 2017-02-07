@@ -36,22 +36,31 @@ trait link
 			'upload_name' => $_options['upload_name'],
 			'user_id'     => $this->user_id,
 		];
-		$upload = upload::upload($ready_upload);
-		$file_id = \lib\storage::get_upload();
-		if(isset($file_id['id']) && is_numeric($file_id['id']))
+
+		$upload      = upload::upload($ready_upload);
+
+		$file_detail = \lib\storage::get_upload();
+		$file_id     = null;
+
+		if(isset($file_detail['id']) && is_numeric($file_detail['id']))
 		{
-			$file_id = $file_id['id'];
+			$file_id = $file_detail['id'];
 		}
 		else
 		{
 			return debug::error(T_("Can not upload file. undefined error"));
 		}
+		if($file_id)
+		{
+			$file_id_code = utility\shortURL::encode($file_id);
+			debug::msg("file_code", $file_id_code);
+		}
 
-		$file_id_code = utility\shortURL::encode($file_id);
-
-		debug::msg("file_code", $file_id_code);
-
-
+		if(isset($file_detail['url']))
+		{
+			debug::msg("file_url", $file_detail['url']);
+		}
+		debug::title(T_("File upload complete"));
 	}
 }
 
