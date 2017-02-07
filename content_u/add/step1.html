@@ -25,7 +25,7 @@
     <div class="element">
      <label class="title large" for="title">{%trans "Title"%}</label>
      <div class="element-in">
-      <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}">
+      <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}" maxlength="140">
       <div class="file">
        <input type="file" id="file_title">
        <label class="label-file icon-pic" for="file_title"></label>
@@ -76,7 +76,7 @@
         {% else %}
           placeholder='{%trans "Answer"%} {{myKey | fitNumber}}'
         {% endif %}
-      autocomplete="off" value="{{value.title}}">
+      autocomplete="off" value="{{value.title}}" maxlength="140">
 
       <span class="checkbox true" data-response='meta_true_answer' {% if not poll.have_true_answer%}data-response-hide{%endif%}>
        <input type="checkbox" id="true{{myKey}}" {%if value.true %}checked{%endif%}>
@@ -108,15 +108,15 @@
       </div>
       <div class="module-in">
        <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
-       <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile' data-call='addNewTags'>
+       <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile' data-call='addNewTags' maxlength="140">
       </div>
      </div>
 
 {%endif%}
      <div class="module score-module" data-response='score' {% if not poll.have_score%}data-response-hide{%endif%}>
       <label for="score{{myKey}}">{%trans "Score"%}</label>
-      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='score-advance' {% if not poll.have_score%}data-response-hide{%endif%} value="{{value.groupscore}}">
-      <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}">
+      <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='score-advance' {% if not poll.have_score%}data-response-hide{%endif%} value="{{value.groupscore}}" maxlength="140">
+      <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}" min="0" max="999">
      </div>
      <div class="module audio"></div>
     </div>
@@ -190,11 +190,11 @@
 
 <div data-response='meta_branding' {%if not poll.brand.title%}data-response-hide{%endif%} data-response-effect='fade'>
  <div class="element-branding">
-  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus value="{{poll.brand.title}}">
+  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus value="{{poll.brand.title}}" maxlength="140">
  </div>
 
  <div class="element-branding-url">
-  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" value={{poll.brand.url}}>
+  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" maxlength="140" value={{poll.brand.url}}>
  </div>
 </div>
 {%endblock%}
@@ -270,7 +270,7 @@
  <div class="element no-pad">
   <label class="title large">{%trans "Tree"%}</label>
   <div class="element-in">
-   <input type="text" class="input autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus data-maxItems='5' data-call='fillTree' {% if poll.tree.parent %} data-val="{{poll.tree.parent}}" {% endif %} {% if poll.tree.title %} value="{{poll.tree.title}}" {% endif %} >
+   <input type="text" class="input autoList" data-find='tree' id='tree-search' autocomplete="off" placeholder='{%trans "Search"%}' data-response-focus data-maxItems='5' data-call='fillTree' {% if poll.tree.parent %} data-val="{{poll.tree.parent}}" {% endif %} {% if poll.tree.title %} value="{{poll.tree.title}}" {% endif %} maxlength="140">
   </div>
  </div>
   <div class="tree-result-list">
@@ -330,7 +330,7 @@
   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
  </label>
 </div>
-<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide'>{{poll.summary}}</textarea>
+<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide' maxlength="1000">{{poll.summary}}</textarea>
 {%endblock%}
 
 
@@ -341,7 +341,7 @@
   <i class="icon-minus" data-response='desc-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Description"%}</span>
  </label>
 </div>
-<textarea id='description' placeholder='{%trans "Description"%}' data-response="desc-show" {%if not poll.description and poll.description != '0' %}data-response-hide{%endif%} data-response-effect='slide' data-resizable>{{poll.description}}</textarea>
+<textarea id='description' placeholder='{%trans "Description"%}' data-response="desc-show" {%if not poll.description and poll.description != '0' %}data-response-hide{%endif%} data-response-effect='slide' data-resizable maxlength="1000">{{poll.description}}</textarea>
 {%endblock%}
 
 
