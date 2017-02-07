@@ -1717,7 +1717,7 @@ code{margin:0}
 .api-docs .mandatory {color: #f44336}
 .api-docs .optional {color: #4caf50}
 .api-docs .conditional {color: #ff9800}
-.api-docs code.example-code {white-space: normal;word-wrap: break-word;color: #bd2527;padding: 0.4em;display: inline-block;vertical-align: middle;background-color:#FAFAFA;border: 1px solid #e0e0e0;font-family: monospace;border-radius: 2px;font-size: 1.2em;margin-bottom: 2px;}
+.api-docs code.example-code {word-break: break-word;white-space: normal;word-wrap: break-word;color: #bd2527;padding: 0.4em;display: inline-block;vertical-align: middle;background-color:#FAFAFA;border: 1px solid #e0e0e0;font-family: monospace;border-radius: 2px;font-size: 1.2em;margin-bottom: 2px;}
 .api-docs small {font-size: 85%;}
 .api-docs .api-sample h2 {margin-top: 1em;}
 .inline-code {background-color: #7c7c7c;color: #fff;font-size: .8em;font-weight: 600;line-height: 11px;padding: 4px 6px;white-space: nowrap;text-transform: uppercase;display: inline-block;vertical-align: middle;border-radius: 2px;}
