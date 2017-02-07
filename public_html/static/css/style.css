@@ -509,8 +509,8 @@ header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;
 .rtl header .ui-language-link{margin:0;margin-right:5px}
 header .ui-language-link:hover,header .ui-language-link:focus{}
 
-header .ui-language-link:hover .langlist{display:block}
-header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;display:none;background-color:#e8e6e6}
+header .ui-language-link:hover .langlist{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
+header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#e8e6e6;opacity: 0; visibility: hidden;transition: all .1s;}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
 header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#e5a428}
@@ -524,7 +524,7 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .info .displayname{margin:2px 0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .profile .info .role{/*font-size:10px*/}
 
-.profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;display:none;z-index:1}
+.profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;z-index:1; opacity: 0; visibility: hidden;transition: all .1s;}
 .profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#e76f6f;left:-1px}
 .rtl .profile .profile-detail::before{left:auto;right:-1px}
 .profile .profile-detail a{padding:5px;text-align:center;color:#7f7f7f;-webkit-transition:.3s;transition:.3s}
@@ -532,7 +532,10 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .profile-detail .dashboard{-webkit-box-flex:2;-ms-flex:2;flex:2}
 .profile .profile-detail .exit{-webkit-box-flex:1;-ms-flex:1;flex:1}
 
-.profile:hover .profile-detail,.profile.open .profile-detail{display:-webkit-box;display:-ms-flexbox;display:flex}
+
+.profile:hover,.profile.open{}
+.profile:hover .profile-detail,.profile.open .profile-detail{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
+
 
 
 
@@ -579,11 +582,11 @@ header #financial-box .cost.isCurrent{opacity:1;z-index:1}
 
 header #financial-box .total>span,header #financial-box .cost>span{padding:0 2px}
 
-header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:1;background-color:#fff;display:none}
+header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:1;background-color:#fff; opacity: 0; visibility: hidden;transition: all .1s;}
 header #financial-box .financial-detail .row{display:-webkit-box;display:-ms-flexbox;display:flex;}
 header #financial-box .financial-detail .row>div{-webkit-box-flex:1;-ms-flex:1;flex:1;}
 
-header #financial-box .total:hover .financial-detail{display:initial}
+header #financial-box .total:hover .financial-detail{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
 
 
 /*header #financial-box .total,header #financial-box .cost{position:relative;display:inline-block;padding:0 5px;height:30px;line-height:30px;min-width:15em;transition:.3s}
@@ -621,7 +624,7 @@ footer #footer-nav .eco img{height:100%;padding-top:5px}
 /* footer-links */
 footer #footer-links{font-size:1.4em;border-bottom:1px solid #e5a428;padding:2em 0}
 footer #footer-links h4{font-weight:500;color:#aaa;margin-bottom:5px;font-size:1.1em}
-footer #footer-links a{display:block;color:#888}
+footer #footer-links a{display:block;color:#888;}
 footer #footer-links a:not(:last-child){margin-bottom:.2em}
 footer #footer-links a:hover,footer #footer-links a:focus{color:#fff}
 footer #footer-links #footer-news article{margin-bottom:.5em;border:1px solid transparent}

@@ -41,6 +41,10 @@
 
  nav.breadcrumb{display:none}
  header #header-bottom{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}
+
+ .api-quick-access,.help-sidebar {display: none;}
+
+ .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
 }
 
 
@@ -229,12 +233,14 @@
 .auth .auth-desc {font-size: 2em;width: 100%;margin: auto;}
 
 
+/************************************************************** Help center */
+.help-main-box, .help-category-box, .help-post-box {margin:0 }
 
 }
 
 
 @media screen and (max-width:860px) {
-    .api-quick-access {display: none;}
+    .api-quick-access,.help-sidebar {display: none;}
 }
 
 /************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
