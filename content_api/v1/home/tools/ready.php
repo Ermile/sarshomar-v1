@@ -485,6 +485,9 @@ trait ready
 			$_poll_data['tags'] = $new_tag;
 		}
 
+		$short_url = Protocol."://" . \lib\router::get_root_domain() . '/$'. $_poll_data['id'];
+		$_poll_data['short_url'] = $short_url;
+
 		ksort($_poll_data);
 		if(is_array($_poll_data))
 		{

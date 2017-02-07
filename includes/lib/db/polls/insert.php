@@ -196,8 +196,13 @@ trait insert
 			{
 				// debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			}
-
-			return ['id' => \lib\utility\shortURL::encode(self::$poll_id)];
+			$id        = \lib\utility\shortURL::encode(self::$poll_id);
+			$short_url = Protocol."://" . \lib\router::get_root_domain() . '/$'. $id;
+			return
+			[
+				'id'        => $id,
+				'short_url' => $short_url,
+			];
 		}
 		debug::title(T_("Poll can not {$msg_mod}ed"));
 		return false;

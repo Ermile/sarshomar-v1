@@ -289,31 +289,31 @@ class model extends \mvc\model
 					 'key' => 'پرسپولیس',
 					 // "color" =>  "#ff0e17",
 					 'value' => 400,
-					 'bullet' => $this->view()->url->static.'images/chart/iran/persepolis.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/persepolis.png'
 					],
 					[
 					 'key' => 'استقلال',
 					 // "color" =>  "#3687c8",
 					 'value' => 200,
-					 'bullet' => $this->view()->url->static.'images/chart/iran/esteghlal.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/esteghlal.png'
 					],
 					[
 					 'key' => 'تراکتورسازی',
 					 // "color" =>  "#ee2424",
 					 'value' => 300,
-					 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 					[
 					 'key' => 'سپاهان',
 					 // "color" =>  "#ffcc00",
 					 'value' => 70,
-					 'bullet' => $this->view()->url->static.'images/chart/iran/sepahan.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/sepahan.png'
 					],
 					[
 					 'key' => 'سایر',
 					 // "color" =>  "#666",
 					 'value' => 120,
-					 'bullet' => $this->view()->url->static.'images/chart/iran/league.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/league.png'
 					],
 				]
 			];
@@ -329,38 +329,38 @@ class model extends \mvc\model
 					 'key' => 'Manchester',
 					 'value' => 100,
 					 // "color" =>  "#e21b22",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/manutd.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/manutd.png'
 
 					],
 					[
 					 'key' => 'Liverpool',
 					 'value' => 20,
 					 // "color" =>  "#e26e83",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/liverpool.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/liverpool.png'
 					],
 					[
 					 'key' => 'Real Madrid',
 					 'value' => 40,
 					 // "color" =>  "#fdbd24",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/realmadrid.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/realmadrid.png'
 					],
 					[
 					 'key' => 'Barcelona',
 					 'value' => 70,
 					 // "color" =>  "#85063b",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/barcelona.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/barcelona.png'
 					],
 					[
 					 'key' => 'Juventus',
 					 'value' => 100,
 					 // "color" =>  "#13160e",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/juventus.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/juventus.png'
 					],
 					[
 					 'key' => 'Bayern',
 					 'value' => 60,
 					 // "color" =>  "#ed1248",
-					 'bullet' => $this->view()->url->static.'images/chart/foreign/bayern.png'
+					 // 'bullet' => $this->view()->url->static.'images/chart/foreign/bayern.png'
 					],
 				]
 			];
