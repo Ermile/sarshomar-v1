@@ -423,11 +423,11 @@ a[href*="amcharts.com"]{display:none!important}
 .sync-in b{height:1px;width:0;background-color:#00667a;bottom:0;position:absolute;content:'';left:0;transition:1.5s}
 .rtl .sync-in b{left:auto;right:0}
 
-.sync .inSync,.sync .syncing{margin-left:1em;font-weight:bold;color:#00667a}
-.rtl .sync .inSync,.rtl .sync .syncing{margin-left:0;margin-right:1em}
+.sync .message{margin-left:1em;font-weight:bold;color:#00667a}
+.rtl .sync .message{margin-left:0;margin-right:1em}
 .sync .syncing{display:none}
 
-.sync[data-syncing] .inSync{display:none}
+.sync[data-syncing] .synced{display:none}
 .sync[data-syncing] .checkmark{display:none}
 
 .sync[data-syncing] .syncing{display:initial}

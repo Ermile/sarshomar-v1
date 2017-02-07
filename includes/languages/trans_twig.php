@@ -754,7 +754,7 @@ private function transtext()
 	echo T_("response is not valid JSON");                                            // Line 45
 
 	//-------------------------------------------------------content_u\add\layout.html
-	echo T_("In Sync");                                                               // Line 14
+	echo T_("Synced");                                                                // Line 14
 	echo T_("Syncing");                                                               // Line 15
 	echo T_("Add Poll");                                                              // Line 46
 	echo T_("Next Step");                                                             // Line 49
@@ -851,7 +851,8 @@ private function transtext()
 	echo T_("Total Price");                                                           // Line 107
 	echo T_("Cash");                                                                  // Line 112
 	echo T_("Balance");                                                               // Line 118
-	echo T_("Charge Account");                                                        // Line 123
+	echo T_("Charge Account");                                                        // Line 124
+	echo T_("Publish it");                                                            // Line 125
 
 	//---------------------------------------------------------content_u\add\tree.html
 
