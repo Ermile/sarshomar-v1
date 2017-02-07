@@ -470,16 +470,16 @@ a[href*="amcharts.com"]{display:none!important}
 
 
 /************************************************************** header */
-header{display:-webkit-box;display:-ms-flexbox;display:flex;flex-direction:row;background-color:#f4f4f4;height:90px;border:none;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
+header{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;background-color:#f4f4f4;height:90px;border:none;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
 .rtl header{border-width:0 0 0 8px;-moz-border-image:url(../images/border.png) 6 0 6 8 stretch;-webkit-border-image:url(../images/border.png) 6 0 6 8 stretch;-o-border-image:url(../images/border.png) 6 0 6 8 stretch;border-image:url(../images/border.png) 6 0 6 8 stretch}
 
-header .logo{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em .8em 1em}
+header .logo{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;-ms-grid-row-align:flex-end;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em .8em 1em}
 .rtl header .logo{background-image:url(/static/images/svg/header-rtl.svg)}
 header .logo img{width:60px;max-height:80px;align-self:center;transition:.3s}
 header .logo h1{margin:0;font-size:1.8em;line-height:1.4;padding:0 .2em}
 .rtl header .logo h1{line-height:2em}
 header .logo h1 a:focus,header .logo h1 a:hover{color:#fff}
-header .logo h1 a{color:#f4f4f4}
+header .logo h1 a{color:#f4f4f4;display:block}
 header .logo>a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1)}
 header .logo>a:hover img{opacity:.8}
 

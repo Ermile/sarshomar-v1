@@ -25,7 +25,7 @@
     <div class="element">
      <label class="title large" for="title">{%trans "Title"%}</label>
      <div class="element-in">
-      <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}" maxlength="140">
+      <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}" maxlength="190">
       <div class="file">
        <input type="file" id="file_title">
        <label class="label-file icon-pic" for="file_title"></label>
@@ -108,7 +108,7 @@
       </div>
       <div class="module-in">
        <label for="profileTag{{myKey}}Input">{%trans "Profile"%}</label>
-       <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile' data-call='addNewTags' maxlength="140">
+       <input class='tagInput autoList' id="profileTag{{myKey}}Input" placeholder='{%trans "Search in Profiles"%}' data-find='profile' data-call='addNewTags' maxlength="45">
       </div>
      </div>
 
@@ -329,7 +329,7 @@
   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
  </label>
 </div>
-<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide' maxlength="1000">{{poll.summary}}</textarea>
+<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide' data-resizable maxlength="150">{{poll.summary}}</textarea>
 {%endblock%}
 
 
