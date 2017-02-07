@@ -517,8 +517,12 @@ function checkAddOpt()
 		}
 	});
 
-	// if we had no empty inputs and we needed one do this
-	if (numberOfEmptyInputs === 0 && !$('.input-group.sortable').hasClass('editing'))
+	if(countQuestionOpts() >= 20)
+	{
+		console.log('maximum opt is reached!');
+	}
+	// elseif we had no empty inputs and we needed one do this
+	else if (numberOfEmptyInputs === 0 && !$('.input-group.sortable').hasClass('editing'))
 	{
 		addNewOpt();
 	}
