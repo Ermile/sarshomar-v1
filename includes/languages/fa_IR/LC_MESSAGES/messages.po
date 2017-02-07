@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-07 09:04+0330\n"
-"PO-Revision-Date: 2017-02-07 09:20+0330\n"
+"PO-Revision-Date: 2017-02-07 09:58+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -821,11 +821,11 @@ msgstr ""
 
 #: content_api/v1/poll/status/tools/get.php:39
 msgid "Poll status not found"
-msgstr ""
+msgstr "وضعیت نظرسنجی یافت نشد"
 
 #: content_api/v1/poll/status/tools/set.php:36
 msgid "Can not change status"
-msgstr ""
+msgstr "ناتوان در تغییر وضعیت"
 
 #: content_api/v1/poll/status/tools/set.php:40
 msgid "Prameter status not set"
@@ -833,17 +833,19 @@ msgstr ""
 
 #: content_api/v1/poll/status/tools/set.php:58
 msgid "Poll status changed"
-msgstr ""
+msgstr "وضعیت نظرسنجی تغییر یافت"
 
 #: content_api/v1/poll/status/tools/set.php:63
 msgid ""
 "You can not set this status to this poll, the available status you can change is :"
 "available"
 msgstr ""
+"نمی‌توانید این وضعیت را برای این نظرسنجی قرار دهید، وضعیت در دسترس برای تغییر :"
+"available است"
 
 #: content_api/v1/poll/status/tools/set.php:70
 msgid "You can not set this status to this poll"
-msgstr ""
+msgstr "نمی‌توانید این وضعیت را باری نظرسنجی قرار دهید"
 
 #: content_api/v1/poll/tools/add.php:30
 msgid "Invalid input"
@@ -864,23 +866,23 @@ msgstr ""
 
 #: content_api/v1/poll/tools/delete.php:53
 msgid "Poll user not found"
-msgstr ""
+msgstr "کاربر نظرسنجی یافت نشد"
 
 #: content_api/v1/poll/tools/delete.php:56
 msgid "Can not delete poll"
-msgstr ""
+msgstr "ناتوان در حذف نظرسنجی"
 
 #: content_api/v1/poll/tools/delete.php:69
 msgid "Poll deleted"
-msgstr ""
+msgstr "نظرسنجی حذف شد"
 
 #: content_api/v1/poll/tools/delete.php:73
 msgid "Error in deleting poll"
-msgstr ""
+msgstr "خطا در حذف نظرسنجی"
 
 #: content_api/v1/poll/tools/delete.php:78
 msgid "The poll has already been deleted"
-msgstr ""
+msgstr "نظرسنجی قبلا حذف شده است"
 
 #: content_api/v1/poll/tools/delete.php:82
 msgid ""
@@ -894,11 +896,11 @@ msgstr ""
 
 #: content_api/v1/tag/search/tools/search.php:18
 msgid "Search faild"
-msgstr ""
+msgstr "جستجو با خطا مواجه شد"
 
 #: content_api/v1/tag/search/tools/search.php:48
 msgid "Invalid parameter parent"
-msgstr ""
+msgstr "پارامتر والد نامعتبر است"
 
 #: content_api/v1/tag/search/tools/search.php:107
 msgid "Type not found"
@@ -906,7 +908,7 @@ msgstr "نوع یافت نشد"
 
 #: content_api/v1/tag/search/tools/search.php:110
 msgid "Search successfuly"
-msgstr ""
+msgstr "جستجو موفقیت‌آمیز بود"
 
 #: content_u/add/filter/model.php:27 content_u/add/publish/model.php:44
 #: includes/lib/db/pollopts.php:400 includes/lib/db/polls/fav_like.php:30
@@ -918,6 +920,8 @@ msgid ""
 "Currently there are :max users available but minimum allowd users is 100, please "
 "remove some tags to expand statistical population"
 msgstr ""
+"هم اکنون :max کاربر در دسترس قرار دارد اما حداقل کاربر مورد اجازه 100 نفر است، "
+"لطفا چند تگ را برای گسترش جامعه آماری حذف کنید"
 
 #: content_u/add/filter/model.php:116 includes/lib/db/polls/insert/poll.php:267
 msgid ":max user was found, low  the slide of members "
@@ -961,7 +965,7 @@ msgstr "افزودن"
 
 #: content_u/home/model.php:36
 msgid "Please login to set language"
-msgstr ""
+msgstr "برای تعیین زبان لطفا وارد حساب کاربری خود شوید"
 
 #: content_u/home/model.php:59
 msgid "Invalid paramert language"
@@ -989,7 +993,7 @@ msgstr "اطلاعات نمایه بروزرسانی شد"
 
 #: content_u/token/model.php:24 content_u/token/model.php:40
 msgid "Please login to get api token"
-msgstr ""
+msgstr "برای دریافت Token API وارد حساب کاربری خود شوید"
 
 #: includes/cls/database/sarshomar/translation.php:6
 msgid "commentdetails"

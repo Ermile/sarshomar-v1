@@ -41,7 +41,7 @@
     "end": "null|date_time"
   },
   "articles": ["code", "code"],
-  "tags": ["movie","film","some tag"],
+  "tags": ["movie","film","sample tag"],
   "cat": "code",
   "from": {
     "count": "ultimate|int|null",
