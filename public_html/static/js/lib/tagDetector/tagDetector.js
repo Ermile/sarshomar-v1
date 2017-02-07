@@ -1,5 +1,5 @@
 /**
- * v1.3
+ * v1.4
  */
 
 /**
@@ -115,7 +115,7 @@ function addNewTags(_elChilds)
 	{
 		inputText = inputText.trim();
 	}
-	else
+	if(!inputText)
 	{
 		return false;
 	}
