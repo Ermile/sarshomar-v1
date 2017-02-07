@@ -153,16 +153,16 @@ private function transtext()
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
 	echo T_("Enjoy!");                                                                // Line 14
+	echo T_("By clicking Allow, you allow this app and Sarshomar to use your information in accordnace with their respective");// Line 33
+	echo T_(" terms of service ");                                                    // Line 34
+	echo T_("and");                                                                   // Line 34
+	echo T_(" privacy policies ");                                                    // Line 35
+	echo T_(". You can change this at any time.");                                    // Line 35
 
 	//----------------------------------------------content\referer\token\display.html
-	echo T_("Authorize this application to use your account?");                       // Line 12
-	echo T_("Allow");                                                                 // Line 25
-	echo T_("Deny");                                                                  // Line 26
-	echo T_("By clicking Allow, you allow this app and Sarshomar to use your information in accordnace with their respective");// Line 30
-	echo T_(" terms of service ");                                                    // Line 31
-	echo T_("and");                                                                   // Line 32
-	echo T_(" privacy policies ");                                                    // Line 33
-	echo T_(". You can change this at any time.");                                    // Line 34
+	echo T_("Authorize this application to use your account?");                       // Line 15
+	echo T_("Allow");                                                                 // Line 28
+	echo T_("Deny");                                                                  // Line 29
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
@@ -576,73 +576,60 @@ private function transtext()
 	//---------------------------------content_api\v1\doc\template\poll\add\table.html
 	echo T_("Set the poll title");                                                    // Line 9
 	echo T_("Mandatory");                                                             // Line 29
-	echo T_("Survey...");                                                             // Line 14
-	echo T_("Select the status of poll between draft and publish");                   // Line 19
-	echo T_("Set the language of your choice");                                       // Line 24
-	echo T_("Write the summary of your poll");                                        // Line 29
-	echo T_("Describe your poll");                                                    // Line 34
-	echo T_("Upload a file like an image that shows the weather in your city.");      // Line 39
-	echo T_("The tree of the question specifies the parent and answers connected to the poll");// Line 46
+	echo T_("Survey code");                                                           // Line 14
+	echo T_("Set the language of your choice");                                       // Line 19
+	echo T_("Write the summary of your poll");                                        // Line 24
+	echo T_("Describe your poll");                                                    // Line 29
+	echo T_("Upload a file like an image that shows the weather in your city.");      // Line 34
+	echo T_("The tree of the question specifies the parent and answers connected to the poll");// Line 41
 	echo T_("Go to table");                                                           // Line 41
-	echo T_("If the poll is being created by a brand or company, they can fill in the required information to show their brand identity.");// Line 53
-	echo T_("The answer to the poll or question is specified by this variable");      // Line 60
-	echo T_("Set different options for your poll");                                   // Line 67
+	echo T_("If the poll is being created by a brand or company, they can fill in the required information to show their brand identity.");// Line 48
+	echo T_("The answer to the poll or question is specified by this variable");      // Line 55
+	echo T_("Set different options for your poll");                                   // Line 62
 	echo T_("optional");                                                              // Line 19
-	echo T_("whether to hide the results from public or not is set by this variable ");// Line 72
-	echo T_("Schedule a poll to be published at a certain time and date in the future");// Line 79
-	echo T_("Select an article to connect it to your poll or question");              // Line 84
-	echo T_("select the tags of the question");                                       // Line 89
-	echo T_("Set the category of the poll or question.");                             // Line 94
-	echo T_("Select the target audience of the poll");                                // Line 101
-	echo T_("Poll Tree");                                                             // Line 107
-	echo T_("Set a parent for the poll.");                                            // Line 117
-	echo T_("Select the answers of the parent poll.");                                // Line 122
-	echo T_("Poll Branding");                                                         // Line 128
-	echo T_("Name of the brand");                                                     // Line 138
-	echo T_("The URL of the brand's company");                                        // Line 143
-	echo T_("Poll Answers");                                                          // Line 149
-	echo T_("Set a title for the answer.");                                           // Line 159
-	echo T_("select the type of the answer.");                                        // Line 164
-	echo T_("If your answers has a file like an image, specify it here.");            // Line 169
-	echo T_("Set answers options");                                                   // Line 176
-	echo T_("Poll Select");                                                           // Line 182
-	echo T_("Set the true answer of the poll if it has one.");                        // Line 192
-	echo T_("If the answers have score specify them by this variable.");              // Line 199
-	echo T_("Poll Score");                                                            // Line 205
-	echo T_("group...");                                                              // Line 215
-	echo T_("An integer showing the value of score");                                 // Line 220
-	echo T_("Poll Options");                                                          // Line 226
-	echo T_("Set the maximum time for the range");                                    // Line 236
-	echo T_("Set the minimum count for the choice");                                  // Line 241
-	echo T_("Set the maximum count for the choice");                                  // Line 246
-	echo T_("To do a random sort of options set this variable");                      // Line 251
-	echo T_("Set the order of options by this variable");                             // Line 256
-	echo T_("Poll Schedule");                                                         // Line 262
-	echo T_("Set the date and time that the poll should start.");                     // Line 272
-	echo T_("Set the date and time that the poll should end.");                       // Line 277
-	echo T_("Poll From");                                                             // Line 283
-	echo T_("From how many person the poll should be asked.");                        // Line 293
-	echo T_("Select the gender that can answer the poll. It can be:");                // Line 298
-	echo T_("Only ask from males.");                                                  // Line 299
-	echo T_("Only ask from females.");                                                // Line 300
-	echo T_("Only ask from males and females.");                                      // Line 301
-	echo T_("Ask anyone.");                                                           // Line 326
-	echo T_("Set the marrital status of the people who can answer the poll. It cant be:");// Line 308
-	echo T_("Only ask from single people.");                                          // Line 309
-	echo T_("Only ask from married people.");                                         // Line 310
-	echo T_("Only ask from single and married people.");                              // Line 311
-	echo T_("Set the graduation status of the people who can answer the poll");       // Line 318
-	echo T_("Ask from illiterate people.");                                           // Line 319
-	echo T_("Ask from undergraduate people.");                                        // Line 320
-	echo T_("Ask from graduate people.");                                             // Line 321
-	echo T_("Ask from illiterate and undergraduate people.");                         // Line 322
-	echo T_("Ask from illiterate and graduate people.");                              // Line 323
-	echo T_("Ask from undergraduate and graduate people.");                           // Line 324
-	echo T_("Ask from illiterate, undergraduate and graduate people.");               // Line 325
-	echo T_("Set the university or college degree status of the people who can answer the poll");// Line 332
-	echo T_("Set the age range of the people who can answer the poll");               // Line 372
-	echo T_("Set the job status of the people who can answer the poll");              // Line 379
-	echo T_("Set the housing status of the people who can answer the poll");          // Line 386
+	echo T_("whether to hide the results from public or not is set by this variable ");// Line 67
+	echo T_("Schedule a poll to be published at a certain time and date in the future");// Line 74
+	echo T_("Select an article to connect it to your poll or question");              // Line 79
+	echo T_("select the tags of the question");                                       // Line 84
+	echo T_("Set the category of the poll or question.");                             // Line 89
+	echo T_("Select the target audience of the poll");                                // Line 96
+	echo T_("Poll Tree");                                                             // Line 102
+	echo T_("Set a parent for the poll.");                                            // Line 112
+	echo T_("Select the answers of the parent poll.");                                // Line 117
+	echo T_("Poll Branding");                                                         // Line 123
+	echo T_("Name of the brand");                                                     // Line 133
+	echo T_("The URL of the brand's company");                                        // Line 138
+	echo T_("Poll Answers");                                                          // Line 144
+	echo T_("Set a title for the answer.");                                           // Line 154
+	echo T_("select the type of the answer.");                                        // Line 159
+	echo T_("If your answers has a file like an image, specify it here.");            // Line 164
+	echo T_("Set answers options");                                                   // Line 171
+	echo T_("Poll Select");                                                           // Line 177
+	echo T_("Set the true answer of the poll if it has one.");                        // Line 187
+	echo T_("If the answers have score specify them by this variable.");              // Line 194
+	echo T_("Poll Score");                                                            // Line 200
+	echo T_("Specify the group that your poll belongs to.");                          // Line 210
+	echo T_("An integer showing the value of score");                                 // Line 215
+	echo T_("Poll Options");                                                          // Line 221
+	echo T_("Set the time for the poll");                                             // Line 231
+	echo T_("Set minimum and maximum time for the poll");                             // Line 238
+	echo T_("To do a random sort of options set this variable");                      // Line 243
+	echo T_("Set the order of options by this variable");                             // Line 248
+	echo T_("Poll multi");                                                            // Line 254
+	echo T_("Set the minimum time for the poll.");                                    // Line 264
+	echo T_("Set the maximum time for the poll.");                                    // Line 269
+	echo T_("Poll Schedule");                                                         // Line 275
+	echo T_("Set the date and time that the poll should start.");                     // Line 285
+	echo T_("Set the date and time that the poll should end.");                       // Line 290
+	echo T_("Poll From");                                                             // Line 296
+	echo T_("From how many person the poll should be asked.");                        // Line 306
+	echo T_("Select the gender that can answer the poll. You can set one or more items or leave it null.");// Line 311
+	echo T_("Set the marrital status of the people who can answer the poll.  You can set one or more items or leave it null.");// Line 318
+	echo T_("Set the graduation status of the people who can answer the poll. You can set one or more items or leave it null.");// Line 325
+	echo T_("Set the university or college degree status of the people who can answer the poll. You can set one or more items or leave it null.");// Line 332
+	echo T_("Set the age range of the people who can answer the poll. You can set one or more items or leave it null.");// Line 339
+	echo T_("Set the job status of the people who can answer the poll. You can set one or more items or leave it null.");// Line 346
+	echo T_("Set the housing status of the people who can answer the poll. You can set one or more items or leave it null.");// Line 353
 
 	//------------------------content_api\v1\doc\template\poll\answer\description.html
 	echo T_("Submit a poll answer");                                                  // Line 1
