@@ -201,7 +201,7 @@
 
 
 {%block feature_multiplerange%}
-<div class="element no-pad" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
+<div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
   <div class="range-slider" id='multiple-range' data-type="horizontal" data-max-title='{%trans "Ultimate"%}'
@@ -209,7 +209,6 @@
   {% if poll.options.multi.max%} data-max-default="{{poll.options.multi.max}}"{%endif%}
   data-min='1' data-max='5'
   data-show-title='[{"min": "{%trans "One"%}"}, {"max": "{%trans "Max"%}"}]'
-  data-fix-mount='on'
   >
   </div>
  </div>

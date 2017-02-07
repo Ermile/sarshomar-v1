@@ -532,7 +532,6 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .profile-detail .dashboard{-webkit-box-flex:2;-ms-flex:2;flex:2}
 .profile .profile-detail .exit{-webkit-box-flex:1;-ms-flex:1;flex:1}
 
-.profile:hover,.profile.open{}
 .profile:hover .profile-detail,.profile.open .profile-detail{display:-webkit-box;display:-ms-flexbox;display:flex}
 
 
@@ -1486,6 +1485,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element .btn:hover,.element .btn:focus,.element .input:focus~.btn{background-color:#d8d8d8;color:#777;}
 .element .btn span{vertical-align:middle}
 
+.element.has-margin-top{margin-top:10px}
+
 
 /************************************************************** dropdown */
 /*.element.dropdown{flex-wrap:wrap}
@@ -1672,7 +1673,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 #about-bottom img{margin-bottom:1em;width:60%;max-width:250px}
 #about-bottom h3{color:#00667a;font-weight:700}
 #about-bottom p{color:#aaa;max-width:80%;margin:0 auto 2em;min-height:70px;}
-#about-bottom a{position:relative;color:#00667a;font-weight:700;font-size:1.2em;padding:.5em 1em;transition:.3s;background-color:#f4f4f4}
+#about-bottom a{color:#00667a;font-weight:700;font-size:1.2em;padding:.5em 1em;transition:.3s;background-color:#f4f4f4;width:50%;margin:0 auto}
 #about-bottom a:hover,#about-bottom a:focus{background-color:#e8e6e6}
 
 
