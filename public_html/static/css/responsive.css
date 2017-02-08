@@ -45,6 +45,8 @@
  .api-quick-access,.help-sidebar {display: none;}
 
  .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
+
+ footer #footer-nav .eco{height:65%}
 }
 
 
@@ -142,7 +144,7 @@
  footer #footer-note>div {-webkit-box-flex: 1;-ms-flex: 1 0 50%;flex: 1 0 50%;-webkit-box-ordinal-group: 3;-ms-flex-order: 2;order: 2;}
  footer #footer-note>.counter {-webkit-box-flex: 0;-ms-flex: 0 1 100%;flex: 0 1 100%;-webkit-box-ordinal-group: 2;-ms-flex-order: 1;order: 1;}
  footer #footer-links {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-ms-flex-wrap: wrap;flex-wrap: wrap}
- footer #footer-links nav {-webkit-box-flex: 0;-ms-flex: 0 1 50%;flex: 0 1 50%;}
+ footer #footer-links nav {/*-webkit-box-flex: 0;-ms-flex: 0 1 50%;flex: 0 1 50%;*/}
  footer #footer-links nav:nth-child(2) {-webkit-box-flex: 0;-ms-flex: 0 1 100%;flex: 0 1 100%;}
  footer #footer-links #footer-news {-webkit-box-flex: 0;-ms-flex: 0 1 70%;flex: 0 1 70%;}
  footer #footer-links .enamad {-webkit-box-flex: 0;-ms-flex: 0 1 30%;flex: 0 1 30%;}
