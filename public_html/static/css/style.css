@@ -1418,7 +1418,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 /* element title */
 .element .title{position:relative;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;text-align:center;vertical-align:middle;font-size:14px;padding:0 0.5em;}
-.rtl .element .title{border-top-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:0;min-width:100px;}
+.rtl .element .title{border-radius:0 5px 5px 0;min-width:100px;}
+.rtl .modal .element .title {border-radius: 5px 0 0 5px;}
 .element .title.large{min-width:120px;}
 .element .title.small{min-width:80px;font-size:1em}
 .element .title:after{position:absolute;top:5px;left:-12px;display:inline;width:13px;height:24px;content:'';-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);background-image:url(../images/svg/input-before.svg);background-repeat:no-repeat;}
@@ -1480,8 +1481,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element .input:focus~.score,.element .input:focus~.check,.element .input:focus~.icon,.element .input:focus~.checkbox{background-color:#00667a;}
 
 .element.select .title::after{display:none;}
-
-.element.no-pad{padding:0;width: 100%;}
+.modal .element .title.small {display: flex}
+.element.no-pad{padding:0;width: 100%; display: block}
 .element.no-pad .title::after,.element.range .title::after{display:none;}
 
 .element .btn{padding:0 1em;background-color:#ebebeb;border:none;color:#bdbdbd;transition:.3s;cursor:pointer;}
