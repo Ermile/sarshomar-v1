@@ -376,7 +376,14 @@ trait ready
 				}
 				if(!empty($show_options))
 				{
-					$_poll_data['options'] = array_merge($_poll_data['options'], $show_options);
+					if(isset($_poll_data['options']))
+					{
+						$_poll_data['options'] = array_merge($_poll_data['options'], $show_options);
+					}
+					else
+					{
+						$_poll_data['options'] = $show_options;
+					}
 				}
 			}
 

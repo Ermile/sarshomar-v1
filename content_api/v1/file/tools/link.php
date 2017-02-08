@@ -13,7 +13,7 @@ trait link
 		$default_options =
 		[
 			'upload_name' => utility::request('upload_name'),
-			'poll'        => utility::request('poll'),
+			'poll_id'     => utility::request('poll_id'),
 			'opt'         => utility::request('opt'),
 		];
 
@@ -24,14 +24,12 @@ trait link
 			return debug::error(T_("File not upload in upload_name"), 'upload_name', 'arguments');
 		}
 
-		if(!$_options['poll'])
+		if(!$_options['poll_id'])
 		{
 			return debug::error(T_("Parameter poll not set"), 'poll', 'arguments');
 		}
 
-		$poll_id =  'dW';
-
-		utility::set_request_array(['id' => $poll_id]);
+		utility::set_request_array(['id' => $_options['poll_id']]);
 
 		$poll_get =
 		[

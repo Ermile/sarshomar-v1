@@ -299,7 +299,7 @@ class model extends \content_u\home\model
 			$args =
 			[
 				'upload_name' => 'croppedImage',
-				'poll'        => utility::post('question'),
+				'poll_id'     => utility::post('question'),
 				'opt'         => utility::post('opt'),
 			];
 			utility::set_request_array($args);
