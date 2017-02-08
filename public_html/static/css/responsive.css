@@ -90,7 +90,7 @@
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
 
- header #header-bottom{-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}
+ header #header-bottom{-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse; height: auto}
 
  .rtl header .header-profile-button{font-size:12px}
 
