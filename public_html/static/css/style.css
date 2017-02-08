@@ -1357,7 +1357,7 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}
 .ultra{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}
 .ultra.multi-line{height:75px}
 .ultra .data{-webkit-box-flex:1;-ms-flex:1;flex:1}
-.ultra .preview{max-height:75px;max-width:85px;}
+.ultra .preview{max-height:75px;max-width:85px;z-index: 12;}
 .ultra .preview img{width:75px;height:75px;min-width:75px;max-height:75px;margin-left:5px}
 .rtl .ultra .preview img{margin-left:0;margin-right:5px}
 .ultra .element{margin-bottom:5px}
