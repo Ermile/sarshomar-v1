@@ -191,7 +191,7 @@
  .tree-container .element .title.small,.tree-container .element .title.large{border-radius:0;line-height:35px}
 
  .range-slider .dynamic-range .max:after, .range-slider .dynamic-range .min:after,.range-slider .dynamic-range .min.active:before {top: 0px;width: 20px;height: 20px;}
- .range-slider .dynamic-range .max {right: -20px;bottom: -24px;}
+ .range-slider .dynamic-range .max {right: -15px;bottom: -24px;}
  .range-slider .dynamic-range .max.active:before {width: 20px;height: 20px;}
  .range-slider .dynamic-range .max.active:before {top: 0px;}
  .ultra .module {width: 100%;margin-bottom: 5px;}
