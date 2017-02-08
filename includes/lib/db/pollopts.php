@@ -418,50 +418,52 @@ class pollopts
 		{
 			$update = true;
 		}
-
-		$must_update = [];
-		$must_insert = [];
-		$must_delete = [];
-		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
-		// var_dump($_opts, $old_answers);		exit();
-
-		if(!$old_answers || empty($old_answers))
-		{
-			$must_insert = $_opts;
-		}
-		elseif(is_array($old_answers))
-		{
-			$must_delete = array_slice($old_answers, count($_opts));
-
-			foreach ($_opts as $key => $value)
-			{
-				$new_key = $key + 1;
-				if(isset($old_answers[$key]))
-				{
-					$check = self::check_update($value, $old_answers[$key]);
-					if(!empty($check))
-					{
-						$must_update[] = $check;
-					}
-				}
-				else
-				{
-					$must_insert[] = $value;
-				}
-			}
-		}
-		else
-		{
-			if(debug::$status)
-			{
-				debug::error(T_("Invalid old answers"), 'answers', 'db');
-			}
-			return;
-		}
 		// var_dump($must_insert, $must_update, $must_delete);	exit();
 		$delete_all_profile = false;
-		if($_options['method'] === 'put')
+
+		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
+		if($_options['method'] == 'put')
 		{
+
+			$must_update = [];
+			$must_insert = [];
+			$must_delete = [];
+			// var_dump($_opts, $old_answers);		exit();
+
+			if(!$old_answers || empty($old_answers))
+			{
+				$must_insert = $_opts;
+			}
+			elseif(is_array($old_answers))
+			{
+				$must_delete = array_slice($old_answers, count($_opts));
+
+				foreach ($_opts as $key => $value)
+				{
+					$new_key = $key + 1;
+					if(isset($old_answers[$key]))
+					{
+						$check = self::check_update($value, $old_answers[$key]);
+						if(!empty($check))
+						{
+							$must_update[] = $check;
+						}
+					}
+					else
+					{
+						$must_insert[] = $value;
+					}
+				}
+			}
+			else
+			{
+				if(debug::$status)
+				{
+					debug::error(T_("Invalid old answers"), 'answers', 'db');
+				}
+				return;
+			}
+			\lib\db::query("UPDATE pollopts SET pollopts.key = NULL WHERE pollopts.post_id = $_poll_id");
 			$old_answers_ids = array_column($old_answers_raw, 'id');
 			if(!empty($old_answers_ids))
 			{
@@ -476,106 +478,127 @@ class pollopts
 				";
 				$delete_all_profile = \lib\db::query($query);
 			}
-		}
 
-		if(!empty($must_delete))
-		{
-			$ids   = array_column($must_delete, 'id');
-			$ids   = implode(',', $ids);
-			$query = "UPDATE pollopts SET pollopts.status = 'disable', pollopts.key = NULL WHERE pollopts.id IN ($ids) ";
-			\lib\db::query($query);
-			if(!$delete_all_profile)
+			if(!empty($must_delete))
 			{
-				$query =
-				"
-					DELETE FROM
-						termusages
-					WHERE
-						termusages.termusage_foreign = 'profile' AND
-						termusages.termusage_id IN ($ids)
-				";
+				$ids   = array_column($must_delete, 'id');
+				$ids   = implode(',', $ids);
+				$query = "UPDATE pollopts SET pollopts.status = 'disable', pollopts.key = NULL WHERE pollopts.id IN ($ids) ";
 				\lib\db::query($query);
+				if(!$delete_all_profile)
+				{
+					$query =
+					"
+						DELETE FROM
+							termusages
+						WHERE
+							termusages.termusage_foreign = 'profile' AND
+							termusages.termusage_id IN ($ids)
+					";
+					\lib\db::query($query);
+				}
+			}
+			if(!empty($must_update))
+			{
+				foreach ($must_update as $key => $value)
+				{
+
+					$id = array_splice($value, -1);
+
+					if(isset($id['id']))
+					{
+						$id = $id['id'];
+					}
+					else
+					{
+						continue;
+					}
+
+					if(isset($value['profile']))
+					{
+						self::opt_profile($id, $value['profile']);
+					}
+					else
+					{
+						self::opt_profile($id, []);
+					}
+
+					unset($value['profile']);
+
+					$value['status'] = 'enable';
+					$value['key']    = $key + 1;
+
+					self::update($value, $id);
+				}
+			}
+
+			// var_dump($_poll_id);
+			// exit();
+			if(!empty($must_insert))
+			{
+				$profile = [];
+				foreach ($must_insert as $key => $value)
+				{
+					if(count($value) === 1 && isset($value['type']))
+					{
+						continue;
+					}
+
+					if(isset($value['profile']))
+					{
+						$profile[] = $value['profile'];
+					}
+					else
+					{
+						$profile[] = [];
+					}
+
+					unset($must_insert[$key]['profile']);
+
+					$must_insert[$key]['key']     = count($must_update) + $key + 1;
+					$must_insert[$key]['post_id'] = $_poll_id;
+				}
+
+				self::insert_multi($must_insert);
+
+				$insert_id = \lib\db::insert_id();
+
+				$ids = [];
+				for ($i = ($insert_id - count($must_insert)) + 1; $i <= $insert_id; $i++)
+				{
+					$ids[] = $i;
+				}
+				if(count($ids) === count($profile))
+				{
+					foreach ($profile as $key => $value)
+					{
+						self::opt_profile($ids[$key], $value);
+					}
+				}
 			}
 		}
-		if(!empty($must_update))
+		elseif($_options['method'] == 'patch')
 		{
-			foreach ($must_update as $key => $value)
+			$update_as_patch = [];
+			if(count($_opts) > 1)
 			{
-
-				$id = array_splice($value, -1);
-
-				if(isset($id['id']))
-				{
-					$id = $id['id'];
-				}
-				else
-				{
-					continue;
-				}
-
-				if(isset($value['profile']))
-				{
-					self::opt_profile($id, $value['profile']);
-				}
-				else
-				{
-					self::opt_profile($id, []);
-				}
-
-				unset($value['profile']);
-
-				$value['status'] = 'enable';
-				$value['key']    = $key + 1;
-
-				self::update($value, $id);
+				return debug::error(T_("Max input in patch mod is 1 parameter"), 'answers', 'arguments');
 			}
+
+			$pollopt_key = key($_opts);
+			if(isset($_opts[$pollopt_key]))
+			{
+				$new_value = array_filter($_opts[$pollopt_key]);
+
+				foreach ($new_value as $key => $value)
+				{
+					$update_as_patch[$key] = $value;
+				}
+			}
+			self::update($update_as_patch, $_poll_id, $pollopt_key);
+
 		}
 
-		// var_dump($_poll_id);
-		// exit();
-		if(!empty($must_insert))
-		{
-			$profile = [];
-			foreach ($must_insert as $key => $value)
-			{
-				if(count($value) === 1 && isset($value['type']))
-				{
-					continue;
-				}
-
-				if(isset($value['profile']))
-				{
-					$profile[] = $value['profile'];
-				}
-				else
-				{
-					$profile[] = [];
-				}
-
-				unset($must_insert[$key]['profile']);
-
-				$must_insert[$key]['key']     = $key + 1;
-				$must_insert[$key]['post_id'] = $_poll_id;
-			}
-
-			self::insert_multi($must_insert);
-
-			$insert_id = \lib\db::insert_id();
-
-			$ids = [];
-			for ($i = ($insert_id - count($must_insert)) + 1; $i <= $insert_id; $i++)
-			{
-				$ids[] = $i;
-			}
-			if(count($ids) === count($profile))
-			{
-				foreach ($profile as $key => $value)
-				{
-					self::opt_profile($ids[$key], $value);
-				}
-			}
-		}
-		// exit();
 		return true;
 	}
 

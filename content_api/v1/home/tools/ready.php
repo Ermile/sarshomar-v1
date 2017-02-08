@@ -134,6 +134,7 @@ trait ready
 				$_poll_data[$key] = null;
 			}
 		}
+		$host = Protocol."://" . \lib\router::get_root_domain();
 
 		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] == '‌')
 		{
@@ -286,9 +287,11 @@ trait ready
 
 			$answers = \lib\db\pollopts::get($poll_id, $custom_field, true);
 			// var_dump($answers);
-
+			$show_answers = [];
 			foreach ($answers as $key => $value)
 			{
+				$show_key = $key + 1;
+
 				if($this->access('u','complete_profile', 'admin'))
 				{
 					$opt_profile = [];
@@ -315,24 +318,37 @@ trait ready
 					{
 						$_poll_data['profile'] = true;
 					}
-					$answers[$key]['profile'] = $opt_profile;
+					$show_answers[$show_key]['profile'] = $opt_profile;
 				}
 
-				unset($answers[$key]['id']);
+				// unset($answers[$key]['id']);
 
 				if(isset($value['true']) && $value['true'] == '1')
 				{
-					$answers[$key]['true'] = true;
+					$show_answers[$show_key]['true'] = true;
 				}
 				else
 				{
-					$answers[$key]['true'] = false;
+					$show_answers[$show_key]['true'] = false;
 				}
-				$answers[$key] = array_filter($answers[$key]);
+
+				if(isset($value['attachment_id']) && $value['attachment_id'])
+				{
+					$attachment = \lib\db\polls::get_poll($value['attachment_id']);
+					$url = null;
+					if(isset($attachment['meta']['url']))
+					{
+						$answers[$key]['file']['id'] = \lib\utility\shortURL::encode($value['attachment_id']);
+						$answers[$key]['file']['url'] = $host. '/'. $attachment['meta']['url'];
+					}
+				}
+
+				unset($answers[$key]['attachment_id']);
+
+				$show_answers[$show_key] = array_filter($answers[$key]);
 			}
-			// var_dump($answers);
-			// exit();
-			$_poll_data['answers'] = $answers;
+
+			$_poll_data['answers'] = $show_answers;
 		}
 
 		// get filters of poll
@@ -499,7 +515,7 @@ trait ready
 			$_poll_data['tags'] = $new_tag;
 		}
 
-		$short_url = Protocol."://" . \lib\router::get_root_domain() . '/$'. $_poll_data['id'];
+		$short_url = $host. '/$'. $_poll_data['id'];
 		$_poll_data['short_url'] = $short_url;
 
 		ksort($_poll_data);

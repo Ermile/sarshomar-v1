@@ -2,6 +2,9 @@
 namespace lib\db\polls\insert;
 use \lib\debug;
 use \lib\db\pollopts;
+use \lib\utility;
+use \lib\utility\shortURL;
+
 
 trait answers
 {
@@ -53,24 +56,16 @@ trait answers
 				$attachment_id = null;
 				if(isset($value['file']) && $value['file'])
 				{
-					$upload_answer =
-					[
-						'upload_name' => $value['file'],
-						'file_path'   => $value['file'],
-						'user_id'     => self::$args['user']
-					];
+					$url = self::is_attachment($value['file']);
 
-					$upload_answer = \lib\utility\upload::upload($upload_answer);
-					if(\lib\debug::get_msg("result"))
+					if(!debug::$status)
 					{
-						$attachment_id = debug::get_msg("result");
+						return;
 					}
+					$combine[$key]['attachment_id'] = shortURL::decode($value['file']);
+
 				}
 
-				if($attachment_id)
-				{
-					$combine[$key]['attachment_id'] = $attachment_id;
-				}
 
 				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
@@ -176,7 +171,7 @@ trait answers
 
 			if(self::$poll_id)
 			{
-				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update']]);
+				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);
 			}
 		}
 	}

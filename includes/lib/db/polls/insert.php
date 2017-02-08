@@ -19,10 +19,10 @@ trait insert
 	protected static $old_status     = null;
 
 
+	use insert\check;
 	use insert\reset;
 	use insert\max;
 	use insert\answers;
-	use insert\check;
 	use insert\options;
 	use insert\poll;
 

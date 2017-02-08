@@ -121,7 +121,10 @@
      <div class="module audio"></div>
     </div>
    </div>
-   <div class="preview"></div>
+
+   <div class="preview" {%if value.file.id %} data-file-id="{{value.file.id}}" {% endif %} {%if value.file.url %} data-file-url="{{value.file.url}}" {% endif %}>
+
+   </div>
    <span class="icon-times delete"></span>
   </div>
  </li>
