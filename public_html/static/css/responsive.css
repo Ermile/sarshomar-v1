@@ -222,7 +222,7 @@
  .range-slider[data-type=vertical] .dynamic-range .max {top: -10px;}
  .range-slider[data-type=vertical] .dynamic-range .max span:after {height: 24px;background-color: #00667a;border-radius: 5px 0 0 5px;top: -2px;left: 26px;}
  .range-slider[data-type=vertical] .dynamic-range span:before {border-left: 6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid #00667a;left: 13px;top: 2px;height: 16px;}
- .stepPublish .element {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+ .stepPublish .element {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-ms-flex-wrap: wrap;flex-wrap: wrap;display: block;}
  .stepPublish .element label {-ms-flex-item-align: start;align-self: flex-start;}
 
 
