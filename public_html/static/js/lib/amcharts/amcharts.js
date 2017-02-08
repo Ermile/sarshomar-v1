@@ -551,7 +551,7 @@ function drawChart()
 		}
 		else
 		{
-			attrColor = ["#f4f4f4"];
+			attrColor = ["#83c3e1"];
 		}
 		if(!attrVals)
 		{
