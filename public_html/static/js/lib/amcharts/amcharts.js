@@ -531,8 +531,15 @@ function drawChart()
 		var attrVals       = $this.attr('data-vals');
 		var attrFormat     = $this.attr('data-format');
 		var attrColor      = $this.attr('data-color');
+		var attrWhat       = $this.attr('data-what');
+		var attrWhatVals   = $this.attr('data-vals-' + attrWhat);
 		var chartContainer = $this;
 		var attrAutoColor  = false;
+
+		if(attrWhatVals)
+		{
+			attrVals = attrWhatVals;
+		}
 
 		// if not set replace them
 		if(!attrType)
