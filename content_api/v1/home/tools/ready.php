@@ -352,7 +352,6 @@ trait ready
 
 
 		$post_meta = \lib\db\posts::get_post_meta($poll_id);
-
 		if(is_array($post_meta))
 		{
 
@@ -405,6 +404,14 @@ trait ready
 					if(isset($value['option_value']))
 					{
 						array_push($poll_articles, shortURL::encode($value['option_value']));
+					}
+				}
+
+				if(isset($value['option_key']) && $value['option_key'] == 'title_attachment')
+				{
+					if(isset($value['option_meta']['url']))
+					{
+						$_poll_data['file'] = $value['option_meta']['url'];
 					}
 				}
 			}

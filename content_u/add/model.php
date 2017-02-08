@@ -302,11 +302,51 @@ class model extends \content_u\home\model
 				'poll_id'     => utility::post('question'),
 				'opt'         => utility::post('opt'),
 			];
+
+			if(utility::post('opt') == 'title')
+			{
+				unset($args['opt']);
+			}
+
 			utility::set_request_array($args);
 
 			$this->user_id = $this->login('id');
 
-			$this->upload_file();
+			$upload = $this->upload_file();
+
+			if(debug::$status)
+			{
+				$file_code = null;
+				if(isset($upload['code']))
+				{
+					$file_code = $upload['code'];
+					debug::msg("file_code", $upload['code']);
+				}
+
+				if(isset($upload['url']))
+				{
+					debug::msg("file_url", $upload['url']);
+				}
+
+				$poll_id             = utility::post('question');
+				$patch_request       = [];
+				$patch_request['id'] = $poll_id;
+
+				if(utility::post('opt') == 'title')
+				{
+					$patch_request['file'] = $file_code;
+				}
+				elseif(is_numeric(utility::post('opt')))
+				{
+					$patch_request['answers'][intval(utility::post('opt'))]['file'] = $file_code;
+				}
+
+				utility::set_request_array($patch_request);
+
+				$method        = ['method' => 'patch'];
+				$this->debug   = false;
+				return $this->poll_add($method);
+			}
 			return true;
 		}
 		return false;

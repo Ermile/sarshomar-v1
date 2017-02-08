@@ -50,7 +50,8 @@ trait insert
 			// poll type [poll|survey]
 			'type'							  => 'poll',
 			// the file path
-			'file_path'                       => null,
+			// 'file_path'                       => null,
+			'file'                            => null,
 			// the upload name
 			'upload_name'                     => null,
 			// answers of poll

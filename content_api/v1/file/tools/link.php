@@ -48,6 +48,15 @@ trait link
 			return;
 		}
 
+		if($_options['opt'])
+		{
+			$opt = intval($_options['opt']);
+			if(!isset($poll['answers'][$opt - 1]))
+			{
+				return debug::error(T_("This poll have not opt :opt", ['opt' => $opt]), 'opt', 'arguments');
+			}
+		}
+
 		$ready_upload =
 		[
 			'upload_name' => $_options['upload_name'],
@@ -67,17 +76,22 @@ trait link
 		{
 			return debug::error(T_("Can not upload file. undefined error"));
 		}
+
+		$file_id_code = null;
+
 		if($file_id)
 		{
 			$file_id_code = utility\shortURL::encode($file_id);
-			debug::msg("file_code", $file_id_code);
 		}
 
+		$url = null;
 		if(isset($file_detail['url']))
 		{
-			debug::msg("file_url", $file_detail['url']);
+			$url = Protocol."://" . \lib\router::get_root_domain() . '/'. $file_detail['url'];
 		}
+
 		debug::title(T_("File upload complete"));
+		return ['code' => $file_id_code, 'url' => $url];
 	}
 }
 

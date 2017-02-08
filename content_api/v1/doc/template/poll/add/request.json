@@ -4,7 +4,7 @@
   "language": "fa|en|ar|null for set as default",
   "summary": "string|null",
   "description": "string|null",
-  "file": "[upload_name]|url|null",
+  "file": "code",
   "tree": {
     "parent": "code",
     "answers": "skipped|true|[1,5,7]"
@@ -16,7 +16,7 @@
   "answers": [{
     "title": "null|string",
     "type": "select",
-    "file": "url|answer_file[]",
+    "file": "code",
     "select": {
       "is_true": "true|false",
       "score": {

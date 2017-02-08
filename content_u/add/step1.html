@@ -44,8 +44,8 @@
     </div>
    </div>
    <div class="preview">
-  {%if poll.meta.attachment_id%}
-    <img src="{{attachment({"id" : poll.meta.attachment_id, "url" : true})}}">
+  {%if poll.file%}
+    <img src="{{poll.file}}">
   {%endif%}
    </div>
   </div>

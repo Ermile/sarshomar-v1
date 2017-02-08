@@ -196,28 +196,56 @@ trait options
 			}
 			else
 			{
-				// upload new file
-				$upload_name_path = 'upload_name';
-
-				if(substr(self::$args['file'], 0, 7) == 'http://' ||
-					substr(self::$args['file'], 0, 8) == 'https://'
-				)
+				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['file']))
 				{
-					$upload_name_path = 'file_path';
+					return debug::error(T_("Invalid parameter file"), 'file', 'arguments');
+				}
+				$attachment_id = shortURL::decode(self::$args['file']);
+				$attachment = self::get_poll($attachment_id);
+				if(!$attachment)
+				{
+					return debug::error(T_("Attachment not found"), 'file', 'arguments');
 				}
 
-				$upload_args =
-				[
-					'user_id'         => self::$args['user'],
-					$upload_name_path => self::$args['file']
-				];
-
-				$file_title = \lib\utility\upload::upload($upload_args);
-
-				if(\lib\debug::get_msg("result"))
+				if(!isset($attachment['type']) || (isset($attachment['type']) && $attachment['type'] != 'attachment'))
 				{
-					self::save_options('title_attachment',  \lib\debug::get_msg("result"));
+					return debug::error(T_("This is not an attachment record"), 'file', 'arguments');
 				}
+
+				if(isset($attachment['status']))
+				{
+					switch ($attachment['status'])
+					{
+						case 'draft':
+						case 'awaiting':
+						case 'publish':
+							// no thing !
+							break;
+
+						case 'stop':
+						case 'pause':
+						case 'trash':
+						case 'deleted':
+						case 'filtered':
+						case 'blocked':
+						case 'spam':
+						case 'violence':
+						case 'pornography':
+						case 'schedule':
+						case 'expired':
+						case 'filter':
+						default:
+							return debug::error(T_("Can not use this attachment"), 'file', 'permission');
+							break;
+					}
+				}
+				$url = null;
+				if(isset($attachment['meta']['url']))
+				{
+					$url = $attachment['meta']['url'];
+				}
+
+				self::save_options('title_attachment',  self::$args['file'], ['url' => $url]);
 			}
 		}
 

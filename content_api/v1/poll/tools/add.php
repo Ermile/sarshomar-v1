@@ -95,14 +95,14 @@ trait add
 		// $args['slug']              = utility::request('slug');
 		// $args['type']              = utility::request("type");
 
-		if(utility::files("poll_file"))
-		{
-			$args['upload_name']      = "poll_file";
-		}
-		elseif (utility::request("file_path"))
-		{
-			$args['file_path']        = utility::request("file_path");
-		}
+		// if(utility::files("poll_file"))
+		// {
+		// 	$args['upload_name']      = "poll_file";
+		// }
+		// elseif (utility::request("file_path"))
+		// {
+		// 	$args['file_path']        = utility::request("file_path");
+		// }
 
 		return \lib\db\polls::create($args);
 	}
