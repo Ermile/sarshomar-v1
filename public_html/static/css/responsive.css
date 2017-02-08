@@ -237,6 +237,13 @@
 /************************************************************** Help center */
 .help-main-box, .help-category-box, .help-post-box {margin:0 }
 
+/************************************************************** Help center */
+.sync{position:fixed;bottom:1em;right:3em;box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);border-radius:50%;top:auto;left:auto}
+.sync-in{padding:1em}
+.sync .sync-message{display:none!important}
+.sync .sync-checkmark::before{left:1px}
+.sync .sync-checkmark::after{left:6px}
+
 }
 
 

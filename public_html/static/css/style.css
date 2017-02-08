@@ -415,11 +415,11 @@ a[href*="amcharts.com"]{display:none!important}
   100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
 }
 
-.sync{position:absolute;top:1em;left:1em;cursor:pointer;}
+.sync{position:absolute;top:1em;left:1em;cursor:pointer;z-index:2;overflow:hidden;background-color:#efefef}
 .rtl .sync{left:auto;right:1em}
 .sync[data-syncing]{cursor:progress}
 
-.sync-in{position:relative;padding:.7em 1em;background-color:#efefef;border:1px solid #efefef;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;}
+.sync-in{position:relative;padding:.7em 1em;border:1px solid #efefef;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;}
 .sync-in b{height:1px;width:0;background-color:#00667a;bottom:0;position:absolute;content:'';left:0;transition:1.5s}
 .rtl .sync-in b{left:auto;right:0}
 
