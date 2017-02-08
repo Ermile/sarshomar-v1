@@ -1,5 +1,6 @@
 <?php
 namespace content\poll;
+use \lib\utility\shortURL;
 
 class view extends \mvc\view
 {
@@ -21,75 +22,33 @@ class view extends \mvc\view
 
 
 	/**
-	 * { function_description }
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function check_url($_args)
-	{
-		$shortURL = $this->controller()::$shortURL;
-		$redirect = false;
-		$url      = null;
-		if(isset($_args->match->url[0]) && is_array($_args->match->url[0]))
-		{
-			if(isset($_args->match->url[0][2]) && preg_match("/^". $shortURL. "$/", $_args->match->url[0][2]))
-			{
-				if(!isset($_args->match->url[0][3]) || !isset($_args->match->url[0][4]))
-				{
-					$url = $_args->match->url[0][2];
-					$redirect = true;
-				}
-				else
-				{
-					$url = $_args->match->url[0][0];
-					$redirect = false;
-				}
-			}
-			elseif(isset($_args->match->url[0][1]))
-			{
-				if(preg_match("/^". $shortURL ."$/", $_args->match->url[0][1]))
-				{
-					$url = $_args->match->url[0][1];
-					$redirect = true;
-				}
-			}
-		}
-
-		if($redirect)
-		{
-			$url = \lib\utility\shortURL::decode($url);
-			$url = \lib\db\polls::get_poll($url);
-
-			$language = null;
-			if(isset($url['language']))
-			{
-				$language = \lib\define::get_current_language_string($url['language']);
-			}
-
-			$post_url = null;
-			if(isset($url['url']))
-			{
-				$post_url = $url['url'];
-			}
-
-			$new_url = trim($this->url('prefix'). $language. '/'. $post_url, '/');
-			$this->redirector()->set_url($new_url)->redirect();
-		}
-		else
-		{
-			return $url;
-		}
-	}
-
-	/**
 	 * show one poll to answer user
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
 	public function view_poll($_args)
 	{
+		$poll = $_args->api_callback;
+
+		if(isset($poll['articles']) && is_array($poll['articles']) && !empty($poll['articles']))
+		{
+			$article_titles = [];
+			foreach ($poll['articles'] as $key => $value)
+			{
+				$id = shortURL::decode($value);
+				if($id)
+				{
+					$article_titles[$value] =  \lib\db\polls::get_poll_title($id);
+				}
+			}
+			$this->data->article_titles = $article_titles;
+		}
+
+		$this->data->poll = $poll;
+
+		// var_dump($this->data->poll);
+		// exit();
+		return;
 		// get the descriptive from meta of poll
 		// for evry poll unset this session
 		// to set form database
@@ -138,159 +97,172 @@ class view extends \mvc\view
 
 		if(isset($post['id']))
 		{
-			// set post_id
-			$post_id = $post['id'];
+			$get_poll =
+			[
+				'check_is_my_poll'   => false,
+				'get_filter'         => true,
+				'get_opts'           => true,
+				'get_options'	     => true,
+				'get_public_result'  => true,
+				'get_advance_result' => false,
+				'type'               => null, // ask || random
+			];
+			\lib\utility::set_request_array(['id' => $this->data->child]);
+			$post = $this->poll_get($get_poll);
+			// // set post_id
+			// $post_id = $post['id'];
 
-			// save poll id into session to get in answer
-			$_SESSION['last_poll_id']  = $post_id;
-			// check next url and this post url to find load opt or no
+			// // save poll id into session to get in answer
+			// $_SESSION['last_poll_id']  = $post_id;
+			// // check next url and this post url to find load opt or no
 
-			// users load poll from other link
-			if(isset($post['post_meta']['opt']))
-			{
-				$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
-			}
+			// // users load poll from other link
+			// if(isset($post['post_meta']['opt']))
+			// {
+			// 	$_SESSION['last_poll_opt'] = $post['post_meta']['opt'];
+			// }
 
-			// get post status to show in html page
-			$this->data->status = $post['post_status'];
-			// compile meta of this post
+			// // get post status to show in html page
+			// $this->data->status = $post['post_status'];
+			// // compile meta of this post
 
-			if(isset($post['post_meta']))
-			{
-				$meta = [];
-				foreach ($post['postmeta'] as $key => $value)
-				{
-					switch ($value['option_key'])
-					{
-						// ignore opt_1, opt_2, ...
-						case substr($value['option_key'], 0,3) == "opt":
-							continue;
-							break;
+			// if(isset($post['post_meta']))
+			// {
+			// 	$meta = [];
+			// 	foreach ($post['postmeta'] as $key => $value)
+			// 	{
+			// 		switch ($value['option_key'])
+			// 		{
+			// 			// ignore opt_1, opt_2, ...
+			// 			case substr($value['option_key'], 0,3) == "opt":
+			// 				continue;
+			// 				break;
 
-						// show article
-						case "article":
-							$this->data->article = \lib\db\polls::get_poll($value['option_value']);
-							break;
+			// 			// show article
+			// 			case "article":
+			// 				$this->data->article = \lib\db\polls::get_poll($value['option_value']);
+			// 				break;
 
-						// get start date of publish this poll
-						case "date_start":
-							$this->data->date_start = $value['option_value'];
-							break;
+			// 			// get start date of publish this poll
+			// 			case "date_start":
+			// 				$this->data->date_start = $value['option_value'];
+			// 				break;
 
-						// get end date of publish this poll
-						case "date_end":
-							$this->data->date_end = $value['option_value'];
-							break;
-						case "meta":
-							// check the meta of this poll
-							switch ($value['option_value'])
-							{
-								case "multiple_choice":
-									// the people can select multiple choice
-									$this->data->multiple_choice = true;
-									$_SESSION['multiple_choice'] = true;
-									break;
+			// 			// get end date of publish this poll
+			// 			case "date_end":
+			// 				$this->data->date_end = $value['option_value'];
+			// 				break;
+			// 			case "meta":
+			// 				// check the meta of this poll
+			// 				switch ($value['option_value'])
+			// 				{
+			// 					case "multiple_choice":
+			// 						// the people can select multiple choice
+			// 						$this->data->multiple_choice = true;
+			// 						$_SESSION['multiple_choice'] = true;
+			// 						break;
 
-								case "descriptive":
-									// load a input to type people the opthr opt
-									$this->data->descriptive = true;
-									$_SESSION['descriptive'] = true;
-									break;
+			// 					case "descriptive":
+			// 						// load a input to type people the opthr opt
+			// 						$this->data->descriptive = true;
+			// 						$_SESSION['descriptive'] = true;
+			// 						break;
 
-								case "random_sort":
-									// suffle the opt if random sort is enable
-									if(isset($post['post_meta']['opt']))
-									{
-										$keys = array_keys($post['post_meta']['opt']);
-								        shuffle($keys);
-								        foreach($keys as $key)
-								        {
-								        	$new[$key] = $post['post_meta']['opt'][$key];
-								        }
-								        $post['post_meta']['opt'] = $new;
-									}
-									break;
+			// 					case "random_sort":
+			// 						// suffle the opt if random sort is enable
+			// 						if(isset($post['post_meta']['opt']))
+			// 						{
+			// 							$keys = array_keys($post['post_meta']['opt']);
+			// 					        shuffle($keys);
+			// 					        foreach($keys as $key)
+			// 					        {
+			// 					        	$new[$key] = $post['post_meta']['opt'][$key];
+			// 					        }
+			// 					        $post['post_meta']['opt'] = $new;
+			// 						}
+			// 						break;
 
-								case "profile":
-									// this poll has lucked by profiel field
-									// we must be save answer to user profile
-									$this->data->profile = true;
-									// to save user answer in profile
-									$_SESSION['profile'] = true;
-									break;
+			// 					case "profile":
+			// 						// this poll has lucked by profiel field
+			// 						// we must be save answer to user profile
+			// 						$this->data->profile = true;
+			// 						// to save user answer in profile
+			// 						$_SESSION['profile'] = true;
+			// 						break;
 
-								case "hidden_result":
-									$show_result = false;
-									break;
+			// 					case "hidden_result":
+			// 						$show_result = false;
+			// 						break;
 
-								case "update_result":
-									$this->data->update_result = true;
-									break;
-							}
-							break;
-							// show rate of comments
-						case 'comment':
-							$rate = [];
-							for ($i=1; $i <= 5; $i++)
-							{
-								if(isset($value['option_meta']["rate$i"]))
-								{
-									$rate["rate$i"] = $value['option_meta']["rate$i"]['avg'];
-								}
-								else
-								{
-									$rate["rate$i"] = 0;
-								}
-							}
-							$rate['total'] = isset($value['option_meta']['total']['avg']) ? $value['option_meta']['total']['avg']: 0;
+			// 					case "update_result":
+			// 						$this->data->update_result = true;
+			// 						break;
+			// 				}
+			// 				break;
+			// 				// show rate of comments
+			// 			case 'comment':
+			// 				$rate = [];
+			// 				for ($i=1; $i <= 5; $i++)
+			// 				{
+			// 					if(isset($value['option_meta']["rate$i"]))
+			// 					{
+			// 						$rate["rate$i"] = $value['option_meta']["rate$i"]['avg'];
+			// 					}
+			// 					else
+			// 					{
+			// 						$rate["rate$i"] = 0;
+			// 					}
+			// 				}
+			// 				$rate['total'] = isset($value['option_meta']['total']['avg']) ? $value['option_meta']['total']['avg']: 0;
 
-							$this->data->rate = $rate;
-							break;
-						// case "true_answer":
-						default:
-							// !
-							break;
-					}
-				}
-				$this->data->meta = $meta;
-			}
+			// 				$this->data->rate = $rate;
+			// 				break;
+			// 			// case "true_answer":
+			// 			default:
+			// 				// !
+			// 				break;
+			// 		}
+			// 	}
+			// 	$this->data->meta = $meta;
+			// }
 
-			// load post filters
-			$post_filter         = \lib\utility\postfilters::get_filter($post['id']);
-			$this->data->filters = $post_filter;
+			// // load post filters
+			// $post_filter         = \lib\utility\postfilters::get_filter($post['id']);
+			// $this->data->filters = $post_filter;
 
-			$show_result = true;
+			// $show_result = true;
 
-			// check show result
-			if($show_result)
-			{
-				/*
-				 * get all chart result
-				*/
-				$chart_mode =
-				[
-					'gender',
-					'marrital',
-					'range',
-					'degree',
-					'city'
-				];
-				// load result as chart
-				$chart = \lib\utility\stat_polls::get_result($post_id,
-					['validation' => 'valid', 'filter' => $chart_mode]);
-				$this->data->chart = $chart;
-			}
+			// // check show result
+			// if($show_result)
+			// {
+			// 	/*
+			// 	 * get all chart result
+			// 	*/
+			// 	$chart_mode =
+			// 	[
+			// 		'gender',
+			// 		'marrital',
+			// 		'range',
+			// 		'degree',
+			// 		'city'
+			// 	];
+			// 	// load result as chart
+			// 	$chart = \lib\utility\stat_polls::get_result($post_id,
+			// 		['validation' => 'valid', 'filter' => $chart_mode]);
+			// 	$this->data->chart = $chart;
+			// }
 
-			// comment
-			if(isset($post['comment']) && $post['comment'] == 'closed')
-			{
-				$thid->data->comment = false;
-			}
+			// // comment
+			// if(isset($post['comment']) && $post['comment'] == 'closed')
+			// {
+			// 	$thid->data->comment = false;
+			// }
 
 			// to load post data in html
 			$this->data->post = $post;
-
-			$this->data->is_like = \lib\db\polls::is_like($this->login('id'), $post_id);
+			var_dump($post);
+			exit();
+			// $this->data->is_like = \lib\db\polls::is_like($this->login('id'), $post_id);
 		}
 		else
 		{

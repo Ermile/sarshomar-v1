@@ -20,6 +20,7 @@ class controller extends \mvc\controller
 		}
 
 		$reg = "/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/";
+
 		if(preg_match($reg, \lib\router::get_url(), $controller_name))
 		{
 			if(isset($controller_name[4]) && $controller_name[4] == 'comments')
@@ -33,17 +34,24 @@ class controller extends \mvc\controller
 			return;
 		}
 
-		if(substr(\lib\router::get_url(), 0, 1) == '$')
+		$short_url = "/^\\$([". self::$shortURL. "]+)$/";
+		if(preg_match($short_url, \lib\router::get_url()))
 		{
-			\lib\router::set_controller("\\content\\knowledge\\controller");
+			\lib\router::set_controller("\\content\\poll\\controller");
 			return;
 		}
+
 
 		if(preg_match("/^sp\_([". self::$shortURL. "]+)$/", \lib\router::get_url(), $split_url))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
 		}
 
+		if(substr(\lib\router::get_url(), 0, 1) == '$')
+		{
+			\lib\router::set_controller("\\content\\knowledge\\controller");
+			return;
+		}
 
 		/**
 		 * generate captcha code
@@ -57,6 +65,11 @@ class controller extends \mvc\controller
 			}
 		}
 
+		if($this->model()->get_posts())
+		{
+			\lib\router::set_controller("\\content\\poll\\controller");
+			return;
+		}
 
 		$this->get("random")->ALL("/ask\/random$/");
 

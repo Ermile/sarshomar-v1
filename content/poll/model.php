@@ -1,10 +1,85 @@
 <?php
 namespace content\poll;
 use \lib\utility;
+use \lib\utility\shortURL;
 
 class model extends \mvc\model
 {
 
+	use \content_api\v1\home\tools\ready;
+	use \content_api\v1\poll\tools\get;
+
+	public $poll_code = null;
+	public $poll_id   = null;
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function check_url()
+	{
+		// $shortURL = $this->controller()::$shortURL;
+		// $redirect = false;
+		// $url      = null;
+
+		$url     = \lib\router::get_url();
+		$poll_id = null;
+		if(preg_match("/^sp\_(.*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+
+		if(preg_match("/^\\$(.*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+
+		if(preg_match("/^\\$\/(.*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		if($poll_id)
+		{
+			$this->poll_code = $poll_id;
+			$this->poll_id = \lib\utility\shortURL::decode($poll_id);
+		}
+		else
+		{
+			return false;
+		}
+
+		$poll = \lib\db\polls::get_poll($this->poll_id);
+
+		if(isset($poll['url']) && $poll['url'] != $url .'/')
+		{
+			$language = null;
+			if(isset($poll['language']))
+			{
+				$language = \lib\define::get_current_language_string($poll['language']);
+			}
+
+			$post_url = $poll['url'];
+
+			$new_url = trim($this->url('prefix'). $language. '/'. $post_url, '/');
+			$this->redirector()->set_url($new_url)->redirect();
+		}
+		else
+		{
+			return $poll;
+		}
+	}
 	/**
 	 * Gets the comments.
 	 *
@@ -32,44 +107,52 @@ class model extends \mvc\model
 	 */
 	public function get_poll($_args)
 	{
-		if(isset($_args->match->url[0]))
-		{
-			$url = $_args->match->url[0];
-		}
-		else
-		{
-			$url = [];
-		}
+		$this->check_url();
+		$this->user_id = $this->login('id');
 
-		if(isset($url[1]))
-		{
-			$sp_ = $url[1];
-		}
-		else
-		{
-			$sp_ = null;
-		}
+		$get_poll =
+		[
+			'check_is_my_poll'   => false,
+			'get_filter'         => true,
+			'get_opts'           => true,
+			'get_options'        => true,
+			'run_options'        => true,
+			'get_public_result'  => true,
+			'get_advance_result' => true,
+			'type'               => null, // ask || random
+		];
+		\lib\utility::set_request_array(['id' => $this->poll_code]);
 
-		if(isset($url[2]))
-		{
-			$short_url = $url[2];
-		}
-		else
-		{
-			$short_url = null;
-		}
+		$poll = $this->poll_get($get_poll);
+		return $poll;
+	}
 
-		if(isset($url[3]))
+	/**
+	 * Gets the realpath.
+	 */
+	public function get_realpath()
+	{
+		$poll = $this->get_posts();
+		if(isset($poll['id']))
 		{
-			$title = $url[3];
-		}
-		else
-		{
-			$title = null;
-		}
-		if($sp_ == "sp_")
-		{
-			$poll_id = \lib\utility\shortURL::decode($short_url);
+			$this->user_id = $this->login('id');
+
+			$get_poll =
+			[
+				'check_is_my_poll'   => false,
+				'get_filter'         => true,
+				'get_opts'           => true,
+				'get_options'        => true,
+				'run_options'        => true,
+				'get_public_result'  => true,
+				'get_advance_result' => true,
+				'type'               => null, // ask || random
+			];
+
+			\lib\utility::set_request_array(['id' => \lib\utility\shortURL::encode($poll['id'])]);
+
+			$poll = $this->poll_get($get_poll);
+			return $poll;
 		}
 	}
 

@@ -20,4 +20,9 @@ if(!defined('db_pass'))
 
 define('subDevelop', 'dev');
 
+// define short url alphabet
+if(!defined('SHORTURL_ALPHABET'))
+{
+	define('SHORTURL_ALPHABET', 'SQ2ksPytvBzCDNb4G56cdHJK3wxqLMYZjmn8pWXrRTV79fghF');
+}
 ?>

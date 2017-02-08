@@ -27,6 +27,7 @@ trait get
 			'get_filter'         => true,
 			'get_opts'           => true,
 			'get_options'	     => true,
+			'run_options'	     => false,
 			'get_public_result'  => true,
 			'get_advance_result' => false,
 			'type'               => null, // ask || random

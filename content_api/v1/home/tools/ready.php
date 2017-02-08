@@ -344,6 +344,7 @@ trait ready
 				}
 
 				unset($answers[$key]['attachment_id']);
+				unset($answers[$key]['id']);
 
 				$show_answers[$show_key] = array_filter($answers[$key]);
 			}
@@ -449,21 +450,22 @@ trait ready
 				// }
 			}
 
-			$post_meta_key = array_column($post_meta, 'option_value');
+			$post_meta_key = array_column($post_meta, 'option_key');
 
 			if(in_array('random_sort', $post_meta_key) && $_options['run_options'])
 			{
 				if(array_key_exists('answers', $_poll_data) && is_array($_poll_data['answers']))
 				{
-					$new  = $_poll_data['answers'];
+					$new  = [];
 					$keys = array_keys($_poll_data['answers']);
-
 			        shuffle($keys);
-			        foreach($keys as $key)
+			        ;
+			        foreach($keys as $key => $value)
 			        {
-			        	$new[$key] = $_poll_data['answers'][$key];
+			        	$new[$value] = $_poll_data['answers'][$value];
 			        }
 			        $_poll_data['answers'] = $new;
+
 				}
 
 				// unset($_poll_data['options']['random_sort']);

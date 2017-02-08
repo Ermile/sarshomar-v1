@@ -2,7 +2,7 @@
 
 {%block poll_title%}
 {% spaceless %}
- <h2>{{post.post_title}}</h2>
+ <h2>{{poll.title}}</h2>
 {% endspaceless %}
 {%endblock%}
 
@@ -19,8 +19,8 @@
 
 {%block poll_content%}
 {% spaceless %}
-{%if post.post_content%}
- <p>{{post.post_content}}</p>
+{%if poll.content%}
+ <p>{{poll.content}}</p>
 {%endif%}
 {% endspaceless %}
 {%endblock%}
@@ -28,10 +28,12 @@
 
 {%block poll_read_more%}
 {% spaceless %}
-{%if article%}
+{%if article_titles%}
  <div class="read-more">
   <span>{%trans "Read More"%}</span>
-  <a href="{{article.url}}">{{article.title}}</a>
+  {%for key, value in article_titles%}
+  <a href="${{key}}">{{value}}</a>
+  {%endfor%}
  </div>
 {%endif%}
 {% endspaceless %}
@@ -40,7 +42,7 @@
 
 {%block poll_guide%}
 {% spaceless %}
- {%if multiple_choice%}
+ {%if poll.options.multi%}
   <div class="poll-guide">{%trans "You can select just two options."%}</div>
  {%endif%}
 {% endspaceless %}
@@ -48,43 +50,48 @@
 
 {%block poll_options%}
 {% spaceless %}
- {%if post.post_meta.opt%}{#check post meta exist#}
-  {%if multiple_choice%}
+ {%if poll.answers%}{#check post meta exist#}
+  {%if poll.options.multi%}
    <ul>
-   {%for key, value in post.post_meta.opt%}
+   {%for key, value in poll.answers%}
+
+   {%if value.type == 'descriptive' %}
     <li>
-     <input type="checkbox" name="{{value.key}}" id="check_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.txt}}">
-     <label for="check_{{value.key}}" data-number="{{key + 1}}">{{value.txt}}</label>
+     <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{poll.post_meta.opt|length + 1}}" value="other">
+     <label for="check_other" data-number="{{key}}"><input type="text" name="opt_other"></label>
     </li>
-   {%endfor%}
-   {%if descriptive%}
+    {%else%}
     <li>
-     <input type="checkbox" id="check_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-     <label for="check_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
+     <input type="checkbox" name="{{key}}" id="check_{{key}}" class="answer-link" data-key="{{key}}" value="{{value.title}}">
+     <label for="check_{{key}}" data-number="{{key}}">{{value.title}}</label>
     </li>
    {%endif%}
+
+   {%endfor%}
    </ul>
   {%else%}{#muliple_choice not set load the radio mod#}
    <ul>
-   {%for key, value in post.post_meta.opt%}
+   {%for key, value in poll.answers%}
+
+    {%if value.type == 'descriptive' %}
+    <li>
+     <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{key}}" value="other">
+     <label for="radio_other" data-number="{{key}}"><input type="text" name="opt_other"></label>
+    </li>
+    {%else%}
     <li>
      <span class="checkbox">
-      <input type="radio" name="radio" id="radio_{{value.key}}" class="answer-link" data-key="{{value.key}}" value="{{value.key}}">
-      <label class="check-box" for="radio_{{value.key}}" data-number="{{key + 1}}"></label>
+      <input type="radio" name="radio" id="radio_{{key}}" class="answer-link" data-key="{{key}}" value="{{value.title}}">
+      <label class="check-box" for="radio_{{key}}" data-number="{{key}}"></label>
      </span>
-     <label for="radio_{{value.key}}" data-number="{{key + 1}}">
-      {{value.txt}}
+     <label for="radio_{{key}}" data-number="{{key}}">
+      {{value.title}}
      </label>
     </li>
-   {%endfor%}
-   {%if descriptive%}
-    <li>
-     <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{post.post_meta.opt|length + 1}}" value="other">
-     <label for="radio_other" data-number="{{post.post_meta.opt|length + 1}}"><input type="text" name="opt_other"></label>
-    </li>
    {%endif%}
+   {%endfor%}
    </ul>
-  {%endif%}{#multiple_choice check end#}
+  {%endif%}
   <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}' class="skip">
  {%endif%}
 {% endspaceless %}
@@ -94,7 +101,7 @@
 {%block poll_buttons%}
 {% spaceless %}
  <div class="btn-container poll">
- {%if post.post_meta.opt%}{#check post meta exist#}
+ {%if poll.answers%}
   <button class="btn secondary save-answer"
     {% if login %}{%else%} disabled="disabled" {%endif%}>{%trans "Save Answer"%}
   </button>
@@ -160,9 +167,9 @@
 {%block poll_period%}
 {% spaceless %}
  <div class="title">{%trans "Poll timespan"%}</div>
- {%if date_start or date_end%}
+ {%if poll.schedule.start or poll.schedule.end %}
   <div class="content period">
-   <span class="start-time">{{date_start}}</span><span>{%trans "to"%}</span><span class="end-time">{{date_end}}</span>
+   <span class="start-time">{{poll.schedule.start}}</span><span>{%trans "to"%}</span><span class="end-time">{{poll.schedule.end}}</span>
   </div>
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
@@ -174,15 +181,17 @@
 {%block poll_status%}
 {% spaceless %}
  <div class="title">{%trans "Status"%}</div>
- <div class="content status {{status}}">{{status}}</div>
+ <div class="content status {{poll.status}}">{{poll.status}}</div>
 {% endspaceless %}
 {%endblock%}
 
 {%block poll_tags%}
 {% spaceless %}
  <div class="title">{%trans "Keyword"%}</div>
- {%if tags()%}
-  <div class="content tags">{{tags({"html":true})}}</div>
+ {%if poll.tags%}
+  {%for key, value in poll.tags%}
+  <div class="content tags">{{value}}</div>
+  {%endfor%}
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
  {%endif%}
@@ -191,11 +200,18 @@
 
 
 {%block poll_filters%}
+
 {% spaceless %}
  <div class="title">{%trans "Statistical population"%}</div>
- {%if filters%}
-  {%for key, value in filters%}
-   <span><i class="fa fa-2x fa-{{value.icon}}" aria-hidden="true"></i> {{value.filter}}</span>
+ {%if poll.filters%}
+  {%for key, value in poll.filters%}
+    {% if key == 'count' %}
+    <!-- count member is {{value}} -->
+      {% else %}
+        {% for k, v in value%}
+        <span><i class="fa fa-2x fa-{{k}}" aria-hidden="true"></i>{{v}}</span>
+        {%endfor%}
+    {% endif %}
   {%endfor%}
  {%else%}
   <div class="content no-data">{%trans "Not set"%}</div>

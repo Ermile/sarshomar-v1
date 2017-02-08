@@ -8,6 +8,8 @@ class controller extends \mvc\controller
 	{
 		$this->get("poll","poll")->ALL("/^sp\_([". self::$shortURL. "]+)$/");
 		$this->get("poll","poll")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
+		$this->get("poll","poll")->ALL("/^\\$([". self::$shortURL. "]+)$/");
+		$this->get("realpath","poll")->ALL("/.*/");
 		$this->post("save_answer")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
 	}
 }
