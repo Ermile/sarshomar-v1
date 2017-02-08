@@ -1482,7 +1482,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 .element.select .title::after{display:none;}
 .modal .element .title.small {display: flex}
-.element.no-pad{padding:0;width: 100%; display: block}
+.element.no-pad{padding:0;width: 100%;}
 .element.no-pad .title::after,.element.range .title::after{display:none;}
 
 .element .btn{padding:0 1em;background-color:#ebebeb;border:none;color:#bdbdbd;transition:.3s;cursor:pointer;}

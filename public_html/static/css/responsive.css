@@ -161,6 +161,7 @@
  .menu {padding: 0;}
  .menu .menu-inside label i {display: none;}
  .rtl .element,.element {padding-left: 0;padding-right: 0;}
+ .element.no-pad{display: block}
  .ultra .data {width: 100%;}
  .ultra.title-item {margin-bottom: 3em;}
  .ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
