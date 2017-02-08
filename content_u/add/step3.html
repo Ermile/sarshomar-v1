@@ -64,7 +64,7 @@
    <label class="title large">{%trans "Language"%}</label>
    {% set lang_list = langList({'all' : true}) %}
    {%for key, value in lang_list%}
-   <input type="radio" " name="ui-language" value="{{key}}" id="language-{{key}}" {% if poll.language == key%} checked="checked" {% endif %}{%if not poll.language and site.currentlang == key %}checked{%endif%}>
+   <input type="radio" name="ui-language" value="{{key}}" id="language-{{key}}" {% if poll.language == key%} checked="checked" {% endif %}{%if not poll.language and site.currentlang == key %}checked{%endif%}>
    <label for="language-{{key}}">{{value}}</label>
    {%endfor%}
   </div>
