@@ -29,7 +29,26 @@ trait link
 			return debug::error(T_("Parameter poll not set"), 'poll', 'arguments');
 		}
 
-		// $poll_id =
+		$poll_id =  'dW';
+
+		utility::set_request_array(['id' => $poll_id]);
+
+		$poll_get =
+		[
+			'check_is_my_poll'   => true,
+			'get_filter'         => false,
+			'get_opts'           => true,
+			'get_options'	     => false,
+			'get_public_result'  => false,
+			'get_advance_result' => false,
+			'type'               => null, // ask || random
+		];
+		$poll = $this->poll_get($poll_get);
+
+		if(!debug::$status)
+		{
+			return;
+		}
 
 		$ready_upload =
 		[
