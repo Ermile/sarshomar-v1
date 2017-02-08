@@ -219,7 +219,7 @@
  .poll-filters {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: reverse;-ms-flex-direction: column-reverse;flex-direction: column-reverse;}
  .pay-info {margin-bottom: 2em;}
  .switch .title.large {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;display: inline-block;border-radius: 0;border-top-left-radius: 5px;border-top-right-radius: 5px;}
- .element.switch {display: block;}
+ .element.switch {display: block;line-height: normal}
  .range-slider[data-type=vertical] .dynamic-range .max {top: -10px;}
  .range-slider[data-type=vertical] .dynamic-range .max span:after {height: 24px;background-color: #00667a;border-radius: 5px 0 0 5px;top: -2px;left: 26px;}
  .range-slider[data-type=vertical] .dynamic-range span:before {border-left: 6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid #00667a;left: 13px;top: 2px;height: 16px;}
