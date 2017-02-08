@@ -9,8 +9,19 @@ class model extends \mvc\model
 	use \content_api\v1\home\tools\ready;
 	use \content_api\v1\poll\tools\get;
 
-	public $poll_code = null;
-	public $poll_id   = null;
+	public $poll_code       = null;
+	public $poll_id         = null;
+	public $get_poll_options =
+	[
+		'check_is_my_poll'   => false,
+		'get_filter'         => true,
+		'get_opts'           => true,
+		'get_options'        => true,
+		'run_options'        => true,
+		'get_public_result'  => true,
+		'get_advance_result' => true,
+		'type'               => null, // ask || random
+	];
 
 	/**
 	 * { function_description }
@@ -110,20 +121,9 @@ class model extends \mvc\model
 		$this->check_url();
 		$this->user_id = $this->login('id');
 
-		$get_poll =
-		[
-			'check_is_my_poll'   => false,
-			'get_filter'         => true,
-			'get_opts'           => true,
-			'get_options'        => true,
-			'run_options'        => true,
-			'get_public_result'  => true,
-			'get_advance_result' => true,
-			'type'               => null, // ask || random
-		];
 		\lib\utility::set_request_array(['id' => $this->poll_code]);
 
-		$poll = $this->poll_get($get_poll);
+		$poll = $this->poll_get($this->get_poll_options);
 		return $poll;
 	}
 
@@ -136,22 +136,8 @@ class model extends \mvc\model
 		if(isset($poll['id']))
 		{
 			$this->user_id = $this->login('id');
-
-			$get_poll =
-			[
-				'check_is_my_poll'   => false,
-				'get_filter'         => true,
-				'get_opts'           => true,
-				'get_options'        => true,
-				'run_options'        => true,
-				'get_public_result'  => true,
-				'get_advance_result' => true,
-				'type'               => null, // ask || random
-			];
-
 			\lib\utility::set_request_array(['id' => \lib\utility\shortURL::encode($poll['id'])]);
-
-			$poll = $this->poll_get($get_poll);
+			$poll = $this->poll_get($this->get_poll_options);
 			return $poll;
 		}
 	}
@@ -221,14 +207,6 @@ class model extends \mvc\model
 		$type       = utility::post("type");
 		$comment_id = utility::post("data");
 		$result = \lib\db\commentdetails::set($user_id, $comment_id, $type);
-		// if($result)
-		// {
-		// 	\lib\debug::true(T_("score saved"));
-		// }
-		// else
-		// {
-		// 	\lib\debug::error(T_("score not save"));
-		// }
 	}
 
 
@@ -239,18 +217,7 @@ class model extends \mvc\model
 	 */
 	public function post_save_answer()
 	{
-		//----------------------------------------------------------------------------
-		// check poll id
-		if(isset($_SESSION['last_poll_id']))
-		{
-			$poll_id = $_SESSION['last_poll_id'];
-		}
-		else
-		{
-			\lib\debug::error(T_("We couldn't find some data, Please reload the page and try again"));
-			return false;
-		}
-		//----------------------------------------------------------------------------
+
 		// save a comment
 		if(utility::post("comment"))
 		{
@@ -300,46 +267,45 @@ class model extends \mvc\model
 			\lib\debug::error(T_("You must login in order to answer the questions"));
 			return false;
 		}
-
-		if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
-		{
-			\lib\debug::error(T_("The poll id does not match with your last question"));
-			return false;
-		}
+		\lib\debug::warn(T_("Try later"));
+		return;
+		// if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
+		// {
+		// 	\lib\debug::error(T_("The poll id does not match with your last question"));
+		// 	return false;
+		// }
 
 		$post = utility::post();
+
 		$opt  = [];
-		$session_opt = [];
-		if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
-		{
-			$session_opt = array_column($_SESSION['last_poll_opt'],'key');
-		}
+		// $session_opt = [];
+		// if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
+		// {
+		// 	$session_opt = array_column($_SESSION['last_poll_opt'],'key');
+		// }
 
 		foreach ($post as $key => $value)
 		{
-			if(substr($key, 0,4) == 'opt_')
+			if(preg_match("/^check\_(\d+)$/", $key, $index))
 			{
-				if($key == 'opt_other' && $value == '')
+				if(isset($index[1]))
 				{
-					continue;
+					array_push($opt, $index[1]);
 				}
-				$opt[substr($key, 5)] = $value;
 			}
-			elseif ($key == 'radio')
+
+			if(preg_match("/^radio\_(\d+)$/", $key, $index))
 			{
-				if(in_array($value, $session_opt))
+				if(isset($index[1]))
 				{
-					$opt_value   = array_column($_SESSION['last_poll_opt'],'txt', 'key');
-					$tmp = $value;
-					if(substr($value, 0,4) == 'opt_')
-					{
-						$tmp = substr($value, 4);
-					}
-					$opt[$tmp] = $opt_value[$value];
+					array_push($opt, $index[1]);
+					break;
 				}
 			}
 		}
 
+		// var_dump($opt);
+		// exit();
 		$result = ['status' => false, 'msg' => T_("Error in saving your answers")];
 		if(!empty($opt))
 		{

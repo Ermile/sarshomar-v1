@@ -10,7 +10,8 @@ class controller extends \mvc\controller
 		$this->get("poll","poll")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
 		$this->get("poll","poll")->ALL("/^\\$([". self::$shortURL. "]+)$/");
 		$this->get("realpath","poll")->ALL("/.*/");
-		$this->post("save_answer")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
+		// $this->post("save_answer")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
+		$this->post("save_answer")->ALL("/.*/");
 	}
 }
 ?>
