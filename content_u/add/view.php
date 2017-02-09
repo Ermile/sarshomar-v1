@@ -43,7 +43,7 @@ class view extends \content_u\home\view
 		}
 
 		// load empty answers for first loading
-		$this->data->answers = [[],[]];
+		$this->data->answers = [1 =>[], 2 => []];
 	}
 
 
@@ -65,12 +65,12 @@ class view extends \content_u\home\view
 			}
 			else
 			{
-				$answers = [[],[]];
+				$answers = [1 =>[], 2 => []];
 			}
 		}
 		else
 		{
-			$answers = [[],[]];
+			$answers = [1 =>[], 2 => []];
 		}
 
 		$this->data->answers = $answers;
