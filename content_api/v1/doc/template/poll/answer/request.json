@@ -1,12 +1,17 @@
 {
   "id": "[poll id]",
   "skipp": true,
-  "answer":
-  {
+  "answer": {
+    "1": [10,null],
     "3": "code file",
-    "4": true,
+    "4": "string",
     "5": true,
-    "from": 10,
-    "to": 50
+
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 3,
+    "5": 4,
+
   }
 }

@@ -6,6 +6,7 @@ use \lib\debug;
 class model extends \content_api\v1\home\model
 {
 
+	use \content_api\v1\home\tools\ready;
 	use \content_api\v1\poll\tools\get;
 
 	use tools\get;
@@ -60,7 +61,8 @@ class model extends \content_api\v1\home\model
 	 */
 	public function delete_answer($_args)
 	{
-		return $this->poll_answer_delete();
+		$id = \lib\router::get_url(3);
+		return $this->poll_answer_delete(['id' => $id]);
 	}
 
 

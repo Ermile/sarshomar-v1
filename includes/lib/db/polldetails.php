@@ -204,16 +204,16 @@ class polldetails
 	 *
 	 * @param      <type>  $_user_id        The user identifier
 	 * @param      <type>  $_poll_id        The poll identifier
-	 * @param      <type>  $_num_of_opt_kye  The number of option kye
+	 * @param      <type>  $_opt  The number of option kye
 	 * @param      <type>  $_answer_txt     The answer text
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function save($_user_id, $_poll_id, $_num_of_opt_kye, $_option = [])
+	public static function save($_user_id, $_poll_id, $_opt, $_option = [])
 	{
-		if($_num_of_opt_kye == 'other')
+		if($_opt == 'other')
 		{
-			$_num_of_opt_kye = "NULL";
+			$_opt = "NULL";
 		}
 
 		$default_option =
@@ -253,7 +253,7 @@ class polldetails
 				port        = $port,
 				subport     = $subport,
 				validstatus = '$_option[validation]',
-				opt         = $_num_of_opt_kye,
+				opt         = $_opt,
 				type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
 				txt         = '$_option[answer_txt]',
 				profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),

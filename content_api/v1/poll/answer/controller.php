@@ -11,7 +11,7 @@ class controller extends  \content_api\v1\home\controller
 
 		$this->put("answer")->ALL("v1/poll/answer");
 
-		$this->delete("answer")->ALL("v1/poll/answer");
+		$this->delete("answer")->ALL("/^v1\/poll\/answer\/[". \lib\utility\shortURL::ALPHABET. "]+$/");
 	}
 }
 ?>
