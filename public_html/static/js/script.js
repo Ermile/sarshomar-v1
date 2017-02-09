@@ -272,12 +272,23 @@ function shortkey()
 
 		switch (mytxt)
 		{
+			// shift + delete
+			case '46shift':
+				var focusedElement = $(e.target);
+				if(focusedElement.is('.input-group.sortable > li .input'))
+				{
+					focusedElement.closest('li').find('.delete').click();
+				}
+				break;
+
+			// ctrl + s
 			case '83ctrl':
 				// send data to server for saving
 				requestSavingData(true);
 
 				e.preventDefault();
 				break;
+
 			// f1
 			case '112':
 				$import('lib/introJs/introJs.js', 'runHelp');
@@ -291,6 +302,12 @@ function shortkey()
 }
 
 
+/**
+ * [showPreview description]
+ * @param  {[type]} _file   [description]
+ * @param  {[type]} _output [description]
+ * @return {[type]}         [description]
+ */
 function showPreview(_file, _output)
 {
 	// if we do not support fileReader return false!
@@ -625,6 +642,7 @@ function showQuestionOptsDel(_this, _delete)
 			{
 				$(_this).stop().fadeIn(200);
 			}
+			detectPercentage();
 		}
 	}
 }
@@ -1870,17 +1888,17 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 	// on input and press shift+del remove current record
-	$(this).on('input', '.input-group.sortable > li input', function(e)
-	{
-		if(countQuestionOpts() > 2)
-		{
-			if(e.shiftKey && e.keyCode === 46)
-			{
-				$(this).closest('li').find('.delete').click();
-			}
-		}
-		detectPercentage();
-	});
+	// $(this).on('keyup', '.input-group.sortable > li input', function(e)
+	// {
+	// 	if(countQuestionOpts() > 2)
+	// 	{
+	// 		if(e.shiftKey && e.keyCode === 46)
+	// 		{
+
+	// 			$(this).closest('li').find('.delete').click();
+	// 		}
+	// 	}
+	// });
 
 	$(this).on('input', '#title', function()
 	{
