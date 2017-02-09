@@ -598,30 +598,34 @@ function addNewOpt(_type, _title, _placeholder, _group)
  * @param  {[type]} _this [description]
  * @return {[type]}       [description]
  */
-function showQuestionOptsDel(_this)
+function showQuestionOptsDel(_this, _delete)
 {
-	// hide all elements
-	$('.input-group.sortable > li .delete').fadeOut(100);
-	var currentRowValue = $(_this).closest('li').find('.element input[type="text"]').val();
-	// always show delete button on input focus
-	if(countQuestionOpts() > 2 && currentRowValue)
+	if(!_delete)
 	{
-		$(_this).stop().fadeIn(200);
+		// hide all elements
+		$('.input-group.sortable > li .delete').fadeOut(100);
 	}
-}
-
-
-/**
- * delete selected opt and do some event after that
- * @param  {[type]} _this [description]
- * @return {[type]}       [description]
- */
-function deleteQuestionOpts(_this)
-{
-	var currentRowValue = $(_this).closest('li').find('input[type="text"]').val();
-	if (countQuestionOpts() > 2 && currentRowValue)
+	var currentRowStatus = $(_this).closest('li').attr('data-empty');
+	var totalRow         = countQuestionOpts();
+	var emptyRow         = totalRow - countQuestionOpts(true);
+	// always show delete button on input focus
+	if(totalRow > 2)
 	{
-		deleteOpt(_this);
+		if(currentRowStatus && emptyRow == 1)
+		{
+
+		}
+		else
+		{
+			if(_delete)
+			{
+				deleteOpt(_this);
+			}
+			else
+			{
+				$(_this).stop().fadeIn(200);
+			}
+		}
 	}
 }
 
@@ -671,9 +675,18 @@ function rearrangeSortable()
 {
 	$.each($('.input-group.sortable > li'), function(key, value)
 	{
-
 		var num = key + 1;
 		var row = num;
+		var inputVal = $(this).find('.element .input').val();
+		// remove empty null
+		if(inputVal)
+		{
+			$(this).attr('data-empty', null);
+		}
+		else
+		{
+			$(this).attr('data-empty', true);
+		}
 		$(this).attr('data-row', num);
 		// if data-type isset, use it as alternative of number
 		if($(this).attr('data-type'))
@@ -1890,7 +1903,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// on press delete on each opt
 	$(this).on('click', '.input-group.sortable > li .delete', function()
 	{
-		deleteQuestionOpts(this);
+		showQuestionOptsDel(this, true);
 	}).on('input', '.input-group.sortable > li .delete', function(e)
 	{
 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)

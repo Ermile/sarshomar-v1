@@ -64,7 +64,8 @@
   {% set other = false %}
 {%endif%}
 
- <li class="multi-line" data-row="{{myKey}}" {% if other %} data-type="other" {% endif %}>
+ <li class="multi-line" data-row="{{myKey}}" {% if other %} data-type="other" {% endif %}
+ {%if value.title%}{%else%}data-empty="true"{%endif%}>
   <div class="ultra">
    <div class="data">
     <div class="element">
