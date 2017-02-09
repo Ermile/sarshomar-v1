@@ -1961,8 +1961,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	checkNextStep();
 	// handle copy btn
 	handleCopy();
-	// draw factor and fill total price on start
-	calcTotalPrice();
+	// // draw factor and fill total price on start
+	// calcTotalPrice();
 
 	$('.page-progress input').on('click', function(e)
 	{
@@ -1982,6 +1982,13 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 	// on init
 	detectStep();
+
+	// on init calc price
+	$('#rangepersons').bind('range-slider::init::after', function(_e, _min, _max)
+	{
+		// ready to send data
+		calcTotalPrice();
+	});
 
 
 	// // on open tree load content to it
