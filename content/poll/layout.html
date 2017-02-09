@@ -189,9 +189,11 @@
 {% spaceless %}
  <div class="title">{%trans "Keyword"%}</div>
  {%if poll.tags%}
+  <div class="content tags">
   {%for key, value in poll.tags%}
-  <div class="content tags">{{value}}</div>
+   <a href="#">{{value}}</a>
   {%endfor%}
+  </div>
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
  {%endif%}
