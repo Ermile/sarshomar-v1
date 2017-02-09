@@ -286,7 +286,7 @@ trait ready
 			];
 
 			$answers = \lib\db\pollopts::get($poll_id, $custom_field, true);
-			// var_dump($answers);
+
 			$show_answers = [];
 			foreach ($answers as $key => $value)
 			{
@@ -298,6 +298,7 @@ trait ready
 					if(isset($value['id']))
 					{
 						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'sarshomar');
+
 						if($profile && is_array($profile))
 						{
 							foreach ($profile as $k => $v)
@@ -318,7 +319,7 @@ trait ready
 					{
 						$_poll_data['profile'] = true;
 					}
-					$show_answers[$show_key]['profile'] = $opt_profile;
+					$answers[$key]['profile'] = $opt_profile;
 				}
 
 				// unset($answers[$key]['id']);
@@ -341,6 +342,11 @@ trait ready
 						$answers[$key]['file']['id'] = \lib\utility\shortURL::encode($value['attachment_id']);
 						$answers[$key]['file']['url'] = $host. '/'. $attachment['meta']['url'];
 					}
+				}
+
+				if(isset($value['groupscore']) && $value['groupscore'])
+				{
+					$_poll_data['advance_score'] = true;
 				}
 
 				unset($answers[$key]['attachment_id']);

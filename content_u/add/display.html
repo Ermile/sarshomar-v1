@@ -6,7 +6,7 @@
   {%use "content_u/add/step1.html"%}
         {{block('feature_tabs_old')}}
         {{block('feature_title')}}
-        <div data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple' and poll.type is not null%}--------data-response-hide{%endif%}>
+        <div data-response="poll_type" data-response-where="multiple" data-response-effect="slide" {%if poll.type != 'multiple' and poll.type is not null%} data-response-hide2 {%endif%}>
          {{block('feature_opts')}}
          {{block('feature_choicemode')}}
          <div class="row auto">
@@ -16,7 +16,7 @@
          </div>
          <div class="row auto">
           <div class="span4">{{block('feature_other')}}</div>
-          <div class="span4" data-response='score' data-response-hide>{{block('feature_score_advance')}}</div>
+          <div class="span4" data-response='score' {% if not poll.have_score %} data-response-hide {% endif %}>{{block('feature_score_advance')}}</div>
          </div>
          {{block('feature_multiplerange')}}
         </div>

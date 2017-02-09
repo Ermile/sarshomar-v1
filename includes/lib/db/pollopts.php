@@ -418,7 +418,6 @@ class pollopts
 		{
 			$update = true;
 		}
-		// var_dump($must_insert, $must_update, $must_delete);	exit();
 		$delete_all_profile = false;
 
 		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
@@ -463,6 +462,7 @@ class pollopts
 				}
 				return;
 			}
+			// var_dump($must_insert, $must_update, $must_delete);	exit();
 			\lib\db::query("UPDATE pollopts SET pollopts.key = NULL WHERE pollopts.post_id = $_poll_id");
 			$old_answers_ids = array_column($old_answers_raw, 'id');
 			if(!empty($old_answers_ids))
