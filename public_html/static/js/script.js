@@ -303,100 +303,150 @@ function shortkey()
 
 
 /**
+ * [giveFile description]
+ * @param  {[type]} _file [description]
+ * @return {[type]}       [description]
+ */
+function giveFile(_file)
+{
+	// get output
+	var output  = $(_file).parents('.ultra').find('.preview')[0];
+	// get file object
+	var fileObj = $(_file)[0].files[0];
+	// get file url
+	var fileUrl = window.URL.createObjectURL(fileObj);
+	var myFile  = fileObj;
+	// set object of file to preview box data val
+	$(output).data('file', fileObj)
+		.attr('data-type', fileObj.type)
+		.attr('data-url', fileUrl)
+		.attr('data-local', true);
+
+	showPreview(output);
+}
+
+
+/**
+ * [fileTypeAnalyser description]
+ * @param  {[type]} _file [description]
+ * @return {[type]}       [description]
+ */
+function fileTypeAnalyser(_file)
+{
+	var myFile  = {};
+	myFile.type = _file.substr(0, _file.indexOf('/'));
+	myFile.ext  = _file.substr(_file.indexOf('/') + 1);
+
+	return myFile;
+}
+
+
+/**
  * [showPreview description]
  * @param  {[type]} _file   [description]
  * @param  {[type]} _output [description]
  * @return {[type]}         [description]
  */
-function showPreview(_file, _output)
+function showPreview(_output)
 {
+	var $output = $(_output);
 	// if we do not support fileReader return false!
 	if (typeof (FileReader) == "undefined")
 	{
 		return false;
 	}
-	// declare variables
-	var files = $(_file)[0].files;
+	// clear for each file
+	$output.html('').removeClass('otherFile');
+	$output.closest('.ultra').find('.audio').html('');
 
-	// Loop through the FileList and render image files as thumbnails.
-	for (var i = 0, f; f = files[i]; i++)
+	// get attribute of this file, from input or from server
+	var attrType  = $output.attr('data-type');
+	var attrUrl   = $output.attr('data-url');
+	var attrLocal = $output.attr('data-local');
+	var attrObj   = $output.data('file');
+	// generate some prop of file
+	var fileType    = fileTypeAnalyser(attrType);
+	var fileModel   = fileType.type;
+	var fileExt     = fileType.ext;
+	if(!fileModel)
 	{
-		// clear for each file
-		$(_output).removeClass('otherFile');
-		$(_output).html('');
-		$(_output).find('.audio').html('');
-
-		var fileModel   = 'other';
-		var filePrevUrl = '';
-		var fileUrl     = window.URL.createObjectURL(f);
-
-		// Only process image files.
-		if(f.type.match('image.*'))
-		{
-			fileModel   = 'image';
-			filePrevUrl = fileUrl;
-		}
-		else if(f.type == 'audio/mp3')
-		{
-			fileModel = 'audio';
-
-			// add element of audio
-			// var audioEl = '<audio controls><source src="' + fileUrl + '" type="audio/mp3"></audio>';
-			var audioEl = createNewEl(fileModel, {"url":fileUrl});
-			$(_output).parents('li').find('.audio').html(audioEl);
-		}
-		else if(f.type == 'video/mp4')
-		{
-			fileModel = 'video';
-			// show image of audio
-			// filePrevUrl = '/static/images/file/video.svg';
-			// // add element of audio
-			// var videoEl = '<video controls><source src="' + fileUrl + '" type="video/mp4"></audio>';
-			// var videoEl = createNewEl(fileModel, {"url":fileUrl});
-			// $(_output).parents('li').find('.audio').html(videoEl);
-		}
-		else
-		{
-			fileModel = 'file';
-			// filePrevUrl = '/static/images/file/file.svg';
-			$(_output).addClass('otherFile');
-			// continue;
-		}
-
-		// if is not set use default prev image
-		if(!filePrevUrl)
-		{
-			filePrevUrl = '/static/images/file/' + fileModel + '.svg';
-		}
-		var imageEl = '<img src="'+ filePrevUrl + '"/>';
-		$(_output).html(imageEl).attr('data-model', fileModel).attr('data-type', f.type).attr('data-url', fileUrl);
-
-		// open modal for edit
-		$(window).trigger('cropBox:open', _output);
-
-
-		// // create new instance
-		// var reader = new FileReader();
-		// // Closure to capture the file information.
-		// reader.onload = (function(theFile)
-		// {
-		// 	return function(e)
-		// 	{
-		// 		// if span of preview is not exist, then create element for preview
-		// 		// var span = document.createElement('span');
-
-		// 		// Render thumbnail
-		// 		var createdEl = '';
-		// 		createdEl = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
-
-		// 		$(_output).html(createdEl);
-		// 		$(window).trigger('cropBox:open', _output);
-		// 	};
-		// })(f);
-
-		// Read in the image file as a data URL.
-		// reader.readAsDataURL(f);
+		fileModel = 'file';
 	}
+	// create file preview url
+	var filePrevUrl = '/static/images/file/' + fileModel + '.svg';
+	// for image use real image for preview
+	if(fileModel == 'image')
+	{
+		filePrevUrl = attrUrl;
+	}
+	var imageEl     = '<img src="'+ filePrevUrl + '"/>';
+	// fill output with image
+	$output.html(imageEl);
+
+	// show some work depending on file model
+	switch (fileModel)
+	{
+		case "image":
+			// open modal for edit
+			$(window).trigger('cropBox:open', $output);
+			break;
+
+		case "audio":
+			var mediaEl = createNewEl(fileModel, {"url":attrUrl});
+			console.log(mediaEl);
+			console.log(fileExt);
+			// only for mp3 show preview
+			if(fileExt == 'mp3')
+			{
+				$output.closest('.ultra').find('.audio').html(mediaEl);
+				console.log($output.closest('.ultra').find('.audio'));
+			}
+			break;
+
+		case "video":
+			var audioEl = createNewEl(fileModel, {"url":attrUrl});
+			// only for mp4 show preview
+			if(fileExt == 'mp4')
+			{
+
+			}
+			break;
+
+		// unknown file model use file simple preview
+		case "":
+			fileModel = 'file';
+			break;
+
+		default:
+			$output.addClass('otherFile');
+			break;
+	}
+
+
+	// // create new instance
+	// var reader = new FileReader();
+	// // Closure to capture the file information.
+	// reader.onload = (function(theFile)
+	// {
+	// 	return function(e)
+	// 	{
+	// 		// if span of preview is not exist, then create element for preview
+	// 		// var span = document.createElement('span');
+
+	// 		// Render thumbnail
+	// 		var createdEl = '';
+	// 		createdEl = '<img src="'+ e.target.result+ '" title="'+ escape(theFile.name)+ '"/>';
+
+	// 		$(_output).html(createdEl);
+	// 		$(window).trigger('cropBox:open', _output);
+	// 	};
+	// })(f);
+
+	// Read in the image file as a data URL.
+	// reader.readAsDataURL(f);
+
+
+	// }
 }
 
 
@@ -438,8 +488,10 @@ function startCrop(_el)
 	var elImgPrev    = $(_el).find('img');
 	var attr         = {};
 	attr.type        = $(_el).attr('data-type');
-	attr.model       = $(_el).attr('data-model');
 	attr.url         = $(_el).attr('data-url');
+	var fileType     = fileTypeAnalyser(attr.type);
+	attr.model       = fileType.type;
+	attr.ext         = fileType.ext;
 	// transfer image to modal
 
 	switch (attr.model)
@@ -2060,8 +2112,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	//
 	$(this).on('change', 'input[type="file"]', function(event)
 	{
-		var output = $(this).parents('.ultra').find('.preview');
-		var imagePreview = showPreview(this, output);
+		// var output = $(this).parents('.ultra').find('.preview');
+		// var imagePreview = showPreview(this, output);
+
+		giveFile(this);
 	});
 	// after complete loading, open cropbox
 	$(window).off("cropBox:open");
