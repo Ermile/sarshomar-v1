@@ -48,7 +48,12 @@ trait answers
 				}
 				else
 				{
-					// return debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
+					if(self::$debug)
+					{
+						debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
+
+					}
+					return ;
 				}
 
 				$combine[$key]['type'] = $type;
@@ -168,12 +173,13 @@ trait answers
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
 
-				if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
-				{
-					unset($combine[$key]);
-				}
+				// if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
+				// {
+				// 	unset($combine[$key]);
+				// }
 			}
 
+			// var_dump($combine);exit();
 			if(self::$poll_id)
 			{
 				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);
