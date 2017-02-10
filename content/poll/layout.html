@@ -1,13 +1,175 @@
- {%extends display.main%}
+{%extends display.main%}
+
 
 {%block poll_title%}
 {% spaceless %}
- <h2>{{poll.title}}</h2>
+ {%if poll.title%}
+  <h2>{{poll.title}}</h2>
+ {%else%}
+  <h2>{%trans "Unfortunately there is no title to show!"%}</h2>
+ {%endif%}
 {% endspaceless %}
 {%endblock%}
 
 
-{%block poll_interaction%}
+{%block poll_toolbox%}
+{% spaceless %}
+ <div class="poll-toolbox">
+  <div class="like-fav">
+   <input type="checkbox" name="favorite" id="favorite">
+   <label for="favorite" class="icon-star icon-2x"></label>
+   <input type="checkbox" name="heart" id="heart">
+   <label for="heart" class="icon-heart icon-2x"></label>
+  </div>
+  {%include template.share%}
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_summary%}
+{% spaceless %}
+ {%if poll.content%}
+  <p class="poll-summary">{{poll.content}}</p>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_related%}
+{% spaceless %}
+ {%if article_titles%}
+  <div class="poll-related">
+   <div>{%trans "Read More"%}</div>
+   <ul>
+    {%for key, value in article_titles%}
+     <li>
+      <a href="${{key}}">{{value}}</a>
+     </li>
+    {%endfor%}
+   </ul>
+  </div>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_hint%}
+{% spaceless %}
+ {%if poll.options.multi%}
+  <div class="poll-hint">
+   <span>{%trans "You can select just two options."%}</span>
+  </div>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_options%}
+{% spaceless %}
+ {%if poll.answers%}
+ <ul class="poll-options">
+  {%if poll.options.multi%}{# if muliple_choice #}
+   {%for key, value in poll.answers%}
+    {%if value.type == 'descriptive' %}
+
+    <li>
+     <label for="check_other">
+      <div class="option-number" data-number='{{key}}'></div>
+      <div class="option-content">
+       <input type="text" name="opt_other">
+      </div>
+      <span class="checkbox">
+       <input type="checkbox" name="" id="check_other" value="other">
+       <label for="check_other"></label>
+      </span>
+     </label>
+    </li>
+
+    {%else%}
+
+     <li>
+      <label for="check_{{key}}">
+       <div class="option-number" data-number='{{key}}'></div>
+       <div class="option-content">{{value.title}}</div>
+       <div class="checkbox">
+        <input type="checkbox" name="check_{{key}}" id="check_{{key}}" value="{{value.title}}">
+        <label for="check_{{key}}"></label>
+       </div>
+      </label>
+     </li>
+
+    {%endif%}
+   {%endfor%}
+  {%else%}{# if not muliple_choice #}
+   {%for key, value in poll.answers%}
+    {%if value.type == 'descriptive' %}
+
+     <li>
+      <label for="radio_other">
+       <div class="option-number" data-number='{{key}}'></div>
+       <div class="option-content">
+        <input type="text" name="opt_other" placeholder='{%trans "Please enter here"%}' data-response='radio_other'>
+       </div>
+       <span class="checkbox">
+        <input type="radio" name="radio" id="radio_other" value="other">
+        <label for="radio_other"></label>
+       </span>
+      </label>
+     </li>
+
+    {%else%}
+
+     <li>
+      <label for="radio_{{key}}">
+       <div class="option-number" data-number='{{key}}'></div>
+       <div class="option-content">{{value.title}}</div>
+       <span class="checkbox">
+        <input type="radio" name="radio" id="radio_{{key}}">
+        <label for="radio_{{key}}"></label>
+       </span>
+      </label>
+     </li>
+
+    {%endif%}
+   {%endfor%}
+  {%endif%}
+ </ul>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_skip%}
+{% spaceless %}
+ {%if poll.answers%}
+  <div class="poll-skip">
+   <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}'>
+  </div>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
+{%block poll_actions%}
+{% spaceless %}
+ <div class="poll-actions">
+  {%if poll.answers%}
+   <button class="try special-button" {%if not login%}disabled{%endif%}>{%trans "Save Answer"%}</button>
+  {%else%}
+   <a class="try special-button" href="ask" data-direct>{%trans "Ask Me"%}</a>
+  {%endif%}
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+
+
+
+
+
+
+{%block poll_interaction2%}
 {% spaceless %}
  <input type="checkbox" name="favorite" id="favorite">
  <label for="favorite" class="icon-star"></label>
@@ -16,8 +178,7 @@
 {% endspaceless %}
 {%endblock%}
 
-
-{%block poll_content%}
+{%block poll_content2%}
 {% spaceless %}
 {%if poll.content%}
  <p>{{poll.content}}</p>
@@ -26,7 +187,7 @@
 {%endblock%}
 
 
-{%block poll_read_more%}
+{%block poll_read_more2%}
 {% spaceless %}
 {%if article_titles%}
  <div class="read-more">
@@ -40,7 +201,7 @@
 {%endblock%}
 
 
-{%block poll_guide%}
+{%block poll_guide2%}
 {% spaceless %}
  {%if poll.options.multi%}
   <div class="poll-guide">{%trans "You can select just two options."%}</div>
@@ -48,7 +209,7 @@
 {% endspaceless %}
 {%endblock%}
 
-{%block poll_options%}
+{%block poll_options2%}
 {% spaceless %}
  {%if poll.answers%}{#check post meta exist#}
   {%if poll.options.multi%}
@@ -98,7 +259,7 @@
 {%endblock%}
 
 
-{%block poll_buttons%}
+{%block poll_buttons2%}
 {% spaceless %}
  <div class="btn-container poll">
  {%if poll.answers%}

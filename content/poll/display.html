@@ -1,6 +1,56 @@
 {%extends template.poll.layout%}
 
 {%block content%}
+ <div class="main pad">
+  <form method="post">
+   <div class="in small poll-container">
+    {{block('poll_title')}}
+    {{block('poll_toolbox')}}
+    {{block('poll_summary')}}
+    {{block('poll_related')}}
+    {{block('poll_hint')}}
+    {{block('poll_options')}}
+    {{block('poll_skip')}}
+    {{block('poll_actions')}}
+   </div>
+  </form>
+
+  <div class="box">
+   {%if poll.stats%}
+    <div class="row" id="poll-result">{{block('poll_chart')}}</div>
+   {%endif%}
+
+   <div class="row auto" id="poll-extra">
+    <h2 class="special-heading">{%trans "Description"%}</h2>
+    <div class="span4" id="poll-similar">{{block('poll_similar')}}</div>
+    <div class="span4" id="poll-info">{{block('poll_info')}}</div>
+    <div class="span4" id="poll-filters">{{block('poll_filters')}}</div>
+   </div>
+
+   {%if false%}
+    <div class="row" id="comments-box">
+     <h2 class="special-heading">{%trans "Comments"%}</h2>
+     {{block('poll_comments')}}
+    </div>
+   {%endif%}
+  </div>
+ </div>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block content2%}
    <div class="main pad box">
     <form method="post">
      <div class="row auto">
