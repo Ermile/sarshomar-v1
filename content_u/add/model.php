@@ -25,6 +25,10 @@ class model extends \content_u\home\model
 
 	use \content_api\v1\file\tools\get;
 
+	use \content_api\v1\poll\status\tools\get;
+
+	use \content_api\v1\poll\status\tools\set;
+
 
 	/**
 	 * Gets the add.
@@ -86,6 +90,12 @@ class model extends \content_u\home\model
 			return;
 		}
 
+		if(utility::post("status") == 'publish')
+		{
+			$this->publish_poll();
+			return;
+		}
+
 		return $this->poll();
 	}
 
@@ -109,9 +119,31 @@ class model extends \content_u\home\model
 			return;
 		}
 
+		if(utility::post("status") == 'publish')
+		{
+			$this->publish_poll();
+			return;
+		}
+
 		return $this->poll($_args);
 	}
 
+
+	public function publish_poll()
+	{
+		$poll_id = \lib\router::get_url(1);
+		utility::set_request_array(['id' => $poll_id, 'status' => 'publish']);
+
+		$this->user_id = $this->login('id');
+
+		$this->poll_set_status();
+
+		if(debug::$status)
+		{
+			debug::true(T_("Poll published"));
+		}
+		return;
+	}
 
 
 	/**
