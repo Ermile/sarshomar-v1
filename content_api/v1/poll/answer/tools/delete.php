@@ -13,8 +13,8 @@ trait delete
 	public function poll_answer_delete($_options = [])
 	{
 		$default_options = ['id' => null];
+
 		$_options = array_merge($default_options, $_options);
-		utility::set_request_array(['id' => $_options['id']]);
 
 		$get_poll_options =
 		[
@@ -34,7 +34,7 @@ trait delete
 			return debug::error(T_("Poll not found"), 'poll', 'url');
 		}
 
-		$poll_id = utility\shortURL::decode($_options['id']);
+		$poll_id = $_options['id'];
 
 		$result = \lib\db\polldetails::remove($this->user_id, $poll_id);
 		if($result)

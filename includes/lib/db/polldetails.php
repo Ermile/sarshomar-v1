@@ -158,6 +158,7 @@ class polldetails
 			FROM
 				polldetails
 			WHERE
+				`status` = 'enable' AND
 				user_id = $_user_id
 				$poll_id
 		";
@@ -188,8 +189,9 @@ class polldetails
 
 		$query =
 		"
-			DELETE FROM
+			UPDATE
 				polldetails
+			SET `status` = 'disable'
 			WHERE
 				user_id = $_user_id AND
 				post_id = $_poll_id
@@ -248,17 +250,32 @@ class polldetails
 			INSERT INTO
 				polldetails
 			SET
-				user_id     = $_user_id,
-				post_id     = $_poll_id,
-				port        = $port,
-				subport     = $subport,
-				validstatus = '$_option[validation]',
-				opt         = $_opt,
-				type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
-				txt         = '$_option[answer_txt]',
-				profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
-				insertdate  = '$date',
-				visitor_id  = NULL
+				polldetails.user_id     = $_user_id,
+				polldetails.post_id     = $_poll_id,
+				polldetails.port        = $port,
+				polldetails.subport     = $subport,
+				polldetails.validstatus = '$_option[validation]',
+				polldetails.opt         = $_opt,
+				polldetails.type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+				polldetails.txt         = '$_option[answer_txt]',
+				polldetails.profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				polldetails.insertdate  = '$date',
+				polldetails.visitor_id  = NULL
+
+			ON DUPLICATE KEY UPDATE
+
+				polldetails.user_id     = $_user_id,
+				polldetails.post_id     = $_poll_id,
+				polldetails.port        = $port,
+				polldetails.subport     = $subport,
+				polldetails.validstatus = '$_option[validation]',
+				polldetails.opt         = $_opt,
+				polldetails.type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
+				polldetails.txt         = '$_option[answer_txt]',
+				polldetails.profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
+				polldetails.insertdate  = '$date',
+				polldetails.visitor_id  = NULL,
+				polldetails.status      = 'enable'
 				-- answers::save_polldetails() -> $date
 		";
 		$result = \lib\db::query($insert_polldetails);
@@ -315,6 +332,7 @@ class polldetails
 			INNER JOIN posts
 				ON polldetails.post_id = posts.id AND posts.post_gender = '$_options[gender]'
 			WHERE
+				polldetails.status = 'enable' AND
 				polldetails.user_id = $_user_id
 				$opt
 				$port
@@ -421,6 +439,7 @@ class polldetails
 			INNER JOIN posts
 				ON polldetails.post_id = posts.id AND posts.post_gender = '$_options[gender]'
 			WHERE
+				polldetails.status = 'enable' AND
 				polldetails.post_id IN ($poll_ids)
 				$opt
 				$port

@@ -39,7 +39,7 @@ trait search
 				$meta['end_limit'] = 10;
 				if(utility::request("parent"))
 				{
-					if(utility\shortURL::is_shortURL(utility::request("parent")))
+					if(utility\shortURL::is(utility::request("parent")))
 					{
 						$meta['parent'] = utility\shortURL::decode(utility::request("parent"));
 					}

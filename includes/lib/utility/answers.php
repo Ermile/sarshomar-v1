@@ -27,8 +27,9 @@ class answers
 			FROM
 				polldetails
 			WHERE
-				user_id = $_user_id AND
-				post_id = $_poll_id
+				polldetails.status = 'enable' AND
+				polldetails.user_id = $_user_id AND
+				polldetails.post_id = $_poll_id
 			LIMIT 1
 			-- answers::is_answered()
 			-- check user is answered to this poll or no

@@ -50,7 +50,7 @@ trait add
 
 		if($_args['method'] == 'put' || $_args['method'] == 'patch')
 		{
-			if(utility\shortURL::is_shortURL(utility::request("id")))
+			if(utility\shortURL::is(utility::request("id")))
 			{
 				$update = utility::request("id");
 			}

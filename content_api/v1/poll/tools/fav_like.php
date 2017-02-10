@@ -14,7 +14,7 @@ trait fav_like
 	 */
 	private function fav_like($_fav_like, $_type)
 	{
-		if(!utility\shortURL::is_shortURL(utility::request("id")))
+		if(!utility\shortURL::is(utility::request("id")))
 		{
 			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 		}

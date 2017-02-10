@@ -7,7 +7,14 @@ class model extends \mvc\model
 {
 
 	use \content_api\v1\home\tools\ready;
+
 	use \content_api\v1\poll\tools\get;
+
+	use \content_api\v1\poll\answer\tools\add;
+
+	use \content_api\v1\poll\answer\tools\get;
+
+	use \content_api\v1\poll\answer\tools\delete;
 
 	public $poll_code       = null;
 	public $poll_id         = null;
@@ -30,15 +37,32 @@ class model extends \mvc\model
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function check_url()
+	public function check_url($_return = false)
 	{
-		// $shortURL = $this->controller()::$shortURL;
-		// $redirect = false;
-		// $url      = null;
-
 		$url     = \lib\router::get_url();
 		$poll_id = null;
-		if(preg_match("/^sp\_(.*)$/", $url, $code))
+		if(preg_match("/^sp\_([^\/]*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^\\$([^\/]*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^\\$\/([^\/]*)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^(.*)\/[". utility\shortURL::ALPHABET. "]+$/", $url, $code))
 		{
 			if(isset($code[1]))
 			{
@@ -46,21 +70,6 @@ class model extends \mvc\model
 			}
 		}
 
-		if(preg_match("/^\\$(.*)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
-
-		if(preg_match("/^\\$\/(.*)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
 		if($poll_id)
 		{
 			$this->poll_code = $poll_id;
@@ -71,9 +80,14 @@ class model extends \mvc\model
 			return false;
 		}
 
+		if($_return)
+		{
+			return $poll_id;
+		}
+
 		$poll = \lib\db\polls::get_poll($this->poll_id);
 
-		if(isset($poll['url']) && $poll['url'] != $url .'/')
+		if(isset($poll['url']) && $poll['url'] != $url .'/' && $poll['url'] != $url)
 		{
 			$language = null;
 			if(isset($poll['language']))
@@ -83,7 +97,14 @@ class model extends \mvc\model
 
 			$post_url = $poll['url'];
 
-			$new_url = trim($this->url('prefix'). $language. '/'. $post_url, '/');
+			$preview  = null;
+
+			if(isset($poll['user_id']) && $poll['user_id'] == $this->login('id'))
+			{
+				$preview = "?preview=yes";
+			}
+
+			$new_url = trim($this->url('prefix'). $language. '/'. $post_url. $preview, '/');
 			$this->redirector()->set_url($new_url)->redirect();
 		}
 		else
@@ -267,22 +288,12 @@ class model extends \mvc\model
 			\lib\debug::error(T_("You must login in order to answer the questions"));
 			return false;
 		}
-		\lib\debug::warn(T_("Try later"));
-		return;
-		// if(!isset($_SESSION['last_poll_id']) || $poll_id != $_SESSION['last_poll_id'])
-		// {
-		// 	\lib\debug::error(T_("The poll id does not match with your last question"));
-		// 	return false;
-		// }
+
+		$this->user_id = $this->login('id');
 
 		$post = utility::post();
 
 		$opt  = [];
-		// $session_opt = [];
-		// if(isset($_SESSION['last_poll_opt']) && is_array($_SESSION['last_poll_opt']))
-		// {
-		// 	$session_opt = array_column($_SESSION['last_poll_opt'],'key');
-		// }
 
 		foreach ($post as $key => $value)
 		{
@@ -290,59 +301,46 @@ class model extends \mvc\model
 			{
 				if(isset($index[1]))
 				{
-					array_push($opt, $index[1]);
+					$opt[$index[1]] = true;
 				}
 			}
 
-			if(preg_match("/^radio\_(\d+)$/", $key, $index))
+			if(preg_match("/^radio$/", $key))
 			{
-				if(isset($index[1]))
-				{
-					array_push($opt, $index[1]);
-					break;
-				}
+				$opt[$value] = true;
+				break;
 			}
-		}
 
-		// var_dump($opt);
-		// exit();
-		$result = ['status' => false, 'msg' => T_("Error in saving your answers")];
-		if(!empty($opt))
+		}
+		$poll_id = $this->check_url(true);
+
+		$options           = [];
+
+		$request           = [];
+		$request['id']     = $poll_id;
+		$request['answer'] = $opt;
+
+		utility::set_request_array($request);
+
+		$is_answerd = $this->poll_answer_get();
+		if(!$is_answerd && empty($opt))
 		{
-			$result = \lib\utility\answers::save(
-					// the user id
-					$this->login('id'),
-					// the poll id
-					$poll_id,
-					// list of answer keys
-					array_keys($opt),
-					// answer txt
-					['answer_txt' => $opt]
-					);
-
-			// if user skip the poll redirect to ask page
-			if(isset($opt[0]))
-			{
-				$this->redirector()->set_url("ask");
-			}
-
-			if($result->is_ok())
-			{
-				\lib\debug::true($result->get_message());
-				return ;
-			}
-			else
-			{
-				\lib\debug::error($result->get_message());
-				return false;
-			}
+			return debug::error(T_("You must select one answer or skip the poll"));
 		}
-		else
+		elseif($is_answerd && empty($opt))
 		{
-			\lib\debug::error(T_("You must select one answer or skip the poll"));
-			return false;
+			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
+			return ;
 		}
-
+		elseif(!$is_answerd && !empty($opt))
+		{
+			$options['method'] = 'post';
+		}
+		elseif($is_answerd && !empty($opt))
+		{
+			$options['method'] = 'put';
+		}
+		$this->poll_answer_add($options);
 	}
 }
 ?>

@@ -1,0 +1,1 @@
+ALTER TABLE `polldetails` ADD `status` ENUM('enable','disable') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'enable';

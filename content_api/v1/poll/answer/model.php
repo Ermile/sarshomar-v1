@@ -62,6 +62,11 @@ class model extends \content_api\v1\home\model
 	public function delete_answer($_args)
 	{
 		$id = \lib\router::get_url(3);
+
+		utility::set_request_array(['id' => $id]);
+
+		$id = utility\shortURL::decode($id);
+
 		return $this->poll_answer_delete(['id' => $id]);
 	}
 

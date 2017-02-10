@@ -62,7 +62,7 @@
     </li>
     {%else%}
     <li>
-     <input type="checkbox" name="check_{{key}}" id="check_{{key}}"  name="{{key}}" class="answer-link" data-key="{{key}}" value="{{value.title}}">
+     <input type="checkbox" name="check_{{key}}" id="check_{{key}}"  class="answer-link" data-key="{{key}}" value="{{value.title}}">
      <label for="check_{{key}}" data-number="{{key}}">{{value.title}}</label>
     </li>
    {%endif%}
@@ -75,13 +75,13 @@
 
     {%if value.type == 'descriptive' %}
     <li>
-     <input type="radio" name="radio_{{key}}" id="radio_other" class="answer-link" data-key="opt_{{key}}" value="other">
+     <input type="radio" name="radio" id="radio_other" class="answer-link" data-key="opt_{{key}}" value="other">
      <label for="radio_other" data-number="{{key}}"><input type="text" name="opt_other"></label>
     </li>
     {%else%}
     <li>
      <span class="checkbox">
-      <input type="radio" name="radio_{{key}}" id="radio_{{key}}" class="answer-link" data-key="{{key}}" name="{{key}}" value="{{value.title}}">
+      <input type="radio" name="radio" id="radio_{{key}}" class="answer-link" data-key="{{key}}"  value="{{key}}">
       <label class="check-box" for="radio_{{key}}" data-number="{{key}}"></label>
      </span>
      <label for="radio_{{key}}" data-number="{{key}}">

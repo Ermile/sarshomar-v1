@@ -114,6 +114,7 @@ trait search
 						FROM
 							polldetails
 						WHERE
+							polldetails.status = 'enable' AND
 							polldetails.post_id = posts.id AND
 						polldetails.user_id = $_options[login]
 					) >= 1 , TRUE, FALSE

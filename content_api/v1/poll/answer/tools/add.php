@@ -21,7 +21,7 @@ trait add
 		];
 		$_options = array_merge($default_optios, $_options);
 
-		if(!shortURL::is_shortURL(utility::request('id')))
+		if(!shortURL::is(utility::request('id')))
 		{
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
 		}

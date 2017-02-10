@@ -58,7 +58,7 @@ trait get
 		{
 			$poll_id = utility::request("id");
 
-			if(!$poll_id || !utility\shortURL::is_shortURL($poll_id))
+			if(!$poll_id || !utility\shortURL::is($poll_id))
 			{
 				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
 			}
