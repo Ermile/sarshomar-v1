@@ -949,10 +949,11 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .tree-result-list li>label{padding:0 10px;font-size:1.2em;line-height:2;-webkit-transition:.3s;transition:.3s;cursor:pointer}
 .tree-result-list li:hover>label{color:#f4f4f4}
 
+.modal-dialog{overflow-y:visible}
 .modal-body{margin-bottom:0}
 .modal-body .btn-container{margin-bottom:0}
-.modal-body .close{display:block;color:red;position:absolute;top:.5em;right:.5em;cursor:pointer}
-.rtl .modal-body .close{right:auto;left:.5em}
+.modal-body .close{display:block;color:white;position:absolute;top:-15px;right:-15px;cursor:pointer;border-radius:50%;width:30px;height:30px;background-color:red;font-size:18px;line-height:26px;box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)}
+.rtl .modal-body .close{right:auto;left:-15px}
 
 
 /************************************************************** poll page */
