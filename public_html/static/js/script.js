@@ -393,13 +393,10 @@ function showPreview(_output)
 
 		case "audio":
 			var mediaEl = createNewEl(fileModel, {"url":attrUrl});
-			console.log(mediaEl);
-			console.log(fileExt);
 			// only for mp3 show preview
 			if(fileExt == 'mp3')
 			{
 				$output.closest('.ultra').find('.audio').html(mediaEl);
-				console.log($output.closest('.ultra').find('.audio'));
 			}
 			break;
 
@@ -444,9 +441,6 @@ function showPreview(_output)
 
 	// Read in the image file as a data URL.
 	// reader.readAsDataURL(f);
-
-
-	// }
 }
 
 
@@ -1161,6 +1155,7 @@ function checkNextStep()
  */
 function changePollStatus(_status)
 {
+	requestSavingData(true);
 	if(!_status)
 	{
 		_status = 'publish';
@@ -1171,7 +1166,7 @@ function changePollStatus(_status)
 		ajax:
 		{
 			data: {status : _status},
-			abort: true,
+			// abort: true,
 			method: 'post',
 			success: function(e, data, x)
 			{
@@ -1458,7 +1453,7 @@ function calcTotalPrice()
 		// show charge
 		$('.stepPublish .charge').slideDown();
 		// hide publish
-		$('.stepPublish .publish').slideUp();
+		// $('.stepPublish .publish').slideUp();
 	}
 	else
 	{
