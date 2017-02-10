@@ -290,6 +290,7 @@ trait ready
 			$show_answers = [];
 			foreach ($answers as $key => $value)
 			{
+				$attachment = null;
 				$show_key = $key + 1;
 
 				if($this->access('u','complete_profile', 'admin'))
@@ -338,6 +339,11 @@ trait ready
 					$attachment = \lib\db\polls::get_poll($value['attachment_id']);
 					$url = null;
 					$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
+
+					if(isset($attachment['meta']) && is_string($attachment['meta']) && substr($attachment['meta'], 0, 1) == '{')
+					{
+						$attachment['meta'] = json_decode($attachment['meta'], true);
+					}
 
 					if(isset($attachment['meta']['url']))
 					{
