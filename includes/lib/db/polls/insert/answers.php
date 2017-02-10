@@ -173,13 +173,23 @@ trait answers
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
 
-				// if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
-				// {
-				// 	unset($combine[$key]);
-				// }
+				if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
+				{
+					unset($combine[$key]);
+				}
 			}
 
-			// var_dump($combine);exit();
+			if(is_array($combine))
+			{
+				$temp_combine = [];
+				foreach ($combine as $key => $value)
+				{
+					$temp_combine[] = $value;
+				}
+				$combine = $temp_combine;
+			}
+
+
 			if(self::$poll_id)
 			{
 				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);
