@@ -318,9 +318,10 @@ function giveFile(_file)
 	var myFile  = fileObj;
 	// set object of file to preview box data val
 	$(output).data('file', fileObj)
-		.attr('data-type', fileObj.type)
-		.attr('data-url', fileUrl)
-		.attr('data-local', true);
+		.attr('data-file-type', fileObj.type)
+		.attr('data-file-temp', fileUrl)
+		.attr('data-file-url', fileUrl)
+		.attr('data-file-local', true);
 
 	showPreview(output);
 }
@@ -360,9 +361,9 @@ function showPreview(_output)
 	$output.closest('.ultra').find('.audio').html('');
 
 	// get attribute of this file, from input or from server
-	var attrType  = $output.attr('data-type');
-	var attrUrl   = $output.attr('data-url');
-	var attrLocal = $output.attr('data-local');
+	var attrType  = $output.attr('data-file-type');
+	var attrUrl   = $output.attr('data-file-url');
+	var attrLocal = $output.attr('data-file-local');
 	var attrObj   = $output.data('file');
 	// generate some prop of file
 	var fileType    = fileTypeAnalyser(attrType);
@@ -481,8 +482,8 @@ function startCrop(_el)
 	var finalPreview = $('#modal-preview .finalPreview');
 	var elImgPrev    = $(_el).find('img');
 	var attr         = {};
-	attr.type        = $(_el).attr('data-type');
-	attr.url         = $(_el).attr('data-url');
+	attr.type        = $(_el).attr('data-file-type');
+	attr.url         = $(_el).attr('data-file-url');
 	var fileType     = fileTypeAnalyser(attr.type);
 	attr.model       = fileType.type;
 	attr.ext         = fileType.ext;
