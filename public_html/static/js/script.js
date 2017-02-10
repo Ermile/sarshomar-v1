@@ -449,6 +449,25 @@ function showPreview(_output)
 }
 
 
+/**
+ * [drawMedia description]
+ * @return {[type]} [description]
+ */
+function drawMedia()
+{
+	$.each($('.input-group.sortable > li .preview[data-file-url]'), function(key, value)
+	{
+		showPreview(this);
+	});
+}
+
+
+/**
+ * [createNewEl description]
+ * @param  {[type]} _type [description]
+ * @param  {[type]} _args [description]
+ * @return {[type]}       [description]
+ */
 function createNewEl(_type, _args)
 {
 	var createdEl = '';
@@ -2046,6 +2065,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	handleCopy();
 	// // draw factor and fill total price on start
 	// calcTotalPrice();
+	// draw media for each item contain media
+	drawMedia();
 
 	$('.page-progress input').on('click', function(e)
 	{
