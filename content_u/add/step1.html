@@ -123,7 +123,7 @@
     </div>
    </div>
 
-   <div class="preview" {%if value.file.id %} data-file-id="{{value.file.id}}" {% endif %} {%if value.file.url %} data-file-url="{{value.file.url}}" {% endif %}>
+   <div class="preview" {%if value.file.id %} data-file-id="{{value.file.id}}" {% endif %} {%if value.file.url %} data-file-url="{{value.file.url}}" {% endif %} {%if value.file.mime %} data-file-type="{{value.file.mime}}" {% endif %}>
 
    </div>
    <span class="icon-times delete"></span>
