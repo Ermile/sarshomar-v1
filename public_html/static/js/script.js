@@ -317,17 +317,20 @@ function giveFile(_file)
 	var output  = $(_file).parents('.ultra').find('.preview')[0];
 	// get file object
 	var fileObj = $(_file)[0].files[0];
-	// get file url
-	var fileUrl = window.URL.createObjectURL(fileObj);
-	var myFile  = fileObj;
-	// set object of file to preview box data val
-	$(output).data('file', fileObj)
-		.attr('data-file-type', fileObj.type)
-		.attr('data-file-temp', fileUrl)
-		.attr('data-file-url', fileUrl)
-		.attr('data-file-local', true);
+	var fileUrl = '';
+	if(fileObj)
+	{
+		// get file url
+		fileUrl = window.URL.createObjectURL(fileObj);
+		// set object of file to preview box data val
+		$(output).data('file', fileObj)
+			.attr('data-file-type', fileObj.type)
+			.attr('data-file-temp', fileUrl)
+			.attr('data-file-url', fileUrl)
+			.attr('data-file-local', true);
 
-	showPreview(output);
+		showPreview(output);
+	}
 }
 
 
@@ -339,8 +342,11 @@ function giveFile(_file)
 function fileTypeAnalyser(_file)
 {
 	var myFile  = {};
-	myFile.type = _file.substr(0, _file.indexOf('/'));
-	myFile.ext  = _file.substr(_file.indexOf('/') + 1);
+	if(_file)
+	{
+		myFile.type = _file.substr(0, _file.indexOf('/'));
+		myFile.ext  = _file.substr(_file.indexOf('/') + 1);
+	}
 
 	return myFile;
 }
@@ -352,7 +358,7 @@ function fileTypeAnalyser(_file)
  * @param  {[type]} _output [description]
  * @return {[type]}         [description]
  */
-function showPreview(_output)
+function showPreview(_output, _empty)
 {
 	var $output = $(_output);
 	// if we do not support fileReader return false!
@@ -377,16 +383,23 @@ function showPreview(_output)
 	{
 		fileModel = 'file';
 	}
-	// create file preview url
-	var filePrevUrl = '/static/images/file/' + fileModel + '.svg';
-	// for image use real image for preview
-	if(fileModel == 'image')
+	if(_empty)
 	{
-		filePrevUrl = attrUrl;
+		$output.html('');
 	}
-	var imageEl     = '<img src="'+ filePrevUrl + '"/>';
-	// fill output with image
-	$output.html(imageEl);
+	else
+	{
+		// create file preview url
+		var filePrevUrl = '/static/images/file/' + fileModel + '.svg';
+		// for image use real image for preview
+		if(fileModel == 'image')
+		{
+			filePrevUrl = attrUrl;
+		}
+		var imageEl     = '<img src="'+ filePrevUrl + '"/>';
+		// fill output with image
+		$output.html(imageEl);
+	}
 
 	// show some work depending on file model
 	switch (fileModel)
@@ -2156,11 +2169,11 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		startCrop(this);
 	});
 	// on click on preview of imagee
-	$('body').on("click", "#modal-preview .btn", function(_e, _el)
-	{
-		// complete croping
-		$('#modal-preview').trigger('close');
-	});
+	// $('body').on("click", "#modal-preview .btn", function(_e, _el)
+	// {
+	// 	// complete croping
+	// 	$('#modal-preview').trigger('close');
+	// });
 
 
 	// ================================================================== filter
