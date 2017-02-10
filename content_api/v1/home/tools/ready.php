@@ -337,10 +337,15 @@ trait ready
 				{
 					$attachment = \lib\db\polls::get_poll($value['attachment_id']);
 					$url = null;
-					if(isset($attachment['meta']['url']) && isset($attachment['meta']['mime']))
+					$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
+
+					if(isset($attachment['meta']['url']))
 					{
-						$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
 						$answers[$key]['file']['url']  = $host. '/'. $attachment['meta']['url'];
+					}
+
+					if(isset($attachment['meta']['mime']))
+					{
 						$answers[$key]['file']['mime'] = $attachment['meta']['mime'];
 					}
 				}
