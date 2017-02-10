@@ -367,10 +367,81 @@ trait ready
 			$_poll_data['filters'] = $filters;
 		}
 
-		if($_options['get_public_result'] && $poll_id)
+		if(($_options['get_public_result'] || $_options['get_advance_result']) && $poll_id)
 		{
-			$public_result = utility\stat_polls::get_telegram_result($poll_id, true);
-			$_poll_data['stats'] = $public_result;
+			$poll_result = [];
+			$poll_result_raw = utility\stat_polls::get_result($poll_id);
+			if($_options['get_public_result'])
+			{
+				if(isset($poll_result_raw['valid']['result']) && is_array($poll_result_raw['valid']['result']))
+				{
+					foreach ($poll_result_raw['valid']['result'] as $key => $value)
+					{
+						if(substr($key, 0,4) == 'opt_')
+						{
+							$poll_result['total']['valid'][] = ['key' => substr($key, 4), 'value' => $value];
+						}
+					}
+
+				}
+
+				if(isset($poll_result_raw['invalid']['result']) && is_array($poll_result_raw['invalid']['result']))
+				{
+					foreach ($poll_result_raw['invalid']['result'] as $key => $value)
+					{
+						if(substr($key, 0,4) == 'opt_')
+						{
+							$poll_result['total']['invalid'][] = ['key' => substr($key, 4), 'value' => $value];
+						}
+					}
+				}
+			}
+
+			if($_options['get_advance_result'] && is_array($poll_result_raw))
+			{
+				$advance_result = [];
+
+				if(isset($poll_result_raw['valid']) && is_array($poll_result_raw['valid']))
+				{
+					foreach ($poll_result_raw['valid'] as $key => $value)
+					{
+						if($key !== 'result')
+						{
+							if(is_array($value))
+							{
+								foreach ($value as $k => $v)
+								{
+									if(substr($k, 0,4) == 'opt_')
+									{
+										$poll_result['advance_stats']['valid'][$key][] = ['key' => substr($k, 4), 'value' => $v];
+									}
+								}
+							}
+						}
+					}
+				}
+
+				if(isset($poll_result_raw['invalid']) && is_array($poll_result_raw['invalid']))
+				{
+					foreach ($poll_result_raw['invalid'] as $key => $value)
+					{
+						if($key !== 'result')
+						{
+							if(is_array($value))
+							{
+								foreach ($value as $k => $v)
+								{
+									if(substr($k, 0,4) == 'opt_')
+									{
+										$poll_result['advance_stats']['invalid'][$key][] = ['key' => substr($k, 4), 'value' => $v];
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			$_poll_data['stats'] = $poll_result;
 		}
 
 

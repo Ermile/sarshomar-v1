@@ -19,7 +19,7 @@
      </div>
     </form>
 
-    {%if chart%}
+    {%if poll.stats%}
     <div class="row" id="poll-result">{{block('poll_chart')}}</div>
     {%endif%}
 
@@ -86,92 +86,92 @@ function bookmark(_poll_id) {
   });
 }
 
-function load_chart(_type)
-{
-  if(_type == 'result')
-  {
-    var result = {
-      chart: {
-        type: 'column',
-        backgroundColor: 'rgba(255, 255, 255, 0)'
-      },
-      exporting: {enabled: false},
-      credits: {enabled: false},
-      title : "",xAxis: { labels: { enabled: false }, categories: {{chart.categories | raw}}},
-      yAxis: {min: 0,title: {text: 'درصد',enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0,},
-      legend: {enabled: false },
-      tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-        footerFormat: '</table>',
-        shared: false,
-        useHTML: true
-      },  plotOptions: {
-            column: {
-                // stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            }
-        },
-      series: {{chart.basic| raw }}
-    };
-    return result;
-  }
+// function load_chart(_type)
+// {
+//   if(_type == 'result')
+//   {
+//     var result = {
+//       chart: {
+//         type: 'column',
+//         backgroundColor: 'rgba(255, 255, 255, 0)'
+//       },
+//       exporting: {enabled: false},
+//       credits: {enabled: false},
+//       title : "",xAxis: { labels: { enabled: false }, categories: {{chart.categories | raw}}},
+//       yAxis: {min: 0,title: {text: 'درصد',enabled: false},labels: {enabled: false},gridLineWidth: 0,minorGridLineWidth: 0,},
+//       legend: {enabled: false },
+//       tooltip: {
+//         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+//         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+//         footerFormat: '</table>',
+//         shared: false,
+//         useHTML: true
+//       },  plotOptions: {
+//             column: {
+//                 // stacking: 'normal',
+//                 dataLabels: {
+//                     enabled: true,
+//                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+//                 }
+//             }
+//         },
+//       series: {{chart.basic| raw }}
+//     };
+//     return result;
+//   }
 
-  stacked          = {{chart.stacked|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
-  drilldown_series = {{chart.drilldown_series|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
-  drilldown        = {{chart.drilldown|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
-  // console.log(stacked);
-  // console.log(_type);
-  // console.log(stacked[_type])
-  x = stacked[_type];
+//   // stacked          = {{chart.stacked|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+//   // drilldown_series = {{chart.drilldown_series|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+//   // drilldown        = {{chart.drilldown|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}};
+//   // console.log(stacked);
+//   // console.log(_type);
+//   // console.log(stacked[_type])
+//   x = stacked[_type];
 
-  data = {chart: {type: 'column'},
-    exporting: {enabled: false},
-    credits: {enabled: false},
-    legend: {enabled: false },
-    title: {text: '{{chart.title}}' },
-    xAxis: {labels: { enabled: false }, categories: {{chart.categories|raw}} },
-    yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
-      stackLabels: {enabled: true,style: {fontWeight: 'bold',
-          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-        }
-      }
-    },
-    legend: {align: 'right',x: -30,verticalAlign: 'top',y: 25, floating: true,
-      backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-      borderColor: '#CCC',
-      borderWidth: 1,
-      shadow: false
-    },
-    tooltip: {
-      headerFormat: '<b>{point.x}</b><br/>',
-      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    },
-    plotOptions: {
-      column: {
-        stacking: 'normal',
-        dataLabels: {
-          enabled: true,
-          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-        }
-      }
-    },
-    series: eval(x)
-  };
+//   data = {chart: {type: 'column'},
+//     exporting: {enabled: false},
+//     credits: {enabled: false},
+//     legend: {enabled: false },
+//     title: {text: '{{chart.title}}' },
+//     xAxis: {labels: { enabled: false }, categories: {{chart.categories|raw}} },
+//     yAxis: {min: 0,title: {text: 'مجموع رای دهنگان'},
+//       stackLabels: {enabled: true,style: {fontWeight: 'bold',
+//           color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+//         }
+//       }
+//     },
+//     legend: {align: 'right',x: -30,verticalAlign: 'top',y: 25, floating: true,
+//       backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+//       borderColor: '#CCC',
+//       borderWidth: 1,
+//       shadow: false
+//     },
+//     tooltip: {
+//       headerFormat: '<b>{point.x}</b><br/>',
+//       pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+//     },
+//     plotOptions: {
+//       column: {
+//         stacking: 'normal',
+//         dataLabels: {
+//           enabled: true,
+//           color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+//         }
+//       }
+//     },
+//     series: eval(x)
+//   };
 
-  return data;
-}
+//   return data;
+// }
 
 $(document).ready(function() {
-  $('#poll-result .chart').highcharts(load_chart('result'));
+  // $('#poll-result .chart').highcharts(load_chart('result'));
 
-  $(".tabs li").click(function(){
-    var type = $(this).attr("chart-type");
-    $('#poll-result .chart').highcharts(load_chart(type));
-  });
+  // $(".tabs li").click(function(){
+  //   var type = $(this).attr("chart-type");
+  //   $('#poll-result .chart').highcharts(load_chart(type));
+  // });
 
   $('.plus').on('click', function(){
     status = add_score_comment('plus', $(this).attr('data-comment-id'));

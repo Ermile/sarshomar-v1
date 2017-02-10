@@ -249,8 +249,8 @@ class answers
 			'subport' => null,
 			'debug'   => true,
 			'execute' => false,
-			'time'    => 60 * 100, // in dev mode
-			'count'   => 3 * 100, // in dev mode
+			'time'    => 60, // in dev mode
+			'count'   => 3, // in dev mode
 		];
 
 		$_args = array_merge($default_args, $_args);

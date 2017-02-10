@@ -17,7 +17,7 @@ trait get
 		$result = [];
 		$default_options =
 		[
-			'highcharts' => true, 	// default return in highcharts mod
+			'highcharts' => false, 	// default return in highcharts mod
 			'drilldown'  => 3,    	// set the chart to drilldown mod if count of categories in one opt > 3
 			'validation' => null,	// default return the valid chart
 			'filter'     => null, 	// retrun the master result.
@@ -132,10 +132,22 @@ trait get
 			$tmp_result = [];
 			if($valid)
 			{
+				unset($valid_result_raw['id']);
+				unset($valid_result_raw['post_id']);
+				unset($valid_result_raw['port']);
+				unset($valid_result_raw['subport']);
+				unset($valid_result_raw['type']);
+				unset($valid_result_raw['total']);
 				$tmp_result['valid'] = $valid_result_raw;
 			}
 			if($invalid)
 			{
+				unset($invalid_result_raw['id']);
+				unset($invalid_result_raw['post_id']);
+				unset($invalid_result_raw['port']);
+				unset($invalid_result_raw['subport']);
+				unset($invalid_result_raw['type']);
+				unset($invalid_result_raw['total']);
 				$tmp_result['invalid'] = $invalid_result_raw;
 			}
 			// return the raw result of polls
