@@ -80,7 +80,7 @@
        <input type="text" name="opt_other">
       </div>
       <span class="checkbox">
-       <input type="checkbox" name="" id="check_other" value="other">
+       <input type="checkbox" name="other" id="check_other" value="other">
        <label for="check_other"></label>
       </span>
      </label>
@@ -93,7 +93,7 @@
        <div class="option-number" data-number='{{key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <div class="checkbox">
-        <input type="checkbox" name="check_{{key}}" id="check_{{key}}" value="{{value.title}}">
+        <input type="checkbox" name="check_{{key}}" id="check_{{key}}" value="{{key}}">
         <label for="check_{{key}}"></label>
        </div>
       </label>
@@ -125,7 +125,7 @@
        <div class="option-number" data-number='{{key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <span class="checkbox">
-        <input type="radio" name="radio" id="radio_{{key}}">
+        <input type="radio" name="radio" id="radio_{{key}}" value="{{key}}">
         <label for="radio_{{key}}"></label>
        </span>
       </label>
@@ -155,7 +155,7 @@
 {% spaceless %}
  <div class="poll-actions">
   {%if poll.answers%}
-   <button class="try special-button" {%if not login%}disabled{%endif%}>{%trans "Save Answer"%}</button>
+   <button class="try special-button" type="submit" {%if not login%}disabled{%endif%}>{%trans "Save Answer"%}</button>
   {%else%}
    <a class="try special-button" href="ask" data-direct>{%trans "Ask Me"%}</a>
   {%endif%}
