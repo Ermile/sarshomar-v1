@@ -2,6 +2,7 @@
 namespace content\poll;
 use \lib\utility;
 use \lib\utility\shortURL;
+use \lib\debug;
 
 class model extends \mvc\model
 {
