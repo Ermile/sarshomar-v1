@@ -132,7 +132,7 @@ class step_create
 			$poll_request['language'] = callback_query\language::check(true);
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
+			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'put' : 'post']);
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);

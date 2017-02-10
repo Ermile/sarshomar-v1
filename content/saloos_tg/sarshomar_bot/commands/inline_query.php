@@ -21,32 +21,28 @@ class inline_query
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$check_language = false;
-		if($search == '')
-		{
-			$search = "_";
-			$check_language = true;
-		}
 		if(preg_match("/^\s*sp_(.*)$/", $search, $link_id))
 		{
-			$id = \lib\utility\shortURL::decode($link_id[1]);
-			$query_result = \lib\db\polls::get_poll($id);
-			if($query_result['status'] != 'publish')
-			{
-				$query_result = [];
-			}
-			else
-			{
-				$query_result = $query_result ? [$query_result] : [];
-			}
+			\lib\utility::$REQUEST = new \lib\utility\request([
+				'method' 	=> 'array',
+				'request' => [
+					'id' 		=> $link_id[1],
+				]
+				]);
+			$query_result = \lib\main::$controller->model()->poll_get(true);
+			$query_result = [$query_result];
 		}
 		else
 		{
-			$query_result = \lib\db\polls::search($search, [
-				"pagenation" 		=> false,
-				"order" 			=> "DESC",
-				"check_language" 	=> $check_language
+			\lib\utility::$REQUEST = new \lib\utility\request([
+				'method' 	=> 'array',
+				'request' => ['serach' => $search]
 				]);
+			$query_result = \lib\main::$controller->model()->poll_search(true);
+			$query_result = $query_result;
+			handle::send_log($query_result);
 		}
+
 
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
@@ -62,8 +58,8 @@ class inline_query
 			{
 				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp-users.png';
 			}
-			$maker = new make_view(bot::$user_id, $value);
-			$row_result['id'] =  $maker->short_link;
+			$maker = new make_view($value['id']);
+			$row_result['id'] =  $value['id'];
 
 			$maker->message->add_title();
 			$maker->message->add_poll_chart();
@@ -75,7 +71,7 @@ class inline_query
 			$row_result['title'] = html_entity_decode($value['title']);
 
 
-			$row_result['url'] = 'https://sarshomar.com/sp_' . $maker->short_link;
+			$row_result['url'] = 'https://sarshomar.com/sp_' . $value['id'];
 
 			if(array_key_exists('description', $row_result) && !is_null($row_result['description']))
 			{
@@ -105,7 +101,6 @@ class inline_query
 			];
 			$result['results'][] = $row_result;
 		}
-
 		\lib\define::set_language(callback_query\language::check(true), true);
 		session::remove_back('expire', 'inline_cache');
 		return $result;
