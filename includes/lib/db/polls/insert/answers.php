@@ -56,13 +56,18 @@ trait answers
 				$attachment_id = null;
 				if(isset($value['file']) && $value['file'])
 				{
-					$url = self::is_attachment($value['file']);
+					$is_attachment = self::is_attachment($value['file']);
 
 					if(!debug::$status)
 					{
 						return;
 					}
 					$combine[$key]['attachment_id'] = shortURL::decode($value['file']);
+
+					if(isset($is_attachment['type']))
+					{
+						$combine[$key]['attachmenttype'] = $is_attachment['type'];
+					}
 
 				}
 

@@ -55,12 +55,17 @@ trait check
 					break;
 			}
 		}
-		$url = null;
+		$return = [];
 		if(isset($attachment['meta']['url']))
 		{
-			$url = $attachment['meta']['url'];
+			$return['url'] = $attachment['meta']['url'];
 		}
-		return $url;
+
+		if(isset($attachment['meta']['type']))
+		{
+			$return['type'] = $attachment['meta']['type'];
+		}
+		return $return;
 	}
 
 	/**

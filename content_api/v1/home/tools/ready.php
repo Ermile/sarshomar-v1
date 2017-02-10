@@ -339,8 +339,9 @@ trait ready
 					$url = null;
 					if(isset($attachment['meta']['url']))
 					{
-						$answers[$key]['file']['id'] = \lib\utility\shortURL::encode($value['attachment_id']);
-						$answers[$key]['file']['url'] = $host. '/'. $attachment['meta']['url'];
+						$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
+						$answers[$key]['file']['url']  = $host. '/'. $attachment['meta']['url'];
+						$answers[$key]['file']['type'] = $attachment['meta']['type'];
 					}
 				}
 
@@ -349,6 +350,7 @@ trait ready
 					$_poll_data['advance_score'] = true;
 				}
 
+				unset($answers[$key]['attachmenttype']);
 				unset($answers[$key]['attachment_id']);
 				unset($answers[$key]['id']);
 

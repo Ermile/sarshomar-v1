@@ -51,7 +51,7 @@ trait link
 		if($_options['opt'])
 		{
 			$opt = intval($_options['opt']);
-			if(!isset($poll['answers'][$opt - 1]))
+			if(!isset($poll['answers'][$opt]))
 			{
 				return debug::error(T_("This poll have not opt :opt", ['opt' => $opt]), 'opt', 'arguments');
 			}

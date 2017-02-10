@@ -197,6 +197,14 @@ trait options
 			else
 			{
 				$url = self::is_attachment(self::$args['file']);
+				if(isset($url['url']))
+				{
+					$url = $url['url'];
+				}
+				else
+				{
+					$url = null;
+				}
 
 				if(!debug::$status)
 				{
