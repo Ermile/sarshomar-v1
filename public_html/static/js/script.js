@@ -283,10 +283,14 @@ function shortkey()
 
 			// ctrl + s
 			case '83ctrl':
-				// send data to server for saving
-				requestSavingData(true);
-
-				e.preventDefault();
+				// on /@/add by pressing ctrl+s save
+				var myurl = window.location.pathname;
+				if(myurl.indexOf('/@/add') >= 0)
+				{
+					// send data to server for saving
+					requestSavingData(true);
+					e.preventDefault();
+				}
 				break;
 
 			// f1
