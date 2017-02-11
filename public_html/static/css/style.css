@@ -1635,7 +1635,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .changelog {margin-top: 5em;}
 .changelog .tbl>div>span:first-child  {flex: .1;}
 .changelog .tbl>div>span:last-child  {flex: 1;}
-.changelog .tbl>div.tbl-header {background: rgb(224,224,224);}
+.changelog .tbl>div.tbl-header {background: rgb(239, 239, 239);}
 .changelog .tbl>div:not(.tbl-header) {border-bottom: 1px solid #e0e0e0;}
 .changelog .tbl>div:last-child {border-bottom: none;}
 .changelog .tbl ul li {list-style-type: disc;}
@@ -1844,7 +1844,7 @@ code {font-size: 1.2em;}
 .api-docs .tbl>div{background:rgb(239, 239, 239)}
 .api-docs .tbl>div:not(.tbl-header):nth-child(even){background:#fff}
 .api-docs .tbl>div:hover:not(.tbl-header)>span{background:#dfe3e6}
-.api-docs .tbl>div.tbl-header{background:rgb(224,224,224);font-weight:bold}
+.api-docs .tbl>div.tbl-header{background:rgb(239, 239, 239);font-weight:bold}
 .api-docs .tbl>div>span>label{color:#54b4ef}
 .api-docs .long-txt {white-space: pre-wrap;}
 /* step publish theme */
