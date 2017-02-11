@@ -44,6 +44,7 @@
 	optionMethod.type = function(_name, _set)
 	{
 		var data_type = $(this).attr('data-type');
+
 		if (_set)
 		{
 			var data_type = _set;
@@ -141,7 +142,6 @@
 		return Math.round(my_step);
 	}
 
-
 	/**
 	 * [min range slider will start from this number]
 	 * @param  {[type]} _name [name of method]
@@ -192,8 +192,6 @@
 		return data_min;
 	}
 
-
-
 	/**
 	 * [max range slider will set the max mount]
 	 * @param  {[type]} _name [name of method]
@@ -213,10 +211,11 @@
 			if(isNaN(data_max) || data_min >= data_max)
 			{
 				data_max = data_min + 100;
-				var json_string = $(this).attr("save_jason");
+var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
-
+					// console.log(11111111111)
+					// data_max = 100000;
 				}
 			}
 			$(this).attr('data-max',data_max);
@@ -264,16 +263,6 @@
 	}
 
 	/**
-	 * [max range slider will set the max mount]
-	 * @param  {[type]} _name [name of method]
-	 * @param  {[type]} _set  [value that we want to set it for max method]
-	 * @return {[type]}       [max value]
-	 *                        [if _set is null then method will return max value]
-	 *                        [if _set had value, min will set on this new value]
-	 *                        [if in html dosen't set dta-max attribute, default max value is data-min+100]
-	 */
-	
-	/**
 	 * [min_unit minimum unit that range slider can have]
 	 * @param  {[type]} _name [name of method]
 	 * @param  {[type]} _set  [value that we want to set it for min_unit method]
@@ -294,6 +283,7 @@
 			{
 				_set = max - min;
 			}
+
 			var data_min_unit = _set;
 			if(isNaN(data_min_unit))
 			{
@@ -312,53 +302,54 @@
 		return data_min_unit;
 	}
 
-
 	/**
 	 * [unit all units on range slider, max - min]
 	 * @param  {[type]} _name [name of method]
 	 * @return {[integer]}       [the count of units on range slider, from min to max]
 	 */
-	optionMethod.unit = function(_name)
+	optionMethod.unit = function(_name, _set)
 	{
 		var data_unit;
 		var data_max = Number($(this).attr("data-max"));
 		var data_min = Number($(this).attr('data-min'));
+
+		var json_string = $(this).attr("save_jason");
+		if (json_string)
+		{
+			data_min = 0;
+		}
+
 		var data_unit = data_max - data_min;
 		return data_unit;
 	}
 
-	// /**
-	//  * [min_title description]
-	//  * @param  {[type]} _name [description]
-	//  * @param  {[type]} _set  [description]
-	//  * @return {[type]}       [description]
-	//  */
-	// optionMethod.min_title = function(_name, _set)
-	// {
-	// 	var min_title = $(this).attr("data-min-title");
-	// 	if (_set)
-	// 	{
-	// 		var min_title = _set;
-	// 		$(this).attr('data-min-title',min_title);
-	// 	}
-	// 	return min_title;
-	// }
+	optionMethod.min_title = function(_name, _set)
+	{
+		var min_title = $(this).attr("data-min-title");
+		if (_set)
+		{
+			var min_title = _set;
+			$(this).attr('data-min-title',min_title);
+		}
+		return min_title;
+	}
 
-	// optionMethod.max_title = function(_name, _set)
-	// {
-	// 	var max_title = $(this).attr("data-show-title");
-	// 	if (_set)
-	// 	{
-	// 		var max_title = _set;
-	// 		$(this).attr('data-show-title',max_title);
-	// 	}
-	// }
+	optionMethod.max_title = function(_name, _set)
+	{
+		var max_title = $(this).attr("data-show-title");
+		if (_set)
+		{
+			var max_title = _set;
+			$(this).attr('data-show-title',max_title);
+		}
+	}
 
 
 	optionMethod.max_limit = function(_name, _set, _multi)
 	{
 		var max_limit;
 		max_limit = parseInt($(this).attr("data-max-limit"));
+		init_max_limit = parseInt($(this).attr("data-max-limit"));
 		if(_set)
 		{
 			max_limit = parseInt(_set);
@@ -381,9 +372,12 @@
 					{
 						var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
 						var _status = 'float';
-						$(this).attr('_status_status_status_status_status', _set);
+						$(this).attr('_status', _set);
 					}
 					var max_limit = real_limit_unit * my_step;
+					var init_max_limit = _set;
+console.log('set: ', _set)
+console.log('max_limit: ', max_limit)
 				}
 			}
 
@@ -436,9 +430,9 @@
 			}
 			$(this).attr("data-max-limit-first", show_max_limit);
 			
-			if ($(this).attr('_status_status_status_status_status')) 
+			if ($(this).attr('_status')) 
 			{
-				$(this).attr("data-max-limit-first", $(this).attr('_status_status_status_status_status'));
+				$(this).attr("data-max-limit-first", $(this).attr('_status'));
 			}
 
 			$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
@@ -485,6 +479,51 @@
 		}
 	}
 
+	optionMethod.max_default = function(_name, _set, _multi)
+	{
+		if ($(this).attr("data-infinity") != 'max')
+		{
+			var data_max = Number($(this).attr("data-max"));
+			var data_min = Number($(this).attr('data-min'));
+			var data_unit = data_max - data_min;
+
+			if (_set)
+			{
+				var data_max_default = _set;
+				if(isNaN(data_max_default) || data_max < data_max_default)
+				{
+					data_max_default = data_unit;
+				}
+				var json_string = $(this).attr("data-step");
+				var json_string_step = $(this).attr("save_jason");
+				if (json_string)
+				{
+					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
+					var step = $(this).rangeSlider('option','step');
+					var real_step = Math.round(unit/step);
+					var real_max = $(this).rangeSlider('option','multi_level_value_to_real', _set);
+					var data_max_default = real_max*real_step;
+				}
+
+				$(this).attr('data-max-default',data_max_default);
+				return data_max_default;
+			}
+	
+
+
+			var data_max_default = Number($(this).attr('data-max-default'));
+			if(isNaN(data_max_default) || data_max < data_max_default)
+			{
+				data_max_default = data_unit;
+				$(this).attr('data-max-default',data_max_default);
+			}
+			return data_max_default;
+		}
+		else
+		{
+			return $(this).rangeSlider('option','max');
+		}
+	}
 
 
 	optionMethod.margin = function(_name, _set)
@@ -515,7 +554,7 @@
 			if ($(this).rangeSlider('option', 'max_limit'))
 			{
 				var my_limit = $(this).rangeSlider('option', 'max_limit');
-				var max_limit = $(this).rangeSlider('option', 'multi_level_value_to_real', my_limit)
+				var max_limit = $(this).rangeSlider('option', 'multi_level_value_to_real', my_limit);
 			}
 			else
 			{
@@ -523,7 +562,6 @@
 			}
 		}
 		var unit_to_pixel = parseInt((_set*pixel_width)/total_unit);
-
 
 		return unit_to_pixel;
 	}
@@ -591,50 +629,7 @@
 	}
 
 
-	optionMethod.max_default = function(_name, _set)
-	{
-		if ($(this).attr("data-infinity") != 'max')
-		{
-			var data_max = Number($(this).attr("data-max"));
-			var data_min = Number($(this).attr('data-min'));
-			var data_unit = data_max - data_min;
 
-			if (_set)
-			{
-				var data_max_default = _set;
-				if(isNaN(data_max_default) || data_max < data_max_default)
-				{
-					data_max_default = data_unit;
-				}
-				var json_string = $(this).attr("data-step");
-				var json_string_step = $(this).attr("save_jason");
-				if (json_string || json_string_step)
-				{
-					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
-
-					var step = $(this).rangeSlider('option','step');
-					var real_step = Math.round(unit/step);
-					var real_max = $(this).rangeSlider('option','multi_level_value_to_real', _set);
-					var data_max_default = real_max*real_step;
-				}
-
-				$(this).attr('data-max-default',data_max_default);
-				return data_max_default;
-			}
-
-			var data_max_default = Number($(this).attr('data-max-default'));
-			if(isNaN(data_max_default) || data_max < data_max_default)
-			{
-				data_max_default = data_unit;
-				$(this).attr('data-max-default',data_max_default);
-			}
-			return data_max_default;
-		}
-		else
-		{
-			return $(this).rangeSlider('option','max');
-		}
-	}
 
 
 	optionMethod.multi_level_value_to_real = function(_name, _set)
@@ -875,13 +870,13 @@
 				data.min           = this.rangeSlider('option', 'min');
 				data.max           = this.rangeSlider('option', 'max');
 				data.unit          = this.rangeSlider('option', 'unit');
+				data.min_default   = this.rangeSlider('option', 'min_default');
+				data.max_default   = this.rangeSlider('option', 'max_default');
 				data.margin        = this.rangeSlider('option', 'margin');
 				data.depth         = this.rangeSlider('option', 'depth');
 				data.min_unit      = this.rangeSlider('option', 'min_unit');
-				data.min_default   = this.rangeSlider('option', 'min_default');
-				data.max_default   = this.rangeSlider('option', 'max_default');
-				// data.min_title     = this.rangeSlider('option', 'min_title');
-				// data.max_title     = this.rangeSlider('option', 'max_title');
+				data.min_title     = this.rangeSlider('option', 'min_title');
+				data.max_title     = this.rangeSlider('option', 'max_title');
 				data.max_limit     = this.rangeSlider('option', 'max_limit');
 				data.unit_to_pixel = this.rangeSlider('option', 'unit_to_pixel');
 				data.range_width   = this.rangeSlider('option', 'range_width');
@@ -914,6 +909,7 @@
 					}
 					option.to_type = 'pixel';
 				}
+
 				var base_depth = this[depth_type]();
 
 				if(option.from_type == 'pixel')
@@ -956,11 +952,12 @@
 				if (json_string)
 				{
 					var my_step = $(this).rangeSlider('option','step');
+					var max_limit = $(this).rangeSlider('option','max_limit');
+
 					var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', data.max_limit);
 					var real_limit = real_limit_unit * my_step;
-					$(this).rangeSlider('option', 'max_limit', real_limit);// here
+					$(this).rangeSlider('option', 'max_limit', real_limit);
 				}
-
 
 				if ((to_step) > (data.max_limit - data.min))
 				{
@@ -1003,11 +1000,16 @@
 					{
 						from_step = 0;
 					}
-
-					if ($(this).attr('data-max-limit'))
+	
+					var json_string = $(this).attr("save_jason");
+					if (!json_string)
 					{
-						$(this).rangeSlider('option', 'max_limit', $(this).attr('data-max-limit'));
+						if ($(this).attr('data-max-limit'))
+						{
+							$(this).rangeSlider('option', 'max_limit', $(this).attr('data-max-limit'));
+						}
 					}
+	
 					var min_unit = $(this).rangeSlider('option', 'min_unit');
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(data.min + from_step));
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(data.min + to_step));
@@ -1136,7 +1138,7 @@
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(from_multi_step_value));
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(to_multi_step_value));
 
-					if ($(this).attr('_status_status_status_status_status')) 
+					if ($(this).attr('_status')) 
 					{
 						var my_limit = $(this).rangeSlider('option', 'max_limit');
 						var _step = ($(this).rangeSlider('option', 'step'));
