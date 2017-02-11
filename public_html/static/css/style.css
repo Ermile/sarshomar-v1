@@ -1631,6 +1631,18 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-in .awesomplete input{display:block;width:100%;height:35px;border:none;padding:0 5px}
 
 
+/************************************************************** Changelog */
+.changelog {margin-top: 5em;}
+.changelog .tbl>div>span:first-child  {flex: .1;}
+.changelog .tbl>div>span:last-child  {flex: 1;}
+.changelog .tbl>div.tbl-header {background: rgb(224,224,224);}
+.changelog .tbl>div:not(.tbl-header) {border-bottom: 1px solid #e0e0e0;}
+.changelog .tbl>div:last-child {border-bottom: none;}
+.changelog .tbl ul li {list-style-type: disc;}
+
+
+
+
 /************************************************************** other */
 div[data-parent]{display:none}
 .tab>li:not(.active){display:none}
