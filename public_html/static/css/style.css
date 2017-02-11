@@ -370,11 +370,11 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 
 /************************************************************** layout */
 body{background-color:#00667a;color:#6E6F6F}
-.wrapper{border-style:solid;border-width:0 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:flex}
+.wrapper{border-style:solid;border-width:0 8px;-moz-border-image:url(../images/border.png) 8 stretch;-webkit-border-image:url(../images/border.png) 8 stretch;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;max-width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}
 .wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:""}
 .wrapper::after,.box::after,header::after{clear:both}
 .wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px}
-.wrapper .main{width:100%}
+.wrapper .main{max-width:100%;-webkit-box-flex:1;-ms-flex:1;flex:1;overflow:hidden}
 .wrapper .box{padding:0 15px}
 .wrapper .homepage .box{padding:0 50px}
 .main.pad,.box.pad{padding-top:20px;padding-bottom:20px}
@@ -472,7 +472,7 @@ a[href*="amcharts.com"]{display:none!important}
 
 
 /************************************************************** header */
-header{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;background-color:#f4f4f4;height:90px;border:none;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
+header{display:-webkit-box;display:-ms-flexbox;display:flex;background-color:#f4f4f4;height:90px;border:none;border-style:solid;border-width:0 8px 0 0;-moz-border-image:url(../images/border.png) 6 8 6 0 stretch;-webkit-border-image:url(../images/border.png) 6 8 6 0 stretch;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
 .rtl header{border-width:0 0 0 8px;-moz-border-image:url(../images/border.png) 6 0 6 8 stretch;-webkit-border-image:url(../images/border.png) 6 0 6 8 stretch;-o-border-image:url(../images/border.png) 6 0 6 8 stretch;border-image:url(../images/border.png) 6 0 6 8 stretch}
 
 header .logo{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;-ms-grid-row-align:flex-end;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em 1em 1em}
