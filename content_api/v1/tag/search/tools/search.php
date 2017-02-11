@@ -50,6 +50,7 @@ trait search
 					}
 				}
 				$result = \lib\db\terms::search($search, $meta);
+				$result = \lib\utility\filter::meta_decode($result);
 
 				if(is_array($result))
 				{
@@ -61,52 +62,32 @@ trait search
 							unset($result[$key]['id']);
 						}
 
-						if(isset($value['parent']))
+						$translate = [];
+						if(isset($value['meta']))
 						{
-							unset($result[$key]['parent']);
+							if(isset($value['meta']['translate']) && is_array($value['meta']['translate']))
+							{
+								foreach ($value['meta']['translate'] as $lang => $trans)
+								{
+									if(is_string($lang) && is_string($trans))
+									{
+										$translate[] = $lang . ":" . $trans;
+									}
+								}
+							}
 						}
+						unset($result[$key]['parent']);
+						unset($result[$key]['meta']);
+						$result[$key]['translate'] = implode(',', $translate);
 					}
 				}
 				break;
-
-			// case 'article':
-			// 	$meta       = ['post_type' => 'article'];
-			// 	$result     = \lib\db\polls::search($search, $meta);
-			// 	$tmp_result = [];
-			// 	if(is_array($result))
-			// 	{
-			// 		foreach ($result as $key => $value)
-			// 		{
-			// 			$id    = null;
-			// 			$title = null;
-			// 			$url   = null;
-
-			// 			if(isset($value['id']))
-			// 			{
-			// 				$id = utility\shortURL::encode($value['id']);
-			// 			}
-
-			// 			if(isset($value['title']))
-			// 			{
-			// 				$title = $value['title'];
-			// 			}
-
-			// 			if(isset($value['url']))
-			// 			{
-			// 				$url = $value['url'];
-			// 			}
-
-			// 			$tmp_result[] = ['id' => $id, 'title' => $title, 'url' => $url];
-			// 		}
-			// 	}
-			// 	$result = $tmp_result;
-
-			// 	break;
 
 			default:
 				return debug::error(T_("Type not found"), 'type', 'arguments');
 				break;
 		}
+
 		debug::title(T_("Search successfuly"));
 		return $result;
 	}

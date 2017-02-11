@@ -142,11 +142,13 @@ class model extends \mvc\model
 	{
 		$this->check_url();
 		$this->user_id = $this->login('id');
+		if($this->poll_code)
+		{
+			\lib\utility::set_request_array(['id' => $this->poll_code]);
 
-		\lib\utility::set_request_array(['id' => $this->poll_code]);
-
-		$poll = $this->poll_get($this->get_poll_options);
-		return $poll;
+			$poll = $this->poll_get($this->get_poll_options);
+			return $poll;
+		}
 	}
 
 	/**

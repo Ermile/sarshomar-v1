@@ -165,64 +165,29 @@ trait search
 
 		// make repository
 		// search in sarshomar
-		if($_options['in'] === 'sarshomar')
+		switch ($_options['in'])
 		{
-			$_options['post_status']    = 'publish';
-			$_options['post_privacy']   = 'public';
-			$_options['post_sarshomar'] = 1 ;
-
-		}
-		// search in my poll
-		elseif($_options['in'] === 'me')
-		{
-			$_options['post_status']    = ['in' , "('publish', 'draft','awaiting', 'pause', 'stop')"];
-			$_options['check_language'] = false;
-
-			if($_options['login'])
-			{
+			case 'me':
 				$_options['user_id'] = $_options['login'];
-			}
-			else
-			{
+				break;
+
+			case 'article':
+				$_options['post_status']  = 'publish';
+				$_options['post_privacy'] = 'public';
+				$_options['post_type']    = 'article';
+				break;
+
+			case 'all':
+
+				break;
+			case 'sarshomar':
+			case null:
+			default:
 				$_options['post_status']    = 'publish';
 				$_options['post_privacy']   = 'public';
-			}
-		}
-		// search in trash when login
-		elseif($_options['in'] === 'trash' && $_options['login'])
-		{
-			$_options['post_status']    = 'trash';
-			$_options['check_language'] = false;
-			$_options['user_id']        = $_options['login'];
-		}
-		// search in article
-		elseif($_options['in'] === 'article')
-		{
-			$_options['post_status']  = 'publish';
-			$_options['post_privacy'] = 'public';
-			$_options['post_type']    = 'article';
-		}
-		// default search
-		else
-		{
-			$_options['post_status']    = 'publish';
-			$_options['post_privacy']   = 'public';
-
-			if($_options['login'])
-			{
-				$_options['check_language'] = false;
-			}
-			else
-			{
 				$_options['post_sarshomar'] = 1 ;
-			}
+				break;
 		}
-
-		// // if all == true return all type of polls, sarshomar or personal
-		// if($_options['all'] === false)
-		// {
-		// 	$_options['post_sarshomar'] = 1 ;
-		// }
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
@@ -236,15 +201,13 @@ trait search
 			}
 		}
 
-		if(isset($_options['post_language']))
-		{
-			$_options['check_language'] = false;
-		}
-
 		if($_options['check_language'] === true)
 		{
-			$language = \lib\define::get_language();
-			$where[] = " (posts.post_language IS NULL OR posts.post_language = '$language') ";
+			if(!isset($_options['post_language']))
+			{
+				$language = \lib\define::get_language();
+				$where[]  = " (posts.post_language IS NULL OR posts.post_language = '$language') ";
+			}
 		}
 
 		$api_mode = false;
@@ -276,10 +239,17 @@ trait search
 		{
 			if(is_array($value))
 			{
-				// for similar "posts.`field` LIKE '%valud%'"
-				$where[] = " posts.`$key` $value[0] $value[1] ";
+				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
+				{
+					// for similar "posts.`field` LIKE '%valud%'"
+					$where[] = " posts.`$key` $value[0] $value[1] ";
+				}
 			}
-			else
+			elseif($value === null)
+			{
+				$where[] = " posts.`$key` IS NULL ";
+			}
+			elseif(is_string($value))
 			{
 				$where[] = " posts.`$key` = '$value' ";
 			}
@@ -369,7 +339,6 @@ trait search
 			$found_rows = \lib\db::get("SELECT FOUND_ROWS() AS `total`", 'total', true);
 			\lib\storage::set_total_record($found_rows);
 		}
-
 		return $result;
 	}
 }

@@ -13,13 +13,20 @@ trait link
 		$default_options =
 		[
 			'upload_name' => utility::request('upload_name'),
-			'poll_id'     => utility::request('poll_id'),
+			'poll_id'     => utility::request('id'),
 			'opt'         => utility::request('opt'),
+			'url'         => null,
 		];
 
 		$_options = array_merge($default_options, $_options);
 
-		if(!utility::files($_options['upload_name']))
+		$file_path = false;
+
+		if($_options['url'])
+		{
+			$file_path = true;
+		}
+		elseif(!utility::files($_options['upload_name']))
 		{
 			return debug::error(T_("File not upload in upload_name"), 'upload_name', 'arguments');
 		}
@@ -28,8 +35,6 @@ trait link
 		{
 			return debug::error(T_("Parameter poll not set"), 'poll', 'arguments');
 		}
-
-		utility::set_request_array(['id' => $_options['poll_id']]);
 
 		$poll_get =
 		[
@@ -57,11 +62,17 @@ trait link
 			}
 		}
 
-		$ready_upload =
-		[
-			'upload_name' => $_options['upload_name'],
-			'user_id'     => $this->user_id,
-		];
+		$ready_upload            = [];
+		$ready_upload['user_id'] = $this->user_id;
+
+		if($file_path)
+		{
+			$ready_upload['file_path'] = $_options['url'];
+		}
+		else
+		{
+			$ready_upload['upload_name'] = $_options['upload_name'];
+		}
 
 		$upload      = upload::upload($ready_upload);
 
@@ -85,6 +96,7 @@ trait link
 		}
 
 		$url = null;
+
 		if(isset($file_detail['url']))
 		{
 			$url = Protocol."://" . \lib\router::get_root_domain() . '/'. $file_detail['url'];

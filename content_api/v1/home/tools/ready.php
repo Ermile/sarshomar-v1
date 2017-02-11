@@ -177,7 +177,7 @@ trait ready
 		// change have_score field
 		if(array_key_exists('have_score', $_poll_data))
 		{
-			if($_poll_data['have_score'] == '1')
+			if($_poll_data['have_score'])
 			{
 				$_poll_data['have_score'] = true;
 			}
@@ -190,7 +190,7 @@ trait ready
 		// change is_answered field
 		if(array_key_exists('is_answered', $_poll_data))
 		{
-			if($_poll_data['is_answered'] == '1')
+			if($_poll_data['is_answered'])
 			{
 				$_poll_data['is_answered'] = true;
 			}
@@ -203,7 +203,7 @@ trait ready
 		// change my_like field
 		if(array_key_exists('my_like', $_poll_data))
 		{
-			if($_poll_data['my_like'] == '1')
+			if($_poll_data['my_like'])
 			{
 				$_poll_data['my_like'] = true;
 			}
@@ -216,7 +216,7 @@ trait ready
 		// change my_fav field
 		if(array_key_exists('my_fav', $_poll_data))
 		{
-			if($_poll_data['my_fav'] == '1')
+			if($_poll_data['my_fav'])
 			{
 				$_poll_data['my_fav'] = true;
 			}
@@ -229,7 +229,7 @@ trait ready
 		// change have_true_answer field
 		if(array_key_exists('have_true_answer', $_poll_data))
 		{
-			if($_poll_data['have_true_answer'] == '1')
+			if($_poll_data['have_true_answer'])
 			{
 				$_poll_data['have_true_answer'] = true;
 			}

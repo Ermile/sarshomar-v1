@@ -300,11 +300,11 @@
 
 {%block poll_similar%}
 {% spaceless %}
-
  <div class="title">{%trans "Similar Questions"%}</div>
- {%if similar_post()%}
+ {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag"})%}
+ {% if similar %}
   <ul>
-   {%for key, value in similar_post()%}
+   {%for key, value in similar%}
    <li><a href="{{url.prefix}}/{{value.url}}">{{value.title}}</a></li>
    {%endfor%}
   </ul>

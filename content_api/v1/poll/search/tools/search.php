@@ -26,15 +26,37 @@ trait search
 			$meta['get_last'] = true;
 		}
 
+		$in_me = false;
+
 		if(utility::request("in"))
 		{
-			$in_list = ['sarshomar', 'me', 'trash', 'article'];
-			if(!in_array(utility::request('in'), $in_list))
+			if(is_string(utility::request('in')))
 			{
-				return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
+				$in_list = ['sarshomar', 'me', 'article'];
+				if(!in_array(utility::request('in'), $in_list))
+				{
+					return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
+				}
+				$meta['in'] = utility::request("in");
+			}
+			elseif(is_array(utility::request('in')))
+			{
+				if(in_array('all', utility::request('in')))
+				{
+					return debug::error(T_("Can not set all in array request"), 'in', 'arguments');
+				}
+				$meta['in'] = ['IN', "('". implode("','", utility::request("in")). "')"];
+			}
+			else
+			{
+				return debug::error(T_("Invalid parameter in as :type", ['type' => gettype(utility::request('in'))]), 'in', 'arguments');
 			}
 
-			$meta['in'] = utility::request("in");
+			if((is_array(utility::request('in')) && in_array('me', utility::request('in'))) || utility::request('in')  == 'me' )
+			{
+				$in_me = true;
+			}
+
 		}
 
 		$from = utility::request("from");
@@ -78,31 +100,73 @@ trait search
 
 		if(utility::request("language"))
 		{
-			if(!utility\location\languages::check(utility::request("language")))
+			if(is_string(utility::request('language')))
 			{
-				return debug::error(T_("Invalid parameter language"), 'language', 'arguments');
+				if(!utility\location\languages::check(utility::request("language")))
+				{
+					return debug::error(T_("Invalid parameter language"), 'language', 'arguments');
+				}
+				$meta['post_language'] = utility::request("language");
+			}
+			elseif(is_array(utility::request('language')))
+			{
+				foreach (utility::request('language') as $key => $value)
+				{
+					if(!utility\location\languages::check($value))
+					{
+						return debug::error(T_("Invalid parameter language"), 'language', 'arguments');
+					}
+				}
+				$meta['post_language'] = ['IN', "('". implode("','", utility::request("languages")). "')"];
 			}
 			else
 			{
-				// $meta['post_language'] = utility::request("language");
+				return debug::error(T_("Invalid parameter language as :type", ['type' => gettype(utility::request('language'))]), 'language', 'arguments');
 			}
-		}
-		else
-		{
-			$meta['check_language'] = false;
 		}
 
-		if(utility::request("sarshomar"))
+
+		if(utility::request("status"))
 		{
-			if(!is_bool(utility::request("sarshomar")))
+			if(!$in_me)
 			{
-				return debug::error(T_("Invalid parameter sarshomar"), 'sarshomar', 'arguments');
+				return debug::error(T_("You can set status in your poll, in:me"), 'status', 'arguments');
 			}
-			$meta['all'] = false;
-		}
-		else
-		{
-			$meta['all'] = true;
+
+			$status_list =
+			[
+				'stop',
+				'pause',
+				'trash',
+				'publish',
+				'draft',
+				'awaiting',
+			];
+
+			if(is_string(utility::request('status')))
+			{
+				if(!in_array(utility::request('status'), $status_list))
+				{
+					return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+				}
+				$meta['post_status'] = utility::request("status");
+			}
+			elseif(is_array(utility::request('status')))
+			{
+				foreach (utility::request('status') as $key => $value)
+				{
+					if(!in_array($value, $status_list))
+					{
+						return debug::error(T_("Invalid status :status", ['status' => $value]), 'status', 'arguments');
+					}
+				}
+				$meta['post_status'] = ['IN', "('". implode("','", utility::request("status")). "')"];
+			}
+			else
+			{
+				return debug::error(T_("Invalid parameter status as :type", ['type' => gettype(utility::request('status'))]), 'status', 'arguments');
+			}
+
 		}
 
 		$meta['login']       = $this->user_id;
