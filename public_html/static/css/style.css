@@ -1298,19 +1298,19 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
 
 
 /************************************************************** features page */
-#features .box{margin:0 10em}
-#features .feature-items{display:-webkit-box;display:-ms-flexbox;display:flex;flex-wrap:wrap;margin-bottom:5em}
-#features .feature-items .feature-item{position:relative;text-align:center;padding:3em;transition:.3s;flex-basis:33.3333333%}
-#features .feature-items .feature-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#e7a429;opacity:0;transition:.3s;z-index:1}
-#features .feature-items .feature-item .title{color:#0c7c78;font-weight:700}
-#features .feature-items .feature-item .description{color:#a1a1a1;margin-bottom:0;font-size:1.2em}
-#features .feature-items .feature-item:hover,#features .feature-items .feature-item:focus{background-color:#ebebeb}
-#features .feature-items .feature-item:hover::before,#features .feature-items .feature-item:focus::before{opacity:1}
-#features .feature-items .feature-item:nth-child(2)::after,#features .feature-items .feature-item:nth-child(5)::after,#features .feature-items .feature-item:nth-child(8)::after{content:'';position:absolute;bottom:0;width:160%;height:1px;background-color:#ebebeb;left:-30%}
-#features .feature-items .feature-item:nth-child(4)::after,#features .feature-items .feature-item:nth-child(7)::after,#features .feature-items .feature-item:nth-child(10)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;right:0}
-.rtl#features .feature-items .feature-item:nth-child(4)::after,.rtl#features .feature-items .feature-item:nth-child(7)::after,.rtl#features .feature-items .feature-item:nth-child(10)::after{right:auto;left:0}
-#features .feature-items .feature-item:nth-child(6)::after,#features .feature-items .feature-item:nth-child(9)::after,#features .feature-items .feature-item:nth-child(12)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;left:0}
-.rtl#features .feature-items .feature-item:nth-child(6)::after,.rtl#features .feature-items .feature-item:nth-child(9)::after,.rtl#features .feature-items .feature-item:nth-child(12)::after{left:auto;right:0}
+ .box{margin:0 10em}
+ .feature-items{display:-webkit-box;display:-ms-flexbox;display:flex;flex-wrap:wrap;margin-bottom:5em}
+ .feature-items .feature-item{position:relative;text-align:center;padding:3em;transition:.3s;flex-basis:33.3333333%}
+ .feature-items .feature-item::before{content:'';position:absolute;bottom:0;left:0;right:0;margin:auto;height:4px;width:70%;background-color:#e7a429;opacity:0;transition:.3s;z-index:1}
+ .feature-items .feature-item .title{color:#0c7c78;font-weight:700}
+ .feature-items .feature-item .description{color:#a1a1a1;margin-bottom:0;font-size:1.2em}
+ .feature-items .feature-item:hover, .feature-items .feature-item:focus{background-color:#ebebeb}
+ .feature-items .feature-item:hover::before, .feature-items .feature-item:focus::before{opacity:1}
+ .feature-items .feature-item:nth-child(2)::after, .feature-items .feature-item:nth-child(5)::after, .feature-items .feature-item:nth-child(8)::after{content:'';position:absolute;bottom:0;width:160%;height:1px;background-color:#ebebeb;left:-30%}
+ .feature-items .feature-item:nth-child(4)::after, .feature-items .feature-item:nth-child(7)::after, .feature-items .feature-item:nth-child(10)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;right:0}
+.rtl .feature-items .feature-item:nth-child(4)::after,.rtl .feature-items .feature-item:nth-child(7)::after,.rtl .feature-items .feature-item:nth-child(10)::after{right:auto;left:0}
+ .feature-items .feature-item:nth-child(6)::after, .feature-items .feature-item:nth-child(9)::after, .feature-items .feature-item:nth-child(12)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;left:0}
+.rtl .feature-items .feature-item:nth-child(6)::after,.rtl .feature-items .feature-item:nth-child(9)::after,.rtl#features .feature-items .feature-item:nth-child(12)::after{left:auto;right:0}
 
 
 
