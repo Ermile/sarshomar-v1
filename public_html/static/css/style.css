@@ -1709,15 +1709,15 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 /************************************************************** contact page */
 .element .input.white{background-color:#fff;color:#00667a}
 #contact-box{padding:0 5em}
-#contact .submit-contact{width:100%;padding:10px;margin-bottom:5em}
-#contact .contact-box{background-color:#fff}
-#contact .contact-box .contact-data{padding:2em}
-#contact .contact-box h2{font-size:1.6em;-webkit-user-select:none;user-select:none}
-#contact .sharebox{text-align:center}
-#contact .contact-ways .row{margin-bottom:1.5em;display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center}
-#contact .contact-ways .row i{color:#28618a}
-#contact .contact-ways .row span{padding:0 1em}
-#contact .contact-box .map{display:block;padding:1em}
+.submit-contact{width:100%;padding:10px;margin-bottom:5em}
+.contact-box{background-color:#fff}
+.contact-box .contact-data{padding:2em}
+.contact-box h2{font-size:1.6em;-webkit-user-select:none;user-select:none}
+.sharebox{text-align:center}
+.contact-ways .row{margin-bottom:1.5em;display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center}
+.contact-ways .row i{color:#28618a}
+.contact-ways .row span{padding:0 1em}
+.contact-box .map{display:block;padding:1em}
 
 
 /************************************************************** star rating */
