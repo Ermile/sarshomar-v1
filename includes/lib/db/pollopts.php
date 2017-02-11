@@ -421,7 +421,7 @@ class pollopts
 		$delete_all_profile = false;
 
 		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
-		if($_options['method'] == 'put')
+		if($_options['method'] == 'put' || $_options['method'] == 'post')
 		{
 
 			$must_update = [];

@@ -155,6 +155,7 @@ class model extends \content_u\home\model
 	 */
 	public function poll($_args = null)
 	{
+
 		$data = '{}';
 
 		if(isset($_POST['data']))
@@ -188,6 +189,7 @@ class model extends \content_u\home\model
 
 		$this->user_id = $this->login('id');
 		$this->debug   = false;
+
 		return $this->poll_add($method);
 	}
 
@@ -326,6 +328,7 @@ class model extends \content_u\home\model
 	public function local_upload()
 	{
 		$file_uploaded = utility::files("croppedImage");
+
 		if($file_uploaded)
 		{
 			$args =
@@ -382,6 +385,42 @@ class model extends \content_u\home\model
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * check homepage feaucher and set in options table
+	 */
+	public function check_homepage()
+	{
+		// disable if home page exits
+		$disable = ['option_status' => 'disable'];
+		$enable  = ['option_status' => 'enable'];
+		$where =
+		[
+			'post_id'      => $this->poll_survey_id,
+			'option_cat'   => 'homepage',
+			'option_key'   => 'chart',
+			'option_value' => $this->poll_survey_id,
+			'limit'        => 1,
+		];
+
+		$result = \lib\db\options::get($where);
+		unset($where['limit']);
+		if(!empty($result))
+		{
+			\lib\db\options::update_on_error($disable, $where);
+		}
+		if(utility::post("homepage") != '')
+		{
+			if(!empty($result))
+			{
+				\lib\db\options::update_on_error($enable, $where);
+			}
+			else
+			{
+				\lib\db\options::insert($where);
+			}
+		}
 	}
 }
 ?>
