@@ -232,7 +232,7 @@ class ask
 	{
 		\lib\storage::set_disable_edit(true);
 
-		$maker = new make_view(bot::$user_id, $_data_url[2]);
+		$maker = new make_view($_data_url[2]);
 		$maker->message->add_title();
 		$maker->message->add_poll_chart(true);
 		$maker->message->add_poll_list(true);
