@@ -50,6 +50,8 @@
 
  .stepPublish .action {flex-direction: column;}
 .stepPublish .action a {margin-bottom: 1em;}
+
+ .poll-container .poll-image{width:100%}
 }
 
 
@@ -271,6 +273,8 @@
 
 .polls-head>span {min-width: 60px;}
 
+/************************************************************** Poll Page */
+.poll-container .poll-image{width:100%}
 
 
 }

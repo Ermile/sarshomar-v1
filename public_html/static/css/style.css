@@ -380,7 +380,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .main.pad,.box.pad{padding-top:20px;padding-bottom:20px}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
-img,.unselect{-webkit-user-select:none;user-select:none}
+img,.unselect{-webkit-user-select:none;user-select:none;word-break:break-all}
 .rtl .flip-rtl,.ltr .flip-ltr{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
 .main.text-based{padding-top:5em}
@@ -964,7 +964,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** poll page */
 .poll-container{}
-.poll-container h2{color:#444;font-weight:700;margin-bottom:.5em}
+.poll-container h2{color:#444;font-weight:700;margin-bottom:.5em;word-break:break-all}
 
 .poll-container .poll-toolbox{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;padding:0 1em;margin-bottom:1em;font-size:1.2em}
 
@@ -979,7 +979,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-toolbox .like-fav label:not(:last-child){margin-right:.5em}
 .rtl .poll-container .poll-toolbox .like-fav label:not(:last-child){margin-right:0;margin-left:.5em}
 
-
+.poll-container .poll-image{display:block;width:50%;margin:0 auto 2em}
 
 .poll-container .poll-summary{width:80%;font-size:1.2em;padding:0 1em}
 

@@ -27,6 +27,15 @@
 {%endblock%}
 
 
+{%block poll_file%}
+{% spaceless %}
+ {%if poll.file%}
+  <img src="{{poll.file}}" alt="{{poll.title}}" class="poll-image">
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
+
 {%block poll_summary%}
 {% spaceless %}
  {%if poll.content%}
