@@ -47,6 +47,9 @@
  .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
 
  footer #footer-nav .eco{height:65%}
+
+ .stepPublish .action {flex-direction: column;}
+.stepPublish .action a {margin-bottom: 1em;}
 }
 
 
@@ -119,8 +122,10 @@
  .customers-container .customer:not(:last-child) .customer-content p{margin-bottom:2em}
 
  .triplet{padding:0;overflow:hidden;overflow-x:auto}
- .triplet .triplet-item{padding:50px 10px;min-width:70%}
+ .triplet .triplet-item{padding:50px 10px;min-width:100%}
  .triplet .triplet-item p{width:100%}
+#about-bottom {padding: 4px;}
+
 
  #inestimable{padding:25px;text-align:center;height:150px}
  #inestimable:before,#inestimable:after{width:100px}
@@ -160,7 +165,10 @@
  .rtl .menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;}
  .menu {padding: 0;}
  .checkbox input+label::after {top: 10px;left: 4px;}
+ .poll-container .poll-toolbox {flex-wrap: wrap;justify-content: space-between;padding: 0;}
+ .in.small.poll-container {width: 95%;}
  .menu .menu-inside label i {display: none;}
+ .ltr [data-copy]::after {right: auto; left: 30px;}
  .rtl .element,.element {padding-left: 0;padding-right: 0;}
  .element.no-pad{display: block}
  .ultra .data {width: 100%;}
@@ -227,6 +235,9 @@
  .range-slider[data-type=vertical] .dynamic-range span:before {border-left: 6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid #00667a;left: 13px;top: 2px;height: 16px;}
  .stepPublish .element {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-ms-flex-wrap: wrap;flex-wrap: wrap;display: block;}
  .stepPublish .element label {-ms-flex-item-align: start;align-self: flex-start;}
+.stepPublish .action {flex-direction: column;}
+.stepPublish .action a {margin-bottom: 1em;}
+
 
 
  /************************************************************** Text based */
@@ -253,6 +264,11 @@
 .sync .sync-message{display:none!important}
 .sync .sync-checkmark::before{left:1px}
 .sync .sync-checkmark::after{left:6px}
+
+
+
+
+
 
 }
 
