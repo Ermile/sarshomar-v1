@@ -157,7 +157,7 @@
  footer #footer-links #footer-news {-webkit-box-flex: 0;-ms-flex: 0 1 70%;flex: 0 1 70%;}
  footer #footer-links .enamad {-webkit-box-flex: 0;-ms-flex: 0 1 30%;flex: 0 1 30%;}
  .enamad {-webkit-box-ordinal-group: 11;-ms-flex-order: 10;order: 10;}
-
+#footer-links ul li {float: right;}
 
  /************************************************************** add question */
  .page-progress {width: 100%;}
