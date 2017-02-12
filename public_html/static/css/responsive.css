@@ -109,6 +109,9 @@
  #random-chart{margin:0!important}
  #random-chart h3 a{font-weight:500}
 
+.dashboard-aside {display: none;}
+
+
  .map-container {display: none;}
  #map{display:none}
  .customers-container{border-top:1px solid #f4f4f4}
