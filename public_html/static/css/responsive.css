@@ -159,6 +159,7 @@
  .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;}
  .rtl .menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;}
  .menu {padding: 0;}
+ .checkbox input+label::after {top: 10px;left: 4px;}
  .menu .menu-inside label i {display: none;}
  .rtl .element,.element {padding-left: 0;padding-right: 0;}
  .element.no-pad{display: block}

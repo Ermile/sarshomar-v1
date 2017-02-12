@@ -1049,8 +1049,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /*#poll-box .toolbox{margin-bottom:1em}*/
 
 /* sharebox */
-.sharebox{text-align:right;-webkit-user-select:none;user-select:none}
-.rtl .sharebox{text-align:left}
+.sharebox{-webkit-user-select:none;user-select:none;display: flex;flex-wrap: wrap;justify-content: flex-end;}
 .sharebox span{display:none;}
 .sharebox a{display:inline-block;width:30px;height:30px;margin:0 .1em;text-align:center;position:relative;overflow:hidden;opacity:.99;border-radius:2%}
 .sharebox a:before{content:'';width:50%;height:400%;position:absolute;top:-214%;left:-61%;transform:rotate(30deg);z-index:-1}
@@ -1485,7 +1484,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .rtl .input-group{padding-left:0;padding-right:40px;}
 
 /* element title */
-.element .title{position:relative;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;text-align:center;vertical-align:middle;font-size:14px;padding:0 0.5em;}
+.element .title{position:relative;color:#d8dad0;border-top-left-radius:5px;border-bottom-left-radius:5px;background-color:#00667a;text-align:center;vertical-align:middle;font-size:14px;padding:0 0.5em;display: flex;align-items: center;justify-content: center;}
 .rtl .element .title{border-radius:0 5px 5px 0;min-width:100px;}
 .rtl .modal .element .title {border-radius: 5px 0 0 5px;}
 .element .title.large{min-width:120px;}
