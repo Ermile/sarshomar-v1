@@ -107,7 +107,7 @@
  #intro-box h2{padding-top:0}
  #intro-box p{margin:0;margin-bottom:1em;padding:0 15px}
  #random-chart{margin:0!important}
- #random-chart h3 a{font-weight:500}
+ #random-chart h3 a{font-weight:500; font-size: 1.3em}
 
 .dashboard-aside {display: none;}
 

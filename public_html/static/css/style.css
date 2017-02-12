@@ -633,7 +633,7 @@ footer #footer-links #footer-news article{margin-bottom:.5em;border:1px solid tr
 footer #footer-links #footer-news article:hover{border-right-color:#e5a428}
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent}
 footer #footer-links #footer-news p{font-size:.8em;margin-bottom:0;color:#777}
-footer #footer-links .enamad img{display:block}
+footer #footer-links .enamad img{display:none}
 
 /* footer-note*/
 footer #footer-note{font-size:1.2em;padding:2em 1em;color:#aaa}
@@ -1880,9 +1880,6 @@ code {font-size: 1.2em;}
 .auth .text-center {text-align: center;}
 .auth .auth-desc {font-size: 1.2em; width: 50%; margin: auto}
 .auth .title {color: #00667a;margin: 2em 0 1em 0;}
-
-
-
 
 
 
