@@ -140,7 +140,7 @@ private function transtext()
 	echo T_("Save Answer");                                                           // Line 267
 	echo T_("Ask Me");                                                                // Line 28
 	echo T_("result");                                                                // Line 282
-	echo T_("Similar Questions");                                                     // Line 304
+	echo T_("Similar Questions");                                                     // Line 303
 	echo T_("There is no similar post");                                              // Line 312
 	echo T_("Poll timespan");                                                         // Line 330
 	echo T_("to");                                                                    // Line 333
@@ -204,6 +204,8 @@ private function transtext()
 	echo T_("Cost");                                                                  // Line 69
 	echo T_("Tomans");                                                                // Line 69
 	echo T_("Total cash");                                                            // Line 74
+	echo T_("Cash");                                                                  // Line 112
+	echo T_("Gift");                                                                  // Line 86
 
 	//--------------------------------------------------content\template\register.html
 	echo T_("Sarshomar Vision");                                                      // Line 16
@@ -254,6 +256,10 @@ private function transtext()
 
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("in preparation");                                                        // Line 4
+	echo T_("Sarshomar's 1st version released");                                      // Line 21
+	echo T_("Sarshomar's beta version released");                                     // Line 25
+	echo T_("Sarshomar's alpha version released");                                    // Line 29
+	echo T_("Project Sarshomar started");                                             // Line 33
 
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 14
@@ -854,7 +860,6 @@ private function transtext()
 	echo T_("Society");                                                               // Line 87
 	echo T_("Register Question");                                                     // Line 97
 	echo T_("Total Price");                                                           // Line 107
-	echo T_("Cash");                                                                  // Line 112
 	echo T_("Balance");                                                               // Line 118
 	echo T_("Charge Account");                                                        // Line 124
 	echo T_("Publish it");                                                            // Line 125
