@@ -1311,7 +1311,7 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
  .feature-items .feature-item:nth-child(4)::after, .feature-items .feature-item:nth-child(7)::after, .feature-items .feature-item:nth-child(10)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;right:0}
 .rtl .feature-items .feature-item:nth-child(4)::after,.rtl .feature-items .feature-item:nth-child(7)::after,.rtl .feature-items .feature-item:nth-child(10)::after{right:auto;left:0}
  .feature-items .feature-item:nth-child(6)::after, .feature-items .feature-item:nth-child(9)::after, .feature-items .feature-item:nth-child(12)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;left:0}
-.rtl .feature-items .feature-item:nth-child(6)::after,.rtl .feature-items .feature-item:nth-child(9)::after,.rtl#features .feature-items .feature-item:nth-child(12)::after{left:auto;right:0}
+.rtl .feature-items .feature-item:nth-child(6)::after,.rtl .feature-items .feature-item:nth-child(9)::after,.rtl .feature-items .feature-item:nth-child(12)::after{left:auto;right:0}
 
 
 
