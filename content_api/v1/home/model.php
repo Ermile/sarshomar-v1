@@ -182,22 +182,23 @@ class model extends \mvc\model
 			$log['page_status'] = $_SERVER['REDIRECT_STATUS'];
 		}
 
-		// $log['request']  = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
-		$log['request']  = file_get_contents("php://input");
+		$log['request']         = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
 
-		$log['debug']    = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
+		$log['debug']           = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
 
-		$log['response'] = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
+		$log['response']        = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
 
-		$log['header']   = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
+		$log['request_header']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
 
-		$log['status']   = \lib\debug::$status;
+		$log['response_header'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
 
-		$log['token']    = $this->authorization;
+		$log['status']          = \lib\debug::$status;
 
-		$log['user_id']  = $this->user_id;
+		$log['token']           = $this->authorization;
 
-		// $log = \lib\utility\safe::safe($log);
+		$log['user_id']         = $this->user_id;
+
+		$log                    = \lib\utility\safe::safe($log);
 
 		\lib\db\apilogs::insert($log);
 
