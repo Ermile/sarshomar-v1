@@ -5,6 +5,8 @@ use \lib\debug;
 
 trait set
 {
+	use check;
+
 	public static $all_status =
 	[
 		'stop',
@@ -52,10 +54,19 @@ trait set
 			if(in_array(utility::request("status"), $available['available']))
 			{
 				$id   = utility\shortURL::decode(utility::request("id"));
-				$args = ['post_status' => utility::request("status")];
-				if(\lib\db\polls::update($args, $id))
+
+				self::check(['poll_id' => $id, 'user_id' => $this->user_id]);
+
+				if(!debug::$status)
 				{
-					debug::title(T_("Poll status changed"));
+					return;
+				}
+
+				debug::title(T_("Poll status changed"));
+				if(debug::$status === 1)
+				{
+					$args = ['post_status' => utility::request("status")];
+					\lib\db\polls::update($args, $id);
 				}
 			}
 			else

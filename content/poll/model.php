@@ -105,8 +105,9 @@ class model extends \mvc\model
 				$preview = "?preview=yes";
 			}
 
-			$new_url = trim($this->url('prefix'). $language. '/'. $post_url. $preview, '/');
-			$this->redirector()->set_url($new_url)->redirect();
+			$new_url = trim($this->url('base'). $language. '/'. $post_url. $preview, '/');
+
+			$this->redirector($new_url)->redirect();
 		}
 		else
 		{
@@ -249,7 +250,6 @@ class model extends \mvc\model
 			return;
 		}
 
-		//----------------------------------------------------------------------------
 		// save heart
 		// if(utility::post("type") == 'heart')
 		// {
@@ -266,15 +266,14 @@ class model extends \mvc\model
 		// 	return;
 		// }
 
-		// save like
-		if(utility::post("type") == 'like')
+		if(!$this->login())
 		{
-			$result = \lib\db\polls::like($this->login('id'), $poll_id);
-			return;
+			\lib\debug::error(T_("You must login in order to answer the questions"));
+			return false;
 		}
 
+		$poll_id = $this->check_url(true);
 
-		//----------------------------------------------------------------------------
 		// save score of comments
 		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
 		{
@@ -282,14 +281,18 @@ class model extends \mvc\model
 			return;
 		}
 
-
-		//----------------------------------------------------------------------------
-		// save answers
-
-		if(!$this->login())
+		// save like
+		if(utility::post("type") == 'like')
 		{
-			\lib\debug::error(T_("You must login in order to answer the questions"));
-			return false;
+			$result = \lib\db\polls::like($this->login('id'), \lib\utility\shortURL::decode($poll_id));
+			return;
+		}
+
+		// save like
+		if(utility::post("type") == 'favourites')
+		{
+			$result = \lib\db\polls::fav($this->login('id'), \lib\utility\shortURL::decode($poll_id));
+			return;
 		}
 
 		$this->user_id = $this->login('id');
@@ -313,9 +316,13 @@ class model extends \mvc\model
 				$opt[$value] = true;
 				break;
 			}
-
 		}
-		$poll_id = $this->check_url(true);
+
+		if(count($opt) === 2 && isset($opt['descriptive']) && isset($opt['radio']))
+		{
+			$opt[$opt['radio']] = $opt['descriptive'];
+		}
+
 
 		$options           = [];
 

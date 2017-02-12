@@ -103,7 +103,11 @@ trait answers
 		     		// get true answer
 		 	 		if(isset($value[$object_type]['is_true']) && $value[$object_type]['is_true'])
 		     		{
-		     			$combine[$key]['true'] = $value[$object_type]['is_true'];
+		     			if(!is_bool($value[$object_type]['is_true']))
+		     			{
+		     				return debug::error(T_("Invalid parametr is_true in index :key of answer", ['key' => $key]), 'is_true', 'arguments');
+		     			}
+		     			$combine[$key]['true'] = 1;
 		     		}
 				}
 
@@ -173,7 +177,7 @@ trait answers
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
 
-				if(count($combine[$key]) == 1 && isset($combine[$key]['type']))
+				if(count($combine[$key]) == 1 && isset($combine[$key]['type']) && $combine[$key]['type'] != 'descriptive')
 				{
 					unset($combine[$key]);
 				}

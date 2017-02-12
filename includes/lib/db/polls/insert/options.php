@@ -51,6 +51,30 @@ trait options
 			{
 				return debug::error(T_("Invalid arguments min"), 'min', 'arguments');
 			}
+
+			if(intval(self::$args['options']['multi']['min']) < 1)
+			{
+				return debug::error(T_("Can not set min less than 1"), 'min', 'arguments');
+			}
+
+			if(
+				isset(self::$args['options']['multi']['max']) &&
+				intval(self::$args['options']['multi']['min']) >
+				intval(self::$args['options']['multi']['max'])
+			  )
+			{
+				return debug::error(T_("You can not set multi:min greater than multi:max"), 'min', 'arguments');
+			}
+
+			if(intval(self::$args['options']['multi']['min']) > count(self::$args['answers']))
+			{
+				return debug::error(T_("You are set :count answers can not set :min in multi: min ",
+					[
+						'count' => count(self::$args['answers']),
+						'min'   => self::$args['options']['multi']['min']
+					]), 'min', 'arguments');
+			}
+
 			self::save_options('multi_min', self::$args['options']['multi']['min']);
 			$set_multi_min = true;
 		}
@@ -65,6 +89,24 @@ trait options
 			if(self::$args['options']['multi']['max'] && !is_numeric(self::$args['options']['multi']['max']))
 			{
 				return debug::error(T_("Invalid arguments max"),'max', 'arguments');
+			}
+
+			if(intval(self::$args['options']['multi']['max']) > count(self::$args['answers']))
+			{
+				return debug::error(T_("You are set :count answers can not set :max in multi: max ",
+					[
+						'count' => count(self::$args['answers']),
+						'max'   => self::$args['options']['multi']['max']
+					]), 'max', 'arguments');
+			}
+
+			if(
+				isset(self::$args['options']['multi']['min']) &&
+				intval(self::$args['options']['multi']['max']) <
+				intval(self::$args['options']['multi']['min'])
+			  )
+			{
+				return debug::error(T_("You can not set multi:max less than multi:min"), 'max', 'arguments');
 			}
 			self::save_options('multi_max', self::$args['options']['multi']['max']);
 			$set_multi_max = true;

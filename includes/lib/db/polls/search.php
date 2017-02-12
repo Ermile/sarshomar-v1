@@ -163,30 +163,55 @@ trait search
 			$order = " ORDER BY posts.id $_options[order] ";
 		}
 
-		// make repository
-		// search in sarshomar
-		switch ($_options['in'])
+		if(is_string($_options['in']))
 		{
-			case 'me':
-				$_options['user_id'] = $_options['login'];
-				break;
+			// search in sarshomar
+			switch ($_options['in'])
+			{
+				case 'me':
+					$_options['user_id'] = $_options['login'];
+					break;
 
-			case 'article':
-				$_options['post_status']  = 'publish';
-				$_options['post_privacy'] = 'public';
-				$_options['post_type']    = 'article';
-				break;
+				case 'article':
+					$_options['post_status']  = 'publish';
+					$_options['post_privacy'] = 'public';
+					$_options['post_type']    = 'article';
+					break;
 
-			case 'all':
+				case 'all':
 
-				break;
-			case 'sarshomar':
-			case null:
-			default:
-				$_options['post_status']    = 'publish';
-				$_options['post_privacy']   = 'public';
-				$_options['post_sarshomar'] = 1 ;
-				break;
+					break;
+				case 'sarshomar':
+				case null:
+				default:
+					$_options['post_status']    = 'publish';
+					$_options['post_privacy']   = 'public';
+					$_options['post_sarshomar'] = 1 ;
+					break;
+			}
+
+		}
+		elseif(is_array($_options['in']))
+		{
+			if($_options['in'] == ['me', 'sarshomar'])
+			{
+				$where[] =
+				"
+				 (
+				 	(
+						posts.post_sarshomar = 1 AND
+						posts.post_status    = 'publish'
+				 	)
+				 	OR
+				 	(
+				 		posts.user_id = $_options[login] AND
+				 		posts.post_status = 'publish'
+				 	) ";
+			}
+		}
+		else
+		{
+			// no thing!
 		}
 
 		$start_limit = $_options['start_limit'];

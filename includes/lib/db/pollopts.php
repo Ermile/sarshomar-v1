@@ -539,7 +539,7 @@ class pollopts
 				$profile = [];
 				foreach ($must_insert as $key => $value)
 				{
-					if(count($value) === 1 && isset($value['type']))
+					if(count($value) === 1 && isset($value['type']) && $value['type'] == 'select')
 					{
 						continue;
 					}

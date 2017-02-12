@@ -144,7 +144,7 @@ class model extends \mvc\model
 			case 'api_key':
 				if($this->url != 'v1/token/temp' && $this->url != 'v1/token/guest' && $this->url != 'v1/token/login')
 				{
-					debug::error(T_("Access denide (Invalid url)"), 'authorization', 'access');
+					debug::error(T_("Access denide to load this url by api key"), 'authorization', 'access');
 					return false;
 				}
 				break;

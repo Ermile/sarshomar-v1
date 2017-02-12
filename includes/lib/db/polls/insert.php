@@ -122,6 +122,10 @@ trait insert
 			self::$poll_id        = \lib\utility\shortURL::decode(self::$args['update']);
 			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
+			if(self::$old_status !== 'draft')
+			{
+				return debug::error(T_("Can not edit poll, this poll status is :status", ['status' => self::$old_status]), 'status', 'permission');
+			}
 		}
 
 		// check user id.
@@ -168,10 +172,6 @@ trait insert
 		// insert options of poll
 		self::insert_options();
 
-		// check poll
-		// if in publish mod and have error return the error
-		// if in draft mod return no error
-		// self::check();
 		/**
 			T_("Poll Successfully added");
 			T_("Poll Successfully edited");

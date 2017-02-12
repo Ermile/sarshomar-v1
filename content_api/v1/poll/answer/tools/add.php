@@ -78,6 +78,10 @@ trait add
 		{
 			$poll_type = $answers_type[0];
 		}
+		elseif(count($answers_type) === 2 && in_array('select', $answers_type) && in_array('descriptive', $answers_type))
+		{
+			$poll_type = $answers_type;
+		}
 
 		if(!$poll_type)
 		{
@@ -115,6 +119,7 @@ trait add
 		}
 
 		$true_answer = [];
+
 		foreach (utility::request('answer') as $key => $value)
 		{
 			if(!isset($poll['answers'][$key]))
@@ -125,12 +130,13 @@ trait add
 			{
 				if(!isset($poll['answers'][$key]['type']))
 				{
-					return debug::error(T_("This poll have not answer type :key", ['key' => $key]), 'answer', 'arguments');
+					return debug::error(T_("This poll have not answer type :key", ['key' => $key]), 'answer', 'system');
 				}
 				$answer_type = $poll['answers'][$key]['type'];
 				switch ($answer_type)
 				{
 					case 'select':
+					case 'descriptive':
 						// no thing!
 						break;
 					case 'upload':
@@ -170,6 +176,10 @@ trait add
 									return debug::error(T_("Invalid paramet :value", ['value' => $value]), 'answer', 'arguments');
 								}
 							}
+							break;
+
+						case 'descriptive':
+							$true_answer[$key] = $value;
 							break;
 
 						default:

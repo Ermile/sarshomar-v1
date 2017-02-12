@@ -30,6 +30,7 @@ trait search
 
 		if(utility::request("in"))
 		{
+
 			if(is_string(utility::request('in')))
 			{
 				$in_list = ['sarshomar', 'me', 'article'];
@@ -45,7 +46,7 @@ trait search
 				{
 					return debug::error(T_("Can not set all in array request"), 'in', 'arguments');
 				}
-				$meta['in'] = ['IN', "('". implode("','", utility::request("in")). "')"];
+				$meta['in'] = utility::request("in");
 			}
 			else
 			{
