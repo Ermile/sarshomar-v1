@@ -163,6 +163,7 @@ trait search
 			$order = " ORDER BY posts.id $_options[order] ";
 		}
 
+
 		if(is_string($_options['in']))
 		{
 			// search in sarshomar
@@ -193,7 +194,7 @@ trait search
 		}
 		elseif(is_array($_options['in']))
 		{
-			if($_options['in'] == ['me', 'sarshomar'])
+			if(in_array('me', $_options['in']) && in_array('sarshomar', $_options['in']))
 			{
 				$where[] =
 				"
@@ -206,7 +207,9 @@ trait search
 				 	(
 				 		posts.user_id = $_options[login] AND
 				 		posts.post_status = 'publish'
-				 	) ";
+				 	)
+				 )
+				 ";
 			}
 		}
 		else

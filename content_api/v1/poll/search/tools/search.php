@@ -30,23 +30,28 @@ trait search
 
 		if(utility::request("in"))
 		{
+			$split = explode(' ', utility::request('in'));
+			if(count($split) === 1 && isset($split[0]))
+			{
+				$split = $split[0];
+			}
 
-			if(is_string(utility::request('in')))
+			if(is_string($split))
 			{
 				$in_list = ['sarshomar', 'me', 'article'];
-				if(!in_array(utility::request('in'), $in_list))
+				if(!in_array($split, $in_list))
 				{
 					return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
 				}
-				$meta['in'] = utility::request("in");
+				$meta['in'] = $split;
 			}
-			elseif(is_array(utility::request('in')))
+			elseif(is_array($split))
 			{
-				if(in_array('all', utility::request('in')))
+				if(in_array('all', $split))
 				{
 					return debug::error(T_("Can not set all in array request"), 'in', 'arguments');
 				}
-				$meta['in'] = utility::request("in");
+				$meta['in'] = $split;
 			}
 			else
 			{
