@@ -117,7 +117,7 @@
      <div class="module score-module" data-response='score' {% if not poll.have_score%}data-response-hide{%endif%}>
       <label for="score{{myKey}}">{%trans "Score"%}</label>
       <input type="text" class='scoreCat' placeholder='{%trans "Category"%}' data-response='score-advance' {% if not poll.advance_score%}data-response-hide{%endif%} value="{{value.groupscore}}" maxlength="140">
-      <input type="text" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}" pattern="\d*" maxlength="3">
+      <input type="number" class='scoreVal' id="score{{myKey}}" placeholder='{%trans "Score"%}' value="{{value.score}}" min="0" max="999">
      </div>
      <div class="module audio"></div>
     </div>
