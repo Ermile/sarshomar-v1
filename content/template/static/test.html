@@ -26,14 +26,37 @@ body {
 }.xyz {
     background: #582c2c;
     height: 150px;
-    background-image: url(http://sarshomar.dev/static/images/svg/home/inestimable-left-img-mobile.svg),url(http://sarshomar.dev/static/images/svg/home/inestimable-right-img-mobile.svg);
+    /*background-image: url(http://sarshomar.dev/static/images/svg/home/inestimable-left-img-mobile.svg),url(http://sarshomar.dev/static/images/svg/home/inestimable-right-img-mobile.svg);
     background-repeat: no-repeat;
-    background-position: left, right;
+    background-position: left, right;*/
+position: relative
+}
+
+.xyz:after {
+    content: "";
+    background: url(http://sarshomar.dev/static/images/svg/home/inestimable-left-img-mobile.svg) no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    left: -10px;
+}
+.xyz:before {
+    content: "";
+    background: url(http://sarshomar.dev/static/images/svg/home/inestimable-right-img-mobile.svg) no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    right: -10px;
 }
 
 .wrapper {
         margin-left: 6px;
-    box-shadow: 2px 0px 0px 0px #f3efe8, 6px 0px 0px 0px #e5a428, -2px 0px 0px 0px #f3efe8, -6px 0px 0px 0px #e5a428, 0px -2px 0px 0px #f3efe8, 0px -6px 0px 0px #e5a428;
+    /*box-shadow: 2px 0px 0px 0px #f3efe8, 6px 0px 0px 0px #e5a428, -2px 0px 0px 0px #f3efe8, -6px 0px 0px 0px #e5a428, 0px -2px 0px 0px #f3efe8, 0px -6px 0px 0px #e5a428;*/
+    box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;
     border-right: 2px solid #00667a;
     margin-right: 6px;
     border-left: 2px solid #00667a;
