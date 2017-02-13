@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>test</title>
+    <style>
+    .changelog {margin: 5em auto;max-width: 800px;background: #F5F5F5;border: 2px solid #FFC107;box-shadow: 0px 0px 0px 4px #000, 0px 0px 0px 9px #FF5722;}
+.changelog .tbl>div>span:first-child  {flex: .1;}
+.changelog .tbl>div>span:last-child  {flex: 1;}
+.changelog .tbl>div.tbl-header {background: rgb(239, 239, 239);}
+.changelog .tbl>div:not(.tbl-header) {border-bottom: 1px solid #e0e0e0;}
+.changelog .tbl>div:last-child {border-bottom: none;}
+.changelog .tbl ul li {list-style-type: disc;}
+
+
+.tbl{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin-bottom:3em;font-size:1.2em;transition:0.3s}
+.tbl>div{display:flex;}
+.tbl>div>span{padding:0.8em 1.2em;overflow:hidden;/*-webkit-box-flex:1;-ms-flex:1;flex:1;white-space:nowrap;*/transition:0.3s}
+.tbl>div:not(.tbl-header):nth-child(even){}
+.tbl>div:hover:not(.tbl-header) span{}
+.tbl>div.tbl-header{font-weight:bold}
+    </style>
+</head>
+
+<body>
+    <div class="main changelog">
+        <div class="box">
+            <h2 class="special-heading">{%trans "Changelog"%}</h2>
+        </div>
+        <div class="box in xxlarge">
+            <div class="tbl">
+                <div class="tbl-header">
+                    <span>{%trans "Date"%}</span>
+                    <span>{%trans "Description"%}</span>
+                </div>
+                <div>
+                    <span>10/02/2017</span>
+                    <span>{%trans "Sarshomar's 1st version released"%}</span>
+                </div>
+                <div>
+                    <span>10/02/2017</span>
+                    <span>{%trans "Sarshomar's beta version released"%}</span>
+                </div>
+                <div>
+                    <span>10/02/2017</span>
+                    <span>{%trans "Sarshomar's alpha version released"%}</span>
+                </div>
+                <div>
+                    <span>10/02/2017</span>
+                    <span>{%trans "Project Sarshomar started"%}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
