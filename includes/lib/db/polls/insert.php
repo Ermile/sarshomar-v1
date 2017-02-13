@@ -246,13 +246,13 @@ trait insert
 		$_args = array_merge($default_value, $_args);
 
 
-		if(strlen($_args['post_title']) > 200)
+		if(mb_strlen($_args['post_title']) > 200)
 		{
 			$_args['post_title'] = substr($_args['post_title'], 0, 199);
 		}
 
 		// get slug string
-		if($_args['post_slug'] && strlen($_args['post_slug']) > 99)
+		if($_args['post_slug'] && mb_strlen($_args['post_slug']) > 99)
 		{
 			$_args['post_slug'] = substr($_args['post_slug'], 0, 99);
 		}

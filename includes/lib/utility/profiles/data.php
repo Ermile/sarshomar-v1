@@ -120,7 +120,7 @@ trait data
 			}
 			// cehc termslug len
 			$value_slug = \lib\utility\filter::slug($_value);
-			if(strlen($value_slug) > 50)
+			if(mb_strlen($value_slug) > 50)
 			{
 				$value_slug = substr($value_slug, 0, 49);
 			}

@@ -30,7 +30,7 @@
 {%block poll_file%}
 {% spaceless %}
  {%if poll.file%}
-  <img src="{{poll.file}}" alt="{{poll.title}}" class="poll-image">
+  <img src="{{poll.file.url}}" alt="{{poll.title}}" class="poll-image" data-type={{poll.file.type}}>
  {%endif%}
 {% endspaceless %}
 {%endblock%}

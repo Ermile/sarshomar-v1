@@ -135,7 +135,7 @@ class controller extends  \content_u\home\controller
 		}
 		// cehc termslug len
 		$title_slug = \lib\utility\filter::slug($_title);
-		if(strlen($title_slug) > 50)
+		if(mb_strlen($title_slug) > 50)
 		{
 			$title_slug = substr($title_slug, 0, 49);
 		}

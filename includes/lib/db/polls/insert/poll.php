@@ -14,7 +14,7 @@ trait poll
 		{
 			$insert_poll['post_title'] = trim(self::$args['title']);
 
-			if(strlen(self::$args['title']) > 190)
+			if(mb_strlen(self::$args['title']) > 190)
 			{
 				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 			}
@@ -35,7 +35,7 @@ trait poll
 		// 		$insert_poll['post_url'] = $new_url;
 		// 	}
 
-		// 	if(strlen(self::$args['slug']) > 50)
+		// 	if(mb_strlen(self::$args['slug']) > 50)
 		// 	{
 		// 		return debug::error(T_("Poll slug must be less than 50 character"), 'slug', 'arguments');
 		// 	}
@@ -105,7 +105,7 @@ trait poll
 		if(isset(self::$args['summary']))
 		{
 			$insert_poll['post_meta']['summary'] = trim(self::$args['summary']);
-			if(self::$args['summary'] && strlen(self::$args['summary']) > 150)
+			if(self::$args['summary'] && mb_strlen(self::$args['summary']) > 150)
 			{
 				return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
 			}

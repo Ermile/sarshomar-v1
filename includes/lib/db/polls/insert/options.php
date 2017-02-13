@@ -11,7 +11,7 @@ trait options
 		// save meta times
 		if(isset(self::$args['brand']['title']))
 		{
-			if(self::$args['brand']['title'] && strlen(self::$args['brand']['title']) > 160)
+			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 160)
 			{
 				return debug::error(T_("Invalid arguments brand title, you must set les than 160 character for brand"), 'title', 'arguments');
 			}
@@ -19,7 +19,7 @@ trait options
 			$url = null;
 			if(isset(self::$args['brand']['url']))
 			{
-				if(strlen(self::$args['brand']['url']) > 100)
+				if(mb_strlen(self::$args['brand']['url']) > 100)
 				{
 					return debug::error(T_("Invalid arguments brand url, you must set les than 100 character for brand url "), 'url', 'arguments');
 				}
@@ -238,14 +238,17 @@ trait options
 			}
 			else
 			{
-				$url = self::is_attachment(self::$args['file']);
-				if(isset($url['url']))
+				$attachment = self::is_attachment(self::$args['file']);
+				$url = null;
+				if(isset($attachment['url']))
 				{
-					$url = $url['url'];
+					$url = $attachment['url'];
 				}
-				else
+
+				$type = null;
+				if(isset($attachment['type']))
 				{
-					$url = null;
+					$type = $attachment['type'];
 				}
 
 				if(!debug::$status)
@@ -253,7 +256,7 @@ trait options
 					return;
 				}
 
-				self::save_options('title_attachment',  shortURL::decode(self::$args['file']), ['url' => $url]);
+				self::save_options('title_attachment',  shortURL::decode(self::$args['file']), ['url' => $url, 'type' => $type]);
 			}
 		}
 
@@ -291,8 +294,7 @@ trait options
 			foreach ($tags as $key => $value)
 			{
 				$value = trim($value);
-
-				if(strlen($value) > 45)
+				if(mb_strlen($value) > 45)
 				{
 						return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character"), 'tags', 'arguments');
 					if(self::$debug)

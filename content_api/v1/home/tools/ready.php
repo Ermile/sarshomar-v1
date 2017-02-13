@@ -557,7 +557,12 @@ trait ready
 				{
 					if(isset($value['option_meta']['url']))
 					{
-						$_poll_data['file'] = $value['option_meta']['url'];
+						$_poll_data['file']['url'] = $value['option_meta']['url'];
+					}
+
+					if(isset($value['option_meta']['type']))
+					{
+						$_poll_data['file']['type'] = $value['option_meta']['type'];
 					}
 				}
 			}
