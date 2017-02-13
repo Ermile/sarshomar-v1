@@ -1,11 +1,12 @@
   <header class="unselectable" data-scroll>
    <div class='logo'>
     <a href='{{url.base}}' tabindex='1'>
-     <img src='{{url.static}}images/logo/logo.svg' alt='{{site.title}} | {{site.desc}}'>
+          {%if site.currentlang =='fa'%}
+     <img src='{{url.static}}images/logo/logo-fa.svg' alt='{{site.title}} | {{site.desc}}'>
+     {%else%}
+      <img src='{{url.static}}images/logo/logo-en.svg' alt='{{site.title}} | {{site.desc}}'>
+     {%endif%}
     </a>
-    <h1>
-     <a href='{{url.base}}' tabindex='-1'>{{site.title}}</a>
-    </h1>
    </div>
    <div id='header-box'>
     <div id='header-top'>
