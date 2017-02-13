@@ -20,16 +20,20 @@
 .tbl>div.tbl-header{font-weight:bold}
 
 body {
-    max-width: 800px;
-    margin: auto;
+    /*max-width: 800px;
+    margin: auto;*/
         background: #00667a;
+            margin: 0;
+                margin-top: 30px;
 }.xyz {
     background: #582c2c;
     height: 150px;
     /*background-image: url(http://sarshomar.dev/static/images/svg/home/inestimable-left-img-mobile.svg),url(http://sarshomar.dev/static/images/svg/home/inestimable-right-img-mobile.svg);
     background-repeat: no-repeat;
     background-position: left, right;*/
-position: relative
+position: relative;
+    max-width: 800px;
+    margin: auto;
 }
 
 .xyz:after {
@@ -40,7 +44,7 @@ position: relative
     top: 0;
     width: 100px;
     height: 100%;
-    left: -10px;
+    left: -18px;
     background-size: 100% 100%;
 }
 .xyz:before {
@@ -51,12 +55,13 @@ position: relative
     top: 0;
     width: 100px;
     height: 100%;
-    right: -10px;
+    right: -18px;
     background-size: 100% 100%;
 }
 
-.wrapper {
+.full {
         margin-left: 6px;
+            background: #f4f4f5;
     /*box-shadow: 2px 0px 0px 0px #f3efe8, 6px 0px 0px 0px #e5a428, -2px 0px 0px 0px #f3efe8, -6px 0px 0px 0px #e5a428, 0px -2px 0px 0px #f3efe8, 0px -6px 0px 0px #e5a428;*/
     box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;
     border-right: 2px solid #00667a;
@@ -64,11 +69,23 @@ position: relative
     border-left: 2px solid #00667a;
     border-top: 2px solid #00667a;
     margin-top: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+footer {
+    width: 100%;
+    height: 150px;
+    background: #FFEB3B;
+    box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -2px 0px 0px #F44336, 0px -6px 0px 0px #e7a429;
+    border-top: 2px solid #00667a;
+    margin-top: -2px;
 }
     </style>
 </head>
 
 <body>
+    <div class="full">
     <div class="main wrapper">
         <div class="box in xxlarge">
             <div class="tbl">
@@ -96,9 +113,14 @@ position: relative
         </div>
 
     </div>
+    </div>
     <div class="xyz">
 
         </div>
+
+        <footer>
+
+        </footer>
 </body>
 
 </html>
