@@ -110,6 +110,28 @@ class poll
 		callback_query::edit_message($return);
 	}
 
+	public static function answer($_query, $_data_url)
+	{
+		list($class, $method, $poll_id, $answer) = $_data_url;
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
+			[
+			'id' 		=> $poll_id,
+			'answer'	=> [$answer => true]
+			]
+		]);
+		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
+		if(!\lib\debug::$status)
+		{
+			$debug = \lib\debug::compile();
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+
+		\lib\storage::set_disable_edit(true);
+
+		callback_query::edit_message(ask::make(null, null, $poll_id));
+
+	}
+
 	public static function new()
 	{
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::start());
@@ -223,8 +245,14 @@ class poll
 				'id' 		=> $_data_url[3]
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
-		callback_query::edit_message(ask::make(null, null, $_data_url[3]));
 		\lib\storage::set_disable_edit(true);
+		if(!\lib\debug::$status)
+		{
+			$debug = \lib\debug::compile();
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+
+		callback_query::edit_message(ask::make(null, null, $_data_url[3]));
 	}
 
 	public static function delete($_query, $_data_url)

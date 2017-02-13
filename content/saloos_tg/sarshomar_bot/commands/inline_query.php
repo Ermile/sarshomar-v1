@@ -36,7 +36,10 @@ class inline_query
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request([
 				'method' 	=> 'array',
-				'request' => ['serach' => $search]
+				'request' => [
+					'serach' 	=> $search,
+					'in' 		=> ['me', 'sarshomar']
+				]
 				]);
 			$query_result = \lib\main::$controller->model()->poll_search(true);
 			$query_result = $query_result;

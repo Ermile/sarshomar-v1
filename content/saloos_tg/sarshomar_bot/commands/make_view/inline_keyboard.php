@@ -47,7 +47,7 @@ class inline_keyboard
 		$row_answer = current($keyboard_map[$count_answer]);
 		$last_count = $this->count();
 		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
-			$callback_data = 'ask/poll/' . $this->class->poll_id . '/' . ($answer_key +1);
+			$callback_data = 'poll/answer/' . $this->class->poll_id . '/' . ($answer_key +1);
 			if(array_key_exists("callback_data", $_options))
 			{
 				if(is_object($_options['callback_data']))
@@ -61,7 +61,7 @@ class inline_keyboard
 			}
 			$this_row = $row_answer[0] + $last_count;
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
-				'text' => $this->class::$emoji_number[$answer_key+1],
+				'text' => $this->class::$emoji_number[$answer_key],
 				'callback_data' => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
