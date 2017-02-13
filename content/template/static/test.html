@@ -3,7 +3,7 @@
 <head>
     <title>test</title>
     <style>
-    .changelog {margin: 5em auto;max-width: 800px;background: #F5F5F5;border: 2px solid #FFC107;box-shadow: 0px 0px 0px 4px #000, 0px 0px 0px 9px #FF5722;}
+    .changelog {margin: 5em auto;max-width: 800px;background: #F5F5F5;border: 2px solid #FFC107;box-shadow: 0px 0px 0px 4px #000, 0px 0px 0px 9px #FF5722;border-bottom: 0;}
 .changelog .tbl>div>span:first-child  {flex: .1;}
 .changelog .tbl>div>span:last-child  {flex: 1;}
 .changelog .tbl>div.tbl-header {background: rgb(239, 239, 239);}
@@ -18,14 +18,26 @@
 .tbl>div:not(.tbl-header):nth-child(even){}
 .tbl>div:hover:not(.tbl-header) span{}
 .tbl>div.tbl-header{font-weight:bold}
+
+body {
+    max-width: 800px;
+    margin: auto;
+}
+
+.wrapper {
+        margin-left: 6px;
+    box-shadow: 2px 0px 0px 0px #f3efe8, 6px 0px 0px 0px #e5a428, -2px 0px 0px 0px #f3efe8, -6px 0px 0px 0px #e5a428, 0px -2px 0px 0px #f3efe8, 0px -6px 0px 0px #e5a428;
+    border-right: 2px solid #00667a;
+    margin-right: 6px;
+    border-left: 2px solid #00667a;
+    border-top: 2px solid #00667a;
+    margin-top: 8px;
+}
     </style>
 </head>
 
 <body>
-    <div class="main changelog">
-        <div class="box">
-            <h2 class="special-heading">{%trans "Changelog"%}</h2>
-        </div>
+    <div class="main wrapper">
         <div class="box in xxlarge">
             <div class="tbl">
                 <div class="tbl-header">
