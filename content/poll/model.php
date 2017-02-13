@@ -333,20 +333,39 @@ class model extends \mvc\model
 		utility::set_request_array($request);
 
 		$is_answerd = $this->poll_answer_get();
-		if(!$is_answerd && empty($opt))
+
+		$add = false;
+		if(isset($is_answerd['available']) && in_array('add', $is_answerd['available']))
+		{
+			$add = true;
+		}
+
+		$edit = false;
+		if(isset($is_answerd['available']) && in_array('edit', $is_answerd['available']))
+		{
+			$edit = true;
+		}
+
+		$delete = false;
+		if(isset($is_answerd['available']) && in_array('delete', $is_answerd['available']))
+		{
+			$delete = true;
+		}
+
+		if($add && empty($opt))
 		{
 			return debug::error(T_("You must select one answer or skip the poll"));
 		}
-		elseif($is_answerd && empty($opt))
+		elseif($delete && empty($opt))
 		{
 			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
 			return ;
 		}
-		elseif(!$is_answerd && !empty($opt))
+		elseif($add && !empty($opt))
 		{
 			$options['method'] = 'post';
 		}
-		elseif($is_answerd && !empty($opt))
+		else
 		{
 			$options['method'] = 'put';
 		}

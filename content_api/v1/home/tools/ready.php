@@ -274,6 +274,7 @@ trait ready
 			$custom_field =
 			[
 				'id',
+				'key',
 				'type',
 				'title',
 				'subtype',
@@ -367,7 +368,7 @@ trait ready
 
 				$show_answers[$show_key] = array_filter($answers[$key]);
 			}
-
+			sort($show_answers);
 			$_poll_data['answers'] = $show_answers;
 		}
 

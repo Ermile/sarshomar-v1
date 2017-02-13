@@ -14,6 +14,8 @@ trait delete
 	{
 		$default_options = ['id' => null];
 
+		debug::title(T_("Can not remove your answer"));
+
 		$_options = array_merge($default_options, $_options);
 
 		$get_poll_options =
@@ -37,9 +39,14 @@ trait delete
 		$poll_id = $_options['id'];
 
 		$result = \lib\db\polldetails::remove($this->user_id, $poll_id);
-		if($result)
+
+		if($result && \lib\db::affected_rows())
 		{
 			debug::title(T_("Your answer was delete"));
+		}
+		else
+		{
+			return debug::error(T_("You are not answer to this poll"));
 		}
 		return;
 	}

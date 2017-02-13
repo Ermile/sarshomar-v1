@@ -21,7 +21,7 @@ class view extends \content_u\home\view
 		$this->data->page['desc']    = T_("Add new poll");
 
 		// load empty answers for first loading
-		$this->data->answers = [1 =>[], 2 => []];
+		$this->data->answers = [[],[]];
 	}
 
 
@@ -43,12 +43,12 @@ class view extends \content_u\home\view
 			}
 			else
 			{
-				$answers = [1 =>[], 2 => []];
+				$answers = [[],[]];
 			}
 		}
 		else
 		{
-			$answers = [1 =>[], 2 => []];
+			$answers = [[],[]];
 		}
 
 		$this->data->answers = $answers;

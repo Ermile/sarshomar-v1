@@ -391,8 +391,9 @@ trait options
 			{
 				if(isset($check['term_type']) && $check['term_type'])
 				{
-					$new_url = $check['term_url'];
+					$new_url = isset($check['term_url']) ? $check['term_url'] : null;
 					$new_url .= '/'. shortURL::encode(self::$poll_id);
+					self::$poll_full_url = $new_url;
 					self::update(['post_url' => $new_url], self::$poll_id);
 				}
 			}

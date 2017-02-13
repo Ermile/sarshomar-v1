@@ -120,19 +120,28 @@ trait add
 
 		$true_answer = [];
 
+		$answer_keys = [];
+		if(is_array($poll['answers']))
+		{
+			$answer_keys = array_column($poll['answers'], 'key');
+		}
+
 		foreach (utility::request('answer') as $key => $value)
 		{
-			if(!isset($poll['answers'][$key]))
+			$answer_key = $key - 1;
+			if(!isset($poll['answers'][$answer_key]))
 			{
-				return debug::error(T_("This poll have not answer :key", ['key' => $key]), 'answer', 'arguments');
+				return debug::error(T_("This poll have not answer :key", ['key' => $answer_keys]), 'answer', 'arguments');
 			}
 			else
 			{
-				if(!isset($poll['answers'][$key]['type']))
+				if(!isset($poll['answers'][$answer_key]['type']))
 				{
-					return debug::error(T_("This poll have not answer type :key", ['key' => $key]), 'answer', 'system');
+					return debug::error(T_("This poll have not answer type :key", ['key' => $answer_key]), 'answer', 'system');
 				}
-				$answer_type = $poll['answers'][$key]['type'];
+
+				$answer_type = $poll['answers'][$answer_key]['type'];
+
 				switch ($answer_type)
 				{
 					case 'select':
@@ -144,7 +153,7 @@ trait add
 					case 'like':
 					case 'notification':
 					default:
-						if(intval($key) != 1)
+						if(intval($answer_key) != 1)
 						{
 							return debug::error(T_("This poll is :type poll and you can set answer 1 only", ['type' => $answers_type]), 'answer', 'arguments');
 						}
@@ -165,11 +174,11 @@ trait add
 								if($value === true)
 								{
 									$title = null;
-									if(isset($poll['answers'][$key]['title']))
+									if(isset($poll['answers'][$answer_key]['title']))
 									{
-										$title = $poll['answers'][$key]['title'];
+										$title = $poll['answers'][$answer_key]['title'];
 									}
-									$true_answer[$key] = $title;
+									$true_answer[$answer_key] = $title;
 								}
 								elseif($value !== false)
 								{
@@ -179,7 +188,7 @@ trait add
 							break;
 
 						case 'descriptive':
-							$true_answer[$key] = $value;
+							$true_answer[$answer_key] = $value;
 							break;
 
 						default:

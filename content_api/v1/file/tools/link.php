@@ -14,7 +14,7 @@ trait link
 		[
 			'upload_name' => utility::request('upload_name'),
 			'poll_id'     => utility::request('id'),
-			'opt'         => utility::request('opt'),
+			'opt'         => utility::request('answer'),
 			'url'         => null,
 		];
 
@@ -56,7 +56,7 @@ trait link
 		if($_options['opt'])
 		{
 			$opt = intval($_options['opt']);
-			if(!isset($poll['answers'][$opt]))
+			if(!isset($poll['answers'][$opt - 1]))
 			{
 				return debug::error(T_("This poll have not opt :opt", ['opt' => $opt]), 'opt', 'arguments');
 			}

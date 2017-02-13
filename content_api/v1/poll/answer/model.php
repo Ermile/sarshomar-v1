@@ -71,6 +71,17 @@ class model extends \content_api\v1\home\model
 	}
 
 
+	/**
+	 * Gets the available.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The available.
+	 */
+	public function get_available($_args)
+	{
+		return $this->poll_answer_get(['type' => 'available']);
+	}
 
 }
 ?>

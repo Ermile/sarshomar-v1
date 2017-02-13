@@ -10,29 +10,44 @@ trait set
 	 */
 	public static function set_poll_result($_args)
 	{
+
+		$default_args =
+		[
+			'poll_id'      => null,
+			'user_id'      => null,
+			'validation'   => null,
+			'opt_key'      => null,
+			'opt_txt'      => null,
+			'type'         => null,
+			'update_mode'  => null,
+			'port'         => null,
+			'subport'      => null,
+			'profile'      => null,
+			'first_answer' => true,
+		];
+
+		$_args = array_merge($default_args, $_args);
+
+
 		// get the poll id
-		if(isset($_args['poll_id']))
+		if(!$_args['poll_id'])
 		{
-			$poll_id = $_args['poll_id'];
+			return debug::error(T_("Poll id not set"), 'set_poll_result', 'db');
 		}
-		else
-		{
-			return false;
-		}
+		$poll_id = $_args['poll_id'];
+
 
 		// get the user id
-		if(isset($_args['user_id']))
+		if(!$_args['user_id'])
 		{
-			$user_id = $_args['user_id'];
+			return debug::error(T_("User id not set"), 'set_poll_result', 'db');
 		}
-		else
-		{
-			return false;
-		}
+		$user_id = $_args['user_id'];
+
 
 		// get the validation result
 		$validation = 'invalid';
-		if(isset($_args['validation']))
+		if($_args['validation'])
 		{
 			$validation = $_args['validation'];
 		}
@@ -113,15 +128,7 @@ trait set
 			$subport = "'". $_args['subport']. "'";
 		}
 
-		/**
-		 * set count total answere + 1
-		 * to get sarshomar total answered
-		 * in the minus mode we not change the sarshomar total answered
-		 */
-		if($plus)
-		{
-			self::set_sarshomar_total_answered();
-		}
+
 
 		// user skip the poll
 		// neelless to change the chart

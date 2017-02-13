@@ -335,12 +335,12 @@ class model extends \content_u\home\model
 			[
 				'upload_name' => 'croppedImage',
 				'id'          => utility::post('question'),
-				'opt'         => utility::post('opt'),
+				'answer'      => utility::post('opt'),
 			];
 
 			if(utility::post('opt') == 'title')
 			{
-				unset($args['opt']);
+				unset($args['answer']);
 			}
 
 			utility::set_request_array($args);

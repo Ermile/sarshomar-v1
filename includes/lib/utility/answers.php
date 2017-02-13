@@ -18,8 +18,28 @@ class answers
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function is_answered($_user_id, $_poll_id)
+	public static function is_answered($_user_id, $_poll_id, $_options = [])
 	{
+		$default_args =
+		[
+			'real_answer' => false,
+			'all_answer'  => false,
+		];
+		$_options = array_merge($default_args, $_options);
+
+		$status = " polldetails.status = 'enable' AND ";
+
+		if($_options['real_answer'])
+		{
+			$status = null;
+		}
+
+		$limit = " LIMIT 1 ";
+		if($_options['all_answer'])
+		{
+			$limit = null;
+		}
+
 		$query =
 		"
 			SELECT
@@ -27,12 +47,13 @@ class answers
 			FROM
 				polldetails
 			WHERE
-				polldetails.status = 'enable' AND
+				$status
 				polldetails.user_id = $_user_id AND
 				polldetails.post_id = $_poll_id
-			LIMIT 1
+			-- to get enable at first
+			ORDER BY polldetails.status ASC
+			$limit
 			-- answers::is_answered()
-			-- check user is answered to this poll or no
 		";
 		$result = \lib\db::get($query, null, true);
 		if($result)
@@ -92,6 +113,7 @@ class answers
 				if(!self::is_answered($_args['user_id'], $_args['poll_id']))
 				{
 					array_push($avalible, 'add');
+					array_push($avalible, 'skip');
 				}
 				else
 				{
@@ -159,6 +181,8 @@ class answers
 			return;
 		}
 
+		$user_delete_answer = self::is_answered($_args['user_id'], $_args['poll_id'], ['real_answer' =>  true]);
+
 		$skipped = false;
 		if($_args['skipped'] == true)
 		{
@@ -193,6 +217,15 @@ class answers
 			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
+		/**
+		 * set count total answere + 1
+		 * to get sarshomar total answered
+		 * in the minus mode we not change the sarshomar total answered
+		 */
+		if(!$user_delete_answer)
+		{
+			\lib\utility\stat_polls::set_sarshomar_total_answered();
+		}
 
 		// set dashboard data
 		if($skipped)

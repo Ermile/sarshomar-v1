@@ -41,11 +41,6 @@ trait poll
 		// 	}
 		// }
 
-		if(!self::$update_mod)
-		{
-			$new_url = '$/'. \lib\utility\shortURL::encode(self::$poll_id);
-			$insert_poll['post_url'] = $new_url;
-		}
 
 		// if poll title is null set this character >>‌<< this caracter
 		if(!self::$update_mod && !self::$args['title'])
@@ -226,6 +221,14 @@ trait poll
 			unset($insert_poll['id']);
 			self::update($insert_poll, self::$poll_id);
 		}
+
+		if(!self::$update_mod)
+		{
+			$new_url = '$/'. \lib\utility\shortURL::encode(self::$poll_id);
+			self::$poll_full_url = $new_url;
+			self::update(['post_url' => $new_url], self::$poll_id);
+		}
+
 
 		if($change_tree)
 		{

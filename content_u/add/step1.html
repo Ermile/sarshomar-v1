@@ -56,7 +56,7 @@
 {%block feature_opts%}
 <ul class="input-group sortable drag-big">
 {%for key, value in answers%}
-{% set myKey = key  %}
+{% set myKey = key + 1 %}
 
 {%if value.type == 'descriptive' %}
   {% set other = true %}

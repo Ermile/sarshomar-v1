@@ -18,6 +18,7 @@ trait insert
 	protected static $user_id        = false;
 	protected static $old_status     = null;
 
+	protected static $poll_full_url  = null;
 
 	use insert\check;
 	use insert\reset;
@@ -121,6 +122,7 @@ trait insert
 			self::$update_mod     = true;
 			self::$poll_id        = \lib\utility\shortURL::decode(self::$args['update']);
 			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
+			self::$poll_full_url  = isset(self::$old_saved_poll['url']) ? self::$old_saved_poll['url']: null;
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
 			if(self::$old_status !== 'draft')
 			{
@@ -198,10 +200,13 @@ trait insert
 				// debug::true(T_("Poll Successfully {$msg_mod}ed"));
 			}
 			$id        = \lib\utility\shortURL::encode(self::$poll_id);
-			$short_url = Protocol."://" . \lib\router::get_root_domain() . '/$'. $id;
+			$host      = Protocol."://" . \lib\router::get_root_domain();
+			$short_url = $host. '/$'. $id;
+			$url       = $host. '/'. self::$poll_full_url;
 			return
 			[
 				'id'        => $id,
+				'url' 		=> $url,
 				'short_url' => $short_url,
 			];
 		}
