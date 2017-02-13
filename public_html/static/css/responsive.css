@@ -85,6 +85,7 @@
  html{font-size: 50%}
  .container{max-width:750px;min-width:300px}
  #footer{position:relative}
+ footer {box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
  #formError{bottom:10px;width:100%}
  /*[data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}*/
 
@@ -96,6 +97,10 @@
 .rtl .special-button::after {right: -5px;}
  /* Sarshomar */
  /*.in{width:100%}*/
+
+.wrapper {margin-left: 6px;box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;}
+
+
  header{display:block;height:auto;border:none}
  header .logo{background-image:none;display:block;width:100%;padding:1em;text-align:center;background-color:#00667a}
  .rtl header .logo{background-image:none}
@@ -109,7 +114,7 @@
  header #header-profile .register{margin-left:5px}
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
-
+header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;border-top: 2px solid #00667a;}
  header #header-bottom{-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse; height: auto}
 .breadcrumb {padding: 6px 0;}
  .rtl header .header-profile-button{font-size:12px}
