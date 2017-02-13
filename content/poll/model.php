@@ -323,7 +323,6 @@ class model extends \mvc\model
 			$opt[$opt['radio']] = $opt['descriptive'];
 		}
 
-
 		$options           = [];
 
 		$request           = [];
@@ -359,15 +358,15 @@ class model extends \mvc\model
 		elseif($delete && empty($opt))
 		{
 			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
-			return ;
+			return debug::warn(T_("Your answer was deleted"));
 		}
-		elseif($add && !empty($opt))
+		elseif($edit && !empty($opt))
 		{
-			$options['method'] = 'post';
+			$options['method'] = 'put';
 		}
 		else
 		{
-			$options['method'] = 'put';
+			$options['method'] = 'post';
 		}
 		$this->poll_answer_add($options);
 	}

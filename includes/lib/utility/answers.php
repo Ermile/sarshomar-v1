@@ -127,6 +127,7 @@ class answers
 						array_push($avalible, 'delete');
 					}
 				}
+
 				return $avalible;
 
 				break;
@@ -271,6 +272,7 @@ class answers
 	 */
 	public static function check_time_count($_args = [], $_type)
 	{
+
 		$default_args =
 		[
 			'user_id' => null,
@@ -288,7 +290,7 @@ class answers
 
 		$_args = array_merge($default_args, $_args);
 
-			// get the old answered user to this poll
+		// get the old answered user to this poll
 		self::$old_answer = \lib\db\polldetails::get($_args['user_id'], $_args['poll_id']);
 
 		if(!self::$old_answer || !is_array(self::$old_answer))
@@ -297,7 +299,7 @@ class answers
 			{
 				if($_args['debug'])
 				{
-					debug::error(T_("You was not answer to this poll"), 'answer', 'permission');
+					debug::error(T_("You was not answer to this poll and try to edit it!"), 'answer', 'permission');
 				}
 				return false;
 			}

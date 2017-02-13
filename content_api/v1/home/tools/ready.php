@@ -146,9 +146,16 @@ trait ready
 			$_poll_data['slug'] = '';
 		}
 
-		if(array_key_exists('url', $_poll_data) && $_poll_data['url'] == '‌')
+		if(array_key_exists('url', $_poll_data))
 		{
-			$_poll_data['url'] = '';
+			if($_poll_data['url'] == '‌')
+			{
+				$_poll_data['url'] = '';
+			}
+			else
+			{
+				$_poll_data['url'] = rtrim($host.'/'. $_poll_data['url'], '/');
+			}
 		}
 
 		// encode user id
@@ -387,16 +394,32 @@ trait ready
 			$poll_result_raw = utility\stat_polls::get_result($poll_id);
 			if($_options['get_public_result'])
 			{
+				if(is_array($_poll_data['answers']))
+				{
+					foreach ($_poll_data['answers'] as $key => $value)
+					{
+						if(isset($value['key']))
+						{
+							$poll_result['total']['valid'][$value['key']]   = ['key' => $value['key'], 'value' => 0];
+							$poll_result['total']['invalid'][$value['key']] = ['key' => $value['key'], 'value' => 0];
+						}
+					}
+				}
+
 				if(isset($poll_result_raw['valid']['result']) && is_array($poll_result_raw['valid']['result']))
 				{
 					foreach ($poll_result_raw['valid']['result'] as $key => $value)
 					{
 						if(substr($key, 0,4) == 'opt_')
 						{
-							$poll_result['total']['valid'][] = ['key' => substr($key, 4), 'value' => $value];
+							$poll_result['total']['valid'][substr($key, 4)] = ['key' => substr($key, 4), 'value' => $value];
 						}
 					}
+				}
 
+				if(isset($poll_result['total']['valid']))
+				{
+					sort($poll_result['total']['valid']);
 				}
 
 				if(isset($poll_result_raw['invalid']['result']) && is_array($poll_result_raw['invalid']['result']))
@@ -405,9 +428,14 @@ trait ready
 					{
 						if(substr($key, 0,4) == 'opt_')
 						{
-							$poll_result['total']['invalid'][] = ['key' => substr($key, 4), 'value' => $value];
+							$poll_result['total']['invalid'][substr($key, 4)] = ['key' => substr($key, 4), 'value' => $value];
 						}
 					}
+				}
+
+				if(isset($poll_result['total']['invalid']))
+				{
+					sort($poll_result['total']['invalid']);
 				}
 			}
 
@@ -427,12 +455,17 @@ trait ready
 								{
 									if(substr($k, 0,4) == 'opt_')
 									{
-										$poll_result['advance_stats']['valid'][$key][] = ['key' => substr($k, 4), 'value' => $v];
+										$poll_result['advance_stats']['valid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
 									}
 								}
 							}
 						}
 					}
+				}
+
+				if(isset($poll_result['advance_stats']['valid']))
+				{
+					sort($poll_result['advance_stats']['valid']);
 				}
 
 				if(isset($poll_result_raw['invalid']) && is_array($poll_result_raw['invalid']))
@@ -447,12 +480,17 @@ trait ready
 								{
 									if(substr($k, 0,4) == 'opt_')
 									{
-										$poll_result['advance_stats']['invalid'][$key][] = ['key' => substr($k, 4), 'value' => $v];
+										$poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
 									}
 								}
 							}
 						}
 					}
+				}
+
+				if(isset($poll_result['advance_stats']['invalid']))
+				{
+					sort($poll_result['advance_stats']['invalid']);
 				}
 			}
 			$_poll_data['stats'] = $poll_result;

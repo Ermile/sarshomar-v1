@@ -24,11 +24,14 @@ trait get
 
 		if($poll_id)
 		{
-
+			$current   = [];
+			$available = [];
 			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id, ['real_answer' => true, 'all_answer' => true]);
+
 			if(!$is_answer)
 			{
 				$msg = T_("You have not answered this question yet");
+				$available = ['add', 'skip'];
 			}
 			else
 			{
@@ -74,10 +77,11 @@ trait get
 
 				$available = \lib\utility\answers::access_answer($answer_args, 'check');
 
-				debug::title($msg);
-
-				return ['my_answer' => $current, 'available' => $available];
 			}
+			debug::title($msg);
+
+			$result = ['my_answer' => $current, 'available' => $available];
+			return $result;
 		}
 		return debug::error(T_("Undefined error"), 'answer', 'system');
 
