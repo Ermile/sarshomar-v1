@@ -24,26 +24,10 @@ class message
 		{
 			$title = html_entity_decode($this->class->query_result['title']);
 		}
-		if(isset($this->class->query_result['meta']) && isset($this->class->query_result['meta']['attachment_id']))
+		if(isset($this->class->query_result['file']))
 		{
-			$attachment = \lib\db\polls::get_poll($this->class->query_result['meta']['attachment_id']);
-			$url = \lib\router::$base;
-			$url .= '/' . preg_replace("/^.*\/public_html\//", '', $attachment['meta']['url']);
-			switch ($this->class->query_result['meta']['data_type']) {
-				case 'photo':
-					$emoji = '🖼';
-					break;
-				case 'video':
-					$emoji = '📹';
-					break;
-				case 'audio':
-					$emoji = '🔊';
-					break;
-
-				default:
-					$emoji = '📝';
-					break;
-			}
+			$url = 'https://dev.sarshomar.com';
+			$url .= '/' . $this->class->query_result['file'];
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;

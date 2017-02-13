@@ -61,7 +61,7 @@ class inline_keyboard
 			}
 			$this_row = $row_answer[0] + $last_count;
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
-				'text' => $this->class::$emoji_number[$answer_key],
+				'text' => $this->class::$emoji_number[$answer_key + 1],
 				'callback_data' => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);

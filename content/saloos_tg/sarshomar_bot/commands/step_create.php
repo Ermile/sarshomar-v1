@@ -66,20 +66,16 @@ class step_create
 	{
 		preg_match("/^type_(.*)$/", $_question, $file_content);
 		$get_poll = session::get('poll');
+
+		$poll_request = [];
+
 		if($get_poll)
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
 			$get_poll = \lib\main::$controller->model()->poll_get();
+			$poll_request['id'] = $get_poll['id'];
 		}
 
-		if($file_content && array_key_exists('caption', bot::$hook['message']))
-		{
-			$_question = bot::$hook['message']['caption'];
-		}
-		elseif($file_content)
-		{
-			$_question = '';
-		}
 		if(count($file_content) > 0 && $get_poll)
 		{
 			return self::make_draft($get_poll, function($_maker){
@@ -87,6 +83,49 @@ class step_create
 			});
 
 		}
+
+		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
+		{
+			$file = bot::$hook['message'][$file_content[1]];
+			if(is_array($file))
+			{
+				$file = $file[0];
+			}
+			if(array_key_exists('caption', bot::$hook['message']))
+			{
+				$_question = bot::$hook['message']['caption'];
+			}
+			elseif($file_content)
+			{
+				$_question = '';
+			}
+			$file_id = $file['file_id'];
+			$get_file = bot::getFile([
+				'file_id' => $file_id
+				]);
+
+			$file_path = $get_file['result']['file_path'];
+			$file_link = 'https://api.telegram.org/file/bot' . bot::$api_key . '/' . $file_path;
+			$poll_request['file'] = $file_link;
+			$upload = self::upload_file($file_link);
+			if($get_poll)
+			{
+				$poll_request['file'] = $upload['code'];
+			}
+			else
+			{
+				\lib\utility::$REQUEST = new \lib\utility\request([
+					'method' => 'array',
+					'request' => [
+					'id' => $upload['poll_id']
+					]]);
+				$get_poll = \lib\main::$controller->model()->poll_get();
+				$poll_request['id'] = $get_poll['id'];
+				session::set('poll', $get_poll['id']);
+			}
+		}
+
+
 		$question = $_question;
 		$question = markdown_filter::tag($question);
 		$question = markdown_filter::remove_external_link($question);
@@ -95,13 +134,11 @@ class step_create
 
 		if(!empty($question_export))
 		{
-			$poll_request = [];
 
 			if($get_poll)
 			{
-				$poll_request['id'] = $get_poll['id'];
 
-				if(isset($get_poll['title']))
+				if(isset($get_poll['title']) && $get_poll['title'] != '')
 				{
 					$poll_request['answers'] = isset($get_poll['answers']) ? $get_poll['answers'] : [];
 					$poll_answers 	= $question_export;
@@ -140,6 +177,34 @@ class step_create
 			return self::make_draft($add_poll['id']);
 		}
 	}
+
+	public function upload_file($_file_link)
+	{
+		$poll_id = session::get('poll');
+		if(!$poll_id)
+		{
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => []]);
+			$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'post']);
+			$poll_id = $add_poll['id'];
+		}
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' 	=> [
+				'id'		=> $poll_id,
+			]
+			]);
+		$file_uploaded = \lib\main::$controller->model()->upload_file(['url' => $_file_link]);
+		$file_uploaded['poll_id'] = $poll_id;
+
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => [
+				"id" 	=> $poll_id,
+				"file" 	=> $file_uploaded['code']
+				]]);
+			$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+
+		return $file_uploaded;
+	}
+
 	public static function make_draft($_poll, $_maker = false)
 	{
 		$maker = new make_view($_poll);
@@ -158,23 +223,23 @@ class step_create
 			$_maker($maker);
 		}
 		$txt_text = $maker->message->make();
+		$maker->inline_keyboard->add_change_status();
+		$maker->inline_keyboard->add([['text' => T_('Save as draft'), 'callback_data' => 'poll/back']]);
+		$inline_keyboard = $maker->inline_keyboard->make();
+		unset($inline_keyboard[0]);
+		$inline_keyboard = array_values($inline_keyboard);
 
-		$inline_keyboard = [
-			[
-				['text' => T_('Publish'), 'callback_data' => 'poll/save/' . $poll_id],
-				['text' => T_('Discard'), 'callback_data' => 'poll/delete/' . $poll_id]
-			],
-			[
-				['text' => T_('Save as draft'), 'callback_data' => 'poll/back'],
-			]
-		];
-
+		$disable_web_page_preview = true;
+		if(isset($maker->query_result['file']))
+		{
+			$disable_web_page_preview = false;
+		}
 
 		$result = [
 		'text' 						=> $txt_text,
 		"response_callback" 		=> utility::response_expire('create'),
 		'parse_mode' 				=> 'HTML',
-		'disable_web_page_preview' 	=> true,
+		'disable_web_page_preview' 	=> $disable_web_page_preview,
 		'reply_markup' 				=> [
 		'inline_keyboard' 			=> $inline_keyboard
 		]

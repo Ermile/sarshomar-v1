@@ -238,6 +238,8 @@ class poll
 
 	public static function status($_query, $_data_url)
 	{
+		session::remove('poll');
+		step::stop();
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
 			'request' => [
@@ -246,6 +248,11 @@ class poll
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
 		\lib\storage::set_disable_edit(true);
+		handle::send_log([
+			'debug' => \lib\debug::compile(),
+			'res' => $request_status,
+			'req' => \lib\utility::request(),
+			]);
 		if(!\lib\debug::$status)
 		{
 			$debug = \lib\debug::compile();

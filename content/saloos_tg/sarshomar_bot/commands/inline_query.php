@@ -37,12 +37,12 @@ class inline_query
 			\lib\utility::$REQUEST = new \lib\utility\request([
 				'method' 	=> 'array',
 				'request' => [
-					'serach' 	=> $search,
-					'in' 		=> ['me', 'sarshomar']
+					'search' 	=> $search,
+					'in' 		=> 'me sarshomar'
 				]
 				]);
 			$query_result = \lib\main::$controller->model()->poll_search(true);
-			$query_result = $query_result;
+			$query_result = $query_result['data'];
 			handle::send_log($query_result);
 		}
 
@@ -74,7 +74,7 @@ class inline_query
 			$row_result['title'] = html_entity_decode($value['title']);
 
 
-			$row_result['url'] = 'https://sarshomar.com/sp_' . $value['id'];
+			$row_result['url'] = $value['short_url'];
 
 			if(array_key_exists('description', $row_result) && !is_null($row_result['description']))
 			{
@@ -92,7 +92,7 @@ class inline_query
 			}
 
 			$disable_web_page_preview = true;
-			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
+			if(isset($maker->query_result['file']))
 			{
 				$disable_web_page_preview = false;
 			}

@@ -31,7 +31,7 @@ class make_view
 	public function make()
 	{
 		$disable_web_page_preview = true;
-		if(isset($this->query_result['meta']) && isset($this->query_result['meta']['attachment_id']))
+		if(isset($this->query_result['file']))
 		{
 			$disable_web_page_preview = false;
 		}
