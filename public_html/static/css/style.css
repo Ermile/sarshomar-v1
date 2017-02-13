@@ -560,7 +560,7 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .profile-detail a:hover,.profile .profile-detail a:focus{background-color:#cecdcd;color:#000}*/
 
 /* breadcrumb */
-nav.breadcrumb a{font-size:1em;line-height:12px;color:#99a0aa;float:left;font-weight:700;max-width:20em;overflow:hidden;text-overflow:ellipsis}
+nav.breadcrumb a{font-size:10px;line-height:12px;height:12px;color:#99a0aa;float:left;font-weight:700;max-width:20em;overflow:hidden;text-overflow:ellipsis;word-break:break-all}
 .rtl nav.breadcrumb a{float:right}
 nav.breadcrumba:hover{color:#656d78}
 nav.breadcrumba:last-child{color:#656d78}
