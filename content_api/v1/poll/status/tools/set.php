@@ -55,7 +55,10 @@ trait set
 			{
 				$id   = utility\shortURL::decode(utility::request("id"));
 
-				self::check(['poll_id' => $id, 'user_id' => $this->user_id]);
+				if(utility::request('status') == 'publish')
+				{
+					self::check(['poll_id' => $id, 'user_id' => $this->user_id]);
+				}
 
 				if(!debug::$status)
 				{
