@@ -94,6 +94,7 @@ trait get
 					'draft',
 					'trash',
 				];
+				break;
 
 			case 'trash':
 				$can_change_to =
@@ -101,6 +102,7 @@ trait get
 					'draft',
 					'delete',
 				];
+				break;
 
 			default:
 				$can_change_to = [];
