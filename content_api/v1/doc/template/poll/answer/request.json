@@ -15,3 +15,22 @@
 
   }
 }
+
+{
+  "my_answer" :
+  [
+    {
+      "key" : 10,
+      "type" : "select",
+      "value" : 1
+    }
+    ,
+    {
+      "key" : 10,
+      "type" : "ordering",
+      "value" : 2
+    }
+  ],
+  "avalibale" : ["add", "skipp"],
+  }
+}

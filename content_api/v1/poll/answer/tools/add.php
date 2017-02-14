@@ -120,27 +120,25 @@ trait add
 
 		$true_answer = [];
 
-		$answer_keys = [];
-		if(is_array($poll['answers']))
-		{
-			$answer_keys = array_column($poll['answers'], 'key');
-		}
+
+		// \lib\db::transaction();
 
 		foreach (utility::request('answer') as $key => $value)
 		{
-			$answer_key = $key - 1;
-			if(!isset($poll['answers'][$answer_key]))
+			$poll_answer_key = $key - 1;
+
+			if(!isset($poll['answers'][$poll_answer_key]))
 			{
-				return debug::error(T_("This poll have not answer :key", ['key' => $answer_keys]), 'answer', 'arguments');
+				return debug::error(T_("This poll have not answer :key", ['key' => $key]), 'answer', 'arguments');
 			}
 			else
 			{
-				if(!isset($poll['answers'][$answer_key]['type']))
+				if(!isset($poll['answers'][$poll_answer_key]['type']))
 				{
-					return debug::error(T_("This poll have not answer type :key", ['key' => $answer_key]), 'answer', 'system');
+					return debug::error(T_("This poll have not answer type :key", ['key' => $key]), 'answer', 'system');
 				}
 
-				$answer_type = $poll['answers'][$answer_key]['type'];
+				$answer_type = $poll['answers'][$poll_answer_key]['type'];
 
 				switch ($answer_type)
 				{
@@ -153,7 +151,7 @@ trait add
 					case 'like':
 					case 'notification':
 					default:
-						if(intval($answer_key) != 1)
+						if(intval($key) !== 1)
 						{
 							return debug::error(T_("This poll is :type poll and you can set answer 1 only", ['type' => $answers_type]), 'answer', 'arguments');
 						}
@@ -174,11 +172,11 @@ trait add
 								if($value === true)
 								{
 									$title = null;
-									if(isset($poll['answers'][$answer_key]['title']))
+									if(isset($poll['answers'][$poll_answer_key]['title']))
 									{
-										$title = $poll['answers'][$answer_key]['title'];
+										$title = $poll['answers'][$poll_answer_key]['title'];
 									}
-									$true_answer[$answer_key] = $title;
+									$true_answer[$key] = $title;
 								}
 								elseif($value !== false)
 								{
@@ -188,14 +186,13 @@ trait add
 							break;
 
 						case 'descriptive':
-							$true_answer[$answer_key] = $value;
+							$true_answer[$poll_answer_key] = $value;
 							break;
 
 						default:
 							# code...
 							break;
 					}
-
 				}
 			}
 		}

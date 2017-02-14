@@ -557,7 +557,7 @@ trait ready
 				{
 					if(isset($value['option_meta']['url']))
 					{
-						$_poll_data['file']['url'] = $value['option_meta']['url'];
+						$_poll_data['file']['url'] = $host. '/'. $value['option_meta']['url'];
 					}
 
 					if(isset($value['option_meta']['type']))
