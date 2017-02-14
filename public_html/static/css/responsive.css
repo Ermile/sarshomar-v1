@@ -118,7 +118,7 @@
 
 
  header{display:block;height:auto;border:none}
- header .logo{background-image:none;display:block;width:100%;padding:1em;text-align:center;background-color:#00667a}
+ header .logo{background-image:none;display:block;width:100%;padding:2em 0;text-align:center;background-color:#00667a}
  .rtl header .logo{background-image:none}
  header .logo h1{display:inline-block;vertical-align:bottom}
  header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;margin-top:10px}
