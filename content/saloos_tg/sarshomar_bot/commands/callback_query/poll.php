@@ -113,8 +113,7 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
-		handle::send_log($_query);
-		\lib\db::transaction();
+		// \lib\db::transaction();
 		list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
@@ -134,10 +133,11 @@ class poll
 		callback_query::edit_message(ask::make(null, null, [
 			'poll_id' 	=> $poll_id,
 			'return'	=> 'true',
-			'last'		=> $last
+			'last'		=> $last,
+			'type'		=> isset($_query['inline_message_id']) ? 'inline' : 'private'
 			]));
-		\lib\db::rollback();
-
+		// \lib\db::rollback();
+		return ['text' => \lib\debug::compile()['title']];
 	}
 
 	public static function new()
@@ -263,7 +263,10 @@ class poll
 			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
 		}
 
-		callback_query::edit_message(ask::make(null, null, $_data_url[3]));
+		callback_query::edit_message(ask::make(null, null, [
+			'poll_id' 	=> $_data_url[3],
+			'return'	=> true
+			]));
 	}
 
 	public static function delete($_query, $_data_url)
