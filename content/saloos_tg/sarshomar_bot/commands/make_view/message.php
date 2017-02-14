@@ -27,7 +27,7 @@ class message
 		if(isset($this->class->query_result['file']))
 		{
 			$url = 'https://dev.sarshomar.com';
-			$url .= '/' . $this->class->query_result['file'];
+			$url .= '/' . $this->class->query_result['file']['url'];
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
@@ -44,11 +44,14 @@ class message
 		/**
 		 * set telegram result: count of poll, answers and answers text
 		 */
-		$stats = $this->class->query_result['stats']['result'];
-		$i = 1;
-		$sum = array_column($stats, 'sum');
-		array_unshift($sum, 0);
-		unset($sum[0]);
+		$stats = $this->class->query_result['stats']['total'];
+		$sum_valid = array_column($stats['valid'], 'value', 'key');
+		$sum_invalid = array_column($stats['invalid'], 'value', 'key');
+		$sum = [];
+		foreach ($sum_valid as $key => $value) {
+			$sum[$key] = $value + $sum_invalid[$key];
+		}
+		$this->sum_stats = $sum;
 		$this->message['chart'] = utility::calc_vertical($sum);
 	}
 
@@ -60,7 +63,7 @@ class message
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($this->class->query_result['stats']['result'][$key]['sum']);
+				$poll_list .= ' - ' . utility::nubmer_language($this->sum_stats[$key+1]);
 			}
 			$poll_list .= "\n";
 

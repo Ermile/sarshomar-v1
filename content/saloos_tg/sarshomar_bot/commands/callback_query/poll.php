@@ -43,6 +43,7 @@ class poll
 			'method' 	=> 'array',
 			'request' => [
 				'in' 		=> 'me',
+				'status'	=> 'stop pause publish draft awaiting',
 				'from'  	=> (int) $start,
 				'to'  		=> (int) ($start + $message_per_page),
 			]
