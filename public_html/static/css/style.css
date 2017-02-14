@@ -716,7 +716,7 @@ footer .is-open i {transform:rotate(180deg);}
 
 /************************************************************** customers */
 .customers-container{padding:50px 0;background-color:#fcfcfc}
-.customers-container .customer{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center;width:65%;margin:0 auto; -ms-flex-wrap:wrap;flex-wrap:wrap}
+.customers-container .customer{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center;width:65%;margin:0 auto}
 .customers-container .customer.reverse{-webkit-flex-direction:row-reverse;flex-direction:row-reverse}
 .customers-container .customer-content,.rtl .customers-container .customer.reverse .customer-content{margin-left:50px;margin-right:0}
 .customers-container .customer.reverse .customer-content,.rtl .customers-container .customer-content{margin-left:0;margin-right:50px}
