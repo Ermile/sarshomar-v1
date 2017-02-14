@@ -184,38 +184,50 @@ class answers
 
 		$user_delete_answer = self::is_answered($_args['user_id'], $_args['poll_id'], ['real_answer' =>  true]);
 
+		$set_option =
+		[
+			'answer_txt' => null,
+			'validation' => $validation,
+			'port'       => $_args['port'],
+			'subport'    => $_args['subport'],
+		];
+
 		$skipped = false;
+
 		if($_args['skipped'] == true)
 		{
 			$skipped = true;
+			$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
 		}
-
-		foreach ($_args['answer'] as $key => $value)
+		else
 		{
-			$set_option =
-			[
-				'answer_txt' => $value,
-				'validation' => $validation,
-				'port'       => $_args['port'],
-				'subport'    => $_args['subport'],
-			];
+			foreach ($_args['answer'] as $key => $value)
+			{
+				$set_option =
+				[
+					'answer_txt' => $value,
+					'validation' => $validation,
+					'port'       => $_args['port'],
+					'subport'    => $_args['subport'],
+				];
 
-			$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
-			// save the poll lucked by profile
-			// update users profile
-			$answers_details =
-			[
-				'validation'  => $validation,
-				'poll_id'     => $_args['poll_id'],
-				'opt_key'     => $key,
-				'user_id'     => $_args['user_id'],
-				'update_mode' => false,
-			];
+				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
+				// save the poll lucked by profile
+				// update users profile
+				$answers_details =
+				[
+					'validation'  => $validation,
+					'poll_id'     => $_args['poll_id'],
+					'opt_key'     => $key,
+					'user_id'     => $_args['user_id'],
+					'update_mode' => false,
+				];
 
-			\lib\utility\stat_polls::set_poll_result($answers_details);
-			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// $update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
-			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				\lib\utility\stat_polls::set_poll_result($answers_details);
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				// $update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			}
 		}
 
 		/**

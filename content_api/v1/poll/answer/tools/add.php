@@ -27,6 +27,36 @@ trait add
 		}
 
 		$user_answer = utility::request('answer');
+		$skip        = utility::request("skip");
+
+		if($user_answer && $skip)
+		{
+			return debug::error(T_("Can not set answer and skip"), 'skip', 'arguments');
+		}
+
+		// $available = $this->poll_answer_get($_options);
+
+		// if(isset($available['available']) && is_array($available['available']))
+		// {
+		// 	if(!in_array('skip', $available['available']) && $skip)
+		// 	{
+		// 		return debug::error(T_("Can not skip this poll"), 'answer', 'permission');
+		// 	}
+
+		// 	if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $user_answer)
+		// 	{
+		// 		return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
+		// 	}
+		// }
+		// else
+		// {
+		// 	return debug::error(T_("Invalid answer available"), 'api', 'system');
+		// }
+
+		if($skip)
+		{
+			return $this->skip_poll();
+		}
 
 		if(!is_array($user_answer))
 		{
@@ -119,9 +149,6 @@ trait add
 		}
 
 		$true_answer = [];
-
-
-		// \lib\db::transaction();
 
 		foreach (utility::request('answer') as $key => $value)
 		{
@@ -227,6 +254,23 @@ trait add
 		{
 			debug::title(T_("Answer saved"));
 		}
+	}
+
+
+	/**
+	 * skip poll
+	 */
+	public function skip_poll()
+	{
+		$save =
+		[
+			'user_id' => $this->user_id,
+			'poll_id' => shortURL::decode(utility::request("id")),
+			'skipped'  => true,
+		];
+
+		\lib\utility\answers::save($save);
+
 	}
 }
 ?>

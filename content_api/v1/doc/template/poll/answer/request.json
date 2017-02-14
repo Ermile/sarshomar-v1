@@ -1,6 +1,6 @@
 {
   "id": "[poll id]",
-  "skipp": true,
+  "skip": true,
   "answer": {
     "1": [10,null],
     "3": "code file",
@@ -31,6 +31,6 @@
       "value" : 2
     }
   ],
-  "avalibale" : ["add", "skipp"],
+  "avalibale" : ["add", "skip"],
   }
 }
