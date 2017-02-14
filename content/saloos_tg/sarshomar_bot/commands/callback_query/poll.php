@@ -114,7 +114,13 @@ class poll
 	public static function answer($_query, $_data_url)
 	{
 		// \lib\db::transaction();
-		list($class, $method, $poll_id, $answer, $last) = $_data_url;
+		if(count($_data_url) == 4)
+		{
+			list($class, $method, $poll_id, $answer) = $_data_url;
+			$last = null;
+		}elseif (count($_data_url) == 5) {
+			list($class, $method, $poll_id, $answer, $last) = $_data_url;
+		}
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
 			'id' 		=> $poll_id,
