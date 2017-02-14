@@ -314,10 +314,26 @@ function shortkey()
 function giveFile(_file)
 {
 	// get output
-	var output  = $(_file).parents('.ultra').find('.preview')[0];
+	var output   = $(_file).parents('.ultra').find('.preview')[0];
 	// get file object
-	var fileObj = $(_file)[0].files[0];
-	var fileUrl = '';
+	var fileObj  = $(_file)[0].files[0];
+	var fileUrl  = '';
+	// get file size in mb
+	var fileSize = (fileObj.size/1024/1024);
+
+	// reach maximum size
+	if(fileSize > 1)
+	{
+		$this = $(_file).parent();
+		$this.addClass('invalid');
+		setTimeout(function()
+		{
+			$this.removeClass('invalid');
+		}, 1000);
+
+		console.log('max size is reached!');
+		return false;
+	}
 	if(fileObj)
 	{
 		// get file url
