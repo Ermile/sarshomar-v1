@@ -125,7 +125,17 @@ class ask
 		{
 			return $return;
 		}
+	}
 
+	public function update($_query, $_data_url)
+	{
+		list($class, $method, $poll_id) = $_data_url;
+		\lib\storage::set_disable_edit(true);
+		return ['text' => T_("Updated")];
+		callback_query::edit_message(self::make(null, null, [
+			'poll_id' 	=>$poll_id,
+			'return' 	=> true,
+			]));
 	}
 }
 ?>
