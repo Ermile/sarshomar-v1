@@ -36,7 +36,16 @@
    </div>
 
 {%else%}
-
+   <div class="span3 offset2">
+    <img class="launch" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
+   </div>
+   <div class="span6">
+    <h3>{%trans "Inspection and Answer"%}</h3>
+    <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+   {%if not login%}
+    <a href="{{url.base}}/features/guest" class="try special-button">{%trans "Try Before Register"%}</a>
+   {%endif%}
+   </div>
 {%endif%}
 {%endif%}
 {%endblock%}
