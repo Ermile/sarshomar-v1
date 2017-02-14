@@ -387,6 +387,10 @@ function showPreview(_output, _empty)
 	{
 		$output.html('');
 	}
+	else if(fileModel != 'image')
+	{
+		removeFile($output);
+	}
 	else
 	{
 		// create file preview url
@@ -396,6 +400,11 @@ function showPreview(_output, _empty)
 		{
 			filePrevUrl = attrUrl;
 		}
+		else if(fileModel != 'audio' && fileModel != 'video')
+		{
+			filePrevUrl = '/static/images/file/file.svg';
+		}
+
 		var imageEl     = '<img src="'+ filePrevUrl + '"/>';
 		// fill output with image
 		$output.html(imageEl);
@@ -2208,6 +2217,25 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 });
+
+
+
+/**
+ * [removeFile description]
+ * @return {[type]} [description]
+ */
+function removeFile(_preview)
+{
+	_preview.attr('data-file-id', null);
+	_preview.attr('data-file-url', null);
+	_preview.attr('data-file-type', null);
+	// _preview.attr('data-file-temp', null);
+	// _preview.attr('data-file-local', null);
+	showPreview(_preview, true);
+
+	// close modal
+	$('#modal-preview').trigger('close');
+}
 
 
 // ================================================================== $

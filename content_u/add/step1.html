@@ -27,7 +27,7 @@
      <div class="element-in">
       <input class="input" type="text" id="title" placeholder='{%trans "Title of question"%}' autocomplete="off" value="{{poll.title}}" maxlength="190">
       <div class="file">
-       <input type="file" id="file_title">
+       <input type="file" id="file_title" accept="image/*">
        <label class="label-file icon-pic" for="file_title"></label>
       </div>
      </div>
@@ -85,7 +85,7 @@
       </span>
 
       <div class="file">
-       <input type="file" id="file{{myKey}}">
+       <input type="file" id="file{{myKey}}" accept="image/*">
        <label class="label-file icon-pic" for="file{{myKey}}"></label>
       </div>
      </div>
