@@ -834,6 +834,34 @@ footer .is-open i {transform:rotate(180deg);}
 .range-slider .max_limit svg{content: "";position: absolute;top: 0px;right: 15px;width:30px;height:30px;transform: rotate(270deg);}
 
 
+/* --------------------------------------------------seting rtl and support rtl range slider */
+
+.rtl .range-slider.support-rtl .dynamic-margin,.rtl .range-slider.support-rtl .dynamic-range{float:right;}
+.rtl .range-slider.support-rtl .dynamic-range .max{left:-15px;top:-20px;right:initial;bottom:initial;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .max{left:-20px;top:-15px;right:initial;bottom:initial;}
+.rtl .range-slider.support-rtl .dynamic-range .max svg{transform:rotate(270deg);}
+.rtl .range-slider.support-rtl .dynamic-range .max span::before{left:5px;top:-6px;border:none;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #555;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .max span::before{left:-3px;top:2px;}
+.rtl .range-slider.support-rtl .dynamic-range .max span::after{top:initial;bottom:33px;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .max span::after{bottom:0px;left:initial;right:33px;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .max svg{transform:rotate(180deg);}
+.rtl .range-slider.support-rtl .dynamic-range .min{right:-15px;bottom:-20px;left:initial;top:initial;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .min{right:-20px;bottom:-15px;left:initial;top:initial;}
+.rtl .range-slider.support-rtl .dynamic-range .min svg{transform:rotate(90deg);}
+.rtl .range-slider.support-rtl .dynamic-range .min span::before{top:initial;bottom:-6px;border:none;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #555; }
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .min span::before{bottom:2px;left:-3px;}
+.rtl .range-slider.support-rtl .dynamic-range .min span::after{top:33px;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .min span::after{top:0px;left:initial;right:33px;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range .min svg{transform:rotate(180deg);}
+.rtl .range-slider.support-rtl .max_limit{top:initial;bottom:-20px; }
+.rtl .range-slider.support-rtl .max_limit svg{transform:rotate(90deg)}
+.rtl .range-slider.support-rtl .max_limit .mount::before{border-bottom:10px solid #555;border-top:none;top:11px;}
+.rtl .range-slider.support-rtl .max_limit .mount::after{top:33px;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .max_limit{right:initial;right:-21px;top:initial;}
+.rtl .range-slider.support-rtl[data-type='vertical'] .max_limit svg{transform:rotate(0deg)}
+.rtl .range-slider.support-rtl[data-type='vertical'] .max_limit .mount::before{left:15px;transform:rotate(90deg);border-bottom:none;border-top:10px solid #555;top:-12px; }
+.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-margin,.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range{float:left;}
+
 
 /************************************************************** autocomplete */
 .autocomplete-suggestions{text-align:left;cursor:default;border:1px solid #ccc;border-top:0;background:#fff;box-shadow:-1px 1px 3px rgba(0,0,0,.1);
