@@ -76,7 +76,7 @@ class step_create
 			$poll_request['id'] = $get_poll['id'];
 		}
 
-		if(count($file_content) > 0 && $get_poll)
+		if(count($file_content) > 0 && $get_poll && count($get_poll['answers']) > 0)
 		{
 			return self::make_draft($get_poll, function($_maker){
 				$_maker->message->add("wrong_data", T_("Answer type not valid"), 'before', 'hashtag');
@@ -89,7 +89,7 @@ class step_create
 			$file = bot::$hook['message'][$file_content[1]];
 			if(is_array($file))
 			{
-				$file = $file[0];
+				$file = end($file);
 			}
 			if(array_key_exists('caption', bot::$hook['message']))
 			{
