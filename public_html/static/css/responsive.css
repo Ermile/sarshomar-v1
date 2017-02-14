@@ -69,6 +69,13 @@
 .stepPublish .action a {margin-bottom: 1em;}
 
  .poll-container .poll-image{width:100%}
+
+
+
+  .special-button{font-size:12px!important;border-radius:10px}
+ .special-button:before,.special-button:after{top:-3px;font-size:36px}
+ .special-button:before{left:-6px}
+ .special-button:after{right:-6px}
 }
 
 
