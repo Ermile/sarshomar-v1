@@ -76,6 +76,9 @@
  .special-button:before,.special-button:after{top:-3px;font-size:36px}
  .special-button:before{left:-6px}
  .special-button:after{right:-6px}
+
+
+ #inestimable::after, #inestimable::before {z-index: 9999}
 }
 
 
