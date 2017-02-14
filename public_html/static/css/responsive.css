@@ -84,33 +84,7 @@
 
 
 /* Mobile  (Portrait) and (Landscape) - Design for a width 320px until 767px */
-
-
-
-@media screen and (max-width:860px) {
-    .api-quick-access,.help-sidebar {display: none;}
-}
-
-/************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
-@media all and (max-width: 319px) {
- body{display:none}
- html:before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center}
- .container{max-width:96%;min-width:60%}
-}
-
-/************************************************************** Print */
-@media print {
- .wrapper,footer,header,header#header-top{border:none}
- .container, .wrapper{width:100%;max-width:100%}
- #inestimable{display:none}
- footer{background-color:#eee}
-}
-
-
-/*iPhone 5 & 5S in portrait & landscape*/
-@media all screen and (min-device-width : 320px) and (max-device-width : 568px) {
-
-
+@media all and (min-width: 320px) and (max-width: 767px) and (min-device-width: 320px) and (max-device-width: 568px) {
  /* Ermile */
  .hidden-desktop{display:inherit}
  .hidden-tablet{display:inherit}
@@ -123,7 +97,7 @@
  .row>[class*=span]:nth-child(even),.row .row>[class*=span]:nth-child(even){margin-right:0!important}
  .row>.span12,.row .row .span12{width:100%!important}
  html{font-size: 50%}
- .container{max-width:95%;min-width:95%}
+ .container{max-width:750px;min-width:300px}
  #footer{position:relative}
  footer {box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
  #formError{bottom:10px;width:100%}
@@ -349,4 +323,24 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 .poll-container .poll-image{width:100%}
 
 
+}
+
+
+@media screen and (max-width:860px) {
+    .api-quick-access,.help-sidebar {display: none;}
+}
+
+/************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
+@media all and (max-width: 319px) {
+ body{display:none}
+ html:before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center}
+ .container{max-width:96%;min-width:60%}
+}
+
+/************************************************************** Print */
+@media print {
+ .wrapper,footer,header,header#header-top{border:none}
+ .container, .wrapper{width:100%;max-width:100%}
+ #inestimable{display:none}
+ footer{background-color:#eee}
 }
