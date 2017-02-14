@@ -834,7 +834,7 @@ footer .is-open i {transform:rotate(180deg);}
 .range-slider .max_limit svg{content: "";position: absolute;top: 0px;right: 15px;width:30px;height:30px;transform: rotate(270deg);}
 
 
-/* --------------------------------------------------seting rtl and support rtl range slider */
+/* --------------------------------------------------set rtl support for ranges slider on rtl */
 
 .rtl .range-slider.support-rtl .dynamic-margin,.rtl .range-slider.support-rtl .dynamic-range{float:right;}
 .rtl .range-slider.support-rtl .dynamic-range .max{left:-15px;top:-20px;right:initial;bottom:initial;}
@@ -861,7 +861,6 @@ footer .is-open i {transform:rotate(180deg);}
 .rtl .range-slider.support-rtl[data-type='vertical'] .max_limit svg{transform:rotate(0deg)}
 .rtl .range-slider.support-rtl[data-type='vertical'] .max_limit .mount::before{left:15px;transform:rotate(90deg);border-bottom:none;border-top:10px solid #555;top:-12px; }
 .rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-margin,.rtl .range-slider.support-rtl[data-type='vertical'] .dynamic-range{float:left;}
-
 
 /************************************************************** autocomplete */
 .autocomplete-suggestions{text-align:left;cursor:default;border:1px solid #ccc;border-top:0;background:#fff;box-shadow:-1px 1px 3px rgba(0,0,0,.1);
