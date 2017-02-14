@@ -316,7 +316,8 @@ a.title){var d=c.chart,g=document.createElement("li");g.className=d.classNamePre
 function getMyMapData()
 {
 	// require data of current design depending on country
-	myMapSource = 'lib/ammap/maps/js/worldLow.js';
+	var myMapSource = 'lib/ammap/maps/js/worldLow.js';
+	// myMapSource = 'lib/ammap/maps/js/continentsLow.js';
 	if ($('html').attr('lang') == 'fa')
 	{
 		myMapSource = 'lib/ammap/maps/js/iranHigh.js';
