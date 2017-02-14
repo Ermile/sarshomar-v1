@@ -89,6 +89,8 @@
  #formError{bottom:10px;width:100%}
  /*[data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}*/
 
+.modal-dialog {min-width: 90%;}
+
  /************************************************************** Style Guide */
  .in,.in.xsmall,.in.small,.in.large,.in.xlarge,.in.xxlarge{width:100%}
 
@@ -212,6 +214,8 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;flex-basis: 87%;/*border-radius: 5px 0 0 5px;*/height: 30px}
  .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;right: 0;}
  .rtl .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;left: 0; right: auto;z-index: 0;}
+ .ultra .delete {left: 82px;top: -9px;}
+ .rtl .ultra .delete {right: 82px;}
  .element.switch label:not(.title):not(:last-child)::before {display: none}
  .rtl .element, .element {display: block;line-height: normal;}
  /*.ultra .element .title {margin-right: 8px; border-radius: 5px;height: 20px;line-height: 20px;font-size: 10px;min-width: 80px;}*/
@@ -255,10 +259,6 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .element .file input[type="file"] {display: none;}
 
 
-.btn-container .btn {min-width: 40px;line-height: 20px;}
-.btn-container .btn::before, .btn-container .btn::after {font-size: 20px;}
-.btn-container .btn::before {left: -4px;}
-.btn-container .btn::after {right: -4px;}
 
  /************************************************************** filter question */
  .poll-filters {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: reverse;-ms-flex-direction: column-reverse;flex-direction: column-reverse;}
