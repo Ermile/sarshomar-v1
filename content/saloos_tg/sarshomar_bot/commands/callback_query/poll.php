@@ -113,6 +113,7 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
+		\lib\db::transaction();
 		list($class, $method, $poll_id, $answer) = $_data_url;
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
@@ -120,6 +121,7 @@ class poll
 			'answer'	=> [$answer => true]
 			]
 		]);
+		handle::send_log(\lib\utility::request());
 		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
 		if(!\lib\debug::$status)
 		{
@@ -130,6 +132,7 @@ class poll
 		\lib\storage::set_disable_edit(true);
 
 		callback_query::edit_message(ask::make(null, null, $poll_id));
+		\lib\db::rollback();
 
 	}
 

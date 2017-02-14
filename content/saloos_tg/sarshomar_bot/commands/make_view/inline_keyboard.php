@@ -66,6 +66,7 @@ class inline_keyboard
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
+		handle::send_log($this->inline_keyboard);
 	}
 
 	public function add_guest_option(...$_args)
