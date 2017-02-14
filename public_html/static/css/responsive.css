@@ -111,7 +111,7 @@
 .rtl .special-button::before, .rtl .special-button::after {font-size: 35px;}
 .rtl .special-button::before {left: -5px;}
 .rtl .special-button::after {right: -5px;}
-.try .special-button {display: none}
+.try.special-button {display: none}
  /* Sarshomar */
  /*.in{width:100%}*/
 
