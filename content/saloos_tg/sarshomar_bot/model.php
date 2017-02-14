@@ -20,5 +20,12 @@ class model extends \lib\mvc\model{
 	use \content_api\v1\poll\answer\tools\add;
 
 	use \content_api\v1\file\tools\link;
+
+	use \content_api\v1\poll\answer\tools\get;
+
+	use \content_api\v1\poll\answer\tools\add;
+
+	use \content_api\v1\poll\answer\tools\delete;
+
 }
 ?>

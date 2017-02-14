@@ -43,7 +43,6 @@ class inline_query
 				]);
 			$query_result = \lib\main::$controller->model()->poll_search(true);
 			$query_result = $query_result['data'];
-			handle::send_log($query_result);
 		}
 
 
@@ -61,51 +60,33 @@ class inline_query
 			{
 				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp-users.png';
 			}
-			$maker = new make_view($value['id']);
-			$row_result['id'] =  $value['id'];
-
-			$maker->message->add_title();
-			$maker->message->add_poll_chart();
-			$maker->message->add_poll_list();
-			$maker->message->add_count_poll();
-			$maker->message->add_telegram_link();
-			$maker->message->add_telegram_tag();
+			$poll = callback_query\ask::make(null, null, [
+				'poll_id' 	=> $value['id'],
+				'return'	=> 'true',
+				'type'		=> 'inline',
+				]);
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
 
 			$row_result['url'] = $value['short_url'];
+			$row_result['id'] = $value['id'];
 
-			if(array_key_exists('description', $row_result) && !is_null($row_result['description']))
-			{
-				$row_result['description'] = $value['contnet'];
-			}
 			$row_result['hide_url'] = false;
 
-			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_guest_option(['share'=> false, 'skip' => false, 'update' => false, 'report' => false]);
 
-			$inline_keyboard = $maker->inline_keyboard->make();
-
-			if(!empty($inline_keyboard)) {
-				$row_result['reply_markup']['inline_keyboard'] = $inline_keyboard;
-			}
-
-			$disable_web_page_preview = true;
-			if(isset($maker->query_result['file']))
-			{
-				$disable_web_page_preview = false;
-			}
+			$row_result['reply_markup'] = $poll['reply_markup'];
 
 			$row_result['input_message_content'] = [
-				'message_text' 				=> $maker->message->make(),
-				'parse_mode' 				=> 'HTML',
-				'disable_web_page_preview' 	=> $disable_web_page_preview
+				'message_text' 				=> $poll['text'],
+				'parse_mode' 				=> $poll['parse_mode'],
+				'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
 			];
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);
 		session::remove_back('expire', 'inline_cache');
+
 		return $result;
 	}
 }

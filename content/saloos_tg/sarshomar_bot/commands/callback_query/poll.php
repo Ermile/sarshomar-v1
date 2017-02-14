@@ -113,15 +113,15 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
+		handle::send_log($_query);
 		\lib\db::transaction();
-		list($class, $method, $poll_id, $answer) = $_data_url;
+		list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
 			[
 			'id' 		=> $poll_id,
 			'answer'	=> [$answer => true]
 			]
 		]);
-		handle::send_log(\lib\utility::request());
 		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
 		if(!\lib\debug::$status)
 		{
@@ -131,7 +131,11 @@ class poll
 
 		\lib\storage::set_disable_edit(true);
 
-		callback_query::edit_message(ask::make(null, null, $poll_id));
+		callback_query::edit_message(ask::make(null, null, [
+			'poll_id' 	=> $poll_id,
+			'return'	=> 'true',
+			'last'		=> $last
+			]));
 		\lib\db::rollback();
 
 	}
@@ -252,11 +256,7 @@ class poll
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
 		\lib\storage::set_disable_edit(true);
-		handle::send_log([
-			'debug' => \lib\debug::compile(),
-			'res' => $request_status,
-			'req' => \lib\utility::request(),
-			]);
+
 		if(!\lib\debug::$status)
 		{
 			$debug = \lib\debug::compile();
@@ -337,7 +337,8 @@ class poll
 	public static function report($_query, $_data_url, $_short_link = null)
 	{
 		$short_link = !is_null($_short_link) ? $_short_link : $_data_url[2];
-		$maker = new make_view(bot::$user_id, $short_link);
+		$maker = new make_view($short_link);
+
 		if(!language::check())
 		{
 			language::set($maker->query_result['language']);

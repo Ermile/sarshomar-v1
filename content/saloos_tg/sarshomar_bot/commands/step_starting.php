@@ -139,11 +139,11 @@ class step_starting
 		return $return;
 	}
 
-	public static function cmd_poll($_poll_short_code)
+	public static function cmd_poll($_poll_id)
 	{
-		if(!is_null($_poll_short_code))
+		if(!is_null($_poll_id))
 		{
-			return callback_query\ask::make(null, null, $_poll_short_code);
+			return callback_query\ask::make(null, null, ['poll_id' => $_poll_id]);
 		}
 	}
 }

@@ -44,26 +44,21 @@ class message
 		/**
 		 * set telegram result: count of poll, answers and answers text
 		 */
-		$stats = $this->class->query_result['stats']['total'];
-		$sum_valid = array_column($stats['valid'], 'value', 'key');
-		$sum_invalid = array_column($stats['invalid'], 'value', 'key');
-		$sum = [];
-		foreach ($sum_valid as $key => $value) {
-			$sum[$key] = $value + $sum_invalid[$key];
-		}
-		$this->sum_stats = $sum;
-		$this->message['chart'] = utility::calc_vertical($sum);
+		$sum = $this->sum_stats();
+		$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
 	}
 
 	public function add_poll_list($_answer_id = null, $_add_count = true)
 	{
 		$poll_list = '';
+		$sum = $this->sum_stats();
+		$sum = $sum['sum_answers'];
 		foreach ($this->class->query_result['answers'] as $key => $value) {
 			$emoji = $this->class::$emoji_number[$key+1];
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($this->sum_stats[$key+1]);
+				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
 			}
 			$poll_list .= "\n";
 
@@ -115,26 +110,27 @@ class message
 
 	public function add_count_poll($_type = 'sum_invalid')
 	{
-		$count = $this->class->query_result['stats']['count_answered'];
+		$count = $this->sum_stats();
+
 		switch ($_type) {
 			case 'valid':
-				$text = T_("Valid answer is:") . $count['valid'];
+				$text = T_("Valid answer is:") . $count['total_sum_valid'];
 				break;
 			case 'invalid':
-				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
+				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text = '👥' .utility::nubmer_language($count['sum']) . ' ';
-				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['invalid']));
+				$text = '👥' .utility::nubmer_language($count['total']) . ' ';
+				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
 				break;
 			case 'sum_valid':
-				$text = T_("Sum") . '(' . $count['sum'] .') ';
-				$text .= T_("Valid") . '(' . $count['valid'] .')';
+				$text = T_("Sum") . '(' . $count['total'] .') ';
+				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .')';
 				break;
 
 			default:
-				$text = T_("Valid") . '(' . $count['valid'] .') ';
-				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
+				$text = T_("Valid") . '(' . $count['total_sum_valid'] .') ';
+				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 		}
 		if(isset($this->message['options']))
@@ -145,6 +141,35 @@ class message
 		{
 			$this->message['options'] = $text;
 		}
+	}
+
+	public function sum_stats()
+	{
+		if($this->stats)
+		{
+			return $this->stats;
+		}
+		$stats = $this->class->query_result['stats']['total'];
+		$sum_valid = array_column($stats['valid'], 'value', 'key');
+		$sum_invalid = array_column($stats['invalid'], 'value', 'key');
+		$sum = [];
+		$total_sum_valid = 0;
+		$total_sum_invalid = 0;
+		$total = 0;
+		foreach ($sum_valid as $key => $value) {
+			$sum[$key] = $value + $sum_invalid[$key];
+			$total += $sum[$key];
+			$total_sum_valid += $value;
+			$total_sum_invalid += $$sum_invalid[$key];
+		}
+
+		$this->stats = [
+			'sum_answers' 		=> $sum,
+			'total_sum_valid' 	=> $total_sum_valid,
+			'total_sum_invalid'	=> $total_sum_invalid,
+			'total'	=> $total,
+		];
+		return $this->stats;
 	}
 
 	public function make()

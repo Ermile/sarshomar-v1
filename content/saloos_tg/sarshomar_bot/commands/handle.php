@@ -135,7 +135,7 @@ class handle
 				case '/ask':
 				case T_('Ask me'):
 				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
-				$response = callback_query\ask::make(null, null, empty($sp) ? null : $sp[2]);
+				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[2]]);
 				break;
 
 				case preg_match("/^(\/report_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:

@@ -12,7 +12,7 @@ class inline_keyboard
 		$this->class = $make_class;
 	}
 
-	public function add_poll_answers($_options = array())
+	public function add_poll_answers()
 	{
 		$keyboard_map = [
 			1 => [
@@ -48,17 +48,6 @@ class inline_keyboard
 		$last_count = $this->count();
 		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
 			$callback_data = 'poll/answer/' . $this->class->poll_id . '/' . ($answer_key +1);
-			if(array_key_exists("callback_data", $_options))
-			{
-				if(is_object($_options['callback_data']))
-				{
-					$callback_data = $_options['callback_data']($callback_data);
-				}
-				else
-				{
-					$callback_data = $_options['callback_data'] . "/" . $callback_data;
-				}
-			}
 			$this_row = $row_answer[0] + $last_count;
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
 				'text' => $this->class::$emoji_number[$answer_key + 1],
@@ -66,7 +55,6 @@ class inline_keyboard
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
-		handle::send_log($this->inline_keyboard);
 	}
 
 	public function add_guest_option(...$_args)
@@ -88,21 +76,14 @@ class inline_keyboard
 	{
 		$options = array_merge([
 			'skip' => true,
-			'skip_last' => false,
 			'update' => true,
 			'share' => true,
 			'report' => false,
 			'inline_report' => false,
 			], $_options);
 		$return = [];
-		if($options['skip_last'])
-		{
-			$return[] = [
-				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->poll_id. '/0/last'
-			];
-		}
-		elseif($options['skip'])
+
+		if($options['skip'])
 		{
 			$return[] = [
 				'text' => T_("Skip"),
@@ -134,7 +115,7 @@ class inline_keyboard
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"url" => 'https://telegram.me/\sarshomar_bot?start=report_'.$this->class->poll_id
+				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id
 			];
 		}
 		return $return;
