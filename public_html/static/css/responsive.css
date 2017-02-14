@@ -56,7 +56,7 @@
  header #header-bottom{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}
 
  .api-quick-access,.help-sidebar {display: none;}
-
+.api-docs {padding: 2em;}
  .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
 
  footer #footer-nav .eco{height:65%}
@@ -123,6 +123,8 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 
  .checkbox+label::before{top:16px;left:10px}
 
+
+
  #homepage .wrapper .box{padding:0 10px}
  #contact-box {padding: 0 1em;}
  #intro-box{text-align:center;padding:3em 0}
@@ -179,7 +181,15 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  footer #footer-links #footer-news {-webkit-box-flex: 0;-ms-flex: 0 1 70%;flex: 0 1 70%;}
  footer #footer-links .enamad {-webkit-box-flex: 0;-ms-flex: 0 1 30%;flex: 0 1 30%;}
  .enamad {-webkit-box-ordinal-group: 11;-ms-flex-order: 10;order: 10;}
-#footer-links ul li {float: right;}
+ #footer-links ul li {float: left;}
+.rtl #footer-links ul li {float: right;}
+
+
+ /************************************************************** Features */
+.feature-items .feature-item {flex-basis: 50%;}
+.feature-items .feature-item:nth-child(2)::after, .feature-items .feature-item:nth-child(5)::after, .feature-items .feature-item:nth-child(8)::after{display: none}
+.feature-items .feature-item:nth-child(4)::after, .feature-items .feature-item:nth-child(7)::after, .feature-items .feature-item:nth-child(10)::after{display: none;}
+.feature-items .feature-item:nth-child(6)::after, .feature-items .feature-item:nth-child(9)::after, .feature-items .feature-item:nth-child(12)::after{display: none}
 
  /************************************************************** add question */
  .page-progress {width: 100%;}
@@ -273,6 +283,8 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .rtl .special-heading {padding-left: 0;padding-right: 34px;}
  .special-heading:before {width: 40px;}
  .em {padding: 1.5em 1em;}
+
+ .api-docs {padding: 2em;}
 
 /************************************************************** Token Page */
 .auth .in.small {width: 100%;}
