@@ -304,7 +304,7 @@ var data =
 var iranMap = AmCharts.makeChart('iran-map',
 {
 	"type": "map",
-    "theme": "light",
+    "theme": "sarshomar",
     "colorSteps": 10,
 
 	"dataProvider":

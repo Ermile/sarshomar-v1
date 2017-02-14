@@ -899,16 +899,33 @@ AmCharts.maps.worldLow={
 };
 
 
+var data =
+[
+{
+	"id":"IR",
+	"value": 100
+},
+{
+	"id":"RU",
+	"value": 12
+},
+{
+	"id":"IQ",
+	"value": 25
+}];
+
 
 var worldMap = AmCharts.makeChart('world-map',
 {
 	"type": "map",
-	"theme": "light",
+	"theme": "sarshomar",
+	"colorSteps": 10,
 	"projection": "miller",
 
 	"dataProvider": {
 		"map": "worldLow",
-		"getAreasFromMap": true
+		"areas": data
+		// "getAreasFromMap": true
 	},
 
 	"areasSettings": {
