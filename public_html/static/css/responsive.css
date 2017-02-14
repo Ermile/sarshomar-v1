@@ -362,7 +362,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .row>[class*=span]:nth-child(even),.row .row>[class*=span]:nth-child(even){margin-right:0!important}
  .row>.span12,.row .row .span12{width:100%!important}
  html{font-size: 50%}
- .container{max-width:750px;min-width:300px}
+ .container{max-width:95%;min-width:95%}
  #footer{position:relative}
  footer {box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
  #formError{bottom:10px;width:100%}
