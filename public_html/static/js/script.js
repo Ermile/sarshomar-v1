@@ -573,9 +573,18 @@ function setLanguageURL()
 	$('.langlist a').each(function(key, index)
 	{
 		var lang = $(index).attr('hreflang');
+		// if we are in this language
+		if(lang == $('html').attr('lang'))
+		{
+			$(index).attr('class', 'isCurrent');
+		}
 		if(lang == 'en')
 		{
 			lang = '';
+		}
+		else if(lang == $('html').attr('lang'))
+		{
+			lang = '/' + lang;
 		}
 		var url = lang + '/' + urlPath;
 		$(index).attr('href', url.trim('/'));
