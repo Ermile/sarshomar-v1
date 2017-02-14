@@ -138,7 +138,7 @@ trait search
 			{
 				return debug::error(T_("You can set status in your poll, in:me"), 'status', 'arguments');
 			}
-
+			$status = explode(' ', utility::request('status'));
 			$status_list =
 			[
 				'stop',
@@ -148,25 +148,24 @@ trait search
 				'draft',
 				'awaiting',
 			];
-
-			if(is_string(utility::request('status')))
+			if(count($status) === 1)
 			{
-				if(!in_array(utility::request('status'), $status_list))
+				if(!in_array($status[0], $status_list))
 				{
 					return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
 				}
-				$meta['post_status'] = utility::request("status");
+				$meta['post_status'] = $status[0];
 			}
-			elseif(is_array(utility::request('status')))
+			elseif(count($status) > 1)
 			{
-				foreach (utility::request('status') as $key => $value)
+				foreach ($status as $key => $value)
 				{
 					if(!in_array($value, $status_list))
 					{
 						return debug::error(T_("Invalid status :status", ['status' => $value]), 'status', 'arguments');
 					}
 				}
-				$meta['post_status'] = ['IN', "('". implode("','", utility::request("status")). "')"];
+				$meta['post_status'] = ['IN', "('". implode("','", $status). "')"];
 			}
 			else
 			{
