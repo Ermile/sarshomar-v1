@@ -53,7 +53,14 @@ class message
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
 		foreach ($this->class->query_result['answers'] as $key => $value) {
-			$emoji = $this->class::$emoji_number[$key+1];
+			if($_answer_id == $key+1)
+			{
+				$emoji = '✅';
+			}
+			else
+			{
+				$emoji = $this->class::$emoji_number[$key+1];
+			}
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
@@ -67,7 +74,8 @@ class message
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/Sarshomar_bot?start=sp_' .$this->class->poll_id,'⚙');
+		$dashboard = utility::tag(T_("Sarshomar")) . ' |';
+		$dashboard .= utility::link('https://telegram.me/Sarshomar_bot?start=sp_' .$this->class->poll_id,'⚙' . T_("Poll"));
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -110,25 +118,28 @@ class message
 	public function add_count_poll($_type = 'sum_invalid')
 	{
 		$count = $this->sum_stats();
-
+		$text = '';
 		switch ($_type) {
 			case 'valid':
-				$text = T_("Valid answer is:") . $count['total_sum_valid'];
+				$text .= T_("Valid answer is:") . $count['total_sum_valid'];
 				break;
 			case 'invalid':
 				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text = '👥' .utility::nubmer_language($count['total']) . ' ';
-				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
+				$text .= '👥' .utility::nubmer_language($count['total']) . ' ';
+				if($count['total_sum_invalid'] > 0)
+				{
+					$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
+				}
 				break;
 			case 'sum_valid':
-				$text = T_("Sum") . '(' . $count['total'] .') ';
+				$text .= T_("Sum") . '(' . $count['total'] .') ';
 				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .')';
 				break;
 
 			default:
-				$text = T_("Valid") . '(' . $count['total_sum_valid'] .') ';
+				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .') ';
 				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 		}

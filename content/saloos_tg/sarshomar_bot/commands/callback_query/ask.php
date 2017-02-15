@@ -36,6 +36,7 @@ class ask
 		$my_poll = $maker->query_result['user_id'] == \lib\utility\shortURL::encode(bot::$user_id);
 
 		$get_answer = null;
+		$my_answer = null;
 		if($options['type'] == 'private')
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request([
@@ -45,14 +46,15 @@ class ask
 				]
 				]);
 			$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
+			$my_answer = key($get_answer['my_answer']);
 		}
 
 		$maker->message->add_title();
 		$maker->message->add_poll_chart();
-		$maker->message->add_poll_list();
+		$maker->message->add_poll_list($my_answer);
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
-		$maker->message->add_telegram_tag();
+		// $maker->message->add_telegram_tag();
 
 		if(is_null($get_answer) || in_array('add', $get_answer['available']))
 		{
@@ -132,11 +134,11 @@ class ask
 	{
 		list($class, $method, $poll_id) = $_data_url;
 		\lib\storage::set_disable_edit(true);
-		return ['text' => T_("Updated")];
 		callback_query::edit_message(self::make(null, null, [
 			'poll_id' 	=>$poll_id,
 			'return' 	=> true,
 			]));
+		return ['text' => T_("Updated")];
 	}
 }
 ?>

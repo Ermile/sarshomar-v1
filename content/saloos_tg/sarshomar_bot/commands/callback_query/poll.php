@@ -44,6 +44,7 @@ class poll
 			'request' => [
 				'in' 		=> 'me',
 				'status'	=> 'stop pause publish draft awaiting',
+				'language'	=> 'en fa ar',
 				'from'  	=> (int) $start,
 				'to'  		=> (int) ($start + $message_per_page),
 			]
@@ -164,12 +165,6 @@ class poll
 		callback_query::edit_message($return);
 	}
 
-	public static function back()
-	{
-		step::stop();
-		session::remove('poll');
-	}
-
 	public static function status($_query, $_data_url)
 	{
 		session::remove('poll');
@@ -198,16 +193,11 @@ class poll
 		{
 			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
 		}
+		else
+		{
+			return ['text' => '✅' . $debug['title']];
+		}
 
-	}
-
-	public static function cancel($_query, $_data_url)
-	{
-		session::remove_back('expire', 'inline_cache', 'create');
-		session::remove('expire', 'inline_cache', 'create');
-		step::stop();
-		callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
-		return [];
 	}
 
 	public static function report($_query, $_data_url, $_short_link = null)

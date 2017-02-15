@@ -34,25 +34,7 @@ class step_create
 	{
 		step::plus();
 		session::remove('poll');
-		$txt_text = T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
-		$result   =
-		[
-		'text'         => $txt_text ."\n#create",
-		"response_callback" => utility::response_expire('create'),
-		'reply_markup' => [
-		"inline_keyboard" => [
-		[
-		[
-		"text" => T_("Cancel"),
-		"callback_data" => 'poll/cancel'
-		]
-		]
-		]
-		]
-		];
-
-		// return menu
-		return $result;
+		return callback_query\create::home();
 	}
 
 
@@ -224,10 +206,11 @@ class step_create
 		}
 		$txt_text = $maker->message->make();
 		$maker->inline_keyboard->add_change_status();
-		$maker->inline_keyboard->add([['text' => T_('Save as draft'), 'callback_data' => 'poll/back']]);
+		$maker->inline_keyboard->add([['text' => T_('Save as draft'), 'callback_data' => 'create/close']]);
 		$inline_keyboard = $maker->inline_keyboard->make();
 		unset($inline_keyboard[0]);
 		$inline_keyboard = array_values($inline_keyboard);
+		array_unshift($inline_keyboard, [["text" => T_("Options"),"callback_data" => 'create/options']]);
 
 		$disable_web_page_preview = true;
 		if(isset($maker->query_result['file']))

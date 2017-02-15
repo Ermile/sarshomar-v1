@@ -23,6 +23,7 @@ class callback_query
 			return $result;
 		}
 		preg_match("/^(\d+_\d+):(.*)$/", $data_url[0], $unique_id);
+
 		$data_url[0] = $unique_id[2];
 		$unique_id = !is_null($unique_id[1]) ? 'ik_' . $unique_id[1] : null;
 		$callback_session = session::get('tmp', 'callback_query', $unique_id);

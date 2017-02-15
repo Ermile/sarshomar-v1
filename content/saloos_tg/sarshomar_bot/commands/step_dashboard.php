@@ -32,6 +32,7 @@ class step_dashboard
 	public static function profile(){
 		$profile = \lib\utility\profiles::get_profile_data(bot::$user_id, false);
 		$text = T_('Your info:');
+		handle::send_log($profile);
 		foreach ($profile as $key => $value) {
 			$text .= "\n";
 			$text .= T_($key) . ': '. $value;
