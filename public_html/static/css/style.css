@@ -380,7 +380,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .main.pad,.box.pad{padding-top:20px;padding-bottom:20px}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
-img,.unselect{-webkit-user-select:none;user-select:none;word-break:break-all}
+img,.unselect{-webkit-user-select:none;user-select:none}
 .rtl .flip-rtl,.ltr .flip-ltr{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 
 .main.text-based{padding-top:5em}
@@ -1781,6 +1781,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .text-based .content{padding:0 3em;margin-bottom:5em}
 .text-based .content p{text-align:left}
 .rtl .text-based .content p{text-align:justify}
+.text-based .content p img{padding:0 1em}
 .text-based .content p,.text-based .content ul li{color:#6E6F6F;line-height:2em}
 .text-based ul.list{padding:2em 0;}
 .rtl .text-based{text-align:justify}
@@ -1791,6 +1792,8 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .em{position:relative;background-color:#efefef;color:#6E6F6F;padding:1.5em 3em;line-height:2em;text-align:center!important;font-weight:700;margin-bottom:3em}
 .em::before{content:'';position:absolute;width:10px;height:4px;background-color:#e5a428;bottom:0;right:0;left:0;width:50%;margin:auto}
 
+.float-right{float:right}
+.float-left{float:left}
 
 /************************************************************** about page */
 #about-bottom{padding:50px;background-color:#fff}
