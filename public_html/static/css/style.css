@@ -1048,7 +1048,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-skip a,.poll-container .poll-skip input{color:#00667a;font-size:1em;font-weight:700}
 .poll-container .poll-skip input{background-color:transparent;border:none;outline:none;cursor:pointer}
 
-.poll-container .poll-actions{text-align:center}
+.poll-container .poll-actions{text-align:center;margin-bottom:5em}
 
 
 
