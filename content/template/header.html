@@ -28,7 +28,7 @@
 
       <a href='{{url.base}}/ask' class='header-profile-button' tabindex='6' data-direct>{%trans "Ask Me"%}</a>
 
-      <div class="profile">
+      <div class="profile dropmenu">
        <!-- <img src="{{url.static}}images/svg/general/profile.svg" alt=""> -->
        <div class="info">
         <div class="displayname">{{displayname}}</div>
@@ -47,7 +47,7 @@
 
 
 {%endif%}
-      <div class="icon-globe icon-2x header-profile-link ui-language-link">
+      <div class="icon-globe icon-2x header-profile-link ui-language-link dropmenu">
        {% set lang_list = langList({'all' : true}) %}
        <nav class="langlist">
         {%for key, value in lang_list%}

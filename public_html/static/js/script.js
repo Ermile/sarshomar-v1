@@ -208,15 +208,16 @@ function isActiveChecker()
 function openTopNav()
 {
 	// show profile detail with tab
-	$(document).on('focus', '.profile-detail a', function()
+	$('.dropmenu a').on('focus',function()
 	{
-		$(this).parents('.profile').addClass('open');
+		console.log('selected..');
+		$(this).parents('.dropmenu').addClass('open');
 		// set scroll to top of page
 		$('body').scrollTop(0);
 
-	}).on('blur', '.profile-detail a', function()
+	}).on('blur', function()
 	{
-		$(this).parents('.profile').removeClass('open');
+		$(this).parents('.dropmenu').removeClass('open');
 	});
 }
 
