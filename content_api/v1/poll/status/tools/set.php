@@ -60,6 +60,18 @@ trait set
 					self::check(['poll_id' => $id, 'user_id' => $this->user_id]);
 				}
 
+				$new_status = utility::request("status");
+
+				if($new_status == 'delete')
+				{
+					$new_status == 'deleted';
+				}
+
+				if(!in_array($new_status, $all_status))
+				{
+					return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+				}
+
 				if(!debug::$status)
 				{
 					return;
