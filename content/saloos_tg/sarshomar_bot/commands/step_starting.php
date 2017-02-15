@@ -143,7 +143,7 @@ class step_starting
 	{
 		if(!is_null($_poll_id))
 		{
-			return callback_query\ask::make(null, null, ['poll_id' => $_poll_id]);
+			return callback_query\ask::make(null, null, ['poll_id' => $_poll_id, 'return' => true]);
 		}
 	}
 }

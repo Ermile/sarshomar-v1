@@ -113,7 +113,7 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
-		// \lib\db::transaction();
+		\lib\storage::set_disable_edit(true);
 		if(count($_data_url) == 4)
 		{
 			list($class, $method, $poll_id, $answer) = $_data_url;
@@ -128,13 +128,11 @@ class poll
 			]
 		]);
 		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
-		if(!\lib\debug::$status)
-		{
-			$debug = \lib\debug::compile();
-			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
-		}
 
-		\lib\storage::set_disable_edit(true);
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+
+		\lib\debug::$status = 1;
 
 		callback_query::edit_message(ask::make(null, null, [
 			'poll_id' 	=> $poll_id,
@@ -142,7 +140,11 @@ class poll
 			'last'		=> $last,
 			'type'		=> isset($_query['inline_message_id']) ? 'inline' : 'private'
 			]));
-		// \lib\db::rollback();
+
+		if(!$debug_status)
+		{
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
 		return ['text' => \lib\debug::compile()['title']];
 	}
 
@@ -153,26 +155,6 @@ class poll
 		return [];
 	}
 
-	public static function discard($_query, $_data_url)
-	{
-		$poll_id = $_data_url[2];
-		$return = ['text' => 'Your poll Discarded.'];
-		step::stop();
-		session::remove('poll');
-		session::remove_back('expire', 'inline_cache', 'create');
-		session::remove('expire', 'inline_cache', 'create');
-
-		$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll_id, function($_maker){
-			$_maker->message->message['sucsess'] = T_('Poll Discarded');
-			$_maker->message->add("discard", '#'.T_('Discarded'));
-		});
-
-		unset($edit['reply_markup']);
-		unset($edit['response_callback']);
-		callback_query::edit_message($edit);
-		return $return;
-	}
-
 	public static function edit($_query, $_data_url)
 	{
 		session::set('poll', $_data_url[2]);
@@ -180,68 +162,6 @@ class poll
 		session::remove_back('expire', 'inline_cache', 'ask');
 		session::remove('expire', 'inline_cache', 'ask');
 		callback_query::edit_message($return);
-	}
-
-	public static function save($_query, $_data_url)
-	{
-		session::remove('poll');
-		$poll_id = $_data_url[2];
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
-			[
-			'id' 		=> $poll_id,
-			'status'	=> 'publish'
-			]
-		]);
-		$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-
-		session::remove_back('expire', 'inline_cache');
-		session::remove('expire', 'inline_cache');
-
-		if(\lib\debug::$status)
-		{
-			step::stop();
-			$edit = ask::make(null, null, $add_poll['id']);
-			callback_query::edit_message($edit);
-		}
-		else
-		{
-			$_errors = \lib\debug::compile();
-			$errors = $_errors['messages']['error'];
-
-			$edit = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll_id, function($_maker) use ($errors){
-					$_maker->message->message['sucsess'] = T_('Error in poll publish');
-					$error_text = [];
-					foreach ($errors as $key => $value) {
-						$error_text[] = "❌ $value[title]";
-					}
-					$_maker->message->add("insert", join($error_text, "\n"));
-					$_maker->message->add("error", '#'.T_('Error'));
-			});
-
-			callback_query::edit_message($edit);
-			return [];
-		}
-
-		return [];
-	}
-
-	public static function pause($_query, $_data_url)
-	{
-		$poll_id = $_data_url[2];
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
-			[
-			'id' 		=> $poll_id,
-			'status'	=> 'pause'
-			]
-		]);
-		$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-
-		self::get_after_change($poll_id, $_query);
-	}
-
-	public static function publish($_query, $_data_url)
-	{
-		return self::save($_query, $_data_url);
 	}
 
 	public static function back()
@@ -254,6 +174,8 @@ class poll
 	{
 		session::remove('poll');
 		step::stop();
+		\lib\storage::set_disable_edit(true);
+
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
 			'request' => [
@@ -261,86 +183,31 @@ class poll
 				'id' 		=> $_data_url[3]
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
-		\lib\storage::set_disable_edit(true);
 
-		if(!\lib\debug::$status)
-		{
-			$debug = \lib\debug::compile();
-			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
-		}
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+
+		\lib\debug::$status = 1;
 
 		callback_query::edit_message(ask::make(null, null, [
 			'poll_id' 	=> $_data_url[3],
 			'return'	=> true
 			]));
+
+		if(!$debug_status)
+		{
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+
 	}
 
-	public static function delete($_query, $_data_url)
+	public static function cancel($_query, $_data_url)
 	{
-		$poll_id = isset($_data_url[2]) ? $_data_url[2] : null;
 		session::remove_back('expire', 'inline_cache', 'create');
 		session::remove('expire', 'inline_cache', 'create');
 		step::stop();
-
-		if(!$poll_id)
-		{
-			callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
-			return [];
-		}
-		\lib\storage::set_disable_edit(true);
-		$maker = new make_view($poll_id);
-		$maker->message->add_title(false);
-		$maker->message->add_poll_chart(true);
-		$maker->message->add_poll_list(true, true);
-		$maker->message->add('deleted', utility::tag(T_('Deleted')));
-		$return = $maker->make();
-		$delete = \lib\main::$controller->model()->poll_delete(['id' => $poll_id]);
-
-		session::remove_back('expire', 'inline_cache', 'ask');
-		session::remove('expire', 'inline_cache', 'ask');
-		callback_query::edit_message($return);
-	}
-
-	public static function get_after_change($_poll_id, $_query = false)
-	{
-		$response = session::get('expire', 'inline_cache', 'ask');
-		if(isset($response->result))
-		{
-			$r_message_id = $response->result->message_id;
-			$r_chat_id = $response->result->chat->id;
-
-			$q_message_id = $_query['message']['message_id'];
-			$q_chat_id = $_query['message']['chat']['id'];
-
-			if($r_message_id == $q_message_id && $r_chat_id == $q_chat_id)
-			{
-				session::remove('expire', 'inline_cache', 'ask');
-			}
-		}
-
-		\lib\storage::set_disable_edit(true);
-		$maker = new make_view($_poll_id);
-		$maker->message->add_title();
-		$maker->message->add_poll_chart(true);
-		$maker->message->add_poll_list(true);
-		$maker->message->add_telegram_link();
-		$maker->message->add_telegram_tag();
-
-		if(!$_query)
-		{
-			$maker->inline_keyboard->add_poll_answers();
-		}
-		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
-		$return = $maker->make();
-		if(!$_query)
-		{
-			$return["response_callback"] = utility::response_expire('ask', [
-				'reply_markup' => [
-				'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true])]
-				]
-				]);
-		}
-		callback_query::edit_message($return);
+		callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
+		return [];
 	}
 
 	public static function report($_query, $_data_url, $_short_link = null)

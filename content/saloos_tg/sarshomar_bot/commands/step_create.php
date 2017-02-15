@@ -44,7 +44,7 @@ class step_create
 		[
 		[
 		"text" => T_("Cancel"),
-		"callback_data" => 'poll/delete'
+		"callback_data" => 'poll/cancel'
 		]
 		]
 		]
