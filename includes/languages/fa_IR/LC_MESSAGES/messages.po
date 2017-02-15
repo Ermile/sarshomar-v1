@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-02-12 13:48+0330\n"
-"PO-Revision-Date: 2017-02-12 13:48+0330\n"
+"POT-Creation-Date: 2017-02-15 09:32+0330\n"
+"PO-Revision-Date: 2017-02-15 09:32+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -45,49 +45,38 @@ msgstr ""
 "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود "
 "بهره ببرید"
 
-#: content/poll/model.php:214
+#: content/poll/model.php:215
 msgid "Comment saved, Thank you"
 msgstr "دیدگاه ذخیره شد، متشکریم"
 
-#: content/poll/model.php:219
+#: content/poll/model.php:220
 msgid "We Couldn't save your comment, Please reload the page and try again"
 msgstr ""
 "مشکلی در ذخیره دیدگاه پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
 
-#: content/poll/model.php:291
+#: content/poll/model.php:271
 msgid "You must login in order to answer the questions"
 msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 
-#: content/poll/model.php:331
+#: content/poll/model.php:356
 msgid "You must select one answer or skip the poll"
 msgstr "یک پاسخ انتخاب کنید یا نظرسنجی را نادیده بگیرید"
 
-#: content/poll/view.php:17
-msgid ":number Questions answered"
-msgstr ":number سوال پاسخ داده شده است"
+#: content/poll/model.php:361
+msgid "Your answer was deleted"
+msgstr ""
 
 #: content/referer/instagram/model.php:37
 msgid "Token error"
 msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:28
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:34
-msgid "Answer not found"
-msgstr "پاسخی یافت نشد"
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:31
+msgid "In progress..."
+msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:54
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:183
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:62
-#: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:179
-msgid "Privacy violation"
-msgstr "نقض حریم خصوصی"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:215
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:259
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:239
-#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
-msgid "Next poll"
-msgstr "نظرسنجی بعدی"
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:134
+msgid "Updated"
+msgstr ""
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:6
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:6
@@ -153,7 +142,7 @@ msgstr "از من بپرس"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:10
 #: content/saloos_tg/sarshomar_bot/commands/inline_query.php:19
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:155
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:220
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:10
 #: content/saloos_tg/sarshomarbot/commands/inline_query.php:19
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:184
@@ -221,18 +210,19 @@ msgstr "حریم خصوصی"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:30
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:30
+#: includes/languages/trans_twig.php:170
 msgid "About us"
 msgstr "درباره ما"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:60
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:82
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:83
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:60
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:71
 msgid "First"
 msgstr "اولین"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:86
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:87
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:131
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:25
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
@@ -243,7 +233,7 @@ msgid "Back"
 msgstr "قبلی"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:70
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:93
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:94
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:70
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:82
 #: includes/languages/trans_twig.php:774
@@ -251,7 +241,7 @@ msgid "Next"
 msgstr "بعدی"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:74
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:98
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:99
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:74
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:87
 msgid "Last"
@@ -354,52 +344,52 @@ msgstr "برای تغییر زبان به بخش پروفایل رفته و یا
 msgid "Choose the language."
 msgstr "زبان خود را انتخاب کنید."
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:58
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:59
 msgid "You dont add eny poll"
 msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:60
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:61
 msgid "Do you like add poll"
 msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:62
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:63
 #: content_u/add/view.php:21
 msgid "Add new poll"
 msgstr "افزودن نظرسنجی جدید"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:130
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:166
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:102
 msgid "Poll Discarded"
 msgstr "نظرسنجی کنارگذاشته شد"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:131
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:167
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:103
 msgid "Discarded"
 msgstr "کنارگذاشته شد"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:176
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:212
 msgid "Error in poll publish"
 msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:182
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:218
 #: includes/languages/trans_addons.php:383
 msgid "Error"
 msgstr "خطا"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:239
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:287
 msgid "Add poll canceled"
 msgstr "افزودن نظرسنجی لغو شد"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:247
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:295
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:218
 #: includes/languages/trans_addons.php:227
 msgid "Deleted"
 msgstr "حذف شده"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:312
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:320
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:128
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:135
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:361
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:369
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:110
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:117
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:279
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:287
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:117
@@ -476,36 +466,41 @@ msgstr "جدید"
 msgid "🔙 Back"
 msgstr "باز گشت 🔙"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:100
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:107
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:89
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:89
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:96
 #: includes/languages/trans_addons.php:65 includes/languages/trans_twig.php:128
 msgid "Skip"
 msgstr "پرش"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:121
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:103
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:110
 msgid "Share"
 msgstr "اشتراک‌گذاری"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:169
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:151
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:165
 msgid "Lawbreaker"
 msgstr "قانون‌شکن"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:173
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:155
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:169
 #: includes/languages/trans_twig.php:493
 msgid "Spam"
 msgstr "هرزنامه"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:179
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:161
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:175
 msgid "Not interested"
 msgstr "علاقه‌مند نیستم"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:101
+#: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:165
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:62
+#: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:179
+msgid "Privacy violation"
+msgstr "نقض حریم خصوصی"
+
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:82
 #: content/saloos_tg/sarshomar_bot/controller.php:76
 #: content/saloos_tg/sarshomar_bot/controller.php:77
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:103
@@ -515,25 +510,25 @@ msgstr "علاقه‌مند نیستم"
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:134
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:116
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:178
 msgid "Valid answer is:"
 msgstr "پاسخ معتبر:"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:137
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:150
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:119
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:132
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:181
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:194
 msgid "Invalid"
 msgstr "نامعتبر"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:144
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:126
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:188
 msgid "Sum"
 msgstr "جمع"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:145
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:149
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:127
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:131
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:189
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:193
 msgid "Valid"
@@ -565,39 +560,27 @@ msgstr ""
 msgid "Cancel"
 msgstr "انصراف"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:86
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:82
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:75
 msgid "Answer type not valid"
 msgstr "نوع پاسخ معتبر نیست"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:148
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:213
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:155
 msgid "Please enter question title"
 msgstr "عنوان سوال را وارد کنید"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:151
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:216
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:137
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:157
 msgid "Your question uploaded successfully."
 msgstr "سوال شما با موفقیت ثبت شد."
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:154
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:219
 msgid "Insert next asnwer or choise action"
 msgstr ""
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:164
-#: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:150
-#: includes/languages/trans_addons.php:162 includes/languages/trans_twig.php:99
-msgid "Publish"
-msgstr "انتشار"
-
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:165
-#: content/saloos_tg/sarshomarbot/commands/step_create.php:142
-#: content/saloos_tg/sarshomarbot/commands/step_create.php:159
-msgid "Discard"
-msgstr "حذف"
-
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:168
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:227
 msgid "Save as draft"
 msgstr "ذخیره پیش‌نویس"
 
@@ -649,7 +632,6 @@ msgstr "مرکز پشتیبانی سرشمار در خدمت شماست."
 
 #: content/saloos_tg/sarshomar_bot/commands/step_help.php:28
 #: content/saloos_tg/sarshomarbot/commands/step_help.php:28
-#: includes/languages/trans_twig.php:171
 msgid "About"
 msgstr "درباره"
 
@@ -664,13 +646,32 @@ msgstr "ساخته شده در ارمایل"
 msgid "Undefined"
 msgstr "تعریف‌نشده"
 
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:34
+msgid "Answer not found"
+msgstr "پاسخی یافت نشد"
+
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:239
+#: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
+msgid "Next poll"
+msgstr "نظرسنجی بعدی"
+
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:143
 msgid "Pause"
 msgstr "توقف"
 
+#: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:150
+#: includes/languages/trans_addons.php:162 includes/languages/trans_twig.php:99
+msgid "Publish"
+msgstr "انتشار"
+
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:154
 #: includes/languages/trans_addons.php:114
 msgid "Delete"
+msgstr "حذف"
+
+#: content/saloos_tg/sarshomarbot/commands/step_create.php:142
+#: content/saloos_tg/sarshomarbot/commands/step_create.php:159
+msgid "Discard"
 msgstr "حذف"
 
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:146
@@ -763,12 +764,16 @@ msgstr ""
 msgid "File upload complete"
 msgstr ""
 
-#: content_api/v1/home/model.php:129 content_api/v1/home/model.php:147
+#: content_api/v1/home/model.php:129
 msgid "Access denide (Invalid url)"
 msgstr "دسترسی امکان‌پذیر نیست(آدرس نامعتبر)"
 
 #: content_api/v1/home/model.php:137
 msgid "Invalid authorization kye (user not found)"
+msgstr ""
+
+#: content_api/v1/home/model.php:147
+msgid "Access denide to load this url by api key"
 msgstr ""
 
 #: content_api/v1/home/model.php:153
@@ -780,8 +785,7 @@ msgid "Invalid parameter temp_token"
 msgstr ""
 
 #: content_api/v1/home/tools/ready.php:48
-#: content_api/v1/poll/answer/tools/add.php:52
-#: content_api/v1/poll/answer/tools/delete.php:34
+#: content_api/v1/poll/answer/tools/add.php:82
 #: content_api/v1/poll/tools/delete.php:41 includes/lib/utility/price.php:87
 msgid "Poll not found"
 msgstr "نظرسنجی یافت نشد"
@@ -799,8 +803,8 @@ msgid "Can not access to load this poll :msg"
 msgstr ""
 
 #: content_api/v1/home/tools/ready.php:117
-#: content_api/v1/poll/search/tools/search.php:150
-#: content_api/v1/poll/status/tools/set.php:74
+#: content_api/v1/poll/search/tools/search.php:155
+#: content_api/v1/poll/status/tools/set.php:88
 msgid "Invalid parameter status"
 msgstr "پارامتر وضعیت نامعتبر است"
 
@@ -809,73 +813,102 @@ msgid "Can not save answer"
 msgstr ""
 
 #: content_api/v1/poll/answer/tools/add.php:26
-#: content_api/v1/poll/answer/tools/get.php:18
+#: content_api/v1/poll/answer/tools/get.php:20
 msgid "Invalid parameter id"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:33
+#: content_api/v1/poll/answer/tools/add.php:34
+msgid "Can not set answer and skip"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/add.php:63
 msgid "Answer parameter must be array"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:59
+#: content_api/v1/poll/answer/tools/add.php:89
 msgid "Poll not publish"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:64
+#: content_api/v1/poll/answer/tools/add.php:94
 #: content_api/v1/poll/status/tools/get.php:39
 msgid "Poll status not found"
 msgstr "وضعیت نظرسنجی یافت نشد"
 
-#: content_api/v1/poll/answer/tools/add.php:69
+#: content_api/v1/poll/answer/tools/add.php:99
 msgid "Poll answers not found"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:84
+#: content_api/v1/poll/answer/tools/add.php:118
 msgid "Can not support this poll to answer"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:114
+#: content_api/v1/poll/answer/tools/add.php:148
 msgid "This poll is not a multi choice poll and you send :count answer"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:122
+#: content_api/v1/poll/answer/tools/add.php:159
 msgid "This poll have not answer :key"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:128
+#: content_api/v1/poll/answer/tools/add.php:165
 msgid "This poll have not answer type :key"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:143
+#: content_api/v1/poll/answer/tools/add.php:183
 msgid "This poll is :type poll and you can set answer 1 only"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:170
+#: content_api/v1/poll/answer/tools/add.php:210
 msgid "Invalid paramet :value"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:186
+#: content_api/v1/poll/answer/tools/add.php:229
 msgid "No answer was set"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:207
+#: content_api/v1/poll/answer/tools/add.php:250
 msgid "Invalid method"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/add.php:212
+#: content_api/v1/poll/answer/tools/add.php:255
 msgid "Answer saved"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/delete.php:42
+#: content_api/v1/poll/answer/tools/delete.php:15
+#: content_api/v1/poll/answer/tools/delete.php:33
+msgid "Can not remove your answer"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/delete.php:38
+msgid "Invalid answer available"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/delete.php:84
 msgid "Your answer was delete"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/get.php:28
-msgid "You was answer to this poll"
+#: content_api/v1/poll/answer/tools/delete.php:88
+msgid "You are not answer to this poll"
 msgstr ""
 
-#: content_api/v1/poll/answer/tools/get.php:31 includes/lib/utility/answers.php:267
-msgid "You was not answer to this poll"
+#: content_api/v1/poll/answer/tools/get.php:33
+msgid "You have not answered this question yet"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/get.php:52
+msgid "You have already answered this question and took your answer"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/get.php:56
+msgid "You have answered to option :opt"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/get.php:61
+msgid "You have already skipped this question"
+msgstr ""
+
+#: content_api/v1/poll/answer/tools/get.php:86
+msgid "Undefined error"
 msgstr ""
 
 #: content_api/v1/poll/price/tools/price.php:13
@@ -886,64 +919,115 @@ msgstr ""
 msgid "Invalid use parametr id and other parametr"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:38
+#: content_api/v1/poll/search/tools/search.php:44
 msgid "Invalid parameter 'in' "
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:46
+#: content_api/v1/poll/search/tools/search.php:52
 msgid "Can not set all in array request"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:52
+#: content_api/v1/poll/search/tools/search.php:58
 msgid "Invalid parameter in as :type"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:73
+#: content_api/v1/poll/search/tools/search.php:79
 msgid "Invalid parameter from, from must be integer"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:88
+#: content_api/v1/poll/search/tools/search.php:94
 msgid "Invalid parameter to, to must be integer"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:98
+#: content_api/v1/poll/search/tools/search.php:104
 msgid "Parameter 'from' must be less than parameter 'to'"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:107
-#: content_api/v1/poll/search/tools/search.php:117
+#: content_api/v1/poll/search/tools/search.php:113
+#: content_api/v1/poll/search/tools/search.php:123
 msgid "Invalid parameter language"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:124
+#: content_api/v1/poll/search/tools/search.php:130
 msgid "Invalid parameter language as :type"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:133
+#: content_api/v1/poll/search/tools/search.php:139
 msgid "You can set status in your poll, in:me"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:160
+#: content_api/v1/poll/search/tools/search.php:165
 msgid "Invalid status :status"
 msgstr ""
 
-#: content_api/v1/poll/search/tools/search.php:167
+#: content_api/v1/poll/search/tools/search.php:172
 msgid "Invalid parameter status as :type"
 msgstr ""
 
-#: content_api/v1/poll/status/tools/set.php:36
+#: content_api/v1/poll/status/tools/check.php:47
+msgid "Poll title not set"
+msgstr "عنوان نظرسنجی تعیین نشده است"
+
+#: content_api/v1/poll/status/tools/check.php:52
+msgid "Poll language not set"
+msgstr "زبان نظرسنجی تنظیم نشده است"
+
+#: content_api/v1/poll/status/tools/check.php:59
+msgid "Answers can not be empty"
+msgstr "پاسخ‌ها نمی‌توانند خالی باشند"
+
+#: content_api/v1/poll/status/tools/check.php:68
+msgid "Can not set more than 1 descriptive answers"
+msgstr "بیش از یک پاسخ تشریحی نمیتوان تنظیم کرد"
+
+#: content_api/v1/poll/status/tools/check.php:73
+msgid "Can not set more than 1 answers in upload,range and notification mod"
+msgstr "بیش از یک پاسخ در آپلود، محدوده و اعلان نمیتوان تنظیم کرد"
+
+#: content_api/v1/poll/status/tools/check.php:82
+msgid "Answer type not found in index :key of answers"
+msgstr "نوع پاسخ در کلید شاخص پاسخ‌ها یافت نشد"
+
+#: content_api/v1/poll/status/tools/check.php:87
+msgid "You must set two answers in select mod"
+msgstr ""
+
+#: content_api/v1/poll/status/tools/check.php:97
+msgid "You must set answer title or set file in index :key of answer"
+msgstr ""
+
+#: content_api/v1/poll/status/tools/check.php:148
+msgid "You poll is awaiting moderation"
+msgstr "نظرسنجی شما در دست بررسی است"
+
+#: content_api/v1/poll/status/tools/check.php:154
+msgid ""
+"You poll is awaiting moderation, all sarshomar poll was set in awaiting moderation"
+msgstr ""
+
+#: content_api/v1/poll/status/tools/check.php:161
+msgid ""
+"You are using an inappropriate word in the text, your poll is awaiting moderation"
+msgstr ""
+"شما در حال استفاده از کلمه‌ی نامناسبی در متن خود هستید، نظرسنجی در دست بررسی است"
+
+#: content_api/v1/poll/status/tools/check.php:181
+msgid "Duplicate poll title of your poll"
+msgstr "عنوان نظرسنجی شما مشابه است"
+
+#: content_api/v1/poll/status/tools/set.php:38
 msgid "Can not change status"
 msgstr "ناتوان در تغییر وضعیت"
 
-#: content_api/v1/poll/status/tools/set.php:40
+#: content_api/v1/poll/status/tools/set.php:42
 msgid "Prameter status not set"
 msgstr "وضعیت پارامتر تعیین نشده است"
 
-#: content_api/v1/poll/status/tools/set.php:58
+#: content_api/v1/poll/status/tools/set.php:68
 msgid "Poll status changed"
 msgstr "وضعیت نظرسنجی تغییر یافت"
 
-#: content_api/v1/poll/status/tools/set.php:63
+#: content_api/v1/poll/status/tools/set.php:77
 msgid ""
 "You can not set this status to this poll, the available status you can change is :"
 "available"
@@ -951,7 +1035,7 @@ msgstr ""
 "نمی‌توانید این وضعیت را برای این نظرسنجی قرار دهید، وضعیت در دسترس برای تغییر :"
 "available است"
 
-#: content_api/v1/poll/status/tools/set.php:70
+#: content_api/v1/poll/status/tools/set.php:84
 msgid "You can not set this status to this poll"
 msgstr "نمی‌توانید این وضعیت را باری نظرسنجی قرار دهید"
 
@@ -1262,7 +1346,7 @@ msgid "from"
 msgstr "از"
 
 #: includes/cls/database/sarshomar/translation.php:51
-#: includes/languages/trans_twig.php:146
+#: includes/languages/trans_twig.php:145
 msgid "to"
 msgstr "به"
 
@@ -1792,7 +1876,7 @@ msgid "total"
 msgstr "مجموع"
 
 #: includes/cls/database/sarshomar/translation.php:213
-#: includes/languages/trans_twig.php:142
+#: includes/languages/trans_twig.php:141
 msgid "result"
 msgstr "نتیجه"
 
@@ -2692,7 +2776,7 @@ msgstr ""
 msgid "All Languages"
 msgstr "همه زبان‌ها"
 
-#: includes/languages/trans_addons.php:157 includes/languages/trans_twig.php:148
+#: includes/languages/trans_addons.php:157 includes/languages/trans_twig.php:147
 msgid "Status"
 msgstr "وضعیت"
 
@@ -3227,7 +3311,7 @@ msgstr "ثبت نام"
 msgid "home"
 msgstr "خانه"
 
-#: includes/languages/trans_addons.php:308 includes/languages/trans_twig.php:170
+#: includes/languages/trans_addons.php:308 includes/languages/trans_twig.php:169
 msgid "Home"
 msgstr "صفحه نخست"
 
@@ -4503,66 +4587,62 @@ msgid "You can select just two options."
 msgstr "شما تنها قادر به انتخاب دو گزینه هستید."
 
 #: includes/languages/trans_twig.php:138
-msgid "Please enter here"
-msgstr ""
-
-#: includes/languages/trans_twig.php:139
 msgid "I am not willing to answer"
 msgstr "علاقه‌ای به پاسخ دادن ندارم"
 
-#: includes/languages/trans_twig.php:140
+#: includes/languages/trans_twig.php:139
 msgid "Save Answer"
 msgstr "ذخیره پاسخ"
 
-#: includes/languages/trans_twig.php:141
+#: includes/languages/trans_twig.php:140
 msgid "Ask Me"
 msgstr "از من بپرس"
 
-#: includes/languages/trans_twig.php:143
+#: includes/languages/trans_twig.php:142
 msgid "Similar Questions"
 msgstr "سوالات مشابه"
 
-#: includes/languages/trans_twig.php:144
+#: includes/languages/trans_twig.php:143
 msgid "There is no similar post"
 msgstr "پست مشابهی وجود ندارد"
 
-#: includes/languages/trans_twig.php:145
+#: includes/languages/trans_twig.php:144
 msgid "Poll timespan"
 msgstr "بازه زمانی نظرسنجی"
 
-#: includes/languages/trans_twig.php:147
+#: includes/languages/trans_twig.php:146
 msgid "Not set"
 msgstr "تعیین نشده"
 
-#: includes/languages/trans_twig.php:149
+#: includes/languages/trans_twig.php:148
 msgid "Keyword"
 msgstr "کلمه کلیدی"
 
-#: includes/languages/trans_twig.php:150
+#: includes/languages/trans_twig.php:149
 msgid "Statistical population"
 msgstr "جامعه آماری"
 
-#: includes/languages/trans_twig.php:151
+#: includes/languages/trans_twig.php:150
 msgid "There is nothing to display!"
 msgstr "چیزی برای نمایش وجود ندارد!"
 
-#: includes/languages/trans_twig.php:152
+#: includes/languages/trans_twig.php:151
 msgid "What is your opinion? Please rate this poll."
 msgstr "نظر شما چیست؟ لطفا به این نظرسنجی رای دهید."
 
-#: includes/languages/trans_twig.php:153
+#: includes/languages/trans_twig.php:152
 msgid "Continue"
 msgstr "ادامه"
 
-#: includes/languages/trans_twig.php:156
+#: includes/languages/trans_twig.php:155
 msgid "You are connected to Instagram"
 msgstr "شما به اینستاگرام متصل شدید"
 
-#: includes/languages/trans_twig.php:157
+#: includes/languages/trans_twig.php:156
 msgid "Enjoy!"
 msgstr "لذت ببرید!"
 
-#: includes/languages/trans_twig.php:158
+#: includes/languages/trans_twig.php:157
 msgid ""
 "By clicking Allow, you allow this app and Sarshomar to use your information in "
 "accordnace with their respective"
@@ -4570,99 +4650,103 @@ msgstr ""
 "با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از "
 "اطلاعات شما بر طبق"
 
-#: includes/languages/trans_twig.php:159
+#: includes/languages/trans_twig.php:158
 msgid " terms of service "
 msgstr "شرایط استفاده "
 
-#: includes/languages/trans_twig.php:160
+#: includes/languages/trans_twig.php:159
 msgid "and"
 msgstr "و"
 
-#: includes/languages/trans_twig.php:161
+#: includes/languages/trans_twig.php:160
 msgid " privacy policies "
 msgstr " حریم خصوصی "
 
-#: includes/languages/trans_twig.php:162
+#: includes/languages/trans_twig.php:161
 msgid ". You can change this at any time."
 msgstr ""
 "استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری خود تغییر "
 "دهید."
 
-#: includes/languages/trans_twig.php:165
+#: includes/languages/trans_twig.php:164
 msgid "Authorize this application to use your account?"
 msgstr "به این اپلیکیشن اجازه دسترسی به حساب کاربری خود می‌دهید؟"
 
-#: includes/languages/trans_twig.php:166
+#: includes/languages/trans_twig.php:165
 msgid "Allow"
 msgstr "اجازه می‌دهم"
 
-#: includes/languages/trans_twig.php:167
+#: includes/languages/trans_twig.php:166
 msgid "Deny"
 msgstr "اجازه نمی‌دهم"
 
-#: includes/languages/trans_twig.php:172
+#: includes/languages/trans_twig.php:171
 msgid "Press"
 msgstr "اخبار"
 
-#: includes/languages/trans_twig.php:173
+#: includes/languages/trans_twig.php:172
 msgid "Careers"
 msgstr "فرصت‌های شغلی"
 
-#: includes/languages/trans_twig.php:174
+#: includes/languages/trans_twig.php:173
 msgid "Social Responsibility"
 msgstr "مسئولیت اجتماعی"
 
-#: includes/languages/trans_twig.php:175 includes/mvc/view.php:59
+#: includes/languages/trans_twig.php:174 includes/mvc/view.php:59
 msgid "Help Center"
 msgstr "مرکز راهنمایی"
 
-#: includes/languages/trans_twig.php:176
+#: includes/languages/trans_twig.php:175
 msgid "API"
 msgstr "API"
 
-#: includes/languages/trans_twig.php:177 includes/mvc/view.php:62
+#: includes/languages/trans_twig.php:176 includes/mvc/view.php:62
 msgid "Eco Friendly"
 msgstr "حامی محیط‌زیست"
 
-#: includes/languages/trans_twig.php:178
+#: includes/languages/trans_twig.php:177
 msgid "Enamad"
 msgstr "نماد اعتماد"
 
-#: includes/languages/trans_twig.php:179
+#: includes/languages/trans_twig.php:178
 msgid "Service"
 msgstr "خدمات"
 
-#: includes/languages/trans_twig.php:180
+#: includes/languages/trans_twig.php:179
 msgid "Features"
 msgstr "امکانات"
 
-#: includes/languages/trans_twig.php:181
+#: includes/languages/trans_twig.php:180
 msgid "Knowledge"
 msgstr "دانش"
 
-#: includes/languages/trans_twig.php:182
+#: includes/languages/trans_twig.php:181
 msgid "Random Poll"
 msgstr "نظرسنجی تصادفی"
 
-#: includes/languages/trans_twig.php:183
+#: includes/languages/trans_twig.php:182
 msgid "Referral Program"
 msgstr "برنامه ارجاع‌دهی"
 
-#: includes/languages/trans_twig.php:184
+#: includes/languages/trans_twig.php:183
 msgid "Learn More"
 msgstr "بیشتر بدانید"
 
-#: includes/languages/trans_twig.php:185 includes/mvc/view.php:60
+#: includes/languages/trans_twig.php:184 includes/mvc/view.php:60
 msgid "Terms of Service"
 msgstr "شرایط استفاده"
 
-#: includes/languages/trans_twig.php:186 includes/mvc/view.php:61
+#: includes/languages/trans_twig.php:185 includes/mvc/view.php:61
 msgid "Privacy Policy"
 msgstr "حریم خصوصی"
 
-#: includes/languages/trans_twig.php:187
+#: includes/languages/trans_twig.php:186
 msgid "Support"
 msgstr "پشتیبانی"
+
+#: includes/languages/trans_twig.php:187
+msgid "Contact us"
+msgstr "تماس با ما"
 
 #: includes/languages/trans_twig.php:189
 msgid "Mission"
@@ -7463,19 +7547,23 @@ msgstr "تنظیم"
 msgid " unset"
 msgstr ""
 
-#: includes/lib/db/polls/insert.php:117
+#: includes/lib/db/polls/insert.php:118
 msgid "Invalid parametr update"
 msgstr ""
 
-#: includes/lib/db/polls/insert.php:132
+#: includes/lib/db/polls/insert.php:129
+msgid "Can not edit poll, this poll status is :status"
+msgstr ""
+
+#: includes/lib/db/polls/insert.php:138
 msgid "Invalid parametr user"
 msgstr ""
 
-#: includes/lib/db/polls/insert.php:149
+#: includes/lib/db/polls/insert.php:155
 msgid "This is not your poll, can't update"
 msgstr "این نظرسنجی شما نیست، ناتوان در بروزرسانی"
 
-#: includes/lib/db/polls/insert.php:276
+#: includes/lib/db/polls/insert.php:281
 msgid "Cann't add poll"
 msgstr ""
 
@@ -7485,6 +7573,10 @@ msgstr ""
 
 #: includes/lib/db/polls/insert/answers.php:53
 msgid "invalid parametr answer type in index :key of answer"
+msgstr ""
+
+#: includes/lib/db/polls/insert/answers.php:108
+msgid "Invalid parametr is_true in index :key of answer"
 msgstr ""
 
 #: includes/lib/db/polls/insert/check.php:16
@@ -7502,52 +7594,6 @@ msgstr ""
 #: includes/lib/db/polls/insert/check.php:54
 msgid "Can not use this attachment"
 msgstr ""
-
-#: includes/lib/db/polls/insert/check.php:105
-msgid "Poll title not set"
-msgstr "عنوان نظرسنجی تعیین نشده است"
-
-#: includes/lib/db/polls/insert/check.php:110
-msgid "Poll language not set"
-msgstr "زبان نظرسنجی تنظیم نشده است"
-
-#: includes/lib/db/polls/insert/check.php:117
-msgid "Answers can not be empty"
-msgstr "پاسخ‌ها نمی‌توانند خالی باشند"
-
-#: includes/lib/db/polls/insert/check.php:126
-msgid "Can not set more than 1 descriptive answers"
-msgstr "بیش از یک پاسخ تشریحی نمیتوان تنظیم کرد"
-
-#: includes/lib/db/polls/insert/check.php:138
-msgid "Can not set more than 1 answers in upload,range and notification mod"
-msgstr "بیش از یک پاسخ در آپلود، محدوده و اعلان نمیتوان تنظیم کرد"
-
-#: includes/lib/db/polls/insert/check.php:147
-msgid "Answer type not found in index :key of answers"
-msgstr "نوع پاسخ در کلید شاخص پاسخ‌ها یافت نشد"
-
-#: includes/lib/db/polls/insert/check.php:151
-msgid "You must set two answers in select mod"
-msgstr ""
-
-#: includes/lib/db/polls/insert/check.php:160
-msgid "You must set answer title or set file in index :key of answer"
-msgstr ""
-
-#: includes/lib/db/polls/insert/check.php:210
-msgid "You poll is awaiting moderation"
-msgstr "نظرسنجی شما در دست بررسی است"
-
-#: includes/lib/db/polls/insert/check.php:217
-msgid ""
-"You are using an inappropriate word in the text, your poll is awaiting moderation"
-msgstr ""
-"شما در حال استفاده از کلمه‌ی نامناسبی در متن خود هستید، نظرسنجی در دست بررسی است"
-
-#: includes/lib/db/polls/insert/check.php:236
-msgid "Duplicate poll title of your poll"
-msgstr "عنوان نظرسنجی شما مشابه است"
 
 #: includes/lib/db/polls/insert/max.php:30
 msgid "You can save :max draft poll"
@@ -7574,59 +7620,79 @@ msgstr "آرگومان زمان نامعتبر است"
 msgid "Invalid arguments min"
 msgstr "آرگومان‌های حداقلی نامعتبر است"
 
-#: includes/lib/db/polls/insert/options.php:67
+#: includes/lib/db/polls/insert/options.php:57
+msgid "Can not set min less than 1"
+msgstr ""
+
+#: includes/lib/db/polls/insert/options.php:66
+msgid "You can not set multi:min greater than multi:max"
+msgstr ""
+
+#: includes/lib/db/polls/insert/options.php:71
+msgid "You are set :count answers can not set :min in multi: min "
+msgstr ""
+
+#: includes/lib/db/polls/insert/options.php:91
 msgid "Invalid arguments max"
 msgstr "آرگومان‌های حداکثری نامعتبر است"
 
-#: includes/lib/db/polls/insert/options.php:94
+#: includes/lib/db/polls/insert/options.php:96
+msgid "You are set :count answers can not set :max in multi: max "
+msgstr ""
+
+#: includes/lib/db/polls/insert/options.php:109
+msgid "You can not set multi:max less than multi:min"
+msgstr ""
+
+#: includes/lib/db/polls/insert/options.php:136
 msgid "Can not use multi:min and ordering"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:99
+#: includes/lib/db/polls/insert/options.php:141
 msgid "Can not use multi:max and ordering"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:104
+#: includes/lib/db/polls/insert/options.php:146
 msgid "Can not use multi and ordering"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:151
+#: includes/lib/db/polls/insert/options.php:193
 msgid "Invalid arguments start"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:161
+#: includes/lib/db/polls/insert/options.php:203
 msgid "Invalid arguments end_date"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:172
+#: includes/lib/db/polls/insert/options.php:214
 msgid "Parameter article must be array"
 msgstr "پارامتر مقالات باید آرایه باشد"
 
-#: includes/lib/db/polls/insert/options.php:179
+#: includes/lib/db/polls/insert/options.php:221
 msgid "Invalid arguments article on index :key"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:222
+#: includes/lib/db/polls/insert/options.php:267
 msgid "Parameter tags must be array"
 msgstr "پارامتر تگ باید آرایه باشد"
 
-#: includes/lib/db/polls/insert/options.php:231
+#: includes/lib/db/polls/insert/options.php:276
 msgid "You have added so many tags, Please remove some of them"
 msgstr "تعداد برچسب‌های وارد شده بسیار زیاد است، لطفا چند مورد را حذف کنید"
 
-#: includes/lib/db/polls/insert/options.php:255
+#: includes/lib/db/polls/insert/options.php:299
 msgid "Invalid tag in index :key, tags must be less than 45 character"
 msgstr ""
 
-#: includes/lib/db/polls/insert/options.php:317
+#: includes/lib/db/polls/insert/options.php:361
 msgid "Invalid parameter cats"
 msgstr "پارامتر دسته بندی نامعتبر است"
 
-#: includes/lib/db/polls/insert/options.php:326
+#: includes/lib/db/polls/insert/options.php:370
 msgid "Cat not found"
 msgstr "دسته بندی یافت نشد"
 
-#: includes/lib/db/polls/insert/options.php:331
+#: includes/lib/db/polls/insert/options.php:375
 msgid "Invalid cat"
 msgstr ""
 
@@ -7634,81 +7700,93 @@ msgstr ""
 msgid "Poll title must be less than 190 character"
 msgstr "عنوان نظرسنجی باید کمتر از 190 کاراکتر باشد"
 
-#: includes/lib/db/polls/insert/poll.php:68
+#: includes/lib/db/polls/insert/poll.php:63
 msgid "Invalid parametr survey "
 msgstr ""
 
-#: includes/lib/db/polls/insert/poll.php:76
+#: includes/lib/db/polls/insert/poll.php:71
 msgid "Survey id not found"
 msgstr "شناسه پرسشنامه پیدا نشد"
 
-#: includes/lib/db/polls/insert/poll.php:81
+#: includes/lib/db/polls/insert/poll.php:76
 msgid "Survey id must be a survey record"
 msgstr ""
 
-#: includes/lib/db/polls/insert/poll.php:86
+#: includes/lib/db/polls/insert/poll.php:81
 msgid "This is not your survey"
 msgstr "این پرسشنامه شما نیست"
 
-#: includes/lib/db/polls/insert/poll.php:115
+#: includes/lib/db/polls/insert/poll.php:110
 msgid "Summery must be less than 150 character"
 msgstr "خلاصه باید کمتر از 150 کاراکتر باشد"
 
-#: includes/lib/db/polls/insert/poll.php:138
+#: includes/lib/db/polls/insert/poll.php:133
 msgid "Invalid parametr language"
 msgstr "پارامتر زبان نامعتبر است"
 
-#: includes/lib/db/polls/insert/poll.php:168
+#: includes/lib/db/polls/insert/poll.php:163
 msgid "Invalid parametr tree:parent"
 msgstr ""
 
-#: includes/lib/db/polls/insert/poll.php:188
+#: includes/lib/db/polls/insert/poll.php:183
 msgid "Invalid parametr tree:answers (:value)"
 msgstr ""
 
-#: includes/lib/db/polls/insert/poll.php:245
+#: includes/lib/db/polls/insert/poll.php:248
 msgid "Parametr from muse be array"
 msgstr ""
 
-#: includes/lib/db/polls/insert/poll.php:269
+#: includes/lib/db/polls/insert/poll.php:272
 msgid ":max user was found, low the members "
 msgstr ""
 
-#: includes/lib/utility/answers.php:75
+#: includes/lib/utility/answers.php:96
 msgid "You answered to this poll before"
 msgstr ""
 
-#: includes/lib/utility/answers.php:113
+#: includes/lib/utility/answers.php:136
 msgid "Invalid type"
 msgstr ""
 
-#: includes/lib/utility/answers.php:224
+#: includes/lib/utility/answers.php:270
 msgid "Answer Save"
 msgstr "ذخیره پاسخ"
 
-#: includes/lib/utility/answers.php:228
+#: includes/lib/utility/answers.php:274
 msgid "Error in save your answer"
 msgstr "خطا در ذخیره سوال"
 
-#: includes/lib/utility/answers.php:285
+#: includes/lib/utility/answers.php:314
+msgid "You was not answer to this poll and try to edit it!"
+msgstr ""
+
+#: includes/lib/utility/answers.php:332
 msgid "Duplicate answer, needless to update"
 msgstr ""
 
-#: includes/lib/utility/answers.php:313 includes/lib/utility/answers.php:407
+#: includes/lib/utility/answers.php:360 includes/lib/utility/answers.php:454
 msgid "Many time left, can not update answer"
 msgstr ""
 
-#: includes/lib/utility/answers.php:347 includes/lib/utility/answers.php:435
+#: includes/lib/utility/answers.php:394 includes/lib/utility/answers.php:482
 msgid "Many update what are you doing?"
 msgstr ""
 
-#: includes/lib/utility/answers.php:386
+#: includes/lib/utility/answers.php:433
 msgid "Duplicate answer needless to update"
 msgstr ""
 
-#: includes/lib/utility/answers.php:538
+#: includes/lib/utility/answers.php:585
 msgid "Your answer updated"
 msgstr "پاسخ شما بروز شد"
+
+#: includes/lib/utility/chart/set.php:35 includes/lib/utility/postfilters.php:42
+msgid "Poll id not set"
+msgstr "شناسه نظرسنجی تعیین نشده است"
+
+#: includes/lib/utility/chart/set.php:43
+msgid "User id not set"
+msgstr ""
 
 #: includes/lib/utility/poll_tree.php:30
 msgid "Parent poll not found"
@@ -7738,10 +7816,6 @@ msgstr ""
 msgid "Parameter filters must be array"
 msgstr "پارامترهای فیلتر‌ها باید از نوع آرایه باشند"
 
-#: includes/lib/utility/postfilters.php:42
-msgid "Poll id not set"
-msgstr "شناسه نظرسنجی تعیین نشده است"
-
 #: includes/lib/utility/sync.php:87
 msgid ""
 "You can login in sarshomar.com whit your username: mobile , and password: :"
@@ -7751,6 +7825,9 @@ msgstr ""
 #: includes/mvc/view.php:58
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid ":number Questions answered"
+#~ msgstr ":number سوال پاسخ داده شده است"
 
 #~ msgid "We couldn't find some data, Please reload the page and try again"
 #~ msgstr ""
