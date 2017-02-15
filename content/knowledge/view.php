@@ -10,8 +10,6 @@ class view extends \mvc\view
 
 		$this->data->display['result']     = "content/knowledge/layout-xhr.html";
 		// $this->include->css_ermile   = false;
-		$this->include->js    = true;
-		$this->include->chart = true;
 		if($this->module() === 'home')
 		{
 			$this->include->js_main      = true;

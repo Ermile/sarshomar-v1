@@ -16,7 +16,6 @@ class view extends \mvc\view
 		if($this->module() === 'home')
 		{
 			// $this->data->bodyclass        = 'dashboard';
-			$this->include->chart         = true;
 
 		}
 	}

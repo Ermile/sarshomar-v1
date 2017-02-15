@@ -5,8 +5,6 @@ class view extends \mvc\view
 {
 	function config()
 	{
-		$this->include->js    = true;
-		$this->include->chart = false;
 		if($this->module() === 'home')
 		{
 			$this->include->js_main      = true;

@@ -14,8 +14,6 @@ class view extends \mvc\view
 			$this->include->js_main = true;
 		}
 
-		$this->include->js          = true;
-		$this->include->chart       = true;
 	}
 
 

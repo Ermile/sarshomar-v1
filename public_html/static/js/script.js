@@ -1095,7 +1095,7 @@ function detectStep(_name)
 	if(!firstTime && sthis != 'step1' && sCurrent == 'step1')
 	{
 		var myTitle = $('#title');
-		if(!myTitle.val())
+		if(!myTitle.val() && $('#question-add').attr('data-id'))
 		{
 			myTitle.addClass('isError');
 			// return false;
