@@ -511,10 +511,10 @@ header .header-profile-button:active,header .header-profile-button:focus{backgro
 
 header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;font-size:2em;position:relative;cursor:pointer}
 .rtl header .ui-language-link{margin:0;margin-right:5px}
-header .ui-language-link:hover,header .ui-language-link:focus{}
+header .ui-language-link:hover,header .ui-language-link:focus{background-color:#efefef}
 
 header .ui-language-link:hover .langlist{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
-header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#e8e6e6;opacity: 0; visibility: hidden;transition: all .1s;}
+header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; visibility: hidden;transition: all .1s;}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
 header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#e5a428}
