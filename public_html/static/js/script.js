@@ -2083,21 +2083,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		$('#submit-form').attr("name", $(this).attr("send-name"));
 	});
 
-
-	$(this).bind('range-slider::change', '#rangepersons', function(_e, _min, _max)
-	{
-		// ready to send data
-		requestSavingData();
-		// if value isset to zero hide filters
-		if(_max == 0)
-		{
-			$('.stepFilter #filter-conditions').fadeOut();
-		}
-		else
-		{
-			$('.stepFilter #filter-conditions').fadeIn();
-		}
-	});
 }).once(function()
 {
 	// import needed js
@@ -2139,6 +2124,28 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		// ready to send data
 		calcTotalPrice();
+	});
+
+	$('#rangepersons').bind('range-slider::change', function(_e, _min, _max)
+	{
+		calcTotalPrice();
+
+		// if value isset to zero hide filters
+		if(_max == 0)
+		{
+			$('.stepFilter #filter-conditions').fadeOut();
+		}
+		else
+		{
+			$('.stepFilter #filter-conditions').fadeIn();
+		}
+	});
+
+	$('#rangepersons').bind('range-slider::changeAfter', function(_e, _min, _max)
+	{
+		console.log('range changed...');
+		// ready to send data
+		requestSavingData();
 	});
 
 
