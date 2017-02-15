@@ -67,7 +67,7 @@ trait set
 					$new_status = 'deleted';
 				}
 
-				if(!in_array($new_status, $all_status))
+				if(!in_array($new_status, self::$all_status))
 				{
 					return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
 				}
