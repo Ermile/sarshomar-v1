@@ -106,7 +106,8 @@ trait search
 
 		if(utility::request("language"))
 		{
-			if(is_string(utility::request('language')))
+			$language = explode(' ', utility::request('language'));
+			if(count($language) === 1)
 			{
 				if(!utility\location\languages::check(utility::request("language")))
 				{
@@ -114,16 +115,16 @@ trait search
 				}
 				$meta['post_language'] = utility::request("language");
 			}
-			elseif(is_array(utility::request('language')))
+			elseif(count($language) > 1)
 			{
-				foreach (utility::request('language') as $key => $value)
+				foreach ($language as $key => $value)
 				{
 					if(!utility\location\languages::check($value))
 					{
 						return debug::error(T_("Invalid parameter language"), 'language', 'arguments');
 					}
 				}
-				$meta['post_language'] = ['IN', "('". implode("','", utility::request("languages")). "')"];
+				$meta['post_language'] = ['IN', "('". implode("','", $language). "')"];
 			}
 			else
 			{

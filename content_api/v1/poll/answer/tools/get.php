@@ -27,6 +27,10 @@ trait get
 			$current   = [];
 			$available = [];
 			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id, ['real_answer' => true, 'all_answer' => true]);
+			if(!isset($is_answer[0]))
+			{
+				$is_answer = [$is_answer];
+			}
 
 			if(!$is_answer)
 			{
