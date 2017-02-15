@@ -222,15 +222,23 @@ function openTopNav()
 }
 
 /**
- * [setFav description]
+ * [setProperty description]
  * @param {[type]} argument [description]
  */
-function setFav()
+function setProperty(_prop)
 {
-	$(document).on('change', '[name="favorite"]', function()
+	if(!_prop)
 	{
-		_self = $(this);
-		id    = _self.parents('[data-id]').attr("data-id");
+		_prop = 'favorite';
+	}
+	$(document).on('change', '[name="' + _prop + '"]', function()
+	{
+		var _self = $(this);
+		var id    = _self.attr("data-id");
+		if(!id)
+		{
+			id = _self.parents('[data-id]').attr("data-id");
+		}
 
 		_self.ajaxify(
 		{
@@ -238,13 +246,15 @@ function setFav()
 			{
 				data:
 				{
-					'type': 'favourites',
+					'setProperty': _prop,
+					'status': this.checked,
 					'id': id
 				},
 				abort: true,
 				method: 'post',
 				error: function(e, data, x)
 				{
+					console.log(data);
 					if(data !== 'success')
 					{
 						_self.prop("checked", false);
@@ -2563,7 +2573,8 @@ function runAllScripts()
 	// open profile on getting focus
 	openTopNav();
 	// allow to set fav
-	setFav();
+	setProperty('favorite');
+	setProperty('heart');
 
 
 	// load needed js file
