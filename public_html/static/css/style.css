@@ -484,7 +484,7 @@ header .logo h1 a{color:#f4f4f4;display:block}
 header .logo>a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1)}
 header .logo>a:hover img{opacity:.8}
 
-.grayscale{-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.3s;transition:.3s}
+.grayscale{-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .grayscale:hover{-webkit-filter:none;filter:none}
 
 header #header-box{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;flex-direction:column;justify-content:space-between}
@@ -761,7 +761,7 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable h2{color:#f4f4f4;margin-bottom:0;line-height:2em}
 #inestimable .vision{text-align:center;font-size:4em;line-height:2em;}
 
-#inestimable img{-webkit-filter:grayscale(50%);filter:grayscale(50%);-webkit-transition:.3s;transition:.3s}
+#inestimable img{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;transition:.7s}
 #inestimable:hover img{-webkit-filter:none;filter:none}
 
 .special-button{position:relative;border-radius:15px;font-size:20px}
