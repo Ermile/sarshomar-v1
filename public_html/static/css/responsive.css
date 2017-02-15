@@ -122,7 +122,7 @@
  .rtl header .logo{background-image:none}
  header .logo h1{display:inline-block;vertical-align:bottom}
  header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;margin-top:10px}
- header #header-quick{width:85%;margin:0 auto;border-bottom:1px solid #e5a428;display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
+ header #header-quick{width:85%;margin:2em auto;border-bottom:1px solid #e5a428;display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
  header #header-quick>a{margin-top:0}
  .ltr header #header-quick>a{font-size:1.2em}
  header #header-profile{display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;margin:0 5px}
@@ -219,7 +219,6 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .poll-container .poll-toolbox {-ms-flex-wrap: wrap;flex-wrap: wrap;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;padding: 0;}
  .in.small.poll-container {width: 95%;}
  .menu .menu-inside label i {display: none;}
- .ltr [data-copy]:after {right: auto; left: 30px;}
  .rtl .element,.element {padding-left: 0;padding-right: 0;}
  .element.no-pad{display: block}
  .ultra .data {width: 100%;}
@@ -272,11 +271,23 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  .ultra .modules {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;max-height: none;}
  .element .file input[type="file"] {display: none;}
 
+ /************************************************************** Poll */
 .sharebox a {width: 20px;height: 20px;margin: 1em 0.5em;}
 nav.breadcrumb a {max-width: 12em;}
 .poll-container>h2{font-size: 1.7em}
+.poll-container .poll-skip {margin-bottom: 4em;}
+.poll-container .poll-actions {margin-bottom: 3em;}
+[data-copy] {position: absolute;right: 0;height: 35px;}
+.rtl [data-copy] {right: auto;left: 0;}
+#short_url {padding-right: 5em;}
+.rtl #short_url {padding-left: 5em;}
+ .ltr [data-copy]:after {top: 0;height: 35px;}
+ .rtl [data-copy]:after {left: 30px;right: auto;top: 0px;height: 35px;}
 
- /************************************************************** filter question */
+
+
+
+  /************************************************************** filter question */
  .poll-filters {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: reverse;-ms-flex-direction: column-reverse;flex-direction: column-reverse;}
  .pay-info {margin-bottom: 2em;}
  .switch .title.large {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;display: inline-block;border-radius: 0;border-top-left-radius: 5px;border-top-right-radius: 5px;}
