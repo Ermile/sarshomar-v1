@@ -64,7 +64,7 @@ trait set
 
 				if($new_status == 'delete')
 				{
-					$new_status == 'deleted';
+					$new_status = 'deleted';
 				}
 
 				if(!in_array($new_status, $all_status))
