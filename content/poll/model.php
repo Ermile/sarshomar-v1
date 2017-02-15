@@ -243,6 +243,7 @@ class model extends \mvc\model
 	public function post_save_answer()
 	{
 
+
 		// save a comment
 		if(utility::post("comment"))
 		{
@@ -274,28 +275,45 @@ class model extends \mvc\model
 
 		$poll_id = $this->check_url(true);
 
+		$this->user_id = $this->login('id');
+
+		if(utility::post("setProperty"))
+		{
+			$mode = null;
+			if(utility::post('status') == 'true')
+			{
+				$mode = true;
+			}
+			elseif(utility::post('status') == 'false')
+			{
+				$mode = false;
+			}
+			else
+			{
+				return debug::error(T_("Invalid parameter status"), 'setProperty', 'status');
+			}
+
+			switch (utility::post('setProperty'))
+			{
+				case 'heart':
+					\lib\db\polls::like($this->user_id, utility\shortURL::decode($poll_id), ['debug' => false]);
+					break;
+				case 'favorite':
+					\lib\db\polls::fav($this->user_id, utility\shortURL::decode($poll_id), ['debug' => false]);
+					break;
+				default:
+					debug::error(T_("Can not support this property"), 'setProperty', 'arguments');
+					break;
+			}
+			return;
+		}
+
 		// save score of comments
 		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
 		{
 			$this->save_score_comments();
 			return;
 		}
-
-		// save like
-		if(utility::post("type") == 'like')
-		{
-			$result = \lib\db\polls::like($this->login('id'), \lib\utility\shortURL::decode($poll_id));
-			return;
-		}
-
-		// save like
-		if(utility::post("type") == 'favourites')
-		{
-			$result = \lib\db\polls::fav($this->login('id'), \lib\utility\shortURL::decode($poll_id));
-			return;
-		}
-
-		$this->user_id = $this->login('id');
 
 		$post = utility::post();
 
@@ -333,29 +351,35 @@ class model extends \mvc\model
 
 		$is_answerd = $this->poll_answer_get();
 
-		$add = false;
-		if(isset($is_answerd['available']) && in_array('add', $is_answerd['available']))
-		{
-			$add = true;
-		}
 
-		$edit = false;
-		if(isset($is_answerd['available']) && in_array('edit', $is_answerd['available']))
-		{
-			$edit = true;
-		}
-
+		$add    = false;
+		$edit   = false;
 		$delete = false;
-		if(isset($is_answerd['available']) && in_array('delete', $is_answerd['available']))
+
+		if(isset($is_answerd['available']))
 		{
-			$delete = true;
+			if(in_array('add', $is_answerd['available']))
+			{
+				$add = true;
+			}
+
+			if(in_array('edit', $is_answerd['available']))
+			{
+				$edit = true;
+			}
+
+			if(in_array('delete', $is_answerd['available']))
+			{
+				$delete = true;
+			}
 		}
 
-		if($add && empty($opt))
-		{
-			return debug::error(T_("You must select one answer or skip the poll"));
-		}
-		elseif($delete && empty($opt))
+		// if($add && empty($opt))
+		// {
+		// 	return debug::error(T_("You must select one answer or skip the poll"));
+		// }
+
+		if($delete && empty($opt))
 		{
 			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
 			return debug::warn(T_("Your answer was deleted"));
@@ -368,7 +392,9 @@ class model extends \mvc\model
 		{
 			$options['method'] = 'post';
 		}
+
 		$this->poll_answer_add($options);
+		// debug::title("");
 	}
 }
 ?>

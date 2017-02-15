@@ -4,7 +4,7 @@ namespace content_api\v1\file;
 class controller extends  \content_api\v1\home\controller
 {
 
-	public function route_file()
+	public function _route()
 	{
 		/**
 		 * link to upload

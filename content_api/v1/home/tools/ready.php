@@ -219,6 +219,25 @@ trait ready
 				$_poll_data['my_like'] = false;
 			}
 		}
+		else
+		{
+			$my_like =
+			[
+				'post_id'       => $poll_id,
+				'option_key'    => 'like',
+				'option_status' => 'enable',
+				'option_cat'    => 'user_detail_'. $this->user_id,
+				'user_id'       => $this->user_id,
+				'limit'         => 1,
+			];
+
+			$my_like = \lib\db\options::get($my_like);
+			if($my_like)
+			{
+				$_poll_data['my_like'] = true;
+			}
+
+		}
 
 		// change my_fav field
 		if(array_key_exists('my_fav', $_poll_data))
@@ -231,6 +250,26 @@ trait ready
 			{
 				$_poll_data['my_fav'] = false;
 			}
+		}
+		else
+		{
+			$my_fav =
+			[
+				'post_id'       => $poll_id,
+				'option_key'    => 'favourites',
+				'option_status' => 'enable',
+				'option_cat'    => 'user_detail_'. $this->user_id,
+				'user_id'       => $this->user_id,
+				'limit'         => 1,
+			];
+
+			$my_fav = \lib\db\options::get($my_fav);
+
+			if($my_fav)
+			{
+				$_poll_data['my_fav'] = true;
+			}
+
 		}
 
 		// change have_true_answer field

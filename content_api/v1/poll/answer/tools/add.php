@@ -13,12 +13,12 @@ trait add
 	 */
 	public function poll_answer_add($_options = [])
 	{
-		debug::title(T_("Can not save answer"));
 
 		$default_optios =
 		[
 			'method' => 'post',
 		];
+
 		$_options = array_merge($default_optios, $_options);
 
 		if(!shortURL::is(utility::request('id')))
@@ -34,24 +34,31 @@ trait add
 			return debug::error(T_("Can not set answer and skip"), 'skip', 'arguments');
 		}
 
-		// $available = $this->poll_answer_get($_options);
+		$available = $this->poll_answer_get($_options);
 
-		// if(isset($available['available']) && is_array($available['available']))
-		// {
-		// 	if(!in_array('skip', $available['available']) && $skip)
-		// 	{
-		// 		return debug::error(T_("Can not skip this poll"), 'answer', 'permission');
-		// 	}
+		debug::title(T_("Can not save answer"));
 
-		// 	if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $user_answer)
-		// 	{
-		// 		return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
-		// 	}
-		// }
-		// else
-		// {
-		// 	return debug::error(T_("Invalid answer available"), 'api', 'system');
-		// }
+		if(!debug::$status)
+		{
+			return;
+		}
+
+		if(isset($available['available']) && is_array($available['available']))
+		{
+			if(!in_array('skip', $available['available']) && $skip)
+			{
+				return debug::error(T_("Can not skip this poll"), 'answer', 'permission');
+			}
+
+			if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $user_answer)
+			{
+				return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
+			}
+		}
+		else
+		{
+			return debug::error(T_("Invalid answer available"), 'api', 'system');
+		}
 
 		if($skip)
 		{

@@ -38,7 +38,7 @@ class polls
 			posts.post_privacy				AS `privacy`,
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
-			IFNULL(ranks.favo,0)   			AS `count_favo`,
+			IFNULL(ranks.favo,0)   			AS `count_fav`,
 			IFNULL(ranks.vot,0)   			AS `count_vote`,
 			(
 				SELECT

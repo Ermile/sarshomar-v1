@@ -13,7 +13,7 @@ class model extends \mvc\model
 	 */
 	public function post_search()
 	{
-		if(utility::post("type") == 'favourites')
+		if(utility::post("setProperty") == 'favorite')
 		{
 			if($this->login())
 			{

@@ -13,11 +13,16 @@ trait get
 	 */
 	public function poll_answer_get($_options = [])
 	{
-
-
 		if(!shortURL::is(utility::request('id')))
 		{
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
+		}
+
+		$this->poll_get();
+
+		if(!debug::$status)
+		{
+			return;
 		}
 
 		$poll_id = utility\shortURL::decode(utility::request('id'));
@@ -26,7 +31,9 @@ trait get
 		{
 			$current   = [];
 			$available = [];
+
 			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id, ['real_answer' => true, 'all_answer' => true]);
+
 			if(!isset($is_answer[0]))
 			{
 				$is_answer = [$is_answer];
@@ -87,7 +94,10 @@ trait get
 			$result = ['my_answer' => $current, 'available' => $available];
 			return $result;
 		}
-		return debug::error(T_("Undefined error"), 'answer', 'system');
+		else
+		{
+			return debug::error(T_("Can not found poll id"), 'api', 'system');
+		}
 
 	}
 }

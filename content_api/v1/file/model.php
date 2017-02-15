@@ -6,7 +6,7 @@ class model extends \content_api\v1\home\model
 	use tools\get;
 	use tools\link;
 
-	use poll\tools\get;
+	use \content_api\v1\poll\tools\get;
 	use \content_api\v1\home\tools\ready;
 
 	/**

@@ -55,7 +55,7 @@ class answers
 			$limit
 			-- answers::is_answered()
 		";
-		$result = \lib\db::get($query, null, true);
+		$result = \lib\db::get($query, null);
 		if($result)
 		{
 			return $result;
@@ -311,7 +311,7 @@ class answers
 			{
 				if($_args['debug'])
 				{
-					debug::error(T_("You was not answer to this poll and try to edit it!"), 'answer', 'permission');
+					debug::error(T_("You was not answer to this poll and try to edit or delete it!"), 'answer', 'permission');
 				}
 				return false;
 			}
@@ -333,10 +333,10 @@ class answers
 				}
 				return false;
 			}
-			elseif($_type === 'delete')
-			{
-				return true;
-			}
+			// elseif($_type === 'delete')
+			// {
+			// 	return true;
+			// }
 		}
 
 		$insert_time = date("Y-m-d H:i:s");
@@ -357,7 +357,7 @@ class answers
 		{
 			if($_args['debug'])
 			{
-				debug::error(T_("Many time left, can not update answer"), 'answer', 'permission');
+				debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
 			}
 			return false;
 		}
