@@ -1451,8 +1451,8 @@ var add_selection = function(_name)
 			}).bind("mouseup.dynamic-range", function(){
 				$(document).unbind("mousemove.dynamic-range");
 
-				$(this).trigger("range-slider::mouseup::margin");
-				$(this).trigger("range-slider::changeAfter");
+				$(_self).trigger("range-slider::mouseup::margin");
+				$(_self).trigger("range-slider::changeAfter");console.log('range changed...')
 
 				
 				$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
@@ -1556,8 +1556,8 @@ var add_selection = function(_name)
 			{
 				$(_self).find('.dynamic-range span.mount').hide(); //design*********
 			}
-			$(this).trigger("range-slider::touchend::margin_touch");
-			$(this).trigger("range-slider::changeAfter");
+			$(_self).trigger("range-slider::touchend::margin_touch");
+			$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
 			$(document).unbind('touchend');
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
@@ -1632,8 +1632,8 @@ var add_selection = function(_name)
 
 			$(document).unbind("mousemove.range-slider");
 			
-			$(this).trigger("range-slider::mouseup::min_max");
-			$(this).trigger("range-slider::changeAfter");
+			$(_self).trigger("range-slider::mouseup::min_max");
+			$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
 
 			$(document).unbind("mouseup.range-slider");
 		});
@@ -1707,8 +1707,8 @@ var add_selection = function(_name)
 			$(_self).find('.dynamic-range .min span.mount').hide(); //design*********
 		}
 	}).bind('keyup.range-slider',function(event){
-		$(this).trigger("range-slider::keyup");
-		$(this).trigger("range-slider::changeAfter");
+		$(_self).trigger("range-slider::keyup");
+		$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
 
 	}).bind('touchmove',function(e){
 	      e.preventDefault();
@@ -1746,8 +1746,8 @@ var add_selection = function(_name)
 				$(_self).find('.dynamic-range .'+ _name +' span.mount').hide(); //design*********
 			}
 
-			$(this).trigger("range-slider::touchend::min_max_touch");
-			$(this).trigger("range-slider::changeAfter");
+			$(_self).trigger("range-slider::touchend::min_max_touch");
+			$(_self).trigger("range-slider::changeAfter");
 
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
