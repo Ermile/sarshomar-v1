@@ -292,6 +292,15 @@ function shortkey()
 				}
 				break;
 
+			case '82ctrl':
+				// if we have chart redraw it with new data
+				if($('.chart').length)
+				{
+					redrawChart();
+				}
+				e.preventDefault();
+				break;
+
 			// ctrl + s
 			case '83ctrl':
 				// on /@/add by pressing ctrl+s save

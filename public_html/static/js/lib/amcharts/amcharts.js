@@ -678,10 +678,46 @@ function drawChart()
 			myChartOptions = window[attrFormat](myChartOptions);
 		}
 
-		AmCharts.makeChart( chartContainer, myChartOptions);
+		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
+		$(chartContainer).data('chart', chartData);
 	});
 }
 
+
+/**
+ * [redrawChart description]
+ * @return {[type]} [description]
+ */
+function redrawChart(_data)
+{
+	if(!_data)
+	{
+		_data = {};
+		_data.chart = true;
+	}
+	// try to abort old request
+	try { xhr.abort(); } catch(e){}
+	// try to get new list from server
+	var myAddr = $(location).attr('href');
+
+	var xhr    = $.getJSON(myAddr, _data, function(_response)
+	{
+		if(_response.result.stats.total.valid)
+		{
+			var newChartData = _response.result.stats.total.valid;
+			// newChartData[0].value = 20;
+			// newChartData[1].value = 30;
+			console.log(newChartData);
+			var myChart   = $('.chart').data('chart');
+
+			//Setting the new data to the graph
+			myChart.dataProvider = newChartData;
+			myChart.animateAgain();
+			//Updating the graph to show the new data
+			myChart.validateData();
+		}
+	});
+}
 
 
 /**
