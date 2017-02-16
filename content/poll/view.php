@@ -39,7 +39,20 @@ class view extends \mvc\view
 			}
 			$this->data->article_titles = $article_titles;
 		}
-		$this->data->poll = $poll;
+
+		$poll_type = 'select';
+		if(isset($poll['options']['multi']))
+		{
+			$poll_type = 'milti';
+		}
+		elseif(isset($poll['options']['ordering']))
+		{
+			$poll_type = 'ordering';
+		}
+
+		$this->data->poll_type = $poll_type;
+
+		$this->data->poll      = $poll;
 	}
 
 

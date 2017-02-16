@@ -3,7 +3,7 @@
 {%block content%}
  <div class="main pad">
   <form method="post">
-   <div class="in small poll-container">
+   <div class="in small poll-container" data-type="{{poll_type}}">
     {{block('poll_title')}}
     {{block('poll_toolbox')}}
     {{block('poll_file')}}
