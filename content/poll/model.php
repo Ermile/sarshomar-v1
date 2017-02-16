@@ -17,6 +17,8 @@ class model extends \mvc\model
 
 	use \content_api\v1\poll\answer\tools\delete;
 
+	use \content_api\v1\poll\stats\tools\get;
+
 	public $poll_code       = null;
 	public $poll_id         = null;
 	public $get_poll_options =
@@ -141,6 +143,11 @@ class model extends \mvc\model
 	 */
 	public function get_poll($_args)
 	{
+		if($this->draw_stats())
+		{
+			return ;
+		}
+
 		$this->check_url();
 		$this->user_id = $this->login('id');
 		if($this->poll_code)
@@ -157,6 +164,11 @@ class model extends \mvc\model
 	 */
 	public function get_realpath()
 	{
+		if($this->draw_stats())
+		{
+			return ;
+		}
+
 		$poll = $this->get_posts();
 		if(isset($poll['id']))
 		{
@@ -165,6 +177,38 @@ class model extends \mvc\model
 			$poll = $this->poll_get($this->get_poll_options);
 			return $poll;
 		}
+	}
+
+
+	/**
+	 * Draws statistics.
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function draw_stats()
+	{
+		if(utility::get('chart'))
+		{
+			$poll_id       = $this->check_url(true);
+			$this->user_id = $this->login('id');
+			utility::set_request_array(['id' => $poll_id]);
+			$result = $this->poll_stats();
+			switch (utility::get('chart'))
+			{
+				// case 'gender':
+
+				case 'result':
+				default:
+					if(isset($result['total']))
+					{
+						$result = $result['total'];
+					}
+					break;
+			}
+			debug::msg('stats', json_encode($result, JSON_UNESCAPED_UNICODE));
+			return true;
+		}
+		return false;
 	}
 
 
