@@ -60,7 +60,7 @@ trait get
 
 			if(!$poll_id || !utility\shortURL::is($poll_id))
 			{
-				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+				return debug::error(T_("Invalid id parameter"), 'id', 'arguments');
 			}
 
 			$poll_id = utility\shortURL::decode($poll_id);

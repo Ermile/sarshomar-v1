@@ -31,7 +31,7 @@ trait add
 
 		if($user_answer && $skip)
 		{
-			return debug::error(T_("Can not set answer and skip"), 'skip', 'arguments');
+			return debug::error(T_("Unable to set answer or skip"), 'skip', 'arguments');
 		}
 
 		$available = $this->poll_answer_get($_options);
@@ -93,7 +93,7 @@ trait add
 		{
 			if($poll['status'] != 'publish')
 			{
-				return debug::error(T_("Poll not publish"), 'id', 'arguments');
+				return debug::error(T_("Poll has not published"), 'id', 'arguments');
 			}
 		}
 		else
@@ -122,7 +122,7 @@ trait add
 
 		if(!$poll_type)
 		{
-			return debug::error(T_("Can not support this poll to answer"), 'answer', 'arguments');
+			return debug::error(T_("This type of poll is not supported to answer"), 'answer', 'arguments');
 		}
 
 		$multi     = false;
@@ -152,7 +152,7 @@ trait add
 
 		if(!$multi && count($user_answer) > 1)
 		{
-			return debug::error(T_("This poll is not a multi choice poll and you send :count answer",['count' => count($user_answer)]),'answer', 'arguments');
+			return debug::error(T_("This is not a multi select poll and you selected :count answers",['count' => count($user_answer)]),'answer', 'arguments');
 		}
 
 		$true_answer = [];
@@ -163,13 +163,13 @@ trait add
 
 			if(!isset($poll['answers'][$poll_answer_key]))
 			{
-				return debug::error(T_("This poll have not answer :key", ['key' => $key]), 'answer', 'arguments');
+				return debug::error(T_("This poll has not option :key", ['key' => $key]), 'answer', 'arguments');
 			}
 			else
 			{
 				if(!isset($poll['answers'][$poll_answer_key]['type']))
 				{
-					return debug::error(T_("This poll have not answer type :key", ['key' => $key]), 'answer', 'system');
+					return debug::error(T_("This poll has not answery type of :key", ['key' => $key]), 'answer', 'system');
 				}
 
 				$answer_type = $poll['answers'][$poll_answer_key]['type'];
@@ -187,7 +187,7 @@ trait add
 					default:
 						if(intval($key) !== 1)
 						{
-							return debug::error(T_("This poll is :type poll and you can set answer 1 only", ['type' => $answers_type]), 'answer', 'arguments');
+							return debug::error(T_("This poll is :type poll and you can set only one answer", ['type' => $answers_type]), 'answer', 'arguments');
 						}
 						break;
 				}
@@ -214,7 +214,7 @@ trait add
 								}
 								elseif($value !== false)
 								{
-									return debug::error(T_("Invalid paramet :value", ['value' => $value]), 'answer', 'arguments');
+									return debug::error(T_("Invalid parameter :value", ['value' => $value]), 'answer', 'arguments');
 								}
 							}
 							break;

@@ -93,7 +93,7 @@ class answers
 				{
 					if($_args['debug'])
 					{
-						debug::error(T_("You answered to this poll before"), 'answer', 'permission');
+						debug::error(T_("You have already answered to this poll"), 'answer', 'permission');
 					}
 					return false;
 				}
@@ -311,7 +311,7 @@ class answers
 			{
 				if($_args['debug'])
 				{
-					debug::error(T_("You was not answer to this poll and try to edit or delete it!"), 'answer', 'permission');
+					debug::error(T_("You have not answered to this poll yet"), 'answer', 'permission');
 				}
 				return false;
 			}
@@ -329,7 +329,7 @@ class answers
 			{
 				if($_args['debug'])
 				{
-					debug::error(T_("Duplicate answer, needless to update"), 'answer', 'permission');
+					debug::error(T_("You have already selected this answer and submited"), 'answer', 'permission');
 				}
 				return false;
 			}
@@ -391,7 +391,7 @@ class answers
 		{
 			if($_args['debug'])
 			{
-				debug::error(T_("Many update what are you doing?"),'answer', 'permission');
+				debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
 			}
 			return false;
 		}
@@ -430,7 +430,7 @@ class answers
 
 		if($must_remove == $must_insert)
 		{
-			return debug::error(T_("Duplicate answer needless to update"), 'answer', 'arguments');
+			return debug::error(T_("You have already selected this answer and submited"), 'answer', 'arguments');
 		}
 
 
@@ -451,7 +451,7 @@ class answers
 
 		if($diff_seconds > $_args['time'])
 		{
-			return debug::error(T_("Many time left, can not update answer"), 'answer', 'permission');
+			return debug::error(T_("You can not update your answer"), 'answer', 'permission');
 		}
 
 		// get count of updated the poll
@@ -479,7 +479,7 @@ class answers
 		$update_count = intval($update_count['value']);
 		if($update_count > $_args['count'])
 		{
-			return debug::error(T_("Many update what are you doing?"),'answer', 'permission');
+			return debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
 		}
 		return true;
 	}

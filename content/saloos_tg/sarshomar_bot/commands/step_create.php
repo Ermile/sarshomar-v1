@@ -198,7 +198,7 @@ class step_create
 		$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 		$maker->message->add_title();
 		$maker->message->add_poll_list();
-		$maker->message->add('insert', T_("Insert next asnwer or choise action"));
+		$maker->message->add('insert', T_("Insert next asnwer or choose an action"));
 		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
 		if(is_object($_maker))
 		{

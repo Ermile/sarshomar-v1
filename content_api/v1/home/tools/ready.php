@@ -59,7 +59,7 @@ trait ready
 
 		if($_options['check_is_my_poll'] && !$my_poll)
 		{
-			return debug::error(T_("Can not access to load this poll (this is not your poll)"), "id", 'permission');
+			return debug::error(T_("Access denied to the poll (This is not your poll)"), "id", 'permission');
 		}
 
 		if(array_key_exists('status', $_poll_data))
@@ -109,7 +109,7 @@ trait ready
 
 			if(!$permission_load_poll)
 			{
-				return debug::error(T_("Can not access to load this poll :msg",['msg' => $msg]), "id", 'permission');
+				return debug::error(T_("Access denied to load this poll :msg",['msg' => $msg]), "id", 'permission');
 			}
 		}
 		else

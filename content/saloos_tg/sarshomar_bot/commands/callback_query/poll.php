@@ -57,9 +57,9 @@ class poll
 
 		if(empty($query_result))
 		{
-			$message = T_("You dont add eny poll");
+			$message = T_("You didn't add any poll");
 			$message = "\n";
-			$message = T_("Do you like add poll");
+			$message = T_("Do you like to add poll");
 			$inline_keyboard =  [
 				[["text" => T_("Add new poll"), "callback_data" => "poll/new"]]
 			];

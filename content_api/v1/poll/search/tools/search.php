@@ -49,13 +49,13 @@ trait search
 			{
 				if(in_array('all', $split))
 				{
-					return debug::error(T_("Can not set all in array request"), 'in', 'arguments');
+					return debug::error(T_("You can not set 'all' parameter in array 'in'"), 'in', 'arguments');
 				}
 				$meta['in'] = $split;
 			}
 			else
 			{
-				return debug::error(T_("Invalid parameter in as :type", ['type' => gettype(utility::request('in'))]), 'in', 'arguments');
+				return debug::error(T_("The 'in' parameter type is invalid", ['type' => gettype(utility::request('in'))]), 'in', 'arguments');
 			}
 
 			if((is_array(utility::request('in')) && in_array('me', utility::request('in'))) || utility::request('in')  == 'me' )
@@ -137,7 +137,7 @@ trait search
 		{
 			if(!$in_me)
 			{
-				return debug::error(T_("You can set status in your poll, in:me"), 'status', 'arguments');
+				return debug::error(T_("You can not set status and search in all polls"), 'status', 'arguments');
 			}
 			$status = explode(' ', utility::request('status'));
 			$status_list =

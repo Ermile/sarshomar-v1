@@ -382,7 +382,7 @@ class model extends \mvc\model
 		if($delete && empty($opt))
 		{
 			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
-			return debug::warn(T_("Your answer was deleted"));
+			return debug::warn(T_("Your answer has been deleted"));
 		}
 		elseif($edit && !empty($opt))
 		{

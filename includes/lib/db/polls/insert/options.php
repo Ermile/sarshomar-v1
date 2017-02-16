@@ -13,7 +13,7 @@ trait options
 		{
 			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 160)
 			{
-				return debug::error(T_("Invalid arguments brand title, you must set les than 160 character for brand"), 'title', 'arguments');
+				return debug::error(T_("Invalid brand title argument, you must set less than 160 character for the title"), 'title', 'arguments');
 			}
 
 			$url = null;
@@ -21,7 +21,7 @@ trait options
 			{
 				if(mb_strlen(self::$args['brand']['url']) > 100)
 				{
-					return debug::error(T_("Invalid arguments brand url, you must set les than 100 character for brand url "), 'url', 'arguments');
+					return debug::error(T_(" Invalid brand URL argument, you must set less than 100 character for brand URL "), 'url', 'arguments');
 				}
 
 				$url = self::$args['brand']['url'];
@@ -54,7 +54,7 @@ trait options
 
 			if(intval(self::$args['options']['multi']['min']) < 1)
 			{
-				return debug::error(T_("Can not set min less than 1"), 'min', 'arguments');
+				return debug::error(T_("Can not set parameter 'min' less than 1"), 'min', 'arguments');
 			}
 
 			if(
@@ -63,12 +63,12 @@ trait options
 				intval(self::$args['options']['multi']['max'])
 			  )
 			{
-				return debug::error(T_("You can not set multi:min greater than multi:max"), 'min', 'arguments');
+				return debug::error(T_("You can not set minimum greater than maximum in multi select settings"), 'min', 'arguments');
 			}
 
 			if(intval(self::$args['options']['multi']['min']) > count(self::$args['answers']))
 			{
-				return debug::error(T_("You are set :count answers can not set :min in multi: min ",
+				return debug::error(T_("You have set :count answers and can not set :min in min parameter ",
 					[
 						'count' => count(self::$args['answers']),
 						'min'   => self::$args['options']['multi']['min']
@@ -93,7 +93,7 @@ trait options
 
 			if(intval(self::$args['options']['multi']['max']) > count(self::$args['answers']))
 			{
-				return debug::error(T_("You are set :count answers can not set :max in multi: max ",
+				return debug::error(T_("You have set :count answers and can not set :max in max parameter ",
 					[
 						'count' => count(self::$args['answers']),
 						'max'   => self::$args['options']['multi']['max']
@@ -106,7 +106,7 @@ trait options
 				intval(self::$args['options']['multi']['min'])
 			  )
 			{
-				return debug::error(T_("You can not set multi:max less than multi:min"), 'max', 'arguments');
+				return debug::error(T_("You can not set minimum greater than maximum in multi select settings"), 'max', 'arguments');
 			}
 			self::save_options('multi_max', self::$args['options']['multi']['max']);
 			$set_multi_max = true;
@@ -143,7 +143,7 @@ trait options
 
 				if($set_multi)
 				{
-					return debug::error(T_("Can not use multi and ordering"), 'ordering', 'arguments');
+					return debug::error(T_("You can not use multi select and ordering poll"), 'ordering', 'arguments');
 				}
 
 				self::save_options('ordering', true);
@@ -372,7 +372,7 @@ trait options
 
 			if(!isset($check['term_type']) || (isset($check['term_type']) && $check['term_type'] != 'sarshomar'))
 			{
-				return debug::error(T_("Invalid cat"), 'cat', 'arguments');
+				return debug::error(T_("Invalid category"), 'cat', 'arguments');
 			}
 
 			$temp_poll_id = self::$poll_id;

@@ -81,11 +81,11 @@ trait delete
 
 		if($result && \lib\db::affected_rows())
 		{
-			debug::title(T_("Your answer was delete"));
+			debug::title(T_("Your answer has been deleted"));
 		}
 		else
 		{
-			return debug::error(T_("You are not answer to this poll"));
+			return debug::error(T_("You have not answered to this poll"));
 		}
 		return;
 	}

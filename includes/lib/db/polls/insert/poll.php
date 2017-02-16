@@ -160,7 +160,7 @@ trait poll
 
 			if($parent && !preg_match("/^[". self::$args['shortURL']. "]+$/", $parent))
 			{
-				return debug::error(T_("Invalid parametr tree:parent"), 'parent', 'arguments');
+				return debug::error(T_("Invalid tree parameter parent"), 'parent', 'arguments');
 			}
 
 			if($parent)
@@ -180,7 +180,7 @@ trait poll
 					{
 						if(!is_numeric($value))
 						{
-							return debug::error(T_("Invalid parametr tree:answers (:value)", ['value' => $value]), 'answers', 'arguments');
+							return debug::error(T_("Invalid tree parameter :value", ['value' => $value]), 'answers', 'arguments');
 						}
 					}
 				}
@@ -245,7 +245,7 @@ trait poll
 		{
 			if(!is_array(self::$args['from']))
 			{
-				return debug::error(T_("Parametr from muse be array"), 'from', 'arguments');
+				return debug::error(T_("Parameter From must be array"), 'from', 'arguments');
 			}
 
 			$insert_filters = \lib\utility\postfilters::update(self::$args['from'], self::$poll_id);
@@ -269,7 +269,7 @@ trait poll
 				{
 					if(self::$debug)
 					{
-						return debug::error(T_(":max user was found, low the members ",["max" => $member_exist]), 'count', 'arguments');
+						return debug::error(T_(":max users were found, reduce the number of users ",["max" => $member_exist]), 'count', 'arguments');
 					}
 				}
 

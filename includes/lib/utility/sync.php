@@ -84,7 +84,7 @@ class sync
 				->set_result($_telegram_id)
 				->set_password($temp_password)
 				->set_error_code(3502)
-				->set_message(T_("You can login in sarshomar.com whit your username: mobile , and password: :password ", ['password' => $temp_password]));
+				->set_message(T_("You can login to Sarshomar.com with your username :mobile and password :password ", ['password' => $temp_password]));
 		}
 
 		if(!$web || !isset($web['id']))
@@ -429,7 +429,7 @@ class sync
 				transactions.unit_id,
 				transactions.plus,
 				transactions.minus,
-				transactions.budgetbefor,
+				transactions.budgetbefore,
 				transactions.budget,
 				transactions.exchange_id,
 				transactions.status,
@@ -447,7 +447,7 @@ class sync
 				transactions.unit_id,
 				transactions.plus,
 				transactions.minus,
-				transactions.budgetbefor,
+				transactions.budgetbefore,
 				transactions.budget,
 				transactions.exchange_id,
 				transactions.status,

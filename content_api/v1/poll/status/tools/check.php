@@ -84,7 +84,7 @@ trait check
 
 			if($value['type'] == 'select' && count($answers) <= 1)
 			{
-				return debug::error(T_("You must set two answers in select mod"), 'answers', 'arguments');
+				return debug::error(T_("Required minimum answers for select polls is two answers"), 'answers', 'arguments');
 			}
 
 			if($value['type'] == 'select')
@@ -94,7 +94,7 @@ trait check
 
 					if(!$value['title'] && !$value['attachment'])
 					{
-						return debug::error(T_("You must set answer title or set file in index :key of answer", ['key' => $key]), 'answers', 'arguments');
+						return debug::error(T_("You must set title of the answer or set file in index :key of answer", ['key' => $key]), 'answers', 'arguments');
 					}
 				}
 			}
@@ -151,7 +151,7 @@ trait check
 		if(isset($poll['sarshomar']) && $poll['sarshomar'] === '1')
 		{
 			$set_status_awaiting = true;
-			debug::warn(T_("You poll is awaiting moderation, all sarshomar poll was set in awaiting moderation"));
+			debug::warn(T_("You poll is awaiting moderation, all Sarshomar polls are set in awaiting moderation"));
 		}
 
 		// save and check words

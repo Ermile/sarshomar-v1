@@ -42,7 +42,7 @@ trait answers
 							break;
 
 						default:
-							return debug::error(T_("invalid parametr type (:type) in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
+							return debug::error(T_("Invalid type (:type) paramater in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
 							break;
 					}
 				}
@@ -50,7 +50,7 @@ trait answers
 				{
 					if(self::$debug)
 					{
-						debug::error(T_("invalid parametr answer type in index :key of answer", ['key' => $key]), 'answer', 'arguments');
+						debug::error(T_("Invalid answer type parameter in index :key of answer", ['key' => $key]), 'answer', 'arguments');
 
 					}
 					return ;
@@ -105,7 +105,7 @@ trait answers
 		     		{
 		     			if(!is_bool($value[$object_type]['is_true']))
 		     			{
-		     				return debug::error(T_("Invalid parametr is_true in index :key of answer", ['key' => $key]), 'is_true', 'arguments');
+		     				return debug::error(T_("Invalid parameter is_true in index :key of answer", ['key' => $key]), 'is_true', 'arguments');
 		     			}
 		     			$combine[$key]['true'] = 1;
 		     		}

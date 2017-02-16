@@ -147,7 +147,7 @@ class step_create
 			}
 			else
 			{
-				$maker->message->add('warn', T_("answers's poll min limit is 2, send secound answers."));
+				$maker->message->add('warn', T_("Answers minimum limit is 2 options, Please add the second answer."));
 			}
 		}
 		else

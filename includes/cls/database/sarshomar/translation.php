@@ -275,7 +275,7 @@ private function transtext()
 
 	// ------------------------------------------------------------ Table socialapi
 	echo T_("socialapi");           // Table socialapi
-	echo T_("socialap");            // socialap
+	echo T_("socialapI");            // socialapI
 	echo T_("facebook");            // Enum facebook
 	echo T_("twitter");             // Enum twitter
 	echo T_("uniqueid");            // uniqueid
@@ -332,7 +332,7 @@ private function transtext()
 	echo T_("transactions");        // Table transactions
 	echo T_("transaction");         // transaction
 	echo T_("transactionitem");     // transactionitem_id
-	echo T_("budgetbefor");         // budgetbefor
+	echo T_("budgetbefore");         // budgetbefore
 	echo T_("budget");              // budget
 	echo T_("exchange");            // exchange_id
 	echo T_("user_id");             // related_user_id

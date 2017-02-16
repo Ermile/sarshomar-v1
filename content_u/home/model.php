@@ -56,7 +56,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			return debug::error(T_("Invalid paramert language"), 'ui-language');
+			return debug::error(T_("Invalid language parameter"), 'ui-language');
 		}
 
 	}

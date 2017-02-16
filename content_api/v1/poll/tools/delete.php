@@ -29,7 +29,7 @@ trait delete
 
 		if(!$_options['id'])
 		{
-			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			return debug::error(T_("Invalid id parameter"), 'id', 'arguments');
 		}
 
 		$_options['id'] = \lib\utility\shortURL::decode($_options['id']);
@@ -79,7 +79,7 @@ trait delete
 					break;
 
 				default:
-					return debug::error(T_("To delete a question the status of it must be one of these: Draft, Awaiting and Puase"), 'id', 'permission');
+					return debug::error(T_("To delete a question the status of it must be one of these: Draft, Awaiting and Pause"), 'id', 'permission');
 					break;
 			}
 		}

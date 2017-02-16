@@ -16,7 +16,7 @@ trait fav_like
 	{
 		if(!utility\shortURL::is(utility::request("id")))
 		{
-			return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+			return debug::error(T_("Invalid id parameter"), 'id', 'arguments');
 		}
 
 		$poll_id = utility\shortURL::decode(utility::request('id'));

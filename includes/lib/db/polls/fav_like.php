@@ -32,13 +32,20 @@ trait fav_like
 
 		if(!isset($poll['status']) || (isset($poll['status']) && $poll['status'] != 'publish'))
 		{
-			return debug::error(T_("Poll not published"), 'id', 'arguments');
+			if(isset($poll['user_id']) && $poll['user_id'] == $_user_id)
+			{
+				// no problem to set fav and like
+			}
+			else
+			{
+				return debug::error(T_("Poll has not publisheded"), 'id', 'arguments');
+			}
 		}
 
-		if(!isset($poll['privacy']) || (isset($poll['privacy']) && $poll['privacy'] != 'public'))
-		{
-			return debug::error(T_("Poll not public"), 'id', 'arguments');
-		}
+		// if(!isset($poll['privacy']) || (isset($poll['privacy']) && $poll['privacy'] != 'public'))
+		// {
+		// 	return debug::error(T_("Poll not public"), 'id', 'arguments');
+		// }
 
 		if(!isset($poll['type']) || (isset($poll['type']) && $poll['type'] != 'poll' && $poll['type'] != 'survey'))
 		{

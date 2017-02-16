@@ -28,12 +28,12 @@ trait link
 		}
 		elseif(!utility::files($_options['upload_name']))
 		{
-			return debug::error(T_("File not upload in upload_name"), 'upload_name', 'arguments');
+			return debug::error(T_("Unable to upload, because of selected upload name"), 'upload_name', 'arguments');
 		}
 
 		if(!$_options['poll_id'])
 		{
-			return debug::error(T_("Parameter poll not set"), 'poll', 'arguments');
+			return debug::error(T_("Parameter 'poll' not set"), 'poll', 'arguments');
 		}
 
 		$poll_get =
@@ -58,7 +58,7 @@ trait link
 			$opt = intval($_options['opt']);
 			if(!isset($poll['answers'][$opt - 1]))
 			{
-				return debug::error(T_("This poll have not opt :opt", ['opt' => $opt]), 'opt', 'arguments');
+				return debug::error(T_("This poll have not option :opt", ['opt' => $opt]), 'opt', 'arguments');
 			}
 		}
 
@@ -102,7 +102,7 @@ trait link
 			$url = Protocol."://" . \lib\router::get_root_domain() . '/'. $file_detail['url'];
 		}
 
-		debug::title(T_("File upload complete"));
+		debug::title(T_("File upload completed"));
 		return ['code' => $file_id_code, 'url' => $url];
 	}
 }

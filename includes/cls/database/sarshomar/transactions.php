@@ -10,7 +10,7 @@ class transactions
 	public $unit_id            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'unit'            ,'type'=>'smallint@5'                      ,'foreign'=>'units@id!id'];
 	public $plus               = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'plus'            ,'type'=>'double@'];
 	public $minus              = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'minus'           ,'type'=>'double@'];
-	public $budgetbefor        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'budgetbefor'     ,'type'=>'double@'];
+	public $budgetbefore        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'budgetbefore'     ,'type'=>'double@'];
 	public $budget             = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'budget'          ,'type'=>'double@'];
 	public $exchange_id        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'exchange'        ,'type'=>'bigint@20'                       ,'foreign'=>'exchanges@id!id'];
 	public $status             = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@enable,disable,deleted,expired,awaiting,filtered,blocked,spam'];
@@ -58,7 +58,7 @@ class transactions
 	//--------------------------------------------------------------------------------id
 	public function minus(){}
 	//--------------------------------------------------------------------------------id
-	public function budgetbefor(){}
+	public function budgetbefore(){}
 	//--------------------------------------------------------------------------------id
 	public function budget(){}
 	//--------------------------------------------------------------------------------foreign

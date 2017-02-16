@@ -134,7 +134,7 @@ class model extends \mvc\model
 
 				if(!$user_id)
 				{
-					debug::error(T_("Invalid authorization kye (user not found)"), 'authorization', 'access');
+					debug::error(T_("Invalid authorization key (User not found)"), 'authorization', 'access');
 					return false;
 				}
 

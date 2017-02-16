@@ -582,7 +582,7 @@ class pollopts
 			$update_as_patch = [];
 			if(count($_opts) > 1)
 			{
-				return debug::error(T_("Max input in patch mod is 1 parameter"), 'answers', 'arguments');
+				return debug::error(T_("Max input in patch mode is 1 parameter"), 'answers', 'arguments');
 			}
 
 			$pollopt_key = key($_opts);

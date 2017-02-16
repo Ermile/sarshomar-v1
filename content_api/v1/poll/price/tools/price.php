@@ -10,12 +10,12 @@ trait price
 	{
 		if(!utility::request())
 		{
-			return debug::error(T_("No parametr was send"), false, 'arguments');
+			return debug::error(T_("No parameter has been sent"), false, 'arguments');
 		}
 
 		if(utility::request("id") && count(utility::request()) > 1)
 		{
-			return debug::error(T_("Invalid use parametr id and other parametr"), 'id', 'arguments');
+			return debug::error(T_("You can not send id parameter and other parameters at the same time"), 'id', 'arguments');
 		}
 
 		$price = utility\price::calc(utility::request());

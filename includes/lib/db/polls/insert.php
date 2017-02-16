@@ -115,7 +115,7 @@ trait insert
 		// update id must be a shortURL
 		if(self::$args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", self::$args['update']))
 		{
-			return debug::error(T_("Invalid parametr update"), 'update', 'system');
+			return debug::error(T_("Invalid update parameter"), 'update', 'system');
 		}
 		elseif(self::$args['update'])
 		{
@@ -126,7 +126,7 @@ trait insert
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
 			if(self::$old_status !== 'draft')
 			{
-				return debug::error(T_("Can not edit poll, this poll status is :status", ['status' => self::$old_status]), 'status', 'permission');
+				return debug::error(T_("Can not edit poll, the status of this poll is :status", ['status' => self::$old_status]), 'status', 'permission');
 			}
 		}
 
@@ -135,7 +135,7 @@ trait insert
 		{
 			if(self::$debug)
 			{
-				debug::error(T_("Invalid parametr user"), 'user', 'system');
+				debug::error(T_("Invalid user paramater"), 'user', 'system');
 			}
 			return;
 		}
@@ -174,12 +174,12 @@ trait insert
 		// insert options of poll
 		self::insert_options();
 
-		/**
-			T_("Poll Successfully added");
-			T_("Poll Successfully edited");
-			T_("Error in adding poll");
-			T_("Error in editing poll");
-		 */
+		T_("Poll added successfully");
+	    T_("Poll edited successfully");
+	    T_("Error in adding poll");
+	    T_("Error in editing poll");
+
+
 		$msg_mod = "add";
 		if($_args['update'])
 		{
@@ -193,7 +193,7 @@ trait insert
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
 
-			debug::title(T_("Poll Successfully {$msg_mod}ed"));
+			debug::title(T_("Poll :operation successfully", ['operation' => $msg_mod. 'ed']));
 
 			if(self::$debug)
 			{
@@ -210,7 +210,7 @@ trait insert
 				'short_url' => $short_url,
 			];
 		}
-		debug::title(T_("Poll can not {$msg_mod}ed"));
+		debug::title(T_("Error in :operation poll", ['operation' => $msg_mod.'ing']));
 		return false;
 	}
 
@@ -278,7 +278,7 @@ trait insert
 		{
 			if(debug::$status)
 			{
-				return debug::error(T_("Cann't add poll"), false, 'sql');
+				return debug::error(T_("Can not add poll"), false, 'sql');
 			}
 		}
 	}

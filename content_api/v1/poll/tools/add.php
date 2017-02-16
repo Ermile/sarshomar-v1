@@ -56,12 +56,12 @@ trait add
 			}
 			else
 			{
-				return debug::error(T_("Invalid parametr id"), 'id', 'arguments');
+				return debug::error(T_("Invalid id parameter"), 'id', 'arguments');
 			}
 		}
 		elseif(utility::request("id"))
 		{
-			return debug::error(T_("Can not send parametr id in post mod"), 'id', 'arguments');
+			return debug::error(T_("Can not send parameter id in post mode"), 'id', 'arguments');
 		}
 
 		// insert args
