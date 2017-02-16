@@ -694,6 +694,13 @@ function redrawChart(_data)
 	{
 		_data = {};
 		_data.chart = true;
+
+		var chartType = $('input[name="chart_result"]:checked').val();
+		if(chartType)
+		{
+			_data.chart = chartType;
+		}
+
 	}
 	// try to abort old request
 	try { xhr.abort(); } catch(e){}
