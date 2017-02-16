@@ -47,6 +47,7 @@ trait update
 	 */
 	public static function update($_args, $_id)
 	{
+		unset(self::$_POLL[$_id]);
 		return \lib\db\posts::update($_args, $_id);
 	}
 
@@ -126,6 +127,8 @@ trait update
 			-- add new json to existing meta of post_meta
 		";
 		$result = \lib\db::query($query);
+		unset(self::$_POLL[$_poll_id]);
+
 		return $result;
 	}
 
@@ -179,6 +182,8 @@ trait update
 			-- add new json to existing meta of post_meta
 		";
 		$result = \lib\db::query($query);
+		unset(self::$_POLL[$_poll_id]);
+
 		return $result;
 	}
 
@@ -225,6 +230,8 @@ trait update
 			-- add new json to existing meta of post_meta
 		";
 		$result = \lib\db::query($query);
+		unset(self::$_POLL[$_poll_id]);
+
 		return $result;
 	}
 }

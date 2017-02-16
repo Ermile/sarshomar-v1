@@ -150,7 +150,7 @@ trait check
 
 		if(isset($poll['sarshomar']) && $poll['sarshomar'] === '1')
 		{
-			$set_status_awaiting = true;
+			// $set_status_awaiting = true;
 			debug::warn(T_("You poll is awaiting moderation, all Sarshomar polls are set in awaiting moderation"));
 		}
 

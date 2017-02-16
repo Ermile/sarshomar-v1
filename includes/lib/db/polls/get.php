@@ -82,23 +82,30 @@ trait get
 			return false;
 		}
 
-		$public_fields = self::$fields;
-		$query =
-		"
-			SELECT
-				$public_fields
-			WHERE
-				posts.id = $_poll_id
-			LIMIT 1
-			-- polls::get_poll()
-		";
-		$result = \lib\db::get($query, null);
-		$result = \lib\utility\filter::meta_decode($result);
-		if(isset($result[0]))
+		if(!isset(self::$_POLL[$_poll_id]))
 		{
-			return $result[0];
+			$public_fields = self::$fields;
+			$query =
+			"
+				SELECT
+					$public_fields
+				WHERE
+					posts.id = $_poll_id
+				LIMIT 1
+				-- polls::get_poll()
+			";
+			$result = \lib\db::get($query, null);
+			$result = \lib\utility\filter::meta_decode($result);
+			if(isset($result[0]))
+			{
+				self::$_POLL[$_poll_id] = $result[0];
+			}
+			else
+			{
+				self::$_POLL[$_poll_id] = $result;
+			}
 		}
-		return $result;
+		return self::$_POLL[$_poll_id];
 	}
 
 
@@ -111,6 +118,13 @@ trait get
 	 */
 	public static function get_poll_status($_poll_id)
 	{
+		$poll = self::get_poll($_poll_id);
+		if(isset($poll['status']))
+		{
+			return $poll['status'];
+		}
+		return null;
+
 		$query  = "SELECT post_status AS `status` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
 		$result = \lib\db::get($query, 'status', true);
 		if(!is_string($result))
@@ -130,6 +144,13 @@ trait get
 	 */
 	public static function get_poll_url($_poll_id)
 	{
+		$poll = self::get_poll($_poll_id);
+		if(isset($poll['url']))
+		{
+			return $poll['url'];
+		}
+		return null;
+
 		$query  = "SELECT post_url AS `url` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
 		$result = \lib\db::get($query, 'url', true);
 		if(!is_string($result))
@@ -149,6 +170,13 @@ trait get
 	 */
 	public static function get_poll_title($_poll_id)
 	{
+		$poll = self::get_poll($_poll_id);
+		if(isset($poll['title']))
+		{
+			return $poll['title'];
+		}
+		return null;
+
 		$query  = "SELECT post_title AS `title` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
 		$result = \lib\db::get($query, 'title', true);
 		if(!is_string($result))
@@ -168,6 +196,12 @@ trait get
 	 */
 	public static function get_poll_meta($_poll_id)
 	{
+		$poll = self::get_poll($_poll_id);
+		if(isset($poll['meta']))
+		{
+			return $poll['meta'];
+		}
+		return null;
 		$query  = "SELECT post_meta AS `meta` FROM posts WHERE posts.id = $_poll_id LIMIT 1";
 		$result = \lib\db::get($query, 'meta', true);
 		if(is_string($result))

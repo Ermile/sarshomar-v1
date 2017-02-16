@@ -62,7 +62,7 @@ trait add
 
 		if($skip)
 		{
-			return $this->skip_poll();
+			return $this->skip_poll($_options);
 		}
 
 		if(!is_array($user_answer))
@@ -267,7 +267,7 @@ trait add
 	/**
 	 * skip poll
 	 */
-	public function skip_poll()
+	public function skip_poll($_options)
 	{
 		$save =
 		[
@@ -276,8 +276,18 @@ trait add
 			'skipped'  => true,
 		];
 
-		\lib\utility\answers::save($save);
-
+		if($_options['method'] == 'put')
+		{
+			\lib\utility\answers::update($save);
+		}
+		elseif($_options['method'] == 'post')
+		{
+			\lib\utility\answers::save($save);
+		}
+		else
+		{
+			return debug::error(T_("Invalid method"), 'method', 'system');
+		}
 	}
 }
 ?>

@@ -308,6 +308,8 @@ class model extends \mvc\model
 			return;
 		}
 
+		debug::title(T_("Operation faild"));
+
 		// save score of comments
 		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
 		{
@@ -315,76 +317,29 @@ class model extends \mvc\model
 			return;
 		}
 
-		$post = utility::post();
+		$data = '{}';
 
-		$opt  = [];
-
-		foreach ($post as $key => $value)
+		if(isset($_POST['data']))
 		{
-			if(preg_match("/^check\_(\d+)$/", $key, $index))
-			{
-				if(isset($index[1]))
-				{
-					$opt[$index[1]] = true;
-				}
-			}
-
-			if(preg_match("/^radio$/", $key))
-			{
-				$opt[$value] = true;
-				break;
-			}
+			$data = $_POST['data'];
 		}
 
-		if(count($opt) === 2 && isset($opt['descriptive']) && isset($opt['radio']))
+		$data    = json_decode($data, true);
+		$request = utility\safe::safe($data);
+
+		if(!isset($data['answer']) && !isset($data['skip']))
 		{
-			$opt[$opt['radio']] = $opt['descriptive'];
+			debug::error(T_("You must set answer or skip the poll"));
+			return false;
 		}
+
+		$request['id']     = $poll_id;
 
 		$options           = [];
 
-		$request           = [];
-		$request['id']     = $poll_id;
-		$request['answer'] = $opt;
-
 		utility::set_request_array($request);
 
-		$is_answerd = $this->poll_answer_get();
-
-
-		$add    = false;
-		$edit   = false;
-		$delete = false;
-
-		if(isset($is_answerd['available']))
-		{
-			if(in_array('add', $is_answerd['available']))
-			{
-				$add = true;
-			}
-
-			if(in_array('edit', $is_answerd['available']))
-			{
-				$edit = true;
-			}
-
-			if(in_array('delete', $is_answerd['available']))
-			{
-				$delete = true;
-			}
-		}
-
-		// if($add && empty($opt))
-		// {
-		// 	return debug::error(T_("You must select one answer or skip the poll"));
-		// }
-
-		if($delete && empty($opt))
-		{
-			$delete = $this->poll_answer_delete(['id' => shortURL::decode($poll_id)]);
-			return debug::warn(T_("Your answer has been deleted"));
-		}
-		elseif($edit && !empty($opt))
+		if(utility\answers::is_answered($this->user_id, shortURL::decode($poll_id)))
 		{
 			$options['method'] = 'put';
 		}
@@ -394,7 +349,6 @@ class model extends \mvc\model
 		}
 
 		$this->poll_answer_add($options);
-		// debug::title("");
 	}
 }
 ?>

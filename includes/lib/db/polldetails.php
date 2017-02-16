@@ -213,7 +213,7 @@ class polldetails
 	 */
 	public static function save($_user_id, $_poll_id, $_opt, $_option = [])
 	{
-		if($_opt == 'other')
+		if($_opt === 'other')
 		{
 			$_opt = "NULL";
 		}

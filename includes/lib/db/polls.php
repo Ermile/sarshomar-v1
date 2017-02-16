@@ -12,6 +12,9 @@ class polls
 	use polls\search;
 	use polls\sarshomar;
 
+
+	private static $_POLL = [];
+
 	/**
 	 * this library work with acoount
 	 * v3.1

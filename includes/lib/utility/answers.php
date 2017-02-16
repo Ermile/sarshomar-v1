@@ -197,7 +197,7 @@ class answers
 		if($_args['skipped'] == true)
 		{
 			$skipped = true;
-			$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
+			$result  = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
 		}
 		else
 		{
