@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-02-15 09:32+0330\n"
-"PO-Revision-Date: 2017-02-15 18:53+0330\n"
+"POT-Creation-Date: 2017-02-16 12:19+0330\n"
+"PO-Revision-Date: 2017-02-16 12:54+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -33,16 +33,17 @@ msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 msgid "Which team are you a fan of?"
 msgstr "طرفدار کدام تیم هستید؟"
 
-#: content/knowledge/view.php:20 includes/mvc/view.php:57
+#: content/knowledge/view.php:18 includes/mvc/view.php:57
 msgid "Sarshomar Knowledge"
 msgstr "دانش سرشمار"
 
-#: content/knowledge/view.php:21 includes/languages/trans_twig.php:61
+#: content/knowledge/view.php:19 includes/languages/trans_twig.php:61
 msgid ""
-"Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your "
-"broad objectives"
+"Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line "
+"with your broad objectives"
 msgstr ""
-"از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره ببرید"
+"از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود "
+"بهره ببرید"
 
 #: content/poll/model.php:215
 msgid "Comment saved, Thank you"
@@ -50,19 +51,27 @@ msgstr "دیدگاه ذخیره شد، متشکریم"
 
 #: content/poll/model.php:220
 msgid "We Couldn't save your comment, Please reload the page and try again"
-msgstr "مشکلی در ذخیره دیدگاه پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
+msgstr ""
+"مشکلی در ذخیره دیدگاه پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
 
-#: content/poll/model.php:271
+#: content/poll/model.php:272
 msgid "You must login in order to answer the questions"
 msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 
-#: content/poll/model.php:356
-msgid "You must select one answer or skip the poll"
-msgstr "یک پاسخ انتخاب کنید یا نظرسنجی را نادیده بگیرید"
+#: content/poll/model.php:293 content_api/v1/home/tools/ready.php:117
+#: content_api/v1/poll/search/tools/search.php:156
+#: content_api/v1/poll/status/tools/set.php:72
+#: content_api/v1/poll/status/tools/set.php:100
+msgid "Invalid parameter status"
+msgstr "پارامتر وضعیت نامعتبر است"
 
-#: content/poll/model.php:361
-msgid "Your answer was deleted"
-msgstr ""
+#: content/poll/model.php:305
+msgid "Can not support this property"
+msgstr "از این خاصیت پشتیبانی نمی‌شود"
+
+#: content/poll/model.php:385 content_api/v1/poll/answer/tools/delete.php:84
+msgid "Your answer has been deleted"
+msgstr "پاسخ شما حذف شد"
 
 #: content/referer/instagram/model.php:37
 msgid "Token error"
@@ -72,9 +81,74 @@ msgstr "خطا در توکن"
 msgid "In progress..."
 msgstr "در حال پیشروی..."
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:134
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:141
 msgid "Updated"
 msgstr "بروز شد"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:28
+#: content/saloos_tg/sarshomarbot/commands/step_create.php:32
+msgid ""
+"To upload your questions, enter the title of your question on the first line and "
+"its other options on the next lines. Notice that a valid question must contain at "
+"least one title and two answers."
+msgstr ""
+"برای ثبت، در خط اول عنوان سوال و در خطوط بعدی گزینه‌های آن را وارد کنید. توجه "
+"داشته باشید که یک سوال معتبر باید شامل عنوان و حداقل دو پاسخ باشد."
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:37
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:85
+#: content/saloos_tg/sarshomarbot/commands/step_create.php:41
+#: includes/languages/trans_addons.php:112 includes/languages/trans_twig.php:955
+msgid "Cancel"
+msgstr "انصراف"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:41
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:213
+#: includes/languages/trans_addons.php:183
+msgid "Options"
+msgstr "تنظیمات"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:54
+msgid "Select your answers type"
+msgstr "نوع پاسخ‌های خود را تعیین کنید"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:56
+msgid "Selective is default."
+msgstr "پیشفرض انتخابی است."
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:65
+msgid "Selective"
+msgstr "انتخابی"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:69
+msgid "Emoji"
+msgstr "اموجی"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:75
+#: includes/languages/trans_twig.php:830
+msgid "Like"
+msgstr "لایک"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:79
+#: includes/languages/trans_twig.php:92
+msgid "Descriptive"
+msgstr "تشریحی"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:97
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:88
+#: content/saloos_tg/sarshomar_bot/commands/handle.php:131
+#: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:25
+#: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:75
+#: content/saloos_tg/sarshomarbot/commands/handle.php:131
+#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
+msgid "Back"
+msgstr "قبلی"
+
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:109
+msgid "Add poll canceled"
+msgstr "افزودن نظرسنجی لغو شد"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:6
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:6
@@ -84,20 +158,22 @@ msgstr "سرشمار چیست؟"
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:9
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:9
 msgid ""
-"Sarshomar is an integrative system to develop, manage and analyze online opinion polls in an "
-"efficient manner. Using Sarshomar is convenient, quick and without common complexities; its "
-"services are also available to the public."
+"Sarshomar is an integrative system to develop, manage and analyze online opinion "
+"polls in an efficient manner. Using Sarshomar is convenient, quick and without "
+"common complexities; its services are also available to the public."
 msgstr ""
-"سرشمار سرویسی یکپارچه برای ایجاد، مدیریت و تحلیل نظرسنجی‌های آنلاین به شیوه‌ای کارآمد است. "
-"استفاده از سرشمار آسان، سریع و بدون پیچیدگی‌های مرسوم بوده و خدمات ارائه‌شده، برای عموم جامعه "
-"در دسترس است."
+"سرشمار سرویسی یکپارچه برای ایجاد، مدیریت و تحلیل نظرسنجی‌های آنلاین به شیوه‌ای "
+"کارآمد است. استفاده از سرشمار آسان، سریع و بدون پیچیدگی‌های مرسوم بوده و خدمات "
+"ارائه‌شده، برای عموم جامعه در دسترس است."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:12
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:12
 msgid ""
-"Using Sarshomar, do not be concerned about how to ask and conduct an analysis, and only "
-"concentrate on your question."
-msgstr "با سرشمار، دغدغه چطور پرسیدن و تحلیل‌کردن نداشته باشید و فقط روی سوال خود تمرکز کنید."
+"Using Sarshomar, do not be concerned about how to ask and conduct an analysis, "
+"and only concentrate on your question."
+msgstr ""
+"با سرشمار، دغدغه چطور پرسیدن و تحلیل‌کردن نداشته باشید و فقط روی سوال خود تمرکز "
+"کنید."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:20
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:36
@@ -120,24 +196,25 @@ msgstr "راهنمایی"
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:6
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:6
 msgid ""
-"To have rapid access to any related sections, besides the available buttons, you can also "
-"use the following instructions."
+"To have rapid access to any related sections, besides the available buttons, you "
+"can also use the following instructions."
 msgstr ""
-"برای دسترسی سریع به هر یک از بخش‌های مربوطه، علاوه بر دکمه‌های موجود، می‌توانید از دستورات زیر "
-"نیز استفاده کنید."
+"برای دسترسی سریع به هر یک از بخش‌های مربوطه، علاوه بر دکمه‌های موجود، می‌توانید از "
+"دستورات زیر نیز استفاده کنید."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:8
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:136
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:27
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:8
 #: content/saloos_tg/sarshomarbot/commands/handle.php:136
-#: content/saloos_tg/sarshomarbot/commands/menu.php:27 includes/languages/trans_twig.php:886
+#: content/saloos_tg/sarshomarbot/commands/menu.php:27
+#: includes/languages/trans_twig.php:886
 msgid "Ask me"
 msgstr "از من بپرس"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:10
 #: content/saloos_tg/sarshomar_bot/commands/inline_query.php:19
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:220
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:202
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:10
 #: content/saloos_tg/sarshomarbot/commands/inline_query.php:19
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:184
@@ -210,25 +287,14 @@ msgid "About us"
 msgstr "درباره ما"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:60
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:83
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:84
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:60
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:71
 msgid "First"
 msgstr "اولین"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:87
-#: content/saloos_tg/sarshomar_bot/commands/handle.php:131
-#: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:25
-#: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:75
-#: content/saloos_tg/sarshomarbot/commands/handle.php:131
-#: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:25
-msgid "Back"
-msgstr "قبلی"
-
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:70
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:94
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:95
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:70
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:82
 #: includes/languages/trans_twig.php:774
@@ -236,7 +302,7 @@ msgid "Next"
 msgstr "بعدی"
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:74
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:99
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:100
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:74
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:87
 msgid "Last"
@@ -250,54 +316,57 @@ msgstr "لطفا نظر خود را درباره‌ی سرشمار برای ما
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:6
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:6
 msgid ""
-"Telegram robots, like ordinary users, have only access to your name, user name and user "
-"number. Moreover, receiving cell phone number and address will be possible only after "
-"obtaining permission by you. Furthermore, unlike the rumors and fallacies, except for the "
-"mentioned information, telegram robots have no possibility of penetrating your system."
+"Telegram robots, like ordinary users, have only access to your name, user name "
+"and user number. Moreover, receiving cell phone number and address will be "
+"possible only after obtaining permission by you. Furthermore, unlike the rumors "
+"and fallacies, except for the mentioned information, telegram robots have no "
+"possibility of penetrating your system."
 msgstr ""
-"ربات‌های تلگرام مانند کاربران عادی تنها به نام، نام‌کاربری و شماره‌کاربری شما دسترسی دارند. "
-"علاوه بر این، امکان دریافت شماره موبایل و آدرس، تنها پس از کسب اجازه توسط شما، امکان‌پذیر "
-"می‌گردد. همچنین برخلاف شایعات و تصورات غلط، بجز اطلاعات گفته‌شده، هیچ‌گونه امکان نفوذی به سیستم "
-"شما توسط ربات‌های تلگرام وجود ندارد."
+"ربات‌های تلگرام مانند کاربران عادی تنها به نام، نام‌کاربری و شماره‌کاربری شما دسترسی "
+"دارند. علاوه بر این، امکان دریافت شماره موبایل و آدرس، تنها پس از کسب اجازه توسط "
+"شما، امکان‌پذیر می‌گردد. همچنین برخلاف شایعات و تصورات غلط، بجز اطلاعات گفته‌شده، "
+"هیچ‌گونه امکان نفوذی به سیستم شما توسط ربات‌های تلگرام وجود ندارد."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:9
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:9
 msgid ""
-"Your significant presence in Sarshomar helps us to reach more exact and valid results. "
-"Besides, we do our best to ensure your privacy."
+"Your significant presence in Sarshomar helps us to reach more exact and valid "
+"results. Besides, we do our best to ensure your privacy."
 msgstr ""
-"حضور ارزشمند شما در سرویس سرشمار، کمکی برای رسیدن به نتایج دقیق و معتبر است. تمام تلاش ما بر "
-"حفظ حریم‌خصوصی شماست."
+"حضور ارزشمند شما در سرویس سرشمار، کمکی برای رسیدن به نتایج دقیق و معتبر است. تمام "
+"تلاش ما بر حفظ حریم‌خصوصی شماست."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:12
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:12
 msgid ""
-"We hate advertising. Therefore, we ensure that Sarshomar will not create any disturbances to "
-"you and you can control the messages sent to you by Sarshomar's robot."
+"We hate advertising. Therefore, we ensure that Sarshomar will not create any "
+"disturbances to you and you can control the messages sent to you by Sarshomar's "
+"robot."
 msgstr ""
-"ما از تبلیغات متنفریم، پس این اطمینان را به شما می‌دهیم که سرشمار مزاحم شما نخواهد شد و "
-"پیامهای ارسالی توسط ربات سرشمار، توسط شما قابل کنترل خواهند بود."
+"ما از تبلیغات متنفریم، پس این اطمینان را به شما می‌دهیم که سرشمار مزاحم شما نخواهد "
+"شد و پیامهای ارسالی توسط ربات سرشمار، توسط شما قابل کنترل خواهند بود."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:15
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:15
 msgid ""
-"Using Sarshomar, concentrate on your question; do not be concerned about how to ask and "
-"conduct an analysis."
-msgstr "با سرشمار روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید."
+"Using Sarshomar, concentrate on your question; do not be concerned about how to "
+"ask and conduct an analysis."
+msgstr ""
+"با سرشمار روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:18
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:18
 msgid ""
-"Sarshomar has been designed to help its clients to conduct easy and rapid opinion polls on a "
-"large scale and at low cost. We will do our best to present unprecedented and hardly "
-"accessible services and facilities. These include qualities such as Sarshomar's integration, "
-"easy access, and extensive knowledge which we are further improving, trusting God and "
-"receiving your help."
+"Sarshomar has been designed to help its clients to conduct easy and rapid opinion "
+"polls on a large scale and at low cost. We will do our best to present "
+"unprecedented and hardly accessible services and facilities. These include "
+"qualities such as Sarshomar's integration, easy access, and extensive knowledge "
+"which we are further improving, trusting God and receiving your help."
 msgstr ""
-"سرشمار برای انجام آسان و سریع نظرسنجی‌های دقیق در مقیاس وسیع و با هزینه مناسب طراحی شده است. "
-"ما تمام تلاش خود را برای ارائه امکاناتی که تاکنون وجود نداشته و یا سخت قابل دستیابی بوده "
-"انجام می‌دهیم. ویژگی‌هایی نظیر یکپارچگی، دسترسی آسان و دانش عظیم سرشمار که با امید به خدا و "
-"کمک شما در حال گسترش آن هستیم."
+"سرشمار برای انجام آسان و سریع نظرسنجی‌های دقیق در مقیاس وسیع و با هزینه مناسب "
+"طراحی شده است. ما تمام تلاش خود را برای ارائه امکاناتی که تاکنون وجود نداشته و یا "
+"سخت قابل دستیابی بوده انجام می‌دهیم. ویژگی‌هایی نظیر یکپارچگی، دسترسی آسان و دانش "
+"عظیم سرشمار که با امید به خدا و کمک شما در حال گسترش آن هستیم."
 
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:21
 #: content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:21
@@ -336,50 +405,21 @@ msgstr "برای تغییر زبان به بخش پروفایل رفته و یا
 msgid "Choose the language."
 msgstr "زبان خود را انتخاب کنید."
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:59
-msgid "You dont add eny poll"
-msgstr ""
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:60
+msgid "You didn't add any poll"
+msgstr "شما هیچ نظرسنجی اضافه نکرده‌اید"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:61
-msgid "Do you like add poll"
-msgstr ""
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:62
+msgid "Do you like to add poll"
+msgstr "مایل به افزودن سوال هستید"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:63
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:64
 #: content_u/add/view.php:21
 msgid "Add new poll"
 msgstr "افزودن نظرسنجی جدید"
 
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:166
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:102
-msgid "Poll Discarded"
-msgstr "نظرسنجی کنارگذاشته شد"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:167
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:103
-msgid "Discarded"
-msgstr "کنارگذاشته شد"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:212
-msgid "Error in poll publish"
-msgstr ""
-
 #: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:218
-#: includes/languages/trans_addons.php:383
-msgid "Error"
-msgstr "خطا"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:287
-msgid "Add poll canceled"
-msgstr "افزودن نظرسنجی لغو شد"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:295
-#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:218
-#: includes/languages/trans_addons.php:227
-msgid "Deleted"
-msgstr "حذف شده"
-
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:361
-#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:369
+#: content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:226
 #: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:110
 #: content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:117
 #: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:279
@@ -415,14 +455,14 @@ msgstr "زبان"
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:160
 #: content/saloos_tg/sarshomar_bot/commands/menu.php:28
 #: content/saloos_tg/sarshomarbot/commands/handle.php:160
-#: content/saloos_tg/sarshomarbot/commands/menu.php:28 includes/languages/trans_addons.php:61
-#: includes/languages/trans_twig.php:201
+#: content/saloos_tg/sarshomarbot/commands/menu.php:28
+#: includes/languages/trans_addons.php:61 includes/languages/trans_twig.php:201
 msgid "Dashboard"
 msgstr "داشبورد"
 
 #: content/saloos_tg/sarshomar_bot/commands/handle.php:165
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:24
-#: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:40
+#: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:41
 #: content/saloos_tg/sarshomarbot/commands/handle.php:165
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:40
@@ -492,35 +532,41 @@ msgstr "علاقه‌مند نیستم"
 msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:82
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:77
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:90
 #: content/saloos_tg/sarshomar_bot/controller.php:76
 #: content/saloos_tg/sarshomar_bot/controller.php:77
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:103
 #: content/saloos_tg/sarshomarbot/controller.php:74
-#: content/saloos_tg/sarshomarbot/controller.php:75 includes/languages/trans_twig.php:188
-#: includes/mvc/view.php:10
+#: content/saloos_tg/sarshomarbot/controller.php:75
+#: includes/languages/trans_twig.php:188 includes/mvc/view.php:10
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:116
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:78
+#: includes/languages/trans_twig.php:87
+msgid "Poll"
+msgstr "نظرسنجی"
+
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:124
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:178
 msgid "Valid answer is:"
 msgstr "پاسخ معتبر:"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:119
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:132
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:127
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:143
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:181
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:194
 msgid "Invalid"
 msgstr "نامعتبر"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:126
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:137
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:188
 msgid "Sum"
 msgstr "جمع"
 
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:127
-#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:131
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:138
+#: content/saloos_tg/sarshomar_bot/commands/make_view/message.php:142
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:189
 #: content/saloos_tg/sarshomarbot/commands/make_view/message.php:193
 msgid "Valid"
@@ -536,63 +582,48 @@ msgstr "ثبت‌نام و همگام‌سازی"
 msgid "Main menu"
 msgstr "منوی اصلی"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:37
-#: content/saloos_tg/sarshomarbot/commands/step_create.php:32
-msgid ""
-"To upload your questions, enter the title of your question on the first line and its other "
-"options on the next lines. Notice that a valid question must contain at least one title and "
-"two answers."
-msgstr ""
-"برای ثبت، در خط اول عنوان سوال و در خطوط بعدی گزینه‌های آن را وارد کنید. توجه داشته باشید که "
-"یک سوال معتبر باید شامل عنوان و حداقل دو پاسخ باشد."
-
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:46
-#: content/saloos_tg/sarshomarbot/commands/step_create.php:41
-#: includes/languages/trans_addons.php:112 includes/languages/trans_twig.php:955
-msgid "Cancel"
-msgstr "انصراف"
-
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:82
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:64
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:75
 msgid "Answer type not valid"
 msgstr "نوع پاسخ معتبر نیست"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:213
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:195
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:155
 msgid "Please enter question title"
 msgstr "عنوان سوال را وارد کنید"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:216
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:198
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:137
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:157
 msgid "Your question uploaded successfully."
 msgstr "سوال شما با موفقیت ثبت شد."
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:219
-msgid "Insert next asnwer or choise action"
-msgstr ""
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:201
+msgid "Insert next asnwer or choose an action"
+msgstr "پاسخ بعدی را وارد کنید یا فعالیتی را انتخاب کنید"
 
-#: content/saloos_tg/sarshomar_bot/commands/step_create.php:227
+#: content/saloos_tg/sarshomar_bot/commands/step_create.php:209
 msgid "Save as draft"
 msgstr "ذخیره پیش‌نویس"
 
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:15
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:15
 msgid ""
-"Now you have entered your dashboard. Here, you can change the language or observe your "
-"profile."
+"Now you have entered your dashboard. Here, you can change the language or observe "
+"your profile."
 msgstr ""
-"شما وارد داشبورد شدید. در این بخش می‌توانید زبان را تغییر داده و یا پروفایل خود را مشاهده "
-"کنید."
+"شما وارد داشبورد شدید. در این بخش می‌توانید زبان را تغییر داده و یا پروفایل خود را "
+"مشاهده کنید."
 
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:17
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:17
 msgid ""
-"Besides, you can complete your registration and account integration on the website and "
-"telegram by clicking on the register button and synchronization of your cell phone number."
+"Besides, you can complete your registration and account integration on the "
+"website and telegram by clicking on the register button and synchronization of "
+"your cell phone number."
 msgstr ""
-"همچنین برای تکمیل ثبت‌نام و یکپارچه‌سازی اکانت خود در وب‌سایت و تلگرام، با فشردن دکمه ثبت‌نام و "
-"همگام‌سازی شماره موبایل خود را در سرشمار ثبت کنید."
+"همچنین برای تکمیل ثبت‌نام و یکپارچه‌سازی اکانت خود در وب‌سایت و تلگرام، با فشردن "
+"دکمه ثبت‌نام و همگام‌سازی شماره موبایل خود را در سرشمار ثبت کنید."
 
 #: content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:34
 #: content/saloos_tg/sarshomarbot/commands/step_dashboard.php:34
@@ -632,8 +663,8 @@ msgid "Created in Ermile"
 msgstr "ساخته شده در ارمایل"
 
 #: content/saloos_tg/sarshomar_bot/controller.php:80
-#: content/saloos_tg/sarshomarbot/controller.php:78 includes/languages/trans_twig.php:870
-#: includes/mvc/view.php:23
+#: content/saloos_tg/sarshomarbot/controller.php:78
+#: includes/languages/trans_twig.php:870 includes/mvc/view.php:23
 msgid "Undefined"
 msgstr "تعریف‌نشده"
 
@@ -645,6 +676,19 @@ msgstr "پاسخی یافت نشد"
 #: content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
+
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:102
+msgid "Poll Discarded"
+msgstr "نظرسنجی کنارگذاشته شد"
+
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:103
+msgid "Discarded"
+msgstr "کنارگذاشته شد"
+
+#: content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:218
+#: includes/languages/trans_addons.php:227
+msgid "Deleted"
+msgstr "حذف شده"
 
 #: content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:143
 msgid "Pause"
@@ -671,8 +715,8 @@ msgid "Save"
 msgstr "ذخیره"
 
 #: content/saloos_tg/sarshomarbot/commands/step_create.php:150
-msgid "answers's poll min limit is 2, send secound answers."
-msgstr ""
+msgid "Answers minimum limit is 2 options, Please add the second answer."
+msgstr "حداقل محدودیت پاسخ 2 گزینه است، لطفا پاسخ دوم را اضافه کنید."
 
 #: content_admin/comments/model.php:26
 msgid "Comment update to :status"
@@ -703,14 +747,15 @@ msgid "Allow to show admin page"
 msgstr "اجازه مشاهده صفحه ادمین"
 
 #: content_admin/manifest.php:16
-msgid "Allow to change the post status to publi"
-msgstr ""
+msgid "Allow to change the post status to publish"
+msgstr "اجازه به تغییر وضعیت پست به منتشر شده"
 
 #: content_admin/transactionitems/model.php:60
 msgid "Transaction items update successfuly"
 msgstr "آیتم تراکنش با موفقیت بروزرسانی شد"
 
-#: content_admin/transactionitems/model.php:64 content_admin/transactionitems/model.php:111
+#: content_admin/transactionitems/model.php:64
+#: content_admin/transactionitems/model.php:111
 msgid "Operation faild"
 msgstr "عملیات با خطا مواجه شد"
 
@@ -735,32 +780,32 @@ msgid "Can not upload file"
 msgstr "ناتوان در آپلود فایل"
 
 #: content_api/v1/file/tools/link.php:31
-msgid "File not upload in upload_name"
-msgstr ""
+msgid "Unable to upload, because of selected upload name"
+msgstr "ناتوان در آپلود، به دلیل نام آپلود انتخاب شده"
 
 #: content_api/v1/file/tools/link.php:36
-msgid "Parameter poll not set"
-msgstr ""
+msgid "Parameter 'poll' not set"
+msgstr "پارامتر 'poll' تعیین نشده است"
 
 #: content_api/v1/file/tools/link.php:61
-msgid "This poll have not opt :opt"
-msgstr ""
+msgid "This poll have not option :opt"
+msgstr "این نظرسنجی گزینه :opt ندارد"
 
 #: content_api/v1/file/tools/link.php:88
 msgid "Can not upload file. undefined error"
 msgstr "ناتوان در آپلود فایل. خطای تعریف نشده"
 
 #: content_api/v1/file/tools/link.php:105
-msgid "File upload complete"
-msgstr ""
+msgid "File upload completed"
+msgstr "آپلود فایل کامل شد"
 
 #: content_api/v1/home/model.php:129
 msgid "Access denide (Invalid url)"
 msgstr "دسترسی امکان‌پذیر نیست(آدرس نامعتبر)"
 
 #: content_api/v1/home/model.php:137
-msgid "Invalid authorization kye (user not found)"
-msgstr ""
+msgid "Invalid authorization key (User not found)"
+msgstr "کد دسترسی نامعتبر است(کاربر یافت نشد)"
 
 #: content_api/v1/home/model.php:147
 msgid "Access denide to load this url by api key"
@@ -774,89 +819,100 @@ msgstr "توکن نامعتبر"
 msgid "Invalid parameter temp_token"
 msgstr "پارامتر temp_token نامعتبر است"
 
-#: content_api/v1/home/tools/ready.php:48 content_api/v1/poll/answer/tools/add.php:82
+#: content_api/v1/home/tools/ready.php:48
+#: content_api/v1/poll/answer/tools/add.php:89
 #: content_api/v1/poll/tools/delete.php:41 includes/lib/utility/price.php:87
 msgid "Poll not found"
 msgstr "نظرسنجی یافت نشد"
 
 #: content_api/v1/home/tools/ready.php:62
-msgid "Can not access to load this poll (this is not your poll)"
-msgstr ""
+msgid "Access denied to the poll (This is not your poll)"
+msgstr "دسترسی به نظرسنجی امکان پذیر نیست(این نظرسنجی شما نیست)"
 
 #: content_api/v1/home/tools/ready.php:99
 msgid "(The poll is :status)"
 msgstr "(نظرسنجی :status)"
 
 #: content_api/v1/home/tools/ready.php:112
-msgid "Can not access to load this poll :msg"
-msgstr ""
+msgid "Access denied to load this poll :msg"
+msgstr "دسترسی برای بارگذاری این نظرسنجی امکان پذیر نیست. :msg"
 
-#: content_api/v1/home/tools/ready.php:117 content_api/v1/poll/search/tools/search.php:155
-#: content_api/v1/poll/status/tools/set.php:88
-msgid "Invalid parameter status"
-msgstr "پارامتر وضعیت نامعتبر است"
-
-#: content_api/v1/poll/answer/tools/add.php:16
-msgid "Can not save answer"
-msgstr "ناتوان در ذخیره‌سازی پاسخ"
-
-#: content_api/v1/poll/answer/tools/add.php:26 content_api/v1/poll/answer/tools/get.php:20
+#: content_api/v1/poll/answer/tools/add.php:26
+#: content_api/v1/poll/answer/tools/get.php:18
 msgid "Invalid parameter id"
 msgstr "شناسه پارامتر نامعتبر است"
 
 #: content_api/v1/poll/answer/tools/add.php:34
-msgid "Can not set answer and skip"
-msgstr ""
+msgid "Unable to set answer or skip"
+msgstr "ناتوان در تعیین پاسخ یا رد آن"
 
-#: content_api/v1/poll/answer/tools/add.php:63
+#: content_api/v1/poll/answer/tools/add.php:39
+msgid "Can not save answer"
+msgstr "ناتوان در ذخیره‌سازی پاسخ"
+
+#: content_api/v1/poll/answer/tools/add.php:50
+msgid "Can not skip this poll"
+msgstr "ناتوان در رد این نظرسنجی"
+
+#: content_api/v1/poll/answer/tools/add.php:55
+msgid "You can not add or edit your answer"
+msgstr "نمی‌توانید پاسخی اضافه یا پاسخ خود را ویرایش کنید"
+
+#: content_api/v1/poll/answer/tools/add.php:60
+#: content_api/v1/poll/answer/tools/delete.php:38
+msgid "Invalid answer available"
+msgstr "پاسخ نامعتبری موجود است"
+
+#: content_api/v1/poll/answer/tools/add.php:70
 msgid "Answer parameter must be array"
 msgstr "پارامتر پاسخ باید آرایه باشد"
 
-#: content_api/v1/poll/answer/tools/add.php:89
-msgid "Poll not publish"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:96
+msgid "Poll has not published"
+msgstr "نظرسنجی منتشر نشده است"
 
-#: content_api/v1/poll/answer/tools/add.php:94 content_api/v1/poll/status/tools/get.php:39
+#: content_api/v1/poll/answer/tools/add.php:101
+#: content_api/v1/poll/status/tools/get.php:39
 msgid "Poll status not found"
 msgstr "وضعیت نظرسنجی یافت نشد"
 
-#: content_api/v1/poll/answer/tools/add.php:99
+#: content_api/v1/poll/answer/tools/add.php:106
 msgid "Poll answers not found"
 msgstr "پاسخ‌های نظرسنجی یافت نشد"
 
-#: content_api/v1/poll/answer/tools/add.php:118
-msgid "Can not support this poll to answer"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:125
+msgid "This type of poll is not supported to answer"
+msgstr "این نوع نظرسنجی برای پاسخ دادن پشتیبانی نشده است"
 
-#: content_api/v1/poll/answer/tools/add.php:148
-msgid "This poll is not a multi choice poll and you send :count answer"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:155
+msgid "This is not a multi select poll and you selected :count answers"
+msgstr "این یک نظرسنجی چند انتخابی نیست و شما :count پاسخ انتخاب کرده‌اید"
 
-#: content_api/v1/poll/answer/tools/add.php:159
-msgid "This poll have not answer :key"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:166
+msgid "This poll has not option :key"
+msgstr "این نظرسنجی گزینه :key ندارد"
 
-#: content_api/v1/poll/answer/tools/add.php:165
-msgid "This poll have not answer type :key"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:172
+msgid "This poll has not answery type of :key"
+msgstr "این نظرسنجی نوع پاسخ :key را ندارد"
 
-#: content_api/v1/poll/answer/tools/add.php:183
-msgid "This poll is :type poll and you can set answer 1 only"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:190
+msgid "This poll is :type poll and you can set only one answer"
+msgstr "نوع این نظرسنجی :type است و شما تنها قادر به تعیین یک پاسخ هستید"
 
-#: content_api/v1/poll/answer/tools/add.php:210
-msgid "Invalid paramet :value"
-msgstr ""
+#: content_api/v1/poll/answer/tools/add.php:217
+msgid "Invalid parameter :value"
+msgstr "پارامتر :value نامعتبر است"
 
-#: content_api/v1/poll/answer/tools/add.php:229
+#: content_api/v1/poll/answer/tools/add.php:236
 msgid "No answer was set"
 msgstr "پاسخی تعیین نشده است"
 
-#: content_api/v1/poll/answer/tools/add.php:250
+#: content_api/v1/poll/answer/tools/add.php:257
 msgid "Invalid method"
 msgstr "متد نامعتبر است"
 
-#: content_api/v1/poll/answer/tools/add.php:255
+#: content_api/v1/poll/answer/tools/add.php:262
 msgid "Answer saved"
 msgstr "پاسخ ذخیره شد"
 
@@ -865,57 +921,49 @@ msgstr "پاسخ ذخیره شد"
 msgid "Can not remove your answer"
 msgstr "ناتوان در حذف پاسخ شما"
 
-#: content_api/v1/poll/answer/tools/delete.php:38
-msgid "Invalid answer available"
-msgstr "پاسخ نامعتبری موجود است"
-
-#: content_api/v1/poll/answer/tools/delete.php:84
-msgid "Your answer was delete"
-msgstr ""
-
 #: content_api/v1/poll/answer/tools/delete.php:88
-msgid "You are not answer to this poll"
-msgstr ""
+msgid "You have not answered to this poll"
+msgstr "شما به این نظرسنجی پاسخ نداده‌اید"
 
-#: content_api/v1/poll/answer/tools/get.php:33
+#: content_api/v1/poll/answer/tools/get.php:44
 msgid "You have not answered this question yet"
 msgstr "شما هنوز به این سوال پاسخ نداده‌اید"
 
-#: content_api/v1/poll/answer/tools/get.php:52
+#: content_api/v1/poll/answer/tools/get.php:63
 msgid "You have already answered this question and took your answer"
 msgstr "شما قبلا به این سوال پاسخ داده‌اید و پاسخ خود را پس گرفتید"
 
-#: content_api/v1/poll/answer/tools/get.php:56
+#: content_api/v1/poll/answer/tools/get.php:67
 msgid "You have answered to option :opt"
 msgstr "شما به گزینه :opt پاسخ دادید"
 
-#: content_api/v1/poll/answer/tools/get.php:61
+#: content_api/v1/poll/answer/tools/get.php:72
 msgid "You have already skipped this question"
 msgstr "شما قبلا این سوال را رد کرده‌اید"
 
-#: content_api/v1/poll/answer/tools/get.php:86
-msgid "Undefined error"
-msgstr "خطای تعریف نشده"
+#: content_api/v1/poll/answer/tools/get.php:99
+msgid "Can not found poll id"
+msgstr ""
 
 #: content_api/v1/poll/price/tools/price.php:13
-msgid "No parametr was send"
-msgstr ""
+msgid "No parameter has been sent"
+msgstr "پارامتری ارسال نشده است"
 
 #: content_api/v1/poll/price/tools/price.php:18
-msgid "Invalid use parametr id and other parametr"
-msgstr ""
+msgid "You can not send id parameter and other parameters at the same time"
+msgstr "نمیتوانید همزمان پارامتر شناسه و دیگر پارامترها را با هم ارسال کنید"
 
 #: content_api/v1/poll/search/tools/search.php:44
 msgid "Invalid parameter 'in' "
 msgstr "پارامتر 'در' نامعتبر است "
 
 #: content_api/v1/poll/search/tools/search.php:52
-msgid "Can not set all in array request"
-msgstr ""
+msgid "You can not set 'all' parameter in array 'in'"
+msgstr "نمیتوانید پارامتر 'all' را در آرایه 'in' به کار ببرید"
 
 #: content_api/v1/poll/search/tools/search.php:58
-msgid "Invalid parameter in as :type"
-msgstr ""
+msgid "The 'in' parameter type is invalid"
+msgstr "نوع پارامتر 'in' نامعتبر است"
 
 #: content_api/v1/poll/search/tools/search.php:79
 msgid "Invalid parameter from, from must be integer"
@@ -929,24 +977,24 @@ msgstr "پارامتر to نامعتبر است، to باید integer باشد"
 msgid "Parameter 'from' must be less than parameter 'to'"
 msgstr "پارامتر 'from' باید کمتر از پارامتر 'to' باشد"
 
-#: content_api/v1/poll/search/tools/search.php:113
-#: content_api/v1/poll/search/tools/search.php:123
+#: content_api/v1/poll/search/tools/search.php:114
+#: content_api/v1/poll/search/tools/search.php:124
 msgid "Invalid parameter language"
 msgstr "پارامتر زبان نامعتبر است"
 
-#: content_api/v1/poll/search/tools/search.php:130
+#: content_api/v1/poll/search/tools/search.php:131
 msgid "Invalid parameter language as :type"
 msgstr "پارامتر زبان به عنوان :type نامعتبر است"
 
-#: content_api/v1/poll/search/tools/search.php:139
-msgid "You can set status in your poll, in:me"
-msgstr ""
+#: content_api/v1/poll/search/tools/search.php:140
+msgid "You can not set status and search in all polls"
+msgstr "نمیتوانید وضعیت را تعیین کنید و در نظرسنجی ها جستجو کنید"
 
-#: content_api/v1/poll/search/tools/search.php:165
+#: content_api/v1/poll/search/tools/search.php:166
 msgid "Invalid status :status"
 msgstr "وضعیت :status نامعتبر است"
 
-#: content_api/v1/poll/search/tools/search.php:172
+#: content_api/v1/poll/search/tools/search.php:173
 msgid "Invalid parameter status as :type"
 msgstr "پارامتر وضعیت به عنوان :type نامعتبر است"
 
@@ -975,24 +1023,28 @@ msgid "Answer type not found in index :key of answers"
 msgstr "نوع پاسخ در کلید شاخص پاسخ‌ها یافت نشد"
 
 #: content_api/v1/poll/status/tools/check.php:87
-msgid "You must set two answers in select mod"
-msgstr ""
+msgid "Required minimum answers for select polls is two answers"
+msgstr "حداقل پاسخ مورد نیاز برای نظرسنجی های انتخابی دو پاسخ است"
 
 #: content_api/v1/poll/status/tools/check.php:97
-msgid "You must set answer title or set file in index :key of answer"
-msgstr ""
+msgid "You must set title of the answer or set file in index :key of answer"
+msgstr "باید عنوان پاسخ  را تعیین کنید یا فایلی در شاخص :key پاسخ تعیین کنید"
 
 #: content_api/v1/poll/status/tools/check.php:148
 msgid "You poll is awaiting moderation"
 msgstr "نظرسنجی شما در دست بررسی است"
 
 #: content_api/v1/poll/status/tools/check.php:154
-msgid "You poll is awaiting moderation, all sarshomar poll was set in awaiting moderation"
+msgid ""
+"You poll is awaiting moderation, all Sarshomar polls are set in awaiting "
+"moderation"
 msgstr ""
 
 #: content_api/v1/poll/status/tools/check.php:161
-msgid "You are using an inappropriate word in the text, your poll is awaiting moderation"
-msgstr "شما در حال استفاده از کلمه‌ی نامناسبی در متن خود هستید، نظرسنجی در دست بررسی است"
+msgid ""
+"You are using an inappropriate word in the text, your poll is awaiting moderation"
+msgstr ""
+"شما در حال استفاده از کلمه‌ی نامناسبی در متن خود هستید، نظرسنجی در دست بررسی است"
 
 #: content_api/v1/poll/status/tools/check.php:181
 msgid "Duplicate poll title of your poll"
@@ -1006,17 +1058,19 @@ msgstr "ناتوان در تغییر وضعیت"
 msgid "Prameter status not set"
 msgstr "وضعیت پارامتر تعیین نشده است"
 
-#: content_api/v1/poll/status/tools/set.php:68
+#: content_api/v1/poll/status/tools/set.php:80
 msgid "Poll status changed"
 msgstr "وضعیت نظرسنجی تغییر یافت"
 
-#: content_api/v1/poll/status/tools/set.php:77
+#: content_api/v1/poll/status/tools/set.php:89
 msgid ""
-"You can not set this status to this poll, the available status you can change is :available"
+"You can not set this status to this poll, the available status you can change is :"
+"available"
 msgstr ""
-"نمی‌توانید این وضعیت را برای این نظرسنجی قرار دهید، وضعیت در دسترس برای تغییر :available است"
+"نمی‌توانید این وضعیت را برای این نظرسنجی قرار دهید، وضعیت در دسترس برای تغییر :"
+"available است"
 
-#: content_api/v1/poll/status/tools/set.php:84
+#: content_api/v1/poll/status/tools/set.php:96
 msgid "You can not set this status to this poll"
 msgstr "نمی‌توانید این وضعیت را باری نظرسنجی قرار دهید"
 
@@ -1026,11 +1080,11 @@ msgstr "داده‌ ورودی نامعتبر"
 
 #: content_api/v1/poll/tools/add.php:59 content_api/v1/poll/tools/delete.php:32
 #: content_api/v1/poll/tools/fav_like.php:19 content_api/v1/poll/tools/get.php:63
-msgid "Invalid parametr id"
+msgid "Invalid id parameter"
 msgstr ""
 
 #: content_api/v1/poll/tools/add.php:64
-msgid "Can not send parametr id in post mod"
+msgid "Can not send parameter id in post mode"
 msgstr ""
 
 #: content_api/v1/poll/tools/delete.php:48
@@ -1058,7 +1112,9 @@ msgid "The poll has already been deleted"
 msgstr "نظرسنجی قبلا حذف شده است"
 
 #: content_api/v1/poll/tools/delete.php:82
-msgid "To delete a question the status of it must be one of these: Draft, Awaiting and Puase"
+msgid ""
+"To delete a question the status of it must be one of these: Draft, Awaiting and "
+"Pause"
 msgstr ""
 
 #: content_api/v1/poll/tools/get.php:71
@@ -1095,7 +1151,7 @@ msgid "Please login to set language"
 msgstr "برای تعیین زبان لطفا وارد حساب کاربری خود شوید"
 
 #: content_u/home/model.php:59
-msgid "Invalid paramert language"
+msgid "Invalid language parameter"
 msgstr ""
 
 #: content_u/profile/model.php:80
@@ -1132,13 +1188,15 @@ msgstr "جزئیات دیدگاه"
 
 #: includes/cls/database/sarshomar/translation.php:8
 #: includes/cls/database/sarshomar/translation.php:32
-#: includes/cls/database/sarshomar/translation.php:326 includes/languages/trans_twig.php:530
+#: includes/cls/database/sarshomar/translation.php:326
+#: includes/languages/trans_twig.php:530
 msgid "minus"
 msgstr "هدر رفته"
 
 #: includes/cls/database/sarshomar/translation.php:9
 #: includes/cls/database/sarshomar/translation.php:33
-#: includes/cls/database/sarshomar/translation.php:327 includes/languages/trans_twig.php:531
+#: includes/cls/database/sarshomar/translation.php:327
+#: includes/languages/trans_twig.php:531
 msgid "plus"
 msgstr "دور کاری"
 
@@ -1158,7 +1216,8 @@ msgstr "دیدگاه"
 #: includes/cls/database/sarshomar/translation.php:34
 #: includes/cls/database/sarshomar/translation.php:130
 #: includes/cls/database/sarshomar/translation.php:243
-#: includes/cls/database/sarshomar/translation.php:289 includes/languages/trans_twig.php:525
+#: includes/cls/database/sarshomar/translation.php:289
+#: includes/languages/trans_twig.php:525
 msgid "type"
 msgstr "نوع"
 
@@ -1175,11 +1234,13 @@ msgstr "تایید شده"
 msgid "unapproved"
 msgstr "تایید نشده"
 
-#: includes/cls/database/sarshomar/translation.php:19 includes/languages/trans_twig.php:544
+#: includes/cls/database/sarshomar/translation.php:19
+#: includes/languages/trans_twig.php:544
 msgid "spam"
 msgstr "هرزنامه"
 
-#: includes/cls/database/sarshomar/translation.php:20 includes/languages/trans_twig.php:539
+#: includes/cls/database/sarshomar/translation.php:20
+#: includes/languages/trans_twig.php:539
 msgid "deleted"
 msgstr "حذف شده"
 
@@ -1193,7 +1254,8 @@ msgid "id"
 msgstr "کد"
 
 #: includes/cls/database/sarshomar/translation.php:24
-#: includes/cls/database/sarshomar/translation.php:222 includes/languages/trans_addons.php:342
+#: includes/cls/database/sarshomar/translation.php:222
+#: includes/languages/trans_addons.php:342
 msgid "post"
 msgstr "نوشته"
 
@@ -1227,7 +1289,8 @@ msgstr "محتوا"
 #: includes/cls/database/sarshomar/translation.php:167
 #: includes/cls/database/sarshomar/translation.php:242
 #: includes/cls/database/sarshomar/translation.php:295
-#: includes/cls/database/sarshomar/translation.php:381 includes/languages/trans_twig.php:535
+#: includes/cls/database/sarshomar/translation.php:381
+#: includes/languages/trans_twig.php:535
 msgid "meta"
 msgstr "متا"
 
@@ -1238,7 +1301,8 @@ msgstr "متا"
 #: includes/cls/database/sarshomar/translation.php:168
 #: includes/cls/database/sarshomar/translation.php:247
 #: includes/cls/database/sarshomar/translation.php:297
-#: includes/cls/database/sarshomar/translation.php:382 includes/languages/trans_twig.php:536
+#: includes/cls/database/sarshomar/translation.php:382
+#: includes/languages/trans_twig.php:536
 msgid "status"
 msgstr "وضعیت"
 
@@ -1246,11 +1310,13 @@ msgstr "وضعیت"
 #: includes/cls/database/sarshomar/translation.php:248
 #: includes/cls/database/sarshomar/translation.php:296
 #: includes/cls/database/sarshomar/translation.php:339
-#: includes/cls/database/sarshomar/translation.php:385 includes/languages/trans_twig.php:514
+#: includes/cls/database/sarshomar/translation.php:385
+#: includes/languages/trans_twig.php:514
 msgid "parent"
 msgstr "والد"
 
-#: includes/cls/database/sarshomar/translation.php:35 includes/languages/trans_addons.php:354
+#: includes/cls/database/sarshomar/translation.php:35
+#: includes/languages/trans_addons.php:354
 msgid "visitor"
 msgstr "بازدیدکننده"
 
@@ -1280,27 +1346,33 @@ msgstr "پایین"
 msgid "round"
 msgstr "گرد کردن"
 
-#: includes/cls/database/sarshomar/translation.php:44 includes/languages/trans_twig.php:537
+#: includes/cls/database/sarshomar/translation.php:44
+#: includes/languages/trans_twig.php:537
 msgid "enable"
 msgstr "فعال"
 
-#: includes/cls/database/sarshomar/translation.php:45 includes/languages/trans_twig.php:538
+#: includes/cls/database/sarshomar/translation.php:45
+#: includes/languages/trans_twig.php:538
 msgid "disable"
 msgstr "غیرفعال"
 
-#: includes/cls/database/sarshomar/translation.php:46 includes/languages/trans_twig.php:540
+#: includes/cls/database/sarshomar/translation.php:46
+#: includes/languages/trans_twig.php:540
 msgid "expired"
 msgstr "منقضی‌شده"
 
-#: includes/cls/database/sarshomar/translation.php:47 includes/languages/trans_twig.php:541
+#: includes/cls/database/sarshomar/translation.php:47
+#: includes/languages/trans_twig.php:541
 msgid "awaiting"
 msgstr "در حال انتظار"
 
-#: includes/cls/database/sarshomar/translation.php:48 includes/languages/trans_twig.php:542
+#: includes/cls/database/sarshomar/translation.php:48
+#: includes/languages/trans_twig.php:542
 msgid "filtered"
 msgstr "فیلترشده"
 
-#: includes/cls/database/sarshomar/translation.php:49 includes/languages/trans_twig.php:543
+#: includes/cls/database/sarshomar/translation.php:49
+#: includes/languages/trans_twig.php:543
 msgid "blocked"
 msgstr "مسدودشده"
 
@@ -1308,7 +1380,8 @@ msgstr "مسدودشده"
 msgid "from"
 msgstr "از"
 
-#: includes/cls/database/sarshomar/translation.php:51 includes/languages/trans_twig.php:145
+#: includes/cls/database/sarshomar/translation.php:51
+#: includes/languages/trans_twig.php:145
 msgid "to"
 msgstr "به"
 
@@ -1326,7 +1399,8 @@ msgstr "حقوق"
 
 #: includes/cls/database/sarshomar/translation.php:58
 #: includes/cls/database/sarshomar/translation.php:133
-#: includes/cls/database/sarshomar/translation.php:294 includes/languages/trans_twig.php:534
+#: includes/cls/database/sarshomar/translation.php:294
+#: includes/languages/trans_twig.php:534
 msgid "desc"
 msgstr "توضیح"
 
@@ -1340,7 +1414,8 @@ msgstr "تاریخ ایجاد"
 msgid "datemodified"
 msgstr "تاریخ ویرایش"
 
-#: includes/cls/database/sarshomar/translation.php:62 includes/languages/trans_twig.php:545
+#: includes/cls/database/sarshomar/translation.php:62
+#: includes/languages/trans_twig.php:545
 msgid "enddate"
 msgstr "تاریخ پایان"
 
@@ -1371,11 +1446,13 @@ msgstr "فیلترها"
 msgid "filter"
 msgstr "فیلتر"
 
-#: includes/cls/database/sarshomar/translation.php:74 includes/lib/utility/stat_polls.php:193
+#: includes/cls/database/sarshomar/translation.php:74
+#: includes/lib/utility/stat_polls.php:193
 msgid "male"
 msgstr "مرد"
 
-#: includes/cls/database/sarshomar/translation.php:75 includes/lib/utility/stat_polls.php:197
+#: includes/cls/database/sarshomar/translation.php:75
+#: includes/lib/utility/stat_polls.php:197
 msgid "female"
 msgstr "زن"
 
@@ -1419,7 +1496,8 @@ msgstr "زیردیپلم"
 msgid "diploma"
 msgstr "دیپلم"
 
-#: includes/cls/database/sarshomar/translation.php:86 includes/languages/trans_twig.php:841
+#: includes/cls/database/sarshomar/translation.php:86
+#: includes/languages/trans_twig.php:841
 msgid "2 year college"
 msgstr "فوق دیپلم"
 
@@ -1436,7 +1514,8 @@ msgid "phd"
 msgstr "دکتری"
 
 #: includes/cls/database/sarshomar/translation.php:90
-#: includes/cls/database/sarshomar/translation.php:269 includes/languages/trans_twig.php:793
+#: includes/cls/database/sarshomar/translation.php:269
+#: includes/languages/trans_twig.php:793
 msgid "other"
 msgstr "سایر"
 
@@ -1444,23 +1523,28 @@ msgstr "سایر"
 msgid "-13"
 msgstr "-۱۳"
 
-#: includes/cls/database/sarshomar/translation.php:92 includes/languages/trans_twig.php:844
+#: includes/cls/database/sarshomar/translation.php:92
+#: includes/languages/trans_twig.php:844
 msgid "14-17"
 msgstr "۱۴-۱۷"
 
-#: includes/cls/database/sarshomar/translation.php:93 includes/languages/trans_twig.php:845
+#: includes/cls/database/sarshomar/translation.php:93
+#: includes/languages/trans_twig.php:845
 msgid "18-24"
 msgstr "۱۸-۲۴"
 
-#: includes/cls/database/sarshomar/translation.php:94 includes/languages/trans_twig.php:846
+#: includes/cls/database/sarshomar/translation.php:94
+#: includes/languages/trans_twig.php:846
 msgid "25-30"
 msgstr "۲۵-۳۰"
 
-#: includes/cls/database/sarshomar/translation.php:95 includes/languages/trans_twig.php:847
+#: includes/cls/database/sarshomar/translation.php:95
+#: includes/languages/trans_twig.php:847
 msgid "31-44"
 msgstr "۳۱-۴۴"
 
-#: includes/cls/database/sarshomar/translation.php:96 includes/languages/trans_twig.php:848
+#: includes/cls/database/sarshomar/translation.php:96
+#: includes/languages/trans_twig.php:848
 msgid "45-59"
 msgstr "۲۵-۵۹"
 
@@ -1502,7 +1586,8 @@ msgid "usercount"
 msgstr "تعداد کاربران"
 
 #: includes/cls/database/sarshomar/translation.php:106
-#: includes/cls/database/sarshomar/translation.php:251 includes/languages/trans_twig.php:517
+#: includes/cls/database/sarshomar/translation.php:251
+#: includes/languages/trans_twig.php:517
 msgid "gender"
 msgstr "جنسیت"
 
@@ -1596,7 +1681,8 @@ msgstr "متوسط"
 
 #: includes/cls/database/sarshomar/translation.php:131
 #: includes/cls/database/sarshomar/translation.php:290
-#: includes/cls/database/sarshomar/translation.php:324 includes/languages/trans_twig.php:523
+#: includes/cls/database/sarshomar/translation.php:324
+#: includes/languages/trans_twig.php:523
 msgid "caller"
 msgstr "صداکننده"
 
@@ -1604,8 +1690,8 @@ msgstr "صداکننده"
 #: includes/cls/database/sarshomar/translation.php:155
 #: includes/cls/database/sarshomar/translation.php:200
 #: includes/cls/database/sarshomar/translation.php:238
-#: includes/cls/database/sarshomar/translation.php:291 includes/languages/trans_addons.php:415
-#: includes/languages/trans_twig.php:522
+#: includes/cls/database/sarshomar/translation.php:291
+#: includes/languages/trans_addons.php:415 includes/languages/trans_twig.php:522
 msgid "title"
 msgstr "عنوان"
 
@@ -1664,7 +1750,8 @@ msgstr "کاربر فرستنده"
 msgid "options"
 msgstr "تنظیمات"
 
-#: includes/cls/database/sarshomar/translation.php:163 includes/languages/trans_addons.php:350
+#: includes/cls/database/sarshomar/translation.php:163
+#: includes/languages/trans_addons.php:350
 msgid "option"
 msgstr "تنظیمات"
 
@@ -1735,7 +1822,8 @@ msgstr "گزینه"
 msgid "txt"
 msgstr "متن"
 
-#: includes/cls/database/sarshomar/translation.php:184 includes/languages/trans_addons.php:406
+#: includes/cls/database/sarshomar/translation.php:184
+#: includes/languages/trans_addons.php:406
 msgid "profile"
 msgstr "پروفایل"
 
@@ -1763,7 +1851,8 @@ msgstr "شکلک"
 msgid "descriptive"
 msgstr "تشریحی"
 
-#: includes/cls/database/sarshomar/translation.php:193 includes/languages/trans_addons.php:352
+#: includes/cls/database/sarshomar/translation.php:193
+#: includes/languages/trans_addons.php:352
 msgid "upload"
 msgstr "بارگذاری"
 
@@ -1799,7 +1888,8 @@ msgstr "امتیاز گروه"
 msgid "score"
 msgstr "امتیاز"
 
-#: includes/cls/database/sarshomar/translation.php:206 includes/languages/trans_addons.php:349
+#: includes/cls/database/sarshomar/translation.php:206
+#: includes/languages/trans_addons.php:349
 msgid "attachment"
 msgstr "ضمیمه"
 
@@ -1815,11 +1905,13 @@ msgstr "آمار نظرسنجی"
 msgid "pollstat"
 msgstr "آمار نظرسنجی"
 
-#: includes/cls/database/sarshomar/translation.php:212 includes/languages/trans_twig.php:519
+#: includes/cls/database/sarshomar/translation.php:212
+#: includes/languages/trans_twig.php:519
 msgid "total"
 msgstr "مجموع"
 
-#: includes/cls/database/sarshomar/translation.php:213 includes/languages/trans_twig.php:141
+#: includes/cls/database/sarshomar/translation.php:213
+#: includes/languages/trans_twig.php:141
 msgid "result"
 msgstr "نتیجه"
 
@@ -1876,12 +1968,14 @@ msgstr "خشونت آمیز"
 msgid "pornography"
 msgstr "مستهجن"
 
-#: includes/cls/database/sarshomar/translation.php:233 includes/languages/trans_twig.php:964
+#: includes/cls/database/sarshomar/translation.php:233
+#: includes/languages/trans_twig.php:964
 msgid "poll"
 msgstr "نظرسنجی"
 
 #: includes/cls/database/sarshomar/translation.php:234
-#: includes/cls/database/sarshomar/translation.php:250 includes/languages/trans_twig.php:516
+#: includes/cls/database/sarshomar/translation.php:250
+#: includes/languages/trans_twig.php:516
 msgid "survey"
 msgstr "پرسش‌نامه"
 
@@ -1909,11 +2003,13 @@ msgid "publishdate"
 msgstr "زمان انتشار"
 
 #: includes/cls/database/sarshomar/translation.php:252
-#: includes/cls/database/sarshomar/translation.php:270 includes/languages/trans_twig.php:515
+#: includes/cls/database/sarshomar/translation.php:270
+#: includes/languages/trans_twig.php:515
 msgid "sarshomar"
 msgstr "سرشمار"
 
-#: includes/cls/database/sarshomar/translation.php:253 includes/languages/trans_twig.php:518
+#: includes/cls/database/sarshomar/translation.php:253
+#: includes/languages/trans_twig.php:518
 msgid "privacy"
 msgstr "خصوصی"
 
@@ -1962,11 +2058,13 @@ msgstr "ردکردن"
 msgid "view"
 msgstr "نمایش"
 
-#: includes/cls/database/sarshomar/translation.php:271 includes/languages/trans_addons.php:275
+#: includes/cls/database/sarshomar/translation.php:271
+#: includes/languages/trans_addons.php:275
 msgid "ago"
 msgstr "قبل"
 
-#: includes/cls/database/sarshomar/translation.php:272 includes/languages/trans_addons.php:310
+#: includes/cls/database/sarshomar/translation.php:272
+#: includes/languages/trans_addons.php:310
 msgid "admin"
 msgstr "ادمین"
 
@@ -1979,7 +2077,7 @@ msgid "socialapi"
 msgstr "API اجتماعی"
 
 #: includes/cls/database/sarshomar/translation.php:278
-msgid "socialap"
+msgid "socialapI"
 msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:279
@@ -2024,7 +2122,8 @@ msgstr "محل استفاده عبارت"
 msgid "products"
 msgstr "کالاها"
 
-#: includes/cls/database/sarshomar/translation.php:306 includes/languages/trans_addons.php:7
+#: includes/cls/database/sarshomar/translation.php:306
+#: includes/languages/trans_addons.php:7
 msgid "attachments"
 msgstr "ضمیمه‌ها"
 
@@ -2050,19 +2149,23 @@ msgstr "موارد تراکنشی"
 msgid "transactionitem"
 msgstr "مورد تراکنشی"
 
-#: includes/cls/database/sarshomar/translation.php:318 includes/languages/trans_twig.php:526
+#: includes/cls/database/sarshomar/translation.php:318
+#: includes/languages/trans_twig.php:526
 msgid "real"
 msgstr "واقعی"
 
-#: includes/cls/database/sarshomar/translation.php:319 includes/languages/trans_twig.php:527
+#: includes/cls/database/sarshomar/translation.php:319
+#: includes/languages/trans_twig.php:527
 msgid "gift"
 msgstr "هدیه"
 
-#: includes/cls/database/sarshomar/translation.php:320 includes/languages/trans_twig.php:528
+#: includes/cls/database/sarshomar/translation.php:320
+#: includes/languages/trans_twig.php:528
 msgid "prize"
 msgstr "جایزه"
 
-#: includes/cls/database/sarshomar/translation.php:321 includes/languages/trans_twig.php:529
+#: includes/cls/database/sarshomar/translation.php:321
+#: includes/languages/trans_twig.php:529
 msgid "transfer"
 msgstr "انتقال"
 
@@ -2079,11 +2182,13 @@ msgstr "خیر"
 msgid "unit"
 msgstr "واحد"
 
-#: includes/cls/database/sarshomar/translation.php:328 includes/languages/trans_twig.php:532
+#: includes/cls/database/sarshomar/translation.php:328
+#: includes/languages/trans_twig.php:532
 msgid "autoverify"
 msgstr "تایید خودکار"
 
-#: includes/cls/database/sarshomar/translation.php:329 includes/languages/trans_twig.php:533
+#: includes/cls/database/sarshomar/translation.php:329
+#: includes/languages/trans_twig.php:533
 msgid "forcechange"
 msgstr "اجبار در تغییر"
 
@@ -2096,7 +2201,7 @@ msgid "transaction"
 msgstr "تراکنش"
 
 #: includes/cls/database/sarshomar/translation.php:335
-msgid "budgetbefor"
+msgid "budgetbefore"
 msgstr ""
 
 #: includes/cls/database/sarshomar/translation.php:336
@@ -2147,7 +2252,8 @@ msgstr "گزارش اشتباهی"
 msgid "resetpassword"
 msgstr "بازنشانی رمزعبور"
 
-#: includes/cls/database/sarshomar/translation.php:355 includes/languages/trans_addons.php:451
+#: includes/cls/database/sarshomar/translation.php:355
+#: includes/languages/trans_addons.php:451
 msgid "verification"
 msgstr "اعتبارسنجی"
 
@@ -2301,7 +2407,8 @@ msgstr "لطفا عدد <b>2015</b> را به شماره زیر پیامک کن�
 
 #: includes/languages/trans_addons.php:36
 msgid "Then wait we receive your message and verificate your account"
-msgstr "ما در انتظار پیامک شما بوده و پس از دریافت اکانت را برایتان فعال خواهیم کردیم"
+msgstr ""
+"ما در انتظار پیامک شما بوده و پس از دریافت اکانت را برایتان فعال خواهیم کردیم"
 
 #: includes/languages/trans_addons.php:39
 msgid "Hello!"
@@ -2534,7 +2641,8 @@ msgstr "برگشت به"
 #: includes/languages/trans_addons.php:109
 msgid "list of current permissions is listed here, for edit click on it"
 msgstr ""
-"لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن را ویرایش کنید"
+"لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن را "
+"ویرایش کنید"
 
 #: includes/languages/trans_addons.php:110
 msgid "delete permission"
@@ -2614,7 +2722,8 @@ msgstr "عنوان مطلب خود را در اینجا وارد کنید"
 
 #: includes/languages/trans_addons.php:136
 msgid "Url of your content appear here, click on it to view"
-msgstr "آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده کنید"
+msgstr ""
+"آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده کنید"
 
 #: includes/languages/trans_addons.php:137
 msgid "Check result"
@@ -2650,13 +2759,13 @@ msgstr "تگ را وارد کنید"
 
 #: includes/languages/trans_addons.php:145
 msgid ""
-"Normally, tags are ad-hoc keywords that identify important information in your post (names, "
-"subjects, etc) that may or may not recur in other posts, while categories are pre-determined "
-"sections."
+"Normally, tags are ad-hoc keywords that identify important information in your "
+"post (names, subjects, etc) that may or may not recur in other posts, while "
+"categories are pre-determined sections."
 msgstr ""
-"به طول معمول، کلیدواژه‌ها عبارات تک کاربره‌ای برای شناسایی اطلاعات مهم در نوشته شما مانند نام، "
-"موضوع یا .. هستند که امکان تکرار آن‌ها در سایر نوشته‌ها مشخص نیست، این در حالی است که دسته‌ها "
-"از قبل مشخص شده هستند."
+"به طول معمول، کلیدواژه‌ها عبارات تک کاربره‌ای برای شناسایی اطلاعات مهم در نوشته شما "
+"مانند نام، موضوع یا .. هستند که امکان تکرار آن‌ها در سایر نوشته‌ها مشخص نیست، این "
+"در حالی است که دسته‌ها از قبل مشخص شده هستند."
 
 #: includes/languages/trans_addons.php:146
 msgid "View list of tags"
@@ -2669,9 +2778,9 @@ msgstr "نامک"
 #: includes/languages/trans_addons.php:148
 msgid "Set slug of content for better addressing in your site and increase SEO rate"
 msgstr ""
-"نامک همان آدرس صفحه در آدرس بار مرورگر است. با تنظیم نامک برای نوشته خود به بهبود وضعیت "
-"آدرس‌دهی و افزایش رنک سئو کمک کنید. در صورتی که شما نامک را وارد نکنید ما آن را خودمان خواهیم "
-"ساخت"
+"نامک همان آدرس صفحه در آدرس بار مرورگر است. با تنظیم نامک برای نوشته خود به بهبود "
+"وضعیت آدرس‌دهی و افزایش رنک سئو کمک کنید. در صورتی که شما نامک را وارد نکنید ما آن "
+"را خودمان خواهیم ساخت"
 
 #: includes/languages/trans_addons.php:149
 msgid "Enter slug here"
@@ -2695,7 +2804,8 @@ msgstr "از این کدکوتاه شده در مطالب خود استفاده 
 
 #: includes/languages/trans_addons.php:155
 msgid "Set language of your content to show only in this language"
-msgstr "با تنظیم زبان مربوط به این مطلب آن را فقط در زبان انتخاب شده نمایش خواهیم داد"
+msgstr ""
+"با تنظیم زبان مربوط به این مطلب آن را فقط در زبان انتخاب شده نمایش خواهیم داد"
 
 #: includes/languages/trans_addons.php:156
 msgid "All Languages"
@@ -2707,10 +2817,11 @@ msgstr "وضعیت"
 
 #: includes/languages/trans_addons.php:158
 msgid ""
-"All of content set as draft in default, for showing it to visitors you must set it to publish"
+"All of content set as draft in default, for showing it to visitors you must set "
+"it to publish"
 msgstr ""
-"تمام مطالب به صورت پیش فرض در حالت پیش نویس قرار می‌گیرند که شما برای انتشار و نمایش آن به "
-"بازدیدکنندگان باید وضعیت آن را به منتشرشده تغییر دهید"
+"تمام مطالب به صورت پیش فرض در حالت پیش نویس قرار می‌گیرند که شما برای انتشار و "
+"نمایش آن به بازدیدکنندگان باید وضعیت آن را به منتشرشده تغییر دهید"
 
 #: includes/languages/trans_addons.php:159
 msgid "Submit Changes"
@@ -2742,11 +2853,11 @@ msgstr "بدون والد"
 
 #: includes/languages/trans_addons.php:167
 msgid ""
-"You can nest Pages under other Pages by making one the “Parent” of the other, creating a "
-"group of Pages."
+"You can nest Pages under other Pages by making one the “Parent” of the other, "
+"creating a group of Pages."
 msgstr ""
-"شما می‌توانید یک برگه را با کمک ویژگی والد به عنوان زیرشاخته برگه‌ای دیگر ثبت کنید و به این "
-"شکل گروهی از برگه‌ها بسازید."
+"شما می‌توانید یک برگه را با کمک ویژگی والد به عنوان زیرشاخته برگه‌ای دیگر ثبت کنید "
+"و به این شکل گروهی از برگه‌ها بسازید."
 
 #: includes/languages/trans_addons.php:168
 msgid "Select a category of your content"
@@ -2778,7 +2889,9 @@ msgstr "تنظیم تصویر شاخص"
 
 #: includes/languages/trans_addons.php:175
 msgid "You can see type of your file and click on image to direct access to file"
-msgstr "شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی داشته باشید"
+msgstr ""
+"شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی داشته "
+"باشید"
 
 #: includes/languages/trans_addons.php:176
 msgid "Click to view"
@@ -2800,10 +2913,6 @@ msgstr "تعریف نظرسنجی"
 msgid "Define poll conditions"
 msgstr "تعریف شرایط نظرسنجی"
 
-#: includes/languages/trans_addons.php:183
-msgid "Options"
-msgstr "تنظیمات"
-
 #: includes/languages/trans_addons.php:188
 msgid "Click to check result"
 msgstr "برای مشاهده نتیجه کلیک کنید"
@@ -2814,15 +2923,18 @@ msgstr "تفاوت بین دسته‌ها و کلیدواژه‌ها در چیس
 
 #: includes/languages/trans_addons.php:190
 msgid ""
-"If you think of your site like a book, the categories are like the Table of Contents and the "
-"tags are like the terms in the index."
+"If you think of your site like a book, the categories are like the Table of "
+"Contents and the tags are like the terms in the index."
 msgstr ""
-"اگر سایت را مانند یک کتاب فرض کنید، دسته‌ها مثل فهرست مطالب و کلیدواژه‌ها مثل عبارات خاص در "
-"ایندکس هستند."
+"اگر سایت را مانند یک کتاب فرض کنید، دسته‌ها مثل فهرست مطالب و کلیدواژه‌ها مثل "
+"عبارات خاص در ایندکس هستند."
 
 #: includes/languages/trans_addons.php:191
-msgid "You can nest category under other category by making one the “Parent” of the other."
-msgstr "شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت کنید."
+msgid ""
+"You can nest category under other category by making one the “Parent” of the "
+"other."
+msgstr ""
+"شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت کنید."
 
 #: includes/languages/trans_addons.php:194
 msgid "Actions"
@@ -2922,12 +3034,13 @@ msgstr "تفاوت بین نوشته و برگه در چیست؟"
 
 #: includes/languages/trans_addons.php:224
 msgid ""
-"Pages are similar to Posts in that they have a title, body text, and associated metadata, "
-"but they are different in that they are not part of the chronological blog stream, kind of "
-"like permanent posts."
+"Pages are similar to Posts in that they have a title, body text, and associated "
+"metadata, but they are different in that they are not part of the chronological "
+"blog stream, kind of like permanent posts."
 msgstr ""
-"برگه‌ها در عنوان، متن و سایر ویژگی‌ها شبیه به نوشته‌ها هستند، اما تفاوت اصلی آن‌ها در این است که "
-"به مانند نوشته‌ها دارای جریان زمانی دنباله‌دار نیستند، در حقیقت شبیه به یک پست دائمی هستند."
+"برگه‌ها در عنوان، متن و سایر ویژگی‌ها شبیه به نوشته‌ها هستند، اما تفاوت اصلی آن‌ها در "
+"این است که به مانند نوشته‌ها دارای جریان زمانی دنباله‌دار نیستند، در حقیقت شبیه به "
+"یک پست دائمی هستند."
 
 #: includes/languages/trans_addons.php:225
 msgid "Pages are not categorized or tagged, but can have a hierarchy."
@@ -3352,7 +3465,8 @@ msgstr "صفحه"
 #: includes/languages/trans_addons.php:340
 msgid "If you want to change password enter it, else leave it blank"
 msgstr ""
-"در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را خالی بگذارید"
+"در صورت تمایل به تغییر گذرواژه آن را وارد کنید،‌ در غیر این ‌صورت این فیلد را خالی "
+"بگذارید"
 
 #: includes/languages/trans_addons.php:341
 msgid "Enter password within 5 to 40 character"
@@ -3502,6 +3616,10 @@ msgstr "تکراری - فایل وجود دارد"
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
+#: includes/languages/trans_addons.php:383
+msgid "Error"
+msgstr "خطا"
+
 #: includes/languages/trans_addons.php:384
 msgid "Invalid parameters"
 msgstr "پارامتر اشتباه"
@@ -3625,8 +3743,8 @@ msgstr "سایت"
 #: includes/languages/trans_addons.php:416
 msgid "For multilanguage sites enter title in English and translate it"
 msgstr ""
-"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن را به سایر "
-"زبان‌ها ترجمه کنید"
+"برای سایت‌های چندزبانه، این بخش را به انگلیسی وارد نموده و توسط برنامه مترجم آن را "
+"به سایر زبان‌ها ترجمه کنید"
 
 #: includes/languages/trans_addons.php:417
 msgid "main URL"
@@ -4106,13 +4224,14 @@ msgstr "انتخاب"
 
 #: includes/languages/trans_twig.php:6
 msgid ""
-"Thank you for choosing us. We do our best to improve Sarshomar's quality. So, knowing your "
-"valuable comments about bugs and problems and more importantly your precious offers will "
-"help us in this way."
+"Thank you for choosing us. We do our best to improve Sarshomar's quality. So, "
+"knowing your valuable comments about bugs and problems and more importantly your "
+"precious offers will help us in this way."
 msgstr ""
-"با آرزوی رضایت شما کاربر گرامی؛ از اینکه ما را شایسته انتخاب دانستید، خرسندیم. تمام تلاش ما "
-"بر افزایش کیفیت سرشمار است. دانستن نظرات ارزشمند شما درباره‌ی مشکلات و نواقص و صدالبته "
-"پیشنهادات گرانبهایتان از طریق فرم زیر سبب کمک به ما برای این مهم خواهد شد."
+"با آرزوی رضایت شما کاربر گرامی؛ از اینکه ما را شایسته انتخاب دانستید، خرسندیم. "
+"تمام تلاش ما بر افزایش کیفیت سرشمار است. دانستن نظرات ارزشمند شما درباره‌ی مشکلات "
+"و نواقص و صدالبته پیشنهادات گرانبهایتان از طریق فرم زیر سبب کمک به ما برای این "
+"مهم خواهد شد."
 
 #: includes/languages/trans_twig.php:7
 msgid "Contact"
@@ -4216,9 +4335,10 @@ msgstr "روی سوال خود تمرکز کنید؛ دغدغه چطور پرس�
 
 #: includes/languages/trans_twig.php:45 includes/mvc/view.php:14
 msgid ""
-"Equipped with an integrated platform, Sarshomar has made it possible for you to ask your "
-"questions via any means."
-msgstr "سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است."
+"Equipped with an integrated platform, Sarshomar has made it possible for you to "
+"ask your questions via any means."
+msgstr ""
+"سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است."
 
 #: includes/languages/trans_twig.php:46
 msgid "Try Before Register"
@@ -4234,11 +4354,11 @@ msgstr "سازمان‌ها و شرکت‌ها"
 
 #: includes/languages/trans_twig.php:49
 msgid ""
-"Sarshomar will provide you with the experience of evaluating the status quo, customer "
-"consent, and the market as well as promoting the level of services."
+"Sarshomar will provide you with the experience of evaluating the status quo, "
+"customer consent, and the market as well as promoting the level of services."
 msgstr ""
-"ارزیابی وضعیت موجود، سنجش رضایت مشتریان، بازارسنجی و ارتقای سطح خدمات را با کمک سرشمار تجربه "
-"کنید."
+"ارزیابی وضعیت موجود، سنجش رضایت مشتریان، بازارسنجی و ارتقای سطح خدمات را با کمک "
+"سرشمار تجربه کنید."
 
 #: includes/languages/trans_twig.php:50
 msgid "Universities and Research Institutes"
@@ -4246,12 +4366,12 @@ msgstr "دانشگاه‌ها و مراکز تحقیقاتی"
 
 #: includes/languages/trans_twig.php:51
 msgid ""
-"By means of administering tests, polling and evaluating in Sarshomar, you will have access "
-"to accurate information, while enjoying a reduction in the costs of data gathering and "
-"processing."
+"By means of administering tests, polling and evaluating in Sarshomar, you will "
+"have access to accurate information, while enjoying a reduction in the costs of "
+"data gathering and processing."
 msgstr ""
-"با برگزاری آزمون، نظرسنجی و ارزشیابی در سرشمار، ضمن کاهش هزینه‌های جمع‌آوری و پردازش، به "
-"اطلاعاتی دقیق دسترسی دارید."
+"با برگزاری آزمون، نظرسنجی و ارزشیابی در سرشمار، ضمن کاهش هزینه‌های جمع‌آوری و "
+"پردازش، به اطلاعاتی دقیق دسترسی دارید."
 
 #: includes/languages/trans_twig.php:52
 msgid "Advertising Agencies"
@@ -4259,10 +4379,11 @@ msgstr "آژانس‌های تبلیغاتی"
 
 #: includes/languages/trans_twig.php:53
 msgid ""
-"Furthermore, excite your customers by use of Sarshomar's new advertising strategies along "
-"with goal-oriented advertising."
+"Furthermore, excite your customers by use of Sarshomar's new advertising "
+"strategies along with goal-oriented advertising."
 msgstr ""
-"با ارائه راهکارهای تبلیغاتی نوین سرشمار و انجام تبلیغات هدفمند، مشتریان خود را هیجان‌زده کنید."
+"با ارائه راهکارهای تبلیغاتی نوین سرشمار و انجام تبلیغات هدفمند، مشتریان خود را "
+"هیجان‌زده کنید."
 
 #: includes/languages/trans_twig.php:54
 msgid "Developers and Webmasters"
@@ -4270,11 +4391,11 @@ msgstr "توسعه‌دهندگان و صاحبان وب‌سایت"
 
 #: includes/languages/trans_twig.php:55
 msgid ""
-"Finally, using API, you can have the benefit of Sarshomar's qualities and forget your "
-"concerns about polling."
+"Finally, using API, you can have the benefit of Sarshomar's qualities and forget "
+"your concerns about polling."
 msgstr ""
-"با استفاده از رابط برنامه‌نویسی، از ویژگی‌های سرشمار بهره‌مند شوید و دغدغه نظرسنجی را به "
-"فراموشی بسپارید."
+"با استفاده از رابط برنامه‌نویسی، از ویژگی‌های سرشمار بهره‌مند شوید و دغدغه نظرسنجی "
+"را به فراموشی بسپارید."
 
 #: includes/languages/trans_twig.php:56
 msgid "Easy Access"
@@ -4282,9 +4403,11 @@ msgstr "دسترسی آسان"
 
 #: includes/languages/trans_twig.php:57
 msgid ""
-"You can enjoy a variety of Sarshomar's services only through having access to the internet‌ "
-"and without having to need to install any particular software"
-msgstr "تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید."
+"You can enjoy a variety of Sarshomar's services only through having access to the "
+"internet‌ and without having to need to install any particular software"
+msgstr ""
+"تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند "
+"شوید."
 
 #: includes/languages/trans_twig.php:58
 msgid "Valid Statistical Population"
@@ -4292,11 +4415,11 @@ msgstr "جامعه آماری معتبر"
 
 #: includes/languages/trans_twig.php:59
 msgid ""
-"Ask Sarshomar's valid population your questions and analyze the results separately, along "
-"with the graphs"
+"Ask Sarshomar's valid population your questions and analyze the results "
+"separately, along with the graphs"
 msgstr ""
-"سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با نمودار بررسی "
-"کنید"
+"سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با "
+"نمودار بررسی کنید"
 
 #: includes/languages/trans_twig.php:60
 msgid "Knowledge Base"
@@ -4366,10 +4489,6 @@ msgstr "فیلترها"
 msgid "Question Type"
 msgstr "نوع سوال"
 
-#: includes/languages/trans_twig.php:87
-msgid "Poll"
-msgstr "نظرسنجی"
-
 #: includes/languages/trans_twig.php:88
 msgid "Quiz"
 msgstr "کوئیز"
@@ -4385,10 +4504,6 @@ msgstr "بر طبق پرسشنامه"
 #: includes/languages/trans_twig.php:91
 msgid "Multiplechoice"
 msgstr "چندگزینه‌ای"
-
-#: includes/languages/trans_twig.php:92
-msgid "Descriptive"
-msgstr "تشریحی"
 
 #: includes/languages/trans_twig.php:93
 msgid "Notification"
@@ -4556,11 +4671,11 @@ msgstr "لذت ببرید!"
 
 #: includes/languages/trans_twig.php:157
 msgid ""
-"By clicking Allow, you allow this app and Sarshomar to use your information in accordnace "
-"with their respective"
+"By clicking Allow, you allow this app and Sarshomar to use your information in "
+"accordnace with their respective"
 msgstr ""
-"با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از اطلاعات شما "
-"بر طبق"
+"با دادن اجازه به این اپلیکیشن، شما به این اپلیکیشن و سرشمار اجازه می‌دهید که از "
+"اطلاعات شما بر طبق"
 
 #: includes/languages/trans_twig.php:158
 msgid " terms of service "
@@ -4576,7 +4691,9 @@ msgstr " حریم خصوصی "
 
 #: includes/languages/trans_twig.php:161
 msgid ". You can change this at any time."
-msgstr "استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری خود تغییر دهید."
+msgstr ""
+"استفاده کند. شما می‌توانید در هر زمانی این تنظیمات را در حساب کاربری خود تغییر "
+"دهید."
 
 #: includes/languages/trans_twig.php:164
 msgid "Authorize this application to use your account?"
@@ -4764,11 +4881,11 @@ msgstr "لینکدین"
 
 #: includes/languages/trans_twig.php:229
 msgid ""
-"Knowing what everyone, at any time and place, is thinking about has invariably been one of "
-"the most exciting needs of human beings."
+"Knowing what everyone, at any time and place, is thinking about has invariably "
+"been one of the most exciting needs of human beings."
 msgstr ""
-"همواره اطلاع از اینکه هر کسی در هر مکان و زمانی به چه فکر می‌کند، یکی از هیجان‌انگیزترین "
-"دغدغه‌های بشر بوده است."
+"همواره اطلاع از اینکه هر کسی در هر مکان و زمانی به چه فکر می‌کند، یکی از "
+"هیجان‌انگیزترین دغدغه‌های بشر بوده است."
 
 #: includes/languages/trans_twig.php:230
 msgid "Sarshomar created for this!"
@@ -4784,23 +4901,24 @@ msgstr "سرشمار چیست؟"
 
 #: includes/languages/trans_twig.php:233
 msgid ""
-"By means of an opinion poll, we can become informed of people's interests, viewpoints and "
-"problems, and take measures to improve, develop or solve them."
+"By means of an opinion poll, we can become informed of people's interests, "
+"viewpoints and problems, and take measures to improve, develop or solve them."
 msgstr ""
-"با سنجش افکار می‌توانیم از میزان علایق، دیدگاه‌ها و مشکلات مردم آگاه شده و در جهت بهبود، توسعه "
-"یا رفع آنها اقدام کنیم؛"
+"با سنجش افکار می‌توانیم از میزان علایق، دیدگاه‌ها و مشکلات مردم آگاه شده و در جهت "
+"بهبود، توسعه یا رفع آنها اقدام کنیم؛"
 
 #: includes/languages/trans_twig.php:234
 msgid ""
-"Having taken these measures, we can dominate the public opinions, attract them and lead them "
-"towards our own interests."
+"Having taken these measures, we can dominate the public opinions, attract them "
+"and lead them towards our own interests."
 msgstr ""
-"با این اقدامات می‌توانیم بر افکارعمومی نفوذ، آنان را جذب و برای پیشبرد اهدافمان بکار گیریم."
+"با این اقدامات می‌توانیم بر افکارعمومی نفوذ، آنان را جذب و برای پیشبرد اهدافمان "
+"بکار گیریم."
 
 #: includes/languages/trans_twig.php:235
 msgid ""
-"Sarshomar, having a broad and knowledge-oriented outlook, came into being to provide "
-"solutions in this respect."
+"Sarshomar, having a broad and knowledge-oriented outlook, came into being to "
+"provide solutions in this respect."
 msgstr "سرشمار با نگرشی عمیق و دانش‌محور برای ارائه راهکاری در این زمینه خلق شد."
 
 #: includes/languages/trans_twig.php:236
@@ -4809,24 +4927,25 @@ msgstr "نام سرشمار"
 
 #: includes/languages/trans_twig.php:237
 msgid ""
-"In Persian, the person undertaking the task of census (Sarshomari) is called Sarshomar "
-"(headcounter)."
+"In Persian, the person undertaking the task of census (Sarshomari) is called "
+"Sarshomar (headcounter)."
 msgstr "در زبان‌فارسی به شخصی که وظیفه‌ی سرشماری را برعهده دارد، سرشمار گفته می‌شود."
 
 #: includes/languages/trans_twig.php:238
 msgid ""
-"Predicting the vast number of our service users, we have been searching for a term attuned "
-"with that vastness as well as our goal."
+"Predicting the vast number of our service users, we have been searching for a "
+"term attuned with that vastness as well as our goal."
 msgstr ""
-"با توجه به اینکه مقیاس کاربران این سرویس بسیار وسیع پیش‌بینی شده بود، به دنبال واژه‌ای سازگار "
-"با این هدف و ابعاد بودیم؛"
+"با توجه به اینکه مقیاس کاربران این سرویس بسیار وسیع پیش‌بینی شده بود، به دنبال "
+"واژه‌ای سازگار با این هدف و ابعاد بودیم؛"
 
 #: includes/languages/trans_twig.php:239
 msgid ""
-"Accordingly, having conducted extensive investigations, we selected the term '' Sarshomar '' "
-"as the trade name for the service."
+"Accordingly, having conducted extensive investigations, we selected the term '' "
+"Sarshomar '' as the trade name for the service."
 msgstr ""
-"بدین‌ترتیب پس از بررسی‌های لازم، واژه سرشمار را به عنوان نام تجاری این سرویس انتخاب کردیم."
+"بدین‌ترتیب پس از بررسی‌های لازم، واژه سرشمار را به عنوان نام تجاری این سرویس انتخاب "
+"کردیم."
 
 #: includes/languages/trans_twig.php:240
 msgid "The Starting Point"
@@ -4834,8 +4953,10 @@ msgstr "نقطه شروع"
 
 #: includes/languages/trans_twig.php:241
 msgid ""
-"There have been various means to conduct an opinion poll and future will be no exception."
-msgstr "ابزارهای متفاوتی برای سنجش افکار وجود داشته و در آینده نیز به‌وجود خواهد آمد."
+"There have been various means to conduct an opinion poll and future will be no "
+"exception."
+msgstr ""
+"ابزارهای متفاوتی برای سنجش افکار وجود داشته و در آینده نیز به‌وجود خواهد آمد."
 
 #: includes/languages/trans_twig.php:242
 msgid "Sarshomar, having known this, decided to enter this field."
@@ -4843,20 +4964,22 @@ msgstr "سرشمار با دانستن این موضوع، تصمیم به ور�
 
 #: includes/languages/trans_twig.php:243
 msgid ""
-"Being concerned with questioning a particular statistical population along with inferring "
-"valid results was one of the major reasons for Sarshomar's birth."
-msgstr "دغدغه پرسش از جامعه آماری خاص و استخراج نتایج مطمئن از مهم‌ترین دلایل تولد سرشمار بود."
+"Being concerned with questioning a particular statistical population along with "
+"inferring valid results was one of the major reasons for Sarshomar's birth."
+msgstr ""
+"دغدغه پرسش از جامعه آماری خاص و استخراج نتایج مطمئن از مهم‌ترین دلایل تولد سرشمار "
+"بود."
 
 #: includes/languages/trans_twig.php:244
 msgid ""
-"To develop an international service equipped with unique facilities, we examined the "
-"available models; and aiming to eliminate the weaknesses and cover the unnoticed points, and "
-"placing our reliance on God, we embarked on the most comprehensive electronic opinion poll "
-"service."
+"To develop an international service equipped with unique facilities, we examined "
+"the available models; and aiming to eliminate the weaknesses and cover the "
+"unnoticed points, and placing our reliance on God, we embarked on the most "
+"comprehensive electronic opinion poll service."
 msgstr ""
-"برای پرورش سرویسی بین‌المللی با امکاناتی منحصربه‌فرد، نمونه‌های موجود را بررسی کردیم و با هدف "
-"رفع نقاط ضعف و پوشش نکات دیده‌نشده، ساخت جامع‌ترین سرویس نظرسنجی الکترونیکی را با توکل به خدا "
-"آغاز کردیم."
+"برای پرورش سرویسی بین‌المللی با امکاناتی منحصربه‌فرد، نمونه‌های موجود را بررسی کردیم "
+"و با هدف رفع نقاط ضعف و پوشش نکات دیده‌نشده، ساخت جامع‌ترین سرویس نظرسنجی "
+"الکترونیکی را با توکل به خدا آغاز کردیم."
 
 #: includes/languages/trans_twig.php:245
 msgid "Services and Audiences"
@@ -4864,31 +4987,32 @@ msgstr "خدمات و مخاطبان"
 
 #: includes/languages/trans_twig.php:246
 msgid ""
-"Sarshomar's potential addressees and clients would include all legal as well as natural "
-"persons; all trading companies; educational and research centers; institutions and "
-"organizations; advertising agencies; website owners and developers; and all individuals in "
-"society from novice to expert."
+"Sarshomar's potential addressees and clients would include all legal as well as "
+"natural persons; all trading companies; educational and research centers; "
+"institutions and organizations; advertising agencies; website owners and "
+"developers; and all individuals in society from novice to expert."
 msgstr ""
-"مخاطبان سرشمار تمامی اشخاص حقیقی و حقوقی؛ شامل شرکت‌های تجاری، مراکز آموزشی و پژوهشی، موسسات "
-"و سازمان‌ها، آژانس‌های تبلیغاتی، توسعه‌دهنده‌ها و صاحبان وب‌سایت و تک‌تک افراد جامعه از مبتدی تا "
-"حرفه‌ای هستند."
+"مخاطبان سرشمار تمامی اشخاص حقیقی و حقوقی؛ شامل شرکت‌های تجاری، مراکز آموزشی و "
+"پژوهشی، موسسات و سازمان‌ها، آژانس‌های تبلیغاتی، توسعه‌دهنده‌ها و صاحبان وب‌سایت و تک‌تک "
+"افراد جامعه از مبتدی تا حرفه‌ای هستند."
 
 #: includes/languages/trans_twig.php:247
 msgid ""
-"You can use, according to your need, such unique characteristics as questioning the target "
-"statistical population, question charts, service provision through social networks and "
-"dozens of other ones."
+"You can use, according to your need, such unique characteristics as questioning "
+"the target statistical population, question charts, service provision through "
+"social networks and dozens of other ones."
 msgstr ""
-"شما می‌توانید بسته به نیاز خود از ویژگی‌های منحصربه‌فردی همچون پرسش از جامعه آماری هدف، "
-"درختواره سوالات، ارائه خدمات از طریق شبکه‌های اجتماعی و ده‌ها ویژگی‌ دیگر استفاده نمایید."
+"شما می‌توانید بسته به نیاز خود از ویژگی‌های منحصربه‌فردی همچون پرسش از جامعه آماری "
+"هدف، درختواره سوالات، ارائه خدمات از طریق شبکه‌های اجتماعی و ده‌ها ویژگی‌ دیگر "
+"استفاده نمایید."
 
 #: includes/languages/trans_twig.php:248
 msgid ""
-"Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your "
-"contribution to promoting its quality and services."
+"Sarshomar, moreover, intends to award you precious prizes to show its "
+"appreciation for your contribution to promoting its quality and services."
 msgstr ""
-"سرشمار به پاس قدردانی از مشارکت شما در ارتقای کیفیت و خدمات خود، هدایایی نفیس برای شما در "
-"نظر گرفته است."
+"سرشمار به پاس قدردانی از مشارکت شما در ارتقای کیفیت و خدمات خود، هدایایی نفیس "
+"برای شما در نظر گرفته است."
 
 #: includes/languages/trans_twig.php:249
 msgid "Would you like to follow Sarshomar's latest media coverage news?"
@@ -4911,7 +5035,8 @@ msgid "Join our team"
 msgstr "به ما بپیوندید"
 
 #: includes/languages/trans_twig.php:254
-msgid "If you have any questions, our contact and support center is always ready to help."
+msgid ""
+"If you have any questions, our contact and support center is always ready to help."
 msgstr "سوالی دارید؟ مرکز تماس و پشتیبانی سرشمار همواره در کنار شماست."
 
 #: includes/languages/trans_twig.php:255
@@ -4940,11 +5065,11 @@ msgstr "پروژه سرشمار شروع شد"
 
 #: includes/languages/trans_twig.php:265
 msgid ""
-"We, human beings, do not pay due attention to our environment, this invaluable heritage, and "
-"sometimes destroy it either knowingly or unknowingly."
+"We, human beings, do not pay due attention to our environment, this invaluable "
+"heritage, and sometimes destroy it either knowingly or unknowingly."
 msgstr ""
-"ما انسان‌ها کمتر به محیط‌زیست، این میراث گرانبها توجه داریم و گاهی دانسته و ندانسته به تخریب "
-"آن می‌پردازیم."
+"ما انسان‌ها کمتر به محیط‌زیست، این میراث گرانبها توجه داریم و گاهی دانسته و ندانسته "
+"به تخریب آن می‌پردازیم."
 
 #: includes/languages/trans_twig.php:266
 msgid "Eco"
@@ -4952,62 +5077,67 @@ msgstr "حامی محیط‌زیست"
 
 #: includes/languages/trans_twig.php:267
 msgid ""
-"One of the main reasons behind this inattention to environment is a lack of direct "
-"observation of the dangers of that inattention in short term."
-msgstr "یکی از دلایل اصلی کم‌توجهی به محیط‌زیست، عدم مشاهده مستقیم خطرات آن در کوتاه‌مدت است."
+"One of the main reasons behind this inattention to environment is a lack of "
+"direct observation of the dangers of that inattention in short term."
+msgstr ""
+"یکی از دلایل اصلی کم‌توجهی به محیط‌زیست، عدم مشاهده مستقیم خطرات آن در کوتاه‌مدت است."
 
 #: includes/languages/trans_twig.php:268
-msgid "These destructive consequences usually form slower than to be easily tangible by us."
-msgstr "این آثار مخرب اغلب آهسته‌تر از آن شکل می‌گیرند که برای ما به سهولت قابل درک باشند."
+msgid ""
+"These destructive consequences usually form slower than to be easily tangible by "
+"us."
+msgstr ""
+"این آثار مخرب اغلب آهسته‌تر از آن شکل می‌گیرند که برای ما به سهولت قابل درک باشند."
 
 #: includes/languages/trans_twig.php:269
 msgid ""
 "The advancement of sophisticated technology, though having brought up numerous "
 "accomplishments for us, has invited an uncalled-for guest, namely pollution."
 msgstr ""
-"رشد تکنولوژی‌های پیشرفته‌ اگرچه دستاوردهای بی‌شماری برای ما به ارمغان آورده است، اما مهمانی "
-"ناخوانده به‌نام آلودگی به‌همراه داشته است."
+"رشد تکنولوژی‌های پیشرفته‌ اگرچه دستاوردهای بی‌شماری برای ما به ارمغان آورده است، اما "
+"مهمانی ناخوانده به‌نام آلودگی به‌همراه داشته است."
 
 #: includes/languages/trans_twig.php:270
 msgid ""
-"Undoubtedly, the issue of environmental pollution is one of the major problems which has "
-"made us face serious challenges and will do the same."
+"Undoubtedly, the issue of environmental pollution is one of the major problems "
+"which has made us face serious challenges and will do the same."
 msgstr ""
-"بی‌تردید، موضوع آلودگی محیط‌زیست یکی از مهمترین معضلاتی است که ما را با چالش‌های جدی روبه‌رو "
-"کرده و خواهد کرد."
+"بی‌تردید، موضوع آلودگی محیط‌زیست یکی از مهمترین معضلاتی است که ما را با چالش‌های جدی "
+"روبه‌رو کرده و خواهد کرد."
 
 #: includes/languages/trans_twig.php:271
 msgid ""
-"In order to protect the environment and prevent it from being destructed, green businesses "
-"appeared, aiming at adopting environment friendly methods towards sustainable development as "
-"well as contribution to decreasing unnecessary costs."
+"In order to protect the environment and prevent it from being destructed, green "
+"businesses appeared, aiming at adopting environment friendly methods towards "
+"sustainable development as well as contribution to decreasing unnecessary costs."
 msgstr ""
-"در راستای حفظ محیط‌زیست و جلوگیری از تخریب آن، کسب‌وکارهای سبز با هدف اجرای روش‌های سازگار با "
-"محیط‌زیست جهت توسعه پایدار و کمک به کاهش هزینه‌های غیرضروری ظهور کردند."
+"در راستای حفظ محیط‌زیست و جلوگیری از تخریب آن، کسب‌وکارهای سبز با هدف اجرای روش‌های "
+"سازگار با محیط‌زیست جهت توسعه پایدار و کمک به کاهش هزینه‌های غیرضروری ظهور کردند."
 
 #: includes/languages/trans_twig.php:272
 msgid ""
-"We, in Sarshomar, consider respecting the environment as an inseparable responsibility for "
-"ourselves, and to reach that end, we reengineered polling procedure with a new attitude."
+"We, in Sarshomar, consider respecting the environment as an inseparable "
+"responsibility for ourselves, and to reach that end, we reengineered polling "
+"procedure with a new attitude."
 msgstr ""
-"ما در سرشمار، احترام به محیط‌زیست را وظیفه‌ای جدایی‌ناپذیر برای خود می‌دانیم و برای رسیدن به این "
-"هدف، فرآیند نظرسنجی را با نگرشی نوین، بازمهندسی کردیم."
+"ما در سرشمار، احترام به محیط‌زیست را وظیفه‌ای جدایی‌ناپذیر برای خود می‌دانیم و برای "
+"رسیدن به این هدف، فرآیند نظرسنجی را با نگرشی نوین، بازمهندسی کردیم."
 
 #: includes/languages/trans_twig.php:273
 msgid ""
-"One of our goals in redesigning the procedures is to minimize the need for paper when "
-"receiving your opinions."
+"One of our goals in redesigning the procedures is to minimize the need for paper "
+"when receiving your opinions."
 msgstr ""
-"یکی از اهداف ما در طراحی مجدد فرآیندها، به حداقل رساندن نیاز به استفاده از کاغذ برای دریافت "
-"نظرات شماست."
+"یکی از اهداف ما در طراحی مجدد فرآیندها، به حداقل رساندن نیاز به استفاده از کاغذ "
+"برای دریافت نظرات شماست."
 
 #: includes/languages/trans_twig.php:274
 msgid ""
-"Therefore, we invite you to use Sarshomar for its paper-saving purposes to save plants and "
-"have a beautiful earth."
+"Therefore, we invite you to use Sarshomar for its paper-saving purposes to save "
+"plants and have a beautiful earth."
 msgstr ""
-"پس شما هم با استفاده از سرشمار به صرفه‌جویی در مصرف کاغذ برای حفظ درختان و داشتن زمین زیبا "
-"کمک کنید."
+"پس شما هم با استفاده از سرشمار به صرفه‌جویی در مصرف کاغذ برای حفظ درختان و داشتن "
+"زمین زیبا کمک کنید."
 
 #: includes/languages/trans_twig.php:277
 msgid "Elements"
@@ -5071,30 +5201,30 @@ msgstr "دریافت پاسخ تشریحی"
 
 #: includes/languages/trans_twig.php:303
 msgid ""
-"In addition to ordinary multiple questions, and in order to have complete relation with "
-"addressees, there is the possibility of adding essay-type questions and receiving the "
-"related answers from addressees."
+"In addition to ordinary multiple questions, and in order to have complete "
+"relation with addressees, there is the possibility of adding essay-type questions "
+"and receiving the related answers from addressees."
 msgstr ""
-"علاوه بر سوالات گزینه‌ای معمول، برای ارتباط تکمیلی با مخاطبان، امکان افزودن سوالات تشریحی و "
-"دریافت پاسخ‌هایی تشریحی از مخاطبان وجود دارد."
+"علاوه بر سوالات گزینه‌ای معمول، برای ارتباط تکمیلی با مخاطبان، امکان افزودن سوالات "
+"تشریحی و دریافت پاسخ‌هایی تشریحی از مخاطبان وجود دارد."
 
 #: includes/languages/trans_twig.php:304
 msgid ""
-"For instance, such a feature has a special usage in scientific foundations for administering "
-"examinations and in organizations and business centers for receiving opinions and "
-"suggestions."
+"For instance, such a feature has a special usage in scientific foundations for "
+"administering examinations and in organizations and business centers for "
+"receiving opinions and suggestions."
 msgstr ""
-"به عنوان مثال این ویژگی در مراکز علمی برای برگزاری آزمون و در سازمان‌ها و مراکز تجاری برای "
-"دریافت نظرات و پیشنهادات مخاطبان کاربرد ویژه‌ای دارد."
+"به عنوان مثال این ویژگی در مراکز علمی برای برگزاری آزمون و در سازمان‌ها و مراکز "
+"تجاری برای دریافت نظرات و پیشنهادات مخاطبان کاربرد ویژه‌ای دارد."
 
 #: includes/languages/trans_twig.php:307
 msgid ""
-"Graphs are powerful means that might not take more than a few minutes to study; however, "
-"they can provide you with a large amount of complicated information in a simple and "
-"effective way."
+"Graphs are powerful means that might not take more than a few minutes to study; "
+"however, they can provide you with a large amount of complicated information in a "
+"simple and effective way."
 msgstr ""
-"نمودارها ابزار قدرتمندی هستند که شاید مطالعه آنها چند دقیقه بیشتر طول نکشد اما می‌توانند "
-"مقدار زیادی اطلاعات پیچیده را بطور ساده و اثرگذار به شما ارائه دهند."
+"نمودارها ابزار قدرتمندی هستند که شاید مطالعه آنها چند دقیقه بیشتر طول نکشد اما "
+"می‌توانند مقدار زیادی اطلاعات پیچیده را بطور ساده و اثرگذار به شما ارائه دهند."
 
 #: includes/languages/trans_twig.php:308
 msgid "Observing Graphic Results according to the Statistical Population"
@@ -5102,25 +5232,27 @@ msgstr "مشاهده نتایج نموداری به تفکیک جامعه آما
 
 #: includes/languages/trans_twig.php:309
 msgid ""
-"Polls' charts and tables, based on separate statistical populations of the respondents as "
-"well as their key factors, are available in Sarshomar."
+"Polls' charts and tables, based on separate statistical populations of the "
+"respondents as well as their key factors, are available in Sarshomar."
 msgstr ""
-"نمودار و جداول نظرسنجی‌ در سرشمار به تفکیک جامعه‌آماری پاسخ‌دهندگان و فاکتورهای اساسی آنان در "
-"دسترس است."
+"نمودار و جداول نظرسنجی‌ در سرشمار به تفکیک جامعه‌آماری پاسخ‌دهندگان و فاکتورهای "
+"اساسی آنان در دسترس است."
 
 #: includes/languages/trans_twig.php:310
 msgid ""
-"These key factors include gender, age range, marital status, academic degree, educational "
-"status and residence."
+"These key factors include gender, age range, marital status, academic degree, "
+"educational status and residence."
 msgstr ""
-"این فاکتورهای اساسی شامل جنسیت، بازه‌سنی، وضعیت‌تاهل، مدرک‌تحصیلی، وضعیت‌تحصیلی و محل سکونت است."
+"این فاکتورهای اساسی شامل جنسیت، بازه‌سنی، وضعیت‌تاهل، مدرک‌تحصیلی، وضعیت‌تحصیلی و محل "
+"سکونت است."
 
 #: includes/languages/trans_twig.php:313
 msgid ""
-"Unlike all other websites and services you have ever seen, you do not have to register in "
-"Sarshomar."
+"Unlike all other websites and services you have ever seen, you do not have to "
+"register in Sarshomar."
 msgstr ""
-"برخلاف همه سایت‌ها و سرویس‌هایی که تاکنون دیده‌اید، اجباری به ثبت‌نام در سرشمار وجود ندارد."
+"برخلاف همه سایت‌ها و سرویس‌هایی که تاکنون دیده‌اید، اجباری به ثبت‌نام در سرشمار وجود "
+"ندارد."
 
 #: includes/languages/trans_twig.php:314
 msgid "Try Before Registering"
@@ -5128,56 +5260,63 @@ msgstr "قبل از ثبت‌نام امتحان کنید"
 
 #: includes/languages/trans_twig.php:315
 msgid ""
-"Using the option Try Before Registering, you can be our guest user and investigate Sarshomar "
-"without being required to register. In case, you find us the best, you can proceed to "
-"register."
+"Using the option Try Before Registering, you can be our guest user and "
+"investigate Sarshomar without being required to register. In case, you find us "
+"the best, you can proceed to register."
 msgstr ""
-"با ویژگی قبل از ثبت‌نام امتحان کنید بدون نیاز به ثبت‌نام و به صورت کاربر مهمان، سرشمار را "
-"بررسی‌کرده و درصورتی که ما را برترین یافتید، ثبت‌نام کنید."
+"با ویژگی قبل از ثبت‌نام امتحان کنید بدون نیاز به ثبت‌نام و به صورت کاربر مهمان، "
+"سرشمار را بررسی‌کرده و درصورتی که ما را برترین یافتید، ثبت‌نام کنید."
 
 #: includes/languages/trans_twig.php:316
 msgid ""
-"When you are a guest user, you have all Sarshomar's qualities at your service to investigate."
+"When you are a guest user, you have all Sarshomar's qualities at your service to "
+"investigate."
 msgstr "در حالت کاربر مهمان تمامی ویژگی‌های سرشمار برای بررسی در اختیار شماست."
 
 #: includes/languages/trans_twig.php:317
-msgid "You can save your question or questionnaire as well as answer Sarshomar's questions."
-msgstr "شما می‌توانید سوال یا پرسش‌نامه خود را ثبت‌کرده و یا به سوالات سرشمار پاسخ دهید."
+msgid ""
+"You can save your question or questionnaire as well as answer Sarshomar's "
+"questions."
+msgstr ""
+"شما می‌توانید سوال یا پرسش‌نامه خود را ثبت‌کرده و یا به سوالات سرشمار پاسخ دهید."
 
 #: includes/languages/trans_twig.php:318
 msgid ""
-"Your activities and participation, when you are a guest, will be saved and kept safe by us "
-"for a while; however, to share the question or to make the results received from you "
-"effective in opinion polls, you are required to register."
+"Your activities and participation, when you are a guest, will be saved and kept "
+"safe by us for a while; however, to share the question or to make the results "
+"received from you effective in opinion polls, you are required to register."
 msgstr ""
-"فعالیت‌ها و مشارکت شما در حالت مهمان ذخیره شده و نزد ما برای مدتی محفوظ است،‌ اما برای انتشار "
-"سوال یا اثرگذاری نتایج دریافتی از شما در نظرسنجی‌ها، نیاز به ثبت‌نام داریم."
+"فعالیت‌ها و مشارکت شما در حالت مهمان ذخیره شده و نزد ما برای مدتی محفوظ است،‌ اما "
+"برای انتشار سوال یا اثرگذاری نتایج دریافتی از شما در نظرسنجی‌ها، نیاز به ثبت‌نام "
+"داریم."
 
 #: includes/languages/trans_twig.php:319
 msgid ""
-"The reason behind not sharing the questions and not putting into effect the received results "
-"from users while they are guest users is to prevent creating unreal results and sharing "
-"improper questions."
+"The reason behind not sharing the questions and not putting into effect the "
+"received results from users while they are guest users is to prevent creating "
+"unreal results and sharing improper questions."
 msgstr ""
-"دلیل عدم انتشار سوالات ثبت‌شده و عدم اثرگذاری نتایج شما در حالت کاربر مهمان، جلوگیری از ایجاد "
-"نتایج غیرواقعی و انتشار سوالات نامناسب است."
+"دلیل عدم انتشار سوالات ثبت‌شده و عدم اثرگذاری نتایج شما در حالت کاربر مهمان، "
+"جلوگیری از ایجاد نتایج غیرواقعی و انتشار سوالات نامناسب است."
 
 #: includes/languages/trans_twig.php:320
 msgid ""
-"After registration and user account confirmation, your will still have access to your saved "
-"participation. Furthermore, to appreciate your presence confirmation, Sarshomar will award "
-"you a bonus in your user account for taking that valuable measure."
+"After registration and user account confirmation, your will still have access to "
+"your saved participation. Furthermore, to appreciate your presence confirmation, "
+"Sarshomar will award you a bonus in your user account for taking that valuable "
+"measure."
 msgstr ""
-"پس از ثبت‌نام و تایید حساب‌کاربری، مشارکت‌های ذخیره‌شده شما هم‌چنان در اختیار شماست و سرشمار "
-"به‌پاس تثبیت حضورتان، هدیه‌ای را برای این اقدام ارزشمند در حساب‌کاربری شما لحاظ خواهد کرد."
+"پس از ثبت‌نام و تایید حساب‌کاربری، مشارکت‌های ذخیره‌شده شما هم‌چنان در اختیار شماست و "
+"سرشمار به‌پاس تثبیت حضورتان، هدیه‌ای را برای این اقدام ارزشمند در حساب‌کاربری شما "
+"لحاظ خواهد کرد."
 
 #: includes/languages/trans_twig.php:321
 msgid ""
-"Upon completing your registration, you will both receive a registration gift and, based on "
-"the activities done, Sarshomar's other allocated gifts and bonuses."
+"Upon completing your registration, you will both receive a registration gift and, "
+"based on the activities done, Sarshomar's other allocated gifts and bonuses."
 msgstr ""
-"با تکمیل ثبت‌نام علاوه بر دریافت هدیه‌ی ثبت‌نام، براساس فعالیت‌های انجام‌شده از هدایای تعیین‌شده "
-"در سرشمار برخوردار خواهید شد."
+"با تکمیل ثبت‌نام علاوه بر دریافت هدیه‌ی ثبت‌نام، براساس فعالیت‌های انجام‌شده از هدایای "
+"تعیین‌شده در سرشمار برخوردار خواهید شد."
 
 #: includes/languages/trans_twig.php:322
 msgid "I wanna examine you!"
@@ -5225,30 +5364,35 @@ msgstr "سرشمار برای ایجاد حس مطلوب به شما از هیچ
 
 #: includes/languages/trans_twig.php:341
 msgid ""
-"To that end, we are improving our service to support more and more languages so that you "
-"will be able to use our service via your own language."
+"To that end, we are improving our service to support more and more languages so "
+"that you will be able to use our service via your own language."
 msgstr ""
-"در این راستا ما به مرور زمان درحال افزایش پشتیبانی از زبان‌های بیشتری هستیم تا شما بتوانید به "
-"زبان خودتان با سرشمار کار کنید."
+"در این راستا ما به مرور زمان درحال افزایش پشتیبانی از زبان‌های بیشتری هستیم تا شما "
+"بتوانید به زبان خودتان با سرشمار کار کنید."
 
 #: includes/languages/trans_twig.php:342
 msgid ""
-"In case you are interested to help us to localize more languages, please contact Sarshomar."
-msgstr "در صورت تمایل برای کمک به ما در راستای بومی‌سازی زبان‌های بیشتر، با سرشمار تماس بگیرید."
+"In case you are interested to help us to localize more languages, please contact "
+"Sarshomar."
+msgstr ""
+"در صورت تمایل برای کمک به ما در راستای بومی‌سازی زبان‌های بیشتر، با سرشمار تماس "
+"بگیرید."
 
 #: includes/languages/trans_twig.php:345
 msgid ""
-"One of Sarshomar's most attractive features is employing multimedia content within questions."
+"One of Sarshomar's most attractive features is employing multimedia content "
+"within questions."
 msgstr ""
-"استفاده از محتوای چندرسانه‌ای در سوالات یکی از جذاب‌ترین ویژگی‌های ارائه‌شده در سرشمار است."
+"استفاده از محتوای چندرسانه‌ای در سوالات یکی از جذاب‌ترین ویژگی‌های ارائه‌شده در "
+"سرشمار است."
 
 #: includes/languages/trans_twig.php:346
 msgid ""
-"For instance, you can play a 60-second short movie on the environment and, then, ask the "
-"addressees their descriptive opinion on it."
+"For instance, you can play a 60-second short movie on the environment and, then, "
+"ask the addressees their descriptive opinion on it."
 msgstr ""
-"به‌عنوان مثال می‌توانید یک فیلم کوتاه شصت ثانیه‌ای درباره محیط‌زیست پخش کرده و نظر تشریحی "
-"مخاطبان را درباره آن دریافت کنید."
+"به‌عنوان مثال می‌توانید یک فیلم کوتاه شصت ثانیه‌ای درباره محیط‌زیست پخش کرده و نظر "
+"تشریحی مخاطبان را درباره آن دریافت کنید."
 
 #: includes/languages/trans_twig.php:349
 msgid "A question chart links a question to another."
@@ -5256,61 +5400,68 @@ msgstr "منظور از درختواره، اتصال سوالی به سوالی
 
 #: includes/languages/trans_twig.php:350
 msgid ""
-"To do so, you can specify the desired options to create the link when defining the question."
-msgstr "بدین‌منظور می‌توانید گزینه‌های موردنظر برای ایجاد اتصال را در هنگام تعریف سوال مشخص کنید."
+"To do so, you can specify the desired options to create the link when defining "
+"the question."
+msgstr ""
+"بدین‌منظور می‌توانید گزینه‌های موردنظر برای ایجاد اتصال را در هنگام تعریف سوال مشخص "
+"کنید."
 
 #: includes/languages/trans_twig.php:351
 msgid ""
-"For example, as for the questions related to Bloodletting, you can only ask those users who "
-"have chosen the positive option for using Iranian traditional medicine."
+"For example, as for the questions related to Bloodletting, you can only ask those "
+"users who have chosen the positive option for using Iranian traditional medicine."
 msgstr ""
-"به‌عنوان مثال سوال مربوط به حجامت را فقط از کاربرانی بپرسید که در سوال استفاده از طب‌سنتی "
-"ایرانی گزینه مثبت را انتخاب کرده‌اند."
+"به‌عنوان مثال سوال مربوط به حجامت را فقط از کاربرانی بپرسید که در سوال استفاده از "
+"طب‌سنتی ایرانی گزینه مثبت را انتخاب کرده‌اند."
 
 #: includes/languages/trans_twig.php:352
 msgid ""
-"In contrast, if your question regards why not to use traditional medicine, you can ask those "
-"who have chosen the corresponding negative option."
+"In contrast, if your question regards why not to use traditional medicine, you "
+"can ask those who have chosen the corresponding negative option."
 msgstr ""
-"یا به صورت معکوس سوالی در مورد چرایی عدم استفاده از طب‌سنتی را از کسانی بپرسید که آن سوال "
-"گزینه منفی را انتخاب کرده‌اند."
+"یا به صورت معکوس سوالی در مورد چرایی عدم استفاده از طب‌سنتی را از کسانی بپرسید که "
+"آن سوال گزینه منفی را انتخاب کرده‌اند."
 
 #: includes/languages/trans_twig.php:353
 msgid ""
-"Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive "
-"knowledge, you purposefully direct your question or message towards your desired addressees."
+"Accordingly, by means of the feature of question charts and use of Sarshomar's "
+"comprehensive knowledge, you purposefully direct your question or message towards "
+"your desired addressees."
 msgstr ""
-"بدین ترتیب با کمک ویژگی درختواره و بهره‌بردن از دانش عظیم سرشمار، می‌توانید سوال یا پیام خود "
-"را به صورت هدفمند هدایت کرده و به دست مخاطبان موردنظر برسانید."
+"بدین ترتیب با کمک ویژگی درختواره و بهره‌بردن از دانش عظیم سرشمار، می‌توانید سوال یا "
+"پیام خود را به صورت هدفمند هدایت کرده و به دست مخاطبان موردنظر برسانید."
 
 #: includes/languages/trans_twig.php:356
 msgid ""
-"In case there is a need to the polls' findings, you will be able to receive a variety of "
-"outputs from the results."
+"In case there is a need to the polls' findings, you will be able to receive a "
+"variety of outputs from the results."
 msgstr ""
-"در صورت نیاز به نتایج بدست‌آمده از نظرسنجی‌ها،‌ شما توانایی دریافت خروجی‌‌های مختلف را از نتایج "
-"خواهید داشت."
+"در صورت نیاز به نتایج بدست‌آمده از نظرسنجی‌ها،‌ شما توانایی دریافت خروجی‌‌های مختلف را "
+"از نتایج خواهید داشت."
 
 #: includes/languages/trans_twig.php:357
 msgid ""
-"The results will be given to you separately and along with details so that you will be able "
-"to use the data in computational softwares."
+"The results will be given to you separately and along with details so that you "
+"will be able to use the data in computational softwares."
 msgstr ""
-"نتایج به تفکیک و همراه با جزئیات در اختیار شما قرار خواهد گرفت تا بتوانید از این داده‌ها در "
-"نرم‌افزارهای محاسباتی استفاده کنید."
+"نتایج به تفکیک و همراه با جزئیات در اختیار شما قرار خواهد گرفت تا بتوانید از این "
+"داده‌ها در نرم‌افزارهای محاسباتی استفاده کنید."
 
 #: includes/languages/trans_twig.php:360
-msgid "All of Sarshomar's contents and questions are publically available and usable for all."
+msgid ""
+"All of Sarshomar's contents and questions are publically available and usable for "
+"all."
 msgstr ""
-"تمام سوالات و محتوای سرشمار به صورت عمومی در دسترس همه بوده و قابلیت استفاده عموم را دارد."
+"تمام سوالات و محتوای سرشمار به صورت عمومی در دسترس همه بوده و قابلیت استفاده عموم "
+"را دارد."
 
 #: includes/languages/trans_twig.php:361
 msgid ""
-"In order to protect the privacy of the questions, Sarshomar has considered two features that "
-"you can use based on your need."
+"In order to protect the privacy of the questions, Sarshomar has considered two "
+"features that you can use based on your need."
 msgstr ""
-"به‌منظور حفظ حریم خصوصی سوالات، دو ویژگی در سرشمار دیده‌شده است که شما می‌توانید بسته به نیاز "
-"از آن استفاده کنید."
+"به‌منظور حفظ حریم خصوصی سوالات، دو ویژگی در سرشمار دیده‌شده است که شما می‌توانید "
+"بسته به نیاز از آن استفاده کنید."
 
 #: includes/languages/trans_twig.php:362
 msgid "The first feature is the capability of assigning a code to the polls."
@@ -5318,10 +5469,11 @@ msgstr "اولین ویژگی توانایی رمزگذاری بر روی نظر
 
 #: includes/languages/trans_twig.php:363
 msgid ""
-"In this way, only those who have the given password can observe and answer the question."
+"In this way, only those who have the given password can observe and answer the "
+"question."
 msgstr ""
-"در این روش تنها کسانی که رمز مربوطه را دراختیار داشته‌باشند، می‌توانند سوال را مشاهده کرده و "
-"به آن پاسخ دهند."
+"در این روش تنها کسانی که رمز مربوطه را دراختیار داشته‌باشند، می‌توانند سوال را "
+"مشاهده کرده و به آن پاسخ دهند."
 
 #: includes/languages/trans_twig.php:364
 msgid "The second feature is the capability of hiding the results of the questions."
@@ -5329,65 +5481,67 @@ msgstr "دومین ویژگی قابلیت مخفی‌سازی نتایج سوا
 
 #: includes/languages/trans_twig.php:365
 msgid ""
-"In this way, while answering the questions is possible for all, the results will be personal "
-"and displayed only for the user who has asked the question."
+"In this way, while answering the questions is possible for all, the results will "
+"be personal and displayed only for the user who has asked the question."
 msgstr ""
-"بدین‌شکل امکان پاسخ‌دهی به سوالات برای همه ممکن بوده ولی نتایج به صورت خصوصی بوده و تنها برای "
-"طراح سوال نمایش داده می‌شود."
+"بدین‌شکل امکان پاسخ‌دهی به سوالات برای همه ممکن بوده ولی نتایج به صورت خصوصی بوده و "
+"تنها برای طراح سوال نمایش داده می‌شود."
 
 #: includes/languages/trans_twig.php:368
 msgid ""
-"One of the best and paramount characteristics of Sarshomar is to provide services via social "
-"networks."
-msgstr "یکی از بهترین و برترین ویژگی‌های سرشمار ارائه خدمات از طریق شبکه‌های اجتماعی است."
+"One of the best and paramount characteristics of Sarshomar is to provide services "
+"via social networks."
+msgstr ""
+"یکی از بهترین و برترین ویژگی‌های سرشمار ارائه خدمات از طریق شبکه‌های اجتماعی است."
 
 #: includes/languages/trans_twig.php:369
 msgid ""
-"Sarshomar's services, regarding the presentable features in any social network, are "
-"accessible integratively."
+"Sarshomar's services, regarding the presentable features in any social network, "
+"are accessible integratively."
 msgstr ""
-"خدمات سرشمار با توجه به ویژگی‌های قابل ارائه در هر شبکه‌ی اجتماعی ارائه‌شده و به صورت یکپارچه "
-"در دسترس است."
+"خدمات سرشمار با توجه به ویژگی‌های قابل ارائه در هر شبکه‌ی اجتماعی ارائه‌شده و به "
+"صورت یکپارچه در دسترس است."
 
 #: includes/languages/trans_twig.php:370
 msgid ""
-"One of the objectives of Sarshomar's service provision via social networks is easy access. "
-"Besides, you do not have to install any software on your device, which readily makes "
-"Sarshomar's services accessible to you."
+"One of the objectives of Sarshomar's service provision via social networks is "
+"easy access. Besides, you do not have to install any software on your device, "
+"which readily makes Sarshomar's services accessible to you."
 msgstr ""
-"یکی از اهداف ارائه خدمات سرشمار در شبکه‌های اجتماعی، دسترسی آسان و عدم نیاز به نصب نرم‌افزار "
-"در دستگاه دیجیتالی شماست که به‌راحتی امکان دستیابی شما به خدمات سرشمار را امکان‌پذیر می‌سازد."
+"یکی از اهداف ارائه خدمات سرشمار در شبکه‌های اجتماعی، دسترسی آسان و عدم نیاز به نصب "
+"نرم‌افزار در دستگاه دیجیتالی شماست که به‌راحتی امکان دستیابی شما به خدمات سرشمار را "
+"امکان‌پذیر می‌سازد."
 
 #: includes/languages/trans_twig.php:373
 msgid ""
-"Another outstanding feature presented by Sarshomar is determining the target statistical "
-"population."
+"Another outstanding feature presented by Sarshomar is determining the target "
+"statistical population."
 msgstr "از برجسته‌ترین ویژگی‌های ارائه‌شده در سرشمار، امکان تعیین جامعه آماری هدف است."
 
 #: includes/languages/trans_twig.php:374
 msgid ""
-"To do so, you can present your question or advertisement based on your goal and exact needs, "
-"and receive the feedbacks from that determined target without any concerns and as soon as "
-"possible."
+"To do so, you can present your question or advertisement based on your goal and "
+"exact needs, and receive the feedbacks from that determined target without any "
+"concerns and as soon as possible."
 msgstr ""
-"بدین‌منظور می‌توانید سوال یا تبلیغات را به صورت هدفمند و دقیقا براساس نیاز ارائه کنید و "
-"بازخوردهای آن را از هدف مشخص‌شده بدون دغدغه و در کمترین زمان دریافت کنید."
+"بدین‌منظور می‌توانید سوال یا تبلیغات را به صورت هدفمند و دقیقا براساس نیاز ارائه "
+"کنید و بازخوردهای آن را از هدف مشخص‌شده بدون دغدغه و در کمترین زمان دریافت کنید."
 
 #: includes/languages/trans_twig.php:375
 msgid ""
-"For instance, you can target your question at below 25 married men who hold bachelor or "
-"master degree and are employed."
+"For instance, you can target your question at below 25 married men who hold "
+"bachelor or master degree and are employed."
 msgstr ""
-"به‌عنوان مثال می‌توانید سوالی را از مردان متاهل زیر ۲۵ سال دارای مدرک کارشناسی و کارشناسی‌ارشد "
-"شاغل بپرسید."
+"به‌عنوان مثال می‌توانید سوالی را از مردان متاهل زیر ۲۵ سال دارای مدرک کارشناسی و "
+"کارشناسی‌ارشد شاغل بپرسید."
 
 #: includes/languages/trans_twig.php:376
 msgid ""
-"Just imagine that, in Sarshomar, you can purposefully send your advertisements only to "
-"single women with the age range of 18 to 30."
+"Just imagine that, in Sarshomar, you can purposefully send your advertisements "
+"only to single women with the age range of 18 to 30."
 msgstr ""
-"تصور کنید که در سرشمار می‌توانید تبلیغات خود را به صورت هدفمند تنها برای زنان مجرد رده سنی ۱۸ "
-"تا ۳۰ سال بفرستید."
+"تصور کنید که در سرشمار می‌توانید تبلیغات خود را به صورت هدفمند تنها برای زنان مجرد "
+"رده سنی ۱۸ تا ۳۰ سال بفرستید."
 
 #: includes/languages/trans_twig.php:381
 msgid "Valid Population"
@@ -5395,42 +5549,43 @@ msgstr "جامعه آماری معتبر"
 
 #: includes/languages/trans_twig.php:384
 msgid ""
-"Sarshomar is opposed to annoying advertisements, striving to create a desirable feeling in "
-"you while you are using this service."
+"Sarshomar is opposed to annoying advertisements, striving to create a desirable "
+"feeling in you while you are using this service."
 msgstr ""
-"سرشمار مخالف تبلیغات‌ آزاردهنده است و تلاش ما بر این است در حین کار با این سرویس حس مطلوبی در "
-"شما ایجاد کنیم."
+"سرشمار مخالف تبلیغات‌ آزاردهنده است و تلاش ما بر این است در حین کار با این سرویس "
+"حس مطلوبی در شما ایجاد کنیم."
 
 #: includes/languages/trans_twig.php:385
 msgid ""
-"Set as default, all the messages in Sarshomar are inactive and you are completely in charge "
-"of managing them."
+"Set as default, all the messages in Sarshomar are inactive and you are completely "
+"in charge of managing them."
 msgstr ""
-"به‌صورت پیش‌فرض تمام پیام‌ها در سرشمار غیر‌فعال بوده و مدیریت آن به صورت کامل در اختیار شماست."
+"به‌صورت پیش‌فرض تمام پیام‌ها در سرشمار غیر‌فعال بوده و مدیریت آن به صورت کامل در "
+"اختیار شماست."
 
 #: includes/languages/trans_twig.php:386
 msgid ""
-"As such, Sarshomar never initiates communication, sending messages to you only after "
-"receiving your request."
+"As such, Sarshomar never initiates communication, sending messages to you only "
+"after receiving your request."
 msgstr ""
-"بدین مفهوم که سرشمار هیچ‌گاه شروع‌کننده ارتباط نبوده و تنها پس از درخواست از طرف شما، پیام‌ها "
-"برایتان ارسال می‌گردد."
+"بدین مفهوم که سرشمار هیچ‌گاه شروع‌کننده ارتباط نبوده و تنها پس از درخواست از طرف "
+"شما، پیام‌ها برایتان ارسال می‌گردد."
 
 #: includes/languages/trans_twig.php:387
 msgid ""
-"Of course, customizing data reception is possible for you and you can activate it if you are "
-"willing to."
+"Of course, customizing data reception is possible for you and you can activate it "
+"if you are willing to."
 msgstr ""
-"البته امکان سفارشی‌سازی دریافت اطلاع‌رسانی‌ها برای شما ممکن بوده و درصورت تمایل می‌توانید آن را "
-"فعال کنید."
+"البته امکان سفارشی‌سازی دریافت اطلاع‌رسانی‌ها برای شما ممکن بوده و درصورت تمایل "
+"می‌توانید آن را فعال کنید."
 
 #: includes/languages/trans_twig.php:392
 msgid ""
-"As the final remark, we wish to assure you that our main concern is to secure your privacy "
-"and protect your information against impermissible access."
+"As the final remark, we wish to assure you that our main concern is to secure "
+"your privacy and protect your information against impermissible access."
 msgstr ""
-"در پایان، این اطمینان را به شما می‌دهیم که دغدغه‌ی ما، حفظ حریم‌خصوصی و محافظت از اطلاعات شما "
-"در برابر دسترسی‌های غیرمجاز هست."
+"در پایان، این اطمینان را به شما می‌دهیم که دغدغه‌ی ما، حفظ حریم‌خصوصی و محافظت از "
+"اطلاعات شما در برابر دسترسی‌های غیرمجاز هست."
 
 #: includes/languages/trans_twig.php:393
 msgid "What is Privacy?"
@@ -5438,19 +5593,19 @@ msgstr "حریم‌خصوصی چیست؟"
 
 #: includes/languages/trans_twig.php:394
 msgid ""
-"Privacy means that any individual is entitled to choose the information related to them, and "
-"selectively, share it with others."
+"Privacy means that any individual is entitled to choose the information related "
+"to them, and selectively, share it with others."
 msgstr ""
-"حریم‌خصوصی یعنی شخص بتواند اطلاعات مربوط به خود را مجزا کرده و به انتخاب خویش، در برابر "
-"دیگران آشکار کند."
+"حریم‌خصوصی یعنی شخص بتواند اطلاعات مربوط به خود را مجزا کرده و به انتخاب خویش، در "
+"برابر دیگران آشکار کند."
 
 #: includes/languages/trans_twig.php:395
 msgid ""
-"privacy is so important for mental peace as well as a peaceful personality that some experts "
-"have considered invasion of privacy disrespectful to human dignity."
+"privacy is so important for mental peace as well as a peaceful personality that "
+"some experts have considered invasion of privacy disrespectful to human dignity."
 msgstr ""
-"حریم‌خصوصی برای آرامش روانی و شخصیتی، بسیار مهم است تا جایی‌که بعضی از صاحب‌نظران نقض آن را به "
-"عنوان یک اقدام توهین‌آمیز نسبت به شرافت بشری قلمداد کرده‌اند."
+"حریم‌خصوصی برای آرامش روانی و شخصیتی، بسیار مهم است تا جایی‌که بعضی از صاحب‌نظران "
+"نقض آن را به عنوان یک اقدام توهین‌آمیز نسبت به شرافت بشری قلمداد کرده‌اند."
 
 #: includes/languages/trans_twig.php:396
 msgid "Controversies over the Invasion of Privacy"
@@ -5458,114 +5613,123 @@ msgstr "جنجال‌های نقض حریم‌خصوصی"
 
 #: includes/languages/trans_twig.php:397
 msgid ""
-"Within e-commerce, privacy has always been from among the most controversial topics and "
-"continues to be."
-msgstr "حریم‌خصوصی در کسب‌و‌کارهای الکترونیکی همیشه یکی از بحث‌برانگیزترین موضوعات بوده و هست؛"
+"Within e-commerce, privacy has always been from among the most controversial "
+"topics and continues to be."
+msgstr ""
+"حریم‌خصوصی در کسب‌و‌کارهای الکترونیکی همیشه یکی از بحث‌برانگیزترین موضوعات بوده و هست؛"
 
 #: includes/languages/trans_twig.php:398
 msgid ""
-"Accordingly, formulating privacy policies is regarded as one of the crucial concerns of "
-"technology companies."
+"Accordingly, formulating privacy policies is regarded as one of the crucial "
+"concerns of technology companies."
 msgstr ""
-"به همین دلیل، تعیین سیاست‌های حریم‌خصوصی جزء دغدغه‌های بسیار مهم شرکت‌های فناورانه محسوب می‌شود."
+"به همین دلیل، تعیین سیاست‌های حریم‌خصوصی جزء دغدغه‌های بسیار مهم شرکت‌های فناورانه "
+"محسوب می‌شود."
 
 #: includes/languages/trans_twig.php:399
 msgid ""
-"Meanwhile, widespread controversies have been provoked over invasion of privacy in e-"
-"commerce so that, occasionally, the regulations have to be revised to eliminate the existing "
-"weaknesses."
+"Meanwhile, widespread controversies have been provoked over invasion of privacy "
+"in e-commerce so that, occasionally, the regulations have to be revised to "
+"eliminate the existing weaknesses."
 msgstr ""
-"در این میان جنجال‌هایی گسترده به‌خاطر نقض حریم‌خصوصی از کسب‌وکارهای الکترونیکی صورت گرفته است؛ "
-"به‌گونه‌ای که هرچند وقت یک‌بار مجبور هستند قوانین را بازبینی نموده تا حفره‌های موجود را رفع "
-"نمایند."
+"در این میان جنجال‌هایی گسترده به‌خاطر نقض حریم‌خصوصی از کسب‌وکارهای الکترونیکی صورت "
+"گرفته است؛ به‌گونه‌ای که هرچند وقت یک‌بار مجبور هستند قوانین را بازبینی نموده تا "
+"حفره‌های موجود را رفع نمایند."
 
 #: includes/languages/trans_twig.php:400
 msgid "Privacy from Our Point of View"
 msgstr "حریم‌خصوصی از دیدگاه ما"
 
 #: includes/languages/trans_twig.php:401
-msgid "Let us be straightforward! Cyberspace is not a safe location for personal information."
+msgid ""
+"Let us be straightforward! Cyberspace is not a safe location for personal "
+"information."
 msgstr "رو راست باشیم، فضای مجازی محل امنی برای اطلاعات خصوصی نیست."
 
 #: includes/languages/trans_twig.php:402
 msgid ""
-"For that reason, Sarshomar makes no request for important information of yours and the "
-"request for receiving general information including age, gender, education, interests, etc. "
-"is only for the sake of the documentation and validation of the results reached at by "
-"Sarshomar."
+"For that reason, Sarshomar makes no request for important information of yours "
+"and the request for receiving general information including age, gender, "
+"education, interests, etc. is only for the sake of the documentation and "
+"validation of the results reached at by Sarshomar."
 msgstr ""
-"به‌همین دلیل سرشمار هیچ‌گونه درخواستی برای دریافت اطلاعات حساس شما ندارد و درخواست برای دریافت "
-"اطلاعات عمومی، شامل سن، جنسیت، تحصیلات، علاقمندی‌ها و سایر موارد تنها برای مستند و معتبرسازی "
-"نتایج در سرشمار می‌باشد."
+"به‌همین دلیل سرشمار هیچ‌گونه درخواستی برای دریافت اطلاعات حساس شما ندارد و درخواست "
+"برای دریافت اطلاعات عمومی، شامل سن، جنسیت، تحصیلات، علاقمندی‌ها و سایر موارد تنها "
+"برای مستند و معتبرسازی نتایج در سرشمار می‌باشد."
 
 #: includes/languages/trans_twig.php:403
-msgid "It is worth mentioning that recording the aforementioned points is totally voluntary."
+msgid ""
+"It is worth mentioning that recording the aforementioned points is totally "
+"voluntary."
 msgstr "لازم به توضیح است که ثبت موارد ذکرشده نیز به‌صورت کاملا اختیاری است."
 
 #: includes/languages/trans_twig.php:404
 msgid ""
-"However, taking the nature of cyberspace into account, we should remember that offering an "
-"absolute assurance might not be possible."
+"However, taking the nature of cyberspace into account, we should remember that "
+"offering an absolute assurance might not be possible."
 msgstr ""
-"این را در نظر داشته باشید که با توجه به ماهیت فضای مجازی، ارائه تضمین صددرصدی به‌طور کل ممکن "
-"نیست؛"
+"این را در نظر داشته باشید که با توجه به ماهیت فضای مجازی، ارائه تضمین صددرصدی "
+"به‌طور کل ممکن نیست؛"
 
 #: includes/languages/trans_twig.php:405
 msgid ""
-"Assuring privacy and security, with that ideal concept we bear in mind, does not exist; and "
-"if somebody gives you an assurance of securing your privacy, he has certainly abused your "
-"trust."
+"Assuring privacy and security, with that ideal concept we bear in mind, does not "
+"exist; and if somebody gives you an assurance of securing your privacy, he has "
+"certainly abused your trust."
 msgstr ""
-"تضمین امنیت و حریم خصوصی به آن معنای آرمانی که ما در ذهن خود داریم وجود ندارد، و اگر کسی در "
-"دنیای مجازی، تضمین امنیت حریم‌خصوصی شما را بدهد قطعا از اعتماد شما سوءاستفاده کرده است."
+"تضمین امنیت و حریم خصوصی به آن معنای آرمانی که ما در ذهن خود داریم وجود ندارد، و "
+"اگر کسی در دنیای مجازی، تضمین امنیت حریم‌خصوصی شما را بدهد قطعا از اعتماد شما "
+"سوءاستفاده کرده است."
 
 #: includes/languages/trans_twig.php:406
 msgid ""
-"Upon buying any digital or the so-called smart device, you have invaded your own privacy "
-"yourself."
+"Upon buying any digital or the so-called smart device, you have invaded your own "
+"privacy yourself."
 msgstr ""
-"شما با خرید هر دستگاه دیجیتالی یا به اصطلاح هوشمند، با دست خود حریم‌خصوصی‌تان را نقض کرده‌اید."
+"شما با خرید هر دستگاه دیجیتالی یا به اصطلاح هوشمند، با دست خود حریم‌خصوصی‌تان را "
+"نقض کرده‌اید."
 
 #: includes/languages/trans_twig.php:407
 msgid ""
-"If you want your privacy not to be invaded, you should depart from technology and say "
-"goodbye to any digital and smart device."
+"If you want your privacy not to be invaded, you should depart from technology and "
+"say goodbye to any digital and smart device."
 msgstr ""
-"اگر می‌خواهید این حریم‌خصوصی نقض نشود باید به‌طور کل از دنیای تکنولوژی فاصله بگیرید و با هر "
-"دستگاه دیجیتالی و هوشمندی خداحافظی کنید!"
+"اگر می‌خواهید این حریم‌خصوصی نقض نشود باید به‌طور کل از دنیای تکنولوژی فاصله بگیرید "
+"و با هر دستگاه دیجیتالی و هوشمندی خداحافظی کنید!"
 
 #: includes/languages/trans_twig.php:408
 msgid ""
-"In fact, we have employed all updated technologies of the world to provide you with the "
-"maximum security."
+"In fact, we have employed all updated technologies of the world to provide you "
+"with the maximum security."
 msgstr ""
-"ما به‌لحاظ فنی تمام تکنولوژی‌های روز دنیا را به‌کار برده‌ایم تا امنیت حداکثری را برای شما به "
-"ارمغان بیاوریم."
+"ما به‌لحاظ فنی تمام تکنولوژی‌های روز دنیا را به‌کار برده‌ایم تا امنیت حداکثری را برای "
+"شما به ارمغان بیاوریم."
 
 #: includes/languages/trans_twig.php:409
 msgid ""
-"Due to the scientific nature of Sarshomar as well as the attempts made to enhance the trust "
-"in the found results of opinion polls, profile completion has been made possible in the "
-"system."
+"Due to the scientific nature of Sarshomar as well as the attempts made to enhance "
+"the trust in the found results of opinion polls, profile completion has been made "
+"possible in the system."
 msgstr ""
-"به دلیل ماهیت علمی سرشمار و تلاش برای ارتقاء اطمینان به نتایج حاصل شده از سرشماری‌ها، امکان "
-"تکمیل پروفایل در سیستم تعبیه شده است."
+"به دلیل ماهیت علمی سرشمار و تلاش برای ارتقاء اطمینان به نتایج حاصل شده از "
+"سرشماری‌ها، امکان تکمیل پروفایل در سیستم تعبیه شده است."
 
 #: includes/languages/trans_twig.php:410
 msgid ""
-"In case you are willing to help us to improve the quality of Sarshomar and to promote the "
-"efficiency of your own contribution, provide us with your general information."
+"In case you are willing to help us to improve the quality of Sarshomar and to "
+"promote the efficiency of your own contribution, provide us with your general "
+"information."
 msgstr ""
-"در صورت تمایل، برای کمک به ارتقای کیفیت سرشمار و افزایش اثربخشی مشارکت خود، اطلاعات عمومی "
-"خود را در اختیار ما قراردهید."
+"در صورت تمایل، برای کمک به ارتقای کیفیت سرشمار و افزایش اثربخشی مشارکت خود، "
+"اطلاعات عمومی خود را در اختیار ما قراردهید."
 
 #: includes/languages/trans_twig.php:411
 msgid ""
-"Please remember that in case of your unwillingness, it is possible for you to refuse "
-"completing the profile questions."
+"Please remember that in case of your unwillingness, it is possible for you to "
+"refuse completing the profile questions."
 msgstr ""
-"توجه داشته باشید که در صورت عدم تمایل، قابلیت ردکردن سوالات تکمیل پروفایل برای شما در نظر "
-"گرفته شده است."
+"توجه داشته باشید که در صورت عدم تمایل، قابلیت ردکردن سوالات تکمیل پروفایل برای "
+"شما در نظر گرفته شده است."
 
 #: includes/languages/trans_twig.php:414
 msgid "Referral"
@@ -5573,29 +5737,30 @@ msgstr "ارجاع‌دهی"
 
 #: includes/languages/trans_twig.php:417
 msgid ""
-"Social responsibility refers to our role in maintaining, caring about and helping our "
-"society, while having set as its goal a responsibility-centered enterprise along with wealth "
-"production."
+"Social responsibility refers to our role in maintaining, caring about and helping "
+"our society, while having set as its goal a responsibility-centered enterprise "
+"along with wealth production."
 msgstr ""
-"مسئولیت اجتماعی به نقش ما در جهت حفظ، مراقبت و کمک به جامعه‌ای که در آن هستیم اشاره می‌کند و "
-"هدف آن کسب‌وکار مسئولانه‌ی همراه با تولید ثروت است."
+"مسئولیت اجتماعی به نقش ما در جهت حفظ، مراقبت و کمک به جامعه‌ای که در آن هستیم "
+"اشاره می‌کند و هدف آن کسب‌وکار مسئولانه‌ی همراه با تولید ثروت است."
 
 #: includes/languages/trans_twig.php:418
 msgid ""
-"The issue of the social responsibility of organizations and corporations towards the society "
-"is from among the important issues being focused on in recent years."
+"The issue of the social responsibility of organizations and corporations towards "
+"the society is from among the important issues being focused on in recent years."
 msgstr ""
-"موضوع مسئولیت اجتماعی سازمان‌ها و شرکت‌ها نسبت به جامعه از جمله موضوعات مهمی است که در سال‌های "
-"اخیر مورد اهمیت قرار گرفته است."
+"موضوع مسئولیت اجتماعی سازمان‌ها و شرکت‌ها نسبت به جامعه از جمله موضوعات مهمی است که "
+"در سال‌های اخیر مورد اهمیت قرار گرفته است."
 
 #: includes/languages/trans_twig.php:419
 msgid ""
-"The social responsibility of organizations relates to the organization's responsibility "
-"towards society, human beings and the environment in which they are active."
+"The social responsibility of organizations relates to the organization's "
+"responsibility towards society, human beings and the environment in which they "
+"are active."
 msgstr ""
-"مسئولیت اجتماعی سازمان‌ها مرتبط با مسئولیت سازمان در برابر جامعه، انسان‌ها و محیطی است که در "
-"آن فعالیت می‌کند. این مسئولیت فراتر از قوانین مرسوم و منافع مالی سازمان بوده و پیشرفت منافع "
-"اجتماعی را دنبال می‌کند."
+"مسئولیت اجتماعی سازمان‌ها مرتبط با مسئولیت سازمان در برابر جامعه، انسان‌ها و محیطی "
+"است که در آن فعالیت می‌کند. این مسئولیت فراتر از قوانین مرسوم و منافع مالی سازمان "
+"بوده و پیشرفت منافع اجتماعی را دنبال می‌کند."
 
 #: includes/languages/trans_twig.php:420
 msgid "Sarshomar's Social Responsibilities"
@@ -5603,14 +5768,14 @@ msgstr "مسئولیت‌های اجتماعی سرشمار"
 
 #: includes/languages/trans_twig.php:421
 msgid ""
-"Based on the mentioned definitions of social responsibility, Sarshomar considers itself "
-"committed to society. Accordingly, besides attempting to offer creative and effective "
-"services, Sarshomar has invariably had social responsibility as one of its most important "
-"missions and, God willing, will continue to do so."
+"Based on the mentioned definitions of social responsibility, Sarshomar considers "
+"itself committed to society. Accordingly, besides attempting to offer creative "
+"and effective services, Sarshomar has invariably had social responsibility as one "
+"of its most important missions and, God willing, will continue to do so."
 msgstr ""
-"براساس تعاریفی که از مسئولیت اجتماعی شد، سرشمار نیز خود را در قبال جامعه متعهد دانسته و در "
-"کنار تلاش جهت ارائه خدمات خلاقانه و اثربخش، همواره مسئولیت اجتماعی از مهم‌ترین ماموریت‌های "
-"سرشمار بوده و به‌امیدخدا خواهد بود."
+"براساس تعاریفی که از مسئولیت اجتماعی شد، سرشمار نیز خود را در قبال جامعه متعهد "
+"دانسته و در کنار تلاش جهت ارائه خدمات خلاقانه و اثربخش، همواره مسئولیت اجتماعی از "
+"مهم‌ترین ماموریت‌های سرشمار بوده و به‌امیدخدا خواهد بود."
 
 #: includes/languages/trans_twig.php:422
 msgid "Environmentalist"
@@ -5618,22 +5783,24 @@ msgstr "دوست‌دار محیط‌زیست"
 
 #: includes/languages/trans_twig.php:423
 msgid ""
-"In spite of technological advancements, paper usage is unfortunately preferred to modern "
-"ways. One of Sarshomar's objectives is trying to change this habit and contribute to the "
-"elimination of paper from the routine life and, therefore, to save the environment."
+"In spite of technological advancements, paper usage is unfortunately preferred to "
+"modern ways. One of Sarshomar's objectives is trying to change this habit and "
+"contribute to the elimination of paper from the routine life and, therefore, to "
+"save the environment."
 msgstr ""
-"با وجود پیشرفت تکنولوژی، متاسفانه همچنان علاقه به استفاده از کاغذ قابل پذیرش‌تر از روش‌های "
-"نوین است؛ یکی از اهداف سرشمار تلاش برای تغییر این عادت و کمک به حذف کاغذ از زندگی روزمره و "
-"درنتیجه حفظ محیط‌زیست است."
+"با وجود پیشرفت تکنولوژی، متاسفانه همچنان علاقه به استفاده از کاغذ قابل پذیرش‌تر از "
+"روش‌های نوین است؛ یکی از اهداف سرشمار تلاش برای تغییر این عادت و کمک به حذف کاغذ "
+"از زندگی روزمره و درنتیجه حفظ محیط‌زیست است."
 
 #: includes/languages/trans_twig.php:424
 msgid ""
 "Accordingly, with the aim of total elimination of paper use as well as electronic "
-"presentation of services, Sarshomar has taken significant steps towards environmentalism. Be "
-"informed about Sarshomar's paper-saving quantity."
+"presentation of services, Sarshomar has taken significant steps towards "
+"environmentalism. Be informed about Sarshomar's paper-saving quantity."
 msgstr ""
-"سرشمار با حذف صددرصدی استفاده از کاغذ و ارائه خدمات به صورت الکترونیکی توانسته اقدامی مهم در "
-"زمینه حفظ محیط‌زیست داشته باشد. از میزان صرفه‌جویی سرشمار در مصرف کاغذ آگاه شوید."
+"سرشمار با حذف صددرصدی استفاده از کاغذ و ارائه خدمات به صورت الکترونیکی توانسته "
+"اقدامی مهم در زمینه حفظ محیط‌زیست داشته باشد. از میزان صرفه‌جویی سرشمار در مصرف "
+"کاغذ آگاه شوید."
 
 #: includes/languages/trans_twig.php:425
 msgid "Philanthropist Activities"
@@ -5641,22 +5808,24 @@ msgstr "فعالیت‌های خیرخواهانه"
 
 #: includes/languages/trans_twig.php:426
 msgid ""
-"One of the most valuable resources of charity organizations is the voluntary and active "
-"participation of the individuals who, without any expectations, provide them with their "
-"skillfulness and capital."
+"One of the most valuable resources of charity organizations is the voluntary and "
+"active participation of the individuals who, without any expectations, provide "
+"them with their skillfulness and capital."
 msgstr ""
-"یکی از ارزشمندترین سرمایه‌‌ی سازمان‌های خیریه، فعالیت و مشارکت داوطلبانه افرادی است که مهارت و "
-"سرمایه خود را بدون هیچ چشم‌داشتی در اختیار آن‌ها قرار می‌دهند."
+"یکی از ارزشمندترین سرمایه‌‌ی سازمان‌های خیریه، فعالیت و مشارکت داوطلبانه افرادی است "
+"که مهارت و سرمایه خود را بدون هیچ چشم‌داشتی در اختیار آن‌ها قرار می‌دهند."
 
 #: includes/languages/trans_twig.php:427
 msgid ""
-"Sarshomar as well, with regard to its contribution to philanthropist activities, will "
-"honorably provide them with its services free of charge. To make use of these services, send "
-"your identity documents along with your request to Sarshomar's support center."
+"Sarshomar as well, with regard to its contribution to philanthropist activities, "
+"will honorably provide them with its services free of charge. To make use of "
+"these services, send your identity documents along with your request to "
+"Sarshomar's support center."
 msgstr ""
-"سرشمار نیز با توجه به ماموریت خود در راستای کمک به فعالیت‌های خیرخواهانه، خدمات خود را با "
-"افتخار و به‌صورت رایگان دراختیار آنان قرار می‌دهد. برای استفاده از این خدمات، درخواست خود را "
-"همراه با مدارک احراز هویت به مرکز پشتیبانی سرشمار ارسال نمایید."
+"سرشمار نیز با توجه به ماموریت خود در راستای کمک به فعالیت‌های خیرخواهانه، خدمات "
+"خود را با افتخار و به‌صورت رایگان دراختیار آنان قرار می‌دهد. برای استفاده از این "
+"خدمات، درخواست خود را همراه با مدارک احراز هویت به مرکز پشتیبانی سرشمار ارسال "
+"نمایید."
 
 #: includes/languages/trans_twig.php:428
 msgid "Recruiting Motivated Staff"
@@ -5664,19 +5833,19 @@ msgstr "بکارگیری نیروهای باانگیزه"
 
 #: includes/languages/trans_twig.php:429
 msgid ""
-"An outstanding characteristic of any organization is its specialized and highly motivated "
-"staff, playing a vital role in growth and development."
+"An outstanding characteristic of any organization is its specialized and highly "
+"motivated staff, playing a vital role in growth and development."
 msgstr ""
-"ویژگی چشم‌گیر و بارز هر سازمانی وجود نیروی‌ انسانی باانگیزه و متخصص است که نقشی بنیادین در رشد "
-"و توسعه دارند."
+"ویژگی چشم‌گیر و بارز هر سازمانی وجود نیروی‌ انسانی باانگیزه و متخصص است که نقشی "
+"بنیادین در رشد و توسعه دارند."
 
 #: includes/languages/trans_twig.php:430
 msgid ""
-"By the same token, we are always looking for creative and motivated Iranian youths in order "
-"to make the best and be effective in cooperation with them."
+"By the same token, we are always looking for creative and motivated Iranian "
+"youths in order to make the best and be effective in cooperation with them."
 msgstr ""
-"ما هم در این راستا و برای خدمت به سرزمین‌مان، به دنبال جوانان ایرانی خلاق و باانگیزه هستیم تا "
-"با کمک هم برترین‌ها را بسازیم و اثرگذار باشیم."
+"ما هم در این راستا و برای خدمت به سرزمین‌مان، به دنبال جوانان ایرانی خلاق و "
+"باانگیزه هستیم تا با کمک هم برترین‌ها را بسازیم و اثرگذار باشیم."
 
 #: includes/languages/trans_twig.php:431
 msgid "Join us and grow in a different location."
@@ -5688,24 +5857,27 @@ msgstr "ارائه آمار دقیق و ارتقای کیفی جامعه"
 
 #: includes/languages/trans_twig.php:433
 msgid ""
-"A large proportion of Sarshomar's questions address the problems in society, attempting to "
-"solve them."
+"A large proportion of Sarshomar's questions address the problems in society, "
+"attempting to solve them."
 msgstr ""
-"بخش زیادی از سوالات سرشمار با توجه به مشکلات موجود در جامعه‌ بوده و در تلاش برای بهبود آن است."
+"بخش زیادی از سوالات سرشمار با توجه به مشکلات موجود در جامعه‌ بوده و در تلاش برای "
+"بهبود آن است."
 
 #: includes/languages/trans_twig.php:434
 msgid ""
-"The given statistics are presented in a simple and distinct manner accompanied by graphs in "
-"order to be understood rapidly by the general public."
+"The given statistics are presented in a simple and distinct manner accompanied by "
+"graphs in order to be understood rapidly by the general public."
 msgstr ""
-"آمار ارائه‌شده به صورت ساده و شفاف همراه با نمودار برای درک سریع آن توسط عموم جامعه ارائه "
-"می‌شود."
+"آمار ارائه‌شده به صورت ساده و شفاف همراه با نمودار برای درک سریع آن توسط عموم "
+"جامعه ارائه می‌شود."
 
 #: includes/languages/trans_twig.php:435
 msgid ""
-"Besides, regarding the qualitative promotion of society, some articles are published to "
-"present strategies in this regard."
-msgstr "هم‌چنین با هدف ارتقای کیفی جامعه مقالاتی برای ارائه راهکار در این راستا منتشر می‌شود."
+"Besides, regarding the qualitative promotion of society, some articles are "
+"published to present strategies in this regard."
+msgstr ""
+"هم‌چنین با هدف ارتقای کیفی جامعه مقالاتی برای ارائه راهکار در این راستا منتشر "
+"می‌شود."
 
 #: includes/languages/trans_twig.php:436
 msgid "Customer Care and Complete Satisfaction"
@@ -5713,20 +5885,21 @@ msgstr "مشتری‌مداری و کسب رضایت کامل"
 
 #: includes/languages/trans_twig.php:437
 msgid ""
-"Attracting people's participation as well as having their valuable presence has always been "
-"a great honor for Sarshomar and to appreciate your support, in return, Sarshomar presents "
-"services to promote customer satisfaction."
+"Attracting people's participation as well as having their valuable presence has "
+"always been a great honor for Sarshomar and to appreciate your support, in "
+"return, Sarshomar presents services to promote customer satisfaction."
 msgstr ""
-"جلب مشارکت مردم و حضور ارزشمند آنان در سرشمار باعث افتخار ما بوده و به‌منظور قدردانی از این "
-"حمایت، سرشمار نیز خدمات متقابلی را برای افزایش رضایت مشتریان خود ارائه می‌کند."
+"جلب مشارکت مردم و حضور ارزشمند آنان در سرشمار باعث افتخار ما بوده و به‌منظور "
+"قدردانی از این حمایت، سرشمار نیز خدمات متقابلی را برای افزایش رضایت مشتریان خود "
+"ارائه می‌کند."
 
 #: includes/languages/trans_twig.php:438
 msgid ""
-"These services are presented in different time intervals and are aimed at costomer care "
-"mission and appreciation of your valuable presence."
+"These services are presented in different time intervals and are aimed at "
+"costomer care mission and appreciation of your valuable presence."
 msgstr ""
-"این خدمات در بازه‌های زمانی متفاوت ارائه‌شده و در راستای ماموریت مشتری‌مداری و ارج نهادن به این "
-"حضور گرانبها می‌باشد."
+"این خدمات در بازه‌های زمانی متفاوت ارائه‌شده و در راستای ماموریت مشتری‌مداری و ارج "
+"نهادن به این حضور گرانبها می‌باشد."
 
 #: includes/languages/trans_twig.php:451
 msgid "Sarshomar Special Targets"
@@ -5734,11 +5907,11 @@ msgstr "جامعه هدف ویژه‌ی سرشمار"
 
 #: includes/languages/trans_twig.php:462
 msgid ""
-"Sarshomar acts upon international rules, depends on the countries receiving its services and "
-"renders its activities within this framework."
+"Sarshomar acts upon international rules, depends on the countries receiving its "
+"services and renders its activities within this framework."
 msgstr ""
-"سرشمار مطابق قوانین بین‌الملل و وابسته به کشورهای دریافت‌کننده خدمات بوده و در این چارچوب "
-"فعالیت می‌نماید."
+"سرشمار مطابق قوانین بین‌الملل و وابسته به کشورهای دریافت‌کننده خدمات بوده و در این "
+"چارچوب فعالیت می‌نماید."
 
 #: includes/languages/trans_twig.php:463
 msgid "Terms of Service Agreement"
@@ -5746,166 +5919,179 @@ msgstr "توافق‌نامه استفاده از سرویس"
 
 #: includes/languages/trans_twig.php:464
 msgid ""
-"Utilizing Sarshomar's services means the acceptance of and commitment to observing all the "
-"tenors of this agreement."
+"Utilizing Sarshomar's services means the acceptance of and commitment to "
+"observing all the tenors of this agreement."
 msgstr ""
-"استفاده از خدمات سرشمار به منزله‌ پذیرش و تعهد به رعایت تمام مفاد مندرج در این توافق‌نامه است."
+"استفاده از خدمات سرشمار به منزله‌ پذیرش و تعهد به رعایت تمام مفاد مندرج در این "
+"توافق‌نامه است."
 
 #: includes/languages/trans_twig.php:465
 msgid ""
-"To enhance the quality of the services provided, and in case of any infringements on the "
-"part of users, Sarshomar will act upon its regulations, which, according to the kind of "
-"violation, might include notification, restriction, blockage and removing users' account."
+"To enhance the quality of the services provided, and in case of any infringements "
+"on the part of users, Sarshomar will act upon its regulations, which, according "
+"to the kind of violation, might include notification, restriction, blockage and "
+"removing users' account."
 msgstr ""
-"به‌منظور افزایش کیفیت خدمات ارائه شده، درصورت بروز تخلف از سوی کاربران، فرآیند اعمال قانون "
-"سرشمار کلید خورده و بسته به نوع تخلف رخ‌داده می‌تواند شامل تذکر، محدودیت، مسدودسازی و حذف حساب "
-"کاربری باشد."
+"به‌منظور افزایش کیفیت خدمات ارائه شده، درصورت بروز تخلف از سوی کاربران، فرآیند "
+"اعمال قانون سرشمار کلید خورده و بسته به نوع تخلف رخ‌داده می‌تواند شامل تذکر، "
+"محدودیت، مسدودسازی و حذف حساب کاربری باشد."
 
 #: includes/languages/trans_twig.php:466
 msgid ""
-"Due to the voluntary nature of the registration and our emphasis on the informative nature "
-"of the service, the accuracy of the user's information is of tremendous importance and value "
-"for us."
+"Due to the voluntary nature of the registration and our emphasis on the "
+"informative nature of the service, the accuracy of the user's information is of "
+"tremendous importance and value for us."
 msgstr ""
-"با توجه به اختیاری بودن ثبت‌نام در سرشمار و تاکید ما بر دانشی‌بودن سرویس، صحت اطلاعات کاربر "
-"برای ما بسیار مهم و باارزش است."
+"با توجه به اختیاری بودن ثبت‌نام در سرشمار و تاکید ما بر دانشی‌بودن سرویس، صحت "
+"اطلاعات کاربر برای ما بسیار مهم و باارزش است."
 
 #: includes/languages/trans_twig.php:467
 msgid ""
-"To prevent crating mistrust among other users, in case of receiving contradictions within "
-"the entered information, Sarshomar is entitled to act upon the rules."
+"To prevent crating mistrust among other users, in case of receiving "
+"contradictions within the entered information, Sarshomar is entitled to act upon "
+"the rules."
 msgstr ""
-"درصورت دریافت تناقض در اطلاعات وارد شده، به‌منظور جلوگیری از سلب ‌اعتماد سایر کاربران، حق "
-"اعمال قانون، برای سرشمار وجود دارد."
+"درصورت دریافت تناقض در اطلاعات وارد شده، به‌منظور جلوگیری از سلب ‌اعتماد سایر "
+"کاربران، حق اعمال قانون، برای سرشمار وجود دارد."
 
 #: includes/languages/trans_twig.php:468
 msgid ""
-"It is worth mentioning that due to the insecurity of cyberspace, you should never post your "
-"vital information on either Sarshomar or any other services!"
+"It is worth mentioning that due to the insecurity of cyberspace, you should never "
+"post your vital information on either Sarshomar or any other services!"
 msgstr ""
-"لازم به یادآوری‌ست که با توجه به ناامن بودن فضای ‌مجازی، نه تنها در سرشمار بلکه در هیچ سرویس "
-"دیگری، اطلاعات حیاتی خود را منتشر نکنید!"
+"لازم به یادآوری‌ست که با توجه به ناامن بودن فضای ‌مجازی، نه تنها در سرشمار بلکه در "
+"هیچ سرویس دیگری، اطلاعات حیاتی خود را منتشر نکنید!"
 
 #: includes/languages/trans_twig.php:469
 msgid ""
-"User's personal information is strictly confidential in our service. Sarshomar preserves the "
-"information as encoded and will not under any conditions transfer it to another person."
+"User's personal information is strictly confidential in our service. Sarshomar "
+"preserves the information as encoded and will not under any conditions transfer "
+"it to another person."
 msgstr ""
-"اطلاعات شخصی کاربران در این سرویس به‌صورت کاملا محرمانه می‌باشد و سرشمار این اطلاعات را به "
-"صورت کدشده نگه‌داری کرده و تحت هیچ شرایطی آن‌را به غیر واگذار نخواهد کرد."
+"اطلاعات شخصی کاربران در این سرویس به‌صورت کاملا محرمانه می‌باشد و سرشمار این "
+"اطلاعات را به صورت کدشده نگه‌داری کرده و تحت هیچ شرایطی آن‌را به غیر واگذار نخواهد "
+"کرد."
 
 #: includes/languages/trans_twig.php:470
 msgid ""
-"Every user is entitled to have only one user account and in case Sarshomar happens to know "
-"that a user has more than one user account, it is entitled to act upon the rules."
+"Every user is entitled to have only one user account and in case Sarshomar "
+"happens to know that a user has more than one user account, it is entitled to act "
+"upon the rules."
 msgstr ""
-"هر کاربر مجاز به استفاده از یک حساب‌کاربری بوده و در صورت کسب اطلاع سرشمار از وجود بیشتر از "
-"یک حساب‌کاربری، حق اعمال قانون برای سرشمار وجود دارد."
+"هر کاربر مجاز به استفاده از یک حساب‌کاربری بوده و در صورت کسب اطلاع سرشمار از وجود "
+"بیشتر از یک حساب‌کاربری، حق اعمال قانون برای سرشمار وجود دارد."
 
 #: includes/languages/trans_twig.php:471
 msgid ""
-"In case there is a request for receiving user's information by the competent authorities, "
-"according to the country the user lives in, Sarshomar will cooperate with them only upon "
-"receiving the judicial order issued by the country submitting the request."
+"In case there is a request for receiving user's information by the competent "
+"authorities, according to the country the user lives in, Sarshomar will cooperate "
+"with them only upon receiving the judicial order issued by the country submitting "
+"the request."
 msgstr ""
-"با توجه به کشور محل سکونت کاربر، درصورت درخواست مراجع دارای صلاحیت به دریافت اطلاعات‌کاربری، "
-"سرشمار تنها پس از دریافت حکم قضایی کشور درخواست کننده، توانایی همکاری با آنان را خواهد داشت."
+"با توجه به کشور محل سکونت کاربر، درصورت درخواست مراجع دارای صلاحیت به دریافت "
+"اطلاعات‌کاربری، سرشمار تنها پس از دریافت حکم قضایی کشور درخواست کننده، توانایی "
+"همکاری با آنان را خواهد داشت."
 
 #: includes/languages/trans_twig.php:472
 msgid ""
-"Sarshomar will not offer any guarantee as to the quality of the products or services "
-"presented by the questioners and will not accept any responsibility in this regard."
+"Sarshomar will not offer any guarantee as to the quality of the products or "
+"services presented by the questioners and will not accept any responsibility in "
+"this regard."
 msgstr ""
-"سرشمار هیچگونه ضمانتی در مورد کیفیت محصولات یا خدمات ارائه شده توسط پرسشگران را نمی‌پذیرد و "
-"مسئولیتی در قبال آن ندارد."
+"سرشمار هیچگونه ضمانتی در مورد کیفیت محصولات یا خدمات ارائه شده توسط پرسشگران را "
+"نمی‌پذیرد و مسئولیتی در قبال آن ندارد."
 
 #: includes/languages/trans_twig.php:473
 msgid ""
-"Users should assume responsibility for any harm, both material and immaterial, caused by "
-"direct, indirect or penal factors and due to their utilization of this service; and, "
-"Sarshomar bears no responsibility accordingly."
+"Users should assume responsibility for any harm, both material and immaterial, "
+"caused by direct, indirect or penal factors and due to their utilization of this "
+"service; and, Sarshomar bears no responsibility accordingly."
 msgstr ""
-"خسارت‌های‌ مادی و معنوی ناشی از عوامل مستقیم، غیرمستقیم و کیفری، در قبال استفاده از این سرویس "
-"برعهده کاربران بوده و سرشمار هیچ‌گونه مسئولیتی دراین‌باره ندارد."
+"خسارت‌های‌ مادی و معنوی ناشی از عوامل مستقیم، غیرمستقیم و کیفری، در قبال استفاده از "
+"این سرویس برعهده کاربران بوده و سرشمار هیچ‌گونه مسئولیتی دراین‌باره ندارد."
 
 #: includes/languages/trans_twig.php:474
 msgid ""
-"Sarshomar accepts no responsibility, under any conditions, for the harms caused by users' "
-"mutual trust in each other or by the disclosure of information by users."
+"Sarshomar accepts no responsibility, under any conditions, for the harms caused "
+"by users' mutual trust in each other or by the disclosure of information by users."
 msgstr ""
-"تحت هیچ شرایطی سرشمار مسئولیت خسارت‌های وارده در اثر اعتماد و اتکاء اعضاء به یکدیگر و فاش‌شدن "
-"اطلاعات توسط کاربر را نمی‌پذیرد."
+"تحت هیچ شرایطی سرشمار مسئولیت خسارت‌های وارده در اثر اعتماد و اتکاء اعضاء به "
+"یکدیگر و فاش‌شدن اطلاعات توسط کاربر را نمی‌پذیرد."
 
 #: includes/languages/trans_twig.php:475
 msgid ""
-"Sarshomar's scientific findings, gained through graphs, tables, articles and other means, "
-"belong to this service and all the rights related to them are reserved for Sarshomar."
+"Sarshomar's scientific findings, gained through graphs, tables, articles and "
+"other means, belong to this service and all the rights related to them are "
+"reserved for Sarshomar."
 msgstr ""
-"دانش تولید شده در سرشمار به‌واسطه نمودارها، جداول، مقالات و سایر روش‌ها، متعلق به این سرویس "
-"بوده و تمامی حقوق آن برای سرشمار محفوظ می‌باشد."
+"دانش تولید شده در سرشمار به‌واسطه نمودارها، جداول، مقالات و سایر روش‌ها، متعلق به "
+"این سرویس بوده و تمامی حقوق آن برای سرشمار محفوظ می‌باشد."
 
 #: includes/languages/trans_twig.php:476
 msgid ""
-"Sarshomar will do its best to protect both the users' information and the service; however, "
-"regarding the lack of certainty within the cyberspace, it will not assume any responsibility "
-"for the loss of the information entered on the service."
+"Sarshomar will do its best to protect both the users' information and the "
+"service; however, regarding the lack of certainty within the cyberspace, it will "
+"not assume any responsibility for the loss of the information entered on the "
+"service."
 msgstr ""
-"سرشمار تمام تلاش خود را برای محافظت از اطلاعات کاربران و سرویس می‌نماید؛ ولی با توجه به عدم "
-"قطعیت در فضای مجازی، مسئولیتی در مورد از بین رفتن اطلاعات قرارگرفته بر روی سرویس نخواهد "
-"پذیرفت."
+"سرشمار تمام تلاش خود را برای محافظت از اطلاعات کاربران و سرویس می‌نماید؛ ولی با "
+"توجه به عدم قطعیت در فضای مجازی، مسئولیتی در مورد از بین رفتن اطلاعات قرارگرفته "
+"بر روی سرویس نخواهد پذیرفت."
 
 #: includes/languages/trans_twig.php:477
 msgid ""
-"We will publicize our information and news only via Sarshomar's formal website. Accordingly, "
-"those who publicize any attributed news and claims, within social media and networks, must "
-"assume the responsibility and Sarshomar will not assume any responsibility."
+"We will publicize our information and news only via Sarshomar's formal website. "
+"Accordingly, those who publicize any attributed news and claims, within social "
+"media and networks, must assume the responsibility and Sarshomar will not assume "
+"any responsibility."
 msgstr ""
-"اخبار و اطلاعات ما تنها از طریق وب‌سایت رسمی سرشمار منتشر می‌شود. مسئولیت هرگونه خبر و ادعای "
-"نسبت‌داده‌شده در رسانه‌ها و شبکه‌های اجتماعی به عهده منتشرکننده آن بوده و سرشمار مسئولیتی در "
-"قبال آن ندارد."
+"اخبار و اطلاعات ما تنها از طریق وب‌سایت رسمی سرشمار منتشر می‌شود. مسئولیت هرگونه "
+"خبر و ادعای نسبت‌داده‌شده در رسانه‌ها و شبکه‌های اجتماعی به عهده منتشرکننده آن بوده و "
+"سرشمار مسئولیتی در قبال آن ندارد."
 
 #: includes/languages/trans_twig.php:478
 msgid ""
-"Sarshomar will bear no responsibility for whatsoever messages sent to users, including those "
-"indicating winning a lottery, and all our information dissemination will be through the ways "
-"of Sarshomar's contact with users."
+"Sarshomar will bear no responsibility for whatsoever messages sent to users, "
+"including those indicating winning a lottery, and all our information "
+"dissemination will be through the ways of Sarshomar's contact with users."
 msgstr ""
-"سرشمار هیچ مسئولیتی در مقابل پیام‌های ارسالی مبنی بر برنده‌شدن در قرعه‌کشی یا هر پیام دیگری "
-"نداشته و تمام اطلاع‌رسانی‌های ما از طریق روش‌های برقراری ارتباط کاربر با سرشمار خواهد بود."
+"سرشمار هیچ مسئولیتی در مقابل پیام‌های ارسالی مبنی بر برنده‌شدن در قرعه‌کشی یا هر "
+"پیام دیگری نداشته و تمام اطلاع‌رسانی‌های ما از طریق روش‌های برقراری ارتباط کاربر با "
+"سرشمار خواهد بود."
 
 #: includes/languages/trans_twig.php:479
 msgid ""
-"Any misuse of Sarshomar's trade name is prohibited and will be suable by making a complaint "
-"to the legal competent authorities."
+"Any misuse of Sarshomar's trade name is prohibited and will be suable by making a "
+"complaint to the legal competent authorities."
 msgstr ""
-"هرگونه سوءاستفاده از نام تجاری سرشمار ممنوع بوده و از طریق شکایت به مراجع قانونی دارای "
-"صلاحیت، قابل پیگرد خواهد بود."
+"هرگونه سوءاستفاده از نام تجاری سرشمار ممنوع بوده و از طریق شکایت به مراجع قانونی "
+"دارای صلاحیت، قابل پیگرد خواهد بود."
 
 #: includes/languages/trans_twig.php:480
 msgid ""
-"Resharing Sarshomar's information is free and needs no permission; however, you can "
-"contribute to our better service provision by citing the resource."
+"Resharing Sarshomar's information is free and needs no permission; however, you "
+"can contribute to our better service provision by citing the resource."
 msgstr ""
-"بازنشر دانش سرشمار رایگان بوده و نیازی به کسب مجوز ندارد، ولی با ذکر منبع می‌توانید ما را در "
-"ارائه هرچه بهتر خدمات یاری نمایید."
+"بازنشر دانش سرشمار رایگان بوده و نیازی به کسب مجوز ندارد، ولی با ذکر منبع "
+"می‌توانید ما را در ارائه هرچه بهتر خدمات یاری نمایید."
 
 #: includes/languages/trans_twig.php:481
 msgid ""
-"Furthermore, this agreement, under the name Terms and Conditions, will be available and "
-"observable, in all pages of the website. Users will be responsible for a lack of information "
-"on the most recent changes."
+"Furthermore, this agreement, under the name Terms and Conditions, will be "
+"available and observable, in all pages of the website. Users will be responsible "
+"for a lack of information on the most recent changes."
 msgstr ""
-"هم‌چنین این توافق‌نامه در تمام صفحات وب‌سایت با عنوان شرایط و قوانین موجود و قابل مشاهده است. "
-"مسئولیت عدم کسب اطلاع از آخرین تغییرات برعهده کاربر خواهد بود."
+"هم‌چنین این توافق‌نامه در تمام صفحات وب‌سایت با عنوان شرایط و قوانین موجود و قابل "
+"مشاهده است. مسئولیت عدم کسب اطلاع از آخرین تغییرات برعهده کاربر خواهد بود."
 
 #: includes/languages/trans_twig.php:482
 msgid ""
-"It should be mentioned that in case there would be any modifications in the above-mentioned "
-"tenors, an updated version will be available for the public, and as well, all the users will "
-"be informed."
+"It should be mentioned that in case there would be any modifications in the above-"
+"mentioned tenors, an updated version will be available for the public, and as "
+"well, all the users will be informed."
 msgstr ""
-"لازم به ذکر است که درصورت هرگونه تغییر در مفاد ذکر شده، نسخه به‌روزشده آن در دسترس عموم قرار "
-"خواهد گرفت و به اطلاع تمام کاربران خواهد رسید."
+"لازم به ذکر است که درصورت هرگونه تغییر در مفاد ذکر شده، نسخه به‌روزشده آن در دسترس "
+"عموم قرار خواهد گرفت و به اطلاع تمام کاربران خواهد رسید."
 
 #: includes/languages/trans_twig.php:485
 msgid "Tour"
@@ -5973,12 +6159,13 @@ msgstr "unit_id"
 
 #: includes/languages/trans_twig.php:549
 msgid ""
-"Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic "
-"interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com."
+"Sarshomars API exposes the entire Sarshomar infrastructure via a standardized "
+"programmatic interface. Using Sarshomars API, you can do just about anything you "
+"can do on Sarshomar.com."
 msgstr ""
-"API سرشمار نمایانگر تمامی زیرساخت سرشمار از طریق یک رابط کاربری برنامه‌نویسی شده استاندارد "
-"است. با استفاده از API سرشمار، می‌توانید تمامی کارهایی که از طریق سایت سرشمار صورت می‌گیرد را "
-"انجام دهید."
+"API سرشمار نمایانگر تمامی زیرساخت سرشمار از طریق یک رابط کاربری برنامه‌نویسی شده "
+"استاندارد است. با استفاده از API سرشمار، می‌توانید تمامی کارهایی که از طریق سایت "
+"سرشمار صورت می‌گیرد را انجام دهید."
 
 #: includes/languages/trans_twig.php:552
 msgid "Billing via Sarshomar API"
@@ -6073,7 +6260,8 @@ msgid "Upload a file like an image that shows the weather in your city."
 msgstr "فایلی که نشان دهنده تصویر آب و هوا شهر شما باشد را آپلود کنید."
 
 #: includes/languages/trans_twig.php:595
-msgid "The tree of the question specifies the parent and answers connected to the poll"
+msgid ""
+"The tree of the question specifies the parent and answers connected to the poll"
 msgstr "درختواره سوال مشخص کننده والد و پاسخ‌های مرتبط با نظرسنجی است"
 
 #: includes/languages/trans_twig.php:596
@@ -6085,8 +6273,8 @@ msgid ""
 "If the poll is being created by a brand or company, they can fill in the required "
 "information to show their brand identity."
 msgstr ""
-"اگر نظرسنجی توسط شرکت یا برندی ایجاد می‌شود، میتوانند اطلاعات مورد نیاز را برای نمایش هویت "
-"برند خود پر کنند."
+"اگر نظرسنجی توسط شرکت یا برندی ایجاد می‌شود، میتوانند اطلاعات مورد نیاز را برای "
+"نمایش هویت برند خود پر کنند."
 
 #: includes/languages/trans_twig.php:598
 msgid "The answer to the poll or question is specified by this variable"
@@ -6246,58 +6434,59 @@ msgstr "از چه تعداد افرادی باید نظرسنجی پرسیده �
 
 #: includes/languages/trans_twig.php:637
 msgid ""
-"Select the gender that can answer the poll. You can set one or more items or leave it null."
+"Select the gender that can answer the poll. You can set one or more items or "
+"leave it null."
 msgstr ""
-"جنسیتی که می‌تواند به نظرسنجی پاسخ دهد را انتخاب کنید. میتوانید یک مورد یا بیشتر را انتخاب "
-"کنید یا آن را null قرار دهید."
+"جنسیتی که می‌تواند به نظرسنجی پاسخ دهد را انتخاب کنید. میتوانید یک مورد یا بیشتر "
+"را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:638
 msgid ""
-"Set the marrital status of the people who can answer the poll.  You can set one or more "
-"items or leave it null."
+"Set the marrital status of the people who can answer the poll.  You can set one "
+"or more items or leave it null."
 msgstr ""
-"وضعیت تاهل افرادی که میتوانند به نظرسنجی پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا بیشتر "
-"را انتخاب کنید یا آن را null قرار دهید."
+"وضعیت تاهل افرادی که میتوانند به نظرسنجی پاسخ دهند را انتخاب کنید. میتوانید یک "
+"مورد یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:639
 msgid ""
-"Set the graduation status of the people who can answer the poll. You can set one or more "
-"items or leave it null."
+"Set the graduation status of the people who can answer the poll. You can set one "
+"or more items or leave it null."
 msgstr ""
-"وضعیت تحصیلی افرادی که میتوانند به نظرسنجی پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا "
-"بیشتر را انتخاب کنید یا آن را null قرار دهید."
+"وضعیت تحصیلی افرادی که میتوانند به نظرسنجی پاسخ دهند را انتخاب کنید. میتوانید یک "
+"مورد یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:640
 msgid ""
-"Set the university or college degree status of the people who can answer the poll. You can "
-"set one or more items or leave it null."
+"Set the university or college degree status of the people who can answer the "
+"poll. You can set one or more items or leave it null."
 msgstr ""
-"وضعیت مدرک تحصیلی افرادی که میتوانند به سوال پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا "
-"بیشتر را انتخاب کنید یا آن را null قرار دهید."
+"وضعیت مدرک تحصیلی افرادی که میتوانند به سوال پاسخ دهند را انتخاب کنید. میتوانید "
+"یک مورد یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:641
 msgid ""
-"Set the age range of the people who can answer the poll. You can set one or more items or "
-"leave it null."
+"Set the age range of the people who can answer the poll. You can set one or more "
+"items or leave it null."
 msgstr ""
-"محدوده سنی کسانی که میتوانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا بیشتر "
-"را انتخاب کنید یا آن را null قرار دهید."
+"محدوده سنی کسانی که میتوانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد "
+"یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:642
 msgid ""
-"Set the job status of the people who can answer the poll. You can set one or more items or "
-"leave it null."
+"Set the job status of the people who can answer the poll. You can set one or more "
+"items or leave it null."
 msgstr ""
-"وضعیت شغلی کسانی که میتوانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا بیشتر "
-"را انتخاب کنید یا آن را null قرار دهید."
+"وضعیت شغلی کسانی که میتوانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد "
+"یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:643
 msgid ""
-"Set the housing status of the people who can answer the poll. You can set one or more items "
-"or leave it null."
+"Set the housing status of the people who can answer the poll. You can set one or "
+"more items or leave it null."
 msgstr ""
-"وضعیت منزل کسانی که می‌توانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد یا بیشتر "
-"را انتخاب کنید یا آن را null قرار دهید."
+"وضعیت منزل کسانی که می‌توانند به سوالات پاسخ دهند را انتخاب کنید. میتوانید یک مورد "
+"یا بیشتر را انتخاب کنید یا آن را null قرار دهید."
 
 #: includes/languages/trans_twig.php:646
 msgid "Submit a poll answer"
@@ -6533,11 +6722,12 @@ msgstr "دریافت موجودی حساب کاربری"
 
 #: includes/languages/trans_twig.php:747
 msgid ""
-"The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If you are "
-"registered with Sarshomar, you can obtain your API key from My Account page, found here: "
+"The Sarshomar API is a RESTful API based on HTTPS requests and JSON responses. If "
+"you are registered with Sarshomar, you can obtain your API key from My Account "
+"page, found here: "
 msgstr ""
-"REST API سرشمار بر پایه درخواست‌های HTTPS و پاسخ‌های JSON است. اگر در سرشمار ثبت‌نام کرده‌اید، "
-"می‌توانید کلید API خود را از صفحه کاربری خود، از اینجا بگیرید: "
+"REST API سرشمار بر پایه درخواست‌های HTTPS و پاسخ‌های JSON است. اگر در سرشمار ثبت‌نام "
+"کرده‌اید، می‌توانید کلید API خود را از صفحه کاربری خود، از اینجا بگیرید: "
 
 #: includes/languages/trans_twig.php:748
 msgid "Go to My account."
@@ -6549,21 +6739,22 @@ msgstr "نقاط اتصال"
 
 #: includes/languages/trans_twig.php:750
 msgid ""
-"The API is accessed by making HTTPS requests to a specific version endpoint URL, in which "
-"GET, POST, PUT and DELETE methods dictate how your interact with the information available. "
-"Every endpoint is accessed only via the SSL-enabled HTTPS (port 443) protocol."
+"The API is accessed by making HTTPS requests to a specific version endpoint URL, "
+"in which GET, POST, PUT and DELETE methods dictate how your interact with the "
+"information available. Every endpoint is accessed only via the SSL-enabled HTTPS "
+"(port 443) protocol."
 msgstr ""
-"دسترسی به API از طریق درخواست‌های HTTPS یک نسخه خاص آدرس نقطه اتصال است، که در آن متدهای GET، "
-"POST،PUT و DELETE بیان می‌کنند که چگونه با اطلاعات موجود تعامل داشته باشید. هر نقطه اتصال "
-"تنها از طریق پروتکل HTTPS (پورت 443) قابل دسترسی است."
+"دسترسی به API از طریق درخواست‌های HTTPS یک نسخه خاص آدرس نقطه اتصال است، که در آن "
+"متدهای GET، POST،PUT و DELETE بیان می‌کنند که چگونه با اطلاعات موجود تعامل داشته "
+"باشید. هر نقطه اتصال تنها از طریق پروتکل HTTPS (پورت 443) قابل دسترسی است."
 
 #: includes/languages/trans_twig.php:751
 msgid ""
-"Everything (methods, parameters, etc.) is fixed to a version number, and every call must "
-"contain one. The latest version is Version 1."
+"Everything (methods, parameters, etc.) is fixed to a version number, and every "
+"call must contain one. The latest version is Version 1."
 msgstr ""
-"هرچیزی (متد‌ها، پارامترها و...) دارای یک نسخه خاص است، و در هر اتصال باید موجود باشد. آخرین "
-"نسخه، نسخه 1 است."
+"هرچیزی (متد‌ها، پارامترها و...) دارای یک نسخه خاص است، و در هر اتصال باید موجود "
+"باشد. آخرین نسخه، نسخه 1 است."
 
 #: includes/languages/trans_twig.php:752
 msgid "The stable HTTPS endpoint for the latest version is:"
@@ -6832,10 +7023,6 @@ msgstr "محدوده اعداد"
 #: includes/languages/trans_twig.php:829
 msgid "Star"
 msgstr "ستاره"
-
-#: includes/languages/trans_twig.php:830
-msgid "Like"
-msgstr "لایک"
 
 #: includes/languages/trans_twig.php:831
 msgid "Number Size"
@@ -7261,9 +7448,9 @@ msgstr "نظرسنجی یافت نشد"
 msgid "poll not found (deleted)"
 msgstr "نظرسنجی حذف شده است"
 
-#: includes/lib/db/db_errors.php:5
-msgid "poll not published"
-msgstr "نظرسنجی منتشر نشد"
+#: includes/lib/db/db_errors.php:5 includes/lib/db/polls/fav_like.php:41
+msgid "Poll has not publisheded"
+msgstr ""
 
 #: includes/lib/db/db_errors.php:6
 msgid "poll can not update result"
@@ -7282,7 +7469,7 @@ msgid "a lot update! what are you doing?"
 msgstr "آپدیت‌های فراوان! چه خبره؟"
 
 #: includes/lib/db/db_errors.php:25
-msgid "invalid parametr"
+msgid "Invalid parameter"
 msgstr ""
 
 #: includes/lib/db/db_errors.php:36
@@ -7346,7 +7533,7 @@ msgid "Invalid old answers"
 msgstr "پاسخ‌های قدیمی نامعتبر هستند"
 
 #: includes/lib/db/pollopts.php:585
-msgid "Max input in patch mod is 1 parameter"
+msgid "Max input in patch mode is 1 parameter"
 msgstr ""
 
 #: includes/lib/db/pollopts.php:635
@@ -7357,62 +7544,78 @@ msgstr "کد نمایه یافت نشد"
 msgid "Poll not selected"
 msgstr "نظرسنجی انتخاب نشده است"
 
-#: includes/lib/db/polls/fav_like.php:35
-msgid "Poll not published"
-msgstr "نظرسنجی منتشر نشده است"
-
-#: includes/lib/db/polls/fav_like.php:40
-msgid "Poll not public"
-msgstr "نظرسنجی عمومی نیست"
-
-#: includes/lib/db/polls/fav_like.php:45
+#: includes/lib/db/polls/fav_like.php:52
 msgid "The id is not a poll or survey"
 msgstr "شناسه نطرسنجی یا پرسشنامه نیست"
 
-#: includes/lib/db/polls/fav_like.php:50
+#: includes/lib/db/polls/fav_like.php:57
 msgid "User not found"
 msgstr "کاربر یافت نشد"
 
-#: includes/lib/db/polls/fav_like.php:78 includes/lib/db/polls/fav_like.php:106
-#: includes/lib/db/polls/fav_like.php:123
+#: includes/lib/db/polls/fav_like.php:85 includes/lib/db/polls/fav_like.php:113
+#: includes/lib/db/polls/fav_like.php:130
 msgid " set"
 msgstr "تنظیم"
 
-#: includes/lib/db/polls/fav_like.php:85 includes/lib/db/polls/fav_like.php:113
-#: includes/lib/db/polls/fav_like.php:132
+#: includes/lib/db/polls/fav_like.php:92 includes/lib/db/polls/fav_like.php:120
+#: includes/lib/db/polls/fav_like.php:139
 msgid " unset"
 msgstr "بازنشانی"
 
 #: includes/lib/db/polls/insert.php:118
-msgid "Invalid parametr update"
+msgid "Invalid update parameter"
 msgstr ""
 
 #: includes/lib/db/polls/insert.php:129
-msgid "Can not edit poll, this poll status is :status"
+msgid "Can not edit poll, the status of this poll is :status"
 msgstr ""
 
 #: includes/lib/db/polls/insert.php:138
-msgid "Invalid parametr user"
+msgid "Invalid user paramater"
 msgstr ""
 
 #: includes/lib/db/polls/insert.php:155
 msgid "This is not your poll, can't update"
 msgstr "این نظرسنجی شما نیست، ناتوان در بروزرسانی"
 
+#: includes/lib/db/polls/insert.php:177
+msgid "Poll added successfully"
+msgstr ""
+
+#: includes/lib/db/polls/insert.php:178
+msgid "Poll edited successfully"
+msgstr ""
+
+#: includes/lib/db/polls/insert.php:179
+msgid "Error in adding poll"
+msgstr "خطا در افزودن نظرسنجی"
+
+#: includes/lib/db/polls/insert.php:180
+msgid "Error in editing poll"
+msgstr ""
+
+#: includes/lib/db/polls/insert.php:196
+msgid "Poll :operation successfully"
+msgstr ""
+
+#: includes/lib/db/polls/insert.php:213
+msgid "Error in :operation poll"
+msgstr ""
+
 #: includes/lib/db/polls/insert.php:281
-msgid "Cann't add poll"
+msgid "Can not add poll"
 msgstr ""
 
 #: includes/lib/db/polls/insert/answers.php:45
-msgid "invalid parametr type (:type) in index :key of answer"
+msgid "Invalid type (:type) paramater in index :key of answer"
 msgstr ""
 
 #: includes/lib/db/polls/insert/answers.php:53
-msgid "invalid parametr answer type in index :key of answer"
+msgid "Invalid answer type parameter in index :key of answer"
 msgstr ""
 
 #: includes/lib/db/polls/insert/answers.php:108
-msgid "Invalid parametr is_true in index :key of answer"
+msgid "Invalid parameter is_true in index :key of answer"
 msgstr ""
 
 #: includes/lib/db/polls/insert/check.php:16
@@ -7440,11 +7643,13 @@ msgid "You can save :max poll in one survey"
 msgstr "می‌توانید :max نظرسنجی در یک پرسشنامه ذخیره کنید"
 
 #: includes/lib/db/polls/insert/options.php:16
-msgid "Invalid arguments brand title, you must set les than 160 character for brand"
+msgid ""
+"Invalid brand title argument, you must set less than 160 character for the title"
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:24
-msgid "Invalid arguments brand url, you must set les than 100 character for brand url "
+msgid ""
+" Invalid brand URL argument, you must set less than 100 character for brand URL "
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:37
@@ -7456,15 +7661,16 @@ msgid "Invalid arguments min"
 msgstr "آرگومان‌های حداقلی نامعتبر است"
 
 #: includes/lib/db/polls/insert/options.php:57
-msgid "Can not set min less than 1"
+msgid "Can not set parameter 'min' less than 1"
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:66
-msgid "You can not set multi:min greater than multi:max"
+#: includes/lib/db/polls/insert/options.php:109
+msgid "You can not set minimum greater than maximum in multi select settings"
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:71
-msgid "You are set :count answers can not set :min in multi: min "
+msgid "You have set :count answers and can not set :min in min parameter "
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:91
@@ -7472,11 +7678,7 @@ msgid "Invalid arguments max"
 msgstr "آرگومان‌های حداکثری نامعتبر است"
 
 #: includes/lib/db/polls/insert/options.php:96
-msgid "You are set :count answers can not set :max in multi: max "
-msgstr ""
-
-#: includes/lib/db/polls/insert/options.php:109
-msgid "You can not set multi:max less than multi:min"
+msgid "You have set :count answers and can not set :max in max parameter "
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:136
@@ -7488,7 +7690,7 @@ msgid "Can not use multi:max and ordering"
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:146
-msgid "Can not use multi and ordering"
+msgid "You can not use multi select and ordering poll"
 msgstr ""
 
 #: includes/lib/db/polls/insert/options.php:193
@@ -7528,7 +7730,7 @@ msgid "Cat not found"
 msgstr "دسته بندی یافت نشد"
 
 #: includes/lib/db/polls/insert/options.php:375
-msgid "Invalid cat"
+msgid "Invalid category"
 msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:19
@@ -7560,23 +7762,23 @@ msgid "Invalid parametr language"
 msgstr "پارامتر زبان نامعتبر است"
 
 #: includes/lib/db/polls/insert/poll.php:163
-msgid "Invalid parametr tree:parent"
+msgid "Invalid tree parameter parent"
 msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:183
-msgid "Invalid parametr tree:answers (:value)"
+msgid "Invalid tree parameter :value"
 msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:248
-msgid "Parametr from muse be array"
+msgid "Parameter From must be array"
 msgstr ""
 
 #: includes/lib/db/polls/insert/poll.php:272
-msgid ":max user was found, low the members "
+msgid ":max users were found, reduce the number of users "
 msgstr ""
 
 #: includes/lib/utility/answers.php:96
-msgid "You answered to this poll before"
+msgid "You have already answered to this poll"
 msgstr ""
 
 #: includes/lib/utility/answers.php:136
@@ -7592,23 +7794,23 @@ msgid "Error in save your answer"
 msgstr "خطا در ذخیره سوال"
 
 #: includes/lib/utility/answers.php:314
-msgid "You was not answer to this poll and try to edit it!"
+msgid "You have not answered to this poll yet"
 msgstr ""
 
-#: includes/lib/utility/answers.php:332
-msgid "Duplicate answer, needless to update"
+#: includes/lib/utility/answers.php:332 includes/lib/utility/answers.php:433
+msgid "You have already selected this answer and submited"
 msgstr ""
 
-#: includes/lib/utility/answers.php:360 includes/lib/utility/answers.php:454
-msgid "Many time left, can not update answer"
+#: includes/lib/utility/answers.php:360
+msgid "Many time left, can not update or delete answer"
 msgstr ""
 
 #: includes/lib/utility/answers.php:394 includes/lib/utility/answers.php:482
-msgid "Many update what are you doing?"
+msgid "You have updated your answer many times and can not update it anymore"
 msgstr ""
 
-#: includes/lib/utility/answers.php:433
-msgid "Duplicate answer needless to update"
+#: includes/lib/utility/answers.php:454
+msgid "You can not update your answer"
 msgstr ""
 
 #: includes/lib/utility/answers.php:585
@@ -7652,19 +7854,36 @@ msgid "Parameter filters must be array"
 msgstr "پارامترهای فیلتر‌ها باید از نوع آرایه باشند"
 
 #: includes/lib/utility/sync.php:87
-msgid "You can login in sarshomar.com whit your username: mobile , and password: :password "
+msgid ""
+"You can login to Sarshomar.com with your username :mobile and password :password "
 msgstr ""
 
 #: includes/mvc/view.php:58
 msgid "Case Study"
 msgstr "مورد مطالعه"
 
+#~ msgid "You must select one answer or skip the poll"
+#~ msgstr "یک پاسخ انتخاب کنید یا نظرسنجی را نادیده بگیرید"
+
+#~ msgid "Undefined error"
+#~ msgstr "خطای تعریف نشده"
+
+#~ msgid "poll not published"
+#~ msgstr "نظرسنجی منتشر نشد"
+
+#~ msgid "Poll not published"
+#~ msgstr "نظرسنجی منتشر نشده است"
+
+#~ msgid "Poll not public"
+#~ msgstr "نظرسنجی عمومی نیست"
+
 #~ msgid ":number Questions answered"
 #~ msgstr ":number سوال پاسخ داده شده است"
 
 #~ msgid "We couldn't find some data, Please reload the page and try again"
 #~ msgstr ""
-#~ "مشکلی در پیدا کردن برخی داده‌ها پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
+#~ "مشکلی در پیدا کردن برخی داده‌ها پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و "
+#~ "دوباره تلاش کنید"
 
 #~ msgid "The poll id does not match with your last question"
 #~ msgstr "شناسه نظرسنجی با آخرین سوال شما تطابق ندارد"
@@ -7673,11 +7892,11 @@ msgstr "مورد مطالعه"
 #~ msgstr "خطا در ذخیره‌سازی پاسخ‌های شما"
 
 #~ msgid ""
-#~ "Currently there are :max users available but minimum allowd users is 100, please remove "
-#~ "some tags to expand statistical population"
+#~ "Currently there are :max users available but minimum allowd users is 100, "
+#~ "please remove some tags to expand statistical population"
 #~ msgstr ""
-#~ "هم اکنون :max کاربر در دسترس قرار دارد اما حداقل کاربر مورد اجازه 100 نفر است، لطفا چند "
-#~ "تگ را برای گسترش جامعه آماری حذف کنید"
+#~ "هم اکنون :max کاربر در دسترس قرار دارد اما حداقل کاربر مورد اجازه 100 نفر است، "
+#~ "لطفا چند تگ را برای گسترش جامعه آماری حذف کنید"
 
 #~ msgid "Sucessfully added filters"
 #~ msgstr "فیلترها با موفقیت اضافه شدند"
@@ -7733,7 +7952,8 @@ msgstr "مورد مطالعه"
 #~ msgid "Ask anyone."
 #~ msgstr "از هر کسی بپرس."
 
-#~ msgid "Set the marrital status of the people who can answer the poll. It cant be:"
+#~ msgid ""
+#~ "Set the marrital status of the people who can answer the poll. It cant be:"
 #~ msgstr "وضعیت تاهل افرادی که می‌توانند به نظرسنجی پاسخ دهند را تعیین کنید."
 
 #~ msgid "Only ask from single people."
@@ -7769,7 +7989,9 @@ msgstr "مورد مطالعه"
 #~ msgid "Ask from illiterate, undergraduate and graduate people."
 #~ msgstr "از افراد بی‌سواد یا دارای مدرک کارشناسی و یا مدرک کارشناسی ارشد بپرس"
 
-#~ msgid "Set the university or college degree status of the people who can answer the poll"
+#~ msgid ""
+#~ "Set the university or college degree status of the people who can answer the "
+#~ "poll"
 #~ msgstr "وضعیت مدرک تحصیلی افرادی که می‌توانند به نظرسنجی پاسخ دهند را تعیین کنید"
 
 #~ msgid "Set the age range of the people who can answer the poll"
@@ -7860,29 +8082,33 @@ msgstr "مورد مطالعه"
 #~ msgstr "فراهم‌سازی متن تحلیل شده از نتیجه سوالات."
 
 #~ msgid ""
-#~ "Exprience evaluation of current status, measuring customers satisfaction, conducting "
-#~ "market research and promoting services level by the help of Sarshomar."
+#~ "Exprience evaluation of current status, measuring customers satisfaction, "
+#~ "conducting market research and promoting services level by the help of "
+#~ "Sarshomar."
 #~ msgstr ""
-#~ "ارزیابی وضعیت موجود، سنجش رضایت مشتریان، بازارسنجی و ارتقای سطح خدمات را با کمک سرشمار "
-#~ "تجربه کنید."
+#~ "ارزیابی وضعیت موجود، سنجش رضایت مشتریان، بازارسنجی و ارتقای سطح خدمات را با "
+#~ "کمک سرشمار تجربه کنید."
 
 #~ msgid ""
-#~ "Have access to accurate information and reduce the cost of gathering and processing data "
-#~ "by giving tests, polls and assessments in Sarshomar."
+#~ "Have access to accurate information and reduce the cost of gathering and "
+#~ "processing data by giving tests, polls and assessments in Sarshomar."
 #~ msgstr ""
-#~ "با برگزاری آزمون، نظرسنجی و ارزشیابی در سرشمار، ضمن کاهش هزینه‌های جمع‌آوری و پردازش، به "
-#~ "اطلاعاتی دقیق دسترسی دارید."
+#~ "با برگزاری آزمون، نظرسنجی و ارزشیابی در سرشمار، ضمن کاهش هزینه‌های جمع‌آوری و "
+#~ "پردازش، به اطلاعاتی دقیق دسترسی دارید."
 
 #~ msgid ""
-#~ "By offering new advertising solutions and targeted advertsing, get your customers excited."
+#~ "By offering new advertising solutions and targeted advertsing, get your "
+#~ "customers excited."
 #~ msgstr ""
-#~ "با ارائه راهکارهای تبلیغاتی نوین سرشمار و انجام تبلیغات هدفمند، مشتریان خود را هیجان‌زده "
-#~ "کنید."
+#~ "با ارائه راهکارهای تبلیغاتی نوین سرشمار و انجام تبلیغات هدفمند، مشتریان خود را "
+#~ "هیجان‌زده کنید."
 
-#~ msgid "By using API, enjoy Sarshomar's features and forget the concern of opinion polls."
+#~ msgid ""
+#~ "By using API, enjoy Sarshomar's features and forget the concern of opinion "
+#~ "polls."
 #~ msgstr ""
-#~ "با استفاده از رابط برنامه‌نویسی، از ویژگی‌های سرشمار بهره‌مند شوید و دغدغه نظرسنجی را به "
-#~ "فراموشی بسپارید."
+#~ "با استفاده از رابط برنامه‌نویسی، از ویژگی‌های سرشمار بهره‌مند شوید و دغدغه "
+#~ "نظرسنجی را به فراموشی بسپارید."
 
 #~ msgid "You must set two answers"
 #~ msgstr "شما باید ۲ پاسخ را تعیین کنید"
@@ -7894,14 +8120,16 @@ msgstr "مورد مطالعه"
 #~ msgstr "*از هرکسی در هرجایی بپرسید*."
 
 #~ msgid ""
-#~ "[_name_](https://sarshomar.com) is a modern service to give your precious opinion and "
-#~ "help you to ask from anyone of you want."
+#~ "[_name_](https://sarshomar.com) is a modern service to give your precious "
+#~ "opinion and help you to ask from anyone of you want."
 #~ msgstr ""
-#~ "[_name_](https://sarshomar.com/fa) یک سرویس مدرن برای دریافت نظرات ارزشمند شما و کمک به "
-#~ "شما برای پرسش از هرکسی در هر جایی که مایل باشید است."
+#~ "[_name_](https://sarshomar.com/fa) یک سرویس مدرن برای دریافت نظرات ارزشمند شما "
+#~ "و کمک به شما برای پرسش از هرکسی در هر جایی که مایل باشید است."
 
 #~ msgid "At first choose your language. You can change it later on settings."
-#~ msgstr "برای شروع زبان خود را انتخاب کنید. شما امکان تغییر آن را در آینده نیز خواهید داشت ."
+#~ msgstr ""
+#~ "برای شروع زبان خود را انتخاب کنید. شما امکان تغییر آن را در آینده نیز خواهید "
+#~ "داشت ."
 
 #~ msgid "Command not found"
 #~ msgstr "دستور یافت نشد"
@@ -7917,9 +8145,6 @@ msgstr "مورد مطالعه"
 
 #~ msgid "Poll Successfully added"
 #~ msgstr "نظرسنجی با موفقیت افزوده شد"
-
-#~ msgid "Error in adding poll"
-#~ msgstr "خطا در افزودن نظرسنجی"
 
 #~ msgid "Export Results"
 #~ msgstr "خروجی از نتایج"
@@ -8024,24 +8249,25 @@ msgstr "مورد مطالعه"
 #~ msgstr "خطا در پیدا کردن صفحه تغییر مسیر"
 
 #~ msgid ""
-#~ "It should be mentioned that in case there would be any modifications in the above-"
-#~ "mentioned tenors, an updated version will be available for the public, and as well, all "
-#~ "the users will be informed. Furthermore, this agreement, under the name Terms and "
-#~ "Conditions, will be available and observable, in all pages of the website. Users will be "
-#~ "responsible for a lack of information on the most recent changes."
+#~ "It should be mentioned that in case there would be any modifications in the "
+#~ "above-mentioned tenors, an updated version will be available for the public, "
+#~ "and as well, all the users will be informed. Furthermore, this agreement, "
+#~ "under the name Terms and Conditions, will be available and observable, in all "
+#~ "pages of the website. Users will be responsible for a lack of information on "
+#~ "the most recent changes."
 #~ msgstr ""
-#~ "لازم به ذکر است که درصورت هرگونه تغيير در مفاد ذکر شده، نسخه به‌روزشده آن در دسترس عموم "
-#~ "قرار خواهد گرفت و به اطلاع تمام کاربران خواهد رسید. هم‌چنین این توافق‌نامه در تمام صفحات "
-#~ "وب‌سایت با عنوان شرایط و قوانین موجود و قابل مشاهده است. مسئولیت عدم کسب اطلاع از آخرین "
-#~ "تغییرات برعهده کاربر خواهد بود."
+#~ "لازم به ذکر است که درصورت هرگونه تغيير در مفاد ذکر شده، نسخه به‌روزشده آن در "
+#~ "دسترس عموم قرار خواهد گرفت و به اطلاع تمام کاربران خواهد رسید. هم‌چنین این "
+#~ "توافق‌نامه در تمام صفحات وب‌سایت با عنوان شرایط و قوانین موجود و قابل مشاهده "
+#~ "است. مسئولیت عدم کسب اطلاع از آخرین تغییرات برعهده کاربر خواهد بود."
 
 #~ msgid ""
-#~ "Sarshomar, having known this, decided to enter this field. Being concerned with "
-#~ "questioning a particular statistical population along with inferring valid results was "
-#~ "one of the major reasons for Sarshomar's birth."
+#~ "Sarshomar, having known this, decided to enter this field. Being concerned "
+#~ "with questioning a particular statistical population along with inferring "
+#~ "valid results was one of the major reasons for Sarshomar's birth."
 #~ msgstr ""
-#~ "سرشمار با دانستن این موضوع، تصمیم به ورود در این عرصه گرفت. دغدغه پرسش از جامعه آماری خاص "
-#~ "و استخراج نتایج مطمئن از مهم‌ترین دلایل تولد سرشمار بود."
+#~ "سرشمار با دانستن این موضوع، تصمیم به ورود در این عرصه گرفت. دغدغه پرسش از "
+#~ "جامعه آماری خاص و استخراج نتایج مطمئن از مهم‌ترین دلایل تولد سرشمار بود."
 
 #~ msgid "$"
 #~ msgstr "$"
@@ -8152,24 +8378,25 @@ msgstr "مورد مطالعه"
 #~ msgstr "زمان پایان"
 
 #~ msgid ""
-#~ "You can enjoy a variety of Sarshomar's services only through having access to the "
-#~ "internet‌ and without having to need to install any particular software."
+#~ "You can enjoy a variety of Sarshomar's services only through having access to "
+#~ "the internet‌ and without having to need to install any particular software."
 #~ msgstr ""
-#~ "تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید."
+#~ "تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار "
+#~ "بهرمند شوید."
 
 #~ msgid ""
-#~ "Ask Sarshomar's valid population your questions and analyze the results separately, along "
-#~ "with the graphs."
+#~ "Ask Sarshomar's valid population your questions and analyze the results "
+#~ "separately, along with the graphs."
 #~ msgstr ""
-#~ "سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با نمودار "
-#~ "بررسی کنید."
+#~ "سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با "
+#~ "نمودار بررسی کنید."
 
 #~ msgid ""
-#~ "Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with "
-#~ "your broad objectives."
+#~ "Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in "
+#~ "line with your broad objectives."
 #~ msgstr ""
-#~ "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره "
-#~ "ببرید."
+#~ "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان "
+#~ "خود بهره ببرید."
 
 #~ msgid "your answer saved"
 #~ msgstr "پاسخ شما ذخیره شد "
@@ -8196,33 +8423,36 @@ msgstr "مورد مطالعه"
 #~ msgstr "امکان انتشار نظر سنجی "
 
 #~ msgid ""
-#~ "Concentrate on your question. Do not have any concerns about asking and analyzing "
-#~ "questions. Sarshomar with integrated infrastructure, provides you the possibility to ask "
-#~ "questions in every platform."
+#~ "Concentrate on your question. Do not have any concerns about asking and "
+#~ "analyzing questions. Sarshomar with integrated infrastructure, provides you "
+#~ "the possibility to ask questions in every platform."
 #~ msgstr ""
-#~ "روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار با زیرساختی "
-#~ "یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است."
+#~ "روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار "
+#~ "با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است."
 
 #~ msgid "Try free"
 #~ msgstr "رایگان امتحان کنید"
 
 #~ msgid ""
-#~ "Just having the Internet without having to install software, take advantage of various "
-#~ "services Census"
+#~ "Just having the Internet without having to install software, take advantage of "
+#~ "various services Census"
 #~ msgstr ""
-#~ "تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار بهرمند شوید."
+#~ "تنها با داشتن اینترنت و بدون نیاز به نصب نرم‌افزار، از خدمات متنوع سرشمار "
+#~ "بهرمند شوید."
 
 #~ msgid ""
-#~ "Ask your questions of the population census and the results will be valid along with the "
-#~ "chart breakdown"
+#~ "Ask your questions of the population census and the results will be valid "
+#~ "along with the chart breakdown"
 #~ msgstr ""
-#~ "سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با نمودار "
-#~ "بررسی کنید."
+#~ "سوالات خود را از جامعه آماری معتبر سرشمار بپرسید و نتایج را به تفکیک، همراه با "
+#~ "نمودار بررسی کنید."
 
-#~ msgid "The vast knowledge and valuable census, as a credible source to enjoy your goals"
+#~ msgid ""
+#~ "The vast knowledge and valuable census, as a credible source to enjoy your "
+#~ "goals"
 #~ msgstr ""
-#~ "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود بهره "
-#~ "ببرید."
+#~ "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان "
+#~ "خود بهره ببرید."
 
 #~ msgid "More"
 #~ msgstr "بیشتر"
@@ -8246,27 +8476,28 @@ msgstr "مورد مطالعه"
 #~ msgstr "دیدگاه"
 
 #~ msgid ""
-#~ "Users should assume responsibility for any harm, both material and immaterial, caused by "
-#~ "direct, indirect or penal factors and due to their utilization of this service; and, "
-#~ "Sarshomar bears no responsibility accordingly.  "
+#~ "Users should assume responsibility for any harm, both material and immaterial, "
+#~ "caused by direct, indirect or penal factors and due to their utilization of "
+#~ "this service; and, Sarshomar bears no responsibility accordingly.  "
 #~ msgstr ""
-#~ "خسارت‌های‌ مادی و معنوی ناشی از عوامل مستقیم، غیرمستقیم و کیفری، در قبال استفاده از این "
-#~ "سرویس برعهده کاربران بوده و سرشمار هیچ‌گونه مسئولیتی دراین‌باره ندارد."
+#~ "خسارت‌های‌ مادی و معنوی ناشی از عوامل مستقیم، غیرمستقیم و کیفری، در قبال استفاده "
+#~ "از این سرویس برعهده کاربران بوده و سرشمار هیچ‌گونه مسئولیتی دراین‌باره ندارد."
 
 #~ msgid ""
-#~ "Sarshomar will bear no responsibility for whatsoever messages sent to users, including "
-#~ "those indicating winning a lottery, and all our information dissemination will be through "
-#~ "the ways of Sarshomar's contact with users. "
+#~ "Sarshomar will bear no responsibility for whatsoever messages sent to users, "
+#~ "including those indicating winning a lottery, and all our information "
+#~ "dissemination will be through the ways of Sarshomar's contact with users. "
 #~ msgstr ""
-#~ "سرشمار هیچ مسئولیتی در مقابل پیام‌های ارسالی مبنی بر برنده‌شدن در قرعه‌کشی یا هر پیام دیگری "
-#~ "نداشته و تمام اطلاع‌رسانی‌های ما از طریق روش‌های برقراری ارتباط کاربر با سرشمار خواهد بود."
+#~ "سرشمار هیچ مسئولیتی در مقابل پیام‌های ارسالی مبنی بر برنده‌شدن در قرعه‌کشی یا هر "
+#~ "پیام دیگری نداشته و تمام اطلاع‌رسانی‌های ما از طریق روش‌های برقراری ارتباط کاربر "
+#~ "با سرشمار خواهد بود."
 
 #~ msgid ""
-#~ "Any misuse of Sarshomar's trade name is prohibited and will be suable by making a "
-#~ "complaint to the legal competent authorities. "
+#~ "Any misuse of Sarshomar's trade name is prohibited and will be suable by "
+#~ "making a complaint to the legal competent authorities. "
 #~ msgstr ""
-#~ "هرگونه سوءاستفاده از نام تجاری سرشمار ممنوع بوده و از طريق شکايت به مراجع قانونی دارای "
-#~ "صلاحیت، قابل پيگرد خواهد بود."
+#~ "هرگونه سوءاستفاده از نام تجاری سرشمار ممنوع بوده و از طريق شکايت به مراجع "
+#~ "قانونی دارای صلاحیت، قابل پيگرد خواهد بود."
 
 #~ msgid "There is no similar questions"
 #~ msgstr "سوال مشابهی وجود ندارد"
@@ -8310,7 +8541,9 @@ msgstr "مورد مطالعه"
 #~ msgid "error in update profile data"
 #~ msgstr "خطا در بروزرسانی اطلاعات پروفایل "
 
-#~ msgid "Our answer sheets are absolutely correct, and we can measure the accuracy of answers"
+#~ msgid ""
+#~ "Our answer sheets are absolutely correct, and we can measure the accuracy of "
+#~ "answers"
 #~ msgstr "پاسخ‌نامه‌های ما اینجا کاملا صحت دارد و می‌توانیم صحت پاسخ‌ها را بسنجیم"
 
 #~ msgid "Some right reserved!"
@@ -8607,9 +8840,12 @@ msgstr "مورد مطالعه"
 #~ msgid "Montazeri Office Location on Map"
 #~ msgstr "آدرس دفتر آیت الله منتظری در نقشه"
 
-#~ msgid "those who convey the messages of Allah and fear Him and do not fear anyone but Allah"
+#~ msgid ""
+#~ "those who convey the messages of Allah and fear Him and do not fear anyone but "
+#~ "Allah"
 #~ msgstr ""
-#~ "کسانی که پیام‏های الهی را ابلاغ می‏کنند و از خدا می‏ترسند، و از هیچ کس جز خدا بیم ندارند"
+#~ "کسانی که پیام‏های الهی را ابلاغ می‏کنند و از خدا می‏ترسند، و از هیچ کس جز خدا بیم "
+#~ "ندارند"
 
 #~ msgid "Memoirs"
 #~ msgstr "خاطرات"
@@ -8641,7 +8877,8 @@ msgstr "مورد مطالعه"
 #~ msgid "The official website of the G.A. Montazeri"
 #~ msgstr "وب سایت رسمی آیت‌الله العظمی منتظری"
 
-#~ msgid "He was a Marja, prominent Iranian scholar and Shia Islamic democracy advocate"
+#~ msgid ""
+#~ "He was a Marja, prominent Iranian scholar and Shia Islamic democracy advocate"
 #~ msgstr "فقیه، حکیم و مجاهد نستوه عالم اسلام و تشیع"
 
 #~ msgid "Grand Ayatollah Montazeri Official Website"
@@ -8693,7 +8930,9 @@ msgstr "مورد مطالعه"
 #~ msgstr "رفرنس"
 
 #~ msgid "Use reference to define important parts to use in posts"
-#~ msgstr "از رفرنس برای تعریف بخش‌های مهم و استفاده و ارجاع دهی از آن در مطالبتان استفاده کنید"
+#~ msgstr ""
+#~ "از رفرنس برای تعریف بخش‌های مهم و استفاده و ارجاع دهی از آن در مطالبتان استفاده "
+#~ "کنید"
 
 #~ msgid "References"
 #~ msgstr "رفرنس‌ها"
@@ -8762,7 +9001,8 @@ msgstr "مورد مطالعه"
 #~ msgstr "کلمه عبور"
 
 #~ msgid ""
-#~ "He was a Muslim cleric, prominent Iranian scholar and Shia Islamic democracy advocate"
+#~ "He was a Muslim cleric, prominent Iranian scholar and Shia Islamic democracy "
+#~ "advocate"
 #~ msgstr "او روحانی مسلمان، مرجع تقلید ایرانیان و "
 
 #~ msgid "this"
@@ -8789,11 +9029,15 @@ msgstr "مورد مطالعه"
 #~ msgid "You can assign keywords to your posts using tags"
 #~ msgstr "شما می توانید کلمات کلیدی را به نوشته های خود ارتباط دهید"
 
-#~ msgid "You can use categories to define sections of your site and group related posts"
-#~ msgstr "شما می توانید از دسته ها برای تعریف بخش های سایت و دسته بندی نوشته ها استفاده کنید"
+#~ msgid ""
+#~ "You can use categories to define sections of your site and group related posts"
+#~ msgstr ""
+#~ "شما می توانید از دسته ها برای تعریف بخش های سایت و دسته بندی نوشته ها استفاده "
+#~ "کنید"
 
 #~ msgid "You can use posts to share your news in specefic category"
-#~ msgstr "شما می توانید از نوشته ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
+#~ msgstr ""
+#~ "شما می توانید از نوشته ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
 
 #~ msgid "You can use pages to share your static content"
 #~ msgstr "شما می توانید از برگه ها برای انتشار مطالب ثابت استفاده کنید"
