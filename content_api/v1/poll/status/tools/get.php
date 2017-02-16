@@ -53,7 +53,7 @@ trait get
 
 			case 'publish':
 				// not body answer to this poll
-				if(true)
+				if(!self::answer_one_person(utility\shortURL::decode(utility::request('id'))))
 				{
 					$can_change_to =
 					[
@@ -110,5 +110,23 @@ trait get
 		}
 		return ['current' => $current_status, 'available' => $can_change_to];
 	}
+
+	/**
+	 * no body answer to this poll
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function answer_one_person($_poll_id)
+	{
+		$query  = "SELECT polldetails.id AS `count` FROM polldetails WHERE polldetails.post_id = $_poll_id LIMIT 1";
+		$result = \lib\db::get($query,'count', true);
+		$result = intval($result);
+		if($result)
+		{
+			return true;
+		}
+		return false;
+	}
+
 }
 ?>

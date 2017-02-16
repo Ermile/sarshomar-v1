@@ -7,25 +7,6 @@ use \lib\db;
 trait check
 {
 
-
-	/**
-	 * no body answer to this poll
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	protected static function answer_one_person($_poll_id)
-	{
-		$query  = "SELECT polldetails.id AS `count` FROM polldetails WHERE polldetails.post_id = $_poll_id LIMIT 1";
-		$result = db::get($query,'count', true);
-		$result = intval($result);
-		if($result)
-		{
-			return true;
-		}
-		return false;
-	}
-
-
 	/**
 	 * check poll syntax
 	 *
