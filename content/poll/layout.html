@@ -78,7 +78,7 @@
 {%block poll_options%}
 {% spaceless %}
  {%if poll.answers%}
- <ul class="poll-options">
+ <ul class="poll-options" data-answer-type="{{poll_type}}">
   {%if poll.options.multi%}{# if muliple_choice #}
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
@@ -122,7 +122,7 @@
         <input type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other'>
        </div>
        <span class="checkbox">
-        <input type="radio" name="radio" id="radio_{{value.key}}" value="{{value.key}}">
+        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}">
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>
@@ -135,7 +135,7 @@
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <span class="checkbox">
-        <input type="radio" name="radio" id="radio_{{value.key}}" value="{{value.key}}">
+        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}">
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>
@@ -154,7 +154,7 @@
 {% spaceless %}
  {%if poll.answers%}
   <div class="poll-skip">
-   <input type="submit" name="skipped" value='{%trans "I am not willing to answer"%}'>
+   <input type="submit" id="skipAnswers" value='{%trans "I am not willing to answer"%}'>
   </div>
  {%endif%}
 {% endspaceless %}
@@ -165,7 +165,7 @@
 {% spaceless %}
  <div class="poll-actions">
   {%if poll.answers%}
-   <button class="try special-button" type="submit" name="skipped" value="skipped" {%if not login %} disabled {% endif %} >{%trans "Save Answer"%}</button>
+   <button class="try special-button" id="saveAnswers" type="submit" {%if not login %} disabled {% endif %} >{%trans "Save Answer"%}</button>
   {%else%}
    <a class="try special-button" href="ask" data-direct>{%trans "Ask Me"%}</a>
   {%endif%}

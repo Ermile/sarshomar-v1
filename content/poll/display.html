@@ -2,7 +2,6 @@
 
 {%block content%}
  <div class="main pad">
-  <form method="post">
    <div class="in small poll-container" data-type="{{poll_type}}">
     {{block('poll_title')}}
     {{block('poll_toolbox')}}
@@ -14,7 +13,6 @@
     {{block('poll_skip')}}
     {{block('poll_actions')}}
    </div>
-  </form>
 
   <div class="box">
    {%if poll.stats%}
@@ -96,7 +94,7 @@
 
 
 
-{%block foot_js%}
+{%block foot_js2%}
 <script type="text/javascript">
 function add_score_comment(_type, _data_id)
 {

@@ -43,7 +43,7 @@ class view extends \mvc\view
 		$poll_type = 'select';
 		if(isset($poll['options']['multi']))
 		{
-			$poll_type = 'milti';
+			$poll_type = 'multi';
 		}
 		elseif(isset($poll['options']['ordering']))
 		{

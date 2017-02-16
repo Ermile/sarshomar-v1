@@ -221,6 +221,7 @@ function openTopNav()
 	});
 }
 
+
 /**
  * [setProperty description]
  * @param {[type]} argument [description]
@@ -2400,6 +2401,77 @@ route('*', function ()
 // });
 
 
+/**
+ * [saveAnswers description]
+ * @return {[type]} [description]
+ */
+function saveAnswers(_type)
+{
+	var data = {};
+	switch (_type)
+	{
+		case "skip":
+			data.skip = true;
+			break;
+
+		default:
+			var answerSelected = false;
+			var answerBox      = $('ul[data-answer-type]');
+			switch (answerBox.attr('data-answer-type'))
+			{
+				case "select":
+					var selectedAns = answerBox.find('input[name="anwserOpt"]:checked').val();
+					if(selectedAns)
+					{
+						data.answer              = {};
+						data.answer[selectedAns] = true;
+						answerSelected           = true;
+					}
+					break;
+
+				case "multi":
+					var checkedAns = answerBox.find('input[type="checkbox"]:checked');
+					if(checkedAns.length)
+					{
+						data.answer = {};
+						checkedAns.each(function()
+						{
+							var myVal = $(this).val();
+							console.log(myVal);
+							data.answer[myVal] = true;
+						});
+						answerSelected = true;
+					}
+					break;
+
+				case "ordering":
+					// complete as soon as posible...
+					break;
+			}
+			break;
+	}
+	data = JSON.stringify(data);
+
+	$('#saveAnswers').ajaxify(
+	{
+		ajax:
+		{
+			data: {data : data},
+			// abort: true,
+			method: 'post',
+			success: function(e, data, x)
+			{
+				console.log('successfully save answer..');
+			},
+			error: function(e, data, x)
+			{
+				console.log('error on saving answer!');
+			}
+		},
+		// lockForm: false,
+	});
+}
+
 
 route('*', function ()
 {
@@ -2505,6 +2577,17 @@ route('*', function ()
 	});
 	// hide cost box on all page except add new poll
 	$('#financial-box .cost').removeClass('isCurrent');
+
+	$('#saveAnswers').click(function()
+	{
+		saveAnswers();
+	});
+
+	$('#skipAnswers').click(function()
+	{
+		saveAnswers('skip');
+	});
+
 
 });
 
