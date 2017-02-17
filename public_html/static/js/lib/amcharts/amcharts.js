@@ -709,7 +709,7 @@ function redrawChart(_data)
 
 	var xhr    = $.getJSON(myAddr, _data, function(_response)
 	{
-		if(_response.result.stats.total.valid)
+		if(_response.result && _response.result.stats && _response.result.stats.total &&_response.result.stats.total.valid)
 		{
 			var newChartData = _response.result.stats.total.valid;
 			// newChartData[0].value = 20;
