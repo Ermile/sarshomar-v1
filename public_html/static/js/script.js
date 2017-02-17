@@ -2164,7 +2164,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$('#rangepersons').bind('range-slider::changeAfter', function(_e, _min, _max)
 	{
-		console.log('range changed...');
+		// console.log('range changed...');
 		// ready to send data
 		requestSavingData();
 	});
@@ -2462,6 +2462,8 @@ function saveAnswers(_type)
 			success: function(e, data, x)
 			{
 				console.log('successfully save answer..');
+				// redraw chart after successfully change poll
+				redrawChart()
 			},
 			error: function(e, data, x)
 			{

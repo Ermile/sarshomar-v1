@@ -706,12 +706,12 @@ function redrawChart(_data)
 	try { xhr.abort(); } catch(e){}
 	// try to get new list from server
 	var myAddr = $(location).attr('href');
-
 	var xhr    = $.getJSON(myAddr, _data, function(_response)
 	{
-		if(_response.result && _response.result.stats && _response.result.stats.total &&_response.result.stats.total.valid)
+		var newChartData = clearJson(_response);
+		if(newChartData && newChartData.valid)
 		{
-			var newChartData = _response.result.stats.total.valid;
+			newChartData = newChartData.valid;
 			// newChartData[0].value = 20;
 			// newChartData[1].value = 30;
 			console.log(newChartData);

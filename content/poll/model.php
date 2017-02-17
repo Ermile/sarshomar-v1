@@ -198,7 +198,7 @@ class model extends \mvc\model
 					}
 					break;
 			}
-			debug::msg('stats', json_encode($result, JSON_UNESCAPED_UNICODE));
+			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
 			return true;
 		}
 		return false;
