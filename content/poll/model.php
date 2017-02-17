@@ -100,14 +100,7 @@ class model extends \mvc\model
 
 			$post_url = $poll['url'];
 
-			$preview  = null;
-
-			if(isset($poll['user_id']) && $poll['user_id'] == $this->login('id'))
-			{
-				$preview = "?preview=yes";
-			}
-
-			$new_url = trim($this->url('base'). $language. '/'. $post_url. $preview, '/');
+			$new_url = trim($this->url('base'). $language. '/'. $post_url, '/');
 
 			$this->redirector($new_url)->redirect();
 		}

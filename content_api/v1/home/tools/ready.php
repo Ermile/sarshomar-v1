@@ -70,8 +70,14 @@ trait ready
 			{
 
 				case 'draft':
-				case 'trash':
 				case 'awaiting':
+					if($my_poll || utility::get('preview'))
+					{
+						$permission_load_poll = true;
+					}
+					break;
+
+				case 'trash':
 					if($my_poll)
 					{
 						$permission_load_poll = true;
