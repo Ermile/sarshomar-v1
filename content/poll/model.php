@@ -273,6 +273,21 @@ class model extends \mvc\model
 
 
 	/**
+	 * get avalible answer to this poll
+	 */
+	public function answer_lock($_poll_code)
+	{
+		utility::set_request_array(['id' => $_poll_code]);
+		$avalible = $this->poll_answer_get();
+		if(isset($avalible['available']) && empty($avalible['available']))
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
 	 * save poll answers
 	 *
 	 * @return     boolean  ( description_of_the_return_value )

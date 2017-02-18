@@ -52,6 +52,10 @@ class view extends \mvc\view
 
 		$this->data->poll_type = $poll_type;
 
+		if(isset($poll['id']))
+		{
+			$this->data->answer_lock = $this->model()->answer_lock($poll['id']);
+		}
 		$this->data->poll      = $poll;
 	}
 

@@ -87,10 +87,10 @@
      <label for="check_other">
       <div class="option-number" data-number='{{value.key}}'></div>
       <div class="option-content">
-       <input type="text" name="descriptive" placeholder="{{value.title}}" {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
+       <input {% if answer_lock %} disabled="disabled" {% endif %} type="text" name="descriptive" placeholder="{{value.title}}" {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
       </div>
       <span class="checkbox">
-       <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
+       <input {% if answer_lock %} disabled="disabled" {% endif %} type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
        <label for="check_{{value.key}}"></label>
       </span>
      </label>
@@ -103,7 +103,7 @@
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <div class="checkbox">
-        <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
+        <input {% if answer_lock %} disabled="disabled" {% endif %} type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="check_{{value.key}}"></label>
        </div>
       </label>
@@ -119,10 +119,10 @@
       <label for="radio_other">
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">
-        <input type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other' {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
+        <input {% if answer_lock %} disabled="disabled" {% endif %} type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other' {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
        </div>
        <span class="checkbox">
-        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
+        <input {% if answer_lock %} disabled="disabled" {% endif %} type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>
@@ -135,7 +135,7 @@
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <span class="checkbox">
-        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
+        <input {% if answer_lock %} disabled="disabled" {% endif %} type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>
@@ -154,7 +154,7 @@
 {% spaceless %}
  {%if poll.answers%}
   <div class="poll-skip">
-   <input type="submit" id="skipAnswers" value='{%trans "I am not willing to answer"%}'>
+   <input {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "I am not willing to answer"%}'>
   </div>
  {%endif%}
 {% endspaceless %}
@@ -165,7 +165,7 @@
 {% spaceless %}
  <div class="poll-actions">
   {%if poll.answers%}
-   <button class="try special-button" id="saveAnswers" type="submit" {%if not login %} disabled {% endif %} >{%trans "Save Answer"%}</button>
+   <button class="try special-button" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
   {%else%}
    <a class="try special-button" href="ask" data-direct>{%trans "Ask Me"%}</a>
   {%endif%}
