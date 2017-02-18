@@ -1235,7 +1235,7 @@ function checkNextStep()
 
 	$(document).on('click', ".stepPublish .publish", function()
 	{
-		changePollStatus();
+		requestSavingData(true, 'publish');
 	});
 }
 
@@ -1247,7 +1247,6 @@ function checkNextStep()
  */
 function changePollStatus(_status)
 {
-	requestSavingData(true);
 	if(!_status)
 	{
 		_status = 'publish';
@@ -1618,7 +1617,7 @@ String.prototype.ucFirst = function()
  * [requestSavingData description]
  * @return {[type]} [description]
  */
-function requestSavingData(_manualRequest)
+function requestSavingData(_manualRequest, _status)
 {
 	// cal total price with a short delay to give all
 	setTimeout(function()
@@ -1628,7 +1627,7 @@ function requestSavingData(_manualRequest)
 
 	if(_manualRequest === true)
 	{
-		sendQuestionData();
+		sendQuestionData(_status);
 	}
 	else if($('html').attr('data-develop') != undefined)
 	{
@@ -1658,7 +1657,7 @@ function requestSavingData(_manualRequest)
  * [sendQuestionData description]
  * @return {[type]} [description]
  */
-function sendQuestionData()
+function sendQuestionData(_status)
 {
 	// change status to syncing
 	syncing(true);
@@ -1693,6 +1692,9 @@ function sendQuestionData()
 					}
 					else
 					{
+						// change language if transfered to new location after a short delay
+						setTimeout(function(){setLanguageURL();}, 300);
+
 						var myurl = window.location.pathname + '/' + id + window.location.hash;
 						// add new and redirect url
 						if(e.result.short_url)
@@ -1704,6 +1706,11 @@ function sendQuestionData()
 							url: myurl,
 							fake: true,
 						});
+					}
+					// change status if wanna to change it
+					if(_status)
+					{
+						changePollStatus(_status);
 					}
 					var limit = null;
 					if(e.msg && e.msg.member_exist)
