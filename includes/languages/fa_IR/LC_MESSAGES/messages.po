@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-18 10:02+0330\n"
-"PO-Revision-Date: 2017-02-18 10:14+0330\n"
+"PO-Revision-Date: 2017-02-18 14:10+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -7626,7 +7626,7 @@ msgstr "پارامتر نوع پاسخ در شاخص :key پاسخ نامعتب�
 
 #: includes/lib/db/polls/insert/answers.php:108
 msgid "Invalid parameter is_true in index :key of answer"
-msgstr ""
+msgstr "پارامتر is_true در شاخص :key پاسخ نامعتبر است"
 
 #: includes/lib/db/polls/insert/check.php:16
 msgid "Invalid parameter file"
@@ -7656,11 +7656,15 @@ msgstr "می‌توانید :max نظرسنجی در یک پرسشنامه ذخ�
 msgid ""
 "Invalid brand title argument, you must set less than 160 character for the title"
 msgstr ""
+" آرگومان عنوان برند نامعتبر است، برای عنوان برند باید کمتر از 160 کاراکتر وارد "
+"کنید"
 
 #: includes/lib/db/polls/insert/options.php:24
 msgid ""
 " Invalid brand URL argument, you must set less than 100 character for brand URL "
 msgstr ""
+" آرگومان URL برند نامعتبر است، برای آدرس پیوند برند باید کمتر از 100 کاراکتر وارد "
+"کنید"
 
 #: includes/lib/db/polls/insert/options.php:37
 msgid "Invalid arguments time"
@@ -7672,16 +7676,17 @@ msgstr "آرگومان‌های حداقلی نامعتبر است"
 
 #: includes/lib/db/polls/insert/options.php:57
 msgid "Can not set parameter 'min' less than 1"
-msgstr ""
+msgstr "نمیتوانید پارامتر 'min' را کمتر از 1 قرار دهید"
 
 #: includes/lib/db/polls/insert/options.php:66
 #: includes/lib/db/polls/insert/options.php:109
 msgid "You can not set minimum greater than maximum in multi select settings"
-msgstr ""
+msgstr "نمی‌توانید حداقل را بیش از حداکثر در تنظیمات سوال چند انتخابی تعیین کنید"
 
 #: includes/lib/db/polls/insert/options.php:71
 msgid "You have set :count answers and can not set :min in min parameter "
 msgstr ""
+"شما :count پاسخ تعیین کرده‌اید و نمیتوانید :min پاسخ در پارامتر min وارد کنید "
 
 #: includes/lib/db/polls/insert/options.php:91
 msgid "Invalid arguments max"
@@ -7690,6 +7695,7 @@ msgstr "آرگومان‌های حداکثری نامعتبر است"
 #: includes/lib/db/polls/insert/options.php:96
 msgid "You have set :count answers and can not set :max in max parameter "
 msgstr ""
+"شما :count پاسخ تعیین کرده‌اید و نمیتوانید :max پاسخ در پارامتر max وارد کنید "
 
 #: includes/lib/db/polls/insert/options.php:136
 msgid "Can not use multi:min and ordering"
