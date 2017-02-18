@@ -1,7 +1,7 @@
 /*
  * In the Name of God
  * Sarshomar Responsive Styles
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -173,6 +173,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  #inestimable:before,#inestimable:after{display: none}
  #inestimable .left-mobile-border {height: 100%;position: absolute;left: -10px;top: 0;bottom: 0; display: block}
  #inestimable .right-mobile-border {height: 100%;position: absolute;right: -10px;top: 0;bottom: 0;display: block}
+ #inestimable .right-desktop-border,#inestimable .left-desktop-border {display: none}
  #inestimable .launch{display:none}
  #inestimable h3{font-size:1.6em}
  #inestimable h4{font-size:1.4em}

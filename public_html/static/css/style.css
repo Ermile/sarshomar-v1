@@ -749,8 +749,6 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable .inside{position:absolute;top:0;height:100%;width:auto}
 #inestimable .inside.left{left:0}
 #inestimable .inside.right{right:0}
-#inestimable::before{content:"";background:url(../images/svg/home/inestimable-left-img.svg) no-repeat;background-size:cover;position:absolute;top:0;width:110px;height:100%;left:0}
-#inestimable::after{content:"";background:url(../images/svg/home/inestimable-right-img.svg) no-repeat;background-size:cover;position:absolute;top:0;width:110px;height:100%;right:0}
 #inestimable .launch{max-width:100%;max-height:150px}
 .rtl #inestimable .launch{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);filter:FlipH;-ms-filter:FlipH}
 #inestimable h3{margin-bottom:0;font-weight:700;color:#f4f4f4}
@@ -765,7 +763,8 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable:hover img{-webkit-filter:none;filter:none}
 
 #inestimable .left-mobile-border,#inestimable .right-mobile-border {display: none;}
-
+#inestimable .left-desktop-border {height: 100%;position: absolute;left: 0;top: 0;bottom: 0; display: block}
+#inestimable .right-desktop-border {height: 100%;position: absolute;right: 0;top: 0;bottom: 0;display: block}
 
 .special-button{position:relative;border-radius:15px;font-size:20px}
 .rtl .special-button{font-size:18px}
