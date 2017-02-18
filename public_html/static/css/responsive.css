@@ -1,7 +1,7 @@
 /*
  * In the Name of God
  * Sarshomar Responsive Styles
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -73,7 +73,7 @@
 .sharebox a:before {display: none}
 
   .special-button{font-size:12px!important;border-radius:10px}
- .special-button:before,.special-button:after{top:-3px;font-size:37px}
+ .special-button:before,.special-button:after{top:-4px;font-size:38px}
  .special-button:before{left:-6px}
  .special-button:after{right:-6px}
 .homepage .box .special-button {min-width: 225px;}
@@ -108,7 +108,7 @@
  /************************************************************** Style Guide */
  .in,.in.xsmall,.in.small,.in.large,.in.xlarge,.in.xxlarge{width:100%}
 
-.rtl .special-button:before, .rtl .special-button:after {font-size: 37px;}
+.rtl .special-button:before, .rtl .special-button:after {font-size: 38px;}
 .rtl .special-button:before {left: -5px;}
 .rtl .special-button:after {right: -5px;}
  /* Sarshomar */
@@ -180,7 +180,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  #inestimable h4{font-size:1.4em}
  #inestimable .vision {font-size: 2em;}
  .special-button{font-size:12px!important;border-radius:10px}
- .special-button:before,.special-button:after{top:-3px;font-size:37px}
+ .special-button:before,.special-button:after{top:-4px;font-size:38px}
  .special-button:before{left:-6px}
  .special-button:after{right:-6px}
 
