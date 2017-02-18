@@ -211,15 +211,17 @@
 			if(isNaN(data_max) || data_min >= data_max)
 			{
 				data_max = data_min + 100;
-var json_string = $(this).attr("save_jason");
+
+
+				var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
-					// console.log(11111111111)
-					// data_max = 100000;
+
 				}
 			}
+
 			$(this).attr('data-max',data_max);
-			return data_max;
+			// return data_max;
 		}
 		var data_max = parseInt($(this).attr('data-max'));
 
@@ -258,6 +260,16 @@ var json_string = $(this).attr("save_jason");
 			data_max = data_min + 100;
 			$(this).attr('data-max',data_max);
 		}
+
+var json_string = $(this).attr("save_jason");
+if (json_string)
+{
+	var max_limit = $(this).attr('data-max-limit-first');
+	$(this).attr('max_limit', max_limit)
+}
+
+// var max_limit = $(this).attr('data-max-limit-first');
+// $(this).rangeSlider('option', 'max_limit', max_limit)
 
 		return data_max;
 	}
@@ -345,109 +357,133 @@ var json_string = $(this).attr("save_jason");
 	}
 
 
+	/**
+	 * [max_limit maximum mount of limitation, different from max]
+	 * @param  {string} _name    name of method
+	 * @param  {integer} _set    value that we want to set it for min_unit method
+	 * @param  {integer} _multi  to set max_limit you should put this value = 1
+	 * @return {integer}         max_limit mount will be returned
+	 */
 	optionMethod.max_limit = function(_name, _set, _multi)
 	{
 		var max_limit;
 		max_limit = parseInt($(this).attr("data-max-limit"));
 		init_max_limit = parseInt($(this).attr("data-max-limit"));
-		if(_set)
+		if(!isNaN(_set))
 		{
 			max_limit = parseInt(_set);
-
-			if (_multi)
+			var json_string = $(this).attr("save_jason");
+			if (json_string)
 			{
-				// agar bekhaahim ba ejraye function lhodemaan meghdaare max_limit ro taghyeer bedim bayad meghdare 3om ro set konim
-				// $('#a').rangeSlider('option', 'max_limit', 500, 1);
-				// 
+				if ($(this).attr('_status') ) 
+				{
+					$(this).removeAttr('_status')
+				}
+				var my_step = $(this).rangeSlider('option','step');
+				var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', _set);
+				if (!real_limit_unit) 
+				{
+					var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
+					var _status = 'float';
+					$(this).attr('_status', _set);
+				}
+				var multi_max_limit  = _set;
+				var init_max_limit   = _set;
+				var max_limit 		 = real_limit_unit * my_step;
+				$(this).attr('real_max_limit',max_limit);
+			}
+
+			if (max_limit <= $(this).rangeSlider('option','max')) 
+			{
+				if(!isNaN(max_limit) && !( max_limit < ($(this).rangeSlider('option','min'))) )
+				{
+					$(this).attr("data-max-limit", max_limit);
+					$(this).attr("data-multi-max-limit", max_limit);
+				}
+				else
+				{
+					$(this).removeAttr("data-max-limit");
+				}
+
+				var limit_value = max_limit - $(this).rangeSlider('option','min');
+
 				var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
-					if ($(this).attr('_status') ) 
-					{
-						$(this).removeAttr('_status')
-					}
+					var json_steps = jQuery.parseJSON( json_string );
+					var json_steps_details = json_steps[0];
+					var start  = parseInt(json_steps_details["start"]);
+					var data_min = start;
+					var data_min_unit = $(this).rangeSlider('option', 'multi_level_value_to_real', data_min);
 					var my_step = $(this).rangeSlider('option','step');
-					var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', _set);
-					if (!real_limit_unit) 
-					{
-						var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
-						var _status = 'float';
-						$(this).attr('_status', _set);
-					}
-					var max_limit = real_limit_unit * my_step;
-					var init_max_limit = _set;
-console.log('set: ', _set)
-console.log('max_limit: ', max_limit)
+					data_min = Math.round(my_step * data_min_unit);
+					var limit_value = max_limit - data_min;
 				}
-			}
 
-		if (max_limit <= $(this).rangeSlider('option','max')) 
-		{
-			if(max_limit && !( max_limit <= ($(this).rangeSlider('option','min'))) )
-			{
-				$(this).attr("data-max-limit", max_limit);
-			}
-			else
-			{
-				$(this).removeAttr("data-max-limit");
-			}
-
-
-			var limit_value = max_limit - $(this).rangeSlider('option','min');
-
-			var json_string = $(this).attr("save_jason");
-			if (json_string)
-			{
-				var limit_value = $(this).rangeSlider('option','max_limit') - $(this).rangeSlider('option','min');
-			}
-
-			var limit_value_percent = (limit_value * 100) / $(this).rangeSlider('option', 'unit');
-			var margin_type = $(this).rangeSlider('option', 'type') == 'vertical'? "top" : "left";
-			if(!$('.max_limit', this).length){
-				$(this).append("<div class='max_limit'></div>");
-				$(this).find(".max_limit").append("<span class='mount'></span>");
-				$(this).find(".max_limit").append("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 9' style='enable-background:new 0 0 8 9;' xml:space='preserve'><style type='text/css'>.st0{fill:#E96914;}</style><path class='st0' d='M3.2,0C6.7-0.1,5.4,3.5,8,4.5C5.4,5.5,6.7,9.1,3.2,9L2.7,9V7.1L0,4.5l2.7-2.6V0L3.2,0z'/></svg>");
-			}
-			if (margin_type == 'top')
-			{
-				$(this).find(".max_limit").css('top', 100 - limit_value_percent + "%")
-			}
-			else
-			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(this).attr('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
+				var limit_value_percent = (limit_value * 100) / $(this).rangeSlider('option', 'unit');
+				var margin_type = $(this).rangeSlider('option', 'type') == 'vertical'? "top" : "left";
+				if(!$('.max_limit', this).length){
+					$(this).append("<div class='max_limit'></div>");
+					$(this).find(".max_limit").append("<span class='mount'></span>");
+					$(this).find(".max_limit").append("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 9' style='enable-background:new 0 0 8 9;' xml:space='preserve'><style type='text/css'>.st0{fill:#E96914;}</style><path class='st0' d='M3.2,0C6.7-0.1,5.4,3.5,8,4.5C5.4,5.5,6.7,9.1,3.2,9L2.7,9V7.1L0,4.5l2.7-2.6V0L3.2,0z'/></svg>");
+				}
+				if (margin_type == 'top')
 				{
-					limit_value_percent = (100-limit_value_percent);
+					$(this).find(".max_limit").css('top', 100 - limit_value_percent + "%")
 				}
-				$(this).find(".max_limit").css('left', limit_value_percent + "%")
-			}
+				else
+				{
+					if ($(document).find("body.rtl").hasClass('rtl') && $(this).attr('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
+					{
+						limit_value_percent = (100-limit_value_percent);
+					}
+					$(this).find(".max_limit").css('left', limit_value_percent + "%")
+				}
 
-			var show_max_limit = max_limit;
-			var json_string = $(this).attr("save_jason");
-			if (json_string)
-			{
-				var my_step = $(this).rangeSlider('option','step');
-				show_max_limit = $(this).rangeSlider('option','multi_level_real_to_value', Math.round(show_max_limit/my_step));
-			}
-			$(this).attr("data-max-limit-first", show_max_limit);
-			
-			if ($(this).attr('_status')) 
-			{
-				$(this).attr("data-max-limit-first", $(this).attr('_status'));
-			}
+				var show_max_limit = max_limit;
+				var json_string = $(this).attr("save_jason");
+				if (json_string)
+				{
+					var my_step = $(this).rangeSlider('option','step');
+					show_max_limit = $(this).rangeSlider('option','multi_level_real_to_value', Math.round(show_max_limit/my_step));
+				}
+				$(this).attr("data-max-limit-first", show_max_limit);
+				
+				if ($(this).attr('_status')) 
+				{
+					$(this).attr("data-max-limit-first", $(this).attr('_status'));
+				}
 
-			$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
+				if (!isNaN(multi_max_limit))
+				{
+					$(this).attr("data-max-limit", multi_max_limit);
+				}
+
+				$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
+			}
 		}
-		}
-		if(isNaN(max_limit))
+		else if(isNaN(max_limit))
 		{
 			max_limit = undefined;
 		}
 
-
-		return max_limit;
+		if (!isNaN(multi_max_limit))
+		{
+			return multi_max_limit;
+		}
+		else
+		{
+			return max_limit;
+		}
 	}
 
-
+	
+	/**
+	 * [min_default min element default value]
+	 * @param  {string} _name name of method
+	 * @param  {integer} _set  default min element value can be set by setting this parameter
+	 * @return {integer}       min element default mount
+	 */
 	optionMethod.min_default = function(_name, _set)
 	{
 		var _self = $(this).parents("range-slider");
@@ -479,6 +515,13 @@ console.log('max_limit: ', max_limit)
 		}
 	}
 
+	/**
+	 * [max_default description]
+	 * @param  {[type]} _name  [description]
+	 * @param  {[type]} _set   [description]
+	 * @param  {[type]} _multi [description]
+	 * @return {[type]}        [description]
+	 */
 	optionMethod.max_default = function(_name, _set, _multi)
 	{
 		if ($(this).attr("data-infinity") != 'max')
@@ -525,22 +568,36 @@ console.log('max_limit: ', max_limit)
 		}
 	}
 
-
-	optionMethod.margin = function(_name, _set)
+	/**
+	 * [margin left of range]
+	 * @param  {string} _name [name of method]
+	 * @return {integer}      [left of range will be returned, it's pixel]
+	 */
+	optionMethod.margin = function(_name)
 	{
 		var margin_type = $(this).rangeSlider('option', 'type')=='vertical' ? 'height' : 'width';
 		var margin = parseInt($(this).find(".dynamic-margin").css(margin_type));
 		return margin;
 	}
 
-
-	optionMethod.depth = function(_name, _set)
+	/**
+	 * [depth max mount of the range]
+	 * @param  {string} _name [name of method]
+	 * @return {integer}      [max mount of the range]
+	 */
+	optionMethod.depth = function(_name)
 	{
 		var data_max = Number($(this).attr("data-max"));
 		var depth = data_max;
 		return depth;
 	}
 
+	/**
+	 * [unit_to_pixel description]
+	 * @param  {string} _name  name of method
+	 * @param  {[type]} _set   value in unit you want to change it to pixel
+	 * @return {[type]}        pixel value of unit ,had been sent to function
+	 */
 	optionMethod.unit_to_pixel = function(_name, _set)
 	{
 		var total_unit = $(this).rangeSlider('option', 'max') - $(this).rangeSlider('option', 'min');
@@ -569,7 +626,12 @@ console.log('max_limit: ', max_limit)
 
 
 
-
+	/**
+	 * [change_multi_level_float description]
+	 * @param  {string} _name   name of method
+	 * @param  {integer} _set   values that are'nt a step of multi steps, will manage here
+	 * @return {integer}  		it will return a real step of multi level range      
+	 */
 	optionMethod.change_multi_level_float= function(_name, _set)
 	{
 		var json_string = $(this).attr("save_jason");
@@ -631,14 +693,19 @@ console.log('max_limit: ', max_limit)
 
 
 
-
+	/**
+	 * [multi_level_value_to_real description]
+	 * @param  {string} _name  name of method
+	 * @param  {[type]} _set   set can be a mount of real steps of multi level range
+	 * @return {[type]}        will return the step that mount is on it (for example; if you set=1000 , it will return 19)
+	 */
 	optionMethod.multi_level_value_to_real = function(_name, _set)
 	{
 		var json_string = $(this).attr("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
-		if (json_string) 
+		if (json_string)
 		{
 			var json_steps = jQuery.parseJSON( json_string );
 			for (var i = 0; i < json_steps.length; i++)
@@ -687,16 +754,16 @@ console.log('max_limit: ', max_limit)
 
 	/**
 	* [multi_level_real_to_value description]
-	* @param  {[type]} _name [description]
-	* @param  {[type]} _set  [description]
-	* @return {[type]}       [description]
+	* @param  {string} _name   name of method 
+	* @param  {integer} _set   this value is the step that we want to know it's multi step value
+	* @return {integer}        will return the multi step value (for example; if you set=19 , it will return 1000)
 	*/
 	optionMethod.multi_level_real_to_value = function(_name, _set)
 	{
 		var json_string = $(this).attr("save_jason");
-		var steps = [];
+		var steps  = [];
 		var starts = [];
-		var ends = [];
+		var ends   = [];
 		if (json_string)
 		{
 			var json_steps = jQuery.parseJSON( json_string );
@@ -743,18 +810,22 @@ console.log('max_limit: ', max_limit)
 
 	/**
 	 * [range_width description]
-	 * @param  {[type]} _name [description]
-	 * @param  {[type]} _set  [description]
-	 * @return {[type]}       [description]
+	 * @param  {string} _name 	name of method
+	 * @return {integer}       	width of range pixel width
 	 */
-	optionMethod.range_width = function(_name, _set)
+	optionMethod.range_width = function(_name)
 	{
 		var margin_type = $(this).rangeSlider('option', 'type')=='vertical' ? 'height' : 'width';
 		var range_width = parseInt($(this).find(".dynamic-range").css(margin_type));
 		return range_width;
 	}
 
-	optionMethod.total_width = function(_name, _set)
+	/**
+	 * [total_width description]
+	 * @param  {[type]} _name [name of method, is total_width]
+	 * @return {[type]}       [this will return ]
+	 */
+	optionMethod.total_width = function(_name)
 	{
 		var margin_type = $(this).rangeSlider('option', 'type')=='vertical' ? 'height' : 'width';
 		var total_width = parseInt($(this).css(margin_type));
@@ -794,12 +865,25 @@ console.log('max_limit: ', max_limit)
 	}
 
 
+	/**
+	 * [option this is a corridor that calls all methods]
+	 * @param  {[type]} _name  [name of method that will be run]
+	 * @return {[type]}        [returned value from method]
+	 */
 	function option(_name)
 	{
 		var _args = Array.prototype.slice.call(arguments);
 		return optionMethod[_name].apply(this, _args);
 	}
 
+
+	/**
+	 * [rangeSlider the main function of range slider that runs methods or destroy or restarts the range]
+	 * @param  {[type]} _method [method we want to set on range slider, restart, destroy, option(this will call option method)]
+	 * @return {[type]}         [destroy method, destroys the range slider]
+	 * @return {[type]}         [restart method, restarts the range slider]
+	 * @return {[type]}         [option method, calls methods and returns the returned valude from methods]
+	 */
 	$.fn.rangeSlider = function(_method)
 	{
 		var _args = Array.prototype.slice.call(arguments);
@@ -845,43 +929,43 @@ console.log('max_limit: ', max_limit)
 
 
 			$(this).rangeSlider('option', 'type', $(this).attr("data-type"));
-			// $(this).rangeSlider('option', 'step', $(this).attr("data-step"));
 			$(this).rangeSlider('option', 'min', $(this).attr("data-min"));
 			$(this).rangeSlider('option', 'max', $(this).attr("data-max"));
 			$(this).rangeSlider('option', 'unit', $(this).attr("data-unit"));
 			$(this).rangeSlider('option', 'min_default', $(this).attr("data-min-default"));
 			$(this).rangeSlider('option', 'max_default', $(this).attr("data-max-default"));
-			// $(this).rangeSlider('option', 'min_unit', $(this).attr("data-min-unit"));
-			// $(this).rangeSlider('option', 'min_title', $(this).attr("data-min-title"));
-			// $(this).rangeSlider('option', 'max_title', $(this).attr("data-min-title"));
-			// $(this).rangeSlider('option', 'max_limit', $(this).attr("data-max-limit"));
-
-
 
 			$(this).data('range-slider', { });
 
+			/**
+			 * [range set]
+			 * @param  {[type]} _from   [min element mount]
+			 * @param  {[type]} _to     [max element mount]
+			 * @param  {[type]} _option [type of range we want to move in that scale, pixel or unit or percent or ziro_point]
+			 * @return {[type]}         [description]
+			 */
 			$(this).init.prototype.range = function(_from, _to, _option){
 				var from = _from;
 				var to = _to;
 				var data = $(this).data('range-slider');
-
-				data.type          = this.rangeSlider('option', 'type');
-				data.step          = this.rangeSlider('option', 'step');
-				data.min           = this.rangeSlider('option', 'min');
-				data.max           = this.rangeSlider('option', 'max');
-				data.unit          = this.rangeSlider('option', 'unit');
-				data.min_default   = this.rangeSlider('option', 'min_default');
-				data.max_default   = this.rangeSlider('option', 'max_default');
-				data.margin        = this.rangeSlider('option', 'margin');
-				data.depth         = this.rangeSlider('option', 'depth');
-				data.min_unit      = this.rangeSlider('option', 'min_unit');
-				data.min_title     = this.rangeSlider('option', 'min_title');
-				data.max_title     = this.rangeSlider('option', 'max_title');
-				data.max_limit     = this.rangeSlider('option', 'max_limit');
-				data.unit_to_pixel = this.rangeSlider('option', 'unit_to_pixel');
-				data.range_width   = this.rangeSlider('option', 'range_width');
-				data.total_width   = this.rangeSlider('option', 'total_width');
-				// data.set_limit     = this.rangeSlider('option', 'set_limit');
+				
+				data.type           = this.rangeSlider('option', 'type');
+				data.step           = this.rangeSlider('option', 'step');
+				data.min            = this.rangeSlider('option', 'min');
+				data.max            = this.rangeSlider('option', 'max');
+				data.unit           = this.rangeSlider('option', 'unit');
+				data.min_default    = this.rangeSlider('option', 'min_default');
+				data.max_default    = this.rangeSlider('option', 'max_default');
+				data.margin         = this.rangeSlider('option', 'margin');
+				data.depth          = this.rangeSlider('option', 'depth');
+				data.min_unit       = this.rangeSlider('option', 'min_unit');
+				data.min_title      = this.rangeSlider('option', 'min_title');
+				data.max_title      = this.rangeSlider('option', 'max_title');
+				data.max_limit      = this.rangeSlider('option', 'max_limit');
+				data.unit_to_pixel  = this.rangeSlider('option', 'unit_to_pixel');
+				data.range_width    = this.rangeSlider('option', 'range_width');
+				data.total_width    = this.rangeSlider('option', 'total_width');
+				data.real_max_limit = $(this).attr('real_max_limit');
 
 				var option = {
 					type : 'unit'
@@ -954,11 +1038,14 @@ console.log('max_limit: ', max_limit)
 					var my_step = $(this).rangeSlider('option','step');
 					var max_limit = $(this).rangeSlider('option','max_limit');
 
-					var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', data.max_limit);
-					var real_limit = real_limit_unit * my_step;
-					$(this).rangeSlider('option', 'max_limit', real_limit);
-				}
+					$(this).rangeSlider('option', 'max_limit', data.max_limit,1);
 
+					if (!isNaN(data.real_max_limit)) 
+					{
+						data.max_limit = data.real_max_limit;
+					}
+				}
+// controlls the range not to exit from range
 				if ((to_step) > (data.max_limit - data.min))
 				{
 					to_step = data.max_limit-data.min;
@@ -1009,7 +1096,7 @@ console.log('max_limit: ', max_limit)
 							$(this).rangeSlider('option', 'max_limit', $(this).attr('data-max-limit'));
 						}
 					}
-	
+// setting the value showed on min and max elements
 					var min_unit = $(this).rangeSlider('option', 'min_unit');
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(data.min + from_step));
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(data.min + to_step));
@@ -1022,7 +1109,7 @@ console.log('max_limit: ', max_limit)
 							$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
 						}
 					}
-
+// controlls range not to be less than min unit mount that had been set by user on html
 				if ( to_step - from_step <= min_unit )
 				{
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", (min_unit+data.min+from_step));
@@ -1052,6 +1139,8 @@ console.log('max_limit: ', max_limit)
 					}
 				}
 
+// multi step ranges here will be set
+// gets json steps attribute from html and convert it to a standard range slider
 				var json_string = $(this).attr("save_jason");
 				var steps = [];
 				var starts = [];
@@ -1138,9 +1227,19 @@ console.log('max_limit: ', max_limit)
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(from_multi_step_value));
 					$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt(to_multi_step_value));
 
+// _status is setting when a multi level range has max_limit attribute, then the real mount will be set on _status attribute
+// here value show of multi level range when it has max_limit attribute
+
 					if ($(this).attr('_status')) 
 					{
 						var my_limit = $(this).rangeSlider('option', 'max_limit');
+
+						var json_string = $(this).attr("save_jason");
+						if (json_string)
+						{
+							my_limit = $(this).attr('real_max_limit');
+						}
+
 						var _step = ($(this).rangeSlider('option', 'step'));
 						my_limit = my_limit / _step;
 						var my_limit_mount = $(this).rangeSlider('option', 'multi_level_real_to_value',my_limit)
@@ -1169,6 +1268,8 @@ console.log('max_limit: ', max_limit)
 				var data_value_max = $(this).find(".dynamic-range .max .mount").attr("data-value-show");
 				var data_value_min = $(this).find(".dynamic-range .min .mount").attr("data-value-show");
 
+// value of max and min element will be save on on a input for each one
+// 
 				var id = this.attr('id');
 				if(id)
 				{
@@ -1184,6 +1285,9 @@ console.log('max_limit: ', max_limit)
 						}
 					});
 				}
+
+
+// if user had set data show title, here it will set and will show it instead of the real digit
 
 				var show_title;
 
@@ -1264,6 +1368,10 @@ console.log('max_limit: ', max_limit)
 					}
 				}
 
+
+//converts from_step and to_step to percent, because for responsive we should to use percent, not pixel
+//
+
 				from = (from_step * 100) / ($(this).rangeSlider('option', 'unit'));
 				to   = (to_step * 100) / ($(this).rangeSlider('option', 'unit'));
 
@@ -1297,6 +1405,9 @@ console.log('max_limit: ', max_limit)
 			}
 
 
+// creating range slider elements
+// this will creat first time the elements
+
 				var margin_range = $("<div class='dynamic-margin'></div>");
 				var dynamic_range = $("<div class='dynamic-range'></div>");
 
@@ -1314,6 +1425,9 @@ console.log('max_limit: ', max_limit)
 					add_selection.call(this, 'min').appendTo(dynamic_range);
 				}
 
+
+// add support rtl class to change range slider to right_to_left on page rtl direction
+// 
 				if ($(this).attr('data-support-rtl')) 
 				{
 					$(this).addClass('support-rtl')
@@ -1358,9 +1472,11 @@ console.log('max_limit: ', max_limit)
 
 				margin_range.show();
 				dynamic_range.show();
-							$(this).trigger("range-slider::init::after");
+				$(this).trigger("range-slider::init::after");
 						});
 			}
+
+// here the events for mouse and keyboard selection is set
 
 var add_selection = function(_name)
 {
@@ -1414,14 +1530,13 @@ var add_selection = function(_name)
 			var my_max_limit 	  = $(_self).rangeSlider('option', 'max_limit');
 			if(my_max_limit)
 			{
-
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
 				var json_string = $(_self).attr("save_jason");
 				// in qemat baraye multi level ha dorost kar nemikone
-				// if (json_string)
-				// {
-				// 	my_max_limit = $(_self).attr('data-max-limit-first');
-				// }
+				if (json_string)
+				{
+					my_max_limit = $(_self).attr('real_max_limit');
+				}
 			}
 			else
 			{
@@ -1452,7 +1567,8 @@ var add_selection = function(_name)
 				$(document).unbind("mousemove.dynamic-range");
 
 				$(_self).trigger("range-slider::mouseup::margin");
-				$(_self).trigger("range-slider::changeAfter");console.log('range changed...')
+				$(_self).trigger("range-slider::changeAfter");
+				
 
 				
 				$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
@@ -1525,6 +1641,10 @@ var add_selection = function(_name)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
+				if (json_string)
+				{
+					my_max_limit = $(_self).attr('real_max_limit');
+				}
 			}
 			else
 			{
@@ -1533,8 +1653,8 @@ var add_selection = function(_name)
 
 			var total_width_unit   = my_max_limit - $(_self).rangeSlider('option', 'min');
 			var total_width_pixel  = $(_self).rangeSlider('option', 'unit_to_pixel', total_width_unit);
-			var final_from =margin+move;
-			var final_to   =range_width+margin+move;
+			var final_from = margin+move;
+			var final_to   = range_width+margin+move;
 
 			if (final_to >= total_width_pixel)
 			{
@@ -1556,8 +1676,11 @@ var add_selection = function(_name)
 			{
 				$(_self).find('.dynamic-range span.mount').hide(); //design*********
 			}
+
 			$(_self).trigger("range-slider::touchend::margin_touch");
-			$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
+			$(_self).trigger("range-slider::changeAfter");
+				
+
 			$(document).unbind('touchend');
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
@@ -1631,9 +1754,11 @@ var add_selection = function(_name)
 
 
 			$(document).unbind("mousemove.range-slider");
-			
+
 			$(_self).trigger("range-slider::mouseup::min_max");
-			$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
+			$(_self).trigger("range-slider::changeAfter");
+				
+
 
 			$(document).unbind("mouseup.range-slider");
 		});
@@ -1708,7 +1833,9 @@ var add_selection = function(_name)
 		}
 	}).bind('keyup.range-slider',function(event){
 		$(_self).trigger("range-slider::keyup");
-		$(_self).trigger("range-slider::changeAfter");console.log('range changed...');
+		$(_self).trigger("range-slider::changeAfter");
+				
+
 
 	}).bind('touchmove',function(e){
 	      e.preventDefault();
@@ -1748,6 +1875,8 @@ var add_selection = function(_name)
 
 			$(_self).trigger("range-slider::touchend::min_max_touch");
 			$(_self).trigger("range-slider::changeAfter");
+				
+
 
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
