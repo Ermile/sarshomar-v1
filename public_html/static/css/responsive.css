@@ -206,6 +206,8 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 .feature-items .feature-item:nth-child(2):after, .feature-items .feature-item:nth-child(5):after, .feature-items .feature-item:nth-child(8):after{display: none}
 .feature-items .feature-item:nth-child(4):after, .feature-items .feature-item:nth-child(7):after, .feature-items .feature-item:nth-child(10):after{display: none;}
 .feature-items .feature-item:nth-child(6):after, .feature-items .feature-item:nth-child(9):after, .feature-items .feature-item:nth-child(12):after{display: none}
+.feature-items .feature-item:nth-child(4)::after, .feature-items .feature-item:nth-child(7)::after, .feature-items .feature-item:nth-child(10)::after, .feature-items .feature-item:nth-child(13)::after {display: none}
+.feature-items .feature-item:nth-child(2)::after, .feature-items .feature-item:nth-child(5)::after, .feature-items .feature-item:nth-child(8)::after, .feature-items .feature-item:nth-child(11)::after {display: none}
 
  /************************************************************** add question */
  .page-progress {width: 100%;}
@@ -299,7 +301,8 @@ nav.breadcrumb a {max-width: 12em;}
  .stepPublish .element label {-ms-flex-item-align: start;align-self: flex-start;}
 /*.stepPublish .action*/ {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
 /*.stepPublish .action a {margin-bottom: 1em;}*/
-.stepFilter .switch .title.large {border-radius: 0 5px 5px 0;}
+.stepFilter .switch .title.large {border-radius: 5px 0 0 5px;margin: 2px 0;}
+.rtl .stepFilter .switch .title.large {border-radius: 0 5px 5px 0;}
 .stepFilter .element .title.large {min-height: 30px;}
 .stepFilter .element.switch .switch-container {flex-wrap: wrap;}
 .stepFilter .element.switch label:not(.title) {min-width: 80px;padding: 1em;margin: 2px;}
