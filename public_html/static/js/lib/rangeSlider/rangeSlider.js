@@ -45,7 +45,7 @@
 	{
 		var data_type = $(this).attr('data-type');
 
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var data_type = _set;
 			if (data_type != 'vertical')
@@ -79,7 +79,7 @@
 		var result;
 		var data_step;
 		var my_step;
-		if (_set)
+		if (!isNaN(_set))
 		{
 			my_step = Number(_set);
 			if (isNaN(my_step))
@@ -152,7 +152,7 @@
 	 */
 	optionMethod.min = function(_name, _set)
 	{
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var data_min = _set;
 			var json_string = $(this).attr("save_jason");
@@ -204,7 +204,7 @@
 	optionMethod.max = function(_name, _set)
 	{
 		var data_min = parseInt($(this).attr('data-min'));
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var data_max = _set;
 
@@ -283,11 +283,11 @@ if (json_string)
 	 */
 	optionMethod.min_unit = function(_name, _set)
 	{
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var max = $(this).rangeSlider('option', 'max_limit');
 			var min = $(this).rangeSlider('option', 'min');
-			if (!max) 
+			if (isNaN(max))
 			{
 				var max = $(this).rangeSlider('option', 'max');
 			}
@@ -338,7 +338,7 @@ if (json_string)
 	optionMethod.min_title = function(_name, _set)
 	{
 		var min_title = $(this).attr("data-min-title");
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var min_title = _set;
 			$(this).attr('data-min-title',min_title);
@@ -349,7 +349,7 @@ if (json_string)
 	optionMethod.max_title = function(_name, _set)
 	{
 		var max_title = $(this).attr("data-show-title");
-		if (_set)
+		if (!isNaN(_set))
 		{
 			var max_title = _set;
 			$(this).attr('data-show-title',max_title);
@@ -372,6 +372,7 @@ if (json_string)
 		if(!isNaN(_set))
 		{
 			max_limit = parseInt(_set);
+
 			var json_string = $(this).attr("save_jason");
 			if (json_string)
 			{
@@ -381,12 +382,13 @@ if (json_string)
 				}
 				var my_step = $(this).rangeSlider('option','step');
 				var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', _set);
-				if (!real_limit_unit) 
+				if (!isNaN(real_limit_unit))
 				{
 					var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
 					var _status = 'float';
 					$(this).attr('_status', _set);
 				}
+
 				var multi_max_limit  = _set;
 				var init_max_limit   = _set;
 				var max_limit 		 = real_limit_unit * my_step;
@@ -476,7 +478,6 @@ if (json_string)
 			return max_limit;
 		}
 	}
-
 	
 	/**
 	 * [min_default min element default value]
@@ -490,7 +491,7 @@ if (json_string)
 		if ($(this).attr("data-infinity") != 'min')
 		{
 			var data_min = parseInt($(this).attr('data-min'));
-			if (_set)
+			if (!isNaN(_set))
 			{
 				var data_min_default = _set;
 				if(isNaN(data_min_default) || data_min > data_min_default)
@@ -530,7 +531,8 @@ if (json_string)
 			var data_min = Number($(this).attr('data-min'));
 			var data_unit = data_max - data_min;
 
-			if (_set)
+
+			if (!isNaN(_set))
 			{
 				var data_max_default = _set;
 				if(isNaN(data_max_default) || data_max < data_max_default)
@@ -833,6 +835,44 @@ if (json_string)
 	}
 
 
+	/**
+	 * [total_width description]
+	 * @param  {[type]} _name [name of method, is total_width]
+	 * @return {[type]}       [this will return ]
+	 */
+	optionMethod.lock = function(_name,_set)
+	{
+		var lock;
+		if (_set)
+		{
+			if (_set == 'on') 
+			{
+				lock = 1;
+				$(this).attr('data-lock','on');
+			}
+			else if(_set != 'on')
+			{
+				lock = 0;
+				$(this).attr('data-lock','off');
+			}
+		}
+		else
+		{
+			var lock_state = $(this).attr('data-lock');
+			if (lock_state == 'on')
+			{
+				lock = 1;
+			}
+			else
+			{
+				lock = 0;
+			}
+		}
+			return lock;
+	}
+
+
+
 	optionMethod.range = function(_name, _set, _option, _value)
 	{
 		if (_value == null)
@@ -935,6 +975,7 @@ if (json_string)
 			$(this).rangeSlider('option', 'min_default', $(this).attr("data-min-default"));
 			$(this).rangeSlider('option', 'max_default', $(this).attr("data-max-default"));
 
+
 			$(this).data('range-slider', { });
 
 			/**
@@ -965,6 +1006,7 @@ if (json_string)
 				data.unit_to_pixel  = this.rangeSlider('option', 'unit_to_pixel');
 				data.range_width    = this.rangeSlider('option', 'range_width');
 				data.total_width    = this.rangeSlider('option', 'total_width');
+				// data.lock    = this.rangeSlider('option', 'lock');
 				data.real_max_limit = $(this).attr('real_max_limit');
 
 				var option = {
@@ -1433,7 +1475,6 @@ if (json_string)
 					$(this).addClass('support-rtl')
 				}
 
-
 				dynamic_range.find('div.min, div.max').append("<span class='mount'></span>");
 				dynamic_range.find('div.min, div.max').append("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 9' style='enable-background:new 0 0 8 9;' xml:space='preserve'><style type='text/css'>.st1{fill:#E5A428;}</style><path class='st1' d='M3.2,0C6.7-0.1,5.4,3.5,8,4.5C5.4,5.5,6.7,9.1,3.2,9L2.7,9V7.1L0,4.5l2.7-2.6V0L3.2,0z'/></svg>");
 				var my_mount = dynamic_range.find('div.min span.mount, div.max span.mount');
@@ -1468,8 +1509,6 @@ if (json_string)
 					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), ($(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min')) );
 				}
 
-				// add_selection.call(this, 'min');
-
 				margin_range.show();
 				dynamic_range.show();
 				$(this).trigger("range-slider::init::after");
@@ -1480,13 +1519,14 @@ if (json_string)
 
 var add_selection = function(_name)
 {
-	if (!$(this).attr("data-infinity"))
+if ($(this).rangeSlider('option','lock')!=1) 
+{
+	if (!$(this).attr("data-infinity") && $(this).attr("data-lock")!='on')
 	{
 		$(this).unbind('mousemove.dynamic-range');
 		$(document).unbind('mouseup.dynamic-range');
 		$(this).bind('mousemove.dynamic-range', function(){
 			var dynamic_range = $(this).find(".dynamic-range");
-
 		$(dynamic_range).bind('mousedown.dynamic-range', function(){
 			var _self          = $(this).parents(".range-slider");
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
@@ -1499,7 +1539,6 @@ var add_selection = function(_name)
 				var mouse_position = -(mouse_position-screen.width)-1;
 			}
 
-
 			var ziro_on_click  = mouse_position - ziro_point;
 			var range_width    = $(_self).rangeSlider('option','range_width');
 			var margin         = $(_self).rangeSlider('option','margin');
@@ -1510,12 +1549,10 @@ var add_selection = function(_name)
 		$(document).unbind('mouseup.dynamic-range');
 		$(document).bind("mousemove.dynamic-range", function(event){
 
-
 			$(_self).find('.dynamic-range div.min , .dynamic-range div.max').addClass("active"); //design*********
 			$(_self).find('.dynamic-range span.mount').show(); //design*********
 			var mouse_position    = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point        = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
-
 
 			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
 			{
@@ -1532,7 +1569,6 @@ var add_selection = function(_name)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
 				var json_string = $(_self).attr("save_jason");
-				// in qemat baraye multi level ha dorost kar nemikone
 				if (json_string)
 				{
 					my_max_limit = $(_self).attr('real_max_limit');
@@ -1584,7 +1620,6 @@ var add_selection = function(_name)
 			$(dynamic_range).unbind("mousedown.dynamic-range");
 		});
 	});
-
 
 	$(document).unbind('touchend');
 	$(document).unbind('touchstart');
@@ -1686,12 +1721,22 @@ var add_selection = function(_name)
 			$(document).unbind('touchmove');
 		});
 	}
+}
 
 	var data_fix_mount = $(this).attr("data-fix-mount");
 	var data = $(this).data('range-slider');
 	var _self = this;
 	var selection = $("<div class='"+_name+"'></div>");
 	$(this).trigger("range-slider::selection", [selection, _name]);
+
+
+
+if ($(this).rangeSlider('option','lock') == false)
+{
+
+	if ($(this).attr("data-lock")!='on')
+	{
+
 	selection.attr('tabindex', '0');
 	selection.unbind('mousedown.range-slider');
 	selection.bind('mousedown.range-slider', function(){
@@ -1834,9 +1879,6 @@ var add_selection = function(_name)
 	}).bind('keyup.range-slider',function(event){
 		$(_self).trigger("range-slider::keyup");
 		$(_self).trigger("range-slider::changeAfter");
-				
-
-
 	}).bind('touchmove',function(e){
 	      e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
@@ -1880,9 +1922,9 @@ var add_selection = function(_name)
 
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
-	});
-
-
+	});	
+}
+}
 	return selection;
 }
 })(jQuery);
