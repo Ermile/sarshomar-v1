@@ -78,7 +78,6 @@
  .special-button:after{right:-6px}
 .homepage .box .special-button {min-width: 225px;}
 
- #inestimable:after, #inestimable:before {z-index: 9999}
 }
 
 
@@ -171,9 +170,9 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 
 
  #inestimable{padding:25px;text-align:center;height:150px}
- #inestimable:before,#inestimable:after{width:100px; z-index:9999;}
- #inestimable:before{background-image:url(../images/svg/home/inestimable-left-img-mobile.svg);left:-10px}
- #inestimable:after{background-image:url(../images/svg/home/inestimable-right-img-mobile.svg);right:-10px}
+ #inestimable:before,#inestimable:after{display: none}
+ #inestimable .left-mobile-border {height: 100%;position: absolute;left: -10px;top: 0;bottom: 0; display: block}
+ #inestimable .right-mobile-border {height: 100%;position: absolute;right: -10px;top: 0;bottom: 0;display: block}
  #inestimable .launch{display:none}
  #inestimable h3{font-size:1.6em}
  #inestimable h4{font-size:1.4em}

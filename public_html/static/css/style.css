@@ -761,8 +761,11 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable h2{color:#f4f4f4;margin-bottom:0;line-height:2em}
 #inestimable .vision{text-align:center;font-size:4em;line-height:2em;}
 
-#inestimable img{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;transition:.7s}
+#inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;transition:.7s}
 #inestimable:hover img{-webkit-filter:none;filter:none}
+
+#inestimable .left-mobile-border,#inestimable .right-mobile-border {display: none;}
+
 
 .special-button{position:relative;border-radius:15px;font-size:20px}
 .rtl .special-button{font-size:18px}
@@ -1442,6 +1445,13 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
 
 /* btn in pages */
 .btn-container.margin-top{margin-top:3em}
+
+/*.btn-stylish::before, .btn-stylish::after {font-family: 'sarshomar';content: "\e90d" !important;position: absolute;color: #e7a429 !important;top: -5px;font-size: 53px;}
+.btn-stylish::before {left: -4px !important;}
+.btn-stylish::after {right: -4px !important;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);filter: FlipH;-ms-filter: FlipH;}
+.btn-stylish {border-radius: 16px;font-size: 1.3em;line-height: 33px !important;}
+*/
+
 
 
 /************************************************************** panel text */

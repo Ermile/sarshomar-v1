@@ -10,7 +10,7 @@ private function transtext()
 	echo T_("Mobile");                                                                // Line 39
 	echo T_("Email");                                                                 // Line 35
 	echo T_("Write down your opinion here");                                          // Line 28
-	echo T_("Submit");                                                                // Line 463
+	echo T_("Submit");                                                                // Line 464
 	echo T_("How to contact Sarshomar");                                              // Line 36
 	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 49
 
@@ -49,16 +49,17 @@ private function transtext()
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 16
 	echo T_("Universities and Research Institutes");                                  // Line 10
 	echo T_("By means of administering tests, polling and evaluating in Sarshomar, you will have access to accurate information, while enjoying a reduction in the costs of data gathering and processing.");// Line 31
-	echo T_("Advertising Agencies");                                                  // Line 41
+	echo T_("Agencies");                                                              // Line 41
+	echo T_("Advertising Agencies");                                                  // Line 37
 	echo T_("Furthermore, excite your customers by use of Sarshomar's new advertising strategies along with goal-oriented advertising.");// Line 38
 	echo T_("Developers and Webmasters");                                             // Line 50
 	echo T_("Finally, using API, you can have the benefit of Sarshomar's qualities and forget your concerns about polling.");// Line 51
-	echo T_("Easy Access");                                                           // Line 59
-	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 60
-	echo T_("Valid Statistical Population");                                          // Line 67
-	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 68
+	echo T_("Easy Access");                                                           // Line 53
+	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 54
+	echo T_("Valid Statistical Population");                                          // Line 58
+	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 59
 	echo T_("Knowledge Base");                                                        // Line 10
-	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 76
+	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 64
 
 	//--------------------------------------------------content\knowledge\display.html
 
@@ -133,23 +134,23 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 203
-	echo T_("You can select just two options.");                                      // Line 216
-	echo T_("I am not willing to answer");                                            // Line 265
-	echo T_("Save Answer");                                                           // Line 276
+	echo T_("Read More");                                                             // Line 204
+	echo T_("You can select just two options.");                                      // Line 217
+	echo T_("I am not willing to answer");                                            // Line 266
+	echo T_("Save Answer");                                                           // Line 277
 	echo T_("Ask Me");                                                                // Line 29
-	echo T_("result");                                                                // Line 291
-	echo T_("Similar Questions");                                                     // Line 312
-	echo T_("There is no similar post");                                              // Line 321
-	echo T_("Poll timespan");                                                         // Line 339
-	echo T_("to");                                                                    // Line 342
-	echo T_("Not set");                                                               // Line 389
+	echo T_("result");                                                                // Line 292
+	echo T_("Similar Questions");                                                     // Line 313
+	echo T_("There is no similar post");                                              // Line 322
+	echo T_("Poll timespan");                                                         // Line 340
+	echo T_("to");                                                                    // Line 343
+	echo T_("Not set");                                                               // Line 390
 	echo T_("Status");                                                                // Line 11
-	echo T_("Keyword");                                                               // Line 360
-	echo T_("Statistical population");                                                // Line 377
-	echo T_("There is nothing to display!");                                          // Line 434
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 445
-	echo T_("Continue");                                                              // Line 502
+	echo T_("Keyword");                                                               // Line 361
+	echo T_("Statistical population");                                                // Line 378
+	echo T_("There is nothing to display!");                                          // Line 435
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 446
+	echo T_("Continue");                                                              // Line 503
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -439,9 +440,9 @@ private function transtext()
 
 	//-----------------------------------------content\template\static\statistics.html
 
-	//---------------------content\template\static\target\advertising-agencies-fa.html
+	//---------------------------------content\template\static\target\agencies-fa.html
 
-	//------------------------content\template\static\target\advertising-agencies.html
+	//------------------------------------content\template\static\target\agencies.html
 
 	//----------------content\template\static\target\developers-and-webmasters-fa.html
 
@@ -861,8 +862,8 @@ private function transtext()
 	echo T_("Register Question");                                                     // Line 97
 	echo T_("Total Price");                                                           // Line 107
 	echo T_("Balance");                                                               // Line 118
-	echo T_("Charge Account");                                                        // Line 124
-	echo T_("Publish it");                                                            // Line 125
+	echo T_("Charge Account");                                                        // Line 125
+	echo T_("Publish it");                                                            // Line 128
 
 	//---------------------------------------------------------content_u\add\tree.html
 
