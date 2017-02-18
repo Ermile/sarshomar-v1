@@ -1,7 +1,7 @@
 /*
  * In the Name of God
  * Sarshomar Responsive Styles
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -70,7 +70,7 @@
 
  .poll-container .poll-image{width:100%}
 
-
+.sharebox a:before {display: none}
 
   .special-button{font-size:12px!important;border-radius:10px}
  .special-button:before,.special-button:after{top:-3px;font-size:37px}
@@ -78,6 +78,7 @@
  .special-button:after{right:-6px}
 .homepage .box .special-button {min-width: 225px;}
 
+.api-quick-access,.help-sidebar {display: none;}
 }
 
 
@@ -324,7 +325,7 @@ nav.breadcrumb a {max-width: 12em;}
  .em {padding: 1.5em 1em;}
 
  .api-docs {padding: 2em;}
-
+.api-quick-access,.help-sidebar {display: none;}
 /************************************************************** Token Page */
 .auth .in.small {width: 100%;}
 .auth .auth-agreement {font-size: 2em}
@@ -350,12 +351,11 @@ nav.breadcrumb a {max-width: 12em;}
 nav.breadcrumb{display:none}
 
 
+
 }
 
 
-@media screen and (max-width:860px) {
-    .api-quick-access,.help-sidebar {display: none;}
-}
+
 
 /************************************************************** Mobile (Portrait) - Design for a width of 319px and less */
 @media all and (max-width: 319px) {
