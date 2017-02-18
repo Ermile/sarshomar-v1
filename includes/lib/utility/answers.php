@@ -10,7 +10,7 @@ class answers
 	public static $must_insert;
 	public static $must_remove;
 
-
+	public static $IS_ANSWERED = [];
 
 	/**
 	 * check the user answered to this poll or no
@@ -20,45 +20,53 @@ class answers
 	 */
 	public static function is_answered($_user_id, $_poll_id, $_options = [])
 	{
+		if(!isset(self::$IS_ANSWERED[$_user_id][$_poll_id]))
+		{
+			$query =
+			"
+				SELECT
+					*
+				FROM
+					polldetails
+				WHERE
+					polldetails.user_id = $_user_id AND
+					polldetails.post_id = $_poll_id
+				-- to get enable at first
+				ORDER BY polldetails.status ASC
+				-- answers::is_answered()
+			";
+			$result = \lib\db::get($query, null);
+			if($result)
+			{
+				self::$IS_ANSWERED[$_user_id][$_poll_id] = $result;
+			}
+		}
+
 		$default_args =
 		[
-			'real_answer' => false,
-			'all_answer'  => false,
+			'type' => false,
 		];
 		$_options = array_merge($default_args, $_options);
 
-		$status = " polldetails.status = 'enable' AND ";
-
-		if($_options['real_answer'])
+		if($_options['type'] === 'all')
 		{
-			$status = null;
+			if(isset(self::$IS_ANSWERED[$_user_id][$_poll_id]))
+			{
+				return self::$IS_ANSWERED[$_user_id][$_poll_id];
+			}
 		}
 
-		$limit = " LIMIT 1 ";
-		if($_options['all_answer'])
+		if(isset(self::$IS_ANSWERED[$_user_id][$_poll_id]) && is_array(self::$IS_ANSWERED[$_user_id][$_poll_id]))
 		{
-			$limit = null;
-		}
-
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				polldetails
-			WHERE
-				$status
-				polldetails.user_id = $_user_id AND
-				polldetails.post_id = $_poll_id
-			-- to get enable at first
-			ORDER BY polldetails.status ASC
-			$limit
-			-- answers::is_answered()
-		";
-		$result = \lib\db::get($query, null);
-		if($result)
-		{
-			return $result;
+			$temp = [];
+			foreach (self::$IS_ANSWERED[$_user_id][$_poll_id] as $key => $value)
+			{
+				if(isset($value['status']) && $value['status'] == 'enable')
+				{
+					array_push($temp, $value);
+				}
+			}
+			return $temp;
 		}
 		return false;
 	}
@@ -120,6 +128,7 @@ class answers
 					if(self::check_time_count($_args, 'edit'))
 					{
 						array_push($avalible, 'edit');
+						array_push($avalible, 'skip');
 					}
 
 					if(self::check_time_count($_args, 'delete'))
@@ -127,7 +136,6 @@ class answers
 						array_push($avalible, 'delete');
 					}
 				}
-
 				return $avalible;
 
 				break;
@@ -182,7 +190,7 @@ class answers
 			return;
 		}
 
-		$user_delete_answer = self::is_answered($_args['user_id'], $_args['poll_id'], ['real_answer' =>  true]);
+		$user_delete_answer = self::is_answered($_args['user_id'], $_args['poll_id'], ['type' =>  'all']);
 
 		$set_option =
 		[
@@ -550,7 +558,20 @@ class answers
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
 
-		if(!empty(self::$must_insert))
+		$set_option =
+		[
+			'answer_txt' => null,
+			'validation' => $validation,
+			'port'       => $_args['port'],
+			'subport'    => $_args['subport'],
+		];
+
+		if($_args['skipped'] == true)
+		{
+			$skipped = true;
+			$result  = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
+		}
+		elseif(!empty(self::$must_insert))
 		{
 			foreach ($_args['answer'] as $key => $value)
 			{

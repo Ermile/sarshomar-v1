@@ -87,10 +87,10 @@
      <label for="check_other">
       <div class="option-number" data-number='{{value.key}}'></div>
       <div class="option-content">
-       <input type="text" name="descriptive" placeholder="{{value.title}}">
+       <input type="text" name="descriptive" placeholder="{{value.title}}" {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
       </div>
       <span class="checkbox">
-       <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}">
+       <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
        <label for="check_{{value.key}}"></label>
       </span>
      </label>
@@ -103,7 +103,7 @@
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <div class="checkbox">
-        <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}">
+        <input type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="check_{{value.key}}"></label>
        </div>
       </label>
@@ -119,10 +119,10 @@
       <label for="radio_other">
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">
-        <input type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other'>
+        <input type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other' {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
        </div>
        <span class="checkbox">
-        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}">
+        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>
@@ -135,7 +135,7 @@
        <div class="option-number" data-number='{{value.key}}'></div>
        <div class="option-content">{{value.title}}</div>
        <span class="checkbox">
-        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}">
+        <input type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
       </label>

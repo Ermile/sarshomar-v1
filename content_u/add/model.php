@@ -137,11 +137,6 @@ class model extends \content_u\home\model
 		$this->user_id = $this->login('id');
 
 		$this->poll_set_status();
-
-		if(debug::$status)
-		{
-			debug::true(T_("Poll published"));
-		}
 		return;
 	}
 

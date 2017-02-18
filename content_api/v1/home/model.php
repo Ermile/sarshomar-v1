@@ -39,7 +39,16 @@ class model extends \mvc\model
 	 *
 	 * @var        <type>
 	 */
-	public $authorization = null;
+	public $authorization          = null;
+
+
+	/**
+	 * the parent api key
+	 *
+	 * @var        <type>
+	 */
+	public $parent_api_key         = null;
+	public $parent_api_key_user_id = 0;
 
 
 	use tools\get_token;
@@ -130,6 +139,11 @@ class model extends \mvc\model
 					return false;
 				}
 
+				if(!token::check($authorization, 'token'))
+				{
+					return false;
+				}
+
 				$user_id = token::get_user_id($authorization);
 
 				if(!$user_id)
@@ -152,6 +166,16 @@ class model extends \mvc\model
 			default :
 				debug::error(T_("Invalid token"), 'authorization', 'access');
 				return false;
+		}
+
+		if(isset(token::$PARENT['value']))
+		{
+			$this->parent_api_key = token::$PARENT['value'];
+		}
+
+		if(isset(token::$PARENT['user_id']))
+		{
+			$this->parent_api_key_user_id = token::$PARENT['user_id'];
 		}
 
 		$this->authorization = $authorization;
@@ -179,26 +203,23 @@ class model extends \mvc\model
 
 		if(isset($_SERVER['REDIRECT_STATUS']))
 		{
-			$log['page_status'] = $_SERVER['REDIRECT_STATUS'];
+			$log['pagestatus'] = $_SERVER['REDIRECT_STATUS'];
 		}
 
-		$log['request']         = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
+		$log['request']        = json_encode(\lib\utility::request(), JSON_UNESCAPED_UNICODE);
+		$log['debug']          = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
+		$log['response']       = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
+		$log['requestheader']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
+		$log['responseheader'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
+		$log['status']         = \lib\debug::$status;
+		$log['token']          = $this->authorization;
+		$log['user_id']        = $this->user_id;
+		$log['apikeyuserid']   = $this->parent_api_key_user_id;
+		$log['apikey']         = $this->parent_api_key;
+		$log['clientip']       = ClientIP;
+		$log['visit_id']       = null;
 
-		$log['debug']           = json_encode(\lib\debug::compile(), JSON_UNESCAPED_UNICODE);
-
-		$log['response']        = json_encode(\lib\debug::get_result(), JSON_UNESCAPED_UNICODE);
-
-		$log['request_header']  = json_encode(\lib\utility::header(), JSON_UNESCAPED_UNICODE);
-
-		$log['response_header'] = json_encode(apache_response_headers(), JSON_UNESCAPED_UNICODE);
-
-		$log['status']          = \lib\debug::$status;
-
-		$log['token']           = $this->authorization;
-
-		$log['user_id']         = $this->user_id;
-
-		$log                    = \lib\utility\safe::safe($log);
+		$log                   = \lib\utility\safe::safe($log);
 
 		\lib\db\apilogs::insert($log);
 

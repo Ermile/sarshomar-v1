@@ -53,14 +53,14 @@ trait link
 			return;
 		}
 
-		if($_options['opt'])
-		{
-			$opt = intval($_options['opt']);
-			if(!isset($poll['answers'][$opt - 1]))
-			{
-				return debug::error(T_("This poll have not option :opt", ['opt' => $opt]), 'opt', 'arguments');
-			}
-		}
+		// if($_options['opt'])
+		// {
+		// 	$opt = intval($_options['opt']);
+		// 	if(!isset($poll['answers'][$opt - 1]))
+		// 	{
+		// 		return debug::error(T_("This poll have not option :opt", ['opt' => $opt]), 'opt', 'arguments');
+		// 	}
+		// }
 
 		$ready_upload            = [];
 		$ready_upload['user_id'] = $this->user_id;

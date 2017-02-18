@@ -9,6 +9,8 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
+		$this->route("billing/charge");
+
 		$url = \lib\router::get_url();
 
 		if(substr($url, 0, 1) == '$')
