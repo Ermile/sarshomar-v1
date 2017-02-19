@@ -25,13 +25,34 @@ trait add
 		{
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
 		}
+		$count_valid_request = 0;
 
-		$user_answer = utility::request('answer');
-		$skip        = utility::request("skip");
-
-		if($user_answer && $skip)
+		$answer = utility::request('answer');
+		if($answer)
 		{
-			return debug::error(T_("Unable to set answer or skip"), 'skip', 'arguments');
+			$count_valid_request++;
+		}
+
+		$skip   = utility::request("skip");
+		if($skip)
+		{
+			$count_valid_request++;
+		}
+
+		$like   = utility::request("like");
+		if($like)
+		{
+			$count_valid_request++;
+		}
+
+		if($count_valid_request > 1)
+		{
+			return debug::error(T_("You can not set :requests at the same time", ['requests' => implode(',', array_keys(utility::request()))]), 'skip', 'arguments');
+		}
+
+		if($count_valid_request === 0)
+		{
+			return debug::error(T_("You haven't sent any answer"), 'input', 'arguments');
 		}
 
 		$available = $this->poll_answer_get($_options);
@@ -50,7 +71,7 @@ trait add
 				return debug::error(T_("Can not skip this poll"), 'answer', 'permission');
 			}
 
-			if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $user_answer)
+			if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $answer)
 			{
 				return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
 			}
@@ -65,7 +86,7 @@ trait add
 			return $this->skip_poll($_options);
 		}
 
-		if(!is_array($user_answer))
+		if($answer && !is_array($answer))
 		{
 			return debug::error(T_("Answer parameter must be array"), 'answer', 'arguments');
 		}
@@ -150,9 +171,20 @@ trait add
 			$ordering = true;
 		}
 
-		if(!$multi && count($user_answer) > 1)
+		if(!$multi && count($answer) > 1)
 		{
-			return debug::error(T_("This is not a multi select poll and you selected :count answers",['count' => count($user_answer)]),'answer', 'arguments');
+			return debug::error(T_("This is not a multi select poll and you selected :count answers",['count' => count($answer)]),'answer', 'arguments');
+		}
+
+		switch ($poll_type)
+		{
+			case 'like':
+				return $this->like_poll($_options);
+				break;
+
+			default:
+			 	// no thing!
+			 	break;
 		}
 
 		$true_answer = [];
@@ -178,9 +210,9 @@ trait add
 				{
 					case 'select':
 					case 'descriptive':
-					case 'like':
 						// no thing!
 						break;
+					case 'like':
 					case 'upload':
 					case 'star':
 					case 'notification':
@@ -244,23 +276,7 @@ trait add
 			'answer'  => $true_answer,
 		];
 
-		if($_options['method'] == 'put')
-		{
-			\lib\utility\answers::update($save);
-		}
-		elseif($_options['method'] == 'post')
-		{
-			\lib\utility\answers::save($save);
-		}
-		else
-		{
-			return debug::error(T_("Invalid method"), 'method', 'system');
-		}
-
-		if(debug::$status)
-		{
-			debug::title(T_("Answer saved"));
-		}
+		return $this->save_result($save, $_options);
 	}
 
 
@@ -275,18 +291,62 @@ trait add
 			'poll_id' => shortURL::decode(utility::request("id")),
 			'skipped'  => true,
 		];
+		return $this->save_result($save, $_options);
+	}
 
+
+	/**
+	 * like a poll
+	 *
+	 * @param      array   $_options  The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function like_poll($_options = [])
+	{
+		if(utility::request('like'))
+		{
+			$save =
+			[
+				'user_id' => $this->user_id,
+				'poll_id' => shortURL::decode(utility::request("id")),
+				'answer'  => [1 => 'like'],
+			];
+			return $this->save_result($save, $_options);
+		}
+		else
+		{
+			return $this->skip_poll($_options);
+		}
+	}
+
+
+	/**
+	 * Saves a result.
+	 *
+	 * @param      <type>  $_answer   The answer
+	 * @param      <type>  $_options  The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function save_result($_answer, $_options)
+	{
 		if($_options['method'] == 'put')
 		{
-			\lib\utility\answers::update($save);
+			\lib\utility\answers::update($_answer);
 		}
 		elseif($_options['method'] == 'post')
 		{
-			\lib\utility\answers::save($save);
+			\lib\utility\answers::save($_answer);
 		}
 		else
 		{
 			return debug::error(T_("Invalid method"), 'method', 'system');
+		}
+
+		if(debug::$status)
+		{
+			debug::title(T_("Answer saved"));
 		}
 	}
 }

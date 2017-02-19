@@ -1,0 +1,1 @@
+ALTER TABLE `pollopts` CHANGE `type` `type` ENUM('select','emoji','descriptive','upload','range','notification','like','stare') NULL DEFAULT NULL;

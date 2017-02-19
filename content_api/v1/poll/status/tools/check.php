@@ -49,7 +49,13 @@ trait check
 			return debug::error(T_("Can not set more than 1 descriptive answers"), 'answers', 'arguments');
 		}
 
-		if((in_array('upload', $type) || in_array('range', $type) || in_array('notification', $type)) && count($answers) > 1)
+		if(
+			(
+				in_array('upload', $type) ||
+				in_array('range', $type) ||
+				in_array('notification', $type) ||
+				in_array('like', $type)
+			) && count($answers) > 1)
 		{
 			return debug::error(T_("Can not set more than 1 answers in upload,range and notification mod"), 'answers', 'arguments');
 		}

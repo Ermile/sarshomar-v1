@@ -1,6 +1,10 @@
 {
   "id": "[poll id]",
   "skip": true,
+  "like": true,
+  "upload": "[file code]",
+  "descriptive": "string",
+  "notify": true,
   "answer": {
     "1": [10,null],
     "3": "code file",

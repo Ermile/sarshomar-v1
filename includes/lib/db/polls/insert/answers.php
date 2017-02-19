@@ -35,6 +35,7 @@ trait answers
 						case 'select':
 						case 'descriptive':
 						case 'emoji':
+						case 'like':
 						// case 'upload':
 						// case 'range':
 						// case 'notification':
@@ -79,7 +80,7 @@ trait answers
 
 				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
-				if($type == 'select' || $type == 'emoji' || $type == 'descriptive')
+				if($type == 'select' || $type == 'emoji' || $type == 'descriptive' || $type == 'like')
 				{
 					$object_type = $type;
 
@@ -177,7 +178,7 @@ trait answers
 					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 				}
 
-				if(count($combine[$key]) == 1 && isset($combine[$key]['type']) && $combine[$key]['type'] != 'descriptive')
+				if(count($combine[$key]) == 1 && isset($combine[$key]['type']) && $combine[$key]['type'] == 'select')
 				{
 					unset($combine[$key]);
 				}
@@ -192,7 +193,6 @@ trait answers
 				}
 				$combine = $temp_combine;
 			}
-
 
 			if(self::$poll_id)
 			{
@@ -219,7 +219,7 @@ trait answers
 				break;
 
 			case "emoji" :
-				$support_options["type"]            = (array) ['star','like'];
+				// $support_options["type"]            = (array) ['star','like'];
 				// $support_options["is_true"]         = true;
 				// $support_options["group"]           = (string) 'string';
 				// $support_options["value"]           = (int) 1;
