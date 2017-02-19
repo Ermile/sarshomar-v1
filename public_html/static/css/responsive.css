@@ -17,11 +17,8 @@
 @media all and (min-width:768px) {
     .wrapper{border-style:solid;border-width:0 8px;-o-border-image:url(../images/border.png) 8 stretch;border-image:url(../images/border.png) 8 stretch;}
     header{border-style:solid;border-width:0 8px 0 0;-o-border-image:url(../images/border.png) 6 8 6 0 stretch;border-image:url(../images/border.png) 6 8 6 0 stretch}
+    .rtl header{border-width:0 0 0 8px;-moz-border-image:url(../images/border.png) 6 0 6 8 stretch;-webkit-border-image:url(../images/border.png) 6 0 6 8 stretch;-o-border-image:url(../images/border.png) 6 0 6 8 stretch;border-image:url(../images/border.png) 6 0 6 8 stretch}
 
-}
-
-@media all and (min-width:959px) {
-    footer{border-style:solid;border-width:8px 0 0;-o-border-image:url(../images/border.png) 8 8 0 stretch;border-image:url(../images/border.png) 8 8 0 stretch;}
 }
 
 /************************************************************** Sarshomar */
@@ -64,7 +61,7 @@
  .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
 
  footer #footer-nav .eco{height:65%}
- footer {box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
+
  /*.stepPublish .action {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}*/
 /*.stepPublish .action a {margin-bottom: 1em;}*/
 
@@ -73,9 +70,9 @@
 .sharebox a:before {display: none}
 
   .special-button{font-size:12px!important;border-radius:10px}
- .special-button:before,.special-button:after{top:-4px;font-size:38px}
- .special-button:before{left:-6px}
- .special-button:after{right:-6px}
+ .special-button:before,.special-button:after,.rtl .special-button::before, .rtl .special-button::after{top:-4px;font-size:38px}
+ .special-button:before,.rtl .special-button::before{left:-6px}
+ .special-button:after,.rtl .special-button::after{right:-6px}
 .homepage .box .special-button {min-width: 225px;}
 
 .api-quick-access,.help-sidebar {display: none;}
