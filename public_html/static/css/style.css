@@ -728,7 +728,7 @@ footer .is-open i {transform:rotate(180deg);}
 .customers-container .customer-content p{margin-bottom:0;color:#adadad}
 .customers-container .customer.reverse .customer-content{text-align:right}
 .customers-container .customer-img{width:100%;max-width:250px;height:auto;display:block}
-.customers-container .customer-img img{display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.3s;transition:.3s}
+.customers-container .customer-img img{display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .customers-container.customers-target{padding-top:0;background-color:transparent}
 .customers-container .customer:hover .customer-img img{-webkit-filter:none;filter:none}
 
@@ -737,7 +737,7 @@ footer .is-open i {transform:rotate(180deg);}
 .triplet{display:-webkit-box;display:-ms-flexbox;display:flex;padding:50px}
 .triplet .triplet-item{-webkit-box-flex:1;-ms-flex:1;flex:1;text-align:center}
 .triplet .triplet-item a{display:block;}
-.triplet .triplet-item img{width:60%;max-width:250px;margin:0 auto 2em;display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.3s;transition:.3s}
+.triplet .triplet-item img{width:60%;max-width:250px;margin:0 auto 2em;display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .triplet .triplet-item h4{font-size:1.8em}
 .triplet .triplet-item h4 a{color:#0c7c78}
 .triplet .triplet-item h4 a:hover,.triplet .triplet-item h4 a:focus{color:#00667a}
@@ -760,7 +760,7 @@ footer .is-open i {transform:rotate(180deg);}
 #inestimable h2{color:#f4f4f4;margin-bottom:0;line-height:2em}
 #inestimable .vision{text-align:center;font-size:4em;line-height:2em;}
 
-#inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;transition:.7s}
+#inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 #inestimable:hover img{-webkit-filter:none;filter:none}
 
 #inestimable .left-mobile-border,#inestimable .right-mobile-border {display: none;}
