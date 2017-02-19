@@ -128,7 +128,6 @@ class answers
 					if(self::check_time_count($_args, 'edit'))
 					{
 						array_push($avalible, 'edit');
-						array_push($avalible, 'skip');
 					}
 
 					if(self::check_time_count($_args, 'delete'))

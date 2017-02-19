@@ -75,7 +75,7 @@ trait add
 			'check_is_my_poll'   => false,
 			'get_filter'         => false,
 			'get_opts'           => true,
-			'get_options'	     => false,
+			'get_options'	     => true,
 			'run_options'	     => false,
 			'get_public_result'  => false,
 			'get_advance_result' => false,
@@ -178,11 +178,11 @@ trait add
 				{
 					case 'select':
 					case 'descriptive':
+					case 'like':
 						// no thing!
 						break;
 					case 'upload':
 					case 'star':
-					case 'like':
 					case 'notification':
 					default:
 						if(intval($key) !== 1)

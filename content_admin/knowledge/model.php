@@ -81,7 +81,9 @@ class model extends \mvc\model
 		// 	$filter_id         = \lib\db\filters::get_id($filter);
 		// 	$meta['filter_id'] = $filter_id;
 		// }
-		$meta['in'] = 'me';
+		$meta['in'] = 'all';
+		$meta['post_status'] = ['like', "'%%'"];
+		$meta['order'] = 'desc';
 
 		$search = $_args->get("search")[0];
 		$result = \lib\db\polls::search($search, $meta);

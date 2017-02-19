@@ -370,7 +370,6 @@ trait ready
 			foreach ($answers as $key => $value)
 			{
 				$attachment = null;
-				$show_key = $key + 1;
 
 				if($this->access('u','complete_profile', 'admin'))
 				{
@@ -406,11 +405,11 @@ trait ready
 
 				if(isset($value['true']) && $value['true'] == '1')
 				{
-					$show_answers[$show_key]['true'] = true;
+					$show_answers[$key]['true'] = true;
 				}
 				else
 				{
-					$show_answers[$show_key]['true'] = false;
+					$show_answers[$key]['true'] = false;
 				}
 
 				if(isset($value['attachment_id']) && $value['attachment_id'])
@@ -444,9 +443,9 @@ trait ready
 				unset($answers[$key]['attachment_id']);
 				unset($answers[$key]['id']);
 
-				$show_answers[$show_key] = array_filter($answers[$key]);
+				$show_answers[$key] = array_filter($answers[$key]);
 			}
-			sort($show_answers);
+			// sort($show_naswers);
 			$_poll_data['answers'] = $show_answers;
 		}
 
