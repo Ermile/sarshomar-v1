@@ -34,7 +34,7 @@ trait answers
 					{
 						case 'select':
 						case 'descriptive':
-						// case 'emoji':
+						case 'emoji':
 						// case 'upload':
 						// case 'range':
 						// case 'notification':
