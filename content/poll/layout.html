@@ -310,18 +310,27 @@
 
 {%block poll_similar%}
 {% spaceless %}
- <div class="title">{%trans "Similar Questions"%}</div>
  {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag"})%}
  {% if similar %}
+ <div class="title">{%trans "Similar Questions"%}</div>
   <ul>
    {%for key, value in similar%}
    <li><a href="{{url.prefix}}/{{value.url}}">{{value.title}}</a></li>
    {%endfor%}
   </ul>
- {%else%}
-  <div class="content">{%trans "There is no similar post"%}</div>
- {%endif%}
-
+  {% else %}
+    {% set last_post =  post_search({"post_type":"poll","post_status" :"publish" , "post_privacy": "public", "order":"desc"}) %}
+    {% if last_post %}
+    <div class="title">{%trans "Last Questions"%}</div>
+    <ul>
+     {%for key, value in last_post%}
+     <li><a href="{{url.prefix}}/{{value.post_url}}">{{value.post_title}}</a></li>
+     {%endfor%}
+    </ul>
+    {%else%}
+    <div class="content">{%trans "There is no similar post"%}</div>
+    {% endif %}
+  {% endif %}
 {% endspaceless %}
 {%endblock%}
 
