@@ -1590,11 +1590,14 @@ function setStatusText()
 			$('.stepPublish .changeStatus').attr('data-request', 'draft');
 			break;
 
+		default:
 		case 'draft':
 			$('.stepPublish .changeStatus').text(txtPublish);
 			$('.stepPublish .changeStatus').attr('data-request', 'publish');
 			break;
 	}
+	// show btn after change text
+	$('.stepPublish .changeStatus').fadeIn().removeClass('hide');
 }
 
 
