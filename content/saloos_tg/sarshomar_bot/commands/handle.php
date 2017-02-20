@@ -11,6 +11,10 @@ class handle
 
 	public static function exec($_cmd, $_run = false)
 	{
+		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
+		{
+			exit();
+		}
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
 		// ( ​​ ) free space :))
@@ -95,7 +99,7 @@ class handle
 		if(!bot::is_aerial() || $_run)
 		{
 			$response = step::check($_cmd['text'], $_cmd['command']);
-			if($response)
+			if(is_array($response) || $response)
 			{
 				return $response;
 			}

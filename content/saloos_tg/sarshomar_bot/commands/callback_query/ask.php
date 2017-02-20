@@ -76,7 +76,6 @@ class ask
 			}
 		}
 
-
 		if($options['type'] == 'private' && $get_answer && in_array('add', $get_answer['available']))
 		{
 			$guest_option['skip'] = true;
@@ -88,12 +87,14 @@ class ask
 
 
 		if($options['type'] != 'private'){
+			\lib\storage::set_disable_edit(true);
 			$guest_option['share'] = false;
 			$guest_option['update'] = false;
 			$guest_option['report'] = true;
 		}
 
 
+		handle::send_log($guest_option);
 		$maker->inline_keyboard->add_guest_option($guest_option);
 
 		if($my_poll && $options['type'] == 'private')

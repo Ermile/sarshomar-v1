@@ -7,6 +7,7 @@ use \lib\telegram\tg as bot;
 use \content\saloos_tg\sarshomar_bot\commands\utility;
 use content\saloos_tg\sarshomar_bot\commands\make_view;
 use \lib\telegram\step;
+use \content\saloos_tg\sarshomar_bot\commands\menu;
 
 class create
 {
@@ -24,96 +25,38 @@ class create
 		return [];
 	}
 
-	public function home($_query, $_data_url){
-		$txt_text = T_("To upload your questions, enter the title of your question on the first line and its other options on the next lines. Notice that a valid question must contain at least one title and two answers.");
+	public static function home($_query = null, $_data_url = null){
+		$txt_text = T_("برای ثبت نظرسنجی عنوان یا فایل نظرسنجی را وارد کنید");
+		$txt_text .= "\n";
+		$txt_text .= T_("شما می‌توانید برای لغو نظرسنجی از دستور /cancel استفاده کنید.");
 		$result   =
 		[
 			'text'         => $txt_text ."\n#create",
-			"response_callback" => utility::response_expire('create'),
 			'reply_markup' => [
-				"inline_keyboard" => [
-					[
-						[
-							"text" => T_("Cancel"),
-							"callback_data" => 'create/cancel'
-						],
-						[
-							"text" => T_("Options"),
-							"callback_data" => 'create/options'
-						]
-					]
-				]
+				"remove_keyboard" => true
 			]
 		];
 		return $result;
 	}
 
-	public static function options($_query, $_data_url)
-	{
-		\lib\storage::set_disable_edit(true);
-		$text = T_("Select your answers type");
-		$text .= "\n";
-		$text .= T_("Selective is default.");
-		$result   =
-		[
-			'text'         => $text,
-			"response_callback" => utility::response_expire('create'),
-			'reply_markup' => [
-				"inline_keyboard" => [
-					[
-						[
-							"text" => T_("Selective"),
-							"callback_data" => 'create/type/selective'
-						],
-						[
-							"text" => T_("Emoji"),
-							"callback_data" => 'create/type/emoji'
-						]
-					],
-					[
-						[
-							"text" => T_("Like"),
-							"callback_data" => 'create/type/like'
-						],
-						[
-							"text" => T_("Descriptive"),
-							"callback_data" => 'create/type/descriptive'
-						]
-					],
-					[
-						[
-							"text" => T_("Cancel"),
-							"callback_data" => 'create/cancel'
-						]
-					]
-				]
-			]
-		];
-		if(session::get('poll'))
-		{
-			handle::send_log(session::get('poll'));
-			$inline_keyboard = $result['reply_markup']['inline_keyboard'];
-			$result['reply_markup']['inline_keyboard'][count($inline_keyboard) -1][] = [
-				"text" => T_("Back"),
-				"callback_data" => 'create/back'
-			];
-		}
-		callback_query::edit_message($result);
-	}
-
-	public static function cancel($_query, $_data_url)
+	public static function cancel($_query = null, $_data_url = null)
 	{
 		session::remove_back('expire', 'inline_cache', 'create');
 		session::remove('expire', 'inline_cache', 'create');
 		step::stop();
-		callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
-		return [];
+		if($_query)
+		{
+			callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
+			return [];
+		}
+		return null;
 	}
 
 	public static function close()
 	{
 		step::stop();
 		session::remove('poll');
+		bot::sendResponse(['text' => T_("بازگشت به منوی اصلی"), 'reply_markup' => menu::main(true)]);
 	}
 
 	public static function back()
@@ -125,6 +68,24 @@ class create
 	public static function type($_query, $_data_url)
 	{
 		session::set('poll_options' , 'type', $_data_url[2]);
+		session::remove_back('expire', 'inline_cache', 'create');
+		if($_data_url[2] == 'like' || $_data_url[2] == 'descriptive')
+		{
+			$poll_request = ['id' => session::get('poll'), 'answers' => [["type" => $_data_url[2]]]];
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+			$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+		}
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+	}
+
+	public static function remove_type($_query, $_data_url)
+	{
+		session::remove('poll_options', 'type');
+		$poll_request = ['id' => session::get('poll'), 'answers' => []];
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+		\lib\main::$controller->model()->poll_add(['method' => 'put']);
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+
 	}
 }
 ?>

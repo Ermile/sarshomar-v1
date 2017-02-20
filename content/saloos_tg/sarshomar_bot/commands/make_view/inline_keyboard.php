@@ -49,8 +49,16 @@ class inline_keyboard
 		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
 			$callback_data = 'poll/answer/' . $this->class->poll_id . '/' . ($answer_key +1);
 			$this_row = $row_answer[0] + $last_count;
+			if($answer_value['type'] == 'like')
+			{
+				$inline_emoji = "❤️";
+			}
+			else
+			{
+				$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
+			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
-				'text' => $this->class::$emoji_number[$answer_key + 1],
+				'text' => $inline_emoji,
 				'callback_data' => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
@@ -59,13 +67,7 @@ class inline_keyboard
 
 	public function add_guest_option(...$_args)
 	{
-		\lib\utility::$REQUEST = new \lib\utility\request([
-			'method' => 'array',
-			'request' => [
-				'id' => $this->class->query_result['id']
-			]]);
-		$request_status = \lib\main::$controller->model()->poll_status();
-		if($request_status['current'] !== 'publish')
+		if($this->class->query_result['status'] !== 'publish')
 		{
 			return ;
 		}
@@ -113,6 +115,7 @@ class inline_keyboard
 		}
 		elseif($options['report'])
 		{
+			handle::send_log(1000);
 			$return[] = [
 				"text" => T_("Report"),
 				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id

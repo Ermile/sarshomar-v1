@@ -171,6 +171,8 @@ class poll
 		step::stop();
 		\lib\storage::set_disable_edit(true);
 
+		handle::send_log($_data_url);
+
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
 			'request' => [
@@ -181,7 +183,6 @@ class poll
 
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
-
 		\lib\debug::$status = 1;
 
 		callback_query::edit_message(ask::make(null, null, [

@@ -44,6 +44,11 @@ class message
 		 * set telegram result: count of poll, answers and answers text
 		 */
 		$sum = $this->sum_stats();
+		$first_answer = isset($this->class->query_result['answers'][0]) ? $this->class->query_result['answers'][0] : null;
+		if($first_answer && $first_answer['type'] == 'like')
+		{
+			return;
+		}
 		$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
 	}
 
@@ -53,7 +58,12 @@ class message
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
 		foreach ($this->class->query_result['answers'] as $key => $value) {
-			if($_answer_id == $key+1)
+			if($value['type'] == 'like')
+			{
+				$emoji = "❤️";
+				$value['title'] = '';
+			}
+			elseif($_answer_id == $key+1)
 			{
 				$emoji = '✅';
 			}
@@ -64,7 +74,14 @@ class message
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
+				if($value['type'] == 'like')
+				{
+					$poll_list .= '<code>' . utility::nubmer_language($sum[$key+1]) . '</code>';
+				}
+				else
+				{
+					$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
+				}
 			}
 			$poll_list .= "\n";
 

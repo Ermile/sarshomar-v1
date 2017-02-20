@@ -7,7 +7,8 @@ use \lib\db\tg_session as session;
 use \content\saloos_tg\sarshomar_bot\commands\handle;
 use \content\saloos_tg\sarshomar_bot\commands\utility;
 use \content\saloos_tg\sarshomar_bot\commands\markdown_filter;
-use content\saloos_tg\sarshomar_bot\commands\make_view;
+use \content\saloos_tg\sarshomar_bot\commands\make_view;
+use \content\saloos_tg\sarshomar_bot\commands\menu;
 
 class step_create
 {
@@ -34,6 +35,7 @@ class step_create
 	{
 		step::plus();
 		session::remove('poll');
+		session::remove('poll_options');
 		return callback_query\create::home();
 	}
 
@@ -46,6 +48,15 @@ class step_create
 	 */
 	public static function step2($_question)
 	{
+		if(substr($_question, 0, 1) == '/')
+		{
+			callback_query\create::cancel();
+			bot::sendResponse([
+				'text' => T_("بازگشت به منوی اصلی"),
+				'reply_markup' => menu::main(true)
+				]);
+			return handle::exec(bot::$cmd);
+		}
 		preg_match("/^type_(.*)$/", $_question, $file_content);
 		$get_poll = session::get('poll');
 
@@ -56,14 +67,29 @@ class step_create
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
 			$get_poll = \lib\main::$controller->model()->poll_get();
 			$poll_request['id'] = $get_poll['id'];
+			handle::send_log($get_poll['answers']);
+			if(count($get_poll['answers']) == 1 &&
+				($get_poll['answers'][0]['type'] == 'like' || $get_poll['answers'][0]['type'] == 'descriptive')
+				)
+			{
+				session::set('poll_options', 'type', $get_poll['answers'][0]['type']);
+			}
 		}
 
 		if(count($file_content) > 0 && $get_poll && count($get_poll['answers']) > 0)
 		{
 			return self::make_draft($get_poll, function($_maker){
-				$_maker->message->add("wrong_data", T_("Answer type not valid"), 'before', 'hashtag');
+				$_maker->message->add("insert", T_("Answer type not valid"));
 			});
-
+		}
+		elseif($get_poll && count($get_poll['answers']) > 0)
+		{
+			if(self::is_type('like') || self::is_type('descriptive'))
+			{
+				return self::make_draft($get_poll, function($_maker){
+					$_maker->message->add("insert", T_("این سوال دارای پاسخ نمی‌باشد"));
+				});
+			}
 		}
 
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
@@ -197,20 +223,53 @@ class step_create
 		$poll_id = $maker->query_result['id'];
 		$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 		$maker->message->add_title();
-		$maker->message->add_poll_list();
-		$maker->message->add('insert', T_("Insert next asnwer or choose an action"));
+		$maker->message->add_poll_list(false, false);
+		$maker->message->add('insert', T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"));
 		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
 		if(is_object($_maker))
 		{
 			$_maker($maker);
 		}
 		$txt_text = $maker->message->make();
-		$maker->inline_keyboard->add_change_status();
-		$maker->inline_keyboard->add([['text' => T_('Save as draft'), 'callback_data' => 'create/close']]);
+
+		if(!session::get('poll_options' , 'type'))
+		{
+			$maker->inline_keyboard->add([
+					[
+						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
+						"callback_data" => 'create/type/selective'],
+					[
+						"text" => T_("Emoji") . (self::is_type('emoji') ? " ✅" : ""),
+						"callback_data" => 'create/type/emoji']
+				]);
+			$maker->inline_keyboard->add([
+					[
+						"text" => T_("Like") . (self::is_type('like') ? " ✅" : ""),
+						"callback_data" => 'create/type/like'],
+					[
+						"text" => T_("Descriptive") . (self::is_type('descriptive') ? " ✅" : ""),
+						"callback_data" => 'create/type/descriptive']
+				]);
+		}
+		if(isset($maker->query_result['answers'][0]))
+		{
+			$maker->inline_keyboard->add([
+					['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']],
+					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+				]);
+			$maker->inline_keyboard->add([
+					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+				]);
+		}
+		else
+		{
+			$maker->inline_keyboard->add([
+					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+				]);
+		}
+
+
 		$inline_keyboard = $maker->inline_keyboard->make();
-		unset($inline_keyboard[0]);
-		$inline_keyboard = array_values($inline_keyboard);
-		array_unshift($inline_keyboard, [["text" => T_("Options"),"callback_data" => 'create/options']]);
 
 		$disable_web_page_preview = true;
 		if(isset($maker->query_result['file']))
@@ -228,6 +287,16 @@ class step_create
 		]
 		];
 		return $result;
+	}
+
+	public static function is_type($_type)
+	{
+		if(session::get('poll_options', 'type') === $_type)
+		{
+			return true;
+		}
+		return false;
+
 	}
 }
 ?>
