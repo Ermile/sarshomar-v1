@@ -2674,6 +2674,11 @@ route('*', function ()
 
 		// $(this).attr('checked', $(this).is(':checked'));
 	});
+	// redraw chart after change group of needed
+	$('input[name="chart_result"]').on('change', function()
+	{
+		redrawChart()
+	});
 });
 
 

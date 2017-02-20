@@ -709,9 +709,11 @@ function redrawChart(_data)
 	var xhr    = $.getJSON(myAddr, _data, function(_response)
 	{
 		var newChartData = clearJson(_response);
-		if(newChartData && newChartData.valid)
+		// if(newChartData && newChartData.valid)
+		if(newChartData)
 		{
-			newChartData = newChartData.valid;
+			// console.log(newChartData);
+			// newChartData = newChartData.valid;
 			// newChartData[0].value = 20;
 			// newChartData[1].value = 30;
 			console.log(newChartData);
