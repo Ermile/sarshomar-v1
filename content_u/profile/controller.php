@@ -61,7 +61,7 @@ class controller extends  \content_u\home\controller
 			}
 
 		}
-		die(':)');
+		// die(':)');
 		parent::check_login();
 
 		$this->get("profile", "profile")->ALL();

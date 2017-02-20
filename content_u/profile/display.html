@@ -1,5 +1,37 @@
 {%extends display.main%}
 
+{%block content%}
+<aside>
+
+</aside>
+<div class="main pad box">
+  <div class="row auto">
+    <div class="span2"><img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl"></div>
+    <div class="span10">
+      <h2>Javad Evazzadeh</h2>
+      <p>J.Evazzadeh@live.com</p>
+      <p>Member since 10/20/2015</p>
+    </div>
+  </div>
+
+  <div class="row auto">
+    <div class="span12">
+      <h2>Connect your social networks</h2>
+      <p>Connect your Twitter and Github accounts with Sarshomar. We only use this information to verify your account. We'll never spam you, post on your behalf or do anything sketchy like that.</p>
+      <p>
+        <button>Connect Telegram</button>
+        <button>Connect Instagram</button>
+        <button>Connect Google</button>
+        <button>Connect Twitter</button>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+{%endblock%}
+
+
 {%block content2%}
    <aside>
     <ul class="tabs">
@@ -372,7 +404,7 @@
    </ul>
 {%endblock%}
 
-{%block foot_js%}
+{%block foot_js2%}
 <script type="text/javascript">
    btns = $('<span class="addon btn save"><button>{%trans "Save"%}</button></span><span class="addon btn cancel"><button>{%trans "Cancel"%}</button></span>');
    $(document).on('click', '.remove-tags', function(){
