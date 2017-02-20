@@ -1642,6 +1642,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .stepPublish .span4{text-align:center;}
 .stepPublish .try{margin:10px 15px;display:inline-block;}
 
+.stepPublish .action{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around;-ms-flex-wrap:wrap;flex-wrap:wrap}
 
 
 /************************************************************** element slider */

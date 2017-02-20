@@ -165,9 +165,9 @@
 {% spaceless %}
  <div class="poll-actions">
   {%if poll.answers%}
-   <button class="try special-button" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
+   <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
   {%else%}
-   <a class="try special-button" href="ask" data-direct>{%trans "Ask Me"%}</a>
+   <a class="special-btn" href="ask" data-direct>{%trans "Ask Me"%}</a>
   {%endif%}
  </div>
 {% endspaceless %}
