@@ -1956,7 +1956,7 @@ code {font-size: 1.2em;}
 .billing .billing-info>div {padding: 1em;z-index: 2;}
 .billing .billing-info>div.icon{padding:0 2em;}
 .billing .billing-info .title {color: #607D8B;font-weight: 700;}
-.billing .billing-info .amount {margin: 0;color: #7d7373;}
+.billing .billing-info .amount {margin: 0;color: #7d7373;font-size: 1.4em;}
 .billing .charge-amount {font-size: 1.2em;margin-bottom: 2em;}
 .billing .amount-number {border-radius: 2px 0 0 2px;background-color: #efefef;border: none;height: 35px;line-height: 35px;padding: 0 10px;width: 72px;}
 .rtl .billing .amount-number {border-radius: 0 2px 2px 0}
