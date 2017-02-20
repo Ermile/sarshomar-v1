@@ -479,10 +479,10 @@ header .logo{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-al
 header .logo img{height:40px;align-self:center;transition:.3s}
 header .logo h1{margin:0;font-size:1.9em;line-height:2.2;margin-left:10px}
 .rtl header .logo h1{font-size:2.4em;line-height:2;margin-left:0;margin-right:12px}
-header .logo h1 a:focus,header .logo h1 a:hover{color:#fff}
+/*header .logo h1 a:focus,header .logo h1 a:hover{color:#fff}*/
 header .logo h1 a{color:#f4f4f4;display:block}
-header .logo>a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1)}
-header .logo>a:hover img{opacity:.8}
+/*header .logo>a:focus img{-ms-transform:scale(1.1,1.1);-webkit-transform:scale(1.1,1.1);transform:scale(1.1,1.1)}*/
+/*header .logo>a:hover img{opacity:.8}*/
 
 .grayscale{-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .grayscale:hover{-webkit-filter:none;filter:none}
