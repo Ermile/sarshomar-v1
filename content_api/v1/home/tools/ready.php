@@ -461,7 +461,19 @@ trait ready
 		if(($_options['get_public_result'] || $_options['get_advance_result']) && $poll_id)
 		{
 			$poll_result = [];
+			// show advanced chart
+			$show_chart =
+			[
+				'result',
+				'gender',
+				'marrital',
+				'degree',
+				'range',
+				'city',
+			];
+
 			$poll_result_raw = utility\stat_polls::get_result($poll_id);
+
 			if($_options['get_public_result'])
 			{
 				if(is_array($_poll_data['answers']))
@@ -517,6 +529,10 @@ trait ready
 				{
 					foreach ($poll_result_raw['valid'] as $key => $value)
 					{
+						if(!in_array($key, $show_chart))
+						{
+							continue;
+						}
 						if($key !== 'result')
 						{
 							if(is_array($value))
@@ -525,7 +541,8 @@ trait ready
 								{
 									if(substr($k, 0,4) == 'opt_')
 									{
-										$poll_result['advance_stats']['valid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
+										// $poll_result['advance_stats']['valid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
+										$poll_result['advance_stats']['valid'][$key][substr($k, 4)] = $v;
 									}
 								}
 							}
@@ -535,13 +552,17 @@ trait ready
 
 				if(isset($poll_result['advance_stats']['valid']))
 				{
-					sort($poll_result['advance_stats']['valid']);
+					// sort($poll_result['advance_stats']['valid']);
 				}
 
 				if(isset($poll_result_raw['invalid']) && is_array($poll_result_raw['invalid']))
 				{
 					foreach ($poll_result_raw['invalid'] as $key => $value)
 					{
+						if(!in_array($key, $show_chart))
+						{
+							continue;
+						}
 						if($key !== 'result')
 						{
 							if(is_array($value))
@@ -550,7 +571,8 @@ trait ready
 								{
 									if(substr($k, 0,4) == 'opt_')
 									{
-										$poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
+										// $poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
+										$poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = $v;
 									}
 								}
 							}
@@ -560,9 +582,10 @@ trait ready
 
 				if(isset($poll_result['advance_stats']['invalid']))
 				{
-					sort($poll_result['advance_stats']['invalid']);
+					// sort($poll_result['advance_stats']['invalid']);
 				}
 			}
+
 			$_poll_data['stats'] = $poll_result;
 		}
 

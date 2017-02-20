@@ -186,16 +186,20 @@ class model extends \mvc\model
 			$this->user_id = $this->login('id');
 			utility::set_request_array(['id' => $poll_id]);
 			$result = $this->poll_stats();
+
 			switch (utility::get('chart'))
 			{
 				// case 'gender':
 
 				case 'result':
-				default:
 					if(isset($result['total']))
 					{
 						$result = $result['total'];
 					}
+					break;
+
+				default:
+					$result = $this->am_chart($result, utility::get("chart"));
 					break;
 			}
 			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
@@ -401,6 +405,55 @@ class model extends \mvc\model
 		}
 
 		$this->poll_answer_add($options);
+	}
+
+
+	/**
+	 * change stats result in am
+	 *
+	 * @param      <type>  $_poll_data  The poll data
+	 */
+	public function am_chart($_poll_data, $_type)
+	{
+		// var_dump(...func_get_args());
+		// exit();
+		$advance_stats_title = [];
+
+		if(isset($_poll_data['advance_stats']['valid'][$_type]) && is_array($_poll_data['advance_stats']['valid'][$_type]))
+		{
+			$advance_stats_result = [];
+			foreach ($_poll_data['advance_stats']['valid'][$_type] as $opt_key => $value)
+			{
+				if(is_array($value))
+				{
+					foreach ($value as $filter => $count)
+					{
+						$advance_stats_result[$opt_key]["valid_". $filter] = $count;
+					}
+				}
+			}
+		}
+
+		if(isset($_poll_data['advance_stats']['invalid'][$_type]) && is_array($_poll_data['advance_stats']['invalid'][$_type]))
+		{
+			foreach ($_poll_data['advance_stats']['invalid'][$_type] as $opt_key => $value)
+			{
+				if(is_array($value))
+				{
+					foreach ($value as $filter => $count)
+					{
+						$advance_stats_result[$opt_key]["invalid_". $filter] = $count;
+					}
+				}
+			}
+		}
+
+		foreach ($advance_stats_result as $key => $value)
+		{
+			$advance_stats_result[$key]['key'] = $key;
+		}
+		sort($advance_stats_result);
+		return $advance_stats_result;
 	}
 }
 ?>
