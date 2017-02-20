@@ -2649,18 +2649,30 @@ route('*', function ()
 		saveAnswers('skip');
 	});
 	// check and uncheck radios
-	$('ul[data-answer-type] input[name="anwserOpt"]').click(function()
+	$('ul[data-answer-type] label').contextmenu(function(_e)
 	{
-		if($(this).attr('checked'))
+		// for right click
+		if(_e.button == 2)
 		{
-			$(this).attr('checked', false);
-		}
-		else
-		{
-			$(this).attr('checked', true);
+			var radioEl = $(this).parent().find('input[name="anwserOpt"]');
+			if($(radioEl).is(':checked') && $(radioEl).attr('disabled') === undefined)
+			{
+				$(radioEl).attr('checked', false);
+			}
+			return false;
 		}
 
-		$(this).attr('checked', $(this).is(':checked'));
+		// for one click
+		// if($(this).attr('checked'))
+		// {
+		// 	$(this).attr('checked', false);
+		// }
+		// else
+		// {
+		// 	$(this).attr('checked', true);
+		// }
+
+		// $(this).attr('checked', $(this).is(':checked'));
 	});
 });
 
