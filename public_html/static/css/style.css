@@ -1977,7 +1977,7 @@ code {font-size: 1.2em;}
 .billing .billing-btn:hover {background: #00667a;}
 .billing-history-table {margin-top: 2em;}
 .currency-label {position: absolute;bottom: -18px;left: 4px;}
-
+.rtl .currency-label {right: 4px; left: auto}
 /************************************************************** autocomple temp */
 .awesomplete [hidden] {
     display: none;
