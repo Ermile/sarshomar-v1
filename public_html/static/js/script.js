@@ -2428,9 +2428,9 @@ function saveAnswers(_type)
 			{
 				case "select":
 					var selectedAns = answerBox.find('input[name="anwserOpt"]:checked').val();
+					data.answer     = {};
 					if(selectedAns)
 					{
-						data.answer              = {};
 						data.answer[selectedAns] = true;
 						answerSelected           = true;
 					}
@@ -2438,9 +2438,9 @@ function saveAnswers(_type)
 
 				case "multi":
 					var checkedAns = answerBox.find('input[type="checkbox"]:checked');
+					data.answer = {};
 					if(checkedAns.length)
 					{
-						data.answer = {};
 						checkedAns.each(function()
 						{
 							var myVal = $(this).val();
@@ -2596,8 +2596,20 @@ route('*', function ()
 	{
 		saveAnswers('skip');
 	});
+	// check and uncheck radios
+	$('ul[data-answer-type] input[name="anwserOpt"]:checked').click(function()
+	{
+		if($(this).data('previousValue') === true || $(this).data('previousValue') === undefined)
+		{
+			$(this).attr('checked',false);
+		}
+		else
+		{
+			$(this).attr('checked',true);
+		}
 
-
+		$(this).data('previousValue', $(this).is(':checked'));
+	});
 });
 
 
