@@ -1936,6 +1936,7 @@ code {font-size: 1.2em;}
 
 /************************************************************** Billing */
 .gateways label { margin-right:1em }
+.rtl .gateways label { margin-right:0;margin-left:1em }
 .gateways label >span> input{ visibility: hidden; position: absolute;}
 .gateways label >span> input + img{cursor:pointer;border:2px solid transparent;border-radius: 5px;padding: 2px;background: #efefef;}
 .gateways label >span> input:checked + img{border: 2px solid #37aaa7;border-radius: 5px;padding: 2px;background: transparent;}
@@ -1947,11 +1948,15 @@ code {font-size: 1.2em;}
 .billing .billing-info .amount {margin: 0;color: #7d7373;}
 .billing .charge-amount {font-size: 1.2em;margin-bottom: 2em;}
 .billing .amount-number {margin-right: 2em;border-radius: 2px;background-color: #efefef;border: none;height: 35px;line-height: 35px;padding: 0 10px;width: 72px;}
-.billing .promo-number {margin-right: 2em;border-radius: 2px;background-color: #efefef;border: none;height: 35px;line-height: 35px;padding: 0 10px;width: 40%;}
+.rtl .billing .amount-number {margin-right: 0;margin-left: 2em;}
 .billing .gateways>form{display: flex;align-items: center;}
 .billing .charge-account-box {margin-bottom:3em}
-.billing .promo-msg {font-size: 1.2em;color: #00667a;margin: 4px 0;border: 2px solid #efefef;margin: 1em 0;padding: 5px;border-radius: 5px;background: #f4f4f4;margin-top: 2em;}
-
+.billing .promo-msg {font-size: 1.2em;color: #00667a;border: 2px solid #efefef;padding: 5px;border-radius: 5px;background: #f4f4f4;}
+.billing .promo-info {flex-direction: row;flex-wrap: wrap;}
+.billing .promo-msg-box {width: 100%;}
+.billing .promo-subtitle {font-size: 1.2em;}
+.billing .promo-codes {align-self: flex-end;}
+.billing .promo-box {display: flex;}
 
 .fancy-btn {background-color: #37aaa7;padding: 5px 25px;display: inline-block;text-align: center;margin: 0 auto;transition: .3s;color: #f4f4f4;border: none;cursor: pointer;position: relative;border-radius: 15px;font-size: 13px;}
 .fancy-btn::before, .fancy-btn::after {font-family: 'sarshomar';content: "\e90d";position: absolute;color: #e7a429;top: -3px;font-size: 38px;}
