@@ -6,6 +6,8 @@ use \lib\utility\upload;
 
 trait link
 {
+	use check;
+
 	public function upload_file($_options = [])
 	{
 		debug::title(T_("Can not upload file"));
@@ -74,10 +76,17 @@ trait link
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
+		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
+
 		$upload      = upload::upload($ready_upload);
 
 		$file_detail = \lib\storage::get_upload();
 		$file_id     = null;
+
+		if(isset($file_detail['size']))
+		{
+			self::user_size_plus($this->user_id, $file_detail['size']);
+		}
 
 		if(isset($file_detail['id']) && is_numeric($file_detail['id']))
 		{
