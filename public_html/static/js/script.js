@@ -1233,9 +1233,17 @@ function checkNextStep()
 		}
 	});
 
-	$(document).on('click', ".stepPublish .publish", function()
+	$(document).on('click', ".stepPublish .changeStatus", function()
 	{
-		requestSavingData(true, 'publish');
+		var requestedStatus = $('.stepPublish .changeStatus').attr('data-request');
+		if(requestedStatus === 'publish')
+		{
+			requestSavingData(true, requestedStatus);
+		}
+		else
+		{
+			changePollStatus(requestedStatus);
+		}
 	});
 }
 
@@ -1538,13 +1546,15 @@ function calcTotalPrice()
 	// calc final balance and set
 	var finalBalance = myCash - totalPrice;
 	setCompleteVal(prBalance.find('.pr'), finalBalance);
+	// change text of new status allowed
+	setStatusText();
 	if(finalBalance < 0)
 	{
 		prBalance.addClass('isHighligh');
 		// show charge
 		$('.stepPublish .charge').slideDown();
 		// hide publish
-		// $('.stepPublish .publish').slideUp();
+		// $('.stepPublish .changeStatus').slideUp();
 	}
 	else
 	{
@@ -1552,7 +1562,7 @@ function calcTotalPrice()
 		// hide charge
 		$('.stepPublish .charge').slideUp();
 		// show publish
-		$('.stepPublish .publish').slideDown();
+		// $('.stepPublish .changeStatus').slideDown();
 	}
 
 	// show on topbox
@@ -1560,6 +1570,31 @@ function calcTotalPrice()
 	$('#financial-box .cost').addClass('isCurrent');
 
 	return totalPrice;
+}
+
+
+/**
+ * [setStatusText description]
+ */
+function setStatusText()
+{
+	var cStatus    = $('#question-add').attr('data-status');
+	var txtDraft   = $('.stepPublish .changeStatus').attr('data-draft');
+	var txtPublish = $('.stepPublish .changeStatus').attr('data-publish');
+
+	switch (cStatus)
+	{
+		case 'awaiting':
+		case 'publish':
+			$('.stepPublish .changeStatus').text(txtDraft);
+			$('.stepPublish .changeStatus').attr('data-request', 'draft');
+			break;
+
+		case 'draft':
+			$('.stepPublish .changeStatus').text(txtPublish);
+			$('.stepPublish .changeStatus').attr('data-request', 'publish');
+			break;
+	}
 }
 
 
