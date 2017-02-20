@@ -1,166 +1,148 @@
 {%extends display.main%}
-
 {%block content%}
 <aside class='dashboard-aside'>
-    <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl">
-    <div class="personal-info">
-     <span class="name">{{login.displayname}}</span>
-     <span class="mobile">
-     {% if login.mobile matches '/^\\d+$/' %}
+   <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl">
+   <div class="personal-info">
+      <span class="name">{{login.displayname}}</span>
+      <span class="mobile">
+      {% if login.mobile matches '/^\\d+$/' %}
       {{login.mobile}}
-     {%else%}
+      {%else%}
       {%trans "Undefined"%}
-     {% endif %}
-     </span>
-    </div>
-{%if false%}
-    <div class="progress" data-percent="{{complete_profile}}">
-     <div class="bar"></div>
-     <div class="detail">
-     {%if complete_profile < 10 %}
-      {%trans "Your profile is not complete!"%}
-     {%elseif complete_profile < 50%}
-      {%trans "Please complete your profile"%}
-     {%else%}
-      {%trans "Thank you for completing profile"%}
-     {%endif%}
-      <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
-    </div>
-{%endif%}
-    <form method="post" class="ui-language">
-     {% set lang_list = langList({'all' : true}) %}
-     <select name="ui-language">
-      <option value="">{%trans "Default language"%}</option>
-      {%for key, value in lang_list%}
-      <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
-      {%endfor%}
-     </select>
-     <input type="submit" value='{%trans "Set default language"%}' class="try">
-    </form>
-    <a href="https://api.instagram.com/oauth/authorize/?client_id=4ecf7f9c5c4e4e94b4edc80efb10c491&redirect_uri=https://dev.sarshomar.com/referer/instagram&response_type=code&scope=comments+public_content" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}' data-direct target="_blank">
-      <img src="https://dev.sarshomar.com/static/images/third-party/instagram.svg">
-    </a>
-   </aside>
-
-
+      {% endif %}
+      </span>
+   </div>
+   {%if false%}
+   <div class="progress" data-percent="{{complete_profile}}">
+      <div class="bar"></div>
+      <div class="detail">
+         {%if complete_profile < 10 %}
+         {%trans "Your profile is not complete!"%}
+         {%elseif complete_profile < 50%}
+         {%trans "Please complete your profile"%}
+         {%else%}
+         {%trans "Thank you for completing profile"%}
+         {%endif%}
+         <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a>
+      </div>
+   </div>
+   {%endif%}
+   <form method="post" class="ui-language">
+      {% set lang_list = langList({'all' : true}) %}
+      <select name="ui-language">
+         <option value="">{%trans "Default language"%}</option>
+         {%for key, value in lang_list%}
+         <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
+         {%endfor%}
+      </select>
+      <input type="submit" value='{%trans "Set default language"%}' class="try">
+   </form>
+   <a href="https://api.instagram.com/oauth/authorize/?client_id=4ecf7f9c5c4e4e94b4edc80efb10c491&redirect_uri=https://dev.sarshomar.com/referer/instagram&response_type=code&scope=comments+public_content" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}' data-direct target="_blank">
+   <img src="https://dev.sarshomar.com/static/images/third-party/instagram.svg">
+   </a>
+</aside>
 <div class="main billing">
-<div class="api-docs">
-
-    <div class="in xxlarge">
-
-
-        <div class="billing-stats row auto">
-			<div class="billing-info span4">
-				<div class="icon"><img src="{{url.static}}images/gateway/coin.svg" width="60" height="60"></div>
-				<div>
-					<h5 class="title">Your credit</h5>
-					<h4 class="amount">$125.3</h4>
-				</div>
-			</div>
-
+   <div class="api-docs">
+      <div class="in xxlarge">
+         <div class="billing-stats row auto">
             <div class="billing-info span4">
-				<div class="icon"><img src="{{url.static}}images/gateway/gift.svg" width="60" height="60"></div>
-				<div>
-					<h5 class="title">Your Gift</h5>
-					<h4 class="amount">$10.5</h4>
-				</div>
-			</div>
-
+               <div class="icon"><img src="{{url.static}}images/gateway/coin.svg" width="60" height="60"></div>
+               <div>
+                  <h5 class="title">{%trans "Your credit"%}</h5>
+                  <h4 class="amount">$125.3</h4>
+               </div>
+            </div>
             <div class="billing-info span4">
-				<div class="icon"><img src="{{url.static}}images/gateway/money-bag.svg" width="60" height="60"></div>
-				<div>
-					<h5 class="title">Total Ballance</h5>
-					<h4 class="amount">$1127</h4>
-				</div>
-			</div>
-
-        </div>
-
-<div class="billing-info charge-account-box">
-				<div class="row">
-					<h5 class="title">Charge your account</h5>
-                    <div class="charge-amount">Choose a gateway and enter an amount to charge your account</div>
-					    <div class="gateways">
-<form class="row auto">
-    <div class="span6">
-  <label>
-      <span>
-  <input type="radio" name="bank" id="Saman" value="Saman" checked>
-  <img src="{{url.static}}images/gateway/Day.svg" width="60" height="60">
-  </span>
-  </label>
-  <label><span>
-  <input type="radio" name="bank" id="Mellat" value="Mellat">
-  <img src="{{url.static}}images/gateway/Parsian.svg" width="60" height="60">
-  </span></label>
-  <label><span>
-  <input type="radio" name="bank" id="Tejarat" value="Tejarat">
-    <img src="{{url.static}}images/gateway/Mellat.svg" width="60" height="60">
-  </span></label>
-  <label><span>
-  <input type="radio" name="bank" id="Shahr" value="Shahr">
-    <img src="{{url.static}}images/gateway/Shahr.svg" width="60" height="60">
-  </span></label>
-  </div>
-  <div class="span6">
-      <input class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
-      <button class="fancy-btn" type="submit">Submit</button>
-  </div>
-
-</form>
-
-</div>
-				</div>
-			</div>
-
-
-<div class="billing-info">
-				<div class="row">
-					<h5 class="title">Promo code</h5>
-                    <div class="charge-amount">If you have a promo code, please enter it below to receive your credit.</div>
-					    <div class="gateways">
-<form class="row auto">
-  <div class="span12">
-      <input class="promo-number" type="number" name="" value="" placeholder="Enter Promo Code">
-      <button class="fancy-btn" type="submit">Submit</button>
-  </div>
-
-</form>
-
-</div>
-<h3 class="promo-msg">
-Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.
-    </h3>
-				</div>
-			</div>
-
-
-
-
-
-
-<h2>Billing History</h2>
-
-<div class="tbl method-table ltr">
-    <div class="tbl-header">
-        <span>{%trans "Date"%}</span>
-        <span>{%trans "Description"%}</span>
-        <span>{%trans "Amount"%}</span>
-        <span>{%trans "Remaining"%}</span>
-    </div>
-    <div>
-        <span>...</span>
-        <span>....</span>
-        <span>.....</span>
-        <span>......</span>
-    </div>
-</div>
-<div class="pagination">
-<a href="#!">1</a>
-<a href="#!">2</a>
-<a href="#!">3</a>
-</div>
-</div>
-</div>
+               <div class="icon"><img src="{{url.static}}images/gateway/gift.svg" width="60" height="60"></div>
+               <div>
+                  <h5 class="title">{%trans "Your Gift"%}</h5>
+                  <h4 class="amount">$10.5</h4>
+               </div>
+            </div>
+            <div class="billing-info span4">
+               <div class="icon"><img src="{{url.static}}images/gateway/money-bag.svg" width="60" height="60"></div>
+               <div>
+                  <h5 class="title">{%trans "Total Ballance"%}</h5>
+                  <h4 class="amount">$1127</h4>
+               </div>
+            </div>
+         </div>
+         <div class="billing-info charge-account-box">
+            <div class="row">
+               <h5 class="title">{%trans "Charge your account"%}</h5>
+               <div class="charge-amount">{%trans "Choose a gateway and enter an amount to charge your account"%}</div>
+               <div class="gateways">
+                  <form class="row auto">
+                     <div class="span6">
+                        <label>
+                        <span>
+                        <input type="radio" name="bank" id="Saman" value="Saman" checked>
+                        <img src="{{url.static}}images/gateway/Day.svg" width="60" height="60">
+                        </span>
+                        </label>
+                        <label><span>
+                        <input type="radio" name="bank" id="Mellat" value="Mellat">
+                        <img src="{{url.static}}images/gateway/Parsian.svg" width="60" height="60">
+                        </span></label>
+                        <label><span>
+                        <input type="radio" name="bank" id="Tejarat" value="Tejarat">
+                        <img src="{{url.static}}images/gateway/Mellat.svg" width="60" height="60">
+                        </span></label>
+                        <label><span>
+                        <input type="radio" name="bank" id="Shahr" value="Shahr">
+                        <img src="{{url.static}}images/gateway/Shahr.svg" width="60" height="60">
+                        </span></label>
+                     </div>
+                     <div class="span6">
+                        <input class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
+                        <button class="fancy-btn" type="submit">{%trans "Pay"%}</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="billing-info promo-info">
+            <div class="row promo-box">
+               <div class="span6">
+                  <h5 class="title">{%trans "Promo code"%}</h5>
+                  <div class="promo-subtitle">{%trans "If you have a promo code, please enter it below to receive your credit."%}</div>
+               </div>
+               <div class="span6 promo-codes">
+                  <form class="row auto">
+                     <div class="span12">
+                        <input class="amount-number" type="text" name="" value="" placeholder="Code">
+                        <button class="fancy-btn" type="submit">{%trans "Submit"%}</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="promo-msg-box">
+               <h3 class="promo-msg">
+                   {%trans "Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00."%}
+               </h3>
+            </div>
+         </div>
+         <h2>{%trans "Billing History"%}</h2>
+         <div class="tbl method-table ltr">
+            <div class="tbl-header">
+               <span>{%trans "Date"%}</span>
+               <span>{%trans "Description"%}</span>
+               <span>{%trans "Amount"%}</span>
+               <span>{%trans "Remaining"%}</span>
+            </div>
+            <div>
+               <span>...</span>
+               <span>....</span>
+               <span>.....</span>
+               <span>......</span>
+            </div>
+         </div>
+         <div class="pagination">
+            <a href="#!">1</a>
+            <a href="#!">2</a>
+            <a href="#!">3</a>
+         </div>
+      </div>
+   </div>
 </div>
 {%endblock%}
