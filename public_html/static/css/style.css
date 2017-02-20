@@ -473,9 +473,9 @@ a[href*="amcharts.com"]{display:none!important}
 /************************************************************** header */
 header{display:-webkit-box;display:-ms-flexbox;display:flex;background-color:#f4f4f4;height:90px;border:none;}
 
-
-header .logo{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;-ms-grid-row-align:flex-end;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em 1em 1em}
+header .logo{font-size:10px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;-ms-grid-row-align:flex-end;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em 1em 1em;margin-bottom:0}
 .rtl header .logo{background-image:url(/static/images/svg/header-rtl.svg)}
+header .logo span{display:none}
 header .logo img{height:40px;align-self:center;transition:.3s}
 header .logo h1{margin:0;font-size:1.9em;line-height:2.2;margin-left:10px}
 .rtl header .logo h1{font-size:2.4em;line-height:2;margin-left:0;margin-right:12px}

@@ -1,5 +1,5 @@
   <header class="unselectable" data-scroll>
-   <div class='logo'>
+   <h1 class='logo'>
     <a href='{{url.base}}' tabindex='1'>
           {%if site.currentlang =='fa'%}
      <img src='{{url.static}}images/logo/logo-fa.svg' height="40" width="140" alt='{{site.title}} | {{site.desc}}'>
@@ -7,7 +7,8 @@
       <img src='{{url.static}}images/logo/logo-en.svg' height="40" width="190" alt='{{site.title}} | {{site.desc}}'>
      {%endif%}
     </a>
-   </div>
+    <span>{%trans "Sarshomar"%}</span>
+   </h1>
    <div id='header-box'>
     <div id='header-top'>
      <nav id='header-quick'>
