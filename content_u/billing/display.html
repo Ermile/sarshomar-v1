@@ -12,7 +12,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Money"%}</h5>
-                        <div class="amount">125 {%trans "Toman"%}</div>
+                        <div class="amount"><span>125</span> <span>{%trans "Toman"%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -21,7 +21,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Gift"%}</h5>
-                        <div class="amount">10 {%trans "Toman"%}</div>
+                        <div class="amount"><span>10</span> <span>{%trans "Toman"%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Credit"%}</h5>
-                        <div class="amount"><strong>1127 {%trans "Toman"%}</strong></div>
+                        <div class="amount"><strong><span>1127</span> <span>{%trans "Toman"%}</span></strong></div>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,8 @@
                         </span></label>
                             </div>
                         <div class="span6 billing-buttons">
-                            <input class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
+                            <input id="amount-number" class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
+                            <label for="amount-number" class="currency-label">{%trans "Toman"%}</label>
                             <button class="billing-btn" type="submit">{%trans "Pay"%}</button>
                         </div>
                         </form>
@@ -77,7 +78,7 @@
             <div class="billing-info promo-info">
                 <div class="row auto promo-box">
                     <div class="span6">
-                        <h3 class="title">{%trans "Promo code"%}</h3>
+                        <h3 class="title" id="promo-code">{%trans "Promo code"%}</h3>
                         <div class="promo-subtitle">{%trans "If you have a promo code, please enter it below to receive your credit."%}</div>
                     </div>
                     <div class="span6 promo-codes">
@@ -95,8 +96,9 @@
                     </h3>
                 </div>
             </div>
-            <h2>{%trans "Billing History"%}</h2>
-            <div class="api-docs">
+
+            <div class="api-docs billing-history-table">
+                <h3 id="billing-history">{%trans "Billing History"%}</h3>
                 <div class="tbl method-table ltr">
                     <div class="tbl-header">
                         <span>{%trans "Date"%}</span>
@@ -105,10 +107,16 @@
                         <span>{%trans "Remaining"%}</span>
                     </div>
                     <div>
-                        <span>...</span>
-                        <span>....</span>
-                        <span>.....</span>
-                        <span>......</span>
+                        <span>February 1, 2017</span>
+                        <span>Invoice for January 2017</span>
+                        <span><span>20015</span> <span>Toman</span></span>
+                        <span><span>20015</span> <span>Toman</span></span>
+                    </div>
+                    <div>
+                        <span>February 1, 2017</span>
+                        <span>Invoice for January 2017</span>
+                        <span><span>20015</span> <span>Toman</span></span>
+                        <span><span>20015</span> <span>Toman</span></span>
                     </div>
                 </div>
             </div>
