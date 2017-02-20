@@ -1546,23 +1546,37 @@ function calcTotalPrice()
 	// calc final balance and set
 	var finalBalance = myCash - totalPrice;
 	setCompleteVal(prBalance.find('.pr'), finalBalance);
+	// save link of charge for use next time
+	if($('.stepPublish .charge').data('hrefBase') === undefined)
+	{
+		$('.stepPublish .charge').data('hrefBase', $('.stepPublish .charge').attr('href'));
+	}
 	// change text of new status allowed
 	setStatusText();
+	// if do not have money
 	if(finalBalance < 0)
 	{
 		prBalance.addClass('isHighligh');
-		// show charge
-		$('.stepPublish .charge').slideDown();
+		// calc needed price and link for charge
+		var neededMoney = $('.stepPublish .charge').data('hrefBase') + "?amount=" + Math.abs(finalBalance);
+		// show btn and change url for charge
+		$('.stepPublish .charge').fadeIn().css("display","inline-block").attr('href', neededMoney).removeClass('hide');
 		// hide publish
-		// $('.stepPublish .changeStatus').slideUp();
+		if($('html').attr('data-develop') === undefined)
+		{
+			$('.stepPublish .changeStatus').fadeOut();
+		}
 	}
 	else
 	{
 		prBalance.removeClass('isHighligh');
 		// hide charge
-		$('.stepPublish .charge').slideUp();
+		$('.stepPublish .charge').fadeOut();
 		// show publish
-		// $('.stepPublish .changeStatus').slideDown();
+		if($('html').attr('data-develop') === undefined)
+		{
+			$('.stepPublish .changeStatus').fadeIn().css("display","inline-block");
+		}
 	}
 
 	// show on topbox
@@ -1597,7 +1611,7 @@ function setStatusText()
 			break;
 	}
 	// show btn after change text
-	$('.stepPublish .changeStatus').fadeIn().removeClass('hide');
+	$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
 }
 
 

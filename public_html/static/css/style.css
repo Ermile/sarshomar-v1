@@ -1633,8 +1633,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .stepAdd .tagDetector .tagBox span{max-width:200px;overflow:hidden;text-overflow:ellipsis}
 
 .stepPublish .span4{text-align:center;}
-.stepPublish .span4 .try{display:inline-block;}
-.stepPublish .action>div:not(:last-child){margin-bottom:1em}
+.stepPublish .try{margin:10px 15px;display:inline-block;}
 
 
 
