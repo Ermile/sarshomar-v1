@@ -1955,8 +1955,8 @@ code {font-size: 1.2em;}
 .billing .billing-info .title {color: #607D8B;font-weight: 700;}
 .billing .billing-info .amount {margin: 0;color: #7d7373;}
 .billing .charge-amount {font-size: 1.2em;margin-bottom: 2em;}
-.billing .amount-number {margin-right: 2em;border-radius: 2px;background-color: #efefef;border: none;height: 35px;line-height: 35px;padding: 0 10px;width: 72px;}
-.rtl .billing .amount-number {margin-right: 0;margin-left: 2em;}
+.billing .amount-number {border-radius: 2px 0 0 2px;background-color: #efefef;border: none;height: 35px;line-height: 35px;padding: 0 10px;width: 72px;}
+.rtl .billing .amount-number {border-radius: 0 2px 2px 0}
 .billing .gateways>form{display: flex;align-items: center;}
 .billing .charge-account-box {margin-bottom:3em}
 .billing .promo-msg {font-size: 1.2em;color: #00667a;border: 2px solid #efefef;padding: 5px;border-radius: 5px;background: #f4f4f4;}
@@ -1965,11 +1965,14 @@ code {font-size: 1.2em;}
 .billing .promo-subtitle {font-size: 1.2em;}
 .billing .promo-codes {align-self: flex-end;}
 .billing .promo-box {display: flex;}
+.billing .billing-stats .billing-info .title {margin-bottom: .5em;}
+.billing .billing-stats .billing-info {transition: all 0.3s;}
+.billing .billing-stats .billing-info:hover {background: #efefef;}
+.billing .billing-btn {border: none;height: 35px;padding: 0 10px;background: #37aaa7;color: #fff;border-radius: 0 2px 2px 0;cursor: pointer;}
+.rtl .billing .billing-btn {border-radius: 2px 0 0 2px}
+.billing .billing-buttons {display: flex;}
+.billing .billing-btn:hover {background: #00667a;}
 
-.fancy-btn {background-color: #37aaa7;padding: 5px 25px;display: inline-block;text-align: center;margin: 0 auto;transition: .3s;color: #f4f4f4;border: none;cursor: pointer;position: relative;border-radius: 15px;font-size: 13px;}
-.fancy-btn::before, .fancy-btn::after {font-family: 'sarshomar';content: "\e90d";position: absolute;color: #e7a429;top: -3px;font-size: 38px;}
-.fancy-btn::before {left: -5px;}
-.fancy-btn::after {right: -5px;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);filter: FlipH;-ms-filter: FlipH;}
 
 
 /************************************************************** autocomple temp */
