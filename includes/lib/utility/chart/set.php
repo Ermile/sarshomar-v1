@@ -257,8 +257,11 @@ trait set
 			}
 		}
 
-		// update the result field in table
-		$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
+		if(isset($pollstats['result']))
+		{
+			// update the result field in table
+			$set[] = " pollstats.result = '". json_encode($pollstats['result'], JSON_UNESCAPED_UNICODE). "'";
+		}
 
 		// for each support chart do this:
 		foreach ($support_chart as $key => $filter)
@@ -398,28 +401,33 @@ trait set
 					}
 				}
 			}
-
-			$set[] = " pollstats.$filter = '". json_encode($pollstats[$filter], JSON_UNESCAPED_UNICODE). "'";
+			if(isset($pollstats[$filter]))
+			{
+				$set[] = " pollstats.$filter = '". json_encode($pollstats[$filter], JSON_UNESCAPED_UNICODE). "'";
+			}
 
 		} // end of foreach $support_chart
 
 		//
 		if($update_pollstat_record)
 		{
-			$set = join($set, " , ");
-			$pollstats_update_query =
-			"
-				UPDATE
-					pollstats
-				SET
-					$set
-				WHERE
-					pollstats.post_id = $poll_id AND
-					pollstats.type    = '$validation'
-				-- update poll stat result
-				-- stat_polls::set_poll_result()
-			";
-			$pollstats_update = \lib\db::query($pollstats_update_query);
+			if(!empty($set))
+			{
+				$set = join($set, " , ");
+				$pollstats_update_query =
+				"
+					UPDATE
+						pollstats
+					SET
+						$set
+					WHERE
+						pollstats.post_id = $poll_id AND
+						pollstats.type    = '$validation'
+					-- update poll stat result
+					-- stat_polls::set_poll_result()
+				";
+				$pollstats_update = \lib\db::query($pollstats_update_query);
+			}
 		}
 		else
 		{

@@ -298,31 +298,6 @@ class model extends \mvc\model
 	 */
 	public function post_save_answer()
 	{
-
-
-		// save a comment
-		if(utility::post("comment"))
-		{
-			$this->save_comment();
-			return;
-		}
-
-		// save heart
-		// if(utility::post("type") == 'heart')
-		// {
-		// 	$rate   = utility::post("data");
-		// 	$result = \lib\db\comments::rate($this->login('id'), $poll_id, $rate);
-		// 	if($result)
-		// 	{
-		// 		\lib\debug::true(T_("Your Rate is Saved, Thank You"));
-		// 	}
-		// 	else
-		// 	{
-		// 		\lib\debug::error(T_("We can not save your rate, please reload the page and try again"));
-		// 	}
-		// 	return;
-		// }
-
 		if(!$this->login())
 		{
 			\lib\debug::error(T_("You must login in order to answer the questions"));
@@ -348,15 +323,21 @@ class model extends \mvc\model
 			{
 				return debug::error(T_("Invalid parameter status"), 'setProperty', 'status');
 			}
-
+			$poll_id = utility\shortURL::decode($poll_id);
 			switch (utility::post('setProperty'))
 			{
 				case 'heart':
-					\lib\db\polls::like($this->user_id, utility\shortURL::decode($poll_id), ['debug' => false]);
+					\lib\db\polls::like($this->user_id, $poll_id, ['debug' => false]);
 					break;
+
 				case 'favorite':
-					\lib\db\polls::fav($this->user_id, utility\shortURL::decode($poll_id), ['debug' => false]);
+					\lib\db\polls::fav($this->user_id, $poll_id, ['debug' => false]);
 					break;
+
+				// case 'rate':
+				// 	\lib\db\comments::rate($this->user_id, $poll_id, utility::post("rate"));
+				// 	break;
+
 				default:
 					debug::error(T_("Can not support this property"), 'setProperty', 'arguments');
 					break;
@@ -365,13 +346,6 @@ class model extends \mvc\model
 		}
 
 		debug::title(T_("Operation faild"));
-
-		// save score of comments
-		if(utility::post("type") == 'minus' || utility::post("type") == 'plus')
-		{
-			$this->save_score_comments();
-			return;
-		}
 
 		$data = '{}';
 
@@ -383,25 +357,38 @@ class model extends \mvc\model
 		$data    = json_decode($data, true);
 		$request = utility\safe::safe($data);
 
-		if(!isset($data['answer']) && !isset($data['skip']))
-		{
-			debug::error(T_("You must set answer or skip the poll"));
-			return false;
-		}
 
 		$request['id']     = $poll_id;
 
 		$options           = [];
 
 		utility::set_request_array($request);
-
-		if(utility\answers::is_answered($this->user_id, shortURL::decode($poll_id)))
+		$is_answered = utility\answers::is_answered($this->user_id, shortURL::decode($poll_id));
+		if($is_answered)
 		{
 			$options['method'] = 'put';
 		}
 		else
 		{
 			$options['method'] = 'post';
+		}
+
+		if(!isset($data['answer']) && !isset($data['skip']))
+		{
+			return debug::error(T_("You must set answer or skip the poll"));
+		}
+		elseif(isset($data['answer']) && empty($data['answer']))
+		{
+			if($is_answered)
+			{
+				$this->poll_answer_delete(['id' => utility\shortURL::decode($poll_id)]);
+				// muset remove her answer
+				if(\lib\debug::$status)
+				{
+					debug::warn(T_("Answer saved"));
+				}
+				return;
+			}
 		}
 
 		$this->poll_answer_add($options);

@@ -13,7 +13,7 @@ trait delete
 	public function poll_answer_delete($_options = [])
 	{
 		debug::title(T_("Can not remove your answer"));
-
+		// because the id in url not in request
 		$default_options = ['id' => null];
 
 		$_options = array_merge($default_options, $_options);
