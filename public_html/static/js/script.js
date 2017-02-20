@@ -2597,18 +2597,18 @@ route('*', function ()
 		saveAnswers('skip');
 	});
 	// check and uncheck radios
-	$('ul[data-answer-type] input[name="anwserOpt"]:checked').click(function()
+	$('ul[data-answer-type] input[name="anwserOpt"]').click(function()
 	{
-		if($(this).data('previousValue') === true || $(this).data('previousValue') === undefined)
+		if($(this).attr('checked'))
 		{
-			$(this).attr('checked',false);
+			$(this).attr('checked', false);
 		}
 		else
 		{
-			$(this).attr('checked',true);
+			$(this).attr('checked', true);
 		}
 
-		$(this).data('previousValue', $(this).is(':checked'));
+		$(this).attr('checked', $(this).is(':checked'));
 	});
 });
 
