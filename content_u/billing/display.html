@@ -1,5 +1,66 @@
 {%extends display.main%}
 
 {%block content%}
-billing
+<div class="main">
+<div class="api-docs">
+
+    <div class="in xxlarge">
+
+<h1>Your credit: 125$</h1>
+<hr>
+<h2>Charge your account</h2>
+
+<div>
+<form>
+  <label for="Saman">Saman</label>
+  <input type="radio" name="bank" id="Saman" value="Saman">
+  <label for="Mellat">Mellat</label>
+  <input type="radio" name="bank" id="Mellat" value="Mellat">
+  <label for="Tejarat">Tejarat</label>
+  <input type="radio" name="bank" id="Tejarat" value="Tejarat">
+  <div>
+      <input type="number" name="" value="" placeholder="Enter an amount">
+      <input type="submit" value="Submit">
+  </div>
+
+</form>
+
+</div>
+<hr>
+
+<h2>Promo code</h2>
+<div>
+    <h3>If you have a promo code, please enter it below to receive your credit.</h3>
+    <input type="text" name="" value="" placeholder="Enter your code">
+    <button type="submit">Submit</button>
+    <h3 class="promo-msg">
+Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.
+    </h3>
+</div>
+<hr>
+
+<h2>Billing History</h2>
+
+<div class="tbl method-table ltr">
+    <div class="tbl-header">
+        <span>{%trans "Date"%}</span>
+        <span>{%trans "Description"%}</span>
+        <span>{%trans "Amount"%}</span>
+        <span>{%trans "Remaining"%}</span>
+    </div>
+    <div>
+        <span>...</span>
+        <span>....</span>
+        <span>.....</span>
+        <span>......</span>
+    </div>
+</div>
+<div class="pagination">
+<a href="#!">1</a>
+<a href="#!">2</a>
+<a href="#!">3</a>
+</div>
+</div>
+</div>
+</div>
 {%endblock%}
