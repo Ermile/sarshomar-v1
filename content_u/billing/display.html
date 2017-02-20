@@ -1,6 +1,46 @@
 {%extends display.main%}
 
 {%block content%}
+<aside class='dashboard-aside'>
+    <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl">
+    <div class="personal-info">
+     <span class="name">{{login.displayname}}</span>
+     <span class="mobile">
+     {% if login.mobile matches '/^\\d+$/' %}
+      {{login.mobile}}
+     {%else%}
+      {%trans "Undefined"%}
+     {% endif %}
+     </span>
+    </div>
+{%if false%}
+    <div class="progress" data-percent="{{complete_profile}}">
+     <div class="bar"></div>
+     <div class="detail">
+     {%if complete_profile < 10 %}
+      {%trans "Your profile is not complete!"%}
+     {%elseif complete_profile < 50%}
+      {%trans "Please complete your profile"%}
+     {%else%}
+      {%trans "Thank you for completing profile"%}
+     {%endif%}
+      <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
+    </div>
+{%endif%}
+    <form method="post" class="ui-language">
+     {% set lang_list = langList({'all' : true}) %}
+     <select name="ui-language">
+      <option value="">{%trans "Default language"%}</option>
+      {%for key, value in lang_list%}
+      <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
+      {%endfor%}
+     </select>
+     <input type="submit" value='{%trans "Set default language"%}' class="try">
+    </form>
+    <a href="https://api.instagram.com/oauth/authorize/?client_id=4ecf7f9c5c4e4e94b4edc80efb10c491&redirect_uri=https://dev.sarshomar.com/referer/instagram&response_type=code&scope=comments+public_content" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}' data-direct target="_blank">
+      <img src="https://dev.sarshomar.com/static/images/third-party/instagram.svg">
+    </a>
+   </aside>
 <div class="main">
 <div class="api-docs">
 
