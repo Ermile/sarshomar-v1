@@ -6,10 +6,11 @@ class model extends \mvc\model
 {
 	public function male_female_chart()
 	{
-		$chart = [];
-		// $chart = \lib\utility\stat_polls::gender_chart();
+		$chart = \lib\utility\stat_polls::gender_chart();
 		if($chart)
 		{
+
+			$chart['data'] = json_encode($chart);
 			return $chart;
 		}
 		else

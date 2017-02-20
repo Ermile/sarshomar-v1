@@ -159,6 +159,67 @@ class stat_polls
 	 */
 	public static function gender_chart()
 	{
+
+		$query =
+		"
+			SELECT
+				filters.gender AS `gender`,
+				filters.range AS `age_range`,
+				SUM(filters.count) AS 'count'
+			FROM
+				filters
+			WHERE
+				filters.gender IS NOT NULL AND
+				filters.range IS NOT NULL
+			GROUP BY
+			age_range,gender
+		";
+		$result = \lib\db::get($query);
+
+		if(!$result || !is_array($result))
+		{
+			return false;
+		}
+
+		$temp_result = [];
+		foreach ($result as $key => $value)
+		{
+			if(isset($value['gender']) && isset($value['age_range']) && isset($value['count']))
+			{
+				if($value['gender'] == 'male')
+				{
+					$temp_result[$value['age_range']][$value['gender']] = $value['count'];
+				}
+				else
+				{
+					$temp_result[$value['age_range']][$value['gender']] =  -1 * (int) $value['count'];
+				}
+			}
+		}
+
+		krsort($temp_result);
+
+		foreach ($temp_result as $key => $value)
+		{
+			$temp_result[$key]["key"] = $key;
+		}
+		$return = [];
+		foreach ($temp_result as $key => $value)
+		{
+			$return[] = $value;
+		}
+
+		return $return;
+	}
+
+
+	/**
+	 * gender chart whit hight chart mode syntax
+	 *
+	 * @return     array|boolean  ( description_of_the_return_value )
+	 */
+	private static function gender_chart_hight_chart_mode()
+	{
 		$query =
 		"
 			SELECT
@@ -174,11 +235,11 @@ class stat_polls
 			gender, age_range
 		";
 		$result = \lib\db::get($query);
+
 		if(!$result || !is_array($result))
 		{
 			return false;
 		}
-
 		$male_female = array_column($result, 'gender');
 		$male_female = array_unique($male_female);
 
