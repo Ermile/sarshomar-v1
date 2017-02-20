@@ -15,7 +15,7 @@ trait data
 	{
 		$profile = [];
 
-		$result   = \lib\db\terms::usage($_user_id, [], 'users', 'users%');
+		$result   = \lib\db\terms::usage($_user_id, [], 'users', 'sarshomar%');
 
 		if(is_array($result))
 		{

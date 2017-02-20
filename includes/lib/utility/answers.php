@@ -229,11 +229,10 @@ class answers
 					'user_id'     => $_args['user_id'],
 					'update_mode' => false,
 				];
+				// save user profile if this poll is a profile poll
+				\lib\utility\profiles::set_profile_by_poll($answers_details);
 
 				\lib\utility\stat_polls::set_poll_result($answers_details);
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				// $update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			}
 		}
 
@@ -554,6 +553,9 @@ class answers
 				'profile'    => $profile,
 				'validation' => $validation
 			];
+			// unset user profile if this poll is profile poll
+			\lib\utility\profiles::set_profile_by_poll($answers_details);
+
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
 
@@ -593,11 +595,11 @@ class answers
 					'user_id'     => $_args['user_id'],
 					'update_mode' => false,
 				];
+				// set user profile if this poll is profile poll
+				\lib\utility\profiles::set_profile_by_poll($answers_details);
 
 				\lib\utility\stat_polls::set_poll_result($answers_details);
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				// $update_profile = \lib\utility\profiles::set_profile_by_poll($answers_details);
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 			}
 
 		}

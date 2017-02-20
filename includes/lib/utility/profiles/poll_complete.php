@@ -22,70 +22,77 @@ trait poll_complete
 			return false;
 		}
 
+
 		$profile_lock =
 		"
 			SELECT
-				option_meta AS 'lock'
+				terms.*
 			FROM
-				options
+				termusages
+			INNER JOIN terms ON termusages.term_id = terms.id
 			WHERE
-				post_id      = $_args[poll_id] AND
-				option_cat   = 'poll_$_args[poll_id]' AND
-				option_key   = 'meta' AND
-				option_value = 'profile'
-			LIMIT 1
+				termusages.termusage_foreign = 'profile' AND
+				termusages.termusage_id =
+				(
+					SELECT
+						pollopts.id
+					FROM
+						pollopts
+					WHERE
+						pollopts.post_id = $_args[poll_id] AND
+						pollopts.key = $_args[opt_key]
+					LIMIT 1
+				)
 			-- profiles::set_profile_by_poll()
 		";
 
 		// check this poll has been locked to profile data ?
-		$profile_lock = \lib\db::get($profile_lock, 'lock', true);
-		if(!$profile_lock)
+		$profile_lock = \lib\db::get($profile_lock, null, true);
+
+		if(
+			!$profile_lock ||
+			empty($profile_lock) ||
+			!isset($profile_lock['id']) ||
+			!isset($profile_lock['term_caller']) ||
+			(isset($profile_lock['term_caller']) && !$profile_lock['term_caller'])
+		  )
 		{
 			return false;
 		}
 
-		$answers      = \lib\utility\answers::get($_args['poll_id']);
-		$opt_value    = array_column($answers, 'option_value', 'option_key');
+		$insert_user_termusages =
+		"
+			INSERT INTO
+				termusages
+			SET
+				termusages.termusage_foreign = 'users',
+				termusages.termusage_id      = $_args[user_id],
+				termusages.term_id           = $profile_lock[id]
+			ON DUPLICATE KEY UPDATE
+				termusages.term_id = $profile_lock[id]
 
-		$support_filter = \lib\db\filters::support_filter();
-		if(!isset($support_filter[$profile_lock]))
+		";
+		\lib\db::query($insert_user_termusages);
+
+		if(!preg_match("/\:/", $profile_lock['term_caller']))
 		{
-			return false;
+			return;
 		}
 
-		if(preg_match("/^(|opt\_)(\d+)$/", $_args['opt_key'], $user_answer_index))
+		$split = explode(':', $profile_lock['term_caller']);
+		if(isset($split[0]) && isset($split[1]))
 		{
-			$user_answer_index = $user_answer_index[2];
-			$user_answer_index--;
-
-			// the user skip the poll
-			if($user_answer_index < 0)
+			if(!\lib\db\filters::support_filter($split[0], $split[1]))
 			{
-				return false;
+				return;
 			}
-			if(isset($support_filter[$profile_lock][$user_answer_index]))
-			{
-				$user_answer = $support_filter[$profile_lock][$user_answer_index];
-			}
-			else
-			{
-				return false;
-			}
-			// get exist profile data of this users
-			$profile_data = self::get_profile_data($_args['user_id']);
-
-			// check old profile data by new data get by poll
-			if(isset($profile_data[$profile_lock]))
-			{
-				if($profile_data[$profile_lock] == $user_answer)
-				{
-					// this user is reliable
-					return true;
-				}
-			}
-			return self::set_profile_data($_args['user_id'], [$profile_lock => $user_answer]);
 		}
-		return false;
+		else
+		{
+			return;
+		}
+
+		return self::set_profile_data($_args['user_id'], [$split[0] => $split[1]]);
 	}
 
 

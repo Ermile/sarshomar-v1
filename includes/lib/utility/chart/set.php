@@ -265,7 +265,7 @@ trait set
 		{
 			// check the user have this filter or no
 			// if the users have this filter:
-			if(isset($user_profile_data[$filter]))
+			if(isset($user_profile_data[$filter]) && \lib\db\pollstats::support_chart($filter, $user_profile_data[$filter]))
 			{
 				// if in sorting mode we update all opt index of this poll
 				if($sorting)
