@@ -41,43 +41,95 @@
       <img src="https://dev.sarshomar.com/static/images/third-party/instagram.svg">
     </a>
    </aside>
-<div class="main">
+
+
+<div class="main billing">
 <div class="api-docs">
 
     <div class="in xxlarge">
 
-<h1>Your credit: 125$</h1>
-<hr>
-<h2>Charge your account</h2>
 
-<div>
-<form>
-  <label for="Saman">Saman</label>
-  <input type="radio" name="bank" id="Saman" value="Saman">
-  <label for="Mellat">Mellat</label>
+        <div class="billing-stats row auto">
+			<div class="billing-info span4">
+				<div class="icon"><img src="{{url.static}}images/gateway/coin.svg" width="60" height="60"></div>
+				<div>
+					<h5 class="title">Your credit</h5>
+					<h4 class="amount">$125.3</h4>
+				</div>
+			</div>
+
+            <div class="billing-info span4">
+				<div class="icon"><img src="{{url.static}}images/gateway/gift.svg" width="60" height="60"></div>
+				<div>
+					<h5 class="title">Your Gift</h5>
+					<h4 class="amount">$10.5</h4>
+				</div>
+			</div>
+
+        </div>
+
+<div class="billing-info charge-account-box">
+				<div class="row">
+					<h5 class="title">Charge your account</h5>
+                    <div class="charge-amount">Choose a gateway and enter an amount to charge your account</div>
+					    <div class="gateways">
+<form class="row auto">
+    <div class="span6">
+  <label>
+      <span>
+  <input type="radio" name="bank" id="Saman" value="Saman" checked>
+  <img src="{{url.static}}images/gateway/Day.svg" width="60" height="60">
+  </span>
+  </label>
+  <label><span>
   <input type="radio" name="bank" id="Mellat" value="Mellat">
-  <label for="Tejarat">Tejarat</label>
+  <img src="{{url.static}}images/gateway/Parsian.svg" width="60" height="60">
+  </span></label>
+  <label><span>
   <input type="radio" name="bank" id="Tejarat" value="Tejarat">
-  <div>
-      <input type="number" name="" value="" placeholder="Enter an amount">
-      <input type="submit" value="Submit">
+    <img src="{{url.static}}images/gateway/Mellat.svg" width="60" height="60">
+  </span></label>
+  <label><span>
+  <input type="radio" name="bank" id="Shahr" value="Shahr">
+    <img src="{{url.static}}images/gateway/Shahr.svg" width="60" height="60">
+  </span></label>
+  </div>
+  <div class="span6">
+      <input class="amount-number" type="number" name="" value="" placeholder="Amount">
+      <button class="fancy-btn" type="submit">Submit</button>
   </div>
 
 </form>
 
 </div>
-<hr>
+				</div>
+			</div>
 
-<h2>Promo code</h2>
-<div>
-    <h3>If you have a promo code, please enter it below to receive your credit.</h3>
-    <input type="text" name="" value="" placeholder="Enter your code">
-    <button type="submit">Submit</button>
-    <h3 class="promo-msg">
+
+<div class="billing-info">
+				<div class="row">
+					<h5 class="title">Promo code</h5>
+                    <div class="charge-amount">If you have a promo code, please enter it below to receive your credit.</div>
+					    <div class="gateways">
+<form class="row auto">
+  <div class="span12">
+      <input class="promo-number" type="number" name="" value="" placeholder="Enter Promo Code">
+      <button class="fancy-btn" type="submit">Submit</button>
+  </div>
+
+</form>
+
+</div>
+<h3 class="promo-msg">
 Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.
     </h3>
-</div>
-<hr>
+				</div>
+			</div>
+
+
+
+
+
 
 <h2>Billing History</h2>
 
