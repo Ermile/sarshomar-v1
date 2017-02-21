@@ -66,10 +66,10 @@
                             <img alt="Tejarat Bank" src="{{url.static}}images/gateway/Tejarat.svg" width="60" height="60">
                         </span></label>
                             </div>
-                        <div class="span6 billing-buttons">
-                            <input id="amount-number" class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
+                        <div class="span3 billing-buttons">
                             <label for="amount-number" class="currency-label">{%trans "Toman"%}</label>
-                            <button class="billing-btn" type="submit">{%trans "Pay"%}</button>
+                            <input id="amount-number" class="amount-number" type="number" name="" value="{{amount}}" placeholder="Amount">
+                            <button class="billing-btn" type="submit">{%trans "Confirm"%}</button>
                         </div>
                         </form>
                     </div>
@@ -81,7 +81,7 @@
                         <h3 class="title" id="promo-code">{%trans "Promo code"%}</h3>
                         <div class="promo-subtitle">{%trans "If you have a promo code, please enter it below to receive your credit."%}</div>
                     </div>
-                    <div class="span6 promo-codes">
+                    <div class="span3 promo-codes">
                         <form class="row auto">
                             <div class="span12 billing-buttons">
                                 <input class="amount-number" type="text" name="" value="" placeholder="Code">
@@ -99,7 +99,7 @@
 
             <div class="default-tbl billing-history-table">
                 <h3 id="billing-history">{%trans "Billing History"%}</h3>
-                <div class="tbl method-table ltr">
+                <div class="tbl">
                     <div class="tbl-header">
                         <span>{%trans "Date"%}</span>
                         <span>{%trans "Description"%}</span>

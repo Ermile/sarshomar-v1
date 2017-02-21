@@ -1917,7 +1917,7 @@ code {font-size: 1.2em;}
 .default-tbl .tbl>div.tbl-header{background:rgb(239, 239, 239);font-weight:bold}
 .default-tbl .tbl>div>span>label{color:#54b4ef}
 .default-tbl .long-txt {white-space: pre-wrap;}
-
+.default-tbl .tbl>div>span {flex:1}
 /* step publish theme */
 .stepPublish .tbl{text-align:center;}
 .stepPublish .tbl>div:not(.tbl-header):nth-child(even){background-color:#efefef}
@@ -1972,13 +1972,12 @@ code {font-size: 1.2em;}
 .billing .billing-stats .billing-info .title {margin-bottom: .5em;}
 .billing .billing-stats .billing-info {transition: all 0.3s;}
 .billing .billing-stats .billing-info:hover {background: #efefef;}
-.billing .billing-btn {border: none;height: 35px;padding: 0 10px;background: #37aaa7;color: #fff;border-radius: 0 2px 2px 0;cursor: pointer;}
+.billing .billing-btn {min-width: 73px;border: none;height: 35px;padding: 0 10px;background: #37aaa7;color: #fff;border-radius: 0 2px 2px 0;cursor: pointer;}
 .rtl .billing .billing-btn {border-radius: 2px 0 0 2px}
-.billing .billing-buttons {display: flex;position: relative;}
+.billing .billing-buttons {display: flex;position: relative;justify-content: flex-end;}
 .billing .billing-btn:hover {background: #00667a;}
 .billing-history-table {margin-top: 2em;}
-.currency-label {position: absolute;bottom: -18px;left: 4px;}
-.rtl .currency-label {right: 4px; left: auto}
+.currency-label {align-self:center}
 /************************************************************** autocomple temp */
 .awesomplete [hidden] {
     display: none;
