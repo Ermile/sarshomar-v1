@@ -262,7 +262,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 /* special temporary status*/
 .input.isError{background:#fff0f0!important;border-color:#dbb1b1!important;color:#d95c5c!important;border-radius:0 .2em .2em 0!important;box-shadow:0 0 1px 0 #d95c5c inset!important}
 .isDisallow{box-shadow:0 0 3px 0 #e5a428 inset!important;}
-.isHighligh{box-shadow:0 0 10px 0 #e5a428!important;}
+.isHighlight{box-shadow:0 0 10px 0 #e5a428!important;}
 .invalid{background-color:#FFDDDD!important;border-color:#dbb1b1!important;color:#9B1111!important;}
 
 /************************************************************** Responsie Style */

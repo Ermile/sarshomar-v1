@@ -764,6 +764,10 @@ function showQuestionOptsDel(_this, _delete)
 		// hide all elements
 		$('.input-group.sortable > li .delete').fadeOut(100);
 	}
+	if($('#question-add').attr('data-status') !== 'draft')
+	{
+		return false;
+	}
 	var currentRowStatus = $(_this).closest('li').attr('data-empty');
 	var totalRow         = countQuestionOpts();
 	var emptyRow         = totalRow - countQuestionOpts(true);
@@ -1168,10 +1172,10 @@ function detectStep(_name)
 			break;
 
 		case 'factor':
-			$('#totalPrice').addClass('isHighligh');
+			$('#totalPrice').addClass('isHighlight');
 			setTimeout(function()
 			{
-				$('#totalPrice').removeClass('isHighligh');
+				$('#totalPrice').removeClass('isHighlight');
 			}, 700);
 		case 'step-publish':
 		case 'step3':
@@ -1560,7 +1564,7 @@ function calcTotalPrice()
 	// if do not have money
 	if(finalBalance < 0)
 	{
-		prBalance.addClass('isHighligh');
+		prBalance.addClass('isHighlight');
 		// calc needed price and link for charge
 		var neededMoney = $('.stepPublish .charge').data('hrefBase') + "?amount=" + Math.abs(finalBalance);
 		// show btn and change url for charge
@@ -1573,7 +1577,7 @@ function calcTotalPrice()
 	}
 	else
 	{
-		prBalance.removeClass('isHighligh');
+		prBalance.removeClass('isHighlight');
 		// hide charge
 		$('.stepPublish .charge').fadeOut();
 		// show publish
@@ -1666,6 +1670,35 @@ function calcUntilPrice(_current)
 String.prototype.ucFirst = function()
 {
 	return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
+/**
+ * check status of question and if needed lock it
+ * @return {[type]} [description]
+ */
+function checkQuestionStatus()
+{
+	var questionBox = $('#question-add');
+	switch (questionBox.attr('data-status'))
+	{
+		// on start
+		case "":
+		// draft
+		case "draft":
+			break;
+
+		// on other condition lock it
+		default:
+		case "publish":
+		case "awaiting":
+			questionBox.find('input').attr('disabled', 'disabled');
+			questionBox.find('textarea').attr('disabled', 'disabled');
+			questionBox.find('.range-slider').attr('data-lock', '');
+			questionBox.find('.sync').attr('data-lock', '');
+			break;
+	}
+
 }
 
 
@@ -2183,7 +2216,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// calcTotalPrice();
 	// draw media for each item contain media
 	drawMedia();
-
+	// check status of question and if needed lock it
+	checkQuestionStatus();
 	$('.page-progress input').on('click', function(e)
 	{
 		return detectStep($(this).attr('name'));
@@ -2198,7 +2232,20 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// on click on price goto step3
 	$('.sync:not([data-syncing])').on('click', function(e)
 	{
-		requestSavingData(true);
+		if($(this).attr('data-lock') === '')
+		{
+			// it's lock. do nothing
+			detectStep('step3');
+			$('.stepPublish .changeStatus').addClass('isHighlight');
+			setTimeout(function()
+			{
+				$('.stepPublish .changeStatus').removeClass('isHighlight');
+			}, 1000);
+		}
+		else
+		{
+			requestSavingData(true);
+		}
 	});
 	// on init
 	detectStep();
