@@ -1952,6 +1952,7 @@ code {font-size: 1.2em;}
 .gateways label >span> input{ visibility: hidden; position: absolute;}
 .gateways label >span> input + img{cursor:pointer;border:2px solid transparent;border-radius: 5px;padding: 2px;background: #efefef;}
 .gateways label >span> input:checked + img{border: 2px solid #37aaa7;border-radius: 5px;padding: 2px;background: transparent;}
+.gateways label >span> input[disabled] + img {opacity: .4;cursor: default;}
 .billing .billing-stats {margin: 2em 0 3em;}
 .billing .billing-info {position: relative;background: #FAFAFA;min-height: 125px!important;display: flex;align-items: center;flex-direction: row;border-radius: 4px;box-shadow: 0 1px 2px rgba(0,0,0,0.13);}
 .billing .billing-info>div {padding: 1em;z-index: 2;}
@@ -1978,6 +1979,10 @@ code {font-size: 1.2em;}
 .billing .billing-btn:hover {background: #00667a;}
 .billing-history-table {margin-top: 2em;}
 .currency-label {align-self:center}
+
+
+
+
 /************************************************************** autocomple temp */
 .awesomplete [hidden] {
     display: none;
