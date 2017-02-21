@@ -348,6 +348,16 @@ nav.breadcrumb a {max-width: 12em;}
 nav.breadcrumb{display:none}
 
 
+ /************************************************************** Table */
+.tbl {margin:0 1em;}
+
+
+ /************************************************************** Billing */
+.billing {margin:0 1em;}
+.billing .billing-stats .billing-info {margin-bottom:3em !important;}
+.billing .gateways>form{flex-direction: column;}
+.billing .promo-box {flex-direction: column;}
+
 
 }
 
