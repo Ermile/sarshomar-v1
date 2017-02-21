@@ -25,6 +25,17 @@ class step_create
 		if($_run_as_edit)
 		{
 			step::goingto(2);
+			$poll = new make_view(session::get('poll'));
+			$poll = $poll->query_result;
+			if(count($poll['answers']) == 1)
+			{
+				$type = $poll['answers'][0]['type'];
+				session::set('poll_options', 'type', $type);
+			}
+			elseif(count($poll['answers']) > 1)
+			{
+				session::set('poll_options', 'type', 'selective');
+			}
 			return self::make_draft(session::get('poll'));
 		}
 		return self::step1();
@@ -67,7 +78,6 @@ class step_create
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $get_poll]]);
 			$get_poll = \lib\main::$controller->model()->poll_get();
 			$poll_request['id'] = $get_poll['id'];
-			handle::send_log($get_poll['answers']);
 			if(count($get_poll['answers']) == 1 &&
 				($get_poll['answers'][0]['type'] == 'like' || $get_poll['answers'][0]['type'] == 'descriptive')
 				)
@@ -79,17 +89,8 @@ class step_create
 		if(count($file_content) > 0 && $get_poll && count($get_poll['answers']) > 0)
 		{
 			return self::make_draft($get_poll, function($_maker){
-				$_maker->message->add("insert", T_("Answer type not valid"));
+				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
-		}
-		elseif($get_poll && count($get_poll['answers']) > 0)
-		{
-			if(self::is_type('like') || self::is_type('descriptive'))
-			{
-				return self::make_draft($get_poll, function($_maker){
-					$_maker->message->add("insert", T_("این سوال دارای پاسخ نمی‌باشد"));
-				});
-			}
 		}
 
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
@@ -146,10 +147,17 @@ class step_create
 			if($get_poll)
 			{
 
-				if(isset($get_poll['title']) && $get_poll['title'] != '')
+				if(isset($get_poll['title']) && !is_null($get_poll['title']))
 				{
-					$poll_request['answers'] = isset($get_poll['answers']) ? $get_poll['answers'] : [];
-					$poll_answers 	= $question_export;
+					if(self::is_type('like') || self::is_type('descriptive'))
+					{
+						$poll_request['description'] = utf8_encode(join($question_export, "\n"));
+					}
+					else
+					{
+						$poll_request['answers'] = isset($get_poll['answers']) ? $get_poll['answers'] : [];
+						$poll_answers 	= $question_export;
+					}
 
 				}
 				else
@@ -178,6 +186,7 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'put' : 'post']);
+			handle::send_log(\lib\debug::compile());
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
@@ -216,6 +225,7 @@ class step_create
 	public static function make_draft($_poll, $_maker = false)
 	{
 		$maker = new make_view($_poll);
+		$title = $maker->query_result['title'];
 		if(!$maker->query_result['title'])
 		{
 			$maker->query_result['title'] = T_('Please enter question title');
@@ -224,16 +234,22 @@ class step_create
 		$maker->message->add('sucsess', T_("Your question uploaded successfully."));
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
-		$maker->message->add('insert', T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"));
 		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
 		if(is_object($_maker))
 		{
 			$_maker($maker);
 		}
+
+		if(self::is_type('like'))
+		{
+			$maker->message->add('description', T_("شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"), 'after', 'poll_list');
+		}
+
 		$txt_text = $maker->message->make();
 
 		if(!session::get('poll_options' , 'type'))
 		{
+			$maker->message->add('insert', T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"));
 			$maker->inline_keyboard->add([
 					[
 						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
@@ -251,15 +267,15 @@ class step_create
 						"callback_data" => 'create/type/descriptive']
 				]);
 		}
-		if(isset($maker->query_result['answers'][0]))
+		if(isset($maker->query_result['answers'][0]) && !is_null($title))
 		{
 			$maker->inline_keyboard->add([
-					['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']],
-					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
-				]);
+				['text' => T_('Edit title'), 'callback_data' => 'create/edit_title/' . $maker->query_result['id']]
+			]);
 			$maker->inline_keyboard->add([
-					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
-				]);
+				['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']],
+				['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+			]);
 		}
 		else
 		{
@@ -267,6 +283,7 @@ class step_create
 					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
 				]);
 		}
+
 
 
 		$inline_keyboard = $maker->inline_keyboard->make();

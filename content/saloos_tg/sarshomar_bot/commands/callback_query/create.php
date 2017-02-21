@@ -80,10 +80,21 @@ class create
 
 	public static function remove_type($_query, $_data_url)
 	{
+		\lib\storage::set_disable_edit(true);
 		session::remove('poll_options', 'type');
 		$poll_request = ['id' => session::get('poll'), 'answers' => []];
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 		\lib\main::$controller->model()->poll_add(['method' => 'put']);
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+
+	}
+
+	public static function edit_title($_query, $_data_url)
+	{
+		\lib\storage::set_disable_edit(true);
+		$poll_request = ['id' => session::get('poll'), 'title' => ''];
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+		$change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 
 	}

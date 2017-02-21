@@ -61,7 +61,7 @@ class message
 			if($value['type'] == 'like')
 			{
 				$emoji = "❤️";
-				$value['title'] = '';
+				$value['title'] = utf8_decode($this->class->query_result['description']);
 			}
 			elseif($_answer_id == $key+1)
 			{

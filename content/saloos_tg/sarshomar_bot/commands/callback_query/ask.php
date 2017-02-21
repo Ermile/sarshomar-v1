@@ -94,7 +94,6 @@ class ask
 		}
 
 
-		handle::send_log($guest_option);
 		$maker->inline_keyboard->add_guest_option($guest_option);
 
 		if($my_poll && $options['type'] == 'private')

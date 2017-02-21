@@ -7,6 +7,7 @@ use \lib\telegram\tg as bot;
 use \content\saloos_tg\sarshomar_bot\commands\utility;
 use content\saloos_tg\sarshomar_bot\commands\make_view;
 use \lib\telegram\step;
+use \content\saloos_tg\sarshomar_bot\commands\menu;
 
 class poll
 {
@@ -167,6 +168,7 @@ class poll
 
 	public static function status($_query, $_data_url)
 	{
+		$poll = session::get('poll');
 		session::remove('poll');
 		step::stop();
 		\lib\storage::set_disable_edit(true);
@@ -180,19 +182,39 @@ class poll
 				'id' 		=> $_data_url[3]
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
+		handle::send_log(\lib\utility::request());
 
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
+		handle::send_log($debug);
 		\lib\debug::$status = 1;
 
-		callback_query::edit_message(ask::make(null, null, [
-			'poll_id' 	=> $_data_url[3],
-			'return'	=> true
-			]));
 
-		if(!$debug_status)
+		if($poll)
 		{
-			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+			$result = ask::make(null, null, [
+				'poll_id' 	=> $_data_url[3],
+				'return'	=> true
+				]);
+			$result['reply_markup'] = menu::main(true);
+			callback_query::edit_message(['text' => T_("Poll published")]);
+			bot::sendResponse($result);
+		}
+		else
+		{
+			callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $_data_url[3],
+				'return'	=> true
+				]));
+		}
+
+		if($debug_status !== 1)
+		{
+			if(isset($debug['messages']['error'][0]))
+			{
+				return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+			}
+				return ['text' => '⚠️' . $debug['messages']['warn'][0]['title']];
 		}
 		else
 		{

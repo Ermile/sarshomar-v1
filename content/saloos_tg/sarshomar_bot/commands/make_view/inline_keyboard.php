@@ -115,7 +115,6 @@ class inline_keyboard
 		}
 		elseif($options['report'])
 		{
-			handle::send_log(1000);
 			$return[] = [
 				"text" => T_("Report"),
 				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id
