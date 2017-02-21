@@ -1718,7 +1718,7 @@ function requestSavingData(_manualRequest, _status)
 	{
 		sendQuestionData(_status);
 	}
-	else if($('html').attr('data-develop') != undefined)
+	else if($('.sync').attr('data-manual') != undefined)
 	{
 		// we are Godzilla
 		console.log('we are Godzilla')
@@ -2102,6 +2102,50 @@ function prepareQuestionFilter()
 }
 
 
+/**
+ * [handleSyncProcess description]
+ * @return {[type]} [description]
+ */
+function handleSyncProcess()
+{
+	// ---------------------------------------------------- sync
+	$('.sync:not([data-syncing])').on('click', function(e)
+	{
+		if($(this).attr('data-lock') === '')
+		{
+			// it's lock. do nothing
+			detectStep('step3');
+			$('.stepPublish .changeStatus').addClass('isHighlight');
+			setTimeout(function()
+			{
+				$('.stepPublish .changeStatus').removeClass('isHighlight');
+			}, 1000);
+		}
+		else
+		{
+			requestSavingData(true);
+		}
+	});
+	// add data-manul to sync manual, not auto
+	$('.sync').on('contextmenu', function(_e)
+	{
+		_e.preventDefault();
+		if($(this).attr('data-manual') === undefined)
+		{
+			$(this).attr('data-manual', true);
+		}
+		else
+		{
+			$(this).attr('data-manual', null);
+		}
+	});
+	if($('html').attr('data-develop') !== undefined)
+	{
+		$('.sync').attr('data-manual', true);
+	}
+}
+
+
 // ================================================================== @/add
 // route(/\@\/add/, function()
 route(/\@\/add(|\/[^\/]*)$/, function()
@@ -2229,24 +2273,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		detectStep('factor');
 	});
-	// on click on price goto step3
-	$('.sync:not([data-syncing])').on('click', function(e)
-	{
-		if($(this).attr('data-lock') === '')
-		{
-			// it's lock. do nothing
-			detectStep('step3');
-			$('.stepPublish .changeStatus').addClass('isHighlight');
-			setTimeout(function()
-			{
-				$('.stepPublish .changeStatus').removeClass('isHighlight');
-			}, 1000);
-		}
-		else
-		{
-			requestSavingData(true);
-		}
-	});
+	// handle sync
+	handleSyncProcess();
 	// on init
 	detectStep();
 
