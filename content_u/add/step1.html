@@ -178,7 +178,7 @@
 
 {%block feature_other%}
 <div class="checkbox" data-response='meta_choicemode' data-response-where='one|multi'>
- <input type="checkbox" id="descriptive" {%if have_other_opt%}checked{%endif%} data-title='{%trans "other"%}' data-subtitle='{%trans "text given from user"%}'>
+ <input type="checkbox" id="descriptive" {%if have_other_opt%}checked{%endif%} data-title='{%trans "other"%}' data-pl='{%trans "text given from user"%}' data-defaultVal='{%trans "Please type your answer"%}'>
  <label for="descriptive" class="check-box"></label>
  <label for="descriptive">{%trans "Allow to type other answer"%}</label>
 </div>

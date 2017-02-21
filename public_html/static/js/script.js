@@ -692,7 +692,7 @@ function checkAddOpt()
 /**
  * add new option to items
  */
-function addNewOpt(_type, _title, _placeholder, _group)
+function addNewOpt(_type, _title, _placeholder, _defaulVal, _group)
 {
 	var template = $('.input-group.sortable>li:not([data-type])').eq(0).clone();
 	var num      = $('.input-group.sortable>li').length + 1;
@@ -738,6 +738,10 @@ function addNewOpt(_type, _title, _placeholder, _group)
 	$('.input-group.sortable').append(template);
 	// rearrange after add new element
 	rearrangeSortable();
+	if(_title === 'other')
+	{
+		template.find('input.input').val(_defaulVal);
+	}
 
 	template.addClass('animated fadeInDown').delay(1000).queue(function()
 	{
@@ -2108,7 +2112,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		if(this.checked)
 		{
-			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-subtitle'));
+			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-pl'), $(this).attr('data-defaultVal'));
 		}
 		else
 		{
