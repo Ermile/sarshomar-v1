@@ -27,11 +27,52 @@ class model extends \mvc\model
 	[
 		'MerchantID'  => "669de6b4-f744-11e6-9180-005056a205be",
 		'Description' => "Sarshomar",
-		'CallbackURL' => 'http://sarshomar.dev/@/billing/verify/zarinpal',
+		'CallbackURL' => 'https://sarshomar.com/@/billing/verify/zarinpal',
 		'Email'       => null,
 		'Mobile'      => null,
 		'Amount'      => null,
 	];
+
+
+	/**
+	 * PAYMENT DATA
+	 *
+	 * @var        array
+	 */
+	public static $PAYMENT_DATA = [];
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_bank  The bank
+	 */
+	public static function payment_data($_bank)
+	{
+
+		if(!isset(self::$PAYMENT_DATA[$_bank]))
+		{
+			$where =
+			[
+				'user_id'       => null,
+				'post_id'       => null,
+				'option_cat'    => 'payment_data',
+				'option_key'    => $_bank,
+				'option_status' => 'enable',
+				'limit'			=> 1,
+			];
+			$result = \lib\db\options::get($where);
+			if(isset($result['value']))
+			{
+				self::$PAYMENT_DATA[$_bank] = $result;
+			}
+		}
+
+		if(isset(self::$PAYMENT_DATA[$_bank]))
+		{
+			return self::$PAYMENT_DATA[$_bank];
+		}
+		return [];
+	}
 
 
 	/**
@@ -67,7 +108,7 @@ class model extends \mvc\model
 			return $this->pay();
 		}
 
-		if(utility::post('promo'))
+		if(!utility::post('promo'))
 		{
 			return debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 		}
@@ -80,7 +121,17 @@ class model extends \mvc\model
 	 */
 	public function pay()
 	{
+		\lib\db\logs::set($this->login('id'), 'user:charge:real');
+
 		self::$zarinpal['Description'] = T_("Charge Sarshomar");
+
+		$host  = Protocol."://" . \lib\router::get_root_domain();
+		$lang = \lib\define::get_current_language_string();
+		$host .= $lang;
+		$host .= '/@/billing/verify/zarinpal';
+
+		self::$zarinpal['CallbackURL'] = $host;
+
 		if(strtolower(utility::post('bank')) == 'zarinpal')
 		{
 			$amount                   = utility::post('amount');
@@ -118,17 +169,23 @@ class model extends \mvc\model
 				}
 				else
 				{
-					return debug::error(T_("Amount not found"));
+					debug::error(T_("Amount not found"));
+					return false;
 				}
 
 				$check = payment\zarinpal::verify($check_verify);
 				if($check && debug::$status)
 				{
-					return $this->save_transaction($_SESSION['Amount']);
+					if($this->save_transaction($_SESSION['Amount']))
+					{
+						return true;
+					}
+					return false;
 				}
 			}
 		}
-		$this->redirector()->set_url("@/billing")->redirect();
+		return false;
+		// $this->redirector()->set_url("@/billing")->redirect();
 	}
 
 
@@ -146,9 +203,7 @@ class model extends \mvc\model
 		{
 			return debug::errorT_("No amount was set");
 		}
-
-		$transaction = new \lib\utility\transaction;
-		$save = $transaction->caller('charge:real')->user_id($this->login('id'))->save();
+		\lib\db\transactions::set($this->login('id'), 'charge:real', ['plus' => $_amount]);
 	}
 }
 ?>

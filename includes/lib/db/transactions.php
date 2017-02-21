@@ -1,5 +1,7 @@
 <?php
 namespace lib\db;
+use \lib\debug;
+use \lib\utility;
 
 /** transactions managing **/
 class transactions
@@ -9,12 +11,13 @@ class transactions
 	 *
 	 * @param      <type>  $_caller  The caller
 	 */
-	public static function set($_user_id, $_caller)
+	public static function set($_user_id, $_caller, $_options = [])
 	{
 		// get the transactions items by caller
 		$item = \lib\db\transactionitems::caller($_caller);
 		if(!$item)
 		{
+			debug::error(T_("Caller not found"));
 			return false;
 		}
 
@@ -22,6 +25,7 @@ class transactions
 		$user_unit = \lib\db\units::user_unit($_user_id);
 		if(!$user_unit)
 		{
+			debug::error(T_("User unit not found"));
 			return false;
 		}
 
@@ -29,6 +33,7 @@ class transactions
 		$user_unit_id = \lib\db\units::get_id($user_unit);
 		if(!$user_unit_id)
 		{
+			debug::error(T_("User unit id not found"));
 			return false;
 		}
 		else
@@ -42,7 +47,6 @@ class transactions
 		{
 			$unit_id = (int) $item['unit_id'];
 		}
-
 
 		// check this items is a force change items ?
 		$force_change = false;
@@ -66,6 +70,7 @@ class transactions
 		}
 		else
 		{
+			debug::error(T_("Transactio items id not found"));
 			return false;
 		}
 
@@ -84,6 +89,7 @@ class transactions
 		}
 		else
 		{
+			debug::error(T_("Transactio type not found"));
 			return false;
 		}
 
@@ -97,6 +103,19 @@ class transactions
 		if(isset($item['plus']) && $item !== null)
 		{
 			$plus = (float) $item['plus'];
+		}
+
+		if(!$minus && !$plus)
+		{
+			if(isset($_options['plus']))
+			{
+				$plus = floatval($_options['plus']);
+			}
+
+			if(isset($_options['minus']))
+			{
+				$minus = floatval($_options['minus']);
+			}
 		}
 
 		// get the budge befor
@@ -122,16 +141,19 @@ class transactions
 					}
 					else
 					{
+						debug::error(T_("Exchange rate or id not found"));
 						return false;
 					}
 				}
 				else
 				{
+					debug::error(T_("Exchange rate not found"));
 					return false;
 				}
 			}
 			else
 			{
+				debug::error(T_("Unit id or user unit not found"));
 				return false;
 			}
 		}

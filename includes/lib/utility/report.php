@@ -12,6 +12,9 @@ class report
 	 */
 	public static function set($_poll_id, $_user_id, $_caller)
 	{
+		// need to fix!
+		return false;
+
 		$log_item    = \lib\db\logitems::caller($_caller);
 		$log_item_id = null;
 
