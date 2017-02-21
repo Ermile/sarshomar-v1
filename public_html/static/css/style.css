@@ -446,7 +446,7 @@ a[href*="amcharts.com"]{display:none!important}
 .sync .sync-checkmark::before,.sync .sync-checkmark::after{position:absolute;content:'';display:inline-block;box-sizing:border-box;width:2px;height:0;background-color:#00667a;-webkit-transition:opacity ease .5;transition:opacity ease .5;;-webkit-transform-origin:left top;transform-origin:left top}
 .sync .sync-checkmark::before{left:3px;top:10px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:aaa .2s ease 0s forwards;animation:aaa .2s ease 0s forwards}
 /*.sync .sync-checkmark::after{left:17px;top:-1px;-webkit-transform:rotate(30deg);transform:rotate(30deg);-webkit-animation:bbb .4s ease 0.5s forwards;animation:bbb .4s ease 0s forwards}*/
-.sync .sync-checkmark::after{left:8px;bottom:3px;-webkit-transform:rotate(30deg);transform:rotate(30deg);transform-origin:bottom left;-webkit-animation:bbb .4s ease 0.5s forwards;animation:bbb .4s ease 0s forwards}
+.sync .sync-checkmark::after{left:8px;bottom:3px;-webkit-transform:rotate(45deg);transform:rotate(45deg);transform-origin:bottom left;-webkit-animation:bbb .4s ease 0.5s forwards;animation:bbb .4s ease 0s forwards}
 .sync[data-syncing] .sync-checkmark::before,.sync[data-syncing] .sync-checkmark::after{display:none}
 
 
