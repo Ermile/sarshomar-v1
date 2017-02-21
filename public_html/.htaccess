@@ -1,6 +1,13 @@
 Options +FollowSymLinks
 Options -Indexes
 
+<If "%{HTTP_HOST} == 'dev.sarshomar.com'">
+	AuthType Basic
+	AuthName "Password Protected Area"
+	AuthUserFile /home/domains/sarshomar/public_html/.htpasswd
+	Require valid-user
+</If>
+
 # -----------------------------------------------------
 <IfModule mod_rewrite.c>
 	RewriteEngine On
