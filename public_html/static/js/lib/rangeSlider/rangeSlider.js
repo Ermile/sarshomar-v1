@@ -856,7 +856,7 @@ if (json_string)
 		var lock;
 		if (_set)
 		{
-			if (_set == 'on') 
+			if (_set == 'true') 
 			{
 				lock = 1;
 				$(this).attr('data-lock','on');
@@ -1548,8 +1548,8 @@ var add_selection = function(_name)
 			var dynamic_range = $(this).find(".dynamic-range");
 		$(dynamic_range).bind('mousedown.dynamic-range', function(){
 			var _self          = $(this).parents(".range-slider");
-if ($(_self).rangeSlider('option','lock')!=1)
-{
+		if ($(_self).rangeSlider('option','lock')!=1)
+		{
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
@@ -1636,7 +1636,7 @@ if ($(_self).rangeSlider('option','lock')!=1)
 
 				$(document).unbind("mouseup.dynamic-range");
 			})
-}
+		}
 			return false;
 		}).bind("mouseup", function(){
 			$(dynamic_range).unbind("mousedown.dynamic-range");
@@ -1650,85 +1650,85 @@ if ($(_self).rangeSlider('option','lock')!=1)
 	$(this).bind('touchstart',function(e){
 		e.preventDefault();
 		var target = $( event.target );
-if ($(this).rangeSlider('option','lock')!=1)
-{
-		var _self          = $(this);
-		if (target.is(".dynamic-range"))
+		if ($(this).rangeSlider('option','lock')!=1)
 		{
-			var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
-			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
-
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			var _self          = $(this);
+			if (target.is(".dynamic-range"))
 			{
-				var _width = $(_self).width();
-				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
-				var mouse_position = -(mouse_position-screen.width)-1;
-			}
+				var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
+				var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			var ziro_on_click  = mouse_position - ziro_point;
-			var range_width    = $(_self).rangeSlider('option','range_width');
-			var margin         = $(_self).rangeSlider('option','margin');
-			var on_click_to    = $(_self).rangeSlider('option', 'range', 'to', {type:'pixel'});
-			var on_click_from  = $(_self).rangeSlider('option', 'range', 'from', {type:'pixel'});
-		}
-
-		$(document).unbind('touchmove.dynamic-range');
-		$(document).bind('touchmove.dynamic-range',function(e){
-	      e.preventDefault();
-
-		var target = $( event.target );
-		if (target.is(".dynamic-range"))
-		{
-			$(_self).find('.dynamic-range div.min , .dynamic-range div.max').addClass("active"); //design*********
-			$(_self).find('.dynamic-range span.mount').show(); //design*********
-			var mouse_position  = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
-			var ziro_point      = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
-
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
-			{
-				var _width = $(_self).width();
-				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
-				var mouse_position = -(mouse_position-screen.width)-1;
-			}
-
-			var mouse_selection = mouse_position - ziro_point;
-			mouse_selection     = data.type == 'vertical' ? $(_self).height() - mouse_selection : mouse_selection;
-			var move            = mouse_selection - ziro_on_click;
-
-			var my_max_limit 	  = $(_self).rangeSlider('option', 'max_limit');
-			if(my_max_limit)
-			{
-				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
-				var json_string = $(this).attr("save_jason");
-				if (json_string)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
 				{
-					my_max_limit = $(_self).attr('real_max_limit');
+					var _width = $(_self).width();
+					var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
+					var mouse_position = -(mouse_position-screen.width)-1;
 				}
-			}
-			else
-			{
-				var my_max_limit = $(_self).rangeSlider('option', 'max');	
+
+				var ziro_on_click  = mouse_position - ziro_point;
+				var range_width    = $(_self).rangeSlider('option','range_width');
+				var margin         = $(_self).rangeSlider('option','margin');
+				var on_click_to    = $(_self).rangeSlider('option', 'range', 'to', {type:'pixel'});
+				var on_click_from  = $(_self).rangeSlider('option', 'range', 'from', {type:'pixel'});
 			}
 
-			var total_width_unit   = my_max_limit - $(_self).rangeSlider('option', 'min');
-			var total_width_pixel  = $(_self).rangeSlider('option', 'unit_to_pixel', total_width_unit);
-			var final_from = margin+move;
-			var final_to   = range_width+margin+move;
+			$(document).unbind('touchmove.dynamic-range');
+			$(document).bind('touchmove.dynamic-range',function(e){
+		      e.preventDefault();
 
-			if (final_to >= total_width_pixel)
+			var target = $( event.target );
+			if (target.is(".dynamic-range"))
 			{
-				final_from = total_width_pixel-range_width;
-			}
-			else if(final_from <= 0)
-			{
-				final_to  = range_width;
-			}
+				$(_self).find('.dynamic-range div.min , .dynamic-range div.max').addClass("active"); //design*********
+				$(_self).find('.dynamic-range span.mount').show(); //design*********
+				var mouse_position  = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
+				var ziro_point      = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			$(_self).rangeSlider('option', 'range', 'to',{type:'pixel'}, final_to);
-			$(_self).rangeSlider('option', 'range','from',{type:'pixel'}, final_from);
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
+				{
+					var _width = $(_self).width();
+					var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
+					var mouse_position = -(mouse_position-screen.width)-1;
+				}
+
+				var mouse_selection = mouse_position - ziro_point;
+				mouse_selection     = data.type == 'vertical' ? $(_self).height() - mouse_selection : mouse_selection;
+				var move            = mouse_selection - ziro_on_click;
+
+				var my_max_limit 	  = $(_self).rangeSlider('option', 'max_limit');
+				if(my_max_limit)
+				{
+					var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
+					var json_string = $(this).attr("save_jason");
+					if (json_string)
+					{
+						my_max_limit = $(_self).attr('real_max_limit');
+					}
+				}
+				else
+				{
+					var my_max_limit = $(_self).rangeSlider('option', 'max');	
+				}
+
+				var total_width_unit   = my_max_limit - $(_self).rangeSlider('option', 'min');
+				var total_width_pixel  = $(_self).rangeSlider('option', 'unit_to_pixel', total_width_unit);
+				var final_from = margin+move;
+				var final_to   = range_width+margin+move;
+
+				if (final_to >= total_width_pixel)
+				{
+					final_from = total_width_pixel-range_width;
+				}
+				else if(final_from <= 0)
+				{
+					final_to  = range_width;
+				}
+
+				$(_self).rangeSlider('option', 'range', 'to',{type:'pixel'}, final_to);
+				$(_self).rangeSlider('option', 'range','from',{type:'pixel'}, final_from);
+			}
+			});
 		}
-		});
-}
 	}).bind('touchend.dynamic-range',function(e){
 			$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
 			if (data_fix_mount != "on")
@@ -1744,7 +1744,7 @@ if ($(this).rangeSlider('option','lock')!=1)
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
 		});
-}
+	}
 
 	var data_fix_mount = $(this).attr("data-fix-mount");
 	var data = $(this).data('range-slider');
@@ -1763,8 +1763,8 @@ if ($(this).rangeSlider('option','lock')!=1)
 	selection.bind('mousedown.range-slider', function(){
 
 
-if ($(_self).rangeSlider('option','lock')!=1)
-{
+	if ($(_self).rangeSlider('option','lock')!=1)
+	{
 		var _selection = this;
 		var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 		var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
@@ -1832,7 +1832,7 @@ if ($(_self).rangeSlider('option','lock')!=1)
 
 			$(document).unbind("mouseup.range-slider");
 		});
-}
+	}
 		return false;
 	}).bind("mouseup", function(){
 		$(document).unbind("mousemove.range-slider");
@@ -1840,8 +1840,8 @@ if ($(_self).rangeSlider('option','lock')!=1)
 		
 	}).bind('keydown.range-slider', function(event){
 
-if ($(_self).rangeSlider('option','lock')!=1)
-{
+	if ($(_self).rangeSlider('option','lock')!=1)
+	{
 		var from, to, type;
 
 		change_by_key = 1;
@@ -1852,7 +1852,6 @@ if ($(_self).rangeSlider('option','lock')!=1)
 
 		if($(this).is('.max'))
 		{
-
 			if (data_fix_mount != "on")
 			{
 				$(_self).find('.dynamic-range .max span.mount').show(); //design*********
@@ -1904,15 +1903,16 @@ if ($(_self).rangeSlider('option','lock')!=1)
 			$(_self).find('.dynamic-range .max span.mount').hide(); //design*********
 			$(_self).find('.dynamic-range .min span.mount').hide(); //design*********
 		}
-}
+	}
+
 	}).bind('keyup.range-slider',function(event){
 		$(_self).trigger("range-slider::keyup");
 		$(_self).trigger("range-slider::changeAfter");
 	}).bind('touchmove',function(e){
 
-if ($(_self).rangeSlider('option','lock')!=1)
-{
-	      e.preventDefault();
+		if ($(_self).rangeSlider('option','lock')!=1)
+		{
+		  e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
 			if (data_fix_mount != "on")
 			{
@@ -1938,7 +1938,7 @@ if ($(_self).rangeSlider('option','lock')!=1)
 			{
 				$(_self).rangeSlider('option', 'range','from',{type:'pixel'}, mouse_selection);
 			}
-}
+		}
 	}).bind('touchend',function(e){
 			e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).removeClass("active"); //design*********
