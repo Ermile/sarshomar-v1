@@ -1900,23 +1900,24 @@ code {font-size: 1.2em;}
 
 .tbl#totalPrice>div>span {white-space: nowrap;}
 
+/* API Theme */
 .tbl.response-codes>div>span:first-child{-webkit-box-flex:.2;-ms-flex:.2;flex:.2}
 .tbl.response-codes>div>span:nth-child(2){-webkit-box-flex:.3;-ms-flex:.3;flex:.3}
 .tbl.response-codes>div>span:last-child{-webkit-box-flex:1;-ms-flex:1;flex:1}
-
 .tbl.method-table>div>span:first-child{width: 15%;}
 .tbl.method-table>div>span:nth-child(2){width: 55%;}
 .tbl.method-table>div>span:last-child{width: 30%;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;}.tbl>div>span>label{cursor:pointer}
 .inner-table{border-bottom:0;border-top:0}
 
-/* api theme */
-.api-docs .tbl{border:1px solid #e0e0e0}
-.api-docs .tbl>div{background:rgb(239, 239, 239)}
-.api-docs .tbl>div:not(.tbl-header):nth-child(even){background:#fff}
-.api-docs .tbl>div:hover:not(.tbl-header)>span{background:#dfe3e6}
-.api-docs .tbl>div.tbl-header{background:rgb(239, 239, 239);font-weight:bold}
-.api-docs .tbl>div>span>label{color:#54b4ef}
-.api-docs .long-txt {white-space: pre-wrap;}
+/* Default table theme */
+.default-tbl .tbl{border:1px solid #e0e0e0}
+.default-tbl .tbl>div{background:rgb(239, 239, 239)}
+.default-tbl .tbl>div:not(.tbl-header):nth-child(even){background:#fff}
+.default-tbl .tbl>div:hover:not(.tbl-header)>span{background:#dfe3e6}
+.default-tbl .tbl>div.tbl-header{background:rgb(239, 239, 239);font-weight:bold}
+.default-tbl .tbl>div>span>label{color:#54b4ef}
+.default-tbl .long-txt {white-space: pre-wrap;}
+
 /* step publish theme */
 .stepPublish .tbl{text-align:center;}
 .stepPublish .tbl>div:not(.tbl-header):nth-child(even){background-color:#efefef}
