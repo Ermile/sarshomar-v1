@@ -10,6 +10,7 @@ class controller extends  \content_u\home\controller
 
 		$this->get("billing", "billing")->ALL();
 		$this->post("billing")->ALL();
+		$this->get("verify", "verify")->ALL("/billing\/verify\/(zarinpal|melli|mellat)/");
 	}
 }
 

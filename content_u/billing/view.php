@@ -11,7 +11,21 @@ class view extends \mvc\view
 	}
 
 
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function view_billing($_args)
+	{
+
+	}
+
+
+	/**
+	 * verify payment
+	 */
+	public function view_verify()
 	{
 
 	}
