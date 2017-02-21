@@ -80,6 +80,7 @@ class model extends \mvc\model
 	 */
 	public function pay()
 	{
+		self::$zarinpal['Description'] = T_("Charge Sarshomar");
 		if(strtolower(utility::post('bank')) == 'zarinpal')
 		{
 			$amount                   = utility::post('amount');
