@@ -109,9 +109,15 @@ class model extends \mvc\model
 	 */
 	public function api_key()
 	{
-		$authorization = utility::header("authorization");
 
-		if(!$authorization)
+		$api_token = utility::header("api_token") ? utility::header("api_token") : utility::header("Api_token");
+
+		$authorization = utility::header("authorization");
+		if($api_token)
+		{
+			$authorization = $api_token;
+		}
+		elseif(!$authorization)
 		{
 			$authorization = utility::header("Authorization");
 		}
