@@ -488,15 +488,29 @@ if (json_string)
 	optionMethod.min_default = function(_name, _set)
 	{
 		var _self = $(this).parents("range-slider");
+		var data_min = parseInt($(this).attr('data-min'));
 		if ($(this).attr("data-infinity") != 'min')
 		{
-			var data_min = parseInt($(this).attr('data-min'));
 			if (!isNaN(_set))
 			{
 				var data_min_default = _set;
 				if(isNaN(data_min_default) || data_min > data_min_default)
 				{
 					data_min_default = data_min;
+				}
+
+				var json_string = $(this).attr("data-step");
+				var json_string_step = $(this).attr("save_jason");
+				if (json_string)
+				{
+					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
+					var step = $(this).rangeSlider('option','step');
+					var real_step = Math.round(unit/step);
+					var real_min = $(this).rangeSlider('option','multi_level_value_to_real', _set);
+					if (!isNaN(real_min))
+					{
+						var data_min_default = real_min*real_step;
+					}
 				}
 				$(this).attr('data-min-default',data_min_default);
 				return data_min_default;
@@ -512,7 +526,7 @@ if (json_string)
 		}
 		else
 		{
-			return 0
+			return $(this).rangeSlider('option','min');
 		}
 	}
 
@@ -549,13 +563,10 @@ if (json_string)
 					var real_max = $(this).rangeSlider('option','multi_level_value_to_real', _set);
 					var data_max_default = real_max*real_step;
 				}
-
 				$(this).attr('data-max-default',data_max_default);
 				return data_max_default;
 			}
 	
-
-
 			var data_max_default = Number($(this).attr('data-max-default'));
 			if(isNaN(data_max_default) || data_max < data_max_default)
 			{
@@ -969,11 +980,17 @@ if (json_string)
 
 
 			$(this).rangeSlider('option', 'type', $(this).attr("data-type"));
+			// $(this).rangeSlider('option', 'step', $(this).attr("data-step"));
 			$(this).rangeSlider('option', 'min', $(this).attr("data-min"));
 			$(this).rangeSlider('option', 'max', $(this).attr("data-max"));
 			$(this).rangeSlider('option', 'unit', $(this).attr("data-unit"));
 			$(this).rangeSlider('option', 'min_default', $(this).attr("data-min-default"));
 			$(this).rangeSlider('option', 'max_default', $(this).attr("data-max-default"));
+			// $(this).rangeSlider('option', 'min_unit', $(this).attr("data-min-unit"));
+			// $(this).rangeSlider('option', 'min_title', $(this).attr("data-min-title"));
+			// $(this).rangeSlider('option', 'max_title', $(this).attr("data-min-title"));
+			// $(this).rangeSlider('option', 'max_limit', $(this).attr("data-max-limit"));
+
 
 
 			$(this).data('range-slider', { });
@@ -1006,7 +1023,7 @@ if (json_string)
 				data.unit_to_pixel  = this.rangeSlider('option', 'unit_to_pixel');
 				data.range_width    = this.rangeSlider('option', 'range_width');
 				data.total_width    = this.rangeSlider('option', 'total_width');
-				// data.lock    = this.rangeSlider('option', 'lock');
+				data.lock    = this.rangeSlider('option', 'lock');
 				data.real_max_limit = $(this).attr('real_max_limit');
 
 				var option = {
@@ -1509,6 +1526,8 @@ if (json_string)
 					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), ($(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min')) );
 				}
 
+				// add_selection.call(this, 'min');
+
 				margin_range.show();
 				dynamic_range.show();
 				$(this).trigger("range-slider::init::after");
@@ -1519,16 +1538,18 @@ if (json_string)
 
 var add_selection = function(_name)
 {
-if ($(this).rangeSlider('option','lock')!=1) 
-{
-	if (!$(this).attr("data-infinity") && $(this).attr("data-lock")!='on')
+
+	if (!$(this).attr("data-infinity") && $(this).attr("data-lock") == undefined)
 	{
 		$(this).unbind('mousemove.dynamic-range');
 		$(document).unbind('mouseup.dynamic-range');
+
 		$(this).bind('mousemove.dynamic-range', function(){
 			var dynamic_range = $(this).find(".dynamic-range");
 		$(dynamic_range).bind('mousedown.dynamic-range', function(){
 			var _self          = $(this).parents(".range-slider");
+if ($(_self).rangeSlider('option','lock')!=1)
+{
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
@@ -1615,6 +1636,7 @@ if ($(this).rangeSlider('option','lock')!=1)
 
 				$(document).unbind("mouseup.dynamic-range");
 			})
+}
 			return false;
 		}).bind("mouseup", function(){
 			$(dynamic_range).unbind("mousedown.dynamic-range");
@@ -1628,7 +1650,8 @@ if ($(this).rangeSlider('option','lock')!=1)
 	$(this).bind('touchstart',function(e){
 		e.preventDefault();
 		var target = $( event.target );
-
+if ($(this).rangeSlider('option','lock')!=1)
+{
 		var _self          = $(this);
 		if (target.is(".dynamic-range"))
 		{
@@ -1676,6 +1699,7 @@ if ($(this).rangeSlider('option','lock')!=1)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
+				var json_string = $(this).attr("save_jason");
 				if (json_string)
 				{
 					my_max_limit = $(_self).attr('real_max_limit');
@@ -1704,7 +1728,7 @@ if ($(this).rangeSlider('option','lock')!=1)
 			$(_self).rangeSlider('option', 'range','from',{type:'pixel'}, final_from);
 		}
 		});
-
+}
 	}).bind('touchend.dynamic-range',function(e){
 			$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
 			if (data_fix_mount != "on")
@@ -1720,7 +1744,6 @@ if ($(this).rangeSlider('option','lock')!=1)
 			$(document).unbind('touchstart');
 			$(document).unbind('touchmove');
 		});
-	}
 }
 
 	var data_fix_mount = $(this).attr("data-fix-mount");
@@ -1731,15 +1754,17 @@ if ($(this).rangeSlider('option','lock')!=1)
 
 
 
-if ($(this).rangeSlider('option','lock') == false)
-{
-
-	if ($(this).attr("data-lock")!='on')
+	if ($(this).attr("data-lock") == undefined)
 	{
 
 	selection.attr('tabindex', '0');
 	selection.unbind('mousedown.range-slider');
+
 	selection.bind('mousedown.range-slider', function(){
+
+
+if ($(_self).rangeSlider('option','lock')!=1)
+{
 		var _selection = this;
 		var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 		var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
@@ -1807,6 +1832,7 @@ if ($(this).rangeSlider('option','lock') == false)
 
 			$(document).unbind("mouseup.range-slider");
 		});
+}
 		return false;
 	}).bind("mouseup", function(){
 		$(document).unbind("mousemove.range-slider");
@@ -1814,6 +1840,8 @@ if ($(this).rangeSlider('option','lock') == false)
 		
 	}).bind('keydown.range-slider', function(event){
 
+if ($(_self).rangeSlider('option','lock')!=1)
+{
 		var from, to, type;
 
 		change_by_key = 1;
@@ -1876,10 +1904,14 @@ if ($(this).rangeSlider('option','lock') == false)
 			$(_self).find('.dynamic-range .max span.mount').hide(); //design*********
 			$(_self).find('.dynamic-range .min span.mount').hide(); //design*********
 		}
+}
 	}).bind('keyup.range-slider',function(event){
 		$(_self).trigger("range-slider::keyup");
 		$(_self).trigger("range-slider::changeAfter");
 	}).bind('touchmove',function(e){
+
+if ($(_self).rangeSlider('option','lock')!=1)
+{
 	      e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
 			if (data_fix_mount != "on")
@@ -1906,7 +1938,7 @@ if ($(this).rangeSlider('option','lock') == false)
 			{
 				$(_self).rangeSlider('option', 'range','from',{type:'pixel'}, mouse_selection);
 			}
-
+}
 	}).bind('touchend',function(e){
 			e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).removeClass("active"); //design*********
@@ -1923,8 +1955,9 @@ if ($(this).rangeSlider('option','lock') == false)
 			$(document).unbind("mouseup.range-slider");
 			$(document).unbind("mousemove.range-slider");
 	});	
+
 }
-}
+
 	return selection;
 }
 })(jQuery);
