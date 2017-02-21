@@ -39,7 +39,7 @@
                     <h3 class="title" id="charge-account">{%trans "Charge your account"%}</h3>
                     <div class="charge-amount">{%trans "Choose a gateway and enter an amount to charge your account"%}</div>
                     <div class="gateways">
-                        <form class="row auto">
+                        <form class="row auto" method="post">
                             <div class="span6">
                         <label><span>
                             <input type="radio" name="bank" id="ZarinPal" value="ZarinPal" checked>
@@ -68,7 +68,7 @@
                             </div>
                         <div class="span3 billing-buttons">
                             <label for="amount-number" class="currency-label">{%trans "Toman"%}</label>
-                            <input id="amount-number" class="amount-number" type="number" name="" value="{{amount}}" placeholder="{%trans "Amount"%}">
+                            <input id="amount-number" class="amount-number" type="number" name="amount" value="{{amount}}" placeholder="{%trans "Amount"%}">
                             <button class="billing-btn" type="submit">{%trans "Confirm"%}</button>
                         </div>
                         </form>
@@ -82,9 +82,9 @@
                         <div class="promo-subtitle">{%trans "If you have a promo code, please enter it below to receive your credit."%}</div>
                     </div>
                     <div class="span3 promo-codes">
-                        <form class="row auto">
+                        <form class="row auto" method="post">
                             <div class="span12 billing-buttons">
-                                <input class="amount-number" type="text" name="" value="" placeholder="{%trans "Code"%}">
+                                <input class="amount-number" type="text" name="promo" value="" placeholder="{%trans "Code"%}">
                                 <button class="billing-btn" type="submit">{%trans "Submit"%}</button>
                             </div>
                         </form>
