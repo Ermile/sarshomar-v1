@@ -7,10 +7,10 @@ private function transtext()
 	echo T_("Contact");                                                               // Line 10
 	echo T_("Request, offer, criticism and appreciation");                            // Line 13
 	echo T_("Name");                                                                  // Line 18
-	echo T_("Mobile");                                                                // Line 39
-	echo T_("Email");                                                                 // Line 35
+	echo T_("Mobile");                                                                // Line 71
+	echo T_("Email");                                                                 // Line 67
 	echo T_("Write down your opinion here");                                          // Line 28
-	echo T_("Submit");                                                                // Line 464
+	echo T_("Submit");                                                                // Line 88
 	echo T_("How to contact Sarshomar");                                              // Line 36
 	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 49
 
@@ -43,7 +43,7 @@ private function transtext()
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
-	echo T_("Try Before Register");                                                   // Line 46
+	echo T_("Try Before Register");                                                   // Line 48
 	echo T_("Sarshomar Society Distributtion");                                       // Line 23
 	echo T_("Organizations and Companies");                                           // Line 10
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 16
@@ -73,16 +73,16 @@ private function transtext()
 
 	//---------------------------------------------------content\knowledge\layout.html
 	echo T_("Questions");                                                             // Line 18
-	echo T_("Gender");                                                                // Line 204
-	echo T_("Male");                                                                  // Line 207
-	echo T_("Female");                                                                // Line 208
+	echo T_("Gender");                                                                // Line 236
+	echo T_("Male");                                                                  // Line 239
+	echo T_("Female");                                                                // Line 240
 	echo T_("Marital");                                                               // Line 61
-	echo T_("Single");                                                                // Line 215
-	echo T_("Married");                                                               // Line 216
+	echo T_("Single");                                                                // Line 247
+	echo T_("Married");                                                               // Line 248
 	echo T_("Employment");                                                            // Line 45
-	echo T_("Employee");                                                              // Line 124
-	echo T_("Unemployed");                                                            // Line 125
-	echo T_("Retired");                                                               // Line 126
+	echo T_("Employee");                                                              // Line 156
+	echo T_("Unemployed");                                                            // Line 157
+	echo T_("Retired");                                                               // Line 158
 	echo T_("Filters");                                                               // Line 236
 	echo T_("Question Type");                                                         // Line 132
 	echo T_("Poll");                                                                  // Line 13 Seperate
@@ -99,25 +99,25 @@ private function transtext()
 	echo T_("Survey Time");                                                           // Line 209
 	echo T_("Publish");                                                               // Line 14
 	echo T_("Expire");                                                                // Line 222
-	echo T_("Graduation");                                                            // Line 67
-	echo T_("Illiterate");                                                            // Line 70
-	echo T_("Undergraduate");                                                         // Line 71
-	echo T_("Graduate");                                                              // Line 72
-	echo T_("Under Diploma");                                                         // Line 91
-	echo T_("Diploma");                                                               // Line 92
-	echo T_("2 Year College");                                                        // Line 93
-	echo T_("Bachelor");                                                              // Line 94
-	echo T_("Master");                                                                // Line 95
-	echo T_("PHD");                                                                   // Line 96
-	echo T_("Other");                                                                 // Line 97
-	echo T_("Country");                                                               // Line 167
+	echo T_("Graduation");                                                            // Line 99
+	echo T_("Illiterate");                                                            // Line 102
+	echo T_("Undergraduate");                                                         // Line 103
+	echo T_("Graduate");                                                              // Line 104
+	echo T_("Under Diploma");                                                         // Line 123
+	echo T_("Diploma");                                                               // Line 124
+	echo T_("2 Year College");                                                        // Line 125
+	echo T_("Bachelor");                                                              // Line 126
+	echo T_("Master");                                                                // Line 127
+	echo T_("PHD");                                                                   // Line 128
+	echo T_("Other");                                                                 // Line 129
+	echo T_("Country");                                                               // Line 199
 	echo T_("Age");                                                                   // Line 105
-	echo T_("Province");                                                              // Line 171
-	echo T_("Religion");                                                              // Line 59
+	echo T_("Province");                                                              // Line 203
+	echo T_("Religion");                                                              // Line 91
 	echo T_("Language");                                                              // Line 64
 
 	//----------------------------------------------------content\main\layout-xhr.html
-	echo T_("View your current location and navigate to parent of it");               // Line 61
+	echo T_("View your current location and navigate to parent of it");               // Line 62
 
 	//--------------------------------------------------------content\main\layout.html
 	echo T_("Login or Try");                                                          // Line 25
@@ -130,7 +130,7 @@ private function transtext()
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 347
+	echo T_("Description");                                                           // Line 105
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
@@ -138,19 +138,20 @@ private function transtext()
 	echo T_("You can select just two options.");                                      // Line 217
 	echo T_("I am not willing to answer");                                            // Line 266
 	echo T_("Save Answer");                                                           // Line 277
-	echo T_("Ask Me");                                                                // Line 29
+	echo T_("Ask Me");                                                                // Line 30
 	echo T_("result");                                                                // Line 292
-	echo T_("Similar Questions");                                                     // Line 313
-	echo T_("There is no similar post");                                              // Line 322
-	echo T_("Poll timespan");                                                         // Line 340
-	echo T_("to");                                                                    // Line 343
-	echo T_("Not set");                                                               // Line 390
+	echo T_("Similar Questions");                                                     // Line 331
+	echo T_("Last Questions");                                                        // Line 324
+	echo T_("There is no similar post");                                              // Line 332
+	echo T_("Poll timespan");                                                         // Line 350
+	echo T_("to");                                                                    // Line 353
+	echo T_("Not set");                                                               // Line 400
 	echo T_("Status");                                                                // Line 11
-	echo T_("Keyword");                                                               // Line 361
-	echo T_("Statistical population");                                                // Line 378
-	echo T_("There is nothing to display!");                                          // Line 435
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 446
-	echo T_("Continue");                                                              // Line 503
+	echo T_("Keyword");                                                               // Line 371
+	echo T_("Statistical population");                                                // Line 388
+	echo T_("There is nothing to display!");                                          // Line 445
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 456
+	echo T_("Continue");                                                              // Line 513
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -172,51 +173,51 @@ private function transtext()
 	echo T_("Press");                                                                 // Line 64
 	echo T_("Careers");                                                               // Line 7
 	echo T_("Social Responsibility");                                                 // Line 10
-	echo T_("Help Center");                                                           // Line 16
+	echo T_("Help Center");                                                           // Line 17
 	echo T_("API");                                                                   // Line 10
 	echo T_("Eco Friendly");                                                          // Line 11
 	echo T_("Enamad");                                                                // Line 18
 	echo T_("Service");                                                               // Line 23
-	echo T_("Features");                                                              // Line 14
-	echo T_("Knowledge");                                                             // Line 15
+	echo T_("Features");                                                              // Line 15
+	echo T_("Knowledge");                                                             // Line 16
 	echo T_("Random Poll");                                                           // Line 27
 	echo T_("Referral Program");                                                      // Line 28
 	echo T_("Learn More");                                                            // Line 37
 	echo T_("Terms of Service");                                                      // Line 39
 	echo T_("Privacy Policy");                                                        // Line 11
-	echo T_("Support");                                                               // Line 45
-	echo T_("Contact us");                                                            // Line 48
+	echo T_("Changelog");                                                             // Line 10
+	echo T_("Support");                                                               // Line 46
+	echo T_("Contact us");                                                            // Line 49
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 9
 	echo T_("Vision");                                                                // Line 9
-	echo T_("Changelog");                                                             // Line 10
-	echo T_("In the News");                                                           // Line 58
+	echo T_("In the News");                                                           // Line 59
 	echo T_("Statistics");                                                            // Line 9
-	echo T_("Latest News");                                                           // Line 64
-	echo T_("Questions answered");                                                    // Line 74
-	echo T_("Proudly Made in IRAN");                                                  // Line 75
+	echo T_("Latest News");                                                           // Line 65
+	echo T_("Questions answered");                                                    // Line 75
+	echo T_("Proudly Made in IRAN");                                                  // Line 76
 
 	//----------------------------------------------------content\template\header.html
-	echo T_("Add Question");                                                          // Line 25
-	echo T_("Welcome");                                                               // Line 35
-	echo T_("Dashboard");                                                             // Line 38
-	echo T_("Exit");                                                                  // Line 39
-	echo T_("Register");                                                              // Line 46
-	echo T_("Cost");                                                                  // Line 70
-	echo T_("Tomans");                                                                // Line 70
-	echo T_("Total cash");                                                            // Line 75
+	echo T_("Add Question");                                                          // Line 26
+	echo T_("Welcome");                                                               // Line 36
+	echo T_("Dashboard");                                                             // Line 39
+	echo T_("Exit");                                                                  // Line 40
+	echo T_("Register");                                                              // Line 47
+	echo T_("Cost");                                                                  // Line 71
+	echo T_("Tomans");                                                                // Line 71
+	echo T_("Total cash");                                                            // Line 76
 	echo T_("Cash");                                                                  // Line 112
-	echo T_("Gift");                                                                  // Line 87
+	echo T_("Gift");                                                                  // Line 88
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("Sarshomar Vision");                                                      // Line 16
-	echo T_("Ask Anyone Anywhere");                                                   // Line 17
-	echo T_("We are inestimable");                                                    // Line 40
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 24
-	echo T_("Sarshomar is jumping...");                                               // Line 25
-	echo T_("Inspection and Answer");                                                 // Line 43
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 44
-	echo T_("Verify your account");                                                   // Line 35
+	echo T_("Sarshomar Vision");                                                      // Line 18
+	echo T_("Ask Anyone Anywhere");                                                   // Line 19
+	echo T_("We are inestimable");                                                    // Line 42
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 26
+	echo T_("Sarshomar is jumping...");                                               // Line 27
+	echo T_("Inspection and Answer");                                                 // Line 45
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 46
+	echo T_("Verify your account");                                                   // Line 37
 
 	//----------------------------------------------------content\template\social.html
 	echo T_("Twitter");                                                               // Line 2
@@ -257,10 +258,15 @@ private function transtext()
 
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("in preparation");                                                        // Line 4
-	echo T_("Sarshomar's 1st version released");                                      // Line 21
-	echo T_("Sarshomar's beta version released");                                     // Line 25
-	echo T_("Sarshomar's alpha version released");                                    // Line 29
-	echo T_("Project Sarshomar started");                                             // Line 33
+	echo T_("We are Developers, please wait!");                                       // Line 22
+	echo T_("Version 1 of Sarshomar released");                                       // Line 30
+	echo T_("Finally Sarshomar logo is accepted and we start branding");              // Line 31
+	echo T_("Beta version of Sarshomar released");                                    // Line 36
+	echo T_("Alfa version of Sarshomar is ready");                                    // Line 40
+	echo T_("Demo version of Sarshomar released");                                    // Line 44
+	echo T_("Sarshomar is ready to start");                                           // Line 48
+	echo T_("The name of project selected as Sarshomar and register domains <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a>");// Line 52
+	echo T_("We are born to do Best!");                                               // Line 57
 
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 14
@@ -755,7 +761,7 @@ private function transtext()
 	echo T_("The status of a response can be determined from the HTTP status code."); // Line 11
 
 	//------------------------------------content_api\v1\doc\template\start\table.html
-	echo T_("Code");                                                                  // Line 3
+	echo T_("Code");                                                                  // Line 87
 	echo T_("request successful");                                                    // Line 10
 	echo T_("request was invalid");                                                   // Line 20
 	echo T_("user does not have permission");                                         // Line 25
@@ -792,6 +798,7 @@ private function transtext()
 	echo T_("Multi Choice");                                                          // Line 171
 	echo T_("Ordering");                                                              // Line 174
 	echo T_("other");                                                                 // Line 181
+	echo T_("Please type your answer");                                               // Line 181
 	echo T_("Allow to type other answer");                                            // Line 183
 	echo T_("Branding");                                                              // Line 102
 	echo T_("URL");                                                                   // Line 201
@@ -836,8 +843,8 @@ private function transtext()
 	echo T_("Apply");                                                                 // Line 510
 
 	//--------------------------------------------------------content_u\add\step2.html
-	echo T_("Marrital");                                                              // Line 212
-	echo T_("Degree");                                                                // Line 88
+	echo T_("Marrital");                                                              // Line 244
+	echo T_("Degree");                                                                // Line 120
 	echo T_("Under diploma");                                                         // Line 63
 	echo T_("2 year college");                                                        // Line 67
 	echo T_("Range");                                                                 // Line 82
@@ -848,7 +855,7 @@ private function transtext()
 	echo T_("31-44");                                                                 // Line 93
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
-	echo T_("Toman");                                                                 // Line 83
+	echo T_("Toman");                                                                 // Line 70
 	echo T_("Private");                                                               // Line 125
 
 	//--------------------------------------------------------content_u\add\step3.html
@@ -862,10 +869,25 @@ private function transtext()
 	echo T_("Register Question");                                                     // Line 97
 	echo T_("Total Price");                                                           // Line 107
 	echo T_("Balance");                                                               // Line 118
-	echo T_("Charge Account");                                                        // Line 125
-	echo T_("Publish it");                                                            // Line 128
+	echo T_("Charge Account");                                                        // Line 124
+	echo T_("Publish it");                                                            // Line 125
+	echo T_("go Back to Draft");                                                      // Line 125
 
 	//---------------------------------------------------------content_u\add\tree.html
+
+	//--------------------------------------------------content_u\billing\display.html
+	echo T_("Your Money");                                                            // Line 14
+	echo T_("Your Gift");                                                             // Line 23
+	echo T_("Your Credit");                                                           // Line 32
+	echo T_("Charge your account");                                                   // Line 39
+	echo T_("Choose a gateway and enter an amount to charge your account");           // Line 40
+	echo T_("Amount");                                                                // Line 106
+	echo T_("Confirm");                                                               // Line 72
+	echo T_("Promo code");                                                            // Line 81
+	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 82
+	echo T_("Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.");// Line 95
+	echo T_("Billing History");                                                       // Line 101
+	echo T_("Remaining");                                                             // Line 107
 
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Undefined");                                                             // Line 12
@@ -894,66 +916,66 @@ private function transtext()
 	//------------------------------------------------content_u\knowledge\display.html
 
 	//--------------------------------------------------content_u\profile\display.html
-	echo T_("Personal");                                                              // Line 202
-	echo T_("Education");                                                             // Line 7
-	echo T_("Job");                                                                   // Line 8
-	echo T_("Location");                                                              // Line 9
-	echo T_("User");                                                                  // Line 196
-	echo T_("Family");                                                                // Line 11
-	echo T_("Favorites");                                                             // Line 12
-	echo T_("Profile Photo");                                                         // Line 21
-	echo T_("First Name");                                                            // Line 23
-	echo T_("Last Name");                                                             // Line 27
-	echo T_("Display Name");                                                          // Line 31
-	echo T_("Birth Year");                                                            // Line 43
-	echo T_("Birth Month");                                                           // Line 47
-	echo T_("Birthday");                                                              // Line 51
-	echo T_("UI Language");                                                           // Line 55
-	echo T_("Please Select One Item");                                                // Line 235
-	echo T_("Education Type");                                                        // Line 76
-	echo T_("Academic");                                                              // Line 79
-	echo T_("Howzeh");                                                                // Line 101
-	echo T_("Course");                                                                // Line 84
-	echo T_("Howzeh Degree");                                                         // Line 105
-	echo T_("Howzeh Course");                                                         // Line 109
-	echo T_("Education City");                                                        // Line 113
-	echo T_("Employment Status");                                                     // Line 121
-	echo T_("Industry");                                                              // Line 130
-	echo T_("Company");                                                               // Line 134
-	echo T_("Job City");                                                              // Line 138
-	echo T_("Job Title");                                                             // Line 142
-	echo T_("Birth");                                                                 // Line 150
-	echo T_("Birth Country");                                                         // Line 152
-	echo T_("Birth Province");                                                        // Line 156
-	echo T_("Birth City");                                                            // Line 160
-	echo T_("Current");                                                               // Line 165
-	echo T_("City");                                                                  // Line 175
-	echo T_("Village");                                                               // Line 179
-	echo T_("House Status");                                                          // Line 183
-	echo T_("Owner");                                                                 // Line 186
-	echo T_("Tenant");                                                                // Line 187
-	echo T_("Homeless");                                                              // Line 188
-	echo T_("Girl Child");                                                            // Line 220
-	echo T_("Boy Child");                                                             // Line 224
-	echo T_("Internet Usage");                                                        // Line 233
-	echo T_("Low");                                                                   // Line 236
-	echo T_("Mid");                                                                   // Line 237
-	echo T_("High");                                                                  // Line 238
-	echo T_("Skills");                                                                // Line 242
-	echo T_("Languages");                                                             // Line 246
-	echo T_("Books");                                                                 // Line 250
-	echo T_("Writers");                                                               // Line 261
-	echo T_("Films");                                                                 // Line 272
-	echo T_("Actors");                                                                // Line 283
-	echo T_("Genre");                                                                 // Line 294
-	echo T_("Musics");                                                                // Line 305
-	echo T_("Artists");                                                               // Line 316
-	echo T_("Sports");                                                                // Line 327
-	echo T_("Sportmans");                                                             // Line 338
-	echo T_("Habbits");                                                               // Line 349
-	echo T_("Devices");                                                               // Line 360
-	echo T_("Save");                                                                  // Line 377
-	echo T_("Cancel");                                                                // Line 377
+	echo T_("Personal");                                                              // Line 234
+	echo T_("Education");                                                             // Line 39
+	echo T_("Job");                                                                   // Line 40
+	echo T_("Location");                                                              // Line 41
+	echo T_("User");                                                                  // Line 228
+	echo T_("Family");                                                                // Line 43
+	echo T_("Favorites");                                                             // Line 44
+	echo T_("Profile Photo");                                                         // Line 53
+	echo T_("First Name");                                                            // Line 55
+	echo T_("Last Name");                                                             // Line 59
+	echo T_("Display Name");                                                          // Line 63
+	echo T_("Birth Year");                                                            // Line 75
+	echo T_("Birth Month");                                                           // Line 79
+	echo T_("Birthday");                                                              // Line 83
+	echo T_("UI Language");                                                           // Line 87
+	echo T_("Please Select One Item");                                                // Line 267
+	echo T_("Education Type");                                                        // Line 108
+	echo T_("Academic");                                                              // Line 111
+	echo T_("Howzeh");                                                                // Line 133
+	echo T_("Course");                                                                // Line 116
+	echo T_("Howzeh Degree");                                                         // Line 137
+	echo T_("Howzeh Course");                                                         // Line 141
+	echo T_("Education City");                                                        // Line 145
+	echo T_("Employment Status");                                                     // Line 153
+	echo T_("Industry");                                                              // Line 162
+	echo T_("Company");                                                               // Line 166
+	echo T_("Job City");                                                              // Line 170
+	echo T_("Job Title");                                                             // Line 174
+	echo T_("Birth");                                                                 // Line 182
+	echo T_("Birth Country");                                                         // Line 184
+	echo T_("Birth Province");                                                        // Line 188
+	echo T_("Birth City");                                                            // Line 192
+	echo T_("Current");                                                               // Line 197
+	echo T_("City");                                                                  // Line 207
+	echo T_("Village");                                                               // Line 211
+	echo T_("House Status");                                                          // Line 215
+	echo T_("Owner");                                                                 // Line 218
+	echo T_("Tenant");                                                                // Line 219
+	echo T_("Homeless");                                                              // Line 220
+	echo T_("Girl Child");                                                            // Line 252
+	echo T_("Boy Child");                                                             // Line 256
+	echo T_("Internet Usage");                                                        // Line 265
+	echo T_("Low");                                                                   // Line 268
+	echo T_("Mid");                                                                   // Line 269
+	echo T_("High");                                                                  // Line 270
+	echo T_("Skills");                                                                // Line 274
+	echo T_("Languages");                                                             // Line 278
+	echo T_("Books");                                                                 // Line 282
+	echo T_("Writers");                                                               // Line 293
+	echo T_("Films");                                                                 // Line 304
+	echo T_("Actors");                                                                // Line 315
+	echo T_("Genre");                                                                 // Line 326
+	echo T_("Musics");                                                                // Line 337
+	echo T_("Artists");                                                               // Line 348
+	echo T_("Sports");                                                                // Line 359
+	echo T_("Sportmans");                                                             // Line 370
+	echo T_("Habbits");                                                               // Line 381
+	echo T_("Devices");                                                               // Line 392
+	echo T_("Save");                                                                  // Line 409
+	echo T_("Cancel");                                                                // Line 409
 
 	//---------------------------------------------------content_u\search\display.html
 
