@@ -1751,14 +1751,27 @@ function sendQuestionData(_status)
 	// change status to syncing
 	syncing(true);
 
-	var myPoll  = {};
-	myPoll      = prepareQuestionData();
-	myPoll.from = prepareQuestionFilter();
-	console.log(myPoll);
-	myPoll      = JSON.stringify(myPoll);
+	var myPoll       = {};
+	myQuestionBox    = $('#question-add');
+	myPoll           = prepareQuestionData();
+	myPoll.from      = prepareQuestionFilter();
+	// request to save request!
+	// change array to json
+	myPoll           = JSON.stringify(myPoll);
+	var checkWithOld = saveSavedData(myPoll);
 
+	if(checkWithOld === 'duplicate')
+	{
+		// after a short delay show synced
+		setTimeout(function()
+		{
+			syncing();
+		}, 200)
+		return false;
+	}
+	// if need to sync with server, sync it!
 
-	$('#question-add').ajaxify(
+	myQuestionBox.ajaxify(
 	{
 		ajax:
 		{
@@ -1796,6 +1809,8 @@ function sendQuestionData(_status)
 							fake: true,
 						});
 					}
+					// save successfully saved
+					saveSavedData(null, true);
 					// change status if wanna to change it
 					if(_status)
 					{
@@ -1825,6 +1840,60 @@ function sendQuestionData(_status)
 	});
 
 	return myPoll;
+}
+
+
+/**
+ * [saveSavedData description]
+ * @param  {[type]} _data   [description]
+ * @param  {[type]} _result [description]
+ * @return {[type]}         [description]
+ */
+function saveSavedData(_data, _result)
+{
+	// get mybox for save
+	var myBox       = $('#question-add');
+	var myBoxLastId = myBox.data('lastId');
+	var lastRecord  = null;
+	// if exist before this request
+	if(myBoxLastId !== undefined && myBox.data('send')[myBoxLastId])
+	{
+		lastRecord = myBox.data('send')[myBoxLastId];
+	}
+	// save result only if pass result
+	if(_result)
+	{
+		if(lastRecord)
+		{
+			console.log(myBox.data('send')[myBoxLastId]);
+			myBox.data('send')[myBoxLastId].result = _result;
+		}
+		// savingData.result
+		return true;
+	}
+	// if result of last is true and duplicate, accept it as duplicate
+	if(lastRecord && lastRecord.result === true && lastRecord.data === _data)
+	{
+		return 'duplicate';
+	}
+	// fill sena as empty array
+	if(myBox.data('send') === undefined)
+	{
+		myBox.data('send', []);
+	}
+	// create variable to send for save
+	var savingData    = {};
+	savingData.data   = _data;
+	savingData.result = '';
+	// add to array of box
+	myBox.data('send').push(savingData);
+	// add count of last id
+	var myBoxCurrentId = myBox.data('send').length - 1;
+	myBox.data('lastId', myBoxCurrentId);
+	// get count of try for send
+
+	// return id
+	return myBoxCurrentId;
 }
 
 
@@ -2132,7 +2201,7 @@ function handleSyncProcess()
 		_e.preventDefault();
 		if($(this).attr('data-manual') === undefined)
 		{
-			$(this).attr('data-manual', true);
+			$(this).attr('data-manual', '');
 		}
 		else
 		{
@@ -2141,7 +2210,7 @@ function handleSyncProcess()
 	});
 	if($('html').attr('data-develop') !== undefined)
 	{
-		$('.sync').attr('data-manual', true);
+		$('.sync').attr('data-manual', '');
 	}
 }
 
