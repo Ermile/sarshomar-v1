@@ -71,6 +71,44 @@ class view extends \mvc\view
 		$this->data->chart['stacked'] = array_flip($advance_stats_title);
 
 		$this->data->poll      = $poll;
+
+
+		// set title and desc of each page
+		$poll_title = null;
+		// set page title
+		if(isset($poll['title']))
+		{
+			$poll_title = $poll['title'];
+		}
+		else
+		{
+			$poll_title = T_('undefined Title!');
+		}
+		// set sarshomar knowledge or personal
+		if(isset($poll['sarshomar']))
+		{
+			$this->data->site['title'] = T_("Sarshomar Knowledge");
+		}
+		else
+		{
+			// set username or user nickname in future
+		}
+		// set page title
+		$this->data->page['title'] = $poll_title;
+
+		// set page desc
+		if(isset($poll['summary']) && $poll['summary'])
+		{
+			$this->data->page['desc'] = $poll['summary'];
+		}
+		elseif(isset($poll['description']) && $poll['description'])
+		{
+			$this->data->page['desc'] = $poll['description'];
+		}
+		else
+		{
+			$this->data->page['desc'] = $poll_title;
+		}
 	}
 
 

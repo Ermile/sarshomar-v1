@@ -18,6 +18,7 @@ class view extends \mvc\view
 			// $this->data->bodyclass        = 'dashboard';
 
 		}
+		$this->data->page['title'] = T_("Dashboard");
 	}
 
 

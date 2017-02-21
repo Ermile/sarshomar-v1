@@ -6,6 +6,8 @@ class view extends \mvc\view
 	public function config()
 	{
 		$this->data->amount = \lib\utility::get('amount');
+		$this->data->page['title'] = T_("Billing");
+
 	}
 
 
