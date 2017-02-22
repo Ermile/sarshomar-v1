@@ -78,9 +78,14 @@ class model extends \mvc\model
 	/**
 	 * get billing data to show
 	 */
-	public function get_billing()
+	public function get_billing($_args)
 	{
-
+		if(!$this->login())
+		{
+			return false;
+		}
+		$billing_history = \lib\db\transactions::get(['user_id' => $this->login('id')]);
+		return $billing_history;
 	}
 
 	/**

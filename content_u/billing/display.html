@@ -2,7 +2,7 @@
 <aside class='dashboard-aside'>
 
 </aside>
-<div class="main billing">
+<div class="main billing" data-modal='billing-verify'>
     <div>
         <div class="in xxlarge">
             <div class="billing-stats row auto">
@@ -102,22 +102,24 @@
                 <div class="tbl">
                     <div class="tbl-header">
                         <span>{%trans "Date"%}</span>
-                        <span>{%trans "Description"%}</span>
-                        <span>{%trans "Amount"%}</span>
-                        <span>{%trans "Remaining"%}</span>
+                        <span>{%trans "Title"%}</span>
+                        <span>{%trans "Type"%}</span>
+                        <span>{%trans "Plus"%}</span>
+                        <span>{%trans "Minus"%}</span>
+                        <span>{%trans "Budget before"%}</span>
+                        <span>{%trans "Budget"%}</span>
                     </div>
+                    {% for key, value in history %}
                     <div>
-                        <span>February 1, 2017</span>
-                        <span>Invoice for January 2017</span>
-                        <span><span>20015</span> <span>Toman</span></span>
-                        <span><span>20015</span> <span>Toman</span></span>
+                        <span>{{value.date|jdate}}</span>
+                        <span>{{value.title}}</span>
+                        <span>{{value.type}}</span>
+                        <span><span>{{value.plus}}</span> <span>{{value.unit}}</span></span>
+                        <span><span>{{value.minus}}</span> <span>{{value.unit}}</span></span>
+                        <span><span>{{value.budgetbefore}}</span> <span>{{value.unit}}</span></span>
+                        <span><span>{{value.budget}}</span> <span>{{value.unit}}</span></span>
                     </div>
-                    <div>
-                        <span>February 1, 2017</span>
-                        <span>Invoice for January 2017</span>
-                        <span><span>20015</span> <span>Toman</span></span>
-                        <span><span>20015</span> <span>Toman</span></span>
-                    </div>
+                    {%endfor%}
                 </div>
             </div>
             <div class="pagination">
@@ -126,4 +128,31 @@
         </div>
     </div>
 </div>
+{%endblock%}
+
+{%block modal%}
+    {% if transaction_check %}
+     <div class='modal' id='billing-verify'>
+       <div class='modal-dialog'>
+       <h3 class='modal-title'>{%trans "Transactions Detail"%}</h3>
+       <div class='modal-body'>
+       <p>
+            تراکنش با موفیت ثبت شد <br>
+            مبلغ
+            {{amount}}
+            {{user_unit}}
+            به حساب شما منظور گردید
+            <br>
+            موجودی حساب شما هم اکنون
+            {{user_cash + user_cash_gift}}
+            {{user_unit}}
+            است.
+       </p>
+        <div class="row auto btn-container center">
+         <a href="{{url.base}}/@/billing" class="btn" data-direct>{%trans "OK"%}</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    {% endif %}
 {%endblock%}
