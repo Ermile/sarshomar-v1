@@ -70,7 +70,6 @@ class view extends \mvc\view
 
 		$this->data->chart['stacked'] = array_flip($advance_stats_title);
 
-		$this->data->poll      = $poll;
 
 
 		// set title and desc of each page
@@ -109,6 +108,23 @@ class view extends \mvc\view
 		{
 			$this->data->page['desc'] = $poll_title;
 		}
+
+
+		if(isset($poll['is_answered']) && $poll['is_answered'] === true && isset($poll['id']) && $this->login())
+		{
+			$my_answer = \lib\utility\answers::is_answered($this->login('id'), \lib\utility\shortURL::decode($poll['id']));
+
+			if($my_answer && is_array($my_answer))
+			{
+				$poll['my_answer'] = array_column($my_answer, 'txt', 'opt');
+			}
+			else
+			{
+				$poll['my_answer'] = [];
+			}
+		}
+
+		$this->data->poll      = $poll;
 	}
 
 

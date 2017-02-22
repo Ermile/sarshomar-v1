@@ -33,7 +33,6 @@ trait get
 			$available = [];
 
 			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id, ['type' => 'all']);
-
 			if(!isset($is_answer[0]))
 			{
 				$is_answer = [$is_answer];
@@ -51,9 +50,9 @@ trait get
 				{
 					foreach ($is_answer as $key => $value)
 					{
-						if(isset($value['status']) && isset($value['opt']) && $value['status'] == 'enable' && isset($value['txt']))
+						if(isset($value['status']) && isset($value['opt']) && $value['status'] == 'enable' && isset($value['txt']) && isset($value['answertype']))
 						{
-							$current[$value['opt']] = $value['txt'];
+							$current[] =['key' => (int) $value['opt'], 'type' => $value['answertype'], $value['answertype'] => $value['txt']];
 						}
 					}
 				}
@@ -65,15 +64,15 @@ trait get
 				else
 				{
 					$msg = T_("You have answered to option :opt", ['opt' => implode(',', array_keys($current))]);
-					foreach ($current as $key => $value)
-					{
-						if($key == '0')
-						{
-							$msg = T_("You have already skipped this question");
-							$current[$key] = 'skipped';
-							break;
-						}
-					}
+					// foreach ($current as $key => $value)
+					// {
+					// 	if($key == '0')
+					// 	{
+					// 		$msg = T_("You have already skipped this question");
+					// 		// $current[$key] = 'skipped';
+					// 		break;
+					// 	}
+					// }
 				}
 
 				$answer_args =
@@ -87,7 +86,6 @@ trait get
 				];
 
 				$available = \lib\utility\answers::access_answer($answer_args, 'check');
-
 			}
 			debug::title($msg);
 

@@ -226,19 +226,6 @@ trait ready
 			}
 		}
 
-		if($_poll_data['is_answered'] === true)
-		{
-			$my_answer = utility\answers::is_answered($this->user_id, $poll_id);
-			if($my_answer && is_array($my_answer))
-			{
-				$_poll_data['my_answer'] = array_column($my_answer, 'txt', 'opt');
-			}
-			else
-			{
-				$_poll_data['my_answer'] = [];
-			}
-		}
-
 		// change my_like field
 		if(array_key_exists('my_like', $_poll_data))
 		{

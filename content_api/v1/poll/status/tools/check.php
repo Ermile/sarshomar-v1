@@ -170,8 +170,10 @@ trait check
 
 		if($set_status_awaiting)
 		{
-			db\polls::update(['post_status' => 'awaiting'], $_options['poll_id']);
+			return 'awaiting';
+			// db\polls::update(['post_status' => 'awaiting'], $_options['poll_id']);
 		}
+		return $_options['status'];
 	}
 }
 

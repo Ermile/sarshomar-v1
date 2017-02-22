@@ -60,11 +60,6 @@ trait set
 			{
 				$id   = utility\shortURL::decode(utility::request("id"));
 
-				if(utility::request('status') == 'publish')
-				{
-					self::check(['poll_id' => $id, 'user_id' => $this->user_id]);
-				}
-
 				$new_status = utility::request("status");
 
 				if($new_status == 'delete')
@@ -77,17 +72,22 @@ trait set
 					return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
 				}
 
-				if(!debug::$status)
+				$set_status_on = $new_status;
+
+				if(utility::request('status') == 'publish')
 				{
-					return;
+					$set_status_on = self::check(['poll_id' => $id, 'user_id' => $this->user_id, 'status' => $new_status]);
 				}
 
-				if(debug::$status === 1)
+				if(debug::$status)
 				{
 					debug::title(T_("Poll status changed"));
-					$args = ['post_status' => $new_status];
+					$args = ['post_status' => $set_status_on];
 					\lib\db\polls::update($args, $id);
+					\lib\storage::set_new_status($set_status_on);
+					return true;
 				}
+				return false;
 			}
 			else
 			{

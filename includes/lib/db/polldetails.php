@@ -244,6 +244,16 @@ class polldetails
 		{
 			$subport = "'$_option[subport]'";
 		}
+
+		if($_opt === 0)
+		{
+			$answertype = "NULL";
+		}
+		else
+		{
+			$answertype = "(SELECT pollopts.type FROM pollopts WHERE pollopts.post_id = $_poll_id AND pollopts.key = '$_opt' LIMIT 1)";
+		}
+
 		$date = date("Y-m-d H:i:s");
 		$insert_polldetails =
 		"
@@ -260,6 +270,7 @@ class polldetails
 				polldetails.txt         = '$_option[answer_txt]',
 				polldetails.profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
 				polldetails.insertdate  = '$date',
+				polldetails.answertype  = $answertype,
 				polldetails.visitor_id  = NULL
 
 			ON DUPLICATE KEY UPDATE
@@ -274,6 +285,7 @@ class polldetails
 				polldetails.txt         = '$_option[answer_txt]',
 				polldetails.profile     = (SELECT filter_id FROM users WHERE users.id = $_user_id LIMIT 1),
 				polldetails.insertdate  = '$date',
+				polldetails.answertype  = $answertype,
 				polldetails.visitor_id  = NULL,
 				polldetails.status      = 'enable'
 				-- answers::save_polldetails() -> $date

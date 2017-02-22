@@ -140,9 +140,9 @@ class model extends \content_u\home\model
 			$this->poll_set_status();
 			debug::msg('new_status', \lib\storage::get_current_status());
 
-			if(debug::$status === 1)
+			if(debug::$status)
 			{
-				debug::msg('new_status', utility::post('status'));
+				debug::msg('new_status', \lib\storage::get_new_status());
 			}
 		}
 		return;

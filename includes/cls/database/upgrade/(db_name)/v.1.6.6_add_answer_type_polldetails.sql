@@ -1,0 +1,1 @@
+ALTER TABLE `polldetails` ADD `answertype` varchar(50) NULL DEFAULT NULL AFTER `opt`;
