@@ -1279,19 +1279,22 @@ function changePollStatus(_status)
 			method: 'post',
 			success: function(e, data, x)
 			{
-				if(e && e.messages && e.messages.error)
+				var newStatus = '';
+				if(e.msg && e.msg.new_status)
 				{
-					// error on change
-					console.log('error on changing status; fail!');
-					setTimeout(function()
-					{
-						lockAllElements(true);
-					}, 300);
+					newStatus = e.msg.new_status;
+				}
+				// set new status and change all elements depending it change
+				setStatusText(newStatus);
+				// if we dont have any error
+				if(e.status && e.status != 0)
+				{
+					console.log('successfully change status!');
 				}
 				else
 				{
-					console.log('successfully change status!');
-					checkQuestionStatus();
+					// error on change
+					console.log('error on changing status; fail!');
 				}
 			},
 			error: function(e, data, x)
@@ -1574,8 +1577,6 @@ function calcTotalPrice()
 	{
 		$('.stepPublish .charge').data('hrefBase', $('.stepPublish .charge').attr('href'));
 	}
-	// // change text of new status allowed
-	// setStatusText();
 	// if do not have money
 	if(finalBalance < 0)
 	{
@@ -1611,34 +1612,47 @@ function calcTotalPrice()
 
 
 /**
- * [setStatusText description]
+ * change elemetns depending on new status
+ * @param {[type]} _newStatus [description]
  */
 function setStatusText(_newStatus)
 {
+	var questionBox     = $('#question-add');
+	var changeStatusBtn = $('.stepPublish .changeStatus');
+	var txtDraft        = changeStatusBtn.attr('data-draft');
+	var txtPublish      = changeStatusBtn.attr('data-publish');
+	var oldStatus       = changeStatusBtn.attr('data-request');
+	var lockIt          = false;
+	// if we dont have status give it from main box
 	if(!_newStatus)
 	{
-		var _newStatus = $('#question-add').attr('data-status');
+		var _newStatus = questionBox.attr('data-status');
 	}
-	var txtDraft   = $('.stepPublish .changeStatus').attr('data-draft');
-	var txtPublish = $('.stepPublish .changeStatus').attr('data-publish');
-	var oldStatus  = $('.stepPublish .changeStatus').attr('data-request');
-
+console.log(_newStatus);
 	switch (_newStatus)
 	{
 		case 'awaiting':
 		case 'publish':
-			$('.stepPublish .changeStatus').text(txtDraft);
-			$('.stepPublish .changeStatus').attr('data-request', 'draft');
+			changeStatusBtn.text(txtDraft);
+			changeStatusBtn.attr('data-request', 'draft');
+			lockIt = true;
 			break;
 
 		default:
 		case 'draft':
-			$('.stepPublish .changeStatus').text(txtPublish);
-			$('.stepPublish .changeStatus').attr('data-request', 'publish');
+			changeStatusBtn.text(txtPublish);
+			changeStatusBtn.attr('data-request', 'publish');
+			lockIt = false;
 			break;
 	}
+
+	setTimeout(function()
+	{
+		lockAllElements(lockIt);
+	}, 200);
+
 	// show btn after change text
-	$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
+	changeStatusBtn.fadeIn().css("display","inline-block").removeClass('hide');
 
 	// if is the same return false
 	if(oldStatus === _newStatus)
@@ -1701,42 +1715,6 @@ String.prototype.ucFirst = function()
 
 
 /**
- * check status of question and if needed lock it
- * @return {[type]} [description]
- */
-function checkQuestionStatus()
-{
-	var questionBox     = $('#question-add');
-	var changeStatusBtn = $(".stepPublish .changeStatus");
-	switch (questionBox.attr('data-status'))
-	{
-		// on start
-		case "":
-		// draft
-		case "draft":
-			// change btn
-			questionBox.attr('data-status', 'publish');
-			changeStatusBtn.attr('data-request', 'publish');
-			var isChanged = setStatusText();
-			lockAllElements(false);
-			break;
-
-		// on other condition lock it
-		default:
-		case "publish":
-		case "awaiting":
-			// change btn
-			// questionBox.attr('data-status', 'draft');
-			changeStatusBtn.attr('data-request', 'draft');
-			var isChanged = setStatusText();
-			lockAllElements(true);
-			break;
-	}
-
-}
-
-
-/**
  * [lockAllElements description]
  * @param  {[type]} _status [description]
  * @return {[type]}         [description]
@@ -1753,6 +1731,7 @@ function lockAllElements(_lock)
 			// questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
 			questionBox.find('.range-slider').attr('data-lock', '');
 			questionBox.find('.sync').attr('data-lock', '');
+			console.log('lock');
 			break;
 
 
@@ -1763,6 +1742,7 @@ function lockAllElements(_lock)
 			// questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
 			questionBox.find('.range-slider').attr('data-lock', null);
 			questionBox.find('.sync').attr('data-lock', null);
+			console.log('free');
 			break;
 	}
 }
@@ -1969,7 +1949,7 @@ function saveSavedData(_data, _result)
  */
 function lockStep()
 {
-	console.log('lock step!');
+	// console.log('lock step!');
 
 }
 
@@ -2396,7 +2376,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// draw media for each item contain media
 	drawMedia();
 	// check status of question and if needed lock it
-	checkQuestionStatus();
+	setStatusText();
 	$('.page-progress input').on('click', function(e)
 	{
 		return detectStep($(this).attr('name'));
