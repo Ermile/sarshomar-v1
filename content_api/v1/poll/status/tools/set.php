@@ -44,6 +44,11 @@ trait set
 
 		$available = self::poll_status();
 
+		if(isset($available['current']))
+		{
+			\lib\storage::set_current_status($available['current']);
+		}
+
 		if(!debug::$status)
 		{
 			return ;

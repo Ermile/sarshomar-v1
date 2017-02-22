@@ -132,11 +132,14 @@ class model extends \content_u\home\model
 	public function local_poll_status()
 	{
 		$poll_id = \lib\router::get_url(1);
+
 		if(utility::post('status') == 'draft' || utility::post('status') == 'publish')
 		{
 			utility::set_request_array(['id' => $poll_id, 'status' => utility::post('status')]);
 			$this->user_id = $this->login('id');
 			$this->poll_set_status();
+			debug::msg('new_stats', \lib\storage::get_current_status());
+
 			if(debug::$status === 1)
 			{
 				debug::msg('new_stats', utility::post('status'));
