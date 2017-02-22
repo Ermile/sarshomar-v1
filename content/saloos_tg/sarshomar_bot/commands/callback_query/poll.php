@@ -162,7 +162,7 @@ class poll
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
-			$maker->message->add('answer' , '📝' . $_text);
+			$maker->message->add('answer' , '📝' . $text);
 			$maker->message->add('answer_line' , "");
 			$maker->message->add('answer_verify' , '✅ ' . T_("پاسخ شما ثبت شد"));
 			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
