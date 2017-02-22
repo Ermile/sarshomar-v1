@@ -16,7 +16,6 @@ class message
 	 */
 	public function add_title($_with_link = true)
 	{
-		handle::send_log($this->class->query_result['stats']);
 		if($_with_link)
 		{
 			$title = utility::link('https://sarshomar.com/sp_' .$this->class->poll_id, $this->class->query_result['title']);
@@ -52,8 +51,16 @@ class message
 		$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
 	}
 
-	public function add_poll_list($_answer_id = null, $_add_count = true)
+	public function add_poll_list($answer = null, $_add_count = true)
 	{
+		if($answer)
+		{
+			$answer_id = current($answer)['key'];
+		}
+		else
+		{
+			$answer_id = null;
+		}
 		$poll_list = '';
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
@@ -61,17 +68,17 @@ class message
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
 				$poll_list = utf8_decode($this->class->query_result['description']);
-				if($value['type'] == 'like' && $_answer_id)
+				if($value['type'] == 'like' && $answer)
 				{
-					$poll_list .= "\n" . T_('You liked it');
+					$poll_list .= "\n" . T_('شما پسندیدید');
 				}
-				elseif($_answer_id)
+				elseif($answer)
 				{
-					$poll_list .= "\n" . T_('You liked it');
+					$poll_list .= "\n\n" . T_('پاسخ شما: ') . $answer[0]['descriptive'];
 				}
 				break;
 			}
-			elseif($_answer_id == $key+1)
+			elseif($answer_id == $key+1)
 			{
 				$emoji = '✅';
 			}

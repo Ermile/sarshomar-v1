@@ -128,9 +128,9 @@ class poll
 				]);
 			return ;
 		}
-
+		$poll_id = session::get('answer_descriptive', 'id');
 		$request = [
-			'id' => session::get('answer_descriptive', 'id'),
+			'id' => $poll_id,
 			'descriptive' => session::get('answer_descriptive', 'text'),
 		];
 		session::remove('answer_descriptive');
