@@ -92,6 +92,12 @@ class step_create
 				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 		}
+		if(is_null(session::get('poll_options', 'type')) && $get_poll && count($get_poll['answers']) == 0)
+		{
+			return self::make_draft($get_poll, function($_maker){
+				$_maker->message->add("insert", T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"), 'before', 'hashtag');
+			});
+		}
 
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
 		{
@@ -258,9 +264,9 @@ class step_create
 					[
 						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
 						"callback_data" => 'create/type/select'],
-					[
-						"text" => T_("Emoji") . (self::is_type('emoji') ? " ✅" : ""),
-						"callback_data" => 'create/type/emoji']
+					// [
+					// 	"text" => T_("Emoji") . (self::is_type('emoji') ? " ✅" : ""),
+					// 	"callback_data" => 'create/type/emoji']
 				]);
 			$maker->inline_keyboard->add([
 					[
@@ -278,13 +284,13 @@ class step_create
 			]);
 			$maker->inline_keyboard->add([
 				['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']],
-				['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+				['text' => T_('Back'), 'callback_data' => 'create/close']
 			]);
 		}
 		else
 		{
 			$maker->inline_keyboard->add([
-					['text' => T_('Save as draft'), 'callback_data' => 'create/close']
+					['text' => T_('Back'), 'callback_data' => 'create/close']
 				]);
 		}
 
