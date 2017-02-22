@@ -90,9 +90,9 @@ class model extends \content_u\home\model
 			return;
 		}
 
-		if(utility::post("status") == 'publish')
+		if(utility::post("status"))
 		{
-			$this->publish_poll();
+			$this->local_poll_status();
 			return;
 		}
 
@@ -119,9 +119,9 @@ class model extends \content_u\home\model
 			return;
 		}
 
-		if(utility::post("status") == 'publish')
+		if(utility::post("status"))
 		{
-			$this->publish_poll();
+			$this->local_poll_status();
 			return;
 		}
 
@@ -129,14 +129,15 @@ class model extends \content_u\home\model
 	}
 
 
-	public function publish_poll()
+	public function local_poll_status()
 	{
 		$poll_id = \lib\router::get_url(1);
-		utility::set_request_array(['id' => $poll_id, 'status' => 'publish']);
-
-		$this->user_id = $this->login('id');
-
-		$this->poll_set_status();
+		if(utility::post('status') == 'draft' || utility::post('status') == 'publish')
+		{
+			utility::set_request_array(['id' => $poll_id, 'status' => utility::post('status')]);
+			$this->user_id = $this->login('id');
+			$this->poll_set_status();
+		}
 		return;
 	}
 

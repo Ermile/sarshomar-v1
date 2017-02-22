@@ -77,9 +77,9 @@ trait set
 					return;
 				}
 
-				debug::title(T_("Poll status changed"));
 				if(debug::$status === 1)
 				{
+					debug::title(T_("Poll status changed"));
 					$args = ['post_status' => $new_status];
 					\lib\db\polls::update($args, $id);
 				}
