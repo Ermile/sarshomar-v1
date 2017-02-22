@@ -2516,6 +2516,18 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		requestSavingData();
 	});
 
+
+	$(window).on('beforeunload', function()
+	{
+		if(sendQuestionData() == false)
+		{
+			return 'You are not finish sync! Are you sure you want to leave?';
+		}
+		else
+		{
+			console.log('bye dear:)');
+		}
+	});
 });
 
 
