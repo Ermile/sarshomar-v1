@@ -92,7 +92,14 @@ class step_create
 				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 		}
-		if(is_null(session::get('poll_options', 'type')) && $get_poll && count($get_poll['answers']) == 0)
+		handle::send_log($get_poll['title']);
+		if(
+			is_null(session::get('poll_options', 'type')) &&
+			$get_poll &&
+			count($get_poll['answers']) == 0 &&
+			!is_null($get_poll['title']) &&
+			$get_poll['title'] != ""
+		)
 		{
 			return self::make_draft($get_poll, function($_maker){
 				$_maker->message->add("insert", T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"), 'before', 'hashtag');
@@ -153,7 +160,7 @@ class step_create
 			if($get_poll)
 			{
 
-				if(isset($get_poll['title']) && !is_null($get_poll['title']))
+				if(isset($get_poll['title']) && !is_null($get_poll['title']) && $get_poll['title'] != "")
 				{
 					if(self::is_type('like') || self::is_type('descriptive'))
 					{
