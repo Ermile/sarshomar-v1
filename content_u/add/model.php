@@ -137,6 +137,10 @@ class model extends \content_u\home\model
 			utility::set_request_array(['id' => $poll_id, 'status' => utility::post('status')]);
 			$this->user_id = $this->login('id');
 			$this->poll_set_status();
+			if(debug::$status === 1)
+			{
+				debug::msg('new_stats', utility::post('status'));
+			}
 		}
 		return;
 	}
