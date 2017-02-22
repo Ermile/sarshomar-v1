@@ -189,6 +189,10 @@ trait add
 				return $this->like_poll($_options);
 				break;
 
+			case 'descriptive':
+				return $this->descriptive_poll($_options);
+				break;
+
 			default:
 			 	// no thing!
 			 	break;
@@ -318,6 +322,33 @@ trait add
 				'user_id' => $this->user_id,
 				'poll_id' => shortURL::decode(utility::request("id")),
 				'answer'  => [1 => 'like'],
+			];
+			return $this->save_result($save, $_options);
+		}
+		else
+		{
+			return $this->skip_poll($_options);
+		}
+	}
+
+	/**
+	 * descriptive a poll
+	 *
+	 * @param      array   $_options  The options
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function descriptive_poll($_options = [])
+	{
+		if(utility::request('descriptive'))
+		{
+			$descriptive = utility::request('descriptive');
+			$descriptive = trim($descriptive);
+			$save =
+			[
+				'user_id' => $this->user_id,
+				'poll_id' => shortURL::decode(utility::request("id")),
+				'answer'  => [1 => $descriptive],
 			];
 			return $this->save_result($save, $_options);
 		}
