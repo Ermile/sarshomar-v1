@@ -367,6 +367,8 @@ function giveFile(_file)
 			.attr('data-file-local', true);
 
 		showPreview(output);
+		// check for add new opt
+		checkAddOpt();
 	}
 }
 
@@ -660,24 +662,25 @@ route('*', function ()
 function checkAddOpt()
 {
 	var numberOfEmptyInputs = 0;
-	var emptyRowNumber;
+	var emptyRowNumber = [];
 
 	// check if current element has not value and we have no empty inputs
-	$.each($('.input-group.sortable .element .input[type="text"]'), function(key, value)
+	$.each($('.input-group.sortable>li'), function(key, value)
 	{
-		if ( !$(this).val() && numberOfEmptyInputs === 0 )
+		if(!$(this).find('.element .input[type="text"]').val() && !$(this).find('.preview').attr('data-file-temp'))
 		{
-			numberOfEmptyInputs++;
-			emptyRowNumber = key;
+			numberOfEmptyInputs += 1;
+			emptyRowNumber.push(key);
 		}
 	});
+	console.log(numberOfEmptyInputs);
 
 	if(countQuestionOpts() >= 20)
 	{
 		console.log('maximum opt is reached!');
 	}
-	// elseif we had no empty inputs and we needed one do this
-	else if (numberOfEmptyInputs === 0 && !$('.input-group.sortable').hasClass('editing'))
+	// elseif we have only one empty inputs and we needed one add it
+	else if (numberOfEmptyInputs < 1 && !$('.input-group.sortable').hasClass('editing'))
 	{
 		addNewOpt();
 	}
@@ -2526,8 +2529,8 @@ function removeFile(_preview)
 	_preview.attr('data-file-id', null);
 	_preview.attr('data-file-url', null);
 	_preview.attr('data-file-type', null);
-	// _preview.attr('data-file-temp', null);
-	// _preview.attr('data-file-local', null);
+	_preview.attr('data-file-temp', null);
+	_preview.attr('data-file-local', null);
 	showPreview(_preview, true);
 
 	// close modal
