@@ -45,6 +45,13 @@ trait add
 			$count_valid_request++;
 		}
 
+
+		$descriptive   = utility::request("descriptive");
+		if($descriptive)
+		{
+			$count_valid_request++;
+		}
+
 		if($count_valid_request > 1)
 		{
 			return debug::error(T_("You can not set :requests at the same time", ['requests' => implode(',', array_keys(utility::request()))]), 'skip', 'arguments');
