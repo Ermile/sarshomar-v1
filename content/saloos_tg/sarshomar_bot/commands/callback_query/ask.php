@@ -32,6 +32,7 @@ class ask
 		}
 
 		$maker = new make_view($options['poll_id']);
+		$user_lang = \lib\define::get_language();
 		\lib\define::set_language($maker->query_result['language'], true);
 		$my_poll = $maker->query_result['user_id'] == \lib\utility\shortURL::encode(bot::$user_id);
 
@@ -120,6 +121,8 @@ class ask
 			$return["response_callback"] = utility::response_expire('ask');
 		}
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
+		\lib\define::set_language($user_lang, true);
+
 		if(!$_query && !isset($options['return']))
 		{
 			bot::sendResponse($return);

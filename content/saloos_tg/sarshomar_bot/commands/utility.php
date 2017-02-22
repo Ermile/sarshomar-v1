@@ -250,7 +250,7 @@ END;
 	public static function nubmer_language($_text)
 	{
 		$text = $_text;
-		if(callback_query\language::check(true) == 'fa')
+		if(\lib\define::get_language() == 'fa')
 		{
 			$text = preg_replace_callback("/[\d%]/", function($_str){
 				$fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '%' => '٪'];

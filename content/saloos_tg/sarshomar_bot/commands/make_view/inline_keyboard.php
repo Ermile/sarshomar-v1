@@ -54,9 +54,8 @@ class inline_keyboard
 			$this_row = $row_answer[0] + $last_count;
 			if($answer_value['type'] == 'like')
 			{
-				$total = $sum['total'];
 				$callback_data .= 'like';
-				$inline_emoji = "❤️ " . utility::nubmer_language($total);
+				$inline_emoji = "❤️ ";
 			}
 			elseif($answer_value['type'] == 'descriptive')
 			{

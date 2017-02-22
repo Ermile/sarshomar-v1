@@ -58,6 +58,8 @@ class step_answer_descriptive
 			$maker->message->add('insert_line', "");
 			$maker->message->add('insert', T_('لطفا پاسخ خود را وارد کنید'));
 			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add_count_poll();
+			$maker->message->add_telegram_link();
 			$return = $maker->make();
 			$return['reply_markup'] = ["remove_keyboard" => true];
 			return $return;
@@ -73,6 +75,8 @@ class step_answer_descriptive
 			$maker->message->add('answer_verify' , '✅ ' . T_("آیا پاسخ فوق را تایید می‌کنید؟"));
 			$maker->message->add('answer_change' , '✳️ ' . T_("اگر قصد تغییر پاسخ دارید می‌توانید متن دیگری وارد کنید"));
 			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add_count_poll();
+			$maker->message->add_telegram_link();
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_('Yes'),

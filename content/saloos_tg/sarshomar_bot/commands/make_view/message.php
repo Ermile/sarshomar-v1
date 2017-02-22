@@ -147,7 +147,8 @@ class message
 			case 'sum_invalid':
 				if($this->class->poll_type == 'like')
 				{
-					$text .= '❤️';
+					$this->add('like', '❤️ <code>' . utility::nubmer_language($count['total']) .'</code>', 'before', 'options');
+					break;
 				}
 				else
 				{

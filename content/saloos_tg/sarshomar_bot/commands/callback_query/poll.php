@@ -146,6 +146,12 @@ class poll
 
 		if(!$debug_status)
 		{
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('ثبت پاسخ با خطا مواجه شد')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+			]);
 			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
 		}
 		else
@@ -159,6 +165,12 @@ class poll
 			$maker->message->add('answer_line' , "");
 			$maker->message->add('answer_verify' , '✅ ' . T_("پاسخ شما ثبت شد"));
 			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('پاسخ شما ثبت شد')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+			]);
 			callback_query::edit_message($maker->make());
 		}
 		return ['text' => \lib\debug::compile()['title']];
