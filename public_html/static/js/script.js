@@ -1243,13 +1243,15 @@ function checkNextStep()
 
 	$(document).on('click', ".stepPublish .changeStatus", function()
 	{
-		var requestedStatus = $('.stepPublish .changeStatus').attr('data-request');
+		var requestedStatus = $(this).attr('data-request');
 		if(requestedStatus === 'publish')
 		{
+			// requset saving data with change status
 			requestSavingData(true, requestedStatus);
 		}
 		else
 		{
+			// directly change it to draft
 			changePollStatus(requestedStatus);
 		}
 	});
@@ -1277,7 +1279,20 @@ function changePollStatus(_status)
 			method: 'post',
 			success: function(e, data, x)
 			{
-				console.log('successfully change status!');
+				if(e && e.messages && e.messages.error)
+				{
+					// error on change
+					console.log('error on changing status; fail!');
+					setTimeout(function()
+					{
+						lockAllElements(true);
+					}, 300);
+				}
+				else
+				{
+					console.log('successfully change status!');
+					checkQuestionStatus();
+				}
 			},
 			error: function(e, data, x)
 			{
@@ -1559,8 +1574,8 @@ function calcTotalPrice()
 	{
 		$('.stepPublish .charge').data('hrefBase', $('.stepPublish .charge').attr('href'));
 	}
-	// change text of new status allowed
-	setStatusText();
+	// // change text of new status allowed
+	// setStatusText();
 	// if do not have money
 	if(finalBalance < 0)
 	{
@@ -1598,13 +1613,17 @@ function calcTotalPrice()
 /**
  * [setStatusText description]
  */
-function setStatusText()
+function setStatusText(_newStatus)
 {
-	var cStatus    = $('#question-add').attr('data-status');
+	if(!_newStatus)
+	{
+		var _newStatus = $('#question-add').attr('data-status');
+	}
 	var txtDraft   = $('.stepPublish .changeStatus').attr('data-draft');
 	var txtPublish = $('.stepPublish .changeStatus').attr('data-publish');
+	var oldStatus  = $('.stepPublish .changeStatus').attr('data-request');
 
-	switch (cStatus)
+	switch (_newStatus)
 	{
 		case 'awaiting':
 		case 'publish':
@@ -1620,6 +1639,14 @@ function setStatusText()
 	}
 	// show btn after change text
 	$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
+
+	// if is the same return false
+	if(oldStatus === _newStatus)
+	{
+		return false;
+	}
+	// else return true
+	return true;
 }
 
 
@@ -1679,26 +1706,65 @@ String.prototype.ucFirst = function()
  */
 function checkQuestionStatus()
 {
-	var questionBox = $('#question-add');
+	var questionBox     = $('#question-add');
+	var changeStatusBtn = $(".stepPublish .changeStatus");
 	switch (questionBox.attr('data-status'))
 	{
 		// on start
 		case "":
 		// draft
 		case "draft":
+			// change btn
+			questionBox.attr('data-status', 'publish');
+			changeStatusBtn.attr('data-request', 'publish');
+			var isChanged = setStatusText();
+			lockAllElements(false);
 			break;
 
 		// on other condition lock it
 		default:
 		case "publish":
 		case "awaiting":
-			questionBox.find('input').attr('disabled', 'disabled');
-			questionBox.find('textarea').attr('disabled', 'disabled');
-			questionBox.find('.range-slider').attr('data-lock', '');
-			questionBox.find('.sync').attr('data-lock', '');
+			// change btn
+			// questionBox.attr('data-status', 'draft');
+			changeStatusBtn.attr('data-request', 'draft');
+			var isChanged = setStatusText();
+			lockAllElements(true);
 			break;
 	}
 
+}
+
+
+/**
+ * [lockAllElements description]
+ * @param  {[type]} _status [description]
+ * @return {[type]}         [description]
+ */
+function lockAllElements(_lock)
+{
+	var questionBox = $('#question-add');
+	switch (_lock)
+	{
+		case true:
+			// change elements
+			questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
+			questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
+			// questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
+			questionBox.find('.range-slider').attr('data-lock', '');
+			questionBox.find('.sync').attr('data-lock', '');
+			break;
+
+
+		case false:
+			// change elements
+			questionBox.find('input').attr('disabled', null).attr('data-lock', null);
+			questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
+			// questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
+			questionBox.find('.range-slider').attr('data-lock', null);
+			questionBox.find('.sync').attr('data-lock', null);
+			break;
+	}
 }
 
 
@@ -1760,7 +1826,7 @@ function sendQuestionData(_status)
 	myPoll           = JSON.stringify(myPoll);
 	var checkWithOld = saveSavedData(myPoll);
 
-	if(checkWithOld === 'duplicate')
+	if(checkWithOld === 'duplicate' && !_status)
 	{
 		// after a short delay show synced
 		setTimeout(function()
