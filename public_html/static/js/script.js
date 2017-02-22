@@ -323,7 +323,59 @@ function shortkey()
 			default:
 				break;
 		}
+		// if we are in answer page allow to select with shortkey
+		shortkeySelectAnswerItem(e.which)
 	});
+}
+
+
+/**
+ * if we are in answer test page handle keyboard
+ * @param  {[type]} _item [description]
+ * @return {[type]}       [description]
+ */
+function shortkeySelectAnswerItem(_key)
+{
+	// if user is typing something, do nothing
+	var focused = document.activeElement;
+	// console.log(focused);
+
+	// if we are in answer test page handle keyboard
+	if($('ul[data-answer-type]').length)
+	{
+		// special handle for select answers
+		var charNumber = _key - 48;
+		if((_key >= 65 && _key <= 73))
+		{
+			charNumber -= 16;
+		}
+		if((_key >= 97 && _key <= 105))
+		{
+			charNumber -= 48;
+		}
+		// if user select one to nine, select it if exist
+		if(charNumber >= 1 && charNumber <= 9)
+		{
+			charNumber -= 1;
+			var myLabel = $('ul[data-answer-type]>li>label').eq(charNumber);
+			if(myLabel.length > 0)
+			{
+				// if is checked uncheck it
+				if(myLabel.find('input').is(':checked'))
+				{
+					uncheckRadio(myLabel);
+				}
+				// else simulate click on it
+				else
+				{
+					myLabel.click();
+				}
+				// return true on successfully edited
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 
@@ -1795,7 +1847,7 @@ function requestSavingData(_manualRequest, _status)
  * [sendQuestionData description]
  * @return {[type]} [description]
  */
-function sendQuestionData(_status)
+function sendQuestionData(_status, _notAsyncAjax)
 {
 	// change status to syncing
 	syncing(true);
@@ -1808,6 +1860,14 @@ function sendQuestionData(_status)
 	// change array to json
 	myPoll           = JSON.stringify(myPoll);
 	var checkWithOld = saveSavedData(myPoll);
+	if(_notAsyncAjax)
+	{
+		_notAsyncAjax = true;
+	}
+	else
+	{
+		_notAsyncAjax = false
+	}
 
 	if(checkWithOld === 'duplicate' && !_status)
 	{
@@ -1829,6 +1889,7 @@ function sendQuestionData(_status)
 			// dataType: "json",
 			// contentType:"application/json; charset=utf-8",
 			abort: true,
+			async: _notAsyncAjax,
 			method: 'post',
 			success: function(e, data, x)
 			{
@@ -2517,17 +2578,18 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	});
 
 
+	// before close page save request on the air!
+	// for chrome
 	$(window).on('beforeunload', function()
 	{
-		if(sendQuestionData() == false)
-		{
-			return 'You are not finish sync! Are you sure you want to leave?';
-		}
-		else
-		{
-			console.log('bye dear:)');
-		}
+		sendQuestionData(null, true);
 	});
+	//this will work for other browsers
+	// $(window).on("unload", function ()
+	// {
+	// 	sendQuestionData(null, true);
+	// });
+
 });
 
 
@@ -2863,11 +2925,7 @@ route('*', function ()
 		// for right click
 		if(_e.button == 2)
 		{
-			var radioEl = $(this).parent().find('input[name="anwserOpt"]');
-			if($(radioEl).is(':checked') && $(radioEl).attr('disabled') === undefined)
-			{
-				$(radioEl).attr('checked', false);
-			}
+			uncheckRadio(this);
 			return false;
 		}
 
@@ -2891,7 +2949,14 @@ route('*', function ()
 });
 
 
-
+function uncheckRadio(_this)
+{
+	var radioEl = $(_this).parent().find('input[name="anwserOpt"]');
+	if($(radioEl).is(':checked') && $(radioEl).attr('disabled') === undefined)
+	{
+		$(radioEl).attr('checked', false);
+	}
+}
 
 
 
