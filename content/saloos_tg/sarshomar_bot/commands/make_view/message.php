@@ -16,6 +16,7 @@ class message
 	 */
 	public function add_title($_with_link = true)
 	{
+		handle::send_log($this->class->query_result['stats']);
 		if($_with_link)
 		{
 			$title = utility::link('https://sarshomar.com/sp_' .$this->class->poll_id, $this->class->query_result['title']);
@@ -44,8 +45,7 @@ class message
 		 * set telegram result: count of poll, answers and answers text
 		 */
 		$sum = $this->sum_stats();
-		$first_answer = isset($this->class->query_result['answers'][0]) ? $this->class->query_result['answers'][0] : null;
-		if($first_answer && $first_answer['type'] == 'like')
+		if($this->class->poll_type == 'like' || $this->class->poll_type == 'descriptive')
 		{
 			return;
 		}
@@ -58,10 +58,18 @@ class message
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
 		foreach ($this->class->query_result['answers'] as $key => $value) {
-			if($value['type'] == 'like')
+			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
-				$emoji = "❤️";
-				$value['title'] = utf8_decode($this->class->query_result['description']);
+				$poll_list = utf8_decode($this->class->query_result['description']);
+				if($value['type'] == 'like' && $_answer_id)
+				{
+					$poll_list .= "\n" . T_('You liked it');
+				}
+				elseif($_answer_id)
+				{
+					$poll_list .= "\n" . T_('You liked it');
+				}
+				break;
 			}
 			elseif($_answer_id == $key+1)
 			{
@@ -74,14 +82,7 @@ class message
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				if($value['type'] == 'like')
-				{
-					$poll_list .= '<code>' . utility::nubmer_language($sum[$key+1]) . '</code>';
-				}
-				else
-				{
-					$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
-				}
+				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
 			}
 			$poll_list .= "\n";
 
@@ -92,7 +93,7 @@ class message
 	public function add_telegram_link()
 	{
 		$dashboard = utility::tag(T_("Sarshomar")) . ' |';
-		$dashboard .= utility::link('https://telegram.me/Sarshomar_bot?start=sp_' .$this->class->poll_id,'⚙' . T_("Poll"));
+		$dashboard .= utility::link('https://telegram.me/Sarshomar_bot?start=sp_' .$this->class->poll_id, '⚙');
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -144,7 +145,15 @@ class message
 				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text .= '👥' .utility::nubmer_language($count['total']) . ' ';
+				if($this->class->poll_type == 'like')
+				{
+					$text .= '❤️';
+				}
+				else
+				{
+					$text .= '👥';
+				}
+				$text .= utility::nubmer_language($count['total']) . ' ';
 				if($count['total_sum_invalid'] > 0)
 				{
 					$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));

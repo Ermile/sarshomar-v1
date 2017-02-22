@@ -100,7 +100,10 @@ class step_starting
 				$commands[$url_command[0]] = $url_command[1];
 			}
 		}
-		if(!callback_query\language::check() && !array_key_exists('sp', $commands) && !array_key_exists('report', $commands))
+		if(!callback_query\language::check() &&
+			!array_key_exists('sp', $commands) &&
+			!array_key_exists('report', $commands) &&
+			!array_key_exists('answer', $commands))
 		{
 			if(array_key_exists('lang', $commands)){
 				session::remove('step', 'run');
@@ -111,6 +114,11 @@ class step_starting
 		{
 			step::stop();
 			$return = callback_query\poll::report(null, null, $commands['report']);
+		}
+		elseif(array_key_exists('answer', $commands))
+		{
+			step::stop();
+			$return = step_answer_descriptive::start($commands['answer']);
 		}
 		elseif(array_key_exists('sp', $commands))
 		{

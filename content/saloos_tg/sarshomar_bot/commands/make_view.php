@@ -24,6 +24,9 @@ class make_view
 			}
 		}
 		$this->get_poll_result();
+
+		$this->set_poll_type();
+
 		$this->message = new make_view\message($this);
 		$this->inline_keyboard = new make_view\inline_keyboard($this);
 	}
@@ -50,6 +53,20 @@ class make_view
 			];
 		}
 		return $return;
+	}
+
+	public function set_poll_type()
+	{
+		$answers = $this->query_result['answers'];
+		if(count($answers) == 1)
+		{
+			$answer = current($answers);
+			$this->poll_type = $answer['type'];
+		}
+		else
+		{
+			$this->poll_type = 'select';
+		}
 	}
 
 	public function get_poll_result()

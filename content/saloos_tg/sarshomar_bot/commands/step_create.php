@@ -34,7 +34,7 @@ class step_create
 			}
 			elseif(count($poll['answers']) > 1)
 			{
-				session::set('poll_options', 'type', 'selective');
+				session::set('poll_options', 'type', 'select');
 			}
 			return self::make_draft(session::get('poll'));
 		}
@@ -182,6 +182,10 @@ class step_create
 					$poll_request['answers'][] = ['title' => $value, 'type' => 'select'];
 				}
 			}
+			else
+			{
+				unset($poll_request['answers']);
+			}
 			$poll_request['language'] = callback_query\language::check(true);
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
@@ -240,7 +244,7 @@ class step_create
 			$_maker($maker);
 		}
 
-		if(self::is_type('like'))
+		if(self::is_type('like') || self::is_type('descriptive'))
 		{
 			$maker->message->add('description', T_("شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"), 'after', 'poll_list');
 		}
@@ -253,7 +257,7 @@ class step_create
 			$maker->inline_keyboard->add([
 					[
 						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
-						"callback_data" => 'create/type/selective'],
+						"callback_data" => 'create/type/select'],
 					[
 						"text" => T_("Emoji") . (self::is_type('emoji') ? " ✅" : ""),
 						"callback_data" => 'create/type/emoji']

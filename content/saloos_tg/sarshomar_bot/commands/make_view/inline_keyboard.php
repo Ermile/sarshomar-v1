@@ -46,20 +46,33 @@ class inline_keyboard
 		$count_answer = count($this->class->query_result['answers']);
 		$row_answer = current($keyboard_map[$count_answer]);
 		$last_count = $this->count();
+		$sum = $this->class->message->sum_stats();
 		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
-			$callback_data = 'poll/answer/' . $this->class->poll_id . '/' . ($answer_key +1);
+			$callback_type = 'callback_data';
+
+			$callback_data = 'poll/answer/' . $this->class->poll_id . '/';
 			$this_row = $row_answer[0] + $last_count;
 			if($answer_value['type'] == 'like')
 			{
-				$inline_emoji = "❤️";
+				$total = $sum['total'];
+				$callback_data .= 'like';
+				$inline_emoji = "❤️ " . utility::nubmer_language($total);
+			}
+			elseif($answer_value['type'] == 'descriptive')
+			{
+				$total = $sum['total'];
+				$callback_data = 'https://telegram.me/Sarshomar_bot?start=answer_'.$this->class->poll_id;
+				$callback_type = 'url';
+				$inline_emoji = "📝 " . T_("Answer");
 			}
 			else
 			{
+				$callback_data .= ($answer_key +1);
 				$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
 			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
 				'text' => $inline_emoji,
-				'callback_data' => $callback_data
+				$callback_type => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}

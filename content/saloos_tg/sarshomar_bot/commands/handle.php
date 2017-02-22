@@ -110,7 +110,7 @@ class handle
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{
-				if(preg_match("#^\/(sp|report|faq)_#", $_cmd['command']))
+				if(preg_match("#^\/(sp|report|faq|answer)_#", $_cmd['command']))
 				{
 					$command_text = $_cmd['command'];
 				}
@@ -144,6 +144,10 @@ class handle
 
 				case preg_match("/^(\/report_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:
 				$response = callback_query\poll::report(null, null, empty($sp) ? null : $sp[2]);
+				break;
+
+				case preg_match("/^(\/answer_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:
+				$response = step_answer_descriptive::start($sp[2]);
 				break;
 
 				case '/polls':

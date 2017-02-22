@@ -113,6 +113,57 @@ class poll
 		callback_query::edit_message($return);
 	}
 
+	public static function answer_descriptive($_query, $_data_url)
+	{
+		list($class, $method, $status) = $_data_url;
+		step::stop();
+
+		if($status != 'answer')
+		{
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('لغو پاسخ‌دهی')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+				]);
+			return ;
+		}
+
+		$request = [
+			'id' => session::get('answer_descriptive', 'id'),
+			'descriptive' => session::get('answer_descriptive', 'text'),
+		];
+		session::remove('answer_descriptive');
+
+
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
+		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
+
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+
+		\lib\debug::$status = 1;
+
+		if(!$debug_status)
+		{
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+		else
+		{
+			session::remove_back('expire', 'inline_cache', 'answer_descriptive');
+			session::remove('expire', 'inline_cache', 'answer_descriptive');
+			$maker = new make_view($poll_id);
+			$maker->message->add_title();
+			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
+			$maker->message->add('answer' , '📝' . $_text);
+			$maker->message->add('answer_line' , "");
+			$maker->message->add('answer_verify' , '✅ ' . T_("پاسخ شما ثبت شد"));
+			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
+			callback_query::edit_message($maker->make());
+		}
+		return ['text' => \lib\debug::compile()['title']];
+	}
+
 	public static function answer($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
@@ -123,12 +174,20 @@ class poll
 		}elseif (count($_data_url) == 5) {
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		}
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' =>
-			[
-			'id' 		=> $poll_id,
-			'answer'	=> [$answer => true]
-			]
-		]);
+
+		$request = ['id' => $poll_id];
+
+		switch ($answer) {
+			case 'like':
+				$request['like'] = true;
+				break;
+
+			default:
+				$request['answer'] = true;
+				break;
+		}
+
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
 		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
 
 		$debug_status = \lib\debug::$status;
