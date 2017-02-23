@@ -159,6 +159,8 @@ trait ready
 		}
 		$host = Protocol."://" . \lib\router::get_root_domain();
 
+		$awaiting_file_url = $host. '/static/images/logo.png';
+
 		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] == '‌')
 		{
 			$_poll_data['title'] = '';
@@ -430,7 +432,14 @@ trait ready
 
 					if(isset($attachment['meta']['url']))
 					{
-						$answers[$key]['file']['url']  = $host. '/'. $attachment['meta']['url'];
+						if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
+						{
+							$answers[$key]['file']['url']  = $awaiting_file_url;
+						}
+						else
+						{
+							$answers[$key]['file']['url']  = $host. '/'. $attachment['meta']['url'];
+						}
 					}
 
 					if(isset($attachment['meta']['mime']))
@@ -458,7 +467,7 @@ trait ready
 		if($_options['get_filter'] && $poll_id)
 		{
 			$filters               = utility\postfilters::get_filter($poll_id);
-			$filters['count']     = \lib\db\ranks::get($poll_id, 'member');
+			$filters['count']      = \lib\db\ranks::get($poll_id, 'member');
 			$filters               = array_filter($filters);
 			$_poll_data['filters'] = $filters;
 		}
@@ -651,9 +660,17 @@ trait ready
 
 				if(isset($value['option_key']) && $value['option_key'] == 'title_attachment')
 				{
-					if(isset($value['option_meta']['url']))
+					$attachment = \lib\db\polls::get_poll($value['option_value']);
+					if(isset($attachment['meta']['url']))
 					{
-						$_poll_data['file']['url'] = $host. '/'. $value['option_meta']['url'];
+						if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
+						{
+							$_poll_data['file']['url'] = $awaiting_file_url;
+						}
+						else
+						{
+							$_poll_data['file']['url'] = $host. '/'. $attachment['meta']['url'];
+						}
 					}
 
 					if(isset($value['option_meta']['type']))
