@@ -304,11 +304,16 @@ trait options
 				}
 
 				$slug  = utility\filter::slug($value);
+				if(!$slug && $value)
+				{
+					$slug = $value;
+				}
+
 				$insert_tag[] =
 				[
 					'term_type'  => 'sarshomar_tag',
 					'term_title' => $value,
-					'term_url'   => '$/'. $slug,
+					'term_url'   => '$/tag/'. $slug,
 					'term_slug'  => $slug,
 				];
 			}

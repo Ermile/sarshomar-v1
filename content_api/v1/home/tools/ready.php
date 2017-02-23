@@ -21,7 +21,7 @@ trait ready
 	{
 		$default_options =
 		[
-			'get_tags'			 => true,
+			'get_tags'           => true,
 			'get_filter'         => false,
 			'get_opts'           => false,
 			'get_options'        => false,
@@ -29,6 +29,7 @@ trait ready
 			'get_advance_result' => false,
 			'run_options'        => true,
 			'check_is_my_poll'   => false,
+			'debug'              => true,
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);
@@ -45,7 +46,11 @@ trait ready
 		// check id
 		if(!$poll_id)
 		{
-			return debug::error(T_("Poll not found"), "id", 'arguments');
+			if($_options['debug'])
+			{
+				debug::error(T_("Poll not found"), "id", 'arguments');
+			}
+			return;
 		}
 
 		$my_poll = false;
@@ -59,7 +64,11 @@ trait ready
 
 		if($_options['check_is_my_poll'] && !$my_poll)
 		{
-			return debug::error(T_("Access denied to the poll (This is not your poll)"), "id", 'permission');
+			if($_options['debug'])
+			{
+				debug::error(T_("Access denied to the poll (This is not your poll)"), "id", 'permission');
+			}
+			return;
 		}
 
 		if(array_key_exists('status', $_poll_data))
@@ -115,12 +124,20 @@ trait ready
 
 			if(!$permission_load_poll)
 			{
-				return debug::error(T_("Access denied to load this poll :msg",['msg' => $msg]), "id", 'permission');
+				if($_options['debug'])
+				{
+					debug::error(T_("Access denied to load this poll :msg",['msg' => $msg]), "id", 'permission');
+				}
+				return;
 			}
 		}
 		else
 		{
-			return debug::error(T_("Invalid parameter status"), 'status', 'system');
+			if($_options['debug'])
+			{
+				debug::error(T_("Invalid parameter status"), 'status', 'system');
+			}
+			return;
 		}
 
 		foreach ($_poll_data as $key => $value)
@@ -322,14 +339,15 @@ trait ready
 		}
 
 		unset($_poll_data['meta']);
-
-		$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'sarshomar');
-
-		if($cat)
+		if($_options['get_tags'])
 		{
-			if(isset($cat[0]['id']))
+			$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'sarshomar');
+			if($cat)
 			{
-				$_poll_data['options']['cat'] = shortURL::encode($cat[0]['id']);
+				if(isset($cat[0]['id']))
+				{
+					$_poll_data['options']['cat'] = shortURL::encode($cat[0]['id']);
+				}
 			}
 		}
 
@@ -576,12 +594,10 @@ trait ready
 			$_poll_data['stats'] = $poll_result;
 		}
 
-
-		$post_meta = \lib\db\posts::get_post_meta($poll_id);
-		if(is_array($post_meta))
+		if($_options['get_options'])
 		{
-
-			if($_options['get_options'])
+			$post_meta = \lib\db\posts::get_post_meta($poll_id);
+			if(is_array($post_meta))
 			{
 				$temp_options = array_column($post_meta, 'option_value', 'option_key');
 				$show_options = [];

@@ -172,7 +172,6 @@ trait search
 			{
 				return debug::error(T_("Invalid parameter status as :type", ['type' => gettype(utility::request('status'))]), 'status', 'arguments');
 			}
-
 		}
 
 		$meta['login']       = $this->user_id;
@@ -183,17 +182,35 @@ trait search
 		$tmp_result          = [];
 		$tmp_result['data']  = [];
 
+		$options =
+		[
+			'get_tags'			 => false,
+			'get_filter'         => false,
+			'get_opts'           => false,
+			'get_options'        => false,
+			'get_public_result'  => false,
+			'get_advance_result' => false,
+			'run_options'        => false,
+			'check_is_my_poll'   => false,
+			'debug'				 => false,
+		];
+
 		if(is_array($result))
 		{
 			foreach ($result as $key => $value)
 			{
-				$tmp_result['data'][] = $this->poll_ready($value);
+				$temp = $this->poll_ready($value, $options);
+				if($temp)
+				{
+					$tmp_result['data'][] = $temp;
+				}
 			}
 		}
 
 		$tmp_result['from']  = $from;
 		$tmp_result['to']    = (int) $from  + count($tmp_result['data']);
 		$tmp_result['total'] = (int) \lib\storage::get_total_record();
+
 
 		return $tmp_result;
 	}

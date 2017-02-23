@@ -44,7 +44,9 @@ class model extends \mvc\model
 		if(\lib\storage::get('rep') == 'u')
 		{
 			$in = 'me';
+			\lib\router::set_url('@/'. \lib\router::get_url());
 		}
+
 		$this->user_id  = $this->login('id');
 
 		\lib\utility::$REQUEST = new \lib\utility\request(
