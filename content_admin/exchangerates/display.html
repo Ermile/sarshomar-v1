@@ -1,0 +1,132 @@
+{%extends display.main%}
+{%block content%}
+<div class="main">
+  <form method="post">
+  <div class="box">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span6">
+
+        <div class="element">
+          <label class="title" for="from">{% trans "from"%}</label>
+          <select name="from" id="from" class="input">
+            {% for key, value in units%}
+              <option value="{{value.id}}" {% if value.id == item.from %} selected="selected" {% endif%}>{{value.title}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="element">
+          <label class="title" for="to">{% trans "to" %}</label>
+          <select name="to" id="to" class="input">
+            {% for key, value in units%}
+              <option value="{{value.id}}" {% if value.id == item.to %} selected="selected" {% endif%}>{{value.title}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="element">
+          <label class="title" for="rate">{% trans "rate"%}</label>
+          <input type="text" name="rate" class="input" id="rate" value="{{item.rate}}">
+        </div>
+        <div class="element">
+          <label class="title" for="roundtype">{% trans "roundtype"%}</label>
+          <select name="roundtype" id="roundtype" class="input">
+            <option >{%trans "Please select one item"%}</option>
+            <option value="up" {% if item.roundtype == 'up' %} selected="selected" {% endif %}>{%trans "up"%}</option>
+            <option value="down" {% if item.roundtype == 'down' %} selected="selected" {% endif %}>{%trans "down"%}</option>
+            <option value="round" {% if item.roundtype == 'round' %} selected="selected" {% endif %}>{%trans "round"%}</option>
+          </select>
+        </div>
+        <div class="element">
+          <label class="title" for="round">{% trans "round"%}</label>
+          <input type="text" name="round" class="input" id="round" value="{{item.round}}">
+        </div>
+        <div class="element">
+          <label class="title" for="wagestatic">{% trans "wagestatic"%}</label>
+          <input type="text" name="wagestatic" class="input" id="wagestatic" value="{{item.wagestatic}}">
+        </div>
+        <div class="element">
+          <label class="title" for="wage">{% trans "wage"%}</label>
+          <input type="text" name="wage" class="input" id="wage" value="{{item.wage}}">
+        </div>
+        <div class="element">
+          <label class="title" for="status">{% trans "status"%}</label>
+          <select name="status" id="status" class="input">
+            <option >{%trans "Please select one item"%}</option>
+            <option value="enable" {% if item.status == 'enable' %} selected="selected" {% endif %}>{% trans "enable" %}</option>
+            <option value="disable" {% if item.status == 'disable' %} selected="selected" {% endif %}>{% trans "disable" %}</option>
+            <option value="deleted" {% if item.status == 'deleted' %} selected="selected" {% endif %}>{% trans "deleted" %}</option>
+            <option value="expired" {% if item.status == 'expired' %} selected="selected" {% endif %}>{% trans "expired" %}</option>
+            <option value="awaiting" {% if item.status == 'awaiting' %} selected="selected" {% endif %}>{% trans "awaiting" %}</option>
+            <option value="filtered" {% if item.status == 'filtered' %} selected="selected" {% endif %}>{% trans "filtered" %}</option>
+            <option value="blocked" {% if item.status == 'blocked' %} selected="selected" {% endif %}>{% trans "blocked" %}</option>
+            <option value="spam" {% if item.status == 'spam' %} selected="selected" {% endif %}>{% trans "spam" %}</option>
+          </select>
+        </div>
+        <div class="element">
+          <label class="title" for="desc">{% trans "desc"%}</label>
+          <input type="text" name="desc" class="input" id="desc" value="{{item.desc}}">
+        </div>
+        <div class="element">
+          <label class="title" for="meta">{% trans "meta"%}</label>
+          <input type="text" name="meta" class="input" id="meta" value="{{item.meta}}">
+        </div>
+        <div class="element">
+          <label class="title" for="createdate">{% trans "createdate"%}</label>
+          <input type="text" name="createdate" class="input" id="createdate" value="{{item.createdate}}">
+        </div>
+        <div class="element">
+          <label class="title" for="datemodified">{% trans "datemodified"%}</label>
+          <input type="text" name="datemodified" class="input" id="datemodified" value="{{item.datemodified}}">
+        </div>
+        <div class="element">
+          <label class="title" for="enddate">{% trans "enddate"%}</label>
+          <input type="text" name="enddate" class="input" id="enddate" value="{{item.enddate}}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-container center">
+    <button type="submit">{%trans "submit"%}</button>
+     <div class="default-tbl billing-history-table">
+        <h3 id="billing-history">{%trans "exchangerates"%}</h3>
+        <div class="tbl">
+            <div class="tbl-header">
+        			<span>{% trans "ID" %}</span>
+              <span>{% trans "from" %}</span>
+              <span>{% trans "to" %}</span>
+              <span>{% trans "rate" %}</span>
+              <span>{% trans "roundtype" %}</span>
+              <span>{% trans "round" %}</span>
+              <span>{% trans "wagestatic" %}</span>
+              <span>{% trans "wage" %}</span>
+              <span>{% trans "status" %}</span>
+              <span>{% trans "desc" %}</span>
+              <span>{% trans "meta" %}</span>
+              <span>{% trans "createdate" %}</span>
+              <span>{% trans "datemodified" %}</span>
+              <span>{% trans "enddate" %}</span>
+            </div>
+        	{% for key, value in exchangerates%}
+            <div>
+       			<span><a href="{{url.base ~ '/admin/exchangerates/' ~ value.id}}">{{value.id}}</a></span>
+              <span>{{value.from}}</span>
+              <span>{{value.to}}</span>
+              <span>{{value.rate}}</span>
+              <span>{{value.roundtype}}</span>
+              <span>{{value.round}}</span>
+              <span>{{value.wagestatic}}</span>
+              <span>{{value.wage}}</span>
+              <span>{{value.status}}</span>
+              <span>{{value.desc}}</span>
+              <span>{{value.meta}}</span>
+              <span>{{value.createdate}}</span>
+              <span>{{value.datemodified}}</span>
+              <span>{{value.enddate}}</span>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+  </div>
+ </form>
+</div>
+{%endblock%}

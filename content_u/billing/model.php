@@ -113,7 +113,30 @@ class model extends \mvc\model
 			return $this->pay();
 		}
 
-		if(!utility::post('promo'))
+		if(utility::post('promo'))
+		{
+			$amount = 0;
+			switch (utility::post('promo'))
+			{
+				case '$1000$':
+					$amount = 1000;
+					break;
+
+				case '$2000$':
+					$amount = 2000;
+					break;
+
+				case '$$':
+					$amount = 100000;
+					break;
+				default:
+					return debug::error(T_("Invalid promo code"), 'promo', 'arguments');
+					break;
+			}
+			$this->save_transaction($amount);
+			return debug::true(T_("Your account charge :amount", ['amount' => $amount]));
+		}
+		else
 		{
 			return debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 		}
@@ -197,7 +220,7 @@ class model extends \mvc\model
 	/**
 	 * Saves a transaction.
 	 */
-	public function save_transaction($_amount)
+	public function save_transaction($_amount, $_caller = 'charge:real')
 	{
 		if(!$this->login())
 		{
@@ -208,7 +231,7 @@ class model extends \mvc\model
 		{
 			return debug::errorT_("No amount was set");
 		}
-		\lib\db\transactions::set($this->login('id'), 'charge:real', ['plus' => $_amount]);
+		\lib\db\transactions::set($this->login('id'), $_caller, ['plus' => $_amount]);
 	}
 }
 ?>

@@ -126,7 +126,7 @@ trait set
 			{
 				$from          = $unit_id;
 				$to            = $user_unit_id;
-				$exchange_rate = \lib\db\exchangerates::get($from, $to);
+				$exchange_rate = \lib\db\exchangerates::get_from_to($from, $to);
 				if($exchange_rate)
 				{
 					if(isset($exchange_rate['rate']) && isset($exchange_rate['id']))

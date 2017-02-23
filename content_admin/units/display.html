@@ -1,0 +1,48 @@
+{%extends display.main%}
+{%block content%}
+<div class="main">
+  <form method="post">
+  <div class="box">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span6">
+        <div class="element">
+        	<label class="title" for="title">{%trans "title"%}</label>
+        	<input class="input" type="text" name="title" id="title" value="{{item.title}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="desc">{%trans "desc"%}</label>
+        	<input class="input" type="text" name="desc" id="desc" value="{{item.desc}}">
+        </div>
+        <div class="element">
+        	<label class="title" for="meta">{%trans "meta"%}</label>
+        	<input class="input" type="text" name="meta" id="meta" value="{{item.meta}}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-container center">
+    <button type="submit">{%trans "submit"%}</button>
+     <div class="default-tbl billing-history-table">
+        <h3 id="billing-history">{%trans "Units"%}</h3>
+        <div class="tbl">
+            <div class="tbl-header">
+    			<span>{% trans "ID" %}</span>
+    			<span>{% trans "Title" %}</span>
+    			<span>{% trans "Desc" %}</span>
+    			<span>{% trans "Meta" %}</span>
+            </div>
+        	{% for key, value in units%}
+            <div>
+       			<span><a href="{{url.base ~ '/admin/units/' ~ value.id}}">{{value.id}}</a></span>
+    			<span>{{value.title}}</span>
+    			<span>{{value.desc}}</span>
+    			<span>{{value.meta}}</span>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+  </div>
+ </form>
+</div>
+{%endblock%}

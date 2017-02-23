@@ -4,6 +4,29 @@ namespace lib\db;
 /** units managing **/
 class units
 {
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_id    The identifier
+	 */
+	public static function get($_id = null)
+	{
+		$id = null;
+		if($_id)
+		{
+			$id = " WHERE id = $_id ";
+		}
+		$query = "SELECT * FROM units $id";
+		if($id)
+		{
+			$result = \lib\db::get($query, null, true);
+		}
+		else
+		{
+			$result = \lib\db::get($query);
+		}
+		return $result;
+	}
 
 	/**
 	 * Gets the unit identifier.
@@ -72,5 +95,101 @@ class units
 		}
 		return $check_exist;
 	}
+
+
+	/**
+	 * insert new record of units
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function insert($_args)
+	{
+		$default_args =
+		[
+			'title' => null,
+			'desc'  => null,
+			'meta'  => null,
+		];
+		$_args = array_merge($default_args, $_args);
+
+		$set = [];
+		foreach ($_args as $field => $value)
+		{
+			if($value === null)
+			{
+				$set[] = " units.$field = NULL ";
+			}
+			elseif(is_numeric($value))
+			{
+				$set[] = " units.$field = $value ";
+			}
+			elseif(is_string($value))
+			{
+				$set[] = " units.$field = '$value' ";
+			}
+		}
+		$set = implode(",", $set);
+
+		$query =
+		"
+			INSERT INTO
+				units
+			SET
+				$set
+		";
+		$result = \lib\db::query($query);
+		return $result;
+	}
+/**
+	 * update record of units
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function update($_args, $_id)
+	{
+		$default_args =
+		[
+			'title' => null,
+			'desc'  => null,
+			'meta'  => null,
+		];
+		$_args = array_merge($default_args, $_args);
+
+		$set = [];
+		foreach ($_args as $field => $value)
+		{
+			if($value === null)
+			{
+				$set[] = " units.$field = NULL ";
+			}
+			elseif(is_numeric($value))
+			{
+				$set[] = " units.$field = $value ";
+			}
+			elseif(is_string($value))
+			{
+				$set[] = " units.$field = '$value' ";
+			}
+		}
+		$set = implode(",", $set);
+
+		$query =
+		"
+			UPDATE
+				units
+			SET
+				$set
+			WHERE
+				units.id = $_id
+		";
+
+		$result = \lib\db::query($query);
+		return $result;
+	}
+
 }
 ?>

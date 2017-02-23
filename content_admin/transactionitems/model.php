@@ -45,14 +45,14 @@ class model extends \mvc\model
 				'caller'      => utility::post("caller"),
 				'unit_id'     => utility::post("unit_id"),
 				'type'        => utility::post("type"),
-				'minus'       => utility::post("minus"),
-				'plus'        => utility::post("plus"),
+				'minus'       => utility::post("minus") ? utility::post('minus') : null,
+				'plus'        => utility::post("plus") ? utility::post('plus') : null,
 				'autoverify'  => utility::post("autoverify"),
 				'forcechange' => utility::post("forcechange"),
 				'desc'        => utility::post("desc"),
 				'meta'        => utility::post("meta"),
 				'status'      => utility::post("status"),
-				'enddate'     => utility::post("enddate")
+				// 'enddate'     => utility::post("enddate")
 			];
 			$update = \lib\db\transactionitems::update($args, $id);
 			if($update)
@@ -86,20 +86,21 @@ class model extends \mvc\model
 	 */
 	public function post_add()
 	{
+
 		$args =
 		[
 			'title'       => utility::post("title"),
 			'caller'      => utility::post("caller"),
 			'unit_id'     => utility::post("unit_id"),
 			'type'        => utility::post("type"),
-			'minus'       => utility::post("minus"),
-			'plus'        => utility::post("plus"),
+			'minus'       => utility::post("minus") ? utility::post('minus') : null,
+			'plus'        => utility::post("plus") ? utility::post('plus') : null,
 			'autoverify'  => utility::post("autoverify"),
 			'forcechange' => utility::post("forcechange"),
 			'desc'        => utility::post("desc"),
 			'meta'        => utility::post("meta"),
 			'status'      => utility::post("status"),
-			'enddate'     => utility::post("enddate")
+			// 'enddate'     => utility::post("enddate")
 		];
 		$insert = \lib\db\transactionitems::insert($args);
 		if($insert)

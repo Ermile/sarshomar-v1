@@ -9,7 +9,7 @@ class controller extends \content_admin\home\controller
 
 		$this->get("add", "add")->ALL("transactionitems");
 		$this->get("edit", "edit")->ALL("/^transactionitems\/(\d+)$/");
-		$this->post("transactionitems")->ALL("transactionitems");
+		$this->post("add")->ALL("transactionitems");
 		$this->post("edit")->ALL("/^transactionitems\/(\d+)$/");
 	}
 }
