@@ -114,7 +114,7 @@ private function transtext()
 	echo T_("Age");                                                                   // Line 105
 	echo T_("Province");                                                              // Line 203
 	echo T_("Religion");                                                              // Line 91
-	echo T_("Language");                                                              // Line 64
+	echo T_("Language");                                                              // Line 66
 
 	//----------------------------------------------------content\main\layout-xhr.html
 	echo T_("View your current location and navigate to parent of it");               // Line 62
@@ -130,7 +130,7 @@ private function transtext()
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 105
+	echo T_("Description");                                                           // Line 347
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
@@ -144,7 +144,7 @@ private function transtext()
 	echo T_("Last Questions");                                                        // Line 324
 	echo T_("There is no similar post");                                              // Line 332
 	echo T_("Poll timespan");                                                         // Line 350
-	echo T_("to");                                                                    // Line 353
+	echo T_("to");                                                                    // Line 96
 	echo T_("Not set");                                                               // Line 400
 	echo T_("Status");                                                                // Line 11
 	echo T_("Keyword");                                                               // Line 371
@@ -206,7 +206,7 @@ private function transtext()
 	echo T_("Cost");                                                                  // Line 71
 	echo T_("Tomans");                                                                // Line 71
 	echo T_("Total cash");                                                            // Line 76
-	echo T_("Cash");                                                                  // Line 112
+	echo T_("Cash");                                                                  // Line 114
 	echo T_("Gift");                                                                  // Line 88
 
 	//--------------------------------------------------content\template\register.html
@@ -225,7 +225,7 @@ private function transtext()
 	echo T_("Telegram");                                                              // Line 8
 	echo T_("Google Plus");                                                           // Line 11
 	echo T_("Facebook");                                                              // Line 14
-	echo T_("linkedin");                                                              // Line 18
+	echo T_("linkedin");                                                              // Line 495 Seperate
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 17
@@ -266,7 +266,7 @@ private function transtext()
 	echo T_("Demo version of Sarshomar released");                                    // Line 44
 	echo T_("Sarshomar is ready to start");                                           // Line 48
 	echo T_("The name of project selected as Sarshomar and register domains <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a>");// Line 52
-	echo T_("We are born to do Best!");                                               // Line 57
+	echo T_("We were born to do Best!");                                              // Line 57
 
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 14
@@ -294,7 +294,7 @@ private function transtext()
 	echo T_("Warn");                                                                  // Line 46
 	echo T_("Fail");                                                                  // Line 53
 	echo T_("Disabled");                                                              // Line 60
-	echo T_("Tags");                                                                  // Line 47
+	echo T_("Tags");                                                                  // Line 49
 	echo T_("Add");                                                                   // Line 4
 	echo T_("Slug");                                                                  // Line 96
 
@@ -501,6 +501,34 @@ private function transtext()
 	echo T_("Trash");                                                                 // Line 44
 	echo T_("Return to admin area");                                                  // Line 49
 
+	//----------------------------------------content_admin\exchangerates\display.html
+	echo T_("from");                                                                  // Line 95
+	echo T_("rate");                                                                  // Line 97
+	echo T_("roundtype");                                                             // Line 98
+	echo T_("Please select one item");                                                // Line 54
+	echo T_("up");                                                                    // Line 34
+	echo T_("down");                                                                  // Line 35
+	echo T_("round");                                                                 // Line 99
+	echo T_("wagestatic");                                                            // Line 100
+	echo T_("wage");                                                                  // Line 101
+	echo T_("status");                                                                // Line 61
+	echo T_("enable");                                                                // Line 63
+	echo T_("disable");                                                               // Line 64
+	echo T_("deleted");                                                               // Line 65
+	echo T_("expired");                                                               // Line 66
+	echo T_("awaiting");                                                              // Line 67
+	echo T_("filtered");                                                              // Line 68
+	echo T_("blocked");                                                               // Line 69
+	echo T_("spam");                                                                  // Line 70
+	echo T_("desc");                                                                  // Line 14
+	echo T_("meta");                                                                  // Line 18
+	echo T_("createdate");                                                            // Line 105
+	echo T_("datemodified");                                                          // Line 106
+	echo T_("enddate");                                                               // Line 74
+	echo T_("submit");                                                                // Line 25
+	echo T_("exchangerates");                                                         // Line 91
+	echo T_("ID");                                                                    // Line 3
+
 	//-------------------------------------------------content_admin\home\display.html
 	echo T_("Polls");                                                                 // Line 15 Seperate
 	echo T_("Filtered");                                                              // Line 7
@@ -521,7 +549,7 @@ private function transtext()
 	echo T_("parent");                                                                // Line 117
 	echo T_("sarshomar");                                                             // Line 120
 	echo T_("survey");                                                                // Line 123
-	echo T_("gender");                                                                // Line 125
+	echo T_("gender");                                                                // Line 197 Seperate
 	echo T_("privacy");                                                               // Line 127
 	echo T_("total");                                                                 // Line 129
 
@@ -529,7 +557,7 @@ private function transtext()
 	echo T_("title");                                                                 // Line 10
 	echo T_("caller");                                                                // Line 14
 	echo T_("unit_id");                                                               // Line 18
-	echo T_("type");                                                                  // Line 22
+	echo T_("type");                                                                  // Line 585 Seperate
 	echo T_("real");                                                                  // Line 24
 	echo T_("gift");                                                                  // Line 25
 	echo T_("prize");                                                                 // Line 26
@@ -538,19 +566,21 @@ private function transtext()
 	echo T_("plus");                                                                  // Line 35
 	echo T_("autoverify");                                                            // Line 39
 	echo T_("forcechange");                                                           // Line 46
-	echo T_("desc");                                                                  // Line 53
-	echo T_("meta");                                                                  // Line 57
-	echo T_("status");                                                                // Line 61
-	echo T_("enable");                                                                // Line 63
-	echo T_("disable");                                                               // Line 64
-	echo T_("deleted");                                                               // Line 65
-	echo T_("expired");                                                               // Line 66
-	echo T_("awaiting");                                                              // Line 67
-	echo T_("filtered");                                                              // Line 68
-	echo T_("blocked");                                                               // Line 69
-	echo T_("spam");                                                                  // Line 70
-	echo T_("enddate");                                                               // Line 74
-	echo T_("submit");                                                                // Line 81
+	echo T_("Billing History");                                                       // Line 101
+	echo T_("Caller");                                                                // Line 88
+	echo T_("Unit");                                                                  // Line 89
+	echo T_("Minus");                                                                 // Line 108
+	echo T_("Plus");                                                                  // Line 107
+	echo T_("Autoverify");                                                            // Line 93
+	echo T_("Forcechange");                                                           // Line 94
+	echo T_("Desc");                                                                  // Line 32
+	echo T_("Meta");                                                                  // Line 33
+	echo T_("Createdate");                                                            // Line 98
+	echo T_("Datemodified");                                                          // Line 99
+	echo T_("Enddate");                                                               // Line 100
+
+	//------------------------------------------------content_admin\units\display.html
+	echo T_("Units");                                                                 // Line 27
 
 	//-------------------------------------------------content_api\v1\doc\display.html
 	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 3
@@ -564,7 +594,6 @@ private function transtext()
 	echo T_("Response");                                                              // Line 17
 
 	//----------------------------------content_api\v1\doc\template\billing\table.html
-	echo T_("ID");                                                                    // Line 3
 	echo T_("Variable");                                                              // Line 3
 	echo T_("Priority");                                                              // Line 4
 	echo T_("Example");                                                               // Line 5
@@ -777,7 +806,7 @@ private function transtext()
 	echo T_("Next Step");                                                             // Line 49
 
 	//-----------------------------------------------------content_u\add\progress.html
-	echo T_("Filter");                                                                // Line 92
+	echo T_("Filter");                                                                // Line 94
 	echo T_("Next");                                                                  // Line 9
 	echo T_("Show my poll");                                                          // Line 14
 
@@ -786,7 +815,7 @@ private function transtext()
 	echo T_("Range / Star");                                                          // Line 14
 	echo T_("Title of question");                                                     // Line 28
 	echo T_("Score");                                                                 // Line 120
-	echo T_("Category");                                                              // Line 119
+	echo T_("Category");                                                              // Line 7
 	echo T_("Answer");                                                                // Line 78
 	echo T_("text given from user");                                                  // Line 181
 	echo T_("Profile");                                                               // Line 111
@@ -797,10 +826,10 @@ private function transtext()
 	echo T_("One Choice");                                                            // Line 168
 	echo T_("Multi Choice");                                                          // Line 171
 	echo T_("Ordering");                                                              // Line 174
-	echo T_("other");                                                                 // Line 181
+	echo T_("other");                                                                 // Line 318 Seperate
 	echo T_("Please type your answer");                                               // Line 181
 	echo T_("Allow to type other answer");                                            // Line 183
-	echo T_("Branding");                                                              // Line 102
+	echo T_("Branding");                                                              // Line 104
 	echo T_("URL");                                                                   // Line 201
 	echo T_("Choice Range");                                                          // Line 209
 	echo T_("Ultimate");                                                              // Line 125
@@ -811,7 +840,7 @@ private function transtext()
 	echo T_("Has correct option");                                                    // Line 247
 	echo T_("Complete Profile");                                                      // Line 27
 	echo T_("Tree");                                                                  // Line 302
-	echo T_("Time");                                                                  // Line 318
+	echo T_("Time");                                                                  // Line 17
 	echo T_("Summary");                                                               // Line 336
 	echo T_("Text Format");                                                           // Line 354
 	echo T_("Any Text");                                                              // Line 356
@@ -859,19 +888,18 @@ private function transtext()
 	echo T_("Private");                                                               // Line 125
 
 	//--------------------------------------------------------content_u\add\step3.html
-	echo T_("Main Category");                                                         // Line 7
-	echo T_("Sub Category");                                                          // Line 14
-	echo T_("Child Category");                                                        // Line 21
-	echo T_("Article");                                                               // Line 28
-	echo T_("Short URL");                                                             // Line 73
-	echo T_("Price");                                                                 // Line 83
-	echo T_("Society");                                                               // Line 87
-	echo T_("Register Question");                                                     // Line 97
-	echo T_("Total Price");                                                           // Line 107
-	echo T_("Balance");                                                               // Line 118
-	echo T_("Charge Account");                                                        // Line 124
-	echo T_("Publish it");                                                            // Line 125
-	echo T_("go Back to Draft");                                                      // Line 125
+	echo T_("Sub Category");                                                          // Line 15
+	echo T_("Child Category");                                                        // Line 22
+	echo T_("Article");                                                               // Line 30
+	echo T_("Short URL");                                                             // Line 75
+	echo T_("Price");                                                                 // Line 85
+	echo T_("Society");                                                               // Line 89
+	echo T_("Register Question");                                                     // Line 99
+	echo T_("Total Price");                                                           // Line 109
+	echo T_("Balance");                                                               // Line 120
+	echo T_("Charge Account");                                                        // Line 126
+	echo T_("Publish it");                                                            // Line 127
+	echo T_("go Back to Draft");                                                      // Line 127
 
 	//---------------------------------------------------------content_u\add\tree.html
 
@@ -881,13 +909,15 @@ private function transtext()
 	echo T_("Your Credit");                                                           // Line 32
 	echo T_("Charge your account");                                                   // Line 39
 	echo T_("Choose a gateway and enter an amount to charge your account");           // Line 40
-	echo T_("Amount");                                                                // Line 106
+	echo T_("Amount");                                                                // Line 71
 	echo T_("Confirm");                                                               // Line 72
 	echo T_("Promo code");                                                            // Line 81
 	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 82
 	echo T_("Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.");// Line 95
-	echo T_("Billing History");                                                       // Line 101
-	echo T_("Remaining");                                                             // Line 107
+	echo T_("Budget before");                                                         // Line 109
+	echo T_("Budget");                                                                // Line 110
+	echo T_("Transactions Detail");                                                   // Line 137
+	echo T_("OK");                                                                    // Line 152
 
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Undefined");                                                             // Line 12
@@ -979,6 +1009,11 @@ private function transtext()
 
 	//---------------------------------------------------content_u\search\display.html
 
+	//-------------------------------------------------content_u\security\display.html
+	echo T_("Security");                                                              // Line 12
+	echo T_("Action");                                                                // Line 15
+	echo T_("IP Address");                                                            // Line 16
+
 	//--------------------------------------------includes\languages\trans_static.html
 	echo T_("Saloos");                                                                // Line 7 Seperate
 	echo T_("Sarshomar start jumping");                                               // Line 9 Seperate
@@ -986,6 +1021,602 @@ private function transtext()
 	echo T_("Sarshomar is inteligent");                                               // Line 11 Seperate
 	echo T_("poll");                                                                  // Line 12 Seperate
 	echo T_("polls");                                                                 // Line 14 Seperate
+	echo T_("one");                                                                   // Line 20 Seperate
+	echo T_("two");                                                                   // Line 21 Seperate
+	echo T_("three");                                                                 // Line 22 Seperate
+	echo T_("four");                                                                  // Line 23 Seperate
+	echo T_("1940 and earlier");                                                      // Line 24 Seperate
+	echo T_("1320 and earlier");                                                      // Line 25 Seperate
+	echo T_("five or more");                                                          // Line 26 Seperate
+	echo T_("primary school");                                                        // Line 27 Seperate
+	echo T_("operator");                                                              // Line 28 Seperate
+	echo T_("bus");                                                                   // Line 29 Seperate
+	echo T_("car racing");                                                            // Line 30 Seperate
+	echo T_("rent");                                                                  // Line 31 Seperate
+	echo T_("society");                                                               // Line 32 Seperate
+	echo T_("parties");                                                               // Line 33 Seperate
+	echo T_("news");                                                                  // Line 34 Seperate
+	echo T_("moral and spiritual");                                                   // Line 35 Seperate
+	echo T_("ordibehesht");                                                           // Line 36 Seperate
+	echo T_("arjan fars");                                                            // Line 37 Seperate
+	echo T_("europe");                                                                // Line 38 Seperate
+	echo T_("marriage");                                                              // Line 39 Seperate
+	echo T_("riding");                                                                // Line 40 Seperate
+	echo T_("spanish ");                                                              // Line 41 Seperate
+	echo T_("australia");                                                             // Line 42 Seperate
+	echo T_("esteghlal");                                                             // Line 43 Seperate
+	echo T_("esteghlal ahvaz");                                                       // Line 44 Seperate
+	echo T_("esteghlal khuzestan");                                                   // Line 45 Seperate
+	echo T_("esfand");                                                                // Line 46 Seperate
+	echo T_("squash ");                                                               // Line 47 Seperate
+	echo T_("skiing");                                                                // Line 48 Seperate
+	echo T_("water skiing");                                                          // Line 49 Seperate
+	echo T_("islam");                                                                 // Line 50 Seperate
+	echo T_("overweight");                                                            // Line 51 Seperate
+	echo T_("religious beliefs");                                                     // Line 52 Seperate
+	echo T_("not believe");                                                           // Line 53 Seperate
+	echo T_("management");                                                            // Line 54 Seperate
+	echo T_("business");                                                              // Line 55 Seperate
+	echo T_("oxin alborz");                                                           // Line 56 Seperate
+	echo T_("action");                                                                // Line 57 Seperate
+	echo T_("security");                                                              // Line 58 Seperate
+	echo T_("routines");                                                              // Line 59 Seperate
+	echo T_("election");                                                              // Line 60 Seperate
+	echo T_("android");                                                               // Line 61 Seperate
+	echo T_("energy");                                                                // Line 62 Seperate
+	echo T_("few");                                                                   // Line 63 Seperate
+	echo T_("english");                                                               // Line 64 Seperate
+	echo T_("blood donation");                                                        // Line 65 Seperate
+	echo T_("organ donation");                                                        // Line 66 Seperate
+	echo T_("important");                                                             // Line 67 Seperate
+	echo T_("not important");                                                         // Line 68 Seperate
+	echo T_("adsl");                                                                  // Line 69 Seperate
+	echo T_("iran");                                                                  // Line 70 Seperate
+	echo T_("iran khodro");                                                           // Line 71 Seperate
+	echo T_("iranjavan bushehr");                                                     // Line 72 Seperate
+	echo T_("irancell");                                                              // Line 73 Seperate
+	echo T_("internet");                                                              // Line 74 Seperate
+	echo T_("mobile data");                                                           // Line 75 Seperate
+	echo T_("eshopping");                                                             // Line 76 Seperate
+	echo T_("instagram");                                                             // Line 77 Seperate
+	echo T_("water");                                                                 // Line 78 Seperate
+	echo T_("boiling water");                                                         // Line 79 Seperate
+	echo T_("aban");                                                                  // Line 80 Seperate
+	echo T_("fruit juice");                                                           // Line 81 Seperate
+	echo T_("blue");                                                                  // Line 82 Seperate
+	echo T_("location");                                                              // Line 83 Seperate
+	echo T_("azar");                                                                  // Line 84 Seperate
+	echo T_("azarakhsh bandarabbas");                                                 // Line 85 Seperate
+	echo T_("azeri");                                                                 // Line 86 Seperate
+	echo T_("free");                                                                  // Line 87 Seperate
+	echo T_("islamic azad");                                                          // Line 88 Seperate
+	echo T_("asia");                                                                  // Line 89 Seperate
+	echo T_("cooking");                                                               // Line 90 Seperate
+	echo T_("sunny");                                                                 // Line 91 Seperate
+	echo T_("africa");                                                                // Line 92 Seperate
+	echo T_("sir");                                                                   // Line 93 Seperate
+	echo T_("deutsch ");                                                              // Line 94 Seperate
+	echo T_("pollution");                                                             // Line 95 Seperate
+	echo T_("aluminium arak");                                                        // Line 96 Seperate
+	echo T_("america");                                                               // Line 97 Seperate
+	echo T_("north america");                                                         // Line 98 Seperate
+	echo T_("south america");                                                         // Line 99 Seperate
+	echo T_("education");                                                             // Line 100 Seperate
+	echo T_("ios");                                                                   // Line 101 Seperate
+	echo T_("baadraan tehran");                                                       // Line 102 Seperate
+	echo T_("market");                                                                // Line 103 Seperate
+	echo T_("retired");                                                               // Line 104 Seperate
+	echo T_("game");                                                                  // Line 105 Seperate
+	echo T_("online game");                                                           // Line 106 Seperate
+	echo T_("baguette");                                                              // Line 107 Seperate
+	echo T_("above 60");                                                              // Line 108 Seperate
+	echo T_("bank");                                                                  // Line 109 Seperate
+	echo T_("badminton");                                                             // Line 110 Seperate
+	echo T_("barbari");                                                               // Line 111 Seperate
+	echo T_("some days");                                                             // Line 112 Seperate
+	echo T_("suburban");                                                              // Line 113 Seperate
+	echo T_("beige");                                                                 // Line 114 Seperate
+	echo T_("basketball");                                                            // Line 115 Seperate
+	echo T_("yes");                                                                   // Line 116 Seperate
+	echo T_("purple");                                                                // Line 117 Seperate
+	echo T_("spring");                                                                // Line 118 Seperate
+	echo T_("bahman");                                                                // Line 119 Seperate
+	echo T_("rarely");                                                                // Line 120 Seperate
+	echo T_("stock");                                                                 // Line 121 Seperate
+	echo T_("boxing");                                                                // Line 122 Seperate
+	echo T_("german bundesliga");                                                     // Line 123 Seperate
+	echo T_("uninterested");                                                          // Line 124 Seperate
+	echo T_("homeless");                                                              // Line 125 Seperate
+	echo T_("illiterate");                                                            // Line 126 Seperate
+	echo T_("more than 9h");                                                          // Line 127 Seperate
+	echo T_("more than 10");                                                          // Line 128 Seperate
+	echo T_("more than 190");                                                         // Line 129 Seperate
+	echo T_("disinterest");                                                           // Line 130 Seperate
+	echo T_("unemployed");                                                            // Line 131 Seperate
+	echo T_("sickness");                                                              // Line 132 Seperate
+	echo T_("insurance");                                                             // Line 133 Seperate
+	echo T_("between 150 and 160");                                                   // Line 134 Seperate
+	echo T_("between 160 and 170");                                                   // Line 135 Seperate
+	echo T_("between 170 and 190");                                                   // Line 136 Seperate
+	echo T_("between 5-6h");                                                          // Line 137 Seperate
+	echo T_("between 6-7h");                                                          // Line 138 Seperate
+	echo T_("between 7-8h");                                                          // Line 139 Seperate
+	echo T_("between 8-9h");                                                          // Line 140 Seperate
+	echo T_("world");                                                                 // Line 141 Seperate
+	echo T_("international");                                                         // Line 142 Seperate
+	echo T_("widow");                                                                 // Line 143 Seperate
+	echo T_("pop");                                                                   // Line 144 Seperate
+	echo T_("pars khodro");                                                           // Line 145 Seperate
+	echo T_("pars jam");                                                              // Line 146 Seperate
+	echo T_("finished");                                                              // Line 147 Seperate
+	echo T_("autumn");                                                                // Line 148 Seperate
+	echo T_("padideh");                                                               // Line 149 Seperate
+	echo T_("portuguese ");                                                           // Line 150 Seperate
+	echo T_("press tv");                                                              // Line 151 Seperate
+	echo T_("persepolis");                                                            // Line 152 Seperate
+	echo T_("medical");                                                               // Line 153 Seperate
+	echo T_("boy");                                                                   // Line 154 Seperate
+	echo T_("regretful");                                                             // Line 155 Seperate
+	echo T_("skin hair beauty");                                                      // Line 156 Seperate
+	echo T_("payam nour");                                                            // Line 157 Seperate
+	echo T_("pre university");                                                        // Line 158 Seperate
+	echo T_("paykan");                                                                // Line 159 Seperate
+	echo T_("tracking");                                                              // Line 160 Seperate
+	echo T_("not tracking");                                                          // Line 161 Seperate
+	echo T_("summer");                                                                // Line 162 Seperate
+	echo T_("somewhat");                                                              // Line 163 Seperate
+	echo T_("history");                                                               // Line 164 Seperate
+	echo T_("tasisat daryaei");                                                       // Line 165 Seperate
+	echo T_("taftoon");                                                               // Line 166 Seperate
+	echo T_("taxi");                                                                  // Line 167 Seperate
+	echo T_("talia");                                                                 // Line 168 Seperate
+	echo T_("tamin ejtemaei");                                                        // Line 169 Seperate
+	echo T_("tractor sazi");                                                          // Line 170 Seperate
+	echo T_("scary");                                                                 // Line 171 Seperate
+	echo T_("sour");                                                                  // Line 172 Seperate
+	echo T_("turkish");                                                               // Line 173 Seperate
+	echo T_("family decide");                                                         // Line 174 Seperate
+	echo T_("the number of bank account");                                            // Line 175 Seperate
+	echo T_("fun");                                                                   // Line 176 Seperate
+	echo T_("technology");                                                            // Line 177 Seperate
+	echo T_("taekwondo");                                                             // Line 178 Seperate
+	echo T_("telegram");                                                              // Line 179 Seperate
+	echo T_("tv");                                                                    // Line 180 Seperate
+	echo T_("fitness");                                                               // Line 181 Seperate
+	echo T_("social norms");                                                          // Line 182 Seperate
+	echo T_("spicy");                                                                 // Line 183 Seperate
+	echo T_("tennis");                                                                // Line 184 Seperate
+	echo T_("table tennis");                                                          // Line 185 Seperate
+	echo T_("attention");                                                             // Line 186 Seperate
+	echo T_("not attention");                                                         // Line 187 Seperate
+	echo T_("birth");                                                                 // Line 188 Seperate
+	echo T_("twitter");                                                               // Line 189 Seperate
+	echo T_("tir");                                                                   // Line 190 Seperate
+	echo T_("team");                                                                  // Line 191 Seperate
+	echo T_("theater");                                                               // Line 192 Seperate
+	echo T_("wealth");                                                                // Line 193 Seperate
+	echo T_("java");                                                                  // Line 194 Seperate
+	echo T_("surgery");                                                               // Line 195 Seperate
+	echo T_("criminal");                                                              // Line 196 Seperate
+	echo T_("judo");                                                                  // Line 198 Seperate
+	echo T_("camping");                                                               // Line 199 Seperate
+	echo T_("obese");                                                                 // Line 200 Seperate
+	echo T_("tea");                                                                   // Line 201 Seperate
+	echo T_("left");                                                                  // Line 202 Seperate
+	echo T_("eye");                                                                   // Line 203 Seperate
+	echo T_("ophthalmologist");                                                       // Line 204 Seperate
+	echo T_("celebrity");                                                             // Line 205 Seperate
+	echo T_("hejamat");                                                               // Line 206 Seperate
+	echo T_("bank account");                                                          // Line 207 Seperate
+	echo T_("melli haffari ahvaz");                                                   // Line 208 Seperate
+	echo T_("human rights");                                                          // Line 209 Seperate
+	echo T_("transport");                                                             // Line 210 Seperate
+	echo T_("howze");                                                                 // Line 211 Seperate
+	echo T_("gray");                                                                  // Line 212 Seperate
+	echo T_("lady");                                                                  // Line 213 Seperate
+	echo T_("home friends");                                                          // Line 214 Seperate
+	echo T_("family");                                                                // Line 215 Seperate
+	echo T_("middle east");                                                           // Line 216 Seperate
+	echo T_("khordad");                                                               // Line 217 Seperate
+	echo T_("buy");                                                                   // Line 218 Seperate
+	echo T_("private insurance");                                                     // Line 219 Seperate
+	echo T_("sleep");                                                                 // Line 220 Seperate
+	echo T_("good");                                                                  // Line 221 Seperate
+	echo T_("car");                                                                   // Line 222 Seperate
+	echo T_("personal");                                                              // Line 223 Seperate
+	echo T_("personal car");                                                          // Line 224 Seperate
+	echo T_("khooneh be khooneh");                                                    // Line 225 Seperate
+	echo T_("kheybar khorramabad");                                                   // Line 226 Seperate
+	echo T_("no");                                                                    // Line 227 Seperate
+	echo T_("charity");                                                               // Line 228 Seperate
+	echo T_("long time ago");                                                         // Line 229 Seperate
+	echo T_("too much");                                                              // Line 230 Seperate
+	echo T_("very little");                                                           // Line 231 Seperate
+	echo T_("have");                                                                  // Line 232 Seperate
+	echo T_("medicine");                                                              // Line 233 Seperate
+	echo T_("azad university");                                                       // Line 234 Seperate
+	echo T_("collegiate");                                                            // Line 235 Seperate
+	echo T_("high school");                                                           // Line 236 Seperate
+	echo T_("dabiri tabriz");                                                         // Line 237 Seperate
+	echo T_("tobacco");                                                               // Line 238 Seperate
+	echo T_("girl");                                                                  // Line 239 Seperate
+	echo T_("undergraduate");                                                         // Line 240 Seperate
+	echo T_("ongoing");                                                               // Line 241 Seperate
+	echo T_("pay costs");                                                             // Line 242 Seperate
+	echo T_("drama");                                                                 // Line 243 Seperate
+	echo T_("therapeutic");                                                           // Line 244 Seperate
+	echo T_("not get");                                                               // Line 245 Seperate
+	echo T_("hand");                                                                  // Line 246 Seperate
+	echo T_("defence");                                                               // Line 247 Seperate
+	echo T_("times");                                                                 // Line 248 Seperate
+	echo T_("pay times");                                                             // Line 249 Seperate
+	echo T_("the skin and beauty doctor");                                            // Line 250 Seperate
+	echo T_("doctorate");                                                             // Line 251 Seperate
+	echo T_("phd");                                                                   // Line 252 Seperate
+	echo T_("low-alcohol beer");                                                      // Line 253 Seperate
+	echo T_("why");                                                                   // Line 254 Seperate
+	echo T_("dentist");                                                               // Line 255 Seperate
+	echo T_("tooth");                                                                 // Line 256 Seperate
+	echo T_("decade");                                                                // Line 257 Seperate
+	echo T_("bike");                                                                  // Line 258 Seperate
+	echo T_("cycling");                                                               // Line 259 Seperate
+	echo T_("dough");                                                                 // Line 260 Seperate
+	echo T_("government");                                                            // Line 261 Seperate
+	echo T_("governmental");                                                          // Line 262 Seperate
+	echo T_("dey");                                                                   // Line 263 Seperate
+	echo T_("diploma");                                                               // Line 264 Seperate
+	echo T_("religion");                                                              // Line 265 Seperate
+	echo T_("zob ahan");                                                              // Line 266 Seperate
+	echo T_("convenience");                                                           // Line 267 Seperate
+	echo T_("radio");                                                                 // Line 268 Seperate
+	echo T_("right");                                                                 // Line 269 Seperate
+	echo T_("satisfied");                                                             // Line 270 Seperate
+	echo T_("rock");                                                                  // Line 271 Seperate
+	echo T_("rugby");                                                                 // Line 272 Seperate
+	echo T_("rah ahan");                                                              // Line 273 Seperate
+	echo T_("middle school");                                                         // Line 274 Seperate
+	echo T_("traffic police");                                                        // Line 275 Seperate
+	echo T_("rightel");                                                               // Line 276 Seperate
+	echo T_("quatrain");                                                              // Line 277 Seperate
+	echo T_("rap");                                                                   // Line 278 Seperate
+	echo T_("media");                                                                 // Line 279 Seperate
+	echo T_("compliance with laws and regulations");                                  // Line 280 Seperate
+	echo T_("gone");                                                                  // Line 281 Seperate
+	echo T_("dance");                                                                 // Line 282 Seperate
+	echo T_("nover");                                                                 // Line 283 Seperate
+	echo T_("color");                                                                 // Line 284 Seperate
+	echo T_("psychology");                                                            // Line 285 Seperate
+	echo T_("daily");                                                                 // Line 286 Seperate
+	echo T_("newspaper");                                                             // Line 287 Seperate
+	echo T_("village");                                                               // Line 288 Seperate
+	echo T_("rural");                                                                 // Line 289 Seperate
+	echo T_("russian");                                                               // Line 290 Seperate
+	echo T_("tracking method");                                                       // Line 291 Seperate
+	echo T_("math and physics");                                                      // Line 292 Seperate
+	echo T_("dust");                                                                  // Line 293 Seperate
+	echo T_("president");                                                             // Line 294 Seperate
+	echo T_("hirudo medicinalis");                                                    // Line 295 Seperate
+	echo T_("parturition");                                                           // Line 296 Seperate
+	echo T_("language");                                                              // Line 297 Seperate
+	echo T_("l2");                                                                    // Line 298 Seperate
+	echo T_("l1");                                                                    // Line 299 Seperate
+	echo T_("yellow");                                                                // Line 300 Seperate
+	echo T_("winter");                                                                // Line 301 Seperate
+	echo T_("consumption");                                                           // Line 302 Seperate
+	echo T_("lot");                                                                   // Line 303 Seperate
+	echo T_("appearance");                                                            // Line 304 Seperate
+	echo T_("beauty");                                                                // Line 305 Seperate
+	echo T_("olive");                                                                 // Line 306 Seperate
+	echo T_("under 13");                                                              // Line 307 Seperate
+	echo T_("under diploma");                                                         // Line 308 Seperate
+	echo T_("genre");                                                                 // Line 309 Seperate
+	echo T_("gymnastics");                                                            // Line 310 Seperate
+	echo T_("year");                                                                  // Line 311 Seperate
+	echo T_("last year");                                                             // Line 312 Seperate
+	echo T_("year shamsi");                                                           // Line 313 Seperate
+	echo T_("yearly");                                                                // Line 314 Seperate
+	echo T_("saipa football team");                                                   // Line 315 Seperate
+	echo T_("saipa");                                                                 // Line 316 Seperate
+	echo T_("news sites");                                                            // Line 317 Seperate
+	echo T_("green");                                                                 // Line 319 Seperate
+	echo T_("lifestyle");                                                             // Line 320 Seperate
+	echo T_("sepahan");                                                               // Line 321 Seperate
+	echo T_("sepidrood rasht");                                                       // Line 322 Seperate
+	echo T_("soldiering");                                                            // Line 323 Seperate
+	echo T_("velocity");                                                              // Line 324 Seperate
+	echo T_("investment");                                                            // Line 325 Seperate
+	echo T_("italian serie a");                                                       // Line 326 Seperate
+	echo T_("caesarean");                                                             // Line 327 Seperate
+	echo T_("fourth level");                                                          // Line 328 Seperate
+	echo T_("second level");                                                          // Line 329 Seperate
+	echo T_("third level");                                                           // Line 330 Seperate
+	echo T_("first level");                                                           // Line 331 Seperate
+	echo T_("travel");                                                                // Line 332 Seperate
+	echo T_("outside iran");                                                          // Line 333 Seperate
+	echo T_("white");                                                                 // Line 334 Seperate
+	echo T_("health");                                                                // Line 335 Seperate
+	echo T_("salamat");                                                               // Line 336 Seperate
+	echo T_("persian traditional");                                                   // Line 337 Seperate
+	echo T_("sangak");                                                                // Line 338 Seperate
+	echo T_("politic");                                                               // Line 339 Seperate
+	echo T_("political");                                                             // Line 340 Seperate
+	echo T_("black");                                                                 // Line 341 Seperate
+	echo T_("siah jamegan");                                                          // Line 342 Seperate
+	echo T_("operating system");                                                      // Line 343 Seperate
+	echo T_("cinema");                                                                // Line 344 Seperate
+	echo T_("succulence");                                                            // Line 345 Seperate
+	echo T_("employed");                                                              // Line 346 Seperate
+	echo T_("social network");                                                        // Line 347 Seperate
+	echo T_("irib5");                                                                 // Line 348 Seperate
+	echo T_("irib4");                                                                 // Line 349 Seperate
+	echo T_("news channel");                                                          // Line 350 Seperate
+	echo T_("irib2");                                                                 // Line 351 Seperate
+	echo T_("irib3");                                                                 // Line 352 Seperate
+	echo T_("irib1");                                                                 // Line 353 Seperate
+	echo T_("social networks");                                                       // Line 354 Seperate
+	echo T_("camel");                                                                 // Line 355 Seperate
+	echo T_("company");                                                               // Line 356 Seperate
+	echo T_("companies");                                                             // Line 357 Seperate
+	echo T_("last 6 month");                                                          // Line 358 Seperate
+	echo T_("poem");                                                                  // Line 359 Seperate
+	echo T_("poetry");                                                                // Line 360 Seperate
+	echo T_("shamsi hijri calendar");                                                 // Line 361 Seperate
+	echo T_("swimming");                                                              // Line 362 Seperate
+	echo T_("city");                                                                  // Line 363 Seperate
+	echo T_("shahrdari saveh");                                                       // Line 364 Seperate
+	echo T_("shahrvand sari");                                                        // Line 365 Seperate
+	echo T_("urban");                                                                 // Line 366 Seperate
+	echo T_("shahrivar");                                                             // Line 367 Seperate
+	echo T_("salty");                                                                 // Line 368 Seperate
+	echo T_("milk");                                                                  // Line 369 Seperate
+	echo T_("sweet");                                                                 // Line 370 Seperate
+	echo T_("saba qom");                                                              // Line 371 Seperate
+	echo T_("breakfast");                                                             // Line 372 Seperate
+	echo T_("sadaqah");                                                               // Line 373 Seperate
+	echo T_("industrial and power plants");                                           // Line 374 Seperate
+	echo T_("sanat naft abadan");                                                     // Line 375 Seperate
+	echo T_("pink");                                                                  // Line 376 Seperate
+	echo T_("iranian traditional medicine");                                          // Line 377 Seperate
+	echo T_("natural");                                                               // Line 378 Seperate
+	echo T_("tarh o toseeh alvand");                                                  // Line 379 Seperate
+	echo T_("taste");                                                                 // Line 380 Seperate
+	echo T_("divorced");                                                              // Line 381 Seperate
+	echo T_("diet");                                                                  // Line 382 Seperate
+	echo T_("romantic");                                                              // Line 383 Seperate
+	echo T_("arabic");                                                                // Line 384 Seperate
+	echo T_("interested");                                                            // Line 385 Seperate
+	echo T_("favorite");                                                              // Line 386 Seperate
+	echo T_("fav");                                                                   // Line 387 Seperate
+	echo T_("interest");                                                              // Line 388 Seperate
+	echo T_("not interested");                                                        // Line 389 Seperate
+	echo T_("science");                                                               // Line 390 Seperate
+	echo T_("industrial");                                                            // Line 391 Seperate
+	echo T_("applied science technology");                                            // Line 392 Seperate
+	echo T_("humanities");                                                            // Line 393 Seperate
+	echo T_("science and religion");                                                  // Line 394 Seperate
+	echo T_("general");                                                               // Line 395 Seperate
+	echo T_("factors");                                                               // Line 396 Seperate
+	echo T_("glasses");                                                               // Line 397 Seperate
+	echo T_("food");                                                                  // Line 398 Seperate
+	echo T_("sonnet");                                                                // Line 399 Seperate
+	echo T_("underwater diving");                                                     // Line 400 Seperate
+	echo T_("non governmental");                                                      // Line 401 Seperate
+	echo T_("non govermental");                                                       // Line 402 Seperate
+	echo T_("farsi");                                                                 // Line 403 Seperate
+	echo T_("graduate");                                                              // Line 404 Seperate
+	echo T_("fajr sepasi");                                                           // Line 405 Seperate
+	echo T_("french");                                                                // Line 406 Seperate
+	echo T_("child");                                                                 // Line 407 Seperate
+	echo T_("farsh mashhad");                                                         // Line 408 Seperate
+	echo T_("no time");                                                               // Line 409 Seperate
+	echo T_("no matter");                                                             // Line 410 Seperate
+	echo T_("culture");                                                               // Line 411 Seperate
+	echo T_("farvardin");                                                             // Line 412 Seperate
+	echo T_("fast food");                                                             // Line 413 Seperate
+	echo T_("season");                                                                // Line 414 Seperate
+	echo T_("active");                                                                // Line 415 Seperate
+	echo T_("not think");                                                             // Line 416 Seperate
+	echo T_("vocational");                                                            // Line 417 Seperate
+	echo T_("football");                                                              // Line 418 Seperate
+	echo T_("american football");                                                     // Line 419 Seperate
+	echo T_("futsal");                                                                // Line 420 Seperate
+	echo T_("associate degree");                                                      // Line 421 Seperate
+	echo T_("foolad");                                                                // Line 422 Seperate
+	echo T_("foolad yazd");                                                           // Line 423 Seperate
+	echo T_("cyan");                                                                  // Line 424 Seperate
+	echo T_("facebook");                                                              // Line 425 Seperate
+	echo T_("movie");                                                                 // Line 426 Seperate
+	echo T_("watching movie");                                                        // Line 427 Seperate
+	echo T_("continent");                                                             // Line 428 Seperate
+	echo T_("form");                                                                  // Line 429 Seperate
+	echo T_("law");                                                                   // Line 430 Seperate
+	echo T_("boating ");                                                              // Line 431 Seperate
+	echo T_("red");                                                                   // Line 432 Seperate
+	echo T_("ode");                                                                   // Line 433 Seperate
+	echo T_("train");                                                                 // Line 434 Seperate
+	echo T_("cut");                                                                   // Line 435 Seperate
+	echo T_("ghatee");                                                                // Line 436 Seperate
+	echo T_("islamic calendar");                                                      // Line 437 Seperate
+	echo T_("coffee");                                                                // Line 438 Seperate
+	echo T_("brown");                                                                 // Line 439 Seperate
+	echo T_("price");                                                                 // Line 440 Seperate
+	echo T_("karate");                                                                // Line 441 Seperate
+	echo T_("kar-o danesh");                                                          // Line 442 Seperate
+	echo T_("bachelor degree");                                                       // Line 443 Seperate
+	echo T_("master degree");                                                         // Line 444 Seperate
+	echo T_("masters degree");                                                        // Line 445 Seperate
+	echo T_("government employees");                                                  // Line 446 Seperate
+	echo T_("iran provincial channels");                                              // Line 447 Seperate
+	echo T_("book");                                                                  // Line 448 Seperate
+	echo T_("library");                                                               // Line 449 Seperate
+	echo T_("which one");                                                             // Line 450 Seperate
+	echo T_("give");                                                                  // Line 451 Seperate
+	echo T_("did");                                                                   // Line 452 Seperate
+	echo T_("done");                                                                  // Line 453 Seperate
+	echo T_("kurdish");                                                               // Line 454 Seperate
+	echo T_("kerman motor");                                                          // Line 455 Seperate
+	echo T_("cricket");                                                               // Line 456 Seperate
+	echo T_("agriculture");                                                           // Line 457 Seperate
+	echo T_("wrestling");                                                             // Line 458 Seperate
+	echo T_("made in");                                                               // Line 459 Seperate
+	echo T_("classic");                                                               // Line 460 Seperate
+	echo T_("cloob");                                                                 // Line 461 Seperate
+	echo T_("little");                                                                // Line 462 Seperate
+	echo T_("more or less");                                                          // Line 463 Seperate
+	echo T_("lack of green space");                                                   // Line 464 Seperate
+	echo T_("underweight");                                                           // Line 465 Seperate
+	echo T_("less than 150");                                                         // Line 466 Seperate
+	echo T_("comedy");                                                                // Line 467 Seperate
+	echo T_("congress");                                                              // Line 468 Seperate
+	echo T_("kung fu");                                                               // Line 469 Seperate
+	echo T_("quality");                                                               // Line 470 Seperate
+	echo T_("sometimes");                                                             // Line 471 Seperate
+	echo T_("cow and calf");                                                          // Line 472 Seperate
+	echo T_("past");                                                                  // Line 473 Seperate
+	echo T_("got");                                                                   // Line 474 Seperate
+	echo T_("group");                                                                 // Line 475 Seperate
+	echo T_("bahman group");                                                          // Line 476 Seperate
+	echo T_("gostaresh foulad");                                                      // Line 477 Seperate
+	echo T_("flower");                                                                // Line 478 Seperate
+	echo T_("gulf");                                                                  // Line 479 Seperate
+	echo T_("gol gohar sirjan");                                                      // Line 480 Seperate
+	echo T_("sheep");                                                                 // Line 481 Seperate
+	echo T_("listen");                                                                // Line 482 Seperate
+	echo T_("not listen");                                                            // Line 483 Seperate
+	echo T_("meat");                                                                  // Line 484 Seperate
+	echo T_("medicinal plants");                                                      // Line 485 Seperate
+	echo T_("giti pasand");                                                           // Line 486 Seperate
+	echo T_("thin");                                                                  // Line 487 Seperate
+	echo T_("spanish primera division");                                              // Line 488 Seperate
+	echo T_("accent");                                                                // Line 489 Seperate
+	echo T_("lavash");                                                                // Line 490 Seperate
+	echo T_("french ligue 1");                                                        // Line 491 Seperate
+	echo T_("azadegan league");                                                       // Line 492 Seperate
+	echo T_("english premier league");                                                // Line 493 Seperate
+	echo T_("persian gulf pro league");                                               // Line 494 Seperate
+	echo T_("machine sazi tabriz");                                                   // Line 496 Seperate
+	echo T_("owner");                                                                 // Line 497 Seperate
+	echo T_("month");                                                                 // Line 498 Seperate
+	echo T_("last month");                                                            // Line 499 Seperate
+	echo T_("satellite ");                                                            // Line 500 Seperate
+	echo T_("fish and aquatic");                                                      // Line 501 Seperate
+	echo T_("monthly");                                                               // Line 502 Seperate
+	echo T_("married");                                                               // Line 503 Seperate
+	echo T_("metro");                                                                 // Line 504 Seperate
+	echo T_("fit");                                                                   // Line 505 Seperate
+	echo T_("average");                                                               // Line 506 Seperate
+	echo T_("primary high school");                                                   // Line 507 Seperate
+	echo T_("secondry high school");                                                  // Line 508 Seperate
+	echo T_("masnavi");                                                               // Line 509 Seperate
+	echo T_("single");                                                                // Line 510 Seperate
+	echo T_("parliament");                                                            // Line 511 Seperate
+	echo T_("age range");                                                             // Line 512 Seperate
+	echo T_("height range");                                                          // Line 513 Seperate
+	echo T_("weight range");                                                          // Line 514 Seperate
+	echo T_("residence");                                                             // Line 515 Seperate
+	echo T_("folk");                                                                  // Line 516 Seperate
+	echo T_("environment");                                                           // Line 517 Seperate
+	echo T_("disagree");                                                              // Line 518 Seperate
+	echo T_("fashion");                                                               // Line 519 Seperate
+	echo T_("degree of education");                                                   // Line 520 Seperate
+	echo T_("modiran khodro");                                                        // Line 521 Seperate
+	echo T_("organizational");                                                        // Line 522 Seperate
+	echo T_("ordered");                                                               // Line 523 Seperate
+	echo T_("mordad");                                                                // Line 524 Seperate
+	echo T_("poultry");                                                               // Line 525 Seperate
+	echo T_("mes rafsanjan");                                                         // Line 526 Seperate
+	echo T_("mes sungun");                                                            // Line 527 Seperate
+	echo T_("mes kerman");                                                            // Line 528 Seperate
+	echo T_("house");                                                                 // Line 529 Seperate
+	echo T_("christ");                                                                // Line 530 Seperate
+	echo T_("jobs");                                                                  // Line 531 Seperate
+	echo T_("view");                                                                  // Line 532 Seperate
+	echo T_("use");                                                                   // Line 533 Seperate
+	echo T_("not use");                                                               // Line 534 Seperate
+	echo T_("latest study");                                                          // Line 535 Seperate
+	echo T_("exemption");                                                             // Line 536 Seperate
+	echo T_("moghavemat alborz");                                                     // Line 537 Seperate
+	echo T_("primary");                                                               // Line 538 Seperate
+	echo T_("degree");                                                                // Line 539 Seperate
+	echo T_("selection criteria");                                                    // Line 540 Seperate
+	echo T_("malavan");                                                               // Line 541 Seperate
+	echo T_("mehr");                                                                  // Line 542 Seperate
+	echo T_("agree");                                                                 // Line 543 Seperate
+	echo T_("mobile");                                                                // Line 544 Seperate
+	echo T_("motorcycling ");                                                         // Line 545 Seperate
+	echo T_("motorcycle");                                                            // Line 546 Seperate
+	echo T_("music");                                                                 // Line 547 Seperate
+	echo T_("scared");                                                                // Line 548 Seperate
+	echo T_("eat");                                                                   // Line 549 Seperate
+	echo T_("pay");                                                                   // Line 550 Seperate
+	echo T_("amount");                                                                // Line 551 Seperate
+	echo T_("usage");                                                                 // Line 552 Seperate
+	echo T_("listening");                                                             // Line 553 Seperate
+	echo T_("do");                                                                    // Line 554 Seperate
+	echo T_("gregorian calendar");                                                    // Line 555 Seperate
+	echo T_("drink");                                                                 // Line 556 Seperate
+	echo T_("orange");                                                                // Line 557 Seperate
+	echo T_("brand");                                                                 // Line 558 Seperate
+	echo T_("engaged");                                                               // Line 559 Seperate
+	echo T_("bread");                                                                 // Line 560 Seperate
+	echo T_("not decided");                                                           // Line 561 Seperate
+	echo T_("connection");                                                            // Line 562 Seperate
+	echo T_("not have");                                                              // Line 563 Seperate
+	echo T_("have not");                                                              // Line 564 Seperate
+	echo T_("not gone");                                                              // Line 565 Seperate
+	echo T_("nassaji mazandaran");                                                    // Line 566 Seperate
+	echo T_("nescafe");                                                               // Line 567 Seperate
+	echo T_("military service");                                                      // Line 568 Seperate
+	echo T_("military");                                                              // Line 569 Seperate
+	echo T_("opinion");                                                               // Line 570 Seperate
+	echo T_("naft tehran");                                                           // Line 571 Seperate
+	echo T_("naft masjed soleyman");                                                  // Line 572 Seperate
+	echo T_("silver");                                                                // Line 573 Seperate
+	echo T_("not give");                                                              // Line 574 Seperate
+	echo T_("did not");                                                               // Line 575 Seperate
+	echo T_("did not get");                                                           // Line 576 Seperate
+	echo T_("electronic trust icon");                                                 // Line 577 Seperate
+	echo T_("not eat");                                                               // Line 578 Seperate
+	echo T_("not pay");                                                               // Line 579 Seperate
+	echo T_("do not");                                                                // Line 580 Seperate
+	echo T_("not drink");                                                             // Line 581 Seperate
+	echo T_("soda");                                                                  // Line 582 Seperate
+	echo T_("potable");                                                               // Line 583 Seperate
+	echo T_("beverage");                                                              // Line 584 Seperate
+	echo T_("kind");                                                                  // Line 586 Seperate
+	echo T_("university type");                                                       // Line 587 Seperate
+	echo T_("armed forces");                                                          // Line 588 Seperate
+	echo T_("new poetry");                                                            // Line 589 Seperate
+	echo T_("hockey");                                                                // Line 590 Seperate
+	echo T_("hotel");                                                                 // Line 591 Seperate
+	echo T_("whenever putty");                                                        // Line 592 Seperate
+	echo T_("cost");                                                                  // Line 593 Seperate
+	echo T_("weekly");                                                                // Line 594 Seperate
+	echo T_("last week");                                                             // Line 595 Seperate
+	echo T_("hamrah aval");                                                           // Line 596 Seperate
+	echo T_("always");                                                                // Line 597 Seperate
+	echo T_("handball");                                                              // Line 598 Seperate
+	echo T_("martial arts");                                                          // Line 599 Seperate
+	echo T_("art");                                                                   // Line 600 Seperate
+	echo T_("feeling danger");                                                        // Line 601 Seperate
+	echo T_("airplane");                                                              // Line 602 Seperate
+	echo T_("water polo");                                                            // Line 603 Seperate
+	echo T_("volleyball");                                                            // Line 604 Seperate
+	echo T_("bank loans");                                                            // Line 605 Seperate
+	echo T_("wimax");                                                                 // Line 606 Seperate
+	echo T_("web browsing");                                                          // Line 607 Seperate
+	echo T_("professional athlete");                                                  // Line 608 Seperate
+	echo T_("sport");                                                                 // Line 609 Seperate
+	echo T_("vehicles");                                                              // Line 610 Seperate
+	echo T_("social and family status");                                              // Line 611 Seperate
+	echo T_("employement status");                                                    // Line 612 Seperate
+	echo T_("marital status");                                                        // Line 613 Seperate
+	echo T_("graduation status");                                                     // Line 614 Seperate
+	echo T_("financial situation");                                                   // Line 615 Seperate
+	echo T_("windows phone");                                                         // Line 616 Seperate
+	echo T_("subsidies");                                                             // Line 617 Seperate
+	echo T_("yasin pishro qom");                                                      // Line 618 Seperate
+	echo T_("jewish");                                                                // Line 619 Seperate
 
 }
 ?>

@@ -115,20 +115,20 @@ private function transtext()
 
 	//-------------------------saloos-addons\content_cp\permissions\display_child.html
 	echo T_("You are change this type of permission");                                // Line 30
-	echo T_("Edit permission of");                                                    // Line 38
-	echo T_("Allow or disallow user to access all part of service with full permission!");// Line 43
-	echo T_("All");                                                                   // Line 43
-	echo T_("Allow or disallow user to view all part of service");                    // Line 45
+	echo T_("Edit permission of");                                                    // Line 36
+	echo T_("Allow or disallow user to access all part of service with full permission!");// Line 41
+	echo T_("All");                                                                   // Line 41
+	echo T_("Allow or disallow user to view all part of service");                    // Line 43
 	echo T_("View");                                                                  // Line 147 Seperate
-	echo T_("Allow or disallow user to use and insert in all part of service");       // Line 46
+	echo T_("Allow or disallow user to use and insert in all part of service");       // Line 44
 	echo T_("Add");                                                                   // Line 148 Seperate
-	echo T_("Allow or disallow user to edit all part of service");                    // Line 47
+	echo T_("Allow or disallow user to edit all part of service");                    // Line 45
 	echo T_("Edit");                                                                  // Line 149 Seperate
-	echo T_("Allow or disallow user to delete in all part of service");               // Line 48
-	echo T_("Allow or disallow user to access another user data");                    // Line 50
+	echo T_("Allow or disallow user to delete in all part of service");               // Line 46
+	echo T_("Allow or disallow user to access another user data");                    // Line 48
 	echo T_("Admin");                                                                 // Line 155 Seperate
-	echo T_("Empty");                                                                 // Line 99
-	echo T_("In this section you can edit permission of");                            // Line 103
+	echo T_("Empty");                                                                 // Line 98
+	echo T_("In this section you can edit permission of");                            // Line 102
 
 	//--------------------------------------saloos-addons\content_cp\posts\layout.html
 	echo T_("Enter title here");                                                      // Line 19
@@ -242,14 +242,17 @@ private function transtext()
 	echo T_("Show server info");                                                      // Line 14
 	echo T_("Show PHP info");                                                         // Line 15
 	echo T_("social networks");                                                       // Line 17
-	echo T_("Saloos Repository");                                                     // Line 19
-	echo T_("Saloos Addons Repository");                                              // Line 20
-	echo T_("Current Project Repository");                                            // Line 21
-	echo T_("Backup");                                                                // Line 23
-	echo T_("Project Database");                                                      // Line 32
-	echo T_("Upgrade");                                                               // Line 32
-	echo T_("Show sql log data");                                                     // Line 34
-	echo T_("Show sql error data");                                                   // Line 35
+	echo T_("Repository");                                                            // Line 21
+	echo T_("Saloos Repository");                                                     // Line 23
+	echo T_("Saloos Addons Repository");                                              // Line 24
+	echo T_("Ermile Repository");                                                     // Line 25
+	echo T_("Current Project Repository");                                            // Line 26
+	echo T_("Database");                                                              // Line 30
+	echo T_("Backup");                                                                // Line 32
+	echo T_("Project Database");                                                      // Line 41
+	echo T_("Upgrade");                                                               // Line 41
+	echo T_("Show sql log data");                                                     // Line 43
+	echo T_("Show sql error data");                                                   // Line 44
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
