@@ -25,6 +25,12 @@ class model extends \mvc\model
 				$this->redirector($this->url("base"). "/@");
 			}
 		}
+		else
+		{
+			debug::error(T_("Invalid captcha"), 'captcha');
+			$url = $this->url('base'). '/features/guest';
+			$this->redirector($url);
+		}
 	}
 
 	public function set_ui_language()
