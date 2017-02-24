@@ -28,8 +28,8 @@ class model extends \mvc\model
 		else
 		{
 			debug::error(T_("Invalid captcha"), 'captcha');
-			$url = $this->url('base'). '/features/guest';
-			$this->redirector($url);
+			// $url = $this->url('base'). '/features/guest';
+			// $this->redirector($url);
 		}
 	}
 
