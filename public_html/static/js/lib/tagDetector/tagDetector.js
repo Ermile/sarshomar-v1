@@ -157,6 +157,7 @@ function addNewTags(_elChilds)
 		var elNewTag = attrBindBoxFormat.replace(':tag', inputText);
 		// add data-val for detecting for add on duplicate
 		elNewTag     = $(elNewTag).attr('data-val', inputVal);
+		elNewTag     = $(elNewTag).attr('title', inputText);
 		// append to boxes
 		elBox.append(elNewTag);
 		// append to array of tags

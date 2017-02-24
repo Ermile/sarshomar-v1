@@ -62,6 +62,15 @@ trait search
 							unset($result[$key]['id']);
 						}
 
+						if(isset($value['title']) )
+						{
+							$myTitle = $result[$key]['title'];
+							if($myTitle != T_($myTitle))
+							{
+								$result[$key]['title'] = $myTitle . " | ". T_($myTitle);
+							}
+						}
+
 						$translate = [];
 						if(isset($value['meta']))
 						{
@@ -71,14 +80,22 @@ trait search
 								{
 									if(is_string($lang) && is_string($trans))
 									{
-										$translate[] = $lang . ":" . $trans;
+										// show only current language url
+										if($lang == 'fa')
+										{
+											$translate[] = "<div class='rtl'><b>$lang</b>: " . $trans. "</div>";
+										}
+										else
+										{
+											$translate[] = "<div class='ltr'><b>$lang</b>: " . $trans. "</div>";
+										}
 									}
 								}
 							}
 						}
 						unset($result[$key]['parent']);
 						unset($result[$key]['meta']);
-						$result[$key]['translate'] = implode(',', $translate);
+						$result[$key]['translate'] = implode("", $translate);
 					}
 				}
 				break;
