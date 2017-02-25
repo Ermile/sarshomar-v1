@@ -1872,10 +1872,7 @@ function sendQuestionData(_status, _notAsyncAjax)
 	if(checkWithOld === 'duplicate' && !_status)
 	{
 		// after a short delay show synced
-		setTimeout(function()
-		{
-			syncing();
-		}, 200)
+		syncing(null, true);
 		return false;
 	}
 	// if need to sync with server, sync it!
@@ -1938,7 +1935,8 @@ function sendQuestionData(_status, _notAsyncAjax)
 					}
 					$('#rangepersons').rangeSlider('option', 'max_limit', limit, 1);
 				}
-				syncing();
+				// after a short delay show synced
+				syncing(null, true);
 			},
 			error: function(e, data, x)
 			{
@@ -2024,8 +2022,18 @@ function lockStep()
  * @param  {[type]} _progress [description]
  * @return {[type]}           [description]
  */
-function syncing(_status, _progress)
+function syncing(_status, _delay,  _progress)
 {
+	// set delay to change status to false
+	if(_delay === true)
+	{
+		_delay = 300;
+	}
+	else if(_delay === false)
+	{
+		_delay = 0;
+	}
+	// if is set to true then show progress
 	if(_status === true)
 	{
 		// change status to syncing
@@ -2033,12 +2041,15 @@ function syncing(_status, _progress)
 	}
 	else if(_status === false)
 	{
-		// change status to syncing
 		$('.sync').attr('data-syncing', false);
 	}
 	else
 	{
-		$('.sync').attr('data-syncing', null);
+		setTimeout(function()
+		{
+			// change status to syncing
+			$('.sync').attr('data-syncing', null);
+		}, _delay);
 	}
 }
 
