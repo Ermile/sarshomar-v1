@@ -362,7 +362,8 @@
 {%block poll_status%}
 {% spaceless %}
  <div class="title">{%trans "Status"%}</div>
- <div class="content status {{poll.status}}">{{poll.status}}</div>
+ {% set myStatus = poll.status %}
+ <div class="content status {{poll.status}}">{% trans myStatus %}</div>
 {% endspaceless %}
 {%endblock%}
 
