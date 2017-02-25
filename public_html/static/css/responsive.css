@@ -90,7 +90,7 @@
  .visible-tablet{display:none}
  .visible-phone{display:inherit}
  .row .row{margin:0}
- .row>[class*=span],.row .row>[class*=span]{width:100%!important;margin:0 0 5px!important}
+ .row>[class*=span],.row .row>[class*=span]{width:100%!important;margin:0 0 5px}
  .row>[class*=span]:nth-child(even),.row .row>[class*=span]:nth-child(even){margin-right:0!important}
  .row>.span12,.row .row .span12{width:100%!important}
  html{font-size: 50%}
@@ -135,7 +135,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  header #financial-box{width:100%;margin:0 20px!important}
 
  .checkbox+label:before{top:16px;left:10px}
-
+.row .checkbox.margin-bottom {margin-bottom: 15px;}
 
 
  #homepage .wrapper .box{padding:0}
@@ -147,7 +147,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  #random-chart h3 a{font-weight:500; font-size: 1.3em}
 
 .dashboard-aside {display: none;}
-
+.dashboard.main .row.first-line {margin-bottom: 0;}
 
  .map-container {display: none;}
  #map{display:none}
@@ -173,6 +173,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  #inestimable .right-mobile-border {height: 100%;position: absolute;right: -10px;top: 0;bottom: 0;display: block}
  #inestimable .right-desktop-border,#inestimable .left-desktop-border {display: none}
  #inestimable .launch{display:none}
+ #inestimable .launch-box {display: none;}
  #inestimable h3{font-size:1.6em}
  #inestimable h4{font-size:1.4em}
  #inestimable .vision {font-size: 2em;}
