@@ -179,6 +179,7 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
+		// \lib\db::transaction();
 		\lib\storage::set_disable_edit(true);
 		if(count($_data_url) == 4)
 		{
@@ -187,6 +188,14 @@ class poll
 		}elseif (count($_data_url) == 5) {
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		}
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' => [
+				'id' 		=> $poll_id,
+			]
+			]);
+		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
+		\lib\debug::$status = 1;
 
 		$request = ['id' => $poll_id];
 
@@ -194,20 +203,28 @@ class poll
 			case 'like':
 				$request['like'] = true;
 				break;
-
+			case 'skip':
+				$request['skip'] = true;
+				break;
 			default:
-				$request['answer'] = true;
+				$request['answer'] = [$answer => true];
 				break;
 		}
 
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
-		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
+
+
+		$add_poll = \lib\main::$controller->model()->poll_answer_add([
+			'method' => in_array('edit', $get_answer['available']) ? 'put' : 'post'
+			]);
 
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
 
 		\lib\debug::$status = 1;
 
+		// \lib\db::commit();
+		handle::send_log($poll_id);
 		callback_query::edit_message(ask::make(null, null, [
 			'poll_id' 	=> $poll_id,
 			'return'	=> 'true',
@@ -245,8 +262,6 @@ class poll
 		step::stop();
 		\lib\storage::set_disable_edit(true);
 
-		handle::send_log($_data_url);
-
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
 			'request' => [
@@ -254,11 +269,9 @@ class poll
 				'id' 		=> $_data_url[3]
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_set_status();
-		handle::send_log(\lib\utility::request());
 
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
-		handle::send_log($debug);
 		\lib\debug::$status = 1;
 
 
@@ -269,8 +282,19 @@ class poll
 				'return'	=> true
 				]);
 			$result['reply_markup'] = menu::main(true);
-			callback_query::edit_message(['text' => T_("Poll published")]);
-			bot::sendResponse($result);
+			$result = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll, function($_maker)
+				{
+					unset($_maker->message->message['description']);
+				});
+			unset($result['reply_markup']);
+			callback_query::edit_message($result);
+			$main = menu::main()[0];
+			$main['method'] = 'sendMessage';
+			bot::sendResponse($main);
+			bot::sendResponse(ask::make(null, null, [
+				'poll_id' 	=> $poll,
+				'return'	=> true
+				]));
 		}
 		else
 		{

@@ -46,9 +46,9 @@ class ask
 					'id' 		=> $maker->query_result['id'],
 				]
 				]);
+
 			$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
 			$my_answer = $get_answer['my_answer'];
-			handle::send_log($get_answer);
 		}
 		$maker->message->add_title();
 		$maker->message->add_poll_chart();
@@ -57,7 +57,7 @@ class ask
 		$maker->message->add_count_poll();
 		// $maker->message->add_telegram_tag();
 
-		if(is_null($get_answer) || in_array('add', $get_answer['available']))
+		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
 			$maker->inline_keyboard->add_poll_answers();
 		}

@@ -26,7 +26,7 @@ class message
 		}
 		if(isset($this->class->query_result['file']))
 		{
-			$url = preg_replace("/sarshomar.com/", 'dev.sarshomar.com', $this->class->query_result['file']['url']);
+			$url = preg_replace("/sarshomar.com/", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
@@ -67,7 +67,7 @@ class message
 		foreach ($this->class->query_result['answers'] as $key => $value) {
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
-				$poll_list = utf8_decode($this->class->query_result['description']);
+				$poll_list = $this->class->query_result['description'];
 				if($value['type'] == 'like' && $answer)
 				{
 					$poll_list .= "\n" . T_('شما پسندیدید');

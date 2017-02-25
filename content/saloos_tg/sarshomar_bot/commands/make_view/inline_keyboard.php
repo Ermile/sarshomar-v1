@@ -101,7 +101,7 @@ class inline_keyboard
 		{
 			$return[] = [
 				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->poll_id. '/0'
+				'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
 			];
 		}
 		if($options['update'])

@@ -164,7 +164,7 @@ class step_create
 				{
 					if(self::is_type('like') || self::is_type('descriptive'))
 					{
-						$poll_request['description'] = utf8_encode(join($question_export, "\n"));
+						$poll_request['description'] = join($question_export, "\n");
 					}
 					else
 					{
@@ -252,14 +252,15 @@ class step_create
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
 		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
-		if(is_object($_maker))
-		{
-			$_maker($maker);
-		}
 
 		if(self::is_type('like') || self::is_type('descriptive'))
 		{
-			$maker->message->add('description', T_("شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"), 'after', 'poll_list');
+			$maker->message->add('description', "\n" . T_("شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"), 'after', 'poll_list');
+		}
+
+		if(is_object($_maker))
+		{
+			$_maker($maker);
 		}
 
 		$txt_text = $maker->message->make();
@@ -287,10 +288,13 @@ class step_create
 		if(isset($maker->query_result['answers'][0]) && !is_null($title))
 		{
 			$maker->inline_keyboard->add([
-				['text' => T_('Edit title'), 'callback_data' => 'create/edit_title/' . $maker->query_result['id']]
+				['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']]
 			]);
 			$maker->inline_keyboard->add([
-				['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']],
+				[
+					'text' => T_('Edit'),
+					'url' => 'https://' . $_SERVER['SERVER_NAME'] . '/' . $maker->query_result['language'] . '/$/' . $maker->query_result['id']
+					],
 				['text' => T_('Back'), 'callback_data' => 'create/close']
 			]);
 		}
