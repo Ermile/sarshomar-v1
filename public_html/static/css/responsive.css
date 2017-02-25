@@ -138,7 +138,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 
 
 
- #homepage .wrapper .box{padding:0 10px}
+ #homepage .wrapper .box{padding:0}
  #contact-box {padding: 0 1em;}
  #intro-box{text-align:center;padding:3em 0}
  #intro-box h2{padding-top:0}
@@ -198,6 +198,9 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  #footer-links ul li {float: left;}
 .rtl #footer-links ul li {float: right;}
 
+
+.search-box input[type="text"] {height: 35px;line-height: 35px;}
+.search-box .search-label {height: 35px;line-height: 35px;}
 
  /************************************************************** Features */
 .feature-items .feature-item {-ms-flex-preferred-size: 50%;flex-basis: 50%;}
@@ -275,7 +278,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
 .sharebox a {width: 20px;height: 20px;margin: 1em 0.5em;}
 .sharebox a:before {display: none}
 nav.breadcrumb a {max-width: 12em;}
-.poll-container>h2{font-size: 1.7em}
+.poll-container>h2{font-size: 1.7em;word-break: normal;}
 .poll-container .poll-skip {margin-bottom: 4em;}
 .poll-container .poll-actions {margin-bottom: 3em;}
 [data-copy] {position: absolute;right: 0;height: 35px;}
@@ -324,6 +327,7 @@ nav.breadcrumb a {max-width: 12em;}
 
  .api-docs {padding: 2em;}
 .api-quick-access,.help-sidebar {display: none;}
+.method-table, .response-codes {white-space: normal;}
 /************************************************************** Token Page */
 .auth .in.small {width: 100%;}
 .auth .auth-agreement {font-size: 2em}
