@@ -1,5 +1,7 @@
 <?php
 namespace lib\db\transactions;
+use \lib\debug;
+use \lib\utility;
 
 trait budget
 {

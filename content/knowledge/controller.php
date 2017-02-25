@@ -36,13 +36,19 @@ class controller extends \mvc\controller
 		{
 			\lib\router::set_url(trim('$/' . \lib\router::get_url(),'/'));
 		}
-		
+
 		$this->get("search", "search")->ALL(
 		[
 			'url'      => "/^\\$(|\/search\=([^\/]+))$/",
 			'property' => $property
 		]
 		);
+
+		if($this->model()->get_posts())
+		{
+			\lib\router::set_controller("\\content\\poll\\controller");
+			return;
+		}
 
 		$this->post("search")->ALL("/.*/");
 	}
