@@ -302,6 +302,7 @@ nav.breadcrumb a {max-width: 12em;}
  .range-slider[data-type=vertical] .dynamic-range span:before {border-left: 6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid #00667a;left: 20px;top: 7px;height: 16px;}
  .stepPublish .element {display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-ms-flex-wrap: wrap;flex-wrap: wrap;display: block;}
  .stepPublish .element label {-ms-flex-item-align: start;align-self: flex-start;}
+ .stepPublish .tbl {margin-bottom: 3em;}
 /*.stepPublish .action*/ {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
 /*.stepPublish .action a {margin-bottom: 1em;}*/
 .stepFilter .switch .title.large {border-radius: 5px 0 0 5px;margin: 2px 0;}
@@ -355,7 +356,11 @@ nav.breadcrumb{display:none}
 
  /************************************************************** Table */
 .tbl {margin:0 1em;}
-
+.tbl.method-table>div {flex-wrap: wrap;}
+.tbl.method-table>div>span {
+    flex: 1;
+    flex: 0 1 100%;
+}
 
  /************************************************************** Billing */
 .billing {margin:0 1em;}
