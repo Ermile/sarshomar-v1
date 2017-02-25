@@ -252,7 +252,7 @@ header #header-box {margin-left: 6px;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0p
  @keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:20px;}}
  .sortable li {margin-bottom: 3em;}
  .element.switch label:not(.title) {line-height: 35px;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
- .stepFilter .element.switch label:not(.title) {line-height: 20px;}
+ .stepFilter .element.switch label:not(.title) {line-height: 20px;font-size: 1.4em}
  .range-slider {height: 20px;}
  .element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
  .element .title.large {min-height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
