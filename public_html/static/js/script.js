@@ -162,6 +162,7 @@ function resizableTextarea()
  */
 function handleCopy()
 {
+	$('[data-copy]').off('click');
 	$('[data-copy]').on('click', function()
 	{
 		var $this = $(this);
@@ -303,6 +304,7 @@ function shortkey()
 				break;
 
 			// ctrl + s
+			case '83shift':
 			case '83ctrl':
 				// on /@/add by pressing ctrl+s save
 				var myurl = window.location.pathname;
@@ -714,7 +716,8 @@ route('*', function ()
 function checkAddOpt()
 {
 	var numberOfEmptyInputs = 0;
-	var emptyRowNumber = [];
+	var numberOFInputs      = $('.input-group.sortable>li').length;
+	var emptyRowNumber      = [];
 
 	// check if current element has not value and we have no empty inputs
 	$.each($('.input-group.sortable>li'), function(key, value)
@@ -725,6 +728,7 @@ function checkAddOpt()
 			emptyRowNumber.push(key);
 		}
 	});
+	console.log(numberOFInputs);
 	console.log(numberOfEmptyInputs);
 
 	if(countQuestionOpts() >= 20)
@@ -783,6 +787,8 @@ function addNewOpt(_type, _title, _placeholder, _defaulVal, _group)
 	// clear all input and textareas
 	template.find("input:not([type='submit']), textarea").val('');
 	template.find("input[type='checkbox']").attr('checked', false);
+	// remove file data
+	removeFile(template.find('.preview'));
 	// remove image and audio
 	template.find('.preview img').remove();
 	template.find('.audio audio').remove();
@@ -1278,6 +1284,7 @@ function detectStep(_name)
  */
 function checkNextStep()
 {
+	$(document).off('click', "#next-step");
 	$(document).on('click', "#next-step", function()
 	{
 		switch ($('.page-progress .active:last').find('input').attr('id'))
@@ -1683,7 +1690,6 @@ function setStatusText(_newStatus)
 	{
 		var _newStatus = questionBox.attr('data-status');
 	}
-console.log(_newStatus);
 	switch (_newStatus)
 	{
 		case 'awaiting':
@@ -1797,7 +1803,6 @@ function lockAllElements(_lock)
 			// questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
 			questionBox.find('.range-slider').attr('data-lock', null);
 			questionBox.find('.sync').attr('data-lock', null);
-			console.log('free');
 			break;
 	}
 }
@@ -1847,7 +1852,7 @@ function requestSavingData(_manualRequest, _status)
  * [sendQuestionData description]
  * @return {[type]} [description]
  */
-function sendQuestionData(_status, _notAsyncAjax)
+function sendQuestionData(_status, _asyncAjax)
 {
 	// change status to syncing
 	syncing(true);
@@ -1855,18 +1860,25 @@ function sendQuestionData(_status, _notAsyncAjax)
 	var myPoll       = {};
 	myQuestionBox    = $('#question-add');
 	myPoll           = prepareQuestionData();
-	myPoll.from      = prepareQuestionFilter();
+	$isAdd           = !$('#question-add').attr('data-id');
+	if($isAdd && $.isEmptyObject(myPoll))
+	{
+		syncing(null, 0);
+		return false;
+	}
+
 	// request to save request!
 	// change array to json
 	myPoll           = JSON.stringify(myPoll);
 	var checkWithOld = saveSavedData(myPoll);
-	if(_notAsyncAjax)
+	if(_asyncAjax === false)
 	{
-		_notAsyncAjax = true;
+		_asyncAjax = false;
+		console.log('yyyyyyyyyyyyyyyyyyyyyyy');
 	}
 	else
 	{
-		_notAsyncAjax = false
+		_asyncAjax = true;
 	}
 
 	if(checkWithOld === 'duplicate' && !_status)
@@ -1886,7 +1898,7 @@ function sendQuestionData(_status, _notAsyncAjax)
 			// dataType: "json",
 			// contentType:"application/json; charset=utf-8",
 			abort: true,
-			async: _notAsyncAjax,
+			async: _asyncAjax,
 			method: 'post',
 			success: function(e, data, x)
 			{
@@ -2061,9 +2073,13 @@ function syncing(_status, _delay,  _progress)
 function prepareQuestionData()
 {
 	var myQuestion     = {};
-	myQuestion.title   = $('#title').val();
-	// change status of title
+	// if has title
 	if($('#title').val())
+	{
+		myQuestion.title   = $('#title').val();
+	}
+	// change status of title
+	if(myQuestion.title)
 	{
 		$('#title').removeClass('isError')
 	}
@@ -2071,7 +2087,7 @@ function prepareQuestionData()
 	{
 		$('#title').addClass('isError');
 	}
-	// myQuestion.type    = 'poll';
+	// myQuestion.type = 'poll';
 	myQuestion.answers = {};
 
 	// for each input added by user
@@ -2083,7 +2099,11 @@ function prepareQuestionData()
 		// row         = _e+1;
 		var thisOpt = {};
 		// title
-		thisOpt.title   = $('#answer'+row).val();
+		// uncomment after change -------------------
+		// if($('#answer'+row).val())
+		{
+			thisOpt.title   = $('#answer'+row).val();
+		}
 		// set file id if exist
 		var fileId = $this.find('.preview').attr('data-file-id');
 		if(fileId)
@@ -2094,18 +2114,14 @@ function prepareQuestionData()
 		// complete profile
 		if($('#complete-profile').is(":checked"))
 		{
-			thisOpt.profile = $this.find('.profile-module').attr('data-val');
-			if(thisOpt.profile)
+			var myProfile = $this.find('.profile-module').attr('data-val');
+			if(myProfile)
 			{
 				thisOpt.profile = JSON.parse(thisOpt.profile);
 			}
-			else
-			{
-				thisOpt.profile = {};
-			}
 		}
 		// type of opt
-		thisOpt.type    = $this.attr('data-type');
+		thisOpt.type = $this.attr('data-type');
 		if(!thisOpt.type)
 		{
 			thisOpt.type = 'select';
@@ -2133,11 +2149,34 @@ function prepareQuestionData()
 						thisOpt.select.score.group = $this.find('.scoreCat').val();
 					}
 				}
+				// if option is empty remove it
+				// uncomment after change -------------------
+				// if($.isEmptyObject(thisOpt.select))
+				// {
+				// 	delete thisOpt.select;
+				// }
 				break;
 		}
+		// only if has title or file save this item
+		if(!thisOpt.title && !thisOpt.file)
+		{
+			// uncomment after change -------------------
+			// thisOpt = null;
+		}
+
 		// add to total array of this question
-		myQuestion.answers[_e] = thisOpt;
+		if(thisOpt)
+		{
+			myQuestion.answers[_e] = thisOpt;
+		}
 	});
+	// if answers is empty remove it
+	// uncomment after change -------------------
+	// if($.isEmptyObject(myQuestion.answers))
+	// {
+	// 	delete myQuestion.answers;
+	// }
+
 	// get branding data
 	if($('#meta_branding').is(":checked"))
 	{
@@ -2165,11 +2204,17 @@ function prepareQuestionData()
 	}
 
 	// summary
-	myQuestion.summary     = $('#summary').val();
+	// uncomment after change -------------------
+	// if($('#summary').val())
+	{
+		myQuestion.summary     = $('#summary').val();
+	}
 	// description
-	myQuestion.description = $('#description').val();
-	// languages
-	myQuestion.language    = $('input[name="ui-language"]:checked').val();
+	// uncomment after change -------------------
+	// if($('#description').val())
+	{
+		myQuestion.description = $('#description').val();
+	}
 	// options
 	myQuestion.options     = {};
 
@@ -2221,7 +2266,11 @@ function prepareQuestionData()
 	}
 
 	// save randomSort for multiple selection
-	myQuestion.options.random_sort = $('#random_sort').is(":checked");
+	// uncomment after change -------------------
+	// if($('#random_sort').is(":checked"))
+	{
+		myQuestion.options.random_sort = $('#random_sort').is(":checked");
+	}
 	// data of publish page
 	// category
 	if($('#cat0').attr('data-val'))
@@ -2237,18 +2286,39 @@ function prepareQuestionData()
 		}
 	}
 	// articles
-	myQuestion.articles = $('#article').attr('data-val');
-	if(myQuestion.articles)
+	// uncomment after change -------------------
+	// if($('#article').attr('data-val'))
 	{
-		myQuestion.articles = JSON.parse(myQuestion.articles);
+		myQuestion.articles = $('#article').attr('data-val');
+		if(myQuestion.articles)
+		{
+			myQuestion.articles = JSON.parse(myQuestion.articles);
+		}
 	}
 	// tags
-	myQuestion.tags = $('#tags').attr('data-val');
-	if(myQuestion.tags)
+	// uncomment after change -------------------
+	// if($('#tags').attr('data-val'))
 	{
-		myQuestion.tags = JSON.parse(myQuestion.tags);
+		myQuestion.tags = $('#tags').attr('data-val');
+		if(myQuestion.tags)
+		{
+			myQuestion.tags = JSON.parse(myQuestion.tags);
+		}
 	}
 	// myQuestion.inHomepage = $('#inHomepage').is(":checked");
+
+	// if option is empty remove it
+	if($.isEmptyObject(myQuestion.options))
+	{
+		delete myQuestion.options;
+	}
+	else
+	{
+		// finally add language
+		myQuestion.language = $('input[name="ui-language"]:checked').val();
+		// and fill step2 data
+		myQuestion.from     = prepareQuestionFilter();
+	}
 
 	return myQuestion;
 }
@@ -2593,12 +2663,12 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// for chrome
 	$(window).on('beforeunload', function()
 	{
-		sendQuestionData(null, true);
+		sendQuestionData(null, false);
 	});
 	//this will work for other browsers
 	// $(window).on("unload", function ()
 	// {
-	// 	sendQuestionData(null, true);
+	// 	sendQuestionData(null, false);
 	// });
 
 });
@@ -2616,6 +2686,7 @@ function removeFile(_preview)
 	_preview.attr('data-file-type', null);
 	_preview.attr('data-file-temp', null);
 	_preview.attr('data-file-local', null);
+	_preview.attr('data-modal', null);
 	showPreview(_preview, true);
 
 	// close modal
