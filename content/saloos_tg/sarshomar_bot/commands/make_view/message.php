@@ -18,7 +18,7 @@ class message
 	{
 		if($_with_link)
 		{
-			$title = utility::link('https://sarshomar.com/sp_' .$this->class->poll_id, $this->class->query_result['title']);
+			$title = utility::link('https://' . $_SERVER['SERVER_NAME'] . '/$' .$this->class->poll_id, $this->class->query_result['title']);
 		}
 		else
 		{

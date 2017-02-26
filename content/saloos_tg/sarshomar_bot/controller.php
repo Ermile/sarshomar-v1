@@ -54,6 +54,26 @@ class controller extends \lib\mvc\controller
 		};
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = commands\utility::replay_markup_id();
+		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
+		{
+			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
+			{
+				if(isset($_args['results']))
+				{
+					foreach ($_args['results'] as $key => $value) {
+						handle::send_log($value);
+						$_args['results'][$key]['input_message_content']['message_text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['results'][$key]['input_message_content']['parse_mode'] = "HTML";
+					}
+				}
+				else
+				{
+					$_args['text']= preg_replace("#\n.*\#Developer_mode$#", "", $_args['text']);
+					$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+					$_args['parse_mode'] = "HTML";
+				}
+			}
+		};
 		bot::$methods['after']["/.*/"] = commands\utility::callback_session();
 
 		/**
