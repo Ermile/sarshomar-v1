@@ -10,8 +10,8 @@
 {%endset%}
 
   <div class="row auto unselectable {{inestimableClass}}" id='inestimable' data-xhr='specialbox'>
-    <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg">
-    <img class="left-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg">
+   <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg" alt="Inestimable mobile border">
+   <img class="left-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
 {%block specialbox%}
 
 {%if module == 'about'%}
@@ -19,7 +19,8 @@
 <h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
 {%else%}
 {%if login and login.status == 'active'%}
-   <div class="span3 offset2 launch-box">
+   <div class="span2"></div>
+   <div class="span3 launch-box">
     <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
@@ -28,7 +29,8 @@
    </div>
 
 {%elseif login%}
-   <div class="span3 offset2">
+   <div class="span2"></div>
+   <div class="span3">
     <img class="launch launch-box" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
@@ -38,7 +40,8 @@
    </div>
 
 {%else%}
-   <div class="span3 offset2">
+   <div class="span2"></div>
+   <div class="span3">
     <img class="launch launch-box" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
    </div>
    <div class="span6">
@@ -51,6 +54,6 @@
 {%endif%}
 {%endif%}
 {%endblock%}
-<img class="right-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg">
-<img class="right-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg">
+   <img class="right-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
+   <img class="right-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg" alt="Inestimable desktop border">
   </div>

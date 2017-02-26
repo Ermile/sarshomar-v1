@@ -1409,7 +1409,7 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
 
 
 /************************************************************** page progress */
-.page-progress{width:300px;margin:0 auto 4em;display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:space-between;position:relative}
+.page-progress{position:relative;width:300px;margin:0 auto 4em}
 .page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#d8d8d8}
 .page-progress a{display:flex}
 .page-progress b{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background-color:#00667a;transition:2s}
