@@ -58,7 +58,23 @@ trait check
 	 */
 	public static function remaining($_user_id)
 	{
-		$default_user_size = 1000000; // 1 MB
+		$MB = 1 * 100000; // 1 MB
+		$default_user_size = $MB;
+		$permission = new \lib\utility\permission;
+
+		if($permission->access('u', 'upload_1000_mb', 'view'))
+		{
+			$default_user_size = 1000 * $MB; // 1 TB
+		}
+		elseif($permission->access('u', 'upload_100_mb', 'view'))
+		{
+			$default_user_size = 100 * $MB; // 100 MB
+		}
+		elseif($permission->access('u', 'upload_10_mb', 'view'))
+		{
+			$default_user_size = 10 * $MB; // 10 MB
+		}
+
 		$uploaded          = self::uploaded($_user_id);
 		$vip_size          = self::vip_size($_user_id);
 		if(is_int($vip_size))

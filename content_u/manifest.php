@@ -227,5 +227,35 @@ $modules['lock_answer_poll'] =
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
+
+/**
+ * upload_10_mb
+ */
+$modules['upload_10_mb'] =
+[
+	'desc'        => T_("Allow to upload 10 MB"),
+	'icon'        => 'file-text-o',
+	'permissions' => ['view'],
+];
+
+/**
+ * upload_100_mb
+ */
+$modules['upload_100_mb'] =
+[
+	'desc'        => T_("Allow to upload 100 MB"),
+	'icon'        => 'file-text-o',
+	'permissions' => ['view'],
+];
+
+/**
+ * upload_1000_mb
+ */
+$modules['upload_1000_mb'] =
+[
+	'desc'        => T_("Allow to upload 1000 MB / 1 TB"),
+	'icon'        => 'file-text-o',
+	'permissions' => ['view'],
+];
 return ["modules" => $modules];
 ?>
