@@ -145,13 +145,13 @@ private function transtext()
 	echo T_("There is no similar post");                                              // Line 332
 	echo T_("Poll timespan");                                                         // Line 350
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 400
+	echo T_("Not set");                                                               // Line 401
 	echo T_("Status");                                                                // Line 11
-	echo T_("Keyword");                                                               // Line 371
-	echo T_("Statistical population");                                                // Line 388
-	echo T_("There is nothing to display!");                                          // Line 445
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 456
-	echo T_("Continue");                                                              // Line 513
+	echo T_("Keyword");                                                               // Line 372
+	echo T_("Statistical population");                                                // Line 389
+	echo T_("There is nothing to display!");                                          // Line 446
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 457
+	echo T_("Continue");                                                              // Line 514
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -259,13 +259,13 @@ private function transtext()
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("in preparation");                                                        // Line 4
 	echo T_("We are Developers, please wait!");                                       // Line 22
-	echo T_("Version 1 of Sarshomar released");                                       // Line 30
-	echo T_("Finally Sarshomar logo is accepted and we start branding");              // Line 31
+	echo T_("Sarshomar's version 1 released");                                        // Line 30
+	echo T_("Finally Sarshomar logo is accepted and we started branding");            // Line 31
 	echo T_("Beta version of Sarshomar released");                                    // Line 36
 	echo T_("Alfa version of Sarshomar is ready");                                    // Line 40
 	echo T_("Demo version of Sarshomar released");                                    // Line 44
 	echo T_("Sarshomar is ready to start");                                           // Line 48
-	echo T_("The name of project selected as Sarshomar and register domains <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a>");// Line 52
+	echo T_("The name of project selected as Sarshomar and <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a> domains registered. ");// Line 52
 	echo T_("We were born to do Best!");                                              // Line 57
 
 	//------------------------------------------------content\template\static\eco.html
@@ -328,6 +328,7 @@ private function transtext()
 	echo T_("Upon completing your registration, you will both receive a registration gift and, based on the activities done, Sarshomar's other allocated gifts and bonuses.");// Line 22
 	echo T_("I wanna examine you!");                                                  // Line 27
 	echo T_("Please enter shown numbers here");                                       // Line 31
+	echo T_("submit");                                                                // Line 25
 
 	//--------------------------------------content\template\static\features\home.html
 	echo T_("Multimedia Questions");                                                  // Line 10
@@ -525,7 +526,6 @@ private function transtext()
 	echo T_("createdate");                                                            // Line 105
 	echo T_("datemodified");                                                          // Line 106
 	echo T_("enddate");                                                               // Line 74
-	echo T_("submit");                                                                // Line 25
 	echo T_("exchangerates");                                                         // Line 91
 	echo T_("ID");                                                                    // Line 3
 
@@ -832,7 +832,7 @@ private function transtext()
 	echo T_("Branding");                                                              // Line 104
 	echo T_("URL");                                                                   // Line 201
 	echo T_("Choice Range");                                                          // Line 209
-	echo T_("Ultimate");                                                              // Line 125
+	echo T_("Ultimate");                                                              // Line 124
 	echo T_("One");                                                                   // Line 215
 	echo T_("Max");                                                                   // Line 215
 	echo T_("Randomize sort options");                                                // Line 227
@@ -885,7 +885,7 @@ private function transtext()
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
 	echo T_("Toman");                                                                 // Line 70
-	echo T_("Private");                                                               // Line 125
+	echo T_("Private");                                                               // Line 124
 
 	//--------------------------------------------------------content_u\add\step3.html
 	echo T_("Sub Category");                                                          // Line 15
