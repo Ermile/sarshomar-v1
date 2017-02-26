@@ -5,6 +5,7 @@ use \lib\debug;
 trait insert
 {
 	protected static $args           = [];
+	protected static $permission     = [];
 	protected static $debug          = true;
 
 	protected static $draft_mod      = true;
@@ -40,6 +41,8 @@ trait insert
 		[
 			// get shortURL of poll to update poll
 			'update'                          => false,
+			// permission list
+			'permission'					  => [],
 			// the sarshomar permission fo id of poll
 			'permission_sarshomar'            => false,
 			// the user can set the profile poll
@@ -105,6 +108,9 @@ trait insert
 		{
 			self::$debug = false;
 		}
+
+		// permission list
+		self::$permission = $_args['permission'];
 
 		// set args
 		self::$args = $_args;

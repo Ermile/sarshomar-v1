@@ -7,7 +7,44 @@ use \lib\utility\shortURL;
 
 trait check
 {
+	/**
+	 * check permission from self::$permission
+	 *
+	 * @param      <type>   $_permission  The permission
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public static function permission($_permission = null)
+	{
+		if(!$_permission)
+		{
+			return self::$permission;
+		}
+		else
+		{
+			if(isset(self::$permission[$_permission]))
+			{
+				if(self::$permission[$_permission])
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return false;
+		}
+	}
 
+
+	/**
+	 * check record is attachment record
+	 *
+	 * @param      <type>  $_code  The code
+	 *
+	 * @return     array   True if attachment, False otherwise.
+	 */
 	public static function is_attachment($_code)
 	{
 
