@@ -194,6 +194,7 @@ class poll
 				'id' 		=> $poll_id,
 			]
 			]);
+		\lib\debug::$status = 1;
 		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
 		\lib\debug::$status = 1;
 
@@ -222,15 +223,13 @@ class poll
 		$debug = \lib\debug::compile();
 
 		\lib\debug::$status = 1;
-
-		// \lib\db::commit();
-		handle::send_log($poll_id);
 		callback_query::edit_message(ask::make(null, null, [
 			'poll_id' 	=> $poll_id,
 			'return'	=> 'true',
 			'last'		=> $last,
 			'type'		=> isset($_query['inline_message_id']) ? 'inline' : 'private'
 			]));
+		// \lib\db::rollback();
 
 		if(!$debug_status)
 		{
