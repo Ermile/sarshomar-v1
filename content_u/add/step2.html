@@ -16,8 +16,8 @@
  <div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
   <label class="title large badge {%if poll.filters.graduation%}active{%endif%}" data-ratio="{{25 | number_format | fitNumber}}" data-ratio-val="25" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
   <div class="switch-container">
-   <input type="checkbox" value="illiterate" id="illiterate" {%if poll.filters.graduation.illiterate%}checked{%endif%}>
-   <label for="illiterate">{%trans "Illiterate"%}</label>
+   <!-- <input type="checkbox" value="illiterate" id="illiterate" {%if poll.filters.graduation.illiterate%}checked{%endif%}> -->
+   <!-- <label for="illiterate">{%trans "Illiterate"%}</label> -->
    <input type="checkbox" value="undergraduate" id="undergraduate" {%if poll.filters.graduation.undergraduate%}checked{%endif%}>
    <label for="undergraduate">{%trans "Undergraduate"%}</label>
    <input type="checkbox" value="graduate" id="graduate" {%if poll.filters.graduation.graduate%}checked{%endif%}>
