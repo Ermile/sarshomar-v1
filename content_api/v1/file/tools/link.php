@@ -52,7 +52,7 @@ trait link
 
 		if(!debug::$status)
 		{
-			return;
+			return false;
 		}
 
 		// if($_options['opt'])
@@ -79,6 +79,11 @@ trait link
 		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
 
 		$upload      = upload::upload($ready_upload);
+
+		if(!debug::$status)
+		{
+			return false;
+		}
 
 		$file_detail = \lib\storage::get_upload();
 		$file_id     = null;
