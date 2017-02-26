@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-25 14:54+0330\n"
-"PO-Revision-Date: 2017-02-26 08:31+0330\n"
+"PO-Revision-Date: 2017-02-26 09:12+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -8745,7 +8745,7 @@ msgstr "قیمت کل"
 
 #: sarshomar/includes/languages/trans_twig.php:899
 msgid "Balance"
-msgstr "هزینه"
+msgstr "اعتبار"
 
 #: sarshomar/includes/languages/trans_twig.php:900
 msgid "Charge Account"
