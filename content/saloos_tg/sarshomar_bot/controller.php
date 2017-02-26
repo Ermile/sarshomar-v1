@@ -56,7 +56,7 @@ class controller extends \lib\mvc\controller
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
 			$replay_markup_id = commands\utility::replay_markup_id();
-			$replay_markup_id(&$_name, &$_args);
+			$replay_markup_id($_name, $_args);
 			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $_args['method'] != 'answerCallbackQuery')
 			{
 				if(isset($_args['results']))
