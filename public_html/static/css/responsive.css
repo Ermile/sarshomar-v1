@@ -47,7 +47,7 @@
  .special-heading:after {display: none;}
  .customers-container .customer {width: 75%;}
  header #header-profile #add-question .header-link-text{display:none}
- header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center}
+ header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center;vertical-align: middle;}
  header #header-quick>a {padding: 0 5px; font-size: 10px;}
  .society-dist .span7 {display: none;}
  .society-dist .span5 {width: 100%;}
@@ -118,7 +118,7 @@
  header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;margin-top:10px}
  header #header-quick{width:85%;margin:2em auto;border-bottom:1px solid #e5a428;display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
  header #header-quick>a{margin-top:0}
- .ltr header #header-quick>a{font-size:1.2em}
+ .ltr header #header-quick>a{font-size:1.1em}
  header #header-profile{display:-ms-flexbox;display:-webkit-box;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;margin:0 5px}
  header #header-profile #add-question{}
  header #header-profile .register{margin-left:5px}
@@ -130,6 +130,7 @@
  .rtl header .header-profile-button{font-size:12px}
 
  header #financial-box{width:100%;margin:0 20px!important}
+
 
  .checkbox+label:before{top:16px;left:10px}
  .row .checkbox.margin-bottom {margin-bottom: 15px;}
@@ -250,7 +251,7 @@
  @keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:20px;}}
  .sortable li {margin-bottom: 3em;}
  .element.switch label:not(.title) {line-height: 35px;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
- .stepFilter .element.switch label:not(.title) {line-height: 20px;font-size: 1.4em}
+ .stepFilter .element.switch label:not(.title) {line-height: 20px;font-size: 1.3em; overflow: hidden;}
  .range-slider {height: 20px;}
  .element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
  .element .title.large {min-height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px;border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px}
@@ -285,7 +286,7 @@
  .rtl #short_url {padding-left: 5em;}
  .ltr [data-copy]:after {top: 0;height: 35px;}
  .rtl [data-copy]:after {left: 30px;right: auto;top: 0px;height: 35px;}
-
+.polls-head>span.votes-count,.polls-head>span.date {display: none;}
 
 
 
@@ -338,7 +339,7 @@
  /************************************************************** Help center */
  .help-main-box, .help-category-box, .help-post-box {margin:0 }
  .help-category-items .help-category-item {padding: 2em 0;}
-
+#contact-box .element .title.large {border-radius: 0 5px 5px 0;display: flex;}
 
  /************************************************************** Help center */
  .sync{position:fixed;bottom:1em;right:3em;box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);border-radius:50%;top:auto;left:auto}
@@ -359,10 +360,8 @@
  /************************************************************** Table */
  .tbl {margin:0 1em;}
  .tbl.method-table>div {flex-wrap: wrap;}
- .tbl.method-table>div>span {
-    flex: 1;
-    flex: 0 1 100%;
- }
+ .tbl.method-table>div>span {flex: 1;flex: 0 1 100%;}
+ .tbl.response-codes,.tbl.method-table {margin: 0;}
 
  /************************************************************** Billing */
  .billing {margin:0 1em;}
