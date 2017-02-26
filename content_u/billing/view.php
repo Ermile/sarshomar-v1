@@ -29,6 +29,7 @@ class view extends \mvc\view
 	public function view_verify($_args)
 	{
 		$call_back = $_args->api_callback;
+		$this->data->verify_modal = true;
 		$this->data->transaction_check = $call_back;
 		if(isset($_SESSION['Amount']))
 		{

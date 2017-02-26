@@ -2,7 +2,7 @@
 <aside class='dashboard-aside'>
 
 </aside>
-<div class="main billing" data-modal2='billing-verify'>
+<div class="main billing" {% if verify_modal %} data-modal='billing-verify' {% endif %}>
     <div>
         <div class="in xxlarge">
             <div class="billing-stats row auto">
@@ -12,7 +12,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Money"%}</h5>
-                        <div class="amount"><span>125</span> <span>{%trans "Toman"%}</span></div>
+                        <div class="amount"><span>{{user_cash}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -21,7 +21,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Gift"%}</h5>
-                        <div class="amount"><span>10</span> <span>{%trans "Toman"%}</span></div>
+                        <div class="amount"><span>{{user_cash_gift}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Credit"%}</h5>
-                        <div class="amount"><strong><span>1127</span> <span>{%trans "Toman"%}</span></strong></div>
+                        <div class="amount"><strong><span>{{user_cash + user_cash_gift}}</span> <span>{%trans user_unit%}</span></strong></div>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                         </span></label>
                             </div>
                         <div class="span3 billing-buttons">
-                            <label for="amount-number" class="currency-label">{%trans "Toman"%}</label>
+                            <label for="amount-number" class="currency-label">{%trans user_unit%}</label>
                             <input id="amount-number" class="amount-number" type="number" name="amount" value="{{amount}}" placeholder="{%trans "Amount"%}">
                             <button class="billing-btn" type="submit">{%trans "Confirm"%}</button>
                         </div>
@@ -131,8 +131,8 @@
 {%endblock%}
 
 {%block modal%}
-    {% if transaction_check %}
-     <div class='modal' id='billing-verify'>
+    {% if verify_modal %}
+     <div class='modal visible' id='billing-verify'>
        <div class='modal-dialog'>
        <h3 class='modal-title'>{%trans "Transactions Detail"%}</h3>
        <div class='modal-body'>
