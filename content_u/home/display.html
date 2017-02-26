@@ -143,7 +143,7 @@
          <div class="card flex-1">
           <h3>{%trans "Credit"%}</h3>
           <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
-           <span>{{user_cash + user_cash_gift|number_format}}<i>{%trans user_unit%}</i></span>
+           <span>{{(user_cash + user_cash_gift)|number_format}}<i>{%trans user_unit%}</i></span>
           </div>
          </div>
         </div>
