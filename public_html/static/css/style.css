@@ -932,6 +932,7 @@ right:0;left:0;top:100%}
 .ui-language .try{width:100%}
 
 .instagram-dashboard{position:absolute;bottom:1em;left:1em;width:3em;height:3em}
+.rtl .instagram-dashboard{left:auto;right:1em}
 .instagram-dashboard img{width:100%}
 
 
