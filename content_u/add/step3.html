@@ -97,7 +97,7 @@
 
    <div id='prAdd' class="hide">
     <span>{%trans "Register Question"%}</span>
-    <span class='pr' data-val=1000>{{1000 | number_format | fitNumber}}</span>
+    <span class='pr' data-val=0> {{0 | number_format | fitNumber}}</span>
    </div>
 
    <div id='prBrand' class="hide" data-val='10'>
@@ -111,7 +111,7 @@
    </div>
 
    <div id='prCash' class="tbl-footer">
-    <span>{%trans "Cash"%}</span>
+    <span><a href="{{url.base}}/@/billing">{%trans "Cash"%}</a></span>
     <span class='pr'>{{10 | number_format | fitNumber}}</span>
    </div>
 

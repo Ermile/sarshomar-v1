@@ -1648,10 +1648,7 @@ function calcTotalPrice()
 		// show btn and change url for charge
 		$('.stepPublish .charge').fadeIn().css("display","inline-block").attr('href', neededMoney).removeClass('hide');
 		// hide publish
-		if($('html').attr('data-develop') === undefined)
-		{
-			$('.stepPublish .changeStatus').fadeOut();
-		}
+		$('.stepPublish .changeStatus').fadeOut();
 	}
 	else
 	{
@@ -1659,10 +1656,7 @@ function calcTotalPrice()
 		// hide charge
 		$('.stepPublish .charge').fadeOut();
 		// show publish
-		if($('html').attr('data-develop') === undefined)
-		{
-			$('.stepPublish .changeStatus').fadeIn().css("display","inline-block");
-		}
+		$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
 	}
 
 	// show on topbox
@@ -1713,7 +1707,7 @@ function setStatusText(_newStatus)
 	}, 200);
 
 	// show btn after change text
-	changeStatusBtn.fadeIn().css("display","inline-block").removeClass('hide');
+	// changeStatusBtn.fadeIn().css("display","inline-block").removeClass('hide');
 
 	// if is the same return false
 	if(oldStatus === _newStatus)
@@ -1874,7 +1868,6 @@ function sendQuestionData(_status, _asyncAjax)
 	if(_asyncAjax === false)
 	{
 		_asyncAjax = false;
-		console.log('yyyyyyyyyyyyyyyyyyyyyyy');
 	}
 	else
 	{
