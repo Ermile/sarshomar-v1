@@ -44,10 +44,11 @@
 
    <div class="main pad" id="dashboard-main">
     <div class="box">
-     <div class="f mr-bottom">
-      <div class="c">
+     <div class="f">
+
+      <div class="c s12 s-mr-bottom m6 m-mr-bottom">
        <div class="card">
-        <h3><span>{%trans "Referred People"%}</span></h3>
+        <h3>{%trans "Referred People"%}</h3>
         <div class="card-body {%if dashboard.user_referred == 0%}{%endif%}">
          {%if dashboard.user_referred == 0%}
           <span>{%trans "None"%}</span>
@@ -58,9 +59,9 @@
        </div>
       </div><!-- /.c3 -->
 
-      <div class="c">
+      <div class="c s12 s-mr-bottom m6 m-mr-bottom">
        <div class="card">
-        <h3><span>{%trans "Comments"%}</span></h3>
+        <h3>{%trans "Comments"%}</h3>
         <div class="card-body {%if dashboard.comment_count == 0%}{%endif%}">
          {%if dashboard.user_referred == 0%}
           <span>{%trans "None"%}</span>
@@ -71,9 +72,9 @@
        </div>
       </div><!-- .c3 -->
 
-      <div class="c">
+      <div class="c s12 s-mr-bottom m6 m-mr-bottom">
        <div class="card">
-        <h3><span>{%trans "Published Polls"%}</span></h3>
+        <h3>{%trans "Published Polls"%}</h3>
         <div class="card-body {%if dashboard.publish_count == 0%}{%endif%}">
          {%if dashboard.publish_count == 0%}
           <span>{%trans "None"%}</span>
@@ -84,9 +85,9 @@
        </div>
       </div>
 
-      <div class="c">
+      <div class="c s12 s-mr-bottom m6 m-mr-bottom">
        <div class="card">
-        <h3><span>{%trans "Draft Polls"%}</span></h3>
+        <h3>{%trans "Draft Polls"%}</h3>
         <div class="card-body {%if dashboard.draft_count == 0%}{%endif%}">
          {%if dashboard.draft_count == 0%}
           <span>{%trans "None"%}</span>
@@ -97,9 +98,9 @@
        </div>
       </div><!-- .c3 -->
 
-      <div class="c">
+      <div class="c s12 m12">
        <div class="card">
-        <h3><span>{%trans "Likes"%}</span></h3>
+        <h3>{%trans "Likes"%}</h3>
         <div class="card-body {%if dashboard.poll_answered == 0%}{%endif%}">
          <span>{{dashboard.poll_answered|number_format}}</span>
         </div>
@@ -108,20 +109,20 @@
      </div><!-- /.f -->
 
      <div class="f">
-      <div class="c6">
+      <div class="c6 s12 s-mr-bottom m8">
        <div class="card">
-        <h3><span>{%trans "Activities Report"%}</span></h3>
+        <h3>{%trans "Activities Report"%}</h3>
         <div class="card-body">
          <div class="chart" id='chart-answered' data-format='dashboardPie' data-vals='[{"key":"Remain","value":100},{"key":"Answered","value":40},{"key":"Skipped","value":10}]'></div>
         </div>
        </div>
       </div>
 
-      <div class="c6 flex f-column">
-       <div class="f mr-bottom">
-        <div class="c6">
+      <div class="c6 s12 m4 flex f-column">
+       <div class="f">
+        <div class="c6 s12 s-mr-bottom m12 m-mr-bottom">
          <div class="card">
-          <h3><span>{%trans "Quick Access"%}</span></h3>
+          <h3>{%trans "Quick Access"%}</h3>
           <div class="card-body">
            <ul>
             <li>
@@ -138,9 +139,9 @@
          </div>
         </div>
 
-        <div class="c6">
+        <div class="c6 s12 m12">
          <div class="card">
-          <h3><span>{%trans "Credit"%}</span></h3>
+          <h3>{%trans "Credit"%}</h3>
           <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
            <span>{{user_cash + user_cash_gift|number_format}}<i>{%trans user_unit%}</i></span>
           </div>
@@ -149,9 +150,9 @@
        </div>
 
        <div class="f flex-1">
-        <div class="c12">
+        <div class="c12 s12 m12">
          <div class="card">
-          <h3><span>{%trans "Recent Activities"%}</span></h3>
+          <h3>{%trans "Recent Activities"%}</h3>
           <div class="card-body">
            <span>{%trans "You didn't have any activities yet"%}</span>
           </div>
