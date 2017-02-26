@@ -33,7 +33,7 @@ class view extends \mvc\view
 		if(\lib\storage::get('rep') == 'u')
 		{
 			$this->data->isPersonal = true;
-
+			$this->data->my_poll = true;
 		}
 
 		$this->data->search_value =  $_args->get("search")[0];

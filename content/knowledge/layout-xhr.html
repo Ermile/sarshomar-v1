@@ -11,6 +11,9 @@
   <span class="comments-count">{%trans "Comments"%}</span>
   <span class="votes-count">{%trans "Votes"%}</span>
   <span class="date">{%trans "Date"%}</span>
+  {%if my_poll %}
+    <span class="show">{%trans "Show"%}</span>
+  {%endif%}
  </div>
  <ul class="polls-body">
 
@@ -23,10 +26,29 @@
     </span>
 {%endif%}
     <span class="type" aria-hidden="true"><span class="fa fa-{{value.type}}"></span> </span>
-    <span class="title"><a href="{{value.url}}">{{value.title|raw}}</a></span>
+    <span class="title">
+    {%set show_url = value.url %}
+    {%set edit_url = '@/add/' ~ value.id %}
+    {%if my_poll %}
+      {%set url = edit_url %}
+    {%else%}
+      {%set url = show_url %}
+    {%endif%}
+
+    <a href="{{url}}">
+      {% if value.title %}
+        {{value.title|raw}}
+      {%else%}
+        <i>{% trans "(Untitled)"%}</i>
+      {%endif%}
+      </a>
+    </span>
     <span class="comments-count">{{value.comment_count | fitNumber}}</span>
     <span class="votes-count">{{value.total | fitNumber}}</span>
     <span class="date">{{value.date_modified| jdate('Y-m-d')}}</span>
+    {%if my_poll %}
+    <span class="show"><a href="{{show_url}}" class="icon-home"></a></span>
+    {%endif%}
    </li>
 {%endfor%}
 
