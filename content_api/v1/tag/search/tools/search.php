@@ -36,6 +36,11 @@ trait search
 					$meta['term_type'] = 'sarshomar';
 				}
 
+				if(utility::request('type') == 'profile')
+				{
+					$meta['order'] = "DESC";
+				}
+
 				$meta['end_limit'] = 10;
 				if(utility::request("parent"))
 				{
