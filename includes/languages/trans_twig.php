@@ -17,7 +17,7 @@ private function transtext()
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 78
-	echo T_("Quick Access");                                                          // Line 66
+	echo T_("Quick Access");                                                          // Line 125
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 38
@@ -66,7 +66,7 @@ private function transtext()
 	//-----------------------------------------------content\knowledge\layout-xhr.html
 	echo T_("Type");                                                                  // Line 9
 	echo T_("Title");                                                                 // Line 10
-	echo T_("Comments");                                                              // Line 44
+	echo T_("Comments");                                                              // Line 63
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
 	echo T_("No Result Found");                                                       // Line 45
@@ -126,7 +126,7 @@ private function transtext()
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                              // Line 46
 	echo T_("← Back");                                                              // Line 46
-	echo T_("Skip");                                                                  // Line 103
+	echo T_("Skip");                                                                  // Line 177
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
@@ -884,7 +884,7 @@ private function transtext()
 	echo T_("31-44");                                                                 // Line 93
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
-	echo T_("Toman");                                                                 // Line 70
+	echo T_("Toman");                                                                 // Line 85
 	echo T_("Private");                                                               // Line 124
 
 	//--------------------------------------------------------content_u\add\step3.html
@@ -927,21 +927,38 @@ private function transtext()
 	echo T_("Default language");                                                      // Line 33
 	echo T_("Set default language");                                                  // Line 38
 	echo T_("Sync with Instagram");                                                   // Line 40
-	echo T_("Referred count");                                                        // Line 48
-	echo T_("Referred valid count");                                                  // Line 49
-	echo T_("Comments count");                                                        // Line 50
-	echo T_("Draft count");                                                           // Line 51
-	echo T_("Total Poll published");                                                  // Line 52
-	echo T_("Total Like taken");                                                      // Line 53
-	echo T_("Summary of your activity in Sarshomar");                                 // Line 58
-	echo T_("Create new poll");                                                       // Line 68
-	echo T_("My polls");                                                              // Line 69
-	echo T_("Ask me");                                                                // Line 70
-	echo T_("Your credit");                                                           // Line 73
-	echo T_("Last activity");                                                         // Line 77
-	echo T_("Question Answered");                                                     // Line 102
-	echo T_("Remained");                                                              // Line 103
-	echo T_("Answered");                                                              // Line 103
+	echo T_("Referred People");                                                       // Line 50
+	echo T_("None");                                                                  // Line 92
+	echo T_("Published Polls");                                                       // Line 76
+	echo T_("Draft Polls");                                                           // Line 89
+	echo T_("Likes");                                                                 // Line 102
+	echo T_("Activities Report");                                                     // Line 113
+	echo T_("Create new poll");                                                       // Line 127
+	echo T_("My polls");                                                              // Line 128
+	echo T_("Ask me");                                                                // Line 129
+	echo T_("Credit");                                                                // Line 143
+	echo T_("Recent Activities");                                                     // Line 154
+	echo T_("You didn't have any activities yet");                                    // Line 156
+	echo T_("Question Answered");                                                     // Line 176
+	echo T_("Remained");                                                              // Line 177
+	echo T_("Answered");                                                              // Line 177
+
+	//-------------------------------------------------content_u\home\display.old.html
+	echo T_("Referred count");                                                        // Line 49
+	echo T_("You have not introduced anybody");                                       // Line 53
+	echo T_("Comments count");                                                        // Line 62
+	echo T_("You have not any comment");                                              // Line 66
+	echo T_("Draft count");                                                           // Line 75
+	echo T_("You have not any draft");                                                // Line 79
+	echo T_("Total Poll published");                                                  // Line 88
+	echo T_("You have not any poll");                                                 // Line 92
+	echo T_("Total Like taken");                                                      // Line 101
+	echo T_("You have not any likes");                                                // Line 105
+	echo T_("Summary of your activity in Sarshomar");                                 // Line 116
+	echo T_("Your credit");                                                           // Line 135
+	echo T_("You have no credit");                                                    // Line 139
+	echo T_("Last activity");                                                         // Line 150
+	echo T_("You have no activity");                                                  // Line 153
 
 	//------------------------------------------------content_u\knowledge\display.html
 
