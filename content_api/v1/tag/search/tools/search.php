@@ -29,7 +29,7 @@ trait search
 
 				if(utility::request("type") == 'tag')
 				{
-					$meta['term_type'] = 'sarshomar%';
+					$meta['term_type'] = 'sarshomar_tag';
 				}
 				else
 				{

@@ -396,7 +396,14 @@ trait ready
 
 								if(isset($v['term_title']))
 								{
-									$opt_profile[$k]['title'] = $v['term_title'];
+									if($v['term_title'] != T_($v['term_title']))
+									{
+										$opt_profile[$k]['title'] = $v['term_title'] . " | ". T_($v['term_title']);
+									}
+									else
+									{
+										$opt_profile[$k]['title'] = $v['term_title'];
+									}
 								}
 							}
 						}

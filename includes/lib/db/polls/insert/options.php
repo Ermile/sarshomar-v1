@@ -382,6 +382,17 @@ trait options
 
 			$temp_poll_id = self::$poll_id;
 
+			$query_delete_exist_cat =
+			"
+				DELETE FROM
+					termusages
+				WHERE
+					termusages.termusage_foreign = 'cat' AND
+					termusages.termusage_id      = $temp_poll_id
+
+			";
+			\lib\db::query($query_delete_exist_cat);
+
 			$query =
 			"
 				INSERT INTO

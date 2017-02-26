@@ -73,25 +73,38 @@ class view extends \content_u\home\view
 		if(isset($poll['options']['cat']) && isset($poll['id']))
 		{
 			$cat_id    = shortURL::decode($poll['options']['cat']);
-			$cat       = \lib\db\terms::get($cat_id);
-			$cat_level = [];
 
-			while (array_key_exists('term_parent', $cat))
+			$cat       = \lib\db\terms::get($cat_id);
+			if(isset($cat['term_title']))
 			{
-				if(isset($cat['term_title']))
+				if($cat['term_title'] != T_($cat['term_title']))
 				{
-					array_push($cat_level, $cat['term_title']);
-				}
-				if($cat['term_parent'])
-				{
-					$cat = \lib\db\terms::get($cat['term_parent']);
+					$this->data->cats = [$cat['term_title'] . " | ". T_($cat['term_title'])];
 				}
 				else
 				{
-					$cat = [];
+					$this->data->cats = [$cat['term_title']];
 				}
 			}
-			$this->data->cats = array_reverse($cat_level);
+
+			// $cat_level = [];
+
+			// while (array_key_exists('term_parent', $cat))
+			// {
+			// 	if(isset($cat['term_title']))
+			// 	{
+			// 		array_push($cat_level, $cat['term_title']);
+			// 	}
+			// 	if($cat['term_parent'])
+			// 	{
+			// 		$cat = \lib\db\terms::get($cat['term_parent']);
+			// 	}
+			// 	else
+			// 	{
+			// 		$cat = [];
+			// 	}
+			// }
+			// $this->data->cats = array_reverse($cat_level);
 		}
 		if(isset($poll['articles']) && is_array($poll['articles']) && !empty($poll['articles']))
 		{
