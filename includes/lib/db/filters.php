@@ -462,7 +462,8 @@ class filters
 		}
 		else
 		{
-			return 0;
+			$count = \lib\db\users::get_count('valid');
+			return $count;
 		}
 	}
 

@@ -118,8 +118,7 @@
    </div>
   </div>
   <div>
-
-   <div class="range-slider" id='rangepersons' data-type="vertical" data-max='10000' data-unit='100' data-infinity="min" data-fix-mount='on' data-max-limit='9000'
+   <div class="range-slider" id='rangepersons' data-type="vertical" data-max='10000' data-unit='100' data-infinity="min" data-fix-mount='on' data-max-limit='{{member_exist}}'
    data-max-default='{%if poll.filters.count%}{{poll.filters.count}}{%else%}100{%endif%}'
    data-step='[{"start": 0, "end": 100, "step": 10},{"start": 100, "end": 1000, "step": 100},{"start": 1000, "end": 10000, "step": 1000},{"start": 10000, "end": 100000, "step": 10000},{"start": 100000, "end": 1000000, "step": 100000}]'
    data-show-title='[{"min": "{%trans "Private"%}"}, {"max": "{%trans "Ultimate"%}"}]'

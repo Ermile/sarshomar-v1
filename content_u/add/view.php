@@ -22,8 +22,8 @@ class view extends \content_u\home\view
 
 		// load empty answers for first loading
 		$this->data->answers = [[],[]];
+		$this->data->member_exist = \lib\db\users::get_count('valid');
 	}
-
 
 	/**
 	 *  load data for edit
