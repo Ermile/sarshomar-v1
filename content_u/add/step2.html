@@ -14,7 +14,7 @@
 
 {%block filter_graduation%}
  <div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
-  <label class="title large badge {%if poll.filters.graduation%}active{%endif%}" data-ratio="{{25 | number_format | fitNumber}}" data-ratio-val="25" data-response='graduation' data-response-class='active'>{%trans "Graduation"%}</label>
+  <label class="title large badge {%if poll.filters.graduation%}active{%endif%}" data-ratio="{{25 | number_format | fitNumber}}" data-ratio-val="25" data-response='graduation' data-response-class='active'>{%trans "Education"%}</label>
   <div class="switch-container">
    <!-- <input type="checkbox" value="illiterate" id="illiterate" {%if poll.filters.graduation.illiterate%}checked{%endif%}> -->
    <!-- <label for="illiterate">{%trans "Illiterate"%}</label> -->
@@ -45,7 +45,7 @@
   <label class="title large badge {%if poll.filters.employmentstatus%}active{%endif%}" data-ratio="{{30 | number_format | fitNumber}}" data-ratio-val="30" data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
   <div class="switch-container">
    <input type="checkbox" value="employee" id="employee" {%if poll.filters.employmentstatus.employee%}checked{%endif%}>
-   <label for="employee">{%trans "Employee"%}</label>
+   <label for="employee">{%trans "Employed"%}</label>
    <input type="checkbox" value="unemployed" id="unemployed" {%if poll.filters.employmentstatus.unemployed%}checked{%endif%}>
    <label for="unemployed">{%trans "Unemployed"%}</label>
    <input type="checkbox" value="retired" id="retired" {%if poll.filters.employmentstatus.retired%}checked{%endif%}>
@@ -82,7 +82,7 @@
   <label class="title large badge {%if poll.filters.range%}active{%endif%}" data-ratio="{{40 | number_format | fitNumber}}" data-ratio-val="40" data-response='range' data-response-class='active'>{%trans "Age Range"%}</label>
   <div class="switch-container">
    <input type="checkbox" value="-13" id="-13" {% if poll.filters.range['-13']%}checked{%endif%}>
-   <label for="-13">{%trans "Under 13"%}</label>
+   <label for="-13" class="ltr">{%trans "Under 13"%}</label>
    <input type="checkbox" value="14-17" id="14-17" {% if poll.filters.range['14-17']%}checked{%endif%}>
    <label for="14-17">{%trans "14-17"%}</label>
    <input type="checkbox" value="18-24" id="18-24" {% if poll.filters.range['18-24']%}checked{%endif%}>
@@ -94,7 +94,7 @@
    <input type="checkbox" value="45-59" id="45-59" {% if poll.filters.range['45-59']%}checked{%endif%}>
    <label for="45-59">{%trans "45-59"%}</label>
    <input type="checkbox" value="60+" id="60+" {% if poll.filters.range['60+']%}checked{%endif%}>
-   <label for="60+">{%trans "Above 60"%}</label>
+   <label for="60+" class="ltr">{%trans "Above 60"%}</label>
   </div>
  </div>
 {%endblock%}

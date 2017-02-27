@@ -877,7 +877,9 @@ private function transtext()
 	echo T_("Apply");                                                                 // Line 510
 
 	//--------------------------------------------------------content_u\add\step2.html
+	echo T_("Education");                                                             // Line 39
 	echo T_("Marrital");                                                              // Line 244
+	echo T_("Employed");                                                              // Line 48
 	echo T_("Degree");                                                                // Line 120
 	echo T_("Under diploma");                                                         // Line 63
 	echo T_("2 year college");                                                        // Line 67
@@ -952,7 +954,6 @@ private function transtext()
 
 	//--------------------------------------------------content_u\profile\display.html
 	echo T_("Personal");                                                              // Line 234
-	echo T_("Education");                                                             // Line 39
 	echo T_("Job");                                                                   // Line 40
 	echo T_("Location");                                                              // Line 41
 	echo T_("User");                                                                  // Line 228
