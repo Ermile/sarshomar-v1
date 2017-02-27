@@ -1029,7 +1029,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** poll page */
 .poll-container{}
-.poll-container h2{color:#444;font-weight:700;margin-bottom:.5em;word-break:break-all}
+.poll-container h2{color:#444;font-weight:700;margin-bottom:.5em;word-break:break-word}
 
 .poll-container .poll-toolbox{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;padding:0 1em;margin-bottom:1em;font-size:1.2em}
 
