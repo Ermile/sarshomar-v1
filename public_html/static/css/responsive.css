@@ -73,7 +73,7 @@
  .special-button:after,.rtl .special-button::after{right:-6px}
  .homepage .box .special-button {min-width: 225px;}
 
- .api-quick-access,.help-sidebar {display: none;}
+ aside {display: none;}
 }
 
 
