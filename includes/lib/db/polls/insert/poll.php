@@ -124,10 +124,6 @@ trait poll
 				return debug::error(T_("Access profile must be array"), 'access_profile', 'arguments');
 			}
 		}
-		else
-		{
-			$insert_poll['post_meta']['access_profile'] = null;
-		}
 
 		// get the insert id by check sarshomar permission
 		// when not in upldate mode

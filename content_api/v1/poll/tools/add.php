@@ -63,7 +63,10 @@ trait add
 		{
 			return debug::error(T_("Can not send parameter id in post mode"), 'id', 'arguments');
 		}
-		if(!is_null(utility::request('access_profile')))
+
+		$args = [];
+
+		if(utility::isset_request('access_profile'))
 		{
 			$access_profile = utility::request('access_profile');
 			if(!is_array($access_profile))
@@ -76,14 +79,9 @@ trait add
 			{
 				return debug::error(T_("Profile values is incorrect") . " ('" . implode($diff, "', '") . "')", 'access_profile', 'arguments');
 			}
-
-		}
-		else
-		{
-			$access_profile = null;
+			$args['access_profile']                           = $access_profile;
 		}
 		// insert args
-		$args                                             = [];
 		$args['update']                                   = $update;
 		$args['debug']                                    = $this->debug;
 		$args['user']                                     = $this->user_id;
