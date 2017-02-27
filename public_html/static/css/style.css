@@ -1743,7 +1743,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 .contact-box .sharebox{-webkit-box-pack:center !important;-webkit-justify-content:center !important;-ms-flex-pack:center !important;justify-content:center !important;margin-bottom:2em}
 .contact-ways .row{margin-bottom:1.5em;display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center}
 .contact-ways .row i{color:#28618a}
-.contact-ways .row span{padding:0 1em}
+.contact-ways .row span:not(.icon-3x){font-size:1.2em;padding:0 1em}
 .contact-box .map{display:block;padding:1em}
 
 
