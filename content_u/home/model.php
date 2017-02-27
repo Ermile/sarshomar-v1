@@ -44,7 +44,17 @@ class model extends \mvc\model
 
 		if(\lib\utility\location\languages::check($lang))
 		{
+			$current_lang = \lib\db\users::get_language($this->login("id"));
+
+			if($current_lang == $lang)
+			{
+				return false;
+			}
+
 			\lib\db\users::set_language($lang, ['user_id' => $this->login("id")]);
+
+			debug::true(T_("Your default language change"));
+
 			if(\lib\define::get_language() != $lang)
 			{
 				if(\lib\define::get_language("default") != $lang)
@@ -57,12 +67,12 @@ class model extends \mvc\model
 				}
 				$this->redirector($url);
 				\lib\debug::msg('direct', true);
-
 			}
 		}
 		else
 		{
-			return debug::error(T_("Invalid language parameter"), 'ui-language');
+			debug::error(T_("Invalid language parameter"), 'ui-language');
+			return false;
 		}
 
 	}
