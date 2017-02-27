@@ -135,6 +135,14 @@ class view extends \content_u\home\view
 			{
 				$selected_user = $poll['filters']['count'];
 			}
+			if(!$total_users)
+			{
+				$total_users = 0;
+			}
+			if(!$selected_user)
+			{
+				$selected_user = 0;
+			}
 			$this->data->total_users         = $total_users;
 			$this->data->total_with_filter   = $total_with_filter;
 			$this->data->selected_user       = $selected_user;
