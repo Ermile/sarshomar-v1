@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-26 15:00+0330\n"
-"PO-Revision-Date: 2017-02-27 10:31+0330\n"
+"PO-Revision-Date: 2017-02-27 11:35+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -624,7 +624,7 @@ msgstr "ارمایل"
 #: saloos/saloos-addons/content_account/recovery/model.php:15
 #: saloos/saloos-addons/content_account/signup/model.php:20
 msgid "Please enter a valid mobile phone number"
-msgstr ""
+msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
 #: saloos/saloos-addons/content_account/login/model.php:125
 #: saloos/saloos-addons/includes/languages/trans_addons.php:326
