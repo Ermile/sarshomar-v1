@@ -75,6 +75,10 @@ class inline_keyboard
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
+		if(isset($this->class->query_result['access_profile']))
+		{
+			$this->class->message->add('access_profile', "⚠️ " . T_("توجه: نام و نام خانوادگی شما همراه پاسختان ارسال خواهد شد و دریافت کننده می‌تواند نظر شما را مشاهده کند"), 'after', 'poll_list');
+		}
 	}
 
 	public function add_guest_option(...$_args)

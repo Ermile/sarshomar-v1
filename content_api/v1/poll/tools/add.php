@@ -82,7 +82,6 @@ trait add
 		{
 			$access_profile = null;
 		}
-
 		// insert args
 		$args                                             = [];
 		$args['update']                                   = $update;

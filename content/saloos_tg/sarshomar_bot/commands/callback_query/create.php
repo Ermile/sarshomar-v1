@@ -98,5 +98,23 @@ class create
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 
 	}
+
+	public static function access_profile($_query, $_data_url)
+	{
+		\lib\storage::set_disable_edit(true);
+		$poll_request = ['id' => session::get('poll')];
+		if($_data_url[2] == 'add')
+		{
+			$poll_request['access_profile'] = ['firstname', 'lastname'];
+		}
+		else
+		{
+			$poll_request['access_profile'] = null;
+		}
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+		$change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+		handle::send_log(\lib\debug::compile());
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+	}
 }
 ?>

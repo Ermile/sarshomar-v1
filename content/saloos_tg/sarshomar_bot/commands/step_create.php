@@ -290,6 +290,18 @@ class step_create
 			$maker->inline_keyboard->add([
 				['text' => T_('Publish'), 'callback_data' => 'poll/status/publish/' . $maker->query_result['id']]
 			]);
+			if(isset($maker->query_result['access_profile']))
+			{
+				$maker->inline_keyboard->add([
+					['text' => T_('عدم ثبت مشخصات نظردهنده'), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
+				]);
+			}
+			else
+			{
+				$maker->inline_keyboard->add([
+					['text' => T_('ثبت مشخصات نظردهنده'), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
+				]);
+			}
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_('Edit'),

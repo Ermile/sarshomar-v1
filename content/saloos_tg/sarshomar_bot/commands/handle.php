@@ -27,53 +27,6 @@ class handle
 			\lib\db\options::update(['option_value' => $update_time], $q['id']);
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
 		}
-		bot::$defaultText = T_('Not Found');
-		if($_cmd['command'] == 'exit' || $_cmd['command'] == '/exit')
-		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
-			$id = Tld === 'dev' ? 5 : 99;
-			\lib\db::query("DELETE FROM options
-				WHERE user_id = $id AND
-				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
-				AND option_key <> 'id'
-				");
-			\lib\db::query("DELETE from polldetails where user_id = $id");
-			\lib\db::query("DELETE from polldetails where user_id = 56");
-			$id = 22;
-			\lib\db::query("DELETE FROM options
-				WHERE user_id = $id AND
-				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
-				AND option_key <> 'id'
-				");
-			\lib\db::query("DELETE from polldetails where user_id = $id");
-			session_destroy();
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy: ']);
-			exit();
-		}
-		elseif($_cmd['command'] == 'clear' || $_cmd['command'] == '/clear')
-		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
-			step::stop();
-			exit();
-		}
-		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
-		{
-
-			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/log.json");
-			$json = json_decode($file, true);
-			if(!is_array($json))
-			{
-				$json = [];
-			}
-			array_unshift($json, bot::$hook);
-			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
-		}
 		$response = null;
 		$user_sync = \lib\storage::get_user_sync();
 		if(!is_null($user_sync))
