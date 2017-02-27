@@ -1273,8 +1273,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .polls-body li .edit a:hover,.polls-body li .edit a:focus{color:#e5a428}
 .polls-body li .title{text-align:left;overflow:hidden;max-width:100%;text-overflow:ellipsis}
 .rtl .polls-body li .title{text-align:right}
-.polls-body li .title a{color:#00667a;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;    padding: .5em;
-    display: block;}
+.polls-body li .title a{color:#00667a;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;padding:.5em;display:block;line-height:2}
 .polls-body li .title a:hover,.polls-body li .title a:focus{color:#e5a428}
 .polls-body li .title a i{color:#c5c5c5}
 .polls-body li .date{font-size:.9em}
