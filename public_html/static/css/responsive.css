@@ -108,6 +108,13 @@
  /* Sarshomar */
  /*.in{width:100%}*/
 
+
+ /************************************************************** Special-btn */
+.special-btn {font-size: 1.5em;height: 26px;line-height: 26px;}
+.special-btn::before {left: -4px;}
+.special-btn::before, .special-btn::after {top: -3px;width: 14px;}
+.special-btn::after {right: -4px;}
+
  .wrapper {margin-left: 6px;box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;}
 
 
@@ -378,6 +385,9 @@
  .container{max-width:96%;min-width:60%}
 }
 
+
+
+
 /************************************************************** Print */
 @media print {
  .wrapper,footer,header,header#header-top{border:none}
@@ -385,6 +395,8 @@
  #inestimable{display:none}
  footer{background-color:#eee}
 }
+
+
 
 
 
