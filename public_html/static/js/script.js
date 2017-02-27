@@ -1548,6 +1548,7 @@ function calcTotalPrice()
 	var totalPrice = 0;
 	// get filter data
 	var filters    = calcFilterPrice();
+	var tblFactor  = $('#totalPrice');
 	var prAdd      = $('#prAdd');
 	var prPerson   = $('#prPerson');
 	var prFilter   = $('#prFilter');
@@ -1633,6 +1634,11 @@ function calcTotalPrice()
 	setCompleteVal(prCash.find('.pr'), myCash);
 	// calc final balance and set
 	var finalBalance = myCash - totalPrice;
+	// if data-free is exist dont calc price of poll
+	if(tblFactor.attr('data-free') !== undefined)
+	{
+		finalBalance += totalPrice;
+	}
 	setCompleteVal(prBalance.find('.pr'), finalBalance);
 	// save link of charge for use next time
 	if($('.stepPublish .charge').data('hrefBase') === undefined)
