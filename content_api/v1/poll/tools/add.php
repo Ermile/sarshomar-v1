@@ -65,7 +65,7 @@ trait add
 		}
 
 		$args = [];
-
+		$access_profile = null;
 		if(utility::isset_request('access_profile'))
 		{
 			$access_profile = utility::request('access_profile');
