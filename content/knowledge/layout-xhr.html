@@ -48,8 +48,8 @@
           {%set myStatus = value.status%}
       <span class="poll-status" data-status="{{value.status}}">{% trans myStatus %}</span>
     {%endif%}
-    <span class="comments-count">{{value.comment_count | fitNumber}}</span>
-    <span class="votes-count">{{value.total | fitNumber}}</span>
+    <span class="comments-count">{%if value.comment_count%} {{value.comment_count | fitNumber}}{%else%}-{%endif%}</span>
+    <span class="votes-count">{%if value.total%} {{value.total | fitNumber}}{%else%}-{%endif%}</span>
     <!-- <span class="date">{{value.date_modified| jdate('Y-m-d')}}</span> -->
    </li>
 {%endfor%}
