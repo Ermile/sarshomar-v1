@@ -120,7 +120,7 @@
 
 
  /************************************************************** Special-btn */
-.special-btn {font-size: 1.5em;height: 26px;line-height: 26px;}
+.special-btn {font-size: 1.5em;height: 26px;line-height: 26px;border-radius:12px}
 .special-btn::before {left: -4px;}
 .special-btn::before, .special-btn::after {top: -3px;width: 14px;}
 .special-btn::after {right: -4px;}
