@@ -1311,10 +1311,11 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
 /* polls head */
 .polls-head,.polls-body li{display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center}
 .polls-head{border-bottom:1px solid #e0e0e0;color:#00667a;font-weight:700}
-.polls-head>span,.polls-body li>span{vertical-align:middle;padding:.5em 1em;min-width:70px;font-size:1.2em}
+.polls-head>span,.polls-body li>span{vertical-align:middle;padding:.5em 1em;min-width:70px;font-size:1.2em; text-align:center}
 .polls-head .star .icon-star{font-size:1.4em;vertical-align:middle}
 .polls-head .star,.polls-body li .star{min-width:initial}
-.polls-head .title,.polls-body li .title{-webkit-box-flex:1;-ms-flex:1;flex:1}
+.polls-head .title,.polls-body li .title{-webkit-box-flex:1;-ms-flex:1;flex:1; text-align:left}
+.rtl .polls-head .title,.polls-body li .title{text-align:right}
 .polls-head .type,.polls-body li .type{display:none}
 
 /* polls row */
