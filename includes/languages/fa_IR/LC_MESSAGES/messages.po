@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-26 15:00+0330\n"
-"PO-Revision-Date: 2017-02-27 09:48+0330\n"
+"PO-Revision-Date: 2017-02-27 10:31+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -9656,7 +9656,7 @@ msgstr "به‌ندرت"
 
 #: sarshomar/includes/languages/trans_twig.php:1142
 msgid "stock"
-msgstr "موجودی انبار"
+msgstr "بورس"
 
 #: sarshomar/includes/languages/trans_twig.php:1143
 msgid "boxing"
