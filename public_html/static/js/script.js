@@ -2116,7 +2116,7 @@ function prepareQuestionData()
 			var myProfile = $this.find('.profile-module').attr('data-val');
 			if(myProfile)
 			{
-				thisOpt.profile = JSON.parse(thisOpt.profile);
+				thisOpt.profile = JSON.parse(myProfile);
 			}
 		}
 		// type of opt
