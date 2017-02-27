@@ -7,6 +7,10 @@
   </span>
 {%endif%}
   <span class="type">{%trans "Type"%}</span>
+{%if my_poll %}
+  <span class="edit">{%trans "Edit"%}</span>
+{%endif%}
+
   <span class="title">{%trans "Title"%}</span>
   {% if my_poll%}
     <span class="status">{%trans "Status"%}</span>
@@ -26,20 +30,19 @@
      <label for="fav{{key}}" class="icon-star"></label>
     </span>
 {%endif%}
-    <span class="type" aria-hidden="true"><span class="fa fa-{{value.type}}"></span> </span>
-    <span class="title">
     {%set show_url = value.url %}
     {%set edit_url = '@/add/' ~ value.id %}
-
-    {%set myTitle%}
-      {% if value.title %}{{value.title|raw}}{%else%}<i>{% trans "(Untitled)"%}</i>{%endif%}
-    {%endset%}
+    <span class="type" aria-hidden="true"><span class="fa fa-{{value.type}}"></span> </span>
 
     {%if my_poll %}
-      <a href="{{show_url}}" class="icon-external-link"></a> <a href="{{edit_url}}">{{myTitle}}</a>
-    {%else%}
-      <a href="{{edit_url}}">{{myTitle}}</a>
+    <span class="edit"><a href="{{edit_url}}" class="icon-pencil"></a> </span>
     {%endif%}
+
+    <span class="title">
+{%set myTitle%}
+  {% if value.title %}{{value.title|raw}}{%else%}<i>{% trans "(Untitled)"%}</i>{%endif%}
+{%endset%}
+    <a href="{{show_url}}">{{myTitle}}</a>
     </span>
     {%if my_poll%}
           {%set myStatus = value.status%}
