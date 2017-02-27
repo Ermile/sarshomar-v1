@@ -69,15 +69,17 @@ class inline_keyboard
 				$callback_data .= ($answer_key +1);
 				$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
 			}
+
+			if(isset($this->class->query_result['access_profile']))
+			{
+				$callback_data = 'https://telegram.me/Sarshomar_bot?start=answer_' . $this->class->poll_id . '_' . $answer_value['key'];
+				$callback_type = 'url';
+			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
 				'text' => $inline_emoji,
 				$callback_type => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
-		}
-		if(isset($this->class->query_result['access_profile']))
-		{
-			$this->class->message->add('access_profile', "⚠️ " . T_("توجه: نام و نام خانوادگی شما همراه پاسختان ارسال خواهد شد و دریافت کننده می‌تواند نظر شما را مشاهده کند"), 'after', 'poll_list');
 		}
 	}
 

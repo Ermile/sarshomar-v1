@@ -19,8 +19,44 @@ class step_answer_descriptive
 	 */
 	public static function start($_text = null)
 	{
-		step::start('answer_descriptive');
-		return self::step1($_text, true);
+		step::stop();
+		if(preg_match("/^([^_]*)_(.*)$/", $_text, $_answer))
+		{
+			$text = T_('آیا شما قصد دارید به نظرسنجی زیر پاسخ دهید؟');
+			$maker = new make_view($_answer[1]);
+			if($maker->poll_type == 'descriptive')
+			{
+				step::start('answer_descriptive');
+				return self::step1($_text, true);
+			}
+			elseif($maker->poll_type == 'like')
+			{
+				$answer_text = "❤️";
+			}
+			else
+			{
+				$answer_text = $maker::$emoji_number[$_answer[2]];
+			}
+			$maker->message->add_title();
+			$maker->message->add_poll_list(null, false);
+			$maker->message->add('insert_line', "");
+			$maker->message->add('answer_text', T_("گزینه انتخابی شما :answer_text می‌باشد", ['answer_text' => $answer_text]));
+			if(isset($maker->query_result['access_profile']) && !is_null($maker->query_result['access_profile']))
+			{
+				$maker->message->add('access_profile', "\n⚠️ " . T_("شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر ارسال کند."));
+			}
+			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add_count_poll();
+			$maker->message->add_telegram_link();
+			$return = $maker->make();
+			// $return['reply_markup'] = ["remove_keyboard" => true];
+			return $return;
+		}
+		else
+		{
+			step::start('answer_descriptive');
+			return self::step1($_text, true);
+		}
 	}
 	public static function step1($_text = null, $check = false)
 	{
@@ -57,6 +93,10 @@ class step_answer_descriptive
 			$maker->message->add_poll_list(null, false);
 			$maker->message->add('insert_line', "");
 			$maker->message->add('insert', T_('لطفا پاسخ خود را وارد کنید'));
+			if(isset($maker->query_result['access_profile']) && !is_null($maker->query_result['access_profile']))
+			{
+				$maker->message->add('access_profile', "\n⚠️ " . T_("شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر ارسال کند."));
+			}
 			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
