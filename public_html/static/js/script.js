@@ -1929,7 +1929,7 @@ function sendQuestionData(_status, _asyncAjax)
 						changePollStatus(_status);
 					}
 					var limit = null;
-					if(e.msg && e.msg.member_exist)
+					if(e.msg && e.msg.member_exist !== undefined)
 					{
 						limit = parseInt(e.msg.member_exist);
 						console.log('limit is: ' + limit);

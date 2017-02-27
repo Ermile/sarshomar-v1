@@ -14,27 +14,10 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function permission($_permission = null)
+	public static function permission($_content = null, $_permission = null, $_accions = null)
 	{
-		if(!$_permission)
-		{
-			return self::$permission;
-		}
-		else
-		{
-			if(isset(self::$permission[$_permission]))
-			{
-				if(self::$permission[$_permission])
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			return false;
-		}
+		$permission = new \lib\utility\permission;
+		return $permission->access($_content, $_permission, $_accions);
 	}
 
 

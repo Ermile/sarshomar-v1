@@ -7,6 +7,8 @@ use \lib\utility\shortURL;
 trait ready
 {
 
+	use ready_options;
+
 	/**
 	 * ready poll record to show
 	 * encode id
@@ -473,9 +475,18 @@ trait ready
 		// get filters of poll
 		if($_options['get_filter'] && $poll_id)
 		{
-			$filters               = utility\postfilters::get_filter($poll_id);
-			$filters['count']      = \lib\db\ranks::get($poll_id, 'member');
-			$filters               = array_filter($filters);
+			$filters = utility\postfilters::get_filter($poll_id);
+			$filters = array_filter($filters);
+			$member  = \lib\db\ranks::get($poll_id, 'member');
+			if(self::permission('u', 'sarshomar', 'view') && (int) $member === 1000000000)
+			{
+				$member_exist = (int) \lib\db\filters::count_user($filters);
+				$filters['count'] = $member_exist;
+			}
+			else
+			{
+				$filters['count'] = $member;
+			}
 			$_poll_data['filters'] = $filters;
 		}
 

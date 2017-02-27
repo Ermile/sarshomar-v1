@@ -264,9 +264,9 @@ trait poll
 
 				debug::msg("member_exist", $member_exist);
 
-				if(self::permission('sarshomar') && $member_exist === $member)
+				if(self::permission('u', 'sarshomar', 'view') && $member_exist === $member)
 				{
-					// \lib\db\ranks::plus(self::$poll_id, "member", null, ['replace' => true]);
+					\lib\db\ranks::plus(self::$poll_id, "member", 1000000000, ['replace' => true]);
 				}
 				else
 				{
