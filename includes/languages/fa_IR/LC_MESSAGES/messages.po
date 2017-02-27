@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-02-27 12:54+0330\n"
-"PO-Revision-Date: 2017-02-27 12:58+0330\n"
+"PO-Revision-Date: 2017-02-27 14:30+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -47,7 +47,7 @@ msgstr "لطفا با مدیر سیستم تماس بگیرید!"
 
 #: saloos/lib/db/install.php:229
 msgid "executed"
-msgstr ""
+msgstr "اجرا شد"
 
 #: saloos/lib/db/install.php:234
 msgid "Old version"
@@ -59,7 +59,7 @@ msgstr "ما نمی‌توانیم سرویس دیتابیس را بیابیم!"
 
 #: saloos/lib/dbconnection.php:50
 msgid "please contact administrator!"
-msgstr ""
+msgstr "لطفا با مدیریت تماس بگیرید!"
 
 #: saloos/lib/dbconnection.php:63
 msgid "We can't connect to database service!"
@@ -161,104 +161,104 @@ msgstr "خطا در سیستم پیامک"
 
 #: saloos/lib/utility/payment/zarinpal.php:29
 msgid "Can not connect to zarinpal gateway. Install it!"
-msgstr ""
+msgstr "ناتوان در اتصال به درگاه زرین پال. نصبش کنید!"
 
 #: saloos/lib/utility/payment/zarinpal.php:35
 #: saloos/lib/utility/payment/zarinpal.php:125
 msgid "The MerchantID is required"
-msgstr ""
+msgstr "شناسه مرچنت مورد نیاز است"
 
 #: saloos/lib/utility/payment/zarinpal.php:40
 #: saloos/lib/utility/payment/zarinpal.php:130
 msgid "The Amount is required"
-msgstr ""
+msgstr "مقدار مورد نیاز است"
 
 #: saloos/lib/utility/payment/zarinpal.php:45
 msgid "The Description is required"
-msgstr ""
+msgstr "توضیحات مورد نیاز است"
 
 #: saloos/lib/utility/payment/zarinpal.php:50
 msgid "The CallbackURL is required"
-msgstr ""
+msgstr "CallbackURL مورد نیاز است"
 
 #: saloos/lib/utility/payment/zarinpal.php:61
 msgid "Amount must be larger than 0"
-msgstr ""
+msgstr "مقدار باید بیش از ۰ باشد"
 
 #: saloos/lib/utility/payment/zarinpal.php:99
 #: saloos/lib/utility/payment/zarinpal.php:168
 msgid "Error in load web services"
-msgstr ""
+msgstr "خطا در بارگذاری وب سرویس‌ها"
 
 #: saloos/lib/utility/payment/zarinpal.php:135
 msgid "The Authority is required"
-msgstr ""
+msgstr "Authority مورد نیاز است"
 
 #: saloos/lib/utility/payment/zarinpal.php:186
 msgid "The submited inforamation are incomplete."
-msgstr ""
+msgstr "اطلاعات وارد شده ناقص است"
 
 #: saloos/lib/utility/payment/zarinpal.php:190
 msgid "IP or merchant code of the host is incorrect"
-msgstr ""
+msgstr "آی پی یا کد مرچنت میزبان اشتباه است"
 
 #: saloos/lib/utility/payment/zarinpal.php:194
 msgid "Due to Shaparak's limitations, It's impossible to pay the specified amount"
-msgstr ""
+msgstr "به دلیل محدودیت‌های شاپرک، امکان پرداخت این مقدار وجود ندارد"
 
 #: saloos/lib/utility/payment/zarinpal.php:198
 msgid "The host level is below silver level"
-msgstr ""
+msgstr "سطح میزبان پایین‌تر از سطح نقره‌ای است"
 
 #: saloos/lib/utility/payment/zarinpal.php:202
 msgid "Nothing found for the specified request"
-msgstr ""
+msgstr "برای درخواست مورد نظر چیزی یافت نشد"
 
 #: saloos/lib/utility/payment/zarinpal.php:206
 msgid "It's impossible to edit the request"
-msgstr ""
+msgstr "ویرایش درخواست امکان پذیر نیست"
 
 #: saloos/lib/utility/payment/zarinpal.php:210
 msgid "No financial operation found for this transaction"
-msgstr ""
+msgstr "هیچ عملیات مالی برای این تراکنش یافت نشد"
 
 #: saloos/lib/utility/payment/zarinpal.php:214
 msgid "Transaction faild"
-msgstr ""
+msgstr "تراکنش با خطا مواجه شد"
 
 #: saloos/lib/utility/payment/zarinpal.php:218
 msgid "The specified transaction amount does not match with the payed amount"
-msgstr ""
+msgstr "میزان تراکنش مشخص شده با مقدار پرداخت شده یکسان نیست"
 
 #: saloos/lib/utility/payment/zarinpal.php:222
 msgid "Highest amount of transaction is passed as a result of number or amount"
-msgstr ""
+msgstr "در نتیجه مقدار یا تعداد، بالاترین میزان تراکنش رد شده است"
 
 #: saloos/lib/utility/payment/zarinpal.php:226
 msgid "Access unavilable to method"
-msgstr ""
+msgstr "دسترسی به متد امکان‌پذیر نیست"
 
 #: saloos/lib/utility/payment/zarinpal.php:230
 msgid "Invalid information is sent for AdditionalData"
-msgstr ""
+msgstr "اطلاعات نامعتبری برای AdditionalData ارسال شده است"
 
 #: saloos/lib/utility/payment/zarinpal.php:234
 msgid "Valid lifespan of ID must be between 30 minutes to 45 days"
-msgstr ""
+msgstr "طول عمر شناسه باید بین ۳۰ دقیقه تا ۴۵ روز باشد"
 
 #: saloos/lib/utility/payment/zarinpal.php:238
 msgid "The request is archived"
-msgstr ""
+msgstr "درخواست بایگانی شد"
 
 #: saloos/lib/utility/payment/zarinpal.php:242
 msgid "Operation was successfully done"
-msgstr ""
+msgstr "عملیات با موفقیت انجام شد"
 
 #: saloos/lib/utility/payment/zarinpal.php:246
 msgid ""
 "Payment operation was successfull and PatmentVerification of the transaction has "
 "already done"
-msgstr ""
+msgstr "عملیات پرداخت با موفقیت انجام شد و تایید پرداخت تراکنش با موفقیت انجام شد"
 
 #: saloos/lib/utility/permission.php:162
 #: saloos/saloos-addons/includes/languages/trans_addons.php:405
@@ -338,27 +338,27 @@ msgstr "لطفا کلید رابط برنامه و شماره خط را تنظی
 
 #: saloos/lib/utility/token.php:183
 msgid "Invalid user or parent"
-msgstr ""
+msgstr "کاربر یا والد نامعتبر است"
 
 #: saloos/lib/utility/token.php:188
 msgid "Token not verified"
-msgstr ""
+msgstr "توکن تایید نشد"
 
 #: saloos/lib/utility/token.php:217
 msgid "authorization faild (parent not found)"
-msgstr ""
+msgstr "خطا در اعتبارسنجی(والد یافت نشد)"
 
 #: saloos/lib/utility/token.php:228
 msgid "authorization faild (this authorization is not a valid token)"
-msgstr ""
+msgstr "خطا در اعتبارسنجی(توکن اعتبار سنجی معتبر نیست)"
 
 #: saloos/lib/utility/token.php:236
 msgid "The api key is expired"
-msgstr ""
+msgstr "کلید API منقضی شده است"
 
 #: saloos/lib/utility/token.php:244
 msgid "authorization faild (this authorization is not a api key)"
-msgstr ""
+msgstr "خطا در اعتبارسنجی (این اعتبارسنجی کلید API نیست)"
 
 #: saloos/lib/utility/token.php:250 sarshomar/includes/lib/utility/answers.php:143
 msgid "Invalid type"
@@ -371,7 +371,7 @@ msgstr "توکن نامعتبر"
 
 #: saloos/lib/utility/token.php:334
 msgid "Invalid token (tmp login)"
-msgstr ""
+msgstr "توکن نامعتبر است(ورود tmp)"
 
 #: saloos/lib/utility/upload.php:92
 #: saloos/saloos-addons/includes/languages/trans_addons.php:281
@@ -423,7 +423,7 @@ msgstr "-"
 
 #: saloos/lib/utility/upload.php:250
 msgid "file successful uploaded"
-msgstr ""
+msgstr "فایل با موفقیت آپلود شد"
 
 #: saloos/lib/utility/upload.php:254
 msgid "Fail on tranfering file, when moving in temp"
@@ -539,7 +539,7 @@ msgstr ""
 #: saloos/saloos-addons/content_account/login/model.php:29
 #: saloos/saloos-addons/content_account/signup/model.php:32
 msgid "Password length must be less 50 characters!"
-msgstr ""
+msgstr "طول رمز عبور باید کمتر از ۵۰ کاراکتر باشد!"
 
 #: saloos/saloos-addons/content_account/changepass/model.php:78
 #: saloos/saloos-addons/includes/languages/trans_addons.php:497
@@ -993,7 +993,7 @@ msgstr "لطفا عنوان را وارد کنید!"
 
 #: saloos/saloos-addons/content_cp/tools/controller.php:45
 msgid "Permission denide for run upgrade database"
-msgstr ""
+msgstr "دسترسی برای ارتقا دیتابیس امکان پذیر نیست"
 
 #: saloos/saloos-addons/content_cp/tools/controller.php:92
 msgid "First you need to enable COM on windows"
@@ -3835,11 +3835,11 @@ msgstr "خطای نامشخصی رخ داد!"
 
 #: saloos/saloos-addons/lib/db/terms.php:64
 msgid "term_slug not found"
-msgstr ""
+msgstr "term_slug پیدا نشد"
 
 #: saloos/saloos-addons/lib/db/terms.php:74
 msgid "term_url not found"
-msgstr ""
+msgstr "term_url پیدا نشد"
 
 #: saloos/saloos-addons/lib/mvc/models/account.php:158
 msgid "logout successfully"
@@ -3945,7 +3945,7 @@ msgstr "پاسخ ذخیره شد"
 
 #: sarshomar/content/poll/view.php:84
 msgid "undefined Title!"
-msgstr ""
+msgstr "عنوان تعریف نشده!"
 
 #: sarshomar/content/referer/instagram/model.php:37
 msgid "Token error"
@@ -4517,7 +4517,7 @@ msgstr "ساخته شده در ارمایل"
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:66
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:73
 msgid "Developer mode"
-msgstr ""
+msgstr "حالت توسعه دهنده"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:101
 #: sarshomar/content/saloos_tg/sarshomarbot/controller.php:78
@@ -4690,11 +4690,11 @@ msgstr "شناسه پارامتر نامعتبر است"
 
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:57
 msgid "You can not set :requests at the same time"
-msgstr ""
+msgstr "شما نمیتوانید :requests همزمان تعیین کنید"
 
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:62
 msgid "You haven't sent any answer"
-msgstr ""
+msgstr "شما پاسخی ارسال نکرده‌اید"
 
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:67
 msgid "Can not save answer"
@@ -4996,12 +4996,12 @@ msgstr ""
 
 #: sarshomar/content_u/billing/model.php:110
 msgid "Amount not set"
-msgstr ""
+msgstr "مقدار تعیین نشده است"
 
 #: sarshomar/content_u/billing/model.php:133
 #: sarshomar/content_u/billing/model.php:141
 msgid "Invalid promo code"
-msgstr ""
+msgstr "کد اعتبار هدیه نامعتبر است"
 
 #: sarshomar/content_u/billing/model.php:137
 msgid "Your account charge :amount"
@@ -5009,11 +5009,11 @@ msgstr ""
 
 #: sarshomar/content_u/billing/model.php:154
 msgid "Charge Sarshomar"
-msgstr ""
+msgstr "شارژ سرشمار"
 
 #: sarshomar/content_u/billing/model.php:200
 msgid "Amount not found"
-msgstr ""
+msgstr "مقدار یافت نشد"
 
 #: sarshomar/content_u/billing/view.php:9
 #: sarshomar/includes/languages/trans_twig.php:27
@@ -5022,7 +5022,7 @@ msgstr "مالی"
 
 #: sarshomar/content_u/home/model.php:30
 msgid "Invalid captcha"
-msgstr ""
+msgstr "کپچا صحیح نیست"
 
 #: sarshomar/content_u/home/model.php:42
 msgid "Please login to set language"
@@ -5070,7 +5070,7 @@ msgstr ""
 
 #: sarshomar/content_u/manifest.php:126
 msgid "Add poll to sarshomar knowledge"
-msgstr ""
+msgstr "افزودن نظرسنجی به دانش سرشمار"
 
 #: sarshomar/content_u/manifest.php:136
 msgid "Allow to add poll cats"
@@ -5091,15 +5091,15 @@ msgstr ""
 
 #: sarshomar/content_u/manifest.php:176
 msgid "Allow to set 10 draft poll"
-msgstr ""
+msgstr "اجازه به تعیین ۱۰ نظرسنجی پیش‌نویس شده"
 
 #: sarshomar/content_u/manifest.php:186
 msgid "Allow to set 50 draft poll"
-msgstr ""
+msgstr "اجازه به تعیین ۵۰ نظرسنجی پیش‌نویس شده"
 
 #: sarshomar/content_u/manifest.php:196
 msgid "Allow to set 500 draft poll"
-msgstr ""
+msgstr "اجازه به تعیین ۵۰۰ نظرسنجی پیش‌نویس شده"
 
 #: sarshomar/content_u/manifest.php:206
 msgid "Allow to max poll draft"
@@ -8708,7 +8708,7 @@ msgstr "مرتب‌سازی"
 
 #: sarshomar/includes/languages/trans_twig.php:835
 msgid "Please type your answer"
-msgstr ""
+msgstr "لطفا پاسخ خود را تایپ کنید"
 
 #: sarshomar/includes/languages/trans_twig.php:836
 msgid "Allow to type other answer"
@@ -8952,7 +8952,7 @@ msgstr "منتشر کن"
 
 #: sarshomar/includes/languages/trans_twig.php:907
 msgid "go Back to Draft"
-msgstr ""
+msgstr "بازگشت به پیش‌نویس"
 
 #: sarshomar/includes/languages/trans_twig.php:912
 msgid "Your Money"
