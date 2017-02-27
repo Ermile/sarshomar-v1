@@ -342,6 +342,12 @@ trait ready
 			unset($_poll_data['meta']['summary']);
 		}
 
+		if(isset($_poll_data['meta']['access_profile']))
+		{
+			$_poll_data['access_profile'] = $_poll_data['meta']['access_profile'];
+			unset($_poll_data['meta']['access_profile']);
+		}
+
 		unset($_poll_data['meta']);
 		if($_options['get_tags'])
 		{

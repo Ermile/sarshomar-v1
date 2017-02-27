@@ -115,6 +115,20 @@ trait poll
 			$insert_poll['post_meta']['summary'] = null;
 		}
 
+		// summary
+		if(isset(self::$args['access_profile']))
+		{
+			$insert_poll['post_meta']['access_profile'] = self::$args['access_profile'];
+			if(!is_array(self::$args['access_profile']) || is_null(self::$args['access_profile']))
+			{
+				return debug::error(T_("Access profile must be array"), 'access_profile', 'arguments');
+			}
+		}
+		else
+		{
+			$insert_poll['post_meta']['access_profile'] = null;
+		}
+
 		// get the insert id by check sarshomar permission
 		// when not in upldate mode
 		if(!self::$update_mod && self::$args['permission_sarshomar'] === true)

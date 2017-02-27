@@ -63,6 +63,25 @@ trait add
 		{
 			return debug::error(T_("Can not send parameter id in post mode"), 'id', 'arguments');
 		}
+		if(!is_null(utility::request('access_profile')))
+		{
+			$access_profile = utility::request('access_profile');
+			if(!is_array($access_profile))
+			{
+				$access_profile = explode(" ", $access_profile);
+			}
+			$profile_values = array_keys(\lib\utility\profiles::profile_data());
+			$diff = array_diff($access_profile, $profile_values);
+			if(!empty($diff))
+			{
+				return debug::error(T_("Profile values is incorrect") . " ('" . implode($diff, "', '") . "')", 'access_profile', 'arguments');
+			}
+
+		}
+		else
+		{
+			$access_profile = null;
+		}
 
 		// insert args
 		$args                                             = [];
@@ -90,6 +109,7 @@ trait add
 		$args['articles']                                 = utility::request('articles');
 		$args['tags']                                     = utility::request('tags');
 		$args['cat']                                      = utility::request('cat');
+		$args['access_profile']                           = $access_profile;
 
 		// $args['comment']                               = utility::request('comment');
 		// $args['slug']                                  = utility::request('slug');

@@ -100,6 +100,8 @@ trait insert
 			'tags'          				  => [],
 			// cats
 			'cat'          				  => null,
+			// access answerd profile
+			'access_profile'			  	  => null,
 		];
 
 		$_args = array_merge($default_value, $_args);
