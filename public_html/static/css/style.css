@@ -616,8 +616,7 @@ header #financial-box .total:hover,header #financial-box .total.open{overflow-wr
 
 
 /************************************************************** footer */
-footer{background-color:#083942;padding-top:2.5em;position:relative}
-footer{box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
+footer{position:relative;margin:0;padding:0;padding-top:20px;border-top:2px solid #00667a;background-color:#083942;box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429}
 footer .container{padding:0 2%}
 
 /* footer-nav */
@@ -639,7 +638,10 @@ footer #footer-links #footer-news article{margin-bottom:.5em;border:1px solid tr
 footer #footer-links #footer-news article:hover{border-right-color:#e5a428}
 .rtl footer #footer-links #footer-news article:hover{border-left-color:#e5a428;border-right-color:transparent}
 footer #footer-links #footer-news p{font-size:.8em;margin-bottom:0;color:#777}
-footer #footer-links .enamad img{display:none}
+/*footer #footer-links .enamad img{display:none}*/
+
+footer #footer-links #footer-enamad{}
+footer #footer-links #footer-enamad a{display:block}
 
 /* footer-note*/
 footer #footer-note{font-size:1.2em;padding:2em 1em;color:#aaa}
@@ -749,7 +751,7 @@ footer .is-open i {transform:rotate(180deg);}
 
 
 /************************************************************** inestimable */
-#inestimable{position:relative;background-color:#582C2C;height:200px;padding:25px 100px;color:#fff;margin:0 0 -8px;width:auto;z-index:1}
+#inestimable{position:relative;background-color:#582C2C;height:200px;padding:25px 100px;color:#fff;margin:0 0 -2px;width:auto;z-index:1}
 #inestimable .inside{position:absolute;top:0;height:100%;width:auto}
 #inestimable .inside.left{left:0}
 #inestimable .inside.right{right:0}
@@ -1327,9 +1329,9 @@ footer #footer-links .sharebox.socialbox a{display: inline-block;}*/
 .polls-body li .star label{color:#e7e7e7;font-size:1.4em;transition:.3s;cursor:pointer;vertical-align:middle}
 .polls-body li:hover .star label,.polls-body li .star input[type="checkbox"]:focus+label{color:#c5c5c5}
 .polls-body li .star input[type="checkbox"]:checked+label{color:#e7a429}
-.polls-body li .title{text-align:left}
+.polls-body li .title{text-align:left;overflow:hidden;max-width:100%;text-overflow:ellipsis}
 .rtl .polls-body li .title{text-align:right}
-.polls-body li .title a{color:#00667a;display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.polls-body li .title a{color:#00667a;display:inline;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .polls-body li .title a:hover,.polls-body li .title a:focus{color:#e5a428}
 .polls-body li .date{font-size:.9em}
 

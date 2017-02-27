@@ -181,7 +181,7 @@
  #about-bottom {padding: 4px;}
 
 
- #inestimable{padding:25px;text-align:center;height:150px}
+ #inestimable{padding:25px;text-align:center;height:150px;margin-bottom:-8px}
  #inestimable:before,#inestimable:after{display: none}
  #inestimable .left-mobile-border {height: 100%;position: absolute;left: -10px;top: 0;bottom: 0; display: block}
  #inestimable .right-mobile-border {height: 100%;position: absolute;right: -10px;top: 0;bottom: 0;display: block}
