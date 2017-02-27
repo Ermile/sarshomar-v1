@@ -333,7 +333,7 @@
  .em {padding: 1.5em 1em;}
 
  .api-docs {padding: 2em;}
- .api-quick-access,.help-sidebar {display: none;}
+ aside {display: none;}
  .method-table, .response-codes {white-space: normal;}
 
 
