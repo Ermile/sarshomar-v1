@@ -97,9 +97,32 @@ class step_starting
 			foreach ($url_command_group as $key => $value)
 			{
 				$url_command = preg_split("[_]", $value, 2);
-				$commands[$url_command[0]] = $url_command[1];
+				handle::send_log($value);
+				if(preg_match("/^([".SHORTURL_ALPHABET."]+)$/", $value))
+				{
+					$commands['sp'] = $value;
+				}
+				else
+				{
+					if(preg_match("/^([".SHORTURL_ALPHABET."]+)$/", $url_command[0]))
+					{
+						if($url_command[1] == 'report')
+						{
+							$commands['report'] = $url_command[0];
+						}
+						elseif($url_command[1] == 'like' ||	preg_match("/^\d+$/", $url_command[1]))
+						{
+							$commands['answer'] = $url_command[0] . '_' . $url_command[1];
+						}
+					}
+					else
+					{
+						$commands[$url_command[0]] = $url_command[1];
+					}
+				}
 			}
 		}
+
 		if(!callback_query\language::check() &&
 			!array_key_exists('sp', $commands) &&
 			!array_key_exists('report', $commands) &&

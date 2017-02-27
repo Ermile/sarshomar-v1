@@ -32,6 +32,18 @@ class ask
 		}
 
 		$maker = new make_view($options['poll_id']);
+		if(is_null($maker->query_result))
+		{
+			if(!$_query && !isset($options['return']))
+			{
+				bot::sendResponse(['text' => T_("Poll not found")]);
+			}
+			else
+			{
+				return ['text' => T_("Poll not found")];
+			}
+			return ;
+		}
 		$user_lang = \lib\define::get_language();
 		\lib\define::set_language($maker->query_result['language'], true);
 		$my_poll = $maker->query_result['user_id'] == \lib\utility\shortURL::encode(bot::$user_id);

@@ -69,7 +69,7 @@ class controller extends \lib\mvc\controller
 				}
 				else
 				{
-					$_args['text']= preg_replace("#\n.*\#Developer_mode$#", "", $_args['text']);
+					$_args['text']= preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
 					$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
 					$_args['parse_mode'] = "HTML";
 				}

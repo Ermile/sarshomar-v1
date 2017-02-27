@@ -67,6 +67,10 @@ class handle
 				{
 					$command_text = $_cmd['command'];
 				}
+				elseif(preg_match("#^\/[".SHORTURL_ALPHABET."]+(_.*)?$#", $_cmd['command']))
+				{
+					$command_text = $_cmd['command'];
+				}
 				else
 				{
 					$command_text = strtolower($_cmd['command']);
@@ -91,16 +95,16 @@ class handle
 
 				case '/ask':
 				case T_('Ask me'):
-				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
-				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[2]]);
+				case preg_match("/^\/([".SHORTURL_ALPHABET."]+)$/", $command_text, $sp) ? $sp[0] : "/ask":
+				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[1]]);
 				break;
 
-				case preg_match("/^(\/report_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:
-				$response = callback_query\poll::report(null, null, empty($sp) ? null : $sp[2]);
+				case preg_match("/^\/([".SHORTURL_ALPHABET."]+)_(report)$/", $command_text, $sp) ? $sp[0] : null:
+				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[1]]);
 				break;
 
-				case preg_match("/^(\/answer_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:
-				$response = step_answer_descriptive::start($sp[2]);
+				case preg_match("/^\/(([".SHORTURL_ALPHABET."]+)_(like|[0-9]+))$/", $command_text, $sp) ? $sp[0] : null:
+				$response = step_answer_descriptive::start($sp[1]);
 				break;
 
 				case '/polls':
