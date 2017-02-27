@@ -41,9 +41,19 @@ class inline_keyboard
 			],
 			9 => [
 				[0, 0] , [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2],
+			],
+			10 => [
+				[0, 0] , [0, 1], [0, 2], [0, 3], [0, 4], [1, 0], [1, 1], [1, 2], [1, 3], [1, 4],
+			],
+			11 => [
+				[0, 0] , [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1], [2, 2],
 			]
 		];
 		$count_answer = count($this->class->query_result['answers']);
+		if($count_answer > 11)
+		{
+			$keyboard_map[$count_answer] = $this->make_keyboard_map($count_answer);
+		}
 		$row_answer = current($keyboard_map[$count_answer]);
 		$last_count = $this->count();
 		$sum = $this->class->message->sum_stats();
@@ -67,7 +77,14 @@ class inline_keyboard
 			else
 			{
 				$callback_data .= ($answer_key +1);
-				$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$inline_emoji = utility::nubmer_language($answer_value['key']);
+				}
+				else
+				{
+					$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
+				}
 			}
 
 			if(isset($this->class->query_result['access_profile']))
@@ -186,6 +203,45 @@ class inline_keyboard
 				'callback_data' => 'poll/report/' . $this->class->poll_id . '/privacy_violation'
 			]
 		];
+	}
+
+	public function make_keyboard_map($_count)
+	{
+		$return = [];
+		$ot = $_count % 4;
+		$rows = floor($_count/4);
+		if($_count % 5 == 0)
+		{
+			for ($i=0; $i <= $_count/5; $i++) {
+				for ($j=0; $j < 5; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		elseif($ot == 0)
+		{
+			for ($i=0; $i <= $rows; $i++) {
+				for ($j=0; $j < 4; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		elseif($ot != 0)
+		{
+			$current_row = 0;
+			for ($i=0; $i < $ot; $i++) {
+				$current_row++;
+				for ($j=0; $j < 5; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+			for ($i=$current_row; $i <= $rows ; $i++) {
+				for ($j=0; $j < 4; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		return $return;
 	}
 
 	public function make()

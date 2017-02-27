@@ -48,7 +48,25 @@ class message
 		{
 			return;
 		}
-		$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
+		if(count($this->class->query_result['answers']) > 7)
+		{
+			// $overflow = [];
+			// $sum['sum_answers'] = array("1" => 1, "2" => 1, "3" => 3, "4" => 5);
+			// foreach (array_keys($sum['sum_answers']) as $key => $value) {
+			// 	$overflow['a' . $value] = $sum['sum_answers'][$value];
+			// }
+			// arsort($overflow);
+			// handle::send_log($overflow);
+			$overflow = [];
+			for ($i=1; $i <= 7; $i++) {
+				$overflow[$i] = $sum['sum_answers'][$i];
+			}
+			$this->message['chart'] = utility::calc_vertical($overflow);
+		}
+		else
+		{
+			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
+		}
 	}
 
 	public function add_poll_list($answer = null, $_add_count = true)
@@ -84,7 +102,14 @@ class message
 			}
 			else
 			{
-				$emoji = $this->class::$emoji_number[$key+1];
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$emoji = utility::nubmer_language($key+1) . ") ";
+				}
+				else
+				{
+					$emoji = $this->class::$emoji_number[$key+1];
+				}
 			}
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
