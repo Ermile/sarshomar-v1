@@ -43,7 +43,7 @@
     </span>
     {%if my_poll%}
           {%set myStatus = value.status%}
-      <span class="comments-count" data-status="{{value.status}}">{% trans myStatus %}</span>
+      <span class="poll-status" data-status="{{value.status}}">{% trans myStatus %}</span>
     {%endif%}
     <span class="comments-count">{{value.comment_count | fitNumber}}</span>
     <span class="votes-count">{{value.total | fitNumber}}</span>
