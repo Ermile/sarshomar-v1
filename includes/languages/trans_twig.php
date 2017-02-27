@@ -881,7 +881,7 @@ private function transtext()
 	echo T_("Degree");                                                                // Line 120
 	echo T_("Under diploma");                                                         // Line 63
 	echo T_("2 year college");                                                        // Line 67
-	echo T_("Range");                                                                 // Line 82
+	echo T_("Age Range");                                                             // Line 82
 	echo T_("Under 13");                                                              // Line 85
 	echo T_("14-17");                                                                 // Line 87
 	echo T_("18-24");                                                                 // Line 89

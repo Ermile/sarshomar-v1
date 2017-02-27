@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-02-27 12:54+0330\n"
-"PO-Revision-Date: 2017-02-27 14:30+0330\n"
+"POT-Creation-Date: 2017-02-27 14:58+0330\n"
+"PO-Revision-Date: 2017-02-27 14:59+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -784,7 +784,7 @@ msgstr "موقعیت"
 
 #: saloos/saloos-addons/content_cp/manifest.php:9
 #: saloos/saloos-addons/includes/languages/trans_addons.php:61
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:168
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:121
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:160
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:28
@@ -964,7 +964,7 @@ msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه
 #: saloos/saloos-addons/content_cp/permissions/view.php:15
 #: saloos/saloos-addons/content_cp/posts/model.php:712
 #: saloos/saloos-addons/includes/languages/trans_addons.php:126
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:295
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:307
 #: sarshomar/includes/languages/trans_addons.php:126
 msgid "Edit"
 msgstr "ویرایش"
@@ -2311,7 +2311,7 @@ msgid "← Back"
 msgstr "قبلی ←"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:65
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:103
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:109
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:89
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:96
 #: sarshomar/includes/languages/trans_addons.php:65
@@ -2331,7 +2331,7 @@ msgstr "اتمام"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:77
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/feedback.php:12
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:30
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:178
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:131
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:25
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:20
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:36
@@ -2516,7 +2516,7 @@ msgid "seriously, are you sure? There's no coming back."
 msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:112
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:86
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:126
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:41
 #: sarshomar/includes/languages/trans_addons.php:112
 #: sarshomar/includes/languages/trans_twig.php:1013
@@ -2718,7 +2718,7 @@ msgid "Use this shortcode on your posts"
 msgstr "از این کدکوتاه شده در مطالب خود استفاده کنید"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:154
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:158
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:111
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:24
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:150
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:24
@@ -3316,7 +3316,7 @@ msgstr "بازدیدکنندگان"
 #: saloos/saloos-addons/includes/languages/trans_addons.php:315
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:42
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:86
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:173
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:126
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:24
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:40
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:165
@@ -4011,7 +4011,7 @@ msgstr ""
 "دستورات زیر نیز استفاده کنید."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:8
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:140
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:93
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:27
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:8
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:136
@@ -4031,7 +4031,7 @@ msgid "Create new poll"
 msgstr "ایجاد نظرسنجی جدید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:12
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:154
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:107
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:23
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:146
@@ -4103,9 +4103,9 @@ msgstr "اولین"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:89
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:135
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:298
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:304
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:88
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:310
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:316
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:25
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:64
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:75
@@ -4253,15 +4253,16 @@ msgid "پاسخ شما ثبت شد"
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:168
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:60
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:77
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:48
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:100
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:117
 msgid "ارسال پاسخ"
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:336
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:344
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:124
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:131
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:130
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:137
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:279
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:287
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:117
@@ -4269,30 +4270,25 @@ msgstr ""
 msgid "Report"
 msgstr "گزارش"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:30
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:26
-msgid "Not Found"
-msgstr "یافت نشد"
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:88
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:41
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:84
 msgid "Your mobile is"
 msgstr "شماره موبایل شما"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:90
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:43
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:86
 msgid "Sync"
 msgstr "همگام‌سازی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:206
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:159
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:198
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:28
 msgid "New"
 msgstr "جدید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:213
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:221
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:166
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:174
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:77
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_civility.php:22
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_my.php:22
@@ -4317,28 +4313,28 @@ msgstr "باز گشت 🔙"
 msgid "Answer"
 msgstr "پاسخ"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:117
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:123
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:110
 msgid "Share"
 msgstr "اشتراک‌گذاری"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:165
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:171
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:165
 msgid "Lawbreaker"
 msgstr "قانون‌شکن"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:169
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:175
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:169
 #: sarshomar/includes/languages/trans_twig.php:506
 msgid "Spam"
 msgstr "هرزنامه"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:175
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:181
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:175
 msgid "Not interested"
 msgstr "علاقه‌مند نیستم"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:179
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:185
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:62
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:179
 msgid "Privacy violation"
@@ -4398,23 +4394,38 @@ msgstr "ثبت‌نام و همگام‌سازی"
 msgid "Main menu"
 msgstr "منوی اصلی"
 
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:25
+msgid "آیا شما قصد دارید به نظرسنجی زیر پاسخ دهید؟"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:43
+msgid "گزینه انتخابی شما :answer_text می‌باشد"
+msgstr ""
+
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:46
-msgid "شما مجاز به ارسال پاسخ نیستید"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:59
-msgid "لطفا پاسخ خود را وارد کنید"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:75
-msgid "آیا پاسخ فوق را تایید می‌کنید؟"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:76
-msgid "اگر قصد تغییر پاسخ دارید می‌توانید متن دیگری وارد کنید"
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:98
+msgid ""
+"شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر "
+"ارسال کند."
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:82
+msgid "شما مجاز به ارسال پاسخ نیستید"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:95
+msgid "لطفا پاسخ خود را وارد کنید"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:115
+msgid "آیا پاسخ فوق را تایید می‌کنید؟"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:116
+msgid "اگر قصد تغییر پاسخ دارید می‌توانید متن دیگری وارد کنید"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:122
 #: sarshomar/includes/languages/trans_twig.php:37
 msgid "Yes"
 msgstr "بله"
@@ -4457,6 +4468,14 @@ msgstr "لایک"
 #: sarshomar/includes/languages/trans_twig.php:97
 msgid "Descriptive"
 msgstr "تشریحی"
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:296
+msgid "عدم ثبت مشخصات نظردهنده"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:302
+msgid "ثبت مشخصات نظردهنده"
+msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:15
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:15
@@ -4542,6 +4561,10 @@ msgstr "نظرسنجی کنارگذاشته شد"
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:103
 msgid "Discarded"
 msgstr "کنارگذاشته شد"
+
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:26
+msgid "Not Found"
+msgstr "یافت نشد"
 
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:143
 msgid "Pause"
@@ -4936,7 +4959,7 @@ msgstr "پارامتر شناسه نامعتبر است"
 msgid "Can not send parameter id in post mode"
 msgstr "امکان ارسال پارامتر شناسه در حالت پست وجود ندارد"
 
-#: sarshomar/content_api/v1/poll/tools/add.php:77
+#: sarshomar/content_api/v1/poll/tools/add.php:80
 msgid "Profile values is incorrect"
 msgstr ""
 
@@ -8887,8 +8910,8 @@ msgid "Under diploma"
 msgstr "زیردیپلم"
 
 #: sarshomar/includes/languages/trans_twig.php:884
-msgid "Range"
-msgstr "محدوده"
+msgid "Age Range"
+msgstr "محدوده سنی"
 
 #: sarshomar/includes/languages/trans_twig.php:885
 msgid "Under 13"
@@ -11927,23 +11950,23 @@ msgstr "خلاصه باید کمتر از 150 کاراکتر باشد"
 msgid "Access profile must be array"
 msgstr ""
 
-#: sarshomar/includes/lib/db/polls/insert/poll.php:147
+#: sarshomar/includes/lib/db/polls/insert/poll.php:143
 msgid "Invalid parametr language"
 msgstr "پارامتر زبان نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/poll.php:177
+#: sarshomar/includes/lib/db/polls/insert/poll.php:173
 msgid "Invalid tree parameter parent"
 msgstr "والد پارامتر درختواره نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/poll.php:197
+#: sarshomar/includes/lib/db/polls/insert/poll.php:193
 msgid "Invalid tree parameter :value"
 msgstr "پارامتر درختواره نامعتبر است :value"
 
-#: sarshomar/includes/lib/db/polls/insert/poll.php:262
+#: sarshomar/includes/lib/db/polls/insert/poll.php:258
 msgid "Parameter From must be array"
 msgstr "پارامتر From باید آرایه باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/poll.php:294
+#: sarshomar/includes/lib/db/polls/insert/poll.php:290
 msgid ":max users were found, reduce the number of users "
 msgstr ":max کاربر پیدا شد، تعداد کاربران را کم کنید "
 
@@ -12065,6 +12088,9 @@ msgstr ""
 #: sarshomar/includes/mvc/view.php:58
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Range"
+#~ msgstr "محدوده"
 
 #~ msgid "Write down your opinion here"
 #~ msgstr "نظر خود را اینجا بنویسید"
