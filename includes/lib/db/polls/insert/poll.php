@@ -218,6 +218,38 @@ trait poll
 			$insert_poll['post_meta'] = json_encode($insert_poll['post_meta'], JSON_UNESCAPED_UNICODE);
 		}
 
+		// inset poll if we not in update mode
+		if(!self::$update_mod)
+		{
+			self::$poll_id = self::insert($insert_poll);
+		}
+		else
+		{
+			$old_post_meta = isset(self::$old_saved_poll['meta']) ? self::$old_saved_poll['meta'] : [];
+			$post_meta     = array_merge($old_post_meta, $post_meta);
+			$insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
+			unset($insert_poll['id']);
+			self::update($insert_poll, self::$poll_id);
+		}
+
+		if(!self::$update_mod)
+		{
+			$new_url = '$/'. \lib\utility\shortURL::encode(self::$poll_id);
+			self::$poll_full_url = $new_url;
+			self::update(['post_url' => $new_url], self::$poll_id);
+		}
+
+
+		if($change_tree)
+		{
+			\lib\utility\poll_tree::remove(self::$poll_id);
+			if($tree_args)
+			{
+				$tree_args['child'] = self::$poll_id;
+				\lib\utility\poll_tree::set($tree_args);
+			}
+		}
+
 		// insert filters
 		if(self::$args['from'])
 		{
@@ -260,44 +292,12 @@ trait poll
 				}
 				if($member > 0)
 				{
-					$insert_poll['post_privacy'] = 'public';
+					self::update(['post_privacy' => 'public'], self::$poll_id);
 				}
 				else
 				{
-					$insert_poll['post_privacy'] = 'private';
+					self::update(['post_privacy' => 'private'], self::$poll_id);
 				}
-			}
-		}
-
-		// inset poll if we not in update mode
-		if(!self::$update_mod)
-		{
-			self::$poll_id = self::insert($insert_poll);
-		}
-		else
-		{
-			$old_post_meta = isset(self::$old_saved_poll['meta']) ? self::$old_saved_poll['meta'] : [];
-			$post_meta     = array_merge($old_post_meta, $post_meta);
-			$insert_poll['post_meta'] = json_encode($post_meta, JSON_UNESCAPED_UNICODE);
-			unset($insert_poll['id']);
-			self::update($insert_poll, self::$poll_id);
-		}
-
-		if(!self::$update_mod)
-		{
-			$new_url = '$/'. \lib\utility\shortURL::encode(self::$poll_id);
-			self::$poll_full_url = $new_url;
-			self::update(['post_url' => $new_url], self::$poll_id);
-		}
-
-
-		if($change_tree)
-		{
-			\lib\utility\poll_tree::remove(self::$poll_id);
-			if($tree_args)
-			{
-				$tree_args['child'] = self::$poll_id;
-				\lib\utility\poll_tree::set($tree_args);
 			}
 		}
 	}
