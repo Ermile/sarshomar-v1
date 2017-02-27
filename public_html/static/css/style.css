@@ -370,7 +370,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 /************************************************************** layout */
 body{background-color:#00667a;color:#6E6F6F}
 .wrapper{max-width:100%;min-height:60vh;background-color:#f4f4f4;padding:0;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}
-.wrapper::before,.wrapper::after,.box::before,.box::after,header::before,header::after{display:table;content:""}
+.wrapper::before,.wrapper::after,.box::before,.box::after{display:table;content:""}
 .wrapper::after,.box::after,header::after{clear:both}
 .wrapper aside{position:relative;background-color:#ebebeb;width:200px;min-width:200px}
 .wrapper .main{max-width:100%;-webkit-box-flex:1;-ms-flex:1;flex:1}
@@ -1267,10 +1267,14 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .polls-body li .star label{color:#e7e7e7;font-size:1.4em;transition:.3s;cursor:pointer;vertical-align:middle}
 .polls-body li:hover .star label,.polls-body li .star input[type="checkbox"]:focus+label{color:#c5c5c5}
 .polls-body li .star input[type="checkbox"]:checked+label{color:#e7a429}
+.polls-body li .edit a{display:block;color:#00667a}
+.polls-body li .edit.untitled a{color:#c5c5c5}
+.polls-body li .edit a:hover,.polls-body li .edit a:focus{color:#e5a428}
 .polls-body li .title{text-align:left;overflow:hidden;max-width:100%;text-overflow:ellipsis}
 .rtl .polls-body li .title{text-align:right}
-.polls-body li .title a{color:#00667a;display:inline;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.polls-body li .title a{color:#00667a;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
 .polls-body li .title a:hover,.polls-body li .title a:focus{color:#e5a428}
+.polls-body li .title a i{color:#c5c5c5}
 .polls-body li .date{font-size:.9em}
 .polls-body li .poll-status[data-status]{}
 .polls-body li .poll-status[data-status="draft"]{color:#c5c5c5}
@@ -1355,9 +1359,9 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /************************************************************** page progress */
 .page-progress{position:relative;width:300px;margin:0 auto 4em}
-.page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#d8d8d8}
+.page-progress::before{content:'';position:absolute;bottom:0;height:2px;width:100%;background-color:#d8d8d8;-ms-flex-preferred-size:0;flex-basis:0;-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}
 .page-progress a{display:flex}
-.page-progress b{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background-color:#00667a;transition:2s}
+.page-progress b{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background-color:#00667a;transition:2s;-ms-flex-preferred-size:0;flex-basis:0;-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}
 .rtl .page-progress b{left:auto;right:0}
 .page-progress.ajax b{transition:.1s}
 
