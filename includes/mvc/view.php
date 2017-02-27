@@ -65,6 +65,7 @@ class view extends \lib\mvc\view
 		$this->include->css_ermile = false;
 		$this->include->css        = false;
 
+		$this->data->addUrl = $this->url('base') . '/@/add';
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;

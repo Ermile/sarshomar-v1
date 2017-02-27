@@ -6,6 +6,7 @@ use \lib\debug;
 trait set
 {
 	use check;
+	use money;
 
 	public static $all_status =
 	[

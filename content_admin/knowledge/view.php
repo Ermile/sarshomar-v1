@@ -15,6 +15,9 @@ class view extends \mvc\view
 		$list = $_args->api_callback;
 
 		$this->data->poll_list = $list;
+		$count_poll_status = $this->model()->count_poll_status();
+		$count_poll_status['total'] = array_sum($count_poll_status);
+		$this->data->poll_count = $count_poll_status;
 	}
 
 }

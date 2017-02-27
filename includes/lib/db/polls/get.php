@@ -347,5 +347,30 @@ trait get
 		$result = \lib\utility\filter::meta_decode($result);
 		return $result;
 	}
+
+
+	/**
+	 * Counts the number of poll status.
+	 *
+	 * @return     <type>  Number of poll status.
+	 */
+	public static function count_poll_status()
+	{
+		$query =
+		"
+			SELECT
+				COUNT(posts.id) AS `count`,
+				posts.post_status AS `status`
+			FROM
+				posts
+			WHERE posts.post_type IN ('poll', 'survey')
+			GROUP BY
+				status
+			";
+		$result = \lib\db::get($query, ['status', 'count']);
+		return $result;
+	}
+
+
 }
 ?>

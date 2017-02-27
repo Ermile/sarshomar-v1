@@ -158,7 +158,7 @@ trait insert
 		// if in update mod check permission on editing this poll
 		if(self::$update_mod)
 		{
-			if(!self::is_my_poll(self::$poll_id, self::$user_id))
+			if(!self::is_my_poll(self::$poll_id, self::$user_id) && !self::permission('admin'))
 			{
 				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
 			}

@@ -8,11 +8,11 @@ trait search
 	/**
 	 * Searches for the first match.
 	 *
-	 * @param      <type>  $_args  The arguments
+	 * @param      <type>  $_options  The arguments
 	 *
 	 * @return     array   ( description_of_the_return_value )
 	 */
-	public function poll_search($_args = [])
+	public function poll_search($_options = [])
 	{
 		$meta   = [];
 		$search = null;
@@ -38,7 +38,7 @@ trait search
 
 			if(is_string($split))
 			{
-				$in_list = ['sarshomar', 'me', 'article'];
+				$in_list = ['sarshomar', 'me', 'article', 'all'];
 				if(!in_array($split, $in_list))
 				{
 					return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
@@ -135,20 +135,48 @@ trait search
 
 		if(utility::request("status"))
 		{
-			if(!$in_me)
+			if(!$in_me && !self::permission('admin'))
 			{
 				return debug::error(T_("You can not set status and search in all polls"), 'status', 'arguments');
 			}
+
 			$status = explode(' ', utility::request('status'));
-			$status_list =
-			[
-				'stop',
-				'pause',
-				'trash',
-				'publish',
-				'draft',
-				'awaiting',
-			];
+			if(self::permission('admin'))
+			{
+				$status_list =
+				[
+					'stop',
+					'pause',
+					'trash',
+					'publish',
+					'draft',
+					'deleted',
+					'awaiting',
+					'filtered',
+					'blocked',
+					'spam',
+					'violence',
+					'pornography',
+					'schedule',
+					'expired',
+					'enable',
+					'disable',
+					'other',
+				];
+			}
+			else
+			{
+				$status_list =
+				[
+					'stop',
+					'pause',
+					'trash',
+					'publish',
+					'draft',
+					'awaiting',
+				];
+
+			}
 			if(count($status) === 1)
 			{
 				if(!in_array($status[0], $status_list))
@@ -182,7 +210,7 @@ trait search
 		$tmp_result          = [];
 		$tmp_result['data']  = [];
 
-		$options =
+		$default_options =
 		[
 			'get_tags'			 => false,
 			'get_filter'         => false,
@@ -195,23 +223,27 @@ trait search
 			'debug'				 => false,
 		];
 
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
 		if(is_array($result))
 		{
 			foreach ($result as $key => $value)
 			{
-				$temp = $this->poll_ready($value, $options);
+				$temp = $this->poll_ready($value, $_options);
 				if($temp)
 				{
 					$tmp_result['data'][] = $temp;
 				}
 			}
 		}
-
 		$tmp_result['from']  = $from;
 		$tmp_result['to']    = (int) $from  + count($tmp_result['data']);
 		$tmp_result['total'] = (int) \lib\storage::get_total_record();
-
-
 		return $tmp_result;
 	}
 }

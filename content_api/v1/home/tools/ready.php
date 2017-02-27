@@ -37,7 +37,6 @@ trait ready
 		$_options = array_merge($default_options, $_options);
 
 		$poll_id = false;
-
 		// encode id
 		if(array_key_exists('id', $_poll_data))
 		{
@@ -63,8 +62,7 @@ trait ready
 				$my_poll = true;
 			}
 		}
-
-		if($_options['check_is_my_poll'] && !$my_poll)
+		if($_options['check_is_my_poll'] && !$my_poll && !self::permission('admin', 'admin', 'view'))
 		{
 			if($_options['debug'])
 			{
@@ -124,7 +122,8 @@ trait ready
 					break;
 			}
 
-			if(!$permission_load_poll)
+
+			if(!$permission_load_poll && !self::permission('admin'))
 			{
 				if($_options['debug'])
 				{
@@ -484,15 +483,7 @@ trait ready
 			$filters = utility\postfilters::get_filter($poll_id);
 			$filters = array_filter($filters);
 			$member  = \lib\db\ranks::get($poll_id, 'member');
-			if(self::permission('u', 'sarshomar', 'view') && (int) $member === 1000000000)
-			{
-				$member_exist = (int) \lib\db\filters::count_user($filters);
-				$filters['count'] = $member_exist;
-			}
-			else
-			{
-				$filters['count'] = $member;
-			}
+			$filters['count'] = $member;
 			$_poll_data['filters'] = $filters;
 		}
 

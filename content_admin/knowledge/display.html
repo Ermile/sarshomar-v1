@@ -1,48 +1,57 @@
 {% extends display.main%} {%block content%}
 <div class="box content-management polls-management">
 	<div class="statistics row auto">
-		<a href="{{url.base}}/admin/$/status=total" class="span2">
+		<a href="{{url.base}}/admin/knowledge" class="span3">
 			<div class="statistics-box">
 				<div class="icon show-icon-total"><i class="icon-list icon-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Total" %}</h5>
-					<h6 class="amount">۳۴۵</h6>
+					<h6 class="amount">{{poll_count.total}}</h6>
 				</div>
 			</div>
 		</a>
-		<a href="{{url.base}}/admin/$/status=rejected" class="span2">
+		<a href="{{url.base}}/admin/knowledge/status=publish" class="span2">
 			<div class="statistics-box">
-				<div class="icon show-icon-rejected"><i class="icon-ban icon-4x"></i></div>
+				<div class="icon show-icon-publish"><i class="icon-ban icon-4x"></i></div>
 				<div>
-					<h5 class="title">{% trans "Rejected" %}</h5>
-					<h6 class="amount">۳۴۵</h6>
+					<h5 class="title">{% trans "Publish" %}</h5>
+					<h6 class="amount">{{poll_count.publish}}</h6>
 				</div>
 			</div>
 		</a>
-		<a href="{{url.base}}/admin/$/status=unapproved" class="span2">
+		<a href="{{url.base}}/admin/knowledge/status=awaiting" class="span2">
 			<div class="statistics-box">
-				<div class="icon show-icon-unapproved"><i class="icon-times-circle-o icon-4x"></i></div>
+				<div class="icon show-icon-awaiting"><i class="icon-times-circle-o icon-4x"></i></div>
 				<div>
-					<h5 class="title">{% trans "Unapproved" %}</h5>
-					<h6 class="amount">۴۵</h6>
+					<h5 class="title">{% trans "Awaiting" %}</h5>
+					<h6 class="amount">{{poll_count.awaiting}}</h6>
 				</div>
 			</div>
 		</a>
-		<a href="{{url.base}}/admin/$/status=spam" class="span2">
+		<a href="{{url.base}}/admin/knowledge/status=draft" class="span2">
+			<div class="statistics-box">
+				<div class="icon show-icon-draft"><i class="icon-times-circle-o icon-4x"></i></div>
+				<div>
+					<h5 class="title">{% trans "Draft" %}</h5>
+					<h6 class="amount">{{poll_count.draft}}</h6>
+				</div>
+			</div>
+		</a>
+		<!-- <a href="{{url.base}}/admin/knowledge/status=spam" class="span2">
 			<div class="statistics-box">
 				<div class="icon show-icon-spam"><i class="icon-minus-circle icon-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Spam" %}</h5>
-					<h6 class="amount">۱۴۵</h6>
+					<h6 class="amount">{{poll_count.spam}}</h6>
 				</div>
 			</div>
-		</a>
-		<a href="{{url.base}}/admin/$/status=trash" class="span3">
+		</a> -->
+		<a href="{{url.base}}/admin/knowledge/status=trash" class="span2">
 			<div class="statistics-box">
 				<div class="icon show-icon-trash"><i class="icon-trash icon-4x"></i></div>
 				<div>
 					<h5 class="title">{% trans "Trash" %}</h5>
-					<h6 class="amount">۱۰۵</h6>
+					<h6 class="amount">{{poll_count.trash}}</h6>
 				</div>
 			</div>
 		</a>
@@ -58,45 +67,44 @@
 			</div>
 		</a>
 	</div>
+
 	<div class="row auto">
-		<div id="load-modal" data-modal="words-check"></div>
-		{%for key, value in poll_list%}
-		<div class="poll-card border-{{value.status }} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
+		<div id="load-modal" data-modal2="words-check"></div>
+		{%for key, value in poll_list.data%}
+		<div class="poll-card border-{{value.status}} {{value.type}} {%if value.meta.review == 'ok' %}accepted{%endif%}">
 			<div class="poll-content">
 				<div class="top-content">
 					<div class="row auto">
 						<div class="span10">
 							<div class="poll-question">
 								<h6 class="poll-word-{{value.id}} poll-title">
-									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}">{{value.title|raw}}</a>
-									<a target="_blank" href="{{url.base}}/{{value.url}}"><i class="icon-external-link"></i></a>
-									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/filter" class="hint--right hint--success" data-hint="{%trans "
-													filter page " %}"><i class="icon-filter"></i></a>
-									<a target="_blank" href="{{url.base}}/@/add/{{value.id|shortURL('encode')}}/publish" class="hint--right hint--success" data-hint="{%trans "
-													publish page " %}"><i class="icon-send-o"></i></a>
-									<span class="label date hint--right hint--success" data-hint="{{value.date_modified|jdate(" H:m:s ") | fitNumber}}">
-								{% if site.currentlang == 'fa' %}
-									{{value.date_modified|jdate("Y-m-d") | fitNumber}}
-								{%else%}
-									{{value.date_modified|date("Y-m-d")}}
-								{%endif%}
-								</span>
+								    {%set myTitle%}
+								      {% if value.title %}{{value.title|raw}}{%else%}<i>{% trans "Untitled"%}</i>{%endif%}
+								    {%endset%}
+									<a target="_blank" href="{{addUrl}}/{{value.id}}">{{myTitle}}</a>
+									<a target="_blank" href="{{value.url}}"><i class="icon-external-link"></i></a>
 								</h6>
 								<div class="poll-question-options">
 									<ul>
-										{%for k, v in value.meta.opt%}
-										<li class="poll-word-{{value.id}}">{{v.txt}}</li>
+										{%for k, v in value.answers%}
+										<li class="poll-word-{{value.id}}">{{v.title}}</li>
 										{%endfor%}
 										<div class="clearfix"></div>
 									</ul>
-									<div class="poll-description">{{value.meta.desc}}</div>
+									{%if value.summary%}
+										<span>{%trans "Summary"%}:<div class="poll-description">{{value.summary}}</div></span>
+									{%endif%}
+									{%if value.description%}
+										<span>{%trans "Description"%}:<div class="poll-description">{{value.description}}</div></span>
+									{%endif%}
+
 								</div>
 							</div>
 						</div>
 						<div class="poll-management-options span2">
 							<div class="btn-group">
-								<button class="accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="ok">تایید</button>
-								<button class="reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam">رد</button>
+								<button class="accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="publish">{%trans "Publish" %}</button>
+								<button class="reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam">{%trans "Spam" %}</button>
 							</div>
 						</div>
 					</div>
@@ -104,7 +112,7 @@
 				<div class="bottom-content">
 					<div class="row auto">
 						<div class="span7">
-							<span class="label label-status label-{{value.status }}">{{value.status }}</span>
+							<span class="label label-status label-{{value.status}}">{{value.status}}</span>
 							<span class="content-properties">
 								{% if value.language %}
 									{% if value.language=='fa' %}
@@ -113,20 +121,22 @@
 									{{value.language }}
 									{%endif%}
 								{%endif%}
+								<!-- <span>|</span>
+								{% trans "parent" %} {{value.parent }} -->
 								<span>|</span>
-								{% trans "parent" %} {{value.parent }}
-								<span>|</span>
-								{% if value.sarshomar==1 %}
+								{% if value.sarshomar %}
 									{% trans "sarshomar" %}
+								{%else%}
+									{% trans "Public" %}
 								{%endif%}
-								<span>|</span>
-								{% trans "survey" %} {{value.survey }}
-								<span>|</span>
-								{% trans "gender" %} {{value.gender }}
+								<!-- <span>|</span>
+								{% trans "survey" %} {{value.survey }} -->
+								<!-- <span>|</span>
+								{% trans "gender" %} {{value.gender }} -->
 								<span>|</span>
 								{% trans "privacy" %} {{value.privacy }}
-								<span>|</span>
-								{% trans "total" %}	{{value.total }}
+							<!-- 	<span>|</span>
+								{% trans "total" %}	{{value.total }} -->
 								</span>
 
 						</div>

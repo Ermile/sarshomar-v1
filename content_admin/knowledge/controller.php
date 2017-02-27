@@ -7,13 +7,13 @@ class controller extends  \content_admin\home\controller
 	{
 		parent::check_login();
 
-
 		$this->get("search", "search")->ALL(
 		[
 			'url' => "/.*/",
 			'property' =>
 			[
 				"search" => ["/^(.*)$/", true, 'search'],
+				"status" => ["/^.*$/", true, 'status'],
 				"page" => ["/^\d+$/", true, 'page']
 			]
 		]

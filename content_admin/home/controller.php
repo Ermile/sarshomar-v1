@@ -10,6 +10,11 @@ class controller extends \mvc\controller
 	function _route()
 	{
 		$this->check_login();
+
+		if(!$this->access('admin'))
+		{
+			\lib\error::access(T_("Access denied"));
+		}
 	}
 
 

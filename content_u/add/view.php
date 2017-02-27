@@ -119,6 +119,26 @@ class view extends \content_u\home\view
 			}
 			$this->data->article_titles = $article_titles;
 		}
+
+		if(isset($poll['filters']['count']))
+		{
+			$filters = $poll['filters'];
+			unset($filters['count']);
+			$member_exist = (int) \lib\db\filters::count_user($filters);
+			$total_with_filter = $member_exist;
+			$total_users = \lib\db\users::get_count("all");
+			if($this->access('u', 'sarshomar', 'view') && (int) $poll['filters']['count'] === 1000000000)
+			{
+				$selected_user = $total_with_filter;
+			}
+			else
+			{
+				$selected_user = $poll['filters']['count'];
+			}
+			$this->data->total_users         = $total_users;
+			$this->data->total_with_filter   = $total_with_filter;
+			$this->data->selected_user       = $selected_user;
+		}
 	}
 }
 ?>
