@@ -80,7 +80,7 @@
  </div>
 
  <div class="span4">
-  <div class="tbl" id='totalPrice'>
+  <div class="tbl" id='totalPrice'{% if perm.free_account.view%} data-free{%endif%}>
    <div class="tbl-header">
     <span>{%trans "Title"%}</span>
     <span>{%trans "Price"%} <span>{%trans "Toman"%}</span></span>
