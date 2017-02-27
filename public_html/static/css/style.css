@@ -1735,7 +1735,7 @@ label,select,.element a,.btn{-webkit-user-select:none;user-select:none}
 /************************************************************** contact page */
 .element .input.white{background-color:#fff;color:#00667a}
 #contact-box{padding:0 5em}
-.submit-contact{width:100%;padding:10px;margin-bottom:5em}
+.submit-contact{width:100%;padding:10px;margin-bottom:3em}
 .contact-box{background-color:#fff}
 .contact-box .contact-data{padding:2em}
 .contact-box h2{font-size:1.6em;-webkit-user-select:none;user-select:none}
