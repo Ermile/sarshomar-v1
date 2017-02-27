@@ -97,7 +97,6 @@ class step_starting
 			foreach ($url_command_group as $key => $value)
 			{
 				$url_command = preg_split("[_]", $value, 2);
-				handle::send_log($value);
 				if(preg_match("/^([".SHORTURL_ALPHABET."]+)$/", $value))
 				{
 					$commands['sp'] = $value;

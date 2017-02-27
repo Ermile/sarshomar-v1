@@ -27,7 +27,7 @@ class step_answer_descriptive
 			if($maker->poll_type == 'descriptive')
 			{
 				step::start('answer_descriptive');
-				return self::step1($_text, true);
+				return self::step1($_answer[1], true);
 			}
 			elseif($maker->poll_type == 'like')
 			{
@@ -88,6 +88,7 @@ class step_answer_descriptive
 		elseif($check)
 		{
 			session::set('answer_descriptive', 'id', $_text);
+			handle::send_log($_text);
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
