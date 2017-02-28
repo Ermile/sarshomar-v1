@@ -23,6 +23,7 @@ class view extends \content_u\home\view
 		// load empty answers for first loading
 		$this->data->answers = [[],[]];
 		$this->data->member_exist = \lib\db\users::get_count('valid');
+		$this->data->multiple_max_count = 2;
 	}
 
 	/**
@@ -49,6 +50,11 @@ class view extends \content_u\home\view
 		else
 		{
 			$answers = [[],[]];
+		}
+		$this->data->multiple_max_count = 2;
+		if(count($answers) > 2)
+		{
+			$this->data->multiple_max_count = count($answers);
 		}
 
 		$this->data->answers = $answers;
