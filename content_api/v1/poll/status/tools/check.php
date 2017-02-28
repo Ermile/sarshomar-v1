@@ -37,7 +37,7 @@ trait check
 
 		if(!$answers || !is_array($answers))
 		{
-			return debug::error(T_("Answers can not be empty"), 'answers', 'arguments');
+			return debug::error(T_("At least two options must be added"), 'answers', 'arguments');
 		}
 
 		$type = array_column($answers, 'type');
