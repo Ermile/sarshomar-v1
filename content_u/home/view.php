@@ -62,11 +62,36 @@ class view extends \mvc\view
 		}
 		$this->data->complete_profile = $complete_profile;
 
-		$draft_count    = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'draft']);
-		$publish_count  = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'publish']);
-		$awaiting_count = \lib\db\polls::get_count(null, ['user_id' => $user_id, 'in' => 'me', 'post_status' => 'awaiting']);
-		$sarshomar_poll = \lib\db\polls::get_count(null, ['post_privacy' => 'public']);
-		$this->data->dashboard =
+		$draft_count    = \lib\db\polls::get_count(null,
+		[
+			'user_id'        => $user_id,
+			'in'             => 'me',
+			'check_language' => false,
+			'login'          => $user_id,
+			'post_status'    => 'draft',
+		]);
+
+		$publish_count  = \lib\db\polls::get_count(null,
+		[
+			'user_id'        => $user_id,
+			'in'             => 'me',
+			'check_language' => false,
+			'login'          => $user_id,
+			'post_status'    => 'publish',
+		]);
+
+		$awaiting_count = \lib\db\polls::get_count(null,
+		[
+			'user_id'        => $user_id,
+			'in'             => 'me',
+			'check_language' => false,
+			'login'          => $user_id,
+			'post_status'    => 'awaiting',
+		]);
+
+		$sarshomar_poll = \lib\db\polls::get_count(null);
+
+		$temp_dashboar_data =
 		[
 			'poll_answered'      => 0,
 			'poll_skipped'       => 0,
@@ -86,11 +111,22 @@ class view extends \mvc\view
 			'awaiting_count'     => ($awaiting_count) ? $awaiting_count : 0,
 			'sarshomar_poll'     => ($sarshomar_poll) ? $sarshomar_poll : 0
 		];
-
+		$dashboard_data = array_merge($dashboard_data, $temp_dashboar_data);
 		foreach ($dashboard_data as $key => $value)
 		{
-			$this->data->dashboard[$key] = (int) $value;
+			$dashboard_data[$key] = (int) $value;
 		}
+		$this->data->dashboard = $dashboard_data;
+		$remain = (int) $dashboard_data['sarshomar_poll'];
+		$remain -= (int) $dashboard_data['poll_answered'];
+		$remain -= (int) $dashboard_data['poll_skipped'];
+
+		$chart_data   = [];
+		$chart_data[] = ["key" => T_("Remain"),   "value" => $dashboard_data['sarshomar_poll']];
+		$chart_data[] = ["key" => T_("Answered"), "value" => $dashboard_data['poll_answered']];
+		$chart_data[] = ["key" => T_("Skipped"),  "value" => $dashboard_data['poll_skipped']];
+
+		$this->data->chart_data = json_encode($chart_data, JSON_UNESCAPED_UNICODE);
 	}
 }
 ?>

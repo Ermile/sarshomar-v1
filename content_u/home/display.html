@@ -53,7 +53,7 @@
          {%if dashboard.user_referred == 0%}
           <span>{%trans "None"%}</span>
          {%else%}
-          <span>{{dashboard.user_referred}}</span>
+          <span>{{dashboard.user_referred|number_format|fitNumber}}</span>
          {%endif%}
         </div>
        </div>
@@ -66,7 +66,7 @@
          {%if dashboard.user_referred == 0%}
           <span>{%trans "None"%}</span>
          {%else%}
-          <span>{{dashboard.user_referred}}</span>
+          <span>{{dashboard.user_referred|number_format|fitNumber}}</span>
          {%endif%}
         </div>
        </div>
@@ -79,7 +79,7 @@
          {%if dashboard.publish_count == 0%}
           <span>{%trans "None"%}</span>
          {%else%}
-          <span>{{dashboard.publish_count}}</span>
+          <span>{{dashboard.publish_count|number_format|fitNumber}}</span>
          {%endif%}
         </div>
        </div>
@@ -92,7 +92,7 @@
          {%if dashboard.draft_count == 0%}
           <span>{%trans "None"%}</span>
          {%else%}
-          <span>{{dashboard.draft_count}}</span>
+          <span>{{dashboard.draft_count|number_format|fitNumber}}</span>
          {%endif%}
         </div>
        </div>
@@ -102,7 +102,7 @@
        <div class="card flex-1">
         <h3>{%trans "Likes"%}</h3>
         <div class="card-body {%if dashboard.poll_answered == 0%}{%endif%}">
-         <span>{{dashboard.poll_answered|number_format}}</span>
+         <span>{{dashboard.poll_answered|number_format|fitNumber}}</span>
         </div>
        </div>
       </div><!-- .c3 -->
@@ -113,7 +113,7 @@
        <div class="card flex-1">
         <h3>{%trans "Activities Report"%}</h3>
         <div class="card-body">
-         <div class="chart" id='chart-answered' data-format='dashboardPie' data-vals='[{"key":"Remain","value":100},{"key":"Answered","value":40},{"key":"Skipped","value":10}]'></div>
+         <div class="chart" id='chart-answered' data-format='dashboardPie' data-vals='{{chart_data|raw}}'></div>
         </div>
        </div>
       </div>
@@ -143,7 +143,7 @@
          <div class="card flex-1">
           <h3>{%trans "Credit"%}</h3>
           <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
-           <span>{{(user_cash + user_cash_gift)|number_format}}<i>{%trans user_unit%}</i></span>
+           <span>{{(user_cash + user_cash_gift)|number_format|fitNumber}}<i> {%trans user_unit%}</i></span>
           </div>
          </div>
         </div>
