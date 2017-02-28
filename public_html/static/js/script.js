@@ -1,6 +1,5 @@
 var TEMP = null;
 
-
 /**
  * now can call js files easily
  * @param  {[type]} _src      [description]
@@ -661,6 +660,7 @@ function startCrop(_el)
 function setLanguageURL()
 {
 	var urlPath     = window.location.pathname;
+	var urlHash     = window.location.hash;
 	var indexOfLang = urlPath.indexOf('/' + $('html').attr('lang'));
 
 	if(indexOfLang === 0)
@@ -689,6 +689,11 @@ function setLanguageURL()
 			lang = '/' + lang;
 		}
 		var url = lang + '/' + urlPath;
+		// add hash if exist
+		if(urlHash)
+		{
+			url += urlHash;
+		}
 		$(index).attr('href', url.trim('/'));
 	})
 }
@@ -706,6 +711,45 @@ route('*', function ()
 	// load maps and chart js
 	$import('lib/amcharts/amcharts.js', 'drawChart', null, 70);
 	$import('lib/ammap/ammap.js', 'getMyMapData', null, 50);
+
+	// hide cost box on all page except add new poll
+	$('#financial-box .cost').removeClass('isCurrent');
+
+	$('#saveAnswers').click(function()
+	{
+		saveAnswers();
+	});
+
+	$('#skipAnswers').click(function()
+	{
+		saveAnswers('skip');
+	});
+	// check and uncheck radios
+	$('ul[data-answer-type] label').contextmenu(function(_e)
+	{
+		// for right click
+		if(_e.button == 2)
+		{
+			uncheckRadio(this);
+			return false;
+		}
+		// for one click
+		// if($(this).attr('checked'))
+		// {
+		// 	$(this).attr('checked', false);
+		// }
+		// else
+		// {
+		// 	$(this).attr('checked', true);
+		// }
+		// $(this).attr('checked', $(this).is(':checked'));
+	});
+	// redraw chart after change group of needed
+	$('input[name="chart_result"]').on('change', function()
+	{
+		redrawChart()
+	});
+
 });
 
 
@@ -1283,6 +1327,7 @@ function detectStep(_name)
 		detectPercentage();
 	}, 300);
 	scrollSmoothTo('top', null, 300);
+	setLanguageURL();
 	return result;
 }
 
@@ -1777,7 +1822,10 @@ function calcUntilPrice(_current)
 }
 
 
-
+/**
+ * [ucFirst description]
+ * @return {[type]} [description]
+ */
 String.prototype.ucFirst = function()
 {
 	return this.charAt(0).toUpperCase() + this.slice(1);
@@ -2032,7 +2080,6 @@ function saveSavedData(_data, _result)
 function lockStep()
 {
 	// console.log('lock step!');
-
 }
 
 
@@ -2441,7 +2488,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 	{
 	// 		if(e.shiftKey && e.keyCode === 46)
 	// 		{
-
 	// 			$(this).closest('li').find('.delete').click();
 	// 		}
 	// 	}
@@ -2451,7 +2497,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		detectPercentage();
 	});
-
 
 	$(this).on('change', '#descriptive', function()
 	{
@@ -2503,7 +2548,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 	// $('#tree-search').val($('[name="parent_tree_id"]').val());
 	// 	// treeSearch();
 	// }
-
 
 	$(this).on('click','button', function()
 	{
@@ -2575,7 +2619,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		requestSavingData();
 	});
 
-
 	// // on open tree load content to it
 	// $(window).off("response:open");
 	// $(window).on("response:open", function(_obj, _name, _value)
@@ -2586,7 +2629,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 		treeSearch.call(null, null, true);
 	// 	}
 	// });
-
 
 	// ------------------------------------------------------------------ Tree
 	// if user click on title of each question
@@ -2609,14 +2651,12 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		}
 	});
 
-
 	// ------------------------------------------------------------------ File Preview
 	//
 	$(this).on('change', 'input[type="file"]', function(event)
 	{
 		// var output = $(this).parents('.ultra').find('.preview');
 		// var imagePreview = showPreview(this, output);
-
 		giveFile(this);
 	});
 	// after complete loading, open cropbox
@@ -2643,7 +2683,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// 	$('#modal-preview').trigger('close');
 	// });
 
-
 	// ================================================================== filter
 	$(this).on('click','button', function()
 	{
@@ -2665,8 +2704,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		requestSavingData();
 	});
-
-
 	// before close page save request on the air!
 	// for chrome
 	$(window).on('beforeunload', function()
@@ -2678,9 +2715,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// {
 	// 	sendQuestionData(null, false);
 	// });
-
 });
-
 
 
 /**
@@ -2696,7 +2731,6 @@ function removeFile(_preview)
 	_preview.attr('data-file-local', null);
 	_preview.attr('data-modal', null);
 	showPreview(_preview, true);
-
 	// close modal
 	$('#modal-preview').trigger('close');
 }
@@ -2716,7 +2750,6 @@ function searchInPolls()
 	{
 		path = path+ '/search='+ _search;
 	}
-
 
 	Navigate({ url: path, ajax:{method:'get', data:{'onlySearch' : true}}});
 	// Navigate({ url: path});
@@ -2742,83 +2775,6 @@ route(/\$/, function()
 	});
 
 });
-
-
-// pollsearch | Knowledge
-// route(/^\/?(fa\/)?\$(.*)$/, function ()
-route('*', function ()
-{
-	var change = 0;
-
-	$(document).on('input', '.pollsearch', function(e)
-	{
-		var val = $(this).val();
-		change  += 1;
-		setTimeout(function()
-		{
-
-			if(change <= 1)
-			{
-
-				url = window.location.pathname;
-
-				test = /\/search\=(.*)\/?/.test(url);
-
-				if(test)
-				{
-					url = url.replace(/\/search\=[^\/]*\/?/, '/search=' + val + '/');
-				}
-				else
-				{
-					url = url + '/search=' + val + '/';
-				}
-
-				Navigate({ url: url });
-			}
-			change -= 1;
-		}, 250);
-	});
-
-	$('.pollsearch').focus().val($('.pollsearch').val());
-});
-
-
-// // Me | Profile
-// route('*', function ()
-// {
-// 	$.each($('input.autocomplete'),function()
-// 	{
-// 		$(this).keyup(function(e)
-// 		{
-// 			name = $(this).attr('name');
-// 			val  = $(this).val();
-
-// 			$(this).ajaxify(
-// 			{
-// 				ajax:
-// 				{
-// 					method: 'post',
-// 					url : '/',
-// 					data:
-// 					{
-// 						'type'  : 'autocomplete',
-// 						'data'  : name,
-// 						'search': val
-// 					},
-// 					abort: true,
-// 					success: function(e, data, x)
-// 					{
-// 						data = e.msg.callback;
-// 						for (a in data)
-// 						{
-//
-// 						}
-// 					}
-// 				}
-// 			});
-// 		});
-// 	});
-// });
 
 
 /**
@@ -2895,150 +2851,11 @@ function saveAnswers(_type)
 }
 
 
-route('*', function ()
-{
-	$('.similar-tag').keypress(function (e)
-	{
-		// if Enter pressed disallow it and run add func
-		if (e.which == 13)
-		{
-			var element_id = $(this).attr('id');
-			addTag(element_id);
-			return false;
-		}
-	});
-
-	$('.similar-tag').change(function ()
-	{
-		// if Enter pressed disallow it and run add func
-		var element_id = $(this).attr('id');
-		addTag(element_id);
-		return false;
-	});
-
-	$(document).on('click', '.btn-add-tags' , function () { addTag($(this).attr('element-id')); return false; });
-	$(document).on('click', '.remove-tags', function ()
-	{
-		var span = $(this).parent();
-		var split = $(this).attr('data-split');
-		$('#' + split).val($('#'+ split).val().replace(span.text() + ',', ''));
-		span.remove();
-	});
-
-	$('#features .wrapper .features li').on("mouseover", function (ev) { addClass( ev, this, 'in' ); });
-	$('#features .wrapper .features li').on("mouseout", function (ev) { addClass( ev, this, 'out' );});
-
-	// var tagDefault = $('#' + split).val();
-	// $('#' + list).text('');
-	// if (tagDefault)
-	// {
-	// 	$.each(tagDefault.split(', '), function (t, item)
-	// 	{
-	// 		if (item.trim())
-	// 			$('#' + list).append("<span><i class='fa fa-times'></i>" + item + "</span>");
-	// 	});
-	// }
-
-	// add tab support to cp
-	$('.tabs li').click(function()
-	{
-		var _this     = $(this);
-		var tabNum    = _this.attr('data-tab');
-		var tabsItems = _this.parent().children('li');
-		var tabGroup  = _this.parent().attr('data-group');
-		var tabSelected;
-		var tabItems
-		// if use group find it else use default tab value
-		if(tabGroup)
-		{
-			tabItems  = $('.tab[data-group="'+ tabGroup +'"]');
-		}
-		else
-		{
-			tabItems  = $('.tab');
-		}
-
-		// remove active class from all items and select clicked item
-		tabsItems.removeClass('active');
-		_this.addClass('active');
-
-		if(tabNum)
-		{
-			tabSelected = tabItems.children("#tab-"+tabNum);
-			// $('[id^=tab-]').not(tabSelected).css('display', "none");
-			tabItems.children('[id^=tab-]').not(tabSelected).css('display', "none");
-		}
-		else
-		{
-			tabNum = _this.index()+1;
-			tabSelected = tabItems.children("li:nth-child("+tabNum+")");
-			tabItems.children('li').not(tabSelected).css('display', "none");
-		}
-		$(tabSelected).fadeIn(300);
-	})
-	// run click for first time and show content of active tab
-	$(".tabs").each(function()
-	{
-		// if select one element as active select content of it
-		if($(this).children('li.active').length == 1)
-		{
-			$(this).children('li.active').trigger("click");
-			$('input[name="poll_type"], input[name="filter_type"]').val( $(this).children('li.active').data('tab') );
-		}
-		// else select first child
-		else
-		{
-			$(this).children('li:first-child').trigger("click");
-			$('input[name="poll_type"], input[name="filter_type"]').val($(this).children('li:first-child').data('tab'));
-		}
-	});
-
-	// change poll_type on tabs click
-	$('.tabs li').click(function(){
-		$('input[name="poll_type"], input[name="filter_type"]').val( $(this).data('tab') );
-	});
-	// hide cost box on all page except add new poll
-	$('#financial-box .cost').removeClass('isCurrent');
-
-	$('#saveAnswers').click(function()
-	{
-		saveAnswers();
-	});
-
-	$('#skipAnswers').click(function()
-	{
-		saveAnswers('skip');
-	});
-	// check and uncheck radios
-	$('ul[data-answer-type] label').contextmenu(function(_e)
-	{
-		// for right click
-		if(_e.button == 2)
-		{
-			uncheckRadio(this);
-			return false;
-		}
-
-		// for one click
-		// if($(this).attr('checked'))
-		// {
-		// 	$(this).attr('checked', false);
-		// }
-		// else
-		// {
-		// 	$(this).attr('checked', true);
-		// }
-
-		// $(this).attr('checked', $(this).is(':checked'));
-	});
-	// redraw chart after change group of needed
-	$('input[name="chart_result"]').on('change', function()
-	{
-		redrawChart()
-	});
-});
-
-
+/**
+ * [uncheckRadio description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
 function uncheckRadio(_this)
 {
 	var radioEl = $(_this).parent().find('input[name="anwserOpt"]');
@@ -3047,62 +2864,6 @@ function uncheckRadio(_this)
 		$(radioEl).attr('checked', false);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-// -------------------------------------------------- Features
-var getDirection = function (ev, obj)
-{
-	var w = obj.offsetWidth,
-		h = obj.offsetHeight,
-		x = (ev.pageX - obj.offsetLeft - (w / 2) * (w > h ? (h / w) : 1)),
-		y = (ev.pageY - obj.offsetTop - (h / 2) * (h > w ? (w / h) : 1)),
-		d = Math.round( Math.atan2(y, x) / 1.57079633 + 5 ) % 4;
-
-	return d;
-};
-
-var addClass = function ( ev, obj, state )
-{
-	var direction = getDirection( ev, obj ),
-		class_suffix = "";
-
-	obj.className = "";
-
-	switch ( direction )
-	{
-			case 0 : class_suffix = '-top';    break;
-			case 1 : class_suffix = '-right';  break;
-			case 2 : class_suffix = '-bottom'; break;
-			case 3 : class_suffix = '-left';   break;
-	}
-
-	obj.classList.add( state + class_suffix );
-};
-
-
-
-
-// contact form
-route(/contact/, function()
-{
-	$('form').on('ajaxify:success',function(data, debug)
-	{
-		if(debug.status)
-		{
-			$('input').val('');
-			$('textarea').val('');
-		}
-	});
-});
 
 
 runAllScripts();
@@ -3121,7 +2882,6 @@ function runAllScripts()
 	// allow to set fav
 	setProperty('favorite');
 	setProperty('heart');
-
 
 	// load needed js file
 	loadFiles();
