@@ -44,28 +44,28 @@ class model extends \mvc\model
 	{
 		$url     = \lib\router::get_url();
 		$poll_id = null;
-		if(preg_match("/^sp\_([^\/]*)$/", $url, $code))
+		if(preg_match("/^sp\_([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
 		{
 			if(isset($code[1]))
 			{
 				$poll_id = $code[1];
 			}
 		}
-		elseif(preg_match("/^\\$([^\/]*)$/", $url, $code))
+		elseif(preg_match("/^\\$([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
 		{
 			if(isset($code[1]))
 			{
 				$poll_id = $code[1];
 			}
 		}
-		elseif(preg_match("/^\\$\/([^\/]*)$/", $url, $code))
+		elseif(preg_match("/^\\$\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
 		{
 			if(isset($code[1]))
 			{
 				$poll_id = $code[1];
 			}
 		}
-		elseif(preg_match("/^(.*)\/[". utility\shortURL::ALPHABET. "]+$/", $url, $code))
+		elseif(preg_match("/^.*\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
 		{
 			if(isset($code[1]))
 			{
@@ -97,10 +97,9 @@ class model extends \mvc\model
 			{
 				$language = \lib\define::get_current_language_string($poll['language']);
 			}
-
 			$post_url = $poll['url'];
 
-			$new_url = trim($this->url('base'). $language. '/'. $post_url, '/');
+			$new_url = trim($this->url('root'). $language. '/'. $post_url, '/');
 
 			$this->redirector($new_url)->redirect();
 		}
@@ -109,6 +108,8 @@ class model extends \mvc\model
 			return $poll;
 		}
 	}
+
+
 	/**
 	 * Gets the comments.
 	 *
@@ -162,7 +163,7 @@ class model extends \mvc\model
 			return ;
 		}
 
-		$poll = $this->get_posts();
+		$poll = $this->get_posts(false, null, ['check_language' => false]);
 		if(isset($poll['id']))
 		{
 			$this->user_id = $this->login('id');
@@ -323,7 +324,9 @@ class model extends \mvc\model
 			{
 				return debug::error(T_("Invalid parameter status"), 'setProperty', 'status');
 			}
+
 			$poll_id = utility\shortURL::decode($poll_id);
+
 			switch (utility::post('setProperty'))
 			{
 				case 'heart':

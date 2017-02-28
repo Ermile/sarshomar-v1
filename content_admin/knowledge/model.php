@@ -111,6 +111,12 @@ class model extends \mvc\model
 			$status = $match->status[0];
 		}
 
+		$sarshomar = false;
+		if(isset($match->sarshomar[0]) && $match->sarshomar[0])
+		{
+			$sarshomar = true;
+		}
+
 		$filter = [];
 
 		foreach ($match as $key => $value)
@@ -155,6 +161,11 @@ class model extends \mvc\model
 			];
 			$request['status'] = implode(" ", $status_list);
 		}
+		if($sarshomar)
+		{
+			// $request['in'] = "sarshomar";
+		}
+
 		$request['order']       = 'desc';
 		utility::set_request_array($request);
 		$options =

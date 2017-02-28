@@ -14,6 +14,7 @@ class controller extends  \content_admin\home\controller
 			[
 				"search" => ["/^(.*)$/", true, 'search'],
 				"status" => ["/^.*$/", true, 'status'],
+				"sarshomar" => ["/^.*$/", true, 'sarshomar'],
 				"page" => ["/^\d+$/", true, 'page']
 			]
 		]

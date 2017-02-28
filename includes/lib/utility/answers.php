@@ -20,6 +20,12 @@ class answers
 	 */
 	public static function is_answered($_user_id, $_poll_id, $_options = [])
 	{
+		if(!$_user_id || !$_poll_id)
+		{
+			debug::error(T_("User id or poll id not found"), 'is_answered', 'db');
+			return false;
+		}
+
 		if(!isset(self::$IS_ANSWERED[$_user_id][$_poll_id]))
 		{
 			$query =

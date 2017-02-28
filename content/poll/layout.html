@@ -4,7 +4,7 @@
 {%block poll_title%}
 {% spaceless %}
  {%if poll.title%}
-  <h2>{{poll.title}}</h2>
+  <h2>{{poll.title|raw}}</h2>
  {%else%}
   <h2>{%trans "Unfortunately there is no title to show!"%}</h2>
  {%endif%}
@@ -31,7 +31,7 @@
 {%block poll_file%}
 {% spaceless %}
  {%if poll.file%}
-  <img src="{{poll.file.url}}" alt="{{poll.title}}" class="poll-image" data-type={{poll.file.type}}>
+  <img src="{{poll.file.url}}" alt="{{poll.title|raw}}" class="poll-image" data-type={{poll.file.type}}>
  {%endif%}
 {% endspaceless %}
 {%endblock%}

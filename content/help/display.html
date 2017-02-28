@@ -68,7 +68,7 @@
    <h4>{%trans "Most visited questions"%}</h4>
    <ul>
     {% for clink in mostVisited %}
-        <li><a href="{{url.baseRaw}}/{{clink.language}}/{{clink.url}}" title='{{clink.title}}'>{{clink.title}}</a></li>
+        <li><a href="{{url.base}}/{{clink.url}}" title='{{clink.title}}'>{{clink.title}}</a></li>
     {% endfor %}
    </ul>
 {%endif%}

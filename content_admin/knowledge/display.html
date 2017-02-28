@@ -1,7 +1,7 @@
 {% extends display.main%} {%block content%}
 <div class="box content-management polls-management">
 	<div class="statistics row auto">
-		<a href="{{url.base}}/admin/knowledge" class="span3">
+		<a href="{{url.base}}/admin/knowledge" class="span2">
 			<div class="statistics-box">
 				<div class="icon show-icon-total"><i class="icon-list icon-4x"></i></div>
 				<div>
@@ -28,27 +28,27 @@
 				</div>
 			</div>
 		</a>
-		<a href="{{url.base}}/admin/knowledge/status=draft" class="span2">
+		<a href="{{url.base}}/admin/knowledge/status=draft" class="span1">
 			<div class="statistics-box">
-				<div class="icon show-icon-draft"><i class="icon-times-circle-o icon-4x"></i></div>
+				<!-- <div class="icon show-icon-draft"><i class="icon-times-circle-o icon-4x"></i></div> -->
 				<div>
 					<h5 class="title">{% trans "Draft" %}</h5>
 					<h6 class="amount">{{poll_count.draft}}</h6>
 				</div>
 			</div>
 		</a>
-		<!-- <a href="{{url.base}}/admin/knowledge/status=spam" class="span2">
+		<a href="{{url.base}}/admin/knowledge/status=spam" class="span1">
 			<div class="statistics-box">
-				<div class="icon show-icon-spam"><i class="icon-minus-circle icon-4x"></i></div>
+				<!-- <div class="icon show-icon-spam"><i class="icon-minus-circle icon-4x"></i></div> -->
 				<div>
 					<h5 class="title">{% trans "Spam" %}</h5>
 					<h6 class="amount">{{poll_count.spam}}</h6>
 				</div>
 			</div>
-		</a> -->
-		<a href="{{url.base}}/admin/knowledge/status=trash" class="span2">
+		</a>
+		<a href="{{url.base}}/admin/knowledge/status=trash" class="span1">
 			<div class="statistics-box">
-				<div class="icon show-icon-trash"><i class="icon-trash icon-4x"></i></div>
+				<!-- <div class="icon show-icon-trash"><i class="icon-trash icon-4x"></i></div> -->
 				<div>
 					<h5 class="title">{% trans "Trash" %}</h5>
 					<h6 class="amount">{{poll_count.trash}}</h6>
@@ -220,7 +220,7 @@
 		});
 
 		$(this).on('change', '#other-status', function () {
-			$(this).parent('span').children('.btn').attr("status", $(this).val());
+			$(this).parent('div').children('.btn').attr("status", $(this).val());
 		});
 
 		$(document).on('click', '#save-vip', function () {

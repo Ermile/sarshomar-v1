@@ -44,7 +44,7 @@ class controller extends \mvc\controller
 		]
 		);
 
-		if($this->model()->get_posts())
+		if($this->model()->get_posts(false, null, ['check_language' => false]))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
 			return;
