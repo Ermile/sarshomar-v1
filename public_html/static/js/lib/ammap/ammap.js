@@ -317,12 +317,14 @@ function getMyMapData()
 {
 	// require data of current design depending on country
 	var myMapSource = 'lib/ammap/maps/js/worldLow.js';
+	var myMapFunc   = 'drawMapWorld';
 	// myMapSource = 'lib/ammap/maps/js/continentsLow.js';
 	if ($('html').attr('lang') == 'fa')
 	{
 		myMapSource = 'lib/ammap/maps/js/iranHigh.js';
+		myMapFunc   = 'drawMapIran';
 	}
 	// import source of map
-	$import(myMapSource);
+	$import(myMapSource, myMapFunc);
 
 }

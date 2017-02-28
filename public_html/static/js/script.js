@@ -27,37 +27,38 @@ function $import(_src, _func, _args, _delay, _noCache, _absolute)
 	var myArgs  = {};
 	myArgs.data = _args;
 
-	setTimeout(function()
+	if(callFunction(_func, null, true))
 	{
-		if(!_absolute)
+		// console.log('call func: ' + _src + " ::" + _func);
+		callFunction(_func, myArgs);
+	}
+	else
+	{
+		setTimeout(function()
 		{
-			_src = '/static/js/' + _src;
-		}
-		if(_noCache)
-		{
-			$.getScript(_src, function()
+			if(!_absolute)
 			{
-				callFunction(_func, myArgs);
-			});
-		}
-		else
-		{
-			// if function is exist, call it!
-			if(callFunction(_func, null, true))
-			{
-				callFunction(_func, myArgs);
+				_src = '/static/js/' + _src;
 			}
-			// else if not exist import it for calling!
+			if(_noCache)
+			{
+				$.getScript(_src, function()
+				{
+					callFunction(_func, myArgs);
+				});
+			}
 			else
 			{
+				// console.log('load once: ' + _src);
+				// else if not exist import it for calling!
 				$.cachedScript(_src).done(function(_script, _textStatus)
 				{
 					myArgs.firstTime = true;
 					callFunction(_func, myArgs);
 				});
 			}
-		}
-	}, _delay);
+		}, _delay);
+	}
 }
 
 

@@ -937,3 +937,13 @@ var worldMap = AmCharts.makeChart('world-map',
 		"backgroundAlpha": 0.1
 	}
 });
+
+
+/**
+ * [drawMapWorld description]
+ * @return {[type]} [description]
+ */
+function drawMapWorld()
+{
+	// none
+}

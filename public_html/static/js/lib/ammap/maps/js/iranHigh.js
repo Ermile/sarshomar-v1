@@ -325,3 +325,13 @@ var iranMap = AmCharts.makeChart('iran-map',
       "balloonText": "[[title]]: <strong>[[value]]</strong>"
     }
 });
+
+
+/**
+ * [drawMapIran description]
+ * @return {[type]} [description]
+ */
+function drawMapIran()
+{
+	// none
+}
