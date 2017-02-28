@@ -15,7 +15,7 @@ private function transtext()
 	echo T_("Your Message");                                                          // Line 28
 	echo T_("Send");                                                                  // Line 29
 	echo T_("How to contact Sarshomar");                                              // Line 36
-	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 4715839488");// Line 49
+	echo T_("Iran - Qom - Moallem sq - Omranieh Complex - No 614 - Postal Code 3715839959");// Line 49
 
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
@@ -68,11 +68,13 @@ private function transtext()
 
 	//-----------------------------------------------content\knowledge\layout-xhr.html
 	echo T_("Type");                                                                  // Line 9
+	echo T_("Edit");                                                                  // Line 11
 	echo T_("Title");                                                                 // Line 10
+	echo T_("Status");                                                                // Line 11
 	echo T_("Comments");                                                              // Line 64
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
-	echo T_("(Untitled)");                                                            // Line 31
+	echo T_("(Untitled)");                                                            // Line 43
 	echo T_("No Result Found");                                                       // Line 45
 
 	//---------------------------------------------------content\knowledge\layout.html
@@ -150,7 +152,6 @@ private function transtext()
 	echo T_("Poll timespan");                                                         // Line 350
 	echo T_("to");                                                                    // Line 96
 	echo T_("Not set");                                                               // Line 401
-	echo T_("Status");                                                                // Line 11
 	echo T_("Keyword");                                                               // Line 372
 	echo T_("Statistical population");                                                // Line 389
 	echo T_("There is nothing to display!");                                          // Line 446
@@ -181,26 +182,26 @@ private function transtext()
 	echo T_("Help Center");                                                           // Line 17
 	echo T_("API");                                                                   // Line 10
 	echo T_("Eco Friendly");                                                          // Line 11
-	echo T_("Enamad");                                                                // Line 18
-	echo T_("Service");                                                               // Line 23
+	echo T_("Enamad");                                                                // Line 59
+	echo T_("Service");                                                               // Line 65
 	echo T_("Features");                                                              // Line 15
 	echo T_("Knowledge");                                                             // Line 16
-	echo T_("Random Poll");                                                           // Line 27
-	echo T_("Referral Program");                                                      // Line 28
-	echo T_("Learn More");                                                            // Line 37
-	echo T_("Terms of Service");                                                      // Line 39
+	echo T_("Learn More");                                                            // Line 75
+	echo T_("Terms of Service");                                                      // Line 77
 	echo T_("Privacy Policy");                                                        // Line 11
 	echo T_("Changelog");                                                             // Line 10
-	echo T_("Support");                                                               // Line 46
-	echo T_("Contact us");                                                            // Line 49
+	echo T_("Support");                                                               // Line 84
+	echo T_("Contact us");                                                            // Line 87
+	echo T_("Latest News");                                                           // Line 103
+	echo T_("Random Poll");                                                           // Line 69
+	echo T_("Referral Program");                                                      // Line 70
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 9
 	echo T_("Vision");                                                                // Line 9
-	echo T_("In the News");                                                           // Line 59
+	echo T_("In the News");                                                           // Line 97
 	echo T_("Statistics");                                                            // Line 9
-	echo T_("Latest News");                                                           // Line 65
-	echo T_("Questions answered");                                                    // Line 75
-	echo T_("Proudly Made in IRAN");                                                  // Line 76
+	echo T_("Questions answered");                                                    // Line 125
+	echo T_("Proudly Made in IRAN");                                                  // Line 126
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Add Question");                                                          // Line 26
@@ -501,10 +502,10 @@ private function transtext()
 
 	//---------------------------------------------content_admin\comments\display.html
 	echo T_("Total");                                                                 // Line 8
-	echo T_("Rejected");                                                              // Line 17
-	echo T_("Unapproved");                                                            // Line 26
-	echo T_("Spam");                                                                  // Line 35
-	echo T_("Trash");                                                                 // Line 44
+	echo T_("Rejected");                                                              // Line 20
+	echo T_("Unapproved");                                                            // Line 19
+	echo T_("Spam");                                                                  // Line 107
+	echo T_("Trash");                                                                 // Line 53
 	echo T_("Return to admin area");                                                  // Line 49
 
 	//----------------------------------------content_admin\exchangerates\display.html
@@ -549,14 +550,19 @@ private function transtext()
 	echo T_("Bots");                                                                  // Line 119
 
 	//--------------------------------------------content_admin\knowledge\display.html
-	echo T_(" Return to admin area ");                                                // Line 49
-	echo T_("Persian");                                                               // Line 111
-	echo T_("parent");                                                                // Line 117
-	echo T_("sarshomar");                                                             // Line 120
-	echo T_("survey");                                                                // Line 123
+	echo T_("Awaiting");                                                              // Line 26
+	echo T_("Draft");                                                                 // Line 35
+	echo T_(" Return to admin area ");                                                // Line 58
+	echo T_("Untitled");                                                              // Line 82
+	echo T_("Summary");                                                               // Line 336
+	echo T_("Persian");                                                               // Line 119
+	echo T_("parent");                                                                // Line 125
+	echo T_("sarshomar");                                                             // Line 128
+	echo T_("Public");                                                                // Line 130
+	echo T_("survey");                                                                // Line 133
 	echo T_("gender");                                                                // Line 197 Seperate
-	echo T_("privacy");                                                               // Line 127
-	echo T_("total");                                                                 // Line 129
+	echo T_("privacy");                                                               // Line 137
+	echo T_("total");                                                                 // Line 139
 
 	//-------------------------------------content_admin\transactionitems\display.html
 	echo T_("title");                                                                 // Line 10
@@ -837,7 +843,7 @@ private function transtext()
 	echo T_("Branding");                                                              // Line 105
 	echo T_("URL");                                                                   // Line 201
 	echo T_("Choice Range");                                                          // Line 209
-	echo T_("Ultimate");                                                              // Line 129
+	echo T_("Ultimate");                                                              // Line 130
 	echo T_("One");                                                                   // Line 215
 	echo T_("Max");                                                                   // Line 215
 	echo T_("Randomize sort options");                                                // Line 227
@@ -846,7 +852,6 @@ private function transtext()
 	echo T_("Complete Profile");                                                      // Line 27
 	echo T_("Tree");                                                                  // Line 302
 	echo T_("Time");                                                                  // Line 17
-	echo T_("Summary");                                                               // Line 336
 	echo T_("Text Format");                                                           // Line 354
 	echo T_("Any Text");                                                              // Line 356
 	echo T_("Phone Number");                                                          // Line 357
@@ -892,7 +897,7 @@ private function transtext()
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
 	echo T_("Toman");                                                                 // Line 86
-	echo T_("Private");                                                               // Line 129
+	echo T_("Private");                                                               // Line 130
 
 	//--------------------------------------------------------content_u\add\step3.html
 	echo T_("Sub Category");                                                          // Line 16
