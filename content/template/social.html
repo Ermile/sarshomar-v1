@@ -2,9 +2,13 @@
  <a class="twitter" href="https://twitter.com/{{social.twitter}}">
   <i class="icon-twitter"></i>
  </a>
+
+ {%if false%}
  <a class="rss" href="{{url.base}}/rss" target="_blank">
   <i class="icon-rss"></i>
  </a>
+ {%endif%}
+
  <a class="telegram" href="http://t.me/{{social.telegram}}">
   <i class="icon-send"></i>
  </a>
@@ -14,7 +18,10 @@
  <a class="facebook" href="https://www.facebook.com/{{social.facebook}}">
   <i class="icon-facebook"></i>
  </a>
+
+ {%if social.linkedin%}
  <a class="linkedin" href="http://www.linkedin.com/{{social.linkedin}}">
   <i class="icon-linkedin2"></i>
  </a>
+ {%endif%}
 </nav>
