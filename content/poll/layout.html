@@ -304,7 +304,7 @@
 
 {%block chart%}
 {% spaceless %}
- <div class="chart unselectable" data-type='column' data-vals='{{poll.stats.total.valid|json_encode(constant("JSON_UNESCAPED_UNICODE"))|raw}}'></div>
+ <div class="chart unselectable" data-type='column' data-vals='{{poll_total_stats|raw}}'></div>
 {% endspaceless %}
 {%endblock%}
 

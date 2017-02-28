@@ -70,8 +70,6 @@ class view extends \mvc\view
 
 		$this->data->chart['stacked'] = array_flip($advance_stats_title);
 
-
-
 		// set title and desc of each page
 		$poll_title = null;
 		// set page title
@@ -123,10 +121,13 @@ class view extends \mvc\view
 				$poll['my_answer'] = [];
 			}
 		}
-
 		$this->data->poll      = $poll;
-	}
 
+		if(isset($poll['stats']['total']['valid']))
+		{
+			$this->data->poll_total_stats = json_encode($poll['stats']['total']['valid'], JSON_UNESCAPED_UNICODE);
+		}
+	}
 
 	/**
 	 * get all comments of this poll

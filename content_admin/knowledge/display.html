@@ -104,7 +104,7 @@
 						<div class="poll-management-options span2">
 							<div class="btn-group">
 								<button class="accept change-status btn btn-success" title="OK" data-id="{{value.id}}" status="publish">{%trans "Publish" %}</button>
-								<button class="reject change-status btn btn-danger" title="Spam" data-id="{{value.id}}" status="spam">{%trans "Spam" %}</button>
+								<button class="reject change-status btn btn-danger " title="draft" data-id="{{value.id}}" status="draft">{%trans "Draft" %}</button>
 							</div>
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 								<!-- <span>|</span>
 								{% trans "gender" %} {{value.gender }} -->
 								<span>|</span>
-								{% trans "privacy" %} {{value.privacy }}
+								{% trans "Privacy type" %}:{{value.privacy }}
 							<!-- 	<span>|</span>
 								{% trans "total" %}	{{value.total }} -->
 								</span>
