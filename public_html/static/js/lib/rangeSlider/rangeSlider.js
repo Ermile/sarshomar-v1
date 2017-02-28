@@ -43,7 +43,7 @@
 	 */
 	optionMethod.type = function(_name, _set)
 	{
-		var data_type = $(this).attr('data-type');
+		var data_type = $(this).data('data-type');
 
 		if (!isNaN(_set))
 		{
@@ -52,15 +52,16 @@
 			{
 				data_type = 'horizontal';
 			}
-			$(this).attr('data-type',data_type);
+			$(this).data('data-type',data_type);
 			return data_type;
 		}
 
-		var data_type = $(this).attr('data-type');
+		var data_type = $(this).data('data-type');
 		if (data_type != 'vertical')
 		{
 			data_type = 'horizontal';
 			$(this).attr('data-type',data_type);
+			$(this).data('data-type',data_type);
 		}
 		return data_type;
 	}
@@ -86,11 +87,11 @@
 			{
 				my_step = 1;
 			}
-			$(this).attr('data-step', my_step);
+			$(this).data('data-step', my_step);
 			return my_step;
 		}
 
-		var data = $(this).attr("data-step");
+		var data = $(this).data("data-step");
 		try {
 	    my_step = $.parseJSON(data);
 
@@ -101,17 +102,18 @@
 				my_step = 1;
 			}
 			$(this).attr('data-step', my_step);
+			$(this).data('data-step', my_step);
 		}
 
 		if (Array.isArray(my_step))
 		{
 			var jason_step = data;
-			$(this).attr("save_jason", jason_step);
+			$(this).data("save_jason", jason_step);
 			var my_step = 0;
-			if ($(this).attr("data-step"))
+			if ($(this).data("data-step"))
 			{
 				var ends = [];
-				var multi_steps = JSON.parse($(this).attr("data-step"));
+				var multi_steps = JSON.parse($(this).data("data-step"));
 				var json_steps = multi_steps;
 				for (var i = 0; i < multi_steps.length; i++)
 				{
@@ -137,6 +139,7 @@
 
 				var _unit = $(this).rangeSlider('option', 'unit');
 				$(this).attr('data-step', (_unit/my_step));
+				$(this).data('data-step', (_unit/my_step));
 			}
 		}
 		return Math.round(my_step);
@@ -155,7 +158,7 @@
 		if (!isNaN(_set))
 		{
 			var data_min = _set;
-			var json_string = $(this).attr("save_jason");
+			var json_string = $(this).data("save_jason");
 			if (json_string)
 			{
 				var json_steps = jQuery.parseJSON( json_string );
@@ -163,6 +166,7 @@
 				var start  = parseInt(json_steps_details["start"]);
 				data_min = start;
 				$(this).attr('data-min', data_min)
+				$(this).data('data-min', data_min)
 			}
 			
 			if (isNaN(data_min))
@@ -171,14 +175,16 @@
 			}
 
 			$(this).attr('data-min',data_min);
+			$(this).data('data-min',data_min);
 		return data_min;
 		}
 
-		var data_min = parseInt($(this).attr('data-min'));
-		var json_string = $(this).attr("save_jason");
+		var data_min = parseInt($(this).data('data-min'));
+		var json_string = $(this).data("save_jason");
 		if (json_string)
 		{
 			$(this).attr('data-min',data_min);
+			$(this).data('data-min',data_min);
 			var data_min_unit = $(this).rangeSlider('option', 'multi_level_value_to_real', data_min);
 			var my_step = $(this).rangeSlider('option','step');
 			data_min = Math.round(my_step * data_min_unit);
@@ -188,6 +194,7 @@
 		{
 			data_min = 0;
 			$(this).attr('data-min',data_min);
+			$(this).data('data-min',data_min);
 		}
 		return data_min;
 	}
@@ -203,17 +210,14 @@
 	 */
 	optionMethod.max = function(_name, _set)
 	{
-		var data_min = parseInt($(this).attr('data-min'));
+		var data_min = parseInt($(this).data('data-min'));
 		if (!isNaN(_set))
 		{
 			var data_max = _set;
-
 			if(isNaN(data_max) || data_min >= data_max)
 			{
 				data_max = data_min + 100;
-
-
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				if (json_string)
 				{
 
@@ -221,13 +225,14 @@
 			}
 
 			$(this).attr('data-max',data_max);
+			$(this).data('data-max',data_max);
 			// return data_max;
 		}
-		var data_max = parseInt($(this).attr('data-max'));
+		var data_max = parseInt($(this).data('data-max'));
 
 
 		var my_step = 0;
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		if (json_string)
 		{
 			var ends = [];
@@ -253,23 +258,27 @@
 			}
 			var _unit = $(this).rangeSlider('option', 'unit');
 			$(this).attr('data-step', (_unit/my_step));
+			$(this).data('data-step', (_unit/my_step));
 		}
 
 		if(isNaN(data_max) || data_min >= data_max)
 		{
 			data_max = data_min + 100;
 			$(this).attr('data-max',data_max);
+			$(this).data('data-max',data_max);
 		}
 
-var json_string = $(this).attr("save_jason");
-if (json_string)
-{
-	var max_limit = $(this).attr('data-max-limit-first');
-	$(this).attr('max_limit', max_limit)
-}
+		var json_string = $(this).data("save_jason");
+		if (json_string)
+		{
+			var max_limit = $(this).data('data-max-limit-first');
+			$(this).data('max_limit', max_limit)
+		}
 
-// var max_limit = $(this).attr('data-max-limit-first');
-// $(this).rangeSlider('option', 'max_limit', max_limit)
+		if(data_max < $(this).rangeSlider('option', 'max_limit'))
+		{
+			$(this).find('.max_limit').remove();
+		}
 
 		return data_max;
 	}
@@ -302,14 +311,16 @@ if (json_string)
 				data_min_unit = 0;
 			}
 			$(this).attr('data-min-unit',data_min_unit);
+			$(this).data('data-min-unit',data_min_unit);
 			return data_min_unit;
 		}
 
-		var data_min_unit = Number($(this).attr('data-min-unit'));
+		var data_min_unit = Number($(this).data('data-min-unit'));
 		if(isNaN(data_min_unit))
 		{
 			data_min_unit = 0;
 			$(this).attr('data-min-unit',data_min_unit);
+			$(this).data('data-min-unit',data_min_unit);
 		}
 		return data_min_unit;
 	}
@@ -322,10 +333,10 @@ if (json_string)
 	optionMethod.unit = function(_name, _set)
 	{
 		var data_unit;
-		var data_max = Number($(this).attr("data-max"));
-		var data_min = Number($(this).attr('data-min'));
+		var data_max = Number($(this).data("data-max"));
+		var data_min = Number($(this).data('data-min'));
 
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		if (json_string)
 		{
 			data_min = 0;
@@ -337,22 +348,24 @@ if (json_string)
 
 	optionMethod.min_title = function(_name, _set)
 	{
-		var min_title = $(this).attr("data-min-title");
+		var min_title = $(this).data("data-min-title");
 		if (!isNaN(_set))
 		{
 			var min_title = _set;
 			$(this).attr('data-min-title',min_title);
+			$(this).data('data-min-title',min_title);
 		}
 		return min_title;
 	}
 
 	optionMethod.max_title = function(_name, _set)
 	{
-		var max_title = $(this).attr("data-show-title");
+		var max_title = $(this).data("data-show-title");
 		if (!isNaN(_set))
 		{
 			var max_title = _set;
 			$(this).attr('data-show-title',max_title);
+			$(this).data('data-show-title',max_title);
 		}
 	}
 
@@ -367,18 +380,18 @@ if (json_string)
 	optionMethod.max_limit = function(_name, _set, _multi)
 	{
 		var max_limit;
-		max_limit = parseInt($(this).attr("data-max-limit"));
-		init_max_limit = parseInt($(this).attr("data-max-limit"));
+		max_limit = parseInt($(this).data("data-max-limit"));
+		init_max_limit = parseInt($(this).data("data-max-limit"));
 		if(!isNaN(_set))
 		{
 			max_limit = parseInt(_set);
 
-			var json_string = $(this).attr("save_jason");
+			var json_string = $(this).data("save_jason");
 			if (json_string)
 			{
-				if ($(this).attr('_status') ) 
+				if ($(this).data('_status') ) 
 				{
-					$(this).removeAttr('_status')
+					$(this).removeData('_status')
 				}
 				var my_step = $(this).rangeSlider('option','step');
 				var real_limit_unit = $(this).rangeSlider('option','multi_level_value_to_real', _set);
@@ -386,13 +399,13 @@ if (json_string)
 				{
 					var real_limit_unit = $(this).rangeSlider('option', 'change_multi_level_float',_set);
 					var _status = 'float';
-					$(this).attr('_status', _set);
+					$(this).data('_status', _set);
 				}
 
 				var multi_max_limit  = _set;
 				var init_max_limit   = _set;
 				var max_limit 		 = real_limit_unit * my_step;
-				$(this).attr('real_max_limit',max_limit);
+				$(this).data('real_max_limit',max_limit);
 			}
 
 			if (max_limit <= $(this).rangeSlider('option','max')) 
@@ -400,16 +413,16 @@ if (json_string)
 				if(!isNaN(max_limit) && !( max_limit < ($(this).rangeSlider('option','min'))) )
 				{
 					$(this).attr("data-max-limit", max_limit);
-					$(this).attr("data-multi-max-limit", max_limit);
+					$(this).data("data-multi-max-limit", max_limit);
 				}
 				else
 				{
-					$(this).removeAttr("data-max-limit");
+					$(this).removeData("data-max-limit");
 				}
 
 				var limit_value = max_limit - $(this).rangeSlider('option','min');
 
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				if (json_string)
 				{
 					var json_steps = jQuery.parseJSON( json_string );
@@ -418,9 +431,17 @@ if (json_string)
 					var data_min = start;
 					var data_min_unit = $(this).rangeSlider('option', 'multi_level_value_to_real', data_min);
 					var my_step = $(this).rangeSlider('option','step');
-					data_min = Math.round(my_step * data_min_unit);
+					// data_min = Math.round(my_step * data_min_unit);
+					data_min = my_step * data_min_unit;
 					var limit_value = max_limit - data_min;
 				}
+
+
+// if ($(this).data("data-infinity") == 'min')
+// {
+// 	$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, $(this).attr('data-max-default'));
+// }
+
 
 				var limit_value_percent = (limit_value * 100) / $(this).rangeSlider('option', 'unit');
 				var margin_type = $(this).rangeSlider('option', 'type') == 'vertical'? "top" : "left";
@@ -432,10 +453,16 @@ if (json_string)
 				if (margin_type == 'top')
 				{
 					$(this).find(".max_limit").css('top', 100 - limit_value_percent + "%")
+
+
+// if ($(this).data("data-infinity") == 'min')
+// {
+// 	$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, $(this).attr('data-max-default'));
+// }
 				}
 				else
 				{
-					if ($(document).find("body.rtl").hasClass('rtl') && $(this).attr('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
+					if ($(document).find("body.rtl").hasClass('rtl') && $(this).data('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
 					{
 						limit_value_percent = (100-limit_value_percent);
 					}
@@ -443,25 +470,36 @@ if (json_string)
 				}
 
 				var show_max_limit = max_limit;
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				if (json_string)
 				{
 					var my_step = $(this).rangeSlider('option','step');
 					show_max_limit = $(this).rangeSlider('option','multi_level_real_to_value', Math.round(show_max_limit/my_step));
+
+
+// if (margin_type == 'top')
+// {
+// 	if ($(this).data("data-infinity") == 'min')
+// 	{
+// 		$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, 10);
+// 	}
+// }
+
 				}
 				$(this).attr("data-max-limit-first", show_max_limit);
-				
-				if ($(this).attr('_status')) 
+				$(this).data("data-max-limit-first", show_max_limit);
+				if ($(this).data('_status')) 
 				{
-					$(this).attr("data-max-limit-first", $(this).attr('_status'));
+					$(this).data("data-max-limit-first", $(this).data('_status'));
 				}
-
 				if (!isNaN(multi_max_limit))
 				{
 					$(this).attr("data-max-limit", multi_max_limit);
+					$(this).data("data-max-limit", multi_max_limit);
 				}
+				$(this).find(".max_limit .mount").attr("data-value-show", $(this).data('data-max-limit'));
 
-				$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
+
 
 			}
 
@@ -490,8 +528,8 @@ if (json_string)
 	optionMethod.min_default = function(_name, _set)
 	{
 		var _self = $(this).parents("range-slider");
-		var data_min = parseInt($(this).attr('data-min'));
-		if ($(this).attr("data-infinity") != 'min')
+		var data_min = parseInt($(this).data('data-min'));
+		if ($(this).data("data-infinity") != 'min')
 		{
 			if (!isNaN(_set))
 			{
@@ -501,8 +539,8 @@ if (json_string)
 					data_min_default = data_min;
 				}
 
-				var json_string = $(this).attr("data-step");
-				var json_string_step = $(this).attr("save_jason");
+				var json_string = $(this).data("data-step");
+				var json_string_step = $(this).data("save_jason");
 				if (json_string)
 				{
 					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
@@ -517,14 +555,16 @@ if (json_string)
 					}
 				}
 				$(this).attr('data-min-default',data_min_default);
+				$(this).data('data-min-default',data_min_default);
 				return data_min_default;
 			}
 
-			var data_min_default = Number($(this).attr('data-min-default'));
+			var data_min_default = Number($(this).data('data-min-default'));
 			if(isNaN(data_min_default) || data_min > data_min_default)
 			{
 				data_min_default = data_min;
 				$(this).attr('data-min-default',data_min_default);
+				$(this).data('data-min-default',data_min_default);
 			}
 			return data_min_default;
 		}
@@ -543,10 +583,10 @@ if (json_string)
 	 */
 	optionMethod.max_default = function(_name, _set, _multi)
 	{
-		if ($(this).attr("data-infinity") != 'max')
+		if ($(this).data("data-infinity") != 'max')
 		{
-			var data_max = Number($(this).attr("data-max"));
-			var data_min = Number($(this).attr('data-min'));
+			var data_max = Number($(this).data("data-max"));
+			var data_min = Number($(this).data('data-min'));
 			var data_unit = data_max - data_min;
 
 			if (!isNaN(_set))
@@ -556,30 +596,39 @@ if (json_string)
 				{
 					data_max_default = data_unit;
 				}
-				var json_string = $(this).attr("data-step");
-				var json_string_step = $(this).attr("save_jason");
+				var json_string = $(this).data("data-step");
+				var json_string_step = $(this).data("save_jason");
 				if (json_string)
 				{
 					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
 					var step = $(this).rangeSlider('option','step');
-					var real_step = Math.round(unit/step);
-					if (json_string_step)
+					// var real_step = Math.round(unit/step);
+					var real_step = unit/step;
+					// if (json_string_step)
+					// {
+					// 	var real_step = Math.round(step);
+					// }
+					// var _set = $(this).rangeSlider('option', 'change_multi_level_float',_set);
+					var real_max = $(this).rangeSlider('option','multi_level_value_to_real', _set);
+
+
+
+					if (!real_max) 
 					{
-						var real_step = Math.round(step);
+						var real_max = $(this).rangeSlider('option', 'change_multi_level_float',_set);
 					}
-					var _set = $(this).rangeSlider('option', 'change_multi_level_float',_set);
-					// var real_max = $(this).rangeSlider('option','multi_level_value_to_real', _set);
-					var data_max_default = _set*real_step;
+					var data_max_default = real_max*real_step;
 				}
-				$(this).attr('data-max-default',data_max_default);
+				$(this).data('data-max-default',data_max_default);
 				return data_max_default;
 			}
 	
-			var data_max_default = Number($(this).attr('data-max-default'));
+			var data_max_default = Number($(this).data('data-max-default'));
 			if(isNaN(data_max_default) || data_max < data_max_default)
 			{
 				data_max_default = data_unit;
 				$(this).attr('data-max-default',data_max_default);
+				$(this).data('data-max-default',data_max_default);
 			}
 			return data_max_default;
 		}
@@ -590,7 +639,7 @@ if (json_string)
 	}
 
 	/**
-	 * [margin left of range]
+	 * [margin left of range],
 	 * @param  {string} _name [name of method]
 	 * @return {integer}      [left of range will be returned, it's pixel]
 	 */
@@ -608,7 +657,7 @@ if (json_string)
 	 */
 	optionMethod.depth = function(_name)
 	{
-		var data_max = Number($(this).attr("data-max"));
+		var data_max = Number($(this).data("data-max"));
 		var depth = data_max;
 		return depth;
 	}
@@ -626,7 +675,7 @@ if (json_string)
 		var pixel_width = parseInt($(this).css(margin_type));
 
 
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		if (json_string)
 		{
 			if ($(this).rangeSlider('option', 'max_limit'))
@@ -655,7 +704,7 @@ if (json_string)
 	 */
 	optionMethod.change_multi_level_float= function(_name, _set)
 	{
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
@@ -722,7 +771,7 @@ if (json_string)
 	 */
 	optionMethod.multi_level_value_to_real = function(_name, _set)
 	{
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
@@ -768,7 +817,7 @@ if (json_string)
 					}
 				}
 			}
-			return 0
+			return false
 		}
 	}
 
@@ -781,7 +830,7 @@ if (json_string)
 	*/
 	optionMethod.multi_level_real_to_value = function(_name, _set)
 	{
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
@@ -867,17 +916,17 @@ if (json_string)
 			if (_set == 'true') 
 			{
 				lock = 1;
-				$(this).attr('data-lock','on');
+				$(this).data('data-lock','on');
 			}
 			else if(_set != 'true')
 			{
 				lock = 0;
-				$(this).attr('data-lock','off');
+				$(this).data('data-lock','off');
 			}
 		}
 		else
 		{
-			var lock_state = $(this).attr('data-lock');
+			var lock_state = $(this).data('data-lock');
 			if (lock_state == 'on')
 			{
 				lock = 1;
@@ -889,7 +938,6 @@ if (json_string)
 		}
 			return lock;
 	}
-
 
 	optionMethod.range = function(_name, _set, _option, _value, _multi)
 	{
@@ -911,7 +959,7 @@ if (json_string)
 		}
 		else if (_set == 'from')
 		{
-			if ($(this).attr('data-infinity') == 'min')
+			if ($(this).data('data-infinity') == 'min')
 			{
 				return false;
 			}
@@ -940,10 +988,15 @@ if (json_string)
 		}
 
 
-		var json_string = $(this).attr("save_jason");
+		var json_string = $(this).data("save_jason");
 		if (json_string)
 		{
 			var real_steps = $(this).rangeSlider('option', 'multi_level_value_to_real', _value);
+			if (!real_steps) 
+			{
+				var real_steps = $(this).rangeSlider('option', 'change_multi_level_float',_value);
+			}
+
 			var my_step = $(this).rangeSlider('option', 'step');
 			var my_steps = Math.round(real_steps*my_step);
 			if (_set == 'to')
@@ -952,7 +1005,7 @@ if (json_string)
 			}
 			else if (_set == 'from')
 			{
-				if ($(this).attr('data-infinity') == 'min')
+				if ($(this).data('data-infinity') == 'min')
 				{
 					return false;
 				}
@@ -970,7 +1023,7 @@ if (json_string)
 			}
 			else if (_set == 'from')
 			{
-				if ($(this).attr('data-infinity') == 'min')
+				if ($(this).data('data-infinity') == 'min')
 				{
 					return false;
 				}
@@ -981,9 +1034,6 @@ if (json_string)
 			}
 		}
 	}
-
-
-
 
 
 
@@ -1026,9 +1076,27 @@ if (json_string)
 				$(this).rangeSlider('destroy');
 			}
 			$(this).trigger("range-slider::init::before");
+
+
+			$(this).data("data-min", $(this).attr("data-min"));
+			$(this).data("data-max", $(this).attr("data-max"));
+			$(this).data("data-step", $(this).attr("data-step"));
+			$(this).data("data-max-default", $(this).attr("data-max-default"));
+			$(this).data("data-min-default", $(this).attr("data-min-default"));
+			$(this).data("data-infinity", $(this).attr("data-infinity"));
+			$(this).data("data-max-limit", $(this).attr("data-max-limit"));
+			$(this).data("data-unit", $(this).attr("data-unit"));
+			$(this).data("data-min-unit", $(this).attr("data-min-unit"));
+			$(this).data("data-show-title", $(this).attr("data-show-title"));
+			$(this).data("data-fix-mount", $(this).attr("data-fix-mount"));
+			$(this).data("data-lock", $(this).attr("data-lock"));
+			$(this).data("data-type", $(this).attr("data-type"));
+
+
+
 			$(this).addClass('range-slider');
 
-			var data_infinity = $(this).attr("data-infinity");
+			var data_infinity = $(this).data("data-infinity");
 			var id = $(this).attr('id');
 			if(id)
 			{
@@ -1050,13 +1118,13 @@ if (json_string)
 
 
 
-			$(this).rangeSlider('option', 'type', $(this).attr("data-type"));
+			$(this).rangeSlider('option', 'type', $(this).data("data-type"));
 			// $(this).rangeSlider('option', 'step', $(this).attr("data-step"));
-			$(this).rangeSlider('option', 'min', $(this).attr("data-min"));
-			$(this).rangeSlider('option', 'max', $(this).attr("data-max"));
-			$(this).rangeSlider('option', 'unit', $(this).attr("data-unit"));
-			$(this).rangeSlider('option', 'min_default', $(this).attr("data-min-default"));
-			$(this).rangeSlider('option', 'max_default', $(this).attr("data-max-default"));
+			$(this).rangeSlider('option', 'min', $(this).data("data-min"));
+			$(this).rangeSlider('option', 'max', $(this).data("data-max"));
+			$(this).rangeSlider('option', 'unit', $(this).data("data-unit"));
+			$(this).rangeSlider('option', 'min_default', $(this).data("data-min-default"));
+			$(this).rangeSlider('option', 'max_default', $(this).data("data-max-default"));
 			// $(this).rangeSlider('option', 'min_unit', $(this).attr("data-min-unit"));
 			// $(this).rangeSlider('option', 'min_title', $(this).attr("data-min-title"));
 			// $(this).rangeSlider('option', 'max_title', $(this).attr("data-min-title"));
@@ -1094,8 +1162,9 @@ if (json_string)
 				data.unit_to_pixel  = this.rangeSlider('option', 'unit_to_pixel');
 				data.range_width    = this.rangeSlider('option', 'range_width');
 				data.total_width    = this.rangeSlider('option', 'total_width');
-				data.lock    = this.rangeSlider('option', 'lock');
-				data.real_max_limit = $(this).attr('real_max_limit');
+				data.lock    		= this.rangeSlider('option', 'lock');
+
+				data.real_max_limit = $(this).data('real_max_limit');
 
 				var option = {
 					type : 'unit'
@@ -1105,8 +1174,6 @@ if (json_string)
 				option.from_type = option.type;
 				option.to_type = option.type;
 				var depth_type = data.type == 'vertical' ? 'height' : 'width';
-
-
 
 
 				if(from === null || from === false || from === undefined)
@@ -1166,7 +1233,7 @@ if (json_string)
 				var from_step = Math.round(from / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 				var to_step = Math.round(to / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				if (json_string)
 				{
 					var my_step = $(this).rangeSlider('option','step');
@@ -1184,6 +1251,7 @@ if (json_string)
 				{
 					to_step = data.max_limit-data.min;
 				}
+
 
 				if ((from_step) > (data.max_limit-data.min-data.min_unit))
 				{
@@ -1222,14 +1290,20 @@ if (json_string)
 					}
 
 
-					var json_string = $(this).attr("save_jason");
+
+
+					var json_string = $(this).data("save_jason");
 					if (!json_string)
 					{
-						if ($(this).attr('data-max-limit'))
+						if ($(this).data('data-max-limit'))
 						{
-							$(this).rangeSlider('option', 'max_limit', $(this).attr('data-max-limit'));
+							$(this).rangeSlider('option', 'max_limit', $(this).data('data-max-limit'));
 						}
 					}
+
+
+
+
 
 
 
@@ -1242,9 +1316,9 @@ if (json_string)
 					if ($(this).rangeSlider('option','max_limit'))
 					{
 						$(this).find(".max_limit .mount").attr("data-value-show", $(this).rangeSlider('option','max_limit'));
-						if ($(this).attr('data-max-limit-first'))
+						if ($(this).data('data-max-limit-first'))
 						{
-							$(this).find(".max_limit .mount").attr("data-value-show", $(this).attr('data-max-limit-first'));
+							$(this).find(".max_limit .mount").attr("data-value-show", $(this).data('data-max-limit-first'));
 						}
 					}
 // controlls range not to be less than min unit mount that had been set by user on html
@@ -1279,7 +1353,7 @@ if (json_string)
 
 // multi step ranges here will be set
 // gets json steps attribute from html and convert it to a standard range slider
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				var steps = [];
 				var starts = [];
 				var ends = [];
@@ -1368,14 +1442,14 @@ if (json_string)
 // _status is setting when a multi level range has max_limit attribute, then the real mount will be set on _status attribute
 // here value show of multi level range when it has max_limit attribute
 
-					if ($(this).attr('_status')) 
+					if ($(this).data('_status')) 
 					{
 						var my_limit = $(this).rangeSlider('option', 'max_limit');
 
-						var json_string = $(this).attr("save_jason");
+						var json_string = $(this).data("save_jason");
 						if (json_string)
 						{
-							my_limit = $(this).attr('real_max_limit');
+							my_limit = $(this).data('real_max_limit');
 						}
 
 						var _step = ($(this).rangeSlider('option', 'step'));
@@ -1384,19 +1458,19 @@ if (json_string)
 
 						if (from_multi_step_value == my_limit_mount) 
 						{
-							$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).data('_status')));
 							if (from_multi_step_value == to_multi_step_value) 
 							{
-								$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+								$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).data('_status')));
 							}
 						}
 
 						else if (to_multi_step_value == my_limit_mount) 
 						{
-							$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+							$(this).find(".dynamic-range .max .mount").attr("data-value-show", parseInt($(this).data('_status')));
 							if (from_multi_step_value == to_multi_step_value) 
 							{
-								$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).attr('_status')));
+								$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt($(this).data('_status')));
 							}
 						}
 					}
@@ -1424,11 +1498,9 @@ if (json_string)
 					});
 				}
 
-
 // if user had set data show title, here it will set and will show it instead of the real digit
 
 				var show_title;
-
 				var _data = $(this).attr("data-show-title");
 				try {
 				show_title = $.parseJSON(_data);
@@ -1566,7 +1638,7 @@ if (json_string)
 
 // add support rtl class to change range slider to right_to_left on page rtl direction
 // 
-				if ($(this).attr('data-support-rtl')) 
+				if ($(this).data('data-support-rtl')) 
 				{
 					$(this).addClass('support-rtl')
 				}
@@ -1575,9 +1647,9 @@ if (json_string)
 				dynamic_range.find('div.min, div.max').append("<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 9' style='enable-background:new 0 0 8 9;' xml:space='preserve'><style type='text/css'>.st1{fill:#E5A428;}</style><path class='st1' d='M3.2,0C6.7-0.1,5.4,3.5,8,4.5C5.4,5.5,6.7,9.1,3.2,9L2.7,9V7.1L0,4.5l2.7-2.6V0L3.2,0z'/></svg>");
 				var my_mount = dynamic_range.find('div.min span.mount, div.max span.mount');
 				$(this).find('.dynamic-range span.mount').show(); //design*********
-				var data_fix_mount = $(this).attr("data-fix-mount");
+				var data_fix_mount = $(this).data("data-fix-mount");
 
-				$(this).attr("data-max-limit-first", $(this).rangeSlider('option','max_limit')-$(this).rangeSlider('option','min'));
+				$(this).data("data-max-limit-first", $(this).rangeSlider('option','max_limit')-$(this).rangeSlider('option','min'));
 				my_mount.hide();
 				if (data_fix_mount == 'on')
 				{
@@ -1590,14 +1662,14 @@ if (json_string)
 				margin_range.appendTo(this);
 				dynamic_range.appendTo(this);
 
-				if ($(this).attr("data-infinity") == 'max')
+				if ($(this).data("data-infinity") == 'max')
 				{
 					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), $(this).rangeSlider('option', 'max'));
 				}
 
-				else if ($(this).attr("data-infinity") == 'min')
+				else if ($(this).data("data-infinity") == 'min')
 				{
-					$(this).range( 0, $(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min'));
+					$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, $(this).attr('data-max-default') );
 				}
 
 				else
@@ -1610,6 +1682,22 @@ if (json_string)
 				margin_range.show();
 				dynamic_range.show();
 				$(this).trigger("range-slider::init::after");
+
+
+				if ($(this).data("data-infinity") == 'max')
+				{
+					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), $(this).rangeSlider('option', 'max'));
+				}
+
+				else if ($(this).data("data-infinity") == 'min')
+				{
+					$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, $(this).attr('data-max-default') );
+				}
+
+				else
+				{
+					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), ($(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min')) );
+				}
 						});
 			}
 
@@ -1617,7 +1705,7 @@ if (json_string)
 
 var add_selection = function(_name)
 {
-	if (!$(this).attr("data-infinity") && $(this).attr("data-lock") == undefined)
+	if (!$(this).data("data-infinity") && $(this).data("data-lock") == undefined)
 	{
 		$(this).unbind('mousemove.dynamic-range');
 		$(document).unbind('mouseup.dynamic-range');
@@ -1631,7 +1719,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1653,7 +1741,7 @@ var add_selection = function(_name)
 			var mouse_position    = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point        = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1667,10 +1755,10 @@ var add_selection = function(_name)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
-				var json_string = $(_self).attr("save_jason");
+				var json_string = $(_self).data("save_jason");
 				if (json_string)
 				{
-					my_max_limit = $(_self).attr('real_max_limit');
+					my_max_limit = $(_self).data('real_max_limit');
 				}
 			}
 			else
@@ -1736,7 +1824,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1762,7 +1850,7 @@ var add_selection = function(_name)
 			var mouse_position  = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point      = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical')
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1777,10 +1865,10 @@ var add_selection = function(_name)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
-				var json_string = $(this).attr("save_jason");
+				var json_string = $(this).data("save_jason");
 				if (json_string)
 				{
-					my_max_limit = $(_self).attr('real_max_limit');
+					my_max_limit = $(_self).data('real_max_limit');
 				}
 			}
 			else
@@ -1824,7 +1912,7 @@ var add_selection = function(_name)
 		});
 	}
 
-	var data_fix_mount = $(this).attr("data-fix-mount");
+	var data_fix_mount = $(this).data("data-fix-mount");
 	var data = $(this).data('range-slider');
 	var _self = this;
 	var selection = $("<div class='"+_name+"'></div>");
@@ -1832,10 +1920,10 @@ var add_selection = function(_name)
 
 
 
-	if ($(this).attr("data-lock") == undefined)
+	if ($(this).data("data-lock") == undefined)
 	{
 
-	selection.attr('tabindex', '0');
+	selection.data('tabindex', '0');
 	selection.unbind('mousedown.range-slider');
 
 	selection.bind('mousedown.range-slider', function(){
@@ -1847,7 +1935,7 @@ var add_selection = function(_name)
 		var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 		var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
 		{
 			var _width = $(_self).width();
 			var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1871,7 +1959,7 @@ var add_selection = function(_name)
 			var mouse_selection = mouse_position - ziro_point;
 			mouse_selection = data.type == 'vertical' ? $(_self).height() - mouse_selection : mouse_selection;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1937,7 +2025,7 @@ var add_selection = function(_name)
 			}
 			if(event.keyCode == 38 || event.keyCode == 39)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && event.keyCode == 39)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 39)
 				{
 					change_by_key = change_by_key*(-1);
 				}
@@ -1946,7 +2034,7 @@ var add_selection = function(_name)
 			}
 			else if(event.keyCode == 37 || event.keyCode == 40)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && event.keyCode == 37)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 37)
 				{
 					change_by_key = change_by_key*(-1);
 				}
@@ -1959,7 +2047,7 @@ var add_selection = function(_name)
 			$(_self).find('.dynamic-range .min span.mount').show(); //design*********
 			if(event.keyCode == 38 || event.keyCode == 39)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && event.keyCode == 39)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 39)
 				{
 					change_by_key = change_by_key*(-1);
 				} 
@@ -1968,7 +2056,7 @@ var add_selection = function(_name)
 			}
 			else if(event.keyCode == 37 || event.keyCode == 40)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && event.keyCode == 37)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 37)
 				{
 					change_by_key = change_by_key*(-1);
 				} 
@@ -1999,7 +2087,7 @@ var add_selection = function(_name)
 				var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).attr('data-support-rtl') && data.type != 'vertical') 
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
 				{
 					var _width = $(_self).width();
 					var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
