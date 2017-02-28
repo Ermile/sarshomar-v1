@@ -8,15 +8,10 @@ class model extends \mvc\model
 {
 
 	use \content_api\v1\home\tools\ready;
-
 	use \content_api\v1\poll\tools\get;
-
 	use \content_api\v1\poll\answer\tools\add;
-
 	use \content_api\v1\poll\answer\tools\get;
-
 	use \content_api\v1\poll\answer\tools\delete;
-
 	use \content_api\v1\poll\stats\tools\get;
 
 	public $poll_code       = null;
@@ -32,6 +27,7 @@ class model extends \mvc\model
 		'get_advance_result' => true,
 		'type'               => null, // ask || random
 	];
+
 
 	/**
 	 * { function_description }
@@ -405,8 +401,6 @@ class model extends \mvc\model
 	 */
 	public function am_chart($_poll_data, $_type)
 	{
-		// var_dump(...func_get_args());
-		// exit();
 		$advance_stats_title = [];
 
 		if(isset($_poll_data['advance_stats']['valid'][$_type]) && is_array($_poll_data['advance_stats']['valid'][$_type]))
@@ -418,7 +412,7 @@ class model extends \mvc\model
 				{
 					foreach ($value as $filter => $count)
 					{
-						$advance_stats_result[$opt_key]["valid_". $filter] = $count;
+						$advance_stats_result[$opt_key][$filter] = $count;
 					}
 				}
 			}
@@ -432,7 +426,14 @@ class model extends \mvc\model
 				{
 					foreach ($value as $filter => $count)
 					{
-						$advance_stats_result[$opt_key]["invalid_". $filter] = $count;
+						if(isset($advance_stats_result[$opt_key][$filter]))
+						{
+							$advance_stats_result[$opt_key][$filter] += $count;
+						}
+						else
+						{
+							$advance_stats_result[$opt_key][$filter] = $count;
+						}
 					}
 				}
 			}

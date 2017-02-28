@@ -315,6 +315,7 @@ trait data
 				unset($old_user_filter['id']);
 				unset($old_user_filter['unique']);
 				unset($old_user_filter['usercount']);
+				unset($old_user_filter['count']);
 
 				$insert_filter = array_merge($old_user_filter, $insert_filter);
 			}
@@ -338,35 +339,27 @@ trait data
 		// insert data in terms
 		$insert_termusages = [];
 
+		// *********************
+		// usless code
+		return true;
+		//**********************
 		foreach ($insert_profile as $key => $value)
 		{
 			// chech exist this profie data or no
 			// if not exist insert new
 			// if exist and old value = new value continue
 			// if exist and old value != new value update terms and save old value in log table
-			$new_term = self::insert_terms($key, $value, $valus_checked_true);
+
+			$value_slug = \lib\utility\filter::slug($value);
+			$key_slug   = \lib\utility\filter::slug($key);
+			$new_term  = \lib\db\terms::caller("$key_slug:$value_slug");
 
 			if(!$new_term || !isset($new_term['id']))
 			{
 				continue;
 			}
 
-			$term_parent = null;
-			if(isset($new_term['term_parent']))
-			{
-				$term_parent = $new_term['term_parent'];
-			}
-
-			if(!is_numeric($term_parent))
-			{
-				continue;
-			}
-
-
 			$new_term_id = $new_term['id'];
-
-			$key_slug   = \lib\utility\filter::slug($key);
-			$value_slug = \lib\utility\filter::slug($value);
 
 			// check this users has similar profile data to update this
 			$query =
@@ -377,7 +370,7 @@ trait data
 					termusages
 				INNER JOIN terms ON terms.id = termusages.term_id
 				WHERE
-					termusages.termusage_foreign = 'users' AND
+					termusages.termusage_foreign = 'filter' AND
 					termusages.termusage_id      = $_user_id AND
 					terms.term_parent            = $term_parent
 				-- check this users has similar profile data to update this

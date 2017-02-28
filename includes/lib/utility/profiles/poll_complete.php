@@ -47,52 +47,53 @@ trait poll_complete
 		";
 
 		// check this poll has been locked to profile data ?
-		$profile_lock = \lib\db::get($profile_lock, null, true);
+		$profile_lock = \lib\db::get($profile_lock);
 
-		if(
-			!$profile_lock ||
-			empty($profile_lock) ||
-			!isset($profile_lock['id']) ||
-			!isset($profile_lock['term_caller']) ||
-			(isset($profile_lock['term_caller']) && !$profile_lock['term_caller'])
-		  )
+		if(!$profile_lock || empty($profile_lock) || !is_array($profile_lock))
 		{
 			return false;
 		}
 
-		$insert_user_termusages =
-		"
-			INSERT INTO
-				termusages
-			SET
-				termusages.termusage_foreign = 'users',
-				termusages.termusage_id      = $_args[user_id],
-				termusages.term_id           = $profile_lock[id]
-			ON DUPLICATE KEY UPDATE
-				termusages.term_id = $profile_lock[id]
-
-		";
-		\lib\db::query($insert_user_termusages);
-
-		if(!preg_match("/\:/", $profile_lock['term_caller']))
+		foreach ($profile_lock as $key => $value)
 		{
-			return;
-		}
-
-		$split = explode(':', $profile_lock['term_caller']);
-		if(isset($split[0]) && isset($split[1]))
-		{
-			if(!\lib\db\filters::support_filter($split[0], $split[1]))
+			if(!isset($value['id']) || !isset($value['term_caller']) ||	(isset($value['term_caller']) && !$value['term_caller']))
 			{
-				return;
+				continue;
 			}
-		}
-		else
-		{
-			return;
-		}
 
-		return self::set_profile_data($_args['user_id'], [$split[0] => $split[1]]);
+			$insert_user_termusages =
+			"
+				INSERT INTO
+					termusages
+				SET
+					termusages.termusage_foreign = 'users',
+					termusages.termusage_id      = $_args[user_id],
+					termusages.term_id           = $value[id]
+				ON DUPLICATE KEY UPDATE
+					termusages.term_id = $value[id]
+
+			";
+			\lib\db::query($insert_user_termusages);
+
+			if(!preg_match("/\:/", $value['term_caller']))
+			{
+				continue;
+			}
+
+			$split = explode(':', $value['term_caller']);
+			if(isset($split[0]) && isset($split[1]))
+			{
+				if(!\lib\db\filters::support_filter($split[0], $split[1]))
+				{
+					continue;
+				}
+			}
+			else
+			{
+				continue;
+			}
+			self::set_profile_data($_args['user_id'], [$split[0] => $split[1]]);
+		}
 	}
 
 

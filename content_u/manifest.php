@@ -257,5 +257,15 @@ $modules['upload_1000_mb'] =
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
+
+/**
+ * dev.telegram.bot
+ */
+$modules['telegram_dev'] =
+[
+	'desc'        => T_("Allow to load telegram dev bot"),
+	'icon'        => 'file-text-o',
+	'permissions' => ['view'],
+];
 return ["modules" => $modules];
 ?>
