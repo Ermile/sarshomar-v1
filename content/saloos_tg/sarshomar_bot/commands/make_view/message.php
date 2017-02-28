@@ -50,17 +50,28 @@ class message
 		}
 		if(count($this->class->query_result['answers']) > 7)
 		{
-			// $overflow = [];
-			// $sum['sum_answers'] = array("1" => 1, "2" => 1, "3" => 3, "4" => 5);
-			// foreach (array_keys($sum['sum_answers']) as $key => $value) {
-			// 	$overflow['a' . $value] = $sum['sum_answers'][$value];
-			// }
-			// arsort($overflow);
-			// handle::send_log($overflow);
+			$row = 0;
+			$other_key = null;
 			$overflow = [];
-			for ($i=1; $i <= 7; $i++) {
-				$overflow[$i] = $sum['sum_answers'][$i];
+			$sum_answers = $sum['sum_answers'];
+			arsort($sum_answers);
+			foreach ($sum_answers as $key => $value) {
+				if($row < 6)
+				{
+					$row++;
+					$other_key = $key;
+					$overflow[$key] = $value;
+					continue;
+				}
+				$overflow[$other_key] += $value;
 			}
+			$overflow[0] = $overflow[$other_key];
+			unset($overflow[$other_key]);
+			$x = '';
+			foreach ($overflow as $key => $value) {
+				$x .= "$key: $value\n";
+			}
+			handle::send_log($x);
 			$this->message['chart'] = utility::calc_vertical($overflow);
 		}
 		else
@@ -98,13 +109,30 @@ class message
 			}
 			elseif($answer_id == $key+1)
 			{
-				$emoji = '✅';
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$emoji = utility::nubmer_language($key+1);
+					if($key+1 < 10)
+					{
+						$emoji = utility::nubmer_language("0") . $emoji;
+					}
+					$emoji .= "|✅ ";
+				}
+				else
+				{
+					$emoji = '✅';
+				}
 			}
 			else
 			{
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
-					$emoji = utility::nubmer_language($key+1) . ") ";
+					$emoji = utility::nubmer_language($key+1);
+					if($key+1 < 10)
+					{
+						$emoji = utility::nubmer_language("0") . $emoji;
+					}
+					$emoji .= "| ";
 				}
 				else
 				{

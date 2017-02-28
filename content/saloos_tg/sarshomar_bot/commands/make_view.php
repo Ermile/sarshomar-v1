@@ -4,7 +4,7 @@ use \content\saloos_tg\sarshomar_bot\commands\handle;
 class make_view
 {
 	public static $emoji_number = ['0⃣', '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];
-	public static $max_emoji_list = 5;
+	public static $max_emoji_list = 7;
 	public $poll_id, $user_id, $query_result;
 
 	/**
