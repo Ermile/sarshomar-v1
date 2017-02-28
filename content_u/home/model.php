@@ -22,7 +22,8 @@ class model extends \mvc\model
 			if($signup_inspection)
 			{
 				\lib\db\users::set_login_session(null, null, $signup_inspection);
-				$this->redirector($this->url("base"). "/@");
+				debug::msg("direct", true);
+				$this->redirector($this->url("base"). "/@")->redirect();
 			}
 		}
 		else

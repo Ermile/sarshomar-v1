@@ -22,7 +22,7 @@ class answers
 	{
 		if(!$_user_id || !$_poll_id)
 		{
-			debug::error(T_("User id or poll id not found"), 'is_answered', 'db');
+			// debug::error(T_("User id or poll id not found"), 'is_answered', 'db');
 			return false;
 		}
 
