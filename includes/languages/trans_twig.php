@@ -23,14 +23,14 @@ private function transtext()
 	echo T_("Quick Access");                                                          // Line 125
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
-	echo T_("General");                                                               // Line 38
+	echo T_("General");                                                               // Line 40
 	echo T_("Billing");                                                               // Line 1
-	echo T_("Add a question");                                                        // Line 46
-	echo T_("Sarshomar knowledge");                                                   // Line 49
-	echo T_("Participation in Sarshomar knowledge");                                  // Line 50
-	echo T_("Intro");                                                                 // Line 54
-	echo T_("Account");                                                               // Line 58
-	echo T_("Most visited questions");                                                // Line 66
+	echo T_("Add a question");                                                        // Line 48
+	echo T_("Sarshomar knowledge");                                                   // Line 51
+	echo T_("Participation in Sarshomar knowledge");                                  // Line 52
+	echo T_("Intro");                                                                 // Line 56
+	echo T_("Account");                                                               // Line 60
+	echo T_("Most visited questions");                                                // Line 68
 
 	//---------------------------------------------------------content\help\posts.html
 	echo T_("Was this information helpful?");                                         // Line 23
@@ -140,24 +140,24 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 204
-	echo T_("You can select just two options.");                                      // Line 217
-	echo T_("I am not willing to answer");                                            // Line 266
-	echo T_("Save Answer");                                                           // Line 277
+	echo T_("Read More");                                                             // Line 205
+	echo T_("You can select just two options.");                                      // Line 218
+	echo T_("I am not willing to answer");                                            // Line 267
+	echo T_("Save Answer");                                                           // Line 278
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("result");                                                                // Line 292
-	echo T_("Similar Questions");                                                     // Line 331
-	echo T_("Last Questions");                                                        // Line 324
-	echo T_("There is no similar post");                                              // Line 332
-	echo T_("Poll timespan");                                                         // Line 350
+	echo T_("result");                                                                // Line 293
+	echo T_("Similar Questions");                                                     // Line 332
+	echo T_("Last Questions");                                                        // Line 325
+	echo T_("There is no similar post");                                              // Line 333
+	echo T_("Poll timespan");                                                         // Line 351
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 401
-	echo T_("Keyword");                                                               // Line 372
-	echo T_("Statistical population");                                                // Line 389
-	echo T_("There is nothing to display!");                                          // Line 446
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 457
+	echo T_("Not set");                                                               // Line 402
+	echo T_("Keyword");                                                               // Line 373
+	echo T_("Statistical population");                                                // Line 390
+	echo T_("There is nothing to display!");                                          // Line 447
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 458
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 514
+	echo T_("Continue");                                                              // Line 515
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -182,26 +182,26 @@ private function transtext()
 	echo T_("Help Center");                                                           // Line 17
 	echo T_("API");                                                                   // Line 10
 	echo T_("Eco Friendly");                                                          // Line 11
-	echo T_("Enamad");                                                                // Line 59
-	echo T_("Service");                                                               // Line 65
+	echo T_("Enamad");                                                                // Line 61
+	echo T_("Service");                                                               // Line 67
 	echo T_("Features");                                                              // Line 15
 	echo T_("Knowledge");                                                             // Line 16
-	echo T_("Learn More");                                                            // Line 75
-	echo T_("Terms of Service");                                                      // Line 77
+	echo T_("Learn More");                                                            // Line 77
+	echo T_("Terms of Service");                                                      // Line 79
 	echo T_("Privacy Policy");                                                        // Line 11
 	echo T_("Changelog");                                                             // Line 10
-	echo T_("Support");                                                               // Line 84
-	echo T_("Contact us");                                                            // Line 87
-	echo T_("Latest News");                                                           // Line 103
-	echo T_("Random Poll");                                                           // Line 69
-	echo T_("Referral Program");                                                      // Line 70
+	echo T_("Support");                                                               // Line 86
+	echo T_("Contact us");                                                            // Line 89
+	echo T_("Latest News");                                                           // Line 105
+	echo T_("Random Poll");                                                           // Line 71
+	echo T_("Referral Program");                                                      // Line 72
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Mission");                                                               // Line 9
 	echo T_("Vision");                                                                // Line 9
-	echo T_("In the News");                                                           // Line 97
+	echo T_("In the News");                                                           // Line 99
 	echo T_("Statistics");                                                            // Line 9
-	echo T_("Questions answered");                                                    // Line 125
-	echo T_("Proudly Made in IRAN");                                                  // Line 126
+	echo T_("Questions answered");                                                    // Line 127
+	echo T_("Proudly Made in IRAN");                                                  // Line 128
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Add Question");                                                          // Line 26
