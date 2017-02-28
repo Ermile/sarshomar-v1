@@ -730,7 +730,7 @@ footer .is-open i {transform:rotate(180deg);}
 .customers-container .customer.reverse .customer-content,.rtl .customers-container .customer-content{margin-left:0;margin-right:50px}
 .customers-container .customer-content h3 a{color:#0c7c78}
 .customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
-.customers-container .customer-content p{margin-bottom:0;color:#adadad}
+.customers-container .customer-content p{margin-bottom:0;color:#adadad; word-wrap: break-word}
 .customers-container .customer.reverse .customer-content{text-align:right}
 .customers-container .customer-img{width:100%;max-width:250px;height:auto;display:block}
 .customers-container .customer-img img{display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
