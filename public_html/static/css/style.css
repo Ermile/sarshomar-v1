@@ -277,11 +277,6 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-3x{font-size:3em}
 .icon-4x{font-size:4em}
 .icon-5x{font-size:5em}
-.icon-button-art:before{content:"\e90d"}
-.icon-tour:before{content:"\e909"}
-.icon-email:before{content:"\e90a"}
-.icon-location:before{content:"\e90b"}
-.icon-phone:before{content:"\e90c"}
 .icon-before:before{content:"\e900"}
 .icon-before-rtl:before{content:"\e901"}
 .icon-button-left:before{content:"\e902"}
@@ -291,9 +286,11 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-range-left:before{content:"\e906"}
 .icon-range-right:before{content:"\e907"}
 .icon-range-up:before{content:"\e908"}
-.icon-plus:before{content:"\f067"}
-.icon-question:before{content:"\f128"}
-.icon-minus:before{content:"\f068"}
+.icon-tour:before{content:"\e909"}
+.icon-email:before{content:"\e90a"}
+.icon-location:before{content:"\e90b"}
+.icon-phone:before{content:"\e90c"}
+.icon-button-art:before{content:"\e90d"}
 .icon-search:before{content:"\f002"}
 .icon-heart:before{content:"\f004"}
 .icon-star:before{content:"\f005"}
@@ -317,6 +314,8 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-times-circle:before{content:"\f057"}
 .icon-times-circle-o:before{content:"\f05c"}
 .icon-ban:before{content:"\f05e"}
+.icon-plus:before{content:"\f067"}
+.icon-minus:before{content:"\f068"}
 .icon-comment:before{content:"\f075"}
 .icon-bar-chart:before{content:"\f080"}
 .icon-comments:before{content:"\f086"}
@@ -329,12 +328,13 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-facebook:before{content:"\f09a"}
 .icon-credit-card:before{content:"\f09d"}
 .icon-bell-o:before{content:"\f0a2"}
+.icon-globe:before{content:"\f0ac"}
 .icon-filter:before{content:"\f0b0"}
 .icon-link:before{content:"\f0c1"}
 .icon-save:before{content:"\f0c7"}
 .icon-pinterest:before{content:"\f0d2"}
 .icon-google-plus:before{content:"\f0d5"}
-.icon-linkedin:before{content:"\f0e1"}
+.icon-linkedin2:before{content:"\f0e1"}
 .icon-comment-o:before{content:"\f0e5"}
 .icon-comments-o:before{content:"\f0e6"}
 .icon-bell:before{content:"\f0f3"}
@@ -351,6 +351,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-meh-o:before{content:"\f11a"}
 .icon-flag-o:before{content:"\f11d"}
 .icon-star-half-empty:before{content:"\f123"}
+.icon-question:before{content:"\f128"}
 .icon-youtube:before{content:"\f167"}
 .icon-youtube-play:before{content:"\f16a"}
 .icon-send:before{content:"\f1d8"}
@@ -364,7 +365,12 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-pinterest-p:before{content:"\f231"}
 .icon-commenting:before{content:"\f27a"}
 .icon-commenting-o:before{content:"\f27b"}
-.icon-globe:before{content:"\f0ac"}
+.icon-facebook2:before{content:"\ea91"}
+.icon-instagram:before{content:"\ea92"}
+.icon-telegram:before{content:"\ea95"}
+.icon-rss:before{content:"\ea9b"}
+.icon-rss2:before{content:"\ea9c"}
+.icon-linkedin:before{content:"\eac9"}
 
 
 /************************************************************** layout */
@@ -672,6 +678,9 @@ footer .checkbox {margin-right: 0;margin-left: 1.5em;padding: 1.2em .5em !import
 footer .checkbox .title {color: #aaa !important;font-size: inherit !important;padding: 0 !important;}
 footer .checkbox .title:hover {color: #fff !important}
 footer .is-open i {-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);}
+
+footer .socialbox{font-size:.9em}
+footer .socialbox>a{background-color:#2b3031}
 
 
 /************************************************************** special heading */
@@ -1054,8 +1063,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-toolbox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;padding:0 1em;margin-bottom:1em;font-size:1.2em}
 
-.poll-container .poll-toolbox .sharebox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center}
-.poll-container .poll-toolbox .sharebox>a{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;-moz-box-pack:center;justify-content:center}
+/*.poll-container .poll-toolbox .sharebox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center}
+.poll-container .poll-toolbox .sharebox>a{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;-moz-box-pack:center;justify-content:center}*/
 
 .poll-container .poll-toolbox .like-fav{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center}
 .poll-container .poll-toolbox .like-fav input{position:absolute;z-index:-1;width:0;height:0;opacity:0}
@@ -1102,7 +1111,19 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-actions{text-align:center;margin-bottom:5em}
 
 /* sharebox */
-.sharebox span{display:none;}
+/* socialbox */
+.sharebox>a{display:inline-block;background-color:#838383;width:2.2em;height:2.2em;line-height:2.2em;text-align:center;color:#fff !important;transition:.3s ease}
+.sharebox>a:not(:last-child){margin-right:.3em}
+.rtl .sharebox>a:not(:last-child){margin-right:0;margin-left:.3em}
+.sharebox>a.twitter:hover,.sharebox>a.twitter:focus{background-color:#1da1f2}
+.sharebox>a.rss:hover,.sharebox>a.rss:focus{background-color:#f26522}
+.sharebox>a.telegram:hover,.sharebox>a.telegram:focus{background-color:#0088cc}
+.sharebox>a.gplus:hover,.sharebox>a.gplus:focus{background-color:#dd4b39}
+.sharebox>a.facebook:hover,.sharebox>a.facebook:focus{background-color:#3b5998}
+.sharebox>a.linkedin:hover,.sharebox>a.linkedin:focus{background-color:#0077b5}
+.sharebox i{font-size:1.2em;vertical-align:middle;color:inherit}
+
+/*.sharebox span{display:none;}
 .sharebox a{display:inline-block;width:30px;height:30px;margin:0 .1em;text-align:center;position:relative;overflow:hidden;opacity:.99;-webkit-border-radius:2%;-moz-border-radius:2%;border-radius:2%}
 .sharebox a svg{z-index:10;vertical-align:middle}
 .sharebox a svg path{fill:#828282;-webkit-transition:.2s;-o-transition:.2s;-moz-transition:.2s;transition:.2s}
@@ -1111,7 +1132,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .sharebox a.google_plus:hover .google_plus_path{fill:#dd4b39}
 .sharebox a.facebook:hover .facebook_path{fill:#3b5998}
 .sharebox a.linkedin:hover .linkedin_path{fill:#0077B5}
-.sharebox a.rss:hover .rss_path{fill:#e68523}
+.sharebox a.rss:hover .rss_path{fill:#e68523}*/
 
 
 /* poll result */
