@@ -516,8 +516,8 @@ header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;
 .rtl header .ui-language-link{margin:0;margin-right:5px}
 header .ui-language-link:hover,header .ui-language-link:focus{background-color:#efefef}
 
-header .ui-language-link:hover .langlist{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
-header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; visibility: hidden;transition: all .1s;}
+header .ui-language-link:hover .langlist{opacity: 1; transition: opacity 0.2s linear;}
+header .langlist{position:absolute;top:100%;right:0;z-index:2;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; transition: all .1s;}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;transition:.3s;color:#00667a}
 header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#e5a428}
@@ -531,7 +531,7 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .info .displayname{margin:2px 0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .profile .info .role{/*font-size:10px*/}
 
-.profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;z-index:1; opacity: 0; visibility: hidden;transition: all .1s;}
+.profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;z-index:1; opacity: 0; transition: all .1s;}
 .profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#e76f6f;left:-1px}
 .rtl .profile .profile-detail::before{left:auto;right:-1px}
 .profile .profile-detail a{padding:5px;text-align:center;color:#7f7f7f;-webkit-transition:.3s;transition:.3s}
@@ -541,7 +541,7 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 
 
 .profile:hover,.profile.open{}
-.profile:hover .profile-detail,.profile.open .profile-detail{opacity: 1; visibility: visible;transition: visibility 0s, opacity 0.2s linear;}
+.profile:hover .profile-detail,.profile.open .profile-detail{opacity: 1; transition: visibility 0s, opacity 0.2s linear;}
 
 
 
