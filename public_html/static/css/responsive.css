@@ -357,7 +357,8 @@
  /************************************************************** Help center */
  .help-main-box, .help-category-box, .help-post-box {margin:0 }
  .help-category-items .help-category-item {padding: 2em 0;}
-#contact-box .element .title.large {border-radius: 0 5px 5px 0;display: flex;}
+#contact-box .element .title.large {border-radius: 5px 0 0 5px;display: flex;}
+.rtl #contact-box .element .title.large {border-radius: 0 5px 5px 0}
 
  /************************************************************** Help center */
  .sync{position:fixed;bottom:1em;right:3em;box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);border-radius:50%;top:auto;left:auto}
