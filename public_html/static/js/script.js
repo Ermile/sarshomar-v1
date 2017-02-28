@@ -948,8 +948,17 @@ function rearrangeSortable()
 		$(this).find('.score-module label').attr('for', 'score' + row);
 	});
 
+	setMultipleValueRange();
+}
 
-	$('#multiple-range').attr('data-max', countQuestionOpts);
+
+/**
+ * [setMultipleValue description]
+ */
+function setMultipleValueRange()
+{
+	// set multiple value
+	$('#multiple-range').attr('data-max', countQuestionOpts(true));
 }
 
 
