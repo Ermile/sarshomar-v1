@@ -335,7 +335,7 @@ trait options
 						terms
 					WHERE
 						terms.term_title IN ('$tags_title') AND
-						terms.term_type LIKE 'sarshomar%'
+						terms.term_type LIKE 'sarshomar_tag'
 				";
 				$tags_id = \lib\db::get($get_ids, 'id');
 			}
