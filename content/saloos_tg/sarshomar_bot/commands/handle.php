@@ -15,6 +15,14 @@ class handle
 		{
 			exit();
 		}
+
+
+		$valid_id = [1, 2, 3, 4, 17, 18, 21, 33, 35];
+		if(!in_array(bot::$user_id, $valid_id))
+		{
+			exit();
+		}
+
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
 		// ( ​​ ) free space :))

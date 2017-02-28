@@ -56,7 +56,7 @@ class step_answer_descriptive
 			$maker->message->add_poll_list($my_answer, false);
 			if(empty($get_answer['available']))
 			{
-				$maker->message->add('error', T_("مجاز به پاسخگویی نیستید"));
+				$maker->message->add('error', "❗️" . T_("مجاز به پاسخگویی نیستید"));
 				$maker->message->add_telegram_link();
 				$maker->message->add_count_poll();
 				$return = $maker->make();

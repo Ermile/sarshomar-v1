@@ -71,7 +71,6 @@ class message
 			foreach ($overflow as $key => $value) {
 				$x .= "$key: $value\n";
 			}
-			handle::send_log($x);
 			$this->message['chart'] = utility::calc_vertical($overflow);
 		}
 		else
@@ -242,7 +241,7 @@ class message
 
 	public function sum_stats()
 	{
-		if($this->stats)
+		if(isset($this->stats) && $this->stats)
 		{
 			return $this->stats;
 		}
@@ -257,7 +256,7 @@ class message
 			$sum[$key] = $value + $sum_invalid[$key];
 			$total += $sum[$key];
 			$total_sum_valid += $value;
-			$total_sum_invalid += $$sum_invalid[$key];
+			$total_sum_invalid += $sum_invalid[$key];
 		}
 
 		$this->stats = [
