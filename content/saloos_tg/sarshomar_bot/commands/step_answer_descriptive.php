@@ -22,6 +22,18 @@ class step_answer_descriptive
 		step::stop();
 		if(preg_match("/^([^_]*)_(.*)$/", $_text, $_answer))
 		{
+
+
+			\lib\utility::$REQUEST = new \lib\utility\request([
+				'method' 	=> 'array',
+				'request' => [
+					'id' 		=> $_answer[1],
+				]
+				]);
+
+			$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
+			$my_answer = $get_answer['my_answer'];
+
 			$text = T_('آیا شما قصد دارید به نظرسنجی زیر پاسخ دهید؟');
 			$maker = new make_view($_answer[1]);
 			if($maker->poll_type == 'descriptive')
@@ -39,10 +51,17 @@ class step_answer_descriptive
 				$answer_text = $maker::$emoji_number[$_answer[2]];
 			}
 
-			handle::send_log('poll/answer/' . $_answer[1] . '/' . $_answer[2]);
 
 			$maker->message->add_title();
-			$maker->message->add_poll_list(null, false);
+			$maker->message->add_poll_list($my_answer, false);
+			if(empty($get_answer['available']))
+			{
+				$maker->message->add('error', T_("مجاز به پاسخگویی نیستید"));
+				$maker->message->add_telegram_link();
+				$maker->message->add_count_poll();
+				$return = $maker->make();
+				return $return;
+			}
 			$maker->message->add('insert_line', "");
 			$maker->message->add('answer_text', T_("گزینه انتخابی شما :answer_text می‌باشد", ['answer_text' => $answer_text]));
 			if(isset($maker->query_result['access_profile']) && !is_null($maker->query_result['access_profile']))

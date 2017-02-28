@@ -194,7 +194,6 @@ class poll
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		}
 
-		handle::send_log([$class, $method, $poll_id, $answer]);
 
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' 	=> 'array',
