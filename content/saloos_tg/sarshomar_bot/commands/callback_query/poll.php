@@ -73,7 +73,7 @@ class poll
 				$message .= utility::nubmer_language("($value[count_vote])");
 				$message .= ' - ' . T_(ucfirst($value['status']));
 				$message .= "\n";
-				$message .= "/sp_" . $value['id'];
+				$message .= "/" . $value['id'];
 				$message .= "\n\n";
 			}
 		}
@@ -177,6 +177,11 @@ class poll
 		return ['text' => \lib\debug::compile()['title']];
 	}
 
+	public static function deny_answer($_query, $_data_url)
+	{
+
+	}
+
 	public static function answer($_query, $_data_url)
 	{
 		// \lib\db::transaction();
@@ -188,6 +193,9 @@ class poll
 		}elseif (count($_data_url) == 5) {
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		}
+
+		handle::send_log([$class, $method, $poll_id, $answer]);
+
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' 	=> 'array',
 			'request' => [

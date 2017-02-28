@@ -32,11 +32,15 @@ class step_answer_descriptive
 			elseif($maker->poll_type == 'like')
 			{
 				$answer_text = "❤️";
+				$_answer[2] = 'like';
 			}
 			else
 			{
 				$answer_text = $maker::$emoji_number[$_answer[2]];
 			}
+
+			handle::send_log('poll/answer/' . $_answer[1] . '/' . $_answer[2]);
+
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
 			$maker->message->add('insert_line', "");
@@ -48,8 +52,21 @@ class step_answer_descriptive
 			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
+			$maker->inline_keyboard->add([
+				[
+					'text' => T_("Allow"),
+					'callback_data' => 'poll/answer/' . $_answer[1] . '/' . $_answer[2]
+				],
+				[
+					'text' => T_("Deny"),
+					'callback_data' => 'poll/deny_answer/' . $_answer[1] . '/' . $_answer[2]
+				]
+			]);
+
 			$return = $maker->make();
-			// $return['reply_markup'] = ["remove_keyboard" => true];
+
+			$return["response_callback"] = utility::response_expire('answer_descriptive');
+
 			return $return;
 		}
 		else
