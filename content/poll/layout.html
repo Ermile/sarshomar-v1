@@ -322,7 +322,7 @@
   {% else %}
     {% set last_post =  post_search({"post_type":"poll","post_status" :"publish" , "post_privacy": "public", "order":"desc"}) %}
     {% if last_post %}
-    <div class="title">{%trans "Last Questions"%}</div>
+    <div class="title">{%trans "Latest Questions"%}</div>
     <ul>
      {%for key, value in last_post%}
      <li><a href="{{url.base}}/{{value.post_url}}">{{value.post_title}}</a></li>
