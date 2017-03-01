@@ -12,7 +12,7 @@ class inline_keyboard
 		$this->class = $make_class;
 	}
 
-	public function add_poll_answers()
+	public function add_poll_answers($_answer = null)
 	{
 		$keyboard_map = [
 			1 => [
@@ -64,8 +64,16 @@ class inline_keyboard
 			$this_row = $row_answer[0] + $last_count;
 			if($answer_value['type'] == 'like')
 			{
-				$callback_data .= 'like';
-				$inline_emoji = "❤️ ";
+				if(in_array('delete', $_answer['available']))
+				{
+					$callback_data .= 'dislike';
+					$inline_emoji = "💔";
+				}
+				else
+				{
+					$callback_data .= 'like';
+					$inline_emoji = "❤️";
+				}
 			}
 			elseif($answer_value['type'] == 'descriptive')
 			{

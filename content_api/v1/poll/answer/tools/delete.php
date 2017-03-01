@@ -17,6 +17,7 @@ trait delete
 		$default_options = ['id' => null];
 
 		$_options = array_merge($default_options, $_options);
+		$_options['id'] = utility\shortURL::decode($_options['id']);
 
 		$answer = $this->poll_answer_get($_options);
 

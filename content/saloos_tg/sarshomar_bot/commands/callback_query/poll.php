@@ -207,9 +207,14 @@ class poll
 
 		$request = ['id' => $poll_id];
 
+		$api_method = 'add';
+
 		switch ($answer) {
 			case 'like':
 				$request['like'] = true;
+				break;
+			case 'dislike':
+				$api_method = 'delete';
 				break;
 			case 'skip':
 				$request['skip'] = true;
@@ -221,11 +226,16 @@ class poll
 
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
 
-
-		$add_poll = \lib\main::$controller->model()->poll_answer_add([
-			'method' => in_array('edit', $get_answer['available']) ? 'put' : 'post'
-			]);
-
+		if($api_method == 'add')
+		{
+			$add_poll = \lib\main::$controller->model()->poll_answer_add([
+				'method' => in_array('edit', $get_answer['available']) ? 'put' : 'post'
+				]);
+		}
+		elseif($api_method == 'delete')
+		{
+			$add_poll = \lib\main::$controller->model()->poll_answer_delete(['id' => $poll_id]);
+		}
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
 

@@ -65,8 +65,6 @@ class model extends \content_api\v1\home\model
 
 		utility::set_request_array(['id' => $id]);
 
-		$id = utility\shortURL::decode($id);
-
 		return $this->poll_answer_delete(['id' => $id]);
 	}
 
