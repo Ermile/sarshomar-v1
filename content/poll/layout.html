@@ -313,7 +313,7 @@
 
 {%block poll_similar%}
 {% spaceless %}
- {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag"})%}
+ {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag", "post_status": "publish", "post_privacy": "public"})%}
  {% if similar %}
  <div class="title">{%trans "Similar Questions"%}</div>
   <ul>
