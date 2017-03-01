@@ -138,7 +138,7 @@ class model extends \mvc\model
 	public function random_result()
 	{
 		$random_result = [];
-		// $random_result = \lib\utility\stat_polls::get_random_poll_result();
+		$random_result = \lib\utility\stat_polls::get_random_poll_result();
 		if(!$random_result || $random_result == '[]')
 		{
 			$random_result = $this->random("main");

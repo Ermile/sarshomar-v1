@@ -121,7 +121,7 @@ class stat_polls
 
 		$default_options =
 		[
-			'validation' => 'valid'
+			'validation' => 'valid',
 		];
 		$_options = array_merge($default_options, $_options);
 		$language = \lib\define::get_language();
@@ -147,8 +147,30 @@ class stat_polls
 			-- get random poll id by homepage options to show in homepage
 		";
 		$random_poll_id = \lib\db::get($query, "id", true);
-		$poll_result = self::get_result($random_poll_id, $_options);
-		return $poll_result;
+		if($random_poll_id)
+		{
+
+			$poll_result = \lib\db\pollstats::get($random_poll_id, $_options);
+			$poll_title  = \lib\db\polls::get_poll_title($random_poll_id);
+			$poll_url    = \lib\db\polls::get_poll_url($random_poll_id);
+
+
+			$temp_poll_result = [];
+			if(isset($poll_result['result']) && is_array($poll_result))
+			{
+				foreach ($poll_result['result'] as $key => $value)
+				{
+					$temp_poll_result[] = ['key' => substr($key, 4), 'value' => (int) $value];
+				}
+			}
+			if(empty($temp_poll_result))
+			{
+				return false;
+			}
+			$data =  json_encode($temp_poll_result, JSON_UNESCAPED_UNICODE);
+			return ['title' => $poll_title, 'data' => $data, 'url' => $poll_url];
+		}
+		return false;
 	}
 
 

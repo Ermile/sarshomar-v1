@@ -103,7 +103,7 @@
       <div class="tagBox">
       {% if value.profile%}
         {%for  profile in value.profile %}
-          <span data-val="{{profile.id}}">{{profile.title}}</span>
+          <span data-val="{{profile.id}}" title="{{profile.translate}}">{{profile.title}}</span>
         {%endfor%}
       {%endif%}
       </div>

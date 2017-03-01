@@ -158,6 +158,9 @@ trait ready
 				$_poll_data[$key] = null;
 			}
 		}
+
+		$current_language = \lib\define::get_language();
+
 		$host = Protocol."://" . \lib\router::get_root_domain();
 		$host .= \lib\define::get_current_language_string();
 
@@ -411,6 +414,15 @@ trait ready
 									else
 									{
 										$opt_profile[$k]['title'] = $v['term_title'];
+									}
+								}
+								if(isset($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
+								{
+									$temp_term_meta = json_decode($v['term_meta'], true);
+
+									if(isset($temp_term_meta['translate'][$current_language]))
+									{
+										$opt_profile[$k]['translate'] = $temp_term_meta['translate'][$current_language];
 									}
 								}
 							}
