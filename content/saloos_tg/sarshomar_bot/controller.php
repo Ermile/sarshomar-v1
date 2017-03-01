@@ -17,6 +17,8 @@ class controller extends \lib\mvc\controller
 	public static $microtime_log;
 	function _route()
 	{
+		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
+		session_set_cookie_params(3600 * 24 * 365);
 		handle::send_log_clear();
 		register_shutdown_function(function()
 		{
