@@ -97,6 +97,8 @@ class controller extends \lib\mvc\controller
 		bot::$defaultText = T_('Undefined');
 		\lib\db\tg_session::$user_id = bot::$user_id;
 		\lib\db\tg_session::start();
+		$_SESSION['tg'] = \lib\db\tg_session::get_back('tg') ? \lib\db\tg_session::get_back('tg') : [];
+		$_SESSION['tg'] = commands\utility::object_to_array($_SESSION['tg']);
 
 		/**
 		 * run telegram handle
@@ -147,6 +149,7 @@ class controller extends \lib\mvc\controller
 		/**
 		 * save telegram sessions to db
 		 */
+		\lib\db\tg_session::set('tg', $_SESSION['tg']);
 		\lib\db\tg_session::save();
 		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 		{

@@ -187,7 +187,10 @@ class step_create
 			{
 				$poll_request['title'] = $question_export[0];
 				$poll_answers 	= array_slice($question_export, 1);
-				session::set('poll_options', 'type', "select");
+				if(count($poll_answers) > 0)
+				{
+					session::set('poll_options', 'type', "select");
+				}
 			}
 
 			if($poll_answers)
