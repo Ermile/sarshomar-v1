@@ -138,6 +138,12 @@ class controller extends \lib\mvc\controller
 			}
 		}
 
+
+		if(!\lib\storage::get_current_command())
+		{
+			session::remove('expire', 'command');
+		}
+
 		/**
 		 * save telegram sessions to db
 		 */

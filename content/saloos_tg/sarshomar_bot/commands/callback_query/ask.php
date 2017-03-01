@@ -61,7 +61,6 @@ class ask
 
 			$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
 			$my_answer = $get_answer['my_answer'];
-			handle::send_log($get_answer);
 		}
 		$maker->message->add_title();
 		$maker->message->add_poll_chart();

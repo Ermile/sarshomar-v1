@@ -113,7 +113,6 @@ class create
 		}
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 		$change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
-		handle::send_log(\lib\debug::compile());
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 	}
 }

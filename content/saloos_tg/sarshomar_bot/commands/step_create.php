@@ -92,7 +92,7 @@ class step_create
 				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 		}
-		handle::send_log($get_poll['title']);
+
 		if(
 			is_null(session::get('poll_options', 'type')) &&
 			$get_poll &&
@@ -187,6 +187,7 @@ class step_create
 			{
 				$poll_request['title'] = $question_export[0];
 				$poll_answers 	= array_slice($question_export, 1);
+				session::set('poll_options', 'type', "select");
 			}
 
 			if($poll_answers)
@@ -203,7 +204,6 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'put' : 'post']);
-			handle::send_log(\lib\debug::compile());
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);

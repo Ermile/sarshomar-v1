@@ -208,10 +208,27 @@ class poll
 		$request = ['id' => $poll_id];
 
 		$api_method = 'add';
+		$for_delete = session::get('expire', 'command', 'poll_delete');
+		if($for_delete && $for_delete->id == $poll_id && $for_delete->answer == $answer)
+		{
+			$api_method = 'delete';
+		}
+		elseif(isset($get_answer['my_answer'][0]) &&
+			$get_answer['my_answer'][0]['key'] == $answer &&
+			in_array('delete', $get_answer['available'])
+			)
+		{
+			$api_method = 'warn_delete';
+		}
 
 		switch ($answer) {
 			case 'like':
 				$request['like'] = true;
+				if(isset($get_answer['my_answer'][0]) && in_array('delete', $get_answer['available']))
+				{
+					$answer = 'dislike';
+					$api_method = 'warn_delete';
+				}
 				break;
 			case 'dislike':
 				$api_method = 'delete';
@@ -238,6 +255,12 @@ class poll
 		}
 		$debug_status = \lib\debug::$status;
 		$debug = \lib\debug::compile();
+		if ($api_method == 'warn_delete') {
+			$debug_status = 2;
+			$debug['messages']['error'][0]['title'] = T_("اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید");
+			session::set('expire', 'command', 'poll_delete', ['id' => $poll_id, 'answer' => $answer]);
+			\lib\storage::set_current_command(true);
+		}
 
 		\lib\debug::$status = 1;
 		callback_query::edit_message(ask::make(null, null, [
@@ -252,7 +275,11 @@ class poll
 		{
 			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
 		}
-		return ['text' => \lib\debug::compile()['title']];
+		elseif($debug_status == 2)
+		{
+			return ['text' => '⚠️' . $debug['messages']['error'][0]['title']];
+		}
+		return ['text' => '✅ ' . \lib\debug::compile()['title']];
 	}
 
 	public static function new()

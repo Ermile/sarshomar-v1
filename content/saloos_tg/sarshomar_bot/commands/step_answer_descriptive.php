@@ -124,7 +124,6 @@ class step_answer_descriptive
 		elseif($check)
 		{
 			session::set('answer_descriptive', 'id', $_text);
-			handle::send_log($_text);
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
