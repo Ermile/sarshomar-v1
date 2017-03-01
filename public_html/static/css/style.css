@@ -790,8 +790,9 @@ footer .socialbox>a{background-color:#2b3031}
 #inestimable:hover img{-webkit-filter:none;filter:none}
 
 #inestimable .left-mobile-border,#inestimable .right-mobile-border {display: none;}
-#inestimable .left-desktop-border {height: 100%;position: absolute;left: 0;top: 0;bottom: 0; display: block}
-#inestimable .right-desktop-border {height: 100%;position: absolute;right: 0;top: 0;bottom: 0;display: block}
+#inestimable .left-desktop-border,#inestimable .right-desktop-border{position:absolute;top:0;bottom:0;height:100%;width:auto}
+#inestimable .left-desktop-border{left:0}
+#inestimable .right-desktop-border{right:0}
 
 .special-button{position:relative;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;font-size:20px}
 .rtl .special-button{font-size:18px}
@@ -1098,7 +1099,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-options .option-content{background-color:#efefef;-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;padding:1em;color:#00667a;line-height:2;font-size:1.2em;word-break:break-all}
 .poll-container .poll-options .option-content input{width:100%;border:none;outline:none;display:block;background-color:transparent;color:#00667a}
 
-.poll-container .poll-options .checkbox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;padding-right:1em;background-color:#efefef}
+.poll-container .poll-options .checkbox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;padding-right:1em;background-color:#efefef;margin-bottom:0}
 .rtl .poll-container .poll-options .checkbox{padding-right:0;padding-left:1em}
 .poll-container .poll-options .checkbox label{margin:0}
 .poll-container .poll-options .checkbox label::before{-webkit-box-shadow:0 0 0 2px #efefef;-moz-box-shadow:0 0 0 2px #efefef;box-shadow:0 0 0 2px #efefef}
@@ -1382,8 +1383,8 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 /************************************************************** pagination */
 .pagination-container{text-align:center}
 .pagination{text-align: center;position: relative;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;overflow: hidden;display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-webkit-justify-content: center;-moz-box-pack: center;-ms-flex-pack: center;justify-content: center;margin-bottom: 2em;}
-.pagination a:first-child {-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;}
-.pagination a:last-child {-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}
+.pagination a:first-child {/*-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;*/}
+.pagination a:last-child {/*-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;*/}
 .pagination a{padding:1em 1.2em;background-color:#efefef;color:#00667a;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;font-weight:600}
 .rtl .pagination a{float:right}
 .pagination span{display:inline-block;padding:1em 1.2em;background-color:#efefef;color:#00667a;float:left;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;font-weight:600;cursor:default}
