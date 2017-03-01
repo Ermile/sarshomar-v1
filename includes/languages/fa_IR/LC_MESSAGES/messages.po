@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-01 08:26+0330\n"
-"PO-Revision-Date: 2017-03-01 08:30+0330\n"
+"POT-Creation-Date: 2017-03-01 08:52+0330\n"
+"PO-Revision-Date: 2017-03-01 08:52+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -9140,8 +9140,8 @@ msgid "Recent Activities"
 msgstr "فعالیت‌های اخیر"
 
 #: sarshomar/includes/languages/trans_twig.php:944
-msgid "You didn't have any activities yet"
-msgstr "شما تاکنون فعالیتی نداشته‌اید"
+msgid "You've had no activities yet"
+msgstr "شما تا کنون فعالیتی نداشته‌اید"
 
 #: sarshomar/includes/languages/trans_twig.php:945
 msgid "Question Answered"
@@ -12152,6 +12152,9 @@ msgstr ""
 #: sarshomar/includes/mvc/view.php:58
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "You didn't have any activities yet"
+#~ msgstr "شما تاکنون فعالیتی نداشته‌اید"
 
 #~ msgid "e.g: mail@example.com"
 #~ msgstr "مثال: mail@example.com"

@@ -941,7 +941,7 @@ private function transtext()
 	echo T_("Ask me");                                                                // Line 135
 	echo T_("Credit");                                                                // Line 144
 	echo T_("Recent Activities");                                                     // Line 155
-	echo T_("You didn't have any activities yet");                                    // Line 157
+	echo T_("You've had no activities yet");                                          // Line 157
 	echo T_("Question Answered");                                                     // Line 183
 	echo T_("Remained");                                                              // Line 184
 	echo T_("Answered");                                                              // Line 184
