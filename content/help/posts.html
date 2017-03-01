@@ -2,8 +2,9 @@
 
 {%block content%}
 <aside class="help-sidebar"></aside>
-<div class="main">
+<div class="main pad">
  <section class="box help-post-box">
+  {%if false%}
   <div class="row">
    <div class="search-box">
     <input type="text" placeholder='Search in Help Center'>
@@ -11,6 +12,7 @@
    </div>
    <div class="search-result" data-xhr='search-result' id="search-result"></div>
   </div>
+  {%endif%}
 {%block page_content%}
   <div class="sideline-title">
    <h4>{{post.title}}</h4>
