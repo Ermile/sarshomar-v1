@@ -146,7 +146,7 @@
  .rtl header .header-profile-button{font-size:12px}
 
  header #financial-box{width:100%;margin:0 20px!important}
-
+header .header-profile-link .header-link-icon {display: inline-block;}
 
  .checkbox+label:before{top:16px;left:10px}
  .row .checkbox.margin-bottom {margin-bottom: 15px;}
@@ -382,8 +382,8 @@
 
  /************************************************************** Table */
  .tbl {margin:0 1em;}
- .tbl.method-table>div {-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
- .tbl.method-table>div>span {-webkit-box-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;-ms-flex: 1;flex: 1;-webkit-box-flex: 0;-webkit-flex: 0 1 100%;-moz-box-flex: 0;-ms-flex: 0 1 100%;flex: 0 1 100%;}
+/* .tbl.method-table>div {-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+ .tbl.method-table>div>span {-webkit-box-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;-ms-flex: 1;flex: 1;-webkit-box-flex: 0;-webkit-flex: 0 1 100%;-moz-box-flex: 0;-ms-flex: 0 1 100%;flex: 0 1 100%;}*/
  .tbl.response-codes,.tbl.method-table {margin: 0;}
 
  /************************************************************** Billing */

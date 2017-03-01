@@ -1112,7 +1112,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /* sharebox */
 /* socialbox */
-.sharebox>a{display:inline-block;background-color:#838383;width:2.2em;height:2.2em;line-height:2.2em;text-align:center;color:#fff !important;transition:.3s ease}
+.sharebox>a{display:inline-block;background-color:#838383;width:2.2em;height:2.2em;line-height:2.2em;text-align:center;color:#fff !important;-webkit-transition:.3s ease;-o-transition:.3s ease;-moz-transition:.3s ease;transition:.3s ease}
 .sharebox>a:not(:last-child){margin-right:.3em}
 .rtl .sharebox>a:not(:last-child){margin-right:0;margin-left:.3em}
 .sharebox>a.twitter:hover,.sharebox>a.twitter:focus{background-color:#1da1f2}
@@ -1900,7 +1900,7 @@ code {font-size: 1.2em;}
 
 
 /************************************************************** Flexbox Table */
-.tbl{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-ms-flex-wrap:wrap;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;margin-bottom:3em;font-size:1.2em;-webkit-transition:0.3s;-o-transition:0.3s;-moz-transition:0.3s;transition:0.3s}
+.tbl{/*display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-ms-flex-wrap:wrap;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;*/margin-bottom:3em;font-size:1.2em;-webkit-transition:0.3s;-o-transition:0.3s;-moz-transition:0.3s;transition:0.3s}
 .tbl>div{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;flex-direction:row;}
 .tbl>div>span{padding:0.8em 1.2em;overflow:hidden;/*-webkit-box-flex:1;-ms-flex:1;flex:1;white-space:nowrap;*/-webkit-transition:0.3s;-o-transition:0.3s;-moz-transition:0.3s;transition:0.3s}
 .tbl>div:not(.tbl-header):nth-child(even){}
