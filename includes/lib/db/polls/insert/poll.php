@@ -133,8 +133,6 @@ trait poll
 			$insert_poll['id'] = ++$next_id;
 		}
 
-		$insert_poll['user_id'] =  self::$args['user'];
-
 		if(self::$args['language'])
 		{
 			// check language
@@ -156,6 +154,7 @@ trait poll
 		{
 			$insert_poll['post_sarshomar'] = self::$args['permission_sarshomar'] === true ? 1 : 0;
 			$insert_poll['post_privacy']   = 'private';
+			$insert_poll['user_id']        =  self::$args['user'];
 		}
 
 		$change_tree = false;

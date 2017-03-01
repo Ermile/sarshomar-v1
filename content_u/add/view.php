@@ -54,7 +54,7 @@ class view extends \content_u\home\view
 		$this->data->multiple_max_count = 2;
 		if(count($answers) > 2)
 		{
-			$this->data->multiple_max_count = count($answers);
+			$this->data->multiple_max_count = count($answers) - 1;
 		}
 
 		$this->data->answers = $answers;
