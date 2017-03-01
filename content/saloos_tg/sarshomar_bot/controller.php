@@ -18,14 +18,6 @@ class controller extends \lib\mvc\controller
 	function _route()
 	{
 		handle::send_log_clear();
-		if(isset($_GET['log']))
-		{
-			header('Content-Type: application/json');
-			\lib\db\tg_session::$user_id = (int) $_GET['log'];
-			\lib\db\tg_session::start();
-			echo json_encode(\lib\db\tg_session::get('tmp', 'callback_query'));
-			exit();
-		}
 		register_shutdown_function(function()
 		{
 			if(!empty(self::$microtime_log))
