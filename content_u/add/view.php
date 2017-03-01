@@ -68,7 +68,6 @@ class view extends \content_u\home\view
 
 		unset($poll['answers']);
 
-		$this->data->poll      = $poll;
 		$this->data->edit_mode = true;
 
 		if(isset($poll['tree']['parent']))
@@ -126,6 +125,15 @@ class view extends \content_u\home\view
 			$this->data->article_titles = $article_titles;
 		}
 
+		if(isset($poll['status']))
+		{
+			if($poll['status'] != 'draft' && $this->access('admin'))
+			{
+				$this->data->real_status = $poll['status'];
+				$poll['status'] = 'draft';
+			}
+		}
+
 		if(isset($poll['filters']['count']))
 		{
 			$filters = $poll['filters'];
@@ -153,6 +161,8 @@ class view extends \content_u\home\view
 			$this->data->total_with_filter   = $total_with_filter;
 			$this->data->selected_user       = $selected_user;
 		}
+
+		$this->data->poll      = $poll;
 	}
 }
 ?>

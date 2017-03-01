@@ -155,6 +155,7 @@ trait poll
 			$insert_poll['post_sarshomar'] = self::$args['permission_sarshomar'] === true ? 1 : 0;
 			$insert_poll['post_privacy']   = 'private';
 			$insert_poll['user_id']        =  self::$args['user'];
+			$insert_poll['post_status']    = 'draft';
 		}
 
 		$change_tree = false;
@@ -207,7 +208,10 @@ trait poll
 			$insert_poll['post_comment'] = 'open';
 		}
 
-		$insert_poll['post_status'] = 'draft';
+		if(!self::permission('admin'))
+		{
+			$insert_poll['post_status'] = 'draft';
+		}
 
 		$post_meta = [];
 

@@ -132,7 +132,7 @@ trait insert
 			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
 			self::$poll_full_url  = isset(self::$old_saved_poll['url']) ? self::$old_saved_poll['url']: null;
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
-			if(self::$old_status !== 'draft')
+			if(self::$old_status !== 'draft' && !self::permission('admin'))
 			{
 				return debug::error(T_("Can not edit poll, the status of this poll is :status", ['status' => self::$old_status]), 'status', 'permission');
 			}
