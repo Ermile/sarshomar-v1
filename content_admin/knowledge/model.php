@@ -37,6 +37,24 @@ class model extends \mvc\model
 		$id     = utility\shortURL::decode($code);
 		$status = utility::post("status");
 
+		if(utility::post("type"))
+		{
+			switch (utility::post('type'))
+			{
+				case 'homepage':
+					$is_checked = utility::post("checked") === 'true' ? true : false;
+					$args = ['poll_id' => $id, 'checked' => $is_checked];
+					$this->homepage($args);
+
+					break;
+
+				default:
+					debug::error(T_("Invalid parameter type"));
+					break;
+			}
+			return;
+		}
+
 		if($status == 'publish')
 		{
 			$update = ['post_status' => 'publish'];
@@ -182,7 +200,46 @@ class model extends \mvc\model
 		];
 
 		$poll_list = $this->poll_search($options);
-
+		$poll_ids = [];
+		$homepage = [];
+		if(isset($poll_list['data']) && is_array($poll_list['data']))
+		{
+			$poll_codes = array_column($poll_list['data'], 'id');
+			$poll_ids = array_map(function($_a){ return utility\shortURL::decode($_a);}, $poll_codes);
+			if(!empty($poll_ids))
+			{
+				$poll_ids = implode(',', $poll_ids);
+				$query =
+				"
+					SELECT
+						post_id, option_status
+					FROM options
+					WHERE
+						`post_id`      IN ($poll_ids) AND
+						`option_cat`   = 'homepage' AND
+						`option_key`   = 'chart' AND
+						`option_value` IN ($poll_ids)
+				";
+				$homepage = \lib\db::get($query, ['post_id', 'option_status']);
+				if(is_array($homepage) && !empty($homepage))
+				{
+					$temp_homepage = [];
+					foreach ($homepage as $key => $value)
+					{
+						if($value == 'enable')
+						{
+							array_push($temp_homepage, $key);
+						}
+					}
+					$homepage = $temp_homepage;
+				}
+				else
+				{
+					$homepage = [];
+				}
+			}
+		}
+		$poll_list['homepage'] = $homepage;
 		return $poll_list;
 	}
 
@@ -191,5 +248,54 @@ class model extends \mvc\model
 		return \lib\db\polls::count_poll_status();
 	}
 
+
+	/**
+	 * check homepage feaucher and set in options table
+	 */
+	public function homepage($_options = [])
+	{
+		$default_options =
+		[
+			'checked' => true,
+			'poll_id' => null,
+		];
+		$_options = array_merge($default_options, $_options);
+
+		// disable if home page exits
+		$disable = ['option_status' => 'disable'];
+		$enable  = ['option_status' => 'enable'];
+		$where =
+		[
+			'post_id'      => $_options['poll_id'],
+			'option_cat'   => 'homepage',
+			'option_key'   => 'chart',
+			'option_value' => $_options['poll_id'],
+			'limit'        => 1,
+		];
+
+		$result = \lib\db\options::get($where);
+		unset($where['limit']);
+		$query_result = false;
+		if($_options['checked'])
+		{
+			if(!empty($result))
+			{
+				$query_result = \lib\db\options::update_on_error($enable, $where);
+			}
+			else
+			{
+				$query_result = \lib\db\options::insert($where);
+			}
+			debug::true(T_("Poll show in home page"));
+		}
+		else
+		{
+			if(!empty($result))
+			{
+				$query_result = \lib\db\options::update_on_error($disable, $where);
+			}
+			debug::true(T_("Remove poll from home page"));
+		}
+	}
 }
 ?>

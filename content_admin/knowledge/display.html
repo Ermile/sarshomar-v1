@@ -55,7 +55,7 @@
 				</div>
 			</div>
 		</a>
-		<a href="{{url.base}}/admin" class="span1" title="{% trans " Return to admin area " %}">
+		<a href="{{url.base}}/admin" class="span1" title="{%trans "Return to admin area"%}">
 			<div class="statistics-box return">
 				<div class="icon show-icon-return">
 					{%if site.currentlang == "fa"%}
@@ -138,7 +138,10 @@
 							<!-- 	<span>|</span>
 								{% trans "total" %}	{{value.total }} -->
 								</span>
-
+						</div>
+						<div class="span2">
+						<label for="homepage_{{value.id}}" class="label">{%trans "Show in home page"%}</label>
+						<input class="set_homepage" type="checkbox" name="homepage" id="homepage_{{value.id}}" data-id="{{value.id}}" {%if value.id|shortURL('decode') in poll_list.homepage %} checked="checked" {%endif%}>
 						</div>
 						<div class="span2 star-rating">
 							<div class="star-rating-wrap">
@@ -235,6 +238,26 @@
 					},
 					abort: true,
 					success: function (e, data, x) {
+
+					}
+				}
+			});
+		});
+
+		$(document).on('click', '.set_homepage', function () {
+			id = $(this).attr("data-id");
+			checked = $(this).prop("checked");
+			$(this).ajaxify({
+				ajax: {
+					method: 'post',
+					data: {
+						'id': id,
+						'type': 'homepage',
+						'checked' : checked
+					},
+					abort: true,
+					success: function (e, data, x)
+					{
 
 					}
 				}
