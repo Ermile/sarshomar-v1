@@ -316,7 +316,7 @@
  <div class="title">{%trans "Similar Questions"%}</div>
   <ul>
    {%for key, value in similar%}
-   <li><a href="{{url.prefix}}/{{value.url}}">{{value.title}}</a></li>
+   <li><a href="{{url.base}}/{{value.url}}">{{value.title}}</a></li>
    {%endfor%}
   </ul>
   {% else %}
@@ -325,7 +325,7 @@
     <div class="title">{%trans "Last Questions"%}</div>
     <ul>
      {%for key, value in last_post%}
-     <li><a href="{{url.prefix}}/{{value.post_url}}">{{value.post_title}}</a></li>
+     <li><a href="{{url.base}}/{{value.post_url}}">{{value.post_title}}</a></li>
      {%endfor%}
     </ul>
     {%else%}
