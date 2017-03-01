@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-03-01 08:26+0330\n"
-"PO-Revision-Date: 2017-03-01 08:29+0330\n"
+"PO-Revision-Date: 2017-03-01 08:30+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -10593,7 +10593,7 @@ msgstr "سفر"
 
 #: sarshomar/includes/languages/trans_twig.php:1342
 msgid "outside iran"
-msgstr "سفر خارج ایران"
+msgstr "خارج ایران"
 
 #: sarshomar/includes/languages/trans_twig.php:1343
 msgid "white"
