@@ -287,6 +287,7 @@
 
 {%block poll_chart%}
 {% spaceless %}
+{%if url.tld == 'dev'%}
  <div class="menu">
   <div class="menu-inside">
    <input type="radio" name="chart_result" id="chart_result" value="result" checked>
@@ -297,6 +298,7 @@
    {%endfor%}
   </div>
  </div>
+{%endif%}
  {{block('chart')}}
 {% endspaceless %}
 {%endblock%}
