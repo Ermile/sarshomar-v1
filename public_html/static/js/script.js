@@ -304,7 +304,6 @@ function shortkey()
 				break;
 
 			// ctrl + s
-			case '83shift':
 			case '83ctrl':
 				// on /@/add by pressing ctrl+s save
 				var myurl = window.location.pathname;
