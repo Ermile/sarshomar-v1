@@ -62,16 +62,18 @@ class controller extends \lib\mvc\controller
 				if(isset($_args['results']))
 				{
 					foreach ($_args['results'] as $key => $value) {
-						handle::send_log($value);
 						$_args['results'][$key]['input_message_content']['message_text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
 						$_args['results'][$key]['input_message_content']['parse_mode'] = "HTML";
 					}
 				}
 				else
 				{
-					$_args['text']= preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
-					$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
-					$_args['parse_mode'] = "HTML";
+					if($_args['text'] != "")
+					{
+						$_args['text'] = preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
+						$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['parse_mode'] = "HTML";
+					}
 				}
 			}
 		};
