@@ -225,7 +225,6 @@
 
 			$(this).attr('data-max',data_max);
 			$(this).data('data-max',data_max);
-			// return data_max;
 		}
 		var data_max = parseInt($(this).data('data-max'));
 
@@ -943,20 +942,22 @@
 	optionMethod.lock = function(_name,_set)
 	{
 		var lock;
-		if (_set)
+		if (_set !== undefined)
 		{
-			if (_set == 'true') 
+			if (_set === true)
 			{
 				lock = 1;
 				$(this).data('data-lock','on');
 			}
-			else if(_set != 'true')
+
+			else
 			{
 				lock = 0;
 				$(this).data('data-lock','off');
 			}
 		}
-		else
+
+		else if(_set == undefined)
 		{
 			var lock_state = $(this).data('data-lock');
 			if (lock_state == 'on')
@@ -1121,6 +1122,7 @@
 			$(this).data("data-fix-mount", $(this).attr("data-fix-mount"));
 			$(this).data("data-lock", $(this).attr("data-lock"));
 			$(this).data("data-type", $(this).attr("data-type"));
+			$(this).data("data-support-rtl", $(this).attr("data-support-rtl"));
 
 
 
