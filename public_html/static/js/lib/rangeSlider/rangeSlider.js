@@ -158,9 +158,9 @@
 		if (!isNaN(_set))
 		{
 			var data_min = _set;
-			var json_string = $(this).data("save_jason");
-			if (json_string)
+			if ($(this).rangeSlider('option', 'check_json'))
 			{
+				var json_string = $(this).data("save_jason");
 				var json_steps = jQuery.parseJSON( json_string );
 				var json_steps_details = json_steps[0];
 				var start  = parseInt(json_steps_details["start"]);
@@ -180,8 +180,7 @@
 		}
 
 		var data_min = parseInt($(this).data('data-min'));
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
 			$(this).attr('data-min',data_min);
 			$(this).data('data-min',data_min);
@@ -232,9 +231,10 @@
 
 
 		var my_step = 0;
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
+			var json_string = $(this).data("save_jason");
 			var ends = [];
 			var multi_steps = JSON.parse(json_string);
 			var json_steps = multi_steps;
@@ -268,8 +268,7 @@
 			$(this).data('data-max',data_max);
 		}
 
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
 			var max_limit = $(this).data('data-max-limit-first');
 			$(this).data('max_limit', max_limit)
@@ -336,8 +335,7 @@
 		var data_max = Number($(this).data("data-max"));
 		var data_min = Number($(this).data('data-min'));
 
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
 			data_min = 0;
 		}
@@ -386,8 +384,7 @@
 		{
 			max_limit = parseInt(_set);
 
-			var json_string = $(this).data("save_jason");
-			if (json_string)
+			if ($(this).rangeSlider('option', 'check_json'))
 			{
 				if ($(this).data('_status') ) 
 				{
@@ -422,9 +419,9 @@
 
 				var limit_value = max_limit - $(this).rangeSlider('option','min');
 
-				var json_string = $(this).data("save_jason");
-				if (json_string)
+				if ($(this).rangeSlider('option', 'check_json'))
 				{
+					var json_string = $(this).data("save_jason");
 					var json_steps = jQuery.parseJSON( json_string );
 					var json_steps_details = json_steps[0];
 					var start  = parseInt(json_steps_details["start"]);
@@ -596,9 +593,8 @@
 				{
 					data_max_default = data_unit;
 				}
-				var json_string = $(this).data("data-step");
-				var json_string_step = $(this).data("save_jason");
-				if (json_string)
+
+				if ($(this).rangeSlider('option', 'check_json'))
 				{
 					var unit = $(this).rangeSlider('option','unit') + $(this).rangeSlider('option','min');
 					var step = $(this).rangeSlider('option','step');
@@ -675,8 +671,7 @@
 		var pixel_width = parseInt($(this).css(margin_type));
 
 
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
 			if ($(this).rangeSlider('option', 'max_limit'))
 			{
@@ -704,11 +699,10 @@
 	 */
 	optionMethod.change_multi_level_float= function(_name, _set)
 	{
-		var json_string = $(this).data("save_jason");
 		var steps  = [];
 		var starts = [];
 		var ends   = [];
-		if (json_string) 
+		if ($(this).rangeSlider('option', 'check_json')) 
 		{
 			var json_steps = jQuery.parseJSON( json_string );
 			for (var i = 0; i < json_steps.length; i++)
@@ -903,6 +897,43 @@
 	}
 
 
+
+
+
+
+	/**
+	 * [total_width description]
+	 * @param  {[type]} _name [name of method, is total_width]
+	 * @return {[type]}       [this will return ]
+	 */
+	optionMethod.check_json = function(_name)
+	{
+		var json;
+		var my_step;
+		var data = $(this).data("save_jason");
+		try {
+	    my_step = $.parseJSON(data);
+	    json = true;
+
+		} catch (e) {
+			my_step = Number(data);
+			if (isNaN(my_step))
+			{
+				my_step = 1;
+			}
+			json = false;
+		}
+		return json;
+	}
+
+
+
+
+
+
+
+
+
 	/**
 	 * [total_width description]
 	 * @param  {[type]} _name [name of method, is total_width]
@@ -987,9 +1018,7 @@
 			}
 		}
 
-
-		var json_string = $(this).data("save_jason");
-		if (json_string)
+		if ($(this).rangeSlider('option', 'check_json'))
 		{
 			var real_steps = $(this).rangeSlider('option', 'multi_level_value_to_real', _value);
 			if (!real_steps) 
@@ -1163,6 +1192,7 @@
 				data.range_width    = this.rangeSlider('option', 'range_width');
 				data.total_width    = this.rangeSlider('option', 'total_width');
 				data.lock    		= this.rangeSlider('option', 'lock');
+				data.check_json    		= this.rangeSlider('option', 'check_json');
 
 				data.real_max_limit = $(this).data('real_max_limit');
 
@@ -1233,8 +1263,7 @@
 				var from_step = Math.round(from / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 				var to_step = Math.round(to / ($(this).rangeSlider('option', 'step'))) * ($(this).rangeSlider('option', 'step'));
 
-				var json_string = $(this).data("save_jason");
-				if (json_string)
+				if ($(this).rangeSlider('option', 'check_json'))
 				{
 					var my_step = $(this).rangeSlider('option','step');
 					var max_limit = $(this).rangeSlider('option','max_limit');
@@ -1291,9 +1320,7 @@
 
 
 
-
-					var json_string = $(this).data("save_jason");
-					if (!json_string)
+					if (!$(this).rangeSlider('option', 'check_json'))
 					{
 						if ($(this).data('data-max-limit'))
 						{
@@ -1446,8 +1473,7 @@
 					{
 						var my_limit = $(this).rangeSlider('option', 'max_limit');
 
-						var json_string = $(this).data("save_jason");
-						if (json_string)
+						if ($(this).rangeSlider('option', 'check_json'))
 						{
 							my_limit = $(this).data('real_max_limit');
 						}
@@ -1683,7 +1709,6 @@
 				dynamic_range.show();
 				$(this).trigger("range-slider::init::after");
 
-
 				if ($(this).data("data-infinity") == 'max')
 				{
 					$(this).range( ($(this).rangeSlider('option', 'min_default')-$(this).rangeSlider('option', 'min')), $(this).rangeSlider('option', 'max'));
@@ -1755,8 +1780,8 @@ var add_selection = function(_name)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
-				var json_string = $(_self).data("save_jason");
-				if (json_string)
+
+				if ($(this).rangeSlider('option', 'check_json'))
 				{
 					my_max_limit = $(_self).data('real_max_limit');
 				}
@@ -1865,8 +1890,8 @@ var add_selection = function(_name)
 			if(my_max_limit)
 			{
 				var my_max_limit = $(_self).rangeSlider('option', 'max_limit');
-				var json_string = $(this).data("save_jason");
-				if (json_string)
+
+				if ($(this).rangeSlider('option', 'check_json'))
 				{
 					my_max_limit = $(_self).data('real_max_limit');
 				}
