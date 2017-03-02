@@ -704,6 +704,7 @@
 		var ends   = [];
 		if ($(this).rangeSlider('option', 'check_json')) 
 		{
+			var json_string = $(this).data("save_jason");
 			var json_steps = jQuery.parseJSON( json_string );
 			for (var i = 0; i < json_steps.length; i++)
 			{
@@ -1330,11 +1331,6 @@
 
 
 
-
-
-
-
-
 // setting the value showed on min and max elements
 					var min_unit = $(this).rangeSlider('option', 'min_unit');
 					$(this).find(".dynamic-range .min .mount").attr("data-value-show", parseInt(data.min + from_step));
@@ -1607,7 +1603,6 @@
 
 //converts from_step and to_step to percent, because for responsive we should to use percent, not pixel
 //
-
 				from = (from_step * 100) / ($(this).rangeSlider('option', 'unit'));
 				to   = (to_step * 100) / ($(this).rangeSlider('option', 'unit'));
 
