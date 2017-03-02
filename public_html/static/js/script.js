@@ -1001,7 +1001,7 @@ function setMultipleValueRange()
 {
 	console.log(countQuestionOpts(true));
 	// set multiple value
-	$('#rangepersons').rangeSlider('option', 'max', countQuestionOpts(true));
+	$('#multiple-range').rangeSlider('option', 'max', countQuestionOpts(true));
 	// $('#multiple-range').attr('data-max', countQuestionOpts(true));
 }
 
