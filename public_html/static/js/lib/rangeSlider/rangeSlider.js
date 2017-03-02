@@ -225,6 +225,7 @@
 
 			$(this).attr('data-max',data_max);
 			$(this).data('data-max',data_max);
+			// return data_max;
 		}
 		var data_max = parseInt($(this).data('data-max'));
 
@@ -1674,7 +1675,7 @@
 
 				$(this).data("data-max-limit-first", $(this).rangeSlider('option','max_limit')-$(this).rangeSlider('option','min'));
 				my_mount.hide();
-				if (data_fix_mount == 'on')
+				if (data_fix_mount !== undefined)
 				{
 					my_mount.show();
 					$(this).addClass("margin-range");
@@ -1817,7 +1818,7 @@ var add_selection = function(_name)
 
 				
 				$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
-				if (data_fix_mount != "on")
+				if (data_fix_mount === undefined)
 				{
 					$(_self).find('.dynamic-range span.mount').hide(); //design*********
 				}
@@ -1919,7 +1920,7 @@ var add_selection = function(_name)
 	}
 	}).bind('touchend.dynamic-range',function(e){
 			$(_self).find('.dynamic-range div.min , .dynamic-range div.max').removeClass("active"); //design*********
-			if (data_fix_mount != "on")
+			if (data_fix_mount === undefined)
 			{
 				$(_self).find('.dynamic-range span.mount').hide(); //design*********
 			}
@@ -1935,6 +1936,7 @@ var add_selection = function(_name)
 	}
 
 	var data_fix_mount = $(this).data("data-fix-mount");
+
 	var data = $(this).data('range-slider');
 	var _self = this;
 	var selection = $("<div class='"+_name+"'></div>");
@@ -1972,7 +1974,7 @@ var add_selection = function(_name)
 		$(document).bind("mousemove.range-slider", function(event){
 
 			$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
-			if (data_fix_mount != "on")
+			if (data_fix_mount === undefined)
 			{
 				$(_self).find('.dynamic-range .'+ _name +' span.mount').show(); //design*********
 			}
@@ -2005,7 +2007,7 @@ var add_selection = function(_name)
 		}).bind("mouseup.range-slider", function(){
 
 			$(_self).find('.dynamic-range .'+ _name).removeClass("active"); //design*********
-			if (data_fix_mount != "on")
+			if (data_fix_mount === undefined)
 			{
 				$(_self).find('.dynamic-range .'+ _name +' span.mount').hide(); //design*********
 			}
@@ -2041,7 +2043,7 @@ var add_selection = function(_name)
 		if($(this).is('.max'))
 		{
 
-			if (data_fix_mount != "on")
+			if (data_fix_mount === undefined)
 			{
 				$(_self).find('.dynamic-range .max span.mount').show(); //design*********
 			}
@@ -2087,7 +2089,7 @@ var add_selection = function(_name)
 			}
 		}
 
-		if (data_fix_mount != "on")
+		if (data_fix_mount === undefined)
 		{
 			$(_self).find('.dynamic-range .max span.mount').hide(); //design*********
 			$(_self).find('.dynamic-range .min span.mount').hide(); //design*********
@@ -2102,7 +2104,7 @@ var add_selection = function(_name)
 	{
 		      e.preventDefault();
 				$(_self).find('.dynamic-range .'+ _name).addClass("active"); //design*********
-				if (data_fix_mount != "on")
+				if (data_fix_mount === undefined)
 				{
 					$(_self).find('.dynamic-range .'+ _name +' span.mount').show(); //design*********
 				}
@@ -2130,7 +2132,7 @@ var add_selection = function(_name)
 	}).bind('touchend',function(e){
 			e.preventDefault();
 			$(_self).find('.dynamic-range .'+ _name).removeClass("active"); //design*********
-			if (data_fix_mount != "on")
+			if (data_fix_mount === undefined)
 			{
 				$(_self).find('.dynamic-range .'+ _name +' span.mount').hide(); //design*********
 			}
