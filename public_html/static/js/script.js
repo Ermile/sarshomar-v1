@@ -772,8 +772,6 @@ function checkAddOpt()
 			emptyRowNumber.push(key);
 		}
 	});
-	console.log(numberOFInputs);
-	console.log(numberOfEmptyInputs);
 
 	if(countQuestionOpts() >= 20)
 	{
@@ -869,7 +867,7 @@ function showQuestionOptsDel(_this, _delete)
 		// hide all elements
 		$('.input-group.sortable > li .delete').fadeOut(100);
 	}
-	if($('#question-add').attr('data-status') !== 'draft')
+	if($('#question-add').attr('data-status') !== 'draft' || $('#question-add').attr('data-admin') !== undefined)
 	{
 		return false;
 	}
@@ -1001,8 +999,10 @@ function rearrangeSortable()
  */
 function setMultipleValueRange()
 {
+	console.log(countQuestionOpts(true));
 	// set multiple value
-	$('#multiple-range').attr('data-max', countQuestionOpts(true));
+	$('#rangepersons').rangeSlider('option', 'max', countQuestionOpts(true));
+	// $('#multiple-range').attr('data-max', countQuestionOpts(true));
 }
 
 
@@ -1309,15 +1309,25 @@ function detectStep(_name)
 			break;
 	}
 	// change title of btn
-	$("#next-step").text($('.page-progress .active:last').attr('data-btn'));
+	var nextStepBtn = $("#next-step");
+	nextStepBtn.text($('.page-progress .active:last').attr('data-btn'));
 	if(sthis == 'step3')
 	{
 		var pollAddr = $('#short_url').val();
-		$("#next-step").attr('href',  pollAddr);
+		// if we have address of poll on step3 change to it
+		if(pollAddr)
+		{
+			nextStepBtn.attr('href',  pollAddr);
+		}
+		else
+		{
+			nextStepBtn.text(nextStepBtn.attr('data-draft'));
+			nextStepBtn.attr('href',  null);
+		}
 	}
 	else
 	{
-		$("#next-step").attr('href', null);
+		nextStepBtn.attr('href', null);
 	}
 
 	$('.page-progress').attr('data-current', sthis);
@@ -1352,6 +1362,10 @@ function checkNextStep()
 				break;
 
 			case 'step-publish':
+				if($("#next-step").attr('href') === undefined)
+				{
+					requestSavingData(true);
+				}
 				// do nothing. only navigate
 				break;
 		}
@@ -1760,11 +1774,15 @@ function setStatusText(_newStatus)
 			lockIt = false;
 			break;
 	}
-
-	setTimeout(function()
+	if(questionBox.attr('data-admin') !== undefined)
 	{
-		lockAllElements(lockIt);
-	}, 200);
+		lockIt = false;
+	}
+	if(_newStatus)
+	{
+		lockAllElements(lockIt, 300);
+	}
+
 
 	// show btn after change text
 	// changeStatusBtn.fadeIn().css("display","inline-block").removeClass('hide');
@@ -1837,31 +1855,39 @@ String.prototype.ucFirst = function()
  * @param  {[type]} _status [description]
  * @return {[type]}         [description]
  */
-function lockAllElements(_lock)
+function lockAllElements(_lock, _timing)
 {
-	var questionBox = $('#question-add');
-	switch (_lock)
+	if(!_timing)
 	{
-		case true:
-			// change elements
-			questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
-			questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
-			// questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
-			questionBox.find('.range-slider').attr('data-lock', '');
-			questionBox.find('.sync').attr('data-lock', '');
-			console.log('lock');
-			break;
-
-
-		case false:
-			// change elements
-			questionBox.find('input').attr('disabled', null).attr('data-lock', null);
-			questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
-			// questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
-			questionBox.find('.range-slider').attr('data-lock', null);
-			questionBox.find('.sync').attr('data-lock', null);
-			break;
+		_timing = 300;
 	}
+	setTimeout(function()
+	{
+		var questionBox = $('#question-add');
+		switch (_lock)
+		{
+			case true:
+				// lock
+				// change elements
+				questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
+				questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
+				// lock all range
+				questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
+				questionBox.find('.sync').attr('data-lock', '');
+				console.log('lock');
+				break;
+
+			case false:
+				// unlock
+				// change elements
+				questionBox.find('input').attr('disabled', null).attr('data-lock', null);
+				questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
+				// unloack all range
+				questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
+				questionBox.find('.sync').attr('data-lock', null);
+				break;
+		}
+	}, _timing);
 }
 
 
@@ -1930,6 +1956,11 @@ function sendQuestionData(_status, _asyncAjax)
 	var checkWithOld = saveSavedData(myPoll);
 	if(_asyncAjax === false)
 	{
+		if(!$('#question-add').attr('data-id'))
+		{
+			console.log('on unload if not saved until now skip it and return false');
+			return false;
+		}
 		_asyncAjax = false;
 	}
 	else
@@ -1969,9 +2000,6 @@ function sendQuestionData(_status, _asyncAjax)
 					}
 					else
 					{
-						// change language if transfered to new location after a short delay
-						setTimeout(function(){setLanguageURL();}, 300);
-
 						var myurl = window.location.pathname + '/' + id + window.location.hash;
 						// add new and redirect url
 						if(e.result.short_url)
@@ -1983,6 +2011,13 @@ function sendQuestionData(_status, _asyncAjax)
 							url: myurl,
 							fake: true,
 						});
+
+						// change language if transfered to new location after a short delay
+						setTimeout(function()
+						{
+							setLanguageURL();
+							detectStep();
+						}, 300);
 					}
 					// save successfully saved
 					saveSavedData(null, true);
@@ -2559,7 +2594,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	// import needed js
-	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', null, 150);
+	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', null, 0);
 	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
 	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
 	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', null, 400);
@@ -2569,7 +2604,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// handle copy btn
 	handleCopy();
 	// // draw factor and fill total price on start
-	// calcTotalPrice();
+	calcTotalPrice();
 	// draw media for each item contain media
 	drawMedia();
 	// check status of question and if needed lock it
