@@ -459,7 +459,7 @@
 				}
 				else
 				{
-					if ($(document).find("body.rtl").hasClass('rtl') && $(this).data('data-support-rtl') && $(this).rangeSlider('option','type')!='vertical')
+					if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && $(this).rangeSlider('option','type')!='vertical')
 					{
 						limit_value_percent = (100-limit_value_percent);
 					}
@@ -1123,7 +1123,7 @@
 			$(this).data("data-fix-mount", $(this).attr("data-fix-mount"));
 			$(this).data("data-lock", $(this).attr("data-lock"));
 			$(this).data("data-type", $(this).attr("data-type"));
-			$(this).data("data-support-rtl", $(this).attr("data-support-rtl"));
+			$(this).data("data-fix-direction", $(this).attr('data-fix-direction'));
 
 
 
@@ -1228,7 +1228,6 @@
 					}
 					option.to_type = 'pixel';
 				}
-
 				var base_depth = this[depth_type]();
 
 				if(option.from_type == 'pixel')
@@ -1662,7 +1661,7 @@
 
 // add support rtl class to change range slider to right_to_left on page rtl direction
 // 
-				if ($(this).data('data-support-rtl')) 
+				if ($(this).data('data-fix-direction')===undefined) 
 				{
 					$(this).addClass('support-rtl')
 				}
@@ -1693,7 +1692,10 @@
 
 				else if ($(this).data("data-infinity") == 'min')
 				{
+					 // $(this).range( 0, $(this).rangeSlider('option', 'max_default')-$(this).rangeSlider('option', 'min'));
+
 					$(this).rangeSlider('option', 'set_range', 'to',{type:'ziro_unit'}, $(this).attr('data-max-default') );
+
 				}
 
 				else
@@ -1742,7 +1744,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1764,7 +1766,7 @@ var add_selection = function(_name)
 			var mouse_position    = data.type == 'vertical' ? event.pageY : event.pageX;
 			var ziro_point        = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical')
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1847,7 +1849,7 @@ var add_selection = function(_name)
 			var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1873,7 +1875,7 @@ var add_selection = function(_name)
 			var mouse_position  = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 			var ziro_point      = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical')
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical')
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1935,8 +1937,8 @@ var add_selection = function(_name)
 		});
 	}
 
-	var data_fix_mount = $(this).data("data-fix-mount");
 
+	var data_fix_mount = $(this).data("data-fix-mount");
 	var data = $(this).data('range-slider');
 	var _self = this;
 	var selection = $("<div class='"+_name+"'></div>");
@@ -1959,7 +1961,7 @@ var add_selection = function(_name)
 		var mouse_position = data.type == 'vertical' ? event.pageY : event.pageX;
 		var ziro_point     = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
+		if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical') 
 		{
 			var _width = $(_self).width();
 			var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -1983,7 +1985,7 @@ var add_selection = function(_name)
 			var mouse_selection = mouse_position - ziro_point;
 			mouse_selection = data.type == 'vertical' ? $(_self).height() - mouse_selection : mouse_selection;
 
-			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
+			if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical') 
 			{
 				var _width = $(_self).width();
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : _width-$(_self).offset().left;
@@ -2049,7 +2051,7 @@ var add_selection = function(_name)
 			}
 			if(event.keyCode == 38 || event.keyCode == 39)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 39)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && event.keyCode == 39)
 				{
 					change_by_key = change_by_key*(-1);
 				}
@@ -2058,7 +2060,7 @@ var add_selection = function(_name)
 			}
 			else if(event.keyCode == 37 || event.keyCode == 40)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 37)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && event.keyCode == 37)
 				{
 					change_by_key = change_by_key*(-1);
 				}
@@ -2071,7 +2073,7 @@ var add_selection = function(_name)
 			$(_self).find('.dynamic-range .min span.mount').show(); //design*********
 			if(event.keyCode == 38 || event.keyCode == 39)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 39)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && event.keyCode == 39)
 				{
 					change_by_key = change_by_key*(-1);
 				} 
@@ -2080,7 +2082,7 @@ var add_selection = function(_name)
 			}
 			else if(event.keyCode == 37 || event.keyCode == 40)
 			{
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && event.keyCode == 37)
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && event.keyCode == 37)
 				{
 					change_by_key = change_by_key*(-1);
 				} 
@@ -2111,7 +2113,7 @@ var add_selection = function(_name)
 				var mouse_position = data.type == 'vertical' ? e.originalEvent.touches[0].pageY : e.originalEvent.touches[0].pageX;
 				var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
 
-				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-support-rtl') && data.type != 'vertical') 
+				if ($(document).find("body.rtl").hasClass('rtl') && $(_self).data('data-fix-direction')===undefined && data.type != 'vertical') 
 				{
 					var _width = $(_self).width();
 					var ziro_point = data.type == 'vertical'? $(_self).offset().top : $(_self).offset().left;
