@@ -1,5 +1,7 @@
 <?php
 namespace lib\utility\chart;
+use \lib\debug;
+use \lib\utility;
 
 trait set
 {

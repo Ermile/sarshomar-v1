@@ -32,7 +32,7 @@ trait get
 			$current   = [];
 			$available = [];
 
-			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id, ['type' => 'all']);
+			$is_answer = \lib\utility\answers::is_answered($this->user_id, $poll_id);
 			if(!isset($is_answer[0]))
 			{
 				$is_answer = [$is_answer];
@@ -63,7 +63,10 @@ trait get
 				}
 				else
 				{
-					$msg = T_("You have answered to option :opt", ['opt' => implode(',', array_keys($current))]);
+					if(!empty($current))
+					{
+						$msg = T_("You have answered to option :opt", ['opt' => implode(',', array_keys($current))]);
+					}
 					// foreach ($current as $key => $value)
 					// {
 					// 	if($key == '0')

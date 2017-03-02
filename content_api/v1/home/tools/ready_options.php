@@ -12,7 +12,7 @@ trait ready_options
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function permission($_content = null, $_permission = null, $_actions = null)
+	public static function check_permission($_content = null, $_permission = null, $_actions = null)
 	{
 		$permission = new \lib\utility\permission;
 		return $permission->access($_content, $_permission, $_actions);

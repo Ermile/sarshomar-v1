@@ -380,7 +380,7 @@ class model extends \mvc\model
 		{
 			if($is_answered)
 			{
-				$this->poll_answer_delete(['id' => utility\shortURL::decode($poll_id)]);
+				$this->poll_answer_delete(['id' => $poll_id]);
 				// muset remove her answer
 				if(\lib\debug::$status)
 				{

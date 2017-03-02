@@ -12,7 +12,7 @@ class controller extends \mvc\controller
 		$class_name = null;
 		if(preg_match("/([^:]+):(.*)/", $referer, $_referer) && $referer)
 		{
-			$class_name = strtolower($_referer[1]);
+			$class_name = mb_strtolower($_referer[1]);
 			if($class_name == 'http' || $class_name == 'https')
 			{
 				\lib\debug::msg('direct', true);

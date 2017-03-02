@@ -122,7 +122,7 @@ class language
 
 	public static function set($_language, $_options = [])
 	{
-		$language = strtolower($_language);
+		$language = mb_strtolower($_language);
 		foreach (self::$valid_lang as $key => $value) {
 			if(array_search($language, $value) !== false)
 			{

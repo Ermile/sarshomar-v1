@@ -42,14 +42,17 @@ class answers
 				-- answers::is_answered()
 			";
 			$result = \lib\db::get($query, null);
-			self::$IS_ANSWERED[$_user_id][$_poll_id] = $result;
+			if($result)
+			{
+				self::$IS_ANSWERED[$_user_id][$_poll_id] = $result;
+			}
 		}
 
-		$default_options =
+		$default_args =
 		[
 			'type' => false,
 		];
-		$_options = array_merge($default_options, $_options);
+		$_options = array_merge($default_args, $_options);
 
 		if($_options['type'] === 'all')
 		{
@@ -57,7 +60,6 @@ class answers
 			{
 				return self::$IS_ANSWERED[$_user_id][$_poll_id];
 			}
-			return false;
 		}
 
 		if(isset(self::$IS_ANSWERED[$_user_id][$_poll_id]) && is_array(self::$IS_ANSWERED[$_user_id][$_poll_id]))
@@ -70,98 +72,11 @@ class answers
 					array_push($temp, $value);
 				}
 			}
-
-			if(empty($temp))
-			{
-				return false;
-			}
 			return $temp;
 		}
 		return false;
 	}
 
-
-	/**
-	 * check access to answer to this poll
-	 *
-	 * @param      array   $_args  The arguments
-	 */
-	public static function check_time_count($_args = [])
-	{
-
-		$default_args =
-		[
-			'time'    => (60 * 7) * 60, // in dev mode
-			'count'   => 3 * 60, // in dev mode
-			'user_id' => null,
-			'poll_id' => null,
-			'port'    => 'site',
-			'subport' => null,
-			'debug'   => true,
-			// 'answer'  => [],
-			// 'options' => [],
-			// 'skipped' => false,
-			// 'execute' => false,
-		];
-
-		$_args = array_merge($default_args, $_args);
-
-		// get the old answered user to this poll
-		self::$old_answer = self::is_answered($_args['user_id'], $_args['poll_id']);
-
-		if(!self::$old_answer || !is_array(self::$old_answer))
-		{
-			return true;
-		}
-
-		$insert_time = date("Y-m-d H:i:s");
-		$now         = time();
-		foreach (self::$old_answer as $key => $value)
-		{
-			if(isset($value['insertdate']))
-			{
-				$insert_time = $value['insertdate'];
-				break;
-			}
-		}
-
-		$insert_time  = strtotime($insert_time);
-		$diff_seconds = $now - $insert_time;
-
-		if($diff_seconds > $_args['time'])
-		{
-			if($_args['debug'])
-			{
-				debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
-			}
-			return false;
-		}
-
-		// get count of updated the poll
-		$where =
-		[
-			'post_id'    => $_args['poll_id'],
-			'user_id'    => $_args['user_id'],
-			'option_cat' => "update_user_$_args[user_id]",
-			'option_key' => "update_result_$_args[poll_id]",
-			'limit'      => 1,
-		];
-
-		$update_count = \lib\db\options::get($where);
-
-		if(isset($update_count['value']))
-		{
-			if((int) $update_count > (int) $_args['count'])
-			{
-				if($_args['debug'])
-				{
-					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-				}
-				return false;
-			}
-		}
-		return true;
-	}
 
 
 	/**
@@ -199,8 +114,11 @@ class answers
 				break;
 
 			case 'edit':
+				return self::check_time_count($_args, 'edit');
+				break;
+
 			case 'delete':
-				return self::check_time_count($_args);
+				return self::check_time_count($_args, 'delete');
 				break;
 
 			case 'check':
@@ -213,13 +131,16 @@ class answers
 				}
 				else
 				{
-					if(self::check_time_count($_args))
+					if(self::check_time_count($_args, 'edit'))
 					{
 						array_push($avalible, 'edit');
+					}
+
+					if(self::check_time_count($_args, 'delete'))
+					{
 						array_push($avalible, 'delete');
 					}
 				}
-
 				return $avalible;
 
 				break;
@@ -368,6 +289,215 @@ class answers
 
 
 	/**
+	 * check access to answer to this poll
+	 *
+	 * @param      array   $_args  The arguments
+	 * @param      <type>  $_type  The type
+	 */
+	public static function check_time_count($_args = [], $_type)
+	{
+
+		$default_args =
+		[
+			'user_id' => null,
+			'poll_id' => null,
+			'answer'  => [],
+			'options' => [],
+			'skipped' => false,
+			'port'    => 'site',
+			'subport' => null,
+			'debug'   => true,
+			'execute' => false,
+			'time'    => (60 * 7) * 60, // in dev mode
+			'count'   => 3 * 60, // in dev mode
+		];
+
+		$_args = array_merge($default_args, $_args);
+
+		// get the old answered user to this poll
+		self::$old_answer = \lib\db\polldetails::get($_args['user_id'], $_args['poll_id']);
+
+		if(!self::$old_answer || !is_array(self::$old_answer))
+		{
+			if($_type === 'edit' || $_type === 'delete')
+			{
+				if($_args['debug'])
+				{
+					debug::error(T_("You have not answered to this poll yet"), 'answer', 'permission');
+				}
+				return false;
+			}
+		}
+
+		$old_opt =  array_column(self::$old_answer, 'opt');
+
+		self::$must_remove = array_diff($old_opt, $_args['answer']);
+		self::$must_insert = array_diff($_args['answer'], $old_opt);
+
+		$new_opt = array_keys($_args['answer']);
+		if($old_opt == $new_opt)
+		{
+			if($_type === 'edit')
+			{
+				if($_args['debug'])
+				{
+					debug::error(T_("You have already selected this answer and submited"), 'answer', 'permission');
+				}
+				return false;
+			}
+			// elseif($_type === 'delete')
+			// {
+			// 	return true;
+			// }
+		}
+
+		$insert_time = date("Y-m-d H:i:s");
+		$now         = time();
+		foreach (self::$old_answer as $key => $value)
+		{
+			if(isset($value['insertdate']))
+			{
+				$insert_time = $value['insertdate'];
+			}
+			break;
+		}
+
+		$insert_time  = strtotime($insert_time);
+		$diff_seconds = $now - $insert_time;
+
+		if($diff_seconds > $_args['time'])
+		{
+			if($_args['debug'])
+			{
+				debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
+			}
+			return false;
+		}
+
+		// get count of updated the poll
+		$where =
+		[
+			'post_id'    => $_args['poll_id'],
+			'user_id'    => $_args['user_id'],
+			'option_cat' => "update_user_$_args[user_id]",
+			'option_key' => "update_result_$_args[poll_id]",
+		];
+
+		if($_args['execute'])
+		{
+			\lib\db\options::plus($where);
+		}
+
+		$where['limit'] = 1;
+
+		$update_count = \lib\db\options::get($where);
+
+		if(!$update_count || !is_array($update_count) || !isset($update_count['value']))
+		{
+			return true;
+		}
+
+		$update_count = intval($update_count['value']);
+
+		if($update_count > $_args['count'])
+		{
+			if($_args['debug'])
+			{
+				debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
+			}
+			return false;
+		}
+		return true;
+	}
+
+
+	/**
+	 * check last user update
+	 * the user can edit the answer for one min and 3 times
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_poll_id  The poll identifier
+	 * @param      <type>  $_args['answer']   The answer
+	 * @param      array   $_option   The option
+	 */
+	public static function recently_answered($_args = [])
+	{
+
+		$default_args =
+		[
+			'user_id' => null,
+			'poll_id' => null,
+			'answer'  => [],
+			'options' => [],
+			'skipped' => false,
+			'port'    => 'site',
+			'subport' => null,
+			'time'    => 60,
+			'count'   => 3
+		];
+		$_args = array_merge($default_args, $_args);
+
+
+		list($must_remove, $must_insert, $old_answer) = self::analyze($_args);
+
+		if($must_remove == $must_insert)
+		{
+			return debug::error(T_("You have already selected this answer and submited"), 'answer', 'arguments');
+		}
+
+
+		// default insert date
+		$insert_time = date("Y-m-d H:i:s");
+		$now         = time();
+		foreach ($old_answer as $key => $value)
+		{
+			if(isset($value['insertdate']))
+			{
+				$insert_time = $value['insertdate'];
+			}
+			break;
+		}
+
+		$insert_time  = strtotime($insert_time);
+		$diff_seconds = $now - $insert_time;
+
+		if($diff_seconds > $_args['time'])
+		{
+			return debug::error(T_("You can not update your answer"), 'answer', 'permission');
+		}
+
+		// get count of updated the poll
+		$where =
+		[
+			'post_id'    => $_args['poll_id'],
+			'user_id'    => $_args['user_id'],
+			'option_cat' => "update_user_$_args[user_id]",
+			'option_key' => "update_result_$_args[poll_id]",
+		];
+		if($_args['answer'] !== [])
+		{
+			\lib\db\options::plus($where);
+		}
+
+		$where['limit'] = 1;
+
+		$update_count = \lib\db\options::get($where);
+
+		if(!$update_count || !is_array($update_count) || !isset($update_count['value']))
+		{
+			return true;
+		}
+
+		$update_count = intval($update_count['value']);
+		if($update_count > $_args['count'])
+		{
+			return debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
+		}
+		return true;
+	}
+
+
+	/**
 	 * update the user answer
 	 *
 	 * @param      <type>  $_args['user_id']  The user identifier
@@ -397,31 +527,12 @@ class answers
 		// when update the polldetails neet to update the pollstats
 		// on this process we check the old answer and new answer
 		// and update pollstats if need
-
-		if(!self::access_answer($_args, 'edit'))
+		$_args['execute'] = true;
+		if(!self::check_time_count($_args, 'edit'))
 		{
 			return;
 		}
 
-		$old_opt = [];
-
-		self::$old_answer = \lib\db\polldetails::get($_args['user_id'], $_args['poll_id']);
-
-		if(is_array(self::$old_answer))
-		{
-			$old_opt =  array_column(self::$old_answer, 'opt');
-		}
-
-		$new_opt = array_keys($_args['answer']);
-
-		if($old_opt == $new_opt && !$_args['skipped'])
-		{
-			debug::error(T_("You have already selected this answer and submited"), 'answer', 'permission');
-			return false;
-		}
-
-		self::$must_remove = array_diff($old_opt, $_args['answer']);
-		self::$must_insert = array_diff($_args['answer'], $old_opt);
 		// remove answer must be remove
 		foreach (self::$must_remove as $key => $value)
 		{
@@ -498,15 +609,6 @@ class answers
 			}
 
 		}
-		// plus answer update count
-		$where =
-		[
-			'post_id'    => $_args['poll_id'],
-			'user_id'    => $_args['user_id'],
-			'option_cat' => "update_user_$_args[user_id]",
-			'option_key' => "update_result_$_args[poll_id]",
-		];
-		\lib\db\options::plus($where);
 
 		return debug::true(T_("Your answer updated"));
 	}

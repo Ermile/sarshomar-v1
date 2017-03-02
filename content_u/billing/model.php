@@ -100,7 +100,7 @@ class model extends \mvc\model
 
 		if(utility::post('bank'))
 		{
-			if(!in_array(strtolower(utility::post('bank')), self::$support_bank))
+			if(!in_array(mb_strtolower(utility::post('bank')), self::$support_bank))
 			{
 				return debug::error(T_("This bank is not support by us"));
 			}
@@ -160,7 +160,7 @@ class model extends \mvc\model
 
 		self::$zarinpal['CallbackURL'] = $host;
 
-		if(strtolower(utility::post('bank')) == 'zarinpal')
+		if(mb_strtolower(utility::post('bank')) == 'zarinpal')
 		{
 			$amount                   = utility::post('amount');
 			self::$zarinpal['Amount'] = $amount;

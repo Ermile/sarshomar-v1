@@ -62,7 +62,7 @@ trait ready
 				$my_poll = true;
 			}
 		}
-		if($_options['check_is_my_poll'] && !$my_poll && !self::permission('admin', 'admin', 'view'))
+		if($_options['check_is_my_poll'] && !$my_poll && !self::check_permission('admin', 'admin', 'view'))
 		{
 			if($_options['debug'])
 			{
@@ -123,7 +123,7 @@ trait ready
 			}
 
 
-			if(!$permission_load_poll && !self::permission('admin'))
+			if(!$permission_load_poll && !self::check_permission('admin'))
 			{
 				if($_options['debug'])
 				{

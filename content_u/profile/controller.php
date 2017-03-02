@@ -20,37 +20,37 @@ class controller extends  \content_u\home\controller
 				$cat1 = null;
 				if(isset($split[1]))
 				{
-					$cat1 = strtolower(trim($split[1]));
+					$cat1 = mb_strtolower(trim($split[1]));
 				}
 				$cat2 = null;
 				if(isset($split[2]))
 				{
-					$cat2 = strtolower(trim($split[2]));
+					$cat2 = mb_strtolower(trim($split[2]));
 				}
 				$cat3 = null;
 				if(isset($split[3]))
 				{
-					$cat3 = strtolower(trim($split[3]));
+					$cat3 = mb_strtolower(trim($split[3]));
 				}
 				$cat4 = null;
 				if(isset($split[4]))
 				{
-					$cat4 = strtolower(trim($split[4]));
+					$cat4 = mb_strtolower(trim($split[4]));
 				}
 				$cat5 = null;
 				if(isset($split[5]))
 				{
-					$cat5 = strtolower(trim($split[5]));
+					$cat5 = mb_strtolower(trim($split[5]));
 				}
 				$cat6 = null;
 				if(isset($split[6]))
 				{
-					$cat6 = strtolower(trim($split[6]));
+					$cat6 = mb_strtolower(trim($split[6]));
 				}
 				$cat7 = null;
 				if(isset($split[7]))
 				{
-					$cat7 = strtolower(trim($split[7]));
+					$cat7 = mb_strtolower(trim($split[7]));
 				}
 
 

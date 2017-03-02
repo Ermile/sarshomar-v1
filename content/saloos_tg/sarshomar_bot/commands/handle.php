@@ -81,7 +81,7 @@ class handle
 				}
 				else
 				{
-					$command_text = strtolower($_cmd['command']);
+					$command_text = mb_strtolower($_cmd['command']);
 				}
 			}
 			else

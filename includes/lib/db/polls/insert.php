@@ -150,7 +150,7 @@ trait insert
 
 		self::$user_id = self::$args['user'];
 
-		$method = strtolower($_args['method']);
+		$method = mb_strtolower($_args['method']);
 
 		self::$draft_mod      = true;
 		// self::$args['status'] = 'draft';
