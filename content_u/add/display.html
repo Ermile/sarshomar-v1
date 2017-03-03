@@ -18,6 +18,7 @@
           <div class="span4">{{block('feature_other')}}</div>
           <div class="span4" data-response='score' {% if not poll.have_score %} data-response-hide {% endif %}>{{block('feature_score_advance')}}</div>
          </div>
+         {{block('feature_multiplerange2')}}
          {{block('feature_multiplerange')}}
         </div>
 
@@ -64,6 +65,7 @@
 
 {%endif%}
      <div class="row auto poll-filters">
+     {{block('filter_person_count')}}
       <div class="span9">
         <div id='filter-conditions'>
          <div class="row auto">

@@ -2598,6 +2598,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 {
 	// import needed js
 	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', null, 0);
+	$import('lib/ionrangeSlider/ion.rangeSlider.min.js', 'runRangeSliderNew', null, 0);
 	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
 	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
 	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', null, 400);
@@ -2740,6 +2741,10 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	$('#question-add').on('change', 'input, textarea', function()
 	{
+		if($(this).hasClass('rangeSlider'))
+		{
+			return false;
+		}
 		requestSavingData();
 	});
 	// before close page save request on the air!

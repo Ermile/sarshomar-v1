@@ -205,6 +205,7 @@
 
 
 {%block feature_multiplerange%}
+
 <div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
@@ -215,6 +216,29 @@
   data-show-title='[{"min": "{%trans "One"%}"}, {"max": "{%trans "Max"%}"}]'
   >
   </div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block feature_multiplerange2%}
+<div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
+ <label class="title large">{%trans "Choice Range"%}</label>
+ <div class="element-slider">
+
+  <input type="number" class="rangeSlider" id="multiple-range2"
+  data-grid=true data-keyboard=true data-keyboard-step=1
+  data-from-shadow=true data-grid-margin=false data-force-edges=true
+  data-min=1
+  data-max="{{multiple_max_count}}"
+  data-step="1"
+  data-from="{{selected_user}}"
+  {% if poll.options.multi.min%} data-from="{{poll.options.multi.min}}" {%endif%}
+  {% if poll.options.multi.max%} data-to="{{poll.options.multi.max}}" {%endif%}
+  {%if total_with_filter %} data-from-max="{{total_with_filter}}" {%endif%}
+  data-grid-num={{poll.options.multi.max}}
+  />
+
  </div>
 </div>
 {%endblock%}

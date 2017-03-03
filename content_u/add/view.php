@@ -157,9 +157,19 @@ class view extends \content_u\home\view
 			{
 				$selected_user = 0;
 			}
-			$this->data->total_users         = $total_users;
-			$this->data->total_with_filter   = $total_with_filter;
-			$this->data->selected_user       = $selected_user;
+			$this->data->total_users       = $total_users;
+			$this->data->total_with_filter = $total_with_filter;
+			$this->data->selected_user     = $selected_user;
+			// change step of change handler
+			$this->data->person_step       = round($total_users / 1000);
+			if($this->data->person_step < 1)
+			{
+				$this->data->person_step = 1;
+			}
+			elseif($this->data->person_step > 10)
+			{
+				$this->data->person_step = 10;
+			}
 		}
 
 		$this->data->poll      = $poll;
