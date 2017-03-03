@@ -2,21 +2,19 @@
 
 {%block content%}
  <div class="main pad">
-   <div class="in small poll-container" data-type="{{poll_type}}">
-    {{block('poll_title')}}
-    {{block('poll_toolbox')}}
-    {{block('poll_file')}}
-    {{block('poll_summary')}}
-    {{block('poll_related')}}
-    {{block('poll_hint')}}
-    {{block('poll_options')}}
-    {{block('poll_skip')}}
-    {{block('poll_actions')}}
-   </div>
-
+  <div class="in small poll-container" data-type="{{poll_type}}">
+   {{block('poll_title')}}
+   {{block('poll_toolbox')}}
+   {{block('poll_file')}}
+   {{block('poll_summary')}}
+   {{block('poll_related')}}
+   {{block('poll_hint')}}
+   {{block('poll_options')}}
+   {{block('poll_skip')}}
+   {{block('poll_actions')}}
+  </div>
+  <div class="row" id="poll-result">{{block('poll_chart')}}</div>
   <div class="box">
-   <div class="row" id="poll-result">{{block('poll_chart')}}</div>
-
    <div class="row auto" id="poll-extra">
     <h2 class="special-heading">{%trans "Description"%}</h2>
     <div class="span4" id="poll-similar">{{block('poll_similar')}}</div>

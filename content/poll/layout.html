@@ -146,6 +146,8 @@
    {%endfor%}
   {%endif%}
  </ul>
+ {%else%}
+ <div class="msg danger">{%trans "There is no options!"%}</div>
  {%endif%}
 {% endspaceless %}
 {%endblock%}
@@ -165,11 +167,7 @@
 {%block poll_actions%}
 {% spaceless %}
  <div class="poll-actions">
-  {%if poll.answers%}
    <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
-  {%else%}
-   <a class="special-btn" href="ask" data-direct>{%trans "Ask Me"%}</a>
-  {%endif%}
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -299,6 +297,11 @@
   </div>
  </div>
 {%endif%}
+  {%if url.tld == 'dev'%}
+  <div class="in small">
+    <div class="msg info">{%trans "There is no data to draw chart!"%}</div>
+  </div>
+  {%endif%}
  {{block('chart')}}
 {% endspaceless %}
 {%endblock%}
