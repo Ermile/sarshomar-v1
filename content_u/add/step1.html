@@ -205,7 +205,7 @@
 
 
 {%block feature_multiplerange%}
-
+{%if false%}
 <div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
@@ -218,11 +218,12 @@
   </div>
  </div>
 </div>
+{%endif%}
 {%endblock%}
 
 
 {%block feature_multiplerange2%}
-<div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
+<div class="element no-pad has-margin-top align-end" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
 

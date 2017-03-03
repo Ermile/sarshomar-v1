@@ -66,7 +66,7 @@
 {%endif%}
      <div class="row auto poll-filters">
      {{block('filter_person_count')}}
-      <div class="span9">
+      <div class="span12">
         <div id='filter-conditions'>
          <div class="row auto">
           <div class="span5">
@@ -82,7 +82,9 @@
          {{block('filter_range')}}
         </div>
         </div>
+      {%if false%}
       <div class="span3">{{block('filter_price')}}</div>
+      {%endif%}
      </div>
 
 {%endblock%}

@@ -135,7 +135,7 @@
 
 
 {%block filter_person_count%}
-<div class="element no-pad has-margin-top">
+<div class="element no-pad has-margin-top align-end">
  <label class="title large">{%trans "Person Count"%}</label>
  <div class="element-slider">
   <input type="number" class="rangeSlider" id="rangepersons2"
@@ -147,11 +147,7 @@
   data-from="{{selected_user}}"
   {%if total_with_filter %} data-from-max="{{total_with_filter}}" {%endif%}
   />
-
-
  </div>
 </div>
-
-
-<br/><br/><br/><br/><br/>
+<br/>
 {%endblock%}
