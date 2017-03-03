@@ -1864,6 +1864,10 @@ function lockAllElements(_lock, _timing)
 	setTimeout(function()
 	{
 		var questionBox = $('#question-add');
+		if(questionBox.attr('data-admin') !== undefined)
+		{
+			_lock = false;
+		}
 		switch (_lock)
 		{
 			case true:
@@ -1874,7 +1878,6 @@ function lockAllElements(_lock, _timing)
 				// lock all range
 				questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
 				questionBox.find('.sync').attr('data-lock', '');
-				console.log('lock');
 				break;
 
 			case false:
