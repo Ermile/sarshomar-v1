@@ -110,44 +110,19 @@
 {%endblock%}
 
 
-{%block filter_price%}
- <div class="pay-info">
-  <div class="title">
-   <div class="price">
-    <span class="value" data-basePrice='100'> </span><span class="unit">{%trans "Toman"%}</span>
-   </div>
-  </div>
-  <div>
-   <div class="range-slider" id='rangepersons' data-type="vertical"
-   data-max='{{total_users}}'
-   data-unit='1'
-   data-infinity="min"
-   data-fix-mount
-   data-max-default2='{{selected_user}}'
-   data-max-default='{{selected_user}}'
-   {%if total_with_filter %} data-max-limit= "{{total_with_filter}}" {%endif%}
-   data-step='[{"start": 0, "end": 100, "step": 10},{"start": 100, "end": 1000, "step": 100},{"start": 1000, "end": 10000, "step": 1000},{"start": 10000, "end": 100000, "step": 10000},{"start": 100000, "end": 1000000, "step": 100000}]'
-   data-show-title='[{"min": "{%trans "Private"%}"}, {"max": "{%trans "Ultimate"%}"}]'
-   ></div>
-  </div>
- </div>
-{%endblock%}
-
-
 {%block filter_person_count%}
 <div class="element no-pad has-margin-top align-end">
  <label class="title large">{%trans "Person Count"%}</label>
  <div class="element-slider">
   <input type="number" class="rangeSlider" id="rangepersons2"
   data-grid=true data-keyboard=true data-keyboard-step=1
-  data-from-shadow=true data-max-postfix="+" data-grid-margin=false data-force-edges=true
+  data-from-shadow=true data-max-postfix="+" data-grid-margin=true data-force-edges=true
   data-min=0
-  data-max="{{total_users}}"
-  data-step="{{person_step}}"
-  data-from="{{selected_user}}"
-  {%if total_with_filter %} data-from-max="{{total_with_filter}}" {%endif%}
+  data-max="{{persons.max}}"
+  data-step="{{persons.step}}"
+  data-from="{{persons.from}}"
+  {%if persons.limit %} data-from-max="{{persons.limit}}"{%endif%}
   />
  </div>
 </div>
-<br/>
 {%endblock%}

@@ -24,6 +24,9 @@ class view extends \content_u\home\view
 		$this->data->answers = [[],[]];
 		$this->data->member_exist = \lib\db\users::get_count('valid');
 		$this->data->multiple_max_count = 2;
+
+		// set person selector range values
+		$this->set_range_default_persons();
 	}
 
 	/**
@@ -136,43 +139,65 @@ class view extends \content_u\home\view
 
 		if(isset($poll['filters']['count']))
 		{
-			$filters = $poll['filters'];
+			$this->set_range_default_persons($poll['filters']);
+		}
+
+
+		$this->data->poll = $poll;
+	}
+
+
+	function set_range_default_persons($_filter = null)
+	{
+		if($_filter)
+		{
+			// set limit of select in this condition
+			$filters = $_filter;
 			unset($filters['count']);
-			$member_exist = (int) \lib\db\filters::count_user($filters);
-			$total_with_filter = $member_exist;
-			$total_users = \lib\db\users::get_count("all");
-			if($this->access('u', 'sarshomar', 'view') && (int) $poll['filters']['count'] === 1000000000)
+			$limit_of_filters = (int) \lib\db\filters::count_user($filters);
+			if($limit_of_filters)
 			{
-				$selected_user = $total_with_filter;
+				$this->data->persons['limit'] = $limit_of_filters;
+			}
+
+			// if he is sarshomar user and previously set max value, use max value for it now
+			if($this->access('u', 'sarshomar', 'view') && (int) $_filter['count'] === 1000000000)
+			{
+				$this->data->persons['from'] = $this->data->persons['max'];
+			}
+			// else if user set value for persons, set it as default
+			else if(isset($_filter['count']))
+			{
+				$this->data->persons['from'] = $_filter['count'];
 			}
 			else
 			{
-				$selected_user = $poll['filters']['count'];
+				$this->data->persons['from'] = 15;
 			}
-			if(!$total_users)
-			{
-				$total_users = 0;
-			}
-			if(!$selected_user)
-			{
-				$selected_user = 0;
-			}
-			$this->data->total_users       = $total_users;
-			$this->data->total_with_filter = $total_with_filter;
-			$this->data->selected_user     = $selected_user;
-			// change step of change handler
-			$this->data->person_step       = round($total_users / 1000);
-			if($this->data->person_step < 1)
-			{
-				$this->data->person_step = 1;
-			}
-			elseif($this->data->person_step > 10)
-			{
-				$this->data->person_step = 10;
-			}
+			return true;
 		}
-
-		$this->data->poll      = $poll;
+		// define variable to set for persons variable
+		$persons = [];
+		// set maximum user allowed
+		$persons['max'] = \lib\db\users::get_count("all");
+		if(!$persons['max'])
+		{
+			$persons['max'] = 0;
+		}
+		// change step of change handler
+		$persons['step'] = round($persons['max'] / 1000);
+		if($persons['step'] < 1)
+		{
+			$persons['step'] = 1;
+		}
+		elseif($persons['step'] > 10)
+		{
+			$persons['step'] = 10;
+		}
+		// default set to zero for from value
+		$persons['from'] = 7;
+		// set into twig variable
+		$this->data->persons = $persons;
 	}
 }
 ?>
