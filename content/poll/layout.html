@@ -166,8 +166,16 @@
 
 {%block poll_actions%}
 {% spaceless %}
- <div class="poll-actions">
+ <div class="f poll-actions">
+  <div class="f c s6 align-center">
+   <a class="poll-actions-link" href="#">سوال قبلی</a>
+  </div>
+  <div class="c s12">
    <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
+  </div>
+  <div class="f c s6 align-center">
+   <a class="poll-actions-link" href="#">سوال بعدی</a>
+  </div>
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -297,11 +305,9 @@
   </div>
  </div>
 {%endif%}
-  {%if url.tld == 'dev'%}
-  <div class="in small">
-    <div class="msg info">{%trans "There is no data to draw chart!"%}</div>
-  </div>
-  {%endif%}
+ {%if url.tld == 'dev'%}
+ <div class="in small"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
+ {%endif%}
  {{block('chart')}}
 {% endspaceless %}
 {%endblock%}
