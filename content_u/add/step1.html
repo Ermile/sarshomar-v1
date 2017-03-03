@@ -204,42 +204,21 @@
 {%endblock%}
 
 
-{%block feature_multiplerange%}
-{%if false%}
-<div class="element no-pad has-margin-top" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
- <label class="title large">{%trans "Choice Range"%}</label>
- <div class="element-slider">
-  <div class="range-slider" id='multiple-range' data-type="horizontal" data-max-title='{%trans "Ultimate"%}' data-fix-mount
-  {% if poll.options.multi.min%} data-min-default="{{poll.options.multi.min}}" {%endif%}
-  {% if poll.options.multi.max%} data-max-default="{{poll.options.multi.max}}"{%endif%}
-  data-min='1' data-max='{{multiple_max_count}}' data-support-rtl='on'
-  data-show-title='[{"min": "{%trans "One"%}"}, {"max": "{%trans "Max"%}"}]'
-  >
-  </div>
- </div>
-</div>
-{%endif%}
-{%endblock%}
-
-
 {%block feature_multiplerange2%}
 <div class="element range no-pad has-margin-top align-end" {%if not poll.options.multi%}data-response-hide{%endif%} data-response='meta_choicemode' data-response-where='multi' data-response-effect='slide'>
  <label class="title large">{%trans "Choice Range"%}</label>
  <div class="element-slider">
 
-  <input type="number" class="rangeSlider" id="multiple-range2"
+  <input type="number" class="rangeSlider" id="multiple-range"
   data-grid=true data-keyboard=true data-keyboard-step=1
   data-from-shadow=true data-grid-margin=true data-force-edges=true
   data-drag-interval=true
   data-type="double"
   data-min=1
-  data-max="{{multiple_max_count}}"
+  data-max="{{multiple.max}}"
   data-step="1"
-  data-from="{{selected_user}}"
   {% if poll.options.multi.min%} data-from="{{poll.options.multi.min}}" {%endif%}
   {% if poll.options.multi.max%} data-to="{{poll.options.multi.max}}" {%endif%}
-  {%if total_with_filter %} data-from-max="{{total_with_filter}}" {%endif%}
-  data-grid-num={{poll.options.multi.max}}
   />
 
  </div>

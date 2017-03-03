@@ -999,10 +999,25 @@ function rearrangeSortable()
  */
 function setMultipleValueRange()
 {
-	console.log(countQuestionOpts(true));
 	// set multiple value
-	$('#multiple-range').rangeSlider('option', 'max', countQuestionOpts(true));
-	// $('#multiple-range').attr('data-max', countQuestionOpts(true));
+	var countOfFull = countQuestionOpts(true);
+	var myMultipe   = $('#multiple-range').data("ionRangeSlider");
+	// if now to is in the last, after update set it as last
+	if(myMultipe.result.max === myMultipe.result.to)
+	{
+		myMultipe.update(
+		{
+			max: countOfFull,
+			to: countOfFull,
+		});
+	}
+	else
+	{
+		myMultipe.update(
+		{
+			max: countOfFull,
+		});
+	}
 }
 
 
@@ -1569,19 +1584,7 @@ function calcFilterPrice()
 {
 	var totalEl      = $('.pay-info .price .value');
 	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
-	// var totalPerson  = parseInt($('[data-range-bind="rangepersons"]').val());
-	// var totalPerson  = $('#rangepersons').rangeSlider('to');
-	var totalPerson  = parseInt($('input[name="rangepersons-max"]').val());
-	if(totalPerson)
-	{
-		// totalPerson = totalPerson.to;
-	}
-	else
-	{
-		totalPerson = 0;
-	}
-	// var totalPerson  = parseInt($('#rangepersons').val());
-
+	var totalPerson  = getRangeSliderValue('person');
 	var totalPercent = 0;
 	var totalPrice   = 0;
 	$('.badge.active[data-ratio-val]').each(function(index, el)
@@ -1611,133 +1614,141 @@ function calcFilterPrice()
  * [calcTotalPrice description]
  * @return {[type]} [description]
  */
-function calcTotalPrice()
+function calcTotalPrice(_delay)
 {
-	var totalPrice = 0;
-	// get filter data
-	var filters    = calcFilterPrice();
-	var tblFactor  = $('#totalPrice');
-	var prAdd      = $('#prAdd');
-	var prPerson   = $('#prPerson');
-	var prFilter   = $('#prFilter');
-	var prBrand    = $('#prBrand');
-	var prTotal    = $('#prTotal');
-	var prCash     = $('#prCash');
-	var prBalance  = $('#prBalance');
-
-
-	// if person count isset show or hide
-	if(filters.person)
+	if(!_delay)
 	{
-		// remove base price
-		prPerson.removeClass('hide');
-		// if exsit show or hide
-		if(filters.filter)
+		_delay = 0
+	}
+
+	setTimeout(function()
+	{
+		var totalPrice = 0;
+		// get filter data
+		var filters    = calcFilterPrice();
+		var tblFactor  = $('#totalPrice');
+		var prAdd      = $('#prAdd');
+		var prPerson   = $('#prPerson');
+		var prFilter   = $('#prFilter');
+		var prBrand    = $('#prBrand');
+		var prTotal    = $('#prTotal');
+		var prCash     = $('#prCash');
+		var prBalance  = $('#prBalance');
+
+
+		// if person count isset show or hide
+		if(filters.person)
 		{
-			prFilter.removeClass('hide');
+			// remove base price
+			prPerson.removeClass('hide');
+			// if exsit show or hide
+			if(filters.filter)
+			{
+				prFilter.removeClass('hide');
+			}
+			else
+			{
+				prFilter.addClass('hide');
+			}
+			// hide base price
+			// prAdd.addClass('hide');
 		}
 		else
 		{
+			// hide person and filter
+			prPerson.addClass('hide');
 			prFilter.addClass('hide');
+			// show add base price
+			prAdd.removeClass('hide');
 		}
-		// hide base price
-		// prAdd.addClass('hide');
-	}
-	else
-	{
-		// hide person and filter
-		prPerson.addClass('hide');
-		prFilter.addClass('hide');
-		// show add base price
-		prAdd.removeClass('hide');
-	}
-	// add question price to total
-	totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
-	// if person is correct
-	if(typeof filters.person == "number")
-	{
-		var personPrice = filters.base * filters.person;
-		prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
-		// set value
-		setCompleteVal(prPerson.find('.pr'), personPrice);
-
-		totalPrice += personPrice;
-
-		if(typeof filters.filter == "number")
+		// add question price to total
+		totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
+		// if person is correct
+		if(typeof filters.person == "number")
 		{
-			// person * filter
-			var filterPrice = personPrice * (filters.filter/100);
+			var personPrice = filters.base * filters.person;
+			prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
+			// set value
+			setCompleteVal(prPerson.find('.pr'), personPrice);
 
-			prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
-			setCompleteVal(prFilter.find('.pr'), filterPrice);
+			totalPrice += personPrice;
 
-			totalPrice += filterPrice;
+			if(typeof filters.filter == "number")
+			{
+				// person * filter
+				var filterPrice = personPrice * (filters.filter/100);
+
+				prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
+				setCompleteVal(prFilter.find('.pr'), filterPrice);
+
+				totalPrice += filterPrice;
+			}
 		}
-	}
 
-	// brand
-	if($('#meta_branding').is(":checked"))
-	{
-		prBrand.removeClass('hide');
-		var untilBrand = calcUntilPrice('prBrand');
-		// set value of brand
-		var brandFactor = parseInt(prBrand.attr('data-val'));
-		prBrand.find('span:first-child b').text('x' + fitNumber(brandFactor));
-		var brandPrice  = untilBrand * brandFactor;
-		// set value of price
-		setCompleteVal(prBrand.find('.pr'), brandPrice);
+		// brand
+		if($('#meta_branding').is(":checked"))
+		{
+			prBrand.removeClass('hide');
+			var untilBrand = calcUntilPrice('prBrand');
+			// set value of brand
+			var brandFactor = parseInt(prBrand.attr('data-val'));
+			prBrand.find('span:first-child b').text('x' + fitNumber(brandFactor));
+			var brandPrice  = untilBrand * brandFactor;
+			// set value of price
+			setCompleteVal(prBrand.find('.pr'), brandPrice);
 
-		// add brand to totalPrice
-		totalPrice += brandPrice;
-	}
-	else
-	{
-		prBrand.addClass('hide');
-	}
+			// add brand to totalPrice
+			totalPrice += brandPrice;
+		}
+		else
+		{
+			prBrand.addClass('hide');
+		}
 
-	// set total price
-	setCompleteVal(prTotal.find('.pr'), totalPrice);
-	// get and set cash
-	var myCash = $('#financial-box .total .value').attr('data-val');
-	setCompleteVal(prCash.find('.pr'), myCash);
-	// calc final balance and set
-	var finalBalance = myCash - totalPrice;
-	// if data-free is exist dont calc price of poll
-	if(tblFactor.attr('data-free') !== undefined)
-	{
-		finalBalance += totalPrice;
-	}
-	setCompleteVal(prBalance.find('.pr'), finalBalance);
-	// save link of charge for use next time
-	if($('.stepPublish .charge').data('hrefBase') === undefined)
-	{
-		$('.stepPublish .charge').data('hrefBase', $('.stepPublish .charge').attr('href'));
-	}
-	// if do not have money
-	if(finalBalance < 0)
-	{
-		prBalance.addClass('isHighlight');
-		// calc needed price and link for charge
-		var neededMoney = $('.stepPublish .charge').data('hrefBase') + "?amount=" + Math.abs(finalBalance);
-		// show btn and change url for charge
-		$('.stepPublish .charge').fadeIn().css("display","inline-block").attr('href', neededMoney).removeClass('hide');
-		// hide publish
-		$('.stepPublish .changeStatus').fadeOut();
-	}
-	else
-	{
-		prBalance.removeClass('isHighlight');
-		// hide charge
-		$('.stepPublish .charge').fadeOut();
-		// show publish
-		$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
-	}
+		// set total price
+		setCompleteVal(prTotal.find('.pr'), totalPrice);
+		// get and set cash
+		var myCash = $('#financial-box .total .value').attr('data-val');
+		setCompleteVal(prCash.find('.pr'), myCash);
+		// calc final balance and set
+		var finalBalance = myCash - totalPrice;
+		// if data-free is exist dont calc price of poll
+		if(tblFactor.attr('data-free') !== undefined)
+		{
+			finalBalance += totalPrice;
+		}
+		setCompleteVal(prBalance.find('.pr'), finalBalance);
+		// save link of charge for use next time
+		if($('.stepPublish .charge').data('hrefBase') === undefined)
+		{
+			$('.stepPublish .charge').data('hrefBase', $('.stepPublish .charge').attr('href'));
+		}
+		// if do not have money
+		if(finalBalance < 0)
+		{
+			prBalance.addClass('isHighlight');
+			// calc needed price and link for charge
+			var neededMoney = $('.stepPublish .charge').data('hrefBase') + "?amount=" + Math.abs(finalBalance);
+			// show btn and change url for charge
+			$('.stepPublish .charge').fadeIn().css("display","inline-block").attr('href', neededMoney).removeClass('hide');
+			// hide publish
+			$('.stepPublish .changeStatus').fadeOut();
+		}
+		else
+		{
+			prBalance.removeClass('isHighlight');
+			// hide charge
+			$('.stepPublish .charge').fadeOut();
+			// show publish
+			$('.stepPublish .changeStatus').fadeIn().css("display","inline-block").removeClass('hide');
+		}
 
-	// show on topbox
-	$('#financial-box .cost .value').attr('data-val', totalPrice).text(fitNumber(totalPrice));
-	$('#financial-box .cost').addClass('isCurrent');
+		// show on topbox
+		$('#financial-box .cost .value').attr('data-val', totalPrice).text(fitNumber(totalPrice));
+		$('#financial-box .cost').addClass('isCurrent');
 
-	return totalPrice;
+		return totalPrice;
+	}, _delay);
 }
 
 
@@ -1876,7 +1887,7 @@ function lockAllElements(_lock, _timing)
 				questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
 				questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
 				// lock all range
-				questionBox.find('.range-slider').rangeSlider('option', 'lock', true);
+				changeLockStatusOfRanges(true);
 				questionBox.find('.sync').attr('data-lock', '');
 				break;
 
@@ -1886,11 +1897,29 @@ function lockAllElements(_lock, _timing)
 				questionBox.find('input').attr('disabled', null).attr('data-lock', null);
 				questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
 				// unloack all range
-				questionBox.find('.range-slider').rangeSlider('option', 'lock', false);
+				changeLockStatusOfRanges(false);
 				questionBox.find('.sync').attr('data-lock', null);
 				break;
 		}
 	}, _timing);
+}
+
+function changeLockStatusOfRanges(_newStatus)
+{
+	if(_newStatus !== true)
+	{
+		_newStatus = false;
+	}
+
+	$(".rangeSlider").each(function()
+	{
+		var myRange = $(this).data("ionRangeSlider");
+		myRange.update(
+		{
+			disable: _newStatus,
+		});
+
+	});
 }
 
 
@@ -1943,11 +1972,11 @@ function sendQuestionData(_status, _asyncAjax)
 	// change status to syncing
 	syncing(true);
 
-	var myPoll       = {};
-	myQuestionBox    = $('#question-add');
-	myPoll           = prepareQuestionData();
-	$isAdd           = !$('#question-add').attr('data-id');
-	if($isAdd && $.isEmptyObject(myPoll))
+	var myPollData = {};
+	myQuestionBox  = $('#question-add');
+	myPollData     = prepareQuestionData();
+	$isAdd         = !$('#question-add').attr('data-id');
+	if($isAdd && $.isEmptyObject(myPollData))
 	{
 		syncing(null, 0);
 		return false;
@@ -1955,7 +1984,7 @@ function sendQuestionData(_status, _asyncAjax)
 
 	// request to save request!
 	// change array to json
-	myPoll           = JSON.stringify(myPoll);
+	var myPoll       = JSON.stringify(myPollData);
 	var checkWithOld = saveSavedData(myPoll);
 	if(_asyncAjax === false)
 	{
@@ -1978,6 +2007,16 @@ function sendQuestionData(_status, _asyncAjax)
 		return false;
 	}
 	// if need to sync with server, sync it!
+	// change status of title
+	if(myPollData.title)
+	{
+		$('#title').removeClass('isError')
+	}
+	else
+	{
+		$('#title').addClass('isError');
+	}
+
 
 	myQuestionBox.ajaxify(
 	{
@@ -2039,7 +2078,11 @@ function sendQuestionData(_status, _asyncAjax)
 					{
 						lockStep();
 					}
-					$('#rangepersons').rangeSlider('option', 'max_limit', limit, 1);
+					var myPersonCount = $('#rangepersons').data("ionRangeSlider");
+					myPersonCount.update(
+					{
+						from_max: limit,
+					});
 				}
 				// after a short delay show synced
 				syncing(null, true);
@@ -2054,6 +2097,32 @@ function sendQuestionData(_status, _asyncAjax)
 	});
 
 	return myPoll;
+}
+
+
+/**
+ * [getRangeSliderValue description]
+ * @param  {[type]} _name [description]
+ * @return {[type]}       [description]
+ */
+function getRangeSliderValue(_name)
+{
+	var selectorEl  = _name;
+	var myRangeData = '';
+	if(_name == 'person')
+	{
+		selectorEl = $('#rangepersons');
+		myRangeData = selectorEl.data("ionRangeSlider");
+		return myRangeData.result.from;
+	}
+	else if(_name == 'multiple')
+	{
+		selectorEl = $('#multiple-range');
+	}
+	// get data of range
+	myRangeData = selectorEl.data("ionRangeSlider");
+	// return result
+	return myRangeData.result;
 }
 
 
@@ -2170,15 +2239,6 @@ function prepareQuestionData()
 	if($('#title').val())
 	{
 		myQuestion.title   = $('#title').val();
-	}
-	// change status of title
-	if(myQuestion.title)
-	{
-		$('#title').removeClass('isError')
-	}
-	else
-	{
-		$('#title').addClass('isError');
 	}
 	// myQuestion.type = 'poll';
 	myQuestion.answers = {};
@@ -2332,30 +2392,12 @@ function prepareQuestionData()
 	// set for multi
 	if(typeof myQuestion.options.multi === "object")
 	{
-		var multiRangeEl = $('#multiple-range');
-		var multiMin     = parseInt($("input[name=multiple-range-min]").val());
-		var multiMax     = parseInt($("input[name=multiple-range-max]").val());
-
-		// set for min value
-		if(multiRangeEl.attr('data-min') == multiMin)
-		{
-			// do not need to set
-			// myQuestion.options.multi.min = null;
-		}
-		else
-		{
-			myQuestion.options.multi.min = multiMin;
-		}
-		// set for max value
-		if(multiRangeEl.attr('data-max') == multiMax)
-		{
-			// do not need to set
-			// myQuestion.options.multi.max = null;
-		}
-		else
-		{
-			myQuestion.options.multi.max = multiMax;
-		}
+		var multiRangeEl  = $('#multiple-range');
+		var myMultipe     = multiRangeEl.data("ionRangeSlider");
+		var myMultipeData = myMultipe.result;
+		// if now to is in the last, after update set it as last
+		myQuestion.options.multi.min = parseInt(myMultipeData.from);
+		myQuestion.options.multi.max = parseInt(myMultipeData.to);
 	}
 
 	// save randomSort for multiple selection
@@ -2425,16 +2467,7 @@ function prepareQuestionFilter()
 {
 	var myFilters = {};
 	// get total person
-	var totalPerson  = $('input[name="rangepersons-max"]').val();
-	if(totalPerson)
-	{
-		// totalPerson = totalPerson.to;
-	}
-	else
-	{
-		totalPerson = 0;
-	}
-	myFilters.count = totalPerson;
+	myFilters.count = getRangeSliderValue('person');
 	// myFilters.gender = $('input[name="meta_choicemode"]:checked').val();
 
 	$('.element[data-respnse-group]').each(function(_e)
@@ -2597,7 +2630,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 }).once(function()
 {
 	// import needed js
-	$import('lib/rangeSlider/rangeSlider.js', 'runRangeSlider', null, 0);
 	$import('lib/ionrangeSlider/ion.rangeSlider.min.js', 'runRangeSliderNew', null, 0);
 	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
 	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
@@ -2608,7 +2640,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// handle copy btn
 	handleCopy();
 	// // draw factor and fill total price on start
-	calcTotalPrice();
+	// calcTotalPrice(200);
 	// draw media for each item contain media
 	drawMedia();
 	// check status of question and if needed lock it
@@ -2629,14 +2661,16 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// on init
 	detectStep();
 
+
+	var myPersonCounter = $('#rangepersons');
 	// on init calc price
-	$('#rangepersons').bind('range-slider::init::after', function(_e, _min, _max)
+	myPersonCounter.bind('range:start', function(_e, _min, _max)
 	{
 		// ready to send data
 		calcTotalPrice();
 	});
 
-	$('#rangepersons').bind('range-slider::change', function(_e, _min, _max)
+	myPersonCounter.bind('change', function(_e, _min, _max)
 	{
 		calcTotalPrice();
 
@@ -2651,9 +2685,8 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		}
 	});
 
-	$('#rangepersons').bind('range-slider::changeAfter', function(_e, _min, _max)
+	myPersonCounter.on('range:finish', function(_e, _min, _max)
 	{
-		// console.log('range changed...');
 		// ready to send data
 		requestSavingData();
 	});

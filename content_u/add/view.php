@@ -22,11 +22,14 @@ class view extends \content_u\home\view
 
 		// load empty answers for first loading
 		$this->data->answers = [[],[]];
-		$this->data->member_exist = \lib\db\users::get_count('valid');
-		$this->data->multiple_max_count = 2;
+		// $this->data->member_exist = \lib\db\users::get_count('valid');
+
 
 		// set person selector range values
 		$this->set_range_default_persons();
+		// set multiple default values
+		$this->set_range_default_multiple();
+
 	}
 
 	/**
@@ -53,11 +56,6 @@ class view extends \content_u\home\view
 		else
 		{
 			$answers = [[],[]];
-		}
-		$this->data->multiple_max_count = 2;
-		if(count($answers) > 2)
-		{
-			$this->data->multiple_max_count = count($answers) - 1;
 		}
 
 		$this->data->answers = $answers;
@@ -142,11 +140,18 @@ class view extends \content_u\home\view
 			$this->set_range_default_persons($poll['filters']);
 		}
 
+		// set multiple default values
+		$this->set_range_default_multiple(count($answers) - 1);
+
 
 		$this->data->poll = $poll;
 	}
 
 
+	/**
+	 * [set_range_default_persons description]
+	 * @param [type] $_filter [description]
+	 */
 	function set_range_default_persons($_filter = null)
 	{
 		if($_filter)
@@ -198,6 +203,22 @@ class view extends \content_u\home\view
 		$persons['from'] = 7;
 		// set into twig variable
 		$this->data->persons = $persons;
+	}
+
+
+	/**
+	 * [set_range_default_multiple description]
+	 * @param integer $_answerCount [description]
+	 */
+	function set_range_default_multiple($_answerCount = 2)
+	{
+		$multiple = [];
+		if($_answerCount < 2)
+		{
+			$_answerCount = 2;
+		}
+		$multiple['max'] = $_answerCount;
+		$this->data->multiple = $multiple;
 	}
 }
 ?>
