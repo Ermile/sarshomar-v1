@@ -1622,6 +1622,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element .btn span{vertical-align:middle}
 
 .element.has-margin-top{margin-top:10px}
+.element.range{margin-bottom:40px}
 
 
 /************************************************************** dropdown */
@@ -2147,7 +2148,7 @@ input.rangeSlider{display:none}
 .irs-line-right{height:35px}
 .irs-bar{height:35px;top:40px;background:#00667a;background:linear-gradient(to top,#00667a 0%,#083942 100%)}
 .irs-bar-edge{height:35px;top:40px;width:14px;background:#00667a;background:linear-gradient(to top,#00667a 0%,#083942 100%)}
-.irs-shadow{height:2px;top:75px;background:#000;opacity:.3;border-radius:5px;-moz-border-radius:5px}
+.irs-shadow{height:2px;top:75px;background:#cecdcd;/*opacity:.3;*/border-radius:5px;-moz-border-radius:5px}
 .lt-ie9 .irs-shadow{filter:alpha(opacity=30)}
 .irs-slider{top:37px;width:27px;height:27px;border:1px solid #AAA;background:#DDD;background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(220,220,220,1) 20%,rgba(255,255,255,1) 100%);border-radius:27px;-moz-border-radius:27px;box-shadow:1px 1px 3px rgba(0,0,0,0.3);cursor:pointer}
 /*.irs-slider.state_hover,.irs-slider:hover{background:#FFF}*/
@@ -2156,7 +2157,7 @@ input.rangeSlider{display:none}
 .irs-from,.irs-to,.irs-single{color:#fff;font-size:14px;line-height:1.333;text-shadow:none;padding:1px 5px;background:#00667a;border-radius:3px;-moz-border-radius:3px}
 .lt-ie9 .irs-from,.lt-ie9 .irs-to,.lt-ie9 .irs-single{background:#999}
 .irs-grid{height:27px}
-.irs-grid-pol{opacity:.5;background:#428bca}
+.irs-grid-pol{opacity:.5;background:#d6d6d6}
 .irs-grid-pol.small{background:#999}
 .irs-grid-text{bottom:5px;color:#99a4ac}
 
