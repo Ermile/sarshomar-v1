@@ -121,7 +121,7 @@ class poll
 		if($status != 'answer')
 		{
 			bot::sendResponse([
-				'text' 						=> utility::tag(T_('لغو پاسخ‌دهی')),
+				'text' 						=> utility::tag(T_('Cancel answering')),
 				'reply_markup' 				=> menu::main(true),
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
@@ -148,7 +148,7 @@ class poll
 		if(!$debug_status)
 		{
 			bot::sendResponse([
-				'text' 						=> utility::tag(T_('ثبت پاسخ با خطا مواجه شد')),
+				'text' 						=> utility::tag(T_('An error occurred while submitting the answer')),
 				'reply_markup' 				=> menu::main(true),
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
@@ -164,10 +164,10 @@ class poll
 			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
 			$maker->message->add('answer' , '📝' . $text);
 			$maker->message->add('answer_line' , "");
-			$maker->message->add('answer_verify' , '✅ ' . T_("پاسخ شما ثبت شد"));
-			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add('answer_verify' , '✅ ' . T_("Your answer has been submitted"));
+			$maker->message->add('tag' ,  utility::tag(T_("Submit answer")));
 			bot::sendResponse([
-				'text' 						=> utility::tag(T_('پاسخ شما ثبت شد')),
+				'text' 						=> utility::tag(T_('Submit answer')),
 				'reply_markup' 				=> menu::main(true),
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
@@ -257,7 +257,7 @@ class poll
 		$debug = \lib\debug::compile();
 		if ($api_method == 'warn_delete') {
 			$debug_status = 2;
-			$debug['messages']['warn'][0]['title'] = T_("اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید");
+			$debug['messages']['warn'][0]['title'] = T_("If you intend to delete your vote, tap once more");
 			session::set('expire', 'command', 'poll_delete', ['id' => $poll_id, 'answer' => $answer]);
 			\lib\storage::set_current_command(true);
 		}
