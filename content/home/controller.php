@@ -47,7 +47,7 @@ class controller extends \mvc\controller
 			\lib\router::set_controller("\\content\\poll\\controller");
 		}
 
-		if(substr(\lib\router::get_url(), 0, 1) == '$')
+		if(substr(\lib\router::get_url(), 0, 1) == '$' && !$this->model()->s_template_finder())
 		{
 			\lib\router::set_controller("\\content\\knowledge\\controller");
 			return;
