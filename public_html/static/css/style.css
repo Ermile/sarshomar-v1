@@ -1088,9 +1088,9 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-hint{text-align:center;color:#00667a;font-weight:700;margin-bottom:1em}
 
-.poll-container .poll-options{margin-bottom:3em}
+.poll-container .poll-options{margin-bottom:2em}
 .poll-container .poll-options li:not(:last-child){margin-bottom:1em}
-.poll-container .poll-options li>label{position:relative;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex}
+.poll-container .poll-options li>label{position:relative;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;cursor:pointer}
 
 .poll-container .poll-options .option-number{position:relative;content:'';width:5em;background-color:#00667a;-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-radius-bottomleft:3px;border-bottom-left-radius:3px}
 .rtl .poll-container .poll-options .option-number{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px;-webkit-border-bottom-right-radius:3px;-moz-border-radius-bottomright:3px;border-bottom-right-radius:3px}

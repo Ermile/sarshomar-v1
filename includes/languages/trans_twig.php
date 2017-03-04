@@ -131,7 +131,7 @@ private function transtext()
 	//--------------------------------------------------------content\main\layout.html
 	echo T_("Login or Try");                                                          // Line 25
 	echo T_("e.g: +989120000000");                                                    // Line 29
-	echo T_("Password");                                                              // Line 388
+	echo T_("Password");                                                              // Line 367
 	echo T_("Login");                                                                 // Line 6
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                              // Line 46
@@ -140,30 +140,32 @@ private function transtext()
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 374
+	echo T_("Description");                                                           // Line 353
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 203
-	echo T_("You can select just two options.");                                      // Line 216
-	echo T_("There is no options!");                                                  // Line 150
-	echo T_("I am not willing to answer");                                            // Line 265
-	echo T_("Save Answer");                                                           // Line 276
+	echo T_("Read More");                                                             // Line 211
+	echo T_("You can select just two options.");                                      // Line 224
+	echo T_("There is no option!");                                                   // Line 150
+	echo T_("I am not willing to answer");                                            // Line 273
+	echo T_("Previous");                                                              // Line 171
+	echo T_("Save Answer");                                                           // Line 284
+	echo T_("Next");                                                                  // Line 9
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("result");                                                                // Line 292
-	echo T_("There is no data to draw chart!");                                       // Line 302
-	echo T_("Similar Questions");                                                     // Line 337
-	echo T_("Latest Questions");                                                      // Line 330
-	echo T_("There is no similar post");                                              // Line 338
-	echo T_("Poll timespan");                                                         // Line 356
+	echo T_("result");                                                                // Line 300
+	echo T_("There is no data to draw chart!");                                       // Line 309
+	echo T_("Similar Questions");                                                     // Line 343
+	echo T_("Latest Questions");                                                      // Line 336
+	echo T_("There is no similar post");                                              // Line 344
+	echo T_("Poll timespan");                                                         // Line 362
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 407
-	echo T_("Keyword");                                                               // Line 378
-	echo T_("Statistical population");                                                // Line 395
-	echo T_("There is nothing to display!");                                          // Line 452
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 463
+	echo T_("Not set");                                                               // Line 413
+	echo T_("Keyword");                                                               // Line 384
+	echo T_("Statistical population");                                                // Line 401
+	echo T_("There is nothing to display!");                                          // Line 458
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 469
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 520
+	echo T_("Continue");                                                              // Line 526
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -551,7 +553,7 @@ private function transtext()
 	echo T_("Awaiting");                                                              // Line 26
 	echo T_("Draft");                                                                 // Line 107
 	echo T_("Untitled");                                                              // Line 82
-	echo T_("Summary");                                                               // Line 363
+	echo T_("Summary");                                                               // Line 342
 	echo T_("Persian");                                                               // Line 119
 	echo T_("parent");                                                                // Line 125
 	echo T_("sarshomar");                                                             // Line 128
@@ -817,7 +819,6 @@ private function transtext()
 
 	//-----------------------------------------------------content_u\add\progress.html
 	echo T_("Filter");                                                                // Line 100
-	echo T_("Next");                                                                  // Line 9
 	echo T_("Show my poll");                                                          // Line 14
 
 	//--------------------------------------------------------content_u\add\step1.html
@@ -841,44 +842,41 @@ private function transtext()
 	echo T_("Allow to type other answer");                                            // Line 183
 	echo T_("Branding");                                                              // Line 105
 	echo T_("URL");                                                                   // Line 201
-	echo T_("Choice Range");                                                          // Line 227
-	echo T_("Ultimate");                                                              // Line 212
-	echo T_("One");                                                                   // Line 216
-	echo T_("Max");                                                                   // Line 216
-	echo T_("Randomize sort options");                                                // Line 254
-	echo T_("Hidden result");                                                         // Line 264
-	echo T_("Has correct option");                                                    // Line 274
+	echo T_("Choice Range");                                                          // Line 209
+	echo T_("Randomize sort options");                                                // Line 233
+	echo T_("Hidden result");                                                         // Line 243
+	echo T_("Has correct option");                                                    // Line 253
 	echo T_("Complete Profile");                                                      // Line 27
-	echo T_("Tree");                                                                  // Line 329
+	echo T_("Tree");                                                                  // Line 308
 	echo T_("Time");                                                                  // Line 17
-	echo T_("Text Format");                                                           // Line 381
-	echo T_("Any Text");                                                              // Line 383
-	echo T_("Phone Number");                                                          // Line 384
-	echo T_("Website");                                                               // Line 386
+	echo T_("Text Format");                                                           // Line 360
+	echo T_("Any Text");                                                              // Line 362
+	echo T_("Phone Number");                                                          // Line 363
+	echo T_("Website");                                                               // Line 365
 	echo T_("Number");                                                                // Line 12
-	echo T_("Custom");                                                                // Line 436
-	echo T_("Regular");                                                               // Line 441
-	echo T_("Something");                                                             // Line 406
-	echo T_("File Format");                                                           // Line 424
-	echo T_("Any File");                                                              // Line 426
-	echo T_("Document");                                                              // Line 427
-	echo T_("Photo");                                                                 // Line 428
-	echo T_("Video");                                                                 // Line 429
-	echo T_("Audio");                                                                 // Line 430
-	echo T_("PDF");                                                                   // Line 431
-	echo T_("Word");                                                                  // Line 432
-	echo T_("Excel");                                                                 // Line 433
-	echo T_("PowerPoint");                                                            // Line 434
-	echo T_("Text");                                                                  // Line 435
-	echo T_("File Size");                                                             // Line 451
-	echo T_("Range Number");                                                          // Line 474
-	echo T_("Star");                                                                  // Line 477
-	echo T_("Like");                                                                  // Line 480
-	echo T_("Number Size");                                                           // Line 488
-	echo T_("Star size");                                                             // Line 504
-	echo T_("Fit to best size");                                                      // Line 519
-	echo T_("Remove File");                                                           // Line 536
-	echo T_("Apply");                                                                 // Line 537
+	echo T_("Custom");                                                                // Line 415
+	echo T_("Regular");                                                               // Line 420
+	echo T_("Something");                                                             // Line 385
+	echo T_("File Format");                                                           // Line 403
+	echo T_("Any File");                                                              // Line 405
+	echo T_("Document");                                                              // Line 406
+	echo T_("Photo");                                                                 // Line 407
+	echo T_("Video");                                                                 // Line 408
+	echo T_("Audio");                                                                 // Line 409
+	echo T_("PDF");                                                                   // Line 410
+	echo T_("Word");                                                                  // Line 411
+	echo T_("Excel");                                                                 // Line 412
+	echo T_("PowerPoint");                                                            // Line 413
+	echo T_("Text");                                                                  // Line 414
+	echo T_("File Size");                                                             // Line 430
+	echo T_("Range Number");                                                          // Line 453
+	echo T_("Star");                                                                  // Line 456
+	echo T_("Like");                                                                  // Line 459
+	echo T_("Number Size");                                                           // Line 467
+	echo T_("Star size");                                                             // Line 483
+	echo T_("Fit to best size");                                                      // Line 498
+	echo T_("Remove File");                                                           // Line 515
+	echo T_("Apply");                                                                 // Line 516
 
 	//--------------------------------------------------------content_u\add\step2.html
 	echo T_("Education");                                                             // Line 39
