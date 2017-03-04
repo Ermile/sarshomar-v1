@@ -305,7 +305,7 @@
   </div>
  </div>
 {%endif%}
- {%if url.tld == 'dev'%}
+ {%if poll.count_vote == 0%}
  <div class="in small"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
  {%endif%}
  {{block('chart')}}
