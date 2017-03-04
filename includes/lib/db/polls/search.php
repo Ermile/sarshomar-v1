@@ -277,6 +277,10 @@ trait search
 			{
 				$where[] = " posts.`$key` IS NULL ";
 			}
+			elseif(is_numeric($value))
+			{
+				$where[] = " posts.`$key` = $value ";
+			}
 			elseif(is_string($value))
 			{
 				$where[] = " posts.`$key` = '$value' ";
@@ -336,7 +340,7 @@ trait search
 				$public_fields = $is_answered. $public_fields;
 			}
 		}
-
+		$json = json_encode(func_get_args());
 		$query =
 		"
 			SELECT SQL_CALC_FOUND_ROWS
@@ -350,6 +354,7 @@ trait search
 			$order
 			$limit
 			-- polls::search()
+			-- $json
 		";
 
 		if(!$only_one_value)
