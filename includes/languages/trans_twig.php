@@ -15,10 +15,10 @@ private function transtext()
 	echo T_("Your Message");                                                          // Line 28
 	echo T_("Send");                                                                  // Line 29
 	echo T_("How to contact Sarshomar");                                              // Line 36
-	echo T_("#614, Omranieh");                                                        // Line 52
-	echo T_("Moallem Sq");                                                            // Line 53
-	echo T_("Qom");                                                                   // Line 54
-	echo T_("Iran");                                                                  // Line 55
+	echo T_("#614, Omranieh");                                                        // Line 54
+	echo T_("Moallem Sq");                                                            // Line 55
+	echo T_("Qom");                                                                   // Line 56
+	echo T_("Iran");                                                                  // Line 57
 
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
@@ -44,7 +44,8 @@ private function transtext()
 	//---------------------------------------------------------content\help\terms.html
 	echo T_("Search in Help Center");                                                 // Line 10
 	echo T_("Questions List");                                                        // Line 25
-	echo T_("Latest questions");                                                      // Line 34
+	echo T_("Not found");                                                             // Line 34
+	echo T_("Latest questions");                                                      // Line 39
 
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9

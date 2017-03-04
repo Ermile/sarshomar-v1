@@ -19,7 +19,7 @@ private function transtext()
 
 	//-----------------------------saloos-addons\content_account\recovery\display.html
 	echo T_("click here to login to your account");                                   // Line 6
-	echo T_("are you remember your password!?");                                      // Line 6
+	echo T_("Remembered your password?");                                             // Line 6
 
 	//-------------------------------saloos-addons\content_account\signup\display.html
 	echo T_("already have an account?");                                              // Line 6
@@ -538,7 +538,7 @@ private function transtext()
 	echo T_(" ");                                                                     // Line 391 Seperate
 
 	//-----------------------------------------saloos-addons\includes\macro\forms.html
-	echo T_("Select");                                                                // Line 80
+	echo T_("Select");                                                                // Line 81
 
 	//-----------------------------------------saloos-addons\includes\mvc\display.html
 
