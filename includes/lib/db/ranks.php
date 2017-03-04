@@ -88,12 +88,16 @@ class ranks
 
 
 	/**
-	 * plus the field of ranks
+	 * change poll ranks
 	 *
-	 * @param      <type>  $_poll_id  The poll identifier
-	 * @param      <type>  $_field    The field
+	 * @param      <type>   $_poll_id  The poll identifier
+	 * @param      <type>   $_field    The field
+	 * @param      integer  $_plus     The plus
+	 * @param      array    $_options  The options
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
 	 */
-	public static function plus($_poll_id, $_field, $_plus = 1, $_options = [])
+	public static function change_rank($_poll_id, $_field, $_plus = 1, $_options = [])
 	{
 		$default_options =
 		[
@@ -216,7 +220,25 @@ class ranks
 
 
 	/**
-	 * { function_description }
+	 * plus the field of ranks
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 * @param      <type>  $_field    The field
+	 */
+	public static function plus($_poll_id, $_field, $_plus = 1, $_options = [])
+	{
+		$default_options = ['type' => 'plus'];
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+		$_options = array_merge($default_options, $_options);
+		return self::change_rank($_poll_id, $_field, $_plus, $_options);
+	}
+
+
+	/**
+	 * minus the poll ranks
 	 *
 	 * @param      <type>   $_poll_id  The poll identifier
 	 * @param      <type>   $_field    The field
@@ -230,11 +252,11 @@ class ranks
 		$default_options = ['type' => 'minus'];
 		if(!is_array($_options))
 		{
-			$_options = [$_options];
+			$_options = [];
 		}
 
 		$_options = array_merge($default_options, $_options);
-		return self::plus($_poll_id, $_field, $_minus, $_options);
+		return self::change_rank($_poll_id, $_field, $_minus, $_options);
 	}
 }
 ?>

@@ -10,23 +10,14 @@ class model extends \content_u\home\model
 	 * use api tools
 	 */
 	use \content_api\v1\poll\tools\add;
-
 	use \content_api\v1\poll\tools\get;
-
 	use \content_api\v1\home\tools\ready;
-
 	use \content_api\v1\poll\opts\tools\get;
-
 	use \content_api\v1\tag\search\tools\search;
-
 	use \content_api\v1\poll\search\tools\search;
-
 	use \content_api\v1\file\tools\link;
-
 	use \content_api\v1\file\tools\get;
-
 	use \content_api\v1\poll\status\tools\get;
-
 	use \content_api\v1\poll\status\tools\set;
 
 
@@ -183,12 +174,7 @@ class model extends \content_u\home\model
 			$method        = ['method' => 'put'];
 		}
 
-		utility::$REQUEST = new utility\request(
-			[
-				'method' => 'array',
-				'request' => $request
-			]
-			);
+		utility::set_request_array($request);
 
 		$this->user_id = $this->login('id');
 		$this->debug   = false;

@@ -7,6 +7,69 @@ use \lib\utility\shortURL;
 
 trait check
 {
+
+	/**
+	 * check if isset parameter in self::$args
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public static function isset_args()
+	{
+		$arg = func_get_args();
+		$temp_args = [];
+		if(self::$args && is_array(self::$args))
+		{
+			if(array_key_exists(0, $arg) && array_key_exists($arg[0], self::$args))
+			{
+				$temp_args = self::$args[$arg[0]];
+			}
+			else
+			{
+				return false;
+			}
+
+			array_shift($arg);
+
+			if(!empty($arg))
+			{
+				if(is_array($temp_args))
+				{
+					$prev_index     = null;
+					$prev_temp_args = [];
+
+					foreach ($arg as $key => $index)
+					{
+						if(!is_array($temp_args))
+						{
+							break;
+						}
+						$prev_index     = $index;
+						$prev_temp_args = $temp_args;
+						if(array_key_exists($index, $temp_args))
+						{
+							$temp_args = $temp_args[$index];
+						}
+					}
+					$end = end($arg);
+					if(array_key_exists($end, $prev_temp_args))
+					{
+						return true;
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 	/**
 	 * check permission from self::$permission
 	 *
@@ -14,7 +77,7 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function permission($_content = null, $_permission = null, $_accions = null)
+	public static function poll_check_permission($_content = null, $_permission = null, $_accions = null)
 	{
 		$permission = new \lib\utility\permission;
 		return $permission->access($_content, $_permission, $_accions);

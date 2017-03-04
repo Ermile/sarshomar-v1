@@ -23,7 +23,7 @@ trait max
 		";
 		$count = (int) \lib\db::get($query, 'count', true);
 
-		$max_draft  = 500;
+		$max_draft  = 10;
 
 		if($count > $max_draft)
 		{

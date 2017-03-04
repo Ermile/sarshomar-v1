@@ -4,23 +4,45 @@ use \lib\debug;
 
 trait poll
 {
+
+	/**
+	 * insert poll data
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	protected static function insert_poll()
 	{
 		// insert poll arguments
 		$insert_poll = [];
 
 		// check and insert poll title
-		if(isset(self::$args['title']))
+		if(self::isset_args('title'))
 		{
-			$insert_poll['post_title'] = trim(self::$args['title']);
-
 			if(mb_strlen(self::$args['title']) > 190)
 			{
 				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 			}
-		}
 
-		// post slug
+			if(self::$args['title'])
+			{
+				$insert_poll['post_title'] = trim(self::$args['title']);
+			}
+			else
+			{
+				$insert_poll['post_title'] = '‌';
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_title'] = '‌';
+			}
+			elseif(self::$method == 'post')
+			{
+				$insert_poll['post_title'] = '‌';
+			}
+		}
 
 		// if(isset(self::$args['slug']))
 		// {
@@ -41,12 +63,11 @@ trait poll
 		// 	}
 		// }
 
-
 		// if poll title is null set this character >>‌<< this caracter
-		if(!self::$update_mod && !self::$args['title'])
-		{
-			$insert_poll['post_title'] = '‌';
-		}
+		// if(!self::$update_mod && !self::$args['title'])
+		// {
+		// 	$insert_poll['post_title'] = '‌';
+		// }
 
 		if(!self::$update_mod)
 		{
@@ -54,7 +75,7 @@ trait poll
 		}
 
 		// check surver id
-		if(isset(self::$args['survey']))
+		if(self::isset_args('survey'))
 		{
 			if(self::$args['survey'])
 			{
@@ -90,19 +111,29 @@ trait poll
 				$insert_poll['post_survey'] = null;
 			}
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_survey'] = null;
+			}
+		}
 
 		// get content
-		if(isset(self::$args['description']))
+		if(self::isset_args('description'))
 		{
 			$insert_poll['post_content'] = trim(self::$args['description']);
 		}
 		else
 		{
-			$insert_poll['post_content'] = null;
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_content'] = null;
+			}
 		}
 
 		// summary
-		if(isset(self::$args['summary']))
+		if(self::isset_args('summary'))
 		{
 			$insert_poll['post_meta']['summary'] = trim(self::$args['summary']);
 			if(self::$args['summary'] && mb_strlen(self::$args['summary']) > 150)
@@ -112,11 +143,14 @@ trait poll
 		}
 		else
 		{
-			$insert_poll['post_meta']['summary'] = null;
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_meta']['summary'] = null;
+			}
 		}
 
 		// summary
-		if(isset(self::$args['access_profile']))
+		if(self::isset_args('access_profile'))
 		{
 			$insert_poll['post_meta']['access_profile'] = self::$args['access_profile'];
 			if(!is_array(self::$args['access_profile']) || is_null(self::$args['access_profile']))
@@ -124,16 +158,23 @@ trait poll
 				return debug::error(T_("Access profile must be array"), 'access_profile', 'arguments');
 			}
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_meta']['access_profile'] = null;
+			}
+		}
 
 		// get the insert id by check sarshomar permission
 		// when not in upldate mode
-		if(!self::$update_mod && self::$args['permission_sarshomar'] === true)
+		if(!self::$update_mod && self::poll_check_permission('u', 'sarshomar'))
 		{
 			$next_id   = (int) \lib\db\polls::sarshomar_id();
 			$insert_poll['id'] = ++$next_id;
 		}
 
-		if(self::$args['language'])
+		if(self::isset_args('language'))
 		{
 			// check language
 			if(!\lib\utility\location\languages::check(self::$args['language']))
@@ -144,25 +185,30 @@ trait poll
 			$insert_poll['post_language'] = self::$args['language'];
 
 		}
-		elseif(!self::$update_mod)
+		else
 		{
-			$insert_poll['post_language'] = \lib\define::get_language();
+			if(self::$method == 'post')
+			{
+				$insert_poll['post_language'] = \lib\define::get_language();
+			}
 		}
 
 
 		if(!self::$update_mod)
 		{
-			$insert_poll['post_sarshomar'] = self::$args['permission_sarshomar'] === true ? 1 : 0;
+			$insert_poll['post_sarshomar'] = self::poll_check_permission('u', 'sarshomar') ? 1 : 0;
 			$insert_poll['post_privacy']   = 'private';
 			$insert_poll['user_id']        =  self::$args['user'];
 			$insert_poll['post_status']    = 'draft';
+			$insert_poll['post_type']      = 'poll';
+			$insert_poll['post_comment']   = 'open';
 		}
 
 		$change_tree = false;
 		$tree_args   = false;
 
 		// tree
-		if(isset(self::$args['tree']['parent']))
+		if(self::isset_args('tree','parent'))
 		{
 			$change_tree = true;
 
@@ -201,14 +247,18 @@ trait poll
 				$tree_args['opt']     = $loc_opt;
 			}
 		}
-
-		if(!self::$update_mod)
+		else
 		{
-			$insert_poll['post_type']    = 'poll';
-			$insert_poll['post_comment'] = 'open';
+			if(self::$method == 'put')
+			{
+				if(self::$poll_id)
+				{
+					\lib\utility\poll_tree::remove(self::$poll_id);
+				}
+			}
 		}
 
-		if(!self::permission('admin'))
+		if(!self::poll_check_permission('admin'))
 		{
 			$insert_poll['post_status'] = 'draft';
 		}
@@ -242,7 +292,6 @@ trait poll
 			self::update(['post_url' => $new_url], self::$poll_id);
 		}
 
-
 		if($change_tree)
 		{
 			\lib\utility\poll_tree::remove(self::$poll_id);
@@ -254,7 +303,7 @@ trait poll
 		}
 
 		// insert filters
-		if(self::$args['from'])
+		if(self::isset_args('from'))
 		{
 			if(!is_array(self::$args['from']))
 			{
@@ -266,9 +315,8 @@ trait poll
 			 * set ranks
 			 * plus (int) member in member field
 			 */
-			if(isset(self::$args['from']['count']))
+			if(self::isset_args('from','count'))
 			{
-
 				$member       = (int) self::$args['from']['count'];
 
 				unset(self::$args['from']['count']);
@@ -277,7 +325,7 @@ trait poll
 
 				debug::msg("member_exist", $member_exist);
 
-				if(self::permission('u', 'sarshomar', 'view') && $member_exist === $member)
+				if(self::poll_check_permission('u', 'sarshomar', 'view') && $member_exist === $member)
 				{
 					\lib\db\ranks::plus(self::$poll_id, "member", 1000000000, ['replace' => true]);
 				}

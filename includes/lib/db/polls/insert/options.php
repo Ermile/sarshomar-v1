@@ -9,7 +9,7 @@ trait options
 	protected static function insert_options()
 	{
 		// save meta times
-		if(isset(self::$args['brand']['title']))
+		if(self::isset_args('brand','title'))
 		{
 			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 160)
 			{
@@ -17,7 +17,7 @@ trait options
 			}
 
 			$url = null;
-			if(isset(self::$args['brand']['url']))
+			if(self::isset_args('brand','url'))
 			{
 				if(mb_strlen(self::$args['brand']['url']) > 100)
 				{
@@ -28,15 +28,29 @@ trait options
 			}
 			self::save_options('brand', self::$args['brand']['title'], ['url' => $url]);
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('brand', false);
+			}
+		}
 
 		// save meta times
-		if(isset(self::$args['options']['time']))
+		if(self::isset_args('options','time'))
 		{
 			if(self::$args['options']['time'] && !is_numeric(self::$args['options']['time']))
 			{
 				return debug::error(T_("Invalid arguments time"), 'time', 'arguments');
 			}
 			self::save_options('time', self::$args['options']['time']);
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('time', false);
+			}
 		}
 
 		$set_multi_min = false;
@@ -45,7 +59,7 @@ trait options
 		$ordering      = false;
 
 		// save meta min
-		if(isset(self::$args['options']['multi']['min']))
+		if(self::isset_args('options','multi','min'))
 		{
 			if(self::$args['options']['multi']['min'] && !is_numeric(self::$args['options']['multi']['min']))
 			{
@@ -58,7 +72,7 @@ trait options
 			}
 
 			if(
-				isset(self::$args['options']['multi']['max']) &&
+				self::isset_args('options','multi','max') &&
 				intval(self::$args['options']['multi']['min']) >
 				intval(self::$args['options']['multi']['max'])
 			  )
@@ -80,11 +94,14 @@ trait options
 		}
 		else
 		{
-			self::save_options('multi_min', false);
+			if(self::$method == 'put')
+			{
+				self::save_options('multi_min', false);
+			}
 		}
 
 		// save meta max
-		if(isset(self::$args['options']['multi']['max']))
+		if(self::isset_args('options','multi','max'))
 		{
 			if(self::$args['options']['multi']['max'] && !is_numeric(self::$args['options']['multi']['max']))
 			{
@@ -101,7 +118,7 @@ trait options
 			}
 
 			if(
-				isset(self::$args['options']['multi']['min']) &&
+				self::isset_args('options','multi','min') &&
 				intval(self::$args['options']['multi']['max']) <
 				intval(self::$args['options']['multi']['min'])
 			  )
@@ -113,21 +130,27 @@ trait options
 		}
 		else
 		{
-			self::save_options('multi_max', false);
+			if(self::$method == 'put')
+			{
+				self::save_options('multi_max', false);
+			}
 		}
 
-		if(isset(self::$args['options']['multi']) && !$set_multi_min && !$set_multi_max)
+		if(self::isset_args('options','multi') && !$set_multi_min && !$set_multi_mx)
 		{
 			self::save_options('multi', true);
 			$set_multi = true;
 		}
 		else
 		{
-			self::save_options('multi', false);
+			if(self::$method == 'put')
+			{
+				self::save_options('multi', false);
+			}
 		}
 
 		// save meta ordering
-		if(isset(self::$args['options']['ordering']))
+		if(self::isset_args('options','ordering'))
 		{
 			if(self::$args['options']['ordering'])
 			{
@@ -147,7 +170,6 @@ trait options
 				}
 
 				self::save_options('ordering', true);
-
 				self::save_options('multi', false);
 				self::save_options('multi_min', false);
 				self::save_options('multi_max', false);
@@ -160,11 +182,14 @@ trait options
 		}
 		else
 		{
-			self::save_options('ordering', false);
+			if(self::$method == 'put')
+			{
+				self::save_options('ordering', false);
+			}
 		}
 
 		// save meta random_sort
-		if(isset(self::$args['options']['random_sort']))
+		if(self::isset_args('options','random_sort'))
 		{
 			if(self::$args['options']['random_sort'])
 			{
@@ -175,18 +200,28 @@ trait options
 				self::save_options('random_sort', false);
 			}
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('random_sort', false);
+			}
+		}
 
-		if(self::$args['hidden_result'])
+		if(self::isset_args('hidden_result'))
 		{
 			self::save_options('hidden_result', true);
 		}
 		else
 		{
-			self::save_options('hidden_result', false);
+			if(self::$method == 'put')
+			{
+				self::save_options('hidden_result', false);
+			}
 		}
 
 		// save meta start_date
-		if(isset(self::$args['schedule']['start']))
+		if(self::isset_args('schedule','start'))
 		{
 			if(self::$args['schedule']['start'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['start']) === false)
 			{
@@ -194,9 +229,16 @@ trait options
 			}
 			self::save_options('start_date', self::$args['schedule']['start']);
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('start_date', false);
+			}
+		}
 
 		// save meta end_date
-		if(isset(self::$args['schedule']['end']))
+		if(self::isset_args('schedule','end'))
 		{
 			if(self::$args['schedule']['end'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['end']) === false)
 			{
@@ -204,10 +246,16 @@ trait options
 			}
 			self::save_options('end_date', self::$args['schedule']['end']);
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('end_date', false);
+			}
+		}
 
 		// save meta article
-		self::save_options('articles', false);
-		if(self::$args['articles'])
+		if(self::isset_args('articles'))
 		{
 			if(!is_array(self::$args['articles']))
 			{
@@ -224,12 +272,19 @@ trait options
 				self::save_options('articles', \lib\utility\shortURL::decode($value), ['_multi_' => true]);
 			}
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('articles', false);
+			}
+		}
 
 		/**
 		 * upload files of poll title
 		 */
 		// save meta file
-		if(isset(self::$args['file']))
+		if(self::isset_args('file'))
 		{
 			// remove attachment from this post
 			if(!self::$args['file'])
@@ -259,8 +314,15 @@ trait options
 				self::save_options('title_attachment',  shortURL::decode(self::$args['file']), ['url' => $url, 'type' => $type]);
 			}
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('title_attachment', false);
+			}
+		}
 
-		if(self::$args['tags'])
+		if(self::isset_args('tags'))
 		{
 			if(!is_array(self::$args['tags']))
 			{
@@ -358,8 +420,25 @@ trait options
 			}
 			\lib\db\termusages::insert_multi($useage_arg);
 		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				$temp_poll_id = self::$poll_id;
 
-		if(self::$args['cat'] && self::$args['permission_sarshomar'] === true)
+				$remove_tags =
+				"
+					DELETE FROM
+						termusages
+					WHERE
+						termusages.termusage_foreign = 'tag' AND
+						termusages.termusage_id      = $temp_poll_id
+				";
+				\lib\db::query($remove_tags);
+			}
+		}
+
+		if(self::isset_args('cat') && self::poll_check_permission('u', 'sarshomar'))
 		{
 			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cat']))
 			{
@@ -414,6 +493,24 @@ trait options
 					self::$poll_full_url = $new_url;
 					self::update(['post_url' => $new_url], self::$poll_id);
 				}
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+
+				$temp_poll_id = self::$poll_id;
+
+				$query_delete_exist_cat =
+				"
+					DELETE FROM
+						termusages
+					WHERE
+						termusages.termusage_foreign = 'cat' AND
+						termusages.termusage_id      = $temp_poll_id
+				";
+				\lib\db::query($query_delete_exist_cat);
 			}
 		}
 	}

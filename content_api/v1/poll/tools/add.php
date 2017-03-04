@@ -78,37 +78,106 @@ trait add
 			{
 				return debug::error(T_("Profile values is incorrect") . " ('" . implode($diff, "', '") . "')", 'access_profile', 'arguments');
 			}
-			$args['access_profile']                           = $access_profile;
+			$args['access_profile'] = $access_profile;
 		}
 		// insert args
-		$args['update']                                   = $update;
-		$args['debug']                                    = $this->debug;
-		$args['user']                                     = $this->user_id;
-		$args['method']                                   = $_args['method'];
-		$args['shortURL']                                 = \lib\utility\shortURL::ALPHABET;
-		$args['permission_sarshomar']                     = $this->access('u', 'sarshomar_knowledge', 'add');
-		$args['permission_profile']                       = $this->access('u', 'complete_profile', 'admin');
-		$args['title']                                    = utility::request("title");
-		$args['answers']                                  = utility::request("answers");
-		$args['survey']                                   = utility::request('survey');
-		$args['status']                                   = utility::request('status');
-		$args['summary']                                  = utility::request('summary');
-		$args['description']                              = utility::request('description');
-		$args['language']                                 = utility::request('language');
-		$args['file']                                     = utility::request('file');
-		$args['tree']                                     = utility::request('tree');
-		$args['options']                                  = utility::request("options");
-		$args['brand']                                    = utility::request("brand");
-		$args['from']                                     = utility::request("from");
-		$args['schedule']                                 = utility::request('schedule');
-		$args['hidden_result']                            = utility::request('hidden_result');
-		$args['articles']                                 = utility::request('articles');
-		$args['tags']                                     = utility::request('tags');
-		$args['cat']                                      = utility::request('cat');
+		$args['update']   = $update;
+		$args['debug']    = $this->debug;
+		$args['user']     = $this->user_id;
+		$args['method']   = $_args['method'];
+		$args['shortURL'] = \lib\utility\shortURL::ALPHABET;
 
-		// $args['comment']                               = utility::request('comment');
-		// $args['slug']                                  = utility::request('slug');
-		// $args['type']                                  = utility::request("type");
+		// $args['permission_sarshomar']                     = $this->access('u', 'sarshomar_knowledge', 'add');
+		// $args['permission_profile']                       = $this->access('u', 'complete_profile', 'admin');
+		//
+		if(utility::isset_request('title'))
+		{
+			$args['title'] = utility::request("title");
+		}
+
+		if(utility::isset_request('answers'))
+		{
+			$args['answers'] = utility::request("answers");
+		}
+
+		if(utility::isset_request('survey'))
+		{
+			$args['survey'] = utility::request('survey');
+		}
+
+		if(utility::isset_request('status'))
+		{
+			$args['status'] = utility::request('status');
+		}
+
+		if(utility::isset_request('summary'))
+		{
+			$args['summary'] = utility::request('summary');
+		}
+
+		if(utility::isset_request('description'))
+		{
+			$args['description'] = utility::request('description');
+		}
+
+		if(utility::isset_request('language'))
+		{
+			$args['language'] = utility::request('language');
+		}
+
+		if(utility::isset_request('file'))
+		{
+			$args['file'] = utility::request('file');
+		}
+
+		if(utility::isset_request('tree'))
+		{
+			$args['tree'] = utility::request('tree');
+		}
+
+		if(utility::isset_request('options'))
+		{
+			$args['options'] = utility::request("options");
+		}
+
+		if(utility::isset_request('brand'))
+		{
+			$args['brand'] = utility::request("brand");
+		}
+
+		if(utility::isset_request('from'))
+		{
+			$args['from'] = utility::request("from");
+		}
+
+		if(utility::isset_request('schedule'))
+		{
+			$args['schedule'] = utility::request('schedule');
+		}
+
+		if(utility::isset_request('hidden_result'))
+		{
+			$args['hidden_result'] = utility::request('hidden_result');
+		}
+
+		if(utility::isset_request('articles'))
+		{
+			$args['articles'] = utility::request('articles');
+		}
+
+		if(utility::isset_request('tags'))
+		{
+			$args['tags'] = utility::request('tags');
+		}
+
+		if(utility::isset_request('cat'))
+		{
+			$args['cat'] = utility::request('cat');
+		}
+
+		// $args['comment'] = utility::request('comment');
+		// $args['slug']    = utility::request('slug');
+		// $args['type']    = utility::request("type");
 
 		$result = \lib\db\polls::create($args);
 		return $result;

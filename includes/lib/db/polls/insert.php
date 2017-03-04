@@ -7,6 +7,7 @@ trait insert
 	protected static $args           = [];
 	protected static $permission     = [];
 	protected static $debug          = true;
+	protected static $method         = 'post';
 
 	protected static $draft_mod      = true;
 	protected static $publish_mod    = false;
@@ -34,74 +35,23 @@ trait insert
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public static function create($_args)
+	public static function create($_args = [])
 	{
 
 		$default_value =
 		[
 			// get shortURL of poll to update poll
-			'update'                          => false,
-			// permission list
-			'permission'					  => [],
-			// the sarshomar permission fo id of poll
-			'permission_sarshomar'            => false,
-			// the user can set the profile poll
-			'permission_profile'              => false,
+			'update'      => false,
 			// the user_id has create this poll
-			'user'                            => null,
-			// title of poll
-			'title'                           => null,
-			// poll type [poll|survey]
-			'type'							  => 'poll',
-			// the file path
-			// 'file_path'                       => null,
-			'file'                            => null,
+			'user'        => null,
 			// the upload name
-			'upload_name'                     => null,
-			// answers of poll
-			'answers'                         => null,
-			// the options of poll:
-			'options'                         => [],
-			// filters
-			'from'                            => [],
+			'upload_name' => null,
 			// the short url
-			'shortURL'						  => \lib\utility\shortURL::ALPHABET,
+			'shortURL'    => \lib\utility\shortURL::ALPHABET,
 			// enable debug mode
-			'debug' 						  => true,
+			'debug'       => true,
 			// method
-			'method' 						  => 'post',
-			// poll status
-			// 'status'       					  => 'draft',
-			// the survey id
-			'survey'    					  => null,
-			// comment
-			// 'comment'      					  => true,
-			// summary of poll
-			'summary'      					  => null,
-			// descriptin
-			'description'  					  => null,
-			// poll laguage
-			'language'     					  => null,
-			// poll file in title
-			'file'         					  => null,
-			// poll slug
-			// 'slug'         					  => null,
-			// tree
-			'tree'         					  => [],
-			// brand
-			'brand' 						  => [],
-			// the schedule
-			'schedule'						  => [],
-			// hidden result
-			'hidden_result' 				  => false,
-			// article
-			'articles'       				  => [],
-			// tags
-			'tags'          				  => [],
-			// cats
-			'cat'          				  => null,
-			// access answerd profile
-			'access_profile'			  	  => null,
+			'method'      => 'post',
 		];
 
 		$_args = array_merge($default_value, $_args);
@@ -111,8 +61,8 @@ trait insert
 			self::$debug = false;
 		}
 
-		// permission list
-		self::$permission = $_args['permission'];
+		// // permission list
+		// self::$permission = $_args['permission'];
 
 		// set args
 		self::$args = $_args;
@@ -132,7 +82,7 @@ trait insert
 			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
 			self::$poll_full_url  = isset(self::$old_saved_poll['url']) ? self::$old_saved_poll['url']: null;
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
-			if(self::$old_status !== 'draft' && !self::permission('admin'))
+			if(self::$old_status !== 'draft' && !self::poll_check_permission('admin'))
 			{
 				return debug::error(T_("Can not edit poll, the status of this poll is :status", ['status' => self::$old_status]), 'status', 'permission');
 			}
@@ -148,26 +98,21 @@ trait insert
 			return;
 		}
 
-		self::$user_id = self::$args['user'];
+		self::$user_id   = self::$args['user'];
 
-		$method = mb_strtolower($_args['method']);
+		self::$method    = mb_strtolower($_args['method']);
 
-		self::$draft_mod      = true;
+		self::$draft_mod = true;
+
 		// self::$args['status'] = 'draft';
 
 		// if in update mod check permission on editing this poll
 		if(self::$update_mod)
 		{
-			if(!self::is_my_poll(self::$poll_id, self::$user_id) && !self::permission('admin'))
+			if(!self::is_my_poll(self::$poll_id, self::$user_id) && !self::poll_check_permission('admin'))
 			{
 				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
 			}
-		}
-
-		// reset poll
-		if($_args['method'] == 'put' && self::$poll_id)
-		{
-			// self::reset();
 		}
 
 		// check max draft count of every user
@@ -182,11 +127,10 @@ trait insert
 		// insert options of poll
 		self::insert_options();
 
-		T_("Poll added successfully");
-	    T_("Poll edited successfully");
-	    T_("Error in adding poll");
-	    T_("Error in editing poll");
-
+		// T_("Poll added successfully");
+	 	// T_("Poll edited successfully");
+	 	// T_("Error in adding poll");
+	 	// T_("Error in editing poll");
 
 		$msg_mod = "add";
 		if($_args['update'])
