@@ -16,11 +16,44 @@ class handle
 			exit();
 		}
 
-
-		$valid_id = [1, 2, 3, 4, 17, 18, 21, 33, 35];
-		if(!in_array(bot::$user_id, $valid_id))
+		if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
 		{
-			exit();
+
+			$query_get = \lib\db\options::get([
+				'user_id' => bot::$user_id,
+				'option_cat' => 'telegram',
+				'option_key' => 'dev_user_' . bot::$user_id,
+				'option_value' => bot::$hook['message']['from']['id'],
+				'limit'	=> 1
+			]);
+
+			if(is_null($query_get))
+			{
+				exit();
+			}
+
+			$valid_id = [58164083, 46898544];
+			if(isset(bot::$hook['message']['forward_from']) && isset(bot::$hook['message']['text']) && in_array(bot::$hook['message']['from']['id'], $valid_id))
+			{
+				$text_login_to_dev = bot::$hook['message']['text'];
+				if($text_login_to_dev == '/signup')
+				{
+					$query = \lib\db\options::insert([
+						'user_id' => bot::$user_id,
+						'option_cat' => 'telegram',
+						'option_key' => 'dev_user_' . bot::$user_id,
+						'option_value' => bot::$hook['message']['forward_from']['id'],
+						]);
+					if(\lib\debug::$status)
+					{
+						return ['text' => "telegram_id: " . bot::$hook['message']['forward_from']['id'] . "\n#signup"];
+					}
+					else
+					{
+						return ['text' => "```" . json_encode(\lib\debug::compile()) . '```'];
+					}
+				}
+			}
 		}
 
 		chdir('/home/git/sarshomar');
@@ -88,6 +121,7 @@ class handle
 			{
 				$command_text = $_cmd['text'];
 			}
+
 			switch ($command_text)
 			{
 				case '/menu':

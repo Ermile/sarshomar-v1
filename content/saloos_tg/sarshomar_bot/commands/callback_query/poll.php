@@ -257,7 +257,7 @@ class poll
 		$debug = \lib\debug::compile();
 		if ($api_method == 'warn_delete') {
 			$debug_status = 2;
-			$debug['messages']['error'][0]['title'] = T_("اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید");
+			$debug['messages']['warn'][0]['title'] = T_("اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید");
 			session::set('expire', 'command', 'poll_delete', ['id' => $poll_id, 'answer' => $answer]);
 			\lib\storage::set_current_command(true);
 		}
@@ -277,9 +277,10 @@ class poll
 		}
 		elseif($debug_status == 2)
 		{
-			return ['text' => '⚠️' . $debug['messages']['error'][0]['title']];
+			return ['text' => '⚠️' . $debug['messages']['warn'][0]['title']];
 		}
-		return ['text' => '✅ ' . \lib\debug::compile()['title']];
+		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
+		return ['text' => '✅ ' . $title];
 	}
 
 	public static function new()
