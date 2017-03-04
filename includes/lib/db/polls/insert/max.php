@@ -23,7 +23,26 @@ trait max
 		";
 		$count = (int) \lib\db::get($query, 'count', true);
 
-		$max_draft  = 10;
+		$max_draft  = 5;
+
+		if(self::poll_check_permission('u','draft_poll_10', 'view'))
+		{
+			$max_draft = 10;
+		}
+
+		if(self::poll_check_permission('u','draft_poll_50', 'view'))
+		{
+			$max_draft = 50;
+		}
+		if(self::poll_check_permission('u','draft_poll_500', 'view'))
+		{
+			$max_draft = 500;
+		}
+
+		if(self::poll_check_permission('u','draft_poll_max', 'view'))
+		{
+			$max_draft = 1000000;
+		}
 
 		if($count > $max_draft)
 		{

@@ -333,7 +333,7 @@ trait options
 
 			$check_count = array_filter($tags);
 
-			if(count($check_count) >= 5 && self::$args['permission_sarshomar'] === false)
+			if(count($check_count) >= 5 && !self::poll_check_permission('u','sarshomar', 'view'))
 			{
 				return debug::error(T_("You have added so many tags, Please remove some of them"), 'tags', 'arguments');
 			}
@@ -438,7 +438,7 @@ trait options
 			}
 		}
 
-		if(self::isset_args('cat') && self::poll_check_permission('u', 'sarshomar'))
+		if(self::isset_args('cat') && self::poll_check_permission('u', 'sarshomar', 'view'))
 		{
 			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cat']))
 			{

@@ -112,7 +112,7 @@ trait answers
 		     		}
 				}
 
-				if(self::poll_check_permission('u', 'sarshomar') === true)
+				if(self::poll_check_permission('u', 'sarshomar', 'view') === true)
 				{
 					if(isset($value['profile']) && $value['profile'])
 					{

@@ -168,7 +168,7 @@ trait poll
 
 		// get the insert id by check sarshomar permission
 		// when not in upldate mode
-		if(!self::$update_mod && self::poll_check_permission('u', 'sarshomar'))
+		if(!self::$update_mod && self::poll_check_permission('u', 'sarshomar', 'view'))
 		{
 			$next_id   = (int) \lib\db\polls::sarshomar_id();
 			$insert_poll['id'] = ++$next_id;
@@ -196,7 +196,7 @@ trait poll
 
 		if(!self::$update_mod)
 		{
-			$insert_poll['post_sarshomar'] = self::poll_check_permission('u', 'sarshomar') ? 1 : 0;
+			$insert_poll['post_sarshomar'] = self::poll_check_permission('u', 'sarshomar', 'view') ? 1 : 0;
 			$insert_poll['post_privacy']   = 'private';
 			$insert_poll['user_id']        =  self::$args['user'];
 			$insert_poll['post_status']    = 'draft';
