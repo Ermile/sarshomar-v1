@@ -523,7 +523,7 @@ header #header-profile{display:-webkit-box;display:-ms-flexbox;display:-webkit-f
 header .header-profile-link,header .header-profile-button{padding:0 10px;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;font-weight:700;line-height:40px}
 header .header-profile-link{color:#00667a;font-size:12px}
 header .header-profile-link:hover{background-color:#e8e6e6}
-header .header-profile-link:active,header .header-profile-link:focus{background-color:#e8e6e6;color:#494848}
+header .header-profile-link:active,header .header-profile-link:focus{background-color:#e8e6e6;color:#37aaa7}
 header .header-profile-link .header-link-icon{display:none}
 header .header-profile-button{background-color:#37aaa7;color:#f4f4f4;font-size:15px;margin-left:5px;text-align:center}
 .rtl header .header-profile-button{margin-left:0;margin-right:5px}
@@ -534,7 +534,7 @@ header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;
 .rtl header .ui-language-link{margin:0;margin-right:5px}
 header .ui-language-link:hover,header .ui-language-link:focus{background-color:#efefef}
 
-header .ui-language-link:hover .langlist{opacity: 1; -webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition: opacity 0.2s linear;z-index: 2}
+header .ui-language-link:hover .langlist,header .ui-language-link:focus .langlist{opacity: 1; -webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition: opacity 0.2s linear;z-index: 2}
 header .langlist{position:absolute;top:100%;right:0;z-index:-1;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;color:#00667a}
@@ -557,30 +557,7 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#
 .profile .profile-detail .dashboard{-webkit-box-flex:2;-ms-flex:2;-webkit-flex:2;-moz-box-flex:2;flex:2}
 .profile .profile-detail .exit{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1}
 
-
-.profile:hover,.profile.open{}
-.profile:hover .profile-detail,.profile.open .profile-detail{opacity: 1; -webkit-transition:visibility 0s, opacity 0.2s linear; -o-transition:visibility 0s, opacity 0.2s linear; -moz-transition:visibility 0s, opacity 0.2s linear; transition: visibility 0s, opacity 0.2s linear;z-index: 2}
-
-
-
-
-/*.profile{display:none}*/
-
-/*.profile{display:inline-block;position:relative;height:40px;border-left:1px solid #E76F6F;perspective:100px;overflow:hidden;z-index:1;margin-left:5px}
-.rtl .profile{border-left:none;border-right:1px solid #E76F6F;margin-left:0;margin-right:5px}
-.profile:hover,.profile.open{overflow-wrap:normal;overflow:visible}
-.profile:hover .profile-detail,.profile.open .profile-detail{opacity:1;transform:none;transition:all .5s cubic-bezier(.36,-0.64,.34,1.76)}
-.profile img{width:40px;height:40px;float:right}
-.rtl .profile img{float:left}
-.profile .info{display:inline-block;background-color:#efefef;height:40px;overflow:hidden;padding:7px;min-width:115px;float:left;transition:.3s}
-.rtl .profile .info{float:right}
-.profile .info .role{display:block;line-height:1;font-size:9px;font-size:10px;color:#A1A0A0;cursor:default}
-
-.profile .profile-detail{position:absolute;top:100%;background-color:#efefef;width:100%;opacity:0;transition:all .5s}
-.profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#E76F6F;left:-1px}
-.rtl .profile .profile-detail::before{right:-1px}
-.profile .profile-detail a{color:#7F7F7F;text-align:center;padding:7px 0;transition:.3s}
-.profile .profile-detail a:hover,.profile .profile-detail a:focus{background-color:#cecdcd;color:#000}*/
+.profile:hover .profile-detail,.profile:focus .profile-detail,.profile.open .profile-detail{opacity: 1; -webkit-transition:visibility 0s, opacity 0.2s linear; -o-transition:visibility 0s, opacity 0.2s linear; -moz-transition:visibility 0s, opacity 0.2s linear; transition: visibility 0s, opacity 0.2s linear;z-index: 2}
 
 /* breadcrumb */
 nav.breadcrumb a{font-size:10px;line-height:12px;height:12px;color:#99a0aa;float:left;font-weight:700;max-width:20em;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;word-break:break-all}
