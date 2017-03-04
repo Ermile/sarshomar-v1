@@ -75,6 +75,8 @@ class controller extends \mvc\controller
 
 		$this->get("ask")->ALL("/ask$/");
 
+		$this->get("prev")->ALL("/ask\/prev$/");
+
 	}
 }
 ?>

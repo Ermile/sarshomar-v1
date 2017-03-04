@@ -123,9 +123,35 @@ class model extends \mvc\model
 		{
 			$next_url = '$';
 		}
-
 		$this->redirector()->set_url($next_url);
 		$this->controller->display = false;
+		debug::msg("redirect", true);
+		$this->_processor(['force_stop' => true, 'force_json' => true]);
+	}
+
+
+	/**
+	 * Gets the ask.
+	 * the user click on ask button
+	 */
+	public function get_prev()
+	{
+		// cehck login
+		if(!$this->login())
+		{
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
+			return;
+		}
+
+		$user_id  = $this->login("id");
+		$prev_url = \lib\db\polls::get_previous_url($user_id);
+		if($prev_url == null)
+		{
+			$prev_url = '$';
+		}
+		$this->redirector()->set_url($prev_url);
+		$this->controller->display = false;
+		debug::msg('redirect', true);
 		$this->_processor(['force_stop' => true, 'force_json' => true]);
 	}
 

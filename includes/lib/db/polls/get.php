@@ -241,38 +241,60 @@ trait get
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get_previous_url($_user_id, $_corrent_post_id)
+	public static function get_previous_url($_user_id, $_corrent_post_id = false)
 	{
-		$query =
-		"
-			SELECT
-				posts.post_url AS 'url'
-			FROM
-				polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
-			WHERE
-				polldetails.id =
-				(
-					SELECT
-						MAX(polldetails.id)
-					FROM
-						polldetails
-					WHERE
-						polldetails.id <
-							(
-								SELECT
-									MAX(polldetails.id)
-								FROM
-									polldetails
-								WHERE
-									polldetails.user_id = $_user_id AND
-									polldetails.post_id = $_corrent_post_id
-							)
-				)
-			LIMIT 1
-			-- polls::get_previous_url()
-			-- to get previous of answered this user
-		";
+		if($_corrent_post_id)
+		{
+
+			$query =
+			"
+				SELECT
+					posts.post_url AS 'url'
+				FROM
+					polldetails
+				INNER JOIN posts ON posts.id = polldetails.post_id
+				WHERE
+					polldetails.id =
+					(
+						SELECT
+							MAX(polldetails.id)
+						FROM
+							polldetails
+						WHERE
+							polldetails.id <
+								(
+									SELECT
+										MAX(polldetails.id)
+									FROM
+										polldetails
+									WHERE
+										polldetails.user_id = $_user_id AND
+										polldetails.post_id = $_corrent_post_id
+								)
+					)
+				LIMIT 1
+				-- polls::get_previous_url()
+				-- to get previous of answered this user
+			";
+		}
+		else
+		{
+			$query =
+			"
+				SELECT
+					posts.post_url AS 'url'
+				FROM
+					polldetails
+				INNER JOIN posts ON posts.id = polldetails.post_id
+				WHERE
+					polldetails.user_id = $_user_id AND
+					polldetails.status  = 'enable'
+				ORDER BY polldetails.id DESC
+				LIMIT 1
+				-- polls::get_previous_url()
+				-- to get previous of answered this user
+			";
+		}
 		$result= \lib\db::get($query, 'url', true);
 		return $result;
 		return self::get_poll_url($result);

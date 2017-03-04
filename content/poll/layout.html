@@ -168,13 +168,13 @@
 {% spaceless %}
  <div class="f poll-actions">
   <div class="f c s6 align-center">
-   <a class="poll-actions-link" href="{{url.base}}/ask/prev">{%trans "Previous"%}</a>
+   <a class="poll-actions-link" href="{{url.base}}/ask/prev" data-direct>{%trans "Previous"%}</a>
   </div>
   <div class="c s12">
    <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
   </div>
   <div class="f c s6 align-center">
-   <a class="poll-actions-link" href="{{url.base}}/ask">{%trans "Next"%}</a>
+   <a class="poll-actions-link" href="{{url.base}}/ask" data-direct>{%trans "Next"%}</a>
   </div>
  </div>
 {% endspaceless %}

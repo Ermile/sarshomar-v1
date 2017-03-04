@@ -28,8 +28,7 @@ class controller extends \mvc\controller
 		[
 			'url'      => "/^\\$(|\/search\=([^\/]+))$/",
 			'property' => $property
-		]
-		);
+		]);
 
 		$this->post("search")->ALL("/.*/");
 	}
