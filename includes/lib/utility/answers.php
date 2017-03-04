@@ -514,6 +514,80 @@ class answers
 
 
 	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function delete($_args)
+	{
+
+		$default_args =
+		[
+			'user_id'    => null,
+			'poll_id'    => null,
+			'old_answer' => [],
+		];
+
+		if(!is_array($_args))
+		{
+			return false;
+		}
+		$_args = array_merge($default_args, $_args);
+
+		$old_answer = \lib\db\polldetails::get($_args['user_id'], $_args['poll_id']);
+
+		if(!is_array($old_answer))
+		{
+			$old_answer = [];
+		}
+
+		foreach ($_args['old_answer'] as $key => $value)
+		{
+			$validation = 'invalid';
+			$profile    = 0;
+			foreach ($old_answer as $k => $v)
+			{
+				if(isset($v['opt']) && $v['opt'] == $key)
+				{
+					if(isset($v['validstatus']))
+					{
+						$validation = $v['validstatus'];
+					}
+					if(isset($v['profile']))
+					{
+						$profile = $v['profile'];
+					}
+				}
+			}
+
+			$answers_details =
+			[
+				'poll_id'    => $_args['poll_id'],
+				'opt_key'    => $key,
+				'user_id'    => $_args['user_id'],
+				'type'       => 'minus',
+				'profile'    => $profile,
+				'validation' => $validation
+			];
+			\lib\utility\stat_polls::set_poll_result($answers_details);
+		}
+
+		self::$IS_ANSWERED = [];
+
+		$result = \lib\db\polldetails::remove($_args['user_id'], $_args['poll_id']);
+
+		if($result && \lib\db::affected_rows())
+		{
+			return debug::title(T_("Your answer has been deleted"));
+		}
+		else
+		{
+			return debug::error(T_("You have not answered to this poll"));
+		}
+	}
+
+
+	/**
 	 * change the user validation
 	 * the user was in 'awaiting' status and
 	 * we save all answers of this user in 'invalid' type of poll stats

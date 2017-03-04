@@ -135,13 +135,13 @@ trait search
 
 		if(utility::request("status"))
 		{
-			if(!$in_me && !self::api_check_permission('admin'))
+			if(!$in_me && !self::check_api_permission('admin'))
 			{
 				return debug::error(T_("You can not set status and search in all polls"), 'status', 'arguments');
 			}
 
 			$status = explode(' ', utility::request('status'));
-			if(self::api_check_permission('admin'))
+			if(self::check_api_permission('admin'))
 			{
 				$status_list =
 				[

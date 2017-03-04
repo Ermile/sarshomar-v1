@@ -43,55 +43,14 @@ trait delete
 			return debug::error(T_("Invalid answer available"), 'api', 'system');
 		}
 
-		$poll_id    = $_options['id'];
+		$args =
+		[
+			'poll_id'    =>  $_options['id'],
+			'user_id'    => $this->user_id,
+			'old_answer' => $my_answer,
+		];
 
-		$old_answer = \lib\db\polldetails::get($this->user_id, $poll_id);
-		if(!is_array($old_answer))
-		{
-			$old_answer = [];
-		}
-
-		foreach ($my_answer as $key => $value)
-		{
-			$validation = 'invalid';
-			$profile    = 0;
-			foreach ($old_answer as $k => $v)
-			{
-				if(isset($v['opt']) && $v['opt'] == $key)
-				{
-					if(isset($v['validstatus']))
-					{
-						$validation = $v['validstatus'];
-					}
-					if(isset($v['profile']))
-					{
-						$profile = $v['profile'];
-					}
-				}
-			}
-
-			$answers_details =
-			[
-				'poll_id'    => $poll_id,
-				'opt_key'    => $key,
-				'user_id'    => $this->user_id,
-				'type'       => 'minus',
-				'profile'    => $profile,
-				'validation' => $validation
-			];
-			\lib\utility\stat_polls::set_poll_result($answers_details);
-		}
-
-		$result = \lib\db\polldetails::remove($this->user_id, $poll_id);
-
-		if($result && \lib\db::affected_rows())
-		{
-			debug::title(T_("Your answer has been deleted"));
-		}
-		else
-		{
-			return debug::error(T_("You have not answered to this poll"));
-		}
+		\lib\utility\answers::delete($args);
 		return;
 	}
 }
