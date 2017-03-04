@@ -21,7 +21,7 @@ class inline_query
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$check_language = false;
-		if(preg_match("/^\s*sp_(.*)$/", $search, $link_id))
+		if(preg_match("/^\s*\\$(.*)$/", $search, $link_id))
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request([
 				'method' 	=> 'array',
@@ -29,8 +29,9 @@ class inline_query
 					'id' 		=> $link_id[1],
 				]
 				]);
-			$query_result = \lib\main::$controller->model()->poll_get(true);
-			$query_result = [$query_result];
+			$query_result = \lib\main::$controller->model()->poll_get();
+			handle::send_log($query_result);
+			$query_result = $query_result ? [$query_result] : [];
 		}
 		else
 		{

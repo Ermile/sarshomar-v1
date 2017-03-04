@@ -79,7 +79,7 @@ class make_view
 		if($this->poll_id)
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $this->poll_id]]);
-			$this->query_result = \lib\main::$controller->model()->poll_get();
+			$this->query_result = \lib\main::$controller->model()->poll_get([]);
 		}
 		else
 		{

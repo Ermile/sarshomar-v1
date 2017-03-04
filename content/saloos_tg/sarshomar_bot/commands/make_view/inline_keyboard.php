@@ -146,7 +146,7 @@ class inline_keyboard
 		{
 			$return[] = [
 				"text" => T_("Share"),
-				"switch_inline_query" => 'sp_'.$this->class->poll_id
+				"switch_inline_query" => '$'.$this->class->poll_id
 			];
 		}
 		if($options['inline_report'])

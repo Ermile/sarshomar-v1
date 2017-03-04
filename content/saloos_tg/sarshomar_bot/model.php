@@ -3,6 +3,9 @@ namespace content\saloos_tg\sarshomar_bot;
 use \content_api\v1;
 class model extends \lib\mvc\model{
 	public $api_mode = true;
+
+	use \lib\mvc\models\account;
+
 	use \content_api\v1\home\tools\ready;
 
 	use \content_api\v1\poll\tools\add;
