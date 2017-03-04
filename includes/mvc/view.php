@@ -24,7 +24,7 @@ class view extends \lib\mvc\view
 		}
 		else
 		{
-			$this->data->displayname = $this->login("displayname");
+			$this->data->displayname = T_($displayname);
 		}
 		// get total sarshomart answered
 		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();

@@ -19,7 +19,6 @@ class view extends \mvc\view
 
 		}
 		$this->data->page['title'] = T_("Dashboard");
-		$this->data->displayname = T_($this->login("displayname"));
 	}
 
 
