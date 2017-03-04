@@ -20,7 +20,7 @@
 {%endif%}
 {%endif%}
 
-    <nav class="c">
+    <nav class="c s12">
      <h4>{%trans "Service"%}</h4>
      <ul>
       <li><a href="{{url.base}}/features">{%trans "Features"%}</a></li>
@@ -28,7 +28,7 @@
      </ul>
     </nav>
 
-    <nav class="c">
+    <nav class="c s12">
      <h4>{%trans "Learn More"%}</h4>
      <ul>
       <li><a href="{{url.base}}/terms">{%trans "Terms of Service"%}</a></li>
@@ -37,19 +37,19 @@
      </ul>
     </nav>
 
-    <nav class="c">
+    <nav class="c s12">
      <h4>{%trans "Support"%}</h4>
      <ul>
       <li><a href="{{url.base}}/contact">{%trans "Contact us"%}</a></li>
      </ul>
     </nav>
 
-    <section class="c" id='footer-news'>
+    <section class="c s12" id='footer-news'>
      <h4>{%trans "Latest News"%}</h4>
      {{posts(3, {"cat":['news'], 'desc':1, 'html':true})}}
     </section>
 
-    <div class="cauto">
+    <div class="cauto s12">
      {%include template.social%}
     </div>
    </div>

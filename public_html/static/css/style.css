@@ -538,7 +538,7 @@ header .ui-language-link:hover .langlist,header .ui-language-link:focus .langlis
 header .langlist{position:absolute;top:100%;right:0;z-index:-1;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;color:#00667a}
-header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#e5a428}
+header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color: #cecdcd;color:#000}
 
 
 /************************************************************** header profile */
