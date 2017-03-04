@@ -200,7 +200,14 @@ class view extends \content_u\home\view
 			$persons['step'] = 10;
 		}
 		// default set to zero for from value
-		$persons['from'] = 7;
+		if($this->access('u', 'sarshomar', 'view'))
+		{
+			$persons['from'] = $persons['max'];
+		}
+		else
+		{
+			$persons['from'] = 0;
+		}
 		// set into twig variable
 		$this->data->persons = $persons;
 	}
