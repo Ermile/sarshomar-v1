@@ -1963,11 +1963,13 @@ function changeLockStatusOfRanges(_newStatus, _timing)
 		$(".rangeSlider").each(function()
 		{
 			var myRange = $(this).data("ionRangeSlider");
-			myRange.update(
+			if(myRange !== undefined)
 			{
-				disable: _newStatus,
-			});
-
+				myRange.update(
+				{
+					disable: _newStatus,
+				});
+			}
 		});
 	}, _timing);
 }
