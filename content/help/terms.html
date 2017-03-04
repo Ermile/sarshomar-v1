@@ -23,11 +23,16 @@
 
   <div class="sideline-title">
    <h4>{%trans "Questions List"%}</h4>
+   {%set myCats = posts(10, { 'type':'help'} )%}
+   {%if myCats%}
    <ul>
-    {% for clink in posts(10, { 'type':'help'} ) %}
+      {% for clink in posts(10, { 'type':'help'} ) %}
         <li><a href="{{url.base}}/{{clink.url}}" title='{{clink.title}}'>{{clink.title}}</a></li>
-    {% endfor %}
+      {% endfor %}
    </ul>
+   {%else%}
+    <div class="msg alert">{%trans "Not found"%}</div>
+   {%endif%}
   </div>
 {%endblock%}
   <div class="sideline-title">
