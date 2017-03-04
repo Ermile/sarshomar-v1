@@ -271,7 +271,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 
 /************************************************************** sarshomar font */
 @font-face{font-family:'sarshomar';src:url(../fonts/sarshomar/sarshomar.eot?4ghcml);src:url(../fonts/sarshomar/sarshomar.eot?4ghcml#iefix) format("embedded-opentype"),url(../fonts/sarshomar/sarshomar.ttf?4ghcml) format("truetype"),url(../fonts/sarshomar/sarshomar.woff?4ghcml) format("woff"),url(../fonts/sarshomar/sarshomar.svg?4ghcml#sarshomar) format("svg");font-weight:400;font-style:normal}
-[class^="icon-"],[class*=" icon-"]{font-family:'sarshomar'!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+[class^="icon-"],[class*=" icon-"],.fa.fa-home{font-family:'sarshomar'!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .icon-lg{font-size:1.33333333em;line-height:0.75em;vertical-align:-15%}
 .icon-2x{font-size:2em}
 .icon-3x{font-size:3em}
@@ -302,7 +302,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-signal:before{content:"\f012"}
 .icon-gear:before{content:"\f013"}
 .icon-trash-o:before{content:"\f014"}
-.icon-home:before{content:"\f015"}
+.icon-home:before,.fa.fa-home:before{content:"\f015"}
 .icon-file-o:before{content:"\f016"}
 .icon-flag:before{content:"\f024"}
 .icon-volume-up:before{content:"\f028"}
@@ -1781,6 +1781,8 @@ label,select,.element a,.btn{-webkit-user-select:none;-moz-user-select:none;-ms-
 .help-prompt .try{border:none}
 .help-prompt .try:first-of-type{margin-right:1em}
 .rtl .help-prompt .try:first-of-type{margin-right:0;margin-left:1em}
+
+.fa.fa-home{vertical-align:middle}
 
 
 /************************************************************** contact page */
