@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-03-04 18:30+0330\n"
-"PO-Revision-Date: 2017-03-04 18:33+0330\n"
+"PO-Revision-Date: 2017-03-04 18:53+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -6454,7 +6454,7 @@ msgstr "متاسفانه عنوانی برای نمایش وجود ندارد!"
 
 #: sarshomar/includes/languages/trans_twig.php:149
 msgid "You can select just two options."
-msgstr "شما تنها قادر به انتخاب دو گزینه هستید."
+msgstr "شما تنها ۲ گزینه را می‌توانید انتخاب کنید"
 
 #: sarshomar/includes/languages/trans_twig.php:150
 msgid "There is no option!"
