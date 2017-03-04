@@ -1778,6 +1778,7 @@ label,select,.element a,.btn{-webkit-user-select:none;-moz-user-select:none;-ms-
 .contact-ways .row{margin-bottom:1.5em;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}
 .contact-ways .row i{color:#28618a}
 .contact-ways .row span:not(.icon-3x){font-size:1.2em;padding:0 1em}
+.contact-ways .row span a{color:inherit}
 .contact-box .map{display:block;padding:1em}
 
 
