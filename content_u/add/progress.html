@@ -1,6 +1,6 @@
 {% block progress %}
 {% spaceless %}
-<div class="page-progress flex justify-between" data-current='{{step.current}}'>
+<div class="page-progress" data-current='{{step.current}}'>
   <span class="checkbox{%if step.add%} active{%endif%}" data-label='{%trans "Add"%}' data-btn='{%trans "Filter"%}'>
     <input type="checkbox" name="step1" id='step-add' {%if step.add and step.current != 'add'%}checked{%endif%}>
     <label class="check-box" for="step-add"></label>
