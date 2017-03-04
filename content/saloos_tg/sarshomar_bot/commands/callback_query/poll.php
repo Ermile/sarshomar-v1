@@ -55,6 +55,7 @@ class poll
 		$query_result = $search['data'];
 
 		$total_page = ceil($search['total'] / $message_per_page);
+		handle::send_log($total_page);
 
 		if(empty($query_result))
 		{
@@ -82,23 +83,23 @@ class poll
 		{
 			if($page > 2)
 			{
-				$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "poll/list/1"];
+				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/1"];
 			}
 			if($page > 1)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "poll/list/" . ($page-1)];
+				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page-1)];
 			}
 
 
 
 			if($page < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "poll/list/" . ($page+1)];
+				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page+1)];
 			}
 
 			if(($page + 1) < $total_page || $page == 1)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "poll/list/" . $total_page];
+				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/" . $total_page];
 			}
 		}
 		if(isset($inline_keyboard))

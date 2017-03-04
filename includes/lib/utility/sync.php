@@ -336,6 +336,16 @@ class sync
 
 		// update record similar user_detail && user_dashboard && ...
 		// sample value is: my_poll, my_poll_answered, my_poll_skipped, ...
+
+		$query_user_detail_update = "UPDATE IGNORE options SET
+		option_cat = 'user_detail_$new_user_id'
+		WHERE option_cat = 'user_detail_$old_user_id'";
+		\lib\db::query($query_user_detail_update);
+
+		$query_user_detail_delete = "DELETE FROM options
+		WHERE option_cat = 'user_detail_$old_user_id'";
+		\lib\db::query($query_user_detail_delete);
+
 		$where = ['user_id' => $old_user_id, 'option_cat' => 'user%'];
 		$list = \lib\db\options::get($where);
 
@@ -526,6 +536,11 @@ class sync
 		unset($old_user_rank['user_id']);
 		unset($new_user_rank['user_id']);
 
+		if(empty($new_user_rank))
+		{
+			return;
+		}
+
 		$set = [];
 		foreach ($new_user_rank as $key => $value)
 		{
@@ -547,7 +562,6 @@ class sync
 			$set[] = " userranks.`$key` = ". $new_user_rank[$key];
 		}
 		$set = implode(" , ", $set);
-
 		$query = "UPDATE userranks SET $set WHERE user_id = $new_user_id LIMIT 1";
 		\lib\db::query($query);
 		$query = "DELETE FROM userranks WHERE user_id = $old_user_id";

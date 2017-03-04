@@ -29,16 +29,16 @@ class step_starting
 	{
 		$start_status = \lib\db\options::get([
 			'user_id' => bot::$user_id,
-			'option_cat' => 'user_telegram_'. bot::$user_id,
-			'option_key' => 'start_status',
+			'option_cat' => 'user_detail_'. bot::$user_id,
+			'option_key' => 'telegram_start_status',
 			]);
 		$user_language = callback_query\language::check();
 		if(!$start_status && preg_match("#^\/start#", bot::$cmd['text']))
 		{
 			\lib\db\options::insert([
 				'user_id' => bot::$user_id,
-				'option_cat' => 'user_telegram_'. bot::$user_id,
-				'option_key' => 'start_status',
+				'option_cat' => 'user_detail_'. bot::$user_id,
+				'option_key' => 'telegram_start_status',
 				'option_value' => 'start'
 				]);
 			if($user_language)

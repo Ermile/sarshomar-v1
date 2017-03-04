@@ -19,10 +19,10 @@ class tg_session
 			$user_id = self::$user_id;
 		}
 		$get_sesstion = "SELECT * FROM options
-		WHERE options.option_cat = 'telegram' AND
+		WHERE options.option_cat = 'user_detail_$user_id' AND
 		options.user_id = $user_id AND
-		options.option_key = 'session' AND
-		options.option_value = '$user_id'
+		options.option_key = 'telegram_session' AND
+		options.option_value = 'session'
 		LIMIT 1";
 		$original_result = \lib\db::query($get_sesstion, true, ['resume_on_error' => true]);
 		$original_result = $original_result->fetch_assoc();
@@ -186,9 +186,9 @@ class tg_session
 		$meta = addcslashes($meta, "'");
 		$query = "INSERT INTO options SET
 		options.user_id = $user_id,
-		options.option_cat = 'telegram',
-		options.option_key = 'session',
-		options.option_value = '$user_id',
+		options.option_cat = 'user_detail_$user_id',
+		options.option_key = 'telegram_session',
+		options.option_value = 'session',
 		options.option_meta = '$meta'
 		ON DUPLICATE KEY UPDATE
 		options.option_meta = '$meta'";

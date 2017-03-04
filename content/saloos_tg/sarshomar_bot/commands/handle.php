@@ -21,8 +21,8 @@ class handle
 
 			$query_get = \lib\db\options::get([
 				'user_id' => bot::$user_id,
-				'option_cat' => 'telegram',
-				'option_key' => 'dev_user_' . bot::$user_id,
+				'option_cat' => 'user_detail_',
+				'option_key' => 'telegram_dev_user',
 				'option_value' => bot::$hook['message']['from']['id'],
 				'limit'	=> 1
 			]);
@@ -38,10 +38,20 @@ class handle
 				$text_login_to_dev = bot::$hook['message']['text'];
 				if($text_login_to_dev == '/signup')
 				{
-					$query = \lib\db\options::insert([
-						'user_id' => bot::$user_id,
+					$query_get_telegram_id = \lib\db\options::get([
 						'option_cat' => 'telegram',
-						'option_key' => 'dev_user_' . bot::$user_id,
+						'option_key' => 'id',
+						'option_value' => bot::$hook['message']['from']['id'],
+						'limit'	=> 1
+					]);
+					if(empty($query_get_telegram_id))
+					{
+						return ["text" => "telegram notfound"];
+					}
+					$query = \lib\db\options::insert([
+						'user_id' => $query_get_telegram_id['user_id'],
+						'option_cat' => 'user_detail_' . $query_get_telegram_id['user_id'],
+						'option_key' => 'telegram_dev_user',
 						'option_value' => bot::$hook['message']['forward_from']['id'],
 						]);
 					if(\lib\debug::$status)
