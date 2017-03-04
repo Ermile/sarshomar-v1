@@ -1832,7 +1832,10 @@ function setStatusText(_newStatus)
 	}
 	if(_newStatus)
 	{
-		lockAllElements(lockIt, 300);
+		// after load completely lock elements
+		$(function() {
+			lockAllElements(lockIt);
+		});
 	}
 
 
@@ -1909,58 +1912,59 @@ String.prototype.ucFirst = function()
  */
 function lockAllElements(_lock, _timing)
 {
-	if(!_timing)
+	var questionBox = $('#question-add');
+	if(questionBox.attr('data-admin') !== undefined)
 	{
-		_timing = 300;
+		_lock = false;
 	}
-	setTimeout(function()
+	switch (_lock)
 	{
-		var questionBox = $('#question-add');
-		if(questionBox.attr('data-admin') !== undefined)
-		{
-			_lock = false;
-		}
-		switch (_lock)
-		{
-			case true:
-				// lock
-				// change elements
-				questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
-				questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
-				// lock all range
-				changeLockStatusOfRanges(true);
-				questionBox.find('.sync').attr('data-lock', '');
-				break;
+		case true:
+			// lock
+			// change elements
+			questionBox.find('input').attr('disabled', 'disabled').attr('data-lock', '');
+			questionBox.find('textarea').attr('disabled', 'disabled').attr('data-lock', '');
+			// lock all range
+			changeLockStatusOfRanges(true);
+			questionBox.find('.sync').attr('data-lock', '');
+			break;
 
-			case false:
-				// unlock
-				// change elements
-				questionBox.find('input').attr('disabled', null).attr('data-lock', null);
-				questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
-				// unloack all range
-				changeLockStatusOfRanges(false);
-				questionBox.find('.sync').attr('data-lock', null);
-				break;
-		}
-	}, _timing);
+		case false:
+			// unlock
+			// change elements
+			questionBox.find('input').attr('disabled', null).attr('data-lock', null);
+			questionBox.find('textarea').attr('disabled', null).attr('data-lock', null);
+			// unloack all range
+			changeLockStatusOfRanges(false);
+			questionBox.find('.sync').attr('data-lock', null);
+			break;
+	}
 }
 
-function changeLockStatusOfRanges(_newStatus)
+function changeLockStatusOfRanges(_newStatus, _timing)
 {
-	if(_newStatus !== true)
+	if(!_timing)
 	{
-		_newStatus = false;
+		_timing = 1000;
 	}
 
-	$(".rangeSlider").each(function()
+	setTimeout(function()
 	{
-		var myRange = $(this).data("ionRangeSlider");
-		myRange.update(
+		if(_newStatus !== true)
 		{
-			disable: _newStatus,
-		});
+			_newStatus = false;
+		}
 
-	});
+		$(".rangeSlider").each(function()
+		{
+			var myRange = $(this).data("ionRangeSlider");
+			myRange.update(
+			{
+				disable: _newStatus,
+			});
+
+		});
+	}, _timing);
 }
 
 
