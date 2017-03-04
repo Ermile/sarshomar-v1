@@ -268,10 +268,13 @@ trait get
 									polldetails.user_id = $_user_id AND
 									polldetails.post_id = $_current AND
 									polldetails.status  = 'enable'
+								GROUP BY polldetails.post_id
 								LIMIT 1
 							)
 						AND
 						polldetails.status  = 'enable'
+						GROUP BY polldetails.post_id
+						LIMIT 1
 
 				)
 			LIMIT 1
@@ -340,11 +343,12 @@ trait get
 									polldetails.user_id = $_user_id AND
 									polldetails.post_id = $_current AND
 									polldetails.status  = 'enable'
+								GROUP BY polldetails.post_id
 								LIMIT 1
-							)
-						AND
+							) AND
 						polldetails.status  = 'enable'
-
+						GROUP BY polldetails.post_id
+						LIMIT 1
 				)
 			LIMIT 1
 			-- polls::get_previous_url()

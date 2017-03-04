@@ -84,7 +84,7 @@ class model extends \mvc\model
 			$next_url = \lib\db\polls::get_next_url($user_id);
 		}
 
-		if($next_url == null)
+		if($next_url == null || $next_url == utility::get('current'))
 		{
 			return $this->get_ask();
 		}
