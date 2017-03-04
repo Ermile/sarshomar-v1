@@ -662,6 +662,8 @@ function setLanguageURL()
 	var urlPath     = window.location.pathname;
 	var urlHash     = window.location.hash;
 	var indexOfLang = urlPath.indexOf('/' + $('html').attr('lang'));
+	var urlBase     = $('base').attr('href');
+	urlBase         = urlBase.substr(0, urlBase.indexOf('/', 8));
 
 	if(indexOfLang === 0)
 	{
@@ -686,15 +688,20 @@ function setLanguageURL()
 		}
 		else if(lang == $('html').attr('lang'))
 		{
-			lang = '/' + lang;
+			// lang = '/' + lang;
 		}
-		var url = lang + '/' + urlPath;
+		var myUrl = urlPath;
+		if(lang)
+		{
+			myUrl = lang + '/' + myUrl;
+		}
 		// add hash if exist
 		if(urlHash)
 		{
-			url += urlHash;
+			myUrl += urlHash;
 		}
-		$(index).attr('href', url.trim('/'));
+		myUrl = urlBase + '/' + myUrl;
+		$(index).attr('href', myUrl.trim('/'));
 	})
 }
 
