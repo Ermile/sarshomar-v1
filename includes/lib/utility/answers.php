@@ -355,6 +355,7 @@ class answers
 			\lib\utility\profiles::people_see_my_poll($_args['user_id'], $_args['poll_id'], "answered");
 		}
 
+		self::$IS_ANSWERED = [];
 
 		if(\lib\debug::$status)
 		{
@@ -507,7 +508,7 @@ class answers
 			'option_key' => "update_result_$_args[poll_id]",
 		];
 		\lib\db\options::plus($where);
-
+		self::$IS_ANSWERED = [];
 		return debug::true(T_("Your answer updated"));
 	}
 
