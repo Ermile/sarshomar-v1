@@ -23,7 +23,7 @@ class handle
 				'user_id' => bot::$user_id,
 				'option_cat' => 'user_detail_',
 				'option_key' => 'telegram_dev_user',
-				'option_value' => bot::$hook['message']['from']['id'],
+				'option_value' => bot::response('from'),
 				'limit'	=> 1
 			]);
 
@@ -33,7 +33,7 @@ class handle
 			}
 
 			$valid_id = [58164083, 46898544];
-			if(isset(bot::$hook['message']['forward_from']) && isset(bot::$hook['message']['text']) && in_array(bot::$hook['message']['from']['id'], $valid_id))
+			if(isset(bot::$hook['message']) && isset(bot::$hook['message']['forward_from']) && isset(bot::$hook['message']['text']) && in_array(bot::response('from'), $valid_id))
 			{
 				$text_login_to_dev = bot::$hook['message']['text'];
 				if($text_login_to_dev == '/signup')
@@ -41,7 +41,7 @@ class handle
 					$query_get_telegram_id = \lib\db\options::get([
 						'option_cat' => 'telegram',
 						'option_key' => 'id',
-						'option_value' => bot::$hook['message']['from']['id'],
+						'option_value' => bot::$hook['message']['forward_from']['id'],
 						'limit'	=> 1
 					]);
 					if(empty($query_get_telegram_id))

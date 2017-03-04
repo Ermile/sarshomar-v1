@@ -286,8 +286,7 @@ class poll
 
 	public static function new()
 	{
-		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::start());
-		\lib\storage::set_disable_edit(true);
+		bot::sendResponse(\content\saloos_tg\sarshomar_bot\commands\step_create::start());
 		return [];
 	}
 
