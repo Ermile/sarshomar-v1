@@ -717,7 +717,12 @@ route('*', function ()
 	isActiveChecker();
 	// load maps and chart js
 	$import('lib/amcharts/amcharts.js', 'drawChart', null, 70);
-	$import('lib/ammap/ammap.js', 'getMyMapData', null, 50);
+	var loadMapDelay = 50;
+	if($('.map').length === 0)
+	{
+		loadMapDelay = 500;
+	}
+	$import('lib/ammap/ammap.js', 'getMyMapData', null, loadMapDelay);
 
 	// hide cost box on all page except add new poll
 	$('#financial-box .cost').removeClass('isCurrent');
@@ -2158,7 +2163,14 @@ function getRangeSliderValue(_name)
 	{
 		selectorEl = $('#rangepersons');
 		myRangeData = selectorEl.data("ionRangeSlider");
-		return myRangeData.result.from;
+		if(myRangeData)
+		{
+			return myRangeData.result.from;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else if(_name == 'multiple')
 	{
@@ -2214,6 +2226,10 @@ function saveSavedData(_data, _result)
 	savingData.data   = _data;
 	savingData.result = '';
 	// add to array of box
+	if(myBox.data('send') === undefined)
+	{
+		return false;
+	}
 	myBox.data('send').push(savingData);
 	// add count of last id
 	var myBoxCurrentId = myBox.data('send').length - 1;
