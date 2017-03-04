@@ -34,7 +34,7 @@ class step_answer_descriptive
 			$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
 			$my_answer = $get_answer['my_answer'];
 
-			$text = T_('آیا شما قصد دارید به نظرسنجی زیر پاسخ دهید؟');
+			$text = T_('Do you intend to answer the poll?');
 			$maker = new make_view($_answer[1]);
 			if($maker->poll_type == 'descriptive')
 			{
@@ -56,19 +56,19 @@ class step_answer_descriptive
 			$maker->message->add_poll_list($my_answer, false);
 			if(empty($get_answer['available']))
 			{
-				$maker->message->add('error', "❗️" . T_("مجاز به پاسخگویی نیستید"));
+				$maker->message->add('error', "❗️" . T_("You are not allowed to answer"));
 				$maker->message->add_telegram_link();
 				$maker->message->add_count_poll();
 				$return = $maker->make();
 				return $return;
 			}
 			$maker->message->add('insert_line', "");
-			$maker->message->add('answer_text', T_("گزینه انتخابی شما :answer_text می‌باشد", ['answer_text' => $answer_text]));
+			$maker->message->add('answer_text', T_("Your selected option is :answer_text", ['answer_text' => $answer_text]));
 			if(isset($maker->query_result['access_profile']) && !is_null($maker->query_result['access_profile']))
 			{
-				$maker->message->add('access_profile', "\n⚠️ " . T_("شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر ارسال کند."));
+				$maker->message->add('access_profile', "\n⚠️ " . T_("By answering to this poll you allow Sarshomar to send your information to the questioner."));
 			}
-			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add('tag', utility::tag(T_("Submit answer")));
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->inline_keyboard->add([
@@ -115,7 +115,7 @@ class step_answer_descriptive
 		{
 			step::stop();
 			return [
-				'text' 						=> T_('شما مجاز به ارسال پاسخ نیستید'),
+				'text' 						=> T_('You are not allowed to answer'),
 				'reply_markup' 				=> menu::main(true),
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
@@ -128,12 +128,12 @@ class step_answer_descriptive
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
 			$maker->message->add('insert_line', "");
-			$maker->message->add('insert', T_('لطفا پاسخ خود را وارد کنید'));
+			$maker->message->add('insert', T_('Please enter your answer'));
 			if(isset($maker->query_result['access_profile']) && !is_null($maker->query_result['access_profile']))
 			{
-				$maker->message->add('access_profile', "\n⚠️ " . T_("شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر ارسال کند."));
+				$maker->message->add('access_profile', "\n⚠️ " . T_("By answering to this poll you allow Sarshomar to send your information to the questioner."));
 			}
-			$maker->message->add('tag', utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add('tag', utility::tag(T_("Submit answer")));
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$return = $maker->make();
@@ -148,9 +148,9 @@ class step_answer_descriptive
 			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
 			$maker->message->add('answer' , '📝' . $_text);
 			$maker->message->add('answer_line' , "");
-			$maker->message->add('answer_verify' , '✅ ' . T_("آیا پاسخ فوق را تایید می‌کنید؟"));
-			$maker->message->add('answer_change' , '✳️ ' . T_("اگر قصد تغییر پاسخ دارید می‌توانید متن دیگری وارد کنید"));
-			$maker->message->add('tag' ,  utility::tag(T_("ارسال پاسخ")));
+			$maker->message->add('answer_verify' , '✅ ' . T_("Do you confirm the above answer?"));
+			$maker->message->add('answer_change' , '✳️ ' . T_("If you intend to change the answer you can enter some other text"));
+			$maker->message->add('tag' ,  utility::tag(T_("Submit answer")));
 			$maker->message->add_count_poll();
 			$maker->message->add_telegram_link();
 			$maker->inline_keyboard->add([

@@ -80,16 +80,17 @@ class sync
 				'user_pass'   => \lib\utility::hasher($temp_password)
 			];
 			\lib\db\users::update($update_users, $_telegram_id);
-			return self::status(true)
-				->set_result($_telegram_id)
-				->set_password($temp_password)
-				->set_error_code(3502)
-				->set_message(T_("You can login to Sarshomar.com with your username :mobile and password :password ", ['password' => $temp_password]));
+			return [
+				'password' => $temp_password,
+				'message' => T_("You can login to Sarshomar.com with your username :mobile and password :password ", ['password' => $temp_password]),
+			];
 		}
 
 		if(!$web || !isset($web['id']))
 		{
-			return self::status(false)->set_error_code(3500);
+			return [
+				'message' => T_("can not get mobile data")
+			];
 		}
 
 		$web_id = $web['id'];
@@ -99,7 +100,9 @@ class sync
 
 		if(self::$new_user_id == self::$old_user_id)
 		{
-			return self::status(true)->set_result(self::$new_user_id)->set_error_code(3501);
+			return [
+				'message' => T_("this account was already synced")
+			];
 		}
 
 		// start trasaction of mysql engine
@@ -140,16 +143,21 @@ class sync
 		//----- deactive telegram user
 		self::sync_users();
 
+		\content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
+
 		// check error was happend or no
-		if(self::$has_error)
+		if(!\lib\debug::$status)
 		{
 			\lib\db::rollback();
-			return self::status(false)->set_result(self::$new_user_id)->set_error_code(3503);
+			return ['message' => T_("The operation encountered an error.")];
 		}
 		else
 		{
 			\lib\db::commit();
-			return self::status(true)->set_result(self::$new_user_id)->set_error_code(3502);
+			return [
+				'message' => T_("sync complete"),
+				'user_id' => $web_id
+			];
 		}
 	}
 

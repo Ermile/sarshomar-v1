@@ -50,7 +50,7 @@ class handle
 					}
 					else
 					{
-						return ['text' => "```" . json_encode(\lib\debug::compile()) . '```'];
+						return ['text' => "<code>" . json_encode(\lib\debug::compile()) . '</code>'];
 					}
 				}
 			}
@@ -73,11 +73,11 @@ class handle
 		if(!is_null($user_sync))
 		{
 			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
-			bot::$user_id = (int) $sync->get_result();
-			if($sync->is_ok())
+			if(!empty($sync))
 			{
+				bot::$user_id = isset($sync['user_id']) ? $sync['user_id'] : bot::$user_id;
 				callback_query\language::set_client_language();
-				$text = $sync->get_message();
+				$text = $sync['message'];
 				$text .= "\n";
 				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
 				$text .= "\n";

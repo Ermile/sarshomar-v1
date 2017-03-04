@@ -63,7 +63,7 @@ class step_create
 		{
 			callback_query\create::cancel();
 			bot::sendResponse([
-				'text' => T_("بازگشت به منوی اصلی"),
+				'text' => T_("Return to main menu"),
 				'reply_markup' => menu::main(true)
 				]);
 			return handle::exec(bot::$cmd);
@@ -102,7 +102,7 @@ class step_create
 		)
 		{
 			return self::make_draft($get_poll, function($_maker){
-				$_maker->message->add("insert", T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"), 'before', 'hashtag');
+				$_maker->message->add("insert", T_("Please select the type of your poll from the options below"), 'before', 'hashtag');
 			});
 		}
 
@@ -258,7 +258,7 @@ class step_create
 
 		if(self::is_type('like') || self::is_type('descriptive'))
 		{
-			$maker->message->add('description', "\n" . T_("شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"), 'after', 'poll_list');
+			$maker->message->add('description', "\n" . T_("You can add a subject as the content of your poll"), 'after', 'poll_list');
 		}
 
 		if(is_object($_maker))
@@ -270,7 +270,7 @@ class step_create
 
 		if(!session::get('poll_options' , 'type'))
 		{
-			$maker->message->add('insert', T_("لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"));
+			$maker->message->add('insert', T_("Please select the type of your poll from the options below"));
 			$maker->inline_keyboard->add([
 					[
 						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
@@ -296,13 +296,13 @@ class step_create
 			if(isset($maker->query_result['access_profile']))
 			{
 				$maker->inline_keyboard->add([
-					['text' => T_('عدم ثبت مشخصات نظردهنده'), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
+					['text' => T_("Do not submit respondent's information"), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
 				]);
 			}
 			else
 			{
 				$maker->inline_keyboard->add([
-					['text' => T_('ثبت مشخصات نظردهنده'), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
+					['text' => T_("Submit respondent's information"), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
 				]);
 			}
 			$maker->inline_keyboard->add([

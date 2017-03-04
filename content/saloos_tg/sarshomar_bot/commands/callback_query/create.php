@@ -26,9 +26,9 @@ class create
 	}
 
 	public static function home($_query = null, $_data_url = null){
-		$txt_text = T_("برای ثبت نظرسنجی عنوان یا فایل نظرسنجی را وارد کنید");
+		$txt_text = T_("Enter the title or select a file to submit the poll");
 		$txt_text .= "\n";
-		$txt_text .= T_("شما می‌توانید برای لغو نظرسنجی از دستور /cancel استفاده کنید.");
+		$txt_text .= T_("To cancel a poll use /cancel command");
 		$result   =
 		[
 			'text'         => $txt_text ."\n#create",
@@ -56,7 +56,7 @@ class create
 	{
 		step::stop();
 		session::remove('poll');
-		bot::sendResponse(['text' => T_("بازگشت به منوی اصلی"), 'reply_markup' => menu::main(true)]);
+		bot::sendResponse(['text' => T_("Return to main menu"), 'reply_markup' => menu::main(true)]);
 	}
 
 	public static function back()
