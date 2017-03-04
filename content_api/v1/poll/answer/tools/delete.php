@@ -16,6 +16,10 @@ trait delete
 		// because the id in url not in request
 		$default_options = ['id' => null];
 
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
 		$_options = array_merge($default_options, $_options);
 		$_options['id'] = utility\shortURL::decode($_options['id']);
 

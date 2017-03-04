@@ -654,7 +654,7 @@ trait ready
 				}
 				if(!empty($show_options))
 				{
-					if(isset($_poll_data['options']))
+					if(isset($_poll_data['options']) && is_array($_poll_data['options']) && is_array($show_options))
 					{
 						$_poll_data['options'] = array_merge($_poll_data['options'], $show_options);
 					}

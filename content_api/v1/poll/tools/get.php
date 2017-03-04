@@ -33,6 +33,10 @@ trait get
 			'type'               => null, // ask || random
 		];
 
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
 		$_options = array_merge($default_options, $_options);
 
 		$result  = [];

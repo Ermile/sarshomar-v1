@@ -22,7 +22,7 @@ trait add
 
 		if(!is_array($_args))
 		{
-			$_args = [$_args];
+			$_args = [];
 		}
 
 		if(utility::request() == '' || is_null(utility::request()))

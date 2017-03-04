@@ -25,6 +25,12 @@ trait delete
 		[
 			'id' => null
 		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
 		$_options = array_merge($default_options, $_options);
 
 		if(!$_options['id'])

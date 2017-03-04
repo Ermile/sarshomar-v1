@@ -19,6 +19,11 @@ trait add
 			'method' => 'post',
 		];
 
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
 		$_options = array_merge($default_optios, $_options);
 
 		if(!shortURL::is(utility::request('id')))

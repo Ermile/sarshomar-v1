@@ -95,8 +95,22 @@ class ranks
 	 */
 	public static function plus($_poll_id, $_field, $_plus = 1, $_options = [])
 	{
-		$default_options = ['replace' => false ];
+		$default_options =
+		[
+			'replace' => false,
+			'type'    => 'plus',
+		];
+
 		$_options        = array_merge($default_options, $_options);
+
+		$plus  = true;
+		$minus = false;
+
+		if($_options['type'] === 'minus')
+		{
+			$plus  = false;
+			$minus = true;
+		}
 
 		$replace = false;
 		if($_options['replace'] === true)
@@ -105,6 +119,7 @@ class ranks
 		}
 
 		$post_rank = self::get($_poll_id);
+
 		if(empty($post_rank))
 		{
 			self::set($_poll_id);
@@ -197,6 +212,29 @@ class ranks
 		";
 		$result = \lib\db::query($query);
 		return $result;
+	}
+
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>   $_poll_id  The poll identifier
+	 * @param      <type>   $_field    The field
+	 * @param      integer  $_minus    The minus
+	 * @param      array    $_options  The options
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
+	public static function minus($_poll_id, $_field, $_minus = 1, $_options = [])
+	{
+		$default_options = ['type' => 'minus'];
+		if(!is_array($_options))
+		{
+			$_options = [$_options];
+		}
+
+		$_options = array_merge($default_options, $_options);
+		return self::plus($_poll_id, $_field, $_minus, $_options);
 	}
 }
 ?>
