@@ -1589,7 +1589,7 @@ function simulateTreeNavigation()
  */
 function calcFilterPrice()
 {
-	var totalEl      = $('.pay-info .price .value');
+	var totalEl      = $('#prPerson .pr');
 	var basePrice    = parseInt(totalEl.attr('data-basePrice'));
 	var totalPerson  = getRangeSliderValue('person');
 	var totalPercent = 0;
@@ -1666,7 +1666,7 @@ function calcTotalPrice(_delay)
 			prPerson.addClass('hide');
 			prFilter.addClass('hide');
 			// show add base price
-			prAdd.removeClass('hide');
+			// prAdd.removeClass('hide');
 		}
 		// add question price to total
 		totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
@@ -1751,11 +1751,45 @@ function calcTotalPrice(_delay)
 		}
 
 		// show on topbox
-		$('#financial-box .cost .value').attr('data-val', totalPrice).text(fitNumber(totalPrice));
-		$('#financial-box .cost').addClass('isCurrent');
+
+		var elCost = $('#financial-box .cost');
+		var elCostVal = $('#financial-box .cost .value');
+
+		if(elCostVal.attr('data-val') !== totalPrice)
+		{
+			elCostVal.attr('data-val', totalPrice).text(fitNumber(totalPrice));
+			elCost.addClass('isCurrent');
+
+
+			elCost.addClass('isHighlight');
+
+			var saveTimeout = elCost.attr('data-timeout');
+			if(saveTimeout)
+			{
+				clearTimeout(saveTimeout);
+			}
+			var savingTimeout = setTimeout(function()
+			{
+				elCost.attr('data-timeout', null);
+				elCost.removeClass('isHighlight');
+			}, 700);
+			elCost.attr('data-timeout', savingTimeout);
+		}
 
 		return totalPrice;
 	}, _delay);
+}
+
+
+/**
+ * [setCustomTimeout description]
+ * @param {[type]} _el    [description]
+ * @param {[type]} _delay [description]
+ * @param {[type]} _func  [description]
+ */
+function setCustomTimeout(_el, _delay, _func)
+{
+
 }
 
 
@@ -2681,8 +2715,15 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	{
 		calcTotalPrice();
 
+	});
+
+	myPersonCounter.on('range:finish', function(_e, _values, _max)
+	{
+		// ready to send data
+		requestSavingData();
+
 		// if value isset to zero hide filters
-		if(_max == 0)
+		if(_values.from == 0)
 		{
 			$('.stepFilter #filter-conditions').fadeOut();
 		}
@@ -2690,12 +2731,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		{
 			$('.stepFilter #filter-conditions').fadeIn();
 		}
-	});
-
-	myPersonCounter.on('range:finish', function(_e, _min, _max)
-	{
-		// ready to send data
-		requestSavingData();
 	});
 
 	// // on open tree load content to it
