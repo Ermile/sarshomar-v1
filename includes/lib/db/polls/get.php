@@ -222,7 +222,7 @@ trait get
 	 * check last question to answere user and return url of this poll
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get_next_url($_user_id)
+	public static function ask_me($_user_id)
 	{
 		$result = self::get_last($_user_id);
 		if(isset($result['url']))
@@ -237,67 +237,146 @@ trait get
 
 
 	/**
+	 * Gets the last url.
+	 * check last question to answere user and return url of this poll
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function get_next_url($_user_id, $_current = null)
+	{
+		$query_whit_current_post_id =
+		"
+			SELECT
+				posts.post_url AS 'url'
+			FROM
+				polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
+			WHERE
+				polldetails.id =
+				(
+					SELECT
+						MIN(polldetails.id)
+					FROM
+						polldetails
+					WHERE
+						polldetails.id >
+							(
+								SELECT
+									MIN(polldetails.id)
+								FROM
+									polldetails
+								WHERE
+									polldetails.user_id = $_user_id AND
+									polldetails.post_id = $_current AND
+									polldetails.status  = 'enable'
+								LIMIT 1
+							)
+						AND
+						polldetails.status  = 'enable'
+
+				)
+			LIMIT 1
+			-- polls::get_previous_url()
+			-- to get previous of answered this user
+		";
+
+		$query_raw =
+		"
+			SELECT
+				posts.post_url AS 'url'
+			FROM
+				polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
+			WHERE
+				polldetails.user_id = $_user_id AND
+				polldetails.status  = 'enable'
+			ORDER BY polldetails.id DESC
+			LIMIT 1
+			-- polls::get_previous_url()
+			-- to get previous of answered this user
+		";
+
+		if($_current)
+		{
+			$query = $query_whit_current_post_id;
+		}
+		else
+		{
+			$query = $query_raw;
+		}
+		$result = \lib\db::get($query, 'url', true);
+		return $result;
+	}
+
+
+	/**
 	 * get previous poll the users answer it
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function get_previous_url($_user_id, $_corrent_post_id = false)
+	public static function get_previous_url($_user_id, $_current = null)
 	{
-		if($_corrent_post_id)
-		{
+		$query_whit_current_post_id =
+		"
+			SELECT
+				posts.post_url AS 'url'
+			FROM
+				polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
+			WHERE
+				polldetails.id =
+				(
+					SELECT
+						MAX(polldetails.id)
+					FROM
+						polldetails
+					WHERE
+						polldetails.id <
+							(
+								SELECT
+									MAX(polldetails.id)
+								FROM
+									polldetails
+								WHERE
+									polldetails.user_id = $_user_id AND
+									polldetails.post_id = $_current AND
+									polldetails.status  = 'enable'
+								LIMIT 1
+							)
+						AND
+						polldetails.status  = 'enable'
 
-			$query =
-			"
-				SELECT
-					posts.post_url AS 'url'
-				FROM
-					polldetails
-				INNER JOIN posts ON posts.id = polldetails.post_id
-				WHERE
-					polldetails.id =
-					(
-						SELECT
-							MAX(polldetails.id)
-						FROM
-							polldetails
-						WHERE
-							polldetails.id <
-								(
-									SELECT
-										MAX(polldetails.id)
-									FROM
-										polldetails
-									WHERE
-										polldetails.user_id = $_user_id AND
-										polldetails.post_id = $_corrent_post_id
-								)
-					)
-				LIMIT 1
-				-- polls::get_previous_url()
-				-- to get previous of answered this user
-			";
+				)
+			LIMIT 1
+			-- polls::get_previous_url()
+			-- to get previous of answered this user
+		";
+
+		$query_raw =
+		"
+			SELECT
+				posts.post_url AS 'url'
+			FROM
+				polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
+			WHERE
+				polldetails.user_id = $_user_id AND
+				polldetails.status  = 'enable'
+			ORDER BY polldetails.id DESC
+			LIMIT 1
+			-- polls::get_previous_url()
+			-- to get previous of answered this user
+		";
+
+		if($_current)
+		{
+			$query = $query_whit_current_post_id;
 		}
 		else
 		{
-			$query =
-			"
-				SELECT
-					posts.post_url AS 'url'
-				FROM
-					polldetails
-				INNER JOIN posts ON posts.id = polldetails.post_id
-				WHERE
-					polldetails.user_id = $_user_id AND
-					polldetails.status  = 'enable'
-				ORDER BY polldetails.id DESC
-				LIMIT 1
-				-- polls::get_previous_url()
-				-- to get previous of answered this user
-			";
+			$query = $query_raw;
 		}
-		$result= \lib\db::get($query, 'url', true);
+		$result = \lib\db::get($query, 'url', true);
 		return $result;
-		return self::get_poll_url($result);
 	}
 
 

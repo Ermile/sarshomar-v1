@@ -1,9 +1,231 @@
 <?php
 namespace content\home;
 use \lib\debug;
+use \lib\utility;
 
 class model extends \mvc\model
 {
+
+	public $poll_code       = null;
+	public $poll_id         = null;
+	/**
+	 * Gets the random result.
+	 */
+	public function get_random()
+	{
+		$random = \lib\db\polls::get_random();
+		$url = '$';
+		if(isset($random['url']))
+		{
+			$url = $random['url'];
+		}
+
+		$this->redirector()->set_url($url);
+		return;
+	}
+
+
+	/**
+	 * Gets the ask.
+	 * the user click on ask button
+	 */
+	public function get_ask()
+	{
+		// cehck login
+		if(!$this->login())
+		{
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
+			return;
+		}
+
+		$user_id  = $this->login("id");
+		$ask_url = \lib\db\polls::ask_me($user_id);
+		if($ask_url == null)
+		{
+			$ask_url = '$';
+		}
+		$this->redirector()->set_url($ask_url);
+		$this->controller->display = false;
+		debug::msg("redirect", true);
+		$this->_processor(['force_stop' => true, 'force_json' => true]);
+	}
+
+
+	/**
+	 * Gets the ask.
+	 * the user click on ask button
+	 */
+	public function get_next()
+	{
+		// cehck login
+		if(!$this->login())
+		{
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
+			return;
+		}
+
+		$user_id         = $this->login("id");
+		$current         = utility::get('current');
+		$current_post_id = $this->check_url(true, $current);
+
+		if($this->poll_id)
+		{
+			if(utility\answers::is_answered($user_id, $this->poll_id))
+			{
+				$next_url = \lib\db\polls::get_next_url($user_id, $this->poll_id);
+			}
+			else
+			{
+				$next_url = \lib\db\polls::get_next_url($user_id);
+			}
+		}
+		else
+		{
+			$next_url = \lib\db\polls::get_next_url($user_id);
+		}
+
+		if($next_url == null)
+		{
+			return $this->get_ask();
+		}
+
+		$this->redirector()->set_url($next_url);
+		$this->controller->display = false;
+		debug::msg('redirect', true);
+		$this->_processor(['force_stop' => true, 'force_json' => true]);
+	}
+
+
+	/**
+	 * Gets the ask.
+	 * the user click on ask button
+	 */
+	public function get_prev()
+	{
+		// cehck login
+		if(!$this->login())
+		{
+			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
+			return;
+		}
+
+		$user_id         = $this->login("id");
+		$current         = utility::get('current');
+		$current_post_id = $this->check_url(true, $current);
+
+		if($this->poll_id)
+		{
+			if(utility\answers::is_answered($user_id, $this->poll_id))
+			{
+				$prev_url = \lib\db\polls::get_previous_url($user_id, $this->poll_id);
+			}
+			else
+			{
+				$prev_url = \lib\db\polls::get_previous_url($user_id);
+			}
+		}
+		else
+		{
+			$prev_url = \lib\db\polls::get_previous_url($user_id);
+		}
+
+		if($prev_url == null)
+		{
+			$prev_url = '$';
+		}
+
+		$this->redirector()->set_url($prev_url);
+		$this->controller->display = false;
+		debug::msg('redirect', true);
+		$this->_processor(['force_stop' => true, 'force_json' => true]);
+	}
+
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function check_url($_return = false, $_url = null)
+	{
+		if($_url === null)
+		{
+			$url     = \lib\router::get_url();
+		}
+		else
+		{
+			$url = $_url;
+		}
+
+		$poll_id = null;
+		if(preg_match("/^sp\_([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^\\$([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^\\$\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+		elseif(preg_match("/^.*\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
+		{
+			if(isset($code[1]))
+			{
+				$poll_id = $code[1];
+			}
+		}
+
+		if($poll_id)
+		{
+			$this->poll_code = $poll_id;
+			$this->poll_id = \lib\utility\shortURL::decode($poll_id);
+		}
+		else
+		{
+			return false;
+		}
+
+		if($_return)
+		{
+			return $poll_id;
+		}
+
+		$poll = \lib\db\polls::get_poll($this->poll_id);
+
+		if(isset($poll['url']) && $poll['url'] != $url .'/' && $poll['url'] != $url)
+		{
+			$language = null;
+			if(isset($poll['language']))
+			{
+				$language = \lib\define::get_current_language_string($poll['language']);
+			}
+			$post_url = $poll['url'];
+
+			$new_url = trim($this->url('root'). $language. '/'. $post_url, '/');
+
+			$this->redirector($new_url)->redirect();
+		}
+		else
+		{
+			return $poll;
+		}
+	}
+
+
 	public function male_female_chart()
 	{
 		$chart = \lib\utility\stat_polls::gender_chart();
@@ -84,75 +306,6 @@ class model extends \mvc\model
 			$chart['data'] = json_encode($data);
 			return $chart;
 		}
-	}
-
-
-	/**
-	 * Gets the random result.
-	 */
-	public function get_random()
-	{
-		$random = \lib\db\polls::get_random();
-		$url = '$';
-		if(isset($random['url']))
-		{
-			$url = $random['url'];
-		}
-
-		$this->redirector()->set_url($url);
-		return;
-	}
-
-
-	/**
-	 * Gets the ask.
-	 * the user click on ask button
-	 */
-	public function get_ask()
-	{
-		// cehck login
-		if(!$this->login())
-		{
-			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
-			return;
-		}
-
-		$user_id  = $this->login("id");
-		$next_url = \lib\db\polls::get_next_url($user_id);
-		if($next_url == null)
-		{
-			$next_url = '$';
-		}
-		$this->redirector()->set_url($next_url);
-		$this->controller->display = false;
-		debug::msg("redirect", true);
-		$this->_processor(['force_stop' => true, 'force_json' => true]);
-	}
-
-
-	/**
-	 * Gets the ask.
-	 * the user click on ask button
-	 */
-	public function get_prev()
-	{
-		// cehck login
-		if(!$this->login())
-		{
-			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
-			return;
-		}
-
-		$user_id  = $this->login("id");
-		$prev_url = \lib\db\polls::get_previous_url($user_id);
-		if($prev_url == null)
-		{
-			$prev_url = '$';
-		}
-		$this->redirector()->set_url($prev_url);
-		$this->controller->display = false;
-		debug::msg('redirect', true);
-		$this->_processor(['force_stop' => true, 'force_json' => true]);
 	}
 
 

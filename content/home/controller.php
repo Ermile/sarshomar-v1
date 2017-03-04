@@ -74,8 +74,8 @@ class controller extends \mvc\controller
 		$this->get("random")->ALL("/ask\/random$/");
 
 		$this->get("ask")->ALL("/ask$/");
-
-		$this->get("prev")->ALL("/ask\/prev$/");
+		$this->get("next")->ALL("/next$/");
+		$this->get("prev")->ALL("/prev$/");
 
 	}
 }

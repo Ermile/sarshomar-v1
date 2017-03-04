@@ -4,7 +4,7 @@ use \lib\utility;
 use \lib\utility\shortURL;
 use \lib\debug;
 
-class model extends \mvc\model
+class model extends \content\home\model
 {
 
 	use \content_api\v1\home\tools\ready;
@@ -14,8 +14,6 @@ class model extends \mvc\model
 	use \content_api\v1\poll\answer\tools\delete;
 	use \content_api\v1\poll\stats\tools\get;
 
-	public $poll_code       = null;
-	public $poll_id         = null;
 	public $get_poll_options =
 	[
 		'check_is_my_poll'   => false,
@@ -27,83 +25,6 @@ class model extends \mvc\model
 		'get_advance_result' => true,
 		'type'               => null, // ask || random
 	];
-
-
-	/**
-	 * { function_description }
-	 *
-	 * @param      <type>  $_args  The arguments
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function check_url($_return = false)
-	{
-		$url     = \lib\router::get_url();
-		$poll_id = null;
-		if(preg_match("/^sp\_([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
-		elseif(preg_match("/^\\$([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
-		elseif(preg_match("/^\\$\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
-		elseif(preg_match("/^.*\/([". utility\shortURL::ALPHABET. "]+)$/", $url, $code))
-		{
-			if(isset($code[1]))
-			{
-				$poll_id = $code[1];
-			}
-		}
-
-		if($poll_id)
-		{
-			$this->poll_code = $poll_id;
-			$this->poll_id = \lib\utility\shortURL::decode($poll_id);
-		}
-		else
-		{
-			return false;
-		}
-
-		if($_return)
-		{
-			return $poll_id;
-		}
-
-		$poll = \lib\db\polls::get_poll($this->poll_id);
-
-		if(isset($poll['url']) && $poll['url'] != $url .'/' && $poll['url'] != $url)
-		{
-			$language = null;
-			if(isset($poll['language']))
-			{
-				$language = \lib\define::get_current_language_string($poll['language']);
-			}
-			$post_url = $poll['url'];
-
-			$new_url = trim($this->url('root'). $language. '/'. $post_url, '/');
-
-			$this->redirector($new_url)->redirect();
-		}
-		else
-		{
-			return $poll;
-		}
-	}
 
 
 	/**
