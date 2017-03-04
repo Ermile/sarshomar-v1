@@ -54,7 +54,6 @@ class model extends \mvc\model
 	use tools\get_token;
 	use tools\ready;
 
-
 	/**
 	 * set permission of this user
 	 */
@@ -62,22 +61,7 @@ class model extends \mvc\model
 	{
 		if($this->user_id)
 		{
-			$permission = [];
-
-			permission::$get_from_session = false;
-
-			$user_perm = \lib\db\users::get_user_data($this->user_id, 'user_permission');
-
-			if(isset($user_perm['user_permission']))
-			{
-				$permission['user']['permission']   = $user_perm['user_permission'];
-
-				if(is_numeric($user_perm['user_permission']))
-				{
-					$permission['permission'] = $this->setPermissionSession($user_perm['user_permission'], true);
-				}
-				permission::$PERMISSION       = $permission;
-			}
+			$this->set_api_permission($this->user_id);
 		}
 	}
 
