@@ -115,9 +115,19 @@ trait insert
 			}
 		}
 
+		// check empty poll
+		if(self::empty_poll())
+		{
+			return false;
+		}
+
 		// check max draft count of every user
 		self::max_draft();
 
+		if(!debug::$status)
+		{
+			return false;
+		}
 		// insert poll record
 		self::insert_poll();
 

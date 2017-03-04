@@ -71,6 +71,42 @@ trait check
 
 
 	/**
+	 * check if empty poll set error
+	 */
+	public static function empty_poll()
+	{
+		$title   = false;
+		$answers = false;
+		$answer2 = false;
+
+		if(self::isset_args('title') && self::$args['title'])
+		{
+			$title = true;
+		}
+
+		if(self::isset_args('answers'))
+		{
+			for ($i = 0; $i < 5; $i++)
+			{
+				if(
+					(self::isset_args('answers', $i, 'title') && self::$args['answers'][$i]['title']) ||
+					(self::isset_args('answers', $i, 'file') && self::$args['answers'][$i]['file'])
+				  )
+				{
+					$answers = true;
+				}
+			}
+		}
+
+		if(!$title && !$answers)
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
 	 * check permission from self::$permission
 	 *
 	 * @param      <type>   $_permission  The permission
