@@ -1,1 +1,0 @@
--- UPDATE posts SET post_privacy = 'public' WHERE 1;

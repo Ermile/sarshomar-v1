@@ -1,1 +1,0 @@
-ALTER TABLE `posts` CHANGE `post_rank` `post_rank` BIGINT(20) NULL DEFAULT NULL;

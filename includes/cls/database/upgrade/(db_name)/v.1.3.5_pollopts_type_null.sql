@@ -1,1 +1,0 @@
-ALTER TABLE `pollopts` CHANGE `type` `type` ENUM('select','emoji','descriptive','upload','range','notification') NULL AFTER `key`;

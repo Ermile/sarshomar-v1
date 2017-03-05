@@ -1,1 +1,0 @@
-ALTER TABLE `transactions` CHANGE `budgetbefor` `budgetbefore` float(53) NULL;
