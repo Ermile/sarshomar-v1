@@ -1,11 +1,9 @@
-{%extends display.main%}
-
-{%block content%}
-   <aside class='dashboard-aside'>
+{%extends display.main%} {%block content%}
+<aside class='dashboard-aside'>
     <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl">
     <div class="personal-info">
-     <span class="name">{{displayname}}</span>
-     <span class="mobile">
+        <span class="name">{{displayname}}</span>
+        <span class="mobile">
      {% if login.mobile matches '/^\\d+$/' %}
       {{login.mobile}}
      {%else%}
@@ -13,177 +11,200 @@
      {% endif %}
      </span>
     </div>
-{%if false%}
+    {%if false%}
     <div class="progress" data-percent="{{complete_profile}}">
-     <div class="bar"></div>
-     <div class="detail">
-     {%if complete_profile < 10 %}
-      {%trans "Your profile is not complete!"%}
-     {%elseif complete_profile < 50%}
-      {%trans "Please complete your profile"%}
-     {%else%}
-      {%trans "Thank you for completing profile"%}
-     {%endif%}
-      <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
+        <div class="bar"></div>
+        <div class="detail">
+            {%if complete_profile
+            < 10 %} {%trans "Your profile is not complete!"%} {%elseif complete_profile < 50%} {%trans "Please complete your profile"%} {%else%} {%trans "Thank you for completing profile"%} {%endif%} <br><a href="@/profile" class="try">{%trans "Complete Profile"%}</a></div>
     </div>
-{%endif%}
+    {%endif%}
     <form method="post" class="ui-language">
-     {% set lang_list = langList({'all' : true}) %}
-     <select name="ui-language">
+        {% set lang_list = langList({'all' : true}) %}
+        <select name="ui-language">
       <option value="">{%trans "Default language"%}</option>
       {%for key, value in lang_list%}
       <option value="{{key}}" {%if ui_language == key %}selected="selected"{%endif%}>{{value}}</option>
       {%endfor%}
      </select>
-     <input type="submit" value='{%trans "Set default language"%}' class="try">
+        <input type="submit" value='{%trans "Set default language"%}' class="try">
     </form>
-    <a href="https://api.instagram.com/oauth/authorize/?client_id=4ecf7f9c5c4e4e94b4edc80efb10c491&redirect_uri=https://dev.sarshomar.com/referer/instagram&response_type=code&scope=comments+public_content" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}' data-direct target="_blank">
+    <!--<a href="https://api.instagram.com/oauth/authorize/?client_id=4ecf7f9c5c4e4e94b4edc80efb10c491&redirect_uri=https://dev.sarshomar.com/referer/instagram&response_type=code&scope=comments+public_content" class="instagram-dashboard" data-hint='{%trans "Sync with Instagram"%}' data-direct target="_blank">
       <img src="{{url.static}}images/third-party/instagram.svg">
-    </a>
-   </aside>
+    </a>-->
+</aside>
 
-   <div class="main pad" id="dashboard-main">
+<div class="main pad" id="dashboard-main">
     <div class="box">
-     <div class="f">
+        <div class="f">
 
-      <div class="c s12 m6 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Referred People"%}</h3>
-        <div class="card-body {%if dashboard.user_referred == 0%}{%endif%}">
-         {%if dashboard.user_referred == 0%}
-          <span>{%trans "None"%}</span>
-         {%else%}
-          <span>{{dashboard.user_referred|number_format|fitNumber}}</span>
-         {%endif%}
+            <div class="c s12 m6 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Referred People"%}</h3>
+                    <div class="card-body {%if dashboard.user_referred == 0%}{%endif%}">
+                        {%if dashboard.user_referred == 0%}
+                        <span>{%trans "None"%}</span> {%else%}
+                        <span>{{dashboard.user_referred|number_format|fitNumber}}</span> {%endif%}
+                    </div>
+                </div>
+            </div>
+            <!-- /.c3 -->
+
+            <div class="c s12 m6 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Comments"%}</h3>
+                    <div class="card-body {%if dashboard.comment_count == 0%}{%endif%}">
+                        {%if dashboard.user_referred == 0%}
+                        <span>{%trans "None"%}</span> {%else%}
+                        <span>{{dashboard.user_referred|number_format|fitNumber}}</span> {%endif%}
+                    </div>
+                </div>
+            </div>
+            <!-- .c3 -->
+
+            <div class="c s12 m6 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Published Polls"%}</h3>
+                    <div class="card-body {%if dashboard.publish_count == 0%}{%endif%}">
+                        {%if dashboard.publish_count == 0%}
+                        <span>{%trans "None"%}</span> {%else%}
+                        <span>{{dashboard.publish_count|number_format|fitNumber}}</span> {%endif%}
+                    </div>
+                </div>
+            </div>
+
+            <div class="c s12 m6 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Draft Polls"%}</h3>
+                    <div class="card-body {%if dashboard.draft_count == 0%}{%endif%}">
+                        {%if dashboard.draft_count == 0%}
+                        <span>{%trans "None"%}</span> {%else%}
+                        <span>{{dashboard.draft_count|number_format|fitNumber}}</span> {%endif%}
+                    </div>
+                </div>
+            </div>
+            <!-- .c3 -->
+
+            <div class="c s12 m12 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Likes"%}</h3>
+                    <div class="card-body {%if dashboard.poll_answered == 0%}{%endif%}">
+                        <span>{{dashboard.poll_answered|number_format|fitNumber}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- .c3 -->
         </div>
-       </div>
-      </div><!-- /.c3 -->
+        <!-- /.f -->
 
-      <div class="c s12 m6 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Comments"%}</h3>
-        <div class="card-body {%if dashboard.comment_count == 0%}{%endif%}">
-         {%if dashboard.user_referred == 0%}
-          <span>{%trans "None"%}</span>
-         {%else%}
-          <span>{{dashboard.user_referred|number_format|fitNumber}}</span>
-         {%endif%}
+        <div class="f">
+            <div class="c6 s12 m8 flex f-column">
+                <div class="card flex-1">
+                    <h3>{%trans "Activities Report"%}</h3>
+                    <div class="card-body">
+                        <div class="chart" id='chart-answered' data-format='dashboardPie' data-vals='{{chart_data|raw}}'></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c6 s12 m4 flex f-column">
+                <div class="f">
+                    <div class="c6 s12 m12 flex f-column">
+                        <div class="card flex-1">
+                            <h3>{%trans "Quick Access"%}</h3>
+                            <div class="card-body">
+                                <ul>
+                                    <li>
+                                        <a href='{{url.base}}/@/add'>{%trans "Create new poll"%}</a>
+                                    </li>
+                                    <li>
+                                        <a href='{{url.base}}/@/$'>{%trans "My polls"%}</a>
+                                    </li>
+                                    <li>
+                                        <a href='{{url.base}}/ask'>{%trans "Ask me"%}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c6 s12 m12 flex f-column">
+                        <div class="card flex-1">
+                            <h3>{%trans "Credit"%}</h3>
+                            <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
+                                <span>{{(user_cash + user_cash_gift)|number_format|fitNumber}}<i> {%trans user_unit%}</i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="f flex-1">
+                    <div class="c12 s12 m12 flex f-column">
+                        <div class="card flex-1">
+                            <h3>{%trans "Recent Activities"%}</h3>
+                            <div class="card-body">
+                                <span>{%trans "You've had no activities yet"%}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-       </div>
-      </div><!-- .c3 -->
-
-      <div class="c s12 m6 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Published Polls"%}</h3>
-        <div class="card-body {%if dashboard.publish_count == 0%}{%endif%}">
-         {%if dashboard.publish_count == 0%}
-          <span>{%trans "None"%}</span>
-         {%else%}
-          <span>{{dashboard.publish_count|number_format|fitNumber}}</span>
-         {%endif%}
-        </div>
-       </div>
-      </div>
-
-      <div class="c s12 m6 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Draft Polls"%}</h3>
-        <div class="card-body {%if dashboard.draft_count == 0%}{%endif%}">
-         {%if dashboard.draft_count == 0%}
-          <span>{%trans "None"%}</span>
-         {%else%}
-          <span>{{dashboard.draft_count|number_format|fitNumber}}</span>
-         {%endif%}
-        </div>
-       </div>
-      </div><!-- .c3 -->
-
-      <div class="c s12 m12 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Likes"%}</h3>
-        <div class="card-body {%if dashboard.poll_answered == 0%}{%endif%}">
-         <span>{{dashboard.poll_answered|number_format|fitNumber}}</span>
-        </div>
-       </div>
-      </div><!-- .c3 -->
-     </div><!-- /.f -->
-
-     <div class="f">
-      <div class="c6 s12 m8 flex f-column">
-       <div class="card flex-1">
-        <h3>{%trans "Activities Report"%}</h3>
-        <div class="card-body">
-         <div class="chart" id='chart-answered' data-format='dashboardPie' data-vals='{{chart_data|raw}}'></div>
-        </div>
-       </div>
-      </div>
-
-      <div class="c6 s12 m4 flex f-column">
-       <div class="f">
-        <div class="c6 s12 m12 flex f-column">
-         <div class="card flex-1">
-          <h3>{%trans "Quick Access"%}</h3>
-          <div class="card-body">
-           <ul>
-            <li>
-             <a href='{{url.base}}/@/add'>{%trans "Create new poll"%}</a>
-            </li>
-            <li>
-             <a href='{{url.base}}/@/$'>{%trans "My polls"%}</a>
-            </li>
-            <li>
-             <a href='{{url.base}}/ask'>{%trans "Ask me"%}</a>
-            </li>
-           </ul>
-          </div>
-         </div>
-        </div>
-
-        <div class="c6 s12 m12 flex f-column">
-         <div class="card flex-1">
-          <h3>{%trans "Credit"%}</h3>
-          <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
-           <span>{{(user_cash + user_cash_gift)|number_format|fitNumber}}<i> {%trans user_unit%}</i></span>
-          </div>
-         </div>
-        </div>
-       </div>
-
-       <div class="f flex-1">
-        <div class="c12 s12 m12 flex f-column">
-         <div class="card flex-1">
-          <h3>{%trans "Recent Activities"%}</h3>
-          <div class="card-body">
-           <span>{%trans "You've had no activities yet"%}</span>
-          </div>
-         </div>
-        </div>
-       </div>
-
-      </div>
-     </div>
     </div>
-   </div>
+</div>
 
-{%endblock%}
-
-
-{%block foot_js2%}
- <script type="text/javascript">
-  $(function ()
-  {
-    // Highcharts.chart('#chart-answered',
-    $('#chart-answered').highcharts(
-    {
-      chart:{type:'pie',},
-      title:{text:''},
-      plotOptions:{pie:{innerSize:100,depth:45,allowPointSelect:true,cursor:'pointer',showInLegend:true,}},
-      credits:{enabled:false},
-      tooltip:{enabled:false},
-      series:[{name:'{%trans "Question Answered"%}',
-        data:[['{%trans "Remained"%}', {{dashboard.sarshomar_poll}}],['{%trans "Skip"%}', {{dashboard.poll_skipped}}],{name:'{%trans "Answered"%}',y:{{dashboard.poll_answered}},sliced:true,selected:true}]
-      }]
+{%endblock%} {%block foot_js2%}
+<script type="text/javascript">
+    $(function() {
+        // Highcharts.chart('#chart-answered',
+        $('#chart-answered').highcharts({
+            chart: {
+                type: 'pie',
+            },
+            title: {
+                text: ''
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: 100,
+                    depth: 45,
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    showInLegend: true,
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            series: [{
+                name: '{%trans "Question Answered"%}',
+                data: [
+                    ['{%trans "Remained"%}', {
+                        {
+                            dashboard.sarshomar_poll
+                        }
+                    }],
+                    ['{%trans "Skip"%}', {
+                        {
+                            dashboard.poll_skipped
+                        }
+                    }], {
+                        name: '{%trans "Answered"%}',
+                        y: {
+                            {
+                                dashboard.poll_answered
+                            }
+                        },
+                        sliced: true,
+                        selected: true
+                    }
+                ]
+            }]
+        });
     });
-  });
- </script>
+</script>
 {% endblock %}
