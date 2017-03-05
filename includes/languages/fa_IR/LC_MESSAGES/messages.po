@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-04 18:30+0330\n"
-"PO-Revision-Date: 2017-03-04 18:53+0330\n"
+"POT-Creation-Date: 2017-03-05 14:34+0330\n"
+"PO-Revision-Date: 2017-03-05 14:35+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -3881,7 +3881,7 @@ msgstr "از تماس شما متشکریم"
 msgid "We could'nt save the contact"
 msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
-#: sarshomar/content/home/model.php:352
+#: sarshomar/content/home/model.php:505
 msgid "Which team are you a fan of?"
 msgstr "طرفدار کدام تیم هستید؟"
 
@@ -3899,20 +3899,20 @@ msgstr ""
 "از دانش عظیم و گرانبهای سرشمار، به عنوان یک منبع معتبر در راستای اهداف کلان خود "
 "بهره ببرید"
 
-#: sarshomar/content/poll/model.php:253
+#: sarshomar/content/poll/model.php:174
 msgid "Comment saved, Thank you"
 msgstr "دیدگاه ذخیره شد، متشکریم"
 
-#: sarshomar/content/poll/model.php:258
+#: sarshomar/content/poll/model.php:179
 msgid "We Couldn't save your comment, Please reload the page and try again"
 msgstr ""
 "مشکلی در ذخیره دیدگاه پیش آمد، لطفا صفحه را مجدد بارگزاری کنید و دوباره تلاش کنید"
 
-#: sarshomar/content/poll/model.php:300
+#: sarshomar/content/poll/model.php:221
 msgid "You must login in order to answer the questions"
 msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 
-#: sarshomar/content/poll/model.php:321
+#: sarshomar/content/poll/model.php:242
 #: sarshomar/content_admin/knowledge/model.php:70
 #: sarshomar/content_api/v1/home/tools/ready.php:139
 #: sarshomar/content_api/v1/poll/search/tools/search.php:184
@@ -3921,11 +3921,11 @@ msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 msgid "Invalid parameter status"
 msgstr "پارامتر وضعیت نامعتبر است"
 
-#: sarshomar/content/poll/model.php:341
+#: sarshomar/content/poll/model.php:262
 msgid "Can not support this property"
 msgstr "از این خاصیت پشتیبانی نمی‌شود"
 
-#: sarshomar/content/poll/model.php:347
+#: sarshomar/content/poll/model.php:268
 #: sarshomar/content_admin/exchangerates/model.php:65
 #: sarshomar/content_admin/exchangerates/model.php:114
 #: sarshomar/content_admin/transactionitems/model.php:64
@@ -3935,11 +3935,11 @@ msgstr "از این خاصیت پشتیبانی نمی‌شود"
 msgid "Operation faild"
 msgstr "عملیات با خطا مواجه شد"
 
-#: sarshomar/content/poll/model.php:377
+#: sarshomar/content/poll/model.php:298
 msgid "You must set answer or skip the poll"
 msgstr "باید پاسخ خود را تعیین کنید یا نظرسنجی را رد کنید"
 
-#: sarshomar/content/poll/model.php:387
+#: sarshomar/content/poll/model.php:308
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:392
 msgid "Answer saved"
 msgstr "پاسخ ذخیره شد"
@@ -3952,10 +3952,6 @@ msgstr "عنوان تعریف نشده!"
 msgid "Token error"
 msgstr "خطا در توکن"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:31
-msgid "In progress..."
-msgstr "در حال پیشروی..."
-
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:39
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:43
 #: sarshomar/content_api/v1/home/tools/ready.php:52
@@ -3965,7 +3961,13 @@ msgstr "در حال پیشروی..."
 msgid "Poll not found"
 msgstr "نظرسنجی یافت نشد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:156
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:120
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:239
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
+msgid "Next poll"
+msgstr "نظرسنجی بعدی"
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:165
 msgid "Updated"
 msgstr "بروز شد"
 
@@ -4355,12 +4357,12 @@ msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:101
-msgid "پسندیدید"
-msgstr ""
+msgid "Liked"
+msgstr "پسندیدید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:105
-msgid "پاسخ شما: "
-msgstr ""
+msgid "Your answer:"
+msgstr "پاسخ شما: "
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:154
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:167
@@ -4576,11 +4578,6 @@ msgstr "تعریف‌نشده"
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:34
 msgid "Answer not found"
 msgstr "پاسخی یافت نشد"
-
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:239
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:283
-msgid "Next poll"
-msgstr "نظرسنجی بعدی"
 
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:102
 msgid "Poll Discarded"
@@ -11868,15 +11865,15 @@ msgstr "پارامتر کاربر نامعتبر است"
 msgid "This is not your poll, can't update"
 msgstr "این نظرسنجی شما نیست، ناتوان در بروزرسانی"
 
-#: sarshomar/includes/lib/db/polls/insert.php:158
+#: sarshomar/includes/lib/db/polls/insert.php:161
 msgid "Poll :operation successfully"
 msgstr "نظرسنجی با موفقیت :operation شد"
 
-#: sarshomar/includes/lib/db/polls/insert.php:175
+#: sarshomar/includes/lib/db/polls/insert.php:178
 msgid "Error in :operation poll"
 msgstr "خطا در :operation نظرسنجی"
 
-#: sarshomar/includes/lib/db/polls/insert.php:243
+#: sarshomar/includes/lib/db/polls/insert.php:246
 msgid "Can not add poll"
 msgstr "ناتوان در افزودن نظرسنجی"
 
@@ -11908,11 +11905,11 @@ msgstr "این یک رکورد پیوست نیست"
 msgid "Can not use this attachment"
 msgstr "ناتوان در استفاده از این پیوست"
 
-#: sarshomar/includes/lib/db/polls/insert/max.php:30
+#: sarshomar/includes/lib/db/polls/insert/max.php:49
 msgid "You can save :max draft poll"
 msgstr "میتوانید :max نظرسنجی را پیش‌نویس کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/max.php:60
+#: sarshomar/includes/lib/db/polls/insert/max.php:79
 msgid "You can save :max poll in one survey"
 msgstr "می‌توانید :max نظرسنجی در یک پرسشنامه ذخیره کنید"
 
@@ -12194,6 +12191,9 @@ msgstr ""
 #: sarshomar/includes/mvc/view.php:58
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "In progress..."
+#~ msgstr "در حال پیشروی..."
 
 #~ msgid "Poll added successfully"
 #~ msgstr "نظرسنجي با موفقيت افزوده شد"

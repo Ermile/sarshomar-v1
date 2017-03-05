@@ -23,7 +23,7 @@ private function transtext()
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 78
-	echo T_("Quick Access");                                                          // Line 125
+	echo T_("Quick Access");                                                          // Line 114
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 40
@@ -75,7 +75,7 @@ private function transtext()
 	echo T_("Edit");                                                                  // Line 11
 	echo T_("Title");                                                                 // Line 10
 	echo T_("Status");                                                                // Line 11
-	echo T_("Comments");                                                              // Line 64
+	echo T_("Comments");                                                              // Line 55
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
 	echo T_("(Untitled)");                                                            // Line 43
@@ -137,7 +137,7 @@ private function transtext()
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                              // Line 46
 	echo T_("← Back");                                                              // Line 46
-	echo T_("Skip");                                                                  // Line 184
+	echo T_("Skip");                                                                  // Line 191
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
@@ -847,7 +847,7 @@ private function transtext()
 	echo T_("Randomize sort options");                                                // Line 233
 	echo T_("Hidden result");                                                         // Line 243
 	echo T_("Has correct option");                                                    // Line 253
-	echo T_("Complete Profile");                                                      // Line 27
+	echo T_("Complete Profile");                                                      // Line 19
 	echo T_("Tree");                                                                  // Line 308
 	echo T_("Time");                                                                  // Line 17
 	echo T_("Text Format");                                                           // Line 360
@@ -930,28 +930,28 @@ private function transtext()
 	echo T_("OK");                                                                    // Line 132
 
 	//-----------------------------------------------------content_u\home\display.html
-	echo T_("Undefined");                                                             // Line 12
-	echo T_("Your profile is not complete!");                                         // Line 21
-	echo T_("Please complete your profile");                                          // Line 23
-	echo T_("Thank you for completing profile");                                      // Line 25
-	echo T_("Default language");                                                      // Line 33
-	echo T_("Set default language");                                                  // Line 38
-	echo T_("Sync with Instagram");                                                   // Line 40
-	echo T_("Referred People");                                                       // Line 51
-	echo T_("None");                                                                  // Line 93
-	echo T_("Published Polls");                                                       // Line 77
-	echo T_("Draft Polls");                                                           // Line 90
-	echo T_("Likes");                                                                 // Line 103
-	echo T_("Activities Report");                                                     // Line 114
-	echo T_("Create new poll");                                                       // Line 129
-	echo T_("My polls");                                                              // Line 132
-	echo T_("Ask me");                                                                // Line 135
-	echo T_("Credit");                                                                // Line 144
-	echo T_("Recent Activities");                                                     // Line 155
-	echo T_("You've had no activities yet");                                          // Line 157
-	echo T_("Question Answered");                                                     // Line 183
-	echo T_("Remained");                                                              // Line 184
-	echo T_("Answered");                                                              // Line 184
+	echo T_("Undefined");                                                             // Line 10
+	echo T_("Your profile is not complete!");                                         // Line 19
+	echo T_("Please complete your profile");                                          // Line 19
+	echo T_("Thank you for completing profile");                                      // Line 19
+	echo T_("Default language");                                                      // Line 25
+	echo T_("Set default language");                                                  // Line 30
+	echo T_("Sync with Instagram");                                                   // Line 32
+	echo T_("Referred People");                                                       // Line 43
+	echo T_("None");                                                                  // Line 81
+	echo T_("Published Polls");                                                       // Line 67
+	echo T_("Draft Polls");                                                           // Line 78
+	echo T_("Likes");                                                                 // Line 90
+	echo T_("Activities Report");                                                     // Line 103
+	echo T_("Create new poll");                                                       // Line 118
+	echo T_("My polls");                                                              // Line 121
+	echo T_("Ask me");                                                                // Line 124
+	echo T_("Credit");                                                                // Line 133
+	echo T_("Recent Activities");                                                     // Line 144
+	echo T_("You've had no activities yet");                                          // Line 146
+	echo T_("Question Answered");                                                     // Line 184
+	echo T_("Remained");                                                              // Line 186
+	echo T_("Answered");                                                              // Line 196
 
 	//------------------------------------------------content_u\knowledge\display.html
 
