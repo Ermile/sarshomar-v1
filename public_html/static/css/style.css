@@ -1786,7 +1786,7 @@ label,select,.element a,.btn{-webkit-user-select:none;-moz-user-select:none;-ms-
 .contact-box .contact-data{padding:2em}
 .contact-box h2{font-size:1.6em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 
-.contact-box .sharebox{-webkit-box-pack:center !important;-webkit-justify-content:center !important;-ms-flex-pack:center !important;-moz-box-pack:center !important;justify-content:center !important;margin-bottom:2em}
+.contact-box .socialbox{text-align:center;margin-bottom:1em}
 .contact-ways .row{margin-bottom:1.5em;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}
 .contact-ways .row i{color:#28618a}
 .contact-ways .row span:not(.icon-3x){font-size:1.2em;padding:0 1em}
