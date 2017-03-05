@@ -1115,9 +1115,11 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 
 /* poll result */
-#poll-result{margin-bottom:5em}
+#poll-result{margin-bottom:5em;position:relative}
 #poll-result .tabs li{min-width:50px}
 #poll-extra,#comments-box{margin-bottom:100px}
+
+#poll-result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
 
 /* poll extra */
 #poll-extra .title{font-size:1.2em;font-weight:700;color:#434348}
