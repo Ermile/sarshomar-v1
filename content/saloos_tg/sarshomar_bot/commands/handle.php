@@ -137,10 +137,9 @@ class handle
 				case '/menu':
 				case '/cancel':
 				case '/stop':
-				case 'menu':
-				case 'main':
-				case 'mainmenu':
-				case 'منو':
+				case T_('menu'):
+				case T_('main'):
+				case T_('mainmenu'):
 				case T_("Back"):
 				$response = menu::main();
 				break;
@@ -217,24 +216,10 @@ class handle
 				$response = step_create::start();
 				break;
 
-				case 'return':
-				case 'back':
+				case T_('return'):
+				case T_('back'):
 				case T_('🔙 Back'):
-				case 'بازگشت':
-				switch ($_cmd['text'])
-				{
-					case 'بازگشت به منوی نظرسنجی‌ها':
-					$response = menu::polls();
-					break;
-
-					case T_('🔙 Back'):
-					$response = menu::main();
-					break;
-
-					default:
-					$response = menu::main();
-					break;
-				}
+				$response = menu::main();
 				break;
 
 				default:
@@ -260,7 +245,7 @@ class handle
 			// if has keyboard
 			if(isset($response['replyMarkup']['keyboard']))
 			{
-				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
+				$response['replyMarkup']['keyboard'][] = [T_('return')];
 			}
 		}
 		if(!is_array($response))
