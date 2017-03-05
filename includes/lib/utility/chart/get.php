@@ -138,6 +138,9 @@ trait get
 				unset($valid_result_raw['subport']);
 				unset($valid_result_raw['type']);
 				unset($valid_result_raw['total']);
+				unset($valid_result_raw['meta']);
+				unset($valid_result_raw['createdate']);
+				unset($valid_result_raw['datemodified']);
 				$tmp_result['valid'] = $valid_result_raw;
 			}
 			if($invalid)
@@ -148,8 +151,12 @@ trait get
 				unset($invalid_result_raw['subport']);
 				unset($invalid_result_raw['type']);
 				unset($invalid_result_raw['total']);
+				unset($invalid_result_raw['meta']);
+				unset($invalid_result_raw['createdate']);
+				unset($invalid_result_raw['datemodified']);
 				$tmp_result['invalid'] = $invalid_result_raw;
 			}
+
 			// return the raw result of polls
 			return $tmp_result;
 		}
