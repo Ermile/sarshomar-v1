@@ -20,7 +20,8 @@ class view extends \lib\mvc\view
 		$displayname = $this->login("displayname");
 		if($displayname == '')
 		{
-			$this->data->displayname = T_("Undefined");
+			// $this->data->displayname = T_("Undefined");
+			$this->data->displayname = T_("Hi Dear");
 		}
 		else
 		{
