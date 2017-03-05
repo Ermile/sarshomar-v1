@@ -747,8 +747,12 @@ function redrawChart(_data)
 			// newChartData = newChartData.valid;
 			// newChartData[0].value = 20;
 			// newChartData[1].value = 30;
-			console.log(newChartData);
+			// console.log(newChartData);
 			var myChart   = $('.chart').data('chart');
+			if(newChartData)
+			{
+				$('.isDataNotExist').fadeOut();
+			}
 
 			//Setting the new data to the graph
 			myChart.dataProvider = newChartData;

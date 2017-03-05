@@ -120,6 +120,7 @@ class model extends \content\home\model
 					$result = $this->am_chart($result, utility::get("chart"));
 					break;
 			}
+			$result = $result['valid'];
 			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
 			return true;
 		}
