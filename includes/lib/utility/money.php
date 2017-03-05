@@ -19,11 +19,11 @@ trait money
 		// valur of report
 		'report'    => [ false	, 	10	 		],
 		// valur of vot
-		'vot'       => [ true	, 	4	 		],
+		'vote'       => [ true	, 	4	 		],
 		// valur of like
 		'like'      => [ true	, 	5	 		],
 		// valur of favo
-		'favo'      => [ true	, 	6	 		],
+		'fav'      => [ true	, 	6	 		],
 		// valur of skip
 		'skip'      => [ false	, 	1	 		],
 		// valur of comment
