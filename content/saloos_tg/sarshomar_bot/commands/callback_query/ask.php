@@ -19,17 +19,17 @@ class ask
 		return [];
 	}
 
-	public static function make($_query, $_data_url, array $_options)
+	public static function make($_query, $_data_url, $_options = [])
 	{
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
 		$options = array_merge([
 			'poll_id' 	=> null,
-			'type'		=> 'private'
+			'type'		=> 'private',
+			'last'		=> false,
 			],$_options);
-
-		if(!$options['poll_id'])
-		{
-			return ['text' => T_("In progress...")];
-		}
 
 		$maker = new make_view($options['poll_id']);
 		if(is_null($maker->query_result))
@@ -114,7 +114,15 @@ class ask
 			$maker->inline_keyboard->add_change_status();
 		}
 
-		if(!$options['poll_id'] || isset($options['last']))
+		if($options['type'] == 'private' && $options['last'] && !in_array('add', $get_answer['available']))
+		{
+			$maker->inline_keyboard->add([[
+				'text' => T_('Next poll'),
+				'callback_data' => 'ask/make',
+				]]);
+		}
+
+		if(!$options['poll_id'] || $options['last'])
 		{
 			foreach ($maker->inline_keyboard->inline_keyboard as $key => $value) {
 				foreach ($value as $k => $v) {
@@ -135,7 +143,7 @@ class ask
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
 
-		if(!$_query && !isset($options['return']))
+		if($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
 		}
@@ -152,6 +160,7 @@ class ask
 		callback_query::edit_message(self::make(null, null, [
 			'poll_id' 	=>$poll_id,
 			'return' 	=> true,
+			'last'		=> count($_data_url) > 3 ? true : false
 			]));
 		return ['text' => T_("Updated")];
 	}

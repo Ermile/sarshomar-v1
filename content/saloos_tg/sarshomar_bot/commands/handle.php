@@ -69,9 +69,9 @@ class handle
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
 		// ( ​​ ) free space :))
-		$q = \lib\db\options::get(['option_cat' => 'on_push', 'option_key' => 'telegram', 'limit' => 1]);
+		$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
 		if(empty($q)){
-			\lib\db\options::insert(['option_cat' => 'on_push', 'option_key' => 'telegram', 'option_value' => $update_time]);
+			\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
 		}
 		elseif($q['value'] != $update_time)
 		{
@@ -189,7 +189,7 @@ class handle
 				break;
 
 				case '/faq':
-				$response = step_help::exec($command_text);
+				$response = callback_query\help::faq();
 				break;
 
 				case preg_match("/^(\/faq_([^\s]+))$/", $command_text, $faq) ? $faq[1] : '/faq':

@@ -73,7 +73,7 @@ class create
 		{
 			$poll_request = ['id' => session::get('poll'), 'answers' => [["type" => $_data_url[2]]]];
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-			$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+			$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		}
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 	}
@@ -84,7 +84,7 @@ class create
 		session::remove('poll_options', 'type');
 		$poll_request = ['id' => session::get('poll'), 'answers' => []];
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		\lib\main::$controller->model()->poll_add(['method' => 'put']);
+		\lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 
 	}
@@ -94,7 +94,7 @@ class create
 		\lib\storage::set_disable_edit(true);
 		$poll_request = ['id' => session::get('poll'), 'title' => ''];
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		$change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+		$change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 
 	}
@@ -112,7 +112,7 @@ class create
 			$poll_request['access_profile'] = null;
 		}
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		$change = \lib\main::$controller->model()->poll_add(['method' => 'put']);
+		$change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 	}
 }

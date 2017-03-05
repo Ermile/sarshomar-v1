@@ -98,11 +98,11 @@ class message
 				$poll_list = $this->class->query_result['description'];
 				if($value['type'] == 'like' && $answer)
 				{
-					$poll_list .= "\n" . T_('پسندیدید');
+					$poll_list .= "\n" . T_('Liked');
 				}
 				elseif($answer)
 				{
-					$poll_list .= "\n\n" . T_('پاسخ شما: ') . $answer[0]['descriptive'];
+					$poll_list .= "\n\n" . T_('Your answer:') . $answer[0]['descriptive'];
 				}
 				break;
 			}

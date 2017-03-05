@@ -44,7 +44,7 @@ trait faq{
 		$text .= "\n#" . preg_replace("[\s]", '_', T_("FAQ"));
 		$return = ["text" => $text];
 
-		if(is_null($_query))
+		if(!is_null($_id))
 		{
 			$return['parse_mode'] = 'HTML';
 			return $return;
@@ -77,7 +77,14 @@ trait faq{
 			$inline_keyboard[][] = ['text' => T_('Help'), 'callback_data' => 'help/home'];
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 			$return['response_callback'] = utility::response_expire('help');
-			callback_query::edit_message($return);
+			if($_query)
+			{
+				callback_query::edit_message($return);
+			}
+			else
+			{
+				return $return;
+			}
 		}
 	}
 }
