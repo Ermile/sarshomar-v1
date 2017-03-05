@@ -10,195 +10,203 @@ trait answers
 {
 	protected static function insert_answers()
 	{
-		if(self::$args['answers'] && is_array(self::$args['answers']))
+		if(!self::isset_args('answers'))
 		{
-			$answers = self::$args['answers'];
-			// remove empty index from answer array
-			$answers = array_filter($answers);
+			return ;
+		}
 
-			// combine answer type and answer text and answer score
-			$combine = [];
-			foreach ($answers as $key => $value)
+		if(self::$args['answers'] && !is_array(self::$args['answers']))
+		{
+			return debug::error(T_("Answers must be array"), 'answers', 'arguments');
+		}
+
+		$answers = self::$args['answers'];
+		// remove empty index from answer array
+		$answers = array_filter($answers);
+
+		// combine answer type and answer text and answer score
+		$combine = [];
+		foreach ($answers as $key => $value)
+		{
+			$title = null;
+			if(isset($value['title']) && $value['title'] != '')
 			{
-				$title = null;
-				if(isset($value['title']) && $value['title'] != '')
+				$title = trim($value['title']);
+				$combine[$key]['title'] = $title;
+			}
+
+			$type  = null;
+			if(isset($value['type']))
+			{
+				switch ($value['type'])
 				{
-					$title = trim($value['title']);
-					$combine[$key]['title'] = $title;
+					case 'select':
+					case 'descriptive':
+					case 'emoji':
+					case 'like':
+					// case 'upload':
+					// case 'range':
+					// case 'notification':
+						$type = $value['type'];
+						break;
+
+					default:
+						return debug::error(T_("Invalid type (:type) paramater in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
+						break;
 				}
-
-				$type  = null;
-				if(isset($value['type']))
+			}
+			else
+			{
+				if(self::$debug)
 				{
-					switch ($value['type'])
-					{
-						case 'select':
-						case 'descriptive':
-						case 'emoji':
-						case 'like':
-						// case 'upload':
-						// case 'range':
-						// case 'notification':
-							$type = $value['type'];
-							break;
-
-						default:
-							return debug::error(T_("Invalid type (:type) paramater in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
-							break;
-					}
-				}
-				else
-				{
-					if(self::$debug)
-					{
-						debug::error(T_("Invalid answer type parameter in index :key of answer", ['key' => $key]), 'answer', 'arguments');
-
-					}
-					return ;
-				}
-
-				$combine[$key]['type'] = $type;
-
-				$attachment_id = null;
-				if(isset($value['file']) && $value['file'])
-				{
-					$is_attachment = self::is_attachment($value['file']);
-
-					if(!debug::$status)
-					{
-						return;
-					}
-					$combine[$key]['attachment_id'] = shortURL::decode($value['file']);
-
-					if(isset($is_attachment['type']))
-					{
-						$combine[$key]['attachmenttype'] = $is_attachment['type'];
-					}
+					debug::error(T_("Invalid answer type parameter in index :key of answer", ['key' => $key]), 'answer', 'arguments');
 
 				}
+				return ;
+			}
 
+			$combine[$key]['type'] = $type;
 
-				// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
+			$attachment_id = null;
+			if(isset($value['file']) && $value['file'])
+			{
+				$is_attachment = self::is_attachment($value['file']);
 
-				if($type == 'select' || $type == 'emoji' || $type == 'descriptive' || $type == 'like')
+				if(!debug::$status)
 				{
-					$object_type = $type;
+					return;
+				}
+				$combine[$key]['attachment_id'] = shortURL::decode($value['file']);
 
-					if($type == 'descriptive')
-					{
-						$object_type = 'select';
-					}
-
-					// get score value
-		     		if(isset($value[$object_type]['score']['value']) && is_numeric($value[$object_type]['score']['value']))
-		     		{
-		     			$combine[$key]['score'] = $value[$object_type]['score']['value'];
-		     		}
-
-		     		// get score group
-		 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']) && $value[$object_type]['score']['group'])
-		     		{
-		     			$combine[$key]['groupscore'] = trim($value[$object_type]['score']['group']);
-		     		}
-
-		     		// get true answer
-		 	 		if(isset($value[$object_type]['is_true']) && $value[$object_type]['is_true'])
-		     		{
-		     			if(!is_bool($value[$object_type]['is_true']))
-		     			{
-		     				return debug::error(T_("Invalid parameter is_true in index :key of answer", ['key' => $key]), 'is_true', 'arguments');
-		     			}
-		     			$combine[$key]['true'] = 1;
-		     		}
+				if(isset($is_attachment['type']))
+				{
+					$combine[$key]['attachmenttype'] = $is_attachment['type'];
 				}
 
-				if(self::poll_check_permission('u', 'sarshomar', 'view') === true)
+			}
+
+
+			// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
+
+			if($type == 'select' || $type == 'emoji' || $type == 'descriptive' || $type == 'like')
+			{
+				$object_type = $type;
+
+				if($type == 'descriptive')
 				{
-					if(isset($value['profile']) && $value['profile'])
-					{
-		     			$combine[$key]['profile'] = $value['profile'];
-					}
+					$object_type = 'select';
 				}
 
-	     		// get meta of this object of answer
-				$support_answer_object = self::support_answer_object($type);
-				$answer_meta           = [];
-				foreach ($support_answer_object as $index => $reg)
-				{
-					$ok = false;
-					if(isset($value[$type][$index]))
-					{
+				// get score value
+	     		if(isset($value[$object_type]['score']['value']) && is_numeric($value[$object_type]['score']['value']))
+	     		{
+	     			$combine[$key]['score'] = $value[$object_type]['score']['value'];
+	     		}
 
-						if(is_bool($reg) && is_bool($value[$type][$index]))
+	     		// get score group
+	 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']) && $value[$object_type]['score']['group'])
+	     		{
+	     			$combine[$key]['groupscore'] = trim($value[$object_type]['score']['group']);
+	     		}
+
+	     		// get true answer
+	 	 		if(isset($value[$object_type]['is_true']) && $value[$object_type]['is_true'])
+	     		{
+	     			if(!is_bool($value[$object_type]['is_true']))
+	     			{
+	     				return debug::error(T_("Invalid parameter is_true in index :key of answer", ['key' => $key]), 'is_true', 'arguments');
+	     			}
+	     			$combine[$key]['true'] = 1;
+	     		}
+			}
+
+			if(self::poll_check_permission('u', 'sarshomar', 'view') === true)
+			{
+				if(isset($value['profile']) && $value['profile'])
+				{
+	     			$combine[$key]['profile'] = $value['profile'];
+				}
+			}
+
+     		// get meta of this object of answer
+			$support_answer_object = self::support_answer_object($type);
+			$answer_meta           = [];
+			foreach ($support_answer_object as $index => $reg)
+			{
+				$ok = false;
+				if(isset($value[$type][$index]))
+				{
+
+					if(is_bool($reg) && is_bool($value[$type][$index]))
+					{
+						$ok = true;
+					}
+					elseif(is_int($reg) && is_numeric($value[$type][$index]))
+					{
+						$ok = true;
+					}
+					elseif(is_string($reg) && is_string($value[$type][$index]))
+					{
+						$ok = true;
+					}
+					elseif(is_array($reg))
+					{
+						$in_array = true;
+						if(is_array($value[$type][$index]))
 						{
-							$ok = true;
-						}
-						elseif(is_int($reg) && is_numeric($value[$type][$index]))
-						{
-							$ok = true;
-						}
-						elseif(is_string($reg) && is_string($value[$type][$index]))
-						{
-							$ok = true;
-						}
-						elseif(is_array($reg))
-						{
-							$in_array = true;
-							if(is_array($value[$type][$index]))
+							foreach ($value[$type][$index] as $k => $v)
 							{
-								foreach ($value[$type][$index] as $k => $v)
+								if(!in_array($v, $reg))
 								{
-									if(!in_array($v, $reg))
-									{
-										$in_array = false;
-									}
+									$in_array = false;
 								}
 							}
-							elseif(is_string($value[$type][$index]) && in_array($value[$type][$index], $reg))
-							{
-								$in_array = true;
-							}
-							else
-							{
-								$in_array = false;
-							}
-
-							$ok = $in_array;
 						}
-						// check entered parametr and set meta
-						if($ok)
+						elseif(is_string($value[$type][$index]) && in_array($value[$type][$index], $reg))
 						{
-							$answer_meta[$index] = $value[$type][$index];
+							$in_array = true;
 						}
+						else
+						{
+							$in_array = false;
+						}
+
+						$ok = $in_array;
+					}
+					// check entered parametr and set meta
+					if($ok)
+					{
+						$answer_meta[$index] = $value[$type][$index];
 					}
 				}
-
-				if(!empty($answer_meta))
-				{
-					$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
-				}
-
-				if(count($combine[$key]) == 1 && isset($combine[$key]['type']) && $combine[$key]['type'] == 'select')
-				{
-					unset($combine[$key]);
-				}
 			}
 
-			if(is_array($combine))
+			if(!empty($answer_meta))
 			{
-				$temp_combine = [];
-				foreach ($combine as $key => $value)
-				{
-					$temp_combine[] = $value;
-				}
-				$combine = $temp_combine;
+				$combine[$key]['meta'] = json_encode($answer_meta, JSON_UNESCAPED_UNICODE);
 			}
 
-			if(self::$poll_id)
+			if(count($combine[$key]) == 1 && isset($combine[$key]['type']) && $combine[$key]['type'] == 'select')
 			{
-				$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);
+				unset($combine[$key]);
 			}
 		}
+
+		if(is_array($combine))
+		{
+			$temp_combine = [];
+			foreach ($combine as $key => $value)
+			{
+				$temp_combine[] = $value;
+			}
+			$combine = $temp_combine;
+		}
+
+		if(self::$poll_id)
+		{
+			$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);
+		}
+
 	}
 
 

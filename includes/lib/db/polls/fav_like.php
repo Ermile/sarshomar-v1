@@ -80,6 +80,7 @@ trait fav_like
 			if($_options['set_or_unset'] === null || $_options['set_or_unset'] === true)
 			{
 				$insert_option = \lib\db\options::insert($args);
+				\lib\db\ranks::plus($_poll_id, $_type);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
@@ -108,6 +109,7 @@ trait fav_like
 				$result =\lib\db\options::update_on_error($args, $where);
 				if($args['option_status'] == 'enable')
 				{
+					\lib\db\ranks::plus($_poll_id, $_type);
 					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " set"));
@@ -125,6 +127,7 @@ trait fav_like
 			{
 				$args['option_status'] = 'enable';
 				$result = \lib\db\options::update_on_error($args, $where);
+				\lib\db\ranks::plus($_poll_id, $_type);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
@@ -194,7 +197,7 @@ trait fav_like
 	 */
 	public static function is_fav()
 	{
-		return self::is_fav_like("favourites", ...func_get_args());
+		return self::is_fav_like("fav", ...func_get_args());
 	}
 
 
@@ -209,13 +212,22 @@ trait fav_like
 		return self::is_fav_like("like", ...func_get_args());
 	}
 
-
+	/**
+	 * fav a poll
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function fav()
 	{
-		return self::fav_like("favourites", ...func_get_args());
+		return self::fav_like("fav", ...func_get_args());
 	}
 
 
+	/**
+	 * like poll
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function like()
 	{
 		return self::fav_like("like", ...func_get_args());

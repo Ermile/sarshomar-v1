@@ -299,7 +299,7 @@ trait ready
 			$my_fav =
 			[
 				'post_id'       => $poll_id,
-				'option_key'    => 'favourites',
+				'option_key'    => 'fav',
 				'option_status' => 'enable',
 				'option_cat'    => 'user_detail_'. $this->user_id,
 				'user_id'       => $this->user_id,

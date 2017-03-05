@@ -41,8 +41,8 @@ class polls
 			posts.post_privacy				AS `privacy`,
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
-			IFNULL(ranks.favo,0)   			AS `count_fav`,
-			IFNULL(ranks.vot,0)   			AS `count_vote`,
+			IFNULL(ranks.fav,0)   			AS `count_fav`,
+			IFNULL(ranks.vote,0)   			AS `count_vote`,
 			(
 				SELECT
 					IF(COUNT(pollopts.id) > 0, TRUE, FALSE)

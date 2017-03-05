@@ -329,28 +329,32 @@ class answers
 		if(!$user_delete_answer)
 		{
 			\lib\utility\stat_polls::set_sarshomar_total_answered();
+			if($skipped)
+			{
+				/**
+				 * plus the ranks
+				 * skip mod
+				 */
+				\lib\db\ranks::plus($_args['poll_id'], 'skip');
+			}
+			else
+			{
+				/**
+				 * plus the ranks
+				 * vot mod
+				 */
+				\lib\db\ranks::plus($_args['poll_id'], 'vote');
+			}
 		}
 
 		// set dashboard data
 		if($skipped)
 		{
-			/**
-			 * plus the ranks
-			 * skip mod
-			 */
-			\lib\db\ranks::plus($_args['poll_id'], 'skip');
-
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
 			\lib\utility\profiles::people_see_my_poll($_args['user_id'], $_args['poll_id'], "skipped");
 		}
 		else
 		{
-			/**
-			 * plus the ranks
-			 * vot mod
-			 */
-			\lib\db\ranks::plus($_args['poll_id'], 'vot');
-
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_answered");
 			\lib\utility\profiles::people_see_my_poll($_args['user_id'], $_args['poll_id'], "answered");
 		}

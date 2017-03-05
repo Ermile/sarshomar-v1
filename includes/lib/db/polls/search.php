@@ -42,7 +42,7 @@ trait search
 			// for manual pagenation set the statrt_limit and end limit
 			"end_limit"       => 10,
 
-			// get the login id to load favourites post INNER JOIN options by this id
+			// get the login id to load fav post INNER JOIN options by this id
 			"login"           => false,
 
 			// the the last record inserted to post table
@@ -80,7 +80,7 @@ trait search
 		];
 		$_options = array_merge($default_options, $_options);
 
-		// ------------------ favourites
+		// ------------------ fav
 		$my_fav = null;
 		$my_like       = null;
 		$is_answered     = null;
@@ -91,7 +91,7 @@ trait search
 			"
 				LEFT JOIN options AS `fav`
 					ON fav.post_id = posts.id AND
-						fav.option_key = 'favourites' AND
+						fav.option_key = 'fav' AND
 						fav.user_id = $_options[login] AND
 						fav.option_status = 'enable'
 			";
@@ -324,7 +324,7 @@ trait search
 		}
 		if(!$get_count)
 		{
-			// ------------------ favourites
+			// ------------------ fav
 			if($my_fav)
 			{
 				$public_fields = " fav.option_value AS 'my_fav', ". $public_fields;
