@@ -323,10 +323,10 @@ class model extends \content\home\model
 	public function am_chart($_poll_data, $_type)
 	{
 		$advance_stats_title = [];
+		$advance_stats_result = [];
 
 		if(isset($_poll_data['advance_stats']['valid'][$_type]) && is_array($_poll_data['advance_stats']['valid'][$_type]))
 		{
-			$advance_stats_result = [];
 			foreach ($_poll_data['advance_stats']['valid'][$_type] as $opt_key => $value)
 			{
 				if(is_array($value))
