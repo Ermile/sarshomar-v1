@@ -117,6 +117,7 @@ trait fav_like
 				}
 				else
 				{
+					\lib\db\ranks::minus($_poll_id, $_type);
 					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " unset"));
@@ -137,12 +138,14 @@ trait fav_like
 			{
 				$args['option_status'] = 'disable';
 				$result = \lib\db\options::update_on_error($args, $where);
+				\lib\db\ranks::minus($_poll_id, $_type);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " unset"));
 				}
 			}
 		}
+
 		if($_options['debug'])
 		{
 			return debug::error("Syntax error", false, 'system');

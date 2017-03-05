@@ -181,8 +181,16 @@ class ranks
 						}
 						else
 						{
-							$value    = intval($value) + intval($_plus);
-							$update[] = " ranks.$key = ranks.$key + 1 ";
+							if($plus)
+							{
+								$value    = intval($value) + intval($_plus);
+								$update[] = " ranks.$key = ranks.$key + 1 ";
+							}
+							else
+							{
+								$value    = intval($value) - intval($_plus);
+								$update[] = " ranks.$key = ranks.$key - 1 ";
+							}
 						}
 					}
 
