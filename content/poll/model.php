@@ -120,7 +120,6 @@ class model extends \content\home\model
 					$result = $this->am_chart($result, utility::get("chart"));
 					break;
 			}
-			$result = $result['valid'];
 			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
 			return true;
 		}
@@ -361,12 +360,15 @@ class model extends \content\home\model
 			}
 		}
 
-		foreach ($advance_stats_result as $key => $value)
+		if(is_array($advance_stats_result))
 		{
-			$advance_stats_result[$key]['key'] = $key;
+			foreach ($advance_stats_result as $key => $value)
+			{
+				$advance_stats_result[$key]['key'] = $key;
+			}
+			sort($advance_stats_result);
+			return $advance_stats_result;
 		}
-		sort($advance_stats_result);
-		return $advance_stats_result;
 	}
 }
 ?>
