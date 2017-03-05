@@ -10,8 +10,8 @@ private function transtext()
 	echo T_("We do our best to improve Sarshomar's quality. So, knowing your valuable comments about bugs and problems and more importantly your precious offers will help us in this way.");// Line 14
 	echo T_("Name");                                                                  // Line 17
 	echo T_("Full Name");                                                             // Line 18
-	echo T_("Mobile");                                                                // Line 71
-	echo T_("Email");                                                                 // Line 67
+	echo T_("Mobile");                                                                // Line 99
+	echo T_("Email");                                                                 // Line 95
 	echo T_("Your Message");                                                          // Line 28
 	echo T_("Send");                                                                  // Line 29
 	echo T_("How to contact Sarshomar");                                              // Line 36
@@ -83,16 +83,16 @@ private function transtext()
 
 	//---------------------------------------------------content\knowledge\layout.html
 	echo T_("Questions");                                                             // Line 18
-	echo T_("Gender");                                                                // Line 236
-	echo T_("Male");                                                                  // Line 239
-	echo T_("Female");                                                                // Line 240
+	echo T_("Gender");                                                                // Line 264
+	echo T_("Male");                                                                  // Line 267
+	echo T_("Female");                                                                // Line 268
 	echo T_("Marital");                                                               // Line 61
-	echo T_("Single");                                                                // Line 247
-	echo T_("Married");                                                               // Line 248
+	echo T_("Single");                                                                // Line 275
+	echo T_("Married");                                                               // Line 276
 	echo T_("Employment");                                                            // Line 45
-	echo T_("Employee");                                                              // Line 156
-	echo T_("Unemployed");                                                            // Line 157
-	echo T_("Retired");                                                               // Line 158
+	echo T_("Employee");                                                              // Line 184
+	echo T_("Unemployed");                                                            // Line 185
+	echo T_("Retired");                                                               // Line 186
 	echo T_("Filters");                                                               // Line 236
 	echo T_("Question Type");                                                         // Line 132
 	echo T_("Poll");                                                                  // Line 13 Seperate
@@ -109,21 +109,21 @@ private function transtext()
 	echo T_("Survey Time");                                                           // Line 209
 	echo T_("Publish");                                                               // Line 14
 	echo T_("Expire");                                                                // Line 222
-	echo T_("Graduation");                                                            // Line 99
-	echo T_("Illiterate");                                                            // Line 102
-	echo T_("Undergraduate");                                                         // Line 103
-	echo T_("Graduate");                                                              // Line 104
-	echo T_("Under Diploma");                                                         // Line 123
-	echo T_("Diploma");                                                               // Line 124
-	echo T_("2 Year College");                                                        // Line 125
-	echo T_("Bachelor");                                                              // Line 126
-	echo T_("Master");                                                                // Line 127
-	echo T_("PHD");                                                                   // Line 128
-	echo T_("Other");                                                                 // Line 129
-	echo T_("Country");                                                               // Line 199
+	echo T_("Graduation");                                                            // Line 127
+	echo T_("Illiterate");                                                            // Line 130
+	echo T_("Undergraduate");                                                         // Line 131
+	echo T_("Graduate");                                                              // Line 132
+	echo T_("Under Diploma");                                                         // Line 151
+	echo T_("Diploma");                                                               // Line 152
+	echo T_("2 Year College");                                                        // Line 153
+	echo T_("Bachelor");                                                              // Line 154
+	echo T_("Master");                                                                // Line 155
+	echo T_("PHD");                                                                   // Line 156
+	echo T_("Other");                                                                 // Line 157
+	echo T_("Country");                                                               // Line 227
 	echo T_("Age");                                                                   // Line 105
-	echo T_("Province");                                                              // Line 203
-	echo T_("Religion");                                                              // Line 91
+	echo T_("Province");                                                              // Line 231
+	echo T_("Religion");                                                              // Line 119
 	echo T_("Language");                                                              // Line 67
 
 	//----------------------------------------------------content\main\layout-xhr.html
@@ -880,10 +880,10 @@ private function transtext()
 	echo T_("Apply");                                                                 // Line 516
 
 	//--------------------------------------------------------content_u\add\step2.html
-	echo T_("Education");                                                             // Line 39
-	echo T_("Marrital");                                                              // Line 244
+	echo T_("Education");                                                             // Line 67
+	echo T_("Marrital");                                                              // Line 272
 	echo T_("Employed");                                                              // Line 48
-	echo T_("Degree");                                                                // Line 120
+	echo T_("Degree");                                                                // Line 148
 	echo T_("Under diploma");                                                         // Line 63
 	echo T_("2 year college");                                                        // Line 67
 	echo T_("Age Range");                                                             // Line 82
@@ -956,65 +956,67 @@ private function transtext()
 	//------------------------------------------------content_u\knowledge\display.html
 
 	//--------------------------------------------------content_u\profile\display.html
-	echo T_("Personal");                                                              // Line 234
-	echo T_("Job");                                                                   // Line 40
-	echo T_("Location");                                                              // Line 41
-	echo T_("User");                                                                  // Line 228
-	echo T_("Family");                                                                // Line 43
-	echo T_("Favorites");                                                             // Line 44
-	echo T_("Profile Photo");                                                         // Line 53
-	echo T_("First Name");                                                            // Line 55
-	echo T_("Last Name");                                                             // Line 59
-	echo T_("Display Name");                                                          // Line 63
-	echo T_("Birth Year");                                                            // Line 75
-	echo T_("Birth Month");                                                           // Line 79
-	echo T_("Birthday");                                                              // Line 83
-	echo T_("UI Language");                                                           // Line 87
-	echo T_("Please Select One Item");                                                // Line 267
-	echo T_("Education Type");                                                        // Line 108
-	echo T_("Academic");                                                              // Line 111
-	echo T_("Howzeh");                                                                // Line 133
-	echo T_("Course");                                                                // Line 116
-	echo T_("Howzeh Degree");                                                         // Line 137
-	echo T_("Howzeh Course");                                                         // Line 141
-	echo T_("Education City");                                                        // Line 145
-	echo T_("Employment Status");                                                     // Line 153
-	echo T_("Industry");                                                              // Line 162
-	echo T_("Company");                                                               // Line 166
-	echo T_("Job City");                                                              // Line 170
-	echo T_("Job Title");                                                             // Line 174
-	echo T_("Birth");                                                                 // Line 182
-	echo T_("Birth Country");                                                         // Line 184
-	echo T_("Birth Province");                                                        // Line 188
-	echo T_("Birth City");                                                            // Line 192
-	echo T_("Current");                                                               // Line 197
-	echo T_("City");                                                                  // Line 207
-	echo T_("Village");                                                               // Line 211
-	echo T_("House Status");                                                          // Line 215
-	echo T_("Owner");                                                                 // Line 218
-	echo T_("Tenant");                                                                // Line 219
-	echo T_("Homeless");                                                              // Line 220
-	echo T_("Girl Child");                                                            // Line 252
-	echo T_("Boy Child");                                                             // Line 256
-	echo T_("Internet Usage");                                                        // Line 265
-	echo T_("Low");                                                                   // Line 268
-	echo T_("Mid");                                                                   // Line 269
-	echo T_("High");                                                                  // Line 270
-	echo T_("Skills");                                                                // Line 274
-	echo T_("Languages");                                                             // Line 278
-	echo T_("Books");                                                                 // Line 282
-	echo T_("Writers");                                                               // Line 293
-	echo T_("Films");                                                                 // Line 304
-	echo T_("Actors");                                                                // Line 315
-	echo T_("Genre");                                                                 // Line 326
-	echo T_("Musics");                                                                // Line 337
-	echo T_("Artists");                                                               // Line 348
-	echo T_("Sports");                                                                // Line 359
-	echo T_("Sportmans");                                                             // Line 370
-	echo T_("Habbits");                                                               // Line 381
-	echo T_("Devices");                                                               // Line 392
-	echo T_("Save");                                                                  // Line 409
-	echo T_("Cancel");                                                                // Line 409
+	echo T_("Connect another account");                                               // Line 22
+	echo T_("Connect to your Twitter and Github accounts with Sarshomar. We only use this information to verify your account. We'll never spam you, post on your behalf or do anything sketchy like that.");// Line 23
+	echo T_("Personal");                                                              // Line 262
+	echo T_("Job");                                                                   // Line 68
+	echo T_("Location");                                                              // Line 69
+	echo T_("User");                                                                  // Line 256
+	echo T_("Family");                                                                // Line 71
+	echo T_("Favorites");                                                             // Line 72
+	echo T_("Profile Photo");                                                         // Line 81
+	echo T_("First Name");                                                            // Line 83
+	echo T_("Last Name");                                                             // Line 87
+	echo T_("Display Name");                                                          // Line 91
+	echo T_("Birth Year");                                                            // Line 103
+	echo T_("Birth Month");                                                           // Line 107
+	echo T_("Birthday");                                                              // Line 111
+	echo T_("UI Language");                                                           // Line 115
+	echo T_("Please Select One Item");                                                // Line 295
+	echo T_("Education Type");                                                        // Line 136
+	echo T_("Academic");                                                              // Line 139
+	echo T_("Howzeh");                                                                // Line 161
+	echo T_("Course");                                                                // Line 144
+	echo T_("Howzeh Degree");                                                         // Line 165
+	echo T_("Howzeh Course");                                                         // Line 169
+	echo T_("Education City");                                                        // Line 173
+	echo T_("Employment Status");                                                     // Line 181
+	echo T_("Industry");                                                              // Line 190
+	echo T_("Company");                                                               // Line 194
+	echo T_("Job City");                                                              // Line 198
+	echo T_("Job Title");                                                             // Line 202
+	echo T_("Birth");                                                                 // Line 210
+	echo T_("Birth Country");                                                         // Line 212
+	echo T_("Birth Province");                                                        // Line 216
+	echo T_("Birth City");                                                            // Line 220
+	echo T_("Current");                                                               // Line 225
+	echo T_("City");                                                                  // Line 235
+	echo T_("Village");                                                               // Line 239
+	echo T_("House Status");                                                          // Line 243
+	echo T_("Owner");                                                                 // Line 246
+	echo T_("Tenant");                                                                // Line 247
+	echo T_("Homeless");                                                              // Line 248
+	echo T_("Girl Child");                                                            // Line 280
+	echo T_("Boy Child");                                                             // Line 284
+	echo T_("Internet Usage");                                                        // Line 293
+	echo T_("Low");                                                                   // Line 296
+	echo T_("Mid");                                                                   // Line 297
+	echo T_("High");                                                                  // Line 298
+	echo T_("Skills");                                                                // Line 302
+	echo T_("Languages");                                                             // Line 306
+	echo T_("Books");                                                                 // Line 310
+	echo T_("Writers");                                                               // Line 321
+	echo T_("Films");                                                                 // Line 332
+	echo T_("Actors");                                                                // Line 343
+	echo T_("Genre");                                                                 // Line 354
+	echo T_("Musics");                                                                // Line 365
+	echo T_("Artists");                                                               // Line 376
+	echo T_("Sports");                                                                // Line 387
+	echo T_("Sportmans");                                                             // Line 398
+	echo T_("Habbits");                                                               // Line 409
+	echo T_("Devices");                                                               // Line 420
+	echo T_("Save");                                                                  // Line 437
+	echo T_("Cancel");                                                                // Line 437
 
 	//---------------------------------------------------content_u\search\display.html
 

@@ -1,6 +1,35 @@
 {%extends display.main%}
 
 {%block content%}
+<aside></aside>
+<div class="main pad" id="profile-main">
+ <div class="box">
+  <div class="f profile-card">
+   <div class="c2">
+    <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl" style="display:block">
+   </div>
+   <div class="c10 flex f-column justify-end profile-card-data">
+    <h2 style="margin-bottom:0">Javad Evazzadeh</h2>
+    <div class="flex">
+     <span class="email">J.evazzadeh@live.com</span>
+     <span class="member-since">Member since 10/20/2015</span>
+    </div>
+   </div>
+  </div><!-- /.f -->
+
+  <div class="f profile-connect">
+   <div class="c">
+    <h3>{%trans "Connect another account"%}</h3>
+    <p>{%trans "Connect to your Twitter and Github accounts with Sarshomar. We only use this information to verify your account. We'll never spam you, post on your behalf or do anything sketchy like that."%}</p>
+    {%include template.social%}
+   </div>
+  </div>
+ </div>
+</div>
+{%endblock%}
+
+
+{%block content1%}
 <aside>
 
 </aside>
@@ -28,7 +57,6 @@
   </div>
 
 </div>
-
 {%endblock%}
 
 
