@@ -95,7 +95,7 @@ class utility
 			}
 			if(count($row_text) < $rows)
 			{
-				array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
+				// array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
 			}
 
 			if($max_key > 9)
