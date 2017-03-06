@@ -368,10 +368,11 @@ trait options
 				}
 				$temp_insert_tags =
 				[
-					'term_type'  => 'sarshomar_tag',
-					'term_title' => $value,
-					'term_url'   => '$/tag/'. $slug,
-					'term_slug'  => $slug,
+					'term_type'   => 'sarshomar_tag',
+					'term_title'  => $value,
+					'term_url'    => '$/tag/'. $slug,
+					'term_slug'   => $slug,
+					'term_caller' => null,
 				];
 				if(\lib\db\terms::insert($temp_insert_tags))
 				{

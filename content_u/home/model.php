@@ -18,7 +18,7 @@ class model extends \mvc\model
 		$captcha = utility::post("captcha");
 		if(utility\captcha::check($captcha))
 		{
-			$signup_inspection = \lib\db\users::signup_inspection();
+			$signup_inspection = \lib\db\users::signup(['type' => 'inspection', 'port' => 'site']);
 			if($signup_inspection)
 			{
 				\lib\db\users::set_login_session(null, null, $signup_inspection);
