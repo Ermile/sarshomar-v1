@@ -15,7 +15,7 @@ trait answers
 			return ;
 		}
 
-		if(self::$args['answers'] && !is_array(self::$args['answers']))
+		if(!is_array(self::$args['answers']))
 		{
 			return debug::error(T_("Answers must be array"), 'answers', 'arguments');
 		}

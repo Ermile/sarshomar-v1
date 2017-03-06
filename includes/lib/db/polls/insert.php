@@ -116,10 +116,15 @@ trait insert
 		}
 
 		// check empty poll
-		if(self::empty_poll())
+		if(self::empty_poll() && self::$method == 'post')
 		{
+			if(self::$debug)
+			{
+				debug::error(T_("Title and at least two answers is needed to submit the poll"), 'permission', 'arguments');
+			}
 			return false;
 		}
+
 		if(!self::$update_mod)
 		{
 			// check max draft count of every user
