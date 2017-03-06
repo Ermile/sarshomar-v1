@@ -222,14 +222,14 @@ class pollopts
 		}
 
 		$set = implode(',', $set);
-		if($_key)
-		{
-			$query = "UPDATE pollopts SET $set WHERE post_id = $_poll_id AND pollopts.key = $_key  LIMIT 1";
-		}
-		else
+		if($_key === false)
 		{
 			// if key is null or false the poll id is pollopts.id
 			$query = "UPDATE pollopts SET $set WHERE id = $_poll_id LIMIT 1";
+		}
+		else
+		{
+			$query = "UPDATE pollopts SET $set WHERE post_id = $_poll_id AND pollopts.key = $_key  LIMIT 1";
 		}
 		return \lib\db::query($query);
 	}
@@ -402,7 +402,7 @@ class pollopts
 
 		if(!is_array($_opts))
 		{
-			return debug::error(T_("answers must be array"), 'answers', 'db');
+			return debug::error(T_("Answers must be array"), 'answers', 'db');
 		}
 
 		$default_optsion =
@@ -421,6 +421,7 @@ class pollopts
 		$delete_all_profile = false;
 
 		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
+
 		if($_options['method'] == 'put' || $_options['method'] == 'post')
 		{
 
@@ -580,22 +581,26 @@ class pollopts
 		elseif($_options['method'] == 'patch')
 		{
 			$update_as_patch = [];
-			if(count($_opts) > 1)
+			// if(count($_opts) > 1)
+			// {
+			// 	return debug::error(T_("Max input in patch mode is 1 parameter"), 'answers', 'arguments');
+			// }
+			foreach ($_opts as $key => $value)
 			{
-				return debug::error(T_("Max input in patch mode is 1 parameter"), 'answers', 'arguments');
-			}
+				// $pollopt_key = key($_opts);
+				$pollopt_key = $key;
 
-			$pollopt_key = key($_opts);
-			if(isset($_opts[$pollopt_key]))
-			{
-				$new_value = array_filter($_opts[$pollopt_key]);
-
-				foreach ($new_value as $key => $value)
+				if(isset($_opts[$pollopt_key]))
 				{
-					$update_as_patch[$key] = $value;
+					$new_value = array_filter($_opts[$pollopt_key]);
+
+					foreach ($new_value as $k => $v)
+					{
+						$update_as_patch[$k] = $v;
+					}
 				}
+				self::update($update_as_patch, $_poll_id, $pollopt_key);
 			}
-			self::update($update_as_patch, $_poll_id, $pollopt_key);
 
 		}
 
@@ -674,12 +679,12 @@ class pollopts
 	private static function check_update($_new_opt, $_old_opt)
 	{
 		$update = [];
-		// var_dump(...func_get_args());
+
 		if(is_array($_new_opt) || is_array($_old_opt))
 		{
+			$_old_opt['profile'] = null;
 			foreach ($_old_opt as $key => $value)
 			{
-
 				if(isset($_new_opt[$key]))
 				{
 					switch ($key)
@@ -732,7 +737,7 @@ class pollopts
 						case 'score':
 						case 'attachment_id':
 						case 'attachmenttype':
-						case 'profile':
+						// case 'profile':
 						default:
 							if($value)
 							{

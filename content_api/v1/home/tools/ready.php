@@ -416,7 +416,7 @@ trait ready
 										$opt_profile[$k]['title'] = $v['term_title'];
 									}
 								}
-								if(isset($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
+								if(isset($v['term_meta']) && is_string($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
 								{
 									$temp_term_meta = json_decode($v['term_meta'], true);
 

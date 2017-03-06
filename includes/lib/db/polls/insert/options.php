@@ -358,11 +358,7 @@ trait options
 				$value = trim($value);
 				if(mb_strlen($value) > 45)
 				{
-						return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character"), 'tags', 'arguments');
-					if(self::$debug)
-					{
-					}
-
+					return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character", ['key' => $key]), 'tags', 'arguments');
 				}
 
 				$slug  = utility\filter::slug($value);
@@ -370,21 +366,23 @@ trait options
 				{
 					$slug = $value;
 				}
-
-				$insert_tag[] =
+				$temp_insert_tags =
 				[
 					'term_type'  => 'sarshomar_tag',
 					'term_title' => $value,
 					'term_url'   => '$/tag/'. $slug,
 					'term_slug'  => $slug,
 				];
+				if(\lib\db\terms::insert($temp_insert_tags))
+				{
+					$insert_tag[] = $temp_insert_tags;
+				}
 			}
 
 			$tags_id = [];
 
 			if(!empty($insert_tag))
 			{
-				$insert = \lib\db\terms::insert_multi($insert_tag);
 
 				$tags_title = array_column($insert_tag, 'term_title');
 

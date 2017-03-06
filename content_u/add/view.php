@@ -79,8 +79,23 @@ class view extends \content_u\home\view
 		if(isset($poll['options']['cat']) && isset($poll['id']))
 		{
 			$cat_id    = shortURL::decode($poll['options']['cat']);
-
 			$cat       = \lib\db\terms::get($cat_id);
+
+			if(isset($cat['term_meta']))
+			{
+				$meta = $cat['term_meta'];
+				if(is_string($cat['term_meta']) && substr($cat['term_meta'], 0, 1) === '{')
+				{
+					$meta = json_decode($cat['term_meta'], true);
+				}
+
+				$language = \lib\define::get_language();
+				if(isset($meta['translate'][$language]))
+				{
+					$this->data->cat_title = $meta['translate'][$language];
+				}
+			}
+
 			if(isset($cat['term_title']))
 			{
 				if($cat['term_title'] != T_($cat['term_title']))
