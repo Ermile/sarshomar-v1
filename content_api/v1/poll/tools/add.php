@@ -38,7 +38,7 @@ trait add
 
 		$_args = array_merge($default_args, $_args);
 
-		if($_args['method'] != 'put' && $_args['method'] != 'patch')
+		if($_args['method'] != 'put' && $_args['method'] != 'patch' && $_args['method'] != 'add_opt_file_site')
 		{
 			$_args['method'] = 'post';
 		}
@@ -48,7 +48,7 @@ trait add
 		 */
 		$update = false;
 
-		if($_args['method'] == 'put' || $_args['method'] == 'patch')
+		if($_args['method'] == 'put' || $_args['method'] == 'patch' || $_args['method'] == 'add_opt_file_site')
 		{
 			if(utility\shortURL::is(utility::request("id")))
 			{

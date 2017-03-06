@@ -367,7 +367,7 @@ class model extends \content_u\home\model
 
 				utility::set_request_array($patch_request);
 
-				$method        = ['method' => 'patch'];
+				$method        = ['method' => 'add_opt_file_site'];
 				$this->debug   = false;
 				return $this->poll_add($method);
 			}

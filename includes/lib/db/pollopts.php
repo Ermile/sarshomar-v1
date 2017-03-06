@@ -422,7 +422,7 @@ class pollopts
 
 		$old_answers_raw = $old_answers = \lib\db\pollopts::get_all($_poll_id, '*', true);
 
-		if($_options['method'] == 'put' || $_options['method'] == 'post')
+		if($_options['method'] == 'put' || $_options['method'] == 'post' || $_options['method'] == 'patch')
 		{
 
 			$must_update = [];
@@ -578,7 +578,7 @@ class pollopts
 				}
 			}
 		}
-		elseif($_options['method'] == 'patch')
+		elseif($_options['method'] == 'add_opt_file_site')
 		{
 			$update_as_patch = [];
 			// if(count($_opts) > 1)
