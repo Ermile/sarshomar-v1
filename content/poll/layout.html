@@ -68,7 +68,7 @@
 {% spaceless %}
  {%if poll.options.multi%}
   <div class="poll-hint">
-   <span>{%trans "You can select just two options."%}</span>
+   <span>{{multi_msg}}</span>
   </div>
  {%endif%}
 {% endspaceless %}
@@ -78,7 +78,12 @@
 {%block poll_options%}
 {% spaceless %}
  {%if poll.answers%}
- <ul class="poll-options" data-answer-type="{{poll_type}}">
+ <ul class="poll-options"
+  data-answer-type="{{poll_type}}"
+  data-type="{%if poll.options.multi%}multi{%endif%}"
+  {%if min%}data-multi-min="{{min}}"{%endif%}
+  {%if max%}data-multi-max="{{max}}"{%endif%}>
+
  {% set myKey = 0 %}
   {%if poll.options.multi%}{# if muliple_choice #}
    {%for key, value in poll.answers%}

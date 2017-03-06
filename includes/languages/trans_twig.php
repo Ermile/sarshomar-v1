@@ -145,28 +145,28 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 211
-	echo T_("You can select just two options.");                                      // Line 224
-	echo T_("There is no option!");                                                   // Line 150
-	echo T_("I am not willing to answer");                                            // Line 273
-	echo T_("Previous");                                                              // Line 171
-	echo T_("Save Answer");                                                           // Line 284
+	echo T_("Read More");                                                             // Line 216
+	echo T_("There is no option!");                                                   // Line 155
+	echo T_("I am not willing to answer");                                            // Line 278
+	echo T_("Previous");                                                              // Line 176
+	echo T_("Save Answer");                                                           // Line 289
 	echo T_("Next");                                                                  // Line 9
+	echo T_("You can select just two options.");                                      // Line 229
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("result");                                                                // Line 300
-	echo T_("There is no data to draw chart!");                                       // Line 309
-	echo T_("Similar Questions");                                                     // Line 343
-	echo T_("Latest Questions");                                                      // Line 336
-	echo T_("There is no similar post");                                              // Line 344
-	echo T_("Poll timespan");                                                         // Line 362
+	echo T_("result");                                                                // Line 305
+	echo T_("There is no data to draw chart!");                                       // Line 314
+	echo T_("Similar Questions");                                                     // Line 348
+	echo T_("Latest Questions");                                                      // Line 341
+	echo T_("There is no similar post");                                              // Line 349
+	echo T_("Poll timespan");                                                         // Line 367
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 413
-	echo T_("Keyword");                                                               // Line 384
-	echo T_("Statistical population");                                                // Line 401
-	echo T_("There is nothing to display!");                                          // Line 458
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 469
+	echo T_("Not set");                                                               // Line 418
+	echo T_("Keyword");                                                               // Line 389
+	echo T_("Statistical population");                                                // Line 406
+	echo T_("There is nothing to display!");                                          // Line 463
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 474
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 526
+	echo T_("Continue");                                                              // Line 531
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -400,6 +400,9 @@ private function transtext()
 	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 14
 	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 16
 	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 16
+
+	//-----------------------------------------------content\template\static\logo.html
+	echo T_("Our Logo");                                                              // Line 10
 
 	//--------------------------------------------content\template\static\mission.html
 
