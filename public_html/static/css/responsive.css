@@ -100,7 +100,7 @@
  .row>[class*=span],.row .row>[class*=span]{width:100%!important;margin:0 0 5px}
  .row>[class*=span]:nth-child(even),.row .row>[class*=span]:nth-child(even){margin-right:0!important}
  .row>.span12,.row .row .span12{width:100%!important}
- html{font-size: 50%}
+ html{font-size: 60%}
  .container{max-width:500px;min-width:300px;width:96%}
  #footer{position:relative}
  footer {-webkit-box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;-moz-box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;box-shadow: 0px -2px 0px 0px #f4f4f5, 0px -6px 0px 0px #e7a429;border-top: 2px solid #00667a;margin-top: 6px;}
