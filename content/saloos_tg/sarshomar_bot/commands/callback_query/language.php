@@ -85,7 +85,7 @@ class language
 			'callback_data' => "language/en" . $update_on
 			];
 			$return = [
-			"text" => T_("Choose the language."),
+			"text" => T_("Select your language"),
 			"reply_markup" => ["inline_keyboard" => $inline_keyboard],
 			"response_callback" => utility::response_expire('language')
 			];
