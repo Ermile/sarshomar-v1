@@ -50,7 +50,7 @@ class poll
 				'to'  		=> (int) ($start + $message_per_page),
 			]
 			]);
-		$search = \lib\main::$controller->model()->poll_search(true);
+		$search = \lib\main::$controller->model()->poll_search();
 
 		$query_result = $search['data'];
 
@@ -213,6 +213,10 @@ class poll
 		if($for_delete && $for_delete->id == $poll_id && $for_delete->answer == $answer)
 		{
 			$api_method = 'delete';
+			if($answer == 'like')
+			{
+				$answer = 'dislike';
+			}
 		}
 		elseif(isset($get_answer['my_answer'][0]) &&
 			$get_answer['my_answer'][0]['key'] == $answer &&
@@ -227,7 +231,6 @@ class poll
 				$request['like'] = true;
 				if(isset($get_answer['my_answer'][0]) && in_array('delete', $get_answer['available']))
 				{
-					$answer = 'dislike';
 					$api_method = 'warn_delete';
 				}
 				break;

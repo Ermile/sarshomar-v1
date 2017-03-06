@@ -62,7 +62,7 @@ class controller extends \lib\mvc\controller
 				}
 				else
 				{
-					if($_args['text'] != "")
+					if(isset($_args['text']) && $_args['text'] != "")
 					{
 						$_args['text'] = preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
 						$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));

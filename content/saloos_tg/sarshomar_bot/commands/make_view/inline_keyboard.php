@@ -78,26 +78,26 @@ class inline_keyboard
 			elseif($answer_value['type'] == 'descriptive')
 			{
 				$total = $sum['total'];
-				$callback_data = 'https://telegram.me/Sarshomar_bot?start=answer_'.$this->class->poll_id;
+				$callback_data = 'https://telegram.me/Sarshomar_bot?start='.$this->class->poll_id . "_" . $answer_value['key'];
 				$callback_type = 'url';
 				$inline_emoji = "📝 " . T_("Answer");
 			}
 			else
 			{
-				$callback_data .= ($answer_key +1);
+				$callback_data .= ($answer_value['key']);
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
 					$inline_emoji = utility::nubmer_language($answer_value['key']);
 				}
 				else
 				{
-					$inline_emoji = $this->class::$emoji_number[$answer_key + 1];
+					$inline_emoji = $this->class::$emoji_number[$answer_value['key']];
 				}
 			}
 
 			if(isset($this->class->query_result['access_profile']))
 			{
-				$callback_data = 'https://telegram.me/Sarshomar_bot?start=answer_' . $this->class->poll_id . '_' . $answer_value['key'];
+				$callback_data = 'https://telegram.me/Sarshomar_bot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
 				$callback_type = 'url';
 			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [

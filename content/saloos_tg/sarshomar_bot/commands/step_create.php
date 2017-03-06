@@ -36,6 +36,10 @@ class step_create
 			{
 				session::set('poll_options', 'type', 'select');
 			}
+			elseif(count($poll['answers']) == 0)
+			{
+				session::remove('poll_options', 'type');
+			}
 			return self::make_draft(session::get('poll'));
 		}
 		return self::step1();
@@ -207,9 +211,22 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
+			handle::send_log([
+				'type' => $get_poll ? 'patch' : 'post',
+				'debug' => \lib\debug::compile(),
+				'request' => \lib\utility::request(),
+				]);
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
+			}
+			elseif(\lib\debug::$status == 0)
+			{
+				step::stop();
+				return [
+					'text' => \lib\debug::compile()['messages']['error'][0]['title'],
+					'reply_markup' => menu::main(true)
+				];
 			}
 			return self::make_draft($add_poll['id']);
 		}
@@ -268,6 +285,7 @@ class step_create
 
 		$txt_text = $maker->message->make();
 
+		handle::send_log(session::get('poll_options' , 'type'));
 		if(!session::get('poll_options' , 'type'))
 		{
 			$maker->message->add('insert', T_("Please select the type of your poll from the options below"));
@@ -295,15 +313,15 @@ class step_create
 			]);
 			if(isset($maker->query_result['access_profile']))
 			{
-				$maker->inline_keyboard->add([
-					['text' => T_("Do not submit respondent's information"), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
-				]);
+				// $maker->inline_keyboard->add([
+				// 	['text' => T_("Do not submit respondent's information"), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
+				// ]);
 			}
 			else
 			{
-				$maker->inline_keyboard->add([
-					['text' => T_("Submit respondent's information"), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
-				]);
+				// $maker->inline_keyboard->add([
+				// 	['text' => T_("Submit respondent's information"), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
+				// ]);
 			}
 			$maker->inline_keyboard->add([
 				[
