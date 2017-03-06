@@ -29,16 +29,16 @@ class step_starting
 	{
 		$start_status = \lib\db\options::get([
 			'user_id' => bot::$user_id,
-			'option_cat' => 'user_telegram_'. bot::$user_id,
-			'option_key' => 'start_status',
+			'option_cat' => 'user_detail_'. bot::$user_id,
+			'option_key' => 'telegram_start_status',
 			]);
 		$user_language = callback_query\language::check();
 		if(!$start_status && preg_match("#^\/start#", bot::$cmd['text']))
 		{
 			\lib\db\options::insert([
 				'user_id' => bot::$user_id,
-				'option_cat' => 'user_telegram_'. bot::$user_id,
-				'option_key' => 'start_status',
+				'option_cat' => 'user_detail_'. bot::$user_id,
+				'option_key' => 'telegram_start_status',
 				'option_value' => 'start'
 				]);
 			if($user_language)
@@ -97,10 +97,35 @@ class step_starting
 			foreach ($url_command_group as $key => $value)
 			{
 				$url_command = preg_split("[_]", $value, 2);
-				$commands[$url_command[0]] = $url_command[1];
+				if(preg_match("/^([".SHORTURL_ALPHABET."]+)$/", $value))
+				{
+					$commands['sp'] = $value;
+				}
+				else
+				{
+					if(preg_match("/^([".SHORTURL_ALPHABET."]+)$/", $url_command[0]))
+					{
+						if($url_command[1] == 'report')
+						{
+							$commands['report'] = $url_command[0];
+						}
+						elseif($url_command[1] == 'like' ||	preg_match("/^\d+$/", $url_command[1]))
+						{
+							$commands['answer'] = $url_command[0] . '_' . $url_command[1];
+						}
+					}
+					else
+					{
+						$commands[$url_command[0]] = $url_command[1];
+					}
+				}
 			}
 		}
-		if(!callback_query\language::check() && !array_key_exists('sp', $commands) && !array_key_exists('report', $commands))
+
+		if(!callback_query\language::check() &&
+			!array_key_exists('sp', $commands) &&
+			!array_key_exists('report', $commands) &&
+			!array_key_exists('answer', $commands))
 		{
 			if(array_key_exists('lang', $commands)){
 				session::remove('step', 'run');
@@ -111,6 +136,11 @@ class step_starting
 		{
 			step::stop();
 			$return = callback_query\poll::report(null, null, $commands['report']);
+		}
+		elseif(array_key_exists('answer', $commands))
+		{
+			step::stop();
+			$return = step_answer_descriptive::start($commands['answer']);
 		}
 		elseif(array_key_exists('sp', $commands))
 		{
@@ -139,11 +169,11 @@ class step_starting
 		return $return;
 	}
 
-	public static function cmd_poll($_poll_short_code)
+	public static function cmd_poll($_poll_id)
 	{
-		if(!is_null($_poll_short_code))
+		if(!is_null($_poll_id))
 		{
-			return callback_query\ask::make(null, null, $_poll_short_code);
+			return callback_query\ask::make(null, null, ['poll_id' => $_poll_id, 'return' => true]);
 		}
 	}
 }

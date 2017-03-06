@@ -17,14 +17,9 @@ class controller extends \lib\mvc\controller
 	public static $microtime_log;
 	function _route()
 	{
-		if(isset($_GET['log']))
-		{
-			header('Content-Type: application/json');
-			\lib\db\tg_session::$user_id = (int) $_GET['log'];
-			\lib\db\tg_session::start();
-			echo json_encode(\lib\db\tg_session::get('tmp', 'callback_query'));
-			exit();
-		}
+		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
+		session_set_cookie_params(3600 * 24 * 365);
+		handle::send_log_clear();
 		register_shutdown_function(function()
 		{
 			if(!empty(self::$microtime_log))
@@ -52,14 +47,40 @@ class controller extends \lib\mvc\controller
 			return commands\menu::main(true);
 		};
 		bot::$once_log	  = false;
-		bot::$methods['before']["/.*/"] = commands\utility::replay_markup_id();
+		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
+		{
+			$replay_markup_id = commands\utility::replay_markup_id();
+			$replay_markup_id($_name, $_args);
+			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $_args['method'] != 'answerCallbackQuery')
+			{
+				if(isset($_args['results']))
+				{
+					foreach ($_args['results'] as $key => $value) {
+						$_args['results'][$key]['input_message_content']['message_text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['results'][$key]['input_message_content']['parse_mode'] = "HTML";
+					}
+				}
+				else
+				{
+					if(isset($_args['text']) && $_args['text'] != "")
+					{
+						$_args['text'] = preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
+						$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['parse_mode'] = "HTML";
+					}
+				}
+			}
+		};
 		bot::$methods['after']["/.*/"] = commands\utility::callback_session();
 
 		/**
 		 * start hooks and run telegram session from db
 		 */
 		bot::hook();
-		$language = \lib\db\users::get_language(bot::$user_id);
+		\lib\main::$controller->model()->user_id = (int) bot::$user_id;
+		\lib\main::$controller->model()->set_api_permission((int) bot::$user_id);
+
+		$language = \lib\db\users::get_language((int) bot::$user_id);
 		if(empty($language) || !$language)
 		{
 			\lib\define::set_language('en_US');
@@ -78,6 +99,8 @@ class controller extends \lib\mvc\controller
 		bot::$defaultText = T_('Undefined');
 		\lib\db\tg_session::$user_id = bot::$user_id;
 		\lib\db\tg_session::start();
+		$_SESSION['tg'] = \lib\db\tg_session::get_back('tg') ? \lib\db\tg_session::get_back('tg') : [];
+		$_SESSION['tg'] = commands\utility::object_to_array($_SESSION['tg']);
 
 		/**
 		 * run telegram handle
@@ -101,7 +124,6 @@ class controller extends \lib\mvc\controller
 		if($get_back_response && !\lib\storage::get_disable_edit())
 		{
 			foreach ($get_back_response as $key => $value) {
-
 				$edit_return = commands\utility::object_to_array($value->on_expire);
 				$get_original = session::get('expire', 'inline_cache', $key);
 				$callback_query = (array) session::get('tmp', 'callback_query');
@@ -120,9 +142,16 @@ class controller extends \lib\mvc\controller
 			}
 		}
 
+
+		if(!\lib\storage::get_current_command())
+		{
+			session::remove('expire', 'command');
+		}
+
 		/**
 		 * save telegram sessions to db
 		 */
+		\lib\db\tg_session::set('tg', $_SESSION['tg']);
 		\lib\db\tg_session::save();
 		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 		{

@@ -74,7 +74,7 @@ class menu_my
 		foreach ($pollList as $key => $value)
 		{
 			$value = html_entity_decode($value);
-			$txt_list .= ($key+1). ". [". $value. "](telegram.me/sarshomarbot?start=poll_$key)\n";
+			$txt_list .= ($key+1). ". [". $value. "](telegram.me/\sarshomarbot?start=poll_$key)\n";
 		}
 
 		$txt_text = "*_fullName_*\r\n\n";

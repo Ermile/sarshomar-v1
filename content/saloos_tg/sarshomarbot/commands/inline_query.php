@@ -21,32 +21,31 @@ class inline_query
 
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$check_language = false;
-		if($search == '')
+		if(preg_match("/^\s*\\$(.*)$/", $search, $link_id))
 		{
-			$search = "_";
-			$check_language = true;
-		}
-		if(preg_match("/^\s*sp_(.*)$/", $search, $link_id))
-		{
-			$id = \lib\utility\shortURL::decode($link_id[1]);
-			$query_result = \lib\db\polls::get_poll($id);
-			if($query_result['status'] != 'publish')
-			{
-				$query_result = [];
-			}
-			else
-			{
-				$query_result = $query_result ? [$query_result] : [];
-			}
+			\lib\utility::$REQUEST = new \lib\utility\request([
+				'method' 	=> 'array',
+				'request' => [
+					'id' 		=> $link_id[1],
+				]
+				]);
+			$query_result = \lib\main::$controller->model()->poll_get();
+			handle::send_log($query_result);
+			$query_result = $query_result ? [$query_result] : [];
 		}
 		else
 		{
-			$query_result = \lib\db\polls::search($search, [
-				"pagenation" 		=> false,
-				"order" 			=> "DESC",
-				"check_language" 	=> $check_language
+			\lib\utility::$REQUEST = new \lib\utility\request([
+				'method' 	=> 'array',
+				'request' => [
+					'search' 	=> $search,
+					'in' 		=> 'me sarshomar'
+				]
 				]);
+			$query_result = \lib\main::$controller->model()->poll_search(true);
+			$query_result = $query_result['data'];
 		}
+
 
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
@@ -62,52 +61,33 @@ class inline_query
 			{
 				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp-users.png';
 			}
-			$maker = new make_view(bot::$user_id, $value);
-			$row_result['id'] =  $maker->short_link;
-
-			$maker->message->add_title();
-			$maker->message->add_poll_chart();
-			$maker->message->add_poll_list();
-			$maker->message->add_count_poll();
-			$maker->message->add_telegram_link();
-			$maker->message->add_telegram_tag();
+			$poll = callback_query\ask::make(null, null, [
+				'poll_id' 	=> $value['id'],
+				'return'	=> 'true',
+				'type'		=> 'inline',
+				]);
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
 
-			$row_result['url'] = 'https://sarshomar.com/sp_' . $maker->short_link;
+			$row_result['url'] = $value['short_url'];
+			$row_result['id'] = $value['id'];
 
-			if(array_key_exists('description', $row_result) && !is_null($row_result['description']))
-			{
-				$row_result['description'] = $value['contnet'];
-			}
 			$row_result['hide_url'] = false;
 
-			$maker->inline_keyboard->add_poll_answers();
-			$maker->inline_keyboard->add_guest_option(['share'=> false, 'skip' => false, 'update' => false, 'report' => false]);
 
-			$inline_keyboard = $maker->inline_keyboard->make();
-
-			if(!empty($inline_keyboard)) {
-				$row_result['reply_markup']['inline_keyboard'] = $inline_keyboard;
-			}
-
-			$disable_web_page_preview = true;
-			if(isset($maker->query_result['meta']) && isset($maker->query_result['meta']['attachment_id']))
-			{
-				$disable_web_page_preview = false;
-			}
+			$row_result['reply_markup'] = $poll['reply_markup'];
 
 			$row_result['input_message_content'] = [
-				'message_text' 				=> $maker->message->make(),
-				'parse_mode' 				=> 'HTML',
-				'disable_web_page_preview' 	=> $disable_web_page_preview
+				'message_text' 				=> $poll['text'],
+				'parse_mode' 				=> $poll['parse_mode'],
+				'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
 			];
 			$result['results'][] = $row_result;
 		}
-
 		\lib\define::set_language(callback_query\language::check(true), true);
 		session::remove_back('expire', 'inline_cache');
+
 		return $result;
 	}
 }

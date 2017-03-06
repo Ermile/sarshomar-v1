@@ -2,6 +2,8 @@
 namespace content\saloos_tg\sarshomarbot\commands\make_view;
 use \content\saloos_tg\sarshomarbot\commands\handle;
 use \content\saloos_tg\sarshomarbot\commands\utility;
+use \lib\telegram\tg as bot;
+
 class inline_keyboard
 {
 	public $inline_keyboard = array();
@@ -10,7 +12,7 @@ class inline_keyboard
 		$this->class = $make_class;
 	}
 
-	public function add_poll_answers($_options = array())
+	public function add_poll_answers($_answer = null)
 	{
 		$keyboard_map = [
 			1 => [
@@ -39,28 +41,68 @@ class inline_keyboard
 			],
 			9 => [
 				[0, 0] , [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2],
+			],
+			10 => [
+				[0, 0] , [0, 1], [0, 2], [0, 3], [0, 4], [1, 0], [1, 1], [1, 2], [1, 3], [1, 4],
+			],
+			11 => [
+				[0, 0] , [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1], [2, 2],
 			]
 		];
-		$count_answer = count($this->class->query_result['meta']['opt']);
+		$count_answer = count($this->class->query_result['answers']);
+		if($count_answer > 11)
+		{
+			$keyboard_map[$count_answer] = $this->make_keyboard_map($count_answer);
+		}
 		$row_answer = current($keyboard_map[$count_answer]);
 		$last_count = $this->count();
-		foreach ($this->class->query_result['meta']['opt'] as $answer_key => $answer_value) {
-			$callback_data = 'ask/poll/' . $this->class->short_link . '/' . ($answer_key +1);
-			if(array_key_exists("callback_data", $_options))
+		$sum = $this->class->message->sum_stats();
+		foreach ($this->class->query_result['answers'] as $answer_key => $answer_value) {
+			$callback_type = 'callback_data';
+
+			$callback_data = 'poll/answer/' . $this->class->poll_id . '/';
+			$this_row = $row_answer[0] + $last_count;
+			if($answer_value['type'] == 'like')
 			{
-				if(is_object($_options['callback_data']))
+				if(in_array('delete', $_answer['available']))
 				{
-					$callback_data = $_options['callback_data']($callback_data);
+					$callback_data .= 'dislike';
+					$inline_emoji = "💔";
 				}
 				else
 				{
-					$callback_data = $_options['callback_data'] . "/" . $callback_data;
+					$callback_data .= 'like';
+					$inline_emoji = "❤️";
 				}
 			}
-			$this_row = $row_answer[0] + $last_count;
+			elseif($answer_value['type'] == 'descriptive')
+			{
+				$total = $sum['total'];
+				$callback_data = 'https://telegram.me/sarshomarbot?start='.$this->class->poll_id . "_" . $answer_value['key'];
+				$callback_type = 'url';
+				$inline_emoji = "📝 " . T_("Answer");
+			}
+			else
+			{
+				$callback_data .= ($answer_value['key']);
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$inline_emoji = utility::nubmer_language($answer_value['key']);
+				}
+				else
+				{
+					$inline_emoji = $this->class::$emoji_number[$answer_value['key']];
+				}
+			}
+
+			if(isset($this->class->query_result['access_profile']))
+			{
+				$callback_data = 'https://telegram.me/sarshomarbot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
+				$callback_type = 'url';
+			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
-				'text' => $this->class::$emoji_number[$answer_key+1],
-				'callback_data' => $callback_data
+				'text' => $inline_emoji,
+				$callback_type => $callback_data
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
@@ -68,6 +110,10 @@ class inline_keyboard
 
 	public function add_guest_option(...$_args)
 	{
+		if($this->class->query_result['status'] !== 'publish')
+		{
+			return ;
+		}
 		$this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
 	}
 
@@ -75,87 +121,72 @@ class inline_keyboard
 	{
 		$options = array_merge([
 			'skip' => true,
-			'skip_last' => false,
 			'update' => true,
 			'share' => true,
 			'report' => false,
 			'inline_report' => false,
-			'poll_option' => false
 			], $_options);
 		$return = [];
-		if($options['skip_last'])
+
+		if($options['skip'])
 		{
 			$return[] = [
 				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0/last'
-			];
-		}
-		elseif($options['skip'])
-		{
-			$return[] = [
-				'text' => T_("Skip"),
-				'callback_data' => 'ask/poll/' . $this->class->short_link. '/0'
+				'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
 			];
 		}
 		if($options['update'])
 		{
 			$return[] = [
 				'text' => '🔄',
-				'callback_data' => "ask/update/" . $this->class->short_link
+				'callback_data' => "ask/update/" . $this->class->poll_id
 			];
 		}
 		if($options['share'] && $this->class->query_result['status'] == 'publish')
 		{
 			$return[] = [
 				"text" => T_("Share"),
-				"switch_inline_query" => 'sp_'.$this->class->short_link
+				"switch_inline_query" => '$'.$this->class->poll_id
 			];
 		}
 		if($options['inline_report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"callback_data" => 'poll/report/'.$this->class->short_link
+				"callback_data" => 'poll/report/'.$this->class->poll_id
 			];
 		}
 		elseif($options['report'])
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"url" => 'https://telegram.me/SarshomarBot?start=report_'.$this->class->short_link
+				"url" => 'https://telegram.me/sarshomarbot?start=report_'.$this->class->poll_id
 			];
-		}
-		if($options['poll_option'] )
-		{
-			$this->get_change_status($return);
 		}
 		return $return;
 	}
 
-	public function get_change_status(&$_return)
+	public function add_change_status()
 	{
-		if($this->class->user_id == $this->class->query_result['user_id'])
+		$return = [];
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'id' => $this->class->query_result['id']
+			]]);
+		$request_status = \lib\main::$controller->model()->poll_status();
+		$available_status = $request_status['available'];
+		if($request_status['current'] == 'draft')
 		{
-			$status = $this->class->query_result['status'];
-			if($status == 'publish')
-			{
-				$_return[] = [
-					"text" => T_("Pause"),
-					"callback_data" => 'poll/pause/'.$this->class->short_link
-				];
-			}
-			elseif($status == 'pause' || $status == 'draft')
-			{
-				$_return[] = [
-					"text" => T_("Publish"),
-					"callback_data" => 'poll/publish/'.$this->class->short_link
-				];
-				$_return[] = [
-					"text" => T_("Delete"),
-					"callback_data" => 'poll/delete/'.$this->class->short_link
-				];
-			}
+			$this->add([["text" => t_("Edit"), "callback_data" => 'poll/edit/' . $this->class->poll_id]]);
 		}
+		foreach ($available_status as $key => $value) {
+			$return[] = [
+				"text" => T_(ucfirst($value)),
+				"callback_data" => 'poll/status/' . $value . '/'.$this->class->poll_id
+			];
+		}
+		$this->add($return);
 	}
 
 	public function add_report_status()
@@ -163,27 +194,70 @@ class inline_keyboard
 		$this->inline_keyboard[$this->count()] = [
 			[
 				'text' => T_('Lawbreaker'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/lawbreaker'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/lawbreaker'
 			],
 			[
 				'text' => T_('Spam'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/spam'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/spam'
 			]
 		];
 		$this->inline_keyboard[$this->count()] = [
 			[
 				'text' => T_('Not interested'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/not_interested'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/not_interested'
 			],
 			[
 				'text' => T_('Privacy violation'),
-				'callback_data' => 'poll/report/' . $this->class->short_link . '/privacy_violation'
+				'callback_data' => 'poll/report/' . $this->class->poll_id . '/privacy_violation'
 			]
 		];
 	}
 
+	public function make_keyboard_map($_count)
+	{
+		$return = [];
+		$ot = $_count % 4;
+		$rows = floor($_count/4);
+		if($_count % 5 == 0)
+		{
+			for ($i=0; $i <= $_count/5; $i++) {
+				for ($j=0; $j < 5; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		elseif($ot == 0)
+		{
+			for ($i=0; $i <= $rows; $i++) {
+				for ($j=0; $j < 4; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		elseif($ot != 0)
+		{
+			$current_row = 0;
+			for ($i=0; $i < $ot; $i++) {
+				$current_row++;
+				for ($j=0; $j < 5; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+			for ($i=$current_row; $i <= $rows ; $i++) {
+				for ($j=0; $j < 4; $j++) {
+					$return[] = [$i, $j];
+				}
+			}
+		}
+		return $return;
+	}
+
 	public function make()
 	{
+		if(count($this->inline_keyboard) == 1 && empty($this->inline_keyboard[0])){
+			return null;
+		}
+
 		return $this->inline_keyboard;
 	}
 

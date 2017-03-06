@@ -8,6 +8,7 @@ class chosen_inline_result
 {
 	public static function start($_query = null)
 	{
+		\lib\storage::set_disable_edit(true);
 		$inline_message_id = $_query['inline_message_id'];
 		$id = \lib\utility\shortURL::decode($_query['result_id']);
 		\lib\db\options::insert([

@@ -11,75 +11,83 @@ class handle
 
 	public static function exec($_cmd, $_run = false)
 	{
+		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
+		{
+			exit();
+		}
+
+		if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
+		{
+
+			$query_get = \lib\db\options::get([
+				'user_id' => bot::$user_id,
+				'option_cat' => 'user_detail_',
+				'option_key' => 'telegram_dev_user',
+				'option_value' => bot::response('from'),
+				'limit'	=> 1
+			]);
+
+			if(is_null($query_get))
+			{
+				exit();
+			}
+
+			$valid_id = [58164083, 46898544];
+			if(isset(bot::$hook['message']) && isset(bot::$hook['message']['forward_from']) && isset(bot::$hook['message']['text']) && in_array(bot::response('from'), $valid_id))
+			{
+				$text_login_to_dev = bot::$hook['message']['text'];
+				if($text_login_to_dev == '/signup')
+				{
+					$query_get_telegram_id = \lib\db\options::get([
+						'option_cat' => 'telegram',
+						'option_key' => 'id',
+						'option_value' => bot::$hook['message']['forward_from']['id'],
+						'limit'	=> 1
+					]);
+					if(empty($query_get_telegram_id))
+					{
+						return ["text" => "telegram notfound"];
+					}
+					$query = \lib\db\options::insert([
+						'user_id' => $query_get_telegram_id['user_id'],
+						'option_cat' => 'user_detail_' . $query_get_telegram_id['user_id'],
+						'option_key' => 'telegram_dev_user',
+						'option_value' => bot::$hook['message']['forward_from']['id'],
+						]);
+					if(\lib\debug::$status)
+					{
+						return ['text' => "telegram_id: " . bot::$hook['message']['forward_from']['id'] . "\n#signup"];
+					}
+					else
+					{
+						return ['text' => "<code>" . json_encode(\lib\debug::compile()) . '</code>'];
+					}
+				}
+			}
+		}
+
 		chdir('/home/git/sarshomar');
 		$update_time = exec('git log -n1 --pretty=%ci HEAD');
 		// ( ​​ ) free space :))
-		$q = \lib\db\options::get(['option_cat' => 'on_push', 'option_key' => 'telegram', 'limit' => 1]);
+		$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
 		if(empty($q)){
-			\lib\db\options::insert(['option_cat' => 'on_push', 'option_key' => 'telegram', 'option_value' => $update_time]);
+			\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
 		}
 		elseif($q['value'] != $update_time)
 		{
 			\lib\db\options::update(['option_value' => $update_time], $q['id']);
 			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
 		}
-		bot::$defaultText = T_('Not Found');
-		if($_cmd['command'] == 'exit' || $_cmd['command'] == '/exit')
-		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
-			$id = Tld === 'dev' ? 5 : 99;
-			\lib\db::query("DELETE FROM options
-				WHERE user_id = $id AND
-				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
-				AND option_key <> 'id'
-				");
-			\lib\db::query("DELETE from polldetails where user_id = $id");
-			\lib\db::query("DELETE from polldetails where user_id = 56");
-			$id = 22;
-			\lib\db::query("DELETE FROM options
-				WHERE user_id = $id AND
-				(option_cat = 'user_detail_{$id}' or option_cat = 'telegram')
-				AND option_key <> 'id'
-				");
-			\lib\db::query("DELETE from polldetails where user_id = $id");
-			session_destroy();
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => 'destroy: ']);
-			exit();
-		}
-		elseif($_cmd['command'] == 'clear' || $_cmd['command'] == '/clear')
-		{
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", "null");
-			@file_put_contents("/home/domains/sarshomar/public_html/files/db.log", "");
-			step::stop();
-			exit();
-		}
-		if(file_exists("/home/domains/sarshomar/public_html/files/hooks/log.json"))
-		{
-
-			$file = file_get_contents("/home/domains/sarshomar/public_html/files/hooks/log.json");
-			$json = json_decode($file, true);
-			if(!is_array($json))
-			{
-				$json = [];
-			}
-			array_unshift($json, bot::$hook);
-			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/log.json", json_encode($json, JSON_UNESCAPED_UNICODE));
-		}
 		$response = null;
 		$user_sync = \lib\storage::get_user_sync();
 		if(!is_null($user_sync))
 		{
 			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
-			bot::$user_id = (int) $sync->get_result();
-			if($sync->is_ok())
+			if(!empty($sync))
 			{
+				bot::$user_id = isset($sync['user_id']) ? $sync['user_id'] : bot::$user_id;
 				callback_query\language::set_client_language();
-				$text = $sync->get_message();
+				$text = $sync['message'];
 				$text .= "\n";
 				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
 				$text .= "\n";
@@ -95,7 +103,7 @@ class handle
 		if(!bot::is_aerial() || $_run)
 		{
 			$response = step::check($_cmd['text'], $_cmd['command']);
-			if($response)
+			if(is_array($response) || $response)
 			{
 				return $response;
 			}
@@ -106,7 +114,11 @@ class handle
 			}
 			if(substr($_cmd['command'], 0, 1) == '/')
 			{
-				if(preg_match("#^\/(sp|report|faq)_#", $_cmd['command']))
+				if(preg_match("#^\/(sp|report|faq|answer)_#", $_cmd['command']))
+				{
+					$command_text = $_cmd['command'];
+				}
+				elseif(preg_match("#^\/[".SHORTURL_ALPHABET."]+(_.*)?$#", $_cmd['command']))
 				{
 					$command_text = $_cmd['command'];
 				}
@@ -119,27 +131,31 @@ class handle
 			{
 				$command_text = $_cmd['text'];
 			}
+
 			switch ($command_text)
 			{
 				case '/menu':
 				case '/cancel':
 				case '/stop':
-				case 'menu':
-				case 'main':
-				case 'mainmenu':
-				case 'منو':
+				case T_('menu'):
+				case T_('main'):
+				case T_('mainmenu'):
 				case T_("Back"):
 				$response = menu::main();
 				break;
 
 				case '/ask':
 				case T_('Ask me'):
-				case preg_match("/^(\/sp_([^\s]+))$/", $command_text, $sp) ? $sp[1] : '/ask':
-				$response = callback_query\ask::make(null, null, empty($sp) ? null : $sp[2]);
+				case preg_match("/^\/([".SHORTURL_ALPHABET."]+)$/", $command_text, $sp) ? $sp[0] : "/ask":
+				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[1]]);
 				break;
 
-				case preg_match("/^(\/report_([^\s]+))$/", $command_text, $sp) ? $sp[1] : null:
-				$response = callback_query\poll::report(null, null, empty($sp) ? null : $sp[2]);
+				case preg_match("/^\/([".SHORTURL_ALPHABET."]+)_(report)$/", $command_text, $sp) ? $sp[0] : null:
+				$response = callback_query\ask::make(null, null, ['poll_id' => empty($sp) ? null : $sp[1]]);
+				break;
+
+				case preg_match("/^\/(([".SHORTURL_ALPHABET."]+)_(like|[0-9]+))$/", $command_text, $sp) ? $sp[0] : null:
+				$response = step_answer_descriptive::start($sp[1]);
 				break;
 
 				case '/polls':
@@ -172,7 +188,7 @@ class handle
 				break;
 
 				case '/faq':
-				$response = step_help::exec($command_text);
+				$response = callback_query\help::faq();
 				break;
 
 				case preg_match("/^(\/faq_([^\s]+))$/", $command_text, $faq) ? $faq[1] : '/faq':
@@ -200,24 +216,10 @@ class handle
 				$response = step_create::start();
 				break;
 
-				case 'return':
-				case 'back':
+				case T_('return'):
+				case T_('back'):
 				case T_('🔙 Back'):
-				case 'بازگشت':
-				switch ($_cmd['text'])
-				{
-					case 'بازگشت به منوی نظرسنجی‌ها':
-					$response = menu::polls();
-					break;
-
-					case T_('🔙 Back'):
-					$response = menu::main();
-					break;
-
-					default:
-					$response = menu::main();
-					break;
-				}
+				$response = menu::main();
 				break;
 
 				default:
@@ -243,7 +245,7 @@ class handle
 			// if has keyboard
 			if(isset($response['replyMarkup']['keyboard']))
 			{
-				$response['replyMarkup']['keyboard'][] = ['بازگشت'];
+				$response['replyMarkup']['keyboard'][] = [T_('return')];
 			}
 		}
 		if(!is_array($response))
@@ -274,6 +276,12 @@ class handle
 			array_unshift($json, $_log);
 			file_put_contents("/home/domains/sarshomar/public_html/files/hooks/$_file.json", json_encode($json, JSON_UNESCAPED_UNICODE));
 		}
+	}
+
+	public static function send_log_clear()
+	{
+		@file_put_contents(root . 'includes/cls/database/log/log.sql', "");
+		file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", 'null');
 	}
 }
 ?>

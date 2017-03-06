@@ -7,7 +7,7 @@ trait commands{
 		$text .= "\n";
 		$text .= "/ask " . T_("Ask me");
 		$text .= "\n";
-		$text .= "/create " . T_("Create new poll");
+		$text .= "/new " . T_("Create new poll");
 		$text .= "\n";
 		$text .= "/polls " . T_("My polls");
 		$text .= "\n";

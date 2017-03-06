@@ -78,6 +78,7 @@ class utility
 		$max = max($_result) == 0 ? 0 : (max($_result) * 100) / $count;
 		$rows = 5;
 		$result = array();
+		$max_key =max(array_keys($_result));
 		foreach ($_result as $key => $value) {
 			$value = $value == 0 ? 0 : ($value * 100) / $count;
 			$result[$key]['percent'] = $value;
@@ -94,9 +95,37 @@ class utility
 			}
 			if(count($row_text) < $rows)
 			{
-				array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
+				// array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
 			}
-			array_unshift($row_text, $poll_emoji[$key]);
+
+			if($max_key > 9)
+			{
+				$key_row = '';
+				foreach (str_split($key) as $k => $v) {
+					$key_row .= $poll_emoji[$v];
+				}
+				if($key == 0)
+				{
+					$key_row = "*️⃣*️⃣";
+				}
+				elseif($key < 9)
+				{
+					$key_row = $poll_emoji[0] . $key_row;
+				}
+			}
+			else
+			{
+				if($key == 0)
+				{
+					$key_row = "*️⃣";
+				}
+				else
+				{
+					$key_row = $poll_emoji[$key];
+				}
+			}
+
+			array_unshift($row_text, $key_row);
 			$result[$key]['row_text'] = $row_text;
 		}
 		$text = '';
@@ -250,7 +279,7 @@ END;
 	public static function nubmer_language($_text)
 	{
 		$text = $_text;
-		if(callback_query\language::check(true) == 'fa')
+		if(\lib\define::get_language() == 'fa')
 		{
 			$text = preg_replace_callback("/[\d%]/", function($_str){
 				$fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '%' => '٪'];

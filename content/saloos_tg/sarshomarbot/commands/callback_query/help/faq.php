@@ -5,7 +5,7 @@ use \content\saloos_tg\sarshomarbot\commands\callback_query;
 use \content\saloos_tg\sarshomarbot\commands\utility;
 trait faq{
 
-	public static function faq($_query, $_data_url, $_id = null)
+	public static function faq($_query = null, $_data_url = null, $_id = null)
 	{
 		if($_data_url && !array_key_exists(2, $_data_url))
 		{
@@ -19,12 +19,12 @@ trait faq{
 		{
 			$faq_id = $_id;
 		}
-		if(count(faq_text::$text) < (int) $_id)
+		if(count(faq_text::text()) < (int) $_id)
 		{
 			return [];
 		}
-		$get_id = array_search($faq_id, array_column(faq_text::$text, 'id'));
-		$faq = faq_text::$text[$get_id];
+		$get_id = array_search($faq_id, array_column(faq_text::text(), 'id'));
+		$faq = faq_text::text()[$get_id];
 
 		$text = "<strong>" . T_($faq['title']) ."</strong>";
 		$text .= "\n";
@@ -44,14 +44,14 @@ trait faq{
 		$text .= "\n#" . preg_replace("[\s]", '_', T_("FAQ"));
 		$return = ["text" => $text];
 
-		if(is_null($_query))
+		if(!is_null($_id))
 		{
 			$return['parse_mode'] = 'HTML';
 			return $return;
 		}
 		else
 		{
-			$total_page = count(faq_text::$text);
+			$total_page = count(faq_text::text());
 			$inline_keyboard = [];
 			if($total_page > 1)
 			{
@@ -61,13 +61,13 @@ trait faq{
 				}
 				if($get_id > 0)
 				{
-					$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "help/faq/" . faq_text::$text[$get_id -1]['id']];
+					$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "help/faq/" . faq_text::text()[$get_id -1]['id']];
 				}
 
 
 				if($get_id < $total_page-1)
 				{
-					$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "help/faq/" . (faq_text::$text[$get_id +1]['id'])];
+					$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "help/faq/" . (faq_text::text()[$get_id +1]['id'])];
 				}
 				if(($get_id +2) < $total_page)
 				{
@@ -77,7 +77,14 @@ trait faq{
 			$inline_keyboard[][] = ['text' => T_('Help'), 'callback_data' => 'help/home'];
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 			$return['response_callback'] = utility::response_expire('help');
-			callback_query::edit_message($return);
+			if($_query)
+			{
+				callback_query::edit_message($return);
+			}
+			else
+			{
+				return $return;
+			}
 		}
 	}
 }

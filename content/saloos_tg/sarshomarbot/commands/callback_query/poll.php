@@ -7,6 +7,7 @@ use \lib\telegram\tg as bot;
 use \content\saloos_tg\sarshomarbot\commands\utility;
 use content\saloos_tg\sarshomarbot\commands\make_view;
 use \lib\telegram\step;
+use \content\saloos_tg\sarshomarbot\commands\menu;
 
 class poll
 {
@@ -26,66 +27,83 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$count = (int) \lib\db\polls::search(null, [
-			'get_count' => true,
-			'user_id'=> bot::$user_id,
-			'pagenation' => false,
-			'my_poll' => true,
-			'post_status' => ['in', "('publish', 'pause', 'draft')"],
-			]);
 		$message_per_page = 3;
-		$total_page = ceil($count / $message_per_page);
-
-		$page = (int) $_data_url[2];
-		$start = ($page - 1) * $message_per_page;
-		$end = $message_per_page;
-		if(is_null($_query) || $page > $total_page)
+		if(is_null($_query))
 		{
-			$start = 0;
 			$page = 1;
+			$start = 0;
 		}
-		$query_result = \lib\db\polls::search(null, [
-			'user_id'=> bot::$user_id,
-			'pagenation' => false,
-			'start_limit' => $start,
-			'end_limit' => $end,
-			'my_poll' => true,
-			'post_status' => ['in', "('publish', 'pause', 'draft')"],
-			'order' => 'DESC',
+		else
+		{
+			$page = (int) $_data_url[2];
+			$start = (($page-1) * $message_per_page);
+		}
+
+
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' => [
+				'in' 		=> 'me',
+				'status'	=> 'stop pause publish draft awaiting',
+				'language'	=> 'en fa ar',
+				'from'  	=> (int) $start,
+				'to'  		=> (int) ($start + $message_per_page),
+			]
 			]);
-		$message = $page . "/" . $total_page . "\n";
-		foreach ($query_result as $key => $value) {
-			$message .= $value['title'];
-			$message .= " ($value[total])";
-			$message .= ' - ' . T_(ucfirst($value['status']));
-			$message .= "\n";
-			$short_link = \lib\utility\shortURL::encode($value['id']);
-			$message .= "/sp_$short_link";
-			$message .= "\n\n";
+		$search = \lib\main::$controller->model()->poll_search();
+
+		$query_result = $search['data'];
+
+		$total_page = ceil($search['total'] / $message_per_page);
+		handle::send_log($total_page);
+
+		if(empty($query_result))
+		{
+			$message = T_("You didn't add any poll");
+			$message = "\n";
+			$message = T_("Do you like to add poll");
+			$inline_keyboard =  [
+				[["text" => T_("Add new poll"), "callback_data" => "poll/new"]]
+			];
+		}
+		else
+		{
+			$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
+			foreach ($query_result as $key => $value) {
+				$message .= $value['title'];
+				$message .= utility::nubmer_language("($value[count_vote])");
+				$message .= ' - ' . T_(ucfirst($value['status']));
+				$message .= "\n";
+				$message .= "/" . $value['id'];
+				$message .= "\n\n";
+			}
 		}
 		$return = ['text' => $message];
 		if($total_page > 1)
 		{
 			if($page > 2)
 			{
-				$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "poll/list/1"];
+				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/1"];
 			}
 			if($page > 1)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "poll/list/" . ($page-1)];
+				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page-1)];
 			}
 
 
 
 			if($page < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "poll/list/" . ($page+1)];
+				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page+1)];
 			}
 
 			if(($page + 1) < $total_page || $page == 1)
 			{
-				$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "poll/list/" . $total_page];
+				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/" . $total_page];
 			}
+		}
+		if(isset($inline_keyboard))
+		{
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 		}
 		$return['parse_mode'] = "HTML";
@@ -96,176 +114,263 @@ class poll
 		callback_query::edit_message($return);
 	}
 
-	public static function discard($_query, $_data_url)
+	public static function answer_descriptive($_query, $_data_url)
 	{
-		$edit = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft(function($_maker){
-			$_maker->message->message['sucsess'] = T_('Poll Discarded');
-			$_maker->message->add("discard", '#'.T_('Discarded'));
-		});
-
+		list($class, $method, $status) = $_data_url;
 		step::stop();
-		session::remove('poll');
-		session::remove_back('expire', 'inline_cache', 'create');
-		session::remove('expire', 'inline_cache', 'create');
-		unset($edit['reply_markup']);
-		unset($edit['response_callback']);
-		callback_query::edit_message($edit);
-		return ['text' => 'Your poll Discarded.'];
+
+		if($status != 'answer')
+		{
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('Cancel answering')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+				]);
+			return ;
+		}
+		$poll_id = session::get('answer_descriptive', 'id');
+		$text = session::get('answer_descriptive', 'text');
+		$request = [
+			'id' => $poll_id,
+			'descriptive' => $text,
+		];
+		session::remove('answer_descriptive');
+
+
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
+		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
+
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+
+		\lib\debug::$status = 1;
+
+		if(!$debug_status)
+		{
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('An error occurred while submitting the answer')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+			]);
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+		else
+		{
+			session::remove_back('expire', 'inline_cache', 'answer_descriptive');
+			session::remove('expire', 'inline_cache', 'answer_descriptive');
+			$maker = new make_view($poll_id);
+			$maker->message->add_title();
+			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
+			$maker->message->add('answer' , '📝' . $text);
+			$maker->message->add('answer_line' , "");
+			$maker->message->add('answer_verify' , '✅ ' . T_("Your answer has been submitted"));
+			$maker->message->add('tag' ,  utility::tag(T_("Submit answer")));
+			bot::sendResponse([
+				'text' 						=> utility::tag(T_('Submit answer')),
+				'reply_markup' 				=> menu::main(true),
+				'parse_mode' 				=> 'HTML',
+				'disable_web_page_preview' 	=> true
+			]);
+			callback_query::edit_message($maker->make());
+		}
+		return ['text' => \lib\debug::compile()['title']];
 	}
 
-	public static function save($_query, $_data_url)
+	public static function deny_answer($_query, $_data_url)
 	{
-		handle::send_log($_query);
-		handle::send_log($_data_url);
-		return;
+
+	}
+
+	public static function answer($_query, $_data_url)
+	{
+		// \lib\db::transaction();
 		\lib\storage::set_disable_edit(true);
-
-		$poll_draft = session::get('poll');
-		$poll_title = $poll_draft->title;
-
-		$poll_answers = (array) $poll_draft->answers;
-
-		$answers = [];
-		foreach ($poll_answers as $key => $value) {
-			$answers[]['txt'] = $value;
-		}
-
-		$file_id = false;
-		if(session::get('poll', 'file_addr'))
+		if(count($_data_url) == 4)
 		{
-			 $file_id = \lib\utility\upload::temp_move(session::get('poll', 'file_addr'), ['user_id' => bot::$user_id]);
-		}
-
-		\lib\db::transaction();
-		$insert = [
-			'user_id' 		=> bot::$user_id,
-			'post_title'	=> $poll_title,
-			'post_status' 	=> 'publish',
-			'post_type'		=> 'select',
-			'post_privacy'	=> 'private',
-			'post_language'	=> language::check(true)
-			];
-		$insert['post_meta'] = ['port' => 'telegram'];
-		if($file_id)
-		{
-			$insert['post_meta']['attachment_id'] 	= $file_id->get_result();
-			$insert['post_meta']['data_type'] 		= session::get('poll', 'file_type');
+			list($class, $method, $poll_id, $answer) = $_data_url;
+			$last = null;
+		}elseif (count($_data_url) == 5) {
+			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 		}
 
 
-		$poll_id = \lib\db\polls::insert($insert);
-		\lib\utility\answers::insert(['poll_id' => $poll_id, 'answers' => $answers]);
-		if(\lib\debug::$status)
-		{
-			\lib\db::commit();
-		}
-		if($poll_id)
-		{
-			self::get_after_change($poll_id, false);
-			step::stop();
-			session::remove('poll');
-		}
-	}
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' => [
+				'id' 		=> $poll_id,
+			]
+			]);
+		\lib\debug::$status = 1;
+		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
+		\lib\debug::$status = 1;
 
-	public static function pause($_query, $_data_url)
-	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		if($status == 'deleted')
+		$request = ['id' => $poll_id];
+
+		$api_method = 'add';
+		$for_delete = session::get('expire', 'command', 'poll_delete');
+		if($for_delete && $for_delete->id == $poll_id && $for_delete->answer == $answer)
 		{
-			self::delete($_query, $_data_url);
-			return ;
-		}
-		$result = \lib\db\polls::update(['post_status' => 'pause'], $poll_id);
-		self::get_after_change($poll_id, $_query);
-	}
-
-	public static function publish($_query, $_data_url)
-	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		if($status == 'deleted')
-		{
-			self::delete($_query, $_data_url);
-			return ;
-		}
-		$result = \lib\db\polls::update(['post_status' => 'publish'], $poll_id);
-		self::get_after_change($poll_id, $_query);
-	}
-
-	public static function delete($_query, $_data_url)
-	{
-		$short_link = $_data_url[2];
-		$poll_id = \lib\utility\shortURL::decode($short_link);
-		$poll_result = \lib\db\polls::get_poll($poll_id);
-		$status = $poll_result['status'];
-		$status = ($status == 'draft') ? 'pause' : $status;
-		if($status != 'pause' && $status != 'deleted')
-		{
-			self::publish($_query, $_data_url);
-			return ;
-		}
-		$result = \lib\db\polls::update(['post_status' => 'deleted'], $poll_id);
-		\lib\storage::set_disable_edit(true);
-		$maker = new make_view(bot::$user_id, $poll_id, true);
-		$maker->message->add_title(false);
-		$maker->message->add_poll_chart(true);
-		$maker->message->add_poll_list(true);
-		$maker->message->add('deleted', '#' . T_('Deleted'));
-		$return = $maker->make();
-		callback_query::edit_message($return);
-	}
-
-	public static function get_after_change($_poll_id, $_query = false)
-	{
-		$response = session::get('expire', 'inline_cache', 'ask');
-		if(isset($response->result))
-		{
-			$r_message_id = $response->result->message_id;
-			$r_chat_id = $response->result->chat->id;
-
-			$q_message_id = $_query['message']['message_id'];
-			$q_chat_id = $_query['message']['chat']['id'];
-
-			if($r_message_id == $q_message_id && $r_chat_id == $q_chat_id)
+			$api_method = 'delete';
+			if($answer == 'like')
 			{
-				session::remove('expire', 'inline_cache', 'ask');
+				$answer = 'dislike';
 			}
 		}
-
-		\lib\storage::set_disable_edit(true);
-		$maker = new make_view(bot::$user_id, $_poll_id, true);
-		$maker->message->add_title();
-		$maker->message->add_poll_chart(true);
-		$maker->message->add_poll_list(true);
-		$maker->message->add_telegram_link();
-		$maker->message->add_telegram_tag();
-
-		if(!$_query)
+		elseif(isset($get_answer['my_answer'][0]) &&
+			$get_answer['my_answer'][0]['key'] == $answer &&
+			in_array('delete', $get_answer['available'])
+			)
 		{
-			$maker->inline_keyboard->add_poll_answers();
+			$api_method = 'warn_delete';
 		}
-		$maker->inline_keyboard->add_guest_option(['skip' => false, 'poll_option' => true]);
-		$return = $maker->make();
-		if(!$_query)
+
+		switch ($answer) {
+			case 'like':
+				$request['like'] = true;
+				if(isset($get_answer['my_answer'][0]) && in_array('delete', $get_answer['available']))
+				{
+					$api_method = 'warn_delete';
+				}
+				break;
+			case 'dislike':
+				$api_method = 'delete';
+				break;
+			case 'skip':
+				$request['skip'] = true;
+				break;
+			default:
+				$request['answer'] = [$answer => true];
+				break;
+		}
+
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
+
+		if($api_method == 'add')
 		{
-			$return["response_callback"] = utility::response_expire('ask', [
-				'reply_markup' => [
-				'inline_keyboard' => [$maker->inline_keyboard->get_guest_option(['skip' => false, 'poll_option' => true])]
-				]
+			$add_poll = \lib\main::$controller->model()->poll_answer_add([
+				'method' => in_array('edit', $get_answer['available']) ? 'put' : 'post'
 				]);
 		}
+		elseif($api_method == 'delete')
+		{
+			$add_poll = \lib\main::$controller->model()->poll_answer_delete(['id' => $poll_id]);
+		}
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+		if ($api_method == 'warn_delete') {
+			$debug_status = 2;
+			$debug['messages']['warn'][0]['title'] = T_("If you intend to delete your vote, tap once more");
+			session::set('expire', 'command', 'poll_delete', ['id' => $poll_id, 'answer' => $answer]);
+			\lib\storage::set_current_command(true);
+		}
+
+		\lib\debug::$status = 1;
+		callback_query::edit_message(ask::make(null, null, [
+			'poll_id' 	=> $poll_id,
+			'return'	=> 'true',
+			'last'		=> $last,
+			'type'		=> isset($_query['inline_message_id']) ? 'inline' : 'private'
+			]));
+		// \lib\db::rollback();
+
+		if(!$debug_status)
+		{
+			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+		}
+		elseif($debug_status == 2)
+		{
+			return ['text' => '⚠️' . $debug['messages']['warn'][0]['title']];
+		}
+		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
+		return ['text' => '✅ ' . $title];
+	}
+
+	public static function new()
+	{
+		bot::sendResponse(\content\saloos_tg\sarshomarbot\commands\step_create::start());
+		return [];
+	}
+
+	public static function edit($_query, $_data_url)
+	{
+		session::set('poll', $_data_url[2]);
+		$return = \content\saloos_tg\sarshomarbot\commands\step_create::start(null, true);
+		session::remove_back('expire', 'inline_cache', 'ask');
+		session::remove('expire', 'inline_cache', 'ask');
 		callback_query::edit_message($return);
+	}
+
+	public static function status($_query, $_data_url)
+	{
+		$poll = session::get('poll');
+		session::remove('poll');
+		step::stop();
+		\lib\storage::set_disable_edit(true);
+
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'status' 	=> $_data_url[2],
+				'id' 		=> $_data_url[3]
+			]]);
+		$request_status = \lib\main::$controller->model()->poll_set_status();
+
+		$debug_status = \lib\debug::$status;
+		$debug = \lib\debug::compile();
+		\lib\debug::$status = 1;
+
+
+		if($poll)
+		{
+			$result = ask::make(null, null, [
+				'poll_id' 	=> $_data_url[3],
+				'return'	=> true
+				]);
+			$result['reply_markup'] = menu::main(true);
+			$result = \content\saloos_tg\sarshomarbot\commands\step_create::make_draft($poll, function($_maker)
+				{
+					unset($_maker->message->message['description']);
+				});
+			unset($result['reply_markup']);
+			callback_query::edit_message($result);
+			$main = menu::main()[0];
+			$main['method'] = 'sendMessage';
+			bot::sendResponse($main);
+			bot::sendResponse(ask::make(null, null, [
+				'poll_id' 	=> $poll,
+				'return'	=> true
+				]));
+		}
+		else
+		{
+			callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $_data_url[3],
+				'return'	=> true
+				]));
+		}
+
+		if($debug_status !== 1)
+		{
+			if(isset($debug['messages']['error'][0]))
+			{
+				return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
+			}
+				return ['text' => '⚠️' . $debug['messages']['warn'][0]['title']];
+		}
+		else
+		{
+			return ['text' => '✅' . $debug['title']];
+		}
+
 	}
 
 	public static function report($_query, $_data_url, $_short_link = null)
 	{
 		$short_link = !is_null($_short_link) ? $_short_link : $_data_url[2];
-		$maker = new make_view(bot::$user_id, $short_link);
+		$maker = new make_view($short_link);
+
 		if(!language::check())
 		{
 			language::set($maker->query_result['language']);

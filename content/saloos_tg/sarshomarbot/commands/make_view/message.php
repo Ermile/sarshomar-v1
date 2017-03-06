@@ -18,32 +18,15 @@ class message
 	{
 		if($_with_link)
 		{
-			$title = utility::link('https://sarshomar.com/sp_' .$this->class->short_link, $this->class->query_result['title']);
+			$title = utility::link('https://' . $_SERVER['SERVER_NAME'] . '/$' .$this->class->poll_id, $this->class->query_result['title']);
 		}
 		else
 		{
 			$title = html_entity_decode($this->class->query_result['title']);
 		}
-		if(isset($this->class->query_result['meta']) && isset($this->class->query_result['meta']['attachment_id']))
+		if(isset($this->class->query_result['file']))
 		{
-			$attachment = \lib\db\polls::get_poll($this->class->query_result['meta']['attachment_id']);
-			$url = \lib\router::$base;
-			$url .= '/' . preg_replace("/^.*\/public_html\//", '', $attachment['meta']['url']);
-			switch ($this->class->query_result['meta']['data_type']) {
-				case 'photo':
-					$emoji = '🖼';
-					break;
-				case 'video':
-					$emoji = '📹';
-					break;
-				case 'audio':
-					$emoji = '🔊';
-					break;
-
-				default:
-					$emoji = '📝';
-					break;
-			}
+			$url = preg_replace("/sarshomar.com/", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
@@ -60,35 +43,116 @@ class message
 		/**
 		 * set telegram result: count of poll, answers and answers text
 		 */
-		$this->set_telegram_result($_answer_id);
-		$sum = array_column($this->class->telegram_result->get_result('result'), 'sum', 'key');
-		$this->message['chart'] = utility::calc_vertical($sum);
+		$sum = $this->sum_stats();
+		if($this->class->poll_type == 'like' || $this->class->poll_type == 'descriptive')
+		{
+			return;
+		}
+		if(count($this->class->query_result['answers']) > 7)
+		{
+			$row = 0;
+			$other_key = null;
+			$overflow = [];
+			$sum_answers = $sum['sum_answers'];
+			arsort($sum_answers);
+			foreach ($sum_answers as $key => $value) {
+				if($row < 6)
+				{
+					$row++;
+					$other_key = $key;
+					$overflow[$key] = $value;
+					continue;
+				}
+				$overflow[$other_key] += $value;
+			}
+			$overflow[0] = $overflow[$other_key];
+			unset($overflow[$other_key]);
+			$x = '';
+			foreach ($overflow as $key => $value) {
+				$x .= "$key: $value\n";
+			}
+			$this->message['chart'] = utility::calc_vertical($overflow);
+		}
+		else
+		{
+			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
+		}
 	}
 
-	public function add_poll_list($_answer_id = null, $_add_count = true)
+	public function add_poll_list($answer = null, $_add_count = true)
 	{
-		if(!isset($this->poll_list))
+		if($answer)
 		{
-			$this->set_telegram_result($_answer_id);
+			$answer_id = current($answer)['key'];
+		}
+		else
+		{
+			$answer_id = null;
 		}
 		$poll_list = '';
-		foreach ($this->poll_list as $key => $value) {
-			$poll_list .= $value['emoji'] . ' ' . $value['text'];
+		$sum = $this->sum_stats();
+		$sum = $sum['sum_answers'];
+		foreach ($this->class->query_result['answers'] as $key => $value) {
+			if($value['type'] == 'like' || $value['type'] == 'descriptive')
+			{
+				$poll_list = $this->class->query_result['description'];
+				if($value['type'] == 'like' && $answer)
+				{
+					$poll_list .= "\n" . T_('Liked');
+				}
+				elseif($answer)
+				{
+					$poll_list .= "\n\n" . T_('Your answer:') . $answer[0]['descriptive'];
+				}
+				break;
+			}
+			elseif($answer_id == $key+1)
+			{
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$emoji = utility::nubmer_language($key+1);
+					if($key+1 < 10)
+					{
+						$emoji = utility::nubmer_language("0") . $emoji;
+					}
+					$emoji .= "|✅ ";
+				}
+				else
+				{
+					$emoji = '✅';
+				}
+			}
+			else
+			{
+				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				{
+					$emoji = utility::nubmer_language($key+1);
+					if($key+1 < 10)
+					{
+						$emoji = utility::nubmer_language("0") . $emoji;
+					}
+					$emoji .= "| ";
+				}
+				else
+				{
+					$emoji = $this->class::$emoji_number[$key+1];
+				}
+			}
+			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($value['answer_count']);
+				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
 			}
-			if(end($this->poll_list) !== $value)
-			{
-				$poll_list .= "\n";
-			}
+			$poll_list .= "\n";
+
 		}
 		$this->message['poll_list'] = $poll_list;
 	}
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/SarshomarBot?start=sp_' .$this->class->short_link,'⚙');
+		$dashboard = utility::tag(T_("Sarshomar")) . ' |';
+		$dashboard .= utility::link('https://telegram.me/sarshomarbot?start=' .$this->class->poll_id, '⚙');
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -101,48 +165,6 @@ class message
 	public function add_telegram_tag()
 	{
 		$this->message['telegram_tag'] = '#' .T_('Sarshomar');
-	}
-
-	public function set_telegram_result($_answer_id = null)
-	{
-		$answer_id = $this->set_answer_id($_answer_id);
-
-		$this->class->telegram_result = \lib\utility\stat_polls::get_telegram_result($this->class->poll_id);
-		$poll_result = $this->class->telegram_result;
-		if(!$poll_result->is_ok())
-		{
-			$poll_result = $this->class->query_result;
-			foreach ($poll_result['meta']['opt'] as $key => $value) {
-				$poll_result['result'][$value['txt']] = 0;
-			}
-		}else
-		{
-			$poll_result = $poll_result->get_result('result');
-		}
-		$this->set_poll_list($poll_result, $answer_id);
-	}
-
-	public function set_poll_list($_poll_result, $_answer_id = null)
-	{
-		$poll_answer = array();
-		$poll_list = array();
-		$count = 0;
-		$row      = $this->class::$emoji_number;
-		foreach ($_poll_result as $key => $value) {
-			$count++;
-			$poll_answer[$count] = $value;
-			if($_answer_id === $count)
-			{
-				$this->poll_set_answer = true;
-				$poll_list[] = ['emoji'=> '✅ ', 'text' => $value['text'], 'answer_count' => $value['sum']];
-			}
-			else
-			{
-				$poll_list[] = ['emoji'=> $row[$count], 'text' => $value['text'], 'answer_count' => $value['sum']];
-			}
-		}
-		$this->poll_list = $poll_list;
-		$this->poll_answer = $poll_answer;
 	}
 
 	public function set_answer_id($_answer_id = null)
@@ -160,7 +182,7 @@ class message
 			$this->answer_id = (int) $_answer_id;
 		}
 		elseif ($_answer_id === true && !isset($this->answer_id)) {
-			$answer = \lib\utility\answers::is_answered($this->class->user_id, $this->class->poll_id);
+			$answer = \lib\utility\answers::is_answered(\lib\main::$controller->model()->user_id, \lib\utility\shortURL::decode($this->class->poll_id));
 			$this->answer_id = (int) $answer['opt'];
 		}
 		else
@@ -172,26 +194,39 @@ class message
 
 	public function add_count_poll($_type = 'sum_invalid')
 	{
-		$count = $this->class->telegram_result->get_result('count_answered');
+		$count = $this->sum_stats();
+		$text = '';
 		switch ($_type) {
 			case 'valid':
-				$text = T_("Valid answer is:") . $count['valid'];
+				$text .= T_("Valid answer is:") . $count['total_sum_valid'];
 				break;
 			case 'invalid':
-				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
+				$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
-				$text = '👥' .utility::nubmer_language($count['sum']) . ' ';
-				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', '❗️' . utility::nubmer_language($count['invalid']));
+				if($this->class->poll_type == 'like')
+				{
+					$this->add('like', '❤️ <code>' . utility::nubmer_language($count['total']) .'</code>', 'before', 'options');
+					break;
+				}
+				else
+				{
+					$text .= '👥';
+				}
+				$text .= utility::nubmer_language($count['total']) . ' ';
+				if($count['total_sum_invalid'] > 0)
+				{
+					$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
+				}
 				break;
 			case 'sum_valid':
-				$text = T_("Sum") . '(' . $count['sum'] .') ';
-				$text .= T_("Valid") . '(' . $count['valid'] .')';
+				$text .= T_("Sum") . '(' . $count['total'] .') ';
+				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .')';
 				break;
 
 			default:
-				$text = T_("Valid") . '(' . $count['valid'] .') ';
-				$text .= utility::link('https://telegram.me/SarshomarBot?start=faq_5', T_("Invalid") . '(' . $count['invalid'] .')');
+				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .') ';
+				$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 		}
 		if(isset($this->message['options']))
@@ -202,6 +237,35 @@ class message
 		{
 			$this->message['options'] = $text;
 		}
+	}
+
+	public function sum_stats()
+	{
+		if(isset($this->stats) && $this->stats)
+		{
+			return $this->stats;
+		}
+		$stats = $this->class->query_result['stats']['total'];
+		$sum_valid = array_column($stats['valid'], 'value', 'key');
+		$sum_invalid = array_column($stats['invalid'], 'value', 'key');
+		$sum = [];
+		$total_sum_valid = 0;
+		$total_sum_invalid = 0;
+		$total = 0;
+		foreach ($sum_valid as $key => $value) {
+			$sum[$key] = $value + $sum_invalid[$key];
+			$total += $sum[$key];
+			$total_sum_valid += $value;
+			$total_sum_invalid += $sum_invalid[$key];
+		}
+
+		$this->stats = [
+			'sum_answers' 		=> $sum,
+			'total_sum_valid' 	=> $total_sum_valid,
+			'total_sum_invalid'	=> $total_sum_invalid,
+			'total'	=> $total,
+		];
+		return $this->stats;
 	}
 
 	public function make()
