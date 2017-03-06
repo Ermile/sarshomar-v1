@@ -1415,7 +1415,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .menu .menu-inside label:not(:first-of-type){margin-left:23px}
 .rtl .menu .menu-inside label:not(:first-of-type){margin-right:25px;margin-left:auto}
 .rtl .menu .menu-inside label{float:right}
-.menu .menu-inside label::before,.menu .menu-inside label::after{font-family:'sarshomar';font-size:22px;font-weight:400;position:absolute;top:0;bottom:0;margin:auto;margin-top:5px;-webkit-transition:color .2s;-o-transition:color .2s;-moz-transition:color .2s;transition:color .2s;color:#00667a}
+.menu .menu-inside label::before,.menu .menu-inside label::after{font-family:'sarshomar';font-size:22px;font-weight:400;position:absolute;top:1px;bottom:0;margin:auto;margin-top:5px;-webkit-transition:color .2s;-o-transition:color .2s;-moz-transition:color .2s;transition:color .2s;color:#00667a}
 .menu .menu-inside label::before{left:-10px;content:'\e901'}
 .menu .menu-inside label::after{right:-10px;content:'\e900'}
 .menu .menu-inside label:hover{background-color:#15535f}
