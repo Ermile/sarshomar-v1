@@ -60,7 +60,7 @@ class language
 			]);
 		session::remove_back('expire', 'inline_cache', 'language');
 		session::remove('expire', 'inline_cache', 'language');
-		return ['text' => '🗣 ' . T_("Your language set :language ", ['language'=> $lang_name])];
+		return ['text' => '🗣 ' . T_("Your language set to :language ", ['language'=> $lang_name])];
 	}
 
 	public static function make_result($_value, $_update_on = false)
