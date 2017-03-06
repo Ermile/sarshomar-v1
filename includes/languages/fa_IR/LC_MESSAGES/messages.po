@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-06 19:01+0330\n"
-"PO-Revision-Date: 2017-03-06 19:06+0330\n"
+"POT-Creation-Date: 2017-03-06 19:19+0330\n"
+"PO-Revision-Date: 2017-03-06 19:20+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -4442,13 +4442,13 @@ msgstr "برای تغییر زبان به بخش پروفایل رفته و یا
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/language.php:63
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/language.php:63
-msgid "Your language set :language "
-msgstr ""
+msgid "Your language set to :language "
+msgstr "زبان شما به :language تغییر کرد."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/language.php:88
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/language.php:88
-msgid "Choose the language."
-msgstr "زبان خود را انتخاب کنید."
+msgid "Select your language"
+msgstr "زبان خود را انتخاب کنید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:62
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:62
@@ -12422,6 +12422,9 @@ msgstr ""
 #: sarshomar/includes/mvc/view.php:59
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Choose the language."
+#~ msgstr "زبان خود را انتخاب کنید."
 
 #~ msgid "Register & sync"
 #~ msgstr "ثبت‌نام و همگام‌سازی"
