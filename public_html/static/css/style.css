@@ -1053,7 +1053,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-image{display:block;width:50%;margin:0 auto 2em}
 
-.poll-container .poll-summary{width:80%;font-size:1.2em;padding:0 1em}
+.poll-container .poll-summary{width:80%;font-size:1.2em;padding:0 1em;word-break:break-word}
 
 .poll-container .poll-related{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;font-size:1.2em;padding:0 1em;margin-bottom:1.5em}
 .poll-container .poll-related>div{padding-right:1em;font-weight:700}
