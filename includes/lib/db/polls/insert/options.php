@@ -361,7 +361,7 @@ trait options
 					return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character", ['key' => $key]), 'tags', 'arguments');
 				}
 
-				$slug  = utility\filter::slug($value, null, false);
+				$slug  = utility\filter::slug($value, null, 'persian');
 				if(!$slug && $value)
 				{
 					$slug = $value;

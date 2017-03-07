@@ -5,41 +5,41 @@ class controller extends  \content_u\home\controller
 {
 	public function _route()
 	{
-		if(\lib\utility::get("bugfix_terms_slug") == 'we_are_godzilla')
-		{
-			$run = false;
-			if(\lib\utility::get("run") == 'run')
-			{
-				$run = true;
-			}
+		// if(\lib\utility::get("bugfix_terms_slug") == 'we_are_godzilla')
+		// {
+		// 	$run = false;
+		// 	if(\lib\utility::get("run") == 'run')
+		// 	{
+		// 		$run = true;
+		// 	}
 
-			echo '<pre>';
-			$term_list = \lib\db::get("SELECT * FROM terms WHERE terms.term_type = 'sarshomar_tag' ");
-			foreach ($term_list as $key => $value)
-			{
-				if(
-					isset($value['id']) &&
-					is_numeric($value['id']) &&
-					isset($value['term_title'])
-				  )
-				{
-					$id = $value['id'];
-					var_dump($value['term_title']);
-					$term_slug = \lib\utility\filter::slug($value['term_title'], null, 'persian');
-					var_dump($term_slug);
-					$term_url = '$/tag/'. $term_slug;
-					$query = "UPDATE terms SET term_slug = '$term_slug', term_url = '$term_url' WHERE id = $id LIMIT 1";
-					var_dump($query);
-					if($run)
-					{
-						\lib\db::query($query);
-					}
-				}
-			}
-			// var_dump($term_list);
+		// 	echo '<pre>';
+		// 	$term_list = \lib\db::get("SELECT * FROM terms WHERE terms.term_type = 'sarshomar_tag' ");
+		// 	foreach ($term_list as $key => $value)
+		// 	{
+		// 		if(
+		// 			isset($value['id']) &&
+		// 			is_numeric($value['id']) &&
+		// 			isset($value['term_title'])
+		// 		  )
+		// 		{
+		// 			$id = $value['id'];
+		// 			var_dump($value['term_title']);
+		// 			$term_slug = \lib\utility\filter::slug($value['term_title'], null, 'persian');
+		// 			var_dump($term_slug);
+		// 			$term_url = '$/tag/'. $term_slug;
+		// 			$query = "UPDATE terms SET term_slug = '$term_slug', term_url = '$term_url' WHERE id = $id LIMIT 1";
+		// 			var_dump($query);
+		// 			if($run)
+		// 			{
+		// 				\lib\db::query($query);
+		// 			}
+		// 		}
+		// 	}
+		// 	// var_dump($term_list);
 
-			exit();
-		}
+		// 	exit();
+		// }
 
 		parent::check_login();
 
