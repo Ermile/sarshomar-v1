@@ -185,7 +185,7 @@ img.scale-with-grid{max-width:100%;height:auto}
 /* ALert Box */
 .alert{position:relative;margin-bottom:18px;color:#c09853;text-shadow:0 1px 0 rgba(255,255,255,0.5);background-color:#fcf8e3;border:1px solid #fbeed5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:8px 35px 8px 14px;font-size:1.4em;font-family:sans-serif}
 .rtl .alert{padding:8px 14px 8px 35px}
-.alert .close{font-family:"FontAwesome";content:"\f00d";cursor:pointer;position:relative;display:block;opacity:0.5;-webkit-transition:all .2s ease-in;-o-transition:all .2s ease-in;-moz-transition:all .2s ease-in;transition: all .2s ease-in;font-size:1.2;line-height:130%;float:right;right:-21px}
+.alert .close{font-family:"FontAwesome";content:"\f00d";cursor:pointer;position:relative;display:block;opacity:0.5;-webkit-transition:all .2s ease-in;-o-transition:all .2s ease-in;-moz-transition:all .2s ease-in;transition: all .2s ease-in;font-size:1.2em;line-height:130%;float:right;right:-21px}
 .rtl .alert .close{float:left;right:auto;left:-21px}
 .alert:hover .close{color:#000}
 .alert a{font-weight:bold}
