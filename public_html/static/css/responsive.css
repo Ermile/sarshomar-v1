@@ -387,7 +387,7 @@ header .header-profile-link .header-link-icon {display: inline-block;}
 /* .tbl.method-table>div {-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
  .tbl.method-table>div>span {-webkit-box-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;-ms-flex: 1;flex: 1;-webkit-box-flex: 0;-webkit-flex: 0 1 100%;-moz-box-flex: 0;-ms-flex: 0 1 100%;flex: 0 1 100%;}*/
  .tbl.response-codes,.tbl.method-table {margin: 0;}
-
+.tbl-mobile-column>div {-ms-flex-direction:column;-webkit-flex-direction:column;-moz-box-orient:horizontal;-moz-box-direction:normal;flex-direction:column; }
  /************************************************************** Billing */
  .billing {margin:0 1em;}
  .billing .billing-stats .billing-info {margin-bottom:3em !important;}
