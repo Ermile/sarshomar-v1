@@ -29,7 +29,15 @@ class users
 	 *
 	 * @var        array
 	 */
-	public static $user_verify = ['mobile','complete', 'unknown', 'uniqueid'];
+	public static $user_verify = ['mobile', 'complete', 'unknown', 'uniqueid'];
+
+
+	/**
+	 * users status in database
+	 *
+	 * @var        array
+	 */
+	public static $user_status = ['active', 'awaiting', 'deactive', 'removed', 'filter', 'spam', 'block', 'delete'];
 
 
 	/**
@@ -67,6 +75,11 @@ class users
 		if($_args['port'] && in_array($_args['port'], self::$user_port))
 		{
 			$user_update['user_port'] = $_args['port'];
+		}
+
+		if($_args['type'] === 'inspection')
+		{
+			$user_update['user_status'] = 'deactive';
 		}
 
 		if(!empty($user_update))

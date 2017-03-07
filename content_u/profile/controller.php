@@ -5,63 +5,42 @@ class controller extends  \content_u\home\controller
 {
 	public function _route()
 	{
-		if(\lib\utility::get("import"))
+		if(\lib\utility::get("bugfix_terms_slug") == 'we_are_godzilla')
 		{
-
-			$file = \lib\utility\file::read(root.'content_u/profile/profile/cat.csv');
-			$line = preg_split("/\n/", $file);
-			foreach ($line as $key => $value)
+			$run = false;
+			if(\lib\utility::get("run") == 'run')
 			{
-				$split = preg_split("/\,/", $value);
-				if($key === 0)
-				{
-					continue;
-				}
-				$cat1 = null;
-				if(isset($split[1]))
-				{
-					$cat1 = mb_strtolower(trim($split[1]));
-				}
-				$cat2 = null;
-				if(isset($split[2]))
-				{
-					$cat2 = mb_strtolower(trim($split[2]));
-				}
-				$cat3 = null;
-				if(isset($split[3]))
-				{
-					$cat3 = mb_strtolower(trim($split[3]));
-				}
-				$cat4 = null;
-				if(isset($split[4]))
-				{
-					$cat4 = mb_strtolower(trim($split[4]));
-				}
-				$cat5 = null;
-				if(isset($split[5]))
-				{
-					$cat5 = mb_strtolower(trim($split[5]));
-				}
-				$cat6 = null;
-				if(isset($split[6]))
-				{
-					$cat6 = mb_strtolower(trim($split[6]));
-				}
-				$cat7 = null;
-				if(isset($split[7]))
-				{
-					$cat7 = mb_strtolower(trim($split[7]));
-				}
-
-
-			// 	var_dump($split);
-			// var_dump($cat6);
-
-			// exit();
+				$run = true;
 			}
 
+			echo '<pre>';
+			$term_list = \lib\db::get("SELECT * FROM terms WHERE terms.term_type = 'sarshomar_tag' ");
+			foreach ($term_list as $key => $value)
+			{
+				if(
+					isset($value['id']) &&
+					is_numeric($value['id']) &&
+					isset($value['term_title'])
+				  )
+				{
+					$id = $value['id'];
+					var_dump($value['term_title']);
+					$term_slug = \lib\utility\filter::slug($value['term_title'], null, 'persian');
+					var_dump($term_slug);
+					$term_url = '$/tag/'. $term_slug;
+					$query = "UPDATE terms SET term_slug = '$term_slug', term_url = '$term_url' WHERE id = $id LIMIT 1";
+					var_dump($query);
+					if($run)
+					{
+						\lib\db::query($query);
+					}
+				}
+			}
+			// var_dump($term_list);
+
+			exit();
 		}
-		// die(':)');
+
 		parent::check_login();
 
 		$this->get("profile", "profile")->ALL();
