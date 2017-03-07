@@ -666,9 +666,8 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .special-heading a{color:inherit;font-weight:400}
 .special-heading::before{content:"";position:absolute;top:-2px;bottom:0;margin:auto;left:-15px;width:100px;height:2px;background-color:#00667a}
 .rtl .special-heading::before{left:auto;right:-15px}
-.special-heading::after{content:"";position:absolute;width:60px;height:115px;background-image:url(../images/border-object.png);background-repeat:no-repeat;top:5px;left:-75px}
-.ltr .special-heading::after{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
-.rtl .special-heading::after{right:-75px;left:initial}
+.special-heading::after{content:"";position:absolute;width:60px;height:115px;background-image:url(../images/border-object-ltr.png);background-repeat:no-repeat;top:5px;left:-75px}
+.rtl .special-heading::after{right:-75px;left:initial;background-image:url(../images/border-object-rtl.png)}
 
 
 /************************************************************** homepage */
@@ -1850,7 +1849,7 @@ label,select,.element a,.btn{-webkit-user-select:none;-moz-user-select:none;-ms-
 .captcha-box .captcha-container .captcha{background-color:#898d8e;color:#f4f4f4;padding:1.2em;text-align:center;font-size:2em;font-weight:bold}
 .captcha-box .form-container{margin-right:4em;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
 .rtl .captcha-box .form-container{margin-right:0;margin-left:4em}
-.captcha-box .form-container input[type="text"]{background-color:#FBFBFB;display:block;width:100%;border:none;font-size:1.4em;padding:.5em;color:#00667a;text-align:center;direction:ltr}
+.captcha-box .form-container input[type="number"]{background-color:#FBFBFB;display:block;width:100%;border:none;font-size:1.4em;padding:.5em;color:#00667a;text-align:center;direction:ltr}
 .captcha-box .form-container input[type="submit"]{font-size:1.4em;padding:.5em;display:block;width:100%}
 
 
