@@ -40,11 +40,22 @@ class spammer
 
 		if(isset($meta['deny_time']))
 		{
-			if($meta['deny_time'] + 20 < microtime(true))
+			if($meta['deny_time'] + 60 < microtime(true))
 			{
 				\lib\db\options::update([
 				"option_meta" => self::set_meta(['count' => 0, 'time' => microtime(true)])
 	 			], $get_count_log['id']);
+			}
+			else
+			{
+				if($on_spam == 'callback_query')
+				{
+					return [
+						'method'=> "answerCallbackQuery",
+						'callback_query_id' => bot::$hook['callback_query']['id']
+					];
+				}
+				return true;
 			}
 			return false;
 		}
@@ -100,7 +111,7 @@ class spammer
 
 	public static function overflow_callback_query($_meta)
 	{
-		if($_meta['time'] + 10 >= microtime(true) && $_meta['count'] >= 5)
+		if($_meta['time'] + 15 >= microtime(true) && $_meta['count'] >= 4)
 		{
 			$message_result = [
 				'method'=> "answerCallbackQuery",
