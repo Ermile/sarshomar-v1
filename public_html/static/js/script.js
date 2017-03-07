@@ -311,8 +311,8 @@ function shortkey()
 				{
 					// send data to server for saving
 					requestSavingData(true);
-					e.preventDefault();
 				}
+				e.preventDefault();
 				break;
 
 			// f1
@@ -3011,6 +3011,20 @@ function uncheckRadio(_this)
 }
 
 
+/**
+ * [hashChanged description]
+ * @return {[type]} [description]
+ */
+function hashChanged()
+{
+	$(window).bind( 'hashchange', function(e)
+	{
+		setLanguageURL();
+		detectStep();
+	});
+}
+
+
 runAllScripts();
 /**
  * this function run all scripts and all subfunctions
@@ -3027,7 +3041,8 @@ function runAllScripts()
 	// allow to set fav
 	setProperty('favorite');
 	setProperty('heart');
-
+	// check if hash is changd, call something
+	hashChanged();
 	// load needed js file
 	loadFiles();
 }
