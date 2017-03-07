@@ -879,7 +879,12 @@ function showQuestionOptsDel(_this, _delete)
 		// hide all elements
 		$('.input-group.sortable > li .delete').fadeOut(100);
 	}
-	if($('#question-add').attr('data-status') !== 'draft' || $('#question-add').attr('data-admin') !== undefined)
+	var questionBox = $('#question-add');
+	if(questionBox.attr('data-status') === 'draft' || questionBox.attr('data-status') === "" || questionBox.attr('data-admin') !== undefined)
+	{
+		// allow delete
+	}
+	else
 	{
 		return false;
 	}
