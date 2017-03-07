@@ -129,6 +129,16 @@ class users
 		{
 			\lib\db\users::update($user_update, $_args['user_id']);
 		}
+	}
+
+
+	/**
+	 * Sets the mobile.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function set_mobile($_args)
+	{
 
 	}
 }

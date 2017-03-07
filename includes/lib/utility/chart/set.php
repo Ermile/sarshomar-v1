@@ -18,6 +18,7 @@ trait set
 			'poll_id'      => null,
 			'user_id'      => null,
 			'validation'   => null,
+			'user_verify'  => null,
 			'opt_key'      => null,
 			'opt_txt'      => null,
 			'type'         => null,
@@ -45,49 +46,72 @@ trait set
 			return debug::error(T_("User id not set"), 'set_poll_result', 'db');
 		}
 		$user_id = $_args['user_id'];
-
-
 		// get the validation result
 		$validation = 'invalid';
-		if($_args['validation'])
+		switch ($_args['user_verify'])
 		{
-			$validation = $_args['validation'];
+			// in insert mode we get the user verify from users table
+			// so we have this items
+			case 'mobile':
+			case 'complete':
+			// in update mode we are load old userstatus saved in polldetails
+			// in this table we can set valid or invalid
+			case 'valid':
+				$validation = 'valid';
+				break;
+
+			// in insert mode we get the user verify from users table
+			// so we have this items
+			case 'uniqueid':
+			// in update mode we are load old userstatus saved in polldetails
+			// in this table we can set valid or invalid
+			case 'invalid':
+				$validation = 'invalid';
+				break;
+
+			// in insert mode we get the user verify from users table
+			// so we have this items
+			case 'unknown':
+			// in update mode we are load old userstatus saved in polldetails
+			// in this table we can set valid or invalid
+			case null:
+			// undefined value
+			default:
+				return false;
+				break;
 		}
+
+
+
 
 		// default of chart is not sorting poll
 		$sorting  = false;
 		// key = the opt_key and value = the sort index
 		$sort_opt = [];
-		// check the opt keys
-		if(isset($_args['opt_key']))
+
+
+		// is array opt key mean we be in sorting mode
+		if(is_array($_args['opt_key']))
 		{
-			// is array opt key mean we be in sorting mode
-			if(is_array($_args['opt_key']))
+			// example of $_args[opt_key] : [1,2,3,4,5] || [5,4,3,2,1] the sorting mode
+			$sorting = true;
+			foreach ($_args['opt_key'] as $key => $value)
 			{
-				// example of $_args[opt_key] : [1,2,3,4,5] || [5,4,3,2,1] the sorting mode
-				$sorting = true;
-				foreach ($_args['opt_key'] as $key => $value)
-				{
-					$sort_opt['opt_'. $value] = count($_args['opt_key']) - $key;
-				}
-				// example of $sort_opt =
-				// [
-				// 	opt_1 => 5,
-				// 	opt_2 => 4,
-				// 	opt_3 => 3,
-				// 	opt_4 => 2,
-				// 	opt_5 => 1
-				// ];
+				$sort_opt['opt_'. $value] = count($_args['opt_key']) - $key;
 			}
-			// default poll and not sorting mode
-			else
-			{
-				$opt_key = 'opt_'. $_args['opt_key'];
-			}
+			// example of $sort_opt =
+			// [
+			// 	opt_1 => 5,
+			// 	opt_2 => 4,
+			// 	opt_3 => 3,
+			// 	opt_4 => 2,
+			// 	opt_5 => 1
+			// ];
 		}
+		// default poll and not sorting mode
 		else
 		{
-			return false;
+			$opt_key = 'opt_'. $_args['opt_key'];
 		}
 
 		// check the opt_text
@@ -130,14 +154,12 @@ trait set
 			$subport = "'". $_args['subport']. "'";
 		}
 
-
-
 		// user skip the poll
 		// neelless to change the chart
 		// and this check must be after set sarshomar_total_answered
 		// becaus the user see the poll and answer to this
 		// but the answer of this user needless to change the chart
-		if($opt_key == "opt_0")
+		if($opt_key === "opt_0")
 		{
 			return true;
 		}

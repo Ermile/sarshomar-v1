@@ -17,7 +17,7 @@ class model extends \mvc\model
 
 		if(utility::post('delete_account'))
 		{
-			if($this->access('u','delete_account', 'view') && $this->login('mobile') && $this->login('id'))
+			if($this->access('u','delete_account', 'view') && !$this->access('admin','admin', 'view') && $this->login('mobile') && $this->login('id'))
 			{
 				$mobile = $this->login('mobile');
 				$get_count_mobile = "SELECT count(users.id) AS `count` FROM users WHERE user_mobile LIKE '$mobile%' ";

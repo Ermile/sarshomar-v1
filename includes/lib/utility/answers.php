@@ -10,6 +10,9 @@ class answers
 	public static $must_insert;
 	public static $must_remove;
 
+	public static $validation  = 'invalid';
+	public static $user_verify = null;
+
 	public static $IS_ANSWERED = [];
 
 	/**
@@ -91,8 +94,8 @@ class answers
 
 		$default_args =
 		[
-			'time'    => (60 * 7) * 60, // in dev mode
-			'count'   => 3 * 60, // in dev mode
+			'time'    => (60 * 7),
+			'count'   => 3,
 			'user_id' => null,
 			'poll_id' => null,
 			'port'    => 'site',
@@ -103,6 +106,12 @@ class answers
 			// 'skipped' => false,
 			// 'execute' => false,
 		];
+
+		if(defined('Tld') && Tld === 'dev')
+		{
+			$default_args['time']  = 60 * 60 * 24 * 365; // 1 year
+			$default_args['count'] = 3 * 100; // 300 times
+		}
 
 		$_args = array_merge($default_args, $_args);
 
@@ -233,6 +242,40 @@ class answers
 
 	}
 
+
+	/**
+	 * check user verify
+	 * set self::$validation
+	 * return true or false
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function user_validataion($_user_id)
+	{
+		$save_offline_chart = true;
+
+		self::$user_verify = \lib\db\users::get($_user_id, 'user_verify');
+
+		switch (self::$user_verify)
+		{
+			case 'complete':
+			case 'mobile':
+				self::$validation  = 'valid';
+				break;
+
+			case 'uniqueid':
+				self::$validation  = 'invalid';
+				break;
+
+			case 'unknown':
+			default:
+				$save_offline_chart = false;
+				break;
+		}
+		return $save_offline_chart;
+	}
+
+
 	/**
 	 * save poll answer
 	 *
@@ -254,13 +297,15 @@ class answers
 		];
 		$_args = array_merge($default_args, $_args);
 
-		// check user status to set the chart 'valid' or 'invalid'
-		$validation  = 'invalid';
-		$user_validstatus = \lib\db\users::get($_args['user_id'], 'user_validstatus');
-		if($user_validstatus && ($user_validstatus === 'valid' || $user_validstatus === 'invalid'))
-		{
-			$validation = $user_validstatus;
-		}
+
+		/**
+		 * save offline chart
+		 * in guest mod we needless to save offline chart
+		 *
+		 * @var        boolean
+		 */
+		$save_offline_chart = self::user_validataion($_args['user_id']);
+
 
 		if(!is_array($_args['answer']))
 		{
@@ -279,7 +324,7 @@ class answers
 		$set_option =
 		[
 			'answer_txt' => null,
-			'validation' => $validation,
+			'validation' => self::$validation,
 			'port'       => $_args['port'],
 			'subport'    => $_args['subport'],
 		];
@@ -297,10 +342,11 @@ class answers
 			{
 				$set_option =
 				[
-					'answer_txt' => $value,
-					'validation' => $validation,
-					'port'       => $_args['port'],
-					'subport'    => $_args['subport'],
+					'answer_txt'  => $value,
+					'validation'  => self::$validation,
+					'user_verify' => self::$user_verify,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
 				];
 
 				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
@@ -308,7 +354,8 @@ class answers
 				// update users profile
 				$answers_details =
 				[
-					'validation'  => $validation,
+					'validation'  => self::$validation,
+					'user_verify' => self::$user_verify,
 					'poll_id'     => $_args['poll_id'],
 					'opt_key'     => $key,
 					'user_id'     => $_args['user_id'],
@@ -317,7 +364,10 @@ class answers
 				// save user profile if this poll is a profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
 
-				\lib\utility\stat_polls::set_poll_result($answers_details);
+				if($save_offline_chart)
+				{
+					\lib\utility\stat_polls::set_poll_result($answers_details);
+				}
 			}
 		}
 
@@ -329,22 +379,23 @@ class answers
 		if(!$user_delete_answer)
 		{
 			\lib\utility\stat_polls::set_sarshomar_total_answered();
-			if($skipped)
-			{
-				/**
-				 * plus the ranks
-				 * skip mod
-				 */
-				\lib\db\ranks::plus($_args['poll_id'], 'skip');
-			}
-			else
-			{
-				/**
-				 * plus the ranks
-				 * vot mod
-				 */
-				\lib\db\ranks::plus($_args['poll_id'], 'vote');
-			}
+		}
+
+		if($skipped)
+		{
+			/**
+			 * plus the ranks
+			 * skip mod
+			 */
+			\lib\db\ranks::plus($_args['poll_id'], 'skip');
+		}
+		else
+		{
+			/**
+			 * plus the ranks
+			 * vot mod
+			 */
+			\lib\db\ranks::plus($_args['poll_id'], 'vote');
 		}
 
 		// set dashboard data
@@ -425,6 +476,8 @@ class answers
 			return false;
 		}
 
+		$save_offline_chart = self::user_validataion($_args['user_id']);
+
 		self::$must_remove = array_diff($old_opt, $_args['answer']);
 		self::$must_insert = array_diff($_args['answer'], $old_opt);
 		// remove answer must be remove
@@ -432,26 +485,33 @@ class answers
 		{
 			$remove_old_answer = \lib\db\polldetails::remove($_args['user_id'], $_args['poll_id'], $value);
 
-			$profile    = 0;
-			$validation = 'invalid';
+			$profile          = 0;
+			self::$validation = 'invalid';
+			$user_verify      = null;
 
 			foreach (self::$old_answer as $i => $o)
 			{
 				if($o['opt'] == $value)
 				{
 					$profile    = $o['profile'];
-					$validation = $o['validstatus'];
+					self::$validation = $o['validstatus'];
+				}
+
+				if(array_key_exists('validstatus', $o))
+				{
+					$user_verify = $o['validstatus'];
 				}
 			}
 
 			$answers_details =
 			[
-				'poll_id'    => $_args['poll_id'],
-				'opt_key'    => $value,
-				'user_id'    => $_args['user_id'],
-				'type'       => 'minus',
-				'profile'    => $profile,
-				'validation' => $validation
+				'poll_id'     => $_args['poll_id'],
+				'opt_key'     => $value,
+				'user_id'     => $_args['user_id'],
+				'type'        => 'minus',
+				'profile'     => $profile,
+				'user_verify' => $user_verify,
+				'validation'  => self::$validation
 			];
 			// unset user profile if this poll is profile poll
 			\lib\utility\profiles::set_profile_by_poll($answers_details);
@@ -461,10 +521,11 @@ class answers
 
 		$set_option =
 		[
-			'answer_txt' => null,
-			'validation' => $validation,
-			'port'       => $_args['port'],
-			'subport'    => $_args['subport'],
+			'answer_txt'  => null,
+			'validation'  => self::$validation,
+			'port'        => $_args['port'],
+			'subport'     => $_args['subport'],
+			'user_verify' => self::$user_verify,
 		];
 
 		if($_args['skipped'] == true)
@@ -478,10 +539,11 @@ class answers
 			{
 				$set_option =
 				[
-					'answer_txt' => $value,
-					'validation' => $validation,
-					'port'       => $_args['port'],
-					'subport'    => $_args['subport'],
+					'answer_txt'  => $value,
+					'validation'  => self::$validation,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
+					'user_verify' => self::$user_verify,
 				];
 
 				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
@@ -489,19 +551,22 @@ class answers
 				// update users profile
 				$answers_details =
 				[
-					'validation'  => $validation,
+					'validation'  => self::$validation,
 					'poll_id'     => $_args['poll_id'],
 					'opt_key'     => $key,
 					'user_id'     => $_args['user_id'],
 					'update_mode' => false,
+					'user_verify' => self::$user_verify,
+
 				];
 				// set user profile if this poll is profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
 
-				\lib\utility\stat_polls::set_poll_result($answers_details);
-
+				if($save_offline_chart)
+				{
+					\lib\utility\stat_polls::set_poll_result($answers_details);
+				}
 			}
-
 		}
 		// plus answer update count
 		$where =
@@ -545,33 +610,53 @@ class answers
 			$old_answer = [];
 		}
 
+		$skipped = false;
 		foreach ($_args['old_answer'] as $key => $value)
 		{
-			$validation = 'invalid';
-			$profile    = 0;
+			if(isset($value['key']))
+			{
+				if($value['key'] === 0)
+				{
+					$skipped = true;
+				}
+			}
+			else
+			{
+				continue;
+			}
+			self::$validation = 'invalid';
+			$profile          = 0;
+			$user_verify      = null;
+
 			foreach ($old_answer as $k => $v)
 			{
-				if(isset($v['opt']) && $v['opt'] == $key)
+				if(isset($v['opt']) && $v['opt'] == $value['key'])
 				{
 					if(isset($v['validstatus']))
 					{
-						$validation = $v['validstatus'];
+						self::$validation = $v['validstatus'];
 					}
 					if(isset($v['profile']))
 					{
 						$profile = $v['profile'];
 					}
 				}
+
+				if(array_key_exists('validstatus', $v))
+				{
+					$user_verify = $v['validstatus'];
+				}
 			}
 
 			$answers_details =
 			[
-				'poll_id'    => $_args['poll_id'],
-				'opt_key'    => $key,
-				'user_id'    => $_args['user_id'],
-				'type'       => 'minus',
-				'profile'    => $profile,
-				'validation' => $validation
+				'poll_id'     => $_args['poll_id'],
+				'opt_key'     => $value['key'],
+				'user_id'     => $_args['user_id'],
+				'type'        => 'minus',
+				'profile'     => $profile,
+				'validation'  => self::$validation,
+				'user_verify' => $user_verify,
 			];
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
@@ -582,6 +667,14 @@ class answers
 
 		if($result && \lib\db::affected_rows())
 		{
+			if($skipped)
+			{
+				\lib\db\ranks::minus($_args['poll_id'], 'skip');
+			}
+			else
+			{
+				\lib\db\ranks::minus($_args['poll_id'], 'vote');
+			}
 			return debug::title(T_("Your answer has been deleted"));
 		}
 		else

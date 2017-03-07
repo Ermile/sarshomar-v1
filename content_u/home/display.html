@@ -29,7 +29,7 @@
      </select>
         <input type="submit" value='{%trans "Set default language"%}' class="try">
     </form>
-    {%if perm.delete_account.view%}
+    {%if perm.delete_account.view and not perm.admin%}
     <br>
     <form method="post" class="ui-language">
         <input type="hidden" name="delete_account" value="delete_account">

@@ -6,8 +6,15 @@ use \lib\utility\shortURL;
 
 trait ready
 {
+	public static $private_user_id;
+	public static $private_poll_id;
+	public static $current_language;
+	public static $host;
 
 	use api_options;
+	use get_fields;
+	use get_options;
+	use get_answers;
 
 	/**
 	 * ready poll record to show
@@ -21,6 +28,9 @@ trait ready
 	 */
 	public function poll_ready($_poll_data, $_options = [])
 	{
+		// set user id in static
+		self::$private_user_id = $this->user_id;
+
 		$default_options =
 		[
 			'get_tags'           => true,
@@ -32,6 +42,7 @@ trait ready
 			'run_options'        => true,
 			'check_is_my_poll'   => false,
 			'debug'              => true,
+			'filter_chart'       => null,
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);
@@ -40,7 +51,7 @@ trait ready
 		// encode id
 		if(array_key_exists('id', $_poll_data))
 		{
-			$poll_id          = $_poll_data['id'];
+			self::$private_poll_id = $poll_id = $_poll_data['id'];
 			$_poll_data['id'] = shortURL::encode($_poll_data['id']);
 		}
 
@@ -159,335 +170,23 @@ trait ready
 			}
 		}
 
-		$current_language = \lib\define::get_language();
+		self::$current_language = $current_language = \lib\define::get_language();
 
 		$host = Protocol."://" . \lib\router::get_root_domain();
 		$host .= \lib\define::get_current_language_string();
+		self::$host = $host;
 
 		$awaiting_file_url = $host. '/static/images/logo.png';
 
-		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] == '‌')
-		{
-			$_poll_data['title'] = '';
-		}
-
-		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] == '‌')
-		{
-			$_poll_data['slug'] = '';
-		}
-
-		if(array_key_exists('url', $_poll_data))
-		{
-			if($_poll_data['url'] == '‌')
-			{
-				$_poll_data['url'] = '';
-			}
-			else
-			{
-				$_poll_data['url'] = rtrim($host.'/'. $_poll_data['url'], '/');
-			}
-		}
-
-		// encode user id
-		if(array_key_exists('user_id', $_poll_data))
-		{
-			$_poll_data['user_id'] = shortURL::encode($_poll_data['user_id']);
-		}
-
-		// encode parent
-		if(array_key_exists('parent', $_poll_data))
-		{
-			$_poll_data['parent'] = shortURL::encode($_poll_data['parent']);
-		}
-
-		if(array_key_exists('content', $_poll_data))
-		{
-			$_poll_data['description'] = $_poll_data['content'];
-		}
-
-		// encode suervey
-		if(array_key_exists('survey', $_poll_data))
-		{
-			$_poll_data['survey'] = shortURL::encode($_poll_data['survey']);
-		}
-
-		// change have_score field
-		if(array_key_exists('have_score', $_poll_data))
-		{
-			if($_poll_data['have_score'])
-			{
-				$_poll_data['have_score'] = true;
-			}
-			else
-			{
-				$_poll_data['have_score'] = false;
-			}
-		}
-
-		// change is_answered field
-		if(array_key_exists('is_answered', $_poll_data))
-		{
-			if($_poll_data['is_answered'])
-			{
-				$_poll_data['is_answered'] = true;
-			}
-			else
-			{
-				$_poll_data['is_answered'] = false;
-			}
-		}
-		else
-		{
-			$is_answered = utility\answers::is_answered($this->user_id, $poll_id);
-
-			if($is_answered)
-			{
-				$_poll_data['is_answered'] = true;
-			}
-			else
-			{
-				$_poll_data['is_answered'] = false;
-			}
-		}
-
-		// change my_like field
-		if(array_key_exists('my_like', $_poll_data))
-		{
-			if($_poll_data['my_like'])
-			{
-				$_poll_data['my_like'] = true;
-			}
-			else
-			{
-				$_poll_data['my_like'] = false;
-			}
-		}
-		else
-		{
-			$my_like =
-			[
-				'post_id'       => $poll_id,
-				'option_key'    => 'like',
-				'option_status' => 'enable',
-				'option_cat'    => 'user_detail_'. $this->user_id,
-				'user_id'       => $this->user_id,
-				'limit'         => 1,
-			];
-
-			$my_like = \lib\db\options::get($my_like);
-			if($my_like)
-			{
-				$_poll_data['my_like'] = true;
-			}
-
-		}
-
-		// change my_fav field
-		if(array_key_exists('my_fav', $_poll_data))
-		{
-			if($_poll_data['my_fav'])
-			{
-				$_poll_data['my_fav'] = true;
-			}
-			else
-			{
-				$_poll_data['my_fav'] = false;
-			}
-		}
-		else
-		{
-			$my_fav =
-			[
-				'post_id'       => $poll_id,
-				'option_key'    => 'fav',
-				'option_status' => 'enable',
-				'option_cat'    => 'user_detail_'. $this->user_id,
-				'user_id'       => $this->user_id,
-				'limit'         => 1,
-			];
-
-			$my_fav = \lib\db\options::get($my_fav);
-
-			if($my_fav)
-			{
-				$_poll_data['my_fav'] = true;
-			}
-
-		}
-
-		// change have_true_answer field
-		if(array_key_exists('have_true_answer', $_poll_data))
-		{
-			if($_poll_data['have_true_answer'])
-			{
-				$_poll_data['have_true_answer'] = true;
-			}
-			else
-			{
-				$_poll_data['have_true_answer'] = false;
-			}
-		}
-
-		// change sarshomar field
-		if(array_key_exists('sarshomar', $_poll_data) && $_poll_data['sarshomar'])
-		{
-			$_poll_data['sarshomar'] = true;
-		}
-		else
-		{
-			$_poll_data['sarshomar'] = false;
-		}
-
-
-		if(isset($_poll_data['meta']['summary']))
-		{
-			$_poll_data['summary'] = $_poll_data['meta']['summary'];
-			unset($_poll_data['meta']['summary']);
-		}
-
-		if(isset($_poll_data['meta']['access_profile']))
-		{
-			$_poll_data['access_profile'] = $_poll_data['meta']['access_profile'];
-			unset($_poll_data['meta']['access_profile']);
-		}
-
-		unset($_poll_data['meta']);
-		if($_options['get_tags'])
-		{
-			$cat = \lib\db\terms::usage($poll_id, [], 'cat', 'sarshomar');
-			if($cat)
-			{
-				if(isset($cat[0]['id']))
-				{
-					$_poll_data['options']['cat'] = shortURL::encode($cat[0]['id']);
-				}
-			}
-		}
+		/**
+		 * fix field data
+		 */
+		self::get_fields($_poll_data);
 
 		// get opts of poll
 		if($_options['get_opts'] && $poll_id)
 		{
-			$custom_field =
-			[
-				'id',
-				'key',
-				'type',
-				'title',
-				'subtype',
-				'true',
-				'groupscore',
-				'desc',
-				'score',
-				'attachment_id',
-				'attachmenttype',
-			];
-
-			$answers = \lib\db\pollopts::get($poll_id, $custom_field, true);
-
-			$show_answers = [];
-			foreach ($answers as $key => $value)
-			{
-				$attachment = null;
-
-				if($this->access('u','complete_profile', 'admin'))
-				{
-					$opt_profile = [];
-					if(isset($value['id']))
-					{
-						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'sarshomar');
-
-						if($profile && is_array($profile))
-						{
-							foreach ($profile as $k => $v)
-							{
-								if(isset($v['id']))
-								{
-									$opt_profile[$k]['id'] = shortURL::encode($v['id']);
-								}
-
-								if(isset($v['term_title']))
-								{
-									if($v['term_title'] != T_($v['term_title']))
-									{
-										$opt_profile[$k]['title'] = $v['term_title'] . " | ". T_($v['term_title']);
-									}
-									else
-									{
-										$opt_profile[$k]['title'] = $v['term_title'];
-									}
-								}
-								if(isset($v['term_meta']) && is_string($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
-								{
-									$temp_term_meta = json_decode($v['term_meta'], true);
-
-									if(isset($temp_term_meta['translate'][$current_language]))
-									{
-										$opt_profile[$k]['translate'] = $temp_term_meta['translate'][$current_language];
-									}
-								}
-							}
-						}
-					}
-					if(!empty($opt_profile))
-					{
-						$_poll_data['profile'] = true;
-					}
-					$answers[$key]['profile'] = $opt_profile;
-				}
-
-				// unset($answers[$key]['id']);
-
-				if(isset($value['true']) && $value['true'] == '1')
-				{
-					$show_answers[$key]['true'] = true;
-				}
-				else
-				{
-					$show_answers[$key]['true'] = false;
-				}
-
-				if(isset($value['attachment_id']) && $value['attachment_id'])
-				{
-					$attachment = \lib\db\polls::get_poll($value['attachment_id']);
-					$url = null;
-					$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
-
-					if(isset($attachment['meta']) && is_string($attachment['meta']) && substr($attachment['meta'], 0, 1) == '{')
-					{
-						$attachment['meta'] = json_decode($attachment['meta'], true);
-					}
-
-					if(isset($attachment['meta']['url']))
-					{
-						if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
-						{
-							$answers[$key]['file']['url']  = $awaiting_file_url;
-						}
-						else
-						{
-							$answers[$key]['file']['url']  = $host. '/'. $attachment['meta']['url'];
-						}
-					}
-
-					if(isset($attachment['meta']['mime']))
-					{
-						$answers[$key]['file']['mime'] = $attachment['meta']['mime'];
-					}
-				}
-
-				if(isset($value['groupscore']) && $value['groupscore'])
-				{
-					$_poll_data['advance_score'] = true;
-				}
-
-				unset($answers[$key]['attachmenttype']);
-				unset($answers[$key]['attachment_id']);
-				unset($answers[$key]['id']);
-
-				$show_answers[$key] = array_filter($answers[$key]);
-			}
-			// sort($show_naswers);
-			$_poll_data['answers'] = $show_answers;
+			self::get_answers($_poll_data);
 		}
 
 		// get filters of poll
@@ -502,280 +201,24 @@ trait ready
 
 		if(($_options['get_public_result'] || $_options['get_advance_result']) && $poll_id)
 		{
-			$poll_result = [];
-			// show advanced chart
-			$show_chart =
-			[
-				'result',
-				'gender',
-				'marrital',
-				'degree',
-				'range',
-				'city',
-			];
-
-			$poll_result_raw = utility\stat_polls::get_result($poll_id);
-
-			if($_options['get_public_result'])
+			$get_chart_args = [];
+			if($_options['filter_chart'])
 			{
-				if(is_array($_poll_data['answers']))
-				{
-					foreach ($_poll_data['answers'] as $key => $value)
-					{
-						if(isset($value['key']))
-						{
-							$poll_result['total']['valid'][$value['key']]   = ['key' => $value['key'], 'value' => 0];
-							$poll_result['total']['invalid'][$value['key']] = ['key' => $value['key'], 'value' => 0];
-						}
-					}
-				}
-
-				if(isset($poll_result_raw['valid']['result']) && is_array($poll_result_raw['valid']['result']))
-				{
-					foreach ($poll_result_raw['valid']['result'] as $key => $value)
-					{
-						if(substr($key, 0,4) == 'opt_')
-						{
-							$poll_result['total']['valid'][substr($key, 4)] = ['key' => substr($key, 4), 'value' => $value];
-						}
-					}
-				}
-
-				if(isset($poll_result['total']['valid']))
-				{
-					sort($poll_result['total']['valid']);
-				}
-
-				if(isset($poll_result_raw['invalid']['result']) && is_array($poll_result_raw['invalid']['result']))
-				{
-					foreach ($poll_result_raw['invalid']['result'] as $key => $value)
-					{
-						if(substr($key, 0,4) == 'opt_')
-						{
-							$poll_result['total']['invalid'][substr($key, 4)] = ['key' => substr($key, 4), 'value' => $value];
-						}
-					}
-				}
-
-				if(isset($poll_result['total']['invalid']))
-				{
-					sort($poll_result['total']['invalid']);
-				}
+				$get_chart_args = ['filter' => $_options['filter_chart']];
 			}
 
-			if($_options['get_advance_result'] && is_array($poll_result_raw))
-			{
-				$advance_result = [];
-
-				if(isset($poll_result_raw['valid']) && is_array($poll_result_raw['valid']))
-				{
-					foreach ($poll_result_raw['valid'] as $key => $value)
-					{
-						if(!in_array($key, $show_chart))
-						{
-							continue;
-						}
-						if($key !== 'result')
-						{
-							if(is_array($value))
-							{
-								foreach ($value as $k => $v)
-								{
-									if(substr($k, 0,4) == 'opt_')
-									{
-										// $poll_result['advance_stats']['valid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
-										$poll_result['advance_stats']['valid'][$key][substr($k, 4)] = $v;
-									}
-								}
-							}
-						}
-					}
-				}
-
-				if(isset($poll_result['advance_stats']['valid']))
-				{
-					// sort($poll_result['advance_stats']['valid']);
-				}
-
-				if(isset($poll_result_raw['invalid']) && is_array($poll_result_raw['invalid']))
-				{
-					foreach ($poll_result_raw['invalid'] as $key => $value)
-					{
-						if(!in_array($key, $show_chart))
-						{
-							continue;
-						}
-						if($key !== 'result')
-						{
-							if(is_array($value))
-							{
-								foreach ($value as $k => $v)
-								{
-									if(substr($k, 0,4) == 'opt_')
-									{
-										// $poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = ['key' => substr($k, 4), 'value' => $v];
-										$poll_result['advance_stats']['invalid'][$key][substr($k, 4)] = $v;
-									}
-								}
-							}
-						}
-					}
-				}
-
-				if(isset($poll_result['advance_stats']['invalid']))
-				{
-					// sort($poll_result['advance_stats']['invalid']);
-				}
-			}
-
-			$_poll_data['stats'] = $poll_result;
+			$poll_result = utility\stat_polls::get_result($poll_id, $get_chart_args);
+			$_poll_data['result'] = $poll_result;
 		}
 
 		if($_options['get_options'])
 		{
-			$post_meta = \lib\db\posts::get_post_meta($poll_id);
-			if(is_array($post_meta))
-			{
-				$temp_options = array_column($post_meta, 'option_value', 'option_key');
-				$show_options = [];
-				foreach ($temp_options as $key => $value)
-				{
-
-					if($value == '1')
-					{
-						$show_options[$key] = true;
-					}
-
-					if($key === 'multi_min' || $key === 'multi_max')
-					{
-						$show_options['multi'][substr($key,6)] = (int) $value;
-					}
-
-				}
-				if(!empty($show_options))
-				{
-					if(isset($_poll_data['options']) && is_array($_poll_data['options']) && is_array($show_options))
-					{
-						$_poll_data['options'] = array_merge($_poll_data['options'], $show_options);
-					}
-					else
-					{
-						$_poll_data['options'] = $show_options;
-					}
-				}
-			}
-
-			$poll_tree_answer = [];
-			$poll_articles    = [];
-
-			foreach ($post_meta as $key => $value)
-			{
-				if(isset($value['option_key']) && preg_match("/^tree/", $value['option_key']))
-				{
-					if(isset($value['option_value']))
-					{
-						array_push($poll_tree_answer, $value['option_value']);
-					}
-				}
-
-				if(isset($value['option_key']) && preg_match("/^articles/", $value['option_key']))
-				{
-					if(isset($value['option_value']))
-					{
-						array_push($poll_articles, shortURL::encode($value['option_value']));
-					}
-				}
-
-				if(isset($value['option_key']) && $value['option_key'] == 'title_attachment')
-				{
-					$attachment = \lib\db\polls::get_poll($value['option_value']);
-					if(isset($attachment['meta']['url']))
-					{
-						if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
-						{
-							$_poll_data['file']['url'] = $awaiting_file_url;
-						}
-						else
-						{
-							$_poll_data['file']['url'] = $host. '/'. $attachment['meta']['url'];
-						}
-					}
-
-					if(isset($value['option_meta']['type']))
-					{
-						$_poll_data['file']['type'] = $value['option_meta']['type'];
-					}
-				}
-			}
-
-			$_poll_data['articles'] = $poll_articles;
-
-			if(!empty($poll_tree_answer) && isset($_poll_data['parent']))
-			{
-				$_poll_data['tree'] = [];
-				// $_poll_data_tree = utility\poll_tree::get($poll_id);
-
-				// if($_poll_data_tree && is_array($_poll_data_tree))
-				// {
-				// 	$opt = array_column($_poll_data_tree, 'value');
-					$_poll_data['tree']['parent']  = $_poll_data['parent'];
-					$_poll_data['tree']['title']   = \lib\db\polls::get_poll_title(shortURL::decode($_poll_data['parent']));
-					$_poll_data['tree']['answers'] = $poll_tree_answer;
-					unset($_poll_data['parent']);
-				// }
-			}
-
-			$post_meta_key = array_column($post_meta, 'option_key');
-
-			if(in_array('random_sort', $post_meta_key) && $_options['run_options'])
-			{
-				if(array_key_exists('answers', $_poll_data) && is_array($_poll_data['answers']))
-				{
-					$new  = [];
-					$keys = array_keys($_poll_data['answers']);
-			        shuffle($keys);
-			        ;
-			        foreach($keys as $key => $value)
-			        {
-			        	$new[$value] = $_poll_data['answers'][$value];
-			        }
-			        $_poll_data['answers'] = $new;
-
-				}
-
-				// unset($_poll_data['options']['random_sort']);
-			}
-
-			if(in_array('hidden_result', $post_meta_key) && $_options['run_options'])
-			{
-				unset($_poll_data['stats']);
-				// unset($_poll_data['options']['hidden_result']);
-			}
-
-			$brand = [];
-
-			foreach ($post_meta as $key => $value)
-			{
-				if($value['option_key'] == 'brand')
-				{
-					$brand['title'] = $value['option_value'];
-					if(isset($value['option_meta']['url']))
-					{
-						$brand['url'] = $value['option_meta']['url'];
-					}
-				}
-			}
-
-			if(!empty($brand))
-			{
-				$_poll_data['brand'] = $brand;
-				unset($_poll_data['options']['brand']);
-			}
+			self::get_options($_poll_data);
 		}
 
 		if($_options['get_tags'])
 		{
-			$tag = \lib\db\terms::usage($poll_id, [], 'tag', 'sarshomar%');
+			$tag = \lib\db\terms::usage($poll_id, [], 'tag', 'sarshomar_tag');
 			$new_tag = [];
 
 			if($tag && is_array($tag))

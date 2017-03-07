@@ -220,10 +220,11 @@ class polldetails
 
 		$default_option =
 		[
-			'answer_txt' => null,
-			'validation' => 'invalid',
-			'port'       => 'site',
-			'subport'    => null
+			'answer_txt'  => null,
+			'validation'  => 'invalid',
+			'user_verify' => null,
+			'port'        => 'site',
+			'subport'     => null
 		];
 		$_option = array_merge($default_option, $_option);
 
@@ -235,6 +236,26 @@ class polldetails
 		{
 			$port = "'$_option[port]'";
 		}
+
+		$validation = "'invalid'";
+
+		switch ($_option['user_verify'])
+		{
+			case 'mobile':
+			case 'complete':
+				$validation = "'valid'";
+				break;
+
+			case 'uniqueid':
+				$validation = "'invalid'";
+				break;
+
+			case 'unknown':
+			default:
+				$validation = "NULL";
+				break;
+		}
+
 
 		if($_option['subport'] == null)
 		{
@@ -264,7 +285,7 @@ class polldetails
 				polldetails.post_id     = $_poll_id,
 				polldetails.port        = $port,
 				polldetails.subport     = $subport,
-				polldetails.validstatus = '$_option[validation]',
+				polldetails.validstatus = $validation,
 				polldetails.opt         = $_opt,
 				polldetails.type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
 				polldetails.txt         = '$_option[answer_txt]',
@@ -279,7 +300,7 @@ class polldetails
 				polldetails.post_id     = $_poll_id,
 				polldetails.port        = $port,
 				polldetails.subport     = $subport,
-				polldetails.validstatus = '$_option[validation]',
+				polldetails.validstatus = $validation,
 				polldetails.opt         = $_opt,
 				polldetails.type        = (SELECT post_type FROM posts WHERE posts.id = $_poll_id LIMIT 1),
 				polldetails.txt         = '$_option[answer_txt]',

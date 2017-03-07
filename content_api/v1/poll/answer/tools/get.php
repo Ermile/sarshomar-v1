@@ -50,9 +50,22 @@ trait get
 				{
 					foreach ($is_answer as $key => $value)
 					{
-						if(isset($value['status']) && isset($value['opt']) && $value['status'] == 'enable' && isset($value['txt']) && isset($value['answertype']))
+						if(
+							isset($value['opt']) 					&&
+							array_key_exists('txt', $value) 		&&
+							array_key_exists('answertype', $value) 	&&
+							array_key_exists('status', $value) 		&&
+							$value['status'] == 'enable'
+						  )
 						{
-							$current[] =['key' => (int) $value['opt'], 'type' => $value['answertype'], $value['answertype'] => $value['txt']];
+							if($value['opt'] === '0')
+							{
+								$current[] = ['key' => (int) $value['opt'], 'type' => "skipped"];
+							}
+							else
+							{
+								$current[] = ['key' => (int) $value['opt'], 'type' => $value['answertype'], $value['answertype'] => $value['txt']];
+							}
 						}
 					}
 				}
@@ -63,19 +76,10 @@ trait get
 				}
 				else
 				{
-					if(!empty($current))
+					if(!empty($current) && is_array($current))
 					{
-						$msg = T_("You have answered to option :opt", ['opt' => implode(',', array_keys($current))]);
+						$msg = T_("You have answered to option :opt", ['opt' => implode(',', array_column($current, 'key'))]);
 					}
-					// foreach ($current as $key => $value)
-					// {
-					// 	if($key == '0')
-					// 	{
-					// 		$msg = T_("You have already skipped this question");
-					// 		// $current[$key] = 'skipped';
-					// 		break;
-					// 	}
-					// }
 				}
 
 				$answer_args =
