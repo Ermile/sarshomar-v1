@@ -15,6 +15,34 @@ class model extends \mvc\model
 			return $this->set_ui_language();
 		}
 
+		if(utility::post('delete_account'))
+		{
+			if($this->access('u','delete_account', 'view') && $this->login('mobile') && $this->login('id'))
+			{
+				$mobile = $this->login('mobile');
+				$get_count_mobile = "SELECT count(users.id) AS `count` FROM users WHERE user_mobile LIKE '$mobile%' ";
+				$get_count_mobile = \lib\db::get($get_count_mobile, 'count', true);
+				$get_count_mobile = intval($get_count_mobile);
+				$new_mobile       = $mobile . '_'. ($get_count_mobile + 1);
+				$user_id          = $this->login('id');
+
+				$query =
+				"
+				UPDATE users SET
+				users.user_mobile = '$new_mobile',
+				users.user_status = 'delete'
+				WHERE id = $user_id
+				LIMIT 1
+				";
+				\lib\db::query($query);
+				$this->redirector("/logout")->redirect();
+			}
+			else
+			{
+				return debug::error(T_("Can not access to delete your account"));
+			}
+		}
+
 		$captcha = utility::post("captcha");
 		if(utility\captcha::check($captcha))
 		{

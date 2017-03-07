@@ -267,5 +267,17 @@ $modules['telegram_dev'] =
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
+
+/**
+ * dev.telegram.bot
+ */
+$modules['delete_account'] =
+[
+	'desc'        => T_("Allow to delete account"),
+	'icon'        => 'file-text-o',
+	'permissions' => ['view'],
+];
+
+
 return ["modules" => $modules];
 ?>
