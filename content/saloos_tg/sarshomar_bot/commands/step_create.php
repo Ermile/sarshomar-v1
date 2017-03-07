@@ -211,11 +211,6 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
-			handle::send_log([
-				'type' => $get_poll ? 'patch' : 'post',
-				'debug' => \lib\debug::compile(),
-				'request' => \lib\utility::request(),
-				]);
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
@@ -285,7 +280,6 @@ class step_create
 
 		$txt_text = $maker->message->make();
 
-		handle::send_log(session::get('poll_options' , 'type'));
 		if(!session::get('poll_options' , 'type'))
 		{
 			$maker->message->add('insert', T_("Please select the type of your poll from the options below"));

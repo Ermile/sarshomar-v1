@@ -11,6 +11,11 @@ class handle
 
 	public static function exec($_cmd, $_run = false)
 	{
+		$spammer = spammer::check();
+		if($spammer)
+		{
+			return $spammer;
+		}
 		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
 		{
 			exit();
@@ -29,7 +34,7 @@ class handle
 
 			if(is_null($query_get))
 			{
-				exit();
+				// exit();
 			}
 
 			$valid_id = [58164083, 46898544];
