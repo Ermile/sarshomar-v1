@@ -2,6 +2,7 @@
 namespace content\saloos_tg\sarshomar_bot\commands;
 
 use \lib\telegram\tg as bot;
+use \lib\telegram\step;
 
 class spammer
 {
@@ -26,7 +27,7 @@ class spammer
 			]);
 		if(empty($get_count_log))
 		{
-			$set_meta = ['count' => 0, "time" => microtime(true)];
+			$set_meta = [$on_spam . '_count' => 0, "time" => microtime(true)];
 			\lib\db\options::insert([
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
@@ -40,10 +41,10 @@ class spammer
 
 		if(isset($meta['deny_time']))
 		{
-			if($meta['deny_time'] + 60 < microtime(true))
+			if($meta['deny_time'] + 20 < microtime(true))
 			{
 				\lib\db\options::update([
-				"option_meta" => self::set_meta(['count' => 0, 'time' => microtime(true)])
+				"option_meta" => self::set_meta(['time' => microtime(true)])
 	 			], $get_count_log['id']);
 			}
 			else
@@ -71,7 +72,7 @@ class spammer
 		$overflow = self::{"overflow_" . $on_spam}($meta);
 		if($overflow)
 		{
-			handle::send_log($overflow);
+			step::stop();
 			\lib\db\options::update([
 			"option_meta" => self::set_meta(['deny_time' => microtime(true)])
  			], $get_count_log['id']);
@@ -84,7 +85,10 @@ class spammer
 		}
 
 		\lib\db\options::update([
-			"option_meta" => self::set_meta(['count' => ++$meta['count'], "time" => $meta['time']])
+			"option_meta" => self::set_meta([
+				$on_spam .'_count' => isset($meta[$on_spam .'_count']) ? ++$meta[$on_spam .'_count'] : 0,
+				"time" => $meta['time']
+				])
  			], $get_count_log['id']);
 
 		return false;
@@ -92,7 +96,7 @@ class spammer
 
 	public static function overflow_message($_meta)
 	{
-		if($_meta['time'] + 40 >= microtime(true) && $_meta['count'] >= 20)
+		if($_meta['time'] + 40 >= microtime(true) && $_meta['message_count'] >= 20)
 		{
 			return [
 			'text' => T_("You are banned for :seconds seconds", ['seconds' => 20]),
@@ -111,7 +115,7 @@ class spammer
 
 	public static function overflow_callback_query($_meta)
 	{
-		if($_meta['time'] + 15 >= microtime(true) && $_meta['count'] >= 4)
+		if($_meta['time'] + 4 >= microtime(true) && $_meta['callback_query_count'] >= 6)
 		{
 			$message_result = [
 				'method'=> "answerCallbackQuery",
