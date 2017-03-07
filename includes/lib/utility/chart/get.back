@@ -49,8 +49,7 @@ trait get
 		// get poll ansewrs
 		$answers = \lib\db\pollopts::get($_poll_id);
 		$poll    = \lib\db\polls::get_poll($_poll_id);
-		var_dump($poll);
-		exit();
+
 
 		// get the poll chart title
 		$title = T_("Untitled poll");

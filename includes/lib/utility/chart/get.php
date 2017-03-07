@@ -90,11 +90,12 @@ trait get
 			return debug::error(T_("Invalid chart filter"), 'db', 'system');
 		}
 
-		$valid_result_raw   = [];
-		$invalid_result_raw = [];
-		$cats               = [];
-		$return             = [];
-		$return['total']    = [];
+		$valid_result_raw       = [];
+		$invalid_result_raw     = [];
+		$cats                   = [];
+		$return                 = [];
+		$return['total']        = [];
+		$return['total']['sum'] = 0;
 
 		if($valid)
 		{
@@ -259,6 +260,10 @@ trait get
 					}
 				}
 			}
+		}
+		if(isset($return['total']))
+		{
+			$return['total']['sum'] = array_sum($return['total']);
 		}
 		$return['answers'] = $stats;
 		return $return;

@@ -359,7 +359,7 @@ class answers
 					'poll_id'     => $_args['poll_id'],
 					'opt_key'     => $key,
 					'user_id'     => $_args['user_id'],
-					'update_mode' => false,
+					'update_mode' => ($user_delete_answer) ? true : false,
 				];
 				// save user profile if this poll is a profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
