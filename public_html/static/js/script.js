@@ -1318,11 +1318,7 @@ function detectStep(_name)
 			break;
 
 		case 'factor':
-			$('#totalPrice').addClass('isHighlight');
-			setTimeout(function()
-			{
-				$('#totalPrice').removeClass('isHighlight');
-			}, 700);
+			highlightIt($('#totalPrice'));
 		case 'step-publish':
 		case 'step3':
 			if(firstTime)
@@ -1769,21 +1765,8 @@ function calcTotalPrice(_delay)
 		{
 			elCostVal.attr('data-val', totalPrice).text(fitNumber(totalPrice));
 			elCost.addClass('isCurrent');
-
-
-			elCost.addClass('isHighlight');
-
-			var saveTimeout = elCost.attr('data-timeout');
-			if(saveTimeout)
-			{
-				clearTimeout(saveTimeout);
-			}
-			var savingTimeout = setTimeout(function()
-			{
-				elCost.attr('data-timeout', null);
-				elCost.removeClass('isHighlight');
-			}, 700);
-			elCost.attr('data-timeout', savingTimeout);
+			// highlight cost
+			highlightIt(elCost);
 		}
 
 		return totalPrice;
@@ -2569,11 +2552,7 @@ function handleSyncProcess()
 		{
 			// it's lock. do nothing
 			detectStep('step3');
-			$('.stepPublish .changeStatus').addClass('isHighlight');
-			setTimeout(function()
-			{
-				$('.stepPublish .changeStatus').removeClass('isHighlight');
-			}, 1000);
+			highlightIt($('.stepPublish .changeStatus'), 1000);
 		}
 		else
 		{
@@ -2952,13 +2931,26 @@ function saveAnswers(_type)
 
 				case "multi":
 					var checkedAns = answerBox.find('input[type="checkbox"]:checked');
+					var multiMin   = answerBox.attr('data-multi-min');
+					var multiMax   = answerBox.attr('data-multi-max');
+					var multiSelectedLen = checkedAns.length;
+					if(multiMin && multiSelectedLen < multiMin)
+					{
+						highlightIt($('.poll-container .poll-hint'));
+						return 'min';
+					}
+					if(multiMax && multiSelectedLen > multiMax)
+					{
+						highlightIt($('.poll-container .poll-hint'));
+						return 'max';
+					}
+
 					data.answer = {};
-					if(checkedAns.length)
+					if(multiSelectedLen)
 					{
 						checkedAns.each(function()
 						{
 							var myVal = $(this).val();
-							console.log(myVal);
 							data.answer[myVal] = true;
 						});
 						answerSelected = true;
@@ -2971,8 +2963,8 @@ function saveAnswers(_type)
 			}
 			break;
 	}
-	data = JSON.stringify(data);
 
+	data = JSON.stringify(data);
 	$('#saveAnswers').ajaxify(
 	{
 		ajax:
@@ -2993,6 +2985,33 @@ function saveAnswers(_type)
 		},
 		// lockForm: false,
 	});
+}
+
+
+/**
+ * [highlightIt description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function highlightIt(_selector, _delay)
+{
+	if(!_delay)
+	{
+		_delay = 700;
+	}
+	// add highlight class
+	_selector.addClass('isHighlight');
+	var saveTimeout = _selector.attr('data-timeout-highlight');
+	if(saveTimeout)
+	{
+		clearTimeout(saveTimeout);
+	}
+	var savingTimeout = setTimeout(function()
+	{
+		_selector.attr('data-timeout-highlight', null);
+		_selector.removeClass('isHighlight');
+	}, _delay);
+	_selector.attr('data-timeout-highlight', savingTimeout);
 }
 
 
