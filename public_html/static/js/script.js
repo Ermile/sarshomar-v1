@@ -3003,7 +3003,7 @@ function saveAnswers(_type)
  */
 function uncheckRadio(_this)
 {
-	var radioEl = $(_this).parent().find('input[name="anwserOpt"]');
+	var radioEl = $(_this).parent().find('input');
 	if($(radioEl).is(':checked') && $(radioEl).attr('disabled') === undefined)
 	{
 		$(radioEl).attr('checked', false);
