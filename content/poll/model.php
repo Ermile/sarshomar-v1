@@ -102,37 +102,22 @@ class model extends \content\home\model
 		{
 			$poll_id       = $this->check_url(true);
 			$this->user_id = $this->login('id');
-			utility::set_request_array(['id' => $poll_id]);
-			$result = $this->poll_stats();
+			$request = [];
+			$request['id'] = $poll_id;
 
 			switch (utility::get('chart'))
 			{
-				// case 'gender':
-
 				case 'result':
-					if(isset($result['total']))
-					{
-						$result = $result['total'];
-					}
+					// no thing...
 					break;
 
 				default:
-					$result = $this->am_chart($result, utility::get("chart"));
+					$request['type'] = utility::get('chart');
 					break;
 			}
 
-			if(isset($result['valid']))
-			{
-				$result = $result['valid'];
-			}
-			elseif(isset($result['invalid']))
-			{
-				$result = $result['invalid'];
-			}
-			else
-			{
-				$result = [];
-			}
+			utility::set_request_array($request);
+			$result = $this->poll_stats();
 			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
 			return true;
 		}

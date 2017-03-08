@@ -59,18 +59,13 @@ class view extends \mvc\view
 			$this->data->answer_lock = $this->model()->answer_lock($poll['id']);
 		}
 
-		$advance_stats_title = [];
-		if(isset($poll['stats']['advance_stats']['valid']))
-		{
-			$advance_stats_title = array_keys($poll['stats']['advance_stats']['valid']);
-		}
 
-		if(isset($poll['stats']['advance_stats']['invalid']))
-		{
-			$advance_stats_title = array_merge($advance_stats_title,array_keys($poll['stats']['advance_stats']['invalid']));
-		}
-
-		$this->data->chart['stacked'] = array_flip($advance_stats_title);
+		$this->data->chart['stacked'] =
+		[
+			'gender' => 'gender',
+			'age'    => 'age',
+			'range'  => 'range'
+		];
 
 		// set title and desc of each page
 		$poll_title = null;

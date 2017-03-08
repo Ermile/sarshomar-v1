@@ -130,14 +130,19 @@ trait set
 			$plus = false;
 		}
 
+		$delete_answer = false;
 		$update_mode = false;
 		// default answer of users not in update mode
 		// but when the user update her answer
 		// we must update the user answer
 		// and we don't plus the total of pollstats
-		if(isset($_args['update_mode']) && $_args['update_mode'] === true)
+		if($_args['update_mode'] === true)
 		{
 			$update_mode = true;
+		}
+		elseif($_args['update_mode'] === 'delete')
+		{
+			$delete_answer = true;
 		}
 
 		// default port of user answer is 'site'
@@ -226,6 +231,10 @@ trait set
 			if($plus && !$update_mode)
 			{
 				$pollstats['total']++;
+			}
+			elseif($delete_answer &&  (int) $pollstats['total'] > 0)
+			{
+				$pollstats['total']--;
 			}
 		}
 		// first times to set the total fields
