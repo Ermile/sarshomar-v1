@@ -706,7 +706,7 @@ function drawChart()
 
 		if(attrFormat && typeof window[attrFormat] == 'function')
 		{
-			myChartOptions = window[attrFormat](myChartOptions, attrVals);
+			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
 		}
 
 		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
@@ -743,19 +743,25 @@ function redrawChart(_data)
 		// if(newChartData && newChartData.valid)
 		if(newChartData)
 		{
-			// console.log(newChartData);
+			var myChart = $('.chart');
+			myChart.attr('data-format', 'pollTotal' + chartType);
+			console.log(newChartData);
+			var drawData = newChartData['answers'];
+			// pollTotal
+			console.log(drawData);
+			console.log(chartType);
 			// newChartData = newChartData.valid;
 			// newChartData[0].value = 20;
 			// newChartData[1].value = 30;
 			// console.log(newChartData);
-			var myChart   = $('.chart').data('chart');
+			var myChart   = myChart.data('chart');
 			if(newChartData)
 			{
 				$('.isDataNotExist').fadeOut();
 			}
 
 			//Setting the new data to the graph
-			myChart.dataProvider = newChartData;
+			myChart.dataProvider = drawData;
 			myChart.animateAgain();
 			//Updating the graph to show the new data
 			myChart.validateData();
@@ -885,6 +891,58 @@ function dashboardPie(_option, _vals)
 	// empty inner box of chart
 	_option.radius          = "20%";
 	_option.innerRadius     = "60%";
+	return _option;
+}
+
+
+/**
+ * [pollTotal description]
+ * @param  {[type]} _option [description]
+ * @param  {[type]} _vals   [description]
+ * @param  {[type]} _this   [description]
+ * @return {[type]}         [description]
+ */
+function pollTotal(_option, _vals, _this)
+{
+	var transText = _this.attr('data-trans');
+	if(transText)
+	{
+		transText =JSON.parse(transText);
+	}
+
+	_option.colors = ["#00667a", "#d8d8d8" ];
+
+	_option.valueAxes =
+	[{
+		"stackType": "regular",
+		"axisAlpha": 0.1,
+		"gridAlpha": 0,
+	}];
+
+	_option.graphs =
+	[
+		{
+			"type": "column",
+			"title": transText.trust,
+			"valueField": "value_trust",
+			"balloonText": "[[title]] [" + transText.trust + "] <br/><b>[[value]]</b> " + transText.vote,
+			"labelText": "[[value]]",
+			"fillAlphas": 0.9,
+			"lineAlpha": 0.2,
+		},
+		{
+			"type": "column",
+			"title": transText.untrust,
+			"valueField": "value_untrust",
+			"balloonText": "[[title]] [" + transText.untrust + "] <br/><b>[[value]]</b> " + transText.vote,
+			"labelText": "[[value]]",
+			"fillAlphas": 0.5,
+			"lineAlpha": 0.2,
+			"clustered":false,
+		},
+	];
+    _option.categoryField = "title";
+
 	return _option;
 }
 

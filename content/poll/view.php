@@ -14,6 +14,14 @@ class view extends \mvc\view
 			$this->include->js_main = true;
 		}
 
+		$this->data->poll_trans =
+		[
+			"trust"   => T_("trust"),
+			"untrust" => T_("unreliable"),
+			"vote"    => T_("vote"),
+		];
+		$this->data->poll_trans = json_encode($this->data->poll_trans, JSON_UNESCAPED_UNICODE);
+
 	}
 
 
@@ -120,9 +128,10 @@ class view extends \mvc\view
 		}
 		$this->data->poll      = $poll;
 
-		if(isset($poll['stats']['total']['valid']))
+		if(isset($poll['result']['answers']))
 		{
-			$this->data->poll_total_stats = json_encode($poll['stats']['total']['valid'], JSON_UNESCAPED_UNICODE);
+			$myChart = $poll['result']['answers'];
+			$this->data->poll_total_stats = json_encode($myChart, JSON_UNESCAPED_UNICODE);
 		}
 	}
 

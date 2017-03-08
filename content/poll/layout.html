@@ -320,7 +320,7 @@
 
 {%block chart%}
 {% spaceless %}
- <div class="chart unselectable" data-type='column' data-vals='{{poll_total_stats|raw}}'></div>
+ <div class="chart unselectable" data-format='pollTotal' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
 {% endspaceless %}
 {%endblock%}
 
