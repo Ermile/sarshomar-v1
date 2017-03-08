@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-03-08 08:16+0330\n"
-"PO-Revision-Date: 2017-03-08 08:16+0330\n"
+"PO-Revision-Date: 2017-03-08 08:33+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -3966,7 +3966,7 @@ msgstr "شما می‌توانید حداکثر :max گزینه را انتخا�
 
 #: sarshomar/content/poll/view.php:174
 msgid "You can select all of the options"
-msgstr ""
+msgstr "شما می‌توانید تمامی گزینه‌ها را انتخاب کنید"
 
 #: sarshomar/content/referer/instagram/model.php:37
 msgid "Token error"
