@@ -171,9 +171,9 @@ trait add
 				$multi_min = (int) $poll['options']['multi']['min'];
 			}
 
-			if(isset($poll['options']['multi']['min']))
+			if(isset($poll['options']['multi']['max']))
 			{
-				$multi_min = (int) $poll['options']['multi']['min'];
+				$multi_max = (int) $poll['options']['multi']['max'];
 			}
 		}
 
@@ -282,6 +282,56 @@ trait add
 		if(empty($true_answer))
 		{
 			return debug::error(T_("No answer was set"), 'answer', 'id');
+		}
+
+		if($multi)
+		{
+			$check_multi = true;
+			// show best message depending on min and max
+			if($multi_min && $multi_max)
+			{
+				if($multi_min === $multi_max)
+				{
+					if(count($true_answer) !== $multi_min)
+					{
+						$check_multi = false;
+						$multi_msg = T_("You should exactly select :min options", ["min" => $multi_min]);
+					}
+				}
+				else
+				{
+					if(count($true_answer) > $multi_max || count($true_answer) < $multi_min)
+					{
+						$check_multi = false;
+						$multi_msg = T_("You can select at least :min and at most :max options", ["min" => $multi_min, "max" => $multi_max ]);
+					}
+				}
+			}
+			elseif($multi_min)
+			{
+				if(count($true_answer) < $multi_min)
+				{
+					$check_multi = false;
+					$multi_msg = T_("You should select at least :min options", ["min" => $multi_min ]);
+				}
+			}
+			elseif($multi_max)
+			{
+				if(count($true_answer) > $multi_max)
+				{
+					$check_multi = false;
+					$multi_msg = T_("You can select at most :max options", ["max" => $multi_max]);
+				}
+			}
+			else
+			{
+				// $multi_msg = T_("You can select all of the options");
+			}
+
+			if(!$check_multi)
+			{
+				return debug::error($multi_msg);
+			}
 		}
 
 		$poll_id = shortURL::decode(utility::request('id'));
