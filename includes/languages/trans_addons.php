@@ -9,6 +9,7 @@ private function transtext()
 
 	//----------------------------------saloos-addons\content_account\home\layout.html
 	echo T_("Work with Ermile in your own language");                                 // Line 40
+	echo T_("Pending");                                                               // Line 59
 
 	//--------------------------------saloos-addons\content_account\login\display.html
 	echo T_("Click here for recovery your password");                                 // Line 7
@@ -60,8 +61,8 @@ private function transtext()
 	echo T_("Use this menu for navigating to all part of control panel");             // Line 8
 	echo T_("Dashboard");                                                             // Line 93 Seperate
 	echo T_("Homepage");                                                              // Line 76 Seperate
-	echo T_("Next →");                                                              // Line 21
-	echo T_("← Back");                                                              // Line 21
+	echo T_("Next →");                                                                // Line 21
+	echo T_("← Back");                                                                // Line 21
 	echo T_("Skip");                                                                  // Line 21
 	echo T_("Done");                                                                  // Line 21
 	echo T_("Help");                                                                  // Line 23
@@ -186,7 +187,7 @@ private function transtext()
 
 	//-----------------------------saloos-addons\content_cp\templates\child_terms.html
 	echo T_("Click to check result");                                                 // Line 11
-	echo T_("What’s the difference between categories and tags?");                  // Line 15
+	echo T_("What’s the difference between categories and tags?");                    // Line 15
 	echo T_("If you think of your site like a book, the categories are like the Table of Contents and the tags are like the terms in the index.");// Line 15
 	echo T_("You can nest category under other category by making one the “Parent” of the other.");// Line 45
 
@@ -220,7 +221,7 @@ private function transtext()
 	echo T_("answered");                                                              // Line 270
 
 	//---------------------------------saloos-addons\content_cp\templates\sidebar.html
-	echo T_("What’s the difference between posts and pages?");                      // Line 56
+	echo T_("What’s the difference between posts and pages?");                        // Line 56
 	echo T_("Pages are similar to Posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts.");// Line 56
 	echo T_("Pages are not categorized or tagged, but can have a hierarchy.");        // Line 56
 	echo T_("Draft");                                                                 // Line 78
@@ -524,10 +525,10 @@ private function transtext()
 	echo T_("Cancel registration and return to main menu");                           // Line 371 Seperate
 	echo T_("Please only use below keyboard");                                        // Line 372 Seperate
 	echo T_("We need your contact!");                                                 // Line 373 Seperate
-	echo T_("Register User 📱");                                                    // Line 376 Seperate
+	echo T_("Register User 📱");                                                       // Line 376 Seperate
 	echo T_("Register User");                                                         // Line 377 Seperate
 	echo T_("Return");                                                                // Line 378 Seperate
-	echo T_("Register Mobile Number 📱");                                           // Line 379 Seperate
+	echo T_("Register Mobile Number 📱");                                              // Line 379 Seperate
 	echo T_("Register Mobile Number");                                                // Line 380 Seperate
 	echo T_("Register Address");                                                      // Line 381 Seperate
 	echo T_("By completing your profile, help us to present better service.");        // Line 382 Seperate

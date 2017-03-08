@@ -23,7 +23,7 @@ private function transtext()
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 78
-	echo T_("Quick Access");                                                          // Line 114
+	echo T_("Quick Access");                                                          // Line 121
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 40
@@ -75,7 +75,7 @@ private function transtext()
 	echo T_("Edit");                                                                  // Line 11
 	echo T_("Title");                                                                 // Line 10
 	echo T_("Status");                                                                // Line 11
-	echo T_("Comments");                                                              // Line 55
+	echo T_("Comments");                                                              // Line 62
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
 	echo T_("(Untitled)");                                                            // Line 43
@@ -135,9 +135,9 @@ private function transtext()
 	echo T_("Password");                                                              // Line 367
 	echo T_("Login");                                                                 // Line 6
 	echo T_("Try Sarshomar");                                                         // Line 37
-	echo T_("Next →");                                                              // Line 46
-	echo T_("← Back");                                                              // Line 46
-	echo T_("Skip");                                                                  // Line 191
+	echo T_("Next →");                                                                // Line 46
+	echo T_("← Back");                                                                // Line 46
+	echo T_("Skip");                                                                  // Line 198
 	echo T_("Done");                                                                  // Line 46
 
 	//-------------------------------------------------------content\poll\display.html
@@ -262,6 +262,9 @@ private function transtext()
 	echo T_("Join our team");                                                         // Line 73
 	echo T_("If you have any questions, our contact and support center is always ready to help.");// Line 79
 	echo T_("Get in touch");                                                          // Line 80
+
+	//----------------------------------------------content\template\static\brand.html
+	echo T_("Brand");                                                                 // Line 6
 
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("in preparation");                                                        // Line 4
@@ -400,9 +403,6 @@ private function transtext()
 	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 14
 	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 16
 	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 16
-
-	//-----------------------------------------------content\template\static\logo.html
-	echo T_("Our Logo");                                                              // Line 10
 
 	//--------------------------------------------content\template\static\mission.html
 
@@ -939,22 +939,23 @@ private function transtext()
 	echo T_("Thank you for completing profile");                                      // Line 19
 	echo T_("Default language");                                                      // Line 25
 	echo T_("Set default language");                                                  // Line 30
-	echo T_("Sync with Instagram");                                                   // Line 32
-	echo T_("Referred People");                                                       // Line 43
-	echo T_("None");                                                                  // Line 81
-	echo T_("Published Polls");                                                       // Line 67
-	echo T_("Draft Polls");                                                           // Line 78
-	echo T_("Likes");                                                                 // Line 90
-	echo T_("Activities Report");                                                     // Line 103
-	echo T_("Create new poll");                                                       // Line 118
-	echo T_("My polls");                                                              // Line 121
-	echo T_("Ask me");                                                                // Line 124
-	echo T_("Credit");                                                                // Line 133
-	echo T_("Recent Activities");                                                     // Line 144
-	echo T_("You've had no activities yet");                                          // Line 146
-	echo T_("Question Answered");                                                     // Line 184
-	echo T_("Remained");                                                              // Line 186
-	echo T_("Answered");                                                              // Line 196
+	echo T_("Delete Account");                                                        // Line 36
+	echo T_("Sync with Instagram");                                                   // Line 39
+	echo T_("Referred People");                                                       // Line 50
+	echo T_("None");                                                                  // Line 88
+	echo T_("Published Polls");                                                       // Line 74
+	echo T_("Draft Polls");                                                           // Line 85
+	echo T_("Likes");                                                                 // Line 97
+	echo T_("Activities Report");                                                     // Line 110
+	echo T_("Create new poll");                                                       // Line 125
+	echo T_("My polls");                                                              // Line 128
+	echo T_("Ask me");                                                                // Line 131
+	echo T_("Credit");                                                                // Line 140
+	echo T_("Recent Activities");                                                     // Line 151
+	echo T_("You've had no activities yet");                                          // Line 153
+	echo T_("Question Answered");                                                     // Line 191
+	echo T_("Remained");                                                              // Line 193
+	echo T_("Answered");                                                              // Line 203
 
 	//------------------------------------------------content_u\knowledge\display.html
 
