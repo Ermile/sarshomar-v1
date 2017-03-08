@@ -245,18 +245,13 @@ class message
 		{
 			return $this->stats;
 		}
-		$stats = $this->class->query_result['stats']['total'];
-		$sum_valid = array_column($stats['valid'], 'value', 'key');
-		$sum_invalid = array_column($stats['invalid'], 'value', 'key');
+		$stats = $this->class->query_result['result']['answers'];
 		$sum = [];
-		$total_sum_valid = 0;
-		$total_sum_invalid = 0;
-		$total = 0;
-		foreach ($sum_valid as $key => $value) {
-			$sum[$key] = $value + $sum_invalid[$key];
-			$total += $sum[$key];
-			$total_sum_valid += $value;
-			$total_sum_invalid += $sum_invalid[$key];
+		$total_sum_valid = $this->class->query_result['result']['total']['trust'];
+		$total_sum_invalid = $this->class->query_result['result']['total']['untrust'];
+		$total = $this->class->query_result['result']['total']['sum'];
+		foreach ($stats as $key => $value) {
+			$sum[$value['key']] = $value['value'];
 		}
 
 		$this->stats = [

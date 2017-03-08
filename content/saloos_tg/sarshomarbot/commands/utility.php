@@ -159,8 +159,12 @@ class utility
 
 	public static function replay_markup_id(){
 		return function(&$_name, &$_args){
-			if(isset($_args['reply_markup']) && isset($_args['reply_markup']['inline_keyboard']))
+			if(isset($_args['reply_markup']) &&
+				isset($_args['reply_markup']['inline_keyboard']) &&
+				!isset($_args['inline_message_id'])
+				)
 			{
+
 				$session_id = self::markup_set_id($_args['reply_markup']['inline_keyboard']);
 				if(!isset($_args['storage']) || !is_array($_args['storage']))
 				{
@@ -169,24 +173,24 @@ class utility
 				$_args['storage']['callback_session'] = $session_id;
 
 			}
-			elseif(isset($_args['results']))
-			{
-				foreach ($_args['results'] as $key => $value) {
-					if(isset($_args['results'][$key]['reply_markup']) && isset($_args['results'][$key]['reply_markup']['inline_keyboard']))
-					{
-						$session_id = self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard']);
-						if(!isset($_args['storage']) || !is_array($_args['storage']))
-						{
-							$_args['storage'] = array();
-						}
-						$_args['storage']['callback_session'] = $session_id;
-					}
-				}
-			}
+			// elseif(isset($_args['results']))
+			// {
+			// 	foreach ($_args['results'] as $key => $value) {
+			// 		if(isset($_args['results'][$key]['reply_markup']) && isset($_args['results'][$key]['reply_markup']['inline_keyboard']))
+			// 		{
+			// 			$session_id = self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard'], true);
+			// 			if(!isset($_args['storage']) || !is_array($_args['storage']))
+			// 			{
+			// 				$_args['storage'] = array();
+			// 			}
+			// 			$_args['storage']['callback_session'] = $session_id;
+			// 		}
+			// 	}
+			// }
 		};
 	}
 
-	public static function markup_set_id(&$reply_markup)
+	public static function markup_set_id(&$reply_markup, $_nosession = false)
 	{
 		$id = preg_replace("[\.]", '_', microtime(true));
 		$callback_session = (array) session::get('tmp', 'callback_query');
@@ -197,7 +201,10 @@ class utility
 		$session_id = "ik_$id";
 		$callback_session[$session_id] = true;
 
-		session::set('tmp', 'callback_query', $callback_session);
+		if(!$_nosession)
+		{
+			session::set('tmp', 'callback_query', $callback_session);
+		}
 
 		for ($i=0; $i < count($reply_markup); $i++)
 		{

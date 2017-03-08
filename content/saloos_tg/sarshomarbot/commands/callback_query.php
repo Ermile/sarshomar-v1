@@ -22,11 +22,6 @@ class callback_query
 			session::remove_back('expire', 'inline_cache');
 			return $result;
 		}
-		preg_match("/^(\d+_\d+):(.*)$/", $data_url[0], $unique_id);
-
-		$data_url[0] = $unique_id[2];
-		$unique_id = !is_null($unique_id[1]) ? 'ik_' . $unique_id[1] : null;
-		$callback_session = session::get('tmp', 'callback_query', $unique_id);
 
 		/**
 		 * check if unique request
@@ -41,13 +36,18 @@ class callback_query
 		elseif(array_key_exists('chat_instance', $_query))
 		{
 			self::$message_result['chat_instance'] = $_query['chat_instance'];
+			preg_match("/^(\d+_\d+):(.*)$/", $data_url[0], $unique_id);
+
+			$data_url[0] = $unique_id[2];
+			$unique_id = !is_null($unique_id[1]) ? 'ik_' . $unique_id[1] : null;
+			$callback_session = session::get('tmp', 'callback_query', $unique_id);
+			if((is_null($unique_id) || is_null($callback_session)) && !$force_inline)
+			{
+				session::remove_back('expire', 'inline_cache');
+				return $result;
+			}
 		}
 
-		if((is_null($unique_id) || is_null($callback_session)) && !$force_inline)
-		{
-			session::remove_back('expire', 'inline_cache');
-			return $result;
-		}
 
 		/**
 		 * check type

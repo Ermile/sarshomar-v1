@@ -55,7 +55,6 @@ class poll
 		$query_result = $search['data'];
 
 		$total_page = ceil($search['total'] / $message_per_page);
-		handle::send_log($total_page);
 
 		if(empty($query_result))
 		{
@@ -267,12 +266,76 @@ class poll
 		}
 
 		\lib\debug::$status = 1;
-		callback_query::edit_message(ask::make(null, null, [
-			'poll_id' 	=> $poll_id,
-			'return'	=> 'true',
-			'last'		=> $last,
-			'type'		=> isset($_query['inline_message_id']) ? 'inline' : 'private'
-			]));
+		if(isset($_query['inline_message_id']))
+		{
+			$get_inline_lock = \lib\db\options::get([
+				"option_cat" => "telegram",
+				"option_key" => "inline_message_lock",
+				"option_value" => $_query['inline_message_id'],
+				"limit" => 1
+			]);
+			if(empty($get_inline_lock))
+			{
+				\lib\db\options::insert([
+					"option_cat" => "telegram",
+					"option_key" => "inline_message_lock",
+					"option_value" => $_query['inline_message_id'],
+					"option_meta"	=> 0,
+					"option_status" => 'disable',
+				]);
+				$get_inline_lock = \lib\db::query("SELECT LAST_INSERT_ID() as id");
+				$get_inline_lock_id = $get_inline_lock->fetch_object()->id;
+				callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $poll_id,
+				'return'	=> 'true',
+				'type'		=> 'inline'
+				]));
+				\lib\db\options::update([
+					"option_status" => 'enable'
+				], $get_inline_lock_id);
+			}
+			elseif($get_inline_lock['status'] == 'disable')
+			{
+				\lib\db\options::update([
+					"option_meta" => ++$get_inline_lock['meta']
+				], $get_inline_lock['id']);
+			}
+			else
+			{
+				\lib\db\options::update([
+					"option_status" => 'disable'
+				], $get_inline_lock['id']);
+				callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $poll_id,
+				'return'	=> 'true',
+				'type'		=> 'inline'
+				]));
+				\lib\db\options::update([
+					"option_status" => 'enable'
+				], $get_inline_lock['id']);
+				$get_inline_lock = \lib\db\options::get([
+					"id" => $get_inline_lock['id'],
+					"limit" => 1
+				]);
+				if((int) $get_inline_lock['meta'] > 2)
+				{
+					callback_query::edit_message(ask::make(null, null, [
+					'poll_id' 	=> $poll_id,
+					'return'	=> 'true',
+					'type'		=> 'inline'
+					]));
+				}
+			}
+		}
+		else
+		{
+			callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $poll_id,
+				'return'	=> 'true',
+				'last'		=> $last,
+				'type'		=> 'private'
+				]));
+		}
 		// \lib\db::rollback();
 
 		if(!$debug_status)

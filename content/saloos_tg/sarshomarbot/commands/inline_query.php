@@ -30,7 +30,6 @@ class inline_query
 				]
 				]);
 			$query_result = \lib\main::$controller->model()->poll_get();
-			handle::send_log($query_result);
 			$query_result = $query_result ? [$query_result] : [];
 		}
 		else

@@ -14,8 +14,8 @@ class chosen_inline_result
 		\lib\db\options::insert([
 			'user_id' 		=> bot::$user_id,
 			'post_id' 		=> $id,
-			'option_cat' 	=> 'telegram',
-			'option_key'	=> 'subport',
+			'option_cat' 	=> 'user_detail_'.bot::$user_id,
+			'option_key'	=> 'telegram_subport',
 			'option_value' 	=> $inline_message_id
 			]);
 		return [];
