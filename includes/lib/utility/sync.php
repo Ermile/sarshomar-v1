@@ -107,43 +107,31 @@ class sync
 
 		// start trasaction of mysql engine
 		\lib\db::transaction();
-
-		//----- sync the options
-		self::sync_options();
-
-		//----- sync the comments
+		//----- sync comments
 		self::sync_comments();
+		//----- sync comment dtails
 		self::sync_commentdetails();
-
 		//----- sync the notification
 		self::sync_notifications();
-
 		//----- sync the termuseages
 		self::sync_termusages();
-
 		//----- sync the polldetails
 		//----- sync the pollstats
 		self::sync_polldetails();
-
 		//----- sync the posts
 		self::sync_posts();
-
+		//----- sync the options
+		self::sync_options();
 		//----- deactive telegram user
 		self::sync_transactions();
-
 		//----- sync the logs table
 		self::sync_logs();
-
 		//----- sync the userranks
 		self::sync_userranks();
-
-		//----- sync the socialapi
-		self::sync_socialapi();
-
 		//----- deactive telegram user
 		self::sync_users();
 
-		\content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
+		// \content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
 
 		// check error was happend or no
 		if(!\lib\debug::$status)
@@ -153,7 +141,7 @@ class sync
 		}
 		else
 		{
-			\lib\db::commit();
+			// \lib\db::commit();
 			return [
 				'message' => T_("sync complete"),
 				'user_id' => $web_id
@@ -241,13 +229,25 @@ class sync
 
 		foreach ($user_old_answers as $key => $value)
 		{
+			if(
+				!isset($value['post_id']) ||
+				!isset($value['user_id']) ||
+				!isset($value['profile']) ||
+				!isset($value['validstatus'])
+			  )
+			{
+				continue;
+			}
 			$answers_details =
 			[
-				'type'    => 'minus',
-				'opt_key' => $value['opt'],
-				'poll_id' => $value['post_id'],
-				'user_id' => $value['user_id'],
-				'profile' => $value['profile']
+				'type'        => 'minus',
+				'update_mode' => 'delete',
+				'opt_key'     => $value['opt'],
+				'poll_id'     => $value['post_id'],
+				'user_id'     => $value['user_id'],
+				'profile'     => $value['profile'],
+				'validation'  => $value['validstatus'],
+				'user_verify' => $value['validstatus'],
 			];
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 			// remove answer must be remove
@@ -286,6 +286,7 @@ class sync
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
+
 		// get the user namse and last nams
 		$telegram_details =
 		[
@@ -312,13 +313,7 @@ class sync
 		}
 
 		// process dashboard data again
-		$user_post = \lib\db\polls::search(null,
-		[
-			'user_id'    => $old_user_id,
-			'my_poll'    => true,
-			'pagenation' => false,
-			'limit'      => null
-		]);
+		$user_post = \lib\db::get("SELECT * FROM posts WHERE user_id = $old_user_id ");
 
 		// update default record
 		$query =
@@ -334,76 +329,30 @@ class sync
 		";
 		\lib\db::query($query);
 
+		// update_user 10000134
+		// user_detail 10000134
+		// user_dashboard 10000134
 		// update record similar user_detail && user_dashboard && ...
 		// sample value is: my_poll, my_poll_answered, my_poll_skipped, ...
-
-		$query_user_detail_update = "UPDATE IGNORE options SET
-		option_cat = 'user_detail_$new_user_id'
-		WHERE option_cat = 'user_detail_$old_user_id'";
-		\lib\db::query($query_user_detail_update);
-
-		$query_user_detail_delete = "DELETE FROM options
-		WHERE option_cat = 'user_detail_$old_user_id'";
-		\lib\db::query($query_user_detail_delete);
-
-		$where = ['user_id' => $old_user_id, 'option_cat' => 'user%'];
-		$list = \lib\db\options::get($where);
-
-		$set = ['option_status' => 'disable'];
-		\lib\db\options::update_on_error($set, $where);
-
-		if($user_post && is_array($user_post))
+		$option_cats = ['user_dashboard', 'update_user', 'user_detail'];
+		foreach ($option_cats as $key => $value)
 		{
-			$user_post_id = array_column($user_post, 'id');
 
-			// poll answered
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'poll_answered',
-					\lib\db\polldetails::user_total_answered($old_user_id));
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'poll_skipped',
-					\lib\db\polldetails::user_total_skipped($old_user_id));
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'survey_answered',
-					\lib\db\polldetails::user_total_answered($old_user_id, ['gender' => 'survey']));
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'survey_skipped',
-					\lib\db\polldetails::user_total_skipped($old_user_id, ['gender' => 'survey']));
-
-			// get count of survey the user creat it
-			$user_survey = array_column($user_post, 'gender', 'id');
-			$user_survey = array_count_values($user_survey);
-
-			$count_user_survey = 0;
-			if(isset($user_survey['survey']))
-			{
-				$count_user_survey = $user_survey['survey'];
-			}
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_survey', $count_user_survey);
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_poll',
-					count($user_post_id) - $count_user_survey);
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_poll_answered',
-					\lib\db\polldetails::people_answered($user_post_id));
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_poll_skipped',
-					\lib\db\polldetails::people_skipped($user_post_id));
-
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_survey_answered',
-					\lib\db\polldetails::people_answered($user_post_id, ['gender' => 'survey']));
-
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'my_survey_skipped',
-					\lib\db\polldetails::people_skipped($user_post_id, ['gender' => 'survey']));
-
-
-			$comment_count_query = "SELECT COUNT(id) AS 'count' FROM comments WHERE user_id = $old_user_id";
-			$comment_count = \lib\db::get($comment_count_query, 'count', true);
-
-			\lib\utility\profiles::set_dashboard_data($new_user_id, 'comment_count', $comment_count);
+			$update_query =
+			"
+				UPDATE IGNORE options
+				SET
+					option_cat = '{$value}_{$new_user_id}',
+					user_id = $new_user_id
+				WHERE
+					option_cat = '{$value}_{$old_user_id}' AND
+					user_id = $old_user_id
+			";
+			\lib\db::query($update_query);
+			\lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
 		}
+
+		\lib\utility\profiles::refresh_dashboard($new_user_id);
 	}
 
 
@@ -449,7 +398,6 @@ class sync
 				transactions.minus,
 				transactions.budgetbefore,
 				transactions.budget,
-				transactions.exchange_id,
 				transactions.status,
 				transactions.meta,
 				transactions.desc,
@@ -467,7 +415,6 @@ class sync
 				transactions.minus,
 				transactions.budgetbefore,
 				transactions.budget,
-				transactions.exchange_id,
 				transactions.status,
 				transactions.meta,
 				transactions.desc,
@@ -568,16 +515,5 @@ class sync
 		\lib\db::query($query);
 	}
 
-
-	/**
-	 * sync the socialapi
-	 */
-	private static function sync_socialapi()
-	{
-		$new_user_id = self::$new_user_id;
-		$old_user_id = self::$old_user_id;
-		$query = "UPDATE socialapi SET user_id = $new_user_id WHERE user_id = $old_user_id";
-		\lib\db::query($query);
-	}
 }
 ?>

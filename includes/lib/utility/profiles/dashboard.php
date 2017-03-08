@@ -4,6 +4,31 @@ namespace lib\utility\profiles;
 trait dashboard
 {
 
+	public static $dashboard_data =
+	[
+		'poll_answered'      => 0,
+		'poll_skipped'       => 0,
+		'survey_answered'    => 0,
+		'survey_skipped'     => 0,
+		'my_poll'            => 0,
+		'my_survey'          => 0,
+		'my_poll_answered'   => 0,
+		'my_poll_skipped'    => 0,
+		'my_survey_answered' => 0,
+		'my_survey_skipped'  => 0,
+		'user_referred'      => 0,
+		'user_verified'      => 0,
+		'comment_count'      => 0,
+		'draft_count'        => 0,
+		'publish_count'      => 0,
+		'awaiting_count'     => 0,
+	];
+
+	public static function refresh_dashboard($_user_id)
+	{
+		return true;
+	}
+
 	/**
 	 * Gets the dashboard data.
 	 * some field in users table
