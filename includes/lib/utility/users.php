@@ -77,6 +77,11 @@ class users
 			$user_update['user_port'] = $_args['port'];
 		}
 
+		if($_args['port'] === 'telegram')
+		{
+			$user_update['user_verify'] = 'uniqueid';
+		}
+
 		if($_args['type'] === 'inspection')
 		{
 			$user_update['user_status'] = 'deactive';
