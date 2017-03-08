@@ -298,7 +298,7 @@ function shortkey()
 				// if we have chart redraw it with new data
 				if($('.chart').length)
 				{
-					redrawChart();
+					callFunction('redrawChart');
 				}
 				e.preventDefault();
 				break;
@@ -759,7 +759,7 @@ route('*', function ()
 	// redraw chart after change group of needed
 	$('input[name="chart_result"]').on('change', function()
 	{
-		redrawChart()
+		callFunction('redrawChart');
 	});
 
 });
@@ -2976,7 +2976,7 @@ function saveAnswers(_type)
 			{
 				console.log('successfully save answer..');
 				// redraw chart after successfully change poll
-				redrawChart()
+				callFunction('redrawChart');
 			},
 			error: function(e, data, x)
 			{
