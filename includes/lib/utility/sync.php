@@ -9,7 +9,7 @@ class sync
 
 	private static $new_user_id;
 	private static $old_user_id;
-
+	private static $mobile;
 	// check error was happend
 	private static $has_error = false;
 
@@ -66,14 +66,15 @@ class sync
 		// this function in dev mod... :)
 		// return self::status(true)->set_error_code(3502);
 
-		$mobile = \lib\utility\filter::mobile($_web_mobile);
-		$web = \lib\db\users::get_by_mobile($mobile);
+		$mobile       = \lib\utility\filter::mobile($_web_mobile);
+		self::$mobile = $mobile;
+		$web          = \lib\db\users::get_by_mobile($mobile);
 		if(!$web || empty($web))
 		{
 
 			// new signup in site
 			// we set the mobile in telegram account and the sync is ok
-			$temp_password = rand(1000,9999);
+			$temp_password = rand(100000,999999);
 			$update_users =
 			[
 				'user_mobile' => $mobile,
@@ -238,6 +239,7 @@ class sync
 			{
 				continue;
 			}
+
 			$answers_details =
 			[
 				'type'        => 'minus',
@@ -312,22 +314,19 @@ class sync
 			}
 		}
 
-		// process dashboard data again
-		$user_post = \lib\db::get("SELECT * FROM posts WHERE user_id = $old_user_id ");
-
-		// update default record
-		$query =
-		"
-			UPDATE IGNORE
-				options
-			SET
-				options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value),
-				options.user_id = $new_user_id
-			WHERE
-				options.user_id = $old_user_id AND
-				options.option_key NOT LIKE 'user%'
-		";
-		\lib\db::query($query);
+		// // update default record
+		// $query =
+		// "
+		// 	UPDATE IGNORE
+		// 		options
+		// 	SET
+		// 		options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value),
+		// 		options.user_id = $new_user_id
+		// 	WHERE
+		// 		options.user_id = $old_user_id AND
+		// 		options.option_key NOT LIKE 'user%'
+		// ";
+		// \lib\db::query($query);
 
 		// update_user 10000134
 		// user_detail 10000134
@@ -337,7 +336,6 @@ class sync
 		$option_cats = ['user_dashboard', 'update_user', 'user_detail'];
 		foreach ($option_cats as $key => $value)
 		{
-
 			$update_query =
 			"
 				UPDATE IGNORE options
@@ -349,7 +347,8 @@ class sync
 					user_id = $old_user_id
 			";
 			\lib\db::query($update_query);
-			\lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
+			// \lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
+			\lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
 		}
 
 		\lib\utility\profiles::refresh_dashboard($new_user_id);
@@ -373,8 +372,13 @@ class sync
 			$update_new_user['user_status'] = 'active';
 		}
 
-		$deactive_old_user = \lib\db\users::update($update_new_user, $new_user_id);
-		$deactive_old_user = \lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
+		// deactive_old_user
+		\lib\db\users::update($update_new_user, $new_user_id);
+		// deactive_old_user
+		\lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
+
+		\lib\utility\users::verify(['user_id' => $new_user_id, 'mobile' => self::$mobile]);
+
 	}
 
 

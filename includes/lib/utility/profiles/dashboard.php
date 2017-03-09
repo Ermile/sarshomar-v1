@@ -47,18 +47,22 @@ trait dashboard
 			"
 				INSERT INTO options
 				SET
+					options.user_id       = $_user_id,
 					options.option_cat    = '$cat',
 					options.option_key    = '$key',
 					options.option_value  = ($query),
 					options.option_status = 'enable'
 				ON DUPLICATE KEY UPDATE
+					options.user_id       = $_user_id,
 					options.option_value  = ($query),
 					options.option_status = 'enable'
 			";
+
 			// \lib\db::query($run_query);
 		}
 		$run_query = implode(';', $run_query);
 		\lib\db::query($run_query, true, ['multi_query' => true]);
+
 		return true;
 	}
 
