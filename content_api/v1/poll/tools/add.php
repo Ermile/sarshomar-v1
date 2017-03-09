@@ -73,6 +73,7 @@ trait add
 				$access_profile = explode(" ", $access_profile);
 			}
 			$profile_values = array_keys(\lib\utility\profiles::profile_data());
+			$profile_values[] = 'displayname';
 			$diff = array_diff($access_profile, $profile_values);
 			if(!empty($diff))
 			{

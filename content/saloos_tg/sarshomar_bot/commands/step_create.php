@@ -342,15 +342,15 @@ class step_create
 			]);
 			if(isset($maker->query_result['access_profile']))
 			{
-				// $maker->inline_keyboard->add([
-				// 	['text' => T_("Do not submit respondent's information"), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
-				// ]);
+				$maker->inline_keyboard->add([
+					['text' => T_("Do not submit respondent's information"), 'callback_data' => 'create/access_profile/remove/' . $maker->query_result['id']]
+				]);
 			}
 			else
 			{
-				// $maker->inline_keyboard->add([
-				// 	['text' => T_("Submit respondent's information"), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
-				// ]);
+				$maker->inline_keyboard->add([
+					['text' => T_("Submit respondent's information"), 'callback_data' => 'create/access_profile/add/' . $maker->query_result['id']]
+				]);
 			}
 			$maker->inline_keyboard->add([
 				[

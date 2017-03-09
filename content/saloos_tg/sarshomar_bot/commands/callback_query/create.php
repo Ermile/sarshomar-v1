@@ -108,7 +108,7 @@ class create
 		$poll_request = ['id' => session::get('poll')];
 		if($_data_url[2] == 'add')
 		{
-			$poll_request['access_profile'] = ['firstname', 'lastname'];
+			$poll_request['access_profile'] = ['displayname'];
 		}
 		else
 		{

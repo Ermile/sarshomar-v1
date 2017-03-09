@@ -523,5 +523,35 @@ class polldetails
 		$_options = array_merge($default_options, $_options);
 		return self::people($_poll_ids, $_options);
 	}
+
+	public static function get_answrs_list($_poll_id, $_options = [])
+	{
+
+		$default_options =
+		[
+			'api_mode'  => false,
+			'from'  => 0,
+			'length'  => 10,
+		];
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+		$options = array_merge($default_options, $_options);
+
+		$query ="SELECT SQL_CALC_FOUND_ROWS * FROM polldetails WHERE
+			`status` = 'enable' AND
+			`post_id` = $_poll_id
+			LIMIT $options[from], $options[length]
+			";
+
+		$get = \lib\db::get($query);
+		if($options['api_mode'] == true)
+		{
+			$found_rows = \lib\db::get("SELECT FOUND_ROWS() AS `total`", 'total', true);
+			\lib\storage::set_total_record($found_rows);
+		}
+		return $get;
+	}
 }
 ?>
