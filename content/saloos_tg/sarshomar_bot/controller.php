@@ -91,11 +91,15 @@ class controller extends \lib\mvc\controller
 				// ]);
 				$to      = 'itb.baravak@gmail.com';
 				$subject = 'Telegram Error';
-				$message = json_encode($_return, JSON_UNESCAPED_UNICODE);
+				$message = "<code>";
+				$message .= "\n" . json_encode($_return, JSON_UNESCAPED_UNICODE);
 				$message .= "\n" . json_encode($_args, JSON_UNESCAPED_UNICODE);
+				$message .= "\n" . json_encode(bot::$hook, JSON_UNESCAPED_UNICODE);
+				$message .= "</code>";
 				$headers = 'From: itb.baravak@gmail.com' . "\r\n" .
 				'Reply-To: itb.baravak@gmail.com' . "\r\n" .
 				'X-Mailer: PHP/' . phpversion();
+				handle::send_log([$_return, $_args, bot::$hook]);
 
 				mail($to, $subject, $message, $headers);
 				// handle::send_log($x);
@@ -107,7 +111,6 @@ class controller extends \lib\mvc\controller
 				// 	'parse_mode' 				=> 'HTML',
 				// 	'disable_web_page_preview' 	=> true,
 				// ]);
-				// handle::send_log($x);
 			}
 		};
 

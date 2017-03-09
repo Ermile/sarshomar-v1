@@ -246,7 +246,6 @@ class message
 			return $this->stats;
 		}
 		$stats = $this->class->query_result['result']['answers'];
-		handle::send_log($this->class->query_result['result']);
 		$sum = [];
 		$total_sum_valid = $this->class->query_result['result']['summary']['reliable'];
 		$total_sum_invalid = $this->class->query_result['result']['summary']['unreliable'];
