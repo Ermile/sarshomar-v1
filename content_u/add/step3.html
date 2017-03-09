@@ -45,7 +45,7 @@
    </div>
   </div>
 
-  <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%} {% if poll.tags %} data-val="{{'["' ~ poll.tags|join('","') ~ '"]'}}" {% endif %}>
+  <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%} {% if poll.tags %} data-val='{{poll_tags_code|raw}}' {% endif %}>
    <div class="element no-pad" >
     <label class="title large" for="tag-input">{%trans "Tags"%}</label>
     <div class="element-in">
@@ -55,8 +55,8 @@
    <div class="tagBox">
      {%if poll.tags%}
       {%for i, value in poll.tags %}
-        <span data-val="{{i}}">
-         {{value}}
+        <span data-val="{{value.code}}">
+         {{value.title}}
         </span>
       {%endfor%}
     {%endif%}

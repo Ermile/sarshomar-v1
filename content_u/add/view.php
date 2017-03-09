@@ -155,6 +155,11 @@ class view extends \content_u\home\view
 			$this->set_range_default_persons($poll['filters']);
 		}
 
+		if(isset($poll['tags']) && is_array($poll['tags']))
+		{
+			$this->data->poll_tags_code = json_encode(array_column($poll['tags'],'title'), JSON_UNESCAPED_UNICODE);
+		}
+
 		// set multiple default values
 		$this->set_range_default_multiple(count($answers) - 1);
 

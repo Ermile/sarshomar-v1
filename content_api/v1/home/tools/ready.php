@@ -225,10 +225,12 @@ trait ready
 			{
 				foreach ($tag as $key => $value)
 				{
-					if(isset($value['term_title']) && isset($value['id']))
+					if(isset($value['term_title']) && isset($value['id']) && isset($value['term_url']))
 					{
 						$code = shortURL::encode($value['id']);
-						$new_tag[$code] = $value['term_title'];
+						$new_tag[$key]['code']  = $code;
+						$new_tag[$key]['title'] = $value['term_title'];
+						$new_tag[$key]['url']   = $host. '/'. $value['term_url'];
 					}
 				}
 			}

@@ -390,7 +390,7 @@
  {%if poll.tags%}
   <div class="content tags">
   {%for key, value in poll.tags%}
-   <a href="#">{{value}}</a>
+   <a href="{{value.url}}">{{value.title}}</a>
   {%endfor%}
   </div>
  {%else%}
