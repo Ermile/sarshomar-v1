@@ -9,6 +9,7 @@ trait ready
 	public static $private_user_id;
 	public static $private_poll_id;
 	public static $current_language;
+	public static $_options;
 	public static $host;
 
 	use api_options;
@@ -46,7 +47,7 @@ trait ready
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);
-
+		self::$_options = $_options;
 		$poll_id = false;
 		// encode id
 		if(array_key_exists('id', $_poll_data))

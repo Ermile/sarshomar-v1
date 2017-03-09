@@ -100,7 +100,7 @@ trait get_answers
 
 					if(isset($attachment['meta']['url']))
 					{
-						if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
+						if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
 						{
 							$answers[$key]['file']['url']  = $awaiting_file_url;
 						}

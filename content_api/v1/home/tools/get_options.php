@@ -66,7 +66,7 @@ trait get_options
 				$attachment = \lib\db\polls::get_poll($value['option_value']);
 				if(isset($attachment['meta']['url']))
 				{
-					if($_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
+					if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
 					{
 						$_poll_data['file']['url'] = $awaiting_file_url;
 					}
@@ -102,7 +102,7 @@ trait get_options
 
 		$post_meta_key = array_column($post_meta, 'option_key');
 
-		if(in_array('random_sort', $post_meta_key) && $_options['run_options'])
+		if(in_array('random_sort', $post_meta_key) && self::$_options['run_options'])
 		{
 			if(array_key_exists('answers', $_poll_data) && is_array($_poll_data['answers']))
 			{
@@ -118,7 +118,7 @@ trait get_options
 			}
 		}
 
-		if(in_array('hidden_result', $post_meta_key) && $_options['run_options'])
+		if(in_array('hidden_result', $post_meta_key) && self::$_options['run_options'])
 		{
 			unset($_poll_data['result']);
 		}
