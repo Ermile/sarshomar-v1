@@ -155,8 +155,6 @@ class ask
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
 
-		// $return['method'] = 'editMessage';
-
 		if($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
@@ -169,6 +167,7 @@ class ask
 
 	public static function update($_query, $_data_url)
 	{
+		\lib\storage::set_disable_edit(true);
 		list($class, $method, $poll_id) = $_data_url;
 		$mood = isset($_data_url[3]) ? $_data_url[3] : null;
 		switch ($mood) {

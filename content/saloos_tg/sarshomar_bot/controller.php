@@ -81,24 +81,33 @@ class controller extends \lib\mvc\controller
 			}
 			if(!isset($_return['ok']) || (isset($_return['ok']) && !$_return['ok']))
 			{
-				$text = "<code>" . json_encode($_return, JSON_UNESCAPED_UNICODE) . "</code>";
-				$x = bot::sendResponse([
-					'method' => 'sendMessage',
-					'chat_id' => 58164083,
-					'disable_after' => true,
-					'text' => $text,
-					'parse_mode' 				=> 'HTML',
-					'disable_web_page_preview' 	=> true,
-				]);
-				$text = "<code>" . htmlentities(json_encode($_args, JSON_UNESCAPED_UNICODE)) . "</code>";
-				$x = bot::sendResponse([
-					'method' => 'sendMessage',
-					'chat_id' => 58164083,
-					'disable_after' => true,
-					'text' => $text,
-					'parse_mode' 				=> 'HTML',
-					'disable_web_page_preview' 	=> true,
-				]);
+				// $x = bot::sendResponse([
+				// 	'method' => 'sendMessage',
+				// 	'chat_id' => 58164083,
+				// 	'disable_after' => true,
+				// 	'text' => $text,
+				// 	'parse_mode' 				=> 'HTML',
+				// 	'disable_web_page_preview' 	=> true,
+				// ]);
+				$to      = 'itb.baravak@gmail.com';
+				$subject = 'Telegram Error';
+				$message = json_encode($_return, JSON_UNESCAPED_UNICODE);
+				$message .= "\n" . json_encode($_args, JSON_UNESCAPED_UNICODE);
+				$headers = 'From: itb.baravak@gmail.com' . "\r\n" .
+				'Reply-To: itb.baravak@gmail.com' . "\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+
+				mail($to, $subject, $message, $headers);
+				// handle::send_log($x);
+				// $x = bot::sendResponse([
+				// 	'method' => 'sendMessage',
+				// 	'chat_id' => 58164083,
+				// 	'disable_after' => true,
+				// 	'text' => $text,
+				// 	'parse_mode' 				=> 'HTML',
+				// 	'disable_web_page_preview' 	=> true,
+				// ]);
+				// handle::send_log($x);
 			}
 		};
 

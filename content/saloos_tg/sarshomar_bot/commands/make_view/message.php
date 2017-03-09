@@ -246,10 +246,11 @@ class message
 			return $this->stats;
 		}
 		$stats = $this->class->query_result['result']['answers'];
+		handle::send_log($this->class->query_result['result']);
 		$sum = [];
-		$total_sum_valid = $this->class->query_result['result']['total']['trust'];
-		$total_sum_invalid = $this->class->query_result['result']['total']['untrust'];
-		$total = $this->class->query_result['result']['total']['sum'];
+		$total_sum_valid = $this->class->query_result['result']['summary']['reliable'];
+		$total_sum_invalid = $this->class->query_result['result']['summary']['unreliable'];
+		$total = $this->class->query_result['result']['summary']['total'];
 		foreach ($stats as $key => $value) {
 			$sum[$value['key']] = $value['value'];
 		}
