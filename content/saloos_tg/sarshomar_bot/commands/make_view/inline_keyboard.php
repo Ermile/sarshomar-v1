@@ -67,12 +67,12 @@ class inline_keyboard
 				if(is_array($_answer) && in_array('delete', $_answer['available']))
 				{
 					$callback_data .= 'dislike';
-					$inline_emoji = "💔";
+					$inline_emoji = "💔" . utility::nubmer_language($this->class->message->sum_stats()['total']);
 				}
 				else
 				{
 					$callback_data .= 'like';
-					$inline_emoji = "❤️";
+					$inline_emoji = "❤️" . utility::nubmer_language($this->class->message->sum_stats()['total']);
 				}
 			}
 			elseif($answer_value['type'] == 'descriptive')

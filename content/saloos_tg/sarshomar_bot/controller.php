@@ -71,7 +71,36 @@ class controller extends \lib\mvc\controller
 				}
 			}
 		};
-		bot::$methods['after']["/.*/"] = commands\utility::callback_session();
+		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = function(&$_name, &$_args, $_return)
+		{
+			$callback_session = commands\utility::callback_session();
+			$callback_session($_name, $_args, $_return);
+			if(isset($_args['disable_after']))
+			{
+				return;
+			}
+			if(!isset($_return['ok']) || (isset($_return['ok']) && !$_return['ok']))
+			{
+				$text = "<code>" . json_encode($_return, JSON_UNESCAPED_UNICODE) . "</code>";
+				$x = bot::sendResponse([
+					'method' => 'sendMessage',
+					'chat_id' => 58164083,
+					'disable_after' => true,
+					'text' => $text,
+					'parse_mode' 				=> 'HTML',
+					'disable_web_page_preview' 	=> true,
+				]);
+				$text = "<code>" . htmlentities(json_encode($_args, JSON_UNESCAPED_UNICODE)) . "</code>";
+				$x = bot::sendResponse([
+					'method' => 'sendMessage',
+					'chat_id' => 58164083,
+					'disable_after' => true,
+					'text' => $text,
+					'parse_mode' 				=> 'HTML',
+					'disable_web_page_preview' 	=> true,
+				]);
+			}
+		};
 
 		/**
 		 * start hooks and run telegram session from db

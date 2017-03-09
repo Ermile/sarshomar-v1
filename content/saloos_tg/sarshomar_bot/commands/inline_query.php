@@ -74,7 +74,6 @@ class inline_query
 					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['total']['sum']) .' ';
 				}
 				]);
-
 			$short_dec = preg_replace("/\n/", " ", $value['description']);
 			$short_dec = mb_substr($short_dec, 0, 120);
 

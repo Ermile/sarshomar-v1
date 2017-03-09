@@ -456,8 +456,13 @@ class poll
 		}
 		else
 		{
+			\lib\storage::set_disable_edit(true);
 			$maker->message->add('report', '#' . T_('Report'));
 			$maker->inline_keyboard->add_report_status();
+			$maker->inline_keyboard->add([[
+				"text" => T_("Back"),
+				'callback_data' => 'ask/update/'.$short_link .'/update'
+				]]);
 			$return = $maker->make();
 			session::remove_back('expire', 'inline_cache', 'ask');
 			session::remove('expire', 'inline_cache', 'ask');
