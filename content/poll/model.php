@@ -118,6 +118,7 @@ class model extends \content\home\model
 
 			utility::set_request_array($request);
 			$result = $this->poll_stats();
+			$result = $this->am_chart($result , utility::get('chart'));
 			debug::msg('list', json_encode($result, JSON_UNESCAPED_UNICODE));
 			return true;
 		}
@@ -318,55 +319,47 @@ class model extends \content\home\model
 	 *
 	 * @param      <type>  $_poll_data  The poll data
 	 */
-	public function am_chart($_poll_data, $_type)
+	public function am_chart($_stats, $_type)
 	{
-		$advance_stats_title = [];
-		$advance_stats_result = [];
+		$_type = (string) $_type;
 
-		if(isset($_poll_data['advance_stats']['valid'][$_type]) && is_array($_poll_data['advance_stats']['valid'][$_type]))
+		$temp_cats = [];
+		$return    = [];
+		if(isset($_stats['answers']) && is_array($_stats['answers']))
 		{
-			foreach ($_poll_data['advance_stats']['valid'][$_type] as $opt_key => $value)
+			$cats = array_column($_stats['answers'], 'cats');
+			foreach ($cats as $key => $value)
 			{
 				if(is_array($value))
 				{
-					foreach ($value as $filter => $count)
+					$temp_cats = array_merge($temp_cats, $value);
+				}
+			}
+			$temp_cats = array_unique($temp_cats);
+		}
+
+		foreach ($temp_cats as $i => $cat)
+		{
+			if(isset($_stats['answers']) && is_array($_stats['answers']))
+			{
+				foreach ($_stats['answers'] as $k => $data)
+				{
+					if(isset($data[$_type]) && is_array($data[$_type]))
 					{
-						$advance_stats_result[$opt_key][$filter] = $count;
+						foreach ($data[$_type] as $j => $value)
+						{
+							if(isset($value['title']) && $value['title'] == $cat)
+							{
+								$_stats['answers'][$k][$cat]                = (isset($value['value'])) ? $value['value'] : 0;
+								$_stats['answers'][$k][$cat. "_reliable"]   = (isset($value['reliable'])) ? $value['reliable'] : 0;
+								$_stats['answers'][$k][$cat. "_unreliable"] = (isset($value['unreliable'])) ? $value['unreliable'] : 0;
+							}
+						}
 					}
 				}
 			}
 		}
-
-		if(isset($_poll_data['advance_stats']['invalid'][$_type]) && is_array($_poll_data['advance_stats']['invalid'][$_type]))
-		{
-			foreach ($_poll_data['advance_stats']['invalid'][$_type] as $opt_key => $value)
-			{
-				if(is_array($value))
-				{
-					foreach ($value as $filter => $count)
-					{
-						if(isset($advance_stats_result[$opt_key][$filter]))
-						{
-							$advance_stats_result[$opt_key][$filter] += $count;
-						}
-						else
-						{
-							$advance_stats_result[$opt_key][$filter] = $count;
-						}
-					}
-				}
-			}
-		}
-
-		if(is_array($advance_stats_result))
-		{
-			foreach ($advance_stats_result as $key => $value)
-			{
-				$advance_stats_result[$key]['key'] = $key;
-			}
-			sort($advance_stats_result);
-			return $advance_stats_result;
-		}
+		return $_stats;
 	}
 }
 ?>

@@ -24,8 +24,41 @@ trait dashboard
 		'awaiting_count'     => 0,
 	];
 
+	use querys;
+
+	/**
+	 * refresh dashboar data
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
 	public static function refresh_dashboard($_user_id)
 	{
+		return true;
+		$querys    = self::dashboard_query($_user_id);
+		$run_query = [];
+
+		foreach ($querys as $key => $query)
+		{
+			$cat         = "user_dashboard_". $_user_id;
+			// $run_query =
+			$run_query[] =
+			"
+				INSERT INTO options
+				SET
+					options.option_cat    = '$cat',
+					options.option_key    = '$key',
+					options.option_value  = ($query),
+					options.option_status = 'enable'
+				ON DUPLICATE KEY UPDATE
+					options.option_value  = ($query),
+					options.option_status = 'enable'
+			";
+			// \lib\db::query($run_query);
+		}
+		$run_query = implode(';', $run_query);
+		\lib\db::query($run_query, true, ['multi_query' => true]);
 		return true;
 	}
 
