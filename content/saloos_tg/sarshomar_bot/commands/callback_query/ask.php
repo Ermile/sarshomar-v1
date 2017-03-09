@@ -119,6 +119,17 @@ class ask
 
 		if($my_poll && $options['type'] == 'private')
 		{
+			$total_answer = $maker->query_result['result']['summary']['total'];
+			if(
+				($total_answer && isset($maker->query_result['access_profile']))
+				|| $maker->query_result->poll_type == 'descriptive'
+			)
+			{
+				$maker->inline_keyboard->add([[
+				'text' => T_('View results'),
+				'callback_data' => 'poll/answer_results/'.$maker->query_result['id'],
+				]]);
+			}
 			$maker->inline_keyboard->add_change_status();
 		}
 
