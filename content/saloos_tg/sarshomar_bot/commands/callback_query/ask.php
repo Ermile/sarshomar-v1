@@ -103,9 +103,12 @@ class ask
 			\lib\storage::set_disable_edit(true);
 			$guest_option['share'] = false;
 			$guest_option['update'] = false;
-			$guest_option['report'] = true;
+			$guest_option['report'] = false;
 		}
-
+		if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'])
+		{
+			$guest_option['share'] = true;
+		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
 
@@ -134,6 +137,11 @@ class ask
 			}
 		}
 
+		if(isset($options['fn']))
+		{
+			$options['fn']($maker);
+		}
+
 		$return = $maker->make();
 
 		if($options['type'] == 'private')
@@ -142,6 +150,7 @@ class ask
 		}
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
+
 
 		if($_query || !isset($options['return']))
 		{

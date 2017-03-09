@@ -64,7 +64,7 @@ class inline_keyboard
 			$this_row = $row_answer[0] + $last_count;
 			if($answer_value['type'] == 'like')
 			{
-				if(in_array('delete', $_answer['available']))
+				if(is_array($_answer) && in_array('delete', $_answer['available']))
 				{
 					$callback_data .= 'dislike';
 					$inline_emoji = "💔";

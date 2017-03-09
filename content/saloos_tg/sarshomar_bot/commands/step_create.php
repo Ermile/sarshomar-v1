@@ -311,7 +311,6 @@ class step_create
 		}
 
 
-		handle::send_log(session::get('poll_options' , 'type'));
 		if(!session::get('poll_options' , 'type'))
 		{
 			$maker->message->add('insert', T_("Please select the type of your poll from the options below"));

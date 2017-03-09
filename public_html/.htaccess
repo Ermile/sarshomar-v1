@@ -2,10 +2,13 @@ Options +FollowSymLinks
 Options -Indexes
 
 <If "%{HTTP_HOST} == 'dev.sarshomar.com'">
-	AuthType Basic
-	AuthName "Password Protected Area"
-	AuthUserFile /home/domains/sarshomar/public_html/.htpasswd
-	Require valid-user
+	<If "!%{REQUEST_FILENAME} =~ /static*/">
+		AuthType Basic
+		AuthName "Password Protected Area"
+		AuthUserFile /home/domains/sarshomar/public_html/.htpasswd
+		AuthUserFile /home/domains/sarshomar/public_html/.htpasswd
+		Require valid-user
+	</If>
 </If>
 
 # -----------------------------------------------------

@@ -18,7 +18,6 @@ class inline_query
 		$result['cache_time'] = 1;
 		$result['switch_pm_text'] = T_("Create new poll");
 		$result['switch_pm_parameter'] = "new";
-
 		$search = \lib\utility\safe::safe($inline_query['query']);
 		$check_language = false;
 		if(preg_match("/^\s*\\$(.*)$/", $search, $link_id))
@@ -38,10 +37,15 @@ class inline_query
 				'method' 	=> 'array',
 				'request' => [
 					'search' 	=> $search,
-					'in' 		=> 'me sarshomar'
+					'in' 		=> 'me sarshomar',
+					'from'		=> !empty($_query['offset']) ? $_query['offset'] : 0
 				]
 				]);
 			$query_result = \lib\main::$controller->model()->poll_search(true);
+			if($query_result['to'] < $query_result['total'])
+			{
+				$result['next_offset'] = $query_result['to'];
+			}
 			$query_result = $query_result['data'];
 		}
 
@@ -52,19 +56,29 @@ class inline_query
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
-			if($value['sarshomar'] == '1')
+			if($value['sarshomar'] == true)
 			{
-				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp_sarshomar.png';
+				$row_result['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
 			}
 			else
 			{
 				$row_result['thumb_url'] = 'http://sarshomar.com/static/images/telegram/sarshomar/sp-users.png';
 			}
+			$row_result['description'] = '';
 			$poll = callback_query\ask::make(null, null, [
 				'poll_id' 	=> $value['id'],
-				'return'	=> 'true',
+				'return'	=> true,
 				'type'		=> 'inline',
+				'fn'		=> function($_maker) use(&$row_result)
+				{
+					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['total']['sum']) .' ';
+				}
 				]);
+
+			$short_dec = preg_replace("/\n/", " ", $value['description']);
+			$short_dec = mb_substr($short_dec, 0, 120);
+
+			$row_result['description'] = $short_dec;
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
