@@ -746,7 +746,8 @@ function redrawChart(_data)
 			var myChart     = $('.chart');
 			var drawData    = newChartData['answers'];
 			var myChartData = myChart.data('chart');
-			if(newChartData)
+
+			if(newChartData.summary.total)
 			{
 				$('.isDataNotExist').fadeOut();
 			}
