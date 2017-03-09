@@ -48,18 +48,20 @@
    </div>
 
 {%else%}
-   <div></div>
-   <div class="c2 f align-center">
-    <img class="launch launch-box" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
+
+   <div class="c8 f align-center justify-center">
+     <div class="c3">
+        <img class="launch launch-box" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
+     </div>
+     <div class="c5">
+       <h3>{%trans "Inspection and Answer"%}</h3>
+        <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+      {%if not login%}
+        <a href="{{url.base}}/features/guest" class="special-btn">{%trans "Try Before Register"%}</a>
+      {%endif%}
+     </div>
+
    </div>
-   <div class="c3">
-    <h3>{%trans "Inspection and Answer"%}</h3>
-    <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-   {%if not login%}
-    <a href="{{url.base}}/features/guest" class="special-btn">{%trans "Try Before Register"%}</a>
-   {%endif%}
-   </div>
-   <div></div>
 {%endif%}
 {%endif%}
 {%endblock%}
