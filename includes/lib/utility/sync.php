@@ -314,19 +314,19 @@ class sync
 			}
 		}
 
-		// // update default record
-		// $query =
-		// "
-		// 	UPDATE IGNORE
-		// 		options
-		// 	SET
-		// 		options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value),
-		// 		options.user_id = $new_user_id
-		// 	WHERE
-		// 		options.user_id = $old_user_id AND
-		// 		options.option_key NOT LIKE 'user%'
-		// ";
-		// \lib\db::query($query);
+		// update default record
+		$query =
+		"
+			UPDATE IGNORE
+				options
+			SET
+				options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value),
+				options.user_id = $new_user_id
+			WHERE
+				options.user_id = $old_user_id AND
+				options.option_key NOT LIKE 'user%'
+		";
+		\lib\db::query($query);
 
 		// update_user 10000134
 		// user_detail 10000134

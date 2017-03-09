@@ -19,7 +19,7 @@ trait get
 		$default_options =
 		[
 			'validation' => null,	// default return the valid chart
-			// 'filter'     => null, 	// return the master result.
+			// 'filter'     => 'gender', 	// return the master result.
 			'filter'     => false, 	// return the master result.
 			'port'		 => null,
 			'subport'	 => null,
@@ -182,12 +182,12 @@ trait get
 			if(isset($valid_result_raw['result'][$chart_key]))
 			{
 				$stats[$key]['value'] = $valid_result_raw['result'][$chart_key];
-				$stats[$key]['reliable'] = $valid_result_raw['result'][$chart_key];
+				$stats[$key]['value_reliable'] = $valid_result_raw['result'][$chart_key];
 			}
 			else
 			{
 				$stats[$key]['value'] = 0;
-				$stats[$key]['reliable'] = 0;
+				$stats[$key]['value_reliable'] = 0;
 			}
 		}
 
@@ -204,11 +204,11 @@ trait get
 				{
 					$stats[$key]['value'] = $invalid_result_raw['result'][$chart_key];
 				}
-				$stats[$key]['unreliable'] = $invalid_result_raw['result'][$chart_key];
+				$stats[$key]['value_unreliable'] = $invalid_result_raw['result'][$chart_key];
 			}
 			else
 			{
-				$stats[$key]['unreliable'] = 0;
+				$stats[$key]['value_unreliable'] = 0;
 			}
 		}
 
@@ -225,9 +225,9 @@ trait get
 				{
 					if(isset($valid_result_raw[$filter][$chart_key][$male]))
 					{
-						$stats[$key][$filter][$male]['title']       = $male;
-						$stats[$key][$filter][$male]['value']       = $valid_result_raw[$filter][$chart_key][$male];
-						$stats[$key][$filter][$male]['reliable']    = $valid_result_raw[$filter][$chart_key][$male];
+						$stats[$key][$filter][$male]['title']          = $male;
+						$stats[$key][$filter][$male]['value']          = $valid_result_raw[$filter][$chart_key][$male];
+						$stats[$key][$filter][$male]['value_reliable'] = $valid_result_raw[$filter][$chart_key][$male];
 						$return['summary'][$filter][$male]['title'] = $male;
 
 						if(isset($return['summary'][$filter][$male]['total']))
@@ -252,10 +252,10 @@ trait get
 					}
 					else
 					{
-						$stats[$key][$filter][$male]['title']       = $male;
-						$stats[$key][$filter][$male]['value']       = 0;
-						$stats[$key][$filter][$male]['reliable']    = 0;
-						$return['summary'][$filter][$male]['title'] = $male;
+						$stats[$key][$filter][$male]['title']          = $male;
+						$stats[$key][$filter][$male]['value']          = 0;
+						$stats[$key][$filter][$male]['value_reliable'] = 0;
+						$return['summary'][$filter][$male]['title']    = $male;
 
 						if(isset($return['summary'][$filter][$male]['total']))
 						{
@@ -337,11 +337,11 @@ trait get
 								$return['summary'][$filter][$male]['unreliable'] = $invalid_result_raw[$filter][$chart_key][$male];
 							}
 						}
-						$stats[$key][$filter][$male]['unreliable'] = $invalid_result_raw[$filter][$chart_key][$male];
+						$stats[$key][$filter][$male]['value_unreliable'] = $invalid_result_raw[$filter][$chart_key][$male];
 					}
 					else
 					{
-						$stats[$key][$filter][$male]['unreliable'] = 0;
+						$stats[$key][$filter][$male]['value_unreliable'] = 0;
 					}
 				}
 			}
@@ -371,6 +371,7 @@ trait get
 		}
 
 		$return['answers'] = $stats;
+		// var_dump($return);exit();
 		return $return;
 	}
 

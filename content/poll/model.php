@@ -351,8 +351,8 @@ class model extends \content\home\model
 							if(isset($value['title']) && $value['title'] == $cat)
 							{
 								$_stats['answers'][$k][$cat]                = (isset($value['value'])) ? $value['value'] : 0;
-								$_stats['answers'][$k][$cat. "_reliable"]   = (isset($value['reliable'])) ? $value['reliable'] : 0;
-								$_stats['answers'][$k][$cat. "_unreliable"] = (isset($value['unreliable'])) ? $value['unreliable'] : 0;
+								$_stats['answers'][$k][$cat. "_reliable"]   = (isset($value['value_reliable'])) ? $value['value_reliable'] : 0;
+								$_stats['answers'][$k][$cat. "_unreliable"] = (isset($value['value_unreliable'])) ? $value['value_unreliable'] : 0;
 							}
 						}
 					}
