@@ -9,9 +9,17 @@
 {%endspaceless%}
 {%endset%}
 
-  <div class="row auto unselectable {{inestimableClass}}" id='inestimable' data-xhr='specialbox'>
+
+
+  <div class="f align-center justify-between n-inestimable unselectable {{inestimableClass}}" data-xhr='specialbox'>
+    {%if site.currentlang =='fa'%}
+   <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
+   <img class="left-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg" alt="Inestimable desktop border">
+   {%else%}
    <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg" alt="Inestimable mobile border">
-   <img class="left-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
+   <img class="right-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
+   {%endif%}
+
 {%block specialbox%}
 
 {%if module == 'about'%}
@@ -40,20 +48,26 @@
    </div>
 
 {%else%}
-   <div class="span2"></div>
-   <div class="span3">
+   <div></div>
+   <div class="c2 f align-center">
     <img class="launch launch-box" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
    </div>
-   <div class="span6">
+   <div class="c3">
     <h3>{%trans "Inspection and Answer"%}</h3>
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
    {%if not login%}
     <a href="{{url.base}}/features/guest" class="special-btn">{%trans "Try Before Register"%}</a>
    {%endif%}
    </div>
+   <div></div>
 {%endif%}
 {%endif%}
 {%endblock%}
-   <img class="right-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
+   {%if site.currentlang =='fa'%}
+   <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg" alt="Inestimable mobile border">
+   <img class="left-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
+   {%else%}
+   <img class="left-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
    <img class="right-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg" alt="Inestimable desktop border">
+   {%endif%}
   </div>
