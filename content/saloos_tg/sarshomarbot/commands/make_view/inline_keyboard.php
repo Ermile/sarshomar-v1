@@ -64,15 +64,15 @@ class inline_keyboard
 			$this_row = $row_answer[0] + $last_count;
 			if($answer_value['type'] == 'like')
 			{
-				if(in_array('delete', $_answer['available']))
+				if(is_array($_answer) && in_array('delete', $_answer['available']))
 				{
 					$callback_data .= 'dislike';
-					$inline_emoji = "💔";
+					$inline_emoji = "💔" . utility::nubmer_language($this->class->message->sum_stats()['total']);
 				}
 				else
 				{
 					$callback_data .= 'like';
-					$inline_emoji = "❤️";
+					$inline_emoji = "❤️" . utility::nubmer_language($this->class->message->sum_stats()['total']);
 				}
 			}
 			elseif($answer_value['type'] == 'descriptive')
@@ -85,7 +85,7 @@ class inline_keyboard
 			else
 			{
 				$callback_data .= ($answer_value['key']);
-				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				if(count($this->class->query_result['answers']) > 10)
 				{
 					$inline_emoji = utility::nubmer_language($answer_value['key']);
 				}

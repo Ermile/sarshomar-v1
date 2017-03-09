@@ -20,6 +20,7 @@ class spammer
 		$on_spam = self::$on_spam = current($on_spam);
 
 		$get_count_log = \lib\db\options::get([
+			"user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
 			"option_value" => "acction_log",
@@ -29,6 +30,7 @@ class spammer
 		{
 			$set_meta = [$on_spam . '_count' => 0, "time" => microtime(true)];
 			\lib\db\options::insert([
+			"user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
 			"option_value" => "acction_log",
@@ -79,7 +81,11 @@ class spammer
 			return $overflow;
 		}
 
-		if($meta['time'] + 10 < microtime(true))
+		if($on_spam == 'callback_query' && $meta['time'] + 4 < microtime(true))
+		{
+			$meta['time'] = microtime(true);
+		}
+		elseif($meta['time'] + 10 < microtime(true))
 		{
 			$meta['time'] = microtime(true);
 		}

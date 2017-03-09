@@ -544,11 +544,14 @@ class poll
 						break;
 				}
 			}
-			switch ($value['type']) {
-					case 'descriptive':
-						$message .= $value['text'] . "\n\n";
-						break;
-				}
+			else
+			{
+				switch ($value['type']) {
+						case 'descriptive':
+							$message .= $value['text'] . "\n\n";
+							break;
+					}
+			}
 		}
 		$return = ['text' => $message];
 		$inline_keyboard[] = [['text' => T_("Back"), 'callback_data' => 'ask/update/'.$_data_url[2] . '/update']];
@@ -581,6 +584,7 @@ class poll
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 		}
 		$return['parse_mode'] = "HTML";
+		$return["response_callback"] = utility::response_expire('ask');
 		callback_query::edit_message($return);
 	}
 }

@@ -80,6 +80,11 @@ class callback_query
 		{
 			return $response;
 		}
+		if(!isset($response['text']))
+		{
+			handle::send_log($response);
+			return;
+		}
 		$return = bot::sendResponse($response);
 		return $return;
 	}

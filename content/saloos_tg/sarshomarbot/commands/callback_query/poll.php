@@ -27,7 +27,7 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$message_per_page = 3;
+		$message_per_page = 5;
 		if(is_null($_query))
 		{
 			$page = 1;
@@ -67,14 +67,18 @@ class poll
 		}
 		else
 		{
+			$status_emoji = ['publish' => '✳️', 'stop' => '🚫', 'pause' => '⛔️', 'draft' => '📝'];
 			$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
 			foreach ($query_result as $key => $value) {
+				$message .= ' ' .$status_emoji[$value['status']];
 				$message .= $value['title'];
-				$message .= utility::nubmer_language("($value[count_vote])");
-				$message .= ' - ' . T_(ucfirst($value['status']));
+				if($value['status'] != 'draft')
+				{
+					$message .= ' ' . utility::nubmer_language("($value[count_vote])");
+				}
 				$message .= "\n";
 				$message .= "/" . $value['id'];
-				$message .= "\n\n";
+				$message .= "\n";
 			}
 		}
 		$return = ['text' => $message];
@@ -82,23 +86,23 @@ class poll
 		{
 			if($page > 2)
 			{
-				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/1"];
+				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/1"];
 			}
 			if($page > 1)
 			{
-				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page-1)];
+				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page-1)];
 			}
 
 
 
 			if($page < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page+1)];
+				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page+1)];
 			}
 
-			if(($page + 1) < $total_page || $page == 1)
+			if(($page + 1) < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/" . $total_page];
+				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/" . $total_page];
 			}
 		}
 		if(isset($inline_keyboard))
@@ -452,8 +456,13 @@ class poll
 		}
 		else
 		{
+			\lib\storage::set_disable_edit(true);
 			$maker->message->add('report', '#' . T_('Report'));
 			$maker->inline_keyboard->add_report_status();
+			$maker->inline_keyboard->add([[
+				"text" => T_("Back"),
+				'callback_data' => 'ask/update/'.$short_link .'/update'
+				]]);
 			$return = $maker->make();
 			session::remove_back('expire', 'inline_cache', 'ask');
 			session::remove('expire', 'inline_cache', 'ask');
@@ -466,6 +475,117 @@ class poll
 			return [];
 		}
 		return $return;
+	}
+
+	public static function answer_results($_query, $_data_url)
+	{
+		\lib\storage::set_disable_edit(true);
+		$message_per_page = 5;
+		if(is_null($_query) || !isset($_data_url[3]))
+		{
+			$page = 1;
+			$start = 0;
+		}
+		else
+		{
+			$page = (int) $_data_url[3];
+			$start = (($page-1) * $message_per_page);
+		}
+
+
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' => 'array',
+			'request' => [
+				'id' 	=> $_data_url[2],
+				'from'  	=> (int) $start,
+				'to'  		=> (int) ($start + $message_per_page),
+			]]);
+		$answers_list = \lib\main::$controller->model()->get_poll_answers_list();
+
+		$query_result = $answers_list['data'];
+
+		$total_page = ceil($answers_list['total'] / $message_per_page);
+
+
+		$message = utility::nubmer_language($page . "/" . $total_page) . ' /'.$_data_url[2] . "\n";
+		foreach ($query_result as $key => $value) {
+			if(isset($value['profile']))
+			{
+				$display_name = "<strong>" . $value['profile']['displayname'] ."</strong>";
+				if(isset($value['profile']['telegram_id']))
+				{
+					// $telegram = bot::sendResponse([
+					// 	'method' => 'getChat',
+					// 	'chat_id' => $value['profile']['telegram_id']
+					// 	]);
+					$telegram = \lib\db\options::get([
+						"option_cat" => "telegram",
+						"option_key" => "id",
+						"option_value" => $value['profile']['telegram_id'],
+						"limit" => 1
+						]);
+					if(!empty($telegram) && isset($telegram['meta']['username']))
+					{
+						// handle::send_log($telegram);
+						$display_name = "@".$telegram['meta']['username'];
+					}
+				}
+				$message .= $display_name;
+				switch ($value['type']) {
+					case 'descriptive':
+						$message .= ":\n" . $value['text'] . "\n\n";
+						break;
+					case 'select':
+						$message .= ": " . utility::nubmer_language($value['key']) . "\n\n";
+						break;
+
+					default:
+						$message .= "\n";
+						break;
+				}
+			}
+			else
+			{
+				switch ($value['type']) {
+						case 'descriptive':
+							$message .= $value['text'] . "\n\n";
+							break;
+					}
+			}
+		}
+		$return = ['text' => $message];
+		$inline_keyboard[] = [['text' => T_("Back"), 'callback_data' => 'ask/update/'.$_data_url[2] . '/update']];
+
+		if($total_page > 1)
+		{
+			if($page > 2)
+			{
+				$inline_keyboard[1][] = ["text" => "⏮", "callback_data" => "poll/answer_results/".$_data_url[2]."/1"];
+			}
+			if($page > 1)
+			{
+				$inline_keyboard[1][] = ["text" => "◀️", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . ($page-1)];
+			}
+
+
+
+			if($page < $total_page)
+			{
+				$inline_keyboard[1][] = ["text" => "▶️", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . ($page+1)];
+			}
+
+			if(($page + 1) < $total_page)
+			{
+				$inline_keyboard[1][] = ["text" => "⏭", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . $total_page];
+			}
+		}
+		if(isset($inline_keyboard))
+		{
+			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
+		}
+		$return['parse_mode'] = "HTML";
+		$return["response_callback"] = utility::response_expire('ask');
+		callback_query::edit_message($return);
 	}
 }
 ?>

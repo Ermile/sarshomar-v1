@@ -30,5 +30,7 @@ class model extends \lib\mvc\model{
 
 	use \content_api\v1\poll\answer\tools\delete;
 
+	use \content_api\v1\poll\answers\tools\get;
+
 }
 ?>

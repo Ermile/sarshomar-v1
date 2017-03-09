@@ -31,6 +31,7 @@ class ask
 			'last'		=> false,
 			],$_options);
 
+
 		$maker = new make_view($options['poll_id']);
 		if(is_null($maker->query_result))
 		{
@@ -103,14 +104,32 @@ class ask
 			\lib\storage::set_disable_edit(true);
 			$guest_option['share'] = false;
 			$guest_option['update'] = false;
-			$guest_option['report'] = true;
+			$guest_option['report'] = false;
 		}
-
+		if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'])
+		{
+			$guest_option['share'] = true;
+		}
+		else
+		{
+			$guest_option['skip'] = false;
+		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
 
 		if($my_poll && $options['type'] == 'private')
 		{
+			$total_answer = $maker->query_result['result']['summary']['total'];
+			if($total_answer &&
+				(isset($maker->query_result['access_profile'])
+				|| $maker->poll_type == 'descriptive')
+			)
+			{
+				$maker->inline_keyboard->add([[
+				'text' => T_('View results'),
+				'callback_data' => 'poll/answer_results/'.$maker->query_result['id'],
+				]]);
+			}
 			$maker->inline_keyboard->add_change_status();
 		}
 
@@ -134,8 +153,12 @@ class ask
 			}
 		}
 
-		$return = $maker->make();
+		if(isset($options['fn']))
+		{
+			$options['fn']($maker);
+		}
 
+		$return = $maker->make();
 		if($options['type'] == 'private')
 		{
 			$return["response_callback"] = utility::response_expire('ask');
@@ -153,16 +176,29 @@ class ask
 		}
 	}
 
-	public function update($_query, $_data_url)
+	public static function update($_query, $_data_url)
 	{
-		list($class, $method, $poll_id) = $_data_url;
 		\lib\storage::set_disable_edit(true);
+		list($class, $method, $poll_id) = $_data_url;
+		$mood = isset($_data_url[3]) ? $_data_url[3] : null;
+		switch ($mood) {
+			case 'update':
+				$mood = 'update';
+				break;
+
+			default:
+				$mood = $mood;
+				break;
+		}
 		callback_query::edit_message(self::make(null, null, [
 			'poll_id' 	=>$poll_id,
 			'return' 	=> true,
-			'last'		=> count($_data_url) > 3 ? true : false
+			'last'		=> $mood == 'last'  ? true : false
 			]));
-		return ['text' => T_("Updated")];
+		if($mood != 'update')
+		{
+			return ['text' => T_("Updated")];
+		}
 	}
 }
 ?>
