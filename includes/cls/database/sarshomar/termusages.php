@@ -2,10 +2,13 @@
 namespace database\sarshomar;
 class termusages
 {
-	public $term_id           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'term'            ,'type'=>'int@10'                          ,'foreign'=>'terms@id!term_title'];
-	public $termusage_id      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'termusage'       ,'type'=>'bigint@20'];
-	public $termusage_foreign = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'foreign'         ,'type'=>'enum@posts,products,attachments,files,comments,users'];
-	public $termusage_order   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'order'           ,'type'=>'smallint@5'];
+	public $term_id              = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'term'            ,'type'=>'int@10'                          ,'foreign'=>'terms@id!term_title'];
+	public $termusage_id         = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'termusage'       ,'type'=>'bigint@20'];
+	public $termusage_foreign    = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'foreign'         ,'type'=>'enum@posts,products,attachments,files,comments,users,pollopts,profile,filter,cat,tag'];
+	public $termusage_status     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@enable,disable,expired!enable'];
+	public $termusage_order      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'order'           ,'type'=>'smallint@5'];
+	public $termusage_createdate = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@!CURRENT_TIMESTAMP'];
+	public $date_modified        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'modified'        ,'type'=>'timestamp@'];
 
 	//--------------------------------------------------------------------------------foreign
 	public function term_id()
@@ -26,9 +29,19 @@ class termusages
 		$this->setChild();
 	}
 
+	public function termusage_status()
+	{
+		$this->form()->type('radio')->name('status')->required();
+		$this->setChild();
+	}
+
 	public function termusage_order()
 	{
 		$this->form()->type('number')->name('order')->min()->max('99999');
 	}
+
+	public function termusage_createdate(){}
+
+	public function date_modified(){}
 }
 ?>

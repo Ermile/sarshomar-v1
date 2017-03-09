@@ -4,7 +4,7 @@ class comments
 {
 	public $id              = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
 	public $post_id         = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'post'            ,'type'=>'bigint@20'                       ,'foreign'=>'posts@id!post_title'];
-	public $comment_author  = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'author'          ,'type'=>'varchar@50'];
+	public $comment_author  = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'author'          ,'type'=>'varchar@100'];
 	public $comment_email   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'email'           ,'type'=>'varchar@100'];
 	public $comment_url     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'url'             ,'type'=>'varchar@100'];
 	public $comment_content = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'content'         ,'type'=>'mediumtext@'];
@@ -29,7 +29,7 @@ class comments
 
 	public function comment_author()
 	{
-		$this->form()->type('text')->name('author')->maxlength('50');
+		$this->form()->type('text')->name('author')->maxlength('100');
 	}
 
 	public function comment_email()

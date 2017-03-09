@@ -17,7 +17,6 @@ class userranks
 	public $vip              = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'vip'             ,'type'=>'int@10'];
 	public $hated            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'hated'           ,'type'=>'int@10'];
 	public $other            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'other'           ,'type'=>'int@10'];
-	public $value            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'value'           ,'type'=>'bigint@20'];
 	public $pollanswered     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'pollanswered'    ,'type'=>'int@10'];
 	public $pollskipped      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'pollskipped'     ,'type'=>'int@10'];
 	public $surveyanswered   = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'surveyanswered'  ,'type'=>'int@10'];
@@ -29,6 +28,9 @@ class userranks
 	public $userreferred     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'userreferred'    ,'type'=>'int@10'];
 	public $userverified     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'userverified'    ,'type'=>'int@10'];
 	public $commentcount     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'commentcount'    ,'type'=>'int@10'];
+	public $value            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'value'           ,'type'=>'bigint@20'];
+	public $createdate       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@!CURRENT_TIMESTAMP'];
+	public $datemodified     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'datemodified'    ,'type'=>'timestamp@'];
 
 	//--------------------------------------------------------------------------------id
 	public function id(){}
@@ -98,11 +100,6 @@ class userranks
 		$this->form()->type('number')->name('other')->min()->max('9999999999')->required();
 	}
 	//--------------------------------------------------------------------------------id
-	public function value()
-	{
-		$this->form()->type('number')->name('value')->max('99999999999999999999')->required();
-	}
-	//--------------------------------------------------------------------------------id
 	public function pollanswered()
 	{
 		$this->form()->type('number')->name('pollanswered')->min()->max('9999999999')->required();
@@ -156,6 +153,18 @@ class userranks
 	public function commentcount()
 	{
 		$this->form()->type('number')->name('commentcount')->min()->max('9999999999')->required();
+	}
+	//--------------------------------------------------------------------------------id
+	public function value()
+	{
+		$this->form()->type('number')->name('value')->max('99999999999999999999')->required();
+	}
+	//--------------------------------------------------------------------------------id
+	public function createdate(){}
+	//--------------------------------------------------------------------------------id
+	public function datemodified()
+	{
+		$this->form()->type('text')->name('datemodified');
 	}
 }
 ?>

@@ -10,15 +10,15 @@ class ranks
 	public $ad         = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'ad'              ,'type'=>'int@10'];
 	public $money      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'money'           ,'type'=>'int@10'];
 	public $report     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'report'          ,'type'=>'int@10'];
-	public $vot        = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'vot'             ,'type'=>'int@10'];
+	public $vote       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'vote'            ,'type'=>'int@10'];
 	public $like       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'like'            ,'type'=>'int@10'];
-	public $favo       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'favo'            ,'type'=>'int@10'];
+	public $fav        = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'fav'             ,'type'=>'int@10'];
 	public $skip       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'skip'            ,'type'=>'int@10'];
 	public $comment    = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'comment'         ,'type'=>'int@10'];
 	public $view       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'view'            ,'type'=>'bigint@20'];
 	public $other      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'other'           ,'type'=>'int@10'];
 	public $sarshomar  = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'sarshomar'       ,'type'=>'int@10'];
-	public $createdate = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'timestamp@!CURRENT_TIMESTAMP'];
+	public $createdate = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@!CURRENT_TIMESTAMP'];
 	public $ago        = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'ago'             ,'type'=>'int@10'];
 	public $admin      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'admin'           ,'type'=>'int@10'];
 	public $vip        = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'vip'             ,'type'=>'int@10'];
@@ -60,9 +60,9 @@ class ranks
 		$this->form()->type('number')->name('report')->min()->max('9999999999')->required();
 	}
 	//--------------------------------------------------------------------------------id
-	public function vot()
+	public function vote()
 	{
-		$this->form()->type('number')->name('vot')->min()->max('9999999999')->required();
+		$this->form()->type('number')->name('vote')->min()->max('9999999999')->required();
 	}
 	//--------------------------------------------------------------------------------id
 	public function like()
@@ -70,9 +70,9 @@ class ranks
 		$this->form()->type('number')->name('like')->min()->max('9999999999')->required();
 	}
 	//--------------------------------------------------------------------------------id
-	public function favo()
+	public function fav()
 	{
-		$this->form()->type('number')->name('favo')->min()->max('9999999999')->required();
+		$this->form()->type('number')->name('fav')->min()->max('9999999999')->required();
 	}
 	//--------------------------------------------------------------------------------id
 	public function skip()

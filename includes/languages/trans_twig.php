@@ -50,7 +50,7 @@ private function transtext()
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
-	echo T_("Try Before Register");                                                   // Line 60
+	echo T_("Try Before Register");                                                   // Line 64
 	echo T_("Sarshomar Society Distributtion");                                       // Line 23
 	echo T_("Organizations and Companies");                                           // Line 10
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 16
@@ -153,20 +153,19 @@ private function transtext()
 	echo T_("Next");                                                                  // Line 9
 	echo T_("You can select just two options.");                                      // Line 229
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("result");                                                                // Line 305
-	echo T_("There is no data to draw chart!");                                       // Line 314
-	echo T_("Similar Questions");                                                     // Line 348
-	echo T_("Latest Questions");                                                      // Line 341
-	echo T_("There is no similar post");                                              // Line 349
-	echo T_("Poll timespan");                                                         // Line 367
+	echo T_("There is no data to draw chart!");                                       // Line 312
+	echo T_("Similar Questions");                                                     // Line 346
+	echo T_("Latest Questions");                                                      // Line 339
+	echo T_("There is no similar post");                                              // Line 347
+	echo T_("Poll timespan");                                                         // Line 365
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 418
-	echo T_("Keyword");                                                               // Line 389
-	echo T_("Statistical population");                                                // Line 406
-	echo T_("There is nothing to display!");                                          // Line 463
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 474
+	echo T_("Not set");                                                               // Line 416
+	echo T_("Keyword");                                                               // Line 387
+	echo T_("Statistical population");                                                // Line 404
+	echo T_("There is nothing to display!");                                          // Line 461
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 472
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 531
+	echo T_("Continue");                                                              // Line 529
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -227,12 +226,12 @@ private function transtext()
 	//--------------------------------------------------content\template\register.html
 	echo T_("Sarshomar Vision");                                                      // Line 26
 	echo T_("Ask Anyone Anywhere");                                                   // Line 27
-	echo T_("We are inestimable");                                                    // Line 54
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 35
-	echo T_("Sarshomar is jumping...");                                               // Line 36
-	echo T_("Inspection and Answer");                                                 // Line 57
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 58
-	echo T_("Verify your account");                                                   // Line 47
+	echo T_("We are inestimable");                                                    // Line 58
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 36
+	echo T_("Sarshomar is jumping...");                                               // Line 37
+	echo T_("Inspection and Answer");                                                 // Line 61
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 62
+	echo T_("Verify your account");                                                   // Line 50
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 17

@@ -3,10 +3,10 @@ namespace database\sarshomar;
 class logitems
 {
 	public $id               = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'smallint@5'];
-	public $logitem_type     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'type'            ,'type'=>'varchar@64'];
-	public $logitem_caller   = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'caller'          ,'type'=>'varchar@500'];
+	public $logitem_type     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'type'            ,'type'=>'varchar@100'];
+	public $logitem_caller   = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'caller'          ,'type'=>'varchar@100'];
 	public $logitem_title    = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'title'           ,'type'=>'varchar@100'];
-	public $logitem_desc     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'desc'            ,'type'=>'varchar@999'];
+	public $logitem_desc     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'desc'            ,'type'=>'varchar@100'];
 	public $logitem_meta     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'meta'            ,'type'=>'mediumtext@'];
 	public $count            = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'count'           ,'type'=>'int@10'];
 	public $logitem_priority = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'priority'        ,'type'=>'enum@critical,high,medium,low!medium'];
@@ -17,12 +17,12 @@ class logitems
 
 	public function logitem_type()
 	{
-		$this->form()->type('text')->name('type')->maxlength('64');
+		$this->form()->type('text')->name('type')->maxlength('100');
 	}
 
 	public function logitem_caller()
 	{
-		$this->form()->type('textarea')->name('caller')->maxlength('500')->required();
+		$this->form()->type('text')->name('caller')->maxlength('100')->required();
 	}
 
 	public function logitem_title()
@@ -32,7 +32,7 @@ class logitems
 
 	public function logitem_desc()
 	{
-		$this->form('#desc')->type('textarea')->name('desc')->maxlength('999');
+		$this->form('#desc')->type('text')->name('desc')->maxlength('100');
 	}
 
 	public function logitem_meta(){}

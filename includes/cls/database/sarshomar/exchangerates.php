@@ -2,7 +2,7 @@
 namespace database\sarshomar;
 class exchangerates
 {
-	public $id           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
+	public $id           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'int@10'];
 	public $from         = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'from'            ,'type'=>'smallint@5'];
 	public $to           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'to'              ,'type'=>'smallint@5'];
 	public $rate         = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'rate'            ,'type'=>'double@'];
@@ -13,9 +13,9 @@ class exchangerates
 	public $status       = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@enable,disable,deleted,expired,awaiting,filtered,blocked,spam'];
 	public $desc         = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'desc'            ,'type'=>'text@'];
 	public $meta         = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'meta'            ,'type'=>'text@'];
-	public $createdate   = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'timestamp@!CURRENT_TIMESTAMP'];
+	public $createdate   = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@!CURRENT_TIMESTAMP'];
+	public $enddate      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'enddate'         ,'type'=>'datetime@'];
 	public $datemodified = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'datemodified'    ,'type'=>'timestamp@'];
-	public $enddate      = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'enddate'         ,'type'=>'timestamp@'];
 
 	//--------------------------------------------------------------------------------id
 	public function id(){}
@@ -59,14 +59,14 @@ class exchangerates
 	//--------------------------------------------------------------------------------id
 	public function createdate(){}
 	//--------------------------------------------------------------------------------id
-	public function datemodified()
-	{
-		$this->form()->type('text')->name('datemodified');
-	}
-	//--------------------------------------------------------------------------------id
 	public function enddate()
 	{
 		$this->form()->type('text')->name('enddate');
+	}
+	//--------------------------------------------------------------------------------id
+	public function datemodified()
+	{
+		$this->form()->type('text')->name('datemodified');
 	}
 }
 ?>
