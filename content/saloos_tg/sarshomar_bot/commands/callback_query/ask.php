@@ -120,9 +120,9 @@ class ask
 		if($my_poll && $options['type'] == 'private')
 		{
 			$total_answer = $maker->query_result['result']['summary']['total'];
-			if(
-				($total_answer && isset($maker->query_result['access_profile']))
-				|| $maker->query_result->poll_type == 'descriptive'
+			if($total_answer &&
+				(isset($maker->query_result['access_profile'])
+				|| $maker->poll_type == 'descriptive')
 			)
 			{
 				$maker->inline_keyboard->add([[

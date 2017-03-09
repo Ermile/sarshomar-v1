@@ -531,19 +531,24 @@ class poll
 					}
 				}
 				$message .= $display_name;
+				switch ($value['type']) {
+					case 'descriptive':
+						$message .= ":\n" . $value['text'] . "\n\n";
+						break;
+					case 'select':
+						$message .= ": " . utility::nubmer_language($value['key']) . "\n\n";
+						break;
+
+					default:
+						$message .= "\n";
+						break;
+				}
 			}
 			switch ($value['type']) {
-				case 'descriptive':
-					$message .= ":\n" . $value['text'] . "\n\n";
-					break;
-				case 'select':
-					$message .= ": " . utility::nubmer_language($value['key']) . "\n\n";
-					break;
-
-				default:
-					$message .= "\n";
-					break;
-			}
+					case 'descriptive':
+						$message .= $value['text'] . "\n\n";
+						break;
+				}
 		}
 		$return = ['text' => $message];
 		$inline_keyboard[] = [['text' => T_("Back"), 'callback_data' => 'ask/update/'.$_data_url[2] . '/update']];
