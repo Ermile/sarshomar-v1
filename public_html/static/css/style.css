@@ -683,6 +683,7 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .highcharts-tooltip *{font-family:IRANSans,tahoma,sans-serif}
 .highcharts-data-labels text{text-shadow:none!important}
 .chart{height:300px;width:100%}
+.rtl .amcharts-balloon-div div{direction:rtl}
 #age-chart{height:400px}
 
 /************************************************************** random chart */

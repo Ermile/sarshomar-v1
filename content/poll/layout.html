@@ -301,11 +301,9 @@
 {%if url.tld == 'dev'%}
  <div class="menu">
   <div class="menu-inside">
-   <input type="radio" name="chart_result" id="chart_result" value="result" checked>
-   <label for="chart_result"><span>{%trans "result"%}</span></label>
    {%for key, value in chart.stacked%}
-   <input type="radio" name="chart_result" id="chart_{{key}}" value="{{key}}">
-   <label for="chart_{{key}}"><span>{{value}}</span></label>
+   <input type="radio" name="chart_result" id="chart_{{key}}" value="{{key}}" {%if key=="result"%}checked{%endif%}>
+   <label for="chart_{{key}}"><span>{{value | capitalize}}</span></label>
    {%endfor%}
   </div>
  </div>
@@ -320,7 +318,7 @@
 
 {%block chart%}
 {% spaceless %}
- <div class="chart unselectable" data-format='pollTotal' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
+ <div class="chart unselectable" data-format='pollDrawHandle' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
 {% endspaceless %}
 {%endblock%}
 

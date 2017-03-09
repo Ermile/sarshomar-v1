@@ -16,7 +16,7 @@ class view extends \mvc\view
 
 		$this->data->poll_trans =
 		[
-			"trust"   => T_("trust"),
+			"trust"   => T_("reliable"),
 			"untrust" => T_("unreliable"),
 			"vote"    => T_("vote"),
 		];
@@ -70,14 +70,32 @@ class view extends \mvc\view
 
 		$this->data->chart['stacked'] =
 		[
-			'gender'           => T_('Gender'),
-			// 'age'           => T_('Age'),
-			'range'            => T_('Age range'),
-			'marrital'         => T_('Marrital status'),
-			'graduation'       => T_('Graduation'),
-			'employmentstatus' => T_('Employment status'),
-			'province'         => T_('Province'),
+			// 'result'           => T_('a glance'),
+			'result'           => T_('glance'),
+			// 'age'           => T_('age'),
+			'range'            => T_('age range'),
+			'gender'           => T_('gender'),
+			'marrital'         => T_('marital status'),
+			'graduation'       => T_('graduation'),
+			'employmentstatus' => T_('employement status'),
+			'province'         => T_('province'),
 		];
+
+		// if language isset and its different with site language
+		if(isset($poll['language']) && $poll['language'] !== $this->data->site['currentlang'])
+		{
+			switch ($poll['language'])
+			{
+				case 'fa':
+					$this->data->myPollDirecton = " rtl";
+					break;
+
+				case 'en':
+				default:
+					$this->data->myPollDirecton = " ltr";
+					break;
+			}
+		}
 
 		// set title and desc of each page
 		$poll_title = null;

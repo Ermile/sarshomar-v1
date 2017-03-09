@@ -743,28 +743,23 @@ function redrawChart(_data)
 		// if(newChartData && newChartData.valid)
 		if(newChartData)
 		{
-			var myChart = $('.chart');
-			myChart.attr('data-format', 'pollTotal' + chartType);
-			console.log(newChartData);
-			var drawData = newChartData['answers'];
-			// pollTotal
-			console.log(drawData);
-			console.log(chartType);
-			// newChartData = newChartData.valid;
-			// newChartData[0].value = 20;
-			// newChartData[1].value = 30;
-			// console.log(newChartData);
-			var myChart   = myChart.data('chart');
+			var myChart     = $('.chart');
+			var drawData    = newChartData['answers'];
+			var myChartData = myChart.data('chart');
 			if(newChartData)
 			{
 				$('.isDataNotExist').fadeOut();
 			}
-
+			console.log(drawData);
+			// call func to customize data for this type of chart
+			pollDrawHandle(myChartData, null, myChart, chartType);
 			//Setting the new data to the graph
-			myChart.dataProvider = drawData;
-			myChart.animateAgain();
+			myChartData.dataProvider = drawData;
+			myChartData.animateAgain();
 			//Updating the graph to show the new data
-			myChart.validateData();
+			myChartData.validateData();
+			myChartData.validateNow();
+
 		}
 	});
 }
@@ -777,7 +772,7 @@ function redrawChart(_data)
  */
 function homepageGender(_option)
 {
-	_option.colors = ["#67b7dc", "#ff80c0" ];
+	_option.colors = ["#83c3e1", "#e97197" ];
 	_option.rotate = true;
 	_option.marginBottom = 50;
 	_option.startDuration = 1;
@@ -869,7 +864,6 @@ function homepageGender(_option)
 		}
 	];
 
-
 	return _option;
 }
 
@@ -896,21 +890,71 @@ function dashboardPie(_option, _vals)
 
 
 /**
+ * [pollDrawHandle description]
+ * @param  {[type]} _option [description]
+ * @param  {[type]} _vals   [description]
+ * @param  {[type]} _this   [description]
+ * @param  {[type]} _type   [description]
+ * @return {[type]}         [description]
+ */
+function pollDrawHandle(_option, _vals, _this, _type)
+{
+	console.log(_type);
+
+	var transText = _this.attr('data-trans');
+	if(transText)
+	{
+		transText = JSON.parse(transText);
+	}
+	switch(_type)
+	{
+		case 'gender':
+			_option = pollTotal_gender(_option, transText);
+			break;
+
+		case 'age':
+			break;
+
+		case 'range':
+			break;
+
+		case 'marital':
+			break;
+
+		case 'graduation':
+			break;
+
+		case 'employmentstatus':
+			break;
+
+		case 'province':
+			break;
+
+		case 'result':
+			_option = pollTotal_result(_option, transText);
+			break;
+
+		default:
+			_option = pollTotal_default(_option, transText);
+			break;
+	}
+
+	return _option;
+}
+
+
+/**
  * [pollTotal description]
  * @param  {[type]} _option [description]
  * @param  {[type]} _vals   [description]
  * @param  {[type]} _this   [description]
  * @return {[type]}         [description]
  */
-function pollTotal(_option, _vals, _this)
+function pollTotal_default(_option, _transText)
 {
-	var transText = _this.attr('data-trans');
-	if(transText)
-	{
-		transText =JSON.parse(transText);
-	}
-
-	_option.colors = ["#00667a", "#d8d8d8" ];
+	console.log(_transText);
+	// console.log(_option);
+	_option.colors = ["#83c3e1", "#d8d8d8" ];
 
 	_option.valueAxes =
 	[{
@@ -923,27 +967,55 @@ function pollTotal(_option, _vals, _this)
 	[
 		{
 			"type": "column",
-			"title": transText.trust,
-			"valueField": "value_trust",
-			"balloonText": "[[title]] [" + transText.trust + "] <br/><b>[[value]]</b> " + transText.vote,
+			"title": _transText.trust,
+			"valueField": "value_reliable",
+			"balloonText": "[[title]] [" + _transText.trust + "] <br/><b>[[value]]</b> " + _transText.vote,
 			"labelText": "[[value]]",
 			"fillAlphas": 0.9,
 			"lineAlpha": 0.2,
 		},
 		{
 			"type": "column",
-			"title": transText.untrust,
-			"valueField": "value_untrust",
-			"balloonText": "[[title]] [" + transText.untrust + "] <br/><b>[[value]]</b> " + transText.vote,
+			"title": _transText.untrust,
+			"valueField": "value_unreliable",
+			"balloonText": "[[title]] [" + _transText.untrust + "] <br/><b>[[value]]</b> " + _transText.vote,
 			"labelText": "[[value]]",
 			"fillAlphas": 0.5,
 			"lineAlpha": 0.2,
 			"clustered":false,
 		},
 	];
-    _option.categoryField = "title";
+	_option.categoryField = "title";
+	// console.log(_option);
 
 	return _option;
+}
+
+
+function pollTotal_result(_option, _transText)
+{
+	// set default color for values
+	_option.colors = ["#83c3e1", "#d8d8d8" ];
+
+	_option.graphs[0].valueField = "value_reliable";
+	_option.graphs[1].valueField = "value_unreliable";
+}
+
+
+/**
+ * [pollTotal_gender description]
+ * @param  {[type]} _option    [description]
+ * @param  {[type]} _transText [description]
+ * @return {[type]}            [description]
+ */
+function pollTotal_gender(_option, _transText)
+{
+	console.log(_option.graphs);
+	_option.colors = ["#83c3e1", "#e97197" ];
+
+	_option.graphs[0].valueField = "male";
+	_option.graphs[1].valueField = "female";
+
 }
 
 

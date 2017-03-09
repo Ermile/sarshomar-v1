@@ -2,7 +2,7 @@
 
 {%block content%}
  <div class="main pad">
-  <div class="in small poll-container" data-type="{{poll_type}}">
+  <div class="in small poll-container{{myPollDirecton}}" data-type="{{poll_type}}">
    {%if poll.options.multi %}
     {% set min = poll.options.multi.min %}
     {% set max = poll.options.multi.max %}
