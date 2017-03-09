@@ -70,9 +70,13 @@ class view extends \mvc\view
 
 		$this->data->chart['stacked'] =
 		[
-			'gender' => 'gender',
-			'age'    => 'age',
-			'range'  => 'range'
+			'gender'           => T_('Gender'),
+			// 'age'           => T_('Age'),
+			'range'            => T_('Age range'),
+			'marrital'         => T_('Marrital status'),
+			'graduation'       => T_('Graduation'),
+			'employmentstatus' => T_('Employment status'),
+			'province'         => T_('Province'),
 		];
 
 		// set title and desc of each page
