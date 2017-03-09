@@ -2017,8 +2017,8 @@ code {font-size: 1.2em;}
 .n-inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .n-inestimable:hover img{-webkit-filter:none;filter:none}
 
-.n-inestimable .left-mobile-border,.n-inestimable .right-mobile-border {display: none;}
-.n-inestimable .left-desktop-border,.n-inestimable .right-desktop-border{height:100%;width:auto}
+.n-inestimable .inestimable-mobile-border,.n-inestimable .inestimable-mobile-border {display: none;}
+.n-inestimable .inestimable-desktop-border,.n-inestimable .inestimable-desktop-border{height:100%;width:110px}
 
 
 
