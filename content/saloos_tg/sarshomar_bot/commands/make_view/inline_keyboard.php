@@ -85,7 +85,7 @@ class inline_keyboard
 			else
 			{
 				$callback_data .= ($answer_value['key']);
-				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
+				if(count($this->class->query_result['answers']) > 10)
 				{
 					$inline_emoji = utility::nubmer_language($answer_value['key']);
 				}

@@ -27,7 +27,7 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$message_per_page = 3;
+		$message_per_page = 1;
 		if(is_null($_query))
 		{
 			$page = 1;
@@ -82,23 +82,23 @@ class poll
 		{
 			if($page > 2)
 			{
-				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/1"];
+				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/1"];
 			}
 			if($page > 1)
 			{
-				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page-1)];
+				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page-1)];
 			}
 
 
 
 			if($page < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "poll/list/" . ($page+1)];
+				$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "poll/list/" . ($page+1)];
 			}
 
-			if(($page + 1) < $total_page || $page == 1)
+			if(($page + 1) < $total_page)
 			{
-				$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "poll/list/" . $total_page];
+				$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "poll/list/" . $total_page];
 			}
 		}
 		if(isset($inline_keyboard))

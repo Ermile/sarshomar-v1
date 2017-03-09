@@ -96,7 +96,6 @@ class step_create
 				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 		}
-
 		if(
 			is_null(session::get('poll_options', 'type')) &&
 			$get_poll &&
@@ -105,8 +104,14 @@ class step_create
 			$get_poll['title'] != ""
 		)
 		{
-			return self::make_draft($get_poll, function($_maker){
-				$_maker->message->add("insert", T_("Please select the type of your poll from the options below"), 'before', 'hashtag');
+			return self::make_draft($get_poll, function($_maker) use($get_poll){
+				// $text = T_("Please select the type of your poll from the options below");
+				// if(!isset($get_poll['file']))
+				// {
+				// 	$text .= "\n";
+				// 	$text .= T_("You can also attach a file to your poll and type the question in the next step.");
+				// }
+				// $_maker->message->add("insert", $text, 'before', 'hashtag');
 			});
 		}
 
@@ -263,26 +268,57 @@ class step_create
 			$maker->query_result['title'] = T_('Please enter question title');
 		}
 		$poll_id = $maker->query_result['id'];
-		$maker->message->add('sucsess', T_("Your question uploaded successfully."));
+		if(isset($maker->query_result['title']) && !empty($maker->query_result['title']) && empty($maker->query_result['answers']) && !session::get('poll_options' , 'type'))
+		{
+			$maker->message->add('sucsess', T_("Your question uploaded successfully."));
+		}
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
-		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
+
+		if(session::get('poll_options' , 'type') && !empty($maker->query_result['answers']) && !empty($maker->query_result['title']))
+		{
+			$count = ['first', 'secoend', 'third'];
+			$count_answer = count($maker->query_result['answers']);
+			if($count_answer > 2)
+			{
+				if($count_answer > 20 && substr($count_answer, -1) == 0)
+				{
+					$count = ($count_answer +1) .'st';
+				}
+				elseif($count_answer > 20 && substr($count_answer, -1) == 1)
+				{
+					$count = ($count_answer +1) .'nd';
+				}
+				elseif($count_answer > 20 && substr($count_answer, -1) == 2)
+				{
+					$count = ($count_answer +1) .'rd';
+				}
+				else
+				{
+					$count = ($count_answer +1) .'th';
+				}
+			}
+			else
+			{
+				$count = $count[$count_answer];
+			}
+			$maker->message->add('insert', T_("Enter the text of :count option", ['count' => $count]));
+		}
 
 		if(self::is_type('like') || self::is_type('descriptive'))
 		{
 			$maker->message->add('description', "\n" . T_("You can add a subject as the content of your poll"), 'after', 'poll_list');
 		}
 
-		if(is_object($_maker))
-		{
-			$_maker($maker);
-		}
 
-		$txt_text = $maker->message->make();
-
+		handle::send_log(session::get('poll_options' , 'type'));
 		if(!session::get('poll_options' , 'type'))
 		{
 			$maker->message->add('insert', T_("Please select the type of your poll from the options below"));
+			if(!isset($maker->query_result['file']))
+			{
+				$maker->message->add('file_upload', T_("You can also attach a file to your poll and type the question in the next step."));
+			}
 			$maker->inline_keyboard->add([
 					[
 						"text" => T_("Selective") . (self::is_type('selective') ? " ✅" : ""),
@@ -331,6 +367,15 @@ class step_create
 					['text' => T_('Back'), 'callback_data' => 'create/close']
 				]);
 		}
+
+		$maker->message->add('hashtag', utility::tag(T_("Create new poll")));
+
+		if(is_object($_maker))
+		{
+			$_maker($maker);
+		}
+
+		$txt_text = $maker->message->make();
 
 
 

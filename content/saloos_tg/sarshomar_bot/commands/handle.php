@@ -11,11 +11,11 @@ class handle
 
 	public static function exec($_cmd, $_run = false)
 	{
-		$spammer = spammer::check();
-		if($spammer)
-		{
-			return $spammer;
-		}
+		// $spammer = spammer::check();
+		// if($spammer)
+		// {
+		// 	return $spammer;
+		// }
 		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
 		{
 			exit();

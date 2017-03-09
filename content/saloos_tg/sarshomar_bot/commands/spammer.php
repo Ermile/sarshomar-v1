@@ -79,7 +79,11 @@ class spammer
 			return $overflow;
 		}
 
-		if($meta['time'] + 10 < microtime(true))
+		if($on_spam == 'callback_query' && $meta['time'] + 4 < microtime(true))
+		{
+			$meta['time'] = microtime(true);
+		}
+		elseif($meta['time'] + 10 < microtime(true))
 		{
 			$meta['time'] = microtime(true);
 		}

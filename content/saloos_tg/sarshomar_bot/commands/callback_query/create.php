@@ -26,7 +26,10 @@ class create
 	}
 
 	public static function home($_query = null, $_data_url = null){
-		$txt_text = T_("Enter the title or select a file to submit the poll");
+		$txt_text = T_("Please enter the question of your poll");
+		$txt_text .= "\n";
+		$txt_text .= T_("You can also attach a file to your poll and type the question in the next step.
+");
 		$txt_text .= "\n";
 		$txt_text .= T_("To cancel a poll use /cancel command");
 		$result   =
