@@ -5,7 +5,7 @@
 {% spaceless %}
    <div class="main pad box">
     {%include template.progress%}
-     <div class="row auto" id='question-add' data-id="{{poll.id}}" data-status="{{poll.status}}">
+     <div class="row auto" id='question-add' data-id="{{poll.id}}" data-status="{{poll.status}}" {% if admin_mode %} data-admin {% endif %}>
 
        <div class="sync unselectable">
         <div class="sync-in">

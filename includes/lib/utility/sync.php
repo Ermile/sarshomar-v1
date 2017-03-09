@@ -131,7 +131,7 @@ class sync
 		self::sync_userranks();
 		//----- deactive telegram user
 		self::sync_users();
-
+		\lib\utility\profiles::refresh_dashboard(self::$new_user_id);
 		// \content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
 
 		// check error was happend or no
@@ -350,8 +350,6 @@ class sync
 
 		\lib\db::query("UPDATE IGNORE options SET user_id = $new_user_id WHERE user_id = $old_user_id ");
 		\lib\db::query("UPDATE options SET option_status = 'disable' WHERE user_id = $old_user_id ");
-
-		\lib\utility\profiles::refresh_dashboard($new_user_id);
 	}
 
 

@@ -141,13 +141,9 @@ class view extends \content_u\home\view
 			$this->data->article_titles = $article_titles;
 		}
 
-		if(isset($poll['status']))
+		if($this->access('admin'))
 		{
-			if($poll['status'] != 'draft' && $this->access('admin'))
-			{
-				$this->data->real_status = $poll['status'];
-				$poll['status'] = 'draft';
-			}
+			$this->data->admin_mode = true;
 		}
 
 		if(isset($poll['filters']['count']))

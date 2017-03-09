@@ -92,10 +92,11 @@ trait check
 	{
 		$where =
 		[
-			'user_id'    => $_user_id,
-			'post_id'    => null,
-			'option_cat' => 'user_detail_'. $_user_id,
-			'option_key' => 'user_uploaded_size',
+			'user_id'      => $_user_id,
+			'post_id'      => null,
+			'option_cat'   => 'user_detail_'. $_user_id,
+			'option_key'   => 'user_uploaded_size',
+			'option_value' => 'user_uploaded_size',
 		];
 		\lib\db\options::plus($where, (int) $_size);
 	}

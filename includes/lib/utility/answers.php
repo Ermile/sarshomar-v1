@@ -402,12 +402,12 @@ class answers
 		if($skipped)
 		{
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
-			\lib\utility\profiles::people_see_my_poll($_args['user_id'], $_args['poll_id'], "skipped");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 		}
 		else
 		{
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_answered");
-			\lib\utility\profiles::people_see_my_poll($_args['user_id'], $_args['poll_id'], "answered");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 		}
 
 		self::$IS_ANSWERED = [];
@@ -516,6 +516,14 @@ class answers
 			// unset user profile if this poll is profile poll
 			\lib\utility\profiles::set_profile_by_poll($answers_details);
 
+			if($value === 0)
+			{
+				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
+			}
+			else
+			{
+				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
+			}
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
 
@@ -532,6 +540,7 @@ class answers
 		{
 			$skipped = true;
 			$result  = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 		}
 		elseif(!empty(self::$must_insert))
 		{
@@ -567,14 +576,16 @@ class answers
 					\lib\utility\stat_polls::set_poll_result($answers_details);
 				}
 			}
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 		}
 		// plus answer update count
 		$where =
 		[
-			'post_id'    => $_args['poll_id'],
-			'user_id'    => $_args['user_id'],
-			'option_cat' => "update_user_$_args[user_id]",
-			'option_key' => "update_result_$_args[poll_id]",
+			'post_id'      => $_args['poll_id'],
+			'user_id'      => $_args['user_id'],
+			'option_cat'   => "user_detail_$_args[user_id]",
+			'option_key'   => "update_answer_$_args[poll_id]",
+			'option_value' => "update_answer",
 		];
 		\lib\db\options::plus($where);
 		self::$IS_ANSWERED = [];
@@ -660,6 +671,15 @@ class answers
 				'user_verify' => $user_verify,
 			];
 			\lib\utility\stat_polls::set_poll_result($answers_details);
+		}
+
+		if($skipped)
+		{
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
+		}
+		else
+		{
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
 		}
 
 		self::$IS_ANSWERED = [];

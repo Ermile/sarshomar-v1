@@ -35,13 +35,14 @@ trait dashboard
 	 */
 	public static function refresh_dashboard($_user_id)
 	{
-		return true;
+		// return true;
 		$querys    = self::dashboard_query($_user_id);
 		$run_query = [];
 
-		foreach ($querys as $key => $query)
+		foreach ($querys as $title => $query)
 		{
-			$cat         = "user_dashboard_". $_user_id;
+			$cat = "user_detail_". $_user_id;
+			$key = "dashboard_data";
 			// $run_query =
 			$run_query[] =
 			"
@@ -50,21 +51,22 @@ trait dashboard
 					options.user_id       = $_user_id,
 					options.option_cat    = '$cat',
 					options.option_key    = '$key',
-					options.option_value  = ($query),
+					options.option_value  = '$title',
+					options.option_meta   = ($query),
 					options.option_status = 'enable'
 				ON DUPLICATE KEY UPDATE
 					options.user_id       = $_user_id,
-					options.option_value  = ($query),
+					options.option_meta   = ($query),
 					options.option_status = 'enable'
 			";
-
 			// \lib\db::query($run_query);
 		}
 		$run_query = implode(';', $run_query);
-		\lib\db::query($run_query, true, ['multi_query' => true]);
+		\lib\db::query($run_query . ";", true, ['multi_query' => true]);
 
 		return true;
 	}
+
 
 	/**
 	 * Gets the dashboard data.
@@ -78,18 +80,20 @@ trait dashboard
 		$query =
 		"
 			SELECT
-				option_key AS 'key',
-				option_value AS 'value'
+				option_value AS `title`,
+				option_meta AS `count`
 			FROM
 				options
 			WHERE
 				post_id IS NULL AND
-				user_id    = $_user_id AND
-				option_cat = 'user_dashboard_$_user_id' AND
+				user_id       = $_user_id AND
+				option_cat    = 'user_detail_$_user_id' AND
+				option_key    = 'dashboard_data' AND
 				option_status = 'enable'
 			-- profiles::get_dashboard_data()
 		";
-		$dashboard = \lib\db::get($query, ['key', 'value']);
+
+		$dashboard = \lib\db::get($query, ['title', 'count']);
 		$dashboard['user_referred'] = self::user_ref($_user_id);
 		$dashboard['user_verified'] = self::user_ref($_user_id, 'active');
 		return $dashboard;
@@ -104,35 +108,15 @@ trait dashboard
 	 */
 	public static function set_dashboard_data($_user_id, $_title, $_plus = 1)
 	{
-		$query =
-		"
-			UPDATE
-				options
-			SET
-				options.option_value =  options.option_value + $_plus
-			WHERE
-				options.post_id IS NULL AND
-				options.user_id       = $_user_id AND
-				options.option_cat    = 'user_dashboard_$_user_id' AND
-				options.option_key    = '$_title' AND
-				options.option_status = 'enable'
-			LIMIT 1
-			-- profiles::set_dashboard_data()
-		";
-		$result = \lib\db::query($query);
-		$update_rows = mysqli_affected_rows(\lib\db::$link);
-		if(!$update_rows)
-		{
-			$insert_options =
-			[
-				'post_id'      => null,
-				'option_value' => $_plus,
-				'user_id'      => $_user_id,
-				'option_cat'   => "user_dashboard_$_user_id",
-				'option_key'   => "$_title"
-			];
-			\lib\db\options::insert($insert_options);
-		}
+		$args =
+		[
+			'post_id'      => null,
+			'user_id'      => $_user_id,
+			'option_cat'   => 'user_detail_'. $_user_id,
+			'option_key'   => 'dashboard_data',
+			'option_value' => $_title,
+		];
+		\lib\db\options::plus($args, $_plus);
 	}
 
 
@@ -143,38 +127,40 @@ trait dashboard
 	 * @param      <type>  $_user_id  The user identifier
 	 * @param      <type>  $_poll_id  The poll identifier
 	 */
-	public static function people_see_my_poll($_user_id, $_poll_id, $_title)
+	public static function people_see_my_poll($_poll_id, $_title, $_type)
 	{
-		$query =
-		"
-			UPDATE
-				options
-			SET
-				options.option_value =  options.option_value + 1
-			WHERE
-				options.post_id    IS NULL AND
-				options.user_id    = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1)	AND
-				options.option_cat = CONCAT('user_dashboard_', options.user_id) AND
-				options.option_key = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title')
-				-- profiles::people_see_my_poll()
-		";
-		$result = \lib\db::query($query);
-		$update_rows = mysqli_affected_rows(\lib\db::$link);
-		if(!$update_rows)
+		$poll = \lib\db\polls::get_poll($_poll_id);
+		$poll_type = null;
+		if(isset($poll['type']))
 		{
-			$insert_options =
-			"
-				INSERT INTO
-					options
-				SET
-					options.post_id      = NULL,
-					options.user_id      = (SELECT user_id FROM posts WHERE posts.id = $_poll_id LIMIT 1),
-					options.option_cat   = CONCAT('user_dashboard_', options.user_id),
-					options.option_key   = CONCAT('my_',  IF((SELECT IFNULL(post_survey,FALSE) FROM posts WHERE posts.id = $_poll_id LIMIT 1), 'survey','poll'), '_$_title'),
-					options.option_value = 1
-				-- profiles::people_see_my_poll()
-			";
-			\lib\db::query($insert_options);
+			$poll_type = $poll['type'];
+		}
+
+		$user_id = null;
+
+		if(isset($poll['user_id']))
+		{
+			$user_id = $poll['user_id'];
+		}
+
+		$value = "my_". $poll_type. "_". $_title;
+
+		$where =
+		[
+			'user_id'      => $user_id,
+			'post_id'      => null,
+			'option_cat'   => 'user_detail_'. $user_id,
+			'option_key'   => 'dashboard_data',
+			'option_value' => $value
+		];
+
+		if($_type === 'plus')
+		{
+			\lib\db\options::plus($where);
+		}
+		else
+		{
+			\lib\db\options::minus($where);
 		}
 	}
 

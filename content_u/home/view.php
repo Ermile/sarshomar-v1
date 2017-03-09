@@ -36,9 +36,8 @@ class view extends \mvc\view
 		}
 
 		$user_id                       = $this->login("id");
-
+		// \lib\utility\profiles::refresh_dashboard($user_id);
 		$this->data->ui_language = \lib\db\users::get_language($user_id);
-
 		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
 		if(!is_array($dashboard_data))
 		{
@@ -106,16 +105,19 @@ class view extends \mvc\view
 			'user_referred'      => 0,
 			'user_verified'      => 0,
 			'comment_count'      => 0,
-			'draft_count'        => ($draft_count) ? $draft_count : 0,
-			'publish_count'      => ($publish_count) ? $publish_count : 0,
-			'awaiting_count'     => ($awaiting_count) ? $awaiting_count : 0,
-			'sarshomar_poll'     => ($sarshomar_poll) ? $sarshomar_poll : 0
 		];
-		$dashboard_data = array_merge($dashboard_data, $temp_dashboar_data);
+
+		$dashboard_data = array_merge($temp_dashboar_data, $dashboard_data);
+		$dashboard_data['draft_count']    =	$draft_count;
+		$dashboard_data['publish_count']  = $publish_count;
+		$dashboard_data['awaiting_count'] = $awaiting_count;
+		$dashboard_data['sarshomar_poll'] = $sarshomar_poll;
+
 		foreach ($dashboard_data as $key => $value)
 		{
 			$dashboard_data[$key] = (int) $value;
 		}
+
 		$this->data->dashboard = $dashboard_data;
 		$remain = (int) $dashboard_data['sarshomar_poll'];
 		$remain -= (int) $dashboard_data['poll_answered'];
