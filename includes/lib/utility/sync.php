@@ -142,7 +142,7 @@ class sync
 		}
 		else
 		{
-			// \lib\db::commit();
+			\lib\db::commit();
 			return [
 				'message' => T_("sync complete"),
 				'user_id' => $web_id
@@ -333,23 +333,23 @@ class sync
 		// user_dashboard 10000134
 		// update record similar user_detail && user_dashboard && ...
 		// sample value is: my_poll, my_poll_answered, my_poll_skipped, ...
-		$option_cats = ['user_dashboard', 'update_user', 'user_detail'];
+		$option_cats = ['user_dashboard', 'update_user', 'user_detail', 'history'];
 		foreach ($option_cats as $key => $value)
 		{
-			$update_query =
-			"
-				UPDATE IGNORE options
+			$update_query ="UPDATE IGNORE options
 				SET
 					option_cat = '{$value}_{$new_user_id}',
 					user_id = $new_user_id
 				WHERE
 					option_cat = '{$value}_{$old_user_id}' AND
-					user_id = $old_user_id
-			";
+					user_id = $old_user_id";
 			\lib\db::query($update_query);
 			// \lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
 			\lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
 		}
+
+		\lib\db::query("UPDATE IGNORE options SET user_id = $new_user_id WHERE user_id = $old_user_id ");
+		\lib\db::query("UPDATE options SET option_status = 'disable' WHERE user_id = $old_user_id ");
 
 		\lib\utility\profiles::refresh_dashboard($new_user_id);
 	}
