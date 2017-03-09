@@ -42,7 +42,7 @@ class inline_query
 				]
 				]);
 			$query_result = \lib\main::$controller->model()->poll_search(true);
-			if($query_result['to'] < $query_result['total'])
+			if($query_result['from'] < $query_result['total'])
 			{
 				$result['next_offset'] = $query_result['to'];
 			}
@@ -78,7 +78,7 @@ class inline_query
 			$short_dec = preg_replace("/\n/", " ", $value['description']);
 			$short_dec = mb_substr($short_dec, 0, 120);
 
-			$row_result['description'] = $short_dec;
+			$row_result['description'] .= $short_dec;
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
