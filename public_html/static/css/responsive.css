@@ -191,6 +191,17 @@ header .header-profile-link .header-link-icon {display: inline-block;}
  #inestimable h3{font-size:1.6em}
  #inestimable h4{font-size:1.4em}
  #inestimable .vision {font-size: 2em;}
+
+ .n-inestimable{text-align:center;height:150px;margin-bottom:-8px}
+ .n-inestimable:before,.n-inestimable:after{display: none}
+ .n-inestimable .inestimable-mobile-border {height: 100%; width:100px;}
+ .n-inestimable .inestimable-desktop-border,.n-inestimable .inestimable-desktop-border {display: none}
+ .n-inestimable .launch{display:none}
+ .n-inestimable .launch-box {display: none;}
+ .n-inestimable h3{font-size:1.6em}
+ .n-inestimable h4{font-size:1.4em}
+ .n-inestimable .vision {font-size: 2em;}
+
  .special-button{font-size:12px!important;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}
  .special-button:before,.special-button:after{top:-4px;font-size:38px}
  .special-button:before{left:-6px}

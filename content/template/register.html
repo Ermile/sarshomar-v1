@@ -27,40 +27,43 @@
 <h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
 {%else%}
 {%if login and login.status == 'active'%}
-   <div class="span2"></div>
-   <div class="span3 launch-box">
-    <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
-   </div>
-   <div class="span6">
-    <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
+
+   <div class="s12 c8 f align-center justify-center">
+     <div class="c3 launch-box">
+        <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+     </div>
+     <div class="s12 c5">
+       <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
     <h4>{%trans "Sarshomar is jumping..."%}</h4>
+     </div>
    </div>
 
 {%elseif login%}
-   <div class="span2"></div>
-   <div class="span3">
-    <img class="launch launch-box" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
-   </div>
-   <div class="span6">
-    <h3>{%trans "Inspection and Answer"%}</h3>
-    <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-    <a class="special-btn" href="{{url.base}}/account/recovery">{%trans "Verify your account"%}</a>
+
+<div class="s12 c8 f align-center justify-center">
+     <div class="c3 launch-box">
+        <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+     </div>
+     <div class="s12 c5">
+       <h3>{%trans "Inspection and Answer"%}</h3>
+        <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+     <a class="special-btn" href="{{url.base}}/account/recovery">{%trans "Verify your account"%}</a>
+     </div>
    </div>
 
 {%else%}
 
-   <div class="c8 f align-center justify-center">
-     <div class="c3">
-        <img class="launch launch-box" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
+   <div class="s12 c8 f align-center justify-center">
+     <div class="c3 launch-box">
+        <img class="launch" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
      </div>
-     <div class="c5">
+     <div class="s12 c5">
        <h3>{%trans "Inspection and Answer"%}</h3>
         <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
       {%if not login%}
         <a href="{{url.base}}/features/guest" class="special-btn">{%trans "Try Before Register"%}</a>
       {%endif%}
      </div>
-
    </div>
 {%endif%}
 {%endif%}
