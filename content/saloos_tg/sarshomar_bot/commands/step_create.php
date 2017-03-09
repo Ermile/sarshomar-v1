@@ -275,7 +275,7 @@ class step_create
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
 
-		if(session::get('poll_options' , 'type') && !empty($maker->query_result['answers']) && !empty($maker->query_result['title']))
+		if(session::get('poll_options' , 'type') == 'select' && !empty($maker->query_result['answers']) && !empty($maker->query_result['title']))
 		{
 			$count = ['first', 'secoend', 'third'];
 			$count_answer = count($maker->query_result['answers']);

@@ -27,7 +27,7 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$message_per_page = 1;
+		$message_per_page = 5;
 		if(is_null($_query))
 		{
 			$page = 1;
@@ -67,14 +67,18 @@ class poll
 		}
 		else
 		{
+			$status_emoji = ['publish' => '✳️', 'stop' => '🚫', 'pause' => '⛔️', 'draft' => '📝'];
 			$message = utility::nubmer_language($page . "/" . $total_page) . "\n";
 			foreach ($query_result as $key => $value) {
+				$message .= ' ' .$status_emoji[$value['status']];
 				$message .= $value['title'];
-				$message .= utility::nubmer_language("($value[count_vote])");
-				$message .= ' - ' . T_(ucfirst($value['status']));
+				if($value['status'] != 'draft')
+				{
+					$message .= ' ' . utility::nubmer_language("($value[count_vote])");
+				}
 				$message .= "\n";
 				$message .= "/" . $value['id'];
-				$message .= "\n\n";
+				$message .= "\n";
 			}
 		}
 		$return = ['text' => $message];
