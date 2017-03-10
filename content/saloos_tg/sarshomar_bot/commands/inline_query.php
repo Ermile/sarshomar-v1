@@ -15,7 +15,6 @@ class inline_query
 		$result = ['method' => 'answerInlineQuery'];
 
 		$result_id = md5(microtime(true) . $id);
-		$subport_id = \lib\utility\shortURL::encode($subport['id']);
 
 		$result['inline_query_id'] = $id;
 		$result['is_personal'] = true;
