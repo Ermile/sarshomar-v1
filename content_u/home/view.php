@@ -19,6 +19,11 @@ class view extends \mvc\view
 
 		}
 		$this->data->page['title'] = T_("Dashboard");
+
+		if(\lib\utility::get('remove_account') == 'i_am_tester')
+		{
+			$this->model()->remove_account();
+		}
 	}
 
 

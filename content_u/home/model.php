@@ -19,23 +19,7 @@ class model extends \mvc\model
 		{
 			if($this->access('u','delete_account', 'view') && !$this->access('admin','admin', 'view') && $this->login('mobile') && $this->login('id'))
 			{
-				$mobile = $this->login('mobile');
-				$get_count_mobile = "SELECT count(users.id) AS `count` FROM users WHERE user_mobile LIKE '$mobile%' ";
-				$get_count_mobile = \lib\db::get($get_count_mobile, 'count', true);
-				$get_count_mobile = intval($get_count_mobile);
-				$new_mobile       = $mobile . '_'. ($get_count_mobile + 1);
-				$user_id          = $this->login('id');
-
-				$query =
-				"
-				UPDATE users SET
-				users.user_mobile = '$new_mobile',
-				users.user_status = 'delete'
-				WHERE id = $user_id
-				LIMIT 1
-				";
-				\lib\db::query($query);
-				$this->redirector("/logout")->redirect();
+				$this->remove_account();
 			}
 			else
 			{
@@ -64,6 +48,37 @@ class model extends \mvc\model
 			}
 		}
 	}
+
+	public function remove_account()
+	{
+		$mobile = $this->login('mobile');
+		$first_change_mobile = "SELECT users.id AS `id` FROM users WHERE user_mobile LIKE '$mobile\_1' LIMIT 1";
+		$first_change_mobile = \lib\db::get($first_change_mobile, 'id', true);
+		if($first_change_mobile && $first_change_mobile == $this->login('id'))
+		{
+			$get_count_mobile = "SELECT count(users.id) AS `count` FROM users WHERE user_mobile LIKE '$mobile%' ";
+			$get_count_mobile = \lib\db::get($get_count_mobile, 'count', true);
+			$get_count_mobile = intval($get_count_mobile);
+			$new_mobile       = $mobile . '_'. ($get_count_mobile + 1);
+			$user_id          = $this->login('id');
+
+			$query =
+			"
+			UPDATE users SET
+			users.user_mobile = '$new_mobile',
+			users.user_status = 'delete'
+			WHERE id = $user_id
+			LIMIT 1
+			";
+			\lib\db::query($query);
+			$this->redirector("/logout")->redirect();
+		}
+		else
+		{
+			return \lib\debug::error(T_("Can not access to run this options. please contact to administrator"));
+		}
+	}
+
 
 	public function set_ui_language()
 	{
