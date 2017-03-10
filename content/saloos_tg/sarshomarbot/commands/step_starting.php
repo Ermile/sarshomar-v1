@@ -43,7 +43,7 @@ class step_starting
 				]);
 			if($user_language)
 			{
-				$count = \lib\db\users::get_count();
+				$count = \saloos::lib_static('db')->users()::get_count();
 				$sum = array_sum(array_column($count, 'count'));
 				$text = T_("Welcome to the society of :count people of sarshomar",
 				['count'=> utility::nubmer_language($sum)]);

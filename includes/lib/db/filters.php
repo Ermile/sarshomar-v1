@@ -462,7 +462,7 @@ class filters
 		}
 		else
 		{
-			$count = \lib\db\users::get_count('all');
+			$count = \saloos::lib_static('db')->users()::get_count('all');
 			return $count;
 		}
 	}
