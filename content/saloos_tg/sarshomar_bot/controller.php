@@ -157,6 +157,28 @@ class controller extends \lib\mvc\controller
 		}
 
 
+		self::clear_back_temp();
+
+
+		if(!\lib\storage::get_current_command())
+		{
+			session::remove('expire', 'command');
+		}
+
+		/**
+		 * save telegram sessions to db
+		 */
+		\lib\db\tg_session::set('tg', $_SESSION['tg']);
+		\lib\db\tg_session::save();
+		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
+		{
+			var_dump($result);
+		}
+		exit();
+	}
+
+	public static function clear_back_temp()
+	{
 		$get_back_response = session::get_back('expire', 'inline_cache');
 		if($get_back_response && !\lib\storage::get_disable_edit())
 		{
@@ -178,23 +200,6 @@ class controller extends \lib\mvc\controller
 				bot::sendResponse($edit_return);
 			}
 		}
-
-
-		if(!\lib\storage::get_current_command())
-		{
-			session::remove('expire', 'command');
-		}
-
-		/**
-		 * save telegram sessions to db
-		 */
-		\lib\db\tg_session::set('tg', $_SESSION['tg']);
-		\lib\db\tg_session::save();
-		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
-		{
-			var_dump($result);
-		}
-		exit();
 	}
 }
 ?>

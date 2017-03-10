@@ -65,12 +65,13 @@ class step_create
 	{
 		if(substr($_question, 0, 1) == '/')
 		{
+			\lib\main::$controller::clear_back_temp();
 			callback_query\create::cancel();
 			bot::sendResponse([
-				'text' => T_("Return to main menu"),
+				'text' => T_("Cancel"),
 				'reply_markup' => menu::main(true)
 				]);
-			return handle::exec(bot::$cmd);
+			return handle::exec(bot::$cmd, false, true);
 		}
 		preg_match("/^type_(.*)$/", $_question, $file_content);
 		$get_poll = session::get('poll');
@@ -275,7 +276,7 @@ class step_create
 		$maker->message->add_title();
 		$maker->message->add_poll_list(false, false);
 
-		if(session::get('poll_options' , 'type') == 'select' && !empty($maker->query_result['answers']) && !empty($maker->query_result['title']))
+		if(session::get('poll_options' , 'type') == 'select' && !empty($maker->query_result['title']))
 		{
 			$count = ['first', 'secoend', 'third'];
 			$count_answer = count($maker->query_result['answers']);

@@ -9,12 +9,15 @@ class handle
 {
 	public static $return = false;
 
-	public static function exec($_cmd, $_run = false)
+	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		$spammer = spammer::check();
-		if($spammer)
+		if(!$nospammer)
 		{
-			return $spammer;
+			$spammer = spammer::check();
+			if($spammer)
+			{
+				return $spammer;
+			}
 		}
 		$user_meta = json_decode(\lib\db\users::get(bot::$user_id)['user_meta'], true);
 		$incomming_method = ['inline_query','callback_query','chosen_inline_result','message'];
