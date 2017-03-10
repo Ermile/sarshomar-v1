@@ -403,6 +403,16 @@ private function transtext()
 	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 16
 	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 16
 
+	//---------------------------------------content\template\static\logo\home-fa.html
+	echo T_("Our logo");                                                              // Line 5
+
+	//------------------------------------------content\template\static\logo\home.html
+	echo T_("Brand Intro");                                                           // Line 44
+	echo T_("Drawing logo");                                                          // Line 45
+	echo T_("Brand Blueprint");                                                       // Line 48
+	echo T_("Explanations about the logo");                                           // Line 135
+	echo T_("Pomegranate");                                                           // Line 147
+
 	//--------------------------------------------content\template\static\mission.html
 
 	//--------------------------------------------content\template\static\privacy.html
