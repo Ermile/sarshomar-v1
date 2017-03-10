@@ -17,17 +17,20 @@ class step_answer_descriptive
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start($_text = null)
+	public static function start($_text = null, $commands = [])
 	{
-		handle::send_log(bot::$hook);
-		$x = bot::sendResponse([
-			'method' => 'editMessageText',
-			'message_id' => bot::$hook['message']['message_id'],
-			'chat_id' => bot::$hook['message']['chat']['id'],
-			'text' => 'f'
-			]);
-		handle::send_log($x);
 		step::stop();
+		$subport = null;
+		if(isset($commands['subport']))
+		{
+			$get_subport = \lib\db\options::get([
+					'option_cat'	=> 'telegram',
+					'option_key'	=> 'subport',
+					'option_value'	=> $commands['subport'],
+					'limit'			=> 1
+					]);
+			$subport = '/:' . \lib\utility\shortURL::encode($get_subport['id']);
+		}
 		if(preg_match("/^([^_]*)_(.*)$/", $_text, $_answer))
 		{
 
@@ -90,18 +93,17 @@ class step_answer_descriptive
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_("Allow"),
-					'callback_data' => 'poll/answer/' . $_answer[1] . '/' . $_answer[2]
+					'callback_data' => 'poll/answer/' . $_answer[1] . '/' . $_answer[2] . $subport
 				],
 				[
 					'text' => T_("Deny"),
-					'callback_data' => 'poll/deny_answer/' . $_answer[1] . '/' . $_answer[2]
+					'callback_data' => 'poll/deny_answer/' . $_answer[1] . '/' . $_answer[2] . $subport
 				]
 			]);
 
 			$return = $maker->make();
 
 			$return["response_callback"] = utility::response_expire('answer_descriptive');
-
 			return $return;
 		}
 		else
@@ -172,11 +174,11 @@ class step_answer_descriptive
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_('Yes'),
-					'callback_data' => 'poll/answer_descriptive/answer',
+					'callback_data' => 'poll/answer_descriptive/answer' . $subport
 				],
 				[
 					'text' => T_('Cancel'),
-					'callback_data' => 'poll/answer_descriptive/cancel',
+					'callback_data' => 'poll/answer_descriptive/cancel' . $subport
 				]
 			]);
 			$return = $maker->make();

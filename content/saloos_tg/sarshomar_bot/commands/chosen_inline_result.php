@@ -8,7 +8,6 @@ class chosen_inline_result
 {
 	public static function start($_query = null)
 	{
-		handle::send_log($_query);
 		\lib\storage::set_disable_edit(true);
 		$inline_message_id = $_query['inline_message_id'];
 		$result = explode(':', $_query['result_id']);

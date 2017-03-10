@@ -140,7 +140,7 @@ class step_starting
 		elseif(array_key_exists('answer', $commands))
 		{
 			step::stop();
-			$return = step_answer_descriptive::start($commands['answer']);
+			$return = step_answer_descriptive::start($commands['answer'], $commands);
 		}
 		elseif(array_key_exists('sp', $commands))
 		{
