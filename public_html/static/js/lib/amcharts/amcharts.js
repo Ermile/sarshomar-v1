@@ -598,7 +598,7 @@ function drawChart()
  * @param  {[type]} _this [description]
  * @return {[type]}       [description]
  */
-function createChartOption(_this)
+function createChartOption(_this, _chartName)
 {
 		// declare variables
 		$this              = $(_this);
@@ -667,29 +667,43 @@ function createChartOption(_this)
 		// };
 
 		var myChartOptions          = {};
-		myChartOptions              = getPollOption('default', {"color":attrColor, "val":attrVals})
-		myChartOptions.categoryAxis = getPollOption('categoryAxis');
-		myChartOptions.valueAxes    = getPollOption('valueAxes');
-		myChartOptions.graphs       = getPollOption('graphs', attrAutoColor);
+		myChartOptions              = getChartOption('default', {"color":attrColor, "val":attrVals})
+		myChartOptions.categoryAxis = getChartOption('categoryAxis');
+		myChartOptions.valueAxes    = getChartOption('valueAxes');
+		myChartOptions.legend       = getChartOption('legend');
 
-		// if has format call it
+		// else if has format call it
 		if(attrFormat && typeof window[attrFormat] == 'function')
 		{
+			myChartOptions.graphs = getChartOption('graphs', attrAutoColor);
 			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
 		}
 
+		console.log(myChartOptions);
 		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
-		$(chartContainer).data('chart', chartData);
+		// if(_chartName)
+		// {
+		// 	console.log(_chartName);
+
+		// 	$(chartContainer).data('chart-' + _chartName, chartData);
+		// 	chartData.invalidateSize();
+		// 	// console.log(_chartName);
+		// 	console.log($(chartContainer).data('chart-' + _chartName));
+		// }
+		// else
+		{
+			$(chartContainer).data('chart', chartData);
+		}
 }
 
 
 /**
- * [getPollOption description]
+ * [getChartOption description]
  * @param  {[type]} $_what [description]
  * @param  {[type]} _arg   [description]
  * @return {[type]}        [description]
  */
-function getPollOption($_what, _arg)
+function getChartOption($_what, _arg)
 {
 	var prop = {};
 	switch ($_what)
@@ -739,6 +753,17 @@ function getPollOption($_what, _arg)
 			}];
 			break;
 
+		case 'legend':
+			prop =
+			{
+				"horizontalGap": 10,
+				"maxColumns": 1,
+				"position": "right",
+				"useGraphSettings": true,
+				"markerSize": 10
+			};
+			break;
+
 		case 'default':
 		default:
 			prop =
@@ -760,6 +785,120 @@ function getPollOption($_what, _arg)
 	}
 
 	return prop;
+}
+
+
+/**
+ * remove all exisiting graphgs
+ * @return {[type]} [description]
+ */
+function removeChartGraphs(_chartData)
+{
+	if(!_chartData || !_chartData.graphs)
+	{
+		return false;
+	}
+	var graphLen = _chartData.graphs.length;
+
+	for (var i=0; i<graphLen; i++)
+	{
+		var myGraph = _chartData.graphs.pop();
+		_chartData.removeGraph(myGraph);
+	}
+}
+
+/**
+ * [createChartGraphs description]
+ * @param  {[type]} _chartData [description]
+ * @param  {[type]} _name      [description]
+ * @param  {[type]} _title     [description]
+ * @param  {[type]} _value     [description]
+ * @param  {[type]} _balloon   [description]
+ * @return {[type]}            [description]
+ */
+function createChartGraphs(_chartData, _group, _title, _value, _balloon)
+{
+	if(!_balloon)
+	{
+		_balloon = "[[title]] "+ _title +"<br/><b>[[value]]</b>"
+	}
+	// Add mael graph attached to the axis
+	var myNewGraph = new AmCharts.AmGraph();
+	myNewGraph.type           = "column";
+	myNewGraph.title          = _title;
+	myNewGraph.valueField     = _value;
+	myNewGraph.balloonText    = _balloon;
+	myNewGraph.labelText      = "[[value]]";
+	myNewGraph.fillAlphas = 0.9;
+	// add graph to chart data
+	if(typeof _chartData.addGraph === "function")
+	{
+		_chartData.addGraph(myNewGraph);
+	}
+	else
+	{
+		_chartData.graph = myNewGraph;
+	}
+}
+
+
+/**
+ * [setChartOption_result description]
+ * @param {[type]} _chartData [description]
+ */
+function setChartOption_result(_chartData, _init)
+{
+	if(!_init)
+	{
+		// remove all exisiting graphgs
+		removeChartGraphs(_chartData);
+	}
+	// set color and axis type
+	_chartData.colors = ["#83c3e1", "#d8d8d8", "#000"];
+	// get a rest to delete graph
+	createChartGraphs(_chartData, 'result_reliable', 'Reliable', 'value_reliable');
+	createChartGraphs(_chartData, 'result_unreliable', 'Unreliable', 'value_unreliable');
+	// createChartGraphs(_chartData, 'result_unknown', 'unknown', 'unknown');
+}
+
+
+/**
+ * [setPollOption description]
+ * @param {[type]} _option [description]
+ */
+function setChartOption_gender(_chartData)
+{
+	// remove all exisiting graphgs
+	removeChartGraphs(_chartData);
+	// set color and axis type
+	_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
+	// get a rest to delete graph
+	createChartGraphs(_chartData, 'gender_male', 'Male', 'male');
+	createChartGraphs(_chartData, 'gender_female', 'Female', 'female');
+	createChartGraphs(_chartData, 'gender_unknown', 'unknown', 'unknown');
+}
+
+
+/**
+ * [setChartOption_range description]
+ * @param {[type]} _chartData [description]
+ */
+function setChartOption_range(_chartData)
+{
+	// remove all exisiting graphgs
+	removeChartGraphs(_chartData);
+	// set color and axis type
+	_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
+	_chartData.colors = pallet();
+	// get a rest to delete graph
+	createChartGraphs(_chartData, 'range_-13', 'under 13', '-13');
+	createChartGraphs(_chartData, 'range_14-17', '14-17', '14-17');
+	createChartGraphs(_chartData, 'range_18-24', '18-24', '18-24');
+	createChartGraphs(_chartData, 'range_25-30', '25-30', '25-30');
+	createChartGraphs(_chartData, 'range_31-44', '31-44', '31-44');
+	createChartGraphs(_chartData, 'range_45-59', '45-59', '45-59');
+	createChartGraphs(_chartData, 'range_60+', '60+', '60+');
+	createChartGraphs(_chartData, 'range_unknown', 'unknown', 'unknown');
 }
 
 
@@ -800,8 +939,15 @@ function redrawPollChart(_data)
 				$('.isDataNotExist').fadeOut();
 			}
 			console.log(drawData);
+
+			// if this chart has extra setting set it
 			// call func to customize data for this type of chart
-			pollDrawHandle(myChartData, null, myChart, chartType);
+			console.log(chartType);
+			if(chartType && typeof window['setChartOption_' + chartType] == 'function')
+			{
+				window['setChartOption_' + chartType](myChartData);
+			}
+
 			//Setting the new data to the graph
 			myChartData.dataProvider = drawData;
 			myChartData.animateAgain();
@@ -946,50 +1092,50 @@ function dashboardPie(_option, _vals)
  * @param  {[type]} _type   [description]
  * @return {[type]}         [description]
  */
-function pollDrawHandle(_option, _vals, _this, _type)
-{
-	console.log(_type);
+// function pollDrawHandle(_option, _vals, _this, _type)
+// {
+// 	console.log(_type);
 
-	var transText = _this.attr('data-trans');
-	if(transText)
-	{
-		transText = JSON.parse(transText);
-	}
-	switch(_type)
-	{
-		case 'gender':
-			_option = pollTotal_gender(_option, transText);
-			break;
+// 	var transText = _this.attr('data-trans');
+// 	if(transText)
+// 	{
+// 		transText = JSON.parse(transText);
+// 	}
+// 	switch(_type)
+// 	{
+// 		case 'gender':
+// 			 _option = pollTotal_gender(_option, transText);
+// 			break;
 
-		case 'age':
-			break;
+// 		case 'age':
+// 			break;
 
-		case 'range':
-			break;
+// 		case 'range':
+// 			break;
 
-		case 'marital':
-			break;
+// 		case 'marital':
+// 			break;
 
-		case 'graduation':
-			break;
+// 		case 'graduation':
+// 			break;
 
-		case 'employmentstatus':
-			break;
+// 		case 'employmentstatus':
+// 			break;
 
-		case 'province':
-			break;
+// 		case 'province':
+// 			break;
 
-		case 'result':
-			_option = pollTotal_result(_option, transText);
-			break;
+// 		case 'result':
+// 			_option = pollTotal_result(_option, transText);
+// 			break;
 
-		default:
-			_option = pollTotal_default(_option, transText);
-			break;
-	}
+// 		default:
+// 			_option = pollTotal_default(_option, transText);
+// 			break;
+// 	}
 
-	return _option;
-}
+// 	return _option;
+// }
 
 
 /**
@@ -1001,7 +1147,7 @@ function pollDrawHandle(_option, _vals, _this, _type)
  */
 function pollTotal_default(_option, _transText)
 {
-	console.log(_transText);
+	// console.log(_transText);
 	// console.log(_option);
 	_option.colors = ["#83c3e1", "#d8d8d8" ];
 
@@ -1011,6 +1157,8 @@ function pollTotal_default(_option, _transText)
 		"axisAlpha": 0.1,
 		"gridAlpha": 0,
 	}];
+
+	// setChartOption_result(_option, true);
 
 	_option.graphs =
 	[
@@ -1034,6 +1182,7 @@ function pollTotal_default(_option, _transText)
 			"clustered":false,
 		},
 	];
+
 	_option.categoryField = "title";
 	// console.log(_option);
 
@@ -1041,31 +1190,31 @@ function pollTotal_default(_option, _transText)
 }
 
 
-function pollTotal_result(_option, _transText)
-{
-	// set default color for values
-	_option.colors = ["#83c3e1", "#d8d8d8" ];
+// function pollTotal_result(_option, _transText)
+// {
+// 	// set default color for values
+// 	_option.colors = ["#83c3e1", "#d8d8d8" ];
 
-	_option.graphs[0].valueField = "value_reliable";
-	_option.graphs[1].valueField = "value_unreliable";
-}
+// 	_option.graphs[0].valueField = "value_reliable";
+// 	_option.graphs[1].valueField = "value_unreliable";
+// }
 
 
-/**
- * [pollTotal_gender description]
- * @param  {[type]} _option    [description]
- * @param  {[type]} _transText [description]
- * @return {[type]}            [description]
- */
-function pollTotal_gender(_option, _transText)
-{
-	console.log(_option.graphs);
-	_option.colors = ["#83c3e1", "#e97197" ];
+// *
+//  * [pollTotal_gender description]
+//  * @param  {[type]} _option    [description]
+//  * @param  {[type]} _transText [description]
+//  * @return {[type]}            [description]
 
-	_option.graphs[0].valueField = "male";
-	_option.graphs[1].valueField = "female";
+// function pollTotal_gender(_option, _transText)
+// {
+// 	console.log(_option.graphs);
+// 	_option.colors = ["#83c3e1", "#e97197" ];
 
-}
+// 	_option.graphs[0].valueField = "male";
+// 	_option.graphs[1].valueField = "female";
+
+// }
 
 
 /**
