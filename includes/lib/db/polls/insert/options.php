@@ -11,17 +11,17 @@ trait options
 		// save meta times
 		if(self::isset_args('brand','title'))
 		{
-			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 160)
+			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 99)
 			{
-				return debug::error(T_("Invalid brand title argument, you must set less than 160 character for the title"), 'title', 'arguments');
+				return debug::error(T_("Invalid brand title argument, you must set less than 99 character for the title"), 'title', 'arguments');
 			}
 
 			$url = null;
 			if(self::isset_args('brand','url'))
 			{
-				if(mb_strlen(self::$args['brand']['url']) > 100)
+				if(mb_strlen(self::$args['brand']['url']) > 99)
 				{
-					return debug::error(T_(" Invalid brand URL argument, you must set less than 100 character for brand URL "), 'url', 'arguments');
+					return debug::error(T_(" Invalid brand URL argument, you must set less than 99 character for brand URL "), 'url', 'arguments');
 				}
 
 				$url = self::$args['brand']['url'];

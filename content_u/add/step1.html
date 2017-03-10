@@ -194,11 +194,11 @@
 
 <div data-response='meta_branding' {%if not poll.brand.title%}data-response-hide{%endif%} data-response-effect='fade'>
  <div class="element-branding">
-  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus value="{{poll.brand.title}}" maxlength="140">
+  <input type="text" id="answer_brand" placeholder='{%trans "Branding"%}' autocomplete="off" data-response-focus value="{{poll.brand.title}}" maxlength="99">
  </div>
 
  <div class="element-branding-url">
-  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" maxlength="140" value="{{poll.brand.url}}">
+  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" maxlength="99" value="{{poll.brand.url}}">
  </div>
 </div>
 {%endblock%}
