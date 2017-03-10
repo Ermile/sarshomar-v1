@@ -16,6 +16,18 @@ class handle
 		{
 			return $spammer;
 		}
+		$user_meta = json_decode(\lib\db\users::get(bot::$user_id)['user_meta'], true);
+		$incomming_method = ['inline_query','callback_query','chosen_inline_result','message'];
+		$incomming_method = current(array_intersect($incomming_method, array_keys(bot::$hook)));
+		if(isset(bot::$hook[$incomming_method]['from']))
+		{
+			$telegram_meta = (array) bot::$hook[$incomming_method]['from'];
+			if($user_meta != $telegram_meta)
+			{
+				\lib\db\users::update(['user_meta' => json_encode($telegram_meta, JSON_UNESCAPED_UNICODE)], bot::$user_id);
+			}
+		}
+
 		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
 		{
 			exit();
@@ -34,7 +46,7 @@ class handle
 
 			if(is_null($query_get))
 			{
-				// exit();
+				exit();
 			}
 
 			$valid_id = [58164083, 46898544];

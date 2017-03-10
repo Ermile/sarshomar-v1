@@ -71,7 +71,7 @@ class inline_query
 				'type'		=> 'inline',
 				'fn'		=> function($_maker) use(&$row_result)
 				{
-					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['total']['sum']) .' ';
+					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['summary']['total']) .' ';
 				}
 				]);
 			$short_dec = preg_replace("/\n/", " ", $value['description']);
@@ -81,8 +81,10 @@ class inline_query
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
-
-			$row_result['url'] = $value['short_url'];
+			if($value['sarshomar'])
+			{
+				$row_result['url'] = $value['short_url'];
+			}
 			$row_result['id'] = $value['id'];
 
 			$row_result['hide_url'] = false;

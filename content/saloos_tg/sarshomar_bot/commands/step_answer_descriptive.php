@@ -43,8 +43,16 @@ class step_answer_descriptive
 			}
 			elseif($maker->poll_type == 'like')
 			{
-				$answer_text = "❤️";
-				$_answer[2] = 'like';
+				if(in_array('delete', $get_answer['available']))
+				{
+					$answer_text = "💔";
+					$_answer[2] = 'dislike';
+				}
+				else
+				{
+					$answer_text = "❤️";
+					$_answer[2] = 'like';
+				}
 			}
 			else
 			{

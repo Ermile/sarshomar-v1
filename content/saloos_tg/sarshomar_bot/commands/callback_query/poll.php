@@ -526,8 +526,15 @@ class poll
 						]);
 					if(!empty($telegram) && isset($telegram['meta']['username']))
 					{
-						// handle::send_log($telegram);
-						$display_name = "@".$telegram['meta']['username'];
+						$get_user = json_decode(\lib\db\users::get($telegram['user_id'])['user_meta'], true);
+						if(isset($get_user['username']))
+						{
+							$display_name = "@".$get_user['username'];
+						}
+						else
+						{
+							$display_name = "@".$telegram['meta']['username'];
+						}
 					}
 				}
 				$message .= $display_name;
