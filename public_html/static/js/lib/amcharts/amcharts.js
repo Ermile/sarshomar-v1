@@ -554,7 +554,10 @@ DataSetSelect:{border:"1px solid rgba(0, 0, 0, .3)",outline:"none"}};
 
 
 
-
+/**
+ * [drawChart description]
+ * @return {[type]} [description]
+ */
 function drawChart()
 {
 	AmCharts.addInitHandler(function(chart)
@@ -585,8 +588,20 @@ function drawChart()
 
 	$('.chart:not([data-draw])').each(function()
 	{
+		createChartOption(this);
+	});
+}
+
+
+/**
+ * [createChartOption description]
+ * @param  {[type]} _this [description]
+ * @return {[type]}       [description]
+ */
+function createChartOption(_this)
+{
 		// declare variables
-		$this              = $(this);
+		$this              = $(_this);
 		var attrType       = $this.attr('data-type');
 		var attrPlace      = $this.attr('data-place');
 		var attrVals       = $this.attr('data-vals');
@@ -651,17 +666,65 @@ function drawChart()
 		// 	series: attrVals
 		// };
 
-		var myChartOptions =
-		{
-			"type": "serial",
-			"colors": attrColor,
-			"dataProvider": attrVals,
-			"categoryField": "key",
-			// "colorField": "color",
-			// "labelColorField": "color",
-			// "fillColorsField": "color",
+		var myChartOptions          = {};
+		myChartOptions              = getPollOption('default', {"color":attrColor, "val":attrVals})
+		myChartOptions.categoryAxis = getPollOption('categoryAxis');
+		myChartOptions.valueAxes    = getPollOption('valueAxes');
+		myChartOptions.graphs       = getPollOption('graphs', attrAutoColor);
 
-			"graphs":
+		// if has format call it
+		if(attrFormat && typeof window[attrFormat] == 'function')
+		{
+			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
+		}
+
+		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
+		$(chartContainer).data('chart', chartData);
+}
+
+
+/**
+ * [getPollOption description]
+ * @param  {[type]} $_what [description]
+ * @param  {[type]} _arg   [description]
+ * @return {[type]}        [description]
+ */
+function getPollOption($_what, _arg)
+{
+	var prop = {};
+	switch ($_what)
+	{
+		case 'categoryAxis':
+			prop =
+			{
+				"gridPosition": "start",
+				"gridAlpha": 0,
+				"tickPosition": "start",
+				"twoLineMode": true,
+				"tickLength": 5,
+				"axisAlpha": 0.2,
+				"autoWrap":true,
+				// "labelRotation": 45,
+				"autoRotateCount": 6,
+				"autoRotateAngle": 45,
+			};
+			break;
+
+
+		case 'valueAxes':
+			prop =
+			[{
+				"gridColor": "#FFFFFF",
+				"gridAlpha": 0.1,
+				"dashLength": 0,
+				// "axisAlpha": 0.2,
+				"labelsEnabled": false,
+				"axisAlpha": 0,
+			}];
+			break;
+
+		case 'graphs':
+			prop =
 			[{
 				"valueField": "value",
 				"colorField": "color",
@@ -672,46 +735,31 @@ function drawChart()
 				"balloonText": "[[category]] <b>[[value]]</b>",
 				"customBulletField": "bullet",
 				"bulletSize": 40,
-				"autoColor": attrAutoColor,
-			}],
+				"autoColor": _arg,
+			}];
+			break;
 
-			"gridAboveGraphs": true,
-			"startDuration": 1,
-			"startEffect":"easeOutSine",
-			"startAlpha": 0.5,
-			"valueAxes":
-			[{
-    			"gridColor": "#FFFFFF",
-    			"gridAlpha": 0.1,
-    			"dashLength": 0,
-				// "axisAlpha": 0.2,
-				"labelsEnabled": false,
-			    "axisAlpha": 0,
-  			}],
-
-			"categoryAxis":
+		case 'default':
+		default:
+			prop =
 			{
-    			"gridPosition": "start",
-    			"gridAlpha": 0,
-    			"tickPosition": "start",
-    			"twoLineMode": true,
-    			"tickLength": 5,
-				"axisAlpha": 0.2,
-				"autoWrap":true,
-				// "labelRotation": 45,
-				"autoRotateCount": 6,
-				"autoRotateAngle": 45,
-  			},
-		};
+				"type": "serial",
+				"colors": _arg.color,
+				"dataProvider": _arg.val,
+				"categoryField": "key",
+				// "colorField": "color",
+				// "labelColorField": "color",
+				// "fillColorsField": "color",
 
-		if(attrFormat && typeof window[attrFormat] == 'function')
-		{
-			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
-		}
+				"gridAboveGraphs": true,
+				"startDuration": 1,
+				"startEffect":"easeOutSine",
+				"startAlpha": 0.5,
+			}
+			break;
+	}
 
-		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
-		$(chartContainer).data('chart', chartData);
-	});
+	return prop;
 }
 
 
@@ -719,7 +767,7 @@ function drawChart()
  * [redrawChart description]
  * @return {[type]} [description]
  */
-function redrawChart(_data)
+function redrawPollChart(_data)
 {
 	if(!_data)
 	{
