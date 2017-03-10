@@ -121,6 +121,26 @@ trait dashboard
 
 
 	/**
+	 * Sets the dashboard data.
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_title    The title
+	 */
+	public static function minus_dashboard_data($_user_id, $_title, $_minus = 1)
+	{
+		$args =
+		[
+			'post_id'      => null,
+			'user_id'      => $_user_id,
+			'option_cat'   => 'user_detail_'. $_user_id,
+			'option_key'   => 'dashboard_data',
+			'option_value' => $_title,
+		];
+		\lib\db\options::minus($args, $_minus);
+	}
+
+
+	/**
 	 * save count of people see my poll
 	 * load this data in dashboard
 	 *

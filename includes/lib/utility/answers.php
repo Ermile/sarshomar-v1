@@ -98,13 +98,7 @@ class answers
 			'count'   => 3,
 			'user_id' => null,
 			'poll_id' => null,
-			'port'    => 'site',
-			'subport' => null,
 			'debug'   => true,
-			// 'answer'  => [],
-			// 'options' => [],
-			// 'skipped' => false,
-			// 'execute' => false,
 		];
 
 		if(defined('Tld') && Tld === 'dev')
@@ -181,15 +175,16 @@ class answers
 	 */
 	public static function access_answer($_args = [], $_type)
 	{
+
+		if(!is_array($_args))
+		{
+			$_args = [];
+		}
+
 		$default_args =
 		[
 			'user_id' => null,
 			'poll_id' => null,
-			'answer'  => [],
-			'options' => [],
-			'skipped' => false,
-			'port'    => 'site',
-			'subport' => null,
 			'debug'	  => true,
 		];
 		$_args = array_merge($default_args, $_args);
@@ -297,7 +292,6 @@ class answers
 		];
 		$_args = array_merge($default_args, $_args);
 
-
 		/**
 		 * save offline chart
 		 * in guest mod we needless to save offline chart
@@ -360,6 +354,8 @@ class answers
 					'opt_key'     => $key,
 					'user_id'     => $_args['user_id'],
 					'update_mode' => false,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
 				];
 				// save user profile if this poll is a profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
@@ -381,31 +377,16 @@ class answers
 			\lib\utility\stat_polls::set_sarshomar_total_answered();
 		}
 
+		// set offline data
 		if($skipped)
 		{
-			/**
-			 * plus the ranks
-			 * skip mod
-			 */
 			\lib\db\ranks::plus($_args['poll_id'], 'skip');
-		}
-		else
-		{
-			/**
-			 * plus the ranks
-			 * vot mod
-			 */
-			\lib\db\ranks::plus($_args['poll_id'], 'vote');
-		}
-
-		// set dashboard data
-		if($skipped)
-		{
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
 			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 		}
 		else
 		{
+			\lib\db\ranks::plus($_args['poll_id'], 'vote');
 			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_answered");
 			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 		}
@@ -480,9 +461,18 @@ class answers
 
 		self::$must_remove = array_diff($old_opt, $_args['answer']);
 		self::$must_insert = array_diff($_args['answer'], $old_opt);
+
+		$old_answer_is_skipped = false;
+		$new_answer_is_skipped = false;
+
 		// remove answer must be remove
 		foreach (self::$must_remove as $key => $value)
 		{
+			if($value === '0')
+			{
+				$old_answer_is_skipped = true;
+			}
+
 			$remove_old_answer = \lib\db\polldetails::remove($_args['user_id'], $_args['poll_id'], $value);
 
 			$profile          = 0;
@@ -493,6 +483,7 @@ class answers
 			{
 				if($o['opt'] == $value)
 				{
+
 					$profile    = $o['profile'];
 					self::$validation = $o['validstatus'];
 				}
@@ -511,19 +502,13 @@ class answers
 				'type'        => 'minus',
 				'profile'     => $profile,
 				'user_verify' => $user_verify,
-				'validation'  => self::$validation
+				'validation'  => self::$validation,
+				'port'        => $_args['port'],
+				'subport'     => $_args['subport'],
 			];
 			// unset user profile if this poll is profile poll
 			\lib\utility\profiles::set_profile_by_poll($answers_details);
 
-			if($value === 0)
-			{
-				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
-			}
-			else
-			{
-				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
-			}
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
 
@@ -538,7 +523,7 @@ class answers
 
 		if($_args['skipped'] == true)
 		{
-			$skipped = true;
+			$new_answer_is_skipped = true;
 			$result  = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
 			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 		}
@@ -566,6 +551,8 @@ class answers
 					'user_id'     => $_args['user_id'],
 					'update_mode' => true,
 					'user_verify' => self::$user_verify,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
 
 				];
 				// set user profile if this poll is profile poll
@@ -589,6 +576,34 @@ class answers
 		];
 		\lib\db\options::plus($where);
 		self::$IS_ANSWERED = [];
+
+		// if($old_answer_is_skipped && $new_answer_is_skipped) || (!$old_answer_is_skipped && !$new_answer_is_skipped)
+		// nothing
+		// needless to update offline data
+		// in dashboard and post rank
+
+		if($old_answer_is_skipped && !$new_answer_is_skipped)
+		{
+			\lib\db\ranks::minus($_args['poll_id'], 'skip');
+			\lib\utility\profiles::minus_dashboard_data($_args['user_id'], "poll_skipped");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
+
+			\lib\db\ranks::plus($_args['poll_id'], 'vote');
+			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_answered");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
+		}
+
+		if(!$old_answer_is_skipped && $new_answer_is_skipped)
+		{
+			\lib\db\ranks::minus($_args['poll_id'], 'vote');
+			\lib\utility\profiles::minus_dashboard_data($_args['user_id'], "poll_answered");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
+
+			\lib\db\ranks::plus($_args['poll_id'], 'skip');
+			\lib\utility\profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
+			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
+		}
+
 		return debug::true(T_("Your answer updated"));
 	}
 
@@ -621,14 +636,14 @@ class answers
 			$old_answer = [];
 		}
 
-		$skipped = false;
+		$old_answer_is_skipped = false;
 		foreach ($_args['old_answer'] as $key => $value)
 		{
 			if(isset($value['key']))
 			{
 				if($value['key'] === 0)
 				{
-					$skipped = true;
+					$old_answer_is_skipped = true;
 				}
 			}
 			else
@@ -673,14 +688,6 @@ class answers
 			\lib\utility\stat_polls::set_poll_result($answers_details);
 		}
 
-		if($skipped)
-		{
-			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
-		}
-		else
-		{
-			\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
-		}
 
 		self::$IS_ANSWERED = [];
 
@@ -688,14 +695,19 @@ class answers
 
 		if($result && \lib\db::affected_rows())
 		{
-			if($skipped)
+			if($old_answer_is_skipped)
 			{
 				\lib\db\ranks::minus($_args['poll_id'], 'skip');
+				\lib\utility\profiles::minus_dashboard_data($_args['user_id'], "poll_skipped");
+				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 			}
 			else
 			{
 				\lib\db\ranks::minus($_args['poll_id'], 'vote');
+				\lib\utility\profiles::minus_dashboard_data($_args['user_id'], "poll_answered");
+				\lib\utility\profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 			}
+
 			return debug::title(T_("Your answer has been deleted"));
 		}
 		else
