@@ -114,7 +114,7 @@ class step_starting
 							$commands['answer'] = $url_command[0] . '_' . $url_command[1];
 						}
 					}
-					else
+					elseif(count($url_command) == 2)
 					{
 						$commands[$url_command[0]] = $url_command[1];
 					}

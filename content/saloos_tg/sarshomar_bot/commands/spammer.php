@@ -20,7 +20,7 @@ class spammer
 		$on_spam = self::$on_spam = current($on_spam);
 
 		$get_count_log = \lib\db\options::get([
-			"user_id" => bot::$user_id,
+			// "user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
 			"option_value" => "acction_log",
