@@ -44,21 +44,24 @@ class model extends \mvc\model
 		}
 
 		$captcha = utility::post("captcha");
-		if(utility\captcha::check($captcha))
+		if($captcha)
 		{
-			$signup_inspection = \lib\db\users::signup(['type' => 'inspection', 'port' => 'site']);
-			if($signup_inspection)
+			if(utility\captcha::check($captcha))
 			{
-				\lib\db\users::set_login_session(null, null, $signup_inspection);
-				debug::msg("direct", true);
-				$this->redirector($this->url("base"). "/@")->redirect();
+				$signup_inspection = \lib\db\users::signup(['type' => 'inspection', 'port' => 'site']);
+				if($signup_inspection)
+				{
+					\lib\db\users::set_login_session(null, null, $signup_inspection);
+					debug::msg("direct", true);
+					$this->redirector($this->url("base"). "/@")->redirect();
+				}
 			}
-		}
-		else
-		{
-			debug::error(T_("Invalid captcha"), 'captcha');
-			// $url = $this->url('base'). '/features/guest';
-			// $this->redirector($url);
+			else
+			{
+				debug::error(T_("Invalid captcha"), 'captcha');
+				// $url = $this->url('base'). '/features/guest';
+				// $this->redirector($url);
+			}
 		}
 	}
 
