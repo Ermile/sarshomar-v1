@@ -405,13 +405,19 @@ private function transtext()
 
 	//---------------------------------------content\template\static\logo\home-fa.html
 	echo T_("Our logo");                                                              // Line 5
+	echo T_("Brand Intro");                                                           // Line 46
+	echo T_("Drawing logo");                                                          // Line 47
+	echo T_("Brand Blueprint");                                                       // Line 50
+	echo T_("Logo blueprint");                                                        // Line 97
+	echo T_("Explanations about the logo");                                           // Line 137
+	echo T_("Square");                                                                // Line 106
+	echo T_("Circle");                                                                // Line 112
+	echo T_("Pomegranate");                                                           // Line 149
+	echo T_("Blue");                                                                  // Line 122
+	echo T_("White");                                                                 // Line 127
+	echo T_("Red");                                                                   // Line 132
 
 	//------------------------------------------content\template\static\logo\home.html
-	echo T_("Brand Intro");                                                           // Line 44
-	echo T_("Drawing logo");                                                          // Line 45
-	echo T_("Brand Blueprint");                                                       // Line 48
-	echo T_("Explanations about the logo");                                           // Line 135
-	echo T_("Pomegranate");                                                           // Line 147
 
 	//--------------------------------------------content\template\static\mission.html
 
