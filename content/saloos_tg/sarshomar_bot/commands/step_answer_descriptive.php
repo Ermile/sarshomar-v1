@@ -19,6 +19,14 @@ class step_answer_descriptive
 	 */
 	public static function start($_text = null)
 	{
+		handle::send_log(bot::$hook);
+		$x = bot::sendResponse([
+			'method' => 'editMessageText',
+			'message_id' => bot::$hook['message']['message_id'],
+			'chat_id' => bot::$hook['message']['chat']['id'],
+			'text' => 'f'
+			]);
+		handle::send_log($x);
 		step::stop();
 		if(preg_match("/^([^_]*)_(.*)$/", $_text, $_answer))
 		{
