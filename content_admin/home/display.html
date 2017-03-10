@@ -1,141 +1,129 @@
-{%extends display.main%} {%block content%}
-<aside class="admin-area-states">
-  <ul>
-    <a href="{{url.base}}/admin/$"><li class="header">{% trans "Polls" %}</li></a>
-    <li>{% trans "Total" %}<span class="label label-count">۲۳۴۵</span></li>
-    <a href="{{url.base}}/admin/$/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۵۴۶</span></li></a>
-    <a href="{{url.base}}/admin/$/status=filtered"><li>{% trans "Filtered" %}<span class="label label-count">۱۲۴</span></li></a>
-    <a href="{{url.base}}/admin/$/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۸۷۳</span></li></a>
-    <a href="{{url.base}}/admin/comments"><li class="header">{% trans "Comments" %}</li></a>
-    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
-    <a href="{{url.base}}/admin/comments/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
-    <a href="{{url.base}}/admin/comments/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
-    <a href="{{url.base}}/admin/keywords"><li class="header">{% trans "Keywords" %}</li></a>
-    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
-    <a href="{{url.base}}/admin/keywords/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
-    <a href="{{url.base}}/admin/keywords/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
-    <a href="{{url.base}}/admin/users"><li class="header">{% trans "Users" %}</li></a>
-    <li>{% trans "Total" %}<span class="label label-count">۶۴۵</span></li>
-    <a href="{{url.base}}/admin/users/status=unapproved"><li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۴۶</span></li></a>
-    <a href="{{url.base}}/admin/users/status=rejected"><li>{% trans "Rejected" %}<span class="label label-count label-rejected">۱۱۴</span></li></a>
-  </ul>
-</aside>
+{%extends display.main%} {%block content%} {%include "content_admin/main/sidebar.html"%}
 <div class="main">
 
+    <div class="f gutters overall-stats">
+        <!--item-->
+        <div class="c2 stat">
+            <h5 class="num">2154</h5>
+            <div class="title">Questions</div>
+        </div>
+        <!--/item-->
+        <!--item-->
+        <div class="c2 stat yellow">
+            <h5 class="num">1455</h5>
+            <div class="title">Comments</div>
+        </div>
+        <!--/item-->
+        <!--item-->
+        <div class="c2 stat red">
+            <h5 class="num">3457</h5>
+            <div class="title">Answers</div>
+        </div>
+        <!--/item-->
+        <!--item-->
+        <div class="c2 stat light-green f align-center">
+           <div class="icon">
+                <i class="icon-plus icon-5x"></i>
+            </div>
+            <div>
+            <h5 class="num">1254</h5>
+            <div class="title">User</div>
+            </div>
+        </div>
+        <!--/item-->
+        <!--item-->
+        <div class="c2 stat blue f align-center">
+            <div class="icon">
+                <i class="icon-home icon-5x"></i>
+            </div>
+            <div>
+                <h5 class="num">345367</h5>
+                <div class="title">Telegram User</div>
+            </div>
 
-
-<div class="admin-area-chart">
-{%if visitors%}
- <div class="row auto unselectable">
-{%if error%}<div id="chart-error">{{error}}</div>{%else%}{%endif%}
-  <div id="chart" data-step='5' data-intro='{%trans "Daily Visit Chart"%}'></div>
- </div>
-{%endif%}
-
-  </div>
-  <div class="box admin-area">
-    <div class="admin-area-box-container">
-      <div class="admin-area-items">
-        <a href="{{url.base}}/admin/knowledge" class="admin-area-item">
-          <p class="title">{% trans "Polls" %}</p>
-          <p class="description">{% trans "Approve, edit,... polls" %}</p>
-        </a>
-        <a href="{{url.base}}/admin/comments" class="admin-area-item">
-          <p class="title">{% trans "Comments" %}</p>
-          <p class="description">{% trans "Approve or reject comments" %}</p>
-        </a>
-        <a href="{{url.base}}/admin/keywords" class="admin-area-item">
-          <p class="title">{% trans "Keywords" %}</p>
-          <p class="description">{% trans "Approve, edit,... keywords" %}</p>
-        </a>
-        <a href="{{url.base}}/admin/users" class="admin-area-item">
-          <p class="title">{% trans "Users" %}</p>
-          <p class="description">{% trans "Add, remove,... Users" %}</p>
-        </a>
-      </div>
+        </div>
+        <!--/item-->
     </div>
-  </div>
+
+    <div class="overall-charts">
+        <div class="f gutters">
+            <div>
+                <div id="chartdiv2" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
-{%endblock%}
-
-
-
-{%block foot_js%}
-{%if visitors%}
- <script type="text/javascript">
-  route('*', function()
-  {
-    $(function () {
-      $('#chart').highcharts({
-        chart: { type: 'area'
-        {%if global.lang=='fa'%}, style: {fontFamily: 'IRANSans'}{%endif%} },
-        title: { text: '' },
-        xAxis: { categories: [{%for datarow in visitors%}'{%if global.lang=="fa"%}{{datarow.date|jdate("y/m/j")}} {%else%} {{datarow.date |date("j F")}}{%endif%}', {%endfor%}] ,crosshair: true},
-        yAxis: { title: {text: ''}, floor: 0, allowDecimals: false,},
-
-        tooltip: {
-          shared:true,
-          useHTML: true,
-
-          headerFormat: '<table><thead><tr><td colspan="3">{%if global.lang=="fa"%}{point.key} {%else%} {point.key}{%endif%}</td></tr></thead>',
-          pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' + '<td><b>{point.y:0.0f} {%trans "Visit"%}</b></td></tr>',
-          footerFormat: '</table>',
-
-
-        },
-        credits: {
-      enabled: false
-  },
-        legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle',
-          borderWidth: 0
-        },
-        plotOptions: {
-          area: {
-                marker: {
-                    enabled: false,
-                    symbol: 'circle',
-                    radius: 2,
-                    states: {
-                        hover: {
-                            enabled: true
-                        }
-                    }
-                }
-            }
-
-        },
-        series:
-        [
-        {
-         showInLegend: false,
-          name: '{%trans "Page Views"%}',
-          data: [ {%for datarow in visitors%}{{datarow.humans}},{%endfor%} ],
-        },
-        {
-         showInLegend: false,
-          name: '{% trans "Bots"%}',
-          data: [ {%for datarow in visitors%}{{datarow.bots}},{%endfor%} ],
-        },
-        ]
-      });
-    });
-
-  });
-  Highcharts.theme = {
-   colors: [ '#e5a428', '#009688', '#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
-      '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
-
-};
-// Add the background image to the container
-Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
-   proceed.call(this);
-   this.container.style.background = 'url({{url.static}}images/sand.png)';
-});
-// Apply the theme
-Highcharts.setOptions(Highcharts.theme);
- </script>
-{%endif%}
-{%endblock%}
+{%endblock%} {%block foot_js%} {%if visitors%}
+<script type="text/javascript">
+    setTimeout(function() {
+        AmCharts.makeChart("chartdiv", {
+            "type": "serial",
+            "categoryField": "date",
+            "dataDateFormat": "YYYY-MM-DD",
+            "depth3D": 38,
+            "marginTop": 18,
+            "plotAreaBorderColor": "#D4D4D4",
+            "plotAreaFillColors": "#DE3838",
+            "fontFamily": "iransans",
+            "fontSize": 12,
+            "theme": "default",
+            "export": {
+                "enabled": true
+            },
+            "categoryAxis": {
+                "parseDates": true
+            },
+            "chartCursor": {
+                "enabled": true,
+                "zoomable": false
+            },
+            "trendLines": [],
+            "graphs": [{
+                "balloonColor": "#E03D3D",
+                "bulletHitAreaSize": -1,
+                "columnWidth": 0,
+                "fillAlphas": 0.7,
+                "fillColors": "#E03D3D",
+                "fixedColumnWidth": 0,
+                "id": "AmGraph-2",
+                "lineAlpha": 0.46,
+                "lineColor": "#CC0000",
+                "lineThickness": 2,
+                "stackable": false,
+                "stepDirection": "left",
+                "title": "graph 2",
+                "topRadius": 2,
+                "valueField": "column-2"
+            }],
+            "guides": [],
+            "valueAxes": [{
+                "id": "ValueAxis-1",
+                "title": "بازدید ها"
+            }],
+            "allLabels": [],
+            "balloon": {},
+            "dataProvider": [{
+                "date": "1395-03-01",
+                "column-2": "5"
+            }, {
+                "date": "1395-03-03",
+                "column-2": 3
+            }, {
+                "date": "1395-03-04",
+                "column-2": 3
+            }, {
+                "date": "1395-03-05",
+                "column-2": 1
+            }, {
+                "date": "1395-03-06",
+                "column-2": 2
+            }, {
+                "date": "1395-03-07",
+                "column-2": 8
+            }]
+        });
+    }, 300);
+</script>
+{%endif%} {%endblock%}

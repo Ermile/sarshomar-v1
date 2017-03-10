@@ -109,3 +109,14 @@
 .statistics-box .show-icon-return{color:#03A9F4}
 .statistics-box:hover .title,.statistics-box:hover .amount,.statistics-box:hover .icon{color:#fff;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
 .statistics-box .title{color:#607D8B;font-weight:700;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
+
+
+/************************** New styles **/
+.overall-stats {padding-top: 3em;padding-bottom: 3em;}
+.overall-stats .stat {margin: 0 15px;transition: all 0.3s;background: #FAFAFA;padding: 2em;box-shadow: 0 1px 2px rgba(0,0,0,0.13);border-radius: 4px;}
+.overall-stats .stat:hover {background: #efefef;}
+.overall-stats .stat .icon {color: #37aaa7}
+.overall-stats .num {font-weight: bold;font-size: 3em;line-height: 1;margin-bottom: 22px;color: #607D8B;}
+.overall-stats .title {font-size: 1.5em;line-height: 1;color: #607D8B;}
+.overall-charts {background: #efefef;min-height: 150px;}
+.overall-charts h2 {color: #006681; margin: 1em 0}
