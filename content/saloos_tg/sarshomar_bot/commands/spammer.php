@@ -23,7 +23,7 @@ class spammer
 			// "user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
-			"option_value" => "acction_log",
+			"option_value" => "action_log",
 			"limit"	=> 1
 			]);
 		if(empty($get_count_log))
@@ -33,7 +33,7 @@ class spammer
 			"user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
-			"option_value" => "acction_log",
+			"option_value" => "action_log",
 			"option_meta" => self::set_meta($set_meta)
  			]);
  			return false;
