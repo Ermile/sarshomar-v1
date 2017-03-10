@@ -422,6 +422,12 @@ private function transtext()
 
 	//------------------------------------------content\template\static\logo\home.html
 
+	//----------------------------------------content\template\static\logo\how-fa.html
+	echo T_("How to use");                                                            // Line 6
+
+	//--------------------------------------content\template\static\logo\wrong-fa.html
+	echo T_("Wrong usage");                                                           // Line 6
+
 	//--------------------------------------------content\template\static\mission.html
 
 	//--------------------------------------------content\template\static\privacy.html
