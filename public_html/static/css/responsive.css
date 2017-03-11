@@ -49,8 +49,8 @@
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center;vertical-align: middle;}
  header #header-quick>a {padding: 0 5px; font-size: 10px;}
- .society-dist .span7 {display: none;}
- .society-dist .span5 {width: 100%;}
+ .society-dist .span5 {display: none;}
+ .society-dist .span7 {width: 100%;}
 
  .triplet .triplet-item img{max-width:150px}
 
