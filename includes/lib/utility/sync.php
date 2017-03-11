@@ -320,8 +320,7 @@ class sync
 			UPDATE IGNORE
 				options
 			SET
-				options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value),
-				options.user_id = $new_user_id
+				options.option_value = IF(options.option_value LIKE options.user_id, $new_user_id, options.option_value)
 			WHERE
 				options.user_id = $old_user_id AND
 				options.option_key NOT LIKE 'user%'
@@ -338,14 +337,13 @@ class sync
 		{
 			$update_query ="UPDATE IGNORE options
 				SET
-					option_cat = '{$value}_{$new_user_id}',
-					user_id = $new_user_id
+					option_cat = '{$value}_{$new_user_id}'
 				WHERE
 					option_cat = '{$value}_{$old_user_id}' AND
 					user_id = $old_user_id";
 			\lib\db::query($update_query);
 			// \lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
-			\lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
+			// \lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
 		}
 
 		\lib\db::query("UPDATE IGNORE options SET user_id = $new_user_id WHERE user_id = $old_user_id ");
