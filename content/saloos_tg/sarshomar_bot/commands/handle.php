@@ -84,28 +84,25 @@ class handle
 					}
 				}
 			}
+			chdir('/home/git/sarshomar');
+			$update_time = exec('git log -n1 --pretty=%ci HEAD');
+			// ( ​​ ) free space :))
+			$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
+			if(empty($q)){
+				\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
+			}
+			elseif($q['value'] != $update_time)
+			{
+				\lib\db\options::update(['option_value' => $update_time], $q['id']);
+				bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
+			}
 		}
 
-		chdir('/home/git/sarshomar');
-		$update_time = exec('git log -n1 --pretty=%ci HEAD');
-		// ( ​​ ) free space :))
-		$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
-		if(empty($q)){
-			\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
-		}
-		elseif($q['value'] != $update_time)
-		{
-			\lib\db\options::update(['option_value' => $update_time], $q['id']);
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
-		}
 		$response = null;
 		$user_sync = \lib\storage::get_user_sync();
-		handle::send_log($user_sync);
 		if(!is_null($user_sync))
 		{
 			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
-			handle::send_log($sync);
-			handle::send_log(\lib\debug::compile());
 			if(!empty($sync))
 			{
 				bot::$user_id = isset($sync['user_id']) ? $sync['user_id'] : bot::$user_id;
