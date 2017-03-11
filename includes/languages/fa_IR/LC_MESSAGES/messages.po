@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
 "POT-Creation-Date: 2017-03-11 08:14+0330\n"
-"PO-Revision-Date: 2017-03-11 08:46+0330\n"
+"PO-Revision-Date: 2017-03-11 09:04+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -5565,11 +5565,11 @@ msgstr ""
 
 #: sarshomar/content_u/manifest.php:216
 msgid "Lock answer to sarshomar poll"
-msgstr ""
+msgstr "قفل کردن پاسخ به نظرسنجی سرشمار"
 
 #: sarshomar/content_u/manifest.php:226
 msgid "Lock answer to poll"
-msgstr ""
+msgstr "قفل کردن پاسخ به نظرسنجی"
 
 #: sarshomar/content_u/manifest.php:236
 msgid "Allow to upload 10 MB"
@@ -5585,7 +5585,7 @@ msgstr "اجازه به آپلود 1000 مگابایت / 1 ترابایت"
 
 #: sarshomar/content_u/manifest.php:266
 msgid "Allow to load telegram dev bot"
-msgstr ""
+msgstr "اجازه به بارگذاری روبات توسعه دهنده تلگرام"
 
 #: sarshomar/content_u/manifest.php:276
 msgid "Allow to delete account"
@@ -7890,7 +7890,7 @@ msgstr "نشان‌واره ما"
 
 #: sarshomar/includes/languages/trans_twig.php:411
 msgid "Brand Intro"
-msgstr ""
+msgstr "ورودی برند"
 
 #: sarshomar/includes/languages/trans_twig.php:412
 msgid "Drawing logo"
@@ -7898,11 +7898,11 @@ msgstr "ترسیم نشان‌واره"
 
 #: sarshomar/includes/languages/trans_twig.php:413
 msgid "Brand Blueprint"
-msgstr ""
+msgstr "نقشه لوگو"
 
 #: sarshomar/includes/languages/trans_twig.php:414
 msgid "Logo blueprint"
-msgstr ""
+msgstr "نقشه لوگو"
 
 #: sarshomar/includes/languages/trans_twig.php:415
 msgid "Explanations about the logo"
