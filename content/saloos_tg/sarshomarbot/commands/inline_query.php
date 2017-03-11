@@ -13,6 +13,9 @@ class inline_query
 		$inline_query = $_query;
 		$id = $inline_query['id'];
 		$result = ['method' => 'answerInlineQuery'];
+
+		$result_id = md5(microtime(true) . $id);
+
 		$result['inline_query_id'] = $id;
 		$result['is_personal'] = true;
 		$result['cache_time'] = 1;
@@ -69,9 +72,10 @@ class inline_query
 				'poll_id' 	=> $value['id'],
 				'return'	=> true,
 				'type'		=> 'inline',
+				'inline_id'	=> $result_id,
 				'fn'		=> function($_maker) use(&$row_result)
 				{
-					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['total']['sum']) .' ';
+					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['summary']['total']) .' ';
 				}
 				]);
 			$short_dec = preg_replace("/\n/", " ", $value['description']);
@@ -81,9 +85,11 @@ class inline_query
 
 			$row_result['title'] = html_entity_decode($value['title']);
 
-
-			$row_result['url'] = $value['short_url'];
-			$row_result['id'] = $value['id'];
+			if($value['sarshomar'])
+			{
+				$row_result['url'] = $value['short_url'];
+			}
+			$row_result['id'] = $result_id . ':' . $value['id'];
 
 			$row_result['hide_url'] = false;
 
@@ -95,6 +101,7 @@ class inline_query
 				'parse_mode' 				=> $poll['parse_mode'],
 				'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
 			];
+			handle::send_log($row_result);
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);

@@ -9,13 +9,28 @@ class handle
 {
 	public static $return = false;
 
-	public static function exec($_cmd, $_run = false)
+	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		$spammer = spammer::check();
-		if($spammer)
+		if(!$nospammer)
 		{
-			return $spammer;
+			$spammer = spammer::check();
+			if($spammer)
+			{
+				return $spammer;
+			}
 		}
+		$user_meta = json_decode(\lib\db\users::get(bot::$user_id)['user_meta'], true);
+		$incomming_method = ['inline_query','callback_query','chosen_inline_result','message'];
+		$incomming_method = current(array_intersect($incomming_method, array_keys(bot::$hook)));
+		if(isset(bot::$hook[$incomming_method]['from']))
+		{
+			$telegram_meta = (array) bot::$hook[$incomming_method]['from'];
+			if($user_meta != $telegram_meta)
+			{
+				\lib\db\users::update(['user_meta' => json_encode($telegram_meta, JSON_UNESCAPED_UNICODE)], bot::$user_id);
+			}
+		}
+
 		if(isset(bot::$hook['message']['chat']['id']) && substr(bot::$hook['message']['chat']['id'], 0, 1) == '-')
 		{
 			exit();
@@ -34,7 +49,7 @@ class handle
 
 			if(is_null($query_get))
 			{
-				// exit();
+				exit();
 			}
 
 			$valid_id = [58164083, 46898544];
@@ -69,20 +84,20 @@ class handle
 					}
 				}
 			}
+			chdir('/home/git/sarshomar');
+			$update_time = exec('git log -n1 --pretty=%ci HEAD');
+			// ( ​​ ) free space :))
+			$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
+			if(empty($q)){
+				\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
+			}
+			elseif($q['value'] != $update_time)
+			{
+				\lib\db\options::update(['option_value' => $update_time], $q['id']);
+				bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
+			}
 		}
 
-		chdir('/home/git/sarshomar');
-		$update_time = exec('git log -n1 --pretty=%ci HEAD');
-		// ( ​​ ) free space :))
-		$q = \lib\db\options::get(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'limit' => 1]);
-		if(empty($q)){
-			\lib\db\options::insert(['option_cat' => 'telegram', 'option_key' => 'git_push_alert', 'option_value' => $update_time]);
-		}
-		elseif($q['value'] != $update_time)
-		{
-			\lib\db\options::update(['option_value' => $update_time], $q['id']);
-			bot::sendResponse(['method' => 'sendMessage', 'chat_id' => 58164083, 'text' => '😡have push']);
-		}
 		$response = null;
 		$user_sync = \lib\storage::get_user_sync();
 		if(!is_null($user_sync))

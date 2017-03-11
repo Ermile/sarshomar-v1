@@ -16,6 +16,14 @@ class message
 	 */
 	public function add_title($_with_link = true)
 	{
+		if(isset($this->class->query_result['sarshomar']) && $this->class->query_result['sarshomar'])
+		{
+			// $_with_link = true;
+		}
+		else
+		{
+			$_with_link = false;
+		}
 		if($_with_link)
 		{
 			$title = utility::link('https://' . $_SERVER['SERVER_NAME'] . '/$' .$this->class->poll_id, $this->class->query_result['title']);

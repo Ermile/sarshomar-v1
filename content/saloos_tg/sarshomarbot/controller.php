@@ -157,27 +157,7 @@ class controller extends \lib\mvc\controller
 		}
 
 
-		$get_back_response = session::get_back('expire', 'inline_cache');
-		if($get_back_response && !\lib\storage::get_disable_edit())
-		{
-			foreach ($get_back_response as $key => $value) {
-				$edit_return = commands\utility::object_to_array($value->on_expire);
-				$get_original = session::get('expire', 'inline_cache', $key);
-				$callback_query = (array) session::get('tmp', 'callback_query');
-				$callback_session = array_search($edit_return['message_id'], $callback_query);
-				if($callback_session !== false)
-				{
-					unset($callback_query[$callback_session]);
-					session::set('tmp', 'callback_query', $callback_query);
-				}
-				if($value->save_unique_id == $get_original->save_unique_id)
-				{
-					session::remove('expire', 'inline_cache', $key);
-				}
-
-				bot::sendResponse($edit_return);
-			}
-		}
+		self::clear_back_temp();
 
 
 		if(!\lib\storage::get_current_command())
@@ -195,6 +175,31 @@ class controller extends \lib\mvc\controller
 			var_dump($result);
 		}
 		exit();
+	}
+
+	public static function clear_back_temp()
+	{
+		$get_back_response = session::get_back('expire', 'inline_cache');
+		if($get_back_response && \lib\storage::get_disable_edit() !== true)
+		{
+			foreach ($get_back_response as $key => $value) {
+				$edit_return = commands\utility::object_to_array($value->on_expire);
+				$get_original = session::get('expire', 'inline_cache', $key);
+				$callback_query = (array) session::get('tmp', 'callback_query');
+				$callback_session = array_search($edit_return['message_id'], $callback_query);
+				if($callback_session !== false)
+				{
+					unset($callback_query[$callback_session]);
+					session::set('tmp', 'callback_query', $callback_query);
+				}
+				if($value->save_unique_id == $get_original->save_unique_id)
+				{
+					session::remove('expire', 'inline_cache', $key);
+				}
+
+				$x = bot::sendResponse($edit_return);
+			}
+		}
 	}
 }
 ?>

@@ -17,9 +17,20 @@ class step_answer_descriptive
 	 * @param  boolean $_onlyMenu [description]
 	 * @return [type]             [description]
 	 */
-	public static function start($_text = null)
+	public static function start($_text = null, $commands = [])
 	{
 		step::stop();
+		$subport = null;
+		if(isset($commands['subport']))
+		{
+			$get_subport = \lib\db\options::get([
+					'option_cat'	=> 'telegram',
+					'option_key'	=> 'subport',
+					'option_value'	=> $commands['subport'],
+					'limit'			=> 1
+					]);
+			$subport = '/:' . \lib\utility\shortURL::encode($get_subport['id']);
+		}
 		if(preg_match("/^([^_]*)_(.*)$/", $_text, $_answer))
 		{
 
@@ -39,12 +50,21 @@ class step_answer_descriptive
 			if($maker->poll_type == 'descriptive')
 			{
 				step::start('answer_descriptive');
+				session::set('answer_descriptive', 'subport', $subport);
 				return self::step1($_answer[1], true);
 			}
 			elseif($maker->poll_type == 'like')
 			{
-				$answer_text = "❤️";
-				$_answer[2] = 'like';
+				if(in_array('delete', $get_answer['available']))
+				{
+					$answer_text = "💔";
+					$_answer[2] = 'dislike';
+				}
+				else
+				{
+					$answer_text = "❤️";
+					$_answer[2] = 'like';
+				}
 			}
 			else
 			{
@@ -74,28 +94,29 @@ class step_answer_descriptive
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_("Allow"),
-					'callback_data' => 'poll/answer/' . $_answer[1] . '/' . $_answer[2]
+					'callback_data' => 'poll/answer/' . $_answer[1] . '/' . $_answer[2] . $subport
 				],
 				[
 					'text' => T_("Deny"),
-					'callback_data' => 'poll/deny_answer/' . $_answer[1] . '/' . $_answer[2]
+					'callback_data' => 'poll/deny_answer/' . $_answer[1] . '/' . $_answer[2] . $subport
 				]
 			]);
 
 			$return = $maker->make();
 
 			$return["response_callback"] = utility::response_expire('answer_descriptive');
-
 			return $return;
 		}
 		else
 		{
 			step::start('answer_descriptive');
+			session::set('answer_descriptive', 'subport', $subport);
 			return self::step1($_text, true);
 		}
 	}
 	public static function step1($_text = null, $check = false)
 	{
+		$subport = session::get('answer_descriptive', 'subport');
 		if(session::get('answer_descriptive', 'id'))
 		{
 			$poll_id = session::get('answer_descriptive', 'id');
@@ -111,7 +132,7 @@ class step_answer_descriptive
 			]
 		]);
 		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
-		if(array_search('add', $get_answer['available']) === false)
+		if(is_array($get_answer) && array_search('add', $get_answer['available']) === false)
 		{
 			step::stop();
 			return [
@@ -123,7 +144,7 @@ class step_answer_descriptive
 		}
 		elseif($check)
 		{
-			session::set('answer_descriptive', 'id', $_text);
+			session::set('answer_descriptive', 'id', $poll_id);
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
@@ -156,11 +177,11 @@ class step_answer_descriptive
 			$maker->inline_keyboard->add([
 				[
 					'text' => T_('Yes'),
-					'callback_data' => 'poll/answer_descriptive/answer',
+					'callback_data' => 'poll/answer_descriptive/answer' . $subport
 				],
 				[
 					'text' => T_('Cancel'),
-					'callback_data' => 'poll/answer_descriptive/cancel',
+					'callback_data' => 'poll/answer_descriptive/cancel' . $subport
 				]
 			]);
 			$return = $maker->make();

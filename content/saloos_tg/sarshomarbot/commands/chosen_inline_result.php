@@ -10,13 +10,20 @@ class chosen_inline_result
 	{
 		\lib\storage::set_disable_edit(true);
 		$inline_message_id = $_query['inline_message_id'];
-		$id = \lib\utility\shortURL::decode($_query['result_id']);
+		$result = explode(':', $_query['result_id']);
+		if(count($result) < 2)
+		{
+			return [];
+		}
+		$result_id = $result[0];
+		$post_id = \lib\utility\shortURL::decode($result[1]);
 		\lib\db\options::insert([
 			'user_id' 		=> bot::$user_id,
-			'post_id' 		=> $id,
-			'option_cat' 	=> 'user_detail_'.bot::$user_id,
-			'option_key'	=> 'telegram_subport',
-			'option_value' 	=> $inline_message_id
+			'post_id'		=> $post_id,
+			'option_cat'	=> 'telegram',
+			'option_key'	=> 'subport',
+			'option_value'	=> $result_id,
+			'option_meta'	=> $inline_message_id,
 			]);
 		return [];
 	}

@@ -20,10 +20,10 @@ class spammer
 		$on_spam = self::$on_spam = current($on_spam);
 
 		$get_count_log = \lib\db\options::get([
-			"user_id" => bot::$user_id,
+			// "user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
-			"option_value" => "acction_log",
+			"option_value" => "action_log",
 			"limit"	=> 1
 			]);
 		if(empty($get_count_log))
@@ -33,7 +33,7 @@ class spammer
 			"user_id" => bot::$user_id,
 			"option_cat" => "user_detail_" . bot::$user_id,
 			"option_key" => "telegram",
-			"option_value" => "acction_log",
+			"option_value" => "action_log",
 			"option_meta" => self::set_meta($set_meta)
  			]);
  			return false;
@@ -102,6 +102,10 @@ class spammer
 
 	public static function overflow_message($_meta)
 	{
+		if(!isset($_meta['message_count']))
+		{
+			$_meta['message_count'] = 0;
+		}
 		if($_meta['time'] + 40 >= microtime(true) && $_meta['message_count'] >= 20)
 		{
 			return [
@@ -121,6 +125,10 @@ class spammer
 
 	public static function overflow_callback_query($_meta)
 	{
+		if(!isset($_meta['callback_query_count']))
+		{
+			$_meta['callback_query_count'] = 0;
+		}
 		if($_meta['time'] + 4 >= microtime(true) && $_meta['callback_query_count'] >= 6)
 		{
 			$message_result = [
