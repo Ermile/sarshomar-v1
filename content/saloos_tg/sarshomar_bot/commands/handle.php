@@ -100,9 +100,12 @@ class handle
 		}
 		$response = null;
 		$user_sync = \lib\storage::get_user_sync();
+		handle::send_log($user_sync);
 		if(!is_null($user_sync))
 		{
 			$sync = \lib\utility\sync::web_telegram($user_sync['mobile'], bot::$user_id);
+			handle::send_log($sync);
+			handle::send_log(\lib\debug::compile());
 			if(!empty($sync))
 			{
 				bot::$user_id = isset($sync['user_id']) ? $sync['user_id'] : bot::$user_id;

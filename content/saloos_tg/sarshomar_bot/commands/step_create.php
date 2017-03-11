@@ -278,7 +278,7 @@ class step_create
 
 		if(session::get('poll_options' , 'type') == 'select' && !empty($maker->query_result['title']))
 		{
-			$count = ['first', 'secoend', 'third'];
+			$count = ['first', 'second', 'third'];
 			$count_answer = count($maker->query_result['answers']);
 			if($count_answer > 2)
 			{

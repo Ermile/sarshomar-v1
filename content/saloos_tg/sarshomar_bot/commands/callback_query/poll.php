@@ -120,6 +120,12 @@ class poll
 	public static function answer_descriptive($_query, $_data_url)
 	{
 		list($class, $method, $status) = $_data_url;
+		$subport = null;
+		if(isset($_data_url[3]) && substr($_data_url[3], 0, 1) == ':')
+		{
+			$subport = \lib\utility\shortURL::decode(substr($_data_url[3], 1));
+			$last = null;
+		}
 		step::stop();
 
 		if($status != 'answer')
@@ -176,7 +182,11 @@ class poll
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
 			]);
-			callback_query::edit_message($maker->make());
+			if($subport)
+			{
+				self::subport_update(['subport' => $subport], $poll_id);
+			}
+			// \lib\db::rollback();
 		}
 		return ['text' => \lib\debug::compile()['title']];
 	}
@@ -278,87 +288,14 @@ class poll
 		\lib\debug::$status = 1;
 		if(isset($_query['inline_message_id']) || $subport)
 		{
-			if($subport)
+			if(isset($_query['inline_message_id']))
 			{
-				$get_subport = \lib\db\options::get([
-					'id'		=> $subport,
-					'limit'		=> 1
-					]);
-				$inline_message_id = $get_subport['meta'];
+				self::subport_update(['inline_message_id' => $_query['inline_message_id']], $poll_id);
+			}
+			else
+			{
+				self::subport_update(['subport' => $subport], $poll_id);
 				\lib\storage::set_disable_edit(false);
-			}
-			else
-			{
-				$inline_message_id = $_query['inline_message_id'];
-				$get_subport = false;
-			}
-
-			$get_inline_lock = \lib\db\options::get([
-				"option_cat" => "telegram",
-				"option_key" => "inline_message_lock",
-				"option_value" => $inline_message_id,
-				"limit" => 1
-			]);
-			if(empty($get_inline_lock))
-			{
-				\lib\db\options::insert([
-					"option_cat" => "telegram",
-					"option_key" => "inline_message_lock",
-					"option_value" => $inline_message_id,
-					"option_meta"	=> 0,
-					"option_status" => 'disable',
-				]);
-				$get_inline_lock = \lib\db::query("SELECT LAST_INSERT_ID() as id");
-				$get_inline_lock_id = $get_inline_lock->fetch_object()->id;
-				$edit = ask::make(null, null, [
-					'poll_id' 	=> $poll_id,
-					'return'	=> true,
-					'type'		=> 'inline',
-					'inline_id'	=> $get_subport ? $get_subport['value'] : null
-				]);
-				$edit['inline_message_id'] = $inline_message_id;
-				$x = callback_query::edit_message($edit);
-				\lib\db\options::update([
-					"option_status" => 'enable'
-				], $get_inline_lock_id);
-			}
-			elseif($get_inline_lock['status'] == 'disable')
-			{
-				\lib\db\options::update([
-					"option_meta" => ++$get_inline_lock['meta']
-				], $get_inline_lock['id']);
-			}
-			else
-			{
-				\lib\db\options::update([
-					"option_status" => 'disable'
-				], $get_inline_lock['id']);
-				$edit = ask::make(null, null, [
-					'poll_id' 	=> $poll_id,
-					'return'	=> true,
-					'type'		=> 'inline',
-					'inline_id'	=> $get_subport ? $get_subport['value'] : null
-				]);
-				$edit['inline_message_id'] = $inline_message_id;
-				$x = callback_query::edit_message($edit);
-				\lib\db\options::update([
-					"option_status" => 'enable'
-				], $get_inline_lock['id']);
-				$get_inline_lock = \lib\db\options::get([
-					"id" => $get_inline_lock['id'],
-					"limit" => 1
-				]);
-				if((int) $get_inline_lock['meta'] > 2)
-				{
-					$edit = ask::make(null, null, [
-					'poll_id' 	=> $poll_id,
-					'return'	=> true,
-					'type'		=> 'inline',
-					'inline_id'	=> $get_subport ? $get_subport['value'] : null
-				]);
-				$edit['inline_message_id'] = $inline_message_id;
-				$x = callback_query::edit_message($edit);
-				}
 			}
 		}
 		else
@@ -573,7 +510,7 @@ class poll
 						$message .= ":\n" . $value['text'] . "\n\n";
 						break;
 					case 'select':
-						$message .= ": " . utility::nubmer_language($value['key']) . "\n\n";
+						$message .= ": " . utility::nubmer_language($value['key']) . "\n";
 						break;
 
 					default:
@@ -623,6 +560,91 @@ class poll
 		$return['parse_mode'] = "HTML";
 		$return["response_callback"] = utility::response_expire('ask');
 		callback_query::edit_message($return);
+	}
+
+	public static function subport_update($_options, $_poll_id)
+	{
+		if($_options['subport'])
+		{
+			$get_subport = \lib\db\options::get([
+				'id'		=> $_options['subport'],
+				'limit'		=> 1
+				]);
+			$inline_message_id = $get_subport['meta'];
+		}
+		else
+		{
+			$inline_message_id = $_options['inline_message_id'];
+			$get_subport = false;
+		}
+
+		$get_inline_lock = \lib\db\options::get([
+			"option_cat" => "telegram",
+			"option_key" => "inline_message_lock",
+			"option_value" => $inline_message_id,
+			"limit" => 1
+		]);
+		if(empty($get_inline_lock))
+		{
+			\lib\db\options::insert([
+				"option_cat" => "telegram",
+				"option_key" => "inline_message_lock",
+				"option_value" => $inline_message_id,
+				"option_meta"	=> 0,
+				"option_status" => 'disable',
+			]);
+			$get_inline_lock = \lib\db::query("SELECT LAST_INSERT_ID() as id");
+			$get_inline_lock_id = $get_inline_lock->fetch_object()->id;
+			$edit = ask::make(null, null, [
+				'poll_id' 	=> $_poll_id,
+				'return'	=> true,
+				'type'		=> 'inline',
+				'inline_id'	=> $get_subport ? $get_subport['value'] : null
+			]);
+			$edit['inline_message_id'] = $inline_message_id;
+			callback_query::edit_message($edit);
+			\lib\db\options::update([
+				"option_status" => 'enable'
+			], $get_inline_lock_id);
+		}
+		elseif($get_inline_lock['status'] == 'disable')
+		{
+			\lib\db\options::update([
+				"option_meta" => ++$get_inline_lock['meta']
+			], $get_inline_lock['id']);
+		}
+		else
+		{
+			\lib\db\options::update([
+				"option_status" => 'disable'
+			], $get_inline_lock['id']);
+			$edit = ask::make(null, null, [
+				'poll_id' 	=> $_poll_id,
+				'return'	=> true,
+				'type'		=> 'inline',
+				'inline_id'	=> $get_subport ? $get_subport['value'] : null
+			]);
+			$edit['inline_message_id'] = $inline_message_id;
+			callback_query::edit_message($edit);
+			\lib\db\options::update([
+				"option_status" => 'enable'
+			], $get_inline_lock['id']);
+			$get_inline_lock = \lib\db\options::get([
+				"id" => $get_inline_lock['id'],
+				"limit" => 1
+			]);
+			if((int) $get_inline_lock['meta'] > 2)
+			{
+				$edit = ask::make(null, null, [
+					'poll_id' 	=> $_poll_id,
+					'return'	=> true,
+					'type'		=> 'inline',
+					'inline_id'	=> $get_subport ? $get_subport['value'] : null
+				]);
+				$edit['inline_message_id'] = $inline_message_id;
+				callback_query::edit_message($edit);
+			}
+		}
 	}
 }
 ?>

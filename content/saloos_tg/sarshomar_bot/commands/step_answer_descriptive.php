@@ -50,6 +50,7 @@ class step_answer_descriptive
 			if($maker->poll_type == 'descriptive')
 			{
 				step::start('answer_descriptive');
+				session::set('answer_descriptive', 'subport', $subport);
 				return self::step1($_answer[1], true);
 			}
 			elseif($maker->poll_type == 'like')
@@ -109,11 +110,13 @@ class step_answer_descriptive
 		else
 		{
 			step::start('answer_descriptive');
+			session::set('answer_descriptive', 'subport', $subport);
 			return self::step1($_text, true);
 		}
 	}
 	public static function step1($_text = null, $check = false)
 	{
+		$subport = session::get('answer_descriptive', 'subport');
 		if(session::get('answer_descriptive', 'id'))
 		{
 			$poll_id = session::get('answer_descriptive', 'id');
@@ -129,7 +132,7 @@ class step_answer_descriptive
 			]
 		]);
 		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
-		if(array_search('add', $get_answer['available']) === false)
+		if(is_array($get_answer) && array_search('add', $get_answer['available']) === false)
 		{
 			step::stop();
 			return [
@@ -141,7 +144,7 @@ class step_answer_descriptive
 		}
 		elseif($check)
 		{
-			session::set('answer_descriptive', 'id', $_text);
+			session::set('answer_descriptive', 'id', $poll_id);
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->add_poll_list(null, false);
