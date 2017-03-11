@@ -863,7 +863,7 @@ function pollTotal_default(_option, _transText)
 		"gridAlpha": 0,
 	}];
 
-	// setChartOption_result(_option, true);
+	// setChartOption_result(_option, null, true);
 
 	_option.graphs =
 	[
@@ -912,6 +912,38 @@ function setChartOption_result(_chartData, _init)
 	createChartGraphs(_chartData, 'result_reliable', 'Reliable', 'value_reliable');
 	createChartGraphs(_chartData, 'result_unreliable', 'Unreliable', 'value_unreliable');
 	// createChartGraphs(_chartData, 'result_unknown', 'unknown', 'unknown');
+}
+
+function setChartOption(_chartData, _type, _trans, _init)
+{
+	// remove all exisiting graphgs
+	removeChartGraphs(_chartData);
+
+	switch(_type)
+	{
+		case 'gender':
+			// set color and axis type
+			_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
+			break;
+
+		case 'result':
+			_chartData.colors = ["#83c3e1", "#d8d8d8"];
+			break;
+
+		default:
+			_chartData.colors = pallet();
+			break;
+	}
+	if(_trans.length === 0)
+	{
+		console.log(_trans.length);
+		_trans = {"value_reliable": "Reliable", "value_unreliable": "Unreliable"};
+	}
+	// add each graph if exist
+	$.each(_trans, function($key, $value)
+	{
+		createChartGraphs(_chartData, _type+ '_'+ $key, $value, $key);
+	});
 }
 
 
@@ -995,10 +1027,14 @@ function redrawPollChart(_data)
 
 			// if this chart has extra setting set it
 			// call func to customize data for this type of chart
-			console.log(chartType);
-			if(chartType && typeof window['setChartOption_' + chartType] == 'function')
+			if(chartType && typeof window['setChartOption'] == 'function')
 			{
-				window['setChartOption_' + chartType](myChartData);
+				var trans = {};
+				if(newChartData['trans'])
+				{
+					trans = newChartData['trans'];
+				}
+				window['setChartOption'](myChartData, chartType, trans);
 			}
 
 			//Setting the new data to the graph
@@ -1007,7 +1043,6 @@ function redrawPollChart(_data)
 			//Updating the graph to show the new data
 			myChartData.validateData();
 			myChartData.validateNow();
-
 		}
 	});
 }
@@ -1135,87 +1170,6 @@ function dashboardPie(_option, _vals)
 	_option.innerRadius     = "60%";
 	return _option;
 }
-
-
-/**
- * [pollDrawHandle description]
- * @param  {[type]} _option [description]
- * @param  {[type]} _vals   [description]
- * @param  {[type]} _this   [description]
- * @param  {[type]} _type   [description]
- * @return {[type]}         [description]
- */
-// function pollDrawHandle(_option, _vals, _this, _type)
-// {
-// 	console.log(_type);
-
-// 	var transText = _this.attr('data-trans');
-// 	if(transText)
-// 	{
-// 		transText = JSON.parse(transText);
-// 	}
-// 	switch(_type)
-// 	{
-// 		case 'gender':
-// 			 _option = pollTotal_gender(_option, transText);
-// 			break;
-
-// 		case 'age':
-// 			break;
-
-// 		case 'range':
-// 			break;
-
-// 		case 'marital':
-// 			break;
-
-// 		case 'graduation':
-// 			break;
-
-// 		case 'employmentstatus':
-// 			break;
-
-// 		case 'province':
-// 			break;
-
-// 		case 'result':
-// 			_option = pollTotal_result(_option, transText);
-// 			break;
-
-// 		default:
-// 			_option = pollTotal_default(_option, transText);
-// 			break;
-// 	}
-
-// 	return _option;
-// }
-
-
-// function pollTotal_result(_option, _transText)
-// {
-// 	// set default color for values
-// 	_option.colors = ["#83c3e1", "#d8d8d8" ];
-
-// 	_option.graphs[0].valueField = "value_reliable";
-// 	_option.graphs[1].valueField = "value_unreliable";
-// }
-
-
-// *
-//  * [pollTotal_gender description]
-//  * @param  {[type]} _option    [description]
-//  * @param  {[type]} _transText [description]
-//  * @return {[type]}            [description]
-
-// function pollTotal_gender(_option, _transText)
-// {
-// 	console.log(_option.graphs);
-// 	_option.colors = ["#83c3e1", "#e97197" ];
-
-// 	_option.graphs[0].valueField = "male";
-// 	_option.graphs[1].valueField = "female";
-
-// }
 
 
 /**
