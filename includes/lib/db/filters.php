@@ -4,6 +4,8 @@ namespace lib\db;
 class filters
 {
 	use \lib\utility\money;
+
+	public static $FILTERS = [];
 	/**
 	 * get supoort filters
 	 * this array exist in to pollstat table
@@ -313,32 +315,36 @@ class filters
 	public static function get($_fielter_id, $_field = null)
 	{
 		$_fielter_id = intval($_fielter_id);
-
-		$field     = '*';
-		$get_field = null;
-		if(is_array($_field))
+		if(!isset(self::$FILTERS[$_fielter_id]))
 		{
-			$field     = '`'. join($_field, '`, `'). '`';
+			$field     = '*';
 			$get_field = null;
-		}
-		elseif($_field && is_string($_field))
-		{
-			$field     = '`'. $_field. '`';
-			$get_field = $_field;
+			if(is_array($_field))
+			{
+				$field     = '`'. join($_field, '`, `'). '`';
+				$get_field = null;
+			}
+			elseif($_field && is_string($_field))
+			{
+				$field     = '`'. $_field. '`';
+				$get_field = $_field;
+			}
+
+			$query =
+			"
+				SELECT
+					$field
+				FROM
+					filters
+				WHERE
+					filters.id = $_fielter_id
+				LIMIT 1
+			";
+			$result = \lib\db::get($query, $get_field, true);
+			self::$FILTERS[$_fielter_id] = $result;
 		}
 
-		$query =
-		"
-			SELECT
-				$field
-			FROM
-				filters
-			WHERE
-				filters.id = $_fielter_id
-			LIMIT 1
-		";
-		$result = \lib\db::get($query, $get_field, true);
-		return $result;
+		return self::$FILTERS[$_fielter_id];
 	}
 
 

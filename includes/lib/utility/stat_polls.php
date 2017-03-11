@@ -7,6 +7,7 @@ class stat_polls
 	use chart\get;
 	use chart\set;
 	use chart\telegram;
+	use chart\refresh;
 
 	/**
 	 * return the status array

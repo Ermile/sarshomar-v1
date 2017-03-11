@@ -34,6 +34,11 @@ trait answers
 				$title = trim($value['title']);
 				$combine[$key]['title'] = $title;
 			}
+			if(mb_strlen($title) > 99)
+			{
+				debug::error(T_("Invalid answer title argument, you must set less than 99 character for the title in index :key of answer", ['key' => $key + 1]), 'answer', 'arguments');
+				return false;
+			}
 
 			$type  = null;
 			if(isset($value['type']))
