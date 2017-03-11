@@ -546,8 +546,8 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color: 
 .profile{background-color:#efefef;margin-left:5px;border-left:1px solid #e76f6f;position:relative;color:#808080}
 .rtl .profile{margin-left:0;margin-right:5px;border:none;border-right:1px solid #e76f6f}
 .profile .info{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;-moz-box-pack:center;justify-content:center;height:40px;padding:0 5px;max-width:12em;min-width:10em}
-.profile .info>div{line-height:1}
-.profile .info .displayname{margin:2px 0;max-width:100%;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}
+/*.profile .info>div{line-height:1}*/
+.profile .info .displayname{/*margin:2px 0;*/max-width:100%;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}
 .profile .info .role{/*font-size:10px*/}
 
 .profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;z-index:-1; opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
