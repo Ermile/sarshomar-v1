@@ -1063,7 +1063,7 @@ private function transtext()
 	echo T_("Stop");                                                                  // Line 24 Seperate
 	echo T_("stop");                                                                  // Line 25 Seperate
 	echo T_("first");                                                                 // Line 28 Seperate
-	echo T_("secoend");                                                               // Line 29 Seperate
+	echo T_("second");                                                                // Line 29 Seperate
 	echo T_("third");                                                                 // Line 30 Seperate
 	echo T_("4th");                                                                   // Line 31 Seperate
 	echo T_("5th");                                                                   // Line 32 Seperate
