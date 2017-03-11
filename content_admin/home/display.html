@@ -48,6 +48,11 @@
         </div>
         <!--/item-->
     </div>
+    <div class="chart" data-vals='[{"key":"Manchester","value":100},{"key":"Liverpool","value":20},{"key":"Real Madrid","value":40},{"key":"Barcelona","value":70},{"key":"Juventus","value":100},{"key":"Bayern","value":60}]'
+    data-format='abc'
+    >
+    </div>
+
 
     <div class="overall-charts">
         <div class="f gutters">
@@ -200,6 +205,14 @@
 </div>
 {%endblock%} {%block foot_js%} {%if visitors%}
 <script type="text/javascript">
+function abc(_option)
+{
+    _option.colors = ["#000"]
+    console.log(_option);
+
+    return _option;
+}
+
     setTimeout(function() {
        AmCharts.makeChart("visitReg",
 				{
