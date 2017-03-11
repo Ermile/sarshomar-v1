@@ -5,9 +5,11 @@ use \lib\debug;
 trait refresh
 {
 
-	public static $chart = [];
-	public static $total = 0;
-	public static $time = 0;
+	public static $chart   = [];
+	public static $total   = 0;
+	public static $time    = 0;
+	public static $skip    = [];
+	public static $poll_id = 0;
 
 	public static function refresh_all()
 	{
@@ -16,8 +18,14 @@ trait refresh
 		self::$time = time();
 		foreach ($poll_ids as $key => $value)
 		{
+			self::$chart   = [];
+			self::$total   = 0;
+			self::$time    = 0;
+			self::$skip    = [];
+			self::$poll_id = 0;
 			self::refresh($value);
 		}
+
 	}
 
 	/**
@@ -27,6 +35,7 @@ trait refresh
 	 */
 	public static function refresh($_poll_id)
 	{
+		self::$poll_id = (int) $_poll_id;
 		$start = time();
 		if(!$_poll_id || !is_numeric($_poll_id))
 		{
@@ -91,6 +100,15 @@ trait refresh
 					$temp[$i]['type'] = $validstatus;
 					foreach ($data as $field => $value)
 					{
+						if($field === 'total' && is_numeric($value))
+						{
+							\lib\db\ranks::plus($_poll_id, 'vote', $value, ['replace' => true]);
+						}
+
+						if(isset(self::$skip[$_poll_id]))
+						{
+							\lib\db\ranks::plus($_poll_id, 'skip', self::$skip[$_poll_id], ['replace' => true]);
+						}
 						$temp[$i][$field] = json_encode($value, JSON_UNESCAPED_UNICODE);
 					}
 				}
@@ -119,6 +137,14 @@ trait refresh
 
 		if($_args['opt'] === 'opt_0')
 		{
+			if(isset(self::$skip[self::$poll_id]))
+			{
+				self::$skip[self::$poll_id]++;
+			}
+			else
+			{
+				self::$skip[self::$poll_id] = 1;
+			}
 			return;
 		}
 
@@ -171,13 +197,13 @@ trait refresh
 			}
 			else
 			{
-				if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['undefined']))
+				if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown']))
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['undefined']++;
+					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown']++;
 				}
 				else
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['undefined'] = 1;
+					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown'] = 1;
 				}
 			}
 		}

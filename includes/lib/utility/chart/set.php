@@ -75,7 +75,7 @@ trait set
 			// in update mode we are load old userstatus saved in polldetails
 			// in this table we can set valid or invalid
 			case null:
-			// undefined value
+			// unknown value
 			default:
 				return false;
 				break;
@@ -182,7 +182,7 @@ trait set
 			$user_profile_data = \lib\db\filters::get($_args['profile']);
 			if(is_array($user_profile_data))
 			{
-				// remove empty value from profile to minus the 'undefined' of chart
+				// remove empty value from profile to minus the 'unknown' of chart
 				$user_profile_data = array_filter($user_profile_data);
 			}
 		}
@@ -370,7 +370,7 @@ trait set
 			}
 				 // the user not set this filter
 			else //
-			     // we set this item of chart as 'undefined'
+			     // we set this item of chart as 'unknown'
 			{
 				// if in sorting mode we update all opt index of this poll
 				if($sorting)
@@ -379,19 +379,19 @@ trait set
 					{
 						if(isset($pollstats[$filter][$opt]))
 						{
-							if(isset($pollstats[$filter][$opt]['undefined']))
+							if(isset($pollstats[$filter][$opt]['unknown']))
 							{
 
-								$pollstats[$filter][$opt]['undefined']+= $sort_index;
+								$pollstats[$filter][$opt]['unknown']+= $sort_index;
 							}
 							else
 							{
-								$pollstats[$filter][$opt]['undefined'] = $sort_index;
+								$pollstats[$filter][$opt]['unknown'] = $sort_index;
 							}
 						}
 						else
 						{
-							$pollstats[$filter][$opt]['undefined'] = $sort_index;
+							$pollstats[$filter][$opt]['unknown'] = $sort_index;
 						}
 					}
 				}
@@ -399,21 +399,21 @@ trait set
 				{
 					if(isset($pollstats[$filter][$opt_key]))
 					{
-						if(isset($pollstats[$filter][$opt_key]['undefined']))
+						if(isset($pollstats[$filter][$opt_key]['unknown']))
 						{
 							if($plus)
 							{
-								$pollstats[$filter][$opt_key]['undefined']++;
+								$pollstats[$filter][$opt_key]['unknown']++;
 							}
 							else
 							{
-								if(intval($pollstats[$filter][$opt_key]['undefined']) > 1)
+								if(intval($pollstats[$filter][$opt_key]['unknown']) > 1)
 								{
-									$pollstats[$filter][$opt_key]['undefined']--;
+									$pollstats[$filter][$opt_key]['unknown']--;
 								}
 								else
 								{
-									unset($pollstats[$filter][$opt_key]['undefined']);
+									unset($pollstats[$filter][$opt_key]['unknown']);
 								}
 							}
 						}
@@ -421,7 +421,7 @@ trait set
 						{
 							if($plus)
 							{
-								$pollstats[$filter][$opt_key]['undefined'] = 1;
+								$pollstats[$filter][$opt_key]['unknown'] = 1;
 							}
 						}
 					}
@@ -429,7 +429,7 @@ trait set
 					{
 						if($plus)
 						{
-							$pollstats[$filter][$opt_key]['undefined'] = 1;
+							$pollstats[$filter][$opt_key]['unknown'] = 1;
 						}
 					}
 				}
