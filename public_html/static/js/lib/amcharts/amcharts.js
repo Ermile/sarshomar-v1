@@ -823,13 +823,14 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 		_balloon = "[[title]] "+ _title +"<br/><b>[[value]]</b>"
 	}
 	// Add mael graph attached to the axis
-	var myNewGraph = new AmCharts.AmGraph();
-	myNewGraph.type           = "column";
-	myNewGraph.title          = _title;
-	myNewGraph.valueField     = _value;
-	myNewGraph.balloonText    = _balloon;
-	myNewGraph.labelText      = "[[value]]";
-	myNewGraph.fillAlphas = 0.9;
+	var myNewGraph         = new AmCharts.AmGraph();
+	myNewGraph.type        = "column";
+	myNewGraph.title       = _title;
+	myNewGraph.valueField  = _value;
+	myNewGraph.balloonText = _balloon;
+	myNewGraph.labelText   = "[[value]]";
+	myNewGraph.fillAlphas  = 0.9;
+	myNewGraph.lineAlpha   = 0;
 	// add graph to chart data
 	if(typeof _chartData.addGraph === "function")
 	{
@@ -839,6 +840,58 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 	{
 		_chartData.graph = myNewGraph;
 	}
+}
+
+
+/**
+ * [pollTotal description]
+ * @param  {[type]} _option [description]
+ * @param  {[type]} _vals   [description]
+ * @param  {[type]} _this   [description]
+ * @return {[type]}         [description]
+ */
+function pollTotal_default(_option, _transText)
+{
+	// console.log(_transText);
+	// console.log(_option);
+	_option.colors = ["#83c3e1", "#d8d8d8" ];
+
+	_option.valueAxes =
+	[{
+		"stackType": "regular",
+		"axisAlpha": 0.1,
+		"gridAlpha": 0,
+	}];
+
+	// setChartOption_result(_option, true);
+
+	_option.graphs =
+	[
+		{
+			"type": "column",
+			"title": _transText.trust,
+			"valueField": "value_reliable",
+			"balloonText": "[[title]] [" + _transText.trust + "] <br/><b>[[value]]</b> " + _transText.vote,
+			"labelText": "[[value]]",
+			"fillAlphas": 0.9,
+			"lineAlpha": 0,
+		},
+		{
+			"type": "column",
+			"title": _transText.untrust,
+			"valueField": "value_unreliable",
+			"balloonText": "[[title]] [" + _transText.untrust + "] <br/><b>[[value]]</b> " + _transText.vote,
+			"labelText": "[[value]]",
+			"fillAlphas": 0.5,
+			"lineAlpha": 0,
+			"clustered":false,
+		},
+	];
+
+	_option.categoryField = "title";
+	// console.log(_option);
+
+	return _option;
 }
 
 
@@ -1136,58 +1189,6 @@ function dashboardPie(_option, _vals)
 
 // 	return _option;
 // }
-
-
-/**
- * [pollTotal description]
- * @param  {[type]} _option [description]
- * @param  {[type]} _vals   [description]
- * @param  {[type]} _this   [description]
- * @return {[type]}         [description]
- */
-function pollTotal_default(_option, _transText)
-{
-	// console.log(_transText);
-	// console.log(_option);
-	_option.colors = ["#83c3e1", "#d8d8d8" ];
-
-	_option.valueAxes =
-	[{
-		"stackType": "regular",
-		"axisAlpha": 0.1,
-		"gridAlpha": 0,
-	}];
-
-	// setChartOption_result(_option, true);
-
-	_option.graphs =
-	[
-		{
-			"type": "column",
-			"title": _transText.trust,
-			"valueField": "value_reliable",
-			"balloonText": "[[title]] [" + _transText.trust + "] <br/><b>[[value]]</b> " + _transText.vote,
-			"labelText": "[[value]]",
-			"fillAlphas": 0.9,
-			"lineAlpha": 0.2,
-		},
-		{
-			"type": "column",
-			"title": _transText.untrust,
-			"valueField": "value_unreliable",
-			"balloonText": "[[title]] [" + _transText.untrust + "] <br/><b>[[value]]</b> " + _transText.vote,
-			"labelText": "[[value]]",
-			"fillAlphas": 0.5,
-			"lineAlpha": 0.2,
-			"clustered":false,
-		},
-	];
-
-	_option.categoryField = "title";
-	// console.log(_option);
-
-	return _option;
-}
 
 
 // function pollTotal_result(_option, _transText)

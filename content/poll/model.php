@@ -337,6 +337,12 @@ class model extends \content\home\model
 			}
 			$temp_cats = array_unique($temp_cats);
 		}
+		// add trans
+		$_stats['trans'] = [];
+		foreach ($temp_cats as $key => $value)
+		{
+			$_stats['trans'][$value] = T_($value);
+		}
 
 		foreach ($temp_cats as $i => $cat)
 		{
