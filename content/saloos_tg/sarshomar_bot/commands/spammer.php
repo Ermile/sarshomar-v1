@@ -102,6 +102,10 @@ class spammer
 
 	public static function overflow_message($_meta)
 	{
+		if(!isset($_meta['message_count']))
+		{
+			$_meta['message_count'] = 0;
+		}
 		if($_meta['time'] + 40 >= microtime(true) && $_meta['message_count'] >= 20)
 		{
 			return [
@@ -121,6 +125,10 @@ class spammer
 
 	public static function overflow_callback_query($_meta)
 	{
+		if(!isset($_meta['callback_query_count']))
+		{
+			$_meta['callback_query_count'] = 0;
+		}
 		if($_meta['time'] + 4 >= microtime(true) && $_meta['callback_query_count'] >= 6)
 		{
 			$message_result = [
