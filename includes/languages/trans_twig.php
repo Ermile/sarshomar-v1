@@ -403,31 +403,34 @@ private function transtext()
 	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 16
 	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 16
 
+	//------------------------------------content\template\static\logo\content-fa.html
+	echo T_("Brand Intro");                                                           // Line 1
+	echo T_("Drawing logo");                                                          // Line 2
+	echo T_("Brand Blueprint");                                                       // Line 5
+	echo T_("Logo blueprint");                                                        // Line 92
+	echo T_("Explanations about the logo");                                           // Line 93
+	echo T_("Square");                                                                // Line 102
+	echo T_("Circle");                                                                // Line 107
+	echo T_("Pomegranate; Iranians lovely fruit");                                    // Line 112
+	echo T_("Pomegranate");                                                           // Line 113
+	echo T_("Blue");                                                                  // Line 117
+	echo T_("White");                                                                 // Line 122
+	echo T_("Red");                                                                   // Line 127
+
 	//-----------------------------------content\template\static\logo\download-fa.html
-	echo T_("Download our logo");                                                     // Line 6
+	echo T_("Download our logo");                                                     // Line 1
 
 	//---------------------------------------content\template\static\logo\home-fa.html
 	echo T_("Our logo");                                                              // Line 5
-	echo T_("Brand Intro");                                                           // Line 46
-	echo T_("Drawing logo");                                                          // Line 47
-	echo T_("Brand Blueprint");                                                       // Line 50
-	echo T_("Logo blueprint");                                                        // Line 97
-	echo T_("Explanations about the logo");                                           // Line 137
-	echo T_("Square");                                                                // Line 106
-	echo T_("Circle");                                                                // Line 112
-	echo T_("Pomegranate");                                                           // Line 149
-	echo T_("Blue");                                                                  // Line 122
-	echo T_("White");                                                                 // Line 127
-	echo T_("Red");                                                                   // Line 132
 
 	//------------------------------------------content\template\static\logo\home.html
 
 	//----------------------------------------content\template\static\logo\how-fa.html
-	echo T_("How to use");                                                            // Line 6
+	echo T_("How to use");                                                            // Line 1
 
 	//--------------------------------------content\template\static\logo\wrong-fa.html
-	echo T_("Wrong usage");                                                           // Line 6
-	echo T_("Wrong");                                                                 // Line 34
+	echo T_("Wrong usage");                                                           // Line 1
+	echo T_("Wrong");                                                                 // Line 28
 
 	//--------------------------------------------content\template\static\mission.html
 
