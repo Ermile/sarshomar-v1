@@ -670,6 +670,14 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .special-heading::after{content:"";position:absolute;width:60px;height:115px;background-image:url(../images/border-object.svg);background-repeat:no-repeat;top:5px;left:-75px}
 .rtl .special-heading::after{right:-75px;left:initial;background-image:url(../images/border-object-fa.svg)}
 
+.sh{font-size:20px;line-height:26px;position:relative;margin-bottom:30px;padding-left:90px;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;color:#00667a}
+.rtl .sh{padding-right:90px;padding-left:0}
+.sh a{font-weight:400;color:inherit}
+.sh::before{position:absolute;top:-2px;bottom:0;left:-15px;width:100px;height:2px;margin:auto;content:'';background-color:#00667a}
+.rtl .sh::before{right:-15px;left:auto}
+.sh::after{position:absolute;top:5px;left:-75px;width:60px;height:115px;content:'';background-image:url(../images/border-object.svg);background-repeat:no-repeat}
+.rtl .sh::after{right:-75px;left:initial;background-image:url(../images/border-object-fa.svg)}
+
 
 /************************************************************** homepage */
 /* chart */
