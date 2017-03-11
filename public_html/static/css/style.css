@@ -787,7 +787,7 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .special-btn::after{right:-8px;-webkit-transform:scaleX(-1);-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
 .special-btn:not(.disabled):hover,.special-btn:not(.disabled):focus{background-color:#129491}
 .special-btn.disabled{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-backface-visibility:hidden;color:#f4f4f4}
-
+.special-btn:hover {color:#fff}
 
 /************************************************************** range slider */
 .range-slider .dynamic-margin,.range-slider .dynamic-range{display:inline-block;float:left;margin:0;padding:0;height:100%}

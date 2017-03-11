@@ -146,7 +146,7 @@
  .rtl header .header-profile-button{font-size:12px}
 
  header #financial-box{width:100%;margin:0 20px!important}
-header .header-profile-link .header-link-icon {display: inline-block;}
+header .header-profile-link .header-link-icon {display: inline-block;vertical-align: middle}
 
  .checkbox+label:before{top:16px;left:10px}
  .row .checkbox.margin-bottom {margin-bottom: 15px;}

@@ -112,11 +112,25 @@
 
 
 /************************** New styles **/
-.overall-stats {padding-top: 3em;padding-bottom: 3em;}
-.overall-stats .stat {margin: 0 15px;transition: all 0.3s;background: #FAFAFA;padding: 2em;box-shadow: 0 1px 2px rgba(0,0,0,0.13);border-radius: 4px;}
+.overall-stats {padding-top: 3em;}
+.overall-stats .stat {margin: 0 15px;transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 3em;border: 1px solid rgba(0,0,0,.12);border-radius: 3px;}
 .overall-stats .stat:hover {background: #efefef;}
 .overall-stats .stat .icon {color: #37aaa7}
-.overall-stats .num {font-weight: bold;font-size: 3em;line-height: 1;margin-bottom: 22px;color: #607D8B;}
-.overall-stats .title {font-size: 1.5em;line-height: 1;color: #607D8B;}
-.overall-charts {background: #efefef;min-height: 150px;}
-.overall-charts h2 {color: #006681; margin: 1em 0}
+.overall-stats .num {font-size: 2.5em;line-height: 1;margin-bottom: 22px;color: #4F5256;}
+.overall-stats .title {font-size: 1.5em;line-height: 1;color: #a2a2a2;}
+.card {background: #fff; margin-bottom: 2em;border: 1px solid rgba(0,0,0,.12); border-radius: 3px;}
+.card ul a {padding: 1em; display: block;font-size: 1.2em;color: #607D8B;border-bottom: 2px dashed #eee; }
+.card ul a:last-child {border-bottom: 0; }
+.card ul a:hover {background: #FAFAFA;}
+.card.simple .card-title {padding: 12px 0 6px 0;}
+.card.simple.simple-border .title-box {border-bottom: 1px solid #f4f4f4;}
+.card.simple .title-box {background: #ffffff;padding: 0 2em;}
+.card.simple .more {border: 0px solid #eee;}
+.card .title-box {background: #EEEEEE;padding: 0 1em;}
+.card .title-box span {text-align: right}
+.card .card-title {color: #757575;margin: 0;cursor: default;padding: 5px 0;}
+.card .more {border: 1px solid #eee;padding: 1px 8px;border-radius: 4px;color: #9e9e9e;background: #FAFAFA;}
+.card .more:hover {background: #F5F5F5}
+.q-status {width: 16px;height: 16px;background: #ffffff;display: inline-block;vertical-align: middle;border-radius: 24px;margin-right: 10px;border: 3px solid #4CAF50;}
+.q-status.red {border-color: #F44336}
+.q-status.yellow {border-color: #FFC107}
