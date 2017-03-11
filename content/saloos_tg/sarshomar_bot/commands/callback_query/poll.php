@@ -188,7 +188,7 @@ class poll
 
 	public static function answer($_query, $_data_url)
 	{
-		\lib\db::transaction();
+		// \lib\db::transaction();
 		\lib\storage::set_disable_edit(true);
 		$last = null;
 		$subport = null;
@@ -370,7 +370,7 @@ class poll
 				'type'		=> 'private'
 				]));
 		}
-		\lib\db::rollback();
+		// \lib\db::rollback();
 
 		if(!$debug_status)
 		{
