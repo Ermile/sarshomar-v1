@@ -1,35 +1,50 @@
 {%extends display.main%} {%block content%} {%include "content_admin/main/sidebar.html"%}
-<div class="main">
+<div class="main admin-section">
 
-    <div class="f gutters overall-stats">
+    <div class="f gutters overall-stats unselectable">
         <!--item-->
-        <div class="stat">
-            <h5 class="num">321</h5>
-            <div class="title">Q</div>
+        <div class="stat f align-center justify-start">
+            <div class="c4 ico"><i class="icon-question icon-3x"></i></div>
+            <div>
+                <h5 class="num">3021</h5>
+                <div class="title" title="Polls">Polls</div>
+            </div>
+        </div>
+        <!--/item-->
+       <!--item-->
+        <div class="stat f align-center justify-start">
+            <div class="c4 ico"><i class="icon-commenting-o icon-3x"></i></div>
+            <div>
+                <h5 class="num">1456</h5>
+                <div class="title" title="Comments">Comments</div>
+            </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat yellow">
-            <h5 class="num">321</h5>
-            <div class="title">Q</div>
+        <div class="stat f align-center justify-start">
+            <div class="c4 ico"><i class="icon-check icon-3x"></i></div>
+            <div>
+                <h5 class="num">1456</h5>
+                <div class="title" title="Answers">Answers</div>
+            </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat red">
-            <h5 class="num">321</h5>
-            <div class="title">Q</div>
+        <div class="stat f align-center justify-start">
+            <div class="c4 ico"><i class="icon-smile-o icon-3x"></i></div>
+            <div>
+                <h5 class="num">8450</h5>
+                <div class="title" title="Users">Users</div>
+            </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat light-green f align-center">
-            <h5 class="num">321</h5>
-            <div class="title">Q</div>
-        </div>
-        <!--/item-->
-        <!--item-->
-        <div class="stat blue f align-center">
-            <h5 class="num">321</h5>
-            <div class="title">Q</div>
+        <div class="stat f align-center justify-start">
+            <div class="c4 ico"><i class="icon-send-o icon-3x"></i></div>
+            <div>
+                <h5 class="num">121454</h5>
+                <div class="title" title="Telegram Users">Telegram Users</div>
+            </div>
         </div>
         <!--/item-->
     </div>
@@ -40,8 +55,8 @@
             <div class="c12">
                 <div class="card simple">
                     <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title">
-                            Latest Questions
+                        <h5 class="card-title unselectable">
+                            Visits and Registrations
                         </h5>
                         <span>
                         <a href="#!" class="more">More</a>
@@ -50,7 +65,7 @@
                     </div>
 
                     <div>
-                        <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+                        <div id="visitReg" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
@@ -60,8 +75,8 @@
             <div class="c6">
                 <div class="card simple">
                     <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title">
-                            Latest Questions
+                        <h5 class="card-title unselectable">
+                            Polls and Answers
                         </h5>
                         <span>
                         <a href="#!" class="more">More</a>
@@ -80,8 +95,8 @@
             <div class="c6 simple">
                 <div class="card simple">
                     <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title">
-                            Latest Questions
+                        <h5 class="card-title unselectable">
+                            Transactions
                         </h5>
                         <span>
                         <a href="#!" class="more">More</a>
@@ -106,8 +121,8 @@
         <div class="c6">
             <div class="card simple simple-border">
                 <div class="title-box f align-center justify-between nowrap">
-                    <h5 class="card-title">
-                        Latest Questions
+                    <h5 class="card-title unselectable">
+                        Latest Polls
                     </h5>
                     <span>
                         <a href="#!" class="more">More</a>
@@ -145,8 +160,8 @@
         <div class="c6">
             <div class="card simple simple-border">
                 <div class="title-box f align-center justify-between nowrap">
-                    <h5 class="card-title">
-                        Top Questions
+                    <h5 class="card-title unselectable">
+                        Trending Polls
                     </h5>
                     <span>
                         <a href="#!" class="more">More</a>
@@ -186,188 +201,100 @@
 {%endblock%} {%block foot_js%} {%if visitors%}
 <script type="text/javascript">
     setTimeout(function() {
-        AmCharts.makeChart("chartdiv30",
+        AmCharts.makeChart("visitReg",
 				{
 					"type": "serial",
 					"categoryField": "category",
+					"minSelectedTime": 1,
+					"minMarginTop": 1,
+					"plotAreaBorderColor": "#FFFFFF",
+					"plotAreaFillColors": "#F27474",
+					"sequencedAnimation": false,
 					"startDuration": 1,
-					"theme": "chalk",
+					"startEffect": "easeInSine",
+					"borderColor": "#00E700",
+					"color": "#888888",
+					"creditsPosition": "top-right",
+					"fontFamily": "iransans",
 					"categoryAxis": {
-						"gridPosition": "start"
+						"gridPosition": "start",
+						"gridCount": 4
+					},
+					"chartCursor": {
+						"enabled": true,
+						"cursorColor": "#F27474"
 					},
 					"trendLines": [],
 					"graphs": [
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
-							"bullet": "round",
+							"fillAlphas": 0.7,
 							"id": "AmGraph-1",
-							"title": "graph 1",
+							"lineAlpha": 0,
+							"stepDirection": "center",
+							"title": "بازدید",
 							"type": "smoothedLine",
 							"valueField": "column-1"
 						},
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
-							"bullet": "square",
+							"fillAlphas": 0.7,
 							"id": "AmGraph-2",
-							"title": "graph 2",
+							"lineAlpha": 0,
+							"lineThickness": 0,
+							"stepDirection": "center",
+							"title": "ثبت نام",
 							"type": "smoothedLine",
 							"valueField": "column-2"
 						}
 					],
 					"guides": [],
-					"valueAxes": [
-						{
-							"id": "ValueAxis-1",
-							"title": "Axis title"
-						}
-					],
+					"valueAxes": [],
 					"allLabels": [],
 					"balloon": {},
 					"legend": {
-						"enabled": true,
-						"useGraphSettings": true
+						"enabled": true
 					},
-					"titles": [
-						{
-							"id": "Title-1",
-							"size": 15,
-							"text": "Chart Title"
-						}
-					],
+					"titles": [],
 					"dataProvider": [
 						{
-							"category": "category 1",
+							"category": "مهر",
 							"column-1": 8,
 							"column-2": 5
 						},
 						{
-							"category": "category 2",
+							"category": "آبان",
 							"column-1": 6,
-							"column-2": 7
+							"column-2": "0"
 						},
 						{
-							"category": "category 3",
+							"category": "آذر",
 							"column-1": 2,
 							"column-2": 3
 						},
 						{
-							"category": "category 4",
+							"category": "دی",
 							"column-1": 1,
 							"column-2": 3
 						},
 						{
-							"category": "category 5",
+							"category": "بهمن",
 							"column-1": 2,
 							"column-2": 1
 						},
 						{
-							"category": "category 6",
+							"category": "اسفند",
 							"column-1": 3,
 							"column-2": 2
 						},
 						{
-							"category": "category 7",
+							"category": "فروردین",
 							"column-1": 6,
 							"column-2": 8
 						}
 					]
 				}
 			);
-        AmCharts.makeChart("chartdiv20",
-				{
-					"type": "pie",
-					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-					"titleField": "category",
-					"valueField": "column-1",
-					"theme": "light",
-					"allLabels": [],
-					"balloon": {},
-					"legend": {
-						"enabled": true,
-						"align": "center",
-						"markerType": "circle"
-					},
-					"titles": [],
-					"dataProvider": [
-						{
-							"category": "category 1",
-							"column-1": 8
-						},
-						{
-							"category": "category 2",
-							"column-1": 6
-						},
-						{
-							"category": "category 3",
-							"column-1": 2
-						}
-					]
-				}
-			);
-        AmCharts.makeChart("chartdiv0", {
-            "type": "serial",
-            "categoryField": "date",
-            "dataDateFormat": "YYYY-MM",
-            "autoMarginOffset": 20,
-            "plotAreaBorderColor": "#E03D3D",
-            "borderColor": "#FFFFFF",
-            "color": "#AAB3B3",
-            "fontFamily": "iransans",
-            "theme": "default",
-            "categoryAxis": {
-                "minPeriod": "MM",
-                "parseDates": true,
-                "axisAlpha": 0,
-                "axisColor": "#E03D3D",
-                "firstDayOfWeek": 0,
-                "gridAlpha": 0,
-                "gridColor": "#E5E5E5",
-                "markPeriodChange": false,
-                "minorTickLength": -5
-            },
-            "chartCursor": {
-                "enabled": true,
-                "categoryBalloonDateFormat": "MMM YYYY",
-                "cursorColor": "#E03D3D"
-            },
-            "trendLines": [],
-            "graphs": [{
-                "fillAlphas": 0.73,
-                "id": "AmGraph-2",
-                "lineAlpha": 0,
-                "stepDirection": "left",
-                "title": "graph 2",
-                "type": "smoothedLine",
-                "valueField": "column-2"
-            }],
-            "guides": [],
-            "valueAxes": [],
-            "allLabels": [],
-            "balloon": {},
-            "titles": [],
-            "dataProvider": [{
-                "date": "2014-01",
-                "column-2": 5
-            }, {
-                "date": "2014-02",
-                "column-2": 7
-            }, {
-                "date": "2014-03",
-                "column-2": 3
-            }, {
-                "date": "2014-04",
-                "column-2": 3
-            }, {
-                "date": "2014-05",
-                "column-2": 1
-            }, {
-                "date": "2014-06",
-                "column-2": 2
-            }, {
-                "date": "2014-07",
-                "column-2": 8
-            }]
-        });
     }, 300);
 </script>
 {%endif%} {%endblock%}
