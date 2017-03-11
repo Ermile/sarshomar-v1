@@ -285,11 +285,14 @@ class poll
 					'limit'		=> 1
 					]);
 				$inline_message_id = $get_subport['meta'];
+				\lib\storage::set_disable_edit(false);
 			}
 			else
 			{
 				$inline_message_id = $_query['inline_message_id'];
+				$get_subport = false;
 			}
+
 			$get_inline_lock = \lib\db\options::get([
 				"option_cat" => "telegram",
 				"option_key" => "inline_message_lock",
@@ -311,6 +314,7 @@ class poll
 					'poll_id' 	=> $poll_id,
 					'return'	=> true,
 					'type'		=> 'inline',
+					'inline_id'	=> $get_subport ? $get_subport['value'] : null
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
 				$x = callback_query::edit_message($edit);
@@ -333,6 +337,7 @@ class poll
 					'poll_id' 	=> $poll_id,
 					'return'	=> true,
 					'type'		=> 'inline',
+					'inline_id'	=> $get_subport ? $get_subport['value'] : null
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
 				$x = callback_query::edit_message($edit);
@@ -349,12 +354,12 @@ class poll
 					'poll_id' 	=> $poll_id,
 					'return'	=> true,
 					'type'		=> 'inline',
+					'inline_id'	=> $get_subport ? $get_subport['value'] : null
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
 				$x = callback_query::edit_message($edit);
 				}
 			}
-			handle::send_log($x);
 		}
 		else
 		{

@@ -180,7 +180,7 @@ class controller extends \lib\mvc\controller
 	public static function clear_back_temp()
 	{
 		$get_back_response = session::get_back('expire', 'inline_cache');
-		if($get_back_response && !\lib\storage::get_disable_edit())
+		if($get_back_response && \lib\storage::get_disable_edit() !== true)
 		{
 			foreach ($get_back_response as $key => $value) {
 				$edit_return = commands\utility::object_to_array($value->on_expire);
@@ -197,7 +197,7 @@ class controller extends \lib\mvc\controller
 					session::remove('expire', 'inline_cache', $key);
 				}
 
-				bot::sendResponse($edit_return);
+				$x = bot::sendResponse($edit_return);
 			}
 		}
 	}

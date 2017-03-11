@@ -72,17 +72,10 @@ class inline_query
 				'poll_id' 	=> $value['id'],
 				'return'	=> true,
 				'type'		=> 'inline',
-				'fn'		=> function($_maker) use(&$row_result, $result_id)
+				'inline_id'	=> $result_id,
+				'fn'		=> function($_maker) use(&$row_result)
 				{
 					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['summary']['total']) .' ';
-					foreach ($_maker->inline_keyboard->inline_keyboard as $key => $value) {
-						foreach ($value as $k => $v) {
-							if(isset($v['url']) && preg_match("/start=.*\d+$/", $v['url']))
-							{
-								$_maker->inline_keyboard->inline_keyboard[$key][$k]['url'] .= '-subport_'.$result_id;
-							}
-						}
-					}
 				}
 				]);
 			$short_dec = preg_replace("/\n/", " ", $value['description']);

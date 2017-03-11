@@ -101,7 +101,6 @@ class ask
 
 
 		if($options['type'] != 'private'){
-			\lib\storage::set_disable_edit(true);
 			$guest_option['share'] = false;
 			$guest_option['update'] = false;
 			$guest_option['report'] = false;
@@ -141,13 +140,18 @@ class ask
 				]]);
 		}
 
-		if(!$options['poll_id'] || $options['last'])
+		if(!$options['poll_id'] || $options['last'] || $options['type'] == 'inline')
 		{
 			foreach ($maker->inline_keyboard->inline_keyboard as $key => $value) {
 				foreach ($value as $k => $v) {
-					if(isset($v['callback_data']))
+					if(($options['last'] || !$options['poll_id']) && isset($v['callback_data']))
 					{
 						$maker->inline_keyboard->inline_keyboard[$key][$k]['callback_data'] .= '/last';
+					}
+					if($options['type'] == 'inline' &&
+						isset($v['url']) && preg_match("/start=.*\d+$/", $v['url']))
+					{
+							$maker->inline_keyboard->inline_keyboard[$key][$k]['url'] .= '-subport_'.$options['inline_id'];
 					}
 				}
 			}
