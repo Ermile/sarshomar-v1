@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-11 08:14+0330\n"
-"PO-Revision-Date: 2017-03-11 09:22+0330\n"
+"POT-Creation-Date: 2017-03-11 11:15+0330\n"
+"PO-Revision-Date: 2017-03-11 11:18+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -126,8 +126,9 @@ msgstr "دقیقه"
 #: saloos/lib/utility.php:338
 #: saloos/saloos-addons/includes/languages/trans_addons.php:278
 #: sarshomar/includes/languages/trans_addons.php:278
+#: sarshomar/includes/languages/trans_twig.php:1066
 msgid "second"
-msgstr "ثانیه"
+msgstr "دوم"
 
 #: saloos/lib/utility.php:341
 #: saloos/saloos-addons/includes/languages/trans_addons.php:284
@@ -2525,7 +2526,7 @@ msgid "seriously, are you sure? There's no coming back."
 msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:113
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:180
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:183
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:71
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:162
 #: sarshomar/includes/languages/trans_addons.php:113
@@ -4080,17 +4081,17 @@ msgstr "خطا در توکن"
 msgid "Poll not found"
 msgstr "نظرسنجی یافت نشد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:129
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:128
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:129
 msgid "View results"
 msgstr "مشاهده نتایج"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:139
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:138
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:139
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:200
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:204
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:200
 msgid "Updated"
 msgstr "بروز شد"
@@ -4254,8 +4255,8 @@ msgid "First"
 msgstr "اولین"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:488
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:589
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:430
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:531
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:163
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:361
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:367
@@ -4600,26 +4601,26 @@ msgstr "مایل به افزودن سوال هستید"
 msgid "Add new poll"
 msgstr "افزودن نظرسنجی جدید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:128
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:134
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:128
 msgid "Cancel answering"
 msgstr "لغو پاسخ‌دهی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:155
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:161
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:155
 msgid "An error occurred while submitting the answer"
 msgstr "ثبت پاسخ با خطا مواجه شد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:171
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:177
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:171
 msgid "Your answer has been submitted"
 msgstr "پاسخ شما ثبت شد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:172
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:174
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:90
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:154
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:171
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:178
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:180
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:91
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:157
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:174
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:172
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:174
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:71
@@ -4628,13 +4629,13 @@ msgstr "پاسخ شما ثبت شد"
 msgid "Submit answer"
 msgstr "ارسال پاسخ"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:273
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:283
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:267
 msgid "If you intend to delete your vote, tap once more"
 msgstr "اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:476
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:485
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:418
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:427
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:155
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:162
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:451
@@ -4798,20 +4799,20 @@ msgstr "شما به مدت :seconds ثانیه قدغن شده‌اید"
 msgid "Do you intend to answer the poll?"
 msgstr "آیا شما قصد دارید به نظرسنجی زیر پاسخ دهید؟"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:78
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:136
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:79
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:139
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:59
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:118
 msgid "You are not allowed to answer"
 msgstr "مجاز به پاسخگویی نیستید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:85
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:86
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:66
 msgid "Your selected option is :answer_text"
 msgstr "گزینه انتخابی شما :answer_text می‌باشد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:88
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:152
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:89
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:155
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:69
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:134
 msgid ""
@@ -4821,34 +4822,34 @@ msgstr ""
 "شما با پاسخ دادن به این نظرسنجی به سرشمار اجازه می‌دهید مشخصات‌تان را به پرسشگر "
 "ارسال کند."
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:95
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:96
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:76
 #: sarshomar/includes/languages/trans_twig.php:181
 msgid "Allow"
 msgstr "اجازه می‌دهم"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:99
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:100
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:80
 #: sarshomar/includes/languages/trans_twig.php:182
 msgid "Deny"
 msgstr "اجازه نمی‌دهم"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:149
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:152
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:131
 msgid "Please enter your answer"
 msgstr "لطفا پاسخ خود را وارد کنید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:169
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:172
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:151
 msgid "Do you confirm the above answer?"
 msgstr "آیا پاسخ فوق را تایید می‌کنید؟"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:170
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:173
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:152
 msgid "If you intend to change the answer you can enter some other text"
 msgstr "اگر قصد تغییر پاسخ دارید می‌توانید متن دیگری وارد کنید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:176
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:179
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:158
 #: sarshomar/includes/languages/trans_twig.php:40
 msgid "Yes"
@@ -5011,6 +5012,22 @@ msgstr "موارد واحد با موفقیت وارد شدند"
 #: sarshomar/content_admin/home/controller.php:16
 msgid "Access denied"
 msgstr "دسترسی ممنوع"
+
+#: sarshomar/content_admin/home/view.php:15
+msgid "All chart data refreshed"
+msgstr ""
+
+#: sarshomar/content_admin/home/view.php:19
+msgid "Error in refresh chart data"
+msgstr ""
+
+#: sarshomar/content_admin/home/view.php:28
+msgid "Poll chart data refreshed"
+msgstr ""
+
+#: sarshomar/content_admin/home/view.php:32
+msgid "Error in refresh chart data of this poll"
+msgstr ""
 
 #: sarshomar/content_admin/knowledge/model.php:23
 msgid "Words Status change"
@@ -5781,12 +5798,12 @@ msgid "filters"
 msgstr "فیلترها"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:84
-#: sarshomar/includes/lib/utility/stat_polls.php:276
+#: sarshomar/includes/lib/utility/stat_polls.php:277
 msgid "male"
 msgstr "مرد"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:85
-#: sarshomar/includes/lib/utility/stat_polls.php:280
+#: sarshomar/includes/lib/utility/stat_polls.php:281
 msgid "female"
 msgstr "زن"
 
@@ -9965,10 +9982,6 @@ msgstr "توقف"
 msgid "first"
 msgstr "اولین"
 
-#: sarshomar/includes/languages/trans_twig.php:1066
-msgid "secoend"
-msgstr ""
-
 #: sarshomar/includes/languages/trans_twig.php:1067
 msgid "third"
 msgstr "سومین"
@@ -12516,15 +12529,21 @@ msgstr "خطا در :operation نظرسنجی"
 msgid "Can not add poll"
 msgstr "ناتوان در افزودن نظرسنجی"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:54
+#: sarshomar/includes/lib/db/polls/insert/answers.php:39
+msgid ""
+"Invalid answer title argument, you must set less than 99 character for the title "
+"in index :key of answer"
+msgstr ""
+
+#: sarshomar/includes/lib/db/polls/insert/answers.php:59
 msgid "Invalid type (:type) paramater in index :key of answer"
 msgstr "پارامتر نوع (:type) در شاخص :key پاسخ نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:62
+#: sarshomar/includes/lib/db/polls/insert/answers.php:67
 msgid "Invalid answer type parameter in index :key of answer"
 msgstr "پارامتر نوع پاسخ در شاخص :key پاسخ نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:117
+#: sarshomar/includes/lib/db/polls/insert/answers.php:122
 msgid "Invalid parameter is_true in index :key of answer"
 msgstr "پارامتر is_true در شاخص :key پاسخ نامعتبر است"
 
