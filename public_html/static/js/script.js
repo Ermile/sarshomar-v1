@@ -785,7 +785,7 @@ function checkAddOpt()
 		}
 	});
 
-	if(countQuestionOpts() >= 20)
+	if(countQuestionOpts() >= 40)
 	{
 		console.log('maximum opt is reached!');
 	}

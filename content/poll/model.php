@@ -339,9 +339,15 @@ class model extends \content\home\model
 		}
 		// add trans
 		$_stats['trans'] = [];
+
 		foreach ($temp_cats as $key => $value)
 		{
-			$_stats['trans'][$value] = T_($value);
+			$_stats['trans'][$value] = ucfirst(T_($value));
+		}
+		if(!$temp_cats && !$_stats['trans'])
+		{
+			$_stats['trans']['value_reliable']   = ucfirst(T_('reliable'));
+			$_stats['trans']['value_unreliable'] = ucfirst(T_('unreliable'));
 		}
 
 		foreach ($temp_cats as $i => $cat)

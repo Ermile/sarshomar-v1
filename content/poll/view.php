@@ -16,9 +16,9 @@ class view extends \mvc\view
 
 		$this->data->poll_trans =
 		[
-			"trust"   => T_("reliable"),
-			"untrust" => T_("unreliable"),
-			"vote"    => T_("vote"),
+			"reliable"   => T_("reliable"),
+			"unreliable" => T_("unreliable"),
+			"vote"       => T_("vote"),
 		];
 		$this->data->poll_trans = json_encode($this->data->poll_trans, JSON_UNESCAPED_UNICODE);
 
@@ -78,7 +78,7 @@ class view extends \mvc\view
 			'marrital'         => T_('marital status'),
 			'graduation'       => T_('graduation'),
 			'employmentstatus' => T_('employement status'),
-			'province'         => T_('province'),
+			// 'province'         => T_('province'),
 		];
 
 		// if language isset and its different with site language

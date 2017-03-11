@@ -589,6 +589,7 @@ function drawChart()
 	$('.chart:not([data-draw])').each(function()
 	{
 		createChartOption(this);
+		$(this).attr('data-draw', true);
 	});
 }
 
@@ -670,12 +671,11 @@ function createChartOption(_this, _chartName)
 		myChartOptions              = getChartOption('default', {"color":attrColor, "val":attrVals})
 		myChartOptions.categoryAxis = getChartOption('categoryAxis');
 		myChartOptions.valueAxes    = getChartOption('valueAxes');
-		myChartOptions.legend       = getChartOption('legend');
+		myChartOptions.graphs       = getChartOption('graphs', attrAutoColor);
 
 		// else if has format call it
 		if(attrFormat && typeof window[attrFormat] == 'function')
 		{
-			myChartOptions.graphs = getChartOption('graphs', attrAutoColor);
 			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
 		}
 
@@ -756,11 +756,13 @@ function getChartOption($_what, _arg)
 		case 'legend':
 			prop =
 			{
-				"horizontalGap": 10,
-				"maxColumns": 1,
-				"position": "right",
+				"horizontalGap": 0,
+				"verticalGap": 0,
+				// "maxColumns": 1,
+				"autoMargins":true,
+				"position": "top",
 				"useGraphSettings": true,
-				"markerSize": 10
+				"markerSize": 9,
 			};
 			break;
 
@@ -820,7 +822,17 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 {
 	if(!_balloon)
 	{
-		_balloon = "[[title]] "+ _title +"<br/><b>[[value]]</b>"
+		_balloon = "[[title]]";
+		if(_title)
+		{
+			_balloon += " [" + _title + "]";
+		}
+		_balloon += " "+ "<br/><b>[[value]]</b>"
+
+		if(_chartData.trans && _chartData.trans.vote)
+		{
+			_balloon += " " + _chartData.trans.vote;
+		}
 	}
 	// Add mael graph attached to the axis
 	var myNewGraph         = new AmCharts.AmGraph();
@@ -850,11 +862,17 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
  * @param  {[type]} _this   [description]
  * @return {[type]}         [description]
  */
-function pollTotal_default(_option, _transText)
+function pollTotal_default(_option, _answers, _el)
 {
-	// console.log(_transText);
-	// console.log(_option);
+	transText = _el.attr('data-trans');
+	if(transText)
+	{
+		transText = JSON.parse(transText);
+		_option.trans = transText;
+	}
+
 	_option.colors = ["#83c3e1", "#d8d8d8" ];
+	_option.legend = getChartOption('legend');
 
 	_option.valueAxes =
 	[{
@@ -869,18 +887,18 @@ function pollTotal_default(_option, _transText)
 	[
 		{
 			"type": "column",
-			"title": _transText.trust,
+			"title": transText.reliable,
 			"valueField": "value_reliable",
-			"balloonText": "[[title]] [" + _transText.trust + "] <br/><b>[[value]]</b> " + _transText.vote,
+			"balloonText": "[[title]] [" + transText.reliable + "] <br/><b>[[value]]</b> " + transText.vote,
 			"labelText": "[[value]]",
 			"fillAlphas": 0.9,
 			"lineAlpha": 0,
 		},
 		{
 			"type": "column",
-			"title": _transText.untrust,
+			"title": transText.unreliable,
 			"valueField": "value_unreliable",
-			"balloonText": "[[title]] [" + _transText.untrust + "] <br/><b>[[value]]</b> " + _transText.vote,
+			"balloonText": "[[title]] [" + transText.unreliable + "] <br/><b>[[value]]</b> " + transText.vote,
 			"labelText": "[[value]]",
 			"fillAlphas": 0.5,
 			"lineAlpha": 0,
@@ -896,24 +914,12 @@ function pollTotal_default(_option, _transText)
 
 
 /**
- * [setChartOption_result description]
+ * [setChartOption description]
  * @param {[type]} _chartData [description]
+ * @param {[type]} _type      [description]
+ * @param {[type]} _trans     [description]
+ * @param {[type]} _init      [description]
  */
-function setChartOption_result(_chartData, _init)
-{
-	if(!_init)
-	{
-		// remove all exisiting graphgs
-		removeChartGraphs(_chartData);
-	}
-	// set color and axis type
-	_chartData.colors = ["#83c3e1", "#d8d8d8", "#000"];
-	// get a rest to delete graph
-	createChartGraphs(_chartData, 'result_reliable', 'Reliable', 'value_reliable');
-	createChartGraphs(_chartData, 'result_unreliable', 'Unreliable', 'value_unreliable');
-	// createChartGraphs(_chartData, 'result_unknown', 'unknown', 'unknown');
-}
-
 function setChartOption(_chartData, _type, _trans, _init)
 {
 	// remove all exisiting graphgs
@@ -940,50 +946,10 @@ function setChartOption(_chartData, _type, _trans, _init)
 		_trans = {"value_reliable": "Reliable", "value_unreliable": "Unreliable"};
 	}
 	// add each graph if exist
-	$.each(_trans, function($key, $value)
+	$.each(_trans, function($val, $title)
 	{
-		createChartGraphs(_chartData, _type+ '_'+ $key, $value, $key);
+		createChartGraphs(_chartData, _type+ '_'+ $val, $title, $val);
 	});
-}
-
-
-/**
- * [setPollOption description]
- * @param {[type]} _option [description]
- */
-function setChartOption_gender(_chartData)
-{
-	// remove all exisiting graphgs
-	removeChartGraphs(_chartData);
-	// set color and axis type
-	_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
-	// get a rest to delete graph
-	createChartGraphs(_chartData, 'gender_male', 'Male', 'male');
-	createChartGraphs(_chartData, 'gender_female', 'Female', 'female');
-	createChartGraphs(_chartData, 'gender_unknown', 'unknown', 'unknown');
-}
-
-
-/**
- * [setChartOption_range description]
- * @param {[type]} _chartData [description]
- */
-function setChartOption_range(_chartData)
-{
-	// remove all exisiting graphgs
-	removeChartGraphs(_chartData);
-	// set color and axis type
-	_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
-	_chartData.colors = pallet();
-	// get a rest to delete graph
-	createChartGraphs(_chartData, 'range_-13', 'under 13', '-13');
-	createChartGraphs(_chartData, 'range_14-17', '14-17', '14-17');
-	createChartGraphs(_chartData, 'range_18-24', '18-24', '18-24');
-	createChartGraphs(_chartData, 'range_25-30', '25-30', '25-30');
-	createChartGraphs(_chartData, 'range_31-44', '31-44', '31-44');
-	createChartGraphs(_chartData, 'range_45-59', '45-59', '45-59');
-	createChartGraphs(_chartData, 'range_60+', '60+', '60+');
-	createChartGraphs(_chartData, 'range_unknown', 'unknown', 'unknown');
 }
 
 

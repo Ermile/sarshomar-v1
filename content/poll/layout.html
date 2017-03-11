@@ -298,7 +298,6 @@
 
 {%block poll_chart%}
 {% spaceless %}
-{%if url.tld == 'dev'%}
  <div class="menu">
   <div class="menu-inside">
    {%for key, value in chart.stacked%}
@@ -307,7 +306,7 @@
    {%endfor%}
   </div>
  </div>
-{%endif%}
+
  {%if poll.count_vote == 0%}
  <div class="in small isDataNotExist"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
  {%endif%}
