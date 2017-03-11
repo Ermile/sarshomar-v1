@@ -201,7 +201,7 @@
 {%endblock%} {%block foot_js%} {%if visitors%}
 <script type="text/javascript">
     setTimeout(function() {
-        AmCharts.makeChart("visitReg",
+       AmCharts.makeChart("visitReg",
 				{
 					"type": "serial",
 					"categoryField": "category",
@@ -229,6 +229,7 @@
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
 							"fillAlphas": 0.7,
+							"fillColors": "#F27474",
 							"id": "AmGraph-1",
 							"lineAlpha": 0,
 							"stepDirection": "center",
@@ -239,6 +240,7 @@
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
 							"fillAlphas": 0.7,
+							"fillColors": "#FFC800",
 							"id": "AmGraph-2",
 							"lineAlpha": 0,
 							"lineThickness": 0,
