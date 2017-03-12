@@ -2140,19 +2140,8 @@ function sendQuestionData(_status, _asyncAjax)
 					{
 						lockStep();
 					}
-					var myPersonCount = $('#rangepersons').data("ionRangeSlider");
-					if(limit === myPersonCount.result.max)
-					{
-						// do nothing! because use maximum value
-					}
-					else
-					{
-						// if its different, set limit
-						myPersonCount.update(
-						{
-							from_max: limit,
-						});
-					}
+					// update range person
+					updateRangeSliderPerson(limit);
 				}
 				// after a short delay show synced
 				syncing(null, true);
@@ -2167,6 +2156,48 @@ function sendQuestionData(_status, _asyncAjax)
 	});
 
 	return myPoll;
+}
+
+function updateRangeSliderPerson(_limit)
+{
+	var newLimit      = false;
+	var myPersonCount = $('#rangepersons').data("ionRangeSlider");
+	var currentLimit  = null;
+	// if has old limit, get it
+	if(myPersonCount.options && myPersonCount.options.from_max)
+	{
+		currentLimit = myPersonCount.options.from_max;
+	}
+	// check conditions
+	if(_limit === currentLimit)
+	{
+		// do nothing!
+	}
+	else if(_limit === myPersonCount.result.max)
+	{
+		if(currentLimit === null)
+		{
+			// do nothing
+		}
+		else
+		{
+			// remove limit by set it as null
+			newLimit = null;
+		}
+	}
+	else
+	{
+		newLimit = _limit;
+	}
+
+	// if need change limit
+	if(newLimit !== false)
+	{
+		myPersonCount.update(
+		{
+			from_max: newLimit,
+		});
+	}
 }
 
 
