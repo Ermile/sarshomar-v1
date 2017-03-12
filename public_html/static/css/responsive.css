@@ -44,7 +44,7 @@
  .in.xlarge,.in.xxlarge{width:100%}
 
  /* sarshomar*/
- .special-heading:after {display: none;}
+ .special-heading:after,.sh::after{display:none}
  .customers-container .customer {width: 75%;}
  header #header-profile #add-question .header-link-text{display:none}
  header #header-profile #add-question .header-link-icon{display:inline-block;width:20px;text-align:center;vertical-align: middle;}
@@ -347,7 +347,7 @@
  .rtl .stepFilter .range-slider[data-type=vertical] .max_limit .mount::after {right: 20px;}
  .stepFilter .range-slider[data-type=vertical] .max_limit .mount::after {top: -14px;}
  /************************************************************** Text based */
- .special-heading:after {display: none;}
+ .special-heading:after,.sh::after{display:none}
  .text-based-container {width: 100%;}
  .text-based .special-heading {font-size: 18px;}
  .special-heading {padding-left: 34px;}
