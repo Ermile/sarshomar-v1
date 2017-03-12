@@ -717,7 +717,7 @@ function getChartOption($_what, _arg)
 				"twoLineMode": true,
 				"tickLength": 5,
 				"axisAlpha": 0.2,
-				"autoWrap":true,
+				"autoWrap":false,
 				// "labelRotation": 45,
 				"autoRotateCount": 6,
 				"autoRotateAngle": 45,
