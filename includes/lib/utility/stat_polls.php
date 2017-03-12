@@ -151,24 +151,12 @@ class stat_polls
 		if($random_poll_id)
 		{
 
-			$poll_result = \lib\db\pollstats::get($random_poll_id, $_options);
+			$poll_result = self::get_result($random_poll_id);
 			$poll_title  = \lib\db\polls::get_poll_title($random_poll_id);
 			$poll_url    = \lib\db\polls::get_poll_url($random_poll_id);
 
+			$data =  json_encode($poll_result, JSON_UNESCAPED_UNICODE);
 
-			$temp_poll_result = [];
-			if(isset($poll_result['result']) && is_array($poll_result))
-			{
-				foreach ($poll_result['result'] as $key => $value)
-				{
-					$temp_poll_result[] = ['key' => substr($key, 4), 'value' => (int) $value];
-				}
-			}
-			if(empty($temp_poll_result))
-			{
-				return false;
-			}
-			$data =  json_encode($temp_poll_result, JSON_UNESCAPED_UNICODE);
 			return ['title' => $poll_title, 'data' => $data, 'url' => $poll_url];
 		}
 		return false;
