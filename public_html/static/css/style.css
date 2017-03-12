@@ -819,6 +819,11 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .special-btn.disabled{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-backface-visibility:hidden;color:#f4f4f4}
 .special-btn:hover {color:#fff}
 
+.special-btn.before{border-radius:5px 15px 15px 5px}
+.special-btn.before::before{display:none}
+.special-btn.after{border-radius:15px 5px 5px 15px}
+.special-btn.after::after{display:none}
+
 /************************************************************** range slider */
 .range-slider .dynamic-margin,.range-slider .dynamic-range{display:inline-block;float:left;margin:0;padding:0;height:100%}
 
@@ -1097,7 +1102,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-hint{text-align:center;color:#00667a;font-weight:700;margin-bottom:1em}
 
-.poll-container .poll-options{margin-bottom:2em}
+.poll-container .poll-options{margin-bottom:1em}
 .poll-container .poll-options li:not(:last-child){margin-bottom:1em}
 .poll-container .poll-options li>label{position:relative;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;cursor:pointer}
 
@@ -1122,7 +1127,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-skip{text-align:right;margin-bottom:1em}
 .rtl .poll-container .poll-skip{text-align:left}
 .poll-container .poll-skip a,.poll-container .poll-skip input{color:#00667a;font-size:1em;font-weight:700}
-.poll-container .poll-skip input{background-color:transparent;border:none;outline:none;cursor:pointer}
+.poll-container .poll-skip input{background-color:#efefef;border:none;outline:none;cursor:pointer;padding:1rem}
 
 .poll-container .poll-actions{text-align:center;margin-bottom:5em}
 .poll-container .poll-actions-link{font-weight:bold;color:#00667a}

@@ -162,7 +162,7 @@
 {% spaceless %}
  {%if poll.answers%}
   <div class="poll-skip">
-   <input {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "I am not willing to answer"%}'>
+   <input {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "Skip"%}'>
   </div>
  {%endif%}
 {% endspaceless %}
@@ -172,15 +172,21 @@
 {%block poll_actions%}
 {% spaceless %}
  <div class="f poll-actions">
-  <div class="f c s6 align-center">
-   <a class="poll-actions-link" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
+  <div class="c"></div>
+
+  <div class="c">
+   <a class="special-btn before" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
   </div>
-  <div class="c s12">
+
+  <div class="c">
    <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
   </div>
-  <div class="f c s6 align-center">
-   <a class="poll-actions-link" href="{{url.base}}/ask" data-direct >{%trans "Next"%}</a>
+
+  <div class="c">
+   <a class="special-btn after" href="{{url.base}}/ask" data-direct >{%trans "Next"%}</a>
   </div>
+
+  <div class="c"></div>
  </div>
 {% endspaceless %}
 {%endblock%}

@@ -116,7 +116,7 @@
 
 
  /************************************************************** Special-btn */
-.special-btn {font-size: 1.5em;height: 26px;line-height: 26px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px}
+.special-btn {font-size: 1.5em;height: 26px;line-height: 26px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:0 10px}
 .special-btn::before {left: -4px;}
 .special-btn::before, .special-btn::after {top: -3px;width: 14px;}
 .special-btn::after {right: -4px;}
@@ -309,8 +309,8 @@
  .poll-container>h2{font-size: 1.7em;word-break: normal;}
  .poll-container .poll-skip {margin-bottom:2em;}
  .poll-container .poll-actions {margin-bottom: 3em;}
- .poll-container .poll-actions .c:nth-child(2){-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}
- .poll-container .poll-actions .s12{padding:1em}
+ /*.poll-container .poll-actions .c:nth-child(2){-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}*/
+ /*.poll-container .poll-actions .s12{padding:1em}*/
  [data-copy] {position: absolute;right: 0;height: 35px;}
  .rtl [data-copy] {right: auto;left: 0;}
  #short_url {padding-right: 5em;}
