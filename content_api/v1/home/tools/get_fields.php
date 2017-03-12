@@ -17,7 +17,7 @@ trait get_fields
 			}
 			else
 			{
-				$_poll_data['url'] = rtrim(self::$host.'/'. $_poll_data['url'], '/');
+				$_poll_data['url'] = self::host('with_language'). '/'. $_poll_data['url'];
 			}
 		}
 
@@ -171,11 +171,14 @@ trait get_fields
 				case 'short_url':
 				case 'status':
 				case 'type':
-				case 'url':
 				case 'user_id':
 				case 'title':
+				case 'url':
 					$_poll_data[$key] = (string) $value;
 					break;
+
+					// $_poll_data[$key] = self::host(). $value;
+					// break;
 
 				case 'count_comment':
 				case 'count_fav':

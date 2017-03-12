@@ -47,30 +47,34 @@ trait get_answers
 						case 'attachment_id':
 							if($value)
 							{
-								$attachment = \lib\db\polls::get_poll($value['attachment_id']);
+								$attachment = \lib\db\polls::get_poll($value);
 								$url = null;
-								$show_answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
+								$show_answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value);
 
 								if(isset($attachment['meta']) && is_string($attachment['meta']) && substr($attachment['meta'], 0, 1) == '{')
 								{
 									$attachment['meta'] = json_decode($attachment['meta'], true);
 								}
 
+								$attachment_type = null;
+
+								if(isset($attachment['meta']['mime']))
+								{
+									$attachment_type = $attachment['meta']['mime'];
+								}
+
+								$show_answers[$key]['file']['mime'] = $attachment_type;
+
 								if(isset($attachment['meta']['url']))
 								{
 									if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
 									{
-										$show_answers[$key]['file']['url']  = $awaiting_file_url;
+										$show_answers[$key]['file']['url']  = self::awaiting_file_url($attachment_type);
 									}
 									else
 									{
-										$show_answers[$key]['file']['url']  = self::$host. '/'. $attachment['meta']['url'];
+										$show_answers[$key]['file']['url']  = self::host('file'). '/'. $attachment['meta']['url'];
 									}
-								}
-
-								if(isset($attachment['meta']['mime']))
-								{
-									$show_answers[$key]['file']['mime'] = $attachment['meta']['mime'];
 								}
 
 							}

@@ -64,22 +64,31 @@ trait get_options
 			if(isset($value['option_key']) && $value['option_key'] == 'title_attachment')
 			{
 				$attachment = \lib\db\polls::get_poll($value['option_value']);
+
+				$attachment_type = null;
+
+				if(isset($value['option_meta']['type']))
+				{
+					$attachment_type = $value['option_meta']['type'];
+				}
+				$_poll_data['file']['type'] = $attachment_type;
+
 				if(isset($attachment['meta']['url']))
 				{
 					if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
 					{
-						$_poll_data['file']['url'] = $awaiting_file_url;
+						$_poll_data['file']['url'] = self::awaiting_file_url($attachment_type);
 					}
 					else
 					{
-						$_poll_data['file']['url'] = self::$host. '/'. $attachment['meta']['url'];
+						$_poll_data['file']['url'] = self::host(). '/'. $attachment['meta']['url'];
 					}
 				}
+			}
 
-				if(isset($value['option_meta']['type']))
-				{
-					$_poll_data['file']['type'] = $value['option_meta']['type'];
-				}
+			if(!isset($_poll_data['file']['url']))
+			{
+				unset($_poll_data['file']);
 			}
 		}
 
@@ -151,6 +160,51 @@ trait get_options
 				$_poll_data['options']['cat'] = shortURL::encode($cat[0]['id']);
 			}
 		}
+	}
+
+
+	/**
+	 * make host string
+	 *
+	 * @param      string  $_type  The type
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function host($_type = null)
+	{
+		$host = Protocol."://" . \lib\router::get_root_domain();
+		$lang = \lib\define::get_current_language_string();
+
+		switch ($_type)
+		{
+			case 'file':
+			case 'without_language':
+				return $host;
+				break;
+
+			case 'with_language':
+				return $host . $lang;
+				break;
+
+			default:
+				return $host;
+				break;
+		}
+
+	}
+
+
+	/**
+	 * make awaiting file url
+	 *
+	 * @param      <type>  $_file_type  The file type
+	 *
+	 * @return     string  ( description_of_the_return_value )
+	 */
+	public static function awaiting_file_url($_file_type)
+	{
+		$awaiting_file_url = self::host('file'). '/static/images/logo.png';
+		return $awaiting_file_url;
 	}
 }
 ?>

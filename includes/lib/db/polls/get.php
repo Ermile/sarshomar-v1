@@ -77,7 +77,7 @@ trait get
 	 */
 	public static function get_poll($_poll_id)
 	{
-		if(!is_int($_poll_id) && !is_string($_poll_id))
+		if(!$_poll_id || !is_numeric($_poll_id))
 		{
 			return false;
 		}

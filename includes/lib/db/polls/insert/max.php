@@ -44,7 +44,7 @@ trait max
 			$max_draft = 1000000;
 		}
 
-		if($count > $max_draft)
+		if($count >= $max_draft)
 		{
 			return debug::error(T_("You can save :max draft poll",['max' => $max_draft]), false, false);
 		}
@@ -74,7 +74,7 @@ trait max
 
 		$max_survey_child        = 500;
 
-		if($count > $max_survey_child)
+		if($count >= $max_survey_child)
 		{
 			return debug::error(T_("You can save :max poll in one survey",['max' => $max_survey_child]), false, false);
 		}

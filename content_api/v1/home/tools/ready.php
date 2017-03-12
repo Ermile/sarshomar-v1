@@ -155,12 +155,6 @@ trait ready
 
 		self::$current_language = $current_language = \lib\define::get_language();
 
-		$host = Protocol."://" . \lib\router::get_root_domain();
-		$host .= \lib\define::get_current_language_string();
-		self::$host = $host;
-
-		$awaiting_file_url = $host. '/static/images/logo.png';
-
 		/**
 		 * fix field data
 		 */
@@ -213,14 +207,14 @@ trait ready
 						$code = shortURL::encode($value['id']);
 						$new_tag[$key]['code']  = $code;
 						$new_tag[$key]['title'] = $value['term_title'];
-						$new_tag[$key]['url']   = $host. '/'. $value['term_url'];
+						$new_tag[$key]['url']   = self::host(). '/'. $value['term_url'];
 					}
 				}
 			}
 			$_poll_data['tags'] = $new_tag;
 		}
 
-		$short_url = $host. '/$'. $_poll_data['id'];
+		$short_url = self::host('without_language'). '/$'. $_poll_data['id'];
 		$_poll_data['short_url'] = $short_url;
 
 		// sort poll data

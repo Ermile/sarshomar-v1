@@ -83,7 +83,7 @@ class sync
 			\lib\db\users::update($update_users, $_telegram_id);
 			return [
 				'password' => $temp_password,
-				'message' => T_("You can login to Sarshomar.com with your username :mobile and password :password ", ['password' => $temp_password]),
+				'message' => T_("You can login to Sarshomar.com with your username :mobile and password :password ", ['password' => $temp_password, 'mobile' => $mobile]),
 			];
 		}
 

@@ -293,6 +293,7 @@ trait options
 			}
 			else
 			{
+
 				$attachment = self::is_attachment(self::$args['file']);
 				$url = null;
 				if(isset($attachment['url']))
@@ -573,7 +574,7 @@ trait options
 		}
 		else
 		{
-			if($_value)
+			if(isset($_value))
 			{
 				if($option_meta)
 				{
