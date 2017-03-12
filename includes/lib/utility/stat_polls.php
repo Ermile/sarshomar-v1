@@ -155,6 +155,15 @@ class stat_polls
 			$poll_title  = \lib\db\polls::get_poll_title($random_poll_id);
 			$poll_url    = \lib\db\polls::get_poll_url($random_poll_id);
 
+			if(isset($poll_result['answers']))
+			{
+				$poll_result = $poll_result['answers'];
+			}
+			else
+			{
+				return false;
+			}
+
 			$data =  json_encode($poll_result, JSON_UNESCAPED_UNICODE);
 
 			return ['title' => $poll_title, 'data' => $data, 'url' => $poll_url];
