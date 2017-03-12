@@ -228,6 +228,7 @@ class stat_polls
 		{
 			$return[] = $value;
 		}
+
 		return $return;
 	}
 
