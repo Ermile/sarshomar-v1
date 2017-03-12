@@ -910,7 +910,8 @@ function addNewOpt(_type, _title, _placeholder, _defaulVal, _group)
 	$('.input-group.sortable').append(template);
 	// rearrange after add new element
 	rearrangeSortable();
-	if(_title === 'other')
+
+	if(_type === 'other')
 	{
 		template.find('input.input').val(_defaulVal);
 	}
