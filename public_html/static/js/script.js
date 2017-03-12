@@ -281,10 +281,28 @@ function shortkey()
 		var shift  = e.shiftKey ? 'shift' : '';
 		var alt    = e.altKey   ? 'alt'   : '';
 		var mytxt  = key + ctrl + alt + shift;
-		// console.log(mytxt);
+		console.log(mytxt);
 
 		switch (mytxt)
 		{
+			// backspace
+			case '8':
+				ifHoverChangeIt(false);
+				break;
+
+			// enter
+			case '13':
+				ifHoverChangeIt(true);
+
+				var focusedElement = $(e.target);
+				if(focusedElement.is('.stepAdd .input'))
+				{
+					var thisEl = $('.stepAdd .input');
+					var selectedIndex = thisEl.index(focusedElement);
+					thisEl.eq(selectedIndex + 1).focus();
+				}
+				break;
+
 			// shift + enter
 			case '13shift':
 				var focusedElement = $(e.target);
@@ -296,16 +314,11 @@ function shortkey()
 				}
 				break;
 
-			// enter
-			case '13':
-				var focusedElement = $(e.target);
-				if(focusedElement.is('.stepAdd .input'))
-				{
-					var thisEl = $('.stepAdd .input');
-					var selectedIndex = thisEl.index(focusedElement);
-					thisEl.eq(selectedIndex + 1).focus();
-				}
+			// delete
+			case '46':
+				ifHoverChangeIt(false);
 				break;
+
 
 			// shift + delete
 			case '46shift':
@@ -349,6 +362,28 @@ function shortkey()
 		// if we are in answer page allow to select with shortkey
 		shortkeySelectAnswerItem(e.which)
 	});
+}
+
+
+/**
+ * [ifHoverChangeIt description]
+ * @param  {[type]} _newStatus [description]
+ * @return {[type]}            [description]
+ */
+function ifHoverChangeIt(_newStatus)
+{
+	var isHoverOpt = $('.poll-options li:hover');
+	if(isHoverOpt.length === 1)
+	{
+		if(_newStatus === true)
+		{
+			isHoverOpt.find('label').click();
+		}
+		else
+		{
+			uncheckRadio(isHoverOpt.find('label'));
+		}
+	}
 }
 
 
