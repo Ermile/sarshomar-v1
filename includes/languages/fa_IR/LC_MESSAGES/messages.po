@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-11 19:17+0330\n"
-"PO-Revision-Date: 2017-03-11 19:18+0330\n"
+"POT-Creation-Date: 2017-03-12 15:09+0330\n"
+"PO-Revision-Date: 2017-03-12 15:09+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -20,14 +20,14 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: saloos/lib/controller.php:703
-#: saloos/saloos-addons/includes/languages/trans_addons.php:299
+#: saloos/saloos-addons/includes/languages/trans_addons.php:306
 #: saloos/saloos-addons/lib/mvc/controllers/url.php:46
 #: sarshomar/includes/languages/trans_addons.php:306
 msgid "add new"
 msgstr "افزودن"
 
 #: saloos/lib/controller.php:706
-#: saloos/saloos-addons/includes/languages/trans_addons.php:370
+#: saloos/saloos-addons/includes/languages/trans_addons.php:377
 #: saloos/saloos-addons/lib/mvc/controllers/url.php:49
 #: sarshomar/includes/languages/trans_addons.php:377
 msgid "edit"
@@ -68,14 +68,14 @@ msgstr "ما نمی‌توانیم به سرویس دیتابیس متصل شو�
 
 #: saloos/lib/dbconnection.php:194 saloos/lib/dbconnection.php:206
 #: saloos/saloos-addons/content_cp/posts/model.php:721
-#: saloos/saloos-addons/includes/languages/trans_addons.php:380
+#: saloos/saloos-addons/includes/languages/trans_addons.php:387
 #: sarshomar/includes/languages/trans_addons.php:387
 msgid "Error"
 msgstr "خطا"
 
 #: saloos/lib/form.php:74 saloos/lib/view/optimize.php:29
 #: saloos/lib/view/optimize.php:33
-#: saloos/saloos-addons/includes/languages/trans_addons.php:297
+#: saloos/saloos-addons/includes/languages/trans_addons.php:304
 #: sarshomar/includes/languages/trans_addons.php:304
 #: sarshomar/includes/languages/trans_twig.php:340
 msgid "submit"
@@ -86,64 +86,64 @@ msgid ":status password, try another"
 msgstr "کلمه عبور :status، عبارت دیگری را امتحان کنید"
 
 #: saloos/lib/utility.php:332
-#: saloos/saloos-addons/includes/languages/trans_addons.php:215
+#: saloos/saloos-addons/includes/languages/trans_addons.php:216
 #: sarshomar/includes/languages/trans_addons.php:216
 #: sarshomar/includes/languages/trans_twig.php:1398
 msgid "year"
 msgstr "سال"
 
 #: saloos/lib/utility.php:333
-#: saloos/saloos-addons/includes/languages/trans_addons.php:214
+#: saloos/saloos-addons/includes/languages/trans_addons.php:215
 #: sarshomar/includes/languages/trans_addons.php:215
 #: sarshomar/includes/languages/trans_twig.php:1584
 msgid "month"
 msgstr "ماه"
 
 #: saloos/lib/utility.php:334 saloos/saloos-addons/content_cp/home/view.php:81
-#: saloos/saloos-addons/includes/languages/trans_addons.php:213
+#: saloos/saloos-addons/includes/languages/trans_addons.php:214
 #: sarshomar/includes/languages/trans_addons.php:214
 msgid "week"
 msgstr "هفته"
 
 #: saloos/lib/utility.php:335
-#: saloos/saloos-addons/includes/languages/trans_addons.php:212
+#: saloos/saloos-addons/includes/languages/trans_addons.php:213
 #: sarshomar/includes/languages/trans_addons.php:213
 msgid "day"
 msgstr "روز"
 
 #: saloos/lib/utility.php:336 saloos/lib/utility/human.php:45
-#: saloos/saloos-addons/includes/languages/trans_addons.php:269
+#: saloos/saloos-addons/includes/languages/trans_addons.php:276
 #: sarshomar/includes/languages/trans_addons.php:276
 msgid "hour"
 msgstr "ساعت"
 
 #: saloos/lib/utility.php:337 saloos/lib/utility/human.php:53
-#: saloos/saloos-addons/includes/languages/trans_addons.php:270
+#: saloos/saloos-addons/includes/languages/trans_addons.php:277
 #: sarshomar/includes/languages/trans_addons.php:277
 msgid "minute"
 msgstr "دقیقه"
 
 #: saloos/lib/utility.php:338
-#: saloos/saloos-addons/includes/languages/trans_addons.php:271
+#: saloos/saloos-addons/includes/languages/trans_addons.php:278
 #: sarshomar/includes/languages/trans_addons.php:278
 #: sarshomar/includes/languages/trans_twig.php:1069
 msgid "second"
 msgstr "دوم"
 
 #: saloos/lib/utility.php:341
-#: saloos/saloos-addons/includes/languages/trans_addons.php:277
+#: saloos/saloos-addons/includes/languages/trans_addons.php:284
 #: sarshomar/includes/languages/trans_addons.php:284
 msgid "A few seconds ago"
 msgstr "چندثانیه پیش"
 
 #: saloos/lib/utility.php:353
-#: saloos/saloos-addons/includes/languages/trans_addons.php:276
+#: saloos/saloos-addons/includes/languages/trans_addons.php:283
 #: sarshomar/includes/languages/trans_addons.php:283
 msgid "s "
 msgstr " s"
 
 #: saloos/lib/utility.php:353
-#: saloos/saloos-addons/includes/languages/trans_addons.php:272
+#: saloos/saloos-addons/includes/languages/trans_addons.php:279
 #: sarshomar/includes/cls/database/sarshomar/translation.php:278
 #: sarshomar/includes/languages/trans_addons.php:279
 msgid "ago"
@@ -263,7 +263,7 @@ msgid ""
 msgstr "عملیات پرداخت با موفقیت انجام شد و تایید پرداخت تراکنش با موفقیت انجام شد"
 
 #: saloos/lib/utility/permission.php:162
-#: saloos/saloos-addons/includes/languages/trans_addons.php:405
+#: saloos/saloos-addons/includes/languages/trans_addons.php:412
 #: sarshomar/includes/languages/trans_addons.php:412
 msgid "You can't add new"
 msgstr "شما نمی‌توانید اضافه کنید"
@@ -273,25 +273,25 @@ msgid "You can't edit"
 msgstr "شما اجازه ویرایش ندارید"
 
 #: saloos/lib/utility/permission.php:170
-#: saloos/saloos-addons/includes/languages/trans_addons.php:407
+#: saloos/saloos-addons/includes/languages/trans_addons.php:414
 #: sarshomar/includes/languages/trans_addons.php:414
 msgid "You can't delete"
 msgstr "شما نمی‌توانید حذف کنید"
 
 #: saloos/lib/utility/permission.php:177
-#: saloos/saloos-addons/includes/languages/trans_addons.php:409
+#: saloos/saloos-addons/includes/languages/trans_addons.php:416
 #: sarshomar/includes/languages/trans_addons.php:416
 msgid "Because of your permission"
 msgstr "به‌دلیل سطح‌دسترسی‌ شما"
 
 #: saloos/lib/utility/permission.php:184
-#: saloos/saloos-addons/includes/languages/trans_addons.php:410
+#: saloos/saloos-addons/includes/languages/trans_addons.php:417
 #: sarshomar/includes/languages/trans_addons.php:417
 msgid "You can't access to this page!"
 msgstr "شما نمی‌توانید به این صفحه دسترسی داشته باشید!"
 
 #: saloos/lib/utility/sms.php:33
-#: saloos/saloos-addons/includes/languages/trans_addons.php:455
+#: saloos/saloos-addons/includes/languages/trans_addons.php:462
 #: sarshomar/includes/languages/trans_addons.php:462
 msgid "We can't give service to this number"
 msgstr "متاسفانه توانایی ارائه خدمات به این شماره را نداریم"
@@ -305,7 +305,7 @@ msgid "This sms service is unavailable"
 msgstr "سرویس پیامک قابل دسترس نیست"
 
 #: saloos/lib/utility/sms.php:117
-#: saloos/saloos-addons/includes/languages/trans_addons.php:507
+#: saloos/saloos-addons/includes/languages/trans_addons.php:514
 #: sarshomar/includes/languages/trans_addons.php:514
 msgid "Your verification code is"
 msgstr "کد اعتبارسنجی شما"
@@ -315,25 +315,25 @@ msgid "Your recovery code is"
 msgstr "کد بازیابی کلمه عبور شما"
 
 #: saloos/lib/utility/sms.php:125
-#: saloos/saloos-addons/includes/languages/trans_addons.php:506
+#: saloos/saloos-addons/includes/languages/trans_addons.php:513
 #: sarshomar/includes/languages/trans_addons.php:513
 msgid "You account is verified successfully"
 msgstr "اعتبارسنجی اکانت شما با موفقیت به انجام رسید"
 
 #: saloos/lib/utility/sms.php:129
-#: saloos/saloos-addons/includes/languages/trans_addons.php:508
+#: saloos/saloos-addons/includes/languages/trans_addons.php:515
 #: sarshomar/includes/languages/trans_addons.php:515
 msgid "Your password is changed successfully"
 msgstr "گذرواژه شما با موفقیت تغییر یافت"
 
 #: saloos/lib/utility/sms.php:202
-#: saloos/saloos-addons/includes/languages/trans_addons.php:459
+#: saloos/saloos-addons/includes/languages/trans_addons.php:466
 #: sarshomar/includes/languages/trans_addons.php:466
 msgid " to "
 msgstr " به "
 
 #: saloos/lib/utility/sms.php:208
-#: saloos/saloos-addons/includes/languages/trans_addons.php:457
+#: saloos/saloos-addons/includes/languages/trans_addons.php:464
 #: sarshomar/includes/languages/trans_addons.php:464
 msgid "Please set apikey and linenumber"
 msgstr "لطفا کلید رابط برنامه و شماره خط را تنظیم کنید"
@@ -362,7 +362,7 @@ msgstr "کلید API منقضی شده است"
 msgid "authorization faild (this authorization is not a api key)"
 msgstr "خطا در اعتبارسنجی (این اعتبارسنجی کلید API نیست)"
 
-#: saloos/lib/utility/token.php:250 sarshomar/includes/lib/utility/answers.php:232
+#: saloos/lib/utility/token.php:250 sarshomar/includes/lib/utility/answers.php:234
 #: sarshomar/includes/lib/utility/answers2.php:149
 msgid "Invalid type"
 msgstr "نوع نامعتبر است"
@@ -377,49 +377,49 @@ msgid "Invalid token (tmp login)"
 msgstr "توکن نامعتبر است(ورود tmp)"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:281
+#: saloos/saloos-addons/includes/languages/trans_addons.php:288
 #: sarshomar/includes/languages/trans_addons.php:288
 msgid "Byte"
 msgstr "بایت"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:282
+#: saloos/saloos-addons/includes/languages/trans_addons.php:289
 #: sarshomar/includes/languages/trans_addons.php:289
 msgid "KB"
 msgstr "کیلوبایت"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:283
+#: saloos/saloos-addons/includes/languages/trans_addons.php:290
 #: sarshomar/includes/languages/trans_addons.php:290
 msgid "MB"
 msgstr "مگابایت"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:284
+#: saloos/saloos-addons/includes/languages/trans_addons.php:291
 #: sarshomar/includes/languages/trans_addons.php:291
 msgid "GB"
 msgstr "گیگابایت"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:285
+#: saloos/saloos-addons/includes/languages/trans_addons.php:292
 #: sarshomar/includes/languages/trans_addons.php:292
 msgid "TB"
 msgstr "ترابایت"
 
 #: saloos/lib/utility/upload.php:92
-#: saloos/saloos-addons/includes/languages/trans_addons.php:286
+#: saloos/saloos-addons/includes/languages/trans_addons.php:293
 #: sarshomar/includes/languages/trans_addons.php:293
 msgid "PB"
 msgstr "پترابایت"
 
 #: saloos/lib/utility/upload.php:113
-#: saloos/saloos-addons/includes/languages/trans_addons.php:278
+#: saloos/saloos-addons/includes/languages/trans_addons.php:285
 #: sarshomar/includes/languages/trans_addons.php:285
 msgid "item"
 msgstr "آیتم"
 
 #: saloos/lib/utility/upload.php:118
-#: saloos/saloos-addons/includes/languages/trans_addons.php:280
+#: saloos/saloos-addons/includes/languages/trans_addons.php:287
 #: sarshomar/includes/languages/trans_addons.php:287
 msgid "NaN"
 msgstr "-"
@@ -458,31 +458,31 @@ msgstr "خطا در انتقال فایل، آپلود از آدرس"
 
 #: saloos/lib/utility/upload.php:475
 #: saloos/saloos-addons/content_cp/posts/model.php:640
-#: saloos/saloos-addons/includes/languages/trans_addons.php:379
+#: saloos/saloos-addons/includes/languages/trans_addons.php:386
 #: sarshomar/includes/languages/trans_addons.php:386
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
 #: saloos/lib/utility/upload/check.php:21
-#: saloos/saloos-addons/includes/languages/trans_addons.php:381
+#: saloos/saloos-addons/includes/languages/trans_addons.php:388
 #: sarshomar/includes/languages/trans_addons.php:388
 msgid "Invalid parameters"
 msgstr "پارامتر اشتباه"
 
 #: saloos/lib/utility/upload/check.php:31
-#: saloos/saloos-addons/includes/languages/trans_addons.php:382
+#: saloos/saloos-addons/includes/languages/trans_addons.php:389
 #: sarshomar/includes/languages/trans_addons.php:389
 msgid "No file sent"
 msgstr "فایلی ارسال نشده"
 
 #: saloos/lib/utility/upload/check.php:35 saloos/lib/utility/upload/check.php:66
-#: saloos/saloos-addons/includes/languages/trans_addons.php:383
+#: saloos/saloos-addons/includes/languages/trans_addons.php:390
 #: sarshomar/includes/languages/trans_addons.php:390
 msgid "Exceeded filesize limit"
 msgstr "ظرفیت فایل بیش از حد مجاز"
 
 #: saloos/lib/utility/upload/check.php:38
-#: saloos/saloos-addons/includes/languages/trans_addons.php:384
+#: saloos/saloos-addons/includes/languages/trans_addons.php:391
 #: sarshomar/includes/languages/trans_addons.php:391
 msgid "Unknown errors"
 msgstr "خطای نامشخص"
@@ -496,7 +496,7 @@ msgid "Exceeded file extension limit"
 msgstr "نوع فایل غیرمجاز"
 
 #: saloos/lib/utility/upload/check.php:88
-#: saloos/saloos-addons/includes/languages/trans_addons.php:385
+#: saloos/saloos-addons/includes/languages/trans_addons.php:392
 #: sarshomar/includes/languages/trans_addons.php:392
 msgid "We don't support this type of file"
 msgstr "ما این نوع فایل را پشتیبانی نمیکنیم"
@@ -506,7 +506,7 @@ msgid "error in field"
 msgstr "خطا در فیلد"
 
 #: saloos/lib/view/optimize.php:37
-#: saloos/saloos-addons/includes/languages/trans_addons.php:298
+#: saloos/saloos-addons/includes/languages/trans_addons.php:305
 #: sarshomar/includes/languages/trans_addons.php:305
 msgid "save"
 msgstr "ذخیره"
@@ -520,13 +520,13 @@ msgid "create an account"
 msgstr "اکانت بسازید"
 
 #: saloos/lib/view/twigAddons.php:335
-#: saloos/saloos-addons/includes/languages/trans_addons.php:62
+#: saloos/saloos-addons/includes/languages/trans_addons.php:63
 #: sarshomar/includes/languages/trans_addons.php:63
 msgid "Homepage"
 msgstr "صفحه نخست"
 
 #: saloos/lib/view/twigAddons.php:350
-#: saloos/saloos-addons/includes/languages/trans_addons.php:305
+#: saloos/saloos-addons/includes/languages/trans_addons.php:312
 #: sarshomar/includes/languages/trans_addons.php:312
 #: sarshomar/includes/languages/trans_twig.php:185
 msgid "Home"
@@ -545,13 +545,13 @@ msgid "Password length must be less 50 characters!"
 msgstr "طول رمز عبور باید کمتر از ۵۰ کاراکتر باشد!"
 
 #: saloos/saloos-addons/content_account/changepass/model.php:78
-#: saloos/saloos-addons/includes/languages/trans_addons.php:497
+#: saloos/saloos-addons/includes/languages/trans_addons.php:504
 #: sarshomar/includes/languages/trans_addons.php:504
 msgid "change password successfully"
 msgstr "تغییر کلمه عبور با موفقیت به انجام رسید"
 
 #: saloos/saloos-addons/content_account/changepass/model.php:101
-#: saloos/saloos-addons/includes/languages/trans_addons.php:498
+#: saloos/saloos-addons/includes/languages/trans_addons.php:505
 #: sarshomar/includes/languages/trans_addons.php:505
 msgid "change password failed!"
 msgstr "تغییر کلمه عبور ناموفق بود!"
@@ -566,7 +566,7 @@ msgstr "نام کاربری اشتباه است"
 
 #: saloos/saloos-addons/content_account/changepass/model.php:119
 #: saloos/saloos-addons/content_account/login/model.php:141
-#: saloos/saloos-addons/includes/languages/trans_addons.php:328
+#: saloos/saloos-addons/includes/languages/trans_addons.php:335
 #: sarshomar/includes/languages/trans_addons.php:335
 msgid "Please forward this message to administrator"
 msgstr "لطفا این پیغام را برای مدیر سیستم ارسال کنید"
@@ -584,7 +584,7 @@ msgstr "شما قبلا یک بار وارد سیستم شده اید!"
 
 #: saloos/saloos-addons/content_account/home/view.php:26
 #: saloos/saloos-addons/includes/cls/form/account.php:26
-#: saloos/saloos-addons/includes/languages/trans_addons.php:365
+#: saloos/saloos-addons/includes/languages/trans_addons.php:372
 #: sarshomar/includes/languages/trans_addons.php:372
 #: sarshomar/includes/languages/trans_twig.php:136
 msgid "Login"
@@ -592,45 +592,45 @@ msgstr "ورود به سیستم"
 
 #: saloos/saloos-addons/content_account/home/view.php:30
 #: saloos/saloos-addons/includes/cls/form/account.php:34
-#: saloos/saloos-addons/includes/languages/trans_addons.php:366
+#: saloos/saloos-addons/includes/languages/trans_addons.php:373
 #: sarshomar/includes/languages/trans_addons.php:373
 msgid "Create an account"
 msgstr "اکانت بسازید"
 
 #: saloos/saloos-addons/content_account/home/view.php:34
 #: saloos/saloos-addons/content_account/home/view.php:38
-#: saloos/saloos-addons/includes/languages/trans_addons.php:487
+#: saloos/saloos-addons/includes/languages/trans_addons.php:494
 #: sarshomar/includes/languages/trans_addons.php:494
 msgid "Verificate"
 msgstr "اعتبارسنجی"
 
 #: saloos/saloos-addons/content_account/home/view.php:42
 #: saloos/saloos-addons/includes/cls/form/account.php:58
-#: saloos/saloos-addons/includes/languages/trans_addons.php:483
+#: saloos/saloos-addons/includes/languages/trans_addons.php:490
 #: sarshomar/includes/languages/trans_addons.php:490
 msgid "Recovery"
 msgstr "بازیابی کلمه عبور"
 
 #: saloos/saloos-addons/content_account/home/view.php:46
-#: saloos/saloos-addons/includes/languages/trans_addons.php:367
+#: saloos/saloos-addons/includes/languages/trans_addons.php:374
 #: sarshomar/includes/languages/trans_addons.php:374
 msgid "Change password"
 msgstr "کلمه عبور"
 
 #: saloos/saloos-addons/content_account/home/view.php:52
-#: saloos/saloos-addons/includes/languages/trans_addons.php:368
+#: saloos/saloos-addons/includes/languages/trans_addons.php:375
 #: sarshomar/includes/languages/trans_addons.php:375
 msgid "SMS Delivery"
 msgstr "رسید دریافت پیامک"
 
 #: saloos/saloos-addons/content_account/home/view.php:58
-#: saloos/saloos-addons/includes/languages/trans_addons.php:369
+#: saloos/saloos-addons/includes/languages/trans_addons.php:376
 #: sarshomar/includes/languages/trans_addons.php:376
 msgid "SMS Callback"
 msgstr "پیامک‌های دریافتی"
 
 #: saloos/saloos-addons/content_account/home/view.php:64
-#: saloos/saloos-addons/includes/languages/trans_addons.php:290
+#: saloos/saloos-addons/includes/languages/trans_addons.php:297
 #: sarshomar/includes/languages/trans_addons.php:297
 msgid "Ermile"
 msgstr "ارمایل"
@@ -642,32 +642,32 @@ msgid "Please enter a valid mobile phone number"
 msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
 #: saloos/saloos-addons/content_account/login/model.php:125
-#: saloos/saloos-addons/includes/languages/trans_addons.php:326
+#: saloos/saloos-addons/includes/languages/trans_addons.php:333
 #: sarshomar/includes/languages/trans_addons.php:333
 msgid "Login failed!"
 msgstr "ورود به سیستم ناموفق بود!"
 
 #: saloos/saloos-addons/content_account/login/model.php:130
 #: saloos/saloos-addons/content_account/login/model.php:136
-#: saloos/saloos-addons/includes/languages/trans_addons.php:327
+#: saloos/saloos-addons/includes/languages/trans_addons.php:334
 #: sarshomar/includes/languages/trans_addons.php:334
 msgid "Mobile or password is incorrect"
 msgstr "موبایل یا کلمه عبور اشتباه است"
 
 #: saloos/saloos-addons/content_account/recovery/model.php:80
-#: saloos/saloos-addons/includes/languages/trans_addons.php:30
+#: saloos/saloos-addons/includes/languages/trans_addons.php:31
 #: sarshomar/includes/languages/trans_addons.php:31
 msgid "we send a verification code for you"
 msgstr "ما کد اعتبارسنجی را برای شما ارسال خواهیم کرد"
 
 #: saloos/saloos-addons/content_account/recovery/model.php:91
-#: saloos/saloos-addons/includes/languages/trans_addons.php:485
+#: saloos/saloos-addons/includes/languages/trans_addons.php:492
 #: sarshomar/includes/languages/trans_addons.php:492
 msgid "recovery failed!"
 msgstr "بازیابی ناموفق بود!"
 
 #: saloos/saloos-addons/content_account/recovery/model.php:97
-#: saloos/saloos-addons/includes/languages/trans_addons.php:486
+#: saloos/saloos-addons/includes/languages/trans_addons.php:493
 #: sarshomar/includes/languages/trans_addons.php:493
 msgid "Mobile number is incorrect"
 msgstr "این شماره موبایل اشتباه است."
@@ -677,7 +677,7 @@ msgid "Public registration is disabled!"
 msgstr "اجازه ثبت‌نام عمومی غیرفعال است!"
 
 #: saloos/saloos-addons/content_account/signup/model.php:64
-#: saloos/saloos-addons/includes/languages/trans_addons.php:481
+#: saloos/saloos-addons/includes/languages/trans_addons.php:488
 #: sarshomar/includes/languages/trans_addons.php:488
 msgid "Register successfully"
 msgstr "ثبت‌نام با موفقیت به انجام رسید"
@@ -688,31 +688,31 @@ msgid "Please contact to administrator!"
 msgstr "لطفا با مدیر سیستم تماس بگیرید!"
 
 #: saloos/saloos-addons/content_account/signup/model.php:76
-#: saloos/saloos-addons/includes/languages/trans_addons.php:480
+#: saloos/saloos-addons/includes/languages/trans_addons.php:487
 #: sarshomar/includes/languages/trans_addons.php:487
 msgid "Mobile number exist!"
 msgstr "شماره موبایل وجود دارد!"
 
 #: saloos/saloos-addons/content_account/verification/model.php:76
-#: saloos/saloos-addons/includes/languages/trans_addons.php:489
+#: saloos/saloos-addons/includes/languages/trans_addons.php:496
 #: sarshomar/includes/languages/trans_addons.php:496
 msgid "verify successfully."
 msgstr "اعتبارسنجی موفقیت آمیز بود."
 
 #: saloos/saloos-addons/content_account/verification/model.php:76
-#: saloos/saloos-addons/includes/languages/trans_addons.php:490
+#: saloos/saloos-addons/includes/languages/trans_addons.php:497
 #: sarshomar/includes/languages/trans_addons.php:497
 msgid "please Input your new password"
 msgstr "لطفا کلمه عبور جدید را وارد کنید"
 
 #: saloos/saloos-addons/content_account/verification/model.php:80
-#: saloos/saloos-addons/includes/languages/trans_addons.php:491
+#: saloos/saloos-addons/includes/languages/trans_addons.php:498
 #: sarshomar/includes/languages/trans_addons.php:498
 msgid "verify failed!"
 msgstr "اعتبارسنجی ناموفق بود!"
 
 #: saloos/saloos-addons/content_account/verification/model.php:85
-#: saloos/saloos-addons/includes/languages/trans_addons.php:492
+#: saloos/saloos-addons/includes/languages/trans_addons.php:499
 #: sarshomar/includes/languages/trans_addons.php:499
 msgid "this data is incorrect"
 msgstr "این اطلاعات اشتباه است"
@@ -755,26 +755,26 @@ msgstr "نوع"
 
 #: saloos/saloos-addons/content_cp/home/view.php:97
 #: saloos/saloos-addons/content_cp/home/view.php:127
-#: saloos/saloos-addons/includes/languages/trans_addons.php:361
+#: saloos/saloos-addons/includes/languages/trans_addons.php:368
 #: sarshomar/includes/languages/trans_addons.php:368
 msgid "Chart must be contain at least 2 column!"
 msgstr "نمودار باید حداقل شامل دو ستون داده‌ای باشد!"
 
 #: saloos/saloos-addons/content_cp/home/view.php:332
-#: saloos/saloos-addons/includes/languages/trans_addons.php:338
+#: saloos/saloos-addons/includes/languages/trans_addons.php:345
 #: sarshomar/includes/languages/trans_addons.php:345
 msgid "Enter password within 5 to 40 character"
 msgstr "گذرواژه‌ای بین ۵ تا ۴۰ کاراکتر وارد کنید"
 
 #: saloos/saloos-addons/content_cp/home/view.php:336
 #: saloos/saloos-addons/includes/cls/form/account.php:67
-#: saloos/saloos-addons/includes/languages/trans_addons.php:495
+#: saloos/saloos-addons/includes/languages/trans_addons.php:502
 #: sarshomar/includes/languages/trans_addons.php:502
 msgid "New Password"
 msgstr "گذرواژه جدید"
 
 #: saloos/saloos-addons/content_cp/home/view.php:336
-#: saloos/saloos-addons/includes/languages/trans_addons.php:337
+#: saloos/saloos-addons/includes/languages/trans_addons.php:344
 #: sarshomar/includes/languages/trans_addons.php:344
 msgid "If you want to change password enter it, else leave it blank"
 msgstr ""
@@ -786,7 +786,7 @@ msgid "position"
 msgstr "موقعیت"
 
 #: saloos/saloos-addons/content_cp/manifest.php:9
-#: saloos/saloos-addons/includes/languages/trans_addons.php:61
+#: saloos/saloos-addons/includes/languages/trans_addons.php:62
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:196
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:196
@@ -798,37 +798,37 @@ msgid "Dashboard"
 msgstr "داشبورد"
 
 #: saloos/saloos-addons/content_cp/manifest.php:13
-#: saloos/saloos-addons/includes/languages/trans_addons.php:333
+#: saloos/saloos-addons/includes/languages/trans_addons.php:340
 #: sarshomar/includes/languages/trans_addons.php:340
 msgid "Use posts to share your news in specefic category"
 msgstr "از نوشته‌ها برای انتشار اخبار در موضوعات دلخواه استفاده کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:21
-#: saloos/saloos-addons/includes/languages/trans_addons.php:330
+#: saloos/saloos-addons/includes/languages/trans_addons.php:337
 #: sarshomar/includes/languages/trans_addons.php:337
 msgid "Assign keywords to your posts using tags"
 msgstr "از عبارات کلیدی برای تعریف کلیدواژه‌ها و ارتباط آن به نوشته‌های استفاده کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:26
-#: saloos/saloos-addons/includes/languages/trans_addons.php:331
+#: saloos/saloos-addons/includes/languages/trans_addons.php:338
 #: sarshomar/includes/languages/trans_addons.php:338
 msgid "Use categories to define sections of your site and group related posts"
 msgstr "از دسته‌ها برای تعریف بخش‌های سایت و دسته‌بندی نوشته‌ها استفاده کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:27
-#: saloos/saloos-addons/includes/languages/trans_addons.php:48
+#: saloos/saloos-addons/includes/languages/trans_addons.php:49
 #: sarshomar/includes/languages/trans_addons.php:49
 msgid "Categories"
 msgstr "دسته‌بندی‌ها"
 
 #: saloos/saloos-addons/content_cp/manifest.php:33
-#: saloos/saloos-addons/includes/languages/trans_addons.php:334
+#: saloos/saloos-addons/includes/languages/trans_addons.php:341
 #: sarshomar/includes/languages/trans_addons.php:341
 msgid "Use pages to share your static content"
 msgstr "از برگه‌ها برای انتشار مطالب ثابت استفاده کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:41
-#: saloos/saloos-addons/includes/languages/trans_addons.php:377
+#: saloos/saloos-addons/includes/languages/trans_addons.php:384
 #: sarshomar/includes/languages/trans_addons.php:384
 msgid "Use book to define important parts to use in posts"
 msgstr "کتاب‌های خود را در این بخش وارد کنید"
@@ -849,31 +849,31 @@ msgid "Help center is ready to use"
 msgstr "مرکز راهنمایی برای استفاده آماده است"
 
 #: saloos/saloos-addons/content_cp/manifest.php:61
-#: saloos/saloos-addons/includes/languages/trans_addons.php:376
+#: saloos/saloos-addons/includes/languages/trans_addons.php:383
 #: sarshomar/includes/languages/trans_addons.php:383
 msgid "Use categories to define sections of your site and group related books"
 msgstr "با استفاده از دسته‌بندی بخش‌های مختلف کتاب را گروه‌بندی کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:62
-#: saloos/saloos-addons/includes/languages/trans_addons.php:373
+#: saloos/saloos-addons/includes/languages/trans_addons.php:380
 #: sarshomar/includes/languages/trans_addons.php:380
 msgid "Book Categories"
 msgstr "دسته‌بندی کتاب"
 
 #: saloos/saloos-addons/content_cp/manifest.php:69
-#: saloos/saloos-addons/includes/languages/trans_addons.php:386
+#: saloos/saloos-addons/includes/languages/trans_addons.php:393
 #: sarshomar/includes/languages/trans_addons.php:393
 msgid "Publish new post in social networks"
 msgstr "انتشار پست جدید در شبکه‌های اجتماعی"
 
 #: saloos/saloos-addons/content_cp/manifest.php:76
-#: saloos/saloos-addons/includes/languages/trans_addons.php:335
+#: saloos/saloos-addons/includes/languages/trans_addons.php:342
 #: sarshomar/includes/languages/trans_addons.php:342
 msgid "Upload your media"
 msgstr "برای بارگزاری فایل‌های شما"
 
 #: saloos/saloos-addons/content_cp/manifest.php:81
-#: saloos/saloos-addons/includes/languages/trans_addons.php:332
+#: saloos/saloos-addons/includes/languages/trans_addons.php:339
 #: sarshomar/includes/languages/trans_addons.php:339
 msgid "Use categories to define sections of your site and group related files"
 msgstr "از دسته‌بندی برای تعریف بخش‌های مختلف برای گروه‌بندی کردن فایل‌ها استفاده کنید"
@@ -891,7 +891,7 @@ msgstr "ما به مشکلی برخورده و آن را حل کردیم!"
 #: saloos/saloos-addons/content_cp/posts/model.php:521
 #: saloos/saloos-addons/content_cp/profile/model.php:23
 #: saloos/saloos-addons/content_cp/terms/model.php:142
-#: saloos/saloos-addons/includes/languages/trans_addons.php:263
+#: saloos/saloos-addons/includes/languages/trans_addons.php:270
 #: saloos/saloos-addons/lib/mvc/models/commit.php:49
 #: sarshomar/includes/languages/trans_addons.php:270
 msgid "Update Successfully"
@@ -902,7 +902,7 @@ msgstr "بروزرسانی با موفقیت انجام شد"
 #: saloos/saloos-addons/content_cp/posts/model.php:534
 #: saloos/saloos-addons/content_cp/profile/model.php:30
 #: saloos/saloos-addons/content_cp/terms/model.php:158
-#: saloos/saloos-addons/includes/languages/trans_addons.php:267
+#: saloos/saloos-addons/includes/languages/trans_addons.php:274
 #: saloos/saloos-addons/lib/mvc/models/commit.php:28
 #: sarshomar/includes/languages/trans_addons.php:274
 msgid "Transaction error"
@@ -913,31 +913,31 @@ msgid "Start logging visitors"
 msgstr "ذخیره عملکرد بازدیدکنندگان"
 
 #: saloos/saloos-addons/content_cp/options/view.php:9
-#: saloos/saloos-addons/includes/languages/trans_addons.php:91
+#: saloos/saloos-addons/includes/languages/trans_addons.php:92
 #: sarshomar/includes/languages/trans_addons.php:92
 msgid "Edit your site general options"
 msgstr "ویرایش تنظیمات عمومی وب‌سایت"
 
 #: saloos/saloos-addons/content_cp/options/view.php:33
-#: saloos/saloos-addons/includes/languages/trans_addons.php:434
+#: saloos/saloos-addons/includes/languages/trans_addons.php:441
 #: sarshomar/includes/languages/trans_addons.php:441
 msgid "Kavenegar"
 msgstr "کاوه‌نگار"
 
 #: saloos/saloos-addons/content_cp/permissions/model.php:76
-#: saloos/saloos-addons/includes/languages/trans_addons.php:499
+#: saloos/saloos-addons/includes/languages/trans_addons.php:506
 #: sarshomar/includes/languages/trans_addons.php:506
 msgid "First you must enter name of permission"
 msgstr "در ابتدا نام سطح‌دسترسی جدید را وارد کنید"
 
 #: saloos/saloos-addons/content_cp/permissions/model.php:85
-#: saloos/saloos-addons/includes/languages/trans_addons.php:500
+#: saloos/saloos-addons/includes/languages/trans_addons.php:507
 #: sarshomar/includes/languages/trans_addons.php:507
 msgid "This permission name exist!"
 msgstr "این نام برای سطح‌دسترسی از قبل وجود دارد!"
 
 #: saloos/saloos-addons/content_cp/permissions/model.php:86
-#: saloos/saloos-addons/includes/languages/trans_addons.php:501
+#: saloos/saloos-addons/includes/languages/trans_addons.php:508
 #: sarshomar/includes/languages/trans_addons.php:508
 msgid "You can edit this permission"
 msgstr "شما می‌توانید این سطح‌دسترسی را ویرایش کنید"
@@ -945,28 +945,28 @@ msgstr "شما می‌توانید این سطح‌دسترسی را ویرای�
 #: saloos/saloos-addons/content_cp/permissions/model.php:160
 #: saloos/saloos-addons/content_cp/posts/model.php:526
 #: saloos/saloos-addons/content_cp/terms/model.php:147
-#: saloos/saloos-addons/includes/languages/trans_addons.php:261
+#: saloos/saloos-addons/includes/languages/trans_addons.php:268
 #: saloos/saloos-addons/lib/mvc/models/commit.php:22
 #: sarshomar/includes/languages/trans_addons.php:268
 msgid "Insert Successfully"
 msgstr "افزودن با موفقیت انجام شد"
 
 #: saloos/saloos-addons/content_cp/permissions/model.php:165
-#: saloos/saloos-addons/includes/languages/trans_addons.php:265
+#: saloos/saloos-addons/includes/languages/trans_addons.php:272
 #: saloos/saloos-addons/lib/mvc/models/commit.php:75
 #: sarshomar/includes/languages/trans_addons.php:272
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
 #: saloos/saloos-addons/content_cp/permissions/view.php:9
-#: saloos/saloos-addons/includes/languages/trans_addons.php:502
+#: saloos/saloos-addons/includes/languages/trans_addons.php:509
 #: sarshomar/includes/languages/trans_addons.php:509
 msgid "Define or edit user permissions to allow or block access to special pages"
 msgstr "تعریف یا ویرایش سطوح‌دسترسی برای اجازه یا ممنوع کردن دسترسی به صفحات خاص"
 
 #: saloos/saloos-addons/content_cp/permissions/view.php:15
 #: saloos/saloos-addons/content_cp/posts/model.php:712
-#: saloos/saloos-addons/includes/languages/trans_addons.php:126
+#: saloos/saloos-addons/includes/languages/trans_addons.php:127
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:358
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:358
 #: sarshomar/includes/languages/trans_addons.php:127
@@ -981,13 +981,13 @@ msgid "permission"
 msgstr "سطح دسترسی"
 
 #: saloos/saloos-addons/content_cp/posts/model.php:131
-#: saloos/saloos-addons/includes/languages/trans_addons.php:329
+#: saloos/saloos-addons/includes/languages/trans_addons.php:336
 #: sarshomar/includes/languages/trans_addons.php:336
 msgid "Please enter title"
 msgstr "لطفا عنوان را وارد کنید"
 
 #: saloos/saloos-addons/content_cp/posts/model.php:629
-#: saloos/saloos-addons/includes/languages/trans_addons.php:378
+#: saloos/saloos-addons/includes/languages/trans_addons.php:385
 #: sarshomar/includes/languages/trans_addons.php:385
 msgid "Duplicate - File exist"
 msgstr "تکراری - فایل وجود دارد"
@@ -1016,6 +1016,10 @@ msgstr "بازسازی نقشه سایت با موفقیت انجام شد!"
 #: saloos/saloos-addons/content_cp/tools/controller.php:208
 msgid "Not Work!"
 msgstr "کار نمیکند!"
+
+#: saloos/saloos-addons/content_cp/tools/controller.php:272
+msgid "Do you wanna something here!?"
+msgstr ""
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:6
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:112
@@ -1062,7 +1066,7 @@ msgstr "کد"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:13
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:73
-#: saloos/saloos-addons/includes/languages/trans_addons.php:339
+#: saloos/saloos-addons/includes/languages/trans_addons.php:346
 #: sarshomar/includes/cls/database/sarshomar/translation.php:46
 #: sarshomar/includes/cls/database/sarshomar/translation.php:231
 #: sarshomar/includes/languages/trans_addons.php:346
@@ -1165,7 +1169,7 @@ msgstr "کاربر"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:22
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:137
-#: saloos/saloos-addons/includes/languages/trans_addons.php:351
+#: saloos/saloos-addons/includes/languages/trans_addons.php:358
 #: sarshomar/includes/cls/database/sarshomar/translation.php:57
 #: sarshomar/includes/languages/trans_addons.php:358
 msgid "visitor"
@@ -1213,7 +1217,7 @@ msgstr "کم"
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:80
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:98
 #: saloos/saloos-addons/includes/cls/form/options.php:27
-#: saloos/saloos-addons/includes/languages/trans_addons.php:412
+#: saloos/saloos-addons/includes/languages/trans_addons.php:419
 #: sarshomar/includes/cls/database/sarshomar/translation.php:142
 #: sarshomar/includes/cls/database/sarshomar/translation.php:164
 #: sarshomar/includes/cls/database/sarshomar/translation.php:214
@@ -1321,7 +1325,7 @@ msgid "options"
 msgstr "تنظیمات"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:64
-#: saloos/saloos-addons/includes/languages/trans_addons.php:347
+#: saloos/saloos-addons/includes/languages/trans_addons.php:354
 #: sarshomar/includes/cls/database/sarshomar/translation.php:172
 #: sarshomar/includes/languages/trans_addons.php:354
 msgid "option"
@@ -1511,7 +1515,7 @@ msgid "displayname"
 msgstr "نام برای نمایش عمومی"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:136
-#: saloos/saloos-addons/includes/languages/trans_addons.php:218
+#: saloos/saloos-addons/includes/languages/trans_addons.php:219
 #: sarshomar/includes/languages/trans_addons.php:219
 msgid "visitors"
 msgstr "بازدیدکنندگان"
@@ -1545,7 +1549,7 @@ msgid "robot"
 msgstr "ربات"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:22
-#: saloos/saloos-addons/includes/languages/trans_addons.php:478
+#: saloos/saloos-addons/includes/languages/trans_addons.php:485
 #: sarshomar/includes/languages/trans_addons.php:485
 msgid "Enter your registered mobile"
 msgstr "موبایل ثبت شده را وارد کنید"
@@ -1553,14 +1557,14 @@ msgstr "موبایل ثبت شده را وارد کنید"
 #: saloos/saloos-addons/includes/cls/form/account.php:24
 #: saloos/saloos-addons/includes/cls/form/account.php:33
 #: saloos/saloos-addons/includes/cls/form/symbol.php:23
-#: saloos/saloos-addons/includes/languages/trans_addons.php:362
+#: saloos/saloos-addons/includes/languages/trans_addons.php:369
 #: sarshomar/includes/languages/trans_addons.php:369
 #: sarshomar/includes/languages/trans_twig.php:135
 msgid "Password"
 msgstr "کلمه عبور"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:24
-#: saloos/saloos-addons/includes/languages/trans_addons.php:479
+#: saloos/saloos-addons/includes/languages/trans_addons.php:486
 #: sarshomar/includes/languages/trans_addons.php:486
 msgid "Enter your password"
 msgstr "کلمه عبور خود را وارد کنید"
@@ -1579,25 +1583,25 @@ msgid "input 4 number"
 msgstr "کد حاوی 4 عدد را وارد کنید"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:50
-#: saloos/saloos-addons/includes/languages/trans_addons.php:493
+#: saloos/saloos-addons/includes/languages/trans_addons.php:500
 #: sarshomar/includes/languages/trans_addons.php:500
 msgid "Check your mobile and enter the code"
 msgstr "پس از بررسی موبایل خود کد را وارد کنید"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:51
-#: saloos/saloos-addons/includes/languages/trans_addons.php:488
+#: saloos/saloos-addons/includes/languages/trans_addons.php:495
 #: sarshomar/includes/languages/trans_addons.php:495
 msgid "Verification"
 msgstr "اعتبارسنجی"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:65
-#: saloos/saloos-addons/includes/languages/trans_addons.php:494
+#: saloos/saloos-addons/includes/languages/trans_addons.php:501
 #: sarshomar/includes/languages/trans_addons.php:501
 msgid "Current Password"
 msgstr "گذرواژه فعلی"
 
 #: saloos/saloos-addons/includes/cls/form/account.php:68
-#: saloos/saloos-addons/includes/languages/trans_addons.php:496
+#: saloos/saloos-addons/includes/languages/trans_addons.php:503
 #: sarshomar/includes/languages/trans_addons.php:503
 msgid "Change it"
 msgstr "تغییر بده"
@@ -1609,7 +1613,7 @@ msgstr "کلمه عبور"
 #: saloos/saloos-addons/includes/cls/form/options.php:27
 #: saloos/saloos-addons/includes/cls/form/options.php:33
 #: saloos/saloos-addons/includes/cls/form/options.php:46
-#: saloos/saloos-addons/includes/languages/trans_addons.php:411
+#: saloos/saloos-addons/includes/languages/trans_addons.php:418
 #: sarshomar/includes/languages/trans_addons.php:418
 msgid "Site"
 msgstr "سایت"
@@ -1619,7 +1623,7 @@ msgid "Site title"
 msgstr "عنوان سایت"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:30
-#: saloos/saloos-addons/includes/languages/trans_addons.php:413
+#: saloos/saloos-addons/includes/languages/trans_addons.php:420
 #: sarshomar/includes/languages/trans_addons.php:420
 msgid "For multilanguage sites enter title in English and translate it"
 msgstr ""
@@ -1627,7 +1631,7 @@ msgstr ""
 "به سایر زبان‌ها ترجمه کنید"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:33
-#: saloos/saloos-addons/includes/languages/trans_addons.php:389
+#: saloos/saloos-addons/includes/languages/trans_addons.php:396
 #: sarshomar/includes/languages/trans_addons.php:396
 #: sarshomar/includes/languages/trans_twig.php:144
 msgid "Description"
@@ -1643,7 +1647,7 @@ msgstr "سایت و هدف آن را در چند کلمه مختصر توضیح 
 
 #: saloos/saloos-addons/includes/cls/form/options.php:39
 #: saloos/saloos-addons/includes/cls/form/options.php:41
-#: saloos/saloos-addons/includes/languages/trans_addons.php:200
+#: saloos/saloos-addons/includes/languages/trans_addons.php:201
 #: sarshomar/includes/languages/trans_addons.php:201
 #: sarshomar/includes/languages/trans_twig.php:14
 msgid "Email"
@@ -1658,44 +1662,44 @@ msgid "Site Tab Color in Mobile"
 msgstr "رنگ تب سایت در موبایل"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:69
-#: saloos/saloos-addons/includes/languages/trans_addons.php:415
+#: saloos/saloos-addons/includes/languages/trans_addons.php:422
 #: sarshomar/includes/languages/trans_addons.php:422
 msgid "Enable coming soon"
 msgstr "نمایش صفحه بزودی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:74
-#: saloos/saloos-addons/includes/languages/trans_addons.php:416
+#: saloos/saloos-addons/includes/languages/trans_addons.php:423
 #: sarshomar/includes/languages/trans_addons.php:423
 msgid "debug mode status"
 msgstr "وضعیت نمایش خطا"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:79
-#: saloos/saloos-addons/includes/languages/trans_addons.php:417
+#: saloos/saloos-addons/includes/languages/trans_addons.php:424
 #: sarshomar/includes/languages/trans_addons.php:424
 msgid "Save as cookie"
 msgstr "ذخیره به عنوان کوکی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:84
-#: saloos/saloos-addons/includes/languages/trans_addons.php:418
+#: saloos/saloos-addons/includes/languages/trans_addons.php:425
 #: sarshomar/includes/languages/trans_addons.php:425
 msgid "Log visitors"
 msgstr "ذخیره عملکرد بازدیدکنندگان"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:89
-#: saloos/saloos-addons/includes/languages/trans_addons.php:419
+#: saloos/saloos-addons/includes/languages/trans_addons.php:426
 #: sarshomar/includes/languages/trans_addons.php:426
 msgid "Use main account"
 msgstr "استفاده از اکانت یکپارچه"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:95
-#: saloos/saloos-addons/includes/languages/trans_addons.php:420
+#: saloos/saloos-addons/includes/languages/trans_addons.php:427
 #: sarshomar/includes/languages/trans_addons.php:427
 msgid "Main account"
 msgstr "اکانت یکپارچه"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:100
 #: saloos/saloos-addons/includes/cls/form/options.php:101
-#: saloos/saloos-addons/includes/languages/trans_addons.php:421
+#: saloos/saloos-addons/includes/languages/trans_addons.php:428
 #: sarshomar/includes/languages/trans_addons.php:428
 msgid "Default Language"
 msgstr "زبان پیش‌فرض"
@@ -1705,7 +1709,7 @@ msgid "URL Settings"
 msgstr "تنظیمات آدرس"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:110
-#: saloos/saloos-addons/includes/languages/trans_addons.php:423
+#: saloos/saloos-addons/includes/languages/trans_addons.php:430
 #: sarshomar/includes/languages/trans_addons.php:430
 msgid "Use fake subdomain"
 msgstr "شبیه‌سازی ساب‌دامین"
@@ -1723,25 +1727,25 @@ msgid "force using short URL"
 msgstr "نمایش آدرس کوتاه برای این نوشته"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:130
-#: saloos/saloos-addons/includes/languages/trans_addons.php:422
+#: saloos/saloos-addons/includes/languages/trans_addons.php:429
 #: sarshomar/includes/languages/trans_addons.php:429
 msgid "Feature status"
 msgstr "وضعیت ویژگی‌ها"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:135
-#: saloos/saloos-addons/includes/languages/trans_addons.php:424
+#: saloos/saloos-addons/includes/languages/trans_addons.php:431
 #: sarshomar/includes/languages/trans_addons.php:431
 msgid "Use SMS service"
 msgstr "استفاده از سرویس پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:140
-#: saloos/saloos-addons/includes/languages/trans_addons.php:425
+#: saloos/saloos-addons/includes/languages/trans_addons.php:432
 #: sarshomar/includes/languages/trans_addons.php:432
 msgid "Use social networks"
 msgstr "استفاده از شبکه‌های اجتماعی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:145
-#: saloos/saloos-addons/includes/languages/trans_addons.php:426
+#: saloos/saloos-addons/includes/languages/trans_addons.php:433
 #: sarshomar/includes/languages/trans_addons.php:433
 msgid "Use account"
 msgstr "استفاده از اکانت یکپارچه"
@@ -1777,7 +1781,7 @@ msgstr "انتقال به دامنه اصلی"
 #: saloos/saloos-addons/includes/cls/form/options.php:277
 #: saloos/saloos-addons/includes/cls/form/options.php:284
 #: saloos/saloos-addons/includes/cls/form/options.php:291
-#: saloos/saloos-addons/includes/languages/trans_addons.php:95
+#: saloos/saloos-addons/includes/languages/trans_addons.php:96
 #: sarshomar/includes/languages/trans_addons.php:96
 msgid "Twitter"
 msgstr "توییتر"
@@ -1790,25 +1794,25 @@ msgstr "توییتر"
 #: saloos/saloos-addons/includes/cls/form/options.php:339
 #: saloos/saloos-addons/includes/cls/form/options.php:346
 #: saloos/saloos-addons/includes/cls/form/options.php:353
-#: saloos/saloos-addons/includes/languages/trans_addons.php:96
+#: saloos/saloos-addons/includes/languages/trans_addons.php:97
 #: sarshomar/includes/languages/trans_addons.php:97
 msgid "Facebook"
 msgstr "فیس‌بوک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:221
-#: saloos/saloos-addons/includes/languages/trans_addons.php:432
+#: saloos/saloos-addons/includes/languages/trans_addons.php:439
 #: sarshomar/includes/languages/trans_addons.php:439
 msgid "Google Plus"
 msgstr "گوگل پلاس"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:228
-#: saloos/saloos-addons/includes/languages/trans_addons.php:429
+#: saloos/saloos-addons/includes/languages/trans_addons.php:436
 #: sarshomar/includes/languages/trans_addons.php:436
 msgid "Github"
 msgstr "گیت‌هاب"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:235
-#: saloos/saloos-addons/includes/languages/trans_addons.php:430
+#: saloos/saloos-addons/includes/languages/trans_addons.php:437
 #: sarshomar/includes/languages/trans_addons.php:437
 msgid "Linkedin"
 msgstr "لینکدین"
@@ -1820,19 +1824,19 @@ msgstr "لینکدین"
 #: saloos/saloos-addons/includes/cls/form/options.php:394
 #: saloos/saloos-addons/includes/cls/form/options.php:407
 #: saloos/saloos-addons/includes/cls/form/options.php:414
-#: saloos/saloos-addons/includes/languages/trans_addons.php:97
+#: saloos/saloos-addons/includes/languages/trans_addons.php:98
 #: sarshomar/includes/languages/trans_addons.php:98
 msgid "Telegram"
 msgstr "تلگرام"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:249
-#: saloos/saloos-addons/includes/languages/trans_addons.php:431
+#: saloos/saloos-addons/includes/languages/trans_addons.php:438
 #: sarshomar/includes/languages/trans_addons.php:438
 msgid "Aparat"
 msgstr "آپارات"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:265
-#: saloos/saloos-addons/includes/languages/trans_addons.php:464
+#: saloos/saloos-addons/includes/languages/trans_addons.php:471
 #: sarshomar/includes/languages/trans_addons.php:471
 msgid "Status of twitter sharing"
 msgstr "وضعیت بازنشر در توییتر"
@@ -1842,80 +1846,80 @@ msgid "ConsumerKey"
 msgstr "ConsumerKey"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:277
-#: saloos/saloos-addons/includes/languages/trans_addons.php:437
+#: saloos/saloos-addons/includes/languages/trans_addons.php:444
 #: sarshomar/includes/languages/trans_addons.php:444
 msgid "ConsumerSecret"
 msgstr "ConsumerSecret"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:284
-#: saloos/saloos-addons/includes/languages/trans_addons.php:438
+#: saloos/saloos-addons/includes/languages/trans_addons.php:445
 #: sarshomar/includes/languages/trans_addons.php:445
 msgid "AccessToken"
 msgstr "AccessToken"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:291
-#: saloos/saloos-addons/includes/languages/trans_addons.php:439
+#: saloos/saloos-addons/includes/languages/trans_addons.php:446
 #: sarshomar/includes/languages/trans_addons.php:446
 msgid "AccessTokenSecret"
 msgstr "AccessTokenSecret"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:306
-#: saloos/saloos-addons/includes/languages/trans_addons.php:465
+#: saloos/saloos-addons/includes/languages/trans_addons.php:472
 #: sarshomar/includes/languages/trans_addons.php:472
 msgid "Status of facebook sharing"
 msgstr "وضعیت بازنشر در فیس‌بوک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:311
-#: saloos/saloos-addons/includes/languages/trans_addons.php:440
+#: saloos/saloos-addons/includes/languages/trans_addons.php:447
 #: sarshomar/includes/languages/trans_addons.php:447
 msgid "app_id"
 msgstr "app_id"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:318
-#: saloos/saloos-addons/includes/languages/trans_addons.php:441
+#: saloos/saloos-addons/includes/languages/trans_addons.php:448
 #: sarshomar/includes/languages/trans_addons.php:448
 msgid "app_secret"
 msgstr "app_secret"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:325
-#: saloos/saloos-addons/includes/languages/trans_addons.php:442
+#: saloos/saloos-addons/includes/languages/trans_addons.php:449
 #: sarshomar/includes/languages/trans_addons.php:449
 msgid "redirect_url"
 msgstr "redirect_url"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:332
-#: saloos/saloos-addons/includes/languages/trans_addons.php:443
+#: saloos/saloos-addons/includes/languages/trans_addons.php:450
 #: sarshomar/includes/languages/trans_addons.php:450
 msgid "required_scope"
 msgstr "required_scope"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:339
-#: saloos/saloos-addons/includes/languages/trans_addons.php:444
+#: saloos/saloos-addons/includes/languages/trans_addons.php:451
 #: sarshomar/includes/languages/trans_addons.php:451
 msgid "page_id"
 msgstr "page_id"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:346
-#: saloos/saloos-addons/includes/languages/trans_addons.php:445
+#: saloos/saloos-addons/includes/languages/trans_addons.php:452
 #: sarshomar/includes/languages/trans_addons.php:452
 msgid "access_token"
 msgstr "access_token"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:353
-#: saloos/saloos-addons/includes/languages/trans_addons.php:446
+#: saloos/saloos-addons/includes/languages/trans_addons.php:453
 #: sarshomar/includes/languages/trans_addons.php:453
 msgid "client_token"
 msgstr "client_token"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:368
-#: saloos/saloos-addons/includes/languages/trans_addons.php:466
+#: saloos/saloos-addons/includes/languages/trans_addons.php:473
 #: sarshomar/includes/languages/trans_addons.php:473
 msgid "Status of telegram sharing"
 msgstr "وضعیت بازنشر در تلگرام"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:373
 #: saloos/saloos-addons/includes/cls/form/options.php:414
-#: saloos/saloos-addons/includes/languages/trans_addons.php:323
+#: saloos/saloos-addons/includes/languages/trans_addons.php:330
 #: sarshomar/includes/languages/trans_addons.php:330
 msgid "Key"
 msgstr "کلید"
@@ -1945,20 +1949,20 @@ msgid "botan"
 msgstr "بوتان"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:429
-#: saloos/saloos-addons/includes/languages/trans_addons.php:456
+#: saloos/saloos-addons/includes/languages/trans_addons.php:463
 #: sarshomar/includes/languages/trans_addons.php:463
 msgid "Simulate SMS (Debugging)"
 msgstr "شبیه‌سازی پیامک (خطایابی)"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:432
-#: saloos/saloos-addons/includes/languages/trans_addons.php:463
+#: saloos/saloos-addons/includes/languages/trans_addons.php:470
 #: sarshomar/includes/languages/trans_addons.php:470
 msgid "SMS api detail"
 msgstr "جزئیات رابط برنامه‌نویسی پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:436
 #: saloos/saloos-addons/includes/cls/form/options.php:437
-#: saloos/saloos-addons/includes/languages/trans_addons.php:435
+#: saloos/saloos-addons/includes/languages/trans_addons.php:442
 #: sarshomar/includes/languages/trans_addons.php:442
 msgid "SMS service"
 msgstr "سرویس پیامک"
@@ -1966,13 +1970,13 @@ msgstr "سرویس پیامک"
 #: saloos/saloos-addons/includes/cls/form/options.php:441
 #: saloos/saloos-addons/includes/cls/form/options.php:447
 #: saloos/saloos-addons/includes/cls/form/options.php:452
-#: saloos/saloos-addons/includes/languages/trans_addons.php:87
+#: saloos/saloos-addons/includes/languages/trans_addons.php:88
 #: sarshomar/includes/languages/trans_addons.php:88
 msgid "SMS"
 msgstr "پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:441
-#: saloos/saloos-addons/includes/languages/trans_addons.php:428
+#: saloos/saloos-addons/includes/languages/trans_addons.php:435
 #: sarshomar/includes/cls/database/sarshomar/translation.php:19
 #: sarshomar/includes/languages/trans_addons.php:435
 msgid "apikey"
@@ -1980,43 +1984,43 @@ msgstr "کلید ای‌پی‌آی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:447
 #: saloos/saloos-addons/includes/cls/form/options.php:452
-#: saloos/saloos-addons/includes/languages/trans_addons.php:427
+#: saloos/saloos-addons/includes/languages/trans_addons.php:434
 #: sarshomar/includes/languages/trans_addons.php:434
 msgid "line number"
 msgstr "شماره خط"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:458
-#: saloos/saloos-addons/includes/languages/trans_addons.php:451
+#: saloos/saloos-addons/includes/languages/trans_addons.php:458
 #: sarshomar/includes/languages/trans_addons.php:458
 msgid "Regional restriction"
 msgstr "محدودیت منطقه‌ای"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:461
-#: saloos/saloos-addons/includes/languages/trans_addons.php:462
+#: saloos/saloos-addons/includes/languages/trans_addons.php:469
 #: sarshomar/includes/languages/trans_addons.php:469
 msgid "Message detail"
 msgstr "جزئیات پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:465
-#: saloos/saloos-addons/includes/languages/trans_addons.php:452
+#: saloos/saloos-addons/includes/languages/trans_addons.php:459
 #: sarshomar/includes/languages/trans_addons.php:459
 msgid "Message header"
 msgstr "سرصفحه پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:470
-#: saloos/saloos-addons/includes/languages/trans_addons.php:453
+#: saloos/saloos-addons/includes/languages/trans_addons.php:460
 #: sarshomar/includes/languages/trans_addons.php:460
 msgid "Message footer"
 msgstr "پاصفحه پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:476
-#: saloos/saloos-addons/includes/languages/trans_addons.php:454
+#: saloos/saloos-addons/includes/languages/trans_addons.php:461
 #: sarshomar/includes/languages/trans_addons.php:461
 msgid "Force one message"
 msgstr "اجبار به یک پیامک"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:479
-#: saloos/saloos-addons/includes/languages/trans_addons.php:461
+#: saloos/saloos-addons/includes/languages/trans_addons.php:468
 #: sarshomar/includes/languages/trans_addons.php:468
 msgid "Send message in custom situation"
 msgstr "ارسال پیامک در شرایط سفارشی"
@@ -2026,88 +2030,88 @@ msgstr "ارسال پیامک در شرایط سفارشی"
 #: saloos/saloos-addons/includes/cls/form/options.php:494
 #: saloos/saloos-addons/includes/cls/form/options.php:499
 #: saloos/saloos-addons/includes/cls/form/options.php:504
-#: saloos/saloos-addons/includes/languages/trans_addons.php:447
+#: saloos/saloos-addons/includes/languages/trans_addons.php:454
 #: sarshomar/includes/languages/trans_addons.php:454
 msgid "Send message for"
 msgstr "ارسال پیامک برای"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:484
-#: saloos/saloos-addons/includes/languages/trans_addons.php:219
+#: saloos/saloos-addons/includes/languages/trans_addons.php:220
 #: sarshomar/includes/languages/trans_addons.php:220
 msgid "signup"
 msgstr "ثبت نام"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:489
 #: saloos/saloos-addons/includes/cls/form/options.php:504
-#: saloos/saloos-addons/includes/languages/trans_addons.php:448
+#: saloos/saloos-addons/includes/languages/trans_addons.php:455
 #: sarshomar/includes/cls/database/sarshomar/translation.php:361
 #: sarshomar/includes/languages/trans_addons.php:455
 msgid "verification"
 msgstr "اعتبارسنجی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:494
-#: saloos/saloos-addons/includes/languages/trans_addons.php:449
+#: saloos/saloos-addons/includes/languages/trans_addons.php:456
 #: sarshomar/includes/languages/trans_addons.php:456
 msgid "recovery"
 msgstr "بازیابی"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:499
-#: saloos/saloos-addons/includes/languages/trans_addons.php:450
+#: saloos/saloos-addons/includes/languages/trans_addons.php:457
 #: sarshomar/includes/languages/trans_addons.php:457
 msgid "changepass"
 msgstr "تغییر کلمه‌عبور"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:516
-#: saloos/saloos-addons/includes/languages/trans_addons.php:468
+#: saloos/saloos-addons/includes/languages/trans_addons.php:475
 #: sarshomar/includes/languages/trans_addons.php:475
 msgid "After login redirect to"
 msgstr "بعد از لاگین انتقال به"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:520
-#: saloos/saloos-addons/includes/languages/trans_addons.php:476
+#: saloos/saloos-addons/includes/languages/trans_addons.php:483
 #: sarshomar/includes/languages/trans_addons.php:483
 msgid "Increase account security"
 msgstr "افزایش امنیت بخش اکانت"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:525
-#: saloos/saloos-addons/includes/languages/trans_addons.php:471
+#: saloos/saloos-addons/includes/languages/trans_addons.php:478
 #: sarshomar/includes/languages/trans_addons.php:478
 msgid "Access with pass phrase"
 msgstr "دسترسی با عبارت گذرگاه"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:530
-#: saloos/saloos-addons/includes/languages/trans_addons.php:472
+#: saloos/saloos-addons/includes/languages/trans_addons.php:479
 #: sarshomar/includes/languages/trans_addons.php:479
 msgid "Pass phrase key"
 msgstr "کلید عبارت گذرگاه"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:537
-#: saloos/saloos-addons/includes/languages/trans_addons.php:473
+#: saloos/saloos-addons/includes/languages/trans_addons.php:480
 #: sarshomar/includes/languages/trans_addons.php:480
 msgid "Pass phrase value"
 msgstr "مقدار عبارت گذرگاه"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:542
-#: saloos/saloos-addons/includes/languages/trans_addons.php:475
+#: saloos/saloos-addons/includes/languages/trans_addons.php:482
 #: sarshomar/includes/languages/trans_addons.php:482
 msgid "Status of account service"
 msgstr "وضعیت سرویس اکانت"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:547
-#: saloos/saloos-addons/includes/languages/trans_addons.php:467
+#: saloos/saloos-addons/includes/languages/trans_addons.php:474
 #: sarshomar/includes/languages/trans_addons.php:474
 msgid "Allow registration"
 msgstr "اجازه ثبت‌نام کاربر جدید"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:552
 #: saloos/saloos-addons/includes/cls/form/options.php:553
-#: saloos/saloos-addons/includes/languages/trans_addons.php:469
+#: saloos/saloos-addons/includes/languages/trans_addons.php:476
 #: sarshomar/includes/languages/trans_addons.php:476
 msgid "Default permission"
 msgstr "سطح‌دسترسی پیش فرض"
 
 #: saloos/saloos-addons/includes/cls/form/options.php:559
-#: saloos/saloos-addons/includes/languages/trans_addons.php:474
+#: saloos/saloos-addons/includes/languages/trans_addons.php:481
 #: sarshomar/includes/languages/trans_addons.php:481
 msgid "Allow recovery account"
 msgstr "اجازه بازیابی اکانت"
@@ -2117,14 +2121,14 @@ msgid "Tel"
 msgstr "تلفن"
 
 #: saloos/saloos-addons/includes/cls/form/symbol.php:19
-#: saloos/saloos-addons/includes/languages/trans_addons.php:199
+#: saloos/saloos-addons/includes/languages/trans_addons.php:200
 #: sarshomar/includes/languages/trans_addons.php:200
 #: sarshomar/includes/languages/trans_twig.php:13
 msgid "Mobile"
 msgstr "موبایل"
 
 #: saloos/saloos-addons/includes/cls/form/symbol.php:24
-#: saloos/saloos-addons/includes/languages/trans_addons.php:363
+#: saloos/saloos-addons/includes/languages/trans_addons.php:370
 #: sarshomar/includes/languages/trans_addons.php:370
 msgid "between 5-40 character"
 msgstr "بین ۵ تا ۴۰ کاراکتر."
@@ -2145,191 +2149,197 @@ msgstr "جستجو"
 msgid "Work with Ermile in your own language"
 msgstr "با زبان خودتان با ارمایل کار کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:14
+#: saloos/saloos-addons/includes/languages/trans_addons.php:12
+#: sarshomar/includes/languages/trans_addons.php:12
+msgid "Pending"
+msgstr "در انتظار"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:15
 #: sarshomar/includes/languages/trans_addons.php:15
 msgid "Click here for recovery your password"
 msgstr "برای بازیابی کلمه عبور کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:15
+#: saloos/saloos-addons/includes/languages/trans_addons.php:16
 #: sarshomar/includes/languages/trans_addons.php:16
 msgid "Can't access your account?"
 msgstr "نمی توانید به حساب خود وارد شوید؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:16
+#: saloos/saloos-addons/includes/languages/trans_addons.php:17
 #: sarshomar/includes/languages/trans_addons.php:17
 msgid "Don't have an account?"
 msgstr "اکانت ندارید؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:17
+#: saloos/saloos-addons/includes/languages/trans_addons.php:18
 #: sarshomar/includes/languages/trans_addons.php:18
 msgid "Click here to create an account"
 msgstr "برای ساخت اکانت کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:18
+#: saloos/saloos-addons/includes/languages/trans_addons.php:19
 #: sarshomar/includes/languages/trans_addons.php:19
 msgid "Sign Up"
 msgstr "ثبت نام"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:21
+#: saloos/saloos-addons/includes/languages/trans_addons.php:22
 #: sarshomar/includes/languages/trans_addons.php:22
 msgid "click here to login to your account"
 msgstr "برای ورود به اکانت خود کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:22
-msgid "are you remember your password!?"
-msgstr "آیا کلمه عبور خود را به خاطر آوردید!؟"
+#: saloos/saloos-addons/includes/languages/trans_addons.php:23
+#: sarshomar/includes/languages/trans_addons.php:23
+msgid "Remembered your password?"
+msgstr "کلمه عبور خود را به خاطر آوردید!؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:25
+#: saloos/saloos-addons/includes/languages/trans_addons.php:26
 #: sarshomar/includes/languages/trans_addons.php:26
 msgid "already have an account?"
 msgstr "اکانت دارید؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:26
+#: saloos/saloos-addons/includes/languages/trans_addons.php:27
 #: sarshomar/includes/languages/trans_addons.php:27
 msgid "click here to sign in to your account"
 msgstr "برای ورود به اکانت خود کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:27
+#: saloos/saloos-addons/includes/languages/trans_addons.php:28
 #: sarshomar/includes/languages/trans_addons.php:28
 msgid "Sign In"
 msgstr "ورود به سیستم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:31
+#: saloos/saloos-addons/includes/languages/trans_addons.php:32
 #: sarshomar/includes/languages/trans_addons.php:32
 msgid "please check your mobile and enter the code"
 msgstr "پس از بررسی موبایل خود کد را وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:32
+#: saloos/saloos-addons/includes/languages/trans_addons.php:33
 #: sarshomar/includes/languages/trans_addons.php:33
 msgid "don't receive message?"
 msgstr "هنوز پیامک ما را دریافت نکردید؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:35
+#: saloos/saloos-addons/includes/languages/trans_addons.php:36
 #: sarshomar/includes/languages/trans_addons.php:36
 msgid "Please send number <b>2015</b> to below number"
 msgstr "لطفا عدد <b>2015</b> را به شماره زیر پیامک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:36
+#: saloos/saloos-addons/includes/languages/trans_addons.php:37
 #: sarshomar/includes/languages/trans_addons.php:37
 msgid "Then wait we receive your message and verificate your account"
 msgstr ""
 "ما در انتظار پیامک شما بوده و پس از دریافت اکانت را برایتان فعال خواهیم کردیم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:39
+#: saloos/saloos-addons/includes/languages/trans_addons.php:40
 #: sarshomar/includes/languages/trans_addons.php:40
 msgid "Hello!"
 msgstr "سلام!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:40
+#: saloos/saloos-addons/includes/languages/trans_addons.php:41
 #: sarshomar/includes/languages/trans_addons.php:41
 msgid "Welcome to Saloos control panel."
 msgstr "به کنترل پنل سالوس خوش آمدید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:41
+#: saloos/saloos-addons/includes/languages/trans_addons.php:42
 #: sarshomar/includes/languages/trans_addons.php:42
 msgid "Daily Visit Chart"
 msgstr "نمودار بازدید روزانه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:42
+#: saloos/saloos-addons/includes/languages/trans_addons.php:43
 #: sarshomar/includes/languages/trans_addons.php:43
 msgid "Summarized data of site"
 msgstr "خلاصه داده‌های سایت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:43
+#: saloos/saloos-addons/includes/languages/trans_addons.php:44
 #: sarshomar/includes/languages/trans_addons.php:44
 msgid "No. of"
 msgstr "تعداد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:44
+#: saloos/saloos-addons/includes/languages/trans_addons.php:45
 #: sarshomar/includes/languages/trans_addons.php:45
 msgid "Posts"
 msgstr "نوشته‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:45
+#: saloos/saloos-addons/includes/languages/trans_addons.php:46
 #: sarshomar/includes/languages/trans_addons.php:46
 msgid "Pages"
 msgstr "برگه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:46
+#: saloos/saloos-addons/includes/languages/trans_addons.php:47
 #: sarshomar/includes/languages/trans_addons.php:47
 msgid "Attachments"
 msgstr "فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:47
+#: saloos/saloos-addons/includes/languages/trans_addons.php:48
 #: sarshomar/includes/languages/trans_addons.php:48
 #: sarshomar/includes/languages/trans_twig.php:306
 msgid "Tags"
 msgstr "کلیدواژه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:49
+#: saloos/saloos-addons/includes/languages/trans_addons.php:50
 #: sarshomar/includes/languages/trans_addons.php:50
 #: sarshomar/includes/languages/trans_twig.php:589
 msgid "Users"
 msgstr "کاربران"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:50
+#: saloos/saloos-addons/includes/languages/trans_addons.php:51
 #: sarshomar/includes/languages/trans_addons.php:51
 msgid "Top Visited Page"
 msgstr "پربازدیدترین صفحات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:51
+#: saloos/saloos-addons/includes/languages/trans_addons.php:52
 #: sarshomar/includes/languages/trans_addons.php:52
 msgid "Visit"
 msgstr "بازدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:52
+#: saloos/saloos-addons/includes/languages/trans_addons.php:53
 #: sarshomar/includes/languages/trans_addons.php:53
 msgid "Page Views"
 msgstr "بازدید صفحات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:53
+#: saloos/saloos-addons/includes/languages/trans_addons.php:54
 #: sarshomar/includes/languages/trans_addons.php:54
 msgid "Bots"
 msgstr "ربات‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:56
+#: saloos/saloos-addons/includes/languages/trans_addons.php:57
 #: sarshomar/includes/languages/trans_addons.php:57
 msgid "Add New Record"
 msgstr "افزودن رکورد جدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:57
+#: saloos/saloos-addons/includes/languages/trans_addons.php:58
 #: sarshomar/includes/languages/trans_addons.php:58
 #: sarshomar/includes/languages/trans_twig.php:130
 msgid "View your current location and navigate to parent of it"
 msgstr "مکان فعلی خود را دیده و به مکان‌های والد آن منتقل شوید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:60
+#: saloos/saloos-addons/includes/languages/trans_addons.php:61
 #: sarshomar/includes/languages/trans_addons.php:61
 msgid "Use this menu for navigating to all part of control panel"
 msgstr "با کمک این منو می‌توانید به تمامی بخش‌های کنترل پنل ناوبری داشته باشید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:63
+#: saloos/saloos-addons/includes/languages/trans_addons.php:64
 #: sarshomar/includes/languages/trans_addons.php:64
 #: sarshomar/includes/languages/trans_twig.php:138
 msgid "Next →"
 msgstr "→ بعدی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:64
+#: saloos/saloos-addons/includes/languages/trans_addons.php:65
 #: sarshomar/includes/languages/trans_addons.php:65
 #: sarshomar/includes/languages/trans_twig.php:139
 msgid "← Back"
 msgstr "قبلی ←"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:65
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:134
+#: saloos/saloos-addons/includes/languages/trans_addons.php:66
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:131
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:134
 #: sarshomar/includes/languages/trans_addons.php:66
 #: sarshomar/includes/languages/trans_twig.php:140
 msgid "Skip"
 msgstr "پرش"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:66
+#: saloos/saloos-addons/includes/languages/trans_addons.php:67
 #: sarshomar/includes/languages/trans_addons.php:67
 #: sarshomar/includes/languages/trans_twig.php:141
 msgid "Done"
 msgstr "اتمام"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:67
+#: saloos/saloos-addons/includes/languages/trans_addons.php:68
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:20
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:36
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:77
@@ -2348,178 +2358,179 @@ msgstr "اتمام"
 msgid "Help"
 msgstr "راهنمایی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:68
+#: saloos/saloos-addons/includes/languages/trans_addons.php:69
 #: sarshomar/includes/languages/trans_addons.php:69
 msgid "You can work with control panel in your language"
 msgstr "شما می‌توانید کنترل پنل را با زبان خود تجربه کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:69
+#: saloos/saloos-addons/includes/languages/trans_addons.php:70
 #: sarshomar/includes/languages/trans_addons.php:70
 msgid "Go to your profile, change password or logout from conrtol panel"
 msgstr "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:70
+#: saloos/saloos-addons/includes/languages/trans_addons.php:71
 #: sarshomar/includes/languages/trans_addons.php:71
 msgid "My Profile"
 msgstr "پروفایل من"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:71
+#: saloos/saloos-addons/includes/languages/trans_addons.php:72
 #: sarshomar/includes/languages/trans_addons.php:72
 msgid "Change Password"
 msgstr "تغییر گذرواژه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:72
+#: saloos/saloos-addons/includes/languages/trans_addons.php:73
 #: sarshomar/includes/languages/trans_addons.php:73
 msgid "Lock Screen"
 msgstr "قفل کردن"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:73
+#: saloos/saloos-addons/includes/languages/trans_addons.php:74
 #: sarshomar/includes/languages/trans_addons.php:74
 msgid "Logout"
 msgstr "خروج از سیستم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:74
+#: saloos/saloos-addons/includes/languages/trans_addons.php:75
 #: sarshomar/includes/languages/trans_addons.php:75
 msgid "We glad to working for you and hope you enjoy using our system"
 msgstr "ما از کار برای شما خوشحال بوده و امیدواریم شما نیز از سیستم ما لذت ببرید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:75
+#: saloos/saloos-addons/includes/languages/trans_addons.php:76
 #: sarshomar/includes/languages/trans_addons.php:76
 msgid "Some right reserved"
 msgstr "برخی از حقوق محفوظ است!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:76
+#: saloos/saloos-addons/includes/languages/trans_addons.php:77
 #: sarshomar/includes/languages/trans_addons.php:77
 msgid "Powered by"
 msgstr "قدرت گرفته از"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:77
+#: saloos/saloos-addons/includes/languages/trans_addons.php:78
 #: saloos/saloos-addons/lib/mvc/viewes/constructor.php:40
 #: sarshomar/includes/languages/trans_addons.php:78
 #: sarshomar/includes/languages/trans_twig.php:1053
 msgid "Saloos"
 msgstr "سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:78
+#: saloos/saloos-addons/includes/languages/trans_addons.php:79
 #: sarshomar/includes/languages/trans_addons.php:79
 msgid "Last update on"
 msgstr "آخرین بروزرسانی در"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:79
+#: saloos/saloos-addons/includes/languages/trans_addons.php:80
 #: sarshomar/includes/languages/trans_addons.php:80
 msgid "wait for next version!"
 msgstr "منتظر نسخه بعدی باشید!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:80
+#: saloos/saloos-addons/includes/languages/trans_addons.php:81
 #: sarshomar/includes/languages/trans_addons.php:81
 msgid "Version"
 msgstr "نسخه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:85
+#: saloos/saloos-addons/includes/languages/trans_addons.php:86
 #: sarshomar/includes/languages/trans_addons.php:86
 #: sarshomar/includes/languages/trans_twig.php:29
 msgid "General"
 msgstr "عمومی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:86
+#: saloos/saloos-addons/includes/languages/trans_addons.php:87
 #: sarshomar/includes/languages/trans_addons.php:87
 msgid "Config"
 msgstr "کانفیگ"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:88
+#: saloos/saloos-addons/includes/languages/trans_addons.php:89
 #: sarshomar/includes/languages/trans_addons.php:89
 msgid "Social Networks"
 msgstr "شبکه‌های اجتماعی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:89
+#: saloos/saloos-addons/includes/languages/trans_addons.php:90
 #: sarshomar/includes/languages/trans_addons.php:90
 #: sarshomar/includes/languages/trans_twig.php:35
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:90
+#: saloos/saloos-addons/includes/languages/trans_addons.php:91
 #: sarshomar/includes/languages/trans_addons.php:91
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:92
+#: saloos/saloos-addons/includes/languages/trans_addons.php:93
 #: sarshomar/includes/languages/trans_addons.php:93
 msgid "Edit your site config options"
 msgstr "ویرایش تنظیمات اولیه سایت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:93
+#: saloos/saloos-addons/includes/languages/trans_addons.php:94
 #: sarshomar/includes/languages/trans_addons.php:94
 msgid "Set default settings"
 msgstr "تنظیمات پیش‌فرض"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:94
+#: saloos/saloos-addons/includes/languages/trans_addons.php:95
 #: sarshomar/includes/languages/trans_addons.php:95
 msgid "Edit your site social networks options"
 msgstr "تنظیمات شبکه‌های اجتماعی وب‌سایت را ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:98
+#: saloos/saloos-addons/includes/languages/trans_addons.php:99
 #: sarshomar/includes/languages/trans_addons.php:99
 msgid "Edit SMS settings"
 msgstr "ویرایش تنظیمات پیامک"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:99
+#: saloos/saloos-addons/includes/languages/trans_addons.php:100
 #: sarshomar/includes/languages/trans_addons.php:100
 msgid "Edit your site accounting options"
 msgstr "ویرایش تنظیمات اکانت وب‌سایت شما"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:102
+#: saloos/saloos-addons/includes/languages/trans_addons.php:103
 #: sarshomar/includes/languages/trans_addons.php:103
 msgid "Define new permission"
 msgstr "تعریف سطح‌دسترسی جدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:103
+#: saloos/saloos-addons/includes/languages/trans_addons.php:104
 #: sarshomar/includes/languages/trans_addons.php:104
 msgid "Permission Name"
 msgstr "نام سطح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:104
+#: saloos/saloos-addons/includes/languages/trans_addons.php:105
 #: sarshomar/includes/languages/trans_addons.php:105
 msgid "Insert new permission type"
 msgstr "افزودن سطح‌‌دسترسی جدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:105
+#: saloos/saloos-addons/includes/languages/trans_addons.php:106
 #: sarshomar/includes/languages/trans_addons.php:106
 msgid "for define new type of permission fill the name and click on insert"
 msgstr "برای تعریف یک سطح‌دسترسی جدید، نام آن را نوشته و بر روی افزودن کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:106
+#: saloos/saloos-addons/includes/languages/trans_addons.php:107
 #: sarshomar/includes/languages/trans_addons.php:107
 msgid "After insert you can edit your custom permission"
 msgstr "پس از افزودن سطح‌دسترسی می‌توانید آن را ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:107
+#: saloos/saloos-addons/includes/languages/trans_addons.php:108
 #: sarshomar/includes/languages/trans_addons.php:108
 msgid "list of permissions"
 msgstr "لیست سطوح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:108
+#: saloos/saloos-addons/includes/languages/trans_addons.php:109
 #: sarshomar/includes/languages/trans_addons.php:109
 msgid "Back to"
 msgstr "برگشت به"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:109
+#: saloos/saloos-addons/includes/languages/trans_addons.php:110
 #: sarshomar/includes/languages/trans_addons.php:110
 msgid "list of current permissions is listed here, for edit click on it"
 msgstr ""
 "لیست سطوح‌دسترسی فعلی در اینجا وجود دارد که با کلیک بر روی هر کدام می‌توانید آن را "
 "ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:110
+#: saloos/saloos-addons/includes/languages/trans_addons.php:111
 #: sarshomar/includes/languages/trans_addons.php:111
 msgid "delete permission"
 msgstr "حذف سطح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:111
+#: saloos/saloos-addons/includes/languages/trans_addons.php:112
 #: sarshomar/includes/languages/trans_addons.php:112
 msgid "seriously, are you sure? There's no coming back."
 msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:112
+#: saloos/saloos-addons/includes/languages/trans_addons.php:113
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:162
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:183
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:71
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:183
@@ -2529,145 +2540,145 @@ msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ن
 msgid "Cancel"
 msgstr "انصراف"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:113
+#: saloos/saloos-addons/includes/languages/trans_addons.php:114
 #: sarshomar/includes/languages/trans_addons.php:114
 msgid "or"
 msgstr "یا"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:114
+#: saloos/saloos-addons/includes/languages/trans_addons.php:115
 #: sarshomar/includes/languages/trans_addons.php:115
 msgid "Delete"
 msgstr "حذف"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:117
+#: saloos/saloos-addons/includes/languages/trans_addons.php:118
 #: sarshomar/includes/languages/trans_addons.php:118
 msgid "You are change this type of permission"
 msgstr "شما در حال ویرایش این سطح‌دسترسی هستید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:118
+#: saloos/saloos-addons/includes/languages/trans_addons.php:119
 #: sarshomar/includes/languages/trans_addons.php:119
 msgid "Edit permission of"
 msgstr "ویرایش دسترسی به"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:119
+#: saloos/saloos-addons/includes/languages/trans_addons.php:120
 #: sarshomar/includes/languages/trans_addons.php:120
 msgid "Allow or disallow user to access all part of service with full permission!"
 msgstr "اجازه یا عدم اجازه به کاربر برای دسترسی کامل به تمام بخش‌های سرویس!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:120
+#: saloos/saloos-addons/includes/languages/trans_addons.php:121
 #: sarshomar/includes/languages/trans_addons.php:121
 msgid "All"
 msgstr "همه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:121
+#: saloos/saloos-addons/includes/languages/trans_addons.php:122
 #: sarshomar/includes/languages/trans_addons.php:122
 msgid "Allow or disallow user to view all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده تمام بخش‌های سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:122
+#: saloos/saloos-addons/includes/languages/trans_addons.php:123
 #: sarshomar/includes/languages/trans_addons.php:123
 msgid "View"
 msgstr "نمایش"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:123
+#: saloos/saloos-addons/includes/languages/trans_addons.php:124
 #: sarshomar/includes/languages/trans_addons.php:124
 msgid "Allow or disallow user to use and insert in all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده تمام بخش‌های سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:124
+#: saloos/saloos-addons/includes/languages/trans_addons.php:125
 #: sarshomar/content_u/add/view.php:20
 #: sarshomar/includes/languages/trans_addons.php:125
 #: sarshomar/includes/languages/trans_twig.php:307
 msgid "Add"
 msgstr "افزودن"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:125
+#: saloos/saloos-addons/includes/languages/trans_addons.php:126
 #: sarshomar/includes/languages/trans_addons.php:126
 msgid "Allow or disallow user to edit all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای ویرایش تمام بخش‌های سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:127
+#: saloos/saloos-addons/includes/languages/trans_addons.php:128
 #: sarshomar/includes/languages/trans_addons.php:128
 msgid "Allow or disallow user to delete in all part of service"
 msgstr "اجازه یا عدم اجازه به کاربر برای دسترسی حذف در تمام بخش‌های سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:128
+#: saloos/saloos-addons/includes/languages/trans_addons.php:129
 #: sarshomar/includes/languages/trans_addons.php:129
 msgid "Allow or disallow user to access another user data"
 msgstr "دسترسی یا عدم دسترسی به اطلاعات سایر کاربران"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:129
+#: saloos/saloos-addons/includes/languages/trans_addons.php:130
 #: sarshomar/includes/languages/trans_addons.php:130
 msgid "Admin"
 msgstr "مدیریت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:130
+#: saloos/saloos-addons/includes/languages/trans_addons.php:131
 #: sarshomar/includes/languages/trans_addons.php:131
 msgid "Empty"
 msgstr "خالی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:131
+#: saloos/saloos-addons/includes/languages/trans_addons.php:132
 #: sarshomar/includes/languages/trans_addons.php:132
 msgid "In this section you can edit permission of"
 msgstr "در این قسمت شما می‌توانید دسترسی به این بخش را ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:134
+#: saloos/saloos-addons/includes/languages/trans_addons.php:135
 #: sarshomar/includes/languages/trans_addons.php:135
 msgid "Enter title here"
 msgstr "عنوان را اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:135
+#: saloos/saloos-addons/includes/languages/trans_addons.php:136
 #: sarshomar/includes/languages/trans_addons.php:136
 msgid "Set the title of your content"
 msgstr "عنوان مطلب خود را در اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:136
+#: saloos/saloos-addons/includes/languages/trans_addons.php:137
 #: sarshomar/includes/languages/trans_addons.php:137
 msgid "Url of your content appear here, click on it to view"
 msgstr ""
 "آدرس مطلب شما در این بخش نمایش داده می‌شود که با کلیک می‌توانید آن را مشاهده کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:137
+#: saloos/saloos-addons/includes/languages/trans_addons.php:138
 #: sarshomar/includes/languages/trans_addons.php:138
 msgid "Check result"
 msgstr "بررسی نتیجه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:138
+#: saloos/saloos-addons/includes/languages/trans_addons.php:139
 #: sarshomar/includes/languages/trans_addons.php:139
 msgid "Show in new tab"
 msgstr "نمایش در تب جدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:139
+#: saloos/saloos-addons/includes/languages/trans_addons.php:140
 #: sarshomar/includes/languages/trans_addons.php:140
 msgid "Write your post content here"
 msgstr "محتوای نوشته خود را اینجا بنویسید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:140
+#: saloos/saloos-addons/includes/languages/trans_addons.php:141
 #: sarshomar/includes/languages/trans_addons.php:141
 msgid "Excerpt"
 msgstr "چکیده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:141
+#: saloos/saloos-addons/includes/languages/trans_addons.php:142
 #: sarshomar/includes/languages/trans_addons.php:142
 msgid "If excerpt is empty we get it automatically from content"
 msgstr "اگر چکیده را خالی بگذارید ما آن را به صورت خودکار از روی نوشته پر میکنیم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:142
+#: saloos/saloos-addons/includes/languages/trans_addons.php:143
 #: sarshomar/includes/languages/trans_addons.php:143
 msgid "Summaries of your content that can be used as page description."
 msgstr "خلاصه‌ای از نوشته شما که برای نمایش به عنوان توضیح نوشته استفاده می‌شود."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:143
+#: saloos/saloos-addons/includes/languages/trans_addons.php:144
 #: sarshomar/includes/languages/trans_addons.php:144
 msgid "Enter Tags here"
 msgstr "تگ‌ها را اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:144
+#: saloos/saloos-addons/includes/languages/trans_addons.php:145
 #: sarshomar/includes/languages/trans_addons.php:145
 msgid "Enter Tags"
 msgstr "تگ را وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:145
+#: saloos/saloos-addons/includes/languages/trans_addons.php:146
 #: sarshomar/includes/languages/trans_addons.php:146
 msgid ""
 "Normally, tags are ad-hoc keywords that identify important information in your "
@@ -2678,18 +2689,18 @@ msgstr ""
 "مانند نام، موضوع یا .. هستند که امکان تکرار آن‌ها در سایر نوشته‌ها مشخص نیست، این "
 "در حالی است که دسته‌ها از قبل مشخص شده هستند."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:146
+#: saloos/saloos-addons/includes/languages/trans_addons.php:147
 #: sarshomar/includes/languages/trans_addons.php:147
 msgid "View list of tags"
 msgstr "مشاهده لیست کلیدواژه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:147
+#: saloos/saloos-addons/includes/languages/trans_addons.php:148
 #: sarshomar/includes/languages/trans_addons.php:148
 #: sarshomar/includes/languages/trans_twig.php:308
 msgid "Slug"
 msgstr "نامک"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:148
+#: saloos/saloos-addons/includes/languages/trans_addons.php:149
 #: sarshomar/includes/languages/trans_addons.php:149
 msgid "Set slug of content for better addressing in your site and increase SEO rate"
 msgstr ""
@@ -2697,32 +2708,32 @@ msgstr ""
 "وضعیت آدرس‌دهی و افزایش رنک سئو کمک کنید. در صورتی که شما نامک را وارد نکنید ما آن "
 "را خودمان خواهیم ساخت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:149
+#: saloos/saloos-addons/includes/languages/trans_addons.php:150
 #: sarshomar/includes/languages/trans_addons.php:150
 msgid "Enter slug here"
 msgstr "نامک را اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:150
+#: saloos/saloos-addons/includes/languages/trans_addons.php:151
 #: sarshomar/includes/languages/trans_addons.php:151
 msgid "ShortURL"
 msgstr "آدرس کوتاه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:151
+#: saloos/saloos-addons/includes/languages/trans_addons.php:152
 #: sarshomar/includes/languages/trans_addons.php:152
 msgid "show short URL of this content"
 msgstr "نمایش آدرس کوتاه برای این نوشته"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:152
+#: saloos/saloos-addons/includes/languages/trans_addons.php:153
 #: sarshomar/includes/languages/trans_addons.php:153
 msgid "Enter shortURL here"
 msgstr "آدرس کوتاه را در اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:153
+#: saloos/saloos-addons/includes/languages/trans_addons.php:154
 #: sarshomar/includes/languages/trans_addons.php:154
 msgid "Use this shortcode on your posts"
 msgstr "از این کدکوتاه شده در مطالب خود استفاده کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:154
+#: saloos/saloos-addons/includes/languages/trans_addons.php:155
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:186
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:27
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:186
@@ -2732,24 +2743,24 @@ msgstr "از این کدکوتاه شده در مطالب خود استفاده 
 msgid "Language"
 msgstr "زبان"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:155
+#: saloos/saloos-addons/includes/languages/trans_addons.php:156
 #: sarshomar/includes/languages/trans_addons.php:156
 msgid "Set language of your content to show only in this language"
 msgstr ""
 "با تنظیم زبان مربوط به این مطلب آن را فقط در زبان انتخاب شده نمایش خواهیم داد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:156
+#: saloos/saloos-addons/includes/languages/trans_addons.php:157
 #: sarshomar/includes/languages/trans_addons.php:157
 msgid "All Languages"
 msgstr "همه زبان‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:157
+#: saloos/saloos-addons/includes/languages/trans_addons.php:158
 #: sarshomar/includes/languages/trans_addons.php:158
 #: sarshomar/includes/languages/trans_twig.php:77
 msgid "Status"
 msgstr "وضعیت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:158
+#: saloos/saloos-addons/includes/languages/trans_addons.php:159
 #: sarshomar/includes/languages/trans_addons.php:159
 msgid ""
 "All of content set as draft in default, for showing it to visitors you must set "
@@ -2758,22 +2769,22 @@ msgstr ""
 "تمام مطالب به صورت پیش فرض در حالت پیش نویس قرار می‌گیرند که شما برای انتشار و "
 "نمایش آن به بازدیدکنندگان باید وضعیت آن را به منتشرشده تغییر دهید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:159
+#: saloos/saloos-addons/includes/languages/trans_addons.php:160
 #: sarshomar/includes/languages/trans_addons.php:160
 msgid "Submit Changes"
 msgstr "ارسال تغییرات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:160
+#: saloos/saloos-addons/includes/languages/trans_addons.php:161
 #: sarshomar/includes/languages/trans_addons.php:161
 msgid "After all changes, you must press this key to Submit"
 msgstr "بعد از همه تغییرات شما باید بر روی این دکمه برای ثبت نهایی کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:161
+#: saloos/saloos-addons/includes/languages/trans_addons.php:162
 #: sarshomar/includes/languages/trans_addons.php:162
 msgid "Update"
 msgstr "بروزرسانی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:162
+#: saloos/saloos-addons/includes/languages/trans_addons.php:163
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:342
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:342
 #: sarshomar/includes/languages/trans_addons.php:163
@@ -2781,27 +2792,27 @@ msgstr "بروزرسانی"
 msgid "Publish"
 msgstr "انتشار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:163
+#: saloos/saloos-addons/includes/languages/trans_addons.php:164
 #: sarshomar/includes/languages/trans_addons.php:164
 msgid "Page Attributes"
 msgstr "ویژگی‌های برگه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:164
+#: saloos/saloos-addons/includes/languages/trans_addons.php:165
 #: sarshomar/includes/languages/trans_addons.php:165
 msgid "Parent Page"
 msgstr "برگه والد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:165
+#: saloos/saloos-addons/includes/languages/trans_addons.php:166
 #: sarshomar/includes/languages/trans_addons.php:166
 msgid "Select parent page to create a group of pages"
 msgstr "با انتخاب برگه والد "
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:166
+#: saloos/saloos-addons/includes/languages/trans_addons.php:167
 #: sarshomar/includes/languages/trans_addons.php:167
 msgid "Without parent"
 msgstr "بدون والد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:167
+#: saloos/saloos-addons/includes/languages/trans_addons.php:168
 #: sarshomar/includes/languages/trans_addons.php:168
 msgid ""
 "You can nest Pages under other Pages by making one the “Parent” of the other, "
@@ -2810,89 +2821,89 @@ msgstr ""
 "شما می‌توانید یک برگه را با کمک ویژگی والد به عنوان زیرشاخته برگه‌ای دیگر ثبت کنید "
 "و به این شکل گروهی از برگه‌ها بسازید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:168
+#: saloos/saloos-addons/includes/languages/trans_addons.php:169
 #: sarshomar/includes/languages/trans_addons.php:169
 msgid "Select a category of your content"
 msgstr "دسته مدنظر برای مطلب خود را انتخاب کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:169
+#: saloos/saloos-addons/includes/languages/trans_addons.php:170
 #: sarshomar/includes/languages/trans_addons.php:170
 msgid "Enter cat here"
 msgstr "دسته را اینجا وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:170
+#: saloos/saloos-addons/includes/languages/trans_addons.php:171
 #: sarshomar/includes/languages/trans_addons.php:171
 msgid "Add New Category"
 msgstr "افزودن دسته‌بندی جدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:171
+#: saloos/saloos-addons/includes/languages/trans_addons.php:172
 #: sarshomar/includes/languages/trans_addons.php:172
 msgid "Featured Image"
 msgstr "تصویر شاخص"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:172
+#: saloos/saloos-addons/includes/languages/trans_addons.php:173
 #: sarshomar/includes/languages/trans_addons.php:173
 msgid "This allows you to associate an image with your content."
 msgstr "این به شما اجازه تنظیم تصویر شاخص برای این مطلب را می‌دهد."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:173
+#: saloos/saloos-addons/includes/languages/trans_addons.php:174
 #: sarshomar/includes/languages/trans_addons.php:174
 msgid "Enter thumb id"
 msgstr "کد تصویرک را وارد کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:174
+#: saloos/saloos-addons/includes/languages/trans_addons.php:175
 #: sarshomar/includes/languages/trans_addons.php:175
 msgid "Set featured image"
 msgstr "تنظیم تصویر شاخص"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:175
+#: saloos/saloos-addons/includes/languages/trans_addons.php:176
 #: sarshomar/includes/languages/trans_addons.php:176
 msgid "You can see type of your file and click on image to direct access to file"
 msgstr ""
 "شما می‌توانید نوع فایل را دیده و با کلیک روی عکس آن، مستقیما به آن دسترسی داشته "
 "باشید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:176
+#: saloos/saloos-addons/includes/languages/trans_addons.php:177
 #: sarshomar/includes/languages/trans_addons.php:177
 msgid "Click to view"
 msgstr "برای مشاهده کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:177
+#: saloos/saloos-addons/includes/languages/trans_addons.php:178
 #: sarshomar/includes/languages/trans_addons.php:178
 msgid "Height"
 msgstr "طول"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:178
+#: saloos/saloos-addons/includes/languages/trans_addons.php:179
 #: sarshomar/includes/languages/trans_addons.php:179
 msgid "Width"
 msgstr "عرض"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:179
+#: saloos/saloos-addons/includes/languages/trans_addons.php:180
 #: sarshomar/includes/languages/trans_addons.php:180
 msgid "Define poll"
 msgstr "تعریف نظرسنجی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:180
+#: saloos/saloos-addons/includes/languages/trans_addons.php:181
 #: sarshomar/includes/languages/trans_addons.php:181
 msgid "Define poll conditions"
 msgstr "تعریف شرایط نظرسنجی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:183
+#: saloos/saloos-addons/includes/languages/trans_addons.php:184
 #: sarshomar/includes/languages/trans_addons.php:184
 msgid "Options"
 msgstr "تنظیمات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:188
+#: saloos/saloos-addons/includes/languages/trans_addons.php:189
 #: sarshomar/includes/languages/trans_addons.php:189
 msgid "Click to check result"
 msgstr "برای مشاهده نتیجه کلیک کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:189
+#: saloos/saloos-addons/includes/languages/trans_addons.php:190
 #: sarshomar/includes/languages/trans_addons.php:190
 msgid "What’s the difference between categories and tags?"
 msgstr "تفاوت بین دسته‌ها و کلیدواژه‌ها در چیست؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:190
+#: saloos/saloos-addons/includes/languages/trans_addons.php:191
 #: sarshomar/includes/languages/trans_addons.php:191
 msgid ""
 "If you think of your site like a book, the categories are like the Table of "
@@ -2901,7 +2912,7 @@ msgstr ""
 "اگر سایت را مانند یک کتاب فرض کنید، دسته‌ها مثل فهرست مطالب و کلیدواژه‌ها مثل "
 "عبارات خاص در ایندکس هستند."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:191
+#: saloos/saloos-addons/includes/languages/trans_addons.php:192
 #: sarshomar/includes/languages/trans_addons.php:192
 msgid ""
 "You can nest category under other category by making one the “Parent” of the "
@@ -2909,88 +2920,88 @@ msgid ""
 msgstr ""
 "شما می‌توانید یک دسته را با کمک ویژگی والد به عنوان زیرشاخه دسته‌ای دیگر ثبت کنید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:194
+#: saloos/saloos-addons/includes/languages/trans_addons.php:195
 #: sarshomar/includes/languages/trans_addons.php:195
 msgid "Actions"
 msgstr "عملیات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:195
+#: saloos/saloos-addons/includes/languages/trans_addons.php:196
 #: sarshomar/includes/languages/trans_addons.php:196
 msgid "Data not exist!"
 msgstr "داده‌ای برای نمایش وجود ندارد!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:196
+#: saloos/saloos-addons/includes/languages/trans_addons.php:197
 #: sarshomar/includes/languages/trans_addons.php:197
 msgid "delete record"
 msgstr "حذف رکورد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:201
+#: saloos/saloos-addons/includes/languages/trans_addons.php:202
 #: sarshomar/includes/languages/trans_addons.php:202
 #: sarshomar/includes/languages/trans_twig.php:994
 msgid "Display Name"
 msgstr "نام برای نمایش عمومی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:202
+#: saloos/saloos-addons/includes/languages/trans_addons.php:203
 #: sarshomar/includes/languages/trans_addons.php:203
 msgid "Edit your profile data"
 msgstr "اطلاعات پروفایل خود را ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:205
+#: saloos/saloos-addons/includes/languages/trans_addons.php:206
 #: sarshomar/includes/languages/trans_addons.php:206
 msgid "Change type of chart to"
 msgstr "تغییر نوع نمودار به "
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:206
+#: saloos/saloos-addons/includes/languages/trans_addons.php:207
 #: sarshomar/includes/languages/trans_addons.php:207
 msgid "bar"
 msgstr "خطی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:207
+#: saloos/saloos-addons/includes/languages/trans_addons.php:208
 #: sarshomar/includes/languages/trans_addons.php:208
 msgid "area"
 msgstr "ناحیه‌ای"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:208
+#: saloos/saloos-addons/includes/languages/trans_addons.php:209
 #: sarshomar/includes/languages/trans_addons.php:209
 msgid "areaspline"
 msgstr "ناحیه‌ای نرم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:209
+#: saloos/saloos-addons/includes/languages/trans_addons.php:210
 #: sarshomar/includes/languages/trans_addons.php:210
 msgid "column"
 msgstr "ستون"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:210
+#: saloos/saloos-addons/includes/languages/trans_addons.php:211
 #: sarshomar/includes/languages/trans_addons.php:211
 msgid "View signup statistics for your website"
 msgstr "مشاهده آمار ثبت‌نام سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:211
+#: saloos/saloos-addons/includes/languages/trans_addons.php:212
 #: sarshomar/includes/languages/trans_addons.php:212
 msgid "Change period of chart"
 msgstr "تغییر بازه‌ی زمانی نمودار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:216
+#: saloos/saloos-addons/includes/languages/trans_addons.php:217
 #: sarshomar/includes/languages/trans_addons.php:217
 msgid "View visitor statistics for your website"
 msgstr "آمار بازدیدکنندگان وب‌سایت خود را مشاهده کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:217
+#: saloos/saloos-addons/includes/languages/trans_addons.php:218
 #: sarshomar/includes/languages/trans_addons.php:218
 msgid "Pageviews"
 msgstr "بازدید صفحه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:220
+#: saloos/saloos-addons/includes/languages/trans_addons.php:221
 #: sarshomar/includes/languages/trans_addons.php:221
 msgid "answered"
 msgstr "پاسخ‌داده‌شده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:223
+#: saloos/saloos-addons/includes/languages/trans_addons.php:224
 #: sarshomar/includes/languages/trans_addons.php:224
 msgid "What’s the difference between posts and pages?"
 msgstr "تفاوت بین نوشته و برگه در چیست؟"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:224
+#: saloos/saloos-addons/includes/languages/trans_addons.php:225
 #: sarshomar/includes/languages/trans_addons.php:225
 msgid ""
 "Pages are similar to Posts in that they have a title, body text, and associated "
@@ -3001,326 +3012,356 @@ msgstr ""
 "این است که به مانند نوشته‌ها دارای جریان زمانی دنباله‌دار نیستند، در حقیقت شبیه به "
 "یک پست دائمی هستند."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:225
+#: saloos/saloos-addons/includes/languages/trans_addons.php:226
 #: sarshomar/includes/languages/trans_addons.php:226
 msgid "Pages are not categorized or tagged, but can have a hierarchy."
 msgstr "برگه‌ها نمیتوانند دسته‌بندی شوند ولی می‌توانند خود دارای ساختار درختی باشند."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:226
+#: saloos/saloos-addons/includes/languages/trans_addons.php:227
 #: sarshomar/includes/languages/trans_addons.php:227
 #: sarshomar/includes/languages/trans_twig.php:572
 msgid "Draft"
 msgstr "پیش نویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:227
+#: saloos/saloos-addons/includes/languages/trans_addons.php:228
 #: sarshomar/includes/languages/trans_addons.php:228
 msgid "Deleted"
 msgstr "حذف شده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:228
+#: saloos/saloos-addons/includes/languages/trans_addons.php:229
 #: sarshomar/includes/languages/trans_addons.php:229
 msgid "Schedule"
 msgstr "زمانبندی شده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:229
+#: saloos/saloos-addons/includes/languages/trans_addons.php:230
 #: sarshomar/includes/languages/trans_addons.php:230
 msgid "Preview"
 msgstr "پیش نمایش"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:232
+#: saloos/saloos-addons/includes/languages/trans_addons.php:233
 #: sarshomar/includes/languages/trans_addons.php:233
 msgid "Drag & Drop Files Here"
 msgstr "فایل را کشیده و در اینجا رها کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:233
+#: saloos/saloos-addons/includes/languages/trans_addons.php:234
 #: sarshomar/includes/languages/trans_addons.php:234
 msgid "Choose File"
 msgstr "انتخاب فایل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:234
+#: saloos/saloos-addons/includes/languages/trans_addons.php:235
 #: sarshomar/includes/languages/trans_addons.php:235
 msgid "Maximum size allowed"
 msgstr "حداکثر سایز مجاز"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:237
+#: saloos/saloos-addons/includes/languages/trans_addons.php:238
 #: sarshomar/includes/languages/trans_addons.php:238
 msgid "You can use our tools"
 msgstr "شما می‌توانید از ابزارهای ما استفاده کنید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:238
+#: saloos/saloos-addons/includes/languages/trans_addons.php:239
 #: sarshomar/includes/languages/trans_addons.php:239
 msgid "Regenerate sitemap"
 msgstr "بازسازی نقشه سایت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:239
+#: saloos/saloos-addons/includes/languages/trans_addons.php:240
 #: sarshomar/includes/languages/trans_addons.php:240
 msgid "Extract twig trans func in current project"
 msgstr "بیرون کشیدن متن‌های قابل ترجمه توئیگ از پروژه جاری"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:240
+#: saloos/saloos-addons/includes/languages/trans_addons.php:241
 #: sarshomar/includes/languages/trans_addons.php:241
 msgid "Extract twig trans func in saloos addons"
 msgstr "استخراج متون قابل ترجمه از بخش افزودنی‌های سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:241
+#: saloos/saloos-addons/includes/languages/trans_addons.php:242
 #: sarshomar/includes/languages/trans_addons.php:242
 msgid "Automatically read database and create sql files"
 msgstr "خواندن دیتابیس و ساخت خودکار فایل‌های اس‌کیو‌ال‌آن"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:242
+#: saloos/saloos-addons/includes/languages/trans_addons.php:243
 #: sarshomar/includes/languages/trans_addons.php:243
 msgid "Show server info"
 msgstr "نمایش اطلاعات سرور"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:243
+#: saloos/saloos-addons/includes/languages/trans_addons.php:244
 #: sarshomar/includes/languages/trans_addons.php:244
 msgid "Show PHP info"
 msgstr "نمایش اطلاعات پی‌اچ‌پی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:244
+#: saloos/saloos-addons/includes/languages/trans_addons.php:245
 #: sarshomar/includes/languages/trans_addons.php:245
 #: sarshomar/includes/languages/trans_twig.php:1440
 msgid "social networks"
 msgstr "شبکه‌های اجتماعی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:245
+#: saloos/saloos-addons/includes/languages/trans_addons.php:246
+#: sarshomar/includes/languages/trans_addons.php:246
+msgid "Repository"
+msgstr "مخزن"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:247
 #: sarshomar/includes/languages/trans_addons.php:247
 msgid "Saloos Repository"
 msgstr "مخزن سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:246
+#: saloos/saloos-addons/includes/languages/trans_addons.php:248
 #: sarshomar/includes/languages/trans_addons.php:248
 msgid "Saloos Addons Repository"
 msgstr "مخزن افزونه‌های سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:247
+#: saloos/saloos-addons/includes/languages/trans_addons.php:249
+#: sarshomar/includes/languages/trans_addons.php:249
+msgid "Ermile Repository"
+msgstr "مخزن ارمایل"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:250
+#: sarshomar/includes/languages/trans_addons.php:250
+msgid "Current Project Repository"
+msgstr "مخزن پروژه‌ی کنونی"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:251
+#: sarshomar/includes/languages/trans_addons.php:251
+msgid "Database"
+msgstr "پایگاه‌داده"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:252
 #: sarshomar/includes/languages/trans_addons.php:252
 msgid "Backup"
 msgstr "پشتیبان‌گیری"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:248
+#: saloos/saloos-addons/includes/languages/trans_addons.php:253
 #: sarshomar/includes/languages/trans_addons.php:253
 msgid "Project Database"
 msgstr "دیتابیس پروژه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:249
+#: saloos/saloos-addons/includes/languages/trans_addons.php:254
 #: sarshomar/includes/languages/trans_addons.php:254
 msgid "Upgrade"
 msgstr "ارتقا"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:252
+#: saloos/saloos-addons/includes/languages/trans_addons.php:255
+#: sarshomar/includes/languages/trans_addons.php:255
+msgid "Show sql log data"
+msgstr "نمایش لاگ داده‌های sql"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:256
+#: sarshomar/includes/languages/trans_addons.php:256
+msgid "Show sql error data"
+msgstr "نمایش اطلاعات خطای SQL"
+
+#: saloos/saloos-addons/includes/languages/trans_addons.php:259
 #: sarshomar/includes/languages/trans_addons.php:259
 msgid "saloos"
 msgstr "سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:253
+#: saloos/saloos-addons/includes/languages/trans_addons.php:260
 #: sarshomar/includes/languages/trans_addons.php:260
 msgid "Powered by Saloos"
 msgstr "قدرت گرفته از سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:254
+#: saloos/saloos-addons/includes/languages/trans_addons.php:261
 #: sarshomar/includes/languages/trans_addons.php:261
 msgid "Javad Evazzadeh"
 msgstr "جواد عوض‌زاده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:255
+#: saloos/saloos-addons/includes/languages/trans_addons.php:262
 #: sarshomar/includes/languages/trans_addons.php:262
 msgid "Hasan Salehi"
 msgstr "حسن صالحی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:256
+#: saloos/saloos-addons/includes/languages/trans_addons.php:263
 #: sarshomar/includes/languages/trans_addons.php:263
 msgid "Ahmad Karimi"
 msgstr "احمد کریمی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:257
+#: saloos/saloos-addons/includes/languages/trans_addons.php:264
 #: sarshomar/includes/languages/trans_addons.php:264
 msgid "Reza Mohiti"
 msgstr "رضا محیطی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:258
+#: saloos/saloos-addons/includes/languages/trans_addons.php:265
 #: saloos/saloos-addons/lib/mvc/viewes/constructor.php:41
 #: sarshomar/includes/languages/trans_addons.php:265
 msgid "Another Project with Saloos"
 msgstr "یک پروژه دیگر با سالوس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:259
+#: saloos/saloos-addons/includes/languages/trans_addons.php:266
 #: saloos/saloos-addons/lib/mvc/viewes/constructor.php:42
 #: sarshomar/includes/languages/trans_addons.php:266
 msgid "Saloos is an artichokes for PHP programming!!"
 msgstr "سالوس یک کنگر برای برنامه نویسی با پی اچ پی!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:260
+#: saloos/saloos-addons/includes/languages/trans_addons.php:267
 #: sarshomar/includes/languages/trans_addons.php:267
 msgid "Saloos is powerfull."
 msgstr "سالوس اقتدار بخش!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:262
+#: saloos/saloos-addons/includes/languages/trans_addons.php:269
 #: sarshomar/includes/languages/trans_addons.php:269
 msgid "Insert Failed!"
 msgstr "افزودن ناموفق بود!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:264
+#: saloos/saloos-addons/includes/languages/trans_addons.php:271
 #: sarshomar/includes/languages/trans_addons.php:271
 msgid "Update Failed!"
 msgstr "بروزرسانی ناموفق بود!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:266
+#: saloos/saloos-addons/includes/languages/trans_addons.php:273
 #: saloos/saloos-addons/lib/mvc/models/commit.php:81
 #: sarshomar/includes/languages/trans_addons.php:273
 msgid "Delete Failed!"
 msgstr "حذف ناموفق بود!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:268
+#: saloos/saloos-addons/includes/languages/trans_addons.php:275
 #: saloos/saloos-addons/lib/mvc/models/commit.php:55
 #: sarshomar/includes/languages/trans_addons.php:275
 msgid "Transaction Error"
 msgstr "خطا در تراکنش"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:273
+#: saloos/saloos-addons/includes/languages/trans_addons.php:280
 #: sarshomar/includes/languages/trans_addons.php:280
 msgid ","
 msgstr "و"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:274
+#: saloos/saloos-addons/includes/languages/trans_addons.php:281
 #: sarshomar/includes/languages/trans_addons.php:281
 msgid " ,"
 msgstr " و "
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:275
+#: saloos/saloos-addons/includes/languages/trans_addons.php:282
 #: sarshomar/includes/languages/trans_addons.php:282
 msgid ", "
 msgstr "و "
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:279
+#: saloos/saloos-addons/includes/languages/trans_addons.php:286
 #: sarshomar/includes/languages/trans_addons.php:286
 msgid "empty"
 msgstr "خالی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:287
+#: saloos/saloos-addons/includes/languages/trans_addons.php:294
 #: saloos/saloos-addons/lib/mvc/models/cp.php:219
 #: sarshomar/includes/languages/trans_addons.php:294
 msgid "id does not exist!"
 msgstr "این کد در سیستم وجود ندارد!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:288
+#: saloos/saloos-addons/includes/languages/trans_addons.php:295
 #: saloos/saloos-addons/lib/mvc/models/cp.php:142
 #: sarshomar/includes/languages/trans_addons.php:295
 msgid "all require fields must fill"
 msgstr "تمام رکوردهای الزامی باید پر شوند"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:289
+#: saloos/saloos-addons/includes/languages/trans_addons.php:296
 #: saloos/saloos-addons/lib/mvc/models/cp.php:148
 #: sarshomar/includes/languages/trans_addons.php:296
 msgid "some fields must be change for update!"
 msgstr "برای بروزرسانی باید حداقل یک فیلد را تغییر دهید!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:291
+#: saloos/saloos-addons/includes/languages/trans_addons.php:298
 #: sarshomar/includes/languages/trans_addons.php:298
 msgid "ermile"
 msgstr "ارمایل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:292
+#: saloos/saloos-addons/includes/languages/trans_addons.php:299
 #: sarshomar/includes/languages/trans_addons.php:299
 msgid "Made in IRAN"
 msgstr "ساخت ایران"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:293
+#: saloos/saloos-addons/includes/languages/trans_addons.php:300
 #: sarshomar/includes/languages/trans_addons.php:300
 #: sarshomar/includes/languages/trans_twig.php:21
 msgid "Iran"
 msgstr "ایران"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:294
+#: saloos/saloos-addons/includes/languages/trans_addons.php:301
 #: sarshomar/includes/languages/trans_addons.php:301
 #: sarshomar/includes/languages/trans_twig.php:1158
 msgid "iran"
 msgstr "ایران"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:295
+#: saloos/saloos-addons/includes/languages/trans_addons.php:302
 #: sarshomar/includes/languages/trans_addons.php:302
 #: sarshomar/includes/languages/trans_twig.php:20
 msgid "Qom"
 msgstr "قم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:296
+#: saloos/saloos-addons/includes/languages/trans_addons.php:303
 #: sarshomar/includes/languages/trans_addons.php:303
 msgid "qom"
 msgstr "قم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:300
+#: saloos/saloos-addons/includes/languages/trans_addons.php:307
 #: sarshomar/includes/languages/trans_addons.php:307
 msgid "signin"
 msgstr "ورود"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:301
+#: saloos/saloos-addons/includes/languages/trans_addons.php:308
 #: sarshomar/includes/languages/trans_addons.php:308
 msgid "sign in"
 msgstr "ورود"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:302
+#: saloos/saloos-addons/includes/languages/trans_addons.php:309
 #: sarshomar/includes/languages/trans_addons.php:309
 msgid "sign up"
 msgstr "ثبت نام"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:303
+#: saloos/saloos-addons/includes/languages/trans_addons.php:310
 #: sarshomar/includes/languages/trans_addons.php:310
 msgid "register"
 msgstr "ثبت نام"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:304
+#: saloos/saloos-addons/includes/languages/trans_addons.php:311
 #: sarshomar/includes/languages/trans_addons.php:311
 msgid "home"
 msgstr "خانه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:306
+#: saloos/saloos-addons/includes/languages/trans_addons.php:313
 #: sarshomar/includes/languages/trans_addons.php:313
 msgid "homepage"
 msgstr "صفحه نخست"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:307
+#: saloos/saloos-addons/includes/languages/trans_addons.php:314
 #: sarshomar/includes/cls/database/sarshomar/translation.php:279
 #: sarshomar/includes/languages/trans_addons.php:314
 msgid "admin"
 msgstr "ادمین"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:308
+#: saloos/saloos-addons/includes/languages/trans_addons.php:315
 #: sarshomar/includes/languages/trans_addons.php:315
 msgid "cp"
 msgstr "کنترل‌پنل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:309
+#: saloos/saloos-addons/includes/languages/trans_addons.php:316
 #: sarshomar/includes/languages/trans_addons.php:316
 msgid "Cp"
 msgstr "کنترل‌پنل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:310
+#: saloos/saloos-addons/includes/languages/trans_addons.php:317
 #: sarshomar/includes/languages/trans_addons.php:317
 msgid "account"
 msgstr "اکانت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:311
+#: saloos/saloos-addons/includes/languages/trans_addons.php:318
 #: sarshomar/includes/languages/trans_addons.php:318
 msgid "SiteContent"
 msgstr "محتوای سایت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:312
+#: saloos/saloos-addons/includes/languages/trans_addons.php:319
 #: sarshomar/includes/languages/trans_addons.php:319
 msgid "Terms"
 msgstr "عبارات"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:313
+#: saloos/saloos-addons/includes/languages/trans_addons.php:320
 #: sarshomar/includes/languages/trans_addons.php:320
 #: sarshomar/includes/languages/trans_twig.php:78
 msgid "Comments"
 msgstr "دیدگاه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:314
+#: saloos/saloos-addons/includes/languages/trans_addons.php:321
 #: sarshomar/includes/languages/trans_addons.php:321
 msgid "Visitors"
 msgstr "بازدیدکنندگان"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:315
+#: saloos/saloos-addons/includes/languages/trans_addons.php:322
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:42
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:86
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:201
@@ -3332,420 +3373,420 @@ msgstr "بازدیدکنندگان"
 msgid "Profile"
 msgstr "پروفایل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:316
+#: saloos/saloos-addons/includes/languages/trans_addons.php:323
 #: sarshomar/includes/languages/trans_addons.php:323
 msgid "Powered by Saloos."
 msgstr "قدرت گرفته از سالوس."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:317
+#: saloos/saloos-addons/includes/languages/trans_addons.php:324
 #: sarshomar/includes/languages/trans_addons.php:324
 msgid "All right reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:318
+#: saloos/saloos-addons/includes/languages/trans_addons.php:325
 #: sarshomar/includes/languages/trans_addons.php:325
 msgid "Comming Soon"
 msgstr "بزودی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:319
+#: saloos/saloos-addons/includes/languages/trans_addons.php:326
 #: sarshomar/includes/languages/trans_addons.php:326
 msgid "Fantastic"
 msgstr "خارق العاده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:320
+#: saloos/saloos-addons/includes/languages/trans_addons.php:327
 #: sarshomar/includes/languages/trans_addons.php:327
 msgid "Copy"
 msgstr "کپی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:321
+#: saloos/saloos-addons/includes/languages/trans_addons.php:328
 #: sarshomar/includes/languages/trans_addons.php:328
 msgid "Cut"
 msgstr "انتقال"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:322
+#: saloos/saloos-addons/includes/languages/trans_addons.php:329
 #: sarshomar/includes/languages/trans_addons.php:329
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:324
+#: saloos/saloos-addons/includes/languages/trans_addons.php:331
 #: sarshomar/includes/languages/trans_addons.php:331
 msgid "Value"
 msgstr "مقدار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:325
+#: saloos/saloos-addons/includes/languages/trans_addons.php:332
 #: sarshomar/includes/languages/trans_addons.php:332
 msgid "Login Successfully"
 msgstr "با موفقیت وارد سیستم شدید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:336
+#: saloos/saloos-addons/includes/languages/trans_addons.php:343
 #: sarshomar/includes/languages/trans_addons.php:343
 msgid "page"
 msgstr "صفحه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:340
+#: saloos/saloos-addons/includes/languages/trans_addons.php:347
 #: sarshomar/includes/cls/database/sarshomar/translation.php:313
 #: sarshomar/includes/languages/trans_addons.php:347
 msgid "tag"
 msgstr "کلیدواژه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:341
+#: saloos/saloos-addons/includes/languages/trans_addons.php:348
 #: sarshomar/includes/languages/trans_addons.php:348
 msgid "category"
 msgstr "دسته"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:342
+#: saloos/saloos-addons/includes/languages/trans_addons.php:349
 #: sarshomar/includes/languages/trans_addons.php:349
 msgid "filecategory"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:343
+#: saloos/saloos-addons/includes/languages/trans_addons.php:350
 #: sarshomar/includes/languages/trans_addons.php:350
 msgid "File category"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:344
+#: saloos/saloos-addons/includes/languages/trans_addons.php:351
 #: sarshomar/includes/languages/trans_addons.php:351
 msgid "File Category"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:345
+#: saloos/saloos-addons/includes/languages/trans_addons.php:352
 #: sarshomar/includes/languages/trans_addons.php:352
 msgid "Filecategories"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:346
+#: saloos/saloos-addons/includes/languages/trans_addons.php:353
 #: sarshomar/includes/cls/database/sarshomar/translation.php:220
 #: sarshomar/includes/languages/trans_addons.php:353
 msgid "attachment"
 msgstr "ضمیمه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:348
+#: saloos/saloos-addons/includes/languages/trans_addons.php:355
 #: sarshomar/includes/languages/trans_addons.php:355
 #: sarshomar/includes/languages/trans_twig.php:792
 msgid "search"
 msgstr "جستجو"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:349
+#: saloos/saloos-addons/includes/languages/trans_addons.php:356
 #: sarshomar/includes/cls/database/sarshomar/translation.php:205
 #: sarshomar/includes/languages/trans_addons.php:356
 msgid "upload"
 msgstr "بارگذاری"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:350
+#: saloos/saloos-addons/includes/languages/trans_addons.php:357
 #: sarshomar/includes/languages/trans_addons.php:357
 msgid "Control Panel"
 msgstr "کنترل پنل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:352
+#: saloos/saloos-addons/includes/languages/trans_addons.php:359
 #: sarshomar/includes/languages/trans_addons.php:359
 msgid "Editor"
 msgstr "ویراستار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:353
+#: saloos/saloos-addons/includes/languages/trans_addons.php:360
 #: sarshomar/includes/languages/trans_addons.php:360
 msgid "editor"
 msgstr "ویراستار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:354
+#: saloos/saloos-addons/includes/languages/trans_addons.php:361
 #: sarshomar/includes/languages/trans_addons.php:361
 msgid "Administrator"
 msgstr "مدیر"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:355
+#: saloos/saloos-addons/includes/languages/trans_addons.php:362
 #: sarshomar/includes/languages/trans_addons.php:362
 msgid "Writer"
 msgstr "نویسنده"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:356
+#: saloos/saloos-addons/includes/languages/trans_addons.php:363
 #: sarshomar/includes/languages/trans_addons.php:363
 msgid "utility"
 msgstr "ابزار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:357
+#: saloos/saloos-addons/includes/languages/trans_addons.php:364
 #: sarshomar/includes/languages/trans_addons.php:364
 msgid "Utility"
 msgstr "ابزار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:358
+#: saloos/saloos-addons/includes/languages/trans_addons.php:365
 #: sarshomar/includes/languages/trans_addons.php:365
 msgid "Tools"
 msgstr "ابزارها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:359
+#: saloos/saloos-addons/includes/languages/trans_addons.php:366
 #: sarshomar/includes/languages/trans_addons.php:366
 msgid "tools"
 msgstr "ابزارها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:360
+#: saloos/saloos-addons/includes/languages/trans_addons.php:367
 #: sarshomar/includes/languages/trans_addons.php:367
 msgid "tool"
 msgstr "ابزار"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:364
+#: saloos/saloos-addons/includes/languages/trans_addons.php:371
 #: sarshomar/includes/languages/trans_addons.php:371
 msgid "between 5-40 character. be tricky!"
 msgstr "بین ۵ تا ۴۰ کاراکتر. در انتخاب کلمه عبور دقت به خرج دهید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:371
+#: saloos/saloos-addons/includes/languages/trans_addons.php:378
 #: sarshomar/includes/languages/trans_addons.php:378
 #: sarshomar/includes/languages/trans_twig.php:1534
 msgid "book"
 msgstr "کتاب"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:372
+#: saloos/saloos-addons/includes/languages/trans_addons.php:379
 #: sarshomar/includes/languages/trans_addons.php:379
 msgid "books"
 msgstr "کتاب‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:374
+#: saloos/saloos-addons/includes/languages/trans_addons.php:381
 #: sarshomar/includes/languages/trans_addons.php:381
 msgid "Bookcategories"
 msgstr "دسته‌بندی کتاب"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:375
+#: saloos/saloos-addons/includes/languages/trans_addons.php:382
 #: sarshomar/includes/languages/trans_addons.php:382
 msgid "bookcategory"
 msgstr "دسته‌بندی کتاب"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:387
+#: saloos/saloos-addons/includes/languages/trans_addons.php:394
 #: sarshomar/includes/languages/trans_addons.php:394
 msgid "Socialnetwork"
 msgstr "شبکه‌های اجتماعی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:388
+#: saloos/saloos-addons/includes/languages/trans_addons.php:395
 #: sarshomar/includes/languages/trans_addons.php:395
 msgid "socialnetwork"
 msgstr "شبکه‌اجتماعی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:390
+#: saloos/saloos-addons/includes/languages/trans_addons.php:397
 #: sarshomar/includes/languages/trans_addons.php:397
 #: sarshomar/includes/languages/trans_twig.php:76
 msgid "Title"
 msgstr "عنوان"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:391
+#: saloos/saloos-addons/includes/languages/trans_addons.php:398
 #: sarshomar/includes/languages/trans_addons.php:398
 #: sarshomar/includes/languages/trans_twig.php:80
 msgid "Date"
 msgstr "تاریخ"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:392
+#: saloos/saloos-addons/includes/languages/trans_addons.php:399
 #: sarshomar/includes/languages/trans_addons.php:399
 msgid "Size"
 msgstr "اندازه"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:393
+#: saloos/saloos-addons/includes/languages/trans_addons.php:400
 #: sarshomar/includes/languages/trans_addons.php:400
 msgid "Ext"
 msgstr "پسوند"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:394
+#: saloos/saloos-addons/includes/languages/trans_addons.php:401
 #: sarshomar/includes/languages/trans_addons.php:401
 msgid "pages"
 msgstr "برگه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:395
+#: saloos/saloos-addons/includes/languages/trans_addons.php:402
 #: sarshomar/includes/languages/trans_addons.php:402
 msgid "tags"
 msgstr "کلیدواژه‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:396
+#: saloos/saloos-addons/includes/languages/trans_addons.php:403
 #: sarshomar/includes/languages/trans_addons.php:403
 msgid "categories"
 msgstr "دسته‌بندی‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:397
+#: saloos/saloos-addons/includes/languages/trans_addons.php:404
 #: sarshomar/includes/languages/trans_addons.php:404
 msgid "filecategories"
 msgstr "دسته‌بندی فایل‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:398
+#: saloos/saloos-addons/includes/languages/trans_addons.php:405
 #: sarshomar/includes/languages/trans_addons.php:405
 msgid "bookcategories"
 msgstr "دسته‌بندی کتاب‌ها"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:399
+#: saloos/saloos-addons/includes/languages/trans_addons.php:406
 #: sarshomar/includes/languages/trans_addons.php:406
 msgid "permissions"
 msgstr "سطوح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:400
+#: saloos/saloos-addons/includes/languages/trans_addons.php:407
 #: sarshomar/includes/languages/trans_addons.php:407
 msgid "Permissions"
 msgstr "سطوح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:401
+#: saloos/saloos-addons/includes/languages/trans_addons.php:408
 #: sarshomar/includes/languages/trans_addons.php:408
 msgid "logout"
 msgstr "خروج از سیستم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:402
+#: saloos/saloos-addons/includes/languages/trans_addons.php:409
 #: sarshomar/includes/languages/trans_addons.php:409
 msgid "lock"
 msgstr "قفل سیستم"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:403
+#: saloos/saloos-addons/includes/languages/trans_addons.php:410
 #: sarshomar/includes/cls/database/sarshomar/translation.php:196
 #: sarshomar/includes/cls/database/sarshomar/translation.php:310
 #: sarshomar/includes/languages/trans_addons.php:410
 msgid "profile"
 msgstr "پروفایل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:404
+#: saloos/saloos-addons/includes/languages/trans_addons.php:411
 #: sarshomar/includes/languages/trans_addons.php:411
 msgid "You can't view this part of system"
 msgstr "شما نمی‌توانید این بخش از سیستم را مشاهده کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:406
+#: saloos/saloos-addons/includes/languages/trans_addons.php:413
 #: sarshomar/includes/languages/trans_addons.php:413
 msgid "you can't edit"
 msgstr "شما نمی‌توانید ویرایش کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:408
+#: saloos/saloos-addons/includes/languages/trans_addons.php:415
 #: sarshomar/includes/languages/trans_addons.php:415
 msgid "You can't access to this part of system"
 msgstr "شما نمی‌توانید به این بخش از سیستم دسترسی داشته باشید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:414
+#: saloos/saloos-addons/includes/languages/trans_addons.php:421
 #: sarshomar/includes/languages/trans_addons.php:421
 msgid "main URL"
 msgstr "آدرس اصلی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:433
+#: saloos/saloos-addons/includes/languages/trans_addons.php:440
 #: sarshomar/includes/languages/trans_addons.php:440
 msgid "Status of sms service"
 msgstr "وضعیت سرویس پیامک"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:436
+#: saloos/saloos-addons/includes/languages/trans_addons.php:443
 #: sarshomar/includes/languages/trans_addons.php:443
 msgid "service"
 msgstr "سرویس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:458
+#: saloos/saloos-addons/includes/languages/trans_addons.php:465
 #: sarshomar/includes/languages/trans_addons.php:465
 msgid "send"
 msgstr "ارسال"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:460
+#: saloos/saloos-addons/includes/languages/trans_addons.php:467
 #: sarshomar/includes/languages/trans_addons.php:467
 msgid "Recovery account"
 msgstr "بازیابی اکانت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:470
+#: saloos/saloos-addons/includes/languages/trans_addons.php:477
 #: sarshomar/includes/languages/trans_addons.php:477
 msgid "Account Status"
 msgstr "وضعیت اکانت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:477
+#: saloos/saloos-addons/includes/languages/trans_addons.php:484
 #: sarshomar/includes/languages/trans_addons.php:484
 msgid "Signup Settings"
 msgstr "تنظیمات ثبت‌نام"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:482
+#: saloos/saloos-addons/includes/languages/trans_addons.php:489
 #: sarshomar/includes/languages/trans_addons.php:489
 msgid "Register failed!"
 msgstr "ثبت‌نام ناموفق بود!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:484
+#: saloos/saloos-addons/includes/languages/trans_addons.php:491
 #: sarshomar/includes/languages/trans_addons.php:491
 msgid "your recovery code is"
 msgstr "کد بازیابی کلمه عبور شما"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:503
+#: saloos/saloos-addons/includes/languages/trans_addons.php:510
 #: sarshomar/includes/languages/trans_addons.php:510
 msgid "You are editing permission"
 msgstr "شما در حال ویرایش سطح‌دسترسی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:504
+#: saloos/saloos-addons/includes/languages/trans_addons.php:511
 #: sarshomar/includes/languages/trans_addons.php:511
 msgid "We send a verification code for you"
 msgstr "ما کد اعتبارسنجی را برای شما ارسال خواهیم کرد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:505
+#: saloos/saloos-addons/includes/languages/trans_addons.php:512
 #: sarshomar/includes/languages/trans_addons.php:512
 msgid "We send a verification code to this number"
 msgstr "کد اعتبارسنجی به این شماره ارسال خواهد شد"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:509
+#: saloos/saloos-addons/includes/languages/trans_addons.php:516
 #: sarshomar/includes/languages/trans_addons.php:516
 msgid "Now we only support IRAN!"
 msgstr "در حال حاضر ما فقط به شماره‌های ایران سرویس می‌دهیم!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:510
+#: saloos/saloos-addons/includes/languages/trans_addons.php:517
 #: sarshomar/includes/languages/trans_addons.php:517
 msgid "Thanks for using our service"
 msgstr "متشکریم که از سرویس ما استفاده می‌کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:511
+#: saloos/saloos-addons/includes/languages/trans_addons.php:518
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:45
 #: sarshomar/includes/languages/trans_addons.php:518
 msgid "Dear user"
 msgstr "کاربر گرامی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:512
+#: saloos/saloos-addons/includes/languages/trans_addons.php:519
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:46
 #: sarshomar/includes/languages/trans_addons.php:519
 msgid "For using this service we need to register your phone number."
 msgstr "برای استفاده از این سرویس ما نیاز به ثبت شماره موبایل شما داریم."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:513
+#: saloos/saloos-addons/includes/languages/trans_addons.php:520
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:47
 #: sarshomar/includes/languages/trans_addons.php:520
 msgid "Please send your number with below keyboard to complete registeration."
 msgstr "لطفا شماره خود را از طریق منوی زیر برای تکمیل ثبت‌نام ارسال نمایید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:514
+#: saloos/saloos-addons/includes/languages/trans_addons.php:521
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:114
 #: sarshomar/includes/languages/trans_addons.php:521
 msgid "Dear friend"
 msgstr "دوست عزیز"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:515
+#: saloos/saloos-addons/includes/languages/trans_addons.php:522
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:115
 #: sarshomar/includes/languages/trans_addons.php:522
 msgid "We need your phone number to verifying your account."
 msgstr "ما برای اعتبارسنجی اکانت، نیاز به شماره موبایل شما داریم."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:516
+#: saloos/saloos-addons/includes/languages/trans_addons.php:523
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:116
 #: sarshomar/includes/languages/trans_addons.php:523
 msgid "If you dont want share your number, we cant presenting our services to you!"
 msgstr "اگر شما مایل به ارائه شماره خود نباشید، ما امکان سرویس‌دهی به شما را نداریم!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:517
+#: saloos/saloos-addons/includes/languages/trans_addons.php:524
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:122
 #: sarshomar/includes/languages/trans_addons.php:524
 msgid "Registering user is successful."
 msgstr "ثبت‌نام کاربر با موفقیت به انجام رسید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:518
+#: saloos/saloos-addons/includes/languages/trans_addons.php:525
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:134
 #: sarshomar/includes/languages/trans_addons.php:525
 msgid "Cancel registration and return to main menu"
 msgstr "انصراف از ثبت‌نام و بازگشت به منوی اصلی"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:519
+#: saloos/saloos-addons/includes/languages/trans_addons.php:526
 #: sarshomar/includes/languages/trans_addons.php:526
 msgid "Please only use below keyboard"
 msgstr "لطفا تنها از منوی زیر استفاده کنید"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:520
+#: saloos/saloos-addons/includes/languages/trans_addons.php:527
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:143
 #: sarshomar/includes/languages/trans_addons.php:527
 msgid "We need your contact!"
 msgstr "ما به مخاطب شما نیاز داریم!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:521
+#: saloos/saloos-addons/includes/languages/trans_addons.php:528
 #: sarshomar/includes/languages/trans_addons.php:528
 msgid "Register User 📱"
 msgstr "ثبت کاربر  📱"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:522
+#: saloos/saloos-addons/includes/languages/trans_addons.php:529
 #: sarshomar/includes/languages/trans_addons.php:529
 msgid "Register User"
 msgstr "ثبت کاربر"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:523
+#: saloos/saloos-addons/includes/languages/trans_addons.php:530
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:32
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:76
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:172
@@ -3753,61 +3794,61 @@ msgstr "ثبت کاربر"
 msgid "Return"
 msgstr "بازگشت"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:524
+#: saloos/saloos-addons/includes/languages/trans_addons.php:531
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:72
 #: sarshomar/includes/languages/trans_addons.php:531
 msgid "Register Mobile Number 📱"
 msgstr "ثبت شماره موبایل 📱"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:525
+#: saloos/saloos-addons/includes/languages/trans_addons.php:532
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:28
 #: sarshomar/includes/languages/trans_addons.php:532
 msgid "Register Mobile Number"
 msgstr "ثبت شماره موبایل"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:526
+#: saloos/saloos-addons/includes/languages/trans_addons.php:533
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:24
 #: sarshomar/includes/languages/trans_addons.php:533
 msgid "Register Address"
 msgstr "ثبت آدرس"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:527
+#: saloos/saloos-addons/includes/languages/trans_addons.php:534
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:43
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:87
 #: sarshomar/includes/languages/trans_addons.php:534
 msgid "By completing your profile, help us to present better service."
 msgstr "با تکمیل پروفایل خود، به ما در ارائه سرویس بهتر کمک کنید."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:528
+#: saloos/saloos-addons/includes/languages/trans_addons.php:535
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:44
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:88
 #: sarshomar/includes/languages/trans_addons.php:535
 msgid "We will thank you for this."
 msgstr "ما از این اقدام شما تشکر می‌کنیم."
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:529
+#: saloos/saloos-addons/includes/languages/trans_addons.php:536
 #: sarshomar/includes/languages/trans_addons.php:536
 msgid "Your phone number registered successfully;)"
 msgstr "شماره موبایل شما با موفقیت ثبت شد;)"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:530
+#: saloos/saloos-addons/includes/languages/trans_addons.php:537
 #: saloos/saloos-addons/lib/telegram/log.php:415
 #: sarshomar/includes/languages/trans_addons.php:537
 msgid "We dont need another users contact:?)"
 msgstr "ما به مخاطب سایر کاربران نیاز نداریم:؟)"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:531
+#: saloos/saloos-addons/includes/languages/trans_addons.php:538
 #: saloos/saloos-addons/lib/telegram/log.php:423
 #: sarshomar/includes/languages/trans_addons.php:538
 msgid "We need mobile number!"
 msgstr "ما به شماره موبایل نیاز داریم!"
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:532
+#: saloos/saloos-addons/includes/languages/trans_addons.php:539
 #: sarshomar/includes/languages/trans_addons.php:539
 msgid " "
 msgstr " "
 
-#: saloos/saloos-addons/includes/languages/trans_addons.php:535
+#: saloos/saloos-addons/includes/languages/trans_addons.php:542
 #: sarshomar/includes/languages/trans_addons.php:542
 msgid "Select"
 msgstr "انتخاب"
@@ -3955,11 +3996,11 @@ msgstr "باید پاسخ خود را تعیین کنید یا نظرسنجی ر
 msgid "Answer saved"
 msgstr "پاسخ ذخیره شد"
 
-#: sarshomar/content/poll/view.php:19
+#: sarshomar/content/poll/model.php:349 sarshomar/content/poll/view.php:19
 msgid "reliable"
 msgstr "معتبر"
 
-#: sarshomar/content/poll/view.php:20
+#: sarshomar/content/poll/model.php:350 sarshomar/content/poll/view.php:20
 msgid "unreliable"
 msgstr "غیرقابل استناد"
 
@@ -3997,11 +4038,6 @@ msgstr "فارغ التحصیل "
 #: sarshomar/includes/languages/trans_twig.php:1697
 msgid "employement status"
 msgstr "وضعیت اشتغال"
-
-#: sarshomar/content/poll/view.php:81
-#: sarshomar/includes/cls/database/sarshomar/translation.php:127
-msgid "province"
-msgstr "استان"
 
 #: sarshomar/content/poll/view.php:109
 msgid "undefined Title!"
@@ -4046,17 +4082,26 @@ msgstr "خطا در توکن"
 msgid "Poll not found"
 msgstr "نظرسنجی یافت نشد"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:128
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:140
+msgid "شما می‌توانید به چند گزینه پاسخ دهید"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:158
+#: sarshomar/includes/languages/trans_twig.php:1042
+msgid "Save"
+msgstr "ذخیره"
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:177
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:128
 msgid "View results"
 msgstr "مشاهده نتایج"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:138
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:187
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:138
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:204
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:254
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:204
 msgid "Updated"
 msgstr "بروز شد"
@@ -4219,8 +4264,8 @@ msgid "First"
 msgstr "اولین"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:64
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:430
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:531
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:485
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:586
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:163
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:361
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:367
@@ -4593,15 +4638,23 @@ msgstr "پاسخ شما ثبت شد"
 msgid "Submit answer"
 msgstr "ارسال پاسخ"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:283
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:265
+msgid "add answer :answer"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:269
+msgid "remove answer :answer"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:338
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:283
 msgid "If you intend to delete your vote, tap once more"
 msgstr "اگر قصد حذف رای خود را دارید یکبار دیگر کلیک کنید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:418
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:427
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:155
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:162
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:473
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:482
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:161
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:168
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:418
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:427
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:155
@@ -4671,28 +4724,28 @@ msgstr "باز گشت 🔙"
 msgid "Answer"
 msgstr "پاسخ"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:148
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:154
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:148
 msgid "Share"
 msgstr "اشتراک‌گذاری"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:196
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:206
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:196
 msgid "Lawbreaker"
 msgstr "قانون‌شکن"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:200
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:210
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:200
 #: sarshomar/includes/languages/trans_twig.php:539
 msgid "Spam"
 msgstr "هرزنامه"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:206
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:216
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:206
 msgid "Not interested"
 msgstr "علاقه‌مند نیستم"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:210
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:220
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:210
 msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
@@ -4703,6 +4756,9 @@ msgid "Your answer:"
 msgstr "پاسخ شما: "
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:162
+msgid "پنل"
+msgstr ""
+
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:175
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:132
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:133
@@ -4721,19 +4777,19 @@ msgid "Valid answer is:"
 msgstr "پاسخ معتبر:"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:212
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:237
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:229
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:212
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:237
 msgid "Invalid"
 msgstr "نامعتبر"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:231
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:223
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:231
 msgid "Sum"
 msgstr "جمع"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:232
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:236
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:224
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:228
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:232
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:236
 msgid "Valid"
@@ -5354,7 +5410,7 @@ msgstr "پارامتر شناسه نامعتبر است"
 msgid "Can not send parameter id in post mode"
 msgstr "امکان ارسال پارامتر شناسه در حالت پست وجود ندارد"
 
-#: sarshomar/content_api/v1/poll/tools/add.php:80
+#: sarshomar/content_api/v1/poll/tools/add.php:82
 msgid "Profile values is incorrect"
 msgstr "مقادیر پروفایل ناصحیح است"
 
@@ -5446,19 +5502,19 @@ msgstr ""
 msgid "Invalid captcha"
 msgstr "کپچا صحیح نیست"
 
-#: sarshomar/content_u/home/model.php:78
+#: sarshomar/content_u/home/model.php:83
 msgid "Can not access to run this options. please contact to administrator"
 msgstr ""
 
-#: sarshomar/content_u/home/model.php:89
+#: sarshomar/content_u/home/model.php:94
 msgid "Please login to set language"
 msgstr "برای تعیین زبان لطفا وارد حساب کاربری خود شوید"
 
-#: sarshomar/content_u/home/model.php:103
+#: sarshomar/content_u/home/model.php:108
 msgid "Your default language change"
 msgstr ""
 
-#: sarshomar/content_u/home/model.php:121
+#: sarshomar/content_u/home/model.php:126
 msgid "Invalid language parameter"
 msgstr "پارامتر زبان نامعتبر است"
 
@@ -5936,6 +5992,10 @@ msgstr "محدوده"
 #: sarshomar/includes/cls/database/sarshomar/translation.php:126
 msgid "country"
 msgstr "کشور"
+
+#: sarshomar/includes/cls/database/sarshomar/translation.php:127
+msgid "province"
+msgstr "استان"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:128
 #: sarshomar/includes/languages/trans_twig.php:1449
@@ -6440,38 +6500,6 @@ msgstr "مورد اعتماد"
 #: sarshomar/includes/cls/database/sarshomar/translation.php:412
 msgid "verify"
 msgstr "تایید کردن"
-
-#: sarshomar/includes/languages/trans_addons.php:12
-msgid "Pending"
-msgstr "در انتظار"
-
-#: sarshomar/includes/languages/trans_addons.php:23
-msgid "Remembered your password?"
-msgstr "کلمه عبور خود را به خاطر آوردید!؟"
-
-#: sarshomar/includes/languages/trans_addons.php:246
-msgid "Repository"
-msgstr "مخزن"
-
-#: sarshomar/includes/languages/trans_addons.php:249
-msgid "Ermile Repository"
-msgstr "مخزن ارمایل"
-
-#: sarshomar/includes/languages/trans_addons.php:250
-msgid "Current Project Repository"
-msgstr "مخزن پروژه‌ی کنونی"
-
-#: sarshomar/includes/languages/trans_addons.php:251
-msgid "Database"
-msgstr "پایگاه‌داده"
-
-#: sarshomar/includes/languages/trans_addons.php:255
-msgid "Show sql log data"
-msgstr "نمایش لاگ داده‌های sql"
-
-#: sarshomar/includes/languages/trans_addons.php:256
-msgid "Show sql error data"
-msgstr "نمایش اطلاعات خطای SQL"
 
 #: sarshomar/includes/languages/trans_twig.php:6
 msgid ""
@@ -7947,7 +7975,7 @@ msgstr "دریافت نشان‌واره ما"
 
 #: sarshomar/includes/languages/trans_twig.php:424
 msgid "Our logo"
-msgstr "نشان‌واره ما"
+msgstr "نشان‌واره‌ی ما"
 
 #: sarshomar/includes/languages/trans_twig.php:429
 msgid "How to use"
@@ -9921,10 +9949,6 @@ msgstr "علاقمندی‌ها"
 #: sarshomar/includes/languages/trans_twig.php:1041
 msgid "Devices"
 msgstr "دستگاه‌ها"
-
-#: sarshomar/includes/languages/trans_twig.php:1042
-msgid "Save"
-msgstr "ذخیره"
 
 #: sarshomar/includes/languages/trans_twig.php:1049
 msgid "Action"
@@ -12529,21 +12553,25 @@ msgstr "خطا در :operation نظرسنجی"
 msgid "Can not add poll"
 msgstr "ناتوان در افزودن نظرسنجی"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:39
+#: sarshomar/includes/lib/db/polls/insert/answers.php:25
+msgid "You can not add more than 100 answers"
+msgstr ""
+
+#: sarshomar/includes/lib/db/polls/insert/answers.php:44
 msgid ""
 "Invalid answer title argument, you must set less than 99 character for the title "
 "in index :key of answer"
 msgstr ""
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:59
+#: sarshomar/includes/lib/db/polls/insert/answers.php:64
 msgid "Invalid type (:type) paramater in index :key of answer"
 msgstr "پارامتر نوع (:type) در شاخص :key پاسخ نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:67
+#: sarshomar/includes/lib/db/polls/insert/answers.php:72
 msgid "Invalid answer type parameter in index :key of answer"
 msgstr "پارامتر نوع پاسخ در شاخص :key پاسخ نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/answers.php:122
+#: sarshomar/includes/lib/db/polls/insert/answers.php:131
 msgid "Invalid parameter is_true in index :key of answer"
 msgstr "پارامتر is_true در شاخص :key پاسخ نامعتبر است"
 
@@ -12757,44 +12785,44 @@ msgstr "شناسه واحد یا واحد کاربر پیدا نشد"
 msgid "Many time left, can not update or delete answer"
 msgstr "زمان زیادی گذشته است، نمی‌توانید پاسخ خود را حذف یا بروز کنید"
 
-#: sarshomar/includes/lib/utility/answers.php:161
+#: sarshomar/includes/lib/utility/answers.php:163
 #: sarshomar/includes/lib/utility/answers2.php:406
 #: sarshomar/includes/lib/utility/answers2.php:494
 msgid "You have updated your answer many times and can not update it anymore"
 msgstr ""
 "شما پاسخ خود را دفعات زیادی بروز کرده‌اید و نمی‌توانید بیش از این آن را بروز کنید"
 
-#: sarshomar/includes/lib/utility/answers.php:199
+#: sarshomar/includes/lib/utility/answers.php:201
 #: sarshomar/includes/lib/utility/answers2.php:110
 msgid "You have already answered to this poll"
 msgstr "شما قبلا به این نظرسنجی پاسخ داده‌اید"
 
-#: sarshomar/includes/lib/utility/answers.php:398
+#: sarshomar/includes/lib/utility/answers.php:400
 #: sarshomar/includes/lib/utility/answers2.php:282
 msgid "Answer Save"
 msgstr "ذخیره پاسخ"
 
-#: sarshomar/includes/lib/utility/answers.php:402
+#: sarshomar/includes/lib/utility/answers.php:404
 #: sarshomar/includes/lib/utility/answers2.php:286
 msgid "Error in save your answer"
 msgstr "خطا در ذخیره سوال"
 
-#: sarshomar/includes/lib/utility/answers.php:456
+#: sarshomar/includes/lib/utility/answers.php:458
 #: sarshomar/includes/lib/utility/answers2.php:344
 #: sarshomar/includes/lib/utility/answers2.php:445
 msgid "You have already selected this answer and submited"
 msgstr "شما قبلا با انتخاب همین گزینه پاسخ خود را ثبت کرده‌اید"
 
-#: sarshomar/includes/lib/utility/answers.php:607
+#: sarshomar/includes/lib/utility/answers.php:611
 #: sarshomar/includes/lib/utility/answers2.php:613
 msgid "Your answer updated"
 msgstr "پاسخ شما بروز شد"
 
-#: sarshomar/includes/lib/utility/answers.php:711
+#: sarshomar/includes/lib/utility/answers.php:715
 msgid "Your answer has been deleted"
 msgstr "پاسخ شما حذف شد"
 
-#: sarshomar/includes/lib/utility/answers.php:715
+#: sarshomar/includes/lib/utility/answers.php:719
 msgid "You have not answered to this poll"
 msgstr "شما به این نظرسنجی پاسخ نداده‌اید"
 
@@ -12860,6 +12888,9 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:59
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "are you remember your password!?"
+#~ msgstr "آیا کلمه عبور خود را به خاطر آوردید!؟"
 
 #~ msgid "Approve, edit,... polls"
 #~ msgstr "تایید، تصحیح و ... نظرسنجی‌ها"

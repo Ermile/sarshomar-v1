@@ -683,6 +683,7 @@ footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 .rtl .sh::before{right:-15px;left:auto}
 .sh::after{position:absolute;top:5px;left:-75px;width:60px;height:115px;content:'';background-image:url(../images/border-object.svg);background-repeat:no-repeat}
 .rtl .sh::after{right:-75px;left:initial;background-image:url(../images/border-object-fa.svg)}
+.sh.large{color:#6e6e6e;font-size:24px;line-height:25px}
 
 
 /************************************************************** homepage */
