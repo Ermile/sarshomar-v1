@@ -1,84 +1,103 @@
 {%extends display.main%} {%block content%} {%include "content_admin/main/sidebar.html"%}
 <div class="main admin-section">
 
-    <div class="f gutters overall-stats unselectable">
+    <div class="f gutters overall-stats unselectable justify-between">
         <!--item-->
-        <div class="stat f align-center justify-start">
-            <div class="c4 ico"><i class="icon-question icon-3x"></i></div>
-            <div>
-                <h5 class="num">3021</h5>
-                <div class="title" title="Polls">Polls</div>
-            </div>
-        </div>
-        <!--/item-->
-       <!--item-->
-        <div class="stat f align-center justify-start">
-            <div class="c4 ico"><i class="icon-commenting-o icon-3x"></i></div>
-            <div>
-                <h5 class="num">1456</h5>
-                <div class="title" title="Comments">Comments</div>
+        <div class="c3">
+            <div class="stat f align-center">
+                <div class="c4 ico"><i class="ico icon-question icon-3x"></i></div>
+                <div>
+                    <h5 class="num">3021</h5>
+                    <div class="title" title="Polls">Polls</div>
+                </div>
             </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat f align-center justify-start">
-            <div class="c4 ico"><i class="icon-check icon-3x"></i></div>
-            <div>
-                <h5 class="num">1456</h5>
-                <div class="title" title="Answers">Answers</div>
+        <div class="c3">
+            <div class="stat f align-center">
+                <div class="c4 ico"><i class="ico icon-commenting-o icon-3x"></i></div>
+                <div>
+                    <h5 class="num">1456</h5>
+                    <div class="title" title="Comments">Comments</div>
+                </div>
             </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat f align-center justify-start">
-            <div class="c4 ico"><i class="icon-smile-o icon-3x"></i></div>
-            <div>
-                <h5 class="num">8450</h5>
-                <div class="title" title="Users">Users</div>
+        <div class="c3">
+            <div class="stat f align-center">
+                <div class="c4 ico"><i class="ico icon-check icon-3x"></i></div>
+                <div>
+                    <h5 class="num">1435</h5>
+                    <div class="title" title="Answers">Answers</div>
+                </div>
             </div>
         </div>
         <!--/item-->
         <!--item-->
-        <div class="stat f align-center justify-start">
-            <div class="c4 ico"><i class="icon-send-o icon-3x"></i></div>
-            <div>
-                <h5 class="num">121454</h5>
-                <div class="title" title="Telegram Users">Telegram Users</div>
+        <div class="c3">
+            <div class="stat f align-center">
+                <div class="c4 ico"><i class="ico icon-smile-o icon-3x"></i></div>
+                <div>
+                    <h5 class="num">8450</h5>
+                    <div class="title" title="Users">Users</div>
+                </div>
             </div>
         </div>
         <!--/item-->
     </div>
-    <div class="chart" data-vals='[{"key":"Manchester","value":100},{"key":"Liverpool","value":20},{"key":"Real Madrid","value":40},{"key":"Barcelona","value":70},{"key":"Juventus","value":100},{"key":"Bayern","value":60}]'
+    <!--<div class="chart" data-vals='[{"key":"Manchester","value":100},{"key":"Liverpool","value":20},{"key":"Real Madrid","value":40},{"key":"Barcelona","value":70},{"key":"Juventus","value":100},{"key":"Bayern","value":60}]'
     data-format='abc'
     >
-    </div>
+    </div>-->
 
 
     <div class="overall-charts">
         <div class="f gutters">
             <!--item-->
-            <div class="c12">
-                <div class="card simple">
+            <div class="c9">
+                <div class="card simple simple-border">
                     <div class="title-box f align-center justify-between nowrap">
                         <h5 class="card-title unselectable">
                             Visits and Registrations
                         </h5>
                         <span>
                         <a href="#!" class="more">More</a>
-                    </span>
+                        </span>
 
                     </div>
 
                     <div>
-                        <div id="visitReg" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+                        <div id="visitReg" style="width: 100%; height: 250px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
             <!--/item-->
+            <div class="c3 overall-stats unselectable f f-column">
+                <!--item-->
+                    <div class="stat f align-center">
+                        <div class="c4 ico"><i class="ico icon-send-o icon-3x"></i></div>
+                        <div>
+                            <h5 class="num">121454</h5>
+                            <div class="title" title="Telegram Users">Telegram Users</div>
+                        </div>
+                    </div>
+                    <!--/item-->
+                    <!--item-->
+                    <div class="stat f align-center">
+                        <div class="c4 ico"><i class="ico icon-meh-o icon-3x"></i></div>
+                        <div>
+                            <h5 class="num">369</h5>
+                            <div class="title" title="Telegram Users">Guests</div>
+                        </div>
+                    </div>
+                    <!--/item-->
+            </div>
 
             <!--item-->
             <div class="c6">
-                <div class="card simple">
+                <div class="card simple simple-border">
                     <div class="title-box f align-center justify-between nowrap">
                         <h5 class="card-title unselectable">
                             Polls and Answers
@@ -90,15 +109,15 @@
                     </div>
 
                     <div>
-                        <div id="chartdiv2" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+                        <div id="pollsAnswers" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
             <!--/item-->
 
             <!--item-->
-            <div class="c6 simple">
-                <div class="card simple">
+            <div class="c6">
+                <div class="card simple simple-border">
                     <div class="title-box f align-center justify-between nowrap">
                         <h5 class="card-title unselectable">
                             Transactions
@@ -110,7 +129,7 @@
                     </div>
 
                     <div>
-                        <div id="chartdiv3" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+                        <div id="transactions" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
@@ -205,61 +224,192 @@
 </div>
 {%endblock%} {%block foot_js%} {%if visitors%}
 <script type="text/javascript">
-function abc(_option)
-{
-    _option.colors = ["#000"]
-    console.log(_option);
+    function abc(_option) {
+        _option.colors = ["#000"]
+        console.log(_option);
 
-    return _option;
-}
+        return _option;
+    }
 
-    setTimeout(function() {
-       AmCharts.makeChart("visitReg",
+    setTimeout(function () {
+        AmCharts.makeChart("visitReg", {
+            "type": "serial",
+            "categoryField": "category",
+            "minSelectedTime": 1,
+            "minMarginTop": 1,
+            "plotAreaBorderColor": "#FFFFFF",
+            "plotAreaFillColors": "#F27474",
+            "sequencedAnimation": false,
+            "startDuration": 1,
+            "startEffect": "easeInSine",
+            "borderColor": "#00E700",
+            "color": "#888888",
+            "creditsPosition": "top-right",
+            "fontFamily": "iransans",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "gridCount": 4
+            },
+            "chartCursor": {
+                "enabled": true,
+                "cursorColor": "#F27474",
+                "cursorPosition": "start"
+            },
+            "trendLines": [],
+            "graphs": [{
+                "balloonText": "[[title]] of [[category]]:[[value]]",
+                "fillAlphas": 0.7,
+                "fillColors": "#F27474",
+                "id": "AmGraph-1",
+                "lineAlpha": 0,
+                "stepDirection": "center",
+                "title": "بازدید",
+                "type": "smoothedLine",
+                "valueField": "column-1"
+            }, {
+                "balloonText": "[[title]] of [[category]]:[[value]]",
+                "fillAlphas": 0.7,
+                "fillColors": "#FFC800",
+                "id": "AmGraph-2",
+                "lineAlpha": 0,
+                "lineThickness": 0,
+                "stepDirection": "center",
+                "title": "ثبت نام",
+                "type": "smoothedLine",
+                "valueField": "column-2"
+            }],
+            "guides": [],
+            "valueAxes": [],
+            "allLabels": [],
+            "balloon": {},
+            "legend": {
+                "enabled": true
+            },
+            "titles": [],
+            "dataProvider": [{
+                "category": "مهر",
+                "column-1": 8,
+                "column-2": 5
+            }, {
+                "category": "آبان",
+                "column-1": 6,
+                "column-2": "0"
+            }, {
+                "category": "آذر",
+                "column-1": 2,
+                "column-2": 3
+            }, {
+                "category": "دی",
+                "column-1": 1,
+                "column-2": 3
+            }, {
+                "category": "بهمن",
+                "column-1": 2,
+                "column-2": 1
+            }, {
+                "category": "اسفند",
+                "column-1": 3,
+                "column-2": 2
+            }, {
+                "category": "فروردین",
+                "column-1": 6,
+                "column-2": 8
+            }]
+        });
+        AmCharts.makeChart("transactions",
+				{
+					"type": "pie",
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"colors": [
+						"#7986cb",
+						"#FF8A65",
+						"#FF9E01",
+						"#FCD202",
+						"#F8FF01",
+						"#B0DE09",
+						"#04D215",
+						"#0D8ECF",
+						"#0D52D1",
+						"#2A0CD0",
+						"#8A0CCF",
+						"#CD0D74",
+						"#754DEB",
+						"#DDDDDD",
+						"#999999",
+						"#333333",
+						"#000000",
+						"#57032A",
+						"#CA9726",
+						"#990000",
+						"#4B0C25"
+					],
+					"labelColorField": "#888888",
+					"labelTickColor": "#888888",
+					"titleField": "category",
+					"valueField": "column-1",
+					"borderColor": "#FFFFFF",
+					"color": "#888888",
+					"fontFamily": "iransans",
+					"allLabels": [],
+					"balloon": {
+						"fillAlpha": 1,
+						"horizontalPadding": 6
+					},
+					"legend": {
+						"enabled": true,
+						"align": "center",
+						"color": "#888888",
+						"markerType": "circle",
+						"tabIndex": 0
+					},
+					"titles": [],
+					"dataProvider": [
+						{
+							"category": "پول دریافت شده",
+							"column-1": "804545"
+						},
+						{
+							"category": "پول هدیه داده شده",
+							"column-1": "346776"
+						}
+					]
+				}
+			);
+            AmCharts.makeChart("pollsAnswers",
 				{
 					"type": "serial",
 					"categoryField": "category",
-					"minSelectedTime": 1,
-					"minMarginTop": 1,
 					"plotAreaBorderColor": "#FFFFFF",
-					"plotAreaFillColors": "#F27474",
-					"sequencedAnimation": false,
 					"startDuration": 1,
-					"startEffect": "easeInSine",
-					"borderColor": "#00E700",
+					"borderColor": "#FFC800",
 					"color": "#888888",
-					"creditsPosition": "top-right",
 					"fontFamily": "iransans",
 					"categoryAxis": {
 						"gridPosition": "start",
-						"gridCount": 4
+						"axisColor": "#FFFFFF",
+						"gridColor": "#FFFFFF"
 					},
 					"chartCursor": {
 						"enabled": true,
-						"cursorColor": "#F27474",
-						"cursorPosition": "start"
+						"cursorColor": "#FFC800"
 					},
 					"trendLines": [],
 					"graphs": [
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
-							"fillAlphas": 0.7,
-							"fillColors": "#F27474",
+							"bullet": "round",
 							"id": "AmGraph-1",
-							"lineAlpha": 0,
-							"stepDirection": "center",
-							"title": "بازدید",
+							"lineColor": "#C66BED",
+							"title": "سوالات ثبت شده",
 							"type": "smoothedLine",
 							"valueField": "column-1"
 						},
 						{
 							"balloonText": "[[title]] of [[category]]:[[value]]",
-							"fillAlphas": 0.7,
-							"fillColors": "#FFC800",
+							"bullet": "square",
 							"id": "AmGraph-2",
-							"lineAlpha": 0,
-							"lineThickness": 0,
-							"stepDirection": "center",
-							"title": "ثبت نام",
+							"lineColor": "#6AE2F6",
+							"title": "پاسخ های ثبت شده",
 							"type": "smoothedLine",
 							"valueField": "column-2"
 						}
@@ -269,42 +419,43 @@ function abc(_option)
 					"allLabels": [],
 					"balloon": {},
 					"legend": {
-						"enabled": true
+						"enabled": true,
+						"useGraphSettings": true
 					},
 					"titles": [],
 					"dataProvider": [
 						{
-							"category": "مهر",
+							"category": "شنبه",
 							"column-1": 8,
 							"column-2": 5
 						},
 						{
-							"category": "آبان",
+							"category": "یک شنبه",
 							"column-1": 6,
-							"column-2": "0"
+							"column-2": 7
 						},
 						{
-							"category": "آذر",
+							"category": "دوشنبه",
 							"column-1": 2,
 							"column-2": 3
 						},
 						{
-							"category": "دی",
+							"category": "سه شنبه",
 							"column-1": 1,
 							"column-2": 3
 						},
 						{
-							"category": "بهمن",
+							"category": "چهارشنبه",
 							"column-1": 2,
 							"column-2": 1
 						},
 						{
-							"category": "اسفند",
+							"category": "پنج شنبه",
 							"column-1": 3,
 							"column-2": 2
 						},
 						{
-							"category": "فروردین",
+							"category": "جمعه",
 							"column-1": 6,
 							"column-2": 8
 						}
