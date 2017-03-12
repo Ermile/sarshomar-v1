@@ -121,7 +121,7 @@
   data-max="{{persons.max}}"
   data-step="{{persons.step}}"
   data-from="{{persons.from}}"
-  {%if persons.limit is defined%} data-from-max="{{persons.limit}}"{%endif%}
+  {%if persons.limit is defined and persons.limit != persons.max%} data-from-max="{{persons.limit}}"{%endif%}
   />
  </div>
 </div>
