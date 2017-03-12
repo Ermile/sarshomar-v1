@@ -915,28 +915,6 @@ var data =
 }];
 
 
-var worldMap = AmCharts.makeChart('world-map',
-{
-	"type": "map",
-	"theme": "sarshomar",
-	"colorSteps": 10,
-	"projection": "miller",
-
-	"dataProvider": {
-		"map": "worldLow",
-		"areas": data
-		// "getAreasFromMap": true
-	},
-
-	"areasSettings": {
-		"autoZoom": true,
-		"selectedColor": "#e5a428"
-	},
-
-	"smallMap": {
-		"backgroundAlpha": 0.1
-	}
-});
 
 
 /**
@@ -945,5 +923,29 @@ var worldMap = AmCharts.makeChart('world-map',
  */
 function drawMapWorld()
 {
-	// none
+	var worldMap = AmCharts.makeChart('world-map',
+	{
+		"type": "map",
+		"theme": "sarshomar",
+		"colorSteps": 10,
+		"projection": "miller",
+
+		"dataProvider":
+		{
+			"map": "worldLow",
+			"areas": data
+			// "getAreasFromMap": true
+		},
+
+		"areasSettings":
+		{
+			"autoZoom": true,
+			"selectedColor": "#e5a428"
+		},
+
+		"smallMap":
+		{
+			"backgroundAlpha": 0.1
+		}
+	});
 }

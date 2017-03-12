@@ -324,6 +324,7 @@ function getMyMapData()
 		myMapSource = 'lib/ammap/maps/js/iranHigh.js';
 		myMapFunc   = 'drawMapIran';
 	}
+	console.log(myMapFunc);
 	// import source of map
 	$import(myMapSource, myMapFunc);
 

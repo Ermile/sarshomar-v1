@@ -301,30 +301,6 @@ var data =
 }
 ];
 
-var iranMap = AmCharts.makeChart('iran-map',
-{
-	"type": "map",
-    "theme": "sarshomar",
-    "colorSteps": 10,
-
-	"dataProvider":
-	{
-  		"map": "iranHigh",
-		"areas": data
- 	},
-
-	"zoomControl":
-	{
-		"panControlEnabled": false,
-		"zoomControlEnabled": false,
-		"homeButtonEnabled": false
-	},
-
-	"areasSettings": {
-      "autoZoom": false,
-      "balloonText": "[[title]]: <strong>[[value]]</strong>"
-    }
-});
 
 
 /**
@@ -333,5 +309,29 @@ var iranMap = AmCharts.makeChart('iran-map',
  */
 function drawMapIran()
 {
-	// none
+	var iranMap = AmCharts.makeChart('iran-map',
+	{
+		"type": "map",
+		"theme": "sarshomar",
+		"colorSteps": 10,
+
+		"dataProvider":
+		{
+				"map": "iranHigh",
+			"areas": data
+		},
+
+		"zoomControl":
+		{
+			"panControlEnabled": false,
+			"zoomControlEnabled": false,
+			"homeButtonEnabled": false
+		},
+
+		"areasSettings":
+		{
+			"autoZoom": false,
+			"balloonText": "[[title]]: <strong>[[value]]</strong>"
+		}
+	});
 }

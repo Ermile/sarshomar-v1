@@ -679,7 +679,7 @@ function createChartOption(_this, _chartName)
 			myChartOptions = window[attrFormat](myChartOptions, attrVals, $this);
 		}
 
-		console.log(myChartOptions);
+		// console.log(myChartOptions);
 		var chartData = AmCharts.makeChart( chartContainer, myChartOptions);
 		// if(_chartName)
 		// {
