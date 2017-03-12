@@ -61,19 +61,40 @@ trait poll_complete
 				continue;
 			}
 
-			$insert_user_termusages =
-			"
-				INSERT INTO
-					termusages
-				SET
-					termusages.termusage_foreign = 'users',
-					termusages.termusage_id      = $_args[user_id],
-					termusages.term_id           = $value[id]
-				ON DUPLICATE KEY UPDATE
-					termusages.term_id = $value[id]
+			if(isset($_args['type']) && $_args['type'] === 'minus')
+			{
+				$deactive_term_usages =
+				"
+					INSERT INTO
+						termusages
+					SET
+						termusages.termusage_foreign = 'users',
+						termusages.termusage_id      = $_args[user_id],
+						termusages.term_id           = $value[id]
+					ON DUPLICATE KEY UPDATE
+						termusages.term_id     = $value[id],
+						termusages.termusage_status = 'disable'
+					-- profiles::set_profile_by_poll() >> deactive old termusage
+				";
+				\lib\db::query($deactive_term_usages);
+			}
+			else
+			{
+				$insert_user_termusages =
+				"
+					INSERT INTO
+						termusages
+					SET
+						termusages.termusage_foreign = 'users',
+						termusages.termusage_id      = $_args[user_id],
+						termusages.term_id           = $value[id]
+					ON DUPLICATE KEY UPDATE
+						termusages.term_id = $value[id]
+					-- profiles::set_profile_by_poll() >> set new termuseage
 
-			";
-			\lib\db::query($insert_user_termusages);
+				";
+				\lib\db::query($insert_user_termusages);
+			}
 
 			if(!preg_match("/\:/", $value['term_caller']))
 			{
@@ -92,7 +113,7 @@ trait poll_complete
 			{
 				continue;
 			}
-			self::set_profile_data($_args['user_id'], [$split[0] => $split[1]]);
+			self::set_profile_data($_args['user_id'], [$split[0] => $split[1]], $_args);
 		}
 	}
 

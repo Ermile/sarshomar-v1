@@ -125,7 +125,7 @@ trait set
 		$plus = true;
 		// check the type of change chart : plus | minus the chart
 		// in sorting mode we have not minus type of change chart
-		if(isset($_args['type']) && $_args['type'] != 'plus')
+		if(isset($_args['type']) && $_args['type'] !== 'plus')
 		{
 			$plus = false;
 		}
@@ -191,8 +191,14 @@ trait set
 		else
 		{
 			// get the current profile data of users
-			$user_profile_data = \lib\utility\profiles::get_profile_data($user_id);
+			$user_profile_data = \lib\utility\profiles::get_user_filter($user_id);
 		}
+
+		unset($user_profile_data['id']);
+		unset($user_profile_data['unique']);
+		unset($user_profile_data['usercount']);
+		unset($user_profile_data['count']);
+
 		// get the support chart of service
 		// some index of profile data we have not eny chart of this
 		// we have the chart of all index in pollstats::support_chart()

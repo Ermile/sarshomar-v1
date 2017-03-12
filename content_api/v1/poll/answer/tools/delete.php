@@ -12,6 +12,9 @@ trait delete
 	 */
 	public function poll_answer_delete($_options = [])
 	{
+		// start transaction
+		\lib\db::transaction();
+		// set debug title
 		debug::title(T_("Can not remove your answer"));
 		// because the id in url not in request
 		$default_options = ['id' => null];
@@ -51,6 +54,16 @@ trait delete
 		];
 
 		\lib\utility\answers::delete($args);
+
+		if(debug::$status)
+		{
+			\lib\db::commit();
+		}
+		else
+		{
+			\lib\db::rollback();
+		}
+
 		return;
 	}
 }

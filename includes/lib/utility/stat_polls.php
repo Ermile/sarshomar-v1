@@ -211,7 +211,7 @@ class stat_polls
 			{
 				if($value['gender'] == 'male')
 				{
-					$temp_result[$value['age_range']][$value['gender']] = $value['count'];
+					$temp_result[$value['age_range']][$value['gender']] = (int) $value['count'];
 				}
 				else
 				{
@@ -224,14 +224,13 @@ class stat_polls
 
 		foreach ($temp_result as $key => $value)
 		{
-			$temp_result[$key]["key"] = $key;
+			$temp_result[$key]["key"] = T_($key);
 		}
 		$return = [];
 		foreach ($temp_result as $key => $value)
 		{
 			$return[] = $value;
 		}
-
 		return $return;
 	}
 

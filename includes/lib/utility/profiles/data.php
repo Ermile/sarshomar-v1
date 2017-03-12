@@ -174,7 +174,7 @@ trait data
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function set_profile_data($_user_id, $_args)
+	public static function set_profile_data($_user_id, $_args, $_options = [])
 	{
 		if(!is_array($_args) || is_array($_user_id))
 		{
@@ -318,31 +318,49 @@ trait data
 				unset($old_user_filter['count']);
 
 				$insert_filter = array_merge($old_user_filter, $insert_filter);
+
+				if(isset($_options['type']) && $_options['type'] === 'minus')
+				{
+					foreach ($_args as $f => $v)
+					{
+						if(\lib\db\filters::support_filter($f, $v))
+						{
+							unset($insert_filter[$f]);
+						}
+					}
+				}
 			}
 
-			// get the filter id if exist
-			$filter_id = \lib\db\filters::get_id($insert_filter);
-
-			// if filter id not found insert the filter record and get the last_insert_id
-			if(!$filter_id)
+			if(empty($insert_filter))
 			{
-				$filter_id = \lib\db\filters::insert($insert_filter);
+				$result = \lib\db\users::update(['filter_id' => null], $_user_id);
 			}
-
-			if($filter_id)
+			else
 			{
-				$arg    = ['filter_id' => $filter_id];
-				$result = \lib\db\users::update($arg, $_user_id);
+				// get the filter id if exist
+				$filter_id = \lib\db\filters::get_id($insert_filter);
+
+				// if filter id not found insert the filter record and get the last_insert_id
+				if(!$filter_id)
+				{
+					$filter_id = \lib\db\filters::insert($insert_filter);
+				}
+
+				if($filter_id)
+				{
+					$arg    = ['filter_id' => $filter_id];
+					$result = \lib\db\users::update($arg, $_user_id);
+				}
 			}
 		}
-
-		// insert data in terms
-		$insert_termusages = [];
 
 		// *********************
 		// usless code
 		return true;
 		//**********************
+
+		// insert data in terms
+		$insert_termusages = [];
 		foreach ($insert_profile as $key => $value)
 		{
 			// chech exist this profie data or no

@@ -336,16 +336,6 @@ class answers
 		{
 			foreach ($_args['answer'] as $key => $value)
 			{
-				$set_option =
-				[
-					'answer_txt'  => $value,
-					'validation'  => self::$validation,
-					'user_verify' => self::$user_verify,
-					'port'        => $_args['port'],
-					'subport'     => $_args['subport'],
-				];
-
-				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
 				// save the poll lucked by profile
 				// update users profile
 				$answers_details =
@@ -361,6 +351,17 @@ class answers
 				];
 				// save user profile if this poll is a profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
+
+				$set_option =
+				[
+					'answer_txt'  => $value,
+					'validation'  => self::$validation,
+					'user_verify' => self::$user_verify,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
+				];
+
+				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
 
 				if($save_offline_chart)
 				{
@@ -486,8 +487,8 @@ class answers
 				if($o['opt'] == $value)
 				{
 
-					$profile    = $o['profile'];
-					self::$validation = $o['validstatus'];
+					$profile          = isset($o['profile']) ? $o['profile'] : null;
+					self::$validation = isset($o['validstatus']) ? $o['validstatus'] : null;
 				}
 
 				if(array_key_exists('validstatus', $o))
@@ -533,17 +534,6 @@ class answers
 		{
 			foreach ($_args['answer'] as $key => $value)
 			{
-				$set_option =
-				[
-					'answer_txt'  => $value,
-					'validation'  => self::$validation,
-					'port'        => $_args['port'],
-					'subport'     => $_args['subport'],
-					'user_verify' => self::$user_verify,
-				];
-
-				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
-				// save the poll lucked by profile
 				// update users profile
 				$answers_details =
 				[
@@ -559,6 +549,18 @@ class answers
 				];
 				// set user profile if this poll is profile poll
 				\lib\utility\profiles::set_profile_by_poll($answers_details);
+
+				$set_option =
+				[
+					'answer_txt'  => $value,
+					'validation'  => self::$validation,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
+					'user_verify' => self::$user_verify,
+				];
+
+				$result = \lib\db\polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
+				// save the poll lucked by profile
 
 				if($save_offline_chart)
 				{

@@ -13,6 +13,8 @@ trait add
 	 */
 	public function poll_answer_add($_options = [])
 	{
+		// start transactions
+		\lib\db::transaction();
 
 		$default_optios =
 		[
@@ -439,7 +441,14 @@ trait add
 
 		if(debug::$status)
 		{
+			// commit code
+			\lib\db::commit();
+
 			debug::title(T_("Answer saved"));
+		}
+		else
+		{
+			\lib\db::rollback();
 		}
 	}
 }
