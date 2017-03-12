@@ -171,22 +171,10 @@
 
 {%block poll_actions%}
 {% spaceless %}
- <div class="f poll-actions">
-  <div class="c"></div>
-
-  <div class="c">
+ <div class="poll-actions">
    <a class="special-btn before" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
-  </div>
-
-  <div class="c">
-   <button class="special-btn" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
-  </div>
-
-  <div class="c">
+   <button class="special-btn base" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
    <a class="special-btn after" href="{{url.base}}/ask" data-direct >{%trans "Next"%}</a>
-  </div>
-
-  <div class="c"></div>
  </div>
 {% endspaceless %}
 {%endblock%}
