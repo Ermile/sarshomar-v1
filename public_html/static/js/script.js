@@ -285,6 +285,28 @@ function shortkey()
 
 		switch (mytxt)
 		{
+			// shift + enter
+			case '13shift':
+				var focusedElement = $(e.target);
+				if(focusedElement.is('.stepAdd .input'))
+				{
+					var thisEl = $('.stepAdd .input');
+					var selectedIndex = thisEl.index(focusedElement);
+					thisEl.eq(selectedIndex - 1).focus();
+				}
+				break;
+
+			// enter
+			case '13':
+				var focusedElement = $(e.target);
+				if(focusedElement.is('.stepAdd .input'))
+				{
+					var thisEl = $('.stepAdd .input');
+					var selectedIndex = thisEl.index(focusedElement);
+					thisEl.eq(selectedIndex + 1).focus();
+				}
+				break;
+
 			// shift + delete
 			case '46shift':
 				var focusedElement = $(e.target);
@@ -2119,10 +2141,18 @@ function sendQuestionData(_status, _asyncAjax)
 						lockStep();
 					}
 					var myPersonCount = $('#rangepersons').data("ionRangeSlider");
-					myPersonCount.update(
+					if(limit === myPersonCount.result.max)
 					{
-						from_max: limit,
-					});
+						// do nothing! because use maximum value
+					}
+					else
+					{
+						// if its different, set limit
+						myPersonCount.update(
+						{
+							from_max: limit,
+						});
+					}
 				}
 				// after a short delay show synced
 				syncing(null, true);
