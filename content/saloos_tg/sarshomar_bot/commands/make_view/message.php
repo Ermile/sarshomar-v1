@@ -83,7 +83,7 @@ class message
 		}
 		else
 		{
-			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
+			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']) . "\n";
 		}
 	}
 
@@ -127,7 +127,7 @@ class message
 				}
 				else
 				{
-					$emoji = '✅';
+					$emoji = $this->class::$emoji_number[$key+1] . '✅';
 				}
 			}
 			else

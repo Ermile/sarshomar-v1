@@ -67,17 +67,20 @@ trait add
 		$args = [];
 		if(utility::isset_request('access_profile'))
 		{
-			$access_profile = utility::request('access_profile');
-			if(!is_array($access_profile))
+			if(!utility::request('access_profile') == null)
 			{
-				$access_profile = explode(" ", $access_profile);
-			}
-			$profile_values = array_keys(\lib\utility\profiles::profile_data());
-			$profile_values[] = 'displayname';
-			$diff = array_diff($access_profile, $profile_values);
-			if(!empty($diff))
-			{
-				return debug::error(T_("Profile values is incorrect") . " ('" . implode($diff, "', '") . "')", 'access_profile', 'arguments');
+				$access_profile = utility::request('access_profile');
+				if(!is_array($access_profile))
+				{
+					$access_profile = explode(" ", $access_profile);
+				}
+				$profile_values = array_keys(\lib\utility\profiles::profile_data());
+				$profile_values[] = 'displayname';
+				$diff = array_diff($access_profile, $profile_values);
+				if(!empty($diff))
+				{
+					return debug::error(T_("Profile values is incorrect") . " ('" . implode($diff, "', '") . "')", 'access_profile', 'arguments');
+				}
 			}
 			$args['access_profile'] = $access_profile;
 		}

@@ -153,7 +153,7 @@ trait poll
 		if(self::isset_args('access_profile'))
 		{
 			$insert_poll['post_meta']['access_profile'] = self::$args['access_profile'];
-			if(!is_array(self::$args['access_profile']) || is_null(self::$args['access_profile']))
+			if(!is_array(self::$args['access_profile']) && !is_null(self::$args['access_profile']))
 			{
 				return debug::error(T_("Access profile must be array"), 'access_profile', 'arguments');
 			}
