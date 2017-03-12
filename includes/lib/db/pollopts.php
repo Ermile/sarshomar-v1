@@ -698,7 +698,7 @@ class pollopts
 							break;
 
 						default:
-							if($value != $_new_opt[$key])
+							if($value !== $_new_opt[$key])
 							{
 								$update[$key] = $_new_opt[$key];
 							}
@@ -739,7 +739,7 @@ class pollopts
 						case 'attachmenttype':
 						// case 'profile':
 						default:
-							if($value)
+							if(isset($value))
 							{
 								$update[$key] = null;
 							}

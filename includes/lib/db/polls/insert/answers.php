@@ -20,6 +20,11 @@ trait answers
 			return debug::error(T_("Answers must be array"), 'answers', 'arguments');
 		}
 
+		if(count(self::$args['answers']) > 100)
+		{
+			return debug::error(T_("You can not add more than 100 answers"), 'answers', 'arguments');
+		}
+
 		$answers = self::$args['answers'];
 		// remove empty index from answer array
 		$answers = array_filter($answers);
@@ -29,7 +34,7 @@ trait answers
 		foreach ($answers as $key => $value)
 		{
 			$title = null;
-			if(isset($value['title']) && $value['title'] != '')
+			if(isset($value['title']) && $value['title'] !== '')
 			{
 				$title = trim($value['title']);
 				$combine[$key]['title'] = $title;
@@ -87,9 +92,13 @@ trait answers
 				{
 					$combine[$key]['attachmenttype'] = $is_attachment['type'];
 				}
-
 			}
 
+			if($title === null && $attachment_id === null)
+			{
+				unset($combine[$key]);
+				continue;
+			}
 
 			// $combine[$key]['desc']          = isset($value['description']) ? trim($value['description']) : null;
 
@@ -109,7 +118,7 @@ trait answers
 	     		}
 
 	     		// get score group
-	 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']) && $value[$object_type]['score']['group'])
+	 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']))
 	     		{
 	     			$combine[$key]['groupscore'] = trim($value[$object_type]['score']['group']);
 	     		}
@@ -196,7 +205,7 @@ trait answers
 				unset($combine[$key]);
 			}
 		}
-
+		// var_dump($combine);exit();
 		if(is_array($combine))
 		{
 			$temp_combine = [];

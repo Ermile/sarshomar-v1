@@ -162,12 +162,12 @@ trait get
 		{
 			if(isset($value['key']))
 			{
-				$stats[$key]['key'] = $value['key'];
+				$stats[$key]['key'] = (int) $value['key'];
 			}
 
 			if(isset($value['title']))
 			{
-				$stats[$key]['title'] = $value['title'];
+				$stats[$key]['title'] = (string) $value['title'];
 			}
 
 			if(isset($value['attachment']))

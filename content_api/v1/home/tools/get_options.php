@@ -16,7 +16,7 @@ trait get_options
 			foreach ($temp_options as $key => $value)
 			{
 
-				if($value == '1')
+				if($value === '1')
 				{
 					$show_options[$key] = true;
 				}
@@ -72,7 +72,7 @@ trait get_options
 					}
 					else
 					{
-						$_poll_data['file']['url'] = $host. '/'. $attachment['meta']['url'];
+						$_poll_data['file']['url'] = self::$host. '/'. $attachment['meta']['url'];
 					}
 				}
 

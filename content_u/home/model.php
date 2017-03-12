@@ -52,6 +52,11 @@ class model extends \mvc\model
 	public function remove_account()
 	{
 		$mobile = $this->login('mobile');
+		if(!$mobile)
+		{
+			return false;
+		}
+
 		$first_change_mobile = "SELECT users.id AS `id` FROM users WHERE user_mobile LIKE '$mobile\_1' LIMIT 1";
 		$first_change_mobile = \lib\db::get($first_change_mobile, 'id', true);
 		if($first_change_mobile && $first_change_mobile == $this->login('id'))

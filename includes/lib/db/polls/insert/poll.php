@@ -23,7 +23,7 @@ trait poll
 				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 			}
 
-			if(self::$args['title'])
+			if(isset(self::$args['title']))
 			{
 				$insert_poll['post_title'] = trim(self::$args['title']);
 			}

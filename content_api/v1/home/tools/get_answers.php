@@ -24,111 +24,167 @@ trait get_answers
 			];
 
 			$answers = \lib\db\pollopts::get(self::$private_poll_id, $custom_field, true);
-
+			// var_dump($answers);
 			$show_answers = [];
-			foreach ($answers as $key => $value)
+			foreach ($answers as $key => $array)
 			{
-				$attachment = null;
-
-				if(\content_api\v1\home\tools\api_options::check_api_permission('u','complete_profile', 'admin'))
+				if(!is_array($array))
 				{
-					$opt_profile = [];
-					if(isset($value['id']))
-					{
-						$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'sarshomar');
+					continue;
+				}
 
-						if($profile && is_array($profile))
-						{
-							foreach ($profile as $k => $v)
+				$attachment = null;
+				foreach ($array as $field => $value)
+				{
+					switch ($field)
+					{
+						case 'id':
+						case 'attachmenttype':
+						case 'desc':
+							// no thing!
+							break;
+
+						case 'attachment_id':
+							if($value)
 							{
-								if(isset($v['id']))
+								$attachment = \lib\db\polls::get_poll($value['attachment_id']);
+								$url = null;
+								$show_answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
+
+								if(isset($attachment['meta']) && is_string($attachment['meta']) && substr($attachment['meta'], 0, 1) == '{')
 								{
-									$opt_profile[$k]['id'] = shortURL::encode($v['id']);
+									$attachment['meta'] = json_decode($attachment['meta'], true);
 								}
 
-								if(isset($v['term_title']))
+								if(isset($attachment['meta']['url']))
 								{
-									if($v['term_title'] != T_($v['term_title']))
+									if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
 									{
-										$opt_profile[$k]['title'] = $v['term_title'] . " | ". T_($v['term_title']);
+										$show_answers[$key]['file']['url']  = $awaiting_file_url;
 									}
 									else
 									{
-										$opt_profile[$k]['title'] = $v['term_title'];
+										$show_answers[$key]['file']['url']  = self::$host. '/'. $attachment['meta']['url'];
 									}
 								}
-								if(isset($v['term_meta']) && is_string($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
-								{
-									$temp_term_meta = json_decode($v['term_meta'], true);
 
-									if(isset($temp_term_meta['translate'][self::$current_language]))
-									{
-										$opt_profile[$k]['translate'] = $temp_term_meta['translate'][self::$current_language];
-									}
+								if(isset($attachment['meta']['mime']))
+								{
+									$show_answers[$key]['file']['mime'] = $attachment['meta']['mime'];
 								}
+
 							}
-						}
+							break;
+
+						case 'key':
+							$show_answers[$key][$field] = (int) $value;
+							break;
+
+						case 'score':
+							if(isset($value))
+							{
+								$show_answers[$key][$field] = (int) $value;
+								$_poll_data['have_score'] = true;
+							}
+							else
+							{
+								$show_answers[$key][$field] = null;
+							}
+
+							break;
+
+						case 'type':
+						case 'title':
+						case 'subtype':
+						case 'groupscore':
+							if(isset($value))
+							{
+								$show_answers[$key][$field] = (string) $value;
+							}
+							else
+							{
+								$show_answers[$key][$field] = null;
+							}
+
+							if($field === 'groupscore' && isset($value))
+							{
+								$_poll_data['advance_score'] = true;
+							}
+							break;
+
+						case 'true':
+							if(isset($value['true']) && $value['true'] == '1')
+							{
+								$show_answers[$key]['true'] = true;
+							}
+							else
+							{
+								$show_answers[$key]['true'] = false;
+							}
+							break;
+
+						default:
+							# code...
+							break;
 					}
-					if(!empty($opt_profile))
+
+				}
+
+				if(\content_api\v1\home\tools\api_options::check_api_permission('u','complete_profile', 'admin'))
+				{
+					$show_answers[$key]['profile'] = self::load_profile_lock($array);
+					if(!empty($show_answers[$key]['profile']))
 					{
 						$_poll_data['profile'] = true;
 					}
-					$answers[$key]['profile'] = $opt_profile;
 				}
+			}
 
-				// unset($answers[$key]['id']);
+			$_poll_data['answers'] = $show_answers;
+	}
 
-				if(isset($value['true']) && $value['true'] == '1')
+
+	private static function load_profile_lock(&$value)
+	{
+		$opt_profile = [];
+		if(isset($value['id']))
+		{
+			$profile = \lib\db\terms::usage($value['id'], [], 'profile', 'sarshomar');
+
+			if($profile && is_array($profile))
+			{
+				foreach ($profile as $k => $v)
 				{
-					$show_answers[$key]['true'] = true;
-				}
-				else
-				{
-					$show_answers[$key]['true'] = false;
-				}
-
-				if(isset($value['attachment_id']) && $value['attachment_id'])
-				{
-					$attachment = \lib\db\polls::get_poll($value['attachment_id']);
-					$url = null;
-					$answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value['attachment_id']);
-
-					if(isset($attachment['meta']) && is_string($attachment['meta']) && substr($attachment['meta'], 0, 1) == '{')
+					if(isset($v['id']))
 					{
-						$attachment['meta'] = json_decode($attachment['meta'], true);
+						$opt_profile[$k]['id'] = shortURL::encode($v['id']);
 					}
 
-					if(isset($attachment['meta']['url']))
+					if(isset($v['term_title']))
 					{
-						if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
+						if($v['term_title'] != T_($v['term_title']))
 						{
-							$answers[$key]['file']['url']  = $awaiting_file_url;
+							$opt_profile[$k]['title'] = $v['term_title'] . " | ". T_($v['term_title']);
 						}
 						else
 						{
-							$answers[$key]['file']['url']  = self::$host. '/'. $attachment['meta']['url'];
+							$opt_profile[$k]['title'] = $v['term_title'];
 						}
 					}
-
-					if(isset($attachment['meta']['mime']))
+					if(isset($v['term_meta']) && is_string($v['term_meta']) && substr($v['term_meta'], 0,1) === '{')
 					{
-						$answers[$key]['file']['mime'] = $attachment['meta']['mime'];
+						$temp_term_meta = json_decode($v['term_meta'], true);
+
+						if(isset($temp_term_meta['translate'][self::$current_language]))
+						{
+							$opt_profile[$k]['translate'] = $temp_term_meta['translate'][self::$current_language];
+						}
 					}
 				}
-
-				if(isset($value['groupscore']) && $value['groupscore'])
-				{
-					$_poll_data['advance_score'] = true;
-				}
-
-				unset($answers[$key]['attachmenttype']);
-				unset($answers[$key]['attachment_id']);
-				unset($answers[$key]['id']);
-
-				$show_answers[$key] = array_filter($answers[$key]);
 			}
-			// sort($show_naswers);
-			$_poll_data['answers'] = $show_answers;
+		}
+
+		return $opt_profile;
 	}
 }
 ?>

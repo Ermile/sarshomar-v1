@@ -9,21 +9,11 @@ trait get_fields
 	private static function get_fields(&$_poll_data)
 	{
 
-		if(array_key_exists('title', $_poll_data) && $_poll_data['title'] == '‌')
-		{
-			$_poll_data['title'] = '';
-		}
-
-		if(array_key_exists('slug', $_poll_data) && $_poll_data['slug'] == '‌')
-		{
-			$_poll_data['slug'] = '';
-		}
-
 		if(array_key_exists('url', $_poll_data))
 		{
-			if($_poll_data['url'] == '‌')
+			if($_poll_data['url'] === '‌')
 			{
-				$_poll_data['url'] = '';
+				$_poll_data['url'] = null;
 			}
 			else
 			{
@@ -34,19 +24,18 @@ trait get_fields
 		// encode user id
 		if(array_key_exists('user_id', $_poll_data))
 		{
-			$_poll_data['user_id'] = shortURL::encode($_poll_data['user_id']);
+			$_poll_data['user_id'] = (string) shortURL::encode($_poll_data['user_id']);
 		}
 
 		// encode parent
 		if(array_key_exists('parent', $_poll_data))
 		{
-			$_poll_data['parent'] = shortURL::encode($_poll_data['parent']);
+			$_poll_data['parent'] = (string) shortURL::encode($_poll_data['parent']);
 		}
 
 		if(array_key_exists('content', $_poll_data))
 		{
 			$_poll_data['description'] = $_poll_data['content'];
-			unset($_poll_data['content']);
 		}
 
 		// encode suervey
@@ -159,30 +148,6 @@ trait get_fields
 
 		}
 
-		// change have_true_answer field
-		if(array_key_exists('have_true_answer', $_poll_data))
-		{
-			if($_poll_data['have_true_answer'])
-			{
-				$_poll_data['have_true_answer'] = true;
-			}
-			else
-			{
-				$_poll_data['have_true_answer'] = false;
-			}
-		}
-
-		// change sarshomar field
-		if(array_key_exists('sarshomar', $_poll_data) && $_poll_data['sarshomar'])
-		{
-			$_poll_data['sarshomar'] = true;
-		}
-		else
-		{
-			$_poll_data['sarshomar'] = false;
-		}
-
-
 		if(isset($_poll_data['meta']['summary']))
 		{
 			$_poll_data['summary'] = $_poll_data['meta']['summary'];
@@ -195,9 +160,75 @@ trait get_fields
 			unset($_poll_data['meta']['access_profile']);
 		}
 
+		foreach ($_poll_data as $key => $value)
+		{
+			switch ($key)
+			{
+				case 'id':
+				case 'comment':
+				case 'language':
+				case 'privacy':
+				case 'short_url':
+				case 'status':
+				case 'type':
+				case 'url':
+				case 'user_id':
+				case 'title':
+					$_poll_data[$key] = (string) $value;
+					break;
+
+				case 'count_comment':
+				case 'count_fav':
+				case 'count_like':
+				case 'count_vote':
+					$_poll_data[$key] = (int) $value;
+					break;
+
+				case 'description':
+				case 'parent':
+				case 'slug':
+				case 'summary':
+				case 'survey':
+					if(isset($value) && !is_null($value) && $value !== '‌' && $value != '')
+					{
+						$_poll_data[$key] = (string) $value;
+					}
+					else
+					{
+						$_poll_data[$key] = null;
+					}
+					break;
+
+				case 'have_score':
+				case 'have_true_answer':
+				case 'is_answered':
+				case 'profile':
+				case 'sarshomar':
+					if($value)
+					{
+						$_poll_data[$key] = true;
+					}
+					else
+					{
+						$_poll_data[$key] = false;
+					}
+					break;
+
+				case 'answers':
+				case 'articles':
+				case 'filters':
+				case 'options':
+				case 'result':
+				case 'tags':
+				default:
+					continue;
+					break;
+			}
+		}
 		unset($_poll_data['meta']);
 		unset($_poll_data['count']);
 		unset($_poll_data['order']);
+		unset($_poll_data['content']);
 	}
 }
 ?>

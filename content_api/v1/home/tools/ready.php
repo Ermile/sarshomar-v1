@@ -153,24 +153,6 @@ trait ready
 			return;
 		}
 
-		foreach ($_poll_data as $key => $value)
-		{
-			if($key == 'id')
-			{
-				continue;
-			}
-
-			if(is_numeric($value))
-			{
-				$_poll_data[$key] = (float) $value;
-			}
-
-			if($value === null || $value === '')
-			{
-				$_poll_data[$key] = null;
-			}
-		}
-
 		self::$current_language = $current_language = \lib\define::get_language();
 
 		$host = Protocol."://" . \lib\router::get_root_domain();
@@ -196,7 +178,7 @@ trait ready
 			$filters = utility\postfilters::get_filter($poll_id);
 			$filters = array_filter($filters);
 			$member  = \lib\db\ranks::get($poll_id, 'member');
-			$filters['count'] = $member;
+			$filters['count'] = (int) $member;
 			$_poll_data['filters'] = $filters;
 		}
 
@@ -241,11 +223,9 @@ trait ready
 		$short_url = $host. '/$'. $_poll_data['id'];
 		$_poll_data['short_url'] = $short_url;
 
-		ksort($_poll_data);
-		if(is_array($_poll_data))
-		{
-			// $_poll_data = array_filter($_poll_data);
-		}
+		// sort poll data
+		krsort($_poll_data);
+
 		// var_dump($_poll_data); exit();
 		return $_poll_data;
 	}
