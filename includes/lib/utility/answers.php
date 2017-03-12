@@ -140,26 +140,28 @@ class answers
 			return false;
 		}
 
+
 		// get count of updated the poll
 		$where =
 		[
-			'post_id'    => $_args['poll_id'],
-			'user_id'    => $_args['user_id'],
-			'option_cat' => "update_user_$_args[user_id]",
-			'option_key' => "update_result_$_args[poll_id]",
-			'limit'      => 1,
+			'post_id'      => $_args['poll_id'],
+			'user_id'      => $_args['user_id'],
+			'option_cat'   => "user_detail_$_args[user_id]",
+			'option_key'   => "update_answer_$_args[poll_id]",
+			'option_value' => "update_answer",
+			'limit'        => 1,
 		];
 
 		$update_count = \lib\db\options::get($where);
 
-		if(isset($update_count['value']))
+		if(isset($update_count['meta']))
 		{
-			if((int) $update_count > (int) $_args['count'])
+			if((int) $update_count['meta'] >= (int) $_args['count'])
 			{
-				if($_args['debug'])
-				{
+				// if($_args['debug'])
+				// {
 					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-				}
+				// }
 				return false;
 			}
 		}
@@ -568,13 +570,15 @@ class answers
 		// plus answer update count
 		$where =
 		[
-			'post_id'      => $_args['poll_id'],
-			'user_id'      => $_args['user_id'],
+			'post_id'      => (int) $_args['poll_id'],
+			'user_id'      => (int) $_args['user_id'],
 			'option_cat'   => "user_detail_$_args[user_id]",
 			'option_key'   => "update_answer_$_args[poll_id]",
 			'option_value' => "update_answer",
 		];
+
 		\lib\db\options::plus($where);
+
 		self::$IS_ANSWERED = [];
 
 		// if($old_answer_is_skipped && $new_answer_is_skipped) || (!$old_answer_is_skipped && !$new_answer_is_skipped)
