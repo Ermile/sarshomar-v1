@@ -174,7 +174,7 @@
  <div class="poll-actions">
    <a class="special-btn before" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
    <button class="special-btn base" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
-   <a class="special-btn after" href="{{url.base}}/ask" data-direct >{%trans "Next"%}</a>
+   <a class="special-btn after disabled" href="{{url.base}}/ask" data-direct>{%trans "Next"%}</a>
  </div>
 {% endspaceless %}
 {%endblock%}

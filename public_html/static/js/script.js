@@ -224,6 +224,23 @@ function openTopNav()
 
 
 /**
+ * [disabledLink description]
+ * @return {[type]} [description]
+ */
+function disabledLink()
+{
+	$('a.disabled').on('click', function(_e)
+	{
+		if($(this).hasClass('disabled') === true)
+		{
+			_e.preventDefault();
+			return false;
+		}
+	})
+}
+
+
+/**
  * [setProperty description]
  * @param {[type]} argument [description]
  */
@@ -3060,6 +3077,11 @@ function saveAnswers(_type)
 			}
 			break;
 	}
+	// if answer isset then enable next
+	if(data)
+	{
+		$('.poll-actions .after').removeClass('disabled')
+	}
 
 	data = JSON.stringify(data);
 	$('#saveAnswers').ajaxify(
@@ -3166,6 +3188,7 @@ function runAllScripts()
 	resizableTextarea();
 	// open profile on getting focus
 	openTopNav();
+	disabledLink();
 	// allow to set fav
 	setProperty('favorite');
 	setProperty('heart');
