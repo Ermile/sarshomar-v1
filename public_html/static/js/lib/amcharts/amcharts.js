@@ -797,7 +797,7 @@ function getChartOption($_what, _arg)
 				// "fillColorsField": "color",
 
 				"gridAboveGraphs": true,
-				"startDuration": 0.5,
+				"startDuration": 0.3,
 				"startEffect":"easeOutSine",
 				"startAlpha": 0.5,
 			}
@@ -916,7 +916,6 @@ function getBestColorForGroup(_group)
 			myColor = '#666';
 			break;
 	}
-	console.log(_group);
 
 	return myColor;
 }
@@ -1142,7 +1141,7 @@ function homepageGender(_option)
 	_option.colors = ["#83c3e1", "#e97197" ];
 	_option.rotate = true;
 	_option.marginBottom = 50;
-	_option.startDuration = 1;
+	_option.startDuration = 0.5;
 	_option.startEffect = 'easeOutSine',
 	_option.graphs =
 	[

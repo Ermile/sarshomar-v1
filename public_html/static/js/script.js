@@ -2825,7 +2825,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 		requestSavingData();
 
 		// if value isset to zero hide filters
-		if(_values.from == 0)
+		if(_values.from == 0 && $('.badge.active').length < 1)
 		{
 			$('.stepFilter #filter-conditions').fadeOut();
 		}
@@ -3137,6 +3137,18 @@ function hashChanged()
 		setLanguageURL();
 		detectStep();
 	});
+}
+
+
+function loading_page(_status)
+{
+	// console.log('page.......');
+}
+
+
+function loading_form(_status)
+{
+	// console.log('form.......');
 }
 
 
