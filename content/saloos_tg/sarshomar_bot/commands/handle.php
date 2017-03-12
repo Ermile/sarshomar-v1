@@ -11,7 +11,6 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		handle::send_log(bot::$hook);
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();

@@ -202,25 +202,46 @@ class poll
 		\lib\storage::set_disable_edit(true);
 		$last = null;
 		$subport = null;
+		$oprator = null;
 		if(count($_data_url) == 4)
 		{
 			list($class, $method, $poll_id, $answer) = $_data_url;
 		}
-		elseif (count($_data_url) == 5) {
+		elseif (count($_data_url) >= 5) {
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 			if(substr($last, 0, 1) == ':')
 			{
 				$subport = \lib\utility\shortURL::decode(substr($last, 1));
 				$last = null;
 			}
+			elseif(substr($last, 0, 1) == '+')
+			{
+				$oprator = substr($last, 1);
+				if(isset($_data_url[6]))
+				{
+					$last = $_data_url[6];
+				}
+			}
 		}
 		$maker = new make_view($poll_id);
-		if(isset($maker->query_result['options']['multi']) && is_numeric($answer))
+		handle::send_log($oprator);
+		if($oprator == 'multi')
 		{
-			$multi = session::get('multi_answer', $poll_id);
+			$answer = explode("_", $answer);
+			$answer = array_fill_keys($answer, true);
+			session::remove('expire', 'command', 'multi_answer');
+		}
+		elseif(isset($maker->query_result['options']['multi']) && is_numeric($answer))
+		{
+			\lib\storage::set_current_command(true);
+			$multi = session::get('expire', 'command', 'multi_answer', $poll_id);
 			if(is_null($multi))
 			{
-				$multi = (object) ['id' => $poll_id];
+				$multi = (object) ['id' => $poll_id, 'answers' => []];
+			}
+			if(isset($multi->answers))
+			{
+				$multi->answers = (array) $multi->answers;
 			}
 			if(in_array($answer, $multi->answers))
 			{
@@ -232,7 +253,7 @@ class poll
 				$multi->answers[] = $answer;
 				$add = true;
 			}
-			session::set('multi_answer', $poll_id, $multi);
+			session::set('expire', 'command', 'multi_answer', $poll_id, $multi);
 			callback_query::edit_message(ask::make(null, null, [
 				'poll_id' 	=> $poll_id,
 				'return'	=> true,
@@ -294,7 +315,7 @@ class poll
 				$request['skip'] = true;
 				break;
 			default:
-				$request['answer'] = [$answer => true];
+				$request['answer'] = is_array($answer) ? $answer : [$answer => true];
 				break;
 		}
 
