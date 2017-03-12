@@ -608,6 +608,7 @@ function createChartOption(_this, _chartName)
 		var attrVals       = $this.attr('data-vals');
 		var attrFormat     = $this.attr('data-format');
 		var attrColor      = $this.attr('data-color');
+		var attrCat        = $this.attr('data-catField');
 		var attrWhat       = $this.attr('data-what');
 		var attrWhatVals   = $this.attr('data-vals-' + attrWhat);
 		var chartContainer = $this;
@@ -672,6 +673,12 @@ function createChartOption(_this, _chartName)
 		myChartOptions.categoryAxis = getChartOption('categoryAxis');
 		myChartOptions.valueAxes    = getChartOption('valueAxes');
 		myChartOptions.graphs       = getChartOption('graphs', attrAutoColor);
+
+		// allow to give special catfield
+		if(attrCat)
+		{
+			myChartOptions.categoryField = attrCat;
+		}
 
 		// else if has format call it
 		if(attrFormat && typeof window[attrFormat] == 'function')
