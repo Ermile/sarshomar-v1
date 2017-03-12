@@ -398,6 +398,12 @@ img,.unselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:non
 .in.xlarge{width:85%}
 .in.xxlarge{width:95%}
 
+/* page loading effect*/
+body.loading-page .logo img{animation-duration:1s;-webkit-animation-duration:1s;animation-fill-mode:both;-webkit-animation-fill-mode:both;animation-name:flash;-webkit-animation-name:flash;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}
+@-webkit-keyframes flash { from, 50%, to {opacity:1;} 25%, 75% {opacity:0.7;}}
+@keyframes flash { from, 50%, to {opacity:1;} 25%, 75% {opacity:0.7;}}
+
+
 /* override default text select color */
 ::-moz-selection{background:#00667a;color:#f4f4f4}
 ::selection{background:#00667a;color:#f4f4f4}
@@ -406,7 +412,7 @@ img,.unselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:non
 .ltr-text{display:inline-block;direction:ltr}
 
 a[href*="amcharts.com"]{display:none!important}
-.ltr #random-chart{overflow: hidden;}
+.ltr #random-chart{overflow:hidden;}
 .ltr #random-chart .amcharts-main-div{padding-left:1em}
 .ltr #random-chart .amcharts-chart-div, .ltr #random-chart svg{overflow:visible!important;}
 
