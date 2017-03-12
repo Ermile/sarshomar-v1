@@ -108,17 +108,15 @@ class inline_keyboard
 		}
 	}
 
-	public function add_guest_option(...$_args)
+	public function add_guest_option($_options)
 	{
 		if($this->class->query_result['status'] !== 'publish')
 		{
 			return ;
 		}
-		$this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
-	}
-
-	public function get_guest_option($_options = [])
-	{
+		// $this->inline_keyboard[$this->count()] = $this->get_guest_option(...$_args);
+		$count = $this->count();
+		$count2 = $this->count()+1;
 		$options = array_merge([
 			'skip' => true,
 			'update' => true,
@@ -127,11 +125,12 @@ class inline_keyboard
 			'inline_report' => false,
 			], $_options);
 		$return = [];
+		$return2 = [];
 
 		if($options['skip'])
 		{
 			$return[] = [
-				'text' => T_("Skip"),
+				'text' => "⏬",
 				'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
 			];
 		}
@@ -142,16 +141,17 @@ class inline_keyboard
 				'callback_data' => "ask/update/" . $this->class->poll_id
 			];
 		}
+
 		if($options['share'] && $this->class->query_result['status'] == 'publish')
 		{
-			$return[] = [
+			$return2[] = [
 				"text" => T_("Share"),
 				"switch_inline_query" => '$'.$this->class->poll_id
 			];
 		}
 		if($options['inline_report'])
 		{
-			$return[] = [
+			$return2[] = [
 				"text" => T_("Report"),
 				"callback_data" => 'poll/report/'.$this->class->poll_id
 			];
@@ -163,7 +163,11 @@ class inline_keyboard
 				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id
 			];
 		}
-		return $return;
+		$this->inline_keyboard[$count] = $return;
+		if(!empty($return2))
+		{
+			$this->inline_keyboard[$count2] = $return2;
+		}
 	}
 
 	public function add_change_status()

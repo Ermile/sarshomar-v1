@@ -301,7 +301,7 @@ class poll
 		else
 		{
 			callback_query::edit_message(ask::make(null, null, [
-				'poll_id' 	=> $poll_id,
+				'poll_id' 	=> $answer == 'skip' ? null : $poll_id,
 				'return'	=> true,
 				'last'		=> $last,
 				'type'		=> 'private'

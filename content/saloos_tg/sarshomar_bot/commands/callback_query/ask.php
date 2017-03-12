@@ -107,7 +107,11 @@ class ask
 		}
 		if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'])
 		{
-			$guest_option['share'] = true;
+			if($options['type'] == 'private')
+			{
+				$guest_option['share'] = true;
+				$maker->message->message['poll_list'] .= "⏬ " . T_("Skip") ."\n";
+			}
 		}
 		else
 		{
