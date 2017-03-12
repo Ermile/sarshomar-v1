@@ -779,7 +779,7 @@ function getChartOption($_what, _arg)
 				// "fillColorsField": "color",
 
 				"gridAboveGraphs": true,
-				"startDuration": 1,
+				"startDuration": 0.5,
 				"startEffect":"easeOutSine",
 				"startAlpha": 0.5,
 			}
@@ -879,6 +879,7 @@ function pollTotal_default(_option, _answers, _el)
 		"stackType": "regular",
 		"axisAlpha": 0.1,
 		"gridAlpha": 0,
+		"minimum": 0,
 	}];
 
 	// setChartOption_result(_option, null, true);
@@ -940,6 +941,11 @@ function setChartOption(_chartData, _type, _trans, _init)
 			_chartData.colors = pallet();
 			break;
 	}
+	// change effect on other types of chart
+	// _chartData.startEffect = "elastic";
+	_chartData.startDuration = 0.3;
+
+
 	if(_trans.length === 0)
 	{
 		console.log(_trans.length);
@@ -1008,7 +1014,19 @@ function redrawPollChart(_data)
 			myChartData.animateAgain();
 			//Updating the graph to show the new data
 			myChartData.validateData();
-			myChartData.validateNow();
+			// myChartData.validateNow();
+
+
+			// myChartData.animateData(drawData,
+			// {
+			// 	duration: 1000,
+			// 	complete: function ()
+			// 	{
+			// 		console.log('complete')
+			// 		// setTimeout(loop, 2000);
+			// 	}
+			// });
+
 		}
 	});
 }
