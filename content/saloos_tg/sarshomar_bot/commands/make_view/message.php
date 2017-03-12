@@ -91,11 +91,11 @@ class message
 	{
 		if($answer)
 		{
-			$answer_id = current($answer)['key'];
+			$answer_id = array_column($answer, 'key');
 		}
 		else
 		{
-			$answer_id = null;
+			$answer_id = [];
 		}
 		$poll_list = '';
 		$sum = $this->sum_stats();
@@ -114,12 +114,12 @@ class message
 				}
 				break;
 			}
-			elseif($answer_id == $key+1)
+			elseif(in_array($value['key'], $answer_id))
 			{
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
-					$emoji = utility::nubmer_language($key+1);
-					if($key+1 < 10)
+					$emoji = utility::nubmer_language($value['key']);
+					if($value['key'] < 10)
 					{
 						$emoji = utility::nubmer_language("0") . $emoji;
 					}
@@ -127,15 +127,15 @@ class message
 				}
 				else
 				{
-					$emoji = $this->class::$emoji_number[$key+1] . '✅';
+					$emoji = $this->class::$emoji_number[$value['key']] . '✅';
 				}
 			}
 			else
 			{
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
-					$emoji = utility::nubmer_language($key+1);
-					if($key+1 < 10)
+					$emoji = utility::nubmer_language($value['key']);
+					if($value['key'] < 10)
 					{
 						$emoji = utility::nubmer_language("0") . $emoji;
 					}
@@ -143,13 +143,13 @@ class message
 				}
 				else
 				{
-					$emoji = $this->class::$emoji_number[$key+1];
+					$emoji = $this->class::$emoji_number[$value['key']];
 				}
 			}
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
+				$poll_list .= ' - ' . utility::nubmer_language($sum[$value['key']]);
 			}
 			$poll_list .= "\n";
 

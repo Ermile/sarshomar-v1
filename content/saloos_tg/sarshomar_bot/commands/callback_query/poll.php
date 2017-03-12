@@ -214,6 +214,40 @@ class poll
 				$last = null;
 			}
 		}
+		$maker = new make_view($poll_id);
+		if(isset($maker->query_result['options']['multi']) && is_numeric($answer))
+		{
+			$multi = session::get('multi_answer', $poll_id);
+			if(is_null($multi))
+			{
+				$multi = (object) ['id' => $poll_id];
+			}
+			if(in_array($answer, $multi->answers))
+			{
+				unset($multi->answers[array_search($answer, $multi->answers)]);
+				$add = false;
+			}
+			else
+			{
+				$multi->answers[] = $answer;
+				$add = true;
+			}
+			session::set('multi_answer', $poll_id, $multi);
+			callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $poll_id,
+				'return'	=> true,
+				'last'		=> $last,
+				'type'		=> 'private'
+				]));
+			if($add)
+			{
+				return ['text' => T_("add answer :answer", ['answer' => $answer])];
+			}
+			else
+			{
+				return ['text' => T_("remove answer :answer", ['answer' => $answer])];
+			}
+		}
 
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' 	=> 'array',

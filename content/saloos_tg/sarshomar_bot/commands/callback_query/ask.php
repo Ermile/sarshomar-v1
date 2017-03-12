@@ -65,7 +65,22 @@ class ask
 		}
 		$maker->message->add_title();
 		$maker->message->add_poll_chart();
+		$multi_answer = session::get('multi_answer', $maker->poll_id);
+		if(isset($maker->query_result['options']['multi']))
+		{
+			if($multi_answer)
+			{
+				$my_answer = [];
+				foreach ($multi_answer->answers as $key => $value) {
+					$my_answer[] = ['key' => $value];
+				}
+			}
+		}
 		$maker->message->add_poll_list($my_answer);
+		if(isset($maker->query_result['options']['multi']))
+		{
+			$maker->message->message['poll_list'] .= T_("شما می‌توانید به چند گزینه پاسخ دهید") ."\n";
+		}
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
 		// $maker->message->add_telegram_tag();
@@ -118,7 +133,21 @@ class ask
 			$guest_option['skip'] = false;
 		}
 
+		if($multi_answer)
+		{
+			$guest_option['share'] = false;
+			$guest_option['update'] = false;
+			$guest_option['report'] = false;
+			$guest_option['inline_report'] = false;
+			$guest_option['skip'] = false;
+		}
+
 		$maker->inline_keyboard->add_guest_option($guest_option);
+
+		if($multi_answer)
+		{
+
+		}
 
 		if($my_poll && $options['type'] == 'private')
 		{
