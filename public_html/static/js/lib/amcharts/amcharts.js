@@ -721,20 +721,31 @@ function getChartOption($_what, _arg)
 				// "labelRotation": 45,
 				"autoRotateCount": 6,
 				"autoRotateAngle": 45,
+				"labelFunction": function(value)
+				{
+					return fitNumber(value, false);
+				},
 			};
 			break;
 
 
 		case 'valueAxes':
 			prop =
-			[{
-				"gridColor": "#FFFFFF",
-				"gridAlpha": 0.1,
-				"dashLength": 0,
-				// "axisAlpha": 0.2,
-				"labelsEnabled": false,
-				"axisAlpha": 0,
-			}];
+			[
+				{
+					"gridColor": "#FFFFFF",
+					"gridAlpha": 0.1,
+					"dashLength": 0,
+					// "axisAlpha": 0.2,
+					"labelsEnabled": false,
+					"axisAlpha": 0,
+					"integersOnly": true,
+					"labelFunction": function(value)
+					{
+						return fitNumber(value, false);
+					},
+				}
+			];
 			break;
 
 		case 'graphs':
@@ -746,10 +757,17 @@ function getChartOption($_what, _arg)
 				"type": "column",
 				"fillAlphas": 0.9,
 				"lineAlpha": 0.2,
-				"balloonText": "[[category]] <b>[[value]]</b>",
 				"customBulletField": "bullet",
 				"bulletSize": 40,
 				"autoColor": _arg,
+				"labelFunction" : function(item)
+				{
+					return fitNumber(Math.abs(item.values.value));
+				},
+				"balloonFunction": function(item)
+				{
+					return item.category + " <b>" + fitNumber(item.values.value) + "</b>";
+				},
 			}];
 			break;
 
@@ -820,29 +838,43 @@ function removeChartGraphs(_chartData)
  */
 function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 {
-	if(!_balloon)
-	{
-		_balloon = "[[title]]";
-		if(_title)
-		{
-			_balloon += " [" + _title + "]";
-		}
-		_balloon += " "+ "<br/><b>[[value]]</b>"
-
-		if(_chartData.trans && _chartData.trans.vote)
-		{
-			_balloon += " " + _chartData.trans.vote;
-		}
-	}
 	// Add mael graph attached to the axis
 	var myNewGraph         = new AmCharts.AmGraph();
 	myNewGraph.type        = "column";
 	myNewGraph.title       = _title;
 	myNewGraph.valueField  = _value;
-	myNewGraph.balloonText = _balloon;
 	myNewGraph.labelText   = "[[value]]";
 	myNewGraph.fillAlphas  = 0.9;
 	myNewGraph.lineAlpha   = 0;
+
+	myNewGraph.labelFunction = function(item)
+	{
+		return fitNumber(Math.abs(item.values.value));
+	};
+
+	if(!_balloon)
+	{
+		myNewGraph.balloonFunction = function(item)
+		{
+			var balloonText = item.category + " [" + _title + "] <br/><b>" + fitNumber(item.values.value) + "</b>";
+			if(_chartData.trans && _chartData.trans.vote)
+			{
+				balloonText += " " + _chartData.trans.vote;
+			}
+			return balloonText;
+		};
+	}
+	else
+	{
+		myNewGraph.balloonText = _balloon;
+	}
+
+	// set color if exist
+	var myColor = getBestColorForGroup(_group);
+	if(myColor)
+	{
+		myNewGraph.fillColors = myColor;
+	}
 	// add graph to chart data
 	if(typeof _chartData.addGraph === "function")
 	{
@@ -852,6 +884,41 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 	{
 		_chartData.graph = myNewGraph;
 	}
+}
+
+
+/**
+ * [getBestColorForGroup description]
+ * @param  {[type]} _group [description]
+ * @return {[type]}        [description]
+ */
+function getBestColorForGroup(_group)
+{
+	var myColor = null;
+	// ["#83c3e1", "#e97197", "#e7e7e7"];
+	switch(_group)
+	{
+		// gender
+		case 'gender_male':
+			myColor = '#83c3e1';
+			break;
+
+		case 'gender_female':
+			myColor = '#e97197';
+			break;
+
+		// marittal
+		case 'marrital_single':
+			myColor = '#888';
+			break;
+
+		case 'marrital_married':
+			myColor = '#666';
+			break;
+	}
+	console.log(_group);
+
+	return myColor;
 }
 
 
@@ -873,6 +940,8 @@ function pollTotal_default(_option, _answers, _el)
 
 	_option.colors = ["#83c3e1", "#d8d8d8" ];
 	_option.legend = getChartOption('legend');
+	_option.legend.equalWidths = false;
+
 
 	_option.valueAxes =
 	[{
@@ -880,7 +949,22 @@ function pollTotal_default(_option, _answers, _el)
 		"axisAlpha": 0.1,
 		"gridAlpha": 0,
 		"minimum": 0,
+		"integersOnly": true,
+		// "position" : "right",
+		"labelFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
 	}];
+	if($(document).attr('dir') === 'rtl')
+	{
+		_option.valueAxes[0].position = 'right';
+		// _option.valueAxes[0].reversed = true;
+		_option.legend.align = 'right';
+
+	}
+
+	console.log(_option);
 
 	// setChartOption_result(_option, null, true);
 
@@ -891,19 +975,34 @@ function pollTotal_default(_option, _answers, _el)
 			"title": transText.reliable,
 			"valueField": "value_reliable",
 			"balloonText": "[[title]] [" + transText.reliable + "] <br/><b>[[value]]</b> " + transText.vote,
-			"labelText": "[[value]]",
+			// "labelText": "[[value]]",
 			"fillAlphas": 0.9,
 			"lineAlpha": 0,
+			"labelFunction" : function(item)
+			{
+				return fitNumber(Math.abs(item.values.value));
+			},
+			"balloonFunction": function(item)
+			{
+				return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
+			},
 		},
 		{
 			"type": "column",
 			"title": transText.unreliable,
 			"valueField": "value_unreliable",
-			"balloonText": "[[title]] [" + transText.unreliable + "] <br/><b>[[value]]</b> " + transText.vote,
 			"labelText": "[[value]]",
 			"fillAlphas": 0.5,
 			"lineAlpha": 0,
 			"clustered":false,
+			"labelFunction" : function(item)
+			{
+				return fitNumber(Math.abs(item.values.value));
+			},
+			"balloonFunction": function(item)
+			{
+				return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
+			},
 		},
 	];
 
@@ -930,15 +1029,16 @@ function setChartOption(_chartData, _type, _trans, _init)
 	{
 		case 'gender':
 			// set color and axis type
-			_chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
+			// _chartData.colors = ["#83c3e1", "#e97197", "#e7e7e7"];
 			break;
 
 		case 'result':
-			_chartData.colors = ["#83c3e1", "#d8d8d8"];
+			// _chartData.colors = ["#83c3e1", "#d8d8d8"];
 			break;
 
 		default:
-			_chartData.colors = pallet();
+			// _chartData.colors = pallet();
+			// _chartData.colors = [];
 			break;
 	}
 	// change effect on other types of chart
@@ -1056,11 +1156,11 @@ function homepageGender(_option)
 			"clustered": false,
 			"labelFunction": function(item)
 			{
-				return Math.abs(item.values.value);
+				return fitNumber(Math.abs(item.values.value));
 			},
 			"balloonFunction": function(item)
 			{
-				return item.category + " <b>" + Math.abs(item.values.value) + "%</b>";
+				return item.category + " [" + item.graph.title + "]<br/><b>"  + fitNumber(Math.abs(item.values.value)) + "%</b>";
 			}
 		},
 		{
@@ -1073,11 +1173,11 @@ function homepageGender(_option)
 			"clustered": false,
 			"labelFunction": function(item)
 			{
-				return Math.abs(item.values.value);
+				return fitNumber(Math.abs(item.values.value));
 			},
 			"balloonFunction": function(item)
 			{
-				return item.category + " <b>" + Math.abs(item.values.value) + "%</b>";
+				return item.category + " [" + item.graph.title + "]<br/><b>"  + fitNumber(Math.abs(item.values.value)) + "%</b>";
 			}
 		}
 	];
@@ -1087,6 +1187,10 @@ function homepageGender(_option)
 		"gridAlpha": 0.02,
 		"axisAlpha": 0,
 		"position": "right",
+		"labelFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
 	};
 	_option.valueAxes =
 	[
@@ -1096,7 +1200,7 @@ function homepageGender(_option)
 			"ignoreAxisWidth": true,
 			"labelFunction": function(value)
 			{
-				return Math.abs(value) + '%';
+				return fitNumber(Math.abs(value)) + '%';
 			},
 			"guides":
 			[{
@@ -1111,25 +1215,29 @@ function homepageGender(_option)
 		"valueBalloonsEnabled": false,
 		"cursorColor":"#00667a",
 		"cursorAlpha": 0.05,
-		"fullWidth": true
-	};
-	_option.allLabels =
-	[
+		"fullWidth": true,
+		"categoryBalloonFunction": function(value)
 		{
-			"text": "مرد",
-			"x": "28%",
-			"y": "0%",
-			"bold": true,
-			"align": "top"
+			return fitNumber(value, false);
 		},
-		{
-			"text": "زن",
-			"x": "75%",
-			"y": "0%",
-			"bold": true,
-			"align": "middle"
-		}
-	];
+	};
+	// _option.allLabels =
+	// [
+	// 	{
+	// 		"text": "مرد",
+	// 		"x": "28%",
+	// 		"y": "0%",
+	// 		"bold": true,
+	// 		"align": "top"
+	// 	},
+	// 	{
+	// 		"text": "زن",
+	// 		"x": "75%",
+	// 		"y": "0%",
+	// 		"bold": true,
+	// 		"align": "middle"
+	// 	}
+	// ];
 
 	return _option;
 }

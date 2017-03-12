@@ -317,7 +317,7 @@ function drawMapIran()
 
 		"dataProvider":
 		{
-				"map": "iranHigh",
+			"map": "iranHigh",
 			"areas": data
 		},
 
@@ -331,7 +331,7 @@ function drawMapIran()
 		"areasSettings":
 		{
 			"autoZoom": false,
-			"balloonText": "[[title]]: <strong>[[value]]</strong>"
+			"balloonText": "[[title]] <b>[[value]]</b>",
 		}
 	});
 }

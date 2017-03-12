@@ -940,7 +940,8 @@ function drawMapWorld()
 		"areasSettings":
 		{
 			"autoZoom": true,
-			"selectedColor": "#e5a428"
+			"selectedColor": "#e5a428",
+			"balloonText": "[[title]] <b>[[value]]</b>",
 		},
 
 		"smallMap":
