@@ -201,6 +201,9 @@ class stat_polls
 			return false;
 		}
 
+		$sum = array_column($result, 'count');
+		$sum = array_sum($sum);
+
 		$temp_result = [];
 		foreach ($result as $key => $value)
 		{
@@ -208,11 +211,12 @@ class stat_polls
 			{
 				if($value['gender'] == 'male')
 				{
-					$temp_result[$value['age_range']][$value['gender']] = (int) $value['count'];
+					$temp_result[$value['age_range']][$value['gender']] = round(((int) $value['count'] * 100) / $sum , 2);
 				}
 				else
+
 				{
-					$temp_result[$value['age_range']][$value['gender']] =  -1 * (int) $value['count'];
+					$temp_result[$value['age_range']][$value['gender']] =  -1 * round(((int) $value['count'] * 100 ) / $sum, 2);
 				}
 			}
 		}
