@@ -114,12 +114,12 @@
 .admin-area-states .label-unapproved{background:#FF9800}
 .admin-area-states .label-rejected{background:#F44336}
 /************************** New styles **/
-.admin-section {margin: 3em 15px;}
-.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em 1em;margin-bottom: 3em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
-.overall-stats .stat .ico {color: #009688; text-align: center}
+.admin-section {margin: 3em 0;}
+.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 3em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
+.overall-stats .stat .ico {color: #009688; text-align: center;}
 .overall-stats .stat:hover {background: #efefef;}
 .overall-stats .stat .icon {color: #37aaa7}
-.overall-stats .num {font-size: 2.5em;line-height: 1;margin-bottom: 22px;color: #607D8B;}
+.overall-stats .num {font-size: 2.5em;line-height: 1;margin-bottom: 22px;color: #607D8B;font-weight: bold;}
 .overall-stats .title {font-size: 1.5em;line-height: 1;color: #a2a2a2;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .admin-section .card {background: #fff; margin-bottom: 2em; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
 .admin-section .card ul a {padding: 2em 1em; display: block;font-size: 1.2em;color: #00ACC1;border-bottom: 2px dashed #eee; }
@@ -140,3 +140,6 @@
 
 .admin-sidebar .menu-opener {cursor: pointer;}
 .admin-sidebar .menu-opener input {display: none;}
+
+.min-pad {margin: 0 -15px;}
+.plus-pad {padding: 0 15px;}
