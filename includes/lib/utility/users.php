@@ -24,7 +24,7 @@ class users
 		'api',
 		'api_guest',
 		'android',
-		'android_geust',
+		'android_guest',
 		'telegram',
 		'telegram_guest',
 		'guest',
