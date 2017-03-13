@@ -34,6 +34,7 @@ class help
 		{
 			$call = self::{$_data_url[1]}($_query, $_data_url);
 			$call['response_callback'] = utility::response_expire('help');
+			$call['parse_mode'] = 'HTML';
 			return $call;
 		}
 		return false;
