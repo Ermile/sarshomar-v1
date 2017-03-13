@@ -15,7 +15,7 @@ class users extends \lib\db\users
 	{
 		if($_type === 'all')
 		{
-			$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port NOT LIKE '%guest%' ";
+			$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port  != 'site_guest' ";
 			return \lib\db::get($query, 'count', true);
 		}
 		else
