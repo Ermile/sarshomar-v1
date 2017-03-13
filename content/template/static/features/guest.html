@@ -31,7 +31,7 @@
        <h3>{%trans "Please enter shown numbers here"%}</h3>
        <div class="captcha-container">
         <form method="post" action="{{url.base}}/@" class="form-container">
-         <input type="number" name="captcha" max="9999">
+         <input type="number" name="captcha" min="0" max="9999">
          <input type="submit" class="try submit" value='{%trans "submit"%}'>
         </form>
         <div class="captcha">{{captcha}}</div>
