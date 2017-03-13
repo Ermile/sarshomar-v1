@@ -555,7 +555,7 @@ trait options
 		if($check)
 		{
 			$where = $option_insert;
-			if(isset($_value))
+			if($_value)
 			{
 				if($option_meta)
 				{
@@ -574,7 +574,7 @@ trait options
 		}
 		else
 		{
-			if(isset($_value))
+			if($_value)
 			{
 				if($option_meta)
 				{
