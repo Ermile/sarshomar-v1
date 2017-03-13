@@ -135,6 +135,7 @@ class spammer
 		{
 			$message_result = [
 				'method'=> "answerCallbackQuery",
+				"show_alert" => true,
 				'text' => T_("You are banned for :seconds seconds", ['seconds' => 20]),
 				'callback_query_id' => bot::$hook['callback_query']['id']
 			];

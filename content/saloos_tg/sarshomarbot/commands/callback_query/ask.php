@@ -65,6 +65,17 @@ class ask
 		}
 		$maker->message->add_title();
 		$maker->message->add_poll_chart();
+		$multi_answer = session::get('expire', 'command', 'multi_answer', $maker->poll_id);
+		if(isset($maker->query_result['options']['multi']) && $options['type'] == 'private')
+		{
+			if($multi_answer)
+			{
+				$my_answer = [];
+				foreach ($multi_answer->answers as $key => $value) {
+					$my_answer[] = ['key' => $value];
+				}
+			}
+		}
 		$maker->message->add_poll_list($my_answer);
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
@@ -107,14 +118,52 @@ class ask
 		}
 		if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'])
 		{
-			$guest_option['share'] = true;
+			if($options['type'] == 'private')
+			{
+				$guest_option['share'] = true;
+			}
+			else
+			{
+				$guest_option['share'] = false;
+			}
+			if($options['type'] == 'private' && !$multi_answer && !empty($get_answer['available']))
+			{
+				$maker->message->message['poll_list'] .= "⏬ " . T_("Skip") ."\n";
+			}
 		}
 		else
 		{
 			$guest_option['skip'] = false;
 		}
+		if(isset($maker->query_result['options']['multi']) && !empty($get_answer['available']))
+		{
+			$maker->message->message['poll_list'] .= T_("شما می‌توانید به چند گزینه پاسخ دهید") ."\n";
+		}
+
+		if($multi_answer)
+		{
+			$guest_option['share'] = false;
+			$guest_option['update'] = false;
+			$guest_option['report'] = false;
+			$guest_option['inline_report'] = false;
+			$guest_option['skip'] = false;
+		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
+
+		if($multi_answer)
+		{
+			$maker->inline_keyboard->add([
+				[
+					'text' => T_('Save'),
+					'callback_data' => 'poll/answer/'. $maker->query_result['id'] . '/' .join('_', $multi_answer->answers) . '/+multi'
+				],
+				[
+					'text' => T_('Cancel'),
+					'callback_data' => 'ask/update/'.$maker->query_result['id']
+				]
+				]);
+		}
 
 		if($my_poll && $options['type'] == 'private')
 		{
@@ -182,6 +231,7 @@ class ask
 
 	public static function update($_query, $_data_url)
 	{
+		session::remove('expire', 'command', 'multi_answer');
 		\lib\storage::set_disable_edit(true);
 		list($class, $method, $poll_id) = $_data_url;
 		$mood = isset($_data_url[3]) ? $_data_url[3] : null;

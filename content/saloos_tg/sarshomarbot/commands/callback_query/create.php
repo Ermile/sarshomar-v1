@@ -72,12 +72,17 @@ class create
 	{
 		session::set('poll_options' , 'type', $_data_url[2]);
 		session::remove_back('expire', 'inline_cache', 'create');
-		if($_data_url[2] == 'like' || $_data_url[2] == 'descriptive')
+		$poll_request = ['id' => session::get('poll'), 'answers' => [["type" => $_data_url[2]]]];
+		if($_data_url[2] == 'like')
 		{
-			$poll_request = ['id' => session::get('poll'), 'answers' => [["type" => $_data_url[2]]]];
-			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-			$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
+			$poll_request['title'] = T_("Do you like it!");
 		}
+		else
+		{
+			$poll_request['title'] = T_("Please type your answer");
+		}
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+		$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		callback_query::edit_message(\content\saloos_tg\sarshomarbot\commands\step_create::make_draft(session::get('poll')));
 	}
 

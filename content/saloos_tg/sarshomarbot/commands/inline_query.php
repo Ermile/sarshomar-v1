@@ -56,6 +56,10 @@ class inline_query
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		foreach ($query_result as $key => $value) {
+			if(isset($value['options']['multi']))
+			{
+				continue;
+			}
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';

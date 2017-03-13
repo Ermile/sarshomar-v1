@@ -27,7 +27,7 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$message_per_page = 5;
+		$message_per_page = 10;
 		if(is_null($_query))
 		{
 			$page = 1;
@@ -202,16 +202,71 @@ class poll
 		\lib\storage::set_disable_edit(true);
 		$last = null;
 		$subport = null;
+		$oprator = null;
 		if(count($_data_url) == 4)
 		{
 			list($class, $method, $poll_id, $answer) = $_data_url;
 		}
-		elseif (count($_data_url) == 5) {
+		elseif (count($_data_url) >= 5) {
 			list($class, $method, $poll_id, $answer, $last) = $_data_url;
 			if(substr($last, 0, 1) == ':')
 			{
 				$subport = \lib\utility\shortURL::decode(substr($last, 1));
 				$last = null;
+			}
+			elseif(substr($last, 0, 1) == '+')
+			{
+				$oprator = substr($last, 1);
+				if(isset($_data_url[6]))
+				{
+					$last = $_data_url[6];
+				}
+			}
+		}
+		$maker = new make_view($poll_id);
+		handle::send_log($oprator);
+		if($oprator == 'multi')
+		{
+			$answer = explode("_", $answer);
+			$answer = array_fill_keys($answer, true);
+			session::remove('expire', 'command', 'multi_answer');
+		}
+		elseif(isset($maker->query_result['options']['multi']) && is_numeric($answer))
+		{
+			\lib\storage::set_current_command(true);
+			$multi = session::get('expire', 'command', 'multi_answer', $poll_id);
+			if(is_null($multi))
+			{
+				$multi = (object) ['id' => $poll_id, 'answers' => []];
+			}
+			if(isset($multi->answers))
+			{
+				$multi->answers = (array) $multi->answers;
+			}
+			if(in_array($answer, $multi->answers))
+			{
+				unset($multi->answers[array_search($answer, $multi->answers)]);
+				$add = false;
+			}
+			else
+			{
+				$multi->answers[] = $answer;
+				$add = true;
+			}
+			session::set('expire', 'command', 'multi_answer', $poll_id, $multi);
+			callback_query::edit_message(ask::make(null, null, [
+				'poll_id' 	=> $poll_id,
+				'return'	=> true,
+				'last'		=> $last,
+				'type'		=> 'private'
+				]));
+			if($add)
+			{
+				return ['text' => T_("add answer :answer", ['answer' => $answer])];
+			}
+			else
+			{
+				return ['text' => T_("remove answer :answer", ['answer' => $answer])];
 			}
 		}
 
@@ -260,7 +315,7 @@ class poll
 				$request['skip'] = true;
 				break;
 			default:
-				$request['answer'] = [$answer => true];
+				$request['answer'] = is_array($answer) ? $answer : [$answer => true];
 				break;
 		}
 
@@ -301,7 +356,7 @@ class poll
 		else
 		{
 			callback_query::edit_message(ask::make(null, null, [
-				'poll_id' 	=> $poll_id,
+				'poll_id' 	=> $answer == 'skip' ? null : $poll_id,
 				'return'	=> true,
 				'last'		=> $last,
 				'type'		=> 'private'
@@ -447,7 +502,7 @@ class poll
 	public static function answer_results($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
-		$message_per_page = 5;
+		$message_per_page = 8;
 		if(is_null($_query) || !isset($_data_url[3]))
 		{
 			$page = 1;

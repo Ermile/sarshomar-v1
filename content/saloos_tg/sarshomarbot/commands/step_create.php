@@ -97,6 +97,8 @@ class step_create
 				$_maker->message->add("insert", T_("Answer type not valid"), 'before', 'hashtag');
 			});
 		}
+
+
 		if(
 			is_null(session::get('poll_options', 'type')) &&
 			$get_poll &&
@@ -157,7 +159,6 @@ class step_create
 			}
 		}
 
-
 		$question = $_question;
 		$question = markdown_filter::tag($question);
 		$question = markdown_filter::remove_external_link($question);
@@ -203,7 +204,7 @@ class step_create
 				}
 			}
 
-			if($poll_answers)
+			if(isset($poll_answers) && !is_null($poll_answers))
 			{
 				foreach ($poll_answers as $key => $value) {
 					$poll_request['answers'][] = ['title' => $value, 'type' => 'select'];
@@ -217,6 +218,7 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
+
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
@@ -233,7 +235,7 @@ class step_create
 		}
 	}
 
-	public function upload_file($_file_link)
+	public static function upload_file($_file_link)
 	{
 		$poll_id = session::get('poll');
 		if(!$poll_id)
@@ -256,7 +258,6 @@ class step_create
 				"file" 	=> $file_uploaded['code']
 				]]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-
 		return $file_uploaded;
 	}
 
@@ -358,13 +359,13 @@ class step_create
 					'text' => T_('Edit'),
 					'url' => 'https://' . $_SERVER['SERVER_NAME'] . '/' . $maker->query_result['language'] . '/$/' . $maker->query_result['id']
 					],
-				['text' => T_('Back'), 'callback_data' => 'create/close']
+				['text' => T_('Main menu'), 'callback_data' => 'create/close']
 			]);
 		}
 		else
 		{
 			$maker->inline_keyboard->add([
-					['text' => T_('Back'), 'callback_data' => 'create/close']
+					['text' => T_('Main menu'), 'callback_data' => 'create/close']
 				]);
 		}
 

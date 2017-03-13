@@ -34,7 +34,7 @@ class message
 		}
 		if(isset($this->class->query_result['file']))
 		{
-			$url = preg_replace("/sarshomar.com/", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
+			$url = preg_replace("/sarshomar.com\/.{2}\//", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
@@ -56,7 +56,7 @@ class message
 		{
 			return;
 		}
-		if(count($this->class->query_result['answers']) > 7)
+		if(count($this->class->query_result['answers']) > 10)
 		{
 			$row = 0;
 			$other_key = null;
@@ -64,7 +64,7 @@ class message
 			$sum_answers = $sum['sum_answers'];
 			arsort($sum_answers);
 			foreach ($sum_answers as $key => $value) {
-				if($row < 6)
+				if($row < 9)
 				{
 					$row++;
 					$other_key = $key;
@@ -73,17 +73,15 @@ class message
 				}
 				$overflow[$other_key] += $value;
 			}
-			$overflow[0] = $overflow[$other_key];
+			$other = $overflow[$other_key];
 			unset($overflow[$other_key]);
-			$x = '';
-			foreach ($overflow as $key => $value) {
-				$x .= "$key: $value\n";
-			}
+			ksort($overflow);
+			$overflow[0] = $other;
 			$this->message['chart'] = utility::calc_vertical($overflow);
 		}
 		else
 		{
-			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']);
+			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']) . "\n";
 		}
 	}
 
@@ -91,11 +89,11 @@ class message
 	{
 		if($answer)
 		{
-			$answer_id = current($answer)['key'];
+			$answer_id = array_column($answer, 'key');
 		}
 		else
 		{
-			$answer_id = null;
+			$answer_id = [];
 		}
 		$poll_list = '';
 		$sum = $this->sum_stats();
@@ -114,12 +112,12 @@ class message
 				}
 				break;
 			}
-			elseif($answer_id == $key+1)
+			elseif(in_array($value['key'], $answer_id))
 			{
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
-					$emoji = utility::nubmer_language($key+1);
-					if($key+1 < 10)
+					$emoji = utility::nubmer_language($value['key']);
+					if($value['key'] < 10)
 					{
 						$emoji = utility::nubmer_language("0") . $emoji;
 					}
@@ -127,15 +125,15 @@ class message
 				}
 				else
 				{
-					$emoji = '✅';
+					$emoji = $this->class::$emoji_number[$value['key']] . '✅';
 				}
 			}
 			else
 			{
 				if(count($this->class->query_result['answers']) > $this->class::$max_emoji_list)
 				{
-					$emoji = utility::nubmer_language($key+1);
-					if($key+1 < 10)
+					$emoji = utility::nubmer_language($value['key']);
+					if($value['key'] < 10)
 					{
 						$emoji = utility::nubmer_language("0") . $emoji;
 					}
@@ -143,13 +141,13 @@ class message
 				}
 				else
 				{
-					$emoji = $this->class::$emoji_number[$key+1];
+					$emoji = $this->class::$emoji_number[$value['key']];
 				}
 			}
 			$poll_list .= $emoji . ' ' . $value['title'];
 			if($_add_count)
 			{
-				$poll_list .= ' - ' . utility::nubmer_language($sum[$key+1]);
+				$poll_list .= ' - ' . utility::nubmer_language($sum[$value['key']]);
 			}
 			$poll_list .= "\n";
 
@@ -159,8 +157,7 @@ class message
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::tag(T_("Sarshomar")) . ' |';
-		$dashboard .= utility::link('https://telegram.me/sarshomarbot?start=' .$this->class->poll_id, '⚙');
+		$dashboard = utility::link('https://telegram.me/sarshomarbot?start=' .$this->class->poll_id, '⚙' . T_("پنل")) . " | ";
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -169,6 +166,7 @@ class message
 		{
 			$this->message['options'] = $dashboard;
 		}
+		// $this->message['tag'] = utility::tag(T_("Sarshomar"));
 	}
 	public function add_telegram_tag()
 	{
@@ -212,20 +210,12 @@ class message
 				$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
-				if($this->class->poll_type == 'like')
-				{
-					// $this->add('like', '❤️ <code>' . utility::nubmer_language($count['total']) .'</code>', 'before', 'options');
-					break;
-				}
-				else
-				{
-					$text .= '👥';
-				}
-				$text .= utility::nubmer_language($count['total']) . ' ';
-				if($count['total_sum_invalid'] > 0)
-				{
-					$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
-				}
+				$text .= '👥';
+				$text .= utility::nubmer_language($count['total']);
+				// if($count['total_sum_invalid'] > 0)
+				// {
+				// 	$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
+				// }
 				break;
 			case 'sum_valid':
 				$text .= T_("Sum") . '(' . $count['total'] .') ';
