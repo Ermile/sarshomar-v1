@@ -104,6 +104,7 @@ class message
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
 				$poll_list = $this->class->query_result['description'];
+				handle::send_log($poll_list);
 				if($value['type'] == 'like' && $answer)
 				{
 					// $poll_list .= "\n" . T_('Liked');

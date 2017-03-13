@@ -204,7 +204,7 @@ class step_create
 				}
 			}
 
-			if($poll_answers)
+			if(isset($poll_answers) && !is_null($poll_answers))
 			{
 				foreach ($poll_answers as $key => $value) {
 					$poll_request['answers'][] = ['title' => $value, 'type' => 'select'];
@@ -218,6 +218,7 @@ class step_create
 
 			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 			$add_poll = \lib\main::$controller->model()->poll_add(['method' => $get_poll ? 'patch' : 'post']);
+
 			if(\lib\debug::$status)
 			{
 				session::set('poll', $add_poll['id']);
