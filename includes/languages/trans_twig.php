@@ -145,27 +145,27 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 216
+	echo T_("Read More");                                                             // Line 210
 	echo T_("There is no option!");                                                   // Line 155
-	echo T_("I am not willing to answer");                                            // Line 278
-	echo T_("Previous");                                                              // Line 176
-	echo T_("Save Answer");                                                           // Line 289
+	echo T_("Previous");                                                              // Line 175
+	echo T_("Save Answer");                                                           // Line 283
 	echo T_("Next");                                                                  // Line 9
-	echo T_("You can select just two options.");                                      // Line 229
+	echo T_("You can select just two options.");                                      // Line 223
+	echo T_("I am not willing to answer");                                            // Line 272
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("There is no data to draw chart!");                                       // Line 312
-	echo T_("Similar Questions");                                                     // Line 346
-	echo T_("Latest Questions");                                                      // Line 339
-	echo T_("There is no similar post");                                              // Line 347
-	echo T_("Poll timespan");                                                         // Line 365
+	echo T_("There is no data to draw chart!");                                       // Line 305
+	echo T_("Similar Questions");                                                     // Line 339
+	echo T_("Latest Questions");                                                      // Line 332
+	echo T_("There is no similar post");                                              // Line 340
+	echo T_("Poll timespan");                                                         // Line 358
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 416
-	echo T_("Keyword");                                                               // Line 387
-	echo T_("Statistical population");                                                // Line 404
-	echo T_("There is nothing to display!");                                          // Line 461
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 472
+	echo T_("Not set");                                                               // Line 409
+	echo T_("Keyword");                                                               // Line 380
+	echo T_("Statistical population");                                                // Line 397
+	echo T_("There is nothing to display!");                                          // Line 454
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 465
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 529
+	echo T_("Continue");                                                              // Line 522
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -533,9 +533,9 @@ private function transtext()
 	//---------------------------------------------content\template\static\vision.html
 
 	//---------------------------------------------content_admin\comments\display.html
-	echo T_("Total");                                                                 // Line 17
-	echo T_("Rejected");                                                              // Line 19
-	echo T_("Unapproved");                                                            // Line 18
+	echo T_("Total");                                                                 // Line 6
+	echo T_("Rejected");                                                              // Line 17
+	echo T_("Unapproved");                                                            // Line 8
 	echo T_("Spam");                                                                  // Line 44
 	echo T_("Trash");                                                                 // Line 53
 	echo T_("Return to admin area");                                                  // Line 58
@@ -567,6 +567,8 @@ private function transtext()
 	echo T_("exchangerates");                                                         // Line 91
 	echo T_("ID");                                                                    // Line 3
 
+	//-------------------------------------------------content_admin\home\display.html
+
 	//--------------------------------------------content_admin\knowledge\display.html
 	echo T_("Awaiting");                                                              // Line 26
 	echo T_("Draft");                                                                 // Line 107
@@ -583,10 +585,7 @@ private function transtext()
 	echo T_("Show in home page");                                                     // Line 143
 
 	//-------------------------------------------------content_admin\main\sidebar.html
-	echo T_("Polls");                                                                 // Line 15 Seperate
-	echo T_("Filtered");                                                              // Line 6
-	echo T_("Keywords");                                                              // Line 12
-	echo T_("Users");                                                                 // Line 16
+	echo T_("Filtered");                                                              // Line 11
 
 	//-------------------------------------content_admin\transactionitems\display.html
 	echo T_("title");                                                                 // Line 10
@@ -1056,6 +1055,7 @@ private function transtext()
 	echo T_("Sarshomar is inteligent");                                               // Line 11 Seperate
 	echo T_("poll");                                                                  // Line 12 Seperate
 	echo T_("polls");                                                                 // Line 14 Seperate
+	echo T_("Polls");                                                                 // Line 15 Seperate
 	echo T_("Guest");                                                                 // Line 16 Seperate
 	echo T_("guest");                                                                 // Line 17 Seperate
 	echo T_("Sarshomar Admin1");                                                      // Line 18 Seperate
