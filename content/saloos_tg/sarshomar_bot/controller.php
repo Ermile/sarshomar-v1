@@ -135,7 +135,7 @@ class controller extends \lib\mvc\controller
 		];
 		bot::$defaultText = T_('Undefined');
 		\lib\db\tg_session::$user_id = bot::$user_id;
-		\lib\db\tg_session::start();
+		\lib\db\tg_session::start(bot::$user_id);
 		$_SESSION['tg'] = \lib\db\tg_session::get_back('tg') ? \lib\db\tg_session::get_back('tg') : [];
 		$_SESSION['tg'] = commands\utility::object_to_array($_SESSION['tg']);
 

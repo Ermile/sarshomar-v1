@@ -18,8 +18,12 @@ class tg_session
 		{
 			$user_id = self::$user_id;
 		}
+		else
+		{
+			self::$user_id = $user_id;
+		}
 		$get_sesstion = "SELECT * FROM options
-		WHERE options.option_cat = 'user_detail_$user_id' AND
+		WHERE options.option_cat = 'user_detail_{$user_id}' AND
 		options.user_id = $user_id AND
 		options.option_key = 'telegram_session' AND
 		options.option_value = 'session'

@@ -34,7 +34,7 @@ class message
 		}
 		if(isset($this->class->query_result['file']))
 		{
-			$url = preg_replace("/sarshomar.com/", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
+			$url = preg_replace("/sarshomar.com\/.{2}\//", $_SERVER['SERVER_NAME'], $this->class->query_result['file']['url']);
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
