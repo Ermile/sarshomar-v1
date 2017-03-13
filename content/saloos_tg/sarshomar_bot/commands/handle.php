@@ -277,6 +277,8 @@ class handle
 
 	public static function send_log($_log, $_file = 'send', $_text = false)
 	{
+		if($_SERVER['SERVER_NAME'] != 'dev.sarshomar.com')
+			return;
 		if($_text)
 		{
 			$myfile = fopen("/home/domains/sarshomar/public_html/files/hooks/$_file.html", "w");
