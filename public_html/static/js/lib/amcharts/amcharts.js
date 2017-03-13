@@ -1157,7 +1157,7 @@ function homepageGender(_option)
 			"lineAlpha": 0.2,
 			"type": "column",
 			"valueField": "male",
-			"title": "Male",
+			"title": "مرد",
 			// "labelText": "[[value]]",
 			"clustered": false,
 			"labelFunction": function(item)
@@ -1174,7 +1174,7 @@ function homepageGender(_option)
 			"lineAlpha": 0.2,
 			"type": "column",
 			"valueField": "female",
-			"title": "Female",
+			"title": "زن",
 			// "labelText": "[[value]]",
 			"clustered": false,
 			"labelFunction": function(item)
