@@ -206,7 +206,7 @@ class stat_polls
 
 		if(!$sum)
 		{
-			$sum = 0;
+			$sum = 1;
 		}
 
 		$temp_result = [];
