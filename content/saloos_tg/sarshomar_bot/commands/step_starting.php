@@ -41,6 +41,10 @@ class step_starting
 				'option_key' => 'telegram_start_status',
 				'option_value' => 'start'
 				]);
+			if(\lib\utility\users::is_guest(bot::$user_id))
+			{
+				\lib\db\users::update(['user_port' => 'telegram'], bot::$user_id);
+			}
 			if($user_language)
 			{
 				$count = \saloos::lib_static('db')->users()::get_count();
