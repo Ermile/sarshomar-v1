@@ -115,7 +115,7 @@
 .admin-area-states .label-rejected{background:#F44336}
 /************************** New styles **/
 .admin-section {margin: 3em 0;}
-.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 3em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
+.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 2em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
 .overall-stats .stat .ico {color: #009688; text-align: center;}
 .overall-stats .stat:hover {background: #efefef;}
 .overall-stats .stat .icon {color: #37aaa7}
