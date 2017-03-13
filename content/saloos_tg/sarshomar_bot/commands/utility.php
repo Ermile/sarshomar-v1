@@ -222,6 +222,14 @@ class utility
 	public static function callback_session()
 	{
 		return function(&$_name, &$_args, $_return){
+			if(isset($_return['return']['ok']) && $_return['return']['ok'] == true)
+			{
+				\lib\db::log(json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram_ok.json');
+			}
+			else
+			{
+				\lib\db::log(json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram_error.json');
+			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
 				$callback_session = $_args['storage']['callback_session'];
