@@ -222,13 +222,16 @@ class utility
 	public static function callback_session()
 	{
 		return function(&$_name, &$_args, $_return){
+			handle::send_log($_return);
 			if(isset($_return['return']['ok']) && $_return['return']['ok'] == true)
 			{
-				\lib\db::log(json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram_ok.json');
+				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return];
+				\lib\db::log(json_encode($log, JSON_UNESCAPED_UNICODE), null, 'telegram.json', 'json');
 			}
 			else
 			{
-				\lib\db::log(json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram_error.json');
+				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
+				\lib\db::log(json_encode($log, JSON_UNESCAPED_UNICODE) . json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram-error.json', 'json');
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
