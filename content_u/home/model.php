@@ -32,7 +32,7 @@ class model extends \mvc\model
 		{
 			if(utility\captcha::check($captcha))
 			{
-				$signup_inspection = \lib\db\users::signup(['type' => 'inspection', 'port' => 'site']);
+				$signup_inspection = \lib\db\users::signup(['type' => 'inspection', 'port' => 'site_guest']);
 				if($signup_inspection)
 				{
 					\lib\db\users::set_login_session(null, null, $signup_inspection);

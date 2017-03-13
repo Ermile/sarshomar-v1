@@ -2,6 +2,7 @@
 
 {%block content%}
  <div class="main pad">
+   {{block('guest_alert')}}
   <div class="in small poll-container{{myPollDirecton}}" data-type="{{poll_type}}">
    {%if poll.options.multi %}
     {% set min = poll.options.multi.min %}

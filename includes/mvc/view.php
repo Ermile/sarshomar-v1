@@ -41,6 +41,7 @@ class view extends \lib\mvc\view
 			$this->data->user_unit      = \lib\db\units::user_unit($this->login('id'));
 			$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'real');
 			$this->data->user_cash_gift = \lib\db\transactions::budget($this->login('id'), 'gift');
+			$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
 		}
 
 		$this->data->xhr =

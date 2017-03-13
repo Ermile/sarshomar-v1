@@ -28,6 +28,14 @@
 {%endblock%}
 
 
+{%block guest_alert%}
+{% spaceless %}
+ {%if is_guest%}
+  <h6 style="color:red">{%trans "Guest Session"%}</h6>
+ {%endif%}
+{% endspaceless %}
+{%endblock%}
+
 {%block poll_file%}
 {% spaceless %}
  {%if poll.file%}

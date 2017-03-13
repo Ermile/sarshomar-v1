@@ -19,7 +19,15 @@ class users
 	 */
 	public static $user_port =
 	[
-		'site', 'api', 'guest', 'android', 'telegram',
+		'site',
+		'site_guest',
+		'api',
+		'api_guest',
+		'android',
+		'android_geust',
+		'telegram',
+		'telegram_guest',
+		'guest',
 		'instagram', 'google', 'linkedin', 'github',
 		'facebook', 'twitter', 'other',	'ios', 'wp',
 	];
@@ -86,7 +94,7 @@ class users
 			$user_update['user_port'] = $_args['port'];
 		}
 
-		if($_args['port'] === 'telegram')
+		if($_args['port'] === 'telegram' || $_args['port'] === 'telegram_guest')
 		{
 			$user_update['user_verify'] = 'uniqueid';
 		}
@@ -279,11 +287,41 @@ class users
 		switch ($_field)
 		{
 			case 'guest':
+				if(isset(self::$USERS_DETAIL[$_user_id]['user_port']))
+				{
+					$temp = self::$USERS_DETAIL[$_user_id]['user_port'];
+					$is_guest =
+					[
+						'guest',
+						'site_guest',
+						'telegram_guest',
+						'api_guest',
+						'android_guest',
+					];
+
+					if(in_array($temp, $is_guest))
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				else
+				{
+					return false;
+				}
+				break;
+
 			case 'site':
-			case 'api':
-			case 'guest':
-			case 'android':
+			case 'site_guest':
 			case 'telegram':
+			case 'telegram_guest':
+			case 'api':
+			case 'api_guest':
+			case 'android':
+			case 'android_guest':
 			case 'instagram':
 			case 'google':
 			case 'linkedin':
@@ -348,6 +386,7 @@ class users
 					return false;
 				}
 				break;
+
 			default:
 				return null;
 				break;
