@@ -142,6 +142,7 @@ class sync
 		}
 		else
 		{
+			\lib\db\users::update(['user_verify' => 'mobile'], self::$new_user_id);
 			\lib\db::commit();
 			return [
 				'message' => T_("sync complete"),
