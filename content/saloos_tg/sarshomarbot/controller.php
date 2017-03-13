@@ -19,7 +19,7 @@ class controller extends \lib\mvc\controller
 	{
 		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
 		session_set_cookie_params(3600 * 24 * 365);
-		handle::send_log_clear();
+		// handle::send_log_clear();
 		register_shutdown_function(function()
 		{
 			if(!empty(self::$microtime_log))
@@ -69,6 +69,10 @@ class controller extends \lib\mvc\controller
 						$_args['parse_mode'] = "HTML";
 					}
 				}
+			}
+			if(!isset($_args['results']))
+			{
+				$_args['parse_mode'] = "HTML";
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();

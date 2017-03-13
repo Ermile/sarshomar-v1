@@ -87,7 +87,7 @@ class inline_query
 
 			$row_result['description'] .= $short_dec;
 
-			$row_result['title'] = html_entity_decode($value['title']);
+			$row_result['title'] = $value['title'];
 
 			if($value['sarshomar'])
 			{
@@ -105,7 +105,6 @@ class inline_query
 				'parse_mode' 				=> $poll['parse_mode'],
 				'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
 			];
-			handle::send_log($row_result);
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);

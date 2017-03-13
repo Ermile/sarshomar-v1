@@ -160,7 +160,7 @@ class step_create
 		}
 
 		$question = $_question;
-		$question = markdown_filter::tag($question);
+		// $question = markdown_filter::tag($question);
 		$question = markdown_filter::remove_external_link($question);
 		$question = markdown_filter::line_trim($question);
 		$question_export = preg_split("[\n]", $question);

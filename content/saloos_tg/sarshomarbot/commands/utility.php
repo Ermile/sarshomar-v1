@@ -73,6 +73,10 @@ class utility
 
 	public static function calc_vertical($_result)
 	{
+		if(empty($_result))
+		{
+			return "";
+		}
 		$poll_emoji = ['0⃣', '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];
 		$count = array_sum($_result);
 		$max = max($_result) == 0 ? 0 : (max($_result) * 100) / $count;
@@ -222,16 +226,15 @@ class utility
 	public static function callback_session()
 	{
 		return function(&$_name, &$_args, $_return){
-			handle::send_log($_return);
-			if(isset($_return['return']['ok']) && $_return['return']['ok'] == true)
+			if(isset($_return['ok']) && $_return['ok'] == true)
 			{
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return];
-				\lib\db::log(json_encode($log, JSON_UNESCAPED_UNICODE), null, 'telegram.json', 'json');
+				\lib\db::log($log, null, 'telegram.json', 'json');
 			}
 			else
 			{
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
-				\lib\db::log(json_encode($log, JSON_UNESCAPED_UNICODE) . json_encode($_return, JSON_UNESCAPED_UNICODE), null, 'telegram-error.json', 'json');
+				\lib\db::log($log, null, 'telegram-error.json', 'json');
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
@@ -321,7 +324,7 @@ END;
 	public static function link($_link, $_title)
 	{
 		return '<a href="' .$_link . '">' .
-			T_(html_entity_decode($_title)) . '</a>';
+			T_($_title) . '</a>';
 	}
 
 	public static function italic($_text)

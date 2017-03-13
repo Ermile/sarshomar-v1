@@ -224,7 +224,6 @@ class poll
 			}
 		}
 		$maker = new make_view($poll_id);
-		handle::send_log($oprator);
 		if($oprator == 'multi')
 		{
 			$answer = explode("_", $answer);
