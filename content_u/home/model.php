@@ -56,10 +56,10 @@ class model extends \mvc\model
 		{
 			return false;
 		}
-
 		$first_change_mobile = "SELECT users.id AS `id` FROM users WHERE user_mobile LIKE '$mobile\_1' LIMIT 1";
 		$first_change_mobile = \lib\db::get($first_change_mobile, 'id', true);
-		if($first_change_mobile && $first_change_mobile == $this->login('id'))
+
+		if($first_change_mobile)
 		{
 			$get_count_mobile = "SELECT count(users.id) AS `count` FROM users WHERE user_mobile LIKE '$mobile%' ";
 			$get_count_mobile = \lib\db::get($get_count_mobile, 'count', true);
