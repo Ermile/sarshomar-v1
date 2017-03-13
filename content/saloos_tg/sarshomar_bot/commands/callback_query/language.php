@@ -32,10 +32,9 @@ class language
 
 		if(!$get)
 		{
-			$count = \saloos::lib_static('db')->users()::get_count();
-			$sum = array_sum(array_column($count, 'count'));
+			$count = \saloos::lib_static('db')->users()::get_count('all');
 			$text = T_("Welcome to the society of :count people of sarshomar",
-				['count'=> utility::nubmer_language($sum)]);
+				['count'=> utility::nubmer_language($count)]);
 		}
 		else
 		{
