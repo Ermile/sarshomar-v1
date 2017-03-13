@@ -94,7 +94,7 @@ trait answers
 				}
 			}
 
-			if($title === null && $attachment_id === null)
+			if($title === null && $attachment_id === null && $type === 'select')
 			{
 				unset($combine[$key]);
 				continue;
