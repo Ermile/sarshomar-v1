@@ -204,6 +204,11 @@ class stat_polls
 		$sum = array_column($result, 'count');
 		$sum = array_sum($sum);
 
+		if(!$sum)
+		{
+			$sum = 0;
+		}
+
 		$temp_result = [];
 		foreach ($result as $key => $value)
 		{

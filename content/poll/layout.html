@@ -31,7 +31,7 @@
 {%block guest_alert%}
 {% spaceless %}
  {%if is_guest%}
-  <h6 style="color:red">{%trans "Guest Session"%}</h6>
+  <div class="alert alert-error">{%trans "Your are our Guest!"%}</div>
  {%endif%}
 {% endspaceless %}
 {%endblock%}
