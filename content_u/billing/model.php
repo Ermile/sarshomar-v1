@@ -149,7 +149,7 @@ class model extends \mvc\model
 	 */
 	public function pay()
 	{
-		\lib\db\logs::set($this->login('id'), 'user:charge:real');
+		\lib\db\logs::set('user:charge:real', $this->login('id'));
 
 		self::$zarinpal['Description'] = T_("Charge Sarshomar");
 

@@ -1,0 +1,289 @@
+--- LOGS CALLER ----
+user:register:create
+
+# password
+user:password:set:crazy
+user:password:set:normal
+user:password:set:common
+user:password:set:very_common
+
+user:password:set:username=password
+
+user:password:try
+user:password:try:faild
+user:password:try:successfuly
+user:password:use_exist_password
+
+user:verification:sms
+user:verification:call
+user:register:set:mobile
+user:register:set:mobile:wrong
+user:register:send:wrong:verification
+
+user:register:guest
+user:register:guest:site
+user:register:guest:telegram
+user:register:guest:android
+user:register:guest:api
+...
+
+
+user:login:set:mobile
+user:login:set:mobile:wrong
+user:login:successfuly
+user:login:faild
+
+user:recovery
+user:recovery:set:mobile
+user:recovery:set:mobile:wrong
+user:recovery:verification:sms
+user:recovery:verification:call
+user:recovery:send:wrong:verification
+
+user:login:remeber:set
+user:login:remeber:unset
+
+user:set:ui_language
+user:chane:ui_lanuage
+
+user:logout
+
+user:delete:account:tester
+
+user:request:ask
+user:request:random
+user:request:next
+user:request:prev
+
+user:request:add_poll
+
+user:change:site:language -- visitor!!
+
+user:poll:add
+user:add:survey
+user:set:empty:poll
+user:max:draft:poll
+
+
+user:poll:add:set:filter
+user:poll:add:unset:filter
+user:poll:add:set:member
+user:poll:add:unset:member
+
+user:poll:add:set:difrent:language
+
+user:answer:poll
+user:update:poll
+user:send:duplicate:answer
+user:skip:poll
+
+user:poll:get
+user:poll:get:chart:gender
+user:poll:get:chart:range
+user:poll:get:chart:marrital
+...
+
+user:poll:fav:set
+user:poll:like:set
+user:poll:fav:unset
+user:poll:like:unset
+
+user:poll:fav:set:in_search_page
+user:poll:like:set:in_search_page
+user:poll:fav:unset:in_search_page
+user:poll:like:unset:in_search_page
+
+user:poll:fav:set:in_poll_page
+user:poll:like:set:in_poll_page
+user:poll:fav:unset:in_poll_page
+user:poll:like:unset:in_poll_page
+
+
+user:poll:share
+user:poll:share:telegram
+user:poll:share:twiter
+...
+
+user:send:feedback
+
+user:report:poll
+user:report:user
+
+
+system:invalid:argsuments
+system:invalid:poll:id
+system:invalid:array
+system:is:not:array
+system:is:not:number
+system:is:not:string
+
+
+
+
+user:poll:add:true:poll_added
+user:poll:add:true:answer_saved
+
+
+
+
+
+
+user:poll:add:error:Answers_must_be_array
+user:poll:add:error:You_can_not_add_more_than_100_answers
+user:poll:add:error:Invalid_answer_title_argument_you_must_set_less_than_99_character_for_the_title_in_index_key_of_answer
+user:poll:add:error:Invalid_type_type
+user:poll:add:error:Invalid_answer_type_parameter_in_index_key_of_answer
+user:poll:add:error:Invalid_parameter_is_true_in_index_key_of_answer
+user:poll:add:error:Invalid_parameter_file
+user:poll:add:error:Attachment_not_found
+user:poll:add:error:This_is_not_an_attachment_record
+user:poll:add:error:Can_not_use_this_attachment
+user:poll:add:error:You_can_save_max_draft_poll
+user:poll:add:error:You_can_save_max_poll_in_one_survey
+user:poll:add:error:Invalid_brand_title_argument_you_must_set_less_than_99_character_for_the_title
+user:poll:add:error:Invalid_brand_URL_argument_you_must_set_less_than_99_character_for_brand_URL
+user:poll:add:error:Invalid_arguments_time
+user:poll:add:error:Invalid_arguments_min
+user:poll:add:error:Can_not_set_parameter_'min'_less_than_1
+user:poll:add:error:You_can_not_set_minimum_greater_than_maximum_in_multi_select_settings
+user:poll:add:error:You_have_set_count_answers_and_can_not_set_min_in_min_parameter
+user:poll:add:error:Invalid_arguments_max
+user:poll:add:error:You_have_set_count_answers_and_can_not_set_max_in_max_parameter
+user:poll:add:error:You_can_not_set_minimum_greater_than_maximum_in_multi_select_settings
+user:poll:add:error:Can_not_use_multi:min_and_ordering
+user:poll:add:error:Can_not_use_multi:max_and_ordering
+user:poll:add:error:You_can_not_use_multi_select_and_ordering_poll
+user:poll:add:error:Invalid_arguments_start
+user:poll:add:error:Invalid_arguments_end_date
+user:poll:add:error:Parameter_article_must_be_array
+user:poll:add:error:Invalid_arguments_article_on_index_key
+user:poll:add:error:Parameter_tags_must_be_array
+user:poll:add:error:You_have_added_so_many_tags_Please_remove_some_of_them
+user:poll:add:error:Invalid_tag_in_index_key_tags_must_be_less_than_45_character
+user:poll:add:error:Invalid_parameter_cats
+user:poll:add:error:Cat_not_found
+user:poll:add:error:Invalid_category
+user:poll:add:error:Poll_title_must_be_less_than_190_character
+user:poll:add:error:Poll_slug_must_be_less_than_50_character
+user:poll:add:error:Invalid_parametr_survey
+user:poll:add:error:Survey_id_not_found
+user:poll:add:error:Survey_id_must_be_a_survey_record
+user:poll:add:error:This_is_not_your_survey
+user:poll:add:error:Summery_must_be_less_than_150_character
+user:poll:add:error:Access_profile_must_be_array
+user:poll:add:error:Invalid_parametr_language
+user:poll:add:error:Invalid_tree_parameter_parent
+user:poll:add:error:Invalid_tree_parameter_value
+user:poll:add:error:Parameter_From_must_be_array
+user:poll:add:error:mber_exist_$member_exist
+user:poll:add:error::max_users_were_found_reduce_the_number_of_users
+#step 1
+
+
+
+
+user:add:file:error:Can not upload file
+user:add:file:error:Unable to upload, because of selected upload name
+user:add:file:error:Parameter 'poll' not set
+
+user:poll:add:error:This poll have not option :opt,
+user:poll:add:error:Can not upload file. undefined error
+user:poll:add:error:File upload completed
+user:poll:add:error:token not found', 'authorization', 'access'
+user:poll:add:error:Access denide (Invalid url
+user:poll:add:error:Invalid authorization key (User not found
+user:poll:add:error:Access denide to load this url by api key
+user:poll:add:error:Invalid token
+user:poll:add:error:Invalid parameter temp_token
+user:poll:add:error:Poll not found
+user:poll:add:error:Access denied to the poll (This is not your poll
+user:poll:add:error:Access denied to load this poll :msg,
+user:poll:add:error:Invalid parameter status
+user:poll:add:error:Invalid parameter id
+user:poll:add:error:You can not set :requests at the same time, [
+user:poll:add:error:You haven't sent any answer
+user:poll:add:error:Can not save answer
+user:poll:add:error:Can not skip this poll
+user:poll:add:error:You can not add or edit your answer
+user:poll:add:error:Invalid answer available
+user:poll:add:error:Answer parameter must be array
+user:poll:add:error:Poll not found
+user:poll:add:error:Poll has not published
+user:poll:add:error:Poll status not found
+user:poll:add:error:Poll answers not found
+user:poll:add:error:This type of poll is not supported to answer
+user:poll:add:error:This is not a multi select poll and you selected :count answers,
+user:poll:add:error:This poll has not option :key,
+user:poll:add:error:This poll has not answery type of :key,
+user:poll:add:error:This poll is :type poll and you can set only one answer,
+user:poll:add:error:Invalid parameter :value,
+user:poll:add:error:No answer was set
+user:poll:add:error:Invalid method
+user:poll:add:error:Answer saved
+user:poll:add:error:Can not remove your answer
+user:poll:add:error:Can not remove your answer
+user:poll:add:error:Invalid answer available
+user:poll:add:error:Invalid parameter id
+user:poll:add:error:Can not found poll id
+user:poll:add:error:Invalid parameter id
+user:poll:add:error:Invalid parameter from, from must be integer
+user:poll:add:error:Invalid parameter to, to must be integer
+user:poll:add:error:Parameter 'from' must be less than parameter 'to'
+user:poll:add:error:No parameter has been sent
+user:poll:add:error:You can not send id parameter and other parameters at the same time
+user:poll:add:error:Invalid parameter 'in'
+user:poll:add:error:You can not set 'all' parameter in array 'in'
+user:poll:add:error:The 'in' parameter type is invalid,
+user:poll:add:error:Invalid parameter from, from must be integer
+user:poll:add:error:Invalid parameter to, to must be integer
+user:poll:add:error:Parameter 'from' must be less than parameter 'to'
+user:poll:add:error:Invalid parameter language
+user:poll:add:error:Invalid parameter language
+user:poll:add:error:Invalid parameter language as :type,
+user:poll:add:error:You can not set status and search in all polls
+user:poll:add:error:Invalid parameter status
+user:poll:add:error:Invalid status :status,
+user:poll:add:error:Invalid parameter status as :type,
+user:poll:add:error:Invalid chart type
+user:poll:add:error:Poll title not set
+user:poll:add:error:Poll language not set
+user:poll:add:error:At least two options must be added
+user:poll:add:error:Can not set more than 1 descriptive answers
+user:poll:add:error:Can not set more than 1 answers in upload,range and notification mod
+user:poll:add:error:Answer type not found in index :key of answers ,
+user:poll:add:error:Required minimum answers for select polls is two answers
+user:poll:add:error:You must set title of the answer or set file in index :key of answer,
+user:poll:add:error:You poll is awaiting moderation
+user:poll:add:error:You poll is awaiting moderation, all Sarshomar polls are set in awaiting moderation
+user:poll:add:error:You are using an inappropriate word in the text, your poll is awaiting moderation
+user:poll:add:error:Duplicate poll title of your poll
+user:poll:add:error:Poll status not found
+user:poll:add:error:Can not change status
+user:poll:add:error:Prameter status not set
+user:poll:add:error:Invalid parameter status
+user:poll:add:error:Poll status changed
+user:poll:add:error:You can not set this status to this poll, the available status you can change is :available, $available
+user:poll:add:error:You can not set this status to this poll
+user:poll:add:error:Invalid parameter status
+user:poll:add:error:Invalid input
+user:poll:add:error:Invalid id parameter
+user:poll:add:error:Can not send parameter id in post mode
+user:poll:add:error:Profile values is incorrect
+user:poll:add:error:Invalid id parameter
+user:poll:add:error:Poll not found
+user:poll:add:error:Can not access to delete this poll
+user:poll:add:error:Poll user not found
+user:poll:add:error:Can not delete poll
+user:poll:add:error:Poll deleted
+user:poll:add:error:Error in deleting poll
+user:poll:add:error:The poll has already been deleted
+user:poll:add:error:To delete a question the status of it must be one of these: Draft, Awaiting and Pause
+user:poll:add:error:Invalid id parameter
+user:poll:add:error:Invalid id parameter
+user:poll:add:error:Parametr id not set in request
+user:poll:add:error:Search faild
+user:poll:add:error:Invalid parameter parent
+user:poll:add:error:Type not found
+user:poll:add:error:Search successfuly
+
+
