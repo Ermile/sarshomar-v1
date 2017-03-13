@@ -40,7 +40,7 @@ class spammer
 		}
 
 		$meta = self::get_meta($get_count_log['meta']);
-
+		$meta['time'] = floatval($meta['time']);
 		if(isset($meta['deny_time']))
 		{
 			if($meta['deny_time'] + 20 < microtime(true))
@@ -81,20 +81,22 @@ class spammer
 			return $overflow;
 		}
 
-		if($on_spam == 'callback_query' && $meta['time'] + 4 < microtime(true))
+		if($on_spam == 'callback_query' && $meta['time'] + 5 < microtime(true))
 		{
 			$meta['time'] = microtime(true);
+			$meta['callback_query_count'] = 0;
 		}
 		elseif($meta['time'] + 10 < microtime(true))
 		{
 			$meta['time'] = microtime(true);
+			$meta['text_count'] = 0;
 		}
-
-		\lib\db\options::update([
-			"option_meta" => self::set_meta([
+		$set_meta = self::set_meta([
 				$on_spam .'_count' => isset($meta[$on_spam .'_count']) ? ++$meta[$on_spam .'_count'] : 0,
 				"time" => $meta['time']
-				])
+				]);
+		\lib\db\options::update([
+			"option_meta" => $set_meta
  			], $get_count_log['id']);
 
 		return false;
@@ -129,7 +131,7 @@ class spammer
 		{
 			$_meta['callback_query_count'] = 0;
 		}
-		if($_meta['time'] + 4 >= microtime(true) && $_meta['callback_query_count'] >= 6)
+		if($_meta['time'] + 5 >= microtime(true) && $_meta['callback_query_count'] >= 3)
 		{
 			$message_result = [
 				'method'=> "answerCallbackQuery",
@@ -138,7 +140,7 @@ class spammer
 			];
 			bot::sendResponse([
 				"method" => "sendMessage",
-				"text" => T_("You are banned for :seconds seconds", ['seconds' => 20]),
+				"text" => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 				"reply_markup" => menu::main(true)
 				]);
 			return $message_result;

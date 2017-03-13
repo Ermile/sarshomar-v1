@@ -57,34 +57,27 @@ trait faq{
 			{
 				if($get_id > 1)
 				{
-					$inline_keyboard[0][] = ["text" => T_("First"), "callback_data" => "help/faq/1"];
+					$inline_keyboard[0][] = ["text" => "⏮", "callback_data" => "help/faq/1"];
 				}
 				if($get_id > 0)
 				{
-					$inline_keyboard[0][] = ["text" => T_("Back"), "callback_data" => "help/faq/" . faq_text::text()[$get_id -1]['id']];
+					$inline_keyboard[0][] = ["text" => "◀️", "callback_data" => "help/faq/" . faq_text::text()[$get_id -1]['id']];
 				}
 
 
 				if($get_id < $total_page-1)
 				{
-					$inline_keyboard[0][] = ["text" => T_("Next"), "callback_data" => "help/faq/" . (faq_text::text()[$get_id +1]['id'])];
+					$inline_keyboard[0][] = ["text" => "▶️", "callback_data" => "help/faq/" . (faq_text::text()[$get_id +1]['id'])];
 				}
 				if(($get_id +2) < $total_page)
 				{
-					$inline_keyboard[0][] = ["text" => T_("Last"), "callback_data" => "help/faq/" . $total_page];
+					$inline_keyboard[0][] = ["text" => "⏭", "callback_data" => "help/faq/" . $total_page];
 				}
 			}
 			$inline_keyboard[][] = ['text' => T_('Help'), 'callback_data' => 'help/home'];
 			$return['reply_markup'] = ['inline_keyboard' => $inline_keyboard];
 			$return['response_callback'] = utility::response_expire('help');
-			if($_query)
-			{
-				callback_query::edit_message($return);
-			}
-			else
-			{
-				return $return;
-			}
+			return $return;
 		}
 	}
 }
