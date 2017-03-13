@@ -50,6 +50,10 @@ class inline_keyboard
 			]
 		];
 		$count_answer = count($this->class->query_result['answers']);
+		if($count_answer == 0)
+		{
+			return ;
+		}
 		if($count_answer > 11)
 		{
 			$keyboard_map[$count_answer] = $this->make_keyboard_map($count_answer);

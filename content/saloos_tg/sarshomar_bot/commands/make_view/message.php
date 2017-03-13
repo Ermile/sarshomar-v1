@@ -30,7 +30,7 @@ class message
 		}
 		else
 		{
-			$title = html_entity_decode($this->class->query_result['title']);
+			$title = $this->class->query_result['title'];
 		}
 		if(isset($this->class->query_result['file']))
 		{

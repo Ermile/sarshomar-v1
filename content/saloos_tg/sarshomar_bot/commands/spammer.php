@@ -111,7 +111,7 @@ class spammer
 		if($_meta['time'] + 40 >= microtime(true) && $_meta['message_count'] >= 20)
 		{
 			return [
-			'text' => T_("You are banned for :seconds seconds", ['seconds' => 20]),
+			'text' => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 			"reply_markup" => menu::main(true),
 			];
 		}
@@ -136,7 +136,7 @@ class spammer
 			$message_result = [
 				'method'=> "answerCallbackQuery",
 				"show_alert" => true,
-				'text' => T_("You are banned for :seconds seconds", ['seconds' => 20]),
+				'text' => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 				'callback_query_id' => bot::$hook['callback_query']['id']
 			];
 			bot::sendResponse([
