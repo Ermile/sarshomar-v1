@@ -56,7 +56,7 @@ class message
 		{
 			return;
 		}
-		if(count($this->class->query_result['answers']) > 7)
+		if(count($this->class->query_result['answers']) > 10)
 		{
 			$row = 0;
 			$other_key = null;
@@ -64,7 +64,7 @@ class message
 			$sum_answers = $sum['sum_answers'];
 			arsort($sum_answers);
 			foreach ($sum_answers as $key => $value) {
-				if($row < 6)
+				if($row < 9)
 				{
 					$row++;
 					$other_key = $key;
@@ -73,12 +73,10 @@ class message
 				}
 				$overflow[$other_key] += $value;
 			}
-			$overflow[0] = $overflow[$other_key];
+			$other = $overflow[$other_key];
 			unset($overflow[$other_key]);
-			$x = '';
-			foreach ($overflow as $key => $value) {
-				$x .= "$key: $value\n";
-			}
+			ksort($overflow);
+			$overflow[0] = $other;
 			$this->message['chart'] = utility::calc_vertical($overflow);
 		}
 		else
@@ -104,7 +102,6 @@ class message
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
 				$poll_list = $this->class->query_result['description'];
-				handle::send_log($poll_list);
 				if($value['type'] == 'like' && $answer)
 				{
 					// $poll_list .= "\n" . T_('Liked');

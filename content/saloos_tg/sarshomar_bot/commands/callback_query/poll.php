@@ -27,7 +27,7 @@ class poll
 
 	public static function list($_query, $_data_url)
 	{
-		$message_per_page = 5;
+		$message_per_page = 10;
 		if(is_null($_query))
 		{
 			$page = 1;
@@ -502,7 +502,7 @@ class poll
 	public static function answer_results($_query, $_data_url)
 	{
 		\lib\storage::set_disable_edit(true);
-		$message_per_page = 5;
+		$message_per_page = 8;
 		if(is_null($_query) || !isset($_data_url[3]))
 		{
 			$page = 1;
