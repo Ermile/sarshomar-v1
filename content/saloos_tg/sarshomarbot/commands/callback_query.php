@@ -76,6 +76,7 @@ class callback_query
 			];
 		$response = array_merge($response, self::$message_result);
 		$response = array_merge($response, $_result);
+		$response['parse_mode'] = 'HTML';
 		if($_return)
 		{
 			return $response;
