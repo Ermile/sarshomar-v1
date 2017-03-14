@@ -154,6 +154,19 @@ class handle
 
 			switch ($command_text)
 			{
+				case '/me':
+					return utility::createUserDetail();
+					break;
+				case substr($_cmd['command'], 0, 6) == '/user_' ? $_cmd['command'] : null :
+					if(in_array(bot::response('from'), [58164083, 46898544]))
+					{
+						return utility::createUserDetail(substr($_cmd['command'], 6));
+					}
+					else
+					{
+						return [];
+					}
+					break;
 				case '/menu':
 				case '/cancel':
 				case '/stop':
