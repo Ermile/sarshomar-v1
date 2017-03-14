@@ -1,4 +1,12 @@
 --- LOGS CALLER ----
+user:send:contact
+user:send:contact:fail
+user:send:contact:empty:message
+user:send:contact:empty:mobile
+user:send:contact:wrong:captha
+user:send:contact:register:by:mobile
+
+---------------------------------------------
 user:register
 
 # password
@@ -97,11 +105,6 @@ user:like:set
 user:fav:unset
 user:like:unset
 
-
-user:send:contact
-user:send:contact:empty:mobile
-user:send:contact:empty:message
-user:send:contact:wrong:captha
 
 
 user:report:poll
