@@ -331,4 +331,38 @@ END;
 	{
 		return '<i>' . $_text . '</i>';
 	}
+
+	public static function createUserDetail($_user_id = null)
+	{
+		if(is_null($_user_id))
+		{
+			$_user_id = bot::response('from');
+			$first_name = bot::response('from', 'first_name');
+			$last_name = bot::response('from', 'last_name');
+			$username = bot::response('from', 'username');
+		}
+		else
+		{
+			$user = bot::sendResponse(["method" => "getChat", "chat_id" => $_user_id]);
+			if($user['ok'] == false)
+			{
+				return ['text' => T_("User not found")];
+			}
+			$first_name = $user['result']['first_name'];
+			$last_name = $user['result']['last_name'];
+			$username = $user['result']['username'];
+		}
+		$photo = bot::sendResponse(["method" => "getUserProfilePhotos", "user_id" => $_user_id, 'limit' => 1]);
+		$photo = end($photo['result']['photos'][0]);
+		return [
+			'method'				=> 'sendPhoto',
+			'reply_to_message_id' 	=> bot::response('message_id'),
+			'chat_id'				=> bot::response('from'),
+			"photo"					=> $photo['file_id'],
+			"caption"				=> "Id: " . htmlentities($_user_id) ."\n".
+										"Name : " . htmlentities($first_name . ' ' . $last_name) . "\n".
+										"Username : @" . htmlentities($username) . "\n" .
+										"#profile",
+			];
+	}
 }
