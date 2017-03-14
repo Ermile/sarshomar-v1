@@ -519,7 +519,8 @@ header .logo{font-size:10px;display:-webkit-box;display:-ms-flexbox;display:-web
 header .logo span{position:absolute;z-index:-1;width:0;height:0;opacity:0}
 
 
-header .logo img{-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s}
+header .logo img{-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;width:190px;height:40px}
+.rtl header .logo img{width:140px;height:60px}
 header .logo h1{margin:0;font-size:1.9em;line-height:2.2;margin-left:10px}
 .rtl header .logo h1{font-size:2.4em;line-height:2;margin-left:0;margin-right:12px}
 /*header .logo h1 a:focus,header .logo h1 a:hover{color:#fff}*/
