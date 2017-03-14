@@ -157,7 +157,7 @@ class message
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/sarshomarbot?start=' .$this->class->poll_id, '⚙' . T_("پنل")) . " | ";
+		$dashboard = utility::link('https://telegram.me/Sarshomar_bot?start=' .$this->class->poll_id, '⚙' . T_("پنل")) . " | ";
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
@@ -207,14 +207,14 @@ class message
 				$text .= T_("Valid answer is:") . $count['total_sum_valid'];
 				break;
 			case 'invalid':
-				$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
+				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 			case 'sum_invalid':
 				$text .= '👥';
 				$text .= utility::nubmer_language($count['total']);
 				// if($count['total_sum_invalid'] > 0)
 				// {
-				// 	$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
+				// 	$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', '❗️' . utility::nubmer_language($count['total_sum_invalid']));
 				// }
 				break;
 			case 'sum_valid':
@@ -224,7 +224,7 @@ class message
 
 			default:
 				$text .= T_("Valid") . '(' . $count['total_sum_valid'] .') ';
-				$text .= utility::link('https://telegram.me/sarshomarbot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
+				$text .= utility::link('https://telegram.me/Sarshomar_bot?start=faq_5', T_("Invalid") . '(' . $count['total_sum_invalid'] .')');
 				break;
 		}
 		if(isset($this->message['options']))

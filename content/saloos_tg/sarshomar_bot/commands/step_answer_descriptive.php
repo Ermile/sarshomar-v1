@@ -20,6 +20,7 @@ class step_answer_descriptive
 	public static function start($_text = null, $commands = [])
 	{
 		step::stop();
+		session::remove('answer_descriptive');
 		$subport = null;
 		if(isset($commands['subport']))
 		{
@@ -132,7 +133,7 @@ class step_answer_descriptive
 			]
 		]);
 		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
-		if(is_array($get_answer) && array_search('add', $get_answer['available']) === false)
+		if(!is_array($get_answer) || empty($get_answer['available']))
 		{
 			step::stop();
 			return [

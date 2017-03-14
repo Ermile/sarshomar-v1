@@ -126,7 +126,11 @@ class poll
 			$subport = \lib\utility\shortURL::decode(substr($_data_url[3], 1));
 			$last = null;
 		}
+
 		step::stop();
+		$poll_id = session::get('answer_descriptive', 'id');
+		$text = session::get('answer_descriptive', 'text');
+		session::remove('answer_descriptive');
 
 		if($status != 'answer')
 		{
@@ -138,15 +142,23 @@ class poll
 				]);
 			return ;
 		}
-		$poll_id = session::get('answer_descriptive', 'id');
-		$text = session::get('answer_descriptive', 'text');
 		$request = [
 			'id' => $poll_id,
 			'descriptive' => $text,
 		];
-		session::remove('answer_descriptive');
 
-
+		\lib\utility::$REQUEST = new \lib\utility\request([
+			'method' 	=> 'array',
+			'request' => [
+				'id' 		=> $poll_id,
+			]
+		]);
+		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
+		if(!empty($get_answer['my_answer']))
+		{
+			\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => ['id' => $poll_id]]);
+			\lib\main::$controller->model()->poll_answer_delete(['id' => $poll_id]);
+		}
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $request]);
 		$add_poll = \lib\main::$controller->model()->poll_answer_add(['method' => 'post']);
 
@@ -167,8 +179,8 @@ class poll
 		}
 		else
 		{
-			session::remove_back('expire', 'inline_cache', 'answer_descriptive');
-			session::remove('expire', 'inline_cache', 'answer_descriptive');
+			// session::remove_back('expire', 'inline_cache', 'answer_descriptive');
+			// session::remove('expire', 'inline_cache', 'answer_descriptive');
 			$maker = new make_view($poll_id);
 			$maker->message->add_title();
 			$maker->message->message['title'] = '❔ ' . $maker->message->message['title'];
