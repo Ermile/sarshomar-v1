@@ -26,7 +26,6 @@ class inline_query
 		if(substr($search, 0, 1) == '/')
 		{
 			self::about($result);
-			handle::send_log($result);
 			return $result;
 		}
 		$check_language = false;
@@ -153,19 +152,19 @@ class inline_query
 		$text .= "@SarshomarBot";
 		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
 			[
-				"text" 	=> "Login to bot",
+				"text" 	=> "Bot",
 				"url"	=> "https://t.me/sarshomarbot?start=lang_en-ref_about"
 			],
 			[
-				"text" 	=> "Sarshomar Website",
+				"text" 	=> " Website",
 				"url"	=> "https://sarshomar.com"
 			]],
 			[[
-				"text" 	=> "ورود به بات",
+				"text" 	=> "ربات",
 				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
 			],
 			[
-				"text" 	=> "وبسایت سرشمار",
+				"text" 	=> "وب‌سایت",
 				"url"	=> "https://sarshomar.com/fa"
 			]
 		]];
