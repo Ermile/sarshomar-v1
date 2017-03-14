@@ -14,6 +14,17 @@
 {%endblock%}
 
 
+{%block facebook%}
+ <meta property ="og:title"                content="{{pageTitle}}">
+ <meta property ="og:description"          content="{{pageDesc}}">
+ <meta property ="og:url"                  content="{{url.full}}">
+ <meta property ="og:image"                content="{{url.static}}images/logo.png">
+ <meta property ="og:image:width"          content="300">
+ <meta property ="og:image:height"         content="300">
+ <meta property ='og:locale'               content='{{global.lang}}'/>
+{%endblock%}
+
+
 {%block head_css%}
  <link rel="stylesheet"       href="{{url.static}}css/style.css">
  <link rel="stylesheet"       href="{{url.static}}css/style-admin.css">
