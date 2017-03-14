@@ -423,6 +423,9 @@ class poll
 				});
 			unset($result['reply_markup']);
 			callback_query::edit_message($result);
+			session::remove('expire', 'inline_cache', 'create');
+			session::remove_back('expire', 'inline_cache', 'create');
+
 			$main = menu::main()[0];
 			$main['method'] = 'sendMessage';
 			bot::sendResponse($main);

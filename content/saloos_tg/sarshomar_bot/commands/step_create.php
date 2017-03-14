@@ -98,26 +98,6 @@ class step_create
 			});
 		}
 
-
-		if(
-			is_null(session::get('poll_options', 'type')) &&
-			$get_poll &&
-			count($get_poll['answers']) == 0 &&
-			!is_null($get_poll['title']) &&
-			$get_poll['title'] != ""
-		)
-		{
-			return self::make_draft($get_poll, function($_maker) use($get_poll){
-				// $text = T_("Please select the type of your poll from the options below");
-				// if(!isset($get_poll['file']))
-				// {
-				// 	$text .= "\n";
-				// 	$text .= T_("You can also attach a file to your poll and type the question in the next step.");
-				// }
-				// $_maker->message->add("insert", $text, 'before', 'hashtag');
-			});
-		}
-
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
 		{
 			$file = bot::$hook['message'][$file_content[1]];
@@ -127,7 +107,7 @@ class step_create
 			}
 			if(array_key_exists('caption', bot::$hook['message']))
 			{
-				$_question = bot::$hook['message']['caption'];
+				$_question = '';//bot::$hook['message']['caption'];
 			}
 			elseif($file_content)
 			{
@@ -158,6 +138,26 @@ class step_create
 				session::set('poll', $get_poll['id']);
 			}
 		}
+
+		if(
+			is_null(session::get('poll_options', 'type')) &&
+			$get_poll &&
+			count($get_poll['answers']) == 0 &&
+			!is_null($get_poll['title']) &&
+			$get_poll['title'] != ""
+		)
+		{
+			return self::make_draft($get_poll, function($_maker) use($get_poll){
+				// $text = T_("Please select the type of your poll from the options below");
+				// if(!isset($get_poll['file']))
+				// {
+				// 	$text .= "\n";
+				// 	$text .= T_("You can also attach a file to your poll and type the question in the next step.");
+				// }
+				// $_maker->message->add("insert", $text, 'before', 'hashtag');
+			});
+		}
+
 
 		$question = $_question;
 		// $question = markdown_filter::tag($question);
