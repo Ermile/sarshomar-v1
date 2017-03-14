@@ -1,30 +1,28 @@
 /* Initial CSS */
-html,body{height:100%;background:url(https://ermile.com/static/images/pattern/shattered_@2X.png)}
-body{display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:-moz-box !important;display:flex !important;-webkit-box-pack:center !important;-webkit-justify-content:center !important;-ms-flex-pack:center !important;-moz-box-pack:center !important;justify-content:center !important;-webkit-box-align:center !important;-webkit-align-items:center !important;-ms-flex-align:center !important;-moz-box-align:center !important;align-items:center !important}
-.hidden{display:none}
+html{height:100%}
+body{min-height:100%;background-image:url(../images/shattered_@2X.png);display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:flex !important}
 
-/* Custom CSS */
-.login{width:75%;max-width:768px;padding:2em;background-color:#fff}
-
-.login .field{margin-bottom:1em}
-.login .field label{display:block}
-.login .field label span{display:inline-block;padding:.5rem 0}
-.login .field input,.login button{font-size:1em}
-.login .field input{width:100%;padding:.5rem 1rem;border:1px solid #afafaf}
-.login .field input.disabled,.login .field input[disabled]{pointer-events:none;opacity:.45}
-.login .field input.ltr{text-align:left}
-.login .field input.center{text-align:center}
-.login button{width:100%;/*margin-top:1rem;*/padding:.5rem;cursor:pointer;border:none;border-radius:3px;outline:none}
+/* Layout */
+.enter{min-height:100%;background-color:transparent;-webkit-box-flex:1;-ms-flex:1;flex:1}
+.sidebox,.mainbox{padding:1em}
+.sidebox{background-color:rgba(255,255,255,0.2)}
+.sidebox h1{font-size:4em;font-weight:700;text-align:center;color:#0fa1a6;text-shadow:0 0 3px #0fa1a6}
+.sidebox .field{margin-bottom:2rem}
+.sidebox .field label{display:block}
+.sidebox .field label span{display:inline-block;padding-bottom:.5rem}
+.sidebox .field input,.sidebox button{font-size:1.2em}
+.sidebox .field input{width:100%;padding:1em 2em;border:none;border-radius:3px;background-color:#fff;direction:ltr}
+.sidebox .field input.disabled,.sidebox .field input[disabled]{pointer-events:none;opacity:.45}
+.sidebox .field input.ltr{text-align:left}
+.sidebox .field input.center{text-align:center}
+.sidebox button{width:100%;padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
 
 /* Fancy Title */
-.login .fancy{position:relative;text-align:center;margin-bottom:1em}
+/*.login .fancy{position:relative;text-align:center;margin-bottom:1em}
 .login .fancy:before{background:#ddd;content:"";display:block;height:1px;position:absolute;top:50%;width:100%;left:0}
-.login .fancy span{background:#fff;padding:0 15px;position:relative;z-index:1}
+.login .fancy span{background:#fff;padding:0 15px;position:relative;z-index:1}*/
 
-/* Logo */
-.login .logo{width:50%;max-width:250px}
-
-.login .notif{margin-bottom:1em}
+/*.login .notif{margin-bottom:1em}
 .login .notif .notif-loader{text-align:center;display:inline-block;margin:0 2px;padding-top:1px;vertical-align:middle}
 .login .notif .notif-loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
 .login .notif .notif-loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
@@ -39,4 +37,4 @@ body{display:-webkit-box !important;display:-webkit-flex !important;display:-ms-
   60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
-.login .other-ways{margin-bottom:1rem}
+.login .other-ways{margin-bottom:1rem}*/

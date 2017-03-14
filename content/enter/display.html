@@ -7,63 +7,91 @@
 
 
 {%block body%}
-<div class='f login'>
- <div class='c flex f-column justify-center'>
-  <div class='fancy'>
-   <span>{%trans "Sign Up"%}</span>
-  </div>
 
-  <div class="field mobile">
-   <label>
-    <span>{%trans "Enter Your Mobile Number"%}</span>
-    <input type='tel' name='mobile' id='mobile' placeholder='{%trans "Mobile Number"%}' autocomplete='off' maxlength='15' class='ltr'>
+<div class='f enter'>
+ <div class='c3 sidebox'>
+  <h1>{%trans "Login"%}</h1>
+  
+  <div class='field'>
+   <label for='mobile'>
+    <span>{%trans "Mobile or Username"%}</span>
+    <input type='text' name='mobile' id='mobile' placeholder='{%trans "Mobile or Username"%}'>
    </label>
   </div>
 
-  <div class="notif patient hidden">
-   <span>{%trans "Please be patient, we are generating keys"%}</span>
-   <div class="notif-loader">
-    <span></span>
-    <span></span>
-    <span></span>
-   </div>
-  </div>
-
-  <div class="field password hidden">
-   <label>
+  <div class="field">
+   <label for='password'>
     <span>{%trans "Password"%}</span>
     <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
    </label>
   </div>
 
-  <div class="field code hidden">
+  <div class="field code">
    <label>
     <span>{%trans "Enter Verification Code"%}</span>
     <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
    </label>
   </div>
 
-  <div class="notif hidden">
+  <button>{%trans "Login"%}</button>
+ </div>
+ <div class='c9 mainbox'>2</div>
+</div>
+
+
+<!-- <div class='f login'> -->
+ <!-- <div class='c flex f-column justify-center'> -->
+  <!-- <div class='fancy'>
+   <span>{%trans "Sign Up"%}</span>
+  </div> -->
+
+  <!-- <div class="field mobile">
+   <label>
+    <span>{%trans "Enter Your Mobile Number"%}</span>
+    <input type='tel' name='mobile' id='mobile' placeholder='{%trans "Mobile Number"%}' autocomplete='off' maxlength='15' class='ltr'>
+   </label>
+  </div> -->
+
+  <!-- <div class="notif patient hidden">
+   <span>{%trans "Please be patient, we are generating keys"%}</span>
+   <div class="notif-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+   </div>
+  </div> -->
+
+  <!-- <div class="field password hidden">
+   <label>
+    <span>{%trans "Password"%}</span>
+    <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
+   </label>
+  </div> -->
+
+  <!-- <div class="field code hidden">
+   <label>
+    <span>{%trans "Enter Verification Code"%}</span>
+    <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
+   </label>
+  </div> -->
+
+  <!-- <div class="notif hidden">
    <span>{%trans "Problems receiving your code?"%}</span>
    <a href="#">{%trans "Login using other ways"%}</a>
-  </div>
+  </div> -->
 
-  <div class="notif correct hidden">
+  <!-- <div class="notif correct hidden">
    <span>{%trans "Is this mobile number correct?"%}</span>
    <a href="#">{%trans "Change number"%}</a>
-  </div>
+  </div> -->
 
-  <div class="other-ways hidden">
+  <!-- <div class="other-ways hidden">
    <span>{%trans "Other ways"%}</span>
-  </div>
+  </div> -->
 
-  <button id="go">{%trans "Login"%}</button>
- </div>
-
- <div class='c flex f-column justify-center align-center'>
-  <img class='logo' src='{{url.static}}/images/logo/sarshomar-brand.svg' alt=''>
- </div>
-</div>
+  <!-- <button id="go">{%trans "Login"%}</button> -->
+ <!-- </div> -->
+<!-- </div> -->
 {%endblock%}
 
 
