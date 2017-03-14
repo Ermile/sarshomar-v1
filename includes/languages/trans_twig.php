@@ -20,6 +20,16 @@ private function transtext()
 	echo T_("Qom");                                                                   // Line 56
 	echo T_("Iran");                                                                  // Line 57
 
+	//------------------------------------------------------content\enter\display.html
+	echo T_("Sign Up");                                                               // Line 50
+	echo T_("Mobile Or Username");                                                    // Line 25
+	echo T_("Code");                                                                  // Line 67
+	echo T_("Password");                                                              // Line 367
+	echo T_("Login");                                                                 // Line 6
+	echo T_("Can't access your account?");                                            // Line 45
+	echo T_("Don't have an account?");                                                // Line 49
+	echo T_("Verify your account");                                                   // Line 50
+
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 78
@@ -132,8 +142,6 @@ private function transtext()
 	//--------------------------------------------------------content\main\layout.html
 	echo T_("Login or Try");                                                          // Line 25
 	echo T_("e.g: +989120000000");                                                    // Line 29
-	echo T_("Password");                                                              // Line 367
-	echo T_("Login");                                                                 // Line 6
 	echo T_("Try Sarshomar");                                                         // Line 37
 	echo T_("Next →");                                                                // Line 46
 	echo T_("← Back");                                                                // Line 46
@@ -145,27 +153,28 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Read More");                                                             // Line 210
-	echo T_("There is no option!");                                                   // Line 155
-	echo T_("Previous");                                                              // Line 175
-	echo T_("Save Answer");                                                           // Line 283
+	echo T_("Your are our Guest!");                                                   // Line 34
+	echo T_("Read More");                                                             // Line 218
+	echo T_("There is no option!");                                                   // Line 163
+	echo T_("Previous");                                                              // Line 183
+	echo T_("Save Answer");                                                           // Line 291
 	echo T_("Next");                                                                  // Line 9
-	echo T_("You can select just two options.");                                      // Line 223
-	echo T_("I am not willing to answer");                                            // Line 272
+	echo T_("You can select just two options.");                                      // Line 231
+	echo T_("I am not willing to answer");                                            // Line 280
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("There is no data to draw chart!");                                       // Line 305
-	echo T_("Similar Questions");                                                     // Line 339
-	echo T_("Latest Questions");                                                      // Line 332
-	echo T_("There is no similar post");                                              // Line 340
-	echo T_("Poll timespan");                                                         // Line 358
+	echo T_("There is no data to draw chart!");                                       // Line 313
+	echo T_("Similar Questions");                                                     // Line 347
+	echo T_("Latest Questions");                                                      // Line 340
+	echo T_("There is no similar post");                                              // Line 348
+	echo T_("Poll timespan");                                                         // Line 366
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 409
-	echo T_("Keyword");                                                               // Line 380
-	echo T_("Statistical population");                                                // Line 397
-	echo T_("There is nothing to display!");                                          // Line 454
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 465
+	echo T_("Not set");                                                               // Line 417
+	echo T_("Keyword");                                                               // Line 388
+	echo T_("Statistical population");                                                // Line 405
+	echo T_("There is nothing to display!");                                          // Line 462
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 473
 	echo T_("Submit");                                                                // Line 68
-	echo T_("Continue");                                                              // Line 522
+	echo T_("Continue");                                                              // Line 530
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -231,7 +240,6 @@ private function transtext()
 	echo T_("Sarshomar is jumping...");                                               // Line 37
 	echo T_("Inspection and Answer");                                                 // Line 61
 	echo T_("Then if we were inestimable, Signup!");                                  // Line 62
-	echo T_("Verify your account");                                                   // Line 50
 
 	//----------------------------------------------content\template\static\about.html
 	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 17
@@ -533,10 +541,10 @@ private function transtext()
 	//---------------------------------------------content\template\static\vision.html
 
 	//---------------------------------------------content_admin\comments\display.html
-	echo T_("Total");                                                                 // Line 6
+	echo T_("Total");                                                                 // Line 8
 	echo T_("Rejected");                                                              // Line 17
-	echo T_("Unapproved");                                                            // Line 8
-	echo T_("Spam");                                                                  // Line 44
+	echo T_("Unapproved");                                                            // Line 11
+	echo T_("Spam");                                                                  // Line 14
 	echo T_("Trash");                                                                 // Line 53
 	echo T_("Return to admin area");                                                  // Line 58
 
@@ -567,8 +575,6 @@ private function transtext()
 	echo T_("exchangerates");                                                         // Line 91
 	echo T_("ID");                                                                    // Line 3
 
-	//-------------------------------------------------content_admin\home\display.html
-
 	//--------------------------------------------content_admin\knowledge\display.html
 	echo T_("Awaiting");                                                              // Line 26
 	echo T_("Draft");                                                                 // Line 107
@@ -585,7 +591,6 @@ private function transtext()
 	echo T_("Show in home page");                                                     // Line 143
 
 	//-------------------------------------------------content_admin\main\sidebar.html
-	echo T_("Filtered");                                                              // Line 11
 
 	//-------------------------------------content_admin\transactionitems\display.html
 	echo T_("title");                                                                 // Line 10
@@ -824,7 +829,6 @@ private function transtext()
 	echo T_("The status of a response can be determined from the HTTP status code."); // Line 11
 
 	//------------------------------------content_api\v1\doc\template\start\table.html
-	echo T_("Code");                                                                  // Line 67
 	echo T_("request successful");                                                    // Line 10
 	echo T_("request was invalid");                                                   // Line 20
 	echo T_("user does not have permission");                                         // Line 25
@@ -931,7 +935,7 @@ private function transtext()
 	echo T_("Balance");                                                               // Line 121
 	echo T_("Charge Account");                                                        // Line 127
 	echo T_("Publish it");                                                            // Line 128
-	echo T_("go Back to Draft");                                                      // Line 128
+	echo T_("Draft it");                                                              // Line 128
 
 	//---------------------------------------------------------content_u\add\tree.html
 
