@@ -79,8 +79,9 @@ class model extends \content\home\model
 		{
 			return ;
 		}
+		$check_status = $this->access('admin','admin', 'view') ? false : true ;
 
-		$poll = $this->get_posts(false, null, ['check_language' => false]);
+		$poll = $this->get_posts(false, null, ['check_status' => $check_status, 'check_language' => false]);
 		if(isset($poll['id']))
 		{
 			$this->user_id = $this->login('id');

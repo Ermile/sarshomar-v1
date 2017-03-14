@@ -1,8 +1,43 @@
-{% extends display.main%} {%block content%} {%include "content_admin/main/sidebar.html"%}
+{% extends template.knowledge.layout%}
+{%block content%}
+
+   <div class="main pad">
+    <div class="box">
+     <div class="row unselectable">
+      <div class="in {%if my_poll or xlarge%}xlarge{%endif%}">
+       <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
+        {%include display.result%}
+      </div>
+     </div>
+    </div>
+   </div>
+{%endblock%}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block old_admin%}
 <div class="box content-management polls-management">
 	<div class="main admin-section">
 

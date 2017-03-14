@@ -1,4 +1,18 @@
  <footer>
+
+
+{%if permContent.cp%}
+<h6><a href="{{url.base}}/cp" data-direct>{%trans "Control panel"%}</a></h6>
+{%endif%}
+
+{%if permContent.admin%}
+<h6><a href="{{url.base}}/admin">{%trans "Admin panel"%}</a></h6>
+{%endif%}
+
+
+
+
+
   <div class="container unselectable">
    <nav class="f" id='footer-nav'>
     <a class="cauto link_home" href="{{url.base}}">{%trans "Home"%}</a>

@@ -8,6 +8,9 @@
     {% set min = poll.options.multi.min %}
     {% set max = poll.options.multi.max %}
    {%endif%}
+
+   {{block('poll_admin')}}
+
    {{block('poll_title')}}
    {{block('poll_toolbox')}}
    {{block('poll_file')}}

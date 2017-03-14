@@ -7,12 +7,12 @@
   </span>
 {%endif%}
   <span class="type">{%trans "Type"%}</span>
-{%if my_poll %}
+{%if my_poll or admin or admin %}
   <span class="edit">{%trans "Edit"%}</span>
 {%endif%}
 
   <span class="title">{%trans "Title"%}</span>
-  {% if my_poll%}
+  {% if my_poll or admin%}
     <span class="status">{%trans "Status"%}</span>
   {%endif%}
 
@@ -31,10 +31,10 @@
     </span>
 {%endif%}
     {%set show_url = value.url %}
-    {%set edit_url = '@/add/' ~ value.id %}
+    {%set edit_url = url.base ~ '/@/add/' ~ value.id %}
     <span class="type" aria-hidden="true"><span class="fa fa-{{value.type}}"></span> </span>
 
-    {%if my_poll %}
+    {%if my_poll or admin %}
     <span class="edit"><a href="{{edit_url}}" class="icon-pencil"></a> </span>
     {%endif%}
 
@@ -44,7 +44,7 @@
 {%endset%}
     <a href="{{show_url}}">{{myTitle}}</a>
     </span>
-    {%if my_poll%}
+    {%if my_poll or admin%}
           {%set myStatus = value.status%}
       <span class="poll-status" data-status="{{value.status}}">{% trans myStatus %}</span>
     {%endif%}

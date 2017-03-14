@@ -180,8 +180,8 @@
 {%block poll_actions%}
 {% spaceless %}
  <div class="poll-actions">
-   <a class="special-btn before" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
-   <button class="special-btn base" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
+   <a class="special-btn before {%if not login or answer_lock %}disabled{% endif %}" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
+   <button class="special-btn base {%if not login or answer_lock %}disabled{% endif %}" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
    <a class="special-btn after disabled" href="{{url.base}}/ask" data-direct>{%trans "Next"%}</a>
  </div>
 {% endspaceless %}
@@ -533,4 +533,103 @@
   </div>
  </div>
 {% endspaceless %}
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%block poll_admin%}
+
+{%if iperm.admin.admin.view%}
+<h1>You are admin</h1>
+
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <input type="hidden" name="status" value="publish">
+  <input type="submit" value='{%trans "publish" %}'>
+</form>
+<br>
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <input type="hidden" name="status" value="draft">
+  <input type="submit" value='{%trans "draft" %}'>
+</form>
+<br>
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <input type="hidden" name="type" value="homepage">
+  <input type="hidden" name="checked" value="true">
+  <input type="submit" value='{%trans "Show in homepage" %}'>
+</form>
+<br>
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <input type="hidden" name="type" value="homepage">
+  <input type="hidden" name="checked" value="false">
+  <input type="submit" value='{%trans "remove show from homepage" %}'>
+</form>
+<br>
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <input type="text" name="vip-value" >
+  <input type="submit" value='{%trans "set vip value" %}'>
+</form>
+<br>
+<form method="post" action="/admin/knowledge">
+  <input type="hidden" name="id" value="{{poll.id}}">
+  <select  name="status">
+    <option value="" disabled selected>{%trans "Select"%}</option>
+    <option value="stop">{%trans "stop"%}</option>
+    <option value="pause">{%trans "pause"%}</option>
+    <option value="trash">{%trans "trash"%}</option>
+    <option value="publish">{%trans "publish"%}</option>
+    <option value="draft">{%trans "draft"%}</option>
+    <option value="enable">{%trans "enable"%}</option>
+    <option value="disable">{%trans "disable"%}</option>
+    <option value="deleted">{%trans "deleted"%}</option>
+    <option value="schedule">{%trans "schedule"%}</option>
+    <option value="expired">{%trans "expired"%}</option>
+    <option value="awaiting">{%trans "awaiting"%}</option>
+    <option value="filtered">{%trans "filtered"%}</option>
+    <option value="blocked">{%trans "blocked"%}</option>
+    <option value="spam">{%trans "spam"%}</option>
+    <option value="violence">{%trans "violence"%}</option>
+    <option value="pornography">{%trans "pornography"%}</option>
+    <option value="other">{%trans "other"%}</option>
+  </select>
+  <input type="submit" name="publish" value='{%trans "set" %}'>
+</form>
+{%endif%}
+
 {%endblock%}

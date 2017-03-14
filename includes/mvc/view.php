@@ -27,6 +27,12 @@ class view extends \lib\mvc\view
 		{
 			$this->data->displayname = T_($displayname);
 		}
+
+		$this->data->iperm          = [];
+		$this->data->iperm['u']     = $this->access('u', 'all');
+		$this->data->iperm['admin'] = $this->access('admin', 'all');
+
+
 		// get total sarshomart answered
 		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
 		$this->data->stat = $total;

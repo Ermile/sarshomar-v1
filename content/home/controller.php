@@ -64,8 +64,9 @@ class controller extends \mvc\controller
 				$this->view()->data->captcha = $captcha_code;
 			}
 		}
+		$check_status = $this->access('admin','admin', 'view') ? false : true ;
 
-		if($this->model()->get_posts(false, null, ['check_language' => false, 'post_type' => ['poll', 'survey']]))
+		if($this->model()->get_posts(false, null, ['check_status' => $check_status, 'check_language' => false, 'post_type' => ['poll', 'survey']]))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
 			return;
