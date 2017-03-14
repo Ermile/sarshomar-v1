@@ -106,6 +106,7 @@ class answers
 			'user_id' => null,
 			'poll_id' => null,
 			'debug'   => true,
+			'user_id' => null,
 		];
 
 		if(defined('Tld') && Tld === 'dev')
@@ -135,6 +136,15 @@ class answers
 			}
 		}
 
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'old_answer' => self::$old_answer,
+				'input'      => $_args,
+			]
+		];
+
 		$insert_time  = strtotime($insert_time);
 		$diff_seconds = $now - $insert_time;
 
@@ -142,6 +152,7 @@ class answers
 		{
 			if($_args['debug'])
 			{
+				\lib\db\logs::set('user:answer:error:max_time', $_args['user_id'], $log_meta);
 				debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
 			}
 			return false;
@@ -167,6 +178,7 @@ class answers
 			{
 				// if($_args['debug'])
 				// {
+					\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
 					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
 				// }
 				return false;
@@ -195,8 +207,17 @@ class answers
 			'user_id' => null,
 			'poll_id' => null,
 			'debug'	  => true,
+			'user_id' => null,
 		];
 		$_args = array_merge($default_args, $_args);
+
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'input' => $_args,
+			]
+		];
 
 		switch ($_type)
 		{
@@ -205,6 +226,7 @@ class answers
 				{
 					if($_args['debug'])
 					{
+						\lib\db\logs::set('user:answer:error:already_answer', $_args['user_id'], $log_meta);
 						debug::error(T_("You have already answered to this poll"), 'answer', 'permission');
 					}
 					return false;
@@ -238,6 +260,7 @@ class answers
 				break;
 
 			default:
+				\lib\db\logs::set('system:answer:error:invalid_type', $_args['user_id'], $log_meta);
 				debug::error(T_("Invalid type"), 'db', 'system');
 				return false;
 				break;
@@ -332,11 +355,23 @@ class answers
 			'subport'    => $_args['subport'],
 		];
 
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'input'              => $_args,
+				'user_delete_answer' => $user_delete_answer,
+				'user_validataion'   => self::$validation,
+				'user_verify'        => self::$user_verify,
+			]
+		];
+
 		$skipped = false;
 
 		if($_args['skipped'] == true)
 		{
 			$skipped = true;
+			\lib\db\logs::set('user:answer:skip', $_args['user_id'], $log_meta);
 			$result  = polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
 		}
 		else
@@ -375,6 +410,7 @@ class answers
 					stat_polls::set_poll_result($answers_details);
 				}
 			}
+			\lib\db\logs::set('user:answer:add', $_args['user_id'], $log_meta);
 		}
 
 		/**
@@ -469,16 +505,29 @@ class answers
 
 		$new_opt = array_keys($_args['answer']);
 
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'input'            => $_args,
+				'old_answer'       => self::$old_answer,
+				'user_validataion' => self::$validation,
+				'user_verify'      => self::$user_verify,
+			]
+		];
+
 		if($old_opt == $new_opt && !$_args['skipped'])
 		{
+
+			\lib\db\logs::set('user:answer:update:error:duplicate', $_args['user_id'], $log_meta);
 			debug::error(T_("You have already selected this answer and submited"), 'answer', 'permission');
 			return false;
 		}
 
 		$save_offline_chart = self::user_validataion($_args['user_id']);
 
-		self::$must_remove = array_diff($old_opt, $_args['answer']);
-		self::$must_insert = array_diff($_args['answer'], $old_opt);
+		$log_meta['meta']['must_remove'] = self::$must_remove = array_diff($old_opt, $_args['answer']);
+		$log_meta['meta']['must_insert'] = self::$must_insert = array_diff($_args['answer'], $old_opt);
 
 		$old_answer_is_skipped = false;
 		$new_answer_is_skipped = false;
@@ -587,6 +636,8 @@ class answers
 			}
 			profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 		}
+
+		\lib\db\logs::set('user:answer:update', $_args['user_id'], $log_meta);
 		// plus answer update count
 		$where =
 		[
@@ -598,6 +649,7 @@ class answers
 		];
 
 		options::plus($where);
+
 
 		self::$IS_ANSWERED = [];
 
@@ -729,6 +781,15 @@ class answers
 		}
 
 
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'input'              => $_args,
+			]
+		];
+
+
 		self::$IS_ANSWERED = [];
 
 		$result = polldetails::remove($_args['user_id'], $_args['poll_id']);
@@ -748,10 +809,12 @@ class answers
 				profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 			}
 
+			\lib\db\logs::set('user:answer:delete', $_args['user_id'], $log_meta);
 			return debug::title(T_("Your answer has been deleted"));
 		}
 		else
 		{
+			\lib\db\logs::set('user:answer:delete:error', $_args['user_id'], $log_meta);
 			return debug::error(T_("You have not answered to this poll"));
 		}
 	}

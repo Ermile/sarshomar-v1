@@ -41,14 +41,10 @@ user:register:guest:telegram
 user:register:guest:android
 user:register:guest:api
 
-db:[change|add]:[table]:[field] -- old value and new value in meta
-
-db:change:user:user_verify
-db:change:user:status
-
 user:login:mobile:wrong
 user:login:successfuly
 user:login:faild
+
 
 user:recovery
 user:recovery:set:mobile
@@ -58,6 +54,11 @@ user:recovery:verification:call
 user:recovery:send:wrong:verification
 
 user:login:remeber:set
+
+db:[change|add]:[table]:[field] -- old value and new value in meta
+
+db:change:user:user_verify
+db:change:user:status
 
 user:set:ui_language
 user:change:ui_lanuage
