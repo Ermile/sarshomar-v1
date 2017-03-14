@@ -82,7 +82,7 @@ class inline_keyboard
 			elseif($answer_value['type'] == 'descriptive')
 			{
 				$total = $sum['total'];
-				$callback_data = 'https://telegram.me/Sarshomar_bot?start='.$this->class->poll_id . "_" . $answer_value['key'];
+				$callback_data = 'https://telegram.me/sarshomarbot?start='.$this->class->poll_id . "_" . $answer_value['key'];
 				$callback_type = 'url';
 				$inline_emoji = "📝 " . T_("Answer");
 			}
@@ -101,7 +101,7 @@ class inline_keyboard
 
 			if(isset($this->class->query_result['access_profile']))
 			{
-				$callback_data = 'https://telegram.me/Sarshomar_bot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
+				$callback_data = 'https://telegram.me/sarshomarbot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
 				$callback_type = 'url';
 			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
@@ -164,7 +164,7 @@ class inline_keyboard
 		{
 			$return[] = [
 				"text" => T_("Report"),
-				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id
+				"url" => 'https://telegram.me/sarshomarbot?start=report_'.$this->class->poll_id
 			];
 		}
 		$this->inline_keyboard[$count] = $return;
