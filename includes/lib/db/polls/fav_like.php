@@ -81,6 +81,7 @@ trait fav_like
 			{
 				$insert_option = \lib\db\options::insert($args);
 				\lib\db\ranks::plus($_poll_id, $_type);
+				\lib\db\logs::set("user:$_type:set", $_user_id, ['meta' => ['args' => func_get_args()]]);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
@@ -88,6 +89,7 @@ trait fav_like
 			}
 			else
 			{
+				\lib\db\logs::set("user:$_type:unset", $_user_id, ['meta' => ['args' => func_get_args()]]);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " unset"));
@@ -110,6 +112,7 @@ trait fav_like
 				if($args['option_status'] == 'enable')
 				{
 					\lib\db\ranks::plus($_poll_id, $_type);
+					\lib\db\logs::set("user:$_type:set", $_user_id, ['meta' => ['args' => func_get_args()]]);
 					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " set"));
@@ -118,6 +121,7 @@ trait fav_like
 				else
 				{
 					\lib\db\ranks::minus($_poll_id, $_type);
+					\lib\db\logs::set("user:$_type:unset", $_user_id, ['meta' => ['args' => func_get_args()]]);
 					if($_options['debug'])
 					{
 						return debug::true(T_(ucfirst($_type). " unset"));
@@ -129,6 +133,7 @@ trait fav_like
 				$args['option_status'] = 'enable';
 				$result = \lib\db\options::update_on_error($args, $where);
 				\lib\db\ranks::plus($_poll_id, $_type);
+				\lib\db\logs::set("user:$_type:set", $_user_id, ['meta' => ['args' => func_get_args()]]);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " set"));
@@ -139,6 +144,7 @@ trait fav_like
 				$args['option_status'] = 'disable';
 				$result = \lib\db\options::update_on_error($args, $where);
 				\lib\db\ranks::minus($_poll_id, $_type);
+				\lib\db\logs::set("user:$_type:unset", $_user_id, ['meta' => ['args' => func_get_args()]]);
 				if($_options['debug'])
 				{
 					return debug::true(T_(ucfirst($_type). " unset"));

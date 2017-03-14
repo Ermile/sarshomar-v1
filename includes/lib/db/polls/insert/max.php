@@ -46,6 +46,8 @@ trait max
 
 		if($count >= $max_draft)
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:max:draft:count', self::$args['user'], ['meta' => ['input' => self::$args, 'max' => $max_draft]]);
 			return debug::error(T_("You can save :max draft poll",['max' => $max_draft]), false, false);
 		}
 	}
@@ -76,6 +78,8 @@ trait max
 
 		if($count >= $max_survey_child)
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:max:survery:child', self::$args['user'], ['meta' => ['input' => self::$args, 'max' => $max_survey_child]]);
 			return debug::error(T_("You can save :max poll in one survey",['max' => $max_survey_child]), false, false);
 		}
 	}

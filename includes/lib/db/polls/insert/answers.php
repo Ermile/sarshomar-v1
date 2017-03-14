@@ -17,11 +17,15 @@ trait answers
 
 		if(!is_array(self::$args['answers']))
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:poll:add:error:answer:is_not_array', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("Answers must be array"), 'answers', 'arguments');
 		}
 
 		if(count(self::$args['answers']) > 100)
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:poll:add:error:answer:max:100', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("You can not add more than 100 answers"), 'answers', 'arguments');
 		}
 
@@ -41,6 +45,8 @@ trait answers
 			}
 			if(mb_strlen($title) > 99)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:answer:title:100', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				debug::error(T_("Invalid answer title argument, you must set less than 99 character for the title in index :key of answer", ['key' => $key + 1]), 'answer', 'arguments');
 				return false;
 			}
@@ -61,16 +67,21 @@ trait answers
 						break;
 
 					default:
+						// \lib\db::rollback();
+						\lib\db\logs::set('user:poll:add:error:answer:type:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
+						// \lib\db::rollback();
+						\lib\db\logs::set('user:poll:add:error:answer:type:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 						return debug::error(T_("Invalid type (:type) paramater in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
 						break;
 				}
 			}
 			else
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:answer:type:not_set', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				if(self::$debug)
 				{
 					debug::error(T_("Invalid answer type parameter in index :key of answer", ['key' => $key]), 'answer', 'arguments');
-
 				}
 				return ;
 			}

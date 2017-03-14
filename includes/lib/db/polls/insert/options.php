@@ -13,6 +13,8 @@ trait options
 		{
 			if(self::$args['brand']['title'] && mb_strlen(self::$args['brand']['title']) > 99)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:brand:max:title', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid brand title argument, you must set less than 99 character for the title"), 'title', 'arguments');
 			}
 
@@ -21,6 +23,8 @@ trait options
 			{
 				if(mb_strlen(self::$args['brand']['url']) > 99)
 				{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:brand:max:url', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_(" Invalid brand URL argument, you must set less than 99 character for brand URL "), 'url', 'arguments');
 				}
 
@@ -41,6 +45,8 @@ trait options
 		{
 			if(self::$args['options']['time'] && !is_numeric(self::$args['options']['time']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:time:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid arguments time"), 'time', 'arguments');
 			}
 			self::save_options('time', self::$args['options']['time']);
@@ -63,11 +69,15 @@ trait options
 		{
 			if(self::$args['options']['multi']['min'] && !is_numeric(self::$args['options']['multi']['min']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:min', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid arguments min"), 'min', 'arguments');
 			}
 
 			if(intval(self::$args['options']['multi']['min']) < 1)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:lessthan:1', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Can not set parameter 'min' less than 1"), 'min', 'arguments');
 			}
 
@@ -77,11 +87,15 @@ trait options
 				intval(self::$args['options']['multi']['max'])
 			  )
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:min:greater:max', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You can not set minimum greater than maximum in multi select settings"), 'min', 'arguments');
 			}
 
 			if(intval(self::$args['options']['multi']['min']) > count(self::$args['answers']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:answers:lessthan:min', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You have set :count answers and can not set :min in min parameter ",
 					[
 						'count' => count(self::$args['answers']),
@@ -105,11 +119,15 @@ trait options
 		{
 			if(self::$args['options']['multi']['max'] && !is_numeric(self::$args['options']['multi']['max']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:max', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid arguments max"),'max', 'arguments');
 			}
 
 			if(intval(self::$args['options']['multi']['max']) > count(self::$args['answers']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:max:largerthan:answer', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You have set :count answers and can not set :max in max parameter ",
 					[
 						'count' => count(self::$args['answers']),
@@ -123,6 +141,8 @@ trait options
 				intval(self::$args['options']['multi']['min'])
 			  )
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:multi:ordering', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You can not set minimum greater than maximum in multi select settings"), 'max', 'arguments');
 			}
 			self::save_options('multi_max', self::$args['options']['multi']['max']);
@@ -156,16 +176,22 @@ trait options
 			{
 				if($set_multi_min)
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:options:multi:min:with:ordering', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Can not use multi:min and ordering"), 'ordering', 'arguments');
 				}
 
 				if($set_multi_max)
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:options:multi:max:with:ordering', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Can not use multi:max and ordering"), 'ordering', 'arguments');
 				}
 
 				if($set_multi)
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:options:multi:with:ordering', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("You can not use multi select and ordering poll"), 'ordering', 'arguments');
 				}
 
@@ -225,6 +251,8 @@ trait options
 		{
 			if(self::$args['schedule']['start'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['start']) === false)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:time:start', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid arguments start"), 'schedule', 'arguments');
 			}
 			self::save_options('start_date', self::$args['schedule']['start']);
@@ -242,6 +270,8 @@ trait options
 		{
 			if(self::$args['schedule']['end'] && \DateTime::createFromFormat('Y-m-d', self::$args['schedule']['end']) === false)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:time:end', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid arguments end_date"), 'end_date', 'arguments');
 			}
 			self::save_options('end_date', self::$args['schedule']['end']);
@@ -259,6 +289,8 @@ trait options
 		{
 			if(!is_array(self::$args['articles']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:articles:array', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Parameter article must be array"), 'article', 'arguments');
 			}
 
@@ -266,6 +298,8 @@ trait options
 			{
 				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", $value))
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:options:articles:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Invalid arguments article on index :key", ['key' => $key]), 'articles', 'arguments');
 					break;
 				}
@@ -327,6 +361,8 @@ trait options
 		{
 			if(!is_array(self::$args['tags']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:answer:tag:array', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Parameter tags must be array"), 'tags', 'arguments');
 			}
 
@@ -336,6 +372,8 @@ trait options
 
 			if(count($check_count) >= 5 && !self::poll_check_permission('u','sarshomar', 'view'))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:tag:max:limit', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You have added so many tags, Please remove some of them"), 'tags', 'arguments');
 			}
 
@@ -359,6 +397,8 @@ trait options
 				$value = trim($value);
 				if(mb_strlen($value) > 45)
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:options:tag:max:length', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Invalid tag in index :key, tags must be less than 45 character", ['key' => $key]), 'tags', 'arguments');
 				}
 
@@ -442,6 +482,8 @@ trait options
 		{
 			if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['cat']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:cats:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid parameter cats"), 'cat', 'arguments');
 			}
 
@@ -451,11 +493,15 @@ trait options
 
 			if(!$check)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:cat:notfound', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Cat not found"), 'cat', 'arguments');
 			}
 
 			if(!isset($check['term_type']) || (isset($check['term_type']) && $check['term_type'] != 'sarshomar'))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:options:cat:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid category"), 'cat', 'arguments');
 			}
 

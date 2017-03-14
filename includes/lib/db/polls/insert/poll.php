@@ -20,6 +20,8 @@ trait poll
 		{
 			if(mb_strlen(self::$args['title']) > 190)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:title:max:length', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Poll title must be less than 190 character"), 'title', 'arguments');
 			}
 
@@ -81,6 +83,8 @@ trait poll
 			{
 				if(!preg_match("/^[". self::$args['shortURL']. "]+$/", self::$args['survey']))
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:survey:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Invalid parametr survey "), 'survey', 'arguments');
 				}
 
@@ -89,16 +93,22 @@ trait poll
 
 				if(!$poll_parent_id)
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:survey:notfound', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Survey id not found"), 'survey', 'arguments');
 				}
 
 				if(!isset($poll_parent_id['type']) || (isset($poll_parent_id['type']) && $poll_parent_id['type'] != 'survey'))
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:survey:isnot', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Survey id must be a survey record"), 'survey', 'arguments');
 				}
 
 				if(!isset($poll_parent_id['user_id']) || (isset($poll_parent_id['user_id']) && $poll_parent_id['user_id'] != self::$user_id))
 				{
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:add:error:survey:permission', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("This is not your survey"), 'survey', 'arguments');
 				}
 
@@ -138,6 +148,8 @@ trait poll
 			$insert_poll['post_meta']['summary'] = trim(self::$args['summary']);
 			if(self::$args['summary'] && mb_strlen(self::$args['summary']) > 150)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:summary:max:length', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Summery must be less than 150 character"), 'summary', 'arguments');
 			}
 		}
@@ -155,6 +167,8 @@ trait poll
 			$insert_poll['post_meta']['access_profile'] = self::$args['access_profile'];
 			if(!is_array(self::$args['access_profile']) && !is_null(self::$args['access_profile']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:access_profile:array', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Access profile must be array"), 'access_profile', 'arguments');
 			}
 		}
@@ -179,7 +193,14 @@ trait poll
 			// check language
 			if(!\lib\utility\location\languages::check(self::$args['language']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:language:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return \lib\debug::error(T_("Invalid parametr language"), 'language', 'arguments');
+			}
+
+			if(\lib\define::get_language() !== self::$args['language'])
+			{
+				\lib\db\logs::set('user:poll:add:difrent:language', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			}
 
 			$insert_poll['post_language'] = self::$args['language'];
@@ -216,6 +237,9 @@ trait poll
 
 			if($parent && !preg_match("/^[". self::$args['shortURL']. "]+$/", $parent))
 			{
+
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:tree:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Invalid tree parameter parent"), 'parent', 'arguments');
 			}
 
@@ -236,6 +260,8 @@ trait poll
 					{
 						if(!is_numeric($value))
 						{
+							// \lib\db::rollback();
+							\lib\db\logs::set('user:poll:add:error:tree:value', self::$args['user'], ['meta' => ['input' => self::$args]]);
 							return debug::error(T_("Invalid tree parameter :value", ['value' => $value]), 'answers', 'arguments');
 						}
 					}
@@ -307,6 +333,8 @@ trait poll
 		{
 			if(!is_array(self::$args['from']))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:add:error:from:array', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Parameter From must be array"), 'from', 'arguments');
 			}
 
@@ -338,6 +366,8 @@ trait poll
 				{
 					if(self::$debug)
 					{
+						// \lib\db::rollback();
+						\lib\db\logs::set('user:poll:add:error:max:member', self::$args['user'], ['meta' => ['input' => self::$args]]);
 						return debug::error(T_(":max users were found, reduce the number of users ",["max" => $member_exist]), 'count', 'arguments');
 					}
 				}

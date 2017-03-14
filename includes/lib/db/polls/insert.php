@@ -73,6 +73,9 @@ trait insert
 		// update id must be a shortURL
 		if(self::$args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", self::$args['update']))
 		{
+
+			// \lib\db::rollback();
+			\lib\db\logs::set('system:poll:invalid_update_parameter', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("Invalid update parameter"), 'update', 'system');
 		}
 		elseif(self::$args['update'])
@@ -84,6 +87,8 @@ trait insert
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
 			if(self::$old_status !== 'draft' && !self::poll_check_permission('admin'))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:edit:error:status', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("Can not edit poll, the status of this poll is :status", ['status' => self::$old_status]), 'status', 'permission');
 			}
 		}
@@ -93,6 +98,8 @@ trait insert
 		{
 			if(self::$debug)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('system:poll:invalid_user_parameter', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				debug::error(T_("Invalid user paramater"), 'user', 'system');
 			}
 			return;
@@ -111,6 +118,8 @@ trait insert
 		{
 			if(!self::is_my_poll(self::$poll_id, self::$user_id) && !self::poll_check_permission('admin'))
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:permission:poll:edit', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("This is not your poll, can't update"), 'id', 'permission');
 			}
 		}
@@ -120,6 +129,8 @@ trait insert
 		{
 			if(self::$debug)
 			{
+				// \lib\db::rollback();
+				\lib\db\logs::set('user:poll:edit:error:empty_poll', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				debug::error(T_("Title and at least two answers is needed to submit the poll"), 'permission', 'arguments');
 			}
 			return false;
@@ -160,6 +171,7 @@ trait insert
 		{
 			if(!self::$update_mod)
 			{
+				\lib\db\logs::set('user:poll:add', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				\lib\utility\profiles::set_dashboard_data($_args['user'], 'my_poll');
 			}
 
@@ -180,6 +192,7 @@ trait insert
 				'short_url' => $short_url,
 			];
 		}
+		\lib\db\logs::set('user:poll:add:fail', self::$args['user'], ['meta' => ['input' => self::$args]]);
 		debug::title(T_("Error in :operation poll", ['operation' => $msg_mod.'ing']));
 		return false;
 	}

@@ -19,6 +19,7 @@ class model extends \mvc\model
 		{
 			$url = $random['url'];
 		}
+		\lib\db\logs::set('user:request:random', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $url]]);
 
 		$this->redirector()->set_url($url);
 		return;
@@ -34,14 +35,17 @@ class model extends \mvc\model
 		// cehck login
 		if(!$this->login())
 		{
+			\lib\db\logs::set('user:request:ask:notlogin');
 			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
 			return;
 		}
 
 		$user_id  = $this->login("id");
 		$ask_url = \lib\db\polls::ask_me($user_id);
+		\lib\db\logs::set('user:request:ask', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
 		if($ask_url == null)
 		{
+			\lib\db\logs::set('user:request:ask:all_poll_answered', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
 			$ask_url = '$';
 		}
 		$this->redirector()->set_url($ask_url);
@@ -60,6 +64,7 @@ class model extends \mvc\model
 		// cehck login
 		if(!$this->login())
 		{
+			\lib\db\logs::set('user:request:next:notlogin');
 			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
 			return;
 		}
@@ -83,9 +88,11 @@ class model extends \mvc\model
 		{
 			$next_url = \lib\db\polls::get_next_url($user_id);
 		}
+		\lib\db\logs::set('user:request:next', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'current' => $current, 'current_pol' => $current_post_id, 'url' => $next_url]]);
 
 		if($next_url == null || $next_url == utility::get('current'))
 		{
+			\lib\db\logs::set('user:request:next', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'current' => $current, 'current_pol' => $current_post_id, 'url' => $next_url]]);
 			return $this->get_ask();
 		}
 
@@ -105,10 +112,12 @@ class model extends \mvc\model
 		// cehck login
 		if(!$this->login())
 		{
+			\lib\db\logs::set('user:request:prev:notlogin');
 			$this->redirector(null, false)->set_domain()->set_url('login')->redirect();
 			return;
 		}
 
+		\lib\db\logs::set('user:request:prev', $this->login('id'), ['meta'=>['login' => $this->login('all')]]);
 		$user_id         = $this->login("id");
 		$current         = utility::get('current');
 		$current_post_id = $this->check_url(true, $current);
@@ -134,6 +143,7 @@ class model extends \mvc\model
 			$prev_url = '$';
 		}
 
+		\lib\db\logs::set('user:request:prev', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'current' => $current, 'current_pol' => $current_post_id, 'url' => $prev_url]]);
 		$this->redirector()->set_url($prev_url);
 		$this->controller->display = false;
 		debug::msg('redirect', true);

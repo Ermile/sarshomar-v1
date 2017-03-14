@@ -132,6 +132,8 @@ trait check
 
 		if(!preg_match("/^[". self::$args['shortURL']. "]+$/", $_code))
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:poll:attachment:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("Invalid parameter file"), 'file', 'arguments');
 		}
 
@@ -139,11 +141,15 @@ trait check
 		$attachment = self::get_poll($attachment_id);
 		if(!$attachment)
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:poll:attachment:notfound', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("Attachment not found"), 'file', 'arguments');
 		}
 
 		if(!isset($attachment['type']) || (isset($attachment['type']) && $attachment['type'] != 'attachment'))
 		{
+			// \lib\db::rollback();
+			\lib\db\logs::set('user:poll:attachment:is_not_attachment_record', self::$args['user'], ['meta' => ['input' => self::$args]]);
 			return debug::error(T_("This is not an attachment record"), 'file', 'arguments');
 		}
 
@@ -170,6 +176,8 @@ trait check
 				case 'expired':
 				case 'filter':
 				default:
+					// \lib\db::rollback();
+					\lib\db\logs::set('user:poll:attachment:permission:status', self::$args['user'], ['meta' => ['input' => self::$args]]);
 					return debug::error(T_("Can not use this attachment"), 'file', 'permission');
 					break;
 			}
