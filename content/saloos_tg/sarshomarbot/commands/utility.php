@@ -353,6 +353,8 @@ END;
 			$username = $user['result']['username'];
 		}
 		$photo = bot::sendResponse(["method" => "getUserProfilePhotos", "user_id" => $_user_id, 'limit' => 1]);
+		if(isset($photo['result']['photos'][0]))
+		{
 		$photo = end($photo['result']['photos'][0]);
 		return [
 			'method'				=> 'sendPhoto',
@@ -364,5 +366,19 @@ END;
 										"Username : @" . htmlentities($username) . "\n" .
 										"#profile",
 			];
+		}
+		else
+		{
+			return [
+			'method'				=> 'SendMessage',
+			'reply_to_message_id' 	=> bot::response('message_id'),
+			'chat_id'				=> bot::response('from'),
+			"text"					=> "Id: <strong>" . htmlentities($_user_id) ."</strong>\n".
+										"Name : <strong>" . htmlentities($first_name . ' ' . $last_name) . "</strong>\n".
+										"Username : @" . htmlentities($username) . "\n" .
+										"#profile",
+			'parse_mode'			=> "HTML"
+			];
+		}
 	}
 }
