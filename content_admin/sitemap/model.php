@@ -34,7 +34,84 @@ class model extends \mvc\model
 			// 'otherTerms'  => 0,
 		];
 
+		// --------------------------------------------- Static pages
+
 		// add list of static pages
+		$sitemap->addItem('fa', '1', 'daily');
+
+		$sitemap->addItem('$', '0.9', 'daily');
+		$sitemap->addItem('api', '1', 'daily');
+		$sitemap->addItem('help', '0.8', 'daily');
+		$sitemap->addItem('changelog', '0.8', 'daily');
+
+		$sitemap->addItem('about', '0.8', 'weekly');
+		$sitemap->addItem('contact', '0.8', 'weekly');
+		$sitemap->addItem('terms', '0.8', 'weekly');
+		$sitemap->addItem('privacy', '0.8', 'weekly');
+		$sitemap->addItem('social-responsibility', '0.8', 'weekly');
+		$sitemap->addItem('features', '0.8', 'weekly');
+
+		// add all targets
+		$sitemap->addItem('target/organizations-and-companies', '0.8', 'weekly');
+		$sitemap->addItem('target/universities-and-research-institutes', '0.8', 'weekly');
+		$sitemap->addItem('target/agencies', '0.8', 'weekly');
+		$sitemap->addItem('target/developers-and-webmasters', '0.8', 'weekly');
+
+		// add all features
+		$sitemap->addItem('features/guest', '0.8', 'weekly');
+		$sitemap->addItem('features/multimedia-questions', '0.7', 'weekly');
+		$sitemap->addItem('features/results-output', '0.7', 'weekly');
+		$sitemap->addItem('features/graphic-results', '0.7', 'weekly');
+		$sitemap->addItem('features/essay-type-questions', '0.7', 'weekly');
+		$sitemap->addItem('features/language-localization', '0.7', 'weekly');
+		$sitemap->addItem('features/without-disturbance', '0.7', 'weekly');
+		$sitemap->addItem('features/social-networks', '0.7', 'weekly');
+		$sitemap->addItem('features/target-statistical-population', '0.7', 'weekly');
+		$sitemap->addItem('features/question-charts', '0.7', 'weekly');
+		$sitemap->addItem('features/results-personalization', '0.7', 'weekly');
+		$sitemap->addItem('features/easy-access', '0.7', 'weekly');
+		$sitemap->addItem('features/valid-population', '0.7', 'weekly');
+		$sitemap->addItem('features/knowledge-base', '0.7', 'weekly');
+
+
+
+
+		// PERSIAN
+		// add static pages of persian
+		$sitemap->addItem('fa/$', '0.9', 'daily');
+		$sitemap->addItem('fa/api', '1', 'daily');
+		$sitemap->addItem('fa/help', '0.8', 'daily');
+		$sitemap->addItem('fa/changelog', '0.8', 'daily');
+
+		$sitemap->addItem('fa/about', '0.8', 'weekly');
+		$sitemap->addItem('fa/contact', '0.8', 'weekly');
+		$sitemap->addItem('fa/terms', '0.8', 'weekly');
+		$sitemap->addItem('fa/privacy', '0.8', 'weekly');
+		$sitemap->addItem('fa/social-responsibility', '0.8', 'weekly');
+		$sitemap->addItem('fa/features', '0.8', 'weekly');
+
+		// add all features
+		$sitemap->addItem('fa/features/guest', '0.8', 'weekly');
+		$sitemap->addItem('fa/features/multimedia-questions', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/results-output', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/graphic-results', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/essay-type-questions', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/language-localization', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/without-disturbance', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/social-networks', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/target-statistical-population', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/question-charts', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/results-personalization', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/easy-access', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/valid-population', '0.7', 'weekly');
+		$sitemap->addItem('fa/features/knowledge-base', '0.7', 'weekly');
+
+		// add all targets
+		$sitemap->addItem('fa/target/organizations-and-companies', '0.8', 'weekly');
+		$sitemap->addItem('fa/target/universities-and-research-institutes', '0.8', 'weekly');
+		$sitemap->addItem('fa/target/agencies', '0.8', 'weekly');
+		$sitemap->addItem('fa/target/developers-and-webmasters', '0.8', 'weekly');
+
 
 
 		// add posts
