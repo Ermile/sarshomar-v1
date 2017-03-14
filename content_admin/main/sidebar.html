@@ -1,18 +1,18 @@
 <aside class="admin-area-states admin-sidebar">
   <ul>
     <label class="menu-opener" for="polls">
-    <li class="header"><input type="checkbox" id="polls">Polls</li>
+    <li class="header"><input type="checkbox" id="polls">{% trans "Polls" %}</li>
     </label>
     <div data-response-effect="slide" data-response-hide data-response="polls">
       <a href="{{url.base}}/admin/knowledge">
-      <li>{% trans "Total" %}<span class="label label-count">۲۳۴۵</span></li>
+        <li>{% trans "Total" %}<span class="label label-count">۲۳۴۵</span></li>
       </a>
-    <a href="{{url.base}}/admin/knowledge/status=unapproved">
-      <li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۵۴۶</span></li>
-    </a>
-    <a href="{{url.base}}/admin/knowledge/status=spam">
-      <li>{% trans "Spam" %}<span class="label label-count label-rejected">۱۲۴</span></li>
-    </a>
+      <a href="{{url.base}}/admin/knowledge/status=unapproved">
+        <li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۵۴۶</span></li>
+      </a>
+      <a href="{{url.base}}/admin/knowledge/status=spam">
+        <li>{% trans "Spam" %}<span class="label label-count label-rejected">۱۲۴</span></li>
+      </a>
     </div>
 
   </ul>

@@ -19,19 +19,20 @@
 
 
 /************************************************************** poll management */
-.content-management{margin:2em 0;width:100%}
+.content-management{width:100%}
 .content-management .top-content{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
 .content-management .bottom-content{padding:1em;background:#FAFAFA;border-top:1px solid #EEE}
 .content-management .poll-card{border-left:4px solid #E0E0E0;margin-bottom:2em}
 .rtl .content-management .poll-card{border-right:4px solid #E0E0E0;border-left:none;-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,0.05);-moz-box-shadow:0 2px 2px 0 rgba(0,0,0,0.05);box-shadow:0 2px 2px 0 rgba(0,0,0,0.05);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
 .content-management .poll-card .top-content{padding:1em;background:#fff}
+.content-management .poll-question-options {padding: 1em;}
 .content-management .poll-question-options ul{margin-bottom:1em}
 .content-management .poll-question-options ul li{float:left;list-style-type:decimal;margin-left:1em}
 .rtl .content-management .poll-question-options ul li{float:right}
 .content-management .poll-question-options ul li:hover{color:#9E9E9E}
 .content-management .poll-management-options{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100%}
 .content-management .btn{cursor:pointer}
-.content-management .btn-group .btn{width:45px;height:33px;border:none;float:right;text-align:center;line-height:25px}
+.content-management .btn-group .btn{min-width:45px;height:33px;border:none;float:right;text-align:center;line-height:25px;    padding: 1px 8px;}
 .content-management .btn-group .btn:first-child{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;-webkit-box-shadow:2px 0 0 rgba(0,0,0,0.12);-moz-box-shadow:2px 0 0 rgba(0,0,0,0.12);box-shadow:2px 0 0 rgba(0,0,0,0.12)}
 .content-management .btn-group .btn:last-child{-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;-webkit-box-shadow:-2px 0 0 rgba(0,0,0,0.12);-moz-box-shadow:-2px 0 0 rgba(0,0,0,0.12);box-shadow:-2px 0 0 rgba(0,0,0,0.12)}
 .content-management .btn-success{background:#37aaa7;color:#fff}
@@ -47,7 +48,7 @@
 .content-management .confirm-poll-value{margin-right:1em}
 .rtl .content-management .confirm-poll-value{margin-left:1em;margin-right:0}
 .poll-question a{color:#607D8B}
-.content-management .poll-question .poll-title{font-size:1.2em}
+.content-management .poll-question .poll-title{font-size:1.2em; padding: 1em;margin: 0;}
 .content-management .poll-question .poll-title a{margin-left:8px}
 .content-management .poll-question .poll-title .label{font-size:12px}
 .content-management .poll-question .poll-title.accepted a{color:#009688}
@@ -85,24 +86,7 @@
 .paginate{text-align:center}
 
 
-/************************************************************** statistics */
-.statistics{margin:2em 0 3em}
-.statistics-box{position:relative;background:#FAFAFA;min-height:125px!important;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.13);-moz-box-shadow:0 1px 2px rgba(0,0,0,0.13);box-shadow:0 1px 2px rgba(0,0,0,0.13);-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box.return{-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}
-.statistics-box:hover::before{opacity:1;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box:before{background:#00bcd4;background:-moz-linear-gradient(45deg,#00bcd4 0%,#7872d3 100%);background:-webkit-linear-gradient(45deg,#00bcd4 0%,#7872d3 100%);background:-o-linear-gradient(45deg,#00bcd4 0%,#7872d3 100%);background:linear-gradient(45deg,#00bcd4 0%,#7872d3 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00bcd4',endColorstr='#7872d3',GradientType=1);content:'';width:100%;height:100%;position:absolute;z-index:1;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;opacity:0;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box>div{padding:1em 0 1em 1em;z-index:2}
-.rtl .statistics-box>div{padding:1em}
-.statistics-box .amount{margin:0;font-size:1.2em;color:#9E9E9E;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box .icon{-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box .show-icon-rejected{color:#FF7043}
-.statistics-box .show-icon-total{color:#37aaa7}
-.statistics-box .show-icon-unapproved{color:#FFC107}
-.statistics-box .show-icon-spam{color:#BF360C}
-.statistics-box .show-icon-trash{color:#9E9E9E}
-.statistics-box .show-icon-return{color:#03A9F4}
-.statistics-box:hover .title,.statistics-box:hover .amount,.statistics-box:hover .icon{color:#fff;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
-.statistics-box .title{color:#607D8B;font-weight:700;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
+
 
 
 /*****************************************Sidebar*/
@@ -115,7 +99,7 @@
 .admin-area-states .label-rejected{background:#F44336}
 /************************** New styles **/
 .admin-section {margin: 3em 0;}
-.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 2em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
+.overall-stats .stat {transition: all 0.3s;background: #ffffff;padding: 2em;margin-bottom: 2em;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09); text-align: center}
 .overall-stats .stat .ico {color: #009688; text-align: center;}
 .overall-stats .stat:hover {background: #efefef;}
 .overall-stats .stat .icon {color: #37aaa7}
@@ -131,10 +115,13 @@
 .admin-section .card.simple .more {border: 0px solid #eee;}
 .admin-section .card .title-box {background: #EEEEEE;padding: 0 1em;}
 .admin-section .card .title-box span {text-align: right}
+.rtl .admin-section .card .title-box span {text-align: left}
 .admin-section .card .card-title {color: #757575;margin: 0;cursor: default;padding: 5px 0;}
+.admin-section .card .card-title a {color: #757575; font-weight: 400}
 .admin-section .card .more {border: 1px solid #eee;padding: 1px 8px;border-radius: 4px;color: #9e9e9e;background: #FAFAFA;}
 .admin-section .card .more:hover {background: #F5F5F5}
 .q-status {width: 16px;height: 16px;background: #ffffff;display: inline-block;vertical-align: middle;border-radius: 24px;margin-right: 10px;border: 3px solid #4CAF50;margin-right: 18px;margin-left: 11px;}
+.rtl .q-status {margin-left: 18px;margin-right: 11px;}
 .q-status.red {border-color: #F44336}
 .q-status.yellow {border-color: #FFC107}
 
