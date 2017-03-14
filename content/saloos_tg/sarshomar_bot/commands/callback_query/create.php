@@ -77,9 +77,9 @@ class create
 		{
 			$poll_request['title'] = T_("Do you like it!");
 		}
-		else
+		elseif($_data_url[2] == 'descriptive')
 		{
-			$poll_request['title'] = T_("Please type your answer");
+			$poll_request['answers'][0]['title'] = T_("Please type your answer");
 		}
 		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
 		$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
