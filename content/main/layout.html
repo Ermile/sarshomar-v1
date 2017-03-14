@@ -1,5 +1,19 @@
 {%extends display.mvc%}
 
+{%block favicon%}
+ <meta name     ="msapplication-TileColor" content="#b91d47">
+ <meta name     ="msapplication-TileImage" content="{{url.static}}images/favicons/mstile-144x144.png">
+ <meta name     ="msapplication-config"    content="{{url.static}}images/favicons/browserconfig.xml">
+ <meta name     ="theme-color"             content="#ffffff">
+ <link rel="apple-touch-icon" href="{{url.static}}images/favicons/apple-touch-icon.png" sizes="180x180">
+ <link rel="icon"             href="{{url.static}}images/favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+ <link rel="icon"             href="{{url.static}}images/favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+ <link rel="manifest"         href="{{url.static}}images/favicons/manifest.json">
+ <link rel="mask-icon"        href="{{url.static}}images/favicons/safari-pinned-tab.svg" color="#00667a">
+ <link rel="shortcut icon"    href="{{url.static}}images/favicons/favicon.ico">
+{%endblock%}
+
+
 {%block head_css%}
  <link rel="stylesheet"       href="{{url.static}}css/style.css">
  <link rel="stylesheet"       href="{{url.static}}css/style-admin.css">
