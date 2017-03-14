@@ -682,7 +682,7 @@ footer .is-open i {-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg
 footer .socialbox{font-size:.9em}
 footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
 
-footer #xaccess{position:fixed;left:0;bottom:10%;z-index:3;}
+footer #xaccess{position:fixed;left:0;bottom:17%;z-index:3;}
 footer #xaccess a{display:block;background-color:#000;opacity:0.3;padding:0.5em 1em;transition:0.3s;margin-top:0.2em;margin-right:2em;color:#fff;}
 footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .rtl footer #xaccess{right:0;left:initial;}

@@ -1,0 +1,23 @@
+{%extends display.main%}
+
+{%block content%}
+<div class="main pad box">
+	<div class="in small">
+		<h2>{%trans "Create sitemap automatically by click on this page"%}</h2>
+		<a target="_blank" href="{{url.root}}/sitemap.xml">{%trans "Base Sitemap"%}</a>
+		<br/>
+		<a target="_blank" href="{{url.root}}/sitemap/sitemap.xml">{%trans "Sitemap Detail"%}</a>
+
+		<br/>
+
+		<a class="special-btn float-right" href="{{site.root}}/admin/sitemap?run=yes">{%trans "Create it Again"%}</a>
+	</div>
+
+	{%if sitemapData%}
+	<div class="in">
+		<h3>{%trans "Create Sitemap Result"%}</h3>
+		{{sitemapData | raw}}
+	</div>
+	{%endif%}
+</div>
+{%endblock%}
