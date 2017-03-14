@@ -118,7 +118,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', 'post') as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
@@ -131,7 +131,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', 'poll') as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
@@ -144,7 +144,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', 'page') as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
@@ -157,7 +157,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', 'helps') as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
@@ -170,7 +170,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', 'attachment') as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
@@ -183,7 +183,7 @@ class model extends \mvc\model
 		foreach ($this->model()->sitemap('posts', false) as $row)
 		{
 			$myUrl = $row['post_url'];
-			if($row['post_language'])
+			if($row['post_language'] && $row['post_language'] !== 'en')
 			{
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
