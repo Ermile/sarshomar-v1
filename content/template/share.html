@@ -1,27 +1,33 @@
 <nav class="socialbox sharebox">
  <a class="twitter" href="https://twitter.com/intent/tweet?url={{url.full}}&text={{page.title}}">
-  <i class="icon-twitter"></i>
+ 	<span>{%trans "Twitter"%}</span>
+  <span class="icon-twitter"></span>
  </a>
 
  {%if false%}
  <a class="rss" href="{{url.base}}/rss" target="_blank">
-  <i class="icon-rss"></i>
+ 	<span>{%trans "RSS"%}</span>
+  <span class="icon-rss"></span>
  </a>
  {%endif%}
 
  <a class="telegram" href="tg://msg_url?url={{url.full}}">
-  <i class="icon-send"></i>
+ 	<span>{%trans "Telegram"%}</span>
+  <span class="icon-send"></span>
  </a>
  <a class="gplus" href="https://plus.google.com/share?url={{url.full}}">
-  <i class="icon-google-plus"></i>
+ 	<span>{%trans "Google Plus"%}</span>
+  <span class="icon-google-plus"></span>
  </a>
  <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url.full}}">
-  <i class="icon-facebook"></i>
+ 	<span>{%trans "Facebook"%}</span>
+  <span class="icon-facebook"></span>
  </a>
 
  {%if social.linkedin%}
  <a class="linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url={{url.full}}&title={{page.title}}">
-  <i class="icon-linkedin2"></i>
+  <span>{%trans "LinkedIn"%}</span>
+  <span class="icon-linkedin2"></span>
  </a>
  {%endif%}
 </nav>

@@ -1144,9 +1144,11 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 /* sharebox */
 /* socialbox */
-.sharebox>a{display:inline-block;background-color:#aaa;width:2.2em;height:2.2em;line-height:2.5;text-align:center;color:#fff !important;-webkit-transition:.3s ease;-o-transition:.3s ease;-moz-transition:.3s ease;transition:.3s ease;border-radius:2px}
+.sharebox>a{display:inline-block;background-color:#aaa;width:2.2em;height:2.2em;line-height:2.2em;text-align:center;color:#fff !important;-webkit-transition:.3s ease;-o-transition:.3s ease;-moz-transition:.3s ease;transition:.3s ease;border-radius:2px}
 .sharebox>a:not(:last-child){margin-right:.3em}
 .rtl .sharebox>a:not(:last-child){margin-right:0;margin-left:.3em}
+.sharebox>a span:first-child{display:none}
+.sharebox>a span:last-child{line-height:inherit}
 .sharebox>a.twitter:hover,.sharebox>a.twitter:focus{background-color:#1da1f2}
 .sharebox>a.rss:hover,.sharebox>a.rss:focus{background-color:#f26522}
 .sharebox>a.telegram:hover,.sharebox>a.telegram:focus{background-color:#0088cc}

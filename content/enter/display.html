@@ -2,98 +2,158 @@
 
 
 {%block head_css%}
- <link rel="stylesheet"       href="{{url.static}}css/account.css"/>
+ <link rel="stylesheet" type="text/css" href="{{url.static}}css/account.css">
 {%endblock%}
-
 
 
 {%block body%}
 <div class='f login'>
  <div class='c flex f-column justify-center'>
-  <form>
-   <div class='fancy'>
-    <span>{%trans "Sign Up"%}</span>
+  <div class='fancy'>
+   <span>{%trans "Sign Up"%}</span>
+  </div>
+
+  <div class="field mobile">
+   <label>
+    <span>{%trans "Enter Your Mobile Number"%}</span>
+    <input type='tel' name='mobile' id='mobile' placeholder='{%trans "Mobile Number"%}' autocomplete='off' maxlength='15' class='ltr'>
+   </label>
+  </div>
+
+  <div class="notif patient hidden">
+   <span>{%trans "Please be patient, we are generating keys"%}</span>
+   <div class="notif-loader">
+    <span></span>
+    <span></span>
+    <span></span>
    </div>
+  </div>
 
-   <label class='field' for='mobile'>
-    <span>{%trans "Mobile"%}</span>
-    <input type='tel' name='mobile' id='mobile' placeholder='{%trans "Mobile"%}' autocomplete='off'>
-   </label>
-
-   <!-- <label class='field' for='mobile'>
-    <span>{%trans "Mobile Or Username"%}</span>
-    <input type='text' name='' id='mobile' placeholder='{%trans "Mobile Or Username"%}' autocomplete='off'>
-   </label> -->
-
-   <label class='field code' for='code' data-hide-init>
-    <span>{%trans "Code"%}</span>
-    <input type='text' name='' id='code' placeholder='{%trans "Code"%}' autocomplete='off'>
-   </label>
-
-   <label class='field password' for='password'>
+  <div class="field password hidden">
+   <label>
     <span>{%trans "Password"%}</span>
-    <input type='password' name='' id='password' placeholder='{%trans "Password"%}' autocomplete='off'>
+    <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
    </label>
+  </div>
 
-   <!-- <div>
-    <button>{%trans "Login"%}</button>
-   </div> -->
+  <div class="field code hidden">
+   <label>
+    <span>{%trans "Enter Verification Code"%}</span>
+    <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
+   </label>
+  </div>
 
-   <button data-role='signup'>{%trans "Sign Up"%}</button>
+  <div class="notif hidden">
+   <span>{%trans "Problems receiving your code?"%}</span>
+   <a href="#">{%trans "Login using other ways"%}</a>
+  </div>
 
-   <!-- <div class='forget'>
-    <a href='#'>{%trans "Can't access your account?"%}</a>
-   </div> -->
+  <div class="notif correct hidden">
+   <span>{%trans "Is this mobile number correct?"%}</span>
+   <a href="#">{%trans "Change number"%}</a>
+  </div>
 
-   <!-- <div class='signup'>
-    <span>{%trans "Don't have an account?"%}</span>
-    <a href='#'>{%trans "Sign Up"%}</a>
-   </div> -->
+  <div class="other-ways hidden">
+   <span>{%trans "Other ways"%}</span>
+  </div>
 
-  </form>
+  <button id="go">{%trans "Login"%}</button>
  </div>
+
  <div class='c flex f-column justify-center align-center'>
   <img class='logo' src='{{url.static}}/images/logo/sarshomar-brand.svg' alt=''>
-  <!-- <div class='social'>Social</div> -->
  </div>
 </div>
 {%endblock%}
 
 
 {%block foot_js%}
-<!-- <script type="text/javascript">
-$(document).on('click', '.send-code', function(e) {
- $('.mobile').css('opacity', '0.5').queue(function() {
-  $('.code').fadeIn(300);
-  $(this).dequeue();
- });
-});
-</script> -->
 <script type="text/javascript">
+var enter1 = function()
+{}
 
-$(document).on('click', '[data-role=signup]', function(e) {
- $('#mobile').addClass('disabled');
- setTimeout(function() {
-  $('[data-role=signup]').attr('data-role', 'verify').text('{%trans "Verify your account"%}')
-  $('.code').fadeIn(300);
- }, 1000);
-});
+var enter2 = function()
+{}
 
-$(document).on('click', '[data-role=verify]', function(e) {
- $('#code').addClass('disabled');
- setTimeout(function() {
-  $('.code').fadeOut(300, function() {
-   $('.password').fadeIn(300);
-   $('[data-role=verify]').attr('data-role', 'setpass').text('{%trans "Login"%}')
+var enter3 = function()
+{}
+
+
+
+
+
+
+
+
+function show_error(status)
+{
+ if (status === undefined)
+ {
+  status = 'wrong_code';
+ }
+ switch(status)
+ {
+  case 'wrong_code':
+   $('.notif.correct').hide().removeClass('hidden').fadeIn(300);
+   break;
+  case 'short_block':
+   break;
+  case 'long_block':
+   break;
+  default:
+   break;
+ }
+}
+
+function step_code()
+{
+ $('.notif.patient').fadeOut(300, function(e) {
+  $(this).addClass('hidden');
+  $('.field.code').hide().removeClass('hidden').fadeIn(300, function(e) {
+   setTimeout(function() {
+    $('.other-ways').hide().removeClass('hidden').fadeIn(300);
+   }, 3000);
   });
- }, 1000);
+ });
+}
+
+function step_wait(time)
+{
+ // initial validation
+ if (time === undefined)
+ {
+  time = 1000;
+ } else {
+  time *= 1000;
+ }
+
+ // disable mobile field
+ $('#mobile').attr('disabled', '');
+
+ // hide button and show patient notif
+ $('button').fadeOut(300, function(e) {
+  $('.notif.patient').hide().removeClass('hidden').fadeIn(300, function() {
+   setTimeout(function() {
+    step_code();
+   }, time);
+  });
+ });
+}
+
+$(document).on('click', 'button', function(e) {
+ step_wait(1);
 });
 
-$(document).on('click', '[data-role=setpass]', function(e) {
- console.log('AND NOW LOGIN!')
+$(document).on('input', '#code', function(e) {
+ var len = $(this).val().length;
+ if (len === 4)
+ {
+  $('#code').attr('disabled', '');
+  setTimeout(function() {
+   show_error('wrong_code');
+  }, 1000);
+ }
 });
 
 </script>
 {%endblock%}
-
-
