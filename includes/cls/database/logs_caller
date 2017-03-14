@@ -1,35 +1,44 @@
 --- LOGS CALLER ----
-user:register:create
+user:register
 
 # password
 user:password:set:crazy
 user:password:set:normal
 user:password:set:common
 user:password:set:very_common
+user:password:set:empty
+
 
 user:password:set:username=password
 
-user:password:try
 user:password:try:faild
 user:password:try:successfuly
-user:password:use_exist_password
+password:use_exist_password
 
-user:verification:sms
+user:verification:send:sms
+user:verification:deliver:sms
+
 user:verification:call
-user:register:set:mobile
-user:register:set:mobile:wrong
-user:register:send:wrong:verification
 
-user:register:guest
+user:verification:wrong:1
+user:verification:wrong:2
+user:verification:wrong:3
+user:verification:wrong:4
+user:verification:wrong:5
+
+user:register:set:wrong:mobile
+
 user:register:guest:site
 user:register:guest:telegram
 user:register:guest:android
 user:register:guest:api
-...
 
+db:[change|add]:[table]:[field] -- old value and new value in meta
 
-user:login:set:mobile
-user:login:set:mobile:wrong
+db:change:user:user_verify
+db:change:user:status
+
+user:login:mobile:wrong
 user:login:successfuly
 user:login:faild
 
@@ -41,13 +50,13 @@ user:recovery:verification:call
 user:recovery:send:wrong:verification
 
 user:login:remeber:set
-user:login:remeber:unset
 
 user:set:ui_language
-user:chane:ui_lanuage
+user:change:ui_lanuage
 
 user:logout
 
+user:delete:account
 user:delete:account:tester
 
 user:request:ask
@@ -55,82 +64,68 @@ user:request:random
 user:request:next
 user:request:prev
 
-user:request:add_poll
-
-user:change:site:language -- visitor!!
 
 user:poll:add
-user:add:survey
-user:set:empty:poll
-user:max:draft:poll
+user:poll:add:empty
+user:poll:max:draft
+
+user:survey:add
+
+user:poll:set:filter
+user:poll:unset:filter
+
+user:poll:set:member
+user:poll:unset:member
+
+user:poll:add:difrent:language
 
 
-user:poll:add:set:filter
-user:poll:add:unset:filter
-user:poll:add:set:member
-user:poll:add:unset:member
+user:answer:add
+user:answer:update
+user:answer:duplicate
+user:answer:delete
+user:answer:skip
 
-user:poll:add:set:difrent:language
 
-user:answer:poll
-user:update:poll
-user:send:duplicate:answer
-user:skip:poll
-
-user:poll:get
-user:poll:get:chart:gender
-user:poll:get:chart:range
-user:poll:get:chart:marrital
+user:chart:gender
+user:chart:range
+user:chart:marrital
 ...
 
-user:poll:fav:set
-user:poll:like:set
-user:poll:fav:unset
-user:poll:like:unset
-
-user:poll:fav:set:in_search_page
-user:poll:like:set:in_search_page
-user:poll:fav:unset:in_search_page
-user:poll:like:unset:in_search_page
-
-user:poll:fav:set:in_poll_page
-user:poll:like:set:in_poll_page
-user:poll:fav:unset:in_poll_page
-user:poll:like:unset:in_poll_page
+user:fav:set
+user:like:set
+user:fav:unset
+user:like:unset
 
 
-user:poll:share
-user:poll:share:telegram
-user:poll:share:twiter
-...
+user:send:contact
+user:send:contact:empty:mobile
+user:send:contact:empty:message
+user:send:contact:wrong:captha
 
-user:send:feedback
 
 user:report:poll
+user:report:poll:violence
 user:report:user
 
 
 system:invalid:argsuments
+
 system:invalid:poll:id
+
 system:invalid:array
+
 system:is:not:array
 system:is:not:number
 system:is:not:string
 
 
 
-
-user:poll:add:true:poll_added
-user:poll:add:true:answer_saved
-
-
-
-
-
+user:poll:add:error:Invalid_answer_title_argument_you_must_set_less_than_99_character_for_the_title_in_index_key_of_answer
 
 user:poll:add:error:Answers_must_be_array
+
 user:poll:add:error:You_can_not_add_more_than_100_answers
-user:poll:add:error:Invalid_answer_title_argument_you_must_set_less_than_99_character_for_the_title_in_index_key_of_answer
 user:poll:add:error:Invalid_type_type
 user:poll:add:error:Invalid_answer_type_parameter_in_index_key_of_answer
 user:poll:add:error:Invalid_parameter_is_true_in_index_key_of_answer

@@ -22,8 +22,6 @@ class view extends \content_u\home\view
 
 		// load empty answers for first loading
 		$this->data->answers = [[],[]];
-		// $this->data->member_exist = \saloos::lib_static('db')->users()::get_count('valid');
-
 
 		// set person selector range values
 		$this->set_range_default_persons();
@@ -200,7 +198,7 @@ class view extends \content_u\home\view
 		// define variable to set for persons variable
 		$persons = [];
 		// set maximum user allowed
-		$persons['max'] = \saloos::lib_static('db')->users()::get_count('all');
+		$persons['max'] = \saloos::lib_static('db')->users()::get_count('available');
 		if(!$persons['max'])
 		{
 			$persons['max'] = 0;

@@ -13,15 +13,23 @@ class users extends \lib\db\users
 	 */
 	public static function get_count($_type = null)
 	{
-		if($_type === 'all')
+		switch ($_type)
 		{
-			$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port  != 'site_guest' ";
-			return \lib\db::get($query, 'count', true);
+			case 'all':
+				$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port  != 'site_guest' ";
+				return \lib\db::get($query, 'count', true);
+				break;
+
+			case 'available':
+				$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port NOT LIKE '%guest%' ";
+				return \lib\db::get($query, 'count', true);
+				break;
+
+			default:
+				return parent::get_count($_type);
+				break;
 		}
-		else
-		{
-			return parent::get_count($_type);
-		}
+
 	}
 }
 ?>

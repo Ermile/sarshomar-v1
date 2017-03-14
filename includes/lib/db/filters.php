@@ -468,7 +468,7 @@ class filters
 		}
 		else
 		{
-			$count = \saloos::lib_static('db')->users()::get_count('all');
+			$count = \saloos::lib_static('db')->users()::get_count('available');
 			return $count;
 		}
 	}
