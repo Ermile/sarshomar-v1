@@ -109,7 +109,7 @@
 .admin-area-states li.header{background:#E0E0E0;padding:10px 8px;font-weight:700;color:#616161}
 .admin-area-states li{padding:10px 12px;color:#616161;-webkit-transition:all .2s;-o-transition:all .2s;-moz-transition:all .2s;transition:all .2s}
 .admin-area-states li:hover{background:#e5e5e5}
-.admin-area-states .label-count{color:#fff;background:#BDBDBD;padding:0 4px;float:right;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s;border-radius: 2px;}
+.admin-area-states .label-count{color:#fff;background:#607D8B;padding:0 4px;float:right;-webkit-transition:all .3s;-o-transition:all .3s;-moz-transition:all .3s;transition:all .3s;border-radius: 2px;}
 .rtl .admin-area-states .label-count{float:left}
 .admin-area-states .label-unapproved{background:#FF9800}
 .admin-area-states .label-rejected{background:#F44336}

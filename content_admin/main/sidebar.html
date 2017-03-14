@@ -4,12 +4,14 @@
     <li class="header"><input type="checkbox" id="polls">Polls</li>
     </label>
     <div data-response-effect="slide" data-response-hide data-response="polls">
+      <a href="{{url.base}}/admin/knowledge">
       <li>{% trans "Total" %}<span class="label label-count">۲۳۴۵</span></li>
-    <a href="{{url.base}}/admin/$/status=unapproved">
+      </a>
+    <a href="{{url.base}}/admin/knowledge/status=unapproved">
       <li>{% trans "Unapproved" %}<span class="label label-count label-unapproved">۵۴۶</span></li>
     </a>
-    <a href="{{url.base}}/admin/$/status=filtered">
-      <li>{% trans "Filtered" %}<span class="label label-count">۱۲۴</span></li>
+    <a href="{{url.base}}/admin/knowledge/status=spam">
+      <li>{% trans "Spam" %}<span class="label label-count label-rejected">۱۲۴</span></li>
     </a>
     </div>
 
