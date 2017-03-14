@@ -21,7 +21,14 @@ class inline_query
 		$result['cache_time'] = 1;
 		$result['switch_pm_text'] = T_("Create new poll");
 		$result['switch_pm_parameter'] = "new";
+		session::remove_back('expire', 'inline_cache');
 		$search = \lib\utility\safe::safe($inline_query['query']);
+		if(substr($search, 0, 1) == '/')
+		{
+			self::about($result);
+			handle::send_log($result);
+			return $result;
+		}
 		$check_language = false;
 		if(preg_match("/^\s*\\$(.*)$/", $search, $link_id))
 		{
@@ -108,9 +115,138 @@ class inline_query
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);
-		session::remove_back('expire', 'inline_cache');
 
 		return $result;
+	}
+
+	public static function about(&$result)
+	{
+		$result['results'][0] = [];
+		$result['results'][0]['type'] = 'article';
+		$result['results'][0]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+		$result['results'][0]['description'] = '';
+		$result['results'][0]['title'] = "About / درباره";
+		$result['results'][0]['url'] = "https://sarshomar.com";
+		$result['results'][0]['id'] = "about_int";
+		$text = "<strong>Sarshomar</strong>";
+		$text .= "\n";
+		$text .= "Ask Anyone Anywhere";
+		$text .= "\n";
+		$text .= "Focus on your question. Do not be too concerned about how to ask or analyze. Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.";
+		$text .= "\n";
+		$text .= "<a href='https://t.me/sarshomarbot?start=lang_en-ref_about'>Login to bot</a>";
+		$text .= "\n";
+		$text .= "<a href='https://sarshomar.com'>Sarshomar Website</a>";
+		$text .= "\n";
+		$text .= "\n";
+
+		$text .= "<strong>سرشمار</strong>";
+		$text .= "\n";
+		$text .= "از هرکسی در هرجایی بپرسید";
+		$text .= "\n";
+		$text .= "روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است.";
+		$text .= "\n";
+		$text .= "<a href='https://t.me/sarshomarbot?start=lang_fa-ref_about'>ورود به بات</a>";
+		$text .= "\n";
+		$text .= "<a href='https://sarshomar.com/fa'>وبسایت سرشمار</a>";
+		$text .= "\n";
+		$text .= "@SarshomarBot";
+		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> "Login to bot",
+				"url"	=> "https://t.me/sarshomarbot?start=lang_en-ref_about"
+			],
+			[
+				"text" 	=> "Sarshomar Website",
+				"url"	=> "https://sarshomar.com"
+			]],
+			[[
+				"text" 	=> "ورود به بات",
+				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
+			],
+			[
+				"text" 	=> "وبسایت سرشمار",
+				"url"	=> "https://sarshomar.com/fa"
+			]
+		]];
+
+		$result['results'][0]['input_message_content'] = [
+				'message_text' 				=> $text,
+				'parse_mode' 				=> "HTML",
+				'disable_web_page_preview' 	=> true
+			];
+
+		// FA
+		$result['results'][1] = [];
+		$result['results'][1]['type'] = 'article';
+		$result['results'][1]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+		$result['results'][1]['description'] = '';
+		$result['results'][1]['title'] = "درباره";
+		$result['results'][1]['url'] = "https://sarshomar.com/fa";
+		$result['results'][1]['id'] = "about_fa";
+		$text = "<strong>سرشمار</strong>";
+		$text .= "\n";
+		$text .= "از هرکسی در هرجایی بپرسید";
+		$text .= "\n";
+		$text .= "روی سوال خود تمرکز کنید؛ دغدغه چطور پرسیدن و تحلیل کردن نداشته باشید. سرشمار با زیرساختی یکپارچه، امکان پرسیدن با هر ابزاری را برای شما فراهم کرده است.";
+		$text .= "\n";
+		$text .= "<a href='https://t.me/sarshomarbot?start=lang_fa-ref_about'>ورود به بات</a>";
+		$text .= "\n";
+		$text .= "<a href='https://sarshomar.com/fa'>وبسایت سرشمار</a>";
+		$text .= "\n";
+		$text .= "@SarshomarBot";
+		$result['results'][1]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> "ورود به بات",
+				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
+			]],
+			[[
+				"text" 	=> "وبسایت سرشمار",
+				"url"	=> "https://sarshomar.com/fa"
+			],
+		]];
+
+		$result['results'][1]['input_message_content'] = [
+				'message_text' 				=> $text,
+				'parse_mode' 				=> "HTML",
+				'disable_web_page_preview' 	=> true
+			];
+
+		// EN
+		$result['results'][2] = [];
+		$result['results'][2]['type'] = 'article';
+		$result['results'][2]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+		$result['results'][2]['description'] = '';
+		$result['results'][2]['title'] = "About";
+		$result['results'][2]['url'] = "https://sarshomar.com";
+		$result['results'][2]['id'] = "about_en";
+		$text = "<strong>Sarshomar</strong>";
+		$text .= "\n";
+		$text .= "Ask Anyone Anywhere";
+		$text .= "\n";
+		$text .= "Focus on your question. Do not be too concerned about how to ask or analyze. Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.";
+		$text .= "\n";
+		$text .= "<a href='https://t.me/sarshomarbot?start=lang_en-ref_about'>Login to bot</a>";
+		$text .= "\n";
+		$text .= "<a href='https://sarshomar.com'>Sarshomar Website</a>";
+		$text .= "\n";
+		$text .= "@SarshomarBot";
+		$result['results'][2]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> "Login to bot",
+				"url"	=> "https://t.me/sarshomarbot?start=lang_en-ref_about"
+			]],
+			[[
+				"text" 	=> "Sarshomar Website",
+				"url"	=> "https://sarshomar.com"
+			],
+		]];
+
+		$result['results'][2]['input_message_content'] = [
+				'message_text' 				=> $text,
+				'parse_mode' 				=> "HTML",
+				'disable_web_page_preview' 	=> true
+			];
 	}
 }
 ?>

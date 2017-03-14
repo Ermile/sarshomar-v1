@@ -9,6 +9,10 @@ class chosen_inline_result
 	public static function start($_query = null)
 	{
 		\lib\storage::set_disable_edit(true);
+		if(!isset($_query['inline_message_id']))
+		{
+			return ;
+		}
 		$inline_message_id = $_query['inline_message_id'];
 		$result = explode(':', $_query['result_id']);
 		if(count($result) < 2)
