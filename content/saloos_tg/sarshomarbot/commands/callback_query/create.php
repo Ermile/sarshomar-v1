@@ -75,7 +75,7 @@ class create
 		$poll_request = ['id' => session::get('poll'), 'answers' => [["type" => $_data_url[2]]]];
 		if($_data_url[2] == 'like')
 		{
-			$poll_request['title'] = T_("Do you like it!");
+			$poll_request['answers'][0]['title'] = T_("Do you like it!");
 		}
 		elseif($_data_url[2] == 'descriptive')
 		{
