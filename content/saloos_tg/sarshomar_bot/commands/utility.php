@@ -353,18 +353,18 @@ END;
 			$username = $user['result']['username'];
 		}
 		$photo = bot::sendResponse(["method" => "getUserProfilePhotos", "user_id" => $_user_id, 'limit' => 1]);
-		if(isset($photo['result']['photos'][0]))
+		if(isset($photo['result']['photos'][0]['file_id']))
 		{
-		$photo = end($photo['result']['photos'][0]);
-		return [
-			'method'				=> 'sendPhoto',
-			'reply_to_message_id' 	=> bot::response('message_id'),
-			'chat_id'				=> bot::response('from'),
-			"photo"					=> $photo['file_id'],
-			"caption"				=> "Id: " . htmlentities($_user_id) ."\n".
-										"Name : " . htmlentities($first_name . ' ' . $last_name) . "\n".
-										"Username : @" . htmlentities($username) . "\n" .
-										"#profile",
+			$photo = end($photo['result']['photos'][0]);
+			return [
+				'method'				=> 'sendPhoto',
+				'reply_to_message_id' 	=> bot::response('message_id'),
+				'chat_id'				=> bot::response('from'),
+				"photo"					=> $photo['file_id'],
+				"caption"				=> "Id: " . htmlentities($_user_id) ."\n".
+											"Name : " . htmlentities($first_name . ' ' . $last_name) . "\n".
+											"Username : @" . htmlentities($username) . "\n" .
+											"#profile",
 			];
 		}
 		else
