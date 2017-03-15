@@ -1,5 +1,37 @@
-{%extends display.main%}
+{%extends display.main%} {%block content%}
 
-{%block content%}
-<h1>log</h1>
+<div class="main pad">
+    <div class="box">
+        <div class="default-tbl">
+
+
+            <div class="tbl admin-log">
+                <div class="tbl-header">
+                    <span>{% trans "Priority" %}</span>
+                    <span>{% trans "Category" %}</span>
+                    <span>{% trans "User" %}</span>
+                    <span>{% trans "Title" %}</span>
+                    <span>{% trans "Log" %}</span>
+                    <span>{% trans "Meta" %}</span>
+                    <span>{% trans "Date" %}</span>
+                </div>
+                <div>
+                    <span>
+                        <label class="red">Important</label>
+                    </span>
+                    <span>{% trans "User" %}</span>
+                    <span>09123456789</span>
+                    <span>{% trans "Title" %}</span>
+                    <span>{% trans "Log" %}</span>
+                    <span>
+                        <a href="#!">{% trans "Show Meta" %}</a>
+                    </label>
+                    </span>
+                    <span>4/04/1404</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {%endblock%}
