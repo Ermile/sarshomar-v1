@@ -10,11 +10,14 @@
 {%block body%}
 <div class='f enter'>
  <div class='c3 x2 m4 s12 sidebox'>
-  <h1>{%trans "Enter"%}</h1>
+  <a class='logo' href=''>
+   <img class='logo' src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{%trans "Logo"%}'>
+  </a>
+  <!-- <h1>{%trans "Enter"%}</h1> -->
 
   <div class='field usermobile'>
    <label for='usermobile'>
-    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" name='usermobile' id='usermobile' placeholder='{%trans "Mobile"%}'>
+    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" name='usermobile' id='usermobile' placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}'>
    </label>
   </div>
 
@@ -35,7 +38,7 @@
   </div>
 
   <div class="notif hide">
-   <span>Notif</span>
+   <span></span>
    <a href="#">Link</a>
   </div>
 

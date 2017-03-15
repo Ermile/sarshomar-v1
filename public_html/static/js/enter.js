@@ -47,6 +47,8 @@ function verify()
 
 $(document).ready(function()
 {
+	setCustomValidityMsg();
+
 	$('#usermobile').on('keyup', function(_e)
 	{
 		if(_e.which === 13)
@@ -57,17 +59,29 @@ $(document).ready(function()
 
 	$('#go').click(function(e)
 	{
-		// check for mobile
-		var myMobile = $('#usermobile').val();
-		if(myMobile.length >= 7 && myMobile.length <=15)
+		// check mobile
+		var myMobile = $('#usermobile');
+		var myMobileVal = myMobile.val();
+		if (myMobileVal)
 		{
-			wait(1);
-			sendToBigBrother(1);
+			if (myMobileVal.length >= 7 && myMobileVal.length <= 15)
+			{
+				wait(1);
+				sendToBigBrother(1);
+			}
+			else
+			{
+				console.log('Too Short!');
+				// show invalid mobile error for lenght
+			}
 		}
 		else
 		{
-			// show invalid mobile error
-			// for lenght
+			$('.notif').find('span').text(myMobile.attr('data-invalid'));
+			$('.notif').hide().removeClass('hide').fadeIn(300);
+
+			console.log(myMobile.attr('data-invalid'));
+			console.log('What the faz?')
 		}
 	});
 
@@ -149,3 +163,25 @@ function sendToBigBrother(_step)
 		// lockForm: false,
 	});
 }
+
+
+function setCustomValidityMsg()
+{
+	$('input[data-validity]').off('invalid');
+	$('input[data-validity]').on('invalid', function()
+	{
+		var ValidityText = $(this).attr('data-validity');
+	    ValidityText = ValidityText.replace(':val', this.value);
+	    // if has validity set custom message
+		if(ValidityText)
+		{
+			this.setCustomValidity(ValidityText);
+		}
+		else
+		{
+			this.setCustomValidity("Dude '" + this.value + "' is not a valid. Enter something nice!!");
+		}
+
+	});
+}
+
