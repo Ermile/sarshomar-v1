@@ -572,41 +572,38 @@
 {%block poll_admin%}
 
 {%if iperm.admin.admin.view%}
-<h1>You are admin</h1>
 
-<form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="hidden" name="status" value="publish">
-  <input type="submit" value='{%trans "publish" %}'>
-</form>
-<br>
-<form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="hidden" name="status" value="draft">
-  <input type="submit" value='{%trans "draft" %}'>
-</form>
-<br>
-<form method="post" action="/admin/knowledge">
+<div class="admin-toolbox">
+<div class="f">
+  <div class="prev">
+    <a href="#!">
+    <i class="icon-angle-left icon-5x"></i>
+    </a>
+  </div>
+  <div class="tools-content c11 f align-center">
+    <div class="toolbox-btn">
+      <form method="post" action="/admin/knowledge">
   <input type="hidden" name="id" value="{{poll.id}}">
   <input type="hidden" name="type" value="homepage">
   <input type="hidden" name="checked" value="true">
-  <input type="submit" value='{%trans "Show in homepage" %}'>
+  <button type="submit"><i class="icon-home icon-2x"></i></button>
 </form>
-<br>
 <form method="post" action="/admin/knowledge">
   <input type="hidden" name="id" value="{{poll.id}}">
   <input type="hidden" name="type" value="homepage">
   <input type="hidden" name="checked" value="false">
-  <input type="submit" value='{%trans "remove show from homepage" %}'>
+  <button type="submit"><i class="icon-times-circle icon-2x"></i></button>
 </form>
-<br>
+    </div>
+    <div class="toolbox-btn">
 <form method="post" action="/admin/knowledge">
   <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="text" name="vip-value" >
-  <input type="submit" value='{%trans "set vip value" %}'>
+  <input type="text" name="vip-value" placeholder="{%trans "VIP Value"%}">
+  <button type="submit"><i class="icon-check icon-2x"></i></button>
 </form>
-<br>
-<form method="post" action="/admin/knowledge">
+    </div>
+    <div class="toolbox-btn">
+      <form method="post" action="/admin/knowledge">
   <input type="hidden" name="id" value="{{poll.id}}">
   <select  name="status">
     <option value="" disabled selected>{%trans "Select"%}</option>
@@ -628,8 +625,32 @@
     <option value="pornography">{%trans "pornography"%}</option>
     <option value="other">{%trans "other"%}</option>
   </select>
-  <input type="submit" name="publish" value='{%trans "set" %}'>
+  <button type="submit"><i class="icon-check icon-2x"></i></button>
 </form>
+    </div>
+    <div class="c2">
+      <div class="toolbox-btn f nowrap">
+        <form class="publish" method="post" action="/admin/knowledge">
+          <input type="hidden" name="id" value="{{poll.id}}">
+          <input type="hidden" name="status" value="publish">
+          <input type="submit" value='{%trans "publish" %}'>
+        </form>
+        <form class="draft" method="post" action="/admin/knowledge">
+          <input type="hidden" name="id" value="{{poll.id}}">
+          <input type="hidden" name="status" value="draft">
+          <input type="submit" value='{%trans "draft" %}'>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="next">
+    <a href="#!">
+    <i class="icon-angle-right icon-5x"></i>
+    </a>
+  </div>
+</div>
+</div>
+
 {%endif%}
 
 {%endblock%}
