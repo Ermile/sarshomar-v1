@@ -135,6 +135,12 @@ class model extends \mvc\model
 			$sarshomar = true;
 		}
 
+		$search = null;
+		if(isset($match->search[0]))
+		{
+			$search = $match->search[0];
+		}
+
 		$filter = [];
 
 		foreach ($match as $key => $value)
@@ -149,8 +155,9 @@ class model extends \mvc\model
 			}
 		}
 		$this->user_id = $this->login('id');
-		$request                = [];
-		$request['in']          = 'all';
+		$request           = [];
+		$request['in']     = 'all';
+		$request['search'] = $search;
 		if($status)
 		{
 			$request['status'] = $status;
@@ -240,7 +247,9 @@ class model extends \mvc\model
 			}
 		}
 		$poll_list['homepage'] = $homepage;
+
 		return $poll_list;
+
 	}
 
 	public function count_poll_status()
