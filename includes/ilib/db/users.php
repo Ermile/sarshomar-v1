@@ -25,6 +25,23 @@ class users extends \lib\db\users
 				return \lib\db::get($query, 'count', true);
 				break;
 
+			case 'port':
+				$query = "SELECT COUNT(users.id) AS `count`, `user_port` AS `port` FROM users GROUP BY user_port ";
+				$result =  \lib\db::get($query, ['port', 'count']);
+				$temp = [];
+				foreach ($result as $key => $value)
+				{
+					if(!$key)
+					{
+						$temp['unknown'] = (int) $value;
+					}
+					else
+					{
+						$temp[$key] = (int) $value;
+					}
+				}
+				return $temp;
+				break;
 			default:
 				return parent::get_count($_type);
 				break;
