@@ -538,37 +538,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {%block poll_admin%}
 
 {%if iperm.admin.admin.view%}
@@ -583,50 +552,50 @@
   <div class="tools-content c11 f align-center">
     <div class="toolbox-btn">
       <form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="hidden" name="type" value="homepage">
-  <input type="hidden" name="checked" value="true">
-  <button type="submit"><i class="icon-home icon-2x"></i></button>
-</form>
-<form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="hidden" name="type" value="homepage">
-  <input type="hidden" name="checked" value="false">
-  <button type="submit"><i class="icon-times-circle icon-2x"></i></button>
-</form>
-    </div>
-    <div class="toolbox-btn">
-<form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <input type="text" name="vip-value" placeholder="{%trans "VIP Value"%}">
-  <button type="submit"><i class="icon-check icon-2x"></i></button>
-</form>
+        <input type="hidden" name="id" value="{{poll.id}}">
+        <input type="hidden" name="type" value="homepage">
+        <input type="hidden" name="checked" value="true">
+        <button type="submit"><i class="icon-home icon-2x"></i></button>
+      </form>
+      <form method="post" action="/admin/knowledge">
+        <input type="hidden" name="id" value="{{poll.id}}">
+        <input type="hidden" name="type" value="homepage">
+        <input type="hidden" name="checked" value="false">
+        <button type="submit"><i class="icon-times-circle icon-2x"></i></button>
+      </form>
     </div>
     <div class="toolbox-btn">
       <form method="post" action="/admin/knowledge">
-  <input type="hidden" name="id" value="{{poll.id}}">
-  <select  name="status">
-    <option value="" disabled selected>{%trans "Select"%}</option>
-    <option value="stop">{%trans "stop"%}</option>
-    <option value="pause">{%trans "pause"%}</option>
-    <option value="trash">{%trans "trash"%}</option>
-    <option value="publish">{%trans "publish"%}</option>
-    <option value="draft">{%trans "draft"%}</option>
-    <option value="enable">{%trans "enable"%}</option>
-    <option value="disable">{%trans "disable"%}</option>
-    <option value="deleted">{%trans "deleted"%}</option>
-    <option value="schedule">{%trans "schedule"%}</option>
-    <option value="expired">{%trans "expired"%}</option>
-    <option value="awaiting">{%trans "awaiting"%}</option>
-    <option value="filtered">{%trans "filtered"%}</option>
-    <option value="blocked">{%trans "blocked"%}</option>
-    <option value="spam">{%trans "spam"%}</option>
-    <option value="violence">{%trans "violence"%}</option>
-    <option value="pornography">{%trans "pornography"%}</option>
-    <option value="other">{%trans "other"%}</option>
-  </select>
-  <button type="submit"><i class="icon-check icon-2x"></i></button>
-</form>
+        <input type="hidden" name="id" value="{{poll.id}}">
+        <input type="text" name="vip-value" placeholder="{%trans "VIP Value"%}">
+        <button type="submit"><i class="icon-check icon-2x"></i></button>
+      </form>
+    </div>
+    <div class="toolbox-btn">
+      <form method="post" action="/admin/knowledge">
+        <input type="hidden" name="id" value="{{poll.id}}">
+        <select  name="status">
+          <option value="" disabled selected>{%trans "Select"%}</option>
+          <option value="stop">{%trans "stop"%}</option>
+          <option value="pause">{%trans "pause"%}</option>
+          <option value="trash">{%trans "trash"%}</option>
+          <option value="publish">{%trans "publish"%}</option>
+          <option value="draft">{%trans "draft"%}</option>
+          <option value="enable">{%trans "enable"%}</option>
+          <option value="disable">{%trans "disable"%}</option>
+          <option value="deleted">{%trans "deleted"%}</option>
+          <option value="schedule">{%trans "schedule"%}</option>
+          <option value="expired">{%trans "expired"%}</option>
+          <option value="awaiting">{%trans "awaiting"%}</option>
+          <option value="filtered">{%trans "filtered"%}</option>
+          <option value="blocked">{%trans "blocked"%}</option>
+          <option value="spam">{%trans "spam"%}</option>
+          <option value="violence">{%trans "violence"%}</option>
+          <option value="pornography">{%trans "pornography"%}</option>
+          <option value="other">{%trans "other"%}</option>
+        </select>
+        <button type="submit"><i class="icon-check icon-2x"></i></button>
+      </form>
     </div>
     <div class="c2">
       <div class="toolbox-btn f nowrap">
