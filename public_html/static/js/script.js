@@ -836,6 +836,8 @@ route('*', function ()
 		callFunction('redrawPollChart');
 	});
 
+	// check validation on input and show custom msg
+	setCustomValidityMsg()
 });
 
 
@@ -3161,6 +3163,27 @@ function hashChanged()
 		detectStep();
 	});
 }
+
+function setCustomValidityMsg()
+{
+	$('input[data-validity]').off('invalid');
+	$('input[data-validity]').on('invalid', function()
+	{
+		var ValidityText = $(this).attr('data-validity');
+	    ValidityText = ValidityText.replace(':val', this.value);
+	    // if has validity set custom message
+		if(ValidityText)
+		{
+			this.setCustomValidity(ValidityText);
+		}
+		else
+		{
+			this.setCustomValidity("Dude '" + this.value + "' is not a valid. Enter something nice!!");
+		}
+
+	});
+}
+
 
 
 function loading_page(_status)
