@@ -837,7 +837,9 @@ route('*', function ()
 	});
 
 	// check validation on input and show custom msg
-	setCustomValidityMsg()
+	setCustomValidityMsg();
+	// search in polls
+	searchInPolls();
 });
 
 
@@ -2983,38 +2985,44 @@ function removeFile(_preview)
  */
 function searchInPolls()
 {
-	var path = location.pathname;
-	_search  = $('.search-box input').val();
-	path     = path.substr(0, path.indexOf('/$')+2);
-	if(_search)
-	{
-		path = path+ '/search='+ _search;
-	}
-
-	Navigate({ url: path, ajax:{method:'get', data:{'onlySearch' : true}}});
-	// Navigate({ url: path});
-}
-
-
-route(/\$/, function()
-{
-
-}).once(function()
-{
 	// --------------------------------------------------------------------------------- Search
-	$(this).off('input', '.search-box input');
-	$(this).on('input', '.search-box input', function(event)
+	$(document).off('input', '.search-box input');
+	$(document).on('input', '.search-box input', function(event)
 	{
 		var search_timeout = $(this).attr('data-search-timeout');
 		if(search_timeout)
 		{
 			clearTimeout(search_timeout);
 		}
-		var timeout = setTimeout(function(){ searchInPolls(); }, 500);
+		var timeout = setTimeout(function()
+		{
+			var path = location.pathname;
+			var newPath = '';
+			if(path.indexOf('/$') >= 0)
+			{
+				newPath = path.substr(0, path.indexOf('/$')+2);
+			}
+			else if(path.indexOf('/@/$') >= 0)
+			{
+				newPath = path.substr(0, path.indexOf('/@/$')+4);
+			}
+			else if(path.indexOf('/admin/knowledge') >= 0)
+			{
+				newPath = path.substr(0, path.indexOf('/admin/knowledge')+16);
+			}
+			// add search text
+			_search  = $('.search-box input').val();
+			if(_search)
+			{
+				newPath = newPath+ '/search='+ _search;
+			}
+
+			Navigate({ url: newPath, ajax:{method:'get', data:{'onlySearch' : true}}});
+			// Navigate({ url: path});
+		}, 500);
 		$(this).attr('data-search-timeout', timeout);
 	});
-
-});
+}
 
 
 /**
