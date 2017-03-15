@@ -22,6 +22,8 @@ trait insert
 
 	protected static $poll_full_url  = null;
 
+	protected static $answer_count   = 0;
+
 	use insert\check;
 	use insert\reset;
 	use insert\max;

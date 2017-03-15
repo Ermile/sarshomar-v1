@@ -103,7 +103,14 @@ trait options
 					]), 'min', 'arguments');
 			}
 
-			self::save_options('multi_min', self::$args['options']['multi']['min']);
+			if(self::$args['options']['multi']['min'] > 1)
+			{
+				self::save_options('multi_min', self::$args['options']['multi']['min']);
+			}
+			else
+			{
+				self::save_options('multi_min', false);
+			}
 			$set_multi_min = true;
 		}
 		else
@@ -145,7 +152,15 @@ trait options
 				\lib\db\logs::set('user:poll:add:error:options:multi:ordering', self::$args['user'], ['meta' => ['input' => self::$args]]);
 				return debug::error(T_("You can not set minimum greater than maximum in multi select settings"), 'max', 'arguments');
 			}
-			self::save_options('multi_max', self::$args['options']['multi']['max']);
+
+			if(self::$args['options']['multi']['max'] < self::$answer_count)
+			{
+				self::save_options('multi_max', self::$args['options']['multi']['max']);
+			}
+			else
+			{
+				self::save_options('multi_max', false);
+			}
 			$set_multi_max = true;
 		}
 		else
@@ -156,7 +171,7 @@ trait options
 			}
 		}
 
-		if(self::isset_args('options','multi') && !$set_multi_min && !$set_multi_mx)
+		if(self::isset_args('options','multi'))
 		{
 			self::save_options('multi', true);
 			$set_multi = true;

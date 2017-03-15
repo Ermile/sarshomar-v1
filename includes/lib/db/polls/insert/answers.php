@@ -227,6 +227,8 @@ trait answers
 			$combine = $temp_combine;
 		}
 
+		self::$answer_count = count($combine);
+
 		if(self::$poll_id)
 		{
 			$answers = pollopts::set(self::$poll_id, $combine, ['update' => self::$args['update'], 'method' => self::$args['method']]);

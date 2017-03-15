@@ -52,7 +52,10 @@ class view extends \mvc\view
 		if(isset($poll['options']['multi']))
 		{
 			$poll_type = 'multi';
-			$this->data->multi_msg = $this->set_multi_msg($poll['options']['multi']);
+			if(isset($poll['options']['hint']))
+			{
+				$this->data->multi_msg = $poll['options']['hint'];
+			}
 
 		}
 		elseif(isset($poll['options']['ordering']))
@@ -155,57 +158,6 @@ class view extends \mvc\view
 			$myChart = $poll['result']['answers'];
 			$this->data->poll_total_stats = json_encode($myChart, JSON_UNESCAPED_UNICODE);
 		}
-	}
-
-
-	/**
-	 * set custom message for multi mode
-	 * @param [type] $_multi [description]
-	 */
-	private function set_multi_msg($_multi = null)
-	{
-		$multi_msg = '';
-		if($_multi)
-		{
-			$multi_min = null;
-			$multi_max = null;
-			// if isset min and max
-			if(isset($_multi['min']))
-			{
-				// $multi_min = \lib\utility\human::number($_multi['min'], $this->data->site['currentlang']);
-				$multi_min = \lib\utility\human::number($_multi['min']);
-			}
-			if(isset($_multi['max']))
-			{
-				$multi_max = \lib\utility\human::number($_multi['max']);
-			}
-
-			// show best message depending on min and max
-			if($multi_min && $multi_max)
-			{
-				if($multi_min === $multi_max)
-				{
-					$multi_msg = T_("You should exactly select :min options", ["min" => $multi_min]);
-				}
-				else
-				{
-					$multi_msg = T_("You can select at least :min and at most :max options", ["min" => $multi_min, "max" => $multi_max ]);
-				}
-			}
-			elseif($multi_min)
-			{
-				$multi_msg = T_("You should select at least :min options", ["min" => $multi_min ]);
-			}
-			elseif($multi_max)
-			{
-				$multi_msg = T_("You can select at most :max options", ["max" => $multi_max]);
-			}
-			else
-			{
-				$multi_msg = T_("You can select all of the options");
-			}
-		}
-		return $multi_msg;
 	}
 
 

@@ -9,20 +9,36 @@ trait get_options
 	private static function get_options(&$_poll_data)
 	{
 		$post_meta = \lib\db\posts::get_post_meta(self::$private_poll_id);
+
 		if(is_array($post_meta))
 		{
 			$temp_options = array_column($post_meta, 'option_value', 'option_key');
+
 			$show_options = [];
 			foreach ($temp_options as $key => $value)
 			{
 
 				if($value === '1')
 				{
-					$show_options[$key] = true;
+					if($key === 'multi')
+					{
+						if(!isset($show_options['multi']))
+						{
+							$show_options['multi'] = ['min' => null, 'max' => null];
+						}
+					}
+					else
+					{
+						$show_options[$key] = true;
+					}
 				}
 
 				if($key === 'multi_min' || $key === 'multi_max')
 				{
+					if(!isset($show_options['multi']))
+					{
+						$show_options['multi'] = ['min' => null, 'max' => null];
+					}
 					$show_options['multi'][substr($key,6)] = (int) $value;
 				}
 
@@ -38,6 +54,12 @@ trait get_options
 					$_poll_data['options'] = $show_options;
 				}
 			}
+		}
+
+		if(isset($_poll_data['options']['multi']))
+		{
+			$_poll_data['options']['hint'] = self::set_multi_msg($_poll_data['options']['multi']);
+
 		}
 
 		$poll_tree_answer = [];
@@ -206,5 +228,53 @@ trait get_options
 		$awaiting_file_url = self::host('file'). '/static/images/logo.png';
 		return $awaiting_file_url;
 	}
+
+
+	private static function set_multi_msg($_multi = null)
+	{
+		$multi_msg = '';
+		if($_multi)
+		{
+			$multi_min = null;
+			$multi_max = null;
+			// if isset min and max
+			if(isset($_multi['min']))
+			{
+				// $multi_min = \lib\utility\human::number($_multi['min'], $this->data->site['currentlang']);
+				$multi_min = \lib\utility\human::number($_multi['min']);
+			}
+			if(isset($_multi['max']))
+			{
+				$multi_max = \lib\utility\human::number($_multi['max']);
+			}
+
+			// show best message depending on min and max
+			if($multi_min && $multi_max)
+			{
+				if($multi_min === $multi_max)
+				{
+					$multi_msg = T_("You must select :min options", ["min" => $multi_min]);
+				}
+				else
+				{
+					$multi_msg = T_("You can select at least :min and at most :max options", ["min" => $multi_min, "max" => $multi_max ]);
+				}
+			}
+			elseif($multi_min)
+			{
+				$multi_msg = T_("You can select at least :min options", ["min" => $multi_min ]);
+			}
+			elseif($multi_max)
+			{
+				$multi_msg = T_("You can select at most :max options", ["max" => $multi_max]);
+			}
+			else
+			{
+				$multi_msg = T_("You can select all of the options");
+			}
+		}
+		return $multi_msg;
+	}
+
 }
 ?>
