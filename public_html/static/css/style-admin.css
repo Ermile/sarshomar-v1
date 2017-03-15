@@ -143,8 +143,8 @@
 .toolbox-btn form button[type="submit"] i {vertical-align: middle}
 .toolbox-btn form input[type="submit"],.toolbox-btn form button[type="submit"] {border: 0;padding: 4px 10px;border-radius: 2px;background: #90A4AE;color: #fff;cursor: pointer;height: 40px;}
 .toolbox-btn form input[type="submit"]:hover,.toolbox-btn form button[type="submit"]:hover {background: #607d8b}
-.toolbox-btn form.publish input[type="submit"] {background: #37aaa7;}
-.toolbox-btn form.publish input[type="submit"]:hover {background: #278a87;}
+.toolbox-btn form.publish input[type="submit"].active {background: #37aaa7;}
+.toolbox-btn form.publish input[type="submit"].active:hover {background: #278a87;}
 .toolbox-btn form.draft input[type="submit"] {background: #cc2031;}
 .toolbox-btn form.draft input[type="submit"]:hover {background: #9a1724;}
 .tools-content {padding: 0 2em;}
