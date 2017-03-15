@@ -46,6 +46,12 @@ class callback_query
 				session::remove_back('expire', 'inline_cache');
 				return $result;
 			}
+			$callback_query = (array) session::get('tmp', 'callback_query');
+			if(isset($callback_query[$unique_id]))
+			{
+				unset($callback_query[$unique_id]);
+			}
+			session::set('tmp', 'callback_query', $callback_query);
 		}
 
 
@@ -59,10 +65,6 @@ class callback_query
 			$callback_result = $class_name::start($_query, $data_url);
 			$callback_result = is_array($callback_result) ? $callback_result : [];
 		}
-
-		$callback_query = (array) session::get('tmp', 'callback_query');
-		unset($callback_query[$unique_id]);
-		session::set('tmp', 'callback_query', $callback_query);
 
 		return array_merge($result, $callback_result);
 	}

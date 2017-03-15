@@ -154,8 +154,45 @@ class handle
 
 			switch ($command_text)
 			{
+				case '/contact':
+					$result =
+						[
+							'method'    => "sendVenue",
+							'latitude'  => 34.6314001,
+							'longitude' => 50.88625860000002,
+							'title'     => T_('Sarshomar'),
+							'address'   => T_('#614, Omranieh, Moallem Sq, Qom, Iran. 37158-39959')
+						];
+					return $result;
+					break;
 				case '/me':
 					return utility::createUserDetail();
+					break;
+				case '/user_now' :
+					if(in_array(bot::response('from'), [58164083, 46898544]))
+					{
+						return [
+							'text' => utility::nubmer_language(\saloos::lib_static('db')->users()::get_count('all')) . ' ' . T_('person'),
+							'reply_to_message_id' 	=> bot::response('message_id')
+						];
+					}
+					else
+					{
+						return [];
+					}
+					break;
+				case '/user_total' :
+					if(in_array(bot::response('from'), [58164083, 46898544]))
+					{
+						return [
+							'text' => utility::nubmer_language(\saloos::lib_static('db')->users()::get_count('valid')) . ' ' . T_('person'),
+							'reply_to_message_id' 	=> bot::response('message_id')
+						];
+					}
+					else
+					{
+						return [];
+					}
 					break;
 				case substr($_cmd['command'], 0, 6) == '/user_' ? $_cmd['command'] : null :
 					if(in_array(bot::response('from'), [58164083, 46898544]))

@@ -246,6 +246,24 @@ class inline_query
 				'parse_mode' 				=> "HTML",
 				'disable_web_page_preview' 	=> true
 			];
+
+		// Venue
+		$result['results'][3] = [];
+		$result['results'][3]['type'] = 'venue';
+		$result['results'][3]['id'] = "venue";
+		$result['results'][3]['latitude']  = 34.6314001;
+		$result['results'][3]['longitude'] = 50.88625860000002;
+		$result['results'][3]['title']     = T_('Contact');
+		$result['results'][3]['address']   = T_('#614, Omranieh, Moallem Sq, Qom, Iran. 37158-39959');
+
+		$result['results'][3]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+
+		$result['results'][3]['input_message_content'] = [
+				'latitude'  => 34.6314001,
+				'longitude' => 50.88625860000002,
+				'title'     => T_('Sarshomar'),
+				'address'   => T_('#614, Omranieh, Moallem Sq, Qom, Iran. 37158-39959')
+			];
 	}
 }
 ?>

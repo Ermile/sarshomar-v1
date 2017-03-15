@@ -353,7 +353,7 @@ END;
 			$username = $user['result']['username'];
 		}
 		$photo = bot::sendResponse(["method" => "getUserProfilePhotos", "user_id" => $_user_id, 'limit' => 1]);
-		if(isset($photo['result']['photos'][0]['file_id']))
+		if(isset($photo['result']['photos'][0]))
 		{
 			$photo = end($photo['result']['photos'][0]);
 			return [

@@ -56,6 +56,10 @@ class controller extends \lib\mvc\controller
 				if(isset($_args['results']))
 				{
 					foreach ($_args['results'] as $key => $value) {
+						if(!isset($_args['results'][$key]['input_message_content']['message_text']))
+						{
+							continue;
+						}
 						$_args['results'][$key]['input_message_content']['message_text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
 						$_args['results'][$key]['input_message_content']['parse_mode'] = "HTML";
 					}

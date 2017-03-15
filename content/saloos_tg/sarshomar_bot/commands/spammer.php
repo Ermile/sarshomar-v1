@@ -40,7 +40,14 @@ class spammer
 		}
 
 		$meta = self::get_meta($get_count_log['meta']);
-		$meta['time'] = floatval($meta['time']);
+		if(isset($meta['time']))
+		{
+			$meta['time'] = floatval($meta['time']);
+		}
+		else
+		{
+			$meta['time'] = null;
+		}
 		if(isset($meta['deny_time']))
 		{
 			if($meta['deny_time'] + 20 < microtime(true))

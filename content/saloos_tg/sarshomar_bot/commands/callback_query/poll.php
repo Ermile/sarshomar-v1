@@ -633,7 +633,7 @@ class poll
 
 	public static function subport_update($_options, $_poll_id)
 	{
-		if($_options['subport'])
+		if(isset($_options['subport']))
 		{
 			$get_subport = \lib\db\options::get([
 				'id'		=> $_options['subport'],
