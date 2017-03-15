@@ -2,21 +2,60 @@
 
 
 {%block content%}
-<div class="main">
-  <section class="box">
+<div class="main text-based">
+  <section class="box pad">
 {%block page_content%}
-   <h2>{{post.title}}</h2>
-   <div class="content">{{post.content |raw}}</div>
-   <nav id="page-nav">
-    <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
-    <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
-   </nav>
+{%set pTtile = post.title%}
+  <h2 class="special-heading"><a href="{{post.url}}" title="{{post.title}}">{%trans pTtile%}</a></h2>
+    <div class="in">
 
-	<ul>
-		{% for key, value in tags_list%}
-		<li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
-		{%endfor%}
-	</ul>
+       <div class="content">{{post.content |raw}}</div>
+{%if nav%}
+       <nav id="page-nav">
+        <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+        <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+       </nav>
+{%endif%}
+
+
+
+      <h3>{%trans "Polls"%}</h3>
+{%if datatable%}
+      <ul>
+        {% for key, value in datatable%}
+        <li><a href="{{value.post_url}}">{{value.post_title}}</a></li>
+        {%endfor%}
+      </ul>
+{%else%}
+      <p class="alert alert-info">{%trans "There are no poll exist!"%}</p>
+{%endif%}
+
+
+
+      <h3>{%trans "Child Categories"%}</h3>
+{%if datatable_cats%}
+      <nav class="content tags">
+        {% for key, value in datatable_cats%}
+        {%set tTtile = value.term_title%}
+        <a href="{{value.term_url}}">{%trans tTtile%}</a>
+        {%endfor%}
+      </nav>
+{%else%}
+      <p class="alert alert-info">{%trans "There are no category exist!"%}</p>
+{%endif%}
+
+
+
+{%if tags_list%}
+      <ul>
+        {% for key, value in tags_list%}
+        <li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
+        {%endfor%}
+      </ul>
+{%endif%}
+
+    </div>
+
 {%endblock%}
   </section>
 </div>
