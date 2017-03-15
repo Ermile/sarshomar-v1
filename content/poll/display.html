@@ -93,7 +93,36 @@
 {%endblock%}
 
 
+{%block foot_js%}
+{% if iperm.admin.admin.view %}
+<script type="text/javascript">
+  $('.admin-toolbox #show_in_homepage').on('click', function(){
+    id = $(this).attr("data-id");
+      checked = $(this).prop("checked");
+      $(this).ajaxify({
+        url : 'admin/knowledge',
+        ajax: {
+          method: 'post',
+          data:
+          {
+            'id': id,
+            'type': 'homepage',
+            'checked' : checked
+          },
+          url : 'admin/knowledge',
+          abort: true,
+          success: function (e, data, x)
+          {
 
+          }
+        },
+        url : 'admin/knowledge'
+      });
+  });
+</script>
+{%endif%}
+
+{%endblock%}
 
 
 

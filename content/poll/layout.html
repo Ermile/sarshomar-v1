@@ -569,8 +569,8 @@
 
       <div class="check-slider">
       <div>
-        <input type="checkbox" id="home" />
-        <label for="home"></label>
+        <input type="checkbox" id="show_in_homepage" {% if show_in_homepage%} checked="checked" {%endif%} data-id="{{poll.id}}" />
+        <label for="show_in_homepage"></label>
       </div>
     </div>
 

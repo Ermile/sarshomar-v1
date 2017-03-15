@@ -158,6 +158,30 @@ class view extends \mvc\view
 			$myChart = $poll['result']['answers'];
 			$this->data->poll_total_stats = json_encode($myChart, JSON_UNESCAPED_UNICODE);
 		}
+
+
+		if($this->access('admin','admin'))
+		{
+			if(isset($poll['id']))
+			{
+				$poll_id = \lib\utility\shortURL::decode($poll['id']);
+				$where =
+				[
+					'post_id'       => $poll_id,
+					'option_cat'    => 'homepage',
+					'option_key'    => 'chart',
+					'option_value'  => $poll_id,
+					'option_status' => 'enable',
+					'limit'         => 1,
+				];
+
+				$homepage       = \lib\db\options::get($where);
+				if(!empty($homepage))
+				{
+					$this->data->show_in_homepage = true;
+				}
+			}
+		}
 	}
 
 
