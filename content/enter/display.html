@@ -2,20 +2,19 @@
 
 
 {%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}css/responsive.css">
  <link rel="stylesheet"       href="{{url.static}}css/account.css">
 {%endblock%}
 
 
 {%block body%}
-
 <div class='f enter'>
- <div class='c3 sidebox'>
+ <div class='c3 x2 m4 s12 sidebox'>
   <h1>{%trans "Enter"%}</h1>
 
   <div class='field usermobile'>
    <label for='usermobile'>
-    <span>{%trans "Mobile or Username"%}</span>
-    <input type='text' name='usermobile' id='usermobile' placeholder='{%trans "Mobile or Username"%}'>
+    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" name='usermobile' id='usermobile' placeholder='{%trans "Mobile"%}'>
    </label>
   </div>
 
@@ -56,7 +55,7 @@
 
   <button id="go">{%trans "Go"%}</button>
  </div>
- <div class='c9 mainbox'></div>
+ <div class='c mainbox'></div>
 </div>
 
 {%endblock%}
