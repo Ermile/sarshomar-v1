@@ -219,7 +219,12 @@ class ask
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
 
-		if($_query || !isset($options['return']))
+		$md5_result = md5(json_encode($maker->query_result['result']));
+		if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
+		{
+			return false;
+		}
+		elseif($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
 		}

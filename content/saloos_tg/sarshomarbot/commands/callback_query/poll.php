@@ -236,6 +236,7 @@ class poll
 			}
 		}
 		$maker = new make_view($poll_id);
+		$md5_result = md5(json_encode($maker->query_result['result']));
 		if($oprator == 'multi')
 		{
 			$answer = explode("_", $answer);
@@ -356,11 +357,11 @@ class poll
 		{
 			if(isset($_query['inline_message_id']))
 			{
-				self::subport_update(['inline_message_id' => $_query['inline_message_id']], $poll_id);
+				self::subport_update(['inline_message_id' => $_query['inline_message_id']], $poll_id, $md5_result);
 			}
 			else
 			{
-				self::subport_update(['subport' => $subport], $poll_id);
+				self::subport_update(['subport' => $subport], $poll_id, $md5_result);
 				\lib\storage::set_disable_edit(false);
 			}
 		}
@@ -631,7 +632,7 @@ class poll
 		callback_query::edit_message($return);
 	}
 
-	public static function subport_update($_options, $_poll_id)
+	public static function subport_update($_options, $_poll_id, $_md5_result = false)
 	{
 		if(isset($_options['subport']))
 		{
@@ -665,13 +666,17 @@ class poll
 			$get_inline_lock = \lib\db::query("SELECT LAST_INSERT_ID() as id");
 			$get_inline_lock_id = $get_inline_lock->fetch_object()->id;
 			$edit = ask::make(null, null, [
-				'poll_id' 	=> $_poll_id,
-				'return'	=> true,
-				'type'		=> 'inline',
-				'inline_id'	=> $get_subport ? $get_subport['value'] : null
+				'poll_id' 		=> $_poll_id,
+				'return'		=> true,
+				'type'			=> 'inline',
+				'md5_result'	=> $_md5_result,
+				'inline_id'		=> $get_subport ? $get_subport['value'] : null
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
-			callback_query::edit_message($edit);
+			if($edit)
+			{
+				callback_query::edit_message($edit);
+			}
 			\lib\db\options::update([
 				"option_status" => 'enable'
 			], $get_inline_lock_id);
@@ -691,10 +696,14 @@ class poll
 				'poll_id' 	=> $_poll_id,
 				'return'	=> true,
 				'type'		=> 'inline',
+				'md5_result'	=> $_md5_result,
 				'inline_id'	=> $get_subport ? $get_subport['value'] : null
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
-			callback_query::edit_message($edit);
+			if($edit)
+			{
+				callback_query::edit_message($edit);
+			}
 			\lib\db\options::update([
 				"option_status" => 'enable'
 			], $get_inline_lock['id']);
@@ -705,13 +714,17 @@ class poll
 			if((int) $get_inline_lock['meta'] > 2)
 			{
 				$edit = ask::make(null, null, [
-					'poll_id' 	=> $_poll_id,
-					'return'	=> true,
-					'type'		=> 'inline',
-					'inline_id'	=> $get_subport ? $get_subport['value'] : null
+					'poll_id' 		=> $_poll_id,
+					'return'		=> true,
+					'type'			=> 'inline',
+					'md5_result'	=> $_md5_result,
+					'inline_id'		=> $get_subport ? $get_subport['value'] : null
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
-				callback_query::edit_message($edit);
+				if($edit)
+				{
+					callback_query::edit_message($edit);
+				}
 			}
 		}
 	}
