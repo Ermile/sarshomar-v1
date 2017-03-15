@@ -135,7 +135,7 @@
 /************************************************Poll Page*/
 .admin-toolbox {margin: 0 auto;height: 66px;width: 100%;background: #fff;position: fixed;bottom: 0;max-width: 1384px;left: 50%;transform: translateX(-50%);z-index: 99;box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.15);opacity: 0.3;transition: all 0.3s
 }
-.admin-toolbox:hover {opacity: 1;}
+.admin-toolbox:hover {opacity: 0.7;}
 .admin-toolbox>div {height: 66px}
 .rtl .admin-toolbox>div {flex-direction: row-reverse}
 .prev a,.next a {display: block;height: 66px;text-align: center;padding: 4px;margin: auto;color: #00667a;}
