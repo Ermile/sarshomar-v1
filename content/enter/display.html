@@ -10,91 +10,59 @@
 
 <div class='f enter'>
  <div class='c3 sidebox'>
-  <h1>{%trans "Login"%}</h1>
-  
-  <div class='field'>
-   <label for='mobile'>
+  <h1>{%trans "Enter"%}</h1>
+
+  <div class='field usermobile'>
+   <label for='usermobile'>
     <span>{%trans "Mobile or Username"%}</span>
-    <input type='text' name='mobile' id='mobile' placeholder='{%trans "Mobile or Username"%}'>
+    <input type='text' name='usermobile' id='usermobile' placeholder='{%trans "Mobile or Username"%}'>
    </label>
   </div>
 
-  <div class="field">
+  <div class='field password'>
    <label for='password'>
     <span>{%trans "Password"%}</span>
     <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
    </label>
   </div>
 
-  <div class="field code">
+  <div class='waiting hide'>
+   <span>{%trans "Please be patient, we are generating keys"%}</span>
+   <div class="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+   </div>
+  </div>
+
+  <div class="notif hide">
+   <span>Notif</span>
+   <a href="#">Link</a>
+  </div>
+
+  <div class='field pin hide'>
+   <label for='pin'>
+    <span>{%trans "Pin"%}</span>
+    <input type='pin' name='pin' id='pin' placeholder='_ _ _ _' class='center'>
+   </label>
+  </div>
+
+  <div class='field code hide'>
    <label>
     <span>{%trans "Enter Verification Code"%}</span>
     <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
    </label>
   </div>
 
-  <button>{%trans "Login"%}</button>
+  <button id="go">{%trans "Go"%}</button>
  </div>
- <div class='c9 mainbox'>2</div>
+ <div class='c9 mainbox'></div>
 </div>
 
-
-<!-- <div class='f login'> -->
- <!-- <div class='c flex f-column justify-center'> -->
-  <!-- <div class='fancy'>
-   <span>{%trans "Sign Up"%}</span>
-  </div> -->
-
-  <!-- <div class="field mobile">
-   <label>
-    <span>{%trans "Enter Your Mobile Number"%}</span>
-    <input type='tel' name='mobile' id='mobile' placeholder='{%trans "Mobile Number"%}' autocomplete='off' maxlength='15' class='ltr'>
-   </label>
-  </div> -->
-
-  <!-- <div class="notif patient hidden">
-   <span>{%trans "Please be patient, we are generating keys"%}</span>
-   <div class="notif-loader">
-    <span></span>
-    <span></span>
-    <span></span>
-   </div>
-  </div> -->
-
-  <!-- <div class="field password hidden">
-   <label>
-    <span>{%trans "Password"%}</span>
-    <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
-   </label>
-  </div> -->
-
-  <!-- <div class="field code hidden">
-   <label>
-    <span>{%trans "Enter Verification Code"%}</span>
-    <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
-   </label>
-  </div> -->
-
-  <!-- <div class="notif hidden">
-   <span>{%trans "Problems receiving your code?"%}</span>
-   <a href="#">{%trans "Login using other ways"%}</a>
-  </div> -->
-
-  <!-- <div class="notif correct hidden">
-   <span>{%trans "Is this mobile number correct?"%}</span>
-   <a href="#">{%trans "Change number"%}</a>
-  </div> -->
-
-  <!-- <div class="other-ways hidden">
-   <span>{%trans "Other ways"%}</span>
-  </div> -->
-
-  <!-- <button id="go">{%trans "Login"%}</button> -->
- <!-- </div> -->
-<!-- </div> -->
 {%endblock%}
 
 
 {%block foot_js%}
- <script src="{{url.static}}js/enter.js"></script>
+
+  <script src="{{url.static}}js/enter.js"></script>
 {%endblock%}

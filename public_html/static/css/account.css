@@ -7,34 +7,45 @@ body{min-height:100%;background-image:url(../images/shattered_@2X.png);display:-
 .sidebox,.mainbox{padding:1em}
 .sidebox{background-color:rgba(255,255,255,0.2)}
 .sidebox h1{font-size:4em;font-weight:700;text-align:center;color:#0fa1a6;text-shadow:0 0 3px #0fa1a6}
-.sidebox .field{margin-bottom:2rem}
+
+.sidebox .field{width:90%;margin:0 auto 2rem}
 .sidebox .field label{display:block}
 .sidebox .field label span{display:inline-block;padding-bottom:.5rem}
-.sidebox .field input,.sidebox button{font-size:1.2em}
+.sidebox .field input,.sidebox button{font-size:1.2em;-webkit-transition:0.3s;transition:0.3s}
 .sidebox .field input{width:100%;padding:1em 2em;border:none;border-radius:3px;background-color:#fff;direction:ltr}
 .sidebox .field input.disabled,.sidebox .field input[disabled]{pointer-events:none;opacity:.45}
 .sidebox .field input.ltr{text-align:left}
 .sidebox .field input.center{text-align:center}
-.sidebox button{width:100%;padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
+.sidebox .field.password{display:none !important}
+.sidebox button{display:block;width:90%;margin:0 auto;padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
 
-/* Fancy Title */
-/*.login .fancy{position:relative;text-align:center;margin-bottom:1em}
-.login .fancy:before{background:#ddd;content:"";display:block;height:1px;position:absolute;top:50%;width:100%;left:0}
-.login .fancy span{background:#fff;padding:0 15px;position:relative;z-index:1}*/
-
-/*.login .notif{margin-bottom:1em}
-.login .notif .notif-loader{text-align:center;display:inline-block;margin:0 2px;padding-top:1px;vertical-align:middle}
-.login .notif .notif-loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
-.login .notif .notif-loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
-.login .notif .notif-loader span:nth-child(2){-webkit-animation:opacitychange 1s ease-in-out 0.33s infinite;animation:opacitychange 1s ease-in-out 0.33s infinite}
-.login .notif .notif-loader span:nth-child(3){-webkit-animation:opacitychange 1s ease-in-out 0.66s infinite;animation:opacitychange 1s ease-in-out 0.66s infinite}
+.sidebox .waiting{font-size:1.2em;width:90%;margin:0 auto 2rem;padding:1em 0}
+.sidebox .waiting .loader{display:inline-block}
+.sidebox .waiting .loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
+.sidebox .waiting .loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
+.sidebox .waiting .loader span:nth-child(2){-webkit-animation:opacitychange 1s ease-in-out 0.33s infinite;animation:opacitychange 1s ease-in-out 0.33s infinite}
+.sidebox .waiting .loader span:nth-child(3){-webkit-animation:opacitychange 1s ease-in-out 0.66s infinite;animation:opacitychange 1s ease-in-out 0.66s infinite}
 @-webkit-keyframes opacitychange{
-  0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
-  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
+ 0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
+ 60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 @keyframes opacitychange{
-  0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
-  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
+ 0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
+ 60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
-.login .other-ways{margin-bottom:1rem}*/
+.sidebox .notif{width:90%;margin:0 auto 2em;font-size:1.2em}
+.sidebox span{}
+.sidebox a{}
+
+/* Animation */
+.animated {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+@-webkit-keyframes fadeOut{
+ from{opacity:1}
+ to{opacity:0}
+}
+@keyframes fadeOut{
+ from{opacity:1}
+ to{opacity:0}
+}
+.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}

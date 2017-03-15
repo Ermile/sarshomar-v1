@@ -9,8 +9,9 @@ class view extends \mvc\view
 	 */
 	public function config()
 	{
-		$this->include->css            = true;
-		$this->data->bodyclass         = 'unselectable';
+		$this->include->css    = true;
+		$this->include->js     = false;
+		$this->data->bodyclass = 'unselectable';
 	}
 
 	/**
