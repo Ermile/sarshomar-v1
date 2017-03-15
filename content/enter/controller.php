@@ -9,7 +9,8 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
-
+		$this->get('enter', 'enter')->ALL();
+		$this->post('enter')->ALL();
 	}
 }
 ?>
