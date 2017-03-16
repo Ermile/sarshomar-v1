@@ -202,10 +202,21 @@ trait search
 			}
 		}
 
+
 		$meta['login']       = $this->user_id;
 		$meta['api_mode']    = $this->api_mode;
 		$meta['start_limit'] = $from;
 		$meta['limit']       = $to - $from;
+
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin'))
+		{
+			$meta['admin']       = utility::request('admin') ? true : false;
+			if($meta['admin'])
+			{
+				$meta['limit']       = utility::isset_request('admin') ? utility::request('limit') : $meta['limit'];
+			}
+		}
+
 		$result              = \lib\db\polls::search($search, $meta);
 		$tmp_result          = [];
 		$tmp_result['data']  = [];

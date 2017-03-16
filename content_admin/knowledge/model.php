@@ -157,6 +157,8 @@ class model extends \mvc\model
 		$this->user_id = $this->login('id');
 		$request           = [];
 		$request['in']     = 'all';
+		$request['admin']  = true;
+		$request['limit']  = 50;
 		$request['search'] = $search;
 		if($status)
 		{
