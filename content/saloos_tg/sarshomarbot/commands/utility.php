@@ -398,8 +398,8 @@ END;
 		}
 		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
 		$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
-		$port_text[] = "👥 ". T_("Total") . ": " . $total;
-		$port_text[] = "🙋‍♂". T_("Active") . ": " . \saloos::lib_static('db')->users()::get_count('all');
+		$port_text[] = "\n👥 ". T_("Total") . " <strong>" . $total. "</strong>";
+		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . \saloos::lib_static('db')->users()::get_count('all'). "</strong>";
 		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
 		return utility::nubmer_language(join("\n", $port_text));
 	}
