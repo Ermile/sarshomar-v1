@@ -114,7 +114,7 @@ class step_create
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 		$maker->inline_keyboard->add([
 					[
-						"text" => T_("Selective"),
+						"text" => T_("چند گزینه‌ای"),
 						"callback_data" => 'create/type/select'
 					]
 				]);

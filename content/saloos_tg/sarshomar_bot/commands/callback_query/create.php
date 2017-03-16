@@ -94,6 +94,31 @@ class create
 		callback_query::edit_message($step_class::step1());
 	}
 
+	public static function access_profile($_query, $_data_url)
+	{
+		session::remove_back('expire', 'inline_cache', 'create');
+		$poll_request = ['id' => session::get('poll')];
+		if($_data_url[2] == 'add')
+		{
+			$poll_request['access_profile'] = ['displayname'];
+		}
+		else
+		{
+			$poll_request['access_profile'] = null;
+		}
+		utility::make_request($poll_request);
+		\lib\main::$controller->model()->poll_add(['method' => 'patch']);
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create_preview::step1());
+	}
+
+	public static function choise_type($_query = null, $_data_url = null)
+	{
+		step::goingto(4);
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::step4());
+		return [];
+	}
 
 	public static function cancel($_query = null, $_data_url = null)
 	{

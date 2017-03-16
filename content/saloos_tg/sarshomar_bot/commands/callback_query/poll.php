@@ -408,7 +408,6 @@ class poll
 		$poll = session::get('poll');
 		session::remove('poll');
 		step::stop();
-		\lib\storage::set_disable_edit(true);
 
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
@@ -425,19 +424,6 @@ class poll
 
 		if($poll)
 		{
-			$result = ask::make(null, null, [
-				'poll_id' 	=> $_data_url[3],
-				'return'	=> true
-				]);
-			$result['reply_markup'] = menu::main(true);
-			$result = \content\saloos_tg\sarshomar_bot\commands\step_create::make_draft($poll, function($_maker)
-				{
-					unset($_maker->message->message['description']);
-				});
-			unset($result['reply_markup']);
-			callback_query::edit_message($result);
-			session::remove('expire', 'inline_cache', 'create');
-			session::remove_back('expire', 'inline_cache', 'create');
 
 			$main = menu::main()[0];
 			$main['method'] = 'sendMessage';
@@ -449,6 +435,7 @@ class poll
 		}
 		else
 		{
+			\lib\storage::set_disable_edit(true);
 			callback_query::edit_message(ask::make(null, null, [
 				'poll_id' 	=> $_data_url[3],
 				'return'	=> true
