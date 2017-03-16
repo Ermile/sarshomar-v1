@@ -12,6 +12,14 @@
 {%endblock%}
 
 
+{%block poll_desc%}
+ {%if poll.description%}
+  <div class="desc">{{poll.description|raw}}</div>
+ {%else%}
+ {%endif%}
+{%endblock%}
+
+
 {%block poll_toolbox%}
 {% spaceless %}
 
