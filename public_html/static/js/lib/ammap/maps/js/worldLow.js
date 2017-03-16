@@ -944,9 +944,12 @@ function drawMapWorld()
 			"balloonText": "[[title]] <b>[[value]]</b>",
 		},
 
-		"smallMap":
-		{
-			"backgroundAlpha": 0.1
-		}
+		// "smallMap":
+		// {
+		// 	"backgroundAlpha": 0.1
+		// },
+		// "zoomOnDoubleClick": false,
+		"dragMap": true,
+		"preventDragOut": true,
 	});
 }

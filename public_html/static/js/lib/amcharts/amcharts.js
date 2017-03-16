@@ -1149,7 +1149,7 @@ function homepageGender(_option)
 	_option.rotate = true;
 	_option.marginBottom = 50;
 	_option.startDuration = 0.5;
-	_option.startEffect = 'easeOutSine',
+	_option.startEffect = 'easeOutSine';
 	_option.graphs =
 	[
 		{
@@ -1222,6 +1222,7 @@ function homepageGender(_option)
 		"cursorColor":"#00667a",
 		"cursorAlpha": 0.05,
 		"fullWidth": true,
+		"zoomable": false,
 		"categoryBalloonFunction": function(value)
 		{
 			return fitNumber(value, false);

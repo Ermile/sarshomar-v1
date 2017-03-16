@@ -320,18 +320,19 @@ function drawMapIran()
 			"map": "iranHigh",
 			"areas": data
 		},
-
 		"zoomControl":
 		{
 			"panControlEnabled": false,
 			"zoomControlEnabled": false,
-			"homeButtonEnabled": false
+			"homeButtonEnabled": false,
 		},
 
 		"areasSettings":
 		{
 			"autoZoom": false,
 			"balloonText": "[[title]] <b>[[value]]</b>",
-		}
+		},
+		"zoomOnDoubleClick": false,
+		"dragMap": false,
 	});
 }
