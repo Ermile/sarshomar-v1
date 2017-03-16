@@ -61,12 +61,13 @@ class model extends \mvc\model
 		if($this->enter_is_blocked())
 		{
 			$this->log('use:enter:blocked:agent:ip');
+			$this->log_sleep_code('use:enter:blocked:agent:ip');
 			debug::msg('step', 'block');
 			debug::error(T_("You are blocked"));
 			return false;
 		}
 
-		$ok          = false;
+		$ok          = 'false';
 		// check input and get the step
 		$check_input = $this->check_input();
 
@@ -95,7 +96,7 @@ class model extends \mvc\model
 					if($this->verify_call_mobile())
 					{
 						// call was send
-						$ok = true;
+						$ok = 'true';
 					}
 					else
 					{
@@ -103,7 +104,7 @@ class model extends \mvc\model
 						$this->log_sleep_code('invalid:mobile');
 						// this mobile is not a valid mobile
 						// check by kavenegar
-						$ok = false;
+						$ok = 'invalid';
 					}
 				}
 				break;
@@ -115,24 +116,25 @@ class model extends \mvc\model
 					// the verification code is true
 					// set login
 					$this->login_set();
-					$ok = true;
+					$ok = 'true';
 				}
 				else
 				{
 					$this->log('user:verfication:invalid:code');
 					$this->log_sleep_code('invalid:code');
-					$ok = false;
+					$ok = 'false';
 				}
 				break;
 
 			default:
 				$this->log('user:verfication:invalid:input');
+				$this->counter('user:verfication:invalid:input');
 				// invalid input
-				$ok = false;
+				$ok = 'false';
 				break;
 		}
 
-		debug::msg('step', $ok ? 'ok' : 'no');
+		debug::msg('step', $ok);
 	}
 }
 ?>
