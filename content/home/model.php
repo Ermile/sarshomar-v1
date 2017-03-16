@@ -216,22 +216,29 @@ class model extends \mvc\model
 
 		$poll = \lib\db\polls::get_poll($this->poll_id);
 
-		if(isset($poll['url']) && $poll['url'] != $url .'/' && $poll['url'] != $url)
+		if(isset($poll['url']))
 		{
-			$language = null;
-			if(isset($poll['language']))
+			if($poll['url'] != $url .'/' && $poll['url'] != $url)
 			{
-				$language = \lib\define::get_current_language_string($poll['language']);
+				$language = null;
+				if(isset($poll['language']))
+				{
+					$language = \lib\define::get_current_language_string($poll['language']);
+				}
+				$post_url = $poll['url'];
+
+				$new_url = trim($this->url('root'). $language. '/'. $post_url, '/');
+
+				$this->redirector($new_url)->redirect();
 			}
-			$post_url = $poll['url'];
-
-			$new_url = trim($this->url('root'). $language. '/'. $post_url, '/');
-
-			$this->redirector($new_url)->redirect();
+			else
+			{
+				return $poll;
+			}
 		}
 		else
 		{
-			return $poll;
+			\lib\error::page(T_("Poll not found"));
 		}
 	}
 
