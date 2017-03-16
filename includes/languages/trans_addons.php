@@ -258,15 +258,15 @@ private function transtext()
 	echo T_("Project Database");                                                      // Line 51
 	echo T_("Automatically read database and create sql files");                      // Line 50
 	echo T_("Backup");                                                                // Line 51
-	echo T_("Database Logs");                                                         // Line 53
-	echo T_("Logs");                                                                  // Line 56
-	echo T_("Logs - check");                                                          // Line 57
-	echo T_("Logs - warn");                                                           // Line 58
-	echo T_("Logs - critical");                                                       // Line 59
-	echo T_("Error Logs");                                                            // Line 60
-	echo T_("Telegram Errors");                                                       // Line 64
-	echo T_("telegram Logs");                                                         // Line 67
-	echo T_("telegram - Error Logs");                                                 // Line 68
+	echo T_("Database Logs");                                                         // Line 56
+	echo T_("Logs");                                                                  // Line 59
+	echo T_("Logs - check");                                                          // Line 60
+	echo T_("Logs - warn");                                                           // Line 61
+	echo T_("Logs - critical");                                                       // Line 62
+	echo T_("Error Logs");                                                            // Line 63
+	echo T_("Telegram Errors");                                                       // Line 66
+	echo T_("telegram Logs");                                                         // Line 69
+	echo T_("telegram - Error Logs");                                                 // Line 70
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
