@@ -25,7 +25,7 @@ class menu
 			'keyboard' =>
 			[
 				[T_('Ask me')],
-				[T_('Dashboard'), T_('New')],
+				[T_('Dashboard'), T_('Create new poll')],
 			],
 			"resize_keyboard" => true
 			];

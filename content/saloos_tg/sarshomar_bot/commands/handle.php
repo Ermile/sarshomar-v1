@@ -11,6 +11,7 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
+		$nospammer = true;
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();
@@ -269,6 +270,7 @@ class handle
 				break;
 
 				case T_('New'):
+				case T_('Create new poll'):
 				case '/new':
 				$response = step_create::start();
 				break;

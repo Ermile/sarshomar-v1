@@ -26,15 +26,13 @@ class create
 	}
 
 	public static function home($_query = null, $_data_url = null){
-		$txt_text = T_("Please enter the question of your poll");
-		$txt_text .= "\n";
-		$txt_text .= T_("You can also attach a file to your poll and type the question in the next step.
-");
-		$txt_text .= "\n";
-		$txt_text .= T_("To cancel a poll use /cancel command");
+		$txt_text = "📍 " . T_("عنوان سوال را وارد کنید");
+		$txt_text .= "\n\n";
+		$txt_text .= "✳ " . T_("برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید");
+		$txt_text .= "\n" . utility::tag(T_("Create new poll"));
 		$result   =
 		[
-			'text'         => $txt_text ."\n#create",
+			'text'         => $txt_text,
 			'reply_markup' => [
 				"remove_keyboard" => true
 			]
@@ -42,30 +40,32 @@ class create
 		return $result;
 	}
 
-	public static function cancel($_query = null, $_data_url = null)
+	public static function upload_file($_query = null, $_data_url = null)
 	{
-		session::remove_back('expire', 'inline_cache', 'create');
-		session::remove('expire', 'inline_cache', 'create');
-		step::stop();
+		$make = new make_view(session::get('poll'));
+		$make->message->add_title();
+		$make->message->add('status', "\n" . "📍📍 " . T_("محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل را وارد کنید"));
+		$make->message->add('tag', utility::tag(T_("Create new poll")));
+		$make->inline_keyboard->add([
+				[
+					"text" => T_("فایل ندارم"),
+					"callback_data" => 'create/choise_type',
+				],
+				[
+					"text" => T_("Cancel"),
+					"callback_data" => 'create/cancel'
+				]
+			]);
+		$return = $make->make();
+		$return["response_callback"] = utility::response_expire('create');
 		if($_query)
 		{
-			callback_query::edit_message(['text' => utility::tag(T_("Add poll canceled"))]);
+			session::remove_back('expire', 'inline_cache', 'create');
+			step::plus();
+			callback_query::edit_message($make->make());
 			return [];
 		}
-		return null;
-	}
-
-	public static function close()
-	{
-		step::stop();
-		session::remove('poll');
-		bot::sendResponse(['text' => T_("Return to main menu"), 'reply_markup' => menu::main(true)]);
-	}
-
-	public static function back()
-	{
-		step::stop();
-		session::remove('poll');
+		return $return;
 	}
 
 	public static function type($_query, $_data_url)
@@ -81,47 +81,42 @@ class create
 		{
 			$poll_request['answers'][0]['title'] = T_("Please type your answer");
 		}
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
+		utility::make_request($poll_request);
+
 		$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+		step::stop();
+
+		$step = 'create_' . $_data_url[2];
+		step::start($step);
+
+		$step_class = '\content\saloos_tg\sarshomar_bot\commands\step_' . $step;
+
+		callback_query::edit_message($step_class::step1());
 	}
 
-	public static function remove_type($_query, $_data_url)
-	{
-		\lib\storage::set_disable_edit(true);
-		session::remove('poll_options', 'type');
-		$poll_request = ['id' => session::get('poll'), 'answers' => []];
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		\lib\main::$controller->model()->poll_add(['method' => 'patch']);
-		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
 
+	public static function cancel($_query = null, $_data_url = null)
+	{
+		step::stop();
+		step::start('cancel');
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_cancel::step1());
+		return [];
 	}
 
-	public static function edit_title($_query, $_data_url)
+	public static function save($_query = null, $_data_url = null)
 	{
-		\lib\storage::set_disable_edit(true);
-		$poll_request = ['id' => session::get('poll'), 'title' => ''];
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		$change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
-
+		step::stop();
+		\content\saloos_tg\sarshomar_bot\commands\step_cancel::step2(true);
+		return [];
 	}
 
-	public static function access_profile($_query, $_data_url)
+	public static function delete($_query = null, $_data_url = null)
 	{
-		\lib\storage::set_disable_edit(true);
-		$poll_request = ['id' => session::get('poll')];
-		if($_data_url[2] == 'add')
-		{
-			$poll_request['access_profile'] = ['displayname'];
-		}
-		else
-		{
-			$poll_request['access_profile'] = null;
-		}
-		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $poll_request]);
-		$change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
-		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create::make_draft(session::get('poll')));
+		step::stop();
+		\content\saloos_tg\sarshomar_bot\commands\step_cancel::step2(false);
+		return [];
 	}
 }
 ?>
