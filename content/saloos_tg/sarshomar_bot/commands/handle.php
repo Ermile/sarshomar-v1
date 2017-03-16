@@ -179,7 +179,7 @@ class handle
 						foreach ($ports as $key => $value) {
 							if($command_text == '/now_detail')
 							{
-								$port_text[] = T_($key) . ": <strong>$value</strong>";
+								$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>$value</strong>";
 							}
 							$total += $value;
 						}

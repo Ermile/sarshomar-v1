@@ -157,7 +157,7 @@ class message
 
 	public function add_telegram_link()
 	{
-		$dashboard = utility::link('https://telegram.me/Sarshomar_bot?start=' .$this->class->poll_id, '⚙' . T_("پنل")) . " | ";
+		$dashboard = utility::link('https://telegram.me/Sarshomar_bot?start=' .$this->class->poll_id, '⚙' . T_("Panel")) . " | ";
 		if(isset($this->message['options']))
 		{
 			$this->message['options'] = $dashboard . ' ' . $this->message['options'];
