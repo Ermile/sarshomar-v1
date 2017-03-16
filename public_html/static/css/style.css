@@ -282,6 +282,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-button-left:before{content:"\e902"}
 .icon-button-right:before{content:"\e903"}
 .icon-pic:before{content:"\e904"}
+.icon-android:before {content: "\e900";}
 .icon-range-down:before{content:"\e905"}
 .icon-range-left:before{content:"\e906"}
 .icon-range-right:before{content:"\e907"}

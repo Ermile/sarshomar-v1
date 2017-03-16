@@ -30,4 +30,10 @@
   <span class="icon-linkedin2"></span>
  </a>
  {%endif%}
+ {%if poll.id%}
+ <a class="linkedin" href="https://t.me/sarshomarbot?start={{poll.id}}">
+  <span>{%trans "Sarshomar Bot"%}</span>
+  <span class="icon-signal"></span>
+ </a>
+  {%endif%}
 </nav>
