@@ -158,7 +158,7 @@ class model extends \mvc\model
 		$request           = [];
 		$request['in']     = 'all';
 		$request['admin']  = true;
-		$request['limit']  = 50;
+		$request['limit']  = 15;
 		$request['search'] = $search;
 		if($status)
 		{
