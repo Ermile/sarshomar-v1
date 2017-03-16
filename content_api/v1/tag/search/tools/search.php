@@ -25,8 +25,8 @@ trait search
 			case 'cat':
 			case 'tag':
 
-				$meta = [];
-
+				$meta           = [];
+				$meta['status'] = ['awaiting', 'enable'];
 				if(utility::request("type") == 'tag')
 				{
 					$meta['term_type'] = 'sarshomar_tag';

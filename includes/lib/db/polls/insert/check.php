@@ -9,6 +9,21 @@ trait check
 {
 
 	/**
+	 * safe user string
+	 *
+	 * @param      <type>  $_string  The string
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function safe_user_string($_string)
+	{
+		$_string = preg_replace("/[\s\t\n]+/", ' ', $_string);
+		$_string = trim($_string);
+		return $_string;
+	}
+
+
+	/**
 	 * check if isset parameter in self::$args
 	 *
 	 * @return     boolean  ( description_of_the_return_value )

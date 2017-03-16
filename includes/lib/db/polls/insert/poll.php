@@ -27,7 +27,7 @@ trait poll
 
 			if(isset(self::$args['title']))
 			{
-				$insert_poll['post_title'] = trim(self::$args['title']);
+				$insert_poll['post_title'] = self::safe_user_string(self::$args['title']);
 			}
 			else
 			{

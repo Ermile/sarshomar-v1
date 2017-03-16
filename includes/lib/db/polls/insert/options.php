@@ -28,9 +28,10 @@ trait options
 					return debug::error(T_(" Invalid brand URL argument, you must set less than 99 character for brand URL "), 'url', 'arguments');
 				}
 
-				$url = self::$args['brand']['url'];
+				$url = self::safe_user_string(self::$args['brand']['url']);
 			}
-			self::save_options('brand', self::$args['brand']['title'], ['url' => $url]);
+			$brand_title = self::safe_user_string(self::$args['brand']['title']);
+			self::save_options('brand', $brand_title, ['url' => $url]);
 		}
 		else
 		{
@@ -409,7 +410,7 @@ trait options
 			$insert_tag = [];
 			foreach ($tags as $key => $value)
 			{
-				$value = trim($value);
+				$value = self::safe_user_string($value);
 				if(mb_strlen($value) > 45)
 				{
 					// \lib\db::rollback();
@@ -442,19 +443,40 @@ trait options
 			{
 
 				$tags_title = array_column($insert_tag, 'term_title');
+				$check_tags = \lib\db\words::save_and_check($tags_title);
+				if(!$check_tags)
+				{
+					$spam_words = \lib\db\words::$spam;
+					foreach ($spam_words as $key => $value)
+					{
+						unset($tags_title[array_search($key, $tags_title)]);
+					}
+				}
 
-				$tags_title = implode("','", $tags_title);
-				$get_ids =
-				"
-					SELECT
-						terms.id  AS `id`
-					FROM
-						terms
-					WHERE
-						terms.term_title IN ('$tags_title') AND
-						terms.term_type LIKE 'sarshomar_tag'
-				";
-				$tags_id = \lib\db::get($get_ids, 'id');
+
+
+				if(!empty($tags_title))
+				{
+					$tag_slug = $tags_title;
+
+					foreach ($tag_slug as $key => $value)
+					{
+						$tag_slug[$key]  = utility\filter::slug($value, null, 'persian');
+					}
+
+					$tag_slug = implode("','", $tag_slug);
+					$get_ids =
+					"
+						SELECT
+							terms.id  AS `id`
+						FROM
+							terms
+						WHERE
+							terms.term_slug IN ('$tag_slug') AND
+							terms.term_type LIKE 'sarshomar_tag'
+					";
+					$tags_id = \lib\db::get($get_ids, 'id');
+				}
 			}
 
 			if(!is_array($tags_id))

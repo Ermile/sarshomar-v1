@@ -40,7 +40,7 @@ trait answers
 			$title = null;
 			if(isset($value['title']) && $value['title'] !== '')
 			{
-				$title = trim($value['title']);
+				$title = self::safe_user_string($value['title']);
 				$combine[$key]['title'] = $title;
 			}
 			if(mb_strlen($title) > 99)
@@ -125,13 +125,23 @@ trait answers
 				// get score value
 	     		if(isset($value[$object_type]['score']['value']) && is_numeric($value[$object_type]['score']['value']))
 	     		{
+	     			if(intval($value[$object_type]['score']['value']) > 9999)
+	     			{
+						\lib\db\logs::set('user:poll:add:error:answer:score:max', self::$args['user'], ['meta' => ['input' => self::$args]]);
+	     				return debug::error(T_("Invalid parameter score in index :key of answer", ['key' => $key]), 'score', 'arguments');
+	     			}
 	     			$combine[$key]['score'] = $value[$object_type]['score']['value'];
 	     		}
 
 	     		// get score group
 	 	 		if(isset($value[$object_type]['score']['group']) && is_string($value[$object_type]['score']['group']))
 	     		{
-	     			$combine[$key]['groupscore'] = trim($value[$object_type]['score']['group']);
+	     			if(mb_strlen($value[$object_type]['score']['group']) > 99)
+	     			{
+						\lib\db\logs::set('user:poll:add:error:answer:score:group:max', self::$args['user'], ['meta' => ['input' => self::$args]]);
+	     				return debug::error(T_("You must set less than 99 character group score in index :key of answer", ['key' => $key]), 'group', 'arguments');
+	     			}
+	     			$combine[$key]['groupscore'] = self::safe_user_string($value[$object_type]['score']['group']);
 	     		}
 
 	     		// get true answer
