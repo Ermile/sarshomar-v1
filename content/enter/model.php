@@ -12,8 +12,8 @@ class model extends \mvc\model
 	public $username  = null;
 	public $pin       = null;
 	public $code      = null;
-	public $exist     = false;
 	public $user_data = [];
+	public $user_id   = null;
 
 
 	use tools\check;
@@ -29,11 +29,17 @@ class model extends \mvc\model
 	 */
 	public function get_enter($_args)
 	{
-		if($this->is_bot())
+		if($this->login())
+		{
+			$this->redirector('@')->redirect();
+			return;
+		}
+
+		if($this->check_is_bot())
 		{
 			\lib\error::access(T_("You are bot"));
 		}
-		$this->post_enter($_args);
+
 	}
 
 
@@ -44,38 +50,89 @@ class model extends \mvc\model
 	 */
 	public function post_enter($_args)
 	{
-		$ok = false;
-		switch ($this->check_input())
+		// if the user was login redirect to @ page
+		if($this->login())
 		{
-			case 'mobile':
-				$mobile = '09109610612';
-				$this->mobile = utility\filter::mobile($mobile);
-				$valid = $this->valid_mobile();
+			$this->redirector('@')->redirect();
+			return;
+		}
+
+		// check the user is block
+		if($this->enter_is_blocked())
+		{
+			$this->log('use:enter:blocked:agent:ip');
+			debug::msg('step', 'block');
+			debug::error(T_("You are blocked"));
+			return false;
+		}
+
+		$ok          = false;
+		// check input and get the step
+		$check_input = $this->check_input();
+
+		// load data of users by search mobile
+		if($check_input)
+		{
+			$mobile          = utility::post('mobile');
+			$this->mobile    = utility\filter::mobile($mobile);
+			$this->user_data = \lib\db\users::get_by_mobile($this->mobile);
+			if(isset($this->user_data['id']))
+			{
+				$this->user_id = $this->user_data['id'];
+			}
+		}
+
+		switch ($check_input)
+		{
+			// input in step1
+			case 'step1':
+				// check valid mobile by status of mobile
+				// if this mobile is blocked older
+				$valid = $this->check_valid_mobile();
 				if($valid)
 				{
-					// call new mobile
-					if($this->call_mobile())
+					// call mobile
+					if($this->verify_call_mobile())
 					{
+						// call was send
 						$ok = true;
+					}
+					else
+					{
+						$this->log('user:verification:invalid:mobile');
+						$this->log_sleep_code('invalid:mobile');
+						// this mobile is not a valid mobile
+						// check by kavenegar
+						$ok = false;
 					}
 				}
 				break;
-
-			case 'code':
-
-
-				break;
-
-			case 'pin':
-
+			// system in step 2
+			// we check the verification code
+			case 'step2':
+				if($this->verify_check())
+				{
+					// the verification code is true
+					// set login
+					$this->login_set();
+					$ok = true;
+				}
+				else
+				{
+					$this->log('user:verfication:invalid:code');
+					$this->log_sleep_code('invalid:code');
+					$ok = false;
+				}
 				break;
 
 			default:
-				// no thing!
+				$this->log('user:verfication:invalid:input');
+				// invalid input
+				$ok = false;
 				break;
 		}
 
-		debug::msg('ok', $ok);
+		debug::msg('step', $ok ? 'ok' : 'no');
 	}
 }
 ?>

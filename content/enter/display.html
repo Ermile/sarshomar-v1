@@ -17,14 +17,14 @@
 
   <div class='field usermobile'>
    <label for='usermobile'>
-    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" name='usermobile' id='usermobile' placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}'>
+    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" id='usermobile' placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}" {%endif%}>
    </label>
   </div>
 
   <div class='field password'>
    <label for='password'>
     <span>{%trans "Password"%}</span>
-    <input type='password' name='password' id='password' placeholder='{%trans "Password"%}'>
+    <input type='password' id='password' placeholder='{%trans "Password"%}'>
    </label>
   </div>
 
@@ -45,14 +45,14 @@
   <div class='field pin hide'>
    <label for='pin'>
     <span>{%trans "Pin"%}</span>
-    <input type='pin' name='pin' id='pin' placeholder='_ _ _ _' class='center'>
+    <input type='pin' id='pin' placeholder='_ _ _ _ _' class='center'>
    </label>
   </div>
 
   <div class='field code hide'>
    <label>
     <span>{%trans "Enter Verification Code"%}</span>
-    <input type='number' name='code' id='code' placeholder='_ _ _ _' autocomplete='off' class='center' max='9999'>
+    <input type='number' id='code' placeholder='_ _ _ _ _' autocomplete='off' class='center' max='99999'>
    </label>
   </div>
 

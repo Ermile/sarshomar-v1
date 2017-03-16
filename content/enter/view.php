@@ -21,7 +21,11 @@ class view extends \mvc\view
 	 */
 	public function view_enter($_args)
 	{
-
+		$mobile = \lib\utility::get('mobile');
+		if($mobile)
+		{
+			$this->data->get_mobile = \lib\utility\filter::mobile($mobile);
+		}
 	}
 }
 ?>

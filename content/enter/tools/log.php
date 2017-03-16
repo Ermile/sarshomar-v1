@@ -7,10 +7,18 @@ use \lib\db;
 
 trait log
 {
+
+	/**
+	 * save log
+	 *
+	 * @param      <type>  $_caller  The caller
+	 * @param      <type>  $_data    The data
+	 */
 	public function log($_caller, $_data = null)
 	{
 		$log_meta =
 		[
+			'data' => null,
 			'meta' =>
 			[
 				'data'    => $_data,
@@ -23,7 +31,6 @@ trait log
 	}
 
 
-
 	/**
 	 * set counter of caller log
 	 *
@@ -31,7 +38,54 @@ trait log
 	 */
 	public function counter($_caller)
 	{
+		if(isset($_SESSION[$_caller]))
+		{
+			$_SESSION[$_caller]++;
+		}
+		else
+		{
+			$_SESSION[$_caller] = 1;
+		}
 
+		if($_SESSION[$_caller] > 3)
+		{
+			$_SESSION['enter:user:block'] = true;
+		}
+
+		return $_SESSION[$_caller];
+	}
+
+
+	/**
+	 * check enter is blocked or no
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
+	public function enter_is_blocked()
+	{
+		if(isset($_SESSION['enter:user:block']) && $_SESSION['enter:user:block'] === true)
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * sleep code for some time
+	 *
+	 * @param      <type>  $_caller  The caller
+	 */
+	public function log_sleep_code($_caller = null)
+	{
+		if($this->enter_is_blocked())
+		{
+			sleep(7);
+		}
+		else
+		{
+			sleep((int) $this->counter($_caller));
+		}
 	}
 }
 ?>

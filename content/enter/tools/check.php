@@ -13,7 +13,7 @@ trait check
 	 *
 	 * @return     boolean  True if bottom, False otherwise.
 	 */
-	public function is_bot()
+	public function check_is_bot()
 	{
 		$is_bot = utility\visitor::isBot();
 		if($is_bot === 'NULL')
@@ -32,38 +32,43 @@ trait check
 	public function check_input()
 	{
 		$input = utility::post();
-		if(count($input) > 2)
+
+		if(count($input) > 5)
 		{
 			$this->log('enter:send:max:input', count($input));
 			$this->counter('enter:send:max:input');
 			return false;
 		}
 
-		if(isset($input['username']))
+
+		if(isset($input['password']) && $input['password'])
 		{
-			if(isset($input['password']))
+			$this->counter('enter:send:max:input');
+			$this->log('enter:send:password:notempty');
+			return false;
+		}
+
+		if(isset($input['step']))
+		{
+			switch ($input['step'])
 			{
-				$this->counter('enter:send:max:input');
-				$this->log('enter:send:username:password');
-				return false;
+				case '1':
+					return 'step1';
+					break;
+
+				case '2':
+					return 'step2';
+					break;
+
+				default:
+					return false;
+					break;
 			}
 		}
-
-		if(isset($input['mobile']) && count($input) === 1)
+		else
 		{
-			return 'mobile';
+			return false;
 		}
-
-		if(isset($input['mobile']) && isset($input['code']) && count($input) === 2)
-		{
-			return 'code';
-		}
-
-		if(isset($input['mobile']) && isset($input['pin']) && count($input) === 2)
-		{
-			return 'pin';
-		}
-
 		return false;
 	}
 
@@ -73,16 +78,13 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function valid_mobile()
+	public function check_valid_mobile()
 	{
-		$exist = \lib\db\users::get_by_mobile($this->mobile);
-		if(!empty($exist))
+		if(!empty($this->user_data))
 		{
-			$this->exist = true;
-			$this->user_data = $exist;
-			if(isset($exist['user_status']))
+			if(isset($this->user_data['user_status']))
 			{
-				switch ($exist['user_status'])
+				switch ($this->user_data['user_status'])
 				{
 					case 'active':
 						return true;

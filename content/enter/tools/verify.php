@@ -8,68 +8,143 @@ use \lib\db;
 trait verify
 {
 
-	public function call_mobile()
+	public function expire_old_code()
 	{
-		// check is valid mobile by kavenegar
-		// if valid call and return true
-		// else return false
 
-		// $this->kavenegar();
-		// exit();
+	}
 
+	public function verify_call_mobile()
+	{
+		$this->expire_old_code();
+
+		$code = rand(10000,99999);
+		$log_meta =
+		[
+			'data' => $code,
+			'meta' =>
+			[
+				'input'   => utility::post(),
+				'mobile'  => $this->mobile,
+				'code'    => $code,
+				'session' => $_SESSION,
+			]
+		];
+
+		if($code)
+		{
+			$service_name = 'sarshomar';
+			$language     = \lib\define::get_language();
+
+			if($language === 'fa')
+			{
+				$template = $service_name . '-fa';
+			}
+			else
+			{
+				$template = $service_name . '-en';
+			}
+
+			$request =
+			[
+				'mobile'   => $this->mobile,
+				'template' => $template,
+				'token'    => $code,
+				'type'     => 'call'
+			];
+
+			$users_count = \ilib\db\users::get_count('all');
+
+			if(is_int($users_count) && $users_count > 1000)
+			{
+				$request['template'] =  $service_name . '-signup-' . (\lib\define::get_language() === 'fa') ? 'fa': 'en';
+				$request['token2']   = $users_count;
+			}
+
+			$check_valid_mobile = \lib\utility\sms::send($request, 'verify');
+
+			if($check_valid_mobile === 411)
+			{
+				// this mobile is not a valid mobile
+				$this->signup('block');
+				return false;
+			}
+			else
+			{
+				if(!$this->user_id)
+				{
+					// singn up by this mobile
+					$this->user_id = $this->signup();
+				}
+				$log_meta['meta']['response'] = $check_valid_mobile;
+				db\logs::set('user:verification:code', $this->user_id, $log_meta);
+				return true;
+			}
+		}
+		else
+		{
+			// code not set !!
+			debug::error(T_("Please contact to administrator!"));
+			return false;
+		}
+		// why?!
+		return false;
 	}
 
 
 	/**
-	 * { function_description }
+	 * check verification code
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function kavenegar()
+	public function verify_check()
 	{
-		$myperm     = $this->option('account');
-		if(!$myperm)
+
+		$code = utility::post('code');
+		$log_meta =
+		[
+			'data' => null,
+			'meta' =>
+			[
+				'input'   => utility::post(),
+				'mobile'  => $this->mobile,
+				'code'    => $code,
+				'session' => $_SESSION,
+			]
+		];
+
+		if(!is_numeric($code) || intval($code) > 99999 || intval($code) < 10000)
 		{
-			$myperm = 'NULL';
+			db\logs::set('user:verification:invalid:code', $this->user_id, $log_meta);
+			$this->counter('user:verification:invalid:code');
+			return false;
 		}
-		$user_id     = \lib\db\users::signup(['mobile' => $mymobile, 'password' =>  $mypass, 'permission' =>  $myperm, 'port' => 'site']);
-		if($user_id)
+
+		$where =
+		[
+			'user_id'    => $this->user_id,
+			'log_data'   => $code,
+			'log_status' => 'enable',
+			'limit'      => 1,
+		];
+		$result = \lib\db\logs::get($where);
+
+		if(empty($result) || !isset($result['log_data']) || !isset($result['user_id']) || !isset($result['id']))
 		{
-			// generate verification code
-			// save in logs table
-			// set SESSION verification_mobile
-			$code = \lib\utility\filter::generate_verification_code($user_id, $mymobile);
-			if($code)
-			{
-				$service_name = \lib\router::get_domain(count(\lib\router::get_domain(-1))-2);
-				$request = [
-					'mobile' 		=> $mymobile,
-					'template' 		=> $service_name . '-' . \lib\define::get_language(),
-					'token'			=> $code,
-					'type'			=> 'call'
-					];
-					$users_count = \lib\db\users::get_count();
-					if(is_int($users_count) && $users_count > 1000)
-					{
-						$request['template'] =  $service_name . '-' . $this->module() . '-' . \lib\define::get_language();
-						$request['token2'] 	= $users_count;
-					}
-				\lib\utility\sms::send($request, 'verify');
-				debug::true(T_("Register successfully"));
-				$_SESSION['tmp']['verify_mobile'] = $mymobile;
-				$_SESSION['tmp']['verify_mobile_time'] = time() + (5*60);
-				$this->redirector()->set_url('verification');
-			}
-			else
-			{
-				debug::error(T_("Please contact to administrator!"));
-			}
+			$this->counter('user:verification:invalid:code');
+			return false;
 		}
-		elseif($user_id === false)
+
+		if(intval($result['log_data']) === intval($code))
 		{
-			debug::error(T_("Mobile number exist!"));
+			db\logs::set('user:verification:success', $this->user_id, $log_meta);
+			\lib\db\logs::update(['log_status' => 'expire'], $result['id']);
+			return true;
 		}
 		else
 		{
-			debug::error(T_("Please contact to administrator!"));
+			db\logs::set('user:verification:another:code', $this->user_id, $log_meta);
+			$this->counter('user:verification:invalid:code');
+			return false;
 		}
 	}
 }
