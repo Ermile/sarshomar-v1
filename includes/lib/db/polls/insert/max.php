@@ -23,7 +23,7 @@ trait max
 		";
 		$count = (int) \lib\db::get($query, 'count', true);
 
-		$max_draft  = 5;
+		$max_draft  = 10;
 
 		if(self::poll_check_permission('u','draft_poll_10', 'view'))
 		{

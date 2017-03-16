@@ -33,32 +33,28 @@ class model extends \mvc\model
 	 */
 	public function get_search($_args)
 	{
-		$search = null;
+		$request = [];
+		$request['search'] = null;
 		if(isset($_args->get("search")[0]))
 		{
-			$search = $_args->get("search")[0];
+			$request['search'] = $_args->get("search")[0];
 		}
 
-		$in = 'sarshomar';
+		$request['in'] = 'sarshomar';
 
 		if(\lib\storage::get('rep') == 'u')
 		{
-			$in = 'me';
+			$request['in']     = 'me';
+			$request['status'] = 'stop pause publish draft awaiting';
 			\lib\router::set_url('@/'. \lib\router::get_url());
 		}
 
 		$this->user_id  = $this->login('id');
 
-		\lib\utility::$REQUEST = new \lib\utility\request(
-		[
-			'method' => 'array',
-			'request' =>
-			[
-				'search'   => $search,
-				'in'       => $in,
-				'language' => \lib\define::get_language(),
-			]
-		]);
+		$request['language'] = \lib\define::get_language();
+
+		\lib\utility::set_request_array($request);
+
 		$this->api_mode = false;
 
 		return $this->poll_search($_args);
