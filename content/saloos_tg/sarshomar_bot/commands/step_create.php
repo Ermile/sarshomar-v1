@@ -17,6 +17,7 @@ class step_create
 
 	public static function start($_text = null, $_run_as_edit = false)
 	{
+		session::remove('poll');
 		step::start('create');
 		return self::step1();
 	}

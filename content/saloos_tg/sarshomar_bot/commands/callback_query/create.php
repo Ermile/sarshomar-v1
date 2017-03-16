@@ -105,6 +105,16 @@ class create
 		return [];
 	}
 
+	public static function preview($_query = null, $_data_url = null)
+	{
+		step::stop();
+		step::start('create_preview');
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create_preview::step1());
+		return [];
+	}
+
 	public static function save($_query = null, $_data_url = null)
 	{
 		step::stop();

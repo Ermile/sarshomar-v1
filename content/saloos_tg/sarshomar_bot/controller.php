@@ -32,6 +32,7 @@ class controller extends \lib\mvc\controller
 			}
 		});
 		set_error_handler(function(...$_args) {
+			handle::send_log($_args);
 			self::$microtime_log[] = $_args;
 		});
 

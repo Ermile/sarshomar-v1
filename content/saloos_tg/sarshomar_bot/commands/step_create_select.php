@@ -24,9 +24,19 @@ class step_create_select
 
 	public static function step1($_text = null)
 	{
-		$make = new make_view(session::get('poll'));
-		$make->message->add_title();
-		$make->message->add_poll_list();
+		$poll_id = session::get('poll');
+		$maker = new make_view($poll_id);
+		$maker->message->add_title();
+		if($_text)
+		{
+			$maker->message->add('line', "");
+			$maker->query_result['answers'][] = [
+			"key" => count($maker->query_result['answers']) + 1,
+			"type" => "select",
+			"title" => $_text,
+			];
+		}
+		$maker->message->add_poll_list();
 		$count = ['first', 'second', 'third'];
 		$count_answer = count($maker->query_result['answers']);
 		if($count_answer > 2)
@@ -53,25 +63,46 @@ class step_create_select
 			$count = $count[$count_answer];
 		}
 
-		$maker->message->add('insert', T_("Enter the text of :count option", ['count' => $count]));
 
-		if($count_answer > 2)
+
+		if($count_answer < 2)
 		{
-			$make->message->add('alert', "✳ " . T_("درج حداقل دو گزینه اجباری است"));
+			$maker->message->add('insert', "📍 ". T_("Enter the text of :count option", ['count' => $count]));
+			$maker->message->add('alert', "\n✳ " . T_("درج حداقل دو گزینه اجباری است"));
+		}
+		else
+		{
+			$maker->message->add('insert', "📍 ". T_("با انتخاب دکمه پیش‌نمایش، سوال را منتشر کنید یا در صورت وجود گزینه :count آن را وارد کنید", ['count' => $count]));
+			$maker->inline_keyboard->add([
+				[
+					"text" => T_("پیش‌نمایش"),
+					"callback_data" => 'create/preview',
+				]
+			]);
 		}
 
-		$make->message->add('tag', utility::tag(T_("Create new poll")));
-		$make->inline_keyboard->add([
+		$maker->inline_keyboard->add([
 			[
-				"text" => T_("Save"),
-				"callback_data" => 'create/save',
-			],
-			[
-				"text" => T_("Delete"),
-				"callback_data" => 'create/delete'
+				"text" => T_("Cancel"),
+				"callback_data" => 'create/cancel',
 			]
 		]);
-		$return = $make->make();
+		$maker->message->add('tag', utility::tag(T_("Create new poll")));
+
+		if($_text)
+		{
+			$answers = [];
+			foreach ($maker->query_result['answers'] as $key => $value) {
+				$answers[] = ['type' => 'select', 'title' => $value['title']];
+			}
+
+			utility::make_request(['id' => $poll_id, 'answers' => $answers]);
+			main::$controller->model()->poll_add(['method' => 'patch']);
+
+			if(debug::$status === 0) return self::error();
+		}
+
+		$return = $maker->make();
 		$return["response_callback"] = utility::response_expire('create');
 		return $return;
 	}
