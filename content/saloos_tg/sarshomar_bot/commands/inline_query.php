@@ -23,7 +23,13 @@ class inline_query
 		$result['switch_pm_parameter'] = "new";
 		session::remove_back('expire', 'inline_cache');
 		$search = \lib\utility\safe::safe($inline_query['query']);
-		if(substr($search, 0, 1) == '/')
+		if($search == '/now' && in_array(bot::response('from'), [58164083, 46898544]))
+		{
+			self::now($result);
+			handle::send_log($result);
+			return $result;
+		}
+		elseif(substr($search, 0, 1) == '/')
 		{
 			self::about($result);
 			return $result;
@@ -263,6 +269,58 @@ class inline_query
 				'longitude' => 50.88625860000002,
 				'title'     => T_('Sarshomar'),
 				'address'   => T_('#614, Omranieh, Moallem Sq, Qom, Iran. 37158-39959')
+			];
+	}
+
+	public static function now(&$result)
+	{
+		$result['results'][0] = [];
+		$result['results'][0]['type'] = 'article';
+		$result['results'][0]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+		$result['results'][0]['description'] = T_("Count of humans in Sarshomar until now");
+		$result['results'][0]['title'] = ucfirst(T_("now"));
+		$result['results'][0]['id'] = "now";
+
+		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> T_("‌Bot"),
+				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
+			],
+			[
+				"text" 	=> T_("Site"),
+				"url"	=> "https://sarshomar.com/fa"
+			],
+		]];
+
+		$result['results'][0]['input_message_content'] = [
+				'message_text' 				=> utility::user_detail('now'),
+				'parse_mode' 				=> "HTML",
+				'disable_web_page_preview' 	=> true
+			];
+
+
+		$result['results'][1] = [];
+		$result['results'][1]['type'] = 'article';
+		$result['results'][1]['thumb_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/static/images/logo/sarshomar-brand-128.png';
+		$result['results'][1]['description'] = T_("Count of humans in Sarshomar until now");
+		$result['results'][1]['title'] = ucfirst(str_replace("_", " ", T_("now_detail")));
+		$result['results'][1]['id'] = "now_detail";
+
+		$result['results'][1]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> T_("‌Bot"),
+				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
+			],
+			[
+				"text" 	=> T_("Site"),
+				"url"	=> "https://sarshomar.com/fa"
+			],
+		]];
+
+		$result['results'][1]['input_message_content'] = [
+				'message_text' 				=> utility::user_detail('now_detail'),
+				'parse_mode' 				=> "HTML",
+				'disable_web_page_preview' 	=> true
 			];
 	}
 }

@@ -106,6 +106,7 @@ class handle
 			if(!empty($sync))
 			{
 				bot::$user_id = isset($sync['user_id']) ? $sync['user_id'] : bot::$user_id;
+				session::$user_id = bot::$user_id;
 				callback_query\language::set_client_language();
 				$text = $sync['message'];
 				$text .= "\n";
@@ -172,25 +173,7 @@ class handle
 				case '/now' :
 					if(in_array(bot::response('from'), [58164083, 46898544]))
 					{
-						$ports = \saloos::lib_static('db')->users()::get_count('port');
-						$port_text = [];
-						$port_text[] = "<strong>" . T_("Count of humans in Sarshomar until now") . "</strong>\n";
-						$total = 0;
-						foreach ($ports as $key => $value) {
-							if($command_text == '/now_detail')
-							{
-								$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>$value</strong>";
-							}
-							$total += $value;
-						}
-						$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
-						$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
-						$port_text[] = "👥 ". T_("Total") . ": " . $total;
-						$port_text[] = "🙋‍♂". T_("Active") . ": " . \saloos::lib_static('db')->users()::get_count('all');
-						$port_text[] = "\n🕰 " . $my_date . " #" . T_(substr($command_text, 1));
-						return [
-							'text' => utility::nubmer_language(join("\n", $port_text))
-						];
+						return ['text' => utility::user_detail(substr($command_text, 1))];
 					}
 					else
 					{

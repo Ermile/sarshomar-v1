@@ -235,6 +235,7 @@ class utility
 			{
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
 				\lib\db::log($log, null, 'telegram-error.json', 'json');
+				handle::send_log($log);
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
@@ -380,5 +381,26 @@ END;
 			'parse_mode'			=> "HTML"
 			];
 		}
+	}
+
+	public static function user_detail($_type)
+	{
+		$ports = \saloos::lib_static('db')->users()::get_count('port');
+		$port_text = [];
+		$port_text[] = "<strong>" . T_("Count of humans in Sarshomar until now") . "</strong>\n";
+		$total = 0;
+		foreach ($ports as $key => $value) {
+			if($_type == 'now_detail')
+			{
+				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>$value</strong>";
+			}
+			$total += $value;
+		}
+		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
+		$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
+		$port_text[] = "👥 ". T_("Total") . ": " . $total;
+		$port_text[] = "🙋‍♂". T_("Active") . ": " . \saloos::lib_static('db')->users()::get_count('all');
+		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
+		return utility::nubmer_language(join("\n", $port_text));
 	}
 }
