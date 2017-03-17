@@ -1,74 +1,57 @@
 {%extends display.mvc%}
 
-
 {%block head_css%}
  <link rel="stylesheet"       href="{{url.static}}css/responsive.css">
  <link rel="stylesheet"       href="{{url.static}}css/enter.css">
 {%endblock%}
 
 
-{%block body%}
-<div class='f enter'>
- <div class='c3 x2 m4 s12 sidebox'>
-  <a class='logo' href=''>
-   {%if site.currentlang =='fa'%}
-    <img class='logo' src='{{url.static}}images/logo/sarshomar-logo-fa.svg' alt='{%trans "Sarshomar"%}'>
-   {%else%}
-    <img class='logo' src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{%trans "Sarshomar"%}'>
-   {%endif%}
-  </a>
-  <!-- <h1>{%trans "Enter"%}</h1> -->
-
-  <div class='field usermobile'>
-   <label for='usermobile'>
-    <input type='tel' required maxlength="15" pattern=".{7,}" autocomplete="off" id='usermobile' placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}" {%endif%}>
-   </label>
-  </div>
-
-  <div class='field password'>
-   <label for='password'>
-    <span>{%trans "Password"%}</span>
-    <input type='password' id='password' placeholder='{%trans "Password"%}'>
-   </label>
-  </div>
-
-  <div class='waiting hide'>
-   <span>{%trans "Please be patient, we are generating keys"%}</span>
-   <div class="loader">
-    <span></span>
-    <span></span>
-    <span></span>
-   </div>
-  </div>
-
-  <div class="notif hide">
-   <span></span>
-   <a href="#">Link</a>
-  </div>
-
-  <div class='field pin hide'>
-   <label for='pin'>
-    <span>{%trans "Pin"%}</span>
-    <input type='text' id='pin' placeholder='_ _ _ _ _' class='center'>
-   </label>
-  </div>
-
-  <div class='field code hide'>
-   <label>
-    <span>{%trans "Enter Verification Code"%}</span>
-    <input type='number' id='code' placeholder='_ _ _ _ _' autocomplete='off' class='center' max='99999'>
-   </label>
-  </div>
-
-  <button id="go">{%trans "Go"%}</button>
- </div>
- <div class='c mainbox'></div>
-</div>
-
-{%endblock%}
-
-
 {%block foot_js%}
 
   <script src="{{url.static}}js/enter.js"></script>
+{%endblock%}
+
+
+{%block body%}
+<div class='f enter'>
+ <div class='c3 x2 m4 s12 sidebox' autocomplete="off">
+
+  <h1 class='logo'>
+   <a class='logo' href='{{url.base}}' tabindex='1'>
+{%if site.currentlang =='fa'%}
+    <img src='{{url.static}}images/logo/sarshomar-logo-fa.svg' alt='{{site.title}} | {{site.desc}}'>
+{%else%}
+    <img src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{{site.title}} | {{site.desc}}'>
+{%endif%}
+    <span>{%trans "Sarshomar"%}</span>
+   </a>
+  </h1>
+
+  <h2>
+   <span class="notif" data-wait='{%trans "Please be patient, we are generating keys"%}'>{%trans "Enter to Sarshomar"%}</span>
+   <div class="loader"><span></span><span></span><span></span></div>
+  </h2>
+
+  <div class='usernameBox'>
+   <label for='username'>{%trans "Mobile"%}</label>
+   <input id='username' type='tel' required maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}"{%endif%} autocomplete="false" readonly>
+  </div>
+
+  <div class='passcodeBox'>
+   <label for='passcode'>{%trans "Password"%}</label>
+   <input id='passcode' type='password' placeholder='{%trans "Password"%}' autocomplete="false">
+  </div>
+
+  <div class='pinBox'>
+   <label for='pin'>{%trans "Pin"%}</label>
+   <input id='pin' type='password' placeholder='{%trans "Pin"%}' autocomplete="false">
+  </div>
+
+  <div class='goBox'>
+   <label for='go'>{%trans "Go"%}</label>
+   <button id="go" type="submit">{%trans "Go"%}</button>
+  </div>
+
+ </div>
+</div>
 {%endblock%}
