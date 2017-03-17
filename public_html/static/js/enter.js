@@ -114,13 +114,13 @@ function changer(_name, _enable)
 			else if(_enable === true)
 			{
 				// enable it
-				elField.slideDown();
+				elField.fadeIn();
 				el.attr('disabled', null).focus();
 			}
 			else if(_enable === false)
 			{
 				// hide it
-				elField.slideUp();
+				elField.fadeOut();
 			}
 			break;
 
@@ -130,13 +130,13 @@ function changer(_name, _enable)
 			if(_enable === undefined)
 			{
 				// disable it
-				elField.slideUp();
+				elField.fadeOut();
 				el.attr('disabled', true);
 			}
 			else if(_enable === true)
 			{
 				// enable it
-				elField.slideDown();
+				elField.fadeIn();
 				el.attr('disabled', null);
 			}
 			else if(_enable === false)
@@ -233,13 +233,9 @@ function sendToBigBrother(_step)
 					switch(callback.step)
 					{
 						case 'mobile':
-							gotoStep('mobile');
-							break;
-
 						case 'pin':
-							break;
-
 						case 'code':
+							gotoStep(callback.step);
 							break;
 
 						default:
