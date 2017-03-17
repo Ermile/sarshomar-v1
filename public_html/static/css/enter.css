@@ -22,17 +22,19 @@ body{background-color:#d7d8d8;background-image:url(../images/enter/4.jpg)}
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
+.enter > div:not(:last-child){margin-bottom:2rem}
+
 .enter .field{border-radius:3px;overflow:hidden}
-.enter .field:not(.goBox){margin-bottom:2rem;border:1px solid #6f6f6f}
 .enter .field label{background-color:#fff;color:#6f6f6f}
 .enter .field label span[class*="icon-"]{font-size:2em}
 .enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
-.enter .field input,.enter button{font-size:1.2em;-webkit-transition:0.3s;transition:0.3s}
-.enter .field input{width:100%;padding:1em 2em;border:none;background-color:#fff;direction:ltr}
+.enter .field input,.enter button{font-size:1.8em;-webkit-transition:0.3s;transition:0.3s}
+.enter .field input{width:100%;padding:1rem;border:none;background-color:#fff;direction:ltr;color:#404040}
 .enter .field input.disabled,.enter .field input[disabled]{pointer-events:none;opacity:.45}
 .enter .field input.ltr{text-align:left}
 .enter .field input.center{text-align:center}
-.enter button{display:block;width:100%;/*margin:0 auto;*/padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
+.enter button{display:block;width:100%;padding:1rem;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#0275d8;color:#fff}
+.enter button:hover,.enter button:focus{color:#fff;background-color:#025aa5}
 
 .typed-cursor{opacity:1;-webkit-animation:blink 0.7s infinite;-moz-animation:blink 0.7s infinite;animation:blink 0.7s infinite}
 @keyframes blink{

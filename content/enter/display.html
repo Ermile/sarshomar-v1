@@ -30,40 +30,50 @@
   <span class="loader"><span></span><span></span><span></span></span>
  </h2>
 
- <div class='f field usernameBox'>
-  <label for='username' class='c2 flex justify-center align-center'>
-   <span class='hide'>{%trans "Mobile"%}</span>
-   <span class='icon-mobile2'></span>
-  </label>
-  <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
+ <div class='usernameBox'>
+  <div class='f field'>
+   <label for='username' class='c2 flex justify-center align-center'>
+    <span class='hide'>{%trans "Mobile"%}</span>
+    <span class='icon-mobile2'></span>
+   </label>
+   <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
+  </div>
  </div>
 
- <div class='f field passcodeBox'>
-  <label for='passcode' class='c2 flex justify-center align-center'>
-   <span class='hide'>{%trans "Password"%}</span>
-   <span class='icon-key2'></span>
-  </label>
-  <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off" >
+ <div class='passcodeBox'>
+  <div class='f field'>
+   <label for='passcode' class='c2 flex justify-center align-center'>
+    <span class='hide'>{%trans "Password"%}</span>
+    <span class='icon-key2'></span>
+   </label>
+   <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off" >
+  </div>
  </div>
 
- <div class='f field pinBox'>
-  <label for='pin' class='c2 flex justify-center align-center'>
-   <span class='hide'>{%trans "Pin"%}</span>
-   <span>PIN</span>
-  </label>
-  <input id='pin' type='password' class='c' placeholder='{%trans "Pin"%}' autocomplete="off" >
+ <div class='pinBox'>
+  <div class='f field'>
+   <label for='pin' class='c2 flex justify-center align-center'>
+    <span class='hide'>{%trans "Pin"%}</span>
+    <span>PIN</span>
+   </label>
+   <input id='pin' type='password' class='c' placeholder='{%trans "Pin"%}' autocomplete="off" >
+  </div>
  </div>
 
- <div class='f field codeBox'>
-  <label for='code' class='c2 flex justify-center align-center'>
-   <span class='hide'>{%trans "Code"%}</span>
-   <span class="icon-barcode"></span>
-  </label>
-  <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
+ <div class='codeBox'>
+  <div class='f field'>
+   <label for='code' class='c2 flex justify-center align-center'>
+    <span class='hide'>{%trans "Code"%}</span>
+    <span class="icon-barcode"></span>
+   </label>
+   <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
+  </div>
  </div>
 
- <div class='field goBox'>
-  <button id="go" type="submit">{%trans "Go"%}</button>
+ <div class='goBox'>
+  <div class='field'>
+   <button id="go" type="submit">{%trans "Go"%}</button>
+  </div>
  </div>
 </div>
 {%endblock%}
