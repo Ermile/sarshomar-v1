@@ -2,7 +2,7 @@
 //------------- save and update answer error
 $errors[3000] = T_("poll not found");
 $errors[3001] = T_("poll not found (deleted)");
-$errors[3002] = T_("Poll has not publisheded");
+$errors[3002] = T_("Poll has not published");
 $errors[3003] = T_("poll can not update result");
 $errors[3004] = T_("duplicate answer, needless to update");
 $errors[3005] = T_("many time left of your answer, you can not update your answer");

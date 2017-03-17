@@ -103,7 +103,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			debug::error(T_("Can not found availible status"));
+			debug::error(T_("Unable to find available status"));
 		}
 
 		return;

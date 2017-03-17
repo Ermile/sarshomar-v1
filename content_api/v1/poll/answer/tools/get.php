@@ -101,7 +101,7 @@ trait get
 		}
 		else
 		{
-			return debug::error(T_("Can not found poll id"), 'api', 'system');
+			return debug::error(T_("Unable to find poll ID"), 'api', 'system');
 		}
 
 	}

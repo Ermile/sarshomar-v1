@@ -38,7 +38,7 @@ trait fav_like
 			}
 			else
 			{
-				return debug::error(T_("Poll has not publisheded"), 'id', 'arguments');
+				return debug::error(T_("Poll has not published"), 'id', 'arguments');
 			}
 		}
 

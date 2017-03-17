@@ -70,7 +70,7 @@ trait set
 		}
 		else
 		{
-			debug::error(T_("Transactio items id not found"));
+			debug::error(T_("Transaction items id not found"));
 			return false;
 		}
 
@@ -89,7 +89,7 @@ trait set
 		}
 		else
 		{
-			debug::error(T_("Transactio type not found"));
+			debug::error(T_("Transaction type not found"));
 			return false;
 		}
 

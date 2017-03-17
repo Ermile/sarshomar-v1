@@ -42,7 +42,7 @@ $modules['hidden_result'] = array(
  */
 $modules['free_account'] =
 [
-	'desc'        => T_("Use system whitout pay money"),
+	'desc'        => T_("Use system whitout paying money"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -52,7 +52,7 @@ $modules['free_account'] =
  */
 $modules['free_add_poll'] =
 [
-	'desc'        => T_("Allow to poll whitout pay money"),
+	'desc'        => T_("Allow to add poll without paying money"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -63,7 +63,7 @@ $modules['free_add_poll'] =
 */
 $modules['free_add_brand'] =
 [
-	'desc'        => T_("Allow to brand whitout pay money"),
+	'desc'        => T_("Allow to add brand whitout paying money"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -73,7 +73,7 @@ $modules['free_add_brand'] =
 */
 $modules['free_add_filter'] =
 [
-	'desc'        => T_("Allow to add filter whitout pay money"),
+	'desc'        => T_("Allow to add filter without paying money"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -83,7 +83,7 @@ $modules['free_add_filter'] =
 */
 $modules['free_add_member'] =
 [
-	'desc'        => T_("Allow to member whitout pay money"),
+	'desc'        => T_("Allow to register without paying money"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -93,7 +93,7 @@ $modules['free_add_member'] =
 */
 $modules['lock_edit_mobile'] =
 [
-	'desc'        => T_("Lock edti mobile"),
+	'desc'        => T_("Lock editing mobile"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -143,7 +143,7 @@ $modules['add_poll_cats'] =
 */
 $modules['add_poll_article'] =
 [
-	'desc'        => T_("Allow to poll article"),
+	'desc'        => T_("Allow to add article to poll"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -163,7 +163,7 @@ $modules['add_max_tags'] =
 */
 $modules['max_update_answer'] =
 [
-	'desc'        => T_("Allow to update answer, for example the sarshomar user can update her meny times"),
+	'desc'        => T_("Allow to update answer"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];
@@ -203,7 +203,7 @@ $modules['draft_poll_500'] =
 */
 $modules['draft_poll_max'] =
 [
-	'desc'        => T_("Allow to max poll draft"),
+	'desc'        => T_("Allow to increase draft polls"),
 	'icon'        => 'file-text-o',
 	'permissions' => ['view'],
 ];

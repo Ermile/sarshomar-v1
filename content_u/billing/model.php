@@ -102,7 +102,7 @@ class model extends \mvc\model
 		{
 			if(!in_array(mb_strtolower(utility::post('bank')), self::$support_bank))
 			{
-				return debug::error(T_("This bank is not support by us"));
+				return debug::error(T_("This gateway is not supported by Sarshomar"));
 			}
 
 			if(!utility::post('amount'))

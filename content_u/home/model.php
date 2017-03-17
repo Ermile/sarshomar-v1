@@ -23,7 +23,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				return debug::error(T_("Can not access to delete your account"));
+				return debug::error(T_("Access unavailable to delete your account"));
 			}
 		}
 
@@ -80,7 +80,7 @@ class model extends \mvc\model
 		}
 		else
 		{
-			return \lib\debug::error(T_("Can not access to run this options. please contact to administrator"));
+			return \lib\debug::error(T_("Access unavailable to run this operation. Please contact administrator"));
 		}
 	}
 
@@ -105,7 +105,7 @@ class model extends \mvc\model
 
 			\lib\db\users::set_language($lang, ['user_id' => $this->login("id")]);
 
-			debug::true(T_("Your default language change"));
+			debug::true(T_("Your default language changed"));
 
 			if(\lib\define::get_language() != $lang)
 			{
