@@ -52,19 +52,11 @@ trait check
 		{
 			switch ($input['step'])
 			{
-				case '1':
-					// get mobile or username
-					return 'step1';
-					break;
-
-				case '2':
-					// get pin
-					return 'step2';
-					break;
-
-				case '3':
+				case 'mobile':
+				case 'pin':
+				case 'code':
 					// get code
-					return 'step3';
+					return $input['step'];
 					break;
 
 				default:
