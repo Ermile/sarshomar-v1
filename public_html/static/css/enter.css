@@ -1,6 +1,6 @@
 /* Initial CSS */
 html{height:100%}
-body{min-height:100%;background-image:url(../images/shattered_@2X.png);display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:flex !important}
+body{min-height:100%;background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png);display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:flex !important}
 
 /* Layout */
 .enter{min-height:100%;background-color:transparent;-webkit-box-flex:1;-ms-flex:1;flex:1}
