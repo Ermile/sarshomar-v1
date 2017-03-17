@@ -147,5 +147,26 @@ trait verify
 			return false;
 		}
 	}
+
+
+	/**
+	 * check pin code
+	 */
+	public function verify_pin_check()
+	{
+		$pin      = utility::post('pin');
+		$password = null;
+
+		if(array_key_exists('user_pass', $this->user_data))
+		{
+			$password = $this->user_data['user_pass'];
+		}
+
+		if(utility::hasher($pin, $password))
+		{
+			return true;
+		}
+		return false;
+	}
 }
 ?>

@@ -53,11 +53,18 @@ trait check
 			switch ($input['step'])
 			{
 				case '1':
+					// get mobile or username
 					return 'step1';
 					break;
 
 				case '2':
+					// get pin
 					return 'step2';
+					break;
+
+				case '3':
+					// get code
+					return 'step3';
 					break;
 
 				default:
@@ -78,16 +85,39 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function check_valid_mobile()
+	public function check_valid_mobile_username()
 	{
+		$return = 'code';
 		if(!empty($this->user_data))
 		{
-			if(isset($this->user_data['user_status']))
+			if(
+				array_key_exists('user_username', $this->user_data) &&
+				array_key_exists('user_pass', $this->user_data) &&
+				array_key_exists('user_status', $this->user_data)
+			  )
+			{
+				if(
+					$this->user_data['user_username'] &&
+					$this->user_data['user_status'] === 'active' &&
+					!is_null($this->user_data['user_pass'])
+				  )
+				{
+					if(is_numeric($this->mobile) && intval($this->mobile) > 9999999 && intval($this->mobile) < 99999999999)
+					{
+						$this->mobile = utility\filter::mobile($this->mobile);
+						return 'code';
+					}
+
+					$return = 'pin';
+				}
+			}
+
+			if(array_key_exists('user_status', $this->user_data))
 			{
 				switch ($this->user_data['user_status'])
 				{
 					case 'active':
-						return true;
+						$return = 'code';
 						break;
 
 					case 'block':
@@ -95,17 +125,16 @@ trait check
 						// save log to use block number
 						$this->log('enter:use:blocked:mobile');
 						$this->counter('enter:use:blocked:mobile');
-						return false;
+						$return = 'invalid';
 						break;
 
 					default:
-						return true;
+						$return = 'code';
 						break;
 				}
 			}
-			return true;
 		}
-		return true;
+		return $return;
 	}
 }
 ?>
