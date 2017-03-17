@@ -14,7 +14,7 @@
 
 {%block body%}
 <div class='f enter'>
- <div class='c3 x2 m4 s12 sidebox' autocomplete="off">
+ <div class='c3 x2 m4 s12 sidebox'>
 
   <h1 class='logo'>
    <a class='logo' href='{{url.base}}' tabindex='1'>
@@ -29,26 +29,31 @@
 
   <h2>
    <span class="notif" data-wait='{%trans "Please be patient, we are generating keys"%}'>{%trans "Enter to Sarshomar"%}</span>
-   <div class="loader"><span></span><span></span><span></span></div>
+   <span class="loader"><span></span><span></span><span></span></span>
   </h2>
 
-  <div class='usernameBox'>
-   <label for='username'>{%trans "Mobile"%}</label>
-   <input id='username' type='tel' required maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}"{%endif%} autocomplete="false" readonly>
+  <div class='field usernameBox'>
+   <label for='username'><span>{%trans "Mobile"%}</span></label>
+   <input id='username' type='tel' required maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}"{%endif%} autocomplete="off" readonly>
   </div>
 
-  <div class='passcodeBox'>
-   <label for='passcode'>{%trans "Password"%}</label>
-   <input id='passcode' type='password' placeholder='{%trans "Password"%}' autocomplete="false">
+  <div class='field passcodeBox'>
+   <label for='passcode'><span>{%trans "Password"%}</span></label>
+   <input id='passcode' type='password' placeholder='{%trans "Password"%}' autocomplete="off">
   </div>
 
-  <div class='pinBox'>
-   <label for='pin'>{%trans "Pin"%}</label>
-   <input id='pin' type='password' placeholder='{%trans "Pin"%}' autocomplete="false">
+  <div class='field pinBox'>
+   <label for='pin'><span>{%trans "Pin"%}</span></label>
+   <input id='pin' type='password' placeholder='{%trans "Code"%}' autocomplete="off">
   </div>
 
-  <div class='goBox'>
-   <label for='go'>{%trans "Go"%}</label>
+  <div class='field codeBox'>
+   <label for='code'><span>{%trans "Code"%}</span></label>
+   <input id='code' type='number' placeholder='{%trans "Code"%}' autocomplete="off">
+  </div>
+
+  <div class='field goBox'>
+   <label for='go'><span>{%trans "Go"%}</span></label>
    <button id="go" type="submit">{%trans "Go"%}</button>
   </div>
 
