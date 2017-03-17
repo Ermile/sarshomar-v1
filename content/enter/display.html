@@ -11,7 +11,11 @@
 <div class='f enter'>
  <div class='c3 x2 m4 s12 sidebox'>
   <a class='logo' href=''>
-   <img class='logo' src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{%trans "Logo"%}'>
+   {%if site.currentlang =='fa'%}
+    <img class='logo' src='{{url.static}}images/logo/sarshomar-logo-fa.svg' alt='{%trans "Sarshomar"%}'>
+   {%else%}
+    <img class='logo' src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{%trans "Sarshomar"%}'>
+   {%endif%}
   </a>
   <!-- <h1>{%trans "Enter"%}</h1> -->
 
