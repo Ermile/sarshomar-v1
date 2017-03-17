@@ -45,7 +45,8 @@ class model extends \mvc\model
 		\lib\db\logs::set('user:request:ask', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
 		if($ask_url == null)
 		{
-			\lib\db\logs::set('user:request:ask:all_poll_answered', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
+			\lib\db\logs::set('user:request:ask:empty', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
+			$_SESSION['user_answered_to_all_poll'] = true;
 			$ask_url = '$';
 		}
 		$this->redirector()->set_url($ask_url);

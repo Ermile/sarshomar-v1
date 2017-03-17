@@ -6,6 +6,9 @@
     <div class="box">
      <div class="row unselectable">
       <div class="in {%if my_poll %}xlarge{%endif%}">
+       {% if user_answered_to_all_poll %}
+        <div class="alert">{{user_answered_to_all_poll}}</div>
+       {% endif %}
        <div class="search-box">
         <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
         <label class="search-label">

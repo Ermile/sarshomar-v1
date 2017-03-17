@@ -18,6 +18,20 @@ class view extends \mvc\view
 		$this->data->page['title']   = T_('Sarshomar Knowledge');
 		$this->data->page['desc']    = T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");
 
+		$this->user_answered_to_all_poll();
+
+	}
+
+	/**
+	 * check notify to user or no
+	 */
+	public function user_answered_to_all_poll()
+	{
+		if(isset($_SESSION['user_answered_to_all_poll']) && $_SESSION['user_answered_to_all_poll'] === true)
+		{
+			unset($_SESSION['user_answered_to_all_poll']);
+			$this->data->user_answered_to_all_poll = T_("You are answered to all poll");
+		}
 	}
 
 

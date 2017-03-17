@@ -19,6 +19,8 @@ trait check
 	{
 		$_string = preg_replace("/[\s\t\n]+/", ' ', $_string);
 		$_string = trim($_string);
+		// $_string = trim($_string, '‌'); // trim half space
+		// $_string = trim($_string, '‌'); // trim half space
 		return $_string;
 	}
 
