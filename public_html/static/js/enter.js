@@ -68,11 +68,27 @@ function verifyInput(_name)
 {
 	$('#' + _name).on('input', function()
 	{
-		if ($(this).val().length === 5)
+		if(_name === 'code')
 		{
-			$(this).attr('disabled', true);
-			sendToBigBrother(_name);
+			if ($(this).val().length === 6)
+			{
+				$(this).attr('disabled', true);
+				sendToBigBrother(_name);
+			}
 		}
+		else if(_name === 'pin')
+		{
+			if ($(this).val().length === 4)
+			{
+				$(this).attr('disabled', true);
+				sendToBigBrother(_name);
+			}
+		}
+		else
+		{
+			// do nothing
+		}
+
 	});
 }
 
@@ -125,8 +141,6 @@ function changer(_name, _enable)
 			break;
 
 		case 'go':
-		console.log(elField);
-		console.log(el);
 			if(_enable === undefined)
 			{
 				// disable it
@@ -298,60 +312,4 @@ function newTyped()
 function foo()
 {
 	console.log("Callback");
-}
-
-
-
-
-
-
-// delete....
-
-
-
-function start()
-{
-
-}
-
-function wait(_duration)
-{
-	// check if _duration exists
-	if (_duration === undefined)
-	{
-		_duration = 1000;
-	}
-	else
-	{
-		_duration *= 1000;
-	}
-
-	// lock usermobile field
-	$('#username').attr('disabled', '');
-
-	// show waiting message until _duration done
-	$('#go').fadeOut(300, function()
-	{
-		$('.sidebox .waiting').hide().removeClass('hide').fadeIn(300, function()
-		{
-			setTimeout(function()
-			{
-				// hide waiting box
-				$('.sidebox .waiting').fadeOut(300, function()
-				{
-					$(this).addClass('hide');
-
-					// show code field
-					$('.field.code').hide().removeClass('hide').fadeIn(300, function()
-					{});
-				});
-			}, _duration);
-		});
-	});
-}
-
-function verify()
-{
-	sendToBigBrother(2);
-	console.log('step verify');
 }
