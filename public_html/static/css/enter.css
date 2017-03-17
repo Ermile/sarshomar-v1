@@ -1,8 +1,8 @@
 /* Initial CSS */
-body{background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png)}
+body{background-color:#d7d8d8;background-image:url(../images/enter/4.jpg)}
 
 /* Layout */
-.enter{max-width:550px;margin:0 auto;padding:2rem;background-color:rgba(255,255,255,0.2)}
+.enter{width:20%;min-width:350px;max-width:450px;margin:30px auto;padding:4rem;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05)}
 .enter .logo{display:block;width:250px;margin:0 auto}
 .enter .logo img{display:block;width:100%}
 .enter .logo span{display:none !important}
@@ -22,8 +22,8 @@ body{background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png)}
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
-.enter .field{margin:0 auto 2rem;border-radius:3px;overflow:hidden}
-.enter .field:not(.goBox){border:1px solid #6f6f6f}
+.enter .field{border-radius:3px;overflow:hidden}
+.enter .field:not(.goBox){margin-bottom:2rem;border:1px solid #6f6f6f}
 .enter .field label{background-color:#fff;color:#6f6f6f}
 .enter .field label span[class*="icon-"]{font-size:2em}
 .enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
@@ -64,3 +64,5 @@ body{background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png)}
  0%{opacity:1}
  100%{opacity:0}
 }
+
+.passcodeBox,.pinBox,.codeBox{display:none}
