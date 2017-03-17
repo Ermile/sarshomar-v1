@@ -24,6 +24,11 @@ $(document).ready(function()
 			$('#go').click();
 		}
 	});
+
+	// $('#username').on('dblclick', function(_e)
+	// {
+	// 	gotoStep('mobile');
+	// });
 });
 
 
@@ -59,7 +64,7 @@ function clickOnGo()
 		}
 	});
 
-	$('#go2').click(function(e)
+	$('.usernameBox:not(.disabled) #go2').click(function(e)
 	{
 		$('#go').click();
 	});
@@ -95,8 +100,10 @@ function verifyInput(_name)
 
 			case 'username':
 				var userNameBox = $(this).parents('.usernameBox');
+
 				if($(this).val().length >= 7 && $(this).val().length <= 15)
 				{
+					userNameBox.addClass('disabled');
 					$(this).parents('.enter').find('.goBox').fadeIn();
 					userNameBox.find('label .icon-mobile2').fadeOut(300, function()
 					{
@@ -106,6 +113,7 @@ function verifyInput(_name)
 				}
 				else
 				{
+					userNameBox.removeClass('disabled');
 					$(this).parents('.enter').find('.goBox').fadeOut();
 					userNameBox.find('label .icon-range-right').fadeOut(300,function()
 					{
