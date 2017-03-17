@@ -35,6 +35,7 @@
    <label for='username' class='c2 flex justify-center align-center'>
     <span class='hide'>{%trans "Mobile"%}</span>
     <span class='icon-mobile2'></span>
+    <span class='icon-range-right' id='go2'></span>
    </label>
    <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
   </div>
@@ -70,12 +71,14 @@
   </div>
  </div>
 
+{%if true%}
  <div class='goBox'>
   <div class='field'>
    <button id="go" type="submit">{%trans "Go"%}</button>
   </div>
  </div>
 </div>
+{%endif%}
 
 <div class="mesh"></div>
 {%endblock%}

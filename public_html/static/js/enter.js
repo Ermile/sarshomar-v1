@@ -7,6 +7,7 @@ $(document).ready(function()
 {
 	// add event for click on go btn
 	clickOnGo();
+	verifyInput('username');
 	verifyInput('code');
 	verifyInput('pin');
 
@@ -38,9 +39,9 @@ function clickOnGo()
 		var myMobile         = $('#username');
 		var myMobileVal      = myMobile.val();
 		var invalidMobileMsg = myMobile.attr('data-invalid');
-		if (myMobileVal)
+		if(myMobileVal)
 		{
-			if (myMobileVal.length >= 7 && myMobileVal.length <= 15)
+			if(myMobileVal.length >= 7 && myMobileVal.length <= 15)
 			{
 				gotoStep('wait');
 				setNotif();
@@ -57,6 +58,11 @@ function clickOnGo()
 			setNotif(invalidMobileMsg);
 		}
 	});
+
+	$('#go2').click(function(e)
+	{
+		$('#go').click();
+	});
 }
 
 
@@ -68,27 +74,47 @@ function verifyInput(_name)
 {
 	$('#' + _name).on('input', function()
 	{
-		if(_name === 'code')
+		// username
+		switch(_name)
 		{
-			if ($(this).val().length === 6)
-			{
-				$(this).attr('disabled', true);
-				sendToBigBrother(_name);
-			}
-		}
-		else if(_name === 'pin')
-		{
-			if ($(this).val().length === 4)
-			{
-				$(this).attr('disabled', true);
-				sendToBigBrother(_name);
-			}
-		}
-		else
-		{
-			// do nothing
-		}
+			case 'code':
+				if($(this).val().length === 6)
+				{
+					$(this).attr('disabled', true);
+					sendToBigBrother(_name);
+				}
+				break;
 
+			case 'pin':
+				if($(this).val().length === 4)
+				{
+					$(this).attr('disabled', true);
+					sendToBigBrother(_name);
+				}
+				break;
+
+			case 'username':
+				var userNameBox = $(this).parents('.usernameBox');
+				if($(this).val().length >= 7 && $(this).val().length <= 15)
+				{
+					$(this).parents('.enter').find('.goBox').fadeIn();
+					userNameBox.find('label .icon-mobile2').fadeOut(300, function()
+					{
+						userNameBox.find('label').addClass('active');
+						userNameBox.find('label .icon-range-right').fadeIn(300);
+					});
+				}
+				else
+				{
+					$(this).parents('.enter').find('.goBox').fadeOut();
+					userNameBox.find('label .icon-range-right').fadeOut(300,function()
+					{
+						userNameBox.find('label').removeClass('active');
+						userNameBox.find('label .icon-mobile2').fadeIn(300);
+					});
+				}
+				break;
+		}
 	});
 }
 
