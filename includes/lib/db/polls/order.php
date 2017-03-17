@@ -24,7 +24,7 @@ trait order
 			LEFT JOIN options ON options.post_id = posts.id
 			WHERE
 				posts.post_status = 'publish' AND
-				posts.post_url LIKE '$%' AND
+				posts.post_type IN ('poll', 'survey') AND
 				-- check users not answered to this poll
 				posts.id NOT IN
 				(
@@ -34,7 +34,8 @@ trait order
 						polldetails
 					WHERE
 						polldetails.user_id = $_user_id AND
-						polldetails.post_id = posts.id
+						polldetails.post_id = posts.id AND
+						polldetails.status  = 'enable'
 				)
 			-- Check the poll language
 			AND (posts.post_language IS NULL OR posts.post_language = '$language')
@@ -45,7 +46,7 @@ trait order
 				posts.id IN
 				(
 					CONCAT_WS(',',
-
+						-- if this post have not eny filter return posts.id to load it
 						(
 							IF(
 							(
@@ -55,18 +56,22 @@ trait order
 									termusages
 								WHERE
 									termusages.termusage_id = posts.id AND
-									termusages.termusage_foreign = 'posts'
+									termusages.termusage_foreign = 'filter'
 							) = 0 , posts.id , 0
 						  )
 						)
 						,
+						-- if the user have not eny filter return posts.id to load it
 						(
 							SELECT
-								IF(filter_id IS NULL, posts.id, 0)
+								IF(users.filter_id IS NULL, posts.id, 0)
 							FROM
 								users WHERE users.id = $_user_id LIMIT 1
 						)
 						,
+						-- this poll have filter and user have filter
+						-- check the poll filter in user filter
+						-- then load this poll by return posts.id
 						(
 						IF(
 							(
@@ -76,9 +81,10 @@ trait order
 									termusages
 								INNER JOIN terms ON termusages.term_id = terms.id
 								WHERE
-									termusages.termusage_id = posts.id AND
-									termusages.termusage_foreign = 'posts' AND
-									terms.term_type LIKE 'users%'
+									termusages.termusage_id      = posts.id AND
+									termusages.termusage_foreign = 'filter' AND
+									termusages.termusage_status  = 'enable' AND
+									terms.term_type              = 'sarshomar'
 							)
 							IN
 							(
@@ -87,8 +93,9 @@ trait order
 								FROM
 									termusages
 								WHERE
-									termusages.termusage_id = $_user_id AND
-									termusages.termusage_foreign = 'users'
+									termusages.termusage_id      = $_user_id AND
+									termusages.termusage_foreign = 'profile' AND
+									termusages.termusage_status  = 'enable'
 							),
 							posts.id, 0
 							)
@@ -110,6 +117,7 @@ trait order
 							polldetails
 						WHERE
 							polldetails.user_id = $_user_id AND
+							polldetails.status  = 'enable' AND
 							polldetails.post_id = posts.post_parent AND
 							polldetails.opt IN
 								(
@@ -117,6 +125,8 @@ trait order
 										(
 											CASE options.option_value
 												WHEN 'true' 	THEN polldetails.opt
+												WHEN '1' 		THEN polldetails.opt
+												WHEN  1 		THEN polldetails.opt
 												WHEN 'skipped' 	THEN 0
 												ELSE options.option_value
 											END
