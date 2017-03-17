@@ -901,6 +901,7 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
  */
 function getBestColorForGroup(_group)
 {
+	console.log(_group);
 	var myColor = null;
 	// ["#83c3e1", "#e97197", "#e7e7e7"];
 	switch(_group)
@@ -916,12 +917,60 @@ function getBestColorForGroup(_group)
 
 		// marittal
 		case 'marrital_single':
-			myColor = '#888';
+			myColor = '#c15a49';
 			break;
 
 		case 'marrital_married':
-			myColor = '#666';
+			myColor = '#9e2815';
 			break;
+
+		case 'result_value_reliable':
+			myColor = '#8ec8e3';
+			break;
+
+		// graduation
+		case 'graduation_undergraduate':
+			myColor = '#6d9e73';
+			break;
+
+		// age range
+		case 'range_-13':
+			myColor = '#CC4F00';
+			break;
+
+		case 'range_14-17':
+			myColor = '#DC6000';
+			break;
+		case 'range_18-24':
+			myColor = '#F9943F';
+			break;
+
+		case 'range_25-30':
+			myColor = '#FDB072';
+			break;
+
+		case 'range_31-44':
+			myColor = '#FCC496';
+			break;
+
+		case 'range_45-59':
+			myColor = '#FACDA6';
+			break;
+
+		case 'range_60+':
+			myColor = '#F9D8BB';
+			break;
+
+		// disable vote style
+		case 'result_value_unreliable':
+		case 'range_unknown':
+		case 'gender_unknown':
+		case 'marrital_unknown':
+		case 'graduation_unknown':
+		case 'employmentstatus_unknown':
+			myColor = '#dbdbdb';
+			break;
+
 	}
 
 	return myColor;
@@ -948,7 +997,6 @@ function pollTotal_default(_option, _answers, _el)
 	_option.legend = getChartOption('legend');
 	_option.legend.equalWidths = false;
 
-
 	_option.valueAxes =
 	[{
 		"stackType": "regular",
@@ -974,40 +1022,62 @@ function pollTotal_default(_option, _answers, _el)
 
 	// setChartOption_result(_option, null, true);
 
+	// _option.graphs =
+	// [
+	// 	{
+	// 		"type": "column",
+	// 		"title": transText.reliable,
+	// 		"valueField": "value_reliable",
+	// 		"balloonText": "[[title]] [" + transText.reliable + "] <br/><b>[[value]]</b> " + transText.vote,
+	// 		"labelText": "[[value]]",
+	// 		"fillAlphas": 0.9,
+	// 		"lineAlpha": 0,
+	// 		"labelFunction" : function(item)
+	// 		{
+	// 			return fitNumber(Math.abs(item.values.value));
+	// 		},
+	// 		"balloonFunction": function(item)
+	// 		{
+	// 			return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
+	// 		},
+	// 	},
+	// 	{
+	// 		"type": "column",
+	// 		"title": transText.unreliable,
+	// 		"valueField": "value_unreliable",
+	// 		"labelText": "[[value]]",
+	// 		"fillAlphas": 0.5,
+	// 		"lineAlpha": 0,
+	// 		"clustered":false,
+	// 		"labelFunction" : function(item)
+	// 		{
+	// 			return fitNumber(Math.abs(item.values.value));
+	// 		},
+	// 		"balloonFunction": function(item)
+	// 		{
+	// 			return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
+	// 		},
+	// 	},
+	// ];
+
 	_option.graphs =
 	[
 		{
 			"type": "column",
-			"title": transText.reliable,
-			"valueField": "value_reliable",
-			"balloonText": "[[title]] [" + transText.reliable + "] <br/><b>[[value]]</b> " + transText.vote,
-			// "labelText": "[[value]]",
+			"title": transText.vote,
+			"valueField": "value",
+			"balloonText": "[[title]]<br/><b>[[value]]</b> " + transText.vote,
+			"labelText": "[[value]]",
 			"fillAlphas": 0.9,
 			"lineAlpha": 0,
+			"fillColors": '#69a6ad',
 			"labelFunction" : function(item)
 			{
 				return fitNumber(Math.abs(item.values.value));
 			},
 			"balloonFunction": function(item)
 			{
-				return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
-			},
-		},
-		{
-			"type": "column",
-			"title": transText.unreliable,
-			"valueField": "value_unreliable",
-			"labelText": "[[value]]",
-			"fillAlphas": 0.5,
-			"lineAlpha": 0,
-			"clustered":false,
-			"labelFunction" : function(item)
-			{
-				return fitNumber(Math.abs(item.values.value));
-			},
-			"balloonFunction": function(item)
-			{
-				return item.category + " [" + transText.reliable + "] <br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
+				return item.category + "<br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
 			},
 		},
 	];

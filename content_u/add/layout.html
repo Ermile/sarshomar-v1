@@ -7,7 +7,7 @@
     {%include template.progress%}
      <div class="row auto" id='question-add' data-id="{{poll.id}}" data-status="{{poll.status}}" {% if admin_mode %} data-admin {% endif %}>
 
-       <div class="sync unselectable">
+       <div class="sync unselectable"{%if admin_mode%} data-manual{%endif%}>
         <div class="sync-in">
          <span class="sync-loader"></span>
          <span class="sync-checkmark"></span>

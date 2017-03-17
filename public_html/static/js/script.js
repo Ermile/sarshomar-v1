@@ -2690,10 +2690,10 @@ function handleSyncProcess()
 			$(this).attr('data-manual', null);
 		}
 	});
-	if($('html').attr('data-develop') !== undefined)
-	{
-		$('.sync').attr('data-manual', '');
-	}
+	// if($('html').attr('data-develop') !== undefined)
+	// {
+	// 	$('.sync').attr('data-manual', '');
+	// }
 }
 
 
