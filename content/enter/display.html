@@ -72,7 +72,7 @@
  </div>
 
 {%if true%}
- <div class='goBox'>
+ <div class='goBox {%if get_mobile%}{%else%}notExist{%endif%}''>
   <div class='field'>
    <button id="go" type="submit">{%trans "Go"%}</button>
   </div>

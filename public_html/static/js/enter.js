@@ -105,21 +105,21 @@ function verifyInput(_name)
 				{
 					userNameBox.addClass('disabled');
 					$(this).parents('.enter').find('.goBox').fadeIn();
-					userNameBox.find('label .icon-mobile2').fadeOut(300, function()
-					{
-						userNameBox.find('label').addClass('active');
-						userNameBox.find('label .icon-range-right').fadeIn(300);
-					});
+					// userNameBox.find('label .icon-mobile2').fadeOut(300, function()
+					// {
+					// 	userNameBox.find('label').addClass('active');
+					// 	userNameBox.find('label .icon-range-right').fadeIn(300);
+					// });
 				}
 				else
 				{
 					userNameBox.removeClass('disabled');
 					$(this).parents('.enter').find('.goBox').fadeOut();
-					userNameBox.find('label .icon-range-right').fadeOut(300,function()
-					{
-						userNameBox.find('label').removeClass('active');
-						userNameBox.find('label .icon-mobile2').fadeIn(300);
-					});
+					// userNameBox.find('label .icon-range-right').fadeOut(300,function()
+					// {
+					// 	userNameBox.find('label').removeClass('active');
+					// 	userNameBox.find('label .icon-mobile2').fadeIn(300);
+					// });
 				}
 				break;
 		}

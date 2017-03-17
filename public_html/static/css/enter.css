@@ -40,12 +40,11 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
  0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
-
 .enter > div:not(:last-child){margin-bottom:2rem}
 
 .enter .field{border-radius:3px;overflow:hidden}
 .enter .field label{background-color:#fff;color:#6f6f6f;transition:0.3s;}
-.enter .field label.active{background-color:#efefef;color:#00667a}
+.enter .field label.active{/*background-color:#efefef;*/color:#00667a}
 .enter .field label span[class*="icon-"]{font-size:2em}
 .enter .field label .icon-range-right{display: none;cursor:pointer;}
 .enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
@@ -54,7 +53,7 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
 .enter .field input.disabled,.enter .field input[disabled]{pointer-events:none;opacity:.45}
 .enter .field input.ltr{text-align:left}
 .enter .field input.center{text-align:center}
-.enter .goBox{display:none}
+.enter .goBox.notExist {display:none}
 .enter button{display:block;width:100%;padding:1rem;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#0275d8;color:#fff}
 .enter button:hover,.enter button:focus{color:#fff;background-color:#025aa5}
 
