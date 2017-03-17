@@ -14,7 +14,7 @@
 
 {%block body%}
 <div class='f enter'>
- <div class='c3 x2 m4 s12 sidebox'>
+ <div class='c4 s12 sidebox'>
 
   <h1 class='logo'>
    <a class='logo' href='{{url.base}}' tabindex='1'>
@@ -34,7 +34,7 @@
 
   <div class='field usernameBox'>
    <label for='username'><span>{%trans "Mobile"%}</span></label>
-   <input id='username' type='tel' required maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "error in mobile..."%}' {%if get_mobile%} value="{{get_mobile}}"{%endif%} autocomplete="off" readonly>
+   <input id='username' type='tel' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off">
   </div>
 
   <div class='field passcodeBox'>
