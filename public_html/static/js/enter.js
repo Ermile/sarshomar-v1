@@ -102,7 +102,7 @@ function verifyInput(_name)
 function changer(_name, _enable)
 {
 	var el = $('#' + _name);
-	var elField = el.parents('.field');
+	var elField = el.parents('.' + _name + 'Box');
 
 	switch (_name)
 	{
@@ -129,13 +129,27 @@ function changer(_name, _enable)
 			}
 			else if(_enable === true)
 			{
-				// enable it
-				elField.fadeIn();
-				el.attr('disabled', null).focus();
+				delay = 0;
+				if(_name === 'code')
+				{
+					delay = 5000;
+				}
+				setTimeout(function()
+				{
+					// enable it
+					elField.fadeIn();
+					el.attr('disabled', null).focus();
+				}, delay);
 			}
 			else if(_enable === false)
 			{
 				// hide it
+				elField.fadeOut();
+			}
+			else if(_enable === null)
+			{
+				// hide and remove value of it
+				el.val(null);
 				elField.fadeOut();
 			}
 			break;
@@ -173,8 +187,8 @@ function gotoStep(_step)
 		case 'mobile':
 			changer('username', true);
 			changer('go', true);
-			changer('code');
-			changer('pin');
+			changer('code', null);
+			changer('pin', null);
 			break;
 
 		case 'wait':
