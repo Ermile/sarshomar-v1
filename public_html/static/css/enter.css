@@ -18,7 +18,7 @@ body{min-height:100%;background-color:#d7d8d8;background-image:url(../images/sha
 .sidebox .field input.disabled,.sidebox .field input[disabled]{pointer-events:none;opacity:.45}
 .sidebox .field input.ltr{text-align:left}
 .sidebox .field input.center{text-align:center}
-.sidebox .field.password{display:none !important}
+/*.sidebox .field.password{display:none}*/
 .sidebox button{display:block;width:90%;margin:0 auto;padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
 
 .sidebox .waiting{font-size:1.2em;width:90%;margin:0 auto 2rem;padding:1em 0}
