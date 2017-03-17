@@ -36,27 +36,16 @@ function changer(_name, _cond)
 {
 	var el = $('#' + _name);
 
-
-	// if(!_cond)
-	// {
-	// 	if(_name === 'mobile')
-	// 	{
-	// 		_cond = 'disabled';
-	// 	}
-	// 	else
-	// 	{
-
-	// 	}
-	// 	_cond = 'hide';
-	// }
-
-
 	switch (_name)
 	{
 		case 'username':
 			if(!_cond)
 			{
 				el.attr('disabled', true);
+			}
+			else if(_cond === true)
+			{
+				el.attr('disabled', null).focus();
 			}
 			break;
 
@@ -115,47 +104,41 @@ function sendToBigBrother(_step)
 			data: blackBox,
 			// abort: true,
 			method: 'post',
-			success: function(e, data, x)
+			success: function(_data)
 			{
-				if(e.status && e.status != 0)
+				if(_data.status && _data.status != 0)
 				{
-					console.log(e);
-					console.log(data);
-					console.log(x);
+					// set callback title into notif
+					setNotif(_data.title);
+					// give callback
+					var callback = _data.msg;
 
-					var newStatus = '';
-					if(e.msg && e.msg.new_status)
+					switch(callback.step)
 					{
-						newStatus = e.msg.new_status;
-					}
-					// set new status and change all elements depending it change
-					// setStatusText(newStatus);
-					// if we dont have any error
-
-
-					switch(e.status)
-					{
-						case 0:
-							console.log('go back to step start');
+						case 'mobile':
+							changer('username', true);
 							break;
 
-						case 1:
-							console.log('successfully change status!');
+						case 'pin':
 							break;
 
-						case 2:
+						case 'code':
+							break;
+
+						default:
+							setNotif('WHAT HAPPEN !!');
 							break;
 					}
 				}
 				else
 				{
 					// error on change
-					console.log('error on changing status; fail!');
+					setNotif('ERROR on return !!!');
 				}
 			},
 			error: function(e, data, x)
 			{
-				console.log('error!');
+				setNotif('ERROR on ajax !!!');
 			}
 		},
 		lockForm: false,
@@ -180,7 +163,7 @@ function clickOnGo()
 			if (myMobileVal.length >= 7 && myMobileVal.length <= 15)
 			{
 				changer('username');
-				stepWait(1);
+				setNotif();
 				sendToBigBrother(1);
 			}
 			else
@@ -234,17 +217,6 @@ function foo()
 }
 
 
-/**
- * [stepWait description]
- * @return {[type]} [description]
- */
-function stepWait()
-{
-	setNotif();
-}
-
-
-
 
 function start()
 {
@@ -292,7 +264,3 @@ function verify()
 	sendToBigBrother(2);
 	console.log('step verify');
 }
-
-
-
-
