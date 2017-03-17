@@ -29,14 +29,13 @@ class step_create_select
 		$maker->message->add_title();
 		if($_text)
 		{
-			$maker->message->add('line', "");
 			$maker->query_result['answers'][] = [
 			"key" => count($maker->query_result['answers']) + 1,
 			"type" => "select",
 			"title" => $_text,
 			];
 		}
-		$maker->message->add_poll_list();
+		$maker->message->add_poll_list(null, false);
 		$count = ['first', 'second', 'third'];
 		$count_answer = count($maker->query_result['answers']);
 		if($count_answer > 2)

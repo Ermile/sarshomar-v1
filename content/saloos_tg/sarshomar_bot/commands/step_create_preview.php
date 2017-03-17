@@ -14,7 +14,6 @@ use \lib\debug;
 
 class step_create_preview
 {
-
 	public static function start($_text = null, $_run_as_edit = false)
 	{
 		step::start('create_preview');
@@ -28,6 +27,12 @@ class step_create_preview
 		$maker = new make_view($poll_id);
 		$maker->message->add_title();
 		$maker->message->add_poll_list();
+		$maker->inline_keyboard->add([
+				[
+					"text" => T_("Advance"),
+					"callback_data" => 'create/advance'
+				]
+			]);
 		if(isset($maker->query_result['access_profile']))
 		{
 			$maker->message->add('alert', "⚠ " . T_('نیازمند ثبت مشخصات پاسخ‌دهنده'));

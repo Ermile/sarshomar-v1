@@ -140,6 +140,16 @@ class create
 		return [];
 	}
 
+	public static function advance($_query = null, $_data_url = null)
+	{
+		step::stop();
+		step::start('create_advance');
+		session::remove_back('expire', 'inline_cache', 'create');
+		session::remove('expire', 'inline_cache', 'create');
+		callback_query::edit_message(\content\saloos_tg\sarshomar_bot\commands\step_create_advance::step1());
+		return [];
+	}
+
 	public static function save($_query = null, $_data_url = null)
 	{
 		step::stop();

@@ -43,8 +43,8 @@ class callback_query
 			$callback_session = session::get('tmp', 'callback_query', $unique_id);
 			if((is_null($unique_id) || is_null($callback_session)) && !$force_inline)
 			{
-				session::remove_back('expire', 'inline_cache');
-				return $result;
+				// session::remove_back('expire', 'inline_cache');
+				// return $result;
 			}
 			$callback_query = (array) session::get('tmp', 'callback_query');
 			if(isset($callback_query[$unique_id]))

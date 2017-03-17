@@ -17,8 +17,34 @@ class step_create
 
 	public static function start($_text = null, $_run_as_edit = false)
 	{
-		session::remove('poll');
 		step::start('create');
+		if($_run_as_edit)
+		{
+			$maker = new make_view(session::get('poll'));
+			if(!empty($maker->query_result['answers']))
+			{
+				switch ($maker->query_result['answers'][0]['type']) {
+					case 'select':
+						step::stop();
+						return step_create_select::start();
+						break;
+
+					default:
+						return self::step1();
+						break;
+				}
+			}
+			elseif(isset($maker->query_result['file']) && !empty($maker->query_result['file']))
+			{
+				step::goingto(4);
+				return slef::step4();
+			}
+			else
+			{
+				return self::step1();
+			}
+		}
+		session::remove('poll');
 		return self::step1();
 	}
 
