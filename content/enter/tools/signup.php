@@ -9,6 +9,13 @@ trait signup
 {
 	public function signup($_type = null)
 	{
+		// singup is locked
+		if(!$this->signup)
+		{
+			// the user set user name cat not signup by username
+			return false;
+		}
+
 		if($_type === 'block')
 		{
 			$signup =
@@ -34,7 +41,7 @@ trait signup
 			'permission' => null,
 			'port'       => 'site'
 		];
-
+		$_SESSION['first_signup'] = true;
 		$user_id  = \lib\db\users::signup($signup);
 		return $user_id;
 	}

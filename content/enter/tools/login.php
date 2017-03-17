@@ -23,8 +23,15 @@ trait login
 
 		$this->setLoginSession($this->user_data, $myfields);
 		$this->login_remember();
-		$this->redirector('@')->redirect();
 		debug::msg('direct', true);
+		if(isset($_SESSION['first_signup']) && $_SESSION['first_signup'] === true)
+		{
+			$this->redirector('ask')->redirect();
+		}
+		else
+		{
+			$this->redirector('@')->redirect();
+		}
 	}
 
 

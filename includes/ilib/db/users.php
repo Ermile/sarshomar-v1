@@ -5,6 +5,20 @@ class users extends \lib\db\users
 {
 
 	/**
+	 * Gets the by username.
+	 *
+	 * @param      <type>  $_username  The username
+	 *
+	 * @return     <type>  The by username.
+	 */
+	public static function get_by_username($_username)
+	{
+		$query = "SELECT * FROM users WHERE user_username  = '$_username' LIMIT 1 ";
+		return \lib\db::get($query, null, true);
+	}
+
+
+	/**
 	 * Gets the count.
 	 *
 	 * @param      <type>  $_type  The type

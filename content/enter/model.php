@@ -14,6 +14,7 @@ class model extends \mvc\model
 	public $code      = null;
 	public $user_data = [];
 	public $user_id   = null;
+	public $signup    = false;
 
 
 	use tools\check;
@@ -73,11 +74,10 @@ class model extends \mvc\model
 			$this->log('use:enter:blocked:agent:ip');
 			$this->log_sleep_code('use:enter:blocked:agent:ip');
 			debug::msg('step', 'block');
-			debug::error(T_("You are blocked"));
+			debug::title(T_("You are blocked"));
 			return false;
 		}
 
-		$ok   = 'false';
 		$step = 'mobile';
 		// check input and get the step
 		$check_input = $this->check_input();
@@ -86,11 +86,23 @@ class model extends \mvc\model
 		if($check_input)
 		{
 			$mobile          = utility::post('mobile');
-			// $this->mobile    = utility\filter::mobile($mobile);
-			$this->mobile    = $mobile;
-			$this->user_data = \lib\db\users::get_by_mobile(utility\filter::mobile($this->mobile));
+			if(ctype_digit($mobile))
+			{
+				$mobile          = utility\filter::mobile($mobile);
+				$this->mobile    = $mobile;
+				$this->user_data = \ilib\db\users::get_by_mobile(utility\filter::mobile($this->mobile));
+				$this->signup    = true;
+			}
+			else
+			{
+				$this->signup    = false;
+				$this->user_data = \ilib\db\users::get_by_username(utility\filter::mobile($this->mobile));
+				$this->mobile    = $mobile;
+			}
+
 			if(isset($this->user_data['id']))
 			{
+				$this->signup  = false;
 				$this->user_id = $this->user_data['id'];
 			}
 		}
@@ -110,24 +122,21 @@ class model extends \mvc\model
 							if($this->verify_call_mobile())
 							{
 								// call was send
-								$ok   = 'true';
 								$step = 'code';
 								debug::title(T_("1.We send verification code nearly"));
 							}
 							else
 							{
-								$this->log('user:verification:invalid:mobile');
-								$this->log_sleep_code('invalid:mobile');
 								// this mobile is not a valid mobile
 								// check by kavenegar
-								$ok   = 'false';
+								$this->log('user:verification:invalid:mobile');
+								$this->log_sleep_code('invalid:mobile');
 								$step = 'mobile';
 								debug::title(T_("2.Please set a valid mobile number"));
 							}
 							break;
 
 						case 'pin':
-							$ok   = 'true';
 							$step = 'pin';
 							$this->log('user:verification:use:pin');
 							debug::title(T_("3.Please enter your pin"));
@@ -135,7 +144,6 @@ class model extends \mvc\model
 
 						case 'invalid':
 						default:
-							$ok   = 'false';
 							$step = 'mobile';
 							$this->log('user:verification:invalid:mobile');
 							$this->log_sleep_code('invalid:mobile');
@@ -146,7 +154,6 @@ class model extends \mvc\model
 				}
 				else
 				{
-					$ok   = 'false';
 					$step = 'mobile';
 					$this->log('user:verification:invalid:mobile');
 					$this->log_sleep_code('invalid:mobile');
@@ -161,7 +168,6 @@ class model extends \mvc\model
 					if($this->verify_call_mobile())
 					{
 						// call was send
-						$ok   = 'true';
 						$step = 'code';
 						debug::title(T_("6.We send verification code nearly"));
 					}
@@ -171,7 +177,6 @@ class model extends \mvc\model
 						$this->log_sleep_code('invalid:mobile');
 						// this mobile is not a valid mobile
 						// check by kavenegar
-						$ok   = 'false';
 						$step = 'mobile';
 						debug::title(T_("7.Please set a valid mobile number"));
 					}
@@ -182,7 +187,6 @@ class model extends \mvc\model
 					$this->log_sleep_code('invalid:mobile');
 					// this mobile is not a valid mobile
 					// check by kavenegar
-					$ok   = 'false';
 					if($this->counter('invalid:code') > 3)
 					{
 						$step = 'mobile';
@@ -203,7 +207,6 @@ class model extends \mvc\model
 					// set login
 					debug::title(T_("9.Login successfuly"));
 					$this->login_set();
-					$ok   = 'true';
 					$step = 'login';
 				}
 				else
@@ -211,7 +214,6 @@ class model extends \mvc\model
 					debug::title(T_("10.Invalid verfication code"));
 					$this->log('user:verfication:invalid:code');
 					$this->log_sleep_code('invalid:code');
-					$ok = 'false';
 					if($this->counter('invalid:code') > 3)
 					{
 						$step = 'mobile';
@@ -223,17 +225,24 @@ class model extends \mvc\model
 				}
 				break;
 
+			case 'password':
+				$step = 'mobile';
+				break;
+
+			case 'block':
+				debug::title(T_("You are blocked"));
+				$step = 'mobile';
+				break;
+
 			default:
 				debug::title(T_("11.Invalid step"));
 				$this->log('user:verfication:invalid:step');
 				$this->counter('user:verfication:invalid:step');
 				// invalid input
 				$step = 'mobile';
-				$ok   = 'false';
 				break;
 		}
 
-		debug::msg('ok', $ok);
 		debug::msg('step', $step);
 	}
 }

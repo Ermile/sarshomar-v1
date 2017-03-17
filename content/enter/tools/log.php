@@ -36,7 +36,7 @@ trait log
 	 *
 	 * @param      <type>  $_caller  The caller
 	 */
-	public function counter($_caller)
+	public function counter($_caller, $_block = false)
 	{
 		if(isset($_SESSION[$_caller]))
 		{
@@ -47,7 +47,7 @@ trait log
 			$_SESSION[$_caller] = 1;
 		}
 
-		if($_SESSION[$_caller] > 3)
+		if($_SESSION[$_caller] > 3 || $_block)
 		{
 			$_SESSION['enter:user:block'] = true;
 		}
