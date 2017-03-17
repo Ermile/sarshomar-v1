@@ -25,9 +25,57 @@ class step_create_advance
 	{
 		$poll_id = session::get('poll');
 		$maker = new make_view($poll_id);
-		$maker->messages->add_title();
+		$maker->message->add_title();
 
-		$maker->messages->add('title', "\n" . T("شما می‌توانید انواعت تنظیمات دلخواه خود را برای این سوال اعمال کنید")),
+		$maker->message->add('desc', "\n".T_("شما می‌توانید انواعت تنظیمات دلخواه خود را برای این سوال اعمال کنید"));
+
+		$maker->inline_keyboard->add([
+			[
+				'text' => T_('گزینه‌ها'),
+				"callback_data" => 'create_advance/anwers'
+			],
+			[
+				'text' => T_('Description'),
+				"callback_data" => 'create_advance/description'
+			]
+			]);
+		$maker->inline_keyboard->add([
+			[
+				'text' => T_('Privacy'),
+				"callback_data" => 'create_advance/privacy'
+			]
+			]);
+		$maker->inline_keyboard->add([
+			[
+				'text' => T_('Cancel'),
+				"callback_data" => 'create/cancel'
+			]
+			]);
+		$return = $maker->make();
+		$return["response_callback"] = utility::response_expire('create');
+		return $return;
+	}
+
+	public static function step2($substep = null)
+	{
+		$poll_id = session::get('poll');
+		$maker = new make_view($poll_id);
+		$maker->message->add_poll_list(null, false);
+
+		$maker->inline_keyboard->add([
+			[
+				'text' => T_('حذف گزینه‌ها'),
+				"callback_data" => 'create_advance/delete'
+			]
+			]);
+
+		$maker->inline_keyboard->add([
+			[
+				'text' => T_('Cancel'),
+				"callback_data" => 'create/cancel'
+			]
+			]);
+
 		$return = $maker->make();
 		$return["response_callback"] = utility::response_expire('create');
 		return $return;
@@ -42,5 +90,6 @@ class step_create_advance
 			'reply_markup' => menu::main(true)
 		];
 	}
+
 }
 ?>
