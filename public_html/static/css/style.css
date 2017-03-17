@@ -344,7 +344,6 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-desktop:before{content:"\f108"}
 .icon-laptop:before{content:"\f109"}
 .icon-tablet:before{content:"\f10a"}
-.icon-mobile:before{content:"\f10b"}
 .icon-quote-left:before{content:"\f10d"}
 .icon-quote-right:before{content:"\f10e"}
 .icon-smile-o:before{content:"\f118"}
@@ -372,6 +371,9 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-rss:before{content:"\ea9b"}
 .icon-rss2:before{content:"\ea9c"}
 .icon-linkedin:before{content:"\eac9"}
+.icon-barcode:before{content:"\e937"}
+.icon-mobile2:before{content:"\e959"}
+.icon-key2:before{content:"\e98e"}
 
 
 /************************************************************** layout */

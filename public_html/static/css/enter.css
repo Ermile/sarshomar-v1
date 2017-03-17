@@ -22,11 +22,13 @@ body{background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png)}
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
-.enter .field{margin:0 auto 2rem}
-.enter .field label{}
-.enter .field label span[class*="icon-"]{}
+.enter .field{margin:0 auto 2rem;border-radius:3px;overflow:hidden}
+.enter .field:not(.goBox){border:1px solid #6f6f6f}
+.enter .field label{background-color:#fff;color:#6f6f6f}
+.enter .field label span[class*="icon-"]{font-size:2em}
+.enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
 .enter .field input,.enter button{font-size:1.2em;-webkit-transition:0.3s;transition:0.3s}
-.enter .field input{width:100%;padding:1em 2em;border:none;border-radius:3px;background-color:#fff;direction:ltr}
+.enter .field input{width:100%;padding:1em 2em;border:none;background-color:#fff;direction:ltr}
 .enter .field input.disabled,.enter .field input[disabled]{pointer-events:none;opacity:.45}
 .enter .field input.ltr{text-align:left}
 .enter .field input.center{text-align:center}

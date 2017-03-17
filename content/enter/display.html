@@ -31,35 +31,35 @@
  </h2>
 
  <div class='f field usernameBox'>
-  <label for='username' class='c1'>
+  <label for='username' class='c1 flex justify-center align-center'>
    <span class='hide'>{%trans "Mobile"%}</span>
-   <span class="icon-star"></span>
+   <span class='icon-mobile2'></span>
   </label>
-  <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off">
+  <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
  </div>
 
  <div class='f field passcodeBox'>
-  <label for='passcode' class='c1'>
+  <label for='passcode' class='c1 flex justify-center align-center'>
    <span class='hide'>{%trans "Password"%}</span>
-   <span class="icon-star"></span>
+   <span class='icon-key2'></span>
   </label>
-  <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off">
+  <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off" >
  </div>
 
  <div class='f field pinBox'>
-  <label for='pin' class='c1'>
+  <label for='pin' class='c1 flex justify-center align-center'>
    <span class='hide'>{%trans "Pin"%}</span>
-   <span class="icon-star"></span>
+   <span>PIN</span>
   </label>
-  <input id='pin' type='password' class='c' placeholder='{%trans "Code"%}' autocomplete="off" disabled>
+  <input id='pin' type='password' class='c' placeholder='{%trans "Pin"%}' autocomplete="off" >
  </div>
 
  <div class='f field codeBox'>
-  <label for='code' class='c1'>
+  <label for='code' class='c1 flex justify-center align-center'>
    <span class='hide'>{%trans "Code"%}</span>
-   <span class="icon-star"></span>
+   <span class="icon-barcode"></span>
   </label>
-  <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" disabled>
+  <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
  </div>
 
  <div class='field goBox'>
