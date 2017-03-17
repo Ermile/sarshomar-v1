@@ -13,50 +13,57 @@
 
 
 {%block body%}
-<div class='f enter'>
- <div class='c4 s12 sidebox'>
-
-  <h1 class='logo'>
-   <a class='logo' href='{{url.base}}' tabindex='1'>
+<div class='enter'>
+ <h1 class='logo'>
+  <a class='logo' href='{{url.base}}' tabindex='1'>
 {%if site.currentlang =='fa'%}
-    <img src='{{url.static}}images/logo/sarshomar-logo-fa.svg' alt='{{site.title}} | {{site.desc}}'>
+   <img src='{{url.static}}images/logo/sarshomar-logo-fa.svg' alt='{{site.title}} | {{site.desc}}'>
 {%else%}
-    <img src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{{site.title}} | {{site.desc}}'>
+   <img src='{{url.static}}images/logo/sarshomar-logo.svg' alt='{{site.title}} | {{site.desc}}'>
 {%endif%}
-    <span>{%trans "Sarshomar"%}</span>
-   </a>
-  </h1>
+   <span>{%trans "Sarshomar"%}</span>
+  </a>
+ </h1>
 
-  <h2>
-   <span class="notif" data-wait='{%trans "Please be patient, we are generating keys"%}'>{%trans "Enter to Sarshomar"%}</span>
-   <span class="loader"><span></span><span></span><span></span></span>
-  </h2>
+ <h2>
+  <span class="notif" data-wait='{%trans "Please be patient, we are generating keys"%}'>{%trans "Enter to Sarshomar"%}</span>
+  <span class="loader"><span></span><span></span><span></span></span>
+ </h2>
 
-  <div class='field usernameBox'>
-   <label for='username'><span>{%trans "Mobile"%}</span></label>
-   <input id='username' type='tel' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off">
-  </div>
+ <div class='f field usernameBox'>
+  <label for='username' class='c1'>
+   <span class='hide'>{%trans "Mobile"%}</span>
+   <span class="icon-star"></span>
+  </label>
+  <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
+ </div>
 
-  <div class='field passcodeBox'>
-   <label for='passcode'><span>{%trans "Password"%}</span></label>
-   <input id='passcode' type='password' placeholder='{%trans "Password"%}' autocomplete="off">
-  </div>
+ <div class='f field passcodeBox'>
+  <label for='passcode' class='c1'>
+   <span class='hide'>{%trans "Password"%}</span>
+   <span class="icon-star"></span>
+  </label>
+  <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off" >
+ </div>
 
-  <div class='field pinBox'>
-   <label for='pin'><span>{%trans "Pin"%}</span></label>
-   <input id='pin' type='password' placeholder='{%trans "Code"%}' autocomplete="off">
-  </div>
+ <div class='f field pinBox'>
+  <label for='pin' class='c1'>
+   <span class='hide'>{%trans "Pin"%}</span>
+   <span class="icon-star"></span>
+  </label>
+  <input id='pin' type='password' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
+ </div>
 
-  <div class='field codeBox'>
-   <label for='code'><span>{%trans "Code"%}</span></label>
-   <input id='code' type='number' placeholder='{%trans "Code"%}' autocomplete="off">
-  </div>
+ <div class='f field codeBox'>
+  <label for='code' class='c1'>
+   <span class='hide'>{%trans "Code"%}</span>
+   <span class="icon-star"></span>
+  </label>
+  <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
+ </div>
 
-  <div class='field goBox'>
-   <label for='go'><span>{%trans "Go"%}</span></label>
-   <button id="go" type="submit">{%trans "Go"%}</button>
-  </div>
-
+ <div class='field goBox'>
+  <button id="go" type="submit">{%trans "Go"%}</button>
  </div>
 </div>
 {%endblock%}

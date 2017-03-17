@@ -1,33 +1,18 @@
 /* Initial CSS */
-html{height:100%}
-body{min-height:100%;background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png);display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:flex !important}
+body{background-color:#d7d8d8;background-image:url(../images/shattered_@2X.png)}
 
 /* Layout */
-.enter{min-height:100%;background-color:transparent;-webkit-box-flex:1;-ms-flex:1;flex:1}
-.sidebox,.mainbox{padding:1em}
-.sidebox{background-color:rgba(255,255,255,0.2)}
-.sidebox .logo{display:block;width:90%;margin:5rem auto}
-.sidebox .logo img{width:100%}
-.sidebox .logo span{display:none}
-.sidebox h1{font-size:4em;font-weight:700;text-align:center;color:#0fa1a6;text-shadow:0 0 3px #0fa1a6}
+.enter{max-width:550px;margin:0 auto;padding:2rem;background-color:rgba(255,255,255,0.2)}
+.enter .logo{display:block;width:250px;margin:0 auto}
+.enter .logo img{display:block;width:100%}
+.enter .logo span{display:none !important}
 
-.sidebox .field{width:90%;margin:0 auto 2rem}
-.sidebox .field label{display:block}
-.sidebox .field label span{display:inline-block;padding-bottom:.5rem}
-.sidebox .field input,.sidebox button{font-size:1.2em;-webkit-transition:0.3s;transition:0.3s}
-.sidebox .field input{width:100%;padding:1em 2em;border:none;border-radius:3px;background-color:#fff;direction:ltr}
-.sidebox .field input.disabled,.sidebox .field input[disabled]{pointer-events:none;opacity:.45}
-.sidebox .field input.ltr{text-align:left}
-.sidebox .field input.center{text-align:center}
-/*.sidebox .field.password{display:none}*/
-.sidebox button{display:block;width:90%;margin:0 auto;padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
-
-.sidebox h2{font-size:1.2em;width:90%;margin:0 auto 2rem;padding:1em 0}
-.sidebox h2 .loader{display:block}
-.sidebox h2 .loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
-.sidebox h2 .loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
-.sidebox h2 .loader span:nth-child(2){-webkit-animation:opacitychange 1s ease-in-out 0.33s infinite;animation:opacitychange 1s ease-in-out 0.33s infinite}
-.sidebox h2 .loader span:nth-child(3){-webkit-animation:opacitychange 1s ease-in-out 0.66s infinite;animation:opacitychange 1s ease-in-out 0.66s infinite}
+.enter h2{font-size:1.2em;margin:0 auto 0rem;padding:1em;text-align:center}
+.enter h2 .loader{display:block}
+.enter h2 .loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
+.enter h2 .loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
+.enter h2 .loader span:nth-child(2){-webkit-animation:opacitychange 1s ease-in-out 0.33s infinite;animation:opacitychange 1s ease-in-out 0.33s infinite}
+.enter h2 .loader span:nth-child(3){-webkit-animation:opacitychange 1s ease-in-out 0.66s infinite;animation:opacitychange 1s ease-in-out 0.66s infinite}
 @-webkit-keyframes opacitychange{
  0%,100%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
@@ -37,74 +22,43 @@ body{min-height:100%;background-color:#d7d8d8;background-image:url(../images/sha
  60%{opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }
 
-.sidebox .notif{width:90%;margin:0 auto 2em;font-size:1.2em}
-.sidebox span{}
-.sidebox a{}
+.enter .field{margin:0 auto 2rem}
+.enter .field label{}
+.enter .field label span[class*="icon-"]{}
+.enter .field input,.enter button{font-size:1.2em;-webkit-transition:0.3s;transition:0.3s}
+.enter .field input{width:100%;padding:1em 2em;border:none;border-radius:3px;background-color:#fff;direction:ltr}
+.enter .field input.disabled,.enter .field input[disabled]{pointer-events:none;opacity:.45}
+.enter .field input.ltr{text-align:left}
+.enter .field input.center{text-align:center}
+.enter button{display:block;width:100%;/*margin:0 auto;*/padding:1em 2em;cursor:pointer;border:none;border-radius:3px;outline:none;background-color:#2196f3;color:#fff}
 
-/* Animation */
-.animated {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
-@-webkit-keyframes fadeOut{
- from{opacity:1}
- to{opacity:0}
-}
-@keyframes fadeOut{
- from{opacity:1}
- to{opacity:0}
-}
-
-
-.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}
-
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
-}
+.typed-cursor{opacity:1;-webkit-animation:blink 0.7s infinite;-moz-animation:blink 0.7s infinite;animation:blink 0.7s infinite}
 @keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
+ 0%{opacity:1}
+ 50%{opacity:0}
+ 100%{opacity:1}
 }
 @-webkit-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
+ 0%{opacity:1}
+ 50%{opacity:0}
+ 100%{opacity:1}
 }
 @-moz-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
+ 0%{opacity:1}
+ 50%{opacity:0}
+ 100%{opacity:1}
 }
 
-.typer__cursor--blink {
-  -webkit-animation: blink 1s infinite;
-  -moz-animation: blink 1s infinite;
-  animation: blink 1s infinite;
+.typer__cursor--blink{-webkit-animation:blink 1s infinite;-moz-animation:blink 1s infinite;animation:blink 1s infinite}
+@-webkit-keyframes blink{
+ 0%{opacity:1}
+ 100%{opacity:0}
 }
-
-@-webkit-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+@-moz-keyframes blink{
+ 0%{opacity:1}
+ 100%{opacity:0}
 }
-@-moz-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+@keyframes blink{
+ 0%{opacity:1}
+ 100%{opacity:0}
 }
