@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-18 13:02+0330\n"
-"PO-Revision-Date: 2017-03-18 13:14+0330\n"
+"POT-Creation-Date: 2017-03-18 15:57+0330\n"
+"PO-Revision-Date: 2017-03-18 16:07+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -3922,65 +3922,64 @@ msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 msgid "You are bot"
 msgstr "شما روبات هستید"
 
-#: sarshomar/content/enter/model.php:81 sarshomar/content/enter/model.php:264
+#: sarshomar/content/enter/model.php:82 sarshomar/content/enter/model.php:294
 msgid "You are blocked"
 msgstr "شما مسدود شده‌اید"
 
-#: sarshomar/content/enter/model.php:130
-msgid "1.We send verification code nearly"
+#: sarshomar/content/enter/model.php:137 sarshomar/content/enter/model.php:172
+#: sarshomar/content/enter/model.php:214
+msgid "We send verification code nearly"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:139
-msgid "2.Please set a valid mobile number"
-msgstr "۲.لطفا شماره موبایل معتبری وارد کنید"
+#: sarshomar/content/enter/model.php:146 sarshomar/content/enter/model.php:181
+#: sarshomar/content/enter/model.php:191 sarshomar/content/enter/model.php:201
+#: sarshomar/content/enter/model.php:223
+msgid "Please enter a valid mobile number"
+msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
-#: sarshomar/content/enter/model.php:146
-msgid "3.Please enter your pin"
-msgstr "۳.لطفا پین خود را وارد کنید"
+#: sarshomar/content/enter/model.php:153
+msgid "Please enter your pin"
+msgstr "لطفا پین کد خود را وارد کنید"
 
-#: sarshomar/content/enter/model.php:154
-msgid "3.1.We send verification code in telegram, please check your telegram"
+#: sarshomar/content/enter/model.php:162
+msgid "A verification code will be sent to your telegram"
+msgstr "کد تایید به تلگرام شما ارسال خواهد شد"
+
+#: sarshomar/content/enter/model.php:229
+msgid "Invalid pin, try again"
+msgstr "پین کد نامعتبر است، دوباره تلاش کنید"
+
+#: sarshomar/content/enter/model.php:236
+msgid "Forgot your pin?"
+msgstr "پین کد خود را فراموش کرده‌اید؟"
+
+#: sarshomar/content/enter/model.php:241
+msgid "In case of entering an invalid pin, you will be blocked"
+msgstr "در صورتی که پین کد را اشتباه وارد کنید، بلاک خواهید شد"
+
+#: sarshomar/content/enter/model.php:258
+msgid "Logged in successfully"
+msgstr "با موفقیت وارد شدید"
+
+#: sarshomar/content/enter/model.php:268
+msgid "You are trying to cheat us!"
+msgstr "میخوای ما رو گول بزنی!"
+
+#: sarshomar/content/enter/model.php:274
+msgid "دقت کن دفعات زیادی رو اشتباه زدی"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:163
-msgid "3.2.We send verification code nearly"
-msgstr ""
+#: sarshomar/content/enter/model.php:279
+msgid "Invalid verfication code"
+msgstr "کد تایید نامعتبر است"
 
-#: sarshomar/content/enter/model.php:172
-msgid "3.3.Please set a valid mobile number"
-msgstr ""
+#: sarshomar/content/enter/model.php:299
+msgid "Invalid step"
+msgstr "مرحله نامعتبر"
 
-#: sarshomar/content/enter/model.php:182
-msgid "4.Please set a valid mobile number"
-msgstr "۴.لطفا شماره موبایل معتبری تعیین کنید"
-
-#: sarshomar/content/enter/model.php:192
-msgid "5.Please set a valid mobile number"
-msgstr "۵.لطفا شماره موبایل معتبری تعیین کنید"
-
-#: sarshomar/content/enter/model.php:204
-msgid "6.We send verification code nearly"
-msgstr ""
-
-#: sarshomar/content/enter/model.php:213
-msgid "7.Please set a valid mobile number"
-msgstr "۷.لطفا شماره موبایل معتبری وارد کنید"
-
-#: sarshomar/content/enter/model.php:230
-msgid "8.Please set a valid mobile number"
-msgstr "۸.لطفا شماره موبایل معتبری تعیین کنید"
-
-#: sarshomar/content/enter/model.php:240
-msgid "9.Login successfuly"
-msgstr ""
-
-#: sarshomar/content/enter/model.php:246
-msgid "10.Invalid verfication code"
-msgstr "۱۰.کد تایید نامعتبر است"
-
-#: sarshomar/content/enter/model.php:269
-msgid "11.Invalid step"
-msgstr "۱۱.مرحله نامعتبر"
+#: sarshomar/content/enter/tools/check.php:52
+msgid "Don't do this"
+msgstr "این کار رو نکن"
 
 #: sarshomar/content/enter/tools/check.php:151
 msgid "Please enter a valid number"
@@ -3995,6 +3994,8 @@ msgid ""
 "This code can be used to log in to your Sarshomar account. We never ask it for "
 "anything else. Do not give it to anyone!"
 msgstr ""
+"از این کد برای ورود به حساب کاربری سرشمار استفاده می‌شود. ما هیچ وقت برای مورد "
+"دیگری درخواست نخواهیم داد. آن را به شخص دیگری ندهید!"
 
 #: sarshomar/content/enter/tools/verify.php:28
 msgid ""
@@ -5099,7 +5100,7 @@ msgid ""
 "feature, disable it."
 msgstr ""
 "به دلیل رعایت حریم خصوصی، هویت پاسخ‌دهندگان مخفی است، شما درخواست مشاهده نام و "
-"نام‌کاربری را داده‌اید، در صورتی که نیازی به این ویژگی ندارید آن‌را غیرفعال نمایید."
+"نام‌کاربری را داده‌اید، در صورتی که نیازی به این ویژگی ندارید آن‌را غیرفعال کنید."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:44
 msgid "Hide respondent"
@@ -5143,7 +5144,7 @@ msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:42
 msgid "Advance"
-msgstr "پیشرفت"
+msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_select.php:70
 msgid "درج حداقل دو گزینه اجباری است"
@@ -13446,6 +13447,30 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:66
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "2.Please set a valid mobile number"
+#~ msgstr "۲.لطفا شماره موبایل معتبری وارد کنید"
+
+#~ msgid "3.Please enter your pin"
+#~ msgstr "۳.لطفا پین خود را وارد کنید"
+
+#~ msgid "4.Please set a valid mobile number"
+#~ msgstr "۴.لطفا شماره موبایل معتبری تعیین کنید"
+
+#~ msgid "5.Please set a valid mobile number"
+#~ msgstr "۵.لطفا شماره موبایل معتبری تعیین کنید"
+
+#~ msgid "7.Please set a valid mobile number"
+#~ msgstr "۷.لطفا شماره موبایل معتبری وارد کنید"
+
+#~ msgid "8.Please set a valid mobile number"
+#~ msgstr "۸.لطفا شماره موبایل معتبری تعیین کنید"
+
+#~ msgid "10.Invalid verfication code"
+#~ msgstr "۱۰.کد تایید نامعتبر است"
+
+#~ msgid "11.Invalid step"
+#~ msgstr "۱۱.مرحله نامعتبر"
 
 #~ msgid "Your verification code is :code "
 #~ msgstr "کد تایید شما :code است"
