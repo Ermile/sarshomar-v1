@@ -32,13 +32,15 @@
                     <span>
                         <a data-modal="meta_{{value.id}}" >{{value.meta|length}}</a>
                         <span class="modal" id="meta_{{value.id}}">
-                            {% if value.meta is iterable %}
-                                {{value.meta|json_encode()}}
-                            {%else%}
-                                {{value.meta}}
-                            {%endif%}
+                            <div class="modal-title">{%trans "Log meta"%}</div>
+                            <div class="modal-body">
+                                {% if value.meta is iterable %}
+                                    {{value.meta|json_encode()}}
+                                {%else%}
+                                    {{value.meta}}
+                                {%endif%}
+                            </div>
                         </span>
-                    </label>
                     </span>
                     <span>{{value.createdate|jdate("Y-m-d -- H:i:s")}}</span>
                 </div>

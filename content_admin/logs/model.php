@@ -1,5 +1,5 @@
 <?php
-namespace content_admin\log;
+namespace content_admin\logs;
 use \lib\utility;
 
 class model extends \mvc\model
@@ -8,7 +8,7 @@ class model extends \mvc\model
 	/**
 	 * get log data to show
 	 */
-	public function get_log($_args)
+	public function get_logs($_args)
 	{
 		$meta   = [];
 		$search = null;
@@ -24,7 +24,7 @@ class model extends \mvc\model
 	/**
 	 * post data and update or insert log data
 	 */
-	public function post_log()
+	public function post_logs()
 	{
 
 	}

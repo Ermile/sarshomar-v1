@@ -1,5 +1,5 @@
 <?php
-namespace content_admin\log;
+namespace content_admin\logs;
 
 class controller extends \content_admin\home\controller
 {
@@ -9,7 +9,7 @@ class controller extends \content_admin\home\controller
 
 		$property           = [];
 		$property['search'] = ["/^.*$/", true, 'search'];
-		$this->get("log", "log")->ALL(['property' => $property]);
+		$this->get("logs", "logs")->ALL(['property' => $property]);
 	}
 }
 
