@@ -277,12 +277,12 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-3x{font-size:3em}
 .icon-4x{font-size:4em}
 .icon-5x{font-size:5em}
+.icon-android:before{content:"\e90e"}
 .icon-before:before{content:"\e900"}
 .icon-before-rtl:before{content:"\e901"}
 .icon-button-left:before{content:"\e902"}
 .icon-button-right:before{content:"\e903"}
 .icon-pic:before{content:"\e904"}
-.icon-android:before {content: "\e900";}
 .icon-range-down:before{content:"\e905"}
 .icon-range-left:before{content:"\e906"}
 .icon-range-right:before{content:"\e907"}
