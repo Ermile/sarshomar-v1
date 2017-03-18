@@ -26,40 +26,30 @@ class step_create_preview
 		$poll_id = session::get('poll');
 		$maker = new make_view($poll_id);
 		$maker->message->add_title();
-		$maker->message->add_poll_list();
-		$maker->inline_keyboard->add([
-				[
-					"text" => T_("Advance"),
-					"callback_data" => 'create/advance'
-				]
-			]);
-		if(isset($maker->query_result['access_profile']))
+		$maker->message->add_poll_list(null, false);
+
+		if($maker->query_result['description'])
 		{
-			$maker->message->add('alert', "⚠ " . T_('نیازمند ثبت مشخصات پاسخ‌دهنده'));
-			$maker->inline_keyboard->add([
-				[
-					"text" => T_("پنهان‌سازی مشخصات"),
-					"callback_data" => 'create/access_profile/remove'
-				]
-			]);
+			$maker->message->add('description', "📝 " . $maker->query_result['description']);
 		}
-		else
-		{
-			$maker->message->add('alert', "⚠ " . T_('به دلیل رعایت حریم خصوصی، اجازه نمایش مشخصات باید از پاسخ‌دهنده گرفته شود.'));
-			$maker->inline_keyboard->add([
-				[
-					"text" => "⚠ " . T_("نیازمند مشخصات"),
-					"callback_data" => 'create/access_profile/add'
-				]
-			]);
-		}
-		$maker->message->add('tag', utility::tag(T_('Preview')));
+
+
+		$maker->message->add('publish',"\n✅ " . T_("با فشردن دکمه انتشار، سوال خود را منتشر کنید."));
 		$maker->inline_keyboard->add([
 			[
-				"text" => T_("Publish"),
+				"text" => '✅ ' . T_("Publish"),
 				"callback_data" => 'poll/status/publish/'.$poll_id
 			]
 		]);
+
+		$maker->message->add('advance', '⚛ ' . T_("در صورت نیاز به اعمال ویژگی‌های بیشتر، دکمه پیشرفته را بفشارید."));
+		$maker->inline_keyboard->add([
+				[
+					"text" => '⚛ ' . T_("Advance"),
+					"callback_data" => 'create/advance'
+				]
+			]);
+		$maker->message->add('tag', utility::tag(T_('Preview')));
 		$maker->inline_keyboard->add([
 			[
 				"text" => T_("Cancel"),
