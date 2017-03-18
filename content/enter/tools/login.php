@@ -22,11 +22,16 @@ trait login
 		}
 		elseif(isset($_SESSION['first_signup']) && $_SESSION['first_signup'] === true)
 		{
-			$url .= 'ask';
+			$url .= '/ask';
 		}
 		else
 		{
-			$url .= '@';
+			$user_language = \lib\db\users::get_language($this->user_id);
+			if($user_language && \lib\utility\location\languages::check($user_language))
+			{
+				$url .= \lib\define::get_current_language_string($user_language);
+			}
+			$url .= '/@';
 		}
 
 		return $url;
