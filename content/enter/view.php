@@ -12,7 +12,7 @@ class view extends \mvc\view
 		$this->include->css    = true;
 		$this->include->js     = false;
 		$this->data->bodyclass = 'unselectable';
-		$this->data->bodyclass .= ' bg'. rand(1, 18);
+		$this->data->bodyclass .= ' bg'. rand(1, 17);
 	}
 
 	/**
