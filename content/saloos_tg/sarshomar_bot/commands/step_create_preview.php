@@ -28,7 +28,7 @@ class step_create_preview
 		$maker->message->add_title();
 		$maker->message->add_poll_list(null, false);
 
-		$maker->message->add('publish',"✅ " . T_("با فشردن دکمه انتشار، سوال خود را منتشر کنید."));
+		$maker->message->add('publish',"\n✅ " . T_("با فشردن دکمه انتشار، سوال خود را منتشر کنید."));
 		$maker->inline_keyboard->add([
 			[
 				"text" => '✅ ' . T_("Publish"),
