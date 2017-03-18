@@ -268,8 +268,8 @@
  .ltr .element .checkbox {background: transparent;position: absolute;right: 0;top: -1px;height: 20px;padding: 0;}
  .checkbox .check-box {height: 18px;width: 18px;}
  .checkbox .check-box:before, .checkbox .check-box:after {width: 3px;}
- .checkbox .check-box:before {top: 13px;left: 8px;}
- .checkbox .check-box:after {top: 7px;left: 2px;}
+ .checkbox .check-box:before {top: 12px;left: 8px;}
+ .checkbox .check-box:after {top: 6px;left: 2px;}
  @-webkit-keyframes dothabottomcheck{0%{height:0;}100%{height:8px;}}
  @-moz-keyframes dothabottomcheck{0%{height:0;}100%{height:8px;}}
  @-o-keyframes dothabottomcheck{0%{height:0;}100%{height:8px;}}
@@ -321,7 +321,7 @@
 #poll-result .in {position: relative;padding: 1em;}
 
   /************************************************************** filter question */
- .poll-filters {display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: reverse;-ms-flex-direction: column-reverse;-webkit-flex-direction: column-reverse;-moz-box-orient: vertical;-moz-box-direction: reverse;flex-direction: column-reverse;}
+.stepFilter .element.range label {border-radius: 4px;line-height: inherit;margin-bottom: 1em;}
  .pay-info {margin-bottom: 2em;}
  .switch .title.large {display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;-moz-box-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;-moz-box-align: center;align-items: center;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;-webkit-border-top-left-radius: 5px;-moz-border-radius-topleft: 5px;border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topright: 5px;border-top-right-radius: 5px;}
  .stepAdd .element.switch, .stepPublish .element.switch {display: block;line-height: normal}

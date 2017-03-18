@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-18 08:54+0330\n"
-"PO-Revision-Date: 2017-03-18 09:07+0330\n"
+"POT-Creation-Date: 2017-03-18 10:56+0330\n"
+"PO-Revision-Date: 2017-03-18 10:57+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: saloos/saloos-addons/includes/cls/form/options.php:33
 #: saloos/saloos-addons/includes/languages/trans_addons.php:396
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:38
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:34
 #: sarshomar/includes/languages/trans_addons.php:409
 #: sarshomar/includes/languages/trans_twig.php:154
 msgid "Description"
@@ -2512,9 +2512,7 @@ msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ن
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.back.php:71
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:87
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:158
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:50
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:74
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:65
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:49
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_select.php:85
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:162
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_answer_descriptive.php:184
@@ -2771,7 +2769,7 @@ msgstr "بروزرسانی"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:163
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.back.php:343
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:59
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:34
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:343
 #: sarshomar/includes/languages/trans_addons.php:163
 #: sarshomar/includes/languages/trans_twig.php:121
@@ -3020,7 +3018,7 @@ msgid "Schedule"
 msgstr "زمانبندی شده"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:230
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:56
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:46
 #: sarshomar/includes/languages/trans_addons.php:230
 msgid "Preview"
 msgstr "پیش نمایش"
@@ -3919,61 +3917,77 @@ msgstr "از تماس شما متشکریم"
 msgid "We could'nt save the contact"
 msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
-#: sarshomar/content/enter/model.php:46
+#: sarshomar/content/enter/model.php:50
 msgid "You are bot"
 msgstr "شما روبات هستید"
 
-#: sarshomar/content/enter/model.php:77 sarshomar/content/enter/model.php:233
+#: sarshomar/content/enter/model.php:81 sarshomar/content/enter/model.php:264
 msgid "You are blocked"
 msgstr "شما مسدود شده‌اید"
 
-#: sarshomar/content/enter/model.php:126
+#: sarshomar/content/enter/model.php:130
 msgid "1.We send verification code nearly"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:135
+#: sarshomar/content/enter/model.php:139
 msgid "2.Please set a valid mobile number"
 msgstr "۲.لطفا شماره موبایل معتبری وارد کنید"
 
-#: sarshomar/content/enter/model.php:142
+#: sarshomar/content/enter/model.php:146
 msgid "3.Please enter your pin"
 msgstr "۳.لطفا پین خود را وارد کنید"
 
-#: sarshomar/content/enter/model.php:150
+#: sarshomar/content/enter/model.php:154
+msgid "3.1.We send verification code in telegram, please check your telegram"
+msgstr ""
+
+#: sarshomar/content/enter/model.php:163
+msgid "3.2.We send verification code nearly"
+msgstr ""
+
+#: sarshomar/content/enter/model.php:172
+msgid "3.3.Please set a valid mobile number"
+msgstr ""
+
+#: sarshomar/content/enter/model.php:182
 msgid "4.Please set a valid mobile number"
 msgstr "۴.لطفا شماره موبایل معتبری تعیین کنید"
 
-#: sarshomar/content/enter/model.php:160
+#: sarshomar/content/enter/model.php:192
 msgid "5.Please set a valid mobile number"
 msgstr "۵.لطفا شماره موبایل معتبری تعیین کنید"
 
-#: sarshomar/content/enter/model.php:172
+#: sarshomar/content/enter/model.php:204
 msgid "6.We send verification code nearly"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:181
+#: sarshomar/content/enter/model.php:213
 msgid "7.Please set a valid mobile number"
 msgstr "۷.لطفا شماره موبایل معتبری وارد کنید"
 
-#: sarshomar/content/enter/model.php:198
+#: sarshomar/content/enter/model.php:230
 msgid "8.Please set a valid mobile number"
 msgstr "۸.لطفا شماره موبایل معتبری تعیین کنید"
 
-#: sarshomar/content/enter/model.php:208
+#: sarshomar/content/enter/model.php:240
 msgid "9.Login successfuly"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:214
+#: sarshomar/content/enter/model.php:246
 msgid "10.Invalid verfication code"
 msgstr "۱۰.کد تایید نامعتبر است"
 
-#: sarshomar/content/enter/model.php:238
+#: sarshomar/content/enter/model.php:269
 msgid "11.Invalid step"
 msgstr "۱۱.مرحله نامعتبر"
 
-#: sarshomar/content/enter/tools/check.php:121
+#: sarshomar/content/enter/tools/check.php:151
 msgid "Please enter a valid number"
 msgstr "لطفا شماره ی معتبری وارد کنید"
+
+#: sarshomar/content/enter/tools/verify.php:29
+msgid "Your verification code is :code "
+msgstr "کد تایید شما :code است"
 
 #: sarshomar/content/home/model.php:242 sarshomar/content/poll/controller.php:24
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:40
@@ -4293,7 +4307,6 @@ msgid "Send Feedback"
 msgstr "ارسال بازخورد"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:28
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:44
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_help.php:27
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_help.php:27
@@ -4683,6 +4696,8 @@ msgstr "گزارش"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:487
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:588
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:201
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:61
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:105
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:500
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:601
@@ -4703,7 +4718,7 @@ msgstr "همگام‌سازی"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:165
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:270
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:173
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:176
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:141
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:142
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:164
@@ -4835,35 +4850,35 @@ msgstr "علاقه‌مند نیستم"
 msgid "Privacy violation"
 msgstr "نقض حریم خصوصی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:111
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:114
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:111
 msgid "Your answer:"
 msgstr "پاسخ شما: "
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:160
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:163
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:160
 msgid "Panel"
 msgstr "پنل"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:207
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:210
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:207
 msgid "Valid answer is:"
 msgstr "پاسخ معتبر:"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:210
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:227
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:213
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:230
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:210
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:227
 msgid "Invalid"
 msgstr "نامعتبر"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:221
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:224
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:221
 msgid "Sum"
 msgstr "جمع"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:222
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:226
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:225
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:229
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:222
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:226
 msgid "Valid"
@@ -5047,36 +5062,53 @@ msgstr ""
 msgid "چند گزینه‌ای"
 msgstr ""
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:30
-msgid "شما می‌توانید انواعت تنظیمات دلخواه خود را برای این سوال اعمال کنید"
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:31
+msgid ""
+"چنانکه نیاز به ارایه‌ مقاله، خبر و اطلاعات تکمیلی در مورد سوال ثبت‌شده و نحوه "
+"پاسخ‌دهی دارید، دکمه توضیح را بفشارید."
 msgstr ""
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:34
-msgid "گزینه‌ها"
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:41
+msgid ""
+"به دلیل رعایت حریم خصوصی، هویت پاسخ‌دهندگان مخفی است، شما درخواست مشاهده نام و "
+"نام‌کاربری را داده‌اید، در صورتی که نیازی به این ویژگی ندارید آن‌را غیرفعال نمایید."
 msgstr ""
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:67
-msgid "حذف گزینه‌ها"
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:44
+msgid "پنهان‌سازی پاسخ‌دهنده"
 msgstr ""
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:32
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:51
+msgid ""
+"در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند "
+"مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه نیازمند مشخصات را بفشارید."
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:54
+msgid "شناسایی پاسخ‌دهنده"
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:95
+msgid "remove description"
+msgstr "حذف توضیحات"
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:101
+msgid ""
+"شما می‌توانید مقاله و توضیحات تکمیلی مرتبط با سوال ثبت‌شده را در این قسمت وارد "
+"کنید. این اطلاعات جهت آگاهی‌دادن بیشتر به مخاطب و بازخوردگیری مناسب نسبت به سوال "
+"طرح شده شما می‌باشد."
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:31
+msgid "با فشردن دکمه انتشار، سوال خود را منتشر کنید."
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:39
+msgid "در صورت نیاز به اعمال ویژگی‌های بیشتر، دکمه پیشرفته را بفشارید."
+msgstr ""
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:42
 msgid "Advance"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:38
-msgid "نیازمند ثبت مشخصات پاسخ‌دهنده"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:41
-msgid "پنهان‌سازی مشخصات"
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:48
-msgid "به دلیل رعایت حریم خصوصی، اجازه نمایش مشخصات باید از پاسخ‌دهنده گرفته شود."
-msgstr ""
-
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:51
-msgid "نیازمند مشخصات"
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_select.php:70
@@ -5639,7 +5671,7 @@ msgstr "پارامتر شناسه نامعتبر است"
 msgid "Can not send parameter id in post mode"
 msgstr "امکان ارسال پارامتر شناسه در حالت پست وجود ندارد"
 
-#: sarshomar/content_api/v1/poll/tools/add.php:82
+#: sarshomar/content_api/v1/poll/tools/add.php:84
 msgid "Profile values is incorrect"
 msgstr "مقادیر پروفایل ناصحیح است"
 
@@ -7481,7 +7513,7 @@ msgid "Ask and Answer with Sarshomar"
 msgstr "پرسش و پاسخ با سرشمار"
 
 #: sarshomar/includes/languages/trans_twig.php:256
-msgid "Sarshomar is jumping..."
+msgid "Sarshomar is about to launch..."
 msgstr "سرشمار در حال پریدن است..."
 
 #: sarshomar/includes/languages/trans_twig.php:257
@@ -7493,8 +7525,8 @@ msgid "Then if we were inestimable, Signup!"
 msgstr "سپس اگر ما را برترین یافتید، ثبت‌نام کنید!"
 
 #: sarshomar/includes/languages/trans_twig.php:259
-msgid "Verify your account"
-msgstr "تایید حساب کاربری"
+msgid "Verify account"
+msgstr "تایید حساب"
 
 #: sarshomar/includes/languages/trans_twig.php:263
 msgid "RSS"
@@ -9955,7 +9987,7 @@ msgid "Above 60"
 msgstr "+۶۰"
 
 #: sarshomar/includes/languages/trans_twig.php:982
-msgid "Person Count"
+msgid "Number of people"
 msgstr "تعداد افراد"
 
 #: sarshomar/includes/languages/trans_twig.php:985
@@ -12883,22 +12915,22 @@ msgid "Invalid parameter"
 msgstr "پارامتر نامعتبر"
 
 #: sarshomar/includes/lib/db/db_errors.php:36
-#: sarshomar/includes/lib/utility/sync.php:92
+#: sarshomar/includes/lib/utility/sync.php:93
 msgid "can not get mobile data"
 msgstr "ناتوان در دریافت اطلاعات موبایل"
 
 #: sarshomar/includes/lib/db/db_errors.php:37
-#: sarshomar/includes/lib/utility/sync.php:105
+#: sarshomar/includes/lib/utility/sync.php:107
 msgid "this account was already synced"
 msgstr "اکانت شما در حال حاضر سینک شده است"
 
 #: sarshomar/includes/lib/db/db_errors.php:38
-#: sarshomar/includes/lib/utility/sync.php:150
+#: sarshomar/includes/lib/utility/sync.php:153
 msgid "sync complete"
 msgstr "همگام‌سازی کامل شد"
 
 #: sarshomar/includes/lib/db/db_errors.php:39
-#: sarshomar/includes/lib/utility/sync.php:142
+#: sarshomar/includes/lib/utility/sync.php:144
 msgid "The operation encountered an error."
 msgstr "عملیات با مشکل مواجه شد."
 
@@ -13380,6 +13412,15 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:66
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Person Count"
+#~ msgstr "تعداد افراد"
+
+#~ msgid "Sarshomar is jumping..."
+#~ msgstr "سرشمار در حال پریدن است..."
+
+#~ msgid "Verify your account"
+#~ msgstr "تایید حساب کاربری"
 
 #~ msgid "Fail on tranfering file, when moving in temp"
 #~ msgstr "خطا در انتقال فايل در زمان انتقال به پوشه موقت"

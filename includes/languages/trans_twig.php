@@ -253,10 +253,10 @@ private function transtext()
 	echo T_("Ask Anyone Anywhere");                                                   // Line 27
 	echo T_("We are inestimable");                                                    // Line 58
 	echo T_("Ask and Answer with Sarshomar");                                         // Line 36
-	echo T_("Sarshomar is jumping...");                                               // Line 37
+	echo T_("Sarshomar is about to launch...");                                       // Line 37
 	echo T_("Inspection and Answer");                                                 // Line 61
 	echo T_("Then if we were inestimable, Signup!");                                  // Line 62
-	echo T_("Verify your account");                                                   // Line 50
+	echo T_("Verify account");                                                        // Line 50
 
 	//-----------------------------------------------------content\template\share.html
 	echo T_("Twitter");                                                               // Line 3
@@ -979,7 +979,7 @@ private function transtext()
 	echo T_("31-44");                                                                 // Line 93
 	echo T_("45-59");                                                                 // Line 95
 	echo T_("Above 60");                                                              // Line 97
-	echo T_("Person Count");                                                          // Line 115
+	echo T_("Number of people");                                                      // Line 115
 
 	//--------------------------------------------------------content_u\add\step3.html
 	echo T_("Sub Category");                                                          // Line 16
