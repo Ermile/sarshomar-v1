@@ -86,12 +86,20 @@ class create
 		$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		step::stop();
 
-		$step = 'create_' . $_data_url[2];
-		step::start($step);
+		if($_data_url[2] == 'select')
+		{
+			$step = 'create_' . $_data_url[2];
+			step::start($step);
 
-		$step_class = '\content\saloos_tg\sarshomar_bot\commands\step_' . $step;
+			$step_class = '\content\saloos_tg\sarshomar_bot\commands\step_' . $step;
+			callback_query::edit_message($step_class::step1());
+		}
+		else
+		{
+			return self::preview();
+		}
 
-		callback_query::edit_message($step_class::step1());
+
 	}
 
 	public static function choise_type($_query = null, $_data_url = null)

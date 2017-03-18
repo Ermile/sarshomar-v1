@@ -28,12 +28,6 @@ class step_create_preview
 		$maker->message->add_title();
 		$maker->message->add_poll_list(null, false);
 
-		if($maker->query_result['description'])
-		{
-			$maker->message->add('description', "📝 " . $maker->query_result['description']);
-		}
-
-
 		$maker->message->add('publish',"\n✅ " . T_("با فشردن دکمه انتشار، سوال خود را منتشر کنید."));
 		$maker->inline_keyboard->add([
 			[

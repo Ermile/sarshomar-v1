@@ -98,10 +98,13 @@ class message
 		$poll_list = '';
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
+		if(isset($this->class->query_result['description']) && $this->class->query_result['description'])
+		{
+			$poll_list .= "" . $this->class->query_result['description'] ."\n";
+		}
 		foreach ($this->class->query_result['answers'] as $key => $value) {
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')
 			{
-				$poll_list = $this->class->query_result['description'];
 				if($value['type'] == 'like' && $answer)
 				{
 					// $poll_list .= "\n" . T_('Liked');

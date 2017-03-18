@@ -68,6 +68,7 @@ trait add
 		if(utility::isset_request('access_profile'))
 		{
 			$access_profile = null;
+
 			if(!utility::request('access_profile') == null)
 			{
 				$access_profile = utility::request('access_profile');
