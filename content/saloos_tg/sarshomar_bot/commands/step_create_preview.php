@@ -39,7 +39,7 @@ class step_create_preview
 		$maker->message->add('advance', '⚛ ' . T_("در صورت نیاز به اعمال ویژگی‌های بیشتر، دکمه پیشرفته را بفشارید."));
 		$maker->inline_keyboard->add([
 				[
-					"text" => '⚛ ' . T_("Advance"),
+					"text" => '⚛ ' . T_("Advanced"),
 					"callback_data" => 'create/advance'
 				]
 			]);
