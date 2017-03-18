@@ -63,15 +63,13 @@ class sync
 	 */
 	public static function web_telegram($_web_mobile, $_telegram_id)
 	{
-		// this function in dev mod... :)
-		// return self::status(true)->set_error_code(3502);
-
+		\lib\db\logs::set('user:telegram:sync:start', null, ['data' => $_web_mobile, 'meta' => ['input' => func_get_args()]]);
 		$mobile       = \lib\utility\filter::mobile($_web_mobile);
 		self::$mobile = $mobile;
 		$web          = \lib\db\users::get_by_mobile($mobile);
 		if(!$web || empty($web))
 		{
-
+			\lib\db\logs::set('user:telegram:sync:webaccount:not:exist',$_telegram_id, ['data' => $_web_mobile]);
 			// new signup in site
 			// we set the mobile in telegram account and the sync is ok
 			$temp_password = rand(100000,999999);
@@ -89,6 +87,7 @@ class sync
 
 		if(!$web || !isset($web['id']))
 		{
+			\lib\db\logs::set('user:telegram:sync:error:mobile:data',$_telegram_id, ['data' => $_web_mobile]);
 			return [
 				'message' => T_("can not get mobile data")
 			];
@@ -101,6 +100,7 @@ class sync
 
 		if(self::$new_user_id == self::$old_user_id)
 		{
+			\lib\db\logs::set('user:telegram:sync:synced',$_telegram_id, ['data' => $web_id]);
 			return [
 				'message' => T_("this account was already synced")
 			];
@@ -138,12 +138,14 @@ class sync
 		if(!\lib\debug::$status)
 		{
 			\lib\db::rollback();
+			\lib\db\logs::set('user:telegram:sync:error:in:sync:rollback',$_telegram_id, ['data' => $web_id]);
 			return ['message' => T_("The operation encountered an error.")];
 		}
 		else
 		{
 			\lib\db\users::update(['user_verify' => 'mobile'], self::$new_user_id);
 			\lib\db::commit();
+			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
 			return [
 				'message' => T_("sync complete"),
 				'user_id' => $web_id
