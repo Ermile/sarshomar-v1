@@ -79,7 +79,21 @@ class ask
 		$maker->message->add_poll_list($my_answer);
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
-		// $maker->message->add_telegram_tag();
+		if($options['type'] == 'inline')
+		{
+			if($maker->query_result['language'] == 'fa')
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
+				$my_date = utility::nubmer_language($my_date);
+			}
+			else
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
+			}
+			$maker->message->add('time',"🕰 " . $my_date);
+		}
 
 		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
@@ -220,11 +234,12 @@ class ask
 		\lib\define::set_language($user_lang, true);
 
 		$md5_result = md5(json_encode($maker->query_result['result']));
-		if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
-		{
-			return false;
-		}
-		elseif($_query || !isset($options['return']))
+		// if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
+		// {
+		// 	return false;
+		// }
+		// else
+		if($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
 		}
