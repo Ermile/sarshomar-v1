@@ -57,7 +57,13 @@ trait verify
 
 		db\logs::set('user:verification:code', $this->user_id, $log_meta);
 		$result = bot::sendResponse($msg);
-		return $result;
+
+		if(isset($result['ok']) && $result['ok'] === true)
+		{
+			return true;
+		}
+		return false;
+
 	}
 
 

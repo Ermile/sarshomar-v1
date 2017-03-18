@@ -8,6 +8,32 @@ use \lib\db;
 trait login
 {
 	/**
+	 * find redirect url
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function find_redirect_url()
+	{
+		$url = \lib\define::get_current_language_string();
+
+		if(utility::get('referer'))
+		{
+			$url = utility::get('referer');
+		}
+		elseif(isset($_SESSION['first_signup']) && $_SESSION['first_signup'] === true)
+		{
+			$url .= 'ask';
+		}
+		else
+		{
+			$url .= '@';
+		}
+
+		return $url;
+	}
+
+
+	/**
 	 * login
 	 */
 	public function login_set()
@@ -24,14 +50,7 @@ trait login
 		$this->setLoginSession($this->user_data, $myfields);
 		$this->login_remember();
 		debug::msg('direct', true);
-		if(isset($_SESSION['first_signup']) && $_SESSION['first_signup'] === true)
-		{
-			$this->redirector('ask')->redirect();
-		}
-		else
-		{
-			$this->redirector('@')->redirect();
-		}
+		$this->redirector($this->find_redirect_url())->redirect();
 	}
 
 

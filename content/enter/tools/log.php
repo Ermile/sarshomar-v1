@@ -46,7 +46,7 @@ trait log
 			$_SESSION[$_caller] = 1;
 		}
 
-		if($_SESSION[$_caller] > 3 || $_block)
+		if($_SESSION[$_caller] > 5 || $_block)
 		{
 			if($this->block_type === 'ip-agent')
 			{

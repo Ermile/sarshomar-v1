@@ -78,11 +78,14 @@ class model extends \mvc\model
 			$this->log('use:enter:blocked:agent:ip');
 			$this->log_sleep_code('use:enter:blocked:agent:ip');
 			debug::msg('step', 'block');
+			debug::msg('wait', 10);
 			debug::title(T_("You are blocked"));
 			return false;
 		}
-
+		// step
 		$step = 'mobile';
+		// wait for 0 seccend
+		$wait = 0;
 		// check input and get the step
 		$check_input = $this->check_input();
 
@@ -117,6 +120,9 @@ class model extends \mvc\model
 			case 'mobile':
 				// check valid mobile by status of mobile
 				// if this mobile is blocked older
+				// check if blocked this mobile
+				// check tihs user id by this mobile have a telegram id and start the robot
+				// check this user id have a user name
 				$valid = $this->check_valid_mobile_username();
 				if($valid)
 				{
@@ -127,23 +133,24 @@ class model extends \mvc\model
 							{
 								// call was send
 								$step = 'code';
-								debug::title(T_("1.We send verification code nearly"));
+								$wait = 5; // wait 5 seccend to call mobile
+								debug::title(T_("We send verification code nearly"));
 							}
 							else
 							{
 								// this mobile is not a valid mobile
 								// check by kavenegar
 								$this->log('user:verification:invalid:mobile');
-								$this->log_sleep_code('invalid:mobile');
+								$wait = $this->log_sleep_code('invalid:mobile');
 								$step = 'mobile';
-								debug::title(T_("2.Please set a valid mobile number"));
+								debug::title(T_("Please enter a valid mobile number"));
 							}
 							break;
 
 						case 'pin':
 							$step = 'pin';
 							$this->log('user:verification:use:pin');
-							debug::title(T_("3.Please enter your pin"));
+							debug::title(T_("Please enter your pin"));
 							break;
 
 						case 'telegram':
@@ -151,7 +158,8 @@ class model extends \mvc\model
 							{
 								// call was send
 								$step = 'code';
-								debug::title(T_("3.1.We send verification code in telegram, please check your telegram"));
+								$wait = 1;
+								debug::title(T_("A verification code will be sent to your telegram"));
 							}
 							else
 							{
@@ -160,16 +168,17 @@ class model extends \mvc\model
 									$this->log('user:verification:cannot:send:telegram:msg');
 									// call was send
 									$step = 'code';
-									debug::title(T_("3.2.We send verification code nearly"));
+									$wait = 5; // wait for 5 seccend to call mobile
+									debug::title(T_("We send verification code nearly"));
 								}
 								else
 								{
 									// this mobile is not a valid mobile
 									// check by kavenegar
-									$this->log('user:verification:invalid:mobile');
-									$this->log_sleep_code('invalid:mobile');
+									$this->log('user:verification:invalid:mobile:after:send:telegram');
+									$wait = $this->log_sleep_code('invalid:mobile');
 									$step = 'mobile';
-									debug::title(T_("3.3.Please set a valid mobile number"));
+									debug::title(T_("Please enter a valid mobile number"));
 								}
 							}
 							break;
@@ -177,9 +186,9 @@ class model extends \mvc\model
 						case 'invalid':
 						default:
 							$step = 'mobile';
+							$wait = $this->log_sleep_code('invalid:mobile');
 							$this->log('user:verification:invalid:mobile');
-							$this->log_sleep_code('invalid:mobile');
-							debug::title(T_("4.Please set a valid mobile number"));
+							debug::title(T_("Please enter a valid mobile number"));
 							break;
 					}
 					// call mobile
@@ -187,9 +196,9 @@ class model extends \mvc\model
 				else
 				{
 					$step = 'mobile';
+					$wait = $this->log_sleep_code('invalid:mobile');
 					$this->log('user:verification:invalid:mobile');
-					$this->log_sleep_code('invalid:mobile');
-					debug::title(T_("5.Please set a valid mobile number"));
+					debug::title(T_("Please enter a valid mobile number"));
 				}
 				break;
 
@@ -201,33 +210,42 @@ class model extends \mvc\model
 					{
 						// call was send
 						$step = 'code';
-						debug::title(T_("6.We send verification code nearly"));
+						$wait = 5;
+						debug::title(T_("We send verification code nearly"));
 					}
 					else
 					{
 						$this->log('user:verification:invalid:mobile');
-						$this->log_sleep_code('invalid:mobile');
+						$wait = $this->log_sleep_code('invalid:mobile');
 						// this mobile is not a valid mobile
 						// check by kavenegar
 						$step = 'mobile';
-						debug::title(T_("7.Please set a valid mobile number"));
+						debug::title(T_("Please enter a valid mobile number"));
 					}
 				}
 				else
 				{
 					$this->log('user:verification:invalid:pin');
-					$this->log_sleep_code('invalid:mobile');
+					debug::title(T_("Invalid pin, try again"));
+
 					// this mobile is not a valid mobile
 					// check by kavenegar
-					if($this->counter('invalid:code') > 3)
+					$wait = $count_log = $this->log_sleep_code('invalid:pin');
+					if($count_log >= 5)
 					{
+						debug::title('<a href="https://sarshomar.com">'. T_("Forgot your pin?") . '</a>');
 						$step = 'mobile';
+					}
+					elseif($count_log > 3)
+					{
+						debug::title(T_("In case of entering an invalid pin, you will be blocked"));
+						$step = 'pin';
 					}
 					else
 					{
+						$this->log_sleep_code('invalid:pin');
 						$step = 'pin';
 					}
-					debug::title(T_("8.Please set a valid mobile number"));
 				}
 				break;
 			// system in step 2
@@ -237,44 +255,57 @@ class model extends \mvc\model
 				{
 					// the verification code is true
 					// set login
-					debug::title(T_("9.Login successfuly"));
+					debug::title(T_("Logged in successfully"));
 					$this->login_set();
 					$step = 'login';
 				}
 				else
 				{
-					debug::title(T_("10.Invalid verfication code"));
 					$this->log('user:verfication:invalid:code');
-					if($this->log_sleep_code('invalid:code') > 3)
+					$wait = $count_log = $this->log_sleep_code('invalid:code');
+					if($count_log >= 5)
 					{
-						$step = 'mobile';
+						debug::title(T_("You are trying to cheat us!"));
+						$step = 'block';
+
+					}
+					elseif($count_log > 3)
+					{
+						debug::title(T_("دقت کن دفعات زیادی رو اشتباه زدی"));
+						$step = 'code';
 					}
 					else
 					{
+						debug::title(T_("Invalid verfication code"));
 						$step = 'code';
 					}
 				}
 				break;
 
+				// the user send password
+				// we are blocked this user one more time
 			case 'password':
 				$step = 'mobile';
+				$wait = 10;
 				break;
 
+				// the user was blocked
 			case 'block':
 				debug::title(T_("You are blocked"));
 				$step = 'mobile';
 				break;
 
 			default:
-				debug::title(T_("11.Invalid step"));
+				debug::title(T_("Invalid step"));
 				$this->log('user:verfication:invalid:step');
-				$this->counter('user:verfication:invalid:step');
-				// invalid input
+				$this->counter('user:verfication:invalid:step', true);
 				$step = 'mobile';
+				$wait = 15;
 				break;
 		}
 
 		debug::msg('step', $step);
+		debug::msg('wait', $wait);
 	}
 }
 ?>

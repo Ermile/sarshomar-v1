@@ -44,12 +44,12 @@ trait check
 		if(isset($input['password']) && $input['password'])
 		{
 			$this->log('enter:send:password:notempty');
-			if($this->counter('enter:send:max:input') >= 2)
+			if($this->counter('enter:send:max:input') >= 3)
 			{
 				$this->counter('enter:send:max:input', true);
 				return 'block';
 			}
-			debug::title("!نکن");
+			debug::title(T_("Don't do this"));
 			return 'password';
 		}
 
