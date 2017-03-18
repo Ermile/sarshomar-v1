@@ -30,7 +30,7 @@ class view extends \mvc\view
 		if(isset($_SESSION['user_answered_to_all_poll']) && $_SESSION['user_answered_to_all_poll'] === true)
 		{
 			unset($_SESSION['user_answered_to_all_poll']);
-			$this->data->user_answered_to_all_poll = T_("You are answered to all poll");
+			$this->data->user_answered_to_all_poll = T_("You have answered to all the polls");
 		}
 	}
 
