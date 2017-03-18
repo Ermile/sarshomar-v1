@@ -8,13 +8,15 @@ use \lib\db;
 class model extends \mvc\model
 {
 
-	public $mobile    = null;
-	public $username  = null;
-	public $pin       = null;
-	public $code      = null;
-	public $user_data = [];
-	public $user_id   = null;
-	public $signup    = false;
+	public $mobile     = null;
+	public $username   = null;
+	public $pin        = null;
+	public $code       = null;
+	public $user_data  = [];
+	public $user_id    = null;
+	public $signup     = false;
+	public $block_type = 'ip-agent';
+	// public $block_type = 'session';
 
 
 	use tools\check;

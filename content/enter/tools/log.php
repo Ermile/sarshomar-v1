@@ -18,10 +18,9 @@ trait log
 	{
 		$log_meta =
 		[
-			'data' => null,
+			'data' => $_data,
 			'meta' =>
 			[
-				'data'    => $_data,
 				'mobile'  => $this->mobile,
 				'input'   => utility::post(),
 				'session' => $_SESSION,
@@ -49,6 +48,22 @@ trait log
 
 		if($_SESSION[$_caller] > 3 || $_block)
 		{
+			if($this->block_type === 'ip-agent')
+			{
+				$log_meta =
+				[
+					'data' => ClientIP . '_'. utility\visitor::get('agent'),
+					'meta' =>
+					[
+						'mobile'  => $this->mobile,
+						'input'   => utility::post(),
+						'session' => $_SESSION,
+					],
+				];
+				db\logs::set('ip:agent:block', $this->user_id, $log_meta);
+				// block ip agent in log
+			}
+
 			$_SESSION['enter:user:block'] = true;
 		}
 
@@ -63,6 +78,23 @@ trait log
 	 */
 	public function enter_is_blocked()
 	{
+		if($this->block_type === 'ip-agent')
+		{
+			$caller = db\logitems::caller('ip:agent:block');
+			$where =
+			[
+				'logitem_id' => $caller,
+				'log_data'   => ClientIP . '_'. utility\visitor::get('agent'),
+				'log_status' => 'enable',
+				'limit'      => 1
+			];
+			$is_blocked = db\logs::get($where);
+			if(!empty($is_blocked))
+			{
+				return true;
+			}
+		}
+
 		if(isset($_SESSION['enter:user:block']) && $_SESSION['enter:user:block'] === true)
 		{
 			return true;

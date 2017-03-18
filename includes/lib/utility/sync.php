@@ -79,8 +79,8 @@ class sync
 				'user_pass'   => \lib\utility::hasher($temp_password)
 			];
 			\lib\db\users::update($update_users, $_telegram_id);
-			return [
-				'password' => $temp_password,
+			return
+			[
 				'message' => T_("You can login to Sarshomar.com with your mobile", ['mobile' => $mobile]),
 			];
 		}
@@ -88,7 +88,8 @@ class sync
 		if(!$web || !isset($web['id']))
 		{
 			\lib\db\logs::set('user:telegram:sync:error:mobile:data',$_telegram_id, ['data' => $_web_mobile]);
-			return [
+			return
+			[
 				'message' => T_("can not get mobile data")
 			];
 		}
@@ -101,7 +102,8 @@ class sync
 		if(self::$new_user_id == self::$old_user_id)
 		{
 			\lib\db\logs::set('user:telegram:sync:synced',$_telegram_id, ['data' => $web_id]);
-			return [
+			return
+			[
 				'message' => T_("this account was already synced")
 			];
 		}
@@ -146,7 +148,8 @@ class sync
 			\lib\db\users::update(['user_verify' => 'mobile'], self::$new_user_id);
 			\lib\db::commit();
 			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
-			return [
+			return
+			[
 				'message' => T_("sync complete"),
 				'user_id' => $web_id
 			];
