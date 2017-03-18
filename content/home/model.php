@@ -161,6 +161,7 @@ class model extends \mvc\model
 	 */
 	public function check_url($_return = false, $_url = null)
 	{
+
 		if($_url === null)
 		{
 			$url     = \lib\router::get_url();
@@ -207,7 +208,14 @@ class model extends \mvc\model
 		}
 		else
 		{
-			return false;
+			if($_return)
+			{
+				return false;
+			}
+			else
+			{
+				\lib\error::page(T_("Poll not found"));
+			}
 		}
 
 		if($_return)

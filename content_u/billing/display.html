@@ -1,12 +1,12 @@
 {%extends display.main%} {%block content%}
 <aside class='dashboard-aside'>
     <form method="post" class="ui-language">
-            <select name="ui-language">
-                <option value="">واحد مالی</option>
-                <option value="en">تومان</option>
-                <option value="fa">دلار</option>
+            <select name="user-unit">
+                <option value="">{%trans "Unit"%}</option>
+                <option value="toman">{%trans "Toman"%}</option>
+                <option value="dollar">{%trans "Dollar"%}</option>
             </select>
-            <input type="submit" value="تعیین" class="try">
+            <input type="submit" value='{%trans "Apply"%}' class="try">
     </form>
 </aside>
 <div class="main billing" {% if verify_modal %} data-modal='billing-verify' {% endif %}>

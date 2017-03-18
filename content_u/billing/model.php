@@ -6,6 +6,7 @@ use \lib\utility\payment;
 
 class model extends \mvc\model
 {
+	use tools\zarinpal;
 
 	public static $support_bank =
 	[
@@ -17,29 +18,15 @@ class model extends \mvc\model
 		// 'tejarat',
 	];
 
-
-	/**
-	 * zarinpay method
-	 *
-	 * @var        array
-	 */
-	private static $zarinpal =
-	[
-		'MerchantID'  => "669de6b4-f744-11e6-9180-005056a205be",
-		'Description' => "Sarshomar",
-		'CallbackURL' => 'https://sarshomar.com/@/billing/verify/zarinpal',
-		'Email'       => null,
-		'Mobile'      => null,
-		'Amount'      => null,
-	];
-
-
 	/**
 	 * PAYMENT DATA
 	 *
 	 * @var        array
 	 */
 	public static $PAYMENT_DATA = [];
+
+
+
 
 	/**
 	 * { function_description }

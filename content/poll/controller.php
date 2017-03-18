@@ -21,7 +21,7 @@ class controller extends \mvc\controller
 		}
 		else
 		{
-			\lib\error::page(T_("Poll not found"));
+			$this->model()->check_url();
 		}
 
 	}
