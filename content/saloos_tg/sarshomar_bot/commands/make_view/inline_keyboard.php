@@ -184,10 +184,10 @@ class inline_keyboard
 			]]);
 		$request_status = \lib\main::$controller->model()->poll_status();
 		$available_status = $request_status['available'];
-		if($request_status['current'] == 'draft')
-		{
-			$this->add([["text" => t_("Edit"), "callback_data" => 'poll/edit/' . $this->class->poll_id]]);
-		}
+		// if($request_status['current'] == 'draft')
+		// {
+		// 	$this->add([["text" => t_("Edit"), "callback_data" => 'poll/edit/' . $this->class->poll_id]]);
+		// }
 		foreach ($available_status as $key => $value) {
 			$return[] = [
 				"text" => T_(ucfirst($value)),
