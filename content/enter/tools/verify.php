@@ -4,20 +4,83 @@ use \lib\utility\visitor;
 use \lib\utility;
 use \lib\debug;
 use \lib\db;
+use \lib\telegram\tg as bot;
 
 trait verify
 {
+
+
+
+	/**
+	 * send verification code to the user telegram
+	 *
+	 * @param      <type>  $_chat_id  The chat identifier
+	 * @param      <type>  $_text     The text
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function verify_send_telegram()
+	{
+		bot::$api_key   = '215239661:AAHyVstYPXKJyfhDK94A-XfYukDMiy3PLKY';
+		bot::$name      = 'ermile_bot';
+
+		$code = $this->generate_verification_code();
+
+		$text = T_("Your verification code is :code ", ['code' => $code]);
+		$msg =
+		[
+			'method'       => 'sendMessage',
+			'text'         => $text,
+			'chat_id'      => $this->telegram_chat_id,
+		];
+		$log_meta =
+		[
+			'data' => $code,
+			'meta' =>
+			[
+				'input'        => utility::post(),
+				'text'         => $text,
+				'mobile'       => $this->mobile,
+				'code'         => $code,
+				'session'      => $_SESSION,
+				'telegram'     => $this->telegram_detail,
+				'telegram_msg' => $msg,
+			]
+		];
+
+		db\logs::set('user:verification:code', $this->user_id, $log_meta);
+		$result = bot::sendResponse($msg);
+		return $result;
+	}
+
 
 	public function expire_old_code()
 	{
 
 	}
 
+
+	/**
+	 * generate verification code
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function generate_verification_code()
+	{
+		return rand(100000,999999);
+	}
+
+
+	/**
+	 * send verification by call
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function verify_call_mobile()
 	{
 		$this->expire_old_code();
 
-		$code = rand(100000,999999);
+		$code = $this->generate_verification_code();
 		$log_meta =
 		[
 			'data' => $code,

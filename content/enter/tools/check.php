@@ -96,7 +96,7 @@ trait check
 				if(
 					$this->user_data['user_username'] &&
 					$this->user_data['user_status'] === 'active' &&
-					!is_null($this->user_data['user_pass'])
+					$this->user_data['user_pass']
 				  )
 				{
 					if(is_numeric($this->mobile) && intval($this->mobile) > 9999999 && intval($this->mobile) < 99999999999)
@@ -108,6 +108,36 @@ trait check
 					$return = 'pin';
 				}
 			}
+
+			// check if this user have a telegram id and start the telegram
+			$telegram_id =
+			[
+				'user_id'    => $this->user_id,
+				'option_cat' => 'telegram',
+				'option_key' => 'id',
+				'limit'      => 1,
+			];
+			$telegram_id = db\options::get($telegram_id);
+			$this->telegram_detail['telegram_id'] =  $telegram_id;
+			if(!empty($telegram_id) && isset($telegram_id['value']) && $telegram_id['value'])
+			{
+				$telegram_start_status =
+				[
+					'user_id'      => $this->user_id,
+					'option_cat'   => 'user_detail_'. $this->user_id,
+					'option_key'   => 'telegram_start_status',
+					'option_value' => 'start',
+					'limit'        => 1,
+				];
+				$telegram_start_status = db\options::get($telegram_start_status);
+				if(!empty($telegram_start_status))
+				{
+					$this->telegram_detail['telegram_start_status'] =  $telegram_start_status;
+					$this->telegram_chat_id = $telegram_id['value'];
+					return 'telegram';
+				}
+			}
+
 
 			if(array_key_exists('user_status', $this->user_data))
 			{

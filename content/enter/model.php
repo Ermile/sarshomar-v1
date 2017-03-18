@@ -8,15 +8,17 @@ use \lib\db;
 class model extends \mvc\model
 {
 
-	public $mobile     = null;
-	public $username   = null;
-	public $pin        = null;
-	public $code       = null;
-	public $user_data  = [];
-	public $user_id    = null;
-	public $signup     = false;
-	public $block_type = 'ip-agent';
-	// public $block_type = 'session';
+	public $mobile           = null;
+	public $username         = null;
+	public $pin              = null;
+	public $code             = null;
+	public $user_data        = [];
+	public $user_id          = null;
+	public $signup           = false;
+	public $telegram_chat_id = null;
+	public $telegram_detail  = [];
+	// public $block_type    = 'ip-agent';
+	public $block_type       = 'session';
 
 
 	use tools\check;
@@ -142,6 +144,34 @@ class model extends \mvc\model
 							$step = 'pin';
 							$this->log('user:verification:use:pin');
 							debug::title(T_("3.Please enter your pin"));
+							break;
+
+						case 'telegram':
+							if($this->verify_send_telegram())
+							{
+								// call was send
+								$step = 'code';
+								debug::title(T_("3.1.We send verification code in telegram, please check your telegram"));
+							}
+							else
+							{
+								if($this->verify_call_mobile())
+								{
+									$this->log('user:verification:cannot:send:telegram:msg');
+									// call was send
+									$step = 'code';
+									debug::title(T_("3.2.We send verification code nearly"));
+								}
+								else
+								{
+									// this mobile is not a valid mobile
+									// check by kavenegar
+									$this->log('user:verification:invalid:mobile');
+									$this->log_sleep_code('invalid:mobile');
+									$step = 'mobile';
+									debug::title(T_("3.3.Please set a valid mobile number"));
+								}
+							}
 							break;
 
 						case 'invalid':
