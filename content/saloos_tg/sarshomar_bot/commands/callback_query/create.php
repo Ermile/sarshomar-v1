@@ -26,9 +26,9 @@ class create
 	}
 
 	public static function home($_query = null, $_data_url = null){
-		$txt_text = "📍 " . T_("عنوان سوال را وارد کنید");
+		$txt_text = "📍 " . T_("Enter question's title");
 		$txt_text .= "\n\n";
-		$txt_text .= "✳ " . T_("برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید.");
+		$txt_text .= "✳ " . T_("To cancel poll submission send /cancel command in each step.");
 		$txt_text .= "\n" . utility::tag(T_("Create new poll"));
 		$result   =
 		[
@@ -44,11 +44,11 @@ class create
 	{
 		$make = new make_view(session::get('poll'));
 		$make->message->add_title();
-		$make->message->add('status', "\n" . "📍📍 " . T_("محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل را وارد کنید"));
+		$make->message->add('status', "\n" . "📍📍 " . T_("Add multimedia content including image, movie, audio or file."));
 		$make->message->add('tag', utility::tag(T_("Create new poll")));
 		$make->inline_keyboard->add([
 				[
-					"text" => T_("فایل ندارم"),
+					"text" => T_("I don't have file"),
 					"callback_data" => 'create/choise_type',
 				],
 				[

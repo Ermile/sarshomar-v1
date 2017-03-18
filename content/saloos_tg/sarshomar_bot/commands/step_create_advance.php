@@ -28,7 +28,7 @@ class step_create_advance
 		$maker->message->add_title();
 		$maker->message->add_poll_list(null, false);
 
-		$maker->message->add('alert-description', "\n📝 ".T_("چنانکه نیاز به ارایه‌ مقاله، خبر و اطلاعات تکمیلی در مورد سوال ثبت‌شده و نحوه پاسخ‌دهی دارید، دکمه توضیح را بفشارید."));
+		$maker->message->add('alert-description', "\n📝 ".T_("Press description button in case of presenting article, news and further information about submitted question and responding method."));
 		$maker->inline_keyboard->add([
 			[
 				'text' => "📝 " . T_('Description'),
@@ -38,20 +38,20 @@ class step_create_advance
 
 		if(isset($maker->query_result['access_profile']))
 		{
-			$maker->message->add('privacy', "⭕ ".T_("به دلیل رعایت حریم خصوصی، هویت پاسخ‌دهندگان مخفی است، شما درخواست مشاهده نام و نام‌کاربری را داده‌اید، در صورتی که نیازی به این ویژگی ندارید آن‌را غیرفعال نمایید."));
+			$maker->message->add('privacy', "⭕ ".T_("In order to protect the privacy, the identity of respondents is hidden. You have requested to see the name and username of respondents. If you don't need this feature, disable it."));
 			$maker->inline_keyboard->add([
 				[
-					'text' => T_('پنهان‌سازی پاسخ‌دهنده'),
+					'text' => T_('Hide respondent'),
 					"callback_data" => 'create_advance/access_profile/remove'
 				]
 				]);
 		}
 		else
 		{
-			$maker->message->add('privacy', "⚠ ".T_("در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه شناسایی پاسخ‌دهنده را بفشارید."));
+			$maker->message->add('privacy', "⚠ ".T_("In order to protect the privacy, the identity of respondents is hidden by default. If you need to see the name and username of respondents, press identify respondent."));
 			$maker->inline_keyboard->add([
 				[
-					'text' => "⚠ " . T_('شناسایی پاسخ‌دهنده'),
+					'text' => "⚠ " . T_('Identify respondent'),
 					"callback_data" => 'create_advance/access_profile/add'
 				]
 				]);
@@ -98,7 +98,7 @@ class step_create_advance
 				]);
 		}
 
-		$maker->message->add('alert', "\n📝 " . T_('شما می‌توانید مقاله و توضیحات تکمیلی مرتبط با سوال ثبت‌شده را در این قسمت وارد کنید. این اطلاعات جهت آگاهی‌دادن بیشتر به مخاطب و بازخوردگیری مناسب نسبت به سوال طرح شده شما می‌باشد.'));
+		$maker->message->add('alert', "\n📝 " . T_('You can insert article and further information about submitted question in this section. This information is for getting better feedback and to make the user more aware about the question.'));
 
 		$maker->inline_keyboard->add([
 			[

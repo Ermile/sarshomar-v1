@@ -70,15 +70,15 @@ class step_create
 	{
 		$maker = new make_view(session::get('poll'));
 		$maker->message->add_title();
-		$maker->message->add('status', "\n" . "📍 " . T_("آیا سوال شما دارای محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل است؟"));
+		$maker->message->add('status', "\n" . "📍 " . T_("Does your question include multimedia content including image, movie, audio or file?"));
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 		$maker->inline_keyboard->add([
 				[
-					"text" => T_("بله، ارسال فایل"),
+					"text" => T_("Yes, send file"),
 					"callback_data" => 'create/upload_file',
 				],
 				[
-					"text" => T_("خیر"),
+					"text" => T_("No"),
 					"callback_data" => 'create/choise_type'
 				]
 			]);
@@ -107,7 +107,7 @@ class step_create
 			}
 
 			bot::sendResponse([
-				'text' => T_("درحال دریافت و آنالیز فایل"),
+				'text' => T_("Receiving and processing file..."),
 				'method' => 'sendMessage'
 				]);
 
@@ -140,7 +140,7 @@ class step_create
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 		$maker->inline_keyboard->add([
 					[
-						"text" => T_("چند گزینه‌ای"),
+						"text" => T_("Multiple-choice"),
 						"callback_data" => 'create/type/select'
 					]
 				]);
