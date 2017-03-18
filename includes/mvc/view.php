@@ -42,6 +42,11 @@ class view extends \lib\mvc\view
 			$this->include->heatmap = true;
 		}
 
+		$this->data->user_unit      = null;
+		$this->data->user_cash      = null;
+		$this->data->user_cash_gift = null;
+		$this->data->is_guest       = null;
+
 		if($this->login())
 		{
 			$this->data->user_unit      = \lib\db\units::user_unit($this->login('id'));

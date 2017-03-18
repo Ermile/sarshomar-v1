@@ -3,8 +3,8 @@
     <form method="post" class="ui-language">
             <select name="user-unit">
                 <option value="">{%trans "Unit"%}</option>
-                <option value="toman">{%trans "Toman"%}</option>
-                <option value="dollar">{%trans "Dollar"%}</option>
+                <option value="toman" {% if user_unit == 'toman' %} selected="selected" {%endif%}>{%trans "Toman"%}</option>
+                <option value="dollar" {% if user_unit == 'dollar' %} selected="selected" {%endif%}>{%trans "Dollar"%}</option>
             </select>
             <input type="submit" value='{%trans "Apply"%}' class="try">
     </form>

@@ -6,8 +6,6 @@ use \lib\utility\payment;
 
 class model extends \mvc\model
 {
-	use tools\zarinpal;
-
 	public static $support_bank =
 	[
 		'zarinpal',
@@ -25,41 +23,16 @@ class model extends \mvc\model
 	 */
 	public static $PAYMENT_DATA = [];
 
-
-
-
 	/**
-	 * { function_description }
+	 * the user id
 	 *
-	 * @param      <type>  $_bank  The bank
+	 * @var        <type>
 	 */
-	public static function payment_data($_bank)
-	{
+	public $user_id = null;
 
-		if(!isset(self::$PAYMENT_DATA[$_bank]))
-		{
-			$where =
-			[
-				'user_id'       => null,
-				'post_id'       => null,
-				'option_cat'    => 'payment_data',
-				'option_key'    => $_bank,
-				'option_status' => 'enable',
-				'limit'			=> 1,
-			];
-			$result = \lib\db\options::get($where);
-			if(isset($result['value']))
-			{
-				self::$PAYMENT_DATA[$_bank] = $result;
-			}
-		}
-
-		if(isset(self::$PAYMENT_DATA[$_bank]))
-		{
-			return self::$PAYMENT_DATA[$_bank];
-		}
-		return [];
-	}
+	use tools\zarinpal;
+	use tools\payment;
+	use tools\unit;
 
 
 	/**
@@ -71,7 +44,8 @@ class model extends \mvc\model
 		{
 			return false;
 		}
-		$billing_history = \lib\db\transactions::get(['user_id' => $this->login('id')]);
+		$this->user_id = $this->login('id');
+		$billing_history = \lib\db\transactions::get(['user_id' => $this->user_id]);
 		return $billing_history;
 	}
 
@@ -83,6 +57,13 @@ class model extends \mvc\model
 		if(!$this->login())
 		{
 			return debug::errorT_("You must login to pay amount");
+		}
+
+		$this->user_id = $this->login('id');
+
+		if(!$this->user_unit())
+		{
+			return;
 		}
 
 		if(utility::post('bank'))
@@ -136,7 +117,7 @@ class model extends \mvc\model
 	 */
 	public function pay()
 	{
-		\lib\db\logs::set('user:charge:real', $this->login('id'));
+		\lib\db\logs::set('user:charge:real', $this->user_id);
 
 		self::$zarinpal['Description'] = T_("Charge Sarshomar");
 

@@ -56,10 +56,11 @@ class units
 	{
 		$where =
 		[
-			'user_id'    => $_user_id,
-			'option_cat' => "user_detail_". $_user_id,
-			'option_key' => "unit",
-			'limit'      => 1,
+			'user_id'       => $_user_id,
+			'option_cat'    => "user_detail_". $_user_id,
+			'option_key'    => 'unit',
+			'option_status' => 'enable',
+			'limit'         => 1,
 		];
 		$user_unit = \lib\db\options::get($where);
 		if($user_unit && isset($user_unit['value']))
@@ -80,20 +81,38 @@ class units
 	 */
 	public static function set_user_unit($_user_id, $_unit)
 	{
-		$check_exist = self::user_unit($_user_id);
-		if(empty($check_exist))
+		$result = false;
+		$disable_old_unit =
+		[
+			'user_id'       => $_user_id,
+			'option_cat'    => "user_detail_". $_user_id,
+			'option_key'    => 'unit',
+		];
+		\lib\db\options::update_on_error(['option_status' => 'disable'], $disable_old_unit);
+
+		$where =
+		[
+			'user_id'       => $_user_id,
+			'option_cat'    => "user_detail_". $_user_id,
+			'option_key'    => 'unit',
+			'option_value'  => $_unit,
+			'limit'         => 1,
+		];
+
+		$current_unit = \lib\db\options::get($where);
+		unset($where['limit']);
+
+		if(empty($current_unit))
 		{
-			$arg =
-			[
-				'user_id'      => $_user_id,
-				'option_cat'   => "user_detail_". $_user_id,
-				'option_key'   => "unit",
-				'option_value' => $_unit
-			];
-			$set_unit = \lib\db\options::insert($arg);
-			return $set_unit;
+			$result = \lib\db\options::insert($where);
 		}
-		return $check_exist;
+		else
+		{
+			$args = $where;
+			$args['option_status'] = 'enable';
+			$result = \lib\db\options::update_on_error($args, $where);
+		}
+		return $result;
 	}
 
 
