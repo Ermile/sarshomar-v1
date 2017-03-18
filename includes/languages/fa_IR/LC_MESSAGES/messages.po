@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-18 11:32+0330\n"
-"PO-Revision-Date: 2017-03-18 11:34+0330\n"
+"POT-Creation-Date: 2017-03-18 13:02+0330\n"
+"PO-Revision-Date: 2017-03-18 13:14+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -2301,7 +2301,7 @@ msgid "← Back"
 msgstr "قبلی ←"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:66
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:131
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:145
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:131
 #: sarshomar/includes/languages/trans_addons.php:66
 #: sarshomar/includes/languages/trans_twig.php:150
@@ -2505,7 +2505,7 @@ msgid "seriously, are you sure? There's no coming back."
 msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ندارد."
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:113
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:162
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:176
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:55
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_answer_descriptive.php:184
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:31
@@ -3986,9 +3986,27 @@ msgstr "۱۱.مرحله نامعتبر"
 msgid "Please enter a valid number"
 msgstr "لطفا شماره ی معتبری وارد کنید"
 
-#: sarshomar/content/enter/tools/verify.php:29
-msgid "Your verification code is :code "
-msgstr "کد تایید شما :code است"
+#: sarshomar/content/enter/tools/verify.php:26
+msgid "Your login code is :code"
+msgstr "کد ورود شما :code است"
+
+#: sarshomar/content/enter/tools/verify.php:27
+msgid ""
+"This code can be used to log in to your Sarshomar account. We never ask it for "
+"anything else. Do not give it to anyone!"
+msgstr ""
+
+#: sarshomar/content/enter/tools/verify.php:28
+msgid ""
+"If you didn't request this code by trying to log in on another device, simply "
+"ignore this message."
+msgstr ""
+
+#: sarshomar/content/enter/tools/verify.php:34
+msgid ""
+"شما در حال انجام پروسه ای هستید. اگر شما این درخواست را نداده اید پروسه خود را "
+"ادامه دهید"
+msgstr ""
 
 #: sarshomar/content/home/model.php:242 sarshomar/content/poll/controller.php:24
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:40
@@ -4120,32 +4138,32 @@ msgstr "عنوان تعریف نشده!"
 msgid "Token error"
 msgstr "خطا در توکن"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:158
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:172
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:34
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:158
 #: sarshomar/includes/languages/trans_twig.php:1102
 msgid "Save"
 msgstr "ذخیره"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:177
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:191
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:177
 msgid "View results"
 msgstr "مشاهده نتایج"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:187
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:201
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:187
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:259
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:274
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:259
 msgid "Updated"
 msgstr "بروز شد"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.back.php:29
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:29
-msgid "عنوان سوال را وارد کنید"
-msgstr ""
+msgid "Enter question's title"
+msgstr "عنوان سوال را وارد کنید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.back.php:31
 msgid "برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید"
@@ -4193,16 +4211,16 @@ msgid "Please type your answer"
 msgstr "لطفا پاسخ خود را تایپ کنید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:31
-msgid "برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید."
-msgstr ""
+msgid "To cancel poll submission send /cancel command in each step."
+msgstr "برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:47
-msgid "محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل را وارد کنید"
-msgstr ""
+msgid "Add multimedia content including image, movie, audio or file."
+msgstr "محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل را وارد کنید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:51
-msgid "فایل ندارم"
-msgstr ""
+msgid "I don't have file"
+msgstr "فایل ندارم"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/about.php:6
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq_text.php:8
@@ -4968,8 +4986,8 @@ msgid "Yes"
 msgstr "بله"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:30
-msgid "این نظرسنجی پیش‌نویس شده است."
-msgstr ""
+msgid "This poll has been drafted."
+msgstr "این نظرسنجی پیش‌نویس شده است."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.back.php:97
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:97
@@ -5040,54 +5058,66 @@ msgid "Submit respondent's information"
 msgstr "ثبت مشخصات نظردهنده"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:73
-msgid "آیا سوال شما دارای محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل است؟"
-msgstr ""
+msgid ""
+"Does your question include multimedia content including image, movie, audio or "
+"file?"
+msgstr "آیا سوال شما دارای محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل است؟"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:77
-msgid "بله، ارسال فایل"
-msgstr ""
+msgid "Yes, send file"
+msgstr "Yes, send file"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:81
-msgid "خیر"
-msgstr ""
+#: sarshomar/includes/languages/trans_twig.php:52
+msgid "No"
+msgstr "خیر"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:110
-msgid "درحال دریافت و آنالیز فایل"
-msgstr ""
+msgid "Receiving and processing file..."
+msgstr "درحال دریافت و آنالیز فایل..."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:139
 msgid "Please select the type of your poll from the options below."
 msgstr "لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:143
-msgid "چند گزینه‌ای"
-msgstr ""
+msgid "Multiple-choice"
+msgstr "چند گزینه‌ای"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:31
 msgid ""
+"Press description button in case of presenting article, news and further "
+"information about submitted question and responding method."
+msgstr ""
 "چنانکه نیاز به ارایه‌ مقاله، خبر و اطلاعات تکمیلی در مورد سوال ثبت‌شده و نحوه "
 "پاسخ‌دهی دارید، دکمه توضیح را بفشارید."
-msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:41
 msgid ""
+"In order to protect the privacy, the identity of respondents is hidden. You have "
+"requested to see the name and username of respondents. If you don't need this "
+"feature, disable it."
+msgstr ""
 "به دلیل رعایت حریم خصوصی، هویت پاسخ‌دهندگان مخفی است، شما درخواست مشاهده نام و "
 "نام‌کاربری را داده‌اید، در صورتی که نیازی به این ویژگی ندارید آن‌را غیرفعال نمایید."
-msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:44
-msgid "پنهان‌سازی پاسخ‌دهنده"
-msgstr ""
+msgid "Hide respondent"
+msgstr "پنهان‌سازی پاسخ‌دهنده"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:51
 msgid ""
-"در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند "
-"مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه شناسایی پاسخ‌دهنده را بفشارید."
+"In order to protect the privacy, the identity of respondents is hidden by "
+"default. If you need to see the name and username of respondents, press identify "
+"respondent."
 msgstr ""
+"In order to protect the privacy, the identity of respondents is hidden by "
+"default. If you need to see the name and username of respondents, press identify "
+"respondent."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:54
-msgid "شناسایی پاسخ‌دهنده"
-msgstr ""
+msgid "Identify respondent"
+msgstr "شناسایی پاسخ‌دهنده"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:95
 msgid "remove description"
@@ -5095,10 +5125,13 @@ msgstr "حذف توضیحات"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:101
 msgid ""
+"You can insert article and further information about submitted question in this "
+"section. This information is for getting better feedback and to make the user "
+"more aware about the question."
+msgstr ""
 "شما می‌توانید مقاله و توضیحات تکمیلی مرتبط با سوال ثبت‌شده را در این قسمت وارد "
 "کنید. این اطلاعات جهت آگاهی‌دادن بیشتر به مخاطب و بازخوردگیری مناسب نسبت به سوال "
 "طرح شده شما می‌باشد."
-msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:31
 msgid "با فشردن دکمه انتشار، سوال خود را منتشر کنید."
@@ -6954,10 +6987,6 @@ msgstr "پربازدیدترین سوالات"
 #: sarshomar/includes/languages/trans_twig.php:50
 msgid "Was this information helpful?"
 msgstr "آیا این اطلاعات سودمند بود؟"
-
-#: sarshomar/includes/languages/trans_twig.php:52
-msgid "No"
-msgstr "خیر"
 
 #: sarshomar/includes/languages/trans_twig.php:53
 msgid "Related articles"
@@ -13417,6 +13446,9 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:66
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Your verification code is :code "
+#~ msgstr "کد تایید شما :code است"
 
 #~ msgid "Person Count"
 #~ msgstr "تعداد افراد"
