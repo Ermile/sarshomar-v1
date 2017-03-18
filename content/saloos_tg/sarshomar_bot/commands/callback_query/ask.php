@@ -137,7 +137,7 @@ class ask
 		}
 		if(isset($maker->query_result['options']['multi']) && !empty($get_answer['available']))
 		{
-			$maker->message->message['poll_list'] .= T_("شما می‌توانید به چند گزینه پاسخ دهید") ."\n";
+			$maker->message->message['poll_list'] .= $maker->query_result['options']['hint'] ."\n";
 		}
 
 		if($multi_answer)

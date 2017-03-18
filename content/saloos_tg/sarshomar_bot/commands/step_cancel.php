@@ -27,7 +27,7 @@ class step_cancel
 		$make = new make_view(session::get('poll'));
 		$make->message->add_title();
 		$make->message->add_poll_list();
-		$make->message->add('alert', "\n✳ " . T_("این نظرسنجی پیش‌نویس شده است"));
+		$make->message->add('alert', "\n✳ " . T_("این نظرسنجی پیش‌نویس شده است."));
 		$make->message->add('tag', utility::tag(T_("Cancel")));
 		$make->inline_keyboard->add([
 			[

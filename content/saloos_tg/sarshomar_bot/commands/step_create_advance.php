@@ -48,7 +48,7 @@ class step_create_advance
 		}
 		else
 		{
-			$maker->message->add('privacy', "⚠ ".T_("در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه شناسایی پاسخ‌دهنده."));
+			$maker->message->add('privacy', "⚠ ".T_("در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه شناسایی پاسخ‌دهنده را بفشارید."));
 			$maker->inline_keyboard->add([
 				[
 					'text' => "⚠ " . T_('شناسایی پاسخ‌دهنده'),
@@ -58,7 +58,7 @@ class step_create_advance
 		}
 		$maker->inline_keyboard->add([
 			[
-				'text' => T_('Back'),
+				'text' => T_('Preview'),
 				"callback_data" => 'create/preview'
 			]
 			]);

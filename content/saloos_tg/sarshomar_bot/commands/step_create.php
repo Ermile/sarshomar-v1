@@ -136,7 +136,7 @@ class step_create
 	{
 		$maker = new make_view(session::get('poll'));
 		$maker->message->add_title();
-		$maker->message->add('status', "\n" . "📍 " . T_("Please select the type of your poll from the options below"));
+		$maker->message->add('status', "\n" . "📍 " . T_("Please select the type of your poll from the options below."));
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 		$maker->inline_keyboard->add([
 					[

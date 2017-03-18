@@ -68,10 +68,11 @@ class inline_query
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		foreach ($query_result as $key => $value) {
-			if(isset($value['options']['multi']))
-			{
-				continue;
-			}
+			// handle::send_log($value);
+			// if(isset($value['options']['multi']))
+			// {
+			// 	continue;
+			// }
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
@@ -92,8 +93,16 @@ class inline_query
 				'fn'		=> function($_maker) use(&$row_result)
 				{
 					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['summary']['total']) .' ';
+					if(isset($_maker->query_result['options']['multi']))
+					{
+						$row_result['not_sopport'] = true;
+					}
 				}
 				]);
+			if(isset($row_result['not_sopport']))
+			{
+				continue;
+			}
 			$short_dec = preg_replace("/\n/", " ", $value['description']);
 			$short_dec = mb_substr($short_dec, 0, 120);
 
