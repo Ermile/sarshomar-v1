@@ -1,37 +1,54 @@
 {%extends display.main%} {%block content%}
-
 <div class="main pad">
     <div class="box">
+    <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
         <div class="default-tbl">
-
-
             <div class="tbl admin-log">
                 <div class="tbl-header">
                     <span>{% trans "Priority" %}</span>
                     <span>{% trans "Category" %}</span>
-                    <span>{% trans "User" %}</span>
-                    <span>{% trans "Title" %}</span>
-                    <span>{% trans "Log" %}</span>
+                    <span>{% trans "Caller" %}</span>
+                    <span>{% trans "Display name" %}</span>
+                    <span>{% trans "Mobile" %}</span>
+                    <span>{% trans "Log data" %}</span>
                     <span>{% trans "Meta" %}</span>
                     <span>{% trans "Date" %}</span>
                 </div>
+                {%for key, value in log_list%}
                 <div>
                     <span>
-                        <label class="red">Important</label>
+                        <label class="red">{{value.priority}}</label>
                     </span>
-                    <span>{% trans "User" %}</span>
-                    <span>09123456789</span>
-                    <span>{% trans "Title" %}</span>
-                    <span>{% trans "Log" %}</span>
+                    <span title="{{value.logitem_type}}">{{value.logitem_type}}</span>
+                    <span title="{{value.logitem_caller}}">{{value.logitem_caller}}</span>
+                    <span title="{{value.displayname}}">{{value.displayname}}</span>
+                    <span title="{{value.mobile}}">{{value.mobile}}</span>
+                    <span title="{{value.data}}">{{value.data}}</span>
                     <span>
-                        <a href="#!">{% trans "Show Meta" %}</a>
+                        <a data-modal="meta_{{value.id}}" >{{value.meta|length}}</a>
+                        <span class="modal" id="meta_{{value.id}}">
+                            {% if value.meta is iterable %}
+                                {{value.meta|json_encode()}}
+                            {%else%}
+                                {{value.meta}}
+                            {%endif%}
+                        </span>
                     </label>
                     </span>
-                    <span>4/04/1404</span>
+                    <span>{{value.createdate|jdate("Y-m-d -- H:i:s")}}</span>
                 </div>
+                {%endfor%}
             </div>
         </div>
     </div>
+    <div class="pagination-container">
+    {%include display.pagination%}
+ </div>
 </div>
 
 {%endblock%}

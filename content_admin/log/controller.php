@@ -7,7 +7,9 @@ class controller extends \content_admin\home\controller
 	{
 		parent::check_login();
 
-		$this->get("log", "log")->ALL();
+		$property           = [];
+		$property['search'] = ["/^.*$/", true, 'search'];
+		$this->get("log", "log")->ALL(['property' => $property]);
 	}
 }
 
