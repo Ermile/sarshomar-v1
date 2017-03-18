@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-18 15:57+0330\n"
-"PO-Revision-Date: 2017-03-18 16:07+0330\n"
+"POT-Creation-Date: 2017-03-18 16:35+0330\n"
+"PO-Revision-Date: 2017-03-18 16:35+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -5143,8 +5143,8 @@ msgid "در صورت نیاز به اعمال ویژگی‌های بیشتر، �
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:42
-msgid "Advance"
-msgstr ""
+msgid "Advanced"
+msgstr "پیشرفته"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_select.php:70
 msgid "درج حداقل دو گزینه اجباری است"
@@ -5334,11 +5334,11 @@ msgstr "نمیتوان این وضعیت را برای این نظرسنجی ق�
 msgid "Unable to find available status"
 msgstr "وضعیت در دسترس یافت نشد"
 
-#: sarshomar/content_admin/knowledge/model.php:300
+#: sarshomar/content_admin/knowledge/model.php:296
 msgid "Poll show in home page"
 msgstr "نمایش نظرسنجی در صفحه‌نخست"
 
-#: sarshomar/content_admin/knowledge/model.php:308
+#: sarshomar/content_admin/knowledge/model.php:304
 msgid "Remove poll from home page"
 msgstr "حذف نظرسنجی از صفحه اول"
 

@@ -32,13 +32,17 @@
                     <span>
                         <a data-modal="meta_{{value.id}}" >{{value.meta|length}}</a>
                         <span class="modal" id="meta_{{value.id}}">
+                            <div class="modal-dialog">
                             <div class="modal-title">{%trans "Log meta"%}</div>
-                            <div class="modal-body">
+                            <div class="modal-body log-modal">
+                                <code class="json ltr">
                                 {% if value.meta is iterable %}
                                     {{value.meta|json_encode()}}
                                 {%else%}
                                     {{value.meta}}
                                 {%endif%}
+                                </code>
+                            </div>
                             </div>
                         </span>
                     </span>

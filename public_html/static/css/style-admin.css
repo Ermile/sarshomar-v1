@@ -164,3 +164,6 @@
 .admin-log.tbl>div>span>label.blue {background: #2196F3}
 .admin-log.tbl>div>span>label.yellow {background: #FF9800}
 .show-meta input {display: none}
+
+
+.log-modal {max-height: 400px;overflow-y: auto;text-align: left}
