@@ -1,0 +1,42 @@
+{%extends display.main%} {%block content%}
+<div class="main pad">
+    <div class="box">
+    <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
+        <div class="default-tbl">
+            <div class="tbl admin-log">
+                <div class="tbl-header">
+                    <span>{% trans "Priority" %}</span>
+                    <span>{% trans "Category" %}</span>
+                    <span>{% trans "Caller" %}</span>
+                    <span>{% trans "Description" %}</span>
+                    <span>{% trans "Meta" %}</span>
+                    <span>{% trans "Count" %}</span>
+                    <span>{% trans "Date" %}</span>
+                </div>
+                {%for key, value in log_list%}
+                <div>
+                    <span>
+                        <label class="red">{{value.priority}}</label>
+                    </span>
+                    <span title="{{value.logitem_type}}">{{value.logitem_type}}</span>
+                    <span title="{{value.logitem_caller}}">{{value.logitem_caller}}</span>
+                    <span title="{{value.desc}}">{{value.desc}}</span>
+                    <span title="{{value.meta}}">{{value.meta}}</span>
+                    <span title="{{value.count}}">{{value.count}}</span>
+                    <span>{{value.createdate|jdate("Y-m-d -- H:i:s")}}</span>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+    {%include display.pagination%}
+ </div>
+</div>
+
+{%endblock%}
