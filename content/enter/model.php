@@ -213,8 +213,7 @@ class model extends \mvc\model
 				{
 					debug::title(T_("10.Invalid verfication code"));
 					$this->log('user:verfication:invalid:code');
-					$this->log_sleep_code('invalid:code');
-					if($this->counter('invalid:code') > 3)
+					if($this->log_sleep_code('invalid:code') > 3)
 					{
 						$step = 'mobile';
 					}

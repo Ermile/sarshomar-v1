@@ -17,7 +17,7 @@ trait verify
 	{
 		$this->expire_old_code();
 
-		$code = rand(10000,99999);
+		$code = rand(100000,999999);
 		$log_meta =
 		[
 			'data' => $code,
@@ -111,7 +111,7 @@ trait verify
 			]
 		];
 
-		if(!ctype_digit($code) || intval($code) > 99999 || intval($code) < 10000)
+		if(!ctype_digit($code) || intval($code) > 999999 || intval($code) < 100000)
 		{
 			db\logs::set('user:verification:invalid:code', $this->user_id, $log_meta);
 			$this->counter('user:verification:invalid:code');

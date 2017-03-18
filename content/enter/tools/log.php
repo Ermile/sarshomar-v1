@@ -81,10 +81,13 @@ trait log
 		if($this->enter_is_blocked())
 		{
 			sleep(7);
+			return 7;
 		}
 		else
 		{
-			sleep((int) $this->counter($_caller));
+			$time = (int) $this->counter($_caller);
+			sleep($time);
+			return $time;
 		}
 	}
 }
