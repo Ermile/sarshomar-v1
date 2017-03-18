@@ -22,14 +22,14 @@ private function transtext()
 	echo T_("Iran");                                                                  // Line 57
 
 	//------------------------------------------------------content\enter\display.html
-	echo T_("Logo");                                                                  // Line 14
-	echo T_("Enter");                                                                 // Line 16
-	echo T_("error in mobile...");                                                    // Line 20
+	echo T_("Sarshomar");                                                             // Line 8 Seperate
+	echo T_("Please be patient, we are generating keys");                             // Line 29
+	echo T_("Enter to Sarshomar");                                                    // Line 29
+	echo T_("Please enter valid mobile number");                                      // Line 40
 	echo T_("Password");                                                              // Line 367
-	echo T_("Please be patient, we are generating keys");                             // Line 32
-	echo T_("Pin");                                                                   // Line 47
-	echo T_("Enter Verification Code");                                               // Line 54
-	echo T_("Go");                                                                    // Line 59
+	echo T_("Pin");                                                                   // Line 60
+	echo T_("Code");                                                                  // Line 74
+	echo T_("Go");                                                                    // Line 77
 
 	//-------------------------------------------------------content\help\display.html
 	echo T_("Two minute tour");                                                       // Line 5
@@ -141,60 +141,60 @@ private function transtext()
 	echo T_("View your current location and navigate to parent of it");               // Line 62
 
 	//--------------------------------------------------------content\main\layout.html
-	echo T_("Login or Try");                                                          // Line 58
-	echo T_("e.g: +989120000000");                                                    // Line 62
+	echo T_("Login or Try");                                                          // Line 60
+	echo T_("e.g: +989120000000");                                                    // Line 64
 	echo T_("Login");                                                                 // Line 6
-	echo T_("Try Sarshomar");                                                         // Line 70
-	echo T_("Next →");                                                                // Line 79
-	echo T_("← Back");                                                                // Line 79
+	echo T_("Try Sarshomar");                                                         // Line 72
+	echo T_("Next →");                                                                // Line 81
+	echo T_("← Back");                                                                // Line 81
 	echo T_("Skip");                                                                  // Line 198
-	echo T_("Done");                                                                  // Line 79
+	echo T_("Done");                                                                  // Line 81
 
 	//-------------------------------------------------------content\poll\display.html
 	echo T_("Description");                                                           // Line 353
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Your are our Guest!");                                                   // Line 34
-	echo T_("Read More");                                                             // Line 218
-	echo T_("There is no option!");                                                   // Line 163
-	echo T_("Previous");                                                              // Line 183
-	echo T_("Save Answer");                                                           // Line 291
+	echo T_("Your are our Guest!");                                                   // Line 42
+	echo T_("Read More");                                                             // Line 226
+	echo T_("There is no option!");                                                   // Line 171
+	echo T_("Previous");                                                              // Line 191
+	echo T_("Save Answer");                                                           // Line 299
 	echo T_("Next");                                                                  // Line 9
-	echo T_("You can select just two options.");                                      // Line 231
-	echo T_("I am not willing to answer");                                            // Line 280
+	echo T_("You can select just two options.");                                      // Line 239
+	echo T_("I am not willing to answer");                                            // Line 288
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("There is no data to draw chart!");                                       // Line 313
-	echo T_("Similar Questions");                                                     // Line 347
-	echo T_("Latest Questions");                                                      // Line 340
-	echo T_("There is no similar post");                                              // Line 348
-	echo T_("Poll timespan");                                                         // Line 366
+	echo T_("There is no data to draw chart!");                                       // Line 321
+	echo T_("Similar Questions");                                                     // Line 355
+	echo T_("Latest Questions");                                                      // Line 348
+	echo T_("There is no similar post");                                              // Line 356
+	echo T_("Poll timespan");                                                         // Line 374
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 417
-	echo T_("Keyword");                                                               // Line 388
-	echo T_("Statistical population");                                                // Line 405
-	echo T_("There is nothing to display!");                                          // Line 462
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 473
+	echo T_("Not set");                                                               // Line 425
+	echo T_("Keyword");                                                               // Line 396
+	echo T_("Statistical population");                                                // Line 413
+	echo T_("There is nothing to display!");                                          // Line 470
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 481
 	echo T_("Submit");                                                                // Line 75
-	echo T_("Continue");                                                              // Line 530
-	echo T_("VIP Value");                                                             // Line 582
-	echo T_("Select");                                                                // Line 590
+	echo T_("Continue");                                                              // Line 538
+	echo T_("VIP Value");                                                             // Line 590
+	echo T_("Select");                                                                // Line 598
 	echo T_("stop");                                                                  // Line 25 Seperate
 	echo T_("pause");                                                                 // Line 23 Seperate
-	echo T_("trash");                                                                 // Line 593
-	echo T_("publish");                                                               // Line 617
-	echo T_("draft");                                                                 // Line 622
+	echo T_("trash");                                                                 // Line 601
+	echo T_("publish");                                                               // Line 625
+	echo T_("draft");                                                                 // Line 630
 	echo T_("enable");                                                                // Line 63
 	echo T_("disable");                                                               // Line 64
 	echo T_("deleted");                                                               // Line 65
-	echo T_("schedule");                                                              // Line 599
+	echo T_("schedule");                                                              // Line 607
 	echo T_("expired");                                                               // Line 66
 	echo T_("awaiting");                                                              // Line 67
 	echo T_("filtered");                                                              // Line 68
 	echo T_("blocked");                                                               // Line 69
 	echo T_("spam");                                                                  // Line 70
-	echo T_("violence");                                                              // Line 605
-	echo T_("pornography");                                                           // Line 606
+	echo T_("violence");                                                              // Line 613
+	echo T_("pornography");                                                           // Line 614
 	echo T_("other");                                                                 // Line 389 Seperate
 
 	//------------------------------------------content\referer\instagram\display.html
@@ -237,7 +237,6 @@ private function transtext()
 	echo T_("Admin Panel");                                                           // Line 69
 
 	//----------------------------------------------------content\template\header.html
-	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Add Question");                                                          // Line 26
 	echo T_("Welcome");                                                               // Line 36
 	echo T_("Dashboard");                                                             // Line 39
@@ -891,7 +890,6 @@ private function transtext()
 	echo T_("The status of a response can be determined from the HTTP status code."); // Line 11
 
 	//------------------------------------content_api\v1\doc\template\start\table.html
-	echo T_("Code");                                                                  // Line 74
 	echo T_("request successful");                                                    // Line 10
 	echo T_("request was invalid");                                                   // Line 20
 	echo T_("user does not have permission");                                         // Line 25
