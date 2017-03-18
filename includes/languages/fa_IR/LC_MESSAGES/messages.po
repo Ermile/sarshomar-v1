@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-18 10:56+0330\n"
-"PO-Revision-Date: 2017-03-18 10:57+0330\n"
+"POT-Creation-Date: 2017-03-18 11:32+0330\n"
+"PO-Revision-Date: 2017-03-18 11:34+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -1581,8 +1581,8 @@ msgstr "کلمه عبور"
 #: saloos/saloos-addons/includes/cls/form/options.php:33
 #: saloos/saloos-addons/includes/cls/form/options.php:46
 #: saloos/saloos-addons/includes/languages/trans_addons.php:418
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:290
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:315
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:299
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:324
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:290
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:315
 #: sarshomar/includes/languages/trans_addons.php:431
@@ -3018,6 +3018,7 @@ msgid "Schedule"
 msgstr "زمانبندی شده"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:230
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:61
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:46
 #: sarshomar/includes/languages/trans_addons.php:230
 msgid "Preview"
@@ -4119,11 +4120,6 @@ msgstr "عنوان تعریف نشده!"
 msgid "Token error"
 msgstr "خطا در توکن"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:140
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:140
-msgid "شما می‌توانید به چند گزینه پاسخ دهید"
-msgstr ""
-
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:158
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:34
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:158
@@ -4152,7 +4148,6 @@ msgid "عنوان سوال را وارد کنید"
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.back.php:31
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:31
 msgid "برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید"
 msgstr ""
 
@@ -4196,6 +4191,10 @@ msgstr "میپسندید؟"
 #: sarshomar/includes/languages/trans_twig.php:927
 msgid "Please type your answer"
 msgstr "لطفا پاسخ خود را تایپ کنید"
+
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:31
+msgid "برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید."
+msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:47
 msgid "محتوای چند رسانه‌ای شامل عکس، فیلم، صوت یا فایل را وارد کنید"
@@ -4696,7 +4695,6 @@ msgstr "گزارش"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:487
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:588
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:201
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:61
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:105
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:500
@@ -4717,7 +4715,7 @@ msgid "Sync"
 msgstr "همگام‌سازی"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:165
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:270
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:279
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:176
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:141
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:142
@@ -4731,8 +4729,8 @@ msgid "Sarshomar"
 msgstr "سرشمار"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:166
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:263
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:271
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:272
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:280
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:165
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:263
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:271
@@ -4784,14 +4782,14 @@ msgstr "قبلی"
 msgid "🔙 Back"
 msgstr "باز گشت 🔙"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:262
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:271
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:262
 #: sarshomar/includes/languages/trans_twig.php:7
 msgid "Contact"
 msgstr "تماس"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:280
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:305
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:289
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:314
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/utility.php:390
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:280
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:305
@@ -4799,20 +4797,20 @@ msgstr "تماس"
 msgid "Count of humans in Sarshomar until now"
 msgstr "تعداد انسان‌های فعال در سرشمار تا همین الان"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:281
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:290
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:281
 #: sarshomar/includes/languages/trans_twig.php:1134
 msgid "now"
 msgstr "الان"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:286
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:311
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:295
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:320
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:286
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:311
 msgid "‌Bot"
 msgstr "ربات"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:306
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:315
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:306
 #: sarshomar/includes/languages/trans_twig.php:1135
 msgid "now_detail"
@@ -4970,7 +4968,7 @@ msgid "Yes"
 msgstr "بله"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:30
-msgid "این نظرسنجی پیش‌نویس شده است"
+msgid "این نظرسنجی پیش‌نویس شده است."
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.back.php:97
@@ -5000,7 +4998,6 @@ msgid "You can add a subject as the content of your poll"
 msgstr "شما می‌توانید مطلبی را به عنوان محتوای نظرسنجی اضافه کنید"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.back.php:318
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:139
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:318
 msgid "Please select the type of your poll from the options below"
 msgstr "لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید"
@@ -5058,6 +5055,10 @@ msgstr ""
 msgid "درحال دریافت و آنالیز فایل"
 msgstr ""
 
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:139
+msgid "Please select the type of your poll from the options below."
+msgstr "لطفا نوع نظرسنجی خود را از گزینه‌های زیر انتخاب کنید."
+
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:143
 msgid "چند گزینه‌ای"
 msgstr ""
@@ -5081,7 +5082,7 @@ msgstr ""
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:51
 msgid ""
 "در حالت پیش‌فرض، به‌دلیل رعایت حریم‌خصوصی، هویت پاسخ‌دهندگان مخفی است. چنانکه نیازمند "
-"مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه نیازمند مشخصات را بفشارید."
+"مشاهده نام و نام‌کاربری پاسخ‌دهندگان هستید دکمه شناسایی پاسخ‌دهنده را بفشارید."
 msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:54
@@ -5109,7 +5110,7 @@ msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_preview.php:42
 msgid "Advance"
-msgstr ""
+msgstr "پیشرفت"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_select.php:70
 msgid "درج حداقل دو گزینه اجباری است"
@@ -5213,6 +5214,10 @@ msgstr "حالت توسعه دهنده"
 #: sarshomar/includes/languages/trans_twig.php:1018
 msgid "Undefined"
 msgstr "تعریف‌نشده"
+
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:140
+msgid "شما می‌توانید به چند گزینه پاسخ دهید"
+msgstr ""
 
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/create.php:29
 msgid "Please enter the question of your poll"
