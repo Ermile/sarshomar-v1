@@ -118,6 +118,8 @@ class model extends \mvc\model
 	 */
 	public function get_search($_args)
 	{
+		$request           = [];
+		$request['in']     = 'all';
 		$match = $_args;
 		unset($_args->match->url);
 		unset($_args->method);
@@ -129,10 +131,9 @@ class model extends \mvc\model
 			$status = $match->status[0];
 		}
 
-		$sarshomar = false;
 		if(isset($match->sarshomar[0]) && $match->sarshomar[0])
 		{
-			$sarshomar = true;
+			$request['in'] = 'sarshomar';
 		}
 
 		$search = null;
@@ -155,8 +156,6 @@ class model extends \mvc\model
 			}
 		}
 		$this->user_id = $this->login('id');
-		$request           = [];
-		$request['in']     = 'all';
 		$request['admin']  = true;
 		$request['limit']  = 15;
 		$request['search'] = $search;
@@ -188,10 +187,7 @@ class model extends \mvc\model
 			];
 			$request['status'] = implode(" ", $status_list);
 		}
-		if($sarshomar)
-		{
-			// $request['in'] = "sarshomar";
-		}
+
 
 		$request['order']       = 'desc';
 		utility::set_request_array($request);
