@@ -22,7 +22,7 @@ body.bg15{background-image:url(../images/enter/15.jpg)}
 body.bg16{background-image:url(../images/enter/16.jpg)}
 
 /* Layout */
-.enter{width:20%;min-width:350px;max-width:450px;height:375px;margin-bottom:10vh;padding:40px;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05)}
+.enter{width:20%;min-width:350px;max-width:450px;height:375px;margin-bottom:10vh;padding:40px;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05);transition:0.3s}
 .enter.large{height:445px}
 
 .enter .enter-header{position:relative;width:100px;height:10px;margin:0 auto 35px;border-radius:5px;background-color:rgba(0,0,0,.25)}
@@ -58,6 +58,7 @@ body.bg16{background-image:url(../images/enter/16.jpg)}
 .enter .field label span[class*="icon-"]{font-size:20px}
 .enter .field label .icon-range-right{display:none;cursor:pointer;}
 .enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
+.enter .usernameBox label{cursor:pointer;}
 .enter .field input,.enter button{font-size:1.8em;-webkit-transition:0.3s;transition:0.3s}
 .enter .field input{width:100%;padding:10px 5px;border:none;background-color:#fff;direction:ltr;color:#404040;height:50px;line-height:50px}
 .enter .field input.disabled,.enter .field input[disabled],.disabled input,.disabled label{pointer-events:none;opacity:.45}

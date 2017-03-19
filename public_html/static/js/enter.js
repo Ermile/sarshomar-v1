@@ -114,7 +114,7 @@ function verifyInput(_name)
 			case 'code':
 				if($(this).val().length === 6)
 				{
-					$(this).attr('disabled', true);
+					changer('code');
 					sendToBigBrother(_name);
 				}
 				break;
@@ -122,7 +122,7 @@ function verifyInput(_name)
 			case 'pin':
 				if($(this).val().length === 4)
 				{
-					$(this).attr('disabled', true);
+					changer('pin');
 					sendToBigBrother(_name);
 				}
 				break;
@@ -132,8 +132,9 @@ function verifyInput(_name)
 
 				if($(this).val().length >= 7 && $(this).val().length <= 15)
 				{
-					userNameBox.addClass('disabled');
-					$(this).parents('.enter').find('.goBox').fadeIn();
+					changer('go', true);
+					// userNameBox.addClass('disabled');
+					// $(this).parents('.enter').find('.goBox').fadeIn();
 					// userNameBox.find('label .icon-mobile2').fadeOut(300, function()
 					// {
 					// 	userNameBox.find('label').addClass('active');
@@ -142,8 +143,9 @@ function verifyInput(_name)
 				}
 				else
 				{
-					userNameBox.removeClass('disabled');
-					$(this).parents('.enter').find('.goBox').fadeOut();
+					changer('go');
+					// userNameBox.removeClass('disabled');
+					// $(this).parents('.enter').find('.goBox').fadeOut();
 					// userNameBox.find('label .icon-range-right').fadeOut(300,function()
 					// {
 					// 	userNameBox.find('label').removeClass('active');
@@ -172,10 +174,12 @@ function changer(_name, _enable, _delay)
 		case 'username':
 			if(_enable === undefined)
 			{
+				elField.addClass('disabled');
 				el.attr('disabled', true);
 			}
 			else if(_enable === true)
 			{
+				elField.removeClass('disabled');
 				el.attr('disabled', null).focus();
 			}
 			break;
@@ -189,6 +193,8 @@ function changer(_name, _enable, _delay)
 			{
 				// disable it
 				el.attr('disabled', true);
+				$('.enter').removeClass('large');
+				elField.addClass('disabled');
 			}
 			else if(_enable === true)
 			{
@@ -200,19 +206,23 @@ function changer(_name, _enable, _delay)
 				{
 					// enable it
 					elField.fadeIn();
-					el.attr('disabled', null).focus();
+					elField.removeClass('disabled');
+					$('.enter').addClass('large');
+					el.val('').attr('disabled', null).focus();
 				}, _delay);
 			}
 			else if(_enable === false)
 			{
 				// hide it
-				elField.fadeOut();
+				elField.fadeOut(100);
+				$('.enter').removeClass('large');
 			}
 			else if(_enable === null)
 			{
 				// hide and remove value of it
 				el.val(null);
-				elField.fadeOut();
+				elField.fadeOut(100);
+				$('.enter').removeClass('large');
 			}
 			break;
 
@@ -220,12 +230,14 @@ function changer(_name, _enable, _delay)
 			if(_enable === undefined)
 			{
 				// disable it
-				elField.fadeOut();
+				elField.fadeOut(100);
 				el.attr('disabled', true);
+				$('.enter').removeClass('large');
 			}
 			else if(_enable === true)
 			{
 				// enable it
+				$('.enter').addClass('large');
 				elField.fadeIn();
 				el.attr('disabled', null);
 			}
@@ -336,7 +348,7 @@ function sendToBigBrother(_step)
 
 						case 'block':
 						default:
-							setNotif('WHAT HAPPEN !!');
+							// setNotif('WHAT HAPPEN !!');
 							break;
 					}
 
