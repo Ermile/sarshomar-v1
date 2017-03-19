@@ -1,5 +1,8 @@
+html{height:100%}
+body{min-height:100%}
+
 /* Initial CSS */
-body{background-color:#d7d8d8;background-image:url(../images/enter/1.jpg);background-repeat:no-repeat;background-size:cover}
+body{background-color:#d7d8d8;background-image:url(../images/enter/1.jpg);background-repeat:no-repeat;background-size:cover;display:-webkit-box !important;display:-webkit-flex !important;display:-ms-flexbox !important;display:-moz-box !important;display:flex !important;-webkit-box-pack:center !important;-webkit-justify-content:center !important;-ms-flex-pack:center !important;-moz-box-pack:center !important;justify-content:center !important;-webkit-box-align:center !important;-webkit-align-items:center !important;-ms-flex-align:center !important;-moz-box-align:center !important;align-items:center !important}
 body.bg1{background-image:url(../images/enter/1.jpg)}
 body.bg2{background-image:url(../images/enter/2.jpg)}
 body.bg3{background-image:url(../images/enter/3.jpg)}
@@ -22,6 +25,10 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
 
 /* Layout */
 .enter{width:20%;min-width:350px;max-width:450px;margin:30px auto;padding:4rem;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05)}
+
+.enter .enter-header{position:relative;width:100px;height:10px;margin:0 auto;border-radius:5px;background-color:rgba(0,0,0,.25)}
+.enter .enter-header::before{position:absolute;right:0;bottom:5px;left:0;width:75%;height:3000px;margin:auto;content:'';background-color:#f4f4f4;background-image:url(../images/enter/mesh.png);box-shadow:0px -5px 5px #757575}
+
 .enter .logo{display:block;width:250px;margin:0 auto}
 .enter .logo img{display:block;width:100%}
 .enter .logo span{display:none !important}
@@ -46,7 +53,7 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
 .enter .field label{background-color:#fff;color:#6f6f6f;transition:0.3s;}
 .enter .field label.active{/*background-color:#efefef;*/color:#00667a}
 .enter .field label span[class*="icon-"]{font-size:2em}
-.enter .field label .icon-range-right{display: none;cursor:pointer;}
+.enter .field label .icon-range-right{display:none;cursor:pointer;}
 .enter .field label span:not([class*="icon-"]){font-weight:bold;font-size:1.2em}
 .enter .field input,.enter button{font-size:1.8em;-webkit-transition:0.3s;transition:0.3s}
 .enter .field input{width:100%;padding:1rem;border:none;background-color:#fff;direction:ltr;color:#404040}
@@ -90,3 +97,11 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
 
 .passcodeBox,.pinBox,.codeBox{display:none}
 /*.mesh{background:url(../images/enter/mesh.png);width:100%;height:100%;position:absolute;top:0px;}*/
+
+@media all and (min-width: 768px) and (max-width: 959px) {
+}
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+ .enter{min-width:300px;padding:4rem 2rem}
+ .enter .logo{width:100%}
+}

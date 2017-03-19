@@ -14,6 +14,7 @@
 
 {%block body%}
 <div class='enter'>
+ <div class='enter-header'></div>
  <h1 class='logo'>
   <a class='logo' href='{{url.base}}' tabindex='1' data-direct>
 {%if site.currentlang =='fa'%}
@@ -42,7 +43,7 @@
  </div>
 
  <div class='passcodeBox'>
-  <div class='f field'>
+  <div class='f fix field'>
    <label for='passcode' class='c2 flex justify-center align-center'>
     <span class='hide'>{%trans "Password"%}</span>
     <span class='icon-key2'></span>
@@ -52,7 +53,7 @@
  </div>
 
  <div class='pinBox'>
-  <div class='f field'>
+  <div class='f fix field'>
    <label for='pin' class='c2 flex justify-center align-center'>
     <span class='hide'>{%trans "Pin"%}</span>
     <span>PIN</span>
@@ -62,7 +63,7 @@
  </div>
 
  <div class='codeBox'>
-  <div class='f field'>
+  <div class='f fix field'>
    <label for='code' class='c2 flex justify-center align-center'>
     <span class='hide'>{%trans "Code"%}</span>
     <span class="icon-barcode"></span>
