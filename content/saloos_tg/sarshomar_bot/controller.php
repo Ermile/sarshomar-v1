@@ -51,26 +51,6 @@ class controller extends \lib\mvc\controller
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
-			// handle::send_log([microtime(true), self::$last_message, strtolower($_args['method'])]);
-			if(strtolower($_args['method']) == 'sendmessage' && self::$last_message !== false)
-			{
-				if(microtime(true) - self::$last_message <= 1)
-				{
-					// handle::send_log("-----");
-					sleep(1);
-				}
-			}
-			elseif(strtolower($_args['method']) == 'sendmessage')
-			{
-				self::$last_message = microtime(true);
-			}
-			elseif(strtolower($_args['method']) != 'sendmessage')
-			{
-				if(microtime(true) - self::$last_message > 1)
-				{
-					self::$last_message = microtime(true);
-				}
-			}
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
 			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $_args['method'] != 'answerCallbackQuery')
@@ -99,6 +79,27 @@ class controller extends \lib\mvc\controller
 			if(!isset($_args['results']))
 			{
 				$_args['parse_mode'] = "HTML";
+			}
+
+			$last_micro_time = microtime(true);
+			if(strtolower($_args['method']) == 'sendmessage' && self::$last_message !== false)
+			{
+				if($last_micro_time - self::$last_message < 1.3)
+				{
+					sleep(1);
+					self::$last_message = $last_micro_time;
+				}
+			}
+			elseif(strtolower($_args['method']) == 'sendmessage')
+			{
+				self::$last_message = $last_micro_time;
+			}
+			elseif(strtolower($_args['method']) != 'sendmessage')
+			{
+				if($last_micro_time - self::$last_message > 1.3)
+				{
+					self::$last_message = $last_micro_time;
+				}
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();

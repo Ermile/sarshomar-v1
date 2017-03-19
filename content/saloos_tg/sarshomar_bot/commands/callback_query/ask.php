@@ -35,13 +35,21 @@ class ask
 		$maker = new make_view($options['poll_id']);
 		if(is_null($maker->query_result))
 		{
-			if(!$_query && !isset($options['return']))
+			if($options['poll_id'] == null)
 			{
-				bot::sendResponse(['text' => T_("Poll not found")]);
+				$text = T_("Hooray, You are answered to all of our questions.");
 			}
 			else
 			{
-				return ['text' => T_("Poll not found")];
+				$text = T_("Poll not found!");
+			}
+			if(!$_query && !isset($options['return']))
+			{
+				bot::sendResponse(['text' => $text]);
+			}
+			else
+			{
+				return ['text' => $text];
 			}
 			return ;
 		}
