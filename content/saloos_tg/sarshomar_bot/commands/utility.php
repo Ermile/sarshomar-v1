@@ -387,7 +387,7 @@ END;
 	{
 		$ports = \saloos::lib_static('db')->users()::get_count('port');
 		$port_text = [];
-		$port_text[] = "<strong>" . T_("Count of humans in Sarshomar until now") . "</strong>\n";
+		$port_text[] = "<strong>" . T_("Sarshomar society") . "</strong>\n";
 		$total = 0;
 		foreach ($ports as $key => $value) {
 			if($_type == 'now_detail')
