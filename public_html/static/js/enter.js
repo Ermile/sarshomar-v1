@@ -7,6 +7,7 @@ $(document).ready(function()
 {
 	// add event for click on go btn
 	clickOnGo();
+	changeUsername();
 	verifyInput('username');
 	verifyInput('code');
 	verifyInput('pin');
@@ -14,7 +15,7 @@ $(document).ready(function()
 	setTimeout(function()
 	{
 		$('#username').attr('readonly', null).focus();
-	}, 50);
+	}, 70);
 
 	// handle enter on username
 	$('#username').on('keyup', function(_e)
@@ -67,6 +68,34 @@ function clickOnGo()
 	$('.usernameBox:not(.disabled) #go2').click(function(e)
 	{
 		$('#go').click();
+	});
+}
+
+
+
+function changeUsername()
+{
+	var myUsername = $('#username');
+
+	$('.usernameBox label').on('click', function()
+	{
+		if(myUsername.attr('type') === 'tel')
+		{
+			if(!myUsername.data('placeholderDefault'))
+			{
+				myUsername.data('placeholderDefault', myUsername.attr('placeholder'));
+			}
+			myUsername.attr('type', 'text');
+			myUsername.attr('placeholder', myUsername.attr('data-pl-user'));
+			myUsername.val('');
+		}
+		else
+		{
+			myUsername.attr('type', 'tel');
+			myUsername.attr('placeholder', myUsername.data('placeholderDefault'));
+			myUsername.val('');
+		}
+		changer('go');
 	});
 }
 
@@ -133,7 +162,7 @@ function verifyInput(_name)
  * @param  {[type]} _enable [description]
  * @return {[type]}       [description]
  */
-function changer(_name, _enable)
+function changer(_name, _enable, _delay)
 {
 	var el = $('#' + _name);
 	var elField = el.parents('.' + _name + 'Box');
@@ -163,17 +192,16 @@ function changer(_name, _enable)
 			}
 			else if(_enable === true)
 			{
-				delay = 0;
-				if(_name === 'code')
+				if(_delay === undefined)
 				{
-					delay = 5000;
+					_delay = 0;
 				}
 				setTimeout(function()
 				{
 					// enable it
 					elField.fadeIn();
 					el.attr('disabled', null).focus();
-				}, delay);
+				}, _delay);
 			}
 			else if(_enable === false)
 			{
@@ -214,7 +242,7 @@ function changer(_name, _enable)
  * [gotoWait description]
  * @return {[type]} [description]
  */
-function gotoStep(_step)
+function gotoStep(_step, _delay)
 {
 	switch(_step)
 	{
@@ -232,18 +260,18 @@ function gotoStep(_step)
 			changer('pin');
 			break;
 
-		case 'code':
-			changer('username');
-			changer('go');
-			changer('code', true);
-			changer('pin');
-			break;
-
 		case 'pin':
 			changer('username');
 			changer('go');
 			changer('code');
-			changer('pin', true);
+			changer('pin', true, _delay);
+			break;
+
+		case 'code':
+			changer('username');
+			changer('go');
+			changer('code', true, _delay);
+			changer('pin');
 			break;
 	}
 }
@@ -285,7 +313,13 @@ function sendToBigBrother(_step)
 			method: 'post',
 			success: function(_data)
 			{
-				if(_data.status && _data.status != 0)
+				if(_data.status && _data.status === 0)
+				{
+					// error on change
+					setNotif('ERROR on return !!!');
+					gotoStep('mobile');
+				}
+				else
 				{
 					// set callback title into notif
 					setNotif(_data.title);
@@ -297,19 +331,14 @@ function sendToBigBrother(_step)
 						case 'mobile':
 						case 'pin':
 						case 'code':
-							gotoStep(callback.step);
+							gotoStep(callback.step, callback.wait);
 							break;
 
+						case 'block':
 						default:
 							setNotif('WHAT HAPPEN !!');
 							break;
 					}
-				}
-				else
-				{
-					// error on change
-					setNotif('ERROR on return !!!');
-					gotoStep('mobile');
 
 				}
 			},

@@ -16,7 +16,7 @@
 <div class='enter'>
  <div class='enter-header'></div>
  <h1 class='logo'>
-  <a class='logo' href='{{url.base}}' tabindex='1' data-direct>
+  <a href='{{url.base}}' tabindex='1' data-direct>
 {%if site.currentlang =='fa'%}
    <img src='{{url.static}}images/logo/sarshomar-logo-fa-type-white.svg' alt='{{site.title}} | {{site.desc}}'>
 {%else%}
@@ -38,7 +38,7 @@
     <span class='icon-mobile2'></span>
     <span class='icon-range-right' id='go2'></span>
    </label>
-   <input id='username' type='tel' class='c' maxlength="15" pattern=".{7,}" placeholder='{%trans "Mobile"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off" >
+   <input id='username' type='tel' class='c' maxlength="15" placeholder='{%trans "Mobile"%}' data-pl-user='{%trans "Username"%}' data-invalid='{%trans "Please enter valid mobile number"%}' value="{{get_mobile}}" autocomplete="off">
   </div>
  </div>
 
@@ -48,7 +48,7 @@
     <span class='hide'>{%trans "Password"%}</span>
     <span class='icon-key2'></span>
    </label>
-   <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off" >
+   <input id='passcode' type='password' class='c' placeholder='{%trans "Password"%}' autocomplete="off">
   </div>
  </div>
 
@@ -58,7 +58,7 @@
     <span class='hide'>{%trans "Pin"%}</span>
     <span>PIN</span>
    </label>
-   <input id='pin' type='password' class='c' placeholder='{%trans "Pin"%}' autocomplete="off" >
+   <input id='pin' type='password' class='c' placeholder='{%trans "Pin"%}' autocomplete="off">
   </div>
  </div>
 
@@ -68,12 +68,12 @@
     <span class='hide'>{%trans "Code"%}</span>
     <span class="icon-barcode"></span>
    </label>
-   <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off" >
+   <input id='code' type='number' class='c' placeholder='{%trans "Code"%}' autocomplete="off">
   </div>
  </div>
 
 {%if true%}
- <div class='goBox {%if get_mobile%}{%else%}notExist{%endif%}''>
+ <div class='goBox{%if get_mobile%}{%else%} notExist{%endif%}'>
   <div class='field'>
    <button id="go" type="submit">{%trans "Go"%}</button>
   </div>
