@@ -15,6 +15,7 @@ class controller extends \lib\mvc\controller
 	 * @return [type] [description]
 	 */
 	public static $microtime_log;
+	public static $last_message = false;
 	function _route()
 	{
 		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
@@ -32,6 +33,7 @@ class controller extends \lib\mvc\controller
 			}
 		});
 		set_error_handler(function(...$_args) {
+			handle::send_log($_args);
 			self::$microtime_log[] = $_args;
 		});
 
@@ -60,7 +62,7 @@ class controller extends \lib\mvc\controller
 						{
 							continue;
 						}
-						$_args['results'][$key]['input_message_content']['message_text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['results'][$key]['input_message_content']['message_text'] .= "\n💣" . commands\utility::tag(T_("Developer mode"));
 						$_args['results'][$key]['input_message_content']['parse_mode'] = "HTML";
 					}
 				}
@@ -69,7 +71,7 @@ class controller extends \lib\mvc\controller
 					if(isset($_args['text']) && $_args['text'] != "")
 					{
 						$_args['text'] = preg_replace("#\n.*\#" . str_replace(" ", "_", T_("Developer mode")) . "$#", "", $_args['text']);
-						$_args['text'] .= "\n⚠️" . commands\utility::tag(T_("Developer mode"));
+						$_args['text'] .= "\n💣" . commands\utility::tag(T_("Developer mode"));
 						$_args['parse_mode'] = "HTML";
 					}
 				}
@@ -77,6 +79,27 @@ class controller extends \lib\mvc\controller
 			if(!isset($_args['results']))
 			{
 				$_args['parse_mode'] = "HTML";
+			}
+
+			$last_micro_time = microtime(true);
+			if(strtolower($_args['method']) == 'sendmessage' && self::$last_message !== false)
+			{
+				if($last_micro_time - self::$last_message < 1.3)
+				{
+					sleep(1);
+					self::$last_message = $last_micro_time;
+				}
+			}
+			elseif(strtolower($_args['method']) == 'sendmessage')
+			{
+				self::$last_message = $last_micro_time;
+			}
+			elseif(strtolower($_args['method']) != 'sendmessage')
+			{
+				if($last_micro_time - self::$last_message > 1.3)
+				{
+					self::$last_message = $last_micro_time;
+				}
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();

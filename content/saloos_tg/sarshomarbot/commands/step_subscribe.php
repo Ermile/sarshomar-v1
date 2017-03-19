@@ -48,7 +48,7 @@ class step_subscribe
 			'keyboard' =>
 			[
 				["بله، علاقمندم مشترک شوم"],
-				["خیر، تمایلی ندارم"],
+				["No، تمایلی ندارم"],
 			],
 		];
 		// get name of question

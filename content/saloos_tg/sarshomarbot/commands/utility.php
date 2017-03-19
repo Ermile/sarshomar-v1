@@ -407,4 +407,10 @@ END;
 		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
 		return utility::nubmer_language(join("\n", $port_text));
 	}
+
+	public static function make_request($_request)
+	{
+		\lib\utility::$REQUEST = new \lib\utility\request(['method' => 'array', 'request' => $_request]);
+		return \lib\utility::request();
+	}
 }

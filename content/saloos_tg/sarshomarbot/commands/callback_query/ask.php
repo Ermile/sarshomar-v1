@@ -35,13 +35,21 @@ class ask
 		$maker = new make_view($options['poll_id']);
 		if(is_null($maker->query_result))
 		{
-			if(!$_query && !isset($options['return']))
+			if($options['poll_id'] == null)
 			{
-				bot::sendResponse(['text' => T_("Poll not found")]);
+				$text = T_("Hooray, You are answered to all of our polls.");
 			}
 			else
 			{
-				return ['text' => T_("Poll not found")];
+				$text = T_("Poll not found!");
+			}
+			if(!$_query && !isset($options['return']))
+			{
+				bot::sendResponse(['text' => $text]);
+			}
+			else
+			{
+				return ['text' => $text];
 			}
 			return ;
 		}
@@ -79,7 +87,21 @@ class ask
 		$maker->message->add_poll_list($my_answer);
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
-		// $maker->message->add_telegram_tag();
+		if($options['type'] == 'inline')
+		{
+			if($maker->query_result['language'] == 'fa')
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
+				$my_date = utility::nubmer_language($my_date);
+			}
+			else
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
+			}
+			$maker->message->add('time',"🕰 " . $my_date);
+		}
 
 		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
@@ -137,7 +159,7 @@ class ask
 		}
 		if(isset($maker->query_result['options']['multi']) && !empty($get_answer['available']))
 		{
-			$maker->message->message['poll_list'] .= T_("شما می‌توانید به چند گزینه پاسخ دهید") ."\n";
+			$maker->message->message['poll_list'] .= $maker->query_result['options']['hint'] ."\n";
 		}
 
 		if($multi_answer)
@@ -220,11 +242,12 @@ class ask
 		\lib\define::set_language($user_lang, true);
 
 		$md5_result = md5(json_encode($maker->query_result['result']));
-		if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
-		{
-			return false;
-		}
-		elseif($_query || !isset($options['return']))
+		// if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
+		// {
+		// 	return false;
+		// }
+		// else
+		if($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
 		}

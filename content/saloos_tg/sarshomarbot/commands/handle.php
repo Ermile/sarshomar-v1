@@ -269,6 +269,7 @@ class handle
 				break;
 
 				case T_('New'):
+				case T_('Create new poll'):
 				case '/new':
 				$response = step_create::start();
 				break;
