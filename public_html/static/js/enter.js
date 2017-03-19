@@ -127,29 +127,30 @@ function verifyInput(_name)
 
 			case 'username':
 				var userNameBox = $(this).parents('.usernameBox');
-
-				if($(this).val().length >= 7 && $(this).val().length <= 15)
+				console.log($(this).attr('type'));
+				if($(this).attr('type') === 'tel')
 				{
-					changer('go', true);
-					// userNameBox.addClass('disabled');
-					// $(this).parents('.enter').find('.goBox').fadeIn();
-					// userNameBox.find('label .icon-mobile2').fadeOut(300, function()
-					// {
-					// 	userNameBox.find('label').addClass('active');
-					// 	userNameBox.find('label .icon-range-right').fadeIn(300);
-					// });
+					if($(this).val().length >= 7 && $(this).val().length <= 15)
+					{
+						changer('go', true);
+					}
+					else
+					{
+						changer('go');
+					}
 				}
 				else
 				{
-					changer('go');
-					// userNameBox.removeClass('disabled');
-					// $(this).parents('.enter').find('.goBox').fadeOut();
-					// userNameBox.find('label .icon-range-right').fadeOut(300,function()
-					// {
-					// 	userNameBox.find('label').removeClass('active');
-					// 	userNameBox.find('label .icon-mobile2').fadeIn(300);
-					// });
+					if($(this).val().length >= 2 && $(this).val().length <= 20)
+					{
+						changer('go', true);
+					}
+					else
+					{
+						changer('go');
+					}
 				}
+
 				break;
 		}
 	});

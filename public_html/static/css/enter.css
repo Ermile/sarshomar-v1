@@ -22,10 +22,10 @@ body.bg15{background-image:url(../images/enter/15.jpg)}
 body.bg16{background-image:url(../images/enter/16.jpg)}
 
 /* Layout */
-.enter{width:20%;min-width:350px;max-width:450px;height:345px;margin-bottom:10vh;padding:40px;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05);transition:0.3s}
-.enter.large{height:415px}
+.enter{width:20%;min-width:350px;max-width:450px;height:330px;margin-bottom:10vh;padding:40px;background-color:rgba(255,255,255,0.2);border-radius:5px;box-shadow:0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0, 0, 0, 0.05);transition:0.3s}
+.enter.large{height:400px}
 
-.enter .enter-header{position:relative;width:100px;height:10px;margin:0 auto 35px;border-radius:5px;background-color:rgba(0,0,0,.25)}
+.enter .enter-header{position:relative;width:100px;height:10px;margin:0 auto 20px;border-radius:5px;background-color:rgba(0,0,0,.25)}
 .enter .enter-header::before{position:absolute;right:0;bottom:5px;left:0;width:75%;height:3000px;margin:auto;content:'';background-color:#f4f4f4;background-image:url(../images/enter/mesh.png);box-shadow:0px -5px 5px #757575}
 
 .enter .logo{margin:0}
