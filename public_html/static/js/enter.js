@@ -22,10 +22,11 @@ $(document).ready(function()
 		}
 	});
 
-	// $('#username').on('dblclick', function(_e)
-	// {
-	// 	gotoStep('mobile');
-	// });
+	$('.usernameBox.disabled input').on("dblclick", '*', function(_e)
+	{
+		console.log('unlock mobile!');
+		gotoStep('mobile');
+	});
 });
 
 
@@ -127,10 +128,10 @@ function verifyInput(_name)
 
 			case 'username':
 				var userNameBox = $(this).parents('.usernameBox');
-				console.log($(this).attr('type'));
+				var userVal     = $(this).val();
 				if($(this).attr('type') === 'tel')
 				{
-					if($(this).val().length >= 7 && $(this).val().length <= 15)
+					if(validateMobile(userVal))
 					{
 						changer('go', true);
 					}
@@ -141,7 +142,7 @@ function verifyInput(_name)
 				}
 				else
 				{
-					if($(this).val().length >= 2 && $(this).val().length <= 20)
+					if(userVal.length >= 2 && userVal.length <= 20)
 					{
 						changer('go', true);
 					}
@@ -154,6 +155,78 @@ function verifyInput(_name)
 				break;
 		}
 	});
+}
+
+
+/**
+ * [validateMobile description]
+ * @param  {[type]} _number [description]
+ * @return {[type]}         [description]
+ */
+function validateMobile(_number)
+{
+	// parse as integer to remove zero from start of number
+	// _number = parseInt(_number);
+	// convert to string for continue
+	_number    = _number.toString();
+	// define variables
+	var result = true;
+	var numLen = _number.length;
+	// if len is true then check another filters
+	if(numLen >= 7 && numLen <= 15)
+	{
+		// this is iranian number
+		if(validateIranMobile(_number, true))
+		{
+			if($('html').attr('lang') === 'fa')
+			{
+				result = validateIranMobile(_number);
+			}
+			else
+			{
+
+			}
+		}
+	}
+	else
+	{
+		result = false;
+	}
+
+	return result;
+}
+
+
+function validateIranMobile(_number, _onlyCheck)
+{
+
+	// var status = _number.match(/^((\+|00)?98|0)9[0-3](\d{0,8})$/);
+	// var status = !!_number.match(/^((\+|00)?98|0)9[0-3](\d{0,8})$/);
+	var status = null
+	if(_onlyCheck === true)
+	{
+		status = !!_number.match(/^((\+|00)?98|0)?9[0-3](\d{0,15})$/);
+	}
+	else
+	{
+		status = !!_number.match(/^((\+|00)?98|0)?9[0-3](\d{8})$/);
+	}
+
+
+	console.log(status);
+	return status;
+
+	// var threeDigit = _number.substr(0, 3);
+	// var result = true;
+	// switch (threeDigit)
+	// {
+	// 	case '090':
+	// 	case '091':
+	// 	case '092':
+	// 	case '093':
+	// 		iranNumber = true;
+	// 		break;
+	// }
 }
 
 
