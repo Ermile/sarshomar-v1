@@ -10,8 +10,8 @@
                     <a href="{{url.base}}/admin/knowledge">
                         <div class="stat">
                             <div>
-                                <h5 class="num">98745</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-question"></i> {% trans "Total Polls" %}</div>
+                                <h5 class="num">{{number_static.polls.total|number_format|fitNumber}}</h5>
+                                <div class="title" title="Total poll"><i class="ico icon-question"></i> {% trans "Total Polls" %}</div>
                             </div>
                         </div>
                     </a>
@@ -22,8 +22,8 @@
                     <a href="{{url.base}}/admin/knowledge/status=spam">
                         <div class="stat">
                             <div>
-                                <h5 class="num">14537</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-ban"></i> {% trans "Spam Polls" %}</div>
+                                <h5 class="num">{{number_static.polls.spam|number_format|fitNumber}}</h5>
+                                <div class="title" title="Spam poll"><i class="ico icon-ban"></i> {% trans "Spam Polls" %}</div>
                             </div>
                         </div>
                     </a>
@@ -34,8 +34,8 @@
                     <a href="{{url.base}}/admin/knowledge/status=awaiting">
                         <div class="stat">
                             <div>
-                                <h5 class="num">35</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-list"></i> {% trans "Awaiting Polls" %}</div>
+                                <h5 class="num">{{number_static.polls.awaiting|number_format|fitNumber}}</h5>
+                                <div class="title" title="Awaiting poll"><i class="ico icon-list"></i> {% trans "Awaiting Polls" %}</div>
                             </div>
                         </div>
                     </a>
@@ -46,8 +46,8 @@
                     <a href="{{url.base}}/admin/knowledge/status=draft">
                         <div class="stat ">
                             <div>
-                                <h5 class="num">5415</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-pencil"></i> {% trans "Draft Polls" %}</div>
+                                <h5 class="num">{{number_static.polls.draft|number_format|fitNumber}}</h5>
+                                <div class="title" title="Draft poll"><i class="ico icon-pencil"></i> {% trans "Draft Polls" %}</div>
                             </div>
                         </div>
                     </a>
@@ -70,8 +70,7 @@
                         </span>
                     </div>
                     <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
-                            data-format='pollsChart' style="width: 100%; height: 330px; background-color: #FFFFFF;"></div>
+                        <div class="chart" data-vals='{{chart_polls}}' data-format='pollsChart' style="width: 100%; height: 330px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
@@ -94,20 +93,18 @@
                     </div>
 
                     <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
-                            data-format='registeration-chart' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
+                        <div class="chart" data-vals='{{chart_users}}' data-format='registeration-chart' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
             <!--/item-->
-
             <div class="c4 overall-stats unselectable f align-content-between a-gutters">
                 <!--item-->
                 <div class="c12 plus-pad">
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">98745</h5>
+                                <h5 class="num">{{number_static.users.total|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-smile-o"></i> {% trans "Successfull" %}</div>
                             </div>
                         </div>
@@ -119,7 +116,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">14537</h5>
+                                <h5 class="num">{{(number_static.verify.mobile +  number_static.verify.complete)|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-check"></i> {% trans "Verified" %}</div>
                             </div>
                         </div>
@@ -131,7 +128,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat">
                             <div>
-                                <h5 class="num">5415</h5>
+                                <h5 class="num">{{number_static.users.total_guest|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-meh-o"></i> {% trans "Guests" %}</div>
                             </div>
                         </div>
@@ -143,7 +140,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">154</h5>
+                                <h5 class="num">{{(number_static.users.telegram_guest +  number_static.users.telegram)|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-send-o"></i> {% trans "Telegram" %}</div>
                             </div>
                         </div>
@@ -155,7 +152,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">155</h5>
+                                <h5 class="num">{{number_static.users.api|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-mobile"></i> {% trans "API" %}</div>
                             </div>
                         </div>
@@ -172,7 +169,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">14766</h5>
+                                <h5 class="num">{{number_static.visitor.total|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-line-chart"></i> {% trans "Total" %}</div>
                             </div>
                         </div>
@@ -184,7 +181,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat ">
                             <div>
-                                <h5 class="num">1246</h5>
+                                <h5 class="num">{{number_static.visitor.unique|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-area-chart"></i> {% trans "Unique" %}</div>
                             </div>
                         </div>
@@ -196,7 +193,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">678</h5>
+                                <h5 class="num">{{number_static.visitor.today|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-bar-chart"></i> {% trans "Today" %}</div>
                             </div>
                         </div>
@@ -208,7 +205,7 @@
                     <a href="{{url.base}}/admin">
                         <div class="stat f align-center">
                             <div>
-                                <h5 class="num">1234</h5>
+                                <h5 class="num">{{number_static.visitor.last_week|number_format|fitNumber}}</h5>
                                 <div class="title" title="Telegram Users"><i class="ico icon-pie-chart"></i> {% trans "Last week" %}</div>
                             </div>
                         </div>
@@ -231,7 +228,7 @@
                         </span>
                     </div>
                     <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
+                        <div class="chart" data-vals='{{chart_visitor}}'
                             data-format='visitors-chart' style="width: 100%; height: 209px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
@@ -254,7 +251,7 @@
                         </span>
                     </div>
                     <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
+                        <div class="chart" data-vals='{{chart_answer}}'
                             data-format='answers-chart' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
