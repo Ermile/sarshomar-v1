@@ -34,6 +34,7 @@ class model extends \mvc\model
 	 */
 	public function get_enter($_args)
 	{
+
 		if($this->login())
 		{
 			$this->redirector('@')->redirect();
@@ -134,7 +135,7 @@ class model extends \mvc\model
 								// call was send
 								$step = 'code';
 								$wait = 5; // wait 5 seccend to call mobile
-								debug::title(T_("We send verification code nearly"));
+								debug::title(T_("A verification code will be sent soon"));
 							}
 							else
 							{
@@ -169,7 +170,7 @@ class model extends \mvc\model
 									// call was send
 									$step = 'code';
 									$wait = 5; // wait for 5 seccend to call mobile
-									debug::title(T_("We send verification code nearly"));
+									debug::title(T_("A verification code will be sent soon"));
 								}
 								else
 								{
@@ -211,7 +212,7 @@ class model extends \mvc\model
 						// call was send
 						$step = 'code';
 						$wait = 5;
-						debug::title(T_("We send verification code nearly"));
+						debug::title(T_("A verification code will be sent soon"));
 					}
 					else
 					{
@@ -271,7 +272,7 @@ class model extends \mvc\model
 					}
 					elseif($count_log > 3)
 					{
-						debug::title(T_("دقت کن دفعات زیادی رو اشتباه زدی"));
+						debug::title(T_("Too many wrong inputs! Be Careful."));
 						$step = 'code';
 					}
 					else
@@ -302,6 +303,11 @@ class model extends \mvc\model
 				$step = 'mobile';
 				$wait = 15;
 				break;
+		}
+		// in dev mode we wait for 0 second
+		if(Tld === 'dev')
+		{
+			$wait = 0;
 		}
 
 		debug::msg('step', $step);

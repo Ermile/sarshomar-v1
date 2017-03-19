@@ -49,7 +49,7 @@ trait check
 				$this->counter('enter:send:max:input', true);
 				return 'block';
 			}
-			debug::title(T_("Don't do this"));
+			debug::title(T_("Don't!"));
 			return 'password';
 		}
 

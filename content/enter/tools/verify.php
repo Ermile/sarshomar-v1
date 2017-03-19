@@ -80,7 +80,12 @@ trait verify
 	 */
 	public function generate_verification_code()
 	{
-		return rand(100000,999999);
+		$code =  rand(100000,999999);
+		if(Tld === 'dev')
+		{
+			$code = 111111;
+		}
+		return $code;
 	}
 
 
@@ -134,8 +139,14 @@ trait verify
 			$request['template'] =  $service_name . '-signup-' . (\lib\define::get_language() === 'fa') ? 'fa': 'en';
 			$request['token2']   = $users_count;
 		}
-
-		$check_valid_mobile = \lib\utility\sms::send($request, 'verify');
+		if(Tld === 'dev')
+		{
+			$check_valid_mobile = true;
+		}
+		else
+		{
+			$check_valid_mobile = \lib\utility\sms::send($request, 'verify');
+		}
 
 		if($check_valid_mobile === 411)
 		{
