@@ -74,7 +74,7 @@ class step_create_select
 			$maker->message->add('insert', "📍 ". T_("با انتخاب دکمه پیش‌نمایش، سوال را منتشر کنید یا در صورت وجود گزینه :count آن را وارد کنید", ['count' => $count]));
 			$maker->inline_keyboard->add([
 				[
-					"text" => T_("پیش‌نمایش"),
+					"text" => T_("Preview"),
 					"callback_data" => 'create/preview',
 				]
 			]);
