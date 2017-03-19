@@ -27,7 +27,7 @@ body.bg18{background-image:url(../images/enter/18.jpg)}
 .enter .logo span{display:none !important}
 
 .enter h2{font-size:1.2em;margin:0 auto 0rem;padding:1em;text-align:center;color:#fff}
-.enter h2 .loader{display:block}
+.enter h2 .loader{display:block;display:none}
 .enter h2 .loader span{display:inline-block;width:3px;height:3px;margin:0;opacity:0;border-radius:100%;background-color:#a9a9a9}
 .enter h2 .loader span:nth-child(1){-webkit-animation:opacitychange 1s ease-in-out infinite;animation:opacitychange 1s ease-in-out infinite}
 .enter h2 .loader span:nth-child(2){-webkit-animation:opacitychange 1s ease-in-out 0.33s infinite;animation:opacitychange 1s ease-in-out 0.33s infinite}
