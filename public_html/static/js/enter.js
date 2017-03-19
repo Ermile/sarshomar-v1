@@ -88,12 +88,14 @@ function changeUsername()
 			myUsername.attr('type', 'text');
 			myUsername.attr('placeholder', myUsername.attr('data-pl-user'));
 			myUsername.val('');
+			$(this).find('.icon-mobile2').removeClass('icon-mobile2').addClass('icon-star');
 		}
 		else
 		{
 			myUsername.attr('type', 'tel');
 			myUsername.attr('placeholder', myUsername.data('placeholderDefault'));
 			myUsername.val('');
+			$(this).find('.icon-star').removeClass('icon-star').addClass('icon-mobile2');
 		}
 		changer('go');
 	});
@@ -193,7 +195,6 @@ function changer(_name, _enable, _delay)
 			{
 				// disable it
 				el.attr('disabled', true);
-				$('.enter').removeClass('large');
 				elField.addClass('disabled');
 			}
 			else if(_enable === true)
@@ -256,6 +257,7 @@ function changer(_name, _enable, _delay)
  */
 function gotoStep(_step, _delay)
 {
+	console.log(_step);
 	switch(_step)
 	{
 		case 'mobile':
