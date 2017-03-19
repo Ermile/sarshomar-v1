@@ -136,6 +136,10 @@ class model extends \mvc\model
 			$request['in'] = 'sarshomar';
 		}
 
+		if(isset($match->status[0]) && $match->status[0])
+		{
+			$request['status'] = $match->status[0];
+		}
 		$search = null;
 		if(isset($match->search[0]))
 		{
