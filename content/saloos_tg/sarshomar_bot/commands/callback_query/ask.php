@@ -37,7 +37,7 @@ class ask
 		{
 			if($options['poll_id'] == null)
 			{
-				$text = T_("Hooray, You are answered to all of our questions.");
+				$text = T_("Hooray, You are answered to all of our polls.");
 			}
 			else
 			{
