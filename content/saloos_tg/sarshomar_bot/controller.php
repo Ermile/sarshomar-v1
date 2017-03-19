@@ -15,6 +15,7 @@ class controller extends \lib\mvc\controller
 	 * @return [type] [description]
 	 */
 	public static $microtime_log;
+	public static $last_message = false;
 	function _route()
 	{
 		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
@@ -50,6 +51,26 @@ class controller extends \lib\mvc\controller
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
+			// handle::send_log([microtime(true), self::$last_message, strtolower($_args['method'])]);
+			if(strtolower($_args['method']) == 'sendmessage' && self::$last_message !== false)
+			{
+				if(microtime(true) - self::$last_message <= 1)
+				{
+					// handle::send_log("-----");
+					sleep(1);
+				}
+			}
+			elseif(strtolower($_args['method']) == 'sendmessage')
+			{
+				self::$last_message = microtime(true);
+			}
+			elseif(strtolower($_args['method']) != 'sendmessage')
+			{
+				if(microtime(true) - self::$last_message > 1)
+				{
+					self::$last_message = microtime(true);
+				}
+			}
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
 			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $_args['method'] != 'answerCallbackQuery')
