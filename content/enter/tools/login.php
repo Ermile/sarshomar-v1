@@ -26,6 +26,7 @@ trait login
 		}
 		else
 		{
+			$url = null;
 			$user_language = \lib\db\users::get_language($this->user_id);
 			if($user_language && \lib\utility\location\languages::check($user_language))
 			{
