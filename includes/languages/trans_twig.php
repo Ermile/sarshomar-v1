@@ -23,7 +23,7 @@ private function transtext()
 
 	//------------------------------------------------------content\enter\display.html
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
-	echo T_("Please be patient, we are generating keys");                             // Line 30
+	echo T_("Please be patient...");                                                  // Line 30
 	echo T_("You are guest, Enter your mobile");                                      // Line 30
 	echo T_("Enter to Sarshomar");                                                    // Line 30
 	echo T_("Please enter valid mobile number");                                      // Line 41
@@ -612,19 +612,19 @@ private function transtext()
 	echo T_("Spam Polls");                                                            // Line 78
 	echo T_("Awaiting Polls");                                                        // Line 90
 	echo T_("Draft Polls");                                                           // Line 85
-	echo T_("More");                                                                  // Line 402
+	echo T_("More");                                                                  // Line 401
 	echo T_("Registration");                                                          // Line 86
 	echo T_("Successfull");                                                           // Line 108
 	echo T_("Verified");                                                              // Line 120
 	echo T_("Guests");                                                                // Line 132
-	echo T_("Unique");                                                                // Line 326
-	echo T_("Today");                                                                 // Line 338
+	echo T_("Unique");                                                                // Line 325
+	echo T_("Today");                                                                 // Line 337
 	echo T_("Last week");                                                             // Line 209
 	echo T_("Answers");                                                               // Line 246
-	echo T_("Transactions");                                                          // Line 269
-	echo T_("Visits");                                                                // Line 292
-	echo T_("Latest Polls");                                                          // Line 357
-	echo T_("Trending Polls");                                                        // Line 398
+	echo T_("Transactions");                                                          // Line 268
+	echo T_("Visits");                                                                // Line 291
+	echo T_("Latest Polls");                                                          // Line 356
+	echo T_("Trending Polls");                                                        // Line 397
 
 	//--------------------------------------------content_admin\knowledge\display.html
 	echo T_("Published");                                                             // Line 66

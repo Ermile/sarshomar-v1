@@ -358,9 +358,11 @@ function gotoStep(_step, _delay)
 			changer('go');
 			changer('pin', null);
 			changer('code', null);
+			runLoading(false);
 			break;
 
 		case 'wait':
+			runLoading(true);
 			changer('username');
 			changer('go');
 			changer('pin');
@@ -372,6 +374,7 @@ function gotoStep(_step, _delay)
 			changer('go');
 			changer('pin', true, _delay);
 			changer('code', false);
+			runLoading(false);
 			break;
 
 		case 'code':
@@ -379,6 +382,7 @@ function gotoStep(_step, _delay)
 			changer('go');
 			changer('pin', false);
 			changer('code', true, 0);
+			runLoading(false);
 			break;
 	}
 }
@@ -460,6 +464,23 @@ function sendToBigBrother(_step)
 }
 
 
+/**
+ * [runLoading description]
+ * @param  {[type]} _status [description]
+ * @return {[type]}         [description]
+ */
+function runLoading(_status)
+{
+	if(_status)
+	{
+		$('body').addClass('loading');
+	}
+	else
+	{
+		$('body').removeClass('loading');
+	}
+}
+
 
 /**
  * [setNotif description]
@@ -473,10 +494,10 @@ function setNotif(_txt)
 		_txt = notif.attr('data-wait');
 	}
 
-	notif.animate({opacity:0},500,"linear",function()
+	notif.animate({opacity:0}, 200,"linear",function()
 	{
 		notif.text(_txt);
-		$(this).animate({opacity:1},500);
+		$(this).animate({opacity:1}, 200);
 	});
 }
 
