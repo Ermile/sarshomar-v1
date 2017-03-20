@@ -31,7 +31,7 @@ trait verify
 		$in_step = \lib\db\tg_session::get('tg');
 		if(!is_null($in_step) && !empty($in_step))
 		{
-			$text .= T_("شما در حال انجام پروسه ای هستید. اگر شما این درخواست را نداده اید پروسه خود را ادامه دهید");
+			$text .= T_("if you are not requested, continue your step.");
 		}
 
 		$msg =

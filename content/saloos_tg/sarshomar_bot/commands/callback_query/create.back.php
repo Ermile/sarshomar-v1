@@ -28,7 +28,7 @@ class create
 	public static function home($_query = null, $_data_url = null){
 		$txt_text = "📍 " . T_("Enter question's title");
 		$txt_text .= "\n\n";
-		$txt_text .= "✳ " . T_("برای لغو ثبت نظرسنجی در هر مرحله دستور /cancel را ارسال کنید");
+		$txt_text .= "✳ " . T_("send /cancel on each step to cancel operation.");
 		$txt_text .= "\n" . utility::tag(T_("Create new poll"));
 		$result   =
 		[

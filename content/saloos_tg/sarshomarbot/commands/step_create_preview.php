@@ -28,7 +28,7 @@ class step_create_preview
 		$maker->message->add_title();
 		$maker->message->add_poll_list(null, false);
 
-		$maker->message->add('publish',"\n✅ " . T_("با فشردن دکمه انتشار، سوال خود را منتشر کنید."));
+		$maker->message->add('publish',"\n✅ " . T_("publish your poll by press publish."));
 		$maker->inline_keyboard->add([
 			[
 				"text" => '✅ ' . T_("Publish"),
@@ -36,7 +36,7 @@ class step_create_preview
 			]
 		]);
 
-		$maker->message->add('advance', '⚛ ' . T_("در صورت نیاز به اعمال ویژگی‌های بیشتر، دکمه پیشرفته را بفشارید."));
+		$maker->message->add('advance', '⚛ ' . T_("if wanna more options, press advance."));
 		$maker->inline_keyboard->add([
 				[
 					"text" => '⚛ ' . T_("Advanced"),

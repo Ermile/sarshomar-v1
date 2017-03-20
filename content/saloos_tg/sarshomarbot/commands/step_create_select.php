@@ -67,11 +67,11 @@ class step_create_select
 		if($count_answer < 2)
 		{
 			$maker->message->add('insert', "📍 ". T_("Enter the text of :count option", ['count' => $count]));
-			$maker->message->add('alert', "\n✳ " . T_("درج حداقل دو گزینه اجباری است"));
+			$maker->message->add('alert', "\n✳ " . T_("enter at least two option is nessecary"));
 		}
 		else
 		{
-			$maker->message->add('insert', "📍 ". T_("با انتخاب دکمه پیش‌نمایش، سوال را منتشر کنید یا در صورت وجود گزینه :count آن را وارد کنید", ['count' => $count]));
+			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or enter option :count", ['count' => $count]));
 			$maker->inline_keyboard->add([
 				[
 					"text" => T_("Preview"),
