@@ -23,18 +23,22 @@
 {%block specialbox%}
 
 {%if module == 'about'%}
-<h2>{%trans "Sarshomar Vision"%}</h2>
-<h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
+
+   <div class="">
+        <h2>{%trans "Sarshomar Vision"%}</h2>
+        <h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
+   </div>
+
 {%else%}
 {%if login and login.status == 'active'%}
 
    <div class="s6 c7 f align-center justify-center">
      <div class="c3 launch-box">
-        <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+       <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
      </div>
      <div class="s12 c5">
        <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
-    <h4>{%trans "Sarshomar is about to launch..."%}</h4>
+       <h4>{%trans "Sarshomar is about to launch..."%}</h4>
      </div>
    </div>
 
