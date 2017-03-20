@@ -1,434 +1,434 @@
 {%extends display.main%} {%block content%} {%include "content_admin/main/sidebar.html"%}
 <div class="main admin-section">
 
-    <div class="overall-charts">
-        <div class="f">
-    <!--mini polls card-->
-            <div class="c12 overall-stats unselectable f align-content-between">
-                <!--item-->
-                <div class="c3 plus-pad">
-                    <a href="{{url.base}}/admin/knowledge">
-                        <div class="stat">
-                            <div>
-                                <h5 class="num">{{number_static.polls.total|number_format|fitNumber}}</h5>
-                                <div class="title" title="Total poll"><i class="ico icon-question"></i> {% trans "Total Polls" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c3 plus-pad">
-                    <a href="{{url.base}}/admin/knowledge/status=spam">
-                        <div class="stat">
-                            <div>
-                                <h5 class="num">{{number_static.polls.spam|number_format|fitNumber}}</h5>
-                                <div class="title" title="Spam poll"><i class="ico icon-ban"></i> {% trans "Spam Polls" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c3 plus-pad">
-                    <a href="{{url.base}}/admin/knowledge/status=awaiting">
-                        <div class="stat">
-                            <div>
-                                <h5 class="num">{{number_static.polls.awaiting|number_format|fitNumber}}</h5>
-                                <div class="title" title="Awaiting poll"><i class="ico icon-list"></i> {% trans "Awaiting Polls" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c3 plus-pad">
-                    <a href="{{url.base}}/admin/knowledge/status=draft">
-                        <div class="stat ">
-                            <div>
-                                <h5 class="num">{{number_static.polls.draft|number_format|fitNumber}}</h5>
-                                <div class="title" title="Draft poll"><i class="ico icon-pencil"></i> {% trans "Draft Polls" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-            </div>
-    <!--//mini polls card-->
+	<div class="overall-charts">
+		<div class="f">
 
-    <!--Polls Chart-->
-            <div class="c12 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin/knowledge">
-                            {% trans "Polls" %}
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin/knowledge" class="more">{% trans "More" %}</a>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="chart" data-vals='{{chart_polls}}' data-format='pollsChart' style="width: 100%; height: 330px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-    <!--//Polls Chart-->
+			<div class="c12 overall-stats unselectable f align-content-between">
 
-    <!--Registration row-->
-            <!--item 8-->
-            <div class="c8 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin">
-                            {% trans "Registration" %}
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                        </span>
+				<div class="c3 plus-pad">
+					<a href="{{url.base}}/admin/knowledge">
+						<div class="stat">
+							<div>
+								<h5 class="num">{{number_static.polls.total|number_format|fitNumber}}</h5>
+								<div class="title" title="Total poll"><i class="ico icon-question"></i> {% trans "Total Polls" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
 
-                    </div>
 
-                    <div>
-                        <div class="chart" data-vals='{{chart_users}}' data-format='admin_smoothedLine' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/item-->
-            <div class="c4 overall-stats unselectable f align-content-between a-gutters">
-                <!--item-->
-                <div class="c12 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{number_static.users.total|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-smile-o"></i> {% trans "Successfull" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{(number_static.verify.mobile +  number_static.verify.complete)|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-check"></i> {% trans "Verified" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat">
-                            <div>
-                                <h5 class="num">{{number_static.users.total_guest|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-meh-o"></i> {% trans "Guests" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{(number_static.users.telegram_guest +  number_static.users.telegram)|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-send-o"></i> {% trans "Telegram" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{number_static.users.api|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-mobile"></i> {% trans "API" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-            </div>
-    <!--//Registration row-->
+				<div class="c3 plus-pad">
+					<a href="{{url.base}}/admin/knowledge/status=spam">
+						<div class="stat">
+							<div>
+								<h5 class="num">{{number_static.polls.spam|number_format|fitNumber}}</h5>
+								<div class="title" title="Spam poll"><i class="ico icon-ban"></i> {% trans "Spam Polls" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
 
-    <!--Visitors row-->
-            <div class="c4 overall-stats unselectable f align-content-between a-gutters">
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{number_static.visitor.total|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-line-chart"></i> {% trans "Total" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat ">
-                            <div>
-                                <h5 class="num">{{number_static.visitor.unique|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-area-chart"></i> {% trans "Unique" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{number_static.visitor.today|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-bar-chart"></i> {% trans "Today" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">{{number_static.visitor.last_week|number_format|fitNumber}}</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-pie-chart"></i> {% trans "Last week" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-            </div>
 
-            <!--item 8-->
-            <div class="c8 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin">
-                            Visitors
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="chart" data-vals='{{chart_visitor}}'
-                            data-format='visitors-chart' style="width: 100%; height: 209px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/item-->
-    <!--//Visitors row-->
+				<div class="c3 plus-pad">
+					<a href="{{url.base}}/admin/knowledge/status=awaiting">
+						<div class="stat">
+							<div>
+								<h5 class="num">{{number_static.polls.awaiting|number_format|fitNumber}}</h5>
+								<div class="title" title="Awaiting poll"><i class="ico icon-list"></i> {% trans "Awaiting Polls" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
 
-    <!--Answers Box-->
-            <!--item 6-->
-            <div class="c6 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin">
-                            {% trans "Answers" %}
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="chart" data-vals='{{chart_answer}}' data-format='admin_line' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/item-->
-    <!--//Answers Box-->
 
-    <!--Transactions Box-->
-            <!--item 6-->
-            <div class="c6 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin">
-                            {% trans "Transactions" %}
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
-                            data-format='transactions-chart' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/item-->
-    <!--//Transactions Box-->
+				<div class="c3 plus-pad">
+					<a href="{{url.base}}/admin/knowledge/status=draft">
+						<div class="stat ">
+							<div>
+								<h5 class="num">{{number_static.polls.draft|number_format|fitNumber}}</h5>
+								<div class="title" title="Draft poll"><i class="ico icon-pencil"></i> {% trans "Draft Polls" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
 
-    <!--Visits Row-->
-            <!--item 8-->
-            <div class="c8 plus-pad">
-                <div class="card simple simple-border">
-                    <div class="title-box f align-center justify-between nowrap">
-                        <h5 class="card-title unselectable">
-                            <a href="{{url.base}}/admin">
-                            {% trans "Visits" %}
-                            </a>
-                        </h5>
-                        <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
-                            data-format='visits-chart' style="width: 100%; height: 209px; background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/item-->
-            <div class="c4 overall-stats unselectable f align-content-between a-gutters">
-                <!--item-->
-                <div class="c12 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">121454</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-bar-chart"></i> {% trans "Total" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
+			</div>
 
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">2657</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-area-chart"></i> {% trans "Unique" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-                <!--item-->
-                <div class="c6 plus-pad">
-                    <a href="{{url.base}}/admin">
-                        <div class="stat f align-center">
-                            <div>
-                                <h5 class="num">369</h5>
-                                <div class="title" title="Telegram Users"><i class="ico icon-pie-chart"></i> {% trans "Today" %}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!--/item-->
-            </div>
-    <!--//Visits Row-->
 
-        </div>
-    </div>
 
-    <div class="f">
-        <!--Latest Poll-->
-        <div class="c6 plus-pad">
-            <div class="card simple simple-border">
-                <div class="title-box f align-center justify-between nowrap">
-                    <h5 class="card-title unselectable">
-                        <a href="{{url.base}}/admin">
-                        {% trans "Latest Polls" %}
-                        </a>
-                    </h5>
-                    <span>
-                        <a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
-                    </span>
+			<div class="c12 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin/knowledge">
+							{% trans "Polls" %}
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin/knowledge" class="more">{% trans "More" %}</a>
+						</span>
+					</div>
+					<div>
+						<div class="chart" data-vals='{{chart_polls}}' data-format='pollsChart' style="width: 100%; height: 330px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
 
-                </div>
 
-                <div>
-                    <ul>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status"></i>
-                                <span>Just use the box-shadow and play with it to get the best result for you?</span>
-                            </li>
-                        </a>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status red "></i>
-                                <span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
-                            </li>
-                        </a>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status yellow"></i>
-                                <span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
-                            </li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--//Latest Poll-->
 
-        <!--Trending Polls-->
-        <div class="c6 plus-pad">
-            <div class="card simple simple-border">
-                <div class="title-box f align-center justify-between nowrap">
-                    <h5 class="card-title unselectable">
-                        <a href="{{url.base}}/admin">
-                        {% trans "Trending Polls" %}
-                        </a>
-                    </h5>
-                    <span>
-                        <a href="</a>" class="more">{% trans "More" %}</a>
-                    </span>
 
-                </div>
+			<div class="c8 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin">
+							{% trans "Registration" %}
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+						</span>
 
-                <div>
-                    <ul>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status"></i>
-                                <span>Just use the box-shadow and play with it to get the best result for you?</span>
-                            </li>
-                        </a>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status "></i>
-                                <span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
-                            </li>
-                        </a>
-                        <a href="#!" class="p1">
-                            <li class="f nowrap align-center">
-                                <i class="q-status"></i>
-                                <span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
-                            </li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--//Trending Polls-->
-    </div>
+					</div>
+
+					<div>
+						<div class="chart" data-vals='{{chart_users}}' data-format='admin_smoothedLine' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="c4 overall-stats unselectable f align-content-between a-gutters">
+
+				<div class="c12 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{number_static.users.total|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-smile-o"></i> {% trans "Successfull" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{(number_static.verify.mobile +  number_static.verify.complete)|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-check"></i> {% trans "Verified" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat">
+							<div>
+								<h5 class="num">{{number_static.users.total_guest|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-meh-o"></i> {% trans "Guests" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{(number_static.users.telegram_guest +  number_static.users.telegram)|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-send-o"></i> {% trans "Telegram" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{number_static.users.api|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-mobile"></i> {% trans "API" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+			</div>
+
+
+
+			<div class="c4 overall-stats unselectable f align-content-between a-gutters">
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{number_static.visitor.total|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-line-chart"></i> {% trans "Total" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat ">
+							<div>
+								<h5 class="num">{{number_static.visitor.unique|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-area-chart"></i> {% trans "Unique" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{number_static.visitor.today|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-bar-chart"></i> {% trans "Today" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">{{number_static.visitor.last_week|number_format|fitNumber}}</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-pie-chart"></i> {% trans "Last week" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+			</div>
+
+
+			<div class="c8 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin">
+							Visitors
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+						</span>
+					</div>
+					<div>
+						<div class="chart" data-vals='{{chart_visitor}}'
+							data-format='visitors-chart' style="width: 100%; height: 209px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="c6 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin">
+							{% trans "Answers" %}
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+						</span>
+					</div>
+					<div>
+						<div class="chart" data-vals='{{chart_answer}}' data-format='admin_line' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="c6 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin">
+							{% trans "Transactions" %}
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+						</span>
+					</div>
+					<div>
+						<div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
+							data-format='transactions-chart' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="c8 plus-pad">
+				<div class="card simple simple-border">
+					<div class="title-box f align-center justify-between nowrap">
+						<h5 class="card-title unselectable">
+							<a href="{{url.base}}/admin">
+							{% trans "Visits" %}
+							</a>
+						</h5>
+						<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+						</span>
+					</div>
+					<div>
+						<div class="chart" data-vals='[{"key":"A","value":100},{"key":"B","value":20},{"key":"C","value":40},{"key":"D","value":70},{"key":"E","value":100},{"key":"F","value":60}]'
+							data-format='visits-chart' style="width: 100%; height: 209px; background-color: #FFFFFF;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="c4 overall-stats unselectable f align-content-between a-gutters">
+
+				<div class="c12 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">121454</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-bar-chart"></i> {% trans "Total" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">2657</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-area-chart"></i> {% trans "Unique" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+
+				<div class="c6 plus-pad">
+					<a href="{{url.base}}/admin">
+						<div class="stat f align-center">
+							<div>
+								<h5 class="num">369</h5>
+								<div class="title" title="Telegram Users"><i class="ico icon-pie-chart"></i> {% trans "Today" %}</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="f">
+
+		<div class="c6 plus-pad">
+			<div class="card simple simple-border">
+				<div class="title-box f align-center justify-between nowrap">
+					<h5 class="card-title unselectable">
+						<a href="{{url.base}}/admin">
+						{% trans "Latest Polls" %}
+						</a>
+					</h5>
+					<span>
+						<a href="{{url.base}}/admin" class="more">{% trans "More" %}</a>
+					</span>
+
+				</div>
+
+				<div>
+					<ul>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status"></i>
+								<span>Just use the box-shadow and play with it to get the best result for you?</span>
+							</li>
+						</a>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status red "></i>
+								<span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+							</li>
+						</a>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status yellow"></i>
+								<span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+							</li>
+						</a>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="c6 plus-pad">
+			<div class="card simple simple-border">
+				<div class="title-box f align-center justify-between nowrap">
+					<h5 class="card-title unselectable">
+						<a href="{{url.base}}/admin">
+						{% trans "Trending Polls" %}
+						</a>
+					</h5>
+					<span>
+						<a href="</a>" class="more">{% trans "More" %}</a>
+					</span>
+
+				</div>
+
+				<div>
+					<ul>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status"></i>
+								<span>Just use the box-shadow and play with it to get the best result for you?</span>
+							</li>
+						</a>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status "></i>
+								<span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+							</li>
+						</a>
+						<a href="#!" class="p1">
+							<li class="f nowrap align-center">
+								<i class="q-status"></i>
+								<span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+							</li>
+						</a>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
 
 
 </div>
