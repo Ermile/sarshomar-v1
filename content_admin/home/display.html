@@ -93,7 +93,7 @@
                     </div>
 
                     <div>
-                        <div class="chart" data-vals='{{chart_users}}' data-format='registeration-chart' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
+                        <div class="chart" data-vals='{{chart_users}}' data-format='admin_smoothedLine' style="width: 100%; height: 357px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
@@ -251,8 +251,7 @@
                         </span>
                     </div>
                     <div>
-                        <div class="chart" data-vals='{{chart_answer}}'
-                            data-format='answers-chart' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
+                        <div class="chart" data-vals='{{chart_answer}}' data-format='admin_line' style="width: 100%; height: 220px; background-color: #FFFFFF;"></div>
                     </div>
                 </div>
             </div>
@@ -433,4 +432,9 @@
 
 
 </div>
-{%endblock%} {%block foot_js%} {%if visitors%} {%endif%} {%endblock%}
+
+{%endblock%}
+
+
+{%block foot_js%}
+{%endblock%}

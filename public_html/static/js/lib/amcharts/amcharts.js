@@ -737,22 +737,49 @@ function getChartOption($_what, _arg)
 
 
 		case 'valueAxes':
-			prop =
-			[
-				{
-					"gridColor": "#FFFFFF",
-					"gridAlpha": 0.1,
-					"dashLength": 0,
-					// "axisAlpha": 0.2,
-					"labelsEnabled": false,
-					"axisAlpha": 0,
-					"integersOnly": true,
-					"labelFunction": function(value)
+			if(_arg === undefined)
+			{
+				prop =
+				[
 					{
-						return fitNumber(value, false);
-					},
+						"gridColor": "#FFFFFF",
+						"gridAlpha": 0.1,
+						"dashLength": 0,
+						// "axisAlpha": 0.2,
+						"labelsEnabled": false,
+						"axisAlpha": 0,
+						"integersOnly": true,
+						"labelFunction": function(value)
+						{
+							return fitNumber(value, false);
+						},
+					}
+				];
+
+			}
+			else
+			{
+				prop =
+				[
+					{
+						"stackType": "regular",
+						"axisAlpha": 0.1,
+						"gridAlpha": 0,
+						"minimum": 0,
+						"integersOnly": true,
+						// "position" : "right",
+						"labelFunction": function(value)
+						{
+							return fitNumber(value, false);
+						},
+					}
+				];
+
+				if($(document).attr('dir') === 'rtl')
+				{
+					prop[0].position = 'right';
 				}
-			];
+			}
 			break;
 
 		case 'graphs':
@@ -788,6 +815,17 @@ function getChartOption($_what, _arg)
 				"position": "top",
 				"useGraphSettings": true,
 				"markerSize": 9,
+			};
+			break;
+
+		case 'chartCursor':
+			prop =
+			{
+				"fullWidth": true,
+				"cursorAlpha": 0.1,
+				"categoryBalloonColor": "#00667a",
+				"cursorColor": "#00667a",
+				"zoomable": false,
 			};
 			break;
 
@@ -996,26 +1034,11 @@ function pollTotal_default(_option, _answers, _el)
 	_option.colors = ["#83c3e1", "#d8d8d8" ];
 	_option.legend = getChartOption('legend');
 	_option.legend.equalWidths = false;
+	_option.valueAxes = getChartOption('valueAxes', true);
 
-	_option.valueAxes =
-	[{
-		"stackType": "regular",
-		"axisAlpha": 0.1,
-		"gridAlpha": 0,
-		"minimum": 0,
-		"integersOnly": true,
-		// "position" : "right",
-		"labelFunction": function(value)
-		{
-			return fitNumber(value, false);
-		},
-	}];
 	if($(document).attr('dir') === 'rtl')
 	{
-		_option.valueAxes[0].position = 'right';
-		// _option.valueAxes[0].reversed = true;
 		_option.legend.align = 'right';
-
 	}
 
 	console.log(_option);
@@ -1337,6 +1360,52 @@ function dashboardPie(_option, _vals)
 	// empty inner box of chart
 	_option.radius          = "20%";
 	_option.innerRadius     = "60%";
+	return _option;
+}
+
+
+/**
+ * [admin_smoothedLine description]
+ * @param  {[type]} _option [description]
+ * @return {[type]}         [description]
+ */
+function admin_smoothedLine(_option)
+{
+	_option = admin_line(_option, true);
+	return _option;
+}
+
+
+/**
+ * [admin_line description]
+ * @param  {[type]} _option       [description]
+ * @param  {[type]} _smoothedLine [description]
+ * @return {[type]}               [description]
+ */
+function admin_line(_option, _smoothedLine)
+{
+	var myGraph = _option.graphs[0];
+
+	if(_smoothedLine === true)
+	{
+		myGraph.type = 'smoothedLine';
+	}
+	else
+	{
+		myGraph.type = 'line';
+	}
+
+	myGraph.fillAlphas            = 0.3;
+	myGraph.fillColorsField       = "lineColor";
+	myGraph.lineColor             = "#00667a";
+	myGraph.bullet                = "round";
+	myGraph.bulletSize            = 5;
+	myGraph.bulletBorderAlpha     = 0.2;
+	myGraph.bulletBorderThickness = 0.1;
+
+	_option.chartCursor = getChartOption('chartCursor');
+	_option.valueAxes   = getChartOption('valueAxes', true);
+
 	return _option;
 }
 
