@@ -347,8 +347,9 @@ function gotoStep(_step, _delay)
 	switch(_step)
 	{
 		case 'mobile':
+			$('.enter').removeClass('large');
 			changer('username', true);
-			changer('go', true);
+			changer('go');
 			changer('code', null);
 			changer('pin', null);
 			break;
