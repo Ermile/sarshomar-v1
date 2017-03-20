@@ -27,7 +27,7 @@
  </h1>
 
  <h2 class='flex justify-center align-center'>
-  <span class='notif' data-wait='{%trans "Please be patient, we are generating keys"%}'>{%trans "Enter to Sarshomar"%}</span>
+  <span class='notif' data-wait='{%trans "Please be patient, we are generating keys"%}'>{%if is_guest%}{%trans "You are guest, Enter your mobile"%}{%else%}{%trans "Enter to Sarshomar"%}{%endif%}</span>
   {%if false%}<span class="loader"><span></span><span></span><span></span></span>{%endif%}
  </h2>
 
