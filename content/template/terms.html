@@ -23,7 +23,11 @@
 {%if datatable%}
       <ul>
         {% for key, value in datatable%}
-        <li><a href="{{value.post_url}}">{{value.post_title}}</a></li>
+        {%if value.post_language == 'en'%}
+         <li><a href="/{{value.post_url}}" data-direct>{{value.post_title}}</a></li>
+        {%else%}
+         <li><a href="/{{value.post_language}}/{{value.post_url}}" data-direct>{{value.post_title}}</a></li>
+        {%endif%}
         {%endfor%}
       </ul>
 {%else%}
