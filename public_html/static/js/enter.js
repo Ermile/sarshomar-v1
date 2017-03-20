@@ -44,7 +44,7 @@ function clickOnGo()
 		var invalidMobileMsg = myMobile.attr('data-invalid');
 		if(myMobileVal)
 		{
-			if(myMobileVal.length >= 7 && myMobileVal.length <= 15)
+			if(validateUsername())
 			{
 				gotoStep('wait');
 				setNotif();
@@ -127,34 +127,50 @@ function verifyInput(_name)
 				break;
 
 			case 'username':
-				var userNameBox = $(this).parents('.usernameBox');
-				var userVal     = $(this).val();
-				if($(this).attr('type') === 'tel')
-				{
-					if(validateMobile(userVal))
-					{
-						changer('go', true);
-					}
-					else
-					{
-						changer('go');
-					}
-				}
-				else
-				{
-					if(userVal.length >= 2 && userVal.length <= 20)
-					{
-						changer('go', true);
-					}
-					else
-					{
-						changer('go');
-					}
-				}
-
+				validateUsername();
 				break;
 		}
 	});
+}
+
+
+/**
+ * [validateUsername description]
+ * @return {[type]}      [description]
+ */
+function validateUsername()
+{
+	var userNameBox = $('.usernameBox');
+	var userNameEl  = $('#username')
+	var userVal     = userNameEl.val();
+	var status      = false;
+
+	if(userNameEl.attr('type') === 'tel')
+	{
+		if(validateMobile(userVal))
+		{
+			console.log(233);
+			status = true;
+			changer('go', true);
+		}
+		else
+		{
+			changer('go');
+		}
+	}
+	else
+	{
+		if(userVal.length >= 2 && userVal.length <= 20)
+		{
+			status = true;
+			changer('go', true);
+		}
+		else
+		{
+			changer('go');
+		}
+	}
+	return status;
 }
 
 
