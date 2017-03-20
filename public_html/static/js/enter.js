@@ -252,7 +252,7 @@ function validateIranMobile(_number, _onlyCheck)
  * @param  {[type]} _enable [description]
  * @return {[type]}       [description]
  */
-function changer(_name, _enable, _delay)
+function changer(_name, _enable, _delay, _changeEnterBox)
 {
 	var el = $('#' + _name);
 	var elField = el.parents('.' + _name + 'Box');
@@ -292,9 +292,9 @@ function changer(_name, _enable, _delay)
 				setTimeout(function()
 				{
 					// enable it
-					elField.fadeIn();
-					elField.removeClass('disabled');
 					$('.enter').addClass('large');
+					elField.removeClass('disabled');
+					elField.fadeIn();
 					el.val('').attr('disabled', null).focus();
 				}, _delay);
 			}
@@ -302,14 +302,20 @@ function changer(_name, _enable, _delay)
 			{
 				// hide it
 				elField.fadeOut(100);
-				$('.enter').removeClass('large');
+				if(_changeEnterBox === undefined)
+				{
+					$('.enter').removeClass('large');
+				}
 			}
 			else if(_enable === null)
 			{
 				// hide and remove value of it
 				el.val(null);
 				elField.fadeOut(100);
-				$('.enter').removeClass('large');
+				if(_changeEnterBox === undefined)
+				{
+					$('.enter').removeClass('large');
+				}
 			}
 			break;
 
@@ -343,36 +349,36 @@ function changer(_name, _enable, _delay)
  */
 function gotoStep(_step, _delay)
 {
-	console.log(_step);
 	switch(_step)
 	{
 		case 'mobile':
 			$('.enter').removeClass('large');
+			$('#username').val('');
 			changer('username', true);
 			changer('go');
-			changer('code', null);
 			changer('pin', null);
+			changer('code', null);
 			break;
 
 		case 'wait':
 			changer('username');
 			changer('go');
-			changer('code');
 			changer('pin');
+			changer('code');
 			break;
 
 		case 'pin':
 			changer('username');
 			changer('go');
-			changer('code');
 			changer('pin', true, _delay);
+			changer('code', false);
 			break;
 
 		case 'code':
 			changer('username');
 			changer('go');
-			changer('code', true, _delay);
-			changer('pin');
+			changer('pin', false);
+			changer('code', true, 0);
 			break;
 	}
 }
