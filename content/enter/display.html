@@ -13,7 +13,7 @@
 
 
 {%block body%}
-<div class='enter'>
+<div class='enter{%if get_mobile%} large{%endif%}'>
  <div class='enter-header'></div>
  <h1 class='logo'>
   <a href='{{url.base}}' tabindex='1' data-direct>
