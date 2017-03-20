@@ -3,8 +3,12 @@
 {%block content%}
 <aside class='dashboard-aside'>
     <form method="post" class="ui-language">
-      <label for="user-pin">{%trans "PIN"%}</label>
-      <input type="number" max="9999" name="user-pin" id="user-pin" class="input" placeholder="PIN" >
+      {%if set_pin%}
+        <label for="old-pin">{%trans "Old PIN"%}</label>
+        <input type="number" max="9999" name="old-pin" id="old-pin" class="input" placeholder="Old PIN" >
+      {%endif%}
+      <label for="new-pin">{%trans "New PIN"%}</label>
+      <input type="number" max="9999" name="new-pin" id="new-pin" class="input" placeholder="New PIN" >
       <input type="submit" value='{%trans "Set PIN"%}' class="try">
     </form>
 </aside>

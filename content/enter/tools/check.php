@@ -94,7 +94,6 @@ trait check
 			  )
 			{
 				if(
-					$this->user_data['user_username'] &&
 					$this->user_data['user_status'] === 'active' &&
 					$this->user_data['user_pass']
 				  )
