@@ -10,5 +10,44 @@ class controller extends \lib\mvc\controller
 	 */
 	public static $shortURL = \lib\utility\shortURL::ALPHABET;
 
+
+	/**
+	 * [handle_login_url description]
+	 * @param  [type] $_module [description]
+	 * @param  [type] $_param  [description]
+	 * @param  [type] $_domain [description]
+	 * @return [type]          [description]
+	 */
+	public function handle_account_url($_module, $_param, $_domain)
+	{
+		if(!$_param)
+		{
+			$_param = '?from='.$_module;
+		}
+		else
+		{
+			$_param .= '&from='.$_module;
+		}
+
+		switch ($_module)
+		{
+			// login
+			case 'signin':
+			case 'login':
+			// signup
+			case 'signup':
+			case 'register':
+			// recovery
+			case 'recovery':
+				$this->redirector()->set_domain($_domain)->set_url('enter'.$_param)->redirect();
+				break;
+
+			case 'signout':
+			case 'logout':
+				// $this->redirector()->set_domain()->set_url('logout'.$_param)->redirect();
+				$this->redirector()->set_domain($_domain)->set_url(MyAccount. '/logout'.$_param)->redirect();
+				break;
+		}
+	}
 }
 ?>

@@ -1,11 +1,14 @@
 User-Agent: *
 Disallow: /account/
+Disallow: /enter/
+Disallow: /enter
 Disallow: /admin/
 Disallow: /cp/
 Disallow: /cgi-bin/
 Disallow: /tmp/
 Disallow: /*.asp$
 Disallow: /*.txt$
+Disallow: /*.php$
 
 Sitemap: http://sarshomar.com/sitemap.xml
 Sitemap: http://sarshomar.com/sitemap/sitemap.xml
