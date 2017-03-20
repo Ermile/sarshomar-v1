@@ -69,8 +69,6 @@ trait answers
 					default:
 						// \lib\db::rollback();
 						\lib\db\logs::set('user:poll:add:error:answer:type:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
-						// \lib\db::rollback();
-						\lib\db\logs::set('user:poll:add:error:answer:type:invalid', self::$args['user'], ['meta' => ['input' => self::$args]]);
 						return debug::error(T_("Invalid type (:type) paramater in index :key of answer", ['key' => $key, 'type' => $value['type']]),'answer', 'arguments');
 						break;
 				}
