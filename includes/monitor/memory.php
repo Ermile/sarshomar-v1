@@ -12,7 +12,7 @@ if(!isset($listen['cpu']))
 else
 {
 	$cpu = floatval(str_replace("%", "", $listen['cpu']));
-	if($cpu > 80)
+	if($cpu > 0)
 	{
 		$alert['cpu'] = "🖥 CPU *$cpu%*";
 		$cr = true;
@@ -29,7 +29,7 @@ if(!isset($listen['memory']))
 else
 {
 	$memory = floatval(str_replace("%", "", $listen['memory']));
-	if($memory > 90)
+	if($memory > 0)
 	{
 		if(!isset($alert['cpu']))
 		{
