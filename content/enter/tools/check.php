@@ -99,13 +99,7 @@ trait check
 					$this->user_data['user_pass']
 				  )
 				{
-					if(is_numeric($this->mobile) && intval($this->mobile) > 9999999 && intval($this->mobile) < 99999999999)
-					{
-						$this->mobile = utility\filter::mobile($this->mobile);
-						return 'code';
-					}
-
-					$return = 'pin';
+					return 'pin';
 				}
 			}
 

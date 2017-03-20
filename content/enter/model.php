@@ -19,7 +19,7 @@ class model extends \mvc\model
 	public $telegram_detail  = [];
 	// public $block_type    = 'ip-agent';
 	public $block_type       = 'session';
-
+	public $is_guest         = false;
 
 	use tools\check;
 	use tools\log;
@@ -34,16 +34,26 @@ class model extends \mvc\model
 	 */
 	public function get_enter($_args)
 	{
+		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
+		{
+			$this->is_guest = true;
+		}
 
 		if($this->login())
 		{
-			$this->redirector('@')->redirect();
-			return;
+			if(!$this->is_guest)
+			{
+				$this->redirector('@')->redirect();
+				return;
+			}
 		}
 
 		if($this->login_by_remember())
 		{
-			return;
+			if(!$this->is_guest)
+			{
+				return;
+			}
 		}
 
 		if($this->check_is_bot())
@@ -61,16 +71,27 @@ class model extends \mvc\model
 	 */
 	public function post_enter($_args)
 	{
+		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
+		{
+			$this->is_guest = true;
+		}
+
 		// if the user was login redirect to @ page
 		if($this->login())
 		{
-			$this->redirector('@')->redirect();
-			return;
+			if(!$this->is_guest)
+			{
+				$this->redirector('@')->redirect();
+				return;
+			}
 		}
 
 		if($this->login_by_remember())
 		{
-			return;
+			if(!$this->is_guest)
+			{
+				return;
+			}
 		}
 
 		// check the user is block
@@ -93,25 +114,46 @@ class model extends \mvc\model
 		// load data of users by search mobile
 		if($check_input)
 		{
-			$mobile          = utility::post('mobile');
+			$mobile = utility::post('mobile');
 			if(ctype_digit($mobile))
 			{
 				$mobile          = utility\filter::mobile($mobile);
 				$this->mobile    = $mobile;
 				$this->user_data = \ilib\db\users::get_by_mobile(utility\filter::mobile($this->mobile));
 				$this->signup    = true;
+
+				if(isset($this->user_data['id']))
+				{
+					$this->signup  = false;
+					$this->user_id = $this->user_data['id'];
+				}
 			}
 			else
 			{
 				$this->signup    = false;
-				$this->user_data = \ilib\db\users::get_by_username(utility\filter::mobile($this->mobile));
-				$this->mobile    = $mobile;
-			}
+				$this->user_data = \ilib\db\users::get_by_username($mobile);
+				if(
+					isset($this->user_data['id']) &&
+					isset($this->user_data['user_mobile']) &&
+					isset($this->user_data['user_pass']) &&
+					isset($this->user_data['user_status']) &&
+					$this->user_data['user_status'] === 'active'
+				 )
+				{
+					$this->signup  = false;
+					$this->mobile  = $this->user_data['user_mobile'];
+					$this->user_id = $this->user_data['id'];
 
-			if(isset($this->user_data['id']))
-			{
-				$this->signup  = false;
-				$this->user_id = $this->user_data['id'];
+				}
+				else
+				{
+					$this->log('use:enter:username:notexist');
+					$this->log_sleep_code('use:enter:username:notexist');
+					debug::msg('wait', 10);
+					debug::msg('step', 'mobile');
+					debug::title(T_("Invalid username"));
+					return false;
+				}
 			}
 		}
 
@@ -235,7 +277,7 @@ class model extends \mvc\model
 					if($count_log >= 5)
 					{
 						debug::title('<a href="https://sarshomar.com">'. T_("Forgot your pin?") . '</a>');
-						$step = 'mobile';
+						$step = 'pin';
 					}
 					elseif($count_log > 3)
 					{

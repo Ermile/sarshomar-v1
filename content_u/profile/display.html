@@ -1,7 +1,13 @@
 {%extends display.main%}
 
 {%block content%}
-<aside></aside>
+<aside class='dashboard-aside'>
+    <form method="post" class="ui-language">
+      <label for="user-pin">{%trans "PIN"%}</label>
+      <input type="number" max="9999" name="user-pin" id="user-pin" class="input" placeholder="PIN" >
+      <input type="submit" value='{%trans "Set PIN"%}' class="try">
+    </form>
+</aside>
 <div class="main pad" id="profile-main">
  <div class="box">
   <div class="f profile-card">
@@ -9,13 +15,14 @@
     <img src="{{url.static}}images/svg/general/profile.svg" alt="" class="flip-rtl" style="display:block">
    </div>
    <div class="c10 flex f-column justify-end profile-card-data">
-    <h2 style="margin-bottom:0">Javad Evazzadeh</h2>
+    <h2 style="margin-bottom:0">{{login.displayname}}</h2>
     <div class="flex">
-     <span class="email">J.evazzadeh@live.com</span>
+     <span class="email">{{login.email}}</span>
      <span class="member-since">Member since 10/20/2015</span>
     </div>
    </div>
   </div><!-- /.f -->
+
 
   <div class="f profile-connect">
    <div class="c">

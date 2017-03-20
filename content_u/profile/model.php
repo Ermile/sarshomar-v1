@@ -1,6 +1,7 @@
 <?php
 namespace content_u\profile;
 use \lib\utility;
+use \lib\debug;
 
 class model extends \mvc\model
 {
@@ -29,6 +30,36 @@ class model extends \mvc\model
 	 */
 	public function post_profile()
 	{
+		if(!$this->login())
+		{
+			return debug::error(T_("You must login to set profile data"));
+		}
+
+		if(utility::post('user-pin') || utility::post('user-pin') === '')
+		{
+			$pin = utility::post('user-pin');
+			if(!ctype_digit($pin) || intval($pin) < 1000 || intval($pin) > 9999)
+			{
+				debug::error(T_("Invalid pin, Try again"), 'user-pin');
+				return false;
+			}
+			$pin = utility::hasher($pin);
+
+			$update = \lib\db\users::update(['user_pass' => $pin], $this->login('id'));
+			debug::true(T_("Pin changed"));
+			return true;
+		}
+
+
+
+
+
+
+
+		return ;
+		// useless code
+
+
 		if(utility::post("type") == 'autocomplete')
 		{
 			return;
