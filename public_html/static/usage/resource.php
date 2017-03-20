@@ -6,12 +6,14 @@
 	$free = shell_exec('free');
 	if($free)
 	{
+		$free = shell_exec('free -t');
 		$free = (string)trim($free);
 		$free_arr = explode("\n", $free);
-		$mem = explode(" ", $free_arr[1]);
+		$free_arr = preg_replace("/\s{2,}/", " ", $free_arr);
+		$mem = explode(" ", $free_arr[3]);
 		$mem = array_filter($mem);
 		$mem = array_merge($mem);
-		$memory_usage = $mem[2]/$mem[1]*100;
+		$memory_usage = ($mem[2]*100)/$mem[1];
 		echo "memory:". round($memory_usage) . "%\n";
 	}
 	else
