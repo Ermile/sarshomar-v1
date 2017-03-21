@@ -35,19 +35,27 @@ class step_create_emoji
 			}
 			$duplicate[] = $value['title'];
 		}
+		$error = [];
 		if($_text)
 		{
 			$answers = preg_split("/[\n\s]/", $_text);
-			handle::send_log($maker->query_result['answers']);
-			handle::send_log($answers);
+			$duplicate_error = [];
 			foreach ($answers as $key => $value) {
-				$lValue = $_text = preg_replace("/[️‍]/‍", "", $_text);
+				if(in_array($value, $duplicate_error))
+				{
+					continue;
+				}
+				$lValue = preg_replace("/[️‍]/‍", "", $value);
 				if(empty($value) || $value == "" || !$value || mb_strlen($lValue) > 4)
 				{
+					$error[] = T_("متن ایموجی باید بین ۱ تا ۴ کاراکتر باشد");
+					$duplicate_error[] = $value;
 					continue;
 				}
 				if(in_array($value, $duplicate))
 				{
+					$duplicate_error[] = $value;
+					$error[] = T_("این ایموجی موجود است") . " - $value";
 					continue;
 				}
 				$duplicate[] = $value;
@@ -85,9 +93,11 @@ class step_create_emoji
 			$count = $count[$count_answer];
 		}
 
-
-
-		if($count_answer < 2)
+		if(!empty($error))
+		{
+			$maker->message->add('error', "🚫 " . join("\n🚫 ", $error));
+		}
+		if($count_answer < 1)
 		{
 			$maker->message->add('insert', "📍 ". T_("Enter the text of :count option", ['count' => $count]));
 			$maker->message->add('alert', "\n✳ " . T_("enter at least two option is nessecary"));
