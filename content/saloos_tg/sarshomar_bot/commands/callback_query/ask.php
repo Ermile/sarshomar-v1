@@ -157,6 +157,7 @@ class ask
 			else
 			{
 				$guest_option['share'] = false;
+				$guest_option['site_link'] = true;
 			}
 			if($options['type'] == 'private' && !$multi_answer && !empty($get_answer['available']))
 			{
@@ -182,7 +183,11 @@ class ask
 		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
+		// if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'] && $options['type'] == 'inline')
+		// {
+		// $maker->inline_keyboard->add_guest_option($guest_option);
 
+		// }
 		if($multi_answer)
 		{
 			$maker->inline_keyboard->add([

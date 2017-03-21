@@ -99,12 +99,11 @@ class step_create_emoji
 		}
 		if($count_answer < 1)
 		{
-			$maker->message->add('insert', "📍 ". T_("Enter the text of :count option", ['count' => $count]));
-			$maker->message->add('alert', "\n✳ " . T_("enter at least two option is nessecary"));
+			$maker->message->add('insert', "📍 ". T_("seperate emoji by space and send them."));
 		}
 		else
 		{
-			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or enter option :count", ['count' => $count]));
+			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or enter another emoji.");
 			$maker->inline_keyboard->add([
 				[
 					"text" => T_("Preview"),

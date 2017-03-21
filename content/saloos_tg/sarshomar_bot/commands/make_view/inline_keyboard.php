@@ -131,6 +131,7 @@ class inline_keyboard
 			'share' => true,
 			'report' => false,
 			'inline_report' => false,
+			'site_link' => false,
 			], $_options);
 		$return = [];
 		$return2 = [];
@@ -169,6 +170,13 @@ class inline_keyboard
 			$return[] = [
 				"text" => T_("Report"),
 				"url" => 'https://telegram.me/Sarshomar_bot?start=report_'.$this->class->poll_id
+			];
+		}
+		if($options['site_link'])
+		{
+			$return[] = [
+				"text" => T_("Review result"),
+				"url" => 'https://sarshomar.com/$'.$this->class->poll_id
 			];
 		}
 		$this->inline_keyboard[$count] = $return;
