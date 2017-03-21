@@ -84,6 +84,7 @@ class utility
 		$result = array();
 		$max_key =max(array_keys($_result));
 		foreach ($_result as $key => $value) {
+			$result[$key]['count'] = $value;
 			$value = $value == 0 ? 0 : ($value * 100) / $count;
 			$result[$key]['percent'] = $value;
 			$decimal = $value == 0 ? 0 : $value / 20;
@@ -143,8 +144,16 @@ class utility
 		if(true)
 		{
 			foreach ($result as $key => $value) {
+				handle::send_log($value);
 				$text .= join($value['row_text']);
-				$text .= ' ' . self::nubmer_language(round($value['percent']) ."%");
+				if($_emoji)
+				{
+					$text .= ' - ' . self::nubmer_language($value['count']);
+				}
+				else
+				{
+					$text .= ' ' . self::nubmer_language(round($value['percent']) ."%");
+				}
 				if(end($result) != $value)
 				{
 					$text .= "\n";

@@ -72,7 +72,6 @@ class ask
 			$my_answer = $get_answer['my_answer'];
 		}
 		$maker->message->add_title();
-		$maker->message->add_poll_chart();
 		$multi_answer = session::get('expire', 'command', 'multi_answer', $maker->poll_id);
 		if(isset($maker->query_result['options']['multi']) && $options['type'] == 'private')
 		{
@@ -84,7 +83,18 @@ class ask
 				}
 			}
 		}
-		$maker->message->add_poll_list($my_answer);
+		if($maker->poll_type == 'emoji')
+		{
+			$maker->message->add_poll_list($my_answer);
+			$maker->message->add('line', '');
+			$maker->message->add_poll_chart();
+		}
+		else
+		{
+			$maker->message->add_poll_chart();
+			$maker->message->add_poll_list($my_answer);
+		}
+
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
 		if($options['type'] == 'inline')
