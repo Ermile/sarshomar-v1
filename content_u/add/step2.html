@@ -1,3 +1,14 @@
+{%block filter_public%}
+<div class="element switch privacy">
+ <input type="radio" name="filter_privacy" value="private" id="privacy_private" {%if poll.privacy!='public'%}checked{%endif%}>
+ <label for="privacy_private">{%trans "Private"%}</label>
+
+ <input type="radio" name="filter_privacy" value="public" id="privacy_public" {%if poll.privacy=='public' %}checked{%endif%}>
+ <label for="privacy_public">{%trans "Public"%}</label>
+</div>
+{%endblock%}
+
+
 {%block filter_gender%}
  <div class="element switch" data-respnse-group='gender' data-response-where-not='false'>
   <label class="title large badge {%if poll.filters.gender%}active{%endif%}" data-ratio="{{20 | number_format | fitNumber}}" data-ratio-val="20" data-response='gender' data-response-class='active'>{%trans "Gender"%}</label>

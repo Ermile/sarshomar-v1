@@ -2621,7 +2621,11 @@ function prepareQuestionData()
 		// finally add language
 		myQuestion.language = $('input[name="ui-language"]:checked').val();
 		// and fill step2 data
-		myQuestion.from     = prepareQuestionFilter();
+		myQuestion.privacy  = $('input[name="filter_privacy"]:checked').val();
+		if(myQuestion.privacy === 'public')
+		{
+			myQuestion.from = prepareQuestionFilter();
+		}
 	}
 
 	return myQuestion;

@@ -1637,6 +1637,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element.switch input[type="checkbox"]:checked+label:hover,.element.switch input[type="radio"]:checked+label:hover,
 .element.switch input[type="checkbox"]:checked:focus+label,.element.switch input[type="radio"]:checked:focus+label{background-color:#004552;}
 
+.element.switch.privacy{width: 50%;margin:0 auto;}
 
 /*.element.switch input[type="checkbox"]:focus+label::before,.element input[type="radio"]:focus+label::before{background-color:#0086a0;}*/
 /*.element.switch input[type="checkbox"]+label:hover::before,.element input[type="radio"]+label:hover::before{background-color:#00758c;}*/

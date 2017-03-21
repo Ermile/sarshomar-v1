@@ -55,13 +55,9 @@
 
 {%block step2%}
     {%use "content_u/add/step2.html"%}
-      <div class="checkbox">
-       <input type="checkbox" id="public" {% if poll.privacy == 'public' %}checked{% endif %}>
-       <label for="public" class="check-box"></label>
-       <label for="public">{%trans "Public"%}</label>
-      </div>
+     {{block('filter_public')}}
 
-     <div class="row auto poll-filters" data-response='public' {% if poll.privacy == 'public' %}{%else%}data-response-hide{%endif%}>
+     <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='public' {% if poll.privacy == 'public' %}{%else%}data-response-hide{%endif%} data-response-effect='slide'>
      {{block('filter_person_count')}}
       <div class="span12">
         <div id='filter-conditions'>
