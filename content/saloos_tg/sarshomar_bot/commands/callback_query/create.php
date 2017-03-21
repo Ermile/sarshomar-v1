@@ -86,7 +86,7 @@ class create
 		$poll_type_change = \lib\main::$controller->model()->poll_add(['method' => 'patch']);
 		step::stop();
 
-		if($_data_url[2] == 'select')
+		if($_data_url[2] == 'select' || $_data_url[2] == 'emoji')
 		{
 			$step = 'create_' . $_data_url[2];
 			step::start($step);

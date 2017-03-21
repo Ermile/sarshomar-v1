@@ -150,8 +150,15 @@ class step_create
 					"callback_data" => 'create/type/like'
 				],
 				[
+					"text" => T_("Emoji"),
+					"callback_data" => 'create/type/emoji'
+				]
+			]);
+		$maker->inline_keyboard->add([
+				[
 					"text" => T_("Descriptive"),
-					"callback_data" => 'create/type/descriptive']
+					"callback_data" => 'create/type/descriptive'
+				]
 			]);
 		$maker->inline_keyboard->add([
 				[

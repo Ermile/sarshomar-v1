@@ -12,7 +12,7 @@ use \content\saloos_tg\sarshomar_bot\commands\menu;
 use \lib\main;
 use \lib\debug;
 
-class step_create_select
+class step_create_emoji
 {
 
 	public static function start($_text = null, $_run_as_edit = false)
@@ -27,17 +27,33 @@ class step_create_select
 		$poll_id = session::get('poll');
 		$maker = new make_view($poll_id);
 		$maker->message->add_title();
+		$duplicate = [];
+		foreach ($maker->query_result['answers'] as $key => $value) {
+			if($value['title'] == "" || is_null($value['title']))
+			{
+				unset($maker->query_result['answers'][$key]);
+			}
+			$duplicate[] = $value['title'];
+		}
 		if($_text)
 		{
-			$answers = explode("\n", $_text);
+			$answers = preg_split("/[\n\s]/", $_text);
+			handle::send_log($maker->query_result['answers']);
+			handle::send_log($answers);
 			foreach ($answers as $key => $value) {
-				if(empty($value) || $value = "" || !$value)
+				$lValue = $_text = preg_replace("/[️‍]/‍", "", $_text);
+				if(empty($value) || $value == "" || !$value || mb_strlen($lValue) > 4)
 				{
 					continue;
 				}
+				if(in_array($value, $duplicate))
+				{
+					continue;
+				}
+				$duplicate[] = $value;
 				$maker->query_result['answers'][] = [
 				"key" => count($maker->query_result['answers']) + 1,
-				"type" => "select",
+				"type" => "emoji",
 				"title" => $value,
 				];
 			}
@@ -99,7 +115,7 @@ class step_create_select
 		{
 			$answers = [];
 			foreach ($maker->query_result['answers'] as $key => $value) {
-				$answers[] = ['type' => 'select', 'title' => $value['title']];
+				$answers[] = ['type' => 'emoji', 'title' => $value['title']];
 			}
 
 			utility::make_request(['id' => $poll_id, 'answers' => $answers]);
