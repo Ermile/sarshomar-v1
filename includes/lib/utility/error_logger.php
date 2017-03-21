@@ -3,8 +3,21 @@ namespace lib\utility;
 
 class error_logger
 {
-	function log($_data)
+	public static function log($_data)
 	{
+		if(!isset($_data["text"]))
+		{
+			if(!is_string($_data))
+			{
+				$_data = json_encode($_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			}
+			$_data = [
+			'chat_id' => "-1001107234508",
+			"text" => "```\n" . $_data . "```\n🕰 " . date("Y-m-d H:i:s"),
+			"parse_mode" => 'markdown'
+			];
+			\content\saloos_tg\sarshomar_bot\commands\handle::send_log($_data);
+		}
 		$ch = curl_init();
 		if ($ch === false)
 		{

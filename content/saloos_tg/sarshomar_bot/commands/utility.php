@@ -251,6 +251,7 @@ class utility
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
 				\lib\db::log($log, null, 'telegram-error.json', 'json');
 				handle::send_log($log);
+				$logger = \lib\utility\error_logger::log(json_encode($_return, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
