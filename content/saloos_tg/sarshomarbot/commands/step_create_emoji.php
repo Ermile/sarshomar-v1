@@ -66,41 +66,16 @@ class step_create_emoji
 		$maker->message->add('emoji', join('/', $duplicate));
 		$count = ['first', 'second', 'third'];
 		$count_answer = count($maker->query_result['answers']);
-		if($count_answer > 2)
-		{
-			if($count_answer > 20 && substr($count_answer, -1) == 0)
-			{
-				$count = ($count_answer +1) .'st';
-			}
-			elseif($count_answer > 20 && substr($count_answer, -1) == 1)
-			{
-				$count = ($count_answer +1) .'nd';
-			}
-			elseif($count_answer > 20 && substr($count_answer, -1) == 2)
-			{
-				$count = ($count_answer +1) .'rd';
-			}
-			else
-			{
-				$count = ($count_answer +1) .'th';
-			}
-		}
-		else
-		{
-			$count = $count[$count_answer];
-		}
 
 		if(!empty($error))
 		{
 			$maker->message->add('error', "\n🚫 " . join("\n🚫 ", $error));
 		}
-		if($count_answer < 1)
+
+		$maker->message->add('insert', "\n📍 ". T_("seperate emoji by space and send them."));
+		if(!is_null($maker->query_result['answers'][0]['title']) || $_text != null)
 		{
-			$maker->message->add('insert', "📍 ". T_("seperate emoji by space and send them."));
-		}
-		else
-		{
-			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or change emoji list."));
+			$maker->message->add('insert2', "📍📍 ". T_("by press preview, start publish process or change emoji list."));
 			$maker->inline_keyboard->add([
 				[
 					"text" => T_("Preview"),

@@ -31,8 +31,9 @@ class step_create_select
 		{
 			$answers = explode("\n", $_text);
 			foreach ($answers as $key => $value) {
-				if(empty($value) || $value = "" || !$value)
+				if(empty($value) || $value == "" || !$value)
 				{
+					unset($maker->query_result['answers'][$key]);
 					continue;
 				}
 				$maker->query_result['answers'][] = [
@@ -40,6 +41,10 @@ class step_create_select
 				"type" => "select",
 				"title" => $value,
 				];
+			}
+			$check_row = 1;
+			foreach ($maker->query_result['answers'] as $key => $value) {
+				$maker->query_result['answers'][$key]['key'] = $check_row++;
 			}
 		}
 		$maker->message->add_poll_list(null, false);
