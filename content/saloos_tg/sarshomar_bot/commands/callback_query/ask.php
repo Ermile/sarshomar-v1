@@ -238,13 +238,13 @@ class ask
 			if($maker->query_result['language'] == 'fa')
 			{
 				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now->getTimestamp(), 'current');
 				$my_date = utility::nubmer_language($my_date);
 			}
 			else
 			{
 				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now->getTimestamp()) . " GMT";
 			}
 			$maker->message->message['options'] .= " | 🕰 " . str_replace("-", "/", $my_date);
 		}
