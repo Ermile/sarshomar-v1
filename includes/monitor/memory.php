@@ -59,8 +59,7 @@ if(!empty($alert))
 	"text" => $text,
 	"parse_mode" => 'markdown'
 	];
-	$callback = telegram($data);
+	$callback = \lib\utility\error_logger::log($data);
 	print_r($callback);
 }
-
 ?>
