@@ -59,7 +59,7 @@ class make_view
 	public function set_poll_type()
 	{
 		$answers = $this->query_result['answers'];
-		if(count($answers) == 1)
+		if(count($answers) >= 1)
 		{
 			$answer = current($answers);
 			$this->poll_type = $answer['type'];

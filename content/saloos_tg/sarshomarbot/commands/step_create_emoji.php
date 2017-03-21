@@ -12,7 +12,7 @@ use \content\saloos_tg\sarshomarbot\commands\menu;
 use \lib\main;
 use \lib\debug;
 
-class step_create_select
+class step_create_emoji
 {
 
 	public static function start($_text = null, $_run_as_edit = false)
@@ -22,27 +22,48 @@ class step_create_select
 	}
 
 
-	public static function step1($_text = null)
+	public static function step1($_text = null, $_error = [])
 	{
 		$poll_id = session::get('poll');
 		$maker = new make_view($poll_id);
 		$maker->message->add_title();
+		$duplicate = [];
+		$error = !empty($_error) ? $_error : [];
 		if($_text)
 		{
-			$answers = explode("\n", $_text);
+			$answers = preg_split("/[\n\s]/", $_text);
+			$duplicate_error = [];
 			foreach ($answers as $key => $value) {
-				if(empty($value) || $value = "" || !$value)
+				if(in_array($value, $duplicate_error) || empty($value) || $value == "" || !$value)
 				{
 					continue;
 				}
-				$maker->query_result['answers'][] = [
-				"key" => count($maker->query_result['answers']) + 1,
-				"type" => "select",
-				"title" => $value,
-				];
+				if(!\lib\utility\emoji::check($value))
+				{
+					$error[] = T_("Please insert emoji.");
+					$duplicate_error[] = $value;
+					continue;
+				}
+				if(in_array($value, $duplicate))
+				{
+					continue;
+				}
+				$duplicate[] = $value;
+			}
+			if($error)
+			{
+				return self::step1(null, $error);
 			}
 		}
+		elseif(!empty($maker->query_result['answers']))
+		{
+			foreach ($maker->query_result['answers'] as $key => $value) {
+				$duplicate[] = $value['title'];
+			}
+		}
+		sort($duplicate);
 		$maker->message->add_poll_list(null, false);
+		$maker->message->add('emoji', join('/', $duplicate));
 		$count = ['first', 'second', 'third'];
 		$count_answer = count($maker->query_result['answers']);
 		if($count_answer > 2)
@@ -69,16 +90,17 @@ class step_create_select
 			$count = $count[$count_answer];
 		}
 
-
-
-		if($count_answer < 2)
+		if(!empty($error))
 		{
-			$maker->message->add('insert', "📍 ". T_("Enter the text of :count option", ['count' => $count]));
-			$maker->message->add('alert', "\n✳ " . T_("enter at least two option is nessecary"));
+			$maker->message->add('error', "\n🚫 " . join("\n🚫 ", $error));
+		}
+		if($count_answer < 1)
+		{
+			$maker->message->add('insert', "📍 ". T_("seperate emoji by space and send them."));
 		}
 		else
 		{
-			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or enter option :count", ['count' => $count]));
+			$maker->message->add('insert', "📍 ". T_("by press preview, start publish process or change emoji list."));
 			$maker->inline_keyboard->add([
 				[
 					"text" => T_("Preview"),
@@ -95,11 +117,11 @@ class step_create_select
 		]);
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 
-		if($_text)
+		if(!empty($duplicate) && empty($error))
 		{
 			$answers = [];
-			foreach ($maker->query_result['answers'] as $key => $value) {
-				$answers[] = ['type' => 'select', 'title' => $value['title']];
+			foreach ($duplicate as $key => $value) {
+				$answers[] = ['type' => 'emoji', 'title' => $value];
 			}
 
 			utility::make_request(['id' => $poll_id, 'answers' => $answers]);

@@ -71,7 +71,7 @@ class utility
 		return $_pref . preg_replace("[\.]", "_", microtime(true));
 	}
 
-	public static function calc_vertical($_result)
+	public static function calc_vertical($_result, $_emoji = null)
 	{
 		if(empty($_result))
 		{
@@ -84,6 +84,7 @@ class utility
 		$result = array();
 		$max_key =max(array_keys($_result));
 		foreach ($_result as $key => $value) {
+			$result[$key]['count'] = $value;
 			$value = $value == 0 ? 0 : ($value * 100) / $count;
 			$result[$key]['percent'] = $value;
 			$decimal = $value == 0 ? 0 : $value / 20;
@@ -102,30 +103,37 @@ class utility
 				// array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
 			}
 
-			if($max_key > 9)
+			if($_emoji)
 			{
-				$key_row = '';
-				foreach (str_split($key) as $k => $v) {
-					$key_row .= $poll_emoji[$v];
-				}
-				if($key == 0)
-				{
-					$key_row = "*️⃣*️⃣";
-				}
-				elseif($key < 9)
-				{
-					$key_row = $poll_emoji[0] . $key_row;
-				}
+				$key_row = $_emoji[$key];
 			}
 			else
 			{
-				if($key == 0)
+				if($max_key > 9)
 				{
-					$key_row = "*️⃣";
+					$key_row = '';
+					foreach (str_split($key) as $k => $v) {
+						$key_row .= $poll_emoji[$v];
+					}
+					if($key == 0)
+					{
+						$key_row = "*️⃣*️⃣";
+					}
+					elseif($key < 9)
+					{
+						$key_row = $poll_emoji[0] . $key_row;
+					}
 				}
 				else
 				{
-					$key_row = $poll_emoji[$key];
+					if($key == 0)
+					{
+						$key_row = "*️⃣";
+					}
+					else
+					{
+						$key_row = $poll_emoji[$key];
+					}
 				}
 			}
 
@@ -137,7 +145,14 @@ class utility
 		{
 			foreach ($result as $key => $value) {
 				$text .= join($value['row_text']);
-				$text .= ' ' . self::nubmer_language(round($value['percent']) ."%");
+				if($_emoji)
+				{
+					$text .= ' - ' . self::nubmer_language($value['count']);
+				}
+				else
+				{
+					$text .= ' ' . self::nubmer_language(round($value['percent']) ."%");
+				}
 				if(end($result) != $value)
 				{
 					$text .= "\n";
@@ -236,6 +251,7 @@ class utility
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
 				\lib\db::log($log, null, 'telegram-error.json', 'json');
 				handle::send_log($log);
+				$logger = \lib\utility\error_logger::log(json_encode($_return, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
@@ -344,6 +360,16 @@ END;
 		}
 		else
 		{
+			$query = \lib\db\options::get([
+				'option_cat' => 'telegram',
+				'option_key' => 'id',
+				'option_value' => $_user_id,
+				'limit' => 1
+				], null, true);
+			if(!$query)
+			{
+				return ['text' => "This user dont work with me."];
+			}
 			$user = bot::sendResponse(["method" => "getChat", "chat_id" => $_user_id]);
 			if($user['ok'] == false)
 			{

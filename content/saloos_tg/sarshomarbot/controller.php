@@ -145,6 +145,10 @@ class controller extends \lib\mvc\controller
 		 * start hooks and run telegram session from db
 		 */
 		bot::hook();
+		if(isset(bot::$hook['edited_message']))
+		{
+			exit();
+		}
 		\lib\main::$controller->model()->user_id = (int) bot::$user_id;
 		\lib\main::$controller->model()->set_api_permission((int) bot::$user_id);
 
@@ -168,8 +172,11 @@ class controller extends \lib\mvc\controller
 		\lib\db\tg_session::$user_id = bot::$user_id;
 		if(!bot::$user_id)
 		{
+
 			$log = [
 			'::ERROR::' => "---------------",
+			'request' => file_get_contents('php://input'),
+			'apache' => apache_request_headers(),
 			'hook' => bot::$hook,
 			'debug' => \lib\debug::compile()
 			];

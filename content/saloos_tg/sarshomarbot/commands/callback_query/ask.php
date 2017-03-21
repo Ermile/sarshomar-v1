@@ -72,7 +72,6 @@ class ask
 			$my_answer = $get_answer['my_answer'];
 		}
 		$maker->message->add_title();
-		$maker->message->add_poll_chart();
 		$multi_answer = session::get('expire', 'command', 'multi_answer', $maker->poll_id);
 		if(isset($maker->query_result['options']['multi']) && $options['type'] == 'private')
 		{
@@ -84,24 +83,21 @@ class ask
 				}
 			}
 		}
-		$maker->message->add_poll_list($my_answer);
+		if($maker->poll_type == 'emoji')
+		{
+			$maker->message->add_poll_list($my_answer);
+			$maker->message->add('line', '');
+			$maker->message->add_poll_chart();
+		}
+		else
+		{
+			$maker->message->add_poll_chart();
+			$maker->message->add_poll_list($my_answer);
+		}
+
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
-		if($options['type'] == 'inline')
-		{
-			if($maker->query_result['language'] == 'fa')
-			{
-				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
-				$my_date = utility::nubmer_language($my_date);
-			}
-			else
-			{
-				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
-			}
-			$maker->message->add('time',"🕰 " . $my_date);
-		}
+
 
 		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
@@ -147,6 +143,7 @@ class ask
 			else
 			{
 				$guest_option['share'] = false;
+				$guest_option['site_link'] = true;
 			}
 			if($options['type'] == 'private' && !$multi_answer && !empty($get_answer['available']))
 			{
@@ -172,7 +169,11 @@ class ask
 		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
+		// if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'] && $options['type'] == 'inline')
+		// {
+		// $maker->inline_keyboard->add_guest_option($guest_option);
 
+		// }
 		if($multi_answer)
 		{
 			$maker->inline_keyboard->add([
@@ -232,8 +233,34 @@ class ask
 		{
 			$options['fn']($maker);
 		}
+		if($options['type'] == 'inline')
+		{
+			if($maker->query_result['language'] == 'fa')
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now->getTimestamp(), 'current');
+				$my_date = utility::nubmer_language($my_date);
+			}
+			else
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now->getTimestamp()) . " GMT";
+			}
+			$maker->message->message['options'] .= " | 🕰 " . str_replace("-", "/", $my_date);
+		}
 
 		$return = $maker->make();
+		// $txt = $return['text'];
+		// $txt = preg_replace("/<\/?a[^>]*>/", '', $txt);
+		// $txt = preg_replace("/<\/?strong[^>]*>/", '', $txt);
+		// $txt = preg_replace("/^📌 /", '', $txt);
+		// if(mb_strlen($txt) < 150 && isset($maker->query_result['file']) && !empty($maker->query_result['file']))
+		// {
+		// 	$return['method'] = 'sendPhoto';
+		// 	$return['caption'] = $return['text'];
+		// 	$return['photo'] = $maker->query_result['file']['url'];
+		// 	unset($return['text']);
+		// }
 		if($options['type'] == 'private')
 		{
 			$return["response_callback"] = utility::response_expire('ask');

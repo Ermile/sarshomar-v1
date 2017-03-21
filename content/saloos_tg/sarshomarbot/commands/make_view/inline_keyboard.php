@@ -104,6 +104,10 @@ class inline_keyboard
 				$callback_data = 'https://telegram.me/sarshomarbot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
 				$callback_type = 'url';
 			}
+			if($this->class->poll_type == 'emoji')
+			{
+				$inline_emoji = $answer_value['title'];
+			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
 				'text' => $inline_emoji,
 				$callback_type => $callback_data
@@ -127,6 +131,7 @@ class inline_keyboard
 			'share' => true,
 			'report' => false,
 			'inline_report' => false,
+			'site_link' => false,
 			], $_options);
 		$return = [];
 		$return2 = [];
@@ -165,6 +170,13 @@ class inline_keyboard
 			$return[] = [
 				"text" => T_("Report"),
 				"url" => 'https://telegram.me/sarshomarbot?start=report_'.$this->class->poll_id
+			];
+		}
+		if($options['site_link'])
+		{
+			$return[] = [
+				"text" => T_("Review result"),
+				"url" => 'https://sarshomar.com/$'.$this->class->poll_id
 			];
 		}
 		$this->inline_keyboard[$count] = $return;

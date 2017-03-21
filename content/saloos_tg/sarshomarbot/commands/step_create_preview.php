@@ -27,6 +27,10 @@ class step_create_preview
 		$maker = new make_view($poll_id);
 		$maker->message->add_title();
 		$maker->message->add_poll_list(null, false);
+		if($maker->poll_type == 'emoji')
+		{
+			$maker->message->add('emoji', join('/', array_column($maker->query_result['answers'], 'title')));
+		}
 
 		$maker->message->add('publish',"\n✅ " . T_("publish your poll by press publish."));
 		$maker->inline_keyboard->add([
