@@ -98,6 +98,11 @@ class model extends \mvc\model
 		{
 			$current_lang = \lib\db\users::get_language($this->login("id"));
 
+			if($lang === 'fa' && !$this->view()->data->user_unit)
+			{
+				\lib\db\units::set_user_unit($this->login('id'), 'toman');
+			}
+
 			if($current_lang == $lang)
 			{
 				return false;
