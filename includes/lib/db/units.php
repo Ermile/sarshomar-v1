@@ -117,6 +117,62 @@ class units
 
 
 	/**
+	 * find user unit
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function find_user_unit($_user_id, $_set_user_unit_if_find = false)
+	{
+		// get curretn unit
+		$isset_unit = self::user_unit($_user_id);
+		if($isset_unit)
+		{
+			return $isset_unit;
+		}
+
+		// get user language
+		$user_language = \lib\db\users::get_language($_user_id);
+		if($user_language === 'fa')
+		{
+			if($_set_user_unit_if_find)
+			{
+				self::set_user_unit($_user_id, 'toman');
+			}
+			return 'toman';
+		}
+
+		// get users answer
+		$query =
+		"
+			SELECT COUNT(polldetails.id) AS `count`, posts.post_language AS `lang` FROM polldetails
+			INNER JOIN posts ON posts.id = polldetails.post_id
+			WHERE
+				polldetails.user_id = $_user_id AND
+				polldetails.status = 'enable'
+			GROUP BY lang
+		";
+		$result = \lib\db::get($query, ['lang', 'count']);
+		$max    = null;
+		if(is_array($result))
+		{
+			// fin max answered users  to poll
+			$max = array_search(max($result), $result);
+		}
+
+		if($max === 'fa')
+		{
+			if($_set_user_unit_if_find)
+			{
+				self::set_user_unit($_user_id, 'toman');
+			}
+			return 'toman';
+		}
+		return false;
+	}
+
+
+
+	/**
 	 * insert new record of units
 	 *
 	 * @param      <type>  $_args  The arguments
