@@ -120,12 +120,13 @@ class users
 	{
 		$default_args =
 		[
-			'mobile'      => null,
-			'ref'         => null,
-			'type'        => null,
-			'port'        => null,
-			'subport'     => null,
-			'user_id'     => null,
+			'mobile'   => null,
+			'ref'      => null,
+			'type'     => null,
+			'port'     => null,
+			'subport'  => null,
+			'user_id'  => null,
+			'language' => null,
 		];
 
 		if(!is_array($_args))
@@ -139,6 +140,35 @@ class users
 		{
 			return false;
 		}
+
+		if($_args['language'] === 'fa')
+		{
+			\lib\db\units::set_user_unit($_args['user_id'], 'toman');
+		}
+
+		$insert_transaction = true;
+		$transactionitem_id = \lib\db\transactionitems::caller('gift:signup');
+		if(isset($transactionitem_id['id']))
+		{
+			$transactionitem_id = $transactionitem_id['id'];
+			$where =
+			[
+				'user_id'            => $_args['user_id'],
+				'transactionitem_id' => $transactionitem_id,
+				'limit'              => 1,
+			];
+			$exists = \lib\db\transactions::get($where);
+			if(!empty($exists))
+			{
+				$insert_transaction = false;
+			}
+		}
+
+		if($insert_transaction)
+		{
+			\lib\db\transactions::set('gift:signup', $_args['user_id'], ['plus' => 100]);
+		}
+
 
 		$user_update = [];
 

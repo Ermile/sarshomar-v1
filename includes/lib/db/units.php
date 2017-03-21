@@ -153,7 +153,8 @@ class units
 		";
 		$result = \lib\db::get($query, ['lang', 'count']);
 		$max    = null;
-		if(is_array($result))
+
+		if(is_array($result) && !empty($result))
 		{
 			// fin max answered users  to poll
 			$max = array_search(max($result), $result);

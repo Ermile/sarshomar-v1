@@ -80,8 +80,14 @@ class model extends \content\home\model
 			return ;
 		}
 		$check_status = $this->access('admin','admin', 'view') ? false : true ;
-
-		$poll = $this->get_posts(false, null, ['check_status' => $check_status, 'check_language' => false]);
+		$load_poll =
+		[
+			'post_status'    => $this->controller()::$accept_poll_status,
+			'check_status'   => $check_status,
+			'check_language' => false,
+			'post_type'      => ['poll', 'survey']
+		];
+		$poll = $this->get_posts(false, null, $load_poll);
 		if(isset($poll['id']))
 		{
 			$this->user_id = $this->login('id');

@@ -145,7 +145,18 @@ class sync
 		}
 		else
 		{
-			\lib\db\users::update(['user_verify' => 'mobile'], self::$new_user_id);
+			$verify =
+			[
+				'mobile'   => self::$mobile,
+				'ref'      => null,
+				'type'     => null,
+				'port'     => 'site',
+				'subport'  => null,
+				'user_id'  => self::$new_user_id,
+				'language' => \lib\db\users::get_language(self::$new_user_id),
+			];
+			\lib\utility\users::verify($verify);
+
 			\lib\db::commit();
 			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
 			return

@@ -153,9 +153,10 @@ trait set
 					{
 						$rate = floatval($exchange_rate['rate']);
 					}
-
-					$value_to    = ($plus - $minus) * $rate;
-					$new_budget  = $budget_befor + $value_to;
+					$minus      = $minus * $rate;
+					$plus       = $plus * $rate;
+					$value_to   = ($plus - $minus);
+					$new_budget = $budget_befor + $value_to;
 				}
 				else
 				{

@@ -45,7 +45,7 @@ class model extends \mvc\model
 			return false;
 		}
 		$this->user_id = $this->login('id');
-		$billing_history = \lib\db\transactions::get(['user_id' => $this->user_id]);
+		$billing_history = \lib\db\transactions::search(null, ['user_id' => $this->user_id]);
 		return $billing_history;
 	}
 

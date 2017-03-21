@@ -9,7 +9,7 @@ class controller extends \lib\mvc\controller
 	 * @var        string
 	 */
 	public static $shortURL = \lib\utility\shortURL::ALPHABET;
-
+	public static $accept_poll_status = ['publish','stop','pause'];
 
 	/**
 	 * [handle_login_url description]
