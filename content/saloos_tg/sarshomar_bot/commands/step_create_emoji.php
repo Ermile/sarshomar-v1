@@ -40,7 +40,7 @@ class step_create_emoji
 				}
 				if(!\lib\utility\emoji::check($value))
 				{
-					$error[] = T_("متن ارسالی ایموجی نیست یا ساپورت نمی‌شود.");
+					$error[] = T_("Please insert emoji.");
 					$duplicate_error[] = $value;
 					continue;
 				}
