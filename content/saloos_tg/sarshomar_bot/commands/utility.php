@@ -359,6 +359,16 @@ END;
 		}
 		else
 		{
+			$query = \lib\db\options::get([
+				'option_cat' => 'telegram',
+				'option_key' => 'id',
+				'option_value' => $_user_id,
+				'limit' => 1
+				], null, true);
+			if(!$query)
+			{
+				return ['text' => "This user dont work with me."];
+			}
 			$user = bot::sendResponse(["method" => "getChat", "chat_id" => $_user_id]);
 			if($user['ok'] == false)
 			{
