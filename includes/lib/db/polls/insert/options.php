@@ -8,6 +8,27 @@ trait options
 {
 	protected static function insert_options()
 	{
+				// save meta times
+		if(self::isset_args('options','prize'))
+		{
+			if(self::$args['options']['prize'])
+			{
+				self::save_options('prize', self::$args['options']['prize']);
+			}
+			else
+			{
+				self::save_options('prize', false);
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('prize', false);
+			}
+		}
+
+
 		// save meta times
 		if(self::isset_args('brand','title'))
 		{
