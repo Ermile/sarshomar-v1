@@ -77,11 +77,17 @@ class message
 			unset($overflow[$other_key]);
 			ksort($overflow);
 			$overflow[0] = $other;
-			$this->message['chart'] = utility::calc_vertical($overflow);
+			$emoji = $this->class->poll_type == 'emoji' ? array_column($this->class->query_result['answers'], 'title', 'key') : null;
+			if($emoji)
+			{
+				$emoji[0] = "*️⃣";
+			}
+			$this->message['chart'] = utility::calc_vertical($overflow, $emoji);
 		}
 		else
 		{
-			$this->message['chart'] = utility::calc_vertical($sum['sum_answers']) . "\n";
+			$emoji = $this->class->poll_type == 'emoji' ? array_column($this->class->query_result['answers'], 'title', 'key') : null;
+			$this->message['chart'] = utility::calc_vertical($sum['sum_answers'], $emoji) . "\n";
 		}
 	}
 
@@ -101,6 +107,11 @@ class message
 		if(isset($this->class->query_result['description']) && $this->class->query_result['description'])
 		{
 			$poll_list .= "\n" . $this->class->query_result['description'] ."\n";
+		}
+		if($this->class->poll_type == 'emoji')
+		{
+			$this->message['poll_list'] = trim($poll_list);
+			return;
 		}
 		foreach ($this->class->query_result['answers'] as $key => $value) {
 			if($value['type'] == 'like' || $value['type'] == 'descriptive')

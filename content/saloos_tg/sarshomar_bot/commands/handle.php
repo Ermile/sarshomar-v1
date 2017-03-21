@@ -340,6 +340,8 @@ class handle
 
 	public static function send_log_clear()
 	{
+		if($_SERVER['SERVER_NAME'] != 'dev.sarshomar.com')
+			return;
 		@file_put_contents(root . 'includes/cls/database/log/log.sql', "");
 		file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", 'null');
 	}

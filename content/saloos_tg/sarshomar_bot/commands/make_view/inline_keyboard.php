@@ -104,6 +104,10 @@ class inline_keyboard
 				$callback_data = 'https://telegram.me/Sarshomar_bot?start=' . $this->class->poll_id . '_' . $answer_value['key'];
 				$callback_type = 'url';
 			}
+			if($this->class->poll_type == 'emoji')
+			{
+				$inline_emoji = $answer_value['title'];
+			}
 			$this->inline_keyboard[$this_row][$row_answer[1]] = [
 				'text' => $inline_emoji,
 				$callback_type => $callback_data

@@ -71,7 +71,7 @@ class utility
 		return $_pref . preg_replace("[\.]", "_", microtime(true));
 	}
 
-	public static function calc_vertical($_result)
+	public static function calc_vertical($_result, $_emoji = null)
 	{
 		if(empty($_result))
 		{
@@ -102,30 +102,37 @@ class utility
 				// array_push($row_text, ...array_fill(0, $rows - count($row_text), '⬜️'));
 			}
 
-			if($max_key > 9)
+			if($_emoji)
 			{
-				$key_row = '';
-				foreach (str_split($key) as $k => $v) {
-					$key_row .= $poll_emoji[$v];
-				}
-				if($key == 0)
-				{
-					$key_row = "*️⃣*️⃣";
-				}
-				elseif($key < 9)
-				{
-					$key_row = $poll_emoji[0] . $key_row;
-				}
+				$key_row = $_emoji[$key];
 			}
 			else
 			{
-				if($key == 0)
+				if($max_key > 9)
 				{
-					$key_row = "*️⃣";
+					$key_row = '';
+					foreach (str_split($key) as $k => $v) {
+						$key_row .= $poll_emoji[$v];
+					}
+					if($key == 0)
+					{
+						$key_row = "*️⃣*️⃣";
+					}
+					elseif($key < 9)
+					{
+						$key_row = $poll_emoji[0] . $key_row;
+					}
 				}
 				else
 				{
-					$key_row = $poll_emoji[$key];
+					if($key == 0)
+					{
+						$key_row = "*️⃣";
+					}
+					else
+					{
+						$key_row = $poll_emoji[$key];
+					}
 				}
 			}
 
