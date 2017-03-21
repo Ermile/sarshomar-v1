@@ -10,12 +10,29 @@ trait budget
 	 *
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	public static function budget($_user_id, $_type = null)
+	public static function budget($_user_id, $_options = [])
 	{
+		$default_options =
+		[
+			'type' => null,
+			'unit' => null,
+		];
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+		$_options = array_merge($default_options, $_options);
+
+		$unit = null;
+		if(isset($_options['unit']) && is_numeric($_options['unit']))
+		{
+			$unit = " AND transactions.unit_id = $_options[unit] ";
+		}
+
 		$only_one_value = false;
 		$field = ['type','budget'];
 
-		if($_type)
+		if($_options['type'])
 		{
 			$only_one_value = true;
 			$field          = 'budget';
@@ -25,7 +42,8 @@ trait budget
 				FROM transactions
 				WHERE
 					transactions.user_id = $_user_id AND
-					transactions.type    = '$_type'
+					transactions.type    = '$_options[type]'
+					$unit
 				ORDER BY id DESC
 				LIMIT 1
 			";
@@ -39,6 +57,7 @@ trait budget
 				WHERE
 					transactions.user_id = $_user_id AND
 					transactions.type    = 'gift'
+					$unit
 				ORDER BY id DESC
 				LIMIT 1)
 
@@ -48,6 +67,7 @@ trait budget
 					WHERE
 						transactions.user_id = $_user_id AND
 						transactions.type    = 'real'
+						$unit
 					ORDER BY id DESC
 					LIMIT 1)
 
@@ -57,6 +77,7 @@ trait budget
 					WHERE
 						transactions.user_id = $_user_id AND
 						transactions.type    = 'prize'
+						$unit
 					ORDER BY id DESC
 					LIMIT 1)
 
@@ -66,6 +87,7 @@ trait budget
 					WHERE
 						transactions.user_id = $_user_id AND
 						transactions.type    = 'transfer'
+						$unit
 					ORDER BY id DESC
 					LIMIT 1)
 			";
@@ -87,15 +109,15 @@ trait budget
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function budget_gift($_user_id)
+	public static function budget_gift($_user_id, $_options = [])
 	{
-		return self::budget($_user_id, 'gift');
+		return self::budget($_user_id, $_options);
 	}
 
 
-	public static function budget_real($_user_id)
+	public static function budget_real($_user_id, $_options = [])
 	{
-		return self::budget($_user_id, 'real');
+		return self::budget($_user_id, $_options);
 	}
 }
 ?>

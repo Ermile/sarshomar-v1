@@ -228,6 +228,7 @@ trait add
 				{
 					case 'select':
 					case 'descriptive':
+					case 'emoji':
 						// no thing!
 						break;
 					case 'like':

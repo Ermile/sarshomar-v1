@@ -188,7 +188,7 @@ class model extends \mvc\model
 	/**
 	 * Saves a transaction.
 	 */
-	public function save_transaction($_amount, $_caller = 'charge:real')
+	public function save_transaction($_amount, $_caller = 'real:charge:toman')
 	{
 		if(!$this->login())
 		{
@@ -199,7 +199,7 @@ class model extends \mvc\model
 		{
 			return debug::errorT_("No amount was set");
 		}
-		\lib\db\transactions::set($this->login('id'), $_caller, ['plus' => $_amount]);
+		\lib\db\transactions::set($_caller, $this->login('id'), ['plus' => $_amount]);
 	}
 }
 ?>

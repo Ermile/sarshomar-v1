@@ -53,8 +53,10 @@ class view extends \lib\mvc\view
 			$user_unit = T_($user_unit);
 
 			$this->data->user_unit      = $user_unit;
-			$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'real');
-			$this->data->user_cash_gift = \lib\db\transactions::budget($this->login('id'), 'gift');
+			$user_unit_id               = \lib\db\units::get_id($user_unit);
+			$user_unit_id               = (int) $user_unit_id;
+			$this->data->user_cash      = \lib\db\transactions::budget_real($this->login('id'), ['type' => 'real', 'unit' => $user_unit_id]);
+			$this->data->user_cash_gift = \lib\db\transactions::budget_gift($this->login('id'), ['type' => 'gift', 'unit' => $user_unit_id]);
 			$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
 		}
 

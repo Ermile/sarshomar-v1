@@ -32,7 +32,6 @@ class transactions
 			'minus'              => null,
 			'budgetbefore'       => null,
 			'budget'             => null,
-			'exchange_id'        => null,
 			'status'             => null,
 			'meta'               => null,
 			'desc'               => null,
