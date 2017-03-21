@@ -110,7 +110,10 @@ class message
 		}
 		if($this->class->poll_type == 'emoji')
 		{
-			$this->message['poll_list'] = trim($poll_list);
+			if(!empty(trim($poll_list)))
+			{
+				$this->message['poll_list'] = trim($poll_list);
+			}
 			return;
 		}
 		foreach ($this->class->query_result['answers'] as $key => $value) {

@@ -97,21 +97,7 @@ class ask
 
 		$maker->message->add_telegram_link();
 		$maker->message->add_count_poll();
-		if($options['type'] == 'inline')
-		{
-			if($maker->query_result['language'] == 'fa')
-			{
-				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
-				$my_date = utility::nubmer_language($my_date);
-			}
-			else
-			{
-				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
-				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
-			}
-			$maker->message->add('time',"🕰 " . $my_date);
-		}
+
 
 		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
@@ -247,8 +233,34 @@ class ask
 		{
 			$options['fn']($maker);
 		}
+		if($options['type'] == 'inline')
+		{
+			if($maker->query_result['language'] == 'fa')
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
+				$my_date = utility::nubmer_language($my_date);
+			}
+			else
+			{
+				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
+				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now) . " GMT";
+			}
+			$maker->message->message['options'] .= " | 🕰 " . str_replace("-", "/", $my_date);
+		}
 
 		$return = $maker->make();
+		// $txt = $return['text'];
+		// $txt = preg_replace("/<\/?a[^>]*>/", '', $txt);
+		// $txt = preg_replace("/<\/?strong[^>]*>/", '', $txt);
+		// $txt = preg_replace("/^📌 /", '', $txt);
+		// if(mb_strlen($txt) < 150 && isset($maker->query_result['file']) && !empty($maker->query_result['file']))
+		// {
+		// 	$return['method'] = 'sendPhoto';
+		// 	$return['caption'] = $return['text'];
+		// 	$return['photo'] = $maker->query_result['file']['url'];
+		// 	unset($return['text']);
+		// }
 		if($options['type'] == 'private')
 		{
 			$return["response_callback"] = utility::response_expire('ask');

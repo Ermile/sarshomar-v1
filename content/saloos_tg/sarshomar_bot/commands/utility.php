@@ -144,7 +144,6 @@ class utility
 		if(true)
 		{
 			foreach ($result as $key => $value) {
-				handle::send_log($value);
 				$text .= join($value['row_text']);
 				if($_emoji)
 				{
