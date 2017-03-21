@@ -86,17 +86,17 @@ class model extends \mvc\model
 			$amount = 0;
 			switch (utility::post('promo'))
 			{
-				case '$1000$':
-					$amount = 1000;
-					break;
+				// case '$1000$':
+				// 	$amount = 1000;
+				// 	break;
 
-				case '$2000$':
-					$amount = 2000;
-					break;
+				// case '$2000$':
+				// 	$amount = 2000;
+				// 	break;
 
-				case '$$':
-					$amount = 100000;
-					break;
+				// case '$$':
+				// 	$amount = 100000;
+				// 	break;
 				default:
 					return debug::error(T_("Invalid promo code"), 'promo', 'arguments');
 					break;

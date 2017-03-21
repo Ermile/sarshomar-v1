@@ -591,7 +591,7 @@ class answers
 			'user_verify' => self::$user_verify,
 		];
 
-		if($_args['skipped'] == true)
+		if($_args['skipped'] === true)
 		{
 			$new_answer_is_skipped = true;
 			$result  = polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
