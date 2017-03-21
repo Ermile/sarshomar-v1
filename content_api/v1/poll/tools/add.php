@@ -181,6 +181,11 @@ trait add
 			$args['cat'] = utility::request('cat');
 		}
 
+		if(utility::isset_request('privacy'))
+		{
+			$args['privacy'] = utility::request('privacy');
+		}
+
 		// $args['comment'] = utility::request('comment');
 		// $args['slug']    = utility::request('slug');
 		// $args['type']    = utility::request("type");
