@@ -56,7 +56,7 @@ class model extends \mvc\model
 	{
 		if(!$this->login())
 		{
-			return debug::errorT_("You must login to pay amount");
+			return debug::error(T_("You must login to pay amount"));
 		}
 
 		$this->user_id = $this->login('id');
@@ -192,12 +192,12 @@ class model extends \mvc\model
 	{
 		if(!$this->login())
 		{
-			return debug::errorT_("You must login to pay amount");
+			return debug::error(T_("You must login to pay amount"));
 		}
 
 		if(!$_amount)
 		{
-			return debug::errorT_("No amount was set");
+			return debug::error(T_("No amount was set"));
 		}
 		\lib\db\transactions::set($_caller, $this->login('id'), ['plus' => $_amount]);
 	}
