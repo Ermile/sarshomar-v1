@@ -251,6 +251,7 @@ trait add
 				{
 					switch ($answer_type)
 					{
+						case 'emoji':
 						case 'select':
 							if($value)
 							{
