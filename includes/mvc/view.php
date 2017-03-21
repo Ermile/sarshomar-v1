@@ -49,7 +49,10 @@ class view extends \lib\mvc\view
 
 		if($this->login())
 		{
-			$this->data->user_unit      = \lib\db\units::user_unit($this->login('id'));
+			$user_unit = \lib\db\units::find_user_unit($this->login('id'), true);
+			$user_unit = T_($user_unit);
+
+			$this->data->user_unit      = $user_unit;
 			$this->data->user_cash      = \lib\db\transactions::budget($this->login('id'), 'real');
 			$this->data->user_cash_gift = \lib\db\transactions::budget($this->login('id'), 'gift');
 			$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
