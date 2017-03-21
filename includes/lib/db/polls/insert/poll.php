@@ -284,6 +284,31 @@ trait poll
 			}
 		}
 
+		if(self::isset_args('privacy'))
+		{
+			if(self::$args['privacy'] === 'public')
+			{
+				$insert_poll['post_privacy'] = 'public';
+			}
+			else
+			{
+				if(self::isset_args('from','count') && (int) self::$args['from']['count'] > 0)
+				{
+					\lib\db\logs::set('user:poll:add:error:private:set:member', self::$args['user'], ['meta' => ['input' => self::$args]]);
+					return debug::error(T_("You can not set member in private poll"), 'privacy', 'arguments');
+				}
+				$insert_poll['post_privacy'] = 'private';
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				$insert_poll['post_privacy'] = 'private';
+			}
+		}
+
+
 		if(!self::poll_check_permission('admin'))
 		{
 			$insert_poll['post_status'] = 'draft';
@@ -327,7 +352,6 @@ trait poll
 				\lib\utility\poll_tree::set($tree_args);
 			}
 		}
-
 		// insert filters
 		if(self::isset_args('from'))
 		{
@@ -345,6 +369,7 @@ trait poll
 			 */
 			if(self::isset_args('from','count'))
 			{
+
 				$member       = (int) self::$args['from']['count'];
 
 				unset(self::$args['from']['count']);
@@ -371,16 +396,10 @@ trait poll
 						return debug::error(T_(":max users were found, reduce the number of users ",["max" => $member_exist]), 'count', 'arguments');
 					}
 				}
-				if($member > 0)
-				{
-					self::update(['post_privacy' => 'public'], self::$poll_id);
-				}
-				else
-				{
-					self::update(['post_privacy' => 'private'], self::$poll_id);
-				}
+
 			}
 		}
+
 	}
 }
 ?>
