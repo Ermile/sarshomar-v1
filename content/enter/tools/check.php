@@ -103,32 +103,32 @@ trait check
 			}
 
 			// check if this user have a telegram id and start the telegram
-			// $telegram_id =
-			// [
-			// 	'user_id'    => $this->user_id,
-			// 	'option_cat' => 'telegram',
-			// 	'option_key' => 'id',
-			// 	'limit'      => 1,
-			// ];
-			// $telegram_id = db\options::get($telegram_id);
-			// $this->telegram_detail['telegram_id'] =  $telegram_id;
-			// if(!empty($telegram_id) && isset($telegram_id['value']) && $telegram_id['value'])
-			// {
-			// }
-			$telegram_start_status =
+			$telegram_id =
 			[
-				'user_id'      => $this->user_id,
-				'option_cat'   => 'user_detail_'. $this->user_id,
-				'option_key'   => 'telegram_start_status',
-				'option_value' => 'start',
-				'limit'        => 1,
+				'user_id'    => $this->user_id,
+				'option_cat' => 'telegram',
+				'option_key' => 'id',
+				'limit'      => 1,
 			];
-			$telegram_start_status = db\options::get($telegram_start_status);
-			if(!empty($telegram_start_status))
+			$telegram_id = db\options::get($telegram_id);
+			$this->telegram_detail['telegram_id'] =  $telegram_id;
+			if(!empty($telegram_id) && isset($telegram_id['value']) && $telegram_id['value'])
 			{
-				$this->telegram_detail['telegram_start_status'] =  $telegram_start_status;
-				$this->telegram_chat_id = $telegram_id['value'];
-				return 'telegram';
+				$telegram_start_status =
+				[
+					'user_id'      => $this->user_id,
+					'option_cat'   => 'user_detail_'. $this->user_id,
+					'option_key'   => 'telegram_start_status',
+					'option_value' => 'start',
+					'limit'        => 1,
+				];
+				$telegram_start_status = db\options::get($telegram_start_status);
+				if(!empty($telegram_start_status))
+				{
+					$this->telegram_detail['telegram_start_status'] =  $telegram_start_status;
+					$this->telegram_chat_id = $telegram_id['value'];
+					return 'telegram';
+				}
 			}
 
 
