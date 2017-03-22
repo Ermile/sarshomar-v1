@@ -77,11 +77,11 @@
                         </form>
                     </div>
                 </div>
-                <div class="promo-msg-box">
+                <!-- <div class="promo-msg-box">
                     <h3 class="promo-msg">
-                        {%trans "Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00."%}
+                        {#%trans "Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00."%#}
                     </h3>
-                </div>
+                </div> -->
             </div>
 
             <div class="default-tbl billing-history-table">
@@ -119,8 +119,8 @@
                     {%endfor%}
                 </div>
             </div>
-            <div class="pagination">
-                <a href="#!">1</a>
+            <div class="pagination-container">
+                {%include display.pagination%}
             </div>
         </div>
     </div>
