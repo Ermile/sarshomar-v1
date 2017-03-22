@@ -44,8 +44,12 @@ class model extends \mvc\model
 		{
 			return false;
 		}
-		$this->user_id = $this->login('id');
-		$billing_history = \lib\db\transactions::search(null, ['user_id' => $this->user_id]);
+		$meta            = [];
+		$this->user_id   = $this->login('id');
+		$meta['user_id'] = $this->user_id;
+		$meta['unit']    = $this->view()->data->user_unit;
+
+		$billing_history = \lib\db\transactions::search(null, $meta);
 		return $billing_history;
 	}
 
@@ -111,33 +115,6 @@ class model extends \mvc\model
 	}
 
 
-
-	/**
-	 * pay amount
-	 */
-	public function pay()
-	{
-		\lib\db\logs::set('user:charge:real', $this->user_id);
-
-		self::$zarinpal['Description'] = T_("Charge Sarshomar");
-
-		$host  = Protocol."://" . \lib\router::get_root_domain();
-		$lang = \lib\define::get_current_language_string();
-		$host .= $lang;
-		$host .= '/@/billing/verify/zarinpal';
-
-		self::$zarinpal['CallbackURL'] = $host;
-
-		if(mb_strtolower(utility::post('bank')) == 'zarinpal')
-		{
-			$amount                   = utility::post('amount');
-			self::$zarinpal['Amount'] = $amount;
-			$_SESSION['Amount']       = $amount;
-			return payment\zarinpal::pay(self::$zarinpal);
-		}
-	}
-
-
 	/**
 	 * Gets the verify.
 	 *
@@ -145,14 +122,41 @@ class model extends \mvc\model
 	 */
 	public function get_verify()
 	{
+		$this->controller->display = false;
+		$new_url = $this->view()->url->base;
+		$new_url .= '/@/billing';
+		debug::msg('direct', true);
+
+		$log_meta =
+		[
+			'data' => null,
+			'meta' =>
+			[
+				'input'   => utility::get(),
+				'session' => $_SESSION,
+			],
+		];
+
+		if(!$this->login())
+		{
+			\lib\db\logs::set('user:billing:verify:not:login', null, $log_meta);
+			debug::error(T_("You must login to load this page"));
+			$this->redirector($new_url);
+			return;
+		}
+
+
 		$url_bank = \lib\router::get_url(2);
 		if(!in_array($url_bank, self::$support_bank))
 		{
-			\lib\error::page("Invalid bank");
+			\lib\error::page(T_("Invalid bank"));
 		}
 
 		if($url_bank == 'zarinpal')
 		{
+			$_SESSION['operation'] = false;
+			$ok                    = true;
+
 			if(utility::get('Authority') && utility::get('Status'))
 			{
 				$check_verify              = self::$zarinpal;
@@ -165,41 +169,29 @@ class model extends \mvc\model
 				}
 				else
 				{
+					\lib\db\logs::set('user:billing:verify:amount:not:found', $this->login('id'), $log_meta);
 					debug::error(T_("Amount not found"));
-					return false;
+					$ok = false;
 				}
 
-				$check = payment\zarinpal::verify($check_verify);
-				if($check && debug::$status)
+				if($ok)
 				{
-					if($this->save_transaction($_SESSION['Amount']))
+					\lib\utility\payment\zarinpal::$save_log = true;
+					$check = payment\zarinpal::verify($check_verify);
+
+					if($check && debug::$status)
 					{
-						return true;
+						\lib\db\logs::set('user:billing:verify:successful', $this->login('id'), $log_meta);
+						\lib\db\transactions::set('real:charge:toman', $this->login('id'), ['plus' => $_SESSION['Amount']]);
+						debug::true(T_("Payment operation was successfull and :amount :unit added to your cash", ['amount' => $_SESSION['Amount'], 'unit' => T_('toman')]));
+						$_SESSION['operation'] = true;
 					}
-					return false;
 				}
 			}
 		}
-		return false;
-		// $this->redirector()->set_url("@/billing")->redirect();
+
+		$this->redirector($new_url);
 	}
 
-
-	/**
-	 * Saves a transaction.
-	 */
-	public function save_transaction($_amount, $_caller = 'real:charge:toman')
-	{
-		if(!$this->login())
-		{
-			return debug::error(T_("You must login to pay amount"));
-		}
-
-		if(!$_amount)
-		{
-			return debug::error(T_("No amount was set"));
-		}
-		\lib\db\transactions::set($_caller, $this->login('id'), ['plus' => $_amount]);
-	}
 }
 ?>

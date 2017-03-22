@@ -113,23 +113,24 @@ trait get
 		$default_options =
 		[
 			// just return the count record
-			"get_count"   => false,
+			"get_count"      => false,
 			// enable|disable paignation,
-			"pagenation"  => true,
+			"pagenation"     => true,
 			// for example in get_count mode we needless to limit and pagenation
 			// default limit of record is 15
-			// set the limit  = null and pagenation = false to get all record whitout limit
-			"limit"           => 10,
+			// set the limit = null and pagenation = false to get all record whitout limit
+			"limit"          => 10,
 			// for manual pagenation set the statrt_limit and end limit
-			"start_limit"     => 0,
+			"start_limit"    => 0,
 			// for manual pagenation set the statrt_limit and end limit
-			"end_limit"       => 10,
+			"end_limit"      => 10,
 			// the the last record inserted to post table
-			"get_last"        => false,
+			"get_last"       => false,
 			// default order by ASC you can change to DESC
-			"order"           => "ASC",
+			"order"          => "ASC",
 			// custom sort by field
-			"sort"			  => null,
+			"sort"           => null,
+			"unit"           => null,
 		];
 		$_options = array_merge($default_options, $_options);
 
@@ -161,6 +162,11 @@ trait get
 			}
 		}
 
+		if(isset($_options['unit']) && $_options['unit'])
+		{
+			$_options['unit_id'] = \lib\db\units::get_id($_options['unit']);
+		}
+
 		// ------------------ get last
 		$order = null;
 		if($_options['get_last'])
@@ -184,6 +190,8 @@ trait get
 		unset($_options['get_last']);
 		unset($_options['order']);
 		unset($_options['sort']);
+		unset($_options['unit']);
+
 
 		foreach ($_options as $key => $value)
 		{
@@ -192,20 +200,20 @@ trait get
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
 					// for similar "transactions.`field` LIKE '%valud%'"
-					$where[] = " transactions.`$key` $value[0] $value[1] ";
+					$where[] = " transactions.$key $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " transactions.`$key` IS NULL ";
+				$where[] = " transactions.$key IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " transactions.`$key` = $value ";
+				$where[] = " transactions.$key = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " transactions.`$key` = '$value' ";
+				$where[] = " transactions.$key = '$value' ";
 			}
 		}
 

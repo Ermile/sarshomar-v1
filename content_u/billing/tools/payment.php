@@ -1,5 +1,7 @@
 <?php
 namespace content_u\billing\tools;
+use \lib\utility;
+use \lib\debug;
 
 trait payment
 {
@@ -36,5 +38,51 @@ trait payment
 		}
 		return [];
 	}
+
+
+	/**
+	 * pay amount
+	 */
+	public function pay()
+	{
+		$log_meta =
+		[
+			'data' => null,
+			'meta' =>
+			[
+				'input'   => utility::post(),
+				'session' => $_SESSION,
+			],
+		];
+
+		self::$zarinpal['Description'] = T_("Charge Sarshomar");
+
+		$host  = Protocol."://" . \lib\router::get_root_domain();
+		$lang = \lib\define::get_current_language_string();
+		$host .= $lang;
+		$host .= '/@/billing/verify/zarinpal';
+
+		self::$zarinpal['CallbackURL'] = $host;
+
+		if(mb_strtolower(utility::post('bank')) == 'zarinpal')
+		{
+			$amount  = utility::post('amount');
+			$log_meta['data'] = $amount;
+			if(!is_numeric($amount) || intval($amount) < 1)
+			{
+				\lib\db\logs::set('user:billing:charge:error:invalid:amount', $this->user_id, $log_meta);
+				debug::error(T_("Invalid amount"), 'amount', 'arguments');
+				return false;
+			}
+
+			self::$zarinpal['Amount'] = $amount;
+			$_SESSION['Amount']       = $amount;
+			\lib\db\logs::set('user:billing:charge:zarinpal', $this->user_id, $log_meta);
+			\lib\utility\payment\zarinpal::$save_log = true;
+			return \lib\utility\payment\zarinpal::pay(self::$zarinpal);
+		}
+	}
+
+
 }
 ?>
