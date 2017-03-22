@@ -81,6 +81,8 @@ trait link
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
+		$ready_upload['post_status'] = 'awaiting';
+
 		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
 
 		$upload      = upload::upload($ready_upload);

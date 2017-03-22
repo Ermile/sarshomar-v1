@@ -32,6 +32,11 @@ trait login
 			{
 				$url .= \lib\define::get_current_language_string($user_language);
 			}
+			else
+			{
+				$url .= \lib\define::get_current_language_string();
+			}
+
 			$url .= '/@';
 		}
 

@@ -95,7 +95,7 @@ trait get_fields
 				$_poll_data['my_like'] = false;
 			}
 		}
-		else
+		elseif(self::$_options['run_options'])
 		{
 			$my_like =
 			[
@@ -127,7 +127,7 @@ trait get_fields
 				$_poll_data['my_fav'] = false;
 			}
 		}
-		else
+		elseif(self::$_options['run_options'])
 		{
 			$my_fav =
 			[

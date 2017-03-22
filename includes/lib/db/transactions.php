@@ -10,6 +10,7 @@ class transactions
 	use transactions\set;
 	use transactions\get;
 	use transactions\budget;
+	use transactions\poll;
 
 
 	/**
@@ -26,6 +27,7 @@ class transactions
 			'title'              => null,
 			'transactionitem_id' => null,
 			'user_id'            => null,
+			'post_id'            => null,
 			'type'               => null,
 			'unit_id'            => null,
 			'plus'               => null,

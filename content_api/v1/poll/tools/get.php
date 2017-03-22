@@ -26,10 +26,11 @@ trait get
 			'check_is_my_poll'   => false,
 			'get_filter'         => true,
 			'get_opts'           => true,
-			'get_options'	     => true,
-			'run_options'	     => false,
+			'get_options'        => true,
+			'run_options'        => false,
 			'get_public_result'  => true,
 			'get_advance_result' => false,
+			'load_from_site'     => false,
 			'type'               => null, // ask || random
 		];
 

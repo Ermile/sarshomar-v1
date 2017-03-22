@@ -7,6 +7,7 @@ use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
 use \lib\db\polldetails;
+use \lib\db\transactions;
 use \lib\utility\profile;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
@@ -312,6 +313,7 @@ class answers
 	 */
 	public static function save($_args = [])
 	{
+		// \lib\db::transaction();
 		$default_args =
 		[
 			'user_id' => null,
@@ -438,6 +440,7 @@ class answers
 		{
 			if(!users::is_guest($_args['user_id']))
 			{
+				// transactions::answer($_args);
 				ranks::plus($_args['poll_id'], 'vote');
 			}
 
@@ -798,13 +801,23 @@ class answers
 		{
 			if($old_answer_is_skipped)
 			{
-				ranks::minus($_args['poll_id'], 'skip');
+				// transactions::set('real:answer:poll', $_args['user_id'], ['plus' => 2, 'post_id' => $_args['post_id']]);
+
+				if(!users::is_guest($_args['user_id']))
+				{
+					ranks::minus($_args['poll_id'], 'skip');
+				}
+
 				profiles::minus_dashboard_data($_args['user_id'], "poll_skipped");
 				profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 			}
 			else
 			{
-				ranks::minus($_args['poll_id'], 'vote');
+				if(!users::is_guest($_args['user_id']))
+				{
+					ranks::minus($_args['poll_id'], 'vote');
+				}
+
 				profiles::minus_dashboard_data($_args['user_id'], "poll_answered");
 				profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 			}

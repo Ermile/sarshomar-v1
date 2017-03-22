@@ -44,6 +44,7 @@ trait ready
 			'check_is_my_poll'   => false,
 			'debug'              => true,
 			'filter_chart'       => null,
+			'load_in_site'       => false,
 		];
 		// merge settings
 		$_options = array_merge($default_options, $_options);

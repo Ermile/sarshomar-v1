@@ -23,6 +23,7 @@ class model extends \content\home\model
 		'run_options'        => true,
 		'get_public_result'  => true,
 		'get_advance_result' => true,
+		'load_from_site'     => true,
 		'type'               => null, // ask || random
 	];
 

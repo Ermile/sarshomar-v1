@@ -13,16 +13,23 @@ trait set
 	 */
 	public static function set($_caller, $_user_id, $_options = [])
 	{
+
+		$post_id = null;
+		if(isset($_options['post_id']))
+		{
+			$post_id = (int) $_options['post_id'];
+		}
+
 		$log_meta =
 		[
-			'data' => $_caller,
+			'data' => $post_id,
 			'meta' =>
 			[
 				'args'    => func_get_args(),
 				'session' => $_SESSION,
+				'caller'  => $_caller,
 			]
 		];
-
 
 		// get the transactions items by caller
 		$item = \lib\db\transactionitems::caller($_caller);
@@ -190,6 +197,7 @@ trait set
 			'title'              => $title,
 			'transactionitem_id' => $item_id,
 			'user_id'            => $_user_id,
+			'post_id'            => $post_id,
 			'type'               => $type,
 			'unit_id'            => $user_unit_id,
 			'plus'               => ($plus) ? $plus : null,

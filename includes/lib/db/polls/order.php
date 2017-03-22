@@ -148,9 +148,105 @@ trait order
 		$result = \lib\utility\filter::meta_decode($result);
 		if(isset($result[0]))
 		{
+			self::set_user_ask_me_on($_user_id, $result[0]);
 			return $result[0];
 		}
+		self::set_user_ask_me_on($_user_id, false);
 		return false;
+	}
+
+
+	/**
+	 * Saves an user ask me on.
+	 *
+	 * @param      <type>  $_poll_data  The poll data
+	 */
+	public static function set_user_ask_me_on($_user_id, $_poll_data)
+	{
+
+		$log_meta =
+		[
+			'data'=> null,
+			'meta' =>
+			[
+				'poll' => $_poll_data
+			],
+		];
+
+		if($_poll_data === false)
+		{
+			\lib\db\logs::set('user:request:ask:empty', $_user_id, $log_meta);
+		}
+
+		$poll_id = 0;
+		if(isset($_poll_data['id']))
+		{
+			$poll_id = $_poll_data['id'];
+		}
+
+		$cat = 'user_detail_'. $_user_id;
+		$where =
+		[
+			'post_id'      => null,
+			'user_id'      => $_user_id,
+			'option_cat'   => $cat,
+			'option_key'   => 'user_ask_me',
+			'limit'        => 1,
+		];
+
+		$args = $where;
+
+		$exist_option_record = \lib\db\options::get($where);
+
+		if(isset($exist_option_record['value']) && (int) $exist_option_record['value'] === (int) $poll_id)
+		{
+			return ;
+		}
+
+		unset($args['limit']);
+		unset($args['post_id']);
+		unset($where['limit']);
+
+		$args['option_value'] = $poll_id;
+
+		if(!$exist_option_record)
+		{
+			\lib\db\options::insert($args);
+		}
+		else
+		{
+			\lib\db\options::update_on_error($args, $where);
+		}
+	}
+
+
+	/**
+	 * Gets the user ask me on.
+	 *
+	 * @param      <type>   $_user_id  The user identifier
+	 *
+	 * @return     boolean  The user ask me on.
+	 */
+	public static function get_user_ask_me_on($_user_id)
+	{
+
+		$cat = 'user_detail_'. $_user_id;
+		$args =
+		[
+			'post_id'      => null,
+			'user_id'      => $_user_id,
+			'option_cat'   => $cat,
+			'option_key'   => 'user_ask_me',
+			'limit'        => 1,
+		];
+
+		$result = \lib\db\options::get($args);
+
+		if(empty($result) || !isset($result['value']))
+		{
+			return false;
+		}
+		return (int) $result['value'];
 	}
 }
 ?>

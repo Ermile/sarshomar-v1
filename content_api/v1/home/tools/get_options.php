@@ -85,27 +85,10 @@ trait get_options
 
 			if(isset($value['option_key']) && $value['option_key'] == 'title_attachment')
 			{
-				$attachment = \lib\db\polls::get_poll($value['option_value']);
-
-				$attachment_type = null;
-
-				if(isset($value['option_meta']['type']))
-				{
-					$attachment_type = $value['option_meta']['type'];
-				}
-				$_poll_data['file']['type'] = $attachment_type;
-
-				if(isset($attachment['meta']['url']))
-				{
-					if(self::$_options['run_options'] && isset($attachment['status']) && $attachment['status'] != 'publish')
-					{
-						$_poll_data['file']['url'] = self::awaiting_file_url($attachment_type);
-					}
-					else
-					{
-						$_poll_data['file']['url'] = self::host(). '/'. $attachment['meta']['url'];
-					}
-				}
+				$attachment                 = \lib\db\polls::get_poll($value['option_value']);
+				$attachment                 = self::get_file_url(['attachment' => $attachment]);
+				$_poll_data['file']['type'] = $attachment['type'];
+				$_poll_data['file']['url']  = $attachment['url'];
 			}
 
 			if(!isset($_poll_data['file']['url']))
@@ -200,6 +183,9 @@ trait get_options
 		switch ($_type)
 		{
 			case 'file':
+				return Protocol."://dl." . \lib\router::get_root_domain();
+				break;
+
 			case 'without_language':
 				return $host;
 				break;
@@ -223,13 +209,100 @@ trait get_options
 	 *
 	 * @return     string  ( description_of_the_return_value )
 	 */
-	public static function awaiting_file_url($_file_type)
+	public static function get_file_url($_args)
 	{
-		$awaiting_file_url = self::host('file'). '/static/images/logo.png';
-		return $awaiting_file_url;
+		$file_url      = '/static/images/awaiting.png';
+		$real_file_url = '/static/images/awaiting.png';
+		$file_type     = null;
+		$file_mime     = null;
+		$file_status   = 'draft';
+
+		if(isset($_args['attachment']))
+		{
+			if(
+				isset($_args['attachment']['meta']) &&
+				is_string($_args['attachment']['meta']) &&
+				substr($_args['attachment']['meta'], 0, 1) == '{'
+			  )
+			{
+				$_args['attachment']['meta'] = json_decode($_args['attachment']['meta'], true);
+			}
+
+			if(isset($_args['attachment']['meta']['url']))
+			{
+				$real_file_url = $file_url = $_args['attachment']['meta']['url'];
+			}
+
+			if(isset($_args['attachment']['meta']['type']))
+			{
+				$file_type = $_args['attachment']['meta']['type'];
+			}
+
+			if(isset($_args['attachment']['meta']['mime']))
+			{
+				$file_mime = $_args['attachment']['meta']['mime'];
+			}
+
+
+			if(isset($_args['attachment']['status']))
+			{
+				$file_status = $_args['attachment']['status'];
+			}
+
+			if(self::$_options['load_from_site'] === true)
+			{
+				switch ($file_status)
+				{
+					case 'publish':
+						$file_url = self::host('file'). '/'. $file_url;
+						// no problem to load file
+						break;
+					case 'awaiting':
+					case 'draft':
+						$file_url = self::host('file'). '/static/images/awaiting.png';
+						break;
+					default:
+						$file_url = self::host('file'). '/static/images/block.png';
+						break;
+				}
+			}
+			else
+			{
+				switch ($file_status)
+				{
+					case 'draft':
+					case 'publish':
+					case 'awaiting':
+						$file_url = self::host('file'). '/'. $file_url;
+						// no problem to load file
+						break;
+					default:
+						$file_url = self::host('file'). '/static/images/block.png';
+						break;
+				}
+			}
+
+			if(self::$_options['run_options'] === false)
+			{
+				$file_url = self::host('file'). '/'. $real_file_url;
+			}
+		}
+		else
+		{
+			$file_url = self::host('file'). $file_url;
+		}
+
+		return ['url' => $file_url, 'type' => $file_type, 'mime' => $file_mime];
 	}
 
 
+	/**
+	 * Sets the multi message.
+	 *
+	 * @param      <type>  $_multi  The multi
+	 *
+	 * @return     string  ( description_of_the_return_value )
+	 */
 	private static function set_multi_msg($_multi = null)
 	{
 		$multi_msg = '';

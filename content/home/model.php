@@ -42,10 +42,8 @@ class model extends \mvc\model
 
 		$user_id  = $this->login("id");
 		$ask_url = \lib\db\polls::ask_me($user_id);
-		\lib\db\logs::set('user:request:ask', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
 		if($ask_url == null)
 		{
-			\lib\db\logs::set('user:request:ask:empty', $this->login('id'), ['meta'=>['login' => $this->login('all'), 'url' => $ask_url]]);
 			$_SESSION['user_answered_to_all_poll'] = true;
 			$ask_url = '$';
 		}

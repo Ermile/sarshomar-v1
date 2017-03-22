@@ -18,7 +18,7 @@ trait get
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
 		}
 
-		$this->poll_get();
+		$this->poll_get($_options);
 
 		if(!debug::$status)
 		{
