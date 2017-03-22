@@ -125,8 +125,6 @@ trait order
 										(
 											CASE options.option_value
 												WHEN 'true' 	THEN polldetails.opt
-												WHEN '1' 		THEN polldetails.opt
-												WHEN  1 		THEN polldetails.opt
 												WHEN 'skipped' 	THEN 0
 												ELSE options.option_value
 											END
