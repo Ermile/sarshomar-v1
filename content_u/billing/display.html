@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Money"%}</h5>
-                        <div class="amount"><span>{{user_cash}}</span> <span>{%trans user_unit%}</span></div>
+                        <div class="amount"><span>{{user_cash|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Gift"%}</h5>
-                        <div class="amount"><span>{{user_cash_gift}}</span> <span>{%trans user_unit%}</span></div>
+                        <div class="amount"><span>{{user_cash_gift|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Credit"%}</h5>
-                        <div class="amount"><strong><span>{{user_cash + user_cash_gift}}</span> <span>{%trans user_unit%}</span></strong></div>
+                        <div class="amount"><strong><span>{{(user_cash + user_cash_gift)|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></strong></div>
                     </div>
                 </div>
             </div>
@@ -93,18 +93,28 @@
                         <span>{%trans "Type"%}</span>
                         <span>{%trans "Plus"%}</span>
                         <span>{%trans "Minus"%}</span>
-                        <span>{%trans "Budget before"%}</span>
-                        <span>{%trans "Budget"%}</span>
                     </div>
                     {% for key, value in history %}
                     <div>
                         <span>{{value.date|jdate}}</span>
-                        <span>{{value.title}}</span>
-                        <span>{{value.type}}</span>
-                        <span><span>{{value.plus}}</span> <span>{{value.unit}}</span></span>
-                        <span><span>{{value.minus}}</span> <span>{{value.unit}}</span></span>
-                        <span><span>{{value.budgetbefore}}</span> <span>{{value.unit}}</span></span>
-                        <span><span>{{value.budget}}</span> <span>{{value.unit}}</span></span>
+                        <span>{%set myTitle = value.title%}{%trans myTitle%}</span>
+                        <span>{%set myType = value.type%}{%trans myType%}</span>
+                        <span>
+                            {%if value.plus%}
+                                <span>{{value.plus|number_format|fitNumber}}</span>
+                                <span>{%set myUnit = value.unit%}{%trans myUnit%}</span>
+                            {%else%}
+                                {{0|fitNumber}}
+                            {%endif%}
+                        </span>
+                        <span>
+                            {%if value.minus%}
+                                <span>{{value.minus|number_format|fitNumber}}</span>
+                                <span>{%set myUnit = value.unit%}{%trans myUnit%}</span>
+                            {%else%}
+                                {{0|fitNumber}}
+                            {%endif%}
+                        </span>
                     </div>
                     {%endfor%}
                 </div>
