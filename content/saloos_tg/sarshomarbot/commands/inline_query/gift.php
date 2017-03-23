@@ -1,8 +1,8 @@
 <?php
-namespace content\saloos_tg\sarshomar_bot\commands\inline_query;
+namespace content\saloos_tg\sarshomarbot\commands\inline_query;
 // use telegram class as bot
 use \lib\db\tg_session as session;
-use \content\saloos_tg\sarshomar_bot\commands\handle;
+use \content\saloos_tg\sarshomarbot\commands\handle;
 use \lib\telegram\tg as bot;
 
 trait gift

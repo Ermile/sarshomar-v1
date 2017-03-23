@@ -145,6 +145,10 @@ class controller extends \lib\mvc\controller
 		 * start hooks and run telegram session from db
 		 */
 		bot::hook();
+		if(!bot::$user_id)
+		{
+			exit();
+		}
 		if(isset(bot::$hook['edited_message']))
 		{
 			exit();
