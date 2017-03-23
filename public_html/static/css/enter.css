@@ -33,7 +33,8 @@ body.bg16{background-image:url(../images/enter/16.jpg)}
 .enter .logo img{display:block;max-width:100%;height:90px;margin:0 auto}
 .enter .logo span{display:none !important}
 
-.enter h2{font-size:1.2em;line-height:35px;overflow:hidden;height:70px;max-height:70px;margin:5px 0;text-align:center;color:#fff}
+.enter h2{font-size:1.2em;overflow:hidden;height:70px;max-height:70px;margin:5px 0;text-align:center;color:#fff}
+.enter h2 abbr{cursor:pointer;}
 
 
 /*.enter h2 .loader{display:block;display:none}
@@ -113,6 +114,6 @@ body.bg16{background-image:url(../images/enter/16.jpg)}
 
 .langlist{position: absolute;bottom:0;left:0;}
 .rtl .langlist{left:inherit;right:0;}
-.langlist a{display:inline-block;padding:1em;color:#fff;background-color:#000;transition:0.3s;opacity:0.3}
+.langlist a{display:inline-block;padding:1em 2em;color:#fff;background-color:#000;transition:0.3s;opacity:0.3}
 .langlist a:hover{opacity:0.6;}
 .langlist a:focus{opacity:8;background-color:#000;color:#fff;}

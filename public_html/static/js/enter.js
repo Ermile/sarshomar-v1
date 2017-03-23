@@ -27,6 +27,12 @@ $(document).ready(function()
 		console.log('unlock mobile!');
 		gotoStep('mobile');
 	});
+
+	$(document).on("click", "h2 abbr", function(_e)
+	{
+		console.log('send resend request');
+		sendToBigBrother('resend');
+	});
 });
 
 
@@ -69,7 +75,10 @@ function clickOnGo()
 }
 
 
-
+/**
+ * [changeUsername description]
+ * @return {[type]} [description]
+ */
 function changeUsername()
 {
 	var myUsername = $('#username');
@@ -172,6 +181,35 @@ function validateUsername()
 		}
 	}
 	return status;
+}
+
+
+/**
+ * [runTimerNotRecieve description]
+ * @param  {[type]} _delay [description]
+ * @return {[type]}        [description]
+ */
+function runTimerNotRecieve(_delay)
+{
+	var notif = $('.notif');
+	var myMsg = notif.attr('data-resend');
+	if(!_delay || _delay > 1000)
+	{
+		_delay = 1000;
+	}
+
+	setTimeout(function()
+	{
+		if(notif.html().indexOf(myMsg) > 0)
+		{
+			// exist before this add
+			console.log('Hey Boy!');
+		}
+		else
+		{
+			setNotif(notif.html() + "<br /><abbr title='" + myMsg + "'>" + myMsg + "</abbr>");
+		}
+	}, _delay);
 }
 
 
@@ -348,7 +386,7 @@ function changer(_name, _enable, _delay, _changeEnterBox)
  * [gotoWait description]
  * @return {[type]} [description]
  */
-function gotoStep(_step, _delay)
+function gotoStep(_step, _delay, _resend)
 {
 	switch(_step)
 	{
@@ -384,6 +422,7 @@ function gotoStep(_step, _delay)
 			changer('pin', false);
 			changer('code', true, 0);
 			runLoading(false);
+			runTimerNotRecieve(_resend);
 			break;
 	}
 }
@@ -412,9 +451,8 @@ function getBlackBox()
  */
 function sendToBigBrother(_step)
 {
-	var blackBox      = getBlackBox();
-	blackBox.step     = _step;
-
+	var blackBox  = getBlackBox();
+	blackBox.step = _step;
 
 	$('.sidebox').ajaxify(
 	{
@@ -497,7 +535,7 @@ function setNotif(_txt)
 
 	notif.animate({opacity:0}, 200,"linear",function()
 	{
-		notif.text(_txt);
+		notif.html(_txt);
 		$(this).animate({opacity:1}, 200);
 	});
 }
