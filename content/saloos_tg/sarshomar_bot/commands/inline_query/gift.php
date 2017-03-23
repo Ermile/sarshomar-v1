@@ -16,8 +16,19 @@ trait gift
 		$result['results'][0]['title'] = "آیفون ببرید";
 		$result['results'][0]['url'] = "https://sarshomar.com/fa/gift";
 		$result['results'][0]['id'] = "gift_fa";
-		$result['results'][0]['caption'] = "با ورود به جامعه سرشمار علاوه بر دریافت هديه💵 ١٠٠هزار ريالى💵\nبپرسید، پاسخ دهید، درآمد کسب کنید و در قرعه کشی روز پدر\n آیفون ببرید📱😍";
-		$result['results'][0]['photo_url'] = "https://sarshomar.com/static/images/gift/iphone-telegram.jpg";
+		$result['results'][0]['caption'] = "با ورود به جامعه سرشمار، در روز پدر آیفون ببرید.\n\n💡سرشمار سرویسی مدرن و یکپارچه برای پرسش از هرکسی در هر مکانی است.\n\n@SarshomarBot\nSarshomar.com/fa";
+		// $result['results'][0]['photo_url'] = "https://sarshomar.com/static/images/gift/iphone-telegram.jpg";
+		$result['results'][0]['photo_url'] = "AgADBAAD4MA2G8keZAcXrq3tm_oHHdtfoBkABH8_esp20C2nTL0BAAEC";
+		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
+			[
+				"text" 	=> "ورود به بات",
+				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_11"
+			]],
+			[[
+				"text" 	=> "وبسایت سرشمار",
+				"url"	=> "https://sarshomar.com/fa"
+			],
+		]];
 
 	}
 }
