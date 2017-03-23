@@ -729,7 +729,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 
 /************************************************************** random chart */
 #random-chart{background-color:#fff;max-width:500px;width:100%;margin:0 auto;}
-#random-chart h3{padding:0 1em;font-size:1.3em}
+#random-chart h3{padding:0.5em 1em;font-size:1.3em}
 #random-chart h3 a{color:#444445;font-weight:200}
 #random-chart .column{height:250px}
 #gift-iphone> a{display:block}
