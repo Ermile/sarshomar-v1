@@ -338,7 +338,8 @@ class token
 				'option_meta'  => 'verified'
 			];
 			db\options::update_on_error($arg, $where);
-			return true;
+			return self::$PARENT;
+			// return true;
 
 		}
 		else
