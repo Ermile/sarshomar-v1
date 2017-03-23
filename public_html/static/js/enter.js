@@ -159,7 +159,6 @@ function validateUsername()
 	{
 		if(validateMobile(userVal))
 		{
-			console.log(233);
 			status = true;
 			changer('go', true);
 		}
@@ -193,7 +192,15 @@ function runTimerNotRecieve(_delay)
 {
 	var notif = $('.notif');
 	var myMsg = notif.attr('data-resend');
-	if(!_delay || _delay > 1000)
+	if(!_delay)
+	{
+		_delay = 1;
+	}
+
+	_delay = _delay * 1000;
+	console.log(_delay);
+
+	if(_delay <= 1000)
 	{
 		_delay = 1000;
 	}
@@ -268,7 +275,7 @@ function validateIranMobile(_number, _onlyCheck)
 	}
 
 
-	console.log(status);
+	// console.log(status);
 	return status;
 
 	// var threeDigit = _number.substr(0, 3);
@@ -480,8 +487,11 @@ function sendToBigBrother(_step)
 					{
 						case 'mobile':
 						case 'pin':
-						case 'code':
 							gotoStep(callback.step, callback.wait);
+							break;
+
+						case 'code':
+							gotoStep(callback.step, callback.wait, callback.resend_after);
 							break;
 
 						case 'block':
