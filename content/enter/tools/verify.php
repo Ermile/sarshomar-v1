@@ -136,7 +136,7 @@ trait verify
 			// 'type'     => 'call'
 		];
 
-		if($verifytype)
+		if(isset($verifytype))
 		{
 			$request['type'] = $verifytype;
 		}
