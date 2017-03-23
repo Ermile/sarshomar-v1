@@ -6,17 +6,16 @@ use \lib\db;
 
 trait mobile
 {
-	public function step_mobile()
+	public function step_mobile($_valid)
 	{
 		// check valid mobile by status of mobile
 		// if this mobile is blocked older
 		// check if blocked this mobile
 		// check tihs user id by this mobile have a telegram id and start the robot
 		// check this user id have a user name
-		$valid = $this->check_valid_mobile_username();
-		if($valid)
+		if($_valid)
 		{
-			switch ($valid)
+			switch ($_valid)
 			{
 				case 'code':
 					if($this->verify_call_mobile())

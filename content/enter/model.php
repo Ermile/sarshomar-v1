@@ -8,24 +8,35 @@ use \lib\db;
 class model extends \mvc\model
 {
 
-	public $mobile           = null;
-	public $username         = null;
-	public $pin              = null;
-	public $code             = null;
-	public $user_data        = [];
-	public $user_id          = null;
-	public $signup           = false;
-	public $telegram_chat_id = null;
-	public $telegram_detail  = [];
-	// public $block_type    = 'ip-agent';
-	public $block_type       = 'session';
-	public $is_guest         = false;
+	public $mobile            = null;
+	public $username          = null;
+	public $pin               = null;
+	public $code              = null;
+	public $user_data         = [];
+	public $user_id           = null;
+	public $signup            = false;
+	public $telegram_chat_id  = null;
+	public $telegram_detail   = [];
+	// public $block_type     = 'ip-agent';
+	public $block_type        = 'session';
+	public $is_guest          = false;
 
 	// config to send to javaScript
-	public $step             = 'mobile';
-	public $send             = 'code';
-	public $resend_after     = 60 * 2;
-	public $wait             = 0;
+	public $step              = 'mobile';
+	public $send              = 'code';
+	public $wait              = 0;
+	public $resend_after      = 60 * 2;
+	public $life_time_code    = 60 * 5; // 5 min
+	public $resend_code_after = 60 * 2; // 2 min
+	public $sended_code       = [];
+	public $create_new_code   = false;
+	public $resend_rate =
+	[
+		'telegram',
+		'code',
+		'main_sms',
+		'secondary_sms',
+	];
 
 	use tools\check;
 	use tools\log;
@@ -172,7 +183,8 @@ class model extends \mvc\model
 		{
 			// input in mobile
 			case 'mobile':
-				$this->step_mobile();
+				$valid = $this->check_valid_mobile_username();
+				$this->step_mobile($valid);
 				break;
 
 			case 'pin':
@@ -184,7 +196,18 @@ class model extends \mvc\model
 				break;
 
 			case 'resend':
-				$this->step_resend();
+				$resend_on = $this->step_resend();
+				switch ($resend_on)
+				{
+					case 'telegram':
+					case 'code':
+						$this->step_mobile($resend_on);
+						break;
+
+					default:
+						debug::title(T_("Please contact to us to help you in enter in site"));
+						break;
+				}
 				break;
 
 			case 'fake_resend':

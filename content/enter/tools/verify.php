@@ -9,8 +9,6 @@ use \lib\telegram\tg as bot;
 trait verify
 {
 
-	public $create_new_code = false;
-
 	/**
 	 * send verification code to the user telegram
 	 *
@@ -48,13 +46,13 @@ trait verify
 			'data' => $code,
 			'meta' =>
 			[
+				'type'            => 'telegram',
 				'input'           => utility::post(),
-				'text'            => $text,
+				'text'            => str_replace("\n", ' ', $text),
 				'mobile'          => $this->mobile,
 				'code'            => $code,
 				'session'         => $_SESSION,
 				'telegram'        => $this->telegram_detail,
-				'telegram_msg'    => $msg,
 				'telegram_result' => $result,
 			]
 		];
@@ -69,29 +67,21 @@ trait verify
 
 		if(isset($result['ok']) && $result['ok'] === true)
 		{
-
 			return true;
 		}
 		return false;
-
-	}
-
-
-	public function expire_old_code()
-	{
-
 	}
 
 
 	/**
-	 * generate verification code
+	 * get time code
 	 *
-	 * @return     <type>  ( description_of_the_return_value )
+	 * @param      integer  $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function generate_verification_code()
+	public function get_code_time($_args = null)
 	{
-		$this->create_new_code = false;
-		$code                  = null;
 		$log_caller = \lib\db\logitems::caller('user:verification:code');
 		$log_where  =
 		[
@@ -100,6 +90,7 @@ trait verify
 			'logitem_id' => $log_caller,
 		];
 		$saved_code = \lib\db\logs::get($log_where);
+		$this->sended_code = $saved_code;
 
 		if(count($saved_code) > 1 && is_array($saved_code))
 		{
@@ -108,20 +99,26 @@ trait verify
 			{
 				$id    = implode(',', $id);
 				$query = "UPDATE logs SET log_status = 'expire' WHERE id IN ($id) ";
-				\lib\db::query($query);
+				if($_args['query'])
+				{
+					\lib\db::query($query);
+				}
+
 				$this->create_new_code = true;
 			}
 		}
 		elseif(count($saved_code) === 1 && isset($saved_code[0]['log_data']) && isset($saved_code[0]['log_createdate']) && isset($saved_code[0]['id']))
 		{
-			$max_life_time = 60 * 5; // 5 min
-			$log_createdate = $saved_code[0]['log_createdate'];
+			$log_createdate    = $saved_code[0]['log_createdate'];
 
 			if(\DateTime::createFromFormat('Y-m-d H:i:s', $log_createdate) === false)
 			{
+				if($_args['query'])
+				{
+					\lib\db\logs::set('enter:invalid:log_createdate:tiem:syntax');
+					\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
+				}
 
-				\lib\db\logs::set('enter:invalid:log_createdate:tiem:syntax');
-				\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
 				$this->create_new_code = true;
 			}
 			else
@@ -130,15 +127,23 @@ trait verify
 				$code_time    = strtotime($log_createdate);
 				$diff_seconds = $now - $code_time;
 
-				if($diff_seconds > $max_life_time)
+				if($diff_seconds > $_args['time'])
 				{
-					\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
+					if($_args['query'])
+					{
+						\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
+					}
 					$this->create_new_code = true;
+
 				}
 				else
 				{
 					$this->create_new_code = false;
-					$code = $saved_code[0]['log_data'];
+					if(isset($_args['return']) && $_args['return'] === 'code')
+					{
+						return $saved_code[0]['log_data'];
+					}
+					return true;
 				}
 			}
 
@@ -147,7 +152,18 @@ trait verify
 		{
 			$this->create_new_code = true;
 		}
+		return false;
 
+	}
+	/**
+	 * generate verification code
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function generate_verification_code()
+	{
+		$this->create_new_code = false;
+		$code                  = $this->get_code_time(['return' => 'code', 'time' => $this->life_time_code, 'query' => true]);
 		if($this->create_new_code)
 		{
 			$code =  rand(10000,99999);
@@ -175,6 +191,7 @@ trait verify
 			'data' => $code,
 			'meta' =>
 			[
+				'type'    => 'code',
 				'input'   => utility::post(),
 				'mobile'  => $this->mobile,
 				'code'    => $code,
@@ -244,7 +261,18 @@ trait verify
 					db\logs::set('user:signup:lock:try:signup', $this->user_id, $log_meta);
 				}
 			}
-			$log_meta['meta']['response'] = $check_valid_mobile;
+			$log_meta['meta']['response'] = [];
+			if(is_string($check_valid_mobile))
+			{
+				$log_meta['meta']['response'] = $check_valid_mobile;
+			}
+			elseif(is_array($check_valid_mobile))
+			{
+				foreach ($check_valid_mobile as $key => $value)
+				{
+					$log_meta['meta']['response'][$key] = str_replace("\n", ' ', $value);
+				}
+			}
 
 			if($this->create_new_code)
 			{
