@@ -7,6 +7,7 @@ use \lib\telegram\tg as bot;
 
 class inline_query
 {
+	use inline_query\gift;
 
 	public static function start($_query = null)
 	{
@@ -26,6 +27,11 @@ class inline_query
 		if($search == '/now' && in_array(bot::response('from'), [58164083, 46898544]))
 		{
 			self::now($result);
+			return $result;
+		}
+		elseif(substr($search, 0, 5) == '/gift')
+		{
+			self::gift($result);
 			handle::send_log($result);
 			return $result;
 		}

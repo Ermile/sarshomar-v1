@@ -5,6 +5,10 @@ class error_logger
 {
 	public static function log($_data)
 	{
+		if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
+		{
+			return false
+		}
 		if(!isset($_data["text"]))
 		{
 			if(!is_string($_data))
