@@ -132,7 +132,7 @@ trait verify
 			'mobile'   => $this->mobile,
 			'template' => $template,
 			'token'    => $code,
-			'type'     => 'call'
+			// 'type'     => 'call'
 		];
 
 		$users_count = \ilib\db\users::get_count('all');
