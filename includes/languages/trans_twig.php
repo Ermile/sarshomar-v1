@@ -1022,11 +1022,8 @@ private function transtext()
 	echo T_("Confirm");                                                               // Line 59
 	echo T_("Promo code");                                                            // Line 68
 	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 69
-	echo T_("Thanks for signing up! You’ve automatically redeemed a referral promo credit of $10.00.");// Line 82
-	echo T_("Budget before");                                                         // Line 96
-	echo T_("Budget");                                                                // Line 97
-	echo T_("Transactions Detail");                                                   // Line 124
-	echo T_("OK");                                                                    // Line 139
+	echo T_("Transactions Detail");                                                   // Line 134
+	echo T_("OK");                                                                    // Line 149
 
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Undefined");                                                             // Line 10
@@ -1793,6 +1790,7 @@ private function transtext()
 	echo T_("subsidies");                                                             // Line 688 Seperate
 	echo T_("yasin pishro qom");                                                      // Line 689 Seperate
 	echo T_("jewish");                                                                // Line 690 Seperate
+	echo T_("toman");                                                                 // Line 694 Seperate
 
 }
 ?>

@@ -265,8 +265,8 @@ private function transtext()
 	echo T_("Logs - critical");                                                       // Line 62
 	echo T_("Error Logs");                                                            // Line 63
 	echo T_("Telegram Errors");                                                       // Line 66
-	echo T_("telegram Logs");                                                         // Line 69
-	echo T_("telegram - Error Logs");                                                 // Line 70
+	echo T_("telegram Logs");                                                         // Line 70
+	echo T_("telegram - Error Logs");                                                 // Line 71
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
