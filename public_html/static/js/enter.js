@@ -31,6 +31,7 @@ $(document).ready(function()
 	$(document).on("click", "h2 abbr", function(_e)
 	{
 		console.log('send resend request');
+		gotoStep('wait');
 		sendToBigBrother('resend');
 	});
 });
