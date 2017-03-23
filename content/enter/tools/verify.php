@@ -120,11 +120,12 @@ trait verify
 
 		if($language === 'fa')
 		{
-			$template = $service_name . '-fa';
+			$template   = $service_name . '-fa';
+			$verifytype = 'call';
 		}
 		else
 		{
-			$template = $service_name . '-en';
+			$template   = $service_name . '-en';
 		}
 
 		$request =
@@ -134,6 +135,11 @@ trait verify
 			'token'    => $code,
 			// 'type'     => 'call'
 		];
+
+		if($verifytype)
+		{
+			$request['type'] = $verifytype;
+		}
 
 		$users_count = \ilib\db\users::get_count('all');
 
