@@ -79,6 +79,7 @@ trait payment
 			$_SESSION['Amount']       = $amount;
 			\lib\db\logs::set('user:billing:charge:zarinpal', $this->user_id, $log_meta);
 			\lib\utility\payment\zarinpal::$save_log = true;
+			\lib\utility\payment\zarinpal::$user_id  = $this->user_id;
 			return \lib\utility\payment\zarinpal::pay(self::$zarinpal);
 		}
 	}

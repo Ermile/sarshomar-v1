@@ -145,10 +145,43 @@ class model extends \mvc\model
 			return;
 		}
 
+		$Authority = utility::get("Authority");
+		$Status    = utility::get("Status");
+		$log_caller = \lib\db\logitems::caller('payment:zarinpal:redirect');
+		$log_where =
+		[
+			'logitem_id' => $log_caller,
+			'log_data'   => $Authority,
+			'user_id'    => $this->login('id'),
+			'log_status' => 'enable',
+		];
+		$saved_log = \lib\db\logs::get($log_where);
+
+		if(count($saved_log) === 1 && isset($saved_log[0]['id']))
+		{
+			// expire log
+			\lib\db\logs::update(['log_status' => 'expire'], $saved_log[0]['id']);
+		}
+		elseif(!$saved_log || empty($saved_log))
+		{
+			\lib\db\logs::set('user:billing:verify:log:not:save', $this->login('id'), $log_meta);
+			debug::error(T_("What happend?"));
+			$this->redirector($new_url);
+			return;
+		}
+		else
+		{
+			\lib\db\logs::set('user:billing:verify:log:error', $this->login('id'), $log_meta);
+			debug::error(T_("What happend?, more than one zarinpal request!"));
+			$this->redirector($new_url);
+			return;
+		}
 
 		$url_bank = \lib\router::get_url(2);
 		if(!in_array($url_bank, self::$support_bank))
 		{
+
+			\lib\db\logs::set('user:billing:verify:invalid:bank', $this->login('id'), $log_meta);
 			\lib\error::page(T_("Invalid bank"));
 		}
 
@@ -160,8 +193,8 @@ class model extends \mvc\model
 			if(utility::get('Authority') && utility::get('Status'))
 			{
 				$check_verify              = self::$zarinpal;
-				$check_verify['Authority'] = utility::get("Authority");
-				$check_verify['Status']    = utility::get("Status");
+				$check_verify['Authority'] = $Authority;
+				$check_verify['Status']    = $Status;
 
 				if(isset($_SESSION['Amount']))
 				{
@@ -177,6 +210,7 @@ class model extends \mvc\model
 				if($ok)
 				{
 					\lib\utility\payment\zarinpal::$save_log = true;
+					\lib\utility\payment\zarinpal::$user_id = $this->login('id');
 					$check = payment\zarinpal::verify($check_verify);
 
 					if($check && debug::$status)

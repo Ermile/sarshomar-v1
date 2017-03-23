@@ -229,9 +229,21 @@ class token
 					return false;
 				}
 
-				self::get($_authorization);
+				$temp_time = self::get_time($_authorization);
 
-				if(!self::$PARENT)
+				$max_life_time = 60 * 7; // 7 min
+
+				if(!$temp_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $temp_time) === false)
+				{
+					debug::error(T_("Invalid token"), 'authorization', 'system');
+					return false;
+				}
+
+				$now          = time();
+				$temp_time   = strtotime($temp_time);
+				$diff_seconds = $now - $temp_time;
+
+				if($diff_seconds > $max_life_time)
 				{
 					return debug::error(T_("The api key is expired"), 'authorization', 'access');
 				}
