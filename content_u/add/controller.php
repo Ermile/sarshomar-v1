@@ -1,15 +1,14 @@
 <?php
 namespace content_u\add;
 
-class controller extends \content_u\home\controller
+class controller extends \content_u\main\controller
 {
 	/**
 	 * route add poll
 	 */
-	function _route()
+	public function _route()
 	{
-		// check login
-		parent::check_login();
+		parent::_route();
 
 		// need less to load eny thing
 		$this->get("add")->SERVER("/^add$/");

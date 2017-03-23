@@ -15,7 +15,6 @@ trait login
 	public function find_redirect_url()
 	{
 		$url = \lib\define::get_current_language_string();
-
 		if(utility::get('referer'))
 		{
 			$url = utility::get('referer');
@@ -73,6 +72,11 @@ trait login
 				'language' => \lib\define::get_language(),
 			];
 			\lib\utility\users::verify($args);
+		}
+
+		if(\lib\utility\users::get_status($this->user_id) === 'awaiting')
+		{
+			\lib\db\users::update(['user_status' => 'active'], $this->user_id);
 		}
 
 		debug::msg('direct', true);

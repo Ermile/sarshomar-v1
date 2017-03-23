@@ -9,7 +9,7 @@ use \lib\telegram\tg as bot;
 trait verify
 {
 
-
+	public $create_new_code = false;
 
 	/**
 	 * send verification code to the user telegram
@@ -21,8 +21,8 @@ trait verify
 	 */
 	public function verify_send_telegram()
 	{
-
 		$code = $this->generate_verification_code();
+
 		$text = T_("Your login code is :code", ['code' => $code]);
 		$text .= "\n\n". T_("This code can be used to log in to your Sarshomar account. We never ask it for anything else. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code by trying to log in on another device, simply ignore this message.");
@@ -58,11 +58,18 @@ trait verify
 				'telegram_result' => $result,
 			]
 		];
-
-		db\logs::set('user:verification:code:telegram', $this->user_id, $log_meta);
+		if($this->create_new_code)
+		{
+			db\logs::set('user:verification:code', $this->user_id, $log_meta);
+		}
+		else
+		{
+			db\logs::set('user:verification:needless:creat:code:telegram', $this->user_id, $log_meta);
+		}
 
 		if(isset($result['ok']) && $result['ok'] === true)
 		{
+
 			return true;
 		}
 		return false;
@@ -83,12 +90,74 @@ trait verify
 	 */
 	public function generate_verification_code()
 	{
-		$code =  rand(100000,999999);
-		if(Tld === 'dev')
+		$this->create_new_code = false;
+		$code                  = null;
+		$log_caller = \lib\db\logitems::caller('user:verification:code');
+		$log_where  =
+		[
+			'user_id'    => $this->user_id,
+			'log_status' => 'enable',
+			'logitem_id' => $log_caller,
+		];
+		$saved_code = \lib\db\logs::get($log_where);
+
+		if(count($saved_code) > 1 && is_array($saved_code))
 		{
-			$code = 111111;
+			$id = array_column($saved_code, 'id');
+			if(!empty($id))
+			{
+				$id    = implode(',', $id);
+				$query = "UPDATE logs SET log_status = 'expire' WHERE id IN ($id) ";
+				\lib\db::query($query);
+				$this->create_new_code = true;
+			}
+		}
+		elseif(count($saved_code) === 1 && isset($saved_code[0]['log_data']) && isset($saved_code[0]['log_createdate']) && isset($saved_code[0]['id']))
+		{
+			$max_life_time = 60 * 5; // 5 min
+			$log_createdate = $saved_code[0]['log_createdate'];
+
+			if(\DateTime::createFromFormat('Y-m-d H:i:s', $log_createdate) === false)
+			{
+
+				\lib\db\logs::set('enter:invalid:log_createdate:tiem:syntax');
+				\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
+				$this->create_new_code = true;
+			}
+			else
+			{
+				$now          = time();
+				$code_time    = strtotime($log_createdate);
+				$diff_seconds = $now - $code_time;
+
+				if($diff_seconds > $max_life_time)
+				{
+					\lib\db\logs::update(['log_status' => 'expire'], $saved_code[0]['id']);
+					$this->create_new_code = true;
+				}
+				else
+				{
+					$this->create_new_code = false;
+					$code = $saved_code[0]['log_data'];
+				}
+			}
+
+		}
+		else
+		{
+			$this->create_new_code = true;
+		}
+
+		if($this->create_new_code)
+		{
+			$code =  rand(10000,99999);
+			if(Tld === 'dev')
+			{
+				$code = 11111;
+			}
 		}
 		return $code;
+
 	}
 
 
@@ -99,7 +168,6 @@ trait verify
 	 */
 	public function verify_call_mobile()
 	{
-		$this->expire_old_code();
 
 		$code = $this->generate_verification_code();
 		$log_meta =
@@ -113,7 +181,6 @@ trait verify
 				'session' => $_SESSION,
 			]
 		];
-
 
 		$service_name = 'sarshomar';
 		$language     = \lib\define::get_language();
@@ -178,7 +245,15 @@ trait verify
 				}
 			}
 			$log_meta['meta']['response'] = $check_valid_mobile;
-			db\logs::set('user:verification:code', $this->user_id, $log_meta);
+
+			if($this->create_new_code)
+			{
+				db\logs::set('user:verification:code', $this->user_id, $log_meta);
+			}
+			else
+			{
+				db\logs::set('user:verification:needless:creat:code:call', $this->user_id, $log_meta);
+			}
 			return true;
 		}
 		// why?!
@@ -207,7 +282,7 @@ trait verify
 			]
 		];
 
-		if(!ctype_digit($code) || intval($code) > 999999 || intval($code) < 100000)
+		if(!ctype_digit($code) || intval($code) > 99999 || intval($code) < 10000)
 		{
 			db\logs::set('user:verification:invalid:code', $this->user_id, $log_meta);
 			$this->counter('user:verification:invalid:code');

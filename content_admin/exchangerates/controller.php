@@ -1,11 +1,11 @@
 <?php
 namespace content_admin\exchangerates;
 
-class controller extends \content_admin\home\controller
+class controller extends \content_admin\main\controller
 {
 	public function _route()
 	{
-		parent::check_login();
+		parent::_route();
 
 		$this->get("add", "add")->ALL("exchangerates");
 		$this->get("edit", "edit")->ALL("/^exchangerates\/(\d+)$/");

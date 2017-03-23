@@ -1,7 +1,7 @@
 <?php
 namespace content_u\home;
 
-class controller extends \mvc\controller
+class controller extends \content_u\main\controller
 {
 
 	/**
@@ -9,6 +9,8 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
+		parent::_route();
+
 		$this->route("billing/charge");
 
 		$url = \lib\router::get_url();
@@ -43,12 +45,13 @@ class controller extends \mvc\controller
 	 */
 	public function check_login()
 	{
-		// check logined
-		if(!$this->login())
-		{
-			// $this->redirector(null, false)->set_domain()->set_url('login')->redirect();
-			$this->view()->data->notlogin = true;
-		}
+		// // check logined
+		// if(!$this->login())
+		// {
+		// 	$url = \lib\utility\safe::safe($_SERVER['REQUEST_URI']);
+		// 	$this->redirector()->set_domain()->set_url('enter?referer='. $url)->redirect();
+		// 	// $this->view()->data->notlogin = true;
+		// }
 	}
 }
 ?>

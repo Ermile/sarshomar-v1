@@ -107,6 +107,7 @@ class model extends \mvc\model
 		}
 		// step
 		$step = 'mobile';
+		$send = 'code';
 		// wait for 0 seccend
 		$wait = 0;
 		// check input and get the step
@@ -151,6 +152,7 @@ class model extends \mvc\model
 					$this->log('use:enter:username:notexist');
 					$this->log_sleep_code('use:enter:username:notexist');
 					debug::msg('wait', 10);
+					debug::msg('send', $send);
 					debug::msg('step', 'mobile');
 					debug::title(T_("Invalid username"));
 					return false;
@@ -207,6 +209,7 @@ class model extends \mvc\model
 							}
 							else
 							{
+
 								if($this->verify_call_mobile())
 								{
 									$this->log('user:verification:cannot:send:telegram:msg');
@@ -355,6 +358,7 @@ class model extends \mvc\model
 
 		debug::msg('step', $step);
 		debug::msg('wait', $wait);
+		debug::msg('send', $send);
 	}
 }
 ?>

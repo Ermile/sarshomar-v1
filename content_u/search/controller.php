@@ -1,11 +1,11 @@
 <?php
 namespace content_u\search;
 
-class controller extends \content_u\home\controller
+class controller extends \content_u\main\controller
 {
-	function _route() {
-		// check login
-		parent::check_login();
+	public function _route()
+	{
+		parent::_route();
 
 		// search
 		$this->get("search", "search")->ALL(

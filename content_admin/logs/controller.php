@@ -1,11 +1,11 @@
 <?php
 namespace content_admin\logs;
 
-class controller extends \content_admin\home\controller
+class controller extends \content_admin\main\controller
 {
 	public function _route()
 	{
-		parent::check_login();
+		parent::_route();
 
 		$property           = [];
 		$property['search'] = ["/^.*$/", true, 'search'];

@@ -11,6 +11,8 @@ class controller extends  \mvc\controller
 
 	public function _route()
 	{
+		parent::_route();
+
 		$url = \lib\router::get_url();
 		if($url == '')
 		{

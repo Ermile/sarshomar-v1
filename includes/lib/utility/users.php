@@ -169,8 +169,12 @@ class users
 			\lib\db\transactions::set('gift:signup', $_args['user_id'], ['plus' => 100]);
 		}
 
-
 		$user_update = [];
+
+		if(self::get_status($_args['user_id']) === 'awaiting')
+		{
+			$user_update['user_status'] = 'active';
+		}
 
 		if($_args['mobile'])
 		{

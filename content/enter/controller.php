@@ -1,7 +1,7 @@
 <?php
 namespace content\enter;
 
-class controller extends \mvc\controller
+class controller extends \content\main\controller
 {
 	/**
 	 * check route of account
@@ -9,6 +9,8 @@ class controller extends \mvc\controller
 	 */
 	function _route()
 	{
+		// parent::_route();
+
 		$this->get('enter', 'enter')->ALL();
 		$this->post('enter')->ALL();
 	}

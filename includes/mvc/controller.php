@@ -3,6 +3,21 @@ namespace mvc;
 
 class controller extends \lib\mvc\controller
 {
+
+	public function _route()
+	{
+		if(!$this->login())
+		{
+			$cookie = \lib\utility::cookie('remember_me');
+			if($cookie)
+			{
+				$url = \lib\utility\safe::safe($_SERVER['REQUEST_URI']);
+				$this->redirector()->set_domain()->set_url('enter?referer='. $url)->redirect();
+			}
+		}
+	}
+
+
 	/**
 	 * the short url code to use in route of some page
 	 *

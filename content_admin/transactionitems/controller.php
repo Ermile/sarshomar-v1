@@ -1,11 +1,11 @@
 <?php
 namespace content_admin\transactionitems;
 
-class controller extends \content_admin\home\controller
+class controller extends \content_admin\main\controller
 {
 	public function _route()
 	{
-		parent::check_login();
+		parent::_route();
 
 		$this->get("add", "add")->ALL("transactionitems");
 		$this->get("edit", "edit")->ALL("/^transactionitems\/(\d+)$/");

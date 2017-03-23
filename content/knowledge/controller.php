@@ -2,10 +2,12 @@
 namespace content\knowledge;
 use \lib\saloos;
 
-class controller extends \mvc\controller
+class controller extends \content\main\controller
 {
 	function _route()
 	{
+		parent::_route();
+
 		if(\lib\router::get_url(0) == 'knowledge')
 		{
 			return;

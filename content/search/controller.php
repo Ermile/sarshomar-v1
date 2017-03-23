@@ -2,7 +2,7 @@
 namespace content\search;
 use \lib\saloos;
 
-class controller extends \mvc\controller
+class controller extends \content\main\controller
 {
 	public function config()
 	{
@@ -12,6 +12,7 @@ class controller extends \mvc\controller
 	// for routing check
 	function _route()
 	{
+		parent::_route();
 		$this->get("search")->ALL("/.*/");
 	}
 }
