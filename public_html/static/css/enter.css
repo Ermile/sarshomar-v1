@@ -110,3 +110,9 @@ body.bg16{background-image:url(../images/enter/16.jpg)}
  .enter{min-width:300px;padding:40px 20px}
  .enter .logo{}
 }
+
+.langlist{position: absolute;bottom:0;left:0;}
+.rtl .langlist{left:inherit;right:0;}
+.langlist a{display:inline-block;padding:1em;color:#fff;background-color:#000;transition:0.3s;opacity:0.3}
+.langlist a:hover{opacity:0.6;}
+.langlist a:focus{opacity:8;background-color:#000;color:#fff;}
