@@ -64,6 +64,17 @@ trait check
 					return $input['step'];
 					break;
 
+				case 'resend':
+					if($this->check_access_resend())
+					{
+						return 'resend';
+					}
+					else
+					{
+						return 'fake_resend';
+					}
+
+					break;
 				default:
 					return false;
 					break;
@@ -74,6 +85,18 @@ trait check
 			return false;
 		}
 		return false;
+	}
+
+
+
+	/**
+	 * access resend code
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function check_access_resend()
+	{
+		return true;
 	}
 
 

@@ -23,7 +23,7 @@ trait verify
 	{
 		$code = $this->generate_verification_code();
 
-		$text = T_("Your login code is :code", ['code' => $code]);
+		$text = T_("Your login code is :code", ['code' => \lib\utility\human::number($code)]);
 		$text .= "\n\n". T_("This code can be used to log in to your Sarshomar account. We never ask it for anything else. Do not give it to anyone!");
 		$text .= "\n" . T_("If you didn't request this code by trying to log in on another device, simply ignore this message.");
 
