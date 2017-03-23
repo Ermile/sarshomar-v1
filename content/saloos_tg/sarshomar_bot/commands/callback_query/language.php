@@ -23,6 +23,10 @@ class language
 			self::set($_data_url[1], ["ref" => "callback_query"]);
 			$lang_name = $_data_url[1];
 			$lang = $lang_name;
+			if($lang_name == 'fa')
+			{
+				\lib\db\units::set_user_unit(bot::$user_id,'tomam');
+			}
 		}
 		else
 		{

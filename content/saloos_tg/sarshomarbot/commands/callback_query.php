@@ -31,6 +31,22 @@ class callback_query
 		if(array_key_exists('inline_message_id', $_query))
 		{
 			self::$message_result['inline_message_id'] = $sub_port = $_query['inline_message_id'];
+			if(\lib\storage::get_is_new_user())
+			{
+				$get = \lib\db\options::get([
+					'option_cat'	=> 'telegram',
+					'option_key'	=> 'subport',
+					'option_meta'	=> self::$message_result['inline_message_id'],
+					'limit'			=>1
+					]);
+				\ilib\db\users::update(['user_parent' => $get['user_id']], bot::$user_id);
+				$poll = \lib\db\polls::get_poll($get['post_id']);
+				callback_query\language::set($poll['language']);
+				if($poll['language'] == 'fa')
+				{
+					\lib\db\units::set_user_unit(bot::$user_id,'tomam');
+				}
+			}
 			$force_inline = true;
 		}
 		elseif(array_key_exists('chat_instance', $_query))
