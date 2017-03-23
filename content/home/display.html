@@ -12,10 +12,17 @@
 {%endif%}
      </div>
      <div class="span2"></div>
-     <div class="span5" id='random-chart'>
+
+{%if site.currentlang == "fa"%}
+     <div class="span5" id='gift-iphone'>
+      <a href="{{url.base}}/gift"><img src="{{url.static}}images/gift/iphone.png" alt='{%trans ""%}'></a>
+     </div>
+{%else%}
+      <div class="span5" id='random-chart'>
        <h3 class="unselectable"><a href='{{result.url}}'>{{result.title|trim('\"')}}</a></h3>
        <div class='column palette{{(random(6)) + 1}} chart unselectable' data-type='column' data-place='div' data-vals='{{result.data}}' data-color='auto' data-catField='title'></div>
-     </div>
+      </div>
+{%endif%}
     </div>
    </div>
 
