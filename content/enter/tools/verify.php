@@ -40,23 +40,26 @@ trait verify
 			'text'         => $text,
 			'chat_id'      => $this->telegram_chat_id,
 		];
+
+		$result = bot::sendResponse($msg);
+
 		$log_meta =
 		[
 			'data' => $code,
 			'meta' =>
 			[
-				'input'        => utility::post(),
-				'text'         => $text,
-				'mobile'       => $this->mobile,
-				'code'         => $code,
-				'session'      => $_SESSION,
-				'telegram'     => $this->telegram_detail,
-				'telegram_msg' => $msg,
+				'input'           => utility::post(),
+				'text'            => $text,
+				'mobile'          => $this->mobile,
+				'code'            => $code,
+				'session'         => $_SESSION,
+				'telegram'        => $this->telegram_detail,
+				'telegram_msg'    => $msg,
+				'telegram_result' => $result,
 			]
 		];
 
-		db\logs::set('user:verification:code', $this->user_id, $log_meta);
-		$result = bot::sendResponse($msg);
+		db\logs::set('user:verification:code:telegram', $this->user_id, $log_meta);
 
 		if(isset($result['ok']) && $result['ok'] === true)
 		{
