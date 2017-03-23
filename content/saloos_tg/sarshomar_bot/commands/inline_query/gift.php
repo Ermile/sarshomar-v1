@@ -25,7 +25,7 @@ trait gift
 				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_11"
 			]],
 			[[
-				"text" 	=> "وبسایت سرشمار",
+				"text" 	=> "وب‌سایت سرشمار",
 				"url"	=> "https://sarshomar.com/fa"
 			],
 		]];

@@ -168,7 +168,7 @@ class inline_query
 		$text .= "\n";
 		$text .= "<a href='https://t.me/sarshomarbot?start=lang_fa-ref_about'>ورود به بات</a>";
 		$text .= "\n";
-		$text .= "<a href='https://sarshomar.com/fa'>وبسایت سرشمار</a>";
+		$text .= "<a href='https://sarshomar.com/fa'>وب‌سایت سرشمار</a>";
 		$text .= "\n";
 		$text .= "@SarshomarBot";
 		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
@@ -212,7 +212,7 @@ class inline_query
 		$text .= "\n";
 		$text .= "<a href='https://t.me/sarshomarbot?start=lang_fa-ref_about'>ورود به بات</a>";
 		$text .= "\n";
-		$text .= "<a href='https://sarshomar.com/fa'>وبسایت سرشمار</a>";
+		$text .= "<a href='https://sarshomar.com/fa'>وب‌سایت سرشمار</a>";
 		$text .= "\n";
 		$text .= "@SarshomarBot";
 		$result['results'][1]['reply_markup']['inline_keyboard'] = [[
@@ -221,7 +221,7 @@ class inline_query
 				"url"	=> "https://t.me/sarshomarbot?start=lang_fa-ref_about"
 			]],
 			[[
-				"text" 	=> "وبسایت سرشمار",
+				"text" 	=> "وب‌سایت سرشمار",
 				"url"	=> "https://sarshomar.com/fa"
 			],
 		]];
