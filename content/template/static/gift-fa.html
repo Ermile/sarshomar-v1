@@ -1,0 +1,31 @@
+{%extends display.main%}
+
+{%set pageDesc%}
+{%trans "با ورود به جامعه سرشمار آیفون ببرید"%}
+{%endset%}
+
+{%block content%}
+  <div class="main text-based">
+   <div class="box">
+    <h2 class="special-heading">{%trans "Sarshomar gifts"%}</h2>
+    <div class="in">
+
+     <div class="content">
+      <h2>{%trans "Register gift"%}</h2>
+      <p class="em">{%trans "To enter into the Sarshomar society win iPhone"%} </p>
+      <p><img src="{{url.static}}images/gift/iphone.png" alt='{%trans "To enter into the Sarshomar society win iPhone"%}'></p>
+      <p>
+        با <a href='{{url.base}}/enter'>ثبت‌نام و ورود به جامعه سرشمار</a> علاوه بر دریافت هدیه ده هزار تومانی، آیفون ببرید.
+        <br>
+        به مناسبت روز پدر برنده جایزه در روز <b>۲۲ فروردین‌ماه ۱۳۹۶</b> مشخص خواهد شد. با تکمیل ثبت‌نام و فعال بودن در سرشمار شانس خود را برای برنده شدن بیازمایید.
+
+        <br><br>
+
+        <a href='{{url.base}}/about' class="special-btn">درباره سرشمار بیشتر بدانید</a>
+      </p>
+     </div>
+
+    </div>
+   </div>
+  </div>
+{%endblock%}

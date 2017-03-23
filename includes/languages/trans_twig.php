@@ -24,6 +24,7 @@ private function transtext()
 	//------------------------------------------------------content\enter\display.html
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("Please be patient...");                                                  // Line 30
+	echo T_("Dont recieve code?");                                                    // Line 30
 	echo T_("You are guest, Enter your mobile");                                      // Line 30
 	echo T_("Enter to Sarshomar");                                                    // Line 30
 	echo T_("Please enter valid mobile number");                                      // Line 41
@@ -40,7 +41,7 @@ private function transtext()
 	echo T_("Link");                                                                  // Line 18
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 40
-	echo T_("Billing");                                                               // Line 1
+	echo T_("Billing");                                                               // Line 143
 	echo T_("Add a question");                                                        // Line 48
 	echo T_("Sarshomar knowledge");                                                   // Line 51
 	echo T_("Participation in Sarshomar knowledge");                                  // Line 52
@@ -64,7 +65,8 @@ private function transtext()
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
 	echo T_("Try Before Register");                                                   // Line 68
-	echo T_("Sarshomar Society Distributtion");                                       // Line 23
+	echo T_("To enter into the Sarshomar society win iPhone");                        // Line 17
+	echo T_("Sarshomar Society Distributtion");                                       // Line 30
 	echo T_("Organizations and Companies");                                           // Line 10
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 16
 	echo T_("Universities and Research Institutes");                                  // Line 10
@@ -149,7 +151,7 @@ private function transtext()
 	echo T_("Try Sarshomar");                                                         // Line 72
 	echo T_("Next →");                                                                // Line 81
 	echo T_("← Back");                                                                // Line 81
-	echo T_("Skip");                                                                  // Line 198
+	echo T_("Skip");                                                                  // Line 200
 	echo T_("Done");                                                                  // Line 81
 
 	//-------------------------------------------------------content\poll\display.html
@@ -215,7 +217,7 @@ private function transtext()
 
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
-	echo T_("About us");                                                              // Line 5
+	echo T_("About");                                                                 // Line 5
 	echo T_("Press");                                                                 // Line 64
 	echo T_("Careers");                                                               // Line 7
 	echo T_("Social Responsibility");                                                 // Line 10
@@ -441,6 +443,13 @@ private function transtext()
 	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 14
 	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 16
 	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 16
+
+	//--------------------------------------------content\template\static\gift-fa.html
+	echo T_("با ورود به جامعه سرشمار آیفون ببرید");                                   // Line 4
+	echo T_("Sarshomar gifts");                                                       // Line 10
+	echo T_("Register gift");                                                         // Line 14
+
+	//-----------------------------------------------content\template\static\gift.html
 
 	//------------------------------------content\template\static\logo\content-fa.html
 	echo T_("Brand Intro");                                                           // Line 1
@@ -1043,11 +1052,11 @@ private function transtext()
 	echo T_("My polls");                                                              // Line 128
 	echo T_("Ask me");                                                                // Line 131
 	echo T_("Credit");                                                                // Line 140
-	echo T_("Recent Activities");                                                     // Line 151
-	echo T_("You've had no activities yet");                                          // Line 153
-	echo T_("Question Answered");                                                     // Line 191
-	echo T_("Remained");                                                              // Line 193
-	echo T_("Answered");                                                              // Line 203
+	echo T_("Recent Activities");                                                     // Line 153
+	echo T_("You've had no activities yet");                                          // Line 155
+	echo T_("Question Answered");                                                     // Line 193
+	echo T_("Remained");                                                              // Line 195
+	echo T_("Answered");                                                              // Line 205
 
 	//------------------------------------------------content_u\knowledge\display.html
 

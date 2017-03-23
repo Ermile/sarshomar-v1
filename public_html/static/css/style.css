@@ -1416,6 +1416,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
  .feature-items .feature-item .description{color:#a1a1a1;margin-bottom:0;font-size:1.2em}
  .feature-items .feature-item:hover, .feature-items .feature-item:focus{background-color:#ebebeb}
  .feature-items .feature-item:hover::before, .feature-items .feature-item:focus::before{opacity:1}
+ .in .feature-items p{text-align:center;}
 
  .feature-items .feature-item:nth-child(2)::after, .feature-items .feature-item:nth-child(5)::after, .feature-items .feature-item:nth-child(8)::after, .feature-items .feature-item:nth-child(11)::after{content:'';position:absolute;bottom:0;width:160%;height:1px;background-color:#ebebeb;left:-30%}
  .feature-items .feature-item:nth-child(4)::after, .feature-items .feature-item:nth-child(7)::after, .feature-items .feature-item:nth-child(10)::after, .feature-items .feature-item:nth-child(13)::after{content:'';position:absolute;height:60%;width:1px;background-color:#ebebeb;top:-30%;right:0}
