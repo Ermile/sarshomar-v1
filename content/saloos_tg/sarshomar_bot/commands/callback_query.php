@@ -31,6 +31,16 @@ class callback_query
 		if(array_key_exists('inline_message_id', $_query))
 		{
 			self::$message_result['inline_message_id'] = $sub_port = $_query['inline_message_id'];
+			if(\lib\storage::get_is_new_user())
+			{
+				$get = \lib\db\options::get([
+					'option_cat'	=> 'telegram',
+					'option_key'	=> 'subport',
+					'option_meta'	=> self::$message_result['inline_message_id'],
+					'limit'			=>1
+					]);
+				handle::send_log($get);
+			}
 			$force_inline = true;
 		}
 		elseif(array_key_exists('chat_instance', $_query))

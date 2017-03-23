@@ -40,9 +40,9 @@
 </div>
 {%endblock%} {%block foot_js%}
 <script type="text/javascript">
-	$("#allow-token").on('ajaxify:success', function () {
+	$("#allow-token").on('ajaxify:success', function (event, _data) {
 		try {
-			window.close();
+			// window.close();
 		} catch (f) {
 
 		}

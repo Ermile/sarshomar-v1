@@ -28,7 +28,8 @@ class error_logger
 			CURLOPT_POST           => true,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SAFE_UPLOAD    => true,
-			CURLOPT_SSL_VERIFYPEER => false
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
 			);
 		curl_setopt_array($ch, $curlConfig);
 		$data_string = json_encode($_data);
