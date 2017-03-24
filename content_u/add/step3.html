@@ -83,12 +83,15 @@
    <div class='element-in'>
     <input class='input' type='number' id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
    </div>
+   <button class='btn'>{{user_unit}}</button>
   </div>
 
-  <div class='checkbox'>
-   <input type='checkbox' name='visible_result' id='visible_result'>
-   <label for='visible_result'></label>
-   <label for='visible_result'>{%trans "Visible for all"%}</label>
+  <div class='element switch'>
+   <label class='title large'>{%trans "Show Results"%}</label>
+   <input type='radio' name='show_results' id='xxxx'>
+   <label for='xxxx'>{%trans "Public"%}</label>
+   <input type='radio' name='show_results' id='xxxxx'>
+   <label for='xxxxx'>{%trans "Private"%}</label>
   </div>
  </div>
 
