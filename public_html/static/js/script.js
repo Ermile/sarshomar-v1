@@ -1727,54 +1727,62 @@ function calcTotalPrice(_delay)
 		var prCash     = $('#prCash');
 		var prBalance  = $('#prBalance');
 
-
-		// if person count isset show or hide
-		if(filters.person)
+		var selectedPrivacy = $('input[name="filter_privacy"]:checked').val();
+		if(selectedPrivacy === 'public')
 		{
-			// remove base price
-			prPerson.removeClass('hide');
-			// if exsit show or hide
-			if(filters.filter)
+			// if person count isset show or hide
+			if(filters.person)
 			{
-				prFilter.removeClass('hide');
+				// remove base price
+				prPerson.removeClass('hide');
+				// if exsit show or hide
+				if(filters.filter)
+				{
+					prFilter.removeClass('hide');
+				}
+				else
+				{
+					prFilter.addClass('hide');
+				}
+				// hide base price
+				// prAdd.addClass('hide');
 			}
 			else
 			{
+				// hide person and filter
+				prPerson.addClass('hide');
 				prFilter.addClass('hide');
+				// show add base price
+				// prAdd.removeClass('hide');
 			}
-			// hide base price
-			// prAdd.addClass('hide');
+			// add question price to total
+			totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
+			// if person is correct
+			if(typeof filters.person == "number")
+			{
+				var personPrice = filters.base * filters.person;
+				prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
+				// set value
+				setCompleteVal(prPerson.find('.pr'), personPrice);
+
+				totalPrice += personPrice;
+
+				if(typeof filters.filter == "number")
+				{
+					// person * filter
+					var filterPrice = personPrice * (filters.filter/100);
+
+					prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
+					setCompleteVal(prFilter.find('.pr'), filterPrice);
+
+					totalPrice += filterPrice;
+				}
+			}
 		}
 		else
 		{
-			// hide person and filter
 			prPerson.addClass('hide');
 			prFilter.addClass('hide');
-			// show add base price
-			// prAdd.removeClass('hide');
-		}
-		// add question price to total
-		totalPrice = parseInt(prAdd.find('.pr').attr('data-val'));
-		// if person is correct
-		if(typeof filters.person == "number")
-		{
-			var personPrice = filters.base * filters.person;
-			prPerson.attr('data-per-person', filters.base).attr('data-person', filters.person);
-			// set value
-			setCompleteVal(prPerson.find('.pr'), personPrice);
-
-			totalPrice += personPrice;
-
-			if(typeof filters.filter == "number")
-			{
-				// person * filter
-				var filterPrice = personPrice * (filters.filter/100);
-
-				prFilter.find('span:first-child b').text(fitNumber(filters.filter) + '%');
-				setCompleteVal(prFilter.find('.pr'), filterPrice);
-
-				totalPrice += filterPrice;
-			}
 		}
 
 		// brand
