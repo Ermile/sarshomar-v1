@@ -653,16 +653,16 @@
 <div class='poll-panel unselectable'>
 
  <div class='poll-answered'>
-  <div class='poll-answered-count'>4,568</div>
+  <div class='poll-answered-count'>{{poll.count_vote|number_format|fitNumber}}</div>
   <div class="poll-answered-label">
    <span>{%trans "People"%}</span>
-   <span class='poll-answered-you'>+ {%trans "You"%}</span>
+   <span class='poll-answered-you{%if poll.my_answer%}{%else%} hide{%endif%}'>+ {%trans "You"%}</span>
   </div>
  </div>
 
  <div class='f poll-panel-item poll-status'>
-  <span class='c3 flex justify-center align-center icon-delivered'></span>
-  <span class='c poll-panel-label'>{%trans "Published"%}</span>
+  <span class='c3 flex justify-center align-center icon-{{poll.status}}'></span>
+  <span class='c poll-panel-label'>{%set myStatus = poll.status%}{%trans myStatus%}</span>
  </div>
 
  {%if false%}
@@ -671,42 +671,49 @@
   <span class='c poll-panel-label'>{%trans "Lottery"%}</span>
  </div>
  {%endif%}
-
+ {%if poll.options.prize.value%}
  <div class='f poll-panel-item poll-gift'>
   <span class='c3 flex justify-center align-center icon-coin'></span>
-  <span class='c poll-panel-label'>{%trans "Gift"%}</span>
+  <span class='c poll-panel-label'>
+    {{poll.options.prize.value|number_format|fitNumber}}
+    {%set myUnit = poll.options.prize.unit %}
+    {%trans myUnit%}
+    </span>
  </div>
+ {%endif%}
 
+{%if poll.user_id == login.id|shortURL("encode")%}
  <nav class='poll-panel-nav'>
-  <a href='' class='f'>
+  <a href='' class='f{%if "publish" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-delivered'></span>
    <span class='c'>{%trans "Publish"%}</span>
   </a>
 
-  <a href='' class='f'>
+  <a href='' class='f{%if "trash" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-trash-o'></span>
    <span class='c'>{%trans "Trash"%}</span>
   </a>
 
-  <a href='' class='f'>
+  <a href='' class='f{%if "delete" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-times-circle'></span>
    <span class='c'>{%trans "Delete"%}</span>
   </a>
 
-  <a href='' class='f'>
+  <a href='' class='f{%if "stop" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-stop2'></span>
    <span class='c'>{%trans "Stop"%}</span>
   </a>
 
-  <a href='' class='f'>
+  <a href='' class='f{%if "pause" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-pause2'></span>
    <span class='c'>{%trans "Pause"%}</span>
   </a>
 
-  <a href='' class='f'>
+  <a href='' class='f{%if "draft" in  status_avalible.available%}{%else%} hide{%endif%}'>
    <span class='c3 flex justify-center align-center icon-pencil'></span>
    <span class='c'>{%trans "Draft"%}</span>
   </a>
  </nav>
+ {%endif%}
 </div>
 {%endblock%}

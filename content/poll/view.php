@@ -182,6 +182,11 @@ class view extends \mvc\view
 				}
 			}
 		}
+
+		if(isset($poll['id']))
+		{
+			$this->data->status_avalible = $this->model()->status_avalible($poll['id']);
+		}
 	}
 
 

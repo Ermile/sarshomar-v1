@@ -13,6 +13,7 @@ class model extends \content\home\model
 	use \content_api\v1\poll\answer\tools\get;
 	use \content_api\v1\poll\answer\tools\delete;
 	use \content_api\v1\poll\stats\tools\get;
+	use \content_api\v1\poll\status\tools\get;
 
 	public $get_poll_options =
 	[
@@ -27,6 +28,12 @@ class model extends \content\home\model
 		'type'               => null, // ask || random
 	];
 
+	public function status_avalible($_poll_code)
+	{
+		utility::set_request_array(['id' => $_poll_code]);
+		$avalible = $this->poll_status();
+		return $avalible;
+	}
 
 	/**
 	 * Gets the comments.
