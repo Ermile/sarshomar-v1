@@ -198,6 +198,7 @@ class handle
 				case T_('main'):
 				case T_('mainmenu'):
 				case T_("Back"):
+				step::stop();
 				$response = menu::main();
 				break;
 
@@ -226,6 +227,7 @@ class handle
 				break;
 
 				case '/start':
+				step::stop();
 				$response = step_starting::start($_cmd['text']);
 				break;
 
