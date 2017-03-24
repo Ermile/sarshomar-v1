@@ -78,24 +78,19 @@
    <button class="btn" data-copy='#short_url'><span class="icon-link"></span></button>
   </div>
 
-<div class="checkbox">
- <input type="checkbox" id="poll_prize" {%if poll.options.prize%}checked{%endif%}>
- <label for="poll_prize" class="check-box"></label>
- <label for="poll_prize">{%trans "Prize"%}</label>
-</div>
+  <div class='element no-pad'>
+   <label class='title large'>{%trans "Prize"%}</label>
+   <div class='element-in'>
+    <input class='input' type='number' id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
+   </div>
+  </div>
 
-<div data-response='poll_prize' {%if not poll.options.prize%}data-response-hide{%endif%} data-response-effect='fade'>
- <div class="element-branding">
-  <input type="text" id="poll_prize" placeholder='{%trans "Prize to every one"%}' autocomplete="off" data-response-focus value="{{poll.options.prize}}">
+  <div class='checkbox'>
+   <input type='checkbox' name='visible_result' id='visible_result'>
+   <label for='visible_result'></label>
+   <label for='visible_result'>{%trans "Visible for all"%}</label>
+  </div>
  </div>
-<!--
- <div class="element-branding-url">
-  <input type="text" id="answer_brand_url" placeholder='{%trans "URL"%}' autocomplete="off" maxlength="99" value="{{poll.brand.url}}">
- </div> -->
-</div>
- </div>
-
-
 
  <div class="span4">
   <div class="tbl" id='totalPrice'{% if perm.free_account.view%} data-free{%endif%}>
