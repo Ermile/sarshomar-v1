@@ -81,13 +81,13 @@
   <div class='element no-pad'>
    <label class='title large' for='poll_prize'>{%trans "Prize"%}</label>
    <div class='element-in'>
-    <input class='input' type='number' min=0 id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
+    <input class='input' type='number' min=0 id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize.value}}'>
    </div>
-   <button class='btn'>{{user_unit}}</button>
+   <button class='btn'>{%if poll.options.prize.unit%}{%set myPrizeUnit = poll.options.prize.unit %}{%trans myPrizeUnit %}{%else%}{{myUnit}}{%endif%}</button>
   </div>
 
   <div class='checkbox'>
-   <input type='checkbox' name='hide_result' id='hide_result'>
+   <input type='checkbox' name='hide_result' id='hide_result' {%if poll.options.hide_result%} checked="checked" {%endif%}>
    <label for='hide_result'></label>
    <label for='hide_result'>{%trans "Hide Results"%}</label>
   </div>

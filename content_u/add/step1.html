@@ -236,11 +236,11 @@
 
 
 {%block feature_hiddenresult%}
- {%if perm.hidden_result.admin%}
+ {%if perm.hide_result.admin%}
  <div class="checkbox">
-  <input type="checkbox" id="hidden_result" {%if poll.hidden_result%}checked{%endif%}>
-  <label for="hidden_result" class="check-box"></label>
-  <label for="hidden_result">{%trans "Hidden result"%}</label>
+  <input type="checkbox" id="hide_result" {%if poll.hide_result%}checked{%endif%}>
+  <label for="hide_result" class="check-box"></label>
+  <label for="hide_result">{%trans "Hidden result"%}</label>
  </div>
  {%endif%}
 {%endblock%}

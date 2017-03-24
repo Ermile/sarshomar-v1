@@ -18,6 +18,7 @@ trait insert
 	protected static $old_saved_poll = [];
 
 	protected static $user_id        = false;
+	protected static $real_user_id   = null;
 	protected static $old_status     = null;
 
 	protected static $poll_full_url  = null;
@@ -87,6 +88,7 @@ trait insert
 			self::$old_saved_poll = \lib\db\polls::get_poll(self::$poll_id);
 			self::$poll_full_url  = isset(self::$old_saved_poll['url']) ? self::$old_saved_poll['url']: null;
 			self::$old_status     = isset(self::$old_saved_poll['status']) ? self::$old_saved_poll['status'] : null;
+			self::$real_user_id   = isset(self::$old_saved_poll['user_id']) ? self::$old_saved_poll['user_id'] : null;
 			if(self::$old_status !== 'draft' && !self::poll_check_permission('admin'))
 			{
 				// \lib\db::rollback();

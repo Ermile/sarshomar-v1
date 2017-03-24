@@ -108,7 +108,7 @@ trait add
 		$get_poll_options =
 		[
 			'check_is_my_poll'   => false,
-			'get_filter'         => false,
+			'get_filter'         => true,
 			'get_opts'           => true,
 			'get_options'	     => true,
 			'run_options'	     => false,
@@ -118,6 +118,7 @@ trait add
 		];
 
 		$poll = $this->poll_get($get_poll_options);
+		$_options['poll_detail'] = $poll;
 
 		if(!$poll)
 		{
@@ -341,9 +342,9 @@ trait add
 		$poll_id = shortURL::decode(utility::request('id'));
 		$save =
 		[
-			'user_id' => $this->user_id,
-			'poll_id' => $poll_id,
-			'answer'  => $true_answer,
+			'user_id'     => $this->user_id,
+			'poll_id'     => $poll_id,
+			'answer'      => $true_answer,
 		];
 
 		return $this->save_result($save, $_options);
@@ -405,9 +406,9 @@ trait add
 			$descriptive = trim($descriptive);
 			$save =
 			[
-				'user_id' => $this->user_id,
-				'poll_id' => shortURL::decode(utility::request("id")),
-				'answer'  => [1 => $descriptive],
+				'user_id'     => $this->user_id,
+				'poll_id'     => shortURL::decode(utility::request("id")),
+				'answer'      => [1 => $descriptive],
 			];
 			return $this->save_result($save, $_options);
 		}
@@ -428,6 +429,8 @@ trait add
 	 */
 	public function save_result($_answer, $_options)
 	{
+		$_answer['poll_detail'] = (isset($_options['poll_detail'])) ? $_options['poll_detail'] : [];
+
 		if($_options['method'] == 'put')
 		{
 			\lib\utility\answers::update($_answer);

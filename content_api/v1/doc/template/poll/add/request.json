@@ -33,9 +33,9 @@
       "max" : 10,
     },
     "random_sort": "true|false",
+    "hide_result": "true|false",
     "ordering": "true|false"
   },
-  "hidden_result": "true|false",
   "schedule": {
     "start": "null|date_time",
     "end": "null|date_time"

@@ -8,12 +8,29 @@ trait options
 {
 	protected static function insert_options()
 	{
-				// save meta times
+		// save meta times
 		if(self::isset_args('options','prize'))
 		{
 			if(self::$args['options']['prize'])
 			{
-				self::save_options('prize', self::$args['options']['prize']);
+				$user_unit = null;
+				if(self::poll_check_permission('u','sarshomar', 'view'))
+				{
+					if(intval(self::$user_id) === intval(self::$real_user_id))
+					{
+						$user_unit = 'sarshomar';
+					}
+					elseif(self::$real_user_id)
+					{
+						$user_unit = \lib\db\units::find_user_unit(self::$real_user_id, true);
+					}
+				}
+				else
+				{
+					$user_unit = \lib\db\units::find_user_unit(self::$user_id, true);
+				}
+
+				self::save_options('prize', self::$args['options']['prize'], ['unit' => $user_unit]);
 			}
 			else
 			{
@@ -271,15 +288,15 @@ trait options
 			}
 		}
 
-		if(self::isset_args('hidden_result'))
+		if(self::isset_args('options','hide_result'))
 		{
-			self::save_options('hidden_result', true);
+			self::save_options('hide_result', true);
 		}
 		else
 		{
 			if(self::$method == 'put')
 			{
-				self::save_options('hidden_result', false);
+				self::save_options('hide_result', false);
 			}
 		}
 

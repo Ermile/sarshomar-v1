@@ -161,11 +161,6 @@ trait add
 			$args['schedule'] = utility::request('schedule');
 		}
 
-		if(utility::isset_request('hidden_result'))
-		{
-			$args['hidden_result'] = utility::request('hidden_result');
-		}
-
 		if(utility::isset_request('articles'))
 		{
 			$args['articles'] = utility::request('articles');

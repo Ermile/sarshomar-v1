@@ -28,6 +28,11 @@ class view extends \content_u\home\view
 		// set multiple default values
 		$this->set_range_default_multiple();
 
+		$this->data->myUnit = $this->data->user_unit;
+		if($this->access('u', 'sarshomar', 'view'))
+		{
+			$this->data->myUnit = T_("Sarshomar");
+		}
 	}
 
 	/**

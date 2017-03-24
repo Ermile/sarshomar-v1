@@ -17,7 +17,6 @@ trait get_options
 			$show_options = [];
 			foreach ($temp_options as $key => $value)
 			{
-
 				if($value === '1')
 				{
 					if($key === 'multi')
@@ -95,6 +94,17 @@ trait get_options
 			{
 				unset($_poll_data['file']);
 			}
+
+			if(isset($value['option_key']) && $value['option_key'] == 'prize')
+			{
+				$_poll_data['options']['prize'] = [];
+				$_poll_data['options']['prize']['value'] = array_key_exists('option_value', $value) ? (float) $value['option_value'] : 0;
+				if(isset($value['option_meta']['unit']))
+				{
+					$_poll_data['options']['prize']['unit'] = $value['option_meta']['unit'];
+				}
+			}
+
 		}
 
 		$_poll_data['articles'] = $poll_articles;
@@ -132,9 +142,13 @@ trait get_options
 			}
 		}
 
-		if(in_array('hidden_result', $post_meta_key) && self::$_options['run_options'])
+		if(in_array('hide_result', $post_meta_key))
 		{
-			unset($_poll_data['result']);
+			if(self::$_options['run_options'])
+			{
+				unset($_poll_data['result']);
+			}
+			$_poll_data['options']['hide_result'] = true;
 		}
 
 		$brand = [];
