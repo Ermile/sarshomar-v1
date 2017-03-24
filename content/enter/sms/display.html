@@ -1,0 +1,28 @@
+{%extends display.mvc%}
+
+{%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}css/responsive.css">
+ <link rel="stylesheet"       href="{{url.static}}css/enter.css">
+{%endblock%}
+
+
+{%block body%}
+<div class="enter">
+	<p>SMS!</p>
+	<ul>
+		<li>Service <b>{{getParam.service}}</b></li>
+		<li>Type <b>{{getParam.type}}</b></li>
+		<li>uid <b>{{getParam.uid}}</b></li>
+
+		<li><br/><b>Callback</b></li>
+		<li>from <b>{{getParam.from}}</b></li>
+		<li>to <b>{{getParam.to}}</b></li>
+		<li>message <b>{{getParam.message}}</b></li>
+		<li>messageid <b>{{getParam.messageid}}</b></li>
+
+		<li><br/><b>Delivery</b></li>
+		<li>messageid <b>{{getParam.messageid}}</b></li>
+		<li>status <b>{{getParam.status}}</b></li>
+	</ul>
+</div>
+{%endblock%}
