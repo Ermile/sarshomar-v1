@@ -1715,17 +1715,18 @@ function calcTotalPrice(_delay)
 
 	setTimeout(function()
 	{
-		var totalPrice = 0;
+		var totalPrice   = 0;
 		// get filter data
-		var filters    = calcFilterPrice();
-		var tblFactor  = $('#totalPrice');
-		var prAdd      = $('#prAdd');
-		var prPerson   = $('#prPerson');
-		var prFilter   = $('#prFilter');
-		var prBrand    = $('#prBrand');
-		var prTotal    = $('#prTotal');
-		var prCash     = $('#prCash');
-		var prBalance  = $('#prBalance');
+		var filters      = calcFilterPrice();
+		var tblFactor    = $('#totalPrice');
+		var prAdd        = $('#prAdd');
+		var prPerson     = $('#prPerson');
+		var prFilter     = $('#prFilter');
+		var prBrand      = $('#prBrand');
+		var prTotal      = $('#prTotal');
+		var prCash       = $('#prCash');
+		var prBalance    = $('#prBalance');
+		var prHideResult = $('#prHideResult')
 
 		var selectedPrivacy = $('input[name="filter_privacy"]:checked').val();
 		if(selectedPrivacy === 'public')
@@ -1783,6 +1784,18 @@ function calcTotalPrice(_delay)
 		{
 			prPerson.addClass('hide');
 			prFilter.addClass('hide');
+		}
+
+		// send hidden result
+		if($('#hide_result').is(":checked"))
+		{
+			prHideResult.removeClass('hide');
+			var HideResultFactor = parseInt(prHideResult.attr('data-val'));
+			totalPrice += HideResultFactor;
+		}
+		else
+		{
+			prHideResult.addClass('hide');
 		}
 
 		// brand
