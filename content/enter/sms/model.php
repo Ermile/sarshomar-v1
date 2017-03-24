@@ -14,6 +14,10 @@ class model extends \mvc\model
 	 */
 	public function kavenegar_callback($_from, $_to, $_message, $_messageid)
 	{
+		if(!$_from || !$_to)
+		{
+			return false;
+		}
 		// we have all data of message after give it
 
 		$user_id = \lib\db\users::signup(
@@ -50,6 +54,10 @@ class model extends \mvc\model
 	 */
 	public function kavenegar_delivery($_messageid, $_status)
 	{
+		if(!$_messageid)
+		{
+			return false;
+		}
 		// show change status data
 		$log_meta =
 		[
