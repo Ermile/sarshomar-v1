@@ -310,7 +310,7 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-bookmark:before{content:"\f02e"}
 .icon-list:before{content:"\f03a"}
 .icon-image:before{content:"\f03e"}
-.icon-pencil:before{content:"\f040"}
+.icon-pencil:before,.icon-draft:before{content:"\f040"}
 .icon-minus-circle:before{content:"\f056"}
 .icon-times-circle:before{content:"\f057"}
 .icon-times-circle-o:before{content:"\f05c"}
@@ -1169,8 +1169,13 @@ body.rtl .poll-panel{right:16px;left:auto}
 .poll-panel .poll-panel-label{padding:1rem}
 
 .poll-panel .poll-panel-item [class*='icon-']{font-size:1.2em;transition:.3s;background-color:#d8d8d8}
+
 .poll-panel .poll-panel-item .icon-publish{color:#00af4c}
 .poll-panel .poll-panel-item:hover .icon-publish{color:#f7f7f7;background-color:#00af4c}
+
+.poll-panel .poll-panel-item .icon-draft{color:#f0a000}
+.poll-panel .poll-panel-item:hover .icon-draft{color:#f7f7f7;background-color:#f0a000}
+
 .poll-panel .poll-panel-item .icon-coin{color:#f0a000}
 .poll-panel .poll-panel-item:hover .icon-coin{color:#f7f7f7;background-color:#f0a000}
 

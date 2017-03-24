@@ -662,7 +662,7 @@
 
  <div class='f poll-panel-item poll-status'>
   <span class='c3 flex justify-center align-center icon-{{poll.status}}'></span>
-  <span class='c poll-panel-label'>{%set myStatus = poll.status%}{%trans myStatus%}</span>
+  <span class='c poll-panel-label'>{%set myStatus = poll.status|capitalize%}{%trans myStatus%}</span>
  </div>
 
  {%if false%}
