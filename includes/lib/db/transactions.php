@@ -10,7 +10,6 @@ class transactions
 	use transactions\set;
 	use transactions\get;
 	use transactions\budget;
-	use transactions\poll;
 
 
 	/**

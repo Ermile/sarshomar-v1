@@ -195,10 +195,9 @@ class model extends \mvc\model
 				$check_verify              = self::$zarinpal;
 				$check_verify['Authority'] = $Authority;
 				$check_verify['Status']    = $Status;
-
 				if(isset($_SESSION['Amount']))
 				{
-					$check_verify['Amount']    = $_SESSION['Amount'];
+					$amount = $check_verify['Amount'] = $_SESSION['Amount'];
 				}
 				else
 				{
@@ -217,8 +216,15 @@ class model extends \mvc\model
 					{
 						\lib\db\logs::set('user:billing:verify:successful', $this->login('id'), $log_meta);
 
-						\lib\db\transactions::set('real:charge:toman', $this->login('id'), ['plus' => $_SESSION['Amount']]);
-						debug::true(T_("Payment operation was successfull and :amount :unit added to your cash", ['amount' => $_SESSION['Amount'], 'unit' => T_('toman')]));
+						$gift = \lib\utility\gift::gift((float) $amount);
+						$check_gift = floatval($gift) - floatval($amount);
+						if($check_gift)
+						{
+							\lib\db\logs::set('user:billing:need:gift', $this->login('id'), $log_meta);
+						}
+
+						\lib\db\transactions::set('real:charge:toman', $this->login('id'), ['plus' => $amount]);
+						debug::true(T_("Payment operation was successfull and :amount :unit added to your cash", ['amount' => $amount, 'unit' => T_('toman')]));
 						$_SESSION['operation'] = true;
 					}
 				}
