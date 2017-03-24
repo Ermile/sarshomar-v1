@@ -216,6 +216,7 @@ class model extends \mvc\model
 					if($check && debug::$status)
 					{
 						\lib\db\logs::set('user:billing:verify:successful', $this->login('id'), $log_meta);
+
 						\lib\db\transactions::set('real:charge:toman', $this->login('id'), ['plus' => $_SESSION['Amount']]);
 						debug::true(T_("Payment operation was successfull and :amount :unit added to your cash", ['amount' => $_SESSION['Amount'], 'unit' => T_('toman')]));
 						$_SESSION['operation'] = true;

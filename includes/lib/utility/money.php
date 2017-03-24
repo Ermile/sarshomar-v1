@@ -205,6 +205,7 @@ trait money
 	{
 		$end = end(self::$gift);
 
+		reset(self::$gift);
 		foreach (self::$gift as $x => $y)
 		{
 			if($y === $end)
@@ -213,6 +214,7 @@ trait money
 			}
 
 			$next = next(self::$gift);
+
 			$x1 = $x;
 			$x2 = array_search($next, self::$gift);
 
@@ -278,17 +280,18 @@ trait money
 
 		$prev_tilt = 1;
 		reset(self::$gift);
-		$start = key(self::$gift);
-		$x1    = end(self::$gift);
-		$y1    = array_search($x1, self::$gift);
-		$end   = $y1;
-		$y     = $_money;
+		$start     = key(self::$gift);
+		$x1        = end(self::$gift);
+		$end_gift  = $x1;
+		reset(self::$gift);
+		$y1        = array_search($x1, self::$gift);
+		$end       = $y1;
+		$y         = $_money;
 
 		foreach (self::$gift_tilt as $money => $tilt)
 		{
 			if(($_money < $money || $money >= $end) && $_money >= $start)
 			{
-
 				$y = $prev_tilt * ($_money - $x1) + $y1;
 				break;
 			}

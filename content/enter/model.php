@@ -74,17 +74,17 @@ class model extends \mvc\model
 			}
 		}
 
+		if($this->check_is_bot())
+		{
+			\lib\error::access(T_("You are bot"));
+		}
+
 		if($this->login_by_remember())
 		{
 			if(!$this->is_guest)
 			{
 				return;
 			}
-		}
-
-		if($this->check_is_bot())
-		{
-			\lib\error::access(T_("You are bot"));
 		}
 
 	}

@@ -11,8 +11,7 @@ class controller extends \lib\mvc\controller
 			$cookie = \lib\utility::cookie('remember_me');
 			if($cookie)
 			{
-				$url = \lib\utility\safe::safe($_SERVER['REQUEST_URI']);
-				$this->redirector()->set_domain()->set_url('enter?referer='. $url)->redirect();
+				$this->model()->mvc_login_by_remember();
 			}
 		}
 	}
