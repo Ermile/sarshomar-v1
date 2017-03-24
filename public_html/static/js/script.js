@@ -1801,6 +1801,10 @@ function calcTotalPrice(_delay)
 		setCompleteVal(prTotal.find('.pr'), totalPrice);
 		// get and set cash
 		var myCash = $('#financial-box .total .value').attr('data-val');
+		if(!myCash)
+		{
+			myCash = 0;
+		}
 		setCompleteVal(prCash.find('.pr'), myCash);
 		// calc final balance and set
 		var finalBalance = myCash - totalPrice;
@@ -1837,10 +1841,10 @@ function calcTotalPrice(_delay)
 
 		// show on topbox
 
-		var elCost = $('#financial-box .cost');
+		var elCost    = $('#financial-box .cost');
 		var elCostVal = $('#financial-box .cost .value');
 
-		if(elCostVal.attr('data-val') !== totalPrice)
+		if(elCostVal.attr('data-val') != totalPrice)
 		{
 			elCostVal.attr('data-val', totalPrice).text(fitNumber(totalPrice));
 			elCost.addClass('isCurrent');
