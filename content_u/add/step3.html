@@ -81,7 +81,7 @@
   <div class='element no-pad'>
    <label class='title large' for='poll_prize'>{%trans "Prize"%}</label>
    <div class='element-in'>
-    <input class='input' type='number' id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
+    <input class='input' type='number' min=0 id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
    </div>
    <button class='btn'>{{user_unit}}</button>
   </div>

@@ -2587,6 +2587,17 @@ function prepareQuestionData()
 	{
 		myQuestion.options.random_sort = $('#random_sort').is(":checked");
 	}
+	// send prize
+	if($('#poll_prize').val()>0)
+	{
+		myQuestion.options.prize = $('#poll_prize').val();
+	}
+	// send hidden result
+	if($('#hide_result').is(":checked"))
+	{
+		myQuestion.options.hide_result = $('#hide_result').is(":checked");
+	}
+
 	// data of publish page
 	// category
 	if($('#cat0').attr('data-val'))
