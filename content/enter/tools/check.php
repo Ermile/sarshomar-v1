@@ -96,7 +96,7 @@ trait check
 	 */
 	public function check_access_resend()
 	{
-		$this->get_code_time(['time' => $this->resend_code_after, 'query' => false]);
+		$this->get_code_time(['time' => $this->resend_after, 'query' => false]);
 		// return
 		return true;
 	}

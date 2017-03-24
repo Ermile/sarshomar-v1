@@ -25,9 +25,11 @@ class model extends \mvc\model
 	public $step              = 'mobile';
 	public $send              = 'code';
 	public $wait              = 0;
-	public $resend_after      = 60 * 2;
+	// show resende link ofter
+	public $resend_after      = ((60 * 2) + 30); // 2.5 min
+	// life time code to expire
 	public $life_time_code    = 60 * 5; // 5 min
-	public $resend_code_after = 60 * 2; // 2 min
+
 	public $sended_code       = [];
 	public $create_new_code   = false;
 	public $resend_rate =

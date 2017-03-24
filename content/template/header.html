@@ -75,23 +75,44 @@
       </div>
 
       <div class="total">
-       <a href="#">
+       <a href="{{url.base}}/@/billing">
         <span class="title">{%trans "Total cash"%}</span>
-        <span class="value" data-val="{{user_cash}}">{{user_cash | number_format | fitNumber}}</span>
+        <span class="value" data-val="{{user_cash.total}}">{{user_cash.total | number_format | fitNumber}}</span>
         <span class="unit">{%trans user_unit%}</span>
        </a>
 
        <div class="financial-detail">
-        <div class="row">
-         <div class="cell">{%trans "Cash"%}</div>
-         <div class="cell">{{user_cash_real | number_format | fitNumber}}</div>
-         <div class="cell">{%trans user_unit%}</div>
-        </div>
-        <div class="row">
-         <div class="cell">{%trans "Gift"%}</div>
-         <div class="cell">{{user_cash_gift | number_format | fitNumber}}</div>
-         <div class="cell">{%trans user_unit%}</div>
-        </div>
+       {%if user_cash.real%}
+         <div class="row">
+           <div class="cell">{%trans "Real"%}</div>
+           <div class="cell" data-val="{{user_cash.real}}">{{user_cash.real | number_format | fitNumber}}</div>
+           <div class="cell">{%trans user_unit%}</div>
+          </div>
+        {%endif%}
+
+        {%if user_cash.gift%}
+         <div class="row">
+           <div class="cell">{%trans "Gift"%}</div>
+           <div class="cell" data-val="{{user_cash.gift}}">{{user_cash.gift | number_format | fitNumber}}</div>
+           <div class="cell">{%trans user_unit%}</div>
+          </div>
+        {%endif%}
+
+        {%if user_cash.transfer%}
+         <div class="row">
+           <div class="cell">{%trans "Transfer"%}</div>
+           <div class="cell" data-val="{{user_cash.transfer}}">{{user_cash.transfer | number_format | fitNumber}}</div>
+           <div class="cell">{%trans user_unit%}</div>
+          </div>
+        {%endif%}
+
+        {%if user_cash.prize%}
+         <div class="row">
+           <div class="cell">{%trans "Prize"%}</div>
+           <div class="cell" data-val="{{user_cash.prize}}">{{user_cash.prize | number_format | fitNumber}}</div>
+           <div class="cell">{%trans user_unit%}</div>
+          </div>
+        {%endif%}
        </div>
       </div>
 

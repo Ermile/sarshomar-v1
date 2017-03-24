@@ -138,9 +138,9 @@
                     <div class="c6 s12 m12 flex f-column">
                         <div class="card flex-1">
                             <h3><a href='{{url.base}}/@/billing' title='{%trans "Billing"%}'>{%trans "Credit"%}</a></h3>
-                            <div class="card-body {%if (user_cash + user_cash_gift) == 0%}{%endif%}">
+                            <div class="card-body {%if user_cash.total == 0%}{%endif%}">
                                 <span>
-                                    <a href='{{url.base}}/@/billing' title='{%trans "Billing"%}'>{{(user_cash + user_cash_gift)|number_format|fitNumber}}<i> {%trans user_unit%}</i></a>
+                                    <a href='{{url.base}}/@/billing' title='{%trans "Billing"%}'>{{user_cash.total|number_format|fitNumber}}<i> {%trans user_unit%}</i></a>
                                 </span>
                             </div>
                         </div>

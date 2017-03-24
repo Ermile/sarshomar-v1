@@ -49,14 +49,20 @@ class view extends \lib\mvc\view
 
 		if($this->login())
 		{
-			$user_unit = \lib\db\units::find_user_unit($this->login('id'), true);
-			$user_unit = T_($user_unit);
-
-			$this->data->user_unit      = $user_unit;
+			$user_unit                  = \lib\db\units::find_user_unit($this->login('id'), true);
 			$user_unit_id               = \lib\db\units::get_id($user_unit);
 			$user_unit_id               = (int) $user_unit_id;
-			$this->data->user_cash      = \lib\db\transactions::budget_real($this->login('id'), ['type' => 'real', 'unit' => $user_unit_id]);
-			$this->data->user_cash_gift = \lib\db\transactions::budget_gift($this->login('id'), ['type' => 'gift', 'unit' => $user_unit_id]);
+			if($user_unit == 'dollar')
+			{
+				$user_unit = '$';
+			}
+			$this->data->user_unit      = T_($user_unit);
+			$user_cash = \lib\db\transactions::budget($this->login('id'), ['unit' => $user_unit_id]);
+			if(is_array($user_cash))
+			{
+				$user_cash['total'] = array_sum($user_cash);
+			}
+			$this->data->user_cash = $user_cash;
 			$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
 		}
 

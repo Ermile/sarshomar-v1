@@ -3,13 +3,13 @@
     <form method="post" class="ui-language">
             <select name="user-unit">
                 <option value="">{%trans "Unit"%}</option>
-                <option value="toman" {% if user_unit == 'toman' %} selected="selected" {%endif%}>{%trans "Toman"%}</option>
-                <option value="dollar" {% if user_unit == 'dollar' %} selected="selected" {%endif%}>{%trans "Dollar"%}</option>
+                <option value="toman" {% if user_unit == 'toman' or user_unit == 'تومان' %} selected="selected" {%endif%}>{%trans "Toman"%}</option>
+                <option value="dollar" {% if user_unit == 'dollar' or user_unit == '$' %} selected="selected" {%endif%}>{%trans "$"%}</option>
             </select>
             <input type="submit" value='{%trans "Apply"%}' class="try">
     </form>
 </aside>
-<div class="main billing" {% if verify_modal %} data-modal='billing-verify' {% endif %}>
+<div class="main billing" >
     <div>
         <div class="in xxlarge">
             <div class="billing-stats row auto">
@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Money"%}</h5>
-                        <div class="amount"><span>{{user_cash|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
+                        <div class="amount"><span>{{user_cash.real|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Gift"%}</h5>
-                        <div class="amount"><span>{{user_cash_gift|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
+                        <div class="amount"><span>{{user_cash.gift|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></div>
                     </div>
                 </div>
                 <div class="billing-info span4">
@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <h5 class="title">{%trans "Your Credit"%}</h5>
-                        <div class="amount"><strong><span>{{(user_cash + user_cash_gift)|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></strong></div>
+                        <div class="amount"><strong><span>{{user_cash.total|number_format|fitNumber}}</span> <span>{%trans user_unit%}</span></strong></div>
                     </div>
                 </div>
             </div>
@@ -125,31 +125,4 @@
         </div>
     </div>
 </div>
-{%endblock%}
-
-{%block modal%}
-    {% if verify_modal %}
-     <div class='modal visible' id='billing-verify'>
-       <div class='modal-dialog'>
-       <h3 class='modal-title'>{%trans "Transactions Detail"%}</h3>
-       <div class='modal-body'>
-       <p>
-            تراکنش با موفیت ثبت شد <br>
-            مبلغ
-            {{amount}}
-            {{user_unit}}
-            به حساب شما منظور گردید
-            <br>
-            موجودی حساب شما هم اکنون
-            {{user_cash + user_cash_gift}}
-            {{user_unit}}
-            است.
-       </p>
-        <div class="row auto btn-container center">
-         <a href="{{url.base}}/@/billing" class="btn" data-direct>{%trans "OK"%}</button>
-        </div>
-       </div>
-      </div>
-     </div>
-    {% endif %}
 {%endblock%}

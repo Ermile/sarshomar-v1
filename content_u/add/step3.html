@@ -86,7 +86,7 @@
 
 <div data-response='poll_prize' {%if not poll.options.prize%}data-response-hide{%endif%} data-response-effect='fade'>
  <div class="element-branding">
-  <input type="text" id="poll_prize" placeholder='{%trans "Prize to every one"%}' autocomplete="off" data-response-focus value="{{poll.options.prize}}" maxlength="{{user_cash|length}}">
+  <input type="text" id="poll_prize" placeholder='{%trans "Prize to every one"%}' autocomplete="off" data-response-focus value="{{poll.options.prize}}">
  </div>
 <!--
  <div class="element-branding-url">
