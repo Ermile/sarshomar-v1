@@ -7,7 +7,7 @@ class error_logger
 	{
 		if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
 		{
-			return false
+			return false;
 		}
 		if(!isset($_data["text"]))
 		{
