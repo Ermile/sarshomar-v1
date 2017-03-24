@@ -99,10 +99,6 @@ class ask
 		$maker->message->add_count_poll();
 
 
-		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
-		{
-			$maker->inline_keyboard->add_poll_answers($options['type'] == 'private' ? $get_answer : null);
-		}
 
 		$guest_option = [];
 		if(!$my_poll)
@@ -136,6 +132,8 @@ class ask
 		}
 		if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'])
 		{
+			$guest_option['report'] = false;
+				$guest_option['inline_report'] = false;
 			if($options['type'] == 'private')
 			{
 				$guest_option['share'] = true;
@@ -166,6 +164,11 @@ class ask
 			$guest_option['report'] = false;
 			$guest_option['inline_report'] = false;
 			$guest_option['skip'] = false;
+		}
+
+		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
+		{
+			$maker->inline_keyboard->add_poll_answers($options['type'] == 'private' ? $get_answer : null, $guest_option['skip']);
 		}
 
 		$maker->inline_keyboard->add_guest_option($guest_option);

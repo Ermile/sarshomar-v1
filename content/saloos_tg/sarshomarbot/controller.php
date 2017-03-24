@@ -33,6 +33,7 @@ class controller extends \lib\mvc\controller
 			}
 		});
 		set_error_handler(function(...$_args) {
+			\lib\db::log($_args, null, 'telegram.json', 'json');
 			handle::send_log($_args);
 			self::$microtime_log[] = $_args;
 		});
@@ -82,7 +83,8 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = microtime(true);
-			if(strtolower($_args['method']) == 'sendmessage' && self::$last_message !== false)
+			// $critical_method = in_array(strtolower($_args['method']), ['sendmessage' , 'editmessagetext']);
+			if(self::$last_message !== false)
 			{
 				if($last_micro_time - self::$last_message < 1.3)
 				{
@@ -90,16 +92,9 @@ class controller extends \lib\mvc\controller
 					self::$last_message = $last_micro_time;
 				}
 			}
-			elseif(strtolower($_args['method']) == 'sendmessage')
+			elseif(!self::$last_message || $last_micro_time - self::$last_message > 1.3)
 			{
 				self::$last_message = $last_micro_time;
-			}
-			elseif(strtolower($_args['method']) != 'sendmessage')
-			{
-				if($last_micro_time - self::$last_message > 1.3)
-				{
-					self::$last_message = $last_micro_time;
-				}
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();

@@ -12,7 +12,7 @@ class inline_keyboard
 		$this->class = $make_class;
 	}
 
-	public function add_poll_answers($_answer = null)
+	public function add_poll_answers($_answer = null, $skip = false)
 	{
 		$keyboard_map = [
 			1 => [
@@ -114,6 +114,10 @@ class inline_keyboard
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
+		$this->inline_keyboard[count($this->inline_keyboard)-1][] = [
+			'text' => "⏬",
+			'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
+		];
 	}
 
 	public function add_guest_option($_options)
@@ -136,13 +140,13 @@ class inline_keyboard
 		$return = [];
 		$return2 = [];
 
-		if($options['skip'])
-		{
-			$return[] = [
-				'text' => "⏬",
-				'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
-			];
-		}
+		// if($options['skip'])
+		// {
+		// 	$return[] = [
+		// 		'text' => "⏬",
+		// 		'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
+		// 	];
+		// }
 		if($options['update'])
 		{
 			$return[] = [
@@ -153,7 +157,7 @@ class inline_keyboard
 
 		if($options['share'] && $this->class->query_result['status'] == 'publish')
 		{
-			$return2[] = [
+			$return[] = [
 				"text" => T_("Share"),
 				"switch_inline_query" => '$'.$this->class->poll_id
 			];
