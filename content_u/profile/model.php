@@ -123,6 +123,12 @@ class model extends \mvc\model
 			}
 
 			$update = \lib\db\users::update(['user_pass' => $new_pin], $this->login('id'));
+			// remove all remember me
+			\lib\db\options::delete([
+			'user_id'    => $this->login('id'),
+			'option_cat' => 'session',
+			'option_key' => 'rememberme',
+			]);
 			debug::true($msg);
 			return true;
 		}
