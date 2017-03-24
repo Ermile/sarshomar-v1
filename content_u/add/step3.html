@@ -79,13 +79,20 @@
   </div>
 
   <div class='element no-pad'>
-   <label class='title large'>{%trans "Prize"%}</label>
+   <label class='title large' for='poll_prize'>{%trans "Prize"%}</label>
    <div class='element-in'>
     <input class='input' type='number' id='poll_prize' placeholder='{%trans "Prize to every one"%}' autocomplete='off' value='{{poll.options.prize}}'>
    </div>
    <button class='btn'>{{user_unit}}</button>
   </div>
 
+  <div class='checkbox'>
+   <input type='checkbox' name='hide_result' id='hide_result'>
+   <label for='hide_result'></label>
+   <label for='hide_result'>{%trans "Hide Results"%}</label>
+  </div>
+
+  {%if false%}
   <div class='element switch'>
    <label class='title large'>{%trans "Show Results"%}</label>
    <input type='radio' name='show_results' id='xxxx'>
@@ -93,6 +100,7 @@
    <input type='radio' name='show_results' id='xxxxx'>
    <label for='xxxxx'>{%trans "Private"%}</label>
   </div>
+  {%endif%}
  </div>
 
  <div class="span4">
