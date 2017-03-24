@@ -647,3 +647,66 @@
 {%endif%}
 
 {%endblock%}
+
+
+{%block poll_panel%}
+<div class='poll-panel unselectable'>
+
+ <div class='poll-answered'>
+  <div class='poll-answered-count'>4,568</div>
+  <div class="poll-answered-label">
+   <span>{%trans "People"%}</span>
+   <span class='poll-answered-you'>+ {%trans "You"%}</span>
+  </div>
+ </div>
+
+ <div class='f poll-panel-item poll-status'>
+  <span class='c3 flex justify-center align-center icon-delivered'></span>
+  <span class='c poll-panel-label'>{%trans "Published"%}</span>
+ </div>
+
+ {%if false%}
+ <div class='f poll-panel-item poll-lo‍ttery'>
+  <span class='c3 flex justify-center align-center icon-gift'></span>
+  <span class='c poll-panel-label'>{%trans "Lottery"%}</span>
+ </div>
+ {%endif%}
+
+ <div class='f poll-panel-item poll-gift'>
+  <span class='c3 flex justify-center align-center icon-coin'></span>
+  <span class='c poll-panel-label'>{%trans "Gift"%}</span>
+ </div>
+
+ <nav class='poll-panel-nav'>
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-delivered'></span>
+   <span class='c'>{%trans "Publish"%}</span>
+  </a>
+
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-trash-o'></span>
+   <span class='c'>{%trans "Trash"%}</span>
+  </a>
+
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-times-circle'></span>
+   <span class='c'>{%trans "Delete"%}</span>
+  </a>
+
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-stop2'></span>
+   <span class='c'>{%trans "Stop"%}</span>
+  </a>
+
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-pause2'></span>
+   <span class='c'>{%trans "Pause"%}</span>
+  </a>
+
+  <a href='' class='f'>
+   <span class='c3 flex justify-center align-center icon-pencil'></span>
+   <span class='c'>{%trans "Draft"%}</span>
+  </a>
+ </nav>
+</div>
+{%endblock%}

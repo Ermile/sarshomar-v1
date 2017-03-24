@@ -2,15 +2,15 @@
 
 {%block content%}
  <div class="main pad">
+  {{block('poll_panel')}}
+
   <div class="in small poll-container{{myPollDirecton}}" data-type="{{poll_type}}">
    {{block('guest_alert')}}
    {%if poll.options.multi %}
     {% set min = poll.options.multi.min %}
     {% set max = poll.options.multi.max %}
    {%endif%}
-
    {{block('poll_admin')}}
-
    {{block('poll_title')}}
    {{block('poll_toolbox')}}
    {{block('poll_desc')}}
