@@ -22,9 +22,8 @@
 
 {%block poll_toolbox%}
 {% spaceless %}
-
- <div class="poll-toolbox">
-  <div class="like-fav">
+ <div class="flex justify-between align-center poll-toolbox">
+  <div class="flex align-center like-fav">
    <input type="checkbox" name="favorite" id="favorite" {% if poll.my_fav %} checked="checked" {% endif %}>
    <label for="favorite" class="icon-star icon-2x"></label>
    <input type="checkbox" name="heart" id="heart" {% if poll.my_like %} checked="checked" {% endif %}>
