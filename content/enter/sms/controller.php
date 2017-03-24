@@ -17,7 +17,7 @@ class controller extends \content\main\controller
 		{
 			\lib\error::access('Hi Dear. Do you wanna something!?');
 		}
-		if($type === 'delivery' || $type === 'callback')
+		if($type === 'recieve' || $type === 'delivery')
 		{
 			// do nothing
 		}
@@ -35,21 +35,21 @@ class controller extends \content\main\controller
 					\lib\error::access("SMS");
 				}
 
-				if($type === 'callback')
+				if($type === 'recieve')
 				{
 					$from      = \lib\utility::request('from');
 					$to        = \lib\utility::request('to');
 					$message   = \lib\utility::request('message');
 					$messageid = \lib\utility::request('messageid');
 
-					$this->model()->kavenegar_callback($from, $to, $message, $messageid);
+					$this->model()->kavenegar_recieve($from, $to, $message, $messageid);
 				}
-				elseif($type === 'callback')
+				elseif($type === 'delivery')
 				{
 					$messageid = \lib\utility::request('messageid');
 					$status    = \lib\utility::request('status');
 
-					$this->model()->kavenegar_delivery($messageid, $_status);
+					$this->model()->kavenegar_delivery($messageid, $status);
 				}
 				break;
 

@@ -14,15 +14,19 @@
 		<li>Type <b>{{getParam.type}}</b></li>
 		<li>uid <b>{{getParam.uid}}</b></li>
 
+		{%if getParam.from%}
 		<li><br/><b>Callback</b></li>
 		<li>from <b>{{getParam.from}}</b></li>
 		<li>to <b>{{getParam.to}}</b></li>
 		<li>message <b>{{getParam.message}}</b></li>
 		<li>messageid <b>{{getParam.messageid}}</b></li>
+		{%endif%}
 
+		{%if getParam.status%}
 		<li><br/><b>Delivery</b></li>
 		<li>messageid <b>{{getParam.messageid}}</b></li>
 		<li>status <b>{{getParam.status}}</b></li>
+		{%endif%}
 	</ul>
 </div>
 {%endblock%}

@@ -12,7 +12,7 @@ class model extends \mvc\model
 	 * @param  [type] $_messageid [description]
 	 * @return [type]             [description]
 	 */
-	public function kavenegar_callback($_from, $_to, $_message, $_messageid)
+	public function kavenegar_recieve($_from, $_to, $_message, $_messageid)
 	{
 		if(!$_from || !$_to)
 		{
