@@ -86,7 +86,7 @@
 .special-row .rocket {display: none}
 .special-row .inner-msg {text-align: center;}
 
-
+.poll-panel {display: none;}
 
 
 }
@@ -129,6 +129,7 @@
 .special-btn::before {left: -4px;}
 .special-btn::before, .special-btn::after {top: -3px;width: 14px;}
 .special-btn::after {right: -4px;}
+.special-btn.disabled::after {right: -4px;}
 
  .wrapper {margin-left: 6px;-webkit-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;-moz-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;}
 
@@ -381,9 +382,8 @@ footer #footer-nav a {padding: .6em .5em;font-size: .9em;font-weight: 500;}
 
  /************************************************************** Poll Page */
  .poll-container .poll-image{width:100%}
-
  nav.breadcrumb{display:none}
-
+.poll-panel {display: none;}
 
  /************************************************************** Table */
  .tbl {margin:0 1em;}

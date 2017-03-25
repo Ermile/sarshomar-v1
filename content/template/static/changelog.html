@@ -1,62 +1,54 @@
-{%extends display.main%}
+{%extends display.main%} {%set pageDesc%} {%trans "in preparation"%} {%endset%} {%block content%}
+<div class="main changelog">
+	<div class="box">
+		<h2 class="special-heading">{%trans "Changelog"%}</h2>
+	</div>
+	<div class="box in xxlarge">
+		<div class="tbl tbl-mobile-column">
+			<div class="tbl-header">
+				<span>{%trans "Date"%}</span>
+				<span>{%trans "Description"%}</span>
+			</div>
+			<div>
+				<span>...</span>
+				<span>{%trans "We are Developers, please wait!"%}</span>
+			</div>
+			<!-- next version ? -->
+			<div>
+				<span>{{"2017-02-10" | tdate("j F Y")}}</span>
+				<span>
+					<ul>
+						<li>{%trans "Sarshomar's version 1 released"%}</li>
+						<li>{%trans "Finally Sarshomar logo is accepted and we started branding"%} <a href='{{url.root}}/brand' target="_blank"><img alt='{%trans "Sarshomar"%}' src="{{url.static}}images/logo/logo.png" height="40px" width="40px" /></a></li>
+					</ul>
+				</span>
+			</div>
+			<div>
+				<span>{{"2016-12-26" | tdate("j F Y")}}</span>
+				<span>{%trans "Beta version of Sarshomar released"%}</span>
+			</div>
+			<div>
+				<span>{{"2016-11-22" | tdate("j F Y")}}</span>
+				<span>{%trans "Alfa version of Sarshomar is ready"%}</span>
+			</div>
+			<div>
+				<span>{{"2016-10-23" | tdate("j F Y")}}</span>
+				<span>{%trans "Demo version of Sarshomar released"%}</span>
+			</div>
+			<div>
+				<span>{{"2016-08-22" | tdate("j F Y")}}</span>
+				<span>{%trans "Sarshomar is ready to start"%}</span>
+			</div>
+			<div>
+				<span>{{"2016-01-30" | tdate("j F Y")}}</span>
+				<span>{%trans "The name of project selected as Sarshomar and <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a> domains registered. "%}</span>
+			</div>
 
-{%set pageDesc%}
-{%trans "in preparation"%}
-{%endset%}
-
-{%block content%}
-	<div class="main changelog">
-		<div class="box">
-			<h2 class="special-heading">{%trans "Changelog"%}</h2>
-		</div>
-
-		<div class="box in xxlarge">
-
-			<div class="tbl tbl-mobile-column">
-				<div class="tbl-header">
-						<span>{%trans "Date"%}</span>
-						<span>{%trans "Description"%}</span>
-				</div>
-				<div>
-						<span>...</span>
-						<span>{%trans "We are Developers, please wait!"%}</span>
-				</div>
-				<!-- next version ? -->
-
-				<div>
-						<span>{{"2017-02-10" | tdate("j F Y")}}</span>
-						<span>
-							<ul>
-								<li>{%trans "Sarshomar's version 1 released"%}</li>
-								<li>{%trans "Finally Sarshomar logo is accepted and we started branding"%} <a href='{{url.root}}/brand' target="_blank"><img src="{{url.static}}images/logo/logo.png" height="40px" width="40px" /></a></span></li>
-							</ul>
-				</div>
-				<div>
-						<span>{{"2016-12-26" | tdate("j F Y")}}</span>
-						<span>{%trans "Beta version of Sarshomar released"%}</span>
-				</div>
-				<div>
-						<span>{{"2016-11-22" | tdate("j F Y")}}</span>
-						<span>{%trans "Alfa version of Sarshomar is ready"%}</span>
-				</div>
-				<div>
-						<span>{{"2016-10-23" | tdate("j F Y")}}</span>
-						<span>{%trans "Demo version of Sarshomar released"%}</span>
-				</div>
-				<div>
-						<span>{{"2016-08-22" | tdate("j F Y")}}</span>
-						<span>{%trans "Sarshomar is ready to start"%}</span>
-				</div>
-				<div>
-						<span>{{"2016-01-30" | tdate("j F Y")}}</span>
-						<span>{%trans "The name of project selected as Sarshomar and <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a> domains registered. "%}</span>
-				</div>
-
-				<div>
-						<span>...</span>
-						<span>{%trans "We were born to do Best!"%}</span>
-				</div>
+			<div>
+				<span>...</span>
+				<span>{%trans "We were born to do Best!"%}</span>
 			</div>
 		</div>
 	</div>
+</div>
 {%endblock%}
