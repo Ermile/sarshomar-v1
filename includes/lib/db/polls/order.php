@@ -194,7 +194,6 @@ trait order
 			'limit'        => 1,
 		];
 
-		$args = $where;
 
 		$exist_option_record = \lib\db\options::get($where);
 
@@ -203,19 +202,17 @@ trait order
 			return ;
 		}
 
-		unset($args['limit']);
-		unset($args['post_id']);
 		unset($where['limit']);
-
-		$args['option_value'] = $poll_id;
-
+		$args = $where;
+		unset($args['post_id']);
 		if(!$exist_option_record)
 		{
+			$args['option_value'] = $poll_id;
 			\lib\db\options::insert($args);
 		}
 		else
 		{
-			\lib\db\options::update_on_error($args, $where);
+			\lib\db\options::update_on_error(['option_value' => $poll_id], $where);
 		}
 	}
 
