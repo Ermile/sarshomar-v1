@@ -263,14 +263,17 @@ private function transtext()
 	echo T_("Transfer");                                                              // Line 103
 	echo T_("Prize");                                                                 // Line 82
 
-	//--------------------------------------------------content\template\register.html
+	//-----------------------------------------------content\template\inestimable.html
 	echo T_("Sarshomar Vision");                                                      // Line 13
 	echo T_("Ask Anyone Anywhere");                                                   // Line 14
 	echo T_("We are inestimable");                                                    // Line 42
 	echo T_("Ask and Answer with Sarshomar");                                         // Line 24
 	echo T_("Sarshomar is about to launch...");                                       // Line 25
+	echo T_("If we were inestimable, Signup!");                                       // Line 25
 	echo T_("Inspection and Answer");                                                 // Line 45
 	echo T_("Then if we were inestimable, Signup!");                                  // Line 46
+
+	//--------------------------------------------------content\template\register.html
 	echo T_("Verify account");                                                        // Line 36
 
 	//-----------------------------------------------------content\template\share.html
