@@ -12,7 +12,7 @@ class inline_keyboard
 		$this->class = $make_class;
 	}
 
-	public function add_poll_answers($_answer = null, $skip = false)
+	public function add_poll_answers($_answer = null, $_skip = false)
 	{
 		$keyboard_map = [
 			1 => [
@@ -114,10 +114,13 @@ class inline_keyboard
 			];
 			$row_answer = next($keyboard_map[$count_answer]);
 		}
-		$this->inline_keyboard[count($this->inline_keyboard)-1][] = [
-			'text' => "⏬",
-			'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
-		];
+		if($_skip)
+		{
+			$this->inline_keyboard[count($this->inline_keyboard)-1][] = [
+				'text' => "⏬",
+				'callback_data' => 'poll/answer/' . $this->class->poll_id. '/skip'
+			];
+		}
 	}
 
 	public function add_guest_option($_options)
