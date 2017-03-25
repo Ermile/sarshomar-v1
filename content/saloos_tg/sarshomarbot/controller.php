@@ -90,19 +90,13 @@ class controller extends \lib\mvc\controller
 				$_args['parse_mode'] = "HTML";
 			}
 
-			$last_micro_time = microtime(true);
-			// $critical_method = in_array(strtolower($_args['method']), ['sendmessage' , 'editmessagetext']);
+			$last_micro_time = date();
 			if(self::$last_message !== false)
 			{
-				if($last_micro_time - self::$last_message < 1.3)
+				if($last_micro_time - self::$last_message < 1.1)
 				{
 					sleep(1);
-					self::$last_message = $last_micro_time;
 				}
-			}
-			elseif(!self::$last_message || $last_micro_time - self::$last_message > 1.3)
-			{
-				self::$last_message = $last_micro_time;
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();
@@ -190,6 +184,11 @@ class controller extends \lib\mvc\controller
 			\lib\db::log($log, null, 'telegram-error.json', 'json');
 		}
 		\lib\db\tg_session::start(bot::$user_id);
+		if(\lib\db\tg_session::get('last_message'))
+		{
+			self::$last_message = (int) \lib\db\tg_session::get('last_message');
+		}
+
 		$_SESSION['tg'] = \lib\db\tg_session::get_back('tg') ? \lib\db\tg_session::get_back('tg') : [];
 		$_SESSION['tg'] = commands\utility::object_to_array($_SESSION['tg']);
 
@@ -223,6 +222,7 @@ class controller extends \lib\mvc\controller
 		 * save telegram sessions to db
 		 */
 		\lib\db\tg_session::set('tg', $_SESSION['tg']);
+		\lib\db\tg_session::set('last_message', self::$last_message);
 		\lib\db\tg_session::save();
 		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
 		{

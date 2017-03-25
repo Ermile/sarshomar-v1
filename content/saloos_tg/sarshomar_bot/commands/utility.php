@@ -245,6 +245,15 @@ class utility
 			{
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return];
 				\lib\db::log($log, null, 'telegram.json', 'json');
+				handle::send_log(90);
+				if(isset($_return['result']['edit_date']))
+				{
+					\content\saloos_tg\sarshomar_bot\controller::$last_message = $_return['result']['edit_date'];
+				}
+				elseif(isset($_return['result']['date']))
+				{
+					\content\saloos_tg\sarshomar_bot\controller::$last_message = $_return['result']['date'];
+				}
 			}
 			else
 			{
