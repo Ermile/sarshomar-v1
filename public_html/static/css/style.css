@@ -644,7 +644,7 @@ header #financial-box .total:hover,header #financial-box .total.open{overflow-wr
 
 
 /************************************************************** footer */
-footer{position:relative;margin:0;padding:0;padding-top:20px;border-top:2px solid #00667a;background-color:#083942;-webkit-box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429;-moz-box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429;box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429}
+footer{position:relative;margin:0;padding:0;padding-top:20px;border-top:2px solid #00667a;background-color:#033944;-webkit-box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429;-moz-box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429;box-shadow: 0 -2px 0 0 #f4f4f5, 0 -6px 0 0 #e7a429}
 footer .container{padding:0 2%}
 
 /* footer-nav */
@@ -672,6 +672,7 @@ footer #footer-links #footer-enamad{}
 footer #footer-links #footer-enamad a{display:block}
 
 /* footer-note*/
+footer{margin-top:-2px}
 footer #footer-note{font-size:1.2em;padding:2em 0;color:#aaa}
 footer #footer-note .langlist{display:inline-block}
 footer #footer-note .langlist a{background-color:rgba(0,0,0,0.1);color:#aaa;padding:.5em 1em;display:inline-block;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;border-radius:2px}
@@ -798,7 +799,30 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 
 
 /************************************************************** inestimable */
-#inestimable{position:relative;background-color:#582C2C;height:200px;padding:25px 100px;color:#fff;margin:0 0 -2px;width:auto;z-index:1}
+#inestimable{background-color:#552222;height:200px;text-align:center;z-index:1;position:relative}
+#inestimable .inestimable-left,#inestimable .inestimable-right{width:110px;height:inherit;background-color:transparent;background-repeat:no-repeat;position:absolute;height:200px;top:0;bottom:0}
+#inestimable .inestimable-left{background-image:url('../images/svg/home/inestimable-left-img.svg');left:0}
+#inestimable .inestimable-right{background-image:url('../images/svg/home/inestimable-right-img.svg');right:0}
+#inestimable .inestimable-content{}
+.rtl #inestimable .inestimable-content{}
+#inestimable .inestimable-content h3{font-weight:700}
+#inestimable .inestimable-content h3,#inestimable .inestimable-content h4{margin-bottom:0;color:#f4f4f4}
+#inestimable .inestimable-content img{height:150px;display:block}
+.rtl #inestimable .inestimable-content img{}
+#inestimable .inestimable-content img+div{margin-right:0;margin-left:5rem}
+.rtl #inestimable .inestimable-content img+div{margin-right:5rem;margin-left:0}
+
+#inestimable .field{border-radius:3px;overflow:hidden}
+#inestimable .field label{background-color:#fff}
+#inestimable .field input{padding:10px 5px;border:none;background-color:#fff;direction:ltr;color:#404040;height:50px;line-height:50px}
+#inestimable .field button{background-color:#32ABA7;color:#f4f4f4;border:none;outline:none}
+#inestimable .field button.disabled{background-color:#ebebeb;color:#6e6f6f}
+
+#inestimable.verify{background-color:#555523}
+#inestimable.complete{background-color:#055222}
+#inestimable.special{background-color:#224555}
+
+/*#inestimable{position:relative;background-color:#582C2C;height:200px;padding:25px 100px;color:#fff;margin:0 0 -2px;width:auto;z-index:1}
 #inestimable .inside{position:absolute;top:0;height:100%;width:auto}
 #inestimable .inside.left{left:0}
 #inestimable .inside.right{right:0}
@@ -815,10 +839,10 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 #inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 #inestimable:hover img{-webkit-filter:none;filter:none}
 
-#inestimable .left-mobile-border,#inestimable .right-mobile-border {display: none;}
+#inestimable .left-mobile-border,#inestimable .right-mobile-border {display:none;}
 #inestimable .left-desktop-border,#inestimable .right-desktop-border{position:absolute;top:0;bottom:0;height:100%;width:auto}
 #inestimable .left-desktop-border{left:0}
-#inestimable .right-desktop-border{right:0}
+#inestimable .right-desktop-border{right:0}*/
 
 .special-button{position:relative;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;font-size:20px}
 .rtl .special-button{font-size:18px}

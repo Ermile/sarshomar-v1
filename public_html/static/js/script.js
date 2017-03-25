@@ -3233,6 +3233,23 @@ function setCustomValidityMsg()
 }
 
 
+function inestimable()
+{
+	$(document).on('input', '#inestimable .field input', function()
+	{
+		var field = $(this).parents('.field');
+		var len = $(this).val().length;
+		if (len >= 7)
+		{
+			field.find('button').removeClass('disabled');
+		}
+		else
+		{
+			field.find('button').addClass('disabled');
+		}
+	});
+}
+
 
 function loading_page(_status)
 {
@@ -3267,6 +3284,8 @@ function runAllScripts()
 	hashChanged();
 	// load needed js file
 	loadFiles();
+	// inestimable
+	inestimable();
 }
 
 

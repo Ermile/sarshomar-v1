@@ -13,6 +13,7 @@ class view extends \lib\mvc\view
 
 		$this->data->page['desc']    = $this->data->site['desc']. ' '.T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");
 
+		$this->data->template['inestimable'] = 'content/template/inestimable.html';
 		$this->data->template['register']    = 'content/template/register.html';
 		$this->data->template['social']      = 'content/template/social.html';
 		$this->data->template['share']       = 'content/template/share.html';
