@@ -38,6 +38,10 @@ class message
 			$title = '<a href="'.$url.'">📌</a> ' . $title;
 		}
 		$this->message['title'] = $title;
+		if(isset($this->class->query_result['description']) && $this->class->query_result['description'])
+		{
+			$this->message['desc'] = $this->class->query_result['description'] ."\n";
+		}
 	}
 
 	public function add_poll_chart($_answer_id = null)
@@ -104,10 +108,6 @@ class message
 		$poll_list = '';
 		$sum = $this->sum_stats();
 		$sum = $sum['sum_answers'];
-		if(isset($this->class->query_result['description']) && $this->class->query_result['description'])
-		{
-			$poll_list .= "\n" . $this->class->query_result['description'] ."\n";
-		}
 		if($this->class->poll_type == 'emoji')
 		{
 			if(!empty(trim($poll_list)))
