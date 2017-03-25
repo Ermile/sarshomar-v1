@@ -88,6 +88,8 @@
 
 .poll-panel {display: none;}
 
+	#inestimable.special h4{font-size:3em}
+
 
 }
 
@@ -209,6 +211,8 @@
 
  #inestimable .inestimable-content img{display:none}
  #inestimable .inestimable-content img+div{margin:0 !important}
+
+ #inestimable.special h4{font-size:1.8em}
 
 	footer #footer-nav a {padding: .6em .5em;font-size: .9em;font-weight: 500;}
  footer #footer-nav .eco{height:60px}
