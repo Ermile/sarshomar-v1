@@ -404,6 +404,8 @@ footer #footer-nav a {padding: .6em .5em;font-size: .9em;font-weight: 500;}
 	#logo-main .brand-blueprint{margin-bottom:2em}
  #logo-main .brand-colors ul[class*="brand-color"]{padding-left:1em;margin-left:0}
  #logo-main .brand-colors ul[class*="brand-color"]:not(:last-of-type){margin-bottom:2em}
+
+ .poll-panel{display:none}
 }
 
 
