@@ -10,6 +10,15 @@ trait get_transactions
 	{
 		$user_id = self::$private_user_id;
 		$post_id = self::$private_poll_id;
+		if(!$user_id)
+		{
+			return false;
+		}
+		if(!$post_id)
+		{
+			return false;
+		}
+
 		$query =
 		"
 			SELECT transactions.*, units.title AS `unit_title`
