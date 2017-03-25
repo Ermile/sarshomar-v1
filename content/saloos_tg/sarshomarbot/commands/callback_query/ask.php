@@ -249,7 +249,7 @@ class ask
 				$date_now = new \DateTime("now", new \DateTimeZone('Europe/London'));
 				$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now->getTimestamp()) . " GMT";
 			}
-			$maker->message->message['options'] .= " | 🕰 " . str_replace("-", "/", $my_date);
+			$maker->message->message['options'] .= " | 🕰 <code>" . str_replace("-", "/", $my_date) . "</code>";
 		}
 
 		$return = $maker->make();
