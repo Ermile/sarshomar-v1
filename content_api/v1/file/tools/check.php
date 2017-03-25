@@ -59,7 +59,7 @@ trait check
 	public static function remaining($_user_id)
 	{
 		$MB = 1 * 1000000; // 1 MB
-		$default_user_size = $MB;
+		$default_user_size = $MB * 10; // 10 MB for test
 		$permission = new \lib\utility\permission;
 
 		if($permission->access('u', 'upload_1000_mb', 'view'))
