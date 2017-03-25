@@ -74,9 +74,6 @@ class spammer
 			$md5_msg = md5(bot::$hook['message']['text']);
 			if($meta['text'] == $md5_msg && $meta['text_time'] + 5 > microtime(true))
 			{
-				bot::sendResponse([
-					'text' => T_("صبور باشید و به آرامی پیغام خود را ارسال کنید!")
-					]);
 				return true;
 			}
 		}

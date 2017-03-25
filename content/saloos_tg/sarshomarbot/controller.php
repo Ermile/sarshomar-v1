@@ -91,7 +91,7 @@ class controller extends \lib\mvc\controller
 				$_args['parse_mode'] = "HTML";
 			}
 
-			$last_micro_time = date();
+			$last_micro_time = time();
 			if(self::$last_message !== false && in_array($method, ['sendmessage', 'editmessagetext']))
 			{
 				if($last_micro_time - self::$last_message < 1.1)

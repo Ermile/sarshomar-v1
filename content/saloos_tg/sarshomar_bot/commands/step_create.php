@@ -111,6 +111,11 @@ class step_create
 				'method' => 'sendMessage'
 				]);
 
+			bot::sendResponse([
+				'action' => 'upload_'.$file_content[1],
+				'method' => 'sendChatAction'
+				]);
+
 			$file_id = $file['file_id'];
 			$get_file = bot::getFile(['file_id' => $file_id]);
 			$file_path = $get_file['result']['file_path'];
