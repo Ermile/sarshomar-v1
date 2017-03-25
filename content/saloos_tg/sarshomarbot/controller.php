@@ -60,9 +60,10 @@ class controller extends \lib\mvc\controller
 			{
 				$method = $_args['method'];
 			}
+			$method = strtolower($method);
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
-			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $method != 'answerCallbackQuery')
+			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $method != 'answercallbackquery')
 			{
 				if(isset($_args['results']))
 				{
@@ -91,7 +92,7 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = date();
-			if(self::$last_message !== false)
+			if(self::$last_message !== false && in_array($method, ['sendmessage', 'editmessagetext']))
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
