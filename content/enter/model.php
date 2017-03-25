@@ -61,8 +61,7 @@ class model extends \mvc\model
 	{
 		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
 		{
-			// $this->is_guest = true;
-			$this->is_guest = false;
+			$this->is_guest = true;
 		}
 
 		if($this->login())
