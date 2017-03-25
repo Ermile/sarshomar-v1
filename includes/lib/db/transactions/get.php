@@ -8,6 +8,7 @@ trait get
 {
 	public static $fields =
 	"
+		transactions.id             			AS `id`,
 		transactions.title              		AS `title`,
 		-- transactions.transactionitem_id 		AS `transactionitem_id`,
 		-- transactions.user_id            		AS `user_id`,

@@ -16,6 +16,7 @@ trait ready
 	use get_fields;
 	use get_options;
 	use get_answers;
+	use get_transactions;
 
 	/**
 	 * ready poll record to show
@@ -47,9 +48,10 @@ trait ready
 			'load_in_site'       => false,
 		];
 		// merge settings
-		$_options = array_merge($default_options, $_options);
+		$_options       = array_merge($default_options, $_options);
 		self::$_options = $_options;
-		$poll_id = false;
+		$poll_id        = false;
+
 		// encode id
 		if(array_key_exists('id', $_poll_data))
 		{
@@ -217,6 +219,11 @@ trait ready
 
 		$short_url = self::host('without_language'). '/$'. $_poll_data['id'];
 		$_poll_data['short_url'] = $short_url;
+
+		if($_options['run_options'])
+		{
+			self::get_transactions($_poll_data);
+		}
 
 		// sort poll data
 		krsort($_poll_data);

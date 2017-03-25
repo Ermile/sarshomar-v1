@@ -244,7 +244,7 @@ trait set
 			'meta'               => null,
 			'desc'               => null,
 			'related_user_id'    => null,
-			'parent_id'          => null,
+			'parent_id'          => (isset($_options['parent_id'])) ? $_options['parent_id'] : null,
 			'finished'           => 'no',
 		];
 		$insert = self::insert($arg);

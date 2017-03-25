@@ -214,6 +214,13 @@ trait money
 			{
 				$caller = $transactions_search[0]['unit'];
 			}
+
+			$parent_id = null;
+			if(isset($transactions_search[0]['id']))
+			{
+				$parent_id = $transactions_search[0]['id'];
+			}
+
 			$minus = false;
 			if(isset($transactions_search[0]['plus']))
 			{
@@ -224,9 +231,10 @@ trait money
 				db\transactions::set(
 					"remove:answer:poll:$caller", $_args['user_id'],
 					[
-						'minus'   => $minus,
-						'post_id' => $_args['poll_id'],
-						'debug'   => false,
+						'minus'     => $minus,
+						'post_id'   => $_args['poll_id'],
+						'debug'     => false,
+						'parent_id' => $parent_id,
 					]
 				);
 			}
