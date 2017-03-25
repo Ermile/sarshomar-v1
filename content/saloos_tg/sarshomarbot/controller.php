@@ -29,7 +29,7 @@ class controller extends \lib\mvc\controller
 			}
 			else
 			{
-				@file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", json_encode(error_get_last()));
+				handle::send_log(json_encode(error_get_last()), 'error');
 			}
 		});
 		set_error_handler(function(...$_args) {
@@ -52,9 +52,17 @@ class controller extends \lib\mvc\controller
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
+			if(!isset($_args['method']))
+			{
+				$method = $_name;
+			}
+			else
+			{
+				$method = $_args['method'];
+			}
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
-			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $_args['method'] != 'answerCallbackQuery')
+			if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com' && $method != 'answerCallbackQuery')
 			{
 				if(isset($_args['results']))
 				{

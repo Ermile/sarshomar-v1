@@ -121,10 +121,10 @@ class step_create_select
 	public static function error()
 	{
 		debug::$status = 1;
-		step::stop();
+		// step::stop();
 		return [
 			'text' => debug::compile()['messages']['error'][0]['title'],
-			'reply_markup' => menu::main(true)
+			// 'reply_markup' => menu::main(true)
 		];
 	}
 }
