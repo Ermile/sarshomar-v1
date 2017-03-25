@@ -64,7 +64,7 @@ private function transtext()
 	//-------------------------------------------------------content\home\display.html
 	echo T_("Focus on your question. Do not be too concerned about how to ask or analyze.");// Line 9
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
-	echo T_("Try Before Register");                                                   // Line 68
+	echo T_("Try Before Register");                                                   // Line 48
 	echo T_("To enter into the Sarshomar society win iPhone");                        // Line 17
 	echo T_("Sarshomar Society Distributtion");                                       // Line 32
 	echo T_("Organizations and Companies");                                           // Line 10
@@ -200,6 +200,14 @@ private function transtext()
 	echo T_("violence");                                                              // Line 617
 	echo T_("pornography");                                                           // Line 618
 	echo T_("other");                                                                 // Line 389 Seperate
+	echo T_("People");                                                                // Line 658
+	echo T_("You");                                                                   // Line 659
+	echo T_("Lottery");                                                               // Line 671
+	echo T_("Trash");                                                                 // Line 114
+	echo T_("Delete");                                                                // Line 699
+	echo T_("Stop");                                                                  // Line 24 Seperate
+	echo T_("Pause");                                                                 // Line 22 Seperate
+	echo T_("Draft");                                                                 // Line 160
 
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
@@ -231,7 +239,7 @@ private function transtext()
 	echo T_("Learn More");                                                            // Line 32
 	echo T_("Terms of Service");                                                      // Line 34
 	echo T_("Privacy Policy");                                                        // Line 11
-	echo T_("Changelog");                                                             // Line 10
+	echo T_("Changelog");                                                             // Line 4
 	echo T_("Support");                                                               // Line 41
 	echo T_("Contact us");                                                            // Line 43
 	echo T_("Latest News");                                                           // Line 48
@@ -256,14 +264,14 @@ private function transtext()
 	echo T_("Prize");                                                                 // Line 82
 
 	//--------------------------------------------------content\template\register.html
-	echo T_("Sarshomar Vision");                                                      // Line 28
-	echo T_("Ask Anyone Anywhere");                                                   // Line 29
-	echo T_("We are inestimable");                                                    // Line 62
-	echo T_("Ask and Answer with Sarshomar");                                         // Line 40
-	echo T_("Sarshomar is about to launch...");                                       // Line 41
-	echo T_("Inspection and Answer");                                                 // Line 65
-	echo T_("Then if we were inestimable, Signup!");                                  // Line 66
-	echo T_("Verify account");                                                        // Line 54
+	echo T_("Sarshomar Vision");                                                      // Line 13
+	echo T_("Ask Anyone Anywhere");                                                   // Line 14
+	echo T_("We are inestimable");                                                    // Line 42
+	echo T_("Ask and Answer with Sarshomar");                                         // Line 24
+	echo T_("Sarshomar is about to launch...");                                       // Line 25
+	echo T_("Inspection and Answer");                                                 // Line 45
+	echo T_("Then if we were inestimable, Signup!");                                  // Line 46
+	echo T_("Verify account");                                                        // Line 36
 
 	//-----------------------------------------------------content\template\share.html
 	echo T_("Twitter");                                                               // Line 3
@@ -310,15 +318,18 @@ private function transtext()
 
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("in preparation");                                                        // Line 4
-	echo T_("We are Developers, please wait!");                                       // Line 22
-	echo T_("Sarshomar's version 1 released");                                        // Line 30
-	echo T_("Finally Sarshomar logo is accepted and we started branding");            // Line 31
-	echo T_("Beta version of Sarshomar released");                                    // Line 36
-	echo T_("Alfa version of Sarshomar is ready");                                    // Line 40
-	echo T_("Demo version of Sarshomar released");                                    // Line 44
-	echo T_("Sarshomar is ready to start");                                           // Line 48
-	echo T_("The name of project selected as Sarshomar and <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a> domains registered. ");// Line 52
-	echo T_("We were born to do Best!");                                              // Line 57
+	echo T_("We are Developers, please wait!");                                       // Line 14
+	echo T_("Version 1 of sarshomar released");                                       // Line 20
+	echo T_("Delta version of sarshomar released");                                   // Line 25
+	echo T_("Gamma version of sarshomar released");                                   // Line 30
+	echo T_("Finally Sarshomar logo is accepted and we started branding");            // Line 35
+	echo T_("Sarshomar Logo");                                                        // Line 35
+	echo T_("Beta version of Sarshomar released");                                    // Line 41
+	echo T_("Alfa version of Sarshomar is ready");                                    // Line 45
+	echo T_("Demo version of Sarshomar released");                                    // Line 49
+	echo T_("Sarshomar is ready to start");                                           // Line 53
+	echo T_("The name of project selected as Sarshomar and <a href='https://sarshomar.com'>Sarshomar.com</a> and <a href='http://sarshomar.ir'>Sarshomar.ir</a> domains registered. ");// Line 57
+	echo T_("We were born to do Best!");                                              // Line 62
 
 	//------------------------------------------------content\template\static\eco.html
 	echo T_("We, human beings, do not pay due attention to our environment, this invaluable heritage, and sometimes destroy it either knowingly or unknowingly.");// Line 14
@@ -595,8 +606,7 @@ private function transtext()
 	echo T_("Total");                                                                 // Line 5
 	echo T_("Rejected");                                                              // Line 17
 	echo T_("Unapproved");                                                            // Line 26
-	echo T_("Spam");                                                                  // Line 35
-	echo T_("Trash");                                                                 // Line 114
+	echo T_("Spam");                                                                  // Line 8
 	echo T_("Return to admin area");                                                  // Line 49
 
 	//----------------------------------------content_admin\exchangerates\display.html
@@ -641,7 +651,6 @@ private function transtext()
 	echo T_("Published");                                                             // Line 66
 	echo T_("Untitled");                                                              // Line 135
 	echo T_("Summary");                                                               // Line 342
-	echo T_("Draft");                                                                 // Line 160
 	echo T_("Persian");                                                               // Line 172
 	echo T_("parent");                                                                // Line 178
 	echo T_("sarshomar");                                                             // Line 181
@@ -668,7 +677,9 @@ private function transtext()
 	echo T_("Sarshomar poll");                                                        // Line 4
 	echo T_("Logitems");                                                              // Line 6
 	echo T_("Logs");                                                                  // Line 7
-	echo T_("Span");                                                                  // Line 8
+	echo T_("Transaction Items");                                                     // Line 9
+	echo T_("Exchange rates");                                                        // Line 10
+	echo T_("Units");                                                                 // Line 27
 
 	//----------------------------------------------content_admin\sitemap\display.html
 	echo T_("Create sitemap automatically by click on this page");                    // Line 6
@@ -702,7 +713,6 @@ private function transtext()
 	echo T_("Enddate");                                                               // Line 100
 
 	//------------------------------------------------content_admin\units\display.html
-	echo T_("Units");                                                                 // Line 27
 
 	//-------------------------------------------------content_api\v1\doc\display.html
 	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 3
@@ -1009,18 +1019,18 @@ private function transtext()
 	echo T_("Article");                                                               // Line 31
 	echo T_("Short URL");                                                             // Line 76
 	echo T_("Prize to every one");                                                    // Line 84
-	echo T_("Hide Results");                                                          // Line 92
+	echo T_("Hide Results");                                                          // Line 134
 	echo T_("Show Results");                                                          // Line 97
 	echo T_("Price");                                                                 // Line 110
 	echo T_("Toman");                                                                 // Line 6
 	echo T_("Register Question");                                                     // Line 114
 	echo T_("Society");                                                               // Line 119
-	echo T_("Total Price");                                                           // Line 134
-	echo T_("Cash");                                                                  // Line 139
-	echo T_("Balance");                                                               // Line 145
-	echo T_("Charge Account");                                                        // Line 151
-	echo T_("Publish it");                                                            // Line 152
-	echo T_("Draft it");                                                              // Line 152
+	echo T_("Total Price");                                                           // Line 139
+	echo T_("Cash");                                                                  // Line 144
+	echo T_("Balance");                                                               // Line 150
+	echo T_("Charge Account");                                                        // Line 156
+	echo T_("Publish it");                                                            // Line 157
+	echo T_("Draft it");                                                              // Line 157
 
 	//---------------------------------------------------------content_u\add\tree.html
 
@@ -1147,8 +1157,6 @@ private function transtext()
 	echo T_("Sarshomar Admin1");                                                      // Line 18 Seperate
 	echo T_("Sarshomar Writer1");                                                     // Line 19 Seperate
 	echo T_("Guest Session");                                                         // Line 20 Seperate
-	echo T_("Pause");                                                                 // Line 22 Seperate
-	echo T_("Stop");                                                                  // Line 24 Seperate
 	echo T_("site_guest");                                                            // Line 28 Seperate
 	echo T_("api_guest");                                                             // Line 29 Seperate
 	echo T_("telegram_guest");                                                        // Line 30 Seperate
