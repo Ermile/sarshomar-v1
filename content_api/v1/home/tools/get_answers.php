@@ -51,7 +51,11 @@ trait get_answers
 								$attachment                         = self::get_file_url(['attachment' => $attachment]);
 								$show_answers[$key]['file']['id']   = \lib\utility\shortURL::encode($value);
 								$show_answers[$key]['file']['mime'] = $attachment['mime'];
+								$show_answers[$key]['file']['size'] = $attachment['size'];
+								$show_answers[$key]['file']['type'] = $attachment['type'];
+								$show_answers[$key]['file']['ext']  = $attachment['ext'];
 								$show_answers[$key]['file']['url']  = $attachment['url'];
+								$show_answers[$key]['file']['name'] = $attachment['name'];
 							}
 							break;
 

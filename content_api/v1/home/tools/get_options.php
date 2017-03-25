@@ -88,6 +88,10 @@ trait get_options
 				$attachment                 = self::get_file_url(['attachment' => $attachment]);
 				$_poll_data['file']['type'] = $attachment['type'];
 				$_poll_data['file']['url']  = $attachment['url'];
+				$_poll_data['file']['mime'] = $attachment['mime'];
+				$_poll_data['file']['size'] = $attachment['size'];
+				$_poll_data['file']['ext']  = $attachment['ext'];
+				$_poll_data['file']['name'] = $attachment['name'];
 			}
 
 			if(!isset($_poll_data['file']['url']))
@@ -230,6 +234,8 @@ trait get_options
 		$file_type     = null;
 		$file_mime     = null;
 		$file_status   = 'draft';
+		$file_size     = 0;
+		$file_ext      = null;
 
 		if(isset($_args['attachment']))
 		{
@@ -255,6 +261,16 @@ trait get_options
 			if(isset($_args['attachment']['meta']['mime']))
 			{
 				$file_mime = $_args['attachment']['meta']['mime'];
+			}
+
+			if(isset($_args['attachment']['meta']['size']))
+			{
+				$file_size = $_args['attachment']['meta']['size'];
+			}
+
+			if(isset($_args['attachment']['meta']['ext']))
+			{
+				$file_ext = $_args['attachment']['meta']['ext'];
 			}
 
 
@@ -306,7 +322,15 @@ trait get_options
 			$file_url = self::host('file'). $file_url;
 		}
 
-		return ['url' => $file_url, 'type' => $file_type, 'mime' => $file_mime];
+		return
+		[
+			'url'  => $file_url,
+			'type' => $file_type,
+			'mime' => $file_mime,
+			'size' => (int) $file_size,
+			'ext'  => $file_ext,
+			'name' => basename($file_url),
+		];
 	}
 
 
