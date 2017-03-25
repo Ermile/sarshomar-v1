@@ -86,6 +86,8 @@ trait get_options
 			{
 				$attachment                 = \lib\db\polls::get_poll($value['option_value']);
 				$attachment                 = self::get_file_url(['attachment' => $attachment]);
+
+				$_poll_data['file']['id']   = \lib\utility\shortURL::encode($value['option_value']);
 				$_poll_data['file']['type'] = $attachment['type'];
 				$_poll_data['file']['url']  = $attachment['url'];
 				$_poll_data['file']['mime'] = $attachment['mime'];
