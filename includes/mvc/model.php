@@ -7,7 +7,8 @@ class model extends \lib\mvc\model
 
 	public function mvc_login_by_remember()
 	{
-		$this->login_by_remember();
+		$url = \lib\utility\safe::safe($_SERVER['REQUEST_URI']);
+		$this->login_by_remember($url);
 	}
 }
 ?>

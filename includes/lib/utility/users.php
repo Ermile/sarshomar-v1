@@ -71,6 +71,7 @@ class users
 			'ref'         => null,
 			'type'        => null,
 			'port'        => null,
+			'user_verify' => null,
 			'subport'     => null,
 			'insert_id'   => null,
 		];
@@ -92,6 +93,11 @@ class users
 		if($_args['port'] && in_array($_args['port'], self::$user_port))
 		{
 			$user_update['user_port'] = $_args['port'];
+		}
+
+		if($_args['user_verify'] && in_array($_args['user_verify'], self::$user_verify))
+		{
+			$user_update['user_verify'] = $_args['user_verify'];
 		}
 
 		if($_args['port'] === 'telegram' || $_args['port'] === 'telegram_guest')
@@ -176,9 +182,25 @@ class users
 			$user_update['user_status'] = 'active';
 		}
 
+		if($_args['port'] && $_args['port'] != self::get_user_port($_args['user_id']))
+		{
+			$user_update['user_port'] = $_args['port'];
+		}
+
+		$user_verify = self::get_user_verify($_args['user_id']);
+
 		if($_args['mobile'])
 		{
-			$user_update['user_verify'] = 'mobile';
+			switch ($user_verify)
+			{
+				case 'complete':
+					// no thing!
+					break;
+
+				default:
+					$user_update['user_verify'] = 'mobile';
+					break;
+			}
 		}
 
 		if(!empty($user_update))

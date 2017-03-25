@@ -12,8 +12,13 @@ trait login
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function find_redirect_url()
+	public function find_redirect_url($_url = null)
 	{
+		if($_url)
+		{
+			return $_url;
+		}
+
 		$url = \lib\define::get_current_language_string();
 		if(utility::get('referer'))
 		{
@@ -46,7 +51,7 @@ trait login
 	/**
 	 * login
 	 */
-	public function login_set()
+	public function login_set($_url = null)
 	{
 		$myfields =
 		[
@@ -74,13 +79,21 @@ trait login
 			\lib\utility\users::verify($args);
 		}
 
-		if(\lib\utility\users::get_status($this->user_id) === 'awaiting')
-		{
-			\lib\db\users::update(['user_status' => 'active'], $this->user_id);
-		}
+		$user_verify =
+		[
+			'mobile'   => $this->mobile,
+			'ref'      => null,
+			'port'     => 'site',
+			'subport'  => null,
+			'user_id'  => $this->user_id,
+			'language' => \lib\define::get_language(),
+		];
+
+		\lib\utility\users::verify($user_verify);
+
 
 		debug::msg('direct', true);
-		$this->redirector($this->find_redirect_url())->redirect();
+		$this->redirector($this->find_redirect_url($_url))->redirect();
 	}
 
 
@@ -171,7 +184,7 @@ trait login
 	/**
 	 * login whit remember
 	 */
-	public function login_by_remember()
+	public function login_by_remember($_url = null)
 	{
 		if(\lib\utility::cookie('remember_me') && !$this->login())
 		{
@@ -185,8 +198,9 @@ trait login
 			if($get && isset($get['user_id']))
 			{
 				$this->user_id   = $get['user_id'];
-				$this->user_data = \lib\db\users::get($get['user_id']);
-				$this->login_set();
+				$this->user_data = \lib\utility\users::get($get['user_id']);
+				$this->mobile    = \lib\utility\users::get_mobile($get['user_id']);
+				$this->login_set($_url);
 				return true;
 			}
 		}
