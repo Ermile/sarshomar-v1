@@ -6,26 +6,11 @@ use \lib\db;
 
 trait pin
 {
-	public function step_pin()
+	public function step_pin($_way = null)
 	{
 		if($this->verify_pin_check())
 		{
-			if($this->verify_call_mobile())
-			{
-				// call was send
-				$this->step = 'code';
-				$this->wait = 5;
-				debug::title(T_("A verification code will be sent soon"));
-			}
-			else
-			{
-				$this->log('user:verification:invalid:mobile');
-				$this->wait = $this->log_sleep_code('invalid:mobile');
-				// this mobile is not a valid mobile
-				// check by kavenegar
-				$this->step = 'mobile';
-				debug::title(T_("Please enter a valid mobile number"));
-			}
+			$this->step_mobile($_way);
 		}
 		else
 		{

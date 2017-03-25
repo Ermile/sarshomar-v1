@@ -14,6 +14,7 @@ class model extends \mvc\model
 	public $code              = null;
 	public $user_data         = [];
 	public $user_id           = null;
+	public $guest_user_id     = null;
 	public $signup            = false;
 	public $telegram_chat_id  = null;
 	public $telegram_detail   = [];
@@ -50,6 +51,7 @@ class model extends \mvc\model
 	use tools\step\code;
 	use tools\step\pin;
 	use tools\step\resend;
+	use tools\step\call_mobile;
 
 
 	/**
@@ -131,17 +133,17 @@ class model extends \mvc\model
 		}
 
 		// check input and get the step
-		$check_input = $this->check_input();
+		$get_step = $this->check_input();
 
 		// load data of users by search mobile
-		if($check_input)
+		if($get_step)
 		{
 			$mobile = utility::post('mobile');
 			if(ctype_digit($mobile))
 			{
 				$mobile          = utility\filter::mobile($mobile);
 				$this->mobile    = $mobile;
-				$this->user_data = \ilib\db\users::get_by_mobile(utility\filter::mobile($this->mobile));
+				$this->user_data = \ilib\db\users::get_by_mobile($this->mobile);
 				$this->signup    = true;
 
 				if(isset($this->user_data['id']))
@@ -162,10 +164,8 @@ class model extends \mvc\model
 					$this->user_data['user_status'] === 'active'
 				 )
 				{
-					$this->signup  = false;
 					$this->mobile  = $this->user_data['user_mobile'];
 					$this->user_id = $this->user_data['id'];
-
 				}
 				else
 				{
@@ -180,16 +180,17 @@ class model extends \mvc\model
 			}
 		}
 
-		switch ($check_input)
+		switch ($get_step)
 		{
 			// input in mobile
 			case 'mobile':
-				$valid = $this->check_valid_mobile_username();
-				$this->step_mobile($valid);
+				$way = $this->find_send_way();
+				$this->step_mobile($way);
 				break;
 
 			case 'pin':
-				$this->step_pin();
+				$way = $this->find_send_way('pin');
+				$this->step_pin($way);
 				break;
 
 			case 'code':

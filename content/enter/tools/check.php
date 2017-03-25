@@ -107,7 +107,7 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public function check_valid_mobile_username()
+	public function find_send_way($_current = null)
 	{
 		$return = 'code';
 		if(!empty($this->user_data))
@@ -123,7 +123,15 @@ trait check
 					$this->user_data['user_pass']
 				  )
 				{
-					return 'pin';
+					if($_current === 'pin')
+					{
+						// current way is pin
+						// need to other way
+					}
+					else
+					{
+						return 'pin';
+					}
 				}
 			}
 
@@ -152,7 +160,15 @@ trait check
 				{
 					$this->telegram_detail['telegram_start_status'] =  $telegram_start_status;
 					$this->telegram_chat_id = $telegram_id['value'];
-					return 'telegram';
+					if($_current === 'telegram')
+					{
+						// current way is telegram
+						// need to other way
+					}
+					else
+					{
+						return 'telegram';
+					}
 				}
 			}
 

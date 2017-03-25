@@ -34,29 +34,22 @@ trait signup
 			return false;
 		}
 
-		if($this->is_guest)
+
+		$signup =
+		[
+			'mobile'     => $this->mobile,
+			'password'   => null,
+			'permission' => null,
+			'port'       => 'site'
+		];
+
+		if(!$this->is_guest)
 		{
-			$user_id = $this->login('id');
-			$update_user =
-			[
-				'user_mobile' => $this->mobile,
-				'user_port'   => 'site',
-				'user_verify' => 'mobile',
-			];
-			\lib\db\users::update($update_user, $user_id);
-		}
-		else
-		{
-			$signup =
-			[
-				'mobile'     => $this->mobile,
-				'password'   => null,
-				'permission' => null,
-				'port'       => 'site'
-			];
 			$_SESSION['first_signup'] = true;
-			$user_id  = \lib\db\users::signup($signup);
 		}
+
+		$user_id  = \lib\db\users::signup($signup);
+
 		return $user_id;
 	}
 }
