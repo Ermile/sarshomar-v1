@@ -22,7 +22,7 @@ class step_create_select
 	}
 
 
-	public static function step1($_text = null)
+	public static function step1($_text = null, $_error = null)
 	{
 		$poll_id = session::get('poll');
 		$maker = new make_view($poll_id);
@@ -98,6 +98,12 @@ class step_create_select
 				"callback_data" => 'create/cancel',
 			]
 		]);
+
+		if(is_string($_error))
+		{
+			$make->message->add('error', "\n" . "⭕ " . $_error);
+		}
+
 		$maker->message->add('tag', utility::tag(T_("Create new poll")));
 
 		if($_text)
@@ -110,7 +116,10 @@ class step_create_select
 			utility::make_request(['id' => $poll_id, 'answers' => $answers]);
 			main::$controller->model()->poll_add(['method' => 'patch']);
 
-			if(debug::$status === 0) return self::error();
+			if(debug::$status === 0)
+			{
+				return self::step1(null, self::error());
+			}
 		}
 
 		$return = $maker->make();
@@ -121,11 +130,7 @@ class step_create_select
 	public static function error()
 	{
 		debug::$status = 1;
-		// step::stop();
-		return [
-			'text' => debug::compile()['messages']['error'][0]['title'],
-			// 'reply_markup' => menu::main(true)
-		];
+		return debug::compile()['messages']['error'][0]['title'];
 	}
 }
 ?>

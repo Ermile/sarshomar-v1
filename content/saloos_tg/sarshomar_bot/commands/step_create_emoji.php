@@ -102,7 +102,10 @@ class step_create_emoji
 			utility::make_request(['id' => $poll_id, 'answers' => $answers]);
 			main::$controller->model()->poll_add(['method' => 'patch']);
 
-			if(debug::$status === 0) return self::error();
+			if(debug::$status === 0)
+			{
+				return self::step1(null, [self::error()]);
+			}
 		}
 
 		$return = $maker->make();
@@ -113,11 +116,7 @@ class step_create_emoji
 	public static function error()
 	{
 		debug::$status = 1;
-		// step::stop();
-		return [
-			'text' => debug::compile()['messages']['error'][0]['title'],
-			// 'reply_markup' => menu::main(true)
-		];
+		return debug::compile()['messages']['error'][0]['title'];
 	}
 }
 ?>

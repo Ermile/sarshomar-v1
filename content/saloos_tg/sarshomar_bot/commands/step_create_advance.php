@@ -111,16 +111,5 @@ class step_create_advance
 		$return["response_callback"] = utility::response_expire('create');
 		return $return;
 	}
-
-	public static function error()
-	{
-		debug::$status = 1;
-		// step::stop();
-		return [
-			'text' => debug::compile()['messages']['error'][0]['title'],
-			// 'reply_markup' => menu::main(true)
-		];
-	}
-
 }
 ?>
