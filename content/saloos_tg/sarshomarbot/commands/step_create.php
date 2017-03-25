@@ -119,12 +119,18 @@ class step_create
 			utility::make_request(['id'	=> $poll_id]);
 			$file_uploaded = \lib\main::$controller->model()->upload_file(['url' => $file_link]);
 
-			if(debug::$status === 0) return self::error();
+			if(debug::$status === 0)
+			{
+				return callback_query\create::upload_file(null, null, self::error());
+			}
 
 			utility::make_request(["id" => $poll_id,"file" => $file_uploaded['code']]);
 			\lib\main::$controller->model()->poll_add(['method' => 'patch']);
 
-			if(debug::$status === 0) return self::error();
+			if(debug::$status === 0)
+			{
+				return callback_query\create::upload_file(null, null, self::error());
+			}
 
 			step::plus();
 			return self::step4();
@@ -180,11 +186,7 @@ class step_create
 	public static function error()
 	{
 		debug::$status = 1;
-		// step::stop();
-		return [
-			'text' => debug::compile()['messages']['error'][0]['title'],
-			// 'reply_markup' => menu::main(true)
-		];
+		return debug::compile()['messages']['error'][0]['title'];
 	}
 }
 ?>

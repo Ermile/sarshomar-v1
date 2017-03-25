@@ -40,11 +40,15 @@ class create
 		return $result;
 	}
 
-	public static function upload_file($_query = null, $_data_url = null)
+	public static function upload_file($_query = null, $_data_url = null, $_error = null)
 	{
 		$make = new make_view(session::get('poll'));
 		$make->message->add_title();
 		$make->message->add('status', "\n" . "📍📍 " . T_("Add multimedia content including image, movie, audio or file."));
+		if(is_string($_error))
+		{
+			$make->message->add('error', "\n" . "⭕ " . $_error);
+		}
 		$make->message->add('tag', utility::tag(T_("Create new poll")));
 		$make->inline_keyboard->add([
 				[
