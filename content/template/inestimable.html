@@ -15,7 +15,7 @@
  {%else%}
   {%if login and login.status == 'active'%}
    <img height="150" class="flip-rtl" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
-   <div class="flex f-column justify-between align-start inestimable-inner">
+   <div class="flex f-column justify-center align-start inestimable-inner">
     <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
     <h4>{%trans "Sarshomar is about to launch..."%}</h4>
    </div>
@@ -23,7 +23,7 @@
    <img height="150" class="flip-rtl" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
    <div class="flex f-column justify-around align-start inestimable-inner">
     <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-    <form class="f fix field" method="GET" action="{{url.base}}/enter">
+    <form class="f fix field" data-method="GET" data-action="{{url.base}}/enter">
      <label class="c2 flex justify-center align-center icon-mobile2 icon-2x"></label>
      <input class="c8" type='tel' name='mobile' placeholder='{%trans "Mobile"%}' maxlength="15">
      <button class="c2 flex justify-center align-center icon-check disabled"></button>
