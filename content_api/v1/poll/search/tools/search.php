@@ -202,6 +202,53 @@ trait search
 			}
 		}
 
+		if(utility::isset_request('sort'))
+		{
+			$avalible_sort = ['id', 'rank', 'vote', 'date', 'comment', 'title'];
+			if(!in_array(utility::request('sort'), $avalible_sort))
+			{
+				debug::error(T_("Invalid parameter sort"), 'sort', 'arguments');
+				return false;
+			}
+			$sort_field = 'id';
+			switch (utility::request('sort'))
+			{
+				case 'id':
+					$sort_field = 'posts.id';
+					break;
+				case 'rank':
+					$sort_field = 'posts.post_rank';
+					break;
+				case 'vote':
+					$sort_field = 'count_vote';
+					break;
+				case 'date':
+					$sort_field = 'posts.post_createdate';
+					break;
+				case 'comment':
+					$sort_field = 'count_comment';
+					break;
+				case 'title':
+					$sort_field = 'posts.post_title';
+					break;
+				default:
+					$sort_field = 'posts.id';
+					break;
+			}
+			$meta['sort']        = $sort_field;
+		}
+
+
+		if(utility::isset_request('order'))
+		{
+			$avalible_order = ['asc', 'desc', 'ASC', 'DESC'];
+			if(!in_array(utility::request('order'), $avalible_order))
+			{
+				debug::error(T_("Invalid parameter order"), 'order', 'arguments');
+				return false;
+			}
+			$meta['order']       = utility::request('order');
+		}
 
 		$meta['login']       = $this->user_id;
 		$meta['api_mode']    = $this->api_mode;
@@ -213,7 +260,7 @@ trait search
 			$meta['admin']       = utility::request('admin') ? true : false;
 			if($meta['admin'])
 			{
-				$meta['limit']       = utility::isset_request('admin') ? utility::request('limit') : $meta['limit'];
+				$meta['limit']   = utility::isset_request('admin') ? utility::request('limit') : $meta['limit'];
 			}
 		}
 

@@ -156,11 +156,25 @@ trait search
 		$order = null;
 		if($_options['get_last'])
 		{
-			$order = " ORDER BY posts.id DESC ";
+			if($_options['sort'])
+			{
+				$order = " ORDER BY $_options[sort] $_options[order] ";
+			}
+			else
+			{
+				$order = " ORDER BY posts.id DESC ";
+			}
 		}
 		else
 		{
-			$order = " ORDER BY posts.id $_options[order] ";
+			if($_options['sort'])
+			{
+				$order = " ORDER BY $_options[sort] $_options[order] ";
+			}
+			else
+			{
+				$order = " ORDER BY posts.id $_options[order] ";
+			}
 		}
 
 

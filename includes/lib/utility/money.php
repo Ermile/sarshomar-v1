@@ -120,18 +120,20 @@ trait money
 	*/
 	private static $money_filter =
 	[
-		'gender'           => 10,
-		'marrital'         => 20,
+		'gender'           => 20,
+		'marrital'         => 35,
+		'graduation'       => 25,
+		'degree'           => 60,
+		'range'            => 40,
+		'employmentstatus' => 30,
+
+
 		'internetusage'    => 30,
-		'graduation'       => 40,
-		'degree'           => 50,
 		'course'           => 60,
 		'age'              => 70,
-		'range'            => 80,
 		'country'          => 90,
 		'province'         => 10,
 		'city'             => 20,
-		'employmentstatus' => 30,
 		'housestatus'      => 40,
 		'religion'         => 50,
 		'language'         => 60,

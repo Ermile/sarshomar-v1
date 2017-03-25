@@ -33,8 +33,12 @@ class model extends \mvc\model
 	 */
 	public function get_search($_args)
 	{
+
 		$request = [];
 		$request['search'] = null;
+		$request['sort']   = 'rank';
+		$request['order']  = 'desc';
+
 		if(isset($_args->get("search")[0]))
 		{
 			$request['search'] = $_args->get("search")[0];
