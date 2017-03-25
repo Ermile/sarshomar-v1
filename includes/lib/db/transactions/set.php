@@ -14,6 +14,15 @@ trait set
 	public static function set($_caller, $_user_id, $_options = [])
 	{
 
+		$debug = true;
+		if(array_key_exists('debug', $_options))
+		{
+			if(!$_options['debug'])
+			{
+				$debug = false;
+			}
+		}
+
 		$post_id = null;
 		if(isset($_options['post_id']))
 		{
@@ -36,7 +45,10 @@ trait set
 		if(!$item)
 		{
 			\lib\db\logs::set('transaction:caller:not:found', $_user_id, $log_meta);
-			debug::error(T_("Caller not found"));
+			if($debug)
+			{
+				debug::error(T_("Caller not found"));
+			}
 			return false;
 		}
 
@@ -46,7 +58,6 @@ trait set
 		{
 			\lib\db\logs::set('transaction:user:unit:not:found', $_user_id, $log_meta);
 			$user_unit = 'sarshomar';
-			// debug::error(T_("User unit not found"));
 			// return false;
 		}
 
@@ -55,7 +66,10 @@ trait set
 		if(!$user_unit_id)
 		{
 			\lib\db\logs::set('transaction:user:unit:id:not:found', $_user_id, $log_meta);
-			debug::error(T_("User unit id not found"));
+			if($debug)
+			{
+				debug::error(T_("User unit id not found"));
+			}
 			return false;
 		}
 		else
@@ -93,7 +107,10 @@ trait set
 		else
 		{
 			\lib\db\logs::set('transaction:transaction:items:id:not:found', $_user_id, $log_meta);
-			debug::error(T_("Transaction items id not found"));
+			if($debug)
+			{
+				debug::error(T_("Transaction items id not found"));
+			}
 			return false;
 		}
 
@@ -113,7 +130,10 @@ trait set
 		else
 		{
 			\lib\db\logs::set('transaction:transaction:type:not:found', $_user_id, $log_meta);
-			debug::error(T_("Transaction type not found"));
+			if($debug)
+			{
+				debug::error(T_("Transaction type not found"));
+			}
 			return false;
 		}
 
@@ -152,7 +172,16 @@ trait set
 			{
 				$from          = $unit_id;
 				$to            = $user_unit_id;
-				$exchange_rate = \lib\db\exchangerates::get_from_to($from, $to);
+
+				if(intval($from) === intval($to))
+				{
+					$exchange_rate = ['rate' => 1];
+				}
+				else
+				{
+					$exchange_rate = \lib\db\exchangerates::get_from_to($from, $to);
+				}
+
 				if($exchange_rate || $user_unit === 'sarshomar')
 				{
 					$rate = 1;
@@ -168,14 +197,20 @@ trait set
 				else
 				{
 					\lib\db\logs::set('transaction:exchange:rate:not:found', $_user_id, $log_meta);
-					debug::error(T_("Exchange rate not found"));
+					if($debug)
+					{
+						debug::error(T_("Exchange rate not found"));
+					}
 					return false;
 				}
 			}
 			else
 			{
 				\lib\db\logs::set('transaction:unit:id:or:user:unit:not:found', $_user_id, $log_meta);
-				debug::error(T_("Unit id or user unit not found"));
+				if($debug)
+				{
+					debug::error(T_("Unit id or user unit not found"));
+				}
 				return false;
 			}
 		}

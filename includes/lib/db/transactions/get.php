@@ -27,6 +27,7 @@ trait get
 		transactions.createdate         		AS `date`
 		FROM
 			transactions
+		INNER JOIN transactionitems ON transactionitems.id = transactions.transactionitem_id
 		INNER JOIN units ON units.id = transactions.unit_id
 	";
 
@@ -223,7 +224,8 @@ trait get
 		{
 			$search =
 			"(
-				transactions.title 				LIKE '%$_string%'
+				transactions.title 		LIKE '%$_string%' OR
+				transactionitems.caller	LIKE '%$_string%'
 			)";
 			if($where)
 			{

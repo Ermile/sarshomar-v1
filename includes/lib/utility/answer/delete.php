@@ -22,7 +22,7 @@ trait delete
 	 */
 	public static function delete($_args)
 	{
-
+		// \lib\db::transaction();
 		$default_args =
 		[
 			'user_id'    => null,
@@ -135,6 +135,7 @@ trait delete
 			}
 
 			\lib\db\logs::set('user:answer:delete', $_args['user_id'], $log_meta);
+			self::delete_money($_args);
 			return debug::title(T_("Your answer has been deleted"));
 		}
 		else

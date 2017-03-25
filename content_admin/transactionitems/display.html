@@ -102,20 +102,20 @@
         	{% for key, value in transactionitems%}
             <div>
        			<span><a href="{{url.base ~ '/transactionitems/' ~ value.id}}">{{value.id}}</a></span>
-    			<span>{{value.title}}</span>
-    			<span>{{value.caller}}</span>
-    			<span>{{value.unit_id}}</span>
-    			<span>{{value.type}}</span>
-    			<span>{{value.minus}}</span>
-    			<span>{{value.plus}}</span>
-    			<span>{{value.autoverify}}</span>
-    			<span>{{value.forcechange}}</span>
-    			<span>{{value.desc}}</span>
-    			<span>{{value.meta}}</span>
-    			<span>{{value.status}}</span>
-    			<span>{{value.createdate}}</span>
-    			<span>{{value.datemodified}}</span>
-    			<span>{{value.enddate}}</span>
+    			<span title="{{value.title}}">{{value.title}}</span>
+    			<span title="{{value.caller}}">{{value.caller}}</span>
+    			<span title="{{value.unit_id}}">{{value.unit_id}}</span>
+    			<span title="{{value.type}}">{{value.type}}</span>
+    			<span title="{{value.minus}}">{{value.minus}}</span>
+    			<span title="{{value.plus}}">{{value.plus}}</span>
+    			<span title="{{value.autoverify}}">{{value.autoverify}}</span>
+    			<span title="{{value.forcechange}}">{{value.forcechange}}</span>
+    			<span title="{{value.desc}}">{{value.desc}}</span>
+    			<span title="{{value.meta}}">{{value.meta}}</span>
+    			<span title="{{value.status}}">{{value.status}}</span>
+    			<span title="{{value.createdate}}">{{value.createdate}}</span>
+    			<span title="{{value.datemodified}}">{{value.datemodified}}</span>
+    			<span title="{{value.enddate}}">{{value.enddate}}</span>
             </div>
             {%endfor%}
         </div>
