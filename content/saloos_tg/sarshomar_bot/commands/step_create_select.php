@@ -46,7 +46,6 @@ class step_create_select
 			foreach ($maker->query_result['answers'] as $key => $value) {
 				$maker->query_result['answers'][$key]['key'] = $check_row++;
 			}
-			handle::send_log($maker->query_result['answers']);
 		}
 		$maker->message->add_poll_list(null, false);
 		$count = ['first', 'second', 'third'];
@@ -122,10 +121,10 @@ class step_create_select
 	public static function error()
 	{
 		debug::$status = 1;
-		step::stop();
+		// step::stop();
 		return [
 			'text' => debug::compile()['messages']['error'][0]['title'],
-			'reply_markup' => menu::main(true)
+			// 'reply_markup' => menu::main(true)
 		];
 	}
 }

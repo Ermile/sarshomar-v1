@@ -101,7 +101,7 @@ class step_create
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
 		{
 			$file = bot::$hook['message'][$file_content[1]];
-			if(is_array($file))
+			if(!isset($file['file_id']))
 			{
 				$file = end($file);
 			}
@@ -180,10 +180,10 @@ class step_create
 	public static function error()
 	{
 		debug::$status = 1;
-		step::stop();
+		// step::stop();
 		return [
 			'text' => debug::compile()['messages']['error'][0]['title'],
-			'reply_markup' => menu::main(true)
+			// 'reply_markup' => menu::main(true)
 		];
 	}
 }

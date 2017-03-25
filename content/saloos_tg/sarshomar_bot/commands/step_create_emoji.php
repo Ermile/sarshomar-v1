@@ -73,7 +73,6 @@ class step_create_emoji
 		}
 
 		$maker->message->add('insert', "\n📍 ". T_("seperate emoji by space and send them."));
-		handle::send_log($maker->query_result['answers']);
 		if(!is_null($maker->query_result['answers'][0]['title']) || $_text != null)
 		{
 			$maker->message->add('insert2', "📍📍 ". T_("by press preview, start publish process or change emoji list."));
@@ -114,10 +113,10 @@ class step_create_emoji
 	public static function error()
 	{
 		debug::$status = 1;
-		step::stop();
+		// step::stop();
 		return [
 			'text' => debug::compile()['messages']['error'][0]['title'],
-			'reply_markup' => menu::main(true)
+			// 'reply_markup' => menu::main(true)
 		];
 	}
 }
