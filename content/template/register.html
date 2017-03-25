@@ -1,82 +1,56 @@
-{%set inestimableClass%}
-{%spaceless%}
-  {%if module == 'about'%}special
-  {%else%}
-    {%if login and login.status == 'active'%}complete
-    {%elseif login%}verify
-    {%endif%}
-  {%endif%}
-{%endspaceless%}
-{%endset%}
+{%set inestimableClass%} {%spaceless%} {%if module == 'about'%}special {%else%} {%if login and login.status == 'active'%}complete
+{%elseif login%}verify {%endif%} {%endif%} {%endspaceless%} {%endset%}
 
 
+<div class="special-row f align-center {{inestimableClass}}" data-xhr="specialbox">
 
-  <div class="nowrap f align-center justify-between n-inestimable unselectable {{inestimableClass}}" data-xhr='specialbox'>
-    {%if site.currentlang =='fa'%}
-   <img class="inestimable-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
-   <img class="inestimable-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg" alt="Inestimable desktop border">
-   {%else%}
-   <img class="inestimable-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg" alt="Inestimable mobile border">
-   <img class="inestimable-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
-   {%endif%}
 
 {%block specialbox%}
 
 {%if module == 'about'%}
-
-   <div class="">
-        <h2>{%trans "Sarshomar Vision"%}</h2>
-        <h3 class="vision">{%trans "Ask Anyone Anywhere"%}</h3>
-   </div>
-
+<div class="inner-msg f align-center">
+    <div>
+      <h3 class="nm"><strong>{%trans "Sarshomar Vision"%}</strong></h3>
+      <h4>{%trans "Ask Anyone Anywhere"%}</h4>
+    </div>
+  </div>
 {%else%}
 {%if login and login.status == 'active'%}
-
-   <div class="s6 c7 f align-center justify-center">
-     <div class="c3 launch-box">
-       <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
-     </div>
-     <div class="s12 c5">
-       <h3>{%trans "Ask and Answer with Sarshomar"%}</h3>
-       <h4>{%trans "Sarshomar is about to launch..."%}</h4>
-     </div>
-   </div>
-
-{%elseif login%}
-
-<div class="s6 c9 f align-center justify-center">
-     <div class="c2 launch-box">
-        <img class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
-     </div>
-     <div class="s12 c5">
-       <h3>{%trans "Inspection and Answer"%}</h3>
-        <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
-     <a class="special-btn" href="{{url.base}}/account/recovery">{%trans "Verify account"%}</a>
-     </div>
-   </div>
-
+  <div class="inner-msg f align-center">
+    <div class="rocket">
+      <img width="150" class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+    </div>
+    <div>
+      <h3 class="nm"><strong>{%trans "Ask and Answer with Sarshomar"%}</strong></h3>
+      <h4>{%trans "Sarshomar is about to launch..."%}</h4>
+    </div>
+  </div>
+  {%elseif login%}
+<div class="inner-msg f align-center">
+    <div class="rocket">
+      <img width="150" class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+    </div>
+    <div>
+      <h3 class="nm"><strong>{%trans "Inspection and Answer"%}</strong></h3>
+      <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+      <a class="special-btn" href="{{url.base}}/account/recovery">{%trans "Verify account"%}</a>
+    </div>
+  </div>
 {%else%}
-
-   <div class="s6 c9  f align-center justify-center">
-     <div class="c2 m4 launch-box">
-        <img class="launch" src="{{url.static}}images/miniature/launch.png" alt='{%trans "We are inestimable"%}'>
-     </div>
-     <div class="s12 c6 m8">
-       <h3>{%trans "Inspection and Answer"%}</h3>
-        <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
+<div class="inner-msg f align-center">
+    <div class="rocket">
+      <img width="150" class="launch" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
+    </div>
+    <div>
+      <h3 class="nm"><strong>{%trans "Inspection and Answer"%}</strong></h3>
+      <h4>{%trans "Then if we were inestimable, Signup!"%}</h4>
       {%if not login%}
         <a href="{{url.base}}/features/guest" class="special-btn">{%trans "Try Before Register"%}</a>
       {%endif%}
-     </div>
-   </div>
-    {%endif%}
+    </div>
+  </div>
+{%endif%}
     {%endif%}
     {%endblock%}
-   {%if site.currentlang =='fa'%}
-   <img class="inestimable-mobile-border" src="{{url.static}}images/svg/home/inestimable-left-img-mobile.svg" alt="Inestimable mobile border">
-   <img class="inestimable-desktop-border" src="{{url.static}}images/svg/home/inestimable-left-img.svg" alt="Inestimable desktop border">
-   {%else%}
-   <img class="inestimable-mobile-border" src="{{url.static}}images/svg/home/inestimable-right-img-mobile.svg" alt="Inestimable mobile border">
-   <img class="inestimable-desktop-border" src="{{url.static}}images/svg/home/inestimable-right-img.svg" alt="Inestimable desktop border">
-   {%endif%}
-  </div>
+</div>
+

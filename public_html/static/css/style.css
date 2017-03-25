@@ -833,6 +833,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .special-btn::before,.special-btn::after{position:absolute;top:-3px;width:22px;height:47px;content:'';background-image:url(../images/svg/special-btn.svg);background-repeat:no-repeat}
 .special-btn::before{left:-8px}
 .special-btn::after{right:-8px;-webkit-transform:scaleX(-1);-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
+.special-btn.disabled::after {right: -6px}
 .special-btn:not(.disabled):hover,.special-btn:not(.disabled):focus{background-color:#129491}
 .special-btn.disabled{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-backface-visibility:hidden;color:#f4f4f4;cursor:not-allowed}
 .special-btn:hover,.special-btn:active,.special-btn:focus{color:#fff}
@@ -2081,33 +2082,18 @@ code {font-size: 1.2em;}
 .billing-history-table {margin-top: 2em;}
 .currency-label {-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}
 
-
-
-/*********************************************************************************/
-
-/************************************************************** inestimable */
-.n-inestimable{position:relative;background-color:#582C2C;height:200px;padding:0;color:#fff;margin:0 0 -2px;width:auto;z-index:1}
-.n-inestimable .inside{position:absolute;top:0;height:100%;width:auto}
-.n-inestimable .inside.left{left:0}
-.n-inestimable .inside.right{right:0}
-.n-inestimable .launch{max-width:100%;max-height:150px;width: auto;}
-.rtl .n-inestimable .launch{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
-.n-inestimable h3{margin-bottom:0;font-weight:700;color:#f4f4f4}
-.n-inestimable h4{margin-bottom:.5em;color:#f4f4f4}
-.n-inestimable.verify{background-color:#58522c}
-.n-inestimable.complete{background-color:#2c584f}
-.n-inestimable.special{background-color:#2c4858}
-.n-inestimable h2{color:#f4f4f4;margin-bottom:0;line-height:2em}
-.n-inestimable .vision{text-align:center;font-size:4em;line-height:2em;}
-
-.n-inestimable img.launch{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
-.n-inestimable:hover img{-webkit-filter:none;filter:none}
-
-.n-inestimable .inestimable-mobile-border{display: none;}
-.n-inestimable .inestimable-desktop-border{height:100%;width:110px}
-
-
-
+/************************************************************** Special Row */
+.special-row {height: 200px;background-color: #582C2C;background-image: url('../images/svg/home/inestimable-left-img.svg'),url('../images/svg/home/inestimable-right-img.svg'); background-position: left,right; background-repeat: no-repeat,no-repeat;z-index: 1;margin: 0 0 -2px;position: relative;}
+.special-row .inner-msg {max-width: 525px;margin: 0 auto;}
+.special-row .rocket {display: flex;align-items: center;max-width: 180px;}
+.special-row .nm {margin: 0;}
+.special-row h4 {margin-bottom: 10px;}
+.special-row h3,.special-row h4 {color: #fff;}
+.special-row .rocket img{-webkit-filter:grayscale(90%);filter:grayscale(90%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
+.special-row .rocket:hover img{-webkit-filter:none;filter:none}
+.special-row.special {background-color: #2c4858;}
+.special-row.special {background-color: #2c4858;}
+.special-row.verify {background-color: #58522c;}
 
 /************************************************************** autocomple temp */
 .awesomplete [hidden]{display:none}
