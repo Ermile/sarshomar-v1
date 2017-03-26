@@ -146,25 +146,31 @@ class inline_query
 					{
 						$row_result['audio_duration'] = $value;
 					}
+					elseif($key == 'duration' && $imethod == 'video')
+					{
+						$row_result['video_duration'] = $value;
+					}
+					elseif($key == 'width' && $imethod == 'video')
+					{
+						$row_result['video_width'] = $value;
+					}
+					elseif($key == 'height' && $imethod == 'video')
+					{
+						$row_result['video_height'] = $value;
+					}
 					else
 					{
 						$row_result[$key] = $value;
 					}
 				}
 				$row_result['type'] = $imethod;
-				if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
-				{
-					$row_result[$imethod . '_url'] = str_replace("dl.sarshomar.com", "dev.sarshomar.com", $row_result['_url']);
-				}
-				else
-				{
-					$row_result[$imethod . '_url'] = $row_result['_url'];
-				}
 
+				$row_result[$imethod . '_url'] = str_replace("dl.sarshomar", "dev.sarshomar", $row_result['_url']);
+				if($imethod == 'photo')
+				{
+					$row_result['thumb_url'] = $row_result['_url'];
+				}
 				unset($row_result['_url']);
-				unset($row_result['thumb_url']);
-				unset($row_result['description']);
-				$row_result['title'] = 'hisadf';
 			}
 			$result['results'][] = $row_result;
 		}

@@ -302,6 +302,7 @@ class ask
 						$return[$key] = $value;
 					}
 					unset($return['text']);
+					$return['mime_type'] = $maker->query_result['file']['mime'];
 					$return['method'] = "send" . $get_file['method'];
 					$return[$get_file['method']] = $get_file['file_id'];
 				}
