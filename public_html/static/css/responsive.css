@@ -83,8 +83,6 @@
 
 
  /************************************************************** Special Row */
-.special-row .rocket {display: none}
-.special-row .inner-msg {text-align: center;}
 
 .poll-panel {display: none;}
 
@@ -190,12 +188,6 @@
  .triplet .triplet-item p{width:100%}
  #about-bottom {padding: 4px;}
 
- /************************************************************** Special Row */
-.special-row .rocket {display: none}
-.special-row .inner-msg {max-width: 196px;text-align: center;}
-.special-row {height: 150px;margin: 0 0 -2px;background-image: url('../images/svg/home/inestimable-left-img-mobile.svg'),url('../images/svg/home/inestimable-right-img-mobile.svg'); background-position: left,right; background-repeat: no-repeat,no-repeat}
-.special-row h3 {font-size: 1.5em;}
-.special-row h4 {font-size: 1.4em;}
 
  /************************************************************** Special btn */
  .special-button{font-size:12px!important;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}
@@ -256,7 +248,9 @@
  .menu .menu-inside label:not(:first-of-type) {margin-right: auto;margin-left: 6px;}
  .rtl .menu .menu-inside label:not(:first-of-type) {margin-left: auto;margin-right: 6px;}
  .menu {padding: 0;}
- .checkbox input+label:after {top: 10px;left: 4px;}
+ .checkbox input+label:after {top: 6px;left: 2px;}
+ .checkbox input+label::before {top: 12px;left: 8px;}
+ .checkbox input+label::before, .checkbox input+label::after{width: 3px}
  .poll-container .poll-toolbox {-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-webkit-box-pack: justify;-ms-flex-pack: justify;-webkit-justify-content: space-between;-moz-box-pack: justify;justify-content: space-between;padding: 0;}
  .in.small.poll-container {width: 95%;}
  .menu .menu-inside label i {display: none;}
@@ -294,12 +288,13 @@
  @keyframes dothatopcheck{0%{height:0;}50%{height:0;}100%{height:20px;}}
  .sortable li {margin-bottom: 3em;}
  .element.switch label:not(.title) {line-height: 35px;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;-moz-box-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;-moz-box-align: center;align-items: center;}
+ .checkbox input+label {width: 18px;height: 18px;}
  .stepFilter .element.switch label:not(.title) {line-height: 20px;font-size: 1.3em; overflow: hidden;}
  .range-slider {height: 20px;}
  .element .title.small {font-size: 10px;font-size: 11px;height: 20px;display: inline-block;line-height: 20px;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-border-top-left-radius:5px;-moz-border-radius-topleft:5px;border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-radius-topright:5px;border-top-right-radius:5px}
  .element .title.large {min-height: 20px;display: inline-block;line-height: 20px;min-width: 80px;font-size: 12px;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-border-top-left-radius:5px;-moz-border-radius-topleft:5px;border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-radius-topright:5px;border-top-right-radius:5px}
- .tree-container .element .title.small,.tree-container .element .title.large{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;line-height:35px}
-
+ .tree-container .element .title.small,.tree-container .element .title.large{-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;line-height:35px}
+.tree-container .element-in:after {width: 100%;height: 1px;background: #00667a;content: '';position: absolute;top: 35px;}
  .range-slider .dynamic-range .max:after, .range-slider .dynamic-range .min:after,.range-slider .dynamic-range .min.active:before {top: 0px;width: 20px;height: 20px;}
  .range-slider .dynamic-range .max {right: -15px;bottom: -24px;}
  .range-slider .dynamic-range .max.active:before {width: 20px;height: 20px;}
@@ -335,6 +330,7 @@
 #poll-result .in {position: relative;padding: 1em;}
 .polls-body li {margin-bottom: 1em;}
   /************************************************************** filter question */
+  #question-add {min-height: initial;}
 .stepFilter .element.range label {border-radius: 4px;line-height: inherit;margin-bottom: 1em;}
  .pay-info {margin-bottom: 2em;}
  .switch .title.large {display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;-moz-box-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;-moz-box-align: center;align-items: center;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;-webkit-border-top-left-radius: 5px;-moz-border-radius-topleft: 5px;border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topright: 5px;border-top-right-radius: 5px;}
@@ -346,6 +342,7 @@
  .stepPublish .element {display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;-webkit-flex-direction: row;-moz-box-orient: horizontal;-moz-box-direction: normal;flex-direction: row;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;display: block;}
  .stepPublish .element label {-ms-flex-item-align: start;-webkit-align-self: flex-start;align-self: flex-start;}
  .stepPublish .tbl {margin-bottom: 3em;}
+ .stepPublish .element .element-in:after {content: '';width: 100%;height: 1px;position: absolute;background: #00667a;}
  /*.stepPublish .action {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}*/
  /*.stepPublish .action a {margin-bottom: 1em;}*/
  .stepFilter .switch .title.large {-webkit-border-radius: 5px 0 0 5px;-moz-border-radius: 5px 0 0 5px;border-radius: 5px 0 0 5px;margin: 2px 0;}
@@ -364,7 +361,7 @@
  .special-heading:after,.sh::after{display:none}
  .text-based-container {width: 100%;}
  .text-based .special-heading {font-size: 18px;}
- .text-based .content {padding: 0;margin-bottom: 2em;}
+ .text-based .content {padding: 0 2em;margin-bottom: 2em;}
  .main.text-based {padding: 0;}
  .special-heading {padding-left: 34px;}
  .rtl .special-heading {padding-left: 0;padding-right: 34px;}
