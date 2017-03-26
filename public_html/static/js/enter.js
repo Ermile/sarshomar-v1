@@ -505,8 +505,10 @@ function sendToBigBrother(_step)
 			},
 			error: function(e, data, x)
 			{
-				setNotif('ERROR on ajax !!!');
-				gotoStep('mobile');
+				runTimerNotRecieve(1);
+				runLoading(false);
+				// setNotif('ERROR on ajax !!!');
+				// gotoStep('mobile');
 			}
 		},
 		lockForm: false,
