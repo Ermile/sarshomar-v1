@@ -2318,13 +2318,14 @@ input.rangeSlider{display:none}
 #logo-main .dropdown {position: relative;display: inline-block;margin-left: 1em;}
 #logo-main .dropdown-content {visibility: hidden;position: absolute;transition: .3s;opacity: 0;}
 #logo-main .dropdown:hover .dropdown-content {visibility:visible ;opacity: 1;}
-#logo-main .dropdown span {font-size: 1.1em;cursor: pointer;color: #00667a;}
-#logo-main .three-logo img{    max-height: 13em;}
-#logo-main .three-logo div{text-align: center;}
+#logo-main .dropdown span {font-size: 1.1em;cursor: pointer;color: #00667a; transition: .3s; font-weight: 500}
+#logo-main .dropdown span:hover {color: #000}
+#logo-main .height-logo img{max-height: 13em;}
+#logo-main .height-logo div{text-align: center;}
 #logo-main .en-brand img{padding: 8px 0}
 #logo-main .en-brand-back-blue img{ background-color: #00677a }
 #logo-main .row {margin-bottom: 1em}
-#logo-main .two-logo img{max-height: 20em}
+#logo-main .two-logo img{max-height: 15em}
 #logo-main .two-logo .span6{text-align: center;}
 #logo-main .three-brand-logo {text-align: center;}
 #logo-main .three-brand-logo img { max-height: 18em; margin-bottom: 2em }
@@ -2332,11 +2333,12 @@ input.rangeSlider{display:none}
 #logo-main .LogosBadges-imageBG-light {background-image: url("../images/page-logo/LogosBadges-imageBG-lightsvg.svg");}
 #logo-main .LogosBadges-imageBG-dark {background-image: url("../images/page-logo/LogosBadges-imageBG-dark.svg");}
 #logo-main .LogosBadges-imageBG-blue {background-color:#04677c;}
-#logo-main .LogosBadges-imageBG-fa{padding: 10px 6px;}
-#logo-main .brands-back-grediants div img{max-height: 10em;}
-#logo-main .brands-back-grediants {text-align: center;}
+#logo-main .LogosBadges-imageBG-padding{padding: 10px 6px;}
+#logo-main .brands-back-grediants div img{max-height: 10em; padding: 1em}
 #logo-main .brands-back-grediants div{margin-bottom: 2em;}
+#logo-main .brands-back-grediants {text-align: center;}
 #logo-main div.ba-gr-yellow  img{background: yellow; background: -webkit-linear-gradient(right,rgba(236, 236, 107, 0.53), rgba(31, 163, 187, 0.85));background: -o-linear-gradient(left,rgba(236, 236, 107, 0.53), rgba(31, 163, 187, 0.85));background: -moz-linear-gradient(left,rgba(236, 236, 107, 0.53), rgba(31, 163, 187, 0.85)); background: linear-gradient(to  rgba(31, 163, 187, 0.85),rgba(236, 236, 107, 0.53)) }
 #logo-main div.ba-gr-blue  img{background: blue; background: -webkit-linear-gradient(left,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88));background: -o-linear-gradient(right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); background: -moz-linear-gradient(right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); background: linear-gradient(to right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); }
-#logo-main  .three-brand-orginal{margin-bottom: 2em}
+#logo-main div.ba-gr-white  img{background-color: #fff}
+#logo-main .three-brand-orginal{margin-bottom: 2em}
 
