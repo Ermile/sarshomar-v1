@@ -99,7 +99,7 @@ class callback_query
 		{
 			return $response;
 		}
-		if(!isset($response['text']))
+		if(!isset($response['text']) && !isset($response['caption']))
 		{
 			return;
 		}

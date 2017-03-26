@@ -251,7 +251,14 @@ class controller extends \lib\mvc\controller
 				{
 					session::remove('expire', 'inline_cache', $key);
 				}
-
+				$rm = ['parse_mode', 'disable_web_page_preview', 'text', 'caption'];
+				foreach ($rm as $key => $value) {
+					if(isset($edit_return[$value]))
+					{
+						unset($edit_return[$value]);
+					}
+				}
+				$edit_return['method'] = 'editMessageReplyMarkup';
 				$x = bot::sendResponse($edit_return);
 			}
 		}

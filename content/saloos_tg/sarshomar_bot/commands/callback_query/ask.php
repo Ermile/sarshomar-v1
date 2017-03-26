@@ -253,33 +253,82 @@ class ask
 		}
 
 		$return = $maker->make();
-		// $txt = $return['text'];
-		// $txt = preg_replace("/<\/?a[^>]*>/", '', $txt);
-		// $txt = preg_replace("/<\/?strong[^>]*>/", '', $txt);
-		// $txt = preg_replace("/^📌 /", '', $txt);
-		// if(mb_strlen($txt) < 150 && isset($maker->query_result['file']) && !empty($maker->query_result['file']))
-		// {
-		// 	$return['method'] = 'sendPhoto';
-		// 	$return['caption'] = $return['text'];
-		// 	$return['photo'] = $maker->query_result['file']['url'];
-		// 	unset($return['text']);
-		// }
+		if(isset($maker->query_result['file']))
+		{
+			$caption = $maker->query_result['title'];
+			if($maker->message->message['descripttion'])
+			{
+				$caption .= "\n" . $maker->message->message['descripttion'];
+			}
+			if($maker->message->message['chart'])
+			{
+				$caption .= "\n" . $maker->message->message['chart'];
+			}
+			if($maker->message->message['poll_list'])
+			{
+				$caption .= "\n" . $maker->message->message['poll_list'];
+			}
+			$caption .= "\n\n👥". utility::nubmer_language($maker->message->stats['total']);
+			$caption .= "\nt.me/sarshomar_bot?start=".$maker->query_result['id'];
+			if(mb_strlen($caption) <= 150)
+			{
+				$get_file = \lib\db\options::get([
+					'option_cat' => 'telegram',
+					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
+					'limit'		=> 1
+					]);
+				if(!$get_file)
+				{
+					$filedata = str_replace("https://dl.sarshomar.com/", root . "public_html/", $maker->query_result['file']['url']);
+					$filedata = curl_file_create($filedata, $maker->query_result['file']['mime'], $maker->query_result['file']['type']);
+					$return['method'] = "send" . $maker->query_result['file']['type'];
+					unset($return['text']);
+					$return['caption'] = $caption;
+					$return[$maker->query_result['file']['type']] = $filedata;
+					$return['is_json'] = false;
+				}
+				else
+				{
+					$get_file = $get_file['meta'];
+					unset($return['text']);
+					$return['method'] = "send" . $get_file['method'];
+					$return['caption'] = $caption;
+					$return[$get_file['method']] = $get_file['file_id'];
+				}
+			}
+		}
+
+		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
+		\lib\define::set_language($user_lang, true);
+
 		if($options['type'] == 'private')
 		{
 			$return["response_callback"] = utility::response_expire('ask');
 		}
-		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
-		\lib\define::set_language($user_lang, true);
-
-		$md5_result = md5(json_encode($maker->query_result['result']));
-		// if(isset($options['md5_result']) && $md5_result == $options['md5_result'])
-		// {
-		// 	return false;
-		// }
-		// else
 		if($_query || !isset($options['return']))
 		{
-			bot::sendResponse($return);
+			$send_file = bot::sendResponse($return);
+			if($send_file && isset($send_file['ok']) && $send_file['ok'])
+			{
+				$method = array_intersect(['audio', 'video', 'photo', 'document', 'voice'], array_keys($send_file['result']));
+				if(isset($method[0]))
+				{
+					$get_file = \lib\db\options::get([
+					'option_cat' => 'telegram',
+					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
+					'limit'		=> 1
+					]);
+					if(!$get_file)
+					{
+						\lib\db\options::insert([
+							'option_cat' => 'telegram',
+							'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
+							'option_value' => $send_file['result'][$method[0]]['file_id'],
+							'option_meta' => json_encode($send_file['result'][$method[0]])
+						]);
+					}
+				}
+			}
 		}
 		else
 		{
