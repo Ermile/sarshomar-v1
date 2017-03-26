@@ -74,11 +74,6 @@ class inline_query
 		$result['results'] = [];
 		$step_shape = ['0⃣' , '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣' ];
 		foreach ($query_result as $key => $value) {
-			// handle::send_log($value);
-			// if(isset($value['options']['multi']))
-			// {
-			// 	continue;
-			// }
 			\lib\define::set_language($value['language'], true);
 			$row_result = [];
 			$row_result['type'] = 'article';
@@ -103,6 +98,10 @@ class inline_query
 					{
 						$row_result['not_sopport'] = true;
 					}
+					if(isset($_maker->query_result['file']))
+					{
+						$row_result['_url'] = $_maker->query_result['file']['url'];
+					}
 				}
 				]);
 			if(isset($row_result['not_sopport']))
@@ -126,12 +125,47 @@ class inline_query
 
 
 			$row_result['reply_markup'] = $poll['reply_markup'];
+			if(isset($poll['text']))
+			{
+				$row_result['input_message_content'] = [
+					'message_text' 				=> $poll['text'],
+					'parse_mode' 				=> $poll['parse_mode'],
+					'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
+				];
+			}
+			elseif(isset($poll['caption']))
+			{
+				$imethod = substr($poll['method'], 4);
+				$unset = ['_file_id', 'reply_markup', 'disable_web_page_preview', 'parse_mode', 'method', $imethod];
+				foreach ($poll as $key => $value) {
+					if(in_array($key, $unset))
+					{
+						continue;
+					}
+					if($key == 'duration' && $imethod == 'audio')
+					{
+						$row_result['audio_duration'] = $value;
+					}
+					else
+					{
+						$row_result[$key] = $value;
+					}
+				}
+				$row_result['type'] = $imethod;
+				if($_SERVER['SERVER_NAME'] == 'dev.sarshomar.com')
+				{
+					$row_result[$imethod . '_url'] = str_replace("dl.sarshomar.com", "dev.sarshomar.com", $row_result['_url']);
+				}
+				else
+				{
+					$row_result[$imethod . '_url'] = $row_result['_url'];
+				}
 
-			$row_result['input_message_content'] = [
-				'message_text' 				=> $poll['text'],
-				'parse_mode' 				=> $poll['parse_mode'],
-				'disable_web_page_preview' 	=> $poll['disable_web_page_preview']
-			];
+				unset($row_result['_url']);
+				unset($row_result['thumb_url']);
+				unset($row_result['description']);
+				$row_result['title'] = 'hisadf';
+			}
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);

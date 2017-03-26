@@ -253,7 +253,10 @@ class ask
 		}
 
 		$return = $maker->make();
-		if(isset($maker->query_result['file']))
+		$size = $maker->query_result['file']['size'];
+		if(isset($maker->query_result['file']) && (
+			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
+			|| $options['type'] == 'private'))
 		{
 			$caption = $maker->query_result['title'];
 			if($maker->message->message['descripttion'])
@@ -286,16 +289,24 @@ class ask
 					$return['caption'] = $caption;
 					$return[$maker->query_result['file']['type']] = $filedata;
 					$return['is_json'] = false;
-					$return['_file_id'] = $maker->query_result['file']['id'];
 				}
 				else
 				{
 					$get_file = $get_file['meta'];
+					$unset = ['file_id', 'method', 'file_size'];
+					foreach ($get_file as $key => $value) {
+						if(in_array($key, $unset))
+						{
+							continue;
+						}
+						$return[$key] = $value;
+					}
 					unset($return['text']);
 					$return['method'] = "send" . $get_file['method'];
-					$return['caption'] = $caption;
 					$return[$get_file['method']] = $get_file['file_id'];
 				}
+				$return['caption'] = $caption;
+				$return['_file_id'] = $maker->query_result['file']['id'];
 			}
 		}
 
