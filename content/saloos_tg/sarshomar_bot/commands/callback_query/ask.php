@@ -268,7 +268,7 @@ class ask
 			{
 				$caption .= "\n" . $maker->message->message['poll_list'];
 			}
-			$caption .= "\n\n👥". utility::nubmer_language($maker->message->stats['total']);
+			$caption .= "\n👥". utility::nubmer_language($maker->message->stats['total']);
 			$caption .= "\nt.me/sarshomar_bot?start=".$maker->query_result['id'];
 			if(mb_strlen($caption) <= 150)
 			{
@@ -286,6 +286,7 @@ class ask
 					$return['caption'] = $caption;
 					$return[$maker->query_result['file']['type']] = $filedata;
 					$return['is_json'] = false;
+					$return['_file_id'] = $maker->query_result['file']['id'];
 				}
 				else
 				{
@@ -307,28 +308,7 @@ class ask
 		}
 		if($_query || !isset($options['return']))
 		{
-			$send_file = bot::sendResponse($return);
-			if($send_file && isset($send_file['ok']) && $send_file['ok'])
-			{
-				$method = array_intersect(['audio', 'video', 'photo', 'document', 'voice'], array_keys($send_file['result']));
-				if(isset($method[0]))
-				{
-					$get_file = \lib\db\options::get([
-					'option_cat' => 'telegram',
-					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
-					'limit'		=> 1
-					]);
-					if(!$get_file)
-					{
-						\lib\db\options::insert([
-							'option_cat' => 'telegram',
-							'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
-							'option_value' => $send_file['result'][$method[0]]['file_id'],
-							'option_meta' => json_encode($send_file['result'][$method[0]])
-						]);
-					}
-				}
-			}
+			bot::sendResponse($return);
 		}
 		else
 		{

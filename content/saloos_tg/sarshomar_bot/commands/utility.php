@@ -256,6 +256,25 @@ class utility
 				{
 					\content\saloos_tg\sarshomar_bot\controller::$last_message = $_return['result']['date'];
 				}
+				$method = array_intersect(['audio', 'video', 'photo', 'document', 'voice'], array_keys($_return['result']));
+				if(isset($method[0]) && isset($_args['_file_id']))
+				{
+					$get_file = \lib\db\options::get([
+					'option_cat' => 'telegram',
+					'option_key' => 'file_uploaded_'.$_args['_file_id'],
+					'limit'		=> 1
+					]);
+					if(!$get_file)
+					{
+						$_return['result'][$method[0]]['method'] = $method[0];
+						\lib\db\options::insert([
+							'option_cat' => 'telegram',
+							'option_key' => 'file_uploaded_'.$_args['_file_id'],
+							'option_value' => $_return['result'][$method[0]]['file_id'],
+							'option_meta' => json_encode($_return['result'][$method[0]])
+						]);
+					}
+				}
 			}
 			else
 			{
