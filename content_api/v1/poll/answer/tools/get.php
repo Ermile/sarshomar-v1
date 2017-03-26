@@ -13,6 +13,11 @@ trait get
 	 */
 	public function poll_answer_get($_options = [])
 	{
+		if(!$this->user_id)
+		{
+			return;
+		}
+
 		if(!shortURL::is(utility::request('id')))
 		{
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
@@ -94,6 +99,7 @@ trait get
 
 				$available = \lib\utility\answers::access_answer($answer_args, 'check');
 			}
+
 			debug::title($msg);
 
 			$result = ['my_answer' => $current, 'available' => $available];

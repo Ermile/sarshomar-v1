@@ -11,19 +11,26 @@ trait get
 	 *
 	 * @param      array  $_options  The options
 	 */
-	public function poll_status()
+	public function poll_status($_options = [])
 	{
-		$options =
+		$default_options =
 		[
 			'get_filter'        => false,
 			'get_opts'          => false,
 			'get_options'       => false,
 			'get_public_result' => false,
 			'run_options'       => false,
-			'check_is_my_poll'  => true,
+			'check_is_my_poll'  => false,
 		];
 
-		$result = $this->poll_get($options);
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		$result = $this->poll_get($_options);
 
 		if(!debug::$status)
 		{

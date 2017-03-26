@@ -77,7 +77,9 @@ trait ready
 				$my_poll = true;
 			}
 		}
-		if($_options['check_is_my_poll'] && !$my_poll && !self::check_api_permission('admin', 'admin', 'view'))
+
+
+		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin', 'admin', 'view'))
 		{
 			if($_options['debug'])
 			{

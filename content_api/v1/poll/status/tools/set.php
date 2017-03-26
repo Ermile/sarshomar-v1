@@ -43,7 +43,7 @@ trait set
 			return debug::error(T_("Prameter status not set"), 'status', 'arguments');
 		}
 
-		$available = self::poll_status();
+		$available = self::poll_status(['check_is_my_poll' => true]);
 
 		if(isset($available['current']))
 		{
