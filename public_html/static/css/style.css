@@ -1800,7 +1800,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .element-branding::before,.element-branding::after{content:'';position:absolute;top:-9px;width:80px;height:80px;display:inline-block;background-image:url(../images/svg/add/branding.svg);background-repeat:no-repeat}
 .element-branding::before{left:-60px}
 .element-branding::after{right:-60px;-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
-.element-branding input[type="text"]{width:100%;height:80%;line-height:100%;border:none;padding:0;background-color:transparent;color:#00667a;text-align:center;font-size:1.6em}
+.element-branding input[type="text"]{width:100%;height:80%;line-height:100%;border:none;padding:0 25px;background-color:transparent;color:#00667a;text-align:center;font-size:1.6em}
 
 .element-branding ::-webkit-input-placeholder,.element-branding-url ::-webkit-input-placeholder {color: #b7babb;}
 .element-branding ::-moz-placeholder,.element-branding-url ::-moz-placeholder {color: #b7babb;}

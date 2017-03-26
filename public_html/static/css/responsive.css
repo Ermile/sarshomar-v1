@@ -102,7 +102,8 @@
  .visible-tablet{display:none}
  .visible-phone{display:inherit}
  .row .row{margin:0}
- .row>[class*=span],.row .row>[class*=span]{width:100%!important;margin:0 0 5px}
+ .row>[class*=span],.row .row>[class*=span]{width:100%!important}
+ div.checkbox {margin-bottom: 2em;}
  .row>[class*=span]:nth-child(even),.row .row>[class*=span]:nth-child(even){margin-right:0!important}
  .row>.span12,.row .row .span12{width:100%!important}
  html{font-size: 60%}
@@ -153,11 +154,12 @@
  .breadcrumb {padding: 6px 0;}
  .rtl header .header-profile-button{font-size:12px}
 
- header #financial-box{width:100%;margin:0 20px!important}
+ header #financial-box{width:100%;margin:0 20px!important; padding: 0 1em;}
+ header #financial-box .total, header #financial-box .cost {background: #efefef;min-width: 10em;}
 	header .header-profile-link .header-link-icon {display: inline-block;vertical-align: middle}
 
  .checkbox+label:before{top:16px;left:10px}
- .row .checkbox.margin-bottom {margin-bottom: 15px;}
+ .row .checkbox.margin-bottom,.checkbox.margin-bottom {margin-bottom: 2em;}
 
 
  #homepage .wrapper .box{padding:0}
@@ -259,7 +261,9 @@
  .ultra .data {width: 100%;}
  .ultra.title-item {margin-bottom: 3em;}
  .ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
- .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;-webkit-flex-basis: 87%;flex-basis: 87%;/*border-radius: 5px 0 0 5px;*/height: 30px}
+ .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;-webkit-flex-basis: 87%;flex-basis: 87%;border-radius: 0 0 0 5px;height: 30px;color: #00667a;}
+ .ultra .element input[type=text]:focus {color: #d8dad0;}
+ .element.switch.privacy {width: 100%;}
  .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;right: 0;}
  .rtl .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;left: 0; right: auto;z-index: 0;}
  .ultra .delete {left: 82px;top: -9px;}
