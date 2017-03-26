@@ -18,12 +18,20 @@ class utility
 			{
 				$on_expire = [
 				"method" 					=> "editMessageText",
-				"text" 						=> $_data['text'],
 				"chat_id" 					=> $_response->result->chat->id,
 				"message_id" 				=> $_response->result->message_id,
 				'parse_mode' 				=> 'HTML',
 				'disable_web_page_preview' 	=> true
 				];
+				if(isset($_data['text']))
+				{
+					$on_expire["text"] = $_data['text'];
+				}
+				elseif(isset($_data['caption']))
+				{
+					$on_expire["caption"] = $_data['caption'];
+				}
+
 				$_response->save_unique_id = time() . rand(123456, 999999);
 				$_response->on_expire = array_merge($on_expire, $_options['on_expire']);
 				if(isset($_options['after_ok']))
@@ -178,12 +186,17 @@ class utility
 
 	public static function replay_markup_id(){
 		return function(&$_name, &$_args){
+			$js = false;
+			if(isset($_args['reply_markup']) && is_string($_args['reply_markup']))
+			{
+				$_args['reply_markup'] = json_decode($_args['reply_markup'], true);
+				$js = true;
+			}
 			if(isset($_args['reply_markup']) &&
 				isset($_args['reply_markup']['inline_keyboard']) &&
 				!isset($_args['inline_message_id'])
 				)
 			{
-
 				$session_id = self::markup_set_id($_args['reply_markup']['inline_keyboard']);
 				if(!isset($_args['storage']) || !is_array($_args['storage']))
 				{
@@ -192,20 +205,10 @@ class utility
 				$_args['storage']['callback_session'] = $session_id;
 
 			}
-			// elseif(isset($_args['results']))
-			// {
-			// 	foreach ($_args['results'] as $key => $value) {
-			// 		if(isset($_args['results'][$key]['reply_markup']) && isset($_args['results'][$key]['reply_markup']['inline_keyboard']))
-			// 		{
-			// 			$session_id = self::markup_set_id($_args['results'][$key]['reply_markup']['inline_keyboard'], true);
-			// 			if(!isset($_args['storage']) || !is_array($_args['storage']))
-			// 			{
-			// 				$_args['storage'] = array();
-			// 			}
-			// 			$_args['storage']['callback_session'] = $session_id;
-			// 		}
-			// 	}
-			// }
+			if($js)
+			{
+				$_args['reply_markup'] = json_encode($_args['reply_markup']);
+			}
 		};
 	}
 
@@ -252,6 +255,28 @@ class utility
 				elseif(isset($_return['result']['date']))
 				{
 					\content\saloos_tg\sarshomarbot\controller::$last_message = $_return['result']['date'];
+				}
+				if(isset($_return['result']) && is_array($_return['result']))
+				{
+					$method = array_intersect(['audio', 'video', 'photo', 'document', 'voice'], array_keys($_return['result']));
+					if(isset($method[0]) && isset($_args['_file_id']))
+					{
+						$get_file = \lib\db\options::get([
+						'option_cat' => 'telegram',
+						'option_key' => 'file_uploaded_'.$_args['_file_id'],
+						'limit'		=> 1
+						]);
+						if(!$get_file)
+						{
+							$_return['result'][$method[0]]['method'] = $method[0];
+							\lib\db\options::insert([
+								'option_cat' => 'telegram',
+								'option_key' => 'file_uploaded_'.$_args['_file_id'],
+								'option_value' => $_return['result'][$method[0]]['file_id'],
+								'option_meta' => json_encode($_return['result'][$method[0]])
+							]);
+						}
+					}
 				}
 			}
 			else

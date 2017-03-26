@@ -105,7 +105,7 @@ class step_create
 			{
 				$file = end($file);
 			}
-
+			$file['method'] = $file_content[1];
 			bot::sendResponse([
 				'text' => T_("Receiving and processing file..."),
 				'method' => 'sendMessage'
@@ -129,6 +129,12 @@ class step_create
 				return callback_query\create::upload_file(null, null, self::error());
 			}
 
+			\lib\db\options::insert([
+				'option_cat' => 'telegram',
+				'option_key' => 'file_uploaded_'.$file_uploaded['code'],
+				'option_value' => $file['file_id'],
+				'option_meta' => json_encode($file)
+			]);
 			utility::make_request(["id" => $poll_id,"file" => $file_uploaded['code']]);
 			\lib\main::$controller->model()->poll_add(['method' => 'patch']);
 
