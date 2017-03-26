@@ -5,7 +5,7 @@
 {%endset%}
 
 {%block content%}
-  <div class="box">
-   <h2>{%trans "Vision"%}</h2>
-  </div>
+ <div class="box">
+  <h2>{%trans "Vision"%}</h2>
+ </div>
 {%endblock%}
