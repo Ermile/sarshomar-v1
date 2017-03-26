@@ -136,6 +136,10 @@ class inline_query
 			elseif(isset($poll['caption']))
 			{
 				$imethod = substr($poll['method'], 4);
+				if($imethod == 'image')
+				{
+					$imethod = 'photo';
+				}
 				$unset = ['_file_id', 'reply_markup', 'disable_web_page_preview', 'parse_mode', 'method', $imethod];
 				foreach ($poll as $key => $value) {
 					if(in_array($key, $unset))
