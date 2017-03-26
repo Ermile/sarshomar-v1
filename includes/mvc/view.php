@@ -78,8 +78,9 @@ class view extends \lib\mvc\view
 
 		$this->data->breadcrumb =
 		[
-			'u'       => T_('user'),
+			'u'       => T_('You'),
 			'$'       => T_('Sarshomar Knowledge'),
+			'@'       => T_('You'),
 			'target'  => T_('Case Study'),
 			'help'    => T_('Help Center'),
 			'terms'   => T_('Terms of Service'),
