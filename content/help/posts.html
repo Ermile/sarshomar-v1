@@ -20,13 +20,13 @@
    <div class="content">{{post.content |raw}}</div>
   </div>
 {%endblock%}
-  <div class="help-prompt">
+  {%if false%}<div class="help-prompt">
    <form>
     <div>{%trans "Was this information helpful?"%}</div>
     <button class="try">{%trans "Yes"%}</button>
     <button class="try">{%trans "No"%}</button>
    </form>
-  </div>
+  </div>{%endif%}
   <div class="sideline-title">
    <h4>{%trans "Related articles"%}</h4>
    <ul>
