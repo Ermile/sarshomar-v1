@@ -413,7 +413,10 @@ function shortkeySelectAnswerItem(_key)
 {
 	// if user is typing something, do nothing
 	var focused = document.activeElement;
-	// console.log(focused);
+	if($(focused).is('input') || $(focused).is('textarea'))
+	{
+		return false;
+	}
 
 	// if we are in answer test page handle keyboard
 	if($('ul[data-answer-type]').length)
