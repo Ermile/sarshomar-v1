@@ -47,14 +47,15 @@ trait telegram
 		{
 			\lib\db\logs::set('user:telegram:sync:webaccount:not:exist',$_telegram_id, ['data' => $_web_mobile]);
 			// new signup in site
-			// we set the mobile in telegram account and the sync is ok
-			$temp_password = rand(100000,999999);
+			// we set the mobile in telegram account and the sync is oK
 			$update_users =
 			[
 				'user_mobile' => $mobile,
-				'user_pass'   => \lib\utility::hasher($temp_password)
+				'user_pass'   => null,
 			];
+
 			\lib\db\users::update($update_users, $_telegram_id);
+
 			return
 			[
 				'message' => T_("You can login to Sarshomar.com with your mobile", ['mobile' => $mobile]),
@@ -80,7 +81,7 @@ trait telegram
 			\lib\db\logs::set('user:telegram:sync:synced',$_telegram_id, ['data' => $web_id]);
 			return
 			[
-				'message' => T_("this account was already synced")
+				'message' => T_("This account was already synced")
 			];
 		}
 
@@ -109,6 +110,7 @@ trait telegram
 		self::sync_userranks();
 		//----- deactive telegram user
 		self::sync_users();
+
 		\lib\utility\profiles::refresh_dashboard(self::$new_user_id);
 		// \content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
 

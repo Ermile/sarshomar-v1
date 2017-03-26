@@ -85,10 +85,10 @@ trait data
 		foreach ($user_old_answers as $key => $value)
 		{
 			if(
-				!isset($value['post_id']) ||
-				!isset($value['user_id']) ||
-				!isset($value['profile']) ||
-				!isset($value['validstatus'])
+				!array_key_exists('post_id', $value) ||
+				!array_key_exists('user_id', $value) ||
+				!array_key_exists('profile', $value) ||
+				!array_key_exists('validstatus', $value)
 			  )
 			{
 				continue;
@@ -214,21 +214,21 @@ trait data
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		$update_new_user                     = [];
-		$update_new_user['user_validstatus'] = 'valid';
+		// $update_new_user                     = [];
+		// $update_new_user['user_validstatus'] = 'valid';
 
-		$current_status = \lib\db\users::get_user_data($new_user_id, 'user_status');
-		if($current_status == 'awaiting')
-		{
-			$update_new_user['user_status'] = 'active';
-		}
+		// $current_status = \lib\db\users::get_user_data($new_user_id, 'user_status');
+		// if($current_status == 'awaiting')
+		// {
+		// 	$update_new_user['user_status'] = 'active';
+		// }
 
 		// deactive_old_user
-		\lib\db\users::update($update_new_user, $new_user_id);
+		// \lib\db\users::update($update_new_user, $new_user_id);
 		// deactive_old_user
 		\lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
 
-		\lib\utility\users::verify(['user_id' => $new_user_id, 'mobile' => self::$mobile]);
+		// \lib\utility\users::verify(['user_id' => $new_user_id, 'mobile' => self::$mobile]);
 
 	}
 

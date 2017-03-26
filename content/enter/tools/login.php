@@ -136,20 +136,6 @@ trait login
 
 		$this->setLoginSession($this->user_data, $myfields);
 		$this->login_remember();
-		if(isset($_SESSION['first_signup']) && $_SESSION['first_signup'] === true)
-		{
-			$args =
-			[
-				'mobile'   => $this->mobile,
-				'ref'      => null,
-				'type'     => null,
-				'port'     => 'site',
-				'subport'  => null,
-				'user_id'  => $this->user_id,
-				'language' => \lib\define::get_language(),
-			];
-			\lib\utility\users::verify($args);
-		}
 
 		$user_verify =
 		[

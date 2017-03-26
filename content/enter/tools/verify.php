@@ -22,15 +22,18 @@ trait verify
 		$code = $this->generate_verification_code();
 
 		$text = T_("Your login code is :code", ['code' => \lib\utility\human::number($code)]);
-		$text .= "\n\n". T_("This code can be used to log in to your Sarshomar account. We never ask it for anything else. Do not give it to anyone!");
-		$text .= "\n" . T_("If you didn't request this code by trying to log in on another device, simply ignore this message.");
+		$text .= "\n\n". T_("This code can be used to log in to your Sarshomar account. Do not give it to anyone!");
+		$text_continue = "\n" . T_("If you didn't request this code, ignore this message.");
+
 
 		\lib\db\tg_session::start($this->user_id);
 		$in_step = \lib\db\tg_session::get('tg');
 		if(!is_null($in_step) && !empty($in_step))
 		{
-			$text .= T_("if you are not requested, continue your step.");
+			$text_continue = "\n" . T_("If you didn't request this code, ignore this message and continue.");
 		}
+
+		$text .= $text_continue;
 
 		$msg =
 		[

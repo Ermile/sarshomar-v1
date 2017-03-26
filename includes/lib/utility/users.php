@@ -147,7 +147,7 @@ class users
 			return false;
 		}
 
-		if($_args['language'] === 'fa')
+		if($_args['language'] == 'fa')
 		{
 			\lib\db\units::set_user_unit($_args['user_id'], 'toman');
 		}
@@ -172,7 +172,7 @@ class users
 
 		if($insert_transaction)
 		{
-			\lib\db\transactions::set('gift:signup', $_args['user_id'], ['plus' => 100]);
+			\lib\db\transactions::set('gift:signup', $_args['user_id'], ['plus' => 1000]);
 		}
 
 		$user_update = [];
