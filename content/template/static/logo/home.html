@@ -1,10 +1,13 @@
 {%extends display.main%}
 {%block content%}
-<div class="main pad-large">
+<div class="main pad-large" id="logo-main">
  <div class="box">
   <h2 class="sh large">{%trans "Our logo"%}</h2>
   <div class="in">
-   <div class="msg warning">{%trans "in preparation"%}</div>
+   {%include "content/template/static/logo/content-fa.html"%}
+   {%include "content/template/static/logo/download-fa.html"%}
+   {%include "content/template/static/logo/how-fa.html"%}
+   {%include "content/template/static/logo/wrong-fa.html"%}
   </div>
  </div>
 </div>
