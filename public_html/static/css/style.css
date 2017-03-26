@@ -1140,9 +1140,11 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-options li:not(:last-child){margin-bottom:1rem}
 .poll-container .poll-options li>label{position:relative;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;cursor:pointer}
 
-.poll-container .poll-options .option-number{position:relative;content:'';width:5em;background-color:#00667a;-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-radius-bottomleft:3px;border-bottom-left-radius:3px}
-.rtl .poll-container .poll-options .option-number,.poll-container.rtl .poll-options .option-number{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px;-webkit-border-bottom-right-radius:3px;-moz-border-radius-bottomright:3px;border-bottom-right-radius:3px}
-.poll-container .poll-options .option-number::before{position:absolute;content:attr(data-number);color:#f6f6e6;top:0;bottom:0;margin:auto;height:2em;text-align:center;left:0;right:0;line-height:2.2em;font-size:1.6em}
+.poll-container .poll-options .option-number{position:relative;width:5em;content:'';border-top-left-radius:3px;border-bottom-left-radius:3px;background-color:#00667a}
+.rtl .poll-container .poll-options .option-number,.poll-container.rtl .poll-options .option-number{border-radius:0;border-top-right-radius:3px;border-bottom-right-radius:3px}
+.poll-container.ltr .poll-options .option-number{border-radius:0;border-top-left-radius:3px;border-bottom-left-radius:3px}
+
+.poll-container .poll-options .option-number::before{font-size:1.6em;line-height:2.2em;position:absolute;top:0;right:0;bottom:0;left:0;height:2em;margin:auto;content:attr(data-number);text-align:center;color:#f6f6e6}
 
 .poll-container .poll-options.disabled .option-number{background-color:#d8d8d8}
 .poll-container .poll-options.disabled .option-number::before{color:#808080}
@@ -1153,13 +1155,16 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container .poll-options .option-content{background-color:#efefef;-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;padding:1em;color:#00667a;line-height:2;font-size:1.2em;word-break:break-all}
 .poll-container .poll-options .option-content input{width:100%;border:none;outline:none;display:block;background-color:transparent;color:#00667a}
 
-.poll-container .poll-options .checkbox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center;padding-right:1em;background-color:#efefef;margin-bottom:0}
-.rtl .poll-container .poll-options .checkbox,.poll-container.rtl .poll-options .checkbox{padding-right:0;padding-left:1em}
+.poll-container .poll-options .checkbox{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;margin-bottom:0;padding-right:1em;background-color:#efefef;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center}
+.rtl .poll-container .poll-options .checkbox,.poll-container.rtl .poll-options .checkbox{padding:0;padding-left:1em}
+.poll-container.ltr .poll-options .checkbox{padding:0;padding-right:1em}
 .poll-container .poll-options .checkbox label{margin:0}
 .poll-container .poll-options .checkbox label::before{-webkit-box-shadow:0 0 0 2px #efefef;-moz-box-shadow:0 0 0 2px #efefef;box-shadow:0 0 0 2px #efefef}
 
-.poll-container .poll-skip{text-align:right;margin-bottom:1em}
+.poll-container .poll-skip{margin-bottom:1em;text-align:right}
 .rtl .poll-container .poll-skip,.poll-container.rtl .poll-skip{text-align:left}
+.poll-container.ltr .poll-skip{text-align:right}
+
 .poll-container .poll-skip a,.poll-container .poll-skip input{color:#00667a;font-size:1em;font-weight:700}
 .poll-container .poll-skip input{background-color:#efefef;border:none;outline:none;cursor:pointer;padding:1rem 2rem}
 
@@ -1472,7 +1477,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 
 /************************************************************** pagination */
 .pagination-container{text-align:center}
-.pagination{text-align:center;position:relative;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-webkit-justify-content: center;-moz-box-pack: center;-ms-flex-pack: center;justify-content: center;margin-bottom: 2em;}
+.pagination{text-align:center;position:relative;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack: center;-webkit-justify-content: center;-moz-box-pack: center;-ms-flex-pack: center;justify-content: center;margin-bottom: 2em;}
 .pagination a:first-child {/*-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;*/}
 .pagination a:last-child {/*-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;*/}
 .pagination a{padding:1em 1.2em;background-color:#efefef;color:#00667a;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;font-weight:600}
