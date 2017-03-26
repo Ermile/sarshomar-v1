@@ -270,7 +270,6 @@ class users
 			case 'createdate':
 			case 'parent':
 			case 'validstatus':
-			case 'filter_id':
 			case 'port':
 			case 'trust':
 			case 'verify':

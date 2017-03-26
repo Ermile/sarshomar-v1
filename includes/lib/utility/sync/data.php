@@ -214,21 +214,33 @@ trait data
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		// $update_new_user                     = [];
-		// $update_new_user['user_validstatus'] = 'valid';
+		$old_user_filter_id = \lib\utility\users::get_filter_id($old_user_id);
+		$new_user_filter_id = \lib\utility\users::get_filter_id($new_user_id);
 
-		// $current_status = \lib\db\users::get_user_data($new_user_id, 'user_status');
-		// if($current_status == 'awaiting')
-		// {
-		// 	$update_new_user['user_status'] = 'active';
-		// }
+		$old_user_filter = \lib\db\filters::get($old_user_filter_id);
+		$new_user_filter = \lib\db\filters::get($new_user_filter_id);
 
-		// deactive_old_user
-		// \lib\db\users::update($update_new_user, $new_user_id);
-		// deactive_old_user
+		$old_user_filter = array_filter($old_user_filter);
+		$new_user_filter = array_filter($new_user_filter);
+
+		$update_user = [];
+
+		if(count($old_user_filter) > count($new_user_filter))
+		{
+			$update_user['filter_id'] = $old_user_filter_id;
+		}
+		elseif(count($old_user_filter) < count($new_user_filter))
+		{
+			$update_user['filter_id'] = $new_user_filter_id;
+		}
+		elseif(count($old_user_filter) === count($new_user_filter))
+		{
+			// no thing!
+			// check enyone of items
+		}
+
+		\lib\db\users::update($update_user, $new_user_id);
 		\lib\db\users::update(['user_status' => 'deactive'], $old_user_id);
-
-		// \lib\utility\users::verify(['user_id' => $new_user_id, 'mobile' => self::$mobile]);
 
 	}
 
