@@ -165,7 +165,7 @@ class inline_query
 				}
 				$row_result['type'] = $imethod;
 
-				$row_result[$imethod . '_url'] = str_replace("dl.sarshomar", "dev.sarshomar", $row_result['_url']);
+				$row_result[$imethod . '_url'] = $row_result['_url'];
 				if($imethod == 'photo')
 				{
 					$row_result['thumb_url'] = $row_result['_url'];
