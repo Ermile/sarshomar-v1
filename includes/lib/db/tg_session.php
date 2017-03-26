@@ -22,6 +22,12 @@ class tg_session
 		{
 			self::$user_id = $user_id;
 		}
+		// if user id is not exist return as false
+		if(!$user_id)
+		{
+			return false;
+		}
+
 		$get_sesstion = "SELECT * FROM options
 		WHERE options.option_cat = 'user_detail_{$user_id}' AND
 		options.user_id = $user_id AND
@@ -29,6 +35,10 @@ class tg_session
 		options.option_value = 'session'
 		LIMIT 1";
 		$original_result = \lib\db::query($get_sesstion, true, ['resume_on_error' => true]);
+		if(!$original_result)
+		{
+			return false;
+		}
 		$original_result = $original_result->fetch_assoc();
 		if($original_result)
 		{
@@ -184,6 +194,11 @@ class tg_session
 		if(!$user_id)
 		{
 			$user_id = self::$user_id;
+		}
+		// if user id is not exist return as false
+		if(!$user_id)
+		{
+			return false;
 		}
 		$meta = utf8_encode(json_encode(self::$data, JSON_UNESCAPED_UNICODE));
 		$meta = addcslashes($meta, "\\");
