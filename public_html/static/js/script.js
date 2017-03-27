@@ -3276,6 +3276,56 @@ function loading_form(_status)
 	// console.log('form.......');
 }
 
+
+/**
+ * [handleSidebar description]
+ * @return {[type]} [description]
+ */
+function handleSidebar()
+{
+	$('header #menu-bar').on('click', function()
+	{
+		openSidebar(true);
+	});
+
+	$('header').on('click', function(_e)
+	{
+		// console.log(_e);
+		console.log(_e.target);
+
+
+		if($(_e.target).is($('header.open')))
+		{
+			openSidebar(false);
+		}
+	});
+}
+
+
+/**
+ * [openSidebar description]
+ * @param  {[type]} _status [description]
+ * @return {[type]}         [description]
+ */
+function openSidebar(_status)
+{
+	if(_status === false)
+	{
+		$('header').removeClass('open');
+		$('header #menu-bar').fadeIn();
+	}
+	else
+	{
+		$('header').addClass('open');
+		$('header #menu-bar').fadeOut();
+	}
+}
+
+
+/**
+ * [panelText description]
+ * @return {[type]} [description]
+ */
 function panelText()
 {
 	$(document).on('input', 'textarea[data-limit]', function(e)
@@ -3314,6 +3364,8 @@ function runAllScripts()
 	inestimable();
 	// panel text
 	panelText();
+	// handle sidebar
+	handleSidebar();
 }
 
 
