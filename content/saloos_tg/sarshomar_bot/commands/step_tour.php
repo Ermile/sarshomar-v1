@@ -32,16 +32,7 @@ class step_tour
 			$result["reply_markup"] = menu::main(true);
 			$result["text"] = T_("Welcome to the society of :count people of sarshomar", ['count' => utility::nubmer_language($count)]);
 			bot::sendResponse($result);
-			$run = (array) session::get('step', 'run');
-			if($run)
-			{
-				session::remove('step', 'run');
-				if($run['text'] !== '/start')
-				{
-					bot::$cmd = $run;
-					bot::sendResponse(handle::exec($run, true));
-				}
-			}
+			bot::stop();
 		}
 		else
 		{
