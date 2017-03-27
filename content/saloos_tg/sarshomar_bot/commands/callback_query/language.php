@@ -34,28 +34,40 @@ class language
 			$lang = $lang_name;
 		}
 
+		$result = [];
+		$result["reply_markup"] = menu::main(true);
 		if(!$get)
 		{
-			$count = \saloos::lib_static('db')->users()::get_count('all');
-			$text = T_("Welcome to the society of :count people of sarshomar",
-				['count'=> utility::nubmer_language($count)]);
+			if($_data_url[1] == 'fa')
+			{
+				$not_run = true;
+			}
+			else
+			{
+				$count = \saloos::lib_static('db')->users()::get_count('all');
+				$result["text"] = T_("Welcome to the society of :count people of sarshomar", ['count' => utility::nubmer_language($count)]);
+			}
 		}
 		else
 		{
-			$text = T_("Welcome");
+			$result["text"] = T_("Welcome");
 		}
-		bot::sendResponse([
-			"text" => $text,
-			"reply_markup" => menu::main(true)
-			]);
-		$run = (array) session::get('step', 'run');
-		if($run)
+		if(isset($not_run))
 		{
-			session::remove('step', 'run');
-			if($run['text'] !== '/start')
+			\content\saloos_tg\sarshomar_bot\commands\step_tour::start();
+		}
+		else
+		{
+			bot::sendResponse($result);
+			$run = (array) session::get('step', 'run');
+			if($run)
 			{
-				bot::$cmd = $run;
-				bot::sendResponse(handle::exec($run, true));
+				session::remove('step', 'run');
+				if($run['text'] !== '/start')
+				{
+					bot::$cmd = $run;
+					bot::sendResponse(handle::exec($run, true));
+				}
 			}
 		}
 		callback_query::edit_message([
