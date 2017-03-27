@@ -2302,12 +2302,12 @@ input.rangeSlider{display:none}
 #logo-main .box-logo {position: relative;}
 #logo-main .only-logo{width: 187px}
 #logo-main .nav-logo {position: absolute; right: -18px;z-index: 100;}
-#logo-main .nav-logo a{display: block;background-color: #efefef; font-size:1.1em; padding: .2em 1em;color:#00677a; z-index: 10}
+#logo-main .nav-logo a{display: block;background-color: #efefef; font-size:1.1em; padding: .2em 1em;color:#00677a; z-index: 10;transition: .3s;}
 #logo-main .nav-logo a:hover {color: #000; background-color: #cecdcd}
 #logo-main .box-logo img:hover #logo-main .nav-logo a{display: block;}
 #logo-main .button-download span {font-size: 1.5em; padding: 0 .8em; background-color: #ddd;cursor: pointer;}
 #logo-main div.button-download.last {text-align: left;}
-#logo-main .dropdown {position: relative;display: inline-block;margin-left: 1em;}
+#logo-main .dropdown {position: relative;display: inline-block;margin-left: 2em;}
 #logo-main .dropdown-content {visibility: hidden;position: absolute;transition: .3s;opacity: 0;}
 #logo-main .dropdown:hover .dropdown-content {visibility:visible ;opacity: 1;}
 #logo-main .dropdown span {font-size: 1.1em;cursor: pointer;color: #00667a; transition: .3s;font-weight: 600}
@@ -2317,10 +2317,10 @@ input.rangeSlider{display:none}
 #logo-main .en-brand img{padding: 8px 0}
 #logo-main .en-brand-back-blue img{ background-color: #00677a }
 #logo-main .row {margin-bottom: 1em}
-#logo-main .two-logo img{max-height: 15em}
+#logo-main .two-logo img{max-height: 13em}
 #logo-main .two-logo .span6{text-align: center;}
 #logo-main .three-brand-logo {text-align: center;}
-#logo-main .three-brand-logo img { max-height: 18em; margin-bottom: 2em }
+#logo-main .three-brand-logo img { max-height: 12em; margin-bottom: 2em }
 #logo-main .LogosBadges-imageBG {padding: 32px;background-position: 0 0;background-size: 50px;}
 #logo-main .LogosBadges-imageBG-light {background-image: url("../images/page-logo/LogosBadges-imageBG-lightsvg.svg");}
 #logo-main .LogosBadges-imageBG-dark {background-image: url("../images/page-logo/LogosBadges-imageBG-dark.svg");}
@@ -2333,4 +2333,14 @@ input.rangeSlider{display:none}
 #logo-main div.ba-gr-blue  img{background: blue; background: -webkit-linear-gradient(left,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88));background: -o-linear-gradient(right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); background: -moz-linear-gradient(right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); background: linear-gradient(to right,rgba(20, 148, 171, 0.87), rgba(51, 1, 1, 0.88)); }
 #logo-main div.ba-gr-white  img{background-color: #fff}
 #logo-main .three-brand-orginal{margin-bottom: 2em}
+#logo-main .wrong-samples img{max-height: 13em}
+#logo-main .wrong-samples{text-align: center;}
+#logo-main .three-logo-middle img{max-height: 7em}
+.three-brand-orginal {position: relative;}
+.three-brand-orginal div.hover-logo {display: inline-block;}
+.three-brand-orginal .img-hover { position: absolute; visibility: hidden;background-color: #fff;}
+div.hover-logo:hover .img-hover{visibility: visible; transition: 1s }
+/*div.hover-logo:hover img {visibility: hidden;}*/
+
+
 
