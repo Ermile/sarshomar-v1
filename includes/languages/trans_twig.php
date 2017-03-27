@@ -76,11 +76,11 @@ private function transtext()
 	echo T_("Furthermore, excite your customers by use of Sarshomar's new advertising strategies along with goal-oriented advertising.");// Line 41
 	echo T_("Developers and Webmasters");                                             // Line 53
 	echo T_("Finally, using API, you can have the benefit of Sarshomar's qualities and forget your concerns about polling.");// Line 54
-	echo T_("Easy Access");                                                           // Line 32
+	echo T_("Easy Access");                                                           // Line 24
 	echo T_("You can enjoy a variety of Sarshomar's services only through having access to the internet‌ and without having to need to install any particular software");// Line 33
-	echo T_("Valid Statistical Population");                                          // Line 37
+	echo T_("Valid Statistical Population");                                          // Line 25
 	echo T_("Ask Sarshomar's valid population your questions and analyze the results separately, along with the graphs");// Line 38
-	echo T_("Knowledge Base");                                                        // Line 42
+	echo T_("Knowledge Base");                                                        // Line 26
 	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 43
 
 	//--------------------------------------------------content\knowledge\display.html
@@ -209,6 +209,33 @@ private function transtext()
 	echo T_("Pause");                                                                 // Line 22 Seperate
 	echo T_("Draft");                                                                 // Line 160
 
+	//----------------------------------------------------content\referer\display.html
+	echo T_("Referral Program");                                                      // Line 12
+	echo T_("Nobody can tell the Sarshomar story better than our customers.");        // Line 6
+	echo T_("Nobody can tell the Sarshomar story better than you;)");                 // Line 16
+	echo T_("How it works");                                                          // Line 17
+	echo T_("Tell your friends about the Sarshomar story.");                          // Line 20
+	echo T_("Refer your friends through Social Media or Email.");                     // Line 21
+	echo T_("Share the referral rewards program with friends on Facebook, Twitter, or Email.");// Line 21
+	echo T_("When they click on your post, we’ll know it was you who referred them.");// Line 21
+	echo T_("Your friend enter to Sarshomar and receives credit.");                   // Line 25
+	echo T_("Your friend enter and receives $3 account credit.");                     // Line 26
+	echo T_("Anyone you refer to Sarshomar that enter using your unique referral link will receive $3 in credit immediately after unlocking their account by complete profile.");// Line 26
+	echo T_("You all get rewarded");                                                  // Line 30
+	echo T_("Sarshomar rewards are charge in your account after 7 days of active service.");// Line 32
+	echo T_("Share your link");                                                       // Line 41
+	echo T_("Copy your personal referral link and share it with your friends and followers.");// Line 43
+	echo T_("Short URL");                                                             // Line 76
+	echo T_("Referral stats");                                                        // Line 54
+	echo T_("CLICKS");                                                                // Line 60
+	echo T_("Number of times your link has been clicked.");                           // Line 61
+	echo T_("REFERRALS");                                                             // Line 66
+	echo T_("People who enter to Sarshomar using your link.");                        // Line 67
+	echo T_("Complete Profile");                                                      // Line 19
+	echo T_("People who complete profile after enter");                               // Line 73
+	echo T_("Enter to get a unique referral link.");                                  // Line 79
+	echo T_("Use our logo to help spread the word.");                                 // Line 80
+
 	//------------------------------------------content\referer\instagram\display.html
 	echo T_("You are connected to Instagram");                                        // Line 12
 	echo T_("Enjoy!");                                                                // Line 14
@@ -242,7 +269,6 @@ private function transtext()
 	echo T_("Changelog");                                                             // Line 13
 	echo T_("Support");                                                               // Line 41
 	echo T_("Contact us");                                                            // Line 43
-	echo T_("Referral Program");                                                      // Line 12
 	echo T_("Logo");                                                                  // Line 45
 	echo T_("Latest News");                                                           // Line 50
 	echo T_("Questions answered");                                                    // Line 62
@@ -349,23 +375,26 @@ private function transtext()
 	//-------------------------------content\template\static\features\easy-access.html
 	echo T_("Easy access");                                                           // Line 3
 	echo T_("Easy access to Sarshomar");                                              // Line 6
+	echo T_("Without Disturbance");                                                   // Line 13
 
 	//----------------------content\template\static\features\essay-type-questions.html
 	echo T_("Essay-type Questions");                                                  // Line 3
 	echo T_("Ask essay-type questions and receive valid and complete answers.");      // Line 17
-	echo T_("Receiving Answers to Essay-type Questions");                             // Line 60
+	echo T_("Receiving Answers to Essay-type Questions");                             // Line 22
 	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 17
 	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 19
+	echo T_("Observing Graphic Results according to the Statistical Population");     // Line 22
+	echo T_("Language Localization");                                                 // Line 23
 
 	//---------------------------content\template\static\features\graphic-results.html
 	echo T_("Graphic Results");                                                       // Line 3
 	echo T_("Graphs are powerful means that might not take more than a few minutes to study; however, they can provide you with a large amount of complicated information in a simple and effective way.");// Line 17
-	echo T_("Observing Graphic Results according to the Statistical Population");     // Line 55
 	echo T_("Polls' charts and tables, based on separate statistical populations of the respondents as well as their key factors, are available in Sarshomar.");// Line 19
 	echo T_("These key factors include gender, age range, marital status, academic degree, educational status and residence.");// Line 19
+	echo T_("Results Output");                                                        // Line 13
 
 	//-------------------------------------content\template\static\features\guest.html
-	echo T_("Try Before Registering");                                                // Line 16
+	echo T_("Try Before Registering");                                                // Line 26
 	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 17
 	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 19
 	echo T_("When you are a guest user, you have all Sarshomar's qualities at your service to investigate.");// Line 21
@@ -377,17 +406,14 @@ private function transtext()
 	echo T_("I want to experience Sarshomar!");                                       // Line 30
 	echo T_("Please enter shown numbers here");                                       // Line 34
 	echo T_("submit");                                                                // Line 25
+	echo T_("Question Charts");                                                       // Line 24
+	echo T_("Multimedia Questions");                                                  // Line 23
 
 	//--------------------------------------content\template\static\features\home.html
 	echo T_("Sarshomar's features");                                                  // Line 3
 	echo T_("Features of Sarshomar");                                                 // Line 6
-	echo T_("Multimedia Questions");                                                  // Line 13
-	echo T_("Without Disturbance");                                                   // Line 13
-	echo T_("Results Output");                                                        // Line 13
-	echo T_("Language Localization");                                                 // Line 13
-	echo T_("Service Provision via Social Networks");                                 // Line 13
+	echo T_("Service Provision via Social Networks");                                 // Line 23
 	echo T_("Determining the Target Statistical Population");                         // Line 13
-	echo T_("Question Charts");                                                       // Line 13
 	echo T_("Results Personalization");                                               // Line 13
 
 	//----------------------------content\template\static\features\knowledge-base.html
@@ -434,6 +460,7 @@ private function transtext()
 	echo T_("Just imagine that, in Sarshomar, you can purposefully send your advertisements only to single women with the age range of 18 to 30.");// Line 19
 
 	//--------------------------content\template\static\features\valid-population.html
+	echo T_("Valid population");                                                      // Line 3
 	echo T_("Sarshomar's valid population");                                          // Line 6
 
 	//-----------------------content\template\static\features\without-disturbance.html
@@ -478,7 +505,12 @@ private function transtext()
 
 	//--------------------------------------content\template\static\logo\wrong-fa.html
 	echo T_("Wrong usage");                                                           // Line 1
+	echo T_("Don't: Minimize our logo or use it under another object or element");    // Line 6
 	echo T_("Wrong");                                                                 // Line 22
+	echo T_("Don't: Use shadow or change colors");                                    // Line 9
+	echo T_("Don't: Manipulate our logo");                                            // Line 15
+	echo T_("Don't: Change the color or font");                                       // Line 18
+	echo T_("Don't: Use weird colorful backgrounds!");                                // Line 21
 
 	//--------------------------------------------content\template\static\privacy.html
 	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 33
@@ -502,31 +534,7 @@ private function transtext()
 	echo T_("In case you are willing to help us to improve the quality of Sarshomar and to promote the efficiency of your own contribution, provide us with your general information.");// Line 32
 	echo T_("Please remember that in case of your unwillingness, it is possible for you to refuse completing the profile questions.");// Line 32
 
-	//------------------------------------------------content\template\static\ref.html
-	echo T_("Nobody can tell the Sarshomar story better than our customers.");        // Line 6
-	echo T_("Nobody can tell the Sarshomar story better than you;)");                 // Line 16
-	echo T_("How it works");                                                          // Line 17
-	echo T_("Tell your friends about the Sarshomar story.");                          // Line 20
-	echo T_("Refer your friends through Social Media or Email.");                     // Line 21
-	echo T_("Share the referral rewards program with friends on Facebook, Twitter, or Email.");// Line 21
-	echo T_("When they click on your post, we’ll know it was you who referred them.");// Line 21
-	echo T_("Your friend enter to Sarshomar and receives credit.");                   // Line 25
-	echo T_("Your friend enter and receives $3 account credit.");                     // Line 26
-	echo T_("Anyone you refer to Sarshomar that enter using your unique referral link will receive $3 in credit immediately after unlocking their account by complete profile.");// Line 26
-	echo T_("You all get rewarded");                                                  // Line 30
-	echo T_("Sarshomar rewards are charge in your account after 7 days of active service.");// Line 32
-	echo T_("Share your link");                                                       // Line 41
-	echo T_("Copy your personal referral link and share it with your friends and followers.");// Line 43
-	echo T_("Short URL");                                                             // Line 76
-	echo T_("Referral stats");                                                        // Line 54
-	echo T_("CLICKS");                                                                // Line 60
-	echo T_("Number of times your link has been clicked.");                           // Line 61
-	echo T_("REFERRALS");                                                             // Line 66
-	echo T_("People who enter to Sarshomar using your link.");                        // Line 67
-	echo T_("Complete Profile");                                                      // Line 19
-	echo T_("People who complete profile after enter");                               // Line 73
-	echo T_("Enter to get a unique referral link.");                                  // Line 79
-	echo T_("Use our logo to help spread the word.");                                 // Line 80
+	//-----------------------------------------------content\template\static\ref2.html
 
 	//------------------------------content\template\static\social-responsibility.html
 	echo T_("Social responsibility refers to our role in maintaining, caring about and helping our society, while having set as its goal a responsibility-centered enterprise along with wealth production.");// Line 16
