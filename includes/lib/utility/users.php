@@ -114,6 +114,22 @@ class users
 		{
 			\lib\db\users::update($user_update, $_args['insert_id']);
 		}
+
+		if(isset($_args['ref']) && $_args['ref'])
+		{
+			\lib\db\logs::set('user:ref:signup', $_args['insert_id'], ['data' => $_args['ref'], 'meta' => func_get_args()]);
+		}
+
+		// invalid ref was set
+		if(isset($_args['invalid_ref_session']))
+		{
+			\lib\db\logs::set('user:ref:invalid:session', $_args['insert_id'], ['data' => $_args['invalid_ref_session'], 'meta' => func_get_args()]);
+		}
+
+		if(isset($_args['invalid_ref_args']) && $_args['ref'])
+		{
+			\lib\db\logs::set('user:ref:signup:args', $_args['insert_id'], ['data' => $_args['invalid_ref_args'], 'meta' => func_get_args()]);
+		}
 	}
 
 
