@@ -670,7 +670,11 @@
  <div class='f poll-panel-item poll-gift'>
   <span class='c3 flex justify-center align-center icon-coin'></span>
   <span class='c poll-panel-label'>
+    {%if poll.options.prize.value > 1%}
+    {{poll.options.prize.value|number_format|fitNumber}}
+    {%else%}
     {{poll.options.prize.value|fitNumber}}
+    {%endif%}
     {%set myUnit = poll.options.prize.unit %}
     {%trans myUnit%}
     </span>
