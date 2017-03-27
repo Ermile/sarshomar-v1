@@ -128,7 +128,7 @@ class users
 
 		if(isset($_args['invalid_ref_args']) && $_args['ref'])
 		{
-			\lib\db\logs::set('user:ref:signup:args', $_args['insert_id'], ['data' => $_args['invalid_ref_args'], 'meta' => func_get_args()]);
+			\lib\db\logs::set('user:ref:invalid:args', $_args['insert_id'], ['data' => $_args['invalid_ref_args'], 'meta' => func_get_args()]);
 		}
 	}
 

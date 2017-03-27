@@ -51,6 +51,8 @@ class controller extends \mvc\controller
 				$this->view_name = $view_name;
 			}
 		}
+
+		$this->get('ref', 'ref')->ALL('ref');
 	}
 
 	function check_for_login($_referer = null)

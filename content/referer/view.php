@@ -7,7 +7,19 @@ class view extends \content\home\view
 	{
 
 		// $this->data->page['title'] = 'Help Center';
-		$this->data->page['title'] = 'Help Center';
+		// $this->data->page['title'] = 'Help Center';
+	}
+
+	public function view_ref($_args)
+	{
+		$result = $_args->api_callback;
+		if(is_array($result))
+		{
+			foreach ($result as $key => $value)
+			{
+				$this->data->$key = $value;
+			}
+		}
 	}
 }
 ?>

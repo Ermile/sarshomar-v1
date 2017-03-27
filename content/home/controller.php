@@ -14,8 +14,16 @@ class controller extends \content\main\controller
 	{
 		parent::_route();
 
+		$site_url = \lib\router::get_url();
+
+		if($site_url === 'ref')
+		{
+			\lib\router::set_controller("\\content\\referer\\controller");
+			return;
+		}
+
 		// route contact form
-		if(\lib\router::get_url() == 'contact')
+		if($site_url == 'contact')
 		{
 			\lib\router::set_controller("\\content\\contact\\controller");
 			return;
@@ -23,7 +31,7 @@ class controller extends \content\main\controller
 
 		$reg = "/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/";
 
-		if(preg_match($reg, \lib\router::get_url(), $controller_name))
+		if(preg_match($reg, $site_url, $controller_name))
 		{
 			if(isset($controller_name[4]) && $controller_name[4] == 'comments')
 			{
@@ -37,19 +45,19 @@ class controller extends \content\main\controller
 		}
 
 		$short_url = "/^\\$([". self::$shortURL. "]+)$/";
-		if(preg_match($short_url, \lib\router::get_url()))
+		if(preg_match($short_url, $site_url))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
 			return;
 		}
 
 
-		if(preg_match("/^sp\_([". self::$shortURL. "]+)$/", \lib\router::get_url(), $split_url))
+		if(preg_match("/^sp\_([". self::$shortURL. "]+)$/", $site_url, $split_url))
 		{
 			\lib\router::set_controller("\\content\\poll\\controller");
 		}
 
-		if(substr(\lib\router::get_url(), 0, 1) == '$' && !$this->model()->s_template_finder())
+		if(substr($site_url, 0, 1) == '$' && !$this->model()->s_template_finder())
 		{
 			\lib\router::set_controller("\\content\\knowledge\\controller");
 			return;
@@ -58,7 +66,7 @@ class controller extends \content\main\controller
 		/**
 		 * generate captcha code
 		 */
-		if(\lib\router::get_url() == 'features/guest')
+		if($site_url == 'features/guest')
 		{
 			if(!$this->login())
 			{
