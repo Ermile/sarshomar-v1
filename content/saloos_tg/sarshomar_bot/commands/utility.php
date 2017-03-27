@@ -304,6 +304,7 @@ class utility
 				}
 				session::set('tmp', 'callback_query', $callback_query);
 			}
+			sleep(1);
 		};
 	}
 

@@ -20,7 +20,7 @@ class controller extends \lib\mvc\controller
 	{
 		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
 		session_set_cookie_params(3600 * 24 * 365);
-		handle::send_log_clear();
+		// handle::send_log_clear();
 		register_shutdown_function(function()
 		{
 			if(!empty(self::$microtime_log))
@@ -111,11 +111,14 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = time();
+			// handle::send_log($_args['method']);
 			if(self::$last_message !== false)
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
-					sleep(1);
+					// handle::send_log(self::$last_message);
+					// handle::send_log($last_micro_time);
+					// sleep(1);
 				}
 			}
 		};
