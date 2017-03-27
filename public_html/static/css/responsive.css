@@ -262,6 +262,7 @@
  .ultra.title-item {margin-bottom: 3em;}
  .ultra .element {/*flex-direction: row;flex-wrap: wrap;*/display:block;line-height:normal}
  .ultra .element input[type=text] {-ms-flex-preferred-size: 87%;-webkit-flex-basis: 87%;flex-basis: 87%;border-radius: 0 0 0 5px;height: 30px;color: #00667a;}
+ .rtl .ultra .element input[type=text] {border-radius: 0 0 5px 0;}
  .ultra .element input[type=text]:focus {color: #d8dad0;}
  .element.switch.privacy {width: 100%;}
  .ultra .data:after {content: '';position: absolute;width: 95%;height: 1px;background: #00667a;top: 19px;right: 0;}
@@ -372,7 +373,7 @@
  .special-heading:before {width: 40px;}
  .em {padding: 1.5em 1em;}
 
- .api-docs {padding: 2em;}
+ .api-docs {padding: 0 2em !important;}
  aside {display: none;}
  .method-table, .response-codes {white-space: normal;}
 
