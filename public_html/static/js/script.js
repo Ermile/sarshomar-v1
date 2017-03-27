@@ -3276,6 +3276,18 @@ function loading_form(_status)
 	// console.log('form.......');
 }
 
+function panelText()
+{
+	$(document).on('input', 'textarea[data-limit]', function(e)
+	{
+		var id      = $(this).attr('id');
+		var len     = $(this).val().length;
+		var max     = $(this).attr('maxlength');
+		var limitOf = $('[data-limit-of=' + id + ']');
+		limitOf.text(max - len);
+	});
+}
+
 
 runAllScripts();
 /**
@@ -3300,6 +3312,8 @@ function runAllScripts()
 	loadFiles();
 	// inestimable
 	inestimable();
+	// panel text
+	panelText();
 }
 
 

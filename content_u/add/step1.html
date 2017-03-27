@@ -338,8 +338,9 @@
  <label for="summary-show">
   <i class="icon-minus" data-response='summary-show' data-response-class='icon-plus' data-response-class-false='icon-minus'></i><span>{%trans "Summary"%}</span>
  </label>
+ <span class="letter-counter" data-limit-of='summary'></span>
 </div>
-<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide' data-resizable maxlength="150">{{poll.summary}}</textarea>
+<textarea id='summary' placeholder='{%trans "Summary"%}' data-response="summary-show" {%if not poll.summary and poll.summary != '0' %}data-response-hide{%endif%} data-response-effect='slide' data-resizable data-limit maxlength="150">{{poll.summary}}</textarea>
 {%endblock%}
 
 
