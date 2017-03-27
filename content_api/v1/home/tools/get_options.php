@@ -357,6 +357,11 @@ trait get_options
 			$file_url = self::host('file'). $file_url;
 		}
 
+		if(self::check_api_permission('admin'))
+		{
+			$file_url = self::host('file').'/'. $real_file_url;
+		}
+
 		return
 		[
 			'url'  => $file_url,
