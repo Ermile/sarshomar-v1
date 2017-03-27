@@ -711,6 +711,7 @@ private function transtext()
 
 	//-------------------------------------------------content_api\v1\doc\display.html
 	echo T_("Sarshomars API exposes the entire Sarshomar infrastructure via a standardized programmatic interface. Using Sarshomars API, you can do just about anything you can do on Sarshomar.com.");// Line 3
+	echo T_("Go to top");                                                             // Line 24
 
 	//----------------------------content_api\v1\doc\template\billing\description.html
 	echo T_("Billing via Sarshomar API");                                             // Line 3
