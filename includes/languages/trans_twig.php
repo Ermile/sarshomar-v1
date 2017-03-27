@@ -29,7 +29,7 @@ private function transtext()
 	echo T_("Enter to Sarshomar");                                                    // Line 82
 	echo T_("Please enter valid mobile number");                                      // Line 41
 	echo T_("Username");                                                              // Line 41
-	echo T_("Password");                                                              // Line 367
+	echo T_("Password");                                                              // Line 368
 	echo T_("Pin");                                                                   // Line 58
 	echo T_("Code");                                                                  // Line 74
 	echo T_("Go");                                                                    // Line 78
@@ -155,7 +155,7 @@ private function transtext()
 	echo T_("Done");                                                                  // Line 81
 
 	//-------------------------------------------------------content\poll\display.html
-	echo T_("Description");                                                           // Line 353
+	echo T_("Description");                                                           // Line 354
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
@@ -653,7 +653,7 @@ private function transtext()
 	//--------------------------------------------content_admin\knowledge\display.html
 	echo T_("Published");                                                             // Line 66
 	echo T_("Untitled");                                                              // Line 135
-	echo T_("Summary");                                                               // Line 342
+	echo T_("Summary");                                                               // Line 343
 	echo T_("Persian");                                                               // Line 172
 	echo T_("parent");                                                                // Line 178
 	echo T_("sarshomar");                                                             // Line 181
@@ -970,33 +970,33 @@ private function transtext()
 	echo T_("Has correct option");                                                    // Line 253
 	echo T_("Tree");                                                                  // Line 308
 	echo T_("Time");                                                                  // Line 17
-	echo T_("Text Format");                                                           // Line 360
-	echo T_("Any Text");                                                              // Line 362
-	echo T_("Phone Number");                                                          // Line 363
-	echo T_("Website");                                                               // Line 365
+	echo T_("Text Format");                                                           // Line 361
+	echo T_("Any Text");                                                              // Line 363
+	echo T_("Phone Number");                                                          // Line 364
+	echo T_("Website");                                                               // Line 366
 	echo T_("Number");                                                                // Line 12
-	echo T_("Custom");                                                                // Line 415
-	echo T_("Regular");                                                               // Line 420
-	echo T_("Something");                                                             // Line 385
-	echo T_("File Format");                                                           // Line 403
-	echo T_("Any File");                                                              // Line 405
-	echo T_("Document");                                                              // Line 406
-	echo T_("Photo");                                                                 // Line 407
-	echo T_("Video");                                                                 // Line 408
-	echo T_("Audio");                                                                 // Line 409
-	echo T_("PDF");                                                                   // Line 410
-	echo T_("Word");                                                                  // Line 411
-	echo T_("Excel");                                                                 // Line 412
-	echo T_("PowerPoint");                                                            // Line 413
-	echo T_("Text");                                                                  // Line 414
-	echo T_("File Size");                                                             // Line 430
-	echo T_("Range Number");                                                          // Line 453
-	echo T_("Star");                                                                  // Line 456
-	echo T_("Like");                                                                  // Line 459
-	echo T_("Number Size");                                                           // Line 467
-	echo T_("Star size");                                                             // Line 483
-	echo T_("Fit to best size");                                                      // Line 498
-	echo T_("Remove File");                                                           // Line 515
+	echo T_("Custom");                                                                // Line 416
+	echo T_("Regular");                                                               // Line 421
+	echo T_("Something");                                                             // Line 386
+	echo T_("File Format");                                                           // Line 404
+	echo T_("Any File");                                                              // Line 406
+	echo T_("Document");                                                              // Line 407
+	echo T_("Photo");                                                                 // Line 408
+	echo T_("Video");                                                                 // Line 409
+	echo T_("Audio");                                                                 // Line 410
+	echo T_("PDF");                                                                   // Line 411
+	echo T_("Word");                                                                  // Line 412
+	echo T_("Excel");                                                                 // Line 413
+	echo T_("PowerPoint");                                                            // Line 414
+	echo T_("Text");                                                                  // Line 415
+	echo T_("File Size");                                                             // Line 431
+	echo T_("Range Number");                                                          // Line 454
+	echo T_("Star");                                                                  // Line 457
+	echo T_("Like");                                                                  // Line 460
+	echo T_("Number Size");                                                           // Line 468
+	echo T_("Star size");                                                             // Line 484
+	echo T_("Fit to best size");                                                      // Line 499
+	echo T_("Remove File");                                                           // Line 516
 	echo T_("Apply");                                                                 // Line 9
 
 	//--------------------------------------------------------content_u\add\step2.html
