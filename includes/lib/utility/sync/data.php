@@ -191,14 +191,14 @@ trait data
 		{
 			$update_query ="UPDATE IGNORE options
 				SET
-					option_cat = '{$value}_{$new_user_id}',
+					option_cat = '{$value}\_{$new_user_id}',
 					user_id = $new_user_id
 				WHERE
-					option_cat = '{$value}_{$old_user_id}' AND
+					option_cat = '{$value}\_{$old_user_id}' AND
 					user_id = $old_user_id";
 			\lib\db::query($update_query);
 			// \lib\db::query("DELETE FROM options	WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
-			\lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}_{$old_user_id}' AND user_id = $old_user_id ");
+			\lib\db::query("UPDATE options SET option_status = 'disable' WHERE option_cat = '{$value}\_{$old_user_id}' AND user_id = $old_user_id ");
 		}
 
 		\lib\db::query("UPDATE IGNORE options SET user_id = $new_user_id WHERE user_id = $old_user_id ");

@@ -235,20 +235,26 @@ trait verify
 			$request['template'] =  $service_name . '-signup-' . (\lib\define::get_language() === 'fa') ? 'fa': 'en';
 			$request['token2']   = $users_count;
 		}
+
 		if(Tld === 'dev')
 		{
-			$check_valid_mobile = true;
+			$kavenegar_send_result = true;
 		}
 		else
 		{
-			$check_valid_mobile = \lib\utility\sms::send($request, 'verify');
+			$kavenegar_send_result = \lib\utility\sms::send($request, 'verify');
 		}
 
-		if($check_valid_mobile === 411)
+		if($kavenegar_send_result === 411)
 		{
 			// this mobile is not a valid mobile
 			$this->signup('block');
 			return false;
+		}
+		elseif($kavenegar_send_result === 22)
+		{
+			db\logs::set('kavenegar:service:done', $this->user_id, $log_meta);
+			// the kavenegar service is down!!!
 		}
 		else
 		{
@@ -265,13 +271,13 @@ trait verify
 				}
 			}
 			$log_meta['meta']['response'] = [];
-			if(is_string($check_valid_mobile))
+			if(is_string($kavenegar_send_result))
 			{
-				$log_meta['meta']['response'] = $check_valid_mobile;
+				$log_meta['meta']['response'] = $kavenegar_send_result;
 			}
-			elseif(is_array($check_valid_mobile))
+			elseif(is_array($kavenegar_send_result))
 			{
-				foreach ($check_valid_mobile as $key => $value)
+				foreach ($kavenegar_send_result as $key => $value)
 				{
 					$log_meta['meta']['response'][$key] = str_replace("\n", ' ', $value);
 				}
