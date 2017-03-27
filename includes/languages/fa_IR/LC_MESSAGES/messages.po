@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-27 16:09+0430\n"
-"PO-Revision-Date: 2017-03-27 16:26+0430\n"
+"POT-Creation-Date: 2017-03-27 16:33+0430\n"
+"PO-Revision-Date: 2017-03-27 16:45+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -13478,99 +13478,99 @@ msgstr "حداکثر :max نظرسنجی را می‌توانید پیش‌نو�
 msgid "You can save :max poll in one survey"
 msgstr "حداکثر :max نظرسنجی را در یک پرسشنامه می‌توانید ذخیره کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:56
+#: sarshomar/includes/lib/db/polls/insert/options.php:55
 msgid ""
 "Invalid brand title argument, you must set less than 99 character for the title"
 msgstr ""
 "آرگومان عنوان برند نامعتبر است، نباید بیش از 99 کاراکتر برای عنوان تعیین کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:66
+#: sarshomar/includes/lib/db/polls/insert/options.php:65
 msgid ""
 " Invalid brand URL argument, you must set less than 99 character for brand URL "
 msgstr ""
 " آرگومان آدرس URL برند نامعتبر است، نباید بیشتر از 99 کاراکتر برای URL برند تعیین "
 "کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:89
+#: sarshomar/includes/lib/db/polls/insert/options.php:88
 msgid "Invalid arguments time"
 msgstr "آرگومان زمان نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:113
+#: sarshomar/includes/lib/db/polls/insert/options.php:112
 msgid "Invalid arguments min"
 msgstr "آرگومان‌های حداقلی نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:120
+#: sarshomar/includes/lib/db/polls/insert/options.php:119
 msgid "Can not set parameter 'min' less than 1"
 msgstr "نمیتوانید پارامتر 'min' را کمتر از 1 قرار دهید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:131
-#: sarshomar/includes/lib/db/polls/insert/options.php:192
+#: sarshomar/includes/lib/db/polls/insert/options.php:130
+#: sarshomar/includes/lib/db/polls/insert/options.php:191
 msgid "You can not set minimum greater than maximum in multi select settings"
 msgstr "نمی‌توانید حداقل را بیش از حداکثر در تنظیمات سوال چند انتخابی تعیین کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:138
+#: sarshomar/includes/lib/db/polls/insert/options.php:137
 msgid "You have set :count answers and can not set :min in min parameter "
 msgstr ""
 "شما :count پاسخ تعیین کرده‌اید و نمیتوانید :min پاسخ در پارامتر min وارد کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:170
+#: sarshomar/includes/lib/db/polls/insert/options.php:169
 msgid "Invalid arguments max"
 msgstr "آرگومان‌های حداکثری نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:177
+#: sarshomar/includes/lib/db/polls/insert/options.php:176
 msgid "You have set :count answers and can not set :max in max parameter "
 msgstr ""
 "شما :count پاسخ تعیین کرده‌اید و نمیتوانید :max پاسخ در پارامتر max وارد کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:235
+#: sarshomar/includes/lib/db/polls/insert/options.php:234
 msgid "Can not use multi:min and ordering"
 msgstr "نمی‌توانید همزمان از multi:min و چیدمان استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:242
+#: sarshomar/includes/lib/db/polls/insert/options.php:241
 msgid "Can not use multi:max and ordering"
 msgstr "نمیتوانید همزمان از multi:max و چیدمان استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:249
+#: sarshomar/includes/lib/db/polls/insert/options.php:248
 msgid "You can not use multi select and ordering poll"
 msgstr "نمیتوانید همزمان از نظرسنجی چندانتخابی و چینشی استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:310
+#: sarshomar/includes/lib/db/polls/insert/options.php:309
 msgid "Invalid arguments start"
 msgstr "آرگومان شروع نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:329
+#: sarshomar/includes/lib/db/polls/insert/options.php:328
 msgid "Invalid arguments end_date"
 msgstr "آرگومان end_date نامعبتر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:348
+#: sarshomar/includes/lib/db/polls/insert/options.php:347
 msgid "Parameter article must be array"
 msgstr "پارامتر مقالات باید آرایه باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:357
+#: sarshomar/includes/lib/db/polls/insert/options.php:356
 msgid "Invalid arguments article on index :key"
 msgstr "آرگومان مقاله در شاخص :key نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:420
+#: sarshomar/includes/lib/db/polls/insert/options.php:419
 msgid "Parameter tags must be array"
 msgstr "پارامتر تگ باید آرایه باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:431
+#: sarshomar/includes/lib/db/polls/insert/options.php:430
 msgid "You have added so many tags, Please remove some of them"
 msgstr "تعداد برچسب‌های وارد شده بسیار زیاد است، لطفا چند مورد را حذف کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:456
+#: sarshomar/includes/lib/db/polls/insert/options.php:455
 msgid "Invalid tag in index :key, tags must be less than 45 character"
 msgstr "تگ نامعتبر در شاخص :key، تگ‌ها باید کمتر از ۴۵ کاراکتر باشند"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:562
+#: sarshomar/includes/lib/db/polls/insert/options.php:561
 msgid "Invalid parameter cats"
 msgstr "پارامتر دسته بندی نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:573
+#: sarshomar/includes/lib/db/polls/insert/options.php:572
 msgid "Cat not found"
 msgstr "دسته بندی یافت نشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:580
+#: sarshomar/includes/lib/db/polls/insert/options.php:579
 msgid "Invalid category"
 msgstr "دسته بندی نامعتبر است"
 

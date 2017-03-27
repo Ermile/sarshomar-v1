@@ -523,13 +523,13 @@ a[href*="amcharts.com"]{display:none!important}
 /************************************************************** header */
 header{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;background-color:#f4f4f4;height:90px;border:none;}
 
-header .logo{font-size:10px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-align:end;-ms-flex-align:end;-ms-grid-row-align:flex-end;-webkit-align-items:flex-end;-moz-box-align:end;align-items:flex-end;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em 1em 1em;margin-bottom:0}
+header .logo{font-size:10px;width:260px;background-image:url(/static/images/svg/header.svg);background-repeat:no-repeat;padding:0 1em 1em 1em;margin-bottom:0}
 .rtl header .logo{background-image:url(/static/images/svg/header-rtl.svg)}
 
 header .logo span{position:absolute;z-index:-1;width:0;height:0;opacity:0}
 
 
-header .logo img{-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;width:190px;height:40px}
+header .logo img{-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;width:190px;height:40px;display:block}
 .rtl header .logo img{width:140px;height:60px}
 header .logo h1{margin:0;font-size:1.9em;line-height:2.2;margin-left:10px}
 .rtl header .logo h1{font-size:2.4em;line-height:2;margin-left:0;margin-right:12px}
@@ -649,9 +649,11 @@ footer .container{padding:0 2%}
 footer #footer-nav{border-bottom:1px solid #e5a428;font-size:1.6em;font-weight:900;position:relative}
 footer #footer-nav a{display:inline-block;padding:1.2em .5em;color:#aaa;margin-right:1.5em}
 .rtl footer #footer-nav a{margin-right:0;margin-left:1.5em}
+.ltr footer #footer-nav a:nth-last-child(2){margin-right:3em}
+.rtl footer #footer-nav a:nth-last-child(2){margin-left:3em}
 footer #footer-nav a:hover,footer #footer-nav a:focus{color:#fff}
-footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%}
-.rtl footer #footer-nav .eco{right:auto;left:0;padding:0}
+footer #footer-nav .eco{position:absolute;right:0;bottom:0;padding:0;height:100%;margin:0;width:auto}
+.rtl footer #footer-nav .eco{right:auto;left:0;padding:0;margin:0;}
 footer #footer-nav .eco img{height:100%;padding-top:5px}
 
 /* footer-links */
@@ -688,8 +690,7 @@ footer .checkbox .title {color: #aaa !important;font-size: inherit !important;pa
 footer .checkbox .title:hover {color: #fff !important}
 footer .is-open i {-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);}
 
-footer .socialbox{font-size:.9em}
-footer .socialbox>a{background-color:rgba(0,0,0,0.1)}
+footer .socialbox>a{background-color:rgba(0,0,0,0.1);padding:0}
 
 footer #xaccess{position:fixed;left:0;bottom:17%;z-index:3;}
 footer #xaccess a{display:block;background-color:#000;opacity:0.3;padding:0.5em 1em;transition:0.3s;margin-top:0.2em;margin-right:2em;color:#fff;}
@@ -774,7 +775,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .customers-container .customer.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;flex-direction:row-reverse}
 .customers-container .customer-content,.rtl .customers-container .customer.reverse .customer-content{margin-left:50px;margin-right:0}
 .customers-container .customer.reverse .customer-content,.rtl .customers-container .customer-content{margin-left:0;margin-right:50px}
-.customers-container .customer-content h3 a{color:#0c7c78}
+.customers-container .customer-content h3 a{color:#0c7c78;}
 .customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
 .customers-container .customer-content p{margin-bottom:0;color:#adadad; word-wrap: break-word}
 .customers-container .customer.reverse .customer-content{text-align:right}

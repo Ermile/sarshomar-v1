@@ -19,7 +19,6 @@
 	.wrapper{margin-left: 6px;-webkit-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;-moz-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;}
 	header{-webkit-box-shadow: 2px 0 0 0 #f4f4f5, 6px 0 0 0 #e7a429;-moz-box-shadow: 2px 0 0 0 #f4f4f5, 6px 0 0 0 #e7a429;box-shadow: 2px 0 0 0 #f4f4f5, 6px 0 0 0 #e7a429;border-right: 2px solid #00667a;margin-right: 6px;margin-left: 0;}
 	.rtl header{-webkit-box-shadow: -2px 0 0 0 #f4f4f5, -6px 0 0 0 #e7a429;-moz-box-shadow: -2px 0 0 0 #f4f4f5, -6px 0 0 0 #e7a429;box-shadow: -2px 0 0 0 #f4f4f5, -6px 0 0 0 #e7a429;border-left: 2px solid #00667a;margin-left: 6px;margin-right: 0;border-right: 0}
-
 }
 
 /************************************************************** Sarshomar */
@@ -61,7 +60,6 @@
  .api-docs {padding: 2em;}
  .help-main-box, .help-category-box, .help-post-box {margin:1em 0 }
 
- footer #footer-nav .eco{height:65%}
 
  .poll-container .poll-image{width:100%}
 
@@ -87,6 +85,7 @@
 	.poll-panel {display: none;}
 
 	#inestimable.special h4{font-size:3em}
+	#features-box{padding:3em 0;}
 }
 
 
@@ -111,7 +110,7 @@
  #formError{bottom:10px;width:100%}
  /*[data-hint].hint--left:after,[data-hint].hint--left:before,[data-hint].hint--right:after,[data-hint].hint--right:before{display:none}*/
 
-	.logo>a {display: block; line-height: normal}
+
 
  .modal-dialog {min-width: 90%;}
 
@@ -132,12 +131,16 @@
 	.special-btn::after {right: -4px;}
 	.special-btn.disabled::after {right: -4px;}
 
- .wrapper {margin-left: 6px;-webkit-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;-moz-box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;box-shadow: 0px 2px 0px 2px #f4f4f5, 0px 6px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;}
+ .wrapper {margin-left: 6px;
+
+-webkit-box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;-moz-box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;border-top: 2px solid #00667a;
+
+ }
 
 
  header{display:block;height:auto;border:none}
- header .logo{background-image:none;display:block;width:100%;padding:2em 0;text-align:center;background-color:#00667a}
- .rtl header .logo{background-image:none}
+.container header .logo{background-image:none;width:100%;padding:2em 0;background-color:#00667a}
+
  header .logo h1{display:inline-block;vertical-align:bottom}
  header #header-top{border:none;height:auto;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;flex-direction:column-reverse;margin-top:10px;display:none}
  header #header-quick{width:85%;margin:2em auto;border-bottom:1px solid #e5a428;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;justify-content:space-between}
@@ -147,7 +150,7 @@
  header #header-profile #add-question{}
  header #header-profile .register{margin-left:5px}
  header #header-profile #add-question .header-link-text{display:none}
- header #header-box {margin-left: 6px;-webkit-box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;-moz-box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;box-shadow: 0px 0px 0px 2px #f4f4f5, 0px 0px 0px 6px #e7a429;border-right: 2px solid #00667a;margin-right: 6px;border-left: 2px solid #00667a;border-top: 2px solid #00667a;}
+ header #header-box {margin-left: 6px;}
  header #header-bottom{-ms-flex-wrap:wrap;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;-moz-box-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;flex-direction:column-reverse; height: auto;display:none}
  .breadcrumb {padding: 6px 0;}
  .rtl header .header-profile-button{font-size:12px}
@@ -164,7 +167,7 @@
  #contact-box {padding: 0 1em;}
  #intro-box{text-align:center;padding:2rem 0}
  #intro-box h2{padding-top:0}
- #intro-box p{margin:0;margin-bottom:0;padding:0 15px}
+ #intro-box p{margin:0;margin-bottom:0;padding:0 15px;font-size:1.4em}
  #random-chart{margin:0!important}
  #random-chart h3 a{font-weight:500; font-size: 1.3em}
 
@@ -175,7 +178,7 @@
  #map{display:none}
  .customers-container{border-top:1px solid #f4f4f4}
  .customers-container .customer{display:block;width:100%;text-align:center}
- .customers-container .customer-img{margin:0 auto 1rem;width:40%}
+ .customers-container .customer-img{margin:0 auto 1rem;width:50%}
  .customers-container .customer-content{width:95%}
  .customers-container .customer-content,
  .rtl .customers-container .customer.reverse .customer-content,
@@ -183,6 +186,9 @@
  .rtl .customers-container .customer-content{margin:0 auto;text-align:center}
  .customers-container .customer:not(:last-child) .customer-content p{margin-bottom:2em}
  .customers-container .customer-content h3{margin-bottom:0}
+ .customer-content h3 a{padding:0 1em}
+
+ #features-box{display:none}
 
  /*.triplet{padding:0;overflow:hidden;overflow-x:auto}
  .triplet .triplet-item{padding:50px 10px;min-width:75%}
@@ -196,7 +202,7 @@
  .special-button:before{left:-6px}
  .special-button:after{right:-6px}
 
- #inestimable{height:150px}
+ #inestimable{height:150px;font-size:0.8em;}
 
  #inestimable .inestimable-left,#inestimable .inestimable-right{width:52px;height:150px}
 	#inestimable .inestimable-left{background-image:url('../images/svg/home/inestimable-left-img-mobile.svg')}
@@ -214,21 +220,23 @@
  .triplet .triplet-item img{width:40%}
 
 	footer #footer-nav a {padding: .6em .5em;font-size: .9em;font-weight: 500;}
- footer #footer-nav .eco{height:40px}
- footer #footer-nav .eco{margin-right:0;position: inherit;}
+ footer #footer-nav .eco{height:50px}
  .rtl footer #footer-nav .eco{margin-left:0}
- footer #footer-links a{display:inline-block;margin:0;margin-right:2rem;padding:.5rem 0}
+ footer #footer-links a{display:inline-block;margin:0;margin-right:2em;padding:.5em 0}
  .rtl footer #footer-links a{margin:0;margin-left:2rem}
+ footer #footer-links .socialbox>a{padding:0}
  footer #footer-note {-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;}
  footer #footer-note>div {-webkit-box-flex: 1;-ms-flex: 1 0 50%;-webkit-flex: 1 0 50%;-moz-box-flex: 1;flex: 1 0 50%;-webkit-box-ordinal-group: 3;-ms-flex-order: 2;-webkit-order: 2;-moz-box-ordinal-group: 3;order: 2;}
  footer #footer-note>.counter {-webkit-box-flex: 0;-ms-flex: 0 1 100%;-webkit-flex: 0 1 100%;-moz-box-flex: 0;flex: 0 1 100%;-webkit-box-ordinal-group: 2;-ms-flex-order: 1;-webkit-order: 1;-moz-box-ordinal-group: 2;order: 1; margin-bottom: 2em;}
  footer #footer-links{/*display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: -moz-box;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;-webkit-flex-direction: row;-moz-box-orient: horizontal;-moz-box-direction: normal;flex-direction: row;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap*/}
- footer #footer-links>nav {margin-bottom: 0.5em}
+ footer #footer-links>nav {margin-bottom: 0.7em}
  footer #footer-links nav:nth-child(2) {-webkit-box-flex: 0;-ms-flex: 0 1 100%;-webkit-flex: 0 1 100%;-moz-box-flex: 0;flex: 0 1 100%;}
  footer #footer-links #footer-news {-webkit-box-flex: 0;-ms-flex: 0 1 70%;-webkit-flex: 0 1 70%;-moz-box-flex: 0;flex: 0 1 70%; margin-bottom: 1.5em}
  footer #footer-links .enamad {-webkit-box-flex: 0;-ms-flex: 0 1 30%;-webkit-flex: 0 1 30%;-moz-box-flex: 0;flex: 0 1 30%;}
  .enamad {-webkit-box-ordinal-group: 11;-ms-flex-order: 10;-webkit-order: 10;-moz-box-ordinal-group: 11;order: 10;}
- #footer-links ul li {float: left;margin-bottom: 1em;}
+ footer #footer-links h4{margin:0}
+
+ #footer-links ul li {float: left;}
  .rtl #footer-links ul li {float: right;}
 
  footer .socialbox a{margin:0 !important;margin-right:1rem !important}
