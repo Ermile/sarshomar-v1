@@ -29,6 +29,7 @@ class ask
 			'poll_id' 	=> null,
 			'type'		=> 'private',
 			'last'		=> false,
+			'text_type'	=> null
 			],$_options);
 
 
@@ -253,8 +254,7 @@ class ask
 		}
 
 		$return = $maker->make();
-		$size = $maker->query_result['file']['size'];
-		if(isset($maker->query_result['file']) && (
+		if($options['text_type'] != 'text' && isset($maker->query_result['file']) && (
 			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
 			|| $options['type'] == 'private'))
 		{
@@ -273,8 +273,12 @@ class ask
 			}
 			$caption .= "\n👥". utility::nubmer_language($maker->message->stats['total']);
 			$caption .= "\nt.me/sarshomarbot?start=".$maker->query_result['id'];
-			if(mb_strlen($caption) <= 150)
+			if(mb_strlen($caption) <= 150 || $options['text_type'] == 'caption')
 			{
+				if(isset($my_date))
+				{
+					$caption .= "\n🕰 " . str_replace("-", "/", $my_date);
+				}
 				$get_file = \lib\db\options::get([
 					'option_cat' => 'telegram',
 					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
@@ -303,6 +307,10 @@ class ask
 					}
 					unset($return['text']);
 					$return['mime_type'] = $maker->query_result['file']['mime'];
+					if($get_file['method'] == 'image')
+					{
+						$get_file['method'] = 'photo';
+					}
 					$return['method'] = "send" . $get_file['method'];
 					$return[$get_file['method']] = $get_file['file_id'];
 				}
@@ -346,7 +354,8 @@ class ask
 		callback_query::edit_message(self::make(null, null, [
 			'poll_id' 	=>$poll_id,
 			'return' 	=> true,
-			'last'		=> $mood == 'last'  ? true : false
+			'last'		=> $mood == 'last'  ? true : false,
+			'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 			]));
 		if($mood != 'update')
 		{

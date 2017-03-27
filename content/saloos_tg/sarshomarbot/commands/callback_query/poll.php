@@ -196,7 +196,7 @@ class poll
 			]);
 			if($subport)
 			{
-				self::subport_update(['subport' => $subport], $poll_id);
+				self::subport_update(['subport' => $subport], $poll_id, null, $_query);
 			}
 			// \lib\db::rollback();
 		}
@@ -270,7 +270,8 @@ class poll
 				'poll_id' 	=> $poll_id,
 				'return'	=> true,
 				'last'		=> $last,
-				'type'		=> 'private'
+				'type'		=> 'private',
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]));
 			if($add)
 			{
@@ -357,11 +358,11 @@ class poll
 		{
 			if(isset($_query['inline_message_id']))
 			{
-				self::subport_update(['inline_message_id' => $_query['inline_message_id']], $poll_id, $md5_result);
+				self::subport_update(['inline_message_id' => $_query['inline_message_id']], $poll_id, $md5_result, $_query);
 			}
 			else
 			{
-				self::subport_update(['subport' => $subport], $poll_id, $md5_result);
+				self::subport_update(['subport' => $subport], $poll_id, $md5_result, $_query);
 				\lib\storage::set_disable_edit(false);
 			}
 		}
@@ -371,7 +372,8 @@ class poll
 				'poll_id' 	=> $answer == 'skip' ? null : $poll_id,
 				'return'	=> true,
 				'last'		=> $last,
-				'type'		=> 'private'
+				'type'		=> 'private',
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]));
 		}
 		// \lib\db::rollback();
@@ -430,7 +432,8 @@ class poll
 			bot::sendResponse($main);
 			bot::sendResponse(ask::make(null, null, [
 				'poll_id' 	=> $poll,
-				'return'	=> true
+				'return'	=> true,
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]));
 		}
 		else
@@ -438,7 +441,8 @@ class poll
 			\lib\storage::set_disable_edit(true);
 			callback_query::edit_message(ask::make(null, null, [
 				'poll_id' 	=> $_data_url[3],
-				'return'	=> true
+				'return'	=> true,
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]));
 		}
 
@@ -619,7 +623,7 @@ class poll
 		callback_query::edit_message($return);
 	}
 
-	public static function subport_update($_options, $_poll_id, $_md5_result = false)
+	public static function subport_update($_options, $_poll_id, $_md5_result = false, $_query)
 	{
 		if(isset($_options['subport']))
 		{
@@ -657,7 +661,8 @@ class poll
 				'return'		=> true,
 				'type'			=> 'inline',
 				'md5_result'	=> $_md5_result,
-				'inline_id'		=> $get_subport ? $get_subport['value'] : null
+				'inline_id'		=> $get_subport ? $get_subport['value'] : null,
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
 			if($edit)
@@ -684,7 +689,8 @@ class poll
 				'return'	=> true,
 				'type'		=> 'inline',
 				'md5_result'	=> $_md5_result,
-				'inline_id'	=> $get_subport ? $get_subport['value'] : null
+				'inline_id'	=> $get_subport ? $get_subport['value'] : null,
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
 			if($edit)
@@ -705,7 +711,8 @@ class poll
 					'return'		=> true,
 					'type'			=> 'inline',
 					'md5_result'	=> $_md5_result,
-					'inline_id'		=> $get_subport ? $get_subport['value'] : null
+					'inline_id'		=> $get_subport ? $get_subport['value'] : null,
+					'text_type'		=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
 				if($edit)
