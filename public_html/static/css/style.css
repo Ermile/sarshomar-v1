@@ -2063,7 +2063,7 @@ code {font-size: 1.2em;}
 .gateways label >span> input[disabled]+img {opacity: .4;cursor: default;}
 .billing .billing-stats {margin: 2em 0 3em;}
 .billing .billing-info {position: relative;background: #FAFAFA;min-height: 125px!important;display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-webkit-align-items: center;-moz-box-align: center;-ms-flex-align: center;align-items: center;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-moz-box-orient: horizontal;-moz-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.13);-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.13);box-shadow: 0 1px 2px rgba(0,0,0,0.13);}
-.billing .billing-info>div {padding: 1em;z-index: 2;}
+.billing .billing-info>div {padding: 2em;z-index: 2;}
 .billing .billing-info>div.icon{padding:0 2em;}
 .billing .billing-info .title {color: #607D8B;font-weight: 700;}
 .billing .billing-info .amount {margin: 0;color: #7d7373;font-size: 1.4em;}
@@ -2087,7 +2087,7 @@ code {font-size: 1.2em;}
 .billing .billing-btn:hover {background: #00667a;}
 .billing-history-table {margin-top: 2em;}
 .currency-label {-webkit-align-self:center;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}
-
+.billing h3 {line-height: 1em;}
 /************************************************************** autocomple temp */
 .awesomplete [hidden]{display:none}
 .awesomplete .visually-hidden{position:absolute;clip:rect(0,0,0,0)}

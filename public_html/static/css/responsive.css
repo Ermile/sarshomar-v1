@@ -416,7 +416,7 @@
  .billing .billing-stats .billing-info {margin-bottom:3em !important;}
  .billing .gateways>form{-webkit-box-orient: vertical;-webkit-box-direction: normal;-webkit-flex-direction: column;-moz-box-orient: vertical;-moz-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
  .billing .promo-box {-webkit-box-orient: vertical;-webkit-box-direction: normal;-webkit-flex-direction: column;-moz-box-orient: vertical;-moz-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
-
+.billing .billing-stats {margin: 2em 0 0em;}
 
  .in .l1{margin:0 6px}
  .rtl .in .l2{margin:0 40px 0 6px}
