@@ -2336,11 +2336,10 @@ input.rangeSlider{display:none}
 #logo-main .wrong-samples img{max-height: 13em}
 #logo-main .wrong-samples{text-align: center;}
 #logo-main .three-logo-middle img{max-height: 7em}
-.three-brand-orginal {position: relative;}
-.three-brand-orginal div.hover-logo {display: inline-block;}
-.three-brand-orginal .img-hover { position: absolute; visibility: hidden;background-color: #fff;}
-div.hover-logo:hover .img-hover{visibility: visible; transition: 1s }
-/*div.hover-logo:hover img {visibility: hidden;}*/
+#logo-main .three-brand-orginal {position: relative;}
+#logo-main .three-brand-orginal div.hover-logo {display: inline-block;}
+#logo-main .three-brand-orginal .img-hover { position: absolute; visibility: hidden;}
+/*#logo-main div.hover-logo:hover .img-hover{visibility: visible; transition: 1s }*/
 
 
 
