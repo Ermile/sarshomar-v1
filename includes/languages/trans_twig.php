@@ -159,52 +159,52 @@ private function transtext()
 
 	//--------------------------------------------------------content\poll\layout.html
 	echo T_("Unfortunately there is no title to show!");                              // Line 9
-	echo T_("Your are our Guest!");                                                   // Line 46
-	echo T_("Read More");                                                             // Line 230
-	echo T_("There is no option!");                                                   // Line 175
-	echo T_("Previous");                                                              // Line 195
-	echo T_("Save Answer");                                                           // Line 303
+	echo T_("Your are our Guest!");                                                   // Line 41
+	echo T_("Read More");                                                             // Line 225
+	echo T_("There is no option!");                                                   // Line 170
+	echo T_("Previous");                                                              // Line 190
+	echo T_("Save Answer");                                                           // Line 298
 	echo T_("Next");                                                                  // Line 9
-	echo T_("You can select just two options.");                                      // Line 243
-	echo T_("I am not willing to answer");                                            // Line 292
+	echo T_("You can select just two options.");                                      // Line 238
+	echo T_("I am not willing to answer");                                            // Line 287
 	echo T_("Ask Me");                                                                // Line 30
-	echo T_("There is no data to draw chart!");                                       // Line 325
-	echo T_("Similar Questions");                                                     // Line 359
-	echo T_("Latest Questions");                                                      // Line 352
-	echo T_("There is no similar post");                                              // Line 360
-	echo T_("Poll timespan");                                                         // Line 378
+	echo T_("There is no data to draw chart!");                                       // Line 320
+	echo T_("Similar Questions");                                                     // Line 354
+	echo T_("Latest Questions");                                                      // Line 347
+	echo T_("There is no similar post");                                              // Line 355
+	echo T_("Poll timespan");                                                         // Line 373
 	echo T_("to");                                                                    // Line 96
-	echo T_("Not set");                                                               // Line 429
-	echo T_("Keyword");                                                               // Line 400
-	echo T_("Statistical population");                                                // Line 417
-	echo T_("There is nothing to display!");                                          // Line 474
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 485
+	echo T_("Not set");                                                               // Line 424
+	echo T_("Keyword");                                                               // Line 395
+	echo T_("Statistical population");                                                // Line 412
+	echo T_("There is nothing to display!");                                          // Line 469
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 480
 	echo T_("Submit");                                                                // Line 75
-	echo T_("Continue");                                                              // Line 542
-	echo T_("VIP Value");                                                             // Line 594
-	echo T_("Select");                                                                // Line 602
+	echo T_("Continue");                                                              // Line 537
+	echo T_("VIP Value");                                                             // Line 589
+	echo T_("Select");                                                                // Line 597
 	echo T_("stop");                                                                  // Line 25 Seperate
 	echo T_("pause");                                                                 // Line 23 Seperate
-	echo T_("trash");                                                                 // Line 605
-	echo T_("publish");                                                               // Line 629
-	echo T_("draft");                                                                 // Line 634
+	echo T_("trash");                                                                 // Line 600
+	echo T_("publish");                                                               // Line 624
+	echo T_("draft");                                                                 // Line 629
 	echo T_("enable");                                                                // Line 63
 	echo T_("disable");                                                               // Line 64
 	echo T_("deleted");                                                               // Line 65
-	echo T_("schedule");                                                              // Line 611
+	echo T_("schedule");                                                              // Line 606
 	echo T_("expired");                                                               // Line 66
 	echo T_("awaiting");                                                              // Line 67
 	echo T_("filtered");                                                              // Line 68
 	echo T_("blocked");                                                               // Line 69
 	echo T_("spam");                                                                  // Line 70
-	echo T_("violence");                                                              // Line 617
-	echo T_("pornography");                                                           // Line 618
+	echo T_("violence");                                                              // Line 612
+	echo T_("pornography");                                                           // Line 613
 	echo T_("other");                                                                 // Line 389 Seperate
-	echo T_("People Voted");                                                          // Line 658
-	echo T_("You");                                                                   // Line 659
-	echo T_("Lottery");                                                               // Line 671
+	echo T_("People Voted");                                                          // Line 653
+	echo T_("You");                                                                   // Line 654
+	echo T_("Lottery");                                                               // Line 666
 	echo T_("Trash");                                                                 // Line 114
-	echo T_("Delete");                                                                // Line 699
+	echo T_("Delete");                                                                // Line 694
 	echo T_("Stop");                                                                  // Line 24 Seperate
 	echo T_("Pause");                                                                 // Line 22 Seperate
 	echo T_("Draft");                                                                 // Line 160
@@ -249,7 +249,7 @@ private function transtext()
 	echo T_("Admin Panel");                                                           // Line 69
 
 	//----------------------------------------------------content\template\header.html
-	echo T_("Add Question");                                                          // Line 26
+	echo T_("Create New Poll");                                                       // Line 26
 	echo T_("Welcome");                                                               // Line 36
 	echo T_("Dashboard");                                                             // Line 39
 	echo T_("Exit");                                                                  // Line 40
@@ -451,16 +451,16 @@ private function transtext()
 	//------------------------------------content\template\static\logo\content-fa.html
 	echo T_("Brand Intro");                                                           // Line 1
 	echo T_("Drawing logo");                                                          // Line 2
-	echo T_("Brand Blueprint");                                                       // Line 9
-	echo T_("Logo blueprint");                                                        // Line 96
-	echo T_("Explanations about the logo");                                           // Line 97
-	echo T_("Square");                                                                // Line 106
-	echo T_("Circle");                                                                // Line 111
-	echo T_("Pomegranate; Iranians lovely fruit");                                    // Line 116
-	echo T_("Pomegranate");                                                           // Line 117
-	echo T_("Blue");                                                                  // Line 121
-	echo T_("White");                                                                 // Line 126
-	echo T_("Red");                                                                   // Line 131
+	echo T_("Brand Blueprint");                                                       // Line 8
+	echo T_("Logo blueprint");                                                        // Line 94
+	echo T_("Explanations about the logo");                                           // Line 95
+	echo T_("Square");                                                                // Line 103
+	echo T_("Circle");                                                                // Line 107
+	echo T_("Pomegranate; Iranians lovely fruit");                                    // Line 111
+	echo T_("Pomegranate");                                                           // Line 112
+	echo T_("Blue");                                                                  // Line 115
+	echo T_("White");                                                                 // Line 119
+	echo T_("Red");                                                                   // Line 123
 
 	//-----------------------------------content\template\static\logo\download-fa.html
 	echo T_("Download our logo");                                                     // Line 1
@@ -476,7 +476,7 @@ private function transtext()
 
 	//--------------------------------------content\template\static\logo\wrong-fa.html
 	echo T_("Wrong usage");                                                           // Line 1
-	echo T_("Wrong");                                                                 // Line 28
+	echo T_("Wrong");                                                                 // Line 22
 
 	//--------------------------------------------content\template\static\privacy.html
 	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 33

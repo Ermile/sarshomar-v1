@@ -568,10 +568,10 @@ header .ui-language-link{background-color:#efefef;color:#37aaa7;margin-left:5px;
 header .ui-language-link:hover,header .ui-language-link:focus{background-color:#efefef}
 
 header .ui-language-link:hover .langlist,header .ui-language-link:focus .langlist{opacity:1; -webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition:opacity 0.2s linear;z-index: 2}
-header .langlist{position:absolute;top:100%;right:0;z-index:-1;font-family:"IRANSans",'Roboto Slab',sans-serif;font-size:.5em;min-width:15em;background-color:#efefef;opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
+header .langlist{font-family:'IRANSans','Roboto Slab',sans-serif;font-size:.5em;position:absolute;z-index:-1;top:100%;right:0;min-width:15em;-webkit-transition:all .1s; -moz-transition:all .1s; -o-transition:all .1s; transition:all .1s;opacity:0; background-color:#fff;box-shadow:0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23)}
 .rtl header .langlist{right:auto;left:0}
 header .langlist a{display:block;padding:0 10px;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;color:#00667a}
-header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color: #cecdcd;color:#000}
+header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#cecdcd;color:#000}
 
 
 /************************************************************** header profile */
@@ -581,16 +581,14 @@ header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color: 
 /*.profile .info>div{line-height:1}*/
 .profile .info .displayname{/*margin:2px 0;*/max-width:100%;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}
 .profile .info .role{/*font-size:10px*/}
-
-.profile .profile-detail{background-color:#efefef;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;position:absolute;top:100%;left:0;right:0;width:100%;z-index:-1; opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
-.profile .profile-detail::before{content:'';position:absolute;width:1px;height:100%;background-color:#e76f6f;left:-1px}
+.profile .profile-detail{position:absolute;z-index:-1;top:100%;right:0;left:0;display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;-webkit-transition:all .1s;transition:all .1s;opacity:0;background-color:#fff;box-shadow:0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'}
+.profile .profile-detail::before{/*content:'';*/position:absolute;width:1px;height:100%;background-color:#e76f6f;left:-1px}
 .rtl .profile .profile-detail::before{left:auto;right:-1px}
 .profile .profile-detail a{padding:5px;text-align:center;color:#7f7f7f;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s}
 .profile .profile-detail a:hover,.profile .profile-detail a:focus{background-color:#cecdcd;color:#000}
 .profile .profile-detail .dashboard{-webkit-box-flex:2;-ms-flex:2;-webkit-flex:2;-moz-box-flex:2;flex:2}
 .profile .profile-detail .exit{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1}
-
-.profile:hover .profile-detail,.profile:focus .profile-detail,.profile.open .profile-detail{opacity: 1; -webkit-transition:visibility 0s, opacity 0.2s linear; -o-transition:visibility 0s, opacity 0.2s linear; -moz-transition:visibility 0s, opacity 0.2s linear; transition: visibility 0s, opacity 0.2s linear;z-index: 2}
+.profile:hover .profile-detail,.profile:focus .profile-detail,.profile.open .profile-detail{opacity:1;-webkit-transition:visibility 0s, opacity 0.2s linear;-o-transition:visibility 0s, opacity 0.2s linear;-moz-transition:visibility 0s, opacity 0.2s linear;transition:visibility 0s, opacity 0.2s linear;z-index:2}
 
 /* breadcrumb */
 nav.breadcrumb a{font-size:10px;line-height:12px;height:12px;color:#808080;float:left;font-weight:700;max-width:20em;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;word-break:break-all}
@@ -617,11 +615,11 @@ header #financial-box .cost.isCurrent{opacity:1;z-index:1}
 
 header #financial-box .total>span,header #financial-box .cost>span{padding:0 2px}
 
-header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:-1;background-color:#fff; opacity: 0; -webkit-transition:all .1s; -o-transition:all .1s; -moz-transition:all .1s; transition: all .1s;}
+header #financial-box .financial-detail{position:absolute;width:100%;left:0;right:0;top:100%;z-index:-1;background-color:#fff;opacity:0;-webkit-transition:all .1s;-o-transition:all .1s;-moz-transition:all .1s;transition: all .1s;}
 header #financial-box .financial-detail .row{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;}
 header #financial-box .financial-detail .row>div{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;}
 
-header #financial-box .total:hover .financial-detail{opacity: 1; -webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition: opacity 0.2s linear;z-index: 2}
+header #financial-box .total:hover .financial-detail{opacity: 1;-webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition: opacity 0.2s linear;z-index: 2}
 
 
 /*header #financial-box .total,header #financial-box .cost{position:relative;display:inline-block;padding:0 5px;height:30px;line-height:30px;min-width:15em;transition:.3s}
