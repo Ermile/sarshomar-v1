@@ -39,8 +39,11 @@ class callback_query
 					'option_meta'	=> self::$message_result['inline_message_id'],
 					'limit'			=>1
 					]);
-				\ilib\db\users::update(['user_parent' => $get['user_id']], bot::$user_id);
 				$poll = \lib\db\polls::get_poll($get['post_id']);
+				if($poll > 1000)
+				{
+					\ilib\db\users::update(['user_parent' => $get['user_id']], bot::$user_id);
+				}
 				callback_query\language::set($poll['language']);
 				if($poll['language'] == 'fa')
 				{

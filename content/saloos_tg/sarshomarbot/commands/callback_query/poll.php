@@ -637,6 +637,20 @@ class poll
 			$inline_message_id = $_options['inline_message_id'];
 			$get_subport = false;
 		}
+		if(isset($_query['inline_message_id']))
+		{
+			$get_flag = \lib\db\options::get([
+				"option_cat" => "telegram",
+				"option_key" => "subport_flag",
+				"option_meta" => $_query['inline_message_id'],
+				"limit" => 1
+			]);
+			$flag = ['gift'];
+		}
+		else
+		{
+			$flag = [];
+		}
 
 		$get_inline_lock = \lib\db\options::get([
 			"option_cat" => "telegram",
@@ -661,7 +675,8 @@ class poll
 				'type'			=> 'inline',
 				'md5_result'	=> $_md5_result,
 				'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption',
+				'flag'	=>  $flag,
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
 			if($edit)
@@ -689,7 +704,8 @@ class poll
 				'type'		=> 'inline',
 				'md5_result'	=> $_md5_result,
 				'inline_id'	=> $get_subport ? $get_subport['value'] : null,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
+				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption',
+				'flag'	=>  $flag,
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
 			if($edit)
@@ -711,7 +727,8 @@ class poll
 					'type'			=> 'inline',
 					'md5_result'	=> $_md5_result,
 					'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-					'text_type'		=>  isset($_query['message']['text']) ? 'text' : 'caption'
+					'text_type'		=>  isset($_query['message']['text']) ? 'text' : 'caption',
+				'flag'	=>  $flag,
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
 				if($edit)

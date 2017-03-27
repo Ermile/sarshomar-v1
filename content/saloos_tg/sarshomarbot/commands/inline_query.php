@@ -41,7 +41,15 @@ class inline_query
 			return $result;
 		}
 		$check_language = false;
-		if(preg_match("/^\s*\\$(.*)$/", $search, $link_id))
+		$explode = explode("#", $search, 2);
+		$flag = [];
+		if(isset($explode[1]))
+		{
+			$flag = str_replace("#", "", $explode[1]);
+			$flag = explode(" ", $flag);
+		}
+		$explode[0] = trim($explode[0]);
+		if(preg_match("/^\s*\\$(.*)$/", (string) $explode[0], $link_id))
 		{
 			\lib\utility::$REQUEST = new \lib\utility\request([
 				'method' 	=> 'array',
@@ -57,7 +65,7 @@ class inline_query
 			\lib\utility::$REQUEST = new \lib\utility\request([
 				'method' 	=> 'array',
 				'request' => [
-					'search' 	=> $search,
+					'search' 	=> $explode[0],
 					'in' 		=> 'me sarshomar',
 					'from'		=> !empty($_query['offset']) ? $_query['offset'] : 0
 				]
@@ -91,6 +99,7 @@ class inline_query
 				'return'	=> true,
 				'type'		=> 'inline',
 				'inline_id'	=> $result_id,
+				'flag'		=> $flag,
 				'fn'		=> function($_maker) use(&$row_result)
 				{
 					$row_result['description'] = '👥 ' . utility::nubmer_language($_maker->query_result['result']['summary']['total']) .' ';
@@ -120,6 +129,10 @@ class inline_query
 				$row_result['url'] = $value['short_url'];
 			}
 			$row_result['id'] = $result_id . ':' . $value['id'];
+			if(in_array('gift', $flag))
+			{
+				$row_result['id'] .= ':#';
+			}
 
 			$row_result['hide_url'] = false;
 

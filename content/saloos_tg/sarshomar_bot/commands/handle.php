@@ -11,7 +11,10 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		handle::send_log(bot::$hook);
+		// utility::make_request(['gender' => 'male']);
+		// \lib\main::$controller->model()->set_user_profile();
+		// handle::send_log(\lib\debug::compile());
+		// handle::send_log(\lib\main::$controller->model()->get_user_profile());
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();

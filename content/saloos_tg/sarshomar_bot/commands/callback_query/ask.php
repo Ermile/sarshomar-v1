@@ -29,7 +29,8 @@ class ask
 			'poll_id' 	=> null,
 			'type'		=> 'private',
 			'last'		=> false,
-			'text_type'	=> null
+			'text_type'	=> null,
+			'flag'		=> [],
 			],$_options);
 
 
@@ -254,6 +255,14 @@ class ask
 		}
 
 		$return = $maker->make();
+
+		if(in_array('gift', $options['flag']) && $maker->query_result['sarshomar'])
+		{
+			$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone.png'>🎁</a> " . $return['text'];
+			$return['disable_web_page_preview'] = false;
+		}
+		// handle::send_log($return);
+		// exit();
 		if($options['text_type'] != 'text' && isset($maker->query_result['file']) && (
 			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
 			|| $options['type'] == 'private'))

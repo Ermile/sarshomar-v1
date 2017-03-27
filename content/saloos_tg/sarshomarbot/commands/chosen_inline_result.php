@@ -29,6 +29,17 @@ class chosen_inline_result
 			'option_value'	=> $result_id,
 			'option_meta'	=> $inline_message_id,
 			]);
+		if(isset($result[2]))
+		{
+			\lib\db\options::insert([
+			'user_id' 		=> bot::$user_id,
+			'post_id'		=> $post_id,
+			'option_cat'	=> 'telegram',
+			'option_key'	=> 'subport_flag',
+			'option_value'	=> $result_id,
+			'option_meta'	=> $inline_message_id
+			]);
+		}
 		return [];
 	}
 }

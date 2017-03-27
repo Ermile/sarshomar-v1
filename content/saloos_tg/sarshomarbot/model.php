@@ -32,5 +32,9 @@ class model extends \lib\mvc\model{
 
 	use \content_api\v1\poll\answers\tools\get;
 
+	use \content_api\v1\profile\tools\get;
+
+	use \content_api\v1\profile\tools\set;
+
 }
 ?>
