@@ -786,7 +786,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 
 /************************************************************** triplet */
 .triplet{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;padding:50px}
-.triplet .triplet-item{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;text-align:center}
+.triplet .triplet-item{/*-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;*/text-align:center}
 .triplet .triplet-item a{display:block;}
 .triplet .triplet-item img{width:60%;max-width:250px;margin:0 auto 2em;display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .triplet .triplet-item h4{font-size:1.8em}
