@@ -47,7 +47,7 @@ class handle
 				'limit'	=> 1
 			]);
 
-			if(is_null($query_get))
+			if(empty($query_get) && !in_array(bot::response('from'), [58164083, 46898544]))
 			{
 				exit();
 			}

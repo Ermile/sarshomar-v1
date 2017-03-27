@@ -433,7 +433,6 @@ class poll
 			bot::sendResponse(ask::make(null, null, [
 				'poll_id' 	=> $poll,
 				'return'	=> true,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
 				]));
 		}
 		else
