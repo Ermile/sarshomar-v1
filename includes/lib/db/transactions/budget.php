@@ -12,6 +12,7 @@ trait budget
 	 */
 	public static function budget($_user_id, $_options = [])
 	{
+
 		$default_options =
 		[
 			'type' => null,
@@ -22,6 +23,21 @@ trait budget
 			$_options = [];
 		}
 		$_options = array_merge($default_options, $_options);
+
+		if($_options['unit'] === 'all')
+		{
+			$all_unit =
+			"SELECT transactions.budget AS `budget`, units.title AS `unit` FROM transactions
+			INNER JOIN units ON transactions.unit_id = units.id
+			WHERE transactions.id IN (
+			SELECT MAX(transactions.id) FROM transactions
+			WHERE transactions.user_id = $_user_id
+			GROUP BY transactions.unit_id)
+			-- get all budget in all units of users
+			";
+			$all_unit =  \lib\db::get($all_unit, ['unit', 'budget']);
+			return $all_unit;
+		}
 
 		$unit = null;
 		if(isset($_options['unit']) && is_numeric($_options['unit']))

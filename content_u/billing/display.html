@@ -8,7 +8,19 @@
             </select>
             <input type="submit" value='{%trans "Apply"%}' class="try">
     </form>
+    <br>
+    {%for unit, value in user_cash_all%}
+        {%if unit == 'dollar'%}
+            <span>{%trans "$"%}</span>
+        {%else%}
+            <span>{%trans unit%}</span>
+        {%endif%}
+        <span>{{value|number_format|fitNumber}}</span>
+        <br>
+    {%endfor%}
 </aside>
+
+
 <div class="main billing" >
     <div>
         <div class="in xxlarge">
