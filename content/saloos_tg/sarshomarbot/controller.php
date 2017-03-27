@@ -60,6 +60,14 @@ class controller extends \lib\mvc\controller
 			{
 				$method = $_args['method'];
 			}
+			if(isset($_args['method']) && $_args['method'] == 'sendimage')
+			{
+				$_args['method'] = 'sendphoto';
+			}
+			if(isset($_name) && $_name == 'sendimage')
+			{
+				$_name = 'sendphoto';
+			}
 			$method = strtolower($method);
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
@@ -92,7 +100,7 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = time();
-			if(self::$last_message !== false && in_array($method, ['sendmessage', 'editmessagetext']))
+			if(self::$last_message !== false && in_array($method, ['sendmessage', 'editmessagetext', 'editmessagereplymarkup', 'editmessagecaption']))
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
@@ -101,43 +109,6 @@ class controller extends \lib\mvc\controller
 			}
 		};
 		bot::$methods['after']["/.*/"] = bot::$methods['after']["/.*/"] = commands\utility::callback_session();
-		// bot::$methods['after']["/.*/"] = bot::$methods['after']["/^.*$/"] = function($_name, $_args, $_return)
-		// {
-		// 	if(isset($_args['disable_after']))
-		// 	{
-		// 		return;
-		// 	}
-		// 	if(!isset($_return['ok']) || (isset($_return['ok']) && !$_return['ok']))
-		// 	{
-		// 		// $x = bot::sendResponse([
-		// 		// 	'method' => 'sendMessage',
-		// 		// 	'chat_id' => 58164083,
-		// 		// 	'disable_after' => true,
-		// 		// 	'text' => $text,
-		// 		// 	'parse_mode' 				=> 'HTML',
-		// 		// 	'disable_web_page_preview' 	=> true,
-		// 		// ]);
-		// 		$to      = 'itb.baravak@gmail.com';
-		// 		$subject = 'Telegram Error';
-		// 		$message = "<code>";
-		// 		$message .= "\n" . json_encode($_return, JSON_UNESCAPED_UNICODE);
-		// 		$message .= "\n" . json_encode($_args, JSON_UNESCAPED_UNICODE);
-		// 		$message .= "\n" . json_encode(bot::$hook, JSON_UNESCAPED_UNICODE);
-		// 		$message .= "</code>";
-
-
-		// 		// To send HTML mail, the Content-type header must be set
-		// 		$headers[] = 'MIME-Version: 1.0';
-		// 		$headers[] = 'Content-type: text/html; charset=utf8';
-
-		// 		// Additional headers
-		// 		$headers[] = 'To: Hasan Salehi <itb.baravak@gmail.com>';
-		// 		$headers[] = 'From: Hasan Salehi <itb.baravak@gmail.com>';
-
-		// 		// Mail it
-		// 		mail($to, $subject, $message, implode("\r\n", $headers));
-		// 	}
-		// };
 
 		/**
 		 * start hooks and run telegram session from db
