@@ -18,6 +18,7 @@ trait mobile
 			switch ($_way)
 			{
 				case 'code':
+				case 'call':
 					$this->call_mobile();
 					break;
 

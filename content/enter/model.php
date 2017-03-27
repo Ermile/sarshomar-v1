@@ -27,7 +27,7 @@ class model extends \mvc\model
 	public $send              = 'code';
 	public $wait              = 0;
 	// show resende link ofter
-	public $resend_after      = ((60 * 2) + 30); // 2.5 min
+	public $resend_after      = 60 * 2; // 2 min
 	// life time code to expire
 	public $life_time_code    = 60 * 5; // 5 min
 
@@ -36,7 +36,7 @@ class model extends \mvc\model
 	public $resend_rate =
 	[
 		'telegram',
-		'code',
+		'call',
 		'main_sms',
 		'secondary_sms',
 	];
@@ -203,6 +203,7 @@ class model extends \mvc\model
 				{
 					case 'telegram':
 					case 'code':
+					case 'call':
 						$this->step_mobile($resend_on);
 						break;
 

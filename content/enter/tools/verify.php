@@ -61,6 +61,7 @@ trait verify
 		];
 		if($this->create_new_code)
 		{
+			$log_meta['desc'] = 'telegram';
 			db\logs::set('user:verification:code', $this->user_id, $log_meta);
 		}
 		else
@@ -285,6 +286,7 @@ trait verify
 
 			if($this->create_new_code)
 			{
+				$log_meta['desc'] = 'call';
 				db\logs::set('user:verification:code', $this->user_id, $log_meta);
 			}
 			else
