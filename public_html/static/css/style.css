@@ -779,7 +779,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .customers-container .customer-content h3 a:hover,.customers-container .customer-content h3 a:focus{color:#00667a}
 .customers-container .customer-content p{margin-bottom:0;color:#adadad; word-wrap: break-word}
 .customers-container .customer.reverse .customer-content{text-align:right}
-.customers-container .customer-img{width:100%;max-width:250px;height:auto;display:block}
+.customers-container .customer-img{width:100%;max-width:220px;height:auto;display:block}
 .customers-container .customer-img img{display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .customers-container.customers-target{padding-top:0;background-color:transparent}
 .customers-container .customer:hover .customer-img img{-webkit-filter:none;filter:none}
