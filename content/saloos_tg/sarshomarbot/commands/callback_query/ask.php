@@ -255,6 +255,10 @@ class ask
 			$maker->message->message['options'] .= " | 🕰 <code>" . str_replace("-", "/", $my_date) . "</code>";
 		}
 
+		if(in_array('gift', $options['flag']))
+		{
+			$maker->message->message['options'] = "🎁 با <a href='https://sarshomar.com/fa/enter'>ورود به سرشمار</a>، در روز پدر آیفون ببرید.\n" . $maker->message->message['options'];
+		}
 		$return = $maker->make();
 
 		if(in_array('gift', $options['flag']) && $maker->query_result['sarshomar'])

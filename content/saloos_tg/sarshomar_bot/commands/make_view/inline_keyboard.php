@@ -186,7 +186,7 @@ class inline_keyboard
 				"url" => 'https://sarshomar.com/$'.$this->class->poll_id
 			];
 			$return[] = [
-				"text" => T_("ورود به بات"),
+				"text" => T_("ورود به سرشمار"),
 				"url" => 'https://t.me/sarshomarbot?start'
 			];
 		}
