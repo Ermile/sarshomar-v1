@@ -185,6 +185,10 @@ class inline_keyboard
 				"text" => T_("Review result"),
 				"url" => 'https://sarshomar.com/$'.$this->class->poll_id
 			];
+			$return[] = [
+				"text" => T_("ورود به بات"),
+				"url" => 'https://t.me/sarshomarbot?start'
+			];
 		}
 		$this->inline_keyboard[$count] = $return;
 		if(!empty($return2))
