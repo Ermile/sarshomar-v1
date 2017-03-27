@@ -273,8 +273,12 @@ class ask
 			}
 			$caption .= "\n👥". utility::nubmer_language($maker->message->stats['total']);
 			$caption .= "\nt.me/sarshomar_bot?start=".$maker->query_result['id'];
-			if(mb_strlen($caption) <= 150)
+			if(mb_strlen($caption) <= 150 || $options['text_type'] == 'caption')
 			{
+				if(isset($my_date))
+				{
+					$caption .= "\n🕰 " . str_replace("-", "/", $my_date);
+				}
 				$get_file = \lib\db\options::get([
 					'option_cat' => 'telegram',
 					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
