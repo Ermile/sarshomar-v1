@@ -25,6 +25,7 @@ trait set
 		}
 		$options = [];
 		$options['your_self_data'] = true;
+
 		$set_profile = \lib\utility\profiles::set_profile_data($this->user_id, $sended_profile, $options);
 		debug::title(T_("The profile data was change"));
 		return;

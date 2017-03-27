@@ -182,27 +182,204 @@ trait data
 	 */
 	public static function set_profile_data_your_self($_user_id, $_args, $_options = [])
 	{
+		// foreach ($_args as $key => $value)
+		// {
+		// 	$caller = "$key:$value";
+		// 	$caller = \lib\db\terms::caller($caller);
+		// 	if(isset($caller['id']))
+		// 	{
+		// 		$set_profile_data_your_self =
+		// 		"
+		// 			INSERT INTO
+		// 				termusages
+		// 			SET
+		// 				termusages.termusage_foreign = 'user_profile',
+		// 				termusages.termusage_id      = $_user_id,
+		// 				termusages.term_id           = $caller[id]
+		// 			ON DUPLICATE KEY UPDATE
+		// 				termusages.term_id          = $caller[id],
+		// 				termusages.termusage_status = 'enable'
+		// 		";
+		// 		\lib\db::query($set_profile_data_your_self);
+		// 	}
+		// }
+
+
+
 		foreach ($_args as $key => $value)
 		{
-			$caller = "$key:$value";
-			$caller = \lib\db\terms::caller($caller);
-			if(isset($caller['id']))
+			// chech exist this profie data or no
+			// if not exist insert new
+			// if exist and old value = new value continue
+			// if exist and old value != new value update terms and save old value in log table
+
+			$value_slug = \lib\utility\filter::slug($value);
+			$key_slug   = \lib\utility\filter::slug($key);
+			$new_term  = \lib\db\terms::caller("$key:$value");
+
+			if(!$new_term || !isset($new_term['id']))
 			{
-				$set_profile_data_your_self =
-				"
-					INSERT INTO
-						termusages
-					SET
-						termusages.termusage_foreign = 'user_profile',
-						termusages.termusage_id      = $_user_id,
-						termusages.term_id           = $caller[id]
-					ON DUPLICATE KEY UPDATE
-						termusages.term_id          = $caller[id],
-						termusages.termusage_status = 'enable'
-				";
-				\lib\db::query($set_profile_data_your_self);
+				continue;
+			}
+
+			$new_term_id = $new_term['id'];
+
+			$term_parent = null;
+			if(isset($new_term['term_parent']))
+			{
+				$term_parent = $new_term['term_parent'];
+			}
+
+			if(!$term_parent)
+			{
+				continue;
+			}
+
+			// check this users has similar profile data to update this
+			$query =
+			"
+				SELECT
+					*
+				FROM
+					termusages
+				INNER JOIN terms ON terms.id = termusages.term_id
+				WHERE
+					termusages.termusage_foreign = 'user_profile' AND
+					termusages.termusage_id      = $_user_id AND
+					terms.term_parent            = $term_parent AND
+					termusages.termusage_status  = 'enable'
+				-- check this users has similar profile data to update this
+			";
+
+			$similar_terms = \lib\db::get($query);
+
+			if($similar_terms)
+			{
+				if(count($similar_terms) === 1)
+				{
+					$similar_terms = $similar_terms[0];
+					if($similar_terms['term_id'] == $new_term_id)
+					{
+						continue;
+					}
+
+					// update termusages teble
+					$old_termusave =
+					[
+						'term_id'           => $similar_terms['term_id'],
+						'termusage_foreign' => 'users',
+						'termusage_id'      => $_user_id
+					];
+					$new_termusave =
+					[
+						'term_id'           => $new_term_id,
+						'termusage_foreign' => 'users',
+						'termusage_id'      => $_user_id
+					];
+					\lib\db\termusages::update($old_termusave, $new_termusave);
+					// save change log
+					$log_meta =
+					[
+						'key'       => $key,
+						'old_value' => $similar_terms['term_caller'],
+						'new_value' => $value
+					];
+
+					\lib\db\logs::set('user:change:profile', $_user_id, $log_meta);
+				}
+				elseif(count($similar_terms) > 1)
+				{
+					$log_meta =
+					[
+						'key'       => $key,
+						'duplicate' => $similar_terms,
+					];
+
+					\lib\db\logs::set('user:duplicate:profile:system', $_user_id, $log_meta);
+					$disable_old_temrusage =
+					"
+						SELECT termusages.* FROM  termusages
+						INNER JOIN terms ON terms.id = termusages.term_id
+						WHERE
+							termusages.termusage_foreign = 'user_profile' AND
+							termusages.termusage_id      = $_user_id AND
+							terms.term_parent            = $term_parent AND
+							termusages.termusage_status  = 'enable' AND
+							termusages.termusage_createdate <
+							(
+								SELECT MAX(termusage_createdate) FROM termusages
+								INNER JOIN terms ON terms.id = termusages.term_id
+								WHERE
+								termusages.termusage_foreign = 'user_profile' AND
+								termusages.termusage_id      = $_user_id AND
+								terms.term_parent            = $term_parent AND
+								termusages.termusage_status  = 'enable'
+							)
+					";
+					$disable_old_temrusage = \lib\db::get($disable_old_temrusage);
+					if(is_array($disable_old_temrusage))
+					{
+						foreach ($disable_old_temrusage as $key => $value)
+						{
+							\lib\db\termusages::update($value, ['termusage_status' => 'disable']);
+						}
+					}
+				}
+			}
+			else
+			{
+				// insert new termusages record
+				$insert_termusages =
+				[
+					'term_id'           => $new_term_id,
+					'termusage_foreign' => 'user_profile',
+					'termusage_id'      => $_user_id
+				];
+				$useage = \lib\db\termusages::insert($insert_termusages);
+
 			}
 		}
+
+		// // insert profile similar tags
+		// if(!empty($profile_similar_tags))
+		// {
+		// 	foreach ($profile_similar_tags as $key => $value)
+		// 	{
+
+		// 		$value = array_filter($value);
+		// 		foreach ($value as $n => $tag)
+		// 		{
+		// 			$new_term_id = self::insert_terms($key, $tag);
+
+		// 			if(!$new_term_id)
+		// 			{
+		// 				continue;
+		// 			}
+
+		// 			$args =
+		// 			[
+		// 				'termusage_id'      => $_user_id,
+		// 				'termusage_foreign' => 'users',
+		// 				'term_id'           => $new_term_id
+		// 			];
+
+		// 			if(!\lib\db\termusages::check($args))
+		// 			{
+
+		// 				// insert new termusages record
+		// 				$insert_termusages =
+		// 				[
+		// 					'term_id'           => $new_term_id,
+		// 					'termusage_foreign' => 'users',
+		// 					'termusage_id'      => $_user_id
+		// 				];
+		// 				$useage = \lib\db\termusages::insert($insert_termusages);
+
+		// 			}
+		// 		}
+		// 	}
+		// }
+		return true;
 	}
 
 
@@ -405,125 +582,7 @@ trait data
 		return true;
 		//**********************
 
-		// insert data in terms
-		$insert_termusages = [];
-		foreach ($insert_profile as $key => $value)
-		{
-			// chech exist this profie data or no
-			// if not exist insert new
-			// if exist and old value = new value continue
-			// if exist and old value != new value update terms and save old value in log table
 
-			$value_slug = \lib\utility\filter::slug($value);
-			$key_slug   = \lib\utility\filter::slug($key);
-			$new_term  = \lib\db\terms::caller("$key_slug:$value_slug");
-
-			if(!$new_term || !isset($new_term['id']))
-			{
-				continue;
-			}
-
-			$new_term_id = $new_term['id'];
-
-			// check this users has similar profile data to update this
-			$query =
-			"
-				SELECT
-					*
-				FROM
-					termusages
-				INNER JOIN terms ON terms.id = termusages.term_id
-				WHERE
-					termusages.termusage_foreign = 'filter' AND
-					termusages.termusage_id      = $_user_id AND
-					terms.term_parent            = $term_parent
-				-- check this users has similar profile data to update this
-			";
-
-			$similar_terms = \lib\db::get($query, null, true);
-
-			if($similar_terms)
-			{
-				if($similar_terms['term_id'] == $new_term_id)
-				{
-					continue;
-				}
-
-				// update termusages teble
-				$old_termusave =
-				[
-					'term_id'           => $similar_terms['term_id'],
-					'termusage_foreign' => 'users',
-					'termusage_id'      => $_user_id
-				];
-				$new_termusave =
-				[
-					'term_id'           => $new_term_id,
-					'termusage_foreign' => 'users',
-					'termusage_id'      => $_user_id
-				];
-				\lib\db\termusages::update($old_termusave, $new_termusave);
-				// save change log
-				$log =
-				[
-					'user_id'   => $_user_id,
-					'key'       => $key,
-					'old_value' => $similar_terms['term_caller'],
-					'new_value' => $value
-				];
-				self::save_change_log($log);
-			}
-			else
-			{
-				// insert new termusages record
-				$insert_termusages =
-				[
-					'term_id'           => $new_term_id,
-					'termusage_foreign' => 'users',
-					'termusage_id'      => $_user_id
-				];
-				$useage = \lib\db\termusages::insert($insert_termusages);
-			}
-		}
-		// insert profile similar tags
-		if(!empty($profile_similar_tags))
-		{
-			foreach ($profile_similar_tags as $key => $value)
-			{
-
-				$value = array_filter($value);
-				foreach ($value as $n => $tag)
-				{
-					$new_term_id = self::insert_terms($key, $tag);
-
-					if(!$new_term_id)
-					{
-						continue;
-					}
-
-					$args =
-					[
-						'termusage_id'      => $_user_id,
-						'termusage_foreign' => 'users',
-						'term_id'           => $new_term_id
-					];
-
-					if(!\lib\db\termusages::check($args))
-					{
-
-						// insert new termusages record
-						$insert_termusages =
-						[
-							'term_id'           => $new_term_id,
-							'termusage_foreign' => 'users',
-							'termusage_id'      => $_user_id
-						];
-						$useage = \lib\db\termusages::insert($insert_termusages);
-
-					}
-				}
-			}
-		}
 		return true;
 	}
 }
