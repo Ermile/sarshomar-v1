@@ -30,6 +30,53 @@ class exchangerates
 
 
 	/**
+	 * Gets the from to.
+	 *
+	 * @param      <type>  $_from  The from
+	 * @param      <type>  $_to    { parameter_description }
+	 *
+	 * @return     <type>  The from to.
+	 */
+	public static function from_unit_to($_from_unit, $_to_unit, $_options = [])
+	{
+		$query =
+		"
+			SELECT
+				exchangerates.*
+			FROM
+				exchangerates
+			WHERE
+				exchangerates.from = (SELECT units.id FROM units WHERE units.title = '$_from_unit' LIMIT 1) AND
+				exchangerates.to = (SELECT units.id FROM units WHERE units.title = '$_to_unit' LIMIT 1 )
+			ORDER BY id DESC
+			LIMIT 1
+		";
+		$result = \lib\db::get($query, null, true);
+		return $result;
+	}
+
+
+	/**
+	 * change value fron unit to unit
+	 *
+	 * @param      <type>  $_from_unit  The from unit
+	 * @param      <type>  $_to_unit    To unit
+	 * @param      <type>  $_value      The value
+	 */
+	public static function change_unit_to($_from_unit, $_to_unit, $_value)
+	{
+		$value = $_value;
+		$rate = self::from_unit_to($_from_unit, $_to_unit);
+
+		if(isset($rate['rate']))
+		{
+			$value = floatval($rate['rate']) * floatval($_value);
+		}
+		return $value;
+	}
+
+
+	/**
 	 * { function_description }
 	 *
 	 * @param      <type>  $_id    The identifier
