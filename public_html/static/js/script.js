@@ -165,6 +165,7 @@ function handleCopy()
 	$('[data-copy]').off('click');
 	$('[data-copy]').on('click', function()
 	{
+		console.log(22);
 		var $this = $(this);
 		var targetEl = $($this.attr('data-copy'));
 		if(targetEl.length)
@@ -802,6 +803,8 @@ route('*', function ()
 {
 	setLanguageURL();
 	isActiveChecker();
+	// handle copy btn
+	handleCopy();
 	// load maps and chart js
 	$import('lib/amcharts/amcharts.js', 'drawChart', null, 70);
 	var loadMapDelay = 50;
@@ -2855,8 +2858,6 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 
 	// simulateTreeNavigation();
 	checkNextStep();
-	// handle copy btn
-	handleCopy();
 	// // draw factor and fill total price on start
 	// calcTotalPrice(200);
 	// draw media for each item contain media

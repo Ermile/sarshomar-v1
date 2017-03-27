@@ -1,0 +1,91 @@
+{%extends display.main%}
+
+{%set pageTitle%}{%trans "Referral Program"%}{%endset%}
+
+{%set pageDesc%}
+{%trans "Nobody can tell the Sarshomar story better than our customers."%}
+{%endset%}
+
+{%block content%}
+  <div class="main text-based">
+   <div class="box">
+    <h2 class="special-heading">{%trans "Referral Program"%}</h2>
+    <div class="in">
+
+
+      <p class="em">{%trans "Nobody can tell the Sarshomar story better than you;)"%}</p>
+      <h2>{%trans "How it works"%}</h2>
+      <ul>
+        <ol>
+          <h4>{%trans "Tell your friends about the Sarshomar story."%}</h4>
+          <p>{%trans "Refer your friends through Social Media or Email."%} {%trans "Share the referral rewards program with friends on Facebook, Twitter, or Email."%} {%trans "When they click on your post, we’ll know it was you who referred them."%}</p>
+        </ol>
+
+        <ol>
+          <h4>{%trans "Your friend enter to Sarshomar and receives credit."%}</h4>
+          <p>{%trans "Your friend enter and receives $3 account credit."%} {%trans "Anyone you refer to Sarshomar that enter using your unique referral link will receive $3 in credit immediately after unlocking their account by complete profile."%}</p>
+        </ol>
+
+        <ol>
+          <h4>{%trans "You all get rewarded"%}</h4>
+          <p>
+          {%trans "Sarshomar rewards are charge in your account after 7 days of active service."%}
+          </p>
+        </ol>
+
+      </ul>
+
+
+
+{%if login.id%}
+      <h3 class="bh">{%trans "Share your link"%}</h3>
+      <div class="l1">
+        <p>{%trans "Copy your personal referral link and share it with your friends and followers."%}</p>
+        <p>{%include template.share%}</p>
+        <div class="element no-pad ltr-element">
+         <label class="title large" for="referral_link">{%trans "Short URL"%}</label>
+         <input class="input" type="text" id="referral_link" value='{{url.base}}?ref={{login.id | shortURL("encode")}}' readonly maxlength="50">
+         <button class="btn" data-copy='#referral_link'><span class="icon-link"></span></button>
+        </div>
+      </div>
+
+
+
+      <h3 class="bh">{%trans "Referral stats"%}</h3>
+      <div>
+
+      </div>
+      <div class="tbl">
+      <div class="f">
+        <span class="c3">{%trans "CLICKS"%}</span>
+        <span class="c8">{%trans "Number of times your link has been clicked."%}</span>
+        <span class="c1">{{ 5000 | fitNumber}}</span>
+      </div>
+
+      <div class="f">
+        <span class="c3">{%trans "REFERRALS"%}</span>
+        <span class="c8">{%trans "People who enter to Sarshomar using your link."%}</span>
+        <span class="c1">{{ 2000 | fitNumber}}</span>
+      </div>
+
+      <div class="f">
+        <span class="c3">{%trans "Complete Profile"%}</span>
+        <span class="c8">{%trans "People who complete profile after enter"%}</span>
+        <span class="c1">{{ 100 | fitNumber}}</span>
+      </div>
+
+      </div>
+{%else%}
+     <p class="em">{%trans "Enter to get a unique referral link."%}</a><br/>
+      <a href='{{url.base}}/logo'>{%trans "Use our logo to help spread the word."%}</a><br/><br/>
+
+      <a href="{{url.base}}/enter" class="special-btn" data-direct>{%trans "Enter to Sarshomar"%}</a>
+     </p>
+{%endif%}
+
+
+
+    </div>
+   </div>
+  </div>
+{%endblock%}

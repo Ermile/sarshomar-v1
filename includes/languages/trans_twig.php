@@ -26,7 +26,7 @@ private function transtext()
 	echo T_("Please be patient...");                                                  // Line 30
 	echo T_("Dont recieve code?");                                                    // Line 30
 	echo T_("You are guest, Enter your mobile");                                      // Line 30
-	echo T_("Enter to Sarshomar");                                                    // Line 14
+	echo T_("Enter to Sarshomar");                                                    // Line 82
 	echo T_("Please enter valid mobile number");                                      // Line 41
 	echo T_("Username");                                                              // Line 41
 	echo T_("Password");                                                              // Line 367
@@ -242,11 +242,13 @@ private function transtext()
 	echo T_("Changelog");                                                             // Line 13
 	echo T_("Support");                                                               // Line 41
 	echo T_("Contact us");                                                            // Line 43
-	echo T_("Latest News");                                                           // Line 48
-	echo T_("Questions answered");                                                    // Line 60
-	echo T_("Proudly Made in IRAN");                                                  // Line 61
-	echo T_("Control Panel");                                                         // Line 68
-	echo T_("Admin Panel");                                                           // Line 69
+	echo T_("Referral Program");                                                      // Line 12
+	echo T_("Logo");                                                                  // Line 45
+	echo T_("Latest News");                                                           // Line 50
+	echo T_("Questions answered");                                                    // Line 62
+	echo T_("Proudly Made in IRAN");                                                  // Line 63
+	echo T_("Control Panel");                                                         // Line 70
+	echo T_("Admin Panel");                                                           // Line 71
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Create New Poll");                                                       // Line 26
@@ -499,6 +501,32 @@ private function transtext()
 	echo T_("Due to the scientific nature of Sarshomar as well as the attempts made to enhance the trust in the found results of opinion polls, profile completion has been made possible in the system.");// Line 32
 	echo T_("In case you are willing to help us to improve the quality of Sarshomar and to promote the efficiency of your own contribution, provide us with your general information.");// Line 32
 	echo T_("Please remember that in case of your unwillingness, it is possible for you to refuse completing the profile questions.");// Line 32
+
+	//------------------------------------------------content\template\static\ref.html
+	echo T_("Nobody can tell the Sarshomar story better than our customers.");        // Line 6
+	echo T_("Nobody can tell the Sarshomar story better than you;)");                 // Line 16
+	echo T_("How it works");                                                          // Line 17
+	echo T_("Tell your friends about the Sarshomar story.");                          // Line 20
+	echo T_("Refer your friends through Social Media or Email.");                     // Line 21
+	echo T_("Share the referral rewards program with friends on Facebook, Twitter, or Email.");// Line 21
+	echo T_("When they click on your post, we’ll know it was you who referred them.");// Line 21
+	echo T_("Your friend enter to Sarshomar and receives credit.");                   // Line 25
+	echo T_("Your friend enter and receives $3 account credit.");                     // Line 26
+	echo T_("Anyone you refer to Sarshomar that enter using your unique referral link will receive $3 in credit immediately after unlocking their account by complete profile.");// Line 26
+	echo T_("You all get rewarded");                                                  // Line 30
+	echo T_("Sarshomar rewards are charge in your account after 7 days of active service.");// Line 32
+	echo T_("Share your link");                                                       // Line 41
+	echo T_("Copy your personal referral link and share it with your friends and followers.");// Line 43
+	echo T_("Short URL");                                                             // Line 76
+	echo T_("Referral stats");                                                        // Line 54
+	echo T_("CLICKS");                                                                // Line 60
+	echo T_("Number of times your link has been clicked.");                           // Line 61
+	echo T_("REFERRALS");                                                             // Line 66
+	echo T_("People who enter to Sarshomar using your link.");                        // Line 67
+	echo T_("Complete Profile");                                                      // Line 19
+	echo T_("People who complete profile after enter");                               // Line 73
+	echo T_("Enter to get a unique referral link.");                                  // Line 79
+	echo T_("Use our logo to help spread the word.");                                 // Line 80
 
 	//------------------------------content\template\static\social-responsibility.html
 	echo T_("Social responsibility refers to our role in maintaining, caring about and helping our society, while having set as its goal a responsibility-centered enterprise along with wealth production.");// Line 16
@@ -931,7 +959,6 @@ private function transtext()
 	echo T_("Randomize sort options");                                                // Line 233
 	echo T_("Hidden result");                                                         // Line 243
 	echo T_("Has correct option");                                                    // Line 253
-	echo T_("Complete Profile");                                                      // Line 19
 	echo T_("Tree");                                                                  // Line 308
 	echo T_("Time");                                                                  // Line 17
 	echo T_("Text Format");                                                           // Line 360
@@ -986,7 +1013,6 @@ private function transtext()
 	echo T_("Child Category");                                                        // Line 23
 	echo T_("Article");                                                               // Line 31
 	echo T_("Tags");                                                                  // Line 50
-	echo T_("Short URL");                                                             // Line 76
 	echo T_("Prize to every one");                                                    // Line 84
 	echo T_("Hide Results");                                                          // Line 134
 	echo T_("Show Results");                                                          // Line 97
