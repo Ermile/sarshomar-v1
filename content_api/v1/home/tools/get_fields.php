@@ -38,6 +38,19 @@ trait get_fields
 			$_poll_data['description'] = $_poll_data['content'];
 		}
 
+		if(array_key_exists('date', $_poll_data))
+		{
+			if(\lib\define::get_language() === 'fa')
+			{
+				$_poll_data['date'] = \lib\utility\jdate::date("Y-m-d", $_poll_data['date']);
+			}
+			else
+			{
+				$_poll_data['date'] = date("Y-m-d", $_poll_data['date']);
+			}
+		}
+
+
 		// encode suervey
 		if(array_key_exists('survey', $_poll_data))
 		{

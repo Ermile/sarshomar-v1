@@ -39,6 +39,7 @@ class polls
 			posts.post_sarshomar			AS `sarshomar`,
 			posts.post_survey 				AS `survey`,
 			posts.post_privacy				AS `privacy`,
+			posts.post_createdate			AS `date`,
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
 			IFNULL(ranks.fav,0)   			AS `count_fav`,

@@ -18,10 +18,11 @@
 
   <span class="comments-count">{%trans "Comments"%}</span>
   <span class="votes-count">{%trans "Votes"%}</span>
-  <!-- <span class="date">{%trans "Date"%}</span> -->
+  {%if admin%}
+    <span class="date">{%trans "Date"%}</span>
+  {%endif%}
  </div>
  <ul class="polls-body">
-
 {%for key, value in poll_list.data%}
    <li class="{%if value.status == 'draft'%}{{' star'}}{%endif%}" data-id="{{value.id}}">
 {%if login%}
@@ -50,7 +51,9 @@
     {%endif%}
     <span class="comments-count">{%if value.count_comment%} {{value.count_comment | fitNumber}}{%else%}-{%endif%}</span>
     <span class="votes-count">{%if value.count_vote%} {{value.count_vote | fitNumber}}{%else%}-{%endif%}</span>
-    <!-- <span class="date">{{value.date_modified| jdate('Y-m-d')}}</span> -->
+    {%if admin%}
+      <span class="date">{{value.date}}</span>
+    {%endif%}
    </li>
 {%endfor%}
 
