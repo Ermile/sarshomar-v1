@@ -287,6 +287,10 @@ class ask
 				if(!$get_file)
 				{
 					$filedata = str_replace("https://dl.sarshomar.com/", root . "public_html/", $maker->query_result['file']['url']);
+					if($maker->query_result['file']['type'] == 'image')
+					{
+						$maker->query_result['file']['type'] = 'photo';
+					}
 					$filedata = curl_file_create($filedata, $maker->query_result['file']['mime'], $maker->query_result['file']['type']);
 					$return['method'] = "send" . $maker->query_result['file']['type'];
 					unset($return['text']);
@@ -317,6 +321,10 @@ class ask
 				$return['caption'] = $caption;
 				$return['_file_id'] = $maker->query_result['file']['id'];
 			}
+		}
+		elseif(isset($maker->query_result['file']) && $maker->query_result['file']['size']/1024/1024 > 5)
+		{
+			$return["disable_web_page_preview"] = true;
 		}
 
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);

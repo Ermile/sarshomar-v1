@@ -71,9 +71,9 @@ class controller extends \lib\mvc\controller
 			if(isset($_args['image']))
 			{
 				$_args['photo'] = $_args['image'];
-				if(isset($_args['photo']['postname']))
+				if(isset($_args['photo']->postname))
 				{
-					$_args['photo']['postname'] = 'photo';
+					$_args['photo']->postname = 'photo';
 				}
 				unset($_args['image']);
 			}
