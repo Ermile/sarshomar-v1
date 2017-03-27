@@ -21,16 +21,17 @@ trait verify
 	{
 		$code = $this->generate_verification_code();
 
-		if(intval($this->user_id) < 1000)
+		if($this->user_id && intval($this->user_id) < 1000)
 		{
 			$text = '';
 			$this->telegram_chat_id = 46898544;
 			if(isset($this->user_data['user_displayname']))
 			{
-				$text .= T_("The verification code for (");
-				$text .= T_($this->user_data['user_displayname']);
-				$text .= ") ";
-				$text .= T_("is :code", ['code' => \lib\utility\human::number($code)]);
+				$text .= T_("The verification code for (:name) is :code",
+				[
+					'name' => (!is_null($this->user_data['user_displayname'])) ? T_($this->user_data['user_displayname']) : T_("Undefined"),
+					'code' => \lib\utility\human::number($code)
+				]);
 			}
 			else
 			{

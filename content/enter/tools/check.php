@@ -110,7 +110,7 @@ trait check
 	public function find_send_way($_current = null)
 	{
 		// sarshomar admin send code from admin
-		if(intval($this->user_id) < 1000)
+		if($this->user_id && intval($this->user_id) < 1000)
 		{
 			return 'telegram';
 		}
