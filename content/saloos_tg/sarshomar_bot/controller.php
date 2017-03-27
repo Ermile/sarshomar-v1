@@ -52,6 +52,8 @@ class controller extends \lib\mvc\controller
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
+			if(count($_args) < 2)
+				return;
 			if(!isset($_args['method']))
 			{
 				$method = $_name;
@@ -109,7 +111,7 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = time();
-			if(self::$last_message !== false && in_array($method, ['sendmessage', 'editmessagetext', 'editmessagereplymarkup', 'editmessagecaption']))
+			if(self::$last_message !== false)
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
