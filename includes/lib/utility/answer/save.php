@@ -139,7 +139,7 @@ trait save
 		// set offline data
 		if($skipped)
 		{
-			if(!users::is_guest($_args['user_id']))
+			if($save_offline_chart)
 			{
 				ranks::plus($_args['poll_id'], 'skip');
 			}
@@ -149,7 +149,7 @@ trait save
 		}
 		else
 		{
-			if(!users::is_guest($_args['user_id']))
+			if($save_offline_chart)
 			{
 				// check poll money and set it to the user
 				self::money($_args);

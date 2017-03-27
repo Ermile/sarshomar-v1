@@ -219,18 +219,14 @@ trait update
 
 		if($old_answer_is_skipped && !$new_answer_is_skipped)
 		{
-			if(!users::is_guest($_args['user_id']))
+			if($save_offline_chart)
 			{
+				ranks::plus($_args['poll_id'], 'vote');
 				ranks::minus($_args['poll_id'], 'skip');
 			}
 
 			profiles::minus_dashboard_data($_args['user_id'], "poll_skipped");
 			profiles::people_see_my_poll($_args['poll_id'], "skipped", 'minus');
-
-			if(!users::is_guest($_args['user_id']))
-			{
-				ranks::plus($_args['poll_id'], 'vote');
-			}
 
 			profiles::set_dashboard_data($_args['user_id'], "poll_answered");
 			profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
@@ -238,18 +234,14 @@ trait update
 
 		if(!$old_answer_is_skipped && $new_answer_is_skipped)
 		{
-			if(!users::is_guest($_args['user_id']))
+			if($save_offline_chart)
 			{
 				ranks::minus($_args['poll_id'], 'vote');
+				ranks::plus($_args['poll_id'], 'skip');
 			}
 
 			profiles::minus_dashboard_data($_args['user_id'], "poll_answered");
 			profiles::people_see_my_poll($_args['poll_id'], "answered", 'minus');
-
-			if(!users::is_guest($_args['user_id']))
-			{
-				ranks::plus($_args['poll_id'], 'skip');
-			}
 
 			profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
 			profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');

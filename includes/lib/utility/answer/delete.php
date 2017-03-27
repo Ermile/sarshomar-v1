@@ -42,7 +42,7 @@ trait delete
 		{
 			$old_answer = [];
 		}
-
+		$save_offline_chart    = true;
 		$old_answer_is_skipped = false;
 		foreach ($_args['old_answer'] as $key => $value)
 		{
@@ -78,29 +78,35 @@ trait delete
 				if(array_key_exists('validstatus', $v))
 				{
 					$user_verify = $v['validstatus'];
+					if(is_null($user_verify) || !$user_verify)
+					{
+						$save_offline_chart = false;
+					}
 				}
 			}
 
-			$answers_details =
-			[
-				'poll_id'     => $_args['poll_id'],
-				'opt_key'     => $value['key'],
-				'user_id'     => $_args['user_id'],
-				'type'        => 'minus',
-				'update_mode' => 'delete',
-				'profile'     => $profile,
-				'validation'  => self::$validation,
-				'user_verify' => $user_verify,
-			];
-			stat_polls::set_poll_result($answers_details);
+			if($save_offline_chart)
+			{
+				$answers_details =
+				[
+					'poll_id'     => $_args['poll_id'],
+					'opt_key'     => $value['key'],
+					'user_id'     => $_args['user_id'],
+					'type'        => 'minus',
+					'update_mode' => 'delete',
+					'profile'     => $profile,
+					'validation'  => self::$validation,
+					'user_verify' => $user_verify,
+				];
+				stat_polls::set_poll_result($answers_details);
+			}
 		}
-
 
 		$log_meta =
 		[
 			'meta' =>
 			[
-				'input'              => $_args,
+				'input' => $_args,
 			]
 		];
 
@@ -109,13 +115,13 @@ trait delete
 
 		$result = polldetails::remove($_args['user_id'], $_args['poll_id']);
 
-		if($result && db::affected_rows())
+		if($result)
 		{
 			if($old_answer_is_skipped)
 			{
 				// transactions::set('real:answer:poll', $_args['user_id'], ['plus' => 2, 'post_id' => $_args['post_id']]);
 
-				if(!users::is_guest($_args['user_id']))
+				if($save_offline_chart)
 				{
 					ranks::minus($_args['poll_id'], 'skip');
 				}
@@ -125,7 +131,7 @@ trait delete
 			}
 			else
 			{
-				if(!users::is_guest($_args['user_id']))
+				if($save_offline_chart)
 				{
 					ranks::minus($_args['poll_id'], 'vote');
 				}
