@@ -16,7 +16,7 @@ trait gift
 		$result['results'][0]['title'] = "آیفون ببرید";
 		$result['results'][0]['url'] = "https://sarshomar.com/fa/gift";
 		$result['results'][0]['id'] = "gift_fa";
-		$result['results'][0]['caption'] = "🎁 با ورود به سرشمار، در روز پدر آیفون ببرید.\n\n💰+۱۰۰ هزار ریال هدیه ثبت‌نام\n\n💡سرشمار؛ از هر کسی در هر مکانی بپرسید.\n@SarshomarBot\nSarshomar.com/fa";
+		$result['results'][0]['caption'] = "🎁 با ورود به سرشمار، در روز پدر آیفون ببرید.\n\n💰+۱۰۰ هزار ریال اعتبار هدیه ثبت‌نام\n\n💡سرشمار؛ از هر کسی در هر مکانی بپرسید.\n@SarshomarBot\nSarshomar.com/fa";
 		// $result['results'][0]['photo_url'] = "https://sarshomar.com/static/images/gift/iphone-telegram.jpg";
 		$result['results'][0]['photo_url'] = "AgADBAAD4MA2G8keZAcXrq3tm_oHHdtfoBkABH8_esp20C2nTL0BAAEC";
 		$result['results'][0]['reply_markup']['inline_keyboard'] = [[

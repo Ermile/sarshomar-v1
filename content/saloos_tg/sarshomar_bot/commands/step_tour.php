@@ -48,7 +48,7 @@ class step_tour
 			bot::sendResponse([
 				'response_callback' => utility::response_expire('tour'),
 				'method' => 'sendvideo',
-				'video' => 'BAADAQADBgADqwjARg4oSqEhYOwyAg',
+				'video' => 'BAADBAADM3IAAh0bZAcE5qtgyQnHVAI',
 				'caption' => 'ویدئوی بالا به شما کمک می‌کند تا بهتر با ربات سرشمار کار کنید.',
 				'reply_markup' => [
 					'inline_keyboard' => [[['text' => 'خب', 'callback_data'=>'tour/end']]]
