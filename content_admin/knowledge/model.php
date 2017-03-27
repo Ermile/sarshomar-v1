@@ -140,6 +140,17 @@ class model extends \mvc\model
 		{
 			$request['status'] = $match->status[0];
 		}
+
+		if(isset($match->sort[0]) && $match->sort[0])
+		{
+			$request['sort'] = $match->sort[0];
+		}
+
+		if(isset($match->order[0]) && $match->order[0])
+		{
+			$request['order'] = $match->order[0];
+		}
+
 		$search = null;
 		if(isset($match->search[0]))
 		{
@@ -192,8 +203,11 @@ class model extends \mvc\model
 			$request['status'] = implode(" ", $status_list);
 		}
 
+		if(!isset($request['order']))
+		{
+			$request['order']       = 'desc';
+		}
 
-		$request['order']       = 'desc';
 		utility::set_request_array($request);
 		$options =
 		[

@@ -12,10 +12,12 @@ class controller extends  \content_admin\main\controller
 			'url' => "/.*/",
 			'property' =>
 			[
-				"search" => ["/^(.*)$/", true, 'search'],
-				"status" => ["/^.*$/", true, 'status'],
+				"page"      => ["/^\d+$/", true, 'page'],
+				"status"    => ["/^.*$/", true, 'status'],
+				"search"    => ["/^.*$/", true, 'search'],
 				"sarshomar" => ["/^.*$/", true, 'sarshomar'],
-				"page" => ["/^\d+$/", true, 'page']
+				"sort"      => ["/^.*$/", true, 'sort'],
+				"order"     => ["/^.*$/", true, 'order'],
 			]
 		]
 		);
