@@ -44,6 +44,37 @@ trait charts
 	 *
 	 * @return     array  ( description_of_the_return_value )
 	 */
+	public function chart_users_week()
+	{
+		$start    = date("Y-m-d", time());
+		$end      = date("Y-m-d", strtotime('-100 days'));
+		$language = \lib\define::get_language();
+
+		$poll_day_chart =
+		"SELECT WEEK(users.user_createdate) AS `createdate`, COUNT(users.id) AS `count`
+		FROM users
+		WHERE users.user_createdate <= '$start' AND users.user_createdate >= '$end'
+		GROUP BY WEEK(users.user_createdate) ORDER BY WEEK(users.user_createdate) DESC";
+
+		$poll_day_chart = \lib\db::get($poll_day_chart, ['createdate', 'count']);
+		$result = [];
+		if(is_array($poll_day_chart))
+		{
+			foreach ($poll_day_chart as $key => $value)
+			{
+				$date = $key;
+				$result[] = ['key' => $date, 'value' => (int) $value];
+			}
+		}
+		return $result;
+	}
+
+
+	/**
+	 * get static number
+	 *
+	 * @return     array  ( description_of_the_return_value )
+	 */
 	public function chart_users()
 	{
 		$start    = date("Y-m-d", time());
