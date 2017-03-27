@@ -2329,11 +2329,8 @@ input.rangeSlider{display:none}
 #logo-main .button-download span {font-size: 1.5em; padding: 0 .8em; background-color: #ddd;cursor: pointer;}
 #logo-main div.button-download.last {text-align: left;}
 #logo-main .dropdown {position: relative;display: inline-block;margin-left: 2em;}
-/*#logo-main .dropdown-content {visibility: hidden;position: absolute;opacity: 0;}
-#logo-main .dropdown:hover .dropdown-content {visibility:visible ;opacity: 1;}*/
 #logo-main .dropdown-content {position: absolute; z-index: -1}
 #logo-main .dropdown:hover .dropdown-content {z-index: 1}
-
 #logo-main .dropdown span {font-size: 1.1em;cursor: pointer;color: #00667a; transition: .3s;font-weight: 600}
 #logo-main .dropdown span:hover {color: #000}
 #logo-main .height-logo img{max-height: 13em;}
@@ -2366,6 +2363,5 @@ input.rangeSlider{display:none}
 #logo-main div.hover-logo:hover .img-hover{opacity: 1;}
 #logo-main .six-middle-logos .f {margin-bottom: 2em}
 #logo-main .three-brand-middle {margin-bottom: 3em}
-
 .panel-text .letter-counter{float:right}
 .rtl .panel-text .letter-counter{float:left}
