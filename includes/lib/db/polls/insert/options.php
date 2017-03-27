@@ -14,22 +14,21 @@ trait options
 			if(self::$args['options']['prize'])
 			{
 				$user_unit = null;
-				if(self::poll_check_permission('u','sarshomar', 'view'))
+				if(self::poll_check_permission('admin'))
 				{
-					if(intval(self::$user_id) === intval(self::$real_user_id))
+					if(isset(self::$old_saved_poll['sarshomar']) && self::$old_saved_poll['sarshomar'] === '1')
 					{
 						$user_unit = 'sarshomar';
 					}
 					elseif(self::$real_user_id)
 					{
-						$user_unit = \lib\db\units::find_user_unit(self::$real_user_id, true);
+						$user_unit = \lib\db\units::find_user_unit(self::$real_user_id);
 					}
 				}
 				else
 				{
-					$user_unit = \lib\db\units::find_user_unit(self::$user_id, true);
+					$user_unit = \lib\db\units::find_user_unit(self::$user_id);
 				}
-
 				self::save_options('prize', self::$args['options']['prize'], ['unit' => $user_unit]);
 			}
 			else
