@@ -172,6 +172,7 @@ class ask
 		{
 			$maker->inline_keyboard->add_poll_answers($options['type'] == 'private' ? $get_answer : null, $guest_option['skip']);
 		}
+		$guest_option['inline_report'] = false;
 
 		$maker->inline_keyboard->add_guest_option($guest_option);
 		// if(isset($maker->query_result['sarshomar']) && $maker->query_result['sarshomar'] && $options['type'] == 'inline')
