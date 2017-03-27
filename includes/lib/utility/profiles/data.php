@@ -15,7 +15,14 @@ trait data
 	{
 		$profile = [];
 
-		$result   = \lib\db\terms::usage($_user_id, [], 'users', 'sarshomar%');
+		if($_accepted_value)
+		{
+			$result = \lib\db\terms::usage($_user_id, [], 'user_profile', 'sarshomar%');
+		}
+		else
+		{
+			$result = \lib\db\terms::usage($_user_id, [], 'users', 'sarshomar%');
+		}
 
 		if(is_array($result))
 		{
@@ -32,16 +39,16 @@ trait data
 				}
 
 				// get the accepted value in terms for insert chart
-				if($_accepted_value)
-				{
-					if($value['term_status'] != 'enable')
-					{
-						continue;
-					}
-					$profile[$x_key] = $value['term_title'];
-				}
-				else
-				{
+				// if($_accepted_value)
+				// {
+				// 	if($value['term_status'] != 'enable')
+				// 	{
+				// 		continue;
+				// 	}
+				// 	$profile[$x_key] = $value['term_title'];
+				// }
+				// else
+				// {
 					$check_similar_tags = self::profile_data($x_key, $value['term_title']);
 					if($check_similar_tags === [])
 					{
@@ -56,7 +63,7 @@ trait data
 					{
 						$profile[$x_key] = $value['term_title'];
 					}
-				}
+				// }
 			}
 		}
 
@@ -167,6 +174,40 @@ trait data
 
 
 	/**
+	 * Sets the profile data your self.
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 * @param      <type>  $_args     The arguments
+	 * @param      array   $_options  The options
+	 */
+	public static function set_profile_data_your_self($_user_id, $_args, $_options = [])
+	{
+		foreach ($_args as $key => $value)
+		{
+			$caller = "$key:$value";
+			$caller = \lib\db\terms::caller($caller);
+			if(isset($caller['id']))
+			{
+				$set_profile_data_your_self =
+				"
+					INSERT INTO
+						termusages
+					SET
+						termusages.termusage_foreign = 'user_profile',
+						termusages.termusage_id      = $_user_id,
+						termusages.term_id           = $caller[id]
+					ON DUPLICATE KEY UPDATE
+						termusages.term_id          = $caller[id],
+						termusages.termusage_status = 'enable'
+				";
+				\lib\db::query($set_profile_data_your_self);
+			}
+		}
+	}
+
+
+
+	/**
 	 * Sets the profiles data.
 	 *
 	 * @param      <type>   $_user_id  The user identifier
@@ -179,6 +220,11 @@ trait data
 		if(!is_array($_args) || is_array($_user_id))
 		{
 			return false;
+		}
+
+		if(isset($_options['your_self_data']) && $_options['your_self_data'] === true)
+		{
+			self::set_profile_data_your_self($_user_id, $_args, $_options);
 		}
 
 		$birthyear  = null;
