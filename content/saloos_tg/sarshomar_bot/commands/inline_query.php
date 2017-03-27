@@ -167,6 +167,10 @@ class inline_query
 						$row_result[$key] = $value;
 					}
 				}
+				if($imethod == 'video' && !isset($row_result['mime_type']))
+				{
+					$row_result['mime_type'] = "video/mp4";
+				}
 				$row_result['type'] = $imethod;
 
 				$row_result[$imethod . '_url'] = $row_result['_url'];
