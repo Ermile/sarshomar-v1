@@ -68,6 +68,15 @@ class controller extends \lib\mvc\controller
 			{
 				$_name = 'sendphoto';
 			}
+			if(isset($_args['image']))
+			{
+				$_args['photo'] = $_args['image'];
+				if(isset($_args['photo']['postname']))
+				{
+					$_args['photo']['postname'] = 'photo';
+				}
+				unset($_args['image']);
+			}
 			$method = strtolower($method);
 			$replay_markup_id = commands\utility::replay_markup_id();
 			$replay_markup_id($_name, $_args);
