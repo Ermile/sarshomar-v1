@@ -618,7 +618,7 @@
     <div class="toolbox-btn">
       <form method="post" action="/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
-        <input type="number" name="vip-value" placeholder="{%trans "VIP Value"%}" value="{{poll_ranks.vip}}">
+        <input type="number" name="vip-value" placeholder="{%trans "VIP Value"%}" value="{{poll_ranks.vip}}" autocomplete="off">
         <button type="submit"><i class="icon-check icon-2x"></i></button>
       </form>
     </div>
