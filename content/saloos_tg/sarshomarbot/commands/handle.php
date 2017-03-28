@@ -45,7 +45,6 @@ class handle
 
 			$query_get = \lib\db\options::get([
 				'user_id' => bot::$user_id,
-				'option_cat' => 'user_detail_',
 				'option_key' => 'telegram_dev_user',
 				'option_value' => bot::response('from'),
 				'limit'	=> 1

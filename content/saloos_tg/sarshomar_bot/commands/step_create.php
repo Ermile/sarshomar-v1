@@ -129,12 +129,21 @@ class step_create
 				return callback_query\create::upload_file(null, null, self::error());
 			}
 
-			\lib\db\options::insert([
+			$meta = \lib\db\options::get([
 				'option_cat' => 'telegram',
 				'option_key' => 'file_uploaded_'.$file_uploaded['code'],
 				'option_value' => $file['file_id'],
-				'option_meta' => json_encode($file)
+				'limit'	=> 1
 			]);
+			if(empty($meta) || is_null($meta))
+			{
+				\lib\db\options::insert([
+					'option_cat' => 'telegram',
+					'option_key' => 'file_uploaded_'.$file_uploaded['code'],
+					'option_value' => $file['file_id'],
+					'option_meta' => json_encode($file)
+				]);
+			}
 			utility::make_request(["id" => $poll_id,"file" => $file_uploaded['code']]);
 			\lib\main::$controller->model()->poll_add(['method' => 'patch']);
 
@@ -187,11 +196,6 @@ class step_create
 		$return["response_callback"] = utility::response_expire('create');
 
 		return $return;
-	}
-
-	public static function step5($_text = null)
-	{
-
 	}
 
 	public static function error()

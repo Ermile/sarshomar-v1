@@ -191,6 +191,12 @@ class inline_query
 				{
 					$row_result['thumb_url'] = $row_result['_url'];
 				}
+
+				if(isset($row_result['mime_type']) && $row_result['mime_type'] = "video/mp4")
+				{
+					$row_result['type'] = 'video';
+				}
+
 				unset($row_result['_url']);
 			}
 			$result['results'][] = $row_result;
