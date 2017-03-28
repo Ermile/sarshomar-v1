@@ -345,6 +345,7 @@ class ask
 						$get_file['method'] = 'photo';
 					}
 					$return['method'] = 'send' . $get_file['method'];
+					$return[$get_file['method']] = $get_file['file_id'];
 				}
 				$return['caption'] = $caption;
 				$return['_file_id'] = $maker->query_result['file']['id'];
