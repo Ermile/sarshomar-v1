@@ -194,30 +194,38 @@ header #header-bottom{display:none}
 header #financial-box{width:100%;margin:0 20px!important;padding:0 1em}
 header #financial-box .total,header #financial-box .cost{background:#efefef;min-width:10em}
 header .header-profile-link .header-link-icon{display:inline-block;vertical-align:middle}
-header #header-box{height:100%;width:0;max-width:80%;position:fixed;z-index:4;top:0;left:0;background-color:rgba(255,255,255,1);overflow-x:hidden;transition:.5s;overflow:hidden}
+header #header-box{height:100%;width:300px;max-width:80%;position:fixed;z-index:4;top:0;left:0;background-color:rgba(255,255,255,1);overflow-x:hidden;transition:.5s;overflow:hidden}
 header.open::before{content:"";position:fixed;top:0;bottom:0;right:0;left:0;background-color:rgba(0,0,0,0.5);z-index:4}
 header.open #header-box{width:300px}
 header #header-top{border:none;height:auto}
 header #header-profile{width:100%;margin:0;padding:0;flex-flow:row wrap;color:#000;height:auto}
 .rtl header #header-profile {margin: 0}
 header #header-profile > *{flex:1 100%;padding:1rem 3rem;margin:0;background-color:transparent;color:#00667a;text-align:left;font-size:1.1em;line-height:initial}
+.rtl header #header-profile > * {text-align: right}
 header #header-profile > :hover,header #header-profile > :focus{background-color:#efefef}
 header .profile .info{width:100%;max-width:initial;padding:0;margin:0}
+.rtl header .profile .info {text-align: right}
 header .profile .profile-detail{position:static;z-index:initial;opacity:1;box-shadow:none}
-header .ui-language-link{display:none}
+header .ui-language-link{display: block}
+header.open .langlist {font-size: 1em;}
+header.open .langlist>a {margin-bottom: 2em;}
 header .icon-globe:before{content:""}
 header .header-profile-link nav{position:static;z-index:initial;opacity:1;box-shadow:none}
 header .header-profile-link nav a{padding:0}
+.profile .profile-detail .dashboard {-webkit-box-flex: 1;-ms-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;flex: 1;}
 header .icon-plus:before{content:""}
-header #header-profile .profile{order:1;background-color:#eee;padding-top:70px}
-header #header-profile .header-profile-button{order:2;background-color:#37aaa7!important;color:#fff!important;margin-top:50px}
+header #header-profile .profile{order:1;background-color:#eee;padding-top:6px}
+header #header-profile .header-profile-button{order:2;background-color:#37aaa7!important;color:#fff!important;margin-top:2em}
 header #header-profile .header-profile-link{order:3}
 header #header-profile .header-link-text{order:4}
-.rtl header #header-box{left:initial;right:0}
-header #menu-bar{position:fixed;top:1em;left:1em;width:25px;height:20px;z-index:999;cursor:pointer}
-header #menu-bar span{display:block;height:3px;width:100%;background-color:#fff;top:0}
-header #menu-bar span:before{content:"";display:block;position:absolute;height:3px;width:100%;background-color:#fff;top:8px}
-header #menu-bar span:after{content:"";display:block;position:absolute;height:3px;width:100%;background-color:#fff;top:16px}
+header #header-box{left:-300px;}
+header.open #header-box{left:0;}
+.rtl header #header-box{left:initial;right:-300px}
+.rtl header.open #header-box{left:initial;right:0}
+header #menu-bar{position: fixed;top: 1em;left: 1em;width: 36px;height: 27px;z-index: 999;cursor: pointer;background: #00667a;border-radius: 2px;}
+header #menu-bar span{display: block;margin: auto;margin-top: 5px;height: 3px;width: 76%;background-color: #fff;top: 0;}
+header #menu-bar span:before{content: "";display: block;position: absolute;height: 3px;width: 76%;background-color: #fff;top: 12px;}
+header #menu-bar span:after{content: "";display: block;position: absolute;height: 3px;width: 76%;background-color: #fff;top: 19px}
 .sync{display:none}
 #xaccess{display:none}
 .checkbox+label:before{top:16px;left:10px}

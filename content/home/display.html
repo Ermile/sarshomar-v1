@@ -4,7 +4,7 @@
   <div class="main homepage">
    <div class="box">
     <div class="f gutters">
-     <div class="c5 m12" id="intro-box">
+     <div class="c5 s12 m12" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Focus on your question. Do not be too concerned about how to ask or analyze."%} {%trans "Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means."%}</p>
 {%if not login%}
@@ -16,11 +16,11 @@
      </div>
 
 {%if site.currentlang == "fa"%}
-     <div class="c7 m12" id='gift-iphone'>
+     <div class="c7 s12 m12" id='gift-iphone'>
       <a href="{{url.base}}/gift"><img src="{{url.static}}images/gift/iphone.png" alt='{%trans "To enter into the Sarshomar society win iPhone"%}'></a>
      </div>
 {%else%}
-      <div class="c7 m12" id='random-chart'>
+      <div class="c7 s12 m12" id='random-chart'>
        <h3 class="unselectable"><a href='{{result.url}}'>{{result.title|trim('\"')}}</a></h3>
        <div class='column palette{{(random(6)) + 1}} chart unselectable' data-type='column' data-place='div' data-vals='{{result.data}}' data-color='auto' data-catField='title'></div>
       </div>
