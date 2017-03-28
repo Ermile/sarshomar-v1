@@ -448,11 +448,11 @@
   <div class="content no-data">{%trans "Not set"%}</div>
  {%endif%}
 
- {%if false%}
+ {%if poll_parent_url%}
  <div class="title">{%trans "Tree"%}</div>
- <div class="tree-msg">{%trans "You've answered to this poll"%}</div>
+ {#<div class="tree-msg">{%trans "You've answered to this poll"%}</div>#}
  <div class="content">
-  <a class="tree-link" href="#">Lorem ipsum dolor sit amet</a>
+  <a class="tree-link" href="{{poll_parent_url}}">{{poll_parent_title}}</a>
  </div>
  {%endif%}
 {% endspaceless %}

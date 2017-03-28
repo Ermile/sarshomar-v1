@@ -189,6 +189,23 @@ class view extends \mvc\view
 		{
 			$this->data->status_avalible = $this->model()->status_avalible($poll['id']);
 		}
+
+		if(isset($poll['tree']['parent']))
+		{
+			$parent = $poll['tree']['parent'];
+			$parent = \lib\utility\shortURL::decode($parent);
+			$parent_poll = \lib\db\polls::get_poll($parent);
+			if(isset($parent_poll['title']))
+			{
+				$this->data->poll_parent_title = $parent_poll['title'];
+			}
+			if(isset($parent_poll['url']))
+			{
+				$this->data->poll_parent_url = $parent_poll['url'];
+			}
+
+			// $this->data->poll_parent_opts = \lib\db\pollopts::get(shortURL::decode($poll['tree']['parent']), ['key', 'title']);
+		}
 	}
 
 
