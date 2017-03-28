@@ -694,7 +694,11 @@
 
  <div class='f poll-panel-item poll-who'>
   <span class='c3 flex justify-center align-center icon-smile-o'></span>
+  {%if poll.sarshomar%}
+  <span class='c poll-panel-label'>{%trans "Sarshomar"%}</span>
+  {%else%}
   <span class='c poll-panel-label'>{%trans "People"%}</span>
+  {%endif%}
  </div>
 
  {%if false%}
