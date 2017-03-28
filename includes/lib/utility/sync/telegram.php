@@ -28,6 +28,31 @@ trait telegram
 	}
 
 
+	private static function sync_msg($_lang = null)
+	{
+		$en_msg = "Sync Complete ;)";
+		$en_msg .= "\n";
+		$en_msg .= "🎁 Sarshomar's gift belongs to you for synced your account.";
+		$en_msg .= "\n";
+		$en_msg .= "Thank you";
+
+		$fa_msg = "ورود شما به جامعه سرشمار را تبریک می‌گوییم🌹";
+		$fa_msg .= "\n";
+		$fa_msg .= "شما در قرعه‌کشی ۲۲ فروردین آیفون در روز پدر شرکت داده می‌شوید;)";
+		$fa_msg .= "\n";
+		$fa_msg .= "🎁 هم‌چنین ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ شد";
+
+		if($_lang === 'fa')
+		{
+			return $fa_msg;
+		}
+		else
+		{
+			return $en_msg;
+		}
+	}
+
+
 	/**
 	 * get the mobile of web service and the telegram id
 	 * and sync
@@ -56,9 +81,22 @@ trait telegram
 
 			\lib\db\users::update($update_users, $_telegram_id);
 
+			$user_language = \lib\db\users::get_language($_telegram_id);
+			$verify =
+			[
+				'mobile'   => self::$mobile,
+				'ref'      => null,
+				'type'     => null,
+				'port'     => 'site',
+				'subport'  => null,
+				'user_id'  => $_telegram_id,
+				'language' => $user_language,
+			];
+			\lib\utility\users::verify($verify);
+
 			return
 			[
-				'message' => T_("You can login to Sarshomar.com with your mobile", ['mobile' => $mobile]),
+				'message' => self::sync_msg($user_language),
 			];
 		}
 
@@ -138,29 +176,10 @@ trait telegram
 
 			\lib\db::commit();
 			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
-			$en_msg =
-"Sync Complete ;)
-🎁 Sarshomar's gift belongs to you for synced your account.
-Thank you";
-			$fa_msg =
-"ورود شما به جامعه سرشمار را تبریک می‌گوییم🌹
-
-شما در قرعه‌کشی ۲۲ فروردین آیفون در روز پدر شرکت داده می‌شوید;)
-
-🎁 هم‌چنین ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ شد";
-
-			if($user_language === 'fa')
-			{
-				$msg = $fa_msg;
-			}
-			else
-			{
-				$msg = $en_msg;
-			}
 
 			return
 			[
-				'message' => $msg,
+				'message' => self::sync_msg($user_language),
 				'user_id' => $web_id
 			];
 		}
