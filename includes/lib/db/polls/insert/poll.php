@@ -284,11 +284,13 @@ trait poll
 			}
 		}
 
+		$is_public_poll = false;
 		if(self::isset_args('privacy'))
 		{
 			if(self::$args['privacy'] === 'public')
 			{
 				$insert_poll['post_privacy'] = 'public';
+				$is_public_poll = true;
 			}
 			else
 			{
@@ -352,6 +354,16 @@ trait poll
 				\lib\utility\poll_tree::set($tree_args);
 			}
 		}
+
+		if($is_public_poll)
+		{
+			\lib\db\ranks::plus(self::$poll_id, 'public', 1, ['replace' => true]);
+		}
+		else
+		{
+			\lib\db\ranks::plus(self::$poll_id, 'public', 0, ['replace' => true]);
+		}
+
 		// insert filters
 		if(self::isset_args('from'))
 		{
