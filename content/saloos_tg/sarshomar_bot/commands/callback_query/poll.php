@@ -655,10 +655,17 @@ class poll
 			$get_flag = \lib\db\options::get([
 				"option_cat" => "telegram",
 				"option_key" => "subport_flag",
-				"option_meta" => $_query['inline_message_id'],
+				"option_meta" => $inline_message_id,
 				"limit" => 1
 			]);
-			$flag = ['gift'];
+			if(!empty($get_flag))
+			{
+				$flag = ['gift'];
+			}
+			else
+			{
+				$flag = [];
+			}
 		}
 		else
 		{
