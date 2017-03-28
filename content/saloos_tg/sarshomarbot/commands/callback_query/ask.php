@@ -347,6 +347,15 @@ class ask
 					$return['method'] = 'send' . $get_file['method'];
 					$return[$get_file['method']] = $get_file['file_id'];
 				}
+				if($return['method'] == 'senddocument')
+				{
+					if(substr($return['mime_type'], 0, 6) == 'image/')
+					{
+						$return['method'] = 'sendphoto';
+						$return['photo'] = $return[$get_file['method']];
+						unset($return[$get_file['method']]);
+					}
+				}
 				$return['caption'] = $caption;
 				$return['_file_id'] = $maker->query_result['file']['id'];
 			}
