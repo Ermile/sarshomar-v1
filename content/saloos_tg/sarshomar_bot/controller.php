@@ -1,12 +1,15 @@
 <?php
 namespace content\saloos_tg\sarshomar_bot;
 // use telegram class as bot
+ini_set('display_errors'        , 'On');
+ini_set('display_startup_errors', 'On');
+ini_set('error_reporting'       , 'E_ALL | E_STRICT');
+ini_set('track_errors'          , 'On');
+ini_set('display_errors'        , 1);
+error_reporting(E_ALL);
 use \lib\telegram\tg as bot;
 use \lib\db\tg_session as session;
 use content\saloos_tg\sarshomar_bot\commands\handle;
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(-1);
 class controller extends \lib\mvc\controller
 {
 	/**
