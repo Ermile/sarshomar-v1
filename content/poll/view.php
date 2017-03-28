@@ -180,6 +180,8 @@ class view extends \mvc\view
 				{
 					$this->data->show_in_homepage = true;
 				}
+				$poll_ranks = \lib\db\ranks::get($poll_id);
+				$this->data->poll_ranks = $poll_ranks;
 			}
 		}
 
