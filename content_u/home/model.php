@@ -76,6 +76,24 @@ class model extends \mvc\model
 			LIMIT 1
 			";
 			\lib\db::query($query);
+
+			$telegram_where =
+			[
+				'user_id'    => $this->login('id'),
+				'option_cat' => 'telegram',
+				'option_key' => 'id',
+				'limit'      => 1,
+			];
+			$telegram_id = \lib\db\options::get($telegram_where);
+			if(!empty($telegram_id) && isset($telegram_id['value']))
+			{
+				$new_tg_id  = (string) $telegram_id['value'];
+				$new_tg_id .= (string) $new_mobile;
+				$new_tg_id .=  (string) rand(1000, 9999);
+				unset($telegram_where['limit']);
+				\lib\db\options::update_on_error(['options_status' => 'disable', 'option_value' => $new_tg_id], $telegram_where);
+			}
+
 			$this->redirector("/logout")->redirect();
 		}
 		else
