@@ -168,28 +168,28 @@ class users
 			\lib\db\units::set_user_unit($_args['user_id'], 'toman');
 		}
 
-		// $insert_transaction = true;
-		// $transactionitem_id = \lib\db\transactionitems::caller('gift:signup');
-		// if(isset($transactionitem_id['id']))
-		// {
-		// 	$transactionitem_id = $transactionitem_id['id'];
-		// 	$where =
-		// 	[
-		// 		'user_id'            => $_args['user_id'],
-		// 		'transactionitem_id' => $transactionitem_id,
-		// 		'limit'              => 1,
-		// 	];
-		// 	$exists = \lib\db\transactions::get($where);
-		// 	if(!empty($exists))
-		// 	{
-		// 		$insert_transaction = false;
-		// 	}
-		// }
+		$insert_transaction = true;
+		$transactionitem_id = \lib\db\transactionitems::caller('gift:signup');
+		if(isset($transactionitem_id['id']))
+		{
+			$transactionitem_id = $transactionitem_id['id'];
+			$where =
+			[
+				'user_id'            => $_args['user_id'],
+				'transactionitem_id' => $transactionitem_id,
+				'limit'              => 1,
+			];
+			$exists = \lib\db\transactions::get($where);
+			if(!empty($exists))
+			{
+				$insert_transaction = false;
+			}
+		}
 
-		// if($insert_transaction)
-		// {
-		// 	\lib\db\transactions::set('gift:signup', $_args['user_id'], ['plus' => 1000]);
-		// }
+		if($insert_transaction)
+		{
+			\lib\db\transactions::set('gift:signup', $_args['user_id']);
+		}
 
 		$user_update = [];
 
