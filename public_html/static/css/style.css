@@ -1246,7 +1246,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 
 
 /* poll result */
-#poll-result{margin-bottom:5em;position:relative;border:1px solid #aaa}
+#poll-result{margin-bottom:5em;position:relative;border:1px solid #d8d8d8}
 #poll-result .menu{margin-top:-18px}
 #poll-result .tabs li{min-width:50px}
 /*#poll-extra,#comments-box{margin-bottom:100px}*/
