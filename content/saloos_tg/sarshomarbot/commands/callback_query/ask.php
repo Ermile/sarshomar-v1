@@ -268,7 +268,18 @@ class ask
 		}
 		// handle::send_log($return);
 		// exit();
-		if($options['text_type'] != 'text' && isset($maker->query_result['file']) && (
+		$file_support = ['gif', 'pdf', 'zip', 'mp3', 'mp4', 'jpg', 'jpeg', 'png'];
+		$is_supported = false;
+		if($maker->query_result['file'])
+		{
+			$exec = explode(".", $maker->query_result['file']['name']);
+			$exec = end($exec);
+			if(in_array($exec, $file_support))
+			{
+				$is_supported = true;
+			}
+		}
+		if($is_supported && $options['text_type'] != 'text' && isset($maker->query_result['file']) && (
 			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
 			|| $options['type'] == 'private'))
 		{
