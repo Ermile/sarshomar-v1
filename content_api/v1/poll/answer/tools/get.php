@@ -23,7 +23,7 @@ trait get
 			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
 		}
 
-		$this->poll_get($_options);
+		$poll_data = $this->poll_get($_options);
 
 		if(!debug::$status)
 		{
@@ -46,7 +46,10 @@ trait get
 			if(!$is_answer)
 			{
 				$msg = T_("You have not answered this question yet");
-				$available = ['add', 'skip'];
+				if(isset($poll_data['status']) && $poll_data['status'] === 'publish')
+				{
+					$available = ['add', 'skip'];
+				}
 			}
 			else
 			{
