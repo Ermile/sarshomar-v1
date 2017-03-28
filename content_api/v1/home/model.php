@@ -129,7 +129,7 @@ class model extends \mvc\model
 					return false;
 				}
 
-				if(!token::check($authorization, 'token'))
+				if(!token::check($authorization, $token))
 				{
 					return false;
 				}

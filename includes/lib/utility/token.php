@@ -222,12 +222,17 @@ class token
 
 		switch ($_type)
 		{
-			case 'token':
+			case 'user_token':
+			case 'guest':
 				if(is_null($parent_id))
 				{
 					debug::error(T_("authorization faild (this authorization is not a valid token)"), 'authorization', 'access');
 					return false;
 				}
+				break;
+
+			case 'token':
+			case 'temp_token':
 
 				$temp_time = self::get_time($_authorization);
 
@@ -235,6 +240,7 @@ class token
 
 				if(!$temp_time ||  \DateTime::createFromFormat('Y-m-d H:i:s', $temp_time) === false)
 				{
+
 					debug::error(T_("Invalid token"), 'authorization', 'system');
 					return false;
 				}

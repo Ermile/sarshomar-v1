@@ -194,7 +194,11 @@ trait search
 					break;
 
 				case 'all':
-
+					if(!$_options['admin'])
+					{
+						$_options['post_privacy'] = 'public';
+						$_options['post_status']  = 'publish';
+					}
 					break;
 				case 'sarshomar':
 				case null:
@@ -204,7 +208,6 @@ trait search
 					$_options['post_sarshomar'] = 1 ;
 					break;
 			}
-
 		}
 		elseif(is_array($_options['in']))
 		{
