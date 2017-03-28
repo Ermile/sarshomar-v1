@@ -28,6 +28,16 @@
    <label for="favorite" class="icon-star"></label>
    <input type="checkbox" name="heart" id="heart" {% if poll.my_like %} checked="checked" {% endif %}>
    <label for="heart" class="icon-heart"></label>
+   <div class="flex field">
+    <label for="report" class="icon-flag"></label>
+    <select id="report">
+     <option>{%trans "Report"%}</option>
+     <option>{%trans "Spam"%}</option>
+     <option>{%trans "Breaking The Law"%}</option>
+     <option>{%trans "Privacy Issue"%}</option>
+     <option>{%trans "Not Interested"%}</option>
+    </select>
+   </div>
   </div>
   {%include template.share%}
  </div>
