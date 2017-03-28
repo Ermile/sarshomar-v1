@@ -53,8 +53,10 @@ class controller extends \lib\mvc\controller
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
 			if(count($_args) < 2)
+			{
 				$_args = [];
 				return;
+			}
 			if(!isset($_args['method']))
 			{
 				$method = $_name;
@@ -110,6 +112,10 @@ class controller extends \lib\mvc\controller
 			{
 				$_args['parse_mode'] = "HTML";
 			}
+			if(isset($_args['parse_mode']))
+			{
+				$_args['parse_mode'] = 'html';
+			}
 
 			$last_micro_time = time();
 			if(self::$last_message !== false)
@@ -128,6 +134,7 @@ class controller extends \lib\mvc\controller
 		bot::hook();
 		if(!bot::$user_id)
 		{
+			echo "user not found";
 			exit();
 		}
 		if(isset(bot::$hook['edited_message']))

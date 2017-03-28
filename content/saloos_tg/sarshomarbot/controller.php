@@ -53,8 +53,10 @@ class controller extends \lib\mvc\controller
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
 			if(count($_args) < 2)
+			{
 				$_args = [];
 				return;
+			}
 			if(!isset($_args['method']))
 			{
 				$method = $_name;
