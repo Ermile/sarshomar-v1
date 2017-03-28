@@ -189,14 +189,14 @@ class inline_query
 				}
 
 				unset($row_result['_url']);
-				foreach (['file_name', 'hide_url', 'thumb'] as $key => $value) {
+				foreach (['file_name', 'hide_url', 'thumb' , 'file_path'] as $key => $value) {
 					if(isset($row_result[$value]))
 					{
 						unset($row_result[$value]);
 					}
 				}
 			}
-			// var_dump($row_result);
+			var_dump($row_result);
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);

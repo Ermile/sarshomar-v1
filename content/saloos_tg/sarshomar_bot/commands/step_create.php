@@ -117,7 +117,7 @@ class step_create
 				]);
 
 			$file_id = $file['file_id'];
-			$get_file = bot::getFile(['file_id' => $file_id]);
+			$get_file = bot::sendResponse(['method'=>'getFile', 'file_id' => $file_id]);
 			$file_path = $get_file['result']['file_path'];
 			$file_link = 'https://api.telegram.org/file/bot' . bot::$api_key . '/' . $file_path;
 
