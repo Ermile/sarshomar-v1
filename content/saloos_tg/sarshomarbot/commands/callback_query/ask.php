@@ -272,6 +272,11 @@ class ask
 			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
 			|| $options['type'] == 'private'))
 		{
+
+			if($maker->query_result['file']['type'] == 'archive')
+			{
+				$maker->query_result['file']['type'] = 'document';
+			}
 			$caption = $maker->query_result['title'];
 			if($maker->message->message['descripttion'])
 			{
@@ -298,14 +303,20 @@ class ask
 					'option_key' => 'file_uploaded_'.$maker->query_result['file']['id'],
 					'limit'		=> 1
 					]);
+				$return['_url'] = $maker->query_result['file']['url'];
 				if(!$get_file)
 				{
+					// var_dump($maker->query_result['file']);
 					$filedata = str_replace("https://dl.sarshomar.com/", root . "public_html/", $maker->query_result['file']['url']);
 					if($maker->query_result['file']['type'] == 'image')
 					{
 						$maker->query_result['file']['type'] = 'photo';
 					}
 					$filedata = curl_file_create($filedata, $maker->query_result['file']['mime'], $maker->query_result['file']['type']);
+					if(substr($return['mime_type'], 0, 5) == 'video')
+					{
+						$maker->query_result['file']['type'] = 'video';
+					}
 					$return['method'] = "send" . $maker->query_result['file']['type'];
 					unset($return['text']);
 					$return['caption'] = $caption;
@@ -325,12 +336,15 @@ class ask
 					}
 					unset($return['text']);
 					$return['mime_type'] = $maker->query_result['file']['mime'];
+					if(substr($return['mime_type'], 0, 5) == 'video')
+					{
+						$get_file['method'] = 'video';
+					}
 					if($get_file['method'] == 'image')
 					{
 						$get_file['method'] = 'photo';
 					}
-					$return['method'] = "send" . $get_file['method'];
-					$return[$get_file['method']] = $get_file['file_id'];
+					$return['method'] = 'send' . $get_file['method'];
 				}
 				$return['caption'] = $caption;
 				$return['_file_id'] = $maker->query_result['file']['id'];

@@ -130,6 +130,7 @@ class controller extends \lib\mvc\controller
 		bot::hook();
 		if(!bot::$user_id)
 		{
+			echo "user not found";
 			exit();
 		}
 		if(isset(bot::$hook['edited_message']))

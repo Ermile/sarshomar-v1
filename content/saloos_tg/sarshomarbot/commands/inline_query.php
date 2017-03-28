@@ -149,10 +149,6 @@ class inline_query
 			elseif(isset($poll['caption']))
 			{
 				$imethod = substr($poll['method'], 4);
-				if($imethod == 'image')
-				{
-					$imethod = 'photo';
-				}
 				$unset = ['_file_id', 'reply_markup', 'disable_web_page_preview', 'parse_mode', 'method', $imethod];
 				foreach ($poll as $key => $value) {
 					if(in_array($key, $unset))
@@ -192,18 +188,15 @@ class inline_query
 					$row_result['thumb_url'] = $row_result['_url'];
 				}
 
-				if(isset($row_result['mime_type']) && $row_result['mime_type'] = "video/mp4")
-				{
-					$row_result['type'] = 'video';
-					if(!isset($row_result['video_url']))
+				unset($row_result['_url']);
+				foreach (['file_name', 'hide_url', 'thumb'] as $key => $value) {
+					if(isset($row_result[$value]))
 					{
-						$row_result['video_url'] = $row_result['document_url'];
-						unset($row_result['document_url']);
+						unset($row_result[$value]);
 					}
 				}
-
-				unset($row_result['_url']);
 			}
+			var_dump($row_result);
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);
