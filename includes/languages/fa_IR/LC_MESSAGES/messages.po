@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-28 18:05+0430\n"
-"PO-Revision-Date: 2017-03-28 18:10+0430\n"
+"POT-Creation-Date: 2017-03-28 18:18+0430\n"
+"PO-Revision-Date: 2017-03-28 18:19+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -756,9 +756,9 @@ msgstr "موقعیت"
 
 #: saloos/saloos-addons/content_cp/manifest.php:9
 #: saloos/saloos-addons/includes/languages/trans_addons.php:62
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:235
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:234
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:28
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:238
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:234
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:28
 #: sarshomar/content_u/home/view.php:21
 #: sarshomar/includes/languages/trans_addons.php:62
@@ -2325,14 +2325,14 @@ msgstr "اتمام"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/faq.php:77
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/feedback.php:12
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/privacy.php:30
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:245
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:244
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:27
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/about.php:20
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:36
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/faq.php:77
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/feedback.php:12
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/privacy.php:30
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:248
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:244
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:27
 #: sarshomar/includes/languages/trans_addons.php:68
 msgid "Help"
@@ -2729,9 +2729,9 @@ msgid "Use this shortcode on your posts"
 msgstr "از این کدکوتاه شده در مطالب خود استفاده کنید"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:155
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:224
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:223
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:27
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:227
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:223
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:27
 #: sarshomar/includes/languages/trans_addons.php:155
 #: sarshomar/includes/languages/trans_twig.php:142
@@ -3434,9 +3434,9 @@ msgstr "بازدیدکنندگان"
 #: saloos/saloos-addons/includes/languages/trans_addons.php:335
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:42
 #: saloos/saloos-addons/lib/telegram/commands/menu_profile.php:86
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:240
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:239
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:43
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:243
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:239
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:43
 #: sarshomar/includes/languages/trans_addons.php:335
 #: sarshomar/includes/languages/trans_twig.php:963
@@ -3982,9 +3982,9 @@ msgid "Does not exist!"
 msgstr "هیچ داده ای موجود نیست!"
 
 #: saloos/saloos-addons/lib/telegram/commands/step_register.php:84
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:279
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:312
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:282
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:278
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:311
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:278
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:311
 msgid "return"
 msgstr "بازگشت"
@@ -4113,7 +4113,7 @@ msgid "If you didn't request this code, ignore this message and continue."
 msgstr "اگر شما درخواست کد را نداده‌اید،‌ این کد را نادیده گرفته و ادامه دهید."
 
 #: sarshomar/content/home/model.php:215 sarshomar/content/home/model.php:270
-#: sarshomar/content_api/v1/home/tools/ready.php:67
+#: sarshomar/content_api/v1/home/tools/ready.php:72
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:125
 #: sarshomar/content_api/v1/poll/tools/delete.php:47
 #: sarshomar/includes/lib/utility/price.php:87
@@ -4161,7 +4161,7 @@ msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 
 #: sarshomar/content/poll/model.php:256
 #: sarshomar/content_admin/knowledge/model.php:70
-#: sarshomar/content_api/v1/home/tools/ready.php:156
+#: sarshomar/content_api/v1/home/tools/ready.php:161
 #: sarshomar/content_api/v1/poll/search/tools/search.php:184
 #: sarshomar/content_api/v1/poll/status/tools/set.php:73
 #: sarshomar/content_api/v1/poll/status/tools/set.php:106
@@ -4291,7 +4291,7 @@ msgstr "با ارسال /cancel در هر مرحله فرآیند ثبت را ل
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:32
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:52
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:10
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:274
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:273
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:23
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:28
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:74
@@ -4302,7 +4302,7 @@ msgstr "با ارسال /cancel در هر مرحله فرآیند ثبت را ل
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/create.php:32
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/create.php:52
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:10
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:277
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:273
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:23
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:74
@@ -4394,20 +4394,20 @@ msgstr ""
 "دستورات زیر نیز استفاده کنید."
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:8
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:206
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:205
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:27
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:8
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:209
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:205
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:27
 #: sarshomar/includes/languages/trans_twig.php:1076
 msgid "Ask me"
 msgstr "از من بپرس"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/help/commands.php:12
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:220
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:219
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:26
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:223
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:219
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:26
 #: sarshomar/includes/languages/trans_twig.php:1075
 msgid "My polls"
@@ -4845,33 +4845,33 @@ msgstr "گزارش"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:490
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/poll.php:597
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:200
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:199
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create_advance.php:105
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_dashboard.php:28
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:490
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/poll.php:597
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:203
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:199
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create_advance.php:105
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:28
 msgid "Back"
 msgstr "قبلی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:113
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:116
-msgid "Your mobile is"
-msgstr "شماره موبایل شما"
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:112
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:112
+msgid "You can login with :mobile into Sarshoar website"
+msgstr "شما می‌توانید با شماره موبایل :mobile وارد سایت شوید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:115
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:118
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:114
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:114
 msgid "Sync"
 msgstr "همگام‌سازی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:164
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:163
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:363
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:190
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:155
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:156
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:167
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:163
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:363
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:190
 #: sarshomar/content/saloos_tg/sarshomarbot/controller.php:155
@@ -4881,41 +4881,41 @@ msgstr "همگام‌سازی"
 msgid "Sarshomar"
 msgstr "سرشمار"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:165
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:164
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:356
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:364
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:168
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:164
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:356
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:364
 msgid "#614, Omranieh, Moallem Sq, Qom, Iran. 37158-39959"
 msgstr "ایران، قم، میدان معلم، مجتمع عمرانیه، واحد۶۱۴، ارمایل، ۳۷۱۵۸۳۹۹۵۹"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:197
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:200
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:196
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:196
 msgid "menu"
 msgstr "منو"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:198
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:201
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:197
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:197
 msgid "main"
 msgstr "اصلی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:199
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:202
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:198
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:198
 msgid "mainmenu"
 msgstr "منوی اصلی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:273
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:276
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:272
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:272
 msgid "New"
 msgstr "جدید"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:280
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:283
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:279
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:279
 msgid "back"
 msgstr "قبلی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:281
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:280
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:87
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_civility.php:22
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_my.php:22
@@ -4923,7 +4923,7 @@ msgstr "قبلی"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_profile.php:32
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_profile.php:77
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu_psychology.php:22
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:284
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:280
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:77
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu_civility.php:22
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu_my.php:22
@@ -4934,8 +4934,9 @@ msgstr "قبلی"
 msgid "🔙 Back"
 msgstr "باز گشت 🔙"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:285
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/handle.php:284
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/menu.php:47
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:284
 msgid "تکمیل پروفایل"
 msgstr ""
 
@@ -5693,15 +5694,15 @@ msgstr "شما می‌توانید تمامی گزینه‌ها را انتخا�
 msgid "Invalid parameter temp_token"
 msgstr "پارامتر temp_token نامعتبر است"
 
-#: sarshomar/content_api/v1/home/tools/ready.php:86
+#: sarshomar/content_api/v1/home/tools/ready.php:91
 msgid "Access denied to the poll (This is not your poll)"
 msgstr "دسترسی به نظرسنجی امکان پذیر نیست(این نظرسنجی شما نیست)"
 
-#: sarshomar/content_api/v1/home/tools/ready.php:131
+#: sarshomar/content_api/v1/home/tools/ready.php:136
 msgid "(The poll is :status)"
 msgstr "(نظرسنجی :status)"
 
-#: sarshomar/content_api/v1/home/tools/ready.php:147
+#: sarshomar/content_api/v1/home/tools/ready.php:152
 msgid "Access denied to load this poll :msg"
 msgstr "دسترسی برای بارگذاری این نظرسنجی امکان پذیر نیست. :msg"
 
@@ -13391,7 +13392,7 @@ msgid "Invalid parameter"
 msgstr "پارامتر نامعتبر"
 
 #: sarshomar/includes/lib/db/db_errors.php:36
-#: sarshomar/includes/lib/utility/sync/telegram.php:108
+#: sarshomar/includes/lib/utility/sync/telegram.php:109
 msgid "can not get mobile data"
 msgstr "ناتوان در دریافت اطلاعات موبایل"
 
@@ -13822,7 +13823,7 @@ msgstr "پارامتر :key نامعتبر است"
 msgid "Parameter filters must be array"
 msgstr "پارامترهای فیلتر‌ها باید از نوع آرایه باشند"
 
-#: sarshomar/includes/lib/utility/sync/telegram.php:122
+#: sarshomar/includes/lib/utility/sync/telegram.php:123
 msgid "This account was already synced"
 msgstr "اکانت شما در حال حاضر سینک شده است"
 
@@ -13861,6 +13862,9 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:84
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Your mobile is"
+#~ msgstr "شماره موبایل شما"
 
 #~ msgid "You can login to Sarshomar.com with your mobile"
 #~ msgstr "شما می‌توانید با شماره موبایل خود به Sarshomar.com ورود کنید"
