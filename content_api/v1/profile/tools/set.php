@@ -69,8 +69,17 @@ trait set
 		}
 		$options = [];
 		$options['your_self_data'] = true;
+		$support_profile = \lib\utility\profiles::profile_data();
+
+		$support_profile = array_keys($support_profile);
 
 		$set_profile = \lib\utility\profiles::set_profile_data($this->user_id, $sended_profile, $options);
+
+		if(count($sended_profile) === count($support_profile))
+		{
+			$this->transaction_complete_profile();
+		}
+
 		debug::title(T_("The profile data was change"));
 		return;
 	}
@@ -111,6 +120,32 @@ trait set
 		}
 		return $sended_profile;
 	}
-}
 
+
+	/**
+	 * check profile data
+	 *
+	 */
+	public function transaction_complete_profile()
+	{
+		$caller = \lib\db\transactionitems::caller('gift:profile:complete');
+		if(isset($caller['id']))
+		{
+
+			$search_transaction =
+			[
+				'transactionitem_id' => $caller['id'],
+				'user_id'            => $this->user_id,
+			];
+			$transaction_exist = \lib\db\transactions::search(null, $search_transaction);
+			if(empty($transaction_exist))
+			{
+				\lib\db\transactions::set('gift:profile:complete', $this->user_id);
+				\lib\debug::true(T_("Sarshomar's gift belongs to you for completing your profile"));
+			}
+
+		}
+
+	}
+}
 ?>
