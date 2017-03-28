@@ -26,17 +26,15 @@ class step_tour
 	{
 		if($_text)
 		{
-			bot::stop();
+			step::stop();
 			$count = \saloos::lib_static('db')->users()::get_count('all');
 			$result = [];
 			$result["reply_markup"] = menu::main(true);
 			$result["text"] = T_("Welcome to the society of :count people of sarshomar", ['count' => utility::nubmer_language($count)]);
 			bot::sendResponse($result);
-			bot::stop();
 		}
 		else
 		{
-			bot::stop();
 			bot::sendResponse([
 				'response_callback' => utility::response_expire('tour'),
 				'method' => 'sendvideo',
