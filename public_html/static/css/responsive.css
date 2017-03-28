@@ -239,7 +239,9 @@ header #menu-bar span:after{content: "";display: block;position: absolute;height
 #random-chart h3 a{font-weight:500;font-size:1.3em}
 .dashboard-aside{display:none}
 .dashboard.main .row.first-line{margin-bottom:0}
-.map-container{display:none}
+.main .map-container{padding:50px 0}
+.main .map-container .special-heading::before{display:none}
+.main .map-container .span5{display:none}
 #map{display:none}
 .customers-container{border-top:1px solid #f4f4f4}
 .customers-container .customer{display:block;width:100%;text-align:center}
