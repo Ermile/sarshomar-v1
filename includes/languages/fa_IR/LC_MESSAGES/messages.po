@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-03-28 18:18+0430\n"
-"PO-Revision-Date: 2017-03-28 18:19+0430\n"
+"POT-Creation-Date: 2017-03-28 22:36+0430\n"
+"PO-Revision-Date: 2017-03-28 22:37+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -4114,7 +4114,7 @@ msgstr "اگر شما درخواست کد را نداده‌اید،‌ این �
 
 #: sarshomar/content/home/model.php:215 sarshomar/content/home/model.php:270
 #: sarshomar/content_api/v1/home/tools/ready.php:72
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:125
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:127
 #: sarshomar/content_api/v1/poll/tools/delete.php:47
 #: sarshomar/includes/lib/utility/price.php:87
 msgid "Poll not found"
@@ -4187,7 +4187,7 @@ msgid "You must set answer or skip the poll"
 msgstr "باید پاسخ خود را تعیین کنید یا نظرسنجی را رد کنید"
 
 #: sarshomar/content/poll/model.php:322
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:452
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:454
 msgid "Answer saved"
 msgstr "پاسخ ذخیره شد"
 
@@ -4270,8 +4270,8 @@ msgstr "مشاهده نتایج"
 msgid "Next poll"
 msgstr "نظرسنجی بعدی"
 
-#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:431
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:431
+#: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:438
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:438
 msgid "Updated"
 msgstr "بروز شد"
 
@@ -5673,7 +5673,7 @@ msgid "You must select :min options"
 msgstr "باید :min گزینه انتخاب کنید"
 
 #: sarshomar/content_api/v1/home/tools/get_options.php:411
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:311
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:313
 msgid "You can select at least :min and at most :max options"
 msgstr "شما باید حداقل :min و حداکثر :max گزینه را انتخاب کنید"
 
@@ -5682,7 +5682,7 @@ msgid "You can select at least :min options"
 msgstr "شما می‌توانید حداقل :min گزینه انتخاب کنید"
 
 #: sarshomar/content_api/v1/home/tools/get_options.php:420
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:328
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:330
 msgid "You can select at most :max options"
 msgstr "شما می‌توانید حداکثر :max گزینه را انتخاب کنید"
 
@@ -5729,70 +5729,70 @@ msgid "Can not skip this poll"
 msgstr "ناتوان در رد این نظرسنجی"
 
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:90
-msgid "You can not add or edit your answer"
-msgstr "نمی‌توانید پاسخی اضافه یا پاسخ خود را ویرایش کنید"
+msgid "You was already answered to this poll"
+msgstr "شما قبلا به این سوال پاسخ داده‌اید"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:95
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:97
 #: sarshomar/content_api/v1/poll/answer/tools/delete.php:46
 msgid "Invalid answer available"
 msgstr "پاسخ نامعتبری موجود است"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:105
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:107
 msgid "Answer parameter must be array"
 msgstr "پارامتر پاسخ باید آرایه باشد"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:132
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:134
 #: sarshomar/includes/lib/db/db_errors.php:5
 #: sarshomar/includes/lib/db/polls/fav_like.php:41
 msgid "Poll has not published"
 msgstr "نظرسنجی منتشر نشده است"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:137
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:139
 #: sarshomar/content_api/v1/poll/status/tools/get.php:46
 msgid "Poll status not found"
 msgstr "وضعیت نظرسنجی یافت نشد"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:142
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:144
 msgid "Poll answers not found"
 msgstr "پاسخ‌های نظرسنجی یافت نشد"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:161
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:163
 msgid "This type of poll is not supported to answer"
 msgstr "این نوع نظرسنجی برای پاسخ دادن پشتیبانی نشده است"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:191
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:193
 msgid "This is not a multi select poll and you selected :count answers"
 msgstr "این یک نظرسنجی چند انتخابی نیست و شما :count پاسخ انتخاب کرده‌اید"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:217
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:219
 msgid "This poll has not option :key"
 msgstr "این نظرسنجی گزینه :key ندارد"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:223
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:225
 msgid "This poll has not answery type of :key"
 msgstr "این نظرسنجی نوع پاسخ :key را ندارد"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:242
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:244
 msgid "This poll is :type poll and you can set only one answer"
 msgstr "نوع این نظرسنجی :type است و شما تنها قادر به تعیین یک پاسخ هستید"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:270
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:272
 msgid "Invalid parameter :value"
 msgstr "پارامتر :value نامعتبر است"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:289
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:291
 msgid "No answer was set"
 msgstr "پاسخی تعیین نشده است"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:303
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:305
 msgid "You should exactly select :min options"
 msgstr "شما باید دقیقا :min گزینه را انتخاب کنید"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:320
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:322
 msgid "You should select at least :min options"
 msgstr "شما باید حداقل :min گزینه را انتخاب کنید"
 
-#: sarshomar/content_api/v1/poll/answer/tools/add.php:444
+#: sarshomar/content_api/v1/poll/answer/tools/add.php:446
 msgid "Invalid method"
 msgstr "متد نامعتبر است"
 
@@ -13862,6 +13862,9 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:84
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "You can not add or edit your answer"
+#~ msgstr "نمی‌توانید پاسخی اضافه یا پاسخ خود را ویرایش کنید"
 
 #~ msgid "Your mobile is"
 #~ msgstr "شماره موبایل شما"
