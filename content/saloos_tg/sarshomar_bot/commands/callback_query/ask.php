@@ -35,7 +35,7 @@ class ask
 
 
 		$maker = new make_view($options['poll_id']);
-		if(is_null($maker->query_result))
+		if(is_null($maker->query_result) || !$maker->query_result)
 		{
 			if($options['poll_id'] == null)
 			{
