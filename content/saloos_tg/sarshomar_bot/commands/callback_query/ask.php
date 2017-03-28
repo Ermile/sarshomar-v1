@@ -259,10 +259,17 @@ class ask
 		{
 			$maker->message->message['options'] = "🎁 با <a href='https://sarshomar.com/fa/enter'>ورود به سرشمار</a>، در روز پدر آیفون ببرید.\n" . $maker->message->message['options'];
 		}
-		// if($options['type'] == 'private' && isset($maker->query_result['options']['prize']['value']) && isset($maker->query_result['options']['prize']['unit']))
-		// {
-		// 	$this->add->message['poll_list'] .= "\n💰 " . $maker->query_result['options']['prize']['value'] . ' ' . T_($maker->query_result['options']['prize']['unit']);
-		// }
+		if($options['type'] == 'private' && isset($maker->query_result['options']['prize']['value']) && isset($maker->query_result['options']['prize']['unit']))
+		{
+			$prize = utility::nubmer_language($maker->query_result['options']['prize']['value']);
+			$maker->message->message['poll_list'] .= "💰 " . $prize . ' ' . T_($maker->query_result['options']['prize']['unit']) . "\n";
+		}
+
+		if($options['type'] == 'private' && isset($maker->query_result['my_prize']['value']) && isset($maker->query_result['my_prize']['unit']))
+		{
+			$prize = utility::nubmer_language($maker->query_result['my_prize']['value']);
+			$maker->message->message['poll_list'] .= "💰💰 " . $prize . ' ' . T_($maker->query_result['my_prize']['unit']) . "\n";
+		}
 		$return = $maker->make();
 
 		if(in_array('gift', $options['flag']) && $maker->query_result['sarshomar'])
