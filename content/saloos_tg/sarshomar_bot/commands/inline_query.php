@@ -148,6 +148,15 @@ class inline_query
 			}
 			elseif(isset($poll['caption']))
 			{
+				if($poll['method'] == 'senddocument')
+				{
+					if(substr($poll['mime_type'], 0, 6) == 'image/')
+					{
+						$poll['method'] = 'sendphoto';
+						$poll['photo'] = $poll['document'];
+						unset($poll['document']);
+					}
+				}
 				$imethod = substr($poll['method'], 4);
 				$unset = ['_file_id', 'reply_markup', 'disable_web_page_preview', 'parse_mode', 'method', $imethod];
 				foreach ($poll as $key => $value) {
