@@ -393,7 +393,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .wrapper .box{padding:0 15px}
 .wrapper .homepage .box{padding:0 50px}
 .main.pad,.box.pad{padding-top:2rem;padding-bottom:2rem}
-.main.pad-large{padding-top:4rem;padding-bottom:2rem}
+.main.pad-large,.box.pad-large{padding-top:4rem;padding-bottom:2rem}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
 img,.unselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
@@ -416,6 +416,7 @@ img,.unselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:non
 
 .bh{font-weight:bold;line-height:2;margin-bottom:2rem;padding:0;padding-left:1em;color:#0c7c78;border:none;border-left:4px solid #aaa}
 .rtl .bh{padding:0;padding-right:1em;border:none;border-right:4px solid #aaa}
+.bh:not(:first-of-type){margin-top:4rem}
 
 .l2>ul,ul.l2{}
 .l2>ul h4,ul.l2 h4{position:relative;color:#6e6f6f;font-weight:bold;margin-bottom:1rem}
@@ -1944,6 +1945,11 @@ label,select,.element a,.btn{-webkit-user-select:none;-moz-user-select:none;-ms-
 .float-left{float:left}
 
 /************************************************************** about page */
+body[data-page="about"] [class*='c'] p:last-child{margin-bottom:0}
+body[data-page="about"] img[src*='what-is-sarshomar']{max-height:215px}
+body[data-page="about"] img[src*='the-name-sarshomar']{max-height:220px}
+body[data-page="about"] img[src*='the-starting-point']{max-height:220px}
+body[data-page="about"] img[src*='services-and-audiences']{max-height:195px}
 #about-bottom{padding:50px;background-color:#fff}
 #about-bottom .span4{text-align:center}
 #about-bottom img{margin-bottom:1em;width:60%;max-width:250px}

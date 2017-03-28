@@ -251,6 +251,7 @@ header #menu-bar span:after{content: "";display: block;position: absolute;height
 .customer-content h3 a{padding:0 1em}
 #features-box{display:none}
 #about-bottom{padding:4px}
+body[data-page='about'] img{margin-bottom:2rem}
 .special-button{font-size:12px!important;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}
 .special-button:before,.special-button:after{top:-4px;font-size:38px}
 .special-button:before{left:-6px}
