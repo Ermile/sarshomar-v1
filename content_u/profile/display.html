@@ -31,7 +31,7 @@
 <form method="post" >
   <div class="element {%if profile.displayname%}has-data{%else%}no-data{%endif%}">
    <label for="displayname" class="title">{%trans "Name"%}</label>
-   <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input" disabled>
+   <input type="text" name="displayname" id="displayname" value="{{profile.displayname}}" class="input">
   </div>
 
  <div class="element switch" data-respnse-group='gender' data-response-where-not='false'>

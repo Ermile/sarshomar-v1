@@ -10,7 +10,8 @@ trait profile
 		$post = utility::post();
 		if(isset($post['displayname']))
 		{
-
+			$post['displayname'] = \lib\utility\safe::safe($post['displayname']);
+			\lib\db\users::set_displayname($this->login('id'), $post['displayname']);
 		}
 		unset($post['displayname']);
 		utility::set_request_array($post);
