@@ -212,7 +212,6 @@ function openTopNav()
 	// show profile detail with tab
 	$('.dropmenu a').on('focus',function()
 	{
-		console.log('selected..');
 		$(this).parents('.dropmenu').addClass('open');
 		// set scroll to top of page
 		$('body').scrollTop(0);
@@ -3290,11 +3289,15 @@ function handleSidebar()
 
 	$('header').on('click', function(_e)
 	{
-		// console.log(_e);
-		console.log(_e.target);
-
-
 		if($(_e.target).is($('header.open')))
+		{
+			openSidebar(false);
+		}
+	});
+
+	$('header a').on('click', function(_e)
+	{
+		if($('header').hasClass('open'))
 		{
 			openSidebar(false);
 		}
