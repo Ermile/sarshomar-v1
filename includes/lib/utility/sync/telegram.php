@@ -123,6 +123,7 @@ trait telegram
 		}
 		else
 		{
+			$user_language = \lib\db\users::get_language(self::$new_user_id)
 			$verify =
 			[
 				'mobile'   => self::$mobile,
@@ -131,15 +132,35 @@ trait telegram
 				'port'     => 'site',
 				'subport'  => null,
 				'user_id'  => self::$new_user_id,
-				'language' => \lib\db\users::get_language(self::$new_user_id),
+				'language' => $user_language,
 			];
 			\lib\utility\users::verify($verify);
 
 			\lib\db::commit();
 			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
+			$en_msg =
+"Sync Complete ;)
+🎁 Sarshomar's gift belongs to you for synced your account.
+Thank you";
+			$fa_msg =
+"ورود شما به جامعه سرشمار را تبریک می‌گوییم🌹
+
+شما در قرعه‌کشی ۲۲ فروردین آیفون در روز پدر شرکت داده می‌شوید;)
+
+🎁 هم‌چنین ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ شد";
+
+			if($user_language === 'fa')
+			{
+				$msg = $fa_msg;
+			}
+			else
+			{
+				$msg = $en_msg;
+			}
+
 			return
 			[
-				'message' => T_("sync complete"),
+				'message' => $msg,
 				'user_id' => $web_id
 			];
 		}
