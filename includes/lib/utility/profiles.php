@@ -31,8 +31,8 @@ class profiles
 			// 'industry'         => null
 
 
-			'firstname'        => null,
-			'lastname'         => null,
+			// 'firstname'        => null,
+			// 'lastname'         => null,
 
 			// 'gender'           => ['male', 'female'],
 			// 'marrital'         => ['single', 'married'],

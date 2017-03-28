@@ -45,13 +45,49 @@ trait poll_complete
 				)
 			-- profiles::set_profile_by_poll()
 		";
-
 		// check this poll has been locked to profile data ?
 		$profile_lock = \lib\db::get($profile_lock);
 
 		if(!$profile_lock || empty($profile_lock) || !is_array($profile_lock))
 		{
 			return false;
+		}
+
+		$your_self_profile = self::get_profile_data($_args['user_id']);
+
+		$support_filter = \lib\db\filters::support_filter();
+
+		$pregs = [];
+		foreach ($support_filter as $key => $value)
+		{
+			if(array_key_exists($key, $your_self_profile))
+			{
+				$reg = "";
+				if(is_array($value))
+				{
+					$reg = "/^$key\:(";
+					$j = [];
+					foreach ($value as $k => $v)
+					{
+						$x = str_replace(' ', '\s', $v);
+						$x = str_replace('-', '\-', $x);
+						$x = str_replace('+', '\+', $x);
+						$j[] = $x;
+					}
+					$reg .= implode('|', $j);
+					$reg .= ")$/";
+				}
+				array_push($pregs, $reg);
+			}
+		}
+
+		$pregs = array_filter($pregs);
+
+		$your_self_caller = [];
+
+		foreach ($your_self_profile as $key => $value)
+		{
+			array_push($your_self_caller, "$key:$value");
 		}
 
 		foreach ($profile_lock as $key => $value)
@@ -61,8 +97,40 @@ trait poll_complete
 				continue;
 			}
 
+			$old_saved_similar_this_terms = false;
+			foreach ($pregs as $i => $pattenr)
+			{
+				if(preg_match($pattenr, $value['term_caller']))
+				{
+					$old_saved_similar_this_terms = true;
+					break;
+				}
+			}
+
+			if($old_saved_similar_this_terms)
+			{
+				$log_meta =
+				[
+					'data' => null,
+					'meta' =>
+					[
+						'yourself' => $your_self_profile,
+						'completeprofile' => $profile_lock,
+					],
+				];
+				// save log
+				$log_caller = "user:profile:yourself:saved:answer";
+				if(!in_array($value['term_caller'], $your_self_caller))
+				{
+					$log_caller = "user:profile:yourself:saved:poll:different";
+				}
+				\lib\db\logs::set($log_caller, $_args['user_id'], $log_meta);
+				continue;
+			}
+
 			if(isset($_args['type']) && $_args['type'] === 'minus')
 			{
+
 				$deactive_term_usages =
 				"
 					INSERT INTO
