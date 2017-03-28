@@ -1209,11 +1209,17 @@ body.rtl .poll-panel{right:16px;left:auto}
 .poll-panel .poll-panel-item .icon-publish{color:#00af4c}
 .poll-panel .poll-panel-item:hover .icon-publish{color:#f7f7f7;background-color:#00af4c}
 
+.poll-panel .poll-panel-item .icon-publish{color:#00af4c}
+.poll-panel .poll-panel-item:hover .icon-publish{color:#f7f7f7;background-color:#00af4c}
+
 .poll-panel .poll-panel-item .icon-draft{color:#f0a000}
 .poll-panel .poll-panel-item:hover .icon-draft{color:#f7f7f7;background-color:#f0a000}
 
 .poll-panel .poll-panel-item .icon-coin{color:#f0a000}
 .poll-panel .poll-panel-item:hover .icon-coin{color:#f7f7f7;background-color:#f0a000}
+
+.poll-panel .poll-panel-item .icon-smile-o{color:#f0a000}
+.poll-panel .poll-panel-item:hover .icon-smile-o{color:#f7f7f7;background-color:#f0a000}
 
 .poll-panel .poll-panel-nav{margin-top:2rem}
 .poll-panel .poll-panel-nav a{background-color:#0aa}
