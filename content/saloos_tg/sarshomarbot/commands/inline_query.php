@@ -196,7 +196,7 @@ class inline_query
 					}
 				}
 			}
-			var_dump($row_result);
+			// var_dump($row_result);
 			$result['results'][] = $row_result;
 		}
 		\lib\define::set_language(callback_query\language::check(true), true);

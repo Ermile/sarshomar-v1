@@ -112,10 +112,6 @@ class controller extends \lib\mvc\controller
 			{
 				$_args['parse_mode'] = "HTML";
 			}
-			if(isset($_args['parse_mode']))
-			{
-				$_args['parse_mode'] = 'html';
-			}
 
 			$last_micro_time = time();
 			if(self::$last_message !== false)
