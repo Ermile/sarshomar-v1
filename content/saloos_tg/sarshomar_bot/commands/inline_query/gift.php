@@ -40,7 +40,7 @@ trait gift
 		$result['results'][0]['title'] = "آیفون ببرید";
 		$result['results'][0]['url'] = "https://sarshomar.com/fa/gift";
 		$result['results'][0]['id'] = "gift_fa_unoffical";
-		$result['results'][0]['caption'] = "🎁 با سرشمار، امسال روز مرد، به جای جوراب، آیفون هدیه بگیرید!\n\n💰 +۱۰۰ هزار ریال هدیه تکمیل پروفایل\n\n💡با پاسخ به سوالات سرشمار، پول بگیرید\n@SarshomarBot\nSarshomar.com/fa";
+		$result['results'][0]['caption'] = "🎁 با سرشمار، امسال روز مرد، به جای جوراب، آیفون هدیه بگیرید!\n\n💰 +۱۰۰ هزار ریال هدیه ثبت‌نام\n\n💡با پاسخ به سوالات سرشمار، پول بگیرید\n@SarshomarBot\nSarshomar.com/fa";
 		$result['results'][0]['photo_url'] = "https://sarshomar.com/static/images/gift/iphone-telegram.jpg";
 		// $result['results'][0]['photo_url'] = "AgADBAAD4MA2G8keZAcXrq3tm_oHHdtfoBkABH8_esp20C2nTL0BAAEC";
 		$result['results'][0]['reply_markup']['inline_keyboard'] = [[
