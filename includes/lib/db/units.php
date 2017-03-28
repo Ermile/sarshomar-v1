@@ -132,7 +132,7 @@ class units
 
 		// get user language
 		$user_language = \lib\db\users::get_language($_user_id);
-		if($user_language === 'fa')
+		if($user_language === 'fa' || $user_language === 'fa_IR')
 		{
 			if($_set_user_unit_if_find)
 			{

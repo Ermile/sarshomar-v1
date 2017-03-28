@@ -163,7 +163,7 @@ class users
 			return false;
 		}
 
-		if($_args['language'] == 'fa')
+		if($_args['language'] == 'fa' || $_args['language'] == 'fa_IR')
 		{
 			\lib\db\units::set_user_unit($_args['user_id'], 'toman');
 		}

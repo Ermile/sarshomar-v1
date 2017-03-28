@@ -30,6 +30,7 @@ trait telegram
 
 	private static function sync_msg($_lang = null)
 	{
+
 		$en_msg = "Sync Complete ;)";
 		$en_msg .= "\n";
 		$en_msg .= "🎁 Sarshomar's gift belongs to you for synced your account.";
@@ -42,7 +43,7 @@ trait telegram
 		$fa_msg .= "\n";
 		$fa_msg .= "🎁 هم‌چنین ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ شد";
 
-		if($_lang === 'fa')
+		if($_lang === 'fa_IR' || $_lang === 'fa')
 		{
 			return $fa_msg;
 		}
@@ -151,7 +152,6 @@ trait telegram
 
 		\lib\utility\profiles::refresh_dashboard(self::$new_user_id);
 		// \content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
-
 		// check error was happend or no
 		if(!\lib\debug::$status)
 		{
@@ -161,6 +161,7 @@ trait telegram
 		}
 		else
 		{
+			\lib\db::commit();
 			$user_language = \lib\db\users::get_language(self::$new_user_id);
 			$verify =
 			[
@@ -174,7 +175,6 @@ trait telegram
 			];
 			\lib\utility\users::verify($verify);
 
-			\lib\db::commit();
 			\lib\db\logs::set('user:telegram:sync:successfuly',$_telegram_id, ['data' => $web_id]);
 
 			return

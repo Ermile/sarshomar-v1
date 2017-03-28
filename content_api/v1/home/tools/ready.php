@@ -30,6 +30,11 @@ trait ready
 	 */
 	public function poll_ready($_poll_data, $_options = [])
 	{
+		if(!is_array($_poll_data))
+		{
+			return false;
+		}
+
 		// set user id in static
 		self::$private_user_id = $this->user_id;
 
