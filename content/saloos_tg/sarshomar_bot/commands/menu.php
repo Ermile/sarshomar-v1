@@ -30,11 +30,21 @@ class menu
 			"resize_keyboard" => true
 			];
 
+		$user_profile = array_keys(\lib\main::$controller->model()->get_user_profile());
+		$original_profile = array_keys(\lib\utility\profiles::profile_data());
+		$uncomplate = array_diff($original_profile, $user_profile);
+
 		if(!\lib\utility\sync::is_telegram_sync(bot::$user_id))
 		{
 			$menu['keyboard'][] = [[
 					'text' 				=> T_('Register & sync'),
 					'request_contact' 	=> true
+				]];
+		}
+		elseif(!empty($uncomplate))
+		{
+			$menu['keyboard'][] = [[
+					'text' 				=> T_('تکمیل پروفایل')
 				]];
 		}
 

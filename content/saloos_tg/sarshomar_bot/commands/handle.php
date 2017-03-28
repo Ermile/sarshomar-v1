@@ -11,10 +11,7 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		// utility::make_request(['gender' => 'male']);
-		// \lib\main::$controller->model()->set_user_profile();
-		// handle::send_log(\lib\debug::compile());
-		// handle::send_log(\lib\main::$controller->model()->get_user_profile());
+		handle::send_log(bot::$hook);
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();
@@ -283,6 +280,10 @@ class handle
 				case T_('back'):
 				case T_('🔙 Back'):
 				$response = menu::main();
+				break;
+
+				case T_("تکمیل پروفایل"):
+					$response = step_profile::start();
 				break;
 
 				default:

@@ -101,6 +101,7 @@ class step_create
 		if($file_content && isset(bot::$hook['message'][$file_content[1]]))
 		{
 			$file = bot::$hook['message'][$file_content[1]];
+			handle::send_log($file);
 			if(!isset($file['file_id']))
 			{
 				$file = end($file);
