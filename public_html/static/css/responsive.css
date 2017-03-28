@@ -373,6 +373,8 @@ nav.breadcrumb a{max-width:12em}
 .rtl [data-copy]:after{left:30px;right:auto;top:0;height:35px}
 .polls-head>span.date,.polls-head>span.comments-count,.polls-body li>span.comments-count{display:none}
 #poll-result .in{position:relative;padding:1em}
+#poll-result{border:none}
+#poll-result .menu .menu-inside label{float:none;border-radius:3px}
 .polls-body li{margin-bottom:1em}
 #question-add{min-height:initial}
 .stepFilter .element.range label{border-radius:4px;line-height:inherit;margin-bottom:1em}
