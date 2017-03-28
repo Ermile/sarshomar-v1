@@ -27,7 +27,6 @@
    </div>
   </div><!-- /.f -->
 
-
 <br>
 <form method="post" >
   <div class="element {%if profile.displayname%}has-data{%else%}no-data{%endif%}">
@@ -48,9 +47,9 @@
  <div class="element switch" data-respnse-group='graduation' data-response-where-not='false'>
   <label class="title large badge "   data-response='graduation' data-response-class='active'>{%trans "Education"%}</label>
   <div class="switch-container">
-   <input type="radio" name="education" value="undergraduate" id="undergraduate" {%if profile.graduation == 'undergraduate'%}checked{%endif%}>
+   <input type="radio" name="graduation" value="undergraduate" id="undergraduate" {%if profile.graduation == 'undergraduate'%}checked{%endif%}>
    <label for="undergraduate">{%trans "Undergraduate"%}</label>
-   <input type="radio" name="education" value="graduate" id="graduate" {%if profile.graduation == 'graduate'%}checked{%endif%}>
+   <input type="radio" name="graduation" value="graduate" id="graduate" {%if profile.graduation == 'graduate'%}checked{%endif%}>
    <label for="graduate">{%trans "Graduate"%}</label>
   </div>
  </div>
@@ -68,11 +67,11 @@
  <div class="element switch" data-respnse-group='employmentstatus' data-response-where-not='false'>
   <label class="title large badge "   data-response='employmentstatus' data-response-class='active'>{%trans "Employment"%}</label>
   <div class="switch-container">
-   <input type="radio" name="employment" value="employee" id="employee" {%if profile.employmentstatus == 'employee'%}checked{%endif%}>
-   <label for="employee">{%trans "Employed"%}</label>
-   <input type="radio" name="employment" value="unemployed" id="unemployed" {%if profile.employmentstatus == 'unemployed'%}checked{%endif%}>
+   <input type="radio" name="employmentstatus" value="employee" id="employed" {%if profile.employmentstatus == 'employed'%}checked{%endif%}>
+   <label for="employed">{%trans "Employed"%}</label>
+   <input type="radio" name="employmentstatus" value="unemployed" id="unemployed" {%if profile.employmentstatus == 'unemployed'%}checked{%endif%}>
    <label for="unemployed">{%trans "Unemployed"%}</label>
-   <input type="radio" name="employment" value="retired" id="retired" {%if profile.employmentstatus == 'retired'%}checked{%endif%}>
+   <input type="radio" name="employmentstatus" value="retired" id="retired" {%if profile.employmentstatus == 'retired'%}checked{%endif%}>
    <label for="retired">{%trans "Retired"%}</label>
   </div>
  </div>
@@ -84,13 +83,13 @@
    <label for="underdiploma">{%trans "Under diploma"%}</label>
    <input type="radio" name="degree" value="diploma" id="diploma" {% if profile.degree == 'diploma'%}checked{%endif%}>
    <label for="diploma">{%trans "Diploma"%}</label>
-   <input type="radio" name="degree" value="2 year college" id="2yearcollege" {% if profile.degree == '2 year college'%}checked{%endif%}>
+   <input type="radio" name="degree" value="2 year college" id="2yearcollege" {% if profile.degree == 'associate degree'%}checked{%endif%}>
    <label for="2yearcollege">{%trans "2 year college"%}</label>
-   <input type="radio" name="degree" value="bachelor" id="bachelor" {% if profile.degree == 'bachelor'%}checked{%endif%}>
+   <input type="radio" name="degree" value="bachelor" id="bachelor" {% if profile.degree == 'bachelor degree'%}checked{%endif%}>
    <label for="bachelor">{%trans "Bachelor"%}</label>
-   <input type="radio" name="degree" value="master" id="master" {% if profile.degree == 'master'%}checked{%endif%}>
+   <input type="radio" name="degree" value="master" id="master" {% if profile.degree == 'masters degree'%}checked{%endif%}>
    <label for="master">{%trans "Master"%}</label>
-   <input type="radio" name="degree" value="phd" id="phd" {% if profile.degree == 'phd'%}checked{%endif%}>
+   <input type="radio" name="degree" value="phd" id="phd" {% if profile.degree == 'doctorate'%}checked{%endif%}>
    <label for="phd">{%trans "PHD"%}</label>
 
   </div>
@@ -99,7 +98,7 @@
  <div class="element switch" data-respnse-group='range' data-response-where-not='false'>
   <label class="title large badge "   data-response='range' data-response-class='active'>{%trans "Age Range"%}</label>
   <div class="switch-container">
-   <input type="radio" name="range" value="-13" id="-13" {% if profile.range == '-13'%}checked{%endif%}>
+   <input type="radio" name="range" value="-13" id="-13" {% if profile.range == 'under 13'%}checked{%endif%}>
    <label for="-13" class="ltr">{%trans "Under 13"%}</label>
    <input type="radio" name="range" value="14-17" id="14-17" {% if profile.range == '14-17'%}checked{%endif%}>
    <label for="14-17">{%trans "14-17"%}</label>
@@ -111,7 +110,7 @@
    <label for="31-44">{%trans "31-44"%}</label>
    <input type="radio" name="range" value="45-59" id="45-59" {% if profile.range == '45-59'%}checked{%endif%}>
    <label for="45-59">{%trans "45-59"%}</label>
-   <input type="radio" name="range" value="60+" id="60+" {% if profile.range == '60+'%}checked{%endif%}>
+   <input type="radio" name="range" value="60+" id="60+" {% if profile.range == 'above 60'%}checked{%endif%}>
    <label for="60+" class="ltr">{%trans "Above 60"%}</label>
   </div>
  </div>
