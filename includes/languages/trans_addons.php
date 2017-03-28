@@ -240,33 +240,33 @@ private function transtext()
 	echo T_("Info");                                                                  // Line 9
 	echo T_("Show server info");                                                      // Line 11
 	echo T_("Show PHP info");                                                         // Line 12
-	echo T_("Translate");                                                             // Line 17
-	echo T_("Extract twig trans func in current project");                            // Line 19
-	echo T_("Extract twig trans func in saloos addons");                              // Line 20
-	echo T_("Extract twig trans func in saloos addons and update on saloos addons");  // Line 21
-	echo T_("Git Repository");                                                        // Line 24
-	echo T_("Saloos Repository");                                                     // Line 26
-	echo T_("Saloos Addons Repository");                                              // Line 27
-	echo T_("Ermile Repository");                                                     // Line 28
-	echo T_("Current Project Repository");                                            // Line 29
-	echo T_("Other Tools");                                                           // Line 32
-	echo T_("Regenerate sitemap");                                                    // Line 34
-	echo T_("social networks");                                                       // Line 35
-	echo T_("Database");                                                              // Line 38
-	echo T_("Submit");                                                                // Line 45
-	echo T_("Upgrade");                                                               // Line 49
-	echo T_("Project Database");                                                      // Line 51
-	echo T_("Automatically read database and create sql files");                      // Line 50
-	echo T_("Backup");                                                                // Line 51
-	echo T_("Database Logs");                                                         // Line 56
-	echo T_("Logs");                                                                  // Line 59
-	echo T_("Logs - check");                                                          // Line 60
-	echo T_("Logs - warn");                                                           // Line 61
-	echo T_("Logs - critical");                                                       // Line 62
-	echo T_("Error Logs");                                                            // Line 63
-	echo T_("Telegram Errors");                                                       // Line 66
-	echo T_("telegram Logs");                                                         // Line 70
-	echo T_("telegram - Error Logs");                                                 // Line 71
+	echo T_("Translate");                                                             // Line 18
+	echo T_("Extract twig trans func in current project");                            // Line 20
+	echo T_("Extract twig trans func in saloos addons");                              // Line 21
+	echo T_("Extract twig trans func in saloos addons and update on saloos addons");  // Line 22
+	echo T_("Git Repository");                                                        // Line 28
+	echo T_("Saloos Repository");                                                     // Line 30
+	echo T_("Saloos Addons Repository");                                              // Line 31
+	echo T_("Ermile Repository");                                                     // Line 32
+	echo T_("Current Project Repository");                                            // Line 33
+	echo T_("Other Tools");                                                           // Line 38
+	echo T_("Regenerate sitemap");                                                    // Line 40
+	echo T_("social networks");                                                       // Line 41
+	echo T_("Database");                                                              // Line 44
+	echo T_("Submit");                                                                // Line 51
+	echo T_("Upgrade");                                                               // Line 55
+	echo T_("Project Database");                                                      // Line 57
+	echo T_("Automatically read database and create sql files");                      // Line 56
+	echo T_("Backup");                                                                // Line 57
+	echo T_("Database Logs");                                                         // Line 62
+	echo T_("Logs");                                                                  // Line 65
+	echo T_("Logs - check");                                                          // Line 66
+	echo T_("Logs - warn");                                                           // Line 67
+	echo T_("Logs - critical");                                                       // Line 68
+	echo T_("Error Logs");                                                            // Line 69
+	echo T_("Telegram Errors");                                                       // Line 72
+	echo T_("telegram Logs");                                                         // Line 76
+	echo T_("telegram - Error Logs");                                                 // Line 77
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
