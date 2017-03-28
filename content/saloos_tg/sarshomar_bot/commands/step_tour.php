@@ -36,6 +36,7 @@ class step_tour
 		}
 		else
 		{
+			bot::stop();
 			bot::sendResponse([
 				'response_callback' => utility::response_expire('tour'),
 				'method' => 'sendvideo',
