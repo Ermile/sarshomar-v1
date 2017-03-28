@@ -195,6 +195,8 @@ class inline_query
 				if(isset($row_result['mime_type']) && $row_result['mime_type'] = "video/mp4")
 				{
 					$row_result['type'] = 'video';
+					$row_result['document_url'] = $row_result['video_url'];
+					unset($row_result['document_url']);
 				}
 
 				unset($row_result['_url']);
