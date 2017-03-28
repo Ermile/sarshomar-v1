@@ -223,6 +223,21 @@ class model extends \mvc\model
 
 		$poll = \lib\db\polls::get_poll($this->poll_id);
 
+		if(!$this->access('admin'))
+		{
+			if(isset($poll['privacy']))
+			{
+				if($poll['privacy'] === 'public')
+				{
+					// no problem to load poll
+				}
+				else
+				{
+					\lib\error::access(T_("Can not access to load this poll"));
+				}
+			}
+		}
+
 		if(isset($poll['url']))
 		{
 			if($poll['url'] != $url .'/' && $poll['url'] != $url)
