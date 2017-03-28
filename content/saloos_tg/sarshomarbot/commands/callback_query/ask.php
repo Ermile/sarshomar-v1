@@ -259,6 +259,10 @@ class ask
 		{
 			$maker->message->message['options'] = "🎁 با <a href='https://sarshomar.com/fa/enter'>ورود به سرشمار</a>، در روز پدر آیفون ببرید.\n" . $maker->message->message['options'];
 		}
+		if($options['type'] == 'private' && isset($maker->query_result['options']['prize']['value']) && isset($maker->query_result['options']['prize']['unit']))
+		{
+			$this->add->message['poll_list'] .= "\n💰 " . $maker->query_result['options']['prize']['value'] . ' ' . T_($maker->query_result['options']['prize']['unit']);
+		}
 		$return = $maker->make();
 
 		if(in_array('gift', $options['flag']) && $maker->query_result['sarshomar'])
