@@ -1257,11 +1257,15 @@ body.rtl .poll-panel{right:16px;left:auto}
 #poll-info .status.stop,#poll-info .status.pause,#poll-info .status.disable,#poll-info .status.deleted{color:#a41f1f}
 
 /* poll filters */
-#poll-filters .content{padding:10px 0;color:#767676}
+/*#poll-filters .content{padding:10px 0;color:#767676}*/
 #poll-filters .content.no-data{padding:10px}
-#poll-filters span{display:inline-block;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;min-width:35%;margin-bottom:.5em;padding:5px;line-height:2em;font-size:1.2em}
+
+#poll-filters span{display:inline-block;margin:.5rem;padding:.5rem;vertical-align:middle;color:#00667a}
 #poll-filters span i{margin-right:.5em}
 .rtl #poll-filters span i{margin-right:0;margin-left:.5em}
+
+#poll-filters .tree-msg{padding:0;font-size:1.2em;margin-top:1rem}
+#poll-filters .tree-link{font-size:1.2em}
 
 /* poll similar */
 #poll-similar ul{font-size:1.2em;padding:10px 0}

@@ -28,6 +28,7 @@
    <label for="favorite" class="icon-star"></label>
    <input type="checkbox" name="heart" id="heart" {% if poll.my_like %} checked="checked" {% endif %}>
    <label for="heart" class="icon-heart"></label>
+   {%if false%}
    <div class="flex field">
     <label for="report" class="icon-flag"></label>
     <select id="report">
@@ -38,6 +39,7 @@
      <option>{%trans "Not Interested"%}</option>
     </select>
    </div>
+   {%endif%}
   </div>
   {%include template.share%}
  </div>
@@ -371,11 +373,32 @@
 
 {%block poll_info%}
 {% spaceless %}
-{{block('poll_period')}}
 {{block('poll_status')}}
 {{block('poll_tags')}}
+{{block('poll_count')}}
 {% endspaceless %}
 {%endblock%}
+
+
+
+{%block poll_status%}
+{% spaceless %}
+ <div class="title">{%trans "Status and period of publish"%}</div>
+ <div class="content">
+  <span class="{{poll.status}}">{%set myStatus = poll.status|capitalize%}{%trans myStatus%}</span>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+{%block poll_count%}
+{% spaceless %}
+ <div class="title">{%trans "People voted to this poll"%}</div>
+ <div class="content">
+  <span>{{poll.count_vote|number_format|fitNumber}}</span>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
 
 
 {%block poll_period%}
@@ -388,15 +411,6 @@
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
  {%endif%}
-{% endspaceless %}
-{%endblock%}
-
-
-{%block poll_status%}
-{% spaceless %}
- <div class="title">{%trans "Status"%}</div>
- {% set myStatus = poll.status %}
- <div class="content status {{poll.status}}">{% trans myStatus %}</div>
 {% endspaceless %}
 {%endblock%}
 
@@ -417,21 +431,29 @@
 
 
 {%block poll_filters%}
-
 {% spaceless %}
- <div class="title">{%trans "Statistical population"%}</div>
  {%if poll.filters%}
   {%for key, value in poll.filters%}
-    {% if key == 'count' %}
-    <!-- count member is {{value}} -->
-      {% else %}
-        {% for k, v in value%}
-        <span><i class="fa fa-2x fa-{{k}}" aria-hidden="true"></i>{{v}}</span>
-        {%endfor%}
-    {% endif %}
+   {%if key == 'count'%}
+   {%else%}
+    <div class="title">{%trans "Audiences of this poll"%}</div>
+    <div class="content">
+     {% for k, v in value%}
+      <span>{{v}}</span>
+     {%endfor%}
+    </div>
+   {%endif%}
   {%endfor%}
  {%else%}
   <div class="content no-data">{%trans "Not set"%}</div>
+ {%endif%}
+
+ {%if false%}
+ <div class="title">{%trans "Tree"%}</div>
+ <div class="tree-msg">{%trans "You've answered to this poll"%}</div>
+ <div class="content">
+  <a class="tree-link" href="#">Lorem ipsum dolor sit amet</a>
+ </div>
  {%endif%}
 {% endspaceless %}
 {%endblock%}
