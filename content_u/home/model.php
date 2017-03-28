@@ -91,7 +91,7 @@ class model extends \mvc\model
 				$new_tg_id .= (string) $new_mobile;
 				$new_tg_id .=  (string) rand(1000, 9999);
 				unset($telegram_where['limit']);
-				\lib\db\options::update_on_error(['options_status' => 'disable', 'option_value' => $new_tg_id], $telegram_where);
+				\lib\db\options::update_on_error(['option_status' => 'disable', 'option_value' => $new_tg_id], $telegram_where);
 			}
 
 			$this->redirector("/logout")->redirect();
