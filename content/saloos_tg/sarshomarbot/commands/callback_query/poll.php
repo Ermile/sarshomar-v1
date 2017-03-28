@@ -504,7 +504,7 @@ class poll
 		return $return;
 	}
 
-	public static function answer_results($_query, $_data_url)
+	public static function answer_results($_query, $_data_url, $_id = null)
 	{
 		\lib\storage::set_disable_edit(true);
 		$message_per_page = 8;
@@ -519,11 +519,20 @@ class poll
 			$start = (($page-1) * $message_per_page);
 		}
 
+		if(isset($_id))
+		{
+			$id = $_id;
+		}
+		else
+		{
+			$id = $_data_url[2];
+		}
+
 
 		\lib\utility::$REQUEST = new \lib\utility\request([
 			'method' => 'array',
 			'request' => [
-				'id' 	=> $_data_url[2],
+				'id' 	=> $id,
 				'from'  	=> (int) $start,
 				'to'  		=> (int) ($start + $message_per_page),
 			]]);
@@ -541,10 +550,7 @@ class poll
 				$display_name = "<strong>" . $value['profile']['displayname'] ."</strong>";
 				if(isset($value['profile']['telegram_id']))
 				{
-					// $telegram = bot::sendResponse([
-					// 	'method' => 'getChat',
-					// 	'chat_id' => $value['profile']['telegram_id']
-					// 	]);
+
 					$telegram = \lib\db\options::get([
 						"option_cat" => "telegram",
 						"option_key" => "id",
@@ -588,29 +594,29 @@ class poll
 			}
 		}
 		$return = ['text' => $message];
-		$inline_keyboard[] = [['text' => T_("Back"), 'callback_data' => 'ask/update/'.$_data_url[2] . '/update']];
+		$inline_keyboard[] = [['text' => T_("Back"), 'callback_data' => 'ask/update/'. $id  . '/update']];
 
 		if($total_page > 1)
 		{
 			if($page > 2)
 			{
-				$inline_keyboard[1][] = ["text" => "⏮", "callback_data" => "poll/answer_results/".$_data_url[2]."/1"];
+				$inline_keyboard[1][] = ["text" => "⏮", "callback_data" => "poll/answer_results/". $id ."/1"];
 			}
 			if($page > 1)
 			{
-				$inline_keyboard[1][] = ["text" => "◀️", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . ($page-1)];
+				$inline_keyboard[1][] = ["text" => "◀️", "callback_data" => "poll/answer_results/". $id ."/" . ($page-1)];
 			}
 
 
 
 			if($page < $total_page)
 			{
-				$inline_keyboard[1][] = ["text" => "▶️", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . ($page+1)];
+				$inline_keyboard[1][] = ["text" => "▶️", "callback_data" => "poll/answer_results/". $id ."/" . ($page+1)];
 			}
 
 			if(($page + 1) < $total_page)
 			{
-				$inline_keyboard[1][] = ["text" => "⏭", "callback_data" => "poll/answer_results/".$_data_url[2]."/" . $total_page];
+				$inline_keyboard[1][] = ["text" => "⏭", "callback_data" => "poll/answer_results/". $id ."/" . $total_page];
 			}
 		}
 		if(isset($inline_keyboard))
@@ -619,7 +625,14 @@ class poll
 		}
 		$return['parse_mode'] = "HTML";
 		$return["response_callback"] = utility::response_expire('ask');
-		callback_query::edit_message($return);
+		if(isset($_query))
+		{
+			callback_query::edit_message($return);
+		}
+		else
+		{
+			return $return;
+		}
 	}
 
 	public static function subport_update($_options, $_poll_id, $_md5_result = false, $_query)

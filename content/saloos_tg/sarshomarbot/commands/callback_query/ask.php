@@ -359,10 +359,26 @@ class ask
 		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
 
+		if(isset($return['reply_markup']['inline_keyboard']))
+		{
+			foreach ($return['reply_markup']['inline_keyboard'] as $key => $value) {
+				foreach ($value as $k => $v) {
+					if(substr($v['callback_data'], 0, 20) == 'poll/answer_results/' && isset($return['caption']))
+					{
+						$addr = substr($v['callback_data'], 20);
+						unset($return['reply_markup']['inline_keyboard'][$key][$k]['callback_data']);
+						$return['reply_markup']['inline_keyboard'][$key][$k]['url'] = 'https://t.me/sarshomarbot?start=' . $addr . '_answer_results';
+					}
+				}
+			}
+			handle::send_log($return['reply_markup']['inline_keyboard']);
+		}
+
 		if($options['type'] == 'private')
 		{
 			$return["response_callback"] = utility::response_expire('ask');
 		}
+
 		if($_query || !isset($options['return']))
 		{
 			bot::sendResponse($return);
