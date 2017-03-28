@@ -3,7 +3,7 @@
 /*
  * In the Name of God
  * Sarshomar Responsive Styles
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -199,6 +199,7 @@ header.open::before{content:"";position:fixed;top:0;bottom:0;right:0;left:0;back
 header.open #header-box{width:300px}
 header #header-top{border:none;height:auto}
 header #header-profile{width:100%;margin:0;padding:0;flex-flow:row wrap;color:#000;height:auto}
+.rtl header #header-profile {margin: 0}
 header #header-profile > *{flex:1 100%;padding:1rem 3rem;margin:0;background-color:transparent;color:#00667a;text-align:left;font-size:1.1em;line-height:initial}
 header #header-profile > :hover,header #header-profile > :focus{background-color:#efefef}
 header .profile .info{width:100%;max-width:initial;padding:0;margin:0}
@@ -320,7 +321,6 @@ footer .socialbox a{margin:0!important;margin-right:1rem!important}
 .checkbox .check-box:before,.checkbox .check-box:after{width:3px}
 .checkbox .check-box:before{top:12px;left:8px}
 .checkbox .check-box:after{top:6px;left:2px}
-}
 @-webkit-keyframes dothabottomcheck {0%{height:0}100%{height:8px}}
 @-moz-keyframes dothabottomcheck {0%{height:0}100%{height:8px}}
 @-o-keyframes dothabottomcheck {0%{height:0}100%{height:8px}}
@@ -481,6 +481,8 @@ nav.breadcrumb{display:none}
 .s-align-content-between{-webkit-align-content:space-between!important;-ms-flex-line-pack:justify!important;align-content:space-between!important}
 .s-align-content-around{-webkit-align-content:space-around!important;-ms-flex-line-pack:distribute!important;align-content:space-around!important}
 .s-align-content-stretch{-webkit-align-content:stretch!important;-ms-flex-line-pack:stretch!important;align-content:stretch!important}
+}
+
 
 /* Design for a width of 319px and lower */
 @media all and (max-width: 319px) {
