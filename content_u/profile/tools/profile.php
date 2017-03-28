@@ -14,7 +14,16 @@ trait profile
 		}
 		unset($post['displayname']);
 		utility::set_request_array($post);
-		$this->set_user_profile();
+
+		$method = 'post';
+
+		$saved_data = $this->get_user_profile();
+		if(!empty($saved_data))
+		{
+			$method = 'put';
+		}
+
+		$this->set_user_profile(['method' => $method]);
 		if(\lib\debug::$status)
 		{
 			debug::title("");

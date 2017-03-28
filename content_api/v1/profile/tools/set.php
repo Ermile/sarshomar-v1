@@ -8,15 +8,59 @@ trait set
 	public function set_user_profile($_options = [])
 	{
 		debug::title(T_("Can not set profile data"));
+		$default_options =
+		[
+			'method' => 'post',
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
 		if(!$this->user_id)
 		{
 			return;
 		}
 
+		$saved_profile = self::get_user_profile();
 		$sended_profile = $this->sended_profile();
+
 		if(!debug::$status)
 		{
 			return;
+		}
+
+		if($_options['method'] === 'post')
+		{
+			if(!empty($saved_profile))
+			{
+				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'post']), 'method', 'api');
+				return false;
+			}
+		}
+
+		if($_options['method'] === 'put')
+		{
+			if(empty($saved_profile))
+			{
+				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'put']), 'method', 'api');
+				return false;
+			}
+			// no thing!
+		}
+
+		if($_options['method'] === 'patch')
+		{
+			if(empty($saved_profile))
+			{
+				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'patch']), 'method', 'api');
+				return false;
+			}
+			if(is_array($saved_profile) && is_array($sended_profile))
+			{
+				$sended_profile = array_merge($saved_profile, $sended_profile);
+			}
 		}
 
 		if(empty($sended_profile) || !$sended_profile)
