@@ -87,7 +87,9 @@ trait add
 
 			if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $answer)
 			{
-				return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
+				return debug::error(T_("You was already answered to this poll"), 'answer', 'permission');
+
+				// return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
 			}
 		}
 		else
