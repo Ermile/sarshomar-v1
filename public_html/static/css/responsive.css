@@ -207,16 +207,16 @@ header .profile .info{width:100%;max-width:initial;padding:0;margin:0}
 .rtl header .profile .info {text-align: right}
 header .profile .profile-detail{position:static;z-index:initial;opacity:1;box-shadow:none}
 header .ui-language-link{display: block}
-header.open .langlist {font-size: 1em;}
-header.open .langlist>a {margin-bottom: 2em;}
+header .langlist {font-size: 1em;}
+header .langlist>a {padding: 1em 0;}
 header .icon-globe:before{content:""}
 header .header-profile-link nav{position:static;z-index:initial;opacity:1;box-shadow:none}
-header .header-profile-link nav a{padding:0}
 .profile .profile-detail .dashboard {-webkit-box-flex: 1;-ms-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;flex: 1;}
 header .icon-plus:before{content:""}
 header #header-profile .profile{order:1;background-color:#eee;padding-top:6px}
 header #header-profile .header-profile-button{order:2;background-color:#37aaa7!important;color:#fff!important;margin-top:2em}
 header #header-profile .header-profile-link{order:3}
+header #header-profile .header-profile-link:focus,header #header-profile .header-profile-link:hover {background: #fff}
 header #header-profile .header-link-text{order:4}
 header #header-box{left:-300px;}
 header.open #header-box{left:0;}
@@ -403,12 +403,12 @@ nav.breadcrumb a{max-width:12em}
 .text-based-container{width:100%}
 .text-based .special-heading{font-size:18px}
 .text-based .content{padding:0 2em;margin-bottom:2em}
-.main.text-based{padding:0}
+.main.text-based{padding-top:2em}
 .special-heading{padding-left:34px}
 .rtl .special-heading{padding-left:0;padding-right:34px}
 .special-heading:before{width:40px}
 .em{padding:1.5em 1em}
-.api-docs{padding:0 2em!important}
+.api-docs{padding:2em 2em!important}
 aside{display:none}
 .method-table,.response-codes{white-space:normal}
 .auth .in.small{width:100%}
