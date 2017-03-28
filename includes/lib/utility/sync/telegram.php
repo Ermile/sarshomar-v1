@@ -123,7 +123,7 @@ trait telegram
 		}
 		else
 		{
-			$user_language = \lib\db\users::get_language(self::$new_user_id)
+			$user_language = \lib\db\users::get_language(self::$new_user_id);
 			$verify =
 			[
 				'mobile'   => self::$mobile,
