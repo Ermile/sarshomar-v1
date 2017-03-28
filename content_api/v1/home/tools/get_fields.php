@@ -38,7 +38,7 @@ trait get_fields
 			$_poll_data['description'] = $_poll_data['content'];
 		}
 
-		if(array_key_exists('date', $_poll_data))
+		if(array_key_exists('date', $_poll_data) && $_poll_data['date'])
 		{
 			if(\lib\define::get_language() === 'fa')
 			{
@@ -46,7 +46,7 @@ trait get_fields
 			}
 			else
 			{
-				$_poll_data['date'] = date("Y-m-d", $_poll_data['date']);
+				$_poll_data['date'] = date("Y-m-d", strtotime($_poll_data['date']));
 			}
 		}
 
