@@ -29,10 +29,14 @@ class inline_query
 			self::now($result);
 			return $result;
 		}
+		elseif(substr($search, 0, 6) == '/gift2')
+		{
+			self::gift2($result);
+			return $result;
+		}
 		elseif(substr($search, 0, 5) == '/gift')
 		{
 			self::gift($result);
-			handle::send_log($result);
 			return $result;
 		}
 		elseif(substr($search, 0, 1) == '/')
