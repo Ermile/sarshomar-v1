@@ -11,10 +11,6 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		// utility::make_request(['gender' => 'male']);
-		// \lib\main::$controller->model()->set_user_profile();
-		// handle::send_log(\lib\debug::compile());
-		// handle::send_log(\lib\main::$controller->model()->get_user_profile());
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();
@@ -113,7 +109,7 @@ class handle
 				callback_query\language::set_client_language();
 				$text = $sync['message'];
 				$text .= "\n";
-				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
+				$text .= T_("You can login with :mobile into Sarshoar website", ['mobile' => \lib\utility\human::number($user_sync['mobile'])]);
 				$text .= "\n";
 				$text .= "#" . T_("Sync");
 				$return = [
@@ -285,6 +281,10 @@ class handle
 				$response = menu::main();
 				break;
 
+				case T_("تکمیل پروفایل"):
+					$response = step_profile::start();
+				break;
+
 				default:
 				break;
 			}
@@ -349,6 +349,7 @@ class handle
 			return;
 		@file_put_contents(root . 'includes/cls/database/log/log.sql', "");
 		file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", 'null');
+		// file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", 'null');
 	}
 }
 ?>

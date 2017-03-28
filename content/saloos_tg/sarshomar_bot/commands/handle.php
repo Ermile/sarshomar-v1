@@ -11,7 +11,6 @@ class handle
 
 	public static function exec($_cmd, $_run = false, $nospammer = false)
 	{
-		handle::send_log(bot::$hook);
 		if(!$nospammer)
 		{
 			$spammer = spammer::check();
@@ -110,7 +109,7 @@ class handle
 				callback_query\language::set_client_language();
 				$text = $sync['message'];
 				$text .= "\n";
-				$text .= T_("Your mobile is") . ': ' . $user_sync['mobile'];
+				$text .= T_("You can login with :mobile into Sarshoar website", ['mobile' => \lib\utility\human::number($user_sync['mobile'])]);
 				$text .= "\n";
 				$text .= "#" . T_("Sync");
 				$return = [
@@ -350,6 +349,7 @@ class handle
 			return;
 		@file_put_contents(root . 'includes/cls/database/log/log.sql', "");
 		file_put_contents("/home/domains/sarshomar/public_html/files/hooks/send.json", 'null');
+		// file_put_contents("/home/domains/sarshomar/public_html/files/hooks/error.json", 'null');
 	}
 }
 ?>
