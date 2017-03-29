@@ -290,9 +290,19 @@ class ask
 				$is_supported = true;
 			}
 		}
-		if($is_supported && $options['text_type'] != 'text' && isset($maker->query_result['file']) && (
-			($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline')
-			|| $options['type'] == 'private'))
+		$go_to_file = false;
+		if($is_supported && $options['text_type'] != 'text' && isset($maker->query_result['file']))
+		{
+			if(($maker->query_result['file']['size']/1024/1024 < 5 && $options['type'] == 'inline'))
+			{
+				$go_to_file = true;
+			}
+			elseif($options['type'] == 'private')
+			{
+				$go_to_file = true;
+			}
+		}
+		if($go_to_file)
 		{
 
 			if($maker->query_result['file']['type'] == 'archive')

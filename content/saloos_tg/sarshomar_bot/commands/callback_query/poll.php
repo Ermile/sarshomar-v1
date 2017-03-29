@@ -271,7 +271,7 @@ class poll
 				'return'	=> true,
 				'last'		=> $last,
 				'type'		=> 'private',
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				]));
 			if($add)
 			{
@@ -376,7 +376,7 @@ class poll
 				'return'	=> true,
 				'last'		=> $last,
 				'type'		=> 'private',
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				]));
 		}
 		// \lib\db::rollback();
@@ -444,7 +444,7 @@ class poll
 			callback_query::edit_message(ask::make(null, null, [
 				'poll_id' 	=> $_data_url[3],
 				'return'	=> true,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption'
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				]));
 		}
 
@@ -698,7 +698,7 @@ class poll
 				'type'			=> 'inline',
 				'md5_result'	=> $_md5_result,
 				'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption',
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				'flag'	=>  $flag,
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
@@ -727,7 +727,7 @@ class poll
 				'type'		=> 'inline',
 				'md5_result'	=> $_md5_result,
 				'inline_id'	=> $get_subport ? $get_subport['value'] : null,
-				'text_type'	=>  isset($_query['message']['text']) ? 'text' : 'caption',
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				'flag'	=>  $flag,
 			]);
 			$edit['inline_message_id'] = $inline_message_id;
@@ -750,7 +750,7 @@ class poll
 					'type'			=> 'inline',
 					'md5_result'	=> $_md5_result,
 					'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-					'text_type'		=>  isset($_query['message']['text']) ? 'text' : 'caption',
+					'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				'flag'	=>  $flag,
 				]);
 				$edit['inline_message_id'] = $inline_message_id;
