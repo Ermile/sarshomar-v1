@@ -26,7 +26,7 @@ class spammer
 			"option_value" => "action_log",
 			"limit"	=> 1
 			]);
-		if(empty($get_count_log))
+		if(empty($get_count_log) || !$get_count_log)
 		{
 			$set_meta = [$on_spam . '_count' => 0, "time" => microtime(true)];
 			\lib\db\options::insert([
