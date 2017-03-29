@@ -226,6 +226,7 @@ header #menu-bar{position: fixed;top: 1em;left: 1em;width: 36px;height: 27px;z-i
 header #menu-bar span{display: block;margin: auto;margin-top: 5px;height: 3px;width: 76%;background-color: #fff;top: 0;}
 header #menu-bar span:before{content: "";display: block;position: absolute;height: 3px;width: 76%;background-color: #fff;top: 12px;}
 header #menu-bar span:after{content: "";display: block;position: absolute;height: 3px;width: 76%;background-color: #fff;top: 19px}
+.contact-ways .row {margin-bottom: 2em!important;}
 .sync{display:none}
 #xaccess{display:none}
 .checkbox+label:before{top:16px;left:10px}
