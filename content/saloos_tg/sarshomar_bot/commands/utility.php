@@ -303,7 +303,7 @@ class utility
 				}
 				session::set('tmp', 'callback_query', $callback_query);
 			}
-			// sleep(1);
+			sleep(1);
 		};
 	}
 
@@ -410,8 +410,8 @@ END;
 				return ['text' => T_("User not found")];
 			}
 			$first_name = $user['result']['first_name'];
-			$last_name = $user['result']['last_name'];
-			$username = $user['result']['username'];
+			$last_name = isset($user['result']['last_name']) ? $user['result']['last_name'] : '';
+			$username = isset($user['result']['username']) ? $user['result']['username'] : '';
 		}
 		$photo = bot::sendResponse(["method" => "getUserProfilePhotos", "user_id" => $_user_id, 'limit' => 1]);
 		if(isset($photo['result']['photos'][0]))
