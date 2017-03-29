@@ -685,6 +685,19 @@ class poll
 			"option_value" => $inline_message_id,
 			"limit" => 1
 		]);
+		$valid_id = [58164083, 46898544];
+		if(in_array(bot::response('from'), $valid_id))
+		{
+			$edit = ask::make(null, null, [
+				'poll_id' 		=> $_poll_id,
+				'return'		=> true,
+				'type'			=> 'inline',
+				'md5_result'	=> $_md5_result,
+				'inline_id'		=> $get_subport ? $get_subport['value'] : null,
+				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
+				'flag'	=>  $flag,
+			]);
+		}
 		if(empty($get_inline_lock))
 		{
 			\lib\db\options::insert([
