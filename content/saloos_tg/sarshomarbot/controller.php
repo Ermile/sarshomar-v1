@@ -121,7 +121,7 @@ class controller extends \lib\mvc\controller
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
-					sleep(1);
+					// sleep(1);
 				}
 			}
 		};
