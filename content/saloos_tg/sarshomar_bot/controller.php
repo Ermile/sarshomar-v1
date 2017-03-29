@@ -117,11 +117,11 @@ class controller extends \lib\mvc\controller
 			}
 
 			$last_micro_time = time();
-			if(self::$last_message !== false)
+			if(self::$last_message !== false && in_array(strtolower($method), ['sendmessage', 'editmessagetext', 'editmessagereplymarkup', 'editmessagecaption']))
 			{
 				if($last_micro_time - self::$last_message < 1.1)
 				{
-					// sleep(1);
+					sleep(1);
 				}
 			}
 		};
