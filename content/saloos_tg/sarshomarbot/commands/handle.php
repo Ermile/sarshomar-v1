@@ -24,6 +24,14 @@ class handle
 		$incomming_method = current(array_intersect($incomming_method, array_keys(bot::$hook)));
 		if(isset(bot::$hook[$incomming_method]['from']))
 		{
+			foreach (bot::$hook[$incomming_method]['from'] as $key => $value) {
+				if(is_string(bot::$hook[$incomming_method]['from'][$key]))
+				{
+					bot::$hook[$incomming_method]['from'][$key] = preg_replace("/[.;'\"\/\\]/", "", bot::$hook[$incomming_method]['from'][$key]);
+				}
+			}
+			bot::$hook[$incomming_method]['from'] = \lib\utility\safe::safe(bot::$hook[$incomming_method]['from'], 'sqlinjection');
+
 			$telegram_meta = (array) bot::$hook[$incomming_method]['from'];
 			if($user_meta != $telegram_meta)
 			{
