@@ -49,8 +49,8 @@
           {%set myStatus = value.status%}
       <span class="poll-status" data-status="{{value.status}}">{% trans myStatus %}</span>
     {%endif%}
-    <span class="comments-count">{%if value.count_comment%} {{value.count_comment | fitNumber}}{%else%}-{%endif%}</span>
-    <span class="votes-count">{%if value.count_vote%} {{value.count_vote | fitNumber}}{%else%}-{%endif%}</span>
+    <span class="comments-count">{%if value.count_comment%} {{value.count_comment | number_format | fitNumber}}{%else%}-{%endif%}</span>
+    <span class="votes-count">{%if value.count_vote%} {{value.count_vote | number_format | fitNumber}}{%else%}-{%endif%}</span>
     {%if admin%}
       <span class="date">{{value.date}}</span>
     {%endif%}
