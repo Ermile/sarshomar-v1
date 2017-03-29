@@ -284,7 +284,7 @@ class handle
 				break;
 
 				case T_("تکمیل پروفایل"):
-					$response = step_profile::start();
+					// $response = step_profile::start();
 				break;
 
 				default:
