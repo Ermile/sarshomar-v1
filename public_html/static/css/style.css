@@ -2294,7 +2294,7 @@ input.rangeSlider{display:none}
 .lt-ie9 .irs-shadow{filter:alpha(opacity=30)}
 .irs-slider{top:37px;width:27px;height:27px;border:1px solid #AAA;background:#DDD;background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(220,220,220,1) 20%,rgba(255,255,255,1) 100%);border-radius:27px;-moz-border-radius:27px;box-shadow:1px 1px 3px rgba(0,0,0,0.3);cursor:pointer}
 /*.irs-slider.state_hover,.irs-slider:hover{background:#FFF}*/
-.irs-min,.irs-max{color:#333;font-size:12px;line-height:1.333;text-shadow:none;top:0;padding:1px 5px;background:#efefef;border-radius:3px;-moz-border-radius:3px;ltr}
+.irs-min,.irs-max{color:#333;font-size:12px;line-height:1.333;text-shadow:none;top:0;padding:1px 5px;background:#efefef;border-radius:3px;-moz-border-radius:3px;direction:ltr;}
 .lt-ie9 .irs-min,.lt-ie9 .irs-max{background:#ccc}
 .irs-from,.irs-to,.irs-single{color:#fff;font-size:14px;line-height:1.333;text-shadow:none;padding:1px 5px;background:#00667a;border-radius:3px;-moz-border-radius:3px;transition:0.1s;direction:ltr}
 .lt-ie9 .irs-from,.lt-ie9 .irs-to,.lt-ie9 .irs-single{background:#999}
