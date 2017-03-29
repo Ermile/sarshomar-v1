@@ -292,9 +292,13 @@ class poll
 		\lib\debug::$status = 1;
 		$get_answer = \lib\main::$controller->model()->poll_answer_get([]);
 		\lib\debug::$status = 1;
-		if(isset($get_answer['available']) && empty($get_answer['available']))
+		$valid_id = [58164083, 46898544];
+		if(!in_array(bot::response('from'), $valid_id))
 		{
-			return ['text' => '❗️' . T_("You was already answered to this poll")];
+			if(isset($get_answer['available']) && empty($get_answer['available']))
+			{
+				return ['text' => '❗️' . T_("You was already answered to this poll")];
+			}
 		}
 		$request = ['id' => $poll_id];
 
