@@ -308,6 +308,9 @@ footer .socialbox a{margin:0!important;margin-right:1rem!important}
 .checkbox input+label::before{top:12px;left:8px}
 .checkbox input+label::before,.checkbox input+label::after{width:3px}
 .poll-container .poll-toolbox{-ms-flex-wrap:wrap;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;justify-content:space-between;padding:0}
+.toolbox-btn form input[type="submit"], .toolbox-btn form button[type="submit"],.admin-toolbox input, .admin-toolbox select {height: 28px}
+.admin-toolbox input, .admin-toolbox select {width: 80px}
+.admin-toolbox .icon-check {font-size: 1em}
 .in.small.poll-container{width:95%}
 .menu .menu-inside label i{display:none}
 .rtl .element,.element{padding-left:0;padding-right:0}
