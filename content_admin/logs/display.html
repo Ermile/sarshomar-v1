@@ -24,10 +24,20 @@
                     <span>
                         <label class="red">{{value.priority}}</label>
                     </span>
-                    <span title="{{value.logitem_type}}">{{value.logitem_type}}</span>
-                    <span title="{{value.logitem_caller}}">{{value.logitem_caller}}</span>
+                    <span title="{{value.type}}">{{value.type}}</span>
+
+                    <span title="{{value.caller}}">
+                        <a href="{{url.base}}/admin/logs/caller={{value.caller}}">{{value.title}}</a>
+                    </span>
+
                     <span title="{{value.displayname}}">{{value.displayname}}</span>
-                    <span title="{{value.mobile}}">{{value.mobile}}</span>
+
+                    <span title="{{value.user_id}}">
+                        <a href="{{url.base}}/admin/logs/user={{value.user_id}}">{{value.user_id}}</a>
+                    </span>
+                    <span title="{{value.mobile}}">
+                        <a href="{{url.base}}/admin/logs/mobile={{value.mobile}}">{{value.mobile}}</a>
+                    </span>
                     <span title="{{value.data}}">{{value.data}}</span>
                     <span>
                         <a data-modal="meta_{{value.id}}" >{{value.meta|length}}</a>
@@ -46,7 +56,14 @@
                             </div>
                         </span>
                     </span>
-                    <span>{{value.createdate|jdate("Y-m-d -- H:i:s")}}</span>
+                    <span>
+                        <a href="{{url.base}}/admin/logs/date={{value.createdate|date('Ymd', false)}}">
+                            {{value.createdate|jdate("Y-m-d")}}
+                        </a>
+                        <a href="{{url.base}}/admin/logs/date={{value.createdate|date('YmdHis', false)}}">
+                            {{value.createdate|jdate(" H:i:s")}}
+                        </a>
+                    </span>
                 </div>
                 {%endfor%}
             </div>

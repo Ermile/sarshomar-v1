@@ -16,6 +16,22 @@ class model extends \mvc\model
 		{
 			$search = $_args->get("search")[0];
 		}
+
+		if(isset($_args->get("sort")[0]))
+		{
+			$meta['sort'] = $_args->get("sort")[0];
+		}
+
+		if(isset($_args->get("order")[0]))
+		{
+			$meta['order'] = $_args->get("order")[0];
+		}
+
+		// if(isset($_args->get("creator")[0]))
+		// {
+		// 	$meta['creator'] = $_args->get("creator")[0];
+		// }
+
 		$result = \lib\db\logitems::search($search, $meta);
 		return $result;
 	}

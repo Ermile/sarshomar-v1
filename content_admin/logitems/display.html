@@ -12,23 +12,27 @@
                 <div class="tbl-header">
                     <span>{% trans "Priority" %}</span>
                     <span>{% trans "Category" %}</span>
+                    <span>{% trans "Title" %}</span>
                     <span>{% trans "Caller" %}</span>
                     <span>{% trans "Description" %}</span>
                     <span>{% trans "Meta" %}</span>
                     <span>{% trans "Count" %}</span>
-                    <span>{% trans "Date" %}</span>
+                    <span>{% trans "Date Modified" %}</span>
                 </div>
                 {%for key, value in log_list%}
                 <div>
                     <span>
                         <label class="red">{{value.priority}}</label>
                     </span>
-                    <span title="{{value.logitem_type}}">{{value.logitem_type}}</span>
-                    <span title="{{value.logitem_caller}}">{{value.logitem_caller}}</span>
+                    <span title="{{value.type}}">{{value.type}}</span>
+                    <span title="{{value.desc}}">{{value.title}}</span>
+                    <span title="{{value.caller}}">
+                        <a href="{{url.balse}}/admin/logs/caller={{value.caller}}">{{value.caller}}</a>
+                    </span>
                     <span title="{{value.desc}}">{{value.desc}}</span>
                     <span title="{{value.meta}}">{{value.meta}}</span>
-                    <span title="{{value.count}}">{{value.count}}</span>
-                    <span>{{value.createdate|jdate("Y-m-d -- H:i:s")}}</span>
+                    <span title="{{value.count}}">{{value.count|number_format|fitNumber}}</span>
+                    <span title="{{value.count}}">{{value.date_modified|jdate("Y-m-d")}}</span>
                 </div>
                 {%endfor%}
             </div>
