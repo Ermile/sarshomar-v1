@@ -81,7 +81,10 @@ class spammer
 		$overflow = self::{"overflow_" . $on_spam}($meta);
 		if($overflow)
 		{
-			step::stop();
+			if(!isset(bot::$hook['callback_query']['inline_message_id']))
+			{
+				step::stop();
+			}
 			\lib\db\options::update([
 			"option_meta" => self::set_meta(['deny_time' => microtime(true)])
  			], $get_count_log['id']);
@@ -147,12 +150,16 @@ class spammer
 				'text' => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 				'callback_query_id' => bot::$hook['callback_query']['id']
 			];
-			bot::sendResponse([
-				'chat_id' => bot::response('from'),
-				"method" => "sendMessage",
-				"text" => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
-				"reply_markup" => menu::main(true)
-				]);
+			if(!isset(bot::$hook['callback_query']['inline_message_id']))
+			{
+				bot::sendResponse([
+					'chat_id' => bot::response('from'),
+					"method" => "sendMessage",
+					"text" => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
+					"reply_markup" => menu::main(true)
+					]);
+			}
+
 			return $message_result;
 		}
 		return false;
