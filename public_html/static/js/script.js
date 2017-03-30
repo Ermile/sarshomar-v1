@@ -793,6 +793,48 @@ function setLanguageURL()
 }
 
 
+function homepageHighlight(_el)
+{
+	// $(document).on(
+	// {
+	// 	mouseenter: function ()
+	// 	{
+	// 		$(this).addClass('hideGray');
+	// 	},
+	// 	mouseleave: function ()
+	// 	{
+	// 		var $this = $(this);
+	// 		setTimeout(function()
+	// 		{
+	// 			$this.removeClass('hideGray');
+	// 		}, 1000);
+	// 	}
+	// }, '.customers-container .customer');
+
+
+	if(!_el)
+	{
+		_el = $('.customers-container');
+	}
+
+	var posStart = _el.offset().top;
+	var posEnd   = posStart + _el.height() - 100;
+	var $window  = $(window);
+
+	$window.scroll(function()
+	{
+		if( $window.scrollTop() >= (posStart - window.innerHeight / 2 + 100)  && posEnd > $window.scrollTop() )
+		{
+			_el.addClass('littleGray');
+		}
+		else
+		{
+			_el.removeClass('littleGray');
+		}
+	});
+}
+
+
 // ================================================================== run on all part of each page
 route('*', function ()
 {
@@ -804,6 +846,8 @@ route('*', function ()
 	isActiveChecker();
 	// handle copy btn
 	handleCopy();
+	// highlight homepage gray shapes
+	homepageHighlight();
 	// load maps and chart js
 	$import('lib/amcharts/amcharts.js', 'drawChart', null, 70);
 	var loadMapDelay = 50;

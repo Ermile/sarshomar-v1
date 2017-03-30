@@ -786,6 +786,8 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .customers-container .customer-img img{display:block;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-transition:.7s;-o-transition:.7s;-moz-transition:.7s;transition:.7s;-webkit-backface-visibility:hidden}
 .customers-container.customers-target{padding-top:0;background-color:transparent}
 .customers-container .customer:hover .customer-img img{-webkit-filter:none;filter:none}
+.littleGray .customer img{-webkit-filter:grayscale(50%);filter:grayscale(50%);}
+.hideGray img{webkit-filter:none!important;filter:none!important}
 
 
 /************************************************************** triplet */
