@@ -258,7 +258,7 @@ class ask
 
 		if(in_array('gift', $options['flag']))
 		{
-			$maker->message->message['options'] = "🎁 با <a href='https://sarshomar.com/fa/enter'>ورود به سرشمار</a>، در روز پدر آیفون ببرید.\n" . $maker->message->message['options'];
+			$maker->message->message['options'] = "🎁 با <a href='https://sarshomar.com/fa/enter'>ورود به سرشمار</a>، در روز پدر آیفون ببرید و ۱۰۰.۰۰۰ ریال هدیه سرشمار را دریافت کنید.\n" . $maker->message->message['options'];
 		}
 		if($options['type'] == 'private' && isset($maker->query_result['options']['prize']['value']) && isset($maker->query_result['options']['prize']['unit']))
 		{
