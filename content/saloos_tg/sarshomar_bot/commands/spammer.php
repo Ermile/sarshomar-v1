@@ -148,6 +148,7 @@ class spammer
 				'callback_query_id' => bot::$hook['callback_query']['id']
 			];
 			bot::sendResponse([
+				'chat_id' => bot::response('from'),
 				"method" => "sendMessage",
 				"text" => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 				"reply_markup" => menu::main(true)
