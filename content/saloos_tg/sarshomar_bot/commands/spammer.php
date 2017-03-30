@@ -118,6 +118,7 @@ class spammer
 		if($_meta['time'] + 40 >= microtime(true) && $_meta['message_count'] >= 20)
 		{
 			return [
+			'chat_id' = bot::response('from'),
 			'text' => T_("You are banned for :seconds seconds", ['seconds' => utility::nubmer_language(20)]),
 			"reply_markup" => menu::main(true),
 			];
