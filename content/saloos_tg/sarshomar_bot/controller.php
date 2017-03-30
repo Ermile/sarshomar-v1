@@ -19,6 +19,7 @@ class controller extends \lib\mvc\controller
 	 */
 	public static $microtime_log;
 	public static $last_message = false;
+	public static $callback_query_id_db = [];
 	function _route()
 	{
 		ini_set('session.gc_maxlifetime', 3600 * 24 * 365);
@@ -55,6 +56,18 @@ class controller extends \lib\mvc\controller
 		bot::$once_log	  = false;
 		bot::$methods['before']["/.*/"] = function(&$_name, &$_args)
 		{
+			if(isset($_args['callback_query_id']))
+			{
+				if(in_array($_args['callback_query_id'], self::$callback_query_id_db))
+				{
+					$_args = [];
+					return;
+				}
+				else
+				{
+					self::$callback_query_id_db[] = $_args['callback_query_id'];
+				}
+			}
 			if(count($_args) < 2)
 			{
 				$_args = [];
@@ -119,9 +132,9 @@ class controller extends \lib\mvc\controller
 			$last_micro_time = time();
 			if(self::$last_message !== false && in_array(strtolower($method), ['sendmessage', 'editmessagetext', 'editmessagereplymarkup', 'editmessagecaption']))
 			{
-				if($last_micro_time - self::$last_message < 1.1)
+				if($last_micro_time - self::$last_message < 1)
 				{
-					// sleep(1);
+					sleep(1);
 				}
 			}
 		};

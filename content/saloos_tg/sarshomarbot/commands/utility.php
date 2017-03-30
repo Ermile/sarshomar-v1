@@ -248,14 +248,7 @@ class utility
 			{
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return];
 				\lib\db::log($log, null, 'telegram.json', 'json');
-				if(isset($_return['result']['edit_date']))
-				{
-					\content\saloos_tg\sarshomarbot\controller::$last_message = $_return['result']['edit_date'];
-				}
-				elseif(isset($_return['result']['date']))
-				{
-					\content\saloos_tg\sarshomarbot\controller::$last_message = $_return['result']['date'];
-				}
+				\content\saloos_tg\sarshomarbot\controller::$last_message = time();
 				if(isset($_return['result']) && is_array($_return['result']))
 				{
 					$method = array_intersect(['audio', 'video', 'photo', 'document', 'voice'], array_keys($_return['result']));
@@ -303,7 +296,7 @@ class utility
 				}
 				session::set('tmp', 'callback_query', $callback_query);
 			}
-			sleep(1);
+			// sleep(1);
 		};
 	}
 

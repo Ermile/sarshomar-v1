@@ -685,27 +685,27 @@ class poll
 			"option_value" => $inline_message_id,
 			"limit" => 1
 		]);
-		$valid_id = [58164083, 46898544];
-		if(in_array(bot::response('from'), $valid_id))
-		{
-			$edit = ask::make(null, null, [
-				'poll_id' 		=> $_poll_id,
-				'return'		=> true,
-				'type'			=> 'inline',
-				'md5_result'	=> $_md5_result,
-				'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
-				'flag'	=>  $flag,
-			]);
-		}
-		if(empty($get_inline_lock))
+		// $valid_id = [58164083, 46898544];
+		// if(in_array(bot::response('from'), $valid_id))
+		// {
+		// 	$edit = ask::make(null, null, [
+		// 		'poll_id' 		=> $_poll_id,
+		// 		'return'		=> true,
+		// 		'type'			=> 'inline',
+		// 		'md5_result'	=> $_md5_result,
+		// 		'inline_id'		=> $get_subport ? $get_subport['value'] : null,
+		// 		'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
+		// 		'flag'	=>  $flag,
+		// 	]);
+		// }
+		if(empty($get_inline_lock) || !$get_inline_lock)
 		{
 			\lib\db\options::insert([
 				"option_cat" => "telegram",
 				"option_key" => "inline_message_lock",
 				"option_value" => $inline_message_id,
-				"option_meta"	=> 0,
-				"option_status" => 'disable',
+				"option_meta"	=> time(),
+				// "option_status" => 'disable',
 			]);
 			$get_inline_lock = \lib\db::query("SELECT LAST_INSERT_ID() as id");
 			$get_inline_lock_id = $get_inline_lock->fetch_object()->id;
@@ -723,20 +723,24 @@ class poll
 			{
 				callback_query::edit_message($edit);
 			}
-			\lib\db\options::update([
-				"option_status" => 'enable'
-			], $get_inline_lock_id);
+			// \lib\db\options::update([
+			// 	"option_status" => 'enable'
+			// ], $get_inline_lock_id);
 		}
-		elseif($get_inline_lock['status'] == 'disable')
+		// elseif($get_inline_lock['status'] == 'disable')
+		// {
+		// 	\lib\db\options::update([
+		// 		"option_meta" => ++$get_inline_lock['meta']
+		// 	], $get_inline_lock['id']);
+		// }
+		elseif($get_inline_lock)
 		{
+			if($get_inline_lock['meta'] + 3 < time())
+			{
+				return;
+			}
 			\lib\db\options::update([
-				"option_meta" => ++$get_inline_lock['meta']
-			], $get_inline_lock['id']);
-		}
-		else
-		{
-			\lib\db\options::update([
-				"option_status" => 'disable'
+				"option_meta" => time()
 			], $get_inline_lock['id']);
 			$edit = ask::make(null, null, [
 				'poll_id' 	=> $_poll_id,
@@ -752,30 +756,30 @@ class poll
 			{
 				callback_query::edit_message($edit);
 			}
-			\lib\db\options::update([
-				"option_status" => 'enable'
-			], $get_inline_lock['id']);
-			$get_inline_lock = \lib\db\options::get([
-				"id" => $get_inline_lock['id'],
-				"limit" => 1
-			]);
-			if((int) $get_inline_lock['meta'] > 2)
-			{
-				$edit = ask::make(null, null, [
-					'poll_id' 		=> $_poll_id,
-					'return'		=> true,
-					'type'			=> 'inline',
-					'md5_result'	=> $_md5_result,
-					'inline_id'		=> $get_subport ? $get_subport['value'] : null,
-					'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
-				'flag'	=>  $flag,
-				]);
-				$edit['inline_message_id'] = $inline_message_id;
-				if($edit)
-				{
-					callback_query::edit_message($edit);
-				}
-			}
+			// \lib\db\options::update([
+			// 	"option_status" => 'enable'
+			// ], $get_inline_lock['id']);
+			// $get_inline_lock = \lib\db\options::get([
+			// 	"id" => $get_inline_lock['id'],
+			// 	"limit" => 1
+			// ]);
+			// if((int) $get_inline_lock['meta'] > 2)
+			// {
+			// 	$edit = ask::make(null, null, [
+			// 		'poll_id' 		=> $_poll_id,
+			// 		'return'		=> true,
+			// 		'type'			=> 'inline',
+			// 		'md5_result'	=> $_md5_result,
+			// 		'inline_id'		=> $get_subport ? $get_subport['value'] : null,
+			// 		'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
+			// 	'flag'	=>  $flag,
+			// 	]);
+			// 	$edit['inline_message_id'] = $inline_message_id;
+			// 	if($edit)
+			// 	{
+			// 		callback_query::edit_message($edit);
+			// 	}
+			// }
 		}
 	}
 }

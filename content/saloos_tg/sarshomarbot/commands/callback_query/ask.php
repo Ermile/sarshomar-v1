@@ -40,6 +40,7 @@ class ask
 			if($options['poll_id'] == null)
 			{
 				$text = T_("Hooray, You are answered to all of our polls.");
+				$text .= "\n" . T_("In the next days, check /ask again to answer more question.");
 			}
 			else
 			{
