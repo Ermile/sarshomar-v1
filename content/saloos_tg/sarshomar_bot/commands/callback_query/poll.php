@@ -361,6 +361,18 @@ class poll
 		}
 
 		\lib\debug::$status = 1;
+
+		if(!$debug_status)
+		{
+			callback_query::answer_message(['text' => '❗️' . $debug['messages']['error'][0]['title']]);
+		}
+		elseif($debug_status == 2)
+		{
+			callback_query::answer_message(['text' => '⚠️' . $debug['messages']['warn'][0]['title']]);
+		}
+		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
+		callback_query::answer_message(['text' => '✅ ' . $title]);
+
 		if(isset($_query['inline_message_id']) || $subport)
 		{
 			if(isset($_query['inline_message_id']))
@@ -385,16 +397,6 @@ class poll
 		}
 		// \lib\db::rollback();
 
-		if(!$debug_status)
-		{
-			return ['text' => '❗️' . $debug['messages']['error'][0]['title']];
-		}
-		elseif($debug_status == 2)
-		{
-			return ['text' => '⚠️' . $debug['messages']['warn'][0]['title']];
-		}
-		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
-		return ['text' => '✅ ' . $title];
 	}
 
 	public static function new()
@@ -751,10 +753,45 @@ class poll
 				'text_type'	=>  isset($_query['message']['caption']) ? 'caption' : 'text',
 				'flag'	=>  $flag,
 			]);
-			$edit['inline_message_id'] = $inline_message_id;
+
 			if($edit)
 			{
-				callback_query::edit_message($edit);
+				$edit['inline_message_id'] = $inline_message_id;
+				$in_edit = \lib\db\options::get([
+					"option_cat" => "telegram",
+					"option_key" => "inline_message_in_edit",
+					"option_value" => $inline_message_id,
+					"limit" => 1
+				]);
+				if(isset($in_edit['status']))
+				{
+					if($in_edit['status'] == 'enable')
+					{
+						\lib\db\options::update([
+							"option_status" => 'disable'
+						], $in_edit['id']);
+
+						callback_query::edit_message($edit);
+
+						\lib\db\options::update([
+							"option_status" => 'enable'
+						], $in_edit['id']);
+					}
+					else
+					{
+						return;
+					}
+				}
+				else
+				{
+					\lib\db\options::insert([
+						"option_cat" => "telegram",
+						"option_key" => "inline_message_in_edit",
+						"option_value" => $inline_message_id,
+					]);
+					callback_query::edit_message($edit);
+				}
+
 			}
 			// \lib\db\options::update([
 			// 	"option_status" => 'enable'

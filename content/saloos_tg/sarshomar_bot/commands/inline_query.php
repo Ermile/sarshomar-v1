@@ -136,6 +136,7 @@ class inline_query
 			if(in_array('gift', $flag))
 			{
 				$row_result['id'] .= ':#';
+				$row_result['title'] = "🎁 " . $row_result['title'];
 			}
 
 			$row_result['hide_url'] = false;

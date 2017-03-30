@@ -7,6 +7,7 @@ use \lib\db\tg_session as session;
 class callback_query
 {
 	public static $message_result = [];
+	public static $answer_message_result = [];
 	public static function start($_query = null)
 	{
 		$result = ['method' => 'answerCallbackQuery'];
@@ -79,6 +80,7 @@ class callback_query
 		 */
 		$callback_result = [];
 		$class_name = '\content\saloos_tg\sarshomar_bot\commands\callback_query\\' . $data_url[0];
+		self::$answer_message_result = $result;
 		if(class_exists($class_name) && method_exists($class_name, 'start'))
 		{
 			$callback_result = $class_name::start($_query, $data_url);
@@ -112,6 +114,15 @@ class callback_query
 		}
 		$return = bot::sendResponse($response);
 		return $return;
+	}
+
+	public static function answer_message($_result = [])
+	{
+		if(!is_array($_result))
+		{
+			$_result = [];
+		}
+		return bot::sendResponse(array_merge(self::$answer_message_result, $_result));
 	}
 }
 ?>
