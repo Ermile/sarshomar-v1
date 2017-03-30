@@ -188,7 +188,7 @@ header{display:block;height:auto;border:none}
 .container header .logo{background-image:none;width:100%;padding:2em 0;background-color:#00667a}
 header .logo h1{display:inline-block;vertical-align:bottom}
 header #header-quick{display:none}
-header #header-bottom{display:none}
+header #header-bottom #financial-box{flex-direction: row-reverse;}
 .breadcrumb{padding:6px 0}
 .rtl header .header-profile-button{font-size:12px}
 header #financial-box{width:100%;margin:0 20px!important;padding:0 1em}
