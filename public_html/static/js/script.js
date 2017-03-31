@@ -816,22 +816,24 @@ function homepageHighlight(_el)
 	{
 		_el = $('.customers-container');
 	}
-
-	var posStart = _el.offset().top;
-	var posEnd   = posStart + _el.height() - 100;
-	var $window  = $(window);
-
-	$window.scroll(function()
+	if(_el.length)
 	{
-		if( $window.scrollTop() >= (posStart - window.innerHeight / 2 + 100)  && posEnd > $window.scrollTop() )
+		var posStart = _el.offset().top;
+		var posEnd   = posStart + _el.height() - 100;
+		var $window  = $(window);
+
+		$window.scroll(function()
 		{
-			_el.addClass('littleGray');
-		}
-		else
-		{
-			_el.removeClass('littleGray');
-		}
-	});
+			if( $window.scrollTop() >= (posStart - window.innerHeight / 2 + 100)  && posEnd > $window.scrollTop() )
+			{
+				_el.addClass('littleGray');
+			}
+			else
+			{
+				_el.removeClass('littleGray');
+			}
+		});
+	}
 }
 
 
