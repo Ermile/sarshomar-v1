@@ -277,7 +277,7 @@ class ask
 		{
 			if($maker->query_result['id'] == 'tZ9z')
 			{
-				$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone-football.jpg'>🎁</a> " . $return['text'];
+				$return['text'] = "<a href='https://dl.sarshomar.com/static/images/gift/iphone-football.jpg'>🎁</a> " . $return['text'];
 
 			}
 			else
