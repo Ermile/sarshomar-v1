@@ -277,7 +277,8 @@ class utility
 				$log = ["telegram" => bot::$hook, "request" => $_args, "response" => $_return, "debug" => \lib\debug::compile()];
 				\lib\db::log($log, null, 'telegram-error.json', 'json');
 				\lib\db::log($log, null, 'telegram.json', 'json');
-				$logger = \lib\utility\error_logger::log(json_encode($_return, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+				$log = ['telegram'=> bot::$hook,'return' => $_return];
+				$logger = \lib\utility\error_logger::log(json_encode($log, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 			}
 			if(isset($_args['storage']) && isset($_args['storage']['callback_session']))
 			{
