@@ -275,7 +275,15 @@ class ask
 
 		if(in_array('gift', $options['flag']) && $maker->query_result['sarshomar'])
 		{
-			$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone.png'>🎁</a> " . $return['text'];
+			if($maker->query_result['id'] == 'tZ9z')
+			{
+				$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone-football.jpg'>🎁</a> " . $return['text'];
+
+			}
+			else
+			{
+				$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone.png'>🎁</a> " . $return['text'];
+			}
 			$return['disable_web_page_preview'] = false;
 		}
 		// handle::send_log($return);
