@@ -378,6 +378,7 @@
 {{block('poll_count')}}
 {%if iperm.admin.admin.view%}
 {{block('poll_author')}}
+{{block('poll_range')}}
 {%endif%}
 {% endspaceless %}
 {%endblock%}
@@ -411,7 +412,14 @@
 {% endspaceless %}
 {%endblock%}
 
-
+{%block poll_range%}
+{% spaceless %}
+ <div class="title">{%trans "Range"%}</div>
+ <div class="content">
+  <span>{{poll.filters.count}}</span>
+ </div>
+{% endspaceless %}
+{%endblock%}
 
 {%block poll_period%}
 {% spaceless %}
