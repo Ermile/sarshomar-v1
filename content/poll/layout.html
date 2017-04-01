@@ -376,6 +376,9 @@
 {{block('poll_status')}}
 {{block('poll_tags')}}
 {{block('poll_count')}}
+{%if iperm.admin.admin.view%}
+{{block('poll_author')}}
+{%endif%}
 {% endspaceless %}
 {%endblock%}
 
@@ -395,6 +398,15 @@
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
   <span>{{poll.count_vote|number_format|fitNumber}}</span>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+{%block poll_author%}
+{% spaceless %}
+ <div class="title">{%trans "Author"%}</div>
+ <div class="content">
+  <span>{{poll.user_id}}</span>
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -606,11 +618,12 @@
       </form>-->
 
 
-      <div class="check-slider">
-      <div>
-        <input type="checkbox" id="show_in_homepage" {% if show_in_homepage%} checked="checked" {%endif%} data-id="{{poll.id}}" />
-        <label for="show_in_homepage"></label>
-      </div>
+    <div class="flex justify-around align-center check-slider">
+     <div>
+      <input type="checkbox" id="show_in_homepage" {% if show_in_homepage%} checked="checked" {%endif%} data-id="{{poll.id}}" />
+      <label for="show_in_homepage"></label>
+     </div>
+     <a href="{{url.base}}/@/add/{{poll.id}}">{%trans "Edit"%}</a>
     </div>
 
 
