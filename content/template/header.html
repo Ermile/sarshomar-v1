@@ -1,4 +1,4 @@
-  <header class="unselectable" data-scroll>
+  <header data-scroll>
    <h1 class='logo flex align-center s-justify-center'>
     <a href='{{url.base}}' tabindex='1'>
           {%if site.currentlang =='fa'%}
@@ -62,7 +62,7 @@
      </nav>
     </div>
     <div id='header-bottom'>
-     <nav class="breadcrumb unselectable" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
+     <nav class="breadcrumb" data-xhr="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
 {%block breadcrumb%}
      {{breadcrumb(null, true, false, true) | raw}}
 {%endblock%}

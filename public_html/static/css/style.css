@@ -162,7 +162,7 @@ blockquote{background:#f9f9f9;font-size:1.5em;color:#59666f;border-right:10px so
 .clearfix{zoom:1}
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}
 img.scale-with-grid{max-width:100%;height:auto}
-.unselectable{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}
+.unselectable, .chart, .map, header, footer{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}
 
 
 /************************************************************** Utility */
@@ -746,7 +746,6 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 #gift-iphone> a img{display:block;max-width:500px;margin:0 auto;width:100%;border:1px solid #fff}
 
 /************************************************************** intro box */
-#intro-box{padding:1em 1em}
 .rtl #intro-box{text-align:center}
 #intro-box h2{color:#00667a;margin-bottom:0;font-weight:700;padding:0;padding-top:1em}
 #intro-box p{color:#666;margin:1em 0;line-height:2em}
@@ -758,18 +757,17 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 
 /************************************************************** map */
 .map-container{padding:50px 0}
-.rtl .map-container{padding:50px}
+.rtl .map-container{padding:3em 50px}
 #world-map{height:500px;min-width:310px;width:100%;margin:0 auto}
 #iran-map{height:400px;min-width:310px;max-width:800px;margin:0 auto}
 .map{direction:ltr}
 
-.map-container .special-heading{margin-bottom:50px;padding-left:60px}
+.map-container .special-heading{padding-left:60px}
 .rtl .map-container .special-heading{padding-left:0;padding-right:10px}
 .map-container .special-heading::before{width:50px;left:0}
 .rtl .map-container .special-heading::before{left:auto;right:-50px;width:50px}
 .map-container .special-heading::after{left:-60px}
 .rtl .map-container .special-heading::after{left:auto;right:-110px}
-
 
 
 /************************************************************** customers */
@@ -2188,6 +2186,7 @@ code {font-size: 1.2em;}
 
 .f>.c,.f>div{-webkit-flex-basis:0;-ms-flex-preferred-size:0;flex-basis:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;-moz-box-flex:1;flex-grow:1;max-width:100%}
 .f>.cauto{-webkit-box-flex:0;-webkit-flex:0 0 auto;-ms-flex:0 0 auto;-moz-box-flex:0;flex:0 0 auto;width:auto}
+.f>.c0{-webkit-box-flex:0;-webkit-flex:0 0 0;-ms-flex:0 0 0;-moz-box-flex:0;flex:0 0 0;max-width:0;display:none}
 .f>.c1{-webkit-box-flex:0;-webkit-flex:0 0 8.333333%;-ms-flex:0 0 8.333333%;-moz-box-flex:0;flex:0 0 8.333333%;max-width:8.333333%}
 .f>.c2{-webkit-box-flex:0;-webkit-flex:0 0 16.666667%;-ms-flex:0 0 16.666667%;-moz-box-flex:0;flex:0 0 16.666667%;max-width:16.666667%}
 .f>.c3{-webkit-box-flex:0;-webkit-flex:0 0 25%;-ms-flex:0 0 25%;-moz-box-flex:0;flex:0 0 25%;max-width:25%}

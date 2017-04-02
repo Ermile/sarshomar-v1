@@ -22,7 +22,7 @@
 {%else%}
       <div class="c7 s12 m12" id='random-chart'>
        <h3 class="unselectable"><a href='{{result.url}}'>{{result.title|trim('\"')}}</a></h3>
-       <div class='column palette{{(random(6)) + 1}} chart unselectable' data-type='column' data-place='div' data-vals='{{result.data}}' data-color='auto' data-catField='title'></div>
+       <div class='column palette{{(random(6)) + 1}} chart' data-type='column' data-place='div' data-vals='{{result.data}}' data-color='auto' data-catField='title'></div>
       </div>
 {%endif%}
     </div>
@@ -33,16 +33,12 @@
 {%if site.currentlang == "en"%}
     <div class="map" id="world-map"></div>
 {%else%}
-    <div class="row unselectable society-dist">
-     <div class="span5">
-      <div id="iran-map" class="map"></div>
-     </div>
-     <div class="span7">
-{%set ageTooltip%}
-{formatter: '::xformater'}
-{%endset%}
+    <div class="f society-dist">
+     <div class="c6 m12 s12">
+{%set ageTooltip%}{formatter: '::xformater'}{%endset%}
       <div class="chart" id="age-chart" data-format="homepageGender" data-vals='{{male_female_chart.data}}'></div>
      </div>
+     <div class="c6 m0 s0"><div id="iran-map" class="map"></div></div>
     </div>
 {%endif%}
    </div>
