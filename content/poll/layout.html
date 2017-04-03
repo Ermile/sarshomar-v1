@@ -105,7 +105,7 @@
 {%block poll_options%}
 {% spaceless %}
  {%if poll.answers%}
- <ul class="poll-options"
+ <ul class="poll-options{%if not login or answer_lock%} disabled{%endif%}"
   data-answer-type="{{poll_type}}"
   data-type="{%if poll.options.multi%}multi{%endif%}"
   {%if min%}data-multi-min="{{min}}"{%endif%}
@@ -122,7 +122,7 @@
       <div class="option-content">
        <input {% if answer_lock %} disabled="disabled" {% endif %} type="text" name="descriptive" placeholder="{{value.title}}" {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
       </div>
-      <span class="checkbox{%if poll.my_answer[value.key]%} is-checked{%endif%}">
+      <span>
        <input {% if answer_lock %} disabled="disabled" {% endif %} type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
        <label for="check_{{value.key}}"></label>
       </span>
@@ -135,7 +135,7 @@
       <label for="check_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
-       <div class="checkbox{%if poll.my_answer[value.key]%} is-checked{%endif%}">
+       <div class="checkbox">
         <input {% if answer_lock %} disabled="disabled" {% endif %} type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="check_{{value.key}}"></label>
        </div>
@@ -154,7 +154,7 @@
        <div class="option-content">
         <input {% if answer_lock %} disabled="disabled" {% endif %} type="text" name="descriptive" placeholder="{{value.title}}" data-response='radio_other' {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
        </div>
-       <span class="checkbox{%if poll.my_answer[value.key]%} is-checked{%endif%}">
+       <span class="checkbox">
         <input {% if answer_lock %} disabled="disabled" {% endif %} type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
@@ -167,7 +167,7 @@
       <label for="radio_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
-       <span class="checkbox{%if poll.my_answer[value.key]%} is-checked{%endif%}">
+       <span class="checkbox">
         <input {% if answer_lock %} disabled="disabled" {% endif %} type="radio" name="anwserOpt" id="radio_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
         <label for="radio_{{value.key}}"></label>
        </span>
