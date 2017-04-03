@@ -23,7 +23,7 @@
 {%block poll_toolbox%}
 {% spaceless %}
  <div class="flex justify-between align-center poll-toolbox">
-  <div class="flex align-center like-fav">
+  <div class="flex align-center like-fav{%if login%}{%else%} hidden{%endif%}">
    <input type="checkbox" name="favorite" id="favorite" {% if poll.my_fav %} checked="checked" {% endif %}>
    <label for="favorite" class="icon-star"></label>
    <input type="checkbox" name="heart" id="heart" {% if poll.my_like %} checked="checked" {% endif %}>
@@ -94,7 +94,7 @@
 {%block poll_hint%}
 {% spaceless %}
  {%if poll.options.multi%}
-  <div class="poll-hint unselectable">
+  <div class="poll-hint unselectable{%if login%}{%else%} hide{%endif%}">
    <span>{{multi_msg}}</span>
   </div>
  {%endif%}
@@ -105,7 +105,7 @@
 {%block poll_options%}
 {% spaceless %}
  {%if poll.answers%}
- <ul class="poll-options{%if not login or answer_lock%} disabled{%endif%}"
+ <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}"
   data-answer-type="{{poll_type}}"
   data-type="{%if poll.options.multi%}multi{%endif%}"
   {%if min%}data-multi-min="{{min}}"{%endif%}
@@ -116,7 +116,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-    <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
+    <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
      <label for="check_other">
       <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
       <div class="option-content">
@@ -131,7 +131,7 @@
 
     {%else%}
 
-     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
+     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
       <label for="check_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
@@ -148,7 +148,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
+     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
       <label for="radio_other">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">
@@ -163,7 +163,7 @@
 
     {%else%}
 
-     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
+     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
       <label for="radio_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
@@ -188,7 +188,7 @@
 {%block poll_skip%}
 {% spaceless %}
  {%if poll.answers%}
-  <div class="poll-skip">
+  <div class="poll-skip{%if login%}{%else%} hide{%endif%}">
    <input {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "Skip"%}'>
   </div>
  {%endif%}
@@ -198,7 +198,7 @@
 
 {%block poll_actions%}
 {% spaceless %}
- <div class="poll-actions">
+ <div class="poll-actions{%if login%}{%else%} hide{%endif%}">
    <a class="special-btn prev {%if not login or answer_lock %}disabled{% endif %}" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
    <button class="special-btn base {%if not login or answer_lock %}disabled{% endif %}" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
    <a class="special-btn next disabled" href="{{url.base}}/ask" data-direct>{%trans "Next"%}</a>

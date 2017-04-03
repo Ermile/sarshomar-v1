@@ -1160,14 +1160,6 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-options .option-number::before{font-size:1.6em;line-height:2.2em;position:absolute;top:0;right:0;bottom:0;left:0;height:2em;margin:auto;content:attr(data-number);text-align:center;color:#f6f6e6}
 
-.poll-container .poll-options.disabled .option-number{background-color:#d8d8d8}
-.poll-container .poll-options.disabled .option-number::before{color:#aaa}
-
-.poll-container .poll-options li.selected .option-number{background-color:#00667a}
-.poll-container .poll-options li.selected .option-number::before{color:#f6f6e6}
-
-.poll-container .poll-options.disabled li:not(.selected) .checkbox{display:none !important}
-
 .poll-container .poll-options .option-content{background-color:#efefef;-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1;padding:1em;color:#00667a;line-height:2;font-size:1.2em;word-break:break-all}
 .poll-container .poll-options .option-content input{width:100%;border:none;outline:none;display:block;background-color:transparent;color:#00667a}
 
@@ -1176,6 +1168,18 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container.ltr .poll-options .checkbox{padding:0;padding-right:1em}
 .poll-container .poll-options .checkbox label{margin:0}
 .poll-container .poll-options .checkbox label::before{-webkit-box-shadow:0 0 0 2px #efefef;-moz-box-shadow:0 0 0 2px #efefef;box-shadow:0 0 0 2px #efefef}
+
+
+/* guest and locked mode */
+.poll-container .poll-options.guest .checkbox{display:none !important}
+.poll-container .poll-options.guest li>label{cursor:not-allowed}
+
+.poll-container .poll-options.locked .option-number{background-color:#d8d8d8}
+.poll-container .poll-options.locked .option-number::before{color:#aaa}
+.poll-container .poll-options.locked li.selected .option-number{background-color:#00667a}
+.poll-container .poll-options.locked li.selected .option-number::before{color:#f6f6e6}
+.poll-container .poll-options.locked li:not(.selected) .checkbox{display:none !important}
+
 
 .poll-container .poll-skip{margin-bottom:1em;text-align:right}
 .rtl .poll-container .poll-skip,.poll-container.rtl .poll-skip{text-align:left}
@@ -1249,6 +1253,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 
 /* poll result */
 #poll-result{margin-bottom:5em;position:relative;border:1px solid #d8d8d8}
+#poll-result.guest{margin-top:4rem}
 #poll-result .menu{margin-top:-18px}
 #poll-result .tabs li{min-width:50px}
 /*#poll-extra,#comments-box{margin-bottom:100px}*/
