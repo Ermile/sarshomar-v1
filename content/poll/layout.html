@@ -407,7 +407,7 @@
 {% spaceless %}
  <div class="title">{%trans "Author"%}</div>
  <div class="content">
-  <span>{{poll.user_id}}</span>
+  <a href='{{url.base}}/admin/logs/user={{poll.user_id|shortURL("decode")}}'>{{poll.user_id|shortURL("decode")}}</a>
  </div>
 {% endspaceless %}
 {%endblock%}
