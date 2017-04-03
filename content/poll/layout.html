@@ -116,7 +116,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-    <li>
+    <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
      <label for="check_other">
       <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
       <div class="option-content">
@@ -131,7 +131,7 @@
 
     {%else%}
 
-     <li>
+     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
       <label for="check_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
@@ -148,7 +148,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-     <li>
+     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
       <label for="radio_other">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">
@@ -163,7 +163,7 @@
 
     {%else%}
 
-     <li>
+     <li class="{% if poll.my_answer[value.key] %}class='selected'{% endif %}">
       <label for="radio_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
