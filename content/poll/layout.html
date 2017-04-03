@@ -188,7 +188,7 @@
 {%block poll_skip%}
 {% spaceless %}
  {%if poll.answers%}
-  <div class="poll-skip{%if login%}{%else%} hide{%endif%}">
+  <div class="poll-skip{%if login%}{%if answer_lock%} hide{%endif%}{%else%} hide{%endif%}">
    <input {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "Skip"%}'>
   </div>
  {%endif%}

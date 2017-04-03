@@ -1176,6 +1176,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 
 .poll-container .poll-options.locked .option-number{background-color:#d8d8d8}
 .poll-container .poll-options.locked .option-number::before{color:#aaa}
+.poll-container .poll-options.locked li>label{cursor:not-allowed}
 .poll-container .poll-options.locked li.selected .option-number{background-color:#00667a}
 .poll-container .poll-options.locked li.selected .option-number::before{color:#f6f6e6}
 .poll-container .poll-options.locked li:not(.selected) .checkbox{display:none !important}
