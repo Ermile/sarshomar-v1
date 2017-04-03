@@ -31,8 +31,8 @@ trait resend
 			{
 				case 'telegram':
 				case 'call':
-				case 'main_sms':
-				case 'secondary_sms':
+				case 'sms1':
+				case 'sms2':
 					$key = array_search($saved_code['log_desc'], $this->resend_rate);
 					if($key === false)
 					{

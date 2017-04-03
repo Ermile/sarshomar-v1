@@ -22,6 +22,12 @@ trait mobile
 					$this->call_mobile();
 					break;
 
+				case 'sms1':
+					$this->send_sms();
+					$this->step = 'code';
+					$this->wait = 5; // wait 5 seccend to call mobile
+					break;
+
 				case 'pin':
 					// need less to send eny thing
 					// we wait for user set he pin

@@ -115,7 +115,7 @@ trait check
 			return 'telegram';
 		}
 
-		$return = 'code';
+		$return = 'sms1';
 		if(!empty($this->user_data))
 		{
 			if(
@@ -178,13 +178,13 @@ trait check
 				}
 			}
 
-
 			if(array_key_exists('user_status', $this->user_data))
 			{
 				switch ($this->user_data['user_status'])
 				{
 					case 'active':
-						$return = 'code';
+						// $return = 'code';
+						$return = 'sms1';
 						break;
 
 					case 'block':
@@ -196,7 +196,7 @@ trait check
 						break;
 
 					default:
-						$return = 'code';
+						$return = 'sms1';
 						break;
 				}
 			}

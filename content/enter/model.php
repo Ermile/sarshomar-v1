@@ -8,37 +8,47 @@ use \lib\db;
 class model extends \mvc\model
 {
 
-	public $mobile            = null;
-	public $username          = null;
-	public $pin               = null;
-	public $code              = null;
-	public $user_data         = [];
-	public $user_id           = null;
-	public $guest_user_id     = null;
-	public $signup            = false;
-	public $telegram_chat_id  = null;
-	public $telegram_detail   = [];
-	// public $block_type     = 'ip-agent';
-	public $block_type        = 'session';
-	public $is_guest          = false;
+	/**
+	 * dev mode
+	 * make code as 11111
+	 *
+	 * @var        boolean
+	 */
+	public $dev_mode         = false;
+
+
+
+	public $mobile           = null;
+	public $username         = null;
+	public $pin              = null;
+	public $code             = null;
+	public $user_data        = [];
+	public $user_id          = null;
+	public $guest_user_id    = null;
+	public $signup           = false;
+	public $telegram_chat_id = null;
+	public $telegram_detail  = [];
+	// public $block_type    = 'ip-agent';
+	public $block_type       = 'session';
+	public $is_guest         = false;
 
 	// config to send to javaScript
-	public $step              = 'mobile';
-	public $send              = 'code';
-	public $wait              = 0;
+	public $step             = 'mobile';
+	public $send             = 'code';
+	public $wait             = 0;
 	// show resende link ofter
-	public $resend_after      = 60 * 2; // 2 min
+	public $resend_after     = 60 * 1; // 1 min
 	// life time code to expire
-	public $life_time_code    = 60 * 5; // 5 min
+	public $life_time_code   = 60 * 5; // 5 min
 
-	public $sended_code       = [];
-	public $create_new_code   = false;
+	public $sended_code      = [];
+	public $create_new_code  = false;
 	public $resend_rate =
 	[
 		'telegram',
+		'sms1',
 		'call',
-		'main_sms',
-		'secondary_sms',
+		'sms2',
 	];
 
 	use tools\check;
@@ -98,6 +108,11 @@ class model extends \mvc\model
 	 */
 	public function post_enter($_args)
 	{
+		if(Tld === 'dev')
+		{
+			$this->dev_mode = true;
+		}
+
 		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
 		{
 			$this->is_guest = true;
@@ -243,7 +258,7 @@ class model extends \mvc\model
 				break;
 		}
 		// in dev mode we wait for 0 second
-		if(Tld === 'dev')
+		if($this->dev_mode)
 		{
 			$this->wait = 0;
 		}

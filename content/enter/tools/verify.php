@@ -10,6 +10,99 @@ trait verify
 {
 
 	/**
+	 * Sends sms.
+	 */
+	public function send_sms()
+	{
+		$code = $this->generate_verification_code();
+		$log_meta =
+		[
+			'data' => $code,
+			'meta' =>
+			[
+				'type'    => 'code',
+				'input'   => utility::post(),
+				'mobile'  => $this->mobile,
+				'code'    => $code,
+				'session' => $_SESSION,
+			]
+		];
+		if($this->mobile)
+		{
+			$request           = [];
+			$request['mobile'] = $this->mobile;
+			$request['msg']    = 'signup';
+			$request['args']   = $code;
+
+			if($this->dev_mode)
+			{
+				$kavenegar_send_result = true;
+			}
+			else
+			{
+				$kavenegar_send_result = \lib\utility\sms::send($request);
+			}
+
+			if($kavenegar_send_result === 411)
+			{
+				// this mobile is not a valid mobile
+				$this->signup('block');
+				return false;
+			}
+			elseif($kavenegar_send_result === 22)
+			{
+				db\logs::set('kavenegar:service:done:sms', $this->user_id, $log_meta);
+				// the kavenegar service is down!!!
+			}
+			else
+			{
+				if(!$this->user_id)
+				{
+					if($this->signup)
+					{
+						// singn up by this mobile
+						$this->user_id = $this->signup();
+					}
+					else
+					{
+						db\logs::set('user:signup:lock:try:signup', $this->user_id, $log_meta);
+					}
+				}
+				$log_meta['meta']['response'] = [];
+				if(is_string($kavenegar_send_result))
+				{
+					$log_meta['meta']['response'] = $kavenegar_send_result;
+				}
+				elseif(is_array($kavenegar_send_result))
+				{
+					foreach ($kavenegar_send_result as $key => $value)
+					{
+						$log_meta['meta']['response'][$key] = str_replace("\n", ' ', $value);
+					}
+				}
+
+				if($this->create_new_code)
+				{
+					$log_meta['desc'] = 'sms1';
+					db\logs::set('user:verification:code', $this->user_id, $log_meta);
+				}
+				else
+				{
+					db\logs::set('user:verification:needless:creat:code:sms1', $this->user_id, $log_meta);
+				}
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+		// why?!
+		return false;
+	}
+
+
+	/**
 	 * send verification code to the user telegram
 	 *
 	 * @param      <type>  $_chat_id  The chat identifier
@@ -191,7 +284,7 @@ trait verify
 		if($this->create_new_code)
 		{
 			$code =  rand(10000,99999);
-			if(Tld === 'dev')
+			if($this->dev_mode)
 			{
 				$code = 11111;
 			}
@@ -257,7 +350,7 @@ trait verify
 			$request['token2']   = $users_count;
 		}
 
-		if(Tld === 'dev')
+		if($this->dev_mode)
 		{
 			$kavenegar_send_result = true;
 		}

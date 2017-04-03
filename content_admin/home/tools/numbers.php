@@ -47,27 +47,17 @@ trait numbers
 
 		$service_id = \lib\utility\visitor::service();
 
-		$visitor =
-		"
-			SELECT 'total' AS `title`, COUNT(visitors.id) AS `count` FROM visitors
-			WHERE  `service_id` = $service_id AND visitor_date <= '$start' AND visitor_date >= '$end'
-		UNION
-			SELECT 'unique' AS `title`, COUNT(visitors.id) AS `count` FROM visitors
-			WHERE  `service_id` = $service_id AND visitor_date <= '$start' AND visitor_date >= '$end' GROUP BY user_id
-		UNION
-			SELECT 'today' AS `title`, COUNT(visitors.id) AS `count` FROM visitors
-			WHERE  `service_id` = $service_id AND DATE(visitor_date) = DATE(NOW())
-		UNION
-			SELECT 'last_week' AS `title`, COUNT(visitors.id) AS `count` FROM visitors
-			WHERE `service_id` = $service_id AND visitor_date <= '$start' AND visitor_date >= '$end'
-		";
-		$visitor = \lib\db::get($visitor, ['title', 'count'], false, '[tools]');
-
 		$result            = [];
 		$result['polls']   = $poll_status;
 		$result['users']   = $user_count;
 		$result['verify']  = $user_verify;
-		$result['visitor'] = $visitor;
+
+		$result['visitor'] = [];
+
+		$result['visitor']['total'] = \lib\db::get("SELECT COUNT(visitors.id) AS `count` FROM visitors	WHERE  `service_id` = $service_id AND visitor_date >= '$end'", 'count', true, '[tools]');
+		$result['visitor']['unique'] = \lib\db::get("SELECT COUNT(visitors.id) AS `count` FROM visitors	WHERE  `service_id` = $service_id AND visitor_date >= '$end' GROUP BY user_id", 'count', true, '[tools]');
+		$result['visitor']['today'] = \lib\db::get("SELECT COUNT(visitors.id) AS `count` FROM visitors	WHERE  `service_id` = $service_id AND DATE(visitor_date) = DATE(NOW())", 'count', true, '[tools]');
+		$result['visitor']['last_week'] = \lib\db::get("SELECT COUNT(visitors.id) AS `count` FROM visitors	WHERE `service_id` = $service_id AND visitor_date >= '$end'", 'count', true, '[tools]');
 
 		return $result;
 	}
