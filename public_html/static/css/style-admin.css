@@ -103,8 +103,8 @@
 .overall-stats .stat .ico {color: #009688; text-align: center;}
 .overall-stats .stat:hover {background: #efefef;}
 .overall-stats .stat .icon {color: #37aaa7}
-.overall-stats .num {font-size: 2.5em;line-height: 1;margin-bottom: 22px;color: #607D8B;font-weight: bold;}
-.overall-stats .title {font-size: 1.5em;line-height: 1;color: #a2a2a2;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.overall-stats .num {font-size: 2.5em;margin-bottom: 0;color: #607D8B;font-weight: bold;}
+.overall-stats .title {font-size: 1.5em;color: #a2a2a2;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .admin-section .card {background: #fff; margin-bottom: 2em; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09);}
 .admin-section .card ul a {padding: 2em 1em; display: block;font-size: 1.2em;color: #00ACC1;border-bottom: 2px dashed #eee; }
 .admin-section .card ul a:last-child {border-bottom: 0; }
