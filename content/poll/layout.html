@@ -416,7 +416,7 @@
 {% spaceless %}
  <div class="title">{%trans "Range"%}</div>
  <div class="content">
-  <span>{{poll.filters.count}}</span>
+  <span>{{poll.filters.count|number_format|fitNumber}}</span>
  </div>
 {% endspaceless %}
 {%endblock%}
