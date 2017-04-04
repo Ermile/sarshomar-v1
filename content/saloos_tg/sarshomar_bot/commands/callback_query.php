@@ -48,7 +48,7 @@ class callback_query
 				callback_query\language::set($poll['language']);
 				if($poll['language'] == 'fa')
 				{
-					\lib\db\units::set_user_unit(bot::$user_id,'tomam');
+					\lib\db\units::set_user_unit(bot::$user_id,'toman');
 				}
 			}
 			$force_inline = true;
