@@ -284,6 +284,10 @@ class ask
 			{
 				$return['text'] = "<a href='https://dl.sarshomar.com/static/images/gift/iphone-cooking.jpg'>🎁</a> " . $return['text'];
 			}
+			elseif($maker->query_result['id'] == 'tZ94')
+			{
+				$return['text'] = "<a href='https://dl.sarshomar.com/static/images/gift/iphone-food.jpg'>🎁</a> " . $return['text'];
+			}
 			else
 			{
 				$return['text'] = "<a href='https://sarshomar.com/static/images/gift/iphone.png'>🎁</a> " . $return['text'];
