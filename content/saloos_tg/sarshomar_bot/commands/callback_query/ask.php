@@ -284,7 +284,7 @@ class ask
 			{
 				$return['text'] = "<a href='https://dl.sarshomar.com/static/images/gift/iphone-cooking.jpg'>🎁</a> " . $return['text'];
 			}
-			elseif($maker->query_result['id'] == 'tZ94')
+			elseif($maker->query_result['id'] == 'tZ9b')
 			{
 				$return['text'] = "<a href='https://dl.sarshomar.com/static/images/gift/iphone-food.jpg'>🎁</a> " . $return['text'];
 			}
