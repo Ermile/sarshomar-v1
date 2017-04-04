@@ -1,0 +1,26 @@
+{
+  "status": 1,
+  "title": "The profile data was change",
+  "msg": [
+    "callback"
+  ],
+  "messages": {
+    "true": [
+      {
+        "title": "User language changed",
+        "element": "language",
+        "group": "arguments"
+      },
+      {
+        "title": "User unit changed",
+        "element": "unit",
+        "group": "arguments"
+      },
+      {
+        "title": "Sarshomar's gift belongs to you for completing your profile",
+        "element": false,
+        "group": "public"
+      }
+    ]
+  }
+}

@@ -197,6 +197,7 @@ trait get_fields
 				case 'count_fav':
 				case 'count_like':
 				case 'count_vote':
+				case 'count_skip':
 					$_poll_data[$key] = (int) $value;
 					break;
 

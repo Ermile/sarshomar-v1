@@ -31,42 +31,68 @@ trait set
 			return;
 		}
 
-		if($_options['method'] === 'post')
+		// if($_options['method'] === 'post')
+		// {
+		// 	if(!empty($saved_profile))
+		// 	{
+		// 		debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'post']), 'method', 'api');
+		// 		return false;
+		// 	}
+		// }
+
+		// if($_options['method'] === 'put')
+		// {
+		// 	if(empty($saved_profile))
+		// 	{
+		// 		debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'put']), 'method', 'api');
+		// 		return false;
+		// 	}
+		// 	// no thing!
+		// }
+
+		// if($_options['method'] === 'patch')
+		// {
+		// 	if(empty($saved_profile))
+		// 	{
+		// 		debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'patch']), 'method', 'api');
+		// 		return false;
+		// 	}
+		// }
+
+		if(utility::isset_request('language'))
 		{
-			if(!empty($saved_profile))
+			if(!\lib\utility\location\languages::check(utility::request('language')))
 			{
-				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'post']), 'method', 'api');
+				debug::error(T_("Invalid arguments language") , 'language', 'arguments');
 				return false;
 			}
+			\lib\utility\users::set_lanuage($this->user_id, utility::request('language'));
+			debug::true(T_("User language changed") , 'language', 'arguments');
 		}
 
-		if($_options['method'] === 'put')
+		if(utility::isset_request('unit'))
 		{
-			if(empty($saved_profile))
+			$unit_id = \lib\db\units::get_id(utility::request('unit'));
+			if(!$unit_id)
 			{
-				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'put']), 'method', 'api');
+				debug::error(T_("Invalid arguments unit") , 'unit', 'arguments');
 				return false;
 			}
-			// no thing!
+			\lib\utility\users::set_unit_id($this->user_id, $unit_id);
+			debug::true(T_("User unit changed") , 'unit', 'arguments');
 		}
 
-		if($_options['method'] === 'patch')
+		if(is_array($saved_profile) && is_array($sended_profile))
 		{
-			if(empty($saved_profile))
-			{
-				debug::error(T_("You have not any profile, can not use method ':method'", ['method' => 'patch']), 'method', 'api');
-				return false;
-			}
-			if(is_array($saved_profile) && is_array($sended_profile))
-			{
-				$sended_profile = array_merge($saved_profile, $sended_profile);
-			}
+			$sended_profile = array_merge($saved_profile, $sended_profile);
 		}
 
 		if(empty($sended_profile) || !$sended_profile)
 		{
-			debug::error(T_("No profile data was set") , 'arguments', 'profile');
+			debug::error(T_("No profile data was set") , 'profile', 'arguments');
+			return false;
 		}
+
 		$options = [];
 		$options['your_self_data'] = true;
 		$support_profile = \lib\utility\profiles::profile_data();
@@ -87,6 +113,7 @@ trait set
 
 	public function sended_profile()
 	{
+
 		$support_profile = \lib\utility\profiles::profile_data();
 		$sended_profile = [];
 		if(is_array($support_profile))

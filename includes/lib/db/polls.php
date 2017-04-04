@@ -43,6 +43,7 @@ class polls
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
 			IFNULL(ranks.fav,0)   			AS `count_fav`,
+			IFNULL(ranks.skip,0)   			AS `count_skip`,
 			IFNULL(ranks.vote,0)   			AS `count_vote`,
 			(
 				SELECT

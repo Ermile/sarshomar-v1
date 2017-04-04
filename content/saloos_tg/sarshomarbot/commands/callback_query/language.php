@@ -113,7 +113,7 @@ class language
 	{
 		if(!self::$user_language)
 		{
-			$language = \lib\db\users::get_language(bot::$user_id);
+			$language = \lib\utility\users::get_language(bot::$user_id);
 			if(empty($language))
 			{
 				$language = null;
@@ -148,7 +148,8 @@ class language
 				$options['option_meta'] = json_encode(array_merge($meta, $_options));
 				self::$user_language = $key;
 				\lib\define::set_language($key, true);
-				return \lib\db\users::set_language($key, $options);
+				\lib\utility\users::set_language(bot::$user_id, $key);
+				return true;
 			}
 		}
 	}

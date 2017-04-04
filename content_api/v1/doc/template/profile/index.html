@@ -1,0 +1,20 @@
+ {%include doc.profile ~'/description.html'%}
+ {%include doc.profile ~'/table.html'%}
+<div class="api-sample">
+    <h3 class="unselectable" id="profile-header">
+        <a href="v1/doc#profile-header">{%trans "Header"%}</a>
+    </h3>
+    <code class="ltr http">{%include doc.base~'/header.json'%}</code>
+    <h3 class="unselectable" id="profile-request">
+        <a href="v1/doc#profile-request">{%trans "Request"%}</a>
+    </h3>
+    <code class="json ltr">{%include doc.profile~'/request.json'%}</code>
+    <h3 class="unselectable" id="profile-curl">
+        <a href="v1/doc#profile-curl">cURL</a>
+    </h3>
+    <code class="curl http ltr">{%include doc.profile~'/curl.json'%}</code>
+    <h3 class="unselectable" id="profile-response">
+        <a href="v1/doc#profile-response">{%trans "Response"%}</a>
+    </h3>
+    <code class="json ltr">{%include doc.profile~'/response.json'%}</code>
+</div>

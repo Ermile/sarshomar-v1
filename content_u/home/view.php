@@ -41,8 +41,8 @@ class view extends \mvc\view
 		}
 
 		$user_id                       = $this->login("id");
-		// \lib\utility\profiles::refresh_dashboard($user_id);
-		$this->data->ui_language = \lib\db\users::get_language($user_id);
+		\lib\utility\profiles::refresh_dashboard($user_id);
+		$this->data->ui_language = \lib\utility\users::get_language($user_id);
 		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
 		if(!is_array($dashboard_data))
 		{
@@ -110,6 +110,8 @@ class view extends \mvc\view
 			'user_referred'      => 0,
 			'user_verified'      => 0,
 			'comment_count'      => 0,
+			'my_like'            => 0,
+			'my_fav'             => 0,
 		];
 
 		$dashboard_data = array_merge($temp_dashboar_data, $dashboard_data);
@@ -117,6 +119,16 @@ class view extends \mvc\view
 		$dashboard_data['publish_count']  = $publish_count;
 		$dashboard_data['awaiting_count'] = $awaiting_count;
 		$dashboard_data['sarshomar_poll'] = $sarshomar_poll;
+
+		$meta =
+		[
+			'get_count' => true,
+			'log_data'  => $this->login('id'),
+		];
+
+		$dashboard_data['user_referred'] = \lib\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:set']));
+		$dashboard_data['user_verified'] = \lib\db\logs::search(null, array_merge($meta, ['caller' => 'user:ref:signup']));
+
 
 		foreach ($dashboard_data as $key => $value)
 		{

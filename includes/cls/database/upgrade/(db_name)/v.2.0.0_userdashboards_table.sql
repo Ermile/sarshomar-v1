@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS `userdashboards` (
+`id` 						bigint(20) 		unsigned NOT NULL AUTO_INCREMENT,
+`user_id` 					int(10) 		unsigned NOT NULL,
+`poll_answered` 			int(10) 		unsigned NULL DEFAULT 0,
+`poll_skipped` 				int(10) 		unsigned NULL DEFAULT 0,
+`survey_answered` 			int(10) 		unsigned NULL DEFAULT 0,
+`survey_skipped` 			int(10) 		unsigned NULL DEFAULT 0,
+`my_poll` 					int(10) 		unsigned NULL DEFAULT 0,
+`my_survey` 				int(10) 		unsigned NULL DEFAULT 0,
+`my_poll_answered` 			int(10) 		unsigned NULL DEFAULT 0,
+`my_poll_skipped` 			int(10) 		unsigned NULL DEFAULT 0,
+`my_survey_answered` 		int(10) 		unsigned NULL DEFAULT 0,
+`my_survey_skipped` 		int(10) 		unsigned NULL DEFAULT 0,
+`user_referred` 			int(10) 		unsigned NULL DEFAULT 0,
+`user_verified` 			int(10) 		unsigned NULL DEFAULT 0,
+`comment_count` 			int(10) 		unsigned NULL DEFAULT 0,
+`draft_count` 				int(10) 		unsigned NULL DEFAULT 0,
+`publish_count` 			int(10) 		unsigned NULL DEFAULT 0,
+`awaiting_count` 			int(10) 		unsigned NULL DEFAULT 0,
+`my_fav`		 			int(10) 		unsigned NULL DEFAULT 0,
+`my_like` 					int(10) 		unsigned NULL DEFAULT 0,
+PRIMARY KEY (`id`),
+UNIQUE KEY `unique_user_id` (`user_id`) USING BTREE,
+CONSTRAINT `userdashboards_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

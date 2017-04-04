@@ -61,9 +61,9 @@
                 <div class="card flex-1">
                     <h3>{%trans "Comments"%}</h3>
                     <div class="card-body {%if dashboard.comment_count == 0%}{%endif%}">
-                        {%if dashboard.user_referred == 0%}
+                        {%if dashboard.comment_count == 0%}
                         <span>{%trans "None"%}</span> {%else%}
-                        <span>{{dashboard.user_referred|number_format|fitNumber}}</span> {%endif%}
+                        <span>{{dashboard.comment_count|number_format|fitNumber}}</span> {%endif%}
                     </div>
                 </div>
             </div>
@@ -95,8 +95,8 @@
             <div class="c s12 m12 flex f-column">
                 <div class="card flex-1">
                     <h3>{%trans "Likes"%}</h3>
-                    <div class="card-body {%if dashboard.poll_answered == 0%}{%endif%}">
-                        <span>{{dashboard.poll_answered|number_format|fitNumber}}</span>
+                    <div class="card-body {%if dashboard.my_like == 0%}{%endif%}">
+                        <span>{{dashboard.my_like|number_format|fitNumber}}</span>
                     </div>
                 </div>
             </div>

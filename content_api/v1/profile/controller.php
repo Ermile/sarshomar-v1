@@ -9,12 +9,12 @@ class controller extends  \content_api\v1\home\controller
 		/**
 		 * get to profile
 		 */
-		$this->post("profile")->ALL("v1/profile");
+		// $this->post("profile")->ALL("v1/profile");
 
 		/**
 		 * get to profile
 		 */
-		$this->put("profile")->ALL("v1/profile");
+		// $this->put("profile")->ALL("v1/profile");
 
 		/**
 		 * get to profile

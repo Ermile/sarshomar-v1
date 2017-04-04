@@ -312,9 +312,7 @@ trait search
 			$search =
 			"(
 				posts.post_title 	LIKE '%$_string%' OR
-				posts.post_content 	LIKE '%$_string%' OR
-				posts.post_url 		LIKE '%$_string%' OR
-				posts.post_meta 	LIKE '%$_string%'
+				posts.post_url 		LIKE '%$_string%'
 			)";
 			if($where)
 			{

@@ -31,7 +31,7 @@ trait login
 		else
 		{
 			$url = null;
-			$user_language = \lib\db\users::get_language($this->user_id);
+			$user_language = \lib\utility\users::get_language($this->user_id);
 			if($user_language && \lib\utility\location\languages::check($user_language))
 			{
 				$url .= \lib\define::get_current_language_string($user_language);
@@ -224,7 +224,7 @@ trait login
 
 				if(isset($_args['user_id']) && $_args['user_id'])
 				{
-					$user_language = \lib\db\users::get_language($_args['user_id']);
+					$user_language = \lib\utility\users::get_language($_args['user_id']);
 					if($user_language && \lib\utility\location\languages::check($user_language))
 					{
 						$url .= \lib\define::get_current_language_string($user_language);

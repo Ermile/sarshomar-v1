@@ -234,7 +234,7 @@ class users
 	 */
 	public static function __callStatic($_fn, $_args)
 	{
-		if(preg_match("/^(is|get)\_?(.*)$/", $_fn, $split))
+		if(preg_match("/^(is|get|set)\_?(.*)$/", $_fn, $split))
 		{
 			if(isset($split[1]))
 			{
@@ -289,6 +289,7 @@ class users
 			case 'port':
 			case 'trust':
 			case 'verify':
+			case 'language':
 				$_field = 'user_'. $_field;
 			case 'id':
 			case 'user_mobile':
@@ -307,6 +308,8 @@ class users
 			case 'user_trust':
 			case 'user_verify':
 			case 'date_modified':
+			case 'unit_id':
+			case 'user_language':
 				if(isset(self::$USERS_DETAIL[$_user_id][$_field]))
 				{
 					return self::$USERS_DETAIL[$_user_id][$_field];
@@ -315,6 +318,18 @@ class users
 				{
 					return null;
 				}
+				break;
+
+			case 'unit':
+				if(isset(self::$USERS_DETAIL[$_user_id]['unit_id']))
+				{
+					$unit = \lib\db\units::get(self::$USERS_DETAIL[$_user_id]['unit_id']);
+					if(isset($unit['title']))
+					{
+						return $unit['title'];
+					}
+				}
+				return null;
 				break;
 
 			case null:
@@ -338,9 +353,76 @@ class users
 	 * @param      <type>  $_field    The field
 	 * @param      <type>  $_user_id  The user identifier
 	 */
-	private static function static_set($_field, $_user_id)
+	private static function static_set($_field, $_user_id, $_value = null)
 	{
+		$update = [];
+		switch ($_field)
+		{
+			case 'language':
+				if(\lib\utility\location\languages::check($_value))
+				{
+					$update['user_language'] = $_value;
+				}
+				break;
 
+			case 'unit':
+				$unit_id = \lib\db\units::get_id($_value);
+				if($unit_id)
+				{
+					$update['unit_id'] = $unit_id;
+				}
+				break;
+
+			case 'unit_id':
+				$check = \lib\db\units::get($_value);
+				if($check)
+				{
+					$update['unit_id'] = $_value;
+				}
+				break;
+
+			case 'mobile':
+			case 'email':
+			case 'username':
+			case 'pass':
+			case 'password':
+			case 'displayname':
+			case 'meta':
+			case 'status':
+			case 'permission':
+			case 'createdate':
+			case 'parent':
+			case 'validstatus':
+			case 'port':
+			case 'trust':
+			case 'verify':
+				$_field = 'user_'. $_field;
+			case 'user_mobile':
+			case 'user_email':
+			case 'user_username':
+			case 'user_pass':
+			case 'user_displayname':
+			case 'user_meta':
+			case 'user_status':
+			case 'user_permission':
+			case 'user_createdate':
+			case 'user_parent':
+			case 'user_validstatus':
+			case 'filter_id':
+			case 'user_port':
+			case 'user_trust':
+			case 'user_verify':
+			case 'date_modified':
+				$update[$_field] = $_value;
+				break;
+			default:
+				return false;
+				break;
+		}
+		if(!empty($update))
+		{
+			\lib\db\users::update($update, $_user_id);
+		}
 	}
 
 

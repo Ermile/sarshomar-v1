@@ -36,33 +36,42 @@ trait dashboard
 	public static function refresh_dashboard($_user_id)
 	{
 		// return true;
-		$querys    = self::dashboard_query($_user_id);
-		$run_query = [];
-
-		foreach ($querys as $title => $query)
+		$querys = self::dashboard_query($_user_id);
+		$set    = [];
+		$set[]  = " userdashboards.user_id = $_user_id ";
+		foreach ($querys as $key => $value)
 		{
-			$cat = "user_detail_". $_user_id;
-			$key = "dashboard_data";
-			// $run_query =
-			$run_query[] =
-			"
-				INSERT INTO options
-				SET
-					options.user_id       = $_user_id,
-					options.option_cat    = '$cat',
-					options.option_key    = '$key',
-					options.option_value  = '$title',
-					options.option_meta   = ($query),
-					options.option_status = 'enable'
-				ON DUPLICATE KEY UPDATE
-					options.user_id       = $_user_id,
-					options.option_meta   = ($query),
-					options.option_status = 'enable'
-			";
-			// \lib\db::query($run_query);
+			$set[] = " userdashboards.$key = ($value) ";
 		}
-		$run_query = implode(';', $run_query);
-		\lib\db::query($run_query . ";", true, ['multi_query' => true]);
+		$set = implode(',', $set);
+		$query = "INSERT INTO userdashboards SET $set ON DUPLICATE KEY UPDATE $set ";
+		\lib\db::query($query);
+		// $run_query = [];
+
+		// foreach ($querys as $title => $query)
+		// {
+		// 	$cat = "user_detail_". $_user_id;
+		// 	$key = "dashboard_data";
+		// 	// $run_query =
+		// 	$run_query[] =
+		// 	"
+		// 		INSERT INTO options
+		// 		SET
+		// 			options.user_id       = $_user_id,
+		// 			options.option_cat    = '$cat',
+		// 			options.option_key    = '$key',
+		// 			options.option_value  = '$title',
+		// 			options.option_meta   = ($query),
+		// 			options.option_status = 'enable'
+		// 		ON DUPLICATE KEY UPDATE
+		// 			options.user_id       = $_user_id,
+		// 			options.option_meta   = ($query),
+		// 			options.option_status = 'enable'
+		// 	";
+		// 	// \lib\db::query($run_query);
+		// }
+		// $run_query = implode(';', $run_query);
+		// \lib\db::query($run_query . ";", true, ['multi_query' => true]);
 
 		return true;
 	}
@@ -77,26 +86,29 @@ trait dashboard
 	 */
 	public static function get_dashboard_data($_user_id)
 	{
-		$query =
-		"
-			SELECT
-				option_value AS `title`,
-				option_meta AS `count`
-			FROM
-				options
-			WHERE
-				post_id IS NULL AND
-				user_id       = $_user_id AND
-				option_cat    = 'user_detail_$_user_id' AND
-				option_key    = 'dashboard_data' AND
-				option_status = 'enable'
-			-- profiles::get_dashboard_data()
-		";
 
-		$dashboard = \lib\db::get($query, ['title', 'count']);
-		$dashboard['user_referred'] = self::user_ref($_user_id);
-		$dashboard['user_verified'] = self::user_ref($_user_id, 'active');
-		return $dashboard;
+		return \lib\db\userdashboards::get($_user_id);
+		// $query =
+		// "
+		// 	SELECT
+		// 		option_value AS `title`,
+		// 		option_meta AS `count`
+		// 	FROM
+		// 		options
+		// 	WHERE
+		// 		post_id IS NULL AND
+		// 		user_id       = $_user_id AND
+		// 		option_cat    = 'user_detail_$_user_id' AND
+		// 		option_key    = 'dashboard_data' AND
+		// 		option_status = 'enable'
+		// 	-- profiles::get_dashboard_data()
+		// ";
+
+		// $dashboard = \lib\db::get($query, ['title', 'count']);
+		// $dashboard['user_referred'] = self::user_ref($_user_id);
+		// $dashboard['user_verified'] = self::user_ref($_user_id, 'active');
+		// var_dump($dashboard);exit();
+		// return $dashboard;
 	}
 
 
@@ -108,15 +120,17 @@ trait dashboard
 	 */
 	public static function set_dashboard_data($_user_id, $_title, $_plus = 1)
 	{
-		$args =
-		[
-			'post_id'      => null,
-			'user_id'      => $_user_id,
-			'option_cat'   => 'user_detail_'. $_user_id,
-			'option_key'   => 'dashboard_data',
-			'option_value' => $_title,
-		];
-		\lib\db\options::plus($args, $_plus);
+		\lib\db\userdashboards::plus($_user_id, $_title, $_plus);
+
+		// $args =
+		// [
+		// 	'post_id'      => null,
+		// 	'user_id'      => $_user_id,
+		// 	'option_cat'   => 'user_detail_'. $_user_id,
+		// 	'option_key'   => 'dashboard_data',
+		// 	'option_value' => $_title,
+		// ];
+		// \lib\db\options::plus($args, $_plus);
 	}
 
 
@@ -128,15 +142,17 @@ trait dashboard
 	 */
 	public static function minus_dashboard_data($_user_id, $_title, $_minus = 1)
 	{
-		$args =
-		[
-			'post_id'      => null,
-			'user_id'      => $_user_id,
-			'option_cat'   => 'user_detail_'. $_user_id,
-			'option_key'   => 'dashboard_data',
-			'option_value' => $_title,
-		];
-		\lib\db\options::minus($args, $_minus);
+		\lib\db\userdashboards::minus($_user_id, $_title, $_minus);
+
+		// $args =
+		// [
+		// 	'post_id'      => null,
+		// 	'user_id'      => $_user_id,
+		// 	'option_cat'   => 'user_detail_'. $_user_id,
+		// 	'option_key'   => 'dashboard_data',
+		// 	'option_value' => $_title,
+		// ];
+		// \lib\db\options::minus($args, $_minus);
 	}
 
 
@@ -163,24 +179,22 @@ trait dashboard
 			$user_id = $poll['user_id'];
 		}
 
-		$value = "my_". $poll_type. "_". $_title;
+		if(!$user_id)
+		{
+			return;
+		}
 
-		$where =
-		[
-			'user_id'      => $user_id,
-			'post_id'      => null,
-			'option_cat'   => 'user_detail_'. $user_id,
-			'option_key'   => 'dashboard_data',
-			'option_value' => $value
-		];
+		$field = "my_". $poll_type. "_". $_title;
 
 		if($_type === 'plus')
 		{
-			\lib\db\options::plus($where);
+			\lib\db\userdashboards::plus($user_id, $field);
+			// \lib\db\options::plus($where);
 		}
 		else
 		{
-			\lib\db\options::minus($where);
+			\lib\db\userdashboards::minus($user_id, $field);
+			// \lib\db\options::minus($where);
 		}
 	}
 

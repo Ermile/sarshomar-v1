@@ -82,7 +82,7 @@ trait telegram
 
 			\lib\db\users::update($update_users, $_telegram_id);
 
-			$user_language = \lib\db\users::get_language($_telegram_id);
+			$user_language = \lib\utility\users::get_language($_telegram_id);
 			$verify =
 			[
 				'mobile'   => self::$mobile,
@@ -162,7 +162,7 @@ trait telegram
 		else
 		{
 			\lib\db::commit();
-			$user_language = \lib\db\users::get_language(self::$new_user_id);
+			$user_language = \lib\utility\users::get_language(self::$new_user_id);
 			$verify =
 			[
 				'mobile'   => self::$mobile,

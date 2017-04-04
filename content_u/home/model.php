@@ -114,7 +114,8 @@ class model extends \mvc\model
 
 		if(\lib\utility\location\languages::check($lang))
 		{
-			$current_lang = \lib\db\users::get_language($this->login("id"));
+			// $current_lang = \lib\utility\users::get_language($this->login("id"));
+			$current_lang = \lib\utility\users::get_language($this->login("id"));
 
 			if($lang === 'fa' && !$this->view()->data->user_unit)
 			{
@@ -126,7 +127,8 @@ class model extends \mvc\model
 				return false;
 			}
 
-			\lib\db\users::set_language($lang, ['user_id' => $this->login("id")]);
+			// \lib\db\users::set_language($lang, ['user_id' => $this->login("id")]);
+			\lib\utility\users::set_language($this->login('id'), $lang);
 
 			debug::true(T_("Your default language changed"));
 

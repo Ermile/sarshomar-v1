@@ -156,7 +156,7 @@ class controller extends \lib\mvc\controller
 		\lib\main::$controller->model()->user_id = (int) bot::$user_id;
 		\lib\main::$controller->model()->set_api_permission((int) bot::$user_id);
 
-		$language = \lib\db\users::get_language((int) bot::$user_id);
+		$language = \lib\utility\users::get_language((int) bot::$user_id);
 		if(empty($language) || !$language)
 		{
 			\lib\define::set_language('en_US');

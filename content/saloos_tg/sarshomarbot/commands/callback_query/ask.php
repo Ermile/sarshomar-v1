@@ -406,7 +406,7 @@ class ask
 			$return["disable_web_page_preview"] = true;
 		}
 
-		\lib\define::set_language(\lib\db\users::get_language((int) bot::$user_id), true);
+		\lib\define::set_language(\lib\utility\users::get_language((int) bot::$user_id), true);
 		\lib\define::set_language($user_lang, true);
 
 		if(isset($return['reply_markup']['inline_keyboard']))

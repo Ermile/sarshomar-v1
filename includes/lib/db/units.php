@@ -54,19 +54,25 @@ class units
 	 */
 	public static function user_unit($_user_id)
 	{
-		$where =
-		[
-			'user_id'       => $_user_id,
-			'option_cat'    => "user_detail_". $_user_id,
-			'option_key'    => 'unit',
-			'option_status' => 'enable',
-			'limit'         => 1,
-		];
-		$user_unit = \lib\db\options::get($where);
-		if($user_unit && isset($user_unit['value']))
+		$user_unit = \lib\utility\users::get_unit($_user_id);
+		if($user_unit)
 		{
-			return $user_unit['value'];
+			return $user_unit;
 		}
+
+		// $where =
+		// [
+		// 	'user_id'       => $_user_id,
+		// 	'option_cat'    => "user_detail_". $_user_id,
+		// 	'option_key'    => 'unit',
+		// 	'option_status' => 'enable',
+		// 	'limit'         => 1,
+		// ];
+		// $user_unit = \lib\db\options::get($where);
+		// if($user_unit && isset($user_unit['value']))
+		// {
+		// 	return $user_unit['value'];
+		// }
 		return false;
 	}
 
@@ -81,38 +87,40 @@ class units
 	 */
 	public static function set_user_unit($_user_id, $_unit)
 	{
-		$result = false;
-		$disable_old_unit =
-		[
-			'user_id'       => $_user_id,
-			'option_cat'    => "user_detail_". $_user_id,
-			'option_key'    => 'unit',
-		];
-		\lib\db\options::update_on_error(['option_status' => 'disable'], $disable_old_unit);
+		\lib\utility\users::set_unit($_user_id, $_unit);
+		return true;
+		// $result = false;
+		// $disable_old_unit =
+		// [
+		// 	'user_id'       => $_user_id,
+		// 	'option_cat'    => "user_detail_". $_user_id,
+		// 	'option_key'    => 'unit',
+		// ];
+		// \lib\db\options::update_on_error(['option_status' => 'disable'], $disable_old_unit);
 
-		$where =
-		[
-			'user_id'       => $_user_id,
-			'option_cat'    => "user_detail_". $_user_id,
-			'option_key'    => 'unit',
-			'option_value'  => $_unit,
-			'limit'         => 1,
-		];
+		// $where =
+		// [
+		// 	'user_id'       => $_user_id,
+		// 	'option_cat'    => "user_detail_". $_user_id,
+		// 	'option_key'    => 'unit',
+		// 	'option_value'  => $_unit,
+		// 	'limit'         => 1,
+		// ];
 
-		$current_unit = \lib\db\options::get($where);
-		unset($where['limit']);
+		// $current_unit = \lib\db\options::get($where);
+		// unset($where['limit']);
 
-		if(empty($current_unit))
-		{
-			$result = \lib\db\options::insert($where);
-		}
-		else
-		{
-			$args = $where;
-			$args['option_status'] = 'enable';
-			$result = \lib\db\options::update_on_error($args, $where);
-		}
-		return $result;
+		// if(empty($current_unit))
+		// {
+		// 	$result = \lib\db\options::insert($where);
+		// }
+		// else
+		// {
+		// 	$args = $where;
+		// 	$args['option_status'] = 'enable';
+		// 	$result = \lib\db\options::update_on_error($args, $where);
+		// }
+		// return $result;
 	}
 
 
@@ -131,7 +139,7 @@ class units
 		}
 
 		// get user language
-		$user_language = \lib\db\users::get_language($_user_id);
+		$user_language = \lib\utility\users::get_language($_user_id);
 		if($user_language === 'fa' || $user_language === 'fa_IR')
 		{
 			if($_set_user_unit_if_find)

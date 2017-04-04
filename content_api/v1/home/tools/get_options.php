@@ -128,7 +128,14 @@ trait get_options
 							}
 							else
 							{
-								$user_unit = 'sarshomar';
+								if(isset($_poll_data['language']) && $_poll_data['language'] === 'fa')
+								{
+									$user_unit = 'toman';
+								}
+								else
+								{
+									$user_unit = 'dollar';
+								}
 							}
 						}
 
