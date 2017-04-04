@@ -12,8 +12,8 @@ class language
 {
 	static $user_language = null;
 	static $valid_lang = [
-	'fa_IR' => ['فارسی', 'fa', 'persian', 'farsi', 'fa_ir', 'fa-ir'],
-	'en_US' => ['en', 'english']
+	'fa' => ['فارسی', 'fa', 'persian', 'farsi', 'fa_ir', 'fa-ir'],
+	'en' => ['en', 'english']
 	];
 	public static function start($_query, $_data_url)
 	{
