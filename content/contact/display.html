@@ -51,11 +51,19 @@
           <span class="icon-location icon-3x"></span>
           <span>
             <div class="adr">
+             {%if site.currentlang =='en'%}
               <div class="extended-address">{%trans "#614, Omranieh"%}</div>
               <div class="street-address">{%trans "Moallem Sq"%}</div>
               <div class="locality">{%trans "Qom"%}</div>
               <div class="country-name">{%trans "Iran"%}</div>
               <div class="postal-code">{{"37158-39959" | fitNumber }}</div>
+             {%else%}
+              <div class="country-name">{%trans "Iran"%}</div>
+              <div class="locality">{%trans "Qom"%}</div>
+              <div class="street-address">{%trans "Moallem Sq"%}</div>
+              <div class="extended-address">{%trans "#614, Omranieh"%}</div>
+              <div class="postal-code">{{"37158-39959" | fitNumber }}</div>
+             {%endif%}
             </div>
           </span>
          </div>
