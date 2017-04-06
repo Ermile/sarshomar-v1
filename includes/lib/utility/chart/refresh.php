@@ -43,6 +43,33 @@ trait refresh
 		}
 
 		$all_answers = \lib\db::get("SELECT * FROM polldetails WHERE post_id = $_poll_id AND status = 'enable' ORDER BY polldetails.opt ASC ");
+		$all_user_id    = [];
+		$all_profile_id = [];
+
+		if(is_array($all_answers))
+		{
+			$all_user_id    = array_column($all_answers, 'user_id');
+			$all_profile_id = array_column($all_answers, 'profile');
+			$all_user_id    = array_unique($all_user_id);
+			$all_profile_id = array_unique($all_profile_id);
+		}
+
+		if(!empty($all_user_id))
+		{
+			$all_user_id      = implode(',', $all_user_id);
+			$all_user_data    = \lib\db::get("SELECT * FROM users WHERE users.id IN ($all_user_id) ");
+			$all_user_data_id = array_column($all_user_data, 'id');
+			$all_user_data    = array_combine($all_user_data_id, $all_user_data);
+		}
+
+		if(!empty($all_profile_id))
+		{
+			$all_profile_id      = implode(',', $all_profile_id);
+			$all_profile_data    = \lib\db::get("SELECT * FROM filters WHERE filters.id IN ($all_profile_id) ");
+			$all_profile_data_id = array_column($all_profile_data, 'id');
+			$all_profile_data    = array_combine($all_profile_data_id, $all_profile_data);
+		}
+
 		$user_ids = [];
 		if(!is_array($all_answers))
 		{
@@ -55,13 +82,14 @@ trait refresh
 			{
 				continue;
 			}
-
-			$profile   = \lib\db\filters::get($value['profile']);
+			$profile = (isset($all_profile_data[$value['profile']])) ? $all_profile_data[$value['profile']] : [];
+			// $profile   = \lib\db\filters::get($value['profile']);
 			if(!self::check_value($profile, 'profile'))
 			{
 				continue;
 			}
-			$user_data = \lib\db\users::get($value['user_id']);
+			$user_data = (isset($all_user_data[$value['user_id']])) ? $all_user_data[$value['user_id']] : [];
+			// $user_data = \lib\db\users::get($value['user_id']);
 			if(!self::check_value($user_data, 'user'))
 			{
 				continue;
