@@ -49,9 +49,10 @@ trait refresh
 		if(is_array($all_answers))
 		{
 			$all_user_id    = array_column($all_answers, 'user_id');
-			$all_profile_id = array_column($all_answers, 'profile');
+
 			$all_user_id    = array_unique($all_user_id);
-			$all_profile_id = array_unique($all_profile_id);
+			$all_user_id    = array_filter($all_user_id);
+
 		}
 
 		if(!empty($all_user_id))
@@ -59,9 +60,12 @@ trait refresh
 			$all_user_id      = implode(',', $all_user_id);
 			$all_user_data    = \lib\db::get("SELECT * FROM users WHERE users.id IN ($all_user_id) ");
 			$all_user_data_id = array_column($all_user_data, 'id');
+
+			$all_profile_id   = array_column($all_user_data, 'filter_id');
+			$all_profile_id   = array_unique($all_profile_id);
+			$all_profile_id   = array_filter($all_profile_id);
 			$all_user_data    = array_combine($all_user_data_id, $all_user_data);
 		}
-
 		if(!empty($all_profile_id))
 		{
 			$all_profile_id      = implode(',', $all_profile_id);
