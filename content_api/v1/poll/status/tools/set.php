@@ -96,7 +96,14 @@ trait set
 			}
 			else
 			{
-				return debug::error(T_("You can not set this status to this poll, the available status you can change is :available", ['available' => implode(',', $available['available'])]), 'status', 'permission');
+				$T_avalible = [];
+				foreach ($available['available'] as $key => $value)
+				{
+					$T_avalible[] =  T_($value);
+				}
+				$T_avalible = implode(', ' , $T_avalible);
+
+				return debug::error(T_("You can not set this status to this poll, the available status you can change is :available", ['available' => $T_avalible]), 'status', 'permission');
 			}
 		}
 		else

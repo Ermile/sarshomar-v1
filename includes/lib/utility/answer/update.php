@@ -64,6 +64,10 @@ trait update
 
 		$new_opt = array_keys($_args['answer']);
 
+		// check updated chart to update poll ranks
+		$update_chart_old = false;
+		$update_chart_new = false;
+
 		$log_meta =
 		[
 			'meta' =>
@@ -137,7 +141,11 @@ trait update
 
 			if($save_offline_chart)
 			{
-				stat_polls::set_poll_result($answers_details);
+				$temp_update_chart = stat_polls::set_poll_result($answers_details);
+				if(!$update_chart_old && $temp_update_chart)
+				{
+					$update_chart_old = true;
+				}
 			}
 		}
 
@@ -190,7 +198,11 @@ trait update
 
 				if($save_offline_chart)
 				{
-					stat_polls::set_poll_result($answers_details);
+					$temp_update_chart_new = stat_polls::set_poll_result($answers_details);
+					if(!$update_chart_new && $temp_update_chart_new)
+					{
+						$update_chart_new = true;
+					}
 				}
 			}
 			profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
@@ -209,7 +221,6 @@ trait update
 
 		options::plus($where);
 
-
 		self::$IS_ANSWERED = [];
 
 		// if($old_answer_is_skipped && $new_answer_is_skipped) || (!$old_answer_is_skipped && !$new_answer_is_skipped)
@@ -221,7 +232,10 @@ trait update
 		{
 			if($save_offline_chart)
 			{
-				ranks::plus($_args['poll_id'], 'vote');
+				if($update_chart_new)
+				{
+					ranks::plus($_args['poll_id'], 'vote');
+				}
 				ranks::minus($_args['poll_id'], 'skip');
 			}
 
@@ -236,7 +250,11 @@ trait update
 		{
 			if($save_offline_chart)
 			{
-				ranks::minus($_args['poll_id'], 'vote');
+				if($update_chart_old)
+				{
+					ranks::minus($_args['poll_id'], 'vote');
+				}
+
 				ranks::plus($_args['poll_id'], 'skip');
 			}
 

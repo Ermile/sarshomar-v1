@@ -233,6 +233,14 @@ class model extends \mvc\model
 				}
 				else
 				{
+					if(isset($poll['status']) && in_array($poll['status'], $this->controller()::$poll_status_404))
+					{
+						if(!$this->access('admin', 'admin'))
+						{
+							\lib\error::page(T_("Poll not found"));
+						}
+					}
+
 					if(isset($poll['user_id']) && intval($poll['user_id']) === intval($this->login('id')))
 					{
 						// no problem to load poll

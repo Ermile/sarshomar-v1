@@ -22,9 +22,9 @@ class controller extends \lib\mvc\controller
 	 *
 	 * @var        string
 	 */
-	public static $shortURL = \lib\utility\shortURL::ALPHABET;
+	public static $shortURL           = \lib\utility\shortURL::ALPHABET;
 	public static $accept_poll_status = ['publish','stop','pause'];
-
+	public static $poll_status_404    = ['deleted','filtered','blocked','spam','violence','pornography'];
 	/**
 	 * [handle_login_url description]
 	 * @param  [type] $_module [description]

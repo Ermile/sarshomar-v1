@@ -35,7 +35,8 @@ trait set
 		// get the poll id
 		if(!$_args['poll_id'])
 		{
-			return debug::error(T_("Poll id not set"), 'set_poll_result', 'db');
+			debug::error(T_("Poll id not set"), 'set_poll_result', 'db');
+			return false;
 		}
 		$poll_id = $_args['poll_id'];
 
@@ -43,7 +44,8 @@ trait set
 		// get the user id
 		if(!$_args['user_id'])
 		{
-			return debug::error(T_("User id not set"), 'set_poll_result', 'db');
+			debug::error(T_("User id not set"), 'set_poll_result', 'db');
+			return false;
 		}
 		$user_id = $_args['user_id'];
 		// get the validation result
@@ -166,7 +168,7 @@ trait set
 		// but the answer of this user needless to change the chart
 		if($opt_key === "opt_0")
 		{
-			return true;
+			return false;
 		}
 
 		// the user profile data to make chart by this items

@@ -35,7 +35,10 @@ trait save
 			'port'    => 'site',
 			'subport' => null,
 		];
-		$_args = array_merge($default_args, $_args);
+		$_args        = array_merge($default_args, $_args);
+
+		// check chart is changed or no to change the user ranks
+		$change_chart = false;
 
 		/**
 		 * save offline chart
@@ -44,7 +47,6 @@ trait save
 		 * @var        boolean
 		 */
 		$save_offline_chart = self::user_validataion($_args['user_id']);
-
 
 		if(!is_array($_args['answer']))
 		{
@@ -62,10 +64,11 @@ trait save
 
 		$set_option =
 		[
-			'answer_txt' => null,
-			'validation' => self::$validation,
-			'port'       => $_args['port'],
-			'subport'    => $_args['subport'],
+			'answer_txt'  => null,
+			'validation'  => self::$validation,
+			'port'        => $_args['port'],
+			'subport'     => $_args['subport'],
+			'user_verify' => self::$user_verify,
 		];
 
 		$log_meta =
@@ -120,7 +123,12 @@ trait save
 
 				if($save_offline_chart)
 				{
-					stat_polls::set_poll_result($answers_details);
+					$temp_change_chart = stat_polls::set_poll_result($answers_details);
+
+					if(!$change_chart && $temp_change_chart)
+					{
+						$change_chart = true;
+					}
 				}
 			}
 			\lib\db\logs::set('user:answer:add', $_args['user_id'], $log_meta);
@@ -149,7 +157,7 @@ trait save
 		}
 		else
 		{
-			if($save_offline_chart)
+			if($save_offline_chart && $change_chart)
 			{
 				// check poll money and set it to the user
 				self::money($_args);

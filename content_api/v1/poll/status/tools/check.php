@@ -128,24 +128,24 @@ trait check
 		}
 
 		$set_status_awaiting = false;
-
+		$msg = null;
 		if(isset($poll['privacy']) && $poll['privacy'] == 'public')
 		{
 			$set_status_awaiting = true;
-			debug::warn(T_("You poll is awaiting moderation"));
+			$msg = T_("You poll is awaiting moderation");
 		}
 
 		if(isset($poll['sarshomar']) && $poll['sarshomar'] === '1')
 		{
 			$set_status_awaiting = true;
-			debug::warn(T_("You poll is awaiting moderation, all Sarshomar polls are set in awaiting moderation"));
+			$msg .= " ".  T_("You poll is awaiting moderation, all Sarshomar polls are set in awaiting moderation");
 		}
 
 		// save and check words
 		if(!db\words::save_and_check($words))
 		{
 			$set_status_awaiting = true;
-			debug::warn(T_("You are using an inappropriate word in the text, your poll is awaiting moderation"), 'words', 'arguments');
+			$msg .= " ". T_("You are using an inappropriate word in the text, your poll is awaiting moderation");
 			if(!self::$update_mod)
 			{
 				// plus the userrank of usespamword
@@ -165,7 +165,12 @@ trait check
 
 		if(count($check_duplicate_poll_title) > 1)
 		{
-			debug::warn(T_("Duplicate poll title of your poll"), 'title', 'arguments');
+			$msg .=  " ". T_("Duplicate poll title of your poll");
+		}
+
+		if($msg)
+		{
+			debug::warn($msg);
 		}
 
 		if($set_status_awaiting)

@@ -328,7 +328,7 @@
   </div>
  </div>
 
- {%if poll.result.summary.total == 0%}
+ {%if poll.count_vote == 0%}
  <div class="in small isDataNotExist"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
  {%endif%}
  {{block('chart')}}
@@ -378,6 +378,7 @@
 {{block('poll_count')}}
 {%if iperm.admin.admin.view%}
 {{block('poll_skip_count')}}
+{{block('poll_privacy')}}
 {{block('poll_range')}}
 {{block('poll_author')}}
 {%endif%}
@@ -399,7 +400,7 @@
 {% spaceless %}
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
-  <span>{{poll.result.summary.total|number_format|fitNumber}}</span>
+  <span>{{poll.count_vote|number_format|fitNumber}}</span>
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -409,6 +410,15 @@
  <div class="title">{%trans "Skip"%}</div>
  <div class="content">
   {{poll.count_skip|number_format|fitNumber}}
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+{%block poll_privacy%}
+{% spaceless %}
+ <div class="title">{%trans "Privacy"%}</div>
+ <div class="content">
+  {%set myPrivacy = poll.privacy%} {%trans myPrivacy%}
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -621,7 +631,6 @@
   <div class="tools-content c11 f align-center">
     <div class="toolbox-btn">
 
-
       <form method="post" action="{{url.base}}/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
         <input type="hidden" name="type" value="homepage">
@@ -635,14 +644,17 @@
         <button type="submit"><i class="icon-times-circle icon-2x"></i></button>
       </form>
 
+        <a data-method="get" href="{{url.base}}/admin" data-data='{"refresh_chart":"{{poll.id}}"}' data-ajaxify>{%trans "Refresh Chart"%}</a>
 
-<!--     <div class="flex justify-around align-center check-slider">
-     <div>
+
+    <div class="flex justify-around align-center check-slider">
+    <!--  <div>
       <input type="checkbox" id="show_in_homepage" {% if show_in_homepage%} checked="checked" {%endif%} data-id="{{poll.id}}" />
       <label for="show_in_homepage"></label>
-     </div>
+     </div> -->
      <a href="{{url.base}}/@/add/{{poll.id}}">{%trans "Edit"%}</a>
-    </div> -->
+    </div>
+
 
 
     </div>
@@ -711,7 +723,7 @@
 <div class='poll-panel unselectable'>
 
  <div class='poll-answered'>
-  <div class='poll-answered-count'>{{poll.result.summary.total|number_format|fitNumber}}</div>
+  <div class='poll-answered-count'>{{poll.count_vote|number_format|fitNumber}}</div>
   <div class="poll-answered-label">
    <span>{%trans "People Voted"%}</span>
    <span class='poll-answered-you{%if poll.my_answer%}{%else%} hide{%endif%}'>+ {%trans "You"%}</span>
@@ -753,34 +765,34 @@
  </div>
  {%endif%}
 
-{%if poll.user_id == login.id|shortURL("encode")%}
+{%if poll.user_id == login.id|shortURL("encode") or iperm.admin.admin.view%}
  <nav class='poll-panel-nav'>
-  <a href='' class='f{%if "publish" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "publish" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "publish", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}' data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-delivered'></span>
    <span class='c'>{%trans "Publish"%}</span>
   </a>
 
-  <a href='' class='f{%if "trash" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "trash" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "trash", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}'  data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-trash-o'></span>
    <span class='c'>{%trans "Trash"%}</span>
   </a>
 
-  <a href='' class='f{%if "delete" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "delete" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "delete", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}'  data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-times-circle'></span>
    <span class='c'>{%trans "Delete"%}</span>
   </a>
 
-  <a href='' class='f{%if "stop" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "stop" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "stop", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}'  data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-stop2'></span>
    <span class='c'>{%trans "Stop"%}</span>
   </a>
 
-  <a href='' class='f{%if "pause" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "pause" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "pause", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}'  data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-pause2'></span>
    <span class='c'>{%trans "Pause"%}</span>
   </a>
 
-  <a href='' class='f{%if "draft" in  status_avalible.available%}{%else%} hide{%endif%}'>
+  <a class='f{%if "draft" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "draft", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}'  data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-pencil'></span>
    <span class='c'>{%trans "Draft"%}</span>
   </a>

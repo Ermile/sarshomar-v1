@@ -123,19 +123,23 @@ class model extends \content_u\home\model
 	public function local_poll_status()
 	{
 		$poll_id = \lib\router::get_url(1);
-
-		if(utility::post('status') == 'draft' || utility::post('status') == 'publish')
-		{
+		// if(utility::post('status') == 'draft' || utility::post('status') == 'publish')
+		// {
 			utility::set_request_array(['id' => $poll_id, 'status' => utility::post('status')]);
 			$this->user_id = $this->login('id');
 			$this->poll_set_status();
 			debug::msg('new_status', \lib\storage::get_current_status());
-
 			if(debug::$status)
 			{
+				debug::true(T_("Post status updated on :status", ['status' => T_(\lib\storage::get_current_status())]));
 				debug::msg('new_status', \lib\storage::get_new_status());
 			}
-		}
+			if(utility::post('redirect_url'))
+			{
+				$this->redirector(utility::post('redirect_url'));
+				debug::msg('direct', true);
+			}
+		// }
 		return;
 	}
 

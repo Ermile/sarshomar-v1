@@ -38,6 +38,9 @@ trait delete
 
 		$old_answer = polldetails::get($_args['user_id'], $_args['poll_id']);
 
+		// check update chart and set the poll ranks
+		$update_chart = false;
+
 		if(!is_array($old_answer))
 		{
 			$old_answer = [];
@@ -98,7 +101,11 @@ trait delete
 					'validation'  => self::$validation,
 					'user_verify' => $user_verify,
 				];
-				stat_polls::set_poll_result($answers_details);
+				$temp_update_chart = stat_polls::set_poll_result($answers_details);
+				if(!$update_chart && $temp_update_chart)
+				{
+					$update_chart = true;
+				}
 			}
 		}
 
@@ -131,7 +138,7 @@ trait delete
 			}
 			else
 			{
-				if($save_offline_chart)
+				if($save_offline_chart && $update_chart)
 				{
 					ranks::minus($_args['poll_id'], 'vote');
 				}

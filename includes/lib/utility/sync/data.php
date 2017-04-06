@@ -105,7 +105,20 @@ trait data
 				'validation'  => $value['validstatus'],
 				'user_verify' => $value['validstatus'],
 			];
-			\lib\utility\stat_polls::set_poll_result($answers_details);
+			$update_chart = \lib\utility\stat_polls::set_poll_result($answers_details);
+
+			if($update_chart)
+			{
+				if($value['opt'])
+				{
+					\lib\db\ranks::minus($value['poll_id'], 'vote');
+				}
+				else
+				{
+					\lib\db\ranks::minus($value['poll_id'], 'skip');
+				}
+			}
+
 			// remove answer must be remove
 			\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
 		}

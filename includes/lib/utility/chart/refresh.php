@@ -100,15 +100,15 @@ trait refresh
 					$temp[$i]['type'] = $validstatus;
 					foreach ($data as $field => $value)
 					{
-						if($field === 'total' && is_numeric($value))
-						{
-							\lib\db\ranks::plus($_poll_id, 'vote', $value, ['replace' => true]);
-						}
+						// if($field === 'total' && is_numeric($value))
+						// {
+						// 	\lib\db\ranks::plus($_poll_id, 'vote', $value, ['replace' => true]);
+						// }
 
-						if(isset(self::$skip[$_poll_id]))
-						{
-							\lib\db\ranks::plus($_poll_id, 'skip', self::$skip[$_poll_id], ['replace' => true]);
-						}
+						// if(isset(self::$skip[$_poll_id]))
+						// {
+						// 	\lib\db\ranks::plus($_poll_id, 'skip', self::$skip[$_poll_id], ['replace' => true]);
+						// }
 						$temp[$i][$field] = json_encode($value, JSON_UNESCAPED_UNICODE);
 					}
 				}
@@ -116,11 +116,23 @@ trait refresh
 			$i++;
 		}
 
-		foreach ($temp as $key => $value)
+		foreach ($temp as $key => $data)
 		{
-			$field = "`". implode("`,`", array_keys($value)) . "`";
-			$set   = "'". implode("','", $value). "'";
-			\lib\db::query("INSERT INTO pollstats (`post_id`, $field) VALUES ($_poll_id, $set)");
+			$set = [];
+			if(is_array($data))
+			{
+				foreach ($data as $field => $value)
+				{
+					$set[] = " pollstats.$field = '$value' ";
+				}
+			}
+
+			if(!empty($set))
+			{
+				$set = implode(',', $set);
+				$query = "INSERT INTO pollstats SET pollstats.post_id = $_poll_id, $set ON DUPLICATE KEY UPDATE $set";
+				\lib\db::query($query);
+			}
 		}
 	}
 
