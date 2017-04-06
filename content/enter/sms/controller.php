@@ -9,6 +9,8 @@ class controller extends \content\main\controller
 	 */
 	function _route()
 	{
+		\lib\storage::set_api(true);
+
 		$service = \lib\utility::get('service');
 		$type    = \lib\utility::get('type');
 		$uid     = \lib\utility::get('uid');
