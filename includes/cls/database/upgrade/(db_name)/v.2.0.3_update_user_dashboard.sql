@@ -1,80 +1,66 @@
-INSERT INTO userdashboards
-(`user_id`,
-`poll_answered`,
-`poll_skipped`,
-`survey_answered`,
-`survey_skipped`,
-`my_poll`,
-`my_survey`,
-`my_poll_answered`,
-`my_poll_skipped`,
-`my_survey_answered`,
-`my_survey_skipped`,
-`user_referred`,
-`user_verified`,
-`comment_count`,
-`draft_count`,
-`publish_count`,
-`awaiting_count`,
-`my_fav`,
-`my_like`
-)
+UPDATE userdashboards
+SET
+userdashboards.user_id = userdashboards.user_id,
 
-SELECT users.id,
-
-(SELECT COUNT(polldetails.id)
+userdashboards.poll_answered = (
+SELECT COUNT(polldetails.id)
 FROM polldetails
 WHERE
-	polldetails.user_id = users.id AND
+	polldetails.user_id = userdashboards.user_id AND
 	polldetails.type  = 'poll' AND
 	polldetails.status  = 'enable' AND
 	polldetails.opt <> 0
-	) AS `poll_answered` ,
-(
+	) ,
+
+userdashboards.poll_skipped = (
 SELECT COUNT(polldetails.id)
 FROM polldetails
 WHERE
-	polldetails.user_id = users.id AND
+	polldetails.user_id = userdashboards.user_id AND
 	polldetails.type  = 'poll' AND
 	polldetails.status  = 'enable' AND
 	polldetails.opt   = 0
-	) as `poll_skipped` ,
+	) ,
 
-  (
+userdashboards.survey_answered = (
 SELECT COUNT(polldetails.id)
 FROM polldetails
 WHERE
-	polldetails.user_id = users.id AND
+	polldetails.user_id = userdashboards.user_id AND
 	polldetails.type  = 'survey' AND
 	polldetails.status  = 'enable' AND
 	polldetails.opt <> 0
-	)  as `survey_answered`,
-  (
+	) ,
+
+userdashboards.survey_skipped = (
 SELECT COUNT(polldetails.id)
 FROM polldetails
 WHERE
-	polldetails.user_id = users.id AND
+	polldetails.user_id = userdashboards.user_id AND
 	polldetails.type  = 'survey' AND
 	polldetails.status  = 'enable' AND
 	polldetails.opt   = 0
-	) as `survey_skipped`,
-  (
+	) ,
+
+userdashboards.my_poll = (
 SELECT COUNT(posts.id)
 FROM posts
 WHERE
-	posts.user_id = users.id AND
+	posts.user_id = userdashboards.user_id AND
 	posts.post_type = 'poll' AND
 	posts.post_status IN ('draft', 'publish', 'awaiting','trash','pause', 'stop')
-	) as `my_poll` ,
-	  (
+	) ,
+
+userdashboards.my_survey = (
 SELECT COUNT(posts.id)
 FROM posts
 WHERE
-	posts.user_id = users.id AND
+	posts.user_id = userdashboards.user_id AND
 	posts.post_type = 'survey' AND
 	posts.post_status IN ('draft', 'publish', 'awaiting','trash','pause', 'stop')
-	) as `my_survey` ,
-	  (
+	) ,
+
+userdashboards.my_poll_answered = (
 SELECT
 	COUNT(polldetails.id)
 FROM
@@ -90,11 +76,12 @@ WHERE
 	SELECT posts.id
 	FROM posts
 	WHERE
-		posts.user_id = users.id AND
+		posts.user_id = userdashboards.user_id AND
 		posts.post_type = 'poll'
 		)
-	) as `my_poll_answered` ,
-	  (
+	) ,
+
+userdashboards.my_poll_skipped = (
 SELECT
 	COUNT(polldetails.id)
 FROM
@@ -110,11 +97,12 @@ WHERE
 	SELECT posts.id
 	FROM posts
 	WHERE
-		posts.user_id = users.id AND
+		posts.user_id = userdashboards.user_id AND
 		posts.post_type = 'poll'
 		)
-	) as `my_poll_skipped` ,
-	  (
+	) ,
+
+userdashboards.my_survey_answered = (
 SELECT
 	COUNT(polldetails.id)
 FROM
@@ -130,11 +118,12 @@ WHERE
 	SELECT posts.id
 	FROM posts
 	WHERE
-		posts.user_id = users.id AND
+		posts.user_id = userdashboards.user_id AND
 		posts.post_type = 'survey'
 		)
-	) as `my_survey_answered` ,
-	  (
+	) ,
+
+userdashboards.my_survey_skipped = (
 SELECT
 	COUNT(polldetails.id)
 FROM
@@ -150,68 +139,53 @@ WHERE
 	SELECT posts.id
 	FROM posts
 	WHERE
-		posts.user_id = users.id AND
+		posts.user_id = userdashboards.user_id AND
 		posts.post_type = 'survey'
 		)
-	) as `my_survey_skipped` ,
-	  (
-SELECT
-	COUNT(users.id)
-FROM
-	users
-WHERE
-	users.user_parent = users.id
-	) as `user_referred` ,
-	  (
-SELECT
-	COUNT(users.id)
-FROM
-	users
-WHERE
-	users.user_parent = users.id AND
-	users.user_status = 'active'
-	) as `user_verified` ,
-	  (
-SELECT COUNT(comments.id) FROM comments WHERE comments.user_id = users.id
-	) as `comment_count` ,
-	  (
-SELECT COUNT(posts.id)
-FROM posts
-WHERE
-	posts.user_id   = users.id AND
-	posts.post_status = 'draft'
-	) as `draft_count` ,
-	  (
-SELECT COUNT(posts.id)
-FROM posts
-WHERE
-	posts.user_id   = users.id AND
-	posts.post_status = 'publish'
-	) as `publish_count` ,
-	  (
-SELECT COUNT(posts.id)
-FROM posts
-WHERE
-	posts.user_id   = users.id AND
-	posts.post_status = 'awaiting'
-	) as `awaiting_count` ,
-(
-SELECT COUNT(options.id)
-FROM options
-WHERE
-	options.user_id       = users.id AND
-	options.option_cat    = CONCAT('user_detail_', users.id) AND
-	options.option_key    = 'fav' AND
-	options.option_status = 'enable'
-	) as `my_fav`
-,
-(SELECT COUNT(options.id)
-FROM options
-WHERE
-	options.user_id       = users.id AND
-	options.option_cat    = CONCAT('user_detail_', users.id) AND
-	options.option_key    = 'like' AND
-	options.option_status = 'enable'
-	) as `my_like`
+	) ,
 
-FROM users
+userdashboards.user_referred = (
+SELECT
+	COUNT(users.id)
+FROM
+	users
+WHERE
+	users.user_parent = userdashboards.user_id
+	) ,
+
+userdashboards.user_verified = (
+SELECT
+	COUNT(users.id)
+FROM
+	users
+WHERE
+	users.user_parent = userdashboards.user_id AND
+	users.user_status = 'active'
+	) ,
+
+userdashboards.comment_count = (
+SELECT COUNT(comments.id) FROM comments WHERE comments.user_id = userdashboards.user_id
+	) ,
+userdashboards.draft_count = (
+SELECT COUNT(posts.id)
+FROM posts
+WHERE
+	posts.user_id   = userdashboards.user_id AND
+	posts.post_status = 'draft'
+	) ,
+
+userdashboards.publish_count = (
+SELECT COUNT(posts.id)
+FROM posts
+WHERE
+	posts.user_id   = userdashboards.user_id AND
+	posts.post_status = 'publish'
+	) ,
+
+userdashboards.awaiting_count = (
+SELECT COUNT(posts.id)
+FROM posts
+WHERE
+	posts.user_id   = userdashboards.user_id AND
+	posts.post_status = 'awaiting'
+	)

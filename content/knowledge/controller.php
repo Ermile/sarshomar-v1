@@ -32,11 +32,22 @@ class controller extends \content\main\controller
 			\lib\router::set_url(trim('$/' . \lib\router::get_url(),'/'));
 		}
 
-		$property               = [];
-		$property['search']     = ["/^.*$/", true, 'search'];
+		$property = [];
+		if(\lib\storage::get('rep') == 'u')
+		{
+			$route_url          = "/.*/";
+			$property['status'] = ["/^stop|pause|trash|publish|draft|awaiting|schedule|expired$/", true, 'status'];
+		}
+		else
+		{
+			$route_url = "/^\\$(|\/search\=([^\/]+))$/";
+		}
+
+		$property['search']   = ["/^.*$/", true, 'search'];
+
 		$this->get("search", "search")->ALL(
 		[
-			'url'      => "/^\\$(|\/search\=([^\/]+))$/",
+			'url'      => $route_url,
 			'property' => $property
 		]);
 

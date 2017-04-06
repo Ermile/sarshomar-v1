@@ -177,7 +177,11 @@ class ranks
 						if($replace)
 						{
 							$value    = intval($_plus);
-							$update[] = " ranks.$key = $_plus ";
+							if($value < 0)
+							{
+								$value = 0;
+							}
+							$update[] = " ranks.$key = $value ";
 						}
 						else
 						{
@@ -191,7 +195,7 @@ class ranks
 								$value    = intval($value) - intval($_plus);
 								if($value <= 0)
 								{
-									// $update[] = " ranks.$key = ranks.$key  ";
+									// $update[] = " ranks.$key = ranks.$key ";
 									$value = 0;
 								}
 								else

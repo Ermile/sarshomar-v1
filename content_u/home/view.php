@@ -41,57 +41,58 @@ class view extends \mvc\view
 		}
 
 		$user_id                       = $this->login("id");
-		\lib\utility\profiles::refresh_dashboard($user_id);
+		// \lib\utility\profiles::refresh_dashboard($user_id);
 		$this->data->ui_language = \lib\utility\users::get_language($user_id);
-		$dashboard_data                = \lib\utility\profiles::get_dashboard_data($user_id);
+		$dashboard_data                = \lib\db\userdashboards::get($user_id);
+
 		if(!is_array($dashboard_data))
 		{
 			$dashboard_data = [];
 		}
 
-		$complete_profile = \lib\utility\profiles::get_profile_data($user_id, false);
-		if(!is_array($complete_profile))
-		{
-			$complete_profile = 0;
-		}
-		else
-		{
-			$complete_profile = array_filter($complete_profile);
-			$complete_profile = count($complete_profile) * 2;
-			if($complete_profile > 100)
-			{
-				$complete_profile = 100;
-			}
+		// $complete_profile = \lib\utility\profiles::get_profile_data($user_id, false);
+		// if(!is_array($complete_profile))
+		// {
+		// 	$complete_profile = 0;
+		// }
+		// else
+		// {
+		// 	$complete_profile = array_filter($complete_profile);
+		// 	$complete_profile = count($complete_profile) * 2;
+		// 	if($complete_profile > 100)
+		// 	{
+		// 		$complete_profile = 100;
+		// 	}
 
-		}
-		$this->data->complete_profile = $complete_profile;
+		// }
+		// $this->data->complete_profile = $complete_profile;
 
-		$draft_count    = \lib\db\polls::get_count(null,
-		[
-			'user_id'        => $user_id,
-			'in'             => 'me',
-			'check_language' => false,
-			'login'          => $user_id,
-			'post_status'    => 'draft',
-		]);
+		// $draft_count    = \lib\db\polls::get_count(null,
+		// [
+		// 	'user_id'        => $user_id,
+		// 	'in'             => 'me',
+		// 	'check_language' => false,
+		// 	'login'          => $user_id,
+		// 	'post_status'    => 'draft',
+		// ]);
 
-		$publish_count  = \lib\db\polls::get_count(null,
-		[
-			'user_id'        => $user_id,
-			'in'             => 'me',
-			'check_language' => false,
-			'login'          => $user_id,
-			'post_status'    => 'publish',
-		]);
+		// $publish_count  = \lib\db\polls::get_count(null,
+		// [
+		// 	'user_id'        => $user_id,
+		// 	'in'             => 'me',
+		// 	'check_language' => false,
+		// 	'login'          => $user_id,
+		// 	'post_status'    => 'publish',
+		// ]);
 
-		$awaiting_count = \lib\db\polls::get_count(null,
-		[
-			'user_id'        => $user_id,
-			'in'             => 'me',
-			'check_language' => false,
-			'login'          => $user_id,
-			'post_status'    => 'awaiting',
-		]);
+		// $awaiting_count = \lib\db\polls::get_count(null,
+		// [
+		// 	'user_id'        => $user_id,
+		// 	'in'             => 'me',
+		// 	'check_language' => false,
+		// 	'login'          => $user_id,
+		// 	'post_status'    => 'awaiting',
+		// ]);
 
 		$sarshomar_poll = \lib\db\polls::get_count(null);
 
@@ -115,9 +116,9 @@ class view extends \mvc\view
 		];
 
 		$dashboard_data = array_merge($temp_dashboar_data, $dashboard_data);
-		$dashboard_data['draft_count']    =	$draft_count;
-		$dashboard_data['publish_count']  = $publish_count;
-		$dashboard_data['awaiting_count'] = $awaiting_count;
+		// $dashboard_data['draft_count']    =	$draft_count;
+		// $dashboard_data['publish_count']  = $publish_count;
+		// $dashboard_data['awaiting_count'] = $awaiting_count;
 		$dashboard_data['sarshomar_poll'] = $sarshomar_poll;
 
 		$meta =

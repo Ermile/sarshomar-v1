@@ -44,9 +44,11 @@ trait set
 		}
 
 		$available = self::poll_status(['check_is_my_poll' => true]);
+		$current   = null;
 
 		if(isset($available['current']))
 		{
+			$current = $available['current'];
 			\lib\storage::set_current_status($available['current']);
 		}
 
@@ -80,6 +82,8 @@ trait set
 					$set_status_on = self::check(['poll_id' => $id, 'user_id' => $this->user_id, 'status' => $new_status]);
 				}
 
+				self::change_dashboard(['old_status' => $current, 'new_status' => $set_status_on, 'user_id' => $this->user_id]);
+
 				if(debug::$status)
 				{
 					debug::title(T_("Poll status changed"));
@@ -104,6 +108,74 @@ trait set
 			else
 			{
 				return debug::error(T_("Invalid parameter status"), 'status', 'arguments');
+			}
+		}
+	}
+
+
+	/**
+	 * change user dashboard
+	 *
+	 * @param      <type>  $_current     The current
+	 * @param      <type>  $_new_status  The new status
+	 */
+	public static function change_dashboard($_options = [])
+	{
+		$default_options =
+		[
+			'user_id'    => null,
+			'new_status' => null,
+			'old_status' => null,
+			'poll_type'  => 'poll',
+		];
+
+		if(!is_array($_options))
+		{
+			$_options = [];
+		}
+
+		$_options = array_merge($default_options, $_options);
+
+		if(!$_options['user_id'])
+		{
+			return;
+		}
+
+		// save offline count of this status only
+		$dashboard = ['draft', 'publish', 'awaiting'];
+		if(in_array($_options['old_status'], $dashboard))
+		{
+			\lib\db\userdashboards::minus($_options['user_id'], $_options['old_status']. "_count");
+		}
+
+		if(in_array($_options['new_status'], $dashboard))
+		{
+			\lib\db\userdashboards::plus($_options['user_id'], $_options['new_status']. "_count");
+		}
+
+		$stay_in_my_poll = ['draft', 'publish', 'awaiting', 'pause', 'stop', 'expired'];
+
+		if(!in_array($_options['new_status'], $stay_in_my_poll))
+		{
+			if($_options['poll_type'] === 'poll')
+			{
+				\lib\db\userdashboards::minus($_options['user_id'], 'my_poll');
+			}
+			elseif($_options['poll_type'] === 'survey')
+			{
+				\lib\db\userdashboards::minus($_options['user_id'], 'my_survey');
+			}
+		}
+
+		if(!in_array($_options['old_status'], $stay_in_my_poll) && in_array($_options['new_status'], $stay_in_my_poll))
+		{
+			if($_options['poll_type'] === 'poll')
+			{
+				\lib\db\userdashboards::plus($_options['user_id'], 'my_poll');
+			}
+			elseif($_options['poll_type'] === 'survey')
+			{
+				\lib\db\userdashboards::plus($_options['user_id'], 'my_survey');
 			}
 		}
 	}

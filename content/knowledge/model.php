@@ -49,7 +49,15 @@ class model extends \mvc\model
 		if(\lib\storage::get('rep') == 'u')
 		{
 			$request['in']     = 'me';
-			$request['status'] = 'stop pause publish draft awaiting';
+			if(isset($_args->get("status")[0]))
+			{
+				$request['status'] = $_args->get("status")[0];
+			}
+			else
+			{
+				$request['status'] = 'stop pause publish draft awaiting';
+			}
+
 			\lib\router::set_url('@/'. \lib\router::get_url());
 		}
 

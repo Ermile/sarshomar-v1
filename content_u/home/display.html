@@ -50,8 +50,18 @@
                     <h3>{%trans "Referred People"%}</h3>
                     <div class="card-body {%if dashboard.user_referred == 0%}{%endif%}">
                         {%if dashboard.user_referred == 0%}
-                        <span>{%trans "None"%}</span> {%else%}
-                        <span>{{dashboard.user_referred|number_format|fitNumber}}</span> {%endif%}
+                        <span>
+                            <a href="{{url.base}}/ref">
+                                {%trans "None"%}
+                            </a>
+                        </span>
+                        {%else%}
+                        <span>
+                            <a href="{{url.base}}/ref">
+                                {{dashboard.user_referred|number_format|fitNumber}}
+                            </a>
+                        </span>
+                        {%endif%}
                     </div>
                 </div>
             </div>
@@ -74,8 +84,14 @@
                     <h3>{%trans "Published Polls"%}</h3>
                     <div class="card-body {%if dashboard.publish_count == 0%}{%endif%}">
                         {%if dashboard.publish_count == 0%}
-                        <span>{%trans "None"%}</span> {%else%}
-                        <span>{{dashboard.publish_count|number_format|fitNumber}}</span> {%endif%}
+                            <span>{%trans "None"%}</span>
+                        {%else%}
+                            <span>
+                                <a href="{{url.base}}/@/$/status=publish">
+                                    {{dashboard.publish_count|number_format|fitNumber}}
+                                </a>
+                            </span>
+                        {%endif%}
                     </div>
                 </div>
             </div>
@@ -85,8 +101,14 @@
                     <h3>{%trans "Draft Polls"%}</h3>
                     <div class="card-body {%if dashboard.draft_count == 0%}{%endif%}">
                         {%if dashboard.draft_count == 0%}
-                        <span>{%trans "None"%}</span> {%else%}
-                        <span>{{dashboard.draft_count|number_format|fitNumber}}</span> {%endif%}
+                        <span>{%trans "None"%}</span>
+                        {%else%}
+                        <span>
+                            <a href="{{url.base}}/@/$/status=draft">
+                                {{dashboard.draft_count|number_format|fitNumber}}
+                            </a>
+                        </span>
+                        {%endif%}
                     </div>
                 </div>
             </div>

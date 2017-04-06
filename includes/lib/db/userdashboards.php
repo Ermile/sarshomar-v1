@@ -145,6 +145,10 @@ class userdashboards
 					{
 						if($replace)
 						{
+							if($_plus < 0)
+							{
+								$_plus = 0;
+							}
 							$update[] = " userdashboards.$key = $_plus ";
 						}
 						else
@@ -166,7 +170,7 @@ class userdashboards
 								{
 									$update[] = " userdashboards.$key = 0 ";
 								}
-								else
+								elseif($value > 0)
 								{
 									$update[] = " userdashboards.$key = userdashboards.$key - 1 ";
 								}

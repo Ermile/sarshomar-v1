@@ -54,9 +54,25 @@ class model extends \mvc\model
 			}
 			return;
 		}
+		// change user dashboard data
+		$poll                  = \lib\db\polls::get_poll($id);
+		$change_dashboard_data = [];
+
+		if(isset($poll['user_id']))
+		{
+			$change_dashboard_data['user_id'] = $poll['user_id'];
+		}
+
+		if(isset($poll['status']))
+		{
+			$change_dashboard_data['old_status'] = $poll['status'];
+		}
+
+		$change_dashboard_data['new_status'] = $status;
 
 		if($status == 'publish')
 		{
+
 			$update = ['post_status' => 'publish'];
 			// dave start date and end date in post_meta
 			$update_post_meta = \lib\db\polls::merge_meta(['review' => 'ok'], $id);
@@ -74,41 +90,17 @@ class model extends \mvc\model
 		}
 
 		$result = \lib\db\polls::update($update, $id);
+
 		if($result)
 		{
-			\lib\debug::true(T_("Post status updated"));
+			\content_api\v1\poll\status\tools\set::change_dashboard($change_dashboard_data);
+			\lib\debug::true(T_("Post status updated on :status", ['status' => T_($status)]));
+
 		}
 		else
 		{
 			\lib\debug::error(T_("Error in updating post"));
 		}
-		return;
-
-		utility::set_request_array(['id' => $id]);
-		$this->user_id = $this->login('id');
-		$availible = $this->poll_status();
-		if(isset($availible['available']) && is_array($availible['available']))
-		{
-			if(in_array($status, $availible['available']))
-			{
-				utility::set_request_array(['id' => $id, 'status' => $status]);
-				$this->poll_set_status();
-				return;
-			}
-			else
-			{
-				debug::error(T_("Can not set this status to this poll"));
-				return false;
-			}
-		}
-		else
-		{
-			debug::error(T_("Unable to find available status"));
-		}
-
-		return;
-
-
 	}
 
 	/**

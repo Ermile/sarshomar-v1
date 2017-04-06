@@ -377,8 +377,9 @@
 {{block('poll_tags')}}
 {{block('poll_count')}}
 {%if iperm.admin.admin.view%}
-{{block('poll_author')}}
+{{block('poll_skip_count')}}
 {{block('poll_range')}}
+{{block('poll_author')}}
 {%endif%}
 {% endspaceless %}
 {%endblock%}
@@ -399,6 +400,15 @@
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
   <span>{{poll.result.summary.total|number_format|fitNumber}}</span>
+ </div>
+{% endspaceless %}
+{%endblock%}
+
+{%block poll_skip_count%}
+{% spaceless %}
+ <div class="title">{%trans "Skip"%}</div>
+ <div class="content">
+  {{poll.count_skip|number_format|fitNumber}}
  </div>
 {% endspaceless %}
 {%endblock%}
@@ -611,40 +621,40 @@
   <div class="tools-content c11 f align-center">
     <div class="toolbox-btn">
 
-      <!--
-      <form method="post" action="/admin/knowledge">
+
+      <form method="post" action="{{url.base}}/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
         <input type="hidden" name="type" value="homepage">
         <input type="hidden" name="checked" value="true">
         <button type="submit"><i class="icon-home icon-2x"></i></button>
       </form>
-      <form method="post" action="/admin/knowledge">
+      <form method="post" action="{{url.base}}/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
         <input type="hidden" name="type" value="homepage">
         <input type="hidden" name="checked" value="false">
         <button type="submit"><i class="icon-times-circle icon-2x"></i></button>
-      </form>-->
+      </form>
 
 
-    <div class="flex justify-around align-center check-slider">
+<!--     <div class="flex justify-around align-center check-slider">
      <div>
       <input type="checkbox" id="show_in_homepage" {% if show_in_homepage%} checked="checked" {%endif%} data-id="{{poll.id}}" />
       <label for="show_in_homepage"></label>
      </div>
      <a href="{{url.base}}/@/add/{{poll.id}}">{%trans "Edit"%}</a>
-    </div>
+    </div> -->
 
 
     </div>
     <div class="toolbox-btn">
-      <form method="post" action="/admin/knowledge">
+      <form method="post" action="{{url.base}}/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
         <input type="number" name="vip-value" placeholder="{%trans "VIP Value"%}" value="{{poll_ranks.vip}}" autocomplete="off">
         <button type="submit"><i class="icon-check icon-2x"></i></button>
       </form>
     </div>
     <div class="toolbox-btn">
-      <form method="post" action="/admin/knowledge">
+      <form method="post" action="{{url.base}}/admin/knowledge">
         <input type="hidden" name="id" value="{{poll.id}}">
         <select  name="status">
           <option value="" disabled selected>{%trans "Select"%}</option>
@@ -671,12 +681,12 @@
     </div>
     <div class="c2">
       <div class="toolbox-btn f nowrap">
-        <form class="publish" method="post" action="/admin/knowledge">
+        <form class="publish" method="post" action="{{url.base}}/admin/knowledge">
           <input type="hidden" name="id" value="{{poll.id}}">
           <input type="hidden" name="status" value="publish">
           <input type="submit" class="" value='{%trans "publish" %}'>
         </form>
-        <form class="draft" method="post" action="/admin/knowledge">
+        <form class="draft" method="post" action="{{url.base}}/admin/knowledge">
           <input type="hidden" name="id" value="{{poll.id}}">
           <input type="hidden" name="status" value="draft">
           <input type="submit" value='{%trans "draft" %}'>

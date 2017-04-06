@@ -60,7 +60,7 @@ trait querys
 			WHERE
 				posts.user_id   = $_user_id AND
 				posts.post_type = 'poll' AND
-				posts.post_status IN ('daraft', 'publish', 'awaiting','trash','pause', 'stop')
+				posts.post_status IN ('draft', 'publish', 'awaiting','trash','pause', 'stop')
 		";
 		$querys['my_survey'] =
 		"
@@ -69,7 +69,7 @@ trait querys
 			WHERE
 				posts.user_id   = $_user_id AND
 				posts.post_type = 'survey' AND
-				posts.post_status IN ('daraft', 'publish', 'awaiting','trash','pause', 'stop')
+				posts.post_status IN ('draft', 'publish', 'awaiting','trash','pause', 'stop')
 		";
 		$querys['my_poll_answered']   =
 		"
@@ -184,7 +184,7 @@ trait querys
 			FROM posts
 			WHERE
 				posts.user_id     = $_user_id AND
-				posts.post_status = 'daraft'
+				posts.post_status = 'draft'
 		";
 		$querys['publish_count'] =
 		"
