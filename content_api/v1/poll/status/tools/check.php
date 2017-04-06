@@ -131,12 +131,8 @@ trait check
 
 		if(isset($poll['privacy']) && $poll['privacy'] == 'public')
 		{
-			$member  = \lib\db\ranks::get($_options['poll_id'], 'member');
-			if(intval($member) > 0)
-			{
-				$set_status_awaiting = true;
-				debug::warn(T_("You poll is awaiting moderation"));
-			}
+			$set_status_awaiting = true;
+			debug::warn(T_("You poll is awaiting moderation"));
 		}
 
 		if(isset($poll['sarshomar']) && $poll['sarshomar'] === '1')
