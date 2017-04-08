@@ -46,14 +46,14 @@ trait refresh
 		$all_user_id    = [];
 		$all_profile_id = [];
 
-		if(is_array($all_answers))
+		if(!is_array($all_answers))
 		{
-			$all_user_id    = array_column($all_answers, 'user_id');
-
-			$all_user_id    = array_unique($all_user_id);
-			$all_user_id    = array_filter($all_user_id);
-
+			return false;
 		}
+
+		$all_user_id = array_column($all_answers, 'user_id');
+		$all_user_id = array_unique($all_user_id);
+		$all_user_id = array_filter($all_user_id);
 
 		if(!empty($all_user_id))
 		{
@@ -64,8 +64,10 @@ trait refresh
 			$all_profile_id   = array_column($all_user_data, 'filter_id');
 			$all_profile_id   = array_unique($all_profile_id);
 			$all_profile_id   = array_filter($all_profile_id);
+
 			$all_user_data    = array_combine($all_user_data_id, $all_user_data);
 		}
+
 		if(!empty($all_profile_id))
 		{
 			$all_profile_id      = implode(',', $all_profile_id);
@@ -75,10 +77,6 @@ trait refresh
 		}
 
 		$user_ids = [];
-		if(!is_array($all_answers))
-		{
-			return false;
-		}
 
 		foreach ($all_answers as $i => $value)
 		{
@@ -86,15 +84,18 @@ trait refresh
 			{
 				continue;
 			}
-			$profile = (isset($all_profile_data[$value['profile']])) ? $all_profile_data[$value['profile']] : [];
-			// $profile   = \lib\db\filters::get($value['profile']);
-			if(!self::check_value($profile, 'profile'))
-			{
-				continue;
-			}
 			$user_data = (isset($all_user_data[$value['user_id']])) ? $all_user_data[$value['user_id']] : [];
 			// $user_data = \lib\db\users::get($value['user_id']);
 			if(!self::check_value($user_data, 'user'))
+			{
+				continue;
+			}
+
+			$profile = (isset($all_profile_data[$all_user_data[$value['user_id']]['filter_id']])) ? $all_profile_data[$all_user_data[$value['user_id']]['filter_id']] : [];
+			// $profile = (isset($all_profile_data[$value['profile']])) ? $all_profile_data[$value['profile']] : [];
+			// $profile   = \lib\db\filters::get($value['profile']);
+
+			if(!self::check_value($profile, 'profile'))
 			{
 				continue;
 			}
@@ -116,7 +117,7 @@ trait refresh
 
 		// $old_result = \lib\db\pollstats::get($_poll_id,['validation' => 'valid']);
 		// var_dump($old_result);
-		// var_dump(self::$chart);
+		// var_dump(self::$chart);exit();
 
 		$temp = [];
 		$i = 0;
@@ -287,26 +288,26 @@ trait refresh
 				break;
 
 			case 'profile':
-				if(!array_key_exists('id', $_data)) 				$check = false;
-				if(!array_key_exists('count', $_data)) 				$check = false;
-				if(!array_key_exists('gender', $_data)) 			$check = false;
-				if(!array_key_exists('marrital', $_data)) 			$check = false;
-				if(!array_key_exists('internetusage', $_data)) 		$check = false;
-				if(!array_key_exists('graduation', $_data)) 		$check = false;
-				if(!array_key_exists('degree', $_data)) 			$check = false;
-				if(!array_key_exists('course', $_data)) 			$check = false;
-				if(!array_key_exists('age', $_data)) 				$check = false;
-				if(!array_key_exists('agemin', $_data)) 			$check = false;
-				if(!array_key_exists('agemax', $_data)) 			$check = false;
-				if(!array_key_exists('range', $_data)) 				$check = false;
-				if(!array_key_exists('country', $_data)) 			$check = false;
-				if(!array_key_exists('province', $_data)) 			$check = false;
-				if(!array_key_exists('city', $_data)) 				$check = false;
-				if(!array_key_exists('employmentstatus', $_data)) 	$check = false;
-				if(!array_key_exists('housestatus', $_data)) 		$check = false;
-				if(!array_key_exists('religion', $_data)) 			$check = false;
-				if(!array_key_exists('language', $_data)) 			$check = false;
-				if(!array_key_exists('industry', $_data)) 			$check = false;
+				// if(!array_key_exists('id', $_data)) 				$check = false;
+				// if(!array_key_exists('count', $_data)) 				$check = false;
+				// if(!array_key_exists('gender', $_data)) 			$check = false;
+				// if(!array_key_exists('marrital', $_data)) 			$check = false;
+				// if(!array_key_exists('internetusage', $_data)) 		$check = false;
+				// if(!array_key_exists('graduation', $_data)) 		$check = false;
+				// if(!array_key_exists('degree', $_data)) 			$check = false;
+				// if(!array_key_exists('course', $_data)) 			$check = false;
+				// if(!array_key_exists('age', $_data)) 				$check = false;
+				// if(!array_key_exists('agemin', $_data)) 			$check = false;
+				// if(!array_key_exists('agemax', $_data)) 			$check = false;
+				// if(!array_key_exists('range', $_data)) 				$check = false;
+				// if(!array_key_exists('country', $_data)) 			$check = false;
+				// if(!array_key_exists('province', $_data)) 			$check = false;
+				// if(!array_key_exists('city', $_data)) 				$check = false;
+				// if(!array_key_exists('employmentstatus', $_data)) 	$check = false;
+				// if(!array_key_exists('housestatus', $_data)) 		$check = false;
+				// if(!array_key_exists('religion', $_data)) 			$check = false;
+				// if(!array_key_exists('language', $_data)) 			$check = false;
+				// if(!array_key_exists('industry', $_data)) 			$check = false;
 				unset($_data['id']);
 				unset($_data['count']);
 				unset($_data['agemin']);
