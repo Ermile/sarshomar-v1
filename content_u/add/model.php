@@ -51,10 +51,11 @@ class model extends \content_u\home\model
 		$this->user_id = $this->login('id');
 		$args =
 		[
-			'get_filter'         => true,
-			'get_opts'           => true,
-			'get_options'	     => true,
-			'get_public_result'  => false,
+			'get_filter'        => true,
+			'get_opts'          => true,
+			'get_options'       => true,
+			'get_public_result' => false,
+			'run_options'       => false,
 		];
 		utility::set_request_array(['id'   => $poll_id]);
 		$result = $this->poll_get($args);

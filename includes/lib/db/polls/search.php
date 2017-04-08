@@ -325,7 +325,8 @@ trait search
 		}
 		elseif($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	$public_fields	WHERE $where $search ";
+			$pagenation_query = "SELECT	COUNT(*) AS `count` FROM posts LEFT JOIN ranks ON ranks.post_id = posts.id	WHERE $where $search ";
+			$pagenation_query = (int) \lib\db::get($pagenation_query, 'count', true);
 			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
