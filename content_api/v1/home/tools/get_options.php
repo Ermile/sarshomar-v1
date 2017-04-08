@@ -105,17 +105,18 @@ trait get_options
 			{
 				$_poll_data['options']['prize'] = [];
 				$_poll_data['options']['prize']['value'] = array_key_exists('option_value', $value) ? (float) $value['option_value'] : 0;
-
+				$prize_unit = null;
 				if(isset($value['option_meta']['unit']))
 				{
 					$prize_unit = $_poll_data['options']['prize']['unit'] = $value['option_meta']['unit'];
 				}
+
 				if(self::$_options['run_options'])
 				{
 					if($prize_unit === 'sarshomar')
 					{
 						$user_unit = \lib\db\units::user_unit(self::$private_user_id);
-						if(!$user_unit)
+						if(!$user_unit || $user_unit === 'sarshomar')
 						{
 							$lang = \lib\define::get_language();
 							if($lang === 'fa')
@@ -142,12 +143,26 @@ trait get_options
 						if($user_unit != $prize_unit)
 						{
 							$_poll_data['options']['prize']['value'] = \lib\db\exchangerates::change_unit_to($prize_unit, $user_unit, $_poll_data['options']['prize']['value']);
-							if($user_unit === 'dollar')
-							{
-								$user_unit = '$';
-							}
-							$_poll_data['options']['prize']['unit']  = $user_unit;
 						}
+
+						if($user_unit === 'sarshomar')
+						{
+							if(isset($_poll_data['language']) && $_poll_data['language'] === 'fa')
+							{
+								$user_unit = 'toman';
+							}
+							else
+							{
+								$user_unit = 'dollar';
+							}
+						}
+
+						if($user_unit === 'dollar')
+						{
+							$user_unit = '$';
+						}
+
+						$_poll_data['options']['prize']['unit']  = $user_unit;
 					}
 				}
 			}
