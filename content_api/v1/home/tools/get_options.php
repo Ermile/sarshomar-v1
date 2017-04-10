@@ -61,19 +61,10 @@ trait get_options
 
 		}
 
-		$poll_tree_answer = [];
 		$poll_articles    = [];
 
 		foreach ($post_meta as $key => $value)
 		{
-			if(isset($value['option_key']) && preg_match("/^tree/", $value['option_key']))
-			{
-				if(isset($value['option_value']))
-				{
-					array_push($poll_tree_answer, $value['option_value']);
-				}
-			}
-
 			if(isset($value['option_key']) && preg_match("/^articles/", $value['option_key']))
 			{
 				if(isset($value['option_value']))
@@ -170,19 +161,10 @@ trait get_options
 
 		$_poll_data['articles'] = $poll_articles;
 
-		if(!empty($poll_tree_answer) && isset($_poll_data['parent']))
+		if(isset($_poll_data['parent']) && $_poll_data['parent'])
 		{
-			$_poll_data['tree'] = [];
-			// $_poll_data_tree = utility\poll_tree::get(self::$private_poll_id);
-
-			// if($_poll_data_tree && is_array($_poll_data_tree))
-			// {
-			// 	$opt = array_column($_poll_data_tree, 'value');
-				$_poll_data['tree']['parent']  = $_poll_data['parent'];
-				$_poll_data['tree']['title']   = \lib\db\polls::get_poll_title(shortURL::decode($_poll_data['parent']));
-				$_poll_data['tree']['answers'] = $poll_tree_answer;
-				unset($_poll_data['parent']);
-			// }
+			$tree = \lib\utility\poll_tree::get(self::$private_poll_id);
+			$_poll_data['tree'] = $tree;
 		}
 
 		$post_meta_key = array_column($post_meta, 'option_key');

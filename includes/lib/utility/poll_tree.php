@@ -76,36 +76,57 @@ class poll_tree
 			$parent_poll_opt = [];
 		}
 
+		$insert = [];
 		foreach ($opt as $key => $value)
 		{
-			if($value !== true && $value != 'skipped' && !in_array($value, $parent_poll_opt))
+			if($value !== true && !in_array($value, $parent_poll_opt))
 			{
 				return \lib\debug::error(T_("The parent poll have not answer :key", ['key' => $value]),'tree', 'arguments');
 			}
 
-			$option_insert =
-			[
-				'post_id'      => $child,
-				'option_cat'   => 'poll_'. $child,
-				'option_key'   => 'tree_'. $parent,
-				'option_value' => $value,
-				'limit'        => 1,
-			];
-			$check = \lib\db\options::get($option_insert);
-			unset($option_insert['limit']);
-
-			if($check)
+			if($value === true)
 			{
-
-				$where                          = $option_insert;
-				$option_insert['option_status'] = 'enable';
-				$option_result = \lib\db\options::update_on_error($option_insert, $where);
+				$insert[] = " ($parent, $child, NULL) ";
 			}
 			else
 			{
-				$option_result = \lib\db\options::insert($option_insert);
+				$insert[] = " ($parent, $child, $value) ";
 			}
 		}
+
+		if(!empty($insert))
+		{
+			$insert = implode(',', $insert);
+			\lib\db::query("INSERT INTO polltrees (parent, post_id, opt) VALUES $insert ");
+		}
+
+		// foreach ($opt as $key => $value)
+		// {
+
+		// 	$option_insert =
+		// 	[
+		// 		'post_id'      => $child,
+		// 		'option_cat'   => 'poll_'. $child,
+		// 		'option_key'   => 'tree_'. $parent,
+		// 		'option_value' => ($value === true) ? 'true' : $value,
+		// 		'limit'        => 1,
+		// 	];
+
+		// 	$check = \lib\db\options::get($option_insert);
+		// 	unset($option_insert['limit']);
+
+		// 	if($check)
+		// 	{
+
+		// 		$where                          = $option_insert;
+		// 		$option_insert['option_status'] = 'enable';
+		// 		$option_result = \lib\db\options::update_on_error($option_insert, $where);
+		// 	}
+		// 	else
+		// 	{
+		// 		$option_result = \lib\db\options::insert($option_insert);
+		// 	}
+		// }
 
 		$update_poll = ['post_parent' => $parent];
 
@@ -131,6 +152,21 @@ class poll_tree
 	 */
 	public static function remove($_poll_id)
 	{
+		\lib\db\posts::update(['post_parent' => null], $_poll_id);
+		$query = "DELETE FROM polltrees WHERE polltrees.post_id = $_poll_id ";
+		return \lib\db::query($query);
+	}
+
+
+		/**
+	 * remove poll tree
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function remove2($_poll_id)
+	{
 
 		$update_poll =
 		[
@@ -149,6 +185,7 @@ class poll_tree
 		$result = \lib\db\options::update_on_error(['option_status' => 'disable'], $where);
 		return $result;
 	}
+
 
 
 	/**
@@ -175,7 +212,7 @@ class poll_tree
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get($_poll_id)
+	public static function get2($_poll_id)
 	{
 		$where =
 		[
@@ -184,6 +221,56 @@ class poll_tree
 			'option_key'   => 'tree%'
 		];
 		return \lib\db\options::get($where);
+	}
+
+	/**
+	 * get the record of poll tree in option table
+	 *
+	 * @param      <type>  $_poll_id  The poll identifier
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function get($_poll_id, $_raw = false)
+	{
+		if($_raw)
+		{
+			return \lib\db::get("SELECT * FROM polltrees WHERE polltrees.post_id = $_poll_id");
+		}
+		else
+		{
+			$return = [];
+			$tree = \lib\db::get(
+			"SELECT
+				posts.id 		  AS `parent`,
+				posts.post_url    AS `url`,
+				posts.post_title  AS `title`,
+				polltrees.opt 	  AS `answers`
+			FROM polltrees
+			JOIN posts ON posts.id = polltrees.parent
+			WHERE polltrees.post_id = $_poll_id");
+			if(is_array($tree))
+			{
+				if(isset($tree[0]['parent']))
+				{
+					$return['parent'] = \lib\utility\shortURL::encode($tree[0]['parent']);
+				}
+
+				if(isset($tree[0]['title']))
+				{
+					$return['title'] = $tree[0]['title'];
+				}
+
+				$host = Protocol."://" . \lib\router::get_root_domain(). \lib\define::get_current_language_string();
+
+				if(isset($tree[0]['url']))
+				{
+					$return['url'] = $host. '/'. $tree[0]['url'];
+				}
+
+				$return['answers'] = array_column($tree, 'answers');
+			}
+			return $return;
+		}
 	}
 }
 ?>

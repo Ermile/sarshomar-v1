@@ -246,9 +246,17 @@ trait poll
 			if($parent)
 			{
 				$loc_id  = \lib\utility\shortURL::decode($parent);
-				$loc_opt = self::$args['tree']['answers'];
+				if(self::isset_args('tree','answers'))
+				{
+					$loc_opt = self::$args['tree']['answers'];
+				}
+				else
+				{
+					// lock to all opt
+					$loc_opt = true;
+				}
 
-				if($loc_opt === true || $loc_opt == 'skipped')
+				if($loc_opt === true)
 				{
 					$loc_opt = $loc_opt;
 				}
