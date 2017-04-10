@@ -2403,3 +2403,8 @@ input.rangeSlider{display:none}
 #logo-main .three-brand-middle {margin-bottom: 3em}
 .panel-text .letter-counter{float:right}
 .rtl .panel-text .letter-counter{float:left}
+
+.myTable{border:1px solid #d8d8d8;margin:1em}
+.myTable .th,.myTable .tf{background-color:#ebebeb}
+.myTable .f:not(.th):not(:last-of-type),.myTable .f:not(.tf):not(:last-of-type){border-bottom:1px solid #ebebeb}
+.myTable .f [class*='c']{padding:0.5em}

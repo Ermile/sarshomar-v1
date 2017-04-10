@@ -22,7 +22,10 @@
    {{block('poll_skip')}}
    {{block('poll_actions')}}
   </div>
-  <div class="in large{%if login%}{%else%} guest{%endif%}" id="poll-result">{{block('poll_chart')}}</div>
+  <div class="in large{%if login%}{%else%} guest{%endif%}" id="poll-result">
+   {{block('poll_chart')}}
+   {%if url.tld == 'dev'%}{{block('poll_table')}}{%endif%}
+  </div>
   <div class="box">
    <h2 class="special-heading">{%trans "Description"%}</h2>
    <div class="f" id="poll-extra">
