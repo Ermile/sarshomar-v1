@@ -14,7 +14,6 @@ trait search
 	 */
 	public static function search($_string = null, $_options = [])
 	{
-
 		$where = []; // conditions
 
 		if(!$_string && empty($_options))
@@ -183,6 +182,11 @@ trait search
 			// search in sarshomar
 			switch ($_options['in'])
 			{
+				// just admin can set this method
+				case 'people':
+					$_options['post_sarshomar'] = 0 ;
+					break;
+
 				case 'me':
 					$_options['user_id'] = $_options['login'];
 					break;

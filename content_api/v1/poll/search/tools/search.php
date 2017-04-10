@@ -26,7 +26,21 @@ trait search
 			$meta['get_last'] = true;
 		}
 
-		$in_me = false;
+		$in_me      = false;
+		$admin_mode = false;
+
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+		{
+			$admin_mode = true;
+		}
+		else
+		{
+			if(utility::request('admin'))
+			{
+				debug::error(T_("Invalid parameter admin"), 'admin', 'arguments');
+				return false;
+			}
+		}
 
 		if(utility::request("in"))
 		{
@@ -39,6 +53,12 @@ trait search
 			if(is_string($split))
 			{
 				$in_list = ['sarshomar', 'me', 'article', 'all'];
+
+				if($admin_mode)
+				{
+					array_push($in_list, 'people');
+				}
+
 				if(!in_array($split, $in_list))
 				{
 					return debug::error(T_("Invalid parameter 'in' "), 'in', 'arguments');
@@ -55,7 +75,7 @@ trait search
 			}
 			else
 			{
-				return debug::error(T_("The 'in' parameter type is invalid", ['type' => gettype(utility::request('in'))]), 'in', 'arguments');
+				return debug::error(T_("The 'in' parameter type is invalid"), 'in', 'arguments');
 			}
 
 			if((is_array(utility::request('in')) && in_array('me', utility::request('in'))) || utility::request('in')  == 'me' )

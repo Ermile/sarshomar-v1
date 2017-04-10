@@ -128,6 +128,11 @@ class model extends \mvc\model
 			$request['in'] = 'sarshomar';
 		}
 
+		if(isset($match->sarshomar[0]) && !$match->sarshomar[0])
+		{
+			$request['in'] = 'people';
+		}
+
 		if(isset($match->status[0]) && $match->status[0])
 		{
 			$request['status'] = $match->status[0];
@@ -205,7 +210,7 @@ class model extends \mvc\model
 		[
 			'get_tags'			 => false,
 			'get_filter'         => false,
-			'get_opts'           => true,
+			'get_opts'           => false,
 			'get_options'        => false,
 			'get_public_result'  => false,
 			'get_advance_result' => false,
