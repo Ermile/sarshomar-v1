@@ -193,6 +193,10 @@ trait get
 			$_options['unit_id'] = \lib\db\units::get_id($_options['unit']);
 		}
 
+		if(!is_string($_options['order']) || (is_string($_options['order']) && !in_array(mb_strtolower($_options['order']), ['asc', 'desc'])))
+		{
+			$_options['order'] = 'ASC';
+		}
 		// ------------------ get last
 		$order = null;
 		if($_options['get_last'])
