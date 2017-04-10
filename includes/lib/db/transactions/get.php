@@ -10,30 +10,53 @@ trait get
 	"
 		transactions.id             			AS `id`,
 		transactions.title              		AS `title`,
-		-- transactions.transactionitem_id 		AS `transactionitem_id`,
-		-- transactions.user_id            		AS `user_id`,
 		transactions.type               		AS `type`,
 		units.title            					AS `unit`,
 		transactions.plus               		AS `plus`,
 		transactions.minus              		AS `minus`,
 		transactions.budgetbefore       		AS `budgetbefore`,
 		transactions.budget             		AS `budget`,
-		-- transactions.exchange_id        		AS `exchange_id`,
-		-- transactions.status             		AS `status`,
-		-- transactions.meta               		AS `meta`,
-		-- transactions.desc               		AS `desc`,
-		-- transactions.related_user_id    		AS `related_user_id`,
-		-- transactions.parent_id          		AS `parent_id`,
-		-- transactions.finished           		AS `finished`
 		transactions.createdate         		AS `date`
 		FROM
 			transactions
 		INNER JOIN transactionitems ON transactionitems.id = transactions.transactionitem_id
 		INNER JOIN units ON units.id = transactions.unit_id
+		INNER JOIN users ON users.id = transactions.user_id
 	";
 
-/**
-	 * get log
+	public static $admin_fields =
+	"
+		transactions.id             			AS `id`,
+		transactions.title              		AS `title`,
+		transactions.transactionitem_id 		AS `transactionitem_id`,
+		transactions.user_id            		AS `user_id`,
+		transactions.type               		AS `type`,
+		units.title            					AS `unit`,
+		transactions.plus               		AS `plus`,
+		transactions.minus              		AS `minus`,
+		transactions.budgetbefore       		AS `budgetbefore`,
+		transactions.budget             		AS `budget`,
+		transactions.status             		AS `status`,
+		transactions.meta               		AS `meta`,
+		transactions.desc               		AS `desc`,
+		transactions.related_user_id    		AS `related_user_id`,
+		transactions.parent_id          		AS `parent_id`,
+		transactions.finished           		AS `finished`,
+		transactions.createdate         		AS `date`,
+		users.user_mobile 	            		AS `mobile`,
+		users.user_displayname            		AS `displayname`,
+		transactionitems.caller            		AS `caller`
+
+		FROM
+			transactions
+		INNER JOIN transactionitems ON transactionitems.id = transactions.transactionitem_id
+		INNER JOIN units ON units.id = transactions.unit_id
+		INNER JOIN users ON users.id = transactions.user_id
+	";
+
+
+	/**
+	 * get transactions
 	 *
 	 * @param      <type>   $_args  The arguments
 	 *
@@ -104,6 +127,7 @@ trait get
 	 */
 	public static function search($_string = null, $_options = [])
 	{
+
 		$where = []; // conditions
 
 		if(!$_string && empty($_options))
@@ -114,25 +138,18 @@ trait get
 
 		$default_options =
 		[
-			// just return the count record
 			"get_count"      => false,
-			// enable|disable paignation,
 			"pagenation"     => true,
-			// for example in get_count mode we needless to limit and pagenation
-			// default limit of record is 15
-			// set the limit = null and pagenation = false to get all record whitout limit
 			"limit"          => 10,
-			// for manual pagenation set the statrt_limit and end limit
 			"start_limit"    => 0,
-			// for manual pagenation set the statrt_limit and end limit
 			"end_limit"      => 10,
-			// the the last record inserted to post table
 			"get_last"       => false,
-			// default order by ASC you can change to DESC
 			"order"          => "ASC",
-			// custom sort by field
 			"sort"           => null,
 			"unit"           => null,
+			"type"           => null,
+			"mobile"         => null,
+			"admin"          => false,
 		];
 		$_options = array_merge($default_options, $_options);
 
@@ -150,14 +167,21 @@ trait get
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(transactions.id) AS 'logcount' FROM transactions ";
+			$public_fields  = " COUNT(transactions.id) AS 'transactionscount' FROM transactions ";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = self::$fields;
+			if($_options['admin'])
+			{
+				$public_fields = self::$admin_fields;
+			}
+			else
+			{
+				$public_fields = self::$fields;
+			}
 			if($_options['limit'])
 			{
 				$limit = $_options['limit'];
@@ -173,16 +197,48 @@ trait get
 		$order = null;
 		if($_options['get_last'])
 		{
-			$order = " ORDER BY transactions.id DESC ";
+			if($_options['sort'])
+			{
+				$order = " ORDER BY $_options[sort] $_options[order] ";
+			}
+			else
+			{
+				$order = " ORDER BY transactions.id DESC ";
+			}
 		}
 		else
 		{
-			$order = " ORDER BY transactions.id $_options[order] ";
+			if($_options['sort'])
+			{
+				$order = " ORDER BY $_options[sort] $_options[order] ";
+			}
+			else
+			{
+				$order = " ORDER BY transactions.id $_options[order] ";
+			}
 		}
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
+		if(isset($_options['mobile']))
+		{
+			$where[] = " users.user_mobile LIKE '%$_options[mobile]%' ";
+		}
+
+		if(isset($_options['user']) && is_numeric($_options['user']))
+		{
+			$where[] = " users.id = $_options[user] ";
+		}
+
+		if(isset($_options['caller']))
+		{
+			$where[] = " transactionitems.caller = '$_options[caller]' ";
+		}
+		if(isset($_options['date']))
+		{
+			$where[] = " DATE(transactions.createdate) = DATE('$_options[date]') ";
+		}
 
 		unset($_options['pagenation']);
 		unset($_options['get_count']);
@@ -193,7 +249,12 @@ trait get
 		unset($_options['order']);
 		unset($_options['sort']);
 		unset($_options['unit']);
-
+		unset($_options['type']);
+		unset($_options['admin']);
+		unset($_options['mobile']);
+		unset($_options['user']);
+		unset($_options['caller']);
+		unset($_options['date']);
 
 		foreach ($_options as $key => $value)
 		{
@@ -245,7 +306,11 @@ trait get
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	$public_fields $where $search ";
+			$pagenation_query = (int) \lib\db::get(
+			"SELECT COUNT(*) AS `count` FROM transactions
+			INNER JOIN transactionitems ON transactionitems.id = transactions.transactionitem_id
+			INNER JOIN units ON units.id = transactions.unit_id
+			INNER JOIN users ON users.id = transactions.user_id $where $search ", 'count', true);
 			list($limit_start, $limit) = \lib\db::pagnation($pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -260,16 +325,14 @@ trait get
 
 		$json = json_encode(func_get_args());
 		$query =
-		"
-			SELECT SQL_CALC_FOUND_ROWS
-				$public_fields
-				$where
-				$search
-			$order
-			$limit
-			-- transactions::search()
-			-- $json
-		";
+		"SELECT
+		$public_fields
+		$where
+		$search
+		$order
+		$limit
+		-- transactions::search()
+		-- $json";
 
 		if(!$only_one_value)
 		{
@@ -278,7 +341,7 @@ trait get
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'logcount', true);
+			$result = \lib\db::get($query, 'transactionscount', true);
 		}
 
 		return $result;

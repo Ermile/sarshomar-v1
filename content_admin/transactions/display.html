@@ -1,0 +1,64 @@
+{%extends display.main%} {%block content%}
+<div class="main pad">
+    <div class="box">
+    <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
+        <div class="default-tbl">
+            <div class="tbl admin-log">
+                <div class="tbl-header">
+                    <span>{% trans "Type" %}</span>
+                    <span>{% trans "Minus" %}</span>
+                    <span>{% trans "Plus" %}</span>
+                    <span>{% trans "Display name" %}</span>
+                    <span>{% trans "Mobile" %}</span>
+                    <span>{% trans "Caller" %}</span>
+                    <span>{% trans "Date" %}</span>
+                    <span>{% trans "budgetbefore" %}</span>
+                    <span>{% trans "budget" %}</span>
+                </div>
+                {%for key, value in transaction_list%}
+                <div>
+                    <span>
+                        {%if value.minus%}
+                        <label class="red">-</label>
+                        {%else%}
+                        <label class="green">+</label>
+                        {%endif%}
+                    </span>
+                    <span title="{{value.minus}}">{%if value.minus%}{{value.minus|number_format|fitNumber}}{%else%}{{0|fitNumber}}{%endif%}</span>
+                    <span title="{{value.plus}}">{%if value.plus%}{{value.plus|number_format|fitNumber}}{%else%}{{0|fitNumber}}{%endif%}</span>
+                    <span title="{{value.displayname}}">
+                        <a href="{{url.base}}/admin/transactions/user={{value.user_id}}">{{value.displayname}}</a>
+                    </span>
+
+                    <span title="{{value.mobile}}">
+                        <a href="{{url.base}}/admin/transactions/mobile={{value.mobile}}">{{value.mobile}}</a>
+                    </span>
+
+                    <span title="{{value.caller}}">
+                        <a href="{{url.base}}/admin/transactions/caller={{value.caller}}">{{value.title}}</a>
+                    </span>
+
+                    <span>
+                        <a href="{{url.base}}/admin/transactions/date={{value.date|date('Ymd', false)}}">
+                            {{value.date|jdate("Y-m-d H:i:s")}}
+                        </a>
+                    </span>
+
+                    <span title="{{value.budgetfefore}}">{%if value.budgetfefore%}{{value.budgetfefore|number_format|fitNumber}}{%else%}{{0|fitNumber}}{%endif%}</span>
+                    <span title="{{value.budget}}">{%if value.budget%}{{value.budget|number_format|fitNumber}}{%else%}{{0|fitNumber}}{%endif%}</span>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+    {%include display.pagination%}
+ </div>
+</div>
+
+{%endblock%}
