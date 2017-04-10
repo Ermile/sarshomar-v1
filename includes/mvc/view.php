@@ -92,6 +92,14 @@ class view extends \lib\mvc\view
 		$this->include->css        = false;
 
 		$this->data->addUrl = $this->url('base') . '/@/add';
+		if(isset($_SESSION['main_account']))
+		{
+			$this->data->main_account = true;
+		}
+		if(isset($_SESSION['main_mobile']))
+		{
+			$this->data->main_mobile = $_SESSION['main_mobile'];
+		}
 
 		// if(! ($this->url('sub') === 'cp' || $this->url('sub') === 'account') )
 		// 	$this->url->MainStatic       = false;

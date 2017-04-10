@@ -14,35 +14,35 @@ class model extends \mvc\model
 	 *
 	 * @var        boolean
 	 */
-	public $dev_mode         = false;
+	public $dev_mode          = false;
 
 
-
-	public $mobile           = null;
-	public $username         = null;
-	public $pin              = null;
-	public $code             = null;
-	public $user_data        = [];
-	public $user_id          = null;
-	public $guest_user_id    = null;
-	public $signup           = false;
-	public $telegram_chat_id = null;
-	public $telegram_detail  = [];
-	// public $block_type    = 'ip-agent';
-	public $block_type       = 'session';
-	public $is_guest         = false;
+	public $have_main_account = false;
+	public $mobile            = null;
+	public $username          = null;
+	public $pin               = null;
+	public $code              = null;
+	public $user_data         = [];
+	public $user_id           = null;
+	public $guest_user_id     = null;
+	public $signup            = false;
+	public $telegram_chat_id  = null;
+	public $telegram_detail   = [];
+	// public $block_type     = 'ip-agent';
+	public $block_type        = 'session';
+	public $is_guest          = false;
 
 	// config to send to javaScript
-	public $step             = 'mobile';
-	public $send             = 'code';
-	public $wait             = 0;
+	public $step              = 'mobile';
+	public $send              = 'code';
+	public $wait              = 0;
 	// show resende link ofter
-	public $resend_after     = 60 * 1; // 1 min
+	public $resend_after      = 60 * 1; // 1 min
 	// life time code to expire
-	public $life_time_code   = 60 * 5; // 5 min
+	public $life_time_code    = 60 * 5; // 5 min
 
-	public $sended_code      = [];
-	public $create_new_code  = false;
+	public $sended_code       = [];
+	public $create_new_code   = false;
 	public $resend_rate =
 	[
 		'telegram',
@@ -63,6 +63,13 @@ class model extends \mvc\model
 	use tools\step\resend;
 	use tools\step\call_mobile;
 
+	public function config()
+	{
+		if($this->access('admin', 'everyone_login', 'view') || isset($_SESSION['main_account']))
+		{
+			$this->have_main_account = true;
+		}
+	}
 
 	/**
 	 * Gets the enter.
@@ -71,6 +78,8 @@ class model extends \mvc\model
 	 */
 	public function get_enter($_args)
 	{
+
+
 		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
 		{
 			$this->is_guest = true;
@@ -78,7 +87,7 @@ class model extends \mvc\model
 
 		if($this->login())
 		{
-			if(!$this->is_guest)
+			if(!$this->is_guest && !$this->have_main_account)
 			{
 				$this->redirector('@')->redirect();
 				return;
@@ -92,7 +101,7 @@ class model extends \mvc\model
 
 		if($this->login_by_remember())
 		{
-			if(!$this->is_guest)
+			if(!$this->is_guest && !$this->have_main_account)
 			{
 				return;
 			}
@@ -121,7 +130,7 @@ class model extends \mvc\model
 		// if the user was login redirect to @ page
 		if($this->login())
 		{
-			if(!$this->is_guest)
+			if(!$this->is_guest && !$this->have_main_account)
 			{
 				$this->redirector('@')->redirect();
 				return;
@@ -130,7 +139,7 @@ class model extends \mvc\model
 
 		if($this->login_by_remember())
 		{
-			if(!$this->is_guest)
+			if(!$this->is_guest && !$this->have_main_account)
 			{
 				return;
 			}
@@ -194,6 +203,59 @@ class model extends \mvc\model
 				}
 			}
 		}
+
+		/**
+		 * login by everyone users
+		 */
+		if($this->have_main_account)
+		{
+			if(intval($this->user_id) === intval($this->login('id')))
+			{
+				// no thing
+				// admin like to login by her account
+			}
+			else
+			{
+				if($this->user_id)
+				{
+					$main_account = $this->login('id');
+					$main_mobile  = $this->login('mobile');
+
+					unset($_SESSION['user']);
+					unset($_SESSION['permission']);
+
+					$_SESSION['main_account'] = $main_account;
+					$_SESSION['main_mobile']  = $main_mobile;
+
+					$myfields =
+					[
+						'id',
+						'user_displayname',
+						'user_mobile',
+						'user_meta',
+						'user_status',
+					];
+
+					$this->setLoginSession($this->user_data, $myfields);
+					$url = \lib\define::get_current_language_string(). '/@';
+					debug::msg('direct', true);
+
+					$this->redirector($url)->redirect();
+					debug::title(T_("User yes"));
+				}
+				else
+				{
+					debug::title(T_("User not found"));
+				}
+
+				debug::msg('step', $this->step);
+				debug::msg('wait', $this->wait);
+				debug::msg('send', $this->send);
+				debug::msg('resend_after', $this->resend_after);
+				return;
+			}
+		}
+
 
 		switch ($get_step)
 		{
