@@ -189,6 +189,22 @@ class view extends \mvc\view
 		{
 			$this->data->status_avalible = $this->model()->status_avalible($poll['id']);
 		}
+
+		// if(\lib\utility::get('lottery'))
+		// {
+		// 	if(isset($poll['id']))
+		// 	{
+		// 		$poll_id = \lib\utility\shortURL::decode($poll['id']);
+		// 		if($poll_id)
+		// 		{
+		// 			$lottery = \lib\utility\lottery::run(['poll_id' => $poll_id, 'type' => \lib\utility::get('lottery')]);
+		// 			var_dump($lottery);
+		// 			exit();
+		// 		}
+		// 	}
+
+		// }
+
 	}
 
 

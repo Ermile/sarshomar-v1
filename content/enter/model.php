@@ -79,7 +79,6 @@ class model extends \mvc\model
 	public function get_enter($_args)
 	{
 
-
 		if($this->login() && \lib\utility\users::is_guest($this->login('id')))
 		{
 			$this->is_guest = true;
@@ -107,8 +106,39 @@ class model extends \mvc\model
 			}
 		}
 
+		if(utility::get('mobile') && isset($_SESSION['main_mobile']) && $_SESSION['main_mobile'] === utility::get('mobile'))
+		{
+			$this->set_main_session();
+		}
 	}
 
+	/**
+	 * Sets the main session.
+	 */
+	public function set_main_session()
+	{
+		$myfields =
+		[
+			'id',
+			'user_displayname',
+			'user_mobile',
+			'user_meta',
+			'user_status',
+		];
+		$user_data = \lib\utility\users::get($_SESSION['main_account']);
+		$this->setLoginSession($user_data, $myfields);
+		unset($_SESSION['main_account']);
+		unset($_SESSION['main_mobile']);
+		$url = \lib\define::get_current_language_string(). '/@';
+		if(utility::get('referer'))
+		{
+			$url = utility::get('referer');
+		}
+		debug::msg('direct', true);
+
+		$this->redirector($url)->redirect();
+		debug::title(T_("User yes"));
+	}
 
 	/**
 	 * Posts an enter.
