@@ -10,57 +10,28 @@
         <div class="default-tbl">
             <div class="tbl admin-log">
                 <div class="tbl-header">
-                    <span><a href="{{url.base}}/admin/users/{{order_url.id}}">{%trans "id" %}</a></span>
+                    <span><a href="{{url.base}}/admin/users/{{order_url.id}}">{%trans "Dashboard" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_mobile}}">{%trans "user_mobile" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_username}}">{%trans "user_username" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_displayname}}">{%trans "user_displayname" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_status}}">{%trans "user_status" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.budget}}">{%trans "budget" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.user_validstatus}}">{%trans "user_validstatus" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_port}}">{%trans "user_port" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.user_trust}}">{%trans "user_trust" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_verify}}">{%trans "user_verify" %}</a></span>
                     <span><a href="{{url.base}}/admin/users/{{order_url.user_language}}">{%trans "user_language" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.poll_answered}}">{%trans "poll_answered" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.poll_skipped}}">{%trans "poll_skipped" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.my_poll}}">{%trans "my_poll" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.my_poll_answered}}">{%trans "my_poll_answered" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.my_poll_skipped}}">{%trans "my_poll_skipped" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.user_referred}}">{%trans "user_referred" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.user_verified}}">{%trans "user_verified" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.comment_count}}">{%trans "comment_count" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.draft_count}}">{%trans "draft_count" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.publish_count}}">{%trans "publish_count" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.awaiting_count}}">{%trans "awaiting_count" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.my_fav}}">{%trans "my_fav" %}</a></span>
-                    <span><a href="{{url.base}}/admin/users/{{order_url.my_like}}">{%trans "my_like" %}</a></span>
                 </div>
                 {%for key, value in users_list%}
                 <div>
-                    <span>{{value.id}}</span>
+                    <span><a href="{{url.balse}}/admin/userdashboards/user={{value.id}}">{{value.id}}</a></span>
+                    <span title='{%trans "Login by this mobile"%}'><a href="{{url.base}}/enter?userid={{value.id}}&mobile=0000000000" data-direct>{{value.user_mobile|fitNumber}}</a></span>
                     <span>{{value.user_mobile|fitNumber}}</span>
                     <span>{{value.user_username}}</span>
                     <span>{{value.user_displayname}}</span>
                     <span>{{value.user_status}}</span>
                     <span>{{value.budget|number_format|fitNumber}}</span>
-                    <span>{{value.user_validstatus}}</span>
                     <span>{{value.user_port}}</span>
-                    <span>{{value.user_trust}}</span>
                     <span>{{value.user_verify}}</span>
                     <span>{{value.user_language}}</span>
-                    <span>{{value.poll_answered|number_format|fitNumber}}</span>
-                    <span>{{value.poll_skipped|number_format|fitNumber}}</span>
-                    <span>{{value.my_poll|number_format|fitNumber}}</span>
-                    <span>{{value.my_poll_answered|number_format|fitNumber}}</span>
-                    <span>{{value.my_poll_skipped|number_format|fitNumber}}</span>
-                    <span>{{value.user_referred|number_format|fitNumber}}</span>
-                    <span>{{value.user_verified|number_format|fitNumber}}</span>
-                    <span>{{value.comment_count|number_format|fitNumber}}</span>
-                    <span>{{value.draft_count|number_format|fitNumber}}</span>
-                    <span>{{value.publish_count|number_format|fitNumber}}</span>
-                    <span>{{value.awaiting_count|number_format|fitNumber}}</span>
-                    <span>{{value.my_fav|number_format|fitNumber}}</span>
-                    <span>{{value.my_like|number_format|fitNumber}}</span>
                 </div>
                 {%endfor%}
             </div>

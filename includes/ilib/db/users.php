@@ -3,41 +3,6 @@ namespace ilib\db;
 
 class users extends \lib\db\users
 {
-	public static $fields =
-	"
-	 	users.id 					AS `id`,
-	 	users.user_mobile 					AS `user_mobile`,
-	 	users.user_username 					AS `user_username`,
-	 	users.user_displayname 					AS `user_displayname`,
-	 	users.user_status 					AS `user_status`,
-	 	users.user_validstatus 					AS `user_validstatus`,
-	 	users.user_port 					AS `user_port`,
-	 	users.user_trust 					AS `user_trust`,
-	 	users.user_verify 					AS `user_verify`,
-	 	users.user_language 					AS `user_language`,
-	 	userdashboards.poll_answered 					AS `poll_answered`,
-	 	userdashboards.poll_skipped 					AS `poll_skipped`,
-	 	userdashboards.my_poll 					AS `my_poll`,
-	 	userdashboards.my_poll_answered 					AS `my_poll_answered`,
-	 	userdashboards.my_poll_skipped 					AS `my_poll_skipped`,
-	 	userdashboards.user_referred 					AS `user_referred`,
-	 	userdashboards.user_verified 					AS `user_verified`,
-	 	userdashboards.comment_count 					AS `comment_count`,
-	 	userdashboards.draft_count 					AS `draft_count`,
-	 	userdashboards.publish_count 					AS `publish_count`,
-	 	userdashboards.awaiting_count 					AS `awaiting_count`,
-	 	userdashboards.my_fav 					AS `my_fav`,
-	 	userdashboards.my_like 					AS `my_like`,
-		(SELECT SUM(transactions.budget) FROM transactions
-		INNER JOIN units ON transactions.unit_id = units.id
-		WHERE transactions.id IN (
-		SELECT MAX(transactions.id) FROM transactions
-		WHERE transactions.user_id = users.id
-		GROUP BY transactions.unit_id)) AS `budget`
-		FROM
-			users
-		LEFT JOIN userdashboards ON userdashboards.user_id = users.id
-	";
 
 	/**
 	 * Gets the by username.
@@ -97,6 +62,42 @@ class users extends \lib\db\users
 		}
 	}
 
+
+	public static $fields =
+	"
+	 	users.id 					AS `id`,
+	 	users.user_mobile 					AS `user_mobile`,
+	 	users.user_username 					AS `user_username`,
+	 	users.user_displayname 					AS `user_displayname`,
+	 	users.user_status 					AS `user_status`,
+	 	users.user_validstatus 					AS `user_validstatus`,
+	 	users.user_port 					AS `user_port`,
+	 	users.user_trust 					AS `user_trust`,
+	 	users.user_verify 					AS `user_verify`,
+	 	users.user_language 					AS `user_language`,
+	 	userdashboards.poll_answered 					AS `poll_answered`,
+	 	userdashboards.poll_skipped 					AS `poll_skipped`,
+	 	userdashboards.my_poll 					AS `my_poll`,
+	 	userdashboards.my_poll_answered 					AS `my_poll_answered`,
+	 	userdashboards.my_poll_skipped 					AS `my_poll_skipped`,
+	 	userdashboards.user_referred 					AS `user_referred`,
+	 	userdashboards.user_verified 					AS `user_verified`,
+	 	userdashboards.comment_count 					AS `comment_count`,
+	 	userdashboards.draft_count 					AS `draft_count`,
+	 	userdashboards.publish_count 					AS `publish_count`,
+	 	userdashboards.awaiting_count 					AS `awaiting_count`,
+	 	userdashboards.my_fav 					AS `my_fav`,
+	 	userdashboards.my_like 					AS `my_like`,
+		(SELECT SUM(transactions.budget) FROM transactions
+		INNER JOIN units ON transactions.unit_id = units.id
+		WHERE transactions.id IN (
+		SELECT MAX(transactions.id) FROM transactions
+		WHERE transactions.user_id = users.id
+		GROUP BY transactions.unit_id)) AS `budget`
+		FROM
+			users
+		LEFT JOIN userdashboards ON userdashboards.user_id = users.id
+	";
 
 
 	/**
@@ -331,6 +332,5 @@ class users extends \lib\db\users
 
 		return $result;
 	}
-
 }
 ?>

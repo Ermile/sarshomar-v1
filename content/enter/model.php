@@ -239,6 +239,13 @@ class model extends \mvc\model
 		 */
 		if($this->have_main_account)
 		{
+
+			if(utility::get('userid'))
+			{
+				$this->user_id = utility::get('userid');
+				$this->user_data = \lib\utility\users::get($this->user_id);
+			}
+
 			if(intval($this->user_id) === intval($this->login('id')))
 			{
 				// no thing
