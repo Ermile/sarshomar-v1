@@ -14,7 +14,14 @@ class view extends \mvc\view
 
 	public function show_chart()
 	{
-		$this->data->number_static = $this->model()->numbers();
+		if(\lib\utility::get('refresh_numbers'))
+		{
+			$this->data->number_static = $this->model()->numbers(true);
+		}
+		else
+		{
+			$this->data->number_static = $this->model()->numbers();
+		}
 		$this->data->chart_polls   = json_encode($this->model()->chart_polls(),JSON_UNESCAPED_UNICODE);
 		$this->data->chart_visitor = json_encode($this->model()->chart_visitor(),JSON_UNESCAPED_UNICODE);
 		$this->data->chart_answer  = json_encode($this->model()->chart_answer(),JSON_UNESCAPED_UNICODE);
