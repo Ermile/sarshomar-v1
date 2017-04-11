@@ -427,7 +427,8 @@ trait options
 			{
 				// \lib\db::rollback();
 				\lib\db\logs::set('user:poll:add:error:options:tag:max:limit', self::$args['user'], ['meta' => ['input' => self::$args]]);
-				return debug::error(T_("You have added so many tags, Please remove some of them"), 'tags', 'arguments');
+				debug::warn(T_("You have added so many tags, You can save just 5 tags"), 'tags', 'arguments');
+				array_splice($tags, 5);
 			}
 
 			$temp_poll_id = self::$poll_id;
