@@ -228,6 +228,7 @@ class model extends \mvc\model
 			$poll_ids = array_map(function($_a){ return utility\shortURL::decode($_a);}, $poll_codes);
 			if(!empty($poll_ids))
 			{
+				// load home page
 				$poll_ids = implode(',', $poll_ids);
 				$query =
 				"
@@ -257,6 +258,25 @@ class model extends \mvc\model
 				{
 					$homepage = [];
 				}
+				// load image mode
+				$query_image =
+				"
+					SELECT options.post_id AS `post_id`, 'title_attachment' AS `type`
+					FROM options
+					WHERE
+					options.post_id IN ($poll_ids) AND
+					options.option_cat    = CONCAT('poll_', options.post_id) AND
+					options.option_key  = 'title_attachment' AND
+					options.option_status = 'enable'
+					UNION
+					SELECT pollopts.post_id AS `post_id`, 'opt_attachment' AS `type`
+					FROM pollopts
+					WHERE
+					pollopts.post_id IN ($poll_ids) AND pollopts.attachment_id IS NOT NULL AND
+					pollopts.status = 'enable'
+				";
+				$have_media = \lib\db::get($query_image, ['post_id', 'type']);
+				$poll_list['attachment'] = $have_media;
 			}
 		}
 		$poll_list['homepage'] = $homepage;
