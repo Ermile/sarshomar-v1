@@ -9,7 +9,7 @@ class units
 	 *
 	 * @param      <type>  $_id    The identifier
 	 */
-	public static function get($_id = null)
+	public static function get($_id = null, $_get_title = false)
 	{
 		$id = null;
 		if($_id)
@@ -24,6 +24,18 @@ class units
 		else
 		{
 			$result = \lib\db::get($query);
+		}
+
+		if($_get_title)
+		{
+			if(isset($result['title']))
+			{
+				return $result['title'];
+			}
+			elseif(isset($result[0]['title']))
+			{
+				return array_column($result, 'title');
+			}
 		}
 		return $result;
 	}

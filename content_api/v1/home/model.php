@@ -272,6 +272,36 @@ class model extends \mvc\model
 			debug::error(T_("System error"));
 			return false;
 		}
+		if($this->user_id)
+		{
+			$user_data = \lib\utility\users::get($this->user_id);
+
+			header("user_code: ". \lib\utility\shortURL::encode($this->user_id));
+
+			if(array_key_exists('user_mobile', $user_data))
+			{
+				header("user_mobile: ". $user_data['user_mobile']);
+			}
+
+			if(array_key_exists('user_displayname', $user_data))
+			{
+				header("user_displayname: ". $user_data['user_displayname']);
+			}
+
+			if(array_key_exists('unit_id', $user_data))
+			{
+				header("user_unit_id: ". $user_data['unit_id']);
+				if($user_data['unit_id'])
+				{
+					header("user_unit: ". \lib\db\units::get($user_data['unit_id'], true));
+				}
+			}
+
+			if(array_key_exists('user_language', $user_data))
+			{
+				header("user_language: ". $user_data['user_language']);
+			}
+		}
 	}
 
 
