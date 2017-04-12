@@ -163,6 +163,33 @@
 .admin-log.tbl>div>span>label.blue {background: #2196F3}
 .admin-log.tbl>div>span>label.yellow {background: #FF9800}
 .show-meta input {display: none}
-
-
 .log-modal {max-height: 400px;overflow-y: auto;text-align: left}
+
+
+
+
+
+
+/* Design for a width of 768px until 959px */
+@media all and (min-width: 768px) and (max-width: 959px) {
+	.default-tbl{overflow-x:scroll;}
+	#users .default-tbl .tbl{min-width:810px;}
+	#users_sort .default-tbl .tbl{min-width:810px;}
+	#userdashboards .default-tbl .tbl{min-width:1200px;}
+	#userdashboards_sort .default-tbl .tbl{min-width:1200px;}
+	.default-tbl .tbl>div>span{padding:0.8em .2em;text-align:center;font-size:0.9em;}
+}
+
+/* Design for a width of 320px until 767px */
+@media all and (min-width: 320px) and (max-width: 767px) {
+	.default-tbl{overflow-x:scroll;}
+	.default-tbl .tbl{margin:0;min-width:490px;}
+	#users .default-tbl .tbl{min-width:810px;}
+	#users_sort .default-tbl .tbl{min-width:810px;}
+	#userdashboards .default-tbl .tbl{min-width:1200px;}
+	#userdashboards_sort .default-tbl .tbl{min-width:1200px;}
+	.default-tbl .tbl>div>span{padding:0.8em .2em;text-align:center;font-size:0.86em;}
+}
+
+
+

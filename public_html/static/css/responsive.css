@@ -502,13 +502,6 @@ nav.breadcrumb{display:none}
 .s-align-content-around{-webkit-align-content:space-around!important;-ms-flex-line-pack:distribute!important;align-content:space-around!important}
 .s-align-content-stretch{-webkit-align-content:stretch!important;-ms-flex-line-pack:stretch!important;align-content:stretch!important}
 
-
-/*added for admin page responsive Ali*/
-.default-tbl{overflow-x:scroll;}
-.default-tbl .tbl{margin:0;min-width:460px;}
-#users .default-tbl .tbl{min-width:810px;}
-.default-tbl .tbl>div>span{padding:0.8em .2em;text-align:center;}
-
 }
 
 
