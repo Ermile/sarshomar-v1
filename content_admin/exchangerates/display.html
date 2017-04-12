@@ -85,9 +85,22 @@
       </div>
     </div>
   </div>
-  <div class="btn-container center">
-    <button type="submit">{%trans "submit"%}</button>
-     <div class="default-tbl billing-history-table">
+  <div class="center">
+    <!-- <button type="submit">{%trans "submit"%}</button> -->
+    <div class="row auto">
+      <div class="span7">
+        <div class="btn-container margin-top">
+          <input type="hidden" name="n" value="v" id="submit-form">
+          <nav>
+            <a class="btn primary" id='next-step' data-draft='Save it'>Next Step</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+
+     <div class="default-tbl billing-history-table box">
         <h3 id="billing-history">{%trans "exchangerates"%}</h3>
         <div class="tbl">
             <div class="tbl-header">
