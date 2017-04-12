@@ -13,8 +13,7 @@
                     <span>{% trans "Priority" %}</span>
                     <span>{% trans "Category" %}</span>
                     <span>{% trans "Caller" %}</span>
-                    <span>{% trans "Display name" %}</span>
-                    <span>{% trans "Mobile" %}</span>
+                    <span>{% trans "User" %}</span>
                     <span>{% trans "Log data" %}</span>
                     <span>{% trans "Meta" %}</span>
                     <span>{% trans "Date" %}</span>
@@ -29,14 +28,9 @@
                     <span title="{{value.caller}}">
                         <a href="{{url.base}}/admin/logs/caller={{value.caller}}">{{value.title}}</a>
                     </span>
-
-                    <span title="{{value.displayname}}">{{value.displayname}}</span>
-
                     <span title="{{value.user_id}}">
-                        <a href="{{url.base}}/admin/logs/user={{value.user_id}}">{{value.user_id}}</a>
-                    </span>
-                    <span title="{{value.mobile}}">
-                        <a href="{{url.base}}/admin/logs/mobile={{value.mobile}}">{{value.mobile}}</a>
+                        <a href="{{url.base}}/admin/users/user={{value.user_id}}" title='{%trans "User data"%}'><span class="icon-pencil"></span></a>
+                        <a href="{{url.base}}/admin/logs/user={{value.user_id}}" title='{%trans "Find this user in logs"%}'>{{value.user_id}}</a>
                     </span>
                     <span title="{{value.data}}">{{value.data}}</span>
                     <span>

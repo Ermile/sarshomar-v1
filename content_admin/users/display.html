@@ -22,7 +22,12 @@
                 </div>
                 {%for key, value in users_list%}
                 <div>
-                    <span><a href="{{url.balse}}/admin/userdashboards/user={{value.id}}">{{value.id}}</a></span>
+                    <span>
+                        <a href="{{url.balse}}/admin/userdashboards/user={{value.id}}">{{value.id}}</a>
+                        <a href="{{url.base}}/admin/logs/user={{value.id}}" title='{%trans "Find logs of users"%}'>
+                            <span class="icon-pencil"></span>
+                        </a>
+                    </span>
                     <span title='{%trans "Login by this mobile"%}'><a href="{{url.base}}/enter?userid={{value.id}}&mobile=0000000000" data-direct>{{value.user_mobile|fitNumber}}</a></span>
                     <span>{{value.user_mobile|fitNumber}}</span>
                     <span>{{value.user_username}}</span>
