@@ -43,7 +43,7 @@ trait verify
 				$kavenegar_send_result = \lib\utility\sms::send($request);
 			}
 
-			if($kavenegar_send_result === 411)
+			if($kavenegar_send_result === 411 && substr($this->mobile, 0, 2) === '98')
 			{
 				// this mobile is not a valid mobile
 				$this->signup('block');
@@ -359,7 +359,7 @@ trait verify
 			$kavenegar_send_result = \lib\utility\sms::send($request, 'verify');
 		}
 
-		if($kavenegar_send_result === 411)
+		if($kavenegar_send_result === 411 && substr($this->mobile, 0, 2) === '98')
 		{
 			// this mobile is not a valid mobile
 			$this->signup('block');
