@@ -544,17 +544,18 @@
 {%block poll_filters%}
 {% spaceless %}
  {%if poll.filters%}
+  <div class="title">{%trans "Audiences of this poll"%}</div>
+  <div class="content">
   {%for key, value in poll.filters%}
    {%if key == 'count'%}
    {%else%}
-    <div class="title">{%trans "Audiences of this poll"%}</div>
-    <div class="content">
      {% for k, v in value%}
-      <span>{{v}}</span>
+      {% set val = v %}
+      <span>{%trans val%}</span>
      {%endfor%}
-    </div>
    {%endif%}
   {%endfor%}
+  </div>
  {%else%}
   <div class="content no-data">{%trans "Not set"%}</div>
  {%endif%}
