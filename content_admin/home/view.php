@@ -14,14 +14,18 @@ class view extends \mvc\view
 
 	public function show_chart()
 	{
-		if(\lib\utility::get('refresh_numbers'))
+		if(\lib\utility::get('refresh_dashboard'))
 		{
-			$this->data->number_static = $this->model()->numbers(true);
+			$this->model()->numbers(true);
+			$this->model()->chart_update('polls');
+			$this->model()->chart_update('users_week');
+			$this->model()->chart_update('users');
+			$this->model()->chart_update('visitor');
+			$this->model()->chart_update('answer');
+			$this->model()->chart_update('transactions');
 		}
-		else
-		{
-			$this->data->number_static = $this->model()->numbers();
-		}
+
+		$this->data->number_static = $this->model()->numbers();
 		$this->data->chart_polls   = json_encode($this->model()->chart_polls(),JSON_UNESCAPED_UNICODE);
 		$this->data->chart_visitor = json_encode($this->model()->chart_visitor(),JSON_UNESCAPED_UNICODE);
 		$this->data->chart_answer  = json_encode($this->model()->chart_answer(),JSON_UNESCAPED_UNICODE);
