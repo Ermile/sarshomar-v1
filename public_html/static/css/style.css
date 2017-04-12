@@ -671,9 +671,10 @@ footer #footer-links #footer-news article:hover{border-right-color:#e5a428}
 footer #footer-links #footer-news p{font-size:.8em;margin-bottom:0;color:#777}
 /*footer #footer-links .enamad img{display:none}*/
 
-footer #footer-links #footer-enamad{}
-footer #footer-links #footer-enamad a{display:block}
-footer #footer-links #footer-enamad img{width:80px}
+footer #footer-links #footer-enamad a{display:block;max-width:90px}
+footer #footer-links #footer-enamad img{display:block;max-width:100%;background-color:#eaeae9;padding:0.5em 0}
+footer #footer-links #footer-enamad div{height:4px;background-image:url(../images/svg/footer/enamad.svg);background-repeat:repeat-x}
+footer #footer-links #footer-enamad div:last-of-type{-webkit-transform:rotate(180deg);transform:rotate(180deg)}
 
 /* footer-note*/
 footer{margin-top:-2px}
