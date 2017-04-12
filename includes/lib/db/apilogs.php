@@ -41,7 +41,9 @@ class apilogs
 		$set   = join($set, ',');
 
 		$query = "INSERT IGNORE INTO apilogs SET $set ";
-		return \lib\db::query($query);
+
+		\lib\db::query($query, \lib\db\logs::get_db_log_name(), ['resume_on_error' => true]);
+		return true;
 	}
 }
 ?>
