@@ -1,14 +1,79 @@
 {%extends display.main%}
 
+{% block content %}
+<div class="main pad-large">
+ <div class="box">
+  {%set pTtile = post.title%}
+  <h2 class="sh large">
+   <a href="{{post.url}}" title="{{post.title}}">{%trans pTtile%}</a>
+  </h2>
 
-{%block content%}
+  <div class="in">
+   {%if nav%}
+    <nav id="page-nav">
+     <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+     <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+    </nav>
+   {%endif%}
+
+   <h3 class="bh">{%trans "Polls"%}</h3>
+
+   <div class="l2">
+    {%if datatable%}
+     <ul>
+      {% for key, value in datatable%}
+       {%if value.post_language == 'en'%}
+        <li>
+         <h4><a href="/{{value.post_url}}" data-direct>{{value.post_title}}</a></h4>
+        </li>
+       {%else%}
+        <li>
+         <h4><a href="/{{value.post_language}}/{{value.post_url}}" data-direct>{{value.post_title}}</a></h4>
+        </li>
+       {%endif%}
+      {%endfor%}
+     </ul>
+    {%else%}
+     <p class="alert alert-info">{%trans "There are no poll exist!"%}</p>
+    {%endif%}
+   </div>
+
+   <h3 class="bh">{%trans "Child Categories"%}</h3>
+
+   <div class="l1">
+    {%if datatable_cats%}
+     <nav class="content tags">
+      {% for key, value in datatable_cats%}
+       {%set tTtile = value.term_title%}
+       <a href="{{value.term_url}}">{%trans tTtile%}</a>
+      {%endfor%}
+     </nav>
+    {%else%}
+     <p class="alert alert-info">{%trans "There are no category exist!"%}</p>
+    {%endif%}
+   </div>
+
+
+   {%if tags_list%}
+    <ul>
+     {% for key, value in tags_list%}
+      <li><a href="{{value.url}}">{{value.title}}-{{value.count}}</a></li>
+     {%endfor%}
+    </ul>
+   {%endif%}
+
+  </div>
+ </div>
+</div>
+{% endblock %}
+
+{%block content2%}
 <div class="main text-based">
   <section class="box pad">
 {%block page_content%}
 {%set pTtile = post.title%}
   <h2 class="special-heading"><a href="{{post.url}}" title="{{post.title}}">{%trans pTtile%}</a></h2>
     <div class="in">
-
        <div class="content">{{post.content |raw}}</div>
 {%if nav%}
        <nav id="page-nav">
