@@ -551,7 +551,6 @@
   {%for key, value in poll.filters%}
    {%if key == 'count'%}
    {%else%}
-     <span class="icon-{{key}} icon-2x"></span>
      {% for k, v in value%}
       {% set val = v %}
       <span>{%trans val%}</span>
