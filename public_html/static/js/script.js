@@ -3193,7 +3193,7 @@ function saveAnswers(_type)
 	// if answer isset then enable next
 	if(data)
 	{
-		$('.poll-actions .after').removeClass('disabled')
+		$('.poll-actions .next').removeClass('disabled')
 	}
 
 	data = JSON.stringify(data);
