@@ -210,10 +210,12 @@ class users
 			switch ($user_verify)
 			{
 				case 'complete':
+				case 'mobile':
 					// no thing!
 					break;
 
 				default:
+					// this users set the mobile and user_verify not set on mobile
 					$user_update['user_verify'] = 'mobile';
 					break;
 			}
