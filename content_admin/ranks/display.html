@@ -1,0 +1,68 @@
+{%extends display.main%} {%block content%}
+<div class="main pad">
+    <div class="box">
+    <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
+        <div class="default-tbl">
+            <div class="tbl admin-log">
+                <div class="tbl-header">
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.post_id}}">{%trans "post_id"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.member}}">{%trans "member"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.public}}">{%trans "public"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.filter}}">{%trans "filter"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.ad}}">{%trans "ad"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.money}}">{%trans "money"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.report}}">{%trans "report"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.vote}}">{%trans "vote"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.like}}">{%trans "like"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.fav}}">{%trans "fav"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.skip}}">{%trans "skip"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.comment}}">{%trans "comment"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.view}}">{%trans "view"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.other}}">{%trans "other"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.sarshomar}}">{%trans "sarshomar"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.createdate}}">{%trans "createdate"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.ago}}">{%trans "ago"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.admin}}">{%trans "admin"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.vip}}">{%trans "vip"%}</a></span>
+                    <span><a href="{{url.base}}/admin/ranks/{{order_url.value}}">{%trans "value"%}</a></span>
+                </div>
+                {%for key, value in log_list%}
+                <div>
+                    <span>
+                        <a href="{{url.base}}/{{value.url}}">{{value.title}}</a>
+                    </span>
+                    <span>{{value.member|number_format|fitNumber}}</span>
+                    <span>{{value.public|number_format|fitNumber}}</span>
+                    <span>{{value.filter|number_format|fitNumber}}</span>
+                    <span>{{value.ad|number_format|fitNumber}}</span>
+                    <span>{{value.money|number_format|fitNumber}}</span>
+                    <span>{{value.report|number_format|fitNumber}}</span>
+                    <span>{{value.vote|number_format|fitNumber}}</span>
+                    <span>{{value.like|number_format|fitNumber}}</span>
+                    <span>{{value.fav|number_format|fitNumber}}</span>
+                    <span>{{value.skip|number_format|fitNumber}}</span>
+                    <span>{{value.comment|number_format|fitNumber}}</span>
+                    <span>{{value.view|number_format|fitNumber}}</span>
+                    <span>{{value.other|number_format|fitNumber}}</span>
+                    <span>{{value.sarshomar|number_format|fitNumber}}</span>
+                    <span title='{{value.createdate}}| {{value.createdate|jdate("Y-m-d H:i:s")}}'>{{value.createdate|jdate("Y-m-d")}}</span>
+                    <span>{{value.ago|number_format|fitNumber}}</span>
+                    <span>{{value.admin|number_format|fitNumber}}</span>
+                    <span>{{value.vip|number_format|fitNumber}}</span>
+                    <span>{{value.value|number_format|fitNumber}}</span>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+    {%include display.pagination%}
+ </div>
+</div>
+
+{%endblock%}
