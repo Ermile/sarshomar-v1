@@ -14,6 +14,11 @@ class ranks
 	 */
 	public static function set($_poll_id, $_field = [])
 	{
+		if(!$_poll_id)
+		{
+			return false;
+		}
+
 		$default_fields = self::$poll_ranks_value;
 		$default_fields = array_map(function(){ return 0; } , $default_fields);
 		if(isset($default_fields['createdate']))
@@ -57,6 +62,11 @@ class ranks
 	 */
 	public static function get($_poll_id, $_field = null)
 	{
+		if(!$_poll_id)
+		{
+			return false;
+		}
+
 		$field     = '*';
 		$get_field = null;
 		if(is_array($_field))
@@ -70,17 +80,7 @@ class ranks
 			$get_field = $_field;
 		}
 
-		$query =
-		"
-			SELECT
-				$field
-			FROM
-				ranks
-			WHERE
-				ranks.post_id = $_poll_id
-			LIMIT 1
-			-- ranks::get()
-		";
+		$query = " SELECT $field FROM ranks WHERE ranks.post_id = $_poll_id LIMIT 1	-- ranks::get()	";
 		$result = \lib\db::get($query, $get_field, true);
 		return $result;
 
@@ -99,6 +99,12 @@ class ranks
 	 */
 	public static function change_rank($_poll_id, $_field, $_plus = 1, $_options = [])
 	{
+
+		if(!$_poll_id)
+		{
+			return false;
+		}
+
 		$default_options =
 		[
 			'replace' => false,
@@ -224,16 +230,7 @@ class ranks
 		$update[] = " ranks.value = $sum ";
 
 		$update = implode(",", $update);
-		$query  =
-		"
-			UPDATE
-				ranks
-			SET
-				$update
-			WHERE
-				post_id = $_poll_id
-			LIMIT 1
-		";
+		$query  = " UPDATE ranks SET $update WHERE post_id = $_poll_id LIMIT 1";
 		$result = \lib\db::query($query);
 		return $result;
 	}
