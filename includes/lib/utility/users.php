@@ -113,6 +113,7 @@ class users
 		if(!empty($user_update))
 		{
 			\lib\db\users::update($user_update, $_args['insert_id']);
+			unset(self::$USERS_DETAIL[$_args['insert_id']]);
 		}
 
 		if(isset($_args['ref']) && $_args['ref'])
@@ -224,6 +225,7 @@ class users
 		if(!empty($user_update))
 		{
 			\lib\db\users::update($user_update, $_args['user_id']);
+			unset(self::$USERS_DETAIL[$_args['user_id']]);
 		}
 	}
 

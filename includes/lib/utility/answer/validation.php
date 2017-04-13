@@ -24,9 +24,7 @@ trait validation
 	public static function user_validataion($_user_id)
 	{
 		$save_offline_chart = true;
-
 		self::$user_verify = users::get_user_verify($_user_id);
-
 		switch (self::$user_verify)
 		{
 			case 'complete':
@@ -65,7 +63,6 @@ trait validation
 		// get all user answer to poll
 		$invalid_answers    = polldetails::get($_user_id);
 		$save_offline_chart = self::user_validataion($_user_id);
-
 		foreach ($invalid_answers as $key => $value)
 		{
 			$check = true;
@@ -76,7 +73,6 @@ trait validation
 			if(!array_key_exists('post_id', $value)) 		$check = false;
 			if(!array_key_exists('opt', $value)) 			$check = false;
 			if(!array_key_exists('port', $value)) 			$check = false;
-			if(!array_key_exists('subport', $value)) 		$check = false;
 			if(!array_key_exists('subport', $value)) 		$check = false;
 
 			if(!$check)
@@ -89,7 +85,7 @@ trait validation
 			{
 				// opt = 0 means the user skipped the poll and neddless to update chart
 				// opt = null means the user answers the other text (descriptive mode) needless to update chart
-				if($value['opt'] !== 0 && $value['opt'] !== null)
+				if(intval($value['opt']) > 0 && $value['opt'])
 				{
 					// update users profile
 					$plus_valid_chart =
@@ -109,12 +105,13 @@ trait validation
 						\lib\db\ranks::plus($value['post_id'], 'vote');
 					}
 				}
-				else
+				elseif(intval($value['opt']) === 0)
 				{
 					\lib\db\ranks::plus($value['post_id'], 'skip');
 				}
 			}
 		}
+
 		if(self::$user_verify === 'mobile' || self::$user_verify === 'complete')
 		{
 			$query = "UPDATE polldetails SET validstatus = 'valid' WHERE user_id = $_user_id";

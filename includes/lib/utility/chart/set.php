@@ -212,6 +212,16 @@ trait set
 
 	    // get the poll stats record to open the chart and change it
 		$pollstats = \lib\db\pollstats::get($poll_id, ['validation' => $validation]);
+
+		if(isset($pollstats['id']))
+		{
+			$update_where = " pollstats.id = $pollstats[id] LIMIT 1";
+		}
+		else
+		{
+			$update_where = " pollstats.post_id = $poll_id AND	pollstats.type = '$validation' LIMIT 1";
+		}
+
 		// if the poll stats record is find
 		// we must be change the chart
 		// and when the poll stats not found we must creat the chart
@@ -238,17 +248,24 @@ trait set
 			// in minus mode we not change the total field
 			if($plus && !$update_mode)
 			{
-				$pollstats['total']++;
+				$pollstats['total'] = (int) $pollstats['total'] + 1;
 			}
 			elseif($delete_answer &&  (int) $pollstats['total'] > 0)
 			{
-				$pollstats['total']--;
+				$pollstats['total'] = (int) $pollstats['total'] - 1;
 			}
 		}
 		// first times to set the total fields
 		else
 		{
-			$pollstats['total'] = 1;
+			if($plus && !$update_mode)
+			{
+				$pollstats['total'] = 1;
+			}
+			elseif($delete_answer)
+			{
+				$pollstats['total'] = 0;
+			}
 		}
 		// set the pollstats.total field in query
 		$set[] = " pollstats.total = ". $pollstats['total'];
@@ -455,18 +472,7 @@ trait set
 			if(!empty($set))
 			{
 				$set = join($set, " , ");
-				$pollstats_update_query =
-				"
-					UPDATE
-						pollstats
-					SET
-						$set
-					WHERE
-						pollstats.post_id = $poll_id AND
-						pollstats.type    = '$validation'
-					-- update poll stat result
-					-- stat_polls::set_poll_result()
-				";
+				$pollstats_update_query = "UPDATE pollstats	SET	$set WHERE $update_where -- stat_polls::set_poll_result()";
 				$pollstats_update = \lib\db::query($pollstats_update_query);
 			}
 		}
@@ -479,13 +485,7 @@ trait set
 			$set[] =  " pollstats.type    = '$validation' ";
 
 			$set = join($set, " , ");
-			$query =
-			"
-				INSERT INTO
-					pollstats
-				SET
-					$set
-			";
+			$query = "INSERT INTO pollstats SET $set ";
 			$set_result = \lib\db::query($query);
 		}
 		return true;

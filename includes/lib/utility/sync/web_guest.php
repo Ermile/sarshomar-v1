@@ -7,7 +7,6 @@ trait web_guest
 	{
 		\lib\db\logs::set('user:web:guest:sync:start', $_new_user_id, ['data' => $_old_user_id, 'meta' => ['input' => func_get_args()]]);
 
-
 		self::$new_user_id = $_new_user_id;
 		self::$old_user_id = $_old_user_id;
 
@@ -43,11 +42,24 @@ trait web_guest
 		//----- deactive telegram user
 		self::sync_users();
 
+		$user_language = \lib\utility\users::get_language(self::$new_user_id);
+
+		$verify =
+		[
+			'mobile'   => \lib\utility\users::get_mobile($_new_user_id),
+			'ref'      => null,
+			'type'     => null,
+			'port'     => 'site',
+			'subport'  => null,
+			'user_id'  => $_new_user_id,
+			'language' => $user_language,
+		];
+		\lib\utility\users::verify($verify);
 
 		// chane old answer user to valid vote
-		\lib\utility\answers::change_user_validation_answers($_old_user_id);
+		\lib\utility\answers::change_user_validation_answers($_new_user_id);
 
-		\lib\utility\profiles::refresh_dashboard(self::$new_user_id);
+		\lib\utility\profiles::refresh_dashboard($_new_user_id);
 		// \content\saloos_tg\sarshomar_bot\commands\handle::send_log(\lib\debug::compile());
 
 		// check error was happend or no
