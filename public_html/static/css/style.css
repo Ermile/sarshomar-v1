@@ -2410,3 +2410,5 @@ input.rangeSlider{display:none}
 .myTable .th,.myTable .tf{background-color:#ebebeb}
 .myTable .f:not(.th):not(:last-of-type),.myTable .f:not(.tf):not(:last-of-type){border-bottom:1px solid #ebebeb}
 .myTable .f [class*='c']{padding:0.5em}
+
+body[data-page="gift"] .in div{text-align:center}
