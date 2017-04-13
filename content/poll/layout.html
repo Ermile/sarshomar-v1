@@ -543,9 +543,11 @@
 
 {%block poll_filters%}
 {% spaceless %}
- {%if poll.filters%}
+ {%if poll_have_filters%}
   <div class="title">{%trans "Audiences of this poll"%}</div>
-  <div class="content">
+ {%endif%}
+ <div class="content">
+ {%if poll.filters%}
   {%for key, value in poll.filters%}
    {%if key == 'count'%}
    {%else%}

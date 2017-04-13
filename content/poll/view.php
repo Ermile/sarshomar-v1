@@ -190,6 +190,12 @@ class view extends \mvc\view
 			$this->data->status_avalible = $this->model()->status_avalible($poll['id']);
 		}
 
+		if(isset($poll['filters']))
+		{
+			$temp = $poll['filters'];
+			unset($temp['count']);
+			$this->data->poll_have_filters = (count($temp)) ? true : false;
+		}
 		// if(\lib\utility::get('lottery'))
 		// {
 		// 	if(isset($poll['id']))
