@@ -381,6 +381,12 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .icon-play3:before{content:"\ea1c"}
 .icon-pause2:before{content:"\ea1d"}
 .icon-stop2:before{content:"\ea1e"}
+.icon-man-woman:before,.icon-gender:before{content:"\e9de"}
+.icon-age:before,.icon-range:before{content:"\e900"}
+.icon-degree:before{content:"\e901"}
+.icon-engineer:before,.icon-employmentstatus:before{content:"\e902"}
+.icon-graduate-cap:before,.icon-graduation:before{content:"\e903"}
+.icon-family:before,.icon-marrital:before{content:"\e904"}
 
 
 /************************************************************** layout */
@@ -1279,7 +1285,8 @@ body.rtl .poll-panel{right:16px;left:auto}
 /*#poll-filters .content{padding:10px 0;color:#767676}*/
 #poll-filters .content.no-data{padding:10px}
 
-#poll-filters span{display:inline-block;padding:1rem;vertical-align:middle;color:#00667a}
+#poll-filters span{margin-left:10px}
+#poll-filters span:not([class*="icon-"]){display:inline-block;padding:.5rem 1rem;vertical-align:middle;color:#00667a}
 #poll-filters span i{margin-right:.5em}
 .rtl #poll-filters span i{margin-right:0;margin-left:.5em}
 
