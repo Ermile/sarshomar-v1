@@ -117,54 +117,101 @@ trait refresh
 
 		// $old_result = \lib\db\pollstats::get($_poll_id,['validation' => 'valid']);
 		// var_dump($old_result);
-		// var_dump(self::$chart);exit();
 
 		$temp = [];
 		$i = 0;
 		$set = [];
 		foreach (self::$chart as $port => $chart)
 		{
-			$temp[$i]['port'] = $port;
-			foreach ($chart as $subport => $valid)
+			foreach ($chart as $validstatus => $data)
 			{
-				$temp[$i]['subport'] = $subport;
-				foreach ($valid as $validstatus => $data)
-				{
-					$temp[$i]['type'] = $validstatus;
-					foreach ($data as $field => $value)
-					{
-						// if($field === 'total' && is_numeric($value))
-						// {
-						// 	\lib\db\ranks::plus($_poll_id, 'vote', $value, ['replace' => true]);
-						// }
+				$check_update_or_insert = (int) \lib\db::get(
+				"SELECT id FROM pollstats
+				 WHERE post_id = $_poll_id
+				 AND port = '$port'
+				 AND type = '$validstatus'  LIMIT 1", 'id', true);
 
-						// if(isset(self::$skip[$_poll_id]))
-						// {
-						// 	\lib\db\ranks::plus($_poll_id, 'skip', self::$skip[$_poll_id], ['replace' => true]);
-						// }
-						$temp[$i][$field] = json_encode($value, JSON_UNESCAPED_UNICODE);
-					}
+				if($check_update_or_insert)
+				{
+					$temp[$i]['condition_query'] = " id = $check_update_or_insert ";
 				}
+				else
+				{
+					$temp[$i]['insert_query'] = " INSERT INTO pollstats  ";
+				}
+
+				$temp[$i]['port']    = $port;
+				$temp[$i]['subport'] = null;
+				$temp[$i]['type']    = $validstatus;
+				foreach ($data as $field => $value)
+				{
+					$temp[$i][$field] = json_encode($value, JSON_UNESCAPED_UNICODE);
+				}
+				$i++;
 			}
-			$i++;
 		}
 
 		foreach ($temp as $key => $data)
 		{
+			$insert_query    = null;
+			$condition_query = null;
+
 			$set = [];
 			if(is_array($data))
 			{
 				foreach ($data as $field => $value)
 				{
-					$set[] = " pollstats.$field = '$value' ";
+					if($field === 'condition_query')
+					{
+						$condition_query = $value;
+						continue;
+					}
+
+					if($field === 'insert_query')
+					{
+						$insert_query = $value;
+						continue;
+					}
+
+					if($value === null)
+					{
+						$set[] = " pollstats.$field = NULL";
+					}
+					else
+					{
+						$set[] = " pollstats.$field = '$value' ";
+					}
 				}
 			}
 
-			if(!empty($set))
+			if(!empty($set) && ($insert_query || $condition_query))
 			{
+
 				$set = implode(',', $set);
-				$query = "INSERT INTO pollstats SET pollstats.post_id = $_poll_id, $set ON DUPLICATE KEY UPDATE $set";
+				if($insert_query)
+				{
+					$query = "INSERT INTO pollstats SET pollstats.post_id = $_poll_id, $set ";
+				}
+				elseif($condition_query)
+				{
+					$query = "UPDATE pollstats SET  $set WHERE $condition_query";
+				}
+
 				\lib\db::query($query);
+				\lib\db::query("UPDATE ranks set ranks.vote =
+								(SELECT IFNULL(SUM(pollstats.total), 0) FROM pollstats WHERE pollstats.post_id = $_poll_id)
+								WHERE ranks.post_id = $_poll_id
+								LIMIT 1");
+				\lib\db::query("UPDATE ranks set ranks.skip =
+					(
+						SELECT 	IFNULL(COUNT(polldetails.id), 0)
+						FROM polldetails
+						WHERE polldetails.post_id = ranks.post_id
+						AND polldetails.opt = 0
+						AND polldetails.status = 'enable'
+						AND polldetails.validstatus IS NOT NULL
+					) LIMIT 1");
+
 			}
 		}
 	}
@@ -208,22 +255,22 @@ trait refresh
 			return;
 		}
 
-		if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus]['total']))
+		if(isset(self::$chart[$_args['port']][$validstatus]['total']))
 		{
-			self::$chart[$_args['port']][$_args['subport']][$validstatus]['total']++;
+			self::$chart[$_args['port']][$validstatus]['total']++;
 		}
 		else
 		{
-			self::$chart[$_args['port']][$_args['subport']][$validstatus]['total'] = 1;
+			self::$chart[$_args['port']][$validstatus]['total'] = 1;
 		}
 
-		if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus]['result'][$_args['opt']]))
+		if(isset(self::$chart[$_args['port']][$validstatus]['result'][$_args['opt']]))
 		{
-			self::$chart[$_args['port']][$_args['subport']][$validstatus]['result'][$_args['opt']]++;
+			self::$chart[$_args['port']][$validstatus]['result'][$_args['opt']]++;
 		}
 		else
 		{
-			self::$chart[$_args['port']][$_args['subport']][$validstatus]['result'][$_args['opt']] = 1;
+			self::$chart[$_args['port']][$validstatus]['result'][$_args['opt']] = 1;
 		}
 
 
@@ -231,24 +278,24 @@ trait refresh
 		{
 			if($male)
 			{
-				if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']][$male]))
+				if(isset(self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']][$male]))
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']][$male]++;
+					self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']][$male]++;
 				}
 				else
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']][$male] = 1;
+					self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']][$male] = 1;
 				}
 			}
 			else
 			{
-				if(isset(self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown']))
+				if(isset(self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']]['unknown']))
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown']++;
+					self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']]['unknown']++;
 				}
 				else
 				{
-					self::$chart[$_args['port']][$_args['subport']][$validstatus][$filter][$_args['opt']]['unknown'] = 1;
+					self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']]['unknown'] = 1;
 				}
 			}
 		}
