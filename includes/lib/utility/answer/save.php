@@ -157,7 +157,7 @@ trait save
 		}
 		else
 		{
-			if($save_offline_chart && $change_chart)
+			if($change_chart)
 			{
 				// check poll money and set it to the user
 				self::money($_args);

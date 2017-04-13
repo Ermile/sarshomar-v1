@@ -138,7 +138,7 @@ trait delete
 			}
 			else
 			{
-				if($save_offline_chart && $update_chart)
+				if($update_chart)
 				{
 					ranks::minus($_args['poll_id'], 'vote');
 				}

@@ -201,7 +201,7 @@ class ranks
 								$value    = intval($value) - intval($_plus);
 								if($value <= 0)
 								{
-									// $update[] = " ranks.$key = ranks.$key ";
+									$update[] = " ranks.$key = 0 ";
 									$value = 0;
 								}
 								else
