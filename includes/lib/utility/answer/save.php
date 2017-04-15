@@ -73,12 +73,14 @@ trait save
 
 		$log_meta =
 		[
+			'desc' => (int) \lib\db\polls::get_user_ask_me_on($_args['user_id']) === (int) $_args['poll_id'] ? 'ask_me': null,
 			'meta' =>
 			[
 				'input'              => $_args,
 				'user_delete_answer' => $user_delete_answer,
 				'user_validataion'   => self::$validation,
 				'user_verify'        => self::$user_verify,
+
 			]
 		];
 
