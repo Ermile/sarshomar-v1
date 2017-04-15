@@ -48,7 +48,11 @@ trait get
 				$msg = T_("You have not answered this question yet");
 				if(isset($poll_data['status']) && $poll_data['status'] === 'publish')
 				{
-					$available = ['add', 'skip'];
+					$available = ['add'];
+					if((int) \lib\db\polls::get_user_ask_me_on($this->user_id) === (int) $poll_id)
+					{
+						array_push($available, 'skip');
+					}
 				}
 			}
 			else
@@ -106,6 +110,7 @@ trait get
 			debug::title($msg);
 
 			$result = ['my_answer' => $current, 'available' => $available];
+
 			return $result;
 		}
 		else

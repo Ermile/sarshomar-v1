@@ -215,11 +215,7 @@ class model extends \content\home\model
 	{
 		utility::set_request_array(['id' => $_poll_code]);
 		$avalible = $this->poll_answer_get();
-		if(isset($avalible['available']) && empty($avalible['available']))
-		{
-			return true;
-		}
-		return false;
+		return $avalible;
 	}
 
 

@@ -358,13 +358,22 @@ trait add
 	 */
 	public function skip_poll($_options)
 	{
-		$save =
-		[
-			'user_id' => $this->user_id,
-			'poll_id' => shortURL::decode(utility::request("id")),
-			'skipped'  => true,
-		];
-		return $this->save_result($save, $_options);
+		$poll_id = shortURL::decode(utility::request("id"));
+		if((int) \lib\db\polls::get_user_ask_me_on($this->user_id) === (int) $poll_id)
+		{
+			$save =
+			[
+				'user_id' => $this->user_id,
+				'poll_id' => $poll_id,
+				'skipped'  => true,
+			];
+			return $this->save_result($save, $_options);
+		}
+		else
+		{
+			debug::error(T_("Can not skip this poll"), 'skip', 'access');
+			return false;
+		}
 	}
 
 

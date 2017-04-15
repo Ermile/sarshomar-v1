@@ -207,6 +207,7 @@ trait order
 		}
 	}
 
+	public static $ASK_ME_ON = [];
 
 	/**
 	 * Gets the user ask me on.
@@ -217,24 +218,27 @@ trait order
 	 */
 	public static function get_user_ask_me_on($_user_id)
 	{
-
-		$cat = 'user_detail_'. $_user_id;
-		$args =
-		[
-			'post_id'      => null,
-			'user_id'      => $_user_id,
-			'option_cat'   => $cat,
-			'option_key'   => 'user_ask_me',
-			'limit'        => 1,
-		];
-
-		$result = \lib\db\options::get($args);
-
-		if(empty($result) || !isset($result['value']))
+		if(!isset(self::$ASK_ME_ON[$_user_id]))
 		{
-			return false;
+			$cat = 'user_detail_'. $_user_id;
+			$args =
+			[
+				'post_id'      => null,
+				'user_id'      => $_user_id,
+				'option_cat'   => $cat,
+				'option_key'   => 'user_ask_me',
+				'limit'        => 1,
+			];
+
+			$result = \lib\db\options::get($args);
+
+			if(empty($result) || !isset($result['value']))
+			{
+				self::$ASK_ME_ON[$_user_id] =  false;
+			}
+			self::$ASK_ME_ON[$_user_id] =  (int) $result['value'];
 		}
-		return (int) $result['value'];
+		return self::$ASK_ME_ON[$_user_id];
 	}
 }
 ?>

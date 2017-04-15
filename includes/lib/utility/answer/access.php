@@ -166,7 +166,11 @@ trait access
 				if(!self::is_answered($_args['user_id'], $_args['poll_id']))
 				{
 					array_push($avalible, 'add');
-					array_push($avalible, 'skip');
+
+					if((int) \lib\db\polls::get_user_ask_me_on($_args['user_id']) === (int) $_args['poll_id'])
+					{
+						array_push($avalible, 'skip');
+					}
 				}
 				else
 				{

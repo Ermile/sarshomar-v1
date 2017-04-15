@@ -4,6 +4,7 @@ use \lib\utility\shortURL;
 
 class view extends \mvc\view
 {
+
 	function config()
 	{
 		// add all template of poll into new file
@@ -67,9 +68,22 @@ class view extends \mvc\view
 
 		if(isset($poll['id']))
 		{
-			$this->data->answer_lock = $this->model()->answer_lock($poll['id']);
-		}
+			$answer_access = $this->model()->answer_lock($poll['id']);
 
+			if(isset($answer_access['my_answer'][0]['key']) && $answer_access['my_answer'][0]['key'] === 0)
+			{
+				$this->data->is_skipped = true;
+			}
+
+			if(isset($answer_access['available']) && empty($answer_access['available']))
+			{
+				$this->data->answer_lock = true;
+			}
+			elseif(isset($answer_access['available']))
+			{
+				$this->data->answer_available = $answer_access['available'];
+			}
+		}
 
 		$this->data->chart['stacked'] =
 		[
