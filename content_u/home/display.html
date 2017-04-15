@@ -5,7 +5,7 @@
         <span class="name">{{displayname}}</span>
         <span class="mobile">
      {% if login.mobile matches '/^\\d+$/' %}
-      {{login.mobile}}
+      {{login.mobile|fitNumber}}
      {%else%}
       {%trans "Undefined"%}
      {% endif %}
