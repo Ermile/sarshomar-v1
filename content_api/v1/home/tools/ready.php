@@ -217,7 +217,7 @@ trait ready
 						$code = shortURL::encode($value['id']);
 						$new_tag[$key]['code']  = $code;
 						$new_tag[$key]['title'] = $value['term_title'];
-						$new_tag[$key]['url']   = self::host(). '/'. $value['term_url'];
+						$new_tag[$key]['url']   = self::host('with_language'). '/'. $value['term_url'];
 					}
 				}
 			}
