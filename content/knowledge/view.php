@@ -32,6 +32,12 @@ class view extends \mvc\view
 			unset($_SESSION['user_answered_to_all_poll']);
 			$this->data->user_answered_to_all_poll = T_("You have answered to all the polls");
 		}
+
+		if(isset($_SESSION['ask_me_limit']) && $_SESSION['ask_me_limit'] === true)
+		{
+			unset($_SESSION['ask_me_limit']);
+			$this->data->user_answered_to_all_poll = T_("You can answer 20 poll in 24 hours");
+		}
 	}
 
 

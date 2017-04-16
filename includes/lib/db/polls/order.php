@@ -3,6 +3,41 @@ namespace lib\db\polls;
 
 trait order
 {
+	/**
+	 * check user answer less than 20 poll in 24 hours
+	 *
+	 * @param      <type>  $_user_id  The user identifier
+	 */
+	public static function access_ask_me($_user_id)
+	{
+		// check count answer user in last 24 hours
+		$first_time = time() - (60 * 60 * 24);
+		$now        = date("Y-m-d H:i:s");
+		$first_time = date("Y-m-d H:i:s", $first_time);
+
+		$query =
+		"
+			SELECT
+				COUNT(DISTINCT polldetails.post_id) AS `count`
+			FROM
+				polldetails
+			WHERE
+				polldetails.insertdate >= '$first_time' AND
+				polldetails.insertdate < '$now' AND
+				polldetails.user_id  = $_user_id
+		";
+
+		$count = \lib\db::get($query, 'count', true);
+
+		if(intval($count) > 20)
+		{
+			$_SESSION['ask_me_limit'] = true;
+			\lib\db\logs::set('user:ask:me:limit:20count:20hours', $_user_id);
+			\lib\debug::warn(T_("You can answer 20 poll in 24 hours"));
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * return last question for this user
@@ -12,6 +47,11 @@ trait order
 	 */
 	public static function get_last($_user_id)
 	{
+		if(!self::access_ask_me($_user_id))
+		{
+			return false;
+		}
+
 		$language = \lib\define::get_language();
 
 		$public_fields = self::$fields;
