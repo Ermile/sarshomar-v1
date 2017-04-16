@@ -23,7 +23,7 @@
    <img height="150" class="flip-rtl" src="{{url.static}}images/miniature/launch-ok.png" alt='{%trans "We are inestimable"%}'>
    <div class="flex f-column justify-around align-start inestimable-inner">
     <h4>{%trans "If we were inestimable, Signup!"%}</h4>
-    <form class="f fix field" data-method="GET" data-action="{{url.base}}/enter">
+    <form class="f fix field" data-method="get" data-action="{{url.base}}/enter" action="{{url.base}}/enter"  data-direct >
      <label class="c2 flex justify-center align-center icon-mobile2 icon-2x"></label>
      <input class="c8" type='tel' name='mobile' placeholder='{%trans "Mobile"%}' maxlength="15">
      <button class="c2 flex justify-center align-center icon-check disabled"></button>
