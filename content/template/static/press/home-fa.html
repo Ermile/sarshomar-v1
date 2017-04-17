@@ -1,0 +1,73 @@
+{% extends display.main %}
+
+{% block content %}
+
+<div class="main pad lg">
+ <div class="box">
+  <h2 class="sh large">{%trans "Press and Media"%}</h2>
+  <div class="in">
+   <h3 class="bh">درباره‌ی سرشمار</h3>
+
+   <div class="l1">
+    <p class="em">{%trans "Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings."%}</p>
+   </div>
+
+   <style type="text/css">
+    .milestones{border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;padding:5em 0}
+    .milestones-card h4{margin:0;font-weight:bold;font-size:1.5em;color:#6E6F6F}
+    .milestones-card p{margin:0}
+    .press-links a{font-size:1.4em;color:#00667a;font-weight:bold}
+   </style>
+
+   <div class="l1 milestones">
+    <div class="f">
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>تاریخ عرضه‌ی سیستم</h4>
+       <p>فروردین {{1396|fitNumber}}</p>
+      </div>
+     </div>
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>پاسخ‌های دریافت‌شده</h4>
+       <p>{{281865|number_format|fitNumber}}</p>
+      </div>
+     </div>
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>نظرسنجی‌ها</h4>
+       <p>{{115321|number_format|fitNumber}}</p>
+      </div>
+     </div>
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>کاربران سرشمار</h4>
+       <p>{{15000|number_format|fitNumber}} نفر</p>
+      </div>
+     </div>
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>تراکنش‌های انجام‌شده</h4>
+       <p>{{160000000|number_format|fitNumber}} تومان</p>
+      </div>
+     </div>
+     <div class="c6 s12">
+      <div class="milestones-card">
+       <h4>برگه‌های ذخیره‌شده</h4>
+       <p>{{250000|number_format|fitNumber}} برگه</p>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <h3 class="bh">سرشمار در رسانه‌ها</h3>
+   <div class="l1">
+    <ul class="press-links">
+     <li><a href="http://1pezeshk.com/archives/2017/04/sarshomar.html">یک پزشک</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+{% endblock %}

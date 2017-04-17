@@ -400,6 +400,7 @@ body{background-color:#00667a;color:#6E6F6F}
 .wrapper .homepage .box{padding:0 50px}
 .main.pad,.box.pad{padding-top:2rem;padding-bottom:2rem}
 .main.pad-large,.box.pad-large{padding-top:4rem;padding-bottom:2rem}
+.main.pad.lg{padding-top:4rem;padding-bottom:2rem}
 .row.reverse>[class*="span"]{float:right;margin-left:2.127659%;margin-right:0}
 .row.reverse>[class*="span"]:last-child,.rtl .row.auto>.endline{margin-left:0}
 img,.unselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}

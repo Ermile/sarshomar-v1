@@ -3,7 +3,7 @@
    <nav class="f" id='footer-nav'>
     <a class="cauto link_home" href="{{url.base}}">{%trans "Home"%}</a>
     <a class="cauto" href="{{url.base}}/about">{%trans "About"%}</a>
-    <!-- <a href="{{url.base}}/press">{%trans "Press"%}</a> -->
+    <a class="cauto" href="{{url.base}}/press">{%trans "Press and Media"%}</a>
     <a class="cauto" href="{%if site.currentlang =='fa'%}https://ermile.com/fa{%else%}https://ermile.com{%endif%}/careers" target="_blank">{%trans "Careers"%}</a>
     <a class="cauto" href="{{url.base}}/social-responsibility">{%trans "Social Responsibility"%}</a>
     <a class="cauto" href="{{url.base}}/help">{%trans "Help Center"%}</a>
@@ -14,7 +14,7 @@
    <div class="f" id="footer-links">
 {%if site.currentlang =='fa'%}
     <nav class="c" id="footer-enamad">
-     <a href="#">
+     <a href="{{url.base}}">
       <div></div>
       <img src="{{url.static}}images/enamad1.png" alt='{%trans "Enamad"%}' onclick='window.open("https://trustseal.enamad.ir/Verify.aspx?id=56701&p=yncrhwmbqgwldrfsnbpd", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")'>
       <div></div>
@@ -27,6 +27,7 @@
      <ul>
       <li><a href="{{url.base}}/features">{%trans "Features"%}</a></li>
       <li><a href="{{url.base}}/$">{%trans "Knowledge"%}</a></li>
+      <li><a href="{{url.base}}/ref">{%trans "Referral Program"%}</a></li>
      </ul>
     </nav>
 
@@ -43,15 +44,17 @@
      <h4>{%trans "Support"%}</h4>
      <ul>
       <li><a href="{{url.base}}/contact">{%trans "Contact us"%}</a></li>
-      <li><a href="{{url.base}}/ref">{%trans "Referral Program"%}</a></li>
+      <li><a href="{{url.base}}/help">{%trans "Help Center"%}</a></li>
       <li><a href="{{url.base}}/logo">{%trans "Logo"%}</a></li>
      </ul>
     </nav>
 
+    {%if false%}
     <section class="c s12" id='footer-news'>
      <h4>{%trans "Latest News"%}</h4>
      {{posts(3, {"cat":['news'], 'desc':1, 'html':true})}}
     </section>
+    {%endif%}
 
     <div class="c s12">
      {%include template.social%}
