@@ -101,8 +101,10 @@ trait set
 
 		$set_profile = \lib\utility\profiles::set_profile_data($this->user_id, $sended_profile, $options);
 
-		if(count($sended_profile) === count($support_profile))
+		if(count($sended_profile) >= count($support_profile))
 		{
+			// check and save transactions
+			// check and save logs if the user have parent
 			$this->transaction_complete_profile();
 		}
 
@@ -155,6 +157,26 @@ trait set
 	 */
 	public function transaction_complete_profile()
 	{
+		$user_parent = \lib\utility\users::get_parent($this->user_id);
+		if($user_parent)
+		{
+			$meta =
+			[
+				'caller'    => 'user:ref:complete:profile',
+				'get_count' => true,
+				'log_data'  => $user_parent,
+				'user_id'   => $this->user_id,
+			];
+
+			$check_complete_profile_log = \lib\db\logs::search(null, $meta);
+
+			if(!$check_complete_profile_log)
+			{
+				$log_meta = ['data' => $user_parent,'meta' => []];
+				\lib\db\logs::set('user:ref:complete:profile', $this->user_id, $log_meta);
+			}
+		}
+
 		$caller = \lib\db\transactionitems::caller('gift:profile:complete');
 		if(isset($caller['id']))
 		{
