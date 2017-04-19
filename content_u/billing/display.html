@@ -10,13 +10,15 @@
     </form>
     <br>
     {%for unit, value in user_cash_all%}
-        {%if unit == 'dollar'%}
-            <span>{%trans "$"%}</span>
-        {%else%}
-            <span>{%trans unit%}</span>
+        {%if value %}
+            {%if unit == 'dollar'%}
+                <span>{%trans "$"%}</span>
+            {%else%}
+                <span>{%trans unit%}</span>
+            {%endif%}
+            <span>{{value|number_format|fitNumber}}</span>
+            <br>
         {%endif%}
-        <span>{{value|number_format|fitNumber}}</span>
-        <br>
     {%endfor%}
 </aside>
 
@@ -113,7 +115,7 @@
                         <span>{%set myType = value.type%}{%trans myType%}</span>
                         <span>
                             {%if value.plus%}
-                                <span>{{value.plus|number_format|fitNumber}}</span>
+                                <span>{{value.plus|number_format(2, ".", ",")|fitNumber}}</span>
                                 <span>{%set myUnit = value.unit%}{%trans myUnit%}</span>
                             {%else%}
                                 {{0|fitNumber}}
@@ -121,7 +123,7 @@
                         </span>
                         <span>
                             {%if value.minus%}
-                                <span>{{value.minus|number_format|fitNumber}}</span>
+                                <span>{{value.minus|number_format(2, ".", ",")|fitNumber}}</span>
                                 <span>{%set myUnit = value.unit%}{%trans myUnit%}</span>
                             {%else%}
                                 {{0|fitNumber}}

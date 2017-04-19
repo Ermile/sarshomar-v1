@@ -12,18 +12,7 @@ class exchangerates
 	 */
 	public static function get_from_to($_from, $_to)
 	{
-		$query =
-		"
-			SELECT
-				*
-			FROM
-				exchangerates
-			WHERE
-				exchangerates.from = $_from AND
-				exchangerates.to   = $_to
-			ORDER BY id DESC
-			LIMIT 1
-		";
+		$query = " SELECT * FROM exchangerates WHERE exchangerates.from = $_from AND exchangerates.to = $_to ORDER BY id DESC LIMIT 1";
 		$result = \lib\db::get($query, null, true);
 		return $result;
 	}
@@ -40,17 +29,11 @@ class exchangerates
 	public static function from_unit_to($_from_unit, $_to_unit, $_options = [])
 	{
 		$query =
-		"
-			SELECT
-				exchangerates.*
-			FROM
-				exchangerates
-			WHERE
-				exchangerates.from = (SELECT units.id FROM units WHERE units.title = '$_from_unit' LIMIT 1) AND
-				exchangerates.to = (SELECT units.id FROM units WHERE units.title = '$_to_unit' LIMIT 1 )
-			ORDER BY id DESC
-			LIMIT 1
-		";
+		"SELECT exchangerates.* FROM exchangerates
+		 WHERE exchangerates.from = (SELECT units.id FROM units WHERE units.title = '$_from_unit' LIMIT 1)
+		 AND exchangerates.to = (SELECT units.id FROM units WHERE units.title = '$_to_unit' LIMIT 1 )
+		 ORDER BY id DESC
+		 LIMIT 1 ";
 		$result = \lib\db::get($query, null, true);
 		return $result;
 	}
@@ -65,8 +48,13 @@ class exchangerates
 	 */
 	public static function change_unit_to($_from_unit, $_to_unit, $_value)
 	{
+		if(!is_numeric($_value))
+		{
+			return false;
+		}
+
 		$value = $_value;
-		$rate = self::from_unit_to($_from_unit, $_to_unit);
+		$rate  = self::from_unit_to($_from_unit, $_to_unit);
 
 		if(isset($rate['rate']))
 		{
@@ -157,7 +145,9 @@ class exchangerates
 		$result = \lib\db::query($query);
 		return $result;
 	}
-/**
+
+
+	/**
 	 * update record of exchangerates
 	 *
 	 * @param      <type>  $_args  The arguments

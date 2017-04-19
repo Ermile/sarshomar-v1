@@ -288,6 +288,7 @@ trait get
 		$search = null;
 		if($_string != null)
 		{
+			$_string = trim($_string);
 			$search =
 			"(
 				transactions.title 		LIKE '%$_string%' OR

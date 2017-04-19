@@ -313,6 +313,7 @@ trait search
 		$search = null;
 		if($_string != null)
 		{
+			$_string = trim($_string);
 			$search =
 			"(
 				posts.post_title 	LIKE '%$_string%' OR

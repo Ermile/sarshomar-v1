@@ -273,6 +273,7 @@ class users extends \lib\db\users
 		$search = null;
 		if($_string != null)
 		{
+			$_string = trim($_string);
 			$search =
 			"(
 				users.user_displayname 	LIKE '%$_string%' OR

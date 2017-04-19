@@ -5,6 +5,8 @@ namespace lib\db;
 class transactionitems
 {
 
+	use transactionitems\auto_insert;
+
 	/**
 	 * insert new record of transactionitems
 	 *
@@ -16,18 +18,19 @@ class transactionitems
 	{
 		$default_args =
 		[
-			'title'        => null,
-			'caller'       => null,
-			'unit_id'      => null,
-			'type'         => null,
-			'minus'        => null,
-			'plus'         => null,
-			'autoverify'   => 'no',
-			'forcechange'  => 'no',
-			'desc'         => null,
-			'meta'         => null,
-			'status'       => null,
-			'enddate'      => null,
+			'title'       => null,
+			'caller'      => null,
+			'unit_id'     => null,
+			'type'        => null,
+			'minus'       => null,
+			'plus'        => null,
+			'autoverify'  => 'no',
+			'forcechange' => 'no',
+			'desc'        => null,
+			'meta'        => null,
+			'status'      => null,
+			'enddate'     => null,
+			'createdate'  => date("Y-m-d H:i:s"),
 		];
 		$_args = array_merge($default_args, $_args);
 
@@ -49,13 +52,7 @@ class transactionitems
 		}
 		$set = implode(",", $set);
 
-		$query =
-		"
-			INSERT INTO
-				transactionitems
-			SET
-				$set
-		";
+		$query = " INSERT INTO transactionitems SET $set ";
 		$result = \lib\db::query($query);
 		return $result;
 	}
@@ -130,15 +127,7 @@ class transactionitems
 		}
 		$set = implode(",", $set);
 
-		$query =
-		"
-			UPDATE
-				transactionitems
-			SET
-				$set
-			WHERE
-				transactionitems.id = $_id
-		";
+		$query = " UPDATE transactionitems SET $set WHERE transactionitems.id = $_id LIMIT 1";
 
 		$result = \lib\db::query($query);
 		return $result;
@@ -160,8 +149,32 @@ class transactionitems
 		if(!$result || empty($result))
 		{
 			return false;
+			return self::auto_insert($_caller);
 		}
 		return $result;
+	}
+
+
+	/**
+	 * auto insert transactionitems
+	 *
+	 * @param      <type>  $_caller  The caller
+	 */
+	public static function auto_insert($_caller)
+	{
+		if(isset(self::$AUTO_INSERT[$_caller]))
+		{
+			self::insert(self::$AUTO_INSERT[$_caller]);
+
+			$query = "SELECT * FROM transactionitems WHERE caller = '$_caller' LIMIT 1";
+			$result = \lib\db::get($query, null, true);
+			if(!$result || empty($result))
+			{
+				return false;
+			}
+			return $result;
+		}
+		return false;
 	}
 }
 ?>

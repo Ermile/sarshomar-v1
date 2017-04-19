@@ -43,6 +43,8 @@ trait set
 			return debug::error(T_("Prameter status not set"), 'status', 'arguments');
 		}
 
+		// \lib\db::transaction();
+
 		$available = self::poll_status(['check_is_my_poll' => true]);
 		$current   = null;
 
@@ -83,6 +85,11 @@ trait set
 				}
 
 				self::change_dashboard(['old_status' => $current, 'new_status' => $set_status_on, 'user_id' => $this->user_id]);
+
+				// if($set_status_on === 'publish')
+				// {
+				// 	$this->calc_price();
+				// }
 
 				if(debug::$status)
 				{

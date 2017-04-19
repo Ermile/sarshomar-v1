@@ -47,7 +47,7 @@ class model extends \mvc\model
 		$meta            = [];
 		$this->user_id   = $this->login('id');
 		$meta['user_id'] = $this->user_id;
-		// $meta['unit']    = $this->view()->data->user_unit;
+		$meta['admin']   = false ;
 
 		$billing_history = \lib\db\transactions::search(null, $meta);
 		return $billing_history;

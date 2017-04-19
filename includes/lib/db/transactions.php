@@ -60,15 +60,28 @@ class transactions
 		}
 		$set = implode(",", $set);
 
-		$query =
-		"
-			INSERT INTO
-				transactions
-			SET
-				$set
-		";
+		$query = "INSERT INTO transactions SET $set ";
 		$result = \lib\db::query($query);
-		return $result;
+		return \lib\db::insert_id();
+	}
+
+
+	/**
+	 * update transactions
+	 *
+	 * @param      <type>  $_args  The arguments
+	 * @param      <type>  $_id    The identifier
+	 */
+	public static function update($_args, $_id)
+	{
+		$args = \lib\db\config::make_set($_args);
+		if(!$args)
+		{
+			return true;
+		}
+		// make update query
+		$query = "UPDATE transactions SET $args WHERE transactions.id = $_id LIMIT 1";
+		return \lib\db::query($query);
 	}
 }
 ?>

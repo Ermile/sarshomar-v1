@@ -426,6 +426,7 @@ class users
 		if(!empty($update))
 		{
 			\lib\db\users::update($update, $_user_id);
+			unset(self::$USERS_DETAIL[$_user_id]);
 		}
 	}
 

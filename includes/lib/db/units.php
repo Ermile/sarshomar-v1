@@ -99,7 +99,37 @@ class units
 	 */
 	public static function set_user_unit($_user_id, $_unit)
 	{
+		if(!$_unit)
+		{
+			return false;
+		}
+
+		$old_user_unit = \lib\utility\users::get_unit($_user_id);
 		\lib\utility\users::set_unit($_user_id, $_unit);
+
+		if(!$old_user_unit && is_string($_unit))
+		{
+			$sarshomar_budget = \lib\db\transactions::budget($_user_id, ['unit' => 1]);
+			if(!empty($sarshomar_budget) && is_array($sarshomar_budget))
+			{
+				foreach ($sarshomar_budget as $key => $value)
+				{
+					\lib\db::transaction();
+					$insert_id = \lib\db\transactions::set("$key:change:minus:sarshomar", $_user_id, ['minus' => $value]);
+					$change_to_new_unit_value = \lib\db\exchangerates::change_unit_to('sarshomar', $_unit, $value);
+					\lib\db\transactions::set("$key:change:plus:$_unit", $_user_id, ['plus' => $change_to_new_unit_value, 'parent_id' => $insert_id]);
+					if(\lib\debug::$status)
+					{
+						\lib\db::commit();
+					}
+					else
+					{
+						\lib\db::rollback();
+					}
+				}
+			}
+		}
+
 		return true;
 		// $result = false;
 		// $disable_old_unit =

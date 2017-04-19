@@ -183,7 +183,8 @@ trait refresh
 					}
 				}
 			}
-
+			exit();
+			var_dump($set);
 			if(!empty($set) && ($insert_query || $condition_query))
 			{
 
@@ -276,6 +277,7 @@ trait refresh
 
 		foreach ($_args['profile'] as $filter => $male)
 		{
+
 			if($male)
 			{
 				if(isset(self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']][$male]))
@@ -297,6 +299,7 @@ trait refresh
 				{
 					self::$chart[$_args['port']][$validstatus][$filter][$_args['opt']]['unknown'] = 1;
 				}
+
 			}
 		}
 	}
@@ -321,16 +324,16 @@ trait refresh
 				if(!array_key_exists('user_id', $_data))			$check = false;
 				if(!array_key_exists('port', $_data))				$check = false;
 				if(!array_key_exists('validstatus', $_data))		$check = false;
-				if(!array_key_exists('subport', $_data))			$check = false;
+				// if(!array_key_exists('subport', $_data))			$check = false;
 				if(!array_key_exists('opt', $_data))				$check = false;
-				if(!array_key_exists('answertype', $_data))			$check = false;
-				if(!array_key_exists('type', $_data))				$check = false;
-				if(!array_key_exists('txt', $_data))				$check = false;
+				// if(!array_key_exists('answertype', $_data))			$check = false;
+				// if(!array_key_exists('type', $_data))				$check = false;
+				// if(!array_key_exists('txt', $_data))				$check = false;
 				if(!array_key_exists('profile', $_data))			$check = false;
 				if(!array_key_exists('status', $_data))				$check = false;
-				if(!array_key_exists('visitor_id', $_data))			$check = false;
-				if(!array_key_exists('insertdate', $_data))			$check = false;
-				if(!array_key_exists('date_modified', $_data))		$check = false;
+				// if(!array_key_exists('visitor_id', $_data))			$check = false;
+				// if(!array_key_exists('insertdate', $_data))			$check = false;
+				// if(!array_key_exists('date_modified', $_data))		$check = false;
 
 				break;
 
@@ -364,22 +367,22 @@ trait refresh
 
 			case 'user':
 				if(!array_key_exists('id', $_data))					$check = false;
-				if(!array_key_exists('user_mobile', $_data))		$check = false;
-				if(!array_key_exists('user_email', $_data))			$check = false;
-				if(!array_key_exists('user_username', $_data))		$check = false;
-				if(!array_key_exists('user_pass', $_data))			$check = false;
-				if(!array_key_exists('user_displayname', $_data))	$check = false;
-				if(!array_key_exists('user_meta', $_data))			$check = false;
-				if(!array_key_exists('user_status', $_data))		$check = false;
-				if(!array_key_exists('user_permission', $_data))	$check = false;
-				if(!array_key_exists('user_createdate', $_data))	$check = false;
-				if(!array_key_exists('user_parent', $_data))		$check = false;
-				if(!array_key_exists('user_validstatus', $_data))	$check = false;
+				// if(!array_key_exists('user_mobile', $_data))		$check = false;
+				// if(!array_key_exists('user_email', $_data))			$check = false;
+				// if(!array_key_exists('user_username', $_data))		$check = false;
+				// if(!array_key_exists('user_pass', $_data))			$check = false;
+				// if(!array_key_exists('user_displayname', $_data))	$check = false;
+				// if(!array_key_exists('user_meta', $_data))			$check = false;
+				// if(!array_key_exists('user_status', $_data))		$check = false;
+				// if(!array_key_exists('user_permission', $_data))	$check = false;
+				// if(!array_key_exists('user_createdate', $_data))	$check = false;
+				// if(!array_key_exists('user_parent', $_data))		$check = false;
+				// if(!array_key_exists('user_validstatus', $_data))	$check = false;
 				if(!array_key_exists('filter_id', $_data))			$check = false;
-				if(!array_key_exists('user_port', $_data))			$check = false;
-				if(!array_key_exists('user_trust', $_data))			$check = false;
+				// if(!array_key_exists('user_port', $_data))			$check = false;
+				// if(!array_key_exists('user_trust', $_data))			$check = false;
 				if(!array_key_exists('user_verify', $_data))		$check = false;
-				if(!array_key_exists('date_modified', $_data))		$check = false;
+				// if(!array_key_exists('date_modified', $_data))		$check = false;
 				break;
 			default:
 				return false;

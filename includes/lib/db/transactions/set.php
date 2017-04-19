@@ -52,6 +52,17 @@ trait set
 			return false;
 		}
 
+		$transactionitems_unit_id = null;
+		if(isset($item['unit_id']))
+		{
+			$transactionitems_unit_id = (int) $item['unit_id'];
+		}
+		else
+		{
+			\lib\db\logs::set('transactionitems:unit:not:found', $_user_id, $log_meta);
+			return false;
+		}
+
 		// get the user unit
 		$user_unit = \lib\db\units::find_user_unit($_user_id, true);
 		if(!$user_unit)
@@ -162,15 +173,17 @@ trait set
 			}
 		}
 
-		// get the budge befor
-		$budget_befor = self::budget($_user_id, ['type' => $type, 'unit' => $user_unit_id]);
-		// new budget by $budget_befor + plus - minus
+		$save_transaction_by_unit = $transactionitems_unit_id;
+
 		$exchange_id = null;
+
 		if($force_change)
 		{
-			if($unit_id && $user_unit_id)
+			$budget_befor = self::budget($_user_id, ['type' => $type, 'unit' => $user_unit_id]);
+
+			if($transactionitems_unit_id && $user_unit_id)
 			{
-				$from          = $unit_id;
+				$from          = $transactionitems_unit_id;
 				$to            = $user_unit_id;
 
 				if(intval($from) === intval($to))
@@ -193,6 +206,9 @@ trait set
 					$plus       = $plus * $rate;
 					$value_to   = ($plus - $minus);
 					$new_budget = $budget_befor + $value_to;
+
+					$save_transaction_by_unit = $user_unit_id;
+
 				}
 				else
 				{
@@ -216,13 +232,15 @@ trait set
 		}
 		else
 		{
+			// get the budge befor
+			$budget_befor = self::budget($_user_id, ['type' => $type, 'unit' => $transactionitems_unit_id]);
+			// new budget by $budget_befor + plus - minus
 			$new_budget  = $budget_befor + $plus - $minus;
 		}
 
 		$status   = "enable";
-
 		$finished = "no";
-		if($type == 'gift')
+		if($type === 'gift')
 		{
 			$finished = "yes";
 		}
@@ -234,7 +252,7 @@ trait set
 			'user_id'            => $_user_id,
 			'post_id'            => $post_id,
 			'type'               => $type,
-			'unit_id'            => $user_unit_id,
+			'unit_id'            => $save_transaction_by_unit,
 			'plus'               => ($plus) ? $plus : null,
 			'minus'              => ($minus) ? $minus : null,
 			'budgetbefore'       => $budget_befor,

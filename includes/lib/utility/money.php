@@ -10,7 +10,7 @@ trait money
 	 *
 	 * @var        array
 	 */
-	private static $poll_ranks_value =
+	public static $poll_ranks_value =
 	[
 		// valur of member
 		'member'    => [ true	, 	5	 		],
@@ -54,7 +54,7 @@ trait money
 	 *
 	 * @var        array
 	 */
-	private static $user_ranks_value =
+	public static $user_ranks_value =
 	[
 		// the user was reported
 		'reported'       => [ false,	100			],
@@ -118,7 +118,7 @@ trait money
 	/**
 	* the money of filters
 	*/
-	private static $money_filter =
+	public static $money_filter =
 	[
 		'gender'           => 20,
 		'marrital'         => 35,
@@ -142,21 +142,37 @@ trait money
 
 
 	/**
+	 * give 10 sarshomar for one person in member
+	 *
+	 * @var        integer
+	 */
+	public static $member_per_person = 10;
+
+
+	/**
+	 * price of one poll if have brandin * 10
+	 *
+	 * @var        integer
+	 */
+	public static $add_poll_brand = 10;
+
+
+	/**
+	 * give 1000 sarshomar for hide result of poll
+	 *
+	 * @var        integer
+	 */
+	public static $add_poll_hide_result = 1000;
+
+
+	/**
 	 * notify mony
 	 */
-	private static $notify =
+	public static $notify =
 	[
 		'poll'         => 10,
 		'survey'       => 5,
 	];
-
-
-	/**
-	 * branding money
-	 *
-	 * @var        integer
-	 */
-	private static $branding = 100;
 
 
 	/**
