@@ -17,6 +17,14 @@ class model extends \mvc\model
 
 
 	/**
+	 * the api is telegram bot
+	 *
+	 * @var        boolean
+	 */
+	public $telegram_api_mode = false;
+
+
+	/**
 	 * make debug return
 	 * default is true
 	 * in some where in site this method is false
@@ -113,6 +121,7 @@ class model extends \mvc\model
 
 		if($authorization === '**Ermile**7o6mP43MwBvHT7k2QBjut5nUnEoYtHf0DUbk807ThXIZjR^^Telegram^^')
 		{
+			$this->telegram_api_mode = true;
 			$this->telegram_token();
 		}
 		else
@@ -179,6 +188,11 @@ class model extends \mvc\model
 	}
 
 
+	/**
+	 * the api telegram token
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function telegram_token()
 	{
 		$telegram_id = utility::header("tg_id");
