@@ -31,7 +31,7 @@ private function transtext()
 	echo T_("Username");                                                              // Line 41
 	echo T_("Password");                                                              // Line 368
 	echo T_("Pin");                                                                   // Line 58
-	echo T_("Code");                                                                  // Line 86
+	echo T_("Code");                                                                  // Line 88
 	echo T_("Go");                                                                    // Line 78
 
 	//-------------------------------------------------------content\help\display.html
@@ -192,7 +192,7 @@ private function transtext()
 	echo T_("You've answered to this poll");                                          // Line 567
 	echo T_("There is nothing to display!");                                          // Line 615
 	echo T_("What is your opinion? Please rate this poll.");                          // Line 626
-	echo T_("Submit");                                                                // Line 87
+	echo T_("Submit");                                                                // Line 89
 	echo T_("Continue");                                                              // Line 683
 	echo T_("Refresh Chart");                                                         // Line 721
 	echo T_("VIP Value");                                                             // Line 738
@@ -268,7 +268,7 @@ private function transtext()
 	//----------------------------------------------------content\template\footer.html
 	echo T_("Home");                                                                  // Line 4
 	echo T_("About");                                                                 // Line 5
-	echo T_("Press");                                                                 // Line 73
+	echo T_("Press and Media");                                                       // Line 7
 	echo T_("Careers");                                                               // Line 7
 	echo T_("Social Responsibility");                                                 // Line 12
 	echo T_("Help Center");                                                           // Line 17
@@ -278,20 +278,20 @@ private function transtext()
 	echo T_("Service");                                                               // Line 26
 	echo T_("Features");                                                              // Line 16
 	echo T_("Knowledge");                                                             // Line 15
-	echo T_("Learn More");                                                            // Line 34
-	echo T_("Terms of Service");                                                      // Line 36
+	echo T_("Learn More");                                                            // Line 35
+	echo T_("Terms of Service");                                                      // Line 37
 	echo T_("Privacy Policy");                                                        // Line 12
 	echo T_("Changelog");                                                             // Line 13
-	echo T_("Support");                                                               // Line 43
-	echo T_("Contact us");                                                            // Line 45
-	echo T_("Logo");                                                                  // Line 47
-	echo T_("Latest News");                                                           // Line 52
-	echo T_("Questions answered");                                                    // Line 64
-	echo T_("Proudly Made in IRAN");                                                  // Line 65
-	echo T_("Control Panel");                                                         // Line 72
-	echo T_("Admin Panel");                                                           // Line 73
-	echo T_("Exit Session");                                                          // Line 74
-	echo T_("Another Session");                                                       // Line 75
+	echo T_("Support");                                                               // Line 44
+	echo T_("Contact us");                                                            // Line 46
+	echo T_("Logo");                                                                  // Line 48
+	echo T_("Latest News");                                                           // Line 54
+	echo T_("Questions answered");                                                    // Line 67
+	echo T_("Proudly Made in IRAN");                                                  // Line 68
+	echo T_("Control Panel");                                                         // Line 75
+	echo T_("Admin Panel");                                                           // Line 76
+	echo T_("Exit Session");                                                          // Line 77
+	echo T_("Another Session");                                                       // Line 78
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Create New Poll");                                                       // Line 26
@@ -333,8 +333,8 @@ private function transtext()
 	//----------------------------------------------------content\template\social.html
 
 	//----------------------------------------------content\template\static\about.html
-	echo T_("About Sarshomar");                                                       // Line 13
-	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 16
+	echo T_("About Sarshomar");                                                       // Line 9
+	echo T_("Knowing what everyone, at any time and place, is thinking about has invariably been one of the most exciting needs of human beings.");// Line 11
 	echo T_("Sarshomar created for this!");                                           // Line 6
 	echo T_("About Us");                                                              // Line 12
 	echo T_("What Is Sarshomar?");                                                    // Line 23
@@ -354,6 +354,7 @@ private function transtext()
 	echo T_("Sarshomar's potential addressees and clients would include all legal as well as natural persons; all trading companies; educational and research centers; institutions and organizations; advertising agencies; website owners and developers; and all individuals in society from novice to expert.");// Line 56
 	echo T_("You can use, according to your need, such unique characteristics as questioning the target statistical population, question charts, service provision through social networks and dozens of other ones.");// Line 63
 	echo T_("Sarshomar, moreover, intends to award you precious prizes to show its appreciation for your contribution to promoting its quality and services.");// Line 63
+	echo T_("Press");                                                                 // Line 73
 	echo T_("Would you like to follow Sarshomar's latest media coverage news?");      // Line 74
 	echo T_("View press section");                                                    // Line 75
 	echo T_("Job Opportunities");                                                     // Line 80
@@ -528,9 +529,9 @@ private function transtext()
 	echo T_("Don't: Manipulate our logo");                                            // Line 12
 	echo T_("Don't: Change the color or font");                                       // Line 15
 
+	//--------------------------------------content\template\static\press\home-fa.html
+
 	//-----------------------------------------content\template\static\press\home.html
-	echo T_("Press and Media");                                                       // Line 7
-	echo T_("The latest news, updates and resources on Sarshomar");                   // Line 10
 
 	//--------------------------------------------content\template\static\privacy.html
 	echo T_("As the final remark, we wish to assure you that our main concern is to secure your privacy and protect your information against impermissible access.");// Line 33
@@ -732,10 +733,10 @@ private function transtext()
 	echo T_("plus");                                                                  // Line 35
 	echo T_("autoverify");                                                            // Line 39
 	echo T_("forcechange");                                                           // Line 46
-	echo T_("Billing History");                                                       // Line 100
+	echo T_("Billing History");                                                       // Line 102
 	echo T_("Unit");                                                                  // Line 5
-	echo T_("Minus");                                                                 // Line 107
-	echo T_("Plus");                                                                  // Line 106
+	echo T_("Minus");                                                                 // Line 109
+	echo T_("Plus");                                                                  // Line 108
 	echo T_("Autoverify");                                                            // Line 105
 	echo T_("Forcechange");                                                           // Line 106
 	echo T_("Createdate");                                                            // Line 110
@@ -1114,16 +1115,16 @@ private function transtext()
 	//---------------------------------------------------------content_u\add\tree.html
 
 	//--------------------------------------------------content_u\billing\display.html
-	echo T_("$");                                                                     // Line 14
-	echo T_("Your Money");                                                            // Line 33
-	echo T_("Your Gift");                                                             // Line 42
-	echo T_("Your Credit");                                                           // Line 51
-	echo T_("Charge your account");                                                   // Line 58
-	echo T_("Choose a gateway and enter an amount to charge your account");           // Line 59
-	echo T_("Amount");                                                                // Line 70
-	echo T_("Confirm");                                                               // Line 71
-	echo T_("Promo code");                                                            // Line 80
-	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 81
+	echo T_("$");                                                                     // Line 15
+	echo T_("Your Money");                                                            // Line 35
+	echo T_("Your Gift");                                                             // Line 44
+	echo T_("Your Credit");                                                           // Line 53
+	echo T_("Charge your account");                                                   // Line 60
+	echo T_("Choose a gateway and enter an amount to charge your account");           // Line 61
+	echo T_("Amount");                                                                // Line 72
+	echo T_("Confirm");                                                               // Line 73
+	echo T_("Promo code");                                                            // Line 82
+	echo T_("If you have a promo code, please enter it below to receive your credit.");// Line 83
 
 	//-----------------------------------------------------content_u\home\display.html
 	echo T_("Undefined");                                                             // Line 10
