@@ -30,7 +30,8 @@ trait add
 
 		if(!shortURL::is(utility::request('id')))
 		{
-			return debug::error(T_("Invalid parameter id"), 'id', 'arguments');
+			debug::error(T_("Invalid parameter id"), 'id', 'arguments');
+			return false;
 		}
 		$count_valid_request = 0;
 
@@ -61,12 +62,14 @@ trait add
 
 		if($count_valid_request > 1)
 		{
-			return debug::error(T_("You can not set :requests at the same time", ['requests' => implode(',', array_keys(utility::request()))]), 'skip', 'arguments');
+			debug::error(T_("You can not set :requests at the same time", ['requests' => implode(',', array_keys(utility::request()))]), 'skip', 'arguments');
+			return false;
 		}
 
 		if($count_valid_request === 0)
 		{
-			return debug::error(T_("You haven't sent any answer"), 'input', 'arguments');
+			debug::error(T_("You haven't sent any answer"), 'input', 'arguments');
+			return false;
 		}
 
 		$available = $this->poll_answer_get($_options);
@@ -82,19 +85,23 @@ trait add
 		{
 			if(!in_array('skip', $available['available']) && $skip)
 			{
-				return debug::error(T_("Can not skip this poll"), 'answer', 'permission');
+				debug::error(T_("Can not skip this poll"), 'answer', 'permission');
+				return false;
 			}
 
 			if(!in_array('add', $available['available']) && !in_array('edit', $available['available']) && $answer)
 			{
-				return debug::error(T_("You was already answered to this poll"), 'answer', 'permission');
+				debug::error(T_("You was already answered to this poll"), 'answer', 'permission');
+				return false;
 
-				// return debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
+				debug::error(T_("You can not add or edit your answer"), 'answer', 'permission');
+				// return false;
 			}
 		}
 		else
 		{
-			return debug::error(T_("Invalid answer available"), 'api', 'system');
+			debug::error(T_("Invalid answer available"), 'api', 'system');
+			return false;
 		}
 
 		if($skip)
@@ -104,7 +111,8 @@ trait add
 
 		if($answer && !is_array($answer))
 		{
-			return debug::error(T_("Answer parameter must be array"), 'answer', 'arguments');
+			debug::error(T_("Answer parameter must be array"), 'answer', 'arguments');
+			return false;
 		}
 
 		$get_poll_options =
@@ -124,24 +132,28 @@ trait add
 
 		if(!$poll)
 		{
-			return debug::error(T_("Poll not found"), 'id', 'arguments');
+			debug::error(T_("Poll not found"), 'id', 'arguments');
+			return false;
 		}
 
 		if(isset($poll['status']))
 		{
 			if($poll['status'] != 'publish')
 			{
-				return debug::error(T_("Poll has not published"), 'id', 'arguments');
+				debug::error(T_("Poll has not published"), 'id', 'arguments');
+				return false;
 			}
 		}
 		else
 		{
-			return debug::error(T_("Poll status not found"), 'status', 'system');
+			debug::error(T_("Poll status not found"), 'status', 'system');
+			return false;
 		}
 
 		if(!isset($poll['answers']))
 		{
-			return debug::error(T_("Poll answers not found"), 'id', 'arguments');
+			debug::error(T_("Poll answers not found"), 'id', 'arguments');
+			return false;
 		}
 
 		$answers_type = array_column($poll['answers'], 'type');
@@ -160,7 +172,8 @@ trait add
 
 		if(!$poll_type)
 		{
-			return debug::error(T_("This type of poll is not supported to answer"), 'answer', 'arguments');
+			debug::error(T_("This type of poll is not supported to answer"), 'answer', 'arguments');
+			return false;
 		}
 
 		$multi     = false;
@@ -190,7 +203,8 @@ trait add
 
 		if(!$multi && count($answer) > 1)
 		{
-			return debug::error(T_("This is not a multi select poll and you selected :count answers",['count' => count($answer)]),'answer', 'arguments');
+			debug::error(T_("This is not a multi select poll and you selected :count answers",['count' => count($answer)]),'answer', 'arguments');
+			return false;
 		}
 
 		switch ($poll_type)
@@ -212,17 +226,24 @@ trait add
 
 		foreach (utility::request('answer') as $key => $value)
 		{
+			if(!is_numeric($key))
+			{
+				debug::error(T_("Invalid answer array"), 'answer', 'arguments');
+				return false;
+			}
 			$poll_answer_key = $key - 1;
 
 			if(!isset($poll['answers'][$poll_answer_key]))
 			{
-				return debug::error(T_("This poll has not option :key", ['key' => $key]), 'answer', 'arguments');
+				debug::error(T_("This poll has not option :key", ['key' => $key]), 'answer', 'arguments');
+				return false;
 			}
 			else
 			{
 				if(!isset($poll['answers'][$poll_answer_key]['type']))
 				{
-					return debug::error(T_("This poll has not answery type of :key", ['key' => $key]), 'answer', 'system');
+					debug::error(T_("This poll has not answery type of :key", ['key' => $key]), 'answer', 'system');
+					return false;
 				}
 
 				$answer_type = $poll['answers'][$poll_answer_key]['type'];
@@ -241,7 +262,8 @@ trait add
 					default:
 						if(intval($key) !== 1)
 						{
-							return debug::error(T_("This poll is :type poll and you can set only one answer", ['type' => $answers_type]), 'answer', 'arguments');
+							debug::error(T_("This poll is :type poll and you can set only one answer", ['type' => $answers_type]), 'answer', 'arguments');
+							return false;
 						}
 						break;
 				}
@@ -269,7 +291,8 @@ trait add
 								}
 								elseif($value !== false)
 								{
-									return debug::error(T_("Invalid parameter :value", ['value' => $value]), 'answer', 'arguments');
+									debug::error(T_("Invalid parameter :value", ['value' => $value]), 'answer', 'arguments');
+									return false;
 								}
 							}
 							break;
@@ -288,7 +311,8 @@ trait add
 
 		if(empty($true_answer))
 		{
-			return debug::error(T_("No answer was set"), 'answer', 'id');
+			debug::error(T_("No answer was set"), 'answer', 'id');
+			return false;
 		}
 
 		if($multi)
@@ -337,7 +361,8 @@ trait add
 
 			if(!$check_multi)
 			{
-				return debug::error($multi_msg);
+				debug::error($multi_msg);
+				return false;
 			}
 		}
 
@@ -452,7 +477,8 @@ trait add
 		}
 		else
 		{
-			return debug::error(T_("Invalid method"), 'method', 'system');
+			debug::error(T_("Invalid method"), 'method', 'system');
+			return false;
 		}
 
 		if(debug::$status)
