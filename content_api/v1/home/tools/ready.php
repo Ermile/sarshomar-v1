@@ -8,6 +8,7 @@ trait ready
 {
 	public static $private_user_id;
 	public static $private_poll_id;
+	public static $private_is_my_poll = false;
 	public static $current_language;
 	public static $_options;
 	public static $host;
@@ -17,6 +18,7 @@ trait ready
 	use get_options;
 	use get_answers;
 	use get_transactions;
+	use get_members;
 
 	/**
 	 * ready poll record to show
@@ -83,6 +85,14 @@ trait ready
 			}
 		}
 
+		/**
+		 * load some ting because is my poll
+		 * for example load the password poll
+		 */
+		if($my_poll || self::check_api_permission('admin', 'admin', 'view'))
+		{
+			self::$private_is_my_poll = true;
+		}
 
 		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin', 'admin', 'view'))
 		{

@@ -57,6 +57,10 @@
     {%use "content_u/add/step2.html"%}
      {{block('filter_public')}}
 
+      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='private' {% if poll.privacy == 'private' %}{%else%}data-response-hide{%endif%} data-response-effect='slide'>
+     {{block('feature_poll_password')}}
+     </div>
+
      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='public' {% if poll.privacy == 'public' %}{%else%}data-response-hide{%endif%} data-response-effect='slide'>
      {{block('filter_person_count')}}
       <div class="span12">

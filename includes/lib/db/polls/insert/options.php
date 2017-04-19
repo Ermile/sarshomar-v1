@@ -6,9 +6,66 @@ use \lib\utility\shortURL;
 
 trait options
 {
+	use options_members;
+
 	protected static function insert_options()
 	{
-		// save meta times
+		/**
+		 * check members and save it options
+		 */
+		self::insert_options_members();
+
+		if(!debug::$status)
+		{
+			return false;
+		}
+
+		// save send by sms options
+		if(self::isset_args('options','send_sms'))
+		{
+			if(self::$args['options']['send_sms'])
+			{
+				self::save_options('send_sms', true);
+			}
+			else
+			{
+				self::save_options('send_sms', false);
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('send_sms', false);
+			}
+		}
+
+		// save poll password
+		if(self::isset_args('options','password'))
+		{
+			if(self::$args['options']['password'])
+			{
+				if(!is_string(self::$args['options']['password']) || mb_strlen(self::$args['options']['password']) > 20)
+				{
+					debug::error(T_("You must set less than 20 character in password"), 'password', 'arguments');
+					return false;
+				}
+				self::save_options('password', trim(self::$args['options']['password']));
+			}
+			else
+			{
+				self::save_options('password', false);
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('password', false);
+			}
+		}
+
+		// save options prize
 		if(self::isset_args('options','prize'))
 		{
 			if(self::$args['options']['prize'])

@@ -2676,6 +2676,24 @@ function prepareQuestionData()
 		myQuestion.options.hide_result = $('#hide_result').is(":checked");
 	}
 
+	// get poll password
+	if($('#password_radio').is(":checked") && $('#poll-password').val())
+	{
+		myQuestion.options.password = $('#poll-password').val();
+	}
+
+	// get poll members
+	if($('#members_radio').is(":checked") && $('#poll-members').val())
+	{
+		myQuestion.options.members = $('#poll-members').val();
+	}
+
+	// get poll members
+	if($('#send-sms').is(":checked"))
+	{
+		myQuestion.options.send_sms = true;
+	}
+
 	// data of publish page
 	// category
 	if($('#cat0').attr('data-val'))

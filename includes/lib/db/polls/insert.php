@@ -72,7 +72,7 @@ trait insert
 
 		// the shortURL of poll to check if need
 		$shortURL = self::$args['shortURL'];
-
+		self::$real_user_id = self::$args['user'];
 		// update id must be a shortURL
 		if(self::$args['update'] !== false && !preg_match("/^[". $shortURL. "]+$/", self::$args['update']))
 		{

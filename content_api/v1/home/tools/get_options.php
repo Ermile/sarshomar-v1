@@ -65,6 +65,41 @@ trait get_options
 
 		foreach ($post_meta as $key => $value)
 		{
+			if(isset($value['option_key']) && preg_match("/^password$/", $value['option_key']))
+			{
+				if(self::$private_is_my_poll)
+				{
+
+					$_poll_data['options']['password'] = isset($value['option_value']) ? $value['option_value'] : null;
+				}
+				$_poll_data['options']['have_password'] = true;
+			}
+
+			if(isset($value['option_key']) && preg_match("/^members$/", $value['option_key']))
+			{
+				if(self::$private_is_my_poll)
+				{
+					if(isset($value['option_value']) && $value['option_value'])
+					{
+						$_poll_data['options']['have_members'] = true;
+
+						if(!self::$_options['run_options'])
+						{
+							self::get_members($_poll_data);
+						}
+					}
+				}
+			}
+
+
+			if(isset($value['option_key']) && preg_match("/^send_sms$/", $value['option_key']))
+			{
+				if(isset($value['option_value']) && $value['option_value'])
+				{
+					$_poll_data['options']['send_sms'] = true;
+				}
+			}
+
 			if(isset($value['option_key']) && preg_match("/^articles/", $value['option_key']))
 			{
 				if(isset($value['option_value']))
