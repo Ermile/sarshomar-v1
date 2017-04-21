@@ -1327,6 +1327,8 @@ function redrawPollChart(_data)
  */
 function homepageTop(_option)
 {
+	_option.categoryField = "title";
+
 	_option.graphs[0].labelFunction = function( item )
 	{
 		// Calculate total of values across all columns in the graph
@@ -1360,7 +1362,7 @@ function homepageTop(_option)
 			var myBalloon = fitNumber(value, false) + "<br>";
 			for( var i = 0; i < _option.dataProvider.length; i++ )
 			{
-				if(_option.dataProvider[ i ].key === value)
+				if(_option.dataProvider[ i ].title === value)
 				{
 					myBalloon += "<b>" + fitNumber(_option.dataProvider[ i ].value, false) + "</b> "+ voteText;
 				}

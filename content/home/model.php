@@ -520,56 +520,56 @@ class model extends \mvc\model
 				'data' =>
 				[
 					[
-					 'key' => 'سید مصطفی میرسلیم',
+					 'key' => '1',
 					 'title' => 'سید مصطفی میرسلیم',
 					 // "color" =>  "#ff0e17",
 					 'value' => 40,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/persepolis.png'
 					],
 					[
-					 'key' => 'اسحاق جهانگیری',
+					 'key' => '2',
 					 'title' => 'اسحاق جهانگیری',
 					 // "color" =>  "#3687c8",
 					 'value' => 20,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/esteghlal.png'
 					],
 					[
-					 'key' => 'حسن روحانی',
+					 'key' => '3',
 					 'title' => 'حسن روحانی',
 					 // "color" =>  "#ee2424",
 					 'value' => 100,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 					[
-					 'key' => 'سید ابراهیم رئیسی',
+					 'key' => '4',
 					 'title' => 'سید ابراهیم رئیسی',
 					 // "color" =>  "#ffcc00",
 					 'value' => 110,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/sepahan.png'
 					],
 					[
-					 'key' => 'محمد باقر قالیباف',
+					 'key' => '5',
 					 'title' => 'محمد باقر قالیباف',
 					 // "color" =>  "#ee2424",
 					 'value' => 80,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 					[
-					 'key' => 'سید مصطفی هاشمی‌طبا',
+					 'key' => '6',
 					 'title' => 'سید مصطفی هاشمی‌طبا',
 					 // "color" =>  "#666",
 					 'value' => 10,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/league.png'
 					],
 					[
-					 'key' => 'هیچکدام، رای باطل',
+					 'key' => '7',
 					 'title' => 'هیچکدام، رای باطل',
 					 // "color" =>  "#ee2424",
 					 'value' => 30,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 					[
-					 'key' => 'رای نمی‌دهم',
+					 'key' => '7',
 					 'title' => 'رای نمی‌دهم',
 					 // "color" =>  "#ee2424",
 					 'value' => 90,
