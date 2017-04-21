@@ -1142,7 +1142,7 @@ function setChartOption(_chartData, _type, _trans, _init)
 	}
 	// change effect on other types of chart
 	// _chartData.startEffect = "elastic";
-	_chartData.startDuration = 0.3;
+	// _chartData.startDuration = 0.3;
 
 
 	if(_trans.length === 0)
