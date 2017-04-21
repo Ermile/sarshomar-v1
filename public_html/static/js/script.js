@@ -2694,6 +2694,12 @@ function prepareQuestionData()
 		myQuestion.options.send_sms = true;
 	}
 
+	// get poll members
+	if($('#send-sms').is(":checked") && $('#sms-text').val())
+	{
+		myQuestion.options.sms_text = $('#sms-text').val();
+	}
+
 	// data of publish page
 	// category
 	if($('#cat0').attr('data-val'))

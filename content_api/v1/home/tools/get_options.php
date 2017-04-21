@@ -81,7 +81,6 @@ trait get_options
 				{
 					if(isset($value['option_value']) && $value['option_value'])
 					{
-						$_poll_data['options']['have_members'] = true;
 
 						if(!self::$_options['run_options'])
 						{
@@ -89,14 +88,39 @@ trait get_options
 						}
 					}
 				}
-			}
 
+				$_poll_data['options']['have_members'] = true;
+			}
 
 			if(isset($value['option_key']) && preg_match("/^send_sms$/", $value['option_key']))
 			{
 				if(isset($value['option_value']) && $value['option_value'])
 				{
-					$_poll_data['options']['send_sms'] = true;
+					$_poll_data['options']['sms'] = ['text' => null];
+				}
+			}
+
+			if(isset($value['option_key']) && preg_match("/^sms_text$/", $value['option_key']))
+			{
+
+				if(isset($value['option_value']) && $value['option_value'])
+				{
+					$sms_text = null;
+					if(isset($value['option_meta']) && is_string($value['option_meta']) && substr($value['option_meta'], 0, 1) === '{')
+					{
+						$temp = json_decode($value['option_meta'], true);
+						if(isset($temp['text']) && is_string($temp['text']))
+						{
+							$sms_text = $temp['text'];
+						}
+
+					}
+					elseif(isset($value['option_meta']['text']))
+					{
+						$sms_text = $value['option_meta']['text'];
+					}
+
+					$_poll_data['options']['sms'] = ['text' => $sms_text];
 				}
 			}
 

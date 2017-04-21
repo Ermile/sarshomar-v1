@@ -40,6 +40,32 @@ trait options
 			}
 		}
 
+		// save send sms text
+		if(self::isset_args('options','sms_text'))
+		{
+			if(self::$args['options']['sms_text'])
+			{
+				if(mb_strlen(self::$args['options']['sms_text']) > 700)
+				{
+					debug::error(T_("You must set less than 700 character on sms text"), 'sms', 'arguments');
+					return false;
+				}
+
+				self::save_options('sms_text', true, ['text' => self::$args['options']['sms_text']]);
+			}
+			else
+			{
+				self::save_options('sms_text', false);
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('sms_text', false);
+			}
+		}
+
 		// save poll password
 		if(self::isset_args('options','password'))
 		{
