@@ -3453,9 +3453,9 @@ function welcomeToErmile()
 			resize.step = 2;
 			console.log('Common...');
 		}
-		else if(resize.step === 1 && resize.calls > 50 && resize.total > 1000)
+		else if(resize.step === 2 && resize.calls > 50 && resize.total > 1000)
 		{
-			resize.step = 2;
+			resize.step = 3;
 			console.log('Ermile is waiting for you baby))' );
 		}
 	}
