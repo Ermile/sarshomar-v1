@@ -516,43 +516,64 @@ class model extends \mvc\model
 		{
 			$random =
 			[
-				'title' => 'طرفدار کدام تیم هستید؟',
+				'title' => 'رای شما به کدام کاندید انتخابات ریاست جمهوری ۹۶ خواهد بود؟',
 				'data' =>
 				[
 					[
-					 'key' => 'پرسپولیس',
-					 'title' => 'پرسپولیس',
+					 'key' => 'سید مصطفی میرسلیم',
+					 'title' => 'سید مصطفی میرسلیم',
 					 // "color" =>  "#ff0e17",
-					 'value' => 400,
+					 'value' => 40,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/persepolis.png'
 					],
 					[
-					 'key' => 'استقلال',
-					 'title' => 'استقلال',
+					 'key' => 'اسحاق جهانگیری',
+					 'title' => 'اسحاق جهانگیری',
 					 // "color" =>  "#3687c8",
-					 'value' => 200,
+					 'value' => 20,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/esteghlal.png'
 					],
 					[
-					 'key' => 'تراکتورسازی',
-					 'title' => 'تراکتورسازی',
+					 'key' => 'حسن روحانی',
+					 'title' => 'حسن روحانی',
 					 // "color" =>  "#ee2424",
-					 'value' => 300,
+					 'value' => 100,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 					[
-					 'key' => 'سپاهان',
-					 'title' => 'سپاهان',
+					 'key' => 'سید ابراهیم رئیسی',
+					 'title' => 'سید ابراهیم رئیسی',
 					 // "color" =>  "#ffcc00",
-					 'value' => 70,
+					 'value' => 110,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/sepahan.png'
 					],
 					[
-					 'key' => 'سایر',
-					 'title' => 'سایر',
+					 'key' => 'محمد باقر قالیباف',
+					 'title' => 'محمد باقر قالیباف',
+					 // "color" =>  "#ee2424",
+					 'value' => 80,
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
+					],
+					[
+					 'key' => 'سید مصطفی هاشمی‌طبا',
+					 'title' => 'سید مصطفی هاشمی‌طبا',
 					 // "color" =>  "#666",
-					 'value' => 120,
+					 'value' => 10,
 					 // 'bullet' => $this->view()->url->static.'images/chart/iran/league.png'
+					],
+					[
+					 'key' => 'هیچکدام، رای باطل',
+					 'title' => 'هیچکدام، رای باطل',
+					 // "color" =>  "#ee2424",
+					 'value' => 30,
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
+					],
+					[
+					 'key' => 'رای نمی‌دهم',
+					 'title' => 'رای نمی‌دهم',
+					 // "color" =>  "#ee2424",
+					 'value' => 90,
+					 // 'bullet' => $this->view()->url->static.'images/chart/iran/tractorsazi.png'
 					],
 				]
 			];
