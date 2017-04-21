@@ -1195,7 +1195,7 @@ function pollTotal_default(_option, _answers, _el)
 	// show all data on hover of column
 	_option.chartCursor =
 	{
-		"valueBalloonsEnabled": false,
+		"valueBalloonsEnabled": true,
 		"categoryBalloonColor":"#e7a429",
 		"cursorColor":"#00667a",
 		"cursorAlpha": 0.05,
