@@ -3077,7 +3077,7 @@ route(/\@\/add(|\/[^\/]*)$/, function()
 	// for chrome
 	$(window).on('beforeunload', function()
 	{
-		sendQuestionData(null, false);
+		// sendQuestionData(null, false);
 	});
 	//this will work for other browsers
 	// $(window).on("unload", function ()
