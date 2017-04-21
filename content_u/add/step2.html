@@ -166,6 +166,7 @@
  </div>
  <textarea id='poll-members' placeholder='{%trans "members"%}' data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.members}}</textarea>
 
+{%if url.tld == 'dev'%}
  <br>
 
  <div class="checkbox" data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide'>
@@ -179,6 +180,8 @@
   <span class="letter-counter"></span>
  </div>
  <textarea id='sms-text' placeholder='{%trans "SMS Text"%}' data-response="send-sms"  {%if not poll.options.sms%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.sms.text}}</textarea>
+
+{%endif%}
 
 </div>
 
