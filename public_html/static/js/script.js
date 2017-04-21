@@ -3416,6 +3416,56 @@ function panelText()
 }
 
 
+/**
+ * [welcomeToErmile description]
+ * @return {[type]} [description]
+ */
+function welcomeToErmile()
+{
+	var resize =
+	{
+		calls: 0,
+		total: 0,
+		width: 0,
+		height: 0,
+		oldWidth: window.innerWidth,
+		oldHeight: window.innerHeight,
+		step:0,
+	};
+
+	// window.resize callback function
+	function getDimensions()
+	{
+		resize.calls  += 1;
+		resize.width  += Math.abs(resize.oldWidth - window.innerWidth);
+		resize.height += Math.abs(resize.oldHeight - window.innerHeight);
+		resize.total  = resize.width + resize.height;
+
+		resize.oldWidth  = window.innerWidth;
+		resize.oldHeight = window.innerHeight;
+		if(resize.step === 0 && resize.calls > 10 && resize.total > 1000)
+		{
+			resize.step = 1;
+			console.log('Hey Boy;)');
+		}
+		else if(resize.step === 1 && resize.calls > 20 && resize.total > 7000)
+		{
+			resize.step = 2;
+			console.log('Common...');
+		}
+		else if(resize.step === 1 && resize.calls > 50 && resize.total > 1000)
+		{
+			resize.step = 2;
+			console.log('Ermile is waiting for you baby))' );
+		}
+	}
+	//lListen for window.resize
+	window.addEventListener('resize', getDimensions);
+	// call once to initialize page
+	// getDimensions();
+}
+
+
 runAllScripts();
 /**
  * this function run all scripts and all subfunctions
@@ -3443,6 +3493,8 @@ function runAllScripts()
 	panelText();
 	// handle sidebar
 	handleSidebar();
+	// handle resize of window
+	welcomeToErmile();
 }
 
 
