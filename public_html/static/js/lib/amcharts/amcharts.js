@@ -571,7 +571,7 @@ function drawChart()
 				continue;
 			}
 			// var colorKey = "autoColor-"+i;
-			colorPallet = pallet();
+			colorPallet = pallet(5);
 			colorKey    = colorPallet[i];
 			graph.lineColorField = colorKey;
 			graph.fillColorsField = colorKey;
@@ -672,8 +672,7 @@ function createChartOption(_this, _chartName)
 		myChartOptions              = getChartOption('default', {"color":attrColor, "val":attrVals})
 		myChartOptions.categoryAxis = getChartOption('categoryAxis');
 		myChartOptions.valueAxes    = getChartOption('valueAxes');
-		myChartOptions.graphs       = getChartOption('graphs', attrAutoColor);
-
+		myChartOptions.graphs       = getChartOption('graphs', {"color": attrAutoColor, "data": myChartOptions.dataProvider});
 		// allow to give special catfield
 		if(attrCat)
 		{
@@ -793,11 +792,34 @@ function getChartOption($_what, _arg)
 				"lineAlpha": 0.2,
 				"customBulletField": "bullet",
 				"bulletSize": 40,
-				"autoColor": _arg,
-				"labelFunction" : function(item)
+				"autoColor": _arg.color,
+				"labelText": " ",
+				"labelFunction" : function( item )
 				{
-					return fitNumber(Math.abs(item.values.value));
+					if(_arg.data)
+					{
+						console.log(_arg.data);
+						// Calculate total of values across all columns in the graph
+						var total = 0;
+						for( var i = 0; i < _arg.data.length; i++ )
+						{
+							total += _arg.data[ i ][ item.graph.valueField ];
+						}
+
+						// Calculate percet value of this label
+						var percent = Math.round( ( item.values.value / total ) * 1000 ) / 10;
+
+						return fitNumber(percent) + "%";
+					}
+					else
+					{
+						return fitNumber(Math.abs(item.values.value));
+					}
 				},
+				// "labelFunction" : function(item)
+				// {
+				// 	return fitNumber(Math.abs(item.values.value));
+				// },
 				"balloonFunction": function(item)
 				{
 					return item.category + " <b>" + fitNumber(item.values.value) + "</b>";
@@ -1147,9 +1169,19 @@ function pollTotal_default(_option, _answers, _el)
 	// console.log(_option);
 
 	// show all data on hover of column
-	_option.chartCursor = {};
-	_option.chartCursor.cursorAlpha = 0;
-	_option.chartCursor.categoryBalloonColor = '#e7a429';
+	_option.chartCursor =
+	{
+		"valueBalloonsEnabled": false,
+		"categoryBalloonColor":"#e7a429",
+		"cursorColor":"#00667a",
+		"cursorAlpha": 0.05,
+		"fullWidth": true,
+		"zoomable": false,
+		"categoryBalloonFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
+	};
 
 	return _option;
 }
@@ -1188,9 +1220,19 @@ function setChartOption(_chartData, _type, _trans, _init)
 	// _chartData.startDuration = 0.3;
 
 	// show all data on hover of column
-	_chartData.chartCursor = {};
-	_chartData.chartCursor.cursorAlpha = 0.1;
-	_chartData.chartCursor.categoryBalloonColor = '#e7a429';
+	_chartData.chartCursor =
+	{
+		"valueBalloonsEnabled": true,
+		"categoryBalloonColor":"#e7a429",
+		"cursorColor":"#00667a",
+		"cursorAlpha": 0.05,
+		"fullWidth": true,
+		"zoomable": false,
+		"categoryBalloonFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
+	};
 
 	if(_trans.length === 0)
 	{
@@ -1275,6 +1317,51 @@ function redrawPollChart(_data)
 
 		}
 	});
+}
+
+
+/**
+ * [homepageTop description]
+ * @param  {[type]} _option [description]
+ * @return {[type]}         [description]
+ */
+function homepageTop(_option)
+{
+	_option.graphs[0].labelFunction = function( item )
+	{
+		// Calculate total of values across all columns in the graph
+		var total = 0;
+		for( var i = 0; i < _option.dataProvider.length; i++ )
+		{
+			total += _option.dataProvider[ i ][ item.graph.valueField ];
+		}
+
+		// Calculate percet value of this label
+		var percent = Math.round( ( item.values.value / total ) * 1000 ) / 10;
+
+		return fitNumber(percent) + "%";
+	};
+
+
+	_option.graphs[0].showBalloon = false;
+
+	// show all data on hover of column
+	_option.chartCursor =
+	{
+		"valueBalloonsEnabled": false,
+		"categoryBalloonColor":"#e7a429",
+		"cursorColor":"#00667a",
+		"cursorAlpha": 0.05,
+		"fullWidth": true,
+		"zoomable": false,
+		"categoryBalloonFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
+	};
+
+
+	return _option;
 }
 
 

@@ -3,7 +3,7 @@
 {%block content%}
   <div class="main homepage">
    <div class="box">
-    <div class="f gutters">
+    <div class="f">
      <div class="c5 s12 m12" id="intro-box">
       <h2>{{site.slogan}}</h2>
       <p>{%trans "Focus on your question. Do not be too concerned about how to ask or analyze."%} {%trans "Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means."%}</p>
@@ -15,14 +15,14 @@
 {%endif%}
      </div>
 
-{%if site.currentlang == "fa"%}
+{%if site.currentlang == "fa" and false%}
      <div class="c7 s12 m12" id='gift-iphone'>
       <a href="{{url.base}}/gift"><img src="{{url.static}}images/gift/iphone.png" alt='{%trans "To enter into the Sarshomar society win iPhone"%}'></a>
      </div>
 {%else%}
-      <div class="c7 s12 m12" id='random-chart'>
+      <div class="c7 s12 m12{%if site.currentlang=='fa'%} wide{%endif%}" id='random-chart'>
        <h3 class="unselectable"><a href='{{result.url}}'>{{result.title|trim('\"')}}</a></h3>
-       <div class='column palette{{(random(6)) + 1}} chart' data-type='column' data-place='div' data-vals='{{result.data}}' data-color='auto' data-catField='title'></div>
+       <div class='column chart' data-type='column' data-place='div' data-vals='{{result.data | raw  }}' data-color='auto' data-catField='title' data-format='homepageTop'></div>
       </div>
 {%endif%}
     </div>
@@ -36,7 +36,7 @@
     <div class="f society-dist">
      <div class="c6 m12 s12">
 {%set ageTooltip%}{formatter: '::xformater'}{%endset%}
-      <div class="chart" id="age-chart" data-format="homepageGender" data-vals='{{male_female_chart.data}}'></div>
+      <div class="chart" id="age-chart" data-format="homepageGender" data-vals='{{male_female_chart.data | raw}}'></div>
      </div>
      <div class="c6 m0 s0"><div id="iran-map" class="map"></div></div>
     </div>
