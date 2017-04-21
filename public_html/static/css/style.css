@@ -1070,16 +1070,16 @@ div.checkbox{margin-bottom:15px}
 
 
 /************************************************************** radio */
-@-webkit-keyframes explode{0%{opacity:0;-webkit-transform:scale(1.5);transform:scale(1.5);}60%{opacity:1;-webkit-transform:scale(0.75);transform:scale(0.75);}100%{opacity:1;-webkit-transform:scale(1);transform:scale(1);}}
-@-moz-keyframes explode{0%{opacity:0;-moz-transform:scale(1.5);transform:scale(1.5);}60%{opacity:1;-moz-transform:scale(0.75);transform:scale(0.75);}100%{opacity:1;-moz-transform:scale(1);transform:scale(1);}}
-@-o-keyframes explode{0%{opacity:0;-o-transform:scale(1.5);transform:scale(1.5);}60%{opacity:1;-o-transform:scale(0.75);transform:scale(0.75);}100%{opacity:1;-o-transform:scale(1);transform:scale(1);}}
-@keyframes explode{0%{opacity:0;-webkit-transform:scale(1.5);-moz-transform:scale(1.5);-o-transform:scale(1.5);transform:scale(1.5);}60%{opacity:1;-webkit-transform:scale(0.75);-moz-transform:scale(0.75);-o-transform:scale(0.75);transform:scale(0.75);}100%{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1);}}
-.radio{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex}
-.radio .radio-box{position:relative;width:30px;height:30px;display:inline-block}
-.radio .radio-box::before{content:'';width:12px;height:12px;background:#00667a;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}
-.radio .radio-box::after{content:'';position:absolute;width:20px;height:20px;left:0;top:0;border:3px solid #00667a;opacity:0;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}
-.radio input[type="radio"]{display:none}
-.radio input[type="radio"]:checked+.radio-box::after{position:absolute;top:0;left:0;opacity:1;-webkit-animation-name:explode;-moz-animation-name:explode;-o-animation-name:explode;animation-name:explode;-webkit-animation-duration:.35s;-moz-animation-duration:.35s;-o-animation-duration:.35s;animation-duration:.35s}
+.radio{}
+span.radio{display:inline-block}
+.radio input[type='radio']{position:absolute;opacity:0}
+.radio input[type='radio']+label{display:inline-block}
+.radio input[type='radio']+label:before{position:relative;display:inline-block;width:25px;height:25px;margin-right:1em;content:'';cursor:pointer;-webkit-transition:all 250ms ease;transition:all 250ms ease;text-align:center;vertical-align:middle;border:2px solid #00667a;border-radius:100%;background:#f4f4f4}
+.rtl .radio input[type='radio']+label:before{margin:0;margin-left:1em}
+.radio input[type='radio']:checked+label:before{background-color:#00667a;box-shadow:inset 0 0 0 4px #f4f4f4}
+.radio input[type='radio']:focus+label:before{border-color:#00667a;outline:none}
+.radio input[type='radio']:disabled+label:before{border-color:#b4b4b4;background:#b4b4b4;box-shadow:inset 0 0 0 4px #f4f4f4}
+.radio input[type='radio']+label:empty:before{margin-right:0}
 
 
 /************************************************************** add page */
