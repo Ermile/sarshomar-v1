@@ -1146,7 +1146,7 @@ input[type="radio"].notshown{height:0;width:0;opacity:0;position:absolute}
 .poll-container.ltr .poll-toolbox .sharebox>a:not(:last-child){margin:0;margin-right:.5rem}
 .poll-container.rtl .poll-toolbox .sharebox>a:not(:last-child){margin:0;margin-left:.5rem}
 
-.poll-container .poll-image{display:block;width:50%;margin:0 auto 2em}
+.poll-container .poll-image{display:block;max-height:500px;margin:0 auto 2em}
 
 .poll-container .poll-summary{width:80%;font-size:1.2em;padding:0 1em;word-break:break-word}
 
