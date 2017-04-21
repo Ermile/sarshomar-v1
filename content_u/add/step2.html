@@ -152,31 +152,36 @@
 
 <br>
 
-<div class="element no-pad" data-response="password_members" data-response-where="password_radio" {%if not poll.options.have_password %}data-response-hide{% endif %}>
-   <label class="title large" for="poll-password">{%trans "Poll password"%}</label>
-   <div class="element-in">
-    <input type="text" id="poll-password" placeholder='{%trans "Poll password"%}' class='input category' maxlength="20" value="{{poll.options.password}}">
-   </div>
-  </div>
+<div class="in">
+ <div class="element no-pad" data-response="password_members" data-response-where="password_radio" {%if not poll.options.have_password %}data-response-hide{% endif %}>
+  <label class="title large" for="poll-password">{%trans "Poll password"%}</label>
+  <div class="element-in"><input type="text" id="poll-password" placeholder='{%trans "Poll password"%}' class='input category' maxlength="20" value="{{poll.options.password}}"></div>
+ </div>
 
-<div class="panel-text" data-response="password_members" data-response-where="members_radio" {%if not poll.options.members %}data-response-hide{% endif %}>
- <input type="checkbox" id="members-show">
- <label for="poll-members">{%trans "Members"%}</label>
- <span class="letter-counter" data-limit-of='members'></span>
+
+ <div class="panel-text" data-response="password_members" data-response-where="members_radio" {%if not poll.options.members %}data-response-hide{% endif %}>
+  <input type="checkbox" id="members-show">
+  <label for="poll-members">{%trans "Members"%}</label>
+  <span class="letter-counter" data-limit-of='members'></span>
+ </div>
+ <textarea id='poll-members' placeholder='{%trans "members"%}' data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.members}}</textarea>
+
+ <br>
+
+ <div class="checkbox" data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide'>
+  <input type="checkbox" id="send-sms" {%if poll.options.sms%}checked{%endif%} >
+  <label for="send-sms" class="check-box"></label>
+  <label for="send-sms">{%trans "Send by SMS"%}</label>
+ </div>
+
+ <div class="panel-text" data-response="send-sms" {%if not  poll.options.sms %}data-response-hide{% endif %}>
+  <label for="sms-text">{%trans "SMS Text"%}</label>
+  <span class="letter-counter"></span>
+ </div>
+ <textarea id='sms-text' placeholder='{%trans "SMS Text"%}' data-response="send-sms"  {%if not poll.options.sms%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.sms.text}}</textarea>
+
 </div>
-<textarea id='poll-members' placeholder='{%trans "members"%}' data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.members}}</textarea>
 
-<div class="checkbox" data-response="password_members" data-response-where="members_radio" {%if not poll.options.have_members%}data-response-hide{%endif%} data-response-effect='slide'>
- <input type="checkbox" id="send-sms" {%if poll.options.sms%}checked{%endif%} >
- <label for="send-sms" class="check-box"></label>
- <label for="send-sms">{%trans "Send by SMS"%}</label>
 
-<div class="panel-text" data-response="send-sms" {%if not  poll.options.sms %}data-response-hide{% endif %}>
-
- <label for="sms-text">{%trans "SMS Text"%}</label>
- <span class="letter-counter"></span>
-</div>
-<textarea id='sms-text' placeholder='{%trans "SMS Text"%}' data-response="send-sms"  {%if not poll.options.sms%}data-response-hide{%endif%} data-response-effect='slide' data-resizable >{{poll.options.sms.text}}</textarea>
-</div>
 
 {%endblock%}
