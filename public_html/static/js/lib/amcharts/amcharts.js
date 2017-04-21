@@ -670,7 +670,7 @@ function createChartOption(_this, _chartName)
 
 		var myChartOptions          = {};
 		myChartOptions              = getChartOption('default', {"color":attrColor, "val":attrVals})
-		myChartOptions.categoryAxis = getChartOption('categoryAxis');
+		myChartOptions.categoryAxis = getChartOption('categoryAxis', {"data": myChartOptions.dataProvider}, $this);
 		myChartOptions.valueAxes    = getChartOption('valueAxes');
 		myChartOptions.graphs       = getChartOption('graphs', {"color": attrAutoColor, "data": myChartOptions.dataProvider});
 		// allow to give special catfield
@@ -709,7 +709,7 @@ function createChartOption(_this, _chartName)
  * @param  {[type]} _arg   [description]
  * @return {[type]}        [description]
  */
-function getChartOption($_what, _arg)
+function getChartOption($_what, _arg, _this)
 {
 	var prop = {};
 	switch ($_what)
@@ -723,15 +723,39 @@ function getChartOption($_what, _arg)
 				"twoLineMode": true,
 				"tickLength": 5,
 				"axisAlpha": 0.2,
-				"autoWrap":false,
+				// "autoWrap":false,
 				// "labelRotation": 45,
-				"autoRotateCount": 6,
-				"autoRotateAngle": 45,
+
+				// "autoRotateCount": 6,
+				// "autoRotateAngle": 45,
+				"autoWrap": true,
+
 				"labelFunction": function(value)
 				{
 					return fitNumber(value, false);
 				},
 			};
+
+			var maxSize = _this.width() / _arg.data.length;
+
+			if(maxSize < 45)
+			{
+				prop.autoWrap = false;
+				prop.autoRotateCount = 0;
+				prop.autoRotateAngle = 90;
+			}
+			else if(maxSize < 65)
+			{
+				prop.autoWrap = false;
+				prop.autoRotateCount = 4;
+				prop.autoRotateAngle = 75;
+			}
+			else if(maxSize < 80)
+			{
+				prop.autoWrap = false;
+				prop.autoRotateCount = 5;
+				prop.autoRotateAngle = 60;
+			}
 			break;
 
 

@@ -748,7 +748,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 
 /************************************************************** random chart */
 #random-chart{background-color:#fff;max-width:500px;width:100%;margin:0 auto;}
-#random-chart.wide{max-width: 700px;}
+#random-chart.wide{max-width: 800px;}
 #random-chart h3{padding:0;margin:0;font-size:1.2em;transition:0.3s}
 #random-chart h3:hover{background-color:#e8e6e6;}
 #random-chart h3:focus{background-color:#e8e6e6;color:#37aaa7;}
