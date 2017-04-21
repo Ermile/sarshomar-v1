@@ -902,6 +902,21 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 		return fitNumber(Math.abs(item.values.value));
 	};
 
+	myNewGraph.labelFunction = function(item)
+	{
+		// Calculate total of values across all columns in the graph
+		var total = 0;
+		for( var i = 0; i < _chartData.dataProvider.length; i++ )
+		{
+			total += _chartData.dataProvider[ i ][ item.graph.valueField ];
+		}
+
+		// Calculate percet value of this label
+		var percent = Math.round( ( item.values.value / total ) * 1000 ) / 10;
+
+		return fitNumber(percent) + "%";
+	};
+
 	if(!_balloon)
 	{
 		myNewGraph.balloonFunction = function(item)
@@ -1102,10 +1117,25 @@ function pollTotal_default(_option, _answers, _el)
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"fillColors": '#98cce4',
-			"labelFunction" : function(item)
+			// "labelFunction" : function(item)
+			// {
+			// 	return fitNumber(Math.abs(item.values.value));
+			// },
+			"labelFunction": function( item )
 			{
-				return fitNumber(Math.abs(item.values.value));
+				// Calculate total of values across all columns in the graph
+				var total = 0;
+				for( var i = 0; i < _option.dataProvider.length; i++ )
+				{
+					total += _option.dataProvider[ i ][ item.graph.valueField ];
+				}
+
+				// Calculate percet value of this label
+				var percent = Math.round( ( item.values.value / total ) * 1000 ) / 10;
+
+				return fitNumber(percent) + "%";
 			},
+
 			"balloonFunction": function(item)
 			{
 				return item.category + "<br/><b>" + fitNumber(item.values.value) + "</b> " + transText.vote;
