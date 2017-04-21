@@ -1344,6 +1344,7 @@ function homepageTop(_option)
 
 
 	_option.graphs[0].showBalloon = false;
+	var voteText = $('#random-chart .chart').attr('data-trans');
 
 	// show all data on hover of column
 	_option.chartCursor =
@@ -1356,7 +1357,15 @@ function homepageTop(_option)
 		"zoomable": false,
 		"categoryBalloonFunction": function(value)
 		{
-			return fitNumber(value, false);
+			var myBalloon = fitNumber(value, false) + "<br>";
+			for( var i = 0; i < _option.dataProvider.length; i++ )
+			{
+				if(_option.dataProvider[ i ].key === value)
+				{
+					myBalloon += "<b>" + fitNumber(_option.dataProvider[ i ].value, false) + "</b> "+ voteText;
+				}
+			}
+			return myBalloon;
 		},
 	};
 

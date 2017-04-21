@@ -66,6 +66,7 @@ private function transtext()
 	echo T_("Equipped with an integrated platform, Sarshomar has made it possible for you to ask your questions via any means.");// Line 9
 	echo T_("Try Before Register");                                                   // Line 48
 	echo T_("To enter into the Sarshomar society win iPhone");                        // Line 19
+	echo T_("vote");                                                                  // Line 25
 	echo T_("Sarshomar Society Distributtion");                                       // Line 32
 	echo T_("Organizations and Companies");                                           // Line 21
 	echo T_("Sarshomar will provide you with the experience of evaluating the status quo, customer consent, and the market as well as promoting the level of services.");// Line 19
@@ -276,24 +277,26 @@ private function transtext()
 	echo T_("Eco Friendly");                                                          // Line 11
 	echo T_("Enamad");                                                                // Line 19
 	echo T_("Service");                                                               // Line 26
-	echo T_("Features");                                                              // Line 16
-	echo T_("Knowledge");                                                             // Line 15
+	echo T_("Benefits");                                                              // Line 16
+	echo T_("Knowledge");                                                             // Line 29
 	echo T_("Learn More");                                                            // Line 35
 	echo T_("Terms of Service");                                                      // Line 37
 	echo T_("Privacy Policy");                                                        // Line 12
 	echo T_("Changelog");                                                             // Line 13
-	echo T_("Support");                                                               // Line 44
-	echo T_("Contact us");                                                            // Line 46
-	echo T_("Logo");                                                                  // Line 48
-	echo T_("Latest News");                                                           // Line 54
-	echo T_("Questions answered");                                                    // Line 67
-	echo T_("Proudly Made in IRAN");                                                  // Line 68
-	echo T_("Control Panel");                                                         // Line 75
-	echo T_("Admin Panel");                                                           // Line 76
-	echo T_("Exit Session");                                                          // Line 77
-	echo T_("Another Session");                                                       // Line 78
+	echo T_("Gifts");                                                                 // Line 40
+	echo T_("Support");                                                               // Line 45
+	echo T_("Contact us");                                                            // Line 47
+	echo T_("Logo");                                                                  // Line 49
+	echo T_("Latest News");                                                           // Line 55
+	echo T_("Questions answered");                                                    // Line 68
+	echo T_("Proudly Made in IRAN");                                                  // Line 69
+	echo T_("Control Panel");                                                         // Line 76
+	echo T_("Admin Panel");                                                           // Line 77
+	echo T_("Exit Session");                                                          // Line 78
+	echo T_("Another Session");                                                       // Line 79
 
 	//----------------------------------------------------content\template\header.html
+	echo T_("Sarshomar Knowledge");                                                   // Line 15
 	echo T_("Create New Poll");                                                       // Line 26
 	echo T_("Welcome");                                                               // Line 36
 	echo T_("Dashboard");                                                             // Line 13
@@ -411,9 +414,14 @@ private function transtext()
 	echo T_("These key factors include gender, age range, marital status, academic degree, educational status and residence.");// Line 19
 	echo T_("Results Output");                                                        // Line 13
 
-	//-------------------------------------content\template\static\features\guest.html
+	//----------------------------------content\template\static\features\guest-fa.html
 	echo T_("Try Before Registering");                                                // Line 26
 	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 17
+	echo T_("I want to experience Sarshomar!");                                       // Line 30
+	echo T_("Please enter shown numbers here");                                       // Line 34
+	echo T_("submit");                                                                // Line 25
+	echo T_("Question Charts");                                                       // Line 24
+	echo T_("Multimedia Questions");                                                  // Line 23
 	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 19
 	echo T_("When you are a guest user, you have all Sarshomar's qualities at your service to investigate.");// Line 21
 	echo T_("You can save your question or questionnaire as well as answer Sarshomar's questions.");// Line 21
@@ -421,11 +429,8 @@ private function transtext()
 	echo T_("The reason behind not sharing the questions and not putting into effect the received results from users while they are guest users is to prevent creating unreal results and sharing improper questions.");// Line 21
 	echo T_("After registration and user account confirmation, your will still have access to your saved participation. Furthermore, to appreciate your presence confirmation, Sarshomar will award you a bonus in your user account for taking that valuable measure.");// Line 25
 	echo T_("Upon completing your registration, you will both receive a registration gift and, based on the activities done, Sarshomar's other allocated gifts and bonuses.");// Line 25
-	echo T_("I want to experience Sarshomar!");                                       // Line 30
-	echo T_("Please enter shown numbers here");                                       // Line 34
-	echo T_("submit");                                                                // Line 25
-	echo T_("Question Charts");                                                       // Line 24
-	echo T_("Multimedia Questions");                                                  // Line 23
+
+	//-------------------------------------content\template\static\features\guest.html
 
 	//--------------------------------------content\template\static\features\home.html
 	echo T_("Sarshomar's features");                                                  // Line 3
@@ -1092,6 +1097,12 @@ private function transtext()
 	echo T_("45-59");                                                                 // Line 112
 	echo T_("Above 60");                                                              // Line 114
 	echo T_("Number of people");                                                      // Line 126
+	echo T_("Passwords");                                                             // Line 147
+	echo T_("Members");                                                               // Line 164
+	echo T_("Poll password");                                                         // Line 158
+	echo T_("members");                                                               // Line 167
+	echo T_("Send by SMS");                                                           // Line 175
+	echo T_("SMS Text");                                                              // Line 182
 
 	//--------------------------------------------------------content_u\add\step3.html
 	echo T_("Sub Category");                                                          // Line 16
