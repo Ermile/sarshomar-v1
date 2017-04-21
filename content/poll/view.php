@@ -85,18 +85,29 @@ class view extends \mvc\view
 			}
 		}
 
+
+		// show simple chart on default
 		$this->data->chart['stacked'] =
 		[
-			// 'result'           => T_('a glance'),
 			'result'           => T_('glance'),
-			// 'age'           => T_('age'),
-			'range'            => T_('age range'),
-			'gender'           => T_('gender'),
-			'marrital'         => T_('marital status'),
-			'graduation'       => T_('graduation'),
-			'employmentstatus' => T_('employement status'),
-			// 'province'         => T_('province'),
 		];
+		// if loggined to system show more charts
+		if($this->login())
+		{
+			$this->data->chart['stacked'] =
+			[
+				// 'result'           => T_('a glance'),
+				'result'           => T_('glance'),
+				// 'age'           => T_('age'),
+				'range'            => T_('age range'),
+				'gender'           => T_('gender'),
+				'marrital'         => T_('marital status'),
+				'graduation'       => T_('graduation'),
+				// 'employmentstatus' => T_('employement status'),
+				// 'province'         => T_('province'),
+			];
+		}
+
 
 		// if language isset and its different with site language
 		if(isset($poll['language']) && $poll['language'] !== $this->data->site['currentlang'])

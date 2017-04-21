@@ -892,6 +892,11 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
 	myNewGraph.fillAlphas  = 0.9;
 	myNewGraph.lineAlpha   = 0;
 
+	if(_value === 'unknown')
+	{
+		myNewGraph.hidden = true;
+	}
+
 	myNewGraph.labelFunction = function(item)
 	{
 		return fitNumber(Math.abs(item.values.value));
@@ -953,14 +958,16 @@ function getBestColorForGroup(_group)
 			myColor = '#e97197';
 			break;
 
+
 		// marittal
 		case 'marrital_single':
-			myColor = '#c15a49';
+			myColor = '#f8a13f';
 			break;
 
 		case 'marrital_married':
-			myColor = '#9e2815';
+			myColor = '#c0453c';
 			break;
+
 
 		case 'result_value_reliable':
 			myColor = '#8ec8e3';
@@ -971,32 +978,33 @@ function getBestColorForGroup(_group)
 			myColor = '#6d9e73';
 			break;
 
+
 		// age range
 		case 'range_-13':
-			myColor = '#CC4F00';
+			myColor = '#c1cee6';
 			break;
 
 		case 'range_14-17':
-			myColor = '#DC6000';
+			myColor = '#8ca3d1';
 			break;
 		case 'range_18-24':
-			myColor = '#F9943F';
+			myColor = '#7691c8';
 			break;
 
 		case 'range_25-30':
-			myColor = '#FDB072';
+			myColor = '#3a62b0';
 			break;
 
 		case 'range_31-44':
-			myColor = '#FCC496';
+			myColor = '#325bad';
 			break;
 
 		case 'range_45-59':
-			myColor = '#FACDA6';
+			myColor = '#4167b3';
 			break;
 
 		case 'range_60+':
-			myColor = '#F9D8BB';
+			myColor = '#1f4ca5';
 			break;
 
 		// disable vote style
@@ -1091,9 +1099,9 @@ function pollTotal_default(_option, _answers, _el)
 			"valueField": "value",
 			"balloonText": "[[title]]<br/><b>[[value]]</b> " + transText.vote,
 			"labelText": "[[value]]",
-			"fillAlphas": 0.9,
+			"fillAlphas": 1,
 			"lineAlpha": 0,
-			"fillColors": '#69a6ad',
+			"fillColors": '#98cce4',
 			"labelFunction" : function(item)
 			{
 				return fitNumber(Math.abs(item.values.value));
@@ -1107,6 +1115,11 @@ function pollTotal_default(_option, _answers, _el)
 
 	_option.categoryField = "title";
 	// console.log(_option);
+
+	// show all data on hover of column
+	_option.chartCursor = {};
+	_option.chartCursor.cursorAlpha = 0;
+	_option.chartCursor.categoryBalloonColor = '#e7a429';
 
 	return _option;
 }
@@ -1144,6 +1157,10 @@ function setChartOption(_chartData, _type, _trans, _init)
 	// _chartData.startEffect = "elastic";
 	// _chartData.startDuration = 0.3;
 
+	// show all data on hover of column
+	_chartData.chartCursor = {};
+	_chartData.chartCursor.cursorAlpha = 0.1;
+	_chartData.chartCursor.categoryBalloonColor = '#e7a429';
 
 	if(_trans.length === 0)
 	{
