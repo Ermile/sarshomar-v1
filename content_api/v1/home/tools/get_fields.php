@@ -273,10 +273,8 @@ trait get_fields
 		unset($_poll_data['count']);
 		unset($_poll_data['order']);
 		unset($_poll_data['content']);
-		unset($_poll_data['file']);
 		unset($_poll_data['prize']);
 		unset($_poll_data['prizeunit']);
-
 		unset($_poll_data['options']['brand']);
 		unset($_poll_data['member']);
 		unset($_poll_data['password']);
