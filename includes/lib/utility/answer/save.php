@@ -71,9 +71,12 @@ trait save
 			'user_verify' => self::$user_verify,
 		];
 
+		$ask_me_on = \lib\db\polls::get_user_ask_me_on($_args['user_id']);
+		$is_ask_me = (int) $ask_me_on === (int) $_args['poll_id'] ? true : false;
+
 		$log_meta =
 		[
-			'desc' => (int) \lib\db\polls::get_user_ask_me_on($_args['user_id']) === (int) $_args['poll_id'] ? 'ask_me': null,
+			'desc' => (int) $ask_me_on === (int) $_args['poll_id'] ? 'ask_me': null,
 			'meta' =>
 			[
 				'input'              => $_args,
@@ -144,6 +147,10 @@ trait save
 		if(!$user_delete_answer)
 		{
 			stat_polls::set_sarshomar_total_answered();
+			if($is_ask_me && !$skipped)
+			{
+				\lib\db\polls::plus_asked($_args['poll_id']);
+			}
 		}
 
 		// set offline data

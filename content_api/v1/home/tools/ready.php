@@ -191,8 +191,9 @@ trait ready
 		{
 			$filters = utility\postfilters::get_filter($poll_id);
 			$filters = array_filter($filters);
-			$member  = \lib\db\ranks::get($poll_id, 'member');
-			$filters['count'] = (int) $member;
+			// $member  = \lib\db\ranks::get($poll_id, 'member');
+			$filters['count'] = (int) $_poll_data['member'];
+			unset($_poll_data['member']);
 			$_poll_data['filters'] = $filters;
 		}
 
@@ -242,10 +243,13 @@ trait ready
 			self::get_transactions($_poll_data);
 		}
 
+		// unset useless field
+		self::unset_useless_field($_poll_data);
+
 		// sort poll data
 		krsort($_poll_data);
 
-		// var_dump($_poll_data); exit();
+		// var_dump($_poll_data, func_get_args()); exit();
 		return $_poll_data;
 	}
 }

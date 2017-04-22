@@ -294,6 +294,7 @@ class users
 			case 'trust':
 			case 'verify':
 			case 'language':
+			case 'ask':
 				$_field = 'user_'. $_field;
 			case 'id':
 			case 'user_mobile':
@@ -314,6 +315,7 @@ class users
 			case 'date_modified':
 			case 'unit_id':
 			case 'user_language':
+			case 'user_ask':
 				if(isset(self::$USERS_DETAIL[$_user_id][$_field]))
 				{
 					return self::$USERS_DETAIL[$_user_id][$_field];
@@ -400,6 +402,7 @@ class users
 			case 'port':
 			case 'trust':
 			case 'verify':
+			case 'ask':
 				$_field = 'user_'. $_field;
 			case 'user_mobile':
 			case 'user_email':
@@ -417,6 +420,7 @@ class users
 			case 'user_trust':
 			case 'user_verify':
 			case 'date_modified':
+			case 'user_ask':
 				$update[$_field] = $_value;
 				break;
 			default:

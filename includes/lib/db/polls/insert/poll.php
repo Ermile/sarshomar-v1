@@ -372,6 +372,7 @@ trait poll
 			\lib\db\ranks::plus(self::$poll_id, 'public', 0, ['replace' => true]);
 		}
 
+
 		// insert filters
 		if(self::isset_args('from'))
 		{
@@ -383,6 +384,20 @@ trait poll
 			}
 
 			$insert_filters = \lib\utility\postfilters::update(self::$args['from'], self::$poll_id);
+			if($insert_filters)
+			{
+				$temp_check = self::$args['from'];
+				unset($temp_check['count']);
+				if(empty($temp_check))
+				{
+					self::$update_posts['post_hasfilter'] = 0;
+				}
+				else
+				{
+					self::$update_posts['post_hasfilter'] = 1;
+				}
+			}
+
 			/**
 			 * set ranks
 			 * plus (int) member in member field
@@ -397,14 +412,19 @@ trait poll
 				$member_exist = (int) \lib\db\filters::count_user(self::$args['from']);
 
 				debug::msg("member_exist", $member_exist);
+				// the sarshomar admin set on this number
+				$admin_member = 1000000000;
 
 				if(self::poll_check_permission('u', 'sarshomar', 'view') && $member_exist === $member)
 				{
-					\lib\db\ranks::plus(self::$poll_id, "member", 1000000000, ['replace' => true]);
+					\lib\db\ranks::plus(self::$poll_id, "member", $admin_member, ['replace' => true]);
+					self::$update_posts['post_member'] = $admin_member;
+
 				}
 				else
 				{
 					\lib\db\ranks::plus(self::$poll_id, "member", $member, ['replace' => true]);
+					self::$update_posts['post_member'] = $member;
 				}
 
 				if($member <= $member_exist)
@@ -419,7 +439,14 @@ trait poll
 
 			}
 		}
-
+		else
+		{
+			if(self::$method === 'put')
+			{
+				self::$update_posts['post_hasfilter'] = 0;
+				self::$update_posts['post_member']    = 0;
+			}
+		}
 	}
 }
 ?>

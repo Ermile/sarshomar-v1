@@ -53,7 +53,11 @@
     <span class="comments-count">{%if value.count_comment%} {{value.count_comment | number_format | fitNumber}}{%else%}-{%endif%}</span>
     <span class="votes-count">{%if value.count_vote%} {{value.count_vote | number_format | fitNumber}}{%else%}-{%endif%}</span>
     {%if admin%}
-      <span class="date">{{value.date}}</span>
+      {%if site.currentlang == 'fa' %}
+        <span class="date">{{value.date|jdate("Y-m-d")}}</span>
+      {%else%}
+        <span class="date">{{value.date|date("Y-m-d")}}</span>
+      {%endif%}
       {%if value.id|shortURL("decode") in poll_list.attachment|keys%}
         <span class="icon-pencil"></span>
       {%else%}

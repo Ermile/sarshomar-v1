@@ -76,11 +76,13 @@ trait options
 					debug::error(T_("You must set less than 20 character in password"), 'password', 'arguments');
 					return false;
 				}
+				self::$update_posts['post_password'] = trim(self::$args['options']['password']);
 				self::save_options('password', trim(self::$args['options']['password']));
 			}
 			else
 			{
 				self::save_options('password', false);
+				self::$update_posts['post_password'] = null;
 			}
 		}
 		else
@@ -88,6 +90,7 @@ trait options
 			if(self::$method == 'put')
 			{
 				self::save_options('password', false);
+				self::$update_posts['post_password'] = null;
 			}
 		}
 
@@ -112,11 +115,20 @@ trait options
 				{
 					$user_unit = \lib\db\units::find_user_unit(self::$user_id);
 				}
+				$unit_id = \lib\db\units::get_id($user_unit);
+				if($unit_id)
+				{
+					self::$update_posts['post_prizeunit'] = $unit_id;
+				}
+				self::$update_posts['post_prize'] = self::$args['options']['prize'];
 				self::save_options('prize', self::$args['options']['prize'], ['unit' => $user_unit]);
 			}
 			else
 			{
 				self::save_options('prize', false);
+
+				self::$update_posts['post_prize']     = null;
+				self::$update_posts['post_prizeunit'] = null;
 			}
 		}
 		else
@@ -124,6 +136,8 @@ trait options
 			if(self::$method == 'put')
 			{
 				self::save_options('prize', false);
+				self::$update_posts['post_prize']     = null;
+				self::$update_posts['post_prizeunit'] = null;
 			}
 		}
 
@@ -151,12 +165,31 @@ trait options
 				$url = self::safe_user_string(self::$args['brand']['url']);
 			}
 			$brand_title = self::safe_user_string(self::$args['brand']['title']);
+			if($brand_title)
+			{
+				self::$update_posts['post_brand']    = $brand_title;
+			}
+			else
+			{
+				self::$update_posts['post_brand']    = null;
+			}
+
+			if($url)
+			{
+				self::$update_posts['post_brandurl'] = $url;
+			}
+			else
+			{
+				self::$update_posts['post_brandurl'] = null;
+			}
 			self::save_options('brand', $brand_title, ['url' => $url]);
 		}
 		else
 		{
 			if(self::$method == 'put')
 			{
+				self::$update_posts['post_brand'] = null;
+				self::$update_posts['post_brandurl'] = null;
 				self::save_options('brand', false);
 			}
 		}
@@ -460,6 +493,7 @@ trait options
 			if(!self::$args['file'])
 			{
 				self::save_options('title_attachment', false);
+				self::$update_posts['post_hasmedia'] = 0;
 			}
 			else
 			{
@@ -483,6 +517,8 @@ trait options
 				}
 
 				self::save_options('title_attachment',  shortURL::decode(self::$args['file']), ['url' => $url, 'type' => $type]);
+				self::$update_posts['post_hasmedia'] = 1;
+
 			}
 		}
 		else
@@ -490,6 +526,7 @@ trait options
 			if(self::$method == 'put')
 			{
 				self::save_options('title_attachment', false);
+				self::$update_posts['post_hasmedia'] = 0;
 			}
 		}
 
@@ -573,8 +610,6 @@ trait options
 						unset($tags_title[array_search($key, $tags_title)]);
 					}
 				}
-
-
 
 				if(!empty($tags_title))
 				{

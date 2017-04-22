@@ -40,14 +40,16 @@ trait get_fields
 
 		if(array_key_exists('date', $_poll_data) && $_poll_data['date'])
 		{
-			if(\lib\define::get_language() === 'fa')
-			{
-				$_poll_data['date'] = \lib\utility\jdate::date("Y-m-d", $_poll_data['date']);
-			}
-			else
-			{
-				$_poll_data['date'] = date("Y-m-d", strtotime($_poll_data['date']));
-			}
+			$_poll_data['date'] = strtotime($_poll_data['date']);
+
+			// if(\lib\define::get_language() === 'fa')
+			// {
+			// 	$_poll_data['date'] = \lib\utility\jdate::date("Y-m-d", $_poll_data['date']);
+			// }
+			// else
+			// {
+			// 	$_poll_data['date'] = date("Y-m-d", strtotime($_poll_data['date']));
+			// }
 		}
 
 
@@ -187,7 +189,19 @@ trait get_fields
 				case 'user_id':
 				case 'title':
 				case 'url':
+				case 'password':
 					$_poll_data[$key] = (string) $value;
+					break;
+
+				case 'prize':
+					$_poll_data[$key] = (float) $value;
+					break;
+
+				case 'prizeunit':
+					if($value)
+					{
+						$_poll_data[$key] = \lib\db\units::get($value, true);
+					}
 					break;
 
 					// $_poll_data[$key] = self::host(). $value;
@@ -198,6 +212,7 @@ trait get_fields
 				case 'count_like':
 				case 'count_vote':
 				case 'count_skip':
+				case 'member':
 					$_poll_data[$key] = (int) $value;
 					break;
 
@@ -242,10 +257,31 @@ trait get_fields
 					break;
 			}
 		}
+	}
+
+	/**
+	 * unset useless field
+	 * we not show this field at raw data to user
+	 *
+	 * @param      <type>  $_poll_data  The poll data
+	 */
+	private static function unset_useless_field(&$_poll_data)
+	{
+		unset($_poll_data['meta']['summary']);
+		unset($_poll_data['meta']['access_profile']);
 		unset($_poll_data['meta']);
 		unset($_poll_data['count']);
 		unset($_poll_data['order']);
 		unset($_poll_data['content']);
+		unset($_poll_data['file']);
+		unset($_poll_data['prize']);
+		unset($_poll_data['prizeunit']);
+
+		unset($_poll_data['options']['brand']);
+		unset($_poll_data['member']);
+		unset($_poll_data['password']);
+		// unset($_poll_data['brand']);
+		unset($_poll_data['brandurl']);
 	}
 }
 ?>

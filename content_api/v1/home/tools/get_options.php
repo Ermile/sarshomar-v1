@@ -69,8 +69,8 @@ trait get_options
 			{
 				if(self::$private_is_my_poll)
 				{
-
-					$_poll_data['options']['password'] = isset($value['option_value']) ? $value['option_value'] : null;
+					// $_poll_data['options']['password'] = isset($value['option_value']) ? $value['option_value'] : null;
+					$_poll_data['options']['password'] = $_poll_data['password'];
 				}
 				$_poll_data['options']['have_password'] = true;
 			}
@@ -154,12 +154,17 @@ trait get_options
 			if(isset($value['option_key']) && $value['option_key'] == 'prize')
 			{
 				$_poll_data['options']['prize'] = [];
-				$_poll_data['options']['prize']['value'] = array_key_exists('option_value', $value) ? (float) $value['option_value'] : 0;
-				$prize_unit = null;
-				if(isset($value['option_meta']['unit']))
-				{
-					$prize_unit = $_poll_data['options']['prize']['unit'] = $value['option_meta']['unit'];
-				}
+				// $_poll_data['options']['prize']['value'] = array_key_exists('option_value', $value) ? (float) $value['option_value'] : 0;
+				$_poll_data['options']['prize']['value'] = $_poll_data['prize'];
+				unset($_poll_data['prize']);
+
+				$prize_unit = $_poll_data['prizeunit'];
+				unset($_poll_data['prizeunit']);
+
+				// if(isset($value['option_meta']['unit']))
+				// {
+				// 	$prize_unit = $_poll_data['options']['prize']['unit'] = $value['option_meta']['unit'];
+				// }
 
 				if(self::$_options['run_options'])
 				{
@@ -254,18 +259,27 @@ trait get_options
 		}
 
 		$brand = [];
-
-		foreach ($post_meta as $key => $value)
+		if(isset($_poll_data['brand']) && $_poll_data['brand'])
 		{
-			if($value['option_key'] == 'brand')
-			{
-				$brand['title'] = $value['option_value'];
-				if(isset($value['option_meta']['url']))
-				{
-					$brand['url'] = $value['option_meta']['url'];
-				}
-			}
+			$brand['title'] = $_poll_data['brand'];
 		}
+
+		if(isset($_poll_data['brandurl']) && $_poll_data['brandurl'])
+		{
+			$brand['url'] = $_poll_data['brandurl'];
+		}
+
+		// foreach ($post_meta as $key => $value)
+		// {
+		// 	if($value['option_key'] == 'brand')
+		// 	{
+		// 		$brand['title'] = $value['option_value'];
+		// 		if(isset($value['option_meta']['url']))
+		// 		{
+		// 			$brand['url'] = $value['option_meta']['url'];
+		// 		}
+		// 	}
+		// }
 
 		if(!empty($brand))
 		{

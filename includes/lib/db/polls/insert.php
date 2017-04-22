@@ -25,6 +25,8 @@ trait insert
 
 	protected static $answer_count   = 0;
 
+	protected static $update_posts   = [];
+
 	use insert\check;
 	use insert\reset;
 	use insert\max;
@@ -159,6 +161,11 @@ trait insert
 
 		// insert options of poll
 		self::insert_options();
+
+		if(!empty(self::$update_posts))
+		{
+			\lib\db\polls::update(self::$update_posts, self::$poll_id);
+		}
 
 		// T_("Poll added successfully");
 	 	// T_("Poll edited successfully");

@@ -11,8 +11,11 @@ trait money
 	/**
 	 * Calculates the price.
 	 */
-	public function calc_price()
+	public function calc_price_old()
 	{
+
+		return true;
+
 		if(self::check_api_permission('u', 'free_account', 'view'))
 		{
 			// return true;
@@ -29,11 +32,11 @@ trait money
 		$price_array = [];
 		if(true || !self::check_api_permission('u', 'sarshomar', 'view'))
 		{
-			$member  = (int) \lib\db\ranks::get($poll_id, 'member');
-			if($member > 0)
-			{
-				$price += $member * self::$member_per_person;
-			}
+			// $member  = (int) \lib\db\ranks::get($poll_id, 'member');
+			// if($member > 0)
+			// {
+			// 	$price += $member * self::$member_per_person;
+			// }
 		}
 
 		$filters = utility\postfilters::get_filter($poll_id);
