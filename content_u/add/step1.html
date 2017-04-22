@@ -43,7 +43,7 @@
      <div class="module audio"></div>
     </div>
    </div>
-   <div class="preview">
+   <div class="preview" data-file-type="{{poll.file.mime}}" data-file-url="{{poll.file.url}}" data-file-id="{{poll.file.id}}">
   {%if poll.file.url%}
     <img src="{{poll.file.url}}">
   {%endif%}
