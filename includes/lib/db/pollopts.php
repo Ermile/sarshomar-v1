@@ -189,8 +189,14 @@ class pollopts
 	public static function update($_args, $_poll_id, $_key = false)
 	{
 		$set = [];
+		$has_file = false;
 		foreach ($_args as $key => $value)
 		{
+			if($key === 'attachment_id' && $value)
+			{
+				$has_file = true;
+			}
+
 			if(is_null($value))
 			{
 				$set[] = "`$key` = NULL ";
@@ -231,6 +237,12 @@ class pollopts
 		{
 			$query = "UPDATE pollopts SET $set WHERE post_id = $_poll_id AND pollopts.key = $_key  LIMIT 1";
 		}
+
+		if($has_file)
+		{
+			\lib\db\polls::update(['post_hasmedia' => 1], $_poll_id);
+		}
+
 		return \lib\db::query($query);
 	}
 
@@ -463,7 +475,7 @@ class pollopts
 				}
 				return;
 			}
-			// var_dump($must_insert, $must_update, $must_delete);	exit();
+			// var_dump($must_insert, $must_update, $must_delete, func_get_args());	exit();
 			\lib\db::query("UPDATE pollopts SET pollopts.key = NULL WHERE pollopts.post_id = $_poll_id");
 			$old_answers_ids = array_column($old_answers_raw, 'id');
 			if(!empty($old_answers_ids))
@@ -585,6 +597,7 @@ class pollopts
 			// {
 			// 	return debug::error(T_("Max input in patch mode is 1 parameter"), 'answers', 'arguments');
 			// }
+			$has_file = false;
 			foreach ($_opts as $key => $value)
 			{
 				// $pollopt_key = key($_opts);
@@ -600,6 +613,12 @@ class pollopts
 					}
 				}
 				self::update($update_as_patch, $_poll_id, $pollopt_key);
+				$has_file = true;
+			}
+
+			if($has_file)
+			{
+				\lib\db\polls::update(['post_hasmedia' => 1], $_poll_id);
 			}
 
 		}
