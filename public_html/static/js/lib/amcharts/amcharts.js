@@ -668,6 +668,12 @@ function createChartOption(_this, _chartName)
 		// 	series: attrVals
 		// };
 
+		// reverse order
+		if($('html').attr('lang') === 'fa')
+		{
+			attrVals.reverse();
+		}
+
 		var myChartOptions          = {};
 		myChartOptions              = getChartOption('default', {"color":attrColor, "val":attrVals})
 		myChartOptions.categoryAxis = getChartOption('categoryAxis', {"data": myChartOptions.dataProvider}, $this);
@@ -1412,6 +1418,7 @@ function homepageGender(_option)
 	_option.marginBottom = 50;
 	_option.startDuration = 0.5;
 	_option.startEffect = 'easeOutSine';
+	_option.dataProvider.reverse();
 	_option.graphs =
 	[
 		{
