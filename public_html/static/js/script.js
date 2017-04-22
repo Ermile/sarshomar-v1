@@ -2500,10 +2500,11 @@ function prepareQuestionData()
 		myQuestion.title   = $('#title').val();
 	}
 	// send title file
-	var fileId = $('#title').parents('.ultra').find('.preview').attr('data-file-id');
-	if(fileId)
+	var titleFileId = $('#title').parents('.ultra').find('.preview').attr('data-file-id');
+	console.log(titleFileId);
+	if(titleFileId)
 	{
-		myQuestion.file = fileId;
+		myQuestion.file = titleFileId;
 	}
 	// myQuestion.type = 'poll';
 	myQuestion.answers = {};
@@ -2759,6 +2760,7 @@ function prepareQuestionData()
 		}
 	}
 
+	console.log(myQuestion);
 	return myQuestion;
 }
 
