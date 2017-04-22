@@ -2499,6 +2499,12 @@ function prepareQuestionData()
 	{
 		myQuestion.title   = $('#title').val();
 	}
+	// send title file
+	var fileId = $('#title').find('.preview').attr('data-file-id');
+	if(fileId)
+	{
+		myQuestion.file = fileId;
+	}
 	// myQuestion.type = 'poll';
 	myQuestion.answers = {};
 
