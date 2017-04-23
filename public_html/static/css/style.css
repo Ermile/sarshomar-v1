@@ -744,7 +744,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .highcharts-data-labels text{text-shadow:none!important}
 .chart{height:300px;width:100%}
 .rtl .amcharts-balloon-div div{direction:rtl}
-#age-chart{height:400px}
+#age-chart{height:250px}
 
 /************************************************************** random chart */
 #random-chart{background-color:#fff;max-width:500px;width:100%;margin:0 auto;}
@@ -776,12 +776,22 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 #iran-map{height:400px;min-width:310px;max-width:800px;margin:0 auto}
 .map{direction:ltr}
 
-.map-container .special-heading{padding-left:60px}
-.rtl .map-container .special-heading{padding-left:0;padding-right:10px}
-.map-container .special-heading::before{width:50px;left:0}
-.rtl .map-container .special-heading::before{left:auto;right:-50px;width:50px}
-.map-container .special-heading::after{left:-60px}
-.rtl .map-container .special-heading::after{left:auto;right:-110px}
+.special-heading.bigger{padding-left:60px}
+.rtl .special-heading.bigger{padding-left:0;padding-right:10px}
+.special-heading.bigger::before{width:50px;left:0}
+.rtl .special-heading.bigger::before{left:auto;right:-50px;width:50px}
+.special-heading.bigger::after{left:-60px}
+.rtl .special-heading.bigger::after{left:auto;right:-110px}
+
+.rtl .map-container .special-heading{margin-bottom:0}
+.special-heading span{font-weight:bold}
+.rtl .map-container .special-heading a{font-size:0.9em;transition:0.3s}
+.rtl .map-container .special-heading a:hover{color:#000;}
+.map-container .chart{height:270px;}
+
+.map-container .chart{overflow:visible!important;}
+.map-container .chart .amcharts-chart-div{overflow:visible!important;}
+.map-container .chart svg{overflow:visible!important;}
 
 
 /************************************************************** customers */

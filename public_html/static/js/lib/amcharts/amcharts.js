@@ -1326,6 +1326,11 @@ function redrawPollChart(_data)
 				}
 				window['setChartOption'](myChartData, chartType, trans);
 			}
+			// reverse data for persian
+			if($('html').attr('lang') === 'fa')
+			{
+				drawData.reverse();
+			}
 
 			//Setting the new data to the graph
 			myChartData.dataProvider = drawData;
@@ -1376,7 +1381,7 @@ function homepageTop(_option)
 
 
 	_option.graphs[0].showBalloon = false;
-	var voteText = $('#random-chart .chart').attr('data-trans');
+	var voteText = $('.map-container .chart').attr('data-trans');
 
 	// show all data on hover of column
 	_option.chartCursor =
@@ -1413,12 +1418,16 @@ function homepageTop(_option)
  */
 function homepageGender(_option)
 {
+
 	_option.colors = ["#83c3e1", "#e97197" ];
 	_option.rotate = true;
 	_option.marginBottom = 50;
 	_option.startDuration = 0.5;
 	_option.startEffect = 'easeOutSine';
 	_option.dataProvider.reverse();
+	_option.allLabels = [ {"text":$('#age-chart').attr('data-title'), "bold":true, "x":"70%",}];
+
+
 	_option.graphs =
 	[
 		{
