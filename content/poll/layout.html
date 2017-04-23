@@ -2,13 +2,11 @@
 
 
 {%block poll_title%}
-{% spaceless %}
  {%if poll.title%}
   <h2>{{poll.title|raw}}</h2>
  {%else%}
   <h2>{%trans "Unfortunately there is no title to show!"%}</h2>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
@@ -21,7 +19,6 @@
 
 
 {%block poll_toolbox%}
-{% spaceless %}
  <div class="flex justify-between align-center poll-toolbox">
   <div class="flex align-center like-fav{%if login%}{%else%} hidden{%endif%}">
    <input type="checkbox" name="favorite" id="favorite" {% if poll.my_fav %} checked="checked" {% endif %}>
@@ -43,38 +40,30 @@
   </div>
   {%include template.share%}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block guest_alert%}
-{% spaceless %}
  {%if is_guest%}
   <div class="alert alert-error">{%trans "Your are our Guest!"%}</div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_file%}
-{% spaceless %}
  {%if poll.file%}
   <img src="{{poll.file.url}}" alt="{{poll.title|raw}}" class="poll-image" data-type={{poll.file.type}}>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_summary%}
-{% spaceless %}
  {%if poll.content%}
   <p class="poll-summary">{{poll.content}}</p>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_related%}
-{% spaceless %}
  {%if article_titles%}
   <div class="poll-related">
    <div>{%trans "Read More"%}</div>
@@ -87,23 +76,19 @@
    </ul>
   </div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_hint%}
-{% spaceless %}
  {%if poll.options.multi%}
-  <div class="poll-hint unselectable{%if login%}{%else%} hide{%endif%}">
+  <div class="poll-hint{%if login%}{%else%} hide{%endif%}">
    <span>{{multi_msg}}</span>
   </div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_options%}
-{% spaceless %}
  {%if poll.answers%}
  <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}"
   data-answer-type="{{poll_type}}"
@@ -181,29 +166,24 @@
  {%else%}
  <div class="msg danger">{%trans "There is no option!"%}</div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_skip%}
-{% spaceless %}
  {%if poll.answers and 'skip' in answer_available%}
   <div class="poll-skip{%if login%}{%if answer_lock%} hide{%endif%}{%else%} hide{%endif%}">
    <input {% if is_skipped%}{% endif %} {% if answer_lock %} disabled="disabled" {% endif %} type="submit" id="skipAnswers" value='{%trans "Skip"%}'>
   </div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_actions%}
-{% spaceless %}
  <div class="poll-actions{%if login%}{%else%} hide{%endif%}">
    <a class="special-btn prev {%if not login or answer_lock %}disabled{% endif %}" href="{{url.base}}/prev?current={{url.path}}" data-direct >{%trans "Previous"%}</a>
    <button class="special-btn base {%if not login or answer_lock %}disabled{% endif %}" id="saveAnswers" type="submit" {%if not login or answer_lock %} disabled {% endif %} >{%trans "Save Answer"%}</button>
    <a class="special-btn next disabled" href="{{url.base}}/ask" data-direct>{%trans "Next"%}</a>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
@@ -213,25 +193,20 @@
 
 
 {%block poll_interaction2%}
-{% spaceless %}
  <input type="checkbox" name="favorite" id="favorite">
  <label for="favorite" class="icon-star"></label>
  <input type="checkbox" name="heart" id="heart">
  <label for="heart" class="icon-heart like"></label>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_content2%}
-{% spaceless %}
 {%if poll.content%}
  <p>{{poll.content}}</p>
 {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_read_more2%}
-{% spaceless %}
 {%if article_titles%}
  <div class="read-more">
   <span>{%trans "Read More"%}</span>
@@ -240,20 +215,16 @@
   {%endfor%}
  </div>
 {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_guide2%}
-{% spaceless %}
  {%if poll.options.multi%}
   <div class="poll-guide">{%trans "You can select just two options."%}</div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_options2%}
-{% spaceless %}
  {%if poll.answers%}{#check post meta exist#}
   {%if poll.options.multi%}
    <ul>
@@ -298,12 +269,10 @@
   {%endif%}
   <input type="submit" name="opt_0" value='{%trans "I am not willing to answer"%}' class="skip">
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_buttons2%}
-{% spaceless %}
  <div class="btn-container poll">
  {%if poll.answers%}
   <button class="btn secondary save-answer"
@@ -313,12 +282,10 @@
   <a class="btn save-answer" href="ask" data-direct>{%trans "Ask Me"%}</a>
  {%endif%}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_chart%}
-{% spaceless %}
  <div class="menu">
   <div class="menu-inside">
    {%for key, value in chart.stacked%}
@@ -332,18 +299,26 @@
  <div class="in small isDataNotExist"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
  {%endif%}
  {{block('chart')}}
-{% endspaceless %}
 {%endblock%}
 
 {%block chart%}
-{% spaceless %}
- <div class="chart unselectable" data-format='pollTotal_default' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
-{% endspaceless %}
+ <div class="chart" data-format='pollTotal_default' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
+
+ <div class="f opt-media-box">
+{%for key, myOpt in poll.answers%}
+  <div class="c">
+{%if myOpt.file.type == 'image'%}
+{%set optfileUrl%}{% if myOpt.file.url %}{{myOpt.file.url}}{%else%}{{url.static}}/images/logo.png{%endif%}{%endset%}
+
+  <img src='{{myOpt.file.url}}' alt='{{myOpt.title}}'>
+{%endif%}
+  </div>
+{%endfor%}
+ </div>
 {%endblock%}
 
 
 {%block poll_table%}
-{% spaceless %}
  <div class="myTable">
   <div class="f th">
    <div class="c2"></div>
@@ -410,12 +385,10 @@
    <div class="c">0.1%</div>
   </div>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_similar%}
-{% spaceless %}
  {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag", "post_status": "publish", "post_privacy": "public"})%}
  {% if similar %}
  <div class="title">{%trans "Similar Questions"%}</div>
@@ -438,12 +411,10 @@
     <div class="content">{%trans "There is no similar post"%}</div>
     {% endif %}
   {% endif %}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_info%}
-{% spaceless %}
 {{block('poll_status')}}
 {{block('poll_tags')}}
 {{block('poll_count')}}
@@ -453,67 +424,53 @@
 {{block('poll_range')}}
 {{block('poll_author')}}
 {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 
 {%block poll_status%}
-{% spaceless %}
  <div class="title">{%trans "Status and period of publish"%}</div>
  <div class="content">
   <span class="{{poll.status}}">{%set myStatus = poll.status|capitalize%}{%trans myStatus%}</span>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_count%}
-{% spaceless %}
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
   <span>{{poll.count_vote|number_format|fitNumber}}</span>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_skip_count%}
-{% spaceless %}
  <div class="title">{%trans "Skip"%}</div>
  <div class="content">
   {{poll.count_skip|number_format|fitNumber}}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_privacy%}
-{% spaceless %}
  <div class="title">{%trans "Privacy"%}</div>
  <div class="content">
   {%set myPrivacy = poll.privacy%} {%trans myPrivacy%}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_author%}
-{% spaceless %}
  <div class="title">{%trans "Author"%}</div>
  <div class="content">
   <a href='{{url.base}}/admin/logs/user={{poll.user_id|shortURL("decode")}}'>{{poll.user_id|shortURL("decode")}}</a>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_range%}
-{% spaceless %}
  <div class="title">{%trans "Range"%}</div>
  <div class="content">
   <span>{{poll.filters.count|number_format|fitNumber}}</span>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_period%}
-{% spaceless %}
  <div class="title">{%trans "Poll timespan"%}</div>
  {%if poll.schedule.start or poll.schedule.end %}
   <div class="content period">
@@ -522,11 +479,9 @@
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 {%block poll_tags%}
-{% spaceless %}
  <div class="title">{%trans "Keyword"%}</div>
  {%if poll.tags%}
   <div class="content tags">
@@ -537,12 +492,10 @@
  {%else%}
   <div class="content">{%trans "Not set"%}</div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_filters%}
-{% spaceless %}
  {%if poll_have_filters%}
   <div class="title">{%trans "Audiences of this poll"%}</div>
  {%endif%}
@@ -569,12 +522,10 @@
   <a class="tree-link" href="{{poll.tree.url}}">{{poll.tree.title}}</a>
  </div>
  {%endif%}
-{% endspaceless %}
 {%endblock%}
 
 
 {%block poll_comments%}
-{% spaceless %}
  <div class="row auto">
   {{block('comments_overall')}}
   {{block('comment')}}
@@ -585,12 +536,10 @@
   {{block('comment')}}
   {{block('comment')}}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block comments_overall%}
-{% spaceless %}
  <div class="span4">
  {%if rate.total%}
   <div class="overall">
@@ -615,12 +564,10 @@
   <div>{%trans "There is nothing to display!"%}</div>
  {%endif%}
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block user_comment%}
-{% spaceless %}
  <div class="span4 user-comment">
   <form method="post">
    <div class="title">{%trans "What is your opinion? Please rate this poll."%}</div>
@@ -646,12 +593,10 @@
    </div>
   </form>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 
 {%block comment%}
-{% spaceless %}
  <div class="span4">
   <div class="comment">
    <div class="comment-header">
@@ -685,7 +630,6 @@
    </div>
   </div>
  </div>
-{% endspaceless %}
 {%endblock%}
 
 

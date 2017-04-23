@@ -11,13 +11,17 @@
          {{block('feature_choicemode')}}
          <div class="row auto">
           <div class="span4">{{block('feature_randomsort')}}</div>
+{%if false%}
           <div class="span4">{{block('feature_score')}}</div>
+{%endif%}
           <div class="span4">{{block('feature_trueanswer')}}</div>
-         </div>
-         <div class="row auto">
           <div class="span4">{{block('feature_other')}}</div>
+         </div>
+{%if false%}
+         <div class="row auto">
           <div class="span4" data-response='score' {% if not poll.have_score %} data-response-hide {% endif %}>{{block('feature_score_advance')}}</div>
          </div>
+{%endif%}
          {{block('feature_multiplerange2')}}
          {{block('feature_multiplerange')}}
         </div>
