@@ -416,7 +416,6 @@
 
 {%block poll_info%}
 {{block('poll_status')}}
-{{block('poll_tags')}}
 {{block('poll_count')}}
 {%if iperm.admin.admin.view%}
 {{block('poll_skip_count')}}
@@ -466,7 +465,7 @@
 {%block poll_range%}
  <div class="title">{%trans "Range"%}</div>
  <div class="content">
-  <span>{{poll.filters.count|number_format|fitNumber}}</span>
+  <span>{%if poll.filters.count == 1000000000%}{%trans "All society of Sarshomar"%}{%else%}{{poll.filters.count|number_format|fitNumber}}{%endif%}</span>
  </div>
 {%endblock%}
 
@@ -496,6 +495,7 @@
 
 
 {%block poll_filters%}
+{{block('poll_tags')}}
  {%if poll_have_filters%}
   <div class="title">{%trans "Audiences of this poll"%}</div>
  {%endif%}

@@ -1286,7 +1286,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 #poll-result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
 #poll-result .opt-media-box{padding:0 18px 0 50px;margin-bottom:2em}
 .rtl #poll-result .opt-media-box{padding:0 50px 0 18px}
-#poll-result .opt-media-box .c img{width:90%;max-height:100px;display:block;margin:0 auto;}
+#poll-result .opt-media-box .c img{width:90%;max-height:150px;display:block;margin:0 auto;}
 
 
 /* poll extra */
