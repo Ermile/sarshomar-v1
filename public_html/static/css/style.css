@@ -1274,7 +1274,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 #poll-result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
 #poll-result .opt-media-box{padding:0 2em 0 5em;margin-bottom:2em}
 .rtl #poll-result .opt-media-box{padding:0 5em 0 2em}
-#poll-result .opt-media-box .c{padding: 0 3em}
+#poll-result .opt-media-box .c{padding: 0 1em}
 #poll-result .opt-media-box .c img{max-height: 100px;display:block;margin:0 auto;}
 
 
