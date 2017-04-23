@@ -304,7 +304,7 @@
 {%block chart%}
  <div class="chart" data-format='pollTotal_default' data-vals='{{poll_total_stats|raw}}' data-trans='{{poll_trans}}'></div>
 
- <div class="f opt-media-box">
+ <div class="f opt-media-box align-center">
 {%for key, myOpt in poll.answers%}
   <div class="c">
 {%if myOpt.file.type == 'image'%}
