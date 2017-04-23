@@ -12,40 +12,55 @@ trait money
 	 */
 	public static $poll_ranks_value =
 	[
+		// define
+
+		// valur of public
+		'public'    => [ true 	, 	100			],
+
 		// valur of member
-		'member'    => [ true	, 	5	 		],
+		'member'    => [ true	, 	2	 		],
+		// valur of sarshomar
+		'sarshomar' => [ true	, 	100 * 10000	],
 		// valur of filter
-		'filter'    => [ true	, 	2	 		],
-		// valur of report
-		'report'    => [ false	, 	10	 		],
+		'filter'    => [ true	, 	10	 		],
+		// valur of ago
+		'ago'       => [ true	, 	100	  		],
+		// valur of money
+		'money'     => [ true 	, 	40			],
+		// valur of ad - branding
+		'ad'        => [ true 	, 	30			],
+
+		// valur of vip
+		'vip'       => [ true 	, 	1000		],
+		// valur of admin
+		'admin'     => [ true 	, 	100			],
+
+
+
+		// user
 		// valur of vot
-		'vote'      => [ true	, 	4	 		],
+		'vote'      => [ true	, 	3	 		],
 		// valur of like
 		'like'      => [ true	, 	5	 		],
 		// valur of favo
-		'fav'       => [ true	, 	6	 		],
-		// valur of skip
-		'skip'      => [ false	, 	1	 		],
+		'fav'       => [ true	, 	10	 		],
 		// valur of comment
-		'comment'   => [ true	, 	8	 		],
+		'comment'   => [ true	, 	20	 		],
+
+
+
+		// system
 		// valur of view
 		'view'      => [ true	, 	1	 		],
 		// valur of other
 		'other'     => [ true	, 	10	 		],
-		// valur of sarshomar
-		'sarshomar' => [ true	, 	100 * 1000	],
-		// valur of ago
-		'ago'       => [ true	, 	3	  		],
-		// valur of vip
-		'vip'       => [ true 	, 	4			],
-		// valur of public
-		'public'    => [ true 	, 	4			],
-		// valur of admin
-		'admin'     => [ true 	, 	4			],
-		// valur of money
-		'money'     => [ true 	, 	4			],
-		// valur of ad
-		'ad'        => [ true 	, 	4			],
+
+
+
+		// valur of skip
+		'skip'      => [ false	, 	10	 		],
+		// valur of report
+		'report'    => [ false	, 	50	 		],
 	];
 
 
