@@ -445,7 +445,7 @@ body.loading-page .logo img, body.loading .logo img{animation-duration:1s;-webki
 .ltr-text{display:inline-block;direction:ltr}
 
 a[href*="amcharts.com"]{display:none!important}
-.ltr #random-chart{overflow:hidden;}
+.ltr #random-chart{}
 .ltr #random-chart .amcharts-main-div{padding-left:1em}
 .ltr #random-chart .amcharts-chart-div, .ltr #random-chart svg{overflow:visible!important;}
 
@@ -753,7 +753,7 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 #random-chart h3:hover{background-color:#e8e6e6;}
 #random-chart h3:focus{background-color:#e8e6e6;color:#37aaa7;}
 #random-chart h3 a{display:block; padding:0.5em 1em;color:#444445;font-weight:700;}
-#random-chart .column{height:250px}
+#random-chart .column{height:250px;overflow: visible!important;}
 #gift-iphone> a{display:block}
 #gift-iphone> a img{display:block;max-width:500px;margin:0 auto;width:100%;border:1px solid #fff}
 
@@ -1272,8 +1272,8 @@ body.rtl .poll-panel{right:16px;left:auto}
 /*#poll-extra,#comments-box{margin-bottom:100px}*/
 
 #poll-result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
-#poll-result .opt-media-box{padding:0 2em 0 5em;margin-bottom:2em}
-.rtl #poll-result .opt-media-box{padding:0 5em 0 2em}
+#poll-result .opt-media-box{padding:0 18px 0 50px;margin-bottom:2em}
+.rtl #poll-result .opt-media-box{padding:0 50px 0 18px}
 #poll-result .opt-media-box .c{padding: 0 1em}
 #poll-result .opt-media-box .c img{max-height: 100px;display:block;margin:0 auto;}
 
