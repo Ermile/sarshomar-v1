@@ -446,6 +446,13 @@
  <div class="content">
   {{poll.count_skip|number_format|fitNumber}}
  </div>
+ {%if poll.vote_skip%}
+
+ <div class="title">{%trans "Skip/Votes"%}</div>
+ <div class="content">
+  {{poll.vote_skip|fitNumber}}%
+ </div>
+ {%endif%}
 {%endblock%}
 
 {%block poll_privacy%}
