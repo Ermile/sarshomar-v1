@@ -16,11 +16,30 @@
     <span class="status">{%trans "Status"%}</span>
   {%endif%}
 
-  <span class="comments-count">{%trans "Comments"%}</span>
-  <span class="votes-count">{%trans "Votes"%}</span>
-  {%if admin%}
-    <span class="date">{%trans "Date"%}</span>
-    <span class="date">{%trans "Media"%}</span>
+  {%if not admin%}
+    <span class="comments-count">{%trans "Comments"%}</span>
+    <span class="votes-count">{%trans "Votes"%}</span>
+  {%else%}
+    <span class="comments-count"><a href="{{url.base}}/admin/knowledge/{{order_url.count_comment}}">{%trans "Comments"%}</a></span>
+    <span class="votes-count"><a href="{{url.base}}/admin/knowledge/{{order_url.count_vote}}">{%trans "Votes"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.date}}">{%trans "Date"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.count_skip}}">{%trans "Skip"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.vote_skip}}">{%trans "Votes"%}/{%trans "Skip"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.hasmedia}}">{%trans "Media"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.hasfilter}}">{%trans "Filter"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.asked}}">{%trans "Asked"%}</a></span>
+    <span class="edit"><a href="{{url.base}}/admin/knowledge/{{order_url.count_rank}}">{%trans "Rank"%}</a></span>
+    <!-- <span class="date">{%trans "count_filter"%}</span>
+    <span class="date">{%trans "count_ad"%}</span>
+    <span class="date">{%trans "count_money"%}</span>
+    <span class="date">{%trans "count_report"%}</span>
+    <span class="date">{%trans "count_view"%}</span>
+    <span class="date">{%trans "count_other"%}</span>
+    <span class="date">{%trans "count_sarshomar"%}</span>
+    <span class="date">{%trans "count_ago"%}</span>
+    <span class="date">{%trans "count_admin"%}</span>
+    <span class="date">{%trans "count_vip"%}</span> -->
+
   {%endif%}
  </div>
  <ul class="polls-body">
@@ -58,11 +77,23 @@
       {%else%}
         <span class="date">{{value.date|date("Y-m-d")}}</span>
       {%endif%}
-      {%if value.id|shortURL("decode") in poll_list.attachment|keys%}
-        <span class="icon-pencil"></span>
-      {%else%}
-        <span class=""></span>
-      {%endif%}
+      <span class="date" >{{value.count_skip|number_format|fitNumber}}</span>
+      <span class="date" >{%if value.vote_skip%}{{value.vote_skip|fitNumber}}%{%else%}-{%endif%}</span>
+      {%if value.hasmedia%}<span class="icon-pencil"></span>{%else%}<span class=""></span>{%endif%}
+      <span class="date" >{{value.hasfilter}}</span>
+      <span class="date" >{{value.asked|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_rank|number_format|fitNumber}}</span>
+    <!--   <span class="date" >{{value.count_filter|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_ad|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_money|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_report|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_view|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_other|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_sarshomar|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_ago|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_admin|number_format|fitNumber}}</span>
+      <span class="date" >{{value.count_vip|number_format|fitNumber}}</span> -->
+
     {%endif%}
    </li>
 {%endfor%}

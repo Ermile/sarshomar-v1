@@ -46,33 +46,55 @@ class polls
 			posts.post_brandurl				AS `brandurl`,
 			posts.post_prizeunit			AS `prizeunit`,
 			posts.post_createdate			AS `date`,
+			FALSE 							AS `have_score`,
+			FALSE 							AS `have_true_answer`,
+
+			IFNULL(posts.post_asked,0) 		AS `asked`,
+			IFNULL(posts.post_hasfilter,0) 	AS `hasfilter`,
+			IFNULL(posts.post_hasmedia,0) 	AS `hasmedia`,
+			IFNULL(posts.post_rank,0) 		AS `count_rank`,
 			IFNULL(ranks.comment,0)   		AS `count_comment`,
 			IFNULL(ranks.like,0)   			AS `count_like`,
 			IFNULL(ranks.fav,0)   			AS `count_fav`,
 			IFNULL(ranks.skip,0)   			AS `count_skip`,
 			IFNULL(ranks.vote,0)   			AS `count_vote`,
-			(
-				SELECT
-					IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
-				FROM
-					pollopts
-				WHERE
-					pollopts.post_id = posts.id AND
-					(pollopts.groupscore IS NOT NULL OR pollopts.score IS NOT NULL)
-				LIMIT 1 ) AS `have_score`,
-			(
-				SELECT
-					IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
-				FROM
-					pollopts
-				WHERE
-					pollopts.post_id = posts.id AND
-					pollopts.true    = 1
-				LIMIT 1 ) AS `have_true_answer`
+			IFNULL(ranks.filter, 0) 		AS `count_filter`,
+			IFNULL(ranks.ad, 0) 			AS `count_ad`,
+			IFNULL(ranks.money, 0) 			AS `count_money`,
+			IFNULL(ranks.report, 0) 		AS `count_report`,
+			IFNULL(ranks.view, 0) 			AS `count_view`,
+			IFNULL(ranks.other, 0) 			AS `count_other`,
+			IFNULL(ranks.sarshomar, 0) 		AS `count_sarshomar`,
+			IFNULL(ranks.ago, 0) 			AS `count_ago`,
+			IFNULL(ranks.admin, 0) 			AS `count_admin`,
+			IFNULL(ranks.vip , 0) 			AS `count_vip`,
+			ROUND((IFNULL(ranks.skip, 0) * 100) / IFNULL(ranks.vote, 0))			 			AS `vote_skip`
 		FROM
 			posts
 		LEFT JOIN ranks ON ranks.post_id = posts.id
 	";
+
+
+			// ((IFNULL(ranks.skip, 0) * 100) / IF(ranks.vote IS NULL OR ranks.vote < 1, 1, ranks.vote))					 			AS `vote_skip`
+			// (
+			// 	SELECT
+			// 		IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
+			// 	FROM
+			// 		pollopts
+			// 	WHERE
+			// 		pollopts.post_id = posts.id AND
+			// 		(pollopts.groupscore IS NOT NULL OR pollopts.score IS NOT NULL)
+			// 	LIMIT 1 ) AS `have_score`,
+			// (
+			// 	SELECT
+			// 		IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
+			// 	FROM
+			// 		pollopts
+			// 	WHERE
+			// 		pollopts.post_id = posts.id AND
+			// 		pollopts.true    = 1
+			// 	LIMIT 1 ) AS `have_true_answer`
+
 
 	// (
 	// select

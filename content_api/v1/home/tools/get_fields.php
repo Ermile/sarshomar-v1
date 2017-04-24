@@ -213,6 +213,18 @@ trait get_fields
 				case 'count_vote':
 				case 'count_skip':
 				case 'member':
+				case 'asked':
+				case 'count_rank':
+				case 'count_filter':
+				case 'count_ad':
+				case 'count_money':
+				case 'count_report':
+				case 'count_view':
+				case 'count_other':
+				case 'count_sarshomar':
+				case 'count_ago':
+				case 'count_admin':
+				case 'count_vip':
 					$_poll_data[$key] = (int) $value;
 					break;
 
@@ -236,6 +248,8 @@ trait get_fields
 				case 'is_answered':
 				case 'profile':
 				case 'sarshomar':
+				case 'hasfilter':
+				case 'hasmedia':
 					if($value)
 					{
 						$_poll_data[$key] = true;
@@ -245,6 +259,8 @@ trait get_fields
 						$_poll_data[$key] = false;
 					}
 					break;
+
+
 
 				case 'answers':
 				case 'articles':
@@ -280,6 +296,24 @@ trait get_fields
 		unset($_poll_data['password']);
 		// unset($_poll_data['brand']);
 		unset($_poll_data['brandurl']);
+		if(!\content_api\v1\home\tools\api_options::check_api_permission('admin','admin', 'view'))
+		{
+			unset($_poll_data['asked']);
+			unset($_poll_data['count_rank']);
+			unset($_poll_data['count_filter']);
+			unset($_poll_data['count_ad']);
+			unset($_poll_data['count_money']);
+			unset($_poll_data['count_report']);
+			unset($_poll_data['count_view']);
+			unset($_poll_data['count_other']);
+			unset($_poll_data['count_sarshomar']);
+			unset($_poll_data['count_ago']);
+			unset($_poll_data['count_admin']);
+			unset($_poll_data['count_vip']);
+			unset($_poll_data['hasfilter']);
+			unset($_poll_data['hasmedia']);
+			unset($_poll_data['vote_skip']);
+		}
 	}
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 namespace content_admin\knowledge;
 
-class view extends \mvc\view
+class view extends \content_admin\main\view
 {
 
 	public function config()
@@ -19,7 +19,22 @@ class view extends \mvc\view
 	 * @param      <type>  $_args  The arguments
 	 */
 	public function view_search($_args)
+
 	{
+		$fields =
+		[
+			'hasmedia',
+			'hasfilter',
+			'asked',
+			'count_rank',
+			'count_comment',
+			'count_vote',
+			'count_skip',
+			'date',
+			'vote_skip',
+		];
+		$this->order_url($_args, $fields);
+
 		$this->data->search_value =  $_args->get("search")[0];
 		$list = $_args->api_callback;
 

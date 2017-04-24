@@ -225,11 +225,16 @@ trait search
 		if(utility::isset_request('sort'))
 		{
 			$avalible_sort = ['id', 'rank', 'vote', 'date', 'comment', 'title'];
-			if(!in_array(utility::request('sort'), $avalible_sort))
+
+			if(!\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
 			{
-				debug::error(T_("Invalid parameter sort"), 'sort', 'arguments');
-				return false;
+				if(!in_array(utility::request('sort'), $avalible_sort))
+				{
+					debug::error(T_("Invalid parameter sort"), 'sort', 'arguments');
+					return false;
+				}
 			}
+
 			$sort_field = 'id';
 			switch (utility::request('sort'))
 			{
@@ -252,7 +257,15 @@ trait search
 					$sort_field = 'posts.post_title';
 					break;
 				default:
-					$sort_field = 'posts.id';
+					if(!\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+					{
+						$sort_field = 'posts.id';
+					}
+					else
+					{
+						$sort_field = utility::request('sort');
+					}
+
 					break;
 			}
 			$meta['sort']        = $sort_field;
@@ -261,8 +274,8 @@ trait search
 
 		if(utility::isset_request('order'))
 		{
-			$avalible_order = ['asc', 'desc', 'ASC', 'DESC'];
-			if(!in_array(utility::request('order'), $avalible_order))
+			$avalible_order = ['asc', 'desc'];
+			if(!in_array(mb_strtolower(utility::request('order')), $avalible_order))
 			{
 				debug::error(T_("Invalid parameter order"), 'order', 'arguments');
 				return false;
