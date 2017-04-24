@@ -207,11 +207,11 @@ trait refresh
 					(
 						SELECT 	IFNULL(COUNT(polldetails.id), 0)
 						FROM polldetails
-						WHERE polldetails.post_id = ranks.post_id
+						WHERE polldetails.post_id = $_poll_id
 						AND polldetails.opt = 0
 						AND polldetails.status = 'enable'
 						AND polldetails.validstatus IS NOT NULL
-					) LIMIT 1");
+					) WHERE ranks.post_id = $_poll_id LIMIT 1");
 
 			}
 		}
