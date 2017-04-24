@@ -1,0 +1,43 @@
+{%extends display.main%} {%block content%}
+<div class="main pad">
+    <div class="box">
+    <div class="search-box">
+        <input type="text" name="search" placeholder='{%trans "Search"%}' value="{{search_value}}" autocomplete="off">
+        <label class="search-label">
+         <span class="icon-search"></span>
+        </label>
+       </div>
+        <div class="default-tbl">
+            <div class="tbl admin-log">
+                {%for key, value in attachment_list%}
+                <span>
+                    {% if value.post_meta.type  == 'image' %}
+                        <img src="{{download_url}}/{{value.post_meta.url}}" style="height: 240px; width: 320px;">
+                    {% elseif value.post_meta.type  == 'audio' %}
+                        <audio controls>
+                            <source  src="{{download_url}}/{{value.post_meta.url}}">
+                        </audio>
+                    {% elseif value.post_meta.type  == 'video' %}
+                        <video width="320" height="240" controls>
+                          <source src="{{download_url}}/{{value.post_meta.url}}">
+                        </video>
+                        <video src="{{download_url}}/{{value.post_meta.url}}"></video>
+                    {%else%}
+                        <a href="{{download_url}}/{{value.post_meta.url}}"><h4>{{value.post_meta.type}}</h4></a>
+                    {% endif %}
+                    <span>{%trans "Status"%}: {%set myStatus = value.post_status%}{%trans myStatus%}</span>
+                    <a href="{{download_url}}/{{value.post_meta.url}}" target="_blank" >{%trans "Show"%}</a>
+                    <a href="{{url.base}}/admin/attachments/show/id={{value.id}}" data-data='{"id":{{value.id}}, "status": "publish"}' data-ajaxify data-method="post">{%trans "Publish"%}</a>
+                    <a href="{{url.base}}/admin/attachments/show/id={{value.id}}" data-data='{"id":{{value.id}}, "status": "spam"}' data-ajaxify data-method="post">{%trans "Spam"%}</a>
+                    <a href="{{url.base}}/admin/attachments/show/id={{value.id}}" data-data='{"id":{{value.id}}, "status": "deleted"}' data-ajaxify data-method="post">{%trans "delete"%}</a>
+                </span>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+    {%include display.pagination%}
+ </div>
+</div>
+
+{%endblock%}
