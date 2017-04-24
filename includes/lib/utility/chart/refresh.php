@@ -116,7 +116,7 @@ trait refresh
 		}
 
 		// $old_result = \lib\db\pollstats::get($_poll_id,['validation' => 'valid']);
-		// var_dump($old_result);
+
 
 		$temp = [];
 		$i = 0;
@@ -183,8 +183,8 @@ trait refresh
 					}
 				}
 			}
-			exit();
-			var_dump($set);
+
+
 			if(!empty($set) && ($insert_query || $condition_query))
 			{
 
@@ -225,7 +225,7 @@ trait refresh
 	 */
 	public static function chart_data($_args)
 	{
-		// var_dump($_args);
+
 		$temp = [];
 
 		if($_args['opt'] === 'opt_0')
@@ -358,6 +358,35 @@ trait refresh
 				// if(!array_key_exists('religion', $_data)) 			$check = false;
 				// if(!array_key_exists('language', $_data)) 			$check = false;
 				// if(!array_key_exists('industry', $_data)) 			$check = false;
+				//  if(!array_key_exists('country', $_data)) 			$check = false;
+				// if(!array_key_exists('province', $_data)) 			$check = false;
+				// if(!array_key_exists('city', $_data)) 				$check = false;
+				// if(!array_key_exists('employmentstatus', $_data)) 	$check = false;
+				// if(!array_key_exists('housestatus', $_data)) 		$check = false;
+				// if(!array_key_exists('religion', $_data)) 			$check = false;
+				// if(!array_key_exists('language', $_data)) 			$check = false;
+				// if(!array_key_exists('industry', $_data)) 			$check = false;
+
+
+				if(!array_key_exists('gender', $_data)) 			$_data['gender'] = null;
+				if(!array_key_exists('marrital', $_data)) 			$_data['marrital'] = null;
+				if(!array_key_exists('internetusage', $_data)) 		$_data['internetusage'] = null;
+				if(!array_key_exists('graduation', $_data)) 		$_data['graduation'] = null;
+				if(!array_key_exists('degree', $_data)) 			$_data['degree'] = null;
+				if(!array_key_exists('course', $_data)) 			$_data['course'] = null;
+				if(!array_key_exists('age', $_data)) 				$_data['age'] = null;
+				if(!array_key_exists('agemin', $_data)) 			$_data['agemin'] = null;
+				if(!array_key_exists('agemax', $_data)) 			$_data['agemax'] = null;
+				if(!array_key_exists('range', $_data)) 				$_data['range'] = null;
+				if(!array_key_exists('country', $_data)) 			$_data['country'] = null;
+				if(!array_key_exists('province', $_data)) 			$_data['province'] = null;
+				if(!array_key_exists('city', $_data)) 				$_data['city'] = null;
+				if(!array_key_exists('employmentstatus', $_data)) 	$_data['employmentstatus'] = null;
+				if(!array_key_exists('housestatus', $_data)) 		$_data['housestatus'] = null;
+				if(!array_key_exists('religion', $_data)) 			$_data['religion'] = null;
+				if(!array_key_exists('language', $_data)) 			$_data['language'] = null;
+				if(!array_key_exists('industry', $_data)) 			$_data['industry'] = null;
+
 				unset($_data['id']);
 				unset($_data['count']);
 				unset($_data['agemin']);
