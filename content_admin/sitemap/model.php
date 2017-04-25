@@ -136,8 +136,11 @@ class model extends \mvc\model
 				$myUrl = $row['post_language'].'/'. $myUrl;
 			}
 
-			$sitemap->addItem($myUrl, '0.8', 'daily', $row['post_publishdate']);
-			$counter['polls'] += 1;
+			if(isset($row['post_privacy']) && $row['post_privacy'] === 'public')
+			{
+				$sitemap->addItem($myUrl, '0.8', 'daily', $row['post_publishdate']);
+				$counter['polls'] += 1;
+			}
 		}
 
 		// add pages
@@ -240,8 +243,15 @@ class model extends \mvc\model
 			$qry = $qry->and($prefix.'_type', '<>', "'attachments'");
 		}
 
+		if($_table === 'posts')
+		{
+			$qry = $qry->field($prefix.'_url', $date, $lang, 'post_privacy')->order('id','DESC');
+		}
+		else
+		{
+			$qry = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
+		}
 
-		$qry    = $qry->field($prefix.'_url', $date, $lang)->order('id','DESC');
 		return $qry->select()->allassoc();
 	}
 
