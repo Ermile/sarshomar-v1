@@ -371,7 +371,7 @@ class poll
 			callback_query::answer_message(['text' => '⚠️' . $debug['messages']['warn'][0]['title']]);
 		}
 		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
-		callback_query::answer_message(['text' => '✅ ' . $title, "show_alert" => true]);
+		callback_query::answer_message(['text' => '✅ ' . $title]);
 
 		if(isset($_query['inline_message_id']) || $subport)
 		{
