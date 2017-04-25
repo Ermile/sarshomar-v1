@@ -249,7 +249,7 @@ class model extends \mvc\model
 			$qry = $qry->and($prefix.'_type', '<>', "'survey'");
 			$qry = $qry->and($prefix.'_type', '<>', "'page'");
 			$qry = $qry->and($prefix.'_type', '<>', "'help'");
-			$qry = $qry->and($prefix.'_type', '<>', "'attachments'");
+			$qry = $qry->and($prefix.'_type', '<>', "'attachment'");
 		}
 
 		if($_table === 'posts')
