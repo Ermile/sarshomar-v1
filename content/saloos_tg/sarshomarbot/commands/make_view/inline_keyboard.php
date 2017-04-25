@@ -182,8 +182,8 @@ class inline_keyboard
 		if($options['site_link'])
 		{
 			$return[] = [
-				"text" => T_("Review result"),
-				"url" => 'https://sarshomar.com/$'.$this->class->poll_id
+				"text" => T_("ورود به سرشمار"),
+				"url" => 'https://t.me/Sarshomarbot?start=lang_fa'
 			];
 			$return[] = [
 				"text" => T_("Share"),
