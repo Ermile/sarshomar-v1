@@ -253,20 +253,21 @@ private function transtext()
 	echo T_("Regenerate sitemap");                                                    // Line 40
 	echo T_("social networks");                                                       // Line 41
 	echo T_("Database");                                                              // Line 44
-	echo T_("Submit");                                                                // Line 51
-	echo T_("Upgrade");                                                               // Line 55
-	echo T_("Project Database");                                                      // Line 57
-	echo T_("Automatically read database and create sql files");                      // Line 56
-	echo T_("Backup");                                                                // Line 57
-	echo T_("Database Logs");                                                         // Line 62
-	echo T_("Logs");                                                                  // Line 65
-	echo T_("Logs - check");                                                          // Line 66
-	echo T_("Logs - warn");                                                           // Line 67
-	echo T_("Logs - critical");                                                       // Line 68
-	echo T_("Error Logs");                                                            // Line 69
-	echo T_("Telegram Errors");                                                       // Line 72
-	echo T_("telegram Logs");                                                         // Line 76
-	echo T_("telegram - Error Logs");                                                 // Line 77
+	echo T_("Upgrade");                                                               // Line 59
+	echo T_("Backup");                                                                // Line 61
+	echo T_("Backup by dump");                                                        // Line 53
+	echo T_("Submit");                                                                // Line 55
+	echo T_("Project Database");                                                      // Line 61
+	echo T_("Automatically read database and create sql files");                      // Line 60
+	echo T_("Database Logs");                                                         // Line 66
+	echo T_("Logs");                                                                  // Line 69
+	echo T_("Logs - check");                                                          // Line 70
+	echo T_("Logs - warn");                                                           // Line 71
+	echo T_("Logs - critical");                                                       // Line 72
+	echo T_("Error Logs");                                                            // Line 73
+	echo T_("Telegram Errors");                                                       // Line 76
+	echo T_("telegram Logs");                                                         // Line 80
+	echo T_("telegram - Error Logs");                                                 // Line 81
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
