@@ -23,8 +23,8 @@ trait access
 
 		$default_args =
 		[
-			'time'    => 0, //(60 * 7),
-			'count'   => 0, //3,
+			'time'    => (60 * 3),
+			'count'   => 3,
 			'user_id' => null,
 			'poll_id' => null,
 			'debug'   => true,
