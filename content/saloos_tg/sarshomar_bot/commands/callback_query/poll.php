@@ -364,14 +364,14 @@ class poll
 
 		if(!$debug_status)
 		{
-			callback_query::answer_message(['text' => '❗️' . $debug['messages']['error'][0]['title']]);
+			callback_query::answer_message(['text' => '❗️' . $debug['messages']['error'][0]['title'], "show_alert" => true]);
 		}
 		elseif($debug_status == 2)
 		{
-			callback_query::answer_message(['text' => '⚠️' . $debug['messages']['warn'][0]['title']]);
+			callback_query::answer_message(['text' => '⚠️' . $debug['messages']['warn'][0]['title'], "show_alert" => true]);
 		}
 		$title = !isset($debug['messages']['true']) ? $debug['title'] : $debug['messages']['true'][0]['title'];
-		callback_query::answer_message(['text' => '✅ ' . $title]);
+		callback_query::answer_message(['text' => '✅ ' . $title, "show_alert" => true]);
 
 		if(isset($_query['inline_message_id']) || $subport)
 		{
