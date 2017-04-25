@@ -50,6 +50,9 @@ class model extends \mvc\model
 		$sitemap->addItem('privacy', '0.8', 'weekly');
 		$sitemap->addItem('social-responsibility', '0.8', 'weekly');
 		$sitemap->addItem('features', '0.8', 'weekly');
+		$sitemap->addItem('ref', '0.5', 'monthly');
+		$sitemap->addItem('gift', '0.4', 'monthly');
+		$sitemap->addItem('logo', '1', 'monthly');
 
 		// add all targets
 		$sitemap->addItem('target/organizations-and-companies', '0.8', 'weekly');
@@ -89,6 +92,10 @@ class model extends \mvc\model
 		$sitemap->addItem('fa/privacy', '0.8', 'weekly');
 		$sitemap->addItem('fa/social-responsibility', '0.8', 'weekly');
 		$sitemap->addItem('fa/features', '0.8', 'weekly');
+		$sitemap->addItem('fa/ref', '0.5', 'monthly');
+		$sitemap->addItem('fa/gift', '0.4', 'monthly');
+		$sitemap->addItem('fa/logo', '1', 'monthly');
+
 
 		// add all features
 		$sitemap->addItem('fa/features/guest', '0.8', 'weekly');
