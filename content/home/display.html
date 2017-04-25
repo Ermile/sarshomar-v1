@@ -93,18 +93,6 @@
 
 {%block homeTopRandomChart%}
        <div class='column chart' data-place='div' data-vals='{{result.data | raw  }}' data-color2='auto' data-format='homepageTop' data-trans='{%trans "vote"%}'></div>
-
-       <div class="f opt-media-box align-center">
-      {%for key, myOpt in result.answers%}
-        <div class="c">
-      {%if myOpt.file.type == 'image'%}
-      {%set optfileUrl%}{% if myOpt.file.url %}{{myOpt.file.url}}{%else%}{{url.static}}/images/logo.png{%endif%}{%endset%}
-
-        <img src='{{myOpt.file.url}}' alt='{{myOpt.title}}'>
-      {%endif%}
-        </div>
-      {%endfor%}
-       </div>
 {%endblock%}
 
 
@@ -150,6 +138,18 @@
      <span>پرونده‌ی ویژه انتخابات ></span> <a href='{{result.url}}'>{{result.title|trim('\"')}}</a>
     </h2>
     {{block('homeTopRandomChart')}}
+
+    <div class="f opt-media-box align-center">
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/885-5ea4eade6fffaa56d601292fa86c1073.jpg" alt="سید مصطفی میرسلیم"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/884-50ac47fda83be2407186089572355837.jpg" alt="اسحاق جهانگیری"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/886-95b422a6f52f57efd2090ca0ceffca73.jpg" alt="حسن روحانی"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/887-ab2ef2df06db09013a747fa953d15632.jpg" alt="سید ابراهیم رئیسی"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/883-8437ad0ef38475f3b09b21c960401ba2.jpg" alt="محمد باقر قالیباف"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/882-340022785755ffdc27678f5c345a871a.jpg" alt="سید مصطفی هاشمی‌طبا"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/889-dd961c5df54ca22a64382ff8709c8cb2.jpg" alt="هیچکدام،رای باطل"></div>
+      <div class="c"><img src="https://dl.sarshomar.com/files/1/881-6c19349b23d702ce0cc9ded8b04272aa.jpg" alt="رای نمی‌دهم"></div>
+    </div>
+
    </div>
 {%endif%}
 {%endblock%}
