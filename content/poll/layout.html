@@ -326,12 +326,17 @@
    <div class="c">{%trans "Ratio"%}</div>
   </div>
 
-{%for key, optRow in poll.result.answers if poll.result.answers%}
+{%for key, optRow in poll.result.answers%}
   <div class="f">
    <div class="c8">{{optRow.title}}</div>
    <div class="c">{{optRow.value |fitNumber}}</div>
-{%set optRatio = ((optRow.value * 100) / poll.result.summary.total) | round(1, 'floor') %}
-   <div class="c">{{ optRatio |fitNumber}}%</div>
+
+{%set optRatio%}
+{%if poll.result.summary.total%}
+{{((optRow.value * 100) / poll.result.summary.total) | round(1, 'floor')}}%
+{%else%}-{%endif%}
+{%endset%}
+   <div class="c">{{ optRatio |fitNumber}}</div>
   </div>
 {%endfor%}
  </div>
