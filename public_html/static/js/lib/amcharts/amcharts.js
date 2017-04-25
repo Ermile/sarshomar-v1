@@ -824,6 +824,7 @@ function getChartOption($_what, _arg, _this)
 				"bulletSize": 40,
 				"autoColor": _arg.color,
 				"labelText": " ",
+				"labelPosition": "middle",
 				"labelFunction" : function( item )
 				{
 					if(_arg.data)
@@ -1425,7 +1426,7 @@ function homepageGender(_option)
 	_option.startDuration = 0.5;
 	_option.startEffect = 'easeOutSine';
 	_option.dataProvider.reverse();
-	_option.allLabels = [ {"text":$('#age-chart').attr('data-title'), "bold":true, "x":"70%",}];
+	_option.allLabels = [ {"text":$('#age-chart').attr('data-title'), "bold":true, "x":"60%",}];
 
 
 	_option.graphs =
