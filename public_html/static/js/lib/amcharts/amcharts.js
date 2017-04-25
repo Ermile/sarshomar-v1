@@ -1170,6 +1170,7 @@ function pollTotal_default(_option, _answers, _el)
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"fillColors": '#98cce4',
+			"showAllValueLabels": true,
 			// "labelFunction" : function(item)
 			// {
 			// 	return fitNumber(Math.abs(item.values.value));
@@ -1382,6 +1383,7 @@ function homepageTop(_option)
 
 
 	_option.graphs[0].showBalloon = false;
+	_option.graphs[0].showAllValueLabels = true;
 	var voteText = $('.map-container .chart').attr('data-trans');
 
 	// show all data on hover of column
