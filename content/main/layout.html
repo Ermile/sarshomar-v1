@@ -34,11 +34,11 @@
 
 
 {%block head_css%}
- <link rel="stylesheet"       href="{{url.static}}css/style.css">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style.css' | filemtime(true)}}">
  {%if iperm.admin.admin.view%}
- <link rel="stylesheet"       href="{{url.static}}css/style-admin.css">
+<link rel="stylesheet"       href="{{url.static}}{{'css/style-admin.css' | filemtime(true)}}">
  {%endif%}
- <link rel="stylesheet"       href="{{url.static}}css/responsive.css">
+<link rel="stylesheet"       href="{{url.static}}{{'css/responsive.css' | filemtime(true)}}">
 {%endblock%}
 
 {%block body%}
@@ -83,7 +83,7 @@
 {%endblock%}
 
 
-{%block alexaCertify%}
+{%block alexaCertify2%}
 <!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">
 _atrk_opts = { atrk_acct:"ExFQo1IWx8105T", domain:"sarshomar.com",dynamic: true};
