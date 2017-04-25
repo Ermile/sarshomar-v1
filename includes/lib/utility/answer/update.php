@@ -264,8 +264,14 @@ trait update
 			profiles::set_dashboard_data($_args['user_id'], "poll_skipped");
 			profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
 		}
+		$text = null;
+		if(isset($_args['answer']) && is_array($_args['answer']))
+		{
+			$text = implode(T_(',') . ' ', $_args['answer']);
+		}
 
-		return debug::true(T_("Your answer updated"));
+		return debug::true(T_("Your answer updated to :text", ['text' => $text]));
+		// return debug::true(T_("Your answer updated"));
 	}
 }
 ?>
