@@ -326,7 +326,7 @@
    <div class="c">{%trans "Ratio"%}</div>
   </div>
 
-{%for key, optRow in poll.result.answers%}
+{%for key, optRow in poll.result.answers if poll.result.answers%}
   <div class="f">
    <div class="c8">{{optRow.title}}</div>
    <div class="c">{{optRow.value |fitNumber}}</div>
