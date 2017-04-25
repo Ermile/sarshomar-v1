@@ -24,7 +24,7 @@ trait access
 		$default_args =
 		[
 			'time'    => (60 * 3),
-			'count'   => 3,
+			'count'   => 1,
 			'user_id' => null,
 			'poll_id' => null,
 			'debug'   => true,
