@@ -90,14 +90,28 @@ private function transtext()
 
 	//-----------------------------------------------content\knowledge\layout-xhr.html
 	echo T_("Type");                                                                  // Line 9
-	echo T_("Edit");                                                                  // Line 673
+	echo T_("Edit");                                                                  // Line 632
 	echo T_("Title");                                                                 // Line 10
 	echo T_("Status");                                                                // Line 11
 	echo T_("Comments");                                                              // Line 72
 	echo T_("Votes");                                                                 // Line 26
 	echo T_("Date");                                                                  // Line 13
-	echo T_("Media");                                                                 // Line 23
-	echo T_("(Untitled)");                                                            // Line 45
+	echo T_("Skip");                                                                  // Line 222
+	echo T_("Media");                                                                 // Line 28
+	echo T_("Filter");                                                                // Line 124
+	echo T_("Asked");                                                                 // Line 30
+	echo T_("Rank");                                                                  // Line 31
+	echo T_("count_filter");                                                          // Line 32
+	echo T_("count_ad");                                                              // Line 33
+	echo T_("count_money");                                                           // Line 34
+	echo T_("count_report");                                                          // Line 35
+	echo T_("count_view");                                                            // Line 36
+	echo T_("count_other");                                                           // Line 37
+	echo T_("count_sarshomar");                                                       // Line 38
+	echo T_("count_ago");                                                             // Line 39
+	echo T_("count_admin");                                                           // Line 40
+	echo T_("count_vip");                                                             // Line 41
+	echo T_("(Untitled)");                                                            // Line 64
 	echo T_("No Result Found");                                                       // Line 45
 
 	//---------------------------------------------------content\knowledge\layout.html
@@ -155,7 +169,6 @@ private function transtext()
 	echo T_("Try Sarshomar");                                                         // Line 72
 	echo T_("Next →");                                                                // Line 81
 	echo T_("← Back");                                                                // Line 81
-	echo T_("Skip");                                                                  // Line 222
 	echo T_("Done");                                                                  // Line 81
 
 	//-------------------------------------------------------content\poll\display.html
@@ -178,52 +191,56 @@ private function transtext()
 	echo T_("I am not willing to answer");                                            // Line 270
 	echo T_("Ask Me");                                                                // Line 30
 	echo T_("There is no data to draw chart!");                                       // Line 299
-	echo T_("Similar Questions");                                                     // Line 410
-	echo T_("Latest Questions");                                                      // Line 403
-	echo T_("There is no similar post");                                              // Line 411
-	echo T_("Status and period of publish");                                          // Line 431
-	echo T_("People voted to this poll");                                             // Line 438
-	echo T_("Privacy");                                                               // Line 452
-	echo T_("Author");                                                                // Line 459
-	echo T_("Range");                                                                 // Line 466
-	echo T_("All society of Sarshomar");                                              // Line 468
-	echo T_("Poll timespan");                                                         // Line 473
+	echo T_("Item");                                                                  // Line 326
+	echo T_("Vote");                                                                  // Line 327
+	echo T_("Ratio");                                                                 // Line 328
+	echo T_("Similar Questions");                                                     // Line 362
+	echo T_("Latest Questions");                                                      // Line 355
+	echo T_("There is no similar post");                                              // Line 363
+	echo T_("Status and period of publish");                                          // Line 383
+	echo T_("People voted to this poll");                                             // Line 390
+	echo T_("Skip/Votes");                                                            // Line 403
+	echo T_("Privacy");                                                               // Line 411
+	echo T_("Author");                                                                // Line 418
+	echo T_("Range");                                                                 // Line 425
+	echo T_("All society of Sarshomar");                                              // Line 427
+	echo T_("Poll timespan");                                                         // Line 432
 	echo T_("to");                                                                    // Line 109
-	echo T_("Not set");                                                               // Line 515
-	echo T_("Keyword");                                                               // Line 484
-	echo T_("Audiences of this poll");                                                // Line 500
+	echo T_("Not set");                                                               // Line 474
+	echo T_("Keyword");                                                               // Line 443
+	echo T_("Audiences of this poll");                                                // Line 459
 	echo T_("Tree");                                                                  // Line 308
-	echo T_("You've answered to this poll");                                          // Line 520
-	echo T_("There is nothing to display!");                                          // Line 564
-	echo T_("What is your opinion? Please rate this poll.");                          // Line 573
+	echo T_("You've answered to this poll");                                          // Line 479
+	echo T_("There is nothing to display!");                                          // Line 523
+	echo T_("What is your opinion? Please rate this poll.");                          // Line 532
 	echo T_("Submit");                                                                // Line 89
-	echo T_("Continue");                                                              // Line 628
-	echo T_("Refresh Chart");                                                         // Line 665
-	echo T_("VIP Value");                                                             // Line 682
-	echo T_("Select");                                                                // Line 690
+	echo T_("Continue");                                                              // Line 587
+	echo T_("Refresh Chart");                                                         // Line 624
+	echo T_("VIP Value");                                                             // Line 641
+	echo T_("Select");                                                                // Line 649
 	echo T_("stop");                                                                  // Line 25 Seperate
 	echo T_("pause");                                                                 // Line 23 Seperate
-	echo T_("trash");                                                                 // Line 693
-	echo T_("publish");                                                               // Line 717
-	echo T_("draft");                                                                 // Line 722
+	echo T_("trash");                                                                 // Line 652
+	echo T_("publish");                                                               // Line 676
+	echo T_("draft");                                                                 // Line 681
 	echo T_("enable");                                                                // Line 63
 	echo T_("disable");                                                               // Line 64
 	echo T_("deleted");                                                               // Line 65
-	echo T_("schedule");                                                              // Line 699
+	echo T_("schedule");                                                              // Line 658
 	echo T_("expired");                                                               // Line 66
 	echo T_("awaiting");                                                              // Line 67
 	echo T_("filtered");                                                              // Line 68
 	echo T_("blocked");                                                               // Line 69
 	echo T_("spam");                                                                  // Line 70
-	echo T_("violence");                                                              // Line 705
-	echo T_("pornography");                                                           // Line 706
+	echo T_("violence");                                                              // Line 664
+	echo T_("pornography");                                                           // Line 665
 	echo T_("other");                                                                 // Line 389 Seperate
-	echo T_("People Voted");                                                          // Line 746
-	echo T_("You");                                                                   // Line 747
-	echo T_("People");                                                                // Line 761
-	echo T_("Lottery");                                                               // Line 768
+	echo T_("People Voted");                                                          // Line 705
+	echo T_("You");                                                                   // Line 706
+	echo T_("People");                                                                // Line 720
+	echo T_("Lottery");                                                               // Line 727
 	echo T_("Trash");                                                                 // Line 114
-	echo T_("Delete");                                                                // Line 800
+	echo T_("Delete");                                                                // Line 759
 	echo T_("Stop");                                                                  // Line 24 Seperate
 	echo T_("Pause");                                                                 // Line 22 Seperate
 	echo T_("Draft");                                                                 // Line 160
@@ -633,6 +650,10 @@ private function transtext()
 	echo T_("Child Categories");                                                      // Line 104
 	echo T_("There are no category exist!");                                          // Line 113
 
+	//------------------------------------------content_admin\attachments\display.html
+	echo T_("Show");                                                                  // Line 29
+	echo T_("delete");                                                                // Line 32
+
 	//---------------------------------------------content_admin\comments\display.html
 	echo T_("Total");                                                                 // Line 7
 	echo T_("Rejected");                                                              // Line 17
@@ -719,6 +740,7 @@ private function transtext()
 	echo T_("Users");                                                                 // Line 13
 	echo T_("Users Dashboards");                                                      // Line 16
 	echo T_("Refresh Numbers");                                                       // Line 17
+	echo T_("Attachments");                                                           // Line 18
 
 	//----------------------------------------------content_admin\sitemap\display.html
 	echo T_("Create sitemap automatically by click on this page");                    // Line 6
@@ -1026,7 +1048,6 @@ private function transtext()
 
 	//-----------------------------------------------------content_u\add\progress.html
 	echo T_("Add");                                                                   // Line 4
-	echo T_("Filter");                                                                // Line 124
 	echo T_("Show my poll");                                                          // Line 14
 
 	//--------------------------------------------------------content_u\add\step1.html
