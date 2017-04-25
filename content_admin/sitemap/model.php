@@ -245,6 +245,8 @@ class model extends \mvc\model
 		elseif($_type === false && $_table === 'posts')
 		{
 			$qry = $qry->and($prefix.'_type', '<>', "'post'");
+			$qry = $qry->and($prefix.'_type', '<>', "'poll'");
+			$qry = $qry->and($prefix.'_type', '<>', "'survey'");
 			$qry = $qry->and($prefix.'_type', '<>', "'page'");
 			$qry = $qry->and($prefix.'_type', '<>', "'help'");
 			$qry = $qry->and($prefix.'_type', '<>', "'attachments'");
