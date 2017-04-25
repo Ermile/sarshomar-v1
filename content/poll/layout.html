@@ -329,7 +329,7 @@
 {%for key, optRow in poll.result.answers%}
   <div class="f">
    <div class="c8">{{optRow.title}}</div>
-   <div class="c">{{optRow.value}}</div>
+   <div class="c">{{optRow.value |fitNumber}}</div>
 {%set optRatio = ((optRow.value * 100) / poll.result.summary.total) | round(1, 'floor') %}
    <div class="c">{{ optRatio |fitNumber}}%</div>
   </div>
