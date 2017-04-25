@@ -140,13 +140,15 @@
 
 {%block homeTop2%}
 {%if site.currentlang == "en"%}
-   <div class="map-container">
+   <div class="map-container world">
     <h2 class="special-heading bigger">{%trans "Sarshomar Society Distributtion"%}</h2>
     <div class="map" id="world-map"></div>
    </div>
 {%else%}
    <div class="map-container">
-    <h2 class="special-heading bigger"><span>پرونده‌ی ویژه انتخابات ></span> <a href='{{result.url}}'>{{result.title|trim('\"')}}</a></h2>
+    <h2 class="special-heading bigger">
+     <span>پرونده‌ی ویژه انتخابات ></span> <a href='{{result.url}}'>{{result.title|trim('\"')}}</a>
+    </h2>
     {{block('homeTopRandomChart')}}
    </div>
 {%endif%}

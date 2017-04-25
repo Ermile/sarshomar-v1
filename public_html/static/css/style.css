@@ -784,11 +784,12 @@ footer #xaccess a:hover{opacity:0.8;padding:0.5em 2em;margin-right:0;}
 .rtl .special-heading.bigger::after{left:auto;right:-110px}
 
 .rtl .map-container .special-heading{margin-bottom:0}
-.special-heading span{font-weight:bold}
-.rtl .map-container .special-heading a{font-size:0.9em;transition:0.3s}
+.rtl .map-container .special-heading a{font-size:0.9em;transition:0.3s;display:inline-block;}
 .rtl .map-container .special-heading a:hover{color:#000;}
 .map-container .chart{height:270px;}
 
+
+.special-heading span{font-weight:bold}
 .map-container .chart{overflow:visible!important;}
 .map-container .chart .amcharts-chart-div{overflow:visible!important;}
 .map-container .chart svg{overflow:visible!important;}

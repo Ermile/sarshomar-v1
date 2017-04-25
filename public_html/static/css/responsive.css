@@ -109,6 +109,8 @@ aside{display:none}
 .poll-panel{display:none}
 #inestimable.special h4{font-size:3em}
 #features-box{padding:3em 0}
+.rtl .map-container .special-heading span{font-size:0.8em;}
+.rtl .map-container .special-heading a{font-size:0.7em;}
 footer #footer-nav .eco{height:70px}
 .f>.m{-webkit-flex-basis:0;-ms-flex-preferred-size:0;flex-basis:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;-moz-box-flex:1;flex-grow:1;max-width:100%}
 .f>.mauto{-webkit-box-flex:0;-webkit-flex:0 0 auto;-ms-flex:0 0 auto;-moz-box-flex:0;flex:0 0 auto;width:auto}
@@ -242,7 +244,10 @@ header #menu-bar span:after{content: "";display: block;position: absolute;height
 #random-chart h3 a{font-weight:500;font-size:1.3em}
 .dashboard-aside{display:none}
 .dashboard.main .row.first-line{margin-bottom:0}
-.main .map-container{padding:50px 0}
+.main .map-container.world{display:none}
+.rtl .map-container .special-heading span{font-size:0.7em;}
+.rtl .map-container .special-heading a{font-size:0.6em;}
+.rtl .main .map-container{padding:20px 0}
 .main .map-container .special-heading::before{display:none}
 .main .map-container .span5{display:none}
 #map{display:none}
@@ -358,6 +363,7 @@ footer .socialbox a{margin:0!important;margin-right:1rem!important}
 .range-slider .dynamic-range .max:after,.range-slider .dynamic-range .min:after,.range-slider .dynamic-range .min.active:before{top:0;width:20px;height:20px}
 .range-slider .dynamic-range .max{right:-15px;bottom:-24px}
 .range-slider .dynamic-range .max.active:before{width:20px;height:20px;top:0}
+.admin-toolbox{display:none}
 .ultra .module{width:100%;margin-bottom:5px}
 .sortable .element .title:hover:before{border:0;top:3px;left:-12px;display:inline;width:13px;height:15px}
 .dynamic-range span:after{left:-5px}
@@ -505,8 +511,8 @@ nav.breadcrumb{display:none}
 }
 
 
-/* Design for a width of 319px and lower */
-@media all and (max-width: 319px) {
+/* Design for a width of 299px and lower */
+@media all and (max-width: 299px) {
 body{display:none}
 html:before{content:":\\";position:absolute;right:0;left:0;font-size:100vw;color:#f4f4f4;text-align:center}
 }

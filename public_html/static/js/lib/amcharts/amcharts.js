@@ -729,6 +729,9 @@ function getChartOption($_what, _arg, _this)
 				"twoLineMode": true,
 				"tickLength": 5,
 				"axisAlpha": 0.2,
+				"gridPosition": "start",
+				"autoWrap":false,
+				"minHorizontalGap":0,
 				// "autoWrap":false,
 				// "labelRotation": 45,
 
