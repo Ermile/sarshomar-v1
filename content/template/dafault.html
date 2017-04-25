@@ -2,14 +2,16 @@
 
 {%block content%}
 <div class="main">
-  <section class="box">
+  <section class="box pad-large">
 {%block page_content%}
-   <h2>{{post.title}}</h2>
-   <div class="content">{{post.content |raw}}</div>
-   <nav id="page-nav">
-    <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
-    <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
-   </nav>
+   <h2 class="sh large">{{post.title}}</h2>
+   <div class="in">
+    <div class="content">{{post.content |raw}}</div>
+    <nav id="page-nav">
+     <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+     <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+    </nav>
+   </div>
 {%endblock%}
   </section>
 </div>

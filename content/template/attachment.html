@@ -1,0 +1,38 @@
+{%extends display.main%}
+
+{%block content%}
+<div class="main">
+  <section class="box pad-large">
+{%block page_content%}
+   <h2 class="sh large">{{post.title}}</h2>
+   <div class="in">
+       <div class="content">{{post.content |raw}}</div>
+{%set dlUrl%}{{url.protocol}}://dl.{{url.raw}}/{%endset%}
+
+{%if post.meta.url%}
+    {%if post.meta.type == 'image'%}
+        <img src='{{dlUrl}}{{post.meta.url}}' alt='{{post.title}}'>
+    {%elseif post.meta.type == 'audio'%}
+        <audio controls>
+         <source src="{{dlUrl}}{{post.meta.url}}">
+        </audio>
+    {%elseif post.meta.type == 'video'%}
+        <video controls>
+         <source src="{{dlUrl}}{{post.meta.url}}">
+        </video>
+    {%else%}
+       <p>{%trans "File is not support to show preview"%}</p>
+       <p>{{dlUrl}}{{post.meta.url}}</p>
+    {%endif%}
+{%endif%}
+   </div>
+
+
+   <nav id="page-nav">
+    <a href="{{nav.prev.url}}" id="nav-prev">{{nav.prev.title}}</a>
+    <a href="{{nav.next.url}}" id="nav-next">{{nav.next.title}}</a>
+   </nav>
+{%endblock%}
+  </section>
+</div>
+{%endblock%}
