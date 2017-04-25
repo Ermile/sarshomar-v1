@@ -16,17 +16,29 @@ class controller extends \content\main\controller
 
 		$site_url = \lib\router::get_url();
 
-		if($site_url === 'ref')
+		switch ($site_url)
 		{
-			\lib\router::set_controller("\\content\\referer\\controller");
-			return;
-		}
+			case 'image':
+			case 'video':
+			case 'audio':
+				// redirect to homepage
+				$this->redirector('/')->redirect();
+				break;
 
-		// route contact form
-		if($site_url == 'contact')
-		{
-			\lib\router::set_controller("\\content\\contact\\controller");
-			return;
+
+			case 'ref':
+				\lib\router::set_controller("\\content\\referer\\controller");
+				return;
+				break;
+
+			case 'contact':
+				// route contact form
+				\lib\router::set_controller("\\content\\contact\\controller");
+				return;
+				break;
+
+			default:
+				break;
 		}
 
 		$reg = "/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/";
