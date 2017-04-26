@@ -187,7 +187,7 @@ trait save
 			{
 				$text = implode(T_(',') . ' ', $_args['answer']);
 			}
-			return debug::true(T_("Your answer to  ':text' has been submitted", ['text' => $text]));
+			return debug::true(T_("Your answer to :text has been submitted", ['text' => "'". $text."'"]));
 
 			// return debug::true(T_("Your answer has been submitted"));
 		}

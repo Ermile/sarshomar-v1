@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-04-26 11:55+0430\n"
-"PO-Revision-Date: 2017-04-26 11:58+0430\n"
+"POT-Creation-Date: 2017-04-26 13:05+0430\n"
+"PO-Revision-Date: 2017-04-26 13:06+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ../../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -7987,7 +7987,6 @@ msgstr "به این اپلیکیشن اجازه دسترسی به حساب کا�
 
 #: sarshomar/includes/languages/trans_twig.php:290
 #, fuzzy
-#| msgid "This type of poll is not supported to answer"
 msgid "File is not support to show preview"
 msgstr "این نوع نظرسنجی برای پاسخ دادن پشتیبانی نشده است"
 
@@ -14146,20 +14145,20 @@ msgstr "نرخ ارز پیدا نشد"
 msgid "Unit id or user unit not found"
 msgstr "شناسه واحد یا واحد کاربر پیدا نشد"
 
-#: sarshomar/includes/lib/utility/answer/access.php:78
+#: sarshomar/includes/lib/utility/answer/access.php:80
 msgid "Many time left, can not update or delete answer"
 msgstr "زمان زیادی گذشته است، نمی‌توانید پاسخ خود را حذف یا بروز کنید"
 
-#: sarshomar/includes/lib/utility/answer/access.php:104
+#: sarshomar/includes/lib/utility/answer/access.php:115
 msgid "You have updated your answer many times and can not update it anymore"
 msgstr ""
 "شما پاسخ خود را به‌دفعات تغییر داده‌اید و نمی‌توانید بیش از این آن را بروز کنید!"
 
-#: sarshomar/includes/lib/utility/answer/access.php:152
+#: sarshomar/includes/lib/utility/answer/access.php:172
 msgid "You have already answered to this poll"
 msgstr "شما قبلا به این نظرسنجی پاسخ داده‌اید"
 
-#: sarshomar/includes/lib/utility/answer/access.php:190
+#: sarshomar/includes/lib/utility/answer/access.php:210
 #: sarshomar/includes/lib/utility/token.php:268
 msgid "Invalid type"
 msgstr "نوع نامعتبر است"
@@ -14173,8 +14172,8 @@ msgid "You have not answered to this poll"
 msgstr "شما به این نظرسنجی پاسخ نداده‌اید"
 
 #: sarshomar/includes/lib/utility/answer/save.php:190
-msgid "Your answer to <b> :text </b> has been submitted"
-msgstr "پاسخ شما به گزینه‌ی <b>:text</b> ثبت شد"
+msgid "Your answer to :text has been submitted"
+msgstr "پاسخ شما به گزینه‌ی :text ثبت شد"
 
 #: sarshomar/includes/lib/utility/answer/save.php:196
 msgid "Error in save your answer"
@@ -14185,8 +14184,8 @@ msgid "You have already selected this answer and submited"
 msgstr "شما قبلا با انتخاب همین گزینه پاسخ خود را ثبت کرده‌اید"
 
 #: sarshomar/includes/lib/utility/answer/update.php:273
-msgid "Your answer updated to <b> :text </b>"
-msgstr "پاسخ شما به گزینه‌ی <b>:text</b> بروز شد"
+msgid "Your answer updated to :text"
+msgstr "پاسخ شما به گزینه‌ی :text بروز شد"
 
 #: sarshomar/includes/lib/utility/chart/get.php:59
 msgid "Untitled poll"
@@ -14273,11 +14272,11 @@ msgstr "سلام دوست گرامی"
 msgid "Case Study"
 msgstr "مورد مطالعه"
 
-#~ msgid "Your answer to :text has been submitted"
-#~ msgstr "پاسخ شما به گزینه‌ی :text ثبت شد"
+#~ msgid "Your answer to <b> :text </b> has been submitted"
+#~ msgstr "پاسخ شما به گزینه‌ی <b>:text</b> ثبت شد"
 
-#~ msgid "Your answer updated to :text"
-#~ msgstr "پاسخ شما به گزینه‌ی :text بروز شد"
+#~ msgid "Your answer updated to <b> :text </b>"
+#~ msgstr "پاسخ شما به گزینه‌ی <b>:text</b> بروز شد"
 
 #~ msgid "Your answer updated"
 #~ msgstr "پاسخ شما بروز شد"
