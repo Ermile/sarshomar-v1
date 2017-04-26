@@ -159,6 +159,7 @@ trait get_options
 				unset($_poll_data['prize']);
 
 				$prize_unit = $_poll_data['prizeunit'];
+				$_poll_data['options']['prize']['unit'] = $prize_unit;
 				unset($_poll_data['prizeunit']);
 
 				// if(isset($value['option_meta']['unit']))

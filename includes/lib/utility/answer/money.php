@@ -36,7 +36,7 @@ trait money
 	 */
 	public static function money($_args)
 	{
-
+		// var_dump($_args);exit();
 		if(!isset($_args['user_id']) || !isset($_args['poll_id']))
 		{
 			// array_push(self::$money_error, 'args');
@@ -176,6 +176,14 @@ trait money
 		{
 			$units = [];
 		}
+
+		$user_unit = \lib\db\units::user_unit($_args['user_id']);
+		if($prize_unit === 'sarshomar' && $user_unit <> 'sarshomar' && $user_unit)
+		{
+			$prize_value = \lib\db\exchangerates::change_unit_to('sarshomar', $user_unit, $prize_value);
+			$prize_unit = $user_unit;
+		}
+
 		$caller = "real:answer:poll:$prize_unit";
 		if(in_array($prize_unit, $units))
 		{
