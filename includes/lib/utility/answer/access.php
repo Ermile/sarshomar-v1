@@ -82,49 +82,73 @@ trait access
 			return false;
 		}
 
-
-		// get count of updated the poll
-		$where =
+		$log_search =
 		[
-			'post_id'      => $_args['poll_id'],
-			'user_id'      => $_args['user_id'],
-			'option_cat'   => "user_detail_$_args[user_id]",
-			'option_key'   => "update_answer_$_args[poll_id]",
-			'option_value' => "update_answer",
-			'limit'        => 1,
+			'user_id'        => $_args['user_id'],
+			'log_desc'       => $_args['poll_id'],
+			'log_status'     => 'enable',
+			'caller'         => 'user:answer:update',
+			'log_createdate' => ['>', "'". date("Y-m-d H:i:s", (time() - $_args['update_every_time'])). "'"],
+			'get_count'      => true,
 		];
 
-		$update_count = options::get($where);
-
-		$last_update = time();
-
-		if(isset($update_count['date_modified']))
+		$get_log = \lib\db\logs::search(null, $log_search);
+		if($get_log && is_numeric($get_log))
 		{
-			$last_update = strtotime($update_count['date_modified']);
-		}
-
-		if((time() - $last_update) < (int) $_args['update_every_time'])
-		{
-			if(isset($update_count['meta']))
+			if((int) $get_log >= (int) $_args['count'])
 			{
-				if((int) $update_count['meta'] >= (int) $_args['count'])
-				{
-					// if($_args['debug'])
-					// {
-						\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
-						debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-					// }
-					return false;
-				}
+				// if($_args['debug'])
+				// {
+					\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
+					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
+				// }
+				return false;
 			}
 		}
-		elseif((time() - $last_update) > (int) $_args['update_every_time'])
-		{
-			if(isset($update_count['id']))
-			{
-				\lib\db\options::update(['option_meta' => 1], $update_count['id']);
-			}
-		}
+
+
+		// // get count of updated the poll
+		// $where =
+		// [
+		// 	'post_id'      => $_args['poll_id'],
+		// 	'user_id'      => $_args['user_id'],
+		// 	'option_cat'   => "user_detail_$_args[user_id]",
+		// 	'option_key'   => "update_answer_$_args[poll_id]",
+		// 	'option_value' => "update_answer",
+		// 	'limit'        => 1,
+		// ];
+
+		// $update_count = options::get($where);
+
+		// $last_update = time();
+
+		// if(isset($update_count['date_modified']))
+		// {
+		// 	$last_update = strtotime($update_count['date_modified']);
+		// }
+
+		// if((time() - $last_update) < (int) $_args['update_every_time'])
+		// {
+		// 	if(isset($update_count['meta']))
+		// 	{
+		// 		if((int) $update_count['meta'] >= (int) $_args['count'])
+		// 		{
+		// 			// if($_args['debug'])
+		// 			// {
+		// 				\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
+		// 				debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
+		// 			// }
+		// 			return false;
+		// 		}
+		// 	}
+		// }
+		// elseif((time() - $last_update) > (int) $_args['update_every_time'])
+		// {
+		// 	if(isset($update_count['id']))
+		// 	{
+		// 		\lib\db\options::update(['option_meta' => 1], $update_count['id']);
+		// 	}
+		// }
 
 		return true;
 	}

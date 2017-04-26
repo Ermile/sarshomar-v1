@@ -70,6 +70,7 @@ trait update
 
 		$log_meta =
 		[
+			'desc' => $_args['poll_id'],
 			'meta' =>
 			[
 				'input'            => $_args,
@@ -210,16 +211,16 @@ trait update
 
 		\lib\db\logs::set('user:answer:update', $_args['user_id'], $log_meta);
 		// plus answer update count
-		$where =
-		[
-			'post_id'      => (int) $_args['poll_id'],
-			'user_id'      => (int) $_args['user_id'],
-			'option_cat'   => "user_detail_$_args[user_id]",
-			'option_key'   => "update_answer_$_args[poll_id]",
-			'option_value' => "update_answer",
-		];
+		// $where =
+		// [
+		// 	'post_id'      => (int) $_args['poll_id'],
+		// 	'user_id'      => (int) $_args['user_id'],
+		// 	'option_cat'   => "user_detail_$_args[user_id]",
+		// 	'option_key'   => "update_answer_$_args[poll_id]",
+		// 	'option_value' => "update_answer",
+		// ];
 
-		options::plus($where);
+		// options::plus($where);
 
 		self::$IS_ANSWERED = [];
 
