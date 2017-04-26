@@ -378,15 +378,15 @@ trait data
 							break;
 
 						case 'country':
-							$insert_to_filters = \lib\utility\location\countres::check($value);
+							$insert_to_filters = \lib\utility\location\countres::get('id', $value, 'name');
 							break;
 
 						case 'province':
-							$insert_to_filters = \lib\utility\location\provinces::check($value);
+							$insert_to_filters = \lib\utility\location\provinces::get('id', $value, 'name');
 							break;
 
 						case 'city':
-							$insert_to_filters = \lib\utility\location\cites::check($value);
+							$insert_to_filters = \lib\utility\location\cites::get('id', $value, 'name');
 							break;
 
 						// case 'course':

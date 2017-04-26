@@ -58,7 +58,7 @@ class profiles
 			// 'jobcity'          => null,
 			// 'jobtitle'         => null,
 			// 'country'          => null,
-			// 'province'         => null,
+			'province'         => null,
 			// 'city'             => null,
 			// 'village'          => null,
 			// 'housestatus'      => ['owner', 'tenant', 'homeless'],

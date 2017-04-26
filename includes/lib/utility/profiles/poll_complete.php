@@ -172,7 +172,7 @@ trait poll_complete
 			$split = explode(':', $value['term_caller']);
 			if(isset($split[0]) && isset($split[1]))
 			{
-				if(!\lib\db\filters::support_filter($split[0], $split[1]))
+				if(\lib\utility\profiles::profile_data($split[0], $split[1]) === false)
 				{
 					continue;
 				}
