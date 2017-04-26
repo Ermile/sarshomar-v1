@@ -270,7 +270,7 @@ trait update
 			$text = implode(T_(',') . ' ', $_args['answer']);
 		}
 
-		return debug::true(T_("Your answer updated to <b> :text </b>", ['text' => $text]));
+		return debug::true(T_("Your answer updated to ':text'", ['text' => $text]));
 		// return debug::true(T_("Your answer updated"));
 	}
 }
