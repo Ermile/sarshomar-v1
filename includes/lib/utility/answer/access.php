@@ -23,12 +23,14 @@ trait access
 
 		$default_args =
 		[
-			'time'    => (60 * 3),
-			'count'   => 1,
-			'user_id' => null,
-			'poll_id' => null,
-			'debug'   => true,
-			'user_id' => null,
+			'update_every_time' => (60 * 60 * 1), // update every time, one time
+			'count'             => 3,
+			'time'              => (60 * 60 * 24 * 365 * 10),
+			'user_id'           => null,
+			'poll_id'           => null,
+			'debug'             => true,
+			'user_id'           => null,
+
 		];
 
 		if(defined('Tld') && Tld === 'dev')
@@ -94,18 +96,36 @@ trait access
 
 		$update_count = options::get($where);
 
-		if(isset($update_count['meta']))
+		$last_update = time();
+
+		if(isset($update_count['date_modified']))
 		{
-			if((int) $update_count['meta'] >= (int) $_args['count'])
+			$last_update = strtotime($update_count['date_modified']);
+		}
+
+		if((time() - $last_update) < (int) $_args['update_every_time'])
+		{
+			if(isset($update_count['meta']))
 			{
-				// if($_args['debug'])
-				// {
-					\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
-					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-				// }
-				return false;
+				if((int) $update_count['meta'] >= (int) $_args['count'])
+				{
+					// if($_args['debug'])
+					// {
+						\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
+						debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
+					// }
+					return false;
+				}
 			}
 		}
+		else
+		{
+			if(isset($update_count['id']))
+			{
+				\lib\db\options::update(['option_meta' => 1], $update_count['id']);
+			}
+		}
+
 		return true;
 	}
 
